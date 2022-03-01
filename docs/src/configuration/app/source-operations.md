@@ -11,36 +11,35 @@ An application can define a number of operations that apply to its source code a
 
 {{< note >}}
 
-Source Operations are currently in Beta.
-While the syntax is not expected to change, some behavior might in the future.
+Source operations are currently in Beta.
+While the syntax isn't expected to change, some behavior might.
 
 {{< /note >}}
 
-A basic, common source operation could be to automatically update dependencies.
-For instance, with composer:
+To define source operation, add them to your [app configuration](./_index.md).
+The key for each operation is its name (whatever you want to call it).
+It needs to have a `command` property where you define what's run when the operation is triggered.
 
-```yaml
+For example, to update a file from a remote location, you could define an operation like this:
+
+```yaml {location=".platform.app.yaml"}
 source:
     operations:
-        update:
+        update-file:
             command: |
                 set -e
-                composer update
-                git add composer.lock
-                git commit -m "Update Composer dependencies."
+                curl -O https://example.com/myfile.txt
+                git add myfile.txt
+                git commit -m "Update remote file"
 ```
 
-The `update` key is the name of the operation.
-It is arbitrary, and multiple source operations can be defined.
-(You may wish to include more robust error handling than this example.)
-
-The environment resource gets a new `source-operation` action which can be triggered by the CLI:
+You now have a new `source-operation` action that can be triggered by the CLI:
 
 ```bash
-platform source-operation:run update
+platform source-operation:run update-file
 ```
 
-The `source-operation:run` command takes the command name (i.e. `update`) to run.
+The `source-operation:run` command takes the command name (i.e. `update-file`) to run.
 Additional variables can be added to inject into the environment of the source operation.
 They will be interpreted the same way as any other [variable](../../development/variables/_index.md) set through the management console or the CLI,
 which means you need an `env:` prefix to expose them as a Unix environment variable.
@@ -69,7 +68,119 @@ Also, if multiple applications in a single project both result in a new commit,
 that will appear as two distinct commits in the Git history but only a single new build/deploy cycle will occur.
 If multiple applications define source operations with the same name, they will all be executed sequentially on each application.
 
-## Source Operations usage examples
+## Usage examples
+
+### Update dependencies
+
+You might want to automatically update your project's dependencies.
+Do so in a source operation depending on your dependency manager:
+
+<!--vale off -->
+{{< codetabs >}}
+
+---
+title=Composer
+file=none
+highlight=yaml
+---
+
+source:
+    operations:
+        update:
+            command: |
+                set -e
+                composer update
+                git add composer.lock
+                git commit -m "Update Composer dependencies"
+
+<--->
+
+---
+title=npm
+file=none
+highlight=yaml
+---
+
+source:
+    operations:
+        update:
+            command: |
+                set -e
+                npm update
+                git add package.json package-lock.json 
+                git commit -m "Update npm dependencies"
+
+<--->
+
+---
+title=Yarn
+file=none
+highlight=yaml
+---
+
+source:
+    operations:
+        update:
+            command: |
+                set -e
+                yarn upgrade
+                git add yarn.lock
+                git commit -m "Update yarn dependencies"
+
+<--->
+
+---
+title=Go
+file=none
+highlight=yaml
+---
+
+source:
+    operations:
+        update:
+            command: |
+                set -e
+                go get -u
+                go mod tidy
+                git add go.mod go.sum
+                git commit -m "Update Go dependencies"
+
+<--->
+
+---
+title=Pipenv
+file=none
+highlight=yaml
+---
+
+source:
+    operations:
+        update:
+            command: |
+                set -e
+                pipenv update
+                git add Pipfile Pipfile.lock
+                git commit -m "Update Python dependencies"
+
+<--->
+
+---
+title=Bundler
+file=none
+highlight=yaml
+---
+
+source:
+    operations:
+        update:
+            command: |
+                set -e
+                bundle update --all
+                git add Gemfile Gemfile.lock
+                git commit -m "Update Ruby dependencies"
+
+{{< /codetabs >}}
+<!--vale on -->
 
 ### Update a site from an upstream repository or template
 
