@@ -5,7 +5,7 @@ weight: 16
 description: See some common solutions to issues you might run into in development.
 ---
 
-## Common tools
+## Common tasks
 
 ### Force a redeploy
 
@@ -142,23 +142,32 @@ To send large files, use the `multipart/form-data` header instead:
 $ curl -XPOST 'https://example.com/graphql' --header 'Content-Type: multipart/form-data' -F file=large_file.json
 ```
 
-## Permission error creating a database
+## Databases
+
+For MySQL specific errors, see how to [troubleshoot MySQL](../configuration/services/mysql/troubleshoot.md).
+
+### Permission error creating a database
 
 If you try to use a user to create a database, you get an error saying `permission denied to create database`.
 The database is created for you
 and can be found in the `path` key of the `$PLATFORM_RELATIONSHIPS` [environment variable](./variables/use-variables.md#use-platformsh-provided-variables).
 
-## Can't write to file system
+## Storage
+
+If you're having trouble with storage, see how to [troubleshoot mounts](../configuration/app/troubleshoot-mounts.md) and [disks](../configuration/app/troubleshoot-disks.md).
+
+### Can't write to file system
 
 If you attempt to write to disk outside a `build` hook, you may encounter a `read-only file system` error.
 Except where you define it, the file system is all read-only, with code changes necessary through git.
 This gives you benefits like repeatable deployments, consistent backups, and traceability.
 
-You can write to disk a `build` hook to generate anything you need later.
-Or you can declare writable [mounts](../configuration/app/app-reference.md#mounts#mounts), which are writable even during and after deploy.
+To generate anything you need later, [write to disk during a `build` hook](../configuration/app/app-reference.md#writable-directories-during-build).
+Or [declare mounts](../configuration/app/app-reference.md#mounts#mounts),
+which are writable even during and after deploy.
 They can be used for your data: file uploads, logs, and temporary files.
 
-## Git push fails due to lack of disk space
+### Git push fails due to lack of disk space
 
 You might see the following message when attempting to run `git push`:
 `There is not enough free space to complete the push`
@@ -232,3 +241,10 @@ That means long-running cron jobs block a container from being shut down to make
 
 Make sure your custom cron jobs run quickly and properly.
 Cron jobs may invoke other services in unexpected ways, which can increase execution time.
+
+## Language-specific troubleshooting
+
+For language-specific troubleshooting for your apps:
+
+- [PHP](../languages/php/troubleshoot.html)
+- [Node JS](../languages/nodejs/debug.html)
