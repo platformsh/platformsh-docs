@@ -24,7 +24,7 @@ You need to have:
   You can also use another Bash-compatible shell such as [Git Bash](https://gitforwindows.org/),
   which you might have installed with git.
 
-For full requirements, see the [requirements on GitHub](https://github.com/platformsh/platformsh-cli#requirements).
+For full requirements, see the [requirements on GitHub](https://github.com/platformsh/platformsh-cli#user-content-requirements).
 
 ## 1. Install
 
@@ -34,7 +34,7 @@ Install the CLI using this command:
 curl -fsS https://platform.sh/cli/installer | php
 ```
 
-If you run into issues or want to install manually, see the [installation instructions on GitHub](https://github.com/platformsh/platformsh-cli#installation).
+If you run into issues or want to install manually, see the [installation instructions on GitHub](https://github.com/platformsh/platformsh-cli#user-content-installation).
 
 ## 2. Authenticate
 
@@ -169,7 +169,7 @@ The code is only merged between environments remotely.
 
 You can customize how the CLI operates and what it returns with a configuration file (`.platform/local/project.yaml`)
 or environment variables.
-For details, see the [customization instructions on GitHub](https://github.com/platformsh/platformsh-cli#customization).
+For details, see the [customization instructions on GitHub](https://github.com/platformsh/platformsh-cli#user-content-customization).
 
 ### Autocomplete commands
 

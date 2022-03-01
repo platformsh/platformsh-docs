@@ -10,10 +10,10 @@ Our experience has shown that effective caching can mean a huge difference in th
 and that placing the caches closer to your users (wherever they may be) is the best solution currently available.
 
 Self-Service Grid plans do not include a CDN by default, but you are welcome to configure one yourself.
-See our [guidelines](/bestpractices/http-caching.md) for when and if to use a CDN for HTTP caching.
+See our [guidelines](../../bestpractices/http-caching.md) for when and if to use a CDN for HTTP caching.
 
 We have partnerships with a variety of CDN vendors depending on your application’s needs.
-Our recommended CDN provider is [Fastly](/domains/cdn/fastly.md).
+Our recommended CDN provider is [Fastly](./fastly.md).
 
 ## DNS management
 
@@ -163,13 +163,13 @@ If your CDN offers this option, an alternative way of securing the connection is
 **note**: Remember to permit your developers to access the origin by creating your own certificate
 or else they won't be able to access the project URL directly (see below).
 
-CloudFlare has [a very good article](https://support.cloudflare.com/hc/en-us/articles/204899617-Authenticated-Origin-Pulls)
+CloudFlare has [a very good article](https://developers.cloudflare.com/ssl/origin-configuration/authenticated-origin-pull/)
 on what client authenticated TLS is and how to set this up.
 
 To activate authenticated TLS follow the following steps:
 
 - Download the correct certificate from your CDN provider.
-     - [CloudFlare](https://support.cloudflare.com/hc/en-us/article_attachments/360044928032/origin-pull-ca.pem)
+     - [CloudFlare](https://developers.cloudflare.com/ssl/static/authenticated_origin_pull_ca.pem)
          - *Caveat! an attacker could make a Cloudflare account to bypass your origin restriction. For CloudFlare, using the HTTP access control described above is the recommended way of securing your origin.*
      - [Fastly](https://docs.fastly.com/products/waf-tuning-plus-package#authenticated-tls-to-origin)
 - Make sure you have a `.crt` file. If you have a `.pem` file, rename it to `cdn.crt`

@@ -48,7 +48,7 @@ The Network storage service is available on all regions except the legacy region
 * `us.platform.sh`
 
 If you're on one of those and require the service,
-you should [migrate your project](/guides/general/region-migration.md#region-migration) to a newer region.
+you should [migrate your project](../../guides/general/region-migration.md) to a newer region.
 
 ## Usage example
 

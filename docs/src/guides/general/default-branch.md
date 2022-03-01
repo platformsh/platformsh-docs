@@ -10,7 +10,7 @@ To change it after project creation, follow the steps below.
 
 You can complete some of these steps through the management console,
 but since all can be completed with the CLI those commands alone are listed.
-Be sure to [install the CLI](/development/cli/_index.md#installation) if you have not already done so.
+Be sure to [install the CLI](../../development/cli/_index.md) if you have not already done so.
 It's assumed you are changing the default branch of your project on Platform.sh from `master` to `main`.
 If using another name for the default branch, update the commands accordingly. 
 
@@ -229,8 +229,8 @@ Platform.sh supports external Git integrations to a number of services,
 so follow the linked instructions below for changing the default branch to `main` for your provider:
 
 - [GitHub](https://github.com/github/renaming)
-- [GitLab](https://docs.gitlab.com/ee/user/project/repository/branches/#default-branch)
-- [BitBucket](https://community.atlassian.com/t5/Bitbucket-questions/How-to-change-MAIN-branch-in-BitBucket/qaq-p/977418#:~:text=In%20Bitbucket%20Cloud%2C%20please%20go,repository%20details%20%3E%3E%20Main%20branch.)
+- [GitLab](https://docs.gitlab.com/ee/user/project/repository/branches/default.html#change-the-default-branch-name-for-a-project)
+- [BitBucket](https://community.atlassian.com/t5/Bitbucket-questions/How-to-change-MAIN-branch-in-BitBucket/qaq-p/977418)
 
 ### 4. Deactivate the `master` environment
 

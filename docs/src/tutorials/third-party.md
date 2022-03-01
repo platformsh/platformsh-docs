@@ -104,7 +104,6 @@ Framework  | Credit
 
 ## Tools & development
 
-* **MySQL disk space** monitor https://github.com/galister/platformsh_mysqlmon
 * Create [**deploy commands you can run from composer**](https://github.com/dnunez24/platformsh-deploy-php), using Symfony
 * A small tool from Hanoii https://github.com/hanoii/drocal
 * Script to **sync a Drupal site** from Production to Local https://github.com/pjcdawkins/platformsh-sync

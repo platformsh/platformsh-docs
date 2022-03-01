@@ -4,11 +4,12 @@
     <th>Supported versions</th>
   </tr>
   {{- range $image, $info := .Site.Data.registry -}}
-    {{- if (isset $info "versions-dedicated-gen-3") -}}
+    {{- if and (isset $info "versions-dedicated-gen-3") (ne $image "redis-persistent") -}}
       {{- $label :=  index $info "name" -}}
       {{- $versions := index ( index $info "versions-dedicated-gen-3") "supported" -}}
+      {{- $docs_link := index (index $info "docs") "url" -}}
       <tr>
-        <td><a href="/configuration/services/{{ $image }}.html">{{ $label }}</a></td>
+        <td><a href="{{ $docs_link }}">{{ $label }}</a></td>
         <td>
           {{- $service_versions := "" -}}
           {{- range $versions -}}

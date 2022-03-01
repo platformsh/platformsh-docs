@@ -8,8 +8,8 @@ description: |
 
 It's possible to integrate a Platform.sh project with either the freely available Bitbucket Cloud product
 or with the self-hosted [Bitbucket Server](https://confluence.atlassian.com/bitbucketserver/).
-In both cases, you need to [install the Platform.sh CLI](/development/cli/_index.md#installation), if you haven't already done so,
-to set up the integration.
+In both cases, you need to [install the Platform.sh CLI](/development/cli/_index.md),
+if you haven't already done so, to set up the integration.
 
 {{< note >}}
 
@@ -127,14 +127,4 @@ even if specifically set to true.
 
 {{< /note >}}
 
-## Clones and commits
-
-You can clone your codebase by running `platform get <projectID>`
-or in your project in the console by going to Code > Git and running the `git clone` command.
-
-When you perform this action, you are actually cloning from your remote integrated repository,
-so long as you have the [appropriate access to do so](/administration/users.md#user-access-and-integrations).
-
-Your Bitbucket repository is considered by Platform.sh to be the "source of truth" for the project.
-The project is only a mirror of that repository and all commits should be pushed only to Bitbucket.
-
+{{% clone-commit name="Bitbucket" %}}

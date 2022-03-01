@@ -21,4 +21,4 @@ jobs:
       - name: Check links
         env:
           URL: https://pr-2189-odiepqq-652soceglkw4u.eu-3.platformsh.site
-        run: ./muffet --buffer-size=8192 --rate-limit=1  --max-connections-per-host=10 --color=always  --header="User-Agent:Mozilla/5.0 (Windows NT 10.0) Gecko/20100101 Firefox/91.0" --exclude=https://console.platform.sh/projects/create-project https://pr-2189-odiepqq-652soceglkw4u.eu-3.platformsh.site
+        run: ./muffet --buffer-size=8192 --rate-limit=1  --max-connections-per-host=10 --color=always  --header="User-Agent:Mozilla/5.0 (Windows NT 10.0) Gecko/20100101 Firefox/91.0" -e=console.platform.sh/projects/create-project -e=cloud.orange-business.com -e=developers.cloudflare.com -e=discord.com -e=pptr.dev https://pr-2189-odiepqq-652soceglkw4u.eu-3.platformsh.site

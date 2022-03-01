@@ -76,6 +76,7 @@ scp
 shard
 shortcode
 Stempel
+Strapi
 Symfony
 transclusion
 unencrypted

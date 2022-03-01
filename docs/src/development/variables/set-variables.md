@@ -79,7 +79,9 @@ When naming variables, be sure to take [variable prefixes](./_index.md#variable-
 
 ### Environment variable options
 
-Environment variables share all of the [options available for project variables](./_index.md#variable-options), with the exception that visibility in the build and runtime can be set only with the CLI (not in the console). Environment variables have one additional option:
+Environment variables share all of the [options available for project variables](#variable-options),
+with the exception that visibility in the build and runtime can be set only with the CLI (not in the console).
+Environment variables have one additional option:
 
 | Option      | CLI flag        | Default | Description |
 | ----------- | --------------- | ------- | ----------- |

@@ -22,7 +22,7 @@ although you can also use Oracle MySQL or [PostgreSQL](/configuration/services/p
 We also strongly recommend using [Redis](/configuration/services/redis.md) for Drupal caching.
 Drupal's cache can be very aggressive,
 and keeping that data out of the database helps with both performance and disk usage.
-Our Drupal template comes [pre-configured to use Redis](https://github.com/platformsh-templates/drupal9#customizations) for caching.
+Our Drupal template comes [pre-configured to use Redis](https://github.com/platformsh-templates/drupal9#user-content-customizations) for caching.
 
 {{% /guides/config-service %}}
 

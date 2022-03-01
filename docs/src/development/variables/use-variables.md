@@ -3,7 +3,7 @@ title: Use variables
 description: See how to use variables that have already been set so you can take control over your app's environment.
 ---
 
-Get a list of all variables defined on a given environment in [the management console](/administration/web/configure-environment.md#variables)
+Get a list of all variables defined on a given environment in [the management console](../../administration/web/configure-environment.md#variables)
 or use the CLI:
 
 ```bash
@@ -360,7 +360,7 @@ and whether they're available during builds and at runtime.
 | `PLATFORM_SMTP_HOST`        | No    | Yes     | The SMTP host to send email messages through. Is empty when mail is disabled for the current environment. |
 | `PLATFORM_SOURCE_DIR`       | Yes   | No      | Equivalent to `PLATFORM_APP_DIR` in the context of a running [source operation](../../configuration/app/source-operations.md). The directory contains a writable copy of your repository that you can commit to during the operation. |
 | `PLATFORM_TREE_ID`          | Yes   | Yes     | The ID of the tree the application was built from, essentially the SHA hash of the tree in Git. Use when you need a unique ID for each build. |
-| `PLATFORM_VARIABLES`        | Some  | Some    | A base64-encoded JSON object with all user-defined project and environment variables that don't use a [prefix](./_index.md#variable-prefixes). The keys are the variable names and the values are the variable values. Availability during builds and at runtime depends on the settings for each variable. See how to [access individual variables](#accessing-variables-in-a-shell). |
+| `PLATFORM_VARIABLES`        | Some  | Some    | A base64-encoded JSON object with all user-defined project and environment variables that don't use a [prefix](./_index.md#variable-prefixes). The keys are the variable names and the values are the variable values. Availability during builds and at runtime depends on the settings for each variable. See how to [access individual variables](#access-variables-in-a-shell). |
 | `PORT`                      | No    | Yes     | A `string` representing the port to which requests are sent if the [`web.upstream.socket_family` property](../../configuration/app/app-reference.md#upstream) is unset or set to `tcp`. |
 | `SOCKET`                    | No    | Yes     | A `string` representing the path to the Unix socket file to use if the [`web.upstream.socket_family` property](../../configuration/app/app-reference.md#upstream) is set to `unix`. |
 
@@ -430,7 +430,7 @@ Some apps require configuration values to be specified in a static, non-executab
 and don't support reading from environment variables.
 
 To populate these files with variables you set yourself,
-make sure the variables are set to be [visible at build time](./set-variables.md#environment-variables).
+make sure the variables are set to be [visible at build time](./set-variables.md#variable-options).
 
 The files can't be populated with Platform.sh-provided variables not available at build time (such as `PLATFORM_RELATIONSHIPS`).
 You also can't write to them in a `deploy` hook as the file system is read only.
