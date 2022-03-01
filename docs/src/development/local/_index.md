@@ -45,7 +45,8 @@ You will also notice a new directory in your project, `.platform/local`, which i
 ## Building the site locally
 
 Run the `platform build` command to run through the same build process as would be run on Platform.sh.
-This creates `_www` directory in your project root that's a symbolic link to the currently active build in the `.platform/local/builds` folder.
+This creates a `_www` directory in your project root
+that's a symbolic link to the currently active build in the `.platform/local/builds` folder.
 Run your local server from the `www` directory.
 
 ```bash

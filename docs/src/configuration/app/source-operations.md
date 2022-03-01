@@ -1,6 +1,5 @@
 ---
 title: "[Beta] Source operations"
-toc: false
 sidebarTitle: "Source operations"
 tier:
   - Elite
@@ -186,26 +185,26 @@ source:
 
 The following Source Operation syncronizes your branch with an upstream Git repository.
 
-1. Add a project-level variable named `env:UPSTREAM_REMOTE` with the Git URL of the upstream repository.
-That will make that repository available as a Unix environment variable in all environments,
-including in the Source Operations environment.
+1. [Add a project-level variable](../../development/variables/set-variables.md#create-project-variables)
+   named `env:UPSTREAM_REMOTE` with the Git URL of the upstream repository.
+   That makes that repository available as a Unix environment variable in all environments,
+   including in the Source Operations environment.
 
-  - Variable name: `env:UPSTREAM:REMOTE`
-  - Variable example value: `https://github.com/platformsh/platformsh-docs`
+   - Variable name: `env:UPSTREAM_REMOTE`
+   - Variable example value: `https://github.com/platformsh/platformsh-docs`
 
-2. In your  `.platform.app.yaml` file, define a Source Operation to fetch from that upstream repository:
+2. In your app configuration, define a source operation to fetch from that upstream repository:
 
-  ```yaml
-  source:
-      operations:
-          upstream-update:
-              command: |
-                  set -e
-                  git remote add upstream $UPSTREAM_REMOTE
-                  git fetch --all
-                  git merge upstream/main
-  ```
-
+   ```yaml {location=".platform.app.yaml"}
+   source:
+       operations:
+           upstream-update:
+               command: |
+                   set -e
+                   git remote add upstream $UPSTREAM_REMOTE
+                   git fetch --all
+                   git merge upstream/main
+   ```
 
 3. Now every time you run `platform source-operation:run upstream-update` using the CLI on a given branch,
    the branch fetches all changes from the upstream git repository
