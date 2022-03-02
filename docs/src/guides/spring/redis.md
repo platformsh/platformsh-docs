@@ -42,3 +42,37 @@ Please check the [Spring Common Application properties](https://docs.spring.io/s
 ## 4. Connect to Redis
 
 Commit that code and push. The Redis instance is ready to be connected from within the Spring application.
+
+## Use Spring Data for Redis
+
+You can use [Spring Data Redis](https://spring.io/projects/spring-data-mongodb) to use Redis with your app.
+First, determine the MongoDB client using the [Java configuration reader library](https://github.com/platformsh/config-reader-java).
+
+```java
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.GenericToStringSerializer;
+
+@Configuration
+public class RedisConfig {
+
+
+    @Bean
+    JedisConnectionFactory jedisConnectionFactory() {
+        Config config = new Config();
+        RedisSpring redis = config.getCredential("redis", RedisSpring::new);
+        return redis.get();
+    }
+
+    @Bean
+    public RedisTemplate<String, Object> redisTemplate() {
+        final RedisTemplate<String, Object> template = new RedisTemplate<String, Object>();
+        template.setConnectionFactory(jedisConnectionFactory());
+        template.setValueSerializer(new GenericToStringSerializer<Object>(Object.class));
+        return template;
+    }
+
+}
+```

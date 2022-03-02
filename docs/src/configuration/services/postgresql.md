@@ -10,9 +10,9 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 
 {{% frameworks %}}
 
-- [Hibernate](../../../frameworks/hibernate.md#mysql)
-- [Jakarta EE](../../../frameworks/jakarta.md#mysql)
-- [Spring](../../../frameworks/spring.md#mysql)
+- [Hibernate](../../guides/hibernate/deploy.md#mysql)
+- [Jakarta EE](../../guides/jakarta/deploy.md#mysql)
+- [Spring](../../guides/spring/deploy/_index.md#mysql)
 
 {{% /frameworks %}}
 

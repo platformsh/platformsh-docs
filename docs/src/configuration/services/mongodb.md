@@ -8,7 +8,7 @@ sidebarTitle: "MongoDB"
 
 {{% frameworks %}}
 
-- [Jakarta EE](../../frameworks/jakarta.md#mongodb)
+- [Jakarta EE](../../guides/jakarta/deploy.md#mongodb)
 - [Micronaut](../../guides/micronaut/mongodb.md)
 - [Quarkus](../../guides/quarkus/mongodb.md)
 - [Spring](../../guides/spring/mongodb.md)

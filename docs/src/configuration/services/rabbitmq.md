@@ -10,7 +10,7 @@ See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for
 
 {{% frameworks %}}
 
-- [Spring](../../frameworks/spring.md#rabbitmq)
+- [Spring](../../guides/spring/rabbitmq.md)
 
 {{% /frameworks %}}
 

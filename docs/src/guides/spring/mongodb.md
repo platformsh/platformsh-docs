@@ -48,3 +48,35 @@ Please check the [Spring Common Application properties](https://docs.spring.io/s
 ## 4. Connect to the service
 
 Commit that code and push. The application is ready and connected to a MongoDB instance.
+
+## Use Spring Data for MongoDB
+
+You can use [Spring Data MongoDB](https://spring.io/projects/spring-data-mongodb) to use MongoDB with your app.
+First, determine the MongoDB client using the [Java configuration reader library](https://github.com/platformsh/config-reader-java).
+
+```java
+import com.mongodb.MongoClient;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
+import sh.platform.config.Config;
+import sh.platform.config.MongoDB;
+
+@Configuration
+public class MongoConfig extends AbstractMongoConfiguration {
+
+    private Config config = new Config();
+
+    @Override
+    @Bean
+    public MongoClient mongoClient() {
+        MongoDB mongoDB = config.getCredential("database", MongoDB::new);
+        return mongoDB.get();
+    }
+
+    @Override
+    protected String getDatabaseName() {
+        return config.getCredential("database", MongoDB::new).getDatabase();
+    }
+}
+```

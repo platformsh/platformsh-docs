@@ -94,6 +94,9 @@ https://{default}/:
       # Drupal 7 EOL
       "/frameworks/drupal7.*": { "to": "/guides/drupal9/deploy.html", "code": 301, "regexp": true }
 
+      # Removal of featured frameworks
+      "/frameworks/(?!deploy|drupal)(.*).html":  { "to": "/guides/$1/deploy.html", "code": 301, "regexp": true }
+
 "https://search.{default}/":
     type: upstream
     upstream: "search:http"

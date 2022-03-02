@@ -28,6 +28,7 @@ Goldmark
 Gradle
 Gunicorn
 gzip
+Helidon
 highjack
 hostname
 [Hh]otfix
@@ -56,6 +57,7 @@ Opigno
 Opsgenie
 optipng
 Packagist
+Payara
 Pixelant
 pngcrush
 preprocessor
@@ -77,7 +79,10 @@ shard
 shortcode
 Stempel
 Symfony
+Thorntail
+Tomitribe
 transclusion
+[Uu]ncomment
 unencrypted
 [Uu]nmount
 webpack
