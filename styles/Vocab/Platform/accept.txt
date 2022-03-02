@@ -41,6 +41,7 @@ Magento
 Mailchimp
 Memcache
 middleware
+Muffet
 multicast
 [Mm]ultifactor
 multisite
