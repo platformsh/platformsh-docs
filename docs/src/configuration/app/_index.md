@@ -32,11 +32,11 @@ To create a very basic app, you need a few things:
 The following example shows such a basic setup for PHP:
 
 ```yaml {location=".platform.app.yaml"}
-# The name of this application, which must be unique within the project.
+# The app's name, which must be unique within the project.
 name: 'app'
 
 # The language and version for your app.
-type: 'php:8.0'
+type: 'nodejs:8.1'
 
 # The size of the app's persistent disk (in MB).
 disk: 2048
@@ -46,9 +46,13 @@ web:
     locations:
         '/':
             # The public directory relative to the app root.
-            root: 'web'
-            # The front-controller script which determines where to send non-static requests.
-            passthru: '/app.php'
+            root: 'public'
+            # Forward resources to the app.
+            passthru: true
+            # What files to use when serving a directory.
+            index: ["index.html"]
+            # Allow files even without specified rules.
+            allow: true
 ```
 
 ## Use multiple apps
@@ -112,56 +116,53 @@ This approach supports any file type and offers some CPU optimization, especiall
 The following example shows a setup for a PHP app with comments to explain the settings.
 
 ```yaml {location=".platform.app.yaml"}
-# The name of this application, which must be unique within a project.
+# The app's name, which must be unique within the project.
 name: 'app'
 
-# The type key specifies the language and version for your application.
-type: 'php:8.0'
+# The type key specifies the language and version for your app.
+type: 'php:8.1'
 
-# By default, composer 1 will be used. Specify composer 2 in the dependencies to get the latest version
+# Global dependencies to be added and cached and then available as commands.
 dependencies:
     php:
         composer/composer: '^2'
 
-# The relationships of the application with services or other applications.
-# The left-hand side is the name of the relationship as it will be exposed
-# to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
-# side is in the form `<service name>:<endpoint name>`.
+# The app's relationships (connections) with services or other applications.
+# The key is the relationship name that can be viewed in the app.
+# The value is specific to how the service is configured.
 relationships:
     database: 'mysqldb:mysql'
 
-# The hooks that will be triggered when the package is deployed.
+# Scripts that are run as part of the build and deploy process.
 hooks:
-    # Build hooks can modify the application files on disk but not access any services like databases.
-    build: |
-                rm web/app_dev.php
+    # Build hooks can modify app files on disk but not access any services like databases.
+    build: ./build.sh
     # Deploy hooks can access services but the file system is now read-only.
-    deploy: |
-                app/console --env=prod cache:clear
+    deploy: ./deploy.sh
+    # Post deploy hooks run when the app is accepting outside requests.
+    post_deploy: ./post_deploy.sh
 
-
-# The size of the persistent disk of the application (in MB).
+# The size of the app's persistent disk (in MB).
 disk: 2048
 
-# The 'mounts' describe writable, persistent filesystem mounts in the application.
-# The keys are directory paths relative to the application root. The values are a
-# mount definition. In this case, `web-files` is just a unique name for the mount.
+# Define writable, persistent filesystem mounts.
+# The key is the directory path relative to the application root.
+# In this case, `web-files` is just a unique name for the mount.
 mounts:
     'web/files':
         source: local
         source_path: 'web-files'
 
-# The configuration of the application when it is exposed to the web.
+# The app configuration when it's exposed to the web.
 web:
     locations:
         '/':
-            # The public directory of the application relative to its root.
-            root: 'web'
-            # The front-controller script which determines where to send
-            # non-static requests.
+            # The app's public directory relative to its root.
+            root: 'public'
+            # A front controller to determine how to handle requests.
             passthru: '/app.php'
-        # Allow uploaded files to be served, but do not run scripts.
-        # Missing files get mapped to the front controller above.
+        # Allow uploaded files to be served, but don't run scripts.
+        # Missing files get sent to the front controller.
         '/files':
             root: 'web/files'
             scripts: false
