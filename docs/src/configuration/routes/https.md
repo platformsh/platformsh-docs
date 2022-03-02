@@ -248,7 +248,7 @@ If you include them in your [routes definition](./_index.md),
 Platform.sh checks that both the `example.platform.sh` and `www.example.platform.sh` domains are pointing to your project.
 The certificate also encompasses both these domains.
 Make sure that both your apex domain and it's `www` subdomain are pointing to your project,
-more information can be found in out go live [step-by-step guide](gettingstarted/next-steps/going-live/configure-dns.md).
+more information can be found in out go live [step-by-step guide](../../gettingstarted/next-steps/going-live/configure-dns.md).
 
 Sometimes, that verification fails which will result in the following error-message:
 `Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]`

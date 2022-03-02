@@ -98,7 +98,7 @@ To open only one connection when you have multiple relationships defined, run `t
 ### Use an app tunnel
 
 Many database applications (such as MySQL Workbench) support establishing their own SSH tunnel.
-You need to use [SSH keys](./ssh-keys) for authentication.
+You need to use [SSH keys](./ssh-keys.md) for authentication.
 Consult the documentation for your application for how to enter SSH credentials.
 
 #### Get SSH connection details

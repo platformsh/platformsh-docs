@@ -492,7 +492,7 @@ Flavors are language-specific.
 See what the build flavor is for your language:
 
 * [Node.js](../../languages/nodejs/_index.md#build-flavor)
-* [PHP](../../languages/php#build-flavor)
+* [PHP](../../languages/php/_index.md#build-flavor)
 
 In all languages, you can also specify a flavor of `none` to take no action at all
 (which is the default for any language other than PHP and Node.js).

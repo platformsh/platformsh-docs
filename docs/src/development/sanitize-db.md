@@ -27,7 +27,7 @@ This guide is about sanitizing MySQL databases.
 
 This guide doesn't address:
 
-- Sanitizing NoSQL Databases (such as [MongoDB](../configuration/services/mongodb/_index.md))
+- Sanitizing NoSQL Databases (such as [MongoDB](../configuration/services/mongodb.md))
 - Input validation and input sanitization, which both help prevent security vulnerabilities
 
 ## Sanitize the database

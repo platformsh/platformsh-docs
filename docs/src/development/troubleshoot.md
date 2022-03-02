@@ -246,5 +246,5 @@ Cron jobs may invoke other services in unexpected ways, which can increase execu
 
 For language-specific troubleshooting for your apps:
 
-- [PHP](../languages/php/troubleshoot.html)
-- [Node JS](../languages/nodejs/debug.html)
+- [PHP](../languages/php/troubleshoot.md)
+- [Node JS](../languages/nodejs/debug.md)

@@ -54,7 +54,7 @@ these mounts are cloned with the rest of your data.
 ## What happens if I push a local branch to my project?
 
 If you push a local branch that you created with Git,
-you create what's called an [inactive environment](../../other/glossary.md#inactive-environment).
+you create what's called an [inactive environment](../other/glossary.md#inactive-environment).
 
 This means there aren't any services attached to this branch.
 
