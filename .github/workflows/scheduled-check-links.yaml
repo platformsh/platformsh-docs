@@ -1,8 +1,8 @@
 # This is called after the deployed environment is ready to be checked
-name: Check links
+name: Regularly scheduled check links
 on:
-  pull_request:
-    branches: [main]
+  schedule:
+    - cron: "0 2 * * 1,4"
 
 jobs:
   check-links:
