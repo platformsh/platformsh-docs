@@ -6,11 +6,15 @@ tier:
   - Enterprise
 ---
 
-An application can define a number of operations that apply to its source code and that can be automated.
+A source operation is an operation defined by an application to apply and automate changes to its source code.
 
-To define source operation, add them to your [app configuration](./_index.md).
-The key for each operation is its name (whatever you want to call it).
-It needs to have a `command` property where you define what's run when the operation is triggered.
+## Define a source operation
+
+Source operations are defined in your [app configuration](./_index.md).
+
+A source operation requires the following properties:
+* `name`: has to be unique.
+* `command`: defines what is run when the operation is triggered.
 
 For example, to update a file from a remote location, you could define an operation like this:
 
@@ -25,21 +29,41 @@ source:
                 git commit -m "Update remote file"
 ```
 
-You now have a new `source-operation` action that can be triggered by the CLI:
+See more usage examples below.
+
+## Run a source operation
+
+To run a source operation, you can use the CLI or Console.
+
+{{< codetabs >}}
+
+---
+title=Using the Console
+file=none
+highlight=false
+---
+
+1. Navigate to the environment where you want to run the operation.
+1. Open the `three dots` menu on the top right of the screen.
+1. Click **Run Source Operation**.
+1. Select the operation you want to run.
+1. [Optional] Add the variables required by your source operation.
+1. Click **Run**.
+
+<--->
+---
+title=Using the CLI
+file=none
+highlight=false
+---
 
 ```bash
 platform source-operation:run update-file
 ```
 
 The `source-operation:run` command takes the command name (i.e. `update-file`) to run.
-Additional variables can be added to inject into the environment of the source operation.
-They will be interpreted the same way as any other [variable](../../development/variables/_index.md) set through the management console or the CLI,
-which means you need an `env:` prefix to expose them as a Unix environment variable.
-They can then be referenced by the source operation like any other variable.
 
-```bash
-platform source-operation:run update --variable env:FOO=bar --variable env:BAZ=beep
-```
+{{< /codetabs >}}
 
 When this operation is triggered:
 
@@ -55,10 +79,46 @@ When this operation is triggered:
 Note that these operations run in an isolated container that is not part of the runtime cluster of the environment
 and doesn't require the environment to be running.
 
-
 Also, if multiple applications in a single project both result in a new commit,
 that will appear as two distinct commits in the Git history but only a single new build/deploy cycle will occur.
 If multiple applications define source operations with the same name, they will all be executed sequentially on each application.
+
+## Use variables in your source operations
+
+Additional variables can be added to inject into the environment of the source operation.
+
+They will be interpreted the same way as any other [variable](../../development/variables/_index.md) set through the management console or the CLI,
+which means you need an `env:` prefix to expose them as a Unix environment variable.
+
+They can then be referenced by the source operation like any other variable.
+
+{{< codetabs >}}
+
+---
+title=Using the Console
+file=none
+highlight=false
+---
+
+1. Navigate to the environment where you want to run the operation.
+1. Open the `three dots` menu on the top right of the screen.
+1. Click **Run Source Operation**.
+1. Select the operation you want to run.
+1. Add the variable with the name `FOO` and the value `bar` (the variable is automatically prefixed with `env:`, so you don't need to add it.
+1. Click **Run**.
+
+<--->
+---
+title=Using the CLI
+file=none
+highlight=false
+---
+
+```bash
+platform source-operation:run update --variable env:FOO=bar --variable env:BAZ=beep
+```
+
+{{< /codetabs >}}
 
 ## Usage examples
 
