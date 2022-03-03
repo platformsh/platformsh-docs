@@ -6,9 +6,12 @@ aliases:
   - "/gettingstarted/own-code/service-configuration.html"
 ---
 
-In the previous step, you created a collection of empty configuration files that will allow the project to be deployed on Platform.sh.
+In the previous step, you created a collection of empty configuration files
+to allow the project to be deployed on Platform.sh.
 
-Now you will need to include information that will tell Platform.sh how you want your application to connect to its [services](/configuration/services/_index.md) in a `.platform/services.yaml` file.
+Now you need to include information that tells Platform.sh how you want your application to connect to its [services](/configuration/services/_index.md).
+
+If you don't need any services, you can [skip to the next step](./app-configuration.md).
 
 With the following project structure:
 
@@ -21,13 +24,15 @@ With the following project structure:
 └── < application code >
 ```
 
-An example `.platform/services.yaml` will look something like this:
+An example `.platform/services.yaml` looks something like this:
 
 `.platform/services.yaml`
 
 {{< readFile file="static/files/fetch/servicesyaml/drupal9" highlight="yaml" >}}
 
-If your application does not use any services at this point then you can leave it blank, but it must exist in your repository to run on Platform.sh. If your application does use a database or other services, you can configure them with the following attributes:
+If your application does not use any services at this point then you can leave it blank, but it must exist in your repository to run on Platform.sh.
+
+If your application does use a database or other services, you can configure them with the following attributes:
 
 * `name`: Provide a name for the service, so long as it is alphanumeric. If your application requires multiple services of the same type, make sure to give them different names so that your data from one service is never overwritten by another.
 
