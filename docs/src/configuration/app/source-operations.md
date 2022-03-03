@@ -1,5 +1,5 @@
 ---
-title: "[Beta] Source operations"
+title: "Source operations"
 sidebarTitle: "Source operations"
 tier:
   - Elite
@@ -7,13 +7,6 @@ tier:
 ---
 
 An application can define a number of operations that apply to its source code and that can be automated.
-
-{{< note >}}
-
-Source operations are currently in Beta.
-While the syntax isn't expected to change, some behavior might.
-
-{{< /note >}}
 
 To define source operation, add them to your [app configuration](./_index.md).
 The key for each operation is its name (whatever you want to call it).
