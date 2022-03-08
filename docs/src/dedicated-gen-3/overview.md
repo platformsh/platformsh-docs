@@ -16,13 +16,6 @@ Data location requirements is also common in choosing a Dedicated cluster, such 
 
 Dedicated Generation 3 works nearly identically to Platform.sh environments, and does not require additional configuration on your part. The only difference is that of service availability.
 
-{{< note >}}
-
-Dedicated Generation 3 is not [PCI](../security/pci.md) compliant.
-For a PCI-compliant option, use a [previous-generation Dedicated Cluster](../dedicated/overview/_index.md).
-
-{{< /note >}}
-
 ## Why a Generation 3?
 
 Our existing [dedicated infrastructure](/dedicated/overview) ensures increased uptime and availability for your applications and services, but configuration or application topology changes have to go through our Customer Success team, as the VMs are provisioned by us. Generation 3 gives you both the high availability from our Dedicated offer combined with the self-service flexibility and features of Platform.sh Professional. 
