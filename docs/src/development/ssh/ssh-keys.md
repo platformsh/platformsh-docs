@@ -101,7 +101,7 @@ To connect to a server using SSH keys, find the details in the management consol
 1. In the **Environment** dropdown, select the environment you want to access.
 1. Click the **SSH** dropdown.
 1. Copy the ssh command for where you want access.
-   (Example: `ssh abcdefghi5k-main-7rqtwti--app@ssh.region.url`)
+   (Example: `ssh abcdefghi5k-main-7rqtwti--app@ssh.<region>.url`)
 1. Enter the command into a terminal.
 
 Note that if you have just added your SSH key,
@@ -121,3 +121,12 @@ Host *.eu.platform.sh
 
 Include one `Host` entry for each Platform.sh region you want to connect to, such as `us-2` or `eu-4`.
 (You can include other configuration as desired.)
+
+## Troubleshooting
+
+A given SSH key pair can only be linked to a single user account.
+Attempting to add the same SSH key to another account will result in the `SSH key can not be duplicated` error message.
+Generate a new pair of SSH keys for the second user account you want to add.
+
+You can use several SSH profiles with the `~/.ssh/config` file.
+More information about that file and its capabilites can be retrieved on your local machine with the `man ssh_config` command.
