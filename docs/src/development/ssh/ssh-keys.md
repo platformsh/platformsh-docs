@@ -129,4 +129,6 @@ Attempting to add the same SSH key to another account will result in the `SSH ke
 Generate a new pair of SSH keys for the second user account you want to add.
 
 You can use several SSH profiles with the `~/.ssh/config` file.
-More information about that file and its capabilites can be retrieved on your local machine with the `man ssh_config` command.
+More information about that file and its capabilities can be retrieved on your local machine with the `man ssh_config` command.
+
+{{% troubleshoot %}}
