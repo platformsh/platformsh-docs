@@ -132,7 +132,7 @@ Mounts define directories that are writable even after the build is complete.
 mounts:
     '<DIRECTORY>':
         source: <SOURCE_LOCATION>
-        source_path: <SOURCE_PATH_LOCATION
+        source_path: <SOURCE_PATH_LOCATION>
 ```
 
 The `<DIRECTORY>` is relative to the app's root.
