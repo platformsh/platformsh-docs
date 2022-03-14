@@ -29,7 +29,7 @@ jobs:
           # Get length of broken links array
           eval "$( jq -r '@sh "urls_length=\(.|length)"' "$data" )"
 
-          # Check if any links broken
+          # Check if any links are broken
           if [ -z "$urls_length" ]; then
             ":tada: There are no broken links! :tada:" > broken_links.md
           else

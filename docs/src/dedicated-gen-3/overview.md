@@ -25,7 +25,7 @@ For a PCI-compliant option, use a [previous-generation Dedicated Cluster](../ded
 
 ## Why a Generation 3?
 
-Our existing [dedicated infrastructure](../dedicated/overview) ensures increased uptime and availability for your applications and services, but configuration or application topology changes have to go through our Customer Success team, as the VMs are provisioned by us. Generation 3 gives you both the high availability from our Dedicated offer combined with the self-service flexibility and features of Platform.sh Professional. 
+Our existing [dedicated infrastructure](../dedicated/overview/_index.md) ensures increased uptime and availability for your applications and services, but configuration or application topology changes have to go through our Customer Success team, as the VMs are provisioned by us. Generation 3 gives you both the high availability from our Dedicated offer combined with the self-service flexibility and features of Platform.sh Professional. 
 
 This means that you are able to edit your configuration yourself - in your `services.yaml`, `routes.yaml`, and `.platform.app.yaml` files - and then see those changes reflected in your Dedicated Generation 3 environments on every push without opening a ticket. 
 
