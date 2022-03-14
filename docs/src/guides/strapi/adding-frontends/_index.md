@@ -45,7 +45,7 @@ If you don't want to sign up initially with your e-mail address,
 you can sign up using an existing GitHub, Bitbucket, or Google account.
 If you choose one of these options, you can set a password for your Platform.sh account later.
 
-After creating an account, you will be prompted to create your first project. Since you are be providing your own code, use the "Blank project" option. You are able to give the project a title and choose a region closest to the visitors of your site. You also have the option to select more resources for your project. This is especially important with multi-application projects, so make sure to consult the [**Plan size**](#plan-size) note below for more details.
+After creating an account, you will be prompted to create your first project. Since you are providing your own code, use the "Blank project" option. You are able to give the project a title and choose a region closest to the visitors of your site. You also have the option to select more resources for your project. This is especially important with multi-application projects, so make sure to consult the [**Plan size**](#plan-size) note below for more details.
 
 ## Plan size
 
