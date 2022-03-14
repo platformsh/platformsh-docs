@@ -8,7 +8,7 @@ description: |
     Create a Platform.sh account, download a few tools, and prepare to deploy Gatsby.
 ---
 
-[Gatsby](https://www.gatsbyjs.com/) is an open source framework based on React, that specializes in generating static websites from a variety of content sources. 
+[Gatsby](https://www.gatsbyjs.com/) is an open source framework based on React, that specializes in generating static websites from a variety of content sources.
 
 Going through the steps below you will have two options:
 
