@@ -32,7 +32,7 @@ In the previous step, you created a new project on Platform.sh using the CLI. No
     In order to successfully deploy to Platform.sh you need to add two YAML files:
 
       * A `.platform/routes.yaml` file, which configures the [routes](/configuration/routes/_index.md) used in your environments.
-        That is, it describes how an incoming HTTP request is going to be processed by Platform.sh.
+        It describes how an incoming HTTP request is going to be processed by Platform.sh.
       * At least one file [configuring the application](../../../configuration/app/_index.md).
         It provides control over the way the app is built and deployed on Platform.sh.
 

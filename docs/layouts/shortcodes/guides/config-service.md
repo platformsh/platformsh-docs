@@ -9,7 +9,7 @@ so that you always get the newest version when you deploy.
 {{ $name }} doesn't require services to deploy, so you don't need a `services.yaml` file for now.{{ end }}
 You can [add other services](/configuration/services/_index.md) if desired,
 such as [Solr](/configuration/services/solr.md) or [Elasticsearch](/configuration/services/elasticsearch.md).
-You need to configure {{ .Get "framework" }} to use those services once the service is enabled.
+You need to configure {{ $name }} to use those services once they're enabled.
 
 {{ if not (.Get "noService") }}
 Each service entry has a name (`db` {{if not (.Get "WordPress") }}and `cache`{{ end }} in the example below)

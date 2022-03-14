@@ -10,7 +10,7 @@ description: |
 ## 2022
 
 * **March 2022**
-  * The [`.platform/services.yaml` file] is no longer required.
+  * The [`.platform/services.yaml` file](../configuration/services/_index.md) is no longer required.
     If you don't need services, you don't need to include the file in your repository.
 * **January 2022**
   * OpenSearch: Added [OpenSearch service](../configuration/services/opensearch.md)
