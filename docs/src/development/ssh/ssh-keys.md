@@ -125,7 +125,7 @@ Include one `Host` entry for each Platform.sh region you want to connect to, suc
 ## Troubleshooting
 
 A given SSH key pair can only be linked to a single user account.
-Attempting to add the same SSH key to another account will result in the `SSH key can not be duplicated` error message.
+If you add an already used SSH key to another account, you see the error: `SSH key can not be duplicated`.
 Generate a new pair of SSH keys for the second user account you want to add.
 
 You can use several SSH profiles with the `~/.ssh/config` file.
