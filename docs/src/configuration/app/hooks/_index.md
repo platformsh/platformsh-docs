@@ -70,7 +70,7 @@ The template uses [Drush](https://www.drush.org/latest/) to handle routine tasks
 For its configuration, Drush needs the URL of the site.
 That means the configuration can't be done in the `build` hook.
 During the `build` hook, the site isn't yet deployed and so there is no URL to use in the configuration.
-(The [`PLATFORM_ROUTES` variable](../../../development/variables/use-variables.md#use--platformsh-provided-variables) isn't available.)
+(The [`PLATFORM_ROUTES` variable](../../../development/variables/use-variables.md#use-platformsh-provided-variables) isn't available.)
 
 Add the configuration during the `deploy` hook.
 This way you can access the URL before the site accepts requests (unlike in the `post_deploy` hook).

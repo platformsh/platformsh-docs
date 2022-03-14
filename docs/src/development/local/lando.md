@@ -8,7 +8,8 @@ weight: 3
 
 At this time, Lando supports only PHP-based applications but works with any service supported by Platform.sh.  Support for other application languages is in progress.
 
-See the [Lando documentation](https://docs.lando.dev/config/platformsh.html) for installing and setting up Lando on your system.  A quick-start guide is included below, but the Lando documentation is the primary source of truth.
+See the [Lando documentation](https://docs.lando.dev/platformsh/) for installing and setting up Lando on your system.
+A quick-start guide is included below, but the Lando documentation is the primary source of truth.
 
 ## Quick start
 

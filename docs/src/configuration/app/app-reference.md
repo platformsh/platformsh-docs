@@ -396,7 +396,7 @@ Each rule has the following properties where at least one is required and `ips` 
 
 | Name      | Type                | Default         | Description |
 | --------- | ------------------- | --------------- | ----------- |
-| `ips`     | Array of `string`s  | `["0.0.0.0/0"]` | IP addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing). See a [CIDR format converter](https://ipaddressguide.com/cidr). |
+| `ips`     | Array of `string`s  | `["0.0.0.0/0"]` | IP addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing). See a [CIDR format converter](https://www.ipaddressguide.com/cidr). |
 | `domains` | Array of `string`s  |                 | [Fully qualified domain names](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) to specify specific destinations by hostname. |
 | `ports`   | Array of `integer`s |                 | Ports from 1 to 65535 that are allowed. If any ports are specified, all unspecified ports are blocked. If no ports are specified, all ports are allowed. Port `25`, the SMTP port for sending email, is always blocked. |
 
@@ -492,7 +492,7 @@ Flavors are language-specific.
 See what the build flavor is for your language:
 
 * [Node.js](../../languages/nodejs/_index.md#build-flavor)
-* [PHP](../../languages/php#build-flavor)
+* [PHP](../../languages/php/_index.md#build-flavor)
 
 In all languages, you can also specify a flavor of `none` to take no action at all
 (which is the default for any language other than PHP and Node.js).

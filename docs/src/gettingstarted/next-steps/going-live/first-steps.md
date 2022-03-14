@@ -21,7 +21,7 @@ Before you take your site live, there are a few steps that will help you prepare
 3. **(Optional) Obtain 3rd party SSL if needed**
 
     Let's Encrypt SSL certificates are automatically issued for Platform.sh projects at no charge to you.
-    The number of Let's Encrypt certificates [is limited](../../../configuration/routes/https.md#limitations).
+    The number of Let's Encrypt certificates [is limited](../../../configuration/routes/https.md#limits).
     
     If you want to use a [third-party SSL certificate](../../../domains/steps/tls.md) instead,
     make sure that you have purchased it and that it's active prior to going live.

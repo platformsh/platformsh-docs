@@ -395,7 +395,7 @@ public class TransactionInterceptor {
 }
 ```
 
-Furthermore, Apache Delta Spike has a [post](https://deltaspike.apache.org/documentation/jpa.html#ExtendedPersistenceContexts) for treating this problem.
+To treat this issue, see the [Apache Delta Spike docs](https://deltaspike.apache.org/documentation/jpa.html#_extended_persistence_contexts).
 
 ## Templates
 

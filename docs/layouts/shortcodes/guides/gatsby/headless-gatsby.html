@@ -12,7 +12,7 @@
     </li>
     <li>
         <p><code>post_deploy</code></p>
-        <p>Platform.sh containers reside in separate build containers at build time, before their images are moved to the final application container at deploy time. These build containers are isolated, and therefore Gatsby does not have access to {{ .Get "name" }} during the build hook, where you would normally run <a href="https://github.com/platformsh-templates/gatsby/blob/master/.platform.app.yaml#L21" target="_blank" rel="noopener"><code>gatsby build</code></a>. {{ .Get "name" }} will not be available until after the deploy hook, and so Gatsby&rsquo;s build is postponed until the <a href="/configuration/app/hooks.html#post-deploy-hook"><code>post_deploy</code></a> hook below.</p>
+        <p>Platform.sh containers reside in separate build containers at build time, before their images are moved to the final application container at deploy time. These build containers are isolated, and therefore Gatsby does not have access to {{ .Get "name" }} during the build hook, where you would normally run <a href="https://github.com/platformsh-templates/gatsby/blob/master/.platform.app.yaml#L21" target="_blank" rel="noopener"><code>gatsby build</code></a>. {{ .Get "name" }} will not be available until after the deploy hook, and so Gatsby&rsquo;s build is postponed until the <a href="/configuration/app/hooks/hooks-comparison.html#post-deploy-hook"><code>post_deploy</code></a> hook below.</p>
     </li>
     <li>
         <p><code>mounts</code></p>

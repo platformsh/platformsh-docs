@@ -41,6 +41,7 @@ Magento
 Mailchimp
 Memcache
 middleware
+Muffet
 multicast
 [Mm]ultifactor
 multisite
@@ -76,6 +77,7 @@ scp
 shard
 shortcode
 Stempel
+Strapi
 Symfony
 transclusion
 unencrypted
