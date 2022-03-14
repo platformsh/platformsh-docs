@@ -9,6 +9,8 @@ To connect to your app using SSH keys, you need two keys:
 * A **private key** you must keep _secret_
 * A **public key** stored in your Platform.sh account
 
+A given SSH key pair can only be linked to a single user account.
+
 A key pair is valid for as long as you have access to the private key on the system from which you are connecting.
 If you have a key pair available, you aren't prompted to login.
 
@@ -121,15 +123,3 @@ Host *.eu.platform.sh
 
 Include one `Host` entry for each Platform.sh region you want to connect to, such as `us-2` or `eu-4`.
 (You can include other configuration as desired.)
-
-## Troubleshooting
-
-A given SSH key pair can only be linked to a single user account.
-If you add an already used SSH key to another account, you see the error: `SSH key can not be duplicated`.
-
-To resolve this error, generate separate pairs of SSH keys for each account.
-
-You can use several SSH profiles with the `~/.ssh/config` file.
-More information about that file and its capabilities can be retrieved on your local machine with the `man ssh_config` command.
-
-{{% troubleshoot %}}

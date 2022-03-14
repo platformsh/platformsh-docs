@@ -19,7 +19,7 @@ check it using `platform environment:list` or in the [management console](https:
 
 ## Redeploy your environment
 
-If you have just added your SSH key or made changes to [access rules](/administration/users.md), you need to redeploy your environment before you can access it using SSH keys. You can do this in the [management console](https://console.platform.sh/), by running `platform repdeploy`, or by pushing an empty git commit:
+If you have just added your SSH key or made changes to [access rules](/administration/users.md), you need to redeploy your environment before you can access it using SSH keys. You can do this in the [management console](https://console.platform.sh/), by running `platform redeploy`, or by pushing an empty git commit:
 
 ```bash
 git commit --allow-empty -m 'chore: force redeploy'
@@ -29,6 +29,11 @@ git push origin main
 ## Check your public key
 
 Make sure your public key has been uploaded to your user account. Check it in the [Platform.sh console](https://console.platform.sh/).
+
+A given SSH key pair can only be linked to a single user account.
+
+If you add an already used SSH key to another account, you see the error: `SSH key can not be duplicated`.
+Generate a new pair of SSH keys for the second user account you want to add.
 
 ## Check your SSH agent
 
@@ -140,4 +145,6 @@ GIT_SSH_COMMAND="ssh -v" git clone [REPO-URL]
 
 You can use this information to make one last check of the private key file.
 
-If you're still stuck, [submit a support ticket](https://console.platform.sh/-/users/:user/tickets) to get help solving your issue.
+If you're still stuck, [submit a support ticket and provide the SSH debug information](https://console.platform.sh/-/users/:user/tickets) to get help solving your issue.
+
+{{% troubleshoot %}}
