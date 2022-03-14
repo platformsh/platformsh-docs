@@ -41,16 +41,16 @@ Apart from databases, you can add other services if desired, such as [Solr](/con
 
 {{< guides/config-app template="strapi" >}}
 
-In the strapi template, `yarn` is run during the build hook to install all of Strapi’s dependencies, and then `yarn build` is run to build the site. If you would rather use npm to manage your dependencies, you can:
+In the Strapi template, `yarn` is run during the build hook to install all of Strapi’s dependencies, and then `yarn build` is run to build the site. If you would rather use npm to manage your dependencies, you can:
 
 - delete the `yarn` from the build hook
 - Update the `yarn build` to `npm run build` in the build hook
 - delete the `build.flavor` block which tells Platform.sh to rely solely on the build hook to define the build process for your project when set to none. By default, Node.js containers run npm install prior to the build hook, so this block can be removed entirely from the configuration.
-- delete the `dependencies` block , which includes yarn, since it is no longer needed.
+- delete the `dependencies` block , which includes yarn.
 
 A relationships block is also added which is responsible for defining any additional data sources (services) that the Strapi application needs.
 
-Since Platform.sh is read-only during build, mainly for security purposes, we’ll need to mount certain folders that Strapi needs to successfully build. Despite being read-only during build, Platfrom.sh allows you to mount important folders and files needed during build or deploy so that Strapi can write to them. In this case, the following files and folders are mounted for Strapi.
+Since Platform.sh is read-only during build, mainly for security purposes, certain folders need to be mounted. These folders are needed for Strapi to successfully build. Despite being read-only during build, Platfrom.sh allows you to mount important folders and files needed during build or deploy so that Strapi can write to them. In this case, the following files and folders are mounted for Strapi.
 
 - `.cache` file
 - `.tmp` file

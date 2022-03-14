@@ -12,7 +12,7 @@ description: |
 
 Following the steps below, the following are assumed:
 
-- You already have a strapi instance you are trying to deploy. In this case, you will be able to go through each step to make the recommended changes to your repository to prepare it for Platform.sh.
+- You already have a Strapi instance you are trying to deploy. In this case, you will be able to go through each step to make the recommended changes to your repository to prepare it for Platform.sh.
 
 - You have no code at this point. In this case, Platform.sh maintains a ready-made [Strapi](https://github.com/platformsh-templates/strapi4/) template that you will be able to deploy. The steps below will clarify why the modifications have been made to a base Strapi project.
 

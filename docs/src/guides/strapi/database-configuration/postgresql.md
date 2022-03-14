@@ -4,12 +4,12 @@ sidebarTitle: "PostgreSQL"
 weight: -90
 toc: false
 description: |
-  Configure your strapi application to use PostgreSQL database on Platform.sh.
+  Configure your Strapi application to use PostgreSQL database on Platform.sh.
 ---
 
 Strapi can be configured to use PostgreSQL as it’s default database. You can choose PostgreSQL during the installation of your application by selecting custom and PostgreSQL when asked for the installation type or you can just configure your existing Strapi application to use postgreSQL. In order to configure a postgreSQL database for Strapi on Platform.sh, follow these steps.
 
-- Make sure you have [PostgreSQL](https://www.postgresql.org/download/) on your machine and [pg](https://www.npmjs.com/package/pg) installed in your strapi project. Pg comes installed with a fresh Strapi installation.
+- Make sure you have [PostgreSQL](https://www.postgresql.org/download/) on your machine and [pg](https://www.npmjs.com/package/pg) installed in your Strapi project. Pg comes installed with a fresh Strapi installation.
 
 - In the `services.yaml` file, add the following:
 

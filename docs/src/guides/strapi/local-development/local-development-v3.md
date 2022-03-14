@@ -80,4 +80,4 @@ module.exports = {
 };
 ```
 
-If it is similar to the above and you’re running a strapi v3 application, please follow these [instructions](https://docs.platform.sh/gettingstarted/developing/local-development.html).
+If it is similar to the above and you’re running a Strapi v3 application, please follow these [instructions](https://docs.platform.sh/gettingstarted/developing/local-development.html).
