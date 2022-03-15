@@ -15,7 +15,10 @@ You can run your Strapi v4 application locally with all of it’s services by fo
   platform get <project id>
   ```
 
-  **_Note: If you have already pushed your code to Platform.sh, then you should already have a local repository that you can build from. Otherwise, it will be necessary to download a local copy of your project first._**
+{{< note >}}
+If you have already pushed your code to Platform.sh, then you should already have a local repository that you can build from. Otherwise, it will be necessary to download a local copy of your project first.
+{{< /note >}}
+**
 
 - In all cases for developing with Platform.sh, it's important to develop in an isolated environment - do not open SSH tunnels to your production environment when developing locally. Branch out of your main branch by running the following command:
 
