@@ -3,6 +3,8 @@ title: Troubleshoot MySQL
 sidebarTitle: Troubleshoot
 ---
 
+{{% troubleshoot %}}
+
 ## Lock wait timeout
 
 If a process running in your application acquired a lock from MySQL for a long period of time,
@@ -67,7 +69,7 @@ to learn about low disk space before it becomes an issue.
 `MySQL server has gone awa` errors may be caused by the size of the database packets.
 If so, the logs may show warnings like `Error while sending QUERY packet` before the error.
 
-One way to resolve the issue is to use the [`max_allowed_packet` parameter](./_index.md#adjusting-database-configuration).
+One way to resolve the issue is to use the [`max_allowed_packet` parameter](./_index.md#configure-the-database).
 
 ### Worker timeout
 

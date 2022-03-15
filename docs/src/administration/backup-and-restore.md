@@ -10,6 +10,14 @@ description: |
 Code is managed through Git and can be restored using normal Git routines.
 The built code file system isn't affected by backups or restores.
 
+{{< note title="Inactive environments" >}}
+
+Only active environments can be backed up and restored.
+To work with an [inactive environment](../other/glossary.md#inactive-environment),
+first activate it.
+
+{{< /note >}}
+
 ## Backups
 
 You need to have the "admin" role in order to create a backup of an environment.
@@ -72,7 +80,7 @@ $ platform backup:create --live
 
 ### Automated backups
 
-Backups aren't triggered automatically on Platform.sh Professional plans. For Enterprise and Elite plans, see [backups](../../dedicated/overview/backups.md).
+Backups aren't triggered automatically on Platform.sh Professional plans. For Enterprise and Elite plans, see [backups](../dedicated/overview/backups.md).
 
 Backups may be triggered by calling the CLI from an automated system such as Jenkins or another CI service,
 or by installing the CLI tool into your application container and triggering the backup via cron.

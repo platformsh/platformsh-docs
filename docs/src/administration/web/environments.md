@@ -25,7 +25,7 @@ An environment is tied to a Git branch and can be created on demand.
 With Bitbucket and GitHub integrations you can even get a "development server" automatically for each and every pull request.
 
 You can have branches that aren't tied to a running instance of your application;
-these are called "inactive environments".
+these are called [inactive environments](../../other/glossary.md#inactive-environment).
 
 ## Default branch
 

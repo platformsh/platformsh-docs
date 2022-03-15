@@ -51,12 +51,11 @@ There are two types of the Redis service depending on what you want to do with i
 
 ### Ephemeral Redis
 
-The ephemeral Redis service is configured to serve as an LRU cache; its storage isn't persistent.
-It isn't suitable for use except as a disposable cache.
+The ephemeral Redis service is configured to serve as a cache; its storage isn't persistent.
 
 Data in an ephemeral Redis instance is stored only in memory and thus requires no disk space.
 When the service hits its memory limit,
-it automatically evicts old cache items according to the [configured eviction rule](#eviction-policy) to make room for new ones.
+it automatically evicts cache items according to the [configured eviction rule](#eviction-policy) to make room for new ones.
 
 Your app must not treat ephemeral Redis as permanent.
 Instead, the cache needs to be regenerated as necessary.
@@ -128,18 +127,73 @@ highlight=python
 
 ## Multiple databases
 
-Redis 3.0 and above are configured to support up to 64 databases.  Redis does not support distinct users for different databases so the same relationship connection gives access to all databases.  To use a particular database, use the Redis [`select` command](https://redis.io/commands/select) through your API library.  For instance, in PHP you could write:
+Redis 3.0 and above are configured to support up to 64 databases.
+Redis doesn't support distinct users for different databases
+so one relationship connection gives access to all databases.
+
+The way to access a particular database depends on the [client library](https://redis.io/clients) you're using:
+
+{{< codetabs >}}
+
+---
+title=PHP
+file=none
+highlight=false
+---
+
+Use the Redis [`select` command](https://redis.io/commands/select):
 
 ```php
 <?php
-$redis->select(0);    // switch to DB 0
-$redis->set('x', '42');    // write 42 to x
-$redis->move('x', 1);    // move to DB 1
+$redis->select(0);       // switch to DB 0
+$redis->set('x', '42'); // write 42 to x
+$redis->move('x', 1);  // move to DB 1
 $redis->select(1);    // switch to DB 1
 $redis->get('x');    // will return 42
 ```
 
-Consult the documentation for your connection library and Redis itself for further details.
+<--->
+
+---
+title=Python
+file=none
+highlight=false
+---
+
+To manage [thread safety](https://github.com/redis/redis-py#thread-safety),
+the Python library suggests using separate client instances for each database:
+
+```python
+from redis import Redis
+from platformshconfig import Config
+
+# Get the credentials to connect to the Redis service.
+config = Config()
+credentials = config.credentials('redis')
+
+database0 = Redis(host='xxxxxx.cache.amazonaws.com', port=6379, db=0)
+database1 = Redis(host='xxxxxx.cache.amazonaws.com', port=6379, db=0)
+```
+
+<--->
+
+---
+title=Node.js
+file=none
+highlight=false
+---
+
+Use the Redis [`select` command](https://redis.io/commands/select):
+
+```javascript
+await client.SELECT(0);                  // switch to DB 0
+await client.set('x', '42');            // write 42 to x
+await client.MOVE('x', 1);             // move to DB 1
+await client.SELECT(1);               // switch to DB 1
+const value = await client.get('x'); // returns 42
+```
+
+{{< /codetabs >}}
 
 ## Eviction policy
 

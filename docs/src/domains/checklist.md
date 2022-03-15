@@ -40,7 +40,7 @@ Also ensure that the data on the production instance is up to date and ready to 
 ## 3. Optionally obtain a 3rd party TLS certificate
 
 Platform.sh automatically provides TLS certificates for all sites issued by [Let's Encrypt](https://letsencrypt.org/) at no charge.
-[In most cases](../configuration/routes/https.md#limitations), this is sufficient and no further action is necessary.
+[In most cases](../configuration/routes/https.md#limits), this is sufficient and no further action is necessary.
 However, if you want to use a [third-party TLS certificate](./steps/tls.md) to encrypt your production site,
 you can obtain one from any number of 3rd party TLS issuers.
 Platform.sh does not charge for using a 3rd party TLS certificate, although the issuer may.

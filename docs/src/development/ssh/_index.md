@@ -34,7 +34,7 @@ The certificate is automatically cycled every hour for a new certificate as long
 If you are inactive for an extended period,
 your certificate expires and you are asked to login again the next time you use a command that requires authentication.
 
-You are now ready to run CLI commands and to [connect to an environment](#connect-to-your-server-with-ssh).
+You are now ready to run CLI commands and connect to an environment.
 
 ### 2. Connect to an app with SSH
 
@@ -68,7 +68,7 @@ Now you can interact with the environment as you want.
 
 ## Connect to services
 
-To connect to a service, you need the [service credentials](../../configuration/services/_index.md#obtain-service-credentials).
+To connect to a service, you need the [service credentials](../../configuration/services/_index.md#1-obtain-service-credentials).
 Then you can connect either with a [direct tunnel](#use-a-direct-tunnel) or a [tunnel in your app](#use-an-app-tunnel).
 
 ### Use a direct tunnel
@@ -90,7 +90,7 @@ Save encoded tunnel details to the PLATFORM_RELATIONSHIPS variable using:
 ```
 
 Use the returned host (in this case `http://127.0.0.1:30000`) for your connection
-and fill in the details with the rest of your [service credentials](../../configuration/services/_index.md#obtain-service-credentials).
+and fill in the details with the rest of your [service credentials](../../configuration/services/_index.md#1-obtain-service-credentials).
 
 The `tunnel:open` command connects all relationships defined in your [app configuration](../../configuration/app/_index.md).
 To open only one connection when you have multiple relationships defined, run `tunnel:single`.
@@ -98,7 +98,7 @@ To open only one connection when you have multiple relationships defined, run `t
 ### Use an app tunnel
 
 Many database applications (such as MySQL Workbench) support establishing their own SSH tunnel.
-You need to use [SSH keys](./ssh-keys) for authentication.
+You need to use [SSH keys](./ssh-keys.md) for authentication.
 Consult the documentation for your application for how to enter SSH credentials.
 
 #### Get SSH connection details
@@ -115,7 +115,7 @@ The host is everything after the `@` and the username is what's before it.
 In this case, the host is `ssh.us.platform.sh` and the username is `jyu7waly36ncj-main-7rqtwti--app`.
 The host is the same for the entire project, while the username varies by environment.
 
-To connect to a service, fill in the details with the rest of your [service credentials](../../configuration/services/_index.md#obtain-service-credentials).
+To connect to a service, fill in the details with the rest of your [service credentials](../../configuration/services/_index.md#1-obtain-service-credentials).
 
 ## Alternative authentication methods
 

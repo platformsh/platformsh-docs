@@ -11,16 +11,19 @@
   "author": "Platform.sh",
   "scripts": {
     "assets-dist": "gulp dist",
+    "build-searchapp": "cd static/scripts/xss && npm install && npm run-script build",
+    "build": "npm run fetch-files && npm run registry-files && npm run build-searchapp",
+    "check-links": "remark --no-config --quiet --frail --use validate-links --ignore-pattern **/vault.md src",
+    "dev": "npm run fetch-files && npm run registry-files",
+    "fetch-files": "node static/scripts/fetch-examples.mjs",
     "hugo-watch-dev": "hugo server --watch --verbose --buildDrafts --cleanDestinationDir --disableFastRender",
     "hugo-watch-prod": "./hugo",
-    "fetch-files": "node static/scripts/fetch-examples.mjs",
-    "registry-files": "node static/scripts/updateExampleConfigFiles.js",
-    "build-searchapp": "cd static/scripts/xss && npm install && npm run-script build",
-    "dev": "npm run fetch-files && npm run registry-files",
-    "build": "npm run fetch-files && npm run registry-files && npm run build-searchapp"
+    "registry-files": "node static/scripts/updateExampleConfigFiles.js"
   },
   "devDependencies": {
-    "pshregistry-parser": "^1.2.0"
+    "pshregistry-parser": "^1.2.0",
+    "remark-cli": "^10.0.1",
+    "remark-validate-links": "^11.0.2"
   },
   "dependencies": {
     "@babel/core": "^7.16.7",

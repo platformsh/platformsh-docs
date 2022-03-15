@@ -36,7 +36,33 @@ You can also configure them manually.
 ## Inactive environment
 
 An environment that isn't deployed.
-You can activate an inactive environment from the environment configuration page on the Platform.sh management console.
+To activate an inactive environment:
+
+{{< codetabs >}}
+
+---
+title=Using the CLI
+file=none
+highlight=bash
+---
+
+platform environment:activate -e <ENVIRONMENT_ID>
+
+<--->
+
+---
+title=In the console
+file=none
+highlight=false
+---
+
+1. In the [console](https://console.platform.sh), navigate to the project you want.
+2. Select the environment from the menu.
+3. Click **Settings**.
+4. Expand the **Status is Inactive** option.
+5. Click **Activate**.
+
+{{< /codetabs >}}
 
 ## Live environment
 

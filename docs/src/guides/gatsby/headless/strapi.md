@@ -33,7 +33,13 @@ $ yarn add strapi-plugin-graphql
 
 {{< guides/gatsby/headless-gatsby name="Strapi" template="gatsby-strapi" >}}
 
-You can then modify [`gatsby-config.js`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/) to read from the backend Strapi container through the `strapi` relationship defined above to configure the `apiURL` attribute for `gatsby-source-strapi`. Notice that the source plugin requires that you explicitly define the `contentTypes` you would like to retrieve from Strapi. At this point you have not built out the API, and the Content Types `article` and `category` are included to support the [post-install instructions](https://github.com/platformsh-templates/gatsby-strapi/tree/update#post-install) outlined in the template's README. Adjust these values to fit your current API if your are planning on migrating an existing Strapi repository. 
+You can then modify [`gatsby-config.js`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/)
+to read from the backend Strapi container through the `strapi` relationship defined above
+to configure the `apiURL` attribute for `gatsby-source-strapi`.
+Note that the source plugin requires that you explicitly define the `contentTypes` to retrieve from Strapi.
+At this point, you haven't yet built out the API.
+So the `article` and `category` content types are included for what you need to do [after installing](https://github.com/platformsh-templates/gatsby-strapi/tree/update#user-content-post-install).
+If you're migrating an existing Strapi repository, adjust these values to fit your current API.
 
 {{< /guides/gatsby/headless-gatsby >}}
 
@@ -57,7 +63,7 @@ You can then modify [`gatsby-config.js`](https://www.gatsbyjs.com/docs/reference
 
 {{< guides/gatsby/headless-postinstall name="Strapi">}}
 
-After you have deployed, you will need to set up Strapi's Admin Panel and some initial content endpoints for the Gatsby frontend to consume. Create your admin user at the `backend` subdomain for Strapi. You can then follow the [template's post-install instructions](https://github.com/platformsh-templates/gatsby-strapi/tree/update#post-install) to setup up some initial `Article` and `Category` content endpoints. The API you develop there will be only accessible by admins by default, so be sure to adjust the permissions to public so Gatsby can access it. 
+After you have deployed, you will need to set up Strapi's Admin Panel and some initial content endpoints for the Gatsby frontend to consume. Create your admin user at the `backend` subdomain for Strapi. You can then follow the [template's post-install instructions](https://github.com/platformsh-templates/gatsby-strapi/tree/update#user-content-post-install) to setup up some initial `Article` and `Category` content endpoints. The API you develop there will be only accessible by admins by default, so be sure to adjust the permissions to public so Gatsby can access it. 
 
 {{< /guides/gatsby/headless-postinstall >}}
 
