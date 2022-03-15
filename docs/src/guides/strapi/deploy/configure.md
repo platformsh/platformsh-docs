@@ -11,7 +11,7 @@ description: |
 
 ## Requests configuration: `routes.yaml`
 
-{{< guides/config-routes template="gatsby" name="Strapi" >}}
+{{< guides/config-routes template="strapi4" name="Strapi" >}}
 
 ## Service configuration: `services.yaml`
 
@@ -39,7 +39,7 @@ Apart from databases, you can add other services if desired, such as [Solr](/con
 
 ## Application container: `.platform.app.yaml`
 
-{{< guides/config-app template="strapi" >}}
+{{< guides/config-app template="strapi4" >}}
 
 In the Strapi template, `yarn` is run during the build hook to install all of Strapi’s dependencies, and then `yarn build` is run to build the site. If you would rather use npm to manage your dependencies, you can:
 
