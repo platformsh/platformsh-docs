@@ -10,7 +10,7 @@ description: |
 
 [Strapi](https://strapi.io) is an open-source headless CMS used for building fast and easily manageable APIs written in JavaScript.
 
-Following the steps below, the following are assumed:
+For the steps below, one of the following starting points are assumed:
 
 - You already have a Strapi instance you are trying to deploy. In this case, you will be able to go through each step to make the recommended changes to your repository to prepare it for Platform.sh.
 
