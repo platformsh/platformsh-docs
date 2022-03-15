@@ -594,10 +594,11 @@ Cron jobs are [logged](../../development/logs.md) at `/var/log/cron.log`.
 
 The following table shows the properties for each job:
 
-| Name        | Type                                         | Required | Description |
-| ----------- | -------------------------------------------- | -------- | ----------- |
-| `spec`      | `string`                                     | Yes      | The [cron specification](https://en.wikipedia.org/wiki/Cron#CRON_expression). |
-| `commands`  | A [cron commands dictionary](#cron-commands) | Yes      | A definition of what commands to run when starting and stopping the cron job. |
+| Name               | Type                                         | Required | Description |
+| ------------------ | -------------------------------------------- | -------- | ----------- |
+| `spec`             | `string`                                     | Yes      | The [cron specification](https://en.wikipedia.org/wiki/Cron#CRON_expression). |
+| `commands`         | A [cron commands dictionary](#cron-commands) | Yes      | A definition of what commands to run when starting and stopping the cron job. |
+| `shutdown_timeout` | `integer`                                    | No       | When a cron is canceled, this represents the number of seconds after which a `SIGKILL` signal is sent to the process to force terminate it. The default is `10` seconds. |
 
 ### Cron commands
 
@@ -605,7 +606,6 @@ The following table shows the properties for each job:
 | ------------------ | --------- | -------- | ----------- |
 | `start`            | `string`  | Yes      | The command that's run. It's run in [Dash](https://en.wikipedia.org/wiki/Almquist_shell). |
 | `stop`             | `string`  | No       | The command that's issued to give the cron command a chance to shutdown gracefully, such as to finish an active item in a list of tasks. Issued when a cron task is interrupted by a user through the CLI or management console. If not specified, a `SIGTERM` signal is sent to the process. |
-| `shutdown_timeout` | `integer` | No       | The number of seconds after which a `SIGKILL` signal is sent to the process to force terminate it. The default is `10` seconds. |
 
 ```yaml {location=".platform.app.yaml"}
 crons:
@@ -614,7 +614,7 @@ crons:
         commands:
             start: sleep 60 && echo sleep-60-finished && date
             stop: killall sleep
-            shutdown_timeout: 18
+        shutdown_timeout: 18
 ```
 
 ### Example cron jobs
