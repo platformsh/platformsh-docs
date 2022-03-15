@@ -48,7 +48,7 @@ In the Strapi template, `yarn` is run during the build hook to install all of St
 - delete the `build.flavor` block which tells Platform.sh to rely solely on the build hook to define the build process for your project when set to none. By default, Node.js containers run npm install prior to the build hook, so this block can be removed entirely from the configuration.
 - delete the `dependencies` block , which includes yarn.
 
-A relationships block is also added which is responsible for defining any additional data sources (services) that the Strapi application needs.
+A relationships block is also added which is responsible for providing access to the data sources (services) that the Strapi application needs.
 
 Since Platform.sh is read-only during build, mainly for security purposes, certain folders need to be mounted. Platform.sh allows you to mount directories that need write access during the deploy phase with the `mounts` key. In this case, the following folders are mounted for Strapi.
 
