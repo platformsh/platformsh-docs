@@ -50,7 +50,7 @@ In the Strapi template, `yarn` is run during the build hook to install all of St
 
 A relationships block is also added which is responsible for defining any additional data sources (services) that the Strapi application needs.
 
-Since Platform.sh is read-only during build, mainly for security purposes, certain folders need to be mounted. These folders are needed for Strapi to successfully build. Despite being read-only during build, Platfrom.sh allows you to mount important folders and files needed during build or deploy so that Strapi can write to them. In this case, the following files and folders are mounted for Strapi.
+Since Platform.sh is read-only during build, mainly for security purposes, certain folders need to be mounted. Platform.sh allows you to mount directories that need write access during the deploy phase with the `mounts` key. In this case, the following folders are mounted for Strapi.
 
 - `.cache` file
 - `.tmp` file
