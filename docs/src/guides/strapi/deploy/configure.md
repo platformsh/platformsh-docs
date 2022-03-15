@@ -17,7 +17,7 @@ description: |
 
 The `services.yaml` file lists the pre-packaged services you need for your application to run. You pick the major version of the service, and Platform.sh updates the patch version periodically so that you always get the newest version when you deploy.
 
-Strapi requires a database to be able to deploy, by default it uses an SQLlite database but other database types are also supported.
+Strapi requires a database to be able to deploy; by default it uses a SQLite database but other database types are also supported.
 These other database types are Oracle MySQL, PostgreSQL or MonogoDB(available only in strapi v3 and below). In the strapi template, a postgres database service is defined. So you can add the following to your `services.yaml` file:
 
 ```yaml
