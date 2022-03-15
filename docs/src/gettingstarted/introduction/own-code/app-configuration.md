@@ -104,7 +104,7 @@ There are a few additional keys in `.platform.app.yaml` you will likely need to 
 
 * `web`: The `web` key configures the web server through a single web instance container running a single Nginx server process, behind which runs your application.
 
-    * `commands`: Defines the [command](/configuration/app/app-reference.md#commands) to actually launch the application. The `start` key launches your application. In all languages except for PHP, `web.commands.start` should be treated as required. For PHP, you will instead need to define a script name in `passthru`, described below in `locations`.
+    * `commands`: Defines the [command](/configuration/app/app-reference.md#web-commands) to actually launch the application. The `start` key launches your application. In all languages except for PHP, `web.commands.start` should be treated as required. For PHP, you will instead need to define a script name in `passthru`, described below in `locations`.
     * `locations`: Allows you to control how the application container responds to incoming requests at a very fine-grained level. The simplest possible [locations](/configuration/app/app-reference.md#locations) configuration is one that simply passes all requests on to your application unconditionally:
 
       ```yaml
