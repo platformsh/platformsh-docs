@@ -125,7 +125,7 @@ You have the whole project working offline on machine.
 
 {{< note >}}
 
-Platform.sh also provides a smooth [tethered SSH tunnels](../../development/local/tethered.html).
+Platform.sh also provides smooth [tethered SSH tunnels](../../development/local/tethered.md).
 
 {{< /note >}}
 
