@@ -340,7 +340,7 @@ For Rails, you have two choices:
 * To speed up boot you can use the [Bootsnap gem](https://github.com/Shopify/bootsnap)
   and configure it with the local `/tmp`:
 
-  ```ruby
+  ```ruby {location="config/boot.rb"}
   Bootsnap.setup(cache_dir: "/tmp/cache")
   ```
 
