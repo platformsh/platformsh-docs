@@ -9,9 +9,9 @@ toc: true
 
 ## Background
 
-A common pattern for Strapi applications is to decouple services from the main site, serving external data to a frontend at build time. Supported by Strapi's source plugin ecosystem, data from Strapi (or headless) content management systems can be served into a frontend application [Data Layer](https://www.gatsbyjs.com/docs/reference/graphql-data-layer/), with that frontend typically located on a server elsewhere, and that data then used to fill out content on the frontend.
+A common pattern for Strapi applications is to serve as a backend or headless CMS for a frontend application. It helps with serving external data to a frontend at build time. Supported by Strapi's plugin ecosystem, data from Strapi (or headless) content management systems can be served into a frontend application, with that frontend typically located on a server elsewhere.
 
-The decoupled pattern can work differently on Platform.sh due to support for [multi-app configuration](/configuration/app/multi-app.md) on your projects. Consider the following project structure:
+Platform.sh provides a platform for this architectural pattern through what is called a [multi-app configuration](/configuration/app/multi-app.md). Consider the following project structure:
 
 ```bash
 

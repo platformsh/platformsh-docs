@@ -7,7 +7,13 @@ description: |
   Local Development Instructions for Strapi v3
 ---
 
-In the case where you’re using Strapi v3, it is assumed that your `database.js` file in your config folder looks like this:
+In the case where you’re using Strapi v3, you'll need to install the platform.sh config reader, you can do so by running the following command:
+
+```bash
+$ npm install platformsh-config OR yarn add platformsh-config
+```
+
+it is also assumed that your `database.js` file in your config folder looks like this:
 
 ```js
 const config = require("platformsh-config").config();
