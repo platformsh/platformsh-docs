@@ -74,6 +74,7 @@ reindex
 runtimes
 sanitization
 scp
+serverless
 shard
 shortcode
 Stempel

@@ -8,7 +8,7 @@ You can add [other services](/configuration/services/_index.md) if desired,
 such as [Solr](/configuration/services/solr.md) or [Elasticsearch](/configuration/services/elasticsearch.md).
 You need to configure {{ .Get "framework" }} to use those services as well once the service is enabled.
 
-Each service entry has a name (`db` {{if not (.Get "WordPress") }}and `cache`{{ end }} in the example below)
+Each service entry has a name (`db` {{if not (or (.Get "WordPress") (eq (.Get "framework") "Strapi")) }}and `cache`{{ end }} in the example below)
 as well as a `type` that specifies the service and version to use.
 Note that not all services support clean version upgrades, and none support downgrades.
 If you want to try upgrading a service,
