@@ -7,7 +7,9 @@ description: |
   Local Development Instructions for Strapi v3
 ---
 
-In the case where your application is using Strapi version 3, you need to install the platform.sh config reader, you can do so by running the following command:
+You can run your Strapi v3 application locally with all of it’s services by following these steps:
+
+- you need to install the platform.sh config reader, you can do so by running the following command:
 
 ```bash
 $ npm install platformsh-config OR yarn add platformsh-config
