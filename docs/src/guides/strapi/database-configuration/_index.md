@@ -10,9 +10,6 @@ description: |
 Strapi requires a database in order for it to run successfully. It currently has support for the following database types:
 
 - SQLite
-
 - PostgreSQL
-
 - Oracle MySQL/MariaDB
-
-- MongoDB (only strapi v3)
+- MongoDB (only Strapi v3)

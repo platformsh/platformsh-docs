@@ -11,14 +11,8 @@ description: |
 Drupal is a flexible and extensible PHP-based CMS framework. To deploy Drupal 9 on Platform.sh, the recommended way is to use Composer, the PHP package management suite.
 
 This guide assumes you are using the well-supported Composer flavor of Drupal 9.
-For the steps below, you have two options:
 
-1. You already have a [Composer flavored Drupal 9](https://github.com/drupal/recommended-project/tree/9.0.x) site you're trying to deploy.
-   In this case, you can go through each step to make the recommended changes to your repository to prepare it for Platform.sh.
-2. You have no code at this point.
-   In this case, Platform.sh maintains a ready-made [Drupal 9 template](https://github.com/platformsh-templates/drupal9)
-   that you can deploy very quickly.
-   The steps below then hopefully help clarify why the modifications have been made to a base Drupal 9 project.
+{{% guides/starting-point name="Drupal 9" templateRepo="drupal9" composerLink="https://github.com/drupal/recommended-project/tree/9.0.x" %}}
 
 {{< note >}}
 

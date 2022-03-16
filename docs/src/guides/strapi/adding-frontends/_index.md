@@ -1,17 +1,21 @@
 ---
 title: "Strapi multi-app projects"
-sidebarTitle: "Adding Frontends"
+sidebarTitle: "Adding frontends"
 description: |
-  You can use Platform.sh's multi-app configuration to deploy Strapi alongside a frontend application, pulling content from Strapi to the frontend during builds.
+  You can use a multi-app configuration to deploy Strapi alongside a frontend application, pulling content from Strapi into the frontend during builds.
 weight: -70
-toc: true
 ---
 
 ## Background
 
-A common pattern for Strapi applications is to serve as a backend or headless CMS for a frontend application. It helps with serving external data to a frontend at build time. Supported by Strapi's plugin ecosystem, data from Strapi (or headless) content management systems can be served into a frontend application, with that frontend typically located on a server elsewhere.
+A common pattern for Strapi applications is to serve as a backend or headless CMS for a frontend application.
+This helps with serving external data to a frontend at build time.
+Supported by Strapi's plugin ecosystem, data from Strapi (or headless) CMS can be served into a frontend application,
+with that frontend typically located on a server elsewhere.
 
-Platform.sh provides a platform for this architectural pattern through what is called a [multi-app configuration](/configuration/app/multi-app.md). Consider the following project structure:
+Platform.sh provides a platform for this architectural pattern through a [multi-app configuration](/configuration/app/multi-app.md).
+
+Consider the following project structure:
 
 ```bash
 
@@ -27,9 +31,14 @@ Platform.sh provides a platform for this architectural pattern through what is c
 └── README.md
 ```
 
-Above is the repository structure for a Decoupled Strapi (Gatsby sourcing strapi content) project on Platform.sh. Here, Gatsby and Strapi reside in their own subdirectories within the same repository. They are deployed to the same project from separate application containers, and from this cluster Gatsby can read data from Drupal internally. Their commit histories are tied together, such that each new pull request environment can test changes to either the frontend or backend freely from the same place.
+Above is the repository structure for a decoupled Strapi project (Gatsby sourcing content from Strapi).
+Gatsby and Strapi reside in their own subdirectories within the same repository.
+They're deployed to the same project from separate application containers,
+and from this cluster Gatsby can read data from Strapi internally.
+Their commit histories are tied together,
+so each new pull request environment can test changes to either the frontend or backend from the same place.
 
-Drupal is just one example of a backend CMS that can be used with this pattern, and at the bottom of this page are a few additional guides for alternatives that work well on Platform.sh.
+Gatsby is just one example of a frontend that can be used with this pattern.
 
 ## Tools
 
@@ -37,22 +46,37 @@ Drupal is just one example of a backend CMS that can be used with this pattern, 
 
 ## Signing up for Platform.sh
 
-In each of the backend guides below, there will be a "Deploy on Platform.sh" button that will not only deploy the guide's project for you, but also sign you up for a trial account. If you are planning on deploying a template and following along with these guides for greater context, feel free to move onto the next section.
+Each of the frontend guides below has a **Deploy on Platform.sh** button that deploys the guide's project for you
+and also signs you up for a trial account.
+If you're planning on deploying a template and following along with these guides for greater context,
+feel free to move onto the next section.
 
-If however you are planning on using the templates and guides to deploy your existing codebase to Platform.sh,
+If you're planning on using the templates and guides to deploy your existing codebase to Platform.sh,
 you first need to [register for a trial Platform.sh account](https://auth.api.platform.sh/register).
 If you don't want to sign up initially with your e-mail address,
 you can sign up using an existing GitHub, Bitbucket, or Google account.
 If you choose one of these options, you can set a password for your Platform.sh account later.
 
-After creating an account, you will be prompted to create your first project. Since you are providing your own code, use the "Blank project" option. You are able to give the project a title and choose a region closest to the visitors of your site. You also have the option to select more resources for your project. This is especially important with multi-application projects, so make sure to consult the [**Plan size**](#plan-size) note below for more details.
+After creating an account, you're prompted to create your first project.
+Since you are providing your own code, use the **Blank project** option.
+Give the project a title and choose a region closest to your site visitors.
+You can also select more resources for your project.
+This is especially important with multi-application projects, so for more details see [plan size](#plan-size).
 
 ## Plan size
 
-There are a few important points you will need to keep in mind when deploying this pattern if you have already [deployed Gatsby by itself](/guides/gatsby/deploy/_index.md) on Platform.sh, which are relevant to each backend example. After following the steps below, you may find that Gatsby fails to bundle assets during its build on projects of the "Development" plan size. This is a factor of both the size and number of Gatsby's dependencies on the frontend, as well as the amount of data being pulled from the backend.
+There are a few important points to keep in mind when deploying this pattern if you've already [deployed Gatsby by itself](../../gatsby/deploy/_index.md) on Platform.sh, which are relevant to each backend example.
+After following the steps below,
+you may find that Gatsby fails to bundle assets during its build if your plan size is Development.
+This is a factor of both the size and number of Gatsby's dependencies on the frontend,
+as well as the amount of data being pulled from the backend.
 
-Multi-application projects generally require more resources to run on Platform.sh, and so the trial's default `development` plan may not be enough to run your existing site. You are free to either proceed with a smaller plan to test or increase the resources at this point for the project. Otherwise, it may be best to initially deploy the templates listed in each backend guide to start out, and later modify that project to include your own code with more resources as you get used to developing on Platform.sh.
+Multi-application projects generally require more resources to run on Platform.sh, and so the trial's default Development plan may not be enough to run your existing site.
+You are free to either proceed with a smaller plan to test or increase the resources at this point for the project.
+Otherwise, it may be best to initially deploy the templates listed in each backend guide to start out
+and later modify that project to include your own code with more resources as you get used to developing on Platform.sh.
 
 ## Frontends for Strapi
 
-Platform.sh maintains a number of [multi-application templates](https://github.com/platformsh-templates/?q=strapi&type=&language=) for Strapi, that generally have very similar configuration changes on the Strapi side. Below are a few of those written as short guides for different backend content management systems.
+Platform.sh maintains a number of [multi-application templates](https://github.com/platformsh-templates/?q=strapi&type=&language=) for Strapi that generally have very similar configuration changes on the Strapi side.
+Below are a few of those written as short guides for different frontends.

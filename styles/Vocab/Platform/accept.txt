@@ -73,9 +73,11 @@ reindex
 runtimes
 sanitization
 scp
+serverless
 shard
 shortcode
 Stempel
+Strapi
 Symfony
 transclusion
 unencrypted

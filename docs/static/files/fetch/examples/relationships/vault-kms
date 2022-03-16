@@ -1,20 +1,20 @@
 {
-  "username": "",
-  "scheme": "http",
-  "service": "vault-kms",
-  "fragment": "",
-  "ip": "169.254.148.179",
-  "hostname": "ckmpv2fz7jtdmpkmrun7yfgut4.vault-kms.service._.eu-3.platformsh.site",
-  "public": false,
-  "cluster": "rjify4yjcwxaa-master-7rqtwti",
-  "host": "vault-kms.internal",
-  "rel": "sign",
-  "query": {
-    "is_master": true
-  },
-  "path": "/",
-  "password": "b.AAAAAQJp6LTse0kHvogdEGp2pxdnCqE_3VfW08Vmm_0tkIQ0HPOK-WsJfUNAlh5VXKEyx_l8NESGcTEUaOUW994AYf2W4b_72SyU_qGjm61fJZqFHqWkDoWPS_eDir4jy9DBSvCS1GFAU20L3x5o3lKUB2aEATXf0nyH24BQetKV_JRpNt0Hl8xikc9tH24nIW2z3AANZvzp0rLGGvl3jPRSE5uqsFxzsXgcGw2xuw",
-  "type": "vault-kms:1.6",
-  "port": 8200,
-  "host_mapped": false
+    "username": "",
+    "scheme": "http",
+    "service": "vault-kms",
+    "fragment": "",
+    "ip": "169.254.148.179",
+    "hostname": "ckmpv2fz7jtdmpkmrun7yfgut4.vault-kms.service._.eu-3.platformsh.site",
+    "public": false,
+    "cluster": "rjify4yjcwxaa-master-7rqtwti",
+    "host": "vault-kms.internal",
+    "rel": "sign",
+    "query": {
+        "is_master": true
+    },
+    "path": "\/",
+    "password": "b.AAAAAQJp6LTse0kHvogdEGp2pxdnCqE_3VfW08Vmm_0tkIQ0HPOK-WsJfUNAlh5VXKEyx_l8NESGcTEUaOUW994AYf2W4b_72SyU_qGjm61fJZqFHqWkDoWPS_eDir4jy9DBSvCS1GFAU20L3x5o3lKUB2aEATXf0nyH24BQetKV_JRpNt0Hl8xikc9tH24nIW2z3AANZvzp0rLGGvl3jPRSE5uqsFxzsXgcGw2xuw",
+    "type": "vault-kms:1.6",
+    "port": 8200,
+    "host_mapped": false
 }

@@ -1,19 +1,20 @@
 ---
-title: "Local Development Instructions for Strapi v3"
+title: "Local development instructions for Strapi v3"
 sidebarTitle: "Strapi v3"
 weight: -70
 toc: false
 description: |
-  Local Development Instructions for Strapi v3
+  How to build a Strapi v3 app locally.
 ---
 
-In the case where you’re using Strapi v3, you'll need to install the platform.sh config reader, you can do so by running the following command:
+If you’re using Strapi v3, you need to install the Platform.sh config reader.
+You can do so by running the following command:
 
 ```bash
-$ npm install platformsh-config OR yarn add platformsh-config
+npm install platformsh-config OR yarn add platformsh-config
 ```
 
-it is also assumed that your `database.js` file in your config folder looks like this:
+It's also assumed that your `database.js` file in your `config` folder looks like this:
 
 ```js
 const config = require("platformsh-config").config();
@@ -86,4 +87,5 @@ module.exports = {
 };
 ```
 
-If it is similar to the above and you’re running a Strapi v3 application, please follow these [instructions](https://docs.platform.sh/gettingstarted/developing/local-development.html).
+If it's similar to the above and you’re running a Strapi v3 application,
+follow the [instructions for general local development](../../../gettingstarted/developing/local-development/_index.md).
