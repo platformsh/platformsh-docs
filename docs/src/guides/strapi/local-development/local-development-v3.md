@@ -7,7 +7,7 @@ description: |
   Local Development Instructions for Strapi v3
 ---
 
-In the case where you’re using Strapi v3, you need to install the platform.sh config reader, you can do so by running the following command:
+In the case where your application is using Strapi version 3, you need to install the platform.sh config reader, you can do so by running the following command:
 
 ```bash
 $ npm install platformsh-config OR yarn add platformsh-config
