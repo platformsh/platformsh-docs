@@ -75,7 +75,7 @@ Then you can start to use it to initialize your Ibexa DXP project on top Docker.
 or create the Docker stack based on an existing project
 
 ```bash
-git clone yourproject.git application
+git clone <PROJECT_NAME>.git application
 cd application
 ~/ez create
 ```
@@ -104,7 +104,7 @@ Actions needed are:
 * Generate the Solr configuration thanks to the script provided by Ibexa.
 * Put the result in the `.platform` at the root of your project.
 * Add the service in the `.platform/services.yaml`.
-* Add the relationship in the `.platform.app..yaml`.
+* Add the relationship in the `.platform.app.yaml`.
 
 #### Environment variables (optional)
 

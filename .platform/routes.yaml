@@ -96,6 +96,7 @@ https://{default}/:
 
       # Removal of featured frameworks
       "/frameworks/(?!deploy|drupal)(.*).html":  { "to": "/guides/$1/deploy.html", "code": 301, "regexp": true }
+      "/frameworks/ibexa/fastly.html":  { "to": "/guides/ibexa/fastly.html", "code": 301, "prefix": false }
 
 "https://search.{default}/":
     type: upstream
