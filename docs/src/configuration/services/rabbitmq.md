@@ -74,22 +74,13 @@ Consult your application or framework's documentation.)
 ### From your local development environment
 
 For debugging purposes, it's sometimes useful to connect directly to a service with an SSH tunnel.
-To open a tunnel, follow these steps.
+Open a tunnel with port forwarding:
 
-1. Get the username and password to the service by checking your app's relationships:
+```bash
+platform tunnel:single -g
+```
 
-   ```bash
-   platform ssh 'echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq .'
-   ```
-
-2. Open a tunnel with port forwarding:
-
-   ```bash
-   platform tunnel:single -g
-   ```
-
-3. Launch a RabbitMQ client of your choice configured to connect to the location from step 2
-   with the username and password from step 1.
+Then launch a RabbitMQ client of your choice configured to connect to the location returned.
 
 ### Access the management plugin  (Web UI)
 
