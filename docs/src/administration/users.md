@@ -54,7 +54,10 @@ To customize who can use SSH, [set the access key](/configuration/app/app-refere
 
 ### Add a user to a project
 
-If you are an organization owner, or an organization user with [manage plan](/administration/organizations.md#organization-permissions) or [manage users](/administration/organizations.md#organization-permissions) permissions wanting to add a user to a project or an environment, follow these steps:
+To add a user you need to be an organization owner
+or have the [manage plan](./organizations.md#manage-your-organization-users)
+or [manage users](./organizations.md#manage-your-organization-users) permission.
+To add a user to a project or an environment, follow these steps:
 
 {{< codetabs >}}
 
@@ -161,8 +164,8 @@ After you change a user's role for an environment type, you must trigger a redep
 
 ### Transfer project ownership
 
-You can transfer your plan ownership to a different [organization](/administration/organizations.md) anytime.
-You have to be an organization owner or an organization user with [manage plan](/administration/organizations.md#organization-permissions) permissions.
+You can transfer your plan ownership to a different [organization](./organizations.md) at anytime.
+You have to be an organization owner or have the [manage plan](./organizations.md#manage-your-organization-users) permission.
 
 1. Make the new organization owner a Project Admin for the project you want to transfer.
 2. Submit a [support ticket](https://console.platform.sh/-/users/~/tickets) from your organization account to ask for the transfer.
