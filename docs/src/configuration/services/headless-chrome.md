@@ -52,12 +52,12 @@ See how to [manage your Node.js version](../../languages/nodejs/node-version.md)
 
 {{% endpoint-description type="chrome-headless" /%}}
 
-After configuration, include Puppeteer as a dependency in your `package.json`:
+After configuration, include Puppeteer as a dependency:
 
-```json
+```json {location="package.json"}
 {
   "dependencies": {
-    "puppeteer": "^1.14.0"
+    "puppeteer": "^13.0.1"
   }
 }
 ```
@@ -74,7 +74,7 @@ const credentials = config.credentials('chromeheadlessbrowser');
 and use them to define the `browserURL` parameter of `puppeteer.connect()` within an `async` function:
 
 ```js
-exports.takeScreenshot = async function (url) {
+exports.getBrowser = async function (url) {
     try {
         // Connect to chrome-headless using pre-formatted puppeteer credentials
         const formattedURL = config.formattedCredentials('chromeheadlessbrowser', 'puppeteer');
@@ -91,7 +91,7 @@ exports.takeScreenshot = async function (url) {
 };
 ```
 
-Puppeteer allows your application to [create screenshots](https://pptr.dev/#?product=Puppeteer&version=v1.17.0&show=api-pagescreenshotoptions), [emulate a mobile device](https://pptr.dev/#?product=Puppeteer&version=v1.17.0&show=api-pageemulateoptions), [generate PDFs](https://pptr.dev/#?product=Puppeteer&version=v1.17.0&show=api-pagepdfoptions), and much more.
+Puppeteer allows your application to [create screenshots](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pagescreenshotoptions), [emulate a mobile device](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pageemulateoptions), [generate PDFs](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pagepdfoptions), and much more.
 
 You can find some useful examples of using headless Chrome and Puppeteer on Platform.sh on the Community Portal:
 

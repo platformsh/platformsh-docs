@@ -80,13 +80,10 @@ the execution of the `deploy` hook is logged in the [deploy log](../../../develo
 For example:
 
 ```bash
-[2021-07-03 10:03:51.100476] Launching hook 'cd public ; drush -y updatedb'.
+[2022-03-01 08:27:25.495579] Launching command 'bash export-config.sh'.
 
-My_custom_profile  7001  Update 7001: Enable the Platform module.
-Do you wish to run all pending updates? (y/n): y
-Performed update: my_custom_profile_update_7001
-'all' cache was cleared.
-Finished performing updates.
+🔥 Successfully cleared configuration
+🚀 Added new configuration details
 ```
 
 Your `deploy` hook is tied to commits in the same way as your builds.

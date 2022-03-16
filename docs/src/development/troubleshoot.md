@@ -163,7 +163,7 @@ Except where you define it, the file system is all read-only, with code changes 
 This gives you benefits like repeatable deployments, consistent backups, and traceability.
 
 To generate anything you need later, [write to disk during a `build` hook](../configuration/app/app-reference.md#writable-directories-during-build).
-Or [declare mounts](../configuration/app/app-reference.md#mounts#mounts),
+Or [declare mounts](../configuration/app/app-reference.md#mounts),
 which are writable even during and after deploy.
 They can be used for your data: file uploads, logs, and temporary files.
 
@@ -215,7 +215,7 @@ Here are a few tips that can help you find the exact cause.
 
 ### Check for errors in the logs
 
-Invisible errors during the build and deploy phase can cause increased wait times, failed builds, and other problems. Investigate [each log](/development/logs.md#accessing-logs) and fix any errors you find.
+Invisible errors during the build and deploy phase can cause increased wait times, failed builds, and other problems. Investigate [each log](./logs.md#container-logs) and fix any errors you find.
 
 ### Build and deploy hooks
 
@@ -246,5 +246,5 @@ Cron jobs may invoke other services in unexpected ways, which can increase execu
 
 For language-specific troubleshooting for your apps:
 
-- [PHP](../languages/php/troubleshoot.html)
-- [Node JS](../languages/nodejs/debug.html)
+- [PHP](../languages/php/troubleshoot.md)
+- [Node JS](../languages/nodejs/debug.md)

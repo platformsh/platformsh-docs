@@ -101,9 +101,6 @@ For example, the following `.platform/applications.yaml` file defines three appl
         build: |
             go build -o bin/app
     web:
-        upstream:
-            socket_family: tcp
-            protocol: http
         commands:
             start: ./bin/app
         locations:
@@ -157,11 +154,11 @@ That means the project must be structured like this:
 app1/
     .platform.app.yaml
     app1-submodule/
-        index.php
+        <CODE_FROM_SUBMODULE>
 app2/
     .platform.app.yaml
     app2-submodule/
-        index.php
+        <CODE_FROM_SUBMODULE>
 ```
 
 This puts your applications' files at a different path relative to your `.platform.app.yaml` files.

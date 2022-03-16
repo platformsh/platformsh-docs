@@ -40,9 +40,6 @@ In particular, see:
 * The [`.platform.app.yaml`](https://github.com/ezsystems/ezplatform/blob/master/.platform.app.yaml) file,
   which automatically builds Ibexa DXP in development mode or production mode depending on your defined project-level variables.
 * The [.platform](https://github.com/ezsystems/ezplatform/tree/master/.platform) directory.
-* The [platformsh.php](https://github.com/ezsystems/ezplatform/blob/master/config/packages/overrides/platformsh.php) configuration file,
-  which does the work of mapping Platform.sh environment variables into Ibexa DXP.
-  It also automatically enables Redis-based cache and session support if detected.
 
 ## Local Development with eZ Platform 2.x and later
 
@@ -139,8 +136,7 @@ The main ones are:
 * **Downstream database synchronization**: Getting it from the remote to the local.
 * **Downstream file storage synchronization**: Getting it from the remote to the local.
 
-To help you with that, Platform.sh provides a CLI that you probably already have.
-If you don't, see the [install guide](/development/cli/_index.md#installation).
+To help you with that, Platform.sh provides a CLI that you can [install](../../development/cli/_index.md).
 
 #### Database and storage synchronization
 
@@ -156,6 +152,7 @@ The third tells to eZ Launchpad to import those data in the Docker stack.
 {{< note >}}
 
 The storage (images and files) synchronization is optional.
-Ibexa DXP provides a [placeholder generator mechanism](https://doc.ibexa.co/en/latest/guide/images/#setting-placeholder-generator) which allows you to forget about the real images for your local.
+Ibexa DXP provides a [placeholder generator mechanism](https://doc.ibexa.co/en/latest/guide/images/#generate-placeholder-images)
+that allows you to forget about the real images for your local.
 
 {{< /note >}}

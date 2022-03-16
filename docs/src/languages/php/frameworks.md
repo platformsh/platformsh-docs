@@ -8,7 +8,10 @@ so you can handle dependencies and builds for PHP frameworks by committing `comp
 
 ## Drupal
 
-[Drupal](https://www.drupal.org/) is an open-source content management framework written in PHP. Since Composer comes pre-installed on Platform.sh, Drupal can be installed and updated completely using Composer. The default [build flavor](/overview/build-deploy.md#building-the-application) for PHP application runs `composer install` during build, handling all of your dependencies automatically.
+[Drupal](https://www.drupal.org/) is an open-source content management framework written in PHP.
+Since Composer comes pre-installed on Platform.sh, Drupal can be installed and updated completely using Composer.
+The default [build flavor](../../configuration/app/app-reference.md#build) for PHP application
+runs `composer install` during build, handling all of your dependencies automatically.
 
 * [Drupal 8/9 Guide](../../guides/drupal9/_index.md)
 
@@ -16,7 +19,7 @@ so you can handle dependencies and builds for PHP frameworks by committing `comp
 
 Drupal FAQs, how-to guides and other tutorials right on [Platform.sh Community](https://community.platform.sh/).
 
-* [Drupal on Platform.sh Community](https://community.platform.sh/search?q=drupal&expanded=true)
+* [Drupal on Platform.sh Community](https://community.platform.sh/search?q=drupal)
 
 ### Templates
 
@@ -71,7 +74,7 @@ Template projects (repositories in the [platformsh-templates](https://github.com
 
 All your WordPress FAQs, plus how-to guides and tutorials right on [Platform.sh Community](https://community.platform.sh/).
 
-* [WordPress on Platform.sh Community](https://community.platform.sh/search?expanded=true&q=wordpress)
+* [WordPress on Platform.sh Community](https://community.platform.sh/search?q=wordpress)
 
 ### Templates
 

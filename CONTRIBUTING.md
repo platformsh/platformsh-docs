@@ -16,10 +16,13 @@ For how that structure is applied to different types of docs in this project, se
 
 ## Table of contents
 
-* [Adding new pages](#adding-new-pages)
-  * [Adding security reports](#adding-security-reports)
-* [Commit messages](#commit-messages)
-* [Review process](#review-process)
+- [Contributing to the Platform.sh user documentation](#contributing-to-the-platformsh-user-documentation)
+  - [Table of contents](#table-of-contents)
+  - [Adding new pages](#adding-new-pages)
+    - [Adding security reports](#adding-security-reports)
+  - [Commit messages](#commit-messages)
+  - [Review process](#review-process)
+    - [Checks](#checks)
 
 ## Adding new pages
 
@@ -126,3 +129,16 @@ We generally review for:
 To speed the process along, we may merge small changes such as spelling and formatting
 into your branch.
 Otherwise, we make suggestions and work with you to finalize the changes.
+
+### Checks
+
+To ensure the docs work smoothly, a few checks run on each pull request:
+
+- Vale enforces the [style guidelines](./contributing/content-style.md).
+- [Remark](https://remark.js.org/) with the [`remark-validate-links` plugin](https://github.com/remarkjs/remark-validate-links)
+  checks that all links between Markdown files are valid (including whether linked headers exist).
+- Custom workflows [check all changed files](./.github/workflows/get-pr-info.yaml) within `docs/src`
+  and [comment with links](./.github/workflows/comment-on-pr.yaml) to the deployed pages for easy review.
+
+Outside of pull requests, twice a week [Muffet](https://github.com/raviqqe/muffet)
+checks if all links on the site are valid.

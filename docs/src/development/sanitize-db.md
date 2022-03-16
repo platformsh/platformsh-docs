@@ -21,13 +21,13 @@ You need:
 - A project with a [MySQL database](../configuration/services/mysql/_index.md).
 - A command interface installed:
   - With Drupal: [Drush](https://www.drush.org/latest/install/)
-  - Without Drupal: the [Platform CLI](/development/cli/_index.md#cli-command-line-interface)
+  - Without Drupal: the [Platform CLI](../development/cli/_index.md)
 
 This guide is about sanitizing MySQL databases.
 
 This guide doesn't address:
 
-- Sanitizing NoSQL Databases (such as [MongoDB](../configuration/services/mongodb/_index.md))
+- Sanitizing NoSQL Databases (such as [MongoDB](../configuration/services/mongodb.md))
 - Input validation and input sanitization, which both help prevent security vulnerabilities
 
 ## Sanitize the database

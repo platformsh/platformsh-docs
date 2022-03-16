@@ -32,7 +32,7 @@ you may receive a notification of low disk space.
 
 To solve this issue:
 
-* [Check mount usage](#check-the-size-of-mounts)
+* [Check mount usage](./troubleshoot-mounts.md#check-the-size-of-mounts)
 * [Check your database disk space](#check-your-database-disk-space) (if applicable)
 * [Increase the available disk space](#increase-available-disk-space) (if necessary)
 

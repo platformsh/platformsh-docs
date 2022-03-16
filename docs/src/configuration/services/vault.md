@@ -36,7 +36,9 @@ You can create multiple endpoints, such as to have key management separate from 
 
 ## Use Vault KMS
 
-To connect your app to the Vault KMS, use a token that is defined in the `$PLATFORM_RELATIONSHIPS` environment variable. With this token for authentication, you can use any of the policies you [defined in your `.platform/services.yaml` file](#add-the-service).
+To connect your app to the Vault KMS, use a token that is defined in the `$PLATFORM_RELATIONSHIPS` environment variable.
+With this token for authentication,
+you can use any of the policies you [defined in your `.platform/services.yaml` file](#1-configure-the-service).
 
 The following examples use cURL as an example, which you could do in a hook or after SSHing into your app environment. Adapt the examples for your app's language.
 
@@ -48,7 +50,7 @@ In order to make any calls to the Vault KMS, you need your token. Get it from th
 echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".<SERVICE_NAME>[0].password"
 ```
 
-`<SERVICE_NAME>` is the name you [defined in your `.platform.app.yaml` file](#add-the-relationship).
+`<SERVICE_NAME>` is the name you [defined in your `.platform.app.yaml` file](#2-add-the-relationship).
 
 The `-r` flag returns the string itself, not wrapped in quotes.
 
@@ -70,11 +72,11 @@ Assign it to a variable as follows:
 VAULT_URL=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".<SERVICE_NAME>[0].host"):$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".<SERVICE_NAME>[0].port")
 ```
 
-`<SERVICE_NAME>` is the name you [defined in your `.platform.app.yaml` file](#add-the-relationship).
+`<SERVICE_NAME>` is the name you [defined in your `.platform.app.yaml` file](#2-add-the-relationship).
 
 ### Manage your keys
 
-Your key names are [defined in your `.platform/services.yaml` file](#add-the-service). You can manage them if you've set an [admin policy](#policies) for them.
+Your key names are [defined in your `.platform/services.yaml` file](#1-configure-the-service). You can manage them if you've set an [admin policy](#policies) for them.
 
 To get information on a key, such as its expiration date, run the following command:
 

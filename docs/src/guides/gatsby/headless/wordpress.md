@@ -28,7 +28,12 @@ description: |
 
 {{< guides/gatsby/headless-gatsby template="gatsby-wordpress" name="WordPress" >}}
 
-You can then modify [`gatsby-config.js`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/) to read from the backend WordPress container through the `wordpress` relationship defined above to configure the `baseUrl` attribute for `gatsby-source-wordpress`. The plugin requires you to define the `protocol`, which in this case is `http` due to the fact that WordPress content will be retrieved through an internal request to the backend container. Also, it is necessary to declare `hostingWPCOM: false`, as you will not be pulling data from a WordPress site hosted on wordpress.com. 
+You can then modify [`gatsby-config.js`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/)
+to read from the backend WordPress container through the `wordpress` relationship defined above
+to configure the `baseUrl` attribute for `gatsby-source-wordpress`.
+The plugin requires you to define the `protocol`,
+which in this case is `http` because WordPress content is retrieved through an internal request to the backend container.
+Also, you need to declare `hostingWPCOM: false` as you don't pull data from a WordPress site hosted at wordpress.com.
 
 {{< /guides/gatsby/headless-gatsby >}}
 
