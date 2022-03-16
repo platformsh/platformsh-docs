@@ -32,7 +32,7 @@ Consider the following project structure:
 ```
 
 Above is the repository structure for a decoupled Strapi project (Gatsby sourcing content from Strapi).
-Gatsby and Strapi reside in their own subdirectories within the same repository.
+Strapi and Gatsby reside in their own subdirectories within the same repository.
 They're deployed to the same project from separate application containers,
 and from this cluster Gatsby can read data from Strapi internally.
 Their commit histories are tied together,

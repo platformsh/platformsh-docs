@@ -7,8 +7,9 @@ description: |
   How to build a Strapi v3 app locally.
 ---
 
-If you’re using Strapi v3, you need to install the Platform.sh config reader.
-You can do so by running the following command:
+You can run your Strapi v3 app locally with all of its services.
+
+First install the Platform.sh config reader by running the following command:
 
 ```bash
 npm install platformsh-config OR yarn add platformsh-config
