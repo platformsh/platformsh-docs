@@ -11,7 +11,7 @@ toc: true
 
 A common pattern for Strapi applications is to serve as a backend or headless CMS for a frontend application. It helps with serving external data to a frontend at build time. Supported by Strapi's plugin ecosystem, data from Strapi (or headless) content management systems can be served into a frontend application, with that frontend typically located on a server elsewhere.
 
-Platform.sh provides a platform for this architectural pattern through what is called a [multi-app configuration](/configuration/app/multi-app.md). Consider the following project structure:
+Platform.sh provides a platform for this architectural pattern through [multi-app configuration](/configuration/app/multi-app.md). Consider the following project structure:
 
 ```bash
 
@@ -27,9 +27,9 @@ Platform.sh provides a platform for this architectural pattern through what is c
 └── README.md
 ```
 
-Above is the repository structure for a Decoupled Strapi (Gatsby sourcing strapi content) project on Platform.sh. Here, Gatsby and Strapi reside in their own subdirectories within the same repository. They are deployed to the same project from separate application containers, and from this cluster Gatsby can read data from Drupal internally. Their commit histories are tied together, such that each new pull request environment can test changes to either the frontend or backend freely from the same place.
+Above is the repository structure for a Decoupled Strapi (Gatsby sourcing strapi content) project on Platform.sh. Here, Strapi and Gatsby reside in their own subdirectories within the same repository. They are deployed to the same project from separate application containers, and from this cluster Gatsby can read data from Drupal internally. Their commit histories are tied together, such that each new pull request environment can test changes to either the frontend or backend freely from the same place.
 
-Drupal is just one example of a backend CMS that can be used with this pattern, and at the bottom of this page are a few additional guides for alternatives that work well on Platform.sh.
+Strapi is just one example of a backend content management system that can be used with this pattern, and at the bottom of this page are a few additional guides for alternatives that work well on Platform.sh.
 
 ## Tools
 
