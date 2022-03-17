@@ -90,7 +90,7 @@ To open a tunnel, follow these steps.
 1. SSH into your app container with a flag for local port forwarding:
 
    ```bash
-   ssh $(platform ssh --pipe) -L 15672:rabbitmqqueue.internal:15672
+   ssh $(platform ssh --pipe) -L 15672:<RELATIONSHIP_NAME>.internal:15672
    ```
 
 2. Within that SSH session, get the username and password.
