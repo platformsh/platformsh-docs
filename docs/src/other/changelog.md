@@ -50,7 +50,7 @@ description: |
 ## 2020
 
 * **December 2020**
-  * `us-4` region: We have [added](/development/public-ips.md#west-4-us-4platformsh-data-location-guarantee) another US region, `us-4`.
+  * `us-4` region: We have [added](../development/public-ips.md) another US region, `us-4`.
 ---
 * **September 2020**
   * Go 1.15: We now support [Go 1.15](/languages/go.md).
@@ -60,7 +60,7 @@ description: |
 ---
 * **April 2020**
   * We now offer [Xdebug on PHP](/languages/php/xdebug.md) containers.
-  * Custom [activity scripts](/integrations/activity/_index.md#activity-scripts) are now available, in alpha.
+  * Custom [activity scripts](../integrations/activity/_index.md) are now available, in alpha.
 ---
 * **March 2020**
   * Go 1.14: We now support [Go 1.14](/languages/go.md).
@@ -313,7 +313,7 @@ description: |
 * **April 2016**
   * White label capabilities (Magento Enterprise Cloud Edition):
     Support for Platform.sh white label offering.
-    First launch at [Magento Imagine 2016](http://imagine.magento.com/) in Las Vegas of [Magento Enterprise Cloud Edition](https://magento.com/products/enterprise-cloud-edition).
+    First launch at Magento Imagine 2016 in Las Vegas of Magento Enterprise Cloud Edition.
 ---
 
 * **March 2016**

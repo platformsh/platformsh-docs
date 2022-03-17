@@ -12,7 +12,7 @@ such as [Solr](/configuration/services/solr.md) or [Elasticsearch](/configuratio
 You need to configure {{ $name }} to use those services once they're enabled.
 
 {{ if not (.Get "noService") }}
-Each service entry has a name (`db` {{if not (.Get "WordPress") }}and `cache`{{ end }} in the example below)
+Each service entry has a name (`db` {{ if not (or (.Get "WordPress") (eq (.Get "framework") "Strapi")) }}and `cache`{{ end }} in the example below)
 as well as a `type` that specifies the service and version to use.
 Note that not all services support clean version upgrades, and none support downgrades.
 If you want to try upgrading a service,

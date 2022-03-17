@@ -4,6 +4,8 @@ sidebarTitle: Troubleshoot
 description: Learn how to troubleshoot problems related to access rights when cloning repositories.
 ---
 
+{{% troubleshoot %}}
+
 ## Unable to clone a repository
 
 If you [add a user](/administration/users.md#add-a-user-to-a-project) to a project on Platform.sh,

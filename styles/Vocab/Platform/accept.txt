@@ -41,6 +41,7 @@ Magento
 Mailchimp
 Memcache
 middleware
+Muffet
 multicast
 [Mm]ultifactor
 multisite
@@ -73,9 +74,11 @@ reindex
 runtimes
 sanitization
 scp
+serverless
 shard
 shortcode
 Stempel
+Strapi
 Symfony
 transclusion
 unencrypted

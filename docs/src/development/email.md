@@ -44,7 +44,7 @@ To have DKIM enabled for your domain:
 
 {{< note>}}
 
-The TXT record to include your account ID (see [SendGrid's SPF setup guidelines](https://docs.sendgrid.com/ui/account-and-settings/spf-records#custom-spf-records))
+The TXT record to include your account ID (see [SendGrid's SPF guidelines](https://docs.sendgrid.com/ui/account-and-settings/spf-records))
 looks similar to the following:
 
 ```txt

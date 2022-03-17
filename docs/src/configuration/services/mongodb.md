@@ -118,7 +118,7 @@ mongodump --port 30000 -u main -p main --authenticationDatabase main --db main
 
 As with any other shell command it can be piped to another command to compress the output or redirect it to a specific file.
 
-For further references, see the [official `mongodump` documentation](https://docs.mongodb.com/manual/reference/program/mongodump/#bin.mongodump).
+For further references, see the [official `mongodump` documentation](https://docs.mongodb.com/database-tools/mongodump/).
 
 ## Upgrading
 

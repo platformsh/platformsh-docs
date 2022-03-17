@@ -49,7 +49,7 @@ You can then modify [`gatsby-config.js`](https://www.gatsbyjs.com/docs/reference
 
     The template file that defines how a single Drupal article should be formatted on Gatsby, retrieving the data from that article using the `nodeArticle` GraphQL query.
 
-- [`gatsby/src/pages/articles.js`](https://github.com/platformsh-templates/gatsby-strapi/blob/master/gatsby/src/pages/articles.js)
+- [`gatsby/src/pages/articles.js`](https://github.com/platformsh-templates/gatsby-strapi/blob/master/gatsby/src/components/articles.js)
 
     Retrieves all of Drupal's content to generate a list of articles at `/articles` on the Gatsby site using the `allNodeArticle` GraphQL query. 
 
@@ -57,7 +57,9 @@ You can then modify [`gatsby-config.js`](https://www.gatsbyjs.com/docs/reference
 
 {{< guides/gatsby/headless-postinstall name="Drupal">}}
 
-After you have completed the installation you will need to enable the JSON API and Gatsby related modules, and then set up aliases for your articles using Pathauto. See [the post-installation](https://github.com/platformsh-templates/gatsby-drupal#post-install) instructions on the template for the detailed instructions.
+After you have completed the installation, you need to enable the JSON API and Gatsby related modules
+and then set up aliases for your articles using `pathauto`.
+For detailed instructions, see the template's [post-installation instructions](https://github.com/platformsh-templates/gatsby-drupal#user-content-post-install).
 
 {{< /guides/gatsby/headless-postinstall >}}
 
@@ -81,5 +83,4 @@ With Gatsby now deployed and pulling content from a backend Drupal application, 
 
 If you replicate the `web.commands.start` block in Gatsby's `.platform.app.yaml` file above, you will be able to enable incremental builds on your projects. Once you save an update to a piece of Drupal content on a non-production branch, Drupal will place a request to a dedicated `/__refresh` endpoint on Gatsby (which is itself enabled by a [branch-dependent environment variable](https://github.com/platformsh-templates/gatsby-drupal/blob/master/gatsby/.environment)). Since Gatsby is running a development server on this non-production environment, this call will cause Gatsby to retrieve content from Drupal once again, resulting in a near instantly updated article on the frontend. 
 
-The process of enabling this feature is a little detailed, so it is best to consult the [template's README](https://github.com/platformsh-templates/gatsby-drupal#enabling-gatsby-live-preview-manual-configuration) for the most up-to-date instructions for how to do so.
-
+The process of enabling this feature is a little detailed, so it is best to consult the [template's README](https://github.com/platformsh-templates/gatsby-drupal#user-content-enabling-gatsby-live-preview-manual-configuration) for the most up-to-date instructions for how to do so.

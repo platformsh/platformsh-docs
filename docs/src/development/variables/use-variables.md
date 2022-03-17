@@ -3,7 +3,7 @@ title: Use variables
 description: See how to use variables that have already been set so you can take control over your app's environment.
 ---
 
-Get a list of all variables defined on a given environment in [the management console](/administration/web/configure-environment.md#variables)
+Get a list of all variables defined on a given environment in [the management console](../../administration/web/configure-environment.md#variables)
 or use the CLI:
 
 ```bash
@@ -63,22 +63,22 @@ To access environment variables in your app, check the documentation page for yo
 ---
 title=Shell
 file=none
-highlight=bash
-markdownify=false
+highlight=false
 ---
 
+```bash
 export PROJECT_ID = "$PLATFORM_PROJECT"
 export VARIABLES = "$(echo "$PLATFORM_VARIABLES" | base64 --decode)"
+```
 
 <--->
-
 ---
 title=PHP
 file=none
-highlight=php
-markdownify=false
+highlight=false
 ---
 
+```php
 <?php
 
 // A simple variable.
@@ -86,16 +86,16 @@ $projectId = getenv('PLATFORM_PROJECT');
 
 // An encoded JSON object.
 $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), TRUE);
+```
 
 <--->
-
 ---
 title=Python
 file=none
-highlight=python
-markdownify=false
+highlight=false
 ---
 
+```python
 import os
 import json
 import base64
@@ -105,16 +105,16 @@ project_id = os.getenv('PLATFORM_PROJECT')
 
 # An encoded JSON object.
 variables = json.loads(base64.b64decode(os.getenv('PLATFORM_VARIABLES')).decode('utf-8'))
+```
 
 <--->
-
 ---
 title=Node.js
 file=none
-highlight=js
-markdownify=false
+highlight=false
 ---
 
+```js
 const { env } = process;
 
 // Utility to assist in decoding a packed JSON variable.
@@ -131,31 +131,32 @@ const projectId = env.PLATFORM_PROJECT;
 
 // An encoded JSON object.
 const variables = read_base64_json('PLATFORM_VARIABLES');
+```
 
 <--->
 
 ---
 title=Ruby
 file=none
-highlight=ruby
-markdownify=false
+highlight=false
 ---
 
+```ruby
 # A simple variable.
 project_id = ENV["PLATFORM_PROJECT"] || nil
 
 # An encoded JSON object.
 variables = JSON.parse(Base64.decode64(ENV["PLATFORM_VARIABLES"]))
+```
 
 <--->
-
 ---
 title=Java
 file=none
-highlight=java
-markdownify=false
+highlight=false
 ---
 
+```java
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -176,6 +177,7 @@ public class App {
                 String.valueOf(getDecoder().decode(getenv("PLATFORM_VARIABLES"))), Map.class);
     }
 }
+```
 
 {{< /codetabs >}}
 
@@ -209,10 +211,10 @@ You can access these nested variables as follows:
 ---
 title=Shell
 file=none
-highlight=bash
-markdownify=false
+highlight=false
 ---
 
+```bash
 $ echo $BASIC
 a string
 $ echo $INGREDIENTS
@@ -231,15 +233,16 @@ $ echo "$PLATFORM_VARIABLES" | base64 --decode | jq '."stuff:COLORS"'
   "green": "#00FF00",
   "red": "#FF0000"
 }
+```
 
 <--->
-
 ---
 title=PHP
 file=none
-highlight=php
-markdownify=false
+highlight=false
 ---
+
+```php
 <?php
 var_dump($_ENV['BASIC']);
 // string(8) "a string"
@@ -275,15 +278,16 @@ array(3) {
   string(7) "#0000FF"
 }
 */
+```
 
 <--->
-
 ---
 title=Python
 file=none
-highlight=python
-markdownify=false
+highlight=false
 ---
+
+```python
 import os
 import json
 import base64
@@ -303,16 +307,17 @@ print variables['stuff:STEPS']
 # [u'un', u'deux', u'trois']
 print variables['stuff:COLORS']
 # {u'blue': u'#0000FF', u'green': u'#00FF00', u'red': u'#FF0000'}
+```
 
 <--->
-
 ---
 title=Node.js
 file=none
-highlight=javascript
-markdownify=false
+highlight=false
 ---
-const { BASIC, INGREDIENTS, QUANTITIES, PLATFORM_VARIABLES } = process.env;
+
+```java
+scriptconst { BASIC, INGREDIENTS, QUANTITIES, PLATFORM_VARIABLES } = process.env;
 
 const { "stuff:STEPS": stuffSteps, "stuff:COLORS": stuffColors } = JSON.parse(
   Buffer.from(PLATFORM_VARIABLES, "base64").toString()
@@ -328,6 +333,7 @@ console.log(stuffSteps);
 // [ 'un', 'deux', 'trois' ]
 console.log(stuffColors);
 // { blue: '#0000FF', green: '#00FF00', red: '#FF0000' }
+```
 
 {{< /codetabs >}}
 
@@ -360,7 +366,7 @@ and whether they're available during builds and at runtime.
 | `PLATFORM_SMTP_HOST`        | No    | Yes     | The SMTP host to send email messages through. Is empty when mail is disabled for the current environment. |
 | `PLATFORM_SOURCE_DIR`       | Yes   | No      | Equivalent to `PLATFORM_APP_DIR` in the context of a running [source operation](../../configuration/app/source-operations.md). The directory contains a writable copy of your repository that you can commit to during the operation. |
 | `PLATFORM_TREE_ID`          | Yes   | Yes     | The ID of the tree the application was built from, essentially the SHA hash of the tree in Git. Use when you need a unique ID for each build. |
-| `PLATFORM_VARIABLES`        | Some  | Some    | A base64-encoded JSON object with all user-defined project and environment variables that don't use a [prefix](./_index.md#variable-prefixes). The keys are the variable names and the values are the variable values. Availability during builds and at runtime depends on the settings for each variable. See how to [access individual variables](#accessing-variables-in-a-shell). |
+| `PLATFORM_VARIABLES`        | Some  | Some    | A base64-encoded JSON object with all user-defined project and environment variables that don't use a [prefix](./_index.md#variable-prefixes). The keys are the variable names and the values are the variable values. Availability during builds and at runtime depends on the settings for each variable. See how to [access individual variables](#access-variables-in-a-shell). |
 | `PORT`                      | No    | Yes     | A `string` representing the port to which requests are sent if the [`web.upstream.socket_family` property](../../configuration/app/app-reference.md#upstream) is unset or set to `tcp`. |
 | `SOCKET`                    | No    | Yes     | A `string` representing the path to the Unix socket file to use if the [`web.upstream.socket_family` property](../../configuration/app/app-reference.md#upstream) is set to `unix`. |
 
@@ -430,7 +436,7 @@ Some apps require configuration values to be specified in a static, non-executab
 and don't support reading from environment variables.
 
 To populate these files with variables you set yourself,
-make sure the variables are set to be [visible at build time](./set-variables.md#environment-variables).
+make sure the variables are set to be [visible at build time](./set-variables.md#variable-options).
 
 The files can't be populated with Platform.sh-provided variables not available at build time (such as `PLATFORM_RELATIONSHIPS`).
 You also can't write to them in a `deploy` hook as the file system is read only.

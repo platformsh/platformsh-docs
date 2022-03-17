@@ -84,6 +84,9 @@ you would pay an extra $30 a month.
 
 {{< /note >}}
 
+You can make any changes up to 100&nbsp;GB yourself.
+For storage more than 100&nbsp;GB, open a [support ticket](https://console.platform.sh/-/users/~/tickets).
+
 ## Development
 
 The basic plan (Development) starts at $10 per month

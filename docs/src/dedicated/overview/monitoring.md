@@ -23,7 +23,7 @@ A third-party availability monitoring system is configured for every Dedicated p
 ## Application performance monitoring
 
 Platform.sh offers application performance monitoring (APM) packaged with infrastructure monitoring in the Platform.sh Observability Suite.
-This APM relies on [Blackfire.io](../../integrations/observability/blackfire.md#on-a-dedicated-cluster),
+This APM relies on [Blackfire.io](../../integrations/observability/blackfire.md#on-other-dedicated-infrastructure),
 which uniquely combines monitoring, profiling, and performance testing technologies.
 
 The Observability Suite is currently offered only to Enterprise, Elite, and Fleet customers.

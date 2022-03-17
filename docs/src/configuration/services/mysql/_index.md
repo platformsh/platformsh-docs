@@ -268,7 +268,7 @@ relationships:
     imports: "db:importer"
 ```
 
-These relationships are then available in the [`PLATFORM_RELATIONSHIPS` environment variable](#platform_relationships-reference).
+These relationships are then available in the [`PLATFORM_RELATIONSHIPS` environment variable](#relationship-reference).
 Each has its own credentials you can use to connect to the given database.
 
 ## Configure the database
