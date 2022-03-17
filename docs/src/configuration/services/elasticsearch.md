@@ -29,6 +29,8 @@ To update the versions in this table, use docs/data/registry.json
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="elasticsearch" status="supported" environment="grid" >}} | {{< image-versions image="elasticsearch" status="supported" environment="dedicated" >}} | {{< image-versions image="elasticsearch" status="supported" environment="dedicated-gen-3" >}} |
 
+{{< image-versions-legacy "elasticsearch" >}}
+
 Due to a licensing change, Elasticsearch versions after 7.10 aren't supported.
 For newer versions, use [OpenSearch](./opensearch.md) instead.
 To switch to OpenSearch, follow the same procedure as for [upgrading](#upgrading).
@@ -39,9 +41,6 @@ To switch to OpenSearch, follow the same procedure as for [upgrading](#upgrading
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="elasticsearch" status="deprecated" environment="grid" >}} | {{< image-versions image="elasticsearch" status="deprecated" environment="dedicated" >}} | {{< image-versions image="elasticsearch" status="deprecated" environment="dedicated-gen-3" >}} |
 
-Elasticsearch 7.9 isn't available in the EU-1 and US-1 regions.
-Consider [region migration](../../guides/general/region-migration.md) if your project is in those regions.
-
 ## Relationship
 
 The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables):
@@ -50,17 +49,7 @@ The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](../..
 
 ## Usage example
 
-{{% endpoint-description type="elasticsearch" %}}
-
-[Service definition](./_index.md):
-
-{{< readFile file="src/registry/images/examples/full/elasticsearch.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
-
-[App configuration](../app/app-reference.md):
-
-{{< readFile file="src/registry/images/examples/full/elasticsearch.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
-
-{{% /endpoint-description %}}
+{{% endpoint-description type="elasticsearch" /%}}
 
 {{< codetabs >}}
 
@@ -73,7 +62,7 @@ highlight=java
 <--->
 
 ---
-title=Nodejs
+title=Node.js
 file=static/files/fetch/examples/nodejs/elasticsearch
 highlight=js
 ---

@@ -10,9 +10,9 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 
 {{% frameworks %}}
 
-- [Hibernate](../../../frameworks/hibernate.md#mysql)
-- [Jakarta EE](../../../frameworks/jakarta.md#mysql)
-- [Spring](../../../frameworks/spring.md#mysql)
+- [Hibernate](../../frameworks/hibernate.md#mysql)
+- [Jakarta EE](../../frameworks/jakarta.md#mysql)
+- [Spring](../../frameworks/spring.md#mysql)
 
 {{% /frameworks %}}
 
@@ -21,6 +21,8 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 | **Grid** | **Dedicated** | **Dedicated Generation 3** |
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="postgresql" status="supported" environment="grid" >}} | {{< image-versions image="postgresql" status="supported" environment="dedicated" >}} | {{< image-versions image="postgresql" status="supported" environment="dedicated-gen-3" >}} |
+
+{{< image-versions-legacy "postgresql" >}}
 
 \* No High-Availability on Dedicated.
 
@@ -44,25 +46,7 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../
 
 ## Usage example
 
-{{% endpoint-description type="postgresql" %}}
-
-[Service definition](./_index.md):
-
-{{< readFile file="src/registry/images/examples/full/postgresql.services.yaml" highlight="yaml">}}
-
-[App configuration](../app/app-reference.md):
-
-{{< readFile file="src/registry/images/examples/full/postgresql.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
-
-For PHP, in your `.platform.app.yaml` add:
-
-```yaml
-runtime:
-    extensions:
-        - pdo_pgsql
-```
-
-{{% /endpoint-description %}}
+{{% endpoint-description type="postgresql" php=true /%}}
 
 {{< codetabs >}}
 
@@ -105,6 +89,24 @@ highlight=python
 ---
 
 {{< /codetabs >}}
+
+## Access the service directly
+
+Access the service using the Platform CLI by running `platform sql`.
+
+You can also access it from your app container via [SSH](../../development/ssh/_index.md).
+From your [relationship data](#relationship), you need: `username`, `host`, and `port`.
+Then run the following command:
+
+```bash
+psql -U <USERNAME> -h <HOST> -p <PORT>
+```
+
+Using the values from the [example](#relationship), that would be:
+
+```bash
+psql -U main -h postgresql.internal -p 5432
+```
 
 ## Exporting data
 

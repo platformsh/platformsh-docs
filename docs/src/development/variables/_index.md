@@ -185,12 +185,7 @@ For specific frameworks, you can implement logic to override global configuratio
 The Drupal templates show examples of logic mapping variables to Drupal's configuration system.
 You can apply similar logic for other frameworks.
 
-For [Drupal 7](https://github.com/platformsh-templates/drupal7/blob/master/settings.platformsh.php),
-any variable that begins with `drupal:` is mapped to the global `$conf` array,
-which overrides Drupal's `variable_get()` system.
-For instance, a `drupal:site_name` variable forces a site name.
-
-For [Drupal 8](https://github.com/platformsh-templates/drupal8/blob/master/web/sites/default/settings.platformsh.php),
+For [Drupal 8+](https://github.com/platformsh-templates/drupal8/blob/master/web/sites/default/settings.platformsh.php),
 any variable that begins with `drupal:` or `d8settings:` is mapped to the global `$settings` array, for low-level configuration.
 Any variable that begins with `d8config:` is mapped to the global `$config` array,
 which is useful for overriding drupal's exportable configuration system.

@@ -41,9 +41,13 @@ Magento
 Mailchimp
 Memcache
 middleware
+Muffet
 multicast
 [Mm]ultifactor
+multisite
 multithread[ed|ing]
+Munin
+Nagios
 namespace
 [Nn]ginx
 Nori
@@ -51,6 +55,7 @@ npm
 nvm
 onboarding
 OPcache
+Opigno
 Opsgenie
 optipng
 overutilize
@@ -72,9 +77,11 @@ reindex
 runtimes
 sanitization
 scp
+serverless
 shard
 shortcode
 Stempel
+Strapi
 Symfony
 transclusion
 unencrypted

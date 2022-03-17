@@ -7,6 +7,7 @@ description: |
 
 {{< description >}}
 
+<!-- vale off -->
 ## Blogs
 
 * "[The future of the PHP PaaS is here: Our journey to Platform.sh](https://platform.sh/2016/06/future-php-paas/)", by Marcus Hausammann
@@ -26,7 +27,7 @@ description: |
 
 * How to [connect to your MySQL database](https://www.thinktandem.io/blog/2017/03/03/connecting-to-a-remote-platform-sh-database) using Sequel Pro
 * How to [set up XDebug](https://ghosty.co.uk/2015/09/debugging-on-platform-sh/)
-* Official [Symfony documentation](http://symfony.com/doc/current/deployment/platformsh.html) on deploying to Platform.sh
+* Official [Symfony documentation](https://symfony.com/doc/current/cloud/intro.html) on deploying to Platform.sh
 * Official [Sylius](https://docs.sylius.com/en/latest/cookbook/deployment/platform-sh.html) documentation on deploying to Platform.sh
 * How to install [Apache Tika on Platform.sh](https://thinktandem.io/blog/2017/11/10/apache-tika-on-platform-sh/)
 * How to [store complete logs at AWS S3](https://gitlab.com/contextualcode/platformsh-store-logs-at-s3) by [Contextual Code](https://www.contextualcode.com/)
@@ -49,48 +50,48 @@ Platform.sh lists maintained examples on its Github page, with some cross-refere
 
 ### NodeJS
 
-Framework  | Credit | Date added
------------|--------|-----------
-[MEAN stack](https://github.com/OriPekelman/platformsh-example-mean)|[@OriPekelman](https://github.com/OriPekelman)|May 2017
+Framework  | Credit
+-----------|-------
+[MEAN stack](https://github.com/OriPekelman/platformsh-example-mean)|[@OriPekelman](https://github.com/OriPekelman)
 
 ### Python
 
-Framework  | Credit | Date added
------------|--------|-----------
-Python [**Flask using gunicorn**](https://github.com/etoulas/platformsh-example-flask)|[@etoulas](https://github.com/etoulas)|May 2017
-[**Odoo**](https://github.com/OriPekelman/platformsh-example-odoo) Open Source ERP and CRM|[@OriPekelman](https://github.com/OriPekelman)|May 2017
+Framework  | Credit
+-----------|-------
+Python [**Flask using gunicorn**](https://github.com/etoulas/platformsh-example-flask)|[@etoulas](https://github.com/etoulas)
+[**Odoo**](https://github.com/OriPekelman/platformsh-example-odoo) Open Source ERP and CRM|[@OriPekelman](https://github.com/OriPekelman)
 
 ### PHP
 
-Framework  | Credit | Date added
------------|--------|-----------
-[**Akeneo** example](https://github.com/maciejzgadzaj/akeneo-on-platformsh-example)|[@maciejzgadzaj](https://github.com/maciejzgadzaj)|May 2017
-[**API Platform** with a **ReactJS** client](https://github.com/GuGuss/platformsh-api-platform-admin) admin |[@GuGuss](https://github.com/GuGuss)|May 2017
-[**Backdrop** example](https://github.com/gmoigneu/platformsh-example-backdrop)|[@gmoigneu](https://github.com/gmoigneu)|May 2017
-[**Headless Drupal 8 with Angular**](https://github.com/GuGuss/headless-drupal8-platformsh)|[@GuGuss](https://github.com/GuGuss)|May 2017
-[**Headless Drupal 8 with React.js**](https://github.com/systemseed/drupal_reactjs_boilerplate)|[@systemseed](https://github.com/systemseed)|Aug 2018
-[**Joomla** example](https://github.com/gmoigneu/platformsh-example-joomla)|[@gmoigneu](https://github.com/gmoigneu)|May 2017
-[**Laravel** example](https://github.com/JGrubb/platformsh-laravel-example)|[@JGrubb](https://github.com/JGrubb)|May 2017
-[**Moodle** example](https://github.com/JGrubb/platform-sh-moodle-example)|[@JGrubb](https://github.com/JGrubb)|May 2017
-[**Mouf framework** example](https://github.com/xhuberty/RhMachine)|[The Coding Machine](https://github.com/xhuberty)|May 2017
-[**Flow Framework** support package](https://github.com/ttreeagency/FlowPlatformSh)|Dominique Feyer|Jul 2017
-[**Neos CMS** support package](https://github.com/ttreeagency/NeosPlatformSh)|Dominique Feyer|Jul 2017
-[**Silverstripe** example](https://github.com/gmoigneu/platformsh-example-silverstripe)|[@gmoigneu](https://github.com/gmoigneu)|May 2017
-[**Thunder** example](https://github.com/md-systems/platformsh-example-thunder)|[maintained by the MD Systems team](https://github.com/md-systems)|May 2017
-[**WooCommerce** example](https://github.com/liip/woocommerce-demo)|[@Liip](https://github.com/liip)|May 2017
-[**Grav** example](https://gist.github.com/mikecrittenden/f52351e3623dc3433af901946e29f2e9)|[Mike Crittenden](https://github.com/mikecrittenden)|August 2017
+Framework  | Credit
+-----------|-------
+[**Akeneo** example](https://github.com/maciejzgadzaj/akeneo-on-platformsh-example)|[@maciejzgadzaj](https://github.com/maciejzgadzaj)
+[**API Platform** with a **ReactJS** client](https://github.com/GuGuss/platformsh-api-platform-admin) admin |[@GuGuss](https://github.com/GuGuss)
+[**Backdrop** example](https://github.com/gmoigneu/platformsh-example-backdrop)|[@gmoigneu](https://github.com/gmoigneu)
+[**Headless Drupal 8 with Angular**](https://github.com/GuGuss/headless-drupal8-platformsh)|[@GuGuss](https://github.com/GuGuss)
+[**Headless Drupal 8 with React.js**](https://github.com/systemseed/drupal_reactjs_boilerplate)|[@systemseed](https://github.com/systemseed)
+[**Joomla** example](https://github.com/gmoigneu/platformsh-example-joomla)|[@gmoigneu](https://github.com/gmoigneu)
+[**Laravel** example](https://github.com/JGrubb/platformsh-laravel-example)|[@JGrubb](https://github.com/JGrubb)
+[**Moodle** example](https://github.com/JGrubb/platform-sh-moodle-example)|[@JGrubb](https://github.com/JGrubb)
+[**Mouf framework** example](https://github.com/xhuberty/RhMachine)|[The Coding Machine](https://github.com/xhuberty)
+[**Flow Framework** support package](https://github.com/ttreeagency/FlowPlatformSh)|Dominique Feyer
+[**Neos CMS** support package](https://github.com/ttreeagency/NeosPlatformSh)|Dominique Feyer
+[**Silverstripe** example](https://github.com/gmoigneu/platformsh-example-silverstripe)|[@gmoigneu](https://github.com/gmoigneu)
+[**Thunder** example](https://github.com/md-systems/platformsh-example-thunder)|[maintained by the MD Systems team](https://github.com/md-systems)
+[**WooCommerce** example](https://github.com/liip/woocommerce-demo)|[@Liip](https://github.com/liip)
+[**Grav** example](https://gist.github.com/mikecrittenden/f52351e3623dc3433af901946e29f2e9)|[Mike Crittenden](https://github.com/mikecrittenden)
 
 ### Ruby
 
-Framework  | Credit | Date added
------------|--------|-----------
-[**Jekyll** example](https://github.com/JGrubb/platformsh-jekyll)|[@JGrubb](https://github.com/JGrubb)|May 2017
+Framework  | Credit
+-----------|-------
+[**Jekyll** example](https://github.com/JGrubb/platformsh-jekyll)|[@JGrubb](https://github.com/JGrubb)
 
 ### Rust
 
-Framework  | Credit | Date added
------------|--------|-----------
-[**Rust with Rocket and webasm**](https://github.com/royallthefourth/platformsh-rust-rocket)|[Royall Spence](https://github.com/royallthefourth)|July 2018
+Framework  | Credit
+-----------|-------
+[**Rust with Rocket and webasm**](https://github.com/royallthefourth/platformsh-rust-rocket)|[Royall Spence](https://github.com/royallthefourth)
 
 ## Integrations
 
@@ -103,7 +104,6 @@ Framework  | Credit | Date added
 
 ## Tools & development
 
-* **MySQL disk space** monitor https://github.com/galister/platformsh_mysqlmon
 * Create [**deploy commands you can run from composer**](https://github.com/dnunez24/platformsh-deploy-php), using Symfony
 * A small tool from Hanoii https://github.com/hanoii/drocal
 * Script to **sync a Drupal site** from Production to Local https://github.com/pjcdawkins/platformsh-sync

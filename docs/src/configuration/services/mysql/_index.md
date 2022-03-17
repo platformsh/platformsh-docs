@@ -30,6 +30,8 @@ MySQL and MariaDB have the same behavior and the rest of this page applies to bo
 |---------------|-------------|--------------------|
 |  {{< image-versions image="mariadb" status="supported" >}} | {{< image-versions image="mysql" status="supported" >}} | {{< image-versions image="oracle-mysql" status="supported" >}} |
 
+{{< image-versions-legacy "mysql" >}}
+
 ### Supported versions on Dedicated environments
 
 On Dedicated and Dedicated Generation 3 environments, only MariaDB is available with Galera for replication:
@@ -65,29 +67,7 @@ To experiment with a new version without committing to it, use a non-production 
 
 Configure your service with at least 256 MB in disk space.
 
-{{% endpoint-description type="mariadb" sectionLink="#multiple-databases" multipleText="databases" %}}
-
-### MariaDB example configuration
-
-[Service definition](../_index.md):
-
-{{< readFile file="src/registry/images/examples/full/mariadb.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
-
-[App configuration](../../app/app-reference.md):
-
-{{< readFile file="src/registry/images/examples/full/mariadb.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
-
-### Oracle MySQL example configuration
-
-[Service definition](../_index.md):
-
-{{< readFile file="src/registry/images/examples/full/oracle-mysql.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
-
-[App configuration](../../app/app-reference.md):
-
-{{< readFile file="src/registry/images/examples/full/oracle-mysql.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
-
-{{% /endpoint-description %}}
+{{% endpoint-description type="mariadb" sectionLink="#multiple-databases" multipleText="databases" /%}}
 
 {{< codetabs >}}
 
@@ -134,7 +114,6 @@ highlight=python
 ### Configure connections
 
 There may be cases where you want to configure a database connection manually.
-For example, when using a framework like Symfony Flex that expects the connection as an environment variable.
 
 To get the URL to connect to the database, run the following command
 (replacing `<PROJECT_ID>` and `<ENVIRONMENT_NAME>` with your values):
@@ -289,7 +268,7 @@ relationships:
     imports: "db:importer"
 ```
 
-These relationships are then available in the [`PLATFORM_RELATIONSHIPS` environment variable](#platform_relationships-reference).
+These relationships are then available in the [`PLATFORM_RELATIONSHIPS` environment variable](#relationship-reference).
 Each has its own credentials you can use to connect to the given database.
 
 ## Configure the database

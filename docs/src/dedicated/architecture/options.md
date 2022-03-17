@@ -11,9 +11,21 @@ A dedicated single-node staging machine can be provisioned for your application 
 
 ## Multiple applications
 
-Each application deployed to the Dedicated Cluster corresponds to a single Git repository in the Development Environment.  Multiple `.platform.app.yaml` files are not supported.  While it is possible to host multiple application code bases in separate subdirectories/subpaths of the application (such as `/drupal`, `/api`, `/symfony`, etc.) controlled by a single `.platform.app.yaml`, it is not recommended and requires additional configuration.  One or more domains may be mapped to the application.
+Each application deployed to a Dedicated Cluster corresponds to a single Git repository in the Development Environment.
+Multiple `.platform.app.yaml` files aren't supported.
+While you can host multiple application code bases in separate subdirectories
+(such as `/app` and `/api`) controlled by a single `.platform.app.yaml`,
+it isn't recommended and requires additional configuration.
 
-Our experience has shown that hosting multiple applications on a common resource pool is often bad for all applications on the cluster.  We therefore limit the number of applications that may be hosted on a single Dedicated Cluster.  On a D6 instance, only one application is supported.  On D12 and larger Dedicated plans multiple applications are supported at an extra cost.  Each application would correspond to a different Development Environment and Git repository and cannot share data or files with other applications.  This configuration is discouraged.
+You can map one or more domains to your app.
+
+Experience has shown that hosting multiple apps on a common resource pool is often bad for all apps in the cluster.
+So the number of apps you can host on a single Dedicated Cluster is limited.
+On a D6 instance, you can only have only one app.
+On D12 and larger Dedicated plans, you can have multiple applications at an extra cost.
+Each application would correspond to a different Development Environment and Git repository.
+It can't share data or files with other apps.
+This configuration is discouraged.
 
 ## Multiple-AZ
 

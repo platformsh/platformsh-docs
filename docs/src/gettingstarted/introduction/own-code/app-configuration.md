@@ -65,7 +65,10 @@ The `.platform.app.yaml` file is extremely flexible, and can contain many lines 
 * `name`: The [name of your application](../../../configuration/app/app-reference.md) container does not have to be the same as your project name, and in most single application cases you can simply name it `app`. You should notice in the next step, when you configure how requests are handled in `.platform/routes.yaml` that `name` is reused there, and it is important that they are the same.
 
   {{< note >}}
-  If you are trying to to deploy [microservices](/configuration/app/multi-app.md#example-of-a-micro-service-multi-app), the only constraint is that each of these application names must be unique.
+
+  If you are trying to deploy microservices,
+  the only constraint is that each app name must be unique.
+
   {{< /note >}}
 
 * `type`: The [type](/configuration/app/app-reference.md) attribute in `.platform.app.yaml` sets the container base image for the application, and sets the primary language. In general, `type` should have the form
@@ -94,10 +97,10 @@ There are a few additional keys in `.platform.app.yaml` you will likely need to 
 
    * `build`: The `build` key defines what happens during the build process using the `flavor` property. This is a common inclusion for PHP and Node.js applications, so check the [the documentation](/configuration/app/app-reference.md#build) to see if your configuration requires this key.
    * `dependencies`: This key makes it possible to install system-level [dependencies](/configuration/app/app-reference.md#dependencies) as part of the build process.
-   * `hooks`: [Hooks](/configuration/app/hooks.md) define custom scripts that you want to run at different points during the deployment process.
-      * `build`: The [build hook](/configuration/app/hooks.md#build-hook) is run after the build flavor if that is present. The file system is fully writable, but no services and only a subset of variables are available at this point. The full list of build time and runtime variables is available on the [variables section](../../../development/variables/_index.md) of the public documentation.
-      * `deploy`: The [deploy hook](/configuration/app/hooks.md#deploy-hook) is run after the application container has been started, but before it has started accepting requests. Services are now available, but the file system will be read-only from this point forward.
-      * `post-deploy`: The [post-deploy hook](/configuration/app/hooks.md#post-deploy-hook) functions exactly the same as the deploy hook, but after the container is accepting connections.
+   * `hooks`: [Hooks](../../../configuration/app/hooks/_index.md) define custom scripts that you want to run at different points during the deployment process.
+      * `build`: The [build hook](../../../configuration/app/hooks/hooks-comparison.md#build-hook) is run after the build flavor if that is present. The file system is fully writable, but no services and only a subset of variables are available at this point. The full list of build time and runtime variables is available on the [variables section](../../../development/variables/_index.md) of the public documentation.
+      * `deploy`: The [deploy hook](../../../configuration/app/hooks/hooks-comparison.md#deploy-hook) is run after the application container has been started, but before it has started accepting requests. Services are now available, but the file system will be read-only from this point forward.
+      * `post-deploy`: The [post-deploy hook](../../../configuration/app/hooks/hooks-comparison.md#post-deploy-hook) functions exactly the same as the deploy hook, but after the container is accepting connections.
 
 * `web`: The `web` key configures the web server through a single web instance container running a single Nginx server process, behind which runs your application.
 

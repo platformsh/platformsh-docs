@@ -22,7 +22,9 @@ Both Memcached and Redis can be used for application caching. As a general rule,
 
 | **Grid** | **Dedicated** | **Dedicated Generation 3** |
 |----------------------------------|---------------|---------------|
-|  {{< image-versions image="memcached" status="supported" environment="grid" >}} | {{< image-versions image="redis" status="memcached" environment="dedicated" >}} | {{< image-versions image="redis" status="memcached" environment="dedicated-gen-3" >}} |
+|  {{< image-versions image="memcached" status="supported" environment="grid" >}} | {{< image-versions image="memcached" status="supported" environment="dedicated" >}} | {{< image-versions image="memcached" status="supported" environment="dedicated-gen-3" >}} |
+
+{{< image-versions-legacy "memcached" >}}
 
 ## Relationship
 
@@ -32,33 +34,7 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../
 
 ## Usage example
 
-{{% endpoint-description type="memcached" %}}
-
-[Service definition](./_index.md):
-
-{{< readFile file="src/registry/images/examples/full/memcached.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
-
-[App configuration](../app/app-reference.md):
-
-{{< readFile file="src/registry/images/examples/full/memcached.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
-
-If you are using PHP, configure the relationship and enable the [PHP memcached extension](/languages/php/extensions.md) in your `.platform.app.yaml`.  (Note that the `memcached` extension requires `igbinary` and `msgpack` as well, but those will be enabled automatically.)
-
-```yaml
-runtime:
-    extensions:
-        - memcached
-```
-
-For Python, you need to include a dependency for a Memcached library, either via your requirements.txt file or a global dependency. As a global dependency you would add the following to `.platform.app.yaml`:
-
-```yaml
-dependencies:
-    python:
-        python-memcached: '*'
-```
-
-{{% /endpoint-description %}}
+{{% endpoint-description type="memcached" php=true python=true /%}}
 
 {{< codetabs >}}
 

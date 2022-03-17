@@ -92,7 +92,11 @@ Like WordPress core itself, themes and plugins can be installed as dependencies 
 
 1. **Configure the WPPackagist repository**
 
-    When you download dependencies using Composer, you will by default retrieve them through [Packagist](https://packagist.org), which is the primary Composer repository for public PHP packages. In the previous section, you installed WordPress core through this repository. Some themes and plugins for WordPress are also on Packagist, but most of them are accessible through a similar service specific to Wordpress called [WPackagist](https://wpackagist). 
+    When you download dependencies using Composer, you by default retrieve them through [Packagist](https://packagist.org),
+    which is the primary Composer repository for public PHP packages.
+    In the previous section, you installed WordPress core through this repository.
+    Some themes and plugins for WordPress are also on Packagist,
+    but most of them are accessible through a similar service specific to WordPress called [WPackagist](https://wpackagist.org). 
 
     In order to pull from this repository, you'll need to add WPackagist to your `composer.json` file so that Composer knows to look for packages there. Run the command: 
 
@@ -137,7 +141,7 @@ Like WordPress core itself, themes and plugins can be installed as dependencies 
 
 3. **Install themes and modules**
 
-    Search for your existing themes and plugins [WPackagist](https://wpackagist) and install them through Composer with `composer require`:
+    Search for your existing themes and plugins [WPackagist](https://wpackagist.org) and install them through Composer with `composer require`:
 
     ```bash
     # Plugin

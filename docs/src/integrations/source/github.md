@@ -115,13 +115,4 @@ they will be activated automatically with a copy of the parent's data.
 However, environments based on (non-pull-request) **branches** cannot have parents;
 they will inherit directly from the default branch and start inactive by default.
 
-## Clones and commits
-
-You can clone your codebase by running `platform get <projectID>`
-or in your project in the console by going to Code > Git and running the `git clone` command.
-
-When you perform this action, you are actually cloning from your remote integrated repository,
-so long as you have the [appropriate access to do so](/administration/users.md#user-access-and-integrations).
-
-Your GitHub repository is considered by Platform.sh to be the "source of truth" for the project.
-The project is only a mirror of that repository, and all commits should be pushed only to GitHub.
+{{% clone-commit name="GitHub" %}}

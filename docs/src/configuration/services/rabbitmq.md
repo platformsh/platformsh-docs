@@ -6,7 +6,7 @@ sidebarTitle: "RabbitMQ"
 
 RabbitMQ is an open source message broker software (sometimes called message-oriented middleware) that implements the Advanced Message Queuing Protocol (AMQP).
 
-See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for more information."
+See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for more information.
 
 {{% frameworks %}}
 
@@ -20,6 +20,8 @@ See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="rabbitmq" status="supported" environment="grid" >}} | {{< image-versions image="rabbitmq" status="supported" environment="dedicated" >}} | {{< image-versions image="rabbitmq" status="supported" environment="dedicated-gen-3" >}} |
 
+{{< image-versions-legacy "rabbitmq" >}}
+
 ## Relationship
 
 The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables):
@@ -28,19 +30,7 @@ The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](../..
 
 ## Usage example
 
-{{% endpoint-description type="rabbitmq" %}}
-
-[Service definition](./_index.md):
-
-{{< readFile file="src/registry/images/examples/full/rabbitmq.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
-
-The minimum disk size for RabbitMQ is `512` (MB).
-
-[App configuration](../app/app-reference.md):
-
-{{< readFile file="src/registry/images/examples/full/rabbitmq.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
-
-{{% /endpoint-description %}}
+{{% endpoint-description type="rabbitmq" /%}}
 
 {{< codetabs >}}
 

@@ -13,6 +13,10 @@ layout: single
 |----------------------------------|---------------|
 |  {{< image-versions image="nodejs" status="supported" environment="grid" >}} | {{< image-versions image="nodejs" status="supported" environment="dedicated" >}} |
 
+{{< image-versions-legacy "nodejs" >}}
+
+{{% language-specification type="nodejs" display_name="Node.js" %}}
+
 To use a specific version in a container with a different language, [use a version manager](node-version.md).
 
 {{% deprecated-versions %}}

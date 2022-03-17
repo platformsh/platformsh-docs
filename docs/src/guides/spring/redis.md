@@ -15,7 +15,8 @@ This guide only covers the *addition* of a service configuration to an existing 
 
 ## 1. Add the Redis service
 
-In your [service configuration](../../configuration/services/_index.md), include Persistent Redis with a [valid supported version](/configuration/services/redis.md#persistent-redis):
+In your [service configuration](../../configuration/services/_index.md),
+include persistent Redis with a [valid supported version](../../configuration/services/redis.md#persistent-redis):
 
 {{< readFile file="src/registry/images/examples/full/redis-persistent.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
 
@@ -36,7 +37,9 @@ export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOut
 ```
 
 {{< note title="Tip" >}}
-Please check the [Spring Common Application properties](https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html#common-application-properties) and the  [Binding from Environment Variables](https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-external-config-relaxed-binding-from-environment-variables) to have access to more credentials options.
+
+{{% spring-common-props %}}
+
 {{< /note >}}
 
 ## 4. Connect to Redis

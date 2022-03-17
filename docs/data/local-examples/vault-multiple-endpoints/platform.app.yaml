@@ -1,0 +1,3 @@
+relationships:
+    vault_manage: "vault-kms:management"
+    vault_sign: "vault-kms:sign_and_verify"

@@ -82,7 +82,7 @@ The `start` key specifies the command to use to launch your worker application.
 It may be any valid shell command, although most often it will run a command in your application in the language of your application.
 If the command specified by the `start` key terminates it will be restarted automatically.
 
-Note that [`deploy` and `post_deploy` hooks](/configuration/app/hooks.md) as well as [`cron` commands](./app-reference.md#crons)
+Note that [`deploy` and `post_deploy` hooks](/configuration/app/hooks/_index.md) as well as [`cron` commands](./app-reference.md#crons)
 run only on the [`web`](/configuration/app/app-reference.md#web) container, not on workers.
 
 ## Inheritance

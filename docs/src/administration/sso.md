@@ -41,7 +41,7 @@ If your organization has Google SSO enabled on Platform.sh, you may be required 
 To resolve that, you need to:
 
 1. Go to [https://myaccount.google.com/permissions](https://myaccount.google.com/permissions) and revoke the access from the `Platform.sh` application that has `Access given to auth.api.platform.sh`.
-2. Go to [https://auth.api.platform.sh/auth/authorize/google?consent=prompt](https://auth.api.platform.sh/auth/authorize/google?consent=prompt) for the system to obtain a valid refresh token for your Google account.
+2. Go to [https://auth.api.platform.sh/auth/authorize/google?prompt=consent](https://auth.api.platform.sh/auth/authorize/google?prompt=consent) for the system to obtain a valid refresh token for your Google account.
 
 ### OpenId Connect
 

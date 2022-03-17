@@ -2,6 +2,7 @@
 title: "Troubleshoot mounts"
 ---
 
+{{% troubleshoot %}}
 
 ## Set up both public and private file uploads
 

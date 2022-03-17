@@ -44,6 +44,8 @@ Do the same with `platform logs error`
 
 ## Something still wrong?
 
+{{% troubleshoot %}}
+
 [Contact support](/overview/get-support.md)
 
 We are here to help. Please include as much detail as possible (we will be able to provide quicker help).

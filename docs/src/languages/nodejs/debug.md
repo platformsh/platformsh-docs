@@ -9,6 +9,8 @@ Effectively debugging web applications isn’t trivial, especially when an HTTP 
 Whether you need to debug locally or remotely, always do so in a non-production environment.
 {{< /note >}}
 
+{{% troubleshoot %}}
+
 ## Remote debugging
 
 ### Create a new environment

@@ -16,6 +16,8 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="kafka" status="supported" environment="grid" >}} | {{< image-versions image="kafka" status="supported" environment="dedicated" >}} | {{< image-versions image="kafka" status="supported" environment="dedicated-gen-3" >}} |
 
+{{< image-versions-legacy "kafka" >}}
+
 ## Relationship
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables):
@@ -24,17 +26,7 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../
 
 ## Usage example
 
-{{% endpoint-description type="kafka" %}}
-
-[Service definition](./_index.md):
-
-{{< readFile file="src/registry/images/examples/full/kafka.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
-
-[App configuration](../app/app-reference.md):
-
-{{< readFile file="src/registry/images/examples/full/kafka.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
-
-{{% /endpoint-description %}}
+{{% endpoint-description type="kafka" /%}}
 
 {{< codetabs >}}
 

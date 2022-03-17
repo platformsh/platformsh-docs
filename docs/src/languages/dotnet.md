@@ -12,13 +12,14 @@ description: |
 |----------------------------------|---------------|
 |  {{< image-versions image="dotnet" status="supported" environment="grid" >}} | {{< image-versions image="dotnet" status="supported" environment="dedicated" >}} |
 
-To specify a .NET Core container, use the `type` property in your [app configuration](../configuration/app/app-reference.md).
+{{< image-versions-legacy "dotnet" >}}
 
-{{< readFile file="src/registry/images/examples/full/dotnet.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
+{{% language-specification type="dotnet" display_name=".Net Core" %}}
 
 ## Building the application
 
-For simple applications, using the [`dotnet publish`](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-publish?tabs=netcore21) default [framework-dependent deployment](https://docs.microsoft.com/en-us/dotnet/core/deploying/#framework-dependent-deployments-fdd) method is sufficient for building applications in .NET containers:
+To build basic applications in .NET containers, it's enough to use the [`dotnet publish` command](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-publish)
+with the default [framework-dependent deployment](https://docs.microsoft.com/en-us/dotnet/core/deploying/#publish-framework-dependent):
 
 ```yaml
 hooks:
@@ -43,7 +44,9 @@ Incoming requests are passed to the application using either a TCP (default) or 
 
 There will be an Nginx server sitting in front of your application. Serving static content via Nginx is recommended, as this allows easy control of headers (including cache headers) and also has marginal performance benefits.
 
-Note that HTTPS is also terminated at the Ngnix proxy, so the `app.UseHttpsRedirection();` line in `Startup.cs` should be removed. To force HTTPS-only, please refer to the [routes documentation](/configuration/routes/https.md#https).
+Note that HTTPS is also terminated at the Nginx proxy,
+so the `app.UseHttpsRedirection();` line in `Startup.cs` should be removed.
+To force HTTPS-only, refer to the [routes documentation](../configuration/routes/https.md#using-https).
 
 The following example configures an environment to serve the static content folders commonly found in [ASP.NET MVC](https://dotnet.microsoft.com/apps/aspnet/mvc) templates using Nginx, while routing other traffic to the .NET application.
 

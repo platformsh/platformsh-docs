@@ -23,8 +23,15 @@
   {{ else }}
     {{ if and (eq $envParam "dedicated-gen-3") (eq $status "supported") }}
       Working on it!
-    {{ else }}
-      None available
+      {{ if ne $status "deprecated"}}
+        None available
+      {{ end }}
     {{ end }}
+  {{ end }}
+{{ else }}
+  {{ if and (eq $envParam "dedicated-gen-3") (eq $status "supported") }}
+    Working on it!
+  {{ else }}
+    None available
   {{ end }}
 {{ end }}

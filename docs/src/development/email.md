@@ -44,7 +44,7 @@ To have DKIM enabled for your domain:
 
 {{< note>}}
 
-The TXT record to include your account ID (see [SendGrid's SPF setup guidelines](https://docs.sendgrid.com/ui/account-and-settings/spf-records#custom-spf-records))
+The TXT record to include your account ID (see [SendGrid's SPF guidelines](https://docs.sendgrid.com/ui/account-and-settings/spf-records))
 looks similar to the following:
 
 ```txt
@@ -104,28 +104,6 @@ Note that the `From` header is required; email will not send if that header is m
 Beware of the potential security problems when using the `mail()` function,
 which arise when using user-supplied input in the fifth (`$additional_parameters`) argument.
 See the [PHP `mail()` documentation](http://php.net/manual/en/function.mail.php) for more information.
-
-### SwiftMailer
-
-In Symfony, if you use the default `SwiftMailer` service,
-we recommend the following settings in your `app/config/parameters.yaml`:
-
-```yaml
-parameters:
-    mailer_transport: smtp
-    mailer_host: "%env(PLATFORM_SMTP_HOST)%"
-    mailer_user: null
-    mailer_password: null
-```
-
-If you are using a file spool facility, you will probably need to setup a read/write mount for it in `.platform.app.yaml`, for example:
-
-```yaml
-mounts:
-    'app/spool':
-        source: local
-        source_path: spool
-```
 
 ## Sending email in Java
 

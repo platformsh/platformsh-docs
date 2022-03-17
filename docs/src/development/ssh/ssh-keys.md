@@ -54,7 +54,7 @@ To find your public key file:
 If you find a file ending in `.pub`,
 copy the location and [add it to your Platform.sh account](#2-add-an-ssh-key-to-your-platform-account).
 
-If you don't find an existing key, [generate new keys](#generate-new-keys).
+If you don't find an existing key, [generate new keys](#1b-generate-new-keys).
 
 ### 1B. Generate new keys
 

@@ -94,6 +94,9 @@ https://{default}/:
       # Restructure of variables
       "/bestpractices/environment-build.html": { "to": "/development/variables.html", "code": 301, "prefix": false }
 
+      # Drupal 7 EOL
+      "/frameworks/drupal7.*": { "to": "/guides/drupal9/deploy.html", "code": 301, "regexp": true }
+
 "https://search.{default}/":
     type: upstream
     upstream: "search:http"
