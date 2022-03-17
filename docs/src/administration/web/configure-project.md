@@ -19,7 +19,7 @@ The project timezone doesn't affect:
 
 - [App runtime](../../configuration/app/timezone.md).
 - [Cron jobs](../../configuration/app/app-reference.md#crons).
-- [System logs](../../development/logs.md). UTC is the default timezone for all logs.
+- [System logs](../../increase-observability/logs.md). UTC is the default timezone for all logs.
 
 ## Access
 
@@ -37,7 +37,8 @@ Selecting a user will allow you to either edit that user's permissions or delete
 
 ![Manage users of your Platform.sh project](/images/management-console/edit-user.png "0.7")
 
-If you check the `Project admin` box, this user will be an administrator of the project and will have full access on all environments. If you uncheck the box, you'll have the option of adjusting the user's permissions on each environment type.
+If you check the `Project admin` box, this user becomes an project administrator and has full access to all environments.
+If you deselect the box, you have the option of adjusting the user's permissions for each environment type.
 
 {{< note >}}
 The `Account owner` is locked and you can't change its permissions.
