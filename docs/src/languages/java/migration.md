@@ -52,7 +52,7 @@ web:
 
 1. [A Java version](/languages/java/_index.md#supported-versions), e,g.: `java:11`
 2. [Hooks define what happens when building the application](/configuration/app/hooks/_index.md). This build process typically generates an executable file such as a uber-jar e.g.: `mvn clean package`
-3. [The commands key defines the command to launch the application](/configuration/app/app-reference.md#commands). E.g.:  `java -jar file.jar`
+3. [The commands key defines the command to launch the application](/configuration/app/app-reference.md#web-commands). E.g.:  `java -jar file.jar`
 4. In the start's command needs to receive the port where the application will execute thought the `PORT` environment. That is trivial if your application follows the port bind principle. E.g.: `java -jar jar --port=$PORT`
 
 {{< note >}}
