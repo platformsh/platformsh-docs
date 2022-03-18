@@ -113,10 +113,10 @@ Read more information [about images](https://example.com)  | For more info on im
 Adding links can often provide helpful context.
 It's a great way to offer additional information for those who want it,
 while letting those who know the concept skip past.
-But having many links increases the chance readers will leave the page and not return.
+But having many links increases the chance readers leave the page and not return.
 
-Especially when writing how-to guides and procedures, try to mimize the number of links in the middle.
-Each link that is added gives another reason for the reader to not finish the article.
+Especially when writing how-to guides and procedures, try to minimize the number of links in the middle.
+Each link that's added gives another reason for the reader to not finish the article.
 
 If additional context is desired, add it in prerequisites at the start or next steps at the end.
 That way people can focus on completing the task.

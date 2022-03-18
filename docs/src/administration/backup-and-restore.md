@@ -106,10 +106,11 @@ A common cron specification for a daily backup on the production environment loo
 crons:
     backup:
         spec: '0 5 * * *'
-        cmd: |
-            if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-                platform backup:create --yes --no-wait
-            fi
+        commands:
+            start: |
+                if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
+                    platform backup:create --yes --no-wait
+                fi
 ```
 
 The above cron task runs once a day at 5 am (UTC),

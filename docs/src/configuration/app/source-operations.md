@@ -185,12 +185,13 @@ crons:
     update:
         # Run the 'update' source operation every day at midnight.
         spec: '0 0 * * *'
-        cmd: |
-            set -e
-            if [ "$PLATFORM_BRANCH" = update-dependencies ]; then
-                platform environment:sync code data --no-wait --yes
-                platform source-operation:run update --no-wait --yes
-            fi
+        commands:
+            start: |
+                set -e
+                if [ "$PLATFORM_BRANCH" = update-dependencies ]; then
+                    platform environment:sync code data --no-wait --yes
+                    platform source-operation:run update --no-wait --yes
+                fi
 ```
 
 ## Source operation examples
