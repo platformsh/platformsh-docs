@@ -38,6 +38,10 @@ Its value is one of:
 * `environment.access.add`: A new user has been given access to the environment.
 * `environment.access.remove`: A user has been removed from the environment.
 ---
+* `environment_type.access.create`: A user has been given access to an environment type (Production, Staging, Development).
+* `environment_type.access.delete`: A user has had their access removed from an environment type.
+* `environment_type.access.update`: A user has had their access to an environment type updated.
+---
 * `environment.backup`: A user triggered a [backup](/administration/backup-and-restore.md).
 * `environment.restore`: A user restored a [backup](/administration/backup-and-restore.md).
 * `environment.backup.delete`: A user deleted a [backup](/administration/backup-and-restore.md)
