@@ -7,7 +7,7 @@ description: |
 {{< description >}}
 
 For more project-specific documentation,
-see the [featured frameworks](/frameworks/_index.md) or [project templates](/development/templates.md).
+see the [project templates](/development/templates.md).
 
 ## Preparation
 

@@ -1,7 +1,6 @@
 ---
-title: "Jakarta EE/Eclipse MicroProfile"
+title: Get started
 weight: 5
-sidebarTitle: "Jakarta EE"
 ---
 
 [Eclipse MicroProfile](https://microprofile.io/) is a community dedicated to optimizing the Enterprise Java mission for microservice-based architectures. The goal is to define a microservices application platform that is portable across multiple runtimes. Currently, the leading players in this group are IBM, Red Hat, Tomitribe, Payara, the London Java Community (LJC), and SouJava.
@@ -359,7 +358,7 @@ class EntityManagerConfiguration {
 
 ## Transaction
 
-To any Eclipse Microprofile or any non-JTA application is essential to point out, CDI does not provide transaction management implementation as part of its specs. Transaction management is left to be implemented by the programmer through the interceptors, such as the code below.
+To any Eclipse MicroProfile or any non-JTA application is essential to point out, CDI does not provide transaction management implementation as part of its specs. Transaction management is left to be implemented by the programmer through the interceptors, such as the code below.
 
 ```java
 import javax.annotation.Priority;
@@ -399,7 +398,7 @@ To treat this issue, see the [Apache Delta Spike docs](https://deltaspike.apache
 
 ## Templates
 
-* [Apache Tomee](https://github.com/platformsh-templates/microprofile-tomee)
+* [Apache TomEE](https://github.com/platformsh-templates/microprofile-tomee)
 * [Thorntail](https://github.com/platformsh-templates/microprofile-thorntail)
 * [Payara Micro](https://github.com/platformsh-templates/microprofile-payara)
 * [KumuluzEE](https://github.com/platformsh-templates/microprofile-kumuluzee)
@@ -407,4 +406,4 @@ To treat this issue, see the [Apache Delta Spike docs](https://deltaspike.apache
 * [Open Liberty](https://github.com/platformsh-templates/microprofile-openliberty)
 * [Quarkus](https://github.com/platformsh-templates/quarkus)
 * [Tomcat](https://github.com/platformsh-templates/tomcat)
-* [Wildfly](https://github.com/platformsh-templates/microprofile-wildfly/)
+* [WildFly](https://github.com/platformsh-templates/microprofile-wildfly/)

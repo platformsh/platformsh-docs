@@ -18,8 +18,8 @@ Otherwise, they're identical.
 {{% frameworks %}}
 
 - [Drupal](../../guides/drupal9/redis.md)
-- [Ibexa DXP](../../frameworks/ibexa/_index.md#cache-and-sessions)
-- [Jakarta EE](../../frameworks/jakarta.md#redis)
+- [Ibexa DXP](../../guides/ibexa/deploy.md#cache-and-sessions)
+- [Jakarta EE](../../guides/jakarta/deploy.md#redis)
 - [Micronaut](../../guides/micronaut/redis.md)
 - [Quarkus](../../guides/quarkus/redis.md)
 - [Spring](../../guides/spring/redis.md)

@@ -18,27 +18,6 @@ Use the `--worker` switch in the Platform.sh CLI, like so:
 platform ssh --worker=queue
 ```
 
-To output the SSH command, run:
-
-```bash
-platform ssh --worker=queue --pipe
-```
-
-You see the URL is the name of the worker added to the user name after the application name part of the SSH URL preceded by a double dash (`--`).
-
-For example, given a project with the id `3seb7f2j6ogbm`,
-you would connect to its default environment for an app called `app` with a URL such as:
-
-```bash
-ssh 3seb7f2j6ogbm-default-7rqtwti--app@ssh.us-2.platform.sh
-```
-
-To connect to a worker called `queue` (as in the example above), you would use an SSH URL such as:
-
-```bash
-ssh 3seb7f2j6ogbm-default-7rqtwti--app--queue@ssh.us-2.platform.sh
-```
-
 ## Stopping a worker
 
 If a worker instance needs to be updated during a new deployment,

@@ -1,5 +1,5 @@
 ---
-title: "Hibernate"
+title: Get started
 weight: 4
 ---
 
