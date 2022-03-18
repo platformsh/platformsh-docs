@@ -1,6 +1,8 @@
 ---
 title: "Deploy on Platform.sh"
 weight: 1
+aliases:
+  - /frameworks/deploy-button.html
 ---
 
 Platform.sh offers a number of project templates as part of the Project Creation Wizard to help bootstrap a new project.
@@ -18,9 +20,9 @@ or anywhere else a link can go to make launching your code base as straightforwa
 
 To have a deployable template, you need to first prepare the repository.
 The Deploy on Platform.sh button works with any Git repository that's deployable on Platform.sh.
-It needs [app configuration](../configuration/app/_index.md),
-[a `.platform/services.yaml` file](../configuration/services/_index.md),
-and [a `.platform/routes.yaml` file](../configuration/routes/_index.md).
+It needs [app configuration](../../configuration/app/_index.md),
+[a `.platform/services.yaml` file](../../configuration/services/_index.md),
+and [a `.platform/routes.yaml` file](../../configuration/routes/_index.md).
 
 The repository must be available at a publicly accessible Git URL.
 That may be hosted with GitHub, GitLab, Bitbucket, your own custom Git hosting,

@@ -13,7 +13,7 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 {{% frameworks %}}
 
 - [Drupal](../../guides/drupal9/elasticsearch.md)
-- [Jakarta EE](../../frameworks/jakarta.md#elasticsearch)
+- [Jakarta EE](../../guides/jakarta/deploy.md#elasticsearch)
 - [Micronaut](../../guides/micronaut/elasticsearch.md)
 - [Quarkus](../../guides/quarkus/elasticsearch.md)
 - [Spring](../../guides/spring/elasticsearch.md)

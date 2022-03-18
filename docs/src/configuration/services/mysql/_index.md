@@ -13,9 +13,9 @@ or [MySQL documentation](https://dev.mysql.com/doc/refman/8.0/en/) for more info
 
 {{% frameworks %}}
 
-- [Hibernate](../../../frameworks/hibernate.md#mysql)
-- [Jakarta EE](../../../frameworks/jakarta.md#mysql)
-- [Spring](../../../frameworks/spring.md#mysql)
+- [Hibernate](../../../guides/hibernate/deploy.md#mysql)
+- [Jakarta EE](../../../guides/jakarta/deploy.md#mysql)
+- [Spring](../../../guides/spring/mysql.md)
 
 {{% /frameworks %}}
 
