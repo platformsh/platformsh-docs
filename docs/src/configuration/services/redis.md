@@ -208,7 +208,7 @@ cache:
 ```
 
 The default value if not specified is `allkeys-lru`, which removes the oldest cache item first.
-The following values are allows:
+The following values are allowed:
 
 * `noeviction`
 * `allkeys-lru`
