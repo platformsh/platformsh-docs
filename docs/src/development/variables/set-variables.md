@@ -131,8 +131,47 @@ to be run regardless of the current directory:
 export PATH=/app/vendor/bin:$PATH
 ```
 
+Like everything else, the sourced `.environment` file runs in dash (not bash), and you can include logic that dynamically defines environment variables based on the current environment.
+
+```bash {location=".environment"}
+URL=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select (.value.id == "api") | .key')
+```
+
+In the above example, `jq` is used to retrieve a backend Drupal application's url for the current environment using it's `id` that has been defined in `routes.yaml`. 
+
 Note that the file is sourced after all other environment variables above are defined and so they're available to the script.
 This also means the `.environment` script has the last word on environment variable values and can override anything it wants to.
+
+{{< note >}}
+You may find that a command that works during an SSH session will provide a `bad substitution` error when placed in a `.environment` file. Remember, `.environment` will be sourced using dash, not bash. While testing your `.environment` logic, be sure to enter a `dash` session in your terminal or within the SSH session first. 
+
+Additionally, because the `.environment` file is sourced at the start of an SSH session, anything that prints to stdout (like an `echo` or `printf` command) will appear at the start of the session. 
+
+```bash {location=".environment"}
+if [ -f "deploy/environment.tracker.txt" ]; then 
+    echo "File found."
+    export DEPLOY='Friday'
+else
+    echo "File not found."
+    export DEPLOY='Never on a Friday'
+```
+
+In the above example, when some `deploy/environment.tracker.txt` file is found the variable `DEPLOY` will equal `Friday`, and otherwise if it's missing it will be `Never on a Friday`. When you SSH into the app container, one of the first things you'll see (if the file exists) will be `File found.`. 
+
+While sanity checks like this are useful while troubleshooting, including these kinds of commands is not recommended. Even though your SSH command will execute successfully, if you later on attempt to download data from one of your mounts using the CLI command `platform mount:download`, you will get the following error:
+
+```bash
+protocol version mismatch -- is your shell clean?
+(see the rsync man page for an explanation)
+rsync error: protocol incompatibility (code 2) at .../rsync/compat.c(61) [receiver=2.6.9]
+
+[ProcessFailedException]                                                                                                                      
+The command failed with the exit code: 2      
+```
+
+`mount:download` and `rsync` don't expect output when the SSH connection is made, resulting in the failure.
+
+{{< /note >}}
 
 ## Map variables
 
