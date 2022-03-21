@@ -829,7 +829,7 @@
       ]
     },
     "versions-dedicated": {
-      "supported": ["3.7", "3.8"]
+      "supported": ["3.7", "3.8", "3.9"]
     },
     "versions-dedicated-gen-3": {
       "deprecated": [],
@@ -875,7 +875,7 @@
       ]
     },
     "versions-dedicated": {
-      "supported": ["5.0","6.0"],
+      "supported": ["5.0","6.0","6.2"],
       "deprecated": ["3.2"]
     },
     "versions-dedicated-gen-3": {
