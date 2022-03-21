@@ -160,7 +160,7 @@ file=none
 highlight=false
 ---
 
-To manage [thread safety](https://github.com/redis/redis-py#thread-safety),
+To manage [thread safety](https://github.com/redis/redis-py#user-content-thread-safety),
 the Python library suggests using separate client instances for each database:
 
 ```python
