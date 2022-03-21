@@ -7,7 +7,7 @@ To use New Relic with PHP, specify `type: 'php:8.0'` or lower in your [app confi
 
 ## Get your license key
 
-Sign up at https://newrelic.com and get your [license key](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/#ingest-license-key).
+Sign up at https://newrelic.com and get your [license key](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/#license-key).
 
 ## Add your license key
 
