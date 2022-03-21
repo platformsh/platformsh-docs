@@ -103,7 +103,7 @@ To connect to a server using SSH keys, find the details in the management consol
 1. In the **Environment** dropdown, select the environment you want to access.
 1. Click the **SSH** dropdown.
 1. Copy the ssh command for where you want access.
-   (Example: `ssh abcdefghi5k-main-7rqtwti--app@ssh.<region>.platform.sh`)
+   (Example: `ssh abcdefghi5k-main-7rqtwti--app@ssh.us-2.platform.sh`)
 1. Enter the command into a terminal.
 
 Note that if you have just added your SSH key,

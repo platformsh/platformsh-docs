@@ -30,11 +30,11 @@ git push origin main
 
 Make sure your public key has been uploaded to your user account. Check it in the [Platform.sh console](https://console.platform.sh/).
 
-## Reuse SSH keys
-
-A given SSH key pair can only be linked to a single user account.
+## SSH key can not be duplicated
 
 If you add an already used SSH key to another account, you see the error: `SSH key can not be duplicated`.
+A given SSH key pair can only be linked to a single user account.
+
 Generate a new pair of SSH keys for the second user account you want to add.
 
 ## Check your SSH agent
@@ -142,11 +142,13 @@ Permission denied (publickey).
 or
 
 ```bash
-GIT_SSH_COMMAND="ssh -v" git clone [REPO-URL]
+GIT_SSH_COMMAND="ssh -v" git clone <REPO_URL>
 ```
 
 You can use this information to make one last check of the private key file.
 
-If you're still stuck, [submit a support ticket and provide the SSH debug information](https://console.platform.sh/-/users/:user/tickets) to get help solving your issue.
+## Something still wrong?
 
 {{% troubleshoot %}}
+
+If you're still stuck, [submit a support ticket and provide the full SSH debug information](https://console.platform.sh/-/users/:user/tickets) to get help solving your issue.
