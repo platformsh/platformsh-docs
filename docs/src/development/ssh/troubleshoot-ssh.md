@@ -30,6 +30,8 @@ git push origin main
 
 Make sure your public key has been uploaded to your user account. Check it in the [Platform.sh console](https://console.platform.sh/).
 
+## Reuse SSH keys
+
 A given SSH key pair can only be linked to a single user account.
 
 If you add an already used SSH key to another account, you see the error: `SSH key can not be duplicated`.
