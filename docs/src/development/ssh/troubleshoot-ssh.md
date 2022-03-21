@@ -151,4 +151,4 @@ You can use this information to make one last check of the private key file.
 
 {{% troubleshoot %}}
 
-If you're still stuck, [submit a support ticket and provide the full SSH debug information](https://console.platform.sh/-/users/:user/tickets) to get help solving your issue.
+If you're still stuck, [submit a support ticket and provide the full SSH debug information](https://console.platform.sh/-/users/:user/tickets).

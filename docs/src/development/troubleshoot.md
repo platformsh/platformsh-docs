@@ -96,12 +96,12 @@ platform project:clear-build-cache -p <PROJECT_ID>
 
 The next build for each environment is likely to take longer as the cache rebuilds.
 
-## Access denied or Permission denied
+## Access denied or permission denied
 
-In most cases, issues accessing a project is caused by missing permissions for a given user.
+In most cases, issues accessing a project are caused by missing permissions for a given user.
 For more information see [how to manage user permissions](../administration/users.md).
 
-If you are using the CLI, make sure [that you are authenticated](../development/cli/_index.md#2-authenticate).
+If you are using the CLI, make sure that [you are authenticated](../development/cli/_index.md#2-authenticate).
 
 If you are using SSH, see [how to troubleshoot SSH access](../development/ssh/troubleshoot-ssh.md).
 
