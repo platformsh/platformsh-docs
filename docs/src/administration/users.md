@@ -16,6 +16,7 @@ Within a project, each user has a role that controls their access and permission
 * Project Viewer: Any user with access to environment types automatically gets this role.
 
 These control who has access to projects.
+
 Users can still see projects that they can't access if they're a member of an organization.
 See more on access control for [organizations](./organizations.md).
 
@@ -54,9 +55,11 @@ To customize who can use SSH, [set the access key](/configuration/app/app-refere
 
 ### Add a user to a project
 
-To add a user you need to be an organization owner
+To add a user, you must have the 'project admin' role. 
+You also need to be an organization owner,
 or have the [manage plan](./organizations.md#manage-your-organization-users)
-or [manage users](./organizations.md#manage-your-organization-users) permission.
+or [manage users](./organizations.md#manage-your-organization-users) organization permission.
+
 To add a user to a project or an environment, follow these steps:
 
 {{< codetabs >}}
