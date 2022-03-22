@@ -120,7 +120,7 @@ value updates trigger a rebuild of the application in the same way that a commit
 ## Set variables via script
 
 You can also provide a `.environment` file as in your application root (next to the `.platform.app.yaml` file for that app).
-This file runs as a bash script when the container starts and on all SSH logins.
+This file runs as a script in dash when the container starts and on all SSH logins.
 It can be used to set any environment variables directly, such as the PATH variable.
 
 For example, the following `.environment` file allows any executable installed in the `vendor/bin` directory
@@ -131,22 +131,26 @@ to be run regardless of the current directory:
 export PATH=/app/vendor/bin:$PATH
 ```
 
-Like everything else, the sourced `.environment` file runs in dash (not bash), and you can include logic that dynamically defines environment variables based on the current environment.
+You can also dynamically define environment variables based on the current environment.
+For example, you might want to get the [defined route](../../configuration/routes/_index.md) with the id `api` for the current environment.
+To define it as the `URL` environment variable, you might add something like:
 
 ```bash {location=".environment"}
 URL=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select (.value.id == "api") | .key')
 ```
 
-In the above example, `jq` is used to retrieve a backend Drupal application's URL for the current environment using it's `id` that has been defined in `routes.yaml`. 
-
 Note that the file is sourced after all other environment variables above are defined and so they're available to the script.
 This also means the `.environment` script has the last word on environment variable values and can override anything it wants to.
 
-{{< note >}}
-You may find that a command that works during an SSH session provides a `bad substitution` error when placed in a `.environment` file. 
-Remember, `.environment` is sourced using dash, not bash. While testing your `.environment` logic, be sure to enter a `dash` session in your terminal or within the SSH session first. 
+### Testing `.environment` scripts
 
-Additionally, because the `.environment` file is sourced at the start of an SSH session, anything that prints to stdout (like an `echo` or `printf` command) appears at the start of the session. 
+You may find that a command that works during an SSH session provides a `bad substitution` error when placed in a `.environment` file.
+Remember, `.environment` is sourced using dash, not bash.
+When testing your `.environment` logic, be sure to first enter a `dash` session in your terminal or within the SSH session.
+
+When testing, you might print to stdout (using an `echo` or `printf` command) to check what's happening.
+The following example looks for a `deploy/environment.tracker.txt` file.
+It displays a different message if it's found or not, which helps you track what variables are being set.
 
 ```bash {location=".environment"}
 if [ -f "deploy/environment.tracker.txt" ]; then 
@@ -157,11 +161,12 @@ else
     export DEPLOY='Never on a Friday'
 ```
 
-In the above example, when some `deploy/environment.tracker.txt` file is found the variable `DEPLOY` is set to `Friday`, and otherwise if it's missing `Never on a Friday`. 
-When you SSH into the app container, `File found.` prints to the session. 
+While sanity checks like this are useful during troubleshooting, you shouldn't include such commands in your final code.
+Because the `.environment` file is run at the start of an SSH session, the message is printed at the start of the session.
 
-While sanity checks like this are useful while troubleshooting, including these kinds of commands isn't recommended. 
-Even though your SSH command executes successfully, if you later on attempt to download data from one of your mounts using the CLI command `platform mount:download`, this error returns:
+Even when your SSH command executes successfully, you might later attempt to download data from one of your mounts,
+such as by using the CLI command `platform mount:download`.
+When you do, you see this error:
 
 ```bash
 protocol version mismatch -- is your shell clean?
@@ -172,9 +177,8 @@ rsync error: protocol incompatibility (code 2) at .../rsync/compat.c(61) [receiv
 The command failed with the exit code: 2      
 ```
 
-`mount:download` and `rsync` don't expect output when the SSH connection is made, resulting in the failure.
-
-{{< /note >}}
+This failure comes because `mount:download` and `rsync` don't expect output when the SSH connection is made.
+To solve the issue, remove the printed output from your `.environment` file.
 
 ## Map variables
 
