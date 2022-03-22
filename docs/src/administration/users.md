@@ -16,6 +16,7 @@ Within a project, each user has a role that controls their access and permission
 * Project Viewer: Any user with access to environment types automatically gets this role.
 
 These control who has access to projects.
+
 Users can still see projects that they can't access if they're a member of an organization.
 See more on access control for [organizations](./organizations.md).
 
@@ -54,9 +55,8 @@ To customize who can use SSH, [set the access key](/configuration/app/app-refere
 
 ### Add a user to a project
 
-To add a user you need to be an organization owner
-or have the [manage plan](./organizations.md#manage-your-organization-users)
-or [manage users](./organizations.md#manage-your-organization-users) permission.
+To add a user, you need to be a [Project Admin](#user-roles).
+
 To add a user to a project or an environment, follow these steps:
 
 {{< codetabs >}}
@@ -94,6 +94,8 @@ For SSH access changes to apply after you add a user to a project, you have to r
 
 ### Delete a user from a project
 
+To delete a user, you need to be a [Project Admin](#user-roles).
+
 To delete a user from a project, follow these steps:
 
 {{< codetabs >}}
@@ -128,6 +130,8 @@ After you delete a user from a project or an environment type,
 you must [trigger a redeploy](../development/troubleshoot.md#force-a-redeploy) to propagate SSH access changes to each environment.
 
 ### Change existing permissions for environment types
+
+To manage user permissions, you need to be a [Project Admin](#user-roles).
 
 To change user permissions, follow these steps:
 
