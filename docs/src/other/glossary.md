@@ -9,8 +9,27 @@ aliases:
 
 ## Active environment
 
-An environment which is deployed.
-You can deactivate an active environment from the environment configuration page on the Platform.sh management console.
+An environment that's deployed.
+See how to [deactivate an environment](../overview/environments/deactivate-environment.md).
+
+## Branch
+
+Branching an environment means creating a new branch in the Git repository and an exact copy of that environment.
+
+The new environment includes all of the parent environment's:
+
+* Code
+* Data that's stored on disk (databases, uploaded files, and so on)
+* Running services and their configuration (only copies, not the data)
+
+This means that when you branch an environment, you also branch the complete infrastructure.
+
+When you branch an environment, three things happen:
+
+* A new branch is created in Git.
+* Your apps are rebuilt on the new branch, if necessary.
+  (This is skipped if the same code with the same [variables](../development/variables/_index.md) has been built for any environment.)
+* The new branch is deployed.
 
 ## Cluster
 
@@ -36,37 +55,26 @@ You can also configure them manually.
 ## Inactive environment
 
 An environment that isn't deployed.
-To activate an inactive environment:
+It has no data of its own.
+If you reactivate it, it copies data from its parent.
 
-{{< codetabs >}}
-
----
-title=Using the CLI
-file=none
-highlight=bash
----
-
-platform environment:activate -e <ENVIRONMENT_ID>
-
-<--->
-
----
-title=In the console
-file=none
-highlight=false
----
-
-1. In the [console](https://console.platform.sh), navigate to the project you want.
-2. Select the environment from the menu.
-3. Click **Settings**.
-4. Expand the **Status is Inactive** option.
-5. Click **Activate**.
-
-{{< /codetabs >}}
+See how to [reactivate an environment](../overview/environments/deactivate-environment.md#reactivate-an-environment).
 
 ## Live environment
 
 An environment that's deployed from the production branch under a production plan.
+
+## Merge
+
+Merging an environment means copying any code changes from that environment into its parent environment
+and redeploying the parent.
+
+When you merge an environment, three things happen:
+
+* Any code changes are merged via Git to the parent branch.
+* Your apps rebuilt on the parent branch, if necessary.
+  (This is skipped if the same code with the same [variables](../development/variables/_index.md) has been built for any environment.)
+* The parent branch is deployed.
 
 ## PaaS
 
@@ -78,6 +86,18 @@ The best example is Platform.sh (although we're a little biased).
 
 A subscription level that allows you to host your production website
 by adding a domain and a custom SSL certificate.
+
+## Sync
+
+Synchronizing an environment means copying changes from a parent into a child environment
+and then redeploying the child environment.
+You can synchronize only the code, only the data (databases, files), or both.
+
+Be aware that sync has the same process and same concerns as [backups](../administration/backup-and-restore.md#backups-and-downtime).
+
+Sync is only available if your branch has no unmerged commits and can be fast-forwarded.
+
+It's good practice to take a backup of your environment before synchronizing it.
 
 ## Transport Layer Security (TLS)
 

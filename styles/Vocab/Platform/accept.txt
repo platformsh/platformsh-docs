@@ -92,8 +92,10 @@ Tomitribe
 transclusion
 [Uu]ncomment
 unencrypted
+unmerged
 [Uu]nmount
 [Uu]ntrusted
+Verisign
 webpack
 Xdebug
 Zend
