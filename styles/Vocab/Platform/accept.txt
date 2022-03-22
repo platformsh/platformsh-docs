@@ -82,6 +82,7 @@ serverless
 shard
 shortcode
 Stempel
+stdout
 Strapi
 Symfony
 Thorntail
