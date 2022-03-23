@@ -68,6 +68,7 @@ pngcrush
 preprocessor
 preload[ing]?
 progs
+proxied
 Pthreads
 plaintext
 Quarkus

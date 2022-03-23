@@ -110,9 +110,7 @@ For non-Production environment, you can [change their status](../../overview/env
 
 ### Outgoing emails
 
-With outgoing emails, you can allow your application to send emails via a SendGrid SMTP proxy.
-
-Changing this setting rebuilds the environment.
+You can allow your environment to [send outgoing emails](../../development/email.md).
 
 ![Environment email](/images/management-console/env-email.png "0.75")
 
