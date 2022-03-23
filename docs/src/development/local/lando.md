@@ -32,7 +32,7 @@ See the [Lando documentation](https://docs.lando.dev/getting-started/installatio
 
 ### Get started with Lando
 
-We based the following examples on the [PHP template](https://github.com/platformsh-templates/php).
+The following examples are based on the [PHP template](https://github.com/platformsh-templates/php).
 
 Several stacks are available on Lando (LAMP, LEMP, MEAN).
 If you use a specific stack, adapt the steps below accordingly.
@@ -42,7 +42,7 @@ Lando requires a `.lando.yml` file. The `init` command can generate that file au
 
 The full output of the commands below have been redacted for brevity.
 
-**TODO: fix the lando init step for both paths + remove the need for the prompt (just add a note) + add stack**
+**TODO: fix the Lando init step for both paths + remove the need for the prompt (just add a note) + add stack + add cloning of the PHP base project**
 
 {{< codetabs >}}
 
@@ -155,8 +155,8 @@ If you changed your [`.platform.app.yaml`](../../configuration/app/_index.md), [
 By default, when accessing your local Lando sites through `https` you get an error message in your browser.
 This is expected behavior:
 
-> Lando uses its own Certificate Authority (CA) to sign the certificates for each service and to ensure that these certs are trusted on our internal Lando network.
-However, while Lando will automatically trust this CA internally it is up to you to trust it on your host machine. Doing so will alleviate browser warnings regarding the certificates issued.
+> Lando uses its own Certificate Authority (CA) to sign the certificates for each service and to ensure that these certs are trusted on the internal Lando network.
+However, while Lando will automatically trust this CA internally it's up to you to trust it on your host machine. Doing so alleviates browser warnings regarding the certificates issued.
 
 Find out how to solve it in [Lando's Blog](https://lando.dev/blog/2020/03/20/_5-things-to-do-after-you-install-lando/).
 
@@ -167,7 +167,7 @@ Find out how to solve it in [Lando's Blog](https://lando.dev/blog/2020/03/20/_5-
 - [Update](https://docs.lando.dev/help/updating.html#_1-do-a-lando-rebuild)
 - [Sync](https://docs.lando.dev/platformsh/sync.html)
 
-More usage examples of the `.lando.yml` file [can be found in Github](https://github.com/lando/platformsh/tree/main/examples)
+More usage examples of the `.lando.yml` file [can be found in GitHub](https://github.com/lando/platformsh/tree/main/examples)
 
 ## Troubleshooting
 
