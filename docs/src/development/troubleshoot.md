@@ -203,8 +203,7 @@ If you see a build or deployment running longer than expected, it may be one of 
 * The deployment is blocked by a long running cron job in the environment.
 * The deployment is blocked by a long running cron job in the parent environment.
 
-To determine if your environment is being stuck in the build or the deployment,
-look at the activities log available in the management console or by running `platform act`.
+To determine if your environment is being stuck in the build or the deployment, check your [activity log](./logs.md#activity-logs).
 
 If the activity has the result `success`, the build has completed successfully and the system is trying to deploy.
 If the result is still `running`, the build is stuck.
@@ -215,8 +214,8 @@ In older regions (`us` and `eu`), create a [support ticket](https://console.plat
 When a _deployment_ is blocked, you should try the following:
 
 1. Connect to your environment using [SSH](./ssh/_index.md).
-1. Find any long-running cron jobs or deploy hooks on the environment by running `ps afx`.
-1. Kill any long running processes with `kill <PID>`.
+2. Find any long-running cron jobs or deploy hooks on the environment by running `ps afx`.
+3. Kill any long running processes with `kill <PID>`.
   Replace `<PID>` with the process ID shown by `ps afx`.
 
 If a `sync` of `activate` process is stuck, try the above on the parent environment.
