@@ -673,7 +673,7 @@ Minimum time between cron jobs being triggered:
 The time between cron jobs defaults to 5 minutes even for Elite and Enterprise plans.
 To set it to 1 minute, create a [support ticket](https://console.platform.sh/-/users/~/tickets/open).
 
-{{ /note }}
+{{< /note >}}
 
 For each app container, only one cron job can run at a time.
 If a new job is triggered while another is running, the new job is paused until the other completes.
