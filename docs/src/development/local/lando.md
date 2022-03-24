@@ -1,193 +1,136 @@
 ---
 title: Using Lando for local development
 sidebarTitle: "Lando"
+description: Find out how to include Lando to your local development workflow.
 weight: 3
 ---
 
-[Lando](https://github.com/lando/lando) is third party tool developed by [Tandem](https://thinktandem.io).
-It supports Platform.sh projects out of the box.
-Lando can read your Platform.sh configuration files and produce an equivalent local environment using Docker.
+[Lando](https://docs.lando.dev) is third-party local development tool for which several stacks are available (LAMP, LEMP, MEAN).
+Lando supports Platform.sh PHP projects out of the box through a plugin.
+The Lando Platform.sh plugin can read your Platform.sh configuration files and produce an equivalent local environment using Docker.
 
-At this time, Lando is currently in beta and supports only PHP-based applications.
-Support for other application languages is in progress.
-Lando works with any service supported by Platform.sh.
+The Lando Platform.sh plugin is currently in beta and supports only PHP-based applications, support for more languages is in progress.
 
-A quick-start guide is included below, but the [Lando documentation](https://docs.lando.dev/config/platformsh.html) is the primary source of truth.
+Lando works with most services supported by Platform.sh with the notable [exception](https://docs.lando.dev/platformsh/caveats.html#unsupported-things) of `Vault KMS` and `Network Storage`.
+See the [list of supported services](https://docs.lando.dev/platformsh/config.html#services-yaml).
+
+A quick-start guide is included below.
+
+For complete reference, consider the following resources:
+
+- [Lando Platform.sh plugin documentation](https://docs.lando.dev/config/platformsh.html) and [source code](https://github.com/lando/platformsh).
+- [Lando documentation](https://docs.lando.dev/)
+- [Lando GitHub repository](https://github.com/lando/lando)
 
 ## Before you begin
 
-Lando requires [specific bash variables](https://docs.lando.dev/platformsh/config.html#environment-variables) to be set locally in order to access your project.
-To have these variables set automatically, install the Platform.sh [CLI](../../gettingstarted/introduction/own-code/cli-install.md).
+Lando does not automatically pull and set up environment variables that have been set in the Console.
 
-Alternatively, you can set the `$PLATFORMSH_CLI_TOKEN` and `$PLATFORMSH_SITE_NAME` environment variables manually.
+If your build hook requires environment variables it will fail on Lando, unless you manually add the needed [environment variables](https://docs.lando.dev/platformsh/config.html#environment-variables).
 
-Familiarity with the Lando [CLI commands](https://docs.lando.dev/cli/) is recommended but not necessary.
+Before you begin you need:
 
-Depending of your hardware, running the commands below can take a while.
-Check the [hardware requirements](https://docs.lando.dev/getting-started/installation.html#hardware-requirements) before attempting this guide.
+- Hardware that meets the [requirements](https://docs.lando.dev/getting-started/installation.html#hardware-requirements).
 
-## Installation
+## 1. Install Lando
 
-See the [Lando documentation](https://docs.lando.dev/getting-started/installation.html) for installing and setting up Lando on your system.
+Follow Lando's [installation instructions](https://docs.lando.dev/getting-started/installation.html).
 
-### Get started with Lando
-
-The following examples are based on the [PHP template](https://github.com/platformsh-templates/php).
-
-Several stacks are available on Lando (LAMP, LEMP, MEAN).
-If you use a specific stack, adapt the steps below accordingly.
-See the [Lando documentation for all recipes and stacks available](https://docs.lando.dev/).
-
-Lando requires a `.lando.yml` file. The `init` command can generate that file automatically.
-
-The full output of the commands below have been redacted for brevity.
-
-**TODO: fix the Lando init step for both paths + remove the need for the prompt (just add a note) + add stack + add cloning of the PHP base project**
+## 2. Initialize Lando
 
 {{< codetabs >}}
 
 ---
-title=On a new project
+title=On a new Platform.sh project without code
 file=none
 highlight=false
 ---
 
-Run `lando init --recipe platformsh --source platformsh` and follow the instructions provided by the interactive prompt.
+For a quicker start, let's create a project based on Platform.sh's [PHP template](https://github.com/platformsh-templates/php).
+The template provides the most basic configuration for running a custom PHP project built with Composer.
+It also includes the minimum Platform.sh specific configuration files out of the box.
 
-``` bash
-$ lando init --source platformsh
+1. Create a new project based on the PHP template by [clicking here](https://console.platform.sh/projects/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/php/.platform.template.yaml&utm_content=php&utm_source=github&utm_medium=button&utm_campaign=deploy_on_platform).
+<!-- TODO: The link probably has to change to have a specific source and campaign for everything `utm` -->
 
-? Select a Platform.sh account <email address of your account>
-? Which project? <project name>
-```
+2. Run `lando init --recipe platformsh --source platformsh` and follow the instructions provided by the interactive prompt. 
+On the `Which project?` step, select the project created in the previous step.
 
 <--->
 
 ---
-title=On an existing project
+title=On an existing Platform.sh project
 file=none
 highlight=false
 ---
 
-Open a shell and access the directory where your project is located.
+If code is not present locally, retrieve your codebase:
+- By using the Platform.sh [CLI](../../gettingstarted/introduction/own-code/cli-install.md) with `platform get <PROJECT_ID>`.
+- Via [git](../../administration/web/_index.md#git).
 
-Enter `lando init --recipe platformsh --source cwd` and follow the instructions provided by the interactive prompt.
+Otherwise, access the directory where your project is located.
 
-``` bash
-$ lando init --source platformsh --source cwd --webroot .
-? From where should we get your app's codebase? current working directory
-? What recipe do you want to use? platformsh
-? Select a Platform.sh account <email address of your account>
-? Which project? <project name>
-```
+Run `lando init --recipe platformsh --source cwd` and follow the instructions provided by the interactive prompt.
 
 {{< /codetabs >}}
 
-Once the command ran successfully, you get the following:
+Lando requires a `.lando.yml` file to be able to start. The `init` command used, generated that file automatically.
+
+## 3. Start Lando
+
+Run `lando start` to start your app and services.
+
+## 4. Access your local app
+
+The last lines of the previously ran `lando start` command contains:
 
 ``` bash
-   _  __                       _
-  / |/ /__ _    __  _    _____( )_______
- /    / _ \ |/|/ / | |/|/ / -_)// __/ -_)
-/_/|_/\___/__,__/  |__,__/\__/ /_/  \__/
-
-  _________  ____  __ _______  _______  _      ______________ __  ___________  ______
- / ___/ __ \/ __ \/ //_/  _/ |/ / ___/ | | /| / /  _/_  __/ // / / __/  _/ _ \/ __/ /
-/ /__/ /_/ / /_/ / ,< _/ //    / (_ /  | |/ |/ // /  / / / _  / / _/_/ // , _/ _//_/
-\___/\____/\____/_/|_/___/_/|_/\___/   |__/|__/___/ /_/ /_//_/ /_/ /___/_/|_/___(_)
-
-Your app has been initialized!
-
-Go to the directory where your app was initialized and run lando start to get rolling.
-Check the LOCATION printed below if you are unsure where to go.
-
-Oh... and here are some vitals:
-
- NAME      <project name>
- LOCATION  /Users/<your user>/<path to your project>
- RECIPE    platformsh
- DOCS      https://docs.lando.dev/config/platformsh.html
-```
-
-Once it completes, run `lando start` to start your app and services.
-
-``` bash
-$ lando start
-Let's get this party started! Starting app <app name>...
-...
-```
-
-Once the command ran successfully, you get the following:
-
-``` bash
-
-   ___                      __        __        __     __        ______
-  / _ )___  ___  __ _  ___ / /  ___ _/ /_____ _/ /__ _/ /_____ _/ / / /
- / _  / _ \/ _ \/  ' \(_-</ _ \/ _ `/  '_/ _ `/ / _ `/  '_/ _ `/_/_/_/
-/____/\___/\___/_/_/_/___/_//_/\_,_/_/\_\\_,_/_/\_,_/_/\_\\_,_(_|_|_)
-
-
 Your app has started up correctly.
 Here are some vitals:
 
- NAME          <project name>
- LOCATION      /Users/<your user>/<path to your project>
- SERVICES      <list of your service's names>
+ NAME          <PROJECT_NAME>
+ LOCATION      /Users/<USER>/<PATH_TO_PROJECT>
+ SERVICES      <SERVICE_NAMES>
  APP URLS      http://localhost:62177
-               http://<app name>.lndo.site/
-               https://<app name>.lndo.site/
-               http://www.<app name>.lndo.site/
-               https://www.<app name>.lndo.site/
+               http://<APP_NAME>.lndo.site/
+               https://<APP_NAME>.lndo.site/
+               http://www.<APP_NAME>.lndo.site/
+               https://www.<APP_NAME>.lndo.site/
 ```
 
-Access your app and services by opening the `APP URLS` in your browser.
+Access your app and services by opening the returned `APP URLS` in your browser.
 
-For more examples, see the [getting started page](https://docs.lando.dev/platformsh/getting-started.html).
+## What's next
 
-## Configuring lando
-
-Lando configuration is located in [the `.lando.yml` file](https://docs.lando.dev/platformsh/config.html).
-
-If you changed your [`.platform.app.yaml`](../../configuration/app/_index.md), [`.platform/routes.yaml`](../../configuration/routes/_index.md) configuration files, run `lando rebuild` for the changes to be taken into account.
-
-### Untrusted SSL certificate
-
-By default, when accessing your local Lando sites through `https` you get an error message in your browser.
-This is expected behavior:
-
-> Lando uses its own Certificate Authority (CA) to sign the certificates for each service and to ensure that these certs are trusted on the internal Lando network.
-However, while Lando will automatically trust this CA internally it's up to you to trust it on your host machine. Doing so alleviates browser warnings regarding the certificates issued.
-
-Find out how to solve it in [Lando's Blog](https://lando.dev/blog/2020/03/20/_5-things-to-do-after-you-install-lando/).
-
-## Common tasks
-
-**TODO: clarify that part + test**
-
-- [Update](https://docs.lando.dev/help/updating.html#_1-do-a-lando-rebuild)
-- [Sync](https://docs.lando.dev/platformsh/sync.html)
-
-More usage examples of the `.lando.yml` file [can be found in GitHub](https://github.com/lando/platformsh/tree/main/examples)
+[Import data and download files](https://docs.lando.dev/platformsh/sync.html) from your remote Platform.sh site.
+If your app needs environment variables, [add them](https://docs.lando.dev/platformsh/config.html#environment-variables).
+If changes in the Platform.sh configuration files happen, run `lando rebuild` for these to be taken into account in Lando.
+To keep your Lando image up-to-date, See the [update guide](https://docs.lando.dev/getting-started/updating.html).
 
 ## Troubleshooting
 
 - Make sure that the platform config files (`.platform.app.yaml`, `.platform/routes.yaml`) are present in your local repository.
-- Check that the [services and languages](https://docs.lando.dev/platformsh/config.html#services-yaml) defined in your `.platform.app.yaml` are supported by Lando.
-- Check the [caveats and known issues](https://docs.lando.dev/platformsh/caveats.html).
+- Check that your [services](https://docs.lando.dev/platformsh/config.html#services-yaml) are supported by Lando.
+- Check [caveats and known issues](https://docs.lando.dev/platformsh/caveats.html).
 - Carefully check the output of the Lando commands you run to spot warnings and errors.
 - Run `lando rebuild`.
-- Restart Lando in debug mode `lando restart -vvv`.
-- Check that you don't face a common issues, as the [dns-rebind](https://docs.lando.dev/help/dns-rebind.html) for example.
-- Check the [Lando documentation](https://docs.lando.dev/help/logs.html#install-logs) for more extensive troubleshooting.
+- Restart Lando in debug mode by running `lando restart -vvv`.
+- Check that you don't face common issues, such as the [DNS rebinding protection](https://docs.lando.dev/help/dns-rebind.html).
+- For more extensive troubleshooting, check the [Lando documentation](https://docs.lando.dev/help/logs.html#install-logs).
 
-### Access the logs
+### Access logs
 
-Run `lando list` to get the list of services.
-Access specific logs with `lando logs -s <service to inspect>`, or access the global logs with `lando logs`.
+Access the global logs with `lando logs`.
+To access specific logs, run `lando list` to get a list of the services you are using, choose the one you'd like to inspect and run `lando logs -s <SERVICE_TO_INSPECT>`.
 
-For more guidance regarding the logs, [check the Lando documentation](https://docs.lando.dev/help/logs.html)
+For more guidance regarding logs, check the [Lando logs documentation](https://docs.lando.dev/help/logs.html)
+
+### Untrusted SSL certificate
+
+By default, when accessing your local Lando sites through HTTPS you get an error message in your browser.
+This is expected behavior.
+Find out how to solve it in [Lando's Blog](https://lando.dev/blog/2020/03/20/_5-things-to-do-after-you-install-lando/).
 
 ### Something still wrong?
 
-- Get in touch with Lando via [Slack](https://launchpass.com/devwithlando)
-- [Report a bug](https://github.com/lando/platformsh/issues)
+[Get in touch with Lando](https://docs.lando.dev/platformsh/support.html).
