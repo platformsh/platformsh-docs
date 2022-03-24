@@ -24,7 +24,7 @@ For complete reference, consider the following resources:
 
 ## Before you begin
 
-Lando does not automatically pull and set up environment variables that have been set in the Console.
+Lando doesn't automatically pull and set up environment variables that have been set in the Console.
 
 If your build hook requires environment variables it will fail on Lando, unless you manually add the needed [environment variables](https://docs.lando.dev/platformsh/config.html#environment-variables).
 
@@ -46,11 +46,11 @@ file=none
 highlight=false
 ---
 
-For a quicker start, let's create a project based on Platform.sh's [PHP template](https://github.com/platformsh-templates/php).
+For a quicker start, create a project based on Platform.sh's [PHP template](https://github.com/platformsh-templates/php).
 The template provides the most basic configuration for running a custom PHP project built with Composer.
 It also includes the minimum Platform.sh specific configuration files out of the box.
 
-1. Create a new project based on the PHP template by [clicking here](https://console.platform.sh/projects/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/php/.platform.template.yaml&utm_content=php&utm_source=github&utm_medium=button&utm_campaign=deploy_on_platform).
+1. [Create a new project based on the PHP template](https://console.platform.sh/projects/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/php/.platform.template.yaml&utm_content=php&utm_source=github&utm_medium=button&utm_campaign=deploy_on_platform).
 <!-- TODO: The link probably has to change to have a specific source and campaign for everything `utm` -->
 
 2. Run `lando init --recipe platformsh --source platformsh` and follow the instructions provided by the interactive prompt. 
@@ -64,7 +64,7 @@ file=none
 highlight=false
 ---
 
-If code is not present locally, retrieve your codebase:
+If code isn't present locally, retrieve your codebase:
 - By using the Platform.sh [CLI](../../gettingstarted/introduction/own-code/cli-install.md) with `platform get <PROJECT_ID>`.
 - Via [git](../../administration/web/_index.md#git).
 
