@@ -12,7 +12,7 @@ Within the console, metrics can be found for an environment under **Metrics**:
 
 ![A screenshot of what the metrics dashboard displays](/images/metrics/all.png "0.65")
 
-The information under **Metrics** shows [usage metrics](#examples-of-how-to-read-metrics) for:
+The information under **Metrics** shows usage metrics for:
 
 * [Dedicated environments](../../dedicated/overview/_index.md):
   each of the three hosts in your [N+1 configuration](../../dedicated/architecture/_index.md) and their average
