@@ -19,7 +19,7 @@ Service containers follow next with the same pattern and worker containers are s
 You can collapse the graphs by clicking **Hide metrics**.
 The graphs switch to an overview of the average resource utilization for the selected container.
 
-![How app container metrics look when minimized](/images/metrics/app-container-minimized.png "0.65")
+![How service container metrics look when minimized](/images/metrics/service-container-minimized.png "0.65")
 
 ## Start metrics collection
 

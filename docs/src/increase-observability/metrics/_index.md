@@ -8,15 +8,17 @@ aliases:
 
 Platform.sh projects are accompanied by live infrastructure metrics that provide an overview of resource usage for environments.  
 
-Within the console, metrics can be found for an environment under **Metrics**:
-
-![A screenshot of what the metrics dashboard displays](/images/metrics/all.png "0.65")
+Within the console, metrics can be found for an environment under **Metrics**.
 
 The information under **Metrics** shows usage metrics for:
 
 * [Dedicated environments](../../dedicated/overview/_index.md):
   each of the three hosts in your [N+1 configuration](../../dedicated/architecture/_index.md) and their average
+
+  ![A screenshot of what the metrics dashboard displays for Dedicated environments](/images/metrics/all-dedicated.png "0.45")
 * Grid environments: for the average of your service and app containers
+
+  ![A screenshot of what the metrics dashboard displays for Grid environments](/images/metrics/all-grid.png "0.45")
 
 ## Default thresholds
 
@@ -43,8 +45,8 @@ For Dedicated environments, the thresholds are set for each host.
 If the resources are high and hovering close to the 100% threshold,
 you might want to consider:
 
-* Optimizations (if possible)
-* [Increasing your plan](../../overview/pricing/_index.md)
+* [Optimize your code](../integrate-observability/_index.md) (if possible)
+* [Increase your plan](../../overview/pricing/_index.md)
 
 #### Grid environments
   
@@ -52,10 +54,10 @@ For Grid environments, the thresholds are set for each container.
 If the resources are high and hovering close to the 100% threshold,
 you might want to consider:
 
-* Optimizations (if possible)
-* Changing the size of your [app](../../configuration/app/app-reference.md#sizes)
-  or [service](../../configuration/services/_index.md#size) containers,
-* [Increasing your plan](../../overview/pricing/_index.md)
+* [Optimize your code](../integrate-observability/_index.md) (if possible)
+* Change your [app size](../../configuration/app/app-reference.md#sizes)
+  or [service size](../../configuration/services/_index.md#size)
+* [Increase your plan](../../overview/pricing/_index.md)
 
 If your containers are in a prolonged burst state,
 review your configuration or plan size because since burst isn't guaranteed for long periods.
