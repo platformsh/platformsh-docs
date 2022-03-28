@@ -91,7 +91,7 @@ The interval between measurements then changes based on the range you choose.
 ## Dedicated environments
 
 For Dedicated environments, infrastructure metrics report CPU, RAM, and disk space per host and mount point.
-The graphs differ based on whether the environment uses standard or split architecture.
+The graphs differ when the environment has multiple clusters.
 
 By default, the graphs include all hosts and an average over the hosts.
 To select metrics for specific hosts, click **Filter**.
@@ -131,11 +131,11 @@ The relevant string for the host ID is shown after the `@` and before the 7-char
 In this case, the ID is: `i-04d1ac8319`.
 You can then match this ID with the one under **Metrics** for your investigations.
 
-### Split architecture
+### Multiple clusters
 
 Standard Dedicated environments have a single cluster of three hosts,
 where each additional cluster adds at least three additional hosts to the project.
-Dedicated environments with two clusters have a split architecture and their metrics are displayed in two separate groups:
+Dedicated environments with two clusters display metrics in two separate groups:
 one for the web hosts that handle web requests and one for the service hosts that handle database, cache, and other services.
 
 ![Metrics split into Web hosts and Service hosts](/images/metrics/split-arch.png "0.75")
