@@ -1,0 +1,12 @@
+extends: substitution
+message: "Use '%s' instead of '%s'. This makes it simpler and clearer."
+link: https://github.com/platformsh/platformsh-docs/contributing/content-style.md#aim-for-simple-sentences
+ignorecase: true
+level: warning
+
+swap:
+  approximately: about
+  assist: help
+  in order to: to
+  purchase: buy
+  utilize: use

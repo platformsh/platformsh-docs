@@ -7,6 +7,7 @@ This content style guide should help make sure the Platform.sh docs are clear an
 It's intended for use by all contributors,
 from Platform.sh engineers to people from the community.
 
+<!-- vale Platform.condescending = NO -->
 ## Table of contents
 
 - [Platform.sh Docs content style guide](#platformsh-docs-content-style-guide)
@@ -17,8 +18,10 @@ from Platform.sh engineers to people from the community.
   - [Use inclusive language](#use-inclusive-language)
     - [Resources for inclusive language](#resources-for-inclusive-language)
     - [Use meaningful link text](#use-meaningful-link-text)
+    - [Link at the end of sentences in sentence case](#link-at-the-end-of-sentences-in-sentence-case)
     - [Minimize distractions](#minimize-distractions)
     - [Include alt text](#include-alt-text)
+    - [Aim for simple sentences](#aim-for-simple-sentences)
   - [Format screenshots for sustainability](#format-screenshots-for-sustainability)
   - [Use the present tense](#use-the-present-tense)
   - [Use contractions](#use-contractions)
@@ -27,6 +30,7 @@ from Platform.sh engineers to people from the community.
   - [Use notes appropriately](#use-notes-appropriately)
   - [Add short descriptions](#add-short-descriptions)
   - [Guidance enforcement](#guidance-enforcement)
+<!-- vale Platform.condescending = YES -->
 
 ## About the audience
 
@@ -108,6 +112,18 @@ Use                                                        | Avoid
 -----------------------------------------------------------|-------
 Read more information [about images](https://example.com)  | For more info on images, [click here](https://example.com)
 
+### Link at the end of sentences in sentence case
+
+Readers often scan through text looking for links and other important information.
+Having links in the middle of sentences can make them harder to parse.
+
+Put links at the end of sentences and keep them in sentence case.
+
+Use                                                                     | Avoid 
+----------------------------------------------------------------------- |-------
+To learn how to set it up, read about [services](https://example.com).  | Reading about [Services](https://example.com) shows you how to set it up.
+For more information, see how to [configure apps](https://example.com). | For more information, see [Configure apps](https://example.com).
+
 ### Minimize distractions
 
 Adding links can often provide helpful context.
@@ -134,6 +150,37 @@ In situations where the image is for decoration or repeats text that's already p
 use blank alternative text to show that.
 
 See the [proper format for images](./markup-format.md#images).
+
+<!-- vale Platform.condescending = NO -->
+### Aim for simple sentences
+
+Complex sentences make it harder for people to understand.
+Aim to keep sentences simple so people can comprehend them quickly.
+
+Part of this is keeping sentences short.
+Aim for an average length of 15 words per sentence, with 25 as the upper limit.
+Individual sentences should have no more than 40 words.
+
+It also means trying to use fewer clauses and not separating ideas by other ones.
+
+Use                                           | Avoid
+--------------------------------------------- |-------
+Your Node.js app requires a caching strategy. | Your app, which you run with Node.js, a caching strategy requires.
+
+It also means using simple words instead of more complex ones.
+The following table shows some examples:
+
+Use   | Avoid
+----- |-------
+about | approximately
+buy   | purchase
+help  | assist
+to    | in order to
+use   | utilize
+<!-- vale Platform.condescending = YES -->
+
+For more on the reasons behind this,
+see Content Design London's [Readability Guidelines on clear language](https://readabilityguidelines.co.uk/clear-language/).
 
 ## Format screenshots for sustainability
 
