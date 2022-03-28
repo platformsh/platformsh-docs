@@ -146,16 +146,88 @@ workers:
 
 Both the web instance and the `queue` worker have two mount points:
 
-* They each have a separate `local_dir` mount.
-  These mounts aren't connected and so writing to one doesn't affect the other.
-  Each mount takes 512&nbsp;MB of space for a total of 1024&nbsp;MB.
-* They share a `network_dir` mount.
-  This is a single mount and both instances read and write to the same files.
-  It has 2048&nbsp;MB of space, as defined in the service configuration.
+* The `local_dir` mount on each is independent and not connected to each other at all
+  and they *each* take 1024 MB of space.
+* The `network_dir` mount on each points to the same network storage space on the `files` service.
+  They can both read and write to it simultaneously.
+  The amount of space it has available depends on the `disk` key specified in `services.yaml`.
+
+## How do I give my workers access to my main application's files?
+
+The most common use case for `network-storage` is to allow a CMS-driven site to use a worker that has access to the same file mounts as the web-serving application.
+For that case, all that's needed is to set the necessary file mounts as `service` mounts.
+
+For example, the following `.platform.app.yaml` file (fragment) keeps Drupal files directories shared between web and worker instances while keeping the Drush backup directory web-only (as it has no need to be shared).
+(This assumes a service named `files` has already been defined in `services.yaml`.)
+
+
+```yaml
+name: 'app'
+type: 'php:7.2'
+
+relationships:
+    database: 'db:mysql'
+
+hooks:
+  # ...
+
+web:
+    locations:
+        '/':
+            # ...
+
+disk: 1024
+
+mounts:
+    # The public and private files directories are
+    # network mounts shared by web and workers.
+    'web/sites/default/files':
+        source: service
+        service: files
+        source_path: files
+    'private':
+        source: service
+        service: files
+        source_path: private
+    # The backup, temp, and cache directories for
+    # Drupal's CLI tools don't need to be shared.
+    # It wouldn't hurt anything to make them network
+    # shares, however.
+    '/.drush':
+        source: local
+        source_path: drush
+    'tmp':
+        source: local
+        source_path: tmp
+    'drush-backups':
+        source: local
+        source_path: drush-backups
+    '/.console':
+        source: local
+        source_path: console
+
+# Crons run on the web container, so they have the
+# same mounts as the web container.
+crons:
+    drupal:
+        spec: '*/20 * * * *'
+        commands:
+            start: 'cd web ; drush core-cron'
+
+# The worker defined here will also have the same 6 mounts;
+# 2 of them will be shared with the web container,
+# the other 4 will be local to the worker.
+workers:
+    queue:
+        commands:
+            start: |
+                cd web && drush queue-run myqueue
+```
 
 ## How can I migrate a local storage to a network storage?
 
-There is no automated way of transferring data from one storage type to another.  However, the process is fundamentally "just" moving files around on disk, so it is reasonably straightforward.
+There is no automated way of transferring data from one storage type to another.
+However, the process is fundamentally "just" moving files around on disk, so it's reasonably straightforward.
 
 Suppose you have this mount configuration:
 
@@ -166,55 +238,70 @@ mounts:
         source_path: uploads
 ```
 
-And want to move that to a network storage mount.  The following approximate steps will do so with a minimum of service interruption.
+And want to move that to a network storage mount.
+The following approximate steps do so with a minimum of service interruption.
 
-1) Add a new `network-storage` service, named `files`, that has at least enough space for your existing files with some buffer.  You may need to increase your plan's disk size to accommodate it.
+1. Add a new `network-storage` service, named `files`,
+   that has at least enough space for your existing files with some buffer.
+   You may need to increase your plan's disk size to accommodate it.
 
-2) Add a new mount to the network storage service on a non-public directory:
+2. Add a new mount to the network storage service on a non-public directory:
 
-    ```yaml
-    mounts:
-        new-uploads:
-            source: service
-            service: files
-            source_path: uploads
-    ```
+   ```yaml
+   mounts:
+       new-uploads:
+           source: service
+           service: files
+           source_path: uploads
+   ```
 
     (Remember the `source_path` can be the same since they're on different storage services.)
 
-3) Deploy these changes.  Then use `rsync` to copy all files from the local mount to the network mount.  (Be careful of the trailing `/`.)
+3. Deploy these changes.
+   Then use `rsync` to copy all files from the local mount to the network mount.
+   (Be careful of the trailing `/`.)
 
     ```bash
     rsync -avz web/uploads/* new-uploads/
     ```
 
-4) Reverse the mounts.  That is, point the `web/uploads` directory to the network mount instead:
+4. Reverse the mounts.
+   Point the `web/uploads` directory to the network mount instead:
 
-    ```yaml
-    mounts:
-        web/uploads:
-            source: service
-            service: files
-            source_path: uploads
-        old-uploads:
-            source: local
-            source_path: uploads
-    ```
+   ```yaml
+   mounts:
+       web/uploads:
+           source: service
+           service: files
+           source_path: uploads
+       old-uploads:
+           source: local
+           source_path: uploads
+   ```
 
-    Commit and push that.  Test to make sure the network files are accessible.
+    Commit and push that.
+    Test to make sure the network files are accessible.
 
-5) Cleanup.  First, run another rsync just to make sure any files uploaded during the transition are not lost.  (Note the command is different here.)
+5. Cleanup.
+   First, run another rsync just to make sure any files uploaded during the transition aren't lost.
+   (Note the command is different here.)
 
-    ```bash
-    rsync -avz old-uploads/* web/uploads/
-    ```
+   ```bash
+   rsync -avz old-uploads/* web/uploads/
+   ```
 
-    Once you're confident all the files are accounted for, delete the entire contents of `old-uploads`.  If you do not, the files will remain on disk but inaccessible, just eating up disk space needlessly.
+   Once you're confident all the files are accounted for, delete the entire contents of `old-uploads`.
+   If you don't, the files remain on disk but inaccessible, just eating up disk space needlessly.
 
-    Once that's done you can remove the `old-uploads` mount and push again to finish the process.  You are also free to reduce the `disk` size in the `.platform.app.yaml` file if desired, but make sure to leave enough for any remaining local mounts.
+   Once that's done you can remove the `old-uploads` mount and push again to finish the process
+   You are also free to reduce the `disk` size in the `.platform.app.yaml` file if desired,
+   but make sure to leave enough for any remaining local mounts.
 
 ## Why do I get an `invalid service type` error with network storage?
 
-The `network-storage` service is only available on our newer regions.  If you are running on the older `us` or `eu` regions and try to create a `network-storage` service you will receive this error.
+The `network-storage` service is only available on our newer regions.
+If you are running on the older `us` or `eu` regions and try to create a `network-storage` service,
+you receive this error.
 
-To make use of `network-storage` you will need to migrate to the newer `us-2` or `eu-2` regions.  See our [tutorial on how to migrate regions](/guides/general/region-migration.md) for more information.
+To make use of `network-storage`, you need to migrate to the newer `us-2` or `eu-2` regions.
+See our [tutorial on how to migrate regions](/guides/general/region-migration.md) for more information.

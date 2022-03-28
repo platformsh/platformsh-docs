@@ -12,11 +12,13 @@ Bootsnap
 Brotli
 [Bb]undler
 Cloudwatt
+CMS
 [Cc]onfig
 [Cc]ron
 denylist
 Docksal
 Drush
+DXP
 failover
 Fastly
 Galera
@@ -28,6 +30,7 @@ Goldmark
 Gradle
 Gunicorn
 gzip
+Helidon
 highjack
 hostname
 [Hh]otfix
@@ -60,6 +63,7 @@ Opsgenie
 optipng
 overutilize
 Packagist
+Payara
 Pixelant
 pngcrush
 preprocessor
@@ -81,9 +85,13 @@ serverless
 shard
 shortcode
 Stempel
+stdout
 Strapi
 Symfony
+Thorntail
+Tomitribe
 transclusion
+[Uu]ncomment
 unencrypted
 [Uu]nmount
 webpack

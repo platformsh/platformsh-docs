@@ -79,7 +79,6 @@ Framework  | Credit
 [**Silverstripe** example](https://github.com/gmoigneu/platformsh-example-silverstripe)|[@gmoigneu](https://github.com/gmoigneu)
 [**Thunder** example](https://github.com/md-systems/platformsh-example-thunder)|[maintained by the MD Systems team](https://github.com/md-systems)
 [**WooCommerce** example](https://github.com/liip/woocommerce-demo)|[@Liip](https://github.com/liip)
-[**Grav** example](https://gist.github.com/mikecrittenden/f52351e3623dc3433af901946e29f2e9)|[Mike Crittenden](https://github.com/mikecrittenden)
 
 ### Ruby
 

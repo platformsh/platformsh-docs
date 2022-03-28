@@ -63,7 +63,7 @@ The disk where the application lives is read-only at this point.
 This hook should be used when something needs to run once for all instances of an app when new code is deployed.
 It isn't run when a host is restarted (such as during region maintenance),
 so anything that needs to run each time an app starts (regardless of whether there's new code)
-should go in the `start` key in [your `web` configuration](../app-reference.md#commands).
+should go in the `start` key in [your `web` configuration](../app-reference.md#web-commands).
 For example, clearing the cache for [ephemeral Redis](../../services/redis.md#ephemeral-redis).
 
 Be aware: The deploy hook blocks the site accepting new requests.

@@ -11,9 +11,9 @@ Solr search with generic schemas provided, and a custom schema is also supported
 {{% frameworks %}}
 
 - [Drupal](../../guides/drupal9/solr.md)
-- [Ibexa DXP](../../frameworks/ibexa/_index.md#solr-specificity)
-- [Jakarta EE](../../frameworks/jakarta.md#apache-solr)
-- [Spring](../../frameworks/spring.md#apache-solr)
+- [Ibexa DXP](../../guides/ibexa/deploy.md#solr-specificity)
+- [Jakarta EE](../../guides/jakarta/deploy.md#apache-solr)
+- [Spring](../../guides/spring/solr.md)
 
 {{% /frameworks %}}
 

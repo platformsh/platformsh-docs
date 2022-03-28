@@ -18,8 +18,8 @@ Otherwise, they're identical.
 {{% frameworks %}}
 
 - [Drupal](../../guides/drupal9/redis.md)
-- [Ibexa DXP](../../frameworks/ibexa/_index.md#cache-and-sessions)
-- [Jakarta EE](../../frameworks/jakarta.md#redis)
+- [Ibexa DXP](../../guides/ibexa/deploy.md#cache-and-sessions)
+- [Jakarta EE](../../guides/jakarta/deploy.md#redis)
 - [Micronaut](../../guides/micronaut/redis.md)
 - [Quarkus](../../guides/quarkus/redis.md)
 - [Spring](../../guides/spring/redis.md)
@@ -62,7 +62,7 @@ Instead, the cache needs to be regenerated as necessary.
 For example, if a container is moved for a reason such as region maintenance,
 the `deploy` and `post_deploy` hooks don't run and an app that treats the cache as permanent shows errors.
 The cache should be cleared each time the app is restarted,
-in the `start` key in [your web configuration](../app/app-reference.md#commands).
+in the `start` key in [your web configuration](../app/app-reference.md#web-commands).
 
 If your app needs to treat the cache as permanent, use [persistent Redis](#persistent-redis),
 which saves data to its volume even when the container is shut down.
@@ -160,7 +160,7 @@ file=none
 highlight=false
 ---
 
-To manage [thread safety](https://github.com/redis/redis-py#thread-safety),
+To manage [thread safety](https://github.com/redis/redis-py#user-content-thread-safety),
 the Python library suggests using separate client instances for each database:
 
 ```python
@@ -198,7 +198,7 @@ const value = await client.get('x'); // returns 42
 ## Eviction policy
 
 On the Ephemeral `redis` service it's also possible to select the key eviction policy.
-That will control how Redis behaves when it runs out of memory for cached items and needs to clear old items to make room.
+That controls how Redis behaves when it runs out of memory for cached items and needs to clear old items to make room.
 
 ```yaml
 cache:
@@ -208,7 +208,7 @@ cache:
 ```
 
 The default value if not specified is `allkeys-lru`, which removes the oldest cache item first.
-Legal values are:
+The following values are allowed:
 
 * `noeviction`
 * `allkeys-lru`

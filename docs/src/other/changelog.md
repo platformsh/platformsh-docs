@@ -9,6 +9,8 @@ description: |
 
 ## 2022
 
+* **March 2022**
+  * Crons: added option to [cancel a cron activity](../configuration/app/app-reference.md#crons)
 * **January 2022**
   * OpenSearch: Added [OpenSearch service](../configuration/services/opensearch.md)
 
