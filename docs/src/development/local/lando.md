@@ -1,5 +1,5 @@
 ---
-title: Using Lando for local development
+title: Use Lando for local development
 sidebarTitle: "Lando"
 description: Find out how to include Lando in your local development workflow.
 weight: 3
@@ -12,7 +12,11 @@ The Lando Platform.sh plugin can read your Platform.sh configuration files and p
 The Lando Platform.sh plugin is currently in beta and supports only PHP-based applications.
 Support for more languages is in progress.
 
+<<<<<<< HEAD
 Lando works with most services supported by Platform.sh [except for](https://docs.lando.dev/platformsh/caveats.html#unsupported-things) of Vault KMS and network storage.
+=======
+Lando works with most services supported by Platform.sh [except for](https://docs.lando.dev/platformsh/caveats.html#unsupported-things) Vault KMS and network storage.
+>>>>>>> 79ce904b (:memo: Apply suggestions from code review)
 See a list of [supported services](https://docs.lando.dev/platformsh/config.html#services-yaml).
 
 A quick-start guide is included below.
@@ -43,9 +47,9 @@ file=none
 highlight=false
 ---
 
-For a quicker start, create a project based on Platform.sh's [PHP template](https://github.com/platformsh-templates/php).
+For a quicker start, create a project based on the Platform.sh [PHP template](https://github.com/platformsh-templates/php).
 The template provides the most basic configuration for running a custom PHP project built with Composer.
-It also includes the minimum Platform.sh specific configuration files out of the box.
+It also includes the required Platform.sh configuration files out of the box.
 
 1. [Create a new project based on the PHP template](https://console.platform.sh/projects/create-project/template?query=php). <!-- TODO: The link probably has to change to have a specific source and campaign for everything `utm` -->
 2. Clone that project locally with Platform.sh [CLI](../../gettingstarted/introduction/own-code/cli-install.md) `platform get <PROJECT_ID>` or with [git](../../administration/web/_index.md#git).
