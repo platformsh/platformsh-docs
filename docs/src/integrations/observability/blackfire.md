@@ -21,8 +21,9 @@ Watch the [full video tutorial](https://www.youtube.com/watch?v=Bq-LFjgD6L0).
 
 {{< note >}}
 
-Blackfire.io is bundled in Platform.sh subscriptions as part of the Observability Suite.
+Blackfire.io can be bundled with Enterprise and Elite subscriptions as part of the Observability Suite.
 To learn more, [contact Sales](https://platform.sh/contact/).
+All customers can also subscribe to Blackfire separately.
 
 {{< /note >}}
 

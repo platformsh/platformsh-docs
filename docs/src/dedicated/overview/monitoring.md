@@ -26,18 +26,21 @@ Platform.sh offers application performance monitoring (APM) packaged with infras
 This APM relies on [Blackfire.io](../../integrations/observability/blackfire.md#on-other-dedicated-infrastructure),
 which uniquely combines monitoring, profiling, and performance testing technologies.
 
-The Observability Suite is currently offered only to Enterprise, Elite, and Fleet customers.
-Pro customers can purchase a [Blackfire subscription separately](https://www.blackfire.io/pricing)
-and benefit from all of its features on Platform.sh.
+The Observability Suite is currently available only to Enterprise, Elite, and Fleet customers.
 The Observability Suite package includes all Blackfire features, support, and usage that scales with your needs.
+If you are a Enterprise, Elite, or Fleet customer and want to add the Observability Suite, [contact Sales](https://platform.sh/contact/).
+
+All customers can also [subscribe to Blackfire separately](https://www.blackfire.io/pricing).
+This lets you benefit from all of its features on Platform.sh.
+When purchased separately, features and usage may cost more than the equivalent bundled in the Observability Suite. 
 
 By using Blackfire on Platform.sh, you benefit from an enhanced experience and support as well as upcoming unique features.
 You can contact your sales representative to get a quote for whatever size cluster is running your application.
 
 Platform.sh also [supports New Relic APM](/integrations/observability/new-relic/_index.md#on-a-dedicated-cluster)
- After you have signed up with New Relic and gotten your license key,
- open a support ticket so that it can be installed on your project.
- New Relic infrastructure monitoring isn't supported.
+After you have signed up with New Relic and gotten your license key,
+open a support ticket so that it can be installed on your project.
+New Relic infrastructure monitoring isn't supported.
 
 ## Availability incident handling procedure
 
