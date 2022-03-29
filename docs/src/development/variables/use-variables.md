@@ -355,6 +355,7 @@ and whether they're available during builds and at runtime.
 | `PLATFORM_APPLICATION`      | Yes   | Yes     | A base64-encoded JSON object that describes the app. It maps certain attributes from your [app configuration](../../configuration/app/_index.md), some with more structure. See [notes](#platform_application). |
 | `PLATFORM_APPLICATION_NAME` | Yes   | Yes     | The app name as set in your [app configuration](../../configuration/app/_index.md). |
 | `PLATFORM_BRANCH`           | No    | Yes     | The name of the Git branch. |
+| `PLATFORM_CACHE_DIR`        | Yes   | No      | The directory where files are cached from one build to the next. The directory is share among all branches, so the same cache is used for all environments. |
 | `PLATFORM_DOCUMENT_ROOT`    | No    | Yes     | The absolute path to the web document root, if applicable. |
 | `PLATFORM_ENVIRONMENT`      | No    | Yes     | The name of the Platform.sh environment. |
 | `PLATFORM_ENVIRONMENT_TYPE` | No    | Yes     | The environment type of the Platform.sh environment (`development`, `staging`, or `production`). |
