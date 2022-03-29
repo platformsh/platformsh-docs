@@ -99,11 +99,11 @@ The next build for each environment is likely to take longer as the cache rebuil
 ## Access denied or permission denied
 
 In most cases, issues accessing a project are caused by missing permissions for a given user.
-For more information see [user administration](../administration/users.md).
+For more information see how to [manage user permissions](../administration/users.md).
 
 If you are using the CLI, make sure that [you are authenticated](../development/cli/_index.md#2-authenticate).
 
-If you are using SSH, see [troubleshoot SSH access](../development/ssh/troubleshoot-ssh.md).
+If you are using SSH, see how to [troubleshoot SSH access](../development/ssh/troubleshoot-ssh.md).
 
 ## HTTP responses 502 Bad Gateway or 503 Service Unavailable
 
