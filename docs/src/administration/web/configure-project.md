@@ -14,7 +14,7 @@ The settings are divided into several sections.
 
 The **General** section shows you the project's region and allows you to update the project name and [timezone](../../overview/projects/change-project-timezone.md).
 
-![configure project](/images/management-console/settings-basics.png "0.7")
+![configure project](/images/management-console/settings-general.png "0.7")
 
 ## Access
 
@@ -49,7 +49,7 @@ This is useful if you want to reuse some code components across multiple project
 
 The **Integrations** section allows you to manage all of your [integrations](../../integrations/_index.md).
 
-![pIntegrations](/images/management-console/settings-variables-project.png "0.7")
+![pIntegrations](/images/management-console/settings-integrations.png "0.7")
 
 ## Variables
 
