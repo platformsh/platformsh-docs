@@ -346,8 +346,9 @@ You can't set or update them directly.
 The most important of these variables is the relationship information in `PLATFORM_RELATIONSHIPS`,
 which tells the app how to connect to databases and other services defined in `services.yaml`.
 
-The following table presents the available variables
-and whether they're available during builds and at runtime.
+The following table presents all available variables
+and whether they're available at build time (during [build hooks](../../administration/../configuration/app/hooks/hooks-comparison.md#build-hook))
+and at runtime.
 
 | Variable name               | Build | Runtime | Description |
 | --------------------------- | ----- | ------- | ----------- |
@@ -355,6 +356,7 @@ and whether they're available during builds and at runtime.
 | `PLATFORM_APPLICATION`      | Yes   | Yes     | A base64-encoded JSON object that describes the app. It maps certain attributes from your [app configuration](../../configuration/app/_index.md), some with more structure. See [notes](#platform_application). |
 | `PLATFORM_APPLICATION_NAME` | Yes   | Yes     | The app name as set in your [app configuration](../../configuration/app/_index.md). |
 | `PLATFORM_BRANCH`           | No    | Yes     | The name of the Git branch. |
+| `PLATFORM_CACHE_DIR`        | Yes   | No      | The directory where files are cached from one build to the next. The directory is shared among all branches, so the same cache is used for all environments. |
 | `PLATFORM_DOCUMENT_ROOT`    | No    | Yes     | The absolute path to the web document root, if applicable. |
 | `PLATFORM_ENVIRONMENT`      | No    | Yes     | The name of the Platform.sh environment. |
 | `PLATFORM_ENVIRONMENT_TYPE` | No    | Yes     | The environment type of the Platform.sh environment (`development`, `staging`, or `production`). |
