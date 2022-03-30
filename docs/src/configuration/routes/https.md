@@ -214,23 +214,32 @@ Provisioning certificates
   Environment certificates
 W: Missing certificate for domain a-new-and-really-awesome-feature-abc1234-defghijk56789.eu3.platformsh.site
 ```
+
 The renewal may fail because of the 64 character limit Let's Encrypt places on URLs.
 If you have a branch with a long name, the environment URL is over this limit and the certificate is rejected.
 Shortening the branch name to fewer than 20 characters should solve the issue.
 
 Generated URLs have the following pattern:
 
-```
+```bash
 <PLATFORM_ENVIRONMENT>-<PLATFORM_PROJECT>.<REGION>.platformsh.site
 ```
 
+If you have a default domain and include it as an absolute URL, it's added to the start of your URL.
+See [URLs in non-Production environments](./_index.md#urls-in-non-production-environments).
+
+```bash
+<DEFAULT_DOMAIN>.<PLATFORM_ENVIRONMENT>-<PLATFORM_PROJECT>.<REGION>.platformsh.site
+```
+
+* `DEFAULT_DOMAIN` = however many characters your default domain is
 * `PLATFORM_ENVIRONMENT` = `PLATFORM_BRANCH` + 7 character hash
 * `PLATFORM_PROJECT` = 13 characters
-* `REGION` = 2-4 characters, depending on the region
+* `REGION` = 2 to 4 characters, depending on the region
 * `platformsh.site` = 15 characters
-* extra characters (`.` & `-`) = 4 characters
+* extra characters (`.` & `-`) = 4 to 5 characters, depending on if you have a default domain
 
-This leaves you with 21--23 characters for your branch name (`PLATFORM_BRANCH`) without going over the 64 character limit,
+This leaves you with 21 to 23 characters for your branch name (`PLATFORM_BRANCH`) without going over the 64 character limit,
 depending on the region.
 Since this pattern for generated URLs should remain similar even if it may change slightly,
 your branch names should be no more than 20 characters.
