@@ -346,8 +346,9 @@ You can't set or update them directly.
 The most important of these variables is the relationship information in `PLATFORM_RELATIONSHIPS`,
 which tells the app how to connect to databases and other services defined in `services.yaml`.
 
-The following table presents the available variables
-and whether they're available during builds and at runtime.
+The following table presents all available variables
+and whether they're available at build time (during [build hooks](../../administration/../configuration/app/hooks/hooks-comparison.md#build-hook))
+and at runtime.
 
 | Variable name               | Build | Runtime | Description |
 | --------------------------- | ----- | ------- | ----------- |
