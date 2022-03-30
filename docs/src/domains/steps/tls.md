@@ -62,7 +62,6 @@ Run the following command:
 
 ```bash
 platform domain:add -p <PROJECT_ID> <DOMAIN> --cert <PATH_TO_CERTIFICATE_FILE> --key <PATH_TO_PRIVATE_KEY_FILE>
-
 ```
 
 For example:

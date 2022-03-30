@@ -49,7 +49,7 @@ highlight=false
   <li>Click {{< icon settings >}} <strong>Settings</strong>.</li>
   <li>Click <strong>Domains</strong>.</li>
   <li>Enter <code>mysite.com</code> into the <strong>Domain</strong> field.</li>
-  <li>Click <strong>Add</strong>.</li>
+  <li>Click <strong>+ Add</strong>.</li>
 </ol>
 
 <--->

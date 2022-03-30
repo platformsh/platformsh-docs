@@ -29,7 +29,7 @@ highlight=false
 
 <!--This is in HTML to get the icon not to break the list. -->
 <ol>
-  <li>Select the project where you want to add a new user.</li>
+  <li>Select the project where you want to add login details.</li>
   <li>From the <strong>Environment</strong> menu, select an environment.</li>
   <li>Click {{< icon settings >}} <strong>Settings</strong>.</li>
   <li>In the row with <strong>HTTP access control</strong>, click <strong>Edit {{< icon chevron >}}</strong>.</li>
@@ -86,8 +86,8 @@ highlight=false
 
 <!--This is in HTML to get the icon not to break the list. -->
 <ol>
-  <li>Select the project where you want to add a new user.</li>
-  <li>From the <strong>Environment</strong> menu, select an environment.</li>
+  <li>Select the project where you want to control access.</li>
+  <li>From the <strong>Environment</strong> menu, select the environment to control.</li>
   <li>Click {{< icon settings >}} <strong>Settings</strong>.</li>
   <li>In the row with <strong>HTTP access control</strong>, click <strong>Edit {{< icon chevron >}}</strong>.</li>
   <li>Enter the IP addresses or ranges into the <strong>IP addresses</strong> field. Put one address or range per line, followed by a space and then <code>allow</code> or <code>deny</code>.</li>

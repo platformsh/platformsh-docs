@@ -19,12 +19,13 @@ often divided into [environment types](../../administration/users.md#environment
 If you have a live site, you have at least a production environment.
 You may also have additional environments for development, testing, staging, review, and so on.
 
-New environments can be created in moments through a Git clone, using the [command line interface (CLI)](/development/cli/_index.md),
+New environments can be created by branching existing environments using the [command line interface (CLI)](/development/cli/_index.md),
 or in the [web console](../../administration/web/_index.md).
-Each created environment is an exact replicas of its parent environment.
-This means new environments have all of the data and the services (like databases, network storage, queues, routing).
+Each created environment is an exact replica of its parent environment.
+This means new environments have all of the data and services from the parent
+(like databases, network storage, queues, routing).
 
-For organization, you can create [hierarchical relationships between environments](#hierarchy).
+To organize your environments, you can create [hierarchical relationships](#hierarchy).
 
 An environment is tied to a Git branch and can be created on demand.
 With Bitbucket and GitHub integrations you can even get a "development server" automatically for each and every pull request.
@@ -54,7 +55,7 @@ In Platform.sh, your environments are organized in a hierarchy.
 Each new environment you create is considered a **child** of the **parent** environment from which it was created.
 
 Each child environment can [sync](../../other/glossary.md#sync) code and/or data down from its parent
-and [merge]](../../other/glossary.md#merge) code up to its parent.
+and [merge](../../other/glossary.md#merge) code up to its parent.
 The child environments are used for development, staging, and testing.
 
 When you [branch](../../other/glossary.md#branch) an environment to create a new child environment,

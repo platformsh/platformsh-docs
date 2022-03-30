@@ -23,8 +23,8 @@ highlight=false
 
 <!--This is in HTML to get the icon not to break the list. -->
 <ol>
-  <li>Select the project where you want to add a new user.</li>
-  <li>From the <strong>Environment</strong> menu, select an environment.</li>
+  <li>Select the project where you want to change visibility.</li>
+  <li>From the <strong>Environment</strong> menu, select the environment you want to change.</li>
   <li>Click {{< icon settings >}} <strong>Settings</strong>.</li>
   <li>In the row with <strong>Hide from search engines</strong>, click <strong>Edit {{< icon chevron >}}</strong>.</li>
   <li>Select or clear the <strong>Hide from search engines</strong> checkbox.</li>
@@ -54,8 +54,7 @@ X-Robots-Tag: noindex, nofollow
 ```
 
 That tells search engines to not index these sites and not traverse links from these sites.
-This keeps non-production sites out of search engine indexes,
-which otherwise would dilute the SEO of the production site.
+This keeps non-production sites out of search engine indexes.
 
 When this is off, your app can serve a `robots.txt` file from its root as normal.
 Use the [`location` section of your app configuration](../../configuration/app/app-reference.md#locations).

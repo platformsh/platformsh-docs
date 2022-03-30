@@ -20,7 +20,7 @@ To get your project's public key:
 3. Click **Deploy Key**.
 4. Click **{{< icon copy >}} Copy**.
 
-![Deploy Key](/images/management-console/settings-deploy-key.png)
+![Deploy Key](/images/management-console/settings-deploy-key.png "0.5")
 
 Then add the key to your repository:
 
@@ -48,7 +48,7 @@ More complex projects may have many repositories that they want to include,
 but GitHub only allows you to associate a deploy key with a single repository.
 
 If your project needs to access multiple repositories, you can choose to attach an SSH key to an automated user account.
-Since this account isn't be used by a human, it's called a machine user.
+Since this account isn't used by a human, it's called a machine user.
 You can then add the machine account as collaborator
 or add the machine user to a team with access to the repositories it needs to manipulate.
 

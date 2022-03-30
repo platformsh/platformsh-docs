@@ -45,16 +45,11 @@ To get an API token:
 3. Click **My profile**.
 4. Go to the **API Tokens** tab.
 5. Click **Create API Token**.
-
    ![The Create API Token button in the console](/images/management-console/api-tokens-new.png "0.6")
-
-6. Enter a name to identify your token in the future if you have multiple tokens ("CLI automated" is one example).
-
+6. Enter a name to identify your token in the future if you have multiple tokens.
    ![Creating an API token with the name 'CI tests'](/images/management-console/api-tokens-name.png "0.6")
-
 7. Click **Copy** to copy the token to your clipboard.
    Make sure to store the key safely as you can't view the API token again.
-
    ![Viewing the API token after it's created](/images/management-console/api-tokens-view.png "0.6")
 
 ## Use the API token to authenticate the CLI

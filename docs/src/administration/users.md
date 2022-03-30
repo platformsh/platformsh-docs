@@ -69,7 +69,7 @@ highlight=false
 
 <!--This is in HTML to get the icon not to break the list. -->
 <ol>
-  <li>ISelect the project where you want to add a new user.</li>
+  <li>Select the project where you want to add a new user.</li>
   <li>Click {{< icon settings >}} <strong>Settings</strong>.</li>
   <li>Click <strong>Access</strong>.</li>
   <li>Click <strong>+ Add</strong>.</li>

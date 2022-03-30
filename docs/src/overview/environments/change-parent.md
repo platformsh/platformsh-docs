@@ -23,8 +23,8 @@ highlight=false
 
 <!--This is in HTML to get the icon not to break the list. -->
 <ol>
-  <li>Select the project where you want to add a new user.</li>
-  <li>From the <strong>Environment</strong> menu, select an environment.</li>
+  <li>Select the project where you want to change the parent.</li>
+  <li>From the <strong>Environment</strong> menu, select the environment you want to change.</li>
   <li>Click {{< icon settings >}} <strong>Settings</strong>.</li>
   <li>In the row with the environment's name, click <strong>Edit {{< icon chevron >}}</strong>.</li>
   <li>Select a <strong>Parent environment</strong>.</li>

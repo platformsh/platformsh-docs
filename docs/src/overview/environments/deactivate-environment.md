@@ -85,7 +85,7 @@ highlight=false
 
 <!--This is in HTML to get the icon not to break the list. -->
 <ol>
-  <li>Select the project with an environment you want to deactivate.</li>
+  <li>Select the project with an environment you want to reactivate.</li>
   <li>From the <strong>Environment</strong> menu, select the environment.</li>
   <li>Click {{< icon settings >}} <strong>Settings</strong>.</li>
   <li>In the row with <strong>Status</strong>, click <strong>Edit {{< icon chevron >}}</strong>.</li>

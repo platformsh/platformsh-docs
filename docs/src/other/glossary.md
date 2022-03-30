@@ -19,8 +19,8 @@ Branching an environment means creating a new branch in the Git repository and a
 The new environment includes all of the parent environment's:
 
 * Code
-* Data that's stored on disk (databases, uploaded files, and so on)
 * Running services and their configuration (only copies, not the data)
+* Data that's stored on disk (databases, uploaded files, and so on)
 
 This means that when you branch an environment, you also branch the complete infrastructure.
 
@@ -62,7 +62,7 @@ See how to [reactivate an environment](../overview/environments/deactivate-envir
 
 ## Live environment
 
-An environment that's deployed from the production branch under a production plan.
+A publicly accessible environment that's deployed from the Production branch under a production plan.
 
 ## Merge
 

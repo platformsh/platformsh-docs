@@ -1,7 +1,6 @@
 ---
 title: Delete a project
 description: See how to delete projects you no longer need.
-toc: false
 aliases:
   - /administration/web/delete.html
 ---
@@ -20,10 +19,11 @@ highlight=false
 
 <!--This is in HTML to get the icon not to break the list. -->
 <ol>
-  <li>Open the <a href="https://console.platform.sh/">web console</a>.</li>
   <li>On the tile of the project you want to delete, click {{< icon more >}}</strong>More</strong>.</li>
-  <li>Click <strong>Delete</strong>.</li>
-  <li>To confirm your choice, click <strong>Delete</strong>.</li>
+  <li>Click <strong>Edit plan</strong>.</li>
+  <li>Click <strong>Delete project</strong>.</li>
+  <li>To confirm your choice, enter the project's name.</li>
+  <li>Click <strong>Yes, Delete Project</strong>.</li>
 </ol>
 
 <--->
@@ -33,11 +33,14 @@ file=none
 highlight=false
 ---
 
-Run the following command:
+1. Run the following command:
 
-```bash
-platform project:delete --project <PROJECT_NAME>
-```
+   ```bash
+   platform project:delete --project <PROJECT_ID>
+   ```
+
+2. Read the consequences to deletion and enter `y`.
+3. Enter the project title to confirm.
 
 {{< /codetabs >}}
 

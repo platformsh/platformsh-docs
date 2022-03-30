@@ -76,7 +76,7 @@ To fix this, you need to:
         url=git@bitbucket.org:myusername/mymodule.git
     ```
 
-2. Add the [project's public key to your remote Git repository](./private-repository.md#pull-code-from-a-private-git-repository)).
+2. Add the [project's public key to your remote Git repository](./private-repository.md#pull-code-from-a-private-git-repository).
    This allows the Platform.sh Git service to pull the module from the remote Git service.
 
 ## Removing submodules

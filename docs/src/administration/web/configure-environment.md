@@ -18,7 +18,7 @@ Once you select an environment, you can see details about it.
 
 ## Activity Feed
 
-You can see all the activity happening on your environments.
+You can see all the [activity happening on your environments](../../development/logs.md#activity-logs).
 You can filter activities by type.
 
 ![Environment activity list](/images/management-console/activity.png "0.5")
@@ -62,13 +62,13 @@ By default, you see configured routes.
 ![Services: routes](/images/management-console/service-tab/routes.png "0.7")
 
 The **Router** section shows a list of all configured routes.
-For each, you can see its type and whether caching and SSI have been enabled for it.
+For each, you can see its type and whether caching and server side includes have been enabled for it.
 
 To see your `.platform/routes.yaml` file that led to these routes, click **Configuration**.
 
 ### Applications
 
-Select an app container to see more detailed information.
+To see more detailed information about an app container, click it in the tree or list.
 
 The **Overview** gives you information about your app.
 You can see the language version, the container size, the amount of persistent disk,
@@ -82,7 +82,7 @@ To see the YAML file that led to this configuration, click **Configuration**.
 
 ### Services
 
-Select a running service to see more detailed information.
+To see more detailed information about a running service, click it in the tree or list.
 
 The **Overview** gives you information about the given service.
 You can see the service version, the container size, and the disk size, if you've configured a persistent disk.
