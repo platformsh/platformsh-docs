@@ -1,21 +1,47 @@
 ---
-title: "Delete a project"
+title: Delete a project
+description: See how to delete projects you no longer need.
 weight: 5
-sidebarTitle: "Deleting a project"
-toc: false
 ---
+
+To delete a project, you must be an organization owner or have the [manage plans permission](../../administration/organizations.md#manage-your-organization-users)
 
 To delete a Platform.sh project, including all data, code, and active environments:
 
-* Go to your Account Settings, logging in if necessary, via the link in the top-right corner of these docs, or via this link: [https://accounts.platform.sh/user](https://accounts.platform.sh/user).
-* Locate the project you wish to delete in the project list.
-* Hover the gear icon on the project and select "Delete".
-* Confirm your intent to delete the project.
+{{< codetabs >}}
 
-{{< note >}}
-Only the "Owner" of a project has the ability to delete that project. 
-{{< /note >}}
+---
+title=In the console
+file=none
+highlight=false
+---
 
-You will only be billed for the portion of a month during which the project was active.  If you delete a project part way through the month the cost of the project will be prorated accordingly.
+<!--This is in HTML to get the icon not to break the list. -->
+<ol>
+  <li>On the tile of the project you want to delete, click {{< icon more >}}</strong>More</strong>.</li>
+  <li>Click <strong>Edit plan</strong>.</li>
+  <li>Click <strong>Delete project</strong>.</li>
+  <li>To confirm your choice, enter the project's name.</li>
+  <li>Click <strong>Yes, Delete Project</strong>.</li>
+</ol>
 
-A user account with no projects associated with it will have no charges.
+<--->
+---
+title=Using the CLI
+file=none
+highlight=false
+---
+
+1. Run the following command:
+
+   ```bash
+   platform project:delete --project <PROJECT_ID>
+   ```
+
+2. Read the consequences to deletion and enter `y`.
+3. Enter the project title to confirm.
+
+{{< /codetabs >}}
+
+You are billed only for the portion of a month when the project was active.
+A user account with no projects has no charges.
