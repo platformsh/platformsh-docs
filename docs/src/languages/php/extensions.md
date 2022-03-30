@@ -76,7 +76,7 @@ and turn off those on by default with the `disabled_extensions` key.
 | `mysql`           | Def   | Def   | Def   |       |       |       |       |       |       |       |
 | `mysqli`          | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `mysqlnd`         | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
-| `newrelic`        |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |       |
+| `newrelic`        |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `oauth`           |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `odbc`            | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `opcache`         |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
