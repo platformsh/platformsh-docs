@@ -22,6 +22,7 @@ For how that structure is applied to different types of docs in this project, se
     - [Adding security reports](#adding-security-reports)
   - [Commit messages](#commit-messages)
   - [Review process](#review-process)
+    - [Review comment style](#review-comment-style)
     - [Checks](#checks)
 
 ## Adding new pages
@@ -129,6 +130,34 @@ We generally review for:
 To speed the process along, we may merge small changes such as spelling and formatting
 into your branch.
 Otherwise, we make suggestions and work with you to finalize the changes.
+<!-- vale Platform.first-person = YES -->
+
+### Review comment style
+
+To make comments clearer, each comment should have an emoji label describing its purpose.
+The following labels are used:
+
+| Emoji | `:code:`              | Meaning      | Description |
+| ----- | --------------------- | ------------ | ----------- |
+| 👍/😍 | `:+1:`/`:heart_eyes:` | Praise       | Used when something is well done. No further action required. Should be at least one of these for each review. |
+| ⛏️    | `:pick:`              | Nitpick      | For small details based on preferences. Doesn't block merging. |
+| 🛠️    | `:hammer_and_wrench:` | Suggestion   | To indicate an idea for improvement. By default, the suggestion needs to be accepted or otherwise addressed before merging. |
+| 💅    | `:nail_car:`          | Polish       | To indicate an idea for improvement that isn't fixing something wrong, but just pointing out ways to improve quality. Doesn't block merging by default. |
+| 📋    | `:clipboard:`         | To-do         | For small, necessary changes, such as fixing typos. |
+| 🐞    | `:lady_beetle:`       | Issue        | To highlight a specific issue that needs to be fixed. Can be paired with a suggestion if a solution is known. Blocks merging by default. |
+| ❓    | `:question:`          | Question     | For potential concerns that may not be relevant or for areas that aren't completely clear. Requires a response by default. |
+| 💡    | `:bulb:`              | Thought      | To introduce an idea that came up from reviewing. Doesn't block merging by default, but can lead to more discussion. |
+| 🧹    | `:broom:`             | Chore        | For small process tasks that need to be done before merging. |
+
+The following decorations can be added for further clarification (to override default of blocking or not):
+
+| Emoji | `:code:`          | Meaning      | Description |
+| ----- | ----------------- | ------------ | ----------- |
+| ⚠️     | `:warning:`       | Blocking     | Used to indicate that the comment blocks merging. |
+| ▶️     | `:arrow_forward:` | Non-blocking | Used to indicate that the comment doesn't block merging. |
+
+The pattern is based on [conventional comments](https://conventionalcomments.org/).
+It uses emoji other than the ones for [commit messages](#commit-messages).
 
 ### Checks
 
@@ -138,7 +167,7 @@ To ensure the docs work smoothly, a few checks run on each pull request:
 - [Remark](https://remark.js.org/) with the [`remark-validate-links` plugin](https://github.com/remarkjs/remark-validate-links)
   checks that all links between Markdown files are valid (including whether linked headers exist).
 - Custom workflows [check all changed files](./.github/workflows/get-pr-info.yaml) within `docs/src`
-  and [comment with links](./.github/workflows/comment-on-pr.yaml) to the deployed pages for easy review.
+  and [comment with links](./.github/workflows/comment-on-pr.yaml) to the deployed pages for review.
 
 Outside of pull requests, twice a week [Muffet](https://github.com/raviqqe/muffet)
 checks if all links on the site are valid.
