@@ -71,7 +71,7 @@ Each route in your `.platform/routes.yaml` configuration file is defined in one 
 * An explicit URL such as `https://example.com/blog`
 * A placeholder URL such as `https://{default}/blog`
 
-Placeholders can be either `{default}` or `{all}`, and they will map to the [custom domains](../../domains/quick-start.md) that 
+Placeholders can be either `{default}` or `{all}`, and they map to the [custom domains](../../domains/quick-start.md) that 
 you have defined in your project settings.
 
 These domains can be top level domains (`example.com`) or subdomains (`app.example.com`).
@@ -82,9 +82,9 @@ These domains can be top level domains (`example.com`) or subdomains (`app.examp
 
 Assuming that you set your default domain to `example.com`.
 
-Using both `example.com` and `{default}` in your `.platform/routes.yaml` file will generate the same URLs for your **production** environment.
+Using both `example.com` and `{default}` in your `.platform/routes.yaml` file generates the same URLs for your **production** environment.
 
-However, your **development** environment URLs will differ depending on the method you use.
+However, your **development** environment URLs differ depending on the method you use.
 
 1. If you use the default placeholder:
 
@@ -94,7 +94,7 @@ However, your **development** environment URLs will differ depending on the meth
     upstream: "app:http"
 ```
 
-The generated development URL of the `feature` environment will be:
+The generated development URL of the `feature` environment is:
 
 ```txt
 https://feature-t6dnbai-abcdef1234567.us-2.platformsh.site/blog
@@ -108,15 +108,15 @@ https://feature-t6dnbai-abcdef1234567.us-2.platformsh.site/blog
     upstream: "app:http"
 ```
 
-The generated development URL of the `feature` environment will be:
+The generated development URL of the `feature` environment is:
 
 ```txt
 https://example.com.feature-t6dnbai-abcdef1234567.us-2.platformsh.site/blog
 ```
 
-WARNING: THIS INCONSISTENT BEHAVIOR WILL BE FIXED IN THE UPCOMING RELEASE.
+WARNING: THIS INCONSISTENT BEHAVIOR IS FIXED IN THE UPCOMING RELEASE.
 
-Using both `example.com` and `{default}` in your `.platform/routes.yaml` file will generate the same URLs for your **production** and **development** environments.
+Using both `example.com` and `{default}` in your `.platform/routes.yaml` file generates the same URLs for your **production** and **development** environments.
 
 If you use the default placeholder:
 
@@ -134,7 +134,7 @@ And if you use the explicit domain method:
     upstream: "app:http"
 ```
 
-Both methods will generate the same development URL for the `feature` environment with the domain being prefixed to the URL:
+Both methods generate the same development URL for the `feature` environment with the domain being prefixed to the URL:
 
 ```txt
 https://example.com.feature-t6dnbai-abcdef1234567.us-2.platformsh.site/blog
