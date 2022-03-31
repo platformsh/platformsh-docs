@@ -120,7 +120,7 @@ value updates trigger a rebuild of the application in the same way that a commit
 ## Set variables via script
 
 You can also provide a `.environment` file as in your application root (next to the `.platform.app.yaml` file for that app).
-This file runs as a bash script when the container starts and on all SSH logins.
+This file runs as a script in dash when the container starts and on all SSH logins.
 It can be used to set any environment variables directly, such as the PATH variable.
 
 For example, the following `.environment` file allows any executable installed in the `vendor/bin` directory
@@ -131,8 +131,54 @@ to be run regardless of the current directory:
 export PATH=/app/vendor/bin:$PATH
 ```
 
+You can also dynamically define environment variables based on the current environment.
+For example, you might want to get the [defined route](../../configuration/routes/_index.md) with the id `api` for the current environment.
+To define it as the `URL` environment variable, you might add something like:
+
+```bash {location=".environment"}
+URL=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select (.value.id == "api") | .key')
+```
+
 Note that the file is sourced after all other environment variables above are defined and so they're available to the script.
 This also means the `.environment` script has the last word on environment variable values and can override anything it wants to.
+
+### Testing `.environment` scripts
+
+You may find that a command that works during an SSH session provides a `bad substitution` error when placed in a `.environment` file.
+Remember, `.environment` is sourced using dash, not bash.
+When testing your `.environment` logic, be sure to first enter a `dash` session in your terminal or within the SSH session.
+
+When testing, you might print to stdout (using an `echo` or `printf` command) to check what's happening.
+The following example looks for a `deploy/environment.tracker.txt` file.
+It displays a different message if it's found or not, which helps you track what variables are being set.
+
+```bash {location=".environment"}
+if [ -f "deploy/environment.tracker.txt" ]; then 
+    echo "File found."
+    export DEPLOY='Friday'
+else
+    echo "File not found."
+    export DEPLOY='Never on a Friday'
+```
+
+While sanity checks like this are useful during troubleshooting, you shouldn't include such commands in your final code.
+Because the `.environment` file is run at the start of an SSH session, the message is printed at the start of the session.
+
+Even when your SSH command executes successfully, you might later attempt to download data from one of your mounts,
+such as by using the CLI command `platform mount:download`.
+When you do, you see this error:
+
+```bash
+protocol version mismatch -- is your shell clean?
+(see the rsync man page for an explanation)
+rsync error: protocol incompatibility (code 2) at .../rsync/compat.c(61) [receiver=2.6.9]
+
+[ProcessFailedException]                                                                                                                      
+The command failed with the exit code: 2      
+```
+
+This failure comes because `mount:download` and `rsync` don't expect output when the SSH connection is made.
+To solve the issue, remove the printed output from your `.environment` file.
 
 ## Map variables
 
