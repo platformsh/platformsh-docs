@@ -59,7 +59,7 @@ By default, you see configured routes.
 
 ### Routes
 
-![Services: routes](/images/management-console/service-tab/routes.png "0.7")
+![Services: routes](/images/management-console/service-tab/routes.png "0.5")
 
 The **Router** section shows a list of all configured routes.
 For each, you can see its type and whether caching and server side includes have been enabled for it.
@@ -76,7 +76,7 @@ the number of active workers and cron jobs, and the command to SSH into the cont
 
 You can also see all cron jobs with their name, frequency, and command.
 
-![Services: app overview](/images/management-console/service-tab/app-overview.png "0.7")
+![Services: app overview](/images/management-console/service-tab/app-overview.png "0.5")
 
 To see the YAML file that led to this configuration, click **Configuration**.
 
@@ -87,7 +87,7 @@ To see more detailed information about a running service, click it in the tree o
 The **Overview** gives you information about the given service.
 You can see the service version, the container size, and the disk size, if you've configured a persistent disk.
 
-![Services: service overview](/images/management-console/service-tab/service-overview.png "0.7")
+![Services: service overview](/images/management-console/service-tab/service-overview.png "0.5")
 
 To see your `.platform/services.yaml` file that led to these routes, click **Configuration**.
 
