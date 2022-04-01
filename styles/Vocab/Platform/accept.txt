@@ -91,6 +91,7 @@ transclusion
 [Uu]ncomment
 unencrypted
 [Uu]nmount
+[Uu]ntrusted
 webpack
 Xdebug
 Zend
