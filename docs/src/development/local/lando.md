@@ -47,7 +47,7 @@ For a quicker start, create a project based on the Platform.sh [PHP template](ht
 The template provides the most basic configuration for running a custom PHP project built with Composer.
 It also includes the required Platform.sh configuration files out of the box.
 
-1. [Create a new project based on the PHP template](https://console.platform.sh/projects/create-project/template?query=php). <!-- TODO: The link probably has to change to have a specific source and campaign for everything `utm` -->
+1. [Create a new project based on the PHP template](https://console.platform.sh/projects/create-project/template?query=php).
 2. Clone that project locally:
     - Using the [Platform.sh CLI](../../gettingstarted/introduction/own-code/cli-install.md) by running `platform get <PROJECT_ID>`
     - Using [git](../../administration/web/_index.md#git)
