@@ -48,10 +48,10 @@ The template provides the most basic configuration for running a custom PHP proj
 It also includes the required Platform.sh configuration files out of the box.
 
 1. [Create a new project based on the PHP template](https://console.platform.sh/projects/create-project/template?query=php). <!-- TODO: The link probably has to change to have a specific source and campaign for everything `utm` -->
-2. Clone that project locally with Platform.sh [CLI](../../gettingstarted/introduction/own-code/cli-install.md) `platform get <PROJECT_ID>` or with [git](../../administration/web/_index.md#git).
+2. Clone that project locally with the Platform.sh [CLI](../../gettingstarted/introduction/own-code/cli-install.md) (`platform get <PROJECT_ID>`) or with [git](../../administration/web/_index.md#git).
 3. In the project's folder, run `lando init --recipe platformsh --source platformsh`.
 4. Follow the instructions provided by the interactive prompt.
-On the `Which project?` step, select the project created in the first step.
+   On the `Which project?` step, select the project created in the first step.
 
 <--->
 
@@ -80,13 +80,13 @@ To start your app and services, run `lando start`.
 
 ## 4. Access your local app
 
-The last lines of the previously ran `lando start` command contains URL to the different app and services.
+The last lines of the `lando start` command from the previous step contains URL to the different app and services.
 Access your app and services by opening the according URLs in your browser.
 
 ## What's next
 
 - [Import data and download files](https://docs.lando.dev/platformsh/sync.html) from your remote Platform.sh site.
-- If you made changes in the Platform.sh [configuration files](../../overview/structure.md) during development, run `lando rebuild` for these to be taken into account in Lando.
+- If you make changes in the Platform.sh [configuration files](../../overview/structure.md) during development, run `lando rebuild` for these to be taken into account in Lando.
 - To keep your Lando image up-to-date, see how to [update Lando](https://docs.lando.dev/getting-started/updating.html).
 
 ## Troubleshooting
