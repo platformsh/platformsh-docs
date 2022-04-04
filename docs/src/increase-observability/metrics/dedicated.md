@@ -59,10 +59,12 @@ one for the web hosts that handle web requests and one for the service hosts tha
 This example should give you an idea of how the metrics appear.
 Dedicated environments metrics show the resource usage per host within the cluster.
 
-This reference project has configured a single PHP application and three services: MySQL, Redis, and Solr.
+This reference project has a single PHP application and three services: MySQL, Redis, and Solr.
 It has been granted 4&nbsp;GB of memory and 2 vCPUs per host based on its plan.
 
-![All of the metrics available for a Dedicated environment](/images/metrics/all.png "0.5")
+Once you've read the metrics, see [recommendations for action](./_index.md#dedicated-environments).
+
+![All of the metrics available for a Dedicated environment](/images/metrics/all-dedicated.png "0.5")
 
 ### CPU
 

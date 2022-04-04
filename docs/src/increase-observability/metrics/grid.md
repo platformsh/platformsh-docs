@@ -33,11 +33,13 @@ If a redeploy is required for the specific environment, you see a note in the co
 This example should give you an idea of how the metrics appear.
 Grid environment metrics show resource usage for each app, service, and worker container.
 
-This reference project has configured a single application and two services: MySQL and Solr.
+This reference project has a single app and two services: MySQL and Solr.
 The plan size for this project is [Standard](https://platform.sh/pricing/).
 The appropriate resources have been [allocated automatically](../../configuration/app/app-reference.md#sizes) for each container
 based on the number and type of containers for this plan size.
 The graphs show the current average usage in relation to the allocated resources.
+
+Once you've read the metrics, see [recommendations for action](./_index.md#grid-environments).
 
 ### App container
 
