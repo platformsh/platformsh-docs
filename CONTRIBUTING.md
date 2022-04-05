@@ -135,25 +135,30 @@ Otherwise, we make suggestions and work with you to finalize the changes.
 ### Review comment style
 
 To make comments clearer, each comment should have an emoji label describing its purpose.
-The following labels are used:
+The following labels are primarily used:
 
-| Emoji | `:code:`              | Meaning      | Description |
-| ----- | --------------------- | ------------ | ----------- |
-| 👍/😍 | `:+1:`/`:heart_eyes:` | Praise       | Used when something is well done. No further action required. Should be at least one of these for each review. |
-| ⛏️    | `:pick:`              | Nitpick      | For small details based on preferences. Doesn't block merging. |
-| 🛠️    | `:hammer_and_wrench:` | Suggestion   | To indicate an idea for improvement. By default, the suggestion needs to be accepted or otherwise addressed before merging. |
-| 💅    | `:nail_car:`          | Polish       | To indicate an idea for improvement that isn't fixing something wrong, but just pointing out ways to improve quality. Doesn't block merging by default. |
-| 📋    | `:clipboard:`         | To-do         | For small, necessary changes, such as fixing typos. |
-| 🐞    | `:lady_beetle:`       | Issue        | To highlight a specific issue that needs to be fixed. Can be paired with a suggestion if a solution is known. Blocks merging by default. |
-| ❓    | `:question:`          | Question     | For potential concerns that may not be relevant or for areas that aren't completely clear. Requires a response by default. |
-| 💡    | `:bulb:`              | Thought      | To introduce an idea that came up from reviewing. Doesn't block merging by default, but can lead to more discussion. |
+| Emoji | `:code:`              | Meaning      | Can merge  | Description |
+| ----- | --------------------- | ------------ | ---------- | ----------- |
+| 😍    | `:heart_eyes:`        | Praise       | ▶️          | Used when something is well done. No further action required. Should be at least one of these for each review. |
+| ⛏️    | `:pick:`              | Nitpick      | ▶️          | For small details based on preferences. |
+| 🛠️    | `:hammer_and_wrench:` | Suggestion   | 🚫         | To indicate a specific idea for improvement. By default, the suggestion needs to be accepted or otherwise addressed before merging. |
+| 💅    | `:nail_car:`          | Polish       | ▶️          | To indicate a specific idea for improvement that isn't fixing something wrong, but just pointing out ways to improve quality. |
+| 📋    | `:clipboard:`         | To-do        | 🚫         | For small, necessary changes, such as fixing typos. |
+| 🐞    | `:lady_beetle:`       | Issue        | 🚫         | To highlight a specific issue that needs to be fixed. Can be paired with a suggestion if a solution is known. |
+| ❓    | `:question:`          | Question     | 🚫         | For potential concerns that may not be relevant or for areas that aren't completely clear. By default, requires a response. |
+
+The following labels are also possible:
+
+| Emoji | `:code:`              | Meaning      | Can merge  | Description |
+| ----- | --------------------- | ------------ | ---------- | ----------- |
+| 💡    | `:bulb:`              | Thought      | To introduce an idea that came up from reviewing. More general than a suggestion and not focused on the details. Doesn't block merging by default, but can lead to more discussion. |
 | 🧹    | `:broom:`             | Chore        | For small process tasks that need to be done before merging. |
 
 The following decorations can be added for further clarification (to override default of blocking or not):
 
 | Emoji | `:code:`          | Meaning      | Description |
 | ----- | ----------------- | ------------ | ----------- |
-| ⚠️     | `:warning:`       | Blocking     | Used to indicate that the comment blocks merging. |
+| 🚫    | `:no_entry_sign:` | Blocking     | Used to indicate that the comment blocks merging. |
 | ▶️     | `:arrow_forward:` | Non-blocking | Used to indicate that the comment doesn't block merging. |
 
 The pattern is based on [conventional comments](https://conventionalcomments.org/).
