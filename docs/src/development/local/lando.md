@@ -48,7 +48,7 @@ The template provides the most basic configuration for running a custom PHP proj
 It also includes the required Platform.sh configuration files out of the box.
 
 1. [Create a new project based on the PHP template](https://console.platform.sh/projects/create-project/template?query=php).
-2. Clone that project locally:
+2. Clone that project locally in one of these ways:
     - Using the [Platform.sh CLI](../../gettingstarted/introduction/own-code/cli-install.md) by running `platform get <PROJECT_ID>`
     - Using [git](../../administration/web/_index.md#git)
 3. In the project's folder, run `lando init --recipe platformsh --source platformsh`.
