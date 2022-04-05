@@ -58,9 +58,9 @@ These files are ignored by Platform.sh.
 
 Docksal doesn't automatically copy over any commands you have in your [build flavor](../../administration/../configuration/app/app-reference.md#build)
 and [hooks](../../configuration/app/hooks/_index.md).
-To get you project running like on Platform.sh, you have to add the commands to Docksal.
+To get your project running like on Platform.sh, you have to add the commands to Docksal.
 
-The `.docksal/commands` directory should already have one command (`init`) like the following:
+The `.docksal/commands` directory should already have one command (`init`) such as the following:
 
 ```bash {location=".docksal/commands/init"}
 #!/usr/bin/env bash
@@ -146,9 +146,7 @@ title=Using the CLI
 file=none
 highlight=bash
 ---
-
-fin config set <VARIBLE_NAME>=<VARIABLE_VALUE>
-
+fin config set <VARIABLE_NAME>=<VARIABLE_VALUE>
 <--->
 
 ---
@@ -158,7 +156,7 @@ highlight=false
 ---
 
 ```txt {location=".docksal/docksal.env"}
-<VARIBLE_NAME>=<VARIABLE_VALUE>
+<VARIABLE_NAME>=<VARIABLE_VALUE>
 
 HOSTING_PLATFORM="platformsh"
 ```
@@ -196,5 +194,7 @@ To download your data from Platform.sh and load it into your Docksal database co
 
 ```bash
 fin platform db:dump --gzip -f /tmp/database.sql.gz
-fin exec 'zcat < /tmp/database.sql.gz | mysql -u user -puser -h db default'
+fin exec 'zcat < /tmp/database.sql.gz | mysql -u user -p user -h db default'
 ```
+
+You can also set the username, password, and database name using [specific environment variables](https://docs.docksal.io/stack/configuration-variables/#mysql-user).
