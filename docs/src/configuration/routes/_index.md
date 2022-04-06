@@ -117,7 +117,7 @@ Note that the `example.com` prefix isn't part of the generated URL.
 
 {{< note title="Previous behavior" >}}
 
-Previously, URLs in non-Production environments differed depending on whether or not you used the `{default}` placeholder.
+Prior to April 7, 2022, URLs in non-Production environments differed depending on whether or not you used the `{default}` placeholder.
 
 If you used the `{default}` placeholder:
 
