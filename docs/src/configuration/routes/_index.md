@@ -102,9 +102,24 @@ In both cases, the URLs for your Production environment are the same.
 
 #### URLs in non-Production environments
 
-URLs in non-Production environments differ depending on whether or not you use the `{default}` placeholder.
+URLS in non-Production environments follow a different pattern.
 
-If you use the `{default}` placeholder:
+No matter how you have set your default domain (even if you don't have one),
+using either the absolute URL or the `{default}` placeholder results in the same URL.
+
+In any case, you get the same URL for a `feature` environment:
+
+```txt
+https://feature-t6dnbai-abcdef1234567.us-2.platformsh.site/blog
+```
+
+Note that the `example.com` prefix isn't part of the generated URL.
+
+{{< note title="Previous behavior" >}}
+
+Previously, URLs in non-Production environments differed depending on whether or not you used the `{default}` placeholder.
+
+If you used the `{default}` placeholder:
 
 ```yaml {location=".platform/routes.yaml"}
 "https://{default}/blog":
@@ -112,13 +127,13 @@ If you use the `{default}` placeholder:
     upstream: "app:http"
 ```
 
-The generated URL for the `feature` environment is:
+The generated URL for the `feature` environment was:
 
 ```txt
 https://feature-t6dnbai-abcdef1234567.us-2.platformsh.site/blog
 ```
 
-If you use an absolute URL:
+If you used an absolute URL:
 
 ```yaml {location=".platform/routes.yaml"}
 "https://example.com/blog":
@@ -126,32 +141,11 @@ If you use an absolute URL:
     upstream: "app:http"
 ```
 
-The generated URL for the `feature` environment is:
+The generated URL for the `feature` environment was:
 
 ```txt
 https://example.com.feature-t6dnbai-abcdef1234567.us-2.platformsh.site/blog
 ```
-
-When you use the absolute URL, make sure your URLs aren't [too long for SSL certificates](./https.md#error-provisioning-certificates).
-
-{{< note theme="warning" >}}
-
-#### This behavior will change in an upcoming release
-
-Some inconsistency in domains between Production and other environments will soon be fixed.
-
-At that point, the following will apply:
-
-If you have set your default domain to `example.com`, or if you don't have a domain, using both
-`example.com` and `{default}` in your `.platform/routes.yaml` file result in the same URLs for your non-Production environments.
-
-In both cases, you get the same URL for a `feature` environment:
-
-```txt
-https://feature-t6dnbai-abcdef1234567.us-2.platformsh.site/blog
-```
-
-Note that the `example.com` prefix is not part of the generated URL.
 
 {{< /note >}}
 
