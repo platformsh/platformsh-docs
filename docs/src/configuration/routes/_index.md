@@ -102,7 +102,7 @@ In both cases, the URLs for your Production environment are the same.
 
 #### URLs in non-Production environments
 
-URLS in non-Production environments follow a different pattern.
+URLs in non-Production environments follow a different pattern.
 
 No matter how you have set your default domain (even if you don't have one),
 using either the absolute URL or the `{default}` placeholder results in the same URL.
@@ -117,7 +117,7 @@ Note that the `example.com` prefix isn't part of the generated URL.
 
 {{< note title="Previous behavior" >}}
 
-Prior to April 7, 2022, URLs in non-Production environments differed depending on whether or not you used the `{default}` placeholder.
+Before April 7, 2022, URLs in non-Production environments differed depending on whether or not you used the `{default}` placeholder.
 
 If you used the `{default}` placeholder:
 
