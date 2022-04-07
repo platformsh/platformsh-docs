@@ -11,6 +11,7 @@ description: |
 
 * **March 2022**
   * Crons: added option to [cancel a cron activity](../configuration/app/app-reference.md#crons)
+  * Proxy routes: added option redirect requests to external locations with [proxy routes](../configuration/routes/proxy.md)
 * **January 2022**
   * OpenSearch: Added [OpenSearch service](../configuration/services/opensearch.md)
 

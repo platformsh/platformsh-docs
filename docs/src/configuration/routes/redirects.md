@@ -1,6 +1,5 @@
 ---
-title: "Redirects"
-weight: 3
+title: Redirects
 description: |
   Managing redirection rules is a common requirement for web applications, especially in cases where you do not want to lose incoming links that have changed or been removed over time.
 ---
