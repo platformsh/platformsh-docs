@@ -46,7 +46,7 @@ Update the Solr server to have a single core (`maincore`) with the default confi
 And define a single endpoint (`main`) that connects to this core.
 
 ```yaml {location=".platform/services.yaml"}
-search:
+searchsearch:
     type: solr:8.6
     disk: 1024
     configuration:
@@ -142,7 +142,7 @@ Finally, move that directory to `.platform/`, and update the `maincore.conf_dir`
 The `services.yaml` entry should now look approximately like this:
 
 ```yaml
-search:
+solrsearch:
     type: solr:8.6
     disk: 1024
     configuration:
