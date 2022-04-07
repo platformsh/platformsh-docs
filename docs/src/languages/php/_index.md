@@ -218,36 +218,36 @@ variables:
 
 Common functions to disable include:
 
-* `create_function` - It has been replaced by anonymous functions and has no useful purpose since PHP 5.3 and should not be used, ever.
-* `exec,passthru,shell_exec,system,proc_open,popen` - These functions all allow a PHP script to run a bash shell command. That is rarely used by web applications, although build scripts may need them.
-* `pcntl_exec,pcntl_fork,pcntl_setpriority` - The `pcntl_*` functions (including those not listed here) are responsible for process management.  Most of them will cause a fatal error if used within a web request.  Cron tasks or workers may make use of them.  Most are safe to disable unless you know that you are using them.
-* `curl_exec,curl_multi_exec` - These functions allow a PHP script to make arbitrary HTTP requests.  Note that they are frequently used by other HTTP libraries such as Guzzle, in which case you should *not* disable them.
-* `show_source` - This function shows a syntax highlighted version of a named PHP source file.  That is rarely useful outside of development.
+* `create_function`: It has been replaced by anonymous functions and has no useful purpose since PHP 5.3 and should not be used, ever.
+* `exec`, `passthru`, `shell_exec`, `system`, `proc_open`, `popen`: These functions all allow a PHP script to run a bash shell command. That is rarely used by web applications, although build scripts may need them.
+* `pcntl_exec`, `pcntl_fork`, `pcntl_setpriority`: The `pcntl_*` functions (including those not listed here) are responsible for process management.  Most of them will cause a fatal error if used within a web request.  Cron tasks or workers may make use of them.  Most are safe to disable unless you know that you are using them.
+* `curl_exec`, `curl_multi_exec`: These functions allow a PHP script to make arbitrary HTTP requests.  Note that they are frequently used by other HTTP libraries such as Guzzle, in which case you should *not* disable them.
+* `show_source`: This function shows a syntax highlighted version of a named PHP source file.  That is rarely useful outside of development.
 
 Naturally if your application does make use of any of these functions, it will fail if you disable them.  In that case, do not disable them.
 
 ### Default php.ini settings
 
-The default values for some frequently-modified `php.ini` settings are listed below.
+The default values <!-- TODO: check these --> for some frequently-modified `php.ini` settings are listed below.
 
 * **memory_limit=128M**
 * **post_max_size=64M**
 * **upload_max_filesize=64M**
 * **display_errors=On**
 
-    This value is on by default to ease setting up a project on Platform.sh. We strongly recommend providing a custom error handler in your application or setting this value to Off before you make your site live.
+    This value is on by default. Use a custom error handler in your application to track errors. Set this value to Off before you make your site live.
 * **zend.assertions=-1**
 
     Assertions are optimized out of existence and have no impact at runtime. You should have assertions set to `1` for your local development system.
 * **opcache.memory_consumption=64**
 
-    This is the number of megabytes available for the opcache. Large applications with many files may want to increase this value.
+    This is the number of megabytes available for the opcache.  Increase this value for large applications with many files. <!-- TODO: add link to opcache -->
 * **opcache.validate_timestamps=On**
 
-    The opcache will check for updated files on disk. This is necessary to support applications that generate compiled PHP code from user configuration. If you are certain your application does not do so then you can disable this setting for a small performance boost.
+    The opcache will check for updated files on disk. This is necessary to support applications that generate compiled PHP code from user configuration. If you are certain your application does not do so then you can disable this setting for a small performance boost. <!-- TODO: add link to opcache -->
 
 {{< note theme="warning" >}}
-We do not limit what you can put in your `php.ini` file, but many settings can break your application. This is a facility for advanced users.
+We do not limit what you can put in your `php.ini` file, but many settings can break your application.
 {{< /note >}}
 
 ## Foreign Function Interfaces (FFI)
@@ -255,10 +255,9 @@ We do not limit what you can put in your `php.ini` file, but many settings can b
 [Foreign Function Interfaces (FFI)](https://en.wikipedia.org/wiki/Foreign_function_interface), allow user-space code to bridge to existing C-ABI-compatible libraries. <!-- TODO: Simplify that part, it still feels heavy -->
 FFI is fully supported on Platform.sh.
 
-Note: FFI is only intended for advanced use cases, and is rarely a net win for routine web requests.
-Use with caution.
+Note: FFI is only intended for advanced use cases. Use with caution.
 
-Before you begin: <!-- TODO: Improve structure based on howto -->
+<!-- TODO: Improve structure based on howto -->
 
 Ensure that your `.so` library files are available locally.
 You can either place these files directly in your repository or download and compile them in your build hook.
@@ -294,7 +293,7 @@ However, you can also start alternative processes if desired,
 such as if you're running an async PHP daemon, a thread-based worker process, or something similar.
 To do so, specify an alternative start command in `platform.app.yaml`, similar to the following:
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 web:
     commands:
         start: php run.php
@@ -310,12 +309,12 @@ It also tells the front-controller (Nginx) to connect to your application via a 
 which is specified in the `PORT` environment variable.
 Note that the start command _must_ run in the foreground.
 
-If not specified, the effective default start command varies by PHP version:
+If not specified, the effective default start command for PHP-FPM varies by PHP version:
 
 * On PHP 5.x, it's `/usr/sbin/php5-fpm`.
 * On PHP 7.x and higher, it's `/usr/sbin/php-fpm<VERSION_NUMBER>`.
 
-While you can call it manually that's generally not necessary.
+You can call PHP-FPM manually but that's generally not necessary.
 Note that PHP-FPM cannot run simultaneously along with another persistent process (such as ReactPHP or Amp).
 If you need both, they have to run in separate containers.
 
