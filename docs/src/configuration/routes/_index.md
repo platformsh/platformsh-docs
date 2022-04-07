@@ -64,6 +64,46 @@ The route for the `api` app could be anything in the domain, even a subdomain li
 Be aware that using a subdomain might [double your network traffic](https://nickolinger.com/blog/2021-08-04-you-dont-need-that-cors-request/),
 so consider using a path like `https://{default}/api` instead.
 
+## Trailing slashes
+
+All defined routes have at least a slash in the path.
+So you might define routes as follows:
+
+```yaml {location==".platform/routes.yaml"}
+
+"https://{default}":
+    type: upstream
+    upstream: "app:http"
+"https://subdomain.example.com":
+    type: upstream
+    upstream: "subdomain:http"
+```
+
+Both of these routes would be resolved with trailing slashes.
+So if you check your [`PLATFORM_ROUTES` variable](../../development/variables/use-variables.md#use-platformsh-provided-variables),
+you see the following resolved routes (assuming `example.com` is your default domain):
+
+```json
+{
+  "http://example.com/": {
+    "primary": true,
+    "id": null,
+    "attributes": {},
+    "type": "upstream",
+    "upstream": "app",
+    "original_url": "https://{default}"
+  },
+  "http://subdomain.example.com/": {
+    "primary": false,
+    "id": null,
+    "attributes": {},
+    "type": "upstream",
+    "upstream": "subdomain",
+    "original_url": "https://subdomain.example.com"
+  }
+}
+```
+
 ## Route placeholders
 
 Each route in your configuration file is defined in one of two ways:
