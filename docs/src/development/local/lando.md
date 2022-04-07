@@ -50,7 +50,7 @@ It also includes the required Platform.sh configuration files out of the box.
 1. [Create a new project based on the PHP template](https://console.platform.sh/projects/create-project/template?query=php).
 2. Clone that project locally in one of these ways:
     - Using the [Platform.sh CLI](../../gettingstarted/introduction/own-code/cli-install.md) by running `platform get <PROJECT_ID>`
-    - Using [git](../../administration/web/_index.md#git)
+    - Using [git](../../administration/web/configure-environment.md#actions)
 3. In the project's folder, run `lando init --recipe platformsh --source platformsh`.
 4. Follow the instructions provided by the interactive prompt.
    On the `Which project?` step, select the project created in the first step.
@@ -66,7 +66,7 @@ highlight=false
 If your code isn't present locally, retrieve your codebase with one of these methods:
 
 - Using the [Platform.sh CLI](../../gettingstarted/introduction/own-code/cli-install.md) by running `platform get <PROJECT_ID>`
-- Using [git](../../administration/web/_index.md#git)
+- Using [git](../../administration/web/configure-environment.md#actions)
 
 Otherwise, access the directory with your project.
 

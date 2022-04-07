@@ -68,6 +68,7 @@ pngcrush
 preprocessor
 preload[ing]?
 progs
+proxied
 Pthreads
 plaintext
 Quarkus
@@ -92,8 +93,10 @@ Tomitribe
 transclusion
 [Uu]ncomment
 unencrypted
+unmerged
 [Uu]nmount
 [Uu]ntrusted
+Verisign
 webpack
 Xdebug
 Zend

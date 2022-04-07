@@ -4,7 +4,7 @@ weight: 2
 description: See how applications get built and deployed with Platform.sh.
 ---
 
-Each time you push a change to your app through Git or activate an [environment](../administration/web/environments.md),
+Each time you push a change to your app through Git or activate an [environment](./environments/_index.md),
 your app goes through a process to be built and deployed.
 If your app is redeployed with no changes to its codebase, the output of the previous build and deploy process is reused.
 
