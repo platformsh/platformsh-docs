@@ -12,11 +12,8 @@ The Lando Platform.sh plugin can read your Platform.sh configuration files and p
 The Lando Platform.sh plugin is currently in beta and supports only PHP-based applications.
 Support for more languages is in progress.
 
-<<<<<<< HEAD
-Lando works with most services supported by Platform.sh [except for](https://docs.lando.dev/platformsh/caveats.html#unsupported-things) of Vault KMS and network storage.
-=======
 Lando works with most services supported by Platform.sh [except for](https://docs.lando.dev/platformsh/caveats.html#unsupported-things) Vault KMS and network storage.
->>>>>>> 79ce904b (:memo: Apply suggestions from code review)
+
 See a list of [supported services](https://docs.lando.dev/platformsh/config.html#services-yaml).
 
 A quick-start guide is included below.
@@ -51,7 +48,7 @@ For a quicker start, create a project based on the Platform.sh [PHP template](ht
 The template provides the most basic configuration for running a custom PHP project built with Composer.
 It also includes the required Platform.sh configuration files out of the box.
 
-1. [Create a new project based on the PHP template](https://console.platform.sh/projects/create-project/template?query=php). <!-- TODO: The link probably has to change to have a specific source and campaign for everything `utm` -->
+1. [Create a new project based on the PHP template](https://console.platform.sh/projects/create-project/template?query=php).
 2. Clone that project locally:
     - Using the [Platform.sh CLI](../../gettingstarted/introduction/own-code/cli-install.md) by running `platform get <PROJECT_ID>`
     - Using [git](../../administration/web/_index.md#git)
@@ -122,6 +119,7 @@ For more guidance regarding logs, check the [Lando logs documentation](https://d
 
 When you access your local Lando sites through HTTPS, you get an error message in your browser.
 This is expected behavior.
+
 Find out how to solve it in the [Lando blog](https://lando.dev/blog/2020/03/20/_5-things-to-do-after-you-install-lando/).
 
 ### Something still wrong?
