@@ -27,29 +27,31 @@ If your worker process cannot be interrupted mid-task, make sure it reacts to `S
 If the process is still running after 15 seconds, a `SIGKILL` message will be sent that force-terminates the worker process,
 allowing the container to be shut down and restarted.
 
-## Workers vs Cron
+## Workers vs cron jobs
 
-Both worker instances and cron tasks address similar use cases:
-They both address out-of-band work that an application needs to do but that should not or cannot be done as part of a normal web request.
-They do so in different ways, however, and so are fit for different use cases.
+Worker instances don't run cron jobs.
+Instead, both worker instances and cron tasks address similar use cases.
+They both address out-of-band work that an application needs to do
+but that shouldn't or can't be done as part of a normal web request.
+They do so in different ways and so are fit for different use cases.
 
-A Cron job is well suited for tasks when:
+A cron job is well suited for tasks when:
 
 * They need to happen on a fixed schedule, not continually.
-* The task itself is not especially long, as a running cron job will block a new deployment.
-* It is long but can be divided into many small queued tasks.
+* The task itself isn't especially long, as a running cron job blocks a new deployment.
+* It's long but can be divided into many small queued tasks.
 * A delay between when a task is registered and when it actually happens is acceptable.
 
 A dedicated worker instance is a better fit if:
 
 * Tasks should happen "now", but not block a web request.
-* Tasks are large enough that they risk blocking a deploy, even if they are subdivided.
+* Tasks are large enough that they risk blocking a deploy, even if they're subdivided.
 * The task in question is a continually running process rather than a stream of discrete units of work.
 
 The appropriateness of one approach over the other also varies by language;
 single-threaded languages would benefit more from either cron or workers than a language with native multi-threading, for instance.
 If a given task seems like it would run equally well as a worker or as a cron,
-cron will generally be more efficient as it does not require its own container.
+cron is generally more efficient as it doesn't require its own container.
 
 ## Commands
 

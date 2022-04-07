@@ -64,35 +64,90 @@ The route for the `api` app could be anything in the domain, even a subdomain li
 Be aware that using a subdomain might [double your network traffic](https://nickolinger.com/blog/2021-08-04-you-dont-need-that-cors-request/),
 so consider using a path like `https://{default}/api` instead.
 
-## Route templates
+## Route placeholders
 
 Each route in your configuration file is defined in one of two ways:
 
 * An absolute URL such as `https://example.com/blog`
-* A URL template such as `https://{default}/blog`
+* A URL with a placeholder such as `https://{default}/blog`
 
-The templates include a placeholder, either `{default}` or `{all}`,
-to stand in for [custom domains](../../domains/quick-start.md) you've defined in your project.
-These domains can be top level domains (`example.com`) or subdomains (`app.example.com`).
+The available placeholders are `{default}` and `{all}`.
+They stand in for the [custom domains](../../domains/quick-start.md) you've defined in your project.
+
+These domains can be top-level domains (`example.com`) or subdomains (`app.example.com`).
 
 ### `{default}`
 
 `{default}` represents your default custom domain.
 If you have set your default domain to `example.com`,
-`example.com` and `{default}` in your `.platform/routes.yaml` file have the same meaning for your production environment.
+`example.com` and `{default}` in your `.platform/routes.yaml` file have the same result for your Production environment.
 
-Each development environment gets its own domain with a unique identifier.
-If you use the URL template on a `feature` branch, you get something like the following:
+You can use the `{default}` placeholder:
+
+```yaml {location=".platform/routes.yaml"}
+"https://{default}/blog":
+    type: upstream
+    upstream: "app:http"
+```
+
+And you can use an absolute URL:
+
+```yaml {location=".platform/routes.yaml"}
+"https://example.com/blog":
+    type: upstream
+    upstream: "app:http"
+```
+
+In both cases, the URLs for your Production environment are the same.
+
+#### URLs in non-Production environments
+
+URLs in non-Production environments follow a different pattern.
+
+No matter how you have set your default domain (even if you don't have one),
+using either the absolute URL or the `{default}` placeholder results in the same URL.
+
+In any case, you get the same URL for a `feature` environment:
 
 ```txt
 https://feature-t6dnbai-abcdef1234567.us-2.platformsh.site/blog
 ```
 
-If you use the absolute URL method (like `example.com`), that domain looks similar to this:
+Note that the `example.com` prefix isn't part of the generated URL.
+
+{{< note title="Previous behavior" >}}
+
+Before April 7, 2022, URLs in non-Production environments differed depending on whether or not you used the `{default}` placeholder.
+
+If you used the `{default}` placeholder:
+
+```yaml {location=".platform/routes.yaml"}
+"https://{default}/blog":
+    type: upstream
+    upstream: "app:http"
+```
+
+The generated URL for the `feature` environment was:
+
+```txt
+https://feature-t6dnbai-abcdef1234567.us-2.platformsh.site/blog
+```
+
+If you used an absolute URL:
+
+```yaml {location=".platform/routes.yaml"}
+"https://example.com/blog":
+    type: upstream
+    upstream: "app:http"
+```
+
+The generated URL for the `feature` environment was:
 
 ```txt
 https://example.com.feature-t6dnbai-abcdef1234567.us-2.platformsh.site/blog
 ```
+
+{{< /note >}}
 
 ### `{all}`
 
@@ -307,7 +362,7 @@ You can configure each route separately with the following properties:
 ## CLI access
 
 The [Platform.sh CLI](../../development/cli/_index.md) can show you the routes you have configured for an environment.
-These are the routes as defined in the `.platform/routes.yaml` file with the [placeholders](#route-templates)
+These are the routes as defined in the `.platform/routes.yaml` file with the [placeholders](#route-placeholders)
 plus the default redirect from HTTP to HTTPS.
 They aren't the final generated routes.
 

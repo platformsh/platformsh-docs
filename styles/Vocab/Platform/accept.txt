@@ -82,6 +82,7 @@ serverless
 shard
 shortcode
 Stempel
+stdout
 Strapi
 Symfony
 Thorntail
@@ -90,6 +91,7 @@ transclusion
 [Uu]ncomment
 unencrypted
 [Uu]nmount
+[Uu]ntrusted
 webpack
 Xdebug
 Zend

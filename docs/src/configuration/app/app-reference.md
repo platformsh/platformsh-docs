@@ -322,9 +322,15 @@ They use the same container image.
 Workers can't accept public requests and so are suitable only for background tasks.
 If they exit, they're automatically restarted.
 
-The keys of the `workers` definition are the names of the worker.
-Each worker can differ from the `web` instance in all properties
-_except_ for the `build` and `dependencies` properties, which must be the same.
+The keys of the `workers` definition are the names of the workers.
+You can then define how each worker differs from the `web` instance using the [top-level properties](#top-level-properties).
+
+Each worker can differ from the `web` instance in all properties _except_ for:
+
+* `build` and `dependencies` properties, which must be the same
+* `crons` as cron jobs don't run on workers
+* `hooks` as the `build` hook must be the same
+  and the `deploy` and `post_deploy` hooks don't run on workers.
 
 A worker named `queue` that was small and had a different start command could look like this:
 
@@ -667,6 +673,13 @@ Minimum time between cron jobs being triggered:
 |-------------------- | --------- |
 | Professional        | 5 minutes |
 | Elite or Enterprise | 1 minute  |
+
+{{< note >}}
+
+The time between cron jobs defaults to 5 minutes even for Elite and Enterprise plans.
+To set it to 1 minute, create a [support ticket](https://console.platform.sh/-/users/~/tickets/open).
+
+{{< /note >}}
 
 For each app container, only one cron job can run at a time.
 If a new job is triggered while another is running, the new job is paused until the other completes.

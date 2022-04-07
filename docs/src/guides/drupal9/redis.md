@@ -58,7 +58,7 @@ if (!$platformsh->inRuntime()) {
 <?php
 
 // Set redis configuration.
-if ($platformsh->hasRelationship('rediscache') && !\Drupal\Core\Installer\InstallerKernel::installationAttempted() && extension_loaded('rediscache')) {
+if ($platformsh->hasRelationship('rediscache') && !\Drupal\Core\Installer\InstallerKernel::installationAttempted() && extension_loaded('redis')) {
   $redis = $platformsh->credentials('rediscache');
 
   // Set Redis as the default backend for any cache bin not otherwise specified.
