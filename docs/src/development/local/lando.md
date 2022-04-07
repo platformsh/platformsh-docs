@@ -119,7 +119,7 @@ For more guidance regarding logs, check the [Lando logs documentation](https://d
 When you access your local Lando sites through HTTPS, you get an error message in your browser.
 This is expected behavior.
 
-Find out how to solve it in the [Lando blog](https://lando.dev/blog/2020/03/20/_5-things-to-do-after-you-install-lando/).
+Find out how to solve it in the [Lando blog](https://lando.dev/blog/2020/03/20/5-things-to-do-after-you-install-lando.html).
 
 ### Something still wrong?
 
