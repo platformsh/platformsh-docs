@@ -52,24 +52,53 @@ for how to determine and set a more optimal value.
 
 ## Enable preloading
 
-PHP 7.4 and later supports preloading code files into shared memory once at server startup,
-bypassing the need to include or autoload them later.
-Depending on your application doing so can result in significant improvements
+OPcache preloading allows you to load selected files into shared memory when PHP-FPM starts and bypasses the need to include or autoload them later.
+It's available on PHP 7.4 onwards.
+Depending on your application using opcache can result in significant improvements
 to both CPU and memory usage.
-If using PHP 7.4 or later, see the [PHP Preload instructions](./_index.md#opcache-preloading)
-for how to configure it on Platform.sh.
 Consult your application's documentation to see
 if they have any recommendations for an optimal preload configuration.
 
 If you aren't using PHP 7.4, this is a good reason to upgrade.
 
-Note that the only way to clear the preload cache is by restarting PHP-FPM.
+Note that the only way to clear the preload cache is by restarting PHP-FPM <!-- TODO: Check that is true since we state otherwise below -->.
 PHP-FPM isn't restarted on every deployment automatically,
 so you might want to add that in a [`deploy` hook](../../configuration/app/hooks/hooks-comparison.md#deploy-hook),
 such as by including `pkill -f php-fpm` or `sv restart app`.
 
+<!-- TODO: Redo structure to follow howto -->
 If you have [disabled OPcache timestamp validation](#disable-opcache-timestamp-validation),
 you need to clear the OPcache explicitly on deployment (which can be done by restarting PHP-FPM).
+
+To enable preloading, add a `php.ini` value that specifies a preload script.
+Any [`php.ini` mechanism](/languages/php/ini.md) works,
+but using a variable in `.platform.app.yaml` is the recommended approach:
+
+```yaml
+variables:
+    php:
+        opcache.preload: 'preload.php'
+```
+
+The `opcache.preload` value is evaluated as a file path relative to the application root (where `.platform.app.yaml` is),
+and it may be any PHP script that calls `opcache_compile_file()`.
+The following example preloads all `.php` files anywhere in the `vendor` directory:
+
+```php
+<?php
+$directory = new RecursiveDirectoryIterator(getenv('PLATFORM_APP_DIR') . '/vendor');
+$iterator = new RecursiveIteratorIterator($directory);
+$regex = new RegexIterator($iterator, '/^.+\.php$/i', RecursiveRegexIterator::GET_MATCH);
+
+foreach ($regex as $key => $file) {
+    // This is the important part!
+    opcache_compile_file($file[0]);
+}
+```
+
+{{< note >}}
+Preloading all `.php` files may not be optimal for your application, and may even introduce errors.  Your application framework may provide recommendations or a pre-made preload script to use instead.  Determining an optimal preloading strategy is the user's responsibility.
+{{< /note >}}
 
 ## Configure OPcache
 
