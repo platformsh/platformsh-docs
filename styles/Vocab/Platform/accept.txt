@@ -12,11 +12,13 @@ Bootsnap
 Brotli
 [Bb]undler
 Cloudwatt
+CMS
 [Cc]onfig
 [Cc]ron
 denylist
 Docksal
 Drush
+DXP
 failover
 Fastly
 Galera
@@ -28,6 +30,7 @@ Goldmark
 Gradle
 Gunicorn
 gzip
+Helidon
 highjack
 hostname
 [Hh]otfix
@@ -36,6 +39,7 @@ Ibexa
 imagetragick
 jpegoptim
 Lando
+Loggly
 Lucene
 Magento
 Mailchimp
@@ -57,6 +61,8 @@ Opigno
 Opsgenie
 optipng
 Packagist
+Papertrail
+Payara
 Pixelant
 pngcrush
 preprocessor
@@ -78,11 +84,16 @@ serverless
 shard
 shortcode
 Stempel
+stdout
 Strapi
 Symfony
+Thorntail
+Tomitribe
 transclusion
+[Uu]ncomment
 unencrypted
 [Uu]nmount
+[Uu]ntrusted
 webpack
 Xdebug
 Zend

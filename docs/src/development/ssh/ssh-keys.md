@@ -9,6 +9,8 @@ To connect to your app using SSH keys, you need two keys:
 * A **private key** you must keep _secret_
 * A **public key** stored in your Platform.sh account
 
+A given SSH key pair can only be linked to a single user account.
+
 A key pair is valid for as long as you have access to the private key on the system from which you are connecting.
 If you have a key pair available, you aren't prompted to login.
 
@@ -101,7 +103,7 @@ To connect to a server using SSH keys, find the details in the management consol
 1. In the **Environment** dropdown, select the environment you want to access.
 1. Click the **SSH** dropdown.
 1. Copy the ssh command for where you want access.
-   (Example: `ssh abcdefghi5k-main-7rqtwti--app@ssh.region.url`)
+   (Example: `ssh abcdefghi5k-main-7rqtwti--app@ssh.us-2.platform.sh`)
 1. Enter the command into a terminal.
 
 Note that if you have just added your SSH key,

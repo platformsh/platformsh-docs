@@ -33,7 +33,7 @@ Drupal FAQs, how-to guides and other tutorials right on [Platform.sh Community](
 
 [eZ Platform](https://ezplatform.com/) is a CMS based on the Symfony full-stack framework. eZ Platform comes pre-configured for use with Platform.sh for versions 1.13 and later, all it takes is mapping a few environment variables to an existing project. Consult the caching, configuration, and local development best practices for eZ Platform and Fastly integration for more information.
 
-* [Ibexa DXP Best Practices](/frameworks/ibexa/_index.md)
+* [Ibexa DXP Best Practices](../../guides/ibexa/deploy.md)
 
 ### Example Projects
 

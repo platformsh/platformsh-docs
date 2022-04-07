@@ -3,7 +3,7 @@ title: "Organizations"
 weight: -1
 sidebarTitle: "Organizations"
 description: |
-  Organizations allow to manage your Platform.sh projects, users and billing.
+  Organizations allow you to manage your Platform.sh projects, users, and billing.
 ---
 
 {{< description >}}

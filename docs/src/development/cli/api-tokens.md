@@ -112,10 +112,11 @@ To run a cron only on the production environment, wrap it in an if-check on the 
 crons:
     backup:
         spec: '0 5 * * *'
-        cmd: |
-            if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-                platform backup:create --yes --no-wait
-            fi
+        commands:
+            start: |
+                if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
+                   platform backup:create --yes --no-wait
+                fi
 ```
 
 {{< note >}}

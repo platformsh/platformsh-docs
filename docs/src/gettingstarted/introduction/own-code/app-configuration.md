@@ -62,7 +62,7 @@ markdownify=false
 
 The `.platform.app.yaml` file is extremely flexible, and can contain many lines with very fine-grained control over your application. At the very least, Platform.sh requires three principle attributes in this file to control your builds:
 
-* `name`: The [name of your application](../../../configuration/app/app-reference.md) container does not have to be the same as your project name, and in most single application cases you can simply name it `app`. You should notice in the next step, when you configure how requests are handled in `.platform/routes.yaml` that `name` is reused there, and it is important that they are the same.
+* `name`: The [name of your application](../../../configuration/app/app-reference.md) container does not have to be the same as your project name, and in most single application cases you can name it `app`. You should notice in the next step, when you configure how requests are handled in `.platform/routes.yaml` that `name` is reused there, and it is important that they are the same.
 
   {{< note >}}
 
@@ -95,7 +95,7 @@ There are a few additional keys in `.platform.app.yaml` you will likely need to 
 
 * [Build and deploy tasks](../../../overview/build-deploy.md): There are a number of ways in which your Git repository is turned into a running application. In general, the build process will run the build flavor, install dependencies, and then execute the build hook you provide. When the build process is completed, the deploy process will run the deploy hook.
 
-   * `build`: The `build` key defines what happens during the build process using the `flavor` property. This is a common inclusion for PHP and Node.js applications, so check the [the documentation](/configuration/app/app-reference.md#build) to see if your configuration requires this key.
+   * `build`: The `build` key defines what happens during the build process using the `flavor` property. This is a common inclusion for PHP and Node.js applications, so check the [documentation](/configuration/app/app-reference.md#build) to see if your configuration requires this key.
    * `dependencies`: This key makes it possible to install system-level [dependencies](/configuration/app/app-reference.md#dependencies) as part of the build process.
    * `hooks`: [Hooks](../../../configuration/app/hooks/_index.md) define custom scripts that you want to run at different points during the deployment process.
       * `build`: The [build hook](../../../configuration/app/hooks/hooks-comparison.md#build-hook) is run after the build flavor if that is present. The file system is fully writable, but no services and only a subset of variables are available at this point. The full list of build time and runtime variables is available on the [variables section](../../../development/variables/_index.md) of the public documentation.
@@ -104,8 +104,8 @@ There are a few additional keys in `.platform.app.yaml` you will likely need to 
 
 * `web`: The `web` key configures the web server through a single web instance container running a single Nginx server process, behind which runs your application.
 
-    * `commands`: Defines the [command](/configuration/app/app-reference.md#commands) to actually launch the application. The `start` key launches your application. In all languages except for PHP, `web.commands.start` should be treated as required. For PHP, you will instead need to define a script name in `passthru`, described below in `locations`.
-    * `locations`: Allows you to control how the application container responds to incoming requests at a very fine-grained level. The simplest possible [locations](/configuration/app/app-reference.md#locations) configuration is one that simply passes all requests on to your application unconditionally:
+    * `commands`: Defines the [command](/configuration/app/app-reference.md#web-commands) to actually launch the application. The `start` key launches your application. In all languages except for PHP, `web.commands.start` should be treated as required. For PHP, you instead need to define a script name in `passthru`, described below in `locations`.
+    * `locations`: Allows you to control how the application container responds to incoming requests at a very fine-grained level. The simplest possible [locations](/configuration/app/app-reference.md#locations) configuration is one that passes all requests on to your application unconditionally:
 
       ```yaml
       web:
@@ -114,7 +114,7 @@ There are a few additional keys in `.platform.app.yaml` you will likely need to 
                   passthru: true
       ```
 
-      The above configuration forwards all requests to `/*` to the process started by `web.commands.start`. In the case of PHP containers, `passthru` must specify what PHP file to forward the request to, as well as the docroot under which the file lives. For example,
+      The above configuration forwards all requests to `/*` to the process started by `web.commands.start`. In the case of PHP containers, `passthru` must specify what PHP file to forward the request to, as well as the document root under which the file lives. For example,
 
       ```yaml
       web:
@@ -146,7 +146,7 @@ Each language and framework may have additional attributes that you will need to
 
 * **Language-specific templates for Platform.sh Projects:**
 
-  Compare the `.platform.app.yaml` file from the simple template above to other templates when writing your own.
+  Compare the `.platform.app.yaml` file from the template above to other templates when writing your own.
 
 {{< /note >}}
 

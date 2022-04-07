@@ -44,7 +44,7 @@ and turn off those on by default with the `disabled_extensions` key.
 | `dba`             |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `dom`             |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `enchant`         | Avail | Avail | Avail | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
-| `event`           |       |       |       |       | Avail | Avail | Avail | Avail | Avail |       |
+| `event`           |       |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail |
 | `exif`            |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `ffi`             |       |       |       |       |       |       |       | Avail | Avail | Avail |
 | `fileinfo`        |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
@@ -76,7 +76,7 @@ and turn off those on by default with the `disabled_extensions` key.
 | `mysql`           | Def   | Def   | Def   |       |       |       |       |       |       |       |
 | `mysqli`          | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `mysqlnd`         | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
-| `newrelic`        |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |       |
+| `newrelic`        |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `oauth`           |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `odbc`            | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `opcache`         |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
@@ -115,7 +115,7 @@ and turn off those on by default with the `disabled_extensions` key.
 | `sysvsem`         |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `sysvshm`         |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `tideways`        |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
-| `tideways-xhprof` |       |       |       | Avail | Avail | Avail | Avail | Avail |       |       |
+| `tideways_xhprof` |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `tidy`            | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `tokenizer`       |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `uuid`            |       |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail |
