@@ -39,6 +39,7 @@ Ibexa
 imagetragick
 jpegoptim
 Lando
+Loggly
 Lucene
 Magento
 Mailchimp
@@ -60,6 +61,7 @@ Opigno
 Opsgenie
 optipng
 Packagist
+Papertrail
 Payara
 Pixelant
 pngcrush

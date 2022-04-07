@@ -7,7 +7,7 @@ description: |
     Review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for Gatsby.
 ---
 
-{{< guides/config-desc name="Gatsby" >}}
+{{< guides/config-desc name="Gatsby" noService=true >}}
 
 ## Requests configuration: `routes.yaml`
 
@@ -15,9 +15,7 @@ description: |
 
 ## Service configuration: `services.yaml`
 
-The `services.yaml` file lists the pre-packaged services you need for your application to run. You pick the major version of the service, and Platform.sh updates the patch version periodically so that you always get the newest version when you deploy.
-
-Gatsby does not require services to deploy, so you can leave the `services.yaml` file empty for now. You can add [other services](/configuration/services/_index.md) if desired, such as [Solr](/configuration/services/solr.md) or [Elasticsearch](/configuration/services/elasticsearch.md). You will need to configure Gatsby to use those services as well once the service is enabled.
+{{% guides/config-service name=Gatsby noService=true /%}}
 
 ## Application container: `.platform.app.yaml`
 
