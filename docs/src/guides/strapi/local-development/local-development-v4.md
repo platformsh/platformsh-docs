@@ -156,7 +156,7 @@ If you have already pushed your code to Platform.sh, then you should already hav
   platform tunnel:open -A <app name>
   ```
 
-- In a situation where you see `The pcntl PHP extension is required` error after runnung the above command, you need to use this command instead.
+- In a situation where you see `The pcntl PHP extension is required` error after running the above command, you need to use this command instead.
 
   ```bash
   platform single:open -A <app name>
