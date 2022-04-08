@@ -39,6 +39,7 @@ Ibexa
 imagetragick
 jpegoptim
 Lando
+Loggly
 Lucene
 Magento
 Mailchimp
@@ -60,12 +61,14 @@ Opigno
 Opsgenie
 optipng
 Packagist
+Papertrail
 Payara
 Pixelant
 pngcrush
 preprocessor
 preload[ing]?
 progs
+proxied
 Pthreads
 plaintext
 Quarkus
@@ -90,7 +93,10 @@ Tomitribe
 transclusion
 [Uu]ncomment
 unencrypted
+unmerged
 [Uu]nmount
+[Uu]ntrusted
+Verisign
 webpack
 Xdebug
 Zend

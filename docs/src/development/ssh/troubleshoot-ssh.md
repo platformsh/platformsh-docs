@@ -109,12 +109,13 @@ file=none
 highlight=false
 ---
 
-1. In the console, open the user menu (your name or profile picture).
-1. Click **Security**.
-1. Click **Set up application**.
-1. Follow the instructions for the chosen authentication app.
-1. Click **Verify & save**.
-1. Refresh your SSH credentials by running `platform login -f` in the CLI.
+1. Open the user menu (your name or profile picture).
+2. Click **My profile**
+3. Click **Security**.
+4. Click **Set up application**.
+5. Follow the instructions for the chosen authentication app.
+6. Click **Verify & save**.
+7. Refresh your SSH credentials by running `platform login -f` in the CLI.
 
 {{< /codetabs >}}
 
