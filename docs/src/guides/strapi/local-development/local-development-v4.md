@@ -18,7 +18,6 @@ You can run your Strapi v4 application locally with all of it’s services by fo
 {{< note >}}
 If you have already pushed your code to Platform.sh, then you should already have a local repository that you can build from. Otherwise, it will be necessary to download a local copy of your project first.
 {{< /note >}}
-\*\*
 
 - In all cases for developing with Platform.sh, it's important to develop in an isolated environment - do not open SSH tunnels to your production environment when developing locally. Branch out of your main branch by running the following command:
 
@@ -154,7 +153,6 @@ If you have already pushed your code to Platform.sh, then you should already hav
   - Make sure to read and take note of the comments in the example above.
   - For the next steps below, you may need to include the CLI flags -p `PROJECT_ID` and -e `ENVIRONMENT_ID` if you are not in the project directory or if the environment is associated with an existing pull request.
 
-
 - Open a SSH tunnel to the environment's database.
 
   ```bash
@@ -184,6 +182,6 @@ If you have already pushed your code to Platform.sh, then you should already hav
   yarn --frozen-lockfile
   yarn develop
   ```
-{{< note >}}
-Your `<app name> ` is the name of the app in your `.platform.app.yaml` file.
-{{< /note >}}
+  {{< note >}}
+  Your `<app name> ` is the name of the app in your `.platform.app.yaml` file.
+  {{< /note >}}
