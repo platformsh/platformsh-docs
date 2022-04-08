@@ -1,48 +1,42 @@
 ---
-title: "Local development instructions for Strapi v4"
-sidebarTitle: "Strapi v4"
-weight: -80
-toc: false
-description: |
-  How to build a Strapi v4 app locally.
+title: Develop locally with Strapi v4
+sidebarTitle: Strapi v4
+description: How to develop a Strapi v4 app locally.
 ---
 
-You can run your Strapi v4 application locally with all of its services by following these steps:
+To run your Strapi v4 app locally with all of its services, follow these steps:
 
-1. Download your deployed application code by running the following command using the Platform.sh CLI:
+1. Download your deployed code by running the following command using the Platform.sh CLI:
 
    ```bash
    platform get <PROJECT_ID>
    ```
 
-{{< note >}}
+2. Create a new branch.
+   Whenever you develop Platform.sh, you should develop in an isolated environment.
+   This way you aren't opening SSH tunnels to your production environment.
+   By creating a branch from your default environment,
+   you create a new environment with copies of all production code and data.
 
-If you've already pushed your code to Platform.sh, you should already have a local repository that you can build from.
-Otherwise, it will be necessary to download a local copy of your project first.
-
-{{< /note >}}
-
-1. In all cases for developing with Platform.sh, it's important to develop in an isolated environment.
-   Don't open SSH tunnels to your production environment when developing locally.
-   Branch out of your main branch by running the following command:
+   Create an isolated environment named `updates` by running the following command:
 
    ```bash
    platform environment:branch updates
    ```
 
-1. Modify your `database.js` file in the `config` folder to look like the following:
+   You can name the environment anything you want, just use the name you choose in later steps.
 
-   ```js
+3. Assuming you're using a PostgreSQL or MySQL database,
+   modify your database connection to look like the following:
+
+   ```js {location="config/database.js"}
    const path = require("path");
-
    let connection;
-   let db_relationship = "database";
-
-   // Helper function for decoding Platform.sh base64 encoded JSON variables.
+   let db_relationship = "postgresdatabase";
+   // Helper function for decoding Platform.sh base64-encoded JSON variables.
    function decode(value) {
      return JSON.parse(Buffer.from(value, "base64"));
    }
-
    if (!process.env.PLATFORM_RELATIONSHIPS) {
      if (process.env.PLATFORM_PROJECT) {
        console.log(
@@ -79,18 +73,17 @@ Otherwise, it will be necessary to download a local copy of your project first.
      let credentials = decode(process.env.PLATFORM_RELATIONSHIPS)[
        db_relationship
      ][0];
-
      // Option 1. PostgreSQL.
-     // On Platform.sh, PostgreSQL configuration assumes the following in your .platform/services.yaml file:
+     // The PostgreSQL configuration assumes the following in your .platform/services.yaml file:
      //
      // dbpostgres:
      //    type: postgresql:12
      //    disk: 256
      //
-     // As well as a relationship defined in your .platform.app.yaml file as follows:
+     // And a relationship defined in your .platform.app.yaml file as follows:
      //
      // relationships:
-     //    database: "dbpostgres:postgresql"
+     //    postgresdatabase: "dbpostgres:postgresql"
      if (credentials.scheme == "pgsql") {
        console.log("PostgreSQL detected.");
        let postgres_pool = {
@@ -118,13 +111,13 @@ Otherwise, it will be necessary to download a local copy of your project first.
          },
        };
        // Option 2. Oracle MySQL.
-       // On Platform.sh, Oracle MySQL configuration assumes the following in your .platform/services.yaml file:
+       // The Oracle MySQL configuration assumes the following in your .platform/services.yaml file:
        //
        // dbmysql:
        //    type: oracle-mysql:8.0
        //    disk: 256
        //
-       // As well as a relationship defined in your .platform.app.yaml file as follows:
+       // And a relationship defined in your .platform.app.yaml file as follows:
        //
        // relationships:
        //    database: "dbmysql:mysql"
@@ -146,40 +139,47 @@ Otherwise, it will be necessary to download a local copy of your project first.
        };
      }
    }
-
    // Export the connection to Strapi.
    module.exports = ({ env }) => connection;
    ```
 
-   The above config works only if you use a PostgreSQL or MySQL database service and a Strapi v4 application.
+   See the comments for explanations of individual sections.
 
-  **Note:**
+   If you have defined the relationship to your service differently (in `.platform.app.yaml`)
+   or are using a different service, use that name in place of `postgresdatabase`.
 
-  - Make sure to read and take note of the comments in the example above.
-  - For the following steps, you may need to include the CLI flags `-p <PROJECT_ID>` and `-e <ENVIRONMENT_ID>`
-    if you aren't in the project directory or if the environment is associated with an existing pull request.
-
-1. Open a SSH tunnel to the environment's database.
+4. Open a SSH tunnel to the environment's database:
 
    ```bash
-   platform tunnel:open -A strapi
+   platform tunnel:open -A <APP_NAME> -e updates
    ```
 
-1. Mock the environment variable that contains service credentials.
+   Replace `<APP_NAME>` with your app's `name` in your `.platform.app.yaml` file.
+
+   If you get the error `The pcntl PHP extension is required` error, use this command instead:
 
    ```bash
-   export PLATFORM_RELATIONSHIPS="$(platform tunnel:info -A strapi --encode)"
+   platform single:open -A <APP_NAME> -e updates
    ```
 
-1. Pull public/upload files from the environment.
+5. Add an environment variable that contains the service credentials:
 
    ```bash
-   platform mount:download -A strapi -m public/uploads --target public/uploads -y
+   export PLATFORM_RELATIONSHIPS="$(platform tunnel:info -A <APP_NAME> -e updates --encode)"
    ```
 
-1. Build and start the Strapi server.
-   
+6. Download all media uploads from the environment:
+
+   ```bash
+   platform mount:download -A <APP_NAME> -e updates -m public/uploads --target public/uploads -y
+   ```
+
+7. Build and start the Strapi server:
+
    ```bash
    yarn --frozen-lockfile
    yarn develop
    ```
+
+Now your Strapi app should be running locally with a connection to a remote database
+that's separate from your production database.
