@@ -18,7 +18,7 @@ You can run your Strapi v4 application locally with all of it’s services by fo
 {{< note >}}
 If you have already pushed your code to Platform.sh, then you should already have a local repository that you can build from. Otherwise, it will be necessary to download a local copy of your project first.
 {{< /note >}}
-**
+\*\*
 
 - In all cases for developing with Platform.sh, it's important to develop in an isolated environment - do not open SSH tunnels to your production environment when developing locally. Branch out of your main branch by running the following command:
 
@@ -32,7 +32,7 @@ If you have already pushed your code to Platform.sh, then you should already hav
   const path = require("path");
 
   let connection;
-  let db_relationship = "database";
+  let db_relationship = "postgresdatabase";
 
   // Helper function for decoding Platform.sh base64 encoded JSON variables.
   function decode(value) {
@@ -154,22 +154,29 @@ If you have already pushed your code to Platform.sh, then you should already hav
   - Make sure to read and take note of the comments in the example above.
   - For the next steps below, you may need to include the CLI flags -p `PROJECT_ID` and -e `ENVIRONMENT_ID` if you are not in the project directory or if the environment is associated with an existing pull request.
 
+
 - Open a SSH tunnel to the environment's database.
 
   ```bash
-  platform tunnel:open -A strapi
+  platform tunnel:open -A <app name>
+  ```
+
+- In a situation where you see `The pcntl PHP extension is required` error after runnung the above command, you need to use this command instead.
+
+  ```bash
+  platform single:open -A <app name>
   ```
 
 - Mock environment variable that contains service credentials.
 
   ```bash
-  export PLATFORM_RELATIONSHIPS="$(platform tunnel:info -A strapi --encode)"
+  export PLATFORM_RELATIONSHIPS="$(platform tunnel:info -A <app name> --encode)"
   ```
 
 - Pull public/uploads files from the environment.
 
   ```bash
-  platform mount:download -A strapi -m public/uploads --target public/uploads -y
+  platform mount:download -A <app name> -m public/uploads --target public/uploads -y
   ```
 
 - Build and start the Strapi server
@@ -177,5 +184,6 @@ If you have already pushed your code to Platform.sh, then you should already hav
   yarn --frozen-lockfile
   yarn develop
   ```
-
-  
+{{< note >}}
+Your `<app name> ` is the name of the app in your `.platform.app.yaml` file.
+{{< /note >}}
