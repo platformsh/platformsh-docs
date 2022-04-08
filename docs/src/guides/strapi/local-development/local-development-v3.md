@@ -1,10 +1,7 @@
 ---
-title: "Local development instructions for Strapi v3"
-sidebarTitle: "Strapi v3"
-weight: -70
-toc: false
-description: |
-  How to build a Strapi v3 app locally.
+title: Develop locally with Strapi v3
+sidebarTitle: Strapi v3
+description: How to develop a Strapi v3 app locally.
 ---
 
 You can run your Strapi v3 app locally with all of its services.
