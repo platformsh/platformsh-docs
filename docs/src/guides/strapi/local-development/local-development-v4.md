@@ -185,4 +185,4 @@ If you have already pushed your code to Platform.sh, then you should already hav
 
   - Your `<app name> ` is the name of the app in your `.platform.app.yaml` file.
 
-  - In your database.js file, you'll need to change the "postgresdatabase" variable to the correct relationship name in your `services.yaml` file if you're using a databse other than Postgres.
+  - In your database.js file, you need to change the "postgresdatabase" variable to the correct relationship name in your `services.yaml` file if you plan to use another database.
