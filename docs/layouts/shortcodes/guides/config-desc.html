@@ -17,4 +17,16 @@
 $ touch .platform.app.yaml && mkdir -p .platform && touch .platform/routes.yaml && touch .platform/services.yaml</code></pre>
 </div>
 
+{{ if isset .Params "platformify" }}
+<p>You can also rely on the platformify script to initialize those files. Only the missing files will be downloaded locally from the official template. The pre-existing ones will be left untouched.</p>
+
+<div class="highlight">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Platformify your application and automatically download the missing configuration files</span>
+$ sh <( curl -s 'https://raw.githubusercontent.com/platformsh/snippets/main/src/platformify.sh' ) -t {{ .Get "platformify" }}</code></pre>
+</div>
+
+<p>When ran on an empty folder, the whole template can be downloaded locally.</p>
+{{ end }}
+
+
 <p>Now that you've added these files to your project, you can go through and configure each of them for {{ .Get "name" }} one by one in the sections below. Each section covers a particular configuration file, defines what each attribute configures, and then shows a final code snippet that includes the recommended configuration for {{ .Get "name" }} pulled from its template. Within that snippet, be sure to read each of the comments as they provide additional information and reasoning for why {{ .Get "name" }} requires those values.</p>
