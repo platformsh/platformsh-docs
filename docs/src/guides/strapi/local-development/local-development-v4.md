@@ -175,10 +175,14 @@ If you have already pushed your code to Platform.sh, then you should already hav
   ```
 
 - Build and start the Strapi server
+
   ```bash
   yarn --frozen-lockfile
   yarn develop
   ```
-  {{< note >}}
-  Your `<app name> ` is the name of the app in your `.platform.app.yaml` file.
-  {{< /note >}}
+
+  **Note:**
+
+  - Your `<app name> ` is the name of the app in your `.platform.app.yaml` file.
+
+  - In your database.js file, you'll need to change the "postgresdatabase" variable to the correct relationship name in your `services.yaml` file if you're using a databse other than Postgres.
