@@ -37,16 +37,14 @@ Once [this issue](https://www.drupal.org/project/drupal/issues/2876675) is resol
 
 If you are using the latest version of Search API Solr and running Drupal 8.8 or higher on PHP 7.2 or higher, this step is no longer necessary. You should be able to proceed directly to the next step.
 
-{{% endpoint-description type="solr" sectionLink="/configuration/services/solr.html#solr-6-and-later" multipleText="cores" noApp=true /%}}
+### 1. Configure the service
 
-### 4. Configure the server core
-
-Update the Solr server to have a single core (`maincore`) with the default configuration.
+Configure the Solr server to have a single core (`maincore`) with the default configuration.
 (This default isn't suitable for production, but enables connections.)
 And define a single endpoint (`main`) that connects to this core.
 
 ```yaml {location=".platform/services.yaml"}
-solrsearch:
+searchsolr:
     type: solr:8.6
     disk: 1024
     configuration:
@@ -57,7 +55,16 @@ solrsearch:
                 core: maincore
 ```
 
-### 5. Add the Drupal modules
+### 2. Add the relationship
+
+Use the `main` endpoint to define the relationship.
+
+```yaml {location=".platform.app.yaml"}
+relationships:
+    solrsearch: "searchsolr:main"
+```
+
+### 3. Add the Drupal modules
 
 You will need to add the [Search API](https://www.drupal.org/project/search_api) and [Search API Solr](https://www.drupal.org/project/search_api_solr) modules to your project. If you are using Composer to manage your Drupal site (which we recommend), run:
 
@@ -67,7 +74,7 @@ $ composer require drupal/search_api_solr
 
 And then commit the changes to `composer.json` and `composer.lock`.
 
-### 6. Add auto-configuration code to `settings.platformsh.php`
+### 4. Add auto-configuration code to `settings.platformsh.php`
 
 The configuration can be managed from `settings.platformsh.php` by adding the following code snippet.
 It will override the environment-specific parts of the configuration object with the correct values to connect to the Platform.sh Solr instance.
@@ -116,13 +123,13 @@ If you are connecting to multiple Solr cores, repeat the second block above for 
 
 Commit all of the changes above and then push to deploy.
 
-### 7. Enable the modules
+### 5. Enable the modules
 
 Once the site is deployed, go to the `/admin/modules` page and enable the "Search API Solr" module.
 Also enable the "Search API Solr Search Defaults" module in order to get a default server configuration.
 If you would rather create one yourself you may do so but then you must change the value of `$solr_server_name` in the code snippet in `settings.platformsh.php`.
 
-### 8. Export and modify configuration
+### 6. Export and modify configuration
 
 In the Drupal admin area, go to `/admin/config/search/search-api` and select your server.
 (If you used the Search Defaults module, it will be named "Solr Server").
@@ -142,7 +149,7 @@ Finally, move that directory to `.platform/`, and update the `maincore.conf_dir`
 The `services.yaml` entry should now look approximately like this:
 
 ```yaml {location=".platform/services.yaml"}
-solrsearch:
+searchsolr:
     type: solr:8.6
     disk: 1024
     configuration:
@@ -161,7 +168,7 @@ If you change your Solr configuration in Drupal, say to change the Solr field co
 If so, repeat this entire step.
 {{< /note >}}
 
-### 9. Verify that it worked
+### 7. Verify that it worked
 
 Return to the Drupal UI for your server page.
 After deploying and reloading the page, the "Core Connection" field should now read "The Solr core could be accessed".
