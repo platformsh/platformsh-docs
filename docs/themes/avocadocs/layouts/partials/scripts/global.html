@@ -3,3 +3,7 @@
 <script src="{{ "docsuikit/assets/vendor/jquery-migrate/dist/jquery-migrate.min.js" | relURL }}"></script>
 <!-- <script src="{{ "docsuikit/assets/vendor/popper.js/dist/umd/popper.min.js" | relURL }}"></script> -->
 <script src="{{ "docsuikit/assets/vendor/bootstrap/dist/js/bootstrap.min.js" | relURL }}"></script>
+{{ if (.Params.mermaid) }}
+<!-- MermaidJS support -->
+<script async src="https://unpkg.com/mermaid@9.0.0/dist/mermaid.min.js"></script>
+{{ end }}
