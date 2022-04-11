@@ -151,8 +151,8 @@ The following labels are also possible:
 
 | Emoji | `:code:`              | Meaning      | Can merge  | Description |
 | ----- | --------------------- | ------------ | ---------- | ----------- |
-| 💡    | `:bulb:`              | Thought      | To introduce an idea that came up from reviewing. More general than a suggestion and not focused on the details. Doesn't block merging by default, but can lead to more discussion. |
-| 🧹    | `:broom:`             | Chore        | For small process tasks that need to be done before merging. |
+| 💡    | `:bulb:`              | Thought      | ▶️          | To introduce an idea that came up from reviewing. More general than a suggestion and not focused on the details. Doesn't block merging by default, but can lead to more discussion. |
+| 🧹    | `:broom:`             | Chore        | 🚫         | For small process tasks that need to be done before merging. |
 
 The following decorations can be added for further clarification (to override default of blocking or not):
 
