@@ -20,7 +20,7 @@ When Composer's autoload is included, this library is activated and the environm
 composer require platformsh/laravel-bridge
 ```
 
-Make sure to clear the cache on relevant platform.sh environments afterwards.
+Make sure to clear the cache on relevant Platform.sh environments afterwards.
 
 ``` bash
 php artisan optimize:clear
