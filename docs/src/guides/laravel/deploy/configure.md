@@ -2,7 +2,6 @@
 title: "Configure Laravel for Platform.sh"
 sidebarTitle: "Configure"
 weight: -100
-toc: false
 description: |
   Review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for Laravel.
 ---
@@ -25,4 +24,6 @@ description: |
 
 {{< /guides/config-app >}}
 
-{{< guide-buttons next="Deploy Laravel" >}}
+Now that you have Laravel configured, connect it with Laravel Bridge.
+
+{{< guide-buttons next="Connect to Platform.sh" >}}

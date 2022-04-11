@@ -1,13 +1,10 @@
 ---
-title: "Local development instructions for DDEV"
-sidebarTitle: "DDEV"
-weight: -70
-toc: false
-description: |
-  Local development of your Laravel application with **DDEV**.
+title: Develop locally with DDEV
+sidebarTitle: DDEV
+description: Develop your Laravel app locally with **DDEV**, a tool for local PHP development environments based on Docker containers.
 ---
 
-[DDEV](https://ddev.com/) is a development platform for PHP based on Docker containers.
+[DDEV](https://ddev.com/) is a tool for local PHP development environments based on Docker containers.
 
-Read the [official integration documentation](https://ddev.readthedocs.io/en/stable/users/providers/platform/)
-to learn more about how to run your Laravel application in a local ddev-managed environment.
+To learn more about how to run your Laravel app in a local DDEV-managed environment,
+see the [official integration documentation](https://ddev.readthedocs.io/en/stable/users/providers/platform/).
