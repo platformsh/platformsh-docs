@@ -8,7 +8,7 @@
     {{ $logolinksto = .Site.Params.logolinksto }}
   {{ end }}
 
-  <a class="navbar-brand bg-md-primary-darker col-md-3 col-xl-2 mr-0 py-4" href="{{ $logolinksto }}">
+  <a class="navbar-brand bg-primary-darker col-md-3 col-xl-2 mr-0 py-4" href="{{ $logolinksto }}">
 
     <img class="mr-0" src="{{ .Site.Params.logo | relURL }}" style="max-width: 175px;" {{ if isset .Site.Params.meta "sitename" }}alt="{{ .Site.Params.meta.sitename }}"{{ end }}>
 

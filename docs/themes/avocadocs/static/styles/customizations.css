@@ -815,16 +815,6 @@ body {
   background-color: var(--sidebar-bg-color) !important;
 }
 
-.bg-primary-darker {
-  background-color: var(--sidebar-bg-logo);
-}
-
-@media (min-width: 768px) {
-  .bg-md-primary-darker {
-    background-color: var(--sidebar-bg-logo);
-  }
-}
-
 .bg-primary {
   background-color: var(--top-bg-color) !important;
 }
