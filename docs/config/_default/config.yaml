@@ -13,7 +13,6 @@ pygmentsUseClasses: true
 # Language settings
 languages:
   en:
-    contentDir: src
     languageName: English
     weight: 10
 
@@ -34,3 +33,13 @@ markup:
     goldmark:
         renderer:
             unsafe: true
+
+module:
+    mounts:
+        - source: "node_modules/mermaid/dist"
+          target: "static/mermaid"
+        - source: "src"
+          target: "content"
+          lang: "en"
+        - source: "static"
+          target: "static"
