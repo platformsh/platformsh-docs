@@ -15,6 +15,7 @@ Cloudwatt
 CMS
 [Cc]onfig
 [Cc]ron
+DDEV
 denylist
 Docksal
 Drush
@@ -39,6 +40,7 @@ Ibexa
 imagetragick
 jpegoptim
 Lando
+Laravel
 Loggly
 Lucene
 Magento

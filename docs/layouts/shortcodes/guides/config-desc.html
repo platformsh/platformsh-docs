@@ -13,9 +13,22 @@
 
 <p>You can start by creating empty versions of each of these files in your repository:</p>
 
-<div class="highlight">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Create empty Platform.sh configuration files</span>
-$ touch .platform.app.yaml && mkdir -p .platform && touch .platform/routes.yaml {{ if not (.Get "noService") }}&& touch .platform/services.yaml{{end}}</code></pre>
-</div>
+{{ $configComment := "# Create empty Platform.sh configuration files" }}
+{{ $configContent := "touch .platform.app.yaml && mkdir -p .platform && touch .platform/routes.yaml" }}
+{{ $configContent2 := "" }}
+{{ if not (.Get "noService") }}
+    {{ $configContent2 := printf "&& touch .platform/services.yaml" }}
+{{ end }}
+{{- highlight (printf "%s\n%s%s" $configComment $configContent $configContent2 ) "bash" "" -}}
+
+{{ if isset .Params "platformify" }}
+<p>Alternatively, you could use the <code>platformify</code> script to initialize these files. This script downloads any missing files from the official template. It doesn't affect any files you already created.</p>
+
+{{ $platformifyComment := "# Platformify your application and automatically download the missing configuration files" }}
+{{ $platformifyContent := printf "sh <( curl -s 'https://raw.githubusercontent.com/platformsh/snippets/main/src/platformify.sh' ) -t %s" (.Get "platformify") }}
+{{- highlight (printf "%s\n%s" $platformifyComment $platformifyContent ) "bash" "" -}}
+
+<p>When run on an empty folder, the entire template can be downloaded locally.</p>
+{{ end }}
 
 <p>Now that you've added these files to your project, you can go through and configure each of them for {{ $name }} one by one in the sections below. Each section covers a particular configuration file, defines what each attribute configures, and then shows a final code snippet that includes the recommended configuration for {{ $name }} pulled from its template. Within that snippet, be sure to read each of the comments as they provide additional information and reasoning for why {{ $name }} requires those values.</p>

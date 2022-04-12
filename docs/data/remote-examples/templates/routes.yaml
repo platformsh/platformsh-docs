@@ -16,3 +16,4 @@ repos:
     - wordpress-composer
     - typo3
     - strapi4
+    - laravel
