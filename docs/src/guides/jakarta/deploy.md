@@ -1,5 +1,6 @@
 ---
-title: Get started
+title: "How to Deploy Jakarta on Platform.sh"
+sidebarTitle: "Get started"
 weight: 5
 ---
 
