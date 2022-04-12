@@ -1,5 +1,6 @@
 ---
-title: Get started
+title: Deploy Ibexa DXP on Platform.sh
+sidebarTitle: Get started
 weight: -10
 description: Learn how to use Ibexa DXP on Platform.sh.
 ---
