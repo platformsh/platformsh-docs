@@ -12,13 +12,14 @@ Within the console, metrics can be found for an environment under **Metrics**.
 
 The information under **Metrics** shows usage metrics for:
 
-* [Dedicated environments](../../dedicated/overview/_index.md):
-  each of the three hosts in your [N+1 configuration](../../dedicated/architecture/_index.md) and their average
+[Dedicated environments](../../dedicated/overview/_index.md):
+each of the three hosts in your [N+1 configuration](../../dedicated/architecture/_index.md) and their average.
 
-  ![A screenshot of what the metrics dashboard displays for Dedicated environments](/images/metrics/all-dedicated.png "0.45")
-* Grid environments: for the average of your service and app containers
+![A screenshot of what the metrics dashboard displays for Dedicated environments](/images/metrics/all-dedicated.png "0.45")
 
-  ![A screenshot of what the metrics dashboard displays for Grid environments](/images/metrics/all-grid.png "0.45")
+Grid environments: for the average of your service and app containers.
+
+![A screenshot of what the metrics dashboard displays for Grid environments](/images/metrics/all-grid.png "0.45")
 
 ## Default thresholds
 
