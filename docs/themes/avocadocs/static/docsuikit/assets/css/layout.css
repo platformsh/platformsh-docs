@@ -326,6 +326,14 @@ h4:hover .duik-anchorjs-link {
   }
 }
 
+.sidebar__book-heading {
+  font-weight: 700;
+  font-size: 16px;
+  margin: 0.5rem;
+  padding: 1rem 10px;
+  background-color: var(--ghost-white);
+}
+
 .sidebar__heading-wrapper {
   display: flex;
   justify-content: space-between;

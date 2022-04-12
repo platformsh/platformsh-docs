@@ -1,0 +1,101 @@
+<!-- SECTION HEADING -->
+{{ $sectionHeading := printf "section-%s" .Context.Title | urlize }}
+<!-- Get rid of dots like in Platform.sh -->
+{{ $sectionHeading = replace $sectionHeading "." "" }}
+
+{{ $isCurrentSection := false }}
+{{ $currentSection := .Context.Section }}
+<!-- For Stacks and Get started, get the next level down for the section-->
+{{ if or ( eq $currentSection "guides" ) ( eq $currentSection "gettingstarted" ) }}
+  {{ $pageName := index ( split .Context.RelPermalink "/" ) 2 }}
+  {{ $currentSection = replace $pageName ".html" "" }}
+{{ end }}
+{{ $currentPage := .CurrentPage }}
+{{ with $currentPage.File }}
+  <!-- If on home page or in the current section -->
+  {{ if or (and ($currentPage.IsHome) ( eq $currentSection "overview" )) ( hasPrefix . $currentSection ) ( hasPrefix ( replace . "gettingstarted/" "") $currentSection ) ( hasPrefix ( replace . "guides/" "") $currentSection ) }}
+    {{ $isCurrentSection = true }}
+  {{ end }}
+{{ end }}
+<div>
+  <div class="sidebar__heading-wrapper sidebar__heading-wrapper-section">
+    <h4 class="duik-sidebar__heading">{{ .Context.Title }}</h4>
+    <!-- Add button for expanding -->
+    {{ partial "navigation/sidebar/expand-button" (dict "itemID" $sectionHeading "isCurrentSection" $isCurrentSection )}}
+  </div>
+  <ul class="duik-sidebar__nav dropdown-menu{{ if eq $isCurrentSection true }} show{{ end }}" aria-labelledby="nav-expand-{{ .Context.Title | urlize }}" id="{{ $sectionHeading }}">
+
+  <!-- Add the homepage as the first entry of the first section -->
+
+  {{ if eq "overview" .Context.Section }}
+
+    <!-- FIRST LEVEL ITEM -->
+    <li class="duik-sidebar__item">
+      <div class="sidebar__heading-wrapper sidebar__heading-wrapper-first-level">
+        <a href="/" class="duik-sidebar__link{{ if $currentPage.IsHome }} active{{ end }}">
+            {{ .Context.Site.Home.Title }}
+        </a>
+      </div>
+    </li>
+
+  {{ end }}
+
+  <!-- Loop through pages in the section -->
+  {{ range .Context.Pages }}
+    {{ $itemTitle := .Title }}
+    {{ if isset .Params "sidebartitle" }}
+      {{ $itemTitle = .Params.sidebarTitle }}
+    {{ end }}
+    {{ $itemId := ( $itemTitle | urlize ) }}
+
+
+    <!-- FIRST LEVEL ITEM -->
+    <!-- Check if current page is in this hierarchy -->
+    {{ $levelTwoPages := .Pages }}
+    {{ if or (eq $currentPage .Parent) (in $levelTwoPages $currentPage ) ( eq $currentPage . ) }}
+      {{ $isCurrentSection = true }}
+    {{ else }}
+      {{ $isCurrentSection = false }}
+    {{ end }}
+
+    <li class="duik-sidebar__item">
+      <div class="sidebar__heading-wrapper sidebar__heading-wrapper-first-level">
+        <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if $isCurrentSection }} active{{ end }}">
+            {{ $itemTitle }}
+        </a>
+
+        <!-- If this item has children -->
+        {{ if eq .Kind "section"}}
+
+          <!-- Add button for expanding -->
+          {{ partial "navigation/sidebar/expand-button" (dict "itemID" $itemId "isCurrentSection" $isCurrentSection )}}
+      </div>
+          <ul class="duik-sidebar__nav dropdown-menu second-level{{ if eq $isCurrentSection true }} show{{ end }}" aria-labelledby="nav-expand-{{ .Title | urlize }}" id="{{ $itemTitle | urlize }}">
+
+            <!-- Loop through children -->
+            {{ range $levelTwoPages }}
+
+              {{ if not ( isset .Params "sidebarIgnore" )}}
+                <!-- SECOND LEVEL ITEM -->
+                <li class="duik-sidebar__item">
+                  <div class="sidebar__heading-wrapper sidebar__heading-wrapper-second-level">
+                    <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if eq $currentPage . }} active{{ end }}">
+                        {{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle }}{{ else }}{{ .Title }}{{ end }}
+                    </a>
+                  </div>
+                </li>
+              {{ end }}
+            {{ end }}
+
+          </ul>
+        {{ else }}
+      </div>
+        {{ end }}
+
+  </li>
+
+  {{ end }}
+
+
+  </ul>
+</div>

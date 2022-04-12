@@ -1,11 +1,25 @@
-{{ $bookKeys := slice "" }}
-{{ range $bookPath, $bookParams := .Site.Params.books }}
-  {{ $bookKeys = $bookKeys | append $bookPath }}
-{{ end }}
+{{ $books := .Site.Params.books}}
+{{ $currentSection := .Section }}
+{{ $currentContext := . }}
 
-{{ if and (ne .Section "") (in $bookKeys .Section)}}
-  <!-- Use 'book' template for books defined in params.yaml, since Hugo doesn't know about sub-sections -->
-  {{ partial "navigation/sidebar/books/book" ( dict "context" . "books" $bookKeys ) }}
-{{ else }}
-  {{ partial "navigation/sidebar/books/main" ( dict "context" . "books" $bookKeys ) }}
+<!-- Loop through books -->
+{{ range $books}}
+  {{ $inCurrentBook := false }}
+  <!-- For books that have only one directory, check if the current directory matches the book -->
+  {{ if or (eq .section "guides" ) (eq .section "gettingstarted" ) }}
+    {{ if eq .section $currentSection }}
+      {{ $inCurrentBook = true }}
+    {{ else }}
+      {{ $inCurrentBook = false }}
+    {{ end }}
+  <!-- For the rest, check that the current directory doesn't match the books above -->
+  {{ else }}
+    {{ if and (ne $currentSection "guides" ) (ne $currentSection "gettingstarted" )}}
+      {{ $inCurrentBook = true }}
+    {{ end }}
+  {{ end }}
+  <div class="sidebar__book-heading{{ if $inCurrentBook }} active{{ end }}">
+    {{ .title }}
+  </div>
+  {{ partial "navigation/sidebar/book" ( dict "context" $currentContext "currentBook" .section ) }}
 {{ end }}
