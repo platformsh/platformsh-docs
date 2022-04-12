@@ -22,7 +22,7 @@
 {{- highlight (printf "%s\n%s%s" $configComment $configContent $configContent2 ) "bash" "" -}}
 
 {{ if isset .Params "platformify" }}
-<p>Alternatively, you could use the <code>platformify</code> script to initialize these files. This script downloads any missing files from the official template. Any files you already have are left untouched.</p>
+<p>Alternatively, you could use the <code>platformify</code> script to initialize these files. This script downloads any missing files from the official template. It doesn't affect any files you already created.</p>
 
 {{ $platformifyComment := "# Platformify your application and automatically download the missing configuration files" }}
 {{ $platformifyContent := printf "sh <( curl -s 'https://raw.githubusercontent.com/platformsh/snippets/main/src/platformify.sh' ) -t %s" (.Get "platformify") }}

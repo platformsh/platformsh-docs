@@ -1,8 +1,8 @@
 ---
-title: "Local development: Running Laravel on your local machine"
+title: Run a Laravel app on your local machine
 sidebarTitle: Local development
 weight: -80
-description: Run your Laravel application deployed on Platform.sh on your local machine.
+description: Run your Laravel app deployed on Platform.sh on your local machine.
 ---
 
 Platform.sh provides support for locally running a Laravel app

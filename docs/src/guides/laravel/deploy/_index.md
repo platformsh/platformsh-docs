@@ -1,6 +1,6 @@
 ---
-title: "How to deploy Laravel on Platform.sh"
-sidebarTitle: "Get started"
+title: Deploy Laravel on Platform.sh
+sidebarTitle: Get started
 weight: -110
 layout: single
 description: |
