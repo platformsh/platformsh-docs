@@ -432,6 +432,54 @@ h4:hover .duik-anchorjs-link {
   min-height: calc(100vh - 5.5rem - 1.5rem);
 }
 
+@media (min-width: 768px) {
+  .duik-content {
+    /* top | right | bottom | left */
+    padding: 0rem 2rem 3rem 2rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .duik-content {
+    /* top | right | bottom | left */
+    padding: 0rem 3rem 3rem 7rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .duik-content {
+    /* top | right | bottom | left */
+    padding: 0rem 7rem 3rem 7rem;
+  }
+}
+
+/* Search
+/* Form should have same left padding as content */
+.search-form {
+  margin-left: 8px;
+}
+@media (min-width: 768px) {
+  .search-form {
+    padding-left: 2rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .search-form {
+    padding-left: 7rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .search-form {
+    padding-left: 7rem;
+  }
+}
+
+.search-input {
+  padding: 2rem 0;
+}
+
 /*------------------------------------
   List
 ------------------------------------*/

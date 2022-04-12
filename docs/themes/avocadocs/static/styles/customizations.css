@@ -705,30 +705,6 @@ body {
   }
 }
 
-
-@media (min-width: 768px) {
-  .duik-content {
-    min-height: calc(100vh - 5rem - 5.5rem);
-    /* top | right | bottom | left */
-    padding: 0rem 2rem 3rem 2rem;
-  }
-}
-
-@media (min-width: 992px) {
-  .duik-content {
-    min-height: calc(100vh - 5rem - 5.5rem);
-    /* top | right | bottom | left */
-    padding: 0rem 3rem 3rem 7rem;
-  }
-}
-
-@media (min-width: 1200px) {
-  .duik-content {
-    /* top | right | bottom | left */
-    padding: 0rem 7rem 3rem 7rem;
-  }
-}
-
 @media (max-width: 768px) {
 
   .book-links {
