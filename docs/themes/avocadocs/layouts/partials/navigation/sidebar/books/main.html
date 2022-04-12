@@ -22,8 +22,8 @@
         {{ $isCurrentSection = true }}
       {{ end }}
     {{ end }}
-    <div class="pl-5 pr-2">
-      <div class="sidebar__section-wrapper">
+    <div>
+      <div class="sidebar__heading-wrapper sidebar__heading-wrapper-section">
         <h4 class="duik-sidebar__heading">{{ .Title }}</h4>
         <!-- Add button for expanding -->
         {{ partial "navigation/sidebar/expand-button" (dict "itemID" $sectionHeading "isCurrentSection" $isCurrentSection )}}
@@ -36,9 +36,11 @@
 
         <!-- FIRST LEVEL ITEM -->
         <li class="duik-sidebar__item">
-          <a href="/" class="duik-sidebar__link{{ if $currentPage.IsHome }} active{{ end }}">
-              {{ .Site.Home.Title }}
-          </a>
+          <div class="sidebar__heading-wrapper sidebar__heading-wrapper-first-level">
+            <a href="/" class="duik-sidebar__link{{ if $currentPage.IsHome }} active{{ end }}">
+                {{ .Site.Home.Title }}
+            </a>
+          </div>
         </li>
 
       {{ end }}
@@ -62,7 +64,7 @@
         {{ end }}
 
         <li class="duik-sidebar__item">
-          {{ if eq .Kind "section"}}<div class="sidebar__section-wrapper">{{ end }}
+          <div class="sidebar__heading-wrapper sidebar__heading-wrapper-first-level">
             <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if $isCurrentSection }} active{{ end }}">
                 {{ $itemTitle }}
             </a>
@@ -72,7 +74,7 @@
 
               <!-- Add button for expanding -->
               {{ partial "navigation/sidebar/expand-button" (dict "itemID" $itemId "isCurrentSection" $isCurrentSection )}}
-              </div>
+          </div>
               <ul class="duik-sidebar__nav dropdown-menu second-level{{ if eq $isCurrentSection true }} show{{ end }}" aria-labelledby="nav-expand-{{ .Title | urlize }}" id="{{ $itemTitle | urlize }}">
 
                 <!-- Loop through children -->
@@ -80,16 +82,21 @@
 
                   {{ if not ( isset .Params "sidebarIgnore" )}}
                     <!-- SECOND LEVEL ITEM -->
-                    <li class="duik-sidebar__item second-level">
-                      <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if eq $currentPage . }} active{{ end }}">
-                          {{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle }}{{ else }}{{ .Title }}{{ end }}
-                      </a>
+                    <li class="duik-sidebar__item">
+                      <div class="sidebar__heading-wrapper sidebar__heading-wrapper-second-level">
+                        <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if eq $currentPage . }} active{{ end }}">
+                            {{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle }}{{ else }}{{ .Title }}{{ end }}
+                        </a>
+                      </div>
                     </li>
                   {{ end }}
                 {{ end }}
 
               </ul>
+            {{ else }}
+          </div>
             {{ end }}
+
       </li>
 
       {{ end }}

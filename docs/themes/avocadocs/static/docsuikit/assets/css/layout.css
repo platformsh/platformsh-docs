@@ -326,6 +326,37 @@ h4:hover .duik-anchorjs-link {
   }
 }
 
+.sidebar__heading-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 8px 0.5rem 8px 0;
+}
+
+.sidebar__heading-wrapper-section {
+  padding-left: 2rem;
+}
+
+.sidebar__heading-wrapper-first-level {
+  padding-left: 3rem;
+}
+
+.sidebar__heading-wrapper-second-level {
+  padding: 0 0 0 4rem;
+}
+
+.sidebar__heading-wrapper > [data-toggle="collapse"] > svg {
+  transition: transform 0.3s ease 0s;
+}
+
+.sidebar__heading-wrapper > [data-toggle="collapse"][aria-expanded="false"] > svg {
+  transform: rotate(-90deg);
+}
+
+.sidebar__heading-wrapper:hover,.sidebar__heading-wrapper:focus {
+  background-color: var(--brand-color-pink);
+}
+
 .duik-sidebar__heading {
   font-weight: 700;
   font-size: 14px;
@@ -344,30 +375,23 @@ h4:hover .duik-anchorjs-link {
 .duik-sidebar__item {
   font-size: 14px;
   font-weight: 700;
-  padding: 0.5rem 0 0.5rem 1rem;
 }
 
-.duik-sidebar__item.second-level:first-of-type {
-  margin-top: 0.75rem;
-  padding-top: 0;
-}
-
-.duik-sidebar__item.second-level:last-of-type {
+.duik-sidebar__item-second-level:last-of-type {
   padding-bottom: 0;
 }
 
-.duik-sidebar__item.second-level {
+.sidebar__heading-wrapper-second-level a {
   border-left: 1px solid #C4BCC0;
-  margin-left: 0.5rem;
+  padding: 0.5rem;
 }
 
 .duik-sidebar__link {
-  color: #495057;
-  display: inline-block;
+  color: var(--brand-font-color-black);
 }
 
 .duik-sidebar__link.active {
-  color: #007bff;
+  color: var(--brand-color-primary-blue);
 }
 
 .duik-sidebar__link:hover {

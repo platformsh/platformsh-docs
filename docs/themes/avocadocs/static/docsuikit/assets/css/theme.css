@@ -13261,33 +13261,6 @@ h4:hover .duik-anchorjs-link {
   border-color: rgba(255, 255, 255, 0.1);
 }
 
-.duik-sidebar__link {
-  color: #7e8892;
-  display: inline-block;
-}
-
-.duik-sidebar__link.active {
-  color: #107ef4;
-}
-
-.duik-sidebar__link:hover {
-  color: #1e2022;
-  text-decoration: none;
-}
-
-.duik-sidebar--dark .duik-sidebar__link {
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.duik-sidebar--dark .duik-sidebar__link.active {
-  color: #fff;
-  border-color: #fff;
-}
-
-.duik-sidebar--dark .duik-sidebar__link:hover {
-  color: #fff;
-}
-
 /* Content */
 .duik-content {
   min-height: calc(100vh - 5rem - 5.5rem);

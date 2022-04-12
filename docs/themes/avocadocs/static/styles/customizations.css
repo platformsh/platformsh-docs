@@ -52,6 +52,7 @@
   /* --brand-font: var(--test1); */
   /* --brand-font-mono: var(--test2); */
   --brand-color-primary-blue: #145CC6;
+  --brand-color-pink: #FFD9D9;
   --brand-color-light-blue: #d0def4;
   --brand-font-color-black: #49475F;
   --brand-font-color-dark: #3E3D54;
@@ -809,27 +810,6 @@ body {
   font-weight: 400 !important;
 }
 
-.sidebar__section-wrapper {
-  display: flex;
-  justify-content: space-between;
-}
-
-.sidebar__section-wrapper > [data-toggle="collapse"] > svg {
-  transition: transform 0.3s ease 0s;
-}
-
-.sidebar__section-wrapper > [data-toggle="collapse"][aria-expanded="false"] > svg {
-  transform: rotate(-90deg);
-}
-
-.duik-sidebar__link {
-  color: var(--brand-font-color-black);
-  display: inline-block;
-}
-
-.duik-sidebar__link.active {
-  color: var(--brand-color-primary-blue) !important;
-}
 /* Page Nav */
 .nav ul {
   padding-left: 1rem;
