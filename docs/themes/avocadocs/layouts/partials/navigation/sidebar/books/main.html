@@ -1,7 +1,3 @@
-<!-- Set sidebar indentation -->
-{{ $levelTwoIndent := "0rem" }}
-{{ $levelThreeIndent := "0rem"}}
-
 {{ $ignoreBooks := .books }}
 {{ $currentPage := .Page}}
 {{ $rootSections := .Site.Sections }}
@@ -9,9 +5,6 @@
 {{ with .context }}
   {{ $currentPage = .Page}}
   {{ $rootSections = .Site.Sections }}
-  {{ $levelTwoIndent = .Site.Data.sidebar.levelTwoIndent }}
-  {{ $levelThreeIndent = .Site.Data.sidebar.levelThreeIndent }}
-  {{ $home = .Site.Home }}
 {{ end }}
 
 {{ range $rootSections }}
@@ -20,103 +13,89 @@
   {{ else }}
 
     <!-- SECTION HEADING -->
-    <h4 class="duik-sidebar__heading">{{ .Title }}</h4>
-
-    <ul class="duik-sidebar__nav">
-
-    <!-- Add the homepage as the first entry of the first section -->
-
-    {{ if eq "overview" .Section }}
-
-      <!-- FIRST LEVEL ITEM -->
-      <li class="duik-sidebar__item">
-        <a href="/" class="duik-sidebar__link{{ if $currentPage.IsHome }} active{{ end }}">
-            {{ .Site.Home.Title }}
-        </a>
-      </li>
-
+    {{ $sectionHeading := printf "section-%s" .Title | urlize }}
+    {{ $isCurrentSection := false }}
+    {{ $currentSection := .Section}}
+    {{ with $currentPage.File }}
+      <!-- If on home page or in the current section -->
+      {{ if or (and ($currentPage.IsHome) ( eq $currentSection "overview" )) (hasPrefix . $currentSection) }}
+        {{ $isCurrentSection = true }}
+      {{ end }}
     {{ end }}
+    <div class="pl-5 pr-2">
+      <div class="sidebar__section-wrapper">
+        <h4 class="duik-sidebar__heading">{{ .Title }}</h4>
+        <!-- Add button for expanding -->
+        {{ partial "navigation/sidebar/expand-button" (dict "itemID" $sectionHeading "isCurrentSection" $isCurrentSection )}}
+      </div>
+      <ul class="duik-sidebar__nav dropdown-menu{{ if eq $isCurrentSection true }} show{{ end }}" aria-labelledby="nav-expand-{{ .Title | urlize }}" id="{{ $sectionHeading }}">
 
-    <!-- First level is always shown (whether page or section) -->
-    {{ range .Pages }}
+      <!-- Add the homepage as the first entry of the first section -->
 
-      <!-- FIRST LEVEL ITEM -->
-      <li class="duik-sidebar__item">
-        <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if eq $currentPage . }} active{{ end }}">
-            {{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle }}{{ else }}{{ .Title }}{{ end }}
-        </a>
-      </li>
+      {{ if eq "overview" .Section }}
 
-      {{ if eq .Kind "section"}}
-        <ul class="duik-sidebar__nav">
+        <!-- FIRST LEVEL ITEM -->
+        <li class="duik-sidebar__item">
+          <a href="/" class="duik-sidebar__link{{ if $currentPage.IsHome }} active{{ end }}">
+              {{ .Site.Home.Title }}
+          </a>
+        </li>
 
-          {{ $levelTwoPages := .Pages }}
-          {{ range $levelTwoPages }}
+      {{ end }}
 
-            {{ if eq .Kind "section" }}
+      <!-- Loop through pages in the section -->
+      {{ range .Pages }}
+        {{ $itemTitle := .Title }}
+        {{ if isset .Params "sidebartitle" }}
+          {{ $itemTitle = .Params.sidebarTitle }}
+        {{ end }}
+        {{ $itemId := ( $itemTitle | urlize ) }}
 
-              {{ $levelThreePages := .Pages }}
 
-              {{ if or (eq $currentPage .Parent) ( or (in $levelThreePages $currentPage) (in $levelTwoPages $currentPage )) }}
-
-                {{ if not ( isset .Params "sidebarIgnore" )}}
-                  <!-- SECOND LEVEL ITEM -->
-                  <li class="duik-sidebar__item">
-                    <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if eq $currentPage . }} active{{ end }}" style="padding-left:calc(2em + {{ $levelTwoIndent }})">
-                        {{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle }}{{ else }}{{ .Title }}{{ end }}
-                    </a>
-                  </li>
-                {{ end }}
-
-                {{ range $levelThreePages}}
-
-                  {{ if or (eq $currentPage .Parent) (in $levelThreePages $currentPage )}}
-
-                    {{ if not ( isset .Params "sidebarIgnore" )}}
-                      <!-- THIRD LEVEL ITEM -->
-                      <li class="duik-sidebar__item">
-                        <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if eq $currentPage . }} active{{ end }}" style="padding-left:calc(2em + {{ $levelThreeIndent }})">
-                            {{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle }}{{ else }}{{ .Title }}{{ end }}
-                        </a>
-                      </li>
-                    {{ end }}
-
-                  {{ end }}
-
-                {{ end }}
-
-              {{ end }}
-
-            {{ else }}
-
-              {{ if or ($currentPage.IsDescendant .Parent) (in $levelTwoPages $currentPage ) }}
-
-                {{ if not ( isset .Params "sidebarIgnore" )}}
-                  <!-- SECOND LEVEL ITEM -->
-                  <li class="duik-sidebar__item">
-                    <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if eq $currentPage . }} active{{ end }}" style="padding-left:calc(2em + {{ $levelTwoIndent }})">
-                        {{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle }}{{ else }}{{ .Title }}{{ end }}
-                    </a>
-                  </li>
-                  {{ end }}
-
-              {{ end }}
-
-          {{ end }}
-
+        <!-- FIRST LEVEL ITEM -->
+        <!-- Check if current page is in this hierarchy -->
+        {{ $levelTwoPages := .Pages }}
+        {{ if or (eq $currentPage .Parent) (in $levelTwoPages $currentPage ) ( eq $currentPage . ) }}
+          {{ $isCurrentSection = true }}
+        {{ else }}
+          {{ $isCurrentSection = false }}
         {{ end }}
 
-        </ul>
+        <li class="duik-sidebar__item">
+          {{ if eq .Kind "section"}}<div class="sidebar__section-wrapper">{{ end }}
+            <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if $isCurrentSection }} active{{ end }}">
+                {{ $itemTitle }}
+            </a>
+
+            <!-- If this item has children -->
+            {{ if eq .Kind "section"}}
+
+              <!-- Add button for expanding -->
+              {{ partial "navigation/sidebar/expand-button" (dict "itemID" $itemId "isCurrentSection" $isCurrentSection )}}
+              </div>
+              <ul class="duik-sidebar__nav dropdown-menu second-level{{ if eq $isCurrentSection true }} show{{ end }}" aria-labelledby="nav-expand-{{ .Title | urlize }}" id="{{ $itemTitle | urlize }}">
+
+                <!-- Loop through children -->
+                {{ range $levelTwoPages }}
+
+                  {{ if not ( isset .Params "sidebarIgnore" )}}
+                    <!-- SECOND LEVEL ITEM -->
+                    <li class="duik-sidebar__item second-level">
+                      <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if eq $currentPage . }} active{{ end }}">
+                          {{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle }}{{ else }}{{ .Title }}{{ end }}
+                      </a>
+                    </li>
+                  {{ end }}
+                {{ end }}
+
+              </ul>
+            {{ end }}
+      </li>
+
       {{ end }}
 
 
-    {{ end }}
-
-
-    </ul>
-
-    <!-- This hr may not belong here for a strict port of DOCSUIKIT, while we will want it for PSH docs; br instead in that case -->
-    <hr>
-
+      </ul>
+    </div>
   {{ end }}
 {{ end }}

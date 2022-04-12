@@ -1,20 +1,12 @@
-@media (min-width: 767px) {
-  .searcharea {
-    margin-top: 3rem;
+@media (min-width: 768px) {
+  .responsive-toggle {
+    display: none;
   }
-
-}
-
-@media (min-width: 1025px) {
-  .searcharea {
-    margin-top: 0rem;
-  }
-
 }
 
 @media (max-width: 768px) {
 
-  .searchinput {
+  .responsive-toggle {
     font-size: 0.6rem !important;
   }
 
@@ -29,10 +21,10 @@
 }
 
 
-@media (max-width: 750px) {
+@media (max-width: 768px) {
 
-  .searcharea {
-    width: 100vw !important;
+  .responsive-toggle {
+    width: 100vw;
   }
 
   #xssroot {
@@ -42,16 +34,9 @@
 
   .hamburger {
     float: right;
+    padding: 1rem;
   }
 
-  .duik-sidebar {
-    max-width: 100vw;
-  }
-
-}
-
-.searcharea {
-  padding-bottom: 1rem;
 }
 
 .searchinput {
