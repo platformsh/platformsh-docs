@@ -15,6 +15,7 @@ Cloudwatt
 CMS
 [Cc]onfig
 [Cc]ron
+DDEV
 denylist
 Docksal
 Drush
@@ -39,6 +40,8 @@ Ibexa
 imagetragick
 jpegoptim
 Lando
+Laravel
+Loggly
 Lucene
 Magento
 Mailchimp
@@ -63,12 +66,14 @@ Opsgenie
 optipng
 overutilize
 Packagist
+Papertrail
 Payara
 Pixelant
 pngcrush
 preprocessor
 preload[ing]?
 progs
+proxied
 Pthreads
 plaintext
 Quarkus
@@ -93,7 +98,10 @@ Tomitribe
 transclusion
 [Uu]ncomment
 unencrypted
+unmerged
 [Uu]nmount
+[Uu]ntrusted
+Verisign
 webpack
 Xdebug
 Zend

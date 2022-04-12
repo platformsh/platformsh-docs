@@ -21,7 +21,7 @@ file=none
 ---
 
 1. Open the project you are interested in.
-1. Select an environment from the **Environment** menu.
+1. From the **Environment** menu, select an environment.
 1. Click a recent activity from the activity feed or click **All** to see the complete history.
 
 ![An activity feed within an environment](/images/management-console/activity.png "0.5")

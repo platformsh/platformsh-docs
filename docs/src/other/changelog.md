@@ -10,6 +10,8 @@ description: |
 ## 2022
 
 * **March 2022**
+  * The [`.platform/services.yaml` file](../configuration/services/_index.md) is no longer required.
+    If you don't need services, you don't need to include the file in your repository.
   * Crons: added option to [cancel a cron activity](../configuration/app/app-reference.md#crons)
 * **January 2022**
   * OpenSearch: Added [OpenSearch service](../configuration/services/opensearch.md)

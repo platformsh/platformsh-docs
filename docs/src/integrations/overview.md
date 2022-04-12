@@ -20,10 +20,16 @@ See [User administration](/administration/users.md) for more details.
 With the CLI, you can list all your active integrations:
 
 ```bash
-platform integrations
-```
+$ platform integrations
 
-![Cli Integrations](/images/cli/cli-integrations.png "0.5")
++---------------+-------------+-------------------------------------------------------------------------------------+
+| ID            | Type        | Summary                                                                             |
++---------------+-------------+-------------------------------------------------------------------------------------+
+| abcdefghijklm | github      | Repository: platformsh/platformsh-docs                                              |
+|               |             | Hook URL:                                                                           |
+|               |             | https://eu-3.platform.sh/api/projects/123abcdefgh3i/integrations/abcdefghijklm/hook |
++---------------+-------------+-------------------------------------------------------------------------------------+
+```
 
 {{< note theme="info" >}}
 If you have created your account using the Bitbucket or GitHub oAuth Login, then in order to use the Platform.sh CLI you will need to set up a password by visiting [https://accounts.platform.sh/user/password](https://accounts.platform.sh/user/password).

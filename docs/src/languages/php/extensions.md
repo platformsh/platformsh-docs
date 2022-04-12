@@ -115,7 +115,7 @@ and turn off those on by default with the `disabled_extensions` key.
 | `sysvsem`         |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `sysvshm`         |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `tideways`        |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
-| `tideways-xhprof` |       |       |       | Avail | Avail | Avail | Avail | Avail |       |       |
+| `tideways_xhprof` |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `tidy`            | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `tokenizer`       |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `uuid`            |       |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail |

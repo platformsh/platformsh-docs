@@ -24,3 +24,4 @@ repos:
     - micronaut
     - gatsby
     - strapi4
+    - laravel

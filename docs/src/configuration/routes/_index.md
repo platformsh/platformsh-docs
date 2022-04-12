@@ -64,6 +64,46 @@ The route for the `api` app could be anything in the domain, even a subdomain li
 Be aware that using a subdomain might [double your network traffic](https://nickolinger.com/blog/2021-08-04-you-dont-need-that-cors-request/),
 so consider using a path like `https://{default}/api` instead.
 
+## Trailing slashes
+
+All defined routes have at least a slash in the path.
+So you might define routes as follows:
+
+```yaml {location==".platform/routes.yaml"}
+
+"https://{default}":
+    type: upstream
+    upstream: "app:http"
+"https://subdomain.example.com":
+    type: upstream
+    upstream: "subdomain:http"
+```
+
+Both of these routes would be resolved with trailing slashes.
+So if you check your [`PLATFORM_ROUTES` variable](../../development/variables/use-variables.md#use-platformsh-provided-variables),
+you see the following resolved routes (assuming `example.com` is your default domain):
+
+```json
+{
+  "http://example.com/": {
+    "primary": true,
+    "id": null,
+    "attributes": {},
+    "type": "upstream",
+    "upstream": "app",
+    "original_url": "https://{default}"
+  },
+  "http://subdomain.example.com/": {
+    "primary": false,
+    "id": null,
+    "attributes": {},
+    "type": "upstream",
+    "upstream": "subdomain",
+    "original_url": "https://subdomain.example.com"
+  }
+}
+```
+
 ## Route placeholders
 
 Each route in your configuration file is defined in one of two ways:
@@ -102,9 +142,24 @@ In both cases, the URLs for your Production environment are the same.
 
 #### URLs in non-Production environments
 
-URLs in non-Production environments differ depending on whether or not you use the `{default}` placeholder.
+URLs in non-Production environments follow a different pattern.
 
-If you use the `{default}` placeholder:
+No matter how you have set your default domain (even if you don't have one),
+using either the absolute URL or the `{default}` placeholder results in the same URL.
+
+In any case, you get the same URL for a `feature` environment:
+
+```txt
+https://feature-t6dnbai-abcdef1234567.us-2.platformsh.site/blog
+```
+
+Note that the `example.com` prefix isn't part of the generated URL.
+
+{{< note title="Previous behavior" >}}
+
+Before April 7, 2022, URLs in non-Production environments differed depending on whether or not you used the `{default}` placeholder.
+
+If you used the `{default}` placeholder:
 
 ```yaml {location=".platform/routes.yaml"}
 "https://{default}/blog":
@@ -112,13 +167,13 @@ If you use the `{default}` placeholder:
     upstream: "app:http"
 ```
 
-The generated URL for the `feature` environment is:
+The generated URL for the `feature` environment was:
 
 ```txt
 https://feature-t6dnbai-abcdef1234567.us-2.platformsh.site/blog
 ```
 
-If you use an absolute URL:
+If you used an absolute URL:
 
 ```yaml {location=".platform/routes.yaml"}
 "https://example.com/blog":
@@ -126,37 +181,11 @@ If you use an absolute URL:
     upstream: "app:http"
 ```
 
-The generated URL for the `feature` environment is:
+The generated URL for the `feature` environment was:
 
 ```txt
 https://example.com.feature-t6dnbai-abcdef1234567.us-2.platformsh.site/blog
 ```
-
-When you use the absolute URL, make sure your URLs aren't [too long for SSL certificates](./https.md#error-provisioning-certificates).
-
-{{< note theme="warning" >}}
-
-#### This behavior will change in an upcoming release
-
-The inconsistency in domains between Production and other environments will soon be fixed.
-At that point, the following will apply:
-
-If you have set your default domain to `example.com`,
-`example.com` and `{default}` in your `.platform/routes.yaml` file result in the same URLs for your non-Production environments.
-In both cases, you get the same URL for a `feature` environment:
-
-```txt
-https://example.com.feature-t6dnbai-abcdef1234567.us-2.platformsh.site/blog
-```
-
-If you haven't set a default domain, the URLs differ depending on whether you use the placeholder.
-If you use the `{default}` placeholder, you get the following URL:
-
-```txt
-https://feature-t6dnbai-abcdef1234567.us-2.platformsh.site/blog
-```
-
-This leaves out the `example.com` prefix that you get if you use an absolute URL.
 
 {{< /note >}}
 
