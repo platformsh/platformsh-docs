@@ -18,8 +18,8 @@
       {{ $inCurrentBook = true }}
     {{ end }}
   {{ end }}
-  <div class="sidebar__book-heading{{ if $inCurrentBook }} active{{ end }}">
+  <button class="sidebar__book-heading" id="nav-expand-{{ .section }}" data-toggle="collapse" data-target="#book-{{ .section }}" aria-controls="book{{ .section }}" aria-expanded="{{ $inCurrentBook }}" aria-label="Toggle section">
     {{ .title }}
-  </div>
-  {{ partial "navigation/sidebar/book" ( dict "context" $currentContext "currentBook" .section ) }}
+  </button>
+  {{ partial "navigation/sidebar/book" ( dict "context" $currentContext "currentBook" .section "Active" $inCurrentBook ) }}
 {{ end }}

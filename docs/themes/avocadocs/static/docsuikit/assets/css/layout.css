@@ -332,6 +332,9 @@ h4:hover .duik-anchorjs-link {
   margin: 0.5rem;
   padding: 1rem 10px;
   background-color: var(--ghost-white);
+  width: 95%;
+  border: none;
+  text-align: left;
 }
 
 .sidebar__heading-wrapper {
