@@ -1,6 +1,6 @@
 ---
-title: "How to deploy Gatsby on Platform.sh"
-sidebarTitle: "Get started"
+title: Deploy Gatsby on Platform.sh
+sidebarTitle: Get started
 weight: -110
 layout: single
 description: |

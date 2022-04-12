@@ -1,6 +1,6 @@
 ---
-title: "How to Deploy Hibernate ORM on Platform.sh"
-sidebarTitle: "Get started"
+title: Deploy Hibernate ORM on Platform.sh
+sidebarTitle: Get started
 weight: 4
 ---
 
