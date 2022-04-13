@@ -197,7 +197,7 @@ australia:
     au-2:
         name: Australia 2
         label: au-2.platform.sh
-        provider: AWS
+        provider: Azure
         outbound_ips: 
             - "20.92.240.74"
             - "20.191.224.199"
