@@ -48,8 +48,6 @@ cleanup
 if [ -z ${PLATFORM_APP_DIR+x} ]; then 
     echo "Using local poetry."
 else 
-    # Source the Poetry command.
-    . $PLATFORM_APP_DIR/.poetry/env
     getDocsData
 fi
 
