@@ -2,11 +2,12 @@
 # Data: Add and edit regions in `docs/data/regions.yaml`.
 # Styles: See `docs/static/styles/user-customizations.css`.
 # Table shortcode: See `docs/layouts/shortcodes/region_ips.html`.
-title: "Public IP addresses"
+title: Regions
 weight: 14
-sidebarTitle: "Public IPs"
 description: |
   Platform.sh regions reach the outside through a limited number of IP addresses.
+aliases:
+  - /development/public-ips.html
 ---
 
 {{< description >}}
