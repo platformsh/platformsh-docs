@@ -1,7 +1,7 @@
 ---
 # Data: Add and edit regions in `docs/data/regions.yaml`.
-# Styles: See `docs/static/styles/user-customizations.css`.
-# Table shortcode: See `docs/layouts/shortcodes/region_ips.html`.
+# Styles: See `docs/static/styles/user-customizations.css` under `Region information`
+# Table shortcode: See `docs/layouts/shortcodes/regions.html`.
 title: Regions
 weight: 14
 description: |
@@ -30,16 +30,16 @@ In that case, add the following IP addresses for inbound traffic to your allow l
 
 ### Europe
 
-{{< region_ips region="europe" >}}
+{{< regions region="europe" >}}
 
 ### United States
 
-{{< region_ips region="us" >}}
+{{< regions region="us" >}}
 
 ### Canada
 
-{{< region_ips region="canada" >}}
+{{< regions region="canada" >}}
 
 ### Australia
 
-{{< region_ips region="australia" >}}
+{{< regions region="australia" >}}

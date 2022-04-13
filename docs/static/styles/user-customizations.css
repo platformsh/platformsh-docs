@@ -294,7 +294,7 @@
 }
 
 
-/* Public IP Region Tables */
+/* Region information */
 .region-table {
   font-family: Overpass, sans-serif;
   color: #444344;
@@ -336,7 +336,7 @@
 }
 
 .region-overview {
-  background: #f4f2f3;
+  background: var(--ghost-white);
 }
 
 .region-identifier {
