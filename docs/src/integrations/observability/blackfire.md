@@ -36,7 +36,7 @@ follow [the step-by-step instructions](https://blackfire.io/docs/integrations/pa
 
 ### On other Dedicated Infrastructure
 
-Open a support ticket with the Backfire Server ID and Server Token.
+Open a support ticket with the Blackfire Server ID and Server Token.
 The Platform.sh support team installs it for you.
 
 To find your server credentials,
