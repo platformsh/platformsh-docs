@@ -10,16 +10,18 @@ install_meilisearch() {
     chmod 744 "meilisearch"
 }
 
-setup_venv(){
-    echo "* INSTALLING POETRY"
+install_poetry(){
+    echo "* Updating pip"
+    python3.9 -m pip install --upgrade pip
+    echo "* Installing poetry"
     # Install poetry
     curl -sSL https://install.python-poetry.org | python3 - --version $POETRY_VERSION
-    echo "* INSTALLING DEPENDENCIES"
+    echo "* Installing dependencies"
     poetry install
 }
 
 set -e
 
 install_meilisearch
-setup_venv
+install_poetry
 
