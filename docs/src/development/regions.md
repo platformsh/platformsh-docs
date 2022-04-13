@@ -4,29 +4,41 @@
 # Table shortcode: See `docs/layouts/shortcodes/regions.html`.
 title: Regions
 weight: 14
-description: |
-  Platform.sh regions reach the outside through a limited number of IP addresses.
+description: See information about Platform.sh regions, including their environmental impact and IP addresses.
 aliases:
   - /development/public-ips.html
 ---
 
-{{< description >}}
+Platform.sh offers several different regions for hosting project data.
+You can choose a region based on criteria such as its closeness to your users and its environmental impact.
 
-IP addresses are stable, but not guaranteed to never change.
-Before any change, you will be notified well in advance regarding affected projects.
+## Environmental impact
+
+Platform.sh is committed to reducing the environmental impact from its activities.
+As part of this effort, you can see information about the carbon footprint of the region's provider when creating a project.
+You see the provider's commitments to reducing its footprint and the average carbon intensity for its energy grid (in gCO2eq/kWh).
+
+Information on carbon intensity is also available in the Platform.sh API.
+For example, to get a JSON object of the regions with their carbon intensities, run the following command:
+
+```bash
+platform api:curl regions | jq -r '.regions | map({(.label|tostring):.environmental_impact.carbon_intensity}) | add'
+```
+
+See all available information in the [API documentation](https://api.platform.sh/docs/#tag/Regions).
 
 ## Region availability
 
-While this page contains IP addresses for data centers in every Platform.sh region,
-only those regions listed during provisioning are actually available to new projects.
-Those regions that are no longer open are included here as reference for existing projects and for Enterprise customers.
+The regions listed here may different from those available when you create a new project.
+The list includes legacy regions as reference for existing projects.
 
-Enterprise tier projects can continue to create projects on these "closed" regions when appropriate.  
+## Public IP addresses
 
-## IP addresses by region
+The public IP addresses for regions are stable, but not guaranteed to never change.
+Before any change, you will be notified well in advance regarding affected projects.
 
-Use the inbound IP addresses if you have a corporate firewall which blocks outgoing SSH connections.
-In that case, add the following IP addresses for inbound traffic to your allow list.
+They're useful for cases such as when you have a corporate firewall that blocks outgoing SSH connections.
+In such cases, add the inbound IP addresses for your region to your allow list.
 
 ### Europe
 
