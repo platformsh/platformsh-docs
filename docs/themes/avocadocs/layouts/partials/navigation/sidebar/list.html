@@ -17,6 +17,22 @@
     {{ $isCurrentSection = true }}
   {{ end }}
 {{ end }}
+
+<!-- Handle pages in `other` directory separately -->
+{{ if eq $currentSection "other" }}
+  <!-- Loop through pages in the section -->
+    {{ range .Context.Pages }}
+      <div class="sidebar__heading-wrapper sidebar__heading-wrapper-section">
+        <h4 class="duik-sidebar__heading">
+          <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if eq $currentPage.RelPermalink .RelPermalink }} active{{ end }}">
+            {{ .Title }}
+          </a>
+        </h4>
+      </div>
+    {{ end }}
+
+<!-- Handle all other directories -->
+{{ else }}
 <div>
   <div class="sidebar__heading-wrapper sidebar__heading-wrapper-section">
     <h4 class="duik-sidebar__heading">{{ .Context.Title }}</h4>
@@ -26,8 +42,7 @@
   <ul class="duik-sidebar__nav dropdown-menu{{ if eq $isCurrentSection true }} show{{ end }}" aria-labelledby="nav-expand-{{ .Context.Title | urlize }}" id="{{ $sectionHeading }}">
 
   <!-- Add the homepage as the first entry of the first section -->
-
-  {{ if eq "overview" .Context.Section }}
+  {{ if eq "overview" $currentSection }}
 
     <!-- FIRST LEVEL ITEM -->
     <li class="duik-sidebar__item">
@@ -39,7 +54,6 @@
     </li>
 
   {{ end }}
-
   <!-- Loop through pages in the section -->
   {{ range .Context.Pages }}
     {{ $itemTitle := .Title }}
@@ -99,3 +113,4 @@
 
   </ul>
 </div>
+{{ end }}
