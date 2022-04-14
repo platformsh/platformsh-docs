@@ -36,7 +36,7 @@
 <div>
   <div class="sidebar__heading-wrapper sidebar__heading-wrapper-section">
     <h4 class="duik-sidebar__heading">
-      <a href="{{ .Context.RelPermalink }}" class="duik-sidebar__link{{ if eq $currentPage.RelPermalink .Context.RelPermalink }} active{{ end }}">
+      <a href="{{ .Context.RelPermalink }}" class="duik-sidebar__link{{ if eq $currentSection $currentPage.Section }} active{{ end }}">
         {{ .Context.Title }}
       </a>
     </h4>
