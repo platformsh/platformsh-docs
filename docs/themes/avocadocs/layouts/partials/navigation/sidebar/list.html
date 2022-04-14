@@ -35,7 +35,11 @@
 {{ else }}
 <div>
   <div class="sidebar__heading-wrapper sidebar__heading-wrapper-section">
-    <h4 class="duik-sidebar__heading">{{ .Context.Title }}</h4>
+    <h4 class="duik-sidebar__heading">
+      <a href="{{ .Context.RelPermalink }}" class="duik-sidebar__link{{ if eq $currentPage.RelPermalink .Context.RelPermalink }} active{{ end }}">
+        {{ .Context.Title }}
+      </a>
+    </h4>
     <!-- Add button for expanding -->
     {{ partial "navigation/sidebar/expand-button" (dict "itemID" $sectionHeading "isCurrentSection" $isCurrentSection )}}
   </div>
@@ -67,7 +71,7 @@
     <!-- FIRST LEVEL ITEM -->
     <!-- Check if current page is in this hierarchy -->
     {{ $levelTwoPages := .Pages }}
-    {{ if or (eq $currentPage .Parent) (in $levelTwoPages $currentPage ) ( eq $currentPage . ) }}
+    {{ if or (in $levelTwoPages $currentPage ) ( eq $currentPage . ) }}
       {{ $isCurrentSection = true }}
     {{ else }}
       {{ $isCurrentSection = false }}
