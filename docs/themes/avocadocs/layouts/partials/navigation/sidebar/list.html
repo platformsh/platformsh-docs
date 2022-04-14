@@ -39,7 +39,7 @@
     <!-- Add button for expanding -->
     {{ partial "navigation/sidebar/expand-button" (dict "itemID" $sectionHeading "isCurrentSection" $isCurrentSection )}}
   </div>
-  <ul class="duik-sidebar__nav dropdown-menu{{ if eq $isCurrentSection true }} show{{ end }}" aria-labelledby="nav-expand-{{ .Context.Title | urlize }}" id="{{ $sectionHeading }}">
+  <ul class="duik-sidebar__nav dropdown-menu{{ if eq $isCurrentSection true }} show{{ end }}" aria-labelledby="nav-expand-{{ $sectionHeading }}" id="{{ $sectionHeading }}">
 
   <!-- Add the homepage as the first entry of the first section -->
   {{ if eq "overview" $currentSection }}
@@ -60,7 +60,8 @@
     {{ if isset .Params "sidebartitle" }}
       {{ $itemTitle = .Params.sidebarTitle }}
     {{ end }}
-    {{ $itemId := ( $itemTitle | urlize ) }}
+    <!-- Create a machine readable ID with no dots (as in node.js) -->
+    {{ $itemId := ( replace ($itemTitle | urlize) "." "" ) }}
 
 
     <!-- FIRST LEVEL ITEM -->
@@ -84,7 +85,7 @@
           <!-- Add button for expanding -->
           {{ partial "navigation/sidebar/expand-button" (dict "itemID" $itemId "isCurrentSection" $isCurrentSection )}}
       </div>
-          <ul class="duik-sidebar__nav dropdown-menu second-level{{ if eq $isCurrentSection true }} show{{ end }}" aria-labelledby="nav-expand-{{ .Title | urlize }}" id="{{ $itemTitle | urlize }}">
+          <ul class="duik-sidebar__nav dropdown-menu second-level{{ if eq $isCurrentSection true }} show{{ end }}" aria-labelledby="nav-expand-{{ $itemId }}" id="{{ $itemId }}">
 
             <!-- Loop through children -->
             {{ range $levelTwoPages }}
