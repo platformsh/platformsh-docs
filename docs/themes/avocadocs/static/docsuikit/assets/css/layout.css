@@ -410,8 +410,7 @@ h3.sidebar__book-heading {
   color: var(--brand-color-primary-blue);
 }
 
-.duik-sidebar__link:hover {
-  color: #343a40;
+.duik-sidebar__link:hover,.duik-sidebar__link:focus {
   text-decoration: none;
 }
 
