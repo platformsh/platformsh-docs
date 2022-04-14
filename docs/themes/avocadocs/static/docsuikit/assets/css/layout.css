@@ -403,7 +403,7 @@ h3.sidebar__book-heading {
 }
 
 .duik-sidebar__link {
-  color: var(--brand-font-color-black);
+  color: #000000;
 }
 
 .duik-sidebar__link.active {
