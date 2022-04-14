@@ -89,19 +89,17 @@
           <!-- Add button for expanding -->
           {{ partial "navigation/sidebar/expand-button" (dict "itemID" $itemId "isCurrentSection" $isCurrentSection )}}
       </div>
-          <ul class="duik-sidebar__nav dropdown-menu second-level{{ if eq $isCurrentSection true }} show{{ end }}" aria-labelledby="nav-expand-{{ $itemId }}" id="{{ $itemId }}">
+          <ul class="duik-sidebar__nav duik-sidebar__nav--second-level dropdown-menu{{ if eq $isCurrentSection true }} show{{ end }}" aria-labelledby="nav-expand-{{ $itemId }}" id="{{ $itemId }}">
 
             <!-- Loop through children -->
             {{ range $levelTwoPages }}
 
               {{ if not ( isset .Params "sidebarIgnore" )}}
                 <!-- SECOND LEVEL ITEM -->
-                <li class="duik-sidebar__item">
-                  <div class="sidebar__heading-wrapper sidebar__heading-wrapper-second-level">
-                    <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if eq $currentPage . }} active{{ end }}">
-                        {{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle }}{{ else }}{{ .Title }}{{ end }}
-                    </a>
-                  </div>
+                <li class="duik-sidebar__item duik-sidebar__item--second-level">
+                  <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if eq $currentPage . }} active{{ end }}">
+                      {{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle }}{{ else }}{{ .Title }}{{ end }}
+                  </a>
                 </li>
               {{ end }}
             {{ end }}

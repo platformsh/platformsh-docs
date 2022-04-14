@@ -345,7 +345,7 @@ h3.sidebar__book-heading {
 .sidebar__heading-wrapper {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   padding: 8px 0.5rem 8px 0;
 }
 
@@ -357,20 +357,12 @@ h3.sidebar__book-heading {
   padding-left: 3rem;
 }
 
-.sidebar__heading-wrapper-second-level {
-  padding: 0 0 0 4rem;
-}
-
 .sidebar__heading-wrapper > [data-toggle="collapse"] > svg {
   transition: transform 0.3s ease 0s;
 }
 
 .sidebar__heading-wrapper > [data-toggle="collapse"][aria-expanded="false"] > svg {
   transform: rotate(-90deg);
-}
-
-.sidebar__heading-wrapper:hover,.sidebar__heading-wrapper:focus {
-  background-color: var(--brand-color-pink);
 }
 
 .duik-sidebar__heading {
@@ -393,13 +385,14 @@ h3.sidebar__book-heading {
   font-weight: 700;
 }
 
-.duik-sidebar__item-second-level:last-of-type {
-  padding-bottom: 0;
+.duik-sidebar__item--second-level {
+  border-left: 1px solid #C4BCC0;
+  margin: 0 0 0 4rem;
+  padding: 0.25rem 0.25rem 0.25rem 0.5rem;
 }
 
-.sidebar__heading-wrapper-second-level a {
-  border-left: 1px solid #C4BCC0;
-  padding: 0.5rem;
+.duik-sidebar__item--second-level:last-of-type {
+  padding-bottom: 0;
 }
 
 .duik-sidebar__link {
