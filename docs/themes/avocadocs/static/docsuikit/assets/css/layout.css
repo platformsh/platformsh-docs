@@ -326,7 +326,7 @@ h4:hover .duik-anchorjs-link {
   }
 }
 
-.sidebar__book-heading {
+button.sidebar__book-heading {
   font-weight: 700;
   font-size: 16px;
   margin: 0.5rem;
@@ -335,6 +335,11 @@ h4:hover .duik-anchorjs-link {
   width: 95%;
   border: none;
   text-align: left;
+}
+
+h3.sidebar__book-heading {
+  margin: 0;
+  padding: 0;
 }
 
 .sidebar__heading-wrapper {
