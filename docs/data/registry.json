@@ -285,7 +285,7 @@
     "docs": {
       "relationship_name": null,
       "service_name": null,
-      "url": "/languages/java.html",
+      "url": "/languages/java/_index.md",
       "web": {
         "commands": {
           "start": "java -jar target/application.jar --server.port=$PORT"
@@ -391,7 +391,7 @@
     "docs": {
       "relationship_name": "database",
       "service_name": "db",
-      "url": "/configuration/services/mysql.html"
+      "url": "/configuration/services/mysql/_index.md"
     },
     "endpoint": "mysql",
     "min_disk_size": 256,
@@ -429,7 +429,7 @@
     "docs": {
       "relationship_name": "database",
       "service_name": "db",
-      "url": "/configuration/services/mysql.html"
+      "url": "/configuration/services/mysql/_index.md"
     },
     "endpoint": "mysql",
     "min_disk_size": 256,
@@ -553,7 +553,7 @@
     "docs": {
       "relationship_name": null,
       "service_name": null,
-      "url": "/languages/nodejs.html",
+      "url": "/languages/nodejs/_index.md",
       "web": {
         "commands": {
           "start": "node index.js"
@@ -636,7 +636,7 @@
     "docs": {
       "relationship_name": "mysqldatabase",
       "service_name": "dbmysql",
-      "url": "/configuration/services/mysql.html"
+      "url": "/configuration/services/mysql/_index.md"
     },
     "endpoint": "mysql",
     "min_disk_size": 256,
@@ -658,7 +658,7 @@
     "docs": {
       "relationship_name": null,
       "service_name": null,
-      "url": "/languages/php.html",
+      "url": "/languages/php/_index.md",
       "web": {
         "locations": {
           "/": {
