@@ -18,7 +18,7 @@ crons:
         cmd: 'php artisan schedule:run'
 ```
 
-The [minimum time between cron jobs](../../../configuration/app/app-reference.md#cron-job-timing) being triggered depends on your plan. Task scheduling may then be contradicted by the cron minimum frequency. Schedules outside the specified cron frequency will be ignored and the related tasks won't be triggered.
+The [minimum time between cron jobs](../../../configuration/app/app-reference.md#cron-job-timing) being triggered depends on your plan. Task scheduling may then be contradicted by the cron minimum frequency. Schedules outside the specified cron frequency are ignored and the related tasks aren't triggered.
 
 This [blog post](https://platform.sh/blog/of-cicadas-and-cron-jobs/) may help you understand the stakes and harmonize the frequencies so all your scheduled tasks can be effectively triggered.
 
