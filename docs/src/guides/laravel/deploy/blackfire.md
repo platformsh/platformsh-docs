@@ -1,8 +1,8 @@
 ---
-title: "Continous Observability with Blackfire"
+title: "Continous observability with Blackfire"
 sidebarTitle: "Blackfire"
 weight: -90
-description: How to set up a Continuous Observability strategy for your Laravel application with Blackfire.
+description: Set up a continuous observability strategy for your Laravel app with Blackfire.
 ---
 
 [Blackfire.io](../../../integrations/observability/blackfire.md) is the recommended solution for monitoring and profiling web sites and applications. Blackfire works seamlessly with any application built with Laravel, like any PHP application.

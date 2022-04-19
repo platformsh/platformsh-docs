@@ -1,11 +1,11 @@
 ---
-title: "Workers, Cron Jobs and Task Scheduling"
-sidebarTitle: "Scheduling Tasks"
+title: "Workers, cron jobs, and task scheduling"
+sidebarTitle: "Scheduling tasks"
 weight: -100
-description: How to schedule Tasks for your Laravel application.
+description: Schedule tasks for your Laravel app.
 ---
 
-Laravel offers a very convenient and flexible way of scheduling tasks. A large set of [helpers functions](https://laravel.com/docs/scheduling#schedule-frequency-options) allows the easy scheduling of Commands and Jobs.
+Laravel offers a very convenient and flexible way of scheduling tasks. A large set of [helper functions](https://laravel.com/docs/scheduling#schedule-frequency-options) help you schedule commands and jobs.
 
 Once the scheduled tasks are defined, they need to be effectively executed at the right time and pace.
 The recommended way is a cron configuration entry running the `artisan schedule:run` command.
@@ -20,17 +20,16 @@ crons:
 
 The [minimum time between cron jobs](../../../configuration/app/app-reference.md#cron-job-timing) being triggered depends on your plan. The tasks scheduling may then be contradicted by the cron minimum frequency.
 
-This [blogpost](https://platform.sh/blog/of-cicadas-and-cron-jobs/) may help understanding the stakes and harmonazing the frequencies so all your scheduled tasks can be effectively triggered.
+This [blog post](https://platform.sh/blog/of-cicadas-and-cron-jobs/) may help you understand the stakes and harmonize the frequencies so all your scheduled tasks can be effectively triggered.
 
 You could also [configure a worker](../../../configuration/app/workers.md) relying on the `artisan schedule:work`.
-[This command](https://laravel.com/docs/scheduling#running-the-scheduler-locally) will invoke the scheduler every minute. 
+To invoke the scheduler every minute, run [the following command](https://laravel.com/docs/scheduling#running-the-scheduler-locally):
 
 ```yaml {location=".platform.app.yaml"}
 workers:
    queue:
        size: S
        commands:
-           start: |
-          php artisan schedule:work
+           start: php artisan schedule:work
 ```
 
