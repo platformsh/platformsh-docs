@@ -12,17 +12,17 @@ The recommended way is a cron configuration entry running the `artisan schedule:
 
 ```yaml {location=".platform.app.yaml"}
 crons:
-    # Run Laravel's scheduler every 5 minutes, which is as often as crons can run.
+    # Run Laravel's scheduler every 5 minutes, which is as often as crons can run on Professional plans.
     scheduler:
         spec: '*/5 * * * *'
         cmd: 'php artisan schedule:run'
 ```
 
-The [minimum time between cron jobs](../../../configuration/app/app-reference.md#cron-job-timing) being triggered depends on your plan. The tasks scheduling may then be contradicted by the cron minimum frequency.
+The [minimum time between cron jobs](../../../configuration/app/app-reference.md#cron-job-timing) being triggered depends on your plan. Task scheduling may then be contradicted by the cron minimum frequency.
 
 This [blog post](https://platform.sh/blog/of-cicadas-and-cron-jobs/) may help you understand the stakes and harmonize the frequencies so all your scheduled tasks can be effectively triggered.
 
-You could also [configure a worker](../../../configuration/app/workers.md) relying on the `artisan schedule:work`.
+You could also [configure a worker](../../../configuration/app/workers.md) that relies on `artisan schedule:work`.
 To invoke the scheduler every minute, run [the following command](https://laravel.com/docs/scheduling#running-the-scheduler-locally):
 
 ```yaml {location=".platform.app.yaml"}
