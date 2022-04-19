@@ -35,7 +35,7 @@ The Drupal Memcache module must be configured via `settings.platformsh.php`.
 
 Place the following at the end of `settings.platformsh.php`. Note the inline comments, as you may wish to customize it further.  Also review the `README.txt` file that comes with the memcache module, as it has a more information on possible configuration options. For instance, you may want to consider using memcache for locking as well and configuring cache stampede protection.
 
-The example below is intended as a "most common case".
+The example below is intended as a "most common case" and has been tested with version `8.x-2.3` of the memcache module.
 
 {{< note >}}
 
@@ -106,6 +106,11 @@ if ($platformsh->hasRelationship($relationship_name) && extension_loaded('memcac
           'class' => 'Drupal\memcache\Driver\MemcacheDriverFactory',
           'arguments' => ['@memcache.settings'],
         ],
+        'memcache.timestamp.invalidator.bin' => [
+          'class' => 'Drupal\memcache\Invalidator\MemcacheTimestampInvalidator',
+          # Adjust tolerance factor as appropriate when not running memcache on localhost.
+          'arguments' => ['@memcache.factory', 'memcache_bin_timestamps', 0.001],
+        ],
         'memcache.backend.cache.container' => [
           'class' => 'Drupal\memcache\DrupalMemcacheInterface',
           'factory' => ['@memcache.factory', 'get'],
@@ -121,7 +126,7 @@ if ($platformsh->hasRelationship($relationship_name) && extension_loaded('memcac
         ],
         'cache.container' => [
           'class' => 'Drupal\memcache\MemcacheBackend',
-          'arguments' => ['container', '@memcache.backend.cache.container', '@lock.container', '@memcache.config', '@cache_tags_provider.container'],
+          'arguments' => ['container', '@memcache.backend.cache.container','@cache_tags_provider.container','@memcache.timestamp.invalidator.bin'],
         ],
       ],
     ];
