@@ -86,7 +86,7 @@ In live production environments (those that have domains assigned),
 the block of search engines is turned off automatically and your app can serve a `robots.txt` file as normal.
 However, you must ensure that the file is in your project's web root
 (the directory where the `/` location maps to) and your application is configured to serve it.
-See [the location section in `.platform.app.yaml`](/configuration/app/app-reference.md#locations).
+See [the location section in `.platform.app.yaml`](../../create-apps/app-reference.md#locations).
 
 To block search engines with the `X-Robots-Tag` header on a production environment,
 run the following [Platform.sh CLI](/development/cli/_index.md) command:
@@ -150,4 +150,4 @@ but it provides a routes configuration example for your project's `.platform/rou
 
 ![Configure Platform.sh environment routes](/images/management-console/routes.png "0.7")
 
-Consult the documentation for more information about properly configuring [Routes](/configuration/routes/_index.md) for your project.
+Consult the documentation for more information about properly configuring [routes](../../define-routes/_index.md) for your project.

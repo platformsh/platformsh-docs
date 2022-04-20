@@ -158,7 +158,7 @@ and them make all development branches off of that environment.
 
 ### Client authenticated TLS
 
-If your CDN offers this option, an alternative way of securing the connection is [client authenticated TLS](/configuration/routes/https.md#client-authenticated-tls).
+If your CDN offers this option, an alternative way of securing the connection is [client authenticated TLS](../../define-routes/https.md#client-authenticated-tls).
 
 **note**: Remember to permit your developers to access the origin by creating your own certificate
 or else they won't be able to access the project URL directly (see below).

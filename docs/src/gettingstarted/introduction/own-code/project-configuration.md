@@ -10,7 +10,7 @@ In the previous step, you created a new project on Platform.sh using the CLI. No
 
 1. **Consult a template alongside this guide**
 
-    As you go through this guide, example files will be provided that will give you a good impression of how to configure applications on Platform.sh in the programming language they use. However, since they are simple examples and your own application may require more detailed configuration than those examples address, it is recommended that you take a look at our maintained templates for additional guidance.
+    As you go through this guide, example files will be provided that will give you a good impression of how to configure applications on Platform.sh in the programming language they use. However, since they are basic examples and your own application may require more detailed configuration than those examples address, it is recommended that you take a look at our maintained templates for additional guidance.
 
     Select a language and choose one or more templates that most closely resemble your application and keep the template in another tab as you continue through this guide. Using these two resources together is the fastest way to correctly configure your project for Platform.sh.
 
@@ -31,9 +31,9 @@ In the previous step, you created a new project on Platform.sh using the CLI. No
 
     In order to successfully deploy to Platform.sh you must add three YAML files:
 
-      * A `.platform/routes.yaml` file, which configures the [routes](/configuration/routes/_index.md) used in your environments. That is, it describes how an incoming HTTP request is going to be processed by Platform.sh.
-      * A `.platform/services.yaml` file, which configures the [services](/configuration/services/_index.md) that will be used by the application. Connecting to Platform.sh's maintained services only requires properly writing this file. While this file must be present, if your application does not require services it can remain empty.
-      * At least one file [configuring the application](../../../configuration/app/_index.md). It provides control over the way the application will be built and deployed on Platform.sh.
+      * A `.platform/routes.yaml` file, which configures the [routes](../../../define-routes/_index.md) used in your environments. That is, it describes how an incoming HTTP request is going to be processed by Platform.sh.
+      * A `.platform/services.yaml` file, which configures the [services](../../../add-services/_index.md) that will be used by the application. Connecting to Platform.sh's maintained services only requires properly writing this file. While this file must be present, if your application does not require services it can remain empty.
+      * At least one file [configuring the application](../../../create-apps/_index.md). It provides control over the way the application will be built and deployed on Platform.sh.
 
     When you set Platform.sh as a remote for your repository in the previous step, the CLI automatically created the hidden configuration directory `.platform` for you. The next steps will explore in more detail what each configuration files must include, but for now create empty files in their place.
 

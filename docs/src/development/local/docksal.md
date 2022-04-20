@@ -56,8 +56,8 @@ These files are ignored by Platform.sh.
 
 ## 5. Add commands
 
-Docksal doesn't automatically copy over any commands you have in your [build flavor](../../administration/../configuration/app/app-reference.md#build)
-and [hooks](../../configuration/app/hooks/_index.md).
+Docksal doesn't automatically copy over any commands you have in your [build flavor](../../create-apps/app-reference.md#build)
+and [hooks](../../create-apps/hooks/_index.md).
 To get your project running like on Platform.sh, you have to add the commands to Docksal.
 
 The `.docksal/commands` directory should already have one command (`init`) such as the following:

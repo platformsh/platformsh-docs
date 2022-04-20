@@ -15,7 +15,7 @@ The setup process therefore depends on config-overrides in `settings.platformsh.
 
 Search API Solr requires Solr 6.6 or higher, and recommends Solr 8 or higher.
 
-Advanced Solr service configuration and implementation in frameworks other than Drupal can be found at the [Solr services page](/configuration/services/solr.md).
+Advanced Solr service configuration and implementation in frameworks other than Drupal can be found at the [Solr services page](../../add-services/solr.md).
 
 ## Steps
 
@@ -37,7 +37,7 @@ Once [this issue](https://www.drupal.org/project/drupal/issues/2876675) is resol
 
 If you are using the latest version of Search API Solr and running Drupal 8.8 or higher on PHP 7.2 or higher, this step is no longer necessary. You should be able to proceed directly to the next step.
 
-{{% endpoint-description type="solr" sectionLink="/configuration/services/solr.html#solr-6-and-later" multipleText="cores" noApp=true /%}}
+{{% endpoint-description type="solr" sectionLink="../../add-services/solr.html#solr-6-and-later" multipleText="cores" noApp=true /%}}
 
 ### 4. Configure the server core
 

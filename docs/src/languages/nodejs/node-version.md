@@ -49,7 +49,7 @@ including Windows Subsystem for Linux.
            N_PREFIX: /app/.global
    ```
 
-1. Install the specified version of Node.js in a [`build` hook](../../configuration/app/hooks/hooks-comparison.md#build-hook):
+1. Install the specified version of Node.js in a [`build` hook](../../create-apps/hooks/hooks-comparison.md#build-hook):
 
    ```yaml {location=".platform.app.yaml"}
    hooks:

@@ -8,7 +8,7 @@ aliases:
 
 In the previous step, you created a collection of empty configuration files that will allow the project to be deployed on Platform.sh.
 
-Now you will need to include information that will tell Platform.sh how you want your application to connect to its [services](/configuration/services/_index.md) in a `.platform/services.yaml` file.
+Now you will need to include information that will tell Platform.sh how you want your application to connect to its [services](../../../add-services/_index.md) in a `.platform/services.yaml` file.
 
 With the following project structure:
 
@@ -47,13 +47,13 @@ If your application does not use any services at this point then you can leave i
 
   Each language and framework may have additional attributes that you will need to include in `.platform/services.yaml` depending on the needs of your application. To find out what else you may need to include to configure your services, consult
 
-  * **The [Services](/configuration/services/_index.md) documentation for Platform.sh**
+  * **The [Services](../../../add-services/_index.md) documentation for Platform.sh**
 
     The documentation goes into far more extensive detail of which attributes can also be included for service configuration, and should be used as your primary reference.
 
   * **Language-specific templates for Platform.sh Projects:**
 
-    Compare the `.platform/services.yaml` file from the simple template above to other templates when writing your own.
+    Compare the `.platform/services.yaml` file from the basic template above to other templates when writing your own.
 
   {{< /note >}}
 

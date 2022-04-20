@@ -17,8 +17,8 @@ The project timezone affects [automated backups](../../dedicated/overview/backup
 
 The project timezone doesn't affect:
 
-- [App runtime](../../configuration/app/timezone.md).
-- [Cron jobs](../../configuration/app/app-reference.md#crons).
+- [App runtime](../../create-apps/timezone.md).
+- [Cron jobs](../../create-apps/app-reference.md#crons).
 - [System logs](../../development/logs.md). UTC is the default timezone for all logs.
 
 ## Access
@@ -37,7 +37,7 @@ Selecting a user will allow you to either edit that user's permissions or delete
 
 ![Manage users of your Platform.sh project](/images/management-console/edit-user.png "0.7")
 
-If you check the `Project admin` box, this user will be an administrator of the project and will have full access on all environments. If you uncheck the box, you'll have the option of adjusting the user's permissions on each environment type.
+If you check the `Project admin` box, this user will be an administrator of the project and will have full access on all environments. If you deselect the box, you'll have the option of adjusting the user's permissions on each environment type.
 
 {{< note >}}
 The `Account owner` is locked and you can't change its permissions.
@@ -69,7 +69,7 @@ You can view current certificates by hovering over one on the list and clicking 
 
 ![add certs](/images/management-console/add-cert.png "0.7")
 
-All projects get TLS certificates provided by [Let's Encrypt](/configuration/routes/https.md#lets-encrypt) automatically. In most cases no user action is required. You will only need to add certificates on this page if you are using TLS certificates provided by a third party.
+All projects get TLS certificates provided by [Let's Encrypt](../../define-routes/https.md#lets-encrypt) automatically. In most cases no user action is required. You will only need to add certificates on this page if you are using TLS certificates provided by a third party.
 
 A more in-depth guide regarding [how to set up custom certificates can be found here](https://docs.platform.sh/domains/steps/tls.html).
 

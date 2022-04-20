@@ -69,8 +69,8 @@ If any are flagged, correct the error and try again.
 
 You need to have a dump or backup of the database you wish to start from.
 The process is essentially the same for each type of persistent data service.
-See the [MySQL](/configuration/services/mysql/_index.md), [PostgreSQL](/configuration/services/postgresql.md),
-and [MongoDB](/configuration/services/mongodb.md) documentation as appropriate.
+See the [MySQL](../add-services/mysql/_index.md), [PostgreSQL](../add-services/postgresql.md),
+and [MongoDB](../add-services/mongodb.md) documentation as appropriate.
 
 ## Import your files
 
@@ -90,7 +90,7 @@ mounts:
 ```
 
 While using the CLI and rsync are the most common solutions for uploading files to mounts,
-you can also use [SCP](/development/access-site.md#scp).
+you can also use [scp](/development/access-site.md#scp).
 
 ### Platform.sh CLI
 

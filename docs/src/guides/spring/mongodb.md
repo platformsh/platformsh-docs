@@ -15,7 +15,7 @@ This guide only covers the *addition* of a MongoDB service configuration to an e
 
 ## 1. Add the MongoDB service
 
-In your [service configuration](../../configuration/services/_index.md), include MongoDB with a [valid supported version](/configuration/services/mongodb.md):
+In your [service configuration](../../add-services/_index.md), include MongoDB with a [valid supported version](../../add-services/mongodb.md):
 
 ```yaml
 dbmongo:
@@ -25,13 +25,13 @@ dbmongo:
 
 ## 2. Grant access to MongoDb through a relationship
 
-In your [app configuration](../../configuration/app/app-reference.md), use the service name `dbmongo` to grant the application access to MongoDB via a relationship:
+In your [app configuration](../../create-apps/app-reference.md), use the service name `dbmongo` to grant the application access to MongoDB via a relationship:
 
 {{< readFile file="src/registry/images/examples/full/mongodb.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 ## 3. Export connection credentials to the environment
 
-Connection credentials for services are exposed to the application container through the `PLATFORM_RELATIONSHIPS` environment variable from the deploy hook onward. Since this variable is a base64 encoded JSON object of all of your project's services, you'll likely want a clean way to extract the information specific to the databse into it's own environment variables that can be easily used by Spring. On Platform.sh, custom environment variables can be defined programmatically in a `.environment` file using `jq` to do just that:
+Connection credentials for services are exposed to the application container through the `PLATFORM_RELATIONSHIPS` environment variable from the deploy hook onward. Since this variable is a base64 encoded JSON object of all of your project's services, you'll likely want a clean way to extract the information specific to the database into it's own environment variables that can be used by Spring. On Platform.sh, custom environment variables can be defined programmatically in a `.environment` file using `jq` to do just that:
 
 ```text
 export SPRING_DATA_MONGODB_USERNAME=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".dbmongo[0].username"`

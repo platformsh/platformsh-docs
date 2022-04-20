@@ -17,7 +17,7 @@ description: |
 
 The `services.yaml` file lists the pre-packaged services you need for your application to run. You pick the major version of the service, and Platform.sh updates the patch version periodically so that you always get the newest version when you deploy.
 
-Gatsby does not require services to deploy, so you can leave the `services.yaml` file empty for now. You can add [other services](/configuration/services/_index.md) if desired, such as [Solr](/configuration/services/solr.md) or [Elasticsearch](/configuration/services/elasticsearch.md). You will need to configure Gatsby to use those services as well once the service is enabled.
+Gatsby does not require services to deploy, so you can leave the `services.yaml` file empty for now. You can add [other services](../../../add-services/_index.md) if desired, such as [Solr](../../../add-services/solr.md) or [Elasticsearch](../../../add-services/elasticsearch.md). You will need to configure Gatsby to use those services as well once the service is enabled.
 
 ## Application container: `.platform.app.yaml`
 

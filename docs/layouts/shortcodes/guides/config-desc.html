@@ -1,6 +1,6 @@
 <p>The end goal of this guide is to deploy your {{ .Get "name" }} application to a <em>project</em> on Platform.sh. In many ways, a project is just a collection of tools around a Git repository. A project replicates the branching structure of a repository exactly, but with one important addition: any branch can be <em>activated</em> to become an <em>environment</em> on Platform.sh. Activated environments go through Platform.sh's build and deploy phases, resulting in a fully isolated running site for each activated branch (or pull request) on that repo.</p>
 
-<p>Once an environment is activated, Platform.sh will provision a cluster of containers to deploy your application, and the configuration of that cluster is controlled by three <a href="{{ relref . "/configuration/yaml.md" }}">YAML files</a>:</p>
+<p>Once an environment is activated, Platform.sh will provision a cluster of containers to deploy your application, and the configuration of that cluster is controlled by three <a href="{{ relref . "/overview/yaml.md" }}">YAML files</a>:</p>
 
 <ul>
     <li><code>.platform/routes.yaml</code> controls how incoming requests are routed to your application, or applications if running a multi-app setup.  It also controls the built-in HTTP cache.</li>

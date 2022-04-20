@@ -86,5 +86,5 @@ After the deploy process is over, any commands in your `post_deploy` hook are ru
 
 ## What's next
 
-* See how to [configure your app](../configuration/app/_index.md) for the entire process.
-* Learn more about [using build and deploy hooks](../configuration/app/hooks/_index.md).
+* See how to [configure your app](../create-apps/_index.md) for the entire process.
+* Learn more about [using build and deploy hooks](../create-apps/hooks/_index.md).

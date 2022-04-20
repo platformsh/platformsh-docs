@@ -4,7 +4,7 @@ weight: 3
 sidebarTitle: "Custom TLS"
 ---
 
-Platform.sh automatically provides standard TLS certificates issued by [Let's Encrypt](https://letsencrypt.org/) to all production instances. No further action is required to use TLS-encrypted connections beyond [specifying HTTPS routes](/configuration/routes/https.md) in your `routes.yaml` file.
+Platform.sh automatically provides standard TLS certificates issued by [Let's Encrypt](https://letsencrypt.org/) to all production instances. No further action is required to use TLS-encrypted connections beyond [specifying HTTPS routes](../../define-routes/https.md) in your `routes.yaml` file.
 
 Alternatively, you may provide your own third party TLS certificate from the TLS issuer of your choice at no charge from us.  Please consult your TLS issuer for instructions on how to generate an TLS certificate.
 
@@ -27,7 +27,7 @@ openTLS rsa -in private.key -out private.rsa.key
 You can add a custom certificate via the Platform.sh [management console](/administration/web/_index.md). In the management console for the project go to [Settings](/administration/web/configure-project.md) and click Certificates on the left hand side. You can add a certificate with the `Add` button at the top of the page. You can then add your private key, public key certificate and optional certificate chain.
 
 {{< note >}}
-You will need to redeploy the impacted environment(s) for the new certificate to be taken into account.
+You need to redeploy the impacted environments for the new certificate to be taken into account.
 
 ```bash
 platform environment:redeploy
