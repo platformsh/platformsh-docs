@@ -335,6 +335,16 @@ button.sidebar__book-heading {
   width: 95%;
   border: none;
   text-align: left;
+  background-position: center right 8px;
+  background-repeat: no-repeat;
+}
+
+button.sidebar__book-heading[aria-expanded="false"] {
+  background-image: url(/images/icons/add.svg);
+}
+
+button.sidebar__book-heading[aria-expanded="true"] {
+  background-image: url(/images/icons/minus.svg);
 }
 
 h3.sidebar__book-heading {
