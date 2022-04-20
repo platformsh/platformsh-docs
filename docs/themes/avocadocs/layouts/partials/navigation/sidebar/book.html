@@ -7,7 +7,7 @@
   {{ $rootSections = .Site.Sections }}
 {{ end }}
 
-<div class="collapse {{ if .Active }}show{{ end }}" id="book-{{ $currentBook }}">
+<div class="collapse{{ if .Active }} show{{ end }}" id="book-{{ $currentBook }}">
 {{ range $rootSections }}
   <!-- Return nothing if should ignore -->
   {{ if .Params.sidebarIgnore }}

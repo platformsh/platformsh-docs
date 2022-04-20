@@ -24,7 +24,7 @@
     {{ range .Context.Pages }}
       <div class="sidebar__heading-wrapper sidebar__heading-wrapper-section">
         <h4 class="duik-sidebar__heading">
-          <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if eq $currentPage.RelPermalink .RelPermalink }} active{{ end }}">
+          <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if $isCurrentSection }} active{{ end }}">
             {{ .Title }}
           </a>
         </h4>
@@ -36,7 +36,7 @@
 <div>
   <div class="sidebar__heading-wrapper sidebar__heading-wrapper-section">
     <h4 class="duik-sidebar__heading">
-      <a href="{{ .Context.RelPermalink }}" class="duik-sidebar__link{{ if eq $currentSection $currentPage.Section }} active{{ end }}">
+      <a href="{{ .Context.RelPermalink }}" class="duik-sidebar__link{{ if $isCurrentSection }} active{{ end }}">
         {{ .Context.Title }}
       </a>
     </h4>
