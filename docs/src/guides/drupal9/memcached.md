@@ -6,7 +6,9 @@ description: |
 weight: -90
 ---
 
-Platform.sh recommends using Redis for caching with Drupal over Memcached, as Redis offers better performance when dealing with larger values as Drupal tends to produce.  However, Memcached is also available if desired and is fully supported.
+Platform.sh recommends using Redis for caching with Drupal over Memcached,
+as Redis offers better performance when dealing with larger values as Drupal tends to produce.
+But Memcached is also available if desired and is fully supported.
 
 ## Requirements
 
@@ -16,7 +18,8 @@ Platform.sh recommends using Redis for caching with Drupal over Memcached, as Re
 
 ### Add the Drupal module
 
-You will need to add the [Memcache](https://www.drupal.org/project/memcache) module to your project.  If you are using Composer to manage your Drupal site (which we recommend), run:
+You need to add the [Memcache](https://www.drupal.org/project/memcache) module to your project.
+If you're using Composer to manage your Drupal site (which is recommended), run:
 
 ```bash
 composer require drupal/memcache
@@ -25,21 +28,28 @@ composer require drupal/memcache
 Then commit the resulting changes to your `composer.json` and `composer.lock` files.
 
 {{< note >}}
-You must commit and deploy your code before continuing, then enable the module. The memcache
-module must be enabled before it is configured in the `settings.platformsh.php` file.
+
+You need to commit and deploy your code before continuing, then enable the module.
+The Memcache module must be enabled before it's configured in the `settings.platformsh.php` file.
+
 {{< /note >}}
 
 ## Configuration
 
 The Drupal Memcache module must be configured via `settings.platformsh.php`.
 
-Place the following at the end of `settings.platformsh.php`. Note the inline comments, as you may wish to customize it further.  Also review the `README.txt` file that comes with the memcache module, as it has a more information on possible configuration options. For instance, you may want to consider using memcache for locking as well and configuring cache stampede protection.
+Place the following at the end of `settings.platformsh.php`.
+Note the inline comments, as you may wish to customize it further.
+Also review the `README.txt` file that comes with the Memcache module,
+as it has a more information on possible configuration options.
+For instance, you may want to consider using Memcache for locking as well as configuring cache stampede protection.
 
-The example below is intended as a "most common case" and has been tested with version `8.x-2.3` of the memcache module.
+The example below is intended as a "most common case" and has been tested with version `8.x-2.3` of the Memcache module.
 
 {{< note >}}
 
-If you do not already have the Platform.sh Config Reader library installed and referenced at the top of the file, you will need to install it with `composer require platformsh/config-reader` and then add the following code before the block below:
+If you don't already have the Platform.sh Config Reader library installed and referenced at the top of the file,
+you need to install it with `composer require platformsh/config-reader` and then add the following code before the block below:
 
 ```php
 <?php
@@ -55,7 +65,7 @@ if (!$platformsh->inRuntime()) {
 ```php
 <?php
 
-// If you named your memcached relationship something other than "memcachedcache", set that here.
+// If you named your Memcached relationship something other than "memcachedcache", set that here.
 $relationship_name = 'memcachedcache';
 
 if ($platformsh->hasRelationship($relationship_name) && extension_loaded('memcached')) {
@@ -63,7 +73,7 @@ if ($platformsh->hasRelationship($relationship_name) && extension_loaded('memcac
     return sprintf("%s:%d", $creds['host'], $creds['port']);
   });
 
-  // This is the line that tells Drupal to use memcached as a backend.
+  // This is the line that tells Drupal to use Memcached as a backend.
   // Comment out just this line if you need to disable it for some reason and
   // fall back to the default database cache.
   $settings['cache']['default'] = 'cache.backend.memcache';
@@ -74,7 +84,7 @@ if ($platformsh->hasRelationship($relationship_name) && extension_loaded('memcac
   // By default Drupal starts the cache_container on the database.  The following
   // code overrides that.
   // Make sure that the $class_load->addPsr4 is pointing to the right location of
-  // the memcache module.  The value below should be correct if memcache was installed
+  // the Memcache module.  The value below should be correct if Memcache was installed
   // using Drupal Composer.
   $memcache_exists = class_exists('Memcache', FALSE);
   $memcached_exists = class_exists('Memcached', FALSE);
