@@ -7,6 +7,7 @@
         <!-- Header -->
         <tr class="region-table-header">
             <th>Region</th>
+            <th>Provider</th>
             <th>Outbound IPs</th>
             <th>Inbound IPs</th>
         </tr>
@@ -21,6 +22,8 @@
                 <h4><a href="#{{ $regionAnchor }}" id="{{ $regionAnchor }}" aria-label="Anchor">{{ .name }}</a></h4>
                 <code class="region-identifier">{{ .label }}</code>
             </td>
+            <!-- Provider -->
+            <td>{{ .provider }}</td>
             <!-- Outbound ips -->
             <td class="region-subtable">
                 <ul>
