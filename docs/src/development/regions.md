@@ -15,8 +15,8 @@ You can choose a region based on criteria such as its closeness to your users an
 ## Environmental impact
 
 Platform.sh is committed to reducing the environmental impact from its activities.
-As part of this effort, you can see information about the carbon footprint of the region's provider when creating a project.
-You see the provider's commitments to reducing its footprint and the average carbon intensity for its energy grid (in gCO2eq/kWh).
+As part of this effort, when creating a project you see information about the carbon footprint of the region's provider.
+You see the average carbon intensity for its energy grid (in gCO2eq/kWh).
 
 Information on carbon intensity is also available in the Platform.sh API.
 For example, to get a JSON object of the regions with their carbon intensities, run the following command:
