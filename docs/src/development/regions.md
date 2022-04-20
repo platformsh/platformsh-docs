@@ -17,7 +17,7 @@ You can choose a region based on criteria such as its closeness to your users an
 Platform.sh is committed to reducing the environmental impact from its activities.
 As part of this effort, when creating a project you see information about the carbon footprint of the region's provider.
 You see the average carbon intensity for its energy grid (in gCO2eq/kWh).
-Carbon intensity data comes from the International Energy Agency.
+The carbon intensity values come from the International Energy Agency.
 
 Information on carbon intensity is also available in the Platform.sh API.
 For example, to get a JSON object of the regions with their carbon intensities, run the following command:
