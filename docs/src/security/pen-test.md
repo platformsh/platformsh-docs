@@ -1,7 +1,6 @@
 ---
-title: "Vulnerability Scanning and Penetration Testing"
-weight: 12
-sidebarTitle: "Security scans"
+title: Vulnerability pcanning and penetration testing
+sidebarTitle: Security scans
 description: |
   Platform.sh understands the need for application owners to ensure the integrity, and standards compliance, of their applications. Because there could be adverse impacts to other clients which would violate our terms of service, we only permit certain types of tests.
 ---
@@ -9,7 +8,7 @@ description: |
 {{< description >}}
 
 Currently, we do not offer the possibility to activate/deactivate the Intrusion Prevention System (IPS) on demand.
-On Platform.sh's side, there is no automatic ip or range blocking. Blocking IP's (or not) is usually left to the appreciation of the Oncall engineer based on the specific circumstances.
+On Platform.sh's side, there is no automatic IP or range blocking. Blocking IP's (or not) is usually left to the appreciation of the on-call engineer based on the specific circumstances.
 
 ## Approved Activities
 
@@ -30,7 +29,7 @@ On Platform.sh's side, there is no automatic ip or range blocking. Blocking IP's
 
 ## Rate Limits
 
-* Please limit scans to a maximum of 20 Mbps and 50 requests per second in order to prevent triggering denial of service bans.
+* Please limit scans to a maximum of 20 Mb per second and 50 requests per second in order to prevent triggering denial of service bans.
 
 ## Troubleshooting
 

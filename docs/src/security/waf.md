@@ -1,7 +1,6 @@
 ---
-title: "Web application firewall (WAF)"
-weight: 15
-sidebarTitle: "WAF"
+title: Web application firewall (WAF)
+sidebarTitle: WAF
 description: |
     Enterprise and Elite projects on Platform.sh come with a Web application firewall (WAF) at no additional cost, which monitors requests to your application and blocks suspicious requests according to our ruleset. WAFs can be an important line of defense against well-known exploit vectors that can otherwise make an application vulnerable to malicious requests and distributed denial of service (DDoS) attacks.
 tier:

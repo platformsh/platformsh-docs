@@ -1,7 +1,6 @@
 ---
-title: "Update all the things"
-weight: 13
-sidebarTitle: "Updating"
+title: Update all the things
+sidebarTitle: Updating
 toc: false
 description: |
   **The Platform.sh Rule:** Update Early, Update Often
