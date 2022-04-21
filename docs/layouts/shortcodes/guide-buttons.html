@@ -1,10 +1,22 @@
 {{ $navType := "*" }}
+
+{{ $hardCodeLink := "*"}}
+
 {{ with .Get "type" }}
   {{ $navType = . }}
 {{ end }}
+
+{{ with .Get "link" }}
+  {{ $hardCodeLink = . }}
+{{ end }}
+
+<!-- {{ $hardCodeLink }} -->
+
 <br><br>
 
 <div class="buttons-nav">
+
+
 
 <!-- If exists both a next and previous page (two buttons) -->
 {{ if eq $navType "*" }}
@@ -26,7 +38,11 @@
 
       <!-- Next page button -->
       <span>
+          {{ if ne $hardCodeLink "*" }}
+          <button onclick="window.location.href = '{{ relref .Page $hardCodeLink }}';" type="button" class="btn2 btn-primary2">
+          {{ else }}
           <button onclick="window.location.href = '{{ .Page.PrevInSection.Permalink }}';" type="button" class="btn2 btn-primary2">
+          {{ end }}
             <span class="text-button-">{{ with .Get "next" }}{{ . }}{{ end }}</span>
             <span class="icon"><img class="chevron-next2" aria-hidden="true" src="/images/icons/chevrons.svg" /></span>
           </button>
