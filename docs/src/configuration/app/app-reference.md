@@ -170,6 +170,8 @@ Defaults may vary with a different [image `type`](#types).
 | `upstream`  | An [upstream dictionary](#upstream)          |                               | How the front server connects to your app. |
 | `locations` | A [locations dictionary](#locations)         |                               | How the app container responds to incoming requests. |
 
+See some [examples of how to configure what's served](./web/_index.md).
+
 ### Web commands
 
 | Name    | Type     | Required                      | Description |

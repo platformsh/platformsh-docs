@@ -1,6 +1,0 @@
-savePath: "/static/files/fetch/docsappyaml"
-root: "https://raw.githubusercontent.com/platformsh"
-branch: "master"
-file: "docs/.platform.app.yaml"
-repos: 
-  - platformsh-docs
