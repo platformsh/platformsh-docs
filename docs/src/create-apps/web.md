@@ -60,8 +60,7 @@ web:
 ```
 
 This blocks as long as necessary and restarts if needed.
-If you don't require any additional services, leave your `.platform/services.yaml` file empty.
-The file itself is required, but its contents are optional.
+If you don't require any additional services, you don't need a `.platform/services.yaml` file.
 
 ## How can I control the headers sent with my files?
 

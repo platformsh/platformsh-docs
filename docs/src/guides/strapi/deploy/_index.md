@@ -1,6 +1,6 @@
 ---
-title: "How to deploy Strapi on Platform.sh"
-sidebarTitle: "Get started"
+title: Deploy Strapi on Platform.sh
+sidebarTitle: Get started
 weight: -110
 layout: single
 description: |

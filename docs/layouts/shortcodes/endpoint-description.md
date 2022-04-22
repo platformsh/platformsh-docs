@@ -20,7 +20,7 @@ Use {{ if eq ($type) "mariadb" }}
   the `{{ $type }}` type
   {{ end }}to define the service:
 
-<!-- Create a dummy example services.yaml file from the registry's example naming in `.docs` -->
+<!-- Create an example services.yaml file from data in the registry. -->
 {{ partial "examples/servicedefn" $data }}
 
 {{ if eq $type "redis" }}

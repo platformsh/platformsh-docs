@@ -15,7 +15,7 @@ to a domain name (CNAME) rather than an IP address (A record).
 
 In order to correctly point DNS to your Platform.sh project,
 you need at the very least the production environment CNAME,
-in other words the domain of your site before you add a custom domain on the management console for that project (or otherwise in the CLI).
+in other words the domain of your site before you add a custom domain.
 This is the value you would get from [Step 4 of the pre-launch checklist](/domains/checklist.md).
 
 Assuming that you are using both a `www.` subdomain as well as the bare domain,

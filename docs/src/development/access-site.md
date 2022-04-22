@@ -12,18 +12,43 @@ That ensures a consistent, repeatable, auditable application instance at all tim
 
 ## Visiting the site on the web
 
-The URLs for the site are listed in the [management console](/administration/web/_index.md) under **Access site**.
+To find the URLs to access your site, follow these steps:
 
-They can also be found on the command line, using the [Platform.sh CLI](/development/cli/_index.md):
+{{< codetabs >}}
+
+---
+title=In the console
+file=none
+highlight=false
+---
+
+<!--This is in HTML to get the icon not to break the list. -->
+<ol>
+  <li>Select the project where you want to find the URLs.</li>
+  <li>From the <strong>Environment</strong> menu, select an environment.</li>
+  <li>Click <strong>URLs</strong>.</li>
+</ol>
+
+<--->
+
+---
+title=Using the CLI
+file=none
+highlight=false
+---
+
+Run the following command:
 
 ```bash
-platform url
+platform url --project <PROJECT_ID>
 ```
 
-Generally there will be two URLs created per route in your `routes.yaml` file:
+{{< /codetabs >}}
+
+Generally there are two URLs created per route in your `routes.yaml` file:
 One HTTPS and one HTTP route that just redirects to HTTPS.
-If you are using the `{all}` placeholder in your `routes.yaml` file,
-then there will be more, depending on how many domains you have configured in your project.
+If you're using the `{all}` placeholder in your `routes.yaml` file,
+then there are more, depending on how many domains you have configured in your project.
 
 ## Access your app with SSH
 

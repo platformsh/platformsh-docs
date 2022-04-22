@@ -12,7 +12,7 @@ keywords:
 
 ![Applications](/images/config-diagrams/applications.png "0.50")
 
-Within a single project, you can have one or more app and each app can have multiple instances.
+Within a single project, you can have one or more apps and each app can have multiple instances.
 Instances are where the same code can be run with different configurations,
 such as one for external communication and one for background processes.
 All of the apps and instances are configured with the same syntax.

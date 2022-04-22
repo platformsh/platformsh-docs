@@ -124,11 +124,11 @@ dependencies:
 
 ## OPcache preloading
 
-PHP 7.4 introduced a new feature called OPcache preloading,
+From PHP 7.4, you can use OPcache preloading,
 which allows you to load selected files into shared memory when PHP-FPM starts.
 That means functions and classes in those files are always available and don't need to be autoloaded,
 at the cost of any changes to those files requiring a PHP-FPM restart.
-Since PHP-FPM restarts anyway when a new deploy happens this feature is a major win on Platform.sh, and we recommend using it aggressively.
+Since PHP-FPM restarts on each new deploy, this feature is a major win on Platform.sh and we recommend using it aggressively.
 
 To enable preloading, add a `php.ini` value that specifies a preload script.
 Any [`php.ini` mechanism](/languages/php/ini.md) works,
@@ -140,8 +140,9 @@ variables:
         opcache.preload: 'preload.php'
 ```
 
-The `opcache.preload` value is evaluated as a file path relative to the application root (where `.platform.app.yaml` is),
-and it may be any PHP script that calls `opcache_compile_file()`.
+The `opcache.preload` value is evaluated as a file path relative your [app configuration](../../create-apps/_index.md).
+It may be any PHP script that calls `opcache_compile_file()`.
+
 The following example preloads all `.php` files anywhere in the `vendor` directory:
 
 ```php
@@ -157,8 +158,27 @@ foreach ($regex as $key => $file) {
 ```
 
 {{< note >}}
-Preloading all `.php` files may not be optimal for your application, and may even introduce errors.  Your application framework may provide recommendations or a pre-made preload script to use instead.  Determining an optimal preloading strategy is the user's responsibility.
+
+Preloading all `.php` files may not be optimal for your application and may even introduce errors.
+Your application framework may provide recommendations or a pre-made preload script to use instead.
+You have to determine the optimal preloading strategy for your situation.
+
 {{< /note >}}
+
+#### Preloading and dependencies
+
+Your preload script runs each time PHP-FPM restarts, including during your build.
+This means it runs before your dependencies have been installed (such as with Composer).
+
+If your preload script uses `require` for dependencies, it fails during the build
+because the dependencies aren't yet present.
+
+To resolve this, you have two options:
+
+* Have your script `include` dependencies instead of `require`
+  and fail gracefully if the dependencies aren't there.
+* Enable preloading with a variable that [isn't available during the build](../../development/variables/set-variables.md#variable-options).
+  Then preloading happens only on deploy.
 
 ## FFI
 

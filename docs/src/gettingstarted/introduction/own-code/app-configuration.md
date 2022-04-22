@@ -95,7 +95,7 @@ There are a few additional keys in `.platform.app.yaml` you will likely need to 
 
 * [Build and deploy tasks](../../../overview/build-deploy.md): There are a number of ways in which your Git repository is turned into a running application. In general, the build process will run the build flavor, install dependencies, and then execute the build hook you provide. When the build process is completed, the deploy process will run the deploy hook.
 
-   * `build`: The `build` key defines what happens during the build process using the `flavor` property. This is a common inclusion for PHP and Node.js applications, so check [the documentation](../../../create-apps/app-reference.md#build) to see if your configuration requires this key.
+   * `build`: The `build` key defines what happens during the build process using the `flavor` property. This is a common inclusion for PHP and Node.js applications, so check the [documentation](../../../create-apps/app-reference.md#build) to see if your configuration requires this key.
    * `dependencies`: This key makes it possible to install system-level [dependencies](../../../create-apps/app-reference.md#dependencies) as part of the build process.
    * `hooks`: [Hooks](../../../create-apps/hooks/_index.md) define custom scripts that you want to run at different points during the deployment process.
       * `build`: The [build hook](../../../create-apps/hooks/hooks-comparison.md#build-hook) is run after the build flavor if that is present. The file system is fully writable, but no services and only a subset of variables are available at this point. The full list of build time and runtime variables is available on the [variables section](../../../development/variables/_index.md) of the public documentation.
@@ -146,10 +146,9 @@ Each language and framework may have additional attributes that you will need to
 
 * **Language-specific templates for Platform.sh Projects:**
 
-  Compare the `.platform.app.yaml` file from the basic template above to other templates when writing your own.
+  Compare the `.platform.app.yaml` file from the template above to other templates when writing your own.
 
 {{< /note >}}
-
 
 Now that you have configured your application, you will next need to handle HTTP requests to your application using the `.platform/routes.yaml` file.
 

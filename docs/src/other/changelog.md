@@ -9,7 +9,11 @@ description: |
 
 ## 2022
 
+* **April 2022**
+  * Carbon intensity: You can now find information about the carbon intensity of each [region's energy grid](../development/regions.md).
 * **March 2022**
+  * The [`.platform/services.yaml` file](../add-services/_index.md) is no longer required.
+    If you don't need services, you don't need to include the file in your repository.
   * Crons: added option to [cancel a cron activity](../create-apps/app-reference.md#crons)
 * **January 2022**
   * OpenSearch: Added [OpenSearch service](../add-services/opensearch.md)
@@ -17,7 +21,7 @@ description: |
 ## 2021
 
 * **October 2021**
-  * Regions: Added a [second region in Australia](/development/public-ips.md#australia-2-au-2platformsh), `au-2`.
+  * Regions: Added a [second region in Australia](/development/regions.md#australia-2-au-2platformsh), `au-2`.
 * **September 2021**
   * Organizations: Switched to [organizations](/administration/organizations.md) for managing Platform.sh projects, users, and billing.
   * Vault: Added [Vault service](../add-services/vault.md).
@@ -49,7 +53,7 @@ description: |
 ## 2020
 
 * **December 2020**
-  * `us-4` region: We have [added](../development/public-ips.md) another US region, `us-4`.
+  * `us-4` region: We have [added](../development/regions.md) another US region, `us-4`.
 ---
 * **September 2020**
   * Go 1.15: We now support [Go 1.15](/languages/go.md).

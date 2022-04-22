@@ -117,7 +117,7 @@ Run the operation with the variable:
 {{< codetabs >}}
 
 ---
-title=In the Console
+title=In the console
 file=none
 highlight=false
 ---

@@ -33,18 +33,42 @@ See the [Step by step guide](../domains/steps/_index.md) for more complex cases.
 
 ## Set your domain
 
-Now, add a single domain to your Platform.sh project for `mysite.com`.
+Now, add a single domain to your Platform.sh project for `mysite.com`:
 
-Using the CLI type:
+{{< codetabs >}}
+
+---
+title=In the console
+file=none
+highlight=false
+---
+
+<!--This is in HTML to get the icon not to break the list. -->
+<ol>
+  <li>Select the project where you want to add a domain.</li>
+  <li>Click {{< icon settings >}} <strong>Settings</strong>.</li>
+  <li>Click <strong>Domains</strong>.</li>
+  <li>Enter <code>mysite.com</code> into the <strong>Domain</strong> field.</li>
+  <li>Click <strong>+ Add</strong>.</li>
+</ol>
+
+<--->
+---
+title=Using the CLI
+file=none
+highlight=false
+---
+
+Run the following command:
 
 ```bash
-platform domain:add mysite.com
+platform domain:add -p <PROJECT_ID> mysite.com
 ```
 
-You can also use the management console for that.
+{{< /codetabs >}}
 
-As soon as you do, Platform.sh will no longer serve `main-def456-abc123.eu-2.platformsh.site` at all.
-Instead, `{default}` in `routes.yaml` will be replaced with `mysite.com` anywhere it appears when generating routes to respond to.
+As soon as you add the domain, Platform.sh no longer serves `main-def456-abc123.eu-2.platformsh.site` at all.
+Instead, `{default}` in `routes.yaml` is replaced with `mysite.com` anywhere it appears when generating routes to respond to.
 
 You can still access the original internal domain by running `platform environment:info edge_hostname -e <BRANCH_NAME>`.
 
