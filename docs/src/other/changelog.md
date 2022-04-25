@@ -19,7 +19,7 @@ description: |
 ## 2021
 
 * **October 2021**
-  * Regions: Added a [second region in Australia](/development/public-ips.md#australia-2-au-2platformsh), `au-2`.
+  * Regions: Added a [second region in Australia](/development/regions.md#australia-2-au-2platformsh), `au-2`.
 * **September 2021**
   * Organizations: Switched to [organizations](/administration/organizations.md) for managing Platform.sh projects, users, and billing.
   * Vault: Added [Vault service](/configuration/services/vault.md).
@@ -51,7 +51,7 @@ description: |
 ## 2020
 
 * **December 2020**
-  * `us-4` region: We have [added](../development/public-ips.md) another US region, `us-4`.
+  * `us-4` region: We have [added](../development/regions.md) another US region, `us-4`.
 ---
 * **September 2020**
   * Go 1.15: We now support [Go 1.15](/languages/go.md).
