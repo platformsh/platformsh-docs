@@ -10,96 +10,35 @@ The Vault key management service (KMS) provides key management and access contro
 
 | **Grid** | **Dedicated** | **Dedicated Generation 3** |
 |----------------------------------|---------------|---------------|
-|  {{< image-versions image="vault" status="supported" environment="grid" >}} | {{< image-versions image="vault" status="supported" environment="dedicated" >}} | {{< image-versions image="vault" status="supported" environment="dedicated-gen-3" >}} |
+|  {{< image-versions image="vault-kms" status="supported" environment="grid" >}} | {{< image-versions image="vault-kms" status="supported" environment="dedicated" >}} | {{< image-versions image="vault-kms" status="supported" environment="dedicated-gen-3" >}} |
+
+{{< image-versions-legacy "vault-kms" >}}
 
 ## Add Vault
 
-### Add the service
+{{% endpoint-description type="vault-kms" noApp=true %}}
 
-In your `.platform/services.yaml` file, add the service:
-
-```yaml
-vault:
-    type: vault-kms:1.6
-    disk: 2048
-
-    configuration:
-        endpoints:
-            <ENDPOINT_ID>:
-                - policy: admin
-                  key: "<KEY_NAME>"
-                  type: sign
-                - policy: sign
-                  key: "<KEY_NAME>"
-                  type: sign
-                - policy: verify
-                  key: "<KEY_NAME>"
-                  type: sign
-```
-
-What this includes:
-
-* `<ENDPOINT_ID>` is an identifier you choose for the endpoint, such as `demo-app`. 
-* `<KEY_NAME>` is the name of the key to be stored in the Vault KMS, such as `signing-key`.
-* Select a [policy](#policies) based on what you want to accomplish.
+* `<SERVICE_NAME>` is the name you choose to identify the service.
+* `<VERSION>` is a supported version of the service.
+* `<ENDPOINT_ID>` is an identifier you choose for the endpoint.
+* `<KEY_NAME>` is the name of the key to be stored in the Vault KMS.
+* `<POLICY>` is one of the available [policies](#policies) based on what you want to accomplish.
 * The `type` is one of:
 
   * `sign`: for signing payloads, with the type `ecdsa-p256`
   * `encrypt` (for encrypt`chacha20-poly1305`).
 
-  The `type` cannot be changed after creation.
+  The `type` can't be changed after creation.
 
-You can also split the service into multiple endpoints, such as to have key management be separate from key use:
+You can create multiple endpoints, such as to have key management separate from key use.
 
-```yaml
-vault:
-    type: vault-kms:1.6
-    disk: 2048
-
-    configuration:
-        endpoints:
-            management:
-                - policy: admin
-                  key: admin-key
-                  type: sign
-            sign_and_verify:
-                - policy: sign
-                  key: signing-key
-                  type: sign
-                - policy: verify
-                  key: signing-key
-                  type: sign
-```
-
-### Add the relationship
-
-In your `.platform.app.yaml` file, add the relationship between your app and this service:
-
-```yaml
-relationships:
-    <SERVICE_NAME>: "vault:<ENDPOINT_ID>"
-```
-
-`<SERVICE_NAME>` is a name to identify the service later, such as `vault_service`
-
-`<ENDPOINT_ID>` is the name you [defined for the endpoint](#add-the-service) in your `.platform/services.yaml` file.
-
-
-If you split the service into multiple endpoints, define multiple relationships:
-
-```yaml
-name: 'app'
-
-type: golang:1.13
-
-relationships:
-    vault_manage: "vault:management"
-    vault_sign: "vault:sign_and_verify"
-```
+{{% /endpoint-description %}}
 
 ## Use Vault KMS
 
-To connect your app to the Vault KMS, use a token that is defined in the `$PLATFORM_RELATIONSHIPS` environment variable. With this token for authentication, you can use any of the policies you [defined in your `.platform/services.yaml` file](#add-the-service).
+To connect your app to the Vault KMS, use a token that is defined in the `$PLATFORM_RELATIONSHIPS` environment variable.
+With this token for authentication,
+you can use any of the policies you [defined in your `.platform/services.yaml` file](#1-configure-the-service).
 
 The following examples use cURL as an example, which you could do in a hook or after SSHing into your app environment. Adapt the examples for your app's language.
 
@@ -111,7 +50,7 @@ In order to make any calls to the Vault KMS, you need your token. Get it from th
 echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".<SERVICE_NAME>[0].password"
 ```
 
-`<SERVICE_NAME>` is the name you [defined in your `.platform.app.yaml` file](#add-the-relationship).
+`<SERVICE_NAME>` is the name you [defined in your `.platform.app.yaml` file](#2-add-the-relationship).
 
 The `-r` flag returns the string itself, not wrapped in quotes.
 
@@ -133,11 +72,11 @@ Assign it to a variable as follows:
 VAULT_URL=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".<SERVICE_NAME>[0].host"):$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".<SERVICE_NAME>[0].port")
 ```
 
-`<SERVICE_NAME>` is the name you [defined in your `.platform.app.yaml` file](#add-the-relationship).
+`<SERVICE_NAME>` is the name you [defined in your `.platform.app.yaml` file](#2-add-the-relationship).
 
 ### Manage your keys
 
-Your key names are [defined in your `.platform/services.yaml` file](#add-the-service). You can manage them if you've set an [admin policy](#policies) for them.
+Your key names are [defined in your `.platform/services.yaml` file](#1-configure-the-service). You can manage them if you've set an [admin policy](#policies) for them.
 
 To get information on a key, such as its expiration date, run the following command:
 
@@ -181,7 +120,7 @@ You get back a JSON object that includes the signature for the payload:
   ...
   "data": {
     "key_version": 1,
-    "signature": "vault:v1:MEUCIAiN4UtXh..."
+    "signature": "vault-kms:v1:MEUCIAiN4UtXh..."
   },
   ...
 }
@@ -237,7 +176,7 @@ You get back a JSON object that includes your encrypted data:
   "request_id": "690d634a-a4fb-bdd6-9947-e895578b79d5",
   ...
   "data": {
-    "ciphertext": "vault:v1:LEtOWSwh3N...",
+    "ciphertext": "vault-kms:v1:LEtOWSwh3N...",
     "key_version": 1
   },
   ...
@@ -292,7 +231,7 @@ In the JSON object that's returned, you can notice that the `ciphertext` is diff
 {
   ...
   "data": {
-    "ciphertext": "vault:v2:ICRi0yAlH...",
+    "ciphertext": "vault-kms:v2:ICRi0yAlH...",
     "key_version": 2
   },
   ...
@@ -301,32 +240,9 @@ In the JSON object that's returned, you can notice that the `ciphertext` is diff
 
 ## Relationship
 
-The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables.md#platformsh-provided-variables):
+The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables):
 
-```json
-"vault_service" : [
-    {
-        "ip" : "169.254.107.96",
-        "username" : "",
-        "service" : "vault",
-        "public" : false,
-        "scheme" : "http",
-        "query" : {
-            "is_master" : true
-        },
-        "type" : "vault-kms:1.6",
-        "password" : "b.AAAAAQKhMVMBtu2f1HwLdCCA_13hXizMFKoPFYNSyoTlXMUbmI6brKbzp6trV2uF9QHeEplDBTscX7f_Hp2pdgZgvMhacH-6JB8vuKttIRSOJstEC9bBY7B68Pdflon_gHyVh3CHuAnRP20EonqgsgSsrCGzoy7gvtXt5TA3rMNeqTMSI7Cvq3S84bpGjNjZ5lPGmugzgmQyW0KCdTm2_qwvQDgQDjggEjs6yFlGR-PFG1z7cQtFdyOaK_H1Gg",
-        "hostname" : "no6z32qomkw7ujl5l5si6fkivi.vault.service._.eu-3.platformsh.site",
-        "cluster" : "7trekjlmvvh34-main-bvxea6i",
-        "path" : "/",
-        "host_mapped" : false,
-        "host" : "vault_service.internal",
-        "port" : 8200,
-        "rel" : "demo-app",
-        "fragment" : ""
-    }
-]
-```
+{{< relationship "vault-kms" >}}
 
 ## Policies
 

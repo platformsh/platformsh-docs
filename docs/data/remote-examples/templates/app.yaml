@@ -23,3 +23,5 @@ repos:
     - spring-mvc-maven-mongodb
     - micronaut
     - gatsby
+    - strapi4
+    - laravel

@@ -6,7 +6,7 @@ description: A short description (up to ~160 characters) of the article that sho
 
 <!-- 
 When to use
-  When there is a single outcome a user wants to archieve.
+  When there is a single outcome a user wants to achieve.
   When you want to explain how to get to the outcome in ordered steps.
   https://diataxis.fr/how-to-guides/ 
 
@@ -57,7 +57,7 @@ or (if absolutely necessary) a screenshot.
 ## 2. Do this step second
 
 Split into separate steps when there are more than 5--7 actions in a step.
-Also when each separate step has an outcome that be described or shown.
+Also when each separate step has an outcome that can be described or shown.
 
 Introduce the purpose of this step very briefly.
 

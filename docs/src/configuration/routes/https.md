@@ -7,10 +7,13 @@ weight: 1
 
 All environments on Platform.sh support both HTTP and HTTPS automatically.
 Production TLS certificates are provided by [Let's Encrypt](https://letsencrypt.org/).
-You may alternatively provide your own TLS certificate from a 3rd party issuer of your choice at no charge from us.
+You may alternatively [provide your own TLS certificate from a third-party issuer](../../domains/steps/tls.md) of your choice at no charge from us.
 
-Let’s Encrypt TLS Certificates are valid for 90 days
-and Platform.sh automatically renews them 28 days before expiration to avoid HTTPS interruptions.
+The Let’s Encrypt TLS Certificates are:
+
+- valid for 90 days
+- automatically renewed 28 days before expiration
+
 If a renewal is available and needed, the environment is automatically redeployed to renew the certificate.
 As no new build is required the process should take at most a few seconds.
 The deploy and post-deploy hook are run during this process.
@@ -33,6 +36,13 @@ TLS certificates are often still called SSL certificates.
 TLS is a newer encryption system that has replaced SSL, but the name SSL is still widely recognized.
 In practice, they mean the same thing today, but TLS is the more correct term.
 {{</ note >}}
+
+### Limits
+
+{{% lets_encrypt_limitations %}}
+
+If you need more hostnames than that, obtain additional certificates or a wildcard certificate from another TLS provider. 
+Alternatively, consider splitting your project up into multiple Platform.sh projects.
 
 ## Using HTTPS
 
@@ -79,14 +89,6 @@ The use cases for this configuration are few.
 ```
 
 More complex routing logic is also possible if the situation calls for it.
-
-{{< note >}}
-Let's Encrypt has a limit of 100 TLS certificates per environment.
-If you define both a `{default}` and `www.{default}` route for each domain you use, that will give you a limit of 50 domains.
-Adding more than that will result in a warning on deploy and some domains will not be issued a TLS certificate.
-If you need more than that, we recommend obtaining additional certificates or a wildcard certificate from another TLS provider.
-Alternatively, consider splitting your project up into multiple discrete Platform.sh projects.
-{{< /note >}}
 
 ## TLS configuration
 
@@ -200,40 +202,47 @@ This tool assists in finding out where your domain is pointing to and provides s
 It also assists when a CDN (Fastly, Cloudflare, ...) is used.
 It's good practice to check both the apex and the `www` domain to ensure that both point to the cluster.
 
-## Let's Encrypt limits, errors, and branch names
+### Error provisioning certificates
 
 You may encounter Let's Encrypt certificates failing to provision after the build hook has completed:
 
 ```bash
 Provisioning certificates
-  Validating 2 new domains
+  Validating 1 new domain
   E: Error provisioning the new certificate, will retry in the background.
-  (Next refresh will be at 2020-02-13 14:29:22.860563+00:00.)
+  (Next refresh will be at 2022-02-13 14:29:22.860563+00:00.)
   Environment certificates
-W: Missing certificate for domain www.<PLATFORM_ENVIRONMENT>-<PLATFORM_PROJECT>.<REGION>.platformsh.site
-W: Missing certificate for domain <PLATFORM_ENVIRONMENT>-<PLATFORM_PROJECT>.<REGION>.platformsh.site
+W: Missing certificate for domain a-new-and-really-awesome-feature-abc1234-defghijk56789.eu3.platformsh.site
 ```
 
-One reason that this can happen has to do with the limits of Let's Encrypt itself,
-which caps off at 64 characters for URLs.
-If your TLS certificates aren't being provisioned,
-it's possible that the names of your branches are too long and the environment's generated URL goes over that limit.
+The renewal may fail because of the 64 character limit Let's Encrypt places on URLs.
+If you have a branch with a long name, the environment URL is over this limit and the certificate is rejected.
+Shortening the branch name to fewer than 20 characters should solve the issue.
 
-At this time, generated URLs have the following pattern:
+Generated URLs have the following pattern:
 
-```
+```bash
 <PLATFORM_ENVIRONMENT>-<PLATFORM_PROJECT>.<REGION>.platformsh.site
 ```
 
+If you have a default domain and include it as an absolute URL, it's added to the start of your URL.
+See [URLs in non-Production environments](./_index.md#urls-in-non-production-environments).
+
+```bash
+<DEFAULT_DOMAIN>.<PLATFORM_ENVIRONMENT>-<PLATFORM_PROJECT>.<REGION>.platformsh.site
+```
+
+* `DEFAULT_DOMAIN` = however many characters your default domain is
 * `PLATFORM_ENVIRONMENT` = `PLATFORM_BRANCH` + 7 character hash
 * `PLATFORM_PROJECT` = 13 characters
-* `REGION` = 2-4 characters, depending on the region
+* `REGION` = 2 to 4 characters, depending on the region
 * `platformsh.site` = 15 characters
-* extra characters (`.` & `-`) = 4 characters
+* extra characters (`.` & `-`) = 4 to 5 characters, depending on if you have a default domain
 
-This breakdown leaves you with 21-23 characters to work with naming your branches (`PLATFORM_BRANCH`) without going over the 64 character limit, dependent on the region.
-Since this pattern for generated URLs will remain similar but could change slightly over time,
-it's recommended to use branch names with a maximum length between 15 and 20 characters.
+This leaves you with 21 to 23 characters for your branch name (`PLATFORM_BRANCH`) without going over the 64 character limit,
+depending on the region.
+Since this pattern for generated URLs should remain similar even if it may change slightly,
+your branch names should be no more than 20 characters.
 
 ### DNS Challenge
 
@@ -244,10 +253,11 @@ Let's Encrypt needs to make sure that the requester is entitled to receive the S
 This ownership verification is achieved through the so called _Challenge_ step,
 more background information can be found in the [Let's Encrypt Documentation](https://letsencrypt.org/docs/challenge-types/).
 
-By default, Platform.sh checks that both the `some-example.platform.sh` and `www.some-example.platform.sh` domains are pointing to your project.
+If you include them in your [routes definition](./_index.md),
+Platform.sh checks that both the `example.platform.sh` and `www.example.platform.sh` domains are pointing to your project.
 The certificate also encompasses both these domains.
 Make sure that both your apex domain and it's `www` subdomain are pointing to your project,
-more information can be found in out go live [step-by-step guide](gettingstarted/next-steps/going-live/configure-dns.md).
+more information can be found in out go live [step-by-step guide](../../gettingstarted/next-steps/going-live/configure-dns.md).
 
 Sometimes, that verification fails which will result in the following error-message:
 `Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]`
@@ -268,9 +278,9 @@ or
 
 Make sure that both the apex domain and it's `www` subdomain are both pointing to the cluster.
 Note that DNS changes can take up to 24-48 hours to propagate.
-See the [step-by-step guide](/domains/steps/_index.md) for more information.
+See the [step-by-step guide](../../domains/steps/_index.md) for more information.
 If you have waited the 24-48 hours, properly configured the subdomain, and are still seeing an error of this type,
-[redeploying](/development/troubleshoot.md#force-a-redeploy) the impacted environment usually solves the issue.
+[redeploying](../../development/troubleshoot.md#force-a-redeploy) the impacted environment usually solves the issue.
 
 Also make sure that no conflicting DNS records exist for the domain.
 For example, a conflicting AAAA (IPv6) DNS record usually results in a `[HTTP01: The client lacks sufficient authorization]` error.

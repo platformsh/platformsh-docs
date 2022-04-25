@@ -18,7 +18,7 @@ In the previous step, you created a new project on Platform.sh using the CLI. No
 
 2. **Create empty configuration files**
 
-    You will notice that each of the templates above contain the following structure around their application code:
+    Each of the templates above contain the following structure around their application code:
 
     ```text
     .
@@ -29,18 +29,30 @@ In the previous step, you created a new project on Platform.sh using the CLI. No
     └── < application code >
     ```
 
-    In order to successfully deploy to Platform.sh you must add three YAML files:
+    In order to successfully deploy to Platform.sh you need to add two YAML files:
 
-      * A `.platform/routes.yaml` file, which configures the [routes](/configuration/routes/_index.md) used in your environments. That is, it describes how an incoming HTTP request is going to be processed by Platform.sh.
-      * A `.platform/services.yaml` file, which configures the [services](/configuration/services/_index.md) that will be used by the application. Connecting to Platform.sh's maintained services only requires properly writing this file. While this file must be present, if your application does not require services it can remain empty.
-      * At least one `.plaform.app.yaml` file, which configures the [application](/configuration/app/_index.md) itself. It provides control over the way the application will be built and deployed on Platform.sh.
+      * A `.platform/routes.yaml` file, which configures the [routes](/configuration/routes/_index.md) used in your environments.
+        It describes how an incoming HTTP request is going to be processed by Platform.sh.
+      * At least one file [configuring the application](../../../configuration/app/_index.md).
+        It provides control over the way the app is built and deployed on Platform.sh.
+
+    If you want to use [services](../../../configuration/services/_index.md), you need a third file:
+
+      * A `.platform/services.yaml` file, which configures the [services](/configuration/services/_index.md)
+        that are used by the application.
+        If you don't require services, you don't need the file.
 
     When you set Platform.sh as a remote for your repository in the previous step, the CLI automatically created the hidden configuration directory `.platform` for you. The next steps will explore in more detail what each configuration files must include, but for now create empty files in their place.
 
     ```bash
     touch .platform/routes.yaml
-    touch .platform/services.yaml
     touch .platform.app.yaml
+    ```
+
+    And if you want services:
+
+    ```bash
+    touch .platform/services.yaml
     ```
 
 3. **(Optional) Follow the Project Setup Wizard instructions in the management console**

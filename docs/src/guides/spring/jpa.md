@@ -15,15 +15,15 @@ This guide only covers the *addition* of a service configuration to an existing 
 
 ## 1. Add a SQL database service
 
-In your `.platform/services.yaml` file, include a SQL database service. Make sure to visit the documentation for [that service](/configuration/services/_index.md) to find a valid version. For PostgreSQL that would look like:
+In your [service configuration](../../configuration/services/_index.md), include a SQL database service with a [valid supported version](../../configuration/services/_index.md) to find a valid version. For PostgreSQL that would look like:
 
-{{< readFile file="src/registry/images/examples/full/postgresql.services.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/postgresql.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
 
 ## 2. Grant access to the service through a relationship
 
-Your `.platform.app.yaml` file will require a [`relationship`](/configuration/app/relationships.md) in order to have access to the new service. 
+To access the new service, set a `relationship` in your [app configuration](../../configuration/app/app-reference.md#relationships).
 
-{{< readFile file="src/registry/images/examples/full/postgresql.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/postgresql.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 ## 3. Export connection credentials to the environment
 
@@ -40,9 +40,12 @@ export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOut
 ```
 
 {{< note title="Tip" >}}
-Please check the [Spring Common Application properties](https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html#common-application-properties) and the  [Binding from Environment Variables](https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-external-config-relaxed-binding-from-environment-variables) to have access to more credentials options.
+
+{{% spring-common-props %}}
+
 {{< /note >}}
 
 ## 4. Connect to the service
 
-Commit that code and push. The specified cluster will now always point to the PostgreSQL or any SQL service that you wish.
+Commit that code and push.
+The specified cluster now always points to the PostgreSQL or any SQL service that you wish.

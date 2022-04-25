@@ -46,7 +46,11 @@ Two keys are available under `redirects`:
 Each rule under `paths` is defined by its key describing the expression to match against the request path and a value object describing both the destination to redirect to with detail on how to handle the redirection. The value object is defined with the following keys:
 
  * `to`: required, a relative URL - `'/destination'`, or absolute URL - `'https://example.com/'`.
- * `regexp`: optional, defaults to `false`. Specifies whether the path key should be interpreted as a PCRE regular expression. In the following example, a request to `https://example.com/foo/a/b/c/bar` would redirect to `https://example.com/a/b/c`:
+ * `regexp`: optional, defaults to `false`.
+   Specifies whether the path key should be interpreted as a PCRE regular expression.
+   If you use a capturing group, the replace field (`$1`) has to come after a slash (`/`).
+  
+   In the following example, a request to `https://example.com/foo/a/b/c/bar` would redirect to `https://example.com/a/b/c`:
 
    ```yaml
    https://{default}/:
@@ -58,6 +62,7 @@ Each rule under `paths` is defined by its key describing the expression to match
                    to: 'https://example.com/$1'
                    regexp: true
    ```
+   
    Note that special arguments in the `to` statement are also valid when `regexp` is set to `true`:
     * `$is_args` will evaluate to `?` or empty string
     * `$args` will evaluate to the full query string if any

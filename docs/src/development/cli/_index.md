@@ -1,19 +1,32 @@
 ---
-title: "CLI (Command line interface)"
+title: "Use the command line interface (CLI)"
 weight: 3
 description: |
-  The CLI is the official tool to use and manage your Platform.sh projects directly from your terminal. Anything you can do within the management console can be done with the CLI.
-sidebarTitle: "CLI"
+  See how to use and manage your Platform.sh projects directly from your terminal. Anything you can do within the management console can be done with the CLI.
+sidebarTitle: "Use the CLI"
 layout: single
 ---
 
 {{< description >}}
 
-Behinds the scenes it uses both the Git interface and our REST API. The source code of the CLI is hosted on [GitHub](https://github.com/platformsh/platformsh-cli).
+The CLI uses the git interface and the [Platform.sh REST API](https://api.platform.sh/docs/) to accomplish tasks.
+Its source code is hosted on [GitHub](https://github.com/platformsh/platformsh-cli).
 
-Find detailed information on [setting up a local development environment](/gettingstarted/developing/local-development/_index.md).
+## Before you begin
 
-## Installation
+You need to have:
+
+* PHP 5.5.9+
+* Git
+* A Bash-like shell
+
+  On Windows, the best way to get Bash is through [Windows Subsystem for Linux](https://msdn.microsoft.com/en-gb/commandline/wsl/about).
+  You can also use another Bash-compatible shell such as [Git Bash](https://gitforwindows.org/),
+  which you might have installed with git.
+
+For full requirements, see the [requirements on GitHub](https://github.com/platformsh/platformsh-cli#user-content-requirements).
+
+## 1. Install
 
 Install the CLI using this command:
 
@@ -21,128 +34,149 @@ Install the CLI using this command:
 curl -fsS https://platform.sh/cli/installer | php
 ```
 
-You can find the system requirements and more information in the [installation instructions on GitHub](https://github.com/platformsh/platformsh-cli/blob/master/README.md#installation).
+If you run into issues or want to install manually, see the [installation instructions on GitHub](https://github.com/platformsh/platformsh-cli#user-content-installation).
 
-## Authentication
+## 2. Authenticate
 
-The [Platform.sh CLI](https://github.com/platformsh/platformsh-cli) will authenticate you with Platform.sh and show your projects. Run this command to start:
+To see and manage projects, you need to be authenticated with Platform.sh
+Run this command:
 
 ```bash
 platform
 ```
 
-You will be asked to log in via a browser.
+You are asked to log in via a browser.
+This process creates SSH certificates on your computer for secure connections.
+(See more about [SSH connections](/development/ssh/_index.md).)
 
-When you are logged in, a list of your projects appears, along with some tips for getting started.
+Once you are logged in, a list of your projects appears, along with some tips for getting started.
 
-**Your command-line tools are now ready to use with Platform.sh.**
+If you experience authentication issues or want to force a login, run the command `platform login`.
 
-{{< note >}}
-For further details, consult the [Platform.sh CLI docs on Authentication](https://github.com/platformsh/platformsh-cli#authentication).
-{{< /note >}}
+## 3. Use
 
-## Usage
+Now you can run actions on your projects such as branching and merging.
+You can also simulate a local build of your codebase as if you were pushing a change to Platform.sh,
+including your services and data.
 
-The CLI uses the Platform.sh API to trigger commands (such as *branch*, *merge*) on your projects.
-
-It's also very useful when you work locally since it can simulate a local build of your codebase as if you were pushing a change to Platform.sh.
-
-Once you have the CLI installed, run `platform list` to see all of the available commands.
-
-You can preface any command with `help` to see more information on how to use that command.
+To see all available commands, run `platform list`.
+To get more information on a particular command, preface that command with `help`:
 
 ```bash
-$ platform help domain:add
-Command: domain:add
-Description: Add a new domain to the project
+$ platform help get
+Command: project:get
+Aliases: get
+Description: Clone a project locally
 
 Usage:
- domain:add [--project[="..."]] [--cert="..."] [--key="..."] [--chain="..."] [name]
+ platform get [-e|--environment ENVIRONMENT] [--depth DEPTH] [--build] [-p|--project PROJECT] [--host HOST] [-i|--identity-file IDENTITY-FILE] [--] [<project>] [<directory>]
 
 Arguments:
- name                  The name of the domain
+  project                            The project ID
+  directory                          The directory to clone to. Defaults to the project title
 
 Options:
- --project             The project ID
- --cert                The path to the certificate file for this domain.
- --key                 The path to the private key file for the provided certificate.
- --chain               The path to the certificate chain file or files for the provided certificate. (multiple values allowed)
- --help (-h)           Display this help message
- --quiet (-q)          Do not output any message
- --verbose (-v|vv|vvv) Increase the verbosity of messages
- --version (-V)        Display this application version
- --yes (-y)            Answer "yes" to all prompts
- --no (-n)             Answer "no" to all prompts
- --shell (-s)          Launch the shell
+  -e, --environment=ENVIRONMENT      The environment ID to clone. Defaults to the project default, or the first available
+                                     environment
+      --depth=DEPTH                  Create a shallow clone: limit the number of commits in the history
+      --build                        Build the project after cloning
+  -p, --project=PROJECT              The project ID or URL
+      --host=HOST                    The project's API hostname
+  -i, --identity-file=IDENTITY-FILE  An SSH identity (private key) to use
+  -h, --help                         Display this help message
+  -q, --quiet                        Do not output any message
+  -V, --version                      Display this application version
+  -y, --yes                          Answer "yes" to any yes/no questions; disable interaction
+  -n, --no                           Answer "no" to any yes/no questions; disable interaction
+  -v|vv|vvv, --verbose               Increase the verbosity of messages
+
+Examples:
+ Clone the project "abc123" into the directory "my-project":
+   platform get abc123 my-project
 ```
 
-### Comparison with Git commands
+### Select the right project and environment
 
-Some CLI commands (especially many within the `environment` namespace) have some overlap with Git commands. Generally, they offer more options than the Git commands alone. For example, `platform push` offers options such as `--activate` (to active an environment before pushing) and `--no-wait` (so you can continue working without waiting for the push to complete).
-
-For all of them, you don't need to configure a Git remote. It is enough to have a project ID.
-
-An example of how this affects commands is that when you run `platform merge`, it doesn't affect your local codebase. You don't even need the code locally. The code is only merged between environments remotely.
-
-## CLI features
-
-Additional settings to control the operation of the Platform.sh CLI can be managed in the configuration file (`.platform/local/project.yaml`) or environment variables. See the [`README` for the CLI for details](https://github.com/platformsh/platformsh-cli/blob/master/README.md#usage).
-
-## Auto-selecting your project
-
-When your shell's working directory is inside a local checkout of your project repository, the CLI will automatically detect your project ID and environment so you don't need to list them as parameters each time.
-
-In your home directory, for example, you need to provide the project ID as an argument each time:
+When you are in an empty directory or a directory not associated with a specific Platform.sh project,
+if you run a command that requires a specific project and environment, you are prompted to select them.
 
 ```bash
-$ platform project:info --project=acdefghijkl --environment=staging
+$ platform environment:info
+Enter a number to choose a project:
+  [0] My project (xb3pfo734qxbeg)
+  [1] A great project (3p5fmol45kxp6)
+  [2] An even better project (rjify4y564xaa)
+> 
 ```
 
-You can instead get the same result with just:
+If your working directory is inside a local checkout of your project repository,
+your project and environment are detected automatically.
+
+You can always specify the project and environment in two ways:
+
+* As arguments for the command:
+
+  ```bash
+  $ platform environment:info --project=my-project --environment=staging
+  ```
+* With environment variables:
+
+  ```bash
+  export PLATFORM_PROJECT=my-project;
+  export PLATFORM_BRANCH=staging;
+  platform environment:info
+  ```
+
+In [multi-app](../../configuration/app/multi-app.md) projects, this applies also to selecting the right app
+(the environment variable would be `PLATFORM_APPLICATION_NAME`).
+
+#### RootNotFoundException
+
+If you check out a project via Git directly and not using the `platform get` command,
+the CLI may be unable to determine what project it's in.
+You might run a CLI command from within a project directory you've checked out and get an error like this:
+
+```text
+[RootNotFoundException] Project root not found. This can only be run from inside a project directory.
+```
+
+Then the CLI hasn't been able to determine the project to use.
+To fix this, run:
 
 ```bash
-$ cd myproject
-$ platform project:info
+platform project:set-remote <PROJECT_ID>
 ```
 
-You can also set a preferred project ID with the environment variables `PLATFORM_PROJECT`, `PLATFORM_BRANCH` and `PLATFORM_APPLICATION_NAME`.
+Replace `<PROJECT_ID>` with the ID of your project.
+You can find that in the management console or by running `platform projects` to list all accessible projects.
 
-```bash
-export PLATFORM_PROJECT=acdefghijkl;
-export PLATFORM_BRANCH=staging;
-platform project:info
-```
+### Choose between the CLI and Git commands
 
-## Autocomplete on the command line
+Some CLI commands (especially many within the `environment` namespace) have some overlap with Git commands.
+Generally, they offer more options than the Git commands alone.
+For example, `platform push` offers options such as `--activate` (to active an environment before pushing)
+and `--no-wait` (so you can continue working without waiting for the push to complete).
 
-Once installed, the `platform` CLI tool provides tab auto-completion for commands, options, and even some values (your projects, valid regions).
+For all of them, you don't need to configure a Git remote.
+It's enough to have a project ID.
 
-{{< note >}}
-Your system must include the `bash-completion` package or equivalent. This is not available by default on macOS, but can be installed via `brew`. Check your home directory and ensure that the file `~/.platformsh/autocompletion.sh` is being included by your shell. `platform self:install` will attempt a reinstall of this utility if it's needed.
-{{< /note >}}
+An example of how this affects commands is that when you run `platform merge`,
+it doesn't affect your local codebase.
+You don't even need the code locally.
+The code is only merged between environments remotely.
 
-## Installing the CLI on Windows 10
+### Customize the CLI
 
-There are multiple ways to install the CLI on Windows 10. Platform.sh recommends using Bash for Windows (Windows Subsystem for Linux).
+You can customize how the CLI operates and what it returns with a configuration file (`.platform/local/project.yaml`)
+or environment variables.
+For details, see the [customization instructions on GitHub](https://github.com/platformsh/platformsh-cli#user-content-customization).
 
-### Installing Bash for Windows
+### Autocomplete commands
 
-You can install Bash to use the CLI on a Windows 10, 64-bit machine. The Windows 10 Anniversary Update is needed to support Git.
+The CLI provides tab autocompletion for commands, options, and some values (your projects, valid regions).
 
-To install Bash on Windows 10 Anniversary Edition you need to:
+Your system must include the `bash-completion` package or an equivalent.
+This isn't available by default on macOS, but can be installed via `brew`.
+Check your home directory and ensure that the file `~/.platformsh/autocompletion.sh` is being included by your shell.
 
-1. Activate the Developer Mode in "Update & Security" in Windows Settings. This will prompt you to restart your computer.
-2. Activate the "Windows Subsystem for Linux (Beta)", under "Turn Windows features on or off" in the Programs and Features section of the Control Panel. Once again, you will need to restart your computer.
-3. In the Start Menu, search for the program "bash.exe", which will prompt you to install it from the Windows Store.
-
-Bash is now installed.
-
-You can read more on [WindowsCentral](https://www.windowscentral.com/how-install-bash-shell-command-line-windows-10).
-
-Upon starting Bash, you will be asked to choose a username. According to the article, it doesn't have to be the same as your current username. However, if the username don't exist, the Linux system might not be able to create the Linux directory (depending on your permissions level). It is therefore recommended you use the same username for Linux as your Windows machine (provided your Windows user name isn't "Admin", as that will not be allowed).
-
-Once Bash for Windows is installed, you can install the Platform.sh CLI with the same command as above:
-
-```bash
-curl -fsS https://platform.sh/cli/installer | php
-```
+If you experience issues, run `platform self:install` to attempt a reinstall of this utility.

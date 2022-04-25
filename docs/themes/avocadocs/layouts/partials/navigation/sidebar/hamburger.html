@@ -2,8 +2,10 @@
 
 <!-- Default color is standard black -->
 {{ $fillcolor := "#000000"}}
-{{ if isset .Site.Params.colors "hamburger" }}
-  {{ $fillcolor = .Site.Params.colors.hamburger }}
+{{ if isset .Site.Params "colors" }}
+  {{ if isset .Site.Params.colors "hamburger" }}
+    {{ $fillcolor = .Site.Params.colors.hamburger }}
+  {{ end }}
 {{ end }}
 
 <button class="btn btn-link pl-0 d-md-none hamburger" type="button" data-toggle="collapse" data-target="#sidebar-nav" aria-controls="sidebar-nav" aria-expanded="false" aria-label="Toggle navigation">

@@ -4,12 +4,12 @@
 name: 'docs'
 
 # The type key specifies the language and version for your application.
-type: 'nodejs:14'
+type: 'nodejs:16'
 
 # Specify the Hugo version as an env variable.
 variables:
     env:
-        HUGOVERSION: 0.83.1
+        HUGOVERSION: 0.92.2
 
 relationships:
     search: "search:http"
@@ -50,3 +50,4 @@ mounts:
       source: local
       source_path: "config"
 
+size: S

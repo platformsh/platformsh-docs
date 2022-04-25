@@ -7,18 +7,30 @@ description: |
 
 {{< description >}}
 
+## 2022
+
+* **March 2022**
+  * The [`.platform/services.yaml` file](../configuration/services/_index.md) is no longer required.
+    If you don't need services, you don't need to include the file in your repository.
+  * Crons: added option to [cancel a cron activity](../configuration/app/app-reference.md#crons)
+* **January 2022**
+  * OpenSearch: Added [OpenSearch service](../configuration/services/opensearch.md)
+
 ## 2021
 
+* **October 2021**
+  * Regions: Added a [second region in Australia](/development/regions.md#australia-2-au-2platformsh), `au-2`.
 * **September 2021**
   * Organizations: Switched to [organizations](/administration/organizations.md) for managing Platform.sh projects, users, and billing.
   * Vault: Added [Vault service](/configuration/services/vault.md).
+  * .Net: We now support [.Net 5.0](/languages/dotnet.md).
 * **May 2021**
   * Elasticsearch 6.8: We now support [Elasticsearch 6.8](/configuration/services/elasticsearch.md).
 ---
 * **April 2021**
   * WAF: [a new page was added](/security/waf.md) describing the filtering rule sets and protections that come with the Platform.sh WAF.
-  * [Build environment variables](/development/variables.md#project-variables): environment variables can now accept the same `--visible-build` and `--visible-runtime` flags as project variables when created through the CLI. Build-visible variables are now a part of the build image ID, and therefore triggers a rebuild of the application when the value is updated. 
-  * **Breaking change**: The logic by which the build image ID has changed in order to support build environment variables above. Previously, every attribute in `.platform.app.yaml` was included in the build image, used to create the unique build ID, and *accessible* via the `PLATFORM_APPLICATION` environment variable at build time. This is no longer the case, and only a subset of `.platform.app.yaml` attributes are now accessible from `PLATFORM_APPLICATION` at build time. See the [Platform.sh-provided variables](/development/variables.md#variables-available-during-builds-and-at-runtime) section for more information.
+  * [Build environment variables](../development/variables/set-variables.md#create-project-variables): environment variables can now accept the same `--visible-build` and `--visible-runtime` flags as project variables when created through the CLI. Build-visible variables are now a part of the build image ID, and therefore triggers a rebuild of the application when the value is updated. 
+  * **Breaking change**: The logic by which the build image ID has changed in order to support build environment variables above. Previously, every attribute in `.platform.app.yaml` was included in the build image, used to create the unique build ID, and *accessible* via the `PLATFORM_APPLICATION` environment variable at build time. This is no longer the case, and only a subset of `.platform.app.yaml` attributes are now accessible from `PLATFORM_APPLICATION` at build time. See the [Platform.sh-provided variables](../development/variables/use-variables.md#use-platformsh-provided-variables) section for more information.
 ---
 * **March 2021**
   * Observability: [a new page was added](/dedicated/architecture/metrics.md) describing observability and metrics available on Dedicated projects.
@@ -39,7 +51,7 @@ description: |
 ## 2020
 
 * **December 2020**
-  * `us-4` region: We have [added](/development/public-ips.md#west-4-us-4platformsh-data-location-guarantee) another US region, `us-4`.
+  * `us-4` region: We have [added](../development/regions.md) another US region, `us-4`.
 ---
 * **September 2020**
   * Go 1.15: We now support [Go 1.15](/languages/go.md).
@@ -49,7 +61,7 @@ description: |
 ---
 * **April 2020**
   * We now offer [Xdebug on PHP](/languages/php/xdebug.md) containers.
-  * Custom [activity scripts](/integrations/activity/_index.md#activity-scripts) are now available, in alpha.
+  * Custom [activity scripts](../integrations/activity/_index.md) are now available, in alpha.
 ---
 * **March 2020**
   * Go 1.14: We now support [Go 1.14](/languages/go.md).
@@ -60,7 +72,7 @@ description: |
 ---
 * **February 2020**
   * Memcached 1.5: We now support [Memcached 1.5](/configuration/services/memcached.md).
-  * Character set and collation are now configurable on [MySQL/MariaDB](/configuration/services/mysql.md).
+  * Character set and collation are now configurable on [MySQL/MariaDB](/configuration/services/mysql/_index.md).
 ---
 * **January 2020**
   * RabbitMQ: We now support [RabbitMQ virtual host configuration](/configuration/services/rabbitmq.md#virtual-hosts)
@@ -149,8 +161,8 @@ description: |
 ---
 
 * **June 2018**
-  * Node.js 10: We now offer [Node.js version 10](/languages/nodejs/_index.md).  All releases in the 10.x series will be included in that container.
-  * MongoDB 3.6: We now offer [MongoDB 3.2, 3.4, and 3.6](/configuration/services/mongodb.md).  Note that upgrading from MongoDB 3.0 requires upgrading through all intermediary versions.
+  * Node.js 10: We now offer [Node.js version 10](/languages/nodejs/_index.md). All releases in the 10.x series will be included in that container.
+  * MongoDB 3.6: We now offer [MongoDB 3.2, 3.4, and 3.6](/configuration/services/mongodb.md). Note that upgrading from MongoDB 3.0 requires upgrading through all intermediary versions.
 ---
 
 * **March 2018**
@@ -158,15 +170,15 @@ description: |
 ---
 
 * **February 2018**
-  * `post_deploy` hook added: Projects can now run commands on deploy but [without blocking new requests](/configuration/app/build.md#post-deploy-hook).
+  * `post_deploy` hook added: Projects can now run commands on deploy but [without blocking new requests](../configuration/app/hooks/hooks-comparison.md#post-deploy-hook).
 
 ## 2017
 
 * **December 2017**
   * New project subdomains: The routes generated for subdomains and literal domains in development environments will now use `.` instead of translating them to `---`, for projects created after this date.
   * `!include` tag support in YAML files: All YAML configuration files now support a generic [`!include`](/configuration/yaml.md) tag that can be used to embed one file within another.
-  * Extended mount definitions: A new syntax has been added for defining [mount points](/configuration/app/storage.md) that is more self-descriptive and makes future extension easier.
-  * Blocking older TLS versions: It is now possible to disable support for [HTTPS requests](/configuration/routes/https.md) using older versions of TLS.  TLS 1.0 is known to be insecure in some circumstances and some compliance standards require a higher minimum supported version.
+  * Extended mount definitions: A new syntax has been added for defining [mount points](/configuration/app/app-reference.md#mounts) that is more self-descriptive and makes future extension easier.
+  * Blocking older TLS versions: It is now possible to disable support for [HTTPS requests](/configuration/routes/https.md) using older versions of TLS. TLS 1.0 is known to be insecure in some circumstances and some compliance standards require a higher minimum supported version.
   * `{all}` placeholder for routes: A new placeholder is available in [`routes.yaml`](/configuration/routes/_index.md) files that matches all configured domains.
   * GitLab source code integration: Synchronize Git repository host on [GitLab](/integrations/source/gitlab.md) to Platform.sh.
 ---
@@ -180,7 +192,7 @@ description: |
 ---
 
 * **August 2017**
-  * Worker instances: Applications now support [worker instances](/configuration/app/workers.md).
+  * Worker instances: Applications now support [worker instances](/configuration/app/app-reference.md#workers).
 ---
 
 * **July 2017**
@@ -189,22 +201,28 @@ description: |
 
 * **June 2017**
   * Memcache 1.4: [Memcache 1.4](/configuration/services/memcached.md) is now available as a caching backend.
-  * Custom static headers in `.platform.app.yaml`: Added support for setting custom headers for static files in `.platform.app.yaml`.  [See the example](/configuration/app/web.md#how-can-i-control-the-headers-sent-with-my-files) for more information.
+  * Custom static headers in `.platform.app.yaml`: Added support for setting custom headers for static files in `.platform.app.yaml`. [See the example](/configuration/app/web.md#how-can-i-control-the-headers-sent-with-my-files) for more information.
 ---
 
 * **May 2017**
-  * Code-driven variables in `.platform.app.yaml`: Added support for setting [environment variables via `.platform.app.yaml`](/configuration/app/variables.md).
+  * Code-driven variables in `.platform.app.yaml`: Added support for setting [environment variables via `.platform.app.yaml`](/configuration/app/app-reference.m#variables).
   * Python 3.6, Ruby 2.4, Node.js 6.10: Added support for updated versions of several languages.
 ---
 
 * **April 2017**
-  * Support for automatic SSL certificates: All production environments are now issued an SSL certificate automatically through Let's Encrypt.  See the [routing documentation](/configuration/routes/https.md) for more information.
-  * MariaDB 10.1: MariaDB 10.1 is now available (accessible as `mysql:10.1`).  Additionally, both MariaDB 10.0 and 10.1 now use the Barracuda file format with `innodb_large_prefix` enabled, which allows for much longer indexes and resolves issues with some UTF-8 MB use cases.
+  * Support for automatic SSL certificates: All production environments are now issued an SSL certificate automatically through Let's Encrypt.
+    See the [routing documentation](/configuration/routes/https.md) for more information.
+  * MariaDB 10.1: MariaDB 10.1 is now available (accessible as `mysql:10.1`).
+    Additionally, both MariaDB 10.0 and 10.1 now use the Barracuda file format with `innodb_large_prefix` enabled,
+    which allows for much longer indexes and resolves issues with some UTF-8 MB use cases.
 ---
 
 * **March 2017**
-  * Elasticsearch 2.4 and 5.2 with support for plugins: Elasticsearch 2.4 and 5.2 are now available.  Both have a number of optional plugins available.  See the [Elasticsearch documentation](/configuration/services/elasticsearch.md) for more information.
-  * InfluxDB 1.2: A new service type is available for InfluxDB 1.2, a time-series database.  See the [InfluxDB documentation](/configuration/services/influxdb.md) for more information.
+  * Elasticsearch 2.4 and 5.2 with support for plugins: Elasticsearch 2.4 and 5.2 are now available.
+    Both have a number of optional plugins available.
+    See the [Elasticsearch documentation](/configuration/services/elasticsearch.md) for more information.
+  * InfluxDB 1.2: A new service type is available for InfluxDB 1.2, a time-series database.
+    See the [InfluxDB documentation](/configuration/services/influxdb.md) for more information.
 ---
 
 * **February 2017**
@@ -212,24 +230,45 @@ description: |
 ---
 
 * **January 2017**
-  * Support for Multiple MySQL databases and restricted users: MySQL now supports multiple databases, and restricted users per MySQL service.  See the [MySQL documentation](/configuration/services/mysql.md) for details or read our [blog post](https://platform.sh/2017/02/multi-mysql).
-  * Support for Persistent Redis services: Added a `redis-persistent` service that is appropriate for persistent key-value data. The `redis` service is still available for caching.  See the [Redis documentation](/configuration/services/redis.md) for details.
-  * Support Apache Solr 6.3 with multiple cores: Added an Apache 6.3 service, which can be configured with multiple cores.  See the [Solr documentation](/configuration/services/solr.md) for details.
-  * Support for HTTP/2: Any site configured with HTTPS will now automatically support HTTP/2.  Read more on our [blog post](https://platform.sh/2017/1/http2).
+  * Support for Multiple MySQL databases and restricted users: MySQL now supports multiple databases, and restricted users per MySQL service.
+    See the [MySQL documentation](/configuration/services/mysql/_index.md) for details or read our [blog post](https://platform.sh/2017/02/multi-mysql).
+  * Support for Persistent Redis services:
+    Added a `redis-persistent` service that is appropriate for persistent key-value data.
+    The `redis` service is still available for caching.
+    See the [Redis documentation](/configuration/services/redis.md) for details.
+  * Support Apache Solr 6.3 with multiple cores:
+    Added an Apache 6.3 service, which can be configured with multiple cores.
+    See the [Solr documentation](/configuration/services/solr.md) for details.
+  * Support for HTTP/2:
+    Any site configured with HTTPS will now automatically support HTTP/2.
+    Read more on our [blog post](https://platform.sh/2017/1/http2).
 ---
 
 ## 2016
 
 * **December 2016**
-  * Support async PHP: Deploy applications like ReactPHP and Amp which allow PHP to run as a single-process asynchronous process.  Read more on our [blog post](https://platform.sh/2016/12/php-71).
-  * Pthreads: Multithreaded PHP: Our PHP 7.1 containers are running PHP 7.1 ZTS, and include the Pthreads extension. Read more on our [blog post](https://platform.sh/2016/12/php-71/).
-  * PHP 7.1: Service is [documented here](/languages/php/_index.md).
-  * Support .environment files: This file will get sourced as a bash script by the system when a container boots up, as well as on all SSH logins. Feature is [documented here](/development/variables.md#shell-variables).
-  * Support web.commands.start for PHP: That option wasn't available for PHP as PHP only has one applicable application runner, PHP-FPM. It is now available for PHP.  Read more on our [blog post](https://platform.sh/2016/12/app-updates-php/).
+  * Support async PHP:
+    Deploy applications like ReactPHP and Amp which allow PHP to run as a single-process asynchronous process.
+    Read a [blog post about PHP 7.1](https://platform.sh/2016/12/php-71).
+  * Pthreads: Multithreaded PHP:
+    PHP 7.1 containers are running PHP 7.1 ZTS, and include the Pthreads extension.
+    Read a [blog post about multithreaded PHP](https://platform.sh/2016/12/php-71/#pthreads-multithreaded-php).
+  * PHP 7.1: See [documentation for PHP](../languages/php/_index.md).
+  * Support `.environment` files:
+    This file is sourced as a bash script when a container boots up and on all SSH logins.
+    See [more on `.environment` files](../development/variables/set-variables.md#set-variables-via-script).
+  * Support `web.commands.start` for PHP:
+    That option wasn't available for PHP as PHP only has one applicable application runner, PHP-FPM.
+    It's now available for PHP.
+    Read more at the [blog post](https://platform.sh/2016/12/app-updates-php/).
+
 ---
 
 * **November 2016**
-  * Customizable build flavor: Added a `none` build flavor which will not run any specific command during the build process.  Use it if your application requires a custom build process which can be defined in your build hook. Read more in our [blog post](https://platform.sh/2016/11/fully-customizable-build-flavors/).
+  * Customizable build flavor:
+    Added a `none` build flavor which will not run any specific command during the build process. 
+    Use it if your application requires a custom build process which can be defined in your build hook.
+    Read more in our [blog post](https://platform.sh/2016/11/fully-customizable-build-flavors/).
 ---
 
 * **October 2016**
@@ -249,12 +288,18 @@ description: |
 
 * **July 2016**
   * Block Httpoxy security vulnerability: We bypass the [Httpoxy](https://httpoxy.org/) security vulnerability by blocking the Proxy header from incoming HTTP headers. Read more in our [blog post](https://platform.sh/2016/07/httpoxy/).
-  * Remove default configuration files: We are removing the default configuration files that were previously used if your project didn't include one. You now need to include configuration files to deploy your applications on Platform.sh. Read more in our [blog post](https://platform.sh/2016/07/no-more-default-configuration-files/).
+  * Remove default configuration files:
+    We are removing the default configuration files that were previously used if your project didn't include one.
+    You now need to include configuration files to deploy your applications on Platform.sh.
+    Read more in our [blog post](https://platform.sh/2016/07/no-more-default-configuration-files/).
 ---
 
 * **June 2016**
   * June update is summarized in our [blog post](https://platform.sh/2016/06/new-features-june/).
-  * New PLATFORM_PROJECT_ENTROPY variable: New variable which has a random value, stable throughout the project's life. It can be used for Drupal hash salt for example (in our [Drupal 8 example](https://github.com/platformsh-templates/drupal8)). It is [documented here](/development/variables.md#platformsh-variables)
+  * New PLATFORM_PROJECT_ENTROPY variable:
+    New variable which has a random value, stable throughout the project's life.
+    It can be used for Drupal hash salt for example (in our [Drupal 8 example](https://github.com/platformsh-templates/drupal8)).
+    See a [reference for the variable](../development/variables/use-variables.md#use-platformsh-provided-variables)
   * Extend PLATFORM_RELATIONSHIPS variable: Expose the hostname and IP address of each service in the `PLATFORM_RELATIONSHIPS` environment variable.
   * Services updates: Update MongoDB client to 3.2.7, Node.js to 4.4.5, Blackfire plugin to 1.10.6, Nginx to 1.11.1.
 ---
@@ -267,11 +312,14 @@ description: |
 ---
 
 * **April 2016**
-  * White label capabilities (Magento Enterprise Cloud Edition): Support for Platform.sh white label offering.  First launch at [Magento Imagine 2016](http://imagine.magento.com/) in Las Vegas of [Magento Enterprise Cloud Edition](https://magento.com/products/enterprise-cloud-edition).
+  * White label capabilities (Magento Enterprise Cloud Edition):
+    Support for Platform.sh white label offering.
+    First launch at Magento Imagine 2016 in Las Vegas of Magento Enterprise Cloud Edition.
 ---
 
 * **March 2016**
-  * CloudWatt deployment: Platform.sh is now available on Cloudwatt Orange Business Services hosted infrastructure. Read more in our [blog post](https://platform.sh/2016/03/platform-available-on-cloudwatt-by-orange/).
+  * CloudWatt deployment: Platform.sh is now available on Cloudwatt Orange Business Services hosted infrastructure.
+    Read more in our [blog post](https://platform.sh/2016/03/platform-available-on-cloudwatt-by-orange/).
 ---
 
 * **January 2016**
@@ -285,17 +333,19 @@ description: |
 ---
 
 * **November 2015**
-  * Java Ant & Maven build scripts: Java Ant and Maven build scripts is supported for PHP 5.6 and up.  Your application can pull and use most of Java dependency. Read more in our [blog post](https://platform.sh/2015/11/support-maven-and-ant)
+  * Java Ant & Maven build scripts:
+    Java Ant and Maven build scripts is supported for PHP 5.6 and up.
+    Your application can pull and use most of Java dependency. Read more in our [blog post](https://platform.sh/2015/11/support-maven-and-ant)
 ---
 
 * **October 2015**
-  * MariaDB/MySQL 10.0: Service is [documented here](/configuration/services/mysql.md).
+  * MariaDB/MySQL 10.0: Service is [documented here](/configuration/services/mysql/_index.md).
   * MongoDB 3.0: Service is [documented here](/configuration/services/mongodb.md).
 ---
 
 * **September 2015**
   * PHP 5.4, 5.5 & 5.6: Read more in our [blog post](https://platform.sh/2015/09/release-php)
-  * RabbitMQ 3.5: Service is [documented here](/configuration/services/rabbitmq.md).  Read more in our [blog post](https://platform.sh/2015/09/release-rabbitmq)
+  * RabbitMQ 3.5: Service is [documented here](/configuration/services/rabbitmq.md). Read more in our [blog post](https://platform.sh/2015/09/release-rabbitmq)
   * HHVM 3.9 & 3.12: Read more in our [blog post](https://platform.sh/2015/09/release-hhvm)
 ---
 
@@ -304,7 +354,7 @@ description: |
 ---
 
 * **June 2015**
-  * Bitbucket integration: This add-on allows you to deploy any branch or pull request on a fully isolated Platform.sh environment with a dedicated URL.  Read more in Bitbucket's [blog post](https://bitbucket.org/blog/bitbucket-platform-sh-remove-the-middle-man-between-your-code-and-your-deployment).
+  * Bitbucket integration: This add-on allows you to deploy any branch or pull request on a fully isolated Platform.sh environment with a dedicated URL. Read more in Bitbucket's [blog post](https://bitbucket.org/blog/bitbucket-platform-sh-remove-the-middle-man-between-your-code-and-your-deployment).
   * PostgreSQL 9.3: Service is [documented here](/configuration/services/postgresql.md).
 ---
 
@@ -313,7 +363,7 @@ description: |
 ---
 
 * **February 2015**
-  * Blackfire integration: PHP applications come pre-installed with [Blackfire](https://blackfire.io/) developed by [SensioLabs](https://sensiolabs.com/).  Read more in our [blog post](https://platform.sh/blackfire-integration).
+  * Blackfire integration: PHP applications come pre-installed with [Blackfire](https://blackfire.io/) developed by [SensioLabs](https://sensiolabs.com/). Read more in our [blog post](https://platform.sh/blackfire-integration).
 ---
 
 * **January 2015**
@@ -331,11 +381,16 @@ description: |
 ---
 
 * **October 2014**
-  * Automated protective block: Platform.sh provides a unique approach to protect your applications from known security issues.  An automated protective blocking system which works a bit like an antivirus: it compares the code you deploy on Platform.sh with a database of signatures of known security issues in open source projects. This feature is [documented here](/security/protective-block.md).  Read more in our [blog post](https://platform.sh/2014/10/21/protecting-your-apps).
+  * Automated protective block:
+    Platform.sh provides a unique approach to protect your applications from known security issues.
+    An automated protective blocking system which works a bit like an antivirus:
+    it compares the code you deploy on Platform.sh with a database of signatures of known security issues in open source projects.
+    This feature is [documented here](/security/protective-block.md).
+    Read more in our [blog post](https://platform.sh/2014/10/21/protecting-your-apps).
   * Solr 4.10: Service is [documented here](/configuration/services/solr.md).
 ---
 
 * **July 2014**
-  * MariaDB/MySQL 5.5: Service is [documented here](/configuration/services/mysql.html).
+  * MariaDB/MySQL 5.5: Service is [documented here](/configuration/services/mysql/_index.md).
   * Solr 3.6: Service is [documented here](/configuration/services/solr.md).
 ---

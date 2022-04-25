@@ -35,13 +35,17 @@ Drupal is just one example of a backend CMS that can be used with this pattern, 
 
 ## Tools
 
-{{< guides/tools >}}
+{{% guides/tools %}}
 
 ## Signing up for Platform.sh
 
 In each of the backend guides below, there will be a "Deploy on Platform.sh" button that will not only deploy the guide's project for you, but also sign you up for a trial account. If you are planning on simply deploying a template and following along with these guides for greater context, feel free to move onto the next section. 
 
-If however you are planning on using the templates and guides to deploy your existing codebase to Platform.sh, you will first need to visit the [Platform.sh accounts](https://accounts.platform.sh/platform/trial/general/setup) page and fill out your information to set up your trial account. If you don't want to sign up initially with your e-mail address, you can sign up using an existing GitHub, Bitbucket, or Google account. If you choose one of these options, you will be able to set a password for your Platform.sh account later.
+If however you are planning on using the templates and guides to deploy your existing codebase to Platform.sh,
+you first need to [register for a trial Platform.sh account](https://auth.api.platform.sh/register). 
+If you don't want to sign up initially with your e-mail address,
+you can sign up using an existing GitHub, Bitbucket, or Google account.
+If you choose one of these options, you can set a password for your Platform.sh account later.
 
 After creating an account, you will be prompted to create your first project. Since you'll be providing your own code, use the "Blank project" option. You will be able to give the project a title and choose a region closest to the visitors of your site. You also have the option to select more resources for your project. This is especially important with multi-application projects, so make sure to consult the [**Plan size**](#plan-size) note below for more details.
 

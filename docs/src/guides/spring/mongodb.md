@@ -15,7 +15,7 @@ This guide only covers the *addition* of a MongoDB service configuration to an e
 
 ## 1. Add the MongoDB service
 
-In your `.platform/services.yaml` file, include MongoDB with a [valid supported version](/configuration/services/mongodb.md):
+In your [service configuration](../../configuration/services/_index.md), include MongoDB with a [valid supported version](/configuration/services/mongodb.md):
 
 ```yaml
 dbmongo:
@@ -25,9 +25,9 @@ dbmongo:
 
 ## 2. Grant access to MongoDb through a relationship
 
-In your `.platform.app.yaml` file, use the service name `dbmongo` to grant the application access to MongoDB via a relationship:
+In your [app configuration](../../configuration/app/app-reference.md), use the service name `dbmongo` to grant the application access to MongoDB via a relationship:
 
-{{< readFile file="src/registry/images/examples/full/mongodb.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/mongodb.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 ## 3. Export connection credentials to the environment
 
@@ -42,9 +42,43 @@ export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOut
 ```
 
 {{< note title="Tip" >}}
-Please check the [Spring Common Application properties](https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html#common-application-properties) and the  [Binding from Environment Variables](https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-external-config-relaxed-binding-from-environment-variables) to have access to more credentials options.
+
+{{% spring-common-props %}}
+
 {{< /note >}}
 
 ## 4. Connect to the service
 
 Commit that code and push. The application is ready and connected to a MongoDB instance.
+
+## Use Spring Data for MongoDB
+
+You can use [Spring Data MongoDB](https://spring.io/projects/spring-data-mongodb) to use MongoDB with your app.
+First, determine the MongoDB client using the [Java configuration reader library](https://github.com/platformsh/config-reader-java).
+
+```java
+import com.mongodb.MongoClient;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
+import sh.platform.config.Config;
+import sh.platform.config.MongoDB;
+
+@Configuration
+public class MongoConfig extends AbstractMongoConfiguration {
+
+    private Config config = new Config();
+
+    @Override
+    @Bean
+    public MongoClient mongoClient() {
+        MongoDB mongoDB = config.getCredential("database", MongoDB::new);
+        return mongoDB.get();
+    }
+
+    @Override
+    protected String getDatabaseName() {
+        return config.getCredential("database", MongoDB::new).getDatabase();
+    }
+}
+```

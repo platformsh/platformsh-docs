@@ -11,9 +11,21 @@ A dedicated single-node staging machine can be provisioned for your application 
 
 ## Multiple applications
 
-Each application deployed to the Dedicated Cluster corresponds to a single Git repository in the Development Environment.  Multiple `.platform.app.yaml` files are not supported.  While it is possible to host multiple application code bases in separate subdirectories/subpaths of the application (such as `/drupal`, `/api`, `/symfony`, etc.) controlled by a single `.platform.app.yaml`, it is not recommended and requires additional configuration.  One or more domains may be mapped to the application.
+Each application deployed to a Dedicated Cluster corresponds to a single Git repository in the Development Environment.
+Multiple `.platform.app.yaml` files aren't supported.
+While you can host multiple application code bases in separate subdirectories
+(such as `/app` and `/api`) controlled by a single `.platform.app.yaml`,
+it isn't recommended and requires additional configuration.
 
-Our experience has shown that hosting multiple applications on a common resource pool is often bad for all applications on the cluster.  We therefore limit the number of applications that may be hosted on a single Dedicated Cluster.  On a D6 instance, only one application is supported.  On D12 and larger Dedicated plans multiple applications are supported at an extra cost.  Each application would correspond to a different Development Environment and Git repository and cannot share data or files with other applications.  This configuration is discouraged.
+You can map one or more domains to your app.
+
+Experience has shown that hosting multiple apps on a common resource pool is often bad for all apps in the cluster.
+So the number of apps you can host on a single Dedicated Cluster is limited.
+On a D6 instance, you can only have only one app.
+On D12 and larger Dedicated plans, you can have multiple applications at an extra cost.
+Each application would correspond to a different Development Environment and Git repository.
+It can't share data or files with other apps.
+This configuration is discouraged.
 
 ## Multiple-AZ
 
@@ -38,9 +50,14 @@ In addition to SSH accounts, SFTP accounts can be created with a custom user/pas
 
 ## Error handling
 
-On Platform.sh Professional, incoming requests are held at the edge router temporarily during a deploy.  That allows a site to simply "respond slowly" rather than be offline during a deploy, provided the deploy time is short (a few seconds).
+On Platform.sh Professional, incoming requests are held at the edge router temporarily during a deploy.
+That allows a site to "respond slowly" rather than be offline during a deploy, provided the deploy time is short (a few seconds).
 
-On Platform.sh Dedicated, incoming requests are not held during deploy and receive a 503 error.  As the Dedicated Cluster is almost always fronted by a CDN, the CDN will continue to serve cached pages during the few seconds of deploy, so for the vast majority of users there is no downtime or even slowdown.  If a request does pass the CDN during a deploy that is not counted as downtime covered by our Service Level Agreement.
+On Platform.sh Dedicated, incoming requests aren't held during deploy and receive a 503 error.
+As the Dedicated Cluster is almost always fronted by a CDN,
+the CDN continues to serve cached pages during the few seconds of deploy,
+so for the vast majority of users there is no downtime or even slow down.
+If a request does pass the CDN during a deploy, it isn't counted as downtime covered by our Service Level Agreement.
 
 By default, Platform.sh will serve generic Platform.sh-branded error pages for errors generated before a request reaches the application.  (500 errors, some 400 errors, etc.)  Alternatively you may provide a static error page for each desired error code via a ticket for us to configure with the CDN.  This file may be any static HTML file but is limited to 64 KB in size.
 
@@ -49,16 +66,22 @@ By default, Platform.sh will serve generic Platform.sh-branded error pages for e
 Platform.sh supports project-level IP restrictions (allow/deny) and HTTP Basic authentication.  These may be configured through the Development Environment and will be automatically replicated from the `production` and `staging` branches to the production and staging environments, respectively.
 
 {{< note >}}
-Changing access control will trigger a new deploy of the current environment. However, the changes will not propagate to child environments until they are manually redeployed.
+
+Changing access control triggers a new deploy of the current environment.
+However, the changes aren't propagate to child environments until they're [manually redeployed](../../development/troubleshoot.md#force-a-redeploy).
+
 {{< /note >}}
 
 ## Remote logging
 
-Platform.sh Dedicated supports sending logs to a remote logging service such as Loggly, Papertrail, or Logz.io using the rsyslog service.  This is an optional feature and you can request that it be enabled via a support ticket.  Once enabled and configured your application can direct log output to the system syslog facility and it will be replicated to the remote service you have configured.
+Platform.sh Dedicated supports sending logs to a remote logging service such as Loggly, Papertrail, or Logz.io using the `rsyslog` service.
+This is an optional feature and you can request that it be enabled via a support ticket.
+Once enabled and configured your application can direct log output to the system `syslog` facility
+and is replicated to the remote service you have configured.
 
-When contacting support to enable rsyslog, you will need:
+When contacting support to enable `rsyslog`, you need:
 
-* The name of the remote logging service you will be using.
+* The name of the remote logging service to use.
 * The message template format used by your logging service.
 * The specific log files you want forwarded to your logging service.
 

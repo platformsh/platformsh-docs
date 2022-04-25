@@ -1,0 +1,142 @@
+name: Get info on PR
+on:
+  pull_request:
+    branches: [main]
+
+env:
+  PR_NUMBER: ${{ github.event.number }}
+
+jobs:
+  get_pr_info:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      # Get the URL for the deployed environment
+      - name: Get environment URL
+        id: get_env_url
+        run: |
+          COMMIT_STATUS="pending"
+          COMMIT_SHA=${{ github.event.pull_request.head.sha }}
+
+          # Wait for the initial status to be reported as pending or 10 minutes has passed
+          STATUSES=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$COMMIT_SHA  | jq -r 'length')
+          STATUS_TRY=0
+          until [ $STATUSES != 0 ] || [ $STATUS_TRY == 20 ]; do
+            sleep 30
+            STATUSES=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$COMMIT_SHA  | jq -r 'length')
+            ((STATUS_TRY+=1))
+          done
+          
+          if [ $STATUSES == 0 ]; then
+            echo "No integration with Platform.sh reported. Skipping."
+            exit 1
+          else
+            # Keep trying until deployment either succeeds or fails
+            until [ "$COMMIT_STATUS" == "success" ] || [ "$COMMIT_STATUS" == "failure" ]; do
+              sleep 30
+
+              ENV_URL=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$COMMIT_SHA  | jq -r '.[0].target_url')
+              ENV_URL=${ENV_URL/http:/https:}
+              COMMIT_STATUS=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$COMMIT_SHA  | jq -r '.[0].state')
+              
+              echo "The Platform.sh environment is:"
+              echo "$COMMIT_STATUS"
+            done
+            if [ "$COMMIT_STATUS" == "success" ]; then
+              echo "Environment deployed to:"
+              echo "$ENV_URL"
+            fi
+
+            # Report the final statuses to be used in future jobs
+            echo "::set-output name=env_status::$COMMIT_STATUS"
+            echo "::set-output name=env_url::$ENV_URL"
+          fi
+
+      - name: Make artifact files
+        run: |
+          touch environment_url.txt
+          touch pr_comment.txt
+
+      - name: Save PR number
+        if: ${{ always() }}
+        run: echo $PR_NUMBER > pr_number.txt
+
+      # If no environment URL, create a report of that
+      - name: Create failure report
+        if: steps.get_env_url.outputs.env_status == 'failure'
+        run: |
+          echo -e "The environment on Platform.sh failed to deploy. :slightly_frowning_face:\n\nCheck the logs: https://console.platform.sh/projects/652soceglkw4u/pr-$PR_NUMBER" > pr_comment.txt
+        
+      # Create a list of relevant changed pages
+      - name: Report environment URL
+        if: steps.get_env_url.outputs.env_status == 'success'
+        run: |
+          echo ${{ steps.get_env_url.outputs.env_url }} > environment_url.txt
+
+      - name: Get changed files
+        if: steps.get_env_url.outputs.env_status == 'success'
+        id: changed-files
+        uses: tj-actions/changed-files@v14.5
+
+      # Create a list of relevant changed pages
+      - name: Get list of changed files
+        if: steps.get_env_url.outputs.env_status == 'success'
+        id: get-files
+        env:
+          ENV_URL: ${{ steps.get_env_url.outputs.env_url }}
+        run: |
+          files=()
+          for file in ${{ steps.changed-files.outputs.all_changed_and_modified_files }}; do
+
+            # Rewrite all Markdown files in the source to be links in the final environment
+            if [[ $file = "docs/src/"*".md" ]]; then
+
+              # Remove file extension
+              page=${file/.md/.html}
+
+              # Remove initial directory
+              page=${page/"docs/src/"/}
+
+              # Shift index pages up a level
+              page=${page/"/_index.html"/".html"}
+              
+              files+=("$ENV_URL$page")
+            fi
+          done
+
+          # If there are changed files, return a list
+          # Using "\n" here creates problems in passing data to the next step, so replace there instead
+          if (( ${#files[@]} != 0 )); then
+            echo $(printf "||%s" "${files[@]}")
+            echo ::set-output name=changed_files::$(printf "||%s" "${files[@]}")
+          else
+            echo ::set-output name=changed_files::""
+          fi
+
+      # If there are changed pages, create a comment with a checklist
+      - name: Comment with links
+        if: steps.get-files.outputs.changed_files != ''
+        env:
+          PAGES: ${{ steps.get-files.outputs.changed_files }}
+        run: |
+          echo -e "Your Platform.sh environment has successfully deployed. :rocket:\n\nSee the changed pages:\n${PAGES//||/'\n- [ ] '}" > pr_comment.txt
+
+      # If there are no changed pages, create a comment
+      # with a link to general URL
+      - name: Comment without links
+        if: steps.get-files.outputs.changed_files == '' && steps.get_env_url.outputs.env_status == 'success'
+        env:
+          ENV_URL: ${{ steps.get_env_url.outputs.env_url }}
+        run: |
+          echo -e "Your Platform.sh environment has successfully deployed. :rocket:\n\nSee the site:\n$ENV_URL" > pr_comment.txt
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: pr-info
+          path: |
+            environment_url.txt
+            pr_comment.txt
+            pr_number.txt

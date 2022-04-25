@@ -34,4 +34,4 @@ On Platform.sh's side, there is no automatic ip or range blocking. Blocking IP's
 
 ## Troubleshooting
 
-If your vulnerability scanning suggests there may be an issue with Platform.sh's service, please ensure your container is [updated](/security/updates.md) and retest. If the problem remains, please [contact support](/overview/getting-help.md).
+If your vulnerability scanning suggests there may be an issue with Platform.sh's service, please ensure your container is [updated](/security/updates.md) and retest. If the problem remains, please [contact support](/overview/get-support.md).

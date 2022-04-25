@@ -13,11 +13,13 @@ layout: single
 |----------------------------------|---------------|
 |  {{< image-versions image="nodejs" status="supported" environment="grid" >}} | {{< image-versions image="nodejs" status="supported" environment="dedicated" >}} |
 
-If you need other versions, take a look at our [options for installing them with NVM](/languages/nodejs/nvm.md).
+{{< image-versions-legacy "nodejs" >}}
 
-## Deprecated versions
+{{% language-specification type="nodejs" display_name="Node.js" %}}
 
-Some versions with a minor (such as 8.9) are available but are not receiving security updates from upstream, so their use is not recommended.
+To use a specific version in a container with a different language, [use a version manager](node-version.md).
+
+{{% deprecated-versions %}}
 
 | **Grid** | **Dedicated** |
 |----------------------------------|---------------|
@@ -25,19 +27,45 @@ Some versions with a minor (such as 8.9) are available but are not receiving sec
 
 ## Build flavor
 
-Node.js images use the `default` build flavor, which will run `npm prune --userconfig .npmrc && npm install --userconfig .npmrc` if a `package.json` file is detected. Note that this also allows you to provide a custom `.npmrc` file in the root of your application (as a sibling of the `.platform.app.yaml` file.)
+Node.js images use the `default` build flavor,
+which runs `npm prune --userconfig .npmrc && npm install --userconfig .npmrc` if a `package.json` file is detected.
+Note that this also allows you to provide a custom `.npmrc` file in the root of your application
+(as a sibling of the `.platform.app.yaml` file.)
+
+### Use yarn as a package manager
+
+The default build flavor uses npm as a package manager.
+To switch to yarn to manage dependencies, you need to switch to a build flavor of `none` and add yarn as a dependency.
+You can then install dependencies in the `build` hook:
+
+```yaml
+build:
+    flavor: none
+
+dependencies:
+    nodejs:
+        yarn: "1.22.17"
+
+hooks:
+    build: |
+        yarn
+        yarn build
+```
 
 ## Support libraries
 
-While it is possible to read the environment directly from your application, it is generally easier and more robust to use the [`platformsh-config`](https://github.com/platformsh/config-reader-nodejs) NPM library which handles decoding of service credential information for you.
+While it's possible to read the environment directly from your application,
+it's generally easier and more robust to use the [`platformsh-config` package](https://github.com/platformsh/config-reader-nodejs),
+which handles decoding of service credential information for you.
 
 ## Configuration
 
-To use Platform.sh and Node.js together, configure the `.platform.app.yaml` file with a few key settings, as described here (a complete example is included at the end).
+To use Platform.sh and Node.js together, configure the `.platform.app.yaml` file with a few key settings,
+as described here (a complete example is included at the end).
 
 1. Specify the language of your application (available versions are listed above):
 
-    {{< readFile file="src/registry/images/examples/full/nodejs.app.yaml" highlight="yaml" >}}
+    {{< readFile file="src/registry/images/examples/full/nodejs.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 2. Specify your dependencies under the `nodejs` key, like this:
 
@@ -47,9 +75,11 @@ To use Platform.sh and Node.js together, configure the `.platform.app.yaml` file
            pm2: "^4.5.0"
    ```
 
-   These are the global dependencies of your project (the ones you would have installed with `npm install -g`). Here we specify the `pm2` process manager that will allow us to run the node process.
+   These are the global dependencies of your project (the ones you would have installed with `npm install -g`).
+   This specifies the `pm2` process manager to run the node process.
 
-3. Configure the command you use to start serving your application (this must be a foreground-running process) under the `web` section, e.g.:
+3. Configure the command you use to start serving your application (this must be a foreground-running process) under the `web` section,
+   such as:
 
    ```yaml
    web:
@@ -57,7 +87,9 @@ To use Platform.sh and Node.js together, configure the `.platform.app.yaml` file
            start: "PM2_HOME=/app/run pm2 start index.js --no-daemon"
    ```
 
-   If there is a package.json file present at the root of your repository, Platform.sh will automatically install the dependencies. We suggest including the `platformsh-config` helper npm module, which makes it trivial to access the running environment.
+   If there is a package.json file present at the root of your repository,
+   Platform.sh automatically installs the dependencies.
+   We suggest including the `platformsh-config` package to facilitate access to the running environment.
 
    ```json
    {
@@ -68,7 +100,7 @@ To use Platform.sh and Node.js together, configure the `.platform.app.yaml` file
    ```
 
    {{< note >}}
-  If using the `pm2` process manager to start your application, it is recommended that you do so directly in `web.commands.start` as described above, rather than by calling a separate script the contains that command. Calling `pm2 start` at `web.commands.start` from within a script, even with the `--no-daemon` flag, has been found to daemonize itself and block other processes (such as backups) with continuous respawns.
+  If using the `pm2` process manager to start your application, it is recommended that you do so directly in `web.commands.start` as described above, rather than by calling a separate script that contains the command. Calling `pm2 start` at `web.commands.start` from within a script, even with the `--no-daemon` flag, has been found to daemonize itself and block other processes (such as backups) with continuous respawns.
    {{< /note >}}
 
 4. Create any Read/Write mounts. The root file system is read only. You must explicitly describe writable mounts. In (3) we set the home of the process manager to `/app/run` so this needs to be writable.
@@ -97,17 +129,12 @@ To use Platform.sh and Node.js together, configure the `.platform.app.yaml` file
        upstream: "app:http"
    ```
 
-7. (Optional) If Platform.sh detects a `package.json` file in your repository, it will automatically include a `default` [`build` flavor](/configuration/app/build.md#build), that will run `npm prune --userconfig .npmrc && npm install --userconfig .npmrc`. You can modify that process to use an alternative package manager by including the following in your `.platform.app.yaml` file:
+7. (Optional) If Platform.sh detects a `package.json` file in your repository, it automatically includes a `default` [`build` flavor](../../configuration/app/app-reference.md#build), that runs `npm prune --userconfig .npmrc && npm install --userconfig .npmrc`.
 
-   ```yaml
-   build:
-       flavor: none
-   ```
-
-   Consult the documentation specific to [Node.js builds](/configuration/app/build.html#nodejs-npm-by-default) for more information.
+   See how to use [yarn as a package manager](#use-yarn-as-a-package-manager) or specify a different manager.
 
 
-Here's a complete example that also serves static assets (.png from the `/public` directory):
+Here's a complete example that also serves static assets (PNGs from the `/public` directory):
 
 ```yaml
 name: node
@@ -139,7 +166,10 @@ disk: 512
 
 ## In your application...
 
-Finally, make sure your Node.js application is configured to listen over the port given by the environment (here we use the platformsh helper and get it from `config.port`) that is available in the environment variable ``PORT``.  Here's an example:
+Finally, make sure your Node.js application is configured to listen over the port given by the environment
+(here using the `platformsh-config` helper and getting it from `config.port`),
+which is available in the environment variable ``PORT``.
+Here's an example:
 
 ```js
 // Load the http module to create an http server.
@@ -158,7 +188,8 @@ server.listen(config.port);
 
 ## Accessing services
 
-To access various [services](/configuration/services/_index.md) with Node.js, see the following examples.  The individual service pages have more information on configuring each service.
+To access various [services](/configuration/services/_index.md) with Node.js, see the following examples.
+The individual service pages have more information on configuring each service.
 
 {{< codetabs >}}
 

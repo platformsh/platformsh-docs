@@ -1,5 +1,9 @@
 appyaml
+config-examples
+config-examples-platform
+gatsby
+lando
+multiappyaml
+docsappyaml
 routesyaml
 servicesyaml
-docsappyaml
-multiappyaml

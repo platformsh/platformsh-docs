@@ -1,0 +1,26 @@
+name: New docs
+description: For adding documentation that doesn't yet exist, such as for a new feature.
+labels:
+  - ungroomed
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve the Platform.sh docs!
+        Please fill in the fields below so we can understand what documentation is needed.
+
+  - type: textarea
+    attributes:
+      label: What needs to be documented?
+      description: |
+        Describe in detail what is missing from the documentation.
+        Include the use case for the missing feature: why people want to use it.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Additional context
+      description: Optionally add any other information or screenshots that could help us understand what to document.
+    validations:
+      required: false

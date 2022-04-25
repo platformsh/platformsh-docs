@@ -1,80 +1,58 @@
 ---
-title: "Project configuration"
+title: Configure a project
 weight: 1
-description: |
-  You can access the project-wide configuration settings by selecting the project from your list of projects, then click the `Settings` tab at the top of the screen.
+description: Configure settings that apply across a project, such as the name, access, and domain.
 ---
 
-{{< description >}}
+Each project has settings that apply to everything within that project, including all its environments.
+You can only see and update settings for projects where you are a [Project Admin](../users.md).
+To access the settings, click {{< icon settings >}} **Settings** from the main project page.
+
+The settings are divided into several sections.
 
 ## General
 
-From the first page of the project settings, `General`, you can update the project name, or navigate to other project settings options on the left side of the screen.
+The **General** section shows you the project's region and allows you to update the project name and [timezone](../../overview/projects/change-project-timezone.md).
 
-![configure project](/images/management-console/settings-basics.png "0.7")
+![configure project](/images/management-console/settings-general.png "0.7")
 
 ## Access
 
-The `Access` screen allows you to manage users' access on your project.
-
-You can invite new users to your project by clicking the `Add` button and entering their email address, or modify permissions of existing users by clicking the `Edit` link when hovering over the user.
+The *Access* section allows you to [manage user access to the project](../users.md).
 
 ![Project configure icon](/images/management-console/settings-project-access.png "0.7")
 
-{{< note >}}
-Permissions changes that grant or revoke SSH access to an environment take effect only after the next time that environment is deployed.
-{{< /note >}}
+## Certificates
 
-Selecting a user will allow you to either edit that user's permissions or delete the user's access to the project entirely.
+The *Access* section shows a list of your project's TLS certificates.
+To see details about a certificate or delete one, click **Edit {{< icon chevron >}}**.
+See how to [add custom certificates](../../domains/steps/tls.md).
 
-![Manage users of your Platform.sh project](/images/management-console/edit-user.png "0.7")
-
-If you check the `Project admin` box, this user will be an administrator of the project and will have full access on all environments. If you uncheck the box, you'll have the option of adjusting the user's permissions on each environment type.
-
-{{< note >}}
-The `Account owner` is locked and you can't change its permissions.
-{{< /note >}}
+![A list of certificates in a project](/images/management-console/settings-certificates.png "0.7")
 
 ## Domains
 
-{{< note theme="warning">}}
- Do not add a custom domain to your project until you are fully ready to change your DNS. Until that time, continue working with the Platform.sh generated URLs.
-{{< /note >}}
-
-The `Domains` screen allows you to manage your domains that your project will be accessible at.
+The `Domains` screen allows you to manage the domains where your project is accessible.
+See how to [set up your domain](../../domains/steps/_index.md).
 
 ![project domain](/images/management-console/settings-domains.png "0.7")
 
-More information on how to [setup your domain](/domains/steps/_index.md).
-
-{{< note >}}
-Platform.sh expects an ASCII representation of the domain here. In case you want to use an internationalized domain name you can use the [conversion tool provided by Verisign](https://www.verisign.com/en_US/channel-resources/domain-registry-products/idn/idn-conversion-tool/index.xhtml) to convert your IDN domain to ASCII.
-{{< /note >}}
-
-## Certificates
-
-The `Certificates` screen allows you to manage your project's TLS certificates that enable HTTPS.
-
-![project certs](/images/management-console/settings-certificates.png "0.7")
-
-You can view current certificates by hovering over one on the list and clicking the `View` link that appears, or you can add a new certificate by clicking the `Add` button a the top of the page.
-
-![add certs](/images/management-console/add-cert.png "0.7")
-
-All projects get TLS certificates provided by [Let's Encrypt](/configuration/routes/https.md#lets-encrypt) automatically. In most cases no user action is required. You will only need to add certificates on this page if you are using TLS certificates provided by a third party.
-
-A more in-depth guide regarding [how to set up custom certificates can be found here](https://docs.platform.sh/domains/steps/tls.html).
-
 ## Deploy Key
 
-The `Deploy Key` page provides the SSH key that Platform.sh will use when trying to access the external private Git repository during the build process.
-
+The **Deploy Key** section shows you the public SSH key you can add to your private repositories.
+Adding it lets Platform.sh access the repositories during the build process.
 This is useful if you want to reuse some code components across multiple projects and manage those components as dependencies of your project.
 
-![project deploy key](/images/management-console/settings-deploy-key.png "0.7")
+![Project deploy key](/images/management-console/settings-deploy-key.png "0.7")
+
+## Integrations
+
+The **Integrations** section allows you to manage all of your [integrations](../../integrations/_index.md).
+
+![pIntegrations](/images/management-console/settings-integrations.png "0.7")
 
 ## Variables
 
-The `Variables` screen allows you to define the variables that will be available project-wide - that is, in each environment. It also allows you define variables that will be available during the build process.
+The **Variables** section allows you to manage all project-wide [variables](../../development/variables/_index.md).
 
-![project vars](/images/management-console/settings-variables-project.png "0.7")
+![Project variables](/images/management-console/settings-variables-project.png "0.7")

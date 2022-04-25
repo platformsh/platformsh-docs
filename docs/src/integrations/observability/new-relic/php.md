@@ -2,15 +2,12 @@
 title: "PHP"
 ---
 
-{{< note title="PHP version">}}
-
-Due to New Relic [dropping support for Zend Thread Safe (ZTS) versions](https://docs.newrelic.com/docs/release-notes/agent-release-notes/php-release-notes/php-agent-9170300/), you can't use New Relic with PHP v8.0+. To use New Relic with PHP, specify `type: 'php:7.4'` in your `.platform.app.yaml` file.
-
-{{< /note >}}
+New Relic isn't yet available on PHP 8.1.
+To use New Relic with PHP, specify `type: 'php:8.0'` or lower in your [app configuration](../../../configuration/app/app-reference.md#types).
 
 ## Get your license key
 
-Sign up at https://newrelic.com and get your license key.
+Sign up at https://newrelic.com and get your [license key](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/#license-key).
 
 ## Add your license key
 
@@ -36,7 +33,7 @@ Repeat these two steps for every environment you want to monitor, making sure yo
 
 Enable the New Relic extension in your `.platform.app.yaml` as follows:
 
-```bash
+```yaml
 runtime:
     extensions:
         - newrelic
@@ -60,5 +57,5 @@ Additionally, you can check that your application is properly connected to New R
 platform log app
 
 2017/04/19 14:00:16.706450 (93) Info: Reporting to: https://rpm.newrelic.com/accounts/xxx/applications/xxx
-2017/04/19 14:00:16.706668 (93) Info: app 'xxx-master-xxx.app' connected with run id 'xxx'
+2017/04/19 14:00:16.706668 (93) Info: app 'xxx-main-xxx.app' connected with run id 'xxx'
 ```

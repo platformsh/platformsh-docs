@@ -15,15 +15,14 @@ description: |
 
 ## Service configuration: `services.yaml`
 
-The `services.yaml` file lists the pre-packaged services you need for your application to run. You pick the major version of the service, and Platform.sh updates the patch version periodically so that you always get the newest version when you deploy.
+{{% guides/config-service name=TYPO3 %}}
 
-We recommend the latest [MariaDB](/configuration/services/mysql.md) version for TYPO3, although you can also use Oracle MySQL or [PostgreSQL](/configuration/services/postgresql.md) if you prefer.  We also strongly recommend using [Redis](/configuration/services/redis.md) for TYPO3 caching. Our TYPO3 template comes [pre-configured to use Redis](https://github.com/platformsh-templates/typo3#customizations) for caching.
+We recommend the latest [MariaDB](/configuration/services/mysql/_index.md) version for TYPO3,
+although you can also use Oracle MySQL or [PostgreSQL](/configuration/services/postgresql.md) if you prefer.
+We also strongly recommend using [Redis](/configuration/services/redis.md) for TYPO3 caching.
+Our TYPO3 template comes [pre-configured to use Redis](https://github.com/platformsh-templates/typo3#user-content-customizations) for caching.
 
-You can add [other services](/configuration/services/_index.md) if desired, such as [Solr](/configuration/services/solr.md) or [Elasticsearch](/configuration/services/elasticsearch.md). You will need to configure TYPO3 to use those services as well once the service is enabled.
-
-Each service entry has a name (`db` and `cache` in the example below), as well as a `type` that specifies the service and version to use.  Note that not all services support clean version upgrades, and none support downgrades.  If you want to try upgrading a service, confirm on its service page that it's supported and test on a branch before pushing to your `master` branch.
-
-If a service stores persistent data then it will also have a `disk` key, which specifies the amount of storage to give it, in MB.
+{{% /guides/config-service %}}
 
 {{< readFile file="static/files/fetch/servicesyaml/typo3" highlight="yaml" >}}
 
@@ -31,7 +30,9 @@ If a service stores persistent data then it will also have a `disk` key, which s
 
 {{< guides/config-app template="typo3" >}}
 
-Note that the command `php vendor/bin/typo3cms install:generatepackagestate` is run during the build hook. The command will make sure all installed extensions are enabled and that they can be ommitted if you commit your own [`PackageStates.php`](https://docs.typo3.org/m/typo3/reference-coreapi/master/en-us/ExtensionArchitecture/ExtensionManagement/Index.html#package-manager) file.
+Note that the command `php vendor/bin/typo3cms install:generatepackagestate` is run during the build hook.
+The command ensures all installed extensions are enabled
+and that they can be omitted if you commit your own [`PackageStates.php` file](https://docs.typo3.org/m/typo3/reference-coreapi/master/en-us/ExtensionArchitecture/ExtensionManagement/Index.html#installing-extensions).
 
 {{< /guides/config-app >}}
 

@@ -6,9 +6,13 @@ description: |
 weight: -70
 ---
 
-If you are using the Platform.sh-provided Drupal template, most of this work is already done for you.  Redis is already configured and will be enabled after the installation is complete.
+If you are using the Platform.sh-provided Drupal template, most of this work is already done for you.
+Redis is already configured and is enabled after the installation is complete.
 
-Note that this Redis service is ephemeral, meaning it does not persist if the container moves or is shut down. Your app must treat it as ephemeral and not rely on it being there. One way to do this is regenerating cache in the `start` key in [your web configuration](/configuration/app/web.md#commands) so the cache is regenerated each time your app starts.
+Note that this Redis service is ephemeral, meaning it doesn't persist if the container moves or is shut down.
+Your app must treat it as ephemeral and not rely on it being there.
+One way to do this is emptying cache in the `start` key in [your web configuration](../../configuration/app/app-reference.md#web-commands)
+so the cache is clean each time your app starts.
 
 If you are working from an older repository or migrating a pre-built site to Platform.sh, see the instructions below.
 
@@ -16,27 +20,9 @@ If you are working from an older repository or migrating a pre-built site to Pla
 
 ### Add a Redis service
 
-In your ``.platform/services.yaml``:
+{{% endpoint-description type="redis" noApp=true onlyLanguage="php" php=true /%}}
 
-{{< readFile file="src/registry/images/examples/full/redis.services.yaml" highlight="yaml" >}}
-
-Now add a relationship in your `.platform.app.yaml` file:
-
-{{< readFile file="src/registry/images/examples/full/redis.app.yaml" highlight="yaml" >}}
-
-{{< endpoint-description "redis" >}}
-
-### Add the Redis PHP extension
-
-You will need to enable the PHP Redis extension.  In your `.platform.app.yaml` file, add the following right after the `type` block:
-
-```yaml
-runtime:
-    extensions:
-        - redis
-```
-
-### Add the Drupal module
+### 3. Add the Drupal module
 
 You will need to add the [Redis](https://www.drupal.org/project/redis) module to your project.  If you are using Composer to manage your Drupal site (which we recommend), run:
 
@@ -72,8 +58,8 @@ if (!$platformsh->inRuntime()) {
 <?php
 
 // Set redis configuration.
-if ($platformsh->hasRelationship('redis') && !\Drupal\Core\Installer\InstallerKernel::installationAttempted() && extension_loaded('redis')) {
-  $redis = $platformsh->credentials('redis');
+if ($platformsh->hasRelationship('rediscache') && !\Drupal\Core\Installer\InstallerKernel::installationAttempted() && extension_loaded('redis')) {
+  $redis = $platformsh->credentials('rediscache');
 
   // Set Redis as the default backend for any cache bin not otherwise specified.
   $settings['cache']['default'] = 'cache.backend.redis';

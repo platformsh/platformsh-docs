@@ -1,9 +1,8 @@
 ---
-title: "How to Deploy WordPress on Platform.sh"
-sidebarTitle: "Get started"
+title: Deploy WordPress on Platform.sh
+sidebarTitle: Get started
 weight: -110
 layout: single
-toc: false
 description: |
     Create a Platform.sh account, download a few tools, and prepare to deploy WordPress using Composer.
 ---
@@ -14,10 +13,7 @@ WordPress is a popular Content Management System written in PHP. The recommended
 With some caveats, it is of course possible to deploy WordPress to Platform.sh without using Composer, [though not recommended](/guides/wordpress/composer/_index.md). You can consult the ["WordPress without Composer on Platform.sh"](/guides/wordpress/vanilla/_index.md) guide to set that up, but do consider [upgrading to use Composer](/guides/wordpress/composer/migrate.md).
 {{< /note >}}
 
-Going through the steps below you will have two options:
-
-1. You already have a [Composer flavored WordPress](https://github.com/johnpbloch/wordpress) site your are trying to deploy. In this case, you will able to go through each step to make the recommended changes to your repository to prepare it for Platform.sh.
-2. You have no code at this point. In this case, Platform.sh maintains a ready-made [WordPress template](https://github.com/platformsh-templates/wordpress-composer) that you will be able to deploy very quickly. The steps below will then hopefully help to clarify why the modifications have been made to a base WordPress project that is using Composer.
+{{% guides/starting-point name="WordPress" templateRepo="wordpress-composer" composerLink="https://github.com/johnpbloch/wordpress" %}}
 
 {{< note >}}
 All of the examples in this deployment guide use the [`wordpress-composer`](https://github.com/platformsh-templates/wordpress-composer) template maintained by the Platform.sh team. That template is built using the [John Bloch Composer fork](https://github.com/johnpbloch/wordpress) of WordPress, which is meant to make managing WordPress with Composer a simple process, but the template comes with its own assumptions. The most obvious being that WordPress core is downloaded by default into a `wordpress` subdirectory when installed, but other teams would rather specify another subdirectory along with many more asssumptions. 
@@ -27,18 +23,19 @@ An alternative approach is shown in Platform.sh's [Bedrock template](https://git
 
 ## Tools
 
-{{< guides/tools >}}
+{{% guides/tools %}}
 
 ## Sign up for Platform.sh and initialize your project
 
-{{< guides/signup name="WordPress" template="wordpress-composer" >}}
+{{% guides/signup name="WordPress" template="wordpress-composer" %}}
 
-Then initialize or clone your Git repository with existing code, or create a new Composer-based project from scratch. The commands below will create a brand new WordPress project using Composer, which you can then modify according to the rest of this guide.
+3. Initialize or clone your Git repository with existing code or create a new Composer-based project from scratch.
+   The commands below create a brand new WordPress project using Composer, which you can then modify according to the rest of this guide.
 
-```bash
-$ git clone https://github.com/johnpbloch/wordpress && cd wordpress
-```
+   ```bash
+   git clone https://github.com/johnpbloch/wordpress && cd wordpress
+   ```
 
-{{< /guides/signup >}}
+{{% /guides/signup %}}
 
 {{< guide-buttons next="Configure repository" type="first" >}}

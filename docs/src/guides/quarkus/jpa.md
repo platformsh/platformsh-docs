@@ -15,15 +15,15 @@ This guide only covers the *addition* of a service configuration to an existing 
 
 ## 1. Add a SQL database service
 
-In your `.platform/services.yaml` file, include a SQL database service. Make sure to visit the documentation for [that service](/configuration/services/_index.md) to find a valid version. For PostgreSQL that would look like:
+In your [service configuration](../../configuration/services/_index.md), include a SQL database service. Make sure to visit the documentation for [that service](/configuration/services/_index.md) to find a valid version. For PostgreSQL that would look like:
 
-{{< readFile file="src/registry/images/examples/full/postgresql.services.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/postgresql.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
 
 ## 2. Grant access to the service through a relationship
 
-Your `.platform.app.yaml` file will require a [`relationship`](/configuration/app/relationships.md) in order to have access to the new service. 
+To access the new service, set a `relationship` in your [app configuration](../../configuration/app/app-reference.md#relationships).
 
-{{< readFile file="src/registry/images/examples/full/postgresql.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/postgresql.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 ## 3. Export connection credentials to the environment
 
@@ -40,7 +40,7 @@ export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOut
 ```
 
 {{< note title="Tip" >}}
-Environment variables names are following the conversion rules of [Eclipse MicroProfile](https://github.com/eclipse/microprofile-config/blob/master/spec/src/main/asciidoc/configsources.asciidoc#default-configsources).
+Environment variables names are following the conversion rules of [Eclipse MicroProfile](https://github.com/eclipse/microprofile-config/blob/master/spec/src/main/asciidoc/configsources.asciidoc#user-content-default-configsources).
 {{< /note >}}
 
 ## 4. Connect to the service

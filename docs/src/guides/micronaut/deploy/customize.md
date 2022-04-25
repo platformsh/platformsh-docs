@@ -43,7 +43,7 @@ type: "java:11"
 disk: 1024
 
 hooks:
-    build: build: mvn clean package
+    build: mvn clean package
     
 web:
     commands:

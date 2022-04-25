@@ -1,7 +1,3 @@
-<!-- User-widget -->
-<script src="{{"scripts/user-widget.min.js" | relURL}}"></script>
-<script src="{{"scripts/user-widget.js" | relURL}}"></script>
-
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -9,3 +5,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MR3BJL');</script>
 <!-- End Google Tag Manager -->
+
+<!-- Put file locations at the start of code blocks -->
+<script>
+  const codeblockElements = document.getElementsByClassName("highlight");
+  window.addEventListener("load", function () {
+    for (const codeblock of codeblockElements) {
+      const fileLocation = codeblock.attributes.location
+      console.log(fileLocation)
+      if (fileLocation){
+        console.log("hi")
+        const newNode = document.createElement("div");
+        const locationText = document.createTextNode(fileLocation.value);
+        newNode.appendChild(locationText);
+        newNode.classList.add("highlight-location");
+        const preNode = codeblock.firstChild;
+        codeblock.insertBefore(newNode, preNode);
+      }
+    }
+  })
+</script>

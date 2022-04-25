@@ -1,7 +1,31 @@
 ---
 title: "Upgrading"
-weight: 14
 ---
+
+## Changes in version 2022.02
+
+* The cron `cmd` syntax is now deprecated in favor of `commands`.
+  Previous cron job definitions looked like this:
+
+  ```yaml
+  crons:
+      sendemails:
+          spec: '*/7 * * * *'
+          cmd: cd public && send-pending-emails.sh
+  ```
+
+  They should now be written like this:
+
+  ```yaml
+  crons:
+      sendemails:
+          spec: '*/7 * * * *'
+          commands:
+              start: cd public && send-pending-emails.sh
+  ```
+
+  The new syntax offers greater flexibility and configuration.
+  For more details, see the [full specification for cron jobs](./app-reference.md#crons).
 
 ## Changes in version 2019.05
 
@@ -31,7 +55,7 @@ weight: 14
                 path: "myconfdir"
     ```
 
-* The syntax for the `mounts` key in `.platform.app.yaml` has changed.  Rather than a parsed string, the value of each mount is a [multi-key definition](/configuration/app/storage.md).  That is, the following example:
+* The syntax for the `mounts` key in `.platform.app.yaml` has changed.  Rather than a parsed string, the value of each mount is a [multi-key definition](/configuration/app/app-reference.md#mounts).  That is, the following example:
 
     ```yaml
     mounts:
@@ -70,7 +94,7 @@ disable client-side caching. This change only affects static files served
 directly by the web server. Responses served from passthru URLs continue to use
 whatever caching headers were set by the application..
 
-To enable caching on your static files, make sure you include an `expires` key in your [web configuration](/configuration/app/web.md), as shown below:
+To enable caching on your static files, make sure you include an `expires` key in your [web configuration](/configuration/app/app-reference.md), as shown below:
 
 ```yaml
 web:

@@ -3,7 +3,8 @@ title: "Varnish"
 weight: 13
 ---
 
-Varnish is a popular HTTP proxy server, often used for caching.  It is usually not needed on Platform.sh, as each project's router provides an HTTP cache already and most more advanced use cases will use a CDN instead, both of which render Varnish redundant.
+Varnish is a popular HTTP proxy server, often used for caching.
+It is usually not needed on Platform.sh, as each project's router provides an HTTP cache already and most more advanced use cases will use a CDN instead, both of which render Varnish redundant.
 
 However, it is possible to configure a Varnish instance as part of an application if Varnish-specific functionality is needed.
 
@@ -12,6 +13,8 @@ However, it is possible to configure a Varnish instance as part of an applicatio
 | **Grid** | **Dedicated** | **Dedicated Generation 3** |
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="varnish" status="supported" environment="grid" >}} | {{< image-versions image="varnish" status="supported" environment="dedicated" >}} | {{< image-versions image="varnish" status="supported" environment="dedicated-gen-3" >}} |
+
+{{< image-versions-legacy "varnish" >}}
 
 ## How it works
 
@@ -22,26 +25,34 @@ web -> router -> varnish -> application
                          -> application2
 ```
 
-
 ## Configuration
 
-### Add a Varnish service
+{{% endpoint-description type="varnish" noApp=true %}}
 
-Add the following to your `.platform/services.yaml` file:
+The `relationships` block allows Varnish to talk to your app.
+You can define `<RELATIONSHIP_NAME>` as you like.
+`<APP_NAME>` should match the name you gave your app in your [app configuration](../app/app-reference.md).
 
-{{< readFile file="src/registry/images/examples/full/varnish.services.yaml" highlight="yaml" >}}
+The `configuration` block must reference a VCL file (`config.vcl` in this example).
+The file name is relative to the `.platform` directory.
 
-In the `relationships` block, define a relationship (`application`) to the application container (`app`) using the `http` endpoint.  That allows Varnish to talk to the application container.
+{{% /endpoint-description %}}
 
-The configuration block is required, and must reference a VCL file (here `config.vcl`).  The file name is relative to the `.platform` directory.
-
-### Create a VCL template file
+### 3. Create a VCL template file
 
 The VCL file you provide has three specific requirements over and above the VCL syntax itself.
 
-1. You MUST NOT define a `vcl_init()` function.  Platform.sh will auto-generate that function based on the relationships you define.  In particular, it will define a "backend" for each relationship defined in `services.yaml`, named the same as the relationship.
-2. You MUST NOT include the preamble at the beginning of the file, specifying the VCL version.  That will be auto-generated as well. You CAN add imports, but not `std` and `directors`, as they're imported already.
-3. You MUST specify the backend to use in `vcl_recv()`.  If you have a single app container/relationship/backend, it's just a single line.  If you want to split requests to different relationships/backends based on some rule then the logic for doing so should be incorporated into the `vcl_recv()` function.
+1. You MUST NOT define a `vcl_init()` function.
+   Platform.sh will auto-generate that function based on the relationships you define.
+   In particular, it will define a "backend" for each relationship defined in `services.yaml`,
+   named the same as the relationship.
+2. You MUST NOT include the preamble at the beginning of the file, specifying the VCL version.
+   That will be auto-generated as well.
+   You CAN add imports, but not `std` and `directors`, as they're imported already.
+3. You MUST specify the backend to use in `vcl_recv()`.
+   If you have a single app container/relationship/backend, it's just a single line.
+   If you want to split requests to different relationships/backends based on some rule,
+   then the logic for doing so should be incorporated into the `vcl_recv()` function.
 
 The absolute bare minimum VCL file is:
 
@@ -51,9 +62,12 @@ sub vcl_recv {
 }
 ```
 
-Where `application` is the name of the relationship defined in `services.yaml`.  (If the relationship was named differently, use that name instead.)
+Where `application` is the name of the relationship defined in `services.yaml`.
+(If the relationship was named differently, use that name instead.)
 
-If you have multiple applications fronted by the same Varnish instance then you will need to include logic to determine to which application a request is forwarded.  For example:
+If you have multiple applications fronted by the same Varnish instance,
+then you will need to include logic to determine to which application a request is forwarded.
+For example:
 
 ```yaml
 varnish:
@@ -78,37 +92,44 @@ sub vcl_recv {
 }
 ```
 
-This configuration will direct all requests to a URL beginning with a `/blog/` path to the application on the relationship `blog`, and all other requests to the application on the relationship `main`.
+This configuration will direct all requests to a URL beginning with a `/blog/` path to the application on the relationship `blog`,
+and all other requests to the application on the relationship `main`.
 
-Besides that, the VCL file, including the `vcl_recv()` function, can be arbitrarily complex to suit the needs of the project.  That includes additional `include` directives if appropriate.  See the [Varnish documentation](https://varnish-cache.org/docs/index.html) for more details on the functionality offered by Varnish.
+Besides that, the VCL file, including the `vcl_recv()` function, can be arbitrarily complex to suit the needs of the project.
+That includes additional `include` directives if appropriate.
+See the [Varnish documentation](https://varnish-cache.org/docs/index.html) for more details on the functionality offered by Varnish.
 
 {{< note >}}
-A misconfigured VCL file can result in incorrect, often mysterious and confusing behavior.  Platform.sh does not provide support for VCL configuration options beyond the basic connection logic documented here.
+
+A misconfigured VCL file can result in incorrect, often mysterious and confusing behavior.
+Platform.sh does not provide support for VCL configuration options beyond the basic connection logic documented here.
 
 {{< /note >}}
 
-### Route incoming requests to Varnish
+### 4. Route incoming requests to Varnish
 
-To enable Varnish now, edit the `.platform/routes.yaml` file to point to the Varnish service you just created.  You also need to disable the router cache as it is now entirely redundant with Varnish.
+To enable Varnish now, edit the `.platform/routes.yaml` file to point to the Varnish service you just created.
+You also need to disable the router cache as it is now entirely redundant with Varnish.
 
 For example:
 
 {{< readFile file="src/registry/images/examples/full/varnish.routes.yaml" highlight="yaml" >}}
 
-That will map all incoming requests to the Varnish service rather than the application.  Varnish will then, based on the VCL file, forward requests to the application as appropriate.
+That will map all incoming requests to the Varnish service rather than the application.
+Varnish will then, based on the VCL file, forward requests to the application as appropriate.
 
 ## Modules
 
 Platform.sh supports a number of optional modules you can include in your VCLs, namely:
 
-* cookie
-* header
-* saintmode
-* softpurge
-* tcp
-* var
-* vsthrottle
-* xkey
+* `cookie`
+* `header`
+* `saintmode`
+* `softpurge`
+* `tcp`
+* `var`
+* `vsthrottle`
+* `xkey`
 
 To use in your VCL, add an import such as:
 
@@ -118,13 +139,17 @@ import xkey;
 
 ## Circular relationships
 
-At this time Platform.sh does not support circular relationships between services or applications.  That means you cannot add a relationship in your `.platform.app.yaml` that points to the Varnish service.  If you do so then one of the relationships will be skipped and the connection will not work.  This limitation may be lifted in the future.
+At this time Platform.sh doesn't support circular relationships between services or applications.
+That means you cannot add a relationship in your `.platform.app.yaml` that points to the Varnish service.
+If you do so, then one of the relationships is skipped and the connection doesn't work.
+This limitation may be lifted in the future.
 
 ## Stats endpoint
 
-The Varnish service also offers an `http+stats` endpoint, which provides access to some Varnish analysis and debugging tools.  To access it, from a dedicated app container add the following to `.platform.app.yaml`:
+The Varnish service also offers an `http+stats` endpoint, which provides access to some Varnish analysis and debugging tools.
+To access it, from a dedicated app container add the following to your [app configuration](../../configuration/app/app-reference.md):
 
-{{< readFile file="src/registry/images/examples/full/varnish.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/varnish.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 You can then access the `varnishstats` relationship over HTTP at the following paths to get diagnostic information:
 
@@ -133,9 +158,10 @@ You can then access the `varnishstats` relationship over HTTP at the following p
 * `/stats`: returns the output of `varnishstat`
 * `/logs`: returns a streaming response of `varnishlog`
 
-Note that because of the circular relationship issue noted above this cannot be done on the application that Varnish is forwarding to.  It will need to be run on a separate application container.
+Because of the circular relationship noted above, this can't be done on the application that Varnish is forwarding to.
+It needs to be run on a separate application container.
 
 To access the Varnish endpoint:
 - Connect to your cluster [using ssh](/development/ssh/_index.md) or through the CLI: `platform ssh -p <project id>`,
-- Display the [relationships array](/configuration/app/relationships.md) with `echo $PLATFORM_RELATIONSHIPS | base64 -d | jq '.'`,
+- Display the [relationships array](../app/app-reference.md#relationships) with `echo $PLATFORM_RELATIONSHIPS | base64 -d | jq '.'`,
 - Query Varnish with `curl varnishstats.internal:8081/stats`, for example, to access the statistics directly. Be sure to update the request according to the name of the relationship.

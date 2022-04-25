@@ -15,15 +15,15 @@ This guide only covers the *addition* of a service configuration to an existing 
 
 ## 1. Add the Elasticsearch service
 
-In your `.platform/services.yaml` file, include Elasticsearch with a [valid supported version](/configuration/services/elasticsearch.md):
+In your [service configuration](../../configuration/services/_index.md), include Elasticsearch with a [valid supported version](/configuration/services/elasticsearch.md):
 
-{{< readFile file="src/registry/images/examples/full/elasticsearch.services.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/elasticsearch.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
 
 ## 2. Add the Elasticsearch relationship
 
-In your `.platform.app.yaml` file, use the service name `searchelastic` to grant the application access to Elasticsearch via a relationship:
+In your [app configuration](../../configuration/app/app-reference.md), use the service name `searchelastic` to grant the application access to Elasticsearch via a relationship:
 
-{{< readFile file="src/registry/images/examples/full/elasticsearch.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/elasticsearch.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 ## 3. Export connection credentials to the environment
 
@@ -37,7 +37,9 @@ export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOut
 ```
 
 {{< note title="Tip" >}}
-Please check the [Spring Common Application properties](https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html#common-application-properties) and the  [Binding from Environment Variables](https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-external-config-relaxed-binding-from-environment-variables) to have access to more credentials options.
+
+{{% spring-common-props %}}
+
 {{< /note >}}
 
 ## 4. Connect to Elasticsearch

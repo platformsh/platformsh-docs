@@ -8,15 +8,24 @@ Apache Solr is a scalable and fault-tolerant search index.
 
 Solr search with generic schemas provided, and a custom schema is also supported. See the [Solr documentation](https://lucene.apache.org/solr/6_3_0/index.html) for more information."
 
+{{% frameworks %}}
+
+- [Drupal](../../guides/drupal9/solr.md)
+- [Ibexa DXP](../../guides/ibexa/deploy.md#solr-specificity)
+- [Jakarta EE](../../guides/jakarta/deploy.md#apache-solr)
+- [Spring](../../guides/spring/solr.md)
+
+{{% /frameworks %}}
+
 ## Supported versions
 
 | **Grid** | **Dedicated** | **Dedicated Generation 3** |
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="solr" status="supported" environment="grid" >}} | {{< image-versions image="solr" status="supported" environment="dedicated" >}} | {{< image-versions image="solr" status="supported" environment="dedicated-gen-3" >}} |
 
-### Deprecated versions
+{{< image-versions-legacy "solr" >}}
 
-The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
+{{% deprecated-versions %}}
 
 | **Grid** | **Dedicated** | **Dedicated Generation 3** |
 |----------------------------------|---------------|---------------|
@@ -24,23 +33,13 @@ The following versions are available but are not receiving security updates from
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables):
 
 {{< relationship "solr" >}}
 
 ## Usage example
 
-In your `.platform/services.yaml`:
-
-{{< readFile file="src/registry/images/examples/full/solr.services.yaml" highlight="yaml" >}}
-
-In your `.platform.app.yaml`:
-
-{{< readFile file="src/registry/images/examples/full/solr.app.yaml" highlight="yaml" >}}
-
-{{< endpoint-description "solr" "#solr-6-and-later" "cores" >}}
-
-You can then use the service in a configuration file of your application with something like:
+{{% endpoint-description type="solr" sectionLink="#solr-6-and-later" multipleText="cores" /%}}
 
 {{< codetabs >}}
 

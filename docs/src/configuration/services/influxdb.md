@@ -16,25 +16,17 @@ It exposes an HTTP API for client interaction. See the [InfluxDB documentation](
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="influxdb" status="supported" environment="grid" >}} | {{< image-versions image="influxdb" status="supported" environment="dedicated" >}} | {{< image-versions image="influxdb" status="supported" environment="dedicated-gen-3" >}} |
 
+{{< image-versions-legacy "influxdb" >}}
+
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables):
 
 {{< relationship "influxdb" >}}
 
 ## Usage example
 
-In your `.platform/services.yaml`:
-
-{{< readFile file="src/registry/images/examples/full/influxdb.services.yaml"  highlight="yaml" >}}
-
-In your `.platform.app.yaml`:
-
-{{< readFile file="src/registry/images/examples/full/influxdb.app.yaml" highlight="yaml" >}}
-
-{{< endpoint-description "influxdb" >}}
-
-You can then use the service in a configuration file of your application with something like:
+{{% endpoint-description type="influxdb" /%}}
 
 ```php
 <?php

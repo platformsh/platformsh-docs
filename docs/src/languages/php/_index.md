@@ -10,16 +10,13 @@ layout: single
 |----------------------------------|---------------|
 |  {{< image-versions image="php" status="supported" environment="grid" >}} | {{< image-versions image="php" status="supported" environment="dedicated" >}} |
 
+{{< image-versions-legacy "php" >}}
 
 Note that from PHP 7.1, the images use the Zend Thread Safe (ZTS) version of PHP.
 
-To specify a PHP container, use the `type` property in your `.platform.app.yaml`.
+{{% language-specification type="php" display_name="PHP" %}}
 
-{{< readFile file="src/registry/images/examples/full/php.app.yaml" highlight="yaml" >}}
-
-## Deprecated versions
-
-The following versions are available but aren't receiving security updates from upstream, so their use isn't recommended. They will be removed at some point in the future.
+{{% deprecated-versions %}}
 
 | **Grid** | **Dedicated** |
 |----------------------------------|---------------|
@@ -27,7 +24,8 @@ The following versions are available but aren't receiving security updates from 
 
 ## Support libraries
 
-While it is possible to read the environment directly from your application, it is generally easier and more robust to use the [`platformsh/config-reader`](https://github.com/platformsh/config-reader-php) Composer library which handles decoding of service credential information for you.
+While it is possible to read the environment directly from your application,
+it is generally easier and more robust to use the [`platformsh/config-reader`](https://github.com/platformsh/config-reader-php) Composer library which handles decoding of service credential information for you.
 
 ## Alternate start commands
 
@@ -75,17 +73,17 @@ The standard format:
 ```yaml
 dependencies:
     php:
-        "platformsh/client": "dev-master"
+        "platformsh/client": "2.x-dev"
 ```
 
-is equivalent to `composer require platform/client dev-master`.
- However, you can also specify explicit `require` and `repositories` blocks:
+is equivalent to `composer require platform/client 2.x-dev`.
+You can also specify explicit `require` and `repositories` blocks:
 
 ```yaml
 dependencies:
     php:
         require:
-            "platformsh/client": "dev-master"
+            "platformsh/client": "2.x-dev"
         repositories:
             - type: vcs
               url: "git@github.com:platformsh/platformsh-client-php.git"
@@ -103,7 +101,7 @@ In other words, it's equivalent to the following `composer.json` file:
         }
     ],
     "require": {
-        "platformsh/client": "dev-master"
+        "platformsh/client": "2.x-dev"
     }
 }
 ```
@@ -115,7 +113,8 @@ That allows you to install a forked version of a global dependency from a custom
 PHP images use the `composer` build flavor by default,
 which runs `composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader` if a `composer.json` file is detected.
 
-Note that by default, all PHP containers include the latest Composer 1.x release. If you wish to use Composer 2.x, add it as a `dependency` (see the section below).
+Note that by default, all PHP containers include the latest Composer 1.x release.
+If you wish to use Composer 2.x, add it as a `dependency`:
 
 ```yaml
 dependencies:
@@ -123,23 +122,13 @@ dependencies:
         composer/composer: '^2'
 ```
 
-You still see a message in the build output warning you about the availability of a new Composer version;
-that is the pre-packaged Composer 1 running to download Composer 2.
-You can safely ignore it.
-As Composer 2 performs considerably better than Composer 1,
-you should really upgrade unless your application has a Composer plugin dependency that hasn't yet been updated.
-
-`drupal` runs `drush make` automatically in one of a few different ways.
-See the [Drupal 7](/frameworks/drupal7/_index.md) documentation for more details.
-There is no reason to use this build mode except for Drupal 7.
-
 ## OPcache preloading
 
-PHP 7.4 introduced a new feature called OPcache preloading,
+From PHP 7.4, you can use OPcache preloading,
 which allows you to load selected files into shared memory when PHP-FPM starts.
 That means functions and classes in those files are always available and don't need to be autoloaded,
 at the cost of any changes to those files requiring a PHP-FPM restart.
-Since PHP-FPM restarts anyway when a new deploy happens this feature is a major win on Platform.sh, and we recommend using it aggressively.
+Since PHP-FPM restarts on each new deploy, this feature is a major win on Platform.sh and we recommend using it aggressively.
 
 To enable preloading, add a `php.ini` value that specifies a preload script.
 Any [`php.ini` mechanism](/languages/php/ini.md) works,
@@ -151,8 +140,9 @@ variables:
         opcache.preload: 'preload.php'
 ```
 
-The `opcache.preload` value is evaluated as a file path relative to the application root (where `.platform.app.yaml` is),
-and it may be any PHP script that calls `opcache_compile_file()`.
+The `opcache.preload` value is evaluated as a file path relative your [app confiruation](../../configuration/app/_index.md).
+It may be any PHP script that calls `opcache_compile_file()`.
+
 The following example preloads all `.php` files anywhere in the `vendor` directory:
 
 ```php
@@ -168,8 +158,27 @@ foreach ($regex as $key => $file) {
 ```
 
 {{< note >}}
-Preloading all `.php` files may not be optimal for your application, and may even introduce errors.  Your application framework may provide recommendations or a pre-made preload script to use instead.  Determining an optimal preloading strategy is the user's responsibility.
+
+Preloading all `.php` files may not be optimal for your application and may even introduce errors.
+Your application framework may provide recommendations or a pre-made preload script to use instead.
+You have to determine the optimal preloading strategy for your situation.
+
 {{< /note >}}
+
+#### Preloading and dependencies
+
+Your preload script runs each time PHP-FPM restarts, including during your build.
+This means it runs before your dependencies have been installed (such as with Composer).
+
+If your preload script uses `require` for dependencies, it fails during the build
+because the dependencies aren't yet present.
+
+To resolve this, you have two options:
+
+* Have your script `include` dependencies instead of `require`
+  and fail gracefully if the dependencies aren't there.
+* Enable preloading with a variable that [isn't available during the build](../../development/variables/set-variables.md#variable-options).
+  Then preloading happens only on deploy.
 
 ## FFI
 
@@ -303,18 +312,8 @@ markdownify=false
 
 ## Runtime configuration
 
-It is possible to change the PHP-FPM runtime configuration via the `runtime` block on your `.platform.app.yaml`. The PHP-FPM options below are configurable:
-
-* `request_terminate_timeout` - The timeout for serving a single request
-  after which the PHP-FPM worker process is killed.
-  That's separate from the PHP runtime's `max_execution_time` option, which is preferred.
-  This option may be used if the PHP process is dying without cleaning up properly
-  and causing the FPM process to hang.
-
-    ```yaml
-    runtime:
-        request_terminate_timeout: 300
-    ```
+It's possible to change the PHP-FPM runtime configuration via the `runtime` property in your [app configuration](../../configuration/app/app-reference.md#runtime).
+See that reference for details on what can be changed.
 
 ## Project templates
 

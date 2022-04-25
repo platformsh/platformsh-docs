@@ -8,7 +8,7 @@ description: |
 
 {{< description >}}
 
-To handle that situation, you can define a `env:COMPOSER_AUTH` [project variable](/development/variables.md#project-variables) which allows you to set up authentication as an environment variable. The contents of the variable should be a JSON formatted object containing an `http-basic` object (see [composer-auth specifications](https://getcomposer.org/doc/03-cli.md#composer-auth)).
+To handle that situation, you can define a `env:COMPOSER_AUTH` [project variable](../../development/variables/set-variables.md#create-project-variables) which allows you to set up authentication as an environment variable. The contents of the variable should be a JSON formatted object containing an `http-basic` object (see [composer-auth specifications](https://getcomposer.org/doc/03-cli.md#composer-auth)).
 
 The advantage is that you can control who in your team has access to those variables.
 
@@ -35,7 +35,7 @@ That can be done through the [management console](/administration/web/_index.md)
 
 ```bash
 platform variable:create --level project --name env:COMPOSER_AUTH \
-  --json true --visible-runtime false --sensitive true --visible-build true
+  --json true --visible-runtime false --sensitive true --visible-build true \
   --value '{"http-basic": {"my-private-repos.example.com": {"username": "your-username", "password": "your-password"}}}'
 ```
 

@@ -56,7 +56,7 @@
 
 .searchinput {
   border: none;
-  background-color: #FFFFFF !important;
+  background-color: #FFFFFF;
   background: url(/images/svg/search-solid.svg) no-repeat 1rem 1rem;
   background-size: 15px 15px;
   background-position-y: center;
@@ -72,9 +72,10 @@
   display: inline;
   background-color: transparent;
   border: none;
-  color: #98A0AB !important;
-  font-size: 1.25rem !important;
-  transform: rotate(45deg);
+  line-height: 23px;
+}
+.clearinput::before {
+  content: "⨉";
   line-height: 23px;
 }
 
@@ -98,6 +99,17 @@
   max-height: 50vh;
   overflow-y: scroll;
   margin-bottom: 1rem;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .search-all-results {
+    position: relative;
+  }
+}
+
+.search-page-results {
+  max-width: 105ch;
 }
 
 .suggestions-primary {
@@ -119,8 +131,7 @@
 
 .suggestions div.hits ul  em {
   padding: 0rem;
-         background-color: transparent;
-     font-style: normal;
+  background-color: transparent;
 }
 
 .suggestions div.hits ul h5 {

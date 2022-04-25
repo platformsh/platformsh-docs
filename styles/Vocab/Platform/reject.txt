@@ -1,0 +1,4 @@
+configuation
+MongDB
+postgreSQL
+strapi

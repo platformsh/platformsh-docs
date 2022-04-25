@@ -16,7 +16,21 @@
     "versions": {
       "deprecated": [],
       "supported": [
-        "73"
+        "73",
+        "80",
+        "81",
+        "83",
+        "84",
+        "86",
+        "91"
+      ],
+      "legacy": [
+        "73",
+        "80",
+        "81",
+        "83",
+        "84",
+        "86"
       ]
     }
   },
@@ -59,6 +73,13 @@
         "2.0",
         "2.1",
         "2.2",
+        "3.1",
+        "5.0"
+      ],
+      "legacy": [
+        "2.0",
+        "2.1",
+        "2.2",
         "3.1"
       ]
     }
@@ -84,20 +105,25 @@
         "1.7",
         "2.4",
         "5.2",
-        "5.4"
-      ],
-      "supported": [
+        "5.4",
         "6.5",
         "6.8",
         "7.2",
         "7.5",
         "7.7",
-        "7.9",
+        "7.9"
+      ],
+      "supported": [
         "7.10"
       ]
     },
     "versions-dedicated": {
       "supported": [
+        "7.10"
+      ],
+      "deprecated" : [
+        "1.7",
+        "2.4",
         "5.2",
         "5.6",
         "6.5",
@@ -106,12 +132,7 @@
         "7.5",
         "7.6",
         "7.7",
-        "7.9",
-        "7.10"
-      ],
-      "deprecated" : [
-        "1.7",
-        "2.4"
+        "7.9"
       ]
     },
     "versions-dedicated-gen-3": {
@@ -121,15 +142,15 @@
         "1.7",
         "2.4",
         "5.2",
-        "5.4"
-      ],
-      "supported": [
+        "5.4",
         "6.5",
         "6.8",
         "7.2",
         "7.5",
         "7.7",
-        "7.9",
+        "7.9"
+      ],
+      "supported": [
         "7.10"
       ]
     }
@@ -172,6 +193,12 @@
     "versions": {
       "deprecated": [],
       "supported": [
+        "1.9",
+        "1.10",
+        "1.11",
+        "1.12"
+      ],
+      "legacy": [
         "1.9",
         "1.10"
       ]
@@ -224,7 +251,8 @@
       ],
       "supported": [
         "1.16",
-        "1.17"
+        "1.17",
+        "1.18"
       ]
     }
   },
@@ -307,7 +335,17 @@
         "2.2",
         "2.3",
         "2.4",
-        "2.5"
+        "2.5",
+        "2.6",
+        "2.7"
+      ],
+      "legacy": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5",
+        "2.6"
       ]
     }
   },
@@ -340,7 +378,9 @@
     "versions": {
       "deprecated": [],
       "supported": [
-        "1.5"
+        "1.5",
+        "2.0",
+        "2.1"
       ]
     }
   },
@@ -405,7 +445,8 @@
         "10.1",
         "10.2",
         "10.3",
-        "10.4"
+        "10.4",
+        "10.5"
       ]
     },
     "versions-dedicated": {
@@ -551,6 +592,43 @@
       "deprecated": ["9.8"]
     }
   },
+  "opensearch": {
+    "description": "A manufacture service for OpenSearch",
+    "disk": true,
+    "docs": {
+      "relationship_name": "ossearch",
+      "service_name": "searchopen",
+      "url": "/configuration/services/opensearch.html"
+    },
+    "endpoint": "opensearch",
+    "min_disk_size": 256,
+    "name": "OpenSearch",
+    "repo_name": "opensearch",
+    "runtime": false,
+    "type": "opensearch",
+    "versions": {
+      "deprecated": [],
+      "supported": [
+        "1.1",
+        "1.2"
+      ],
+      "legacy": [
+        "1.1"
+      ]
+    },
+    "versions-dedicated": {
+      "deprecated": [],
+      "supported": [
+        "1.2"
+      ]
+    },
+    "versions-dedicated-gen-3": {
+      "deprecated": [],
+      "supported": [
+        "1.2"
+      ]
+    }
+  },
   "oracle-mysql": {
     "description": "Images using MySQL from Oracle instead of MariaDB still providing mysql endpoints",
     "repo_name": "oracle-mysql",
@@ -612,7 +690,9 @@
       "supported": [
         "7.2",
         "7.3",
-        "7.4"
+        "7.4",
+        "8.0",
+        "8.1"
       ],
       "deprecated": [
         "5.6",
@@ -632,7 +712,8 @@
       "supported": [
         "7.3",
         "7.4",
-        "8.0"
+        "8.0",
+        "8.1"
       ]
     }
   },
@@ -652,7 +733,9 @@
     "type": "postgresql",
     "versions": {
       "deprecated": [
-        "9.3"
+        "9.3",
+        "9.4",
+        "9.5"
       ],
       "supported": [
         "9.6",
@@ -660,6 +743,17 @@
         "11",
         "12",
         "13"
+      ]
+    },
+    "versions-dedicated": {
+      "deprecated": [
+        "9.3",
+        "9.4",
+        "9.5"
+      ],
+      "supported": [
+        "9.6*",
+        "11*"
       ]
     }
   },
@@ -725,11 +819,18 @@
         "3.5",
         "3.6",
         "3.7",
+        "3.8",
+        "3.9"
+      ],
+      "legacy": [
+        "3.5",
+        "3.6",
+        "3.7",
         "3.8"
       ]
     },
     "versions-dedicated": {
-      "supported": ["3.7", "3.8"]
+      "supported": ["3.7", "3.8", "3.9"]
     },
     "versions-dedicated-gen-3": {
       "deprecated": [],
@@ -764,11 +865,18 @@
         "3.2",
         "4.0",
         "5.0",
+        "6.0",
+        "6.2"
+      ],
+      "legacy": [
+        "3.2",
+        "4.0",
+        "5.0",
         "6.0"
       ]
     },
     "versions-dedicated": {
-      "supported": ["5.0","6.0"],
+      "supported": ["5.0","6.0","6.2"],
       "deprecated": ["3.2"]
     },
     "versions-dedicated-gen-3": {
@@ -833,6 +941,13 @@
         "2.6",
         "2.7",
         "3.0"
+      ],
+      "legacy": [
+        "2.3",
+        "2.4",
+        "2.5",
+        "2.6",
+        "2.7"
       ]
     }
   },
@@ -893,6 +1008,8 @@
     },
     "endpoint": "http+stats",
     "min_disk_size": null,
+    "configuration": "vcl: !include\n            type: string\n            path: config.vcl",
+    "service_relationships": "application: 'app:http'",
     "name": "Varnish",
     "runtime": false,
     "type": "varnish",
@@ -906,23 +1023,28 @@
       ]
     }
   },
-  "vault": {
+  "vault-kms": {
     "description": "",
-    "disk": false,
+    "disk": true,
     "docs": {
       "relationship_name": "vault_service",
-      "service_name": "vault",
+      "service_name": "vault-kms",
       "url": "/configuration/services/vault.html"
     },
-    "endpoint": "demo-app",
-    "min_disk_size": null,
-    "name": "Vault",
-    "repo_name": "vault",
+    "endpoint": "sign",
+    "min_disk_size": 512,
+    "configuration": "endpoints:\n            <ENDPOINT_ID>:\n                - policy: <POLICY>\n                  key: \"<KEY_NAME>\"\n                  type: <ENDPOINT_TYPE>",
+    "name": "Vault KMS",
+    "repo_name": "vault-kms",
     "runtime": false,
     "type": "vault-kms",
     "versions": {
       "deprecated": [],
       "supported": [
+        "1.6",
+        "1.8"
+      ],
+      "legacy": [
         "1.6"
       ]
     },

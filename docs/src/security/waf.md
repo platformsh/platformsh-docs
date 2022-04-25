@@ -70,11 +70,11 @@ On top of the above ruleset, the Platform.sh WAF implements a number of addition
 
 - **File upload limit**
 
-    File upload limits are enforced, but are configured by the application's configuration in `.platform.app.yaml` using the `max_request_size` attribute in [`web.locations`](/configuration/app/web.md#locations). Note that this limit is set by default at 250MB if not set to something different. 
+    File upload limits are enforced, but are configured by the application's configuration in `.platform.app.yaml` using the `max_request_size` attribute in [`web.locations`](/configuration/app/app-reference.md#locations). Note that this limit is set by default at 250MB if not set to something different. 
 
 - **File extension restriction**
 
-    File extensions are restricted according to the application's configuration in `.platform.app.yaml` in `web.locations`. The root path, or a path beneath it, can be configured to allow only certain file extensions by defining [rules](/configuration/app/web.md#rules) for them using regular expressions.
+    File extensions are restricted according to the application's configuration in `.platform.app.yaml` in `web.locations`. The root path, or a path beneath it, can be configured to allow only certain file extensions by defining [rules](/configuration/app/app-reference.md#rules) for them using regular expressions.
 
 - **Restricted HTTP headers**
 
@@ -82,7 +82,7 @@ On top of the above ruleset, the Platform.sh WAF implements a number of addition
 
 - **Backup/"working" file extension**
 
-    Enforced by the WAF and configured by the user under [`web.locations`](/configuration/app/web.md#locations) using the `scripts` attribute where it can be disabled. [Regular expressions](/configuration/app/web.md#rules) can also be created to catch unwanted requests to script extensions.
+    Enforced by the WAF and configured by the user under [`web.locations`](/configuration/app/app-reference.md#locations) using the `scripts` attribute where it can be disabled. [Regular expressions](/configuration/app/app-reference.md#rules) can also be created to catch unwanted requests to script extensions.
 
 - **Slowloris DoS attacks** 
 

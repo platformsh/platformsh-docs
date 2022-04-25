@@ -32,3 +32,10 @@ If you are having a problem connecting to the database server, you will need for
 ## Can I use the name of the session cookie for caching?
 
 For Drupal sites, the name of the session cookie is based on a hash of the domain name. This means that it will actually be consistent for a specific website and can safely be used as a fixed value.
+
+## Why do I see "File not found"?
+
+If you see a bare "File not found" error when accessing your Drupal site with a browser,
+you've pushed your code as a vanilla project but no `index.php` has been found.
+
+Make sure your repository contains an `index.php` file in the [web location root](../../configuration/app/app-reference.md#locations).

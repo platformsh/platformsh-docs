@@ -1,0 +1,35 @@
+name: Improvements
+description: For changes to improve existing content.
+labels:
+  - ungroomed
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for your interest in helping improve the Platform.sh docs!
+        Please fill in the fields below so we can understand what changes are needed.
+
+  - type: textarea
+    attributes:
+      label: Where on docs.platform.sh should be changed?
+      description: Link to the pages you think should be updated.
+      placeholder: https://docs.platform.sh/
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: What exactly should be updated?
+      description: |
+        - Share as much detail as you can to help us understand the suggestion. 
+        - What is written now that shouldn't be or isn't written that should be?
+        - What do you expect as an outcome?
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Additional context
+      description: Optionally add any other information or screenshots that could help us understand and implement the change.
+    validations:
+      required: false

@@ -2,7 +2,7 @@ name: Linting
 on:
   push:
     branches-ignore:
-      - master
+      - main
 
 jobs:
   prose:
@@ -12,10 +12,12 @@ jobs:
       uses: actions/checkout@master
 
     - name: Vale
-      uses: errata-ai/vale-action@v1.4.2
+      uses: errata-ai/vale-action@v1.4.3
       with:
-        # Optional
-        files: __onlyModified
+        # Switch to this when the number of errors goes down
+        # files: __onlyModified
+        # For now, only lint modified lines
+        onlyAnnotateModifiedLines: true
       env:
         # Required
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

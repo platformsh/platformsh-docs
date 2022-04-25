@@ -15,13 +15,11 @@ description: |
 
 ## Service configuration: `services.yaml`
 
-The `services.yaml` file lists the pre-packaged services you need for your application to run. You pick the major version of the service, and Platform.sh updates the patch version periodically so that you always get the newest version when you deploy.
+{{% guides/config-service WordPress=true framework=WordPress %}}
 
-We recommend the latest [MariaDB](/configuration/services/mysql.md) version for WordPress. You can add [other services](/configuration/services/_index.md) if desired, such as [Solr](/configuration/services/solr.md) or [Elasticsearch](/configuration/services/elasticsearch.md). You will need to configure WordPress to use those services as well once the service is enabled.
+We recommend the latest [MariaDB](/configuration/services/mysql/_index.md) version for WordPress.
 
-Each service entry has a name (`db` in the example below), as well as a `type` that specifies the service and version to use.  Note that not all services support clean version upgrades, and none support downgrades.  If you want to try upgrading a service, confirm on its service page that it's supported and test on a branch before pushing to your `master` branch.
-
-If a service stores persistent data then it will also have a `disk` key, which specifies the amount of storage to give it, in MB.
+{{% /guides/config-service %}}
 
 {{< readFile file="static/files/fetch/servicesyaml/wordpress-vanilla" highlight="yaml" >}}
 

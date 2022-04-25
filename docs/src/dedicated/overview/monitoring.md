@@ -22,15 +22,31 @@ A third-party availability monitoring system is configured for every Dedicated p
 
 ## Application performance monitoring
 
-Platform.sh does not provide application-level performance monitoring.  However, we strongly recommend that customers configure application monitoring for themselves.
+Platform.sh offers application performance monitoring (APM) packaged with infrastructure monitoring in the Platform.sh Observability Suite.
+This APM relies on [Blackfire.io](../../integrations/observability/blackfire.md#on-other-dedicated-infrastructure),
+which uniquely combines monitoring, profiling, and performance testing technologies.
 
-Platform.sh owns and recommends [Blackfire.io](/integrations/observability/blackfire.md#on-a-dedicated-cluster). By using Blackfire on Platform.sh, you will benefit from an enhanced experience and support, as well as upcoming unique features. You can contact your sales representative to get a quote for whatever size cluster is running your application.
+The Observability Suite is currently available only to Enterprise, Elite, and Fleet customers.
+The Observability Suite package includes all Blackfire features, support, and usage that scales with your needs.
+If you are a Enterprise, Elite, or Fleet customer and want to add the Observability Suite, [contact Sales](https://platform.sh/contact/).
 
-Platform.sh also [supports New Relic APM](/integrations/observability/new-relic/_index.md#on-a-dedicated-cluster). After you have signed up with New Relic and gotten your license key, open a support ticket so that it can be installed on your project. New Relic infrastructure monitoring is not supported.
+All customers can also [subscribe to Blackfire separately](https://www.blackfire.io/pricing).
+This lets you benefit from all of its features on Platform.sh.
+When purchased separately, features and usage may cost more than the equivalent bundled in the Observability Suite. 
+
+By using Blackfire on Platform.sh, you benefit from an enhanced experience and support as well as upcoming unique features.
+You can contact your sales representative to get a quote for whatever size cluster is running your application.
+
+Platform.sh also [supports New Relic APM](/integrations/observability/new-relic/_index.md#on-a-dedicated-cluster)
+After you have signed up with New Relic and gotten your license key,
+open a support ticket so that it can be installed on your project.
+New Relic infrastructure monitoring isn't supported.
 
 ## Availability incident handling procedure
 
-Automated monitoring may trigger alerts that will page the on-call engineer, or the end-user may file an urgent priority ticket.  PagerDuty will page the on-call using several methods. The on-call engineer responds to the alerts and begins to triage the issue.
+Automated monitoring may trigger alerts that page the on-call engineer or the end-user may file an urgent priority ticket.
+Opsgenie pages the on-call engineer using several methods.
+The on-call engineer responds to the alerts and begins to triage the issue.
 
 Cloud infrastructure issues are handled by the customer success team. *Application problems are escalated to an application support specialist if an agreement is part of the customer subscription.  Otherwise, they are returned to the user and may be downgraded*.
 

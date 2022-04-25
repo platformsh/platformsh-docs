@@ -7,51 +7,81 @@ description: |
 {{< description >}}
 
 {{< note theme="warning">}}
- Do not add a custom domain to your project until you are fully ready to change your DNS. Until that time, continue working with the Platform.sh generated URLs.  
-{{< /note >}}
 
+Adding a custom domain means your existing automatically generated URLs stop working.
+
+Don't add a custom domain to your project until you're fully ready to change your DNS settings.
+Until that time, continue working with the Platform.sh generated URLs.
+
+{{< /note >}}
 
 {{< note>}}
-Custom domains can only be added to the `master` environment on production plans (Standard or larger).
-{{< /note >}}
 
+Custom domains can only be added to the default environment on production plans (Standard or larger).
+
+{{< /note >}}
 
 ## Summary of steps
 
-* Describe your desired future URL structure in [.platform/routes.yaml](configuration/routes/_index.md)
-* Understand [what DNS records you will need](domains/steps/dns.md), and whether your DNS provider can support them
-* Optional: [use a CDN](domains/cdn/_index.md)
-* Update your [DNS](domains/steps/dns.md)
+* Describe your desired future URL structure in [.platform/routes.yaml](../configuration/routes/_index.md)
+* Understand [what DNS records you will need](../domains/steps/dns.md), and whether your DNS provider can support them
+* Optional: [use a CDN](../domains/cdn/_index.md)
+* Update your [DNS](../domains/steps/dns.md)
 
-In this short section we will give you a simple, typical example. See the [Step by step guide](domains/steps/_index.md) for more complex cases.
-
+This short section gives a basic typical example.
+See the [Step by step guide](../domains/steps/_index.md) for more complex cases.
 
 ## Set your domain
 
-Now, add a single domain to your Platform.sh project for `mysite.com`.  
+Now, add a single domain to your Platform.sh project for `mysite.com`:
 
-Using the CLI type:
+{{< codetabs >}}
+
+---
+title=In the console
+file=none
+highlight=false
+---
+
+<!--This is in HTML to get the icon not to break the list. -->
+<ol>
+  <li>Select the project where you want to add a domain.</li>
+  <li>Click {{< icon settings >}} <strong>Settings</strong>.</li>
+  <li>Click <strong>Domains</strong>.</li>
+  <li>Enter <code>mysite.com</code> into the <strong>Domain</strong> field.</li>
+  <li>Click <strong>+ Add</strong>.</li>
+</ol>
+
+<--->
+---
+title=Using the CLI
+file=none
+highlight=false
+---
+
+Run the following command:
 
 ```bash
-platform domain:add mysite.com
+platform domain:add -p <PROJECT_ID> mysite.com
 ```
 
-You can also use the management console for that.
+{{< /codetabs >}}
 
-As soon as you do, Platform.sh will no longer serve `master-def456-abc123.eu-2.platformsh.site` at all.  Instead, `{default}` in `routes.yaml` will be replaced with `mysite.com` anywhere it appears when generating routes to respond to.
+As soon as you add the domain, Platform.sh no longer serves `main-def456-abc123.eu-2.platformsh.site` at all.
+Instead, `{default}` in `routes.yaml` is replaced with `mysite.com` anywhere it appears when generating routes to respond to.
 
-You can still access the original internal domain by running `platform environment:info edge_hostname -e master`.
+You can still access the original internal domain by running `platform environment:info edge_hostname -e <BRANCH_NAME>`.
 
 {{< note >}}
-If you are planning on using subdomains across multiple projects, [the setup will differ slightly](/domains/steps/subdomains.md).
+If you are planning on using subdomains across multiple projects, [the setup will differ slightly](./steps/subdomains.md).
 {{< /note >}}
 
 ## Configure your DNS provider
 
 On your DNS provider, you would create two CNAMEs:
 
-`mysite.com` should be an ALIAS/CNAME/ANAME  to `master-def456-abc123.eu-2.platformsh.site`.
-`www.mysite.com` should be a CNAME to `master-def456-abc123.eu-2.platformsh.site`.
+`mysite.com` should be an ALIAS/CNAME/ANAME  to `main-def456-abc123.eu-2.platformsh.site`.
+`www.mysite.com` should be a CNAME to `main-def456-abc123.eu-2.platformsh.site`.
 
 {{< note >}}
 Both point to the same name. See the note above regarding how different registrars handle dynamic apex domains.
@@ -59,12 +89,19 @@ Both point to the same name. See the note above regarding how different registra
 
 ## Result
 
-Here's what will now happen under the hood.  Assume for a moment that all caches everywhere are empty.  An incoming request for `mysite.com` will result in the following:
+Here's what will now happen under the hood.
+Assume for a moment that all caches everywhere are empty.
+An incoming request for `mysite.com` will result in the following:
 
-1. Your browser asks the DNS network for `mysite.com`'s DNS A record (the IP address of this host).  It responds with "it's an alias for `www.master-def456-abc123.eu-2.platformsh.site`" (the CNAME) which itself resolves to the A record with IP address `1.2.3.4`  (Or whatever the actual address is). By default DNS requests by browsers are recursive, so there is no performance penalty for using CNAMEs.
+1. Your browser asks the DNS network for `mysite.com`'s DNS A record (the IP address of this host).
+   It responds with "it's an alias for `www.main-def456-abc123.eu-2.platformsh.site`" (the CNAME),
+   which itself resolves to the A record with IP address `1.2.3.4` (or whatever the actual address is).
+   By default DNS requests by browsers are recursive, so there is no performance penalty for using CNAMEs.
 3. Your browser sends a request to `1.2.3.4` for domain `mysite.com`.
 4. Your router responds with an HTTP 301 redirect to `www.mysite.com` (because that's what `routes.yaml` specified).
-5. Your browser looks up `www.mysite.com` and, as above, gets an alias for `www.master-def456-abc123.eu-2.platformsh.site`, which is IP `1.2.3.4`.
-6. Your browser sends a request to `1.2.3.4` for domain `www.mysite.com`.  Your router passes the request through to your application which in turn responds with whatever it's supposed to do.
+5. Your browser looks up `www.mysite.com` and, as above, gets an alias for `www.main-def456-abc123.eu-2.platformsh.site`, which is IP `1.2.3.4`.
+6. Your browser sends a request to `1.2.3.4` for domain `www.mysite.com`.
+   Your router passes the request through to your application which in turn responds with whatever it's supposed to do.
 
-On subsequent requests, your browser will know to simply connect to `1.2.3.4` for domain `www.mysite.com` and skip the rest.  The entire process takes only a few milliseconds.
+On subsequent requests, your browser knows to connect to `1.2.3.4` for domain `www.mysite.com` and skip the rest.
+The entire process takes only a few milliseconds.

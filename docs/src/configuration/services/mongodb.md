@@ -6,17 +6,30 @@ description: "MongoDB is a cross-platform, document-oriented database.<br><br>Fo
 sidebarTitle: "MongoDB"
 ---
 
+{{% frameworks %}}
+
+- [Jakarta EE](../../guides/jakarta/deploy.md#mongodb)
+- [Micronaut](../../guides/micronaut/mongodb.md)
+- [Quarkus](../../guides/quarkus/mongodb.md)
+- [Spring](../../guides/spring/mongodb.md)
+
+{{% /frameworks %}}
+
 ## Supported versions
 
-We're working on adding more versions. Alternative versions are available in your projects (and are listed below), but they are at their [end of life](https://www.mongodb.com/support-policy) and are no longer receiving security updates from upstream. 
+We're working on adding more versions.
+Alternative versions are available in your projects (and are listed below)
+ but they are at their [end of life](https://www.mongodb.com/support-policy) and are no longer receiving security updates from upstream. 
 
 {{< note >}}
-Downgrades of MongoDB are not supported. MongoDB will update its own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version without committing to it use a non-master environment.
+
+Downgrades of MongoDB are not supported.
+MongoDB updates its own data files to a new version automatically but can't downgrade them.
+If you want to experiment with a later version without committing to it use a non-production environment.
+
 {{< /note >}}
 
-## Deprecated versions
-
-The following versions are available but are not receiving security updates from [upstream](https://www.mongodb.com/support-policy), so their use is not recommended. They will be removed at some point in the future.
+{{% deprecated-versions %}}
 
 | **Grid** |
 |----------------------------------|
@@ -24,37 +37,13 @@ The following versions are available but are not receiving security updates from
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables):
 
 {{< relationship "mongodb" >}}
 
 ## Usage example
 
-In your `.platform/services.yaml`:
-
-```yaml
-dbmongo:
-    type: mongodb:3.6
-    disk: 512
-```
-
-The minimum disk size for MongoDB is `512` (MB).
-
-{{< readFile file="src/registry/images/examples/full/mongodb.app.yaml" highlight="yaml" >}}
-
-{{< endpoint-description "mongodb" >}}
-
-For PHP, in your `.platform.app.yaml` add:
-
-```yaml
-runtime:
-    extensions:
-        - mongodb
-```
-
-(Before PHP 7, use `mongo` instead.)
-
-You can then use the service in a configuration file of your application with something like:
+{{% endpoint-description type="mongodb" php=true /%}}
 
 {{< codetabs >}}
 
@@ -100,7 +89,8 @@ highlight=python
 
 ## Exporting data
 
-The most straightforward way to export data from a MongoDB database is to open an SSH tunnel to it and export the data directly using MongoDB's tools.
+The most straightforward way to export data from a MongoDB database is to open an SSH tunnel to it
+and export the data directly using MongoDB's tools.
 
 First, open an SSH tunnel with the Platform.sh CLI:
 
@@ -115,7 +105,8 @@ SSH tunnel opened on port 30000 to relationship: database
 SSH tunnel opened on port 30001 to relationship: redis
 ```
 
-The port may vary in your case. You also need to obtain the user, password, and database name from the relationships array, as above.
+The port may vary in your case.
+You also need to obtain the user, password, and database name from the relationships array, as above.
 
 Then, connect to that port locally using `mongodump` (or your favorite MongoDB tools) to export all data in that server:
 
@@ -127,10 +118,12 @@ mongodump --port 30000 -u main -p main --authenticationDatabase main --db main
 
 As with any other shell command it can be piped to another command to compress the output or redirect it to a specific file.
 
-For further references, see the [official `mongodump` documentation](https://docs.mongodb.com/manual/reference/program/mongodump/#bin.mongodump).
+For further references, see the [official `mongodump` documentation](https://docs.mongodb.com/database-tools/mongodump/).
 
 ## Upgrading
 
-To upgrade to 3.6 from a version earlier than 3.4, you must successively upgrade major releases until you have upgraded to 3.4. For example, if you are running a 3.0 image, you must upgrade first to 3.2 and then upgrade to 3.4 before you can upgrade to 3.6.
+To upgrade to 3.6 from a version earlier than 3.4, you must successively upgrade major releases until you have upgraded to 3.4.
+For example, if you are running a 3.0 image, you must upgrade first to 3.2 and then upgrade to 3.4 before you can upgrade to 3.6.
 
-For more details on upgrading and how to handle potential application backward compatibility issues, please see [Release Notes for MongoDB](https://docs.mongodb.com/manual/release-notes).
+For more details on upgrading and how to handle potential application backward compatibility issues,
+see the [MongoDB release notes](https://docs.mongodb.com/manual/release-notes).
