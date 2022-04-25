@@ -17,11 +17,11 @@ However, the process to do so manually is fairly straightforward and can be scri
 * Only selected regions offer European Sovereign hosting.
   If you created a project in a non-Sovereign region you may need to migrate to a Sovereign region.
 * Some regions are running older versions of the Platform.sh orchestration system that offers fewer features.
-  In particular, the US-1 and EU-1 regions do not offer XL and 2XL plans,
+  In particular, the `us` and `eu` regions do not offer XL and 2XL plans,
   self-terminating builds in case of a build process that runs too long,
   or distributing environments across different grid hosts.
   If you are on one of those regions and desire those features,
-  you will need to migrate to the newer US-2 or EU-2 regions.
+  migrate to one of the newer regions.
 
 ## Scripted migration process
 
