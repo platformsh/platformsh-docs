@@ -13,13 +13,25 @@ Within the console, metrics can be found for an environment under **Metrics**.
 The information under **Metrics** shows usage metrics for:
 
 [Dedicated environments](../../dedicated/overview/_index.md):
-each of the three hosts in your [N+1 configuration](../../dedicated/architecture/_index.md) and their average.
+each of the three hosts in your [N+1 configuration](../../dedicated/architecture/_index.md)
+and their average for the Production environment.
 
 ![A screenshot of what the metrics dashboard displays for Dedicated environments](/images/metrics/all-dedicated.png "0.45")
 
-Grid environments: for the average of your service and app containers.
+Grid environments: your service, app, and worker containers.
 
 ![A screenshot of what the metrics dashboard displays for Grid environments](/images/metrics/all-grid.png "0.45")
+
+## Supported regions
+
+Infrastructure metrics are available on all regions except the legacy regions:
+
+* `eu.platform.sh`
+* `us.platform.sh`
+
+These regions will be upgraded in the future.
+If you're on one of these regions and want infrastructure metrics now,
+[migrate your project](../../guides/general/region-migration.md) to a newer region.
 
 ## Default thresholds
 
