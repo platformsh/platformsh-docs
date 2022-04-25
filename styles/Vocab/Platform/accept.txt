@@ -89,6 +89,7 @@ shortcode
 Stempel
 stdout
 Strapi
+subuser
 Symfony
 Thorntail
 Tomitribe
