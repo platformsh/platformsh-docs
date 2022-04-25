@@ -7,7 +7,7 @@ description: |
 
 {{< description >}}
 
-Platform.sh does not offer an automated way to migrate a project from one region to another after it is created.
+Platform.sh doesn't offer an automated way to migrate a project from one region to another after it's created.
 However, the process to do so manually is fairly straightforward and can be scripted.
 
 ## Why migrate between regions?
