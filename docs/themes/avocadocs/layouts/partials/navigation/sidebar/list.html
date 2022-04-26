@@ -34,10 +34,14 @@
 <!-- Handle all other directories -->
 {{ else }}
 <div>
+  {{ $itemTitle := .Context.Title }}
+  {{ with .Context.Params.sidebarTitle }}
+    {{ $itemTitle = . }}
+  {{ end }}
   <div class="sidebar__heading-wrapper sidebar__heading-wrapper-section">
     <h4 class="duik-sidebar__heading">
       <a href="{{ .Context.RelPermalink }}" class="duik-sidebar__link{{ if $isCurrentSection }} active{{ end }}">
-        {{ .Context.Title }}
+        {{ $itemTitle }}
       </a>
     </h4>
     <!-- Add button for expanding -->
@@ -60,9 +64,9 @@
   {{ end }}
   <!-- Loop through pages in the section -->
   {{ range .Context.Pages }}
-    {{ $itemTitle := .Title }}
-    {{ if isset .Params "sidebartitle" }}
-      {{ $itemTitle = .Params.sidebarTitle }}
+    {{ $itemTitle = .Title }}
+    {{ with .Params.sidebarTitle }}
+      {{ $itemTitle = . }}
     {{ end }}
     <!-- Create a machine readable ID with no dots (as in node.js) -->
     {{ $itemId := ( replace ($itemTitle | urlize) "." "" ) }}
