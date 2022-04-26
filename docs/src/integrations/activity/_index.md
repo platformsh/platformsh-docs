@@ -8,7 +8,7 @@ description: |
 
 {{< description >}}
 
-Check out examples from other users on the Platform.sh [Community site.](https://community.platform.sh/c/activity-scripts)
+Check out examples from other users on the Platform.sh [Community site](https://community.platform.sh/c/activity-scripts/10).
 
 ## Installing
 
