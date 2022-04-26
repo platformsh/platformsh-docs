@@ -54,7 +54,8 @@ at 1.91&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
 #### MySQL
 
 Metrics graphs for the MySQL service container show CPU and disk allocation and usage.
-No persistent disk has been configured for Redis,
+The persistent disk has been configured in the [services configuration](../../configuration/services/_index.md)
+as 1.91&nbsp;GB,
 while the temporary disk is 3.99&nbsp;GB by default.
 
 ![All of the metrics for the MySQL container](/images/metrics/mysql-container.png)
@@ -62,7 +63,7 @@ while the temporary disk is 3.99&nbsp;GB by default.
 #### Redis
 
 Metrics graphs for the Redis service container show CPU and disk allocation and usage.
-The persistent disk has been configured in the [services configuration](../../configuration/services/_index.md) as 0.48&nbsp;GB,
+No persistent disk has been configured for Redis,
 while the temporary disk is 3.99&nbsp;GB by default.
 
 ![All of the metrics for the Redis container](/images/metrics/redis-container.png)
