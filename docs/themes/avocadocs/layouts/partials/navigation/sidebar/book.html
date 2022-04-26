@@ -9,7 +9,7 @@
 
 <div class="collapse{{ if .Active }} show{{ end }}" id="book-{{ $currentBook }}">
 {{ range $rootSections }}
-  <!-- Return nothing if should ignore -->
+  <!-- Return nothing if shouldn't be in the navigation -->
   {{ if .Params.sidebarIgnore }}
 
   <!--Handle Stacks and Get started separately -->
