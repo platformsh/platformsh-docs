@@ -10,21 +10,18 @@ install_meilisearch() {
     chmod 744 "meilisearch"
 }
 
-setup_venv(){
-    echo "* SETTING UP POETRY VENV"
+install_poetry(){
+    echo "* Updating pip"
+    python3.9 -m pip install --upgrade pip
+    echo "* Installing poetry"
     # Install poetry
-    curl https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py >> get-poetry.py
-    python get-poetry.py --version $POETRY_VERSION
-    # Source the Poetry command.
-    . $PLATFORM_APP_DIR/.poetry/env
-    # Add Poetry to .bash_profile, so available during SSH.
-    echo ". $PLATFORM_APP_DIR/.poetry/env" >> ~/.bash_profile
-    # Install dependencies.
+    curl -sSL https://install.python-poetry.org | python3 - --version $POETRY_VERSION
+    echo "* Installing dependencies"
     poetry install
 }
 
 set -e
 
 install_meilisearch
-setup_venv
+install_poetry
 
