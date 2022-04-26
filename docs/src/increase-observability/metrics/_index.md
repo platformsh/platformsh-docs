@@ -22,16 +22,7 @@ Grid environments: your service, app, and worker containers.
 
 ![A screenshot of what the metrics dashboard displays for Grid environments](/images/metrics/all-grid.png "0.45")
 
-## Supported regions
-
-Infrastructure metrics are available on all regions except the legacy regions:
-
-* `eu.platform.sh`
-* `us.platform.sh`
-
-These regions will be upgraded in the future.
-If you're on one of these regions and want infrastructure metrics now,
-[migrate your project](../../guides/general/region-migration.md) to a newer region.
+{{% legacy-regions featureIntro="Infrastructure metrics" featureShort="infrastructure metrics" plural=true %}}
 
 ## Default thresholds
 
