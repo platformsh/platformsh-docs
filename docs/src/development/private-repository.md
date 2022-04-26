@@ -52,4 +52,4 @@ Since this account isn't used by a human, it's called a machine user.
 You can then add the machine account as collaborator
 or add the machine user to a team with access to the repositories it needs to manipulate.
 
-More information about this is available on [GitHub](https://developer.github.com/v3/guides/managing-deploy-keys/#machine-users).
+More information about this is available on [GitHub](https://docs.github.com/en/developers/overview/managing-deploy-keys#machine-users).

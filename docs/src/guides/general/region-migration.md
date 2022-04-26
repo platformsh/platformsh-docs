@@ -7,15 +7,13 @@ description: |
 
 {{< description >}}
 
-Platform.sh does not offer an automated way to migrate a project from one region to another after it is created.
+Platform.sh doesn't offer an automated way to migrate a project from one region to another after it's created.
 However, the process to do so manually is fairly straightforward and can be scripted.
 
 ## Why migrate between regions?
 
 * Different data centers are located in different geographic areas,
   and you may want to keep your site physically close to the bulk of your user base for reduced latency.
-* Only selected regions offer European Sovereign hosting.
-  If you created a project in a non-Sovereign region you may need to migrate to a Sovereign region.
 * Some regions are running older versions of the Platform.sh orchestration system that offers fewer features.
   In particular, the `us` and `eu` regions don't currently offer XL and 2XL plans,
   self-terminating builds in case of a build process that runs too long,
