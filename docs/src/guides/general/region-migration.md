@@ -15,11 +15,12 @@ However, the process to do so manually is fairly straightforward and can be scri
 * Different data centers are located in different geographic areas,
   and you may want to keep your site physically close to the bulk of your user base for reduced latency.
 * Some regions are running older versions of the Platform.sh orchestration system that offers fewer features.
-  In particular, the `us` and `eu` regions don't offer XL and 2XL plans,
+  In particular, the `us` and `eu` regions don't currently offer XL and 2XL plans,
   self-terminating builds in case of a build process that runs too long,
   or distributing environments across different grid hosts.
-  If you are on one of those regions and desire those features,
-  you will need to migrate to the newer US-2 or EU-2 regions.
+  These regions will be updated in the future.
+  If you are on one of those regions and desire those features now,
+  migrate to one of the newer regions.
 
 ## Scripted migration process
 
