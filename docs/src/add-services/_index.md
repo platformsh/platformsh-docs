@@ -73,7 +73,7 @@ The following table presents the keys you can define for each service:
 
 Downsizing a service's persistent disk isn't currently supported
 in the `eu.platform.sh` and `us.platform.sh` regions.
-If necessary, [migrate your project](../guides/general/region-migration.md).
+If necessary, [migrate your project](../projects/region-migration.md).
 
 ##### Size
 

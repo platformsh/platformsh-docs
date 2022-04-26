@@ -8,11 +8,11 @@ Or you may find you have performance issues from [excessive bot access](https://
 You can control access either with a username and password or by allowing/denying specific IP addresses or networks.
 
 The settings for a specific environment are inherited by all of its children.
-So if you have a `staging` environment and you [branch environments from it](../../other/glossary.md#branch),
+So if you have a `staging` environment and you [branch environments from it](../other/glossary.md#branch),
 all of the environments branched from it inherit the same authentication information.
 
 Changing access control triggers a new deploy of the current environment.
-The changes don't propagate to child environments until they're [redeployed manually](../../development/troubleshoot.md#force-a-redeploy).
+The changes don't propagate to child environments until they're [redeployed manually](../development/troubleshoot.md#force-a-redeploy).
 
 ## Use a username and password
 

@@ -101,6 +101,8 @@ https://{default}/:
       "/configuration/app(.*)":  { "to": "/create-apps$1", "code": 301, "regexp": true }
       "/configuration/services(.*)":  { "to": "/add-services$1", "code": 301, "regexp": true }
       "/configuration/routes(.*)":  { "to": "/define-routes$1", "code": 301, "regexp": true }
+      "/overview/environments(.*)":  { "to": "/environments$1", "code": 301, "regexp": true }
+      "/overview/projects(.*)":  { "to": "/projects$1", "code": 301, "regexp": true }
 
 
 "https://search.{default}/":

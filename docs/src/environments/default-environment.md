@@ -1,8 +1,9 @@
 ---
-title: "Renaming the default branch"
-sidebarTitle: "Rename the default branch"
+title: Rename the default environment
 description: |
-    See how to change the name of your default/production branch after creating a project. 
+    See how to change the name of your default/production environment after creating a project. 
+aliases:
+  - /guides/general/default-branch.html
 ---
 
 You can set the name of your default/production branch when creating a project.
@@ -10,7 +11,7 @@ To change it after project creation, follow the steps below.
 
 You can complete some of these steps through the management console,
 but since all can be completed with the CLI those commands alone are listed.
-Be sure to [install the CLI](../../development/cli/_index.md) if you have not already done so.
+Be sure to [install the CLI](../development/cli/_index.md) if you haven't already done so.
 It's assumed you are changing the default branch of your project on Platform.sh from `master` to `main`.
 If using another name for the default branch, update the commands accordingly. 
 

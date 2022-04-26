@@ -1,9 +1,10 @@
 ---
 title: "Authenticated Composer repositories"
-
 sidebarTitle: "Authenticated Composer"
 description: |
   Some PHP projects may need to use a private, third party Composer repository in addition to the public Packagist.org repository.  Often, such third party repositories require authentication in order to download packages, and not everyone is comfortable putting those credentials into their Git repository source code (for obvious reasons).
+aliases:
+  - /guides/general/composer-auth.html
 ---
 
 {{< description >}}
@@ -27,7 +28,7 @@ For this example, consider that there are several packages we want to install fr
 }
 ```
 
-## Set the env:COMPOSER_AUTH project variable
+## Set a project variable
 
 Set the Composer authentication by adding a project level variable called `env:COMPOSER_AUTH` as JSON and available only during build time.
 
@@ -45,7 +46,7 @@ The `env:` prefix will make that variable appear as its own Unix environment var
 
 ## Build your application with Composer
 
-You simply need to enable the default Composer build mode in your `.platform.app.yaml`:
+Enable the default Composer build mode in your `.platform.app.yaml`:
 
 ```yaml
 build:

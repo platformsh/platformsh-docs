@@ -3,6 +3,8 @@ title: "MariaDB/MySQL External Replication"
 sidebarTitle: "MariaDB/MySQL Replication"
 description: |
   In rare cases, it may be useful to maintain a replica instance of your MySQL/MariaDB database outside of Platform.sh.
+aliases:
+  - /guides/general/mysql-replication.html
 ---
 
 {{< description >}}
@@ -33,7 +35,7 @@ db:
                     main: replication
 ```
 
-This will create a `replicator` user, and will grant read-only and table locking rights on the `main` database (namely `Select_priv`, `Show_view_priv`, `Create_tmp_table_priv`, `Lock_tables_priv` privileges) along with global replication rights (namely `Repl_slave_priv` and `Repl_client_priv` privileges) and flushing rights (`Reload_priv` used for flushing before reading the binlog position). If there is at least one `replication` permission defined, the bin-logging will be enabled on the primary server, which is essential for the replication.
+This will create a `replicator` user, and will grant read-only and table locking rights on the `main` database (namely `Select_priv`, `Show_view_priv`, `Create_tmp_table_priv`, `Lock_tables_priv` privileges) along with global replication rights (namely `Repl_slave_priv` and `Repl_client_priv` privileges) and flushing rights (`Reload_priv` used for flushing before reading the binary log position). If there is at least one `replication` permission defined, the bin-logging will be enabled on the primary server, which is essential for the replication.
 
 ## Add a relationship for the new endpoint
 
@@ -166,7 +168,7 @@ Slave_IO_Running: Yes
 Slave_SQL_Running: Yes
 ```
 
-### [Optional/Troubleshooting] Skipping invalid binlog queries
+### [Optional/Troubleshooting] Skipping invalid binary log queries
 
 In some cases, after applying primary's dump to the replica and starting the replica, you might experience replication errors (`Slave_SQL_Running: No` and `Error: <smth>` in the output of `SHOW SLAVE STATUS \G` above). Each of such errors needs a careful inspection, but you might be able to just skip some of them. For example:
 

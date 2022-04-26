@@ -85,6 +85,7 @@ reindex
 [Rr]sync
 runtimes
 sanitization
+Satis
 scp
 serverless
 Servlet
@@ -97,6 +98,7 @@ Strapi
 Symfony
 Thorntail
 Tomitribe
+Toran
 transclusion
 [Uu]ncomment
 unencrypted

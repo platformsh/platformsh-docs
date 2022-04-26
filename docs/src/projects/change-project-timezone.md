@@ -4,13 +4,13 @@ description: See how to change the timezone for a project and what it affects.
 toc: false
 ---
 
-The project timezone affects [automated backups](../../dedicated/overview/backups.md).
+The project timezone affects [automated backups](../dedicated/overview/backups.md).
 
 The project timezone doesn't affect:
 
-- [App runtime](../../create-apps/timezone.md).
-- [Cron jobs](../../create-apps/app-reference.md#crons).
-- [System logs](../../development/logs.md). UTC is the default timezone for all logs.
+- [App runtime](../create-apps/timezone.md).
+- [Cron jobs](../create-apps/app-reference.md#crons).
+- [System logs](../development/logs.md). UTC is the default timezone for all logs.
 
 To change the timezone for a project, follow these steps:
 

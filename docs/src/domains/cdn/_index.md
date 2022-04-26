@@ -118,7 +118,7 @@ There are three ways to secure your origin.
 
 ### Password protected HTTP Authentication
 
-You can password protect your project using [HTTP access control](../../overview/environments/http-access-control.md).
+You can password protect your project using [HTTP access control](../../environments/http-access-control.md).
 
 Make sure that you generate a password of sufficient strength.
 You can then share the password with your CDN provider.

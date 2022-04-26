@@ -57,4 +57,4 @@ That tells search engines to not index these sites and not traverse links from t
 This keeps non-production sites out of search engine indexes.
 
 When this is off, your app can serve a `robots.txt` file from its root as normal.
-Use the [`location` section of your app configuration](../../create-apps/app-reference.md#locations).
+Use the [`location` section of your app configuration](../create-apps/app-reference.md#locations).

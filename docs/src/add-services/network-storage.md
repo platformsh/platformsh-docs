@@ -48,7 +48,7 @@ The Network storage service is available on all regions except the legacy region
 * `us.platform.sh`
 
 If you're on one of those and require the service,
-you should [migrate your project](../guides/general/region-migration.md) to a newer region.
+you should [migrate your project](../projects/region-migration.md) to a newer region.
 
 ## Usage example
 
@@ -304,4 +304,4 @@ If you are running on the older `us` or `eu` regions and try to create a `networ
 you receive this error.
 
 To make use of `network-storage`, you need to migrate to the newer `us-2` or `eu-2` regions.
-See our [tutorial on how to migrate regions](/guides/general/region-migration.md) for more information.
+See our [tutorial on how to migrate regions](../projects/region-migration.md) for more information.

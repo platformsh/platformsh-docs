@@ -5,7 +5,7 @@ aliases:
   - /administration/web/delete.html
 ---
 
-To delete a project, you must be an organization owner or have the [manage plans permission](../../administration/organizations.md#manage-your-organization-users)
+To delete a project, you must be an organization owner or have the [manage plans permission](../administration/organizations.md#manage-your-organization-users)
 
 To delete a Platform.sh project, including all data, code, and active environments:
 

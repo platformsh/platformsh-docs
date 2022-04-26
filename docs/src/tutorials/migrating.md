@@ -59,7 +59,7 @@ git push -u platform main
 
 This pushes your repository's `main` branch to the Platform.sh `main` branch.
 Projects default to having the `main` branch as the default branch.
-You can change this when creating the project or [rename your default branch](../guides/general/default-branch.md) later.
+You can change this when creating the project or [rename your default branch](../environments/default-environment.md) later.
 
 When you push, a new environment is created using your code and the provided configuration files.
 The system flags any errors with the configuration it can find.

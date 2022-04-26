@@ -47,7 +47,7 @@ description: |
   * Elasticsearch 5.6: We now support [Elasticsearch 5.6](../add-services/elasticsearch.md) on Dedicated projects.
 ---
 * **January 2021**
-  * Default branch: [guide added](/guides/general/default-branch.md) that provides step for changing a project's default branch from `master` to `main`
+  * Default branch: [guide added](/environments/default-environment.md) that provides step for changing a project's default branch from `master` to `main`
 ---
 
 ## 2020

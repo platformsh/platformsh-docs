@@ -408,7 +408,7 @@ In non-Dedicated environments, there is no on-site primary/replica supports.
 In Dedicated environments, it's provided automatically as part of the default configuration.
 
 In rare cases (such as for certain backup purposes),
-you can also enable [remote replication](../../guides/general/mysql-replication.md) to your own replica data.
+you can also enable [remote replication](./mysql-replication.md) to your own replica data.
 The replica isn't available to your application.
 
 ## Troubleshoot

@@ -14,14 +14,6 @@ description: |
 
 ## Setup
 
-{{< note >}}
-
-If the repository you are trying to integrate with a Platform.sh project has a default branch that's not `master` (such as `main`),
-there are a few additional steps you need to perform to setup the integration.
-See the [Renaming the default branch guide](/guides/general/default-branch.md) for more information.
-
-{{< /note >}}
-
 ### 1. Generate a token
 
 To integrate your Platform.sh project with an existing GitHub repository,

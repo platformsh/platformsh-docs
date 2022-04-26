@@ -1,8 +1,10 @@
 ---
-title: "Region migration"
-sidebarTitle: "Changing regions"
+title: Change a project's region
+sidebarTitle: Change regions
 description: |
   Platform.sh is available in a number of different **Regions**. Each region is a self-contained copy of Platform.sh in a single datacenter. When you first create a project you can specify which region it should be in.
+aliases:
+  - /guides/general/region-migration.html
 ---
 
 {{< description >}}

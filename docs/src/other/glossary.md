@@ -10,7 +10,7 @@ aliases:
 ## Active environment
 
 An environment that's deployed.
-See how to [deactivate an environment](../overview/environments/deactivate-environment.md).
+See how to [deactivate an environment](../environments/deactivate-environment.md).
 
 ## Branch
 
@@ -58,7 +58,7 @@ An environment that isn't deployed.
 It has no data of its own.
 If you reactivate it, it copies data from its parent.
 
-See how to [reactivate an environment](../overview/environments/deactivate-environment.md#reactivate-an-environment).
+See how to [reactivate an environment](../environments/deactivate-environment.md#reactivate-an-environment).
 
 ## Live environment
 
