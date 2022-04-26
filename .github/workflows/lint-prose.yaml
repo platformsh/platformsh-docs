@@ -1,8 +1,9 @@
 name: Linting
 on:
-  push:
-    branches-ignore:
-      - main
+  workflow_run:
+    workflows: [Get info on PR]
+    types:
+      - completed
 
 jobs:
   prose:
@@ -10,6 +11,17 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@master
+
+    - name: Download info on PR
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        workflow: get-pr-info.yaml
+        workflow_conclusion: success
+        name: pr-info
+
+    - name: Get PR number
+      id: pr_number
+      run: echo "::set-output name=pr_number::$(cat pr_number.txt)"
 
     - name: Vale
       uses: errata-ai/vale-action@v1.4.3
@@ -21,3 +33,4 @@ jobs:
       env:
         # Required
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        OVERRIDE_GITHUB_SHA: ${{ steps.pr_number.outputs.pr_number }}
