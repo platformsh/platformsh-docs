@@ -4,7 +4,7 @@
   {{- $isRemote := in $remoteSchemes $url.Scheme -}}
   {{- $isFile := strings.HasSuffix .Destination "pdf" }}
   {{- if or $isRemote $isFile -}}
-    <a href="{{ .Destination }}" target="_blank" rel="noopener">{{ .Text | safeHTML }}</a>
+    <a href="{{ htmlUnescape .Destination }}" target="_blank" rel="noopener">{{ .Text | safeHTML }}</a>
   {{- else -}}
     <a href="{{ relref .Page .Destination }}">{{ .Text | safeHTML }}</a>
   {{- end -}}
