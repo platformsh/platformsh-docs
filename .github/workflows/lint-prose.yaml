@@ -24,7 +24,7 @@ jobs:
       run: echo "::set-output name=pr_number::$(cat pr_number.txt)"
 
     - name: Vale
-      uses: errata-ai/vale-action@v1.4.3
+      uses: errata-ai/vale-action@ff9447943c1cad0f45649b630e29112511f80e5a
       with:
         # Switch to this when the number of errors goes down
         # files: __onlyModified
