@@ -44,9 +44,9 @@ In particular, see:
 
 ## Local Development with eZ Platform 2.x and later
 
-Ibexa provide a tool called [eZ Launchpad](https://ezsystems.github.io/launchpad/) for local development on top of a Docker stack.
+The eZ community provides a tool called [eZ Launchpad](https://ezsystems.github.io/launchpad/) for local development on top of a Docker stack.
 It improves Developer eXperience and reduces complexity for common actions by simplifying your interactions with Docker containers.
-eZ Launchpad is ready to work with Platform.sh.
+eZ Launchpad is ready to work with Platform.sh. 
 
 It serves as a wrapper that allows you to run console commands from within the container without logging into it explicitly.
 For example to run `bin/console` `cache:clear` inside the PHP container do:
@@ -54,6 +54,12 @@ For example to run `bin/console` `cache:clear` inside the PHP container do:
 ```bash
 ~/ez sfrun cache:clear
 ```
+
+{{< note >}}
+
+Pay attention that Ibexa does not support  eZ Launchpad. Also you might need some adjustements to make it work on Ibexa DXP V4.
+
+{{< /note >}}
 
 ### eZ Launchpad installation
 
