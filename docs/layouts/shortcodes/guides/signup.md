@@ -11,7 +11,7 @@ you can sign up using an existing GitHub, Bitbucket, or Google account.
 If you choose one of these options, you can set a password for your Platform.sh account later.
 
 <p align="center">
-  <a href='https://console.platform.sh/projects/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/{{ .Get "template" }}/.platform.template.yaml&utm_content={{ .Get "template" }}&utm_source=github&utm_medium=button&utm_campaign=deploy_on_platform'>
+  <a href='https://console.platform.sh/org/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/{{ .Get "template" }}/.platform.template.yaml&_utm_campaign=cta_deploy_marketplace_template&utm_source=public_documentation&_utm_medium=organic'>
     <img src="https://platform.sh/images/deploy/lg-blue.svg" alt="Deploy on Platform.sh" width="180px" />
   </a>
 </p>
