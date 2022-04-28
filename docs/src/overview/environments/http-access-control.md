@@ -1,6 +1,8 @@
 ---
 title: Configure HTTP access control
 description: Learn how to control access to.a given environment using HTTP methods.
+keywords:
+  - basic authentication
 ---
 
 When developing your site, you might want to hide your development environments from outside viewers.
