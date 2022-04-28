@@ -1,8 +1,9 @@
 name: Linting
 on:
-  push:
-    branches-ignore:
-      - main
+  workflow_run:
+    workflows: [Get info on PR]
+    types:
+      - completed
 
 jobs:
   prose:
@@ -11,8 +12,23 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
 
+    - name: Download info on PR
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        workflow: get-pr-info.yaml
+        workflow_conclusion: success
+        name: pr-info
+
+    - name: Get PR number
+      id: pr_number
+      run: echo "::set-output name=pr_number::$(cat pr_number.txt)"
+
+    - name: Get PR SHA
+      id: pr_sha
+      run: echo "::set-output name=pr_sha::$(cat pr_sha.txt)"
+
     - name: Vale
-      uses: errata-ai/vale-action@v1.4.3
+      uses: errata-ai/vale-action@ff9447943c1cad0f45649b630e29112511f80e5a
       with:
         # Switch to this when the number of errors goes down
         # files: __onlyModified
@@ -21,3 +37,5 @@ jobs:
       env:
         # Required
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        OVERRIDE_GITHUB_SHA: ${{ steps.pr_sha.outputs.pr_sha }}
+        OVERRIDE_PR_NUMBER: ${{ steps.pr_number.outputs.pr_number }}
