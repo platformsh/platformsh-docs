@@ -1,8 +1,7 @@
 ---
-title: "Untethered local"
+title: Untethered local development
+sidebarTitle: Untethered
 weight: 2
-toc: false
-sidebarTitle: "Untethered"
 ---
 
 It's possible to run your entire site locally on your computer.
