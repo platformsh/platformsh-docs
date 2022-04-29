@@ -10,7 +10,7 @@ description: |
 ## 2022
 
 * **April 2022**
-  * Dedicated Generation 3 adds support for [PostgreSQL](../configuration/services/postgresql.md)
+  * Dedicated Generation 3 adds support for [PostgreSQL](../add-services/postgresql.md)
   * Carbon intensity: You can now find information about the carbon intensity of each [region's energy grid](../development/regions.md).
 * **March 2022**
   * The [`.platform/services.yaml` file](../add-services/_index.md) is no longer required.
