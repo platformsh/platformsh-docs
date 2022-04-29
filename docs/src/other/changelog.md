@@ -9,6 +9,8 @@ description: |
 
 ## 2022
 
+* **April 2022**
+  * Dedicated Generation 3 adds support for [PostgreSQL](../configuration/services/postgresql.md)
 * **March 2022**
   * The [`.platform/services.yaml` file](../configuration/services/_index.md) is no longer required.
     If you don't need services, you don't need to include the file in your repository.

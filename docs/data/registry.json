@@ -755,6 +755,15 @@
         "9.6*",
         "11*"
       ]
+    },
+    "versions-dedicated-gen-3": {
+      "deprecated": [],
+      "supported": [
+        "10",
+        "11",
+        "12",
+        "13"
+      ]
     }
   },
   "python": {
