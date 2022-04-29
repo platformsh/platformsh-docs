@@ -7,7 +7,7 @@ description: |
     Configure a Quarkus application with MongoDB.
 ---
 
-MongoDB with Panache provides active record style entities (and repositories) like you have in [Hibernate ORM with Panache](https://quarkus.io/guides/hibernate-orm-panache). It focuses on making your entities trivial and fun to write in Quarkus.
+MongoDB with Panache provides active record style entities (and repositories) like you have in [Hibernate ORM with Panache](https://quarkus.io/guides/hibernate-orm-panache). It focuses on helping you write your entities in Quarkus.
 
 To activate MongoDB and then have it accessed by the Quarkus application already in Platform.sh, it is necessary to modify two files. 
 
@@ -17,7 +17,7 @@ This guide only covers the *addition* of a MongoDB service configuration to an e
 
 ## 1. Add the MongoDB service
 
-In your [service configuration](../../configuration/services/_index.md), include MongoDB with a [valid supported version](/configuration/services/mongodb.md):
+In your [service configuration](../../add-services/_index.md), include MongoDB with a [valid supported version](../../add-services/mongodb.md):
 
 ```yaml
 dbmongo:
@@ -27,13 +27,13 @@ dbmongo:
 
 ## 2. Grant access to MongoDb through a relationship
 
-In your [app configuration](../../configuration/app/app-reference.md), use the service name `dbmongo` to grant the application access to MongoDB via a relationship:
+In your [app configuration](../../create-apps/app-reference.md), use the service name `dbmongo` to grant the application access to MongoDB via a relationship:
 
 {{< readFile file="src/registry/images/examples/full/mongodb.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 ## 3. Export connection credentials to the environment
 
-Connection credentials for services are exposed to the application container through the `PLATFORM_RELATIONSHIPS` environment variable from the deploy hook onward. Since this variable is a base64 encoded JSON object of all of your project's services, you'll likely want a clean way to extract the information specific to the databse into it's own environment variables that can be easily used by Quarkus. On Platform.sh, custom environment variables can be defined programmatically in a `.environment` file using `jq` to do just that:
+Connection credentials for services are exposed to the application container through the `PLATFORM_RELATIONSHIPS` environment variable from the deploy hook onward. Since this variable is a base64 encoded JSON object of all of your project's services, you'll likely want a clean way to extract the information specific to the database into it's own environment variables that can be used by Quarkus. On Platform.sh, custom environment variables can be defined programmatically in a `.environment` file using `jq` to do just that:
 
 ```text
 export MONGO_PORT=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".mongodatabase[0].port")

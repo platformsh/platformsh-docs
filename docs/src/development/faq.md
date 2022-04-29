@@ -45,7 +45,7 @@ you have four copies of your application, four copies of your database, four cop
 
 Yes! Platform.sh supports non-ephemeral storage.
 When you configure your application you can tell it what directories you want to be read/write.
-(These are called [mounts](../configuration/app/app-reference.md#mounts).)
+(These are called [mounts](../create-apps/app-reference.md#mounts).)
 These are mounted on a distributed file system (which is transparent for you).
 When you backup your environment, they are backed up as well.
 When you create a new staging environment,
@@ -77,8 +77,8 @@ and you only pay for the time you use the larger plan.
 
 All containers on development plans are "small" containers.
 
-See configuration options for [apps](../configuration/app/app-reference.md#sizes)
-and [services](../configuration/services/_index.md#size).
+See configuration options for [apps](../create-apps/app-reference.md#sizes)
+and [services](../add-services/_index.md#size).
 
 ## What exactly am I SSHing into?
 

@@ -35,7 +35,7 @@ Sections
 | Name   | Type      | Required | Description |
 | ------ | --------- | -------- | ----------- |
 | `type` | `string`  | Yes      | A [route type](#route-types). |
-| `ssi`  | `boolean` | No       | Controls whether [server side includes](/configuration/routes/ssi.md) are enabled. |
+| `ssi`  | `boolean` | No       | Controls whether [server side includes](/define-routes/ssi.md) are enabled. |
 
 ### Route types
 

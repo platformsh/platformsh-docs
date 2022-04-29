@@ -23,7 +23,7 @@ Custom domains can only be added to the default environment on production plans 
 
 ## Summary of steps
 
-* Describe your desired future URL structure in [.platform/routes.yaml](../configuration/routes/_index.md)
+* Describe your desired future URL structure in [.platform/routes.yaml](../define-routes/_index.md)
 * Understand [what DNS records you will need](../domains/steps/dns.md), and whether your DNS provider can support them
 * Optional: [use a CDN](../domains/cdn/_index.md)
 * Update your [DNS](../domains/steps/dns.md)

@@ -55,7 +55,7 @@ Platform.sh supports the deployment of isolated development environments from yo
    ```
 
    The command provides a list of the generated routes for the application
-   according to how the [routes](/configuration/routes/_index.md) were configured.
+   according to how the [routes](../../../define-routes/_index.md) were configured.
    The structure is:
 
    ```text

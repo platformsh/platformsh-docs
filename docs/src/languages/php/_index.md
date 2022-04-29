@@ -140,7 +140,7 @@ variables:
         opcache.preload: 'preload.php'
 ```
 
-The `opcache.preload` value is evaluated as a file path relative your [app confiruation](../../configuration/app/_index.md).
+The `opcache.preload` value is evaluated as a file path relative your [app configuration](../../create-apps/_index.md).
 It may be any PHP script that calls `opcache_compile_file()`.
 
 The following example preloads all `.php` files anywhere in the `vendor` directory:
@@ -232,7 +232,7 @@ $ php-fpm-status --socket=unix://$SOCKET --path=/-/status --full
 
 ## Accessing services
 
-To access various [services](/configuration/services/_index.md) with PHP, see the following examples.
+To access various [services](../../add-services/_index.md) with PHP, see the following examples.
 The individual service pages have more information on configuring each service.
 
 {{< codetabs >}}
@@ -312,7 +312,7 @@ markdownify=false
 
 ## Runtime configuration
 
-It's possible to change the PHP-FPM runtime configuration via the `runtime` property in your [app configuration](../../configuration/app/app-reference.md#runtime).
+It's possible to change the PHP-FPM runtime configuration via the `runtime` property in your [app configuration](../../create-apps/app-reference.md#runtime).
 See that reference for details on what can be changed.
 
 ## Project templates

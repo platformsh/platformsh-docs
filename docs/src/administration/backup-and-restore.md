@@ -176,7 +176,7 @@ You need "admin" role to restore your environment from a backup.
 Be aware that the older US and EU regions don't support restoring backups to different environments.
 If your project is on one of the older regions (`us` or `eu`, without a number suffix),
 you may file a support ticket to ask that a backup be restored to a different environment for you,
-or [migrate your project](/guides/general/region-migration.md) to one of the new regions that supports this feature.
+or [migrate your project](../projects/region-migration.md) to one of the new regions that supports this feature.
 Older regions may not appear in the management console in the same way that newer regions to,
 so to verify if this caveat applies to you,
 you can check your project's region with the CLI command `platform project:info -p PROJECT_ID`.

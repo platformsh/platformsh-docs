@@ -20,6 +20,7 @@ denylist
 Docksal
 Drush
 DXP
+Ecto
 failover
 Fastly
 Galera
@@ -36,6 +37,7 @@ highjack
 hostname
 [Hh]otfix
 Httpoxy
+Hunchentoot
 Ibexa
 imagetragick
 jpegoptim
@@ -44,6 +46,7 @@ Laravel
 Loggly
 Lucene
 Magento
+Magestore
 Mailchimp
 Memcache
 middleware
@@ -82,16 +85,20 @@ reindex
 [Rr]sync
 runtimes
 sanitization
+Satis
 scp
 serverless
+Servlet
 shard
 shortcode
+Slowloris
 Stempel
 stdout
 Strapi
 Symfony
 Thorntail
 Tomitribe
+Toran
 transclusion
 [Uu]ncomment
 unencrypted
@@ -99,6 +106,7 @@ unmerged
 [Uu]nmount
 [Uu]ntrusted
 Verisign
+Webflux
 webpack
 Xdebug
 Zend
