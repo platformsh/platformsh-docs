@@ -1,7 +1,6 @@
 ---
-title: "Transparency and Abuse Reports"
+title: "Transparency and abuse reports"
 sidebarTitle: "Transparency & abuse reports"
-weight: 16
 layout: single
 toc: false
 description: |

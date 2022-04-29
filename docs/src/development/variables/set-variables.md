@@ -9,7 +9,7 @@ All of the variables can also be [overridden via script](#set-variables-via-scri
 
 ## Set variables in your app
 
-Set variables [in code](../../configuration/app/app-reference.md#variables) using the `.platform.app.yaml` file.
+Set variables [in code](../../create-apps/app-reference.md#variables) using the `.platform.app.yaml` file.
 These values are the same across all environments and present in the Git repository,
 which makes them a poor fit for API keys and other such secrets.
 
@@ -132,7 +132,7 @@ export PATH=/app/vendor/bin:$PATH
 ```
 
 You can also dynamically define environment variables based on the current environment.
-For example, you might want to get the [defined route](../../configuration/routes/_index.md) with the id `api` for the current environment.
+For example, you might want to get the [defined route](../../define-routes/_index.md) with the id `api` for the current environment.
 To define it as the `URL` environment variable, you might add something like:
 
 ```bash {location=".environment"}

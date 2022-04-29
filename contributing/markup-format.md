@@ -86,10 +86,10 @@ Remember to [use meaningful link text](./content-style.md#use-meaningful-link-te
 
 Internal links (links to other docs pages) should be relative to the file they're in.
 That way, they work in the docs and on GitHub and locally in a cloned repository.
-Link to the specific `.md` file, for example: `[available services](../docs/src/configuration/services/_index.md`).
+Link to the specific `.md` file, for example: `[available services](../docs/src/add-services/_index.md`).
 
 If you are linking from a [file for reuse](#reuse-content), link relative to the `src` directory and start with `/`.
-For example: `[available services](/configuration/services/_index.md`).
+For example: `[available services](/add-services/_index.md`).
 
 Both of these ways help prevent broken links in the docs by putting them through a check to see if the page exists.
 If the page doesn't exist, the build fails.

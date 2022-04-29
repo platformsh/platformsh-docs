@@ -127,7 +127,7 @@ You can always specify the project and environment in two ways:
   platform environment:info
   ```
 
-In [multi-app](../../configuration/app/multi-app.md) projects, this applies also to selecting the right app
+In [multi-app](../../create-apps/multi-app.md) projects, this applies also to selecting the right app
 (the environment variable would be `PLATFORM_APPLICATION_NAME`).
 
 #### RootNotFoundException

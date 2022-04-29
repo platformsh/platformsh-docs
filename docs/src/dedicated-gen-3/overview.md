@@ -12,7 +12,7 @@ description: |
 {{< description >}}
 
 Projects will often require a Dedicated production cluster when they require high availability, or they need more resources than normally offered by Platform.sh plans. 
-Data location requirements is also common in choosing a Dedicated cluster, such as the need to deploy to a location Platform.sh does not currently have a region, or simply that production data cannot be kept on shared infrastructure.
+Data location requirements is also common in choosing a Dedicated cluster, such as the need to deploy to a location Platform.sh does not currently have a region, or that production data cannot be kept on shared infrastructure.
 
 Dedicated Generation 3 works nearly identically to Platform.sh environments, and does not require additional configuration on your part. The only difference is that of service availability.
 
@@ -34,7 +34,7 @@ Although Dedication Generation 3 adds plenty of features to your existing Grid a
 
 ### Available services
 
-In our [services documentation](../configuration/services/_index.md) you will notice that not every service is available on Dedicated Generation 3 that is available on the Grid, nor is every version. The table below shows the currently available services and their versions for Dedicated Generation 3. 
+In our [services documentation](../add-services/_index.md) you will notice that not every service is available on Dedicated Generation 3 that is available on the Grid, nor is every version. The table below shows the currently available services and their versions for Dedicated Generation 3. 
 
 {{< gen-3-services >}}
 

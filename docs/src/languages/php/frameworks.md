@@ -10,7 +10,7 @@ so you can handle dependencies and builds for PHP frameworks by committing `comp
 
 [Drupal](https://www.drupal.org/) is an open-source content management framework written in PHP.
 Since Composer comes pre-installed on Platform.sh, Drupal can be installed and updated completely using Composer.
-The default [build flavor](../../configuration/app/app-reference.md#build) for PHP application
+The default [build flavor](../../create-apps/app-reference.md#build) for PHP application
 runs `composer install` during build, handling all of your dependencies automatically.
 
 * [Drupal 8/9 Guide](../../guides/drupal9/_index.md)

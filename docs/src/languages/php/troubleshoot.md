@@ -55,7 +55,7 @@ to monitor your application and help you improve the performance issue.
 Otherwise, you may check if the following options are applicable:
 
 * Find the most visited pages and see if they can be cached and/or put behind a CDN.
-  Refer to [how caching works](/configuration/routes/cache.md).
+  Refer to [how caching works](../../define-routes/cache.md).
 * Upgrade your Platform.sh plan to get more computing resources.
 
 ## PHP process crashed

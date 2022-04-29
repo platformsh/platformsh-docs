@@ -12,7 +12,7 @@ The settings are divided into several sections.
 
 ## General
 
-The **General** section shows you the project's region and allows you to update the project name and [timezone](../../overview/projects/change-project-timezone.md).
+The **General** section shows you the project's region and allows you to update the project name and [timezone](../../projects/change-project-timezone.md).
 
 ![configure project](/images/management-console/settings-general.png "0.7")
 

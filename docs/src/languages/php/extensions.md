@@ -21,7 +21,7 @@ runtime:
         - sqlite3
 ```
 
-You can also [include configuration options](../../configuration/app/app-reference.md#extensions) for specific extensions.
+You can also [include configuration options](../../create-apps/app-reference.md#extensions) for specific extensions.
 
 The following table shows all extensions that are available (Avail) and on by default (Def).
 You can turn on the available ones with the `extensions` key
