@@ -58,7 +58,7 @@ Next, having placed `wp-config.php` in the root of your repository, you will nee
   },
 ```
 
-Since you'll likely be using [WPPackagist](https://wpackagist.org/) to download plugins and themes with Composer, you will also need to add `wppackagist.org` as a repository in `composer.json`.
+Since you'll likely be using [WPPackagist](https://wpackagist.org/) to download plugins and themes with Composer, you will also need to add `wpackagist.org` as a repository in `composer.json`.
 
 ```json
   "repositories": [
@@ -73,7 +73,7 @@ Lastly, to prevent committing WordPress Core when it is installed via Composer, 
 
 ## Additional packages
 
-Finally, install `wp-cli` and `psy/psych` using Composer.
+Finally, install `wp-cli` and `psy/psysh` using Composer.
 With these packages included, the WordPress CLI is available when you SSH into the application container.
 
 ```bash

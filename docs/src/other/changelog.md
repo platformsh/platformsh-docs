@@ -15,31 +15,32 @@ description: |
   * The [`.platform/services.yaml` file](../add-services/_index.md) is no longer required.
     If you don't need services, you don't need to include the file in your repository.
   * Crons: added option to [cancel a cron activity](../create-apps/app-reference.md#crons)
+  * Proxy routes: added option redirect requests to external locations with [proxy routes](../define-routes/proxy.md)
 * **January 2022**
   * OpenSearch: Added [OpenSearch service](../add-services/opensearch.md)
 
 ## 2021
 
 * **October 2021**
-  * Regions: Added a [second region in Australia](/development/regions.md#australia-2-au-2platformsh), `au-2`.
+  * Regions: Added a [second region in Australia](../development/regions.md#australia), `au-2`.
 * **September 2021**
-  * Organizations: Switched to [organizations](/administration/organizations.md) for managing Platform.sh projects, users, and billing.
+  * Organizations: Switched to [organizations](../administration/organizations.md) for managing Platform.sh projects, users, and billing.
   * Vault: Added [Vault service](../add-services/vault.md).
-  * .Net: We now support [.Net 5.0](/languages/dotnet.md).
+  * .Net: We now support [.Net 5.0](../languages/dotnet.md).
 * **May 2021**
   * Elasticsearch 6.8: We now support [Elasticsearch 6.8](../add-services/elasticsearch.md).
 ---
 * **April 2021**
-  * WAF: [a new page was added](/security/waf.md) describing the filtering rule sets and protections that come with the Platform.sh WAF.
+  * WAF: [a new page was added](../security/waf.md) describing the filtering rule sets and protections that come with the Platform.sh WAF.
   * [Build environment variables](../development/variables/set-variables.md#create-project-variables): environment variables can now accept the same `--visible-build` and `--visible-runtime` flags as project variables when created through the CLI. Build-visible variables are now a part of the build image ID, and therefore triggers a rebuild of the application when the value is updated. 
   * **Breaking change**: The logic by which the build image ID has changed in order to support build environment variables above. Previously, every attribute in `.platform.app.yaml` was included in the build image, used to create the unique build ID, and *accessible* via the `PLATFORM_APPLICATION` environment variable at build time. This is no longer the case, and only a subset of `.platform.app.yaml` attributes are now accessible from `PLATFORM_APPLICATION` at build time. See the [Platform.sh-provided variables](../development/variables/use-variables.md#use-platformsh-provided-variables) section for more information.
 ---
 * **March 2021**
-  * Observability: [a new page was added](/dedicated/architecture/metrics.md) describing observability and metrics available on Dedicated projects.
-  * Node.js debugging: [a new page was added](/languages/nodejs/debug.md) that includes tips for debugging Node.js applications.
-  * Parallel activities: [project activities](/integrations/activity/reference.md#maximum-activities-and-parallelism) have been split into separate queues, allowing for up to two activities across environments to occur simultaneously.
-  * Python 3.9: We now support [Python 3.9](/languages/python.md).
-  * Java 14: We now support [Java 14](/languages/java/_index.md).
+  * Observability: [a new page was added](../dedicated/architecture/metrics.md) describing observability and metrics available on Dedicated projects.
+  * Node.js debugging: [a new page was added](../languages/nodejs/debug.md) that includes tips for debugging Node.js applications.
+  * Parallel activities: [project activities](../integrations/activity/reference.md#maximum-activities-and-parallelism) have been split into separate queues, allowing for up to two activities across environments to occur simultaneously.
+  * Python 3.9: We now support [Python 3.9](../languages/python.md).
+  * Java 14: We now support [Java 14](../languages/java/_index.md).
   * PostgreSQL 13: [multiple databases](../add-services/postgresql.md#multiple-databases) are now supported for PostgreSQL 13.
   * Elasticsearch 7.9: We now support [Elasticsearch 7.9](../add-services/elasticsearch.md).
 ---
@@ -47,7 +48,7 @@ description: |
   * Elasticsearch 5.6: We now support [Elasticsearch 5.6](../add-services/elasticsearch.md) on Dedicated projects.
 ---
 * **January 2021**
-  * Default branch: [guide added](/environments/default-environment.md) that provides step for changing a project's default branch from `master` to `main`
+  * Default branch: [guide added](../environments/default-environment.md) that provides step for changing a project's default branch from `master` to `main`
 ---
 
 ## 2020
@@ -56,19 +57,19 @@ description: |
   * `us-4` region: We have [added](../development/regions.md) another US region, `us-4`.
 ---
 * **September 2020**
-  * Go 1.15: We now support [Go 1.15](/languages/go.md).
+  * Go 1.15: We now support [Go 1.15](../languages/go.md).
 ---
 * **June 2020**
-  * Node.js 14: We now support [Node.js 14](/languages/nodejs/_index.md).
+  * Node.js 14: We now support [Node.js 14](../languages/nodejs/_index.md).
 ---
 * **April 2020**
-  * We now offer [Xdebug on PHP](/languages/php/xdebug.md) containers.
+  * We now offer [Xdebug on PHP](../languages/php/xdebug.md) containers.
   * Custom [activity scripts](../integrations/activity/_index.md) are now available, in alpha.
 ---
 * **March 2020**
-  * Go 1.14: We now support [Go 1.14](/languages/go.md).
-  * Ruby 2.7: We now support [Ruby 2.7](/languages/ruby.md).
-  * .NET Core: We now support [.NET Core 3.1](/languages/dotnet.md).
+  * Go 1.14: We now support [Go 1.14](../languages/go.md).
+  * Ruby 2.7: We now support [Ruby 2.7](../languages/ruby.md).
+  * .NET Core: We now support [.NET Core 3.1](../languages/dotnet.md).
   * Memcached 1.6: We now support [Memcached 1.6](../add-services/memcached.md).
   * Solr 8.4: We now support [Solr 8.4](../add-services/solr.md).
 ---
@@ -83,12 +84,12 @@ description: |
 ## 2019
 
 * **December 2019**
-  * Python 3.8: We now support [Python 3.8](/languages/python.md).
-  * Node.js 12: We now support [Node.js 12](/languages/nodejs/_index.md).
+  * Python 3.8: We now support [Python 3.8](../languages/python.md).
+  * Node.js 12: We now support [Node.js 12](../languages/nodejs/_index.md).
   * RabbitMQ 3.8: We now support [RabbitMQ 3.8](../add-services/rabbitmq.md).
 ---
 * **October 2019**
-  * PHP 7.4: We now support [PHP 7.4](/languages/php/_index.md).
+  * PHP 7.4: We now support [PHP 7.4](../languages/php/_index.md).
 ---
 
 * **October 2019**
@@ -97,18 +98,18 @@ description: |
 
 * **September 2019**
   * "Dark mode" now available in the Console.
-  * Go 1.13: We now support [Go 1.13](/languages/go.md).
+  * Go 1.13: We now support [Go 1.13](../languages/go.md).
 ---
 
 * **July 2019**
   * Elasticsearch 7.2: We now support [Elasticsearch 7.2](../add-services/elasticsearch.md).
   * [Elasticsearch](../add-services/elasticsearch.md) 5.2 and 5.4 support is now deprecated
   * Kafka 2.2: We now support [Kafka 2.2](../add-services/kafka.md).
-  * Java 13: We now support [Java 13](/languages/java/_index.md).
+  * Java 13: We now support [Java 13](../languages/java/_index.md).
 ---
 
 * **June 2019**
-  * Java: We support and documented the use of [Java](/languages/java/_index.md) runtimes 8, 11, and 12, that includes examples that use the [Java Config Reader](https://github.com/platformsh/config-reader-java/).
+  * Java: We support and documented the use of [Java](../languages/java/_index.md) runtimes 8, 11, and 12, that includes examples that use the [Java Config Reader](https://github.com/platformsh/config-reader-java/).
   * Headless Chrome: Users can now define a [Headless Chrome](../add-services/headless-chrome.md) service to access a service container with a headless browser, which can be used for automated UI testing.
 ---
 
@@ -120,12 +121,12 @@ description: |
 * **April 2019**
   * Network storage service: Users can now define a [Network storage](../add-services/network-storage.md) service for sharing files between containers.
   * Kafka message queue service: Users can now define a [Kafka](../add-services/kafka.md) service for storing, reading and analysing streaming data.
-  * Management Console: Images and wording updated throughout entire documentation alongside [Management Console](/administration/web/_index.md) release.
+  * Management Console: Images and wording updated throughout entire documentation alongside [Management Console](../administration/web/_index.md) release.
 ---
 
 * **March 2019**
-  * Ruby 2.6: A new version of [Ruby](/languages/ruby.md) is now available.
-  * Go 1.12: We now support [Go 1.12](/languages/go.md).
+  * Ruby 2.6: A new version of [Ruby](../languages/ruby.md) is now available.
+  * Go 1.12: We now support [Go 1.12](../languages/go.md).
   * Elasticsearch 6.5: We now support [Elasticsearch 6.5](../add-services/elasticsearch.md).
 ---
 
@@ -140,18 +141,18 @@ description: |
 * **December 2018**
   * Elasticsearch 5.4: We now offer [Elasticsearch 5.4](../add-services/elasticsearch.md).
   * Improved Bash support: Bash history on application containers now persists between logins.
-  * PHP 7.3: We now support [PHP 7.3](/languages/php/_index.md).
+  * PHP 7.3: We now support [PHP 7.3](../languages/php/_index.md).
   * PostgreSQL 10.0 and 11.0: We now support [PostgreSQL 10.0 and 11.0](../add-services/postgresql.md) with an automated upgrade path.
-  * Ruby 2.5 out of beta: We now fully support [Ruby 2.5](/languages/ruby.md).
+  * Ruby 2.5 out of beta: We now fully support [Ruby 2.5](../languages/ruby.md).
 ---
 
 * **October 2018**
   * Redis updates: [Redis 4.0 and 5.0](../add-services/redis.md) are now supported.
-  * Go language support: [Go](/languages/go.md) is now a fully supported language platform.
+  * Go language support: [Go](../languages/go.md) is now a fully supported language platform.
 ---
 
 * **September 2018**
-  * Python 3.7 support: We now support [Python 3.7](/languages/python.md).
+  * Python 3.7 support: We now support [Python 3.7](../languages/python.md).
 ---
 
 * **August 2018**
@@ -163,7 +164,7 @@ description: |
 ---
 
 * **June 2018**
-  * Node.js 10: We now offer [Node.js version 10](/languages/nodejs/_index.md). All releases in the 10.x series will be included in that container.
+  * Node.js 10: We now offer [Node.js version 10](../languages/nodejs/_index.md). All releases in the 10.x series will be included in that container.
   * MongoDB 3.6: We now offer [MongoDB 3.2, 3.4, and 3.6](../add-services/mongodb.md). Note that upgrading from MongoDB 3.0 requires upgrading through all intermediary versions.
 ---
 
@@ -182,15 +183,15 @@ description: |
   * Extended mount definitions: A new syntax has been added for defining [mount points](../create-apps/app-reference.md#mounts) that is more self-descriptive and makes future extension easier.
   * Blocking older TLS versions: It is now possible to disable support for [HTTPS requests](../define-routes/https.md) using older versions of TLS. TLS 1.0 is known to be insecure in some circumstances and some compliance standards require a higher minimum supported version.
   * `{all}` placeholder for routes: A new placeholder is available in [`routes.yaml`](../define-routes/_index.md) files that matches all configured domains.
-  * GitLab source code integration: Synchronize Git repository host on [GitLab](/integrations/source/gitlab.md) to Platform.sh.
+  * GitLab source code integration: Synchronize Git repository host on [GitLab](../integrations/source/gitlab.md) to Platform.sh.
 ---
 
 * **November 2017**
-  * PHP 7.2 supported: With the release of PHP 7.2.0, Platform.sh now offers [PHP 7.2](/languages/php/_index.md) containers on Platform Professional.
+  * PHP 7.2 supported: With the release of PHP 7.2.0, Platform.sh now offers [PHP 7.2](../languages/php/_index.md) containers on Platform Professional.
 ---
 
 * **September 2017**
-  * Health notifications: Low-disk warnings will now trigger a [notification](/integrations/notifications.md) via email, Slack, or PagerDuty.
+  * Health notifications: Low-disk warnings will now trigger a [notification](../integrations/notifications.md) via email, Slack, or PagerDuty.
 ---
 
 * **August 2017**
@@ -198,7 +199,7 @@ description: |
 ---
 
 * **July 2017**
-  * Node.js 8.2: [Node.js 8.2](/languages/nodejs/_index.md) is now available.
+  * Node.js 8.2: [Node.js 8.2](../languages/nodejs/_index.md) is now available.
 ---
 
 * **June 2017**
@@ -276,12 +277,12 @@ description: |
 * **October 2016**
   * PostgreSQL 9.6: Service is [documented here](../add-services/postgresql.md).
   * PostgreSQL extensions: Read more in our [blog post](https://platform.sh/blog/the-new-and-newer-postgresql/).
-  * Node.js 6.8: Language is [documented here](/languages/nodejs/_index.md).
+  * Node.js 6.8: Language is [documented here](../languages/nodejs/_index.md).
 ---
 
 * **September 2016**
-  * Python 2.7 & 3.5: Language is [documented here](/languages/python.md).
-  * Ruby 2.3: Language is [documented here](/languages/ruby.md).
+  * Python 2.7 & 3.5: Language is [documented here](../languages/python.md).
+  * Ruby 2.3: Language is [documented here](../languages/ruby.md).
 ---
 
 * **August 2016**
@@ -387,7 +388,7 @@ description: |
     Platform.sh provides a unique approach to protect your applications from known security issues.
     An automated protective blocking system which works a bit like an antivirus:
     it compares the code you deploy on Platform.sh with a database of signatures of known security issues in open source projects.
-    This feature is [documented here](/security/protective-block.md).
+    This feature is [documented here](../security/protective-block.md).
     Read more in our [blog post](https://platform.sh/2014/10/21/protecting-your-apps).
   * Solr 4.10: Service is [documented here](../add-services/solr.md).
 ---

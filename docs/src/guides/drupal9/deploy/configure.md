@@ -18,11 +18,11 @@ description: |
 {{% guides/config-service name=Drupal %}}
 
 We recommend the latest [MariaDB](../../../add-services/mysql/_index.md) version for Drupal,
-although you can also use Oracle MySQL or [PostgreSQL](../../../add-services/postgresql.md) if you prefer.
-We also strongly recommend using [Redis](../../../add-services/redis.md) for Drupal caching.
+although you can also use Oracle MySQL or [PostgreSQL](../../../add-services/postgresql.md).
+For Drupal caching, we strongly recommend [Redis](../../../add-services/redis.md).
 Drupal's cache can be very aggressive,
 and keeping that data out of the database helps with both performance and disk usage.
-Our Drupal template comes [pre-configured to use Redis](https://github.com/platformsh-templates/drupal9#user-content-customizations) for caching.
+See an example of Redis for caching in our [Drupal template](https://github.com/platformsh-templates/drupal9).
 
 {{% /guides/config-service %}}
 

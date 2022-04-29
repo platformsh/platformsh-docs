@@ -1,6 +1,5 @@
 ---
-title: "HTTP cache"
-weight: 2
+title: HTTP cache
 description: |
   Platform.sh supports HTTP caching at the server level. Caching is enabled by default, but is only applied to `GET` and `HEAD` requests.
 ---

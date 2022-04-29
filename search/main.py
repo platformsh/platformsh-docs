@@ -44,6 +44,7 @@ class Search:
             "public ip addresses": ["regions"],
             "ssl": ["https", "tls"],
             "https": ["ssl"],
+            "auth": ["authentication", "access control"], # Only needs to be one way since we don't use "auth" in the docs
         }
 
         # Ranking rules:

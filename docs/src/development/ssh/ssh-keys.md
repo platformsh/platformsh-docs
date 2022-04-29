@@ -74,7 +74,7 @@ generate a key and have it added to your Platform.sh account automatically.
    ssh-add 'PATH_TO_YOUR_KEY'
    ```
 
-To generate a key otherwise, GitHub has a good [walk-through for creating SSH key pairs](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) on various operating systems.
+To generate a key otherwise, GitHub has a good [walk-through for creating SSH key pairs](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) on various operating systems.
 
 Then you need to [add it to your Platform.sh account](#2-add-an-ssh-key-to-your-platform-account).
 

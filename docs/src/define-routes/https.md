@@ -1,6 +1,5 @@
 ---
-title: "HTTPS"
-weight: 1
+title: HTTPS
 ---
 
 ## Let's Encrypt
