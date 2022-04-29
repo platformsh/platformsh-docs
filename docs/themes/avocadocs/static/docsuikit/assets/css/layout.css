@@ -462,29 +462,32 @@ h3.sidebar__book-heading {
 
 /* Search
 /* Form should have same left padding as content */
-.search-form {
+#xssroot {
   margin-left: 8px;
 }
 @media (min-width: 768px) {
-  .search-form {
-    padding-left: 2rem;
+  #xssroot {
+    padding-left: 1rem;
   }
 }
 
 @media (min-width: 992px) {
-  .search-form {
-    padding-left: 7rem;
+  #xssroot {
+    padding-left: 0;
   }
 }
 
 @media (min-width: 1200px) {
-  .search-form {
-    padding-left: 7rem;
+  #xssroot {
+    padding-left: 6rem;
   }
 }
 
-.search-input {
-  padding: 2rem 0;
+#xssroot {
+  width: 100%;
+  flex-basis: 0;
+  flex-grow: 1;
+  padding-right: 1rem;
 }
 
 /*------------------------------------

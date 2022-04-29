@@ -8,7 +8,7 @@
   </span>
 
   <!-- Search bar -->
-  <input class="js-search form-control search-input form-control-sm w-100" type="text" placeholder="{{ if isset .Site.Params "searchtext"}}{{ .Site.Params.searchtext }}{{ else }}Search documentation{{ end }}" aria-label="Search documentation" aria-describedby="docsSearch" data-url="{{ "docsuikit/assets/include/json/docs-index.json" | relURL}}">
+  <input class="js-search form-control form-control-sm w-100" type="text" placeholder="{{ if isset .Site.Params "searchtext"}}{{ .Site.Params.searchtext }}{{ else }}Search documentation{{ end }}" aria-label="Search documentation" aria-describedby="docsSearch" data-url="{{ "docsuikit/assets/include/json/docs-index.json" | relURL}}">
 
 </form>
 
