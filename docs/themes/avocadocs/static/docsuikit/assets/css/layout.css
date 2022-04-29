@@ -380,7 +380,7 @@ h3.sidebar__book-heading {
   font-size: 14px;
   text-transform: none;
   letter-spacing: 1px;
-  padding: 0.5rem 0.5rem 0.5rem 0;
+  padding-right: 0.5rem;
   margin: 0;
 }
 
@@ -392,7 +392,7 @@ h3.sidebar__book-heading {
 
 .duik-sidebar__item {
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .duik-sidebar__item--second-level {
