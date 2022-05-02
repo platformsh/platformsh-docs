@@ -142,7 +142,7 @@ The following labels are primarily used:
 | 😍    | `:heart_eyes:`        | Praise       | ▶️          | Used when something is well done. No further action required. Should be at least one of these for each review. |
 | ⛏️    | `:pick:`              | Nitpick      | ▶️          | For small details based on preferences. |
 | 🛠️    | `:hammer_and_wrench:` | Suggestion   | 🚫         | To indicate a specific idea for improvement. By default, the suggestion needs to be accepted or otherwise addressed before merging. |
-| 💅    | `:nail_car:`          | Polish       | ▶️          | To indicate a specific idea for improvement that isn't fixing something wrong, but just pointing out ways to improve quality. |
+| 💅    | `:nail_care:`         | Polish       | ▶️          | To indicate a specific idea for improvement that isn't fixing something wrong, but just pointing out ways to improve quality. |
 | 📋    | `:clipboard:`         | To-do        | 🚫         | For small, necessary changes, such as fixing typos. |
 | 🐞    | `:lady_beetle:`       | Issue        | 🚫         | To highlight a specific issue that needs to be fixed. Can be paired with a suggestion if a solution is known. |
 | ❓    | `:question:`          | Question     | 🚫         | For potential concerns that may not be relevant or for areas that aren't completely clear. By default, requires a response. |
@@ -158,7 +158,7 @@ The following decorations can be added for further clarification (to override de
 
 | Emoji | `:code:`          | Meaning      | Description |
 | ----- | ----------------- | ------------ | ----------- |
-| 🚫    | `:no_entry_sign:` | Blocking     | Used to indicate that the comment blocks merging. |
+| ⏸️    | `:pause_button:`  | Blocking     | Used to indicate that the comment blocks merging. |
 | ▶️     | `:arrow_forward:` | Non-blocking | Used to indicate that the comment doesn't block merging. |
 
 The pattern is based on [conventional comments](https://conventionalcomments.org/).
