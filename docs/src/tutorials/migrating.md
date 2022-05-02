@@ -30,8 +30,7 @@ Be sure to see the appropriate project templates for recommended configurations.
 * [Python templates](/languages/python#project-templates)
 
 
-In the management console, click **+ Create project** to create a new Platform.sh project.
-When asked to select a template, pick **Create from scratch**.
+[Create a new project from scratch]({{% create-project-link scratch=true %}}).
 
 ## Push your code
 
