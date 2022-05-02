@@ -184,7 +184,7 @@ public class App {
 ### Access complex values
 
 Variables can have nested structures.
-The following example shows nested structures in an [app configuration](../../configuration/app/app-reference.md#variables):
+The following example shows nested structures in an [app configuration](../../create-apps/app-reference.md#variables):
 
 ```yaml
 variables:
@@ -347,14 +347,14 @@ The most important of these variables is the relationship information in `PLATFO
 which tells the app how to connect to databases and other services defined in `services.yaml`.
 
 The following table presents all available variables
-and whether they're available at build time (during [build hooks](../../administration/../configuration/app/hooks/hooks-comparison.md#build-hook))
+and whether they're available at build time (during [build hooks](../../administration/../create-apps/hooks/hooks-comparison.md#build-hook))
 and at runtime.
 
 | Variable name               | Build | Runtime | Description |
 | --------------------------- | ----- | ------- | ----------- |
 | `PLATFORM_APP_DIR`          | Yes   | Yes     | The absolute path to the app directory. |
-| `PLATFORM_APPLICATION`      | Yes   | Yes     | A base64-encoded JSON object that describes the app. It maps certain attributes from your [app configuration](../../configuration/app/_index.md), some with more structure. See [notes](#platform_application). |
-| `PLATFORM_APPLICATION_NAME` | Yes   | Yes     | The app name as set in your [app configuration](../../configuration/app/_index.md). |
+| `PLATFORM_APPLICATION`      | Yes   | Yes     | A base64-encoded JSON object that describes the app. It maps certain attributes from your [app configuration](../../create-apps/_index.md), some with more structure. See [notes](#platform_application). |
+| `PLATFORM_APPLICATION_NAME` | Yes   | Yes     | The app name as set in your [app configuration](../../create-apps/_index.md). |
 | `PLATFORM_BRANCH`           | No    | Yes     | The name of the Git branch. |
 | `PLATFORM_CACHE_DIR`        | Yes   | No      | The directory where files are cached from one build to the next. The directory is shared among all branches, so the same cache is used for all environments. |
 | `PLATFORM_DOCUMENT_ROOT`    | No    | Yes     | The absolute path to the web document root, if applicable. |
@@ -363,14 +363,14 @@ and at runtime.
 | `PLATFORM_OUTPUT_DIR`       | Yes   | No      | The output directory for compiled languages at build time. Equivalent to `PLATFORM_APP_DIR` in most cases. |
 | `PLATFORM_PROJECT`          | Yes   | Yes     | The project ID. |
 | `PLATFORM_PROJECT_ENTROPY`  | Yes   | Yes     | A random, 56-character value created at project creation and then stable throughout the project's life. Can be used for Drupal hash salts, Symfony secrets, and other similar values. |
-| `PLATFORM_RELATIONSHIPS`    | No    | Yes     | A base64-encoded JSON object of relationships. The keys are the relationship name and the values are arrays of relationship endpoint definitions. The exact format is defined differently for each [service](../../configuration/services/_index.md). |
-| `PLATFORM_ROUTES`           | No    | Yes     | A base64-encoded JSON object that describes the routes for the environment. It maps the content of your [routes configuration](../../configuration/routes/_index.md). |
+| `PLATFORM_RELATIONSHIPS`    | No    | Yes     | A base64-encoded JSON object of relationships. The keys are the relationship name and the values are arrays of relationship endpoint definitions. The exact format is defined differently for each [service](../../add-services/_index.md). |
+| `PLATFORM_ROUTES`           | No    | Yes     | A base64-encoded JSON object that describes the routes for the environment. It maps the content of your [routes configuration](../../define-routes/_index.md). |
 | `PLATFORM_SMTP_HOST`        | No    | Yes     | The SMTP host to send email messages through. Is empty when mail is disabled for the current environment. |
-| `PLATFORM_SOURCE_DIR`       | Yes   | No      | Equivalent to `PLATFORM_APP_DIR` in the context of a running [source operation](../../configuration/app/source-operations.md). The directory contains a writable copy of your repository that you can commit to during the operation. |
+| `PLATFORM_SOURCE_DIR`       | Yes   | No      | Equivalent to `PLATFORM_APP_DIR` in the context of a running [source operation](../../create-apps/source-operations.md). The directory contains a writable copy of your repository that you can commit to during the operation. |
 | `PLATFORM_TREE_ID`          | Yes   | Yes     | The ID of the tree the application was built from, essentially the SHA hash of the tree in Git. Use when you need a unique ID for each build. |
 | `PLATFORM_VARIABLES`        | Some  | Some    | A base64-encoded JSON object with all user-defined project and environment variables that don't use a [prefix](./_index.md#variable-prefixes). The keys are the variable names and the values are the variable values. Availability during builds and at runtime depends on the settings for each variable. See how to [access individual variables](#access-variables-in-a-shell). |
-| `PORT`                      | No    | Yes     | A `string` representing the port to which requests are sent if the [`web.upstream.socket_family` property](../../configuration/app/app-reference.md#upstream) is unset or set to `tcp`. |
-| `SOCKET`                    | No    | Yes     | A `string` representing the path to the Unix socket file to use if the [`web.upstream.socket_family` property](../../configuration/app/app-reference.md#upstream) is set to `unix`. |
+| `PORT`                      | No    | Yes     | A `string` representing the port to which requests are sent if the [`web.upstream.socket_family` property](../../create-apps/app-reference.md#upstream) is unset or set to `tcp`. |
+| `SOCKET`                    | No    | Yes     | A `string` representing the path to the Unix socket file to use if the [`web.upstream.socket_family` property](../../create-apps/app-reference.md#upstream) is set to `unix`. |
 
 ### Variables on Dedicated environments
 
@@ -411,7 +411,7 @@ The `PLATFORM_APPLICATION` variable is available both at build time and in the r
 But the specific attributes it contains differ in each case.
 
 Each environment's build is associated with a configuration ID that identifies it uniquely so builds can be reused.
-The ID is a product of your app code and some of its [configuration for Platform.sh](../../configuration/app/_index.md).
+The ID is a product of your app code and some of its [configuration for Platform.sh](../../create-apps/_index.md).
 Not every attribute your app configuration is relevant to the build.
 Only those attributes that are relevant to builds are accessible at build time from `PLATFORM_APPLICATION`.
 
@@ -429,7 +429,7 @@ Attributes that are **not** available in `PLATFORM_APPLICATION` during builds:
 * Everything under `workers`, except `workers.mounts`
 
 These attributes aren't visible during build because they aren't included as a part of the configuration component of the build slug.
-So modifying these values in your [app configuration](../../configuration/app/_index.md) doesn't trigger an app rebuild, only a redeploy.
+So modifying these values in your [app configuration](../../create-apps/_index.md) doesn't trigger an app rebuild, only a redeploy.
 For more information, read about [how builds work](../../overview/build-deploy.md#the-build).
 
 ## Use variables in static files
@@ -443,10 +443,10 @@ make sure the variables are set to be [visible at build time](./set-variables.md
 The files can't be populated with Platform.sh-provided variables not available at build time (such as `PLATFORM_RELATIONSHIPS`).
 You also can't write to them in a `deploy` hook as the file system is read only.
 
-One workaround is to create a symbolic link to a writable location and then write to it in a [`deploy` hook](../../configuration/app/hooks/hooks-comparison.md#deploy-hook).
+One workaround is to create a symbolic link to a writable location and then write to it in a [`deploy` hook](../../create-apps/hooks/hooks-comparison.md#deploy-hook).
 The following example shows the process, though you have to modify it to fit your needs.
 
-1. Create a mount that isn't accessible to the web in your [app configuration](../../configuration/app/_index.md):
+1. Create a mount that isn't accessible to the web in your [app configuration](../../create-apps/_index.md):
 
    ```yaml
    mounts:
@@ -481,7 +481,7 @@ The following example shows the process, though you have to modify it to fit you
    printf "user: %s\n" $(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].username") >> config/db.yaml
    ```
 
-1. Call the script from the `deploy` hook your [app configuration](../../configuration/app/_index.md):
+1. Call the script from the `deploy` hook your [app configuration](../../create-apps/_index.md):
 
    ```yaml
    hooks:

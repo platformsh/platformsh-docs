@@ -11,9 +11,9 @@ toc: true
 
 A common pattern for Gatsby sites is to decouple services from the main site, pulling in external data at build time. Supported by Gatsby's source plugin ecosystem, data from conventional (or headless) content management systems can be collected into a common [Data Layer](https://www.gatsbyjs.com/docs/reference/graphql-data-layer/), with that CMS typically located on a server elsewhere, and that data then used to fill out content on the frontend. 
 
-The location of an external CMS is usually hardcoded into Gatsby's configuration, so when you're developing your site every branch points to the same backend resource. Should the location of that resource change, you would need to commit the new URL to update the configuration. 
+The location of an external CMS is usually hard coded into Gatsby's configuration, so when you're developing your site every branch points to the same backend resource. Should the location of that resource change, you would need to commit the new URL to update the configuration. 
 
-The decoupled pattern can work differently on Platform.sh due to support for [multi-app configuration](/configuration/app/multi-app.md) on your projects. Consider the following project structure:
+The decoupled pattern can work differently on Platform.sh due to support for [multi-app configuration](../../../create-apps/multi-app.md) on your projects. Consider the following project structure:
 
 ```bash
 .
@@ -39,7 +39,7 @@ Drupal is just one example of a backend CMS that can be used with this pattern, 
 
 ## Signing up for Platform.sh
 
-In each of the backend guides below, there will be a "Deploy on Platform.sh" button that will not only deploy the guide's project for you, but also sign you up for a trial account. If you are planning on simply deploying a template and following along with these guides for greater context, feel free to move onto the next section. 
+In each of the backend guides below, there will be a "Deploy on Platform.sh" button that will not only deploy the guide's project for you, but also sign you up for a trial account. If you are planning on deploying a template and following along with these guides for greater context, feel free to move onto the next section. 
 
 If however you are planning on using the templates and guides to deploy your existing codebase to Platform.sh,
 you first need to [register for a trial Platform.sh account](https://auth.api.platform.sh/register). 

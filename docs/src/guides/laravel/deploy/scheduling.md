@@ -18,11 +18,11 @@ crons:
         cmd: 'php artisan schedule:run'
 ```
 
-The [minimum time between cron jobs](../../../configuration/app/app-reference.md#cron-job-timing) being triggered depends on your plan. Task scheduling may then be contradicted by the cron minimum frequency. Schedules outside the specified cron frequency are ignored and the related tasks aren't triggered.
+The [minimum time between cron jobs](../../../create-apps/app-reference.md#cron-job-timing) being triggered depends on your plan. Task scheduling may then be contradicted by the cron minimum frequency. Schedules outside the specified cron frequency are ignored and the related tasks aren't triggered.
 
 This [blog post](https://platform.sh/blog/of-cicadas-and-cron-jobs/) may help you understand the stakes and harmonize the frequencies so all your scheduled tasks can be effectively triggered.
 
-You could also [configure a worker](../../../configuration/app/workers.md) that relies on `artisan schedule:work`.
+You could also [configure a worker](../../../create-apps/workers.md) that relies on `artisan schedule:work`.
 To invoke the scheduler every minute, run [the following command](https://laravel.com/docs/scheduling#running-the-scheduler-locally):
 
 ```yaml {location=".platform.app.yaml"}

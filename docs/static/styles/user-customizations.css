@@ -9,16 +9,6 @@
   background-color: #EDEDEF !important;
 }
 
-.bg-primary-darker {
-  background-color: #1A182A;
-}
-
-@media (min-width: 768px) {
-  .bg-md-primary-darker {
-    background-color: #1A182A;
-  }
-}
-
 /* Getting Started Guide buttons */
 .buttons-nav {
   text-align: center;
@@ -181,21 +171,6 @@
 @media (min-width: 750px) {
   .mobile-books-sidebar {
     display: none;
-  }
-}
-
-
-@media (min-width: 825px) {
-
-  /* .duik-sidebar {
-    padding: 1rem 0 0 0;
-  } */
-}
-
-@media (min-width: 1030px) {
-
-  .duik-sidebar {
-    padding: 5rem 0 0 0;
   }
 }
 

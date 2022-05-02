@@ -104,7 +104,7 @@ The first setting allows you to modify the name of the environment and view its 
 ### Status
 
 The **Status** setting shows whether or not your environment is [active](../../other/glossary.md#active-environment).
-For non-Production environment, you can [change their status](../../overview/environments/deactivate-environment.md).
+For non-Production environment, you can [change their status](../../environments/deactivate-environment.md).
 
 ![Environment status](/images/management-console/env-status.png "0.5")
 
@@ -116,13 +116,13 @@ You can allow your environment to [send outgoing emails](../../development/email
 
 ### Search engine visibility
 
-This setting enables you to tell [search engines to ignore the site](../../overview/environments/search-engine-visibility.md).
+This setting enables you to tell [search engines to ignore the site](../../environments/search-engine-visibility.md).
 
 ![Environment search](/images/management-console/env-search.png "0.5")
 
 ### HTTP access control
 
-This setting enables you to [control access using HTTP methods](../../overview/environments/http-access-control.md).
+This setting enables you to [control access using HTTP methods](../../environments/http-access-control.md).
 
 ![Settings control access with password and by IP](/images/management-console/settings-basics-access-control.png "0.5")
 

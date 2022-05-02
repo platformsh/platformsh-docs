@@ -6,9 +6,9 @@ description: Understand how to read metrics for Grid environments.
 
 Grid environments consist of:
 
-* App containers: one or more [app containers](../../configuration/app/_index.md)
-* Service containers: zero or more [service containers](../../configuration/services/_index.md)
-* Worker containers: zero or more [worker instances](../../configuration/app/app-reference.md#workers).
+* App containers: one or more [app containers](../../create-apps/_index.md)
+* Service containers: zero or more [service containers](../../add-services/_index.md)
+* Worker containers: zero or more [worker instances](../../create-apps/app-reference.md#workers).
 
 Infrastructure metrics report CPU, RAM, and disk space for app and worker containers
 and CPU and disk space for service containers.
@@ -35,7 +35,7 @@ Grid environment metrics show resource usage for each app, service, and worker c
 
 This reference project has a single app, two services (MySQL and Redis), and two workers.
 The plan size for this project is [Medium](https://platform.sh/pricing/).
-The appropriate resources have been [allocated automatically](../../configuration/app/app-reference.md#sizes) for each container
+The appropriate resources have been [allocated automatically](../../create-apps/app-reference.md#sizes) for each container
 based on the number and type of containers for this plan size.
 The graphs show the current average usage in relation to the allocated resources.
 
@@ -44,7 +44,7 @@ Once you've read the metrics, see [recommendations for action](./_index.md#grid-
 ### App container
 
 Metrics graphs for the app container show CPU, RAM, and disk allocation and usage.
-The persistent disk has been configured in the [app configuration](../../configuration/app/app-reference.md#top-level-properties)
+The persistent disk has been configured in the [app configuration](../../create-apps/app-reference.md#top-level-properties)
 at 1.91&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
 
 ![All of the metrics for the app container](/images/metrics/app-container.png)
@@ -54,7 +54,7 @@ at 1.91&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
 #### MySQL
 
 Metrics graphs for the MySQL service container show CPU and disk allocation and usage.
-The persistent disk has been configured in the [services configuration](../../configuration/services/_index.md)
+The persistent disk has been configured in the [services configuration](../../add-services/_index.md)
 as 0.95&nbsp;GB,
 while the temporary disk is 3.99&nbsp;GB by default.
 
@@ -71,13 +71,13 @@ while the temporary disk is 3.99&nbsp;GB by default.
 ### Worker containers
 
 Metrics graphs for the App-Horizon worker container show CPU, RAM, and disk allocation and usage.
-The persistent disk has been configured in the [app configuration](../../configuration/app/app-reference.md#top-level-properties)
+The persistent disk has been configured in the [app configuration](../../create-apps/app-reference.md#top-level-properties)
 at 1.91&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
 
 ![All of the metrics for the App-Horizon worker container](/images/metrics/horizon-worker-container.png)
 
 Metrics graphs for the App-Schedule worker container show CPU, RAM, and disk allocation and usage.
-The persistent disk has been configured in the [app configuration](../../configuration/app/app-reference.md#top-level-properties)
+The persistent disk has been configured in the [app configuration](../../create-apps/app-reference.md#top-level-properties)
 at 1.91&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
 
 ![All of the metrics for the App-Horizon worker container](/images/metrics/schedule-worker-container.png)

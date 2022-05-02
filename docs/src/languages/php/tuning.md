@@ -30,15 +30,15 @@ The most common issue is not allowing the right cookies as part of the router ca
 Some cookies, such as session cookies, need to be allowed,
 whereas others, such as marketing and analytics cookies,
 usually shouldn't be allowed to be part of the cache key.
-See more about [router cache](../../configuration/routes/cache.md)
-and [cookie entry](../../configuration/routes/cache.md#cookies).
+See more about [router cache](../../define-routes/cache.md)
+and [cookie entry](../../define-routes/cache.md#cookies).
 
 You also need to ensure that your application is sending the correct `cache-control` header.
 The router cache obeys whatever cache headers your application sends,
 so send it good ones.
 
 Static assets cache headers are set using the `expires` key in `.platform.app.yaml`.
-See the [`web.locations` documentation](../../configuration/app/app-reference.md#locations) for more details.
+See the [`web.locations` documentation](../../create-apps/app-reference.md#locations) for more details.
 
 ## Optimize the FPM worker count
 
@@ -65,7 +65,7 @@ If you aren't using PHP 7.4, this is a good reason to upgrade.
 
 Note that the only way to clear the preload cache is by restarting PHP-FPM.
 PHP-FPM isn't restarted on every deployment automatically,
-so you might want to add that in a [`deploy` hook](../../configuration/app/hooks/hooks-comparison.md#deploy-hook),
+so you might want to add that in a [`deploy` hook](../../create-apps/hooks/hooks-comparison.md#deploy-hook),
 such as by including `pkill -f php-fpm` or `sv restart app`.
 
 If you have [disabled OPcache timestamp validation](#disable-opcache-timestamp-validation),

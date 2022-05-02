@@ -45,7 +45,7 @@ you have four copies of your application, four copies of your database, four cop
 
 Yes! Platform.sh supports non-ephemeral storage.
 When you configure your application you can tell it what directories you want to be read/write.
-(These are called [mounts](../configuration/app/app-reference.md#mounts).)
+(These are called [mounts](../create-apps/app-reference.md#mounts).)
 These are mounted on a distributed file system (which is transparent for you).
 When you backup your environment, they are backed up as well.
 When you create a new staging environment,
@@ -67,12 +67,18 @@ or using the CLI with `platform environment:activate`.
 Your production environment gets a pool of resources based on your plan size,
 which is then split up between the applications and services you have defined.
 (For example, PHP 40%, MySQL 30%, Redis 10%, Solr 20%).
-Increasing your plan size increases the pool of CPU and RAM that gets split among all of the containers.
+
+To increase the pool of CPU and RAM that gets split among all of the containers, upgrade your plan.
+Your containers then have additional resources as soon as your site is redeployed.
+
+If you're expecting more traffic than usual, upgrade your plan ahead of time.
+You can downgrade your plan after the traffic surge to save resources
+and you only pay for the time you use the larger plan.
 
 All containers on development plans are "small" containers.
 
-See configuration options for [apps](../configuration/app/app-reference.md#sizes)
-and [services](../configuration/services/_index.md#size).
+See configuration options for [apps](../create-apps/app-reference.md#sizes)
+and [services](../add-services/_index.md#size).
 
 ## What exactly am I SSHing into?
 

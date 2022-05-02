@@ -59,8 +59,8 @@ If the resources are high and hovering close to the 100% threshold,
 you might want to consider:
 
 * [Optimizing your code](../integrate-observability/_index.md) (if possible)
-* Changing your [app size](../../configuration/app/app-reference.md#sizes)
-  or [service size](../../configuration/services/_index.md#size)
+* Changing your [app size](../../create-apps/app-reference.md#sizes)
+  or [service size](../../add-services/_index.md#size)
 * [Increasing your plan](../../overview/pricing/_index.md)
 
 If your containers are in a prolonged burst state,

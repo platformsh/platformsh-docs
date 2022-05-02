@@ -23,4 +23,4 @@ See language-specific instructions:
 - [PHP](./php.md)
 
 For more languages, see the [New Relic Documentation](https://docs.newrelic.com/docs/agents/).
-Install the specific agent in the [build hook](/configuration/app/hooks/_index.md).
+Install the specific agent in the [build hook](../../../create-apps/hooks/_index.md).

@@ -129,7 +129,7 @@ as described here (a complete example is included at the end).
        upstream: "app:http"
    ```
 
-7. (Optional) If Platform.sh detects a `package.json` file in your repository, it automatically includes a `default` [`build` flavor](../../configuration/app/app-reference.md#build), that runs `npm prune --userconfig .npmrc && npm install --userconfig .npmrc`.
+7. (Optional) If Platform.sh detects a `package.json` file in your repository, it automatically includes a `default` [`build` flavor](../../create-apps/app-reference.md#build), that runs `npm prune --userconfig .npmrc && npm install --userconfig .npmrc`.
 
    See how to use [yarn as a package manager](#use-yarn-as-a-package-manager) or specify a different manager.
 
@@ -188,7 +188,7 @@ server.listen(config.port);
 
 ## Accessing services
 
-To access various [services](/configuration/services/_index.md) with Node.js, see the following examples.
+To access various [services](../../add-services/_index.md) with Node.js, see the following examples.
 The individual service pages have more information on configuring each service.
 
 {{< codetabs >}}

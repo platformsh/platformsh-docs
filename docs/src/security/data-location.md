@@ -1,5 +1,5 @@
 ---
-title: "Data location"
+title: Data location
 description: Learn about when data from your projects leaves the region where it's stored.
 ---
 

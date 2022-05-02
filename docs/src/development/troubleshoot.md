@@ -54,7 +54,7 @@ The redeploy takes place after any scheduled activities (either *Running* or *Pe
 Despite the name, redeployment doesn't rerun the `deploy` hook, only the `post_deploy` hook.
 Both your `build` and `deploy` hooks are tied to individual commits in code.
 They're reused until another commit is pushed to the environment.
-See [more about hooks](../configuration/app/hooks/_index.md) and their reuse.
+See [more about hooks](../create-apps/hooks/_index.md) and their reuse.
 
 To rerun the `build` and `deploy` hooks, [manually trigger a build](#manually-trigger-builds).
 
@@ -118,7 +118,7 @@ it indicates your application is crashing or unavailable.
 Typical causes and potential solutions include:
 
 * Your app is listening at the wrong place.
-  * Check your app's [upstream properties](../configuration/app/app-reference.md#upstream).
+  * Check your app's [upstream properties](../create-apps/app-reference.md#upstream).
   * If your app listening at a port, make sure it's using the [`PORT` environment variable](./variables/use-variables.md#use-platformsh-provided-variables).
 * Your `.platform.app.yaml` configuration has an error and a process isn't starting
   or requests can't be forwarded to it correctly.
@@ -158,7 +158,7 @@ $ curl -XPOST 'https://example.com/graphql' --header 'Content-Type: multipart/fo
 
 ## Databases
 
-For MySQL specific errors, see how to [troubleshoot MySQL](../configuration/services/mysql/troubleshoot.md).
+For MySQL specific errors, see how to [troubleshoot MySQL](../add-services/mysql/troubleshoot.md).
 
 ### Permission error creating a database
 
@@ -168,7 +168,7 @@ and can be found in the `path` key of the `$PLATFORM_RELATIONSHIPS` [environment
 
 ## Storage
 
-If you're having trouble with storage, see how to [troubleshoot mounts](../configuration/app/troubleshoot-mounts.md) and [disks](../configuration/app/troubleshoot-disks.md).
+If you're having trouble with storage, see how to [troubleshoot mounts](../create-apps/troubleshoot-mounts.md) and [disks](../create-apps/troubleshoot-disks.md).
 
 ### Can't write to file system
 
@@ -176,8 +176,8 @@ If you attempt to write to disk outside a `build` hook, you may encounter a `rea
 Except where you define it, the file system is all read-only, with code changes necessary through git.
 This gives you benefits like repeatable deployments, consistent backups, and traceability.
 
-To generate anything you need later, [write to disk during a `build` hook](../configuration/app/app-reference.md#writable-directories-during-build).
-Or [declare mounts](../configuration/app/app-reference.md#mounts),
+To generate anything you need later, [write to disk during a `build` hook](../create-apps/app-reference.md#writable-directories-during-build).
+Or [declare mounts](../create-apps/app-reference.md#mounts),
 which are writable even during and after deploy.
 They can be used for your data: file uploads, logs, and temporary files.
 
@@ -233,7 +233,7 @@ Investigate [each log](../increase-observability/logs.md#container-logs) and fix
 
 ### Build and deploy hooks
 
-[`build` and `deploy` hooks](/configuration/app/hooks/_index.md) can cause long build times.
+[`build` and `deploy` hooks](../create-apps/hooks/_index.md) can cause long build times.
 If they run into issues, they can cause the build to fail or hang indefinitely.
 
 `build` hooks can be tested in your local environment.
@@ -250,7 +250,7 @@ strace -T $cmd # Print a system call report
 
 ### Cron jobs
 
-Containers can't be shutdown while long-running [cron jobs and scheduled tasks](../configuration/app/app-reference.md#crons) are active.
+Containers can't be shutdown while long-running [cron jobs and scheduled tasks](../create-apps/app-reference.md#crons) are active.
 That means long-running cron jobs block a container from being shut down to make way for a new deploy.
 
 Make sure your custom cron jobs run quickly and properly.

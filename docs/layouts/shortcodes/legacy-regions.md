@@ -7,4 +7,4 @@
 
 These regions will be upgraded in the future.
 If you’re on one of these regions and want {{ .Get "featureShort" }} now,
-[migrate your project](/guides/general/region-migration.md) to a newer region.
+[migrate your project](/projects/region-migration.md) to a newer region.
