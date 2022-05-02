@@ -30,16 +30,16 @@ _404:
 #     (i.e. books.example.section: example.html)
 books:
   home:
-    title: Documentation
-    section: "/"
+    title: Guides and reference
+    section: home
     weight: -120
   gettingstarted:
     title: Getting started
-    section: gettingstarted.html
+    section: gettingstarted
     weight: -110
   guides:
-    title: Guides
-    section: guides.html
+    title: Stacks
+    section: guides
     weight: -100
 
 # Metadata

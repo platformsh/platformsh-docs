@@ -1,7 +1,6 @@
 ---
-title: "PCI compliance"
-sidebarTitle: "PCI"
-weight: 18
+title: PCI compliance
+sidebarTitle: PCI
 description: |
     Platform.sh is PCI DSS certified.
 ---

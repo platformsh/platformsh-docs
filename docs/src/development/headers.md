@@ -32,4 +32,4 @@ Platform.sh adds a number of response headers automatically to assist in debuggi
 
 Apart from those listed above, your application is responsible for setting its own response headers.
 
-You can also [add headers to static files](../configuration/app/web/custom-headers.md).
+You can also [add headers to static files](../create-apps/web/custom-headers.md).

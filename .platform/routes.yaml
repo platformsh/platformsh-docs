@@ -76,18 +76,6 @@ https://{default}/:
       # PR 1963
       "/overview/getting-help.html": { "to": "/overview/get-support.html", "code": 301, "prefix": false }
 
-      # Restructure of app reference
-      "/configuration/app/access.html": { "to": "/configuration/app/app-reference.html#access", "code": 301, "prefix": false }
-      "/configuration/app/build.html": { "to": "/configuration/app/app-reference.html", "code": 301, "prefix": false }
-      "/configuration/app/cron.html": { "to": "/configuration/app/app-reference.html#crons", "code": 301, "prefix": false }
-      "/configuration/app/firewall.html": { "to": "/configuration/app/app-reference.html#firewall", "code": 301, "prefix": false }
-      "/configuration/app/name.html": { "to": "/configuration/app/app-reference.html", "code": 301, "prefix": false }
-      "/configuration/app/relationships.html": { "to": "/configuration/app/app-reference.html#relationships", "code": 301, "prefix": false }
-      "/configuration/app/size.html": { "to": "/configuration/app/app-reference.html#sizes", "code": 301, "prefix": false }
-      "/configuration/app/storage.html": { "to": "/configuration/app/app-reference.html", "code": 301, "prefix": false }
-      "/configuration/app/type.html": { "to": "/configuration/app/app-reference.html#types", "code": 301, "prefix": false }
-      "/configuration/app/variables.html": { "to": "/configuration/app/app-reference.html#variables", "code": 301, "prefix": false }
-
       # Restructure of variables
       "/bestpractices/environment-build.html": { "to": "/development/variables.html", "code": 301, "prefix": false }
 
@@ -98,7 +86,26 @@ https://{default}/:
       "/frameworks/(?!deploy|drupal)(.*).html":  { "to": "/guides/$1/deploy.html", "code": 301, "regexp": true }
       "/frameworks/ibexa/fastly.html":  { "to": "/guides/ibexa/fastly.html", "code": 301, "prefix": false }
 
-      "/configuration/app/web.html#how-can-i-rewrite-an-incoming-request-without-a-redirect":   { "to": "/configuration/app/web/rewrite-requests.html", "code": 301, "prefix": false }
+      "/configuration/app/web.html#how-can-i-rewrite-an-incoming-request-without-a-redirect":   { "to": "/create-apps/web/rewrite-requests.html", "code": 301, "prefix": false }
+      
+      # Navigation restructure in April 2021
+      "/configuration/app-containers.html": { "to": "/create-apps/app-reference.html", "code": 301, "prefix": false }
+      "/configuration/app/access.html": { "to": "/create-apps/app-reference.html#access", "code": 301, "prefix": false }
+      "/configuration/app/build.html": { "to": "/create-apps/app-reference.html", "code": 301, "prefix": false }
+      "/configuration/app/cron.html": { "to": "/create-apps/app-reference.html#crons", "code": 301, "prefix": false }
+      "/configuration/app/firewall.html": { "to": "/create-apps/app-reference.html#firewall", "code": 301, "prefix": false }
+      "/configuration/app/name.html": { "to": "/create-apps/app-reference.html", "code": 301, "prefix": false }
+      "/configuration/app/relationships.html": { "to": "/create-apps/app-reference.html#relationships", "code": 301, "prefix": false }
+      "/configuration/app/size.html": { "to": "/create-apps/app-reference.html#sizes", "code": 301, "prefix": false }
+      "/configuration/app/storage.html": { "to": "/create-apps/app-reference.html", "code": 301, "prefix": false }
+      "/configuration/app/type.html": { "to": "/create-apps/app-reference.html#types", "code": 301, "prefix": false }
+      "/configuration/app/variables.html": { "to": "/create-apps/app-reference.html#variables", "code": 301, "prefix": false }
+      "/configuration/app(.*)":  { "to": "/create-apps$1", "code": 301, "regexp": true }
+      "/configuration/services(.*)":  { "to": "/add-services$1", "code": 301, "regexp": true }
+      "/configuration/routes(.*)":  { "to": "/define-routes$1", "code": 301, "regexp": true }
+      "/overview/environments(.*)":  { "to": "/environments$1", "code": 301, "regexp": true }
+      "/overview/projects(.*)":  { "to": "/projects$1", "code": 301, "regexp": true }
+
 
 "https://search.{default}/":
     type: upstream

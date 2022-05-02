@@ -1,7 +1,6 @@
 ---
-title: "WCAG compliance"
-sidebarTitle: "WCAG"
-weight: 19
+title: WCAG compliance
+sidebarTitle: WCAG
 description: |
     Platform.sh is WCAG 2.0 compliant
 ---

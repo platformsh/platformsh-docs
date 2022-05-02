@@ -23,7 +23,7 @@ Normally, this means there is a problem with the MySQL server container and you 
 
 1. A large number of watchdog entries being captured.  Examine the watchdog logs and resolve the errors reported.
 2. Cron should run at regular intervals to ensure cache tables get cleared out.
-3. You are using database caching.  That is not recommended, primarily because it can easily balloon the size of the database.  We recommend [Redis caching](/guides/drupal9/redis.md) for all Drupal sites.
+3. You are using database caching.  That is not recommended, primarily because it can balloon the size of the database.  We recommend [Redis caching](/guides/drupal9/redis.md) for all Drupal sites.
 
 ## Why do I get "MySQL cannot connect to the database server"?
 
@@ -38,4 +38,4 @@ For Drupal sites, the name of the session cookie is based on a hash of the domai
 If you see a bare "File not found" error when accessing your Drupal site with a browser,
 you've pushed your code as a vanilla project but no `index.php` has been found.
 
-Make sure your repository contains an `index.php` file in the [web location root](../../configuration/app/app-reference.md#locations).
+Make sure your repository contains an `index.php` file in the [web location root](../../create-apps/app-reference.md#locations).

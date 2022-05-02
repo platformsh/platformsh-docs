@@ -29,7 +29,7 @@ scrape(){
         index_spider=$(jq --arg index "$index" '.indexes[$index].spider' $DATA)
         spider=`echo $index_spider | sed 's/.\(.*\)/\1/' | sed 's/\(.*\)./\1/'`
         echo "- Scraping $index..."
-        poetry run scrapy runspider --output -t=jsonlines -o output/$index.json $spider -L ERROR
+        poetry run scrapy runspider -o output/$index.json $spider -L ERROR
     done
 }
 
@@ -48,8 +48,6 @@ cleanup
 if [ -z ${PLATFORM_APP_DIR+x} ]; then 
     echo "Using local poetry."
 else 
-    # Source the Poetry command.
-    . $PLATFORM_APP_DIR/.poetry/env
     getDocsData
 fi
 

@@ -8,7 +8,9 @@ description: |
 
 ## Downloading code
 
-Your application's code is maintained in Git.  Because Git is a distributed system it is trivial to download your entire code history with a simple `git clone` or `platform get` command.
+Your application's code is maintained in Git.
+Because Git is a distributed system,
+you can download your entire code history by running `git clone` or `platform get`.
 
 ## Downloading files
 
@@ -58,7 +60,7 @@ See the [`rsync` documentation](https://download.samba.org/pub/rsync/rsync.html)
 
 The mechanism for downloading from each service (such as your database) varies.  For services designed to hold non-persistent information (such as Redis or Solr) it's generally not necessary to download data as it can be rebuilt from the primary data store.
 
-To download data from persistent services ([MySQL](/configuration/services/mysql/_index.md), [PostgreSQL](/configuration/services/postgresql.md), [MongoDB](/configuration/services/mongodb.md), or [InfluxDB](/configuration/services/influxdb.md)), see each service's page for instructions.
+To download data from persistent services ([MySQL](../add-services/mysql/_index.md), [PostgreSQL](../add-services/postgresql.md), [MongoDB](../add-services/mongodb.md), or [InfluxDB](../add-services/influxdb.md)), see each service's page for instructions.
 
 ## Get the environment variables
 

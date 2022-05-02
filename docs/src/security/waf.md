@@ -1,7 +1,6 @@
 ---
-title: "Web application firewall (WAF)"
-weight: 15
-sidebarTitle: "WAF"
+title: Web application firewall (WAF)
+sidebarTitle: WAF
 description: |
     Enterprise and Elite projects on Platform.sh come with a Web application firewall (WAF) at no additional cost, which monitors requests to your application and blocks suspicious requests according to our ruleset. WAFs can be an important line of defense against well-known exploit vectors that can otherwise make an application vulnerable to malicious requests and distributed denial of service (DDoS) attacks.
 tier:
@@ -50,7 +49,7 @@ The WAF monitors for requests that include the carriage return (CR; `%0d`) and l
 
 ## HTTP protocol enforcement
 
-On top of the above ruleset, the Platform.sh WAF implements a number of additional rules intended to enforce the HTTP protocol. 
+On top of the above rule set, the Platform.sh WAF implements a number of additional rules intended to enforce the HTTP protocol. 
 
 - **HTTP Request Line Format Enforcement**
 
@@ -70,11 +69,11 @@ On top of the above ruleset, the Platform.sh WAF implements a number of addition
 
 - **File upload limit**
 
-    File upload limits are enforced, but are configured by the application's configuration in `.platform.app.yaml` using the `max_request_size` attribute in [`web.locations`](/configuration/app/app-reference.md#locations). Note that this limit is set by default at 250MB if not set to something different. 
+    File upload limits are enforced, but are configured by the application's configuration in `.platform.app.yaml` using the `max_request_size` attribute in [`web.locations`](../create-apps/app-reference.md#locations). Note that this limit is set by default at 250MB if not set to something different. 
 
 - **File extension restriction**
 
-    File extensions are restricted according to the application's configuration in `.platform.app.yaml` in `web.locations`. The root path, or a path beneath it, can be configured to allow only certain file extensions by defining [rules](/configuration/app/app-reference.md#rules) for them using regular expressions.
+    File extensions are restricted according to the application's configuration in `.platform.app.yaml` in `web.locations`. The root path, or a path beneath it, can be configured to allow only certain file extensions by defining [rules](../create-apps/app-reference.md#rules) for them using regular expressions.
 
 - **Restricted HTTP headers**
 
@@ -82,7 +81,7 @@ On top of the above ruleset, the Platform.sh WAF implements a number of addition
 
 - **Backup/"working" file extension**
 
-    Enforced by the WAF and configured by the user under [`web.locations`](/configuration/app/app-reference.md#locations) using the `scripts` attribute where it can be disabled. [Regular expressions](/configuration/app/app-reference.md#rules) can also be created to catch unwanted requests to script extensions.
+    Enforced by the WAF and configured by the user under [`web.locations`](../create-apps/app-reference.md#locations) using the `scripts` attribute where it can be disabled. [Regular expressions](../create-apps/app-reference.md#rules) can also be created to catch unwanted requests to script extensions.
 
 - **Slowloris DoS attacks** 
 
@@ -99,7 +98,7 @@ Platform.sh's WAF also includes several protective rules for vulnerabilities fou
 | Type:  | Remote code execution   |
 |-----|-----|
 | **Details:** |    Also known as Drupalgeddon2, a remote code execution vulnerability was found to exist within multiple subsystems of Drupal 7.x and 8.x, which could be exploited to completely compromise the site.   |
-| **Rule(s):** | Suspicious requests are filtered based on parameter validation.  |
+| **Rules:** | Suspicious requests are filtered based on parameter validation.  |
 
 ### Magento
 
@@ -108,32 +107,32 @@ Platform.sh's WAF also includes several protective rules for vulnerabilities fou
 | Type:  | SQL injection  |
 |-----|-----|
 | **Details:** | A critical vulnerability exists in the Magestore Store Locator extension, versions 1.0.2 and earlier. The exploit results in unauthorized access to sensitive information.   |
-| **Rule(s):** | Suspicious requests are filtered by request path, in addition to query and body validation.  |
+| **Rules:** | Suspicious requests are filtered by request path, in addition to query and body validation.  |
 
 #### [PRODSECBUG-2347](https://magento.com/security/patches/magento-2.3.2-2.2.9-and-2.1.18-security-update-13)
 
 | Type:  | Denial of Service  |
 |-----|-----|
 | **Details:** | Insufficient brute-forcing defenses in the token exchange protocol between Magento and payment processors could be abused in carding attacks.   |
-| **Rule(s):** | Suspicious requests are filtered based on the request path, method, and certain headers. |
+| **Rules:** | Suspicious requests are filtered based on the request path, method, and certain headers. |
 
 #### [PRODSECBUG-2198](https://magento.com/security/patches/magento-2.3.1-2.2.8-and-2.1.17-security-update)
 
 | Type:  | SQL injection |
 |-----|-----|
 | **Details:** | An unauthenticated user can execute arbitrary code through an SQL injection vulnerability, which causes sensitive data leakage.   |
-| **Rule(s):** | Suspicious requests are filtered based on the request path and query parameters. |
+| **Rules:** | Suspicious requests are filtered based on the request path and query parameters. |
 
 #### [PRODSECBUG-2403](https://magento.com/security/patches/magento-2.3.3-and-2.2.10-security-update)
 
 | Type:  | Remote Code Execution |
 |-----|-----|
 | **Details:** | An unauthenticated user can insert a malicious payload through Page Builder template methods.  |
-| **Rule(s):** | Suspicious requests are filtered based on the request path. |
+| **Rules:** | Suspicious requests are filtered based on the request path. |
 
 #### [PRODSECBUG-2432](https://magento.com/security/security-update-potential-vulnerability-magento-admin-url-location)
 
 | Type:  | Information Disclosure  |
 |-----|-----|
 | **Details:** | An issue has been discovered in Magento Open Source and Magento Commerce that can be used to disclose the URL location of a Magento Admin panel. While there is currently no reason to believe this issue would lead to compromise directly, knowing the URL location could make it easier to automate attacks. |
-| **Rule(s):** | Suspicious requests are filtered based on parameter validation. |
+| **Rules:** | Suspicious requests are filtered based on parameter validation. |

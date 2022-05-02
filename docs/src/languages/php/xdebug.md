@@ -26,7 +26,7 @@ When that key is defined, Platform.sh will start a second PHP-FPM process on the
 
 Xdebug has numerous other configuration options available.  They are all set as `php.ini` values, and can be configured the same way as any other [`php.ini` setting](/languages/php/ini.md).  Consult the [Xdebug documentation](https://xdebug.org/docs/) for a full list of available options, although in most cases the default configuration is sufficient.
 
-If you have the [router cache](/configuration/routes/cache.md) enabled, you will also need to explicitly add the Xdebug cookie (`XDEBUG_SESSION`) to the cookie whitelist.  Depending on the cookies you already have listed there the result should look similar to this:
+If you have the [router cache](../../define-routes/cache.md) enabled, you will also need to explicitly add the Xdebug cookie (`XDEBUG_SESSION`) to the cookie whitelist.  Depending on the cookies you already have listed there the result should look similar to this:
 
 ```yaml
 "https://{default}/":
@@ -96,4 +96,4 @@ To disable PHPStorm's listener, either select `Run` > `Stop listening for PHP de
 
 ### 5. Start debugging
 
-While in listen mode, start the `platform xdebug` tunnel.  Use the Xdebug helper plugin for your browser to enable debugging.  Set a breakpoint in your application, then load a page in your browser.  The request should pause at the breakpoint and allow you to examine the running application.
+While in listen mode, start the `platform xdebug` tunnel.  Use the Xdebug helper plugin for your browser to enable debugging.  Set a break point in your application, then load a page in your browser.  The request should pause at the break point and allow you to examine the running application.

@@ -61,7 +61,7 @@ runtime:
 
 Platform.sh exposes relationships and other configuration as [environment variables](../development/variables/_index.md).
 Most notably, it allows a program to determine at runtime what HTTP port it should listen on
-and what the credentials are to access [other services](../configuration/services/_index.md).
+and what the credentials are to access [other services](../add-services/_index.md).
 
 To get the `PORT` environment variable (the port on which your web application is supposed to listen) you would:
 
@@ -149,7 +149,7 @@ Then in your program you could access the PostgreSQL instance as follows:
 
 Platform.sh offers a project template for Lisp applications using the structure described above.  It can be used as a starting point or reference for building your own website or web application.
 
-The following is a simple example of a Hunchentoot based web application (you can find the corresponding `.asd` and Platform.sh `.yaml` files in the linked Github repository):
+The following is a basic example of a Hunchentoot based web application (you can find the corresponding `.asd` and Platform.sh `.yaml` files in the linked GitHub repository):
 
 ```lisp
 (defpackage #:example

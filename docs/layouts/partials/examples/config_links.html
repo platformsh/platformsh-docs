@@ -32,12 +32,12 @@
 {{ else if eq (.type) "redis" }}
   <h3>Ephemeral Redis example configuration</h3>
 {{ end }}
-<a href="/configuration/services.html">Service definition</a>
+<a href="/add-services.html">Service definition</a>
 
 <div class="highlight-location">.platform/services.yaml</div>
 {{ highlight ( readFile (printf "src/registry/images/examples/full/%s.services.yaml" .type) ) "yaml" ""}}
 
-<a href="/configuration/app/app-reference.html">App configuration</a>
+<a href="/create-apps/app-reference.html">App configuration</a>
 
 <div class="highlight-location">.platform.app.yaml</div>
 {{ highlight ( printf "%s%s%s" (readFile (printf "src/registry/images/examples/full/%s.app.yaml" .type)) $l1 $l2 ) "yaml" ""}}
@@ -46,12 +46,12 @@
 {{ if eq (.type) "mariadb" }}
   <h3>Oracle MySQL example configuration</h3>
 
-  <a href="/configuration/services.html">Service definition</a>
+  <a href="/add-services.html">Service definition</a>
 
   <div class="highlight-location">.platform/services.yaml</div>
   {{ highlight ( readFile "src/registry/images/examples/full/oracle-mysql.services.yaml" ) "yaml" ""}}
 
-  <a href="/configuration/app/app-reference.html">App configuration</a>
+  <a href="/create-apps/app-reference.html">App configuration</a>
 
   <div class="highlight-location">.platform.app.yaml</div>
   {{ highlight ( readFile "src/registry/images/examples/full/oracle-mysql.app.yaml" ) "yaml" ""}}
@@ -61,12 +61,12 @@
 {{ if eq (.type) "redis" }}
   <h3>Persistent Redis example configuration</h3>
 
-  <a href="/configuration/services.html">Service definition</a>
+  <a href="/add-services.html">Service definition</a>
 
   <div class="highlight-location">.platform/services.yaml</div>
   {{ highlight ( readFile "src/registry/images/examples/full/redis-persistent.services.yaml" ) "yaml" ""}}
 
-  <a href="/configuration/app/app-reference.html">App configuration</a>
+  <a href="/create-apps/app-reference.html">App configuration</a>
 
   <div class="highlight-location">.platform.app.yaml</div>
   {{ highlight ( printf "%s%s%s" (readFile (printf "src/registry/images/examples/full/%s.app.yaml" "redis-persistent")) $l1 $l2 ) "yaml" ""}}

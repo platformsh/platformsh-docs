@@ -18,12 +18,12 @@ sidebarTitle: "Frameworks"
 
 ### Templates
 
-* [Apache Tomee](https://github.com/platformsh-templates/microprofile-tomee)
+* [Apache TomEE](https://github.com/platformsh-templates/microprofile-tomee)
 * [Thorntail](https://github.com/platformsh-templates/microprofile-thorntail)
 * [KumuluzEE](https://github.com/platformsh-templates/microprofile-kumuluzee)
 * [Helidon](https://github.com/platformsh-templates/microprofile-helidon)
 * [Open Liberty](https://github.com/platformsh-templates/microprofile-openliberty)
-* [Wildfly](https://github.com/platformsh-templates/microprofile-wildfly/)
+* [WildFly](https://github.com/platformsh-templates/microprofile-wildfly/)
 
 ## Payara
 
@@ -80,7 +80,7 @@ The [Spring Framework](https://spring.io/projects/spring-framework) provides a c
 | [Spring Webflux](https://dzone.com/articles/introduction-of-spring-webflux-and-how-to-apply-cl) | [Source](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-webflux) |
 | [Spring Data Redis](https://platform.sh/blog/2019/spring-data-redis-in-the-cloud/) | [Source](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-boot-maven-redis) |
 | [Spring with Gradle](https://platform.sh/blog/2019/simplify-your-script-build-with-gradle/) | [Source](https://github.com/platformsh-templates/spring-boot-gradle-mysql) |
-| [Spring Data ElasticSearch and Spring Data Sorl](https://platform.sh/blog/2019/elasticsearch-vs-solr-have-both-with-spring-data-and-platform.sh/) | [Elasticsearch](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-mvc-maven-elasticsearch) and [Solr](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-mvc-maven-solr) |
+| [Spring Data ElasticSearch and Spring Data Solr](https://platform.sh/blog/2019/elasticsearch-vs-solr-have-both-with-spring-data-and-platform.sh/) | [Elasticsearch](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-mvc-maven-elasticsearch) and [Solr](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-mvc-maven-solr) |
 | [Spring MVC and Spring Data MongoDB](https://platform.sh/blog/2019/spring-mvc-and-mongodb-a-match-made-in-platform.sh-heaven/) | [Source](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-mvc-maven-mongodb) |
 | [Spring Boot and Spring Data JPA](https://platform.sh/blog/2019/java-hello-world-at-platform.sh/) | [Source](https://github.com/platformsh-templates/spring-boot-maven-mysql) |
 
@@ -101,7 +101,7 @@ Therefore, if you want to use Tomcat with Spring, check the [Spring section](#sp
 
 ## Micronaut
 
-[Micronaut](https://micronaut.io/) is a modern, JVM-based, full-stack framework for building modular, easily testable microservice and serverless applications.
+[Micronaut](https://micronaut.io/) is a modern, JVM-based, full-stack framework for building modular, testable microservice and serverless applications.
 
 ### Templates
 

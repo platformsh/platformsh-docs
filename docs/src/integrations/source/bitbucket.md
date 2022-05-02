@@ -11,14 +11,6 @@ or with the self-hosted [Bitbucket Server](https://confluence.atlassian.com/bitb
 In both cases, you need to [install the Platform.sh CLI](../../development/cli/_index.md),
 if you haven't already done so, to set up the integration.
 
-{{< note >}}
-
-If the repository you are trying to integrate with a Platform.sh project has a default branch that is not `master` (such as `main`),
-there are a few additional steps you need to perform to setup the integration.
-See the [Renaming the default branch guide](/guides/general/default-branch.md) for more information.
-
-{{< /note >}}
-
 ## Bitbucket Cloud
 
 ### 1. Set up an OAuth consumer

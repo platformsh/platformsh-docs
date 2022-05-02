@@ -4,7 +4,7 @@ weight: 2
 description: See how applications get built and deployed with Platform.sh.
 ---
 
-Each time you push a change to your app through Git or activate an [environment](./environments/_index.md),
+Each time you push a change to your app through Git or activate an [environment](../environments/_index.md),
 your app goes through a process to be built and deployed.
 If your app is redeployed with no changes to its codebase, the output of the previous build and deploy process is reused.
 
@@ -86,5 +86,5 @@ After the deploy process is over, any commands in your `post_deploy` hook are ru
 
 ## What's next
 
-* See how to [configure your app](../configuration/app/_index.md) for the entire process.
-* Learn more about [using build and deploy hooks](../configuration/app/hooks/_index.md).
+* See how to [configure your app](../create-apps/_index.md) for the entire process.
+* Learn more about [using build and deploy hooks](../create-apps/hooks/_index.md).

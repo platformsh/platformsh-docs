@@ -39,6 +39,7 @@
     "gulp-rename": "^2.0.0",
     "gulp-uglify": "^3.0.2",
     "js-yaml": "^3.14.1",
+    "mermaid": "^9.0.0",
     "normalize-url": "^7.0.2",
     "p-limit": "^4.0.0",
     "postcss": "^8.4.5",

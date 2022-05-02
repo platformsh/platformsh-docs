@@ -64,6 +64,10 @@ jobs:
         if: ${{ always() }}
         run: echo $PR_NUMBER > pr_number.txt
 
+      - name: Save PR number
+        if: ${{ always() }}
+        run: echo "${{ github.event.pull_request.head.sha }}" > pr_sha.txt
+
       # If no environment URL, create a report of that
       - name: Create failure report
         if: steps.get_env_url.outputs.env_status == 'failure'
@@ -140,3 +144,5 @@ jobs:
             environment_url.txt
             pr_comment.txt
             pr_number.txt
+            pr_sha.txt
+          retention-days: 1

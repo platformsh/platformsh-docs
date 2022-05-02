@@ -130,8 +130,8 @@ The Platform.sh user that triggered the activity.
 ### `deployment`
 
 This large block details all information about all services in the environment.
-That includes the resulting configuration objects derived from [`routes.yaml`](/configuration/routes/_index.md),
-[`services.yaml`](/configuration/services/_index.md), and [your app configuration](../../configuration/app/_index.md).
+That includes the resulting configuration objects derived from [`routes.yaml`](../../define-routes/_index.md),
+[`services.yaml`](../../add-services/_index.md), and [your app configuration](../../create-apps/_index.md).
 
 Most notably, the `deployment.routes` object's keys are all of the URLs made available by the environment.
 Note that some will be redirects.

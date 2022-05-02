@@ -6,7 +6,7 @@ description: "How to handle multiple subdomains in different projects."
 ---
 
 You can host multiple subdomains, such as `foo.example.com` and `bar.example.com`,
-within a single Platform.sh project using [routes](/configuration/routes/_index.md).
+within a single Platform.sh project using [routes](../../define-routes/_index.md).
 
 To use subdomains across multiple projects, you need to add an additional DNS record.
 If you don't, you may receive an error when trying to add a subdomain to a second project.
