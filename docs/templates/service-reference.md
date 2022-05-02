@@ -5,10 +5,10 @@ description: A short description (up to ~160 characters) of the service that sho
 
 <!-- 
 When to use
-  For all available services: https://docs.platform.sh/configuration/services.html
+  For all available services: https://docs.platform.sh/add-services.html
 
 How to use
-  1. Copy this template into /src/docs/configuration/services/.
+  1. Copy this template into /src/docs/add-services/.
   2. Rename it to match the title.
   3. Replace the following content with your own.
   4. Replace all instances of "<SERVICE_NAME>" in the examples with the service's name.

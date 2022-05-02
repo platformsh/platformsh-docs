@@ -15,7 +15,7 @@ The setup process therefore depends on config-overrides in `settings.platformsh.
 
 Search API Solr requires Solr 6.6 or higher, and recommends Solr 8 or higher.
 
-Advanced Solr service configuration and implementation in frameworks other than Drupal can be found at the [Solr services page](/configuration/services/solr.md).
+Advanced Solr service configuration and implementation in frameworks other than Drupal can be found at the [Solr services page](../../add-services/solr.md).
 
 ## Steps
 

@@ -1,7 +1,7 @@
 {{ $type := .Get "type" }}
 ### Specify the language
 
-To use {{ .Get "display_name" }}, specify `{{ $type }}` as your [app's `type`](/configuration/app/app-reference.html#types):
+To use {{ .Get "display_name" }}, specify `{{ $type }}` as your [app's `type`](/create-apps/app-reference.html#types):
 
 <!-- vale off -->
 <div class="highlight-location">.platform.app.yaml</div>

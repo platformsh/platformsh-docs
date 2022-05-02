@@ -1,6 +1,5 @@
 ---
-title: "Encryption"
-weight: 9
+title: Encryption
 ---
 
 ## Data in transit

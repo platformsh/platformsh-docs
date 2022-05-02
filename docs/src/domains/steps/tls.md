@@ -5,7 +5,7 @@ sidebarTitle: "Custom TLS"
 ---
 
 Platform.sh automatically provides all production environments with standard TLS certificates issued by [Let's Encrypt](https://letsencrypt.org/).
-No further action is required to use TLS-encrypted connections beyond [specifying HTTPS routes](../../configuration/routes/https.md).
+No further action is required to use TLS-encrypted connections beyond [specifying HTTPS routes](../../define-routes/https.md).
 
 Alternatively, you may provide your own third-party TLS certificate from the TLS issuer of your choice.
 Consult your TLS issuer for instructions on how to generate an TLS certificate.
@@ -29,9 +29,7 @@ openTLS rsa -in private.key -out private.rsa.key
 ### Add a custom certificate
 
 You can add a custom certificate in the [management console](/administration/web/_index.md)
-or using the [command line interface](../../development/cli/_index.md). 
-
-
+or using the [command line interface](../../development/cli/_index.md).
 
 {{< codetabs >}}
 

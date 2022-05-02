@@ -1,20 +1,12 @@
-@media (min-width: 767px) {
-  .searcharea {
-    margin-top: 3rem;
+@media (min-width: 768px) {
+  .responsive-toggle {
+    display: none;
   }
-
-}
-
-@media (min-width: 1025px) {
-  .searcharea {
-    margin-top: 0rem;
-  }
-
 }
 
 @media (max-width: 768px) {
 
-  .searchinput {
+  .responsive-toggle {
     font-size: 0.6rem !important;
   }
 
@@ -29,29 +21,21 @@
 }
 
 
-@media (max-width: 750px) {
+@media (max-width: 768px) {
 
-  .searcharea {
-    width: 100vw !important;
-  }
-
-  #xssroot {
-    float: left;
-    width: 80%;
+  .responsive-toggle {
+    width: 100vw;
   }
 
   .hamburger {
     float: right;
-  }
-
-  .duik-sidebar {
-    max-width: 100vw;
+    padding: 1rem;
   }
 
 }
 
-.searcharea {
-  padding-bottom: 1rem;
+.searchInputHolder {
+  display: flex;
 }
 
 .searchinput {
@@ -60,12 +44,11 @@
   background: url(/images/svg/search-solid.svg) no-repeat 1rem 1rem;
   background-size: 15px 15px;
   background-position-y: center;
-  width: 85%;
   padding-left: 3rem;
   height: 60px;
   font-size: 0.8rem;
   line-height: 23px;
-  max-width: 272px;
+  flex-grow: 1;
 }
 
 .clearinput {
@@ -73,6 +56,7 @@
   background-color: transparent;
   border: none;
   line-height: 23px;
+  padding: 0 0.5em;
 }
 .clearinput::before {
   content: "⨉";
@@ -92,20 +76,12 @@
 }
 
 .search-all-results {
-  /* display: none; */
-  width: 600px;
-  max-width: 90vw;
+  width: 100%;
   position: absolute;
-  max-height: 50vh;
+  max-height: 75vh;
   overflow-y: scroll;
   margin-bottom: 1rem;
   z-index: 1;
-}
-
-@media (max-width: 768px) {
-  .search-all-results {
-    position: relative;
-  }
 }
 
 .search-page-results {

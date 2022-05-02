@@ -10,7 +10,7 @@ In the previous step, you created a new project on Platform.sh using the CLI. No
 
 1. **Consult a template alongside this guide**
 
-    As you go through this guide, example files will be provided that will give you a good impression of how to configure applications on Platform.sh in the programming language they use. However, since they are simple examples and your own application may require more detailed configuration than those examples address, it is recommended that you take a look at our maintained templates for additional guidance.
+    As you go through this guide, example files will be provided that will give you a good impression of how to configure applications on Platform.sh in the programming language they use. However, since they are basic examples and your own application may require more detailed configuration than those examples address, it is recommended that you take a look at our maintained templates for additional guidance.
 
     Select a language and choose one or more templates that most closely resemble your application and keep the template in another tab as you continue through this guide. Using these two resources together is the fastest way to correctly configure your project for Platform.sh.
 
@@ -31,14 +31,14 @@ In the previous step, you created a new project on Platform.sh using the CLI. No
 
     In order to successfully deploy to Platform.sh you need to add two YAML files:
 
-      * A `.platform/routes.yaml` file, which configures the [routes](/configuration/routes/_index.md) used in your environments.
+      * A `.platform/routes.yaml` file, which configures the [routes](../../../define-routes/_index.md) used in your environments.
         It describes how an incoming HTTP request is going to be processed by Platform.sh.
-      * At least one file [configuring the application](../../../configuration/app/_index.md).
+      * At least one file [configuring the application](../../../create-apps/_index.md).
         It provides control over the way the app is built and deployed on Platform.sh.
 
-    If you want to use [services](../../../configuration/services/_index.md), you need a third file:
+    If you want to use [services](../../../add-services/_index.md), you need a third file:
 
-      * A `.platform/services.yaml` file, which configures the [services](/configuration/services/_index.md)
+      * A `.platform/services.yaml` file, which configures the [services](../../../add-services/_index.md)
         that are used by the application.
         If you don't require services, you don't need the file.
 

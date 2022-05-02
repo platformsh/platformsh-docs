@@ -8,7 +8,10 @@
       scrollInertia: 150
     });
 
-    // Scroll to Active
-    $('.js-scrollbar').mCustomScrollbar('scrollTo', '.js-scrollbar a.active');
+    // Don't scroll on home page
+    if ( window.location.pathname !== '/' ){
+      // Scroll to Active
+      $('.js-scrollbar').mCustomScrollbar('scrollTo', '.js-scrollbar a.active');
+    }
   });
 })(jQuery);

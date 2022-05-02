@@ -294,11 +294,18 @@ h4:hover .duik-anchorjs-link {
 .duik-sidebar {
   z-index: 100;
   padding: 5rem 0 0;
+  border-right: 4px solid var(--ghost-white);
 }
 
 @media (max-height: 500px) {
   .duik-sidebar {
     overflow: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .duik-sidebar {
+    padding-top: 4rem;
   }
 }
 
@@ -319,40 +326,94 @@ h4:hover .duik-anchorjs-link {
   }
 }
 
-.duik-sidebar__heading {
-  font-size: .84rem;
+button.sidebar__book-heading {
   font-weight: 700;
-  text-transform: uppercase;
+  font-size: 16px;
+  margin: 0.5rem;
+  padding: 1rem 10px;
+  background-color: var(--ghost-white);
+  width: 95%;
+  border: none;
+  text-align: left;
+  background-position: center right 8px;
+  background-repeat: no-repeat;
+}
+
+button.sidebar__book-heading[aria-expanded="false"] {
+  background-image: url(/images/icons/add.svg);
+}
+
+button.sidebar__book-heading[aria-expanded="true"] {
+  background-image: url(/images/icons/minus.svg);
+}
+
+h3.sidebar__book-heading {
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar__heading-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0.5rem 8px 0;
+}
+
+.sidebar__heading-wrapper-section {
+  padding-left: 2rem;
+}
+
+.sidebar__heading-wrapper-first-level {
+  padding-left: 3rem;
+}
+
+.sidebar__heading-wrapper > [data-toggle="collapse"] > svg {
+  transition: transform 0.3s ease 0s;
+}
+
+.sidebar__heading-wrapper > [data-toggle="collapse"][aria-expanded="false"] > svg {
+  transform: rotate(-90deg);
+}
+
+.duik-sidebar__heading {
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: none;
   letter-spacing: 1px;
-  padding-left: calc(.7rem + 4px);
-  padding-right: 1rem;
+  padding-right: 0.5rem;
+  margin: 0;
 }
 
 .duik-sidebar__nav {
   list-style: none;
-  margin-bottom: 2rem;
+  margin-bottom: 0rem;
   padding-left: 0;
 }
 
 .duik-sidebar__item {
-  font-size: 80%;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.duik-sidebar__item--second-level {
+  border-left: 1px solid #C4BCC0;
+  margin: 0 0 0 4rem;
+  padding: 0.25rem 0.25rem 0.25rem 0.5rem;
+}
+
+.duik-sidebar__item--second-level:last-of-type {
+  padding-bottom: 0;
 }
 
 .duik-sidebar__link {
-  color: #495057;
-  display: inline-block;
-  border-left: 4px solid transparent;
-  padding: .3rem  1rem .5rem .7rem;
+  color: #000000;
 }
 
 .duik-sidebar__link.active {
-  color: #007bff;
-  border-color: #007bff;
-  padding-top: .5rem;
+  color: var(--brand-color-primary-blue);
 }
 
-.duik-sidebar__link:hover {
-  color: #343a40;
+.duik-sidebar__link:hover,.duik-sidebar__link:focus {
   text-decoration: none;
 }
 
@@ -369,38 +430,6 @@ h4:hover .duik-anchorjs-link {
   color: #fff;
 }
 
-/* Page Nav */
-.duik-content-nav {
-  position: fixed;
-  top: 6.5rem;
-  border-left: 1px solid #dee2e6;
-  padding-left: 1.5rem;
-  overflow-y: auto;
-  list-style: none;
-}
-
-.duik-content-nav ul {
-  padding-left: 1rem;
-  list-style: none;
-}
-
-.duik-content-nav__item {
-  font-size: 80%;
-}
-
-.duik-content-nav__item > a {
-  display: block;
-  color: #495057;
-  padding-top: .15rem;
-  padding-bottom: .15rem;
-}
-
-.duik-content-nav__item.active > a,
-.duik-content-nav__item > a:hover {
-  color: #007bff;
-  text-decoration: none;
-}
-
 /* Content */
 .duik-content {
   min-height: calc(100vh - 5rem - 5.5rem);
@@ -408,6 +437,57 @@ h4:hover .duik-anchorjs-link {
 
 .duik-content-2 {
   min-height: calc(100vh - 5.5rem - 1.5rem);
+}
+
+@media (min-width: 768px) {
+  .duik-content {
+    /* top | right | bottom | left */
+    padding: 0rem 2rem 3rem 2rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .duik-content {
+    /* top | right | bottom | left */
+    padding: 0rem 3rem 3rem 7rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .duik-content {
+    /* top | right | bottom | left */
+    padding: 0rem 7rem 3rem 7rem;
+  }
+}
+
+/* Search
+/* Form should have same left padding as content */
+#xssroot {
+  margin-left: 8px;
+}
+@media (min-width: 768px) {
+  #xssroot {
+    padding-left: 1rem;
+  }
+}
+
+@media (min-width: 992px) {
+  #xssroot {
+    padding-left: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  #xssroot {
+    padding-left: 6rem;
+  }
+}
+
+#xssroot {
+  width: 100%;
+  flex-basis: 0;
+  flex-grow: 1;
+  padding-right: 1rem;
 }
 
 /*------------------------------------
@@ -819,16 +899,6 @@ label {
 /*------------------------------------
   Backgrounds
 ------------------------------------*/
-.bg-primary-darker {
-  background-color: #0069d9;
-}
-
-@media (min-width: 768px) {
-  .bg-md-primary-darker {
-    background-color: #0069d9;
-  }
-}
-
 .bg-white-11 {
   background-color: rgba(255, 255, 255, 0.11) !important;
 }
