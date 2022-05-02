@@ -32,7 +32,7 @@ If your site is a typical single application with a single SQL database,
 the script should take care of most of the process for you.
 (If you have additional backend systems you may need to do some additional work manually, as documented below.)
 
-### 0. Preparation
+### 0. Prepare for scripted migration
 
 * Plan a time frame in which to handle the migration.
   You should avoid developing any new code during that period (as your Git repository will change)
@@ -43,11 +43,10 @@ the script should take care of most of the process for you.
 
 ### 1. Create a new project
 
-Create a new Platform.sh Project in the desired region.
+[Create a new project from scratch]({{% create-project-link scratch=true %}}) in the desired region.
 You can initially create it as a Development project and change the plan size immediately before switching over
 or go ahead and use the desired size from the beginning.
-When the system asks if you want to use an existing template or provide your own code, select provide your own code.
-However, you do not need to push any code to it yet.
+You don't need to push any code to the project yet.
 Note the new project's ID from the URL.
 
 ### 2. Download and invoke the script
@@ -68,7 +67,7 @@ Once the new project is running and the DNS has fully propagated you can delete 
 
 ## Manual migration process
 
-### 0. Preparation
+### 0. Prepare for manual migration
 
 * Plan a time frame in which to handle the migration.
   You will want to avoid developing any new code during that period (as your Git repository will change)
@@ -79,10 +78,9 @@ Once the new project is running and the DNS has fully propagated you can delete 
 
 ### 1. Create and populate a new project
 
-Create a new Platform.sh project in the desired region.
+[Create a new project from scratch]({{% create-project-link scratch=true %}}) in the desired region.
 You can initially create it as a Development project and change the plan size immediately before switching over
 or go ahead and use the desired size from the beginning.
-When the system asks if you want to use an existing template or provide your own code, select provide your own code.
 
 Make a Git clone of your existing project.
 Then add a Git remote to the new project, using the Git URL shown in the management console.
