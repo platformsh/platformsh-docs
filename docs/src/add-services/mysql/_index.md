@@ -53,9 +53,8 @@ To switch service types:
 1. Specify a new service type.
 1. [Import your data](#importing-data) into the new service.
 
-You can't downgrade either MySQL or MariaDB to a previous version.
-Both update their data files to a new version automatically but can't downgrade them.
-To experiment with a new version without committing to it, use a non-production environment.
+You also can't downgrade to a previous version and retain your data.
+To downgrade your database, create a new service and import your data, as in the steps above.
 
 {{% deprecated-versions %}}
 
