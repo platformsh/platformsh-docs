@@ -108,7 +108,7 @@ crons:
         spec: '0 5 * * *'
         commands:
             start: |
-                if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
+                if [ "$PLATFORM_ENVIRONMENT_TYPE" == production ]; then
                     platform backup:create --yes --no-wait
                 fi
 ```
