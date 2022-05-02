@@ -118,8 +118,3 @@ web:
         # Run a no-op process that uses no CPU resources since this is a static site
         start: sleep infinity
 ```
-
-This blocks as long as necessary and restarts if needed.
-
-It does use one dynamic script in the `web.commands.start` directive for detecting and handling 404 errors.
-If you don't need this, set a background process using the `sleep` command:

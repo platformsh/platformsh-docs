@@ -10,7 +10,7 @@ For example, you might want to make URLs seem semantic to users without having t
 
 In such a case, you might want requests to `/shoes/great-shoe` to be served
 as if they were requests to `/?category=shoes&product=great-shoe`.
-If so, add a rule similar to the following:
+If so, add a [rule](../app-reference.md#rules) similar to the following:
 
 ```yaml {location=".platform.app.yaml"}
 web:
@@ -40,6 +40,6 @@ Now a request to `/img/image.png` returns the file found at `/png/image.png`.
 ## Query parameters
 
 Query parameters in the request are unaffected and are passed in the request to the app.
-So if you have the category and product rule from previously, a request to `/shoes/great-show/?product=terrible-shoe`
+So if you have the category and product rule from previously, a request to `/shoes/great-shoe/?product=terrible-shoe`
 is rewritten to `?category=shoes&product=great-shoe&product=terrible-shoe`.
 In that case, the `product` query parameter returns as `terrible-shoe`.

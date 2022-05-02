@@ -28,7 +28,7 @@ web:
 This sets the `X-Frame-Options` header to `SAMEORIGIN` for all static files.
 Now your files can only be embedded within your site.
 
-Now set up an exception for MP3 files.
+Now set up an exception for MP3 files using a [rule](../app-reference.md#rules):
 
 ```yaml {location=".platform.app.yaml"}
 web:
