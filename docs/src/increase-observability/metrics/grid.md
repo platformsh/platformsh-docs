@@ -55,7 +55,7 @@ at 1.91&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
 
 Metrics graphs for the MySQL service container show CPU and disk allocation and usage.
 The persistent disk has been configured in the [services configuration](../../configuration/services/_index.md)
-as 1.91&nbsp;GB,
+as 0.95&nbsp;GB,
 while the temporary disk is 3.99&nbsp;GB by default.
 
 ![All of the metrics for the MySQL container](/images/metrics/mysql-container.png)

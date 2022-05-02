@@ -49,8 +49,8 @@ For Dedicated environments, the thresholds are set for each host.
 If the resources are high and hovering close to the 100% threshold,
 you might want to consider:
 
-* [Optimize your code](../integrate-observability/_index.md) (if possible)
-* [Increase your plan](../../overview/pricing/_index.md)
+* [Optimizing your code](../integrate-observability/_index.md) (if possible)
+* [Increasing your plan](../../overview/pricing/_index.md)
 
 #### Grid environments
   
@@ -58,13 +58,13 @@ For Grid environments, the thresholds are set for each container.
 If the resources are high and hovering close to the 100% threshold,
 you might want to consider:
 
-* [Optimize your code](../integrate-observability/_index.md) (if possible)
-* Change your [app size](../../configuration/app/app-reference.md#sizes)
+* [Optimizing your code](../integrate-observability/_index.md) (if possible)
+* Changing your [app size](../../configuration/app/app-reference.md#sizes)
   or [service size](../../configuration/services/_index.md#size)
-* [Increase your plan](../../overview/pricing/_index.md)
+* [Increasing your plan](../../overview/pricing/_index.md)
 
 If your containers are in a prolonged burst state,
-review your configuration or plan size because since burst isn't guaranteed for long periods.
+review your configuration or plan size because burst isn't guaranteed for long periods.
 If the burst threshold is triggered for short, infrequent activities,
 it might not be an issue as long as the site is functioning properly.
 Burst allows your container to use additional resources when they aren't required on the container's host.
