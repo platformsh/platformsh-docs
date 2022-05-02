@@ -56,7 +56,9 @@ To turn off outgoing email, replace `true` with `false`.
 
 Changing the setting rebuilds the environment.
 
-## 2. (Optional) Add email domain validation
+## 2. (Optional) Improve deliverability
+
+### Enterprise and Elite plans
 
 {{< tiered-feature "Enterprise and Elite" >}}
 
@@ -65,8 +67,6 @@ you can request for DomainKeys Identified Mail (DKIM) to be enabled on your doma
 
 DKIM improves your delivery rate as an email sender.
 Learn more about [how DKIM works](https://docs.sendgrid.com/glossary/dkim).
-
-### Enable DKIM on your domain
 
 To have DKIM enabled for your domain:
 
@@ -81,7 +81,7 @@ The `TXT` record looks similar to the following:
 >v=spf1 include:u17504801.wl.sendgrid.net -all
 ```
 
-### Alternative: Improve deliverability
+### Other plans
 
 If you aren't on an Enterprise or Elite plan,
 you can still improve deliverability with [Sender Policy Framework (SPF)](https://docs.sendgrid.com/ui/account-and-settings/spf-records).
@@ -215,7 +215,7 @@ Guides on using JavaMail:
 
 {{< /codetabs >}}
 
-## Alternative: Set up your own email server
+## Alternative: Use a different email server
 
 If you need more options, use your own SMTP server or email delivery service provider.
 Bear in mind that TCP port 25 is blocked for security reasons.
