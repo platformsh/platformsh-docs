@@ -106,3 +106,11 @@ If you would like to test the search server, follow these steps:
    cd ../docs
    hugo serve
    ```
+
+## Cache of static assets
+
+Given that the website itself isn't updated so often,
+static assets on the site such as CSS and JavaScript files have a long cache period set.
+If you are making a change to such files, bust the cache so users aren't served out-of-date files.
+
+To clear the cache, update the `version` in [`docs/config/_default/params.yaml`](./docs/config/_default/params.yaml).
