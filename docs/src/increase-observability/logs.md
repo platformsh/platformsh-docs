@@ -1,7 +1,9 @@
 ---
-title: Access your logs
+title: "Access your logs"
 weight: 9
 description: Increase your knowledge of how your apps are performing by accessing their container and activity logs.
+aliases:
+  - /development/logs.html
 ---
 
 ## Activity logs

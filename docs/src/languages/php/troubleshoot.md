@@ -49,7 +49,7 @@ grep $(date +%Y-%m-%dT%H --date='-1 hours') /var/log/php.access.log | sort -k 4 
 ```
 
 If you see that the processing time of certain requests is slow (such as taking longer than 1000&nbsp;ms),
-you should consider a continuous observability solution like [Blackfire](../../integrations/observability/blackfire.md)
+you should consider a continuous observability solution like [Blackfire](../../increase-observability/integrate-observability/blackfire.md)
 to monitor your application and help you improve the performance issue.
 
 Otherwise, you may check if the following options are applicable:

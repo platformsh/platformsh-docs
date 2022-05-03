@@ -14,7 +14,10 @@ These alerts are sent to our support and operations teams, and are not directly 
 
 ## Monitoring systems
 
-Platform.sh uses well-known open source tooling to collect metrics and to alert our staff if any of these metrics goes out of bounds.  That includes the use of Munin for collecting time-series data on server metrics, and dashboarding of these metrics so that our team can monitor trends over time.  It also includes use Nagios as a point in time alerting system for our operations staff.
+Platform.sh uses well-known open source tooling to collect metrics and to alert our staff if any of these metrics goes out of bounds.
+That includes the use of Munin for collecting time-series data on server metrics,
+and creating dashboards for these metrics to monitor trends over time.
+It also includes use Nagios as a point in time alerting system for our operations staff.
 
 These tools are internal Platform.sh tools only.
 
@@ -23,7 +26,7 @@ A third-party availability monitoring system is configured for every Dedicated p
 ## Application performance monitoring
 
 Platform.sh offers application performance monitoring (APM) packaged with infrastructure monitoring in the Platform.sh Observability Suite.
-This APM relies on [Blackfire.io](../../integrations/observability/blackfire.md#on-other-dedicated-infrastructure),
+This APM relies on [Blackfire.io](../../increase-observability/integrate-observability/blackfire.md#on-other-dedicated-infrastructure),
 which uniquely combines monitoring, profiling, and performance testing technologies.
 
 The Observability Suite is currently available only to Enterprise, Elite, and Fleet customers.
@@ -37,7 +40,7 @@ When purchased separately, features and usage may cost more than the equivalent 
 By using Blackfire on Platform.sh, you benefit from an enhanced experience and support as well as upcoming unique features.
 You can contact your sales representative to get a quote for whatever size cluster is running your application.
 
-Platform.sh also [supports New Relic APM](/integrations/observability/new-relic/_index.md#on-a-dedicated-cluster)
+Platform.sh also [supports New Relic APM](../../increase-observability/integrate-observability/new-relic/_index.md#on-a-dedicated-cluster)
 After you have signed up with New Relic and gotten your license key,
 open a support ticket so that it can be installed on your project.
 New Relic infrastructure monitoring isn't supported.
@@ -48,8 +51,11 @@ Automated monitoring may trigger alerts that page the on-call engineer or the en
 Opsgenie pages the on-call engineer using several methods.
 The on-call engineer responds to the alerts and begins to triage the issue.
 
-Cloud infrastructure issues are handled by the customer success team. *Application problems are escalated to an application support specialist if an agreement is part of the customer subscription.  Otherwise, they are returned to the user and may be downgraded*.
+Cloud infrastructure issues are handled by the customer success team.
+*Application problems are escalated to an application support specialist if an agreement is part of the customer subscription.
+Otherwise, they are returned to the user and may be downgraded*.
 
-When a Urgent/High issue is escalated it will page the on-call application support specialist.  Application support may also escalate infrastructure issues back as Urgent/High.
+When a Urgent/High issue is escalated, it pages the on-call application support specialist.
+Application support may also escalate infrastructure issues back as Urgent/High.
 
 ![Platform.sh Urgent Ticket Workflow](/images/dedicated/urgent-ticket-flow.svg "0.5")

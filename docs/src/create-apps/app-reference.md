@@ -596,7 +596,7 @@ The names must be unique.
 
 If an application defines both a `web` instance and `worker` instances, cron jobs run only on the `web` instance.
 
-Cron jobs are [logged](../development/logs.md) at `/var/log/cron.log`. 
+See how to [get cron logs](../increase-observability/logs.md#container-logs).
 
 The following table shows the properties for each job:
 

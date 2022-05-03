@@ -128,7 +128,7 @@ Typical causes and potential solutions include:
   * Alternatively, you may need to [increase your plan size](../overview/pricing/_index.md).
 * Certain code paths in your application are too slow and timing out.
   * Check your code is running smoothly.
-  * Consider adding an [observability solution](../integrations/observability/_index.md) to get a better view of your application.
+  * Consider adding an [observability solution](../increase-observability/integrate-observability/_index.md) to get a better view of your application.
 * A PHP process is crashing because of a segmentation fault.
   * See [how to deal with crashed processes](../languages/php/troubleshoot.md#php-process-crashed).
 * A PHP process is killed by the kernel out-of-memory killer.
@@ -203,7 +203,7 @@ If you see a build or deployment running longer than expected, it may be one of 
 * The deployment is blocked by a long running cron job in the environment.
 * The deployment is blocked by a long running cron job in the parent environment.
 
-To determine if your environment is being stuck in the build or the deployment, check your [activity log](./logs.md#activity-logs).
+To determine if your environment is being stuck in the build or the deployment, check your [activity log](../increase-observability/logs.md#activity-logs).
 
 If the activity has the result `success`, the build has completed successfully and the system is trying to deploy.
 If the result is still `running`, the build is stuck.
@@ -228,7 +228,8 @@ Here are a few tips that can help you find the exact cause.
 
 ### Check for errors in the logs
 
-Invisible errors during the build and deploy phase can cause increased wait times, failed builds, and other problems. Investigate [each log](./logs.md#container-logs) and fix any errors you find.
+Invisible errors during the build and deploy phase can cause increased wait times, failed builds, and other problems.
+Investigate [each log](../increase-observability/logs.md#container-logs) and fix any errors you find.
 
 ### Build and deploy hooks
 

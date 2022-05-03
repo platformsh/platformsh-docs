@@ -64,17 +64,20 @@ https://{default}/:
       # Redirect requests ending in a slash to have a .html suffix
       "^\/([^.]*)\/$": { "to": '/$1.html', "regexp": true }
 
-      # PR 1897
-      "/integrations/profiling.html": { "to": "/integrations/observability.html", "code": 301, "prefix": false }
-      "/integrations/profiling/blackfire.html": { "to": "/integrations/observability/blackfire.html", "code": 301, "prefix": false }
-      "/integrations/profiling/new-relic.html": { "to": "/integrations/observability/new-relic.html", "code": 301, "prefix": false }
-      "/integrations/profiling/new-relic/java.html": { "to": "/integrations/observability/new-relic/java.html", "code": 301, "prefix": false }
-      "/integrations/profiling/new-relic/nodejs.html": { "to": "/integrations/observability/new-relic/nodejs.html", "code": 301, "prefix": false }
-      "/integrations/profiling/new-relic/php.html": { "to": "/integrations/observability/new-relic/php.html", "code": 301, "prefix": false }
-      "/integrations/profiling/tideways.html": { "to": "/integrations/observability/tideways.html", "code": 301, "prefix": false }
+      # PR 1897 + PR 2054
+      "/integrations/profiling.html": { "to": "/increase-observability/integrate-observability.html", "code": 301, "prefix": false }
+      "/integrations/profiling/blackfire.html": { "to": "/increase-observability/integrate-observability/blackfire.html", "code": 301, "prefix": false }
+      "/integrations/profiling/new-relic.html": { "to": "/increase-observability/integrate-observability/new-relic.html", "code": 301, "prefix": false }
+      "/integrations/profiling/new-relic/java.html": { "to": "/increase-observability/integrate-observability/new-relic/java.html", "code": 301, "prefix": false }
+      "/integrations/profiling/new-relic/nodejs.html": { "to": "/increase-observability/integrate-observability/new-relic/nodejs.html", "code": 301, "prefix": false }
+      "/integrations/profiling/new-relic/php.html": { "to": "/increase-observability/integrate-observability/new-relic/php.html", "code": 301, "prefix": false }
+      "/integrations/profiling/tideways.html": { "to": "/increase-observability/integrate-observability/tideways.html", "code": 301, "prefix": false }
 
       # PR 1963
       "/overview/getting-help.html": { "to": "/overview/get-support.html", "code": 301, "prefix": false }
+
+      # PR 2054
+      "/dedicated/architecture/metrics.html": { "to": "/increase-observability/metrics.html", "code": 301, "prefix": false }
 
       # Restructure of variables
       "/bestpractices/environment-build.html": { "to": "/development/variables.html", "code": 301, "prefix": false }

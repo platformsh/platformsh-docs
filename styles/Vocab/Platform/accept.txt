@@ -55,6 +55,8 @@ multicast
 [Mm]ultifactor
 multisite
 multithread[ed|ing]
+Munin
+Nagios
 namespace
 [Nn]ginx
 Nori
@@ -65,6 +67,7 @@ OPcache
 Opigno
 Opsgenie
 optipng
+overutilize
 Packagist
 Papertrail
 Payara

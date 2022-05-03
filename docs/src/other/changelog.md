@@ -37,7 +37,7 @@ description: |
   * **Breaking change**: The logic by which the build image ID has changed in order to support build environment variables above. Previously, every attribute in `.platform.app.yaml` was included in the build image, used to create the unique build ID, and *accessible* via the `PLATFORM_APPLICATION` environment variable at build time. This is no longer the case, and only a subset of `.platform.app.yaml` attributes are now accessible from `PLATFORM_APPLICATION` at build time. See the [Platform.sh-provided variables](../development/variables/use-variables.md#use-platformsh-provided-variables) section for more information.
 ---
 * **March 2021**
-  * Observability: [a new page was added](../dedicated/architecture/metrics.md) describing observability and metrics available on Dedicated projects.
+  * Observability: [a new page was added](../increase-observability/metrics/_index.md) describing observability and metrics available on Dedicated projects.
   * Node.js debugging: [a new page was added](../languages/nodejs/debug.md) that includes tips for debugging Node.js applications.
   * Parallel activities: [project activities](../integrations/activity/reference.md#maximum-activities-and-parallelism) have been split into separate queues, allowing for up to two activities across environments to occur simultaneously.
   * Python 3.9: We now support [Python 3.9](../languages/python.md).

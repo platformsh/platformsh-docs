@@ -18,7 +18,7 @@ Once you select an environment, you can see details about it.
 
 ## Activity Feed
 
-You can see all the [activity happening on your environments](../../development/logs.md#activity-logs).
+You can see all the [activity happening on your environments](../../increase-observability/logs.md#activity-logs).
 You can filter activities by type.
 
 ![Environment activity list](/images/management-console/activity.png "0.5")
