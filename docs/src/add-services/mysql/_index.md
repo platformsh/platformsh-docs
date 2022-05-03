@@ -42,6 +42,12 @@ Dedicated environments only support the InnoDB storage engine.
 Tables created on Dedicated environments using the MyISAM storage engine don't replicate between all hosts in the cluster.
 See how to [convert tables to the InnoDB engine](#storage-engine).
 
+{{% deprecated-versions %}}
+
+| **`mariadb`** | **`mysql`** | **`oracle-mysql`** |
+|----------------------------------|---------------|-------------------------|
+|  {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="oracle-mysql" status="deprecated" >}} |
+
 ### Switching type and version
 
 If you change the service type, your data is removed.
@@ -49,18 +55,19 @@ If you change the service type, your data is removed.
 To switch service types:
 
 1. [Export your data](#exporting-data).
-1. Remove the old service from your [service configuration](../_index.md)
+1. Remove the old service from your [service configuration](../_index.md).
 1. Specify a new service type.
 1. [Import your data](#importing-data) into the new service.
 
-You also can't downgrade to a previous version and retain your data.
-To downgrade your database, create a new service and import your data, as in the steps above.
+### Downgrade
 
-{{% deprecated-versions %}}
+You can't downgrade to a previous version and retain your data.
+To downgrade your database, follow these steps:
 
-| **`mariadb`** | **`mysql`** | **`oracle-mysql`** |
-|----------------------------------|---------------|-------------------------|
-|  {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="oracle-mysql" status="deprecated" >}} |
+1. [Export your data](#exporting-data).
+1. Remove the old service from your [service configuration](../_index.md).
+1. Add a new service with a different name and your desired version.
+1. [Import your data](#importing-data) into the new service.
 
 ## Usage example
 
