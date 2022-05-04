@@ -1,7 +1,6 @@
 ---
 title: "Activity scripts"
 weight: -5
-layout: single
 description: |
   Platform.sh supports custom scripts that can fire in response to any activity. These scripts allow you to take arbitrary actions in response to actions in your project, such as when it deploys, when a new branch is created, etc.
 ---
@@ -292,3 +291,5 @@ HMAC(HMAC(HMAC(HMAC("AWS4" + kSecret,"20150830"),"us-east-1"),"iam"),"aws4_reque
 ```
 
 > Example taken from the [AWS documentation for signing API requests](https://docs.aws.amazon.com/general/latest/gr/sigv4-calculate-signature.html).
+
+## Further reading
