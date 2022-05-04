@@ -1,7 +1,6 @@
 ---
 title: "Activity scripts"
 weight: -5
-layout: single
 description: |
   Platform.sh supports custom scripts that can fire in response to any activity. These scripts allow you to take arbitrary actions in response to actions in your project, such as when it deploys, when a new branch is created, etc.
 ---
