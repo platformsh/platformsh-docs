@@ -55,7 +55,7 @@ You can also configure them manually.
 ## Inactive environment
 
 An environment that isn't deployed.
-It has no data of its own.
+It has no data of its own and no running services.
 If you reactivate it, it copies data from its parent.
 
 See how to [reactivate an environment](../environments/deactivate-environment.md#reactivate-an-environment).
