@@ -8,7 +8,7 @@ weight: 1
 [DDEV](https://ddev.readthedocs.io/en/stable/) is an open-source tool to get local PHP development environments.
 It allows you use Docker in your workflows while maintaining a GitOps workflow.
 You get fully containerized environments to run everything locally
-without having to install tools (such as the Platform.sh CLI) on your machine.
+without having to install tools (including the Platform.sh CLI, PHP, and Composer) on your machine.
 
 This guide assumes you have a project already running with Platform.sh and you have the code on your computer.
 If you're starting from scratch, first [create a project from a PHP template]({{% create-project-link template=true %}}).
