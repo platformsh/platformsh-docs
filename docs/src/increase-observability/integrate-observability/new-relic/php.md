@@ -2,9 +2,6 @@
 title: "PHP"
 ---
 
-New Relic isn't yet available on PHP 8.1.
-To use New Relic with PHP, specify `type: 'php:8.0'` or lower in your [app configuration](../../../create-apps/app-reference.md#types).
-
 ## Get your license key
 
 Sign up at https://newrelic.com and get your [license key](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/#license-key).
