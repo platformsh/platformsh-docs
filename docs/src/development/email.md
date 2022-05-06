@@ -58,7 +58,14 @@ Changing the setting rebuilds the environment.
 
 ## 2. (Optional) Improve deliverability
 
-### Enterprise and Elite plans
+Improve deliverability of your email with [Sender Policy Framework (SPF)](https://docs.sendgrid.com/ui/account-and-settings/spf-records).
+Add the following `TXT` record to your domain's DNS records:
+
+```txt
+>v=spf1 include:sendgrid.net -all
+```
+
+## 3. (Optional) Validate your email
 
 {{< tiered-feature "Enterprise and Elite" >}}
 
@@ -81,17 +88,7 @@ The `TXT` record looks similar to the following:
 >v=spf1 include:u17504801.wl.sendgrid.net -all
 ```
 
-### Other plans
-
-If you aren't on an Enterprise or Elite plan,
-you can still improve deliverability with [Sender Policy Framework (SPF)](https://docs.sendgrid.com/ui/account-and-settings/spf-records).
-Add the following `TXT` record to your domain's DNS records:
-
-```txt
->v=spf1 include:sendgrid.net -all
-```
-
-## 3. Test the email service
+## 4. Test the email service
 
 To test the email service, use the [CLI](./cli/_index.md) to connect to your app by running `platform ssh`.
 Run the following command:
@@ -112,7 +109,7 @@ Be careful to test with real email addresses.
 If you send emails to fake domains (such as `example.com`), they fail and hurt your sending reputation.
 Make sure your test emails are deliverable.
 
-## 4. Send email from your app
+## 5. Send email from your app
 
 You can use `/usr/sbin/sendmail` on your app container to send emails as with the example in the previous step.
 Or use the `PLATFORM_SMTP_HOST` environment variable in your SMTP configuration.
