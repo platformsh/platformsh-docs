@@ -4,52 +4,80 @@ title: "Troubleshoot mounts"
 
 {{% troubleshoot %}}
 
-## Set up both public and private file uploads
+## Overlapping folders
 
-The following example sets up two file mounts.
-One is mounted at `/private` within the application container, the other at `/web/uploads`.
-The two file mounts together have a limit of 1024 MB of storage.
+If you have a mount with the same name as a directory you've committed to Git or you create such a directory during the build,
+you get a message like the following:
 
-```yaml
-disk: 1024
+```bash
+W: The mount '/example' has a path that overlaps with a non-empty folder.
+The content of the non-empty folder either comes from:
+- your git repository (you may have accidentally committed files).
+- or from the build hook.
+Please be aware that this content will not be accessible at runtime.
+```
 
+This shows that the files in Git or from your build aren't available after the build.
+The only files that are available are those in your mount.
+
+To make the files available in the mount, move them away and then copy them into the mount:
+
+1. In the `build` hook, use `mv` to move the files to another location.
+
+   ```bash
+   mv example tmp/example
+   ```
+
+2. In the `deploy` hook, use `cp` to copy the files into the mount.
+
+   ```bash
+   cp -r tmp/example example
+   ```
+
+To see the files without copying them, temporarily remove the mount from your app configuration.
+Then SSH into your app and view the files.
+You can then put the mount back in place.
+
+## Mounted files not publicly accessible
+
+If you've set up mounts to handle files like user uploads, you want to make sure the files are accessible.
+Do so by managing their [location](./app-reference.md#locations)
+
+This example defines two mounts, one named `private` and one `upload`:
+
+```yaml {location=".platform.app.yaml"}
 mounts:
     'private':
         source: local
         source_path: private
-    'web/uploads':
+    'uploads':
         source: local
         source_path: uploads
 ```
 
-Then in the `web.locations` block, you'd specify that the `web/uploads` path is accessible.
-For example, this fragment would specify the `/web` path as the root
-but provide a more locked-down access to the `/web/uploads` path.
+With only this definition, their behavior is the same.
+To make `uploads` accessible, define a location with different rules as in the following example:
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 web:
     locations:
         '/':
-            # The public directory of the application relative to its root.
-            root: 'web'
-            # The front-controller script which determines where to send
-            # non-static requests.
+            # Handle dynamic requests
+            root: 'public'
             passthru: '/app.php'
-        # Allow uploaded files to be served, but do not run scripts.
-        '/web/uploads':
-            root: 'web/uploads'
+        # Allow uploaded files to be served, but don't run scripts.
+        '/uploads':
+            root: 'uploads'
             expires: 300s
             scripts: false
             allow: true
 ```
 
-See the [web locations](./app-reference.md) documentation for more details.
-
-## Mount a hidden folder
+## Mounts starting with a dot ignored
 
 Platform.sh ignores YAML keys that start with a dot.
 This causes a mount like `.myhiddenfolder` to be ignored.
-If you want to mount a hidden folder, you have to prepend it with a `/`:
+To mount a directory starting with a dot, put a `/` at the start of its definition:
 
 ```yaml
 mounts:
@@ -58,43 +86,23 @@ mounts:
         source_path: 'myhiddenfolder'
 ```
 
-## Set up overlapping mount paths
+## Disk space issues
 
-While not recommended, it's possible to setup multiple mount points whose source paths overlap.
-Consider the following example:
+If you are worried about how much disk your mounts are using, check the size with the following command:
 
-```yaml
-mounts:
-    'private':
-        source: local
-        source_path: stuff
-    'secret':
-        source: local
-        source_path:  stuff/secret
+```bash
+$ platform mount:size
 ```
 
-In this configuration, there are two mount points as seen from the application: `~/private` and `~/secret`.
-However, the `secret` mount points to a directory that's also under the mount point for `private`.
-So the `secret` path and the `private/secret` path is the exact same directory.
-
-Although this configuration doesn't cause any technical issues, it may be quite confusing so is generally not recommended.
-
-## Check the size of mounts
-
-You can use standard commands such as `df -ah` to find the total disk usage of mounts
-(which are usually all on the same filesystem)
-and `du -hs /path/to/dir` to check the size of individual directories.
-
-The CLI provides a command that combines these checks:
+You see the total size and what's available for each directory:
 
 ```text
-$ platform mount:size
-Checking disk usage for all mounts of the application 'app'...
+Checking disk usage for all mounts on abcdefg123456-main-abcd123--app@ssh.eu.platform.sh...
 +-------------------------+-----------+---------+-----------+-----------+----------+
 | Mount(s)                | Size(s)   | Disk    | Used      | Available | Capacity |
 +-------------------------+-----------+---------+-----------+-----------+----------+
 | private                 | 55.2 MiB  | 1.9 GiB | 301.5 MiB | 1.6 GiB   | 15.5%    |
-| tmp                     | 34.1 MiB  |         |           |           |          |
-| web/sites/default/files | 212.2 MiB |         |           |           |          |
+| tmp                     | 8.3 GiB   | 8.9 GiB | 8.8 GiB   | 93.0 MiB  | 98.8%    |
+| web/sites/default/files | 212.2 MiB | 9.6 GiB | 1.9 GiB   | 7.6 GiB   | 20.3%    |
 +-------------------------+-----------+---------+-----------+-----------+----------+
 ```

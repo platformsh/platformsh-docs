@@ -126,7 +126,8 @@ You need to either increase your plan's storage or decrease the `disk` values yo
 
 ## Mounts
 
-Mounts define directories that are writable even after the build is complete.
+Mounts define directories that are writable after the build is complete.
+They aren't available during the build.
 
 ```yaml {location=".platform.app.yaml"}
 mounts:
@@ -136,7 +137,8 @@ mounts:
 ```
 
 The `<DIRECTORY>` is relative to the app's root.
-If it already exists, its contents are masked by the writable mount and inaccessible at runtime.
+If you already have a directory with that name, you get a warning that it isn't accessible after the build.
+See how to [troubleshoot the warning](./troubleshoot-mounts.md#overlapping-folders).
 
 | Name          | Type                 | Required | Description |
 | ------------- | -------------------- | -------- | ----------- |
@@ -156,7 +158,7 @@ mounts:
 The accessibility to the web of a mounted directory depends on the [`web.locations` configuration](#web).
 Files can be all public, all private, or with different rules for different paths and file types.
 
-Note that mounted directories aren't wiped when they're removed from `.platform.app.yaml`.
+Note that mounted directories aren't deleted when they're removed from `.platform.app.yaml`.
 The files still exist on disk until manually removed.
 
 ## Web
