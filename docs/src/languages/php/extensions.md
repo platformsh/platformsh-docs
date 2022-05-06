@@ -166,9 +166,9 @@ work:
    It can also be added to your Git repository if the file isn't publicly downloadable,
    although committing large binary blobs to Git is generally not recommended.
 
-2. Provide a custom `php.ini` file in the application root (as a sibling of your `.platform.app.yaml` file)
+2. Provide a custom `php.ini` file in [your app root](../../create-apps/app-reference.md#root-directory)
    that loads the extension using an absolute path.
-   For example, if the extension is named `spiffy.so` and is in the root of your application,
+   For example, if the extension is named `spiffy.so` and is in your app root,
    your `php.ini` file includes:
 
    ```ini

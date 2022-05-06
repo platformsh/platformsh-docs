@@ -26,7 +26,7 @@ You could also use [environment variables](../../development/variables/_index.md
 The [`n` package](https://github.com/tj/n) works for various Unix-like systems,
 including Windows Subsystem for Linux.
 
-1. Add the desired Node.js version to a `.nvmrc` file in your project's root:
+1. Add the desired Node.js version to a `.nvmrc` file in [your app root](../../create-apps/app-reference.md#root-directory):
 
    ```yaml {location=".nvmrc"}
    v16.13.2

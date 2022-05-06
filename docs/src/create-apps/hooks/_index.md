@@ -103,7 +103,7 @@ Now that you have Drush configured, use it to get your site ready to handle requ
 Because these steps should be done before the site accepts request, they should be in the `deploy` hook.
 
 1. Move to the right directory.
-   Each hook starts in the app root (usually where your `.platform.app.yaml` file is).
+   Each hook starts in the [app root](../app-reference.md#root-directory).
    To run commands from a different directory, such as the document root for your site,
    you need to change directories:
 
@@ -115,7 +115,7 @@ Because these steps should be done before the site accepts request, they should 
            cd web
    ```
 
-1. Rebuild the cache and update the database.
+2. Rebuild the cache and update the database.
    To ensure your new deployment uses only the latest data,
    run the Drush commands to [rebuild the cache](https://www.drush.org/latest/commands/cache_rebuild/)
    and [update the database](https://www.drush.org/latest/commands/updatedb/):

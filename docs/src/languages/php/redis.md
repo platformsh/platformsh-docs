@@ -14,7 +14,7 @@ Do *not* use this approach unless you really need to.  Using the provided PhpRed
 
 ## Using the Redis builder script
 
-1. Copy the following script into a file named `install-redis.sh` in your application root (as a sibling of your `.platform.app.yaml` file).
+1. Copy the following script into a file named `install-redis.sh` in [your app root](../../create-apps/app-reference.md#root-directory)
 
 ```bash
 run() {
@@ -105,7 +105,7 @@ There is no need to declare the extension in the `runtime` block.  That is only 
 1. Downloads the PhpRedis source code.
 2. Checks out the version specified in the build hook.
 3. Compiles the extension.
-4. Copies the resulting `redis.so` file to your application root.
-5. Adds a line to the `php.ini` file in your application root to enable the extension, creating the file if necessary.
+4. Copies the resulting `redis.so` file to [your app root](../../create-apps/app-reference.md#root-directory).
+5. Adds a line to the `php.ini` file in your app root to enable the extension, creating the file if necessary.
 
 If the script does not find a `$PLATFORM_CACHE_DIR` directory defined, it exits silently.  That means if you run the build hook locally it will have no effect.

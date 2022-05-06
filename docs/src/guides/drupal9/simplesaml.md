@@ -55,7 +55,9 @@ That will map all requests to `example.com/simplesaml/` to the `vendor/simplesam
 
 Your SimpleSAMLphp configuration will need to be outside of the `vendor` directory.  The `composer require` will download a template configuration file to `vendor/simplesamlphp/simplesamlphp/config`.
 
-Rather than modifying that file in place (as it won't be included in Git), copy the `vendor/simplesamlphp/simplesamlphp/config` directory to `simplesamlphp/config` (in your application root).  It should contain two files, `config.php` and `authsources.php`.
+Rather than modifying that file in place (as it isn't be included in Git),
+copy the `vendor/simplesamlphp/simplesamlphp/config` directory to `simplesamlphp/config` (in [your app root](../../create-apps/app-reference.md#root-directory)).
+It should contain two files, `config.php` and `authsources.php`.
 
 Additionally, create a `simplesamlphp/metadata` directory.  This directory will hold your IdP definitions.  Consult the SimpleSAMLphp documentation and see the examples in `vendor/simplesamlphp/simplesamlphp/metadata-templates`.
 

@@ -14,7 +14,7 @@ variables:
         memory_limit: "256M"
 ```
 
-It's also possible to provide a custom `php.ini` file in the repository in the root of the application (where your `.platform.app.yaml` file is).
+It's also possible to provide a custom `php.ini` file in the repository in [your app root](../../create-apps/app-reference.md#root-directory).
 
 ```ini
 ; php.ini

@@ -27,7 +27,10 @@ In this example, we use Gunicorn to run our WSGI application.  Configure the `.p
 
     {{< readFile file="/registry/images/examples/full/python.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
-2. Build your application with the build hook. Assuming you have your pip dependencies stored in `requirements.txt` and a `setup.py` at the root of your application folder to execute build steps:
+2. Build your application with the build hook.
+   Assuming you have your pip dependencies stored in `requirements.txt`
+   and a `setup.py` at [your app root](../create-apps/app-reference.md#root-directory),
+   create a hook like the following:
 
    ```yaml
    hooks:
