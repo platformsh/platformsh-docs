@@ -5,7 +5,7 @@ description: Start with a basic PHP app with a front controller for dynamic requ
 ---
 
 To handle dynamic requests to your PHP app, you might want use a [front controller](https://en.wikipedia.org/wiki/Front_controller).
-The following example shows how you might start defining your web server for such an application.
+The following example shows how for such an app you might start defining [your web server](../app-reference.md#web).
 
 ## Define a document root
 

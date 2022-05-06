@@ -11,7 +11,7 @@ As an example, this documentation is built using a tool called Hugo and served b
 You can see the [entire repository on GitHub](https://github.com/platformsh/platformsh-docs),
 including its [app configuration](https://github.com/platformsh/platformsh-docs/blob/main/docs/.platform.app.yaml).
 
-The following example goes through serving a basic static site.
+The following example goes through setting up Platform.sh for a basic static site [web server](../app-reference.md#web).
 
 ## Define the location of the static files
 
