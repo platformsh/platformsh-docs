@@ -89,6 +89,8 @@ https://{default}/:
       "/frameworks/(?!deploy|drupal)(.*).html":  { "to": "/guides/$1/deploy.html", "code": 301, "regexp": true }
       "/frameworks/ibexa/fastly.html":  { "to": "/guides/ibexa/fastly.html", "code": 301, "prefix": false }
 
+      "/configuration/app/web.html#how-can-i-rewrite-an-incoming-request-without-a-redirect":   { "to": "/create-apps/web/rewrite-requests.html", "code": 301, "prefix": false }
+      
       # Navigation restructure in April 2021
       "/configuration/app-containers.html": { "to": "/create-apps/app-reference.html", "code": 301, "prefix": false }
       "/configuration/app/access.html": { "to": "/create-apps/app-reference.html#access", "code": 301, "prefix": false }

@@ -205,7 +205,7 @@ description: |
 
 * **June 2017**
   * Memcache 1.4: [Memcache 1.4](../add-services/memcached.md) is now available as a caching backend.
-  * Custom static headers in `.platform.app.yaml`: Added support for setting custom headers for static files in `.platform.app.yaml`. [See the example](../create-apps/web.md#how-can-i-control-the-headers-sent-with-my-files) for more information.
+  * Custom static headers in `.platform.app.yaml`: Added support for setting custom headers for static files in `.platform.app.yaml`. [See the example](../create-apps/web/custom-headers.md) for more information.
 ---
 
 * **May 2017**
