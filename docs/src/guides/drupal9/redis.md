@@ -32,8 +32,6 @@ composer require drupal/redis
 
 Then commit the resulting changes to your `composer.json` and `composer.lock` files.
 
-Note that the Redis module does not need to be enabled in Drupal except for diagnostic purposes.  The configuration below is sufficient to make use of its functionality.
-
 ## Configuration
 
 Place the following at the end of `settings.platformsh.php`. Note the inline comments, as you may wish to customize it further.  Also review the `README.txt` file that comes with the Redis module, as it has a great deal more information on possible configuration options. For instance, you may wish to not use Redis for the persistent lock if you have a custom module that needs locks to persist for more than a few seconds.
@@ -76,8 +74,8 @@ if ($platformsh->hasRelationship('rediscache') && !\Drupal\Core\Installer\Instal
   // Allow the services to work before the Redis module itself is enabled.
   $settings['container_yamls'][] = 'modules/contrib/redis/redis.services.yml';
 
-  // Manually add the classloader path, this is required for the container cache bin definition below
-  // and allows to use it without the redis module being enabled.
+  // Manually add the classloader path, this is required for the container
+  // cache bin definition below.
   $class_loader->addPsr4('Drupal\\redis\\', 'modules/contrib/redis/src');
 
   // Use redis for container cache.
