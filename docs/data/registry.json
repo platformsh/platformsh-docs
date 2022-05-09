@@ -519,6 +519,31 @@
       "supported": []
     }
   },
+  "mongodb-enterprise": {
+    "description": "Support for the enterprise edition of MongoDB",
+    "repo_name": "mongodb",
+    "disk": true,
+    "docs": {
+      "relationship_name": "mongodatabase",
+      "service_name": "dbmongo",
+      "url": "/add-services/mongodb.html"
+    },
+    "endpoint": "mongodb",
+    "min_disk_size": 512,
+    "name": "MongoDB",
+    "runtime": false,
+    "type": "mongodb-enterprise",
+    "versions": {
+      "deprecated": [],
+      "supported": []
+    },
+    "versions-dedicated": {
+      "supported": [
+        "5.0"
+      ],
+      "deprecated": []
+    }
+  },
   "network-storage": {
     "description": "",
     "repo_name": "network-storage",

@@ -17,9 +17,19 @@ sidebarTitle: "MongoDB"
 
 ## Supported versions
 
-We're working on adding more versions.
-Alternative versions are available in your projects (and are listed below)
- but they are at their [end of life](https://www.mongodb.com/support-policy) and are no longer receiving security updates from upstream. 
+### Enterprise edition
+
+{{< add-on-feature feature="MongoDB Enterprise" >}}
+
+| **Grid** | **Dedicated** | **Dedicated Generation 3** |
+|----------------------------------|---------------|---------------|
+|  {{< image-versions image="mongodb-enterprise" status="supported" environment="grid" >}} | {{< image-versions image="mongodb-enterprise" status="supported" environment="dedicated" >}} | {{< image-versions image="mongodb-enterprise" status="supported" environment="dedicated-gen-3" >}} |
+
+### Legacy edition
+
+Previous non-Enterprise versions are available in your projects (and are listed below),
+but they're at their [end of life](https://www.mongodb.com/support-policy/legacy)
+and are no longer receiving security updates from upstream.
 
 {{< note >}}
 
@@ -42,6 +52,12 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../
 {{< relationship "mongodb" >}}
 
 ## Usage example
+
+### Enterprise edition example
+
+{{% endpoint-description type="mongodb-enterprise" php=true noApp=true /%}}
+
+### Legacy edition example
 
 {{% endpoint-description type="mongodb" php=true /%}}
 

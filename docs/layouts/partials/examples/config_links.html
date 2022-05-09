@@ -1,6 +1,6 @@
 <!-- Add additional configuration for specific services in PHP and Python-->
 {{ $l1 := "" }}
-{{ $php_types := slice "memcached" "mongodb" "postgresql" "redis" "redis-persistent" }}
+{{ $php_types := slice "memcached" "mongodb" "mongodb-enterprise" "postgresql" "redis" "redis-persistent" }}
 <!-- Display PHP extensions if necessary and not in a context for only a different language -->
 {{ if and ( in $php_types .type ) ( or ( not .onlyLanguage ) ( eq .onlyLanguage "php" ) ) }}
   {{ $extension_name := .type}}
