@@ -150,7 +150,7 @@ Your environments can have one of two statuses:
 
 You can see an environment's status in multiple ways:
 
-* In the console:
+* [In the console](../administration/web/configure-environment.md):
   * Inactive environments are lighter in the environment list and don't appear in the environment selector.
   * Open an environment to see its status in the information panel.
 * Using the CLI:
