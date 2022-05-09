@@ -1,7 +1,8 @@
+{{ $feature := .Get "feature" }}
 <div class="alert alert-pshtieredfeature">
 
   <p><strong>Premium feature</strong></p>
 
-  <p>{{ .Get "feature" }} isn&apos;t included in any Platform.sh plan. You need to add it separately at an additional cost.</p>
+  <p>{{ $feature }} isn&apos;t included in any Platform.sh plan. You need to add it separately at an additional cost. To add {{ $feature }}, <a href="https://platform.sh/contact/">contact Sales</a>.</p>
 
   </div>
