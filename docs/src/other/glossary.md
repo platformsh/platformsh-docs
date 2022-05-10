@@ -31,6 +31,49 @@ When you branch an environment, three things happen:
   (This is skipped if the same code with the same [variables](../development/variables/_index.md) has been built for any environment.)
 * The new branch is deployed.
 
+To create a new branch from an existing environment:
+
+
+{{< codetabs >}}
+
+---
+title=In the Console
+file=none
+highlight=false
+---
+
+<!--This is in HTML to get the icon not to break the list. -->
+<ol>
+  <li>Navigate to the environment you want to branch from.</li>
+  <li>Click {{< icon branch >}} <strong>Branch</strong>.</li>
+  <li>Enter a name for the new branch.</li>
+  <li>Select which environment type it should be.</li>
+  <li>Click <strong>Create branch</strong>.</li>
+</ol>
+
+<--->
+---
+title=Using the CLI
+file=none
+highlight=false
+---
+
+Run:
+
+```bash
+platform branch <NEW_BRANCH_NAME> <PARENT_BRANCH_NAME>
+```
+
+To define the environment type for the branch, include `--type <ENVIRONMENT_TYPE>`.
+
+For example, to create the branch `develop` as a Development environment from the branch `main`, run:
+
+```bash
+platform branch develop main --type development
+```
+
+{{< /codetabs >}}
+
 ## Cluster
 
 Every active environment is deployed as a cluster,
