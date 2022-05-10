@@ -22,13 +22,6 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 
 ## Supported versions
 
-<!--
-To update the versions in this table, use docs/data/registry.json
--->
-| **Grid** | **Dedicated** | **Dedicated Generation 3** |
-|----------------------------------|---------------|---------------|
-|  {{< image-versions image="elasticsearch" status="supported" environment="grid" >}} | {{< image-versions image="elasticsearch" status="supported" environment="dedicated" >}} | {{< image-versions image="elasticsearch" status="supported" environment="dedicated-gen-3" >}} |
-
 {{< image-versions-legacy "elasticsearch" >}}
 
 Due to a licensing change, Elasticsearch versions after 7.10 aren't supported.
