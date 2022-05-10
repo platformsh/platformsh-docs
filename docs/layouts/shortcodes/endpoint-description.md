@@ -3,12 +3,16 @@
 {{ $onlyLanguage := .Get "onlyLanguage" }}
 {{ $sectionLink := .Get "sectionLink" }} <!-- The section of the page with more detail. -->
 {{ $multipleText := .Get "multipleText" }} <!-- What the explicit endpoints define (what is multiple). -->
+{{ $headerLevel := "###" }}
+{{ if in $type "mongodb" }}
+  {{ $headerLevel = "####" }}
+{{ end }}
 
 <!-- Get registry data for the service type. -->
 
 {{ $data := index .Site.Data.registry ( $type ) }}
 
-### 1. Configure the service
+{{ $headerLevel }} 1. Configure the service
 
 <!-- Clarify the `type` that should be used. -->
 <!-- mysql.md is special, so change the sentence slightly to show all `type`s for the single endpoint. -->
@@ -36,7 +40,7 @@ Persistent Redis requires a disk to store data.
 <!-- Extra text to explain service configuration -->
 {{ .Inner }}
 
-### 2. Add the relationship
+{{ $headerLevel }} 2. Add the relationship
 
 <!-- Network storage services are different and handled below -->
 {{ if ne $type "network-storage" }}
@@ -102,7 +106,7 @@ mounts:
 <!-- Add example heading for all but MariaDB/Oracle MySQL and Redis, which need two -->
 {{ $skip_heading := slice "mariadb" "redis"}}
 {{ if not (in $skip_heading $type) }}
-### Example Configuration
+{{ $headerLevel }} Example Configuration
 {{ end }}
 
 {{ partial "examples/config_links" ( dict "type" $type "onlyLanguage" $onlyLanguage ) }}
