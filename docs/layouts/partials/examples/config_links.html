@@ -4,6 +4,9 @@
 <!-- Display PHP extensions if necessary and not in a context for only a different language -->
 {{ if and ( in $php_types .type ) ( or ( not .onlyLanguage ) ( eq .onlyLanguage "php" ) ) }}
   {{ $extension_name := .type}}
+  {{ if eq .type "mongodb-enterprise" }}
+    {{ $extension_name = "mongodb" }}
+  {{ end }}
   {{ if eq (.type) "postgresql" }}
    {{ $extension_name = "pdo_pgsql" }}
   {{ end }}
