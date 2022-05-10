@@ -10,7 +10,7 @@ without having to install tools (such as the Platform.sh CLI) on your machine.
 It's maintained by a community of developers and is a viable option for most Platform.sh projects.
 
 This guide assumes you have a project already running within Platform.sh.
-If you're starting from scratch, first [create a project from a template](https://console.platform.sh/projects/create-project/template).
+If you're starting from scratch, first [create a project from a template]({{% create-project-link template=true %}}).
 
 ## Before you begin
 
