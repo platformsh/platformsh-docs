@@ -449,7 +449,7 @@ which is a requirement for the router caching.
                    enabled: false
     ```
 
-## `.htacess` files
+## `.htaccess` files
 
 `.htaccess` files are ignored on Platform.sh.
 Accomplish the same goals with routes, logic in your app, and [web server locations](../create-apps/web/_index.md).
