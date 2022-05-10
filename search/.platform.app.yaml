@@ -27,6 +27,15 @@ web:
 # The size of the persistent disk of the application (in MB).
 disk: 2048
 
+crons:
+    indexExternalSites:
+        # Run at 06:00 UTC every day
+        spec: '0 6 * * *'
+        commands:
+            start: !include
+                type: string
+                path: index_external_sites.sh
+
 mounts:
     "data.ms":
         source: local
