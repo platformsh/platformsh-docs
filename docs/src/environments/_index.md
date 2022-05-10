@@ -138,3 +138,22 @@ Staging
   Developer2
     Ticket-395
 ```
+
+## Environment status
+
+Your environments can have one of two statuses:
+
+* [Active](../other/glossary.md#active-environment):
+  A deployed environment with services and data.
+* [Inactive](../other/glossary.md#inactive-environment):
+  An environment that isn't deployed and has no services or data, only code.
+
+You can see an environment's status in multiple ways:
+
+* [In the console](../administration/web/configure-environment.md):
+  * Inactive environments are lighter in the environment list and don't appear in the environment selector.
+  * Open an environment to see its status in the information panel.
+* Using the CLI:
+  * Run `platform environments --project <PROJECT_ID` or just `platform` within a project directory.
+
+See how to [change an environment's status](./deactivate-environment.md)
