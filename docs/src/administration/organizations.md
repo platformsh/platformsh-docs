@@ -71,16 +71,17 @@ highlight=false
 As an organization owner or an organization user with the **Users** permission,
 you can invite other users to your organization and grant them the following permissions:
 
-* **Manage plans** (`plans`):
-  Add, remove, and edit plans and plan options for your existing projects.
-  (Change plan, change storage, change the number of environments, change the number of user licenses)
-* **Manage billing** (`billing`):
+* **Billing** (`billing`):
   Add, remove and edit billing information.
   Access invoices and vouchers.
-* **Create projects** (`projects:create`):
-  Create new projects within the organization.
+* **Plans** (`plans`):
+  Add, remove, and edit plans and plan options for your existing projects.
+  (Change plan, change storage, change the number of environments, change the number of user licenses)
 * **Users** (`members`):
   Add, remove, and edit organization-level users and permissions, including your own.
+* **Create projects** (`projects:create`):
+  Create new projects within the organization.
+
 
 {{< note theme="warning" >}}
 
