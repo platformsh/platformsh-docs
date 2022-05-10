@@ -37,6 +37,12 @@ Any change to the service version results in existing data becoming inaccessible
 
 {{< /note >}}
 
+{{% deprecated-versions %}}
+
+| Grid | Dedicated | Dedicated Generation 3 |
+| ---- | --------- | ---------------------- |
+|  {{< image-versions image="network-storage" status="deprecated" environment="grid" >}} | {{< image-versions image="network-storage" status="deprecated" environment="dedicated" >}} | {{< image-versions image="network-storage" status="deprecated" environment="dedicated-gen-3" >}} |
+
 {{% legacy-regions featureIntro="The Network Storage service" featureShort="the service" %}}
 
 ## Usage example
