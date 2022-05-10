@@ -559,9 +559,11 @@
     "runtime": false,
     "type": "network-storage",
     "versions": {
-      "deprecated": [],
-      "supported": [
+      "deprecated": [
         "1.0"
+      ],
+      "supported": [
+        "2.0"
       ]
     },
     "versions-dedicated-gen-3": {

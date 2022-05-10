@@ -28,9 +28,6 @@ If your app does this regularly, a local mount is more effective.
 {{< image-versions-legacy "network-storage" >}}
 
 This service is the Platform.sh network storage implementation, not to a version of a third-party application.
-Version 2.0 isn't recommended for the Grid.
-You should use version 1.0 unless you are a [Dedicated Generation 3](../dedicated-gen-3/overview.md) user.
-Dedicated Generation 3 users can use version 2.0 even on their Development environments.
 
 {{< note theme="warning">}}
 
