@@ -534,8 +534,10 @@
     "runtime": false,
     "type": "mongodb-enterprise",
     "versions": {
-      "deprecated": [],
-      "supported": []
+      "supported": [
+        "5.0"
+      ],
+      "deprecated": []
     },
     "versions-dedicated": {
       "supported": [
