@@ -14,7 +14,6 @@ jobs:
     - name: Vale
       uses: errata-ai/vale-action@reviewdog
       with:
-        fail_on_error: true
         reporter: github-check
         # Switch to the following when the number of errors goes down
         # It will check entire files for issues
