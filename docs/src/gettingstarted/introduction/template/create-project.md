@@ -26,7 +26,7 @@ Since you do not yet have any projects on Platform.sh, the first thing you will 
 
 3. **Template**
 
-  Now you will be able to see the large collection of Platform.sh's supported templates. There are several types of templates available, including simple language-specific examples, ready-to-use frameworks you can build upon, and setapplications you can start using immediately after installation.
+  Now you will be able to see the large collection of Platform.sh's supported templates. There are several types of templates available, including language-specific examples, ready-to-use frameworks you can build upon, and set applications you can start using immediately after installation.
 
   If you are more comfortable with a particular language, click the dropdown labeled `All languages`. Select a language and the template list will update.
 

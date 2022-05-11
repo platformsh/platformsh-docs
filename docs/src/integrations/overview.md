@@ -55,7 +55,7 @@ The integration is valid.
 
 When integrations run, they trigger "activities."  Activities are actions that happen on Platform.sh, and they get logged.
 
-Usually these are triggered nearly instantenously on the webhook endpoint. These activities may be delayed due to the external services having latency.
+Usually these are triggered nearly instantaneously on the webhook endpoint. These activities may be delayed due to the external services having latency.
 
 Those logs are available via the CLI.  In most cases they are not necessary but may be useful for debugging an integration if it is misbehaving for some reason.
 
