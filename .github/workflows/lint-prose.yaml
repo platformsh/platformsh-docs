@@ -1,41 +1,25 @@
 name: Linting
 on:
-  workflow_run:
-    workflows: [Get info on PR]
-    types:
-      - completed
+  push:
+    branches-ignore:
+      - main
 
 jobs:
   prose:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@master
-
-    - name: Download info on PR
-      uses: dawidd6/action-download-artifact@v2
-      with:
-        workflow: get-pr-info.yaml
-        workflow_conclusion: success
-        name: pr-info
-
-    - name: Get PR number
-      id: pr_number
-      run: echo "::set-output name=pr_number::$(cat pr_number.txt)"
-
-    - name: Get PR SHA
-      id: pr_sha
-      run: echo "::set-output name=pr_sha::$(cat pr_sha.txt)"
+      uses: actions/checkout@v3
 
     - name: Vale
-      uses: errata-ai/vale-action@ff9447943c1cad0f45649b630e29112511f80e5a
+      uses: errata-ai/vale-action@reviewdog
       with:
-        # Switch to this when the number of errors goes down
-        # files: __onlyModified
+        fail_on_error: true
+        reporter: github-check
+        # Switch to the following when the number of errors goes down
+        # It will check entire files for issues
+        # filter_mode: file
         # For now, only lint modified lines
-        onlyAnnotateModifiedLines: true
+        filter_mode: added
       env:
-        # Required
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        OVERRIDE_GITHUB_SHA: ${{ steps.pr_sha.outputs.pr_sha }}
-        OVERRIDE_PR_NUMBER: ${{ steps.pr_number.outputs.pr_number }}
