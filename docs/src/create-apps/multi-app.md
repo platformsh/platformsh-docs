@@ -1,102 +1,164 @@
 ---
-title: "Multiple applications"
+title: Multiple apps in a single project
+sidebarTitle: Multiple apps
+description: Create multiple apps within a single project, such as a CMS backend connected to a frontend to display it.
 ---
 
-Platform.sh supports building multiple applications per project
-(for example RESTful web services with a front-end, or a main website and a blog).
-For resource allocation reasons, however, that is not supported on Standard plan.
+You might have multiple apps that are closely related.
+For example, you might have a CMS backend for your content or other APIs and a frontend to display it all.
+In such cases, you can create multiple apps within a single project so they can share data.
+
+Note that to have enough resources to support multiple apps, you need at least a [Medium plan](../overview/pricing/_index.md).
 
 {{< note >}}
 
 This page only applies to Grid projects.
-Contact your sales representative for advanced Dedicated environment configurations.
+To set up multiple apps in Dedicated environments, contact your sales representative.
 
 {{< /note >}}
 
+No matter how many apps you have in one project, they're all served by a single [router for the project](#routes).
+To let your apps talk to one another, create [relationships among them](#relationships).
+Each app separately defines its relationships to [services](../add-services/_index.md).
+So apps can share services or have their own.
+
+![A diagram showing the router directing traffic form the default domain to one app with services and traffic to the API at the domain to a different app with no services](/images/config-diagrams/multiple-applications.png "0.5")
+
 ## Project structure
 
-There are multiple ways to structure such a project, depending on the way your source code is organized and what your goal is.
-All of these approaches may be used within a single project simultaneously,
-although it is often easier to maintain if you settle on just one approach for a given project.
+How you structure a project with multiple apps depends on how your code is organized
+and what you want to accomplish.
 
-![Multi-app](/images/config-diagrams/multiple-applications.png "0.5")
+The following table presents some example use cases and potential ways to organize the project:
 
-### Discrete code bases
+| Use case | Structure |
+| -------- | --------- |
+| Separate basic apps that are worked on together | [Separate code in one repository](#separate-code-bases-in-one-repository) |
+| One app depends on code from another app | [Nested directories](#nested-directories) |
+| You want to keep configuration separately from the code, such as through Git submodules | [Configuration separate from code](#configuration-separate-from-code-git-submodules) |
+| You want multiple apps from the same source code | [Unified app configuration](#unified-app-configuration) |
+| You want to control all apps in a single location | [Unified app configuration](#unified-app-configuration) |
 
-If your project consists of a discrete code base for each application,
-the most straightforward approach is to put both code bases into a single project repository in separate directories.
-Each has its own `.platform.app.yaml` file,
-which defines how that particular application gets built, using the code in that directory.
+### Separate code bases in one repository
 
-For example, if you have a Drupal back end with an AngularJS front end you could organize the repository like this:
+If your project consists of a discrete code base for each app,
+the most straightforward approach is to put each code base in a separate directory within your repository.
+Each has its own [`.platform.app.yaml` file](../create-apps/_index.md),
+which defines the configuration for that app.
+The directory with the `.platform.app.yaml` file acts as the root directory for that app.
 
-```bash
-.git/
-.platform/
-drupal/
-  .platform.app.yaml
-  ...
-angular/
-  .platform.app.yaml
+For example, if you have a Drupal backend with a React frontend, you could organize the repository like this:
+
+```txt
+├── drupal
+│   ├── .platform.app.yaml  <- Drupal app configuration
+│   └── ...                 <- Drupal app code
+├── .platform
+│   └── routes.yaml
+└── react
+   ├── .platform.app.yaml  <- React app configuration
+   └── ...                 <- React app code
 ```
 
-Each `.platform.app.yaml` file will define a single application container, and build code in that directory.
-The `.platform` directory is outside of all of them and still defines additional services you require, as well as routes.
+Each `.platform.app.yaml` file defines a single app container,
+with its configuration relative to the directory with the file.
+The apps can talk to each other through relationships defined in their configuration.
+If you change the code for only one app, the build image for the other can be reused.
 
-Note that disk paths in the `.platform.app.yaml` file are relative to the directory where that file lives by default.
+The `.platform` directory is outside of all the apps and defines all routes and any services.
 
-This is the recommended approach for most configurations.
+### Nested directories
 
-### Explicit `source.root`
+When code bases are separate, changes to one app don't necessarily mean that another is rebuilt.
+You might have a situation where one app depends on another, but the second doesn't depend on the first.
+In such cases, you can nest the dependency so the parent gets rebuilt on changes to it or its children,
+but the child is only rebuilt on changes to itself.
 
-As an alternative, you may specify a `source.root` key in a `.platform.app.yaml` file
-to override the "application root is where the file is" logic. 
-The `.platform.app.yaml` file may then live anywhere in the repository but use code from another directory.
-Two separate `.platform.app.yaml` files may refer to the same directory if desired.
+For example, you might have a Python app that runs a script that requires Java code to be up to date.
+But the Java app doesn't require updating when the Python app is updated.
+In that case, you can nest the Java app within the Python app:
 
-For example:
+```txt
+├── languagetool
+│   ├── .platform.app.yaml  <- Java app configuration
+│   └── main.java           <- Java app code
+├── main.py                 <- Python app code
+├── .platform
+│   └── routes.yaml
+└── .platform.app.yaml      <- Python app configuration
+```
 
-```yaml
-# .platform.app.yaml
+The Python app's code base includes all of the files at the top level (excluding the `.platform` directory)
+*and* all of the files within the `languagetool` directory.
+The Java app's code base includes only files within the `languagetool` directory.
 
+### Configuration separate from code (Git submodules)
+
+You can also keep your app configuration completely separate from the code.
+For example, if you have different teams working on different code with different processes,
+you might want each app to have its own repository.
+Then you can build them together in another repository using [Git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
+
+In this setup, your app configuration has to be in the top repository, not in a submodule.
+In this case, and any other case where you want the configuration to be separate from the code,
+you need to specify the code root in the configuration file.
+
+So your project repository might look like this:
+
+```text
+├── app1
+│   ├── .platform.app.yaml  <- App 1 configuration
+│   └── app1-submodule
+|       └── ...             <- App 1 code from submodule
+├── app2
+│   ├── .platform.app.yaml  <- App 2 configuration
+│   └── app2-submodule
+|       └── ...             <- App 2 code from submodule
+└── .gitmodules
+└── .platform
+    └── routes.yaml
+```
+
+Your `.gitmodules` file would define both submodules:
+
+```txt {location=".gitmodules"}
+[submodule "app1"]
+    path = app1/app1-submodule
+    url = https://github.com/your-org/app1
+[submodule "app2"]
+    path = app2/app2-submodule
+    url = https://github.com/your-org/app2
+```
+
+So the app configuration files would be outside the directory of the app.
+Then in each `.platform.app.yaml` file, specify a `source.root` key to define its root directory.
+For example, for `app1`, it could include the following:
+
+```yaml {location="app1/.platform.app.yaml"}
 source:
-    root: restapp
+    root: app1/app1-submodule
 ```
 
-```bash
-.platform/
-main/
-    .platform.app.yaml
-.platform.app.yaml
-restapp/
-    # Your code here
-```
-
-In this case, the `.platform.app.yaml` file in `main` does not specify a `source.root`,
-and so will be built from the code in `main`.
-The top-level `.platform.app.yaml` includes the YAML fragment above.
- It will get built using the code in `restapp`, as if it were in that directory.
-
-Note that disk parameters in the `.platform.app.yaml` file will be relative to the `source.root` directory if specified.
 The `source.root` path is relative to the repository root.
+Now the `app1` app treats the `app1/app1-submodule` directory as its root when building.
+You could do the same for `app2`.
 
-The primary use case for this configuration is
-if the source code is pulled in as a [Git submodule](#submodules) or downloaded during the build phase.
+If `source.root` isn't specified, it defaults to the same directory as the file itself.
 
-### `applications.yaml`
+### Unified app configuration
 
-It is possible to define an application in a `.platform/applications.yaml` file rather than in discrete `.platform.app.yaml` files.
-The syntax is nearly identical, but the `source.root` key is required.
-The `applications.yaml` file is then a YAML array of application definitions.
+Rather than defining configuration for each app separately, you can also do it all within a single file.
+Create an `applications.yaml` file within the `.platform` directory and define each app as a key.
+Since your code lives in a different directory,
+define the root directory for each app with the `source.root` for that app.
 
-For example, the following `.platform/applications.yaml` file defines three applications:
+For example, the following configuration defines three apps:
 
-```yaml
-# .platform/applications.yaml
+```yaml {location=".platform/applications.yaml"}
 -   name: api
-    type: golang:1.14
+    type: golang:1.18
     source:
-        root: apiapp
+        root: api-app
     hooks:
         build: |
             go build -o bin/app
@@ -109,9 +171,9 @@ For example, the following `.platform/applications.yaml` file defines three appl
                 passthru: true
 
 -   name: main
-    type: "php:7.4"
+    type: php:8.1
     source:
-        root: mainapp
+        root: main-app
     web:
         locations:
             "/":
@@ -119,10 +181,9 @@ For example, the following `.platform/applications.yaml` file defines three appl
                 passthru: "/index.php"
 
 -   name: admin
-    type: "php:7.4"
-    size: S
+    type: php:8.1
     source:
-        root: mainapp
+        root: main-app
     web:
         locations:
             "/":
@@ -130,139 +191,85 @@ For example, the following `.platform/applications.yaml` file defines three appl
                 passthru: "/admin.php"
 ```
 
-In this example, the `apiapp` directory will get built as a Go application
-while the `mainapp` directory will get built as two separate PHP applications,
-even though none of those directories has a `.platform.app.yaml` file.
-The two PHP applications will use the same source code,
-but have different front controllers for the `admin` and `main` applications.
-The `admin` instance will also be fixed at an `S` size container, while `main` will scale freely.
+The `api` app is built from the `api-app` directory.
+Both the `main` and `admin` apps are built from the `main-app` directory,
+but they have different configurations for how they serve the files.
 
-The primary use case for this configuration is defining multiple applications with different configuration off of the same source code
-or when the source code is downloaded during the build phase.
+This allows you to control all your apps in one place and even build multiple apps from the same source code.
 
-## Submodules
+## Routes
 
-Platform.sh supports Git submodules, so each application can be in a separate repository.
-However, there is currently a notable limitation: the `.platform.app.yaml` files must be in the top-level repository.
-That means the project must be structured like this:
+All of your apps are served by a single [router for the project](../define-routes/_index.md).
+Each of your apps must have a `name` that's unique within the project.
+Use the `name` to define the specific routes for that app.
 
-```text
-.git/
-.platform/
-    routes.yaml
-    services.yaml
-app1/
-    .platform.app.yaml
-    app1-submodule/
-        <CODE_FROM_SUBMODULE>
-app2/
-    .platform.app.yaml
-    app2-submodule/
-        <CODE_FROM_SUBMODULE>
+### Routes example
+
+Assume you have an app for a CMS and another app for the frontend defined as follows:
+
+```yaml {location=".platform/applications.yaml"}
+-   name: cms
+    type: php:8.1
+    source:
+        root: drupal
+    ...
+
+-   name: frontend
+    type: nodejs:16
+    source:
+        root: react
+    ...
 ```
 
-This puts your applications' files at a different path relative to your `.platform.app.yaml` files.
-The recommended way to handle that is to specify a `source.root` key in the `.platform.app.yaml` file
-and have it reference the submodule directory.
+You could then define routes for your apps as follows:
 
-## Multi-app Routes
-
-Every application, however it is defined, must have a unique `name` property.
-The `routes.yaml` file may then refer to that application by name as an `upstream` for whatever route is appropriate.
-
-For example, assuming this configuration from above:
-
-```bash
-.git/
-.platform/
-drupal/
-  .platform.app.yaml
-  ...
-angular/
-  .platform.app.yaml
-```
-
-The `.platform/routes.yaml` file can be structured like this:
-
-```yaml
+```yaml {location=".platform/routes.yaml"}
 "https://backend.{default}/":
     type: upstream
-    upstream: "drupal:http"
+    upstream: "cms:http"
 "https://{default}/":
     type: upstream
-    upstream: "angular:http"
+    upstream: "frontend:http"
 ```
 
-(This assumes your Drupal application is named `drupal` and your Angular front-end is named `angular`.)
+So if your default domain is `example.com`, that means:
 
-Assuming a domain name of `example.com`, that will result in:
+* `https://backend.example.com/` is served by your CMS app.
+* `https://example.com/` is served by your frontend app.
 
-* `https://backend.example.com/` being served by the Drupal instance.
-* `https://example.com/` being served by the AngularJS instance.
-
-There is no requirement that an application be web-accessible.
-If it is not specified in `routes.yaml` then it will not be web-accessible at all.
-However, if you are building a non-routable application off of the same code base as another application,
-you should probably consider defining it as a [`worker`](./app-reference.md#workers) instead.
-The net result is the same but it is much easier to manage.
+You don't need to define a route for each app.
+If an app isn't specified, then it isn't accessible to the web.
+You can achieve the same thing by defining the app as  [`worker`](./app-reference.md#workers).
 
 ## Relationships
 
-In a multi-app configuration, applications by default cannot access each other.
-However, they may declare a `relationships` block entry that references another application rather than a service.
-In that case the endpoint is `http`.
+By default, your apps can't communicate with one another.
+To enable connections, define a relationship to another app using the `http` endpoint.
 
-However, be aware that circular relationships are not supported.
-That is, application A cannot have a relationship to application B if application B also has a relationship to application A.
-Such circular relationships are usually a sign that the applications should be coordinating through a shared data store,
-like a database, [RabbitMQ server](../add-services/rabbitmq.md), or similar.
+You can't define circular relationships.
+If `app1` has a relationship to `app2`, then `app2` can't have a relationship to `app1`.
+If you need data to go both ways, consider coordinating through a shared data store,
+like a database or [RabbitMQ server](../add-services/rabbitmq.md).
 
-**Example:**
+Relationships between apps use HTTP, not HTTPS.
+This is still secure because they're internal and not exposed to the outside world.
 
-You have 2 applications, `app1` and `app2`. `app1` wants to connect to `app2`
-(for instance, if `app2` is a backend data API service).
-In `app1/.platform.app.yaml` you would make a relationship to `app2` like so:
+### Relationships example
 
-```yaml
+Assume you have 2 applications, `main` and `api`.
+`main` needs data from `api`.
+
+In your app configuration for `main`, define a relationship to `api`:
+
+```yaml {location="main/.platform.app.yaml"}
 relationships:
-    app2: "app2:http"
+    api: "api:http"
 ```
 
-Once committed and rebuilt, you will be able to access `app2` from `app1` via the URL `http://app2.internal`,
-(e.g `curl http://app2.internal`).
-The relationships array will be updated within the `app1` container for the newly available `app2` relationship:
+Once they're both built, `main` can now access `api` at the URL `http://api.internal`.
+The specific URL is always available through the [`PLATFORM_RELATIONSHIPS` variable](../development/variables/use-variables.md#use-platformsh-provided-variables):
 
 ```bash
-$ echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq
-{
-  "app2": [
-    {
-      "username": null,
-      "scheme": "http",
-      "service": "app2",
-      "fragment": null,
-      "ip": "169.254.254.97",
-      "hostname": "yk4cdhknk6uqy7x2wdtyueqtei.app2.service._.eu-3.platformsh.site",
-      "public": false,
-      "cluster": "bt3bfggvvcqzg-main-7rqtwti",
-      "host": "app2.internal",
-      "rel": "http",
-      "query": {},
-      "path": null,
-      "password": null,
-      "type": "nodejs:14",
-      "port": 80,
-      "host_mapped": false
-    }
-  ]
-}
+$ echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq `.api[0].host`
+api.internal
 ```
-
-Like all other relationships, `app2` will not be available to `app1` until after the build process has completed. 
-
-{{< note >}}
-
-Note the `http`.
-The relationship is created within the internal network over port 80. HTTPS is not supported.
-
-{{< /note >}}
