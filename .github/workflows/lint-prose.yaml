@@ -15,10 +15,8 @@ jobs:
       uses: errata-ai/vale-action@reviewdog
       with:
         reporter: github-check
-        # Switch to the following when the number of errors goes down
-        # It will check entire files for issues
-        # filter_mode: file
-        # For now, only lint modified lines
-        filter_mode: added
+        files: docs/src
+        filter_mode: file
+        level: info
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
