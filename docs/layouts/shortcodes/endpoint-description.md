@@ -34,7 +34,8 @@ Or the `redis-persistent` type for persistent Redis:
   {{ partial "examples/servicedefn" $redis_data }}
 
 Persistent Redis requires a disk to store data.
-
+{{ else if eq $type "network-storage" }}
+You can define `<SERVICE_NAME>` as you like, but it should not include underscores (`_`).
 {{ end }}
 
 <!-- Extra text to explain service configuration -->
