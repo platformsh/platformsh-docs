@@ -8,7 +8,7 @@ description: |
 
 {{< note >}}
 The upstream now maintains two versions for Tideways, and both plugins are available on Platform.sh:
-* [tideways_xhprof](https://github.com/tideways/php-xhprof-extension): The open source version, therefore no licensing is required (On the downside, less integration services are available). You can use it in combination with [xhprof UI](https://github.com/phacility/xhprof).
+* [Tideways_XHProf](https://github.com/tideways/php-xhprof-extension): The open source version, therefore no licensing is required (On the downside, less integration services are available). You can use it in combination with [XHProf UI](https://github.com/phacility/xhprof).
 * [tideways](https://tideways.com): The bundle proprietary full version of the product and plugins, which the rest of the guide is mostly aimed to cover.
 {{< /note >}}
 
@@ -16,7 +16,7 @@ The upstream now maintains two versions for Tideways, and both plugins are avail
 
 ### 1. Get your license key
 
-Sign up at [https://tideways.com](https://app.tideways.io/register/) and get your license key.
+Sign up at [Tideways](https://app.tideways.io/register/) and get your license key.
 
 ### 2. Add your license key
 

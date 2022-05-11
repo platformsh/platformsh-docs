@@ -12,9 +12,9 @@ Updates to application software (PHP code, JavaScript, etc.) are the responsibil
 
 ## Project isolation
 
-All Dedicated Clusters are single-tenant.  The three VMs are exclusively used by a single customer and each Dedicated cluster is launched into its own isolated network (VPC on AWS, equivalent on other providers).  The network is firewalled to incoming connections; only ports 22 (SSH), 80 (HTTP), 443 (HTTPS), 2221 (SFTP) are opened to incoming traffic.  There are **no exceptions** for this rule, so any incoming web service requests, ETL jobs, or otherwise will need to transact over one of these protocols.
+All Dedicated Clusters are single-tenant.  The three VMs are exclusively used by a single customer and each Dedicated cluster is launched into its own isolated network (VPC on AWS, equivalent on other providers).  The network is behind a firewall for incoming connections; only ports 22 (SSH), 80 (HTTP), 443 (HTTPS), 2221 (SFTP) are opened to incoming traffic.  There are **no exceptions** for this rule, so any incoming web service requests, ETL jobs, or otherwise will need to transact over one of these protocols.
 
-Outgoing TCP traffic is not firewalled.  Outgoing UDP traffic is disallowed.
+Outgoing TCP traffic is not behind a firewall.  Outgoing UDP traffic is disallowed.
 
 The Development Environment deploys each branch as a series of containers hosted on a shared underlying VM.  Many customers will generally share the same VM.  However, all containers are allowed to connect only to other containers in their same environment, and even then only if an explicit "relationship" has been defined by the user via configuration file.
 
@@ -28,7 +28,11 @@ Platform.sh will cooperate with relevant law enforcement, and inform law enforce
 
 Platform.sh will endeavor to notify affected customers within 24 hours in case of a personal data breach and 72 hours in case of a project data breach.
 
-Under the European General Data Protection Regulation (GPDR), Platform.sh is required to notify our supervising authority within 72 hours of a discovered breach that may result in risk to the rights and freedoms of individuals.  Our supervising authority is the French [Commission Nationale de l'Informatique et des Libertés](https://www.cnil.fr/).
+<!-- vale Vale.Spelling = NO -->
+<!-- Spelling off because of the French-->
+Under the European General Data Protection Regulation (GPDR), Platform.sh is required to notify our supervising authority within 72 hours of a discovered breach that may result in risk to the rights and freedoms of individuals.
+Our supervising authority is the French [Commission Nationale de l'Informatique et des Libertés](https://www.cnil.fr/).
+<!-- vale Vale.Spelling = YES -->
 
 ## Audit trail
 
@@ -44,7 +48,7 @@ As part of the security incident process we record a log of all steps taken to i
 
 ### AWS
 
-AWS EBS Volumes are encrypted on Platform.sh Dedicated sites are fully encrypted. Keys are managed by AWS’s KMS (Key Management Service). AWS automatically rotates these keys every three years. In some cases, temporary storage (eg swap) is stored on unencrypted local storage volumes.
+AWS EBS Volumes are encrypted on Platform.sh Dedicated sites are fully encrypted. Keys are managed by AWS’s KMS (Key Management Service). AWS automatically rotates these keys every three years. In some cases, temporary storage (such as swap) is stored on unencrypted local storage volumes.
 
 ### Azure
 
@@ -52,4 +56,4 @@ By default, data is encrypted using Microsoft Managed Keys for Azure Blobs, Tabl
 
 ## WAF
 
-Enterprise projects on Platform.sh come with a Web Application Firewall at no additional cost, which monitors requests to your application and blocks those requests according to our ruleset. See the [WAF security documentation](/security/waf.md) for more information.
+Enterprise projects on Platform.sh come with a Web Application Firewall at no additional cost, which monitors requests to your application and blocks those requests according to our rule set. See the [WAF security documentation](/security/waf.md) for more information.

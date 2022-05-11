@@ -86,6 +86,7 @@ For example, by changing `https://en.example.com/style.css` to `https://example.
 
 The following diagram shows the example project forwarding specific requests to the correct app.
 
+<!-- vale off -->
 {{< mermaid >}}
 sequenceDiagram
     participant User
@@ -109,6 +110,7 @@ sequenceDiagram
     Pt-->>-Project: index.html
     Project-->>-User: index.html
 {{< /mermaid >}}
+<!-- vale on -->
 
 ### Large projects
 
