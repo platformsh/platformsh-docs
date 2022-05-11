@@ -20,7 +20,7 @@ runtime:
         idekey: PHPSTORM
 ```
 
-The `idekey` value can be any arbitrary alphanumeric string, as long as it matches your IDE's configuration.
+The `idekey` value can be any arbitrary alphanumeric string.
 
 When that key is defined, Platform.sh will start a second PHP-FPM process on the container that is identically configured but also has Xdebug enabled.  Only incoming requests that have an Xdebug cookie or query parameter set will be forwarded to the debug PHP-FPM process.  All other requests will be directed to the normal PHP-FPM process and thus have no performance impact.
 
@@ -42,7 +42,7 @@ If you have the [router cache](../../define-routes/cache.md) enabled, you will a
 
 From your local checkout of your application, run `platform environment:xdebug` (or just `platform xdebug`) to open an SSH tunnel to the server.  That SSH tunnel will allow your IDE and the server to communicate debug information securely.
 
-By default, Xdebug operates on port 9000.  Generally, it is best to configure your IDE to use that port.  If you wish to use an alternate port use the `--port` flag.
+By default, Xdebug operates on port 9003. (Xdebug 2 used port 9000). Generally, it is best to configure your IDE to use that port.  If you wish to use an alternate port use the `--port` flag.
 
 To close the tunnel and terminate the debug connection, press `Ctrl-C`.
 
@@ -62,19 +62,11 @@ The configuration for Xdebug will be slightly different for each IDE.  Platform.
 
 In your PHPStorm Settings window, go to `Languages & Frameworks` > `PHP` > `Debug`.
 
-Ensure that the "Debug port" is set to the expected value (9000, or whatever you want to use in the `--port` flag) and that "Can accept external connections" is checked.  Other settings are at your discretion.
+Ensure that the "Debug port" is set to the expected value (9003, or whatever you want to use in the `--port` flag) and that "Can accept external connections" is checked.  Other settings are at your discretion.
 
 ![Xdebug configuration screen](/images/xdebug/xdebug-settings.png "0.6")
 
-### 2. Set DBGp Proxy
-
-In your PHPStorm Settings window, go to `Languages & Frameworks` > `PHP` > `Debug` > `DBGp Proxy`.
-
-Ensure that the "IDE key" field is set to the same value as the `idekey` in `.platform.app.yaml`.  The exact value doesn't matter as long as it matches.
-
-![DBGp configuration screen](/images/xdebug/xdebug-dbgp-proxy.png "0.6")
-
-### 3. Configure a server
+### 2. Configure a server
 
 In your PHPStorm Settings window, go to `Languages & Frameworks` > `PHP` > `Servers`.
 
@@ -88,12 +80,12 @@ This page lets you define what remote paths on the server correspond to what pat
 It may be easier to allow the debug process to connect once, allow it to fail, and then select the "Configure server mappings" error message.  That will pre-populate most of the fields in this page and only require you to set the `app` root mapping.
 {{< /note >}}
 
-### 4. Listen for connections
+### 3. Listen for connections
 
 Toggle on PHPStorm's Xdebug listener.  Either select `Run` > `Start listening for PHP debug connections` from the menu or click the ![Listen for connections](/images/xdebug/xdebug-phpstorm-not-listening.png "0.025-inline") icon in the toolbar.
 
 To disable PHPStorm's listener, either select `Run` > `Stop listening for PHP debug connections` from the menu or toggle the ![Stop listening for connections](/images/xdebug/xdebug-phpstorm-listening.png "0.025-inline") icon in the toolbar.
 
-### 5. Start debugging
+### 4. Start debugging
 
 While in listen mode, start the `platform xdebug` tunnel.  Use the Xdebug helper plugin for your browser to enable debugging.  Set a break point in your application, then load a page in your browser.  The request should pause at the break point and allow you to examine the running application.
