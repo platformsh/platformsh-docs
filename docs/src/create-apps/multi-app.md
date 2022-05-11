@@ -9,7 +9,7 @@ For resource allocation reasons, however, that is not supported on Standard plan
 {{< note >}}
 
 This page only applies to Grid projects.
-Contact your sales representative for advanced Dedicated environment configurations.
+[Contact your sales representative](https://platform.sh/contact/) for advanced Dedicated environment configurations.
 
 {{< /note >}}
 
