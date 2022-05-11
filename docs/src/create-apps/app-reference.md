@@ -143,14 +143,14 @@ mounts:
         source_path: <SOURCE_PATH_LOCATION>
 ```
 
-The `<DIRECTORY>` is relative to the [app's root](#root-directory).
+The `<DIRECTORY>` is relative to the [app's root](#root-directory) and represents the path in the app.
 If you already have a directory with that name, you get a warning that it isn't accessible after the build.
 See how to [troubleshoot the warning](./troubleshoot-mounts.md#overlapping-folders).
 
 | Name          | Type                 | Required | Description |
 | ------------- | -------------------- | -------- | ----------- |
 | `source`      | `local` or `service` | Yes      | Specifies where the mount is. `local` sources are unique to the app (requires `disk` to be set for the app), while `service` sources can be shared among apps (requires `service` to be set here). |
-| `source_path` | `string`             | Yes      | The subdirectory within the source where the mount should point. |
+| `source_path` | `string`             | Yes      | The subdirectory within the mounted disk (the source) where the mount should point. If an empty string is passed, points to the entire directory. |
 | `service`     | `string`             |          | The name of the [network storage service](../add-services/network-storage.md). |
 
 Basic example:
