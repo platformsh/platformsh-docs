@@ -17,7 +17,9 @@ When caching is on...
 * cookies will bypass the cache;
 * responses with the `Cache-Control` header set to `Private`, `No-Cache`, or `No-Store` are not cached.
 
-You should _not_ use the Platform.sh HTTP cache if you are not using Varnish or an external CDN. Mixing cache services together will most likely result in stale and unclearable caches. For more details, see [Best Practices: HTTP caching](../bestpractices/http-caching.md).
+You should _not_ use the Platform.sh HTTP cache if you're using Varnish or an external CDN.
+Mixing cache services together most likely results in caches that are stale and can't be cleared.
+For more details, see [best practices on HTTP caching](../bestpractices/http-caching.md).
 
 ## Basic usage
 
