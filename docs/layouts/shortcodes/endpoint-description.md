@@ -61,12 +61,19 @@ You can define `<SERVICE_NAME>` and `<RELATIONSHIP_NAME>` as you like, but it's 
 
 <!-- For services with a PHP extension -->
 {{ if ( .Get "php" ) }}
+  {{ $extension_name := $type}}
+  {{ if eq $type "mongodb-enterprise" }}
+    {{ $extension_name = "mongodb" }}
+  {{ end }}
+  {{ if eq $type "postgresql" }}
+   {{ $extension_name = "pdo_pgsql" }}
+  {{ end }}
 For PHP, enable the [extension](/languages/php/extensions.html) for the service:
 
 ```yaml {location=".platform.app.yaml"}
 runtime:
     extensions:
-        - {{ if ne ($type) "postgresql" }}{{$type}}{{else}}pdo_pgsql{{end}}
+        - {{ $extension_name }}
 ```
 {{ end }}
 
