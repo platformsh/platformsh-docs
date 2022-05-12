@@ -122,3 +122,5 @@ even if specifically set to true.
 {{% integration-environment-status source="Bitbucket" %}}
 
 {{% clone-commit name="Bitbucket" %}}
+
+{{% integration-url source="Bitbucket" %}}
