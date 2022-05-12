@@ -29,8 +29,7 @@ To use a specific version in a container with a different language, [use a versi
 
 Node.js images use the `default` build flavor,
 which runs `npm prune --userconfig .npmrc && npm install --userconfig .npmrc` if a `package.json` file is detected.
-Note that this also allows you to provide a custom `.npmrc` file in the root of your application
-(as a sibling of the `.platform.app.yaml` file.)
+Note that this also allows you to provide a custom `.npmrc` file in [your app root](../../create-apps/app-reference.md#root-directory).
 
 ### Use yarn as a package manager
 
@@ -87,7 +86,7 @@ as described here (a complete example is included at the end).
            start: "PM2_HOME=/app/run pm2 start index.js --no-daemon"
    ```
 
-   If there is a package.json file present at the root of your repository,
+   If there is a package.json file present in [your app root](../../create-apps/app-reference.md#root-directory),
    Platform.sh automatically installs the dependencies.
    We suggest including the `platformsh-config` package to facilitate access to the running environment.
 

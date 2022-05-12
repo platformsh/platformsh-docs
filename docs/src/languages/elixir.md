@@ -49,10 +49,13 @@ Include in your build hook the steps to retrieve a local Hex and `rebar`, and th
 {{< readFile file="src/registry/images/examples/full/elixir.hooks.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 {{< note >}}
-The above build hook will work for most cases, and assumes that your `mix.exs` file is located at the root of your application.
+
+The above build hook works for most cases and assumes that your `mix.exs` file is located at [your app root](../create-apps/app-reference.md#root-directory).
+
 {{< /note >}}
 
-Assuming `mix.exs` is present at the root of your repository and your build hook matches the above, you can then start it from the `web.commands.start` directive.
+Assuming `mix.exs` is present at your app root and your build hook matches the above,
+you can then start it from the `web.commands.start` directive.
 
 {{< note >}}
 The start command _must_ run in the foreground, so you should set the `--no-halt` flag when calling `mix run`.

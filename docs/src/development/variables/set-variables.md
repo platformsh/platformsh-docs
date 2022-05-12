@@ -119,7 +119,7 @@ value updates trigger a rebuild of the application in the same way that a commit
 
 ## Set variables via script
 
-You can also provide a `.environment` file as in your application root (next to the `.platform.app.yaml` file for that app).
+You can also provide a `.environment` file as in [your app root](../../create-apps/app-reference.md#root-directory).
 This file runs as a script in dash when the container starts and on all SSH logins.
 It can be used to set any environment variables directly, such as the PATH variable.
 

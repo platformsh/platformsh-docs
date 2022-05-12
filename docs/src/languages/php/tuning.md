@@ -97,7 +97,7 @@ The most important values to set are:
   If the application is larger than this,
   the cache starts thrashing and becomes less effective.
 
-To determine how many files you have, run this command from the root of your application:
+To determine how many files you have, run this command from [your app root](../../create-apps/app-reference.md#root-directory):
 
 ```bash
 find . -type f -name '*.php' | wc -l

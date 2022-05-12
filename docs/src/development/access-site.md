@@ -139,7 +139,7 @@ There are many SFTP clients available for every operating system.
 
 scp is a basic command-line utility to copy files to and from a remote environment.
 
-For example, to download a `diagram.png` file from the `web/uploads` directory (relative to the application root),
+For example, to download a `diagram.png` file from the `web/uploads` directory (relative to the [app root](../create-apps/app-reference.md#root-directory)),
 run the following command (replacing `<PROJECT_ID>` and `<ENVIRONMENT_NAME>` with appropriate values):
 
 ```bash
