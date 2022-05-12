@@ -76,7 +76,7 @@ To get DDEV connected to your project, you need to tell it which project to use:
    ```
 
 2. Update `environment_variables` with your project ID and environment name.
-   If you don't know your project ID, run `ddev exec platform`.
+   If you don't know your project ID, run `ddev exec platform`, which returns all your projects and their IDs.
 
 ## 5. Get your project data
 
@@ -87,7 +87,7 @@ ddev pull platform
 ```
 
 If you have configured your files in a mount other than the default,
-adjust the commend in `.ddev/providers/platform.yaml` for the correct location.
+adjust the command in `.ddev/providers/platform.yaml` for the correct location.
 
 To skip pulling files, add `--skip-files` to the command.
 To skip pulling a database, add `--skip-db` to the command.
@@ -129,7 +129,7 @@ For more ideas and options, see the [DDEV documentation](https://ddev.readthedoc
 ### Add environment variables
 
 If your project requires environment variables for its hooks or runtime,
-add them to the DDEV environment:
+add them to the project's DDEV environment:
 
 ```yaml {location=".ddev/config.yaml"}
 web_environment:
