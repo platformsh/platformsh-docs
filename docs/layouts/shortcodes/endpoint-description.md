@@ -35,8 +35,12 @@ Or the `redis-persistent` type for persistent Redis:
 
 Persistent Redis requires a disk to store data.
 {{ else if eq $type "network-storage" }}
-You can define `<SERVICE_NAME>` as you like, but it should not include underscores (`_`).
+You can define `<SERVICE_NAME>` as you like, but it shouldn't include underscores (`_`).
 {{ end }}
+
+Note that if you later change the name, it's treated as an entirely new service.
+This removes all data from your service.
+Always backup your data before changing the service.
 
 <!-- Extra text to explain service configuration -->
 {{ .Inner }}
