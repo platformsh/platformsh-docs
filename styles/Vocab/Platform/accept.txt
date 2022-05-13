@@ -85,6 +85,7 @@ recache
 recertification
 redeployment
 reindex
+respawn
 [Rr]sync
 runtimes
 sanitization
