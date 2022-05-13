@@ -1,7 +1,7 @@
 ---
 title: Use Docksal for local development
 sidebarTitle: Docksal
-weight: 4
+weight: 1
 ---
 
 [Docksal](https://docksal.io) is a Docker-based local development tool that plays nicely with Platform.sh.
@@ -40,7 +40,7 @@ To connect Docksal with your Platform.sh account, use a Platform.sh API token.
    fin config set --global SECRET_PLATFORMSH_CLI_TOKEN="<API_TOKEN>"
    ```
 
-Now you can run `fin platform <command>` from the your computer without needing to install the Platform.sh CLI.
+Now you can run `fin platform <command>` from your computer without needing to install the Platform.sh CLI.
 
 ## 4. Get your project
 

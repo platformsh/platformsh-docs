@@ -2,7 +2,7 @@
 title: Use Lando for local development
 sidebarTitle: "Lando"
 description: Find out how to include Lando in your local development workflow.
-weight: 3
+weight: 1
 ---
 
 [Lando](https://docs.lando.dev) is third-party local development tool for which several stacks are available (LAMP, LEMP, MEAN).
