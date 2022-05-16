@@ -196,9 +196,11 @@ file=none
 highlight=false
 ---
 
-1. In the console, open the organization menu.
-1. Select the organization you want to delete.
-1. Click **Delete the organization**.
+1. Navigate to your existing organization or a project in it.
+2. Open the user menu (your name or profile picture).
+3. Click **Settings**.
+4. Click **Delete Organization**.
+5. Confirm your decision by clicking **Delete**.
 
 <--->
 ---
