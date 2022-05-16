@@ -34,7 +34,7 @@ You can define `<RELATIONSHIP_NAME>` as you like.
 `<APP_NAME>` should match the name you gave your app in your [app configuration](../create-apps/app-reference.md).
 
 The `configuration` block must reference a VCL file (`config.vcl` in this example).
-The file name is relative to the `.platform` directory.
+The file name is relative to, and must be inside the `.platform` directory.
 
 {{% /endpoint-description %}}
 
@@ -56,20 +56,20 @@ The VCL file you provide has three specific requirements over and above the VCL 
 
 The absolute bare minimum VCL file is:
 
-```bash
+```bash {location=".platform/config.vcl"}
 sub vcl_recv {
-    set req.backend_hint = application.backend();
+    set req.backend_hint = varnishstats.backend();
 }
 ```
 
-Where `application` is the name of the relationship defined in `services.yaml`.
-(If the relationship was named differently, use that name instead.)
+Where `varnishstats` is the name of the relationship defined in `services.yaml`.
+(If the relationship was named differently in `<RELATIONSHIP_NAME>`, use that name instead.)
 
 If you have multiple applications fronted by the same Varnish instance,
 then you will need to include logic to determine to which application a request is forwarded.
 For example:
 
-```yaml
+```yaml {location=".platform/services.yaml"}
 varnish:
     type: varnish:6.0
     relationships:
@@ -81,8 +81,7 @@ varnish:
             path: config.vcl
 ```
 
-```bash
-# config.vcl
+```bash {location=".platform/config.vcl"}
 sub vcl_recv {
     if (req.url ~ "^/blog/") {
         set req.backend_hint = blog.backend();
@@ -113,7 +112,7 @@ You also need to disable the router cache as it is now entirely redundant with V
 
 For example:
 
-{{< readFile file="src/registry/images/examples/full/varnish.routes.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/varnish.routes.yaml" highlight="yaml" location=".platform/routes.yaml" >}}
 
 That will map all incoming requests to the Varnish service rather than the application.
 Varnish will then, based on the VCL file, forward requests to the application as appropriate.
@@ -133,7 +132,7 @@ Platform.sh supports a number of optional modules you can include in your VCLs, 
 
 To use in your VCL, add an import such as:
 
-```bash
+```bash {location=".platform/config.vcl"}
 import xkey;
 ```
 
