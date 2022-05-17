@@ -28,8 +28,8 @@ To use a specific version in a container with a different language, [use a versi
 
 ## Usage example
 
-To use Node.js on Platform.sh and Node.js together, configure the `.platform.app.yaml` file with a few key settings,
-as described here (a complete example is included at the end).
+To use Node.js on Platform.sh and Node.js together, configure the `.platform.app.yaml` file with a few key settings
+(a complete example is included at the end).
 
 ### 1. Specify the version
 
@@ -63,7 +63,7 @@ hooks:
 
 ### 4. Start your app
 
-Specify a command to start serving your app (it must be process running in the foreground):
+Specify a command to start serving your app (it must be a process running in the foreground):
 
 ```yaml {location=".platform.app.yaml"}
 web:
