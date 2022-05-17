@@ -29,7 +29,7 @@ First, login to the cluster and run the following command:
 echo $PLATFORM_RELATIONSHIPS | base64 --decode | json_pp
 ```
 
-Which should give a JSON output containing something like this:
+Which gives a JSON output similar to:
 
 ```json
 "database" : [
@@ -51,19 +51,27 @@ Which should give a JSON output containing something like this:
 ]
 ```
 
-The part you want is the user, password, and "path", which means the DB name.
-Ignore the rest.
+The values needed are:
+- `username` of your database (`<username>`).
+- `password` of your database (`<password>`). If empty, in the ssh command pass the value as: `-p""`.
+- "path", which is the name of the database (`<dbname>`).
 
-Now, run the following command on your local computer:
+Now, adapt and run the following command on your local computer:
 
 ```bash
-ssh <USERNAME>@<CLUSTER_NAME>.ent.platform.sh 'mysqldump --single-transaction -u <user> -p<pass> -h localhost <dbname> | gzip' > database.gz
+ssh <USERNAME>@<CLUSTER_NAME>.ent.platform.sh 'mysqldump --single-transaction -u <username> -p<password> -h localhost <dbname> | gzip' > database.gz
 ```
 
-That runs a `mysqldump` command on the server, compress it using `gzip`,
-and stream the output to a file named `database.gz` on your local computer.
+That runs a `mysqldump` command on the server, compresses it using `gzip`,
+and streams the output to a file named `database.gz` on your local computer.
 
 (If you'd prefer, `bzip2` and `xz` are also available.)
+
+Example with an empty database password:
+```bash
+ssh <USERNAME>@<CLUSTER_NAME>.ent.platform.sh 'mysqldump --single-transaction -u user -p"" -h localhost main | gzip' > database.gz
+```
+
 
 ## Synchronizing files from development to staging/production
 
@@ -122,12 +130,14 @@ Which should give a JSON output containing something like this:
 }
 ```
 
-The part we want is the host, user, password, and the "path", which is the database name.
-Ignore the rest.
+The values needed are:
+- `username` of your database (`<username>`).
+- `password` of your database (`<password>`). If empty, in the ssh command pass the value as: `-p""`.
+- "path", which is the name of the database (`<dbname>`).
 
 Now, in a separate terminal log in to the development instance using `platform ssh`.
 Run the same `echo` command as above to get the credentials for the database on the development instance.
-(The JSON will be slightly different but again we're only interested in the user, password, host, and "path"/database name).
+(The JSON will be slightly different but again we're only interested in the username, password, host, and "path"/database name).
 
 With the credentials from both databases,
 we can construct a command that will export data from the development server
