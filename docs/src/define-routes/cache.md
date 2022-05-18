@@ -26,7 +26,7 @@ For more details, see [best practices on HTTP caching](../bestpractices/http-cac
 
 The HTTP cache is enabled by default, however you may wish to override this behavior.
 
-To configure the HTTP cache, add a `cache` key to your route:
+To configure the HTTP cache, add a `cache` key to your route, as in the default:
 
 ```yaml {location=".platform/routes.yaml"}
 https://{default}/:
