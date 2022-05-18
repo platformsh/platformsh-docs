@@ -1,9 +1,9 @@
 
 ## Check the routes settings
 
-To avoid stale content that can't be cleared, {{ .Get "CDN" }} shouldn't be used with the Platform.sh caching mechanism.
+To avoid stale content that can't be cleared, don't use {{ .Get "CDN" }} with HTTP caching.
 
-For the routes where {{ .Get "CDN" }} is used, make sure that the Platform.sh HTTP Cache layer is disabled by setting the [`cache` key](../../src/define-routes/cache.md) to `false`:
+For routes where {{ .Get "CDN" }} is used, disable HTTP caching by setting the [`cache` key](../../src/define-routes/cache.md) to `false`:
 
 ```yaml {location=".platform/routes.yaml"}
 https://{default}/:
