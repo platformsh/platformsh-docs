@@ -40,6 +40,9 @@
 <div class="highlight-location">.platform/services.yaml</div>
 {{ highlight ( readFile (printf "src/registry/images/examples/full/%s.services.yaml" .type) ) "yaml" ""}}
 
+<!-- Exclude Varnish because it would create a circular relationship -->
+{{ if ne .type "varnish" }}
+
 <a href="/create-apps/app-reference.html">App configuration</a>
 
 <div class="highlight-location">.platform.app.yaml</div>
@@ -84,3 +87,4 @@
   <div class="highlight-location">.platform.app.yaml</div>
   {{ highlight ( readFile "data/local-examples/vault-multiple-endpoints/platform.app.yaml" ) "yaml" "" }}
 {{ end }}
+{{ end }} <!-- end check for Varnish -->
