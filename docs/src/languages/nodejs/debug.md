@@ -113,7 +113,7 @@ Listening on port 8888
 In another terminal, create an SSH tunnel that forwards to the 9229 port:
 
 ```bash
-ssh -N -L9229:127.0.0.1:9229  $(platform  ssh --pipe)
+ssh -N -L 9229:localhost:9229 $(platform ssh --pipe)
 ```
 
 ## 5. Connect the debugger
@@ -154,6 +154,8 @@ If you haven't created the option:
 Once you have the option:
 
 In the **Run and Debug** tab, select `Attach` from the menu and click **Start Debugging** (the green arrow).
+
+See more on [Node.js debugging in Visual Studio Code](https://code.visualstudio.com/docs/nodejs/nodejs-debugging).
 
 <!--vale off -->
 {{< /codetabs >}}
