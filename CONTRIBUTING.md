@@ -171,6 +171,9 @@ To ensure the docs work smoothly, a few checks run on each pull request:
 - Vale enforces the [style guidelines](./contributing/content-style.md).
 - [Remark](https://remark.js.org/) with the [`remark-validate-links` plugin](https://github.com/remarkjs/remark-validate-links)
   checks that all links between Markdown files are valid (including whether linked headers exist).
+  A couple of files (such as Vault and Varnish service overviews) using includes with headings that are linked,
+  so these files are ignored in this check.
+  Any errors are found in the regular check of all links.
 - Custom workflows [check all changed files](./.github/workflows/get-pr-info.yaml) within `docs/src`
   and [comment with links](./.github/workflows/comment-on-pr.yaml) to the deployed pages for review.
 
