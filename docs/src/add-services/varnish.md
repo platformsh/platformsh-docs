@@ -33,8 +33,8 @@ The `relationships` block allows Varnish to talk to your app.
 You can define `<RELATIONSHIP_NAME>` as you like.
 `<APP_NAME>` should match the name you gave your app in your [app configuration](../create-apps/app-reference.md).
 
-The `configuration` block must reference a VCL file (`config.vcl` in this example).
-The file must be inside the `.platform` directory and is defined relative to that directory.
+The `configuration` block must reference a VCL file inside the `.platform` directory.
+The `path` defines the file relative to the `.platform` directory.
 
 {{% /endpoint-description %}}
 
@@ -63,9 +63,16 @@ sub vcl_recv {
 ```
 
 Where `<RELATIONSHIP_NAME>` is the name of the relationship you defined in [step 1](#1-configure-the-service).
+With the [example configuration](#example-configuration), that would be the following:
+
+```bash {location=".platform/config.vcl"}
+sub vcl_recv {
+    set req.backend_hint = application.backend();
+}
+```
 
 If you have multiple applications fronted by the same Varnish instance,
-then you will need to include logic to determine to which application a request is forwarded.
+then you need to include logic to determine to which application a request is forwarded.
 For example:
 
 ```yaml {location=".platform/services.yaml"}
@@ -111,7 +118,7 @@ You also need to disable the router cache as it is now entirely redundant with V
 
 For example:
 
-{{< readFile file="src/registry/images/examples/full/varnish.routes.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/varnish.routes.yaml" highlight="yaml" location=".platform/routes.yaml" >}}
 
 That will map all incoming requests to the Varnish service rather than the application.
 Varnish will then, based on the VCL file, forward requests to the application as appropriate.
@@ -131,7 +138,7 @@ Platform.sh supports a number of optional modules you can include in your VCLs, 
 
 To use in your VCL, add an import such as:
 
-```bash
+```bash {location=".platform/config.vcl"}
 import xkey;
 ```
 
@@ -149,11 +156,22 @@ which provides access to some Varnish analysis and debugging tools.
 
 You can't use it from an app fronted by Varnish because of the restriction with [circular relationships](#circular-relationships).
 To access the stats, create a **separate app** with a relationship *to* Varnish, but not *from* it.
-Add the following to your [app configuration](../create-apps/app-reference.md):
+Define an [app configuration](../create-apps/app-reference.md) similar to the following:
 
-{{< readFile file="src/registry/images/examples/full/varnish.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
+```yaml {location=".platform.app.yaml"}
+name: statsApp
+type: "php:8.1"
 
-You can then access the `varnishstats` relationship over HTTP at the following paths to get diagnostic information:
+build:
+    flavor: none
+
+relationships:
+    varnishstats: "varnish:http+stats"
+```
+
+You choose any valid name and type.
+When the app is deployed, the app can access the Varnish service over HTTP to get diagnostic information.
+The following paths are available:
 
 * `/`: returns the error if generating the VCL failed with an error
 * `/config`: returns the generated VCL
@@ -162,6 +180,7 @@ You can then access the `varnishstats` relationship over HTTP at the following p
 
 To access the Varnish stats endpoint from the command line:
 
-1. Connect to your cluster [using SSH](../development/ssh/_index.md): `platform ssh -p <PROJECT_ID>`,
+1. Connect to your stats app [using SSH](../development/ssh/_index.md): `platform ssh --app statsApp`
+   (replace `statsApp` with the name you gave the app).
 2. Display the [relationships array](../create-apps/app-reference.md#relationships) with `echo $PLATFORM_RELATIONSHIPS | base64 -d | jq .`,
 3. Query Varnish with `curl <HOST>:<PORT>/stats`, replacing `<HOST>` and `<PATH>` with the values from step 2.
