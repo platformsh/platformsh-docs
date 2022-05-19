@@ -79,16 +79,6 @@ sv stop app
 node --inspect <START_FILE>
 ```
 
-Replace `<START_FILE>` with the file defined for [your app's `start` command](./_index.md#4-start-your-app).
-
-You get output something like this:
-
-```bash
-Debugger listening on ws://127.0.0.1:9229/10701e5d-d627-4180-a967-d47a924c93c0
-For help, see: https://nodejs.org/en/docs/inspector
-Listening on port 8888
-```
-
 <--->
 
 ---
@@ -103,47 +93,12 @@ In the same terminal as the previous step, run the following command:
 node --inspect <START_FILE>
 ```
 
-Replace `<START_FILE>` with the file defined for [your app's `start` command](./_index.md#usage-example).
 <!--vale off -->
 {{< /codetabs >}}
 <!--vale on -->
 
-{{< codetabs >}}
-
----
-title=Remote
-file=none
-highlight=false
----
-
-Stop the current process and restart it in inspect mode:
-
-```bash
-sv stop app
-node --inspect <START_FILE>
-```
 
 Replace `<START_FILE>` with the file defined for [your app's `start` command](./_index.md#4-start-your-app).
-
-<--->
-
----
-title=Local
-file=none
-highlight=false
----
-
-In the same terminal as the previous step, run the following command:
-
-```bash
-node --inspect <START_FILE>
-```
-
-Replace `<START_FILE>` with the file defined for [your app's `start` command](./_index.md#usage-example).
-<!--vale off -->
-{{< /codetabs >}}
-<!--vale on -->
-
 
 You get output something like this:
 
