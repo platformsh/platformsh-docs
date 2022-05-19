@@ -11,6 +11,7 @@ description: |
 
 * **May 2022**
   * Support added for [MongoDB 5.0 Enterprise edition](../add-services/mongodb.md).
+  * Support added for [Python 3.10](../languages/python.md).
 * **April 2022**
   * Dedicated Generation 3 adds support for [PostgreSQL](../add-services/postgresql.md).
   * Carbon intensity: You can now find information about the carbon intensity of each [region's energy grid](../development/regions.md).
