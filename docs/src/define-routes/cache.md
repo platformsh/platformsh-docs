@@ -12,22 +12,23 @@ If a request is can be cached, Platform.sh builds a cache key from several reque
 
 When caching is on...
 
-* you can configure cache behaviour for different location blocks in your `.platform.app.yaml`;
+* you can configure cache behavior for different location blocks in your `.platform.app.yaml`;
 * the router will respect whatever cache headers are sent by the application;
 * cookies will bypass the cache;
 * responses with the `Cache-Control` header set to `Private`, `No-Cache`, or `No-Store` are not cached.
 
-You should _not_ use the Platform.sh HTTP cache if you're using Varnish or an external CDN.
+You should _not_ use the Platform.sh HTTP cache if you're using Varnish or an external CDN
+such as [Fastly](../domains/cdn/fastly.md) or [Cloudflare](../domains/cdn/cloudflare.md).
 Mixing cache services together most likely results in caches that are stale and can't be cleared.
 For more details, see [best practices on HTTP caching](../bestpractices/http-caching.md).
 
 ## Basic usage
 
-The HTTP cache is enabled by default, however you may wish to override this behaviour.
+The HTTP cache is enabled by default, however you may wish to override this behavior.
 
-To configure the HTTP cache, add a `cache` key to your route in `.platform/routes.yaml`. You may like to start with the defaults:
+To configure the HTTP cache, add a `cache` key to your route. You may like to start with the defaults:
 
-```yaml
+```yaml {location=".platform/routes.yaml"}
 https://{default}/:
     type: upstream
     upstream: app:http
@@ -42,7 +43,7 @@ https://{default}/:
 
 In this example, requests will be cached based on the URI, the `Accept` header, `Accept-Language` header, and `X-Language-Locale` header; Any response that lacks a `Cache-Control` header will be cached for 60 seconds; and the presence of any cookie in the request will disable caching of that response.
 
-```yaml
+```yaml {location=".platform/routes.yaml"}
 https://{default}/:
     type: upstream
     upstream: app:http
@@ -63,11 +64,13 @@ There are two parameters that let you control this key: `headers` and `cookies`.
 
 The default value for these keys are the following:
 
-```yaml
-cache:
-    enabled: true
-    cookies: ['*']
-    headers: ['Accept', 'Accept-Language']
+```yaml {location=".platform/routes.yaml"}
+https://{default}/:
+   ...
+    cache:
+        enabled: true
+        cookies: ['*']
+        headers: ['Accept', 'Accept-Language']
 ```
 
 ### Duration
@@ -110,10 +113,12 @@ Adds specific header fields to the cache key, enabling caching of separate respo
 
 For example, if the `headers` key is the following, Platform.sh will cache a different response for each value of the `Accept` HTTP request header only:
 
-```yaml
-cache:
-    enabled: true
-    headers: ["Accept"]
+```yaml {location=".platform/routes.yaml"}
+https://{default}/:
+   ...
+    cache:
+        enabled: true
+        headers: ["Accept"]
 ```
 
 {{< note title="none">}}
@@ -125,7 +130,7 @@ cache:
 
 #### Header behaviors
 
-The cache is only applied to `GET` and `HEAD` requests. Some headers trigger specific behaviours in the cache.
+The cache is only applied to `GET` and `HEAD` requests. Some headers trigger specific behaviors in the cache.
 
 Header field | Cache behavior
 -------------|----------------
@@ -147,10 +152,12 @@ All cookies will bypass the cache when using the default (`['*']`) or if the `Se
 For example, for the cache key to depend on the value of the `foo` cookie in the request.
 Other cookies will be ignored.
 
-```yaml
-cache:
-    enabled: true
-    cookies: ["foo"]
+```yaml {location=".platform/routes.yaml"}
+https://{default}/:
+   ...
+    cache:
+        enabled: true
+        cookies: ["foo"]
 ```
 
 {{< note title="none">}}
@@ -166,10 +173,12 @@ A cookie value may also be a regular expression.
 An entry that begins and ends with a `/` will be interpreted as a PCRE regular expression to match the cookie name.
 For example:
 
-```yaml
-cache:
-    enabled: true
-    cookies: ['/^SS?ESS/']
+```yaml {location=".platform/routes.yaml"}
+https://{default}/:
+   ...
+    cache:
+        enabled: true
+        cookies: ['/^SS?ESS/']
 ```
 
 Will cause all cookies beginning with `SESS` or `SSESS` to be part of the cache key, as a single value.
@@ -207,7 +216,7 @@ If in doubt, disable the cache using `cache: false`.
 
 If you need fine-grained caching, you can set up caching rules for several routes separately:
 
-```yaml
+```yaml {location=".platform/routes.yaml"}
 https://{default}/:
     type: upstream
     upstream: app:http
@@ -247,10 +256,12 @@ Regular expressions in routes are **not** supported.
 Some applications use cookies to invalidate cache responses, but expect other cookies to be ignored.
 This is a case of allowing only a subset of cookies to invalidate the cache.
 
-```yaml
-cache:
-    enabled: true
-    cookies: ["MYCOOKIE"]
+```yaml {location=".platform/routes.yaml"}
+https://{default}/:
+   ...
+    cache:
+        enabled: true
+        cookies: ["MYCOOKIE"]
 ```
 
 ### Cache HTTP and HTTPS separately using the `Vary` header

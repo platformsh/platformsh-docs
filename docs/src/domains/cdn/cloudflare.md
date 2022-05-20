@@ -23,6 +23,8 @@ you'll want to point both of those DNS entries to the same place.
 Whether you choose the bare domain version or the `www` subdomain doesn't make any practical difference,
 as they both will reach Platform.sh and be handled correctly.
 
+{{% disable-cache CDN="Cloudflare" %}}
+
 ## Enable "Full SSL" option in the Cloudflare admin
 
 Cloudflare also makes it possible to use their free TLS/SSL service to secure your site via HTTPS,
