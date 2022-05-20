@@ -20,8 +20,6 @@ Since Strapi uses SQLite by default, you don't need much configuration, just fol
    yarn add platformsh-config
    ```
 
-1. Install [PostgreSQL](https://www.postgresql.org/download/) on your machine.
-
 1. Create a new Strapi project and select Quickstart as the installation type.
    This automatically configures Strapi for SQLite
 
