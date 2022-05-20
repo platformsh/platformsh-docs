@@ -18,7 +18,6 @@ file=none
 highlight=false
 ---
 
-* Provide a [custom php.ini](/languages/php/ini.md) OR
 * Add the following to your `.platform.app.yaml` file:
 
   ```yaml

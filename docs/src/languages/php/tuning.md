@@ -50,7 +50,7 @@ but can be improved in many cases.
 See the [PHP-FPM sizing](./fpm.md) page
 for how to determine and set a more optimal value.
 
-## Enable preloading
+## Enable OPcache preloading
 
 OPcache preloading allows you to load selected files into shared memory when PHP-FPM starts and bypasses the need to include or autoload them later.
 It's available on PHP 7.4 onwards.
@@ -70,11 +70,9 @@ such as by including `pkill -f php-fpm` or `sv restart app`.
 If you have [disabled OPcache timestamp validation](#disable-opcache-timestamp-validation),
 you need to clear the OPcache explicitly on deployment (which can be done by restarting PHP-FPM).
 
-To enable preloading, add a `php.ini` value that specifies a preload script.
-Any [`php.ini` mechanism](/languages/php/ini.md) works,
-but using a variable in `.platform.app.yaml` is the recommended approach:
+To enable preloading, add a `php.ini` value that specifies a preload script, by using a variable:
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 variables:
     php:
         opcache.preload: 'preload.php'
@@ -97,14 +95,14 @@ foreach ($regex as $key => $file) {
 ```
 
 {{< note >}}
-Preloading all `.php` files may not be optimal for your application, and may even introduce errors.  Your application framework may provide recommendations or a pre-made preload script to use instead.  Determining an optimal preloading strategy is the user's responsibility.
+Preloading all `.php` files may not be optimal for your application, and may even introduce errors. Your application framework may provide recommendations or a pre-made preload script to use instead. Determining an optimal preloading strategy is the user's responsibility.
 {{< /note >}}
 
 ## Configure OPcache
 
-PHP 5.5 and later include an OPcache that's enabled at all times, as it should be.
-It may still need to be tuned, however.
-The OPcache can be configured using `php.ini` values, which in this case are best set using the `variables` block in `.platform.app.yaml`.
+PHP 5.5 and later include an OPcache that's enabled at all times.
+The OPcache can be configured using the `variables` block in `.platform.app.yaml` (recommended approach) or using `php.ini` values.
+OPcache needs to be tuned before production usage.
 
 {{< note >}}
 
@@ -200,7 +198,7 @@ Remember to remove the `cachetools.phar` file once you're done with it.
 
 Your `.platform.app.yaml` file should include a block similar to:
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 variables:
     php:
         'opcache.max_accelerated_files': 22000
@@ -224,9 +222,9 @@ you can't disable the timestamp validation
 as it would prevent updates to the generated code from being loaded.
 
 The timestamp validation may be disabled with an `ini` setting,
-and the easiest way to do so is via `.platform.app.yaml`:
+and the easiest way to do so is:
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 variables:
     php:
         'opcache.validate_timestamps': 0

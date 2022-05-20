@@ -14,7 +14,7 @@ Xdebug is not enabled the same way as other extensions, as it should not be acti
 
 Enable Xdebug by adding the following configuration to the application's `.platform.app.yaml` file:
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 runtime:
     xdebug:
         idekey: PHPSTORM
@@ -24,11 +24,11 @@ The `idekey` value can be any arbitrary alphanumeric string, as long as it match
 
 When that key is defined, Platform.sh will start a second PHP-FPM process on the container that is identically configured but also has Xdebug enabled.  Only incoming requests that have an Xdebug cookie or query parameter set will be forwarded to the debug PHP-FPM process.  All other requests will be directed to the normal PHP-FPM process and thus have no performance impact.
 
-Xdebug has numerous other configuration options available.  They are all set as `php.ini` values, and can be configured the same way as any other [`php.ini` setting](/languages/php/ini.md).  Consult the [Xdebug documentation](https://xdebug.org/docs/) for a full list of available options, although in most cases the default configuration is sufficient.
+Xdebug has numerous other configuration options available.  They are all set as `php.ini` values, and can be configured the same way as any other [`php.ini` setting](/languages/php/_index.md).  Consult the [Xdebug documentation](https://xdebug.org/docs/) for a full list of available options, although in most cases the default configuration is sufficient.
 
 If you have the [router cache](/configuration/routes/cache.md) enabled, you will also need to explicitly add the Xdebug cookie (`XDEBUG_SESSION`) to the cookie whitelist.  Depending on the cookies you already have listed there the result should look similar to this:
 
-```yaml
+```yaml {location=".platform/routes.yaml"}
 "https://{default}/":
     # ...
     cache:
