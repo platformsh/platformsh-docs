@@ -51,7 +51,7 @@ and turn off those on by default with the `disabled_extensions` key.
 | `ftp`             |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `gd`              | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `gearman`         | Avail | Avail | Avail |       |       |       |       |       |       |       |
-| `geoip`           | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |       |       |
+| `geoip`           | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `gettext`         |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `gmp`             | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `http`            | Avail | Avail |       |       |       |       | Avail | Avail | Avail | Avail |
