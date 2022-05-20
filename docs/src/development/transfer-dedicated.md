@@ -53,13 +53,13 @@ Which gives a JSON output similar to:
 
 The values needed are:
 - `username` of your database (`<username>`).
-- `password` of your database (`<password>`). If empty, in the ssh command pass the value as: `-p""`.
+- `password` of your database (`<password>`). If empty, remove the flag.
 - "path", which is the name of the database (`<dbname>`).
 
 Now, adapt and run the following command on your local computer:
 
 ```bash
-ssh <USERNAME>@<CLUSTER_NAME>.ent.platform.sh 'mysqldump --single-transaction -u <username> -p<password> -h localhost <dbname> | gzip' > database.gz
+ssh <USERNAME>@<CLUSTER_NAME>.ent.platform.sh 'mysqldump --single-transaction -u <username> -p<password> -h database.internal <dbname> | gzip' > database.gz
 ```
 
 That runs a `mysqldump` command on the server, compresses it using `gzip`,
@@ -69,7 +69,7 @@ and streams the output to a file named `database.gz` on your local computer.
 
 Example with an empty database password:
 ```bash
-ssh <USERNAME>@<CLUSTER_NAME>.ent.platform.sh 'mysqldump --single-transaction -u user -p"" -h localhost main | gzip' > database.gz
+ssh <USERNAME>@<CLUSTER_NAME>.ent.platform.sh 'mysqldump --single-transaction -u user -h database.internal main | gzip' > database.gz
 ```
 
 
@@ -132,7 +132,7 @@ Which should give a JSON output containing something like this:
 
 The values needed are:
 - `username` of your database (`<username>`).
-- `password` of your database (`<password>`). If empty, in the ssh command pass the value as: `-p""`.
+- `password` of your database (`<password>`). If empty, remove the flag.
 - "path", which is the name of the database (`<dbname>`).
 
 Now, in a separate terminal log in to the development instance using `platform ssh`.
