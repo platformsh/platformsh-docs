@@ -56,3 +56,11 @@ This will cause all traffic from Cloudflare to your project to be redirected to 
 which will set off an endless loop as HTTPS traffic will be presented as HTTP to your project no matter what.
 
 In short: *Always use "Full SSL" unless you have a very clear reason to do otherwise*
+
+## Handle LetsEncrypt TLS certificate renewal
+
+LetsEncrypt expects the .well-known endpoint on all domains added. Therefore, there are 2 options: either remove all domains pointing to Cloudflare from your Platform.sh project or follow these steps in your Cloudflare console:
+
+1. Turn off Always Use HTTPS at the SSL page
+2. Then create a page rule for /.well-known/acme-challenge/ with SSL set to off
+3. Followed by a second page rule for * that turns Always Use HTTPS back on.
