@@ -261,7 +261,7 @@ more information can be found in out go live [step-by-step guide](../gettingstar
 Sometimes, that verification fails which will result in the following error-message:
 `Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]`
 
-For the DNS challenge to work, domains and subdomains should point directly to your Platform.sh cluster (unless using a CDN).
+For the DNS challenge to work, domains and subdomains should point directly to your Platform.sh cluster (unless using a [CDN](../domains/cdn/_index.md)).
 Otherwise, you see the following error:
 
 ```text
