@@ -110,7 +110,7 @@ curl \
   --data "{\"input\": \"$(echo SECRET | base64)\"}"
 ```
 
-The string at the end of the URL denotes the specific [hash algorithm used by the Vault KMS](https://www.vaultproject.io/api/secret/transit#hash_algorithm).
+The string at the end of the URL denotes the specific [hash algorithm used by the Vault KMS](https://www.vaultproject.io/api-docs/secret/transit#hash_algorithm).
 
 You get back a JSON object that includes the signature for the payload:
 
