@@ -13,7 +13,14 @@ You can complete some of these steps through the management console,
 but since all can be completed with the CLI those commands alone are listed.
 Be sure to [install the CLI](../development/cli/_index.md) if you haven't already done so.
 It's assumed you are changing the default branch of your project on Platform.sh from `master` to `main`.
-If using another name for the default branch, update the commands accordingly. 
+If using another name for the default branch, update the commands accordingly.
+
+{{< note >}}
+
+If you have a domain set for your default environment, remove it before changing the default branch.
+Otherwise you get an error that `default domain must be a valid project domain`.
+
+{{< /note >}}
 
 ## Projects without external integrations
 
