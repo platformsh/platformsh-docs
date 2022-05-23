@@ -5,7 +5,7 @@ Anycast
 asciinema
 async
 auditable
-autoload[ing|er]?
+autoload(er|ing)?
 Blackfire
 blockquote
 Bootsnap
@@ -25,7 +25,7 @@ failover
 Fastly
 Galera
 Gemfile
-geocod[er|ing]
+geocod(er|ing)
 gitmoji
 glibc
 Goldmark
@@ -54,7 +54,7 @@ Muffet
 multicast
 [Mm]ultifactor
 multisite
-multithread[ed|ing]
+multithread(ed|ing)
 Munin
 Nagios
 namespace
@@ -74,7 +74,7 @@ Payara
 Pixelant
 pngcrush
 preprocessor
-preload[ing]?
+preload(ing)?
 progs
 proxied
 Pthreads
@@ -109,6 +109,7 @@ unencrypted
 unmerged
 [Uu]nmount
 [Uu]ntrusted
+upsiz(e|ing)
 Verisign
 Webflux
 webpack

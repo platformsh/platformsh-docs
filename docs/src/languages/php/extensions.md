@@ -7,6 +7,13 @@ description: See what PHP extensions are available with each PHP version on Plat
 PHP has a number of [extensions](https://pecl.php.net/) developed by members of the community.
 Some of them are available for Platform.sh containers.
 
+{{< note >}}
+
+The information on this page applies to Grid and Dedicated Gen 3 plans.
+See also [PHP extensions on Dedicated plans](../../dedicated/overview/grid.md#extensions).
+
+{{< /note >}}
+
 You can define the PHP extensions you want to enable or disable:
 
 ```yaml
