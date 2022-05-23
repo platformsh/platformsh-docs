@@ -12,11 +12,9 @@ Platform.sh supports deploying PHP applications.
 |----------------------------------|---------------|
 |  {{< image-versions image="php" status="supported" environment="grid" >}} | {{< image-versions image="php" status="supported" environment="dedicated" >}} |
 
-{{< image-versions-legacy "php" >}}
-
 Note that from PHP 7.1, the images use the Zend Thread Safe (ZTS) version of PHP.
 
-{{% language-specification type="php" display_name="PHP" %}}
+{{< image-versions-legacy "php" >}}
 
 {{% deprecated-versions %}}
 
@@ -24,19 +22,7 @@ Note that from PHP 7.1, the images use the Zend Thread Safe (ZTS) version of PHP
 |----------------------------------|---------------|
 |  {{< image-versions image="php" status="deprecated" environment="grid" >}} | {{< image-versions image="php" status="deprecated" environment="dedicated" >}} |
 
-## Usage example
-
-To use PHP, specify PHP as your app’s type:
-
-```yaml {location=".platform.app.yaml"}
-type: 'php:<VERSION_NUMBER>'
-```
-
-For example:
-
-```yaml {location=".platform.app.yaml"}
-type: 'php:8.1'
-```
+{{% language-specification type="php" display_name="PHP" %}}
 
 ## Manage dependencies
 
