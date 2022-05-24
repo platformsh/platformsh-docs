@@ -46,12 +46,12 @@ dependencies:
         composer/composer: '^2'
 ```
 
-If you want to use composer 1.x instead, don't add that code block.
+If you want to use composer 1.x instead, remove that code block.
 
 ### 3. Build your app
 
 Include any commands needed to build and setup your app in the `hooks`.
-By default, none is needed, as in the following example:
+By default, none is needed for PHP, as in the following example:
 
 ```yaml {location=".platform.app.yaml"}
 hooks:
@@ -102,7 +102,7 @@ web:
 
 PHP images use the `composer` build flavor by default,
 which uses the latest Composer 2.x release as [a dependency](../../create-apps/app-reference.md#dependencies).
-If you want to use composer 1.x instead, remove the following block (if present):
+Add the following to your app configuration to use composer 2.x:
 
 ```yaml {location=".platform.app.yaml"}
 dependencies:
@@ -110,7 +110,9 @@ dependencies:
         composer/composer: '^2'
 ```
 
-Using `composer` as build flavor runs `composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader` <!-- TODO: Check that this is still accurate --> if a `composer.json` file is detected.
+If you want to use composer 1.x instead, don't add that code block.
+
+### Alternative repositories
 
 In addition to the standard `dependencies` format,
 it's also possible to specify alternative repositories for use by Composer.
@@ -123,7 +125,8 @@ dependencies:
 ```
 
 is equivalent to `composer require platform/client 2.x-dev`.
-You can also specify explicit `require` and `repositories` blocks:
+
+To install from an alternate repository,  specify explicit `require` and `repositories` blocks:
 
 ```yaml {location=".platform.app.yaml"}
 dependencies:
@@ -135,7 +138,7 @@ dependencies:
               url: "git@github.com:platformsh/platformsh-client-php.git"
 ```
 
-That would install `platformsh/client` from the alternate repository specified, as a global dependency.
+That installs `platformsh/client` from the alternate repository specified, as a global dependency.
 That allows you to install a forked version of a global dependency from a custom repository.
 The above is equivalent to the following `composer.json` file:
 
@@ -246,13 +249,12 @@ See that reference for details on what can be changed.
 You can set the timezone of the PHP runtime through [the app runtime timezone](../../create-apps/timezone.md).
 Note that the timezone settings of containers/services would remain in UTC.
 
-### Default php.ini settings
+### Default `php.ini` settings
 
-The default values for some frequently-modified `php.ini` settings are listed below.
+The default `php.ini` values can be retrieved by calling the `phpinfo()` function from within a php script.
 
-- `memory_limit=128M`
-- `post_max_size=64M`
-- `upload_max_filesize=64M`
+Some noteworthy `php.ini` settings are:
+
 - `display_errors=On`: This value is on by default. Use a custom error handler in your application to track errors. Set this value to Off before you make your site live.
 - `zend.assertions=-1`: Assertions are optimized out of existence and have no impact at runtime. You should have assertions set to `1` for your local development system.
 - `opcache.memory_consumption=64`: This is the number of megabytes available for [the OPcache](/languages/php/tuning.md#enable-opcache-preloading). Increase this value for large applications with many files.

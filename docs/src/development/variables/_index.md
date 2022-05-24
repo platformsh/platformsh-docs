@@ -167,7 +167,7 @@ bar
 
 Any variable with the prefix `php:` is added to the `php.ini` configuration for all PHP-based application containers in the project.
 
-For example, an environment variable named `php:display_errors` with the value `On` is equivalent to placing the following in `php.ini`:
+For example, an environment variable named `php:display_errors` with the value `On` is equivalent to:
 
 ```ini {location="php.ini"}
 display_errors = On
@@ -178,7 +178,7 @@ such as enabling errors and configuring the Xdebug extension.
 
 To apply a setting to all environments or have a setting differ among multiple PHP containers in one project,
 specify the variables in the `.platform.app.yaml` file for your application.
-See the [PHP configuration page](../../languages/php/_index.md) for more information.
+See the [PHP configuration page](../../languages/php/_index.md#default-phpini-settings) for more information.
 
 ### Framework-specific variables
 
