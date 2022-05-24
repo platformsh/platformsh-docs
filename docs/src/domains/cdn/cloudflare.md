@@ -36,7 +36,7 @@ mostly like using your project's Let's Encrypt certificate.
 
 ```text
 # Cloudflare's Full SSL option
-		   https                       https
+          https                       https
 User <---------------> Cloudflare <-------------> Platform.sh
 ```
 
@@ -48,19 +48,23 @@ by at the least eliminating the unencrypted attack vector on the "last mile" to 
 
 ```text
 # Cloudflare's Flexible SSL option
-		   https                       http
+          https                       http
 User <---------------> Cloudflare <-------------> Platform.sh
 ```
 
-This will cause all traffic from Cloudflare to your project to be redirected to HTTPS,
-which will set off an endless loop as HTTPS traffic will be presented as HTTP to your project no matter what.
+This causes all traffic from Cloudflare to your project to be redirected to HTTPS,
+which sets off an endless loop as HTTPS traffic is presented as HTTP to your project no matter what.
 
 In short: *Always use "Full SSL" unless you have a very clear reason to do otherwise*
 
-## Handle LetsEncrypt TLS certificate renewal
+## Let's Encrypt certificate renewal
 
-LetsEncrypt expects the .well-known endpoint on all domains added. Therefore, there are 2 options: either remove all domains pointing to Cloudflare from your Platform.sh project or follow these steps in your Cloudflare console:
+Let's Encrypt expects the `.well-known` endpoint on all domains added.
+You have 2 options:
 
-1. Turn off Always Use HTTPS at the SSL page
-2. Then create a page rule for /.well-known/acme-challenge/ with SSL set to off
-3. Followed by a second page rule for * that turns Always Use HTTPS back on.
+* Remove all domains pointing to Cloudflare from your Platform.sh project
+* Follow these steps in your Cloudflare console:
+
+  1. On the SSL page, turn off **Always Use HTTPS**.
+  2. Create a page rule for `/.well-known/acme-challenge/` with SSL set to **off**.
+  3. Create a second page rule for `*` that turns **Always Use HTTPS** back on.
