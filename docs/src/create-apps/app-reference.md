@@ -425,6 +425,8 @@ firewall:
         - ips: ["0.0.0.0/0"]
 ```
 
+{{% legacy-regions featureIntro="An outbound firewall" featureShort="a firewall" level=3 %}}
+
 ### Support for rules
 
 Where outbound rules for firewalls are supported:

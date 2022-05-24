@@ -92,6 +92,8 @@ the result of both the `build` and `deploy` hooks are reused until there is a ne
 Redeploys with no changes trigger only the `post_deploy` hook.
 If you need the `deploy` hook to run, [manually trigger a build](../../development/troubleshoot.md#manually-trigger-builds).
 
+{{% legacy-regions featureIntro="Deploy hook activity logs and SSH during deploy hooks" plural=true featureShort="these features" level=3 %}}
+
 ## Post-deploy hook
 
 The `post_deploy` hook functions exactly the same as the `deploy` hook,
