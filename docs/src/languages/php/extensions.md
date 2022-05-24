@@ -21,7 +21,7 @@ runtime:
         - sqlite3
 ```
 
-You can also [include configuration options](../../configuration/app/app-reference.md#extensions) for specific extensions.
+You can also [include configuration options](../../create-apps/app-reference.md#extensions) for specific extensions.
 
 The following table shows all extensions that are available (Avail) and on by default (Def).
 You can turn on the available ones with the `extensions` key
@@ -115,7 +115,7 @@ and turn off those on by default with the `disabled_extensions` key.
 | `sysvsem`         |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `sysvshm`         |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `tideways`        |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
-| `tideways-xhprof` |       |       |       | Avail | Avail | Avail | Avail | Avail |       |       |
+| `tideways_xhprof` |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `tidy`            | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `tokenizer`       |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `uuid`            |       |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail |
@@ -166,9 +166,9 @@ work:
    It can also be added to your Git repository if the file isn't publicly downloadable,
    although committing large binary blobs to Git is generally not recommended.
 
-2. Provide a custom `php.ini` file in the application root (as a sibling of your `.platform.app.yaml` file)
+2. Provide a custom `php.ini` file in [your app root](../../create-apps/app-reference.md#root-directory)
    that loads the extension using an absolute path.
-   For example, if the extension is named `spiffy.so` and is in the root of your application,
+   For example, if the extension is named `spiffy.so` and is in your app root,
    your `php.ini` file includes:
 
    ```ini

@@ -1,14 +1,13 @@
 ---
 title: "Activity scripts"
 weight: -5
-layout: single
 description: |
   Platform.sh supports custom scripts that can fire in response to any activity. These scripts allow you to take arbitrary actions in response to actions in your project, such as when it deploys, when a new branch is created, etc.
 ---
 
 {{< description >}}
 
-Check out examples from other users on the Platform.sh [Community site.](https://community.platform.sh/c/activity-scripts)
+Check out examples from other users on the Platform.sh [Community site](https://community.platform.sh/c/activity-scripts/10).
 
 ## Installing
 
@@ -130,8 +129,8 @@ as well as the following libraries, APIs, and global variables to facilitate bui
 
 ### `underscore.js`
 
-Underscore.js 1.9.2 is available out-of-the-box to make writing Activity scripts more pleasant.
-See [Underscore's documentation](https://cdn.rawgit.com/jashkenas/underscore/1.9.2/index.html) for available functions and utilities.
+[`Underscore.js`](https://github.com/jashkenas/underscore) 1.13.1 is available out-of-the-box to make writing Activity scripts more pleasant.
+See [Underscore's documentation](https://underscorejs.org/) for available functions and utilities.
 
 ### `activity`
 
@@ -292,3 +291,5 @@ HMAC(HMAC(HMAC(HMAC("AWS4" + kSecret,"20150830"),"us-east-1"),"iam"),"aws4_reque
 ```
 
 > Example taken from the [AWS documentation for signing API requests](https://docs.aws.amazon.com/general/latest/gr/sigv4-calculate-signature.html).
+
+## Further reading

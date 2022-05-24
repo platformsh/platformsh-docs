@@ -50,9 +50,14 @@ In addition to SSH accounts, SFTP accounts can be created with a custom user/pas
 
 ## Error handling
 
-On Platform.sh Professional, incoming requests are held at the edge router temporarily during a deploy.  That allows a site to simply "respond slowly" rather than be offline during a deploy, provided the deploy time is short (a few seconds).
+On Platform.sh Professional, incoming requests are held at the edge router temporarily during a deploy.
+That allows a site to "respond slowly" rather than be offline during a deploy, provided the deploy time is short (a few seconds).
 
-On Platform.sh Dedicated, incoming requests are not held during deploy and receive a 503 error.  As the Dedicated Cluster is almost always fronted by a CDN, the CDN will continue to serve cached pages during the few seconds of deploy, so for the vast majority of users there is no downtime or even slowdown.  If a request does pass the CDN during a deploy that is not counted as downtime covered by our Service Level Agreement.
+On Platform.sh Dedicated, incoming requests aren't held during deploy and receive a 503 error.
+As the Dedicated Cluster is almost always fronted by a CDN,
+the CDN continues to serve cached pages during the few seconds of deploy,
+so for the vast majority of users there is no downtime or even slow down.
+If a request does pass the CDN during a deploy, it isn't counted as downtime covered by our Service Level Agreement.
 
 By default, Platform.sh will serve generic Platform.sh-branded error pages for errors generated before a request reaches the application.  (500 errors, some 400 errors, etc.)  Alternatively you may provide a static error page for each desired error code via a ticket for us to configure with the CDN.  This file may be any static HTML file but is limited to 64 KB in size.
 
@@ -69,11 +74,14 @@ However, the changes aren't propagate to child environments until they're [manua
 
 ## Remote logging
 
-Platform.sh Dedicated supports sending logs to a remote logging service such as Loggly, Papertrail, or Logz.io using the rsyslog service.  This is an optional feature and you can request that it be enabled via a support ticket.  Once enabled and configured your application can direct log output to the system syslog facility and it will be replicated to the remote service you have configured.
+Platform.sh Dedicated supports sending logs to a remote logging service such as Loggly, Papertrail, or Logz.io using the `rsyslog` service.
+This is an optional feature and you can request that it be enabled via a support ticket.
+Once enabled and configured your application can direct log output to the system `syslog` facility
+and is replicated to the remote service you have configured.
 
-When contacting support to enable rsyslog, you will need:
+When contacting support to enable `rsyslog`, you need:
 
-* The name of the remote logging service you will be using.
+* The name of the remote logging service to use.
 * The message template format used by your logging service.
 * The specific log files you want forwarded to your logging service.
 

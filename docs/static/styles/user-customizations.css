@@ -9,16 +9,6 @@
   background-color: #EDEDEF !important;
 }
 
-.bg-primary-darker {
-  background-color: #1A182A;
-}
-
-@media (min-width: 768px) {
-  .bg-md-primary-darker {
-    background-color: #1A182A;
-  }
-}
-
 /* Getting Started Guide buttons */
 .buttons-nav {
   text-align: center;
@@ -184,21 +174,6 @@
   }
 }
 
-
-@media (min-width: 825px) {
-
-  /* .duik-sidebar {
-    padding: 1rem 0 0 0;
-  } */
-}
-
-@media (min-width: 1030px) {
-
-  .duik-sidebar {
-    padding: 5rem 0 0 0;
-  }
-}
-
 .report-download {
   text-align: center;
 }
@@ -294,7 +269,7 @@
 }
 
 
-/* Public IP Region Tables */
+/* Region information */
 .region-table {
   font-family: Overpass, sans-serif;
   color: #444344;
@@ -336,7 +311,7 @@
 }
 
 .region-overview {
-  background: #f4f2f3;
+  background: var(--ghost-white);
 }
 
 .region-identifier {

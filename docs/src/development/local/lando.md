@@ -2,7 +2,7 @@
 title: Use Lando for local development
 sidebarTitle: "Lando"
 description: Find out how to include Lando in your local development workflow.
-weight: 3
+weight: 1
 ---
 
 [Lando](https://docs.lando.dev) is third-party local development tool for which several stacks are available (LAMP, LEMP, MEAN).
@@ -47,10 +47,10 @@ For a quicker start, create a project based on the Platform.sh [PHP template](ht
 The template provides the most basic configuration for running a custom PHP project built with Composer.
 It also includes the required Platform.sh configuration files out of the box.
 
-1. [Create a new project based on the PHP template](https://console.platform.sh/projects/create-project/template?query=php).
+1. [Create a new project based on the PHP template]({{% create-project-link template="php" %}}).
 2. Clone that project locally in one of these ways:
     - Using the [Platform.sh CLI](../../gettingstarted/introduction/own-code/cli-install.md) by running `platform get <PROJECT_ID>`
-    - Using [git](../../administration/web/_index.md#git)
+    - Using [git](../../administration/web/configure-environment.md#actions)
 3. In the project's folder, run `lando init --recipe platformsh --source platformsh`.
 4. Follow the instructions provided by the interactive prompt.
    On the `Which project?` step, select the project created in the first step.
@@ -66,7 +66,7 @@ highlight=false
 If your code isn't present locally, retrieve your codebase with one of these methods:
 
 - Using the [Platform.sh CLI](../../gettingstarted/introduction/own-code/cli-install.md) by running `platform get <PROJECT_ID>`
-- Using [git](../../administration/web/_index.md#git)
+- Using [git](../../administration/web/configure-environment.md#actions)
 
 Otherwise, access the directory with your project.
 
@@ -119,7 +119,7 @@ For more guidance regarding logs, check the [Lando logs documentation](https://d
 When you access your local Lando sites through HTTPS, you get an error message in your browser.
 This is expected behavior.
 
-Find out how to solve it in the [Lando blog](https://lando.dev/blog/2020/03/20/_5-things-to-do-after-you-install-lando/).
+Find out how to solve it in the [Lando blog](https://lando.dev/blog/2020/03/20/5-things-to-do-after-you-install-lando.html).
 
 ### Something still wrong?
 

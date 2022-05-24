@@ -13,7 +13,7 @@
         "is_master": true
     },
     "path": "\/",
-    "password": "b.AAAAAQJp6LTse0kHvogdEGp2pxdnCqE_3VfW08Vmm_0tkIQ0HPOK-WsJfUNAlh5VXKEyx_l8NESGcTEUaOUW994AYf2W4b_72SyU_qGjm61fJZqFHqWkDoWPS_eDir4jy9DBSvCS1GFAU20L3x5o3lKUB2aEATXf0nyH24BQetKV_JRpNt0Hl8xikc9tH24nIW2z3AANZvzp0rLGGvl3jPRSE5uqsFxzsXgcGw2xuw",
+    "password": "b.AAAAAQKAxGbXtzHf5LGFcggjqCcQ9DTk3ScC6Rn-LdXJBIWM1BIhsxNpSdq6XMmAiL6aOr4jy_DavaD_n73-3vvY5ZtjP5AC65L6YG1rSl5FZplcaVkr_9WG_YD1yd0cNwjDha7tLu0OWgLaA-9nKoz8bnMHc_D-IKYZ0DGyc8R_nj3hYkBiJRt3RuIpWPQnXDURPDA4ry-9INJXahegkpYmEA97V0Q0biLQsqdq4A",
     "type": "vault-kms:1.6",
     "port": 8200,
     "host_mapped": false

@@ -23,8 +23,13 @@ file=none
 highlight=false
 ---
 
-1. In the management console, navigate to the environment you want to redeploy.
-1. Click **Redeploy**.
+<!--This is in HTML to get the icon not to break the list. -->
+<ol>
+  <li>Select the project with the given environment.</li>
+  <li>From the <strong>Environment</strong> menu, select the environment.</li>
+  <li>Click {{< icon more >}} <strong>More</strong>.</li>
+  <li>Click <strong>Redeploy</strong>.</li>
+</ol>
 
 <--->
 
@@ -49,7 +54,7 @@ The redeploy takes place after any scheduled activities (either *Running* or *Pe
 Despite the name, redeployment doesn't rerun the `deploy` hook, only the `post_deploy` hook.
 Both your `build` and `deploy` hooks are tied to individual commits in code.
 They're reused until another commit is pushed to the environment.
-See [more about hooks](../configuration/app/hooks/_index.md) and their reuse.
+See [more about hooks](../create-apps/hooks/_index.md) and their reuse.
 
 To rerun the `build` and `deploy` hooks, [manually trigger a build](#manually-trigger-builds).
 
@@ -113,7 +118,7 @@ it indicates your application is crashing or unavailable.
 Typical causes and potential solutions include:
 
 * Your app is listening at the wrong place.
-  * Check your app's [upstream properties](../configuration/app/app-reference.md#upstream).
+  * Check your app's [upstream properties](../create-apps/app-reference.md#upstream).
   * If your app listening at a port, make sure it's using the [`PORT` environment variable](./variables/use-variables.md#use-platformsh-provided-variables).
 * Your `.platform.app.yaml` configuration has an error and a process isn't starting
   or requests can't be forwarded to it correctly.
@@ -123,7 +128,7 @@ Typical causes and potential solutions include:
   * Alternatively, you may need to [increase your plan size](../overview/pricing/_index.md).
 * Certain code paths in your application are too slow and timing out.
   * Check your code is running smoothly.
-  * Consider adding an [observability solution](../integrations/observability/_index.md) to get a better view of your application.
+  * Consider adding an [observability solution](../increase-observability/integrate-observability/_index.md) to get a better view of your application.
 * A PHP process is crashing because of a segmentation fault.
   * See [how to deal with crashed processes](../languages/php/troubleshoot.md#php-process-crashed).
 * A PHP process is killed by the kernel out-of-memory killer.
@@ -153,7 +158,7 @@ $ curl -XPOST 'https://example.com/graphql' --header 'Content-Type: multipart/fo
 
 ## Databases
 
-For MySQL specific errors, see how to [troubleshoot MySQL](../configuration/services/mysql/troubleshoot.md).
+For MySQL specific errors, see how to [troubleshoot MySQL](../add-services/mysql/troubleshoot.md).
 
 ### Permission error creating a database
 
@@ -163,7 +168,7 @@ and can be found in the `path` key of the `$PLATFORM_RELATIONSHIPS` [environment
 
 ## Storage
 
-If you're having trouble with storage, see how to [troubleshoot mounts](../configuration/app/troubleshoot-mounts.md) and [disks](../configuration/app/troubleshoot-disks.md).
+If you're having trouble with storage, see how to [troubleshoot mounts](../create-apps/troubleshoot-mounts.md) and [disks](../create-apps/troubleshoot-disks.md).
 
 ### Can't write to file system
 
@@ -171,8 +176,8 @@ If you attempt to write to disk outside a `build` hook, you may encounter a `rea
 Except where you define it, the file system is all read-only, with code changes necessary through git.
 This gives you benefits like repeatable deployments, consistent backups, and traceability.
 
-To generate anything you need later, [write to disk during a `build` hook](../configuration/app/app-reference.md#writable-directories-during-build).
-Or [declare mounts](../configuration/app/app-reference.md#mounts),
+To generate anything you need later, [write to disk during a `build` hook](../create-apps/app-reference.md#writable-directories-during-build).
+Or [declare mounts](../create-apps/app-reference.md#mounts),
 which are writable even during and after deploy.
 They can be used for your data: file uploads, logs, and temporary files.
 
@@ -198,8 +203,7 @@ If you see a build or deployment running longer than expected, it may be one of 
 * The deployment is blocked by a long running cron job in the environment.
 * The deployment is blocked by a long running cron job in the parent environment.
 
-To determine if your environment is being stuck in the build or the deployment,
-look at the activities log available in the management console or by running `platform act`.
+To determine if your environment is being stuck in the build or the deployment, check your [activity log](../increase-observability/logs.md#activity-logs).
 
 If the activity has the result `success`, the build has completed successfully and the system is trying to deploy.
 If the result is still `running`, the build is stuck.
@@ -210,8 +214,8 @@ In older regions (`us` and `eu`), create a [support ticket](https://console.plat
 When a _deployment_ is blocked, you should try the following:
 
 1. Connect to your environment using [SSH](./ssh/_index.md).
-1. Find any long-running cron jobs or deploy hooks on the environment by running `ps afx`.
-1. Kill any long running processes with `kill <PID>`.
+2. Find any long-running cron jobs or deploy hooks on the environment by running `ps afx`.
+3. Kill any long running processes with `kill <PID>`.
   Replace `<PID>` with the process ID shown by `ps afx`.
 
 If a `sync` of `activate` process is stuck, try the above on the parent environment.
@@ -224,11 +228,12 @@ Here are a few tips that can help you find the exact cause.
 
 ### Check for errors in the logs
 
-Invisible errors during the build and deploy phase can cause increased wait times, failed builds, and other problems. Investigate [each log](./logs.md#container-logs) and fix any errors you find.
+Invisible errors during the build and deploy phase can cause increased wait times, failed builds, and other problems.
+Investigate [each log](../increase-observability/logs.md#container-logs) and fix any errors you find.
 
 ### Build and deploy hooks
 
-[`build` and `deploy` hooks](/configuration/app/hooks/_index.md) can cause long build times.
+[`build` and `deploy` hooks](../create-apps/hooks/_index.md) can cause long build times.
 If they run into issues, they can cause the build to fail or hang indefinitely.
 
 `build` hooks can be tested in your local environment.
@@ -245,7 +250,7 @@ strace -T $cmd # Print a system call report
 
 ### Cron jobs
 
-Containers can't be shutdown while long-running [cron jobs and scheduled tasks](../configuration/app/app-reference.md#crons) are active.
+Containers can't be shutdown while long-running [cron jobs and scheduled tasks](../create-apps/app-reference.md#crons) are active.
 That means long-running cron jobs block a container from being shut down to make way for a new deploy.
 
 Make sure your custom cron jobs run quickly and properly.

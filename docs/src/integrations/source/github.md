@@ -14,14 +14,6 @@ description: |
 
 ## Setup
 
-{{< note >}}
-
-If the repository you are trying to integrate with a Platform.sh project has a default branch that's not `master` (such as `main`),
-there are a few additional steps you need to perform to setup the integration.
-See the [Renaming the default branch guide](/guides/general/default-branch.md) for more information.
-
-{{< /note >}}
-
 ### 1. Generate a token
 
 To integrate your Platform.sh project with an existing GitHub repository,
@@ -68,7 +60,7 @@ Optional parameters:
 * `--fetch-branches`: Track and deploy branches (true by default)
 * `--prune-branches`: Delete branches that do not exist in the remote GitHub repository (true by default)
 * `--build-pull-requests`: Track and deploy pull-requests (true by default)
-* `--build-draft-pull-requests`: If set to `true`, [draft pull requests](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) will also have an environment created.
+* `--build-draft-pull-requests`: If set to `true`, [draft pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) will also have an environment created.
   If false they will be ignored.
   If `--build-pull-requests` is `false` this value is ignored.  (`true` by default)
 * `--build-pull-requests-post-merge`: `false` to have Platform.sh build the branch specified in a PR.
@@ -107,12 +99,6 @@ You can then verify that your integration is functioning properly [using the CLI
 platform integration:validate
 ```
 
-## Types of environments
-
-Environments based on GitHub **pull requests** will have the correct 'parent' environment on Platform.sh;
-they will be activated automatically with a copy of the parent's data.
-
-However, environments based on (non-pull-request) **branches** cannot have parents;
-they will inherit directly from the default branch and start inactive by default.
+{{% integration-environment-status source="GitHub" %}}
 
 {{% clone-commit name="GitHub" %}}

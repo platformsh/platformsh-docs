@@ -30,15 +30,15 @@ The most common issue is not allowing the right cookies as part of the router ca
 Some cookies, such as session cookies, need to be allowed,
 whereas others, such as marketing and analytics cookies,
 usually shouldn't be allowed to be part of the cache key.
-See more about [router cache](../../configuration/routes/cache.md)
-and [cookie entry](../../configuration/routes/cache.md#cookies).
+See more about [router cache](../../define-routes/cache.md)
+and [cookie entry](../../define-routes/cache.md#cookies).
 
 You also need to ensure that your application is sending the correct `cache-control` header.
 The router cache obeys whatever cache headers your application sends,
 so send it good ones.
 
 Static assets cache headers are set using the `expires` key in `.platform.app.yaml`.
-See the [`web.locations` documentation](../../configuration/app/app-reference.md#locations) for more details.
+See the [`web.locations` documentation](../../create-apps/app-reference.md#locations) for more details.
 
 ## Optimize the FPM worker count
 
@@ -63,7 +63,7 @@ If you aren't using PHP 7.4, this is a good reason to upgrade.
 
 Note that the only way to clear the preload cache is by restarting PHP-FPM <!-- TODO: Check that is true since we state otherwise below -->.
 PHP-FPM isn't restarted on every deployment automatically,
-so you might want to add that in a [`deploy` hook](../../configuration/app/hooks/hooks-comparison.md#deploy-hook),
+so you might want to add that in a [`deploy` hook](../../create-apps/hooks/hooks-comparison.md#deploy-hook),
 such as by including `pkill -f php-fpm` or `sv restart app`.
 
 <!-- TODO: Redo structure to follow howto -->
@@ -124,7 +124,7 @@ The most important values to set are:
   If the application is larger than this,
   the cache starts thrashing and becomes less effective.
 
-To determine how many files you have, run this command from the root of your application:
+To determine how many files you have, run this command from [your app root](../../create-apps/app-reference.md#root-directory):
 
 ```bash
 find . -type f -name '*.php' | wc -l
@@ -234,7 +234,7 @@ variables:
 
 It's also possible that your own code is doing more work than it needs to.
 Profiling and optimizing a PHP application is a much larger topic than fits here,
-but Platform.sh recommends enabling [Blackfire.io](/integrations/observability/blackfire.md)
+but Platform.sh recommends enabling [Blackfire.io](../../increase-observability/integrate-observability/blackfire.md)
 on your project to determine what slow spots can be found and addressed.
 
 The web agency [Pixelant](https://www.pixelant.net/) has also published a [log analyzer tool for Platform.sh](https://github.com/pixelant/platformsh-analytics).

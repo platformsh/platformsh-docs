@@ -1,0 +1,53 @@
+# .platform.app.yaml
+
+# The name of this application, which must be unique within a project.
+name: 'docs'
+
+# The type key specifies the language and version for your application.
+type: 'nodejs:16'
+
+# Specify the Hugo version as an env variable.
+variables:
+    env:
+        HUGOVERSION: 0.92.2
+
+relationships:
+    search: "search:http"
+
+# The hooks that will be triggered when the package is deployed.
+hooks:
+    # Build hooks can modify the application files on disk but not access any services like databases.
+    build: |
+        set -e
+        ./build_examples.sh
+        ./build_docs.sh
+    deploy: !include
+      type: string
+      path: deploy.sh
+
+# The configuration of the application when it is exposed to the web.
+web:
+    commands:
+      # Run (404) error handler 
+      start: node 404.js
+    locations:
+        '/':
+            # The public directory of the application relative to its root.
+            root: 'public'
+            passthru: true
+            index: ['index.html']
+            scripts: false
+            allow: true
+            expires: 24h
+            rules:
+                \.(css|js|gif|jpe?g|png|ttf|eot|woff2?|otf|cast|mp4|json|yaml|ico|svg?|cast|mp4|json|yaml|svg?|ttf)$:
+                    expires: 4w
+
+disk: 1024
+
+mounts:
+  "public/scripts/xss/dist/config":
+      source: local
+      source_path: "config"
+
+size: S

@@ -14,14 +14,6 @@ description: |
 
 ## Setup
 
-{{< note >}}
-
-If the repository you are trying to integrate with a Platform.sh project has a default branch that isn't `master` (such as `main`),
-there are a few additional steps you need to perform to setup the integration.
-See the [Renaming the default branch guide](/guides/general/default-branch.md) for more information.
-
-{{< /note >}}
-
 ### 1. Generate a token
 
 To integrate your Platform.sh project with an existing GitLab repository,
@@ -122,13 +114,6 @@ You can then verify that your integration is functioning properly [using the CLI
 platform integration:validate
 ```
 
-## Types of environments
-
-Environments based on GitLab **merge requests** have the correct 'parent' environment on Platform.sh;
-they're activated automatically with a copy of the parent's data
-(unless you have set the option `merge-requests-clone-parent-data` to false).
-
-However, environments based on (non-merge-request) **branches** can't have parents;
-they inherit directly from your default branch and start inactive by default.
+{{% integration-environment-status source="GitLab" %}}
 
 {{% clone-commit name="GitLab" %}}

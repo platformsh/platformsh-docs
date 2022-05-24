@@ -49,8 +49,10 @@ It has no persistent storage.
 
 Service containers are configured by the `services.yaml` file.
 
-There may be zero or more service containers in a cluster, 
+There may be zero or more service containers in a cluster,
 depending on the `services.yaml` file.
+For zero services, don't include the `services.yaml` file in your repository.
+
 The code for a service is provided by Platform.sh in a pre-built container image,
 along with a default configuration.
 Depending on the service,

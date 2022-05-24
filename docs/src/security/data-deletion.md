@@ -1,14 +1,14 @@
 ---
-title: "Data deletion"
-weight: 6
-
+title: Data deletion
 description: |
-  Data deletion is handled via our backend providers. When a volume is released back to the provider, the provider will perform a wipe on the data utilizing either [NIST 800-88](https://csrc.nist.gov/publications/detail/sp/800-88/rev-1/final) or [DoD 5220.22-M](http://www.dss.mil/documents/odaa/nispom2006-5220.pdf) depending upon the offering. This wipe is done immediately before reuse.
+  Data deletion is handled via our backend providers. When a volume is released back to the provider, the provider performs a wipe on the data utilizing [NIST 800-88](https://csrc.nist.gov/publications/detail/sp/800-88/rev-1/final). This wipe is done immediately before reuse.
 ---
 
 {{< description >}}
 
-All projects, except those hosted on OVH or Orange Cloud for Business, utilize encrypted volumes. The encryption key is destroyed when we release the volume back to the provider, adding another layer of protection.
+All projects, except those hosted on OVH, utilize encrypted volumes.
+The encryption key is destroyed when the volume is released back to the provider,
+which adds another layer of protection.
 
 ## Media destruction
 

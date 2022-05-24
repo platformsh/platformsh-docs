@@ -18,7 +18,7 @@ Now that your code contains all of the configuration to deploy on Platform.sh, i
 With the Configuration Reader library installed, add or update a `wp-config.php` file in the root of your repository to match the code below. In this file, the library's `Config` object is used to:
 
 - Retrieve connection credentials for MariaDB through the `database` relationship to configure the WordPress database. This will set up the database automatically and avoid you having to set the connection yourself during the installer. 
-- Use the project's [routes](/configuration/routes/_index.md) to set `WP_HOME` and `WP_SITEURL` settings. 
+- Use the project's [routes](../../../define-routes/_index.md) to set `WP_HOME` and `WP_SITEURL` settings. 
 - Set all of WordPress's security and authentication keys to the Platform.sh-provided `PLATFORM_PROJECT_ENTROPY` - a hashed variable specific to your repository consistent across environments. 
 
 Many other WordPress settings are pre-defined in this file for you, so consult the inline comments for more information.
@@ -58,7 +58,7 @@ Next, having placed `wp-config.php` in the root of your repository, you will nee
   },
 ```
 
-Since you'll likely be using [WPPackagist](https://wpackagist.org/) to download plugins and themes with Composer, you will also need to add `wppackagist.org` as a repository in `composer.json`.
+Since you'll likely be using [WPPackagist](https://wpackagist.org/) to download plugins and themes with Composer, you will also need to add `wpackagist.org` as a repository in `composer.json`.
 
 ```json
   "repositories": [
@@ -73,7 +73,7 @@ Lastly, to prevent committing WordPress Core when it is installed via Composer, 
 
 ## Additional packages
 
-Finally, install `wp-cli` and `psy/psych` using Composer.
+Finally, install `wp-cli` and `psy/psysh` using Composer.
 With these packages included, the WordPress CLI is available when you SSH into the application container.
 
 ```bash

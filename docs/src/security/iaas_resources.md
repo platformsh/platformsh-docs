@@ -1,14 +1,12 @@
 ---
-title: "IaaS Resources"
-weight: 14
-sidebarTitle: "IaaS Resources"
+title: IaaS resources
 toc: false
 ---
 
 AWS
 
 * [Compliance Page](https://aws.amazon.com/compliance/)
-* [Security Whitepaper](https://docs.aws.amazon.com/whitepapers/latest/introduction-aws-security/introduction-aws-security.pdf#security-guidance)
+* [Security white paper](https://docs.aws.amazon.com/whitepapers/latest/introduction-aws-security/introduction-aws-security.pdf#security-guidance)
 
 Azure
 

@@ -48,6 +48,7 @@ The following table presents the available options:
 | `layout`       | `single` or `list` | Set to `single` on `_index.md` files to give them the same layout as other pages. |
 | `aliases`      | list of strings    | Optionally creates redirects to the page from the given locations. Start with `/` for root-relative locations. Start with `../` for locations relative to the current page. |
 | `description`  | string             | Appears on `list` pages as a description of the page's content. Also overrides generic content for the `<meta name="description">` tag for SEO. Can be used in the page with the `description` shortcode. |
+| `mermaid`      | Boolean            | Whether to load the script to display [Mermaid.js diagrams](http://mermaid-js.github.io/mermaid/). Set to `true` for diagrams on the page. Not loaded by default. |
 
 ## Headings
 
@@ -85,10 +86,10 @@ Remember to [use meaningful link text](./content-style.md#use-meaningful-link-te
 
 Internal links (links to other docs pages) should be relative to the file they're in.
 That way, they work in the docs and on GitHub and locally in a cloned repository.
-Link to the specific `.md` file, for example: `[available services](../docs/src/configuration/services/_index.md`).
+Link to the specific `.md` file, for example: `[available services](../docs/src/add-services/_index.md`).
 
 If you are linking from a [file for reuse](#reuse-content), link relative to the `src` directory and start with `/`.
-For example: `[available services](/configuration/services/_index.md`).
+For example: `[available services](/add-services/_index.md`).
 
 Both of these ways help prevent broken links in the docs by putting them through a check to see if the page exists.
 If the page doesn't exist, the build fails.
@@ -217,6 +218,26 @@ web:
 
 Keep the top-level key visible so readers can understand the code in context.
 (For example, don't leave out `web:` in the example above.)
+
+### Note when low-level items are missing
+
+If there's a complicated block (such as `web.locations`) with many settings not relevant to the current idea,
+show that they're missing with ellipses.
+
+For example, to focus only on caching and not the rules for the location:
+
+```yaml
+web:
+    locations:
+        '/':
+            ...
+            expires: -1
+```
+
+This is only necessary for items that aren't top-level.
+In longer files (such as `.platform.app.yaml`), it's fine to leave out other top-level items.
+For example, only a `web` block is shown above, even though it's not valid on its own.
+It should still be enough to copy and paste into a larger file.
 
 ### Code block location
 

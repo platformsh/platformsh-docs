@@ -1,7 +1,7 @@
 ---
 title: Use Docksal for local development
 sidebarTitle: Docksal
-weight: 4
+weight: 1
 ---
 
 [Docksal](https://docksal.io) is a Docker-based local development tool that plays nicely with Platform.sh.
@@ -10,7 +10,7 @@ without having to install tools (such as the Platform.sh CLI) on your machine.
 It's maintained by a community of developers and is a viable option for most Platform.sh projects.
 
 This guide assumes you have a project already running within Platform.sh.
-If you're starting from scratch, first [create a project from a template](https://console.platform.sh/projects/create-project/template).
+If you're starting from scratch, first [create a project from a template]({{% create-project-link template=true %}}).
 
 ## Before you begin
 
@@ -40,7 +40,7 @@ To connect Docksal with your Platform.sh account, use a Platform.sh API token.
    fin config set --global SECRET_PLATFORMSH_CLI_TOKEN="<API_TOKEN>"
    ```
 
-Now you can run `fin platform <command>` from the your computer without needing to install the Platform.sh CLI.
+Now you can run `fin platform <command>` from your computer without needing to install the Platform.sh CLI.
 
 ## 4. Get your project
 
@@ -56,8 +56,8 @@ These files are ignored by Platform.sh.
 
 ## 5. Add commands
 
-Docksal doesn't automatically copy over any commands you have in your [build flavor](../../administration/../configuration/app/app-reference.md#build)
-and [hooks](../../configuration/app/hooks/_index.md).
+Docksal doesn't automatically copy over any commands you have in your [build flavor](../../create-apps/app-reference.md#build)
+and [hooks](../../create-apps/hooks/_index.md).
 To get your project running like on Platform.sh, you have to add the commands to Docksal.
 
 The `.docksal/commands` directory should already have one command (`init`) such as the following:

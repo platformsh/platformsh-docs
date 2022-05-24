@@ -3,12 +3,16 @@
 {{ $onlyLanguage := .Get "onlyLanguage" }}
 {{ $sectionLink := .Get "sectionLink" }} <!-- The section of the page with more detail. -->
 {{ $multipleText := .Get "multipleText" }} <!-- What the explicit endpoints define (what is multiple). -->
+{{ $headerLevel := "###" }}
+{{ if in $type "mongodb" }}
+  {{ $headerLevel = "####" }}
+{{ end }}
 
 <!-- Get registry data for the service type. -->
 
 {{ $data := index .Site.Data.registry ( $type ) }}
 
-### 1. Configure the service
+{{ $headerLevel }} 1. Configure the service
 
 <!-- Clarify the `type` that should be used. -->
 <!-- mysql.md is special, so change the sentence slightly to show all `type`s for the single endpoint. -->
@@ -20,7 +24,7 @@ Use {{ if eq ($type) "mariadb" }}
   the `{{ $type }}` type
   {{ end }}to define the service:
 
-<!-- Create a dummy example services.yaml file from the registry's example naming in `.docs` -->
+<!-- Create an example services.yaml file from data in the registry. -->
 {{ partial "examples/servicedefn" $data }}
 
 {{ if eq $type "redis" }}
@@ -30,21 +34,27 @@ Or the `redis-persistent` type for persistent Redis:
   {{ partial "examples/servicedefn" $redis_data }}
 
 Persistent Redis requires a disk to store data.
-
+{{ else if eq $type "network-storage" }}
+You can define `<SERVICE_NAME>` as you like, but it shouldn't include underscores (`_`).
 {{ end }}
+
+Note that if you later change the name, it's treated as an entirely new service.
+This removes all data from your service.
+Always backup your data before changing the service.
 
 <!-- Extra text to explain service configuration -->
 {{ .Inner }}
 
-### 2. Add the relationship
+<!-- Exclude Varnish because it would create a circular relationship -->
+{{ if ne $type "varnish" }}
+
+{{ $headerLevel }} 2. Add the relationship
 
 <!-- Network storage services are different and handled below -->
 {{ if ne $type "network-storage" }}
 <!-- Clarify the endpoint that should be used. -->
 <!-- If a link and text have been set, adds exception that directs users to the subsection that describes explicit endpoints. -->
-<!-- The check for Varnish is a hack to get around the escaping of the + sign -->
-Use the {{if eq $type "varnish"}}`http+stats` endpoint{{ else if eq $type "vault-kms" }}endpoint
-you [defined in step 1](#1-configure-the-service){{ else }}`{{ $data.endpoint }}` endpoint{{ end }}
+Use the {{ if eq $type "vault-kms" }}endpoint you [defined in step 1](#1-configure-the-service){{ else }}`{{ $data.endpoint }}` endpoint{{ end }}
 to define the relationship{{ if and (gt (len ( $sectionLink )) 0) (gt (len ( $multipleText )) 0) }}
 (unless you have [multiple {{$multipleText}}]({{ $sectionLink }})){{ end }}:
 
@@ -56,12 +66,19 @@ You can define `<SERVICE_NAME>` and `<RELATIONSHIP_NAME>` as you like, but it's 
 
 <!-- For services with a PHP extension -->
 {{ if ( .Get "php" ) }}
+  {{ $extension_name := $type}}
+  {{ if eq $type "mongodb-enterprise" }}
+    {{ $extension_name = "mongodb" }}
+  {{ end }}
+  {{ if eq $type "postgresql" }}
+   {{ $extension_name = "pdo_pgsql" }}
+  {{ end }}
 For PHP, enable the [extension](/languages/php/extensions.html) for the service:
 
 ```yaml {location=".platform.app.yaml"}
 runtime:
     extensions:
-        - {{ if ne ($type) "postgresql" }}{{$type}}{{else}}pdo_pgsql{{end}}
+        - {{ $extension_name }}
 ```
 {{ end }}
 
@@ -98,11 +115,12 @@ mounts:
 * `<SOURCE_PATH>` is the path within the service that the mounts point to.
   Usually the same as the `<SERVICE_NAME>`.
 {{ end }}
+{{ end }} <!-- end check for Varnish -->
 
 <!-- Add example heading for all but MariaDB/Oracle MySQL and Redis, which need two -->
 {{ $skip_heading := slice "mariadb" "redis"}}
 {{ if not (in $skip_heading $type) }}
-### Example Configuration
+{{ $headerLevel }} Example Configuration
 {{ end }}
 
 {{ partial "examples/config_links" ( dict "type" $type "onlyLanguage" $onlyLanguage ) }}

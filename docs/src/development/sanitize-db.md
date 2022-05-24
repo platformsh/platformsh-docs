@@ -18,7 +18,7 @@ To ensure people reviewing the code changes can't access information they should
 
 You need:
 
-- A project with a [MySQL database](../configuration/services/mysql/_index.md).
+- A project with a [MySQL database](../add-services/mysql/_index.md).
 - A command interface installed:
   - With Drupal: [Drush](https://www.drush.org/latest/install/)
   - Without Drupal: the [Platform CLI](../development/cli/_index.md)
@@ -27,7 +27,7 @@ This guide is about sanitizing MySQL databases.
 
 This guide doesn't address:
 
-- Sanitizing NoSQL Databases (such as [MongoDB](../configuration/services/mongodb.md))
+- Sanitizing NoSQL Databases (such as [MongoDB](../add-services/mongodb.md))
 - Input validation and input sanitization, which both help prevent security vulnerabilities
 
 ## Sanitize the database
@@ -35,7 +35,7 @@ This guide doesn't address:
 Make sure that you only sanitize development environments and **never** the production environment.
 Otherwise you may lose most or even all of the relevant data stored in your database.
 
-First, take a [database dump](../configuration/services/mysql/_index.md#exporting-data) of your development environment.
+First, take a [database dump](../add-services/mysql/_index.md#exporting-data) of your development environment.
 You won't alter your production data.
 This is just a safety precaution.
 To get a database dump, run: `platform db:dump -e <DEVELOPMENT_ENVIRONMENT_NAME>`.
@@ -88,7 +88,7 @@ Assumptions:
    [you can restore them](../administration/backup-and-restore.md#restore) from the dump you took in step 1.
 
    You can create a script to automate the sanitization process to be run automatically on each new deployment.
-   Once you have a working script, add your script to sanitize the database to [a `deploy` hook](../configuration/app/hooks/hooks-comparison.md#deploy-hook):
+   Once you have a working script, add your script to sanitize the database to [a `deploy` hook](../create-apps/hooks/hooks-comparison.md#deploy-hook):
 
    ```yaml
    deploy: |
@@ -110,7 +110,7 @@ highlight=false
 ---
 
 1. To sanitize your database and get rid of sensitive, live information, use the `drush sql:sanitize` command.
-   Add your script to sanitize the database to [a `deploy` hook](../configuration/app/hooks/hooks-comparison.md#deploy-hook)
+   Add your script to sanitize the database to [a `deploy` hook](../create-apps/hooks/hooks-comparison.md#deploy-hook)
    for non-production environments:
 
   ```yaml

@@ -5,7 +5,7 @@
     "docs": {
       "relationship_name": "chromeheadlessbrowser",
       "service_name": "headlessbrowser",
-      "url": "/configuration/services/headless-chrome.html"
+      "url": "/add-services/headless-chrome.html"
     },
     "endpoint": "http",
     "min_disk_size": null,
@@ -90,7 +90,7 @@
     "docs": {
       "relationship_name": "essearch",
       "service_name": "searchelastic",
-      "url": "/configuration/services/elasticsearch.html"
+      "url": "/add-services/elasticsearch.html"
     },
     "endpoint": "elasticsearch",
     "min_disk_size": 256,
@@ -111,16 +111,13 @@
         "7.2",
         "7.5",
         "7.7",
-        "7.9"
-      ],
-      "supported": [
+        "7.9",
         "7.10"
-      ]
+      ],
+      "supported": []
     },
     "versions-dedicated": {
-      "supported": [
-        "7.10"
-      ],
+      "supported": [],
       "deprecated" : [
         "1.7",
         "2.4",
@@ -132,7 +129,8 @@
         "7.5",
         "7.6",
         "7.7",
-        "7.9"
+        "7.9",
+        "7.10"
       ]
     },
     "versions-dedicated-gen-3": {
@@ -148,11 +146,10 @@
         "7.2",
         "7.5",
         "7.7",
-        "7.9"
-      ],
-      "supported": [
+        "7.9",
         "7.10"
-      ]
+      ],
+      "supported": []
     }
   },
   "elixir": {
@@ -262,7 +259,7 @@
     "docs": {
       "relationship_name": "influxtimedb",
       "service_name": "timedb",
-      "url": "/configuration/services/influxdb.html"
+      "url": "/add-services/influxdb.html"
     },
     "endpoint": "influxdb",
     "min_disk_size": null,
@@ -320,7 +317,7 @@
     "docs": {
       "relationship_name": "kafkaqueue",
       "service_name": "queuekafka",
-      "url": "/configuration/services/kafka.html"
+      "url": "/add-services/kafka.html"
     },
     "endpoint": "kafka",
     "min_disk_size": 512,
@@ -391,7 +388,7 @@
     "docs": {
       "relationship_name": "database",
       "service_name": "db",
-      "url": "/configuration/services/mysql.html"
+      "url": "/add-services/mysql.html"
     },
     "endpoint": "mysql",
     "min_disk_size": 256,
@@ -429,7 +426,7 @@
     "docs": {
       "relationship_name": "database",
       "service_name": "db",
-      "url": "/configuration/services/mysql.html"
+      "url": "/add-services/mysql.html"
     },
     "endpoint": "mysql",
     "min_disk_size": 256,
@@ -476,7 +473,7 @@
     "docs": {
       "relationship_name": "memcachedcache",
       "service_name": "cachemc",
-      "url": "/configuration/services/memcached.html"
+      "url": "/add-services/memcached.html"
     },
     "endpoint": "memcached",
     "min_disk_size": null,
@@ -502,7 +499,7 @@
     "docs": {
       "relationship_name": "mongodatabase",
       "service_name": "dbmongo",
-      "url": "/configuration/services/mongodb.html"
+      "url": "/add-services/mongodb.html"
     },
     "endpoint": "mongodb",
     "min_disk_size": 512,
@@ -519,6 +516,33 @@
       "supported": []
     }
   },
+  "mongodb-enterprise": {
+    "description": "Support for the enterprise edition of MongoDB",
+    "repo_name": "mongodb",
+    "disk": true,
+    "docs": {
+      "relationship_name": "mongodatabase",
+      "service_name": "dbmongo",
+      "url": "/add-services/mongodb.html"
+    },
+    "endpoint": "mongodb-enterprise",
+    "min_disk_size": 512,
+    "name": "MongoDB",
+    "runtime": false,
+    "type": "mongodb-enterprise",
+    "versions": {
+      "supported": [
+        "5.0"
+      ],
+      "deprecated": []
+    },
+    "versions-dedicated": {
+      "supported": [
+        "5.0"
+      ],
+      "deprecated": []
+    }
+  },
   "network-storage": {
     "description": "",
     "repo_name": "network-storage",
@@ -526,7 +550,7 @@
     "docs": {
       "relationship_name": "null",
       "service_name": "files",
-      "url": "/configuration/services/network-storage.html"
+      "url": "/add-services/network-storage.html"
     },
     "endpoint": "something",
     "min_disk_size": null,
@@ -534,9 +558,11 @@
     "runtime": false,
     "type": "network-storage",
     "versions": {
-      "deprecated": [],
-      "supported": [
+      "deprecated": [
         "1.0"
+      ],
+      "supported": [
+        "2.0"
       ]
     },
     "versions-dedicated-gen-3": {
@@ -598,7 +624,7 @@
     "docs": {
       "relationship_name": "ossearch",
       "service_name": "searchopen",
-      "url": "/configuration/services/opensearch.html"
+      "url": "/add-services/opensearch.html"
     },
     "endpoint": "opensearch",
     "min_disk_size": 256,
@@ -636,7 +662,7 @@
     "docs": {
       "relationship_name": "mysqldatabase",
       "service_name": "dbmysql",
-      "url": "/configuration/services/mysql.html"
+      "url": "/add-services/mysql.html"
     },
     "endpoint": "mysql",
     "min_disk_size": 256,
@@ -724,7 +750,7 @@
     "docs": {
       "relationship_name": "postgresdatabase",
       "service_name": "dbpostgres",
-      "url": "/configuration/services/postgresql.html"
+      "url": "/add-services/postgresql.html"
     },
     "endpoint": "postgresql",
     "min_disk_size": null,
@@ -754,6 +780,15 @@
       "supported": [
         "9.6*",
         "11*"
+      ]
+    },
+    "versions-dedicated-gen-3": {
+      "deprecated": [],
+      "supported": [
+        "10",
+        "11",
+        "12",
+        "13"
       ]
     }
   },
@@ -795,7 +830,8 @@
         "3.6",
         "3.7",
         "3.8",
-        "3.9"
+        "3.9",
+        "3.10"
       ]
     }
   },
@@ -806,7 +842,7 @@
     "docs": {
       "relationship_name": "rabbitmqqueue",
       "service_name": "queuerabbit",
-      "url": "/configuration/services/rabbitmq.html"
+      "url": "/add-services/rabbitmq.html"
     },
     "endpoint": "rabbitmq",
     "min_disk_size": 512,
@@ -849,7 +885,7 @@
     "docs": {
       "relationship_name": "rediscache",
       "service_name": "cacheredis",
-      "url": "/configuration/services/redis.html"
+      "url": "/add-services/redis.html"
     },
     "endpoint": "redis",
     "min_disk_size": null,
@@ -866,7 +902,8 @@
         "4.0",
         "5.0",
         "6.0",
-        "6.2"
+        "6.2",
+        "7.0"
       ],
       "legacy": [
         "3.2",
@@ -876,7 +913,7 @@
       ]
     },
     "versions-dedicated": {
-      "supported": ["5.0","6.0","6.2"],
+      "supported": ["5.0","6.0","6.2","7.0"],
       "deprecated": ["3.2"]
     },
     "versions-dedicated-gen-3": {
@@ -888,7 +925,8 @@
         "3.2",
         "4.0",
         "5.0",
-        "6.0"
+        "6.0",
+        "7.0"
       ]
     }
   },
@@ -958,7 +996,7 @@
     "docs": {
       "relationship_name": "solrsearch",
       "service_name": "searchsolr",
-      "url": "/configuration/services/solr.html"
+      "url": "/add-services/solr.html"
     },
     "endpoint": "solr",
     "min_disk_size": 256,
@@ -1004,7 +1042,7 @@
     "docs": {
       "relationship_name": "varnishstats",
       "service_name": "varnish",
-      "url": "/configuration/services/varnish.html"
+      "url": "/add-services/varnish.html"
     },
     "endpoint": "http+stats",
     "min_disk_size": null,
@@ -1029,7 +1067,7 @@
     "docs": {
       "relationship_name": "vault_service",
       "service_name": "vault-kms",
-      "url": "/configuration/services/vault.html"
+      "url": "/add-services/vault.html"
     },
     "endpoint": "sign",
     "min_disk_size": 512,

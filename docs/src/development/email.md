@@ -1,118 +1,160 @@
 ---
-title: "Sending E-mail"
+title: Send email
 weight: 8
-sidebarTitle: "E-mail"
-description: |
-  By default only your production environment can send emails. For non-production environments, you can configure outgoing emails via the [management console](/administration/web/configure-environment.md#outgoing-emails). Emails from Platform.sh are sent via a SendGrid-based SMTP proxy.
+sidebarTitle: Email
+description: Send email from your Platform.sh environments.
 ---
 
-{{< description >}}
+You can configure your Platform.sh environments to send emails via an SMTP proxy.
 
-Each Platform.sh project is provisioned as a SendGrid sub-account.
-You can use `/usr/sbin/sendmail` on your application container to send emails with the assigned SendGrid sub-account.
-Alternatively, you can use the `PLATFORM_SMTP_HOST` environment variable to use in your SMTP configuration."
+Emails aren't guaranteed to be deliverable and you can't white-label them.
+The SMTP proxy is intended as a zero-configuration, best-effort service.
 
-We do not guarantee the deliverability of emails, and we do not support white-labeling them.
-Our SMTP proxy is intended as a zero-configuration, best effort service.
-If needed, you can instead use your own SMTP server or email delivery service provider.
-In that case, bear in mind that TCP port 25 is blocked for security reasons; use TCP port 465 or 587 instead.
+## 1. Turn on outgoing email
 
-{{< note>}}
+You can turn on outgoing email for each environment.
+By default, email is turned on for your Production environment and blocked for other environments.
 
-You may follow SendGrid's SPF setup guidelines to improve email deliverability with our SMTP proxy, by including the following TXT record to the domain's DNS records:
+To turn it on for a specific environment, follow these steps:
+
+{{< codetabs >}}
+
+---
+title=In the console
+file=none
+highlight=false
+---
+
+<!--This is in HTML to get the icon not to break the list. -->
+<ol>
+  <li>Select the project with the given environment.</li>
+  <li>From the <strong>Environment</strong> menu, select the environment.</li>
+  <li>Click {{< icon settings >}} <strong>Settings</strong>.</li>
+  <li>In the row with <strong>Outgoing emails</strong>, click <strong>Edit {{< icon chevron >}}</strong>.</li>
+  <li>Select the <strong>Email sending</strong> checkbox.</li>
+</ol>
+
+To turn off outgoing email, clear the **Email sending** checkbox.
+
+<--->
+
+---
+title=Using the CLI
+file=none
+highlight=false
+---
+
+To turn on outgoing email, run the following command:
+
+```bash
+platform environment:info -e <ENVIRONMENT_NAME> enable_smtp true
+```
+
+To turn off outgoing email, replace `true` with `false`.
+
+{{< /codetabs >}}
+
+Changing the setting rebuilds the environment.
+
+## 2. (Optional) Improve deliverability
+
+Improve deliverability of your email with [Sender Policy Framework (SPF)](https://docs.sendgrid.com/ui/account-and-settings/spf-records).
+Add the following `TXT` record to your domain's DNS records:
 
 ```txt
 >v=spf1 include:sendgrid.net -all
 ```
-{{< /note >}}
 
-## Email domain validation
+## 3. (Optional) Validate your email
 
-{{< tiered-feature "Enterprise" >}}
+{{< tiered-feature "Enterprise and Elite" >}}
 
-Enterprise or Elite customers can request for DomainKeys Identified Mail (DKIM) to be enabled on their domain.
+If you're on an Enterprise or Elite plan,
+you can request for DomainKeys Identified Mail (DKIM) to be enabled on your domain.
 
-DKIM improves the delivery rate as an email sender and can be enabled on either your Dedicated or Grid sites.
-
-### Enable DKIM on your domain
+DKIM improves your delivery rate as an email sender.
+Learn more about [how DKIM works](https://docs.sendgrid.com/glossary/dkim).
 
 To have DKIM enabled for your domain:
 
 1. Open a support ticket with the domain where you want DKIM.
 2. Update your DNS configuration with the `CNAME` and `TXT` records that you get in the ticket.
-3. Checks for the expected DNS records run every 15 minutes before validation.
 
-{{< note>}}
+Checks for the expected DNS records run every 15 minutes before validation.
 
-The TXT record to include your account ID (see [SendGrid's SPF guidelines](https://docs.sendgrid.com/ui/account-and-settings/spf-records))
-looks similar to the following:
+The `TXT` record looks similar to the following:
 
 ```txt
 >v=spf1 include:u17504801.wl.sendgrid.net -all
 ```
 
-{{< /note >}}
+## 4. Test the email service
 
-## Enabling/disabling email
-
-Email support can be enabled/disabled per-environment.
-By default, it's enabled on your production environment and disabled elsewhere.
-That can be toggled in through the management console or via the command line, like so:
+To test the email service, use the [CLI](./cli/_index.md) to connect to your app by running `platform ssh`.
+Run the following command:
 
 ```bash
-platform environment:info enable_smtp true
-
-platform environment:info enable_smtp false
+printf "From: <SENDER_EMAIL_ADDRESS>\nSubject: Test \nThis is a test message" | /usr/sbin/sendmail <RECIPIENT_EMAIL_ADDRESS>
 ```
 
-When SMTP support is enabled,
-the environment variable `PLATFORM_SMTP_HOST` will be populated with the address of the SMTP host that should be used.
-When SMTP support is disabled,
-that environment variable will be empty.
-
-## Ports
-
-- Port 465 and 587 should be used to send email to your own external email server.
-- Port 25 should be used to send through PLATFORM_SMTP_HOST. (this is the default in most mailers).
-
-We proxy your emails through our own SMTP host, and encrypt them over port 465 before sending them through to the outside world.
-
-## Testing the email service
-
-Before testing that the email service is working, make sure that:
-
-- E-mail has been [enabled](#enablingdisabling-email) on the environment
-- The environment has been [redeployed](./troubleshoot.md#force-a-redeploy)
-- You have accessed the environment using SSH and verified that the `PLATFORM_SMTP_HOST` environment variable is visible
-
-To test the email service, first connect to your cluster through [SSH](/development/ssh/_index.md)
-using the [CLI](/development/cli/_index.md) command `platform ssh`.
-Run the following command (replacing the email addresses with the ones you want):
+Replace the variables with actual email addresses as in the following example:
 
 ```bash
-$ php -r 'mail("mail@example.com", "test message", "just testing", "From: tester@example.com");'
+printf "From: someone@example.com\nSubject: Test \nThis is a test message" | /usr/sbin/sendmail someone@example.net
 ```
 
-After a couple minutes you should receive the "test message" in your mailbox.
+In a little while, the test message should arrive at the recipient address.
 
-## Sending email in PHP
+Be careful to test with real email addresses.
+If you send emails to fake domains (such as `example.com`), they fail and hurt your sending reputation.
+Make sure your test emails are deliverable.
 
-When you send email, you can use the built-in `mail()` function in PHP.
-The PHP runtime is configured to send email automatically via the assigned SendGrid sub-account.
-Note that the `From` header is required; email will not send if that header is missing.
+## 5. Send email from your app
 
-Beware of the potential security problems when using the `mail()` function,
-which arise when using user-supplied input in the fifth (`$additional_parameters`) argument.
-See the [PHP `mail()` documentation](http://php.net/manual/en/function.mail.php) for more information.
+You can use `/usr/sbin/sendmail` on your app container to send emails as with the example in the previous step.
+Or use the `PLATFORM_SMTP_HOST` environment variable in your SMTP configuration.
 
-## Sending email in Java
+When outgoing emails are on, `PLATFORM_SMTP_HOST` is the address of the SMTP host that should be used.
+When outgoing emails are off, the variable is empty.
+
+When using `PLATFORM_SMTP_HOST`, send email through port 25 (often the default).
+Your emails are proxied through the Platform.sh SMTP host and encrypted over port 465
+before being sent to the outside world.
+
+The precise way to send email depends on the language and framework you use.
+See some examples for given languages.
+
+{{< codetabs >}}
+
+---
+title=PHP
+file=none
+highlight=false
+---
+
+To send email in PHP, you can use the built-in [`mail()` function](http://php.net/manual/en/function.mail.php).
+The PHP runtime is configured to send email automatically with the correct configuration.
+Note that the `From` header is required.
+Your email isn't sent if that header is missing.
+
+Beware of potential security problems when using the `mail()` function.
+If you use any input from users in the `$additional_headers` or `$additional_params` parameters,
+be sure to sanitize it first.
+
+<--->
+
+---
+title=Java
+file=none
+highlight=false
+---
 
 JavaMail is a Java API used to send and receive email via SMTP, POP3, and IMAP.
 JavaMail is built into the [Jakarta EE](https://jakarta.ee/) platform, but also provides an optional package for use in Java SE.
 
-Jakarta Mail defines a platform-independent and protocol-independent framework to build mail and messaging applications.
+[Jakarta Mail](https://projects.eclipse.org/projects/ee4j.mail) defines a platform-independent and protocol-independent framework to build mail and messaging applications.
 
-Below the sample code that uses [Jakarta Mail](https://projects.eclipse.org/projects/ee4j.mail):
+The following example sends email using Jakarta Mail:
 
 ```java
 import sh.platform.config.Config;
@@ -163,13 +205,15 @@ public class JavaEmailSender {
 
 ```
 
+Guides on using JavaMail:
 
-
-There is plenty of additional documentation about using JavaMail,
-like this one [that shows how to send email with HTML formatting and attachments](https://mkyong.com/java/java-how-to-send-email/).
-
-### References
-
-- [Platform.sh Email documentation](/development/email.md)
-- [https://mkyong.com/java/java-how-to-send-email/](https://mkyong.com/java/java-how-to-send-email/)
+- [Send email with HTML formatting and attachments](https://mkyong.com/java/java-how-to-send-email/)
 - [JavaMail API](https://javaee.github.io/javamail/)
+
+{{< /codetabs >}}
+
+## Alternative: Use a different email server
+
+If you need more options, use your own SMTP server or email delivery service provider.
+Bear in mind that TCP port 25 is blocked for security reasons.
+Use port 465 or 587 instead to send email to your own external email server.

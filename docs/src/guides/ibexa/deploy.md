@@ -1,5 +1,6 @@
 ---
-title: Get started
+title: Deploy Ibexa DXP on Platform.sh
+sidebarTitle: Get started
 weight: -10
 description: Learn how to use Ibexa DXP on Platform.sh.
 ---
@@ -43,8 +44,9 @@ In particular, see:
 
 ## Local Development with eZ Platform 2.x and later
 
-Ibexa provide a tool called [eZ Launchpad](https://ezsystems.github.io/launchpad/) for local development on top of a Docker stack.
-It improves Developer eXperience and reduces complexity for common actions by simplifying your interactions with Docker containers.
+For local development on top of a Docker stack,
+the eZ community provides a tool called [eZ Launchpad](https://ezsystems.github.io/launchpad/)
+It improves developer experience and reduces complexity for common actions by simplifying your interactions with Docker containers.
 eZ Launchpad is ready to work with Platform.sh.
 
 It serves as a wrapper that allows you to run console commands from within the container without logging into it explicitly.
@@ -53,6 +55,9 @@ For example to run `bin/console` `cache:clear` inside the PHP container do:
 ```bash
 ~/ez sfrun cache:clear
 ```
+
+Note that eZ Launchpad is supported by the community.
+It might also require adjustments to make it work for Ibexa DXP V4.
 
 ### eZ Launchpad installation
 

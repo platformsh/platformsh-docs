@@ -12,18 +12,43 @@ That ensures a consistent, repeatable, auditable application instance at all tim
 
 ## Visiting the site on the web
 
-The URLs for the site are listed in the [management console](/administration/web/_index.md) under **Access site**.
+To find the URLs to access your site, follow these steps:
 
-They can also be found on the command line, using the [Platform.sh CLI](/development/cli/_index.md):
+{{< codetabs >}}
+
+---
+title=In the console
+file=none
+highlight=false
+---
+
+<!--This is in HTML to get the icon not to break the list. -->
+<ol>
+  <li>Select the project where you want to find the URLs.</li>
+  <li>From the <strong>Environment</strong> menu, select an environment.</li>
+  <li>Click <strong>URLs</strong>.</li>
+</ol>
+
+<--->
+
+---
+title=Using the CLI
+file=none
+highlight=false
+---
+
+Run the following command:
 
 ```bash
-platform url
+platform url --project <PROJECT_ID>
 ```
 
-Generally there will be two URLs created per route in your `routes.yaml` file:
+{{< /codetabs >}}
+
+Generally there are two URLs created per route in your `routes.yaml` file:
 One HTTPS and one HTTP route that just redirects to HTTPS.
-If you are using the `{all}` placeholder in your `routes.yaml` file,
-then there will be more, depending on how many domains you have configured in your project.
+If you're using the `{all}` placeholder in your `routes.yaml` file,
+then there are more, depending on how many domains you have configured in your project.
 
 ## Access your app with SSH
 
@@ -31,8 +56,8 @@ See how to [access apps with SSH](./ssh/_index.md#connect-to-apps)
 
 The application container is a fully working Linux environment using the `bash` shell.
 Most of the system consists of a read-only file system so you can't edit code, but the full system is available to read.
-Any file [mounts](../configuration/app/app-reference.md#mounts)
-you have declared in your [app configuration](../configuration/app/_index.md) are writable.
+Any file [mounts](../create-apps/app-reference.md#mounts)
+you have declared in your [app configuration](../create-apps/_index.md) are writable.
 
 Additionally, you are logged in as the same user that the web server runs as.
 So you don't have to worry about editing a file from the command line and from your application
@@ -41,7 +66,7 @@ resulting in inconsistent and broken file ownership and permissions.
 ## Uploading and downloading files
 
 The writable static files in an application (including uploads and temporary and private files)
-are stored in [mounts](../configuration/app/app-reference.md#mounts).
+are stored in [mounts](../create-apps/app-reference.md#mounts).
 
 The Platform.sh CLI can list mounts inside an application:
 
@@ -114,7 +139,7 @@ There are many SFTP clients available for every operating system.
 
 scp is a basic command-line utility to copy files to and from a remote environment.
 
-For example, to download a `diagram.png` file from the `web/uploads` directory (relative to the application root),
+For example, to download a `diagram.png` file from the `web/uploads` directory (relative to the [app root](../create-apps/app-reference.md#root-directory)),
 run the following command (replacing `<PROJECT_ID>` and `<ENVIRONMENT_NAME>` with appropriate values):
 
 ```bash

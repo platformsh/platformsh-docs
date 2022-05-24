@@ -7,10 +7,8 @@ aliases:
     - "/languages/nodejs/nvm.html"
 ---
 
-You may have instances where you need to use a specific version of Node.js that isn't available in an application container.
-For example, a container might have a long-term support version,
-while you want the latest version.
-Or you want to use specific Node.js version inside a container for another language, such as PHP.
+You may need to use a specific version of Node.js that isn't available in an app container for a different language.
+For example, a container might have a long-term support version, while you want the latest version.
 
 In such cases, use a version manager to install the specific version you want to use.
 You could use one of these:
@@ -19,14 +17,14 @@ You could use one of these:
 - [Use `nvm`](#use-nvm)
 
 Both of the recommendations use a `.nvmrc` file to specify the desired Node.js version.
-You could also use [environment variables](../../development/variables/_index.md) or specify a different file.
+You could also specify a different file or use [environment variables](../../development/variables/_index.md).
 
 ## Use `n`
 
 The [`n` package](https://github.com/tj/n) works for various Unix-like systems,
 including Windows Subsystem for Linux.
 
-1. Add the desired Node.js version to a `.nvmrc` file in your project's root:
+1. Add the desired Node.js version to a `.nvmrc` file in [your app root](../../create-apps/app-reference.md#root-directory):
 
    ```yaml {location=".nvmrc"}
    v16.13.2
@@ -49,7 +47,7 @@ including Windows Subsystem for Linux.
            N_PREFIX: /app/.global
    ```
 
-1. Install the specified version of Node.js in a [`build` hook](../../configuration/app/hooks/hooks-comparison.md#build-hook):
+1. Install the specified version of Node.js in a [`build` hook](../../create-apps/hooks/hooks-comparison.md#build-hook):
 
    ```yaml {location=".platform.app.yaml"}
    hooks:
@@ -99,10 +97,10 @@ hooks:
 
 You can:
 
-* Add it to the build hook to make that version available in the build
-* Control the specific versions to be installed with [environment variables](../../development/variables/_index.md),
-  meaning you can also have different versions in different environments
-* Cache `nvm` so you don't need to download it each time
+- Add it to the build hook to make that version available in the build.
+- Control the specific versions to be installed with [environment variables](../../development/variables/_index.md),
+  meaning you can also have different versions in different environments.
+- Cache `nvm` so you don't need to download it each time.
 
 Add it to your `.platform.app.yaml` file:
 

@@ -7,7 +7,7 @@ description: |
     Review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for Quarkus.
 ---
 
-{{< guides/config-desc name="Quarkus" >}}
+{{< guides/config-desc name="Quarkus" noService=true >}}
 
 ## Requests configuration: `routes.yaml`
 
@@ -15,14 +15,7 @@ description: |
 
 ## Service configuration: `services.yaml`
 
-{{% guides/config-service framework=Quarkus %}}
-
-Deploying Quarkus doesn't in itself require you to configure a database or another service,
-but in all likelihood you will want to add one at some point.
-
-{{% /guides/config-service %}}
-
-{{< readFile file="static/files/fetch/servicesyaml/drupal9" highlight="yaml" >}}
+{{% guides/config-service name=Quarkus noService=true /%}}
 
 ## Application container: `.platform.app.yaml`
 

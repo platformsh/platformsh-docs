@@ -57,7 +57,8 @@ A complete example is included at the end of this section.
 
 3. Build your application with the build hook.
 
-    Assuming you have your dependencies stored in the `Gemfile` at the root of your app folder to execute build steps:
+    Assuming you have your dependencies stored in the `Gemfile` at [your app root](../create-apps/app-reference.md#root-directory),
+    create a hook like the following:
 
     ```yaml
     hooks:
@@ -283,7 +284,7 @@ web:
 ## Configuring services
 
 This example assumes there is a MySQL instance.
-To configure it, [create a service](../configuration/services/_index.md) such as the following:
+To configure it, [create a service](../add-services/_index.md) such as the following:
 
 ```yaml {location=".platform/services.yaml"}
 database:
@@ -293,7 +294,7 @@ database:
 
 ## Connecting to services
 
-Once you have a service, link to it in your [app configuration](../configuration/app/_index.md):
+Once you have a service, link to it in your [app configuration](../create-apps/_index.md):
 
 ```yaml {location=".platform.app.yaml"}
 relationships:

@@ -3,6 +3,8 @@ title: Variables overview
 weight: 5
 description: |
   Variables give you control over your project's build process and runtime environment. You can set them in your code to make changes across your project or independent of the code for environment-specific settings.
+keywords:
+  - environment variables
 ---
 
 {{< description >}}

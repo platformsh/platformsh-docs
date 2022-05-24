@@ -5,7 +5,7 @@ type: 'python:3.9'
 variables:
     env:
         MEILISEARCH_VERSION: '0.24.0'
-        POETRY_VERSION: '1.1.4'
+        POETRY_VERSION: '1.1.13'
         POETRY_VIRTUALENVS_IN_PROJECT: true
         POETRY_VIRTUALENVS_CREATE: false
 
@@ -26,6 +26,15 @@ web:
 
 # The size of the persistent disk of the application (in MB).
 disk: 2048
+
+crons:
+    indexExternalSites:
+        # Run at 06:00 UTC every day
+        spec: '0 6 * * *'
+        commands:
+            start: !include
+                type: string
+                path: index_external_sites.sh
 
 mounts:
     "data.ms":

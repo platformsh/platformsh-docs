@@ -1,7 +1,6 @@
 ---
-title: "HIPAA compliance"
-sidebarTitle: "HIPAA"
-weight: 17
+title: HIPAA compliance
+sidebarTitle: HIPAA
 description: |
     Platform.sh HIPAA Compliance
 ---

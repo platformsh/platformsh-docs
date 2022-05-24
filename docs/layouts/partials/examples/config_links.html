@@ -1,9 +1,12 @@
 <!-- Add additional configuration for specific services in PHP and Python-->
 {{ $l1 := "" }}
-{{ $php_types := slice "memcached" "mongodb" "postgresql" "redis" "redis-persistent" }}
+{{ $php_types := slice "memcached" "mongodb" "mongodb-enterprise" "postgresql" "redis" "redis-persistent" }}
 <!-- Display PHP extensions if necessary and not in a context for only a different language -->
 {{ if and ( in $php_types .type ) ( or ( not .onlyLanguage ) ( eq .onlyLanguage "php" ) ) }}
   {{ $extension_name := .type}}
+  {{ if eq .type "mongodb-enterprise" }}
+    {{ $extension_name = "mongodb" }}
+  {{ end }}
   {{ if eq (.type) "postgresql" }}
    {{ $extension_name = "pdo_pgsql" }}
   {{ end }}
@@ -32,12 +35,15 @@
 {{ else if eq (.type) "redis" }}
   <h3>Ephemeral Redis example configuration</h3>
 {{ end }}
-<a href="/configuration/services.html">Service definition</a>
+<a href="/add-services.html">Service definition</a>
 
 <div class="highlight-location">.platform/services.yaml</div>
 {{ highlight ( readFile (printf "src/registry/images/examples/full/%s.services.yaml" .type) ) "yaml" ""}}
 
-<a href="/configuration/app/app-reference.html">App configuration</a>
+<!-- Exclude Varnish because it would create a circular relationship -->
+{{ if ne .type "varnish" }}
+
+<a href="/create-apps/app-reference.html">App configuration</a>
 
 <div class="highlight-location">.platform.app.yaml</div>
 {{ highlight ( printf "%s%s%s" (readFile (printf "src/registry/images/examples/full/%s.app.yaml" .type)) $l1 $l2 ) "yaml" ""}}
@@ -46,12 +52,12 @@
 {{ if eq (.type) "mariadb" }}
   <h3>Oracle MySQL example configuration</h3>
 
-  <a href="/configuration/services.html">Service definition</a>
+  <a href="/add-services.html">Service definition</a>
 
   <div class="highlight-location">.platform/services.yaml</div>
   {{ highlight ( readFile "src/registry/images/examples/full/oracle-mysql.services.yaml" ) "yaml" ""}}
 
-  <a href="/configuration/app/app-reference.html">App configuration</a>
+  <a href="/create-apps/app-reference.html">App configuration</a>
 
   <div class="highlight-location">.platform.app.yaml</div>
   {{ highlight ( readFile "src/registry/images/examples/full/oracle-mysql.app.yaml" ) "yaml" ""}}
@@ -61,12 +67,12 @@
 {{ if eq (.type) "redis" }}
   <h3>Persistent Redis example configuration</h3>
 
-  <a href="/configuration/services.html">Service definition</a>
+  <a href="/add-services.html">Service definition</a>
 
   <div class="highlight-location">.platform/services.yaml</div>
   {{ highlight ( readFile "src/registry/images/examples/full/redis-persistent.services.yaml" ) "yaml" ""}}
 
-  <a href="/configuration/app/app-reference.html">App configuration</a>
+  <a href="/create-apps/app-reference.html">App configuration</a>
 
   <div class="highlight-location">.platform.app.yaml</div>
   {{ highlight ( printf "%s%s%s" (readFile (printf "src/registry/images/examples/full/%s.app.yaml" "redis-persistent")) $l1 $l2 ) "yaml" ""}}
@@ -81,3 +87,4 @@
   <div class="highlight-location">.platform.app.yaml</div>
   {{ highlight ( readFile "data/local-examples/vault-multiple-endpoints/platform.app.yaml" ) "yaml" "" }}
 {{ end }}
+{{ end }} <!-- end check for Varnish -->

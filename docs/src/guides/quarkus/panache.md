@@ -7,7 +7,7 @@ description: |
     Configure a Quarkus application with Panache.
 ---
 
-Hibernate ORM is the de facto JPA implementation and offers you the full breadth of an Object Relational Mapper. It makes complex mappings possible, but it does not make simple and common mappings trivial. Hibernate ORM with Panache focuses on making your entities trivial and fun to write in Quarkus.
+Hibernate ORM is a JPA implementation and offers you the full breadth of an Object Relational Mapper. It makes complex mappings possible, but they can sometimes be difficult. Hibernate ORM with Panache focuses on helping you write your entities in Quarkus.
 
 To activate Hibernate Panache and then have it accessed by the Quarkus application already in Platform.sh, it is necessary to modify two files. 
 
@@ -17,19 +17,19 @@ This guide only covers the *addition* of a service configuration to an existing 
 
 ## 1. Add a SQL database service
 
-In your [service configuration](../../configuration/services/_index.md), include a SQL database service. Make sure to visit the documentation for [that service](../../configuration/services/_index.md) to find a valid version. For PostgreSQL that would look like:
+In your [service configuration](../../add-services/_index.md), include a SQL database service. Make sure to visit the documentation for [that service](../../add-services/_index.md) to find a valid version. For PostgreSQL that would look like:
 
 {{< readFile file="src/registry/images/examples/full/postgresql.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
 
 ## 2. Grant access to the service through a relationship
 
-To access the new service, set a `relationship` in your [app configuration](../../configuration/app/app-reference.md#relationships).
+To access the new service, set a `relationship` in your [app configuration](../../create-apps/app-reference.md#relationships).
 
 {{< readFile file="src/registry/images/examples/full/postgresql.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 ## 3. Export connection credentials to the environment
 
-Connection credentials for services are exposed to the application container through the `PLATFORM_RELATIONSHIPS` environment variable from the deploy hook onward. Since this variable is a base64 encoded JSON object of all of your project's services, you'll likely want a clean way to extract the information specific to the databse into it's own environment variables that can be easily used by Quarkus. On Platform.sh, custom environment variables can be defined programmatically in a `.environment` file using `jq` to do just that:
+Connection credentials for services are exposed to the application container through the `PLATFORM_RELATIONSHIPS` environment variable from the deploy hook onward. Since this variable is a base64 encoded JSON object of all of your project's services, you'll likely want a clean way to extract the information specific to the database into it's own environment variables that can be used by Quarkus. On Platform.sh, custom environment variables can be defined programmatically in a `.environment` file using `jq` to do just that:
 
 ```text
 export HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".postgresdatabase[0].host")

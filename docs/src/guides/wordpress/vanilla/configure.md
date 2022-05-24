@@ -17,7 +17,7 @@ description: |
 
 {{% guides/config-service WordPress=true framework=WordPress %}}
 
-We recommend the latest [MariaDB](/configuration/services/mysql/_index.md) version for WordPress.
+We recommend the latest [MariaDB](../../../add-services/mysql/_index.md) version for WordPress.
 
 {{% /guides/config-service %}}
 

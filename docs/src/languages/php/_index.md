@@ -1,6 +1,6 @@
 ---
 title: "PHP"
-description: PHP is a popular scripting language designed especially for the web. It currently powers over 80% of websites.
+description: PHP is a popular scripting language designed especially for the web. It currently powers around 80% of websites.
 layout: single
 ---
 
@@ -14,6 +14,8 @@ Platform.sh supports deploying PHP applications.
 
 Note that from PHP 7.1, the images use the Zend Thread Safe (ZTS) version of PHP.
 
+{{% language-specification type="php" display_name="PHP" %}}
+
 {{< image-versions-legacy "php" >}}
 
 {{% deprecated-versions %}}
@@ -22,12 +24,84 @@ Note that from PHP 7.1, the images use the Zend Thread Safe (ZTS) version of PHP
 |----------------------------------|---------------|
 |  {{< image-versions image="php" status="deprecated" environment="grid" >}} | {{< image-versions image="php" status="deprecated" environment="dedicated" >}} |
 
-{{% language-specification type="php" display_name="PHP" %}}
+## Usage example
+
+To use PHP on Platform.sh, configure the `.platform.app.yaml` file with a few key settings
+(a complete example is included at the end).
+
+### 1. Specify the version
+
+<!-- Choose a version from the [list above](#supported-versions)
+and add it to your [app configuration](../create-apps/_index.md): -->
+
+{{< readFile file="src/registry/images/examples/full/php.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
+
+### 2. Specify the dependency management
+
+Add the following to your app configuration to use composer 2.x:
+
+```yaml {location=".platform.app.yaml"}
+dependencies:
+    php: 
+        composer/composer: '^2'
+```
+
+If you want to use composer 1.x instead, don't add that code block.
+
+### 3. Build your app
+
+Include any commands needed to build and setup your app in the `hooks`.
+By default, none is needed, as in the following example:
+
+```yaml {location=".platform.app.yaml"}
+hooks:
+    build: |
+        set -e
+```
+
+### 4. Start your app
+
+Set the location from which content should be served.
+And set the passthru to handle all non-static requests.
+
+```yaml {location=".platform.app.yaml"}
+web:
+    locations:
+        '/':
+            root: 'public'
+            passthru: '/app.php'
+```
+
+A [start command](../../create-apps/app-reference.md#required-command) is not required for PHP.
+
+### Complete example
+
+A complete basic app configuration looks like the following:
+
+```yaml {location=".platform.app.yaml"}
+name: 'app'
+
+type: 'php:8.1'
+
+dependencies:
+    php:
+        composer/composer: '^2'
+
+hooks:
+    build: |
+        set -e
+
+web:
+    locations:
+        '/':
+            root: 'public'
+            passthru: '/app.php'
+```
 
 ## Manage dependencies
 
 PHP images use the `composer` build flavor by default,
-which uses the latest Composer 2.x release as [a dependency](../../configuration/app/app-reference.md#dependencies).
+which uses the latest Composer 2.x release as [a dependency](../../create-apps/app-reference.md#dependencies).
 If you want to use composer 1.x instead, remove the following block (if present):
 
 ```yaml {location=".platform.app.yaml"}
@@ -81,7 +155,7 @@ The above is equivalent to the following `composer.json` file:
 
 ## Connecting to services
 
-To access various [services](/configuration/services/_index.md) with PHP, see the following examples.
+To access various [services](/add-services/_index.md) with PHP, see the following examples.
 The individual service pages have more information on configuring each service.
 
 {{< codetabs >}}
@@ -165,8 +239,31 @@ it is generally easier and more robust to use the [`platformsh/config-reader`](h
 
 ## PHP Settings
 
+By default, PHP is run in CGI mode using PHP-FPM.
+It's possible to change the PHP-FPM runtime configuration via the `runtime` property in your [app configuration](../../create-apps/app-reference.md#runtime).
+See that reference for details on what can be changed.
+
+You can set the timezone of the PHP runtime through [the app runtime timezone](../../create-apps/timezone.md).
+Note that the timezone settings of containers/services would remain in UTC.
+
+### Default php.ini settings
+
+The default values for some frequently-modified `php.ini` settings are listed below.
+
+- `memory_limit=128M`
+- `post_max_size=64M`
+- `upload_max_filesize=64M`
+- `display_errors=On`: This value is on by default. Use a custom error handler in your application to track errors. Set this value to Off before you make your site live.
+- `zend.assertions=-1`: Assertions are optimized out of existence and have no impact at runtime. You should have assertions set to `1` for your local development system.
+- `opcache.memory_consumption=64`: This is the number of megabytes available for [the OPcache](/languages/php/tuning.md#enable-opcache-preloading). Increase this value for large applications with many files.
+- `opcache.validate_timestamps=On`: [the OPcache](/languages/php/tuning.md#enable-opcache-preloading) checks for updated files on disk. This is necessary to support applications that generate compiled PHP code from user configuration. If you are certain your application does not do so then you can disable this setting for a small performance boost.
+
+{{< note theme="warning" >}}
+There are no limits set to what you can put in your `php.ini` file, but many settings can break your application.
+{{< /note >}}
+
 There are two ways to customize `php.ini` values for your application.
-The recommended method is to use the [`variables` property](../../configuration/app/app-reference.md#variables) to set `ini` values using the `php` prefix.
+The recommended method is to use the [`variables` property](../../create-apps/app-reference.md#variables) to set `ini` values using the `php` prefix.
 For example, to increase the PHP memory limit you'd put the following:
 
 ```yaml {location=".platform.app.yaml"}
@@ -182,13 +279,6 @@ It's also possible to provide a custom `php.ini` file in the repository in the r
 ; Increase PHP memory limit
 memory_limit = 256M
 ```
-
-You can set the timezone of the PHP runtime through [the app runtime timezone](../../configuration/app/timezone.md).
-Note that the timezone settings of containers/services would remain in UTC.
-
-By default, PHP is run in CGI mode using PHP-FPM.
-It's possible to change the PHP-FPM runtime configuration via the `runtime` property in your [app configuration](../../configuration/app/app-reference.md#runtime).
-See that reference for details on what can be changed.
 
 Environment-specific `php.ini` configuration directives can be provided via environment variables separately from the application code.
 See the note on [environment variables](../../development/variables/_index.md#php-specific-variables).
@@ -215,22 +305,6 @@ Common functions to disable include:
 - `curl_exec`, `curl_multi_exec`: These functions allow a PHP script to make arbitrary HTTP requests. These are frequently used by other HTTP libraries such as Guzzle, in which case you should *not* disable them.
 - `show_source`: This function shows a syntax highlighted version of a named PHP source file. Rarely useful outside of development.
 - `create_function`: It has been replaced by anonymous functions and has no useful purpose since PHP 5.3 and shouldn't be used, ever.
-
-### Default php.ini settings
-
-The default values <!-- TODO: check these --> for some frequently-modified `php.ini` settings are listed below.
-
-- `memory_limit=128M`
-- `post_max_size=64M`
-- `upload_max_filesize=64M`
-- `display_errors=On`: This value is on by default. Use a custom error handler in your application to track errors. Set this value to Off before you make your site live.
-- `zend.assertions=-1`: Assertions are optimized out of existence and have no impact at runtime. You should have assertions set to `1` for your local development system.
-- `opcache.memory_consumption=64`: This is the number of megabytes available for [the OPcache](/languages/php/tuning.md#enable-opcache-preloading). Increase this value for large applications with many files. 
-- `opcache.validate_timestamps=On`: [the OPcache](/languages/php/tuning.md#enable-opcache-preloading) checks for updated files on disk. This is necessary to support applications that generate compiled PHP code from user configuration. If you are certain your application does not do so then you can disable this setting for a small performance boost.
-
-{{< note theme="warning" >}}
-There are no limits set to what you can put in your `php.ini` file, but many settings can break your application.
-{{< /note >}}
 
 ## Alternate start commands
 
