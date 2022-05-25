@@ -61,6 +61,4 @@ Split each function
 
 ## Project templates
 
-A description of what templates are.
-
-{{< repolist lang="<LANGUAGE_TYPE>" >}}
+{{< repolist lang="<LANGUAGE_TYPE>" displayName="<LANGUAGE_NAME>" >}}
