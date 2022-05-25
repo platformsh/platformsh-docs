@@ -32,7 +32,7 @@ hooks:
 
 ## Usage
 
-The default web server should be overriden by a [custom start command](../../../languages/php/_index.md#alternate-start-commands). Your application should listen the TCP socket.
+The default web server should be overriden by a [custom start command](./_index.md#alternate-start-commands). Your application should listen the TCP socket.
 
 ```yaml {location=".platform.app.yaml"}
 web:
