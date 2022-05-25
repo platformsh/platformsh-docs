@@ -5,11 +5,11 @@ description: What hooks are available in the build and deploy process and how to
 
 The following table presents the main differences among the three available hooks:
 
-| Hook name     | Failures stop build | Variables available | Services available | Run on `worker` instances | Writable directories | Blocks requests | Runs on all redeploys\* |
-| ------------- | ------------------- |------------------- | ------------------ | ------------------------- | -------------------- | --------------- | --------------- |
-| `build`       | Yes                 | Build variables     | No                 | Yes                       | `$PLATFORM_APP_DIR`, `$PLATFORM_CACHE_DIR`, and `/tmp` | No  | No  |
-| `deploy`      | No                  | Runtime variables   | Yes                | No                        | [Mounts](../app-reference.md#mounts)                   | Yes | No  |
-| `post_deploy` | No                  | Runtime variables   | Yes                | No                        | [Mounts](../app-reference.md#mounts)                   | No  | Yes |
+| Hook name     | Failures stop build | Variables available | Services available | Timeout | Run on `worker` instances | Writable directories | Blocks requests | Runs on all redeploys\* |
+| ------------- | ------------------- |-------------------- | ------------------ | ------- | ------------------------- | -------------------- | --------------- | --------------- |
+| `build`       | Yes                 | Build variables     | No                 | 1 hour  | Yes                       | `$PLATFORM_APP_DIR`, `$PLATFORM_CACHE_DIR`, and `/tmp` | No  | No  |
+| `deploy`      | No                  | Runtime variables   | Yes                | None    | No                        | [Mounts](../app-reference.md#mounts)                   | Yes | No  |
+| `post_deploy` | No                  | Runtime variables   | Yes                | None    | No                        | [Mounts](../app-reference.md#mounts)                   | No  | Yes |
 
 \* All of the hooks run with changes to the code or environment.
 This column indicates which hooks run on a redeploy without any code changes.
@@ -50,6 +50,13 @@ To cause them to fail on the first failed command, add `set -e` to the beginning
 If a `build` hook fails for any reason, the build is aborted and the deploy doesn't happen.
 Note that this only works for `build` hooks.
 If other hooks fail, the deploy still happens.
+
+### Timeout
+
+Build hooks automatically time out if they run for 1 hour.
+So if you accidentally add an unbroken loop, it gets cut off and you can continue with other activities.
+
+{{% legacy-regions featureIntro="Build hooks timing out" featureShort="this feature" level=4 %}}
 
 ## Deploy hook
 
