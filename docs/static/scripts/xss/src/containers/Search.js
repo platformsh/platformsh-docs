@@ -36,7 +36,7 @@ const Search = ({ fullPage }) => {
   const limit = fullPage ? maxResults : 7
 
   const getInfo = (infoConfig, infoQuery) => {
-    axios.get(`${infoConfig.url}indexes/${infoConfig.index}/search?attributesToCrop=text&cropLength=200&attributesToHighlight=text,keywords&q=${infoQuery}&limit=${limit}&attributesToRetrieve=title,keywords,text,url,site,section&matches=true`, { params: {}, headers: { 'X-Meili-Api-Key': infoConfig.public_api_key } })
+    axios.get(`${infoConfig.url}indexes/${infoConfig.index}/search?attributesToCrop=text&cropLength=200&attributesToHighlight=text,keywords&q=${infoQuery}&limit=${limit}&attributesToRetrieve=title,keywords,text,url,site,section&matches=true`, { params: {}, headers: { Authorization: `Bearer ${infoConfig.public_api_key}` } })
       .then(({ data }) => {
         setHits({
           docs: data.hits.filter((hit) => hit.site === 'docs'),

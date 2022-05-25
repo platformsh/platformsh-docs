@@ -119,10 +119,14 @@ class Search:
 
         # Delete previous index
         if len(client.get_indexes()):
-            client.get_index(self.docs_index).delete()
+            client.index(self.docs_index).delete()
 
         # Create a new index
-        index = client.create_index(uid=self.docs_index, options={'primaryKey': self.primaryKey, 'uid': self.index_name})
+        create_index_task = client.create_index(uid=self.docs_index, options={'primaryKey': self.primaryKey, 'uid': self.index_name})
+
+        client.wait_for_task(create_index_task['uid'])
+
+        index = client.get_index(create_index_task['indexUid'])
 
         # Add synonyms for the index
         index.update_synonyms(self.synonyms)
