@@ -14,7 +14,7 @@ const getConfig = async () => {
   // Webpack isn't a fan of reading from `config-reader-nodejs` or environment variables
   // here if they are not yet set, but a file works just fine.
   // The mount `public/scripts/xss/dist/config` has been defined to support this.
-  const response = await fetch('/scripts/xss/dist/config/config.json');
+  const response = await fetch(`/scripts/xss/dist/config/config.json?version=${Date.now().toString()}`);
   return response.json();
 }
 
