@@ -90,7 +90,15 @@ const Search = ({ fullPage }) => {
     <div className="suggestions suggestions-primary">
       <h4 className="section">Documentation</h4>
       <div className="hits">
-        <ul>Sorry, no documentation matched your search.</ul>
+        <ul>No documentation matched your search, but you can try the other resources below.</ul>
+      </div>
+    </div>
+  ) : ''
+  const noResults = (hits.docs.length === 0 && summedSecondary === 0) ? (
+    <div className="suggestions suggestions-primary">
+      <h4 className="section">No results</h4>
+      <div className="hits">
+        <ul>No documentation matched your search.</ul>
       </div>
     </div>
   ) : ''
@@ -98,6 +106,7 @@ const Search = ({ fullPage }) => {
 
   const allResults = (
     <div className={fullPage ? 'search-page-results' : 'search-all-results'}>
+      {noResults}
       {docs}
       {noPrimaryResults}
       {secondaryResults}
