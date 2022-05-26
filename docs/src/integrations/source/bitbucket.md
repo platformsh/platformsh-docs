@@ -101,9 +101,6 @@ They can be changed using the `platform integration:update` command.
 * `--build-pull-requests`: Track and deploy pull-requests (true by default)
 * `--build-pull-requests-post-merge`: `false` to have Platform.sh build the branch specified in a PR.
   `true` to build the result of merging the PR.  (`false` by default)
-* `--pull-requests-clone-parent-data`:
-  Set to `false` to disable cloning of parent environment data when creating a PR environment,
-  so each PR environment starts with no data. (`true` by default)
 
 For more information see:
 
