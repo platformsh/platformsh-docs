@@ -336,6 +336,13 @@ For Rails, you have two choices:
 * Use the [platformsh-rails-helper gem](https://github.com/platformsh/platformsh-rails-helper)
   by adding it to your `Gemfile` and commenting the production block in `config/database.yml`
 
+### Configuration reader
+
+You can use a [helper library for Ruby apps](https://github.com/platformsh/platformsh-ruby-helper)
+and [one for Rails apps](https://github.com/platformsh/platformsh-rails-helper).
+They simplify presenting environment information to your application.
+They aren't required to run Ruby applications on Platform.sh but are recommended.
+
 ## Other tips
 
 * To speed up boot you can use the [Bootsnap gem](https://github.com/Shopify/bootsnap)
@@ -350,16 +357,7 @@ For Rails, you have two choices:
 
 ## Project templates
 
-A number of project templates for Ruby applications and typical configurations are available on GitHub.
-Not all of them are proactively maintained but all can be used as a starting point
-or reference for building your own website or web application.
-
-Platform.sh also provides a [helper library for Ruby applications](https://github.com/platformsh/platformsh-ruby-helper)
-and one [for Rails applications](https://github.com/platformsh/platformsh-rails-helper)
-that simplify presenting environment information to your application.
-They aren't required to run Ruby applications on Platform.sh but are recommended.
-
-{{< repolist lang="ruby" >}}
+{{< repolist lang="ruby" displayName="Ruby" >}}
 
 ## Troubleshooting
 

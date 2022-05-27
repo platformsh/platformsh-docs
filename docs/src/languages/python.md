@@ -238,6 +238,4 @@ markdownify=false
 
 ## Project templates
 
-A number of project templates for Python applications are available on GitHub.  Not all of them are proactively maintained but all can be used as a starting point or reference for building your own website or web application.
-
-{{< repolist lang="python" >}}
+{{< repolist lang="python" displayName="Python" >}}

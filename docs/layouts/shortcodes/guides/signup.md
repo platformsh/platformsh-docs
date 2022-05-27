@@ -3,6 +3,8 @@ there are three ways to get started.
 
 ### With a template
 
+{{ markdownify (readFile "/layouts/shortcodes/template-intro.md") }}
+
 Deploy a {{ .Get "name" }} template itself straight to Platform.sh.
 Use the button below to launch a {{ .Get "name" }} template project
 and create a Platform.sh account along the way.
