@@ -1,11 +1,12 @@
 ---
 title: "Python"
-description: Platform.sh supports deploying Python applications. Your application can use WSGI-based (Gunicorn / uWSGI) application server, Tornado, Twisted, or Python 3.5+ asyncio server.
+description: Get started creating Python apps on Platform.sh.
 ---
 
-{{< description >}}
+Python is a general purpose scripting language often used in web development.
+You can deploy Python apps on Platform.sh using a server or a project such as [uWSGI](https://uwsgi-docs.readthedocs.io/en/latest/).
 
-## Supported
+## Supported versions
 
 | **Grid** | **Dedicated** |
 |----------------------------------|---------------|
@@ -15,142 +16,134 @@ description: Platform.sh supports deploying Python applications. Your applicatio
 
 {{% language-specification type="python" display_name="Python" %}}
 
-## Support libraries
+## Usage example
 
-While it is possible to read the environment directly from your application, it is generally easier and more robust to use the [`platformshconfig`](https://github.com/platformsh/config-reader-python) pip library which handles decoding of service credential information for you.
+### Run your own server
 
-## WSGI-based configuration
+You can define any server to handle requests.
+Once you have it configured, add the following configuration to get it running on Platform.sh:
 
-In this example, we use Gunicorn to run our WSGI application.  Configure the `.platform.app.yaml` file with a few key settings as listed below, a complete example is included at the end of this section.
-
-1. Specify the language of your application (available versions are listed above):
+1. Specify one of the [supported versions](#supported-versions):
 
     {{< readFile file="/registry/images/examples/full/python.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
-2. Build your application with the build hook.
-   Assuming you have your pip dependencies stored in `requirements.txt`
-   and a `setup.py` at [your app root](../create-apps/app-reference.md#root-directory),
-   create a hook like the following:
+2. Install the requirements for your app.
+   For example, to use `pipenv` to manage requirements and a virtual environment, add the following:
 
-   ```yaml
+   ```yaml {location=".platform.app.yaml"}
+   dependencies:
+       python3:
+           pipenv: "2022.5.2"
+
    hooks:
        build: |
-           pip install -r requirements.txt
-           pip install -e .
-           pip install gunicorn
+           pipenv install --system --deploy
    ```
 
-   These are installed as global dependencies in your environment.
+3. Define the command to start your web server:
 
-3. Configure the command you use to start serving your application (this must be a foreground-running process) under the `web` section, e.g.:
-
-   ```yaml
+   ```yaml {location=".platform.app.yaml"}
    web:
+       # Start your app with the configuration you define
+       # You can replace the file location with your location
        commands:
-           start: "gunicorn -b 0.0.0.0:$PORT project.wsgi:application"
+           start: python server.py
    ```
 
-   This assumes the WSGI file is `project/wsgi.py` and the WSGI application object is named `application` in the WSGI file.
+### Use uWSGI
 
-4. Define the web locations your application is using:
+You can also use [uWSGI](https://uwsgi-docs.readthedocs.io/en/latest/) to manage your server.
+Follow these steps to get your server started.
 
-   ```yaml
+1. Specify one of the [supported versions](#supported-versions):
+
+    {{< readFile file="/registry/images/examples/full/python.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
+
+2. Define the conditions for your web server:
+
+   ```yaml {location=".platform.app.yaml"}
    web:
+       upstream:
+           # Send requests to the app server through a unix socket
+           # Its location is defined in the SOCKET environment variable
+           socket_family: "unix"
+
+       # Start your app with the configuration you define
+       # You can replace the file location with your location
+       commands:
+           start: "uwsgi --ini conf/uwsgi.ini"
+
        locations:
+           # The folder from which to serve static assets
            "/":
-               root: ""
+               root: "public"
                passthru: true
-               allow: false
-           "/static":
-               root: "static/"
-               allow: true
+               expires: 1h
    ```
 
-   This configuration asks our web server to handle HTTP requests at "/static" to serve static files stored in `/app/static/` folder while everything else is forwarded to your application server.
+3. Create configuration for uWSGI such as the following:
 
-5. Create any Read/Write mounts. The root file system is read only.  You must explicitly describe writable mounts.
+   ```ini {location="config/uwsgi.ini}
+   [uwsgi]
+    # UNIX socket to use to talk with the web server
+    # Uses the variable defined in the configuration in step 2
+    socket = $(SOCKET)
+    protocol = http
 
-   ```yaml
-   mounts:
-       tmp:
-           source: local
-           source_path: tmp
-       logs:
-           source: local
-           source_path: logs
+    # the entry point to your app
+    wsgi-file = app.py
    ```
 
-   This setting allows your application writing files to `/app/tmp` and have logs stored in `/app/logs`.
+   Replace `app.py` with whatever your file is.
 
-Then, set up the routes to your application in `.platform/routes.yaml`.
+4. Install the requirements for your app.
+   For example, to use `pipenv` to manage requirements and a virtual environment, add the following:
 
-   ```yaml
-   "https://{default}/":
-       type: upstream
-       upstream: "app:http"
+   ```yaml {location=".platform.app.yaml"}
+   dependencies:
+       python3:
+           pipenv: "2022.5.2"
+
+   hooks:
+       build: |
+           pipenv install --system --deploy
    ```
 
-Here is the complete `.platform.app.yaml` file:
+5. Define the entry point in your app:
 
-```yaml
-name: app
-type: python:2.7
+   ```python
+   # You can name the function differently and pass the new name as a flag
+   # start: "uwsgi --ini conf/uwsgi.ini --callable <NAME>"
+   def application(env, start_response):
 
-web:
-    commands:
-        start: "gunicorn -b $PORT project.wsgi:application"
-    locations:
-        "/":
-            root: ""
-            passthru: true
-            allow: false
-        "/static":
-            root: "static/"
-            allow: true
+       start_response('200 OK', [('Content-Type', 'text/html')])
+       return [b"Hello world from Platform.sh"]
+   ```
 
-hooks:
-    build: |
-        pip install -r requirements.txt
-        pip install -e .
-        pip install gunicorn
+## Package management
 
-mounts:
-   tmp:
-       source: local
-       source_path: tmp
-   logs:
-       source: local
-       source_path: logs
+Your app container comes with pip pre-installed.
+To add global dependencies (packages available as commands),
+add them to the `dependencies` in your [app configuration](../create-apps/app-reference.md#dependencies):
 
-disk: 512
+```yaml {location=".platform.app.yaml"}
+dependencies:
+    python3:
+        <PACKAGE_NAME>: <PACKAGE_VERSION>
 ```
 
-## Using the asyncio module
+For example, to add `pipenv` for package and virtual environment management, add the following:
 
-The above Gunicorn based WSGI example can be modified to use the Python 3.5+ asyncio module.
+```yaml {location=".platform.app.yaml"}
+dependencies:
+    python3:
+        pipenv: "2022.5.2"
+```
 
-1. Change the `type` to `python:3.6`.
-2. Change the start command to use asyncio.
+## Connect to services
 
-   ```yaml
-   web:
-       commands:
-           start: "gunicorn -b $PORT -k gaiohttp project.wsgi:application"
-   ```
-
-3. Add `aiohttp` as pip dependency in your build hook.
-
-   ```yaml
-   hooks:
-       build: |
-           pip install -r requirements.txt
-           pip install -e .
-           pip install gunicorn aiohttp
-   ```
-
-## Accessing services
-
-To access various [services](../add-services/_index.md) with Python, see the following examples.  The individual service pages have more information on configuring each service.
+The following examples show how to access various [services](../add-services/_index.md) with Python.
+For more information on configuring a given service, see the page for that service.
 
 {{< codetabs >}}
 
@@ -235,6 +228,10 @@ markdownify=false
 
 {{< /codetabs >}}
 
+
+{{% config-reader %}}
+[`platformshconfig` library](https://github.com/platformsh/config-reader-python)
+{{% /config-reader%}}
 
 ## Project templates
 
