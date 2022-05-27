@@ -14,9 +14,7 @@ jobs:
     - name: Vale
       uses: errata-ai/vale-action@reviewdog
       with:
-        reporter: github-check
         files: docs/src
-        filter_mode: file
         level: info
         fail_on_error: true
       env:
