@@ -118,9 +118,12 @@ highlight=java
 
 {{< /codetabs >}}
 
- {{< note >}}
-These samples use the [Configuration Reader library](https://github.com/platformsh/config-reader-java) that Platform.sh provides. However, if your favorite Java frameworks allow you to overwrite the configurations following [The Twelve-Factor App](https://12factor.net/config) (such as Spring, Micronaut, Quarkus, Jakarta EE/MicroProfile), then as a developer you have the option to not use the library, removing the need for an additional dependency.
-{{< /note >}}
+{{% config-reader %}}
+[configuration reader library](https://github.com/platformsh/config-reader-java)
+{{% /config-reader%}}
+
+If your Java framework allows, you can instead overwrite configuration following the [twelve-factor app](https://12factor.net/config).
+That removes the need for an additional dependency.
 
 ## Project templates
 

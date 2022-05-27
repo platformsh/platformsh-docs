@@ -22,11 +22,6 @@ Note that from PHP 7.1, the images use the Zend Thread Safe (ZTS) version of PHP
 |----------------------------------|---------------|
 |  {{< image-versions image="php" status="deprecated" environment="grid" >}} | {{< image-versions image="php" status="deprecated" environment="dedicated" >}} |
 
-## Support libraries
-
-While it is possible to read the environment directly from your application,
-it is generally easier and more robust to use the [`platformsh/config-reader`](https://github.com/platformsh/config-reader-php) Composer library which handles decoding of service credential information for you.
-
 ## Alternate start commands
 
 PHP is most commonly run in a CGI mode, using PHP-FPM.
@@ -309,6 +304,11 @@ markdownify=false
 
 {{< /codetabs >}}
 
+
+
+{{% config-reader %}}
+[`platformsh/config-reader` Composer library](https://github.com/platformsh/config-reader-php)
+{{% /config-reader%}}
 
 ## Runtime configuration
 

@@ -60,15 +60,11 @@ runtime:
 ## Platform.sh variables
 
 Platform.sh exposes relationships and other configuration as [environment variables](../development/variables/_index.md).
-Most notably, it allows a program to determine at runtime what HTTP port it should listen on
-and what the credentials are to access [other services](../add-services/_index.md).
-
-To get the `PORT` environment variable (the port on which your web application is supposed to listen) you would:
+To get the `PORT` environment variable (the port on which your web application is supposed to listen):
 
 ```lisp
 (parse-integer (uiop:getenv "PORT"))
 ```
-
 
 ## Building and running the application
 
