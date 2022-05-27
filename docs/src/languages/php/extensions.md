@@ -77,7 +77,7 @@ and turn off those on by default with the `disabled_extensions` key.
 | `memcache`        | Avail | Avail | Avail |       |       |       |       |       |       |       |
 | `memcached`       | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |       |
 | `mongo`           | Avail | Avail | Avail |       |       |       |       |       |       |       |
-| `mongodb`         |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail |       |
+| `mongodb`         |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `msgpack`         |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |       |
 | `mssql`           | Avail | Avail | Avail |       |       |       |       |       |       |       |
 | `mysql`           | Def   | Def   | Def   |       |       |       |       |       |       |       |
