@@ -139,9 +139,9 @@ as well as triple redundancy on every element of the stack with:
 
 {{< note theme="info" title="none" >}}
 
-99.99% Uptime Guaranteed
+99.99% uptime guaranteed
 
-24/7 White Glove Onboarding and Support
+24/7 white glove onboarding and support
 
 {{< /note >}}
 

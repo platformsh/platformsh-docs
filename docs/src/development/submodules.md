@@ -109,7 +109,7 @@ These steps are not specific to Platform.sh, but kept as a reference for Git so 
     $ git commit -m "Removed submodule."
     ```
 
-7. Remove the submodule code locally, now untracked: 
+7. Remove the submodule code locally, now no longer tracked: 
 
     ```bash
     $ rm -rf path_to_submodule
