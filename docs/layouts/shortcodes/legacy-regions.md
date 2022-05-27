@@ -1,4 +1,5 @@
-## Supported regions
+{{ $level := .Get "level" }}
+{{ if eq $level 4 }}####{{ else if eq $level 3 }}###{{ else }}##{{ end }} Supported regions
 
 {{ .Get "featureIntro" }} {{ if (.Get "plural") }}are{{ else }}is{{ end }} available on all regions except the legacy regions:
 
