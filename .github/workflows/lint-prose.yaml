@@ -14,8 +14,10 @@ jobs:
     - name: Vale
       uses: errata-ai/vale-action@reviewdog
       with:
+        reporter: github-check
         files: docs/src
         level: info
         fail_on_error: true
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
