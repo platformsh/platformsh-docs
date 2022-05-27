@@ -83,6 +83,14 @@ That may include a database container, an Elasticsearch container,
 a container for your application, and more.
 They're always deployed together as a single unit.
 
+## Dedicated
+
+[Dedicated environments](../dedicated/overview/_index.md) are managed virtual machine clusters with triple redundancy.
+Their dedicated architecture makes them differ from [Grid environments](#grid).
+See a [list of current differences](../dedicated/overview/grid.md).
+
+These differences should disappear with [Dedicated Gen 3](../dedicated-gen-3/overview.md)
+
 ## Drush
 
 Drush is a command-line shell and scripting interface for Drupal.
@@ -94,6 +102,12 @@ that let you run Drush commands on specific local or remote Drupal installations
 The Platform.sh CLI configures Drush aliases for you on your local environment
 (via `platform get` or `platform drush-aliases`).
 You can also configure them manually.
+
+## Grid
+
+Grid environments are standard for Professional plans.
+They run on shared infrastructure.
+This architecture makes them different from [Dedicated environments](#dedicated).
 
 ## Inactive environment
 
