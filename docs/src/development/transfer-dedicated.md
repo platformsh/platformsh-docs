@@ -54,7 +54,7 @@ Which gives a JSON output similar to:
 From which you need the following values:
 - `username`.
 - `password`. If empty, remove the flag.
-- "path", which is the name of the database (`<DBNAME>` in the example command below).
+- `path`, which is the name of the database (`<DBNAME>` in the example command below).
 
 Now, adapt and run the following command on your local computer:
 
@@ -133,7 +133,7 @@ Which gives a JSON output similar to:
 From which you need the following values:
 - `username`.
 - `password`. If empty, remove the flag.
-- "path", which is the name of the database (`<DBNAME>` in the example command below).
+- `path`, which is the name of the database (`<DBNAME>` in the example command below).
 
 Now, in a separate terminal log in to the development instance using `platform ssh`.
 Run the same `echo` command as above to get the credentials for the database on the development instance.
