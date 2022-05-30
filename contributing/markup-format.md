@@ -13,7 +13,7 @@
   - [Notes](#notes)
     - [Footnotes](#footnotes)
   - [Images](#images)
-  - [Videos & asciinema](#videos--asciinema)
+  - [Videos \& asciinema](#videos--asciinema)
   - [Code](#code)
     - [Indentation](#indentation)
     - [Code block location](#code-block-location)
@@ -297,11 +297,15 @@ from jwcrypto import jws, jwk
 {{< /codetabs >}}
 ```
 
-Property    | Description
-------------|-----------
-`title`     | The title that appears on the tab.
-`highlight` | The language to use for highlighting, as in [code blocks](#code). If set to `false`, content renders as Markdown.
-`file`      | If not set to `none`, the displayed code comes from the specified local file.
+Property      | Description
+------------- | ----------
+`title`       | The title that appears on the tab.
+`highlight`   | The language to use for highlighting, as in [code blocks](#code). If set to `false`, content renders as Markdown.
+`file`        | If not set to `none`, the displayed code comes from the specified local file.
+`markdownify` | Whether to transform the block to Markdown. Defaults to `true`. Set to `false` when the file/block is code.
+
+Note that if you're using code inside the Markdown file,
+leave two empty lines after `{{ /codetabs }}` to turn off spell checking inside the block.
 
 ## Reuse content
 

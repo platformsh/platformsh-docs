@@ -124,6 +124,4 @@ These samples use the [Configuration Reader library](https://github.com/platform
 
 ## Project templates
 
-A number of project templates for major Java applications are available on GitHub. Not all of them are proactively maintained but all can be used as a starting point or reference for building your own website or web application.
-
-{{< repolist lang="java" >}}
+{{< repolist lang="java" displayName="Java" >}}

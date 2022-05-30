@@ -21,7 +21,7 @@
     "registry-files": "node static/scripts/updateExampleConfigFiles.js"
   },
   "devDependencies": {
-    "pshregistry-parser": "^1.4.0",
+    "pshregistry-parser": "^1.5.0",
     "remark-cli": "^10.0.1",
     "remark-validate-links": "^11.0.2"
   },

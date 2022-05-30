@@ -117,3 +117,5 @@ platform integration:validate
 {{% integration-environment-status source="GitLab" %}}
 
 {{% clone-commit name="GitLab" %}}
+
+{{% integration-url source="GitLab" %}}

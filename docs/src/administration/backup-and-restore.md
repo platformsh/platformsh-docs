@@ -75,8 +75,10 @@ when the short amount of downtime is least noticed.
 You can trigger a live backup through the CLI using the `--live` flag:
 
 ```bash
-$ platform backup:create --live
+platform backup:create --live
 ```
+
+{{% legacy-regions featureIntro="Live backups" featureShort="live backups" level=4 plural=true %}}
 
 ### Automated backups
 

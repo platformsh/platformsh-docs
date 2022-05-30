@@ -6,9 +6,9 @@ description: |
     Everything you need to get started with WordPress on Platform.sh. 
 ---
 
-This guide will take you through the steps to update your [*vanilla*](/guides/wordpress/vanilla/_index.md), fully-committed, WordPress repository to one fully managed with Composer. It is assummed that you already have (locally) a vanilla version of WordPress where all of core, themes, and plugins are committed to the repository or committed as submodules, and that it has been set up for deployment on Platform.sh. Because of these assumptions, you should already have Platform.sh configuration files in your repository to deploy the resulting Composer-based WordPress site on Platform.sh. If you do not, follow the [previous guide](/guides/wordpress/vanilla/_index.md) and add them. 
+This guide will take you through the steps to update your [*vanilla*](/guides/wordpress/vanilla/_index.md), fully committed, WordPress repository to one fully managed with Composer. It is assumed that you already have (locally) a vanilla version of WordPress where all of core, themes, and plugins are committed to the repository or committed as submodules, and that it has been set up for deployment on Platform.sh. Because of these assumptions, you should already have Platform.sh configuration files in your repository to deploy the resulting Composer-based WordPress site on Platform.sh. If you do not, follow the [previous guide](/guides/wordpress/vanilla/_index.md) and add them. 
 
-For more context regarding why Platform.sh recommends Composer-based installations of Wordpress, see the ["Using Composer" guide](/guides/wordpress/composer/_index.md).
+For more context regarding why Platform.sh recommends Composer-based installations of WordPress, see the ["Using Composer" guide](/guides/wordpress/composer/_index.md).
 
 ## WordPress Core
 
@@ -53,7 +53,7 @@ Instead of committing all of WordPress to your repository (or adding it as a sub
     $ curl https://raw.githubusercontent.com/platformsh/template-builder/master/templates/wordpress-composer/files/.gitignore >> .gitignore
     ```
     
-    Then, unstage WordPress from the repository:
+    Then, remove WordPress from the repository:
 
     ```bash
     $ git rm -rf --cached wordpress && rm -rf wordpress
@@ -137,7 +137,7 @@ Like WordPress core itself, themes and plugins can be installed as dependencies 
     }
     ```
 
-    Now any plugin that contains as a part of its package metadata a `type` of `wordpress-plugin` will be installed into `wordpress/wp-content/plugins/` instead of `vendor`, and the same goes for themes and muplugins. 
+    Now any plugin that contains as a part of its package metadata a `type` of `wordpress-plugin` will be installed into `wordpress/wp-content/plugins/` instead of `vendor`, and the same goes for themes and must-use plugins. 
 
 3. **Install themes and modules**
 

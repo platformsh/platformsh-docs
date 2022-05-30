@@ -1,5 +1,10 @@
 {{ $lang := .Get "lang" }}
 
+{{ if not ( .Get "noIntro" ) }}
+  <p>The following list shows templates available for {{ .Get "displayName" }} apps.
+  {{ markdownify (readFile "/layouts/shortcodes/template-intro.md") }}</p>
+{{ end }}
+
 {{ if isset .Site.Data.templates $lang }}
 
   {{ $templates := index .Site.Data.templates $lang }}

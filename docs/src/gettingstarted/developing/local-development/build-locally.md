@@ -59,11 +59,11 @@ ruby -run -e httpd . -p 8000
 {{< /codetabs >}}
 
 
-  Applications written in Node.js, Go and Java can be configured to listen on a port locally, so it will only be necessary to execute the program directly.
+   Applications written in Node.js, Go and Java can be configured to listen on a port locally, so it will only be necessary to execute the program directly.
 
 3. **Cleanup**
 
-    That's it! Now you can easily spin up a local build of your application and test new features with full access to all of the data in your services. When you are finished, shut down the web server and then close the tunnel to your services:
+    That's it! Now you can spin up a local build of your application and test new features with full access to all of the data in your services. When you are finished, shut down the web server and then close the tunnel to your services:
 
     ```bash
     platform tunnel:close

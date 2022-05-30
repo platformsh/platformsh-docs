@@ -157,9 +157,3 @@ and setup Ecto during the deploy hook:
 deploy: |
     mix do ecto.setup
 ```
-
-## Project templates
-
-Platform.sh offers a number of project templates using the structure described above. It can be used as a starting point or reference for building your own website or web application.
-
-{{< repolist lang="elixir" >}}

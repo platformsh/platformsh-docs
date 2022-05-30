@@ -226,7 +226,4 @@ It decodes service credentials, the correct port, and other information for you.
 
 ## Project templates
 
-See a number of project templates for Node.js apps and typical configurations on GitHub.
-They're not all actively maintained, but they offer a starting point or reference for your project.
-
-{{< repolist lang="nodejs" >}}
+{{< repolist lang="nodejs" displayName="Node.js" >}}
