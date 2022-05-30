@@ -1,6 +1,6 @@
 ---
 title: "Go"
-description: Platform.sh supports building and deploying applications written in Go using Go modules. They are compiled during the Build hook phase, and support both committed dependencies and download-on-demand.
+description: Platform.sh supports building and deploying applications written in Go using Go modules. They're compiled during the Build hook phase, and support both committed dependencies and download-on-demand.
 ---
 
 {{< description >}}
@@ -25,7 +25,7 @@ The recommended way to handle Go dependencies on Platform.sh is using Go module 
 
 ## Building and running the application
 
-Assuming your `go.mod` and `go.sum` files are present in your repository, the application may be built with the command `go build`, which produces a working executable. You can then start it from the `web.commands.start` directive. Note that the start command _must_ run in the foreground. Should the program terminate for any reason it will be automatically restarted.
+Assuming your `go.mod` and `go.sum` files are present in your repository, your application can be built with the command `go build`, to produce a working executable. You can then start it from the `web.commands.start` directive. Note that the start command _must_ run in the foreground. If the program terminates for any reason it is automatically restarted.
 
 The following basic `.platform.app.yaml` file is sufficient to run most Go applications.
 
@@ -59,7 +59,7 @@ web:
 disk: 1024
 ```
 
-Note that there will still be an Nginx proxy server sitting in front of your application. If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Go application unconditionally, as in the example above.
+Note that there is still an Nginx proxy server sitting in front of your application. If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Go application unconditionally, as in the example above.
 
 ## Accessing services
 

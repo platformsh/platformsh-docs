@@ -30,12 +30,12 @@ String.to_integer(System.get_env("PORT") || "8888")
 Some of the environment variables are in JSON format and are base64 encoded. You would need to import a JSON parsing library such as [JSON](https://hexdocs.pm/json/readme.html) or [Poison](https://hexdocs.pm/poison/api-reference.html) to read those. (There is an example for doing this to decode the `PLATFORM_RELATIONSHIPS` environment variable in the section [below](#accessing-services-manually).)
 
 {{< note title="Tip">}}
-Remember `config/prod.exs` is evaluated at **build time** and will not have access to runtime configuration. Use `config/releases.exs` to configure your runtime environment.
+Remember `config/prod.exs` is evaluated at **build time** and has no access to runtime configuration. Use `config/releases.exs` to configure your runtime environment.
 {{< /note >}}
 
 ## Building and running the application
 
-If you are using Hex to manage your dependencies, it will be necessary to specify a set of environment variables in your `.platform.app.yaml` file that define the `MIX_ENV` and `SECRET_KEY_BASE`, which can be set to the Platform.sh-provided `PLATFORM_PROJECT_ENTROPY` environment variable:
+If you are using Hex to manage your dependencies, it is necessary to specify a set of environment variables in your `.platform.app.yaml` file that define the `MIX_ENV` and `SECRET_KEY_BASE`, which can be set to the Platform.sh-provided `PLATFORM_PROJECT_ENTROPY` environment variable:
 
 ```yaml
 variables:
@@ -88,11 +88,12 @@ web:
             passthru: true
 ```
 
-Note that there will still be an Nginx proxy server sitting in front of your application. If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Elixir application unconditionally, as in the example above.
+Note that there is still an Nginx proxy server sitting in front of your application. If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Elixir application unconditionally, as in the example above.
 
 ## Dependencies
 
-The recommended way to handle Elixir dependencies on Platform.sh is using Hex. You can commit a `mix.exs` file in your repository and the system will download the dependencies in your `deps` section using the build hook above.
+The recommended way to handle Elixir dependencies on Platform.sh is using Hex. 
+You can commit a `mix.exs` file in your repository and the system downloads the dependencies in your `deps` section using the build hook above.
 
 ```elixir
   defp deps do

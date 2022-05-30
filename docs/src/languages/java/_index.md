@@ -20,7 +20,7 @@ layout: single
 
 ## Support libraries
 
-While it is possible to read the environment directly from your application, it is generally easier and more robust to use the [`platformsh/config-reader`](https://github.com/platformsh/config-reader-java) which handles decoding of service credential information for you.
+While it's possible to read the environment directly from your application, it's generally easier and more robust to use the [`platformsh/config-reader`](https://github.com/platformsh/config-reader-java) which handles decoding of service credential information for you.
 
 ## Support build automation
 
@@ -32,7 +32,7 @@ Platform.sh supports the most common project management tools in the Java ecosys
 
 ## Other JVM languages
 
-It’s worth remembering that the JVM by its specification [does not read Java code](https://docs.oracle.com/javase/specs/jvms/se8/html/index.html), but bytecode. So within the JVM, it’s possible to [run several languages](https://en.wikipedia.org/wiki/List_of_JVM_languages). Platform.sh supports several of them, such as Kotlin, Groovy, and Scala, so long as that language works with any build automation that Platform.sh supports.
+It’s worth remembering that the JVM by its specification [doesn't read Java code](https://docs.oracle.com/javase/specs/jvms/se8/html/index.html), but bytecode. So within the JVM, it’s possible to [run several languages](https://en.wikipedia.org/wiki/List_of_JVM_languages). Platform.sh supports several of them, such as Kotlin, Groovy, and Scala, so long as that language works with any build automation that Platform.sh supports.
 
 | Article                                                      | Link                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -42,7 +42,7 @@ It’s worth remembering that the JVM by its specification [does not read Java c
 
 ## Accessing services
 
-To access various [services](../../add-services/_index.md) with Java, see the following examples.  The individual service pages have more information on configuring each service.
+To access various [services](../../add-services/_index.md) with Java, see the following examples. The individual service pages have more information on configuring each service.
 
 {{< codetabs >}}
 
