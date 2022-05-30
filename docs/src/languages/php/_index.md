@@ -242,6 +242,8 @@ it is generally easier and more robust to use the [`platformsh/config-reader`](h
 
 ## PHP Settings
 
+For dedicated, [see the configuration options](../../dedicated/overview/grid.md#configuration-options).
+
 By default, PHP is run in CGI mode using PHP-FPM.
 It's possible to change the PHP-FPM runtime configuration via the `runtime` property in your [app configuration](../../create-apps/app-reference.md#runtime).
 See that reference for details on what can be changed.
@@ -251,7 +253,23 @@ Note that the timezone settings of containers/services would remain in UTC.
 
 ### Default `php.ini` settings
 
-The default `php.ini` values can be retrieved by calling the `phpinfo()` function from within a php script.
+The default `php.ini` values can be retrieved by calling the `phpinfo()` function from within a php script:
+
+``` yaml {location="info.php"}
+<?php
+
+// Show all information, defaults to INFO_ALL
+phpinfo();
+
+// Show just the module information.
+// phpinfo(8) yields identical results.
+phpinfo(INFO_MODULES);
+
+?>
+```
+
+Don't forget to remove that file once you retrieved all information you need.
+For full reference, consult the [PHP documentation](https://www.php.net/manual/en/function.phpinfo.php).
 
 Some noteworthy `php.ini` settings are:
 
@@ -282,7 +300,7 @@ It's also possible to provide a custom `php.ini` file in the repository in the r
 memory_limit = 256M
 ```
 
-Environment-specific `php.ini` configuration directives can be provided via environment variables separately from the application code.
+For environment-specific `php.ini` configuration directives, provide them via environment variables that are separate from the application code.
 See the note on [environment variables](../../development/variables/_index.md#php-specific-variables).
 
 ### Disabling functions for security purposes
@@ -326,11 +344,9 @@ The above configuration executes the `run.php` script in the application root wh
 just before the deploy hook runs,
 but does *not* launch PHP-FPM.
 
-It also tells the front-controller (Nginx) to connect to your application via a TCP socket,
-which is specified in the `PORT` environment variable.
+It also tells the front-controller (Nginx) to connect to your application via a TCP socket.
+That port is specified as `PORT` environment variable.
 Note that the start command _must_ run in the foreground.
-
- <!-- TODO: make the above clearer -->
 
 If not specified, the effective default start command for PHP-FPM varies by PHP version:
 
@@ -344,16 +360,15 @@ If you need both, they have to run in separate containers.
 
 ## Foreign Function Interfaces (FFI)
 
-[Foreign Function Interfaces (FFI)](https://en.wikipedia.org/wiki/Foreign_function_interface), allow user-space code to bridge to existing C-ABI-compatible libraries. <!-- TODO: Simplify that part, it still feels heavy -->
+[Foreign Function Interfaces (FFI)](https://en.wikipedia.org/wiki/Foreign_function_interface), allow program written in one programming language to call routines or make use of services written in another. FFI with PHP allows the use of C libraries or Rust.
 FFI is fully supported on Platform.sh.
 
-Note: FFI is only intended for advanced use cases. Use with caution.
-
-<!-- TODO: Improve structure based on howto -->
+FFI is only intended for advanced use cases. Use with caution.
 
 Ensure that your `.so` library files are available locally.
 You can either place these files directly in your repository or download and compile them in your build hook.
-The library files shouldn't be accessible in a publicly web-accessible directory.
+
+Note: The library files shouldn't be accessible in a publicly web-accessible directory.
 
 If compiling C code, `gcc` is available by default.
 If compiling Rust code, you can download the [Rust compiler in the build hook](https://doc.rust-lang.org/stable/book/ch01-01-installation.html).
