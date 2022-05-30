@@ -14,26 +14,13 @@ Unlike PHP-FPM’s stateless operating, Swoole relies on establishing persistent
 Swoole requires PHP 7.3+.
 {{< /note >}}
 
-## Install
+Check the documentation related to [Laravel Octane on Platform.sh](../../guides/laravel/deploy/octane.md).
 
-Install the Swoole PHP extension during the build.
-
-Take advantage of an [installation script](https://raw.githubusercontent.com/platformsh/snippets/main/src/install_swoole.sh).
-You need to pass 2 parameters:
- - Which Swoole project to use: `openswoole` or `swoole`
- - Which version to use
-
-```yaml {location=".platform.app.yaml"}
-hooks:
-    build: |
-        set -e
-        ...
-        sh <( curl -s 'https://raw.githubusercontent.com/platformsh/snippets/main/src/install_swoole.sh') openswoole 4.11.1
-```
+{{% swoole %}}
 
 ## Use
 
-Override the default web server with a [custom start command](../../../languages/php/_index.md#alternate-start-commands).
+Override the default web server with a [custom start command](../_index.md#alternate-start-commands).
 Octane should listen on a TCP socket.
 
 ```yaml {location=".platform.app.yaml"}
