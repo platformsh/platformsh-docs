@@ -184,7 +184,7 @@ The following shows only the parts necessary for the hooks.
 
 ### Drupal
 
-```yaml {location="druupal/.platform.app.yaml"}
+```yaml {location="drupal/.platform.app.yaml"}
 # The name of this app. Must be unique within the project.
 name: 'drupal'
 

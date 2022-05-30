@@ -110,7 +110,7 @@ curl \
   --data "{\"input\": \"$(echo SECRET | base64)\"}"
 ```
 
-The string at the end of the URL denotes the specific [hash algorithm used by the Vault KMS](https://www.vaultproject.io/api/secret/transit#hash_algorithm).
+The string at the end of the URL denotes the specific [hash algorithm used by the Vault KMS](https://www.vaultproject.io/api-docs/secret/transit#hash_algorithm).
 
 You get back a JSON object that includes the signature for the payload:
 
@@ -240,7 +240,7 @@ In the JSON object that's returned, you can notice that the `ciphertext` is diff
 
 ## Relationship
 
-The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables):
+The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables):
 
 {{< relationship "vault-kms" >}}
 

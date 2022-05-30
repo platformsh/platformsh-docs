@@ -16,7 +16,6 @@ With all of the requirements met, install the CLI to start developing with Platf
 
     In your terminal, run the following command depending on your operating system:
 
-<!-- vale Vale.Spelling = NO -->
 {{< codetabs >}}
 
 ---
@@ -41,7 +40,7 @@ curl -f https://platform.sh/cli/installer -o cli-installer.php
 php cli-installer.php
 
 {{< /codetabs >}}
-<!-- vale Vale.Spelling = YES -->
+
 
 2. **Authenticate and Verify**
 

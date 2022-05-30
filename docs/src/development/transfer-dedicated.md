@@ -77,7 +77,7 @@ ssh yourusername@yourclustername.ent.platform.sh 'mysqldump --single-transaction
 
 To transfer data into either the staging or production environments,
 you can either download it from your Platform.sh development environment to your local system first
-or transfer it directly between environments using SSH-based tools (such as `SCP`, `rsync`).
+or transfer it directly between environments using SSH-based tools (such as `scp`, `rsync`).
 
 First, set up [SSH forwarding](./ssh/ssh-keys.md#forwarding-keys-by-default) by default for Platform.sh domains.
 

@@ -13,7 +13,7 @@
   - [Notes](#notes)
     - [Footnotes](#footnotes)
   - [Images](#images)
-  - [Videos & asciinema](#videos--asciinema)
+  - [Videos \& asciinema](#videos--asciinema)
   - [Code](#code)
     - [Indentation](#indentation)
     - [Code block location](#code-block-location)
@@ -219,6 +219,26 @@ web:
 Keep the top-level key visible so readers can understand the code in context.
 (For example, don't leave out `web:` in the example above.)
 
+### Note when low-level items are missing
+
+If there's a complicated block (such as `web.locations`) with many settings not relevant to the current idea,
+show that they're missing with ellipses.
+
+For example, to focus only on caching and not the rules for the location:
+
+```yaml
+web:
+    locations:
+        '/':
+            ...
+            expires: -1
+```
+
+This is only necessary for items that aren't top-level.
+In longer files (such as `.platform.app.yaml`), it's fine to leave out other top-level items.
+For example, only a `web` block is shown above, even though it's not valid on its own.
+It should still be enough to copy and paste into a larger file.
+
 ### Code block location
 
 If it's helpful to note where the code should be placed (such as in a `.platform.app.yaml` file),
@@ -277,11 +297,15 @@ from jwcrypto import jws, jwk
 {{< /codetabs >}}
 ```
 
-Property    | Description
-------------|-----------
-`title`     | The title that appears on the tab.
-`highlight` | The language to use for highlighting, as in [code blocks](#code). If set to `false`, content renders as Markdown.
-`file`      | If not set to `none`, the displayed code comes from the specified local file.
+Property      | Description
+------------- | ----------
+`title`       | The title that appears on the tab.
+`highlight`   | The language to use for highlighting, as in [code blocks](#code). If set to `false`, content renders as Markdown.
+`file`        | If not set to `none`, the displayed code comes from the specified local file.
+`markdownify` | Whether to transform the block to Markdown. Defaults to `true`. Set to `false` when the file/block is code.
+
+Note that if you're using code inside the Markdown file,
+leave two empty lines after `{{ /codetabs }}` to turn off spell checking inside the block.
 
 ## Reuse content
 

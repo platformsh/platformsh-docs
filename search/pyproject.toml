@@ -6,9 +6,10 @@ authors = ["Platform.sh"]
 license = "Attribution-ShareAlike 4.0 International"
 
 [tool.poetry.dependencies]
-python = "^3.9"
-Scrapy = "^2.6.1"
-meilisearch = "^0.12.4"
+python = "^3.10"
+cryptography = "^3.2.1"
+Scrapy3 = "^1.0.1"
+meilisearch = "^0.18.3"
 platformshconfig = "^2.3.1"
 PyYAML = "^6.0"
 

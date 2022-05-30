@@ -18,6 +18,8 @@ There are only a few notable differences.
 Individual applications may have their own Fastly setup instructions or additional modules.
 Consult the documentation for your application for specific details.
 
+{{% disable-cache CDN="Fastly" %}}
+
 ## Set the Platform.sh domain on Fastly
 
 Rather than create a DNS CNAME for your default Platform.sh branch (for instance `main-7rqtwti-qwertyqwerty.eu.platform.sh`),

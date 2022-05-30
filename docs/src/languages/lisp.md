@@ -145,11 +145,10 @@ Then in your program you could access the PostgreSQL instance as follows:
 "))))
 ```
 
-## Project templates
+## Example
 
-Platform.sh offers a project template for Lisp applications using the structure described above.  It can be used as a starting point or reference for building your own website or web application.
-
-The following is a basic example of a Hunchentoot based web application (you can find the corresponding `.asd` and Platform.sh `.yaml` files in the linked GitHub repository):
+The following is a basic example of a Hunchentoot-based web app
+(you can find the corresponding `.asd` and Platform.sh `.yaml` files in the [template](#project-templates)):
 
 ```lisp
 (defpackage #:example
@@ -168,6 +167,10 @@ The following is a basic example of a Hunchentoot based web application (you can
     (start acceptor)
     (sleep most-positive-fixnum)))
 ```
-Notice how we get the `PORT` from the environment, and how we sleep at the end, as `(start acceptor)` will immediately yield and Platform.sh requires applications to run in the foreground.
 
-{{< repolist lang="lisp" >}}
+Notice how it gets the `PORT` from the environment and how it sleeps at the end,
+as `(start acceptor)` immediately yields and Platform.sh requires apps to run in the foreground.
+
+## Project templates
+
+{{< repolist lang="lisp" displayName="Lisp" >}}

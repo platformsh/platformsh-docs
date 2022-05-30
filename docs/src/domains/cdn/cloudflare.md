@@ -23,6 +23,8 @@ you'll want to point both of those DNS entries to the same place.
 Whether you choose the bare domain version or the `www` subdomain doesn't make any practical difference,
 as they both will reach Platform.sh and be handled correctly.
 
+{{% disable-cache CDN="Cloudflare" %}}
+
 ## Enable "Full SSL" option in the Cloudflare admin
 
 Cloudflare also makes it possible to use their free TLS/SSL service to secure your site via HTTPS,
@@ -36,7 +38,7 @@ mostly like using your project's Let's Encrypt certificate.
 
 ```text
 # Cloudflare's Full SSL option
-		   https                       https
+          https                       https
 User <---------------> Cloudflare <-------------> Platform.sh
 ```
 
@@ -48,11 +50,23 @@ by at the least eliminating the unencrypted attack vector on the "last mile" to 
 
 ```text
 # Cloudflare's Flexible SSL option
-		   https                       http
+          https                       http
 User <---------------> Cloudflare <-------------> Platform.sh
 ```
 
-This will cause all traffic from Cloudflare to your project to be redirected to HTTPS,
-which will set off an endless loop as HTTPS traffic will be presented as HTTP to your project no matter what.
+This causes all traffic from Cloudflare to your project to be redirected to HTTPS,
+which sets off an endless loop as HTTPS traffic is presented as HTTP to your project no matter what.
 
 In short: *Always use "Full SSL" unless you have a very clear reason to do otherwise*
+
+## Let's Encrypt certificate renewal
+
+Let's Encrypt expects the `.well-known` endpoint on all domains added.
+You have 2 options:
+
+* Remove all domains pointing to Cloudflare from your Platform.sh project
+* Follow these steps in your Cloudflare console:
+
+  1. On the SSL page, turn off **Always Use HTTPS**.
+  2. Create a page rule for `/.well-known/acme-challenge/` with SSL set to **off**.
+  3. Create a second page rule for `*` that turns **Always Use HTTPS** back on.

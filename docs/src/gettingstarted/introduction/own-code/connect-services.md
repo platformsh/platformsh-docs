@@ -29,6 +29,7 @@ In order to connect to this service and use it in your application, Platform.sh 
 
 To access this variable you can install a Platform.sh configuration reader library
 
+<!-- vale Vale.Spelling = NO -->
 {{< codetabs >}}
 
 ---
@@ -100,7 +101,7 @@ markdownify=false
 pip install platformshconfig
 
 {{< /codetabs >}}
-
+<!-- vale Vale.Spelling = YES -->
 
 and access the credentials of `database`
 
@@ -220,6 +221,7 @@ relationships = json.loads(base64.b64decode(os.environ["PLATFORM_RELATIONSHIPS"]
 credentials = relationships['database']
 
 {{< /codetabs >}}
+
 
 In either case, `credentials` can now be used to connect to `database`:
 
