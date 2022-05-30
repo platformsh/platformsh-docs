@@ -51,15 +51,15 @@ Which gives a JSON output similar to:
 ]
 ```
 
-The values needed are:
-- `username` of your database (`<username>`).
-- `password` of your database (`<password>`). If empty, remove the flag.
-- "path", which is the name of the database (`<dbname>`).
+You need the following values:
+- `username`.
+- `password`. If empty, remove the flag.
+- "path", which is the name of the database (`main` in the example above).
 
 Now, adapt and run the following command on your local computer:
 
 ```bash
-ssh <USERNAME>@<CLUSTER_NAME>.ent.platform.sh 'mysqldump --single-transaction -u <username> -p<password> -h database.internal <dbname> | gzip' > database.gz
+ssh <USERNAME>@<CLUSTER_NAME>.ent.platform.sh 'mysqldump --single-transaction -u <USERNAME> -p<PASSWORD> -h database.internal <DBNAME> | gzip' > database.gz
 ```
 
 That runs a `mysqldump` command on the server, compresses it using `gzip`,
@@ -109,7 +109,7 @@ Once there, you can look up database credentials by running:
 echo $PLATFORM_RELATIONSHIPS | base64 --decode | json_pp
 ```
 
-Which should give a JSON output containing something like this:
+Which gives a JSON output similar to:
 
 ```json
 {
@@ -130,10 +130,10 @@ Which should give a JSON output containing something like this:
 }
 ```
 
-The values needed are:
-- `username` of your database (`<username>`).
-- `password` of your database (`<password>`). If empty, remove the flag.
-- "path", which is the name of the database (`<dbname>`).
+You need the following values:
+- `username`.
+- `password`. If empty, remove the flag.
+- "path", which is the name of the database (`<DBNAME>`).
 
 Now, in a separate terminal log in to the development instance using `platform ssh`.
 Run the same `echo` command as above to get the credentials for the database on the development instance.
@@ -144,7 +144,7 @@ we can construct a command that will export data from the development server
 and write it directly to the Dedicated cluster's server.
 
 ```bash
-mysqldump -u <dev_user> -p<dev_password> -h <dev_host> <dev_dbname> --single-transaction | ssh -C <USERNAME>@<CLUSTER_NAME>.ent.platform.sh 'mysql -u <prod_user> -p<prod_password> -h <prod_host> <prod_dbname>'
+mysqldump -u <DEV_USER> -p<DEV_PASSWORD> -h <DEV_HOST> <DEV_DBNAME> --single-transaction | ssh -C <USERNAME>@<CLUSTER_NAME>.ent.platform.sh 'mysql -u <PROD_USER> -p<PROD_PASSWORD> -h <PROD_HOST> <PROD_DBNAME>'
 ```
 
 That dumps all data from the database as a stream of queries
