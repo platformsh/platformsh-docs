@@ -10,7 +10,7 @@ Platform.sh automatically creates a backup of the staging and production instanc
 However, those are only useful for a full restore of the environment and can only be done by the Platform.sh team.
 At times, you'll want to make a manual backup yourself.
 
-To create a manual ad-hoc backup of all files on the staging or production environment, use the standard `rsync` command.
+To create a manual ad-hoc backup of all files on the staging or production environment, use the `rsync` command.
 
 ```bash
 rsync -avzP <USERNAME>@<CLUSTER_NAME>.ent.platform.sh:pub/static/ pub/static/
@@ -65,9 +65,9 @@ ssh <USERNAME>@<CLUSTER_NAME>.ent.platform.sh 'mysqldump --single-transaction -u
 That runs a `mysqldump` command on the server, compresses it using `gzip`,
 and streams the output to a file named `database.gz` on your local computer.
 
-(If you'd prefer, `bzip2` and `xz` are also available.)
+As alternatives to `gzip` for compression, `bzip2` and `xz` are also available.
 
-Example with an empty database password:
+An example with an empty database password would give something along the lines of:
 ```bash
 ssh yourusername@yourclustername.ent.platform.sh 'mysqldump --single-transaction -u user -h database.internal main | gzip' > database.gz
 ```
@@ -77,7 +77,7 @@ ssh yourusername@yourclustername.ent.platform.sh 'mysqldump --single-transaction
 
 To transfer data into either the staging or production environments,
 you can either download it from your Platform.sh development environment to your local system first
-or transfer it directly between environments using SSH-based tools (such as SCP, rsync).
+or transfer it directly between environments using SSH-based tools (such as `SCP`, `rsync`).
 
 First, set up [SSH forwarding](./ssh/ssh-keys.md#forwarding-keys-by-default) by default for Platform.sh domains.
 
@@ -89,7 +89,7 @@ rsync -avzP pub/static/ <USERNAME>@<CLUSTER_NAME>.ent.platform.sh:pub/static/
 ```
 
 Replace `pub/static` with the path to your files on system, such as `web/sites/default/files/`.
-Note that rsync is very picky about trailing `/` characters.
+Note that `rsync` is very picky about trailing `/` characters.
 Consult the rsync documentation for more that can be done with that command.
 
 ## Synchronizing the database from development to staging/production
