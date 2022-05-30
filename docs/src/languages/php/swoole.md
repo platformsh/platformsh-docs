@@ -10,17 +10,18 @@ Unlike PHP-FPM’s stateless operating, Swoole relies on establishing persistent
 
 [Swoole](https://github.com/swoole/swoole-src) and [Open Swoole](https://openswoole.com/) are two forked libraries persuing that goal.
 
-{{< note theme="warning" >}}
+{{< note >}}
 Swoole requires PHP 7.3+.
 {{< /note >}}
 
-## Installation
+## Install
 
-Swoole PHP extension needs to be installed during build.
+Install the Swoole PHP extension during the build.
 
-A [script](https://raw.githubusercontent.com/platformsh/snippets/main/src/install_swoole.sh) is available to ease its installation. It requires 2 parameters:
- - the Swoole project to use: `openswoole` or `swoole`
- - the version of the library
+Take advantage of an [installation script](https://raw.githubusercontent.com/platformsh/snippets/main/src/install_swoole.sh).
+You need to pass 2 parameters:
+ - Which Swoole project to use: `openswoole` or `swoole`
+ - Which version to use
 
 ```yaml {location=".platform.app.yaml"}
 hooks:
@@ -30,9 +31,10 @@ hooks:
         sh <( curl -s 'https://raw.githubusercontent.com/platformsh/snippets/main/src/install_swoole.sh') openswoole 4.11.1
 ```
 
-## Usage
+## Use
 
-The default web server should be overriden by a [custom start command](./_index.md#alternate-start-commands). Your application should listen the TCP socket.
+Override the default web server with a [custom start command](../../../languages/php/_index.md#alternate-start-commands).
+Octane should listen on a TCP socket.
 
 ```yaml {location=".platform.app.yaml"}
 web:
