@@ -51,10 +51,10 @@ Which gives a JSON output similar to:
 ]
 ```
 
-You need the following values:
+From which you need the following values:
 - `username`.
 - `password`. If empty, remove the flag.
-- "path", which is the name of the database (`main` in the example above).
+- "path", which is the name of the database (`<DBNAME>` in the example command below).
 
 Now, adapt and run the following command on your local computer:
 
@@ -69,7 +69,7 @@ and streams the output to a file named `database.gz` on your local computer.
 
 Example with an empty database password:
 ```bash
-ssh <USERNAME>@<CLUSTER_NAME>.ent.platform.sh 'mysqldump --single-transaction -u user -h database.internal main | gzip' > database.gz
+ssh yourusername@yourclustername.ent.platform.sh 'mysqldump --single-transaction -u user -h database.internal main | gzip' > database.gz
 ```
 
 
@@ -130,10 +130,10 @@ Which gives a JSON output similar to:
 }
 ```
 
-You need the following values:
+From which you need the following values:
 - `username`.
 - `password`. If empty, remove the flag.
-- "path", which is the name of the database (`<DBNAME>`).
+- "path", which is the name of the database (`<DBNAME>` in the example command below).
 
 Now, in a separate terminal log in to the development instance using `platform ssh`.
 Run the same `echo` command as above to get the credentials for the database on the development instance.
