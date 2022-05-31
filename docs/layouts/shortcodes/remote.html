@@ -1,3 +1,0 @@
-{{ $url := .Get "url" }}
-{{ $data := getJSON $url }}
-{{ $data | transform.Remarshal "json" | safeHTML }}
