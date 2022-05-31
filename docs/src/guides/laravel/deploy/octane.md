@@ -11,7 +11,7 @@ description: Improve Laravel apps' performance serving them with Laravel Octane.
 Laravel Octane requires PHP 8.0+.
 {{< /note >}}
 
-{{< swoole >}}
+{{% swoole %}}
 
 ## Use
 

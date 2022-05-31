@@ -16,7 +16,7 @@ Swoole requires PHP 7.3+.
 
 Check the documentation related to [Laravel Octane on Platform.sh](../../guides/laravel/deploy/octane.md).
 
-{{< swoole >}}
+{{% swoole %}}
 
 ## Use
 
