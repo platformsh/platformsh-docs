@@ -12,7 +12,7 @@ In the previous steps, you checked that the requirements on your computer were m
 
 1. **Install the CLI**
 
-    {{% cli-installation %}}
+  {{% cli-installation %}}
 
 1. **Authenticate and verify**
 
