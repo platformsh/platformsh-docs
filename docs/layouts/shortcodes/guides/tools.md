@@ -9,29 +9,13 @@ Next, you need a couple tools to interact with your Platform.sh project, one of 
 * The [Platform.sh CLI](/development/cli/_index.md).
   This lets you interact with your Platform.sh project from the command line.
   You can also use your browser, but the CLI is the tool you use the most in this guide.
+
+  {{% cli-installation-requirements %}}
+
   Install it for your operating system:
 
-  ```bash
-  # Linux/macOS
-  curl -sS https://platform.sh/cli/installer | php
-      
-  # Windows
-  curl https://platform.sh/cli/installer -o cli-installer.php
-  php cli-installer.php
-  ```
+  {{% cli-installation %}}
 
-  Once it's installed, run the CLI in your terminal:
+  Once the installation has completed:
 
-  ```bash
-  # Verify the installation
-  platform
-  ```
-  
-  On the first run, you need to log in using a browser.
-
-  Take a moment to view some of the available commands, by running:
-
-  ```bash
-  # View the list of CLI commands
-  platform list
-  ```
+  {{% cli-installation-check %}}
