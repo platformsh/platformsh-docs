@@ -20,7 +20,7 @@ Check the documentation related to [Laravel Octane on Platform.sh](../../guides/
 
 ## Use
 
-Override the default web server with a [custom start command](../_index.md#alternate-start-commands).
+Override the default web server with a [custom start command](./_index.md#alternate-start-commands).
 Octane should listen on a TCP socket.
 
 ```yaml {location=".platform.app.yaml"}
