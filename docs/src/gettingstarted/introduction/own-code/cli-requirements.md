@@ -12,4 +12,4 @@ Before you install it, there are some requirements that must be met first.
 
 {{% cli-installation-requirements %}}
 
-{{< guide-buttons next="I have Git ready" >}}
+{{< guide-buttons next="I have met all the requirements" >}}

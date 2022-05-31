@@ -25,7 +25,8 @@ Its source code is hosted on [GitHub](https://github.com/platformsh/platformsh-c
 ## 2. Authenticate
 
 To see and manage projects, you need to be authenticated with Platform.sh.
-{{ % cli-installation-check %}}
+
+{{% cli-installation-check %}}
 
 ## 3. Use
 
