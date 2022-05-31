@@ -153,8 +153,7 @@ markdownify=false
 
 {{< /codetabs >}}
 
+
 ## Project templates
 
-Platform.sh offers a project templates for Go applications using the structure described above. It can be used as a starting point or reference for building your own website or web application.
-
-{{< repolist lang="golang" >}}
+{{< repolist lang="golang" displayName="Go" >}}

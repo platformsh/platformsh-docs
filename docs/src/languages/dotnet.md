@@ -95,7 +95,4 @@ web:
 
 ## Project templates
 
-Platform.sh offers project templates for .NET Core applications using the structure described above.
-They can be used as a starting point or reference for building your own website or web application.
-
-{{< repolist lang="dotnet" >}}
+{{< repolist lang="dotnet" displayName=".NET Core" >}}

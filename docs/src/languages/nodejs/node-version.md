@@ -7,10 +7,8 @@ aliases:
     - "/languages/nodejs/nvm.html"
 ---
 
-You may have instances where you need to use a specific version of Node.js that isn't available in an application container.
-For example, a container might have a long-term support version,
-while you want the latest version.
-Or you want to use specific Node.js version inside a container for another language, such as PHP.
+You may need to use a specific version of Node.js that isn't available in an app container for a different language.
+For example, a container might have a long-term support version, while you want the latest version.
 
 In such cases, use a version manager to install the specific version you want to use.
 You could use one of these:
@@ -19,7 +17,7 @@ You could use one of these:
 - [Use `nvm`](#use-nvm)
 
 Both of the recommendations use a `.nvmrc` file to specify the desired Node.js version.
-You could also use [environment variables](../../development/variables/_index.md) or specify a different file.
+You could also specify a different file or use [environment variables](../../development/variables/_index.md).
 
 ## Use `n`
 
@@ -99,10 +97,10 @@ hooks:
 
 You can:
 
-* Add it to the build hook to make that version available in the build
-* Control the specific versions to be installed with [environment variables](../../development/variables/_index.md),
-  meaning you can also have different versions in different environments
-* Cache `nvm` so you don't need to download it each time
+- Add it to the build hook to make that version available in the build.
+- Control the specific versions to be installed with [environment variables](../../development/variables/_index.md),
+  meaning you can also have different versions in different environments.
+- Cache `nvm` so you don't need to download it each time.
 
 Add it to your `.platform.app.yaml` file:
 

@@ -102,3 +102,5 @@ platform integration:validate
 {{% integration-environment-status source="GitHub" %}}
 
 {{% clone-commit name="GitHub" %}}
+
+{{% integration-url source="GitHub" %}}

@@ -12,7 +12,7 @@ install_meilisearch() {
 
 install_poetry(){
     echo "* Updating pip"
-    python3.9 -m pip install --upgrade pip
+    python3.10 -m pip install --upgrade pip
     echo "* Installing poetry"
     # Install poetry
     curl -sSL https://install.python-poetry.org | python3 - --version $POETRY_VERSION

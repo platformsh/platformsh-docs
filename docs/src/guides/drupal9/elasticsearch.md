@@ -14,7 +14,7 @@ weight: -100
 
 ### Add the Drupal modules
 
-You will need to add the [Search API](https://www.drupal.org/project/search_api) and [Elasticsearch Connector](https://www.drupal.org/project/elasticsearch_connector) modules to your project. If you are using composer, the easiest way to add them is to simply run:
+You will need to add the [Search API](https://www.drupal.org/project/search_api) and [Elasticsearch Connector](https://www.drupal.org/project/elasticsearch_connector) modules to your project. If you are using composer, the easiest way to add them is to run:
 
 ```bash
 $ composer require drupal/search_api drupal/elasticsearch_connector

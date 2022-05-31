@@ -22,7 +22,7 @@ Start by defining this location as the root for your static site.
 
 ```yaml {location=".platform.app.yaml"}
 web:
-    location:
+    locations:
         '/':
             root: 'public'
 ```
@@ -37,7 +37,7 @@ Do this by defining the index page for your site.
 
 ```yaml {location=".platform.app.yaml"}
 web:
-    location:
+    locations:
         '/':
             ...
             index: ['index.html']
@@ -54,7 +54,7 @@ So prevent server-side scripts but still enable files that don't match a specifi
 
 ```yaml {location=".platform.app.yaml"}
 web:
-    location:
+    locations:
         '/':
             ...
             scripts: false
@@ -71,7 +71,7 @@ but all image files for a longer time for better performance.
 
 ```yaml {location=".platform.app.yaml"}
 web:
-    location:
+    locations:
         '/':
             ...
             expires: 24h
@@ -98,7 +98,7 @@ such as a [script to handle 404 errors](https://community.platform.sh/t/custom-4
 
 ```yaml {location=".platform.app.yaml"}
 web:
-    location:
+    locations:
         '/':
             # The public directory of the application relative to its root
             root: 'public'

@@ -1,6 +1,6 @@
 ---
 title: "PHP"
-description: PHP is a popular scripting language designed especially for the web. It currently powers over 80% of websites.
+description: PHP is a popular scripting language designed especially for the web. It currently powers around 80% of websites.
 layout: single
 ---
 
@@ -317,6 +317,4 @@ See that reference for details on what can be changed.
 
 ## Project templates
 
-A number of project templates for major PHP applications are available on GitHub. Not all of them are proactively maintained but all can be used as a starting point or reference for building your own website or web application.
-
-{{< repolist lang="php" >}}
+{{< repolist lang="php" displayName="PHP" >}}
