@@ -83,7 +83,7 @@ Follow these steps to get your server started.
 
 3. Create configuration for uWSGI such as the following:
 
-   ```ini {location="config/uwsgi.ini}
+   ```ini {location="config/uwsgi.ini"}
    [uwsgi]
     # UNIX socket to use to talk with the web server
     # Uses the variable defined in the configuration in step 2
