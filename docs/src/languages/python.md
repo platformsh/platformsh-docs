@@ -28,17 +28,7 @@ Once you have it configured, add the following configuration to get it running o
     {{< readFile file="/registry/images/examples/full/python.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 2. Install the requirements for your app.
-   For example, to use `pipenv` to manage requirements and a virtual environment, add the following:
-
-   ```yaml {location=".platform.app.yaml"}
-   dependencies:
-       python3:
-           pipenv: "2022.5.2"
-
-   hooks:
-       build: |
-           pipenv install --system --deploy
-   ```
+   {{% pipenv %}}
 
 3. Define the command to start your web server:
 
@@ -97,17 +87,7 @@ Follow these steps to get your server started.
    Replace `app.py` with whatever your file is.
 
 4. Install the requirements for your app.
-   For example, to use `pipenv` to manage requirements and a virtual environment, add the following:
-
-   ```yaml {location=".platform.app.yaml"}
-   dependencies:
-       python3:
-           pipenv: "2022.5.2"
-
-   hooks:
-       build: |
-           pipenv install --system --deploy
-   ```
+   {{% pipenv %}}
 
 5. Define the entry point in your app:
 
@@ -132,13 +112,7 @@ dependencies:
         <PACKAGE_NAME>: <PACKAGE_VERSION>
 ```
 
-For example, to add `pipenv` for package and virtual environment management, add the following:
-
-```yaml {location=".platform.app.yaml"}
-dependencies:
-    python3:
-        pipenv: "2022.5.2"
-```
+{{% pipenv %}}
 
 ## Connect to services
 
