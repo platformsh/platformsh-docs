@@ -218,11 +218,10 @@ highlight=js
 
 {{< /codetabs >}}
 
-## Configuration reader
 
-While you can read the environment directly from your application,
-you might want to use the [`platformsh-config` package](https://github.com/platformsh/config-reader-nodejs).
-It decodes service credentials, the correct port, and other information for you.
+{{% config-reader %}}
+[`platformsh-config` package](https://github.com/platformsh/config-reader-nodejs)
+{{% /config-reader%}}
 
 ## Project templates
 

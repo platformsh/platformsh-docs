@@ -44,7 +44,7 @@ Ideally, also with a full working example that shows it in context.
 
 Depending on the language, a brief description of the recommended way to handle dependencies in the language.
 
-## Connecting to services
+## Connect to services
 
 If available, include examples for connecting in an app
 (taken from https://examples.docs.platform.sh/).

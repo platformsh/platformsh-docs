@@ -40,6 +40,7 @@ hostname
 Httpoxy
 Hunchentoot
 Ibexa
+JVM
 imagetragick
 jpegoptim
 Lando
