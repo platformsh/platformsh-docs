@@ -23,7 +23,7 @@ Solr search with generic schemas provided, and a custom schema is also supported
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="solr" status="supported" environment="grid" >}} | {{< image-versions image="solr" status="supported" environment="dedicated" >}} | {{< image-versions image="solr" status="supported" environment="dedicated-gen-3" >}} |
 
-{{< image-versions-legacy "solr" >}}
+{{% image-versions-legacy "solr" %}}
 
 {{% deprecated-versions %}}
 

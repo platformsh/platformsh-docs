@@ -1,5 +1,0 @@
-<p>When you first deploy the template, the frontend Gatsby site will fail with a 403 error. Visit the <code>backend</code> subdomain of your site and finish {{ .Get "name"}}'s installation. Database credentials will already be provided for you, so you will not need to set them up manually. </p>
-
-<p>{{ .Inner | .Page.RenderString }}</p>
-
-<p>Once you have finished, you can redeploy the project with the CLI command <code>platform redeploy</code> to view your Gatsby site, now pulling its content from a backend {{ .Get "name" }} container on the same project. </p>

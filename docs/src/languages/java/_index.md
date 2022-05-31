@@ -4,7 +4,7 @@ description: Java is a general-purpose programming language, and one of the most
 layout: single
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## Supported versions
 
@@ -14,7 +14,7 @@ layout: single
 |----------------------------------|---------------|
 |  {{< image-versions image="java" status="supported" environment="grid" >}} | {{< image-versions image="java" status="supported" environment="dedicated" >}} |
 
-{{< image-versions-legacy "java" >}}
+{{% image-versions-legacy "java" %}}
 
 {{% language-specification type="java" display_name="Java" %}}
 

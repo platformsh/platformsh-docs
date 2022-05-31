@@ -7,7 +7,7 @@ aliases:
   - /guides/general/region-migration.html
 ---
 
-{{< description >}}
+{{% description %}}
 
 Platform.sh doesn't offer an automated way to migrate a project from one region to another after it's created.
 However, the process to do so manually is fairly straightforward and can be scripted.

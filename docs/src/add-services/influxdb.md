@@ -6,7 +6,7 @@ description: |
 sidebarTitle: "InfluxDB"
 ---
 
-{{< description >}}
+{{% description %}}
 
 It exposes an HTTP API for client interaction. See the [InfluxDB documentation](https://docs.influxdata.com/influxdb) for more information.
 
@@ -16,7 +16,7 @@ It exposes an HTTP API for client interaction. See the [InfluxDB documentation](
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="influxdb" status="supported" environment="grid" >}} | {{< image-versions image="influxdb" status="supported" environment="dedicated" >}} | {{< image-versions image="influxdb" status="supported" environment="dedicated-gen-3" >}} |
 
-{{< image-versions-legacy "influxdb" >}}
+{{% image-versions-legacy "influxdb" %}}
 
 ## Relationship
 

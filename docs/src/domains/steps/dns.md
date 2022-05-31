@@ -5,7 +5,7 @@ description: "Platform.sh expects you to use a CNAME for all DNS records.  Howev
 sidebarTitle: "DNS and CNAMEs"
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## Why CNAMEs?
 

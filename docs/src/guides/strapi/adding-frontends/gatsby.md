@@ -9,19 +9,19 @@ description: |
 
 ## Shared Platform.sh configuration
 
-{{< guides/gatsby/headless-project name="Strapi" >}}
+{{% guides/gatsby/headless-project name="Strapi" %}}
 
 ### `.platform/services.yaml`
 
-{{< guides/gatsby/headless-services template="gatsby-strapi" name="Strapi" >}}
+{{% guides/gatsby/headless-services template="gatsby-strapi" name="Strapi" %}}
 
 ### `.platform/routes.yaml`
 
-{{< guides/gatsby/headless-routes template="gatsby-strapi" name="Strapi" >}}
+{{% guides/gatsby/headless-routes template="gatsby-strapi" name="Strapi" %}}
 
 ## Strapi
 
-{{< guides/gatsby/headless-backend name="Strapi" >}}
+{{% guides/gatsby/headless-backend name="Strapi" %}}
 
 The only additional setup required to prepare the backend is to install a package that enables GraphQL on Strapi.
 
@@ -33,7 +33,7 @@ yarn add strapi-plugin-graphql
 
 ## Gatsby
 
-{{< guides/gatsby/headless-gatsby name="Strapi" template="gatsby-strapi" >}}
+{{% guides/gatsby/headless-gatsby name="Strapi" template="gatsby-strapi" %}}
 
 You can then modify [`gatsby-config.js`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/) to read from the backend Strapi container through the `strapi` relationship defined above to configure the `apiURL` attribute for `gatsby-source-strapi`. Notice that the source plugin requires that you explicitly define the `contentTypes` you would like to retrieve from Strapi. At this point you have not built out the API, and the Content Types `article` and `category` are included to support the [post-install instructions](https://github.com/platformsh-templates/gatsby-strapi#user-content-post-install) outlined in the template's README. Adjust these values to fit your current API if your are planning on migrating an existing Strapi repository.
 
@@ -69,7 +69,7 @@ With Gatsby now deployed and pulling content from a backend Strapi application, 
 
 ### `applications.yaml`
 
-{{< guides/gatsby/headless-applicationsyaml name="Strapi" >}}
+{{% guides/gatsby/headless-applicationsyaml name="Strapi" %}}
 
 ### Multiple content sources
 
@@ -77,4 +77,4 @@ Gatsby supports pulling multiple sources into its build. This can include extern
 
 ### Plan size
 
-{{< guides/gatsby/headless-plansize >}}
+{{% guides/gatsby/headless-plansize %}}

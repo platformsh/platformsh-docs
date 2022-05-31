@@ -6,7 +6,7 @@ description: |
 sidebarTitle: "Troubleshooting"
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## Verify DNS
 

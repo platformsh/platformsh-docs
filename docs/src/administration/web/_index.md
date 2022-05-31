@@ -6,7 +6,7 @@ description: |
   Platform.sh provides a web management console so you can interact with your projects and manage your environments.
 ---
 
-{{< description >}}
+{{% description %}}
 
 ![Overview of projects in the console](/images/management-console/all-projects.png "0.5")
 

@@ -7,11 +7,11 @@ description: |
   Review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for Strapi.
 ---
 
-{{< guides/config-desc name="Strapi" >}}
+{{% guides/config-desc name="Strapi" %}}
 
 ## Requests configuration: `routes.yaml`
 
-{{< guides/config-routes template="strapi4" name="Strapi" >}}
+{{% guides/config-routes template="strapi4" name="Strapi" %}}
 
 ## Service configuration: `services.yaml`
 
@@ -43,7 +43,7 @@ db:
 
 ## Application container: `.platform.app.yaml`
 
-{{< guides/config-app template="strapi4" >}}
+{{% guides/config-app template="strapi4" %}}
 
 In the Strapi template, `yarn` is run during the build hook to install all of Strapi’s dependencies, and then `yarn build` is run to build the site.
 If you would rather use npm to manage your dependencies, you can:

@@ -6,7 +6,7 @@ description: |
   Find out how to get help if you're experiencing issues with Platform.sh.
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## Create a support ticket
 

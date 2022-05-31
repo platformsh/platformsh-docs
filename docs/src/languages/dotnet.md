@@ -4,7 +4,7 @@ description: |
   Platform.sh supports deploying .NET applications by allowing developers to define a build process and pass its variables to the .NET Core build environment.
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## Supported versions
 
@@ -12,7 +12,7 @@ description: |
 |----------------------------------|---------------|
 |  {{< image-versions image="dotnet" status="supported" environment="grid" >}} | {{< image-versions image="dotnet" status="supported" environment="dedicated" >}} |
 
-{{< image-versions-legacy "dotnet" >}}
+{{% image-versions-legacy "dotnet" %}}
 
 {{% language-specification type="dotnet" display_name=".Net Core" %}}
 

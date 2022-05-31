@@ -4,7 +4,7 @@ description: |
   Backups vary by our offering and their retention is governed by our [data retention policy](./data-retention.md). This section details our Recovery Point Objective (RPO) and Recovery Time Objective (RTO) for our Professional, Enterprise, and Elite offerings.
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## Professional and non-bundled Enterprise/Elite Grid plans
 

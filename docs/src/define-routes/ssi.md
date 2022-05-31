@@ -6,7 +6,7 @@ description: |
   SSI commands enable you to include files within other pages.
 ---
 
-{{< description >}}
+{{% description %}}
 
 At its most basic, you can include files within other ones so as not to repeat yourself.
 

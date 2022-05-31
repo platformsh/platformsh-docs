@@ -4,7 +4,7 @@ description: |
   Platform.sh supports HTTP caching at the server level. Caching is enabled by default, but is only applied to `GET` and `HEAD` requests.
 ---
 
-{{< description >}}
+{{% description %}}
 
 The cache can be controlled using the `cache` key in your `.platform/routes.yaml` file.
 

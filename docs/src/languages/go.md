@@ -3,7 +3,7 @@ title: "Go"
 description: Platform.sh supports building and deploying applications written in Go using Go modules. They're compiled during the Build hook phase, and support both committed dependencies and download-on-demand.
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## Supported versions
 
@@ -11,7 +11,7 @@ description: Platform.sh supports building and deploying applications written in
 |----------------------------------|---------------|
 |  {{< image-versions image="golang" status="supported" environment="grid" >}} | {{< image-versions image="golang" status="supported" environment="dedicated" >}} |
 
-{{< image-versions-legacy "golang" >}}
+{{% image-versions-legacy "golang" %}}
 
 {{% language-specification type="golang" display_name="Go" %}}
 

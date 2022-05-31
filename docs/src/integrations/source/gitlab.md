@@ -4,7 +4,7 @@ description: |
   The [GitLab](https://gitlab.com) integration allows you to manage your Platform.sh environments directly from your GitLab repository.
 ---
 
-{{< description >}}
+{{% description %}}
 
 **Features supported:**
 

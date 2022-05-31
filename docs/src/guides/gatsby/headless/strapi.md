@@ -9,19 +9,19 @@ description: |
 
 ## Shared Platform.sh configuration
 
-{{< guides/gatsby/headless-project name="Strapi" >}}
+{{% guides/gatsby/headless-project name="Strapi" %}}
 
 ### `.platform/services.yaml`
 
-{{< guides/gatsby/headless-services template="gatsby-strapi" name="Strapi" >}}
+{{% guides/gatsby/headless-services template="gatsby-strapi" name="Strapi" %}}
 
 ### `.platform/routes.yaml`
 
-{{< guides/gatsby/headless-routes template="gatsby-strapi" name="Strapi" >}}
+{{% guides/gatsby/headless-routes template="gatsby-strapi" name="Strapi" %}}
 
 ## Strapi
 
-{{< guides/gatsby/headless-backend name="Strapi" >}}
+{{% guides/gatsby/headless-backend name="Strapi" %}}
 
 The only additional setup required to prepare the backend is to install a package that will enable GraphQL on Strapi. In your Strapi directory, add the dependency: 
 
@@ -31,7 +31,7 @@ $ yarn add strapi-plugin-graphql
 
 ## Gatsby
 
-{{< guides/gatsby/headless-gatsby name="Strapi" template="gatsby-strapi" >}}
+{{% guides/gatsby/headless-gatsby name="Strapi" template="gatsby-strapi" %}}
 
 You can then modify [`gatsby-config.js`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/)
 to read from the backend Strapi container through the `strapi` relationship defined above
@@ -73,12 +73,12 @@ With Gatsby now deployed and pulling content from a backend Strapi application, 
 
 ### `applications.yaml`
 
-{{< guides/gatsby/headless-applicationsyaml name="Strapi" >}}
+{{% guides/gatsby/headless-applicationsyaml name="Strapi" %}}
 
 ### Multiple content sources
 
-{{< guides/gatsby/headless-multiplesources name="Strapi" >}}
+{{% guides/gatsby/headless-multiplesources name="Strapi" %}}
 
 ### Plan size
 
-{{< guides/gatsby/headless-plansize >}}
+{{% guides/gatsby/headless-plansize %}}

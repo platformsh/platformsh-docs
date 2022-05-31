@@ -6,7 +6,7 @@ description: |
 sidebarTitle: "Headers"
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## Request headers
 

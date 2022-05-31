@@ -8,7 +8,7 @@ tier:
   - Elite
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## HTTP protocol attacks
 

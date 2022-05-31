@@ -24,7 +24,7 @@ A brief introduction (1--2 sentences) to the language.
 |  {{< image-versions image="<LANGUAGE_TYPE>" status="supported" environment="grid" >}} | {{< image-versions image="<LANGUAGE_TYPE>" status="supported" environment="dedicated" >}} | {{< image-versions image="<LANGUAGE_TYPE>" status="supported" environment="dedicated-gen-3" >}} |
 
 <!-- To automatically check any differences in the registry with legacy regions -->
-{{< image-versions-legacy "<LANGUAGE_TYPE>" >}}
+{{% image-versions-legacy "<LANGUAGE_TYPE>" %}}
 
 {{% language-specification type="<LANGUAGE_TYPE>" display_name="<LANGUAGE_NAME>" %}}
 

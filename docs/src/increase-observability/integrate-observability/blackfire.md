@@ -4,7 +4,7 @@ description: |
   Platform.sh recommends [Blackfire.io](https://blackfire.io/) for monitoring and profiling web sites and applications. From development to test, staging and production Blackfire offers a unique blend of monitoring, often called APM, and profiling features. Blackfire supports PHP and Python.
 ---
 
-{{< description >}}
+{{% description %}}
 
 {{< youtube bS4dzuzkir0 >}}
 
