@@ -52,14 +52,15 @@ Which gives a JSON output similar to:
 ```
 
 From which you need the following values:
+
 - `username`.
-- `password`. If empty, remove the flag.
-- `path`, which is the name of the database (`<DBNAME>` in the example command below).
+- `password` (not needed if empty)
+- `path`: the database name (`<DB_NAME>` in the example command below)
 
 Now, adapt and run the following command on your local computer:
 
 ```bash
-ssh <USERNAME>@<CLUSTER_NAME>.ent.platform.sh 'mysqldump --single-transaction -u <USERNAME> -p<PASSWORD> -h database.internal <DBNAME> | gzip' > database.gz
+ssh <USERNAME>@<CLUSTER_NAME>.ent.platform.sh 'mysqldump --single-transaction -u <USERNAME> -p <PASSWORD> -h <DB_NAME> | gzip' > database.gz
 ```
 
 That runs a `mysqldump` command on the server, compresses it using `gzip`,
@@ -67,7 +68,8 @@ and streams the output to a file named `database.gz` on your local computer.
 
 As alternatives to `gzip` for compression, `bzip2` and `xz` are also available.
 
-An example with an empty database password would give something along the lines of:
+If you have an empty database password, you can use something similar to the following:
+
 ```bash
 ssh yourusername@yourclustername.ent.platform.sh 'mysqldump --single-transaction -u user -h database.internal main | gzip' > database.gz
 ```
@@ -77,7 +79,7 @@ ssh yourusername@yourclustername.ent.platform.sh 'mysqldump --single-transaction
 
 To transfer data into either the staging or production environments,
 you can either download it from your Platform.sh development environment to your local system first
-or transfer it directly between environments using SSH-based tools (such as `scp`, `rsync`).
+or transfer it directly between environments using SSH-based tools (such as scp and rsync).
 
 First, set up [SSH forwarding](./ssh/ssh-keys.md#forwarding-keys-by-default) by default for Platform.sh domains.
 
@@ -89,7 +91,7 @@ rsync -avzP pub/static/ <USERNAME>@<CLUSTER_NAME>.ent.platform.sh:pub/static/
 ```
 
 Replace `pub/static` with the path to your files on system, such as `web/sites/default/files/`.
-Note that `rsync` is very picky about trailing `/` characters.
+Note that rsync is very picky about trailing `/` characters.
 Consult the rsync documentation for more that can be done with that command.
 
 ## Synchronizing the database from development to staging/production
@@ -144,7 +146,7 @@ we can construct a command that will export data from the development server
 and write it directly to the Dedicated cluster's server.
 
 ```bash
-mysqldump -u <DEV_USER> -p<DEV_PASSWORD> -h <DEV_HOST> <DEV_DBNAME> --single-transaction | ssh -C <USERNAME>@<CLUSTER_NAME>.ent.platform.sh 'mysql -u <PROD_USER> -p<PROD_PASSWORD> -h <PROD_HOST> <PROD_DBNAME>'
+mysqldump -u <DEV_USER> -p <DEV_PASSWORD> -h <DEV_HOST> <DEV_DB_NAME> --single-transaction | ssh -C <USERNAME>@<CLUSTER_NAME>.ent.platform.sh 'mysql -u <PROD_USER> -p <PROD_PASSWORD> -h <PROD_HOST> <PROD_DB_NAME>'
 ```
 
 That dumps all data from the database as a stream of queries
