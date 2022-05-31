@@ -12,32 +12,13 @@ In the previous steps, you checked that the requirements on your computer were m
 
 1. **Install the CLI**
 
-    In your terminal, run the following command depending on your operating system:
+    Install the CLI using this command:
 
-{{< codetabs >}}
----
-title=Linux/macOS
-file=none
-highlight=bash
-markdownify=false
----
+    ```bash
+    curl -fsS https://platform.sh/cli/installer | php
+    ```
 
-curl -fsS https://platform.sh/cli/installer | php
-
-<--->
-
----
-title=Windows
-file=none
-highlight=bash
-markdownify=false
----
-
-curl.exe -f https://platform.sh/cli/installer -o cli-installer.php
-php cli-installer.php
-
-{{< /codetabs >}}
-
+    If you run into issues or want to install manually, see the [installation instructions on GitHub](https://github.com/platformsh/platformsh-cli#user-content-installation).
 
 1. **Authenticate and verify**
 
