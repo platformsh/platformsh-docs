@@ -8,4 +8,5 @@ You need to pass 2 parameters:
 * Which Swoole project to use: `openswoole` or `swoole`
 * Which version to install
 
-{{ highlight ( readFile "snippets/swoole.yaml" ) "yaml" ".platform.app.yaml" }}
+<div class="highlight-location">.platform.app.yaml</div>
+{{ highlight ( readFile "snippets/swoole.yaml" ) "yaml" "" }}
