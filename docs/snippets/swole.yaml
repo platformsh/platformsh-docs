@@ -1,0 +1,5 @@
+hooks:
+    build: |
+        set -e
+        ...
+        sh <( curl -s 'https://raw.githubusercontent.com/platformsh/snippets/main/src/install_swoole.sh') openswoole 4.11.1
