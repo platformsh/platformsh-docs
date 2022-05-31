@@ -105,6 +105,7 @@ Stempel
 stdout
 Strapi
 subuser
+Swoole
 Symfony
 Thorntail
 Tomitribe
