@@ -3,7 +3,7 @@ import { default as yaml } from 'js-yaml';
 import { default as axios } from 'axios'
 import pLimit from 'p-limit';
 
-// Limit the number of requests running at once to not run out of memoery or anything
+// Limit the number of requests running at once to not run out of memory or anything
 const fetchConcurrency = pLimit(10);
 
 // Get all templates from the template builder repo directory structure
