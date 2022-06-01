@@ -16,23 +16,19 @@ With all of the requirements met, install the CLI to start developing with Platf
 
   {{% cli-installation %}}
 
+2. **Clone your project locally**
 
-2. **Authenticate and Verify**
+    Get a list of all available commands with:
 
-  {{% cli-installation-check %}}
-
-    {{< note >}}
-    
-    If you opened your free trial account using another login (such as GitHub),
-    you can't authenticate with this command until you setup your account password with Platform.sh in the console.
-    
-    {{< /note >}}
+    ```bash
+    platform list
+    ```
 
     You should now see a list of your Platform.sh projects, including the template you made in this guide.
     You can copy its *project ID* hash, and then download a local copy of the repository with this command:
 
     ```bash
-    platform get <project_ID>
+    platform get <PROJECT_ID>
     ```
 
     With a local copy, you can create branches, commit to them, and push your changes to Platform.sh right away!

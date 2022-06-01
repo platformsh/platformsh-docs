@@ -34,7 +34,7 @@ Now you can run actions on your projects such as branching and merging.
 You can also simulate a local build of your codebase as if you were pushing a change to Platform.sh,
 including your services and data.
 
-To get more information on a particular command, preface that command with `help`:
+To get more information on a specific command, preface it with `help`:
 
 ```bash
 $ platform help get
