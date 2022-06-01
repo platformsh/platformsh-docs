@@ -6,28 +6,27 @@ sidebarTitle: "Sync to Dedicated"
 
 ## Get the SSH username and host
 
-The SSH username and host are used to access your project per SSH.
-These can be retrieved either on [the management console](https://docs.platform.sh/administration/web/configure-environment.html#actions) or [via the CLI](https://docs.platform.sh/development/ssh.html#get-ssh-connection-details).
+The SSH username and host are used to access your project via SSH.
+Retrieve them either [in the management console](https://docs.platform.sh/administration/web/configure-environment.html#actions)
+or [via the CLI](https://docs.platform.sh/development/ssh.html#get-ssh-connection-details).
 
-## Back up staging and production files
+## Back up Staging and Production files
 
-Platform.sh automatically creates a backup of the staging and production instances on a Dedicated cluster every six hours.
-However, those are only useful for a full restore of the environment and can only be done by the support team.
-At times, You want to make a manual backup yourself.
+Platform.sh automatically creates backups of the Staging and Production environments of a Dedicated cluster every six hours.
+These are only useful to fully restore an environment and are managed by the support team.
+You might want to make a manual backup yourself.
 
-First, you need the [SSH username and host](#get-the-ssh-username-and-host) for your environment.
-Then create a manual ad-hoc backup of all files on the staging or production environment with the `rsync` command.
-
-Adapt the following:
+First, for your environment getthe [SSH username and host](#get-the-ssh-username-and-host).
+Then create a manual backup of all files on the Staging or Production environment using rsync:
 
 ```bash
 rsync -avzP <SSH_USERNAME>@<host>:pub/static/ pub/static/
 ```
 
-That command copies all files from the `pub/static` directory on the production instance to the `pub/static` directory,
+That command copies all files from the `pub/static` directory in the environment to the `pub/static` directory,
 relative to your local directory where you're running that command.
 
-## Back up the staging and production database
+## Back up the Staging and Production database
 
 To backup your database to your local system, you need to get the database credentials to use.
 
@@ -70,10 +69,11 @@ You also need the [SSH username and host](#get-the-ssh-username-and-host) for yo
 Now, adapt and run the following command on your local computer:
 
 ```bash
-ssh <SSH_USERNAME>@<host> 'mysqldump --single-transaction -u <USERNAME> -p <PASSWORD> -h <DATABASE_NAME> | gzip' > database.gz
+ssh <SSH_USERNAME>@<HOST> 'mysqldump --single-transaction -u <USERNAME> -p <PASSWORD> -h <DATABASE_NAME> | gzip' > database.gz
 ```
 
 Which gives something similar to the following:
+
 {{< codetabs >}}
 
 ---
@@ -96,7 +96,7 @@ ssh 1.ent-1ab23cd4efghi-prod-a1bb2cd@ssh.eu-3.platform.sh 'mysqldump --single-tr
 
 {{< /codetabs >}}
 
-## Synchronize files from development to staging/production
+## Synchronize files from Development to Staging/Production
 
 To transfer data into either the staging or production environments,
 you can either download it from your Platform.sh development environment to your local system first
@@ -107,7 +107,7 @@ First, set up [SSH forwarding](./ssh/ssh-keys.md#forwarding-keys-by-default) by 
 Then get the [SSH username and host](#get-the-ssh-username-and-host) for your environment.
 
 Finally, run `platform ssh` with the production branch checked out to connect to the default development environment.
-Files are the easier data to transfer, and can be done with `rsync`.
+You can transfer files with rsync:
 
 ```bash
 rsync -avzP pub/static/ <SSH_USERNAME>@<host>:pub/static/
@@ -117,7 +117,7 @@ Replace `pub/static` with the path to your files on system, such as `web/sites/d
 Note that rsync is very picky about trailing `/` characters.
 Consult the rsync documentation for more that can be done with that command.
 
-## Synchronize the database from development to staging/production
+## Synchronize a database from Development to Staging/Production
 
 The database can be copied directly from the development environment to staging or production,
 but doing so requires noting the appropriate credentials first on both systems.
@@ -127,7 +127,7 @@ You also need the [SSH username and host](#get-the-ssh-username-and-host) for yo
 First, log in to the production environment over SSH:
 
 ```bash
-ssh <SSH_USERNAME>@<host>
+ssh <SSH_USERNAME>@<HOST>
 ```
 
 Once there, you can look up database credentials by running:
@@ -174,7 +174,7 @@ we can construct a command that exports data from the development server
 and write it directly to the Dedicated cluster's server.
 
 ```bash
-mysqldump -u <DEV_USER> -p <DEV_PASSWORD> -h <DEV_HOST> <DEV_DATABASE_NAME> --single-transaction | ssh -C <SSH_USERNAME>@<host> 'mysql -u <PROD_USER> -p <PROD_PASSWORD> -h <PROD_HOST> <PROD_DATABASE_NAME>'
+mysqldump -u <DEV_USER> -p <DEV_PASSWORD> -h <DEV_HOST> <DEV_DATABASE_NAME> --single-transaction | ssh -C <SSH_USERNAME>@<HOST> 'mysql -u <PROD_USER> -p <PROD_PASSWORD> -h <PROD_HOST> <PROD_DATABASE_NAME>'
 ```
 
 That dumps all data from the database as a stream of queries
