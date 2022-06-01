@@ -14,9 +14,13 @@ In the previous steps, you checked that the requirements on your computer were m
 
   {{% cli-installation %}}
 
-1. **Authenticate and verify**
+2. **Test the CLI**
 
-  {{% cli-installation-check %}}
+    Get a list of all available commands with:
+
+    ```bash
+    platform list
+    ```
 
 Now that you have installed the CLI and it is communicating with Platform.sh, you can configure and push your project to Platform.sh.
 
