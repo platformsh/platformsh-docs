@@ -4,33 +4,36 @@ weight: 13
 sidebarTitle: "Sync to Dedicated"
 ---
 
+Transferring data to and from a Dedicated cluster slightly differs from the grid and requires SSH access.
+For SSH access, you need to get the SSH username and host of your dedicated cluster.
+
 ## Get the SSH username and host
 
 The SSH username and host are used to access your project via SSH.
-Retrieve them either [in the management console](https://docs.platform.sh/administration/web/configure-environment.html#actions)
-or [via the CLI](https://docs.platform.sh/development/ssh.html#get-ssh-connection-details).
+Retrieve them [via the CLI](../development/ssh/_index.md#get-ssh-connection-details).
 
 ## Back up Staging and Production files
 
 Platform.sh automatically creates backups of the Staging and Production environments of a Dedicated cluster every six hours.
 These are only useful to fully restore an environment and are managed by the support team.
-You might want to make a manual backup yourself.
 
-First, for your environment getthe [SSH username and host](#get-the-ssh-username-and-host).
-Then create a manual backup of all files on the Staging or Production environment using rsync:
+You can make a manual backup yourself:
 
-```bash
-rsync -avzP <SSH_USERNAME>@<host>:pub/static/ pub/static/
-```
+1. For your environment, get the [SSH username and host](#get-the-ssh-username-and-host).
+1. Create a manual backup of all files on the Staging or Production environment using rsync:
 
-That command copies all files from the `pub/static` directory in the environment to the `pub/static` directory,
-relative to your local directory where you're running that command.
+   ```bash
+   rsync -avzP <SSH_USERNAME>@<SSH_HOST>:pub/static/ pub/static/
+   ```
+
+   That command copies all files from the `pub/static` directory in the environment to the `pub/static` directory,
+   relative to your local directory where you're running that command.
 
 ## Back up the Staging and Production database
 
 To backup your database to your local system, you need to get the database credentials to use.
 
-First, login to the cluster and run the following command:
+First, [login to the cluster through SSH](#get-the-ssh-username-and-host) and run the following command:
 
 ```bash
 echo $PLATFORM_RELATIONSHIPS | base64 --decode | json_pp
@@ -64,15 +67,15 @@ From which you need the following values:
 - `password` (not needed if empty)
 - `path`: the database name (`<DATABASE_NAME>` in the example command below)
 
-You also need the [SSH username and host](#get-the-ssh-username-and-host) for your environment.
+Then, for the environment you want to access, you need to get the [SSH username and host](#get-the-ssh-username-and-host).
 
 Now, adapt and run the following command on your local computer:
 
 ```bash
-ssh <SSH_USERNAME>@<HOST> 'mysqldump --single-transaction -u <USERNAME> -p <PASSWORD> -h <DATABASE_NAME> | gzip' > database.gz
+ssh <SSH_USERNAME>@<SSH_HOST> 'mysqldump --single-transaction -u <USERNAME> -p <PASSWORD> -h <DATABASE_NAME> | gzip' > database.gz
 ```
 
-Which gives something similar to the following:
+The adapted version of the command could look similar to:
 
 {{< codetabs >}}
 
@@ -99,35 +102,40 @@ ssh 1.ent-1ab23cd4efghi-prod-a1bb2cd@ssh.eu-3.platform.sh 'mysqldump --single-tr
 ## Synchronize files from Development to Staging/Production
 
 To transfer data into either the staging or production environments,
-you can either download it from your Platform.sh development environment to your local system first
-or transfer it directly between environments using SSH-based tools (such as scp and rsync).
+you can either:
 
-First, set up [SSH forwarding](./ssh/ssh-keys.md#forwarding-keys-by-default) by default for Platform.sh domains.
+- Transfer data directly between environments using SSH-based tools (such as scp and rsync).
+- Download data from your development environment to your local system and from there to your production environment.
 
-Then get the [SSH username and host](#get-the-ssh-username-and-host) for your environment.
+To transfer data directly between environments:
 
-Finally, run `platform ssh` with the production branch checked out to connect to the default development environment.
-You can transfer files with rsync:
+1. Set up [SSH forwarding as default for your domains](./ssh/ssh-keys.md#forwarding-keys-by-default).
 
-```bash
-rsync -avzP pub/static/ <SSH_USERNAME>@<host>:pub/static/
-```
+2. For the environment you want to access, get the [SSH username and host](#get-the-ssh-username-and-host).
 
-Replace `pub/static` with the path to your files on system, such as `web/sites/default/files/`.
-Note that rsync is very picky about trailing `/` characters.
-Consult the rsync documentation for more that can be done with that command.
+3. Run `platform ssh` with the production branch checked out to connect to the default development environment.
+
+4. Transfer files with rsync:
+
+   ```bash
+   rsync -avzP pub/static/ <SSH_USERNAME>@<SSH_HOST>:pub/static/
+   ```
+
+   Replace `pub/static` with the path to your files on system, such as `web/sites/default/files/`.
+   Note that rsync is very picky about trailing `/` characters.
+   Consult the rsync documentation for more.
 
 ## Synchronize a database from Development to Staging/Production
 
 The database can be copied directly from the development environment to staging or production,
 but doing so requires noting the appropriate credentials first on both systems.
 
-You also need the [SSH username and host](#get-the-ssh-username-and-host) for your environment.
+For the environment you want to access, you need to get the [SSH username and host](#get-the-ssh-username-and-host).
 
 First, log in to the production environment over SSH:
 
 ```bash
-ssh <SSH_USERNAME>@<HOST>
+ssh <SSH_USERNAME>@<SSH_HOST>
 ```
 
 Once there, you can look up database credentials by running:
@@ -163,7 +171,7 @@ From which you need the following values:
 - `password` (not needed if empty)
 - `path`: the database name (`<DATABASE_NAME>` in the example command below)
 
-You also need the [SSH username and host](#get-the-ssh-username-and-host) for your environment.
+Then, for the environment you want to access, you need to get the [SSH username and host](#get-the-ssh-username-and-host).
 
 Now, in a separate terminal log in to the development instance using `platform ssh`.
 Run the same `echo` command as above to get the credentials for the database on the development instance.
@@ -171,10 +179,10 @@ Again, we're only interested in the username, password, host, and "path"/databas
 
 With the credentials from both databases,
 we can construct a command that exports data from the development server
-and write it directly to the Dedicated cluster's server.
+and write it directly to the Dedicated cluster's production server.
 
 ```bash
-mysqldump -u <DEV_USER> -p <DEV_PASSWORD> -h <DEV_HOST> <DEV_DATABASE_NAME> --single-transaction | ssh -C <SSH_USERNAME>@<HOST> 'mysql -u <PROD_USER> -p <PROD_PASSWORD> -h <PROD_HOST> <PROD_DATABASE_NAME>'
+mysqldump -u <DEV_USER> -p <DEV_PASSWORD> -h <DEV_HOST> <DEV_DATABASE_NAME> --single-transaction | ssh -C <SSH_USERNAME>@<SSH_HOST> 'mysql -u <PROD_USER> -p <PROD_PASSWORD> -h <PROD_HOST> <PROD_DATABASE_NAME>'
 ```
 
 That dumps all data from the database as a stream of queries
