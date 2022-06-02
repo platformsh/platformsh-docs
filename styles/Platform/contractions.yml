@@ -1,6 +1,6 @@
 extends: existence
 message: "Feel free to use a contraction instead of '%s'"
-link: 'https://github.com/platformsh/platformsh-docs/contributing/content-style.md#use-contractions'
+link: 'https://github.com/platformsh/platformsh-docs/blob/main/contributing/content-style.md#use-contractions'
 level: suggestion
 ignorecase: true
 scope: raw

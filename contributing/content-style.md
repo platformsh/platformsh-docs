@@ -22,6 +22,7 @@ from Platform.sh engineers to people from the community.
     - [Minimize distractions](#minimize-distractions)
     - [Include alt text](#include-alt-text)
     - [Aim for simple sentences](#aim-for-simple-sentences)
+    - [Use direct sentences](#use-direct-sentences)
   - [Format screenshots for sustainability](#format-screenshots-for-sustainability)
   - [Use the present tense](#use-the-present-tense)
   - [Use contractions](#use-contractions)
@@ -171,16 +172,38 @@ It also means using simple words instead of more complex ones.
 The following table shows some examples:
 
 Use   | Avoid
------ |-------
+----- | -------------
 about | approximately
 buy   | purchase
 help  | assist
 to    | in order to
 use   | utilize
-<!-- vale Platform.condescending = YES -->
 
 For more on the reasons behind this,
 see Content Design London's [Readability Guidelines on clear language](https://readabilityguidelines.co.uk/clear-language/).
+
+### Use direct sentences
+
+You generally want be as direct as possible to keep the ideas simple.
+By avoiding overly wordy phrases, you help make it clearer what needs to be done.
+<!-- vale Platform.condescending = YES -->
+
+For example, try to avoid using sentences starting with `There is/are` or `It is` too often.
+While there are times when this makes sense, often you can rephrase the sentence to be more direct.
+Such phrases work well for rhythm and emphasis, but that is usually less important in technical writing.
+
+Similar arguments apply to passive sentences.
+Sometimes, they work well, such as when the subject would be `the system`
+or something else that doesn't help clarify things.
+But usually, making a verb active makes it clearer what it is about.
+
+Use                          | Avoid
+---------------------------- | ----------------------------------
+You must find a solution     | It is necessary to find a solution
+The app forwards requests    | It is the app that forwards requests
+You should follow four rules | There are four rules that should be observed
+Your requests are redirected | The system redirects your requests
+This is caused by            | The cause of this issue has to do with
 
 ## Format screenshots for sustainability
 

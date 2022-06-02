@@ -1,12 +1,23 @@
 extends: substitution
-message: "Use '%s' instead of '%s'. This makes it simpler and clearer."
-link: https://github.com/platformsh/platformsh-docs/contributing/content-style.md#aim-for-simple-sentences
+message: "Consider using '%s' instead of '%s'. This makes it simpler and clearer."
+link: https://github.com/platformsh/platformsh-docs/blob/main/contributing/content-style.md#aim-for-simple-sentences
 ignorecase: true
 level: warning
 
 swap:
   approximately: about
+  are able to: can
   assist: help
+  at this point in time: now
+  at that point in time: then
+  however: but (or nothing)
   in order to: to
+  is able to: can
+  it is necessary to: you must
+  it is possible: you can/may
+  prior to: before
   purchase: buy
+  therefore: so
+  to be able to: to
+  utilization: usage
   utilize: use
