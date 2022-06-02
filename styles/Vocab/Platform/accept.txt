@@ -16,6 +16,7 @@ Cloudwatt
 CMS
 [Cc]onfig
 [Cc]ron
+coroutine
 DDEV
 denylist
 Docksal

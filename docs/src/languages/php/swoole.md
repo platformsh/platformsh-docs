@@ -8,7 +8,7 @@ Swoole is a PHP extension that extends PHP core with a coroutine based asynchron
 
 Unlike PHP-FPM’s stateless operating, Swoole relies on establishing persistent connections with every user, sending and receiving data in real-time.
 
-[Swoole](https://github.com/swoole/swoole-src) and [Open Swoole](https://openswoole.com/) are two forked libraries persuing that goal.
+[Swoole](https://github.com/swoole/swoole-src) and [Open Swoole](https://openswoole.com/) are two forked libraries pursuing that goal.
 
 {{< note >}}
 Swoole requires PHP 7.3+.
