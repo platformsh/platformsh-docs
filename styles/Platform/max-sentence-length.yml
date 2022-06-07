@@ -11,7 +11,7 @@ script: |
   // Count the words.
   length := len(text.fields(scope)) 
 
-  // Check if the setence is too long
+  // Check if the sentence is too long
   if length > 40 {
     matches = append(matches, {begin: 0, end: len(scope)})
   }
