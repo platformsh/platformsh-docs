@@ -1,0 +1,17 @@
+extends: script
+message: "This sentence has more than 40 words in it. Try making it shorter."
+link: https://github.com/platformsh/platformsh-docs/blob/main/contributing/content-style.md#user-content-aim-for-simple-sentences
+scope: sentence
+
+script: |
+  text := import("text")
+
+  matches := []
+
+  // Count the words.
+  length := len(text.fields(scope)) 
+
+  // Check if the sentence is too long
+  if length > 40 {
+    matches = append(matches, {begin: 0, end: len(scope)})
+  }

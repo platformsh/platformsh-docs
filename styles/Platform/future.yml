@@ -1,6 +1,6 @@
 extends: existence
 message: "Avoid using '%s'. Stick to the present tense."
-link: 'https://github.com/platformsh/platformsh-docs/contributing/content-style.md#use-the-present-tense'
+link: 'https://github.com/platformsh/platformsh-docs/blob/main/contributing/content-style.md#use-the-present-tense'
 ignorecase: true
 level: warning
 tokens:

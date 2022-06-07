@@ -190,6 +190,6 @@ You can apply similar logic for other frameworks.
 For [Drupal 8+](https://github.com/platformsh-templates/drupal8/blob/master/web/sites/default/settings.platformsh.php),
 any variable that begins with `drupal:` or `d8settings:` is mapped to the global `$settings` array, for low-level configuration.
 Any variable that begins with `d8config:` is mapped to the global `$config` array,
-which is useful for overriding drupal's exportable configuration system.
+which is useful for overriding Drupal's exportable configuration system.
 In this case, the variable name needs two colons, one for `d8config:` and one for the name of the configuration object to override.
 For example, a variable named `d8config:system.site:name` overrides the `name` property of the `system.site` configuration object.

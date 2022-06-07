@@ -90,14 +90,14 @@ These steps are not specific to Platform.sh, but kept as a reference for Git so 
     $ git add .gitmodules
     ```
 
-3. Remove the submodule's configuration from `.git/config`.
+3. Remove the submodule configuration from `.git/config`.
 4. Remove the submodule from the repository (without trailing slash): 
 
     ```bash
     $ git rm --cached path_to_submodule
     ```
 
-5. Remove the submodule's files in `.git` from the repository  (without trailing slash): 
+5. Remove the submodule files in `.git` from the repository  (without trailing slash): 
 
     ```bash
     $ rm -rf .git/modules/path_to_submodule

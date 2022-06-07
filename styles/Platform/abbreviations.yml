@@ -1,6 +1,6 @@
 extends: conditional
 message: "Spell out '%s' if it's unfamiliar to the audience."
-link: 'ttps://github.com/platformsh/platformsh-docs/contributing/content-style.md#explain-abbreviations'
+link: 'https://github.com/platformsh/platformsh-docs/blob/main/contributing/content-style.md#explain-abbreviations'
 level: suggestion
 ignorecase: false
 # Ensures that the existence of 'first' implies the existence of 'second'.
