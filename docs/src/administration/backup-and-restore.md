@@ -72,7 +72,8 @@ With live backups, however, there can be inconsistent states that make restorati
 For this reason Platform.sh recommends instead scheduling [automated backups](#automated-backups) during non-peak hours,
 when the short amount of downtime is least noticed.
 
-Backups are automatically live on [Dedicated projects](../dedicated/overview/_index.md) including [Dedicated Gen 3](../dedicated-gen-3/overview.md).
+Backups are automatically live on [Dedicated projects](../dedicated/overview/_index.md) including [Dedicated Generation 3](../dedicated-gen-3/overview.md).
+
 To trigger a live backup on a Grid project, use the `--live` flag with the CLI:
 
 ```bash
