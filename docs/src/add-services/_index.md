@@ -121,6 +121,13 @@ Add them to the `type` key of the [service configuration](#1-configure-the-servi
 <!-- To update the versions in this table, use docs/data/registry.json -->
 {{< readFile file="src/registry/images/tables/services_supported.md" markdownify="true">}}
 
+### Service versions
+
+These services generally follow [semantic versioning conventions](https://semver.org/).
+You choose which major/minor version to add to your project.
+Patch versions are applied periodically for bug fixes and the like.
+When you deploy your app, you always get the latest available patches.
+
 ## Service timezones
 
 All services have their system timezone set to UTC by default.
