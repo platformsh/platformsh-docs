@@ -6,7 +6,7 @@ description: Learn how to troubleshoot common issues in PHP.
 
 {{% troubleshoot %}}
 
-## Server reached max_children
+## Server reached `max_children`
 
 You may see a line in your `/var/log/app.log` file like the following:
 
