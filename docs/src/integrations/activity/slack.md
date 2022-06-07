@@ -16,6 +16,13 @@ Now, any activities that meet the events/environment criteria you specified will
 
 Once you have it working, you're free to modify the code below as desired.  See the [Slack messaging documentation](https://api.slack.com/messaging/composing/layouts) for how to format more complex messages.
 
+{{< note >}}
+Uploading the snippet below will work out-of-the-box, given two assumptions:
+
+1. The project-level variable `SLACK_URL` is not set as a ["top-level" environment variable](https://docs.platform.sh/development/variables.html#top-level-environment-variables). That is, it does not include the prefix `env:`. If you do set this variable as `env:SLACK_URL`, you will need to update the snippet accordingly (i.e. `const url = ENV_VARIABLES["env:SLACK_URL"];`).
+2. This script will only work if the webhook URL for your Slack workspace and channel is _not_ a sensitive variable. Sensitive variables are not included in the `activity.payload.deployment.variables` object at this time. 
+{{< /note >}}
+
 ```javascript
 function getEnvironmentVariables() {
   return activity.payload.deployment.variables.reduce(
