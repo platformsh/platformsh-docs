@@ -32,7 +32,7 @@ Our TYPO3 template comes [pre-configured to use Redis](https://github.com/platfo
 
 Note that the command `php vendor/bin/typo3cms install:generatepackagestate` is run during the build hook.
 The command ensures all installed extensions are enabled
-and that they can be omitted if you commit your own [`PackageStates.php` file](https://docs.typo3.org/m/typo3/reference-coreapi/master/en-us/ExtensionArchitecture/ExtensionManagement/Index.html#installing-extensions).
+and that they can be omitted if you commit your own [`PackageStates.php` file](https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/ExtensionArchitecture/HowTo/ExtensionManagement.html#installing-extensions).
 
 {{< /guides/config-app >}}
 
