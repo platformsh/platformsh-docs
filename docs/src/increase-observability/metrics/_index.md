@@ -77,7 +77,7 @@ In the primary three views, averages are shown over larger intervals.
 
 | View                                                                  | Time between measurements                     | Example                      |
 | :-------------------------------------------------------------------- | :-------------------------------------------- | :--------------------------- |
-| The last 15 minutes (*15m*)                                           | 1 minute                                      | 10:00:10, 10:00:20, 10:00:30 |
+| The last 15 minutes (*15m*)                                           | 1 minute                                      | 10:00, 10:01, 10:02 |
 | The last hour (*1hr*)                                                 | 1 minute                                      | 10:00, 10:01, 10:02          |
 | The last 24 hours (*24hr*) for Dedicated and 8 hours (*8hr*) for Grid | 20 minutes for Dedicated, 10 minutes for Grid | 10:00, 10:20, 10:40, 11:00   |
 
