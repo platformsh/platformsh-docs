@@ -14,7 +14,13 @@ With all of the requirements met, install the CLI to start developing with Platf
 
 1. **Install the CLI**
 
-  {{% cli-installation %}}
+    Install the CLI using this command:
+
+    ```bash
+    curl -fsS https://platform.sh/cli/installer | php
+    ```
+
+    If you run into issues or want to install manually, see the [installation instructions on GitHub](https://github.com/platformsh/platformsh-cli#user-content-installation).
 
 2. **Clone your project locally**
 
