@@ -7,6 +7,7 @@ https://{default}/:
     enabled: false
   redirects:
     paths:
+      "/buy-why: { "to": "https://auth.api.platform.sh/", "code": 301, "prefix": false, "regexp": false, "append_suffix": false}
       # Getting Started Restructure June 2019
       "/gettingstarted/tools.html": { "to": "/development/tools.html", "code": 301, "prefix": false}
       "/gettingstarted/cli.html": { "to": "/development/cli.html", "code": 301, "prefix": false}
