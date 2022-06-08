@@ -6,13 +6,19 @@ aliases:
   - "/gettingstarted/own-code/cli-install.html"
 ---
 
-In the previous steps, you checked that the requirements on your computer were met and configured an SSH key on your Platform.sh account. Now all we have to do is install the CLI and you can access your projects from the command line.
+In the previous steps, you checked that the requirements on your computer were met. Now all we have to do is install the CLI and you can access your projects from the command line.
 
 {{< asciinema src="videos/asciinema/verify-cli-extended.cast" >}}
 
 1. **Install the CLI**
 
-  {{% cli-installation %}}
+    Install the CLI using this command:
+
+    ```bash
+    curl -fsS https://platform.sh/cli/installer | php
+    ```
+
+    If you run into issues or want to install manually, see the [installation instructions on GitHub](https://github.com/platformsh/platformsh-cli#user-content-installation).
 
 2. **Test the CLI**
 
