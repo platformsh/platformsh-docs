@@ -148,7 +148,7 @@ To switch to Yarn to manage dependencies, follow these steps:
    }
    ```
 
-What you do next depends on the version of Yarn and Node.js you want.
+What you do next depends on the versions of Yarn and Node.js you want.
 
 {{< codetabs >}}
 
@@ -198,7 +198,7 @@ file=none
 highlight=false
 ---
 
-3. Add yarn as a global dependency:
+3. Add Yarn as a global dependency:
 
    ```yaml {location=".platform.app.yaml"}
    dependencies:
