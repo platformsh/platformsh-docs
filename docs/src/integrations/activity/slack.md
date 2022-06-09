@@ -4,24 +4,29 @@ sidebarTitle: "Example: Slack"
 toc: false
 ---
 
-The following example activity script will post a message to a Slack channel every time it is triggered.
+The following example activity script posts a message to a Slack channel every time it's triggered.
 
-To use it, paste it as-is into a `.js` file and then add it as a new [script integration](/integrations/activity/_index.md#installing).  Be sure to specify which events it should trigger on using the `--events` switch, and if desired which `--environments` you want.
+To use it, follow these steps:
 
-Second, create a new Slack webhook through your Slack administrative interface.  See the [Slack documentation](https://api.slack.com/messaging) for how to do so.  At the end you will be given a URL that points to `https://hooks.slack.com/...`.
+1. Paste the code below into a `.js` file.
+2. Add it as a new [script integration](./_index.md#installing).
 
-Third, add that URL to your project as a [variable](../../development/variables/_index.md) named `SLACK_URL`.
+   Specify which events should trigger it using the `--events` flag.
+   Optionally specify environments with the `--environments` flag.
+3. Create a new Slack webhook In your Slack administrative interface, [create a new Slack webhook](https://api.slack.com/messaging/webhooks).
+   You get a URL starting with `https://hooks.slack.com/`.
+4. Add that URL to your project as a [variable](../../development/variables/_index.md) named `SLACK_URL`.
 
-Now, any activities that meet the events/environment criteria you specified will get reported to Slack.
+   The variable can't be set as sensitive.
+   Sensitive variables aren't currently included in activity script payload.
 
-Once you have it working, you're free to modify the code below as desired.  See the [Slack messaging documentation](https://api.slack.com/messaging/composing/layouts) for how to format more complex messages.
+   Note the variable isn't added to the environment as a ["top-level" environment variable](https://docs.platform.sh/development/variables.html#top-level-environment-variables).
+   If you set this variable as `env:SLACK_URL`, update the script accordingly (`const url = ENV_VARIABLES["env:SLACK_URL"];`).
 
-{{< note >}}
-Uploading the snippet below will work out-of-the-box, given two assumptions:
+Now, any activities that meet the events/environment criteria you specified are reported to Slack.
 
-1. The project-level variable `SLACK_URL` is not set as a ["top-level" environment variable](https://docs.platform.sh/development/variables.html#top-level-environment-variables). That is, it does not include the prefix `env:`. If you do set this variable as `env:SLACK_URL`, you will need to update the snippet accordingly (i.e. `const url = ENV_VARIABLES["env:SLACK_URL"];`).
-2. This script will only work if the webhook URL for your Slack workspace and channel is _not_ a sensitive variable. Sensitive variables are not included in the `activity.payload.deployment.variables` object at this time. 
-{{< /note >}}
+Once you have it working, you're free to modify the code below as desired.
+For formatting more complex messages, see the [Slack messaging documentation](https://api.slack.com/messaging/composing/layouts).
 
 ```javascript
 function getEnvironmentVariables() {
