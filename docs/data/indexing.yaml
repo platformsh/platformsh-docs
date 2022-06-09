@@ -1,5 +1,5 @@
 replacements:
-    gettingstarted: "Getting started"
+    get-started: "Get started"
     bestpractices: "Best practices"
     golive: "Go live"
     ez: "eZ Platform"
@@ -11,5 +11,5 @@ replacements:
     typo3: "TYPO3"
     overview: "The big picture"
 priority:
-    - "gettingstarted"
+    - "get-started"
     - "dedicated"

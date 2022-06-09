@@ -6,14 +6,14 @@
 {{ $isCurrentSection := false }}
 {{ $currentSection := .Context.Section }}
 <!-- For Stacks and Get started, get the next level down for the section-->
-{{ if or ( eq $currentSection "guides" ) ( eq $currentSection "gettingstarted" ) }}
+{{ if or ( eq $currentSection "guides" ) ( eq $currentSection "get-started" ) }}
   {{ $pageName := index ( split .Context.RelPermalink "/" ) 2 }}
   {{ $currentSection = replace $pageName ".html" "" }}
 {{ end }}
 {{ $currentPage := .CurrentPage }}
 {{ with $currentPage.File }}
   <!-- If on home page or in the current section -->
-  {{ if or (and ($currentPage.IsHome) ( eq $currentSection "overview" )) ( hasPrefix . $currentSection ) ( hasPrefix ( replace . "gettingstarted/" "") $currentSection ) ( hasPrefix ( replace . "guides/" "") $currentSection ) }}
+  {{ if or (and ($currentPage.IsHome) ( eq $currentSection "overview" )) ( hasPrefix . $currentSection ) ( hasPrefix ( replace . "get-started/" "") $currentSection ) ( hasPrefix ( replace . "guides/" "") $currentSection ) }}
     {{ $isCurrentSection = true }}
   {{ end }}
 {{ end }}

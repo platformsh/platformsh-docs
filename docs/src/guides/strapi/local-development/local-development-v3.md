@@ -86,4 +86,4 @@ module.exports = {
 ```
 
 If it's similar to the above and you’re running a Strapi v3 application,
-follow the [instructions for general local development](../../../gettingstarted/developing/local-development/_index.md).
+follow the [instructions for general local development](../../../development/local/_index.md).

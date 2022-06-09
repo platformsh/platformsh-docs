@@ -33,9 +33,9 @@ books:
     title: Guides and reference
     section: home
     weight: -120
-  gettingstarted:
-    title: Getting started
-    section: gettingstarted
+  get-started:
+    title: Get started
+    section: get-started
     weight: -110
   guides:
     title: Stacks

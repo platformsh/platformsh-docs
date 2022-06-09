@@ -115,6 +115,9 @@ https://{default}/:
       # Move CLI from Development to Administration in August 2022
       "/development/cli(.*)":  { "to": "/administration/cli$1", "code": 301, "regexp": true }
 
+      # New onboarding in summer 2022
+      "/gettingstarted(.*)": { "to": "/get-started.html", "code": 301, "regexp": true}
+
 "https://search.{default}/":
     type: upstream
     upstream: "search:http"

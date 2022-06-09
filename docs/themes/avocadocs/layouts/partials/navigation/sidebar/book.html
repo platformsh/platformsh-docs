@@ -13,7 +13,7 @@
   {{ if .Params.sidebarIgnore }}
 
   <!--Handle Stacks and Get started separately -->
-  {{ else if (or (eq $currentBook "guides" ) (eq $currentBook "gettingstarted" )) }}
+  {{ else if (or (eq $currentBook "guides" ) (eq $currentBook "get-started" )) }}
     {{ if ne $currentBook .Section }}
     {{ else }}
       <!-- Create a list for each section in there -->
@@ -23,7 +23,7 @@
     {{ end }}
 
   <!-- Don't include items from Stacks and Get started elsewhere -->
-  {{ else if and (eq $currentBook "home" ) (or (eq .Section "guides" ) (eq .Section "gettingstarted" ) ) }}
+  {{ else if and (eq $currentBook "home" ) (or (eq .Section "guides" ) (eq .Section "get-started" ) ) }}
 
   <!-- List everything else -->
   {{ else }}
