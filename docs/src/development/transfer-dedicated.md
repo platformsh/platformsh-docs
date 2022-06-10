@@ -7,32 +7,30 @@ sidebarTitle: "Sync to Dedicated"
 Transferring data to and from a Dedicated cluster slightly differs from the grid.
 For advanced command line utilities, you might need granular SSH access to a specific host.
 
-## Back up Staging and Production files
+## Back up your files
 
 Platform.sh automatically creates backups of the Staging and Production environments of a Dedicated cluster every six hours.
 These are only useful to fully restore an environment and are managed by the support team.
 
-You can make a manual, local, backup yourself:
-
-1. To download data from your environment to your local system, adapt the following command:
+You can make a manual, local, backup yourself by downloading data from your environment to your local system with:
 
 ```bash
-   platform scp --project=<PROJECT_ID> --environment=<ENVIRONMENT> -r remote:<DIRECTORY_TO_SYNCHRONIZE> <LOCAL_DIRECTORY>
+platform scp --project=<PROJECT_ID> --environment=<ENVIRONMENT> -r remote:<DIRECTORY_TO_SYNCHRONIZE> <LOCAL_DIRECTORY>
 ```
 
-That command copies all files from the `<DIRECTORY_TO_SYNCHRONIZE>` directory in the environment you want to backup to your `<LOCAL_DIRECTORY>`. Make sure that you don't overwrite local data.
+That command copies all files from the `<DIRECTORY_TO_SYNCHRONIZE>` directory in the environment you want to backup to your `<LOCAL_DIRECTORY>`. Before running the command, make sure that you don't overwrite local data (or do a backup first).
 
-## Back up the Staging and Production database
+For more options, run `platform help scp`.
 
-To backup your database to your local system, you need to:
+## Back up your database
 
-1. Adapt and run the following command on your local computer:
+To backup your database, you need to adapt and run the following command on your local computer:
 
-   ```bash
-   platform db:dump --gzip --project=<PROJECT_ID> --environment=<ENVIRONMENT> 
-   ```
+```bash
+platform db:dump --gzip --project=<PROJECT_ID> --environment=<ENVIRONMENT> 
+```
 
-   See more on [database export](../add-services/_index.md#exporting-data).
+For more options, run `platform help db:dump` or see [database export](../add-services/_index.md#exporting-data).
 
 ## Synchronize files from Development to Staging/Production
 
@@ -42,7 +40,7 @@ you can download data from your Development environment to your local system and
 {{< note theme="warning" >}}
 
 Be aware that synchronizing files is a destructive operation that overwrites data.
-Backup first.
+[Backup your files first](#back-up-your-files).
 
 {{< /note >}}
 
@@ -58,6 +56,8 @@ Backup first.
    platform scp --project=<PROJECT_ID> --environment=<PRODUCTION_ENVIRONMENT> -r <LOCAL_DIRECTORY> remote:<DIRECTORY_TO_SYNCHRONIZE>
 ```
 
+For more options, run `platform help scp`.
+
 ## Synchronize a database from Development to Staging/Production
 
 To synchronize a database into either the Staging or Production environments,
@@ -66,7 +66,7 @@ you can export the database from your Development environment to your local syst
 {{< note theme="warning" >}}
 
 Be aware that this is a destructive operation that overwrites data.
-Backup first.
+[Backup your Production database first](#back-up-your-database).
 
 {{< /note >}}
 
@@ -75,15 +75,15 @@ To synchronize your database:
 1. Export the Development database on your local computer:
 
    ```bash
-   platform db:dump --project=<PROJECT_ID> --environment=<ENVIRONMENT> --file=dump.sql
+   platform db:dump --project=<PROJECT_ID> --environment=<DEVELOPMENT_ENVIRONMENT> --file=dump.sql
    ```
 
-   See more on [database export](../add-services/_index.md#exporting-data).
+   For more options, run `platform help db:dump` or see more on [database export](../add-services/_index.md#exporting-data).
 
 2. Import the Development database dump file into the remote Staging/Production database:
 
    ```bash
-   platform sql --project=<PROJECT_ID> --environment=<ENVIRONMENT> < dump.sql
+   platform sql --project=<PROJECT_ID> --environment=<PRODUCTION_ENVIRONMENT> < dump.sql
    ```
 
 ## Get SSH access
