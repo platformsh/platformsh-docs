@@ -128,32 +128,94 @@ npm prune --userconfig .npmrc && npm install --userconfig .npmrc
 
 This means you can specify configuration in a `.npmrc` file in [your app root](../../create-apps/app-reference.md#root-directory).
 
-### Use yarn as a package manager
+### Use Yarn as a package manager
 
-To switch to yarn to manage dependencies, follow these steps:
+To switch to Yarn to manage dependencies, follow these steps:
 
-1. Switch to a build flavor of `none` (so packages aren't installed with npm):
+1. Turn off the default use of npm:
 
    ```yaml {location=".platform.app.yaml"}
    build:
        flavor: none
    ```
 
-2. Add yarn as a global dependency:
+2. Specify the version of Yarn you want:
+
+   ```json {location="package.json"}
+   {
+     ...
+     "packageManager": "yarn@3.2.1"
+   }
+   ```
+
+What you do next depends on the versions of Yarn and Node.js you want.
+
+{{< codetabs >}}
+
+---
+title=Yarn 3.x and Node.js 16
+file=none
+highlight=false
+---
+
+3. Use Corepack to run Yarn in your build hook:
+
+   ```yaml {location=".platform.app.yaml"}
+   hooks:
+       build: |
+           corepack yarn install
+   ```
+
+<--->
+
+---
+title=Yarn 3.x and Node.js 14
+file=none
+highlight=false
+---
+
+3. Enable Corepack (which is opt-in):
 
    ```yaml {location=".platform.app.yaml"}
    dependencies:
        nodejs:
-           yarn: "1.22.17"
+           corepack: "*"
    ```
 
-3. Install dependencies in the `build` hook:
+4. Use Corepack to run Yarn in your build hook:
+
+   ```yaml {location=".platform.app.yaml"}
+   hooks:
+       build: |
+           corepack yarn install
+   ```
+
+<--->
+
+---
+title=Yarn < 3
+file=none
+highlight=false
+---
+
+3. Add Yarn as a global dependency:
+
+   ```yaml {location=".platform.app.yaml"}
+   dependencies:
+       nodejs:
+           yarn: "1.22.19"
+   ```
+
+4. Install dependencies in the `build` hook:
 
    ```yaml {location=".platform.app.yaml"}
    hooks:
        build: |
            yarn --frozen-lockfile
    ```
+
+{{< /codetabs >}}
+
 
 ## Connecting to services
 

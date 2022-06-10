@@ -19,7 +19,7 @@ jobs:
         run: wget --quiet -c "https://github.com/raviqqe/muffet/releases/download/v$MUFFET_VERSION/muffet_${MUFFET_VERSION}_Linux_x86_64.tar.gz" -O - | tar -xz
 
       - name: Check links
-        run: ./muffet --json --buffer-size=8192 --rate-limit=1 --max-connections-per-host=10 --color=always --header="Accept-Encoding:gzip, deflate" --header="User-Agent:Mozilla/5.0 (Windows NT 10.0) Gecko/20100101 Firefox/91.0" -e=console.platform.sh/projects/create-project -e=cloud.orange-business.com -e=developers.cloudflare.com -e=discord.com -e=pptr.dev https://docs.platform.sh > broken_links.json
+        run: ./muffet --json --buffer-size=12192 --rate-limit=1 --max-connections-per-host=10 --color=always --header="Accept-Encoding:gzip, deflate" --header="User-Agent:Mozilla/5.0 (Windows NT 10.0) Gecko/20100101 Firefox/91.0" -e=console.platform.sh/projects/create-project -e=cloud.orange-business.com -e=developers.cloudflare.com -e=discord.com -e=pptr.dev https://docs.platform.sh > broken_links.json
       
       - name: Create Markdown file of broken links
         if: ${{ always() }}
