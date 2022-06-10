@@ -4,78 +4,120 @@ weight: 13
 sidebarTitle: "Sync to Dedicated"
 ---
 
-Transferring data to and from a Dedicated cluster slightly differs from the grid and requires SSH access.
-For SSH access, you need to get the SSH username and host of your dedicated cluster.
+Transferring data to and from a Dedicated cluster slightly differs from the grid.
+For advanced command line utilities, you might need granular SSH access to a specific host.
+For that purpose, you need to get the SSH username and host of your dedicated cluster.
 
 ## Get the SSH username and host
 
-The SSH username and host are used to access your project via SSH.
+The SSH username and host are used to have granular access on your project via SSH.
 Retrieve them [via the CLI](../development/ssh/_index.md#get-ssh-connection-details).
+
+Now, you can log in to the environment over SSH:
+
+```bash
+ssh <SSH_USERNAME>@<SSH_HOST>
+```
+
+If you are [using the CLI](../development/cli/_index.md), you can also connect via SSH using:
+
+```bash
+platform ssh <PROJECT_ID>
+```
+
+## Get the database details
+
+1. Access your project through SSH:
+
+{{< codetabs >}}
+
+---
+title=Using the CLI
+file=none
+highlight=false
+---
+
+   ```bash
+   platform ssh <PROJECT_ID>
+   ```
+<--->
+
+---
+title=Manually
+file=none
+highlight=false
+---
+
+   [Get the SSH username and host](#get-the-ssh-username-and-host)
+
+{{< /codetabs >}}
+
+2. Retrieve the database details with the following command:
+
+   ```bash
+   echo $PLATFORM_RELATIONSHIPS | base64 --decode | json_pp
+   ```
+
+   Which gives a JSON output similar to:
+
+   ```json
+   "database" : [
+         {
+            "path" : "main",
+            "service" : "mysqldb",
+            "rel" : "mysql",
+            "host" : "database.internal",
+            "ip" : "246.0.80.64",
+            "scheme" : "mysql",
+            "cluster" : "jyu7wavyy6n6q-main-7rqtwti",
+            "username" : "user",
+            "password" : "",
+            "query" : {
+               "is_master" : true
+            },
+            "port" : 3306
+      }
+   ]
+   ```
+
+3. From the previous output, you need the following values:
+
+   - `username`
+   - `password` (not needed if empty)
+   - `host`
+   - `path`: the database name (`<DATABASE_NAME>` in the examples on this page)
 
 ## Back up Staging and Production files
 
 Platform.sh automatically creates backups of the Staging and Production environments of a Dedicated cluster every six hours.
 These are only useful to fully restore an environment and are managed by the support team.
 
-You can make a manual backup yourself:
+You can make a manual, local, backup yourself:
 
-1. For your environment, get the [SSH username and host](#get-the-ssh-username-and-host).
-1. Create a manual backup of all files on the Staging or Production environment using rsync:
+1. For the environment you want to backup, get the [SSH username and host](#get-the-ssh-username-and-host).
+2. On your local machine, create a manual backup of all files on the Staging or Production environment using rsync:
 
    ```bash
    rsync -avzP <SSH_USERNAME>@<SSH_HOST>:pub/static/ pub/static/
    ```
 
-   That command copies all files from the `pub/static` directory in the environment to the `pub/static` directory,
-   relative to your local directory where you're running that command.
+   That command copies all files from the `pub/static` directory in the environment you want to backup to your local `pub/static` directory (relative to your local directory where you're running that command). Make sure that you don't overwrite local data.
 
 ## Back up the Staging and Production database
 
-To backup your database to your local system, you need to get the database credentials to use.
+To backup your database to your local system, you need to:
 
-First, [login to the cluster through SSH](#get-the-ssh-username-and-host) and run the following command:
+1. [Get the database details](#get-the-database-details).
 
-```bash
-echo $PLATFORM_RELATIONSHIPS | base64 --decode | json_pp
-```
+2. Then, for the environment you want to access, you need to get the [SSH username and host](#get-the-ssh-username-and-host).
 
-Which gives a JSON output similar to:
+3. Now, adapt and run the following command on your local computer:
 
-```json
-"database" : [
-      {
-         "path" : "main",
-         "service" : "mysqldb",
-         "rel" : "mysql",
-         "host" : "database.internal",
-         "ip" : "246.0.80.64",
-         "scheme" : "mysql",
-         "cluster" : "jyu7wavyy6n6q-main-7rqtwti",
-         "username" : "user",
-         "password" : "",
-         "query" : {
-            "is_master" : true
-         },
-         "port" : 3306
-   }
-]
-```
+   ```bash
+   ssh <SSH_USERNAME>@<SSH_HOST> 'mysqldump --single-transaction -u <USERNAME> -p <PASSWORD> -h <HOST> <DATABASE_NAME> | gzip' > database.gz
+   ```
 
-From which you need the following values:
-
-- `username`
-- `password` (not needed if empty)
-- `path`: the database name (`<DATABASE_NAME>` in the example command below)
-
-Then, for the environment you want to access, you need to get the [SSH username and host](#get-the-ssh-username-and-host).
-
-Now, adapt and run the following command on your local computer:
-
-```bash
-ssh <SSH_USERNAME>@<SSH_HOST> 'mysqldump --single-transaction -u <USERNAME> -p <PASSWORD> -h <DATABASE_NAME> | gzip' > database.gz
-```
-
-The adapted version of the command could look similar to:
+   The adapted version of the command could look similar to:
 
 {{< codetabs >}}
 
@@ -85,7 +127,7 @@ file=none
 highlight=bash
 ---
 
-ssh 1.ent-1ab23cd4efghi-prod-a1bb2cd@ssh.eu-3.platform.sh 'mysqldump --single-transaction -u user -h database.internal main | gzip' > database.gz
+   ssh 1.ent-1ab23cd4efghi-prod-a1bb2cd@ssh.eu-3.platform.sh 'mysqldump --single-transaction -u user -h database.internal main | gzip' > database.gz
 
 <--->
 
@@ -95,27 +137,27 @@ file=none
 highlight=bash
 ---
 
-ssh 1.ent-1ab23cd4efghi-prod-a1bb2cd@ssh.eu-3.platform.sh 'mysqldump --single-transaction -u user -p password -h database.internal main | gzip' > database.gz
+   ssh 1.ent-1ab23cd4efghi-prod-a1bb2cd@ssh.eu-3.platform.sh 'mysqldump --single-transaction -u user -p password -h database.internal main | gzip' > database.gz
 
 {{< /codetabs >}}
 
 ## Synchronize files from Development to Staging/Production
 
-To transfer data into either the staging or production environments,
+To transfer data into either the Staging or Production environments,
 you can either:
 
 - Transfer data directly between environments using SSH-based tools (such as scp and rsync).
-- Download data from your development environment to your local system and from there to your production environment.
+- Download data from your Development environment to your local system and from there to your Production environment.
 
 To transfer data directly between environments:
 
-1. Set up [SSH forwarding as default for your domains](./ssh/ssh-keys.md#forwarding-keys-by-default).
+1. (Optional) Set up [SSH forwarding as default for your domains](./ssh/ssh-keys.md#forwarding-keys-by-default).
 
-2. For the environment you want to access, get the [SSH username and host](#get-the-ssh-username-and-host).
+2. For the environment you want to copy files from, get the [SSH username and host](#get-the-ssh-username-and-host).
 
-3. Run `platform ssh` with the production branch checked out to connect to the default development environment.
+3. Connect via ssh to the environment where you want to synchronize files to.
 
-4. Transfer files with rsync:
+4. From there, transfer files with rsync:
 
    ```bash
    rsync -avzP pub/static/ <SSH_USERNAME>@<SSH_HOST>:pub/static/
@@ -123,71 +165,33 @@ To transfer data directly between environments:
 
    Replace `pub/static` with the path to your files on system, such as `web/sites/default/files/`.
    Note that rsync is very picky about trailing `/` characters.
-   Consult the rsync documentation for more.
+
+{{< note theme="warning" >}}
+
+Be aware that this is a destructive operation that overwrites data.
+Backup first.
+
+{{< /note >}}
 
 ## Synchronize a database from Development to Staging/Production
 
-The database can be copied directly from the development environment to staging or production,
-but doing so requires noting the appropriate credentials first on both systems.
+The database can be copied directly from the Development environment to Staging or Production.
 
-For the environment you want to access, you need to get the [SSH username and host](#get-the-ssh-username-and-host).
+1. For your Production environment, [get the database details](#get-the-database-details).
 
-First, log in to the production environment over SSH:
+2. In a separate terminal, log in to the Development instance using `platform ssh`.
 
-```bash
-ssh <SSH_USERNAME>@<SSH_HOST>
-```
+3. Still on the the Development instance, [get the database details](#get-the-database-details).
 
-Once there, you can look up database credentials by running:
+4. With the details from both databases, we can construct a command that exports data from the Development server and write it directly to the Dedicated cluster's Production server.
 
-```bash
-echo $PLATFORM_RELATIONSHIPS | base64 --decode | json_pp
-```
+    ```bash
+    mysqldump -u <DEV_USER> -p <DEV_PASSWORD> -h <DEV_HOST> <DEV_DATABASE_NAME> --single-transaction | ssh -C <SSH_USERNAME>@<SSH_HOST> 'mysql -u <PROD_USER> -p <PROD_PASSWORD> -h <PROD_HOST> <PROD_DATABASE_NAME>'
+    ```
 
-Which gives a JSON output similar to:
-
-```json
-{
-   "database" : [
-      {
-         "password" : "abc123",
-         "username" : "projectname",
-         "path" : "projectname",
-         "port" : "3306",
-         "scheme" : "mysql",
-         "host" : "127.0.0.1",
-         "query" : {
-            "is_master" : true,
-            "compression" : true
-         }
-      }
-   ]
-}
-```
-
-From which you need the following values:
-
-- `username`
-- `password` (not needed if empty)
-- `path`: the database name (`<DATABASE_NAME>` in the example command below)
-
-Then, for the environment you want to access, you need to get the [SSH username and host](#get-the-ssh-username-and-host).
-
-Now, in a separate terminal log in to the development instance using `platform ssh`.
-Run the same `echo` command as above to get the credentials for the database on the development instance.
-Again, we're only interested in the username, password, host, and "path"/database name.
-
-With the credentials from both databases,
-we can construct a command that exports data from the development server
-and write it directly to the Dedicated cluster's production server.
-
-```bash
-mysqldump -u <DEV_USER> -p <DEV_PASSWORD> -h <DEV_HOST> <DEV_DATABASE_NAME> --single-transaction | ssh -C <SSH_USERNAME>@<SSH_HOST> 'mysql -u <PROD_USER> -p <PROD_PASSWORD> -h <PROD_HOST> <PROD_DATABASE_NAME>'
-```
-
-That dumps all data from the database as a stream of queries
-that get run on the production database without ever having to create an intermediary file.
-The `-C` on the SSH command tells SSH to compress the connection to save time.
+    That dumps all data from the database as a stream of queries
+    that get run on the Production database without ever having to create an intermediary file.
+    The `-C` on the SSH command tells SSH to compress the connection to save time.
 
 {{< note theme="warning" >}}
 
