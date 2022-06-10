@@ -15,6 +15,7 @@ Brotli
 Cloudwatt
 CMS
 [Cc]onfig
+Corepack
 [Cc]ron
 coroutine
 DDEV
