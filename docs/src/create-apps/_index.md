@@ -1,5 +1,5 @@
 ---
-title: Create apps
+title: Configure apps
 weight: -210
 description: |
   Control your apps and how they're built and deployed on Platform.sh with YAML configuration.

@@ -1,6 +1,6 @@
 ---
 title: "Go"
-description: Platform.sh supports building and deploying applications written in Go using Go modules. They are compiled during the Build hook phase, and support both committed dependencies and download-on-demand.
+description: Platform.sh supports building and deploying applications written in Go using Go modules. They're compiled during the Build hook phase, and support both committed dependencies and download-on-demand.
 ---
 
 {{< description >}}
@@ -23,41 +23,9 @@ description: Platform.sh supports building and deploying applications written in
 
 The recommended way to handle Go dependencies on Platform.sh is using Go module support in Go 1.11 and later. That allows the build process to use `go build` directly without any extra steps, and you can specify an output executable file of your choice. (See the examples below.)
 
-## Platform.sh variables
-
-Platform.sh exposes relationships and other configuration as [environment variables](../development/variables/_index.md).
-To make them easier to access you should use the provided [Config Reader library](https://github.com/platformsh/config-reader-go).
-Most notably, it allows a program to determine at runtime what HTTP port it should listen on
-and what the credentials are to access [other services](../add-services/_index.md).
-
-```go
-package main
-
-import (
-	_ "github.com/go-sql-driver/mysql"
-	psh "github.com/platformsh/gohelper"
-	"net/http"
-)
-
-func main() {
-
-	p, err := psh.NewPlatformInfo()
-
-	if err != nil {
-		panic("Not in a Platform.sh Environment.")
-	}
-
-	http.HandleFunc("/bar", func(w http.ResponseWriter, r *http.Request) {
-		// ...
-	})
-
-	http.ListenAndServe(":"+p.Port, nil)
-}
-```
-
 ## Building and running the application
 
-Assuming your `go.mod` and `go.sum` files are present in your repository, the application may be built with the command `go build`, which produces a working executable. You can then start it from the `web.commands.start` directive. Note that the start command _must_ run in the foreground. Should the program terminate for any reason it will be automatically restarted.
+Assuming your `go.mod` and `go.sum` files are present in your repository, your application can be built with the command `go build`, to produce a working executable. You can then start it from the `web.commands.start` directive. Note that the start command _must_ run in the foreground. If the program terminates for any reason it is automatically restarted.
 
 The following basic `.platform.app.yaml` file is sufficient to run most Go applications.
 
@@ -91,7 +59,7 @@ web:
 disk: 1024
 ```
 
-Note that there will still be an Nginx proxy server sitting in front of your application. If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Go application unconditionally, as in the example above.
+Note that there is still an Nginx proxy server sitting in front of your application. If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Go application unconditionally, as in the example above.
 
 ## Accessing services
 
@@ -153,6 +121,37 @@ markdownify=false
 
 {{< /codetabs >}}
 
+
+{{% config-reader %}}
+[Config Reader library](https://github.com/platformsh/config-reader-go)
+{{% /config-reader%}}
+
+You can also use the library to read other environment variables.
+
+```go
+package main
+
+import (
+	_ "github.com/go-sql-driver/mysql"
+	psh "github.com/platformsh/gohelper"
+	"net/http"
+)
+
+func main() {
+
+	p, err := psh.NewPlatformInfo()
+
+	if err != nil {
+		panic("Not in a Platform.sh Environment.")
+	}
+
+	http.HandleFunc("/bar", func(w http.ResponseWriter, r *http.Request) {
+		// ...
+	})
+
+	http.ListenAndServe(":"+p.Port, nil)
+}
+```
 
 ## Project templates
 

@@ -8,6 +8,9 @@ sidebarTitle: "Xdebug"
 
 As configured on Platform.sh, it avoids any runtime overhead for non-debug requests, even in production, and only allows connections via SSH tunnels to avoid any security issues.
 
+Note Xdebug runs only on your app containers.
+So you can't use it for [worker containers](../../create-apps/workers.md).
+
 ## Setting up Xdebug
 
 Xdebug is not enabled the same way as other extensions, as it should not be active on most requests.  Xdebug has a substantial impact on performance and should not be run in a production process.  Instead, Platform.sh runs a second PHP-FPM process with Xdebug that is used only for debug requests, leaving the normal process unaffected.

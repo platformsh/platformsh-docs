@@ -336,12 +336,10 @@ For Rails, you have two choices:
 * Use the [platformsh-rails-helper gem](https://github.com/platformsh/platformsh-rails-helper)
   by adding it to your `Gemfile` and commenting the production block in `config/database.yml`
 
-### Configuration reader
-
-You can use a [helper library for Ruby apps](https://github.com/platformsh/platformsh-ruby-helper)
-and [one for Rails apps](https://github.com/platformsh/platformsh-rails-helper).
-They simplify presenting environment information to your application.
-They aren't required to run Ruby applications on Platform.sh but are recommended.
+{{% config-reader %}}
+[helper library for Ruby apps](https://github.com/platformsh/platformsh-ruby-helper)
+or [one for Rails apps](https://github.com/platformsh/platformsh-rails-helper)
+{{% /config-reader%}}
 
 ## Other tips
 

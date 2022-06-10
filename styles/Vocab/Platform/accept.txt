@@ -15,7 +15,9 @@ Brotli
 Cloudwatt
 CMS
 [Cc]onfig
+Corepack
 [Cc]ron
+coroutine
 DDEV
 denylist
 Docksal
@@ -40,6 +42,7 @@ hostname
 Httpoxy
 Hunchentoot
 Ibexa
+JVM
 imagetragick
 jpegoptim
 Lando
@@ -105,6 +108,7 @@ Stempel
 stdout
 Strapi
 subuser
+Swoole
 Symfony
 Thorntail
 Tomitribe
