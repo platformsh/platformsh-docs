@@ -44,9 +44,13 @@
       <a href="{{ .Context.RelPermalink }}" class="duik-sidebar__link{{ if $isCurrentSection }} active{{ end }}">
         {{ $itemTitle }}
       </a>
+      
     </h4>
-    <!-- Add button for expanding -->
-    {{ partial "navigation/sidebar/expand-button" (dict "itemID" $sectionId "isCurrentSection" $isCurrentSection )}}
+
+    <!-- Add button for expanding if has children-->
+    {{ if eq .Context.Kind "section" }}
+      {{ partial "navigation/sidebar/expand-button" (dict "itemID" $sectionId "isCurrentSection" $isCurrentSection )}}
+    {{ end }}
   </div>
   <ul class="duik-sidebar__nav dropdown-menu{{ if eq $isCurrentSection true }} show{{ end }}" aria-labelledby="nav-expand-{{ $sectionId }}" id="{{ $sectionId }}">
 
