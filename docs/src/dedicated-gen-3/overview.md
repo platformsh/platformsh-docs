@@ -9,7 +9,7 @@ description: |
     Every service is replicated across all three virtual machines in a failover configuration (as opposed to sharding, allowing a site to remain up even if one of the VMs is lost entirely.
 ---
 
-{{< description >}}
+{{% description %}}
 
 Projects will often require a Dedicated production cluster when they require high availability, or they need more resources than normally offered by Platform.sh plans. 
 Data location requirements is also common in choosing a Dedicated cluster, such as the need to deploy to a location Platform.sh does not currently have a region, or that production data cannot be kept on shared infrastructure.

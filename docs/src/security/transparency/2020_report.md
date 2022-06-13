@@ -4,7 +4,7 @@ sidebarTitle: "2020 Report"
 file: "/files/reports/transparency-abuse/2020_platformsh_transparency_report.pdf"
 ---
 
-{{< description >}}
+{{% description %}}
 
 {{< tranparency-reports/download >}}
 

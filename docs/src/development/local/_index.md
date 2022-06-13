@@ -7,7 +7,7 @@ sidebarTitle: "Local development"
 layout: single
 ---
 
-{{< description >}}
+{{% description %}}
 
 You need to have both [Git](/development/tools.md#git) and the [Platform.sh CLI](/development/cli/_index.md) installed before continuing.
 

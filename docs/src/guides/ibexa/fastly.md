@@ -6,7 +6,7 @@ description: |
   Ibexa DXP is a "commercial extended" version of Ibexa OSS that includes, among other things, support for push-based purging on the Fastly CDN.
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## Remove Varnish configuration
 

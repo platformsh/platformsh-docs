@@ -4,7 +4,7 @@ description: |
   Data deletion is handled via our backend providers. When a volume is released back to the provider, the provider performs a wipe on the data utilizing [NIST 800-88](https://csrc.nist.gov/publications/detail/sp/800-88/rev-1/final). This wipe is done immediately before reuse.
 ---
 
-{{< description >}}
+{{% description %}}
 
 All projects, except those hosted on OVH, utilize encrypted volumes.
 The encryption key is destroyed when the volume is released back to the provider,

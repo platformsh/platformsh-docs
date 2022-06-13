@@ -7,7 +7,7 @@ aliases:
   - "/configuration/yaml.html" 
 ---
 
-{{< description >}}
+{{% description %}}
 
 YAML is a whitespace-sensitive format that is especially good at key/value type configuration, such as that used by Platform.sh. There are many good YAML tutorials online, and the format is reasonably self-documenting.  We especially recommend:
 

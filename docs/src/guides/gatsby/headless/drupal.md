@@ -9,19 +9,19 @@ description: |
 
 ## Shared Platform.sh configuration
 
-{{< guides/gatsby/headless-project name="Drupal" >}}
+{{% guides/gatsby/headless-project name="Drupal" %}}
 
 ### `.platform/services.yaml`
 
-{{< guides/gatsby/headless-services template="gatsby-drupal" name="Drupal" >}}
+{{% guides/gatsby/headless-services template="gatsby-drupal" name="Drupal" %}}
 
 ### `.platform/routes.yaml`
 
-{{< guides/gatsby/headless-routes template="gatsby-drupal" name="Drupal" >}}
+{{% guides/gatsby/headless-routes template="gatsby-drupal" name="Drupal" %}}
 
 ## Drupal
 
-{{< guides/gatsby/headless-backend name="Drupal" >}}
+{{% guides/gatsby/headless-backend name="Drupal" %}}
 
 The only setup required to prepare the backend is to install a few additional modules that will configure the JSON API for consumption. In your Drupal directory, add the following dependencies.
 
@@ -33,7 +33,7 @@ The [Pathauto](https://www.drupal.org/project/pathauto) module will help you ass
 
 ## Gatsby
 
-{{< guides/gatsby/headless-gatsby name="Drupal" template="gatsby-drupal" >}}
+{{% guides/gatsby/headless-gatsby name="Drupal" template="gatsby-drupal" %}}
 
 Additionally, there has been a change to Gatsby's start command,`web.commands.start`. In the generic Gatsby template, the static files in `public` are served via the [`web.locations` block](https://github.com/platformsh-templates/gatsby/blob/c764ed717752eacc3c3f3322b7e5415e276d02df/.platform.app.yaml#L29), but that attribute is removed in the file below. Instead, two separate start commands are defined depending on which branch you are developing on. This has been included in order to support [Live Preview and Incremental Builds](https://www.drupal.org/project/gatsby). It is not required, but you can consult the [section below](#live-preview-and-incremental-builds) for more information about enabling it.
 
@@ -69,15 +69,15 @@ With Gatsby now deployed and pulling content from a backend Drupal application, 
 
 ### `applications.yaml`
 
-{{< guides/gatsby/headless-applicationsyaml name="Drupal" >}}
+{{% guides/gatsby/headless-applicationsyaml name="Drupal" %}}
 
 ### Multiple content sources
 
-{{< guides/gatsby/headless-multiplesources name="Drupal" >}}
+{{% guides/gatsby/headless-multiplesources name="Drupal" %}}
 
 ### Plan size
 
-{{< guides/gatsby/headless-plansize >}}
+{{% guides/gatsby/headless-plansize name="Drupal" %}}
 
 ### Live preview and incremental builds
 

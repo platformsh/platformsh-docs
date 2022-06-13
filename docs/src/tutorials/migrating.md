@@ -4,7 +4,7 @@ description: |
   Moving an already-built site to Platform.sh is generally straightforward. For the most part, the only part that will vary from one framework to another is the details of the Platform.sh configuration files.
 ---
 
-{{< description >}}
+{{% description %}}
 
 For more project-specific documentation,
 see the [project templates](../development/templates.md).

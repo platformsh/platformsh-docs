@@ -7,11 +7,11 @@ description: |
     Review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for Gatsby.
 ---
 
-{{< guides/config-desc name="Gatsby" noService=true >}}
+{{% guides/config-desc name="Gatsby" noService=true %}}
 
 ## Requests configuration: `routes.yaml`
 
-{{< guides/config-routes template="gatsby" name="Gatsby" >}}
+{{% guides/config-routes template="gatsby" name="Gatsby" %}}
 
 ## Service configuration: `services.yaml`
 
@@ -19,7 +19,7 @@ description: |
 
 ## Application container: `.platform.app.yaml`
 
-{{< guides/config-app template="gatsby" >}}
+{{% guides/config-app template="gatsby" %}}
 
 In the template, `yarn` is run during the build hook to install all of Gatsby's dependencies, and then `yarn build` is run to build the site and output to the `public` subdirectory. If you would rather use `npm` to manage your dependencies, you can:
 

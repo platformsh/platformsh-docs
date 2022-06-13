@@ -13,7 +13,7 @@ There are a number of additional steps that are either required or recommended, 
 
 ## Install the Config Reader
 
-{{< guides/config-reader-php >}}
+{{% guides/config-reader-info lang="php" %}}
 
 ## `settings.php`
 

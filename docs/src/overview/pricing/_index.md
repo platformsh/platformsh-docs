@@ -8,7 +8,7 @@ aliases:
   - "/overview/pricing.html"
 ---
 
-{{< description >}}
+{{% description %}}
 
 All Platform.sh plans include:
 

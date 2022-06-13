@@ -5,7 +5,7 @@ description: |
 layout: single
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## On a Dedicated cluster
 

@@ -8,7 +8,7 @@ aliases:
   - "/gettingstarted/going-live.html"
 ---
 
-{{< description >}}
+{{% description %}}
 
 This guide will take you through the process configuring your project for production, setting up a domain, and configuring DNS so that your users can reach the application the way you want them to.
 

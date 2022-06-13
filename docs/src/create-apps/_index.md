@@ -8,7 +8,7 @@ keywords:
   - ".platform.app.yaml"
 ---
 
-{{< description >}}
+{{% description %}}
 
 ![Applications](/images/config-diagrams/applications.png "0.50")
 

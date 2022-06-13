@@ -6,7 +6,7 @@ description: |
   Platform.sh provides sponsored hosting for Free Software projects and tech community events and organizations as part of our effort to support the Free Software community.
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## Eligibility
 

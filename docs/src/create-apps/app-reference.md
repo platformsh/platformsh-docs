@@ -4,7 +4,7 @@ weight: 4
 description: See all of the options for controlling your apps and how they're built and deployed on Platform.sh.
 ---
 
-{{< description >}}
+{{% description %}}
 
 For single-app projects, the configuration is all done in a `.platform.app.yaml` file,
 usually located at the root of your app folder in your Git repository.

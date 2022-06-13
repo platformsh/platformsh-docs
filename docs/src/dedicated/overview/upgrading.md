@@ -7,7 +7,7 @@ description: |
     That also necessitated running most configuration changes through a ticket and maintaining separate SSH credentials for each environment.
 ---
 
-{{< description >}}
+{{% description %}}
 
 These older projects can be upgraded to the new Integrated UI,
 which eliminates the extra Git repositories and many "must be a ticket" configuration changes,

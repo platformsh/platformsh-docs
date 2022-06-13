@@ -4,7 +4,7 @@ description: |
   The Bitbucket integration allows you to manage your Platform.sh environments directly from your Bitbucket repository.
 ---
 
-{{< description >}}
+{{% description %}}
 
 It's possible to integrate a Platform.sh project with either the freely available Bitbucket Cloud product
 or with the self-hosted [Bitbucket Server](https://confluence.atlassian.com/bitbucketserver/).

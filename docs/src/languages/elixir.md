@@ -3,7 +3,7 @@ title: "Elixir"
 description: Platform.sh supports building and deploying applications written in Elixir. There is no default flavor for the build phase, but you can define it explicitly in your build hook. Platform.sh Elixir images support both committed dependencies and download-on-demand. The underlying Erlang version is 22.0.7.
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## Supported versions
 
@@ -11,7 +11,7 @@ description: Platform.sh supports building and deploying applications written in
 |----------------------------------|---------------|
 |  {{< image-versions image="elixir" status="supported" environment="grid" >}} | {{< image-versions image="elixir" status="supported" environment="dedicated" >}} |
 
-{{< image-versions-legacy "elixir" >}}
+{{% image-versions-legacy "elixir" %}}
 
 {{% language-specification type="elixir" display_name="Elixir" %}}
 

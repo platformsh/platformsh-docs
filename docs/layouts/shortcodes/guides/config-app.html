@@ -1,7 +1,0 @@
-
-<p>The <code>.platform.app.yaml</code> file is the heart of your application. It has an <a href="{{ relref . "/create-apps/app-reference.md" }}">extensive set of options</a> that allow you to configure nearly any aspect of your application. Most of it is explained with comments inline. You can and likely will evolve this file over time as you build out your site.</p>
-
-<p>{{ .Inner | .Page.RenderString }}</p>
-
-{{ $file := printf "static/files/fetch/appyaml/%s" (.Get "template" ) }}
-{{ highlight ( readFile $file ) "yaml" ""}}

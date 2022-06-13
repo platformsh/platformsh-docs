@@ -6,7 +6,7 @@ description: |
   Organizations allow you to manage your Platform.sh projects, users, and billing.
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## Manage your organization settings
 

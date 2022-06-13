@@ -6,7 +6,7 @@ description: |
   **The Platform.sh Rule:** Update Early, Update Often
 ---
 
-{{< description >}}
+{{% description %}}
 
 Platform.sh periodically updates its container images for the latest security updates from upstream providers.  (PHP versions, Ruby versions, MariaDB versions, etc.).  These do not always happen immediately but when a security vulnerability is identified and released it tends to be fairly soon after.
 

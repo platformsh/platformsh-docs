@@ -8,7 +8,7 @@ tier:
   - Enterprise
 ---
 
-{{< description >}}
+{{% description %}}
 
 Your SSO provider can be enabled for a specific email domain, for example `@example.com`. Every user with a matching email address will have to log in or register on Platform.sh using your SSO provider. Such users will not be able to use an alternative provider, or register a password, or change their email address.
 

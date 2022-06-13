@@ -101,6 +101,6 @@ All updates should be done through Composer to update the lock file, and then pu
 
 ## Local development with Lando
 
-{{< guides/lando repo="wordpress-composer" >}}
+{{% guides/lando repo="wordpress-composer" %}}
 
 {{< guide-buttons type="last" >}}

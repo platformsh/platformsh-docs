@@ -6,7 +6,7 @@ description: |
   There are several different "levels" at which you could configure HTTP caching for your site on Platform.sh.  Which one you want to use depends on your specific use case.  You should use only one of these at a time and disable any others. Mixing them together will most likely result in stale and unclearable caches.
 ---
 
-{{< description >}}
+{{% description %}}
 
 * **The Platform.sh [Router cache](../define-routes/cache.md)**.  Every project includes a router instance, which includes optional HTTP caching.  It is reasonably configurable and obeys HTTP cache directives, but does not support push-based clearing.  If you are uncertain what caching tool to use, start with this one.  It is more than sufficient for the majority of use cases.
 

@@ -14,7 +14,7 @@ You can also develop a microservice architecture mixing JavaScript and other app
 |----------------------------------|---------------|
 |  {{< image-versions image="nodejs" status="supported" environment="grid" >}} | {{< image-versions image="nodejs" status="supported" environment="dedicated" >}} |
 
-{{< image-versions-legacy "nodejs" >}}
+{{% image-versions-legacy "nodejs" %}}
 
 {{% language-specification type="nodejs" display_name="Node.js" %}}
 

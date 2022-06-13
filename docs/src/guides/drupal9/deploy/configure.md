@@ -7,11 +7,11 @@ description: |
     Review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for Drupal.
 ---
 
-{{< guides/config-desc name="Drupal 9" >}}
+{{% guides/config-desc name="Drupal 9" %}}
 
 ## Requests configuration: `routes.yaml`
 
-{{< guides/config-routes template="drupal9" name="Drupal 9" >}}
+{{% guides/config-routes template="drupal9" name="Drupal 9" %}}
 
 ## Service configuration: `services.yaml`
 
@@ -30,6 +30,6 @@ See an example of Redis for caching in our [Drupal template](https://github.com/
 
 ## Application container: `.platform.app.yaml`
 
-{{< guides/config-app template="drupal9" >}}{{< /guides/config-app >}}
+{{% guides/config-app template="drupal9" %}}{{< /guides/config-app >}}
 
 {{< guide-buttons next="Customize Drupal9" >}}
