@@ -59,7 +59,7 @@ which you should update immediately.
 Visit `/typo3` on the generated URL for the environment and login with those temporary `admin` credentials.
 Then click on the user icon in the top right of the page and go to User Settings > Password to update.
 
-{{< guides/data-migration />}}
+{{% guides/data-migration /%}}
 
 Go forth and Deploy (even on Friday)!
 
