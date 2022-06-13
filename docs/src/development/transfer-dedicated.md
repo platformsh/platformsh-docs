@@ -4,7 +4,7 @@ weight: 13
 sidebarTitle: "Sync to Dedicated"
 ---
 
-Transferring data to and from a Dedicated cluster slightly differs from the grid.
+Transferring data to and from [a Dedicated cluster](../../other/glossary.md#dedicated) slightly differs from the process on the Grid.
 For advanced command line utilities, you might need granular SSH access to a specific host.
 
 ## Back up your files
@@ -12,17 +12,19 @@ For advanced command line utilities, you might need granular SSH access to a spe
 Platform.sh automatically creates backups of the Staging and Production environments of a Dedicated cluster every six hours.
 These are only useful to fully restore an environment and are managed by the support team.
 
-You can make a manual, local, backup yourself by downloading data from your environment to your local system with:
+You can make a manual local backup yourself by downloading data from your environment to your local system by running the following command:
 
 ```bash
 platform scp --project=<PROJECT_ID> --environment=<ENVIRONMENT> -r remote:<DIRECTORY_TO_SYNCHRONIZE> <LOCAL_DIRECTORY>
 ```
 
-That command copies all files from the `<DIRECTORY_TO_SYNCHRONIZE>` directory in the environment you want to backup to your `<LOCAL_DIRECTORY>`. Before running the command, make sure that you don't overwrite local data (or do a backup first).
+This command copies all files from the `<DIRECTORY_TO_SYNCHRONIZE>` in the environment you want to backup
+to your `<LOCAL_DIRECTORY>`.
+Before running the command, make sure that you don't overwrite local data (or do a backup first).
 
 ## Back up your database
 
-To backup your database, you need to adapt and run the following command on your local computer:
+To backup your database, adapt and run the following command on your local computer:
 
 ```bash
 platform db:dump --gzip --project=<PROJECT_ID> --environment=<ENVIRONMENT> 
@@ -32,8 +34,8 @@ For more options, see [database export](../add-services/_index.md#exporting-data
 
 ## Synchronize files from Development to Staging/Production
 
-To transfer data into either the Staging or Production environments,
-you can download data from your Development environment to your local system and from there to your Production environment.
+To transfer data into either the Staging or Production environment,
+download data from your Development environment to your local system and from there to your Production environment.
 
 {{< note theme="warning" >}}
 
@@ -44,11 +46,11 @@ Be aware that synchronizing files is a destructive operation that overwrites dat
 
 1. To download data from your Development environment to your local system, adapt the following command:
 
-```bash
+   ```bash
    platform scp --project=<PROJECT_ID> --environment=<DEVELOPMENT_ENVIRONMENT> -r remote:<DIRECTORY_TO_SYNCHRONIZE> <LOCAL_DIRECTORY>
-```
+   ```
 
-2. To copy the local directory to the remote Production mount:
+2. To copy the local directory to the remote Production mount, adapt the following command:
 
 ```bash
    platform scp --project=<PROJECT_ID> --environment=<PRODUCTION_ENVIRONMENT> -r <LOCAL_DIRECTORY> remote:<DIRECTORY_TO_SYNCHRONIZE>
@@ -56,7 +58,7 @@ Be aware that synchronizing files is a destructive operation that overwrites dat
 
 ## Synchronize a database from Development to Staging/Production
 
-To synchronize a database into either the Staging or Production environments,
+To synchronize a database into either the Staging or Production environment,
 you can export the database from your Development environment to your local system and from there to your Production environment.
 
 {{< note theme="warning" >}}
@@ -79,7 +81,7 @@ To synchronize your database:
 2. Import the Development database dump file into the remote Staging/Production database:
 
    ```bash
-   platform sql --project=<PROJECT_ID> --environment=<PRODUCTION_ENVIRONMENT> < dump.sql
+   platform sql --project=<PROJECT_ID> --environment=<ENVIRONMENT> < dump.sql
    ```
 
 ## Get SSH access
@@ -98,7 +100,7 @@ For advanced used cases, you might want to get the database details manually.
 
 To do so:
 
-1. Access the specific environment you need with `platform ssh --project=<PROJECT_ID> --environment=<ENVIRONMENT>`. See more [about SSH](#get-ssh-access).
+1. Access the specific environment you need by running `platform ssh --project=<PROJECT_ID> --environment=<ENVIRONMENT>`.
 2. Retrieve the database details with the following command:
 
    ```bash
@@ -132,4 +134,4 @@ To do so:
    - `username`
    - `password` (not needed if empty)
    - `host`
-   - `path`: the database name (`<DATABASE_NAME>` in the examples on this page)
+   - `path`: the database name
