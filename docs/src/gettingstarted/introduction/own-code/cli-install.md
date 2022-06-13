@@ -10,23 +10,17 @@ In the previous steps, you checked that the requirements on your computer were m
 
 {{< asciinema src="videos/asciinema/verify-cli-extended.cast" >}}
 
-1. **Install the CLI**
+##  1. Install the CLI
 
-    Install the CLI using this command:
+{{% cli-installation %}}
 
-    ```bash
-    curl -fsS https://platform.sh/cli/installer | php
-    ```
+##  2. Test the CLI
 
-    If you run into issues or want to install manually, see the [installation instructions on GitHub](https://github.com/platformsh/platformsh-cli#user-content-installation).
+Get a list of all available commands with:
 
-2. **Test the CLI**
-
-    Get a list of all available commands with:
-
-    ```bash
-    platform list
-    ```
+```bash
+platform list
+```
 
 Now that you have installed the CLI and it is communicating with Platform.sh, you can configure and push your project to Platform.sh.
 

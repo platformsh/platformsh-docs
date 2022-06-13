@@ -14,7 +14,13 @@ Its source code is hosted on [GitHub](https://github.com/platformsh/platformsh-c
 
 ## Before you begin
 
-{{% cli-installation-requirements %}}
+You need to have:
+
+* [PHP 5.5.9+](https://www.php.net/manual/en/install.php) with the following extensions installed: `curl`, `json`, `mbstring`, `pcre`, and `phar`
+* [Git](https://docs.github.com/en/get-started/quickstart/set-up-git)
+* A Bash-like shell
+
+On Windows, the best way to get Bash is through [Windows Subsystem for Linux](https://msdn.microsoft.com/en-gb/commandline/wsl/about).
 
 ## 1. Install
 
@@ -22,9 +28,25 @@ Its source code is hosted on [GitHub](https://github.com/platformsh/platformsh-c
 
 ## 2. Authenticate
 
-To see and manage projects, you need to be authenticated with Platform.sh.
+To see and manage projects, you need to be authenticated.
 
-{{% cli-installation-check %}}
+To log in, run this command and follow the steps:
+
+```bash
+platform
+```
+
+You are asked to log in via a browser.
+This process creates certificates on your computer for secure [SSH connections](/development/ssh/_index.md).
+If you experience authentication issues or want to force a login, run the command `platform login`.
+
+Once you are logged in, a list of your projects appears, along with some tips for getting started.
+
+Get a list of all available commands with:
+
+```bash
+platform list
+```
 
 ## 3. Use
 

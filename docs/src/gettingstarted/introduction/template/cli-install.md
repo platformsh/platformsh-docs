@@ -12,36 +12,30 @@ With all of the requirements met, install the CLI to start developing with Platf
 
 {{< asciinema src="videos/asciinema/verify-cli-extended.cast" >}}
 
-1. **Install the CLI**
+## 1. Install the CLI
 
-    Install the CLI using this command:
+{{% cli-installation %}}
 
-    ```bash
-    curl -fsS https://platform.sh/cli/installer | php
-    ```
+## 2. Clone your project locally
 
-    If you run into issues or want to install manually, see the [installation instructions on GitHub](https://github.com/platformsh/platformsh-cli#user-content-installation).
+Get a list of all available commands with:
 
-2. **Clone your project locally**
+```bash
+platform list
+```
 
-    Get a list of all available commands with:
+You should now see a list of your Platform.sh projects, including the template you made in this guide.
+You can copy its *project ID* hash, and then download a local copy of the repository with this command:
 
-    ```bash
-    platform list
-    ```
+```bash
+platform get <PROJECT_ID>
+```
 
-    You should now see a list of your Platform.sh projects, including the template you made in this guide.
-    You can copy its *project ID* hash, and then download a local copy of the repository with this command:
+With a local copy, you can create branches, commit to them, and push your changes to Platform.sh right away!
 
-    ```bash
-    platform get <PROJECT_ID>
-    ```
-
-    With a local copy, you can create branches, commit to them, and push your changes to Platform.sh right away!
-
-    ```bash
-    git push platform main
-    ```
+```bash
+git push platform main
+```
 
 That's it!
 Now that you have the management console set up and the CLI installed on your computer,
