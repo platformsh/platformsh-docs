@@ -28,3 +28,5 @@ Then go through each of the steps to create the project:
 6. Choose a default branch (main)
 
 A Git repository is automatically initialized and Platform.sh is set as a remote.
+
+{{< get-started/next-button next="/get-started/deploy/commit.html" nextText="I'm ready to commit" >}}

@@ -59,3 +59,5 @@ This is useful for things such as connecting to different databases in developme
 
 Now you have a development environment and know how it works.
 Next, add a service in that environment.
+
+{{< get-started/next-button next="/get-started/add-data/merge.html" nextText="I'm ready to merge" >}}

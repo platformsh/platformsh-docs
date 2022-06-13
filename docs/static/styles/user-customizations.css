@@ -42,6 +42,12 @@
   z-index: 0;
 }
 
+
+.btn-primary2:hover,.btn-primary2:focus {
+  text-decoration: none;
+  color: inherit;
+}
+
 .btn-primary2::before {
   content: "";
   position: absolute;
@@ -487,7 +493,7 @@ var {
 }
 
 .stack-wrapper img {
-  max-width: 110px;
+  max-height: 5em;
   margin: 0 2em;
 }
 
