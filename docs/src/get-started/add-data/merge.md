@@ -88,3 +88,5 @@ Data is there.
 
 Great job!
 You can be done if you want to, or you can continue to monitor your app.
+
+{{< get-started/next-button next="/get-started/monitor-and-troubleshoot/log.html" nextText="I want to monitor" >}}
