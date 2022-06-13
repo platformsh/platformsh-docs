@@ -330,11 +330,11 @@ Then include the block with the `readFile` function as in the following example:
 
 ```markdown
 <div class="highlight-location"><LOCATION_TO_DISPLAY></div>
-{{ highlight ( readFile "<FILE_LOCATTION>" ) "<LANGUAGE>" "" }}
+{{ highlight ( readFile "<FILE_LOCATION>" ) "<LANGUAGE>" "" }}
 ```
 
 - `<LOCATION_TO_DISPLAY>` is the location to show above the code block in the docs
-- `<FILE_LOCATTION>` is where the snippet is
+- `<FILE_LOCATION>` is where the snippet is
 - `<LANGUAGE>` is the language for syntax highlighting
 
 A complete example:
