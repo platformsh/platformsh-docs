@@ -51,4 +51,4 @@ Install the CLI.
 
 To get started with a project, choose what language or framework you want to use:
 
-{{< choose-stack >}}
+{{< get-started/choose-stack >}}

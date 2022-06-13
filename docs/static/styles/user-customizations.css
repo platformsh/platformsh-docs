@@ -477,3 +477,37 @@ var {
   font-style: italic;
   cursor: help;
 }
+
+/* For stacks in Get started section */
+.stack-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.stack-wrapper img {
+  max-width: 110px;
+  margin: 0 2em;
+}
+
+.stack-picker {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.stack-picker li {
+  margin: 0 1em;
+  border-bottom: 1px solid transparent;
+}
+
+.stack-picker li.active, .stack-picker li:hover, .stack-picker li:focus {
+  border-bottom: 1px solid currentColor;
+}
+
+.stack-picker img {
+  max-height: 1.25em;
+  margin-right: 0.25em
+}

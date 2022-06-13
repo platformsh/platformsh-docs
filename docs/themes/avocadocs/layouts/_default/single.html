@@ -1,16 +1,32 @@
 {{ define "main" }}
 
-  <!-- If the page has "multipleTabs" set, set the codetab context on a page-wide basis -->
+  <!-- If in the Get started section, define context and methods
+       Otherwise, if the page has "multipleTabs" set, set the codetab context on a page-wide basis -->
   <main class="ml-sm-auto col-md-9 col-lg-10 px-4 pt-0 pt-md-11"
-  {{ if $.Page.Params.multipleTabs }}
+  {{ if eq .Section "get-started" }}
+  x-data="{ 
+    stack: new URLSearchParams(location.search).get('stack') || 'php',
+    switchStack(targetStack) { 
+      this.stack = targetStack
+      const url = new URL(window.location.href);
+
+      const targetStackString = targetStack
+        .toString()
+        .toLowerCase()
+        .replace('.', '');
+
+      url.searchParams.set('stack', targetStackString);
+      history.pushState(null, document.title, url.toString());
+    }
+  }"
+  {{ else if $.Page.Params.multipleTabs }}
   x-data="{
     codetab: 'default',
     switchCodetab(targetCodetab) { 
       this.codetab = targetCodetab;
     }
   }"
-  {{ end }}
-  >
+  {{ end }}>
     <div class="row pt-3">
 
         <div class="col-xl-12 order-xl-1 duik-content">
@@ -41,6 +57,12 @@
             </div>
 
             <div class="content-wrapper">
+
+              <!-- Add the stack picker for Get started section -->
+              {{ if and ( eq .Section "get-started" ) ( ne .Title "Introduction" ) }}
+                {{ partial "get-started/stack-picker" }}
+              {{ end }}
+
               <!-- Page content, anchorized -->
               {{ partial "headline-hash.html" .Content }}
             </div>

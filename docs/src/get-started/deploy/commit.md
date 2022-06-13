@@ -64,14 +64,4 @@ If named app otherwise, change the first part of the `upstream`.
 
 Commit and push.
 
-<div class="services-not-needed">
-
-You can now see your built app at the returned URL.
-
-</div>
-
-<div class="services-needed">
-
-Your app is built and served at the returned URL, but it doesn't yet have all the services it needs to work.
-
-</div>
+{{< get-started/service-needed >}}

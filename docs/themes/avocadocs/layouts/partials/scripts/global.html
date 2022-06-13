@@ -8,3 +8,7 @@
 <!-- MermaidJS support -->
 <script async src="{{ printf "/mermaid/mermaid.min.js?version=%s" $.Site.Params.version }}"></script>
 {{ end }}
+{{ if eq .Section "get-started" }}
+<!-- Alpine.js support -->
+<script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
+{{ end }}
