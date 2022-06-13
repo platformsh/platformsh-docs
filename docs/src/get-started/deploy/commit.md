@@ -8,16 +8,17 @@ Once you have your project initialized, it's time to add the basics to get it de
 
 ## Add app configuration
 
-Add basic app configuration:
+Create a file to hold your app configuration:
 
 ```bash
 touch .platform.app.yaml
 ```
 
-```yaml {location=".platform.app.yaml"}
-name: app
+Add basic properties for your app, such as its name and language:
 
-```
+{{% get-started/basic-app %}}
+
+{{% get-started/build-hook %}}
 
 Add blank routes:
 
@@ -41,14 +42,6 @@ platform push
 Or `git push`.
 
 Nothing exposed.
-
-<div class="build-needed">
-
-## Add a build book
-
-Add build hook
-
-</div>
 
 ## Create route
 
