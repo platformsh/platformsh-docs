@@ -77,4 +77,4 @@ Gatsby supports pulling multiple sources into its build. This can include extern
 
 ### Plan size
 
-{{% guides/gatsby/headless-plansize %}}
+{{% guides/gatsby/headless-plansize name="Strapi" %}}

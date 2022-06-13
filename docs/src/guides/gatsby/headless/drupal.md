@@ -77,7 +77,7 @@ With Gatsby now deployed and pulling content from a backend Drupal application, 
 
 ### Plan size
 
-{{% guides/gatsby/headless-plansize %}}
+{{% guides/gatsby/headless-plansize name="Drupal" %}}
 
 ### Live preview and incremental builds
 

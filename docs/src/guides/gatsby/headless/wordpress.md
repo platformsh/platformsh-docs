@@ -71,4 +71,4 @@ With Gatsby now deployed and pulling content from a backend WordPress applicatio
 
 ### Plan size
 
-{{% guides/gatsby/headless-plansize %}}
+{{% guides/gatsby/headless-plansize name="WordPress" %}}

@@ -81,4 +81,4 @@ With Gatsby now deployed and pulling content from a backend Strapi application, 
 
 ### Plan size
 
-{{% guides/gatsby/headless-plansize %}}
+{{% guides/gatsby/headless-plansize name="Strapi" %}}
