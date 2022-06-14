@@ -3,7 +3,7 @@ title: "Lisp"
 description: Platform.sh supports building and deploying applications written in Lisp using Common Lisp (the SBCL version) with ASDF and Quick Lisp support.  They are compiled during the Build phase, and support both committed dependencies and download-on-demand.
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## Supported versions
 
@@ -11,7 +11,7 @@ description: Platform.sh supports building and deploying applications written in
 |----------------------------------|---------------|
 |  {{< image-versions image="lisp" status="supported" environment="grid" >}} | {{< image-versions image="lisp" status="supported" environment="dedicated" >}} |
 
-{{< image-versions-legacy "lisp" >}}
+{{% image-versions-legacy "lisp" %}}
 
 {{% language-specification type="lisp" display_name="Lisp" %}}
 

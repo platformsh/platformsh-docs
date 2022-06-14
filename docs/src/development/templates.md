@@ -5,7 +5,7 @@ description: |
   You can initialize your projects using any of our pre-made template repositories.
 ---
 
-{{< description >}}
+{{% description %}}
 
 {{% template-intro %}}
 

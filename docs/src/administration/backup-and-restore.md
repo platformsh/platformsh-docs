@@ -5,7 +5,7 @@ description: |
   Backups are triggered directly via the management console or via the CLI. The backup creates a complete snapshot of the environment's data. It includes all persistent data from all running services (MySQL, Solr,...) and any files stored on the mounted volumes. Please note that the snapshot is stored internally and cannot be downloaded.
 ---
 
-{{< description >}}
+{{% description %}}
 
 Code is managed through Git and can be restored using normal Git routines.
 The built code file system isn't affected by backups or restores.

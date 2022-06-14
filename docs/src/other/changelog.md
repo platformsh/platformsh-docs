@@ -5,7 +5,7 @@ description: |
   Look here for all the most recent additions to Platform.sh.
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## 2022
 

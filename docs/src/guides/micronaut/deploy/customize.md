@@ -11,7 +11,7 @@ Now that your code contains all of the configuration to deploy on Platform.sh, i
 
 ## Install the Config Reader
 
-{{< guides/config-reader-info lang="java" >}}
+{{% guides/config-reader-info lang="java" %}}
 
 Below is an example of how to install the Config Reader for Java using Maven:
 

@@ -5,7 +5,7 @@ description: |
 toc: false  
 ---
 
-{{< description >}}
+{{% description %}}
 
 As part of this process, we will prepare a data breach notification with as much detail as possible, such as the nature of the data breach, possible consequences, and the measures we are taking to deal with the breach. 
 

@@ -23,7 +23,7 @@ A brief introduction (1--2 sentences) to what this service is used for.
 |  {{< image-versions image="<SERVICE_NAME>" status="supported" environment="grid" >}} | {{< image-versions image="<SERVICE_NAME>" status="supported" environment="dedicated" >}} | {{< image-versions image="<SERVICE_NAME>" status="supported" environment="dedicated-gen-3" >}} |
 
 <!-- To automatically check any differences in the registry with legacy regions -->
-{{< image-versions-legacy "<SERVICE_NAME>" >}}
+{{% image-versions-legacy "<SERVICE_NAME>" %}}
 
 <!-- If there are any deprecated versions. -->
 {{% deprecated-versions %}}

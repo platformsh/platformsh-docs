@@ -6,7 +6,7 @@ description: |
 sidebarTitle: "Elasticsearch"
 ---
 
-{{< description >}}
+{{% description %}}
 
 See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html) for more information.
 
@@ -22,7 +22,7 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 
 ## Supported versions
 
-{{< image-versions-legacy "elasticsearch" >}}
+{{% image-versions-legacy "elasticsearch" %}}
 
 Due to a licensing change, Elasticsearch versions after 7.10 aren't supported.
 For newer versions, use [OpenSearch](./opensearch.md) instead.

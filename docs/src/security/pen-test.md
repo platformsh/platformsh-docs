@@ -5,7 +5,7 @@ description: |
   Platform.sh understands the need for application owners to ensure the integrity, and standards compliance, of their applications. Because there could be adverse impacts to other clients which would violate our terms of service, we only permit certain types of tests.
 ---
 
-{{< description >}}
+{{% description %}}
 
 Currently, we do not offer the possibility to activate/deactivate the Intrusion Prevention System (IPS) on demand.
 On Platform.sh's side, there is no automatic IP or range blocking. Blocking IP's (or not) is usually left to the appreciation of the on-call engineer based on the specific circumstances.

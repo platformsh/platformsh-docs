@@ -12,7 +12,7 @@ You can deploy Python apps on Platform.sh using a server or a project such as [u
 |----------------------------------|---------------|
 |  {{< image-versions image="python" status="supported" environment="grid" >}} | {{< image-versions image="python" status="supported" environment="dedicated" >}} |
 
-{{< image-versions-legacy "python" >}}
+{{% image-versions-legacy "python" %}}
 
 {{% language-specification type="python" display_name="Python" %}}
 

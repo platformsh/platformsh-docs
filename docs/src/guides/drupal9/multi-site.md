@@ -7,7 +7,7 @@ description: |
 weight: -80
 ---
 
-{{< description >}}
+{{% description %}}
 
 But they would be separate Drupal instances: they will have their assets separate and live their lives apart, and it would be much better for them not to share the same database (though they could).
 

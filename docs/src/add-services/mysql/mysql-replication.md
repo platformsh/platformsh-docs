@@ -7,7 +7,7 @@ aliases:
   - /guides/general/mysql-replication.html
 ---
 
-{{< description >}}
+{{% description %}}
 
 Normally an automated backup is better for short-term usage and a `mysqldump` for longer term storage, but in some cases the data set is large enough that `mysqldump` is prohibitive.  In that case, you can enable external replication using an extra permission.
 

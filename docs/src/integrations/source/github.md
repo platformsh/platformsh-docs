@@ -4,7 +4,7 @@ description: |
   The [GitHub](https://github.com) integration allows you to manage your Platform.sh environments directly from your GitHub repository.
 ---
 
-{{< description >}}
+{{% description %}}
 
 **Features supported:**
 

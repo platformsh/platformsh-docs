@@ -7,11 +7,11 @@ description: |
     Review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for Quarkus.
 ---
 
-{{< guides/config-desc name="Quarkus" noService=true >}}
+{{% guides/config-desc name="Quarkus" noService=true %}}
 
 ## Requests configuration: `routes.yaml`
 
-{{< guides/config-routes template="quarkus" name="Quarkus" >}}
+{{% guides/config-routes template="quarkus" name="Quarkus" %}}
 
 ## Service configuration: `services.yaml`
 
@@ -19,7 +19,7 @@ description: |
 
 ## Application container: `.platform.app.yaml`
 
-{{< guides/config-app template="quarkus" >}}
+{{% guides/config-app template="quarkus" %}}
 Explaining the file line by line, notice the following settings:
 
 1. `name`: The application name

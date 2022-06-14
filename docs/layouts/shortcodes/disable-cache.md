@@ -1,4 +1,3 @@
-
 ## Avoid double-caching
 
 To avoid stale content that can't be cleared, don't use {{ .Get "CDN" }} with [HTTP caching](../../src/define-routes/cache.md).

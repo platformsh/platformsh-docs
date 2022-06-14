@@ -4,7 +4,7 @@ description: |
   Platform.sh aims to be a great host, but we never want to lock you in to our service. Your code and your data belong to you, and you should always be able to download your site's data for local development, backup, or to "take your data elsewhere".
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## Downloading code
 
