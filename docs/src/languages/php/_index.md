@@ -26,8 +26,7 @@ Note that from PHP 7.1, the images use the Zend Thread Safe (ZTS) version of PHP
 
 ## Usage example
 
-To use PHP on Platform.sh, configure the `.platform.app.yaml` file with a few key settings
-(a complete example is included at the end).
+Configure your app to use PHP on Platform.sh (a complete example is included at the end).
 
 ### 1. Specify the version
 
@@ -45,8 +44,6 @@ dependencies:
     php: 
         composer/composer: '^2'
 ```
-
-If you want to use composer 1.x instead, remove that code block.
 
 ### 3. Build your app
 
@@ -102,7 +99,7 @@ web:
 
 PHP images use the `composer` build flavor by default,
 which uses the latest Composer 2.x release as [a dependency](../../create-apps/app-reference.md#dependencies).
-Add the following to your app configuration to use composer 2.x:
+To use Composer 2.x, add the following to your app configuration:
 
 ```yaml {location=".platform.app.yaml"}
 dependencies:
@@ -110,12 +107,10 @@ dependencies:
         composer/composer: '^2'
 ```
 
-If you want to use composer 1.x instead, don't add that code block.
-
 ### Alternative repositories
 
 In addition to the standard `dependencies` format,
-it's also possible to specify alternative repositories for use by Composer.
+you can specify alternative repositories for Composer to use.
 The standard format:
 
 ```yaml {location=".platform.app.yaml"}
@@ -138,8 +133,8 @@ dependencies:
               url: "git@github.com:platformsh/platformsh-client-php.git"
 ```
 
-That installs `platformsh/client` from the alternate repository specified, as a global dependency.
-That allows you to install a forked version of a global dependency from a custom repository.
+That installs `platformsh/client` from the specified repository as a global dependency.
+So you can install a forked version of a global dependency from a custom repository.
 The above is equivalent to the following `composer.json` file:
 
 ```json {location="composer.json"}
@@ -158,7 +153,7 @@ The above is equivalent to the following `composer.json` file:
 
 ## Connecting to services
 
-To access various [services](/add-services/_index.md) with PHP, see the following examples.
+The following examples show how to access various [services](/add-services/_index.md) with PHP.
 The individual service pages have more information on configuring each service.
 
 {{< codetabs >}}
@@ -240,7 +235,7 @@ markdownify=false
 While it is possible to read the environment directly from your application,
 it is generally easier and more robust to use the [`platformsh/config-reader`](https://github.com/platformsh/config-reader-php) Composer library which handles decoding of service credential information for you.
 
-## PHP Settings
+## PHP settings
 
 For dedicated, [see the configuration options](../../dedicated/overview/grid.md#configuration-options).
 
@@ -248,8 +243,7 @@ By default, PHP is run in CGI mode using PHP-FPM.
 It's possible to change the PHP-FPM runtime configuration via the `runtime` property in your [app configuration](../../create-apps/app-reference.md#runtime).
 See that reference for details on what can be changed.
 
-You can set the timezone of the PHP runtime through [the app runtime timezone](../../create-apps/timezone.md).
-Note that the timezone settings of containers/services would remain in UTC.
+You can set the [PHP  runtime timezone](../../create-apps/timezone.md).
 
 ### Default `php.ini` settings
 
@@ -268,7 +262,7 @@ phpinfo(INFO_MODULES);
 ?>
 ```
 
-Don't forget to remove that file once you retrieved all information you need.
+Don't forget to remove the file once you've retrieved all the information you need.
 For full reference, consult the [PHP documentation](https://www.php.net/manual/en/function.phpinfo.php).
 
 Some noteworthy `php.ini` settings are:
@@ -284,7 +278,7 @@ There are no limits set to what you can put in your `php.ini` file, but many set
 
 There are two ways to customize `php.ini` values for your application.
 The recommended method is to use the [`variables` property](../../create-apps/app-reference.md#variables) to set `ini` values using the `php` prefix.
-For example, to increase the PHP memory limit you'd put the following:
+For example, to increase the PHP memory limit, you'd put the following:
 
 ```yaml {location=".platform.app.yaml"}
 variables:
@@ -292,10 +286,9 @@ variables:
         memory_limit: "256M"
 ```
 
-It's also possible to provide a custom `php.ini` file in the repository in the root of the application (where your `.platform.app.yaml` file is).
+As an alternative, you can provide a custom `php.ini` file at the [app root](../../create-apps/app-reference.md#root-directory)
 
 ```ini {location="php.ini"}
-; php.ini
 ; Increase PHP memory limit
 memory_limit = 256M
 ```
@@ -303,14 +296,14 @@ memory_limit = 256M
 For environment-specific `php.ini` configuration directives, provide them via environment variables that are separate from the application code.
 See the note on [environment variables](../../development/variables/_index.md#php-specific-variables).
 
-### Disabling functions for security purposes
+### Disable functions for security
 
-A common recommendation for securing a PHP installation is to disable certain built-in functions that are frequently used in remote attacks.
-By default, Platform.sh does not disable any functions, as they all do have some legitimate use in various applications.
+A common recommendation for securing PHP installations is disabling built-in functions frequently used in remote attacks.
+By default, Platform.sh does not disable any functions as they all have some legitimate use.
 
-You can disable unused functions, if you are sure they aren't needed in your application.
+If you're sure a function isn't needed in your app, you can disable it.
 
-For example, to disable `pcntl_exec` and `pcntl_fork` (which aren't usable in a web request anyway):
+For example, to disable `pcntl_exec` and `pcntl_fork`:
 
 ```yaml {location=".platform.app.yaml"}
 variables:
@@ -358,20 +351,20 @@ You can call PHP-FPM manually but that's generally not necessary.
 Note that PHP-FPM can't run simultaneously along with another persistent process such as ReactPHP or Amp.
 If you need both, they have to run in separate containers.
 
-## Foreign Function Interfaces (FFI)
+## Foreign function interfaces
 
-[Foreign Function Interfaces (FFI)](https://en.wikipedia.org/wiki/Foreign_function_interface), allow program written in one programming language to call routines or make use of services written in another. FFI with PHP allows the use of C libraries or Rust.
+With [foreign function interfaces (FFIs)](https://en.wikipedia.org/wiki/Foreign_function_interface),
+your PHP program can call routines or use services written in C or Rust.
 FFI is fully supported on Platform.sh.
 
 FFI is only intended for advanced use cases. Use with caution.
 
 Ensure that your `.so` library files are available locally.
 You can either place these files directly in your repository or download and compile them in your build hook.
-
 Note: The library files shouldn't be accessible in a publicly web-accessible directory.
 
 If compiling C code, `gcc` is available by default.
-If compiling Rust code, you can download the [Rust compiler in the build hook](https://doc.rust-lang.org/stable/book/ch01-01-installation.html).
+If compiling Rust code, use the build hook to [install Rust](https://doc.rust-lang.org/stable/book/ch01-01-installation.html).
 
 To leverage FFI:
 
@@ -386,11 +379,10 @@ To leverage FFI:
 2. Specify a [preload file](#opcache-preloading) <!-- TODO: Change link --> in which you can call `FFI::load()`.
     Using `FFI::load()` in preload is considerably faster than loading the linked library on each request or script run.
 3. If you are running FFI from the command line,
-    you need to enable the OPcache for command line scripts in addition to
-    the preloader.
+    enable OPcache for command line scripts in addition to the preloader.
     The standard pattern for the command would be `php -d opcache.preload="your-preload-script.php" -d opcache.enable_cli=true your-cli-script.php`.
 
-A working [FFI example](https://github.com/platformsh-examples/php-ffi) is available online for both C and Rust.
+See [complete working examples for C and Rust](https://github.com/platformsh-examples/php-ffi).
 
 ## Project templates
 
