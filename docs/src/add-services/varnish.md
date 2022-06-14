@@ -1,12 +1,13 @@
 ---
-title: "Varnish"
+title: Varnish
 weight: 13
+mermaid: true
 ---
 
 Varnish is a popular HTTP proxy server, often used for caching.
-It is usually not needed on Platform.sh, as each project's router provides an HTTP cache already and most more advanced use cases will use a CDN instead, both of which render Varnish redundant.
-
-However, it is possible to configure a Varnish instance as part of an application if Varnish-specific functionality is needed.
+You usually don't need it with Platform.sh as the standard router includes HTTP cache
+and a CDN would cover more advanced uses.
+But you can include Varnish as a service.
 
 ## Supported versions
 
@@ -18,62 +19,89 @@ However, it is possible to configure a Varnish instance as part of an applicatio
 
 ## How it works
 
-All incoming requests still go through the environment's router first. When using Varnish, a Varnish service sits between the router and the application server or servers.
+All incoming requests go through the [standard router](../define-routes/_index.md).
+The Varnish service sits between the router and all apps in the project.
 
-```text
-web -> router -> varnish -> application
-                         -> application2
-```
+<!-- vale off -->
+{{< mermaid >}}
+graph LR
+    A(Request) -->B(Router)
+    B --> C{Varnish}
+    C -->D[App 1]
+    C -->E[App 2]
+{{< /mermaid >}}
+<!-- vale on -->
 
-## Configuration
+## Usage example
 
 {{% endpoint-description type="varnish" noApp=true %}}
 
-The `relationships` block allows Varnish to talk to your app.
+The `relationships` block defines the connection between Varnish and your app.
 You can define `<RELATIONSHIP_NAME>` as you like.
-`<APP_NAME>` should match the name you gave your app in your [app configuration](../create-apps/app-reference.md).
+`<APP_NAME>` should match your app's `name` in the [app configuration](../create-apps/app-reference.md).
 
 The `configuration` block must reference a VCL file inside the `.platform` directory.
 The `path` defines the file relative to the `.platform` directory.
 
 {{% /endpoint-description %}}
 
-### 2. Create a VCL template file
+### 2. Create a VCL template
 
-The VCL file you provide has three specific requirements over and above the VCL syntax itself.
+To tell Varnish how to handle traffic, in the `.platform` directory
+add a [Varnish Configuration Language (VCL) template](https://www.varnish-software.com/developers/tutorials/example-vcl-template/).
 
-1. You MUST NOT define a `vcl_init()` function.
-   Platform.sh will auto-generate that function based on the relationships you define.
-   In particular, it will define a "backend" for each relationship defined in `services.yaml`,
-   named the same as the relationship.
-2. You MUST NOT include the preamble at the beginning of the file, specifying the VCL version.
-   That will be auto-generated as well.
-   You CAN add imports, but not `std` and `directors`, as they're imported already.
-3. You MUST specify the backend to use in `vcl_recv()`.
-   If you have a single app container/relationship/backend, it's just a single line.
-   If you want to split requests to different relationships/backends based on some rule,
-   then the logic for doing so should be incorporated into the `vcl_recv()` function.
+This template is supplemented by automatic additions from Platform.sh.
+So you MUST NOT include certain features that you might elsewhere:
 
-The absolute bare minimum VCL file is:
+- A `vcl_init()` function:
+   The function is automatically generated based on the relationships you defined in Step 1.
+   Each defined relationship results in a backend with the same name.
+- The VCL version at the start:
+  This is automatically generated.
+- Imports for `std` or `directors`:
+  These are already imported.
+  You can import other [modules](#include-modules).
 
-```bash {location=".platform/config.vcl"}
+The file MUST include:
+
+- A definition of which backend to use in a  `vcl_recv()` subroutine.
+  
+The logic varies based on whether you have one or more apps.
+
+{{< note >}}
+
+Misconfigured VCL files can result in incorrect and confusing behavior that's hard to debug.
+Platform.sh doesn't help with VCL configuration options beyond the basic connection logic documented here.
+
+You can see any compilation errors with the [stats endpoint](#stats-endpoint).
+
+{{< /note >}}
+
+#### Example VCL template with one app
+
+To serve one app, your VCL template needs at least the following function:
+
+```vcl {location=".platform/config.vcl"}
 sub vcl_recv {
     set req.backend_hint = <RELATIONSHIP_NAME>.backend();
 }
 ```
 
-Where `<RELATIONSHIP_NAME>` is the name of the relationship you defined in [step 1](#1-configure-the-service).
+Where `<RELATIONSHIP_NAME>` is the name of the relationship you defined in [Step 1](#1-configure-the-service).
 With the [example configuration](#example-configuration), that would be the following:
 
-```bash {location=".platform/config.vcl"}
+```vcl {location=".platform/config.vcl"}
 sub vcl_recv {
     set req.backend_hint = application.backend();
 }
 ```
 
-If you have multiple applications fronted by the same Varnish instance,
-then you need to include logic to determine to which application a request is forwarded.
-For example:
+#### Example VCL template with multiple apps
+
+If you have multiple apps fronted by the same Varnish instance,
+your VCL templates needs logic to determine where each request is forwarded.
+
+For example, you might have the following configuration for two apps:
 
 ```yaml {location=".platform/services.yaml"}
 varnish:
@@ -87,7 +115,9 @@ varnish:
             path: config.vcl
 ```
 
-```bash {location=".platform/config.vcl"}
+You could then define that all requests to `/blog/` go to the `blog` app and all other requests to the other app:
+
+```vcl {location=".platform/config.vcl"}
 sub vcl_recv {
     if (req.url ~ "^/blog/") {
         set req.backend_hint = blog.backend();
@@ -97,57 +127,114 @@ sub vcl_recv {
 }
 ```
 
-This configuration will direct all requests to a URL beginning with a `/blog/` path to the application on the relationship `blog`,
-and all other requests to the application on the relationship `main`.
-
-Besides that, the VCL file, including the `vcl_recv()` function, can be arbitrarily complex to suit the needs of the project.
-That includes additional `include` directives if appropriate.
-See the [Varnish documentation](https://varnish-cache.org/docs/index.html) for more details on the functionality offered by Varnish.
-
-{{< note >}}
-
-A misconfigured VCL file can result in incorrect, often mysterious and confusing behavior.
-Platform.sh does not provide support for VCL configuration options beyond the basic connection logic documented here.
-
-{{< /note >}}
-
 ### 3. Route incoming requests to Varnish
 
-To enable Varnish now, edit the `.platform/routes.yaml` file to point to the Varnish service you just created.
-You also need to disable the router cache as it is now entirely redundant with Varnish.
+Edit your [route definitions](../define-routes/_index.md) to point to the Varnish service you just created.
+Also disable the router cache as Varnish now provides caching.
 
-For example:
+To forward all incoming requests to Varnish rather than your app, you could have the following:
 
 {{< readFile file="src/registry/images/examples/full/varnish.routes.yaml" highlight="yaml" location=".platform/routes.yaml" >}}
 
-That will map all incoming requests to the Varnish service rather than the application.
-Varnish will then, based on the VCL file, forward requests to the application as appropriate.
+Varnish forwards requests to your app based on the specified VCL template.
 
-## Modules
+## Include modules
 
-Platform.sh supports a number of optional modules you can include in your VCLs, namely:
+You can include the following optional modules in your VCL templates to add additional features:
 
-* `cookie`
-* `header`
-* `saintmode`
-* `softpurge`
-* `tcp`
-* `var`
-* `vsthrottle`
-* `xkey`
+- `cookie`
+- `header`
+- `saintmode`
+- `softpurge`
+- `tcp`
+- `var`
+- `vsthrottle`
+- `xkey`
 
-To use in your VCL, add an import such as:
+To use them, add an import to your template such as the following:
 
-```bash {location=".platform/config.vcl"}
+```vcl {location=".platform/config.vcl"}
 import xkey;
 ```
 
 ## Circular relationships
 
-At this time Platform.sh doesn't support circular relationships between services or applications.
-That means you cannot add a relationship in your `.platform.app.yaml` that points to the Varnish service.
+At this time, Platform.sh doesn't support circular relationships between services and apps.
+That means you can't add a relationship from an app fronted by Varnish to the Varnish service.
 If you do so, then one of the relationships is skipped and the connection doesn't work.
-This limitation may be lifted in the future.
+
+## Rate limit connections
+
+Sometimes you want to ensure that users, whether human or machine, can't overload your app with requests.
+One tool to help is using Varnish to limit the rate at which connections can be made.
+
+For example, say you want to make sure no one can make more than 20 requests within 10 seconds.
+If they do, you want to block them from any more requests for 2 minutes.
+
+To do so, [import the `vsthrottle` module](#include-modules)
+and add logic similar to the following to your VCL template:
+
+```vcl {location=".platform/config.vcl"}
+import vsthrottle;
+
+sub vcl_recv {
+  # The Platform.sh router will provide the real client IP as X-Client-IP
+  # This replaces client.identity in other implementations
+  if (vsthrottle.is_denied(req.http.X-Client-IP, 20, 10s, 120s)) {
+    # Client has exceeded 20 requests in 10 seconds.
+    # When this happens, block that IP for the next 120 seconds.
+    return (synth(429, "Too Many Requests"));
+  }
+  
+  # Set the standard backend for handling requests that aren't limited
+  set req.backend_hint = application.backend();
+}
+```
+
+## Clear cache with a push
+
+You may want at times to clear a specific part of your cache when you know the content is outdated.
+With Varnish, you can clear the content with [purging and banning](https://varnish-cache.org/docs/trunk/users-guide/purging.html).
+
+The following example shows how to set up purging.
+
+1. Add an access control list to your VCL template:
+
+   ```vcl {location=".platform/config.vcl"}
+   acl purge {
+       "localhost";
+       "192.0.2.0"/24;
+   }
+   ```
+
+   This is so that only requests from the listed IPs are accepted.
+   If you are sending requests from an app, checkout the [outbound IPs for the region](../development/regions.md#public-ip-addresses).
+
+   Alternatively, you could code in a token that must be sent with the request.
+
+2. Add purge handling:
+
+   ```vcl {location=".platform/config.vcl"}
+   sub vcl_recv {
+       if (req.method == "PURGE") {
+           # The Platform.sh router will provide the real client IP as X-Client-IP
+           # Use std.ip to convert the string to an IP for comparison
+           if (!std.ip(req.http.X-Client-IP) ~ purge) {
+               # Deny all purge requests not from the allowed IPs
+               return(synth(403,"Not allowed."));
+           }
+           # Purge cache for allowed requests
+           return (purge);
+       }
+       ...
+   }
+   ```
+
+3. Purge cache with a curl call:
+
+   ```bash
+   curl -X PURGE "<URL_TO_PURGE>"
+   ```
 
 ## Stats endpoint
 
@@ -173,14 +260,14 @@ You choose any valid name and type.
 When the app is deployed, the app can access the Varnish service over HTTP to get diagnostic information.
 The following paths are available:
 
-* `/`: returns the error if generating the VCL failed with an error
-* `/config`: returns the generated VCL
-* `/stats`: returns the output of `varnishstat`
-* `/logs`: returns a streaming response of `varnishlog`
+- `/`: returns any error logged when generating the VCL template failed
+- `/config`: returns the generated VCL template
+- `/stats`: returns the output of `varnishstat`
+- `/logs`: returns a streaming response of `varnishlog`
 
 To access the Varnish stats endpoint from the command line:
 
 1. Connect to your stats app [using SSH](../development/ssh/_index.md): `platform ssh --app statsApp`
    (replace `statsApp` with the name you gave the app).
 2. Display the [relationships array](../create-apps/app-reference.md#relationships) with `echo $PLATFORM_RELATIONSHIPS | base64 -d | jq .`,
-3. Query Varnish with `curl <HOST>:<PORT>/stats`, replacing `<HOST>` and `<PATH>` with the values from step 2.
+3. Query Varnish with `curl <HOST>:<PORT>/stats`, replacing `<HOST>` and `<PATH>` with the values from Step 2.
