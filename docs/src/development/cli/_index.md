@@ -30,17 +30,14 @@ On Windows, the best way to get Bash is through [Windows Subsystem for Linux](ht
 
 ## 2. Authenticate
 
-To see and manage projects, you need to be authenticated.
-
-To log in, run this command and follow the steps:
+To see and manage projects, authenticate by running the following command:
 
 ```bash
-platform
+platform login
 ```
 
-You are asked to log in via a browser.
-This process creates certificates on your computer for secure [SSH connections](/development/ssh/_index.md).
-If you experience authentication issues or want to force a login, run the command `platform login`.
+This process opens a browser tab for you to log in.
+It also creates certificates on your computer for [SSH connections](/development/ssh/_index.md).
 
 Once you are logged in, a list of your projects appears, along with some tips for getting started.
 
