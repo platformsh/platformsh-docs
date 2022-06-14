@@ -33,7 +33,7 @@ For more backup options and examples, see [MariaDB/MySQL](../add-services/mysql/
 
 ## Synchronize files from Development to Staging/Production
 
-To transfer data into either the Staging or Production environments,
+To transfer data into either the Staging or Production environment,
 download data from your Development environment to your local system and from there to your Production environment.
 
 {{< note theme="warning" >}}
@@ -57,7 +57,7 @@ Be aware that synchronizing files is a destructive operation that overwrites dat
 
 ## Synchronize a database from Development to Staging/Production
 
-To synchronize a database into either the Staging or Production environments,
+To synchronize a database into either the Staging or Production environment,
 export the database from your Development environment to your local system and from there to your Production environment.
 
 {{< note theme="warning" >}}
