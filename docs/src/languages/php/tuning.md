@@ -17,9 +17,9 @@ When trying to make a PHP-based site run faster, the first step is to upgrade th
 For instance, PHP 7 is around twice as fast and uses half as much memory as PHP 5.
 
 Upgrading a PHP version might require changes on your app.
-See the [PHP migration guides](https://www.php.net/manual/en/migration81.php) for more details and recommendations.
+For more details and recommendation, see the [PHP migration guides](https://www.php.net/manual/en/migration81.php).
 
-To change your PHP version, [change the `type` key](../../create-apps/app-reference.md#example-configuration) in your `.platform.app.yaml` to the desired PHP version.
+To change your PHP version, change the [`type` in your app configuration](../../create-apps/app-reference.md#example-configuration).
 Before merging to production, test the change on a branch and make sure that your application is working as expected.
 
 ## Ensure that the router cache is properly configured
@@ -47,15 +47,15 @@ PHP-FPM uses a fixed number of simultaneous worker processes to handle incoming 
 If more simultaneous requests are received than the number of workers, then some requests wait until worker processes are available.
 
 The default worker count is set to a conservative default value.
-See the [PHP-FPM sizing](./fpm.md) page
-for how to determine and set an optimal value for your application.
+To determine and set the optimal value for your app, see [PHP-FPM sizing](./fpm.md).
 
 ## OPcache preloading
 
 OPcache preloading loads selected files into shared memory bypassing the need to include or autoload these files later.
 It can result in significant improvements to both CPU and memory usage if your application supports it.
 
-It's available on PHP 7.4 onwards. If you aren't using PHP 7.4, this is a valid reason to upgrade.
+It's available on PHP 7.4+.
+If you aren't using PHP 7.4, this is a good reason to upgrade.
 Consult your application's documentation to see
 if they have any recommendations for an optimal preload configuration.
 
@@ -135,7 +135,8 @@ To do so, run this command from [your app root](../../create-apps/app-reference.
 find . -type f -name '*.php' | wc -l
 ```
 
-Note that the returned valued is an approximation. Some applications have PHP code in files that don't end in `.php` or that files can be generated on runtime.
+Note that the returned valued is an approximation.
+Some apps have PHP code in files that don't end in `.php` or files that are generated at runtime.
 
 Set `opcache.max_accelerated_files` to a value slightly higher than the returned number.
 PHP automatically rounds the value up to the next highest prime number.
@@ -143,12 +144,17 @@ PHP automatically rounds the value up to the next highest prime number.
 ### Set `opcache.memory_consumption`
 
 Determining an optimal `opcache.memory_consumption` requires executing code via a web request to get adequate statistics.
-There is an open-source command line tool, [`CacheTool`](https://github.com/gordalina/cachetool), that helps checking the OPcache status for FastCGI commands.
+[`CacheTool`](https://github.com/gordalina/cachetool) is an open-source tool to help you get the statistics.
 
 <!-- TODO check what is expected to be done here -->
 1. Connect via ssh
 2. Change to the `/tmp` directory (or any other non-web-accessible writable directory)
 3. Install `CacheTool`
+4. Check the OPcache status for FastCGI commands.
+
+   ```bash
+   php cachetool.phar opcache:status --fcgi=$SOCKET
+   \```
 
 The really short version of downloading and using it would be:
 
@@ -159,8 +165,7 @@ chmod +x cachetool.phar
 php cachetool.phar opcache:status --fcgi=$SOCKET
 ```
 
-The `--fcgi=$SOCKET` option tells the command
-how to connect to the PHP-FPM process on the server through the Platform.sh-defined socket.
+The `--fcgi=$SOCKET` option ensures the PHP-FPM process on the server connects through the socket defined by Platform.sh.
 That command outputs something similar to:
 
 ```bash
@@ -199,7 +204,7 @@ it means you don't have enough memory allocated to the OPcache.
 
 In this example, the OPcache is using about half of the 64 MB given to it by default, which is fine.
 If `Memory free` is too low or `Oom Restarts` too high,
-set a higher value for the memory consumption.
+set a higher value for memory consumption.
 
 Remember to remove the `cachetools.phar` file once you're done with it.
 
@@ -217,13 +222,13 @@ Memory consumption is set in megabytes.
 ### Disable OPcache timestamp validation
 
 By default, OPcache checks that the cached version of a file is always up to date.
-It means that every time a cached file is used, OPcache compares it to the file on disk.
-If that file has changed it gets reloaded and recached.
+This means that every time a cached file is used, OPcache compares it to the file on disk.
+If that file has changed, it gets reloaded and recached.
 
 If you know your code isn't going to change outside of a new deploy,
 you can disable that check and get a small performance improvement.
 
-The timestamp validation can be disabled with:
+Timestamp validation can be disabled by adding the following to your app configuration:
 
 ```yaml {location=".platform.app.yaml"}
 variables:
@@ -239,10 +244,9 @@ Doing so would prevent updates to the generated code from being loaded.
 
 ## Optimize your code
 
-It's possible that your application is doing more work than it needs to.
-Profiling and optimizing a PHP application is a much larger topic than fits here.
-You can use [Blackfire.io](../../increase-observability/integrate-observability/blackfire.md)
-on your project to determine what slow spots can be found and addressed.
+It's possible that your app is doing more work than it needs to.
+To profile and optimize your PHP app, consider using [Blackfire](../../increase-observability/integrate-observability/blackfire.md).
+It can determine what slow spots can be found and addressed.
 
 The web agency [Pixelant](https://www.pixelant.net/) has published a [log analyzer tool for Platform.sh](https://github.com/pixelant/platformsh-analytics).
 
