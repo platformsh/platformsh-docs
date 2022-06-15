@@ -998,13 +998,14 @@ blockquote p {
   padding: .25rem 2rem 1rem 2rem;
   border: 1px solid var(--sidebar-bg-color);
   margin-bottom: 1rem;
+  font-size: 0.9rem;
 }
 
 .toc h3 {
   padding-top: 1rem;
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: 300;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .toc ul {
@@ -1013,7 +1014,7 @@ blockquote p {
 }
 
 .toc ul ul {
-  padding-left: 1.5rem;
+  padding-left: 1rem;
 }
 
 .toc nav li {
