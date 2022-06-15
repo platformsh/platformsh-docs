@@ -57,7 +57,7 @@
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            date: new Date().toISOString(),
+            date: new Date().toISOString().slice(0,19),
             url: currentUrl,
             feedback: this.feedback,
           }),
