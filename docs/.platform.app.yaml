@@ -49,5 +49,8 @@ mounts:
   "public/scripts/xss/dist/config":
       source: local
       source_path: "config"
+  "public/feedback":
+      source: local
+      source_path: "feedback"
 
 size: S

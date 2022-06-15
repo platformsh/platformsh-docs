@@ -1001,7 +1001,7 @@ blockquote p {
   font-size: 0.9rem;
 }
 
-.toc h3 {
+.toc-wrapper h3 {
   padding-top: 1rem;
   font-size: 1rem;
   font-weight: 300;
@@ -1038,11 +1038,37 @@ blockquote p {
     max-height: 100vh;
   }
 
-  .toc {
-    padding: 0 1rem 0.5rem 1rem;
-    border: 1px solid var(--sidebar-bg-color);
+  .toc, .feedback-form {
+    padding: 0 1rem 1rem 1rem;
     margin-left: 1rem;
+  }
+  .toc {
+    border: 1px solid var(--sidebar-bg-color);
     max-height: 80vh;
     overflow-y: auto;
   }
+}
+
+.feedback-form h3 {
+  margin-bottom: 0;
+}
+
+.feedback-buttons {
+  width: 8rem;
+}
+
+.feedback-buttons button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+}
+
+.feedback-buttons button:hover,.feedback-buttons button:focus {
+  background: var(--sidebar-bg-color);
+}
+
+.feedback-message {
+  padding: 0.5rem 0;
+  font-size: 0.9rem;
 }

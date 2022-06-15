@@ -1,3 +1,71 @@
-<form class="feedback-form">
-  <p>Hello</p>
-</form>
+<div class="feedback-form" x-data="FeedbackForm()">
+  <h3>Is this page helpful?</h3>
+  <div class="feedback-buttons">
+    <button x-show="!feedbackSubmitted" @click="handleClick" title="Yes">
+      👍️
+    </button>
+    <button x-show="!feedbackSubmitted" @click="handleClick" title="No">
+      👎️
+    </button>
+    <div
+      x-show="feedbackSubmitted && feedback === 'positive'"
+      class="feedback-message"
+    >
+      ❤️ Thanks for letting us know!
+    </div>
+    <div
+      x-show="feedbackSubmitted && feedback === 'negative'"
+      class="feedback-message"
+    >
+      😞 Thanks for the feedback. <br />
+      <a :href="editPageUrl">Suggest a change</a>
+      <br />
+      <a :href="issueUrl">Submit an issue</a>
+    </div>
+    <div
+      x-show="feedbackSubmitted && feedback === 'error'"
+      class="feedback-message"
+    >
+    🙁 Couldn't process your feedback. Thanks for trying!
+    </div>
+  </div>
+</div>
+<script>
+  function FeedbackForm() {
+    return {
+      feedbackSubmitted: false,
+      feedback: "",
+      editPageUrl:
+        "https://github.com/platformsh/platformsh-docs/blob/main/docs/src" +
+        location.pathname.replace(".html", ".md"),
+      issueUrl:
+        "https://github.com/platformsh/platformsh-docs/issues/new?template=improvements.yml&where_on_docs_platform_sh_should_be_changed=" +
+        location.protocol +
+        "//" +
+        location.host +
+        location.pathname +
+        "&title=%F0%9F%90%9B%20Issue%20on%20the%20page%20" +
+        document.title.replace(" · Platform.sh Documentation", ""),
+      url: "",
+      handleClick(event) {
+        fetch("/feedback/url.json")
+          .then((res) => res.json())
+          .then((data) => {
+            this.feedbackSubmitted = true;
+            this.url = data.url;
+
+            const title = event.target.getAttribute("title");
+
+            if (title === "Yes") this.feedback = "positive";
+            else if (title === "No") this.feedback = "negative";
+          })
+          .catch(
+            (err) => {
+              this.feedbackSubmitted = true;
+              this.feedback = "error";
+            }
+          );
+      },
+    };
+  }
+</script>
