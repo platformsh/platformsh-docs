@@ -13,6 +13,7 @@ variables:
 
 relationships:
     search: "search:http"
+    database: "db:mysql"
 
 # The hooks that will be triggered when the package is deployed.
 hooks:
@@ -49,8 +50,5 @@ mounts:
   "public/scripts/xss/dist/config":
       source: local
       source_path: "config"
-  "public/feedback":
-      source: local
-      source_path: "feedback"
 
 size: S
