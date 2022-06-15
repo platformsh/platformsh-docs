@@ -1032,13 +1032,17 @@ blockquote p {
     grid-template-columns: minmax(20rem,80%) minmax(10rem,20%);
   }
 
-  .toc {
+  .toc-wrapper {
     position: sticky;
     top: 84px;
+    max-height: 100vh;
+  }
+
+  .toc {
     padding: 0 1rem 0.5rem 1rem;
     border: 1px solid var(--sidebar-bg-color);
     margin-left: 1rem;
-    max-height: 100vh;
+    max-height: 80vh;
     overflow-y: auto;
   }
 }

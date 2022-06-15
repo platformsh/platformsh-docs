@@ -19,11 +19,14 @@
 
             <!-- Table of contents -->
             {{ if and (ne .Params.toc false) (ne .TableOfContents "<nav id=\"TableOfContents\"></nav>") }}
-              <div class="order-2">
+              <div class="order-2 toc-wrapper">
                 <div class="toc">
                   <h3>On this page</h3>
                   {{ .TableOfContents }}
                 </div>
+
+                <!-- Feedback form -->
+                {{ partial "feedback-form" }}
               </div>
             {{ end }}
 
