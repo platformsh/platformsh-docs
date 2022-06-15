@@ -7,7 +7,7 @@ description: |
     That also necessitated running most configuration changes through a ticket and maintaining separate SSH credentials for each environment.
 ---
 
-{{< description >}}
+{{% description %}}
 
 These older projects can be upgraded to the new Integrated UI,
 which eliminates the extra Git repositories and many "must be a ticket" configuration changes,
@@ -85,7 +85,7 @@ You can modify the settings and values for these environments after they're adde
 
 1. Log in to your Platform.sh account.
 2. From your project, click your default branch to view the environment information and settings.
-3. Click ![configure your project](/images/dedicated/edit-project-gear.png "0.01-inline") Configure environment.
+3. Click {{< icon settings >}} **Configure environment**.
 4. Click the Users tab to review the user accounts and permission configurations.
 5. Add, delete, or update users, if needed.
 
@@ -97,7 +97,7 @@ You can review, modify, and add variables through the current Project Web Interf
 
 1. Log in to your Platform.sh account.
 2. From your project, click your default branch to view the environment information and settings.
-3. Click ![configure your project](/images/dedicated/edit-project-gear.png "0.01-inline") Configure environment.
+3. Click {{< icon settings >}} **Configure environment**.
 4. On the Variables tab, review the environment variables.
 5. To create a new variable, click Add Variable.
 6. To update an existing variable, click Edit next to the variable.

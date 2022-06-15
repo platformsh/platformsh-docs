@@ -1,12 +1,11 @@
 ---
-title: "PCI compliance"
-sidebarTitle: "PCI"
-weight: 18
+title: PCI compliance
+sidebarTitle: PCI
 description: |
     Platform.sh is PCI DSS certified.
 ---
 
-Refer to our [Compliance Guidance](https://docs.platform.sh/security/compliance-guidance.html)
+Refer to our [Compliance Guidance](./compliance-guidance.md)
 for an overview of our compliance program, including security & compensating controls, and a general allocation of responsibility.
 
 ## Overview
@@ -28,7 +27,7 @@ Please use a third-party processor.
 ## Responsibility
 
 Customers who want to run PCI workloads on Platform.sh must agree to and implement
-the measures contained in the [Platform.sh PCI Responsibility Matrix](https://docs.google.com/spreadsheets/d/1zLkHpdUoX1VNC3wTipl3g-Z4eHjou-57IrQxE8GH6oA/edit#gid=238986323) (Excel).
+the measures contained in the [Platform.sh PCI Responsibility Matrix](https://docs.google.com/spreadsheets/d/1zLkHpdUoX1VNC3wTipl3g-Z4eHjou-57IrQxE8GH6oA/edit) (Excel).
 This document provides guidance on shared responsibilities to achieve PCI DSS compliance using PCI DSS 3.2 as a reference.
 
 While Platform.sh provides a secure and PCI compliant infrastructure,

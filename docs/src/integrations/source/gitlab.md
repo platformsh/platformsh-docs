@@ -4,7 +4,7 @@ description: |
   The [GitLab](https://gitlab.com) integration allows you to manage your Platform.sh environments directly from your GitLab repository.
 ---
 
-{{< description >}}
+{{% description %}}
 
 **Features supported:**
 
@@ -13,14 +13,6 @@ description: |
 * Delete the environment when merging a pull request.
 
 ## Setup
-
-{{< note >}}
-
-If the repository you are trying to integrate with a Platform.sh project has a default branch that isn't `master` (such as `main`),
-there are a few additional steps you need to perform to setup the integration.
-See the [Renaming the default branch guide](/guides/general/default-branch.md) for more information.
-
-{{< /note >}}
 
 ### 1. Generate a token
 
@@ -122,22 +114,8 @@ You can then verify that your integration is functioning properly [using the CLI
 platform integration:validate
 ```
 
-## Types of environments
+{{% integration-environment-status source="GitLab" %}}
 
-Environments based on GitLab **merge requests** have the correct 'parent' environment on Platform.sh;
-they're activated automatically with a copy of the parent's data
-(unless you have set the option `merge-requests-clone-parent-data` to false).
+{{% clone-commit name="GitLab" %}}
 
-However, environments based on (non-merge-request) **branches** can't have parents;
-they inherit directly from your default branch and start inactive by default.
-
-## Clones and commits
-
-You can clone your codebase by running `platform get <projectID>`
-or in your project in the console by going to Code > Git and running the `git clone` command.
-
-When you perform this action, you are actually cloning from your remote integrated repository,
-so long as you have the [appropriate access to do so](/administration/users.md#user-access-and-integrations).
-
-Your GitLab repository is considered by Platform.sh to be the "source of truth" for the project.
-The project is only a mirror of that repository, and all commits should be pushed only to GitLab.
+{{% integration-url source="GitLab" %}}

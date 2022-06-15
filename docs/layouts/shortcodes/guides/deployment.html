@@ -1,5 +1,5 @@
-<p>If you have been customizing your existing project as you go, now is the time to ensure all code is committed to Git and to <code>git push</code> to Platform.sh on the <code>master</code> branch.  That will cause Platform.sh to build your code, producing a read-only file system image of your application, and then deploy it into a running cluster of containers.</p>
-<p>You can view the process from the Management Console; when it is done, click the URL shown in the Console to see your site.</p>
+<p>If you have been customizing your existing project as you go, now is the time to ensure all code is committed to Git and to run <code>git push</code> to Platform.sh to your production branch. Platform.sh then builds your code, producing a read-only image of your application, and deploys it into a running cluster of containers.</p>
+<p>You can view the process in the console or, if you aren't using a source integration, in your terminal after pushing. When the process is done, click the URL to see your site.</p>
 
 <div class="alert alert-primary" role="alert"><p><strong>Note:</strong></p><p class="alert-text"><p>If you set up an integration to a repository that contained many pull requests with the <code>--build-pull-requests=false</code> flag, you can now activate the current environment to complete your deployment.</p>
     <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ platform environment:activate -p &lt;PROJECT_ID&gt; -e &lt;BRANCH_NAME&gt;</code></pre></div></p>

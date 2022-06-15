@@ -4,6 +4,5 @@ config-examples-platform
 gatsby
 lando
 multiappyaml
-docsappyaml
 routesyaml
 servicesyaml

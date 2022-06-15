@@ -7,7 +7,7 @@ description: |
 layout: single
 ---
 
-{{< description >}}
+{{% description %}}
 
 {{< note >}}
 The order of operations is not really important, but if you are migrating a site from an existing provider,
@@ -25,7 +25,7 @@ However, the domain used for non-production environments will always be generate
 even if your project is on a Production plan.
 {{< /note >}}
 
-Go to [your account](https://accounts.platform.sh/user), click on the small wheel next to you project's name and click on edit.
+In the [console](https://console.platform.sh), click the **More** button for your project and select **Edit plan**.
 
 ![Edit Plan](/images/management-console/edit-plan.png "0.3")
 
@@ -103,16 +103,17 @@ After adding the line the file will look something like:
 
 ![Hosts File](/images/config-files/hosts-file.png "0.4")
 
-Alternatively there is also an add-on for Firefox and Google Chrome
+Alternatively, there's an add-on for Firefox
 that allows you to dynamically switch DNS IP addresses without modifying your `hosts` file.
 
 * [Firefox LiveHosts add-on](https://addons.mozilla.org/en-US/firefox/addon/livehosts/)
-* [Google Chrome LiveHosts add-on](https://chrome.google.com/webstore/detail/livehosts/hdpoplemgeaioijkmoebnnjcilfjnjdi?hl=en)
 
 {{< note >}}
-Do not put the IP address you see here, but the one you got from the ping command.
+
+Don't put the IP address you see here, but the one you got from the ping command.
 
 *Also, remember to remove this entry after you have configured DNS!*
+
 {{< /note >}}
 
 Sometimes it can take Let's Encrypt a couple of minutes to provision the certificate the first time.

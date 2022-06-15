@@ -7,26 +7,19 @@ description: |
     Review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for Spring.
 ---
 
-{{< guides/config-desc name="Spring" >}}
+{{% guides/config-desc name="Spring" noService=true %}}
 
 ## Requests configuration: `routes.yaml`
 
-{{< guides/config-routes template="spring-mvc-maven-mongodb" name="Spring" >}}
+{{% guides/config-routes template="spring-mvc-maven-mongodb" name="Spring" %}}
 
 ## Service configuration: `services.yaml`
 
-{{% guides/config-service framework=Spring %}}
-
-Deploying Spring does not in itself require you to configure a database or another service,
-but in all likelihood you will want to add one at some point.
-
-{{% /guides/config-service %}}
-
-{{< readFile file="static/files/fetch/servicesyaml/drupal9" highlight="yaml" >}}
+{{% guides/config-service name=Spring noService=true /%}}
 
 ## Application container: `.platform.app.yaml`
 
-{{< guides/config-app template="spring-mvc-maven-mongodb" >}}
+{{% guides/config-app template="spring-mvc-maven-mongodb" %}}
 Explaining the file line by line, notice the following settings:
 
 1. `name`: The application name.

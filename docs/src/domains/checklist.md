@@ -6,7 +6,7 @@ description: |
 sidebarTitle: "Pre-Launch Checklist"
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## 1. Register a domain name with a supported provider
 
@@ -28,7 +28,7 @@ Also you will be much happier if it supports Apex domains (more in the next chap
 ## 2. Test your site!
 
 Make sure your site is running and configured as you want it to be, on your production branch.
-In particular, see the [Routes documentation](/configuration/routes/_index.md).
+In particular, see the [Routes documentation](../define-routes/_index.md).
 You will need your routes configured appropriately before you begin.
 Make sure you have turned off [basic-authentication](/administration/web/configure-environment.md) if it was turned on during development.
 
@@ -40,7 +40,7 @@ Also ensure that the data on the production instance is up to date and ready to 
 ## 3. Optionally obtain a 3rd party TLS certificate
 
 Platform.sh automatically provides TLS certificates for all sites issued by [Let's Encrypt](https://letsencrypt.org/) at no charge.
-[In most cases](../configuration/routes/https.md#limitations), this is sufficient and no further action is necessary.
+[In most cases](../define-routes/https.md#limits), this is sufficient and no further action is necessary.
 However, if you want to use a [third-party TLS certificate](./steps/tls.md) to encrypt your production site,
 you can obtain one from any number of 3rd party TLS issuers.
 Platform.sh does not charge for using a 3rd party TLS certificate, although the issuer may.

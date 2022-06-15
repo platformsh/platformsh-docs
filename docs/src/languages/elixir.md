@@ -3,7 +3,7 @@ title: "Elixir"
 description: Platform.sh supports building and deploying applications written in Elixir. There is no default flavor for the build phase, but you can define it explicitly in your build hook. Platform.sh Elixir images support both committed dependencies and download-on-demand. The underlying Erlang version is 22.0.7.
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## Supported versions
 
@@ -11,13 +11,15 @@ description: Platform.sh supports building and deploying applications written in
 |----------------------------------|---------------|
 |  {{< image-versions image="elixir" status="supported" environment="grid" >}} | {{< image-versions image="elixir" status="supported" environment="dedicated" >}} |
 
-To specify an Elixir container, use the `type` property in your [app configuration](../configuration/app/app-reference.md).
+{{% image-versions-legacy "elixir" %}}
 
-{{< readFile file="src/registry/images/examples/full/elixir.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
+{{% language-specification type="elixir" display_name="Elixir" %}}
 
 ## Platform.sh variables
 
-Platform.sh exposes relationships and other configuration as [environment variables](/development/variables.md). Most notably, it allows a program to determine at runtime what HTTP port it should listen on and what the credentials are to access [other services](/configuration/services/_index.md).
+Platform.sh exposes relationships and other configuration as [environment variables](../development/variables/_index.md).
+Most notably, it allows a program to determine at runtime what HTTP port it should listen on
+and what the credentials are to access [other services](../add-services/_index.md).
 
 To get the `PORT` environment variable (the port on which your web application is supposed to listen) you would:
 
@@ -25,15 +27,15 @@ To get the `PORT` environment variable (the port on which your web application i
 String.to_integer(System.get_env("PORT") || "8888")
 ```
 
-Some of the environment variables are in JSON format and are base64 encoded. You would need to import a JSON parsing library such as [Json](https://hexdocs.pm/json/readme.html) or [Poison](https://hexdocs.pm/poison/api-reference.html) to read those. (There is an example for doing this to decode the `PLATFORM_RELATIONSHIPS` environment variable in the section [below](#accessing-services-manually).)
+Some of the environment variables are in JSON format and are base64 encoded. You would need to import a JSON parsing library such as [JSON](https://hexdocs.pm/json/readme.html) or [Poison](https://hexdocs.pm/poison/api-reference.html) to read those. (There is an example for doing this to decode the `PLATFORM_RELATIONSHIPS` environment variable in the section [below](#accessing-services-manually).)
 
 {{< note title="Tip">}}
-Remember `config/prod.exs` is evaluated at **build time** and will not have access to runtime configuration. Use `config/releases.exs` to configure your runtime environment.
+Remember `config/prod.exs` is evaluated at **build time** and has no access to runtime configuration. Use `config/releases.exs` to configure your runtime environment.
 {{< /note >}}
 
 ## Building and running the application
 
-If you are using Hex to manage your dependencies, it will be necessary to specify a set of environment variables in your `.platform.app.yaml` file that define the `MIX_ENV` and `SECRET_KEY_BASE`, which can be set to the Platform.sh-provided `PLATFORM_PROJECT_ENTROPY` environment variable:
+If you are using Hex to manage your dependencies, it is necessary to specify a set of environment variables in your `.platform.app.yaml` file that define the `MIX_ENV` and `SECRET_KEY_BASE`, which can be set to the Platform.sh-provided `PLATFORM_PROJECT_ENTROPY` environment variable:
 
 ```yaml
 variables:
@@ -42,15 +44,18 @@ variables:
         MIX_ENV: 'prod'
 ```
 
-Include in your build hook the steps to retrieve a local Hex and rebar, and then run `mix do deps.get, deps.compile, compile` on your application to build a binary.
+Include in your build hook the steps to retrieve a local Hex and `rebar`, and then run `mix do deps.get, deps.compile, compile` on your application to build a binary.
 
 {{< readFile file="src/registry/images/examples/full/elixir.hooks.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 {{< note >}}
-The above build hook will work for most cases, and assumes that your `mix.exs` file is located at the root of your application.
+
+The above build hook works for most cases and assumes that your `mix.exs` file is located at [your app root](../create-apps/app-reference.md#root-directory).
+
 {{< /note >}}
 
-Assuming `mix.exs` is present at the root of your repository and your build hook matches the above, you can then start it from the `web.commands.start` directive.
+Assuming `mix.exs` is present at your app root and your build hook matches the above,
+you can then start it from the `web.commands.start` directive.
 
 {{< note >}}
 The start command _must_ run in the foreground, so you should set the `--no-halt` flag when calling `mix run`.
@@ -83,11 +88,12 @@ web:
             passthru: true
 ```
 
-Note that there will still be an Nginx proxy server sitting in front of your application. If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Elixir application unconditionally, as in the example above.
+Note that there is still an Nginx proxy server sitting in front of your application. If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Elixir application unconditionally, as in the example above.
 
 ## Dependencies
 
-The recommended way to handle Elixir dependencies on Platform.sh is using Hex. You can commit a `mix.exs` file in your repository and the system will download the dependencies in your `deps` section using the build hook above.
+The recommended way to handle Elixir dependencies on Platform.sh is using Hex. 
+You can commit a `mix.exs` file in your repository and the system downloads the dependencies in your `deps` section using the build hook above.
 
 ```elixir
   defp deps do
@@ -99,7 +105,9 @@ The recommended way to handle Elixir dependencies on Platform.sh is using Hex. Y
 
 ## Accessing Services
 
-The simplest possible way to go around this is to use the [Platform.sh Config Reader](https://hex.pm/packages/platformshconfig) library from hex. The library source is also available [on GitHub](https://github.com/platformsh/config-reader-elixir).
+{{% config-reader %}}
+[Platform.sh Config Reader library](https://hex.pm/packages/platformshconfig) 
+{{% /config-reader%}}
 
 If you are building a Phoenix app for example, it would suffice to add a database to `.platform/services.yaml` and a relationship in `.platform.app.yaml`. Put the lib in your `deps` and, assuming you renamed the `prod.secret.exs` to `releases.exs` per the [Phoenix guide](https://hexdocs.pm/phoenix/releases.html), change:
 
@@ -152,9 +160,3 @@ and setup Ecto during the deploy hook:
 deploy: |
     mix do ecto.setup
 ```
-
-## Project templates
-
-Platform.sh offers a number of project templates using the structure described above. It can be used as a starting point or reference for building your own website or web application.
-
-{{< repolist lang="elixir" >}}

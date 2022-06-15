@@ -12,9 +12,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   window.addEventListener("load", function () {
     for (const codeblock of codeblockElements) {
       const fileLocation = codeblock.attributes.location
-      console.log(fileLocation)
       if (fileLocation){
-        console.log("hi")
         const newNode = document.createElement("div");
         const locationText = document.createTextNode(fileLocation.value);
         newNode.appendChild(locationText);

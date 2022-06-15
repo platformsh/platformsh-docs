@@ -1,4 +1,4 @@
-<!-- Creates an example services.yaml file from the registry's example naming in `.docs`
+<!-- Creates an example services.yaml file from the data in the registry.
     Note: this will only replace the endpoint and service type for demonstration purposes.
     To use this partial, pass the image data as the context (Ex: partial "examples/servicedefn" $data)
 -->
@@ -7,11 +7,19 @@
 {{ $l3 := ""}}
 {{ if .disk }}
   {{ if .min_disk_size }}
-  {{ $l3 = printf "\n    disk: %s" ( string .min_disk_size ) }}
+    {{ $l3 = printf "\n    disk: %s" ( string .min_disk_size ) }}
   {{ else }}
-  {{ $l3 = "\n    disk: 256"}}
+    {{ $l3 = "\n    disk: 256"}}
   {{ end }}
+{{ end }}
+{{ $l4 := "" }}
+{{ with .service_relationships }}
+  {{ $l4 = "\n    relationships:\n        <RELATIONSHIP_NAME>: '<APP_NAME>:http'" }}
+{{ end }}
+{{ $l5 := "" }}
+{{ with .configuration }}
+  {{ $l5 = printf "\n    configuration:\n        %s" . }}
 {{ end }}
 
 <div class="highlight-location">.platform/services.yaml</div>
-{{ highlight (printf "%s\n%s%s" $l1 $l2 $l3) "yaml" "" }}
+{{ highlight (printf "%s\n%s%s%s%s" $l1 $l2 $l3 $l4 $l5) "yaml" "" }}

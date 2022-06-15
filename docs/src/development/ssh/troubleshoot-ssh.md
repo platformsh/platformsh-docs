@@ -12,11 +12,14 @@ There are several places to check to try to solve such issues.
 
 ## Check your environment
 
-If your environment is inactive or the deployment has failed, you can't log in to it. To make sure the environment is active and the deployment has succeeded, check it using `platform environment:list` or in the [management console](https://console.platform.sh/) .
+If your environment is [inactive](../../other/glossary.md#inactive-environment) or the deployment has failed,
+you can't log in to it.
+To make sure the environment is active and the deployment has succeeded,
+check it using `platform environment:list` or in the [management console](https://console.platform.sh/) .
 
 ## Redeploy your environment
 
-If you have just added your SSH key or made changes to [access rules](/administration/users.md), you need to redeploy your environment before you can access it using SSH keys. You can do this in the [management console](https://console.platform.sh/), by running `platform repdeploy`, or by pushing an empty git commit:
+If you have just added your SSH key or made changes to [access rules](/administration/users.md), you need to redeploy your environment before you can access it using SSH keys. You can do this in the [management console](https://console.platform.sh/), by running `platform redeploy`, or by pushing an empty git commit:
 
 ```bash
 git commit --allow-empty -m 'chore: force redeploy'
@@ -26,6 +29,12 @@ git push origin main
 ## Check your public key
 
 Make sure your public key has been uploaded to your user account. Check it in the [Platform.sh console](https://console.platform.sh/).
+
+## SSH key can not be duplicated
+
+A given SSH key pair can only be linked to a single user account.
+If you add an already used SSH key to another account, you see the error: `SSH key can not be duplicated`.
+Generate a new pair of SSH keys for the second user account you want to add.
 
 ## Check your SSH agent
 
@@ -66,15 +75,49 @@ Make sure you have added your public SSH key to your provider and that your user
 
 ## Add a second authentication factor
 
-If your organization has multifactor authentication set up,
+If your organization has [multifactor authentication set up](./_index.md#multifactor-authentication-mfa-over-ssh),
 you may get an error like the following when trying to log into your environment with SSH keys:
 
 ```bash
-Hello YourName (UUID: your-user-id), you successfully authenticated, but could not connect to service id-of-environment--app (reason: access requires MFA)
-id-of-environment@ssh.eu-3.platform.sh: Permission denied (publickey).
+Hello <NAME> (UUID: <USER_ID>), you successfully authenticated, but could not connect to service <ENVIRONMENT_ID>--app
+(reason: access requires MFA)
+<ENVIRONMENT_ID>@ssh.<REGION>.platform.sh: Permission denied (publickey)
 ```
 
-To resolve this, log in using the CLI, such as by running `platform login`.
+If you are using just `ssh` and not `platform ssh`, you may see only the second half of the error:
+
+```bash
+<ENVIRONMENT_ID>@ssh.<REGION>.platform.sh: Permission denied (publickey)
+```
+
+To resolve this:
+
+{{< codetabs >}}
+---
+title=Using the CLI
+file=none
+highlight=false
+---
+
+Log in using the browser by running `platform login`.
+
+<--->
+
+---
+title=In the console
+file=none
+highlight=false
+---
+
+1. Open the user menu (your name or profile picture).
+2. Click **My profile**
+3. Click **Security**.
+4. Click **Set up application**.
+5. Follow the instructions for the chosen authentication app.
+6. Click **Verify & save**.
+7. Refresh your SSH credentials by running `platform login -f` in the CLI.
+
+{{< /codetabs >}}
 
 ## Generate SSH debug information
 
@@ -99,9 +142,13 @@ Permission denied (publickey).
 or
 
 ```bash
-GIT_SSH_COMMAND="ssh -v" git clone [REPO-URL]
+GIT_SSH_COMMAND="ssh -v" git clone <REPO_URL>
 ```
 
 You can use this information to make one last check of the private key file.
 
-If you're still stuck, [submit a support ticket](https://console.platform.sh/-/users/:user/tickets) to get help solving your issue.
+## Something still wrong?
+
+{{% troubleshoot %}}
+
+If you're still stuck, [submit a support ticket and provide the full SSH debug information](https://console.platform.sh/-/users/:user/tickets).

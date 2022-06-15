@@ -9,15 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@master
+      uses: actions/checkout@v3
 
     - name: Vale
-      uses: errata-ai/vale-action@v1.4.3
+      uses: errata-ai/vale-action@reviewdog
       with:
-        # Switch to this when the number of errors goes down
-        # files: __onlyModified
-        # For now, only lint modified lines
-        onlyAnnotateModifiedLines: true
+        fail_on_error: true
+        reporter: github-check
+        files: docs/src
       env:
-        # Required
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

@@ -7,7 +7,7 @@ description: |
   Platform.sh Dedicated is a robust, redundant layer on top of Platform.sh Professional. It is well-suited for those who like the Platform.sh development experience but need more resources and redundancy for their production environment. It is available only with an Enterprise contract.
 ---
 
-{{< description >}}
+{{% description %}}
 
 Platform.sh Dedicated consists of two parts: The Development Environment and the Dedicated Cluster.
 

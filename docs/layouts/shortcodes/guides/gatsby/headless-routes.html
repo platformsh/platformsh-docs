@@ -1,4 +1,0 @@
-<p>This <a href="/configuration/routes.html"><code>routes.yaml</code></a> file defines how requests are handled by Platform.sh. In the file below, you will see that Gatsby will be served from the primary domain, whereas {{ .Get "name" }} will be accessible from the <code>backend</code> subdomain.</p>
-
-{{ $file := printf "static/files/fetch/routesyaml/%s" (.Get "template") }}
-{{ highlight ( readFile $file ) "yaml" ""}}

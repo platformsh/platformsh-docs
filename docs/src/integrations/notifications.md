@@ -5,7 +5,7 @@ description: |
   Platform.sh can notify you when various events happen on your project, in any environment. At this time the only notification provided is a low disk space warning, but others may be added in the future.
 ---
 
-{{< description >}}
+{{% description %}}
 
 {{< note >}}
 Remember that you must have `admin` access to a project in order to add or modify an integration.  See [User administration roles](/administration/users.md#user-roles) for more details.
@@ -137,7 +137,7 @@ X-JWS-Signature: eyJhbGciOiJIUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..fYW9q
 {...request body...}
 ```
 
-Signature verification is a simple 2 step process:
+Signature verification is a 2 step process:
 
 ```python
 # 1. Compute JWS Compact Serialization with Unencoded Detached Payload

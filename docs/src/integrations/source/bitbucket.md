@@ -4,20 +4,12 @@ description: |
   The Bitbucket integration allows you to manage your Platform.sh environments directly from your Bitbucket repository.
 ---
 
-{{< description >}}
+{{% description %}}
 
 It's possible to integrate a Platform.sh project with either the freely available Bitbucket Cloud product
 or with the self-hosted [Bitbucket Server](https://confluence.atlassian.com/bitbucketserver/).
-In both cases, you need to [install the Platform.sh CLI](/development/cli/_index.md#installation), if you haven't already done so,
-to set up the integration.
-
-{{< note >}}
-
-If the repository you are trying to integrate with a Platform.sh project has a default branch that is not `master` (such as `main`),
-there are a few additional steps you need to perform to setup the integration.
-See the [Renaming the default branch guide](/guides/general/default-branch.md) for more information.
-
-{{< /note >}}
+In both cases, you need to [install the Platform.sh CLI](../../development/cli/_index.md),
+if you haven't already done so, to set up the integration.
 
 ## Bitbucket Cloud
 
@@ -109,9 +101,6 @@ They can be changed using the `platform integration:update` command.
 * `--build-pull-requests`: Track and deploy pull-requests (true by default)
 * `--build-pull-requests-post-merge`: `false` to have Platform.sh build the branch specified in a PR.
   `true` to build the result of merging the PR.  (`false` by default)
-* `--pull-requests-clone-parent-data`:
-  Set to `false` to disable cloning of parent environment data when creating a PR environment,
-  so each PR environment starts with no data. (`true` by default)
 
 For more information see:
 
@@ -127,14 +116,8 @@ even if specifically set to true.
 
 {{< /note >}}
 
-## Clones and commits
+{{% integration-environment-status source="Bitbucket" %}}
 
-You can clone your codebase by running `platform get <projectID>`
-or in your project in the console by going to Code > Git and running the `git clone` command.
+{{% clone-commit name="Bitbucket" %}}
 
-When you perform this action, you are actually cloning from your remote integrated repository,
-so long as you have the [appropriate access to do so](/administration/users.md#user-access-and-integrations).
-
-Your Bitbucket repository is considered by Platform.sh to be the "source of truth" for the project.
-The project is only a mirror of that repository and all commits should be pushed only to Bitbucket.
-
+{{% integration-url source="Bitbucket" %}}

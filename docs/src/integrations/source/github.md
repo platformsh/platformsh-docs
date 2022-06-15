@@ -4,7 +4,7 @@ description: |
   The [GitHub](https://github.com) integration allows you to manage your Platform.sh environments directly from your GitHub repository.
 ---
 
-{{< description >}}
+{{% description %}}
 
 **Features supported:**
 
@@ -13,14 +13,6 @@ description: |
 * Delete the environment when merging a pull request.
 
 ## Setup
-
-{{< note >}}
-
-If the repository you are trying to integrate with a Platform.sh project has a default branch that's not `master` (such as `main`),
-there are a few additional steps you need to perform to setup the integration.
-See the [Renaming the default branch guide](/guides/general/default-branch.md) for more information.
-
-{{< /note >}}
 
 ### 1. Generate a token
 
@@ -68,7 +60,7 @@ Optional parameters:
 * `--fetch-branches`: Track and deploy branches (true by default)
 * `--prune-branches`: Delete branches that do not exist in the remote GitHub repository (true by default)
 * `--build-pull-requests`: Track and deploy pull-requests (true by default)
-* `--build-draft-pull-requests`: If set to `true`, [draft pull requests](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) will also have an environment created.
+* `--build-draft-pull-requests`: If set to `true`, [draft pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) will also have an environment created.
   If false they will be ignored.
   If `--build-pull-requests` is `false` this value is ignored.  (`true` by default)
 * `--build-pull-requests-post-merge`: `false` to have Platform.sh build the branch specified in a PR.
@@ -107,21 +99,8 @@ You can then verify that your integration is functioning properly [using the CLI
 platform integration:validate
 ```
 
-## Types of environments
+{{% integration-environment-status source="GitHub" %}}
 
-Environments based on GitHub **pull requests** will have the correct 'parent' environment on Platform.sh;
-they will be activated automatically with a copy of the parent's data.
+{{% clone-commit name="GitHub" %}}
 
-However, environments based on (non-pull-request) **branches** cannot have parents;
-they will inherit directly from the default branch and start inactive by default.
-
-## Clones and commits
-
-You can clone your codebase by running `platform get <projectID>`
-or in your project in the console by going to Code > Git and running the `git clone` command.
-
-When you perform this action, you are actually cloning from your remote integrated repository,
-so long as you have the [appropriate access to do so](/administration/users.md#user-access-and-integrations).
-
-Your GitHub repository is considered by Platform.sh to be the "source of truth" for the project.
-The project is only a mirror of that repository, and all commits should be pushed only to GitHub.
+{{% integration-url source="GitHub" %}}

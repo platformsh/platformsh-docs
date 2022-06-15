@@ -5,9 +5,11 @@ description: |
   See how to use and manage your Platform.sh projects directly from your terminal. Anything you can do within the management console can be done with the CLI.
 sidebarTitle: "Use the CLI"
 layout: single
+keywords:
+  - CLI
 ---
 
-{{< description >}}
+{{% description %}}
 
 The CLI uses the git interface and the [Platform.sh REST API](https://api.platform.sh/docs/) to accomplish tasks.
 Its source code is hosted on [GitHub](https://github.com/platformsh/platformsh-cli).
@@ -24,7 +26,7 @@ You need to have:
   You can also use another Bash-compatible shell such as [Git Bash](https://gitforwindows.org/),
   which you might have installed with git.
 
-For full requirements, see the [requirements on GitHub](https://github.com/platformsh/platformsh-cli#requirements).
+For full requirements, see the [requirements on GitHub](https://github.com/platformsh/platformsh-cli#user-content-requirements).
 
 ## 1. Install
 
@@ -34,7 +36,7 @@ Install the CLI using this command:
 curl -fsS https://platform.sh/cli/installer | php
 ```
 
-If you run into issues or want to install manually, see the [installation instructions on GitHub](https://github.com/platformsh/platformsh-cli#installation).
+If you run into issues or want to install manually, see the [installation instructions on GitHub](https://github.com/platformsh/platformsh-cli#user-content-installation).
 
 ## 2. Authenticate
 
@@ -127,7 +129,7 @@ You can always specify the project and environment in two ways:
   platform environment:info
   ```
 
-In [multi-app](../../configuration/app/multi-app.md) projects, this applies also to selecting the right app
+In [multi-app](../../create-apps/multi-app.md) projects, this applies also to selecting the right app
 (the environment variable would be `PLATFORM_APPLICATION_NAME`).
 
 #### RootNotFoundException
@@ -169,7 +171,7 @@ The code is only merged between environments remotely.
 
 You can customize how the CLI operates and what it returns with a configuration file (`.platform/local/project.yaml`)
 or environment variables.
-For details, see the [customization instructions on GitHub](https://github.com/platformsh/platformsh-cli#customization).
+For details, see the [customization instructions on GitHub](https://github.com/platformsh/platformsh-cli#user-content-customization).
 
 ### Autocomplete commands
 

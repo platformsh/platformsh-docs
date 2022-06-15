@@ -6,7 +6,7 @@ description: |
 sidebarTitle: "Troubleshooting"
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## Verify DNS
 
@@ -42,7 +42,15 @@ Often the problem will be with a mismatch between the certificate and the domain
 On the command line type `platform logs app` and see there are no clear anomalies there.
 Do the same with `platform logs error`
 
+## Use ASCII for the domain
+
+Platform.sh expects an ASCII representation of your domain here.
+To use an internationalized domain name, convert your IDN domain to ASCII.
+Use a tool such as the [conversion tool provided by Verisign](https://www.verisign.com/en_US/channel-resources/domain-registry-products/idn/idn-conversion-tool/index.xhtml).
+
 ## Something still wrong?
+
+{{% troubleshoot %}}
 
 [Contact support](/overview/get-support.md)
 

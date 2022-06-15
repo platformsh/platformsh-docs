@@ -9,6 +9,8 @@ To connect to your app using SSH keys, you need two keys:
 * A **private key** you must keep _secret_
 * A **public key** stored in your Platform.sh account
 
+A given SSH key pair can only be linked to a single user account.
+
 A key pair is valid for as long as you have access to the private key on the system from which you are connecting.
 If you have a key pair available, you aren't prompted to login.
 
@@ -54,7 +56,7 @@ To find your public key file:
 If you find a file ending in `.pub`,
 copy the location and [add it to your Platform.sh account](#2-add-an-ssh-key-to-your-platform-account).
 
-If you don't find an existing key, [generate new keys](#generate-new-keys).
+If you don't find an existing key, [generate new keys](#1b-generate-new-keys).
 
 ### 1B. Generate new keys
 
@@ -72,7 +74,7 @@ generate a key and have it added to your Platform.sh account automatically.
    ssh-add 'PATH_TO_YOUR_KEY'
    ```
 
-To generate a key otherwise, GitHub has a good [walk-through for creating SSH key pairs](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) on various operating systems.
+To generate a key otherwise, GitHub has a good [walk-through for creating SSH key pairs](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) on various operating systems.
 
 Then you need to [add it to your Platform.sh account](#2-add-an-ssh-key-to-your-platform-account).
 
@@ -101,7 +103,7 @@ To connect to a server using SSH keys, find the details in the management consol
 1. In the **Environment** dropdown, select the environment you want to access.
 1. Click the **SSH** dropdown.
 1. Copy the ssh command for where you want access.
-   (Example: `ssh abcdefghi5k-main-7rqtwti--app@ssh.region.url`)
+   (Example: `ssh abcdefghi5k-main-7rqtwti--app@ssh.us-2.platform.sh`)
 1. Enter the command into a terminal.
 
 Note that if you have just added your SSH key,

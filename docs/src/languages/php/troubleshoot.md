@@ -4,7 +4,9 @@ sidebarTitle: Troubleshoot
 description: Learn how to troubleshoot common issues in PHP.
 ---
 
-## Server reached max_children
+{{% troubleshoot %}}
+
+## Server reached `max_children`
 
 You may see a line in your `/var/log/app.log` file like the following:
 
@@ -47,13 +49,13 @@ grep $(date +%Y-%m-%dT%H --date='-1 hours') /var/log/php.access.log | sort -k 4 
 ```
 
 If you see that the processing time of certain requests is slow (such as taking longer than 1000&nbsp;ms),
-you should consider a continuous observability solution like [Blackfire](../../integrations/observability/blackfire.md)
+you should consider a continuous observability solution like [Blackfire](../../increase-observability/integrate-observability/blackfire.md)
 to monitor your application and help you improve the performance issue.
 
 Otherwise, you may check if the following options are applicable:
 
 * Find the most visited pages and see if they can be cached and/or put behind a CDN.
-  Refer to [how caching works](/configuration/routes/cache.md).
+  Refer to [how caching works](../../define-routes/cache.md).
 * Upgrade your Platform.sh plan to get more computing resources.
 
 ## PHP process crashed

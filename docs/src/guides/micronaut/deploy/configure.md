@@ -7,26 +7,19 @@ description: |
     Review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for Micronaut.
 ---
 
-{{< guides/config-desc name="Micronaut" >}}
+{{% guides/config-desc name="Micronaut" noService=true %}}
 
 ## Requests configuration: `routes.yaml`
 
-{{< guides/config-routes template="micronaut" name="Micronaut" >}}
+{{% guides/config-routes template="micronaut" name="Micronaut" %}}
 
 ## Service configuration: `services.yaml`
 
-{{% guides/config-service framework=Micronaut %}}
-
-Deploying Micronaut does not in itself require you to configure a database or another service,
-but in all likelihood you will want to add one at some point.
-
-{{% /guides/config-service%}}
-
-{{< readFile file="static/files/fetch/servicesyaml/drupal9" highlight="yaml" >}}
+{{% guides/config-service name=Micronaut noService=true /%}}
 
 ## Application container: `.platform.app.yaml`
 
-{{< guides/config-app template="micronaut" >}}
+{{% guides/config-app template="micronaut" %}}
 Explaining the file line by line, notice the following settings:
 
 1. `name`: The application name.

@@ -16,6 +16,7 @@ Within a project, each user has a role that controls their access and permission
 * Project Viewer: Any user with access to environment types automatically gets this role.
 
 These control who has access to projects.
+
 Users can still see projects that they can't access if they're a member of an organization.
 See more on access control for [organizations](./organizations.md).
 
@@ -48,13 +49,15 @@ The following table shows the available roles for environment types.
 | Contributor | Yes | Yes | Yes | Yes | No | No |
 | Admin| Yes | Yes | Yes | Yes | Yes | Yes |
 
-To customize who can use SSH, [set the access key](/configuration/app/app-reference.md#access) in your `platform.app.yaml` file.
+To customize who can use SSH, [set the access key](../create-apps/app-reference.md#access) in your `platform.app.yaml` file.
 
 ## Manage users
 
 ### Add a user to a project
 
-If you are an organization owner, or an organization user with [manage plan](/administration/organizations.md#organization-permissions) or [manage users](/administration/organizations.md#organization-permissions) permissions wanting to add a user to a project or an environment, follow these steps:
+To add a user, you need to be a [Project Admin](#user-roles).
+
+To add a user to a project or an environment, follow these steps:
 
 {{< codetabs >}}
 
@@ -64,11 +67,15 @@ file=none
 highlight=false
 ---
 
-1. In the console, select the project where you want to add a new user.
-2. Under **Settings**, click **Access**.
-3. Click **+ Add**.
-4. Add the user's details and choose their permissions.
-5. Click **Save**.
+<!--This is in HTML to get the icon not to break the list. -->
+<ol>
+  <li>Select the project where you want to add a new user.</li>
+  <li>Click {{< icon settings >}} <strong>Settings</strong>.</li>
+  <li>Click <strong>Access</strong>.</li>
+  <li>Click <strong>+ Add</strong>.</li>
+  <li>Add the user's details and choose their permissions.</li>
+  <li>Click <strong>Save</strong>.</li>
+</ol>
 
 <--->
 ---
@@ -91,6 +98,8 @@ For SSH access changes to apply after you add a user to a project, you have to r
 
 ### Delete a user from a project
 
+To delete a user, you need to be a [Project Admin](#user-roles).
+
 To delete a user from a project, follow these steps:
 
 {{< codetabs >}}
@@ -101,10 +110,15 @@ file=none
 highlight=false
 ---
 
-1. In the console, select the project where you want to delete a user.
-2. Under **Settings**, click **Access**.
-3. Select the user you want to delete and click **Delete**.
-4. Click **Save**.
+<!--This is in HTML to get the icon not to break the list. -->
+<ol>
+  <li>Select the project where you want to add a new user.</li>
+  <li>Click {{< icon settings >}} <strong>Settings</strong>.</li>
+  <li>Click <strong>Access</strong>.</li>
+  <li>Expand the user you want to delete.</li>
+  <li>Click <strong>Delete</strong>.</li>
+  <li>Click <strong>Save</strong>.</li>
+</ol>
 
 <--->
 
@@ -121,10 +135,12 @@ platform user:delete user1@example.com
 {{< /codetabs >}}
 
 Once you delete a user, they can no longer access the project.
-After you delete a user from a project or an environment type, you must trigger a redeploy to propagate SSH access changes to each environment.
-You can redeploy by clicking **Redeploy** in the console or  using the CLI command `platform redeploy`.
+After you delete a user from a project or an environment type,
+you must [trigger a redeploy](../development/troubleshoot.md#force-a-redeploy) to propagate SSH access changes to each environment.
 
 ### Change existing permissions for environment types
+
+To manage user permissions, you need to be a [Project Admin](#user-roles).
 
 To change user permissions, follow these steps:
 
@@ -136,10 +152,15 @@ file=none
 highlight=false
 ---
 
-1. In the console, select the project where you want to change the user permissions.
-2. Under **Settings**, click **Access**.
-3. Select a user and change the permissions.
-4. Click **Save**.
+<!--This is in HTML to get the icon not to break the list. -->
+<ol>
+  <li>Select the project where you want to add a new user.</li>
+  <li>Click {{< icon settings >}} <strong>Settings</strong>.</li>
+  <li>Click <strong>Access</strong>.</li>
+  <li>Expand the user you want to delete.</li>
+  <li>Click <strong>Delete</strong>.</li>
+  <li>Click <strong>Delete</strong> to confirm.</li>
+</ol>
 
 <--->
 
@@ -161,8 +182,8 @@ After you change a user's role for an environment type, you must trigger a redep
 
 ### Transfer project ownership
 
-You can transfer your plan ownership to a different [organization](/administration/organizations.md) anytime.
-You have to be an organization owner or an organization user with [manage plan](/administration/organizations.md#organization-permissions) permissions.
+You can transfer your plan ownership to a different [organization](./organizations.md) at anytime.
+You have to be an organization owner or have the [manage plan](./organizations.md#manage-your-organization-users) permission.
 
 1. Make the new organization owner a Project Admin for the project you want to transfer.
 2. Submit a [support ticket](https://console.platform.sh/-/users/~/tickets) from your organization account to ask for the transfer.
@@ -172,4 +193,4 @@ Once the transfer is completed, the new organization can administer all project 
 ## Troubleshooting
 
 If you have setup an external integration to GitHub, GitLab, or Bitbucket and your users can't clone the project locally,
-see how to [troubleshoot source integrations](/integrations/source/troubleshoot.md).
+see how to [troubleshoot source integrations](../integrations/source/troubleshoot.md).

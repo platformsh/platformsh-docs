@@ -7,7 +7,7 @@ aliases:
   - "/golive/steps/fastly.html"
 ---
 
-{{< description >}}
+{{% description %}}
 
 A Fastly CDN is included for Platform.sh Dedicated instances.
 Platform.sh does not offer an integrated CDN on self-service Grid projects at this time,
@@ -17,6 +17,8 @@ Launching a Platform.sh site with Fastly in front of it is nearly the same as la
 There are only a few notable differences.
 Individual applications may have their own Fastly setup instructions or additional modules.
 Consult the documentation for your application for specific details.
+
+{{% disable-cache CDN="Fastly" %}}
 
 ## Set the Platform.sh domain on Fastly
 

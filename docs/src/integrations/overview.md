@@ -7,22 +7,29 @@ description: |
   Platform.sh can be integrated with external services.
 ---
 
-{{< description >}}
+{{% description %}}
 
 Platform.sh supports native integrations with multiple services, first and foremost Git hosting services such as GitHub, GitLab, or Bitbucket.  You can continue to use those tools for your development workflow, and have Platform.sh environments created automatically for your pull requests and branches.
 
-You can also add native integrations with performance monitoring tools. Platform.sh recommends [Blackfire](/integrations/observability/blackfire.md), which is part of the standard Platform.sh Observability Suite.
-Be aware that only a project administrator (someone with `admin` level access to the project) can add or remove integrations.  See [User administration](/administration/users.md) for more details.
+You can also add native integrations with performance monitoring tools. Platform.sh recommends [Blackfire](../increase-observability/integrate-observability//blackfire.md), which is part of the standard Platform.sh Observability Suite.
+Be aware that only a project administrator (someone with `admin` level access to the project) can add or remove integrations.
+See [User administration](/administration/users.md) for more details.
 
 ## Listing active integrations
 
 With the CLI, you can list all your active integrations:
 
 ```bash
-platform integrations
-```
+$ platform integrations
 
-![Cli Integrations](/images/cli/cli-integrations.png "0.5")
++---------------+-------------+-------------------------------------------------------------------------------------+
+| ID            | Type        | Summary                                                                             |
++---------------+-------------+-------------------------------------------------------------------------------------+
+| abcdefghijklm | github      | Repository: platformsh/platformsh-docs                                              |
+|               |             | Hook URL:                                                                           |
+|               |             | https://eu-3.platform.sh/api/projects/123abcdefgh3i/integrations/abcdefghijklm/hook |
++---------------+-------------+-------------------------------------------------------------------------------------+
+```
 
 {{< note theme="info" >}}
 If you have created your account using the Bitbucket or GitHub oAuth Login, then in order to use the Platform.sh CLI you will need to set up a password by visiting [https://accounts.platform.sh/user/password](https://accounts.platform.sh/user/password).
@@ -48,7 +55,7 @@ The integration is valid.
 
 When integrations run, they trigger "activities."  Activities are actions that happen on Platform.sh, and they get logged.
 
-Usually these are triggered nearly instantenously on the webhook endpoint. These activities may be delayed due to the external services having latency.
+Usually these are triggered nearly instantaneously on the webhook endpoint. These activities may be delayed due to the external services having latency.
 
 Those logs are available via the CLI.  In most cases they are not necessary but may be useful for debugging an integration if it is misbehaving for some reason.
 

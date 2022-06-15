@@ -1,6 +1,6 @@
 ---
 title: "PHP"
-description: PHP is a popular scripting language designed especially for the web. It currently powers over 80% of websites.
+description: PHP is a popular scripting language designed especially for the web. It currently powers around 80% of websites.
 layout: single
 ---
 
@@ -10,23 +10,17 @@ layout: single
 |----------------------------------|---------------|
 |  {{< image-versions image="php" status="supported" environment="grid" >}} | {{< image-versions image="php" status="supported" environment="dedicated" >}} |
 
+{{% image-versions-legacy "php" %}}
 
 Note that from PHP 7.1, the images use the Zend Thread Safe (ZTS) version of PHP.
 
-To specify a PHP container, use the `type` property in your [app configuration](../../configuration/app/app-reference.md).
-
-{{< readFile file="src/registry/images/examples/full/php.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
+{{% language-specification type="php" display_name="PHP" %}}
 
 {{% deprecated-versions %}}
 
 | **Grid** | **Dedicated** |
 |----------------------------------|---------------|
 |  {{< image-versions image="php" status="deprecated" environment="grid" >}} | {{< image-versions image="php" status="deprecated" environment="dedicated" >}} |
-
-## Support libraries
-
-While it is possible to read the environment directly from your application,
-it is generally easier and more robust to use the [`platformsh/config-reader`](https://github.com/platformsh/config-reader-php) Composer library which handles decoding of service credential information for you.
 
 ## Alternate start commands
 
@@ -123,17 +117,13 @@ dependencies:
         composer/composer: '^2'
 ```
 
-`drupal` runs `drush make` automatically in one of a few different ways.
-See the [Drupal 7](/frameworks/drupal7/_index.md) documentation for more details.
-There is no reason to use this build mode except for Drupal 7.
-
 ## OPcache preloading
 
-PHP 7.4 introduced a new feature called OPcache preloading,
+From PHP 7.4, you can use OPcache preloading,
 which allows you to load selected files into shared memory when PHP-FPM starts.
 That means functions and classes in those files are always available and don't need to be autoloaded,
 at the cost of any changes to those files requiring a PHP-FPM restart.
-Since PHP-FPM restarts anyway when a new deploy happens this feature is a major win on Platform.sh, and we recommend using it aggressively.
+Since PHP-FPM restarts on each new deploy, this feature is a major win on Platform.sh and we recommend using it aggressively.
 
 To enable preloading, add a `php.ini` value that specifies a preload script.
 Any [`php.ini` mechanism](/languages/php/ini.md) works,
@@ -145,8 +135,9 @@ variables:
         opcache.preload: 'preload.php'
 ```
 
-The `opcache.preload` value is evaluated as a file path relative to the application root (where `.platform.app.yaml` is),
-and it may be any PHP script that calls `opcache_compile_file()`.
+The `opcache.preload` value is evaluated as a file path relative your [app configuration](../../create-apps/_index.md).
+It may be any PHP script that calls `opcache_compile_file()`.
+
 The following example preloads all `.php` files anywhere in the `vendor` directory:
 
 ```php
@@ -162,8 +153,27 @@ foreach ($regex as $key => $file) {
 ```
 
 {{< note >}}
-Preloading all `.php` files may not be optimal for your application, and may even introduce errors.  Your application framework may provide recommendations or a pre-made preload script to use instead.  Determining an optimal preloading strategy is the user's responsibility.
+
+Preloading all `.php` files may not be optimal for your application and may even introduce errors.
+Your application framework may provide recommendations or a pre-made preload script to use instead.
+You have to determine the optimal preloading strategy for your situation.
+
 {{< /note >}}
+
+#### Preloading and dependencies
+
+Your preload script runs each time PHP-FPM restarts, including during your build.
+This means it runs before your dependencies have been installed (such as with Composer).
+
+If your preload script uses `require` for dependencies, it fails during the build
+because the dependencies aren't yet present.
+
+To resolve this, you have two options:
+
+* Have your script `include` dependencies instead of `require`
+  and fail gracefully if the dependencies aren't there.
+* Enable preloading with a variable that [isn't available during the build](../../development/variables/set-variables.md#variable-options).
+  Then preloading happens only on deploy.
 
 ## FFI
 
@@ -217,7 +227,7 @@ $ php-fpm-status --socket=unix://$SOCKET --path=/-/status --full
 
 ## Accessing services
 
-To access various [services](/configuration/services/_index.md) with PHP, see the following examples.
+To access various [services](../../add-services/_index.md) with PHP, see the following examples.
 The individual service pages have more information on configuring each service.
 
 {{< codetabs >}}
@@ -295,13 +305,16 @@ markdownify=false
 {{< /codetabs >}}
 
 
+
+{{% config-reader %}}
+[`platformsh/config-reader` Composer library](https://github.com/platformsh/config-reader-php)
+{{% /config-reader%}}
+
 ## Runtime configuration
 
-It's possible to change the PHP-FPM runtime configuration via the `runtime` property in your [app configuration](../../configuration/app/app-reference.md#runtime).
+It's possible to change the PHP-FPM runtime configuration via the `runtime` property in your [app configuration](../../create-apps/app-reference.md#runtime).
 See that reference for details on what can be changed.
 
 ## Project templates
 
-A number of project templates for major PHP applications are available on GitHub. Not all of them are proactively maintained but all can be used as a starting point or reference for building your own website or web application.
-
-{{< repolist lang="php" >}}
+{{< repolist lang="php" displayName="PHP" >}}

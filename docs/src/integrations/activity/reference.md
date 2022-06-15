@@ -6,7 +6,7 @@ description: |
   This hook allows you to capture any push events on platform and POST a JSON message describing the activity to the url of your choice. You can use this to further automate your Platform.sh workflow.
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## Activity schema
 
@@ -37,6 +37,10 @@ Its value is one of:
 ---
 * `environment.access.add`: A new user has been given access to the environment.
 * `environment.access.remove`: A user has been removed from the environment.
+---
+* `environment_type.access.create`: A user has been given access to an environment type (Production, Staging, Development).
+* `environment_type.access.delete`: A user has had their access removed from an environment type.
+* `environment_type.access.update`: A user has had their access to an environment type updated.
 ---
 * `environment.backup`: A user triggered a [backup](/administration/backup-and-restore.md).
 * `environment.restore`: A user restored a [backup](/administration/backup-and-restore.md).
@@ -126,8 +130,8 @@ The Platform.sh user that triggered the activity.
 ### `deployment`
 
 This large block details all information about all services in the environment.
-That includes the resulting configuration objects derived from [`routes.yaml`](/configuration/routes/_index.md),
-[`services.yaml`](/configuration/services/_index.md), and [your app configuration](../../configuration/app/_index.md).
+That includes the resulting configuration objects derived from [`routes.yaml`](../../define-routes/_index.md),
+[`services.yaml`](../../add-services/_index.md), and [your app configuration](../../create-apps/_index.md).
 
 Most notably, the `deployment.routes` object's keys are all of the URLs made available by the environment.
 Note that some will be redirects.

@@ -1,11 +1,10 @@
 ---
-title: "Tethered"
-weight: 1
+title: Tethered local development
+sidebarTitle: Tethered
+weight: 2
 ---
 
-# Tethered Local
-
-The simplest way to run a project locally is to use a local web server, but keep all other services on Platform.sh and connect to them over an SSH tunnel.  This approach needs very little setup, but requires an active Internet connection, and depending on the speed of your connection and how I/O intensive your application is, it may not be performant enough for day-to-day use.
+The simplest way to run a project locally is to use a local web server, but keep all other services on Platform.sh and connect to them over an SSH tunnel.  This approach needs very little setup, but requires an active Internet connection, and depending on the speed of your connection and how I/O intensive your application is, it may not have suitable performance for day-to-day use.
 
 ## Quick Start
 
@@ -47,14 +46,13 @@ $ mysql --host=127.0.0.1 --port=30001 --user='user' --password='' --database='ma
 
 The specific port that each service uses is not guaranteed, but is unlikely to change unless you add an additional service or connect to multiple projects at once.  In most cases it's safe to add a local-configuration file for your application that connects to, in this case, `localhost:30001` for the SQL database and `localhost:30000` for Redis.
 
-
-After the tunnel(s) are opened, you can confirm their presence:
+After the tunnels are opened, you can confirm their presence:
 
 ```bash
 platform tunnel:list
 ```
 
-You can show more information about the open tunnel(s) with:
+You can show more information about the open tunnels with:
 
 ```bash
 platform tunnel:info
@@ -117,7 +115,7 @@ if (encoded):
 title=Node.js
 file=none
 highlight=javascript
-mardownify=false
+markdownify=false
 ---
 const child_process = require("child_process");
 
@@ -126,3 +124,5 @@ const relationships = encoded ? JSON.parse(Buffer.from(encoded, "base64").toStri
 
 // ...
 {{< /codetabs >}}
+
+

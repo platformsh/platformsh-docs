@@ -1,11 +1,10 @@
 ---
-title: "Protective block"
-weight: 10
+title: Protective block
 description: |
   The Platform.sh service has a protective blocking feature that, under certain circumstances, restricts access to web sites with security vulnerabilities. We use this partial blocking method to prevent exploitation of known security vulnerabilities.
 ---
 
-{{< description >}}
+{{% description %}}
 
 The protective block is meant for high impact, low complexity attacks.
 
@@ -36,16 +35,16 @@ Unblocking is automated upon resolution of the security risk. The block is remov
 
 The protective block is there to protect you against known vulnerabilities in the software you deploy on [Platform.sh](https://platform.sh).
 
-If nonetheless you want to opt out of the protective block, you simply need to specify it in your `.platform.app.yaml` like this:
+If nonetheless you want to opt out of the protective block, specify it in your `.platform.app.yaml` like this:
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 preflight:
     enabled: false
 ```
 
-You can also explicitly opt-out of some specific check like this:
+You can also explicitly opt-out of a specific check like this:
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 preflight:
     enabled: true
     ignore_rules: [ "drupal:SA-CORE-2014-005" ]

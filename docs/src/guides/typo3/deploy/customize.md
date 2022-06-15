@@ -14,7 +14,7 @@ depending on how well you want to optimize your site.
 
 ## Install the Config Reader
 
-{{< guides/config-reader-php >}}
+{{% guides/config-reader-info lang="php" %}}
 
 ## Avoiding deadlock with the Local Page Error Handler
 

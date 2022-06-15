@@ -7,7 +7,7 @@ description: |
     Configure a Quarkus application with JPA.
 ---
 
-Hibernate ORM is the de facto standard [JPA](https://jakarta.ee/specifications/persistence/) implementation. It offers you the full breadth of an Object Relational Mapper and it works well in Quarkus. To activate JPA and then have it accessed by the Quarkus application already configured for Platform.sh, it is necessary to modify two files.
+Hibernate ORM is a standard [JPA](https://jakarta.ee/specifications/persistence/) implementation. It offers you the full breadth of an Object Relational Mapper and it works well in Quarkus. To activate JPA and then have it accessed by the Quarkus application already configured for Platform.sh, it is necessary to modify two files.
 
 {{< note >}}
 This guide only covers the *addition* of a service configuration to an existing Quarkus project already configured to deploy on Platform.sh. Please see the [deployment guide](/guides/quarkus/deploy/_index.md) for more detailed instructions for setting up app containers and initial projects. 
@@ -15,19 +15,19 @@ This guide only covers the *addition* of a service configuration to an existing 
 
 ## 1. Add a SQL database service
 
-In your [service configuration](../../configuration/services/_index.md), include a SQL database service. Make sure to visit the documentation for [that service](/configuration/services/_index.md) to find a valid version. For PostgreSQL that would look like:
+In your [service configuration](../../add-services/_index.md), include a SQL database service. Make sure to visit the documentation for [that service](../../add-services/_index.md) to find a valid version. For PostgreSQL that would look like:
 
 {{< readFile file="src/registry/images/examples/full/postgresql.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
 
 ## 2. Grant access to the service through a relationship
 
-To access the new service, set a `relationship` in your [app configuration](../../configuration/app/app-reference.md#relationships).
+To access the new service, set a `relationship` in your [app configuration](../../create-apps/app-reference.md#relationships).
 
 {{< readFile file="src/registry/images/examples/full/postgresql.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 ## 3. Export connection credentials to the environment
 
-Connection credentials for services are exposed to the application container through the `PLATFORM_RELATIONSHIPS` environment variable from the deploy hook onward. Since this variable is a base64 encoded JSON object of all of your project's services, you'll likely want a clean way to extract the information specific to the databse into it's own environment variables that can be easily used by Quarkus. On Platform.sh, custom environment variables can be defined programmatically in a `.environment` file using `jq` to do just that:
+Connection credentials for services are exposed to the application container through the `PLATFORM_RELATIONSHIPS` environment variable from the deploy hook onward. Since this variable is a base64 encoded JSON object of all of your project's services, you'll likely want a clean way to extract the information specific to the database into it's own environment variables that can be used by Quarkus. On Platform.sh, custom environment variables can be defined programmatically in a `.environment` file using `jq` to do just that:
 
 ```text
 export HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".postgresdatabase[0].host")
@@ -40,7 +40,7 @@ export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOut
 ```
 
 {{< note title="Tip" >}}
-Environment variables names are following the conversion rules of [Eclipse MicroProfile](https://github.com/eclipse/microprofile-config/blob/master/spec/src/main/asciidoc/configsources.asciidoc#default-configsources).
+Environment variables names are following the conversion rules of [Eclipse MicroProfile](https://github.com/eclipse/microprofile-config/blob/master/spec/src/main/asciidoc/configsources.asciidoc#user-content-default-configsources).
 {{< /note >}}
 
 ## 4. Connect to the service

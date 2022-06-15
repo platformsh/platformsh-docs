@@ -11,7 +11,7 @@ Redis is already configured and is enabled after the installation is complete.
 
 Note that this Redis service is ephemeral, meaning it doesn't persist if the container moves or is shut down.
 Your app must treat it as ephemeral and not rely on it being there.
-One way to do this is emptying cache in the `start` key in [your web configuration](../../configuration/app/app-reference.md#commands)
+One way to do this is emptying cache in the `start` key in [your web configuration](../../create-apps/app-reference.md#web-commands)
 so the cache is clean each time your app starts.
 
 If you are working from an older repository or migrating a pre-built site to Platform.sh, see the instructions below.
@@ -20,29 +20,9 @@ If you are working from an older repository or migrating a pre-built site to Pla
 
 ### Add a Redis service
 
-{{% endpoint-description type="redis" noApp=true %}}
+{{% endpoint-description type="redis" noApp=true onlyLanguage="php" php=true /%}}
 
-[Service definition](../../configuration/services/_index.md):
-
-{{< readFile file="src/registry/images/examples/full/redis.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
-
-[App configuration](../../configuration/app/app-reference.md):
-
-{{< readFile file="src/registry/images/examples/full/redis.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
-
-{{% /endpoint-description %}}
-
-### Add the Redis PHP extension
-
-You will need to enable the PHP Redis extension.  In your `.platform.app.yaml` file, add the following right after the `type` block:
-
-```yaml
-runtime:
-    extensions:
-        - redis
-```
-
-### Add the Drupal module
+### 3. Add the Drupal module
 
 You will need to add the [Redis](https://www.drupal.org/project/redis) module to your project.  If you are using Composer to manage your Drupal site (which we recommend), run:
 
@@ -51,8 +31,6 @@ composer require drupal/redis
 ```
 
 Then commit the resulting changes to your `composer.json` and `composer.lock` files.
-
-Note that the Redis module does not need to be enabled in Drupal except for diagnostic purposes.  The configuration below is sufficient to make use of its functionality.
 
 ## Configuration
 
@@ -78,7 +56,7 @@ if (!$platformsh->inRuntime()) {
 <?php
 
 // Set redis configuration.
-if ($platformsh->hasRelationship('rediscache') && !\Drupal\Core\Installer\InstallerKernel::installationAttempted() && extension_loaded('rediscache')) {
+if ($platformsh->hasRelationship('rediscache') && !\Drupal\Core\Installer\InstallerKernel::installationAttempted() && extension_loaded('redis')) {
   $redis = $platformsh->credentials('rediscache');
 
   // Set Redis as the default backend for any cache bin not otherwise specified.
@@ -96,8 +74,8 @@ if ($platformsh->hasRelationship('rediscache') && !\Drupal\Core\Installer\Instal
   // Allow the services to work before the Redis module itself is enabled.
   $settings['container_yamls'][] = 'modules/contrib/redis/redis.services.yml';
 
-  // Manually add the classloader path, this is required for the container cache bin definition below
-  // and allows to use it without the redis module being enabled.
+  // Manually add the classloader path, this is required for the container
+  // cache bin definition below.
   $class_loader->addPsr4('Drupal\\redis\\', 'modules/contrib/redis/src');
 
   // Use redis for container cache.
@@ -134,7 +112,7 @@ if ($platformsh->hasRelationship('rediscache') && !\Drupal\Core\Installer\Instal
 
 The `example.services.yml` file noted above will also use Redis for the lock and flood control systems.
 
-The redis module is able to use Redis as a queue backend, however, that should not be done on an ephemeral Redis instance as that could result in lost items when the Redis service instance is restarted or fills up.  If you wish to use Redis for the queue we recommend using a separate persistent Redis instance.  See the [Redis documentation page](/configuration/services/redis.md) for more information.
+The Redis module is able to use Redis as a queue backend, however, that should not be done on an ephemeral Redis instance as that could result in lost items when the Redis service instance is restarted or fills up.  If you wish to use Redis for the queue we recommend using a separate persistent Redis instance.  See the [Redis documentation page](../../add-services/redis.md) for more information.
 
 ### Verifying Redis is running
 

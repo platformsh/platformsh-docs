@@ -1,25 +1,25 @@
 <!-- DocsUIKit CSS Templates -->
-<link rel="stylesheet" href="{{"docsuikit/assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css" | relURL}}">
-<link rel="stylesheet" href="{{"docsuikit/assets/vendor/jquery-ui/themes/base/jquery-ui.min.css" | relURL}}">
+<link rel="stylesheet" href="{{ printf "docsuikit/assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css?version=%s" $.Site.Params.version | relURL}}">
+<link rel="stylesheet" href="{{ printf "docsuikit/assets/vendor/jquery-ui/themes/base/jquery-ui.min.css?version=%s" $.Site.Params.version | relURL}}">
 
-<link rel="stylesheet" href="{{"docsuikit/assets/css/theme.css" | relURL}}">
-<link rel="stylesheet" href="{{"docsuikit/assets/css/layout.css" | relURL}}">
+<link rel="stylesheet" href="{{ printf "docsuikit/assets/css/theme.css?version=%s" $.Site.Params.version | relURL}}">
+<link rel="stylesheet" href="{{ printf "docsuikit/assets/css/layout.css?version=%s" $.Site.Params.version | relURL}}">
 
 <!-- avocadocs customizations to DocsUIKit -->
-<link rel="stylesheet" href="{{"styles/customizations.css" | relURL}}">
+<link rel="stylesheet" href="{{ printf "styles/customizations.css?version=%s" $.Site.Params.version | relURL}}">
 
 <!-- Syntax highlighting -->
-<link rel="stylesheet" href="{{"styles/syntax.css" | relURL}}">
+<link rel="stylesheet" href="{{ printf "styles/syntax.css?version=%s" $.Site.Params.version | relURL}}">
 
 <!-- Asciinema player -->
-<link rel="stylesheet" href="{{"styles/asciinema-player.css" | relURL}}">
+<link rel="stylesheet" href="{{ printf "styles/asciinema-player.css?version=%s" $.Site.Params.version | relURL}}">
 
 <!-- Print stylesheets -->
 {{ with .File }}
   {{- if eq .Dir "security/transparency/" -}}
-  <link rel="stylesheet" media="print" href="{{"styles/print.css" | relURL}}">
+  <link rel="stylesheet" media="print" href="{{ printf "styles/print.css?version=%s" $.Site.Params.version | relURL}}">
   {{- end -}}
 {{ end }}
 
 <!-- User cusomizations -->
-<link rel="stylesheet" href="{{"styles/user-customizations.css" | relURL}}">
+<link rel="stylesheet" href="{{ printf "styles/user-customizations.css?version=%s" $.Site.Params.version | relURL}}">

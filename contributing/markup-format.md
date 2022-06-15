@@ -2,18 +2,28 @@
 
 ## Table of contents
 
-- [Markdown](#markdown)
-- [Front matter](#front-matter)
-- [Headings](#headings)
-- [Line wrapping](#line-wrapping)
-- [Links](#links)
-- [Notes](#notes)
-- [Images](#images)
-- [Videos & asciinema](#videos--asciinema)
-- [Code](#code)
-  - [Indentation](#indentation)
-- [Code tabs](#code-tabs)
-- [Reuse content](#reuse-content)
+- [Markup reference for Platform.sh docs](#markup-reference-for-platformsh-docs)
+  - [Table of contents](#table-of-contents)
+  - [Markdown](#markdown)
+  - [Front matter](#front-matter)
+  - [Headings](#headings)
+  - [Line wrapping](#line-wrapping)
+  - [Links](#links)
+    - [Links to headers](#links-to-headers)
+  - [Notes](#notes)
+    - [Footnotes](#footnotes)
+  - [Images](#images)
+  - [Videos \& asciinema](#videos--asciinema)
+  - [Code](#code)
+    - [Indentation](#indentation)
+    - [Note when low-level items are missing](#note-when-low-level-items-are-missing)
+    - [Code block location](#code-block-location)
+  - [Refer to the UI and keys](#refer-to-the-ui-and-keys)
+  - [Code tabs](#code-tabs)
+  - [Reuse content](#reuse-content)
+    - [Variables in the file](#variables-in-the-file)
+    - [Inner content](#inner-content)
+    - [Static files](#static-files)
 
 ## Markdown
 
@@ -39,6 +49,7 @@ The following table presents the available options:
 | `layout`       | `single` or `list` | Set to `single` on `_index.md` files to give them the same layout as other pages. |
 | `aliases`      | list of strings    | Optionally creates redirects to the page from the given locations. Start with `/` for root-relative locations. Start with `../` for locations relative to the current page. |
 | `description`  | string             | Appears on `list` pages as a description of the page's content. Also overrides generic content for the `<meta name="description">` tag for SEO. Can be used in the page with the `description` shortcode. |
+| `mermaid`      | Boolean            | Whether to load the script to display [Mermaid.js diagrams](http://mermaid-js.github.io/mermaid/). Set to `true` for diagrams on the page. Not loaded by default. |
 
 ## Headings
 
@@ -76,10 +87,10 @@ Remember to [use meaningful link text](./content-style.md#use-meaningful-link-te
 
 Internal links (links to other docs pages) should be relative to the file they're in.
 That way, they work in the docs and on GitHub and locally in a cloned repository.
-Link to the specific `.md` file, for example: `[available services](../docs/src/configuration/services/_index.md`).
+Link to the specific `.md` file, for example: `[available services](../docs/src/add-services/_index.md`).
 
 If you are linking from a [file for reuse](#reuse-content), link relative to the `src` directory and start with `/`.
-For example: `[available services](/configuration/services/_index.md`).
+For example: `[available services](/add-services/_index.md`).
 
 Both of these ways help prevent broken links in the docs by putting them through a check to see if the page exists.
 If the page doesn't exist, the build fails.
@@ -104,7 +115,7 @@ By default, a title of `Note:` is added.
 
 A short note.
 
-{{< /note }}
+{{< /note >}}
 ```
 
 This shortcode accepts two optional parameters:
@@ -209,6 +220,26 @@ web:
 Keep the top-level key visible so readers can understand the code in context.
 (For example, don't leave out `web:` in the example above.)
 
+### Note when low-level items are missing
+
+If there's a complicated block (such as `web.locations`) with many settings not relevant to the current idea,
+show that they're missing with ellipses.
+
+For example, to focus only on caching and not the rules for the location:
+
+```yaml
+web:
+    locations:
+        '/':
+            ...
+            expires: -1
+```
+
+This is only necessary for items that aren't top-level.
+In longer files (such as `.platform.app.yaml`), it's fine to leave out other top-level items.
+For example, only a `web` block is shown above, even though it's not valid on its own.
+It should still be enough to copy and paste into a larger file.
+
 ### Code block location
 
 If it's helpful to note where the code should be placed (such as in a `.platform.app.yaml` file),
@@ -218,6 +249,26 @@ note that as an attribute of that block and it will appear in a tab:
 ```yaml {location=".platform.app.yaml"}
 relationships:
     database: 'mysqldb:db
+```
+
+## Refer to the UI and keys
+
+When referring to text in the UI, use bold:
+
+```markdown
+Click **Redeploy**.
+```
+
+To refer to buttons in the UI that use icons, use the `icon` shortcode with the alternative text for the button:
+
+```markdown
+To share a log, open the log and click {{< icon share >}} **Copy URL**.
+```
+
+To refer to keys users should use on their keyboards, use `<kbd>` tags:
+
+```markdown
+To select multiple lines, hold <kbd>Shift</kbd>.
 ```
 
 ## Code tabs
@@ -247,11 +298,15 @@ from jwcrypto import jws, jwk
 {{< /codetabs >}}
 ```
 
-Property    | Description
-------------|-----------
-`title`     | The title that appears on the tab.
-`highlight` | The language to use for highlighting, as in [code blocks](#code). If set to `false`, content renders as Markdown.
-`file`      | If not set to `none`, the displayed code comes from the specified local file.
+Property      | Description
+------------- | ----------
+`title`       | The title that appears on the tab.
+`highlight`   | The language to use for highlighting, as in [code blocks](#code). If set to `false`, content renders as Markdown.
+`file`        | If not set to `none`, the displayed code comes from the specified local file.
+`markdownify` | Whether to transform the block to Markdown. Defaults to `true`. Set to `false` when the file/block is code.
+
+Note that if you're using code inside the Markdown file,
+leave two empty lines after `{{ /codetabs }}` to turn off spell checking inside the block.
 
 ## Reuse content
 
@@ -269,10 +324,24 @@ use [transclusion](https://en.wikipedia.org/wiki/Transclusion) to include it.
 
 Note that if your files have HTML characters (`<`, `>`, `&`, `'`, and `"`) inside a code block,
 the characters are escaped (appear as `&lt;` and so on).
-Avoid this problem by writing HTML files (`reuse_html.html`) instead of Markdown files and including them like so:
+
+To avoid this problem, add the code block as a file to the `snippets` directory.
+Then include the block with the `readFile` function as in the following example:
 
 ```markdown
-{{< reuse_html >}}
+<div class="highlight-location"><LOCATION_TO_DISPLAY></div>
+{{ highlight ( readFile "<FILE_LOCATION>" ) "<LANGUAGE>" "" }}
+```
+
+- `<LOCATION_TO_DISPLAY>` is the location to show above the code block in the docs
+- `<FILE_LOCATION>` is where the snippet is
+- `<LANGUAGE>` is the language for syntax highlighting
+
+A complete example:
+
+```markdown
+<div class="highlight-location">.platform.app.yaml</div>
+{{ highlight ( readFile "snippets/example.yaml" ) "yaml" "" }}
 ```
 
 ### Variables in the file

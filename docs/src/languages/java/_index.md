@@ -4,7 +4,7 @@ description: Java is a general-purpose programming language, and one of the most
 layout: single
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## Supported versions
 
@@ -14,13 +14,13 @@ layout: single
 |----------------------------------|---------------|
 |  {{< image-versions image="java" status="supported" environment="grid" >}} | {{< image-versions image="java" status="supported" environment="dedicated" >}} |
 
-To specify a Java container, use the `type` property in your [app configuration](../../configuration/app/app-reference.md).
+{{% image-versions-legacy "java" %}}
 
-{{< readFile file="src/registry/images/examples/full/java.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
+{{% language-specification type="java" display_name="Java" %}}
 
 ## Support libraries
 
-While it is possible to read the environment directly from your application, it is generally easier and more robust to use the [`platformsh/config-reader`](https://github.com/platformsh/config-reader-java) which handles decoding of service credential information for you.
+While it's possible to read the environment directly from your application, it's generally easier and more robust to use the [`platformsh/config-reader`](https://github.com/platformsh/config-reader-java) which handles decoding of service credential information for you.
 
 ## Support build automation
 
@@ -32,7 +32,7 @@ Platform.sh supports the most common project management tools in the Java ecosys
 
 ## Other JVM languages
 
-It’s worth remembering that the JVM by its specification [does not read Java code](https://docs.oracle.com/javase/specs/jvms/se8/html/index.html), but bytecode. So within the JVM, it’s possible to [run several languages](https://en.wikipedia.org/wiki/List_of_JVM_languages). Platform.sh supports several of them, such as Kotlin, Groovy, and Scala, so long as that language works with any build automation that Platform.sh supports.
+It’s worth remembering that the JVM by its specification [doesn't read Java code](https://docs.oracle.com/javase/specs/jvms/se8/html/index.html), but bytecode. So within the JVM, it’s possible to [run several languages](https://en.wikipedia.org/wiki/List_of_JVM_languages). Platform.sh supports several of them, such as Kotlin, Groovy, and Scala, so long as that language works with any build automation that Platform.sh supports.
 
 | Article                                                      | Link                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -42,7 +42,7 @@ It’s worth remembering that the JVM by its specification [does not read Java c
 
 ## Accessing services
 
-To access various [services](/configuration/services/_index.md) with Java, see the following examples.  The individual service pages have more information on configuring each service.
+To access various [services](../../add-services/_index.md) with Java, see the following examples. The individual service pages have more information on configuring each service.
 
 {{< codetabs >}}
 
@@ -118,12 +118,13 @@ highlight=java
 
 {{< /codetabs >}}
 
- {{< note >}}
-These samples use the [Configuration Reader library](https://github.com/platformsh/config-reader-java) that Platform.sh provides. However, if your favorite Java frameworks allow you to overwrite the configurations following [The Twelve-Factor App](https://12factor.net/config) (such as Spring, Micronaut, Quarkus, Jakarta EE/MicroProfile), then as a developer you have the option to not use the library, removing the need for an additional dependency.
-{{< /note >}}
+{{% config-reader %}}
+[configuration reader library](https://github.com/platformsh/config-reader-java)
+{{% /config-reader%}}
+
+If your Java framework allows, you can instead overwrite configuration following the [twelve-factor app](https://12factor.net/config).
+That removes the need for an additional dependency.
 
 ## Project templates
 
-A number of project templates for major Java applications are available on GitHub. Not all of them are proactively maintained but all can be used as a starting point or reference for building your own website or web application.
-
-{{< repolist lang="java" >}}
+{{< repolist lang="java" displayName="Java" >}}

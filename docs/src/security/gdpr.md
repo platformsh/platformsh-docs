@@ -1,13 +1,12 @@
 ---
-title: "GDPR Overview Page"
-sidebarTitle: "GDPR"
-weight: 1
+title: GDPR overview
+sidebarTitle: GDPR
 toc: false
 description: |
   Platform.sh has taken numerous steps to ensure GDPR compliance.
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## Measures
 

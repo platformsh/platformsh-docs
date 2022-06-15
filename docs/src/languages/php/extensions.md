@@ -7,6 +7,13 @@ description: See what PHP extensions are available with each PHP version on Plat
 PHP has a number of [extensions](https://pecl.php.net/) developed by members of the community.
 Some of them are available for Platform.sh containers.
 
+{{< note >}}
+
+The information on this page applies to Grid and Dedicated Gen 3 plans.
+See also [PHP extensions on Dedicated plans](../../dedicated/overview/grid.md#extensions).
+
+{{< /note >}}
+
 You can define the PHP extensions you want to enable or disable:
 
 ```yaml
@@ -21,7 +28,7 @@ runtime:
         - sqlite3
 ```
 
-You can also [include configuration options](../../configuration/app/app-reference.md#extensions) for specific extensions.
+You can also [include configuration options](../../create-apps/app-reference.md#extensions) for specific extensions.
 
 The following table shows all extensions that are available (Avail) and on by default (Def).
 You can turn on the available ones with the `extensions` key
@@ -44,7 +51,7 @@ and turn off those on by default with the `disabled_extensions` key.
 | `dba`             |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `dom`             |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `enchant`         | Avail | Avail | Avail | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
-| `event`           |       |       |       |       | Avail | Avail | Avail | Avail | Avail |       |
+| `event`           |       |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail |
 | `exif`            |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `ffi`             |       |       |       |       |       |       |       | Avail | Avail | Avail |
 | `fileinfo`        |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
@@ -70,13 +77,13 @@ and turn off those on by default with the `disabled_extensions` key.
 | `memcache`        | Avail | Avail | Avail |       |       |       |       |       |       |       |
 | `memcached`       | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |       |
 | `mongo`           | Avail | Avail | Avail |       |       |       |       |       |       |       |
-| `mongodb`         |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail |       |
+| `mongodb`         |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `msgpack`         |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |       |
 | `mssql`           | Avail | Avail | Avail |       |       |       |       |       |       |       |
 | `mysql`           | Def   | Def   | Def   |       |       |       |       |       |       |       |
 | `mysqli`          | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `mysqlnd`         | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
-| `newrelic`        |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |       |
+| `newrelic`        |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `oauth`           |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `odbc`            | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `opcache`         |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
@@ -115,7 +122,7 @@ and turn off those on by default with the `disabled_extensions` key.
 | `sysvsem`         |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `sysvshm`         |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `tideways`        |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
-| `tideways-xhprof` |       |       |       | Avail | Avail | Avail | Avail | Avail |       |       |
+| `tideways_xhprof` |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `tidy`            | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `tokenizer`       |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `uuid`            |       |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail |
@@ -166,9 +173,9 @@ work:
    It can also be added to your Git repository if the file isn't publicly downloadable,
    although committing large binary blobs to Git is generally not recommended.
 
-2. Provide a custom `php.ini` file in the application root (as a sibling of your `.platform.app.yaml` file)
+2. Provide a custom `php.ini` file in [your app root](../../create-apps/app-reference.md#root-directory)
    that loads the extension using an absolute path.
-   For example, if the extension is named `spiffy.so` and is in the root of your application,
+   For example, if the extension is named `spiffy.so` and is in your app root,
    your `php.ini` file includes:
 
    ```ini

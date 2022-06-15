@@ -21,9 +21,9 @@ class Search:
         # Below are Platform.sh custom settings for how the search engine functions.
 
         # Data available to the dropdown React app in docs, used to fill out autocomplete results.
-        self.displayed_attributes = ['title', 'text', 'url', 'site', 'section']
+        self.displayed_attributes = ['keywords', 'title', 'text', 'url', 'site', 'section']
         # Data actually searchable by our queries.
-        self.searchable_attributes = ['title', 'pageUrl', 'section', 'url', 'text']
+        self.searchable_attributes = ['keywords', 'title', 'pageUrl', 'section', 'text', 'url']
 
         # Show results for one query with the listed pages, when they by default would not show up as best results.
         # Note: these aren't automatically two-way, which is why they're all defined twice.
@@ -44,6 +44,7 @@ class Search:
             "public ip addresses": ["regions"],
             "ssl": ["https", "tls"],
             "https": ["ssl"],
+            "auth": ["authentication", "access control"], # Only needs to be one way since we don't use "auth" in the docs
         }
 
         # Ranking rules:
@@ -118,10 +119,14 @@ class Search:
 
         # Delete previous index
         if len(client.get_indexes()):
-            client.get_index(self.docs_index).delete()
+            client.index(self.docs_index).delete()
 
         # Create a new index
-        index = client.create_index(uid=self.docs_index, options={'primaryKey': self.primaryKey, 'uid': self.index_name})
+        create_index_task = client.create_index(uid=self.docs_index, options={'primaryKey': self.primaryKey, 'uid': self.index_name})
+
+        client.wait_for_task(create_index_task['uid'])
+
+        index = client.get_index(create_index_task['indexUid'])
 
         # Add synonyms for the index
         index.update_synonyms(self.synonyms)

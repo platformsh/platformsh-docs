@@ -3,6 +3,8 @@ there are three ways to get started.
 
 ### With a template
 
+{{ markdownify (readFile "/layouts/shortcodes/template-intro.md") }}
+
 Deploy a {{ .Get "name" }} template itself straight to Platform.sh.
 Use the button below to launch a {{ .Get "name" }} template project
 and create a Platform.sh account along the way.
@@ -11,7 +13,7 @@ you can sign up using an existing GitHub, Bitbucket, or Google account.
 If you choose one of these options, you can set a password for your Platform.sh account later.
 
 <p align="center">
-  <a href='https://console.platform.sh/projects/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/{{ .Get "template" }}/.platform.template.yaml&utm_content={{ .Get "template" }}&utm_source=github&utm_medium=button&utm_campaign=deploy_on_platform'>
+  <a href='https://console.platform.sh/org/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/{{ .Get "template" }}/.platform.template.yaml&_utm_campaign=cta_deploy_marketplace_template&utm_source=public_documentation&_utm_medium=organic'>
     <img src="https://platform.sh/images/deploy/lg-blue.svg" alt="Deploy on Platform.sh" width="180px" />
   </a>
 </p>
@@ -25,14 +27,16 @@ You can start with a vanilla code base or push a pre-existing project to Platfor
 
 1. [Register for a trial Platform.sh account](https://auth.api.platform.sh/register).
 
-   If you don't want to sign up with an email address, you can sign up using an existing GitHub, Bitbucket, or Google account
+   If you don't want to sign up with an email address,
+   you can sign up using an existing GitHub, Bitbucket, or Google account.
    If you choose one of these options, you can set a password for your Platform.sh account later.
 
-1. Create your first project.
+2. Create your first project.
 
    Since you're providing your own code, use the **Blank project** option.
    Give the project a title and choose the region closest to your site visitors.
-   You can also select more resources for your project, although a `development` plan should be enough for you to get started.
+   You can also select more resources for your project,
+   although a `development` plan should be enough for you to get started.
 
 {{ .Inner | .Page.RenderString }}
 
@@ -54,18 +58,21 @@ Once the project is fully configured, you can push to the remote you've created 
 ### From a third party Git provider
 
 Platform.sh also supports third party Git hosting services, such as GitHub, GitLab, or BitBucket.
-In that case, the Platform.sh Git repository becomes a read-only mirror of the third party repository, which you can continue to use as normal.
+In that case, the Platform.sh Git repository becomes a read-only mirror of the third party repository,
+which you can continue to use as normal.
 
 1. [Register for a trial Platform.sh account](https://auth.api.platform.sh/register).
 
-   If you don't want to sign up with an email address, you can sign up using an existing GitHub, Bitbucket, or Google account
+   If you don't want to sign up with an email address,
+   you can sign up using an existing GitHub, Bitbucket, or Google account
    If you choose one of these options, you can set a password for your Platform.sh account later.
 
 1. Create your first project.
 
    Since you're providing your own code, use the **Blank project** option.
    Give the project a title and choose the region closest to your site visitors.
-   You can also select more resources for your project, although a `development` plan should be enough for you to get started.
+   You can also select more resources for your project,
+   although a `development` plan should be enough for you to get started.
 
 1. Add an integration to your existing third party repository.
 
@@ -83,15 +90,26 @@ That's expected because you haven't provided configuration files yet.
 You add them in the next step.
 Remember to have a local clone of your project.
 
-<div class="alert alert-primary" role="alert"><p><strong>Note:</strong></p>
+<div class="alert alert-primary" role="alert">
 
-<p class="alert-text">If you're integrating a repository to Platform.sh that contains a number of open pull requests, don't use the default integration options. Projects are limited to three* development environments (active and deployed branches or pull requests) and you would need to deactivate them individually to test this guide's migration changes. Instead, each service integration should be made with the following flag:</p>
+**Note:**
 
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">platform integration:add --type<span class="o">=</span>&lt;service&gt; ... --build-pull-requests<span class="o">=</span><span class="nb">false</span></code></pre></div>
+If you're integrating a repository to Platform.sh that contains a number of open pull requests,
+don't use the default integration options.
+Projects are limited to three\* development environments (active and deployed branches or pull requests)
+and you would need to deactivate them individually to test this guide's migration changes.
+Instead, each service integration should be made with the following flag:
 
-<p class="alert-text">You can then go through this guide and activate the environment when you're ready to deploy.</p>
+```bash
+platform integration:add --type=<service> ... --build-pull-requests=false
+```
 
-<p class="alert-text">* Note that it's also possible to purchase additional development environments for your project at any time through the management console. Open your {{ .Get "name" }} project and select <strong>Edit plan</strong>. Add additional **Environments**, view a cost estimate, and confirm your changes.</p>
+You can then go through this guide and activate the environment when you're ready to deploy
+
+\* You can purchase additional development environments at any time in the management console.
+Open your {{ .Get "name" }} project and select **Edit plan**.
+Add additional **Environments**, view a cost estimate, and confirm your changes.
+
 </div>
 
 Now that you have a local Git repository, a Platform.sh project, and a way to push code to that project, you're all set to continue.

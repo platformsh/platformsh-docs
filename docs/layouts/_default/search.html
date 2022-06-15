@@ -45,10 +45,10 @@
     </div>
 
     <!-- XSS bundle -->
-    <script src="{{"/scripts/xss/dist/bundle.js" | relURL}}"></script>
+    <script src="{{printf "/scripts/xss/dist/bundle.js?version=%s" .Site.Params.version | relURL}}"></script>
 
     <!-- Over-ride search style -->
-    <link rel="stylesheet" href="{{"styles/search.css" | relURL}}">
+    <link rel="stylesheet" href="{{ printf "styles/search.css?version=%s" .Site.Params.version | relURL}}">
 
   </body>
 </html>

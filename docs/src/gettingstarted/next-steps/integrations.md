@@ -7,7 +7,7 @@ aliases:
   - "/gettingstarted/integrations.html"
 ---
 
-{{< description >}}
+{{% description %}}
 
 Choose your current service, and this guide will take you through the steps to mirror your repository on Platform.sh and have environments created automatically for your pull requests and branches.
 

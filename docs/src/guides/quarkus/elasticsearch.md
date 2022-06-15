@@ -15,19 +15,19 @@ This guide only covers the *addition* of a service configuration to an existing 
 
 ## 1. Add the Elasticsearch service
 
-In your [service configuration](../../configuration/services/_index.md), include Elasticsearch with a [valid supported version](/configuration/services/elasticsearch.md):
+In your [service configuration](../../add-services/_index.md), include Elasticsearch with a [valid supported version](../../add-services/elasticsearch.md):
 
 {{< readFile file="src/registry/images/examples/full/elasticsearch.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
 
 ## 2. Add the Elasticsearch relationship
 
-In your [app configuration](../../configuration/app/app-reference.md), use the service name `searchelastic` to grant the application access to Elasticsearch via a relationship:
+In your [app configuration](../../create-apps/app-reference.md), use the service name `searchelastic` to grant the application access to Elasticsearch via a relationship:
 
 {{< readFile file="src/registry/images/examples/full/elasticsearch.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 ## 3. Export connection credentials to the environment
 
-Connection credentials for Elasticsearch, like any service, are exposed to the application container through the `PLATFORM_RELATIONSHIPS` environment variable from the deploy hook onward. Since this variable is a base64 encoded JSON object of all of your project's services, you'll likely want a clean way to extract the information specific to Elasticsearch into it's own environment variables that can be easily used by Quarkus. On Platform.sh, custom environment variables can be defined programmatically in a `.environment` file using `jq` to do just that:
+Connection credentials for Elasticsearch, like any service, are exposed to the application container through the `PLATFORM_RELATIONSHIPS` environment variable from the deploy hook onward. Since this variable is a base64 encoded JSON object of all of your project's services, you'll likely want a clean way to extract the information specific to Elasticsearch into it's own environment variables that can be used by Quarkus. On Platform.sh, custom environment variables can be defined programmatically in a `.environment` file using `jq` to do just that:
 
 ```text
 export ES_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".essearch[0].host")
@@ -38,7 +38,7 @@ export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOut
 ```
 
 {{< note title="Tip" >}}
-Environment variables names are following the conversion rules of [Eclipse MicroProfile](https://github.com/eclipse/microprofile-config/blob/master/spec/src/main/asciidoc/configsources.asciidoc#default-configsources).
+Environment variables names are following the conversion rules of [Eclipse MicroProfile](https://github.com/eclipse/microprofile-config/blob/master/spec/src/main/asciidoc/configsources.asciidoc#user-content-default-configsources).
 {{< /note >}}
 
 ## 4. Connect to Elasticsearch

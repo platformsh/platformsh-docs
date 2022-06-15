@@ -13,18 +13,24 @@
   {{ errorf "Incorrect environment param: %q. Possible values are grid, dedicated and dedicated-gen-3. Empty defaults to \"grid\". Image: %s" $envParam $image }}
 {{ end }}
 
+{{ $notYet := "Working on it!"}}
+
 {{ if (index .Site.Data.registry $image $environment) }}
   {{ if isset (index .Site.Data.registry $image $environment) $status }}
-    <ul>
-    {{ range index .Site.Data.registry $image $environment $status }}
-      <li>{{ . }}</li>
+    {{ if gt ( len ( index .Site.Data.registry $image $environment $status ) ) 0 }}
+      <ul>
+      {{ range index .Site.Data.registry $image $environment $status }}
+        <li>{{ . }}</li>
+      {{ end }}
+      </ul>
+    {{ else if ne $status "deprecated" }}
+      {{ $notYet }}
     {{ end }}
-    </ul>
+  {{ end }}
+{{ else }}
+  {{ if and (eq $envParam "dedicated-gen-3") (eq $status "supported") }}
+    {{ $notYet }}
   {{ else }}
-    {{ if and (eq $envParam "dedicated-gen-3") (eq $status "supported") }}
-      Working on it!
-    {{ else }}
-      None available
-    {{ end }}
+    None available
   {{ end }}
 {{ end }}

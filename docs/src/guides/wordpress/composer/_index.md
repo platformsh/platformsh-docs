@@ -26,7 +26,7 @@ Given the points raised above, managing your WordPress site with Composer has cl
 
 Composer also removes the need to commit lots of external code to your repository. In the case of WordPress, *not* using Composer will often require you to commit all of the code for a theme, and even for WordPress core itself, to your own project. Besides making the repository unnecessarily large and slow to clone, updating these copies becomes a juggling act that nobody needs to deal with.  
 
-Through Composer you can easily add and update dependencies to your project, and then lock their exact versions so that each new branch gets that same update. Had the update been performed on the deployed site at runtime, you would have to remember to `git pull` first.
+Through Composer you can add and update dependencies to your project, and then lock their exact versions so that each new branch gets that same update. Had the update been performed on the deployed site at runtime, you would have to remember to `git pull` first.
 
 ### Adding themes and modules with Composer
 
@@ -73,6 +73,6 @@ This command will update everything in your project locally, after which you can
 Platform.sh has written several guides for WordPress alongside the Composer recommendation:
 
 - [How to Deploy WordPress on Platform.sh](/guides/wordpress/deploy/_index.md): From here, you can create a Composer-based version of WordPress from scratch and deploy to Platform.sh.
-- [How to update your WordPress site to use Composer](/guides/wordpress/composer/migrate.md): This guide will take you through the steps of updating your fully-committed *vanilla* WordPress repository into one that uses Composer and deploy it to Platform.sh.
+- [How to update your WordPress site to use Composer](/guides/wordpress/composer/migrate.md): This guide will take you through the steps of updating your fully committed *vanilla* WordPress repository into one that uses Composer and deploy it to Platform.sh.
 - [Redis](/guides/wordpress/redis.md): This guide will show you how to add a Redis container to your configuration and add it to your deployed WordPress site.
-- [How to Deploy WordPress without Composer on Platform.sh](/guides/wordpress/vanilla/_index.md): If you do not want to switch to using Composer and you are willing to work around some of Platform.sh runtime constraints, this guide will show you how to deploy a fully-committed *vanilla* WordPress site to Platform.sh
+- [How to Deploy WordPress without Composer on Platform.sh](/guides/wordpress/vanilla/_index.md): If you do not want to switch to using Composer and you are willing to work around some of Platform.sh runtime constraints, this guide will show you how to deploy a fully committed *vanilla* WordPress site to Platform.sh

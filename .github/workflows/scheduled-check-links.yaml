@@ -1,0 +1,71 @@
+# This is called after the deployed environment is ready to be checked
+name: Regularly scheduled check links
+on:
+  schedule:
+    - cron: "0 2 * * 1,4"
+
+jobs:
+  check-links:
+    name: Check links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-go@v2
+        with:
+          stable: 'true'
+
+      - name: Get muffet
+        env:
+          MUFFET_VERSION: "2.4.8"
+        run: wget --quiet -c "https://github.com/raviqqe/muffet/releases/download/v$MUFFET_VERSION/muffet_${MUFFET_VERSION}_Linux_x86_64.tar.gz" -O - | tar -xz
+
+      - name: Check links
+        run: ./muffet --json --buffer-size=12192 --rate-limit=1 --max-connections-per-host=10 --color=always --header="Accept-Encoding:gzip, deflate" --header="User-Agent:Mozilla/5.0 (Windows NT 10.0) Gecko/20100101 Firefox/91.0" -e=console.platform.sh/projects/create-project -e=cloud.orange-business.com -e=developers.cloudflare.com -e=discord.com -e=pptr.dev https://docs.platform.sh > broken_links.json
+      
+      - name: Create Markdown file of broken links
+        if: ${{ always() }}
+        run: |
+          data=broken_links.json
+
+          # Get length of broken links array
+          eval "$( jq -r '@sh "urls_length=\(.|length)"' "$data" )"
+
+          # Check if any links are broken
+          if [ -z "$urls_length" ]; then
+            ":tada: There are no broken links! :tada:" > broken_links.md
+          else
+            echo -e "The following pages had broken links to check and possibly fix:\n" > broken_links.md
+
+            # Loop through the broken URLs to create items
+            for (( i = 0; i < urls_length; ++i )); do
+              unset location
+              unset broken_links
+              unset error
+
+              # Get the location where the broken link was found
+              eval "$(
+                  jq -r --argjson i "$i" '
+                      .[$i] |
+                      @sh "location=\(.url)"' "$data"
+              )"
+              echo "- $location" >> broken_links.md
+
+              # Loop through the broken links
+              jq -r --argjson i "$i" '.[$i] ' "$data" |
+              # Get the specific broken link and its error
+              jq -r '.links[] | (.url, .error)' |
+              while IFS= read -r url ; do
+                  IFS= read -r error 
+                  # Output that as a checklist item
+                  echo "  - [ ] $error: $url" >> broken_links.md
+              done
+            done
+          fi
+
+      - name: Create issue from Markdown file
+        id: create-issue
+        if: ${{ always() }}
+        uses: peter-evans/create-issue-from-file@v2
+        with:
+          title: ":bug: Broken links"
+          content-filepath: broken_links.md
+          issue-number: 2213

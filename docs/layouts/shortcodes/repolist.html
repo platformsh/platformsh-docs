@@ -1,5 +1,10 @@
 {{ $lang := .Get "lang" }}
 
+{{ if not ( .Get "noIntro" ) }}
+  <p>The following list shows templates available for {{ .Get "displayName" }} apps.
+  {{ markdownify (readFile "/layouts/shortcodes/template-intro.md") }}</p>
+{{ end }}
+
 {{ if isset .Site.Data.templates $lang }}
 
   {{ $templates := index .Site.Data.templates $lang }}
@@ -24,7 +29,7 @@
       <div id="collapse{{ $id }}" class="collapse" aria-labelledby="heading{{ $id }}" data-parent="#accordion{{ $lang }}">
         <div class="card-body">
           <!-- <p align="center"> -->
-            <img {{ printf "src=%q" .image | safeHTMLAttr }} style="max-height:150px; max-width:250px;" alt="{{ .name }}">
+            <img {{ printf "src=%q" .image | safeHTMLAttr }} style="min-width:100px;max-height: 150px;" alt="{{ .name }}">
           <!-- </p> -->
           <h2>{{ .name }}</h2>
           {{ .description | safeHTML }}
@@ -44,7 +49,7 @@
           </ul>
           <p><a href="{{ .repo }}">View the repository</a> on GitHub.</p>
           <p align="center">
-            <a href="{{ .deploy }}">
+            <a href="{{ .deploy }}&_utm_campaign=cta_deploy_marketplace_template&utm_source=public_documentation&_utm_medium=organic">
                 <img src="https://platform.sh/images/deploy/lg-blue.svg" alt="Deploy on Platform.sh" height="50px"/>
             </a>
           </p>

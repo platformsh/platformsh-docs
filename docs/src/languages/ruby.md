@@ -4,7 +4,7 @@ description: |
   Platform.sh supports deploying any Ruby application. Your application can use any Ruby application server such as Unicorn or Puma and deploying a Rails or a Sinatra app is very straight forward.
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## Supported versions
 
@@ -13,6 +13,10 @@ description: |
 | **Grid** | **Dedicated** |
 |----------------------------------|---------------|
 |  {{< image-versions image="ruby" status="supported" environment="grid" >}} | {{< image-versions image="ruby" status="supported" environment="dedicated" >}} |
+
+{{% image-versions-legacy "ruby" %}}
+
+{{% language-specification type="ruby" display_name="Ruby" %}}
 
 ## Unicorn based Rails configuration
 
@@ -53,7 +57,8 @@ A complete example is included at the end of this section.
 
 3. Build your application with the build hook.
 
-    Assuming you have your dependencies stored in the `Gemfile` at the root of your app folder to execute build steps:
+    Assuming you have your dependencies stored in the `Gemfile` at [your app root](../create-apps/app-reference.md#root-directory),
+    create a hook like the following:
 
     ```yaml
     hooks:
@@ -279,7 +284,7 @@ web:
 ## Configuring services
 
 This example assumes there is a MySQL instance.
-To configure it, [create a service](../configuration/services/_index.md) such as the following:
+To configure it, [create a service](../add-services/_index.md) such as the following:
 
 ```yaml {location=".platform/services.yaml"}
 database:
@@ -289,7 +294,7 @@ database:
 
 ## Connecting to services
 
-Once you have a service, link to it in your [app configuration](../configuration/app/_index.md):
+Once you have a service, link to it in your [app configuration](../create-apps/_index.md):
 
 ```yaml {location=".platform.app.yaml"}
 relationships:
@@ -331,12 +336,17 @@ For Rails, you have two choices:
 * Use the [platformsh-rails-helper gem](https://github.com/platformsh/platformsh-rails-helper)
   by adding it to your `Gemfile` and commenting the production block in `config/database.yml`
 
+{{% config-reader %}}
+[helper library for Ruby apps](https://github.com/platformsh/platformsh-ruby-helper)
+or [one for Rails apps](https://github.com/platformsh/platformsh-rails-helper)
+{{% /config-reader%}}
+
 ## Other tips
 
 * To speed up boot you can use the [Bootsnap gem](https://github.com/Shopify/bootsnap)
   and configure it with the local `/tmp`:
 
-  ```ruby
+  ```ruby {location="config/boot.rb"}
   Bootsnap.setup(cache_dir: "/tmp/cache")
   ```
 
@@ -345,16 +355,7 @@ For Rails, you have two choices:
 
 ## Project templates
 
-A number of project templates for Ruby applications and typical configurations are available on GitHub.
-Not all of them are proactively maintained but all can be used as a starting point
-or reference for building your own website or web application.
-
-Platform.sh also provides a [helper library for Ruby applications](https://github.com/platformsh/platformsh-ruby-helper)
-and one [for Rails applications](https://github.com/platformsh/platformsh-rails-helper)
-that simplify presenting environment information to your application.
-They aren't required to run Ruby applications on Platform.sh but are recommended.
-
-{{< repolist lang="ruby" >}}
+{{< repolist lang="ruby" displayName="Ruby" >}}
 
 ## Troubleshooting
 

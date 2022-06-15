@@ -33,11 +33,13 @@ highlight=bash
 markdownify=false
 ---
 
-curl -f https://platform.sh/cli/installer -o cli-installer.php
+curl.exe -f https://platform.sh/cli/installer -o cli-installer.php
 php cli-installer.php
+
 {{< /codetabs >}}
 
-2. **Authenticate and verify**
+
+1. **Authenticate and verify**
 
    Once the installation has completed, run the CLI in your terminal with the command:
 

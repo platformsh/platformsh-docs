@@ -64,29 +64,50 @@ https://{default}/:
       # Redirect requests ending in a slash to have a .html suffix
       "^\/([^.]*)\/$": { "to": '/$1.html', "regexp": true }
 
-      # PR 1897
-      "/integrations/profiling.html": { "to": "/integrations/observability.html", "code": 301, "prefix": false }
-      "/integrations/profiling/blackfire.html": { "to": "/integrations/observability/blackfire.html", "code": 301, "prefix": false }
-      "/integrations/profiling/new-relic.html": { "to": "/integrations/observability/new-relic.html", "code": 301, "prefix": false }
-      "/integrations/profiling/new-relic/java.html": { "to": "/integrations/observability/new-relic/java.html", "code": 301, "prefix": false }
-      "/integrations/profiling/new-relic/nodejs.html": { "to": "/integrations/observability/new-relic/nodejs.html", "code": 301, "prefix": false }
-      "/integrations/profiling/new-relic/php.html": { "to": "/integrations/observability/new-relic/php.html", "code": 301, "prefix": false }
-      "/integrations/profiling/tideways.html": { "to": "/integrations/observability/tideways.html", "code": 301, "prefix": false }
+      # PR 1897 + PR 2054
+      "/integrations/profiling.html": { "to": "/increase-observability/integrate-observability.html", "code": 301, "prefix": false }
+      "/integrations/profiling/blackfire.html": { "to": "/increase-observability/integrate-observability/blackfire.html", "code": 301, "prefix": false }
+      "/integrations/profiling/new-relic.html": { "to": "/increase-observability/integrate-observability/new-relic.html", "code": 301, "prefix": false }
+      "/integrations/profiling/new-relic/java.html": { "to": "/increase-observability/integrate-observability/new-relic/java.html", "code": 301, "prefix": false }
+      "/integrations/profiling/new-relic/nodejs.html": { "to": "/increase-observability/integrate-observability/new-relic/nodejs.html", "code": 301, "prefix": false }
+      "/integrations/profiling/new-relic/php.html": { "to": "/increase-observability/integrate-observability/new-relic/php.html", "code": 301, "prefix": false }
+      "/integrations/profiling/tideways.html": { "to": "/increase-observability/integrate-observability/tideways.html", "code": 301, "prefix": false }
 
       # PR 1963
       "/overview/getting-help.html": { "to": "/overview/get-support.html", "code": 301, "prefix": false }
 
-      # Restructure of app reference
-      "/configuration/app/access.html": { "to": "/configuration/app/app-reference.html#access", "code": 301, "prefix": false }
-      "/configuration/app/build.html": { "to": "/configuration/app/app-reference.html", "code": 301, "prefix": false }
-      "/configuration/app/cron.html": { "to": "/configuration/app/app-reference.html#crons", "code": 301, "prefix": false }
-      "/configuration/app/firewall.html": { "to": "/configuration/app/app-reference.html#firewall", "code": 301, "prefix": false }
-      "/configuration/app/name.html": { "to": "/configuration/app/app-reference.html", "code": 301, "prefix": false }
-      "/configuration/app/relationships.html": { "to": "/configuration/app/app-reference.html#relationships", "code": 301, "prefix": false }
-      "/configuration/app/size.html": { "to": "/configuration/app/app-reference.html#sizes", "code": 301, "prefix": false }
-      "/configuration/app/storage.html": { "to": "/configuration/app/app-reference.html", "code": 301, "prefix": false }
-      "/configuration/app/type.html": { "to": "/configuration/app/app-reference.html#types", "code": 301, "prefix": false }
-      "/configuration/app/variables.html": { "to": "/configuration/app/app-reference.html#variables", "code": 301, "prefix": false }
+      # PR 2054
+      "/dedicated/architecture/metrics.html": { "to": "/increase-observability/metrics.html", "code": 301, "prefix": false }
+
+      # Restructure of variables
+      "/bestpractices/environment-build.html": { "to": "/development/variables.html", "code": 301, "prefix": false }
+
+      # Drupal 7 EOL
+      "/frameworks/drupal7.*": { "to": "/guides/drupal9/deploy.html", "code": 301, "regexp": true }
+
+      # Removal of featured frameworks
+      "/frameworks/(?!deploy|drupal)(.*).html":  { "to": "/guides/$1/deploy.html", "code": 301, "regexp": true }
+      "/frameworks/ibexa/fastly.html":  { "to": "/guides/ibexa/fastly.html", "code": 301, "prefix": false }
+
+      "/configuration/app/web.html#how-can-i-rewrite-an-incoming-request-without-a-redirect":   { "to": "/create-apps/web/rewrite-requests.html", "code": 301, "prefix": false }
+      
+      # Navigation restructure in April 2021
+      "/configuration/app-containers.html": { "to": "/create-apps/app-reference.html", "code": 301, "prefix": false }
+      "/configuration/app/access.html": { "to": "/create-apps/app-reference.html#access", "code": 301, "prefix": false }
+      "/configuration/app/build.html": { "to": "/create-apps/app-reference.html", "code": 301, "prefix": false }
+      "/configuration/app/cron.html": { "to": "/create-apps/app-reference.html#crons", "code": 301, "prefix": false }
+      "/configuration/app/firewall.html": { "to": "/create-apps/app-reference.html#firewall", "code": 301, "prefix": false }
+      "/configuration/app/name.html": { "to": "/create-apps/app-reference.html", "code": 301, "prefix": false }
+      "/configuration/app/relationships.html": { "to": "/create-apps/app-reference.html#relationships", "code": 301, "prefix": false }
+      "/configuration/app/size.html": { "to": "/create-apps/app-reference.html#sizes", "code": 301, "prefix": false }
+      "/configuration/app/storage.html": { "to": "/create-apps/app-reference.html", "code": 301, "prefix": false }
+      "/configuration/app/type.html": { "to": "/create-apps/app-reference.html#types", "code": 301, "prefix": false }
+      "/configuration/app/variables.html": { "to": "/create-apps/app-reference.html#variables", "code": 301, "prefix": false }
+      "/configuration/app(.*)":  { "to": "/create-apps$1", "code": 301, "regexp": true }
+      "/configuration/services(.*)":  { "to": "/add-services$1", "code": 301, "regexp": true }
+      "/configuration/routes(.*)":  { "to": "/define-routes$1", "code": 301, "regexp": true }
+      "/overview/environments(.*)":  { "to": "/environments$1", "code": 301, "regexp": true }
+      "/overview/projects(.*)":  { "to": "/projects$1", "code": 301, "regexp": true }
 
 
 "https://search.{default}/":

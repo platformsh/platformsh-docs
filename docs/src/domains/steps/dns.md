@@ -5,13 +5,13 @@ description: "Platform.sh expects you to use a CNAME for all DNS records.  Howev
 sidebarTitle: "DNS and CNAMEs"
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## Why CNAMEs?
 
 Platform.sh is a cloud hosting provider.  That means each individual "site" is not its own computer but a set of containers running on one or more virtual machines, which are themselves running on any number of physical computers, all of which are shared with other customers running the same configuration.  An entire region of projects runs behind our dedicated, high-performance edge routers, which are responsible for mapping incoming requests to the particular container on a particular host that is appropriate.
 
-All of that logic is quite robust and fast, but it does require that incoming requests all get sent first to the edge routers.  While the [IP addresses of the edge routers](/development/public-ips.md) are fairly stable, they are not guaranteed to never change.  We also may add or remove routers to help scale the region, or take them offline one at a time for upgrades and maintenance.  It is therefore critical that inbound requests always know what the IPs are of the edge routers at the time of the request.
+All of that logic is quite robust and fast, but it does require that incoming requests all get sent first to the edge routers.  While the [IP addresses of the edge routers](/development/regions.md) are fairly stable, they are not guaranteed to never change.  We also may add or remove routers to help scale the region, or take them offline one at a time for upgrades and maintenance.  It is therefore critical that inbound requests always know what the IPs are of the edge routers at the time of the request.
 
 All of Platform.sh's "edge hostnames" (the auto-generated URLs in the form `<branch>-<hash>-<project_id>.<region>.platformsh.site`) are DNS records we control that resolve to the IP addresses of the edge routers for that region.  If an edge router is updated, taken out of rotation, etc. then those domains will update quickly and automatically with no further action required.
 
@@ -43,9 +43,11 @@ Many DNS providers have found a way around the CNAME-on-Apex limitation.  Some D
 
 If you want your site to be accessible with `https://example.com` and not only `https://www.example.com` this is the best way to do so.  Examples of such workaround records include:
 
+<!-- vale Platform.condescending = NO -->
  * CNAME Flattening at [CloudFlare](https://www.cloudflare.com/)
  * ANAME at [easyDNS](https://www.easydns.com/), [DNS Made Easy](http://www.dnsmadeeasy.com/), or [Name.com](https://www.name.com/)
- * ALIAS at [DNSimple](https://dnsimple.com/) or [Cloudns](https://www.cloudns.net/)
+ * ALIAS at [DNSimple](https://dnsimple.com/) or [ClouDNS](https://www.cloudns.net/)
+<!-- vale Platform.condescending = YES -->
 
 Platform.sh recommends ensuring that your DNS Provider supports dynamic apex domains before registering your domain name with them.  If you are using a DNS Provider that does not support dynamic apex domains then you will be unable to use `example.com` with Platform.sh, and will need to use only `www.example.com` (or similar) instead.
 
@@ -55,12 +57,12 @@ If you are willing to make the `www.` version of your site the canonical version
 
 * [Namecheap](https://www.namecheap.com/support/knowledgebase/article.aspx/385/2237/how-do-i-set-up-a-url-redirect-for-a-domain)
 
-### (Alternate) Using a www redirection service
+### (Alternate) Using a `www` redirection service
 
 If your preferred registrar/DNS provider doesn't support either custom records or the apex domain forwarding options above, free services such as [WWWizer](http://wwwizer.com/) allow blind redirects and allow you to use a CNAME record to Platform.sh for `www.example.com` and an `A` record to their service at `example.com`, which will in turn send a redirect.
 
 {{< note >}}
-If using a redirection service, you must ensure that `http://example.com/` redirects to `http://www.example.com/`, not to `https://www.example.com/`.  (That is, the HTTP URL redirects to an HTTP URL, not to an HTTPS URL.)  Platform.sh will automatically redirect that request to the HTTPS itself.  Trying to change the protocol and domain in the same redirect will cause issues for Let's Encrypt and prevent the TLS certificate from being issued correctly.  The extra redirect adds only a millisecond or two to the first pageload only, and is imperceptible to most humans.
+If using a redirection service, you must ensure that `http://example.com/` redirects to `http://www.example.com/`, not to `https://www.example.com/`.  (That is, the HTTP URL redirects to an HTTP URL, not to an HTTPS URL.)  Platform.sh will automatically redirect that request to the HTTPS itself.  Trying to change the protocol and domain in the same redirect will cause issues for Let's Encrypt and prevent the TLS certificate from being issued correctly.  The extra redirect adds only a millisecond or two to the first page load only, and is imperceptible to most humans.
 {{< /note >}}
 
 ### (Alternate) Using A records
@@ -76,4 +78,4 @@ This process has a few limitations:
 For that reason using A records is _strongly discouraged_ and should only be used as a last resort.
 {{< /note >}}
 
-See the [Public IP](/development/public-ips.md) list for the 3 Inbound addresses for your region.  In your DNS provider, configure 3 separate A records for your domain, one for each of those IP addresses.  Incoming requests will then pick one of those IPs at random to use for that request (the so-called DNS round-robin).
+See the [Public IP](/development/regions.md) list for the 3 Inbound addresses for your region.  In your DNS provider, configure 3 separate A records for your domain, one for each of those IP addresses.  Incoming requests will then pick one of those IPs at random to use for that request (the so-called DNS round-robin).

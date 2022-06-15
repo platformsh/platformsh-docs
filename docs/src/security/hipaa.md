@@ -1,7 +1,6 @@
 ---
-title: "HIPAA compliance"
-sidebarTitle: "HIPAA"
-weight: 17
+title: HIPAA compliance
+sidebarTitle: HIPAA
 description: |
     Platform.sh HIPAA Compliance
 ---
@@ -27,7 +26,7 @@ Covered Entities who want to run healthcare workloads on Platform.sh must agree 
 * The Covered entity must run HIPAA workloads on the HIPAA designated region and is responsible for managing access to all environments that are included in the HIPAA designated region.
 * The Covered Entity uses [Fastly WAF](https://docs.fastly.com/products/hipaa-compliant-caching-and-delivery) or a Platform.sh-approved equivalent HIPAA-complaint WAF. 
 * The Covered Entity will perform, at a minimum on an annual basis, penetration testing and vulnerability scanning against their projects in accordance with industry standards, and will remediate findings in an expedited manner.
-* The Covered Entity will [redeploy applications](https://docs.platform.sh/security/updates.html)regularly to be able to pick up patches.
+* The Covered Entity will [redeploy applications](https://docs.platform.sh/security/updates.html) regularly to be able to pick up patches.
 
 While Platform.sh provides a secure and compliant infrastructure for processing of PHI, the customer is responsible for ensuring that the environment and applications that they host on Platform.sh are properly configured and secured according to HIPAA requirements. Failure to do so results in a non-compliant customer environment.
 

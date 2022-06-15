@@ -1,14 +1,13 @@
 ---
 title: "Activity scripts"
 weight: -5
-layout: single
 description: |
   Platform.sh supports custom scripts that can fire in response to any activity. These scripts allow you to take arbitrary actions in response to actions in your project, such as when it deploys, when a new branch is created, etc.
 ---
 
-{{< description >}}
+{{% description %}}
 
-Check out examples from other users on the Platform.sh [Community site.](https://community.platform.sh/c/activity-scripts)
+Check out examples from other users on the Platform.sh [Community site](https://community.platform.sh/c/activity-scripts/10).
 
 ## Installing
 
@@ -100,7 +99,7 @@ platform integration:update --events='environment.activate, environment.deactiva
 
 A complete list of possible events is available in the [webhook documentation](/integrations/activity/reference.md).
 
-Scripts can also trigger only when an action reaches a given state, such as "pending", "in_progress", or "complete".
+Scripts can also trigger only when an action reaches a given state, such as `pending`, `in_progress`, or `complete`.
 The default is only when they reach "complete".
 To have a script execute when a synchronize action first starts, for example, you would run:
 
@@ -130,8 +129,8 @@ as well as the following libraries, APIs, and global variables to facilitate bui
 
 ### `underscore.js`
 
-Underscore.js 1.9.2 is available out-of-the-box to make writing Activity scripts more pleasant.
-See [Underscore's documentation](https://cdn.rawgit.com/jashkenas/underscore/1.9.2/index.html) for available functions and utilities.
+[`Underscore.js`](https://github.com/jashkenas/underscore) 1.13.1 is available out-of-the-box to make writing Activity scripts more pleasant.
+See [Underscore's documentation](https://underscorejs.org/) for available functions and utilities.
 
 ### `activity`
 
@@ -141,7 +140,7 @@ The `activity` variable is the same as the [webhook payload](/integrations/activ
 See the documentation there for details and a complete example.
 
 Several of the utility functions below work by pulling out common portions of the `activity` object.
-Most notably, scripts can be configured via [Project-level variables](/development/variables.md#project-variables)
+Most notably, scripts can be configured via [Project-level variables](../../development/variables/set-variables.md#create-project-variables)
 that can be accessed from the `activity` object.
 
 ### `project`
@@ -292,3 +291,5 @@ HMAC(HMAC(HMAC(HMAC("AWS4" + kSecret,"20150830"),"us-east-1"),"iam"),"aws4_reque
 ```
 
 > Example taken from the [AWS documentation for signing API requests](https://docs.aws.amazon.com/general/latest/gr/sigv4-calculate-signature.html).
+
+## Further reading

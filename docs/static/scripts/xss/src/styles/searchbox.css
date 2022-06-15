@@ -11,12 +11,10 @@
     line-height: 22px !important;
     list-style: none;
     z-index: 1;
-    margin: 1rem;
     background: white;
 }
-.suggestions div.hits ul  em {
+.suggestions div.hits ul em {
 	 background-color: rgb(255, 205, 210);
-     font-style: normal;
 }
 .suggestions div.hits ul h5 {
 	 border-bottom: 1px solid #ddd;

@@ -29,6 +29,7 @@ In order to connect to this service and use it in your application, Platform.sh 
 
 To access this variable you can install a Platform.sh configuration reader library
 
+<!-- vale Vale.Spelling = NO -->
 {{< codetabs >}}
 
 ---
@@ -100,7 +101,7 @@ markdownify=false
 pip install platformshconfig
 
 {{< /codetabs >}}
-
+<!-- vale Vale.Spelling = YES -->
 
 and access the credentials of `database`
 
@@ -221,6 +222,7 @@ credentials = relationships['database']
 
 {{< /codetabs >}}
 
+
 In either case, `credentials` can now be used to connect to `database`:
 
 ```json
@@ -253,7 +255,7 @@ You can find out more information about Platform.sh Config Reader libraries on G
 * [Java Config Reader](https://github.com/platformsh/config-reader-java)
 * [Go Config Reader](https://github.com/platformsh/config-reader-go)
 
-You can also find examples of how to connect to each of Platform.sh managed services in multiple languages in the [Services Documentation](/configuration/services/_index.md).
+You can also find examples of how to connect to each of Platform.sh managed services in multiple languages in the [Services Documentation](../../../add-services/_index.md).
 
 Project configured, services connected - time to commit the changes and push your repository onto your project.
 

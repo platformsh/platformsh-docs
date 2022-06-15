@@ -23,7 +23,7 @@ Once that's run, commit both `composer.json` and `composer.lock` to your reposit
 
 The SimpleSAML client uses additional cookies besides the Drupal session cookie that need to be allowed for the cache.  To do so, modify your `routes.yaml` file for the route that points to your Drupal site and add two additional cookies to the `cache.cookies` line.  It should end up looking approximately like this:
 
-```yaml
+```yaml {location=".platform/routes.yaml"}
 "https://{default}/":
     type: upstream
     upstream: "app:http"
@@ -38,7 +38,7 @@ Commit this change to the Git repository.
 
 The SimpleSAML library's `www` directory needs to be publicly accessible.  That can be done by mapping it directly to a path in the Application configuration.  Add the following block to the `web.locations` section of `.platform.app.yaml`:
 
-```yaml
+```yaml {location=".platform.app.yaml"}
  web:
     locations:
         '/simplesaml':
@@ -55,13 +55,15 @@ That will map all requests to `example.com/simplesaml/` to the `vendor/simplesam
 
 Your SimpleSAMLphp configuration will need to be outside of the `vendor` directory.  The `composer require` will download a template configuration file to `vendor/simplesamlphp/simplesamlphp/config`.
 
-Rather than modifying that file in place (as it won't be included in Git), copy the `vendor/simplesamlphp/simplesamlphp/config` directory to `simplesamlphp/config` (in your application root).  It should contain two files, `config.php` and `authsources.php`.
+Rather than modifying that file in place (as it isn't included in Git),
+copy the `vendor/simplesamlphp/simplesamlphp/config` directory to `simplesamlphp/config` (in [your app root](../../create-apps/app-reference.md#root-directory)).
+It should contain two files, `config.php` and `authsources.php`.
 
 Additionally, create a `simplesamlphp/metadata` directory.  This directory will hold your IdP definitions.  Consult the SimpleSAMLphp documentation and see the examples in `vendor/simplesamlphp/simplesamlphp/metadata-templates`.
 
 Next, you need to tell SimpleSAMLphp where to find that directory using an environment variable.  The simplest way to set that is to add the following block to your `.platform.app.yaml` file:
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 variables:
     env:
         SIMPLESAMLPHP_CONFIG_DIR: /app/simplesamlphp/config
@@ -79,9 +81,9 @@ Open the file `simplesamlphp/config/config.php` that you created earlier.  It co
 * `technicalcontact_name`
 * `technicalcontact_email`
 
-Others are a little more involved.  In the interest of simplicity we recommend simply pasting the following code snippet at the end of the file, as it will override the default values in the array.
+Others are a little more involved.  In the interest of simplicity we recommend pasting the following code snippet at the end of the file, as it will override the default values in the array.
 
-```php
+```php {location="simplesamlphp/config/config.php"}
 <?php
 
 // Set SimpleSAML to log using error_log(), which on Platform.sh will
@@ -126,11 +128,16 @@ if (isset($_ENV['PLATFORM_PROJECT_ENTROPY'])) {
 
 ## Generate SSL certificates (optional)
 
-Depending on your Identity Provider (IdP), you may need to generate an [SSL/TLS certificate](https://hosting.review/web-hosting-glossary/#12) to connect to the Service Provider (SP).  If so, you should generate the certificate locally following the instructions in the [SimpleSAMLphp documentation](https://simplesamlphp.org/docs/stable/simplesamlphp-sp).  Whatever your resulting idP file is should be placed in the simplesamlphp/metadata directory.  The certificate should be placed in the `simplesamlphp/cert` directory.  (Create it if needed.)
+Depending on your Identity Provider (IdP),
+you may need to generate an SSL/TLS certificate to connect to the service provider.
+If so, you should generate the certificate locally following the instructions in the [SimpleSAMLphp documentation](https://simplesamlphp.org/docs/latest/simplesamlphp-sp).
+Your resulting IdP file should be placed in the `simplesamlphp/metadata` directory.
+The certificate should be placed in the `simplesamlphp/cert` directory.
+(Create it if needed.)
 
 Then add the following line to your `simplesamlphp/config/config.php` file to tell the library where to find the certificate:
 
-```php
+```php {location="simplesamlphp/config/config.php"}
 <?php
 $config['certdir'] = dirname(__DIR__) . '/cert';
 ```

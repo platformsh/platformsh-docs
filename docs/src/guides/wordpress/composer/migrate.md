@@ -6,9 +6,9 @@ description: |
     Everything you need to get started with WordPress on Platform.sh. 
 ---
 
-This guide will take you through the steps to update your [*vanilla*](/guides/wordpress/vanilla/_index.md), fully-committed, WordPress repository to one fully managed with Composer. It is assummed that you already have (locally) a vanilla version of WordPress where all of core, themes, and plugins are committed to the repository or committed as submodules, and that it has been set up for deployment on Platform.sh. Because of these assumptions, you should already have Platform.sh configuration files in your repository to deploy the resulting Composer-based WordPress site on Platform.sh. If you do not, follow the [previous guide](/guides/wordpress/vanilla/_index.md) and add them. 
+This guide will take you through the steps to update your [*vanilla*](/guides/wordpress/vanilla/_index.md), fully committed, WordPress repository to one fully managed with Composer. It is assumed that you already have (locally) a vanilla version of WordPress where all of core, themes, and plugins are committed to the repository or committed as submodules, and that it has been set up for deployment on Platform.sh. Because of these assumptions, you should already have Platform.sh configuration files in your repository to deploy the resulting Composer-based WordPress site on Platform.sh. If you do not, follow the [previous guide](/guides/wordpress/vanilla/_index.md) and add them. 
 
-For more context regarding why Platform.sh recommends Composer-based installations of Wordpress, see the ["Using Composer" guide](/guides/wordpress/composer/_index.md).
+For more context regarding why Platform.sh recommends Composer-based installations of WordPress, see the ["Using Composer" guide](/guides/wordpress/composer/_index.md).
 
 ## WordPress Core
 
@@ -53,7 +53,7 @@ Instead of committing all of WordPress to your repository (or adding it as a sub
     $ curl https://raw.githubusercontent.com/platformsh/template-builder/master/templates/wordpress-composer/files/.gitignore >> .gitignore
     ```
     
-    Then, unstage WordPress from the repository:
+    Then, remove WordPress from the repository:
 
     ```bash
     $ git rm -rf --cached wordpress && rm -rf wordpress
@@ -92,7 +92,11 @@ Like WordPress core itself, themes and plugins can be installed as dependencies 
 
 1. **Configure the WPPackagist repository**
 
-    When you download dependencies using Composer, you will by default retrieve them through [Packagist](https://packagist.org), which is the primary Composer repository for public PHP packages. In the previous section, you installed WordPress core through this repository. Some themes and plugins for WordPress are also on Packagist, but most of them are accessible through a similar service specific to Wordpress called [WPackagist](https://wpackagist). 
+    When you download dependencies using Composer, you by default retrieve them through [Packagist](https://packagist.org),
+    which is the primary Composer repository for public PHP packages.
+    In the previous section, you installed WordPress core through this repository.
+    Some themes and plugins for WordPress are also on Packagist,
+    but most of them are accessible through a similar service specific to WordPress called [WPackagist](https://wpackagist.org). 
 
     In order to pull from this repository, you'll need to add WPackagist to your `composer.json` file so that Composer knows to look for packages there. Run the command: 
 
@@ -133,17 +137,17 @@ Like WordPress core itself, themes and plugins can be installed as dependencies 
     }
     ```
 
-    Now any plugin that contains as a part of its package metadata a `type` of `wordpress-plugin` will be installed into `wordpress/wp-content/plugins/` instead of `vendor`, and the same goes for themes and muplugins. 
+    Now any plugin that contains as a part of its package metadata a `type` of `wordpress-plugin` will be installed into `wordpress/wp-content/plugins/` instead of `vendor`, and the same goes for themes and must-use plugins. 
 
 3. **Install themes and modules**
 
-    Search for your existing themes and plugins [WPackagist](https://wpackagist) and install them through Composer with `composer require`:
+    Search for your existing themes and plugins [WPackagist](https://wpackagist.org) and install them through Composer with `composer require`:
 
     ```bash
-    # Theme
+    # Plugin
     composer require wpackagist-plugin/wordpress-seo
 
-    # Plugin
+    # Theme
     composer require wpackagist-theme/hueman
     ```
 

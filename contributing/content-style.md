@@ -7,22 +7,31 @@ This content style guide should help make sure the Platform.sh docs are clear an
 It's intended for use by all contributors,
 from Platform.sh engineers to people from the community.
 
+<!-- vale Platform.condescending = NO -->
 ## Table of contents
 
-- [About the audience](#about-the-audience)
-- [Style defaults](#style-defaults)
-- [Address the reader directly](#address-the-reader-directly)
-- [Use inclusive language](#use-inclusive-language)
-  - [Resources for inclusive language](#resources-for-inclusive-language)
-  - [Use meaningful link text](#use-meaningful-link-text)
-  - [Include alt text](#include-alt-text)
-- [Format screenshots for sustainability](#format-screenshots-for-sustainability)
-- [Use the present tense](#use-the-present-tense)
-- [Use contractions](#use-contractions)
-- [Explain abbreviations](#explain-abbreviations)
-- [Use notes appropriately](#use-notes-appropriately)
-- [Add short descriptions](#add-short-descriptions)
-- [Guidance enforcement](#guidance-enforcement)
+- [Platform.sh Docs content style guide](#platformsh-docs-content-style-guide)
+  - [Table of contents](#table-of-contents)
+  - [About the audience](#about-the-audience)
+  - [Style defaults](#style-defaults)
+  - [Address the reader directly](#address-the-reader-directly)
+  - [Use inclusive language](#use-inclusive-language)
+    - [Resources for inclusive language](#resources-for-inclusive-language)
+    - [Use meaningful link text](#use-meaningful-link-text)
+    - [Link at the end of sentences in sentence case](#link-at-the-end-of-sentences-in-sentence-case)
+    - [Minimize distractions](#minimize-distractions)
+    - [Include alt text](#include-alt-text)
+    - [Aim for simple sentences](#aim-for-simple-sentences)
+    - [Use direct sentences](#use-direct-sentences)
+  - [Format screenshots for sustainability](#format-screenshots-for-sustainability)
+  - [Use the present tense](#use-the-present-tense)
+  - [Use contractions](#use-contractions)
+  - [Explain abbreviations](#explain-abbreviations)
+  - [Use the long form of commands](#use-the-long-form-of-commands)
+  - [Use notes appropriately](#use-notes-appropriately)
+  - [Add short descriptions](#add-short-descriptions)
+  - [Guidance enforcement](#guidance-enforcement)
+<!-- vale Platform.condescending = YES -->
 
 ## About the audience
 
@@ -83,11 +92,11 @@ allowlist                                                | whitelist
 
 Some guides to helping you make sure your writing is inclusive and accessible to everyone.
 
-- [Mailchimp guide to writing for accessibility](https://styleguide.mailchimp.com/writing-for-accessibility/)
-- [Microsoft's ideas on writing for all abilities](https://docs.microsoft.com/en-us/style-guide/accessibility/writing-all-abilities)
-- [Google suggestions for writing accessible documentation](https://developers.google.com/style/accessibility)
-- [Microsoft accessibility guidelines](https://docs.microsoft.com/en-us/style-guide/accessibility/accessibility-guidelines-requirements)
-- [The Conscious Style Guide](https://consciousstyleguide.com/)
+* [Mailchimp guide to writing for accessibility](https://styleguide.mailchimp.com/writing-for-accessibility/)
+* [Microsoft's ideas on writing for all abilities](https://docs.microsoft.com/en-us/style-guide/accessibility/writing-all-abilities)
+* [Google suggestions for writing accessible documentation](https://developers.google.com/style/accessibility)
+* [Microsoft accessibility guidelines](https://docs.microsoft.com/en-us/style-guide/accessibility/accessibility-guidelines-requirements)
+* [The Conscious Style Guide](https://consciousstyleguide.com/)
 
 ### Use meaningful link text
 
@@ -104,6 +113,31 @@ Use                                                        | Avoid
 -----------------------------------------------------------|-------
 Read more information [about images](https://example.com)  | For more info on images, [click here](https://example.com)
 
+### Link at the end of sentences in sentence case
+
+Readers often scan through text looking for links and other important information.
+Having links in the middle of sentences can make them harder to parse.
+
+Put links at the end of sentences and keep them in sentence case.
+
+Use                                                                     | Avoid 
+----------------------------------------------------------------------- |-------
+To learn how to set it up, read about [services](https://example.com).  | Reading about [Services](https://example.com) shows you how to set it up.
+For more information, see how to [configure apps](https://example.com). | For more information, see [Configure apps](https://example.com).
+
+### Minimize distractions
+
+Adding links can often provide helpful context.
+It's a great way to offer additional information for those who want it,
+while letting those who know the concept skip past.
+But having many links increases the chance readers leave the page and not return.
+
+Especially when writing how-to guides and procedures, try to minimize the number of links in the middle.
+Each link that's added gives another reason for the reader to not finish the article.
+
+If additional context is desired, add it in prerequisites at the start or next steps at the end.
+That way people can focus on completing the task.
+
 ### Include alt text
 
 When adding images and other visual elements to the docs,
@@ -117,6 +151,59 @@ In situations where the image is for decoration or repeats text that's already p
 use blank alternative text to show that.
 
 See the [proper format for images](./markup-format.md#images).
+
+<!-- vale Platform.condescending = NO -->
+### Aim for simple sentences
+
+Complex sentences make it harder for people to understand.
+Aim to keep sentences simple so people can comprehend them quickly.
+
+Part of this is keeping sentences short.
+Aim for an average length of 15 words per sentence, with 25 as the upper limit.
+Individual sentences should have no more than 40 words.
+
+It also means trying to use fewer clauses and not separating ideas by other ones.
+
+Use                                           | Avoid
+--------------------------------------------- |-------
+Your Node.js app requires a caching strategy. | Your app, which you run with Node.js, a caching strategy requires.
+
+It also means using simple words instead of more complex ones.
+The following table shows some examples:
+
+Use   | Avoid
+----- | -------------
+about | approximately
+buy   | purchase
+help  | assist
+to    | in order to
+use   | utilize
+
+For more on the reasons behind this,
+see Content Design London's [Readability Guidelines on clear language](https://readabilityguidelines.co.uk/clear-language/).
+
+### Use direct sentences
+
+You generally want be as direct as possible to keep the ideas simple.
+By avoiding overly wordy phrases, you help make it clearer what needs to be done.
+<!-- vale Platform.condescending = YES -->
+
+For example, try to avoid using sentences starting with `There is/are` or `It is` too often.
+While there are times when this makes sense, often you can rephrase the sentence to be more direct.
+Such phrases work well for rhythm and emphasis, but that is usually less important in technical writing.
+
+Similar arguments apply to passive sentences.
+Sometimes, they work well, such as when the subject would be `the system`
+or something else that doesn't help clarify things.
+But usually, making a verb active makes it clearer what it is about.
+
+Use                          | Avoid
+---------------------------- | ----------------------------------
+You must find a solution     | It is necessary to find a solution
+The app forwards requests    | It is the app that forwards requests
+You should follow four rules | There are four rules that should be observed
+Your requests are redirected | The system redirects your requests
+This is caused by            | The cause of this issue has to do with
 
 ## Format screenshots for sustainability
 
@@ -173,6 +260,22 @@ Use                                                                         | Av
 ----------------------------------------------------------------------------|-------
 It's a new key management service (KMS). You should use this KMS carefully. | It's a new KMS. You should use this KMS carefully.
 You have many service options, including Elasticsearch and Kafka.           | You have many service options, e.g. Elasticsearch, Kafka, etc.
+
+## Use the long form of commands
+
+The Platform.sh CLI has aliases for certain commands to make typing shorter.
+Some of these are semantically valid, but some might be confusing.
+
+Always use the long form of the command to show the entire context, including the namespace.
+Exception: `login` and `logout`.
+Both of these are clear enough without additional context and the `auth` namespace doesn't add value.
+So use the short form for them without `auth:`.
+
+Use                                                           | Avoid
+--------------------------------------------------------------|-------
+To see all available variables, run `platform variable:list`. | To see all available variables, run `platform var`.
+To get a list of users, run `platform user:list`.             | To get a list of users, run `platform users`.
+To login, run `platform login`.                               | To login, run `platform auth:login`.
 
 ## Use notes appropriately
 

@@ -10,25 +10,30 @@ description: |
 
 ## Shared Platform.sh configuration
 
-{{< guides/gatsby/headless-project name="WordPress" >}}
+{{% guides/gatsby/headless-project name="WordPress" %}}
 
 ### `.platform/services.yaml`
 
-{{< guides/gatsby/headless-services template="gatsby-wordpress" name="WordPress" >}}
+{{% guides/gatsby/headless-services template="gatsby-wordpress" name="WordPress" %}}
 
 ### `.platform/routes.yaml`
 
-{{< guides/gatsby/headless-routes template="gatsby-wordpress" name="WordPress" >}}
+{{% guides/gatsby/headless-routes template="gatsby-wordpress" name="WordPress" %}}
 
 ## WordPress
 
-{{< guides/gatsby/headless-backend name="WordPress" >}}
+{{% guides/gatsby/headless-backend name="WordPress" %}}
 
 ## Gatsby
 
-{{< guides/gatsby/headless-gatsby template="gatsby-wordpress" name="WordPress" >}}
+{{% guides/gatsby/headless-gatsby template="gatsby-wordpress" name="WordPress" %}}
 
-You can then modify [`gatsby-config.js`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/) to read from the backend WordPress container through the `wordpress` relationship defined above to configure the `baseUrl` attribute for `gatsby-source-wordpress`. The plugin requires you to define the `protocol`, which in this case is `http` due to the fact that WordPress content will be retrieved through an internal request to the backend container. Also, it is necessary to declare `hostingWPCOM: false`, as you will not be pulling data from a WordPress site hosted on wordpress.com. 
+You can then modify [`gatsby-config.js`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/)
+to read from the backend WordPress container through the `wordpress` relationship defined above
+to configure the `baseUrl` attribute for `gatsby-source-wordpress`.
+The plugin requires you to define the `protocol`,
+which in this case is `http` because WordPress content is retrieved through an internal request to the backend container.
+Also, you need to declare `hostingWPCOM: false` as you don't pull data from a WordPress site hosted at wordpress.com.
 
 {{< /guides/gatsby/headless-gatsby >}}
 
@@ -46,7 +51,7 @@ You can then modify [`gatsby-config.js`](https://www.gatsbyjs.com/docs/reference
 
 ## Deploy and post-install
 
-{{< guides/gatsby/headless-postinstall name="WordPress" >}}
+{{% guides/gatsby/headless-postinstall name="WordPress" %}}
 
 WordPress comes with an initial "Hello world" article, and it is not necessary to add any more content to the site.
 
@@ -58,12 +63,12 @@ With Gatsby now deployed and pulling content from a backend WordPress applicatio
 
 ### `applications.yaml`
 
-{{< guides/gatsby/headless-applicationsyaml name="WordPress" >}}
+{{% guides/gatsby/headless-applicationsyaml name="WordPress" %}}
 
 ### Multiple content sources
 
-{{< guides/gatsby/headless-multiplesources name="WordPress" >}}
+{{% guides/gatsby/headless-multiplesources name="WordPress" %}}
 
 ### Plan size
 
-{{< guides/gatsby/headless-plansize >}}
+{{% guides/gatsby/headless-plansize name="WordPress" %}}

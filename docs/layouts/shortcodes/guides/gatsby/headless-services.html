@@ -1,4 +1,0 @@
-<p>This file describes which <a href="/configuration/services.html">service containers</a> should be included in your project (i.e. a database). Gatsby does not require services by itself to deploy, but {{ .Get "name" }} will, and so you will see those service configurations in the shared file below: </p>
-
-{{ $file := printf "static/files/fetch/servicesyaml/%s" (.Get "template") }}
-{{ highlight ( readFile $file ) "yaml" ""}}

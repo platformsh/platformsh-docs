@@ -41,19 +41,15 @@ Once you have a machine user in place, you want to assign an API token to it.
 To get an API token:
 
 1. As the machine user, open the management console.
-1. Click your username to open a menu and select **Account**. 
-1. Go to the **API Tokens** tab.
-1. Click **Create API Token**.
-
+2. Open the user menu (your name or profile picture).
+3. Click **My profile**.
+4. Go to the **API Tokens** tab.
+5. Click **Create API Token**.
    ![The Create API Token button in the console](/images/management-console/api-tokens-new.png "0.6")
-
-1. Enter a name to identify your token in the future if you have multiple tokens ("CLI automated" is one example).
-
+6. Enter a name to identify your token in the future if you have multiple tokens.
    ![Creating an API token with the name 'CI tests'](/images/management-console/api-tokens-name.png "0.6")
-
-1. Click **Copy** to copy the token to your clipboard.
+7. Click **Copy** to copy the token to your clipboard.
    Make sure to store the key safely as you can't view the API token again.
-
    ![Viewing the API token after it's created](/images/management-console/api-tokens-view.png "0.6")
 
 ## Use the API token to authenticate the CLI
@@ -77,7 +73,7 @@ we urge you to use the `--no-wait` flag on any commands that may take more than 
 To allow the Platform.sh CLI to be run on an app container, such as via a cron hook, use the API token.
 The CLI is able to auto-detect the current project and environment.
 
-Set the token as the [top-level](/development/variables.md#top-level-environment-variables) environment variable `env:PLATFORMSH_CLI_TOKEN`
+Set the token as the [top-level](../variables/_index.md#top-level-environment-variables) environment variable `env:PLATFORMSH_CLI_TOKEN`
 either [through the management console](/administration/web/configure-environment.html#variables) or via the CLI, like so:
 
 ```bash
@@ -112,10 +108,11 @@ To run a cron only on the production environment, wrap it in an if-check on the 
 crons:
     backup:
         spec: '0 5 * * *'
-        cmd: |
-            if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-                platform backup:create --yes --no-wait
-            fi
+        commands:
+            start: |
+                if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
+                   platform backup:create --yes --no-wait
+                fi
 ```
 
 {{< note >}}

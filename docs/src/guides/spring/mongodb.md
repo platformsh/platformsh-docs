@@ -15,7 +15,7 @@ This guide only covers the *addition* of a MongoDB service configuration to an e
 
 ## 1. Add the MongoDB service
 
-In your [service configuration](../../configuration/services/_index.md), include MongoDB with a [valid supported version](/configuration/services/mongodb.md):
+In your [service configuration](../../add-services/_index.md), include MongoDB with a [valid supported version](../../add-services/mongodb.md):
 
 ```yaml
 dbmongo:
@@ -25,13 +25,13 @@ dbmongo:
 
 ## 2. Grant access to MongoDb through a relationship
 
-In your [app configuration](../../configuration/app/app-reference.md), use the service name `dbmongo` to grant the application access to MongoDB via a relationship:
+In your [app configuration](../../create-apps/app-reference.md), use the service name `dbmongo` to grant the application access to MongoDB via a relationship:
 
 {{< readFile file="src/registry/images/examples/full/mongodb.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 ## 3. Export connection credentials to the environment
 
-Connection credentials for services are exposed to the application container through the `PLATFORM_RELATIONSHIPS` environment variable from the deploy hook onward. Since this variable is a base64 encoded JSON object of all of your project's services, you'll likely want a clean way to extract the information specific to the databse into it's own environment variables that can be easily used by Spring. On Platform.sh, custom environment variables can be defined programmatically in a `.environment` file using `jq` to do just that:
+Connection credentials for services are exposed to the application container through the `PLATFORM_RELATIONSHIPS` environment variable from the deploy hook onward. Since this variable is a base64 encoded JSON object of all of your project's services, you'll likely want a clean way to extract the information specific to the database into it's own environment variables that can be used by Spring. On Platform.sh, custom environment variables can be defined programmatically in a `.environment` file using `jq` to do just that:
 
 ```text
 export SPRING_DATA_MONGODB_USERNAME=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".dbmongo[0].username"`
@@ -42,9 +42,43 @@ export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOut
 ```
 
 {{< note title="Tip" >}}
-Please check the [Spring Common Application properties](https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html#common-application-properties) and the  [Binding from Environment Variables](https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-external-config-relaxed-binding-from-environment-variables) to have access to more credentials options.
+
+{{% spring-common-props %}}
+
 {{< /note >}}
 
 ## 4. Connect to the service
 
 Commit that code and push. The application is ready and connected to a MongoDB instance.
+
+## Use Spring Data for MongoDB
+
+You can use [Spring Data MongoDB](https://spring.io/projects/spring-data-mongodb) to use MongoDB with your app.
+First, determine the MongoDB client using the [Java configuration reader library](https://github.com/platformsh/config-reader-java).
+
+```java
+import com.mongodb.MongoClient;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
+import sh.platform.config.Config;
+import sh.platform.config.MongoDB;
+
+@Configuration
+public class MongoConfig extends AbstractMongoConfiguration {
+
+    private Config config = new Config();
+
+    @Override
+    @Bean
+    public MongoClient mongoClient() {
+        MongoDB mongoDB = config.getCredential("database", MongoDB::new);
+        return mongoDB.get();
+    }
+
+    @Override
+    protected String getDatabaseName() {
+        return config.getCredential("database", MongoDB::new).getDatabase();
+    }
+}
+```

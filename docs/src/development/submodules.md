@@ -76,8 +76,8 @@ To fix this, you need to:
         url=git@bitbucket.org:myusername/mymodule.git
     ```
 
-2. Add the public key for the project from the project settings **Deploy Key** tab in the Platform.sh management console (see more about [private repositories](/development/private-repository.md)), which will allow our Git service to pull the module from the remote git service. This assumes you have configured the remote git repository to allow this by generating a private/public key pair. For example, see the [Bitbucket documentation](https://confluence.atlassian.com/bitbucket/use-ssh-keys-in-bitbucket-pipelines-847452940.html), [GitHub documentation](https://docs.github.com/en/developers/overview/managing-deploy-keys#deploy-keys), or [GitLab documentation](https://docs.gitlab.com/ee/user/project/deploy_keys/).
-
+2. Add the [project's public key to your remote Git repository](./private-repository.md#pull-code-from-a-private-git-repository).
+   This allows the Platform.sh Git service to pull the module from the remote Git service.
 
 ## Removing submodules
 
@@ -90,14 +90,14 @@ These steps are not specific to Platform.sh, but kept as a reference for Git so 
     $ git add .gitmodules
     ```
 
-3. Remove the submodule's configuration from `.git/config`.
+3. Remove the submodule configuration from `.git/config`.
 4. Remove the submodule from the repository (without trailing slash): 
 
     ```bash
     $ git rm --cached path_to_submodule
     ```
 
-5. Remove the submodule's files in `.git` from the repository  (without trailing slash): 
+5. Remove the submodule files in `.git` from the repository  (without trailing slash): 
 
     ```bash
     $ rm -rf .git/modules/path_to_submodule
@@ -109,7 +109,7 @@ These steps are not specific to Platform.sh, but kept as a reference for Git so 
     $ git commit -m "Removed submodule."
     ```
 
-7. Remove the submodule code locally, now untracked: 
+7. Remove the submodule code locally, now no longer tracked: 
 
     ```bash
     $ rm -rf path_to_submodule

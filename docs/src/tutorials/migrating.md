@@ -4,10 +4,10 @@ description: |
   Moving an already-built site to Platform.sh is generally straightforward. For the most part, the only part that will vary from one framework to another is the details of the Platform.sh configuration files.
 ---
 
-{{< description >}}
+{{% description %}}
 
 For more project-specific documentation,
-see the [featured frameworks](/frameworks/_index.md) or [project templates](/development/templates.md).
+see the [project templates](../development/templates.md).
 
 ## Preparation
 
@@ -23,15 +23,14 @@ and integrate them into your application's configuration.
 The details of that integration vary between systems.
 Be sure to see the appropriate project templates for recommended configurations.
 
-* [Go templates](/languages/go#project-templates)
-* [Java templates](/languages/java/_index.md#project-templates)
-* [Node.js templates](/languages/nodejs/_index.md#project-templates)
-* [PHP templates](/languages/php/_index.md#project-templates)
-* [Python templates](/languages/python#project-templates)
+* [Go templates](../languages/go.md#project-templates)
+* [Java templates](../languages/java/_index.md#project-templates)
+* [Node.js templates](../languages/nodejs/_index.md#project-templates)
+* [PHP templates](../languages/php/_index.md#project-templates)
+* [Python templates](../languages/python.md#project-templates)
 
 
-In the management console, click **+ Create project** to create a new Platform.sh project.
-When asked to select a template, pick **Create from scratch**.
+[Create a new project from scratch]({{% create-project-link scratch=true %}}).
 
 ## Push your code
 
@@ -59,7 +58,7 @@ git push -u platform main
 
 This pushes your repository's `main` branch to the Platform.sh `main` branch.
 Projects default to having the `main` branch as the default branch.
-You can change this when creating the project or [rename your default branch](../guides/general/default-branch.md) later.
+You can change this when creating the project or [rename your default branch](../environments/default-environment.md) later.
 
 When you push, a new environment is created using your code and the provided configuration files.
 The system flags any errors with the configuration it can find.
@@ -69,8 +68,8 @@ If any are flagged, correct the error and try again.
 
 You need to have a dump or backup of the database you wish to start from.
 The process is essentially the same for each type of persistent data service.
-See the [MySQL](/configuration/services/mysql/_index.md), [PostgreSQL](/configuration/services/postgresql.md),
-and [MongoDB](/configuration/services/mongodb.md) documentation as appropriate.
+See the [MySQL](../add-services/mysql/_index.md), [PostgreSQL](../add-services/postgresql.md),
+and [MongoDB](../add-services/mongodb.md) documentation as appropriate.
 
 ## Import your files
 
@@ -90,7 +89,7 @@ mounts:
 ```
 
 While using the CLI and rsync are the most common solutions for uploading files to mounts,
-you can also use [SCP](/development/access-site.md#scp).
+you can also use [scp](../development/access-site.md#scp).
 
 ### Platform.sh CLI
 

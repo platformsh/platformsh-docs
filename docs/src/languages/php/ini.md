@@ -4,7 +4,7 @@ weight: 4
 ---
 
 There are two ways to customize `php.ini` values for your application.
-The recommended method is to use the [`variables` property](/configuration/app/app-reference.m#variables)
+The recommended method is to use the [`variables` property](../../create-apps/app-reference.md#variables)
 of `.platform.app.yaml` to set `ini` values using the `php` prefix.
 For example, to increase the PHP memory limit you'd put the following in `.platform.app.yaml`:
 
@@ -14,7 +14,7 @@ variables:
         memory_limit: "256M"
 ```
 
-It's also possible to provide a custom `php.ini` file in the repository in the root of the application (where your `.platform.app.yaml` file is).
+It's also possible to provide a custom `php.ini` file in the repository in [your app root](../../create-apps/app-reference.md#root-directory).
 
 ```ini
 ; php.ini
@@ -38,7 +38,8 @@ or
 date.timezone = "Europe/Paris"
 ```
 
-Environment-specific `php.ini` configuration directives can be provided via environment variables separately from the application code. See the note in the [Environment variables](/development/variables.md#php-specific-variables) section.
+Environment-specific `php.ini` configuration directives can be provided via environment variables separately from the application code.
+See the note on [environment variables](../../development/variables/_index.md#php-specific-variables).
 
 ## Disabling functions
 
@@ -62,23 +63,23 @@ Naturally if your application does make use of any of these functions, it will f
 
 ## Default php.ini settings
 
-The default values for some frequently-modified `php.ini` settings are listed below.
+The default values for some frequently modified `php.ini` settings are listed below.
 
-* **memory_limit=128M**
-* **post_max_size=64M**
-* **upload_max_filesize=64M**
-* **display_errors=On**
+* `memory_limit=128M`
+* `post_max_size=64M`
+* `upload_max_filesize=64M`
+* `display_errors=On`
 
-    This value is on by default to ease setting up a project on Platform.sh. We strongly recommend providing a custom error handler in your application or setting this value to Off before you make your site live.
-* **zend.assertions=-1**
+    This value is on by default to ease setting up a project on Platform.sh. We strongly recommend providing a custom error handler in your application or setting this value to `Off` before you make your site live.
+* `zend.assertions=-1`
 
     Assertions are optimized out of existence and have no impact at runtime. You should have assertions set to `1` for your local development system.
-* **opcache.memory_consumption=64**
+* `opcache.memory_consumption=64`
 
-    This is the number of megabytes available for the opcache. Large applications with many files may want to increase this value.
-* **opcache.validate_timestamps=On**
+    This is the number of megabytes available for the OPcache. Large applications with many files may want to increase this value.
+* `opcache.validate_timestamps=On`
 
-    The opcache will check for updated files on disk. This is necessary to support applications that generate compiled PHP code from user configuration. If you are certain your application does not do so then you can disable this setting for a small performance boost.
+    The OPcache will check for updated files on disk. This is necessary to support applications that generate compiled PHP code from user configuration. If you are certain your application does not do so then you can disable this setting for a small performance boost.
 
 {{< note theme="warning" >}}
 We do not limit what you can put in your `php.ini` file, but many settings can break your application. This is a facility for advanced users.
