@@ -38,6 +38,8 @@ module:
     mounts:
         - source: "node_modules/mermaid/dist"
           target: "static/mermaid"
+        - source: "node_modules/alpinejs/dist"
+          target: "static/alpinejs"
         - source: "src"
           target: "content"
           lang: "en"
