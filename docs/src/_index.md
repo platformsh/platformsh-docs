@@ -17,7 +17,7 @@ Finally, you can also get tips for setting up your own **Development** workflow 
 
 ## Git Driven Infrastructure
 
-As a Platform as a Service, or PaaS, Platform.sh automatically manages everything your application needs to run.  That means you can, and should, view your infrastructure needs as part of your application, and version-control it as part of your application files.
+As a Platform as a Service, or PaaS, Platform.sh automatically manages everything your application needs to run.  That means you can, and should, view your infrastructure needs as part of your application and address them under version control.
 
 ### Infrastructure as code
 
