@@ -90,7 +90,7 @@ allowlist                                                | whitelist
 
 ### Resources for inclusive language
 
-Some guides to helping you make sure your writing is inclusive and accessible to everyone.
+Some guides to help you make sure your writing is inclusive and accessible to everyone.
 
 * [Mailchimp guide to writing for accessibility](https://styleguide.mailchimp.com/writing-for-accessibility/)
 * [Microsoft's ideas on writing for all abilities](https://docs.microsoft.com/en-us/style-guide/accessibility/writing-all-abilities)
@@ -102,12 +102,12 @@ Some guides to helping you make sure your writing is inclusive and accessible to
 
 To make your content as accessible as possible, the purpose of a link should be clear from its text alone.
 Avoid links with text like `click here`
-and instead try to include meaning inside the link itself.
+and instead, try to include meaning inside the link itself.
 
 Remember to use the [proper format for links](./markup-format.md#links)
 
 The supporting documentation for the Web Content Accessibility Guidelines
-offers an explanation of [why link purpose in the text alone is good](https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-link-only).
+explains [why link purpose in the text alone is good](https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-link-only).
 
 Use                                                        | Avoid 
 -----------------------------------------------------------|-------
@@ -130,7 +130,7 @@ For more information, see how to [configure apps](https://example.com). | For mo
 Adding links can often provide helpful context.
 It's a great way to offer additional information for those who want it,
 while letting those who know the concept skip past.
-But having many links increases the chance readers leave the page and not return.
+But having many links increases the chance that readers leave the page and don't return.
 
 Especially when writing how-to guides and procedures, try to minimize the number of links in the middle.
 Each link that's added gives another reason for the reader to not finish the article.
@@ -184,8 +184,8 @@ see Content Design London's [Readability Guidelines on clear language](https://r
 
 ### Use direct sentences
 
-You generally want be as direct as possible to keep the ideas simple.
-By avoiding overly wordy phrases, you help make it clearer what needs to be done.
+You generally want to be as direct as possible to keep the ideas simple.
+By avoiding overly wordy phrases, you help make clearer what needs to be done.
 <!-- vale Platform.condescending = YES -->
 
 For example, try to avoid using sentences starting with `There is/are` or `It is` too often.
@@ -239,8 +239,8 @@ Apply this even to negative contractions
 as there is some evidence people are less likely to skip the negative in `don't` than in `do not`.
 
 Avoid contractions that are uncommon or that might be confusing
-(such as making readings think something is a possessive rather than a verb).
-Make use to use `it's` only for a contraction of `it is`, not as a possessive.
+(such as making readers think something is a possessive rather than a verb).
+Use `it's` only for a contraction of `it is`, not as a possessive.
 
 Use                                    | Avoid 
 ---------------------------------------|-------
@@ -254,7 +254,7 @@ Too many abbreviations can be confusing to readers.
 Make sure to explain any abbreviations that might be unfamiliar the first time they're used.
 
 Avoid abbreviations for Latin terms, such as `i.e.`, `e.g.`, and `etc.`.
-as these aren't always understood correctly.
+as these are always understood correctly.
 
 Use                                                                         | Avoid 
 ----------------------------------------------------------------------------|-------
@@ -281,7 +281,7 @@ To login, run `platform login`.                               | To login, run `p
 
 Notes are pieces of information that stand outside the normal text flow.
 Use them for short ideas that aren't.
-Don't use too many in one place or they lose their value.
+Don't use too many notes in one place or they lose their value.
 
 There are three types of notes:
 
@@ -316,7 +316,7 @@ Some of the rules are enforced with [Vale](https://docs.errata.ai/vale/about), a
 
 Because writing style is subjective and no checking tool is perfect,
 the rules are mostly set to warnings rather than errors.
-So checks note when something might be wrong,
+So check notes when something might be wrong,
 but use your common sense and ignore them when appropriate.
 
 One exception is spelling, which returns errors.
