@@ -691,7 +691,7 @@ For each app container, only one cron job can run at a time.
 If a new job is triggered while another is running, the new job is paused until the other completes.
 To minimize conflicts, a random offset is applied to all triggers.
 The offset is a random number of seconds up to 5 minutes or the cron frequency, whichever is smaller.
-Crons are also paused while activities such as [backups](../../dedicated/overview/backups.md) are running.
+Crons are also paused while activities such as [backups](../dedicated/overview/backups.md) are running.
 The crons are queued to run after the other activity finishes.
 
 To run cron jobs in a timezone other than UTC, set the [timezone property](#top-level-properties).
@@ -702,12 +702,19 @@ Development environments are often used for a limited time and then abandoned.
 While it's useful for environments under active development to have scheduled tasks,
 unused environments don't need to run cron jobs.
 To minimize unnecessary resource use,
-crons are paused on Development environments with no deployments in 14 days.
+crons on environments with no deployments are paused.
+The following table shows how long without a deployment an environment goes before crons are paused:
 
-Development environments with deployments within the past 14 days have crons with the status `running`.
-You can see this in the management console
-and using the CLI by running `platform environment:info` and looking under `deployment_state`.
-If there haven't been any deployments in 14 days, the status is `paused`.
+| Plan             | Affected environments | Time before crons paused |
+| ---------------- | --------------------- | ------------------------ |
+| Development      | All                   | 4 days                   |
+| Live (Standard+) | Non-Production        | 14 days                  |
+
+Environments with deployments within the given time have crons with the status `running`.
+If there haven't been any deployments within the given time, the status is `paused`.
+
+You can see the status in the management console
+or using the CLI by running `platform environment:info` and looking under `deployment_state`.
 
 #### Restarting paused crons
 
