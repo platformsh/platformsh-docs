@@ -102,7 +102,7 @@ Some guides to help you make sure your writing is inclusive and accessible to ev
 
 To make your content as accessible as possible, the purpose of a link should be clear from its text alone.
 Avoid links with text like `click here`
-and instead, try to include meaning inside the link itself.
+and instead try to include meaning inside the link itself.
 
 Remember to use the [proper format for links](./markup-format.md#links)
 
@@ -185,7 +185,7 @@ see Content Design London's [Readability Guidelines on clear language](https://r
 ### Use direct sentences
 
 You generally want to be as direct as possible to keep the ideas simple.
-By avoiding overly wordy phrases, you help make clearer what needs to be done.
+By avoiding overly wordy phrases, you help make it clearer what needs to be done.
 <!-- vale Platform.condescending = YES -->
 
 For example, try to avoid using sentences starting with `There is/are` or `It is` too often.
@@ -254,7 +254,7 @@ Too many abbreviations can be confusing to readers.
 Make sure to explain any abbreviations that might be unfamiliar the first time they're used.
 
 Avoid abbreviations for Latin terms, such as `i.e.`, `e.g.`, and `etc.`.
-as these are always understood correctly.
+as these aren't always understood correctly.
 
 Use                                                                         | Avoid 
 ----------------------------------------------------------------------------|-------
@@ -281,7 +281,7 @@ To login, run `platform login`.                               | To login, run `p
 
 Notes are pieces of information that stand outside the normal text flow.
 Use them for short ideas that aren't.
-Don't use too many notes in one place or they lose their value.
+Don't use too many in one place or they lose their value.
 
 There are three types of notes:
 
@@ -316,7 +316,7 @@ Some of the rules are enforced with [Vale](https://docs.errata.ai/vale/about), a
 
 Because writing style is subjective and no checking tool is perfect,
 the rules are mostly set to warnings rather than errors.
-So check notes when something might be wrong,
+So automated checks show when something might be wrong,
 but use your common sense and ignore them when appropriate.
 
 One exception is spelling, which returns errors.
