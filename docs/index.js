@@ -60,9 +60,42 @@ app.get('/feedback/report.html', async (req, res) => {
 
   // Get all feedback submissions
   const [rows] = await connection.query("SELECT * FROM Feedback");
-  
-  const outputRows = rows
-    .map(({ date, url, feedback }) => `<tr><td>${new Date(date).toDateString()}</td><td>${url}</td><td>${feedback}</td></tr>\n`)
+
+  // Combine all feedback on a given page into one row
+  const rowsWithCountedFeedback = rows.reduce((result, item) => {
+    // Check if the accumulator already has the URL
+    const existing = result.find(x => x.url === item.url);
+
+    // If so, add the current vote to the running total
+    if (existing) {
+      if (item.feedback === "positive") {
+        if (existing.positiveFeedback) {
+          existing.positiveFeedback += 1
+        } else {
+          existing.positiveFeedback = 1
+        }
+      } else if (item.feedback === "negative") {
+        if (existing.negativeFeedback) {
+          existing.negativeFeedback += 1
+        } else {
+          existing.negativeFeedback = 1
+        }
+      }
+    } else { // Otherwise, add a new item to the list
+      if (item.feedback === "positive") {
+        item.positiveFeedback = 1
+      } else if (item.feedback === "negative") {
+        item.negativeFeedback = 1
+      }
+      delete item.id
+      result.push(item);
+    }
+    return result
+  }, [])
+
+  // Map each SQL row to an HTML table row
+  const outputRows = rowsWithCountedFeedback
+    .map(({ date, url, positiveFeedback, negativeFeedback }) => `<tr><td>${new Date(date).toDateString()}</td><td>${url}</td><td>${positiveFeedback || 0}</td><td>${negativeFeedback || 0}</td></tr>\n`)
     .join("\n");
 
   const html = `
@@ -88,7 +121,8 @@ app.get('/feedback/report.html', async (req, res) => {
             <tr>
               <th>Date</th>
               <th>URL</th>
-              <th>Feedback</th>
+              <th>Positive votes</th>
+              <th>Negative votes</th>
             </tr>
           </thhead>
           <tbody>
