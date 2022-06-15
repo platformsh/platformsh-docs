@@ -28,8 +28,8 @@ hooks:
 # The configuration of the application when it is exposed to the web.
 web:
     commands:
-      # Run (404) error handler 
-      start: node 404.js
+      # Run (404) error and feedback handler 
+      start: node index.js
     locations:
         '/':
             # The public directory of the application relative to its root.

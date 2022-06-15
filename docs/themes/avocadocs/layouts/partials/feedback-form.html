@@ -32,6 +32,10 @@
 </div>
 <script>
   function FeedbackForm() {
+    const currentUrl = location.protocol +
+        "//" +
+        location.host +
+        location.pathname
     return {
       feedbackSubmitted: false,
       feedback: "",
@@ -40,31 +44,35 @@
         location.pathname.replace(".html", ".md"),
       issueUrl:
         "https://github.com/platformsh/platformsh-docs/issues/new?template=improvements.yml&where_on_docs_platform_sh_should_be_changed=" +
-        location.protocol +
-        "//" +
-        location.host +
-        location.pathname +
+        currentUrl +
         "&title=%F0%9F%90%9B%20Issue%20on%20the%20page%20" +
         document.title.replace(" · Platform.sh Documentation", ""),
-      url: "",
       handleClick(event) {
-        fetch("/feedback/url.json")
-          .then((res) => res.json())
-          .then((data) => {
+        const title = event.target.getAttribute("title");
+
+        if (title === "Yes") this.feedback = "positive";
+        else if (title === "No") this.feedback = "negative";
+
+        fetch("/feedback",{
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            date: new Date().toISOString(),
+            url: currentUrl,
+            feedback: this.feedback
+          })
+        })
+          .then((res) => {
             this.feedbackSubmitted = true;
-            this.url = data.url;
-
-            const title = event.target.getAttribute("title");
-
-            if (title === "Yes") this.feedback = "positive";
-            else if (title === "No") this.feedback = "negative";
+            console.log(res)
           })
           .catch(
             (err) => {
               this.feedbackSubmitted = true;
               this.feedback = "error";
-            }
-          );
+            })
       },
     };
   }
