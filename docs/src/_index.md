@@ -25,7 +25,7 @@ Platform.sh covers not only all of your hosting needs but also most of your DevO
 
 You only need to write your code, including a few YAML files that specify your desired infrastructure, commit it to Git, and push.  You don't need to set up anything manually. The web server is already set up and configured, as is any database, search engine, or cache that you specify.
 
-Every branch you push can be made a fully independent environment &mdash; complete with your application code, a copy of your database, a copy of your search index, a copy of your user files, everything.
+Every branch you push can be made a fully independent environment&mdash;complete with your application code, a copy of your database, a copy of your search index, a copy of your user files, everything.
 Its automatically generated URL can be sent to stakeholders or automated CI systems.
 It really is "what would my site look like if I merged this to production?" every time.
 
