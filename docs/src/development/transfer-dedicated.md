@@ -4,7 +4,7 @@ weight: 13
 sidebarTitle: "Sync to Dedicated"
 ---
 
-Transferring data to and from [a Dedicated cluster](../../other/glossary.md#dedicated) slightly differs from the process on the Grid.
+Transferring data to and from [a Dedicated cluster](../other/glossary.md#dedicated) slightly differs from the process on the Grid.
 
 ## Back up your files
 
