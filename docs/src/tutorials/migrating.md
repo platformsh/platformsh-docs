@@ -27,7 +27,7 @@ Be sure to see the appropriate project templates for recommended configurations.
 * [Java templates](../languages/java/_index.md#project-templates)
 * [Node.js templates](../languages/nodejs/_index.md#project-templates)
 * [PHP templates](../languages/php/_index.md#project-templates)
-* [Python templates](../languages/python.md#project-templates)
+* [Python templates](../languages/python/_index.md#project-templates)
 
 
 [Create a new project from scratch]({{% create-project-link scratch=true %}}).
