@@ -280,7 +280,7 @@ To login, run `platform login`.                               | To login, run `p
 ## Use notes appropriately
 
 Notes are pieces of information that stand outside the normal text flow.
-Use them for short ideas that aren't.
+Use them for short ideas that aren't part of the main idea.
 Don't use too many in one place or they lose their value.
 
 There are three types of notes:
