@@ -1001,7 +1001,7 @@ blockquote p {
   font-size: 0.9rem;
 }
 
-.right-sidebar-wrapper h3 {
+.right-sidebar-wrapper h3, .responsive h3 {
   padding-top: 1rem;
   font-size: 1rem;
   font-weight: 300;
