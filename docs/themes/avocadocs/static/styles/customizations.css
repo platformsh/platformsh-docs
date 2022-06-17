@@ -1001,7 +1001,7 @@ blockquote p {
   font-size: 0.9rem;
 }
 
-.toc-wrapper h3 {
+.right-sidebar-wrapper h3 {
   padding-top: 1rem;
   font-size: 1rem;
   font-weight: 300;
@@ -1032,7 +1032,7 @@ blockquote p {
     grid-template-columns: minmax(20rem,80%) minmax(10rem,20%);
   }
 
-  .toc-wrapper {
+  .right-sidebar-wrapper {
     position: sticky;
     top: 84px;
     max-height: 100vh;
