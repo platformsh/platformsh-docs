@@ -19,7 +19,7 @@ aren't available between Development environments and Production/Staging environ
 So you don't see working buttons with those options in the management console.
 
 To transfer data between environments, backup your Production/Staging data and then synchronize Development data.
-See how to [backup and transfer data](../../development/transfer-dedicated.md#synchronizing-files-from-development-to-stagingproduction)
+See how to [back up and transfer data](../../development/transfer-dedicated.md#synchronize-files-from-development-to-stagingproduction)
 
 ## PHP
 
