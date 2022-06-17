@@ -73,7 +73,7 @@ you can invite other users to your organization and grant them the following per
 
 * **Billing** (`billing`):
   Add, remove and edit billing information.
-  Access invoices and vouchers.
+  Access invoices and vouchers. Users with this permission will receive the monthly invoice.
 * **Plans** (`plans`):
   Add, remove, and edit plans and plan options for your existing projects.
   (Change plan, change storage, change the number of environments, change the number of user licenses)
