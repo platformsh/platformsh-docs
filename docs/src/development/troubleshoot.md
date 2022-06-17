@@ -256,6 +256,25 @@ That means long-running cron jobs block a container from being shut down to make
 Make sure your custom cron jobs run quickly and properly.
 Cron jobs may invoke other services in unexpected ways, which can increase execution time.
 
+## Cache configuration
+
+A common source of performance issues is a misconfigured cache.
+The most common issue is not allowing the right cookies as part of the router cache.
+
+Some cookies, such as session cookies, need to be allowed,
+whereas others, such as marketing and analytics cookies,
+usually shouldn't be allowed to be part of the cache key.
+
+See more about [router cache](../define-routes/cache.md)
+and [cookie entry](../define-routes/cache.md#cookies).
+
+You also need to ensure that your application is sending the correct `cache-control` header.
+The router cache obeys whatever cache headers your application sends,
+so send it good ones.
+
+Static assets cache headers are set using the `expires` key in `.platform.app.yaml`.
+See the [`web.locations` documentation](../../create-apps/app-reference.md#locations) for more details.
+
 ## Language-specific troubleshooting
 
 For language-specific troubleshooting for your apps:

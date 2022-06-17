@@ -18,7 +18,7 @@ file=none
 highlight=false
 ---
 
-* Add the following to your `.platform.app.yaml` file:
+Add the following to your `.platform.app.yaml` file:
 
   ```yaml
   variables:

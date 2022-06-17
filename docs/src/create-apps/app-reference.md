@@ -206,6 +206,8 @@ web:
         # start: 'redis-cli flushall ; sleep infinity'
 ```
 
+See how to setup [alternate start commands on PHP](../languages/php/_index.md#alternate-start-commands).
+
 {{< note >}}
 
 Never "background" a start process using `&`.
@@ -219,8 +221,7 @@ Just run it as normal and allow the Platform.sh supervisor to manage it.
 
 On all containers other than PHP, the value for `start` should be treated as required.
 
-On PHP containers, it's optional and defaults to starting PHP-FPM
-(`/usr/sbin/php-fpm7.0` on PHP7 and `/usr/sbin/php5-fpm` on PHP5).
+On PHP containers, it's optional and defaults to starting PHP-FPM with `/usr/bin/start-php-app`.
 It can also be set explicitly on a PHP container in order to run a dedicated process,
 such as [React PHP](https://github.com/platformsh-examples/platformsh-example-reactphp)
 or [Amp](https://github.com/platformsh-examples/platformsh-example-amphp).
@@ -509,7 +510,7 @@ Flavors are language-specific.
 See what the build flavor is for your language:
 
 * [Node.js](../languages/nodejs/_index.md#dependencies)
-* [PHP](../languages/php/_index.md#build-flavor)
+* [PHP](../languages/php/_index.md#manage-dependencies)
 
 In all languages, you can also specify a flavor of `none` to take no action at all
 (which is the default for any language other than PHP and Node.js).

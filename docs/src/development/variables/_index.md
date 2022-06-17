@@ -178,18 +178,22 @@ such as enabling errors and configuring the Xdebug extension.
 
 To apply a setting to all environments or have a setting differ among multiple PHP containers in one project,
 specify the variables in the `.platform.app.yaml` file for your application.
-For more information, see how to [manage PHP settings](../../languages/php/_index.md#default-phpini-settings).
+For more information, see how to [manage PHP settings](../../languages/php/_index.md#customize-the-php-settings).
 
 ### Framework-specific variables
 
 For specific frameworks, you can implement logic to override global configurations with environment-specific variables.
+So you can use the same codebase and default settings on different environments, but still adapt the framework's behavior on any environment.
 
-The Drupal templates show examples of logic mapping variables to Drupal's configuration system.
+The Drupal templates show examples of overriding variables from Drupal's configuration system.
 You can apply similar logic for other frameworks.
 
-For [Drupal ](https://github.com/platformsh-templates/drupal9/blob/master/web/sites/default/settings.platformsh.php),
-any variable that begins with `drupalsettings:` or `drupal:` is mapped to the global `$settings` array, for low-level configuration.
-Any variable that begins with `drupalsettings:` is mapped to the global `$config` array,
-which is useful for overriding drupal's exportable configuration system.
+For Drupal 9:
+
+* To override a value in the global `$settings` array, use a [variable](../../development/variables/set-variables.md#create-environment-specific-variables) starting with `drupalsettings:` or `drupal:`.
+* To override a value in the global `$config` array, use a [variable](../../development/variables/set-variables.md#create-environment-specific-variables) starting with `drupalconfig:`.
+
 In this case, the variable name needs two colons, one for `drupalsettings:` and one for the name of the configuration object to override.
 For example, a variable named `drupalsettings:system.site:name` overrides the `name` property of the `system.site` configuration object.
+
+See details of implementation [for Drupal 9](https://github.com/platformsh-templates/drupal9/blob/master/web/sites/default/settings.platformsh.php#L125-L162).
