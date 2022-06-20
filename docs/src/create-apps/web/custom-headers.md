@@ -5,7 +5,7 @@ description: Set custom headers for your static content such as custom content-t
 ---
 
 When your app responds to dynamic requests, it can generate headers on the fly.
-If you want to set headers for static content, you can do so in [your `web` configuration](../app-reference.md#web).
+To set headers for static content, add them in [your `web` configuration](../app-reference.md#web).
 
 You might want to do so to add custom content-type headers, limit what other sites can embed your content,
 or allow cross origin requests.
@@ -21,6 +21,7 @@ web:
     locations:
         "/":
             ...
+            # Apply rules to all static files (dynamic files get rules from your app)
             headers:
                 X-Frame-Options: SAMEORIGIN
 ```
@@ -79,6 +80,7 @@ web:
     locations:
         "/":
             ...
+            # Apply rules to all static files (dynamic files get rules from your app)
             headers:
                 Access-Control-Allow-Origins: *
 ```
