@@ -1,5 +1,5 @@
 @media (min-width: 768px) {
-  .responsive-toggle {
+  .responsive-toggle, .responsive .feedback-form {
     display: none;
   }
 }
@@ -8,6 +8,10 @@
 
   .responsive-toggle {
     font-size: 0.6rem !important;
+  }
+
+  .right-sidebar-wrapper .feedback-form {
+    display: none;
   }
 
 }
@@ -23,7 +27,7 @@
 
 @media (max-width: 768px) {
 
-  .responsive-toggle {
+  .responsive-toggle, .responsive .feedback-form {
     width: 100vw;
   }
 
