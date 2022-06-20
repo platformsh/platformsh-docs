@@ -6,10 +6,19 @@ description: See how to manage different Python versions in your Platform.sh con
 You may need to use a specific version of Python that isn't available in an app container for a different language.
 For example, a container might have a long-term support version, while you want the latest version.
 
-In such cases, use the [`pyenv` version manager](https://github.com/pyenv/pyenv)
+In such cases, use the [Pyenv version manager](https://github.com/pyenv/pyenv)
 to install the specific version you want to use.
 
-1. Add `pyenv` in a [`build` hook](../../create-apps/hooks/hooks-comparison.md#build-hook):
+1. Add your target Python version as a [variable](../../development/variables/_index.md):
+
+   ```yaml {location=".platform.app.yaml"}
+       variables:
+           env:
+               # Update for your desired Python version.
+               PYTHON_VERSION: "3.6.0"
+   ```
+
+2. Add Pyenv in a [`build` hook](../../create-apps/hooks/hooks-comparison.md#build-hook):
 
    ```yaml {location=".platform.app.yaml"}
    hooks:
@@ -17,45 +26,44 @@ to install the specific version you want to use.
            # Exit the hook on any failure
            set -e
 
-           # Pyenv environment variables
-           export PYENV_VERSION=3.6.0
-           export PYENV_ROOT="$PLATFORM_CACHE_DIR/.pyenv"
-           export PATH="$PYENV_ROOT/bin:$PATH"
-
-           # Clone Pyenv to the $PLATFORM_CACHE_DIR
+           # Clone Pyenv to the build cache if not present
            if [ ! -d "$PLATFORM_CACHE_DIR/.pyenv" ]; then
                mkdir -p $PLATFORM_CACHE_DIR/.pyenv
                git clone https://github.com/pyenv/pyenv.git $PLATFORM_CACHE_DIR/.pyenv
            fi
 
-           # Pyenv initialization
+           # Pyenv environment variables
+           export PYENV_ROOT="$PLATFORM_CACHE_DIR/.pyenv"
+           export PATH="$PYENV_ROOT/bin:$PATH"
+
+           # Initialize Pyenv
            if command -v pyenv 1>/dev/null 2>&1; then
                eval "$(pyenv init --path)"
            fi
 
-           # Install the desired python version
+           # Install desired Python version
            mkdir -p $PLATFORM_CACHE_DIR/.pyenv/versions
-           if [ ! -d "$PLATFORM_CACHE_DIR/.pyenv/versions/$PYENV_VERSION" ]; then
-               pyenv install $PYENV_VERSION
+           if [ ! -d "$PLATFORM_CACHE_DIR/.pyenv/versions/$PYTHON_VERSION" ]; then
+               pyenv install $PYTHON_VERSION
            fi
 
-           # Pyenv set global python version
-           pyenv global $PYENV_VERSION
+           # Set global Python version
+           pyenv global $PYTHON_VERSION
 
-           # Copy the .pyenv directory to $PLATFORM_APP_DIR
+           # Copy Pyenv directory to runtime directory
            cp -R $PLATFORM_CACHE_DIR/.pyenv $PLATFORM_APP_DIR
 
-           # Pyenv rehash shims
+           # Rehash Pyenv for new (runtime) location
            PYENV_ROOT="$PLATFORM_APP_DIR/.pyenv" $PLATFORM_APP_DIR/.pyenv/bin/pyenv rehash
    ```
 
-2. Update the `$PATH` variable in the ['.environment' file](../../development/variables/set-variables.md#set-variables-via-script):
+3. Update the `$PATH` variable in the ['.environment' file](../../development/variables/set-variables.md#set-variables-via-script):
 
     ```yaml {location=".environment"}
     export PATH=/app/.pyenv/bin:/app/.pyenv/shims:$PATH
     ```
 
-Now your build hook should be able to use the specified version of Python.
+Now your build hook can use the specified version of Python.
 You can verify this by running `python --version`.
 
-The new version python will be reflected in the runtime environment as well.
+The new version of Python is also used in the runtime environment.

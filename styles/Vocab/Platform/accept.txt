@@ -80,13 +80,14 @@ Papertrail
 Pathauto
 Payara
 Pixelant
+plaintext
 pngcrush
 preprocessor
 preload(?:er|ing)?
 progs
 proxied
 Pthreads
-plaintext
+Pyenv
 Quarkus
 rebase
 recache
