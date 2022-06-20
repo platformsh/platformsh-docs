@@ -248,7 +248,6 @@ Some noteworthy settings are:
 | `opcache.memory_consumption` | `64` | This is the number of megabytes available for [the OPcache](./tuning.md#opcache-preloading). Increase this value for large applications with many files.|
 | `opcache.validate_timestamps` | `On` | [The OPcache](./tuning.md#opcache-preloading) checks for updated files on disk. This is necessary to support applications that generate compiled PHP code from user configuration. If you are certain your application does not do so then you can disable this setting for a small performance boost. |
 
-
 ### Customize the PHP settings
 
 There are two ways to customize PHP values for your application.
@@ -363,7 +362,7 @@ To leverage FFI:
 
 3. If you are running FFI from the command line,
     enable OPcache for command line scripts in addition to the preloader.
-    The standard pattern for the command would be `php -d opcache.preload="<YOUR_PRELOAD_SCRIPT>.php" -d opcache.enable_cli=true <YOUR_CLI_SCRIPT>.php`.
+    The standard pattern for the command would be `php -d opcache.preload="<YOUR_PRELOAD_SCRIPT>.php" -d opcache.enable_cli=true <YOUR_CLI_SCRIPT>.php`
 
 See [complete working examples for C and Rust](https://github.com/platformsh-examples/php-ffi).
 

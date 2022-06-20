@@ -273,7 +273,7 @@ The router cache obeys whatever cache headers your application sends,
 so send it good ones.
 
 Static assets cache headers are set using the `expires` key in `.platform.app.yaml`.
-See the [`web.locations` documentation](../../create-apps/app-reference.md#locations) for more details.
+See the [`web.locations` documentation](../create-apps/app-reference.md#locations) for more details.
 
 ## Language-specific troubleshooting
 

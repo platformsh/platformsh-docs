@@ -82,8 +82,8 @@ as the preload script may change the necessary configuration here.
 {{< /note >}}
 
 To get started with configuration, see:
-- [`opcache.max_accelerated_files`](#set-opcache.max_accelerated_files)
-- [`opcache.memory_consumption`](#set-opcache.memory_consumption)
+- [`opcache.max_accelerated_files`](#set-opcache_max_accelerated_files)
+- [`opcache.memory_consumption`](#set-opcache_memory_consumption)
 
 #### Set `opcache.max_accelerated_files`
 
