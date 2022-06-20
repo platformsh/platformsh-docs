@@ -1,149 +1,89 @@
 ---
-title: "Transferring data to and from a Dedicated cluster"
+title: "Transfer data to and from a Dedicated cluster"
 weight: 13
-sidebarTitle: "Syncing to Dedicated"
+sidebarTitle: "Sync to Dedicated"
 ---
 
-## Backing up staging and production files
+Transferring data to and from [a Dedicated cluster](../other/glossary.md#dedicated) slightly differs from the process on the Grid.
 
-Platform.sh automatically creates a backup of the staging and production instances on a Dedicated cluster every six hours.
-However, those are only useful for a full restore of the environment and can only be done by the Platform.sh team.
-At times, you'll want to make a manual backup yourself.
+## Back up your files
 
-To create a manual ad-hoc backup of all files on the staging or production environment, use the standard `rsync` command.
+Platform.sh automatically creates backups of the Staging and Production environments of a Dedicated cluster every six hours.
+These are only useful to fully restore an environment and are managed by the support team.
 
-```bash
-rsync -avzP <USERNAME>@<CLUSTER_NAME>.ent.platform.sh:pub/static/ pub/static/
-```
-
-That will copy all files from the `pub/static` directory on the production instance to the `pub/static` directory,
-relative to your local directory where you're running that command.
-
-## Backing up the staging and production database
-
-To backup your database to your local system, you need to get the database credentials to use.
-
-First, login to the cluster and run the following command:
+You can make a manual local backup yourself by downloading data from your environment to your local system by running the following command:
 
 ```bash
-echo $PLATFORM_RELATIONSHIPS | base64 --decode | json_pp
+platform scp --project <PROJECT_ID> --environment <ENVIRONMENT> -r remote:<DIRECTORY_TO_SYNCHRONIZE> <LOCAL_DIRECTORY>
 ```
 
-Which should give a JSON output containing something like this:
+This command copies all files from the `<DIRECTORY_TO_SYNCHRONIZE>` in the environment you want to back up
+to your `<LOCAL_DIRECTORY>`.
+Before running the command, make sure that you don't overwrite local data (or do a backup first).
 
-```json
-"database" : [
-      {
-         "path" : "main",
-         "service" : "mysqldb",
-         "rel" : "mysql",
-         "host" : "database.internal",
-         "ip" : "246.0.80.64",
-         "scheme" : "mysql",
-         "cluster" : "jyu7wavyy6n6q-main-7rqtwti",
-         "username" : "user",
-         "password" : "",
-         "query" : {
-            "is_master" : true
-         },
-         "port" : 3306
-   }
-]
-```
+## Back up your database
 
-The part you want is the user, password, and "path", which means the DB name.
-Ignore the rest.
-
-Now, run the following command on your local computer:
+To back up your database, adapt and run the following command on your local computer:
 
 ```bash
-ssh <USERNAME>@<CLUSTER_NAME>.ent.platform.sh 'mysqldump --single-transaction -u <user> -p<pass> -h localhost <dbname> | gzip' > database.gz
+platform db:dump --gzip --project <PROJECT_ID> --environment <ENVIRONMENT> 
 ```
 
-That runs a `mysqldump` command on the server, compress it using `gzip`,
-and stream the output to a file named `database.gz` on your local computer.
+For more backup options and examples, see how to [export data from an SQL database](../add-services/mysql/_index.md#exporting-data).
 
-(If you'd prefer, `bzip2` and `xz` are also available.)
+## Synchronize files from Development to Staging/Production
 
-## Synchronizing files from development to staging/production
+To transfer data into either the Staging or Production environment,
+download data from your Development environment to your local system and from there to your Production/Staging environment.
 
-To transfer data into either the staging or production environments,
-you can either download it from your Platform.sh development environment to your local system first
-or transfer it directly between environments using SSH-based tools (such as SCP, rsync).
+{{< note theme="warning" >}}
 
-First, set up [SSH forwarding](./ssh/ssh-keys.md#forwarding-keys-by-default) by default for Platform.sh domains.
+Be aware that synchronizing files is a destructive operation that overwrites data.
+[Back up your Staging/Production files first](#back-up-your-files).
 
-Then run `platform ssh` with the production branch checked out to connect to the default development environment.
-Files are the easier data to transfer, and can be done with `rsync`.
+{{< /note >}}
 
-```bash
-rsync -avzP pub/static/ <USERNAME>@<CLUSTER_NAME>.ent.platform.sh:pub/static/
-```
+1. To download data from your Development environment to your local system, adapt the following command:
 
-Replace `pub/static` with the path to your files on system, such as `web/sites/default/files/`.
-Note that rsync is very picky about trailing `/` characters.
-Consult the rsync documentation for more that can be done with that command.
+   ```bash
+   platform scp --project <PROJECT_ID> --environment <DEVELOPMENT_ENVIRONMENT> -r remote:<DIRECTORY_TO_SYNCHRONIZE> <LOCAL_DIRECTORY>
+   ```
 
-## Synchronizing the database from development to staging/production
+2. To copy the local directory to the remote Staging/Production mount, adapt the following command:
 
-The database can be copied directly from the development environment to staging or production,
-but doing so requires noting the appropriate credentials first on both systems.
+   ```bash
+   platform scp --project <PROJECT_ID> --environment <TARGET_ENVIRONMENT> -r <LOCAL_DIRECTORY> remote:<DIRECTORY_TO_SYNCHRONIZE>
+   ```
 
-First, log in to the production environment over SSH:
+## Synchronize a database from Development to Staging/Production
 
-```bash
-ssh <USERNAME>@<CLUSTER_NAME>.ent.platform.sh
-```
-
-Once there, you can look up database credentials by running:
-
-```bash
-echo $PLATFORM_RELATIONSHIPS | base64 --decode | json_pp
-```
-
-Which should give a JSON output containing something like this:
-
-```json
-{
-   "database" : [
-      {
-         "password" : "abc123",
-         "username" : "projectname",
-         "path" : "projectname",
-         "port" : "3306",
-         "scheme" : "mysql",
-         "host" : "127.0.0.1",
-         "query" : {
-            "is_master" : true,
-            "compression" : true
-         }
-      }
-   ]
-}
-```
-
-The part we want is the host, user, password, and the "path", which is the database name.
-Ignore the rest.
-
-Now, in a separate terminal log in to the development instance using `platform ssh`.
-Run the same `echo` command as above to get the credentials for the database on the development instance.
-(The JSON will be slightly different but again we're only interested in the user, password, host, and "path"/database name).
-
-With the credentials from both databases,
-we can construct a command that will export data from the development server
-and write it directly to the Dedicated cluster's server.
-
-```bash
-mysqldump -u <dev_user> -p<dev_password> -h <dev_host> <dev_dbname> --single-transaction | ssh -C <USERNAME>@<CLUSTER_NAME>.ent.platform.sh 'mysql -u <prod_user> -p<prod_password> -h <prod_host> <prod_dbname>'
-```
-
-That dumps all data from the database as a stream of queries
-that get run on the production database without ever having to create an intermediary file.
-The `-C` on the SSH command tells SSH to compress the connection to save time.
+To synchronize a database into either the Staging or Production environment,
+export the database from your Development environment to your local system and from there to your Staging/Production environment.
 
 {{< note theme="warning" >}}
 
 Be aware that this is a destructive operation that overwrites data.
-Backup first.
+[Back up your Staging/Production database first](#back-up-your-database).
 
 {{< /note >}}
+
+To synchronize your database:
+
+1. Export the Development database to your local computer:
+
+   ```bash
+   platform db:dump --project <PROJECT_ID> --environment <DEVELOPMENT_ENVIRONMENT> --file=dump.sql
+   ```
+
+   For more backup options and examples, see how to [export data from an SQL database](../add-services/mysql/_index.md#exporting-data).
+
+2. Import the Development database dump file into the remote Staging/Production database:
+
+   ```bash
+   platform sql --project <PROJECT_ID> --environment <TARGET_ENVIRONMENT> < dump.sql
+   ```
+
+
+## What's next?
+
+For more granular connection options, see [SSH connection details](../development/ssh/_index.md#get-ssh-connection-details).

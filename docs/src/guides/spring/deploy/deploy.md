@@ -11,7 +11,7 @@ description: |
 
 {{< guides/deployment >}}
 
-{{< guides/data-migration />}}
+{{% guides/data-migration /%}}
 
 Go forth and Deploy (even on Friday)!
 

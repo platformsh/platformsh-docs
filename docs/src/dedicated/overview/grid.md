@@ -1,22 +1,43 @@
 ---
-title: "Differences from Platform.sh on the Grid"
+title: "Differences between Production and Development environments"
 weight: 5
-sidebarTitle: "Differences from the Grid"
-description: |
-  When using Platform.sh Dedicated, a few configuration options and tools function differently from Platform.sh on the Grid, or the Development Environment.
+sidebarTitle: "Differences in development"
+description: See the differences between your Production/Staging environments (which are Dedicated) and your Development environments (which are Grid environments).
 ---
 
-{{< description >}}
+With Platform.sh Dedicated plans, your Production and Staging environments are dedicated virtual machines,
+while your Development environments run on the Grid, meaning shared redundant infrastructure.
+This difference means a few configuration options and tools function differently in the different environments.
+
+These differences should be gone with [Dedicated Gen 3](../../dedicated-gen-3/overview.md).
+
+## Syncing data between environments
+
+Because of the differences between Dedicated and Grid environments,
+basic [syncs](../../other/glossary.md#sync) and [merges](../../other/glossary.md#merge)
+aren't available between Development environments and Production/Staging environments.
+So you don't see working buttons with those options in the management console.
+
+To transfer data between environments, backup your Production/Staging data and then synchronize Development data.
+See how to [back up and transfer data](../../development/transfer-dedicated.md#synchronize-files-from-development-to-stagingproduction)
 
 ## PHP
 
-Platform.sh Dedicated comes with `pdo`, `apcu`, `curl`, `gd`, `imagick`, `ldap`, `mcrypt`, `mysqli`, `redis`, `soap`, and `opcache` extensions enabled by default.
+### Extensions
 
-In addition, we can enable `enchant`, `gearman`, `geoip`, `gmp`, `http`, `pgsql`, `pinba`, `pspell`, `recode`, `tidy`, `xdebug`, `oci8` (PHP5.6 only), or any extension with a pre-existing package in the Debian Apt repository if desired.  Please request such extensions via a ticket.
+The following table shows all of the extensions that are enabled by default in each PHP version.
+To add any other extension with a pre-existing package in the Debian Apt repository,
+open a support ticket.
 
-Custom `php.ini` files are not supported on Platform.sh Dedicated. However, all PHP options that can be changed at runtime are still available. For example the memory limit can be changed using `ini_set('memory_limit','1024M');`
+{{< php-extensions architecture="dedicated" >}}
 
-PHP options that can we can change via support ticket include:
+### Configuration options
+
+You can't use custom `php.ini` files on your Production/Staging environments.
+You can still change all PHP options that can be changed at runtime.
+For example, change the memory limit using `ini_set('memory_limit','1024M');`
+
+For other PHP options, such as the following, open a support ticket:
 
 * `max_execution_time`
 * `max_input_time`
@@ -28,46 +49,54 @@ PHP options that can we can change via support ticket include:
 
 ### Xdebug
 
-Platform.sh runs a second PHP-FPM process on all Dedicated clusters that has [Xdebug](https://xdebug.org/) enabled, but is only used if a request includes the appropriate Xdebug header.  That means it's safe to have Xdebug "always on", as it will be ignored on most requests.
+All Dedicated clusters that have [Xdebug](../../languages/php/xdebug.md) enabled have a second PHP-FPM process.
+This second process is used only when requests include the correct Xdebug key in a header.
+So you can keep Xdebug always on and not worry about performance issues as it's ignored on most requests.
 
-To obtain the key you will need to file a ticket to have our support team provide it for you.  Staging and Production have separate keys.  Set that key in the Xdebug helper for your browser, and then whenever you have Xdebug enabled the request will use the alternate development PHP-FPM process with Xdebug.
+To obtain the key, open a support ticket.
+Staging and Production environments have separate keys.
+Set that key in the Xdebug helper for your browser.
+Then whenever you have Xdebug enabled, the request uses the alternate development PHP-FPM process with Xdebug.
 
-## Cron tasks may be interrupted by deploys
+## Solr
 
-On Platform.sh Grid projects, a running cron task will block a deployment until it is complete.  On Platform.sh Dedicated, however, a deploy will terminate a running cron task.
+On Grid environments, [Solr](../../add-services/solr.md) runs as a standalone instance.
+On Dedicated environments, it runs as [SolrCloud](https://solr.apache.org/guide/6_6/solrcloud.html):
+a cluster of Solr servers to ensure high availability.
+This shouldn't affect you most of the time, but may influence certain advanced use cases.
 
-Specifically, when a deploy to either Production or Staging begins, any active cron tasks are sent a `SIGTERM` message so that they can terminate gracefully if needed.  If they are still running 2 seconds later a `SIGKILL` message will be sent to forcibly terminate the process.
+## Cron tasks interrupted by deploys
 
-For that reason, it's best to ensure your cron tasks can receive a SIGTERM message and terminate gracefully.
+How [cron tasks](../../create-apps/app-reference.md#crons) interact with deploys changes based on the environment.
+
+On Grid environments, a running cron task blocks a deploy until the cron is complete.
+On Dedicated environments, a deploy terminates a running cron task.
+
+Specifically, when a deploy to either Production or Staging begins,
+any active cron tasks are sent a `SIGTERM` message so that they can terminate gracefully.
+If they're still running 2 seconds later, a `SIGKILL` message is sent to forcibly terminate the process.
+
+So it's best to ensure your cron tasks can receive a `SIGTERM` message and terminate gracefully.
 
 ## Configuration & change management
 
-Some configuration parameters for Dedicated clusters cannot be managed via the YAML configuration files, and for those parameters you will need to open a support ticket to have the change applied.  Further, the `.platform/routes.yaml` and `.platform/services.yaml` files do not automatically apply.  Those will apply on the development environments but not on the staging and production instances.  Any existing service upgrades or new service additions to staging and production will require a support ticket.
+You can't manage some configuration settings via YAML configuration files on Dedicated environments.
+In these cases, you need to open a support ticket.
+You can have some settings different between Staging and Production environments.
+It's assumed you want the settings the same, unless you state otherwise in the ticket.
 
-It is possible to run different configurations for some (but not all) options between staging and production, such as cron tasks.  By default we will make configuration changes to both instances unless you request otherwise.
+The following settings require a support ticket:
 
-Specifically:
-
-* Cron commands
-* Worker instances
-* Service versions and configuration (everything in `.platform/services.yaml`)
-* Route, domain, and redirect configuration (everything in `.platform/routes.yaml`)
-* Application container version
-* Additional PHP extensions
-* Web server configuration (the web.locations section of `.platform.app.yaml`)
-
-### Cron
-
-Cron tasks may run up to once per minute (They are limited to once every 5 minutes on Platform.sh Professional plans).
-
-Cron tasks are always interpreted in UTC time.
+* [Worker instances](../../create-apps/app-reference.md#workers)
+* [Service configuration](../../add-services/_index.md)
+* Relationships among services and apps
+* Plan upsizing
+* Increasing storage
+* Allocating storage among mounts and services
+* [PHP extensions](../../languages/php/extensions.md)
+* Web server configuration (the [`web.locations` section of your app configuration](../../create-apps/app-reference.md#locations))
 
 ## Logs
 
-Logs for Dedicated clusters are available at:
-
-```bash
-/var/log/platform/<application-name>/
-```
-
-This folder contains access, application, cron, error, deployment, and router (redirects and cache hits) logs.
+Dedicated environments have a slightly different location for [container logs](../../increase-observability/logs.md).
+The difference shouldn't be noticeable if you use the CLI.

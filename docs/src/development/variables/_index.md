@@ -7,7 +7,7 @@ keywords:
   - environment variables
 ---
 
-{{< description >}}
+{{% description %}}
 
 In this way, your app has additional information, such as database credentials, the host or port it can use, and which server to connect to.
 

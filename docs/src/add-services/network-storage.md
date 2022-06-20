@@ -25,7 +25,7 @@ If your app does this regularly, a local mount is more effective.
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="network-storage" status="supported" environment="grid" >}} | {{< image-versions image="network-storage" status="supported" environment="dedicated" >}} | {{< image-versions image="network-storage" status="supported" environment="dedicated-gen-3" >}} |
 
-{{< image-versions-legacy "network-storage" >}}
+{{% image-versions-legacy "network-storage" %}}
 
 This service is the Platform.sh network storage implementation, not to a version of a third-party application.
 

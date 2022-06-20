@@ -13,7 +13,7 @@ You can deploy your PHP apps on Platform.sh.
 |----------------------------------|---------------|
 |  {{< image-versions image="php" status="supported" environment="grid" >}} | {{< image-versions image="php" status="supported" environment="dedicated" >}} |
 
-{{< image-versions-legacy "php" >}}
+{{% image-versions-legacy "php" %}}
 
 Note that from PHP 7.1, the images use the Zend Thread Safe (ZTS) version of PHP.
 
@@ -222,11 +222,9 @@ markdownify=false
 
 {{< /codetabs >}}
 
-TODO: Uncomment the following and add %
-
-<!-- {{ config-reader }}
+{{% config-reader %}}
 [`platformsh/config-reader` Composer library](https://github.com/platformsh/config-reader-php)
-{{ /config-reader}} -->
+{{% /config-reader%}}
 
 ## PHP settings
 

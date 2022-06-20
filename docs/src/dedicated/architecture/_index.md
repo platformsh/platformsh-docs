@@ -7,7 +7,7 @@ description: |
   Platform.sh Dedicated clusters are launched into a Triple Redundant configuration consisting of 3 virtual machines (VMs). This is an N+1 configuration that is sized to withstand the total loss of any one of the 3 members of the cluster without incurring any downtime.
 ---
 
-{{< description >}}
+{{% description %}}
 
 Each instance hosts the entire application stack, allowing this architecture superior fault tolerance to traditional N-Tier installations. Moreover, the Cores assigned to production are solely for production.
 

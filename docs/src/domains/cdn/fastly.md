@@ -7,7 +7,7 @@ aliases:
   - "/golive/steps/fastly.html"
 ---
 
-{{< description >}}
+{{% description %}}
 
 A Fastly CDN is included for Platform.sh Dedicated instances.
 Platform.sh does not offer an integrated CDN on self-service Grid projects at this time,

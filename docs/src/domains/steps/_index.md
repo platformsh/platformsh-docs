@@ -7,7 +7,7 @@ description: |
 layout: single
 ---
 
-{{< description >}}
+{{% description %}}
 
 {{< note >}}
 The order of operations is not really important, but if you are migrating a site from an existing provider,

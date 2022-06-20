@@ -4,7 +4,7 @@ description: |
   Platform.sh supports deploying .NET applications by allowing developers to define a build process and pass its variables to the .NET Core build environment.
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## Supported versions
 
@@ -12,7 +12,7 @@ description: |
 |----------------------------------|---------------|
 |  {{< image-versions image="dotnet" status="supported" environment="grid" >}} | {{< image-versions image="dotnet" status="supported" environment="dedicated" >}} |
 
-{{< image-versions-legacy "dotnet" >}}
+{{% image-versions-legacy "dotnet" %}}
 
 {{% language-specification type="dotnet" display_name=".Net Core" %}}
 
@@ -95,7 +95,4 @@ web:
 
 ## Project templates
 
-Platform.sh offers project templates for .NET Core applications using the structure described above.
-They can be used as a starting point or reference for building your own website or web application.
-
-{{< repolist lang="dotnet" >}}
+{{< repolist lang="dotnet" displayName=".NET Core" >}}

@@ -5,7 +5,7 @@ description: "Platform.sh expects you to use a CNAME for all DNS records.  Howev
 sidebarTitle: "DNS and CNAMEs"
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## Why CNAMEs?
 
@@ -43,9 +43,11 @@ Many DNS providers have found a way around the CNAME-on-Apex limitation.  Some D
 
 If you want your site to be accessible with `https://example.com` and not only `https://www.example.com` this is the best way to do so.  Examples of such workaround records include:
 
+<!-- vale Platform.condescending = NO -->
  * CNAME Flattening at [CloudFlare](https://www.cloudflare.com/)
  * ANAME at [easyDNS](https://www.easydns.com/), [DNS Made Easy](http://www.dnsmadeeasy.com/), or [Name.com](https://www.name.com/)
- * ALIAS at [DNSimple](https://dnsimple.com/) or [Cloudns](https://www.cloudns.net/)
+ * ALIAS at [DNSimple](https://dnsimple.com/) or [ClouDNS](https://www.cloudns.net/)
+<!-- vale Platform.condescending = YES -->
 
 Platform.sh recommends ensuring that your DNS Provider supports dynamic apex domains before registering your domain name with them.  If you are using a DNS Provider that does not support dynamic apex domains then you will be unable to use `example.com` with Platform.sh, and will need to use only `www.example.com` (or similar) instead.
 
@@ -55,12 +57,12 @@ If you are willing to make the `www.` version of your site the canonical version
 
 * [Namecheap](https://www.namecheap.com/support/knowledgebase/article.aspx/385/2237/how-do-i-set-up-a-url-redirect-for-a-domain)
 
-### (Alternate) Using a www redirection service
+### (Alternate) Using a `www` redirection service
 
 If your preferred registrar/DNS provider doesn't support either custom records or the apex domain forwarding options above, free services such as [WWWizer](http://wwwizer.com/) allow blind redirects and allow you to use a CNAME record to Platform.sh for `www.example.com` and an `A` record to their service at `example.com`, which will in turn send a redirect.
 
 {{< note >}}
-If using a redirection service, you must ensure that `http://example.com/` redirects to `http://www.example.com/`, not to `https://www.example.com/`.  (That is, the HTTP URL redirects to an HTTP URL, not to an HTTPS URL.)  Platform.sh will automatically redirect that request to the HTTPS itself.  Trying to change the protocol and domain in the same redirect will cause issues for Let's Encrypt and prevent the TLS certificate from being issued correctly.  The extra redirect adds only a millisecond or two to the first pageload only, and is imperceptible to most humans.
+If using a redirection service, you must ensure that `http://example.com/` redirects to `http://www.example.com/`, not to `https://www.example.com/`.  (That is, the HTTP URL redirects to an HTTP URL, not to an HTTPS URL.)  Platform.sh will automatically redirect that request to the HTTPS itself.  Trying to change the protocol and domain in the same redirect will cause issues for Let's Encrypt and prevent the TLS certificate from being issued correctly.  The extra redirect adds only a millisecond or two to the first page load only, and is imperceptible to most humans.
 {{< /note >}}
 
 ### (Alternate) Using A records

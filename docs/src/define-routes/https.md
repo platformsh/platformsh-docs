@@ -285,5 +285,5 @@ Also make sure that no conflicting DNS records exist for the domain.
 For example, a conflicting AAAA (IPv6) DNS record usually results in a `[HTTP01: The client lacks sufficient authorization]` error.
 
 If the certificate generation issue persists,
-you could also verify if an outage is currently ongoing on [let's encrypt's side](https://letsencrypt.status.io/).
+you could also verify if an outage is currently ongoing on [with Let's Encrypt](https://letsencrypt.status.io/).
 If that isn't the case, please open a support ticket.

@@ -57,9 +57,8 @@ In the same terminal, set the relevant environment variables:
 export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"
 export PORT=8888
 ```
-<!--vale off -->
+
 {{< /codetabs >}}
-<!--vale on -->
 
 
 ## 3. Run your app in inspect mode
@@ -93,9 +92,7 @@ In the same terminal as the previous step, run the following command:
 node --inspect <START_FILE>
 ```
 
-<!--vale off -->
 {{< /codetabs >}}
-<!--vale on -->
 
 
 Replace `<START_FILE>` with the file defined for [your app's `start` command](./_index.md#4-start-your-app).
@@ -157,9 +154,7 @@ In the **Run and Debug** tab, select `Attach` from the menu and click **Start De
 
 See more on [Node.js debugging in Visual Studio Code](https://code.visualstudio.com/docs/nodejs/nodejs-debugging).
 
-<!--vale off -->
 {{< /codetabs >}}
-<!--vale on -->
 
 Now when you load the site at your deployed URL (if debugging remote) or localhost (if debugging locally),
 the local debugger you've attached is called.
@@ -187,9 +182,7 @@ highlight=false
 
 Directly in your source files.
 
-<!--vale off -->
 {{< /codetabs >}}
-<!--vale on -->
 
 
 ## Other issues

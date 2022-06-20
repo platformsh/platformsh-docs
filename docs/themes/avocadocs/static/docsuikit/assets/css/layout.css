@@ -392,7 +392,6 @@ h3.sidebar__book-heading {
 
 .duik-sidebar__item {
   font-size: 14px;
-  font-weight: 600;
 }
 
 .duik-sidebar__item--second-level {
@@ -442,18 +441,25 @@ h3.sidebar__book-heading {
 @media (min-width: 768px) {
   .duik-content {
     /* top | right | bottom | left */
-    padding: 0rem 2rem 3rem 2rem;
+    padding: 0rem 1rem 3rem 2rem;
   }
 }
 
 @media (min-width: 992px) {
   .duik-content {
     /* top | right | bottom | left */
-    padding: 0rem 3rem 3rem 7rem;
+    padding: 0rem 2rem 3rem 7rem;
   }
 }
 
 @media (min-width: 1200px) {
+  .duik-content {
+    /* top | right | bottom | left */
+    padding: 0rem 2rem 3rem 3rem;
+  }
+}
+
+@media (min-width: 1600px) {
   .duik-content {
     /* top | right | bottom | left */
     padding: 0rem 7rem 3rem 7rem;

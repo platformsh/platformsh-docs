@@ -6,7 +6,7 @@ description: |
   Platform.sh has taken numerous steps to ensure GDPR compliance.
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## Measures
 

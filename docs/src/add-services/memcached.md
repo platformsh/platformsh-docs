@@ -6,7 +6,7 @@ description: |
 sidebarTitle: "Memcached"
 ---
 
-{{< description >}}
+{{% description %}}
 
 See the [Memcached documentation](https://memcached.org) for more information.
 
@@ -24,7 +24,7 @@ Both Memcached and Redis can be used for application caching. As a general rule,
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="memcached" status="supported" environment="grid" >}} | {{< image-versions image="memcached" status="supported" environment="dedicated" >}} | {{< image-versions image="memcached" status="supported" environment="dedicated-gen-3" >}} |
 
-{{< image-versions-legacy "memcached" >}}
+{{% image-versions-legacy "memcached" %}}
 
 ## Relationship
 

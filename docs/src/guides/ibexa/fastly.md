@@ -6,7 +6,7 @@ description: |
   Ibexa DXP is a "commercial extended" version of Ibexa OSS that includes, among other things, support for push-based purging on the Fastly CDN.
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## Remove Varnish configuration
 
@@ -27,7 +27,7 @@ In order to use Fastly, Varnish must be disabled:
 
 ## Setting up Ibexa DXP to use Fastly
 
-Ibexa DXP's documentation includes instructions on how to [configure Ibexa DXP for Fastly](https://doc.ibexa.co/en/latest/guide/cache/symfony_reverse_proxy/#use-varnish-or-fastly).
+Ibexa DXP's documentation includes instructions on how to [configure Ibexa DXP for Fastly](https://doc.ibexa.co/en/latest/guide/cache/symfony_reverse_proxy/#using-varnish-or-fastly).
 Follow the steps there to prepare Ibexa DXP for Fastly.
 
 ## Set credentials on Platform.sh

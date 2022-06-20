@@ -9,7 +9,7 @@ description: |
 
 ## Adding extensions
 
-All TYPO3 extensions can be installed and managed using Composer. Install them locally to update and commit changes to your `composer-lock.json` file. The build process will download the correct version on the committedd `composer.json` and `composer.lock` files, which should be committed to Git.
+All TYPO3 extensions can be installed and managed using Composer. Install them locally to update and commit changes to your `composer-lock.json` file. The build process will download the correct version on the committed `composer.json` and `composer.lock` files, which should be committed to Git.
 
 ```bash
 composer require friendsoftypo3/headless
@@ -25,7 +25,7 @@ Note that updating modules or core through the TYPO3 backend is not possible, as
 
 ## Why are there warnings in the install tool?
 
-The TYPO3 install tool doesn't yet fully understand when you are working on a cloud envirionment and may warn you that some folders are not writable.
+The TYPO3 install tool doesn't yet fully understand when you are working on a cloud environment and may warn you that some folders are not writable.
 
 Don't worry, your TYPO3 installation will be fully functional.
 

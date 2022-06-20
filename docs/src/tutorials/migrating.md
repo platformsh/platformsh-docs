@@ -4,10 +4,10 @@ description: |
   Moving an already-built site to Platform.sh is generally straightforward. For the most part, the only part that will vary from one framework to another is the details of the Platform.sh configuration files.
 ---
 
-{{< description >}}
+{{% description %}}
 
 For more project-specific documentation,
-see the [project templates](/development/templates.md).
+see the [project templates](../development/templates.md).
 
 ## Preparation
 
@@ -23,11 +23,11 @@ and integrate them into your application's configuration.
 The details of that integration vary between systems.
 Be sure to see the appropriate project templates for recommended configurations.
 
-* [Go templates](/languages/go#project-templates)
-* [Java templates](/languages/java/_index.md#project-templates)
-* [Node.js templates](/languages/nodejs/_index.md#project-templates)
-* [PHP templates](/languages/php/_index.md#project-templates)
-* [Python templates](/languages/python#project-templates)
+* [Go templates](../languages/go.md#project-templates)
+* [Java templates](../languages/java/_index.md#project-templates)
+* [Node.js templates](../languages/nodejs/_index.md#project-templates)
+* [PHP templates](../languages/php/_index.md#project-templates)
+* [Python templates](../languages/python.md#project-templates)
 
 
 [Create a new project from scratch]({{% create-project-link scratch=true %}}).
@@ -89,7 +89,7 @@ mounts:
 ```
 
 While using the CLI and rsync are the most common solutions for uploading files to mounts,
-you can also use [scp](/development/access-site.md#scp).
+you can also use [scp](../development/access-site.md#scp).
 
 ### Platform.sh CLI
 

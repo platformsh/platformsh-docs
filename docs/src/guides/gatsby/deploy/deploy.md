@@ -17,7 +17,7 @@ A standard Gatsby site - either one created interactively through npm (`npm init
 
 ### Install the Config Reader
 
-{{< guides/config-reader-nodejs >}}
+{{% guides/config-reader-info lang="nodejs" %}}
 
 Go forth and Deploy (even on Friday)!
 

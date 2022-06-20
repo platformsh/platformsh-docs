@@ -6,7 +6,7 @@ description: |
 sidebarTitle: "Pre-Launch Checklist"
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## 1. Register a domain name with a supported provider
 

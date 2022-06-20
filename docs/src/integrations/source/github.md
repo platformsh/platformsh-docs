@@ -4,7 +4,7 @@ description: |
   The [GitHub](https://github.com) integration allows you to manage your Platform.sh environments directly from your GitHub repository.
 ---
 
-{{< description >}}
+{{% description %}}
 
 **Features supported:**
 
@@ -102,3 +102,5 @@ platform integration:validate
 {{% integration-environment-status source="GitHub" %}}
 
 {{% clone-commit name="GitHub" %}}
+
+{{% integration-url source="GitHub" %}}

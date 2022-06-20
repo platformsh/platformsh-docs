@@ -6,7 +6,7 @@ description: |
 sidebarTitle: "OpenSearch"
 ---
 
-{{< description >}}
+{{% description %}}
 
 See the [OpenSearch documentation](https://opensearch.org/docs/1.2/) for more information.
 
@@ -21,7 +21,7 @@ To update the versions in this table, use docs/data/registry.json
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="opensearch" status="supported" environment="grid" >}} | {{< image-versions image="opensearch" status="supported" environment="dedicated" >}} | {{< image-versions image="opensearch" status="supported" environment="dedicated-gen-3" >}} |
 
-{{< image-versions-legacy "opensearch" >}}
+{{% image-versions-legacy "opensearch" %}}
 
 ## Relationship
 

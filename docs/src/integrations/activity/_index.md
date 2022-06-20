@@ -5,7 +5,7 @@ description: |
   Platform.sh supports custom scripts that can fire in response to any activity. These scripts allow you to take arbitrary actions in response to actions in your project, such as when it deploys, when a new branch is created, etc.
 ---
 
-{{< description >}}
+{{% description %}}
 
 Check out examples from other users on the Platform.sh [Community site](https://community.platform.sh/c/activity-scripts/10).
 
@@ -99,7 +99,7 @@ platform integration:update --events='environment.activate, environment.deactiva
 
 A complete list of possible events is available in the [webhook documentation](/integrations/activity/reference.md).
 
-Scripts can also trigger only when an action reaches a given state, such as "pending", "in_progress", or "complete".
+Scripts can also trigger only when an action reaches a given state, such as `pending`, `in_progress`, or `complete`.
 The default is only when they reach "complete".
 To have a script execute when a synchronize action first starts, for example, you would run:
 

@@ -4,7 +4,7 @@ description: |
   The Bitbucket integration allows you to manage your Platform.sh environments directly from your Bitbucket repository.
 ---
 
-{{< description >}}
+{{% description %}}
 
 It's possible to integrate a Platform.sh project with either the freely available Bitbucket Cloud product
 or with the self-hosted [Bitbucket Server](https://confluence.atlassian.com/bitbucketserver/).
@@ -101,9 +101,6 @@ They can be changed using the `platform integration:update` command.
 * `--build-pull-requests`: Track and deploy pull-requests (true by default)
 * `--build-pull-requests-post-merge`: `false` to have Platform.sh build the branch specified in a PR.
   `true` to build the result of merging the PR.  (`false` by default)
-* `--pull-requests-clone-parent-data`:
-  Set to `false` to disable cloning of parent environment data when creating a PR environment,
-  so each PR environment starts with no data. (`true` by default)
 
 For more information see:
 
@@ -122,3 +119,5 @@ even if specifically set to true.
 {{% integration-environment-status source="Bitbucket" %}}
 
 {{% clone-commit name="Bitbucket" %}}
+
+{{% integration-url source="Bitbucket" %}}

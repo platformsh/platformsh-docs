@@ -14,7 +14,7 @@ const getConfig = async () => {
   // Webpack isn't a fan of reading from `config-reader-nodejs` or environment variables
   // here if they are not yet set, but a file works just fine.
   // The mount `public/scripts/xss/dist/config` has been defined to support this.
-  const response = await fetch('/scripts/xss/dist/config/config.json');
+  const response = await fetch(`/scripts/xss/dist/config/config.json?version=${Date.now().toString()}`);
   return response.json();
 }
 
@@ -36,7 +36,7 @@ const Search = ({ fullPage }) => {
   const limit = fullPage ? maxResults : 7
 
   const getInfo = (infoConfig, infoQuery) => {
-    axios.get(`${infoConfig.url}indexes/${infoConfig.index}/search?attributesToCrop=text&cropLength=200&attributesToHighlight=text,keywords&q=${infoQuery}&limit=${limit}&attributesToRetrieve=title,keywords,text,url,site,section&matches=true`, { params: {}, headers: { 'X-Meili-Api-Key': infoConfig.public_api_key } })
+    axios.get(`${infoConfig.url}indexes/${infoConfig.index}/search?attributesToCrop=text&cropLength=200&attributesToHighlight=text,keywords&q=${infoQuery}&limit=${limit}&attributesToRetrieve=title,keywords,text,url,site,section&matches=true`, { params: {}, headers: { Authorization: `Bearer ${infoConfig.public_api_key}` } })
       .then(({ data }) => {
         setHits({
           docs: data.hits.filter((hit) => hit.site === 'docs'),
@@ -90,7 +90,15 @@ const Search = ({ fullPage }) => {
     <div className="suggestions suggestions-primary">
       <h4 className="section">Documentation</h4>
       <div className="hits">
-        <ul>Sorry, no documentation matched your search.</ul>
+        <ul>No documentation matched your search, but you can try the other resources below.</ul>
+      </div>
+    </div>
+  ) : ''
+  const noResults = (hits.docs.length === 0 && summedSecondary === 0) ? (
+    <div className="suggestions suggestions-primary">
+      <h4 className="section">No results</h4>
+      <div className="hits">
+        <ul>No documentation matched your search.</ul>
       </div>
     </div>
   ) : ''
@@ -98,6 +106,7 @@ const Search = ({ fullPage }) => {
 
   const allResults = (
     <div className={fullPage ? 'search-page-results' : 'search-all-results'}>
+      {noResults}
       {docs}
       {noPrimaryResults}
       {secondaryResults}

@@ -1,0 +1,7 @@
+extends: metric
+message: "Try to keep your sentences short. Aim for up to 15 words per sentence. You are currently at: %s"
+link: https://github.com/platformsh/platformsh-docs/blob/main/contributing/content-style.md#user-content-aim-for-simple-sentences
+
+formula: |
+  words / sentences
+condition: "> 15"

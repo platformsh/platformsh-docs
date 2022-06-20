@@ -3,7 +3,7 @@ title: "Lisp"
 description: Platform.sh supports building and deploying applications written in Lisp using Common Lisp (the SBCL version) with ASDF and Quick Lisp support.  They are compiled during the Build phase, and support both committed dependencies and download-on-demand.
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## Supported versions
 
@@ -11,7 +11,7 @@ description: Platform.sh supports building and deploying applications written in
 |----------------------------------|---------------|
 |  {{< image-versions image="lisp" status="supported" environment="grid" >}} | {{< image-versions image="lisp" status="supported" environment="dedicated" >}} |
 
-{{< image-versions-legacy "lisp" >}}
+{{% image-versions-legacy "lisp" %}}
 
 {{% language-specification type="lisp" display_name="Lisp" %}}
 
@@ -60,15 +60,11 @@ runtime:
 ## Platform.sh variables
 
 Platform.sh exposes relationships and other configuration as [environment variables](../development/variables/_index.md).
-Most notably, it allows a program to determine at runtime what HTTP port it should listen on
-and what the credentials are to access [other services](../add-services/_index.md).
-
-To get the `PORT` environment variable (the port on which your web application is supposed to listen) you would:
+To get the `PORT` environment variable (the port on which your web application is supposed to listen):
 
 ```lisp
 (parse-integer (uiop:getenv "PORT"))
 ```
-
 
 ## Building and running the application
 
@@ -145,11 +141,10 @@ Then in your program you could access the PostgreSQL instance as follows:
 "))))
 ```
 
-## Project templates
+## Example
 
-Platform.sh offers a project template for Lisp applications using the structure described above.  It can be used as a starting point or reference for building your own website or web application.
-
-The following is a basic example of a Hunchentoot based web application (you can find the corresponding `.asd` and Platform.sh `.yaml` files in the linked GitHub repository):
+The following is a basic example of a Hunchentoot-based web app
+(you can find the corresponding `.asd` and Platform.sh `.yaml` files in the [template](#project-templates)):
 
 ```lisp
 (defpackage #:example
@@ -168,6 +163,10 @@ The following is a basic example of a Hunchentoot based web application (you can
     (start acceptor)
     (sleep most-positive-fixnum)))
 ```
-Notice how we get the `PORT` from the environment, and how we sleep at the end, as `(start acceptor)` will immediately yield and Platform.sh requires applications to run in the foreground.
 
-{{< repolist lang="lisp" >}}
+Notice how it gets the `PORT` from the environment and how it sleeps at the end,
+as `(start acceptor)` immediately yields and Platform.sh requires apps to run in the foreground.
+
+## Project templates
+
+{{< repolist lang="lisp" displayName="Lisp" >}}

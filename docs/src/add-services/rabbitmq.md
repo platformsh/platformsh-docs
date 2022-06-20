@@ -20,7 +20,7 @@ See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="rabbitmq" status="supported" environment="grid" >}} | {{< image-versions image="rabbitmq" status="supported" environment="dedicated" >}} | {{< image-versions image="rabbitmq" status="supported" environment="dedicated-gen-3" >}} |
 
-{{< image-versions-legacy "rabbitmq" >}}
+{{% image-versions-legacy "rabbitmq" %}}
 
 ## Relationship
 

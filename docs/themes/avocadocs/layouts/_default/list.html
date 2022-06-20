@@ -16,15 +16,18 @@
 
           <div class="content-grid">
 
-            <!-- Table of contents -->
-            {{ if and (ne .Params.toc false) (ne .TableOfContents "<nav id=\"TableOfContents\"></nav>") }}
-              <div class="order-2">
+            <div class="order-2 right-sidebar-wrapper">
+              <!-- Table of contents -->
+              {{ if and (ne .Params.toc false) (ne .TableOfContents "<nav id=\"TableOfContents\"></nav>") }}
                 <div class="toc">
-                  <h3>Contents:</h3>
+                  <h3>On this page</h3>
                   {{ .TableOfContents }}
                 </div>
-              </div>
-            {{ end }}
+              {{ end }}
+
+              <!-- Feedback form -->
+              {{ partial "feedback-form" }}
+            </div>
 
             <div class="content-wrapper">
               <!-- Page content, anchorized -->

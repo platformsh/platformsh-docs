@@ -5,7 +5,7 @@ description: |
   Backups are triggered directly via the management console or via the CLI. The backup creates a complete snapshot of the environment's data. It includes all persistent data from all running services (MySQL, Solr,...) and any files stored on the mounted volumes. Please note that the snapshot is stored internally and cannot be downloaded.
 ---
 
-{{< description >}}
+{{% description %}}
 
 Code is managed through Git and can be restored using normal Git routines.
 The built code file system isn't affected by backups or restores.
@@ -72,11 +72,15 @@ With live backups, however, there can be inconsistent states that make restorati
 For this reason Platform.sh recommends instead scheduling [automated backups](#automated-backups) during non-peak hours,
 when the short amount of downtime is least noticed.
 
-You can trigger a live backup through the CLI using the `--live` flag:
+Backups are automatically live on [Dedicated projects](../dedicated/overview/_index.md) including [Dedicated Generation 3](../dedicated-gen-3/overview.md).
+
+To trigger a live backup on a Grid project, use the `--live` flag with the CLI:
 
 ```bash
-$ platform backup:create --live
+platform backup:create --live
 ```
+
+{{% legacy-regions featureIntro="Live backups" featureShort="live backups" level=4 plural=true %}}
 
 ### Automated backups
 

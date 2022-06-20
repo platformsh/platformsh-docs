@@ -5,10 +5,14 @@ description: |
   Look here for all the most recent additions to Platform.sh.
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## 2022
 
+* **June 2022**
+  * Support added for [MariaDB/MySQL 10.6](../add-services/mysql/_index.md).
+  * Support added for [InfluxDB 2.2](../add-services/influxdb.md).
+  * Support added for [Solr 8.11](../add-services/solr.md).
 * **May 2022**
   * Support added for [MongoDB 5.0 Enterprise edition](../add-services/mongodb.md).
   * Support added for [Python 3.10](../languages/python.md).

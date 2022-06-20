@@ -8,6 +8,9 @@ sidebarTitle: "Xdebug"
 
 As configured on Platform.sh, it avoids any runtime overhead for non-debug requests, even in production, and only allows connections via SSH tunnels to avoid any security issues.
 
+Note Xdebug runs only on your app containers.
+So you can't use it for [worker containers](../../create-apps/workers.md).
+
 ## Setting up Xdebug
 
 Xdebug is not enabled the same way as other extensions, as it should not be active on most requests.

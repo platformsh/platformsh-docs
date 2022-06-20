@@ -4,7 +4,7 @@ description: |
   As part of our normal business operations, we collect various types of data.
 ---
 
-{{< description >}}
+{{% description %}}
 
 The following list describes the categories of data we collect in GDPR terms:
 

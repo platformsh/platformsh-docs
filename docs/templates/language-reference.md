@@ -24,7 +24,7 @@ A brief introduction (1--2 sentences) to the language.
 |  {{< image-versions image="<LANGUAGE_TYPE>" status="supported" environment="grid" >}} | {{< image-versions image="<LANGUAGE_TYPE>" status="supported" environment="dedicated" >}} | {{< image-versions image="<LANGUAGE_TYPE>" status="supported" environment="dedicated-gen-3" >}} |
 
 <!-- To automatically check any differences in the registry with legacy regions -->
-{{< image-versions-legacy "<LANGUAGE_TYPE>" >}}
+{{% image-versions-legacy "<LANGUAGE_TYPE>" %}}
 
 {{% language-specification type="<LANGUAGE_TYPE>" display_name="<LANGUAGE_NAME>" %}}
 
@@ -44,7 +44,7 @@ Ideally, also with a full working example that shows it in context.
 
 Depending on the language, a brief description of the recommended way to handle dependencies in the language.
 
-## Connecting to services
+## Connect to services
 
 If available, include examples for connecting in an app
 (taken from https://examples.docs.platform.sh/).
@@ -61,6 +61,4 @@ Split each function
 
 ## Project templates
 
-A description of what templates are.
-
-{{< repolist lang="<LANGUAGE_TYPE>" >}}
+{{< repolist lang="<LANGUAGE_TYPE>" displayName="<LANGUAGE_NAME>" >}}

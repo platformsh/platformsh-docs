@@ -97,7 +97,7 @@ async function fetch(exampleGroup) {
 
     for (let file of files) {
       // Load the data.
-      const data = yaml.safeLoad(fs.readFileSync(dir + file, 'utf8'));
+      const data = yaml.load(fs.readFileSync(dir + file, 'utf8'));
       // Get the files.
       await fetchFunc(data);
     }

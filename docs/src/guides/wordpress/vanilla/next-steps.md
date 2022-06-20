@@ -22,6 +22,6 @@ consult the [submodule documentation](/development/submodules.md) and `git pull`
 
 ## Local development with Lando
 
-{{< guides/lando repo="wordpress-vanilla" >}}
+{{% guides/lando repo="wordpress-vanilla" %}}
 
 {{< guide-buttons type="last" >}}

@@ -5,9 +5,11 @@ description: |
   See how to use and manage your Platform.sh projects directly from your terminal. Anything you can do within the management console can be done with the CLI.
 sidebarTitle: "Use the CLI"
 layout: single
+keywords:
+  - CLI
 ---
 
-{{< description >}}
+{{% description %}}
 
 The CLI uses the git interface and the [Platform.sh REST API](https://api.platform.sh/docs/) to accomplish tasks.
 Its source code is hosted on [GitHub](https://github.com/platformsh/platformsh-cli).

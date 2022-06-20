@@ -6,7 +6,7 @@ description: |
 sidebarTitle: "Kafka"
 ---
 
-{{< description >}}
+{{% description %}}
 
 It is a framework for storing, reading and analyzing streaming data. See the [Kafka documentation](https://kafka.apache.org/documentation) for more information.
 
@@ -16,7 +16,7 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="kafka" status="supported" environment="grid" >}} | {{< image-versions image="kafka" status="supported" environment="dedicated" >}} | {{< image-versions image="kafka" status="supported" environment="dedicated-gen-3" >}} |
 
-{{< image-versions-legacy "kafka" >}}
+{{% image-versions-legacy "kafka" %}}
 
 ## Relationship
 
@@ -50,6 +50,7 @@ highlight=python
 title=Ruby
 file=none
 highlight=ruby
+markdownify=false
 ---
 ## With the ruby-kafka gem
 
@@ -64,5 +65,6 @@ kafka.each_message(topic: "greetings") do |message|
 end
 
 {{< /codetabs >}}
+
 
 (The specific way to inject configuration into your application will vary. Consult your application or framework's documentation.)

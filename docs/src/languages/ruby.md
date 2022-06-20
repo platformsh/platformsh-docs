@@ -4,7 +4,7 @@ description: |
   Platform.sh supports deploying any Ruby application. Your application can use any Ruby application server such as Unicorn or Puma and deploying a Rails or a Sinatra app is very straight forward.
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## Supported versions
 
@@ -14,7 +14,7 @@ description: |
 |----------------------------------|---------------|
 |  {{< image-versions image="ruby" status="supported" environment="grid" >}} | {{< image-versions image="ruby" status="supported" environment="dedicated" >}} |
 
-{{< image-versions-legacy "ruby" >}}
+{{% image-versions-legacy "ruby" %}}
 
 {{% language-specification type="ruby" display_name="Ruby" %}}
 
@@ -336,6 +336,11 @@ For Rails, you have two choices:
 * Use the [platformsh-rails-helper gem](https://github.com/platformsh/platformsh-rails-helper)
   by adding it to your `Gemfile` and commenting the production block in `config/database.yml`
 
+{{% config-reader %}}
+[helper library for Ruby apps](https://github.com/platformsh/platformsh-ruby-helper)
+or [one for Rails apps](https://github.com/platformsh/platformsh-rails-helper)
+{{% /config-reader%}}
+
 ## Other tips
 
 * To speed up boot you can use the [Bootsnap gem](https://github.com/Shopify/bootsnap)
@@ -350,16 +355,7 @@ For Rails, you have two choices:
 
 ## Project templates
 
-A number of project templates for Ruby applications and typical configurations are available on GitHub.
-Not all of them are proactively maintained but all can be used as a starting point
-or reference for building your own website or web application.
-
-Platform.sh also provides a [helper library for Ruby applications](https://github.com/platformsh/platformsh-ruby-helper)
-and one [for Rails applications](https://github.com/platformsh/platformsh-rails-helper)
-that simplify presenting environment information to your application.
-They aren't required to run Ruby applications on Platform.sh but are recommended.
-
-{{< repolist lang="ruby" >}}
+{{< repolist lang="ruby" displayName="Ruby" >}}
 
 ## Troubleshooting
 

@@ -11,7 +11,7 @@ Now that your code contains all of the configuration to deploy on Platform.sh, i
 
 ## Install the Config Reader
 
-{{< guides/config-reader-php >}}
+{{% guides/config-reader-info lang="php" %}}
 
 ## `wp-config.php`
 

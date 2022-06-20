@@ -7,11 +7,11 @@ description: |
     Review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for Micronaut.
 ---
 
-{{< guides/config-desc name="Micronaut" noService=true >}}
+{{% guides/config-desc name="Micronaut" noService=true %}}
 
 ## Requests configuration: `routes.yaml`
 
-{{< guides/config-routes template="micronaut" name="Micronaut" >}}
+{{% guides/config-routes template="micronaut" name="Micronaut" %}}
 
 ## Service configuration: `services.yaml`
 
@@ -19,7 +19,7 @@ description: |
 
 ## Application container: `.platform.app.yaml`
 
-{{< guides/config-app template="micronaut" >}}
+{{% guides/config-app template="micronaut" %}}
 Explaining the file line by line, notice the following settings:
 
 1. `name`: The application name.

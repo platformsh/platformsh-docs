@@ -4,7 +4,7 @@ weight: 4
 description: See all of the options for controlling your apps and how they're built and deployed on Platform.sh.
 ---
 
-{{< description >}}
+{{% description %}}
 
 For single-app projects, the configuration is all done in a `.platform.app.yaml` file,
 usually located at the root of your app folder in your Git repository.
@@ -426,6 +426,8 @@ firewall:
         - ips: ["0.0.0.0/0"]
 ```
 
+{{% legacy-regions featureIntro="An outbound firewall" featureShort="a firewall" level=3 %}}
+
 ### Support for rules
 
 Where outbound rules for firewalls are supported:
@@ -617,6 +619,7 @@ The following table shows the properties for each job:
 | `spec`             | `string`                                     | Yes      | The [cron specification](https://en.wikipedia.org/wiki/Cron#CRON_expression). |
 | `commands`         | A [cron commands dictionary](#cron-commands) | Yes      | A definition of what commands to run when starting and stopping the cron job. |
 | `shutdown_timeout` | `integer`                                    | No       | When a cron is canceled, this represents the number of seconds after which a `SIGKILL` signal is sent to the process to force terminate it. The default is `10` seconds. |
+| `timeout`          | `integer`                                    | No       | The maximum amount of time a cron can run before it's terminated. Defaults to the maximum allowed value of `86400` seconds (24 hours).
 
 ### Cron commands
 
@@ -674,8 +677,8 @@ crons:
             start: 'bundle exec rake some:task'
 
 {{< /codetabs >}}
-
 <!-- vale on -->
+
 
 ### Cron job timing
 

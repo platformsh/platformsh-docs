@@ -4,7 +4,7 @@ description: |
   Platform.sh aims to be a great host, but we never want to lock you in to our service. Your code and your data belong to you, and you should always be able to download your site's data for local development, backup, or to "take your data elsewhere".
 ---
 
-{{< description >}}
+{{% description %}}
 
 ## Downloading code
 
@@ -78,7 +78,7 @@ You can access the content of the environment variable through the management co
 
 In that case, you can run:
 `platform ssh -p <project id> -e <environment>`
-to access all the environment variables's values
+to access all the environment variable values
 
 and `platform ssh -p <project id> -e <environment> "echo \$PLATFORM_VARIABLES | base64 -d | jq"` to access the `PLATFORM_VARIABLES`'s values.
 

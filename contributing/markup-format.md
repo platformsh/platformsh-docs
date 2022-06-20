@@ -13,9 +13,10 @@
   - [Notes](#notes)
     - [Footnotes](#footnotes)
   - [Images](#images)
-  - [Videos & asciinema](#videos--asciinema)
+  - [Videos \& asciinema](#videos--asciinema)
   - [Code](#code)
     - [Indentation](#indentation)
+    - [Note when low-level items are missing](#note-when-low-level-items-are-missing)
     - [Code block location](#code-block-location)
   - [Refer to the UI and keys](#refer-to-the-ui-and-keys)
   - [Code tabs](#code-tabs)
@@ -297,11 +298,15 @@ from jwcrypto import jws, jwk
 {{< /codetabs >}}
 ```
 
-Property    | Description
-------------|-----------
-`title`     | The title that appears on the tab.
-`highlight` | The language to use for highlighting, as in [code blocks](#code). If set to `false`, content renders as Markdown.
-`file`      | If not set to `none`, the displayed code comes from the specified local file.
+Property      | Description
+------------- | ----------
+`title`       | The title that appears on the tab.
+`highlight`   | The language to use for highlighting, as in [code blocks](#code). If set to `false`, content renders as Markdown.
+`file`        | If not set to `none`, the displayed code comes from the specified local file.
+`markdownify` | Whether to transform the block to Markdown. Defaults to `true`. Set to `false` when the file/block is code.
+
+Note that if you're using code inside the Markdown file,
+leave two empty lines after `{{ /codetabs }}` to turn off spell checking inside the block.
 
 ## Reuse content
 
@@ -319,10 +324,24 @@ use [transclusion](https://en.wikipedia.org/wiki/Transclusion) to include it.
 
 Note that if your files have HTML characters (`<`, `>`, `&`, `'`, and `"`) inside a code block,
 the characters are escaped (appear as `&lt;` and so on).
-Avoid this problem by writing HTML files (`reuse_html.html`) instead of Markdown files and including them like so:
+
+To avoid this problem, add the code block as a file to the `snippets` directory.
+Then include the block with the `readFile` function as in the following example:
 
 ```markdown
-{{< reuse_html >}}
+<div class="highlight-location"><LOCATION_TO_DISPLAY></div>
+{{ highlight ( readFile "<FILE_LOCATION>" ) "<LANGUAGE>" "" }}
+```
+
+- `<LOCATION_TO_DISPLAY>` is the location to show above the code block in the docs
+- `<FILE_LOCATION>` is where the snippet is
+- `<LANGUAGE>` is the language for syntax highlighting
+
+A complete example:
+
+```markdown
+<div class="highlight-location">.platform.app.yaml</div>
+{{ highlight ( readFile "snippets/example.yaml" ) "yaml" "" }}
 ```
 
 ### Variables in the file

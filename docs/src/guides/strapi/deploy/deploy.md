@@ -21,7 +21,7 @@ Below are a few modifications that may help you develop your site more efficient
 
 ### Install the Config Reader
 
-{{< guides/config-reader-nodejs >}}
+{{% guides/config-reader-info lang="nodejs" %}}
 
 Go forth and deploy (even on Friday)!
 
