@@ -49,18 +49,7 @@ dependencies:
         composer/composer: '^2'
 ```
 
-### 3. Build your app
-
-Include any commands needed to build and setup your app in the `hooks`.
-By default, none is needed for PHP, as in the following example:
-
-```yaml {location=".platform.app.yaml"}
-hooks:
-    build: |
-        set -e
-```
-
-### 4. Serve your app
+### 3. Serve your app
 
 Set the [location](../../create-apps/app-reference.md#locations) from which content should be served.
 And set the passthru to handle all non-static requests.
@@ -90,10 +79,6 @@ type: 'php:8.1'
 dependencies:
     php:
         composer/composer: '^2'
-
-hooks:
-    build: |
-        set -e
 
 web:
     locations:
@@ -145,7 +130,7 @@ So you can install a forked version of a global dependency from a custom reposit
 
 ## Connecting to services
 
-The following examples show how to access various [services](/add-services/_index.md) with PHP.
+The following examples show how to access various [services](../../add-services/_index.md) with PHP.
 The individual service pages have more information on configuring each service.
 
 {{< codetabs >}}
@@ -230,8 +215,8 @@ markdownify=false
 
 PHP can be used in two modes:
 
-- PHP-CGI (common gateway interface): the mode used in the `passthru`. CGI is a PHP interface to interact with web servers. PHP-FPM (FastCGI Process Manager) is commonly used to run the CGI mode.
-- PHP-CLI (command line interface): the mode used for [crons](../../create-apps/app-reference.md#crons) or when SSH-ed into your container.
+- CGI (common gateway interface): the mode used in the `passthru`. CGI is a PHP interface to interact with web servers. PHP-FPM (FastCGI Process Manager) is commonly used to run the CGI mode.
+- CLI (command line interface): the mode used for [crons](../../create-apps/app-reference.md#crons) or when SSH-ed into your container.
 
 By default, PHP is run in CGI mode using PHP-FPM (FastCGI Process Manager).
 
@@ -331,8 +316,7 @@ Note that the start command _must_ run in the foreground.
 For more details, see the reference of [web commands](../../create-apps/app-reference.md#web-commands).
 
 If not specified, the effective default start command for PHP-FPM can be retrieved with the following symlink: `/usr/bin/start-php-app`.
-TODO: Check the following statement and improve that part
-You can call PHP-FPM manually but that's generally not necessary.
+If necessary, you can also call PHP-FPM manually.
 
 ## Foreign function interfaces
 

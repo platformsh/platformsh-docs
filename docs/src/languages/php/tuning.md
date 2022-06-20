@@ -44,8 +44,7 @@ Note that the only way to clear the preload cache is by [restarting PHP-FPM](#re
 
 ### Enable OPcache
 
-TODO: Redo structure to follow howto
-To enable preloading, add a `php.ini` value that specifies a preload script:
+To enable preloading add a variable that specifies a preload script:
 
 ```yaml {location=".platform.app.yaml"}
 variables:
@@ -53,8 +52,9 @@ variables:
         opcache.preload: 'preload.php'
 ```
 
-The `opcache.preload` value is a file path relative to the application root (where `.platform.app.yaml` is).
+The `opcache.preload` value is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
 It may be any PHP script that calls `opcache_compile_file()`.
+
 The following example preloads all `.php` files in the `vendor` directory (and subdirectories):
 
 ```php {location="preload.php"}
@@ -74,21 +74,20 @@ foreach ($regex as $key => $file) {
 OPcache needs to be tuned before production usage and can be configured [the same way as PHP](../php/_index.md#customize-the-php-settings).
 
 {{< note >}}
-TODO: check if still relevant
-If using OPcache preloading on PHP 7.4 or later,
-configure that first and let the application run for a while
-before tuning the OPcache itself
+On PHP 7.4+, let the application run for a while
+before tuning OPcache itself
 as the preload script may change the necessary configuration here.
 {{< /note >}}
 
-To get started with configuration, see:
-- `opcache.max_accelerated_files`
-- `opcache.memory_consumption`
+To get started with configuration, see how to:
 
-#### Set `opcache.max_accelerated_files`
+- [Set the maximum amount of cached files](#set-the-maximum-amount-of-cached-files)
+- [Set the memory consumption](#set-opcache-memory-consumption)
+
+#### Set the maximum amount of cached files
 
 `opcache.max_accelerated_files` is the maximum number of files that OPcache may cache at once.
-If this is lower than the number of files in the application, it starts [thrashing](https://en.wikipedia.org/wiki/Thrashing_(computer_science)) and becomes less effective.
+If this is lower than the number of files in the application, the cache starts [thrashing](https://en.wikipedia.org/wiki/Thrashing_(computer_science)) and becomes less effective.
 
 To set that option, you have to first determine roughly how many `.php` files your application has.
 To do so, run this command from [your app root](../../create-apps/app-reference.md#root-directory):
@@ -103,7 +102,7 @@ Some apps have PHP code in files that don't end in `.php` or files that are gene
 Set `opcache.max_accelerated_files` to a value slightly higher than the returned number.
 PHP automatically rounds the value up to the next highest prime number.
 
-#### Set `opcache.memory_consumption`
+#### Set the memory consumption
 
 `opcache.memory_consumption` is the total memory that OPcache can use.
 If the application's usage is larger than this, the cache starts thrashing and becomes less effective.
@@ -111,11 +110,10 @@ If the application's usage is larger than this, the cache starts thrashing and b
 Determining an optimal `opcache.memory_consumption` requires executing code via a web request to get adequate statistics.
 [`CacheTool`](https://github.com/gordalina/cachetool) is an open-source tool to help you get the statistics.
 
-TODO: check the steps
-1. Connect via ssh
-2. Change to the `/tmp` directory with `cd /tmp` (or any other non-web-accessible writable directory)
-3. Download CacheTool with `curl -sLO https://github.com/gordalina/cachetool/releases/latest/download/cachetool.phar`
-4. Make CacheTool executable with `chmod +x cachetool.phar`
+1. Connect via ssh using the [CLI](../../development/cli/_index.md) with: `platform ssh`.
+2. Change to the `/tmp` directory with `cd /tmp` (or any other non-web-accessible writable directory).
+3. Download CacheTool with `curl -sLO https://github.com/gordalina/cachetool/releases/latest/download/cachetool.phar`.
+4. Make CacheTool executable with `chmod +x cachetool.phar`.
 5. Run CacheTool to check the OPcache status for FastCGI commands.
 
    ```bash
