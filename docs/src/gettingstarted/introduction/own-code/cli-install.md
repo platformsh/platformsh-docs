@@ -16,10 +16,10 @@ In the previous steps, you checked that the requirements on your computer were m
 
 ##  2. Test the CLI
 
-Get a list of all available commands with:
+To see a list of your Platform.sh projects and test that everything is setup properly, run:
 
 ```bash
-platform list
+platform
 ```
 
 Now that you have installed the CLI and it is communicating with Platform.sh, you can configure and push your project to Platform.sh.

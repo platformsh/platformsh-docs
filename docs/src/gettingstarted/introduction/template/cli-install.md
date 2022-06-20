@@ -18,18 +18,15 @@ With all of the requirements met, install the CLI to start developing with Platf
 
 ## 2. Clone your project locally
 
-Get a list of all available commands with:
+To clone your project locally:
 
-```bash
-platform list
-```
+1. Get a list of your Platform.sh projects with: `platform`.
+2. Copy the *ID* of your project from the project list.
+3. Download a local copy of the the project's code repository with:
 
-You should now see a list of your Platform.sh projects, including the template you made in this guide.
-You can copy its *project ID* hash, and then download a local copy of the repository with this command:
-
-```bash
-platform get <PROJECT_ID>
-```
+    ```bash
+    platform get <PROJECT_ID>
+    ```
 
 With a local copy, you can create branches, commit to them, and push your changes to Platform.sh right away!
 
