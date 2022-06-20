@@ -59,7 +59,7 @@ class Search:
         #   - sort: queries are sorted at query time
         #   - exactness: similarity of matched words in document with query
 
-        self.ranking_rules = ["rank:asc", "attribute", "typo", "words", "proximity", "exactness"]
+        self.ranking_rules = ["rank:asc", "exactness", "attribute", "proximity", "typo", "words"]
 
         self.updated_settings = {
             "rankingRules": self.ranking_rules,
