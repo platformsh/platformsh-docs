@@ -82,7 +82,7 @@ as the preload script may change the necessary configuration here.
 To get started with configuration, see how to:
 
 - [Set the maximum amount of cached files](#set-the-maximum-amount-of-cached-files)
-- [Set the memory consumption](#set-opcache-memory-consumption)
+- [Set the memory consumption](#set-the-memory-consumption)
 
 #### Set the maximum amount of cached files
 
