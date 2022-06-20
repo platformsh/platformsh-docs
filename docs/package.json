@@ -28,6 +28,7 @@
   "dependencies": {
     "@babel/core": "^7.17.10",
     "@babel/preset-env": "^7.17.10",
+    "alpinejs": "^3.10.2",
     "axios": "^0.27.2",
     "babelify": "^10.0.0",
     "browserify": "^17.0.0",
@@ -40,8 +41,10 @@
     "gulp-uglify": "^3.0.2",
     "js-yaml": "^4.1.0",
     "mermaid": "^9.0.1",
+    "mysql2": "^2.3.3",
     "normalize-url": "^7.0.3",
     "p-limit": "^4.0.0",
+    "platformsh-config": "^2.4.1",
     "postcss": "^8.4.13",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
