@@ -1,22 +1,15 @@
 ---
-title: "Manage Python versions"
-weight: 1
-toc: false
+title: Manage Python versions
 description: See how to manage different Python versions in your Platform.sh containers.
-aliases:
-- "/languages/python/pyenv.html"
 ---
 
 You may need to use a specific version of Python that isn't available in an app container for a different language.
 For example, a container might have a long-term support version, while you want the latest version.
 
-In such cases, use a version manager to install the specific version you want to use.
+In such cases, use the [`pyenv` version manager](https://github.com/pyenv/pyenv)
+to install the specific version you want to use.
 
-## Use `pyenv`
-
-The [`pyenv` package](https://github.com/pyenv/pyenv) lets you easily switch between multiple versions of Python.
-
-1. Add the `pyenv` package manager in a [`build` hook](../../create-apps/hooks/hooks-comparison.md#build-hook):
+1. Add `pyenv` in a [`build` hook](../../create-apps/hooks/hooks-comparison.md#build-hook):
 
    ```yaml {location=".platform.app.yaml"}
    hooks:
@@ -56,7 +49,7 @@ The [`pyenv` package](https://github.com/pyenv/pyenv) lets you easily switch bet
            PYENV_ROOT="$PLATFORM_APP_DIR/.pyenv" $PLATFORM_APP_DIR/.pyenv/bin/pyenv rehash
    ```
 
-1. Update the `$PATH` variable in the ['.environment' file](../../development/variables/set-variables.md#set-variables-via-script):
+2. Update the `$PATH` variable in the ['.environment' file](../../development/variables/set-variables.md#set-variables-via-script):
 
     ```yaml {location=".environment"}
     export PATH=/app/.pyenv/bin:/app/.pyenv/shims:$PATH
