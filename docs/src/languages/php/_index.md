@@ -284,39 +284,78 @@ Common functions to disable include:
 | `curl_exec`, `curl_multi_exec` | These functions allow a PHP script to make arbitrary HTTP requests. If you are using HTTP libraries like Guzzle, don't disable them. |
 | `show_source` | This function shows a syntax highlighted version of a named PHP source file. Rarely useful outside of development. |
 
-## Alternate start commands
+## Alternate start command
 
-Note that PHP-FPM can't run simultaneously along with another persistent process such as ReactPHP or Amp.
+For further control over your app you set the `start` command and specify an alternative process.
+
+Typical use cases include running:
+
+- An async PHP daemon.
+- A thread-based worker process.
+- A custom php script.
+
+The alternative process uses PHP-CLI instead of PHP-CGI.
+If you want to use PHP-CGI with PHP-FPM, in the `start` command, use the `/usr/bin/start-php-app` symlink instead of `php`.
+
+Note that the `start` command must run in the foreground and is executed before the [deploy hook](../../create-apps/hooks/hooks-comparison.md) runs.
+Additionally, PHP-FPM can't run simultaneously along with another persistent process such as [ReactPHP](https://github.com/platformsh-examples/platformsh-example-reactphp) or [Amp](https://github.com/platformsh-examples/platformsh-example-amphp).
 If you need both, they have to run in separate containers.
 
-If you're running an async PHP daemon, a thread-based worker process, or something similar, you can start these using alternative processes.
-These alternative processes use PHP-CLI instead of PHP-CGI.
+{{< codetabs >}}
 
-To do so:
+---
+title=Run a custom script
+file=none
+highlight=false
+---
 
-1. Add your code in a php file,
+If you want to run a custom script:
+
+1. Add your script in a php file,
 2. Specify an alternative start command, similar to the following:
 
     ```yaml {location=".platform.app.yaml"}
     web:
         commands:
-            start: php run.php
+            start: php <YOUR_FILE>.php
+    ```
+
+<--->
+
+---
+title=Run a custom web server
+file=none
+highlight=false
+---
+
+If you want to launch your own server to return content and handle user requests:
+
+1. Add your script in a php file,
+2. Specify an alternative start command, similar to the following:
+
+    ```yaml {location=".platform.app.yaml"}
+    web:
+        commands:
+            start: php <YOUR_FILE>.php
         upstream:
                 socket_family: tcp
                 protocol: http
     ```
 
-The above configuration does the following: when the container starts it executes the `run.php` script (located in the application root), using the PHP-CLI instead of PHP-CGI.
-That script doesn't launch PHP-FPM and is executed before the deploy hook runs.
+    By configuring your app to connect to Nginx via a TCP socket, you also enable the definition of the `$PORT` environment variable.
+    This variable can be useful as some scripts need to rely on its value to function correctly, which is typically the case when using [Swoole](https://github.com/swoole/swoole-src), or [Roadrunner](https://github.com/roadrunner-server/roadrunner). You might have to configure your app to connect with Nginx via the `$PORT` TCP socket.
+3. Finally, you may also need to override the locations/redirection to let the custom web server handle these.
 
-It also tells the front-controller (Nginx) to connect to your application via a TCP socket.
-That port is specified as `PORT` environment variable.
-Note that the start command _must_ run in the foreground.
+    ```yaml {location=".platform.app.yaml"}
+    locations:
+            "/":
+                allow: false
+                passthru: true
+    ```
+
+{{< /codetabs >}}
 
 For more details, see the reference of [web commands](../../create-apps/app-reference.md#web-commands).
-
-If not specified, the effective default start command for PHP-FPM can be retrieved with the following symlink: `/usr/bin/start-php-app`.
-If necessary, you can also call PHP-FPM manually.
 
 ## Foreign function interfaces
 
