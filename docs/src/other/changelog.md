@@ -15,7 +15,7 @@ description: |
   * Support added for [Solr 8.11](../add-services/solr.md).
 * **May 2022**
   * Support added for [MongoDB 5.0 Enterprise edition](../add-services/mongodb.md).
-  * Support added for [Python 3.10](../languages/python.md).
+  * Support added for [Python 3.10](../languages/python/_index.md).
 * **April 2022**
   * Dedicated Generation 3 adds support for [PostgreSQL](../add-services/postgresql.md).
   * Carbon intensity: You can now find information about the carbon intensity of each [region's energy grid](../development/regions.md).
@@ -40,14 +40,14 @@ description: |
 ---
 * **April 2021**
   * WAF: [a new page was added](../security/waf.md) describing the filtering rule sets and protections that come with the Platform.sh WAF.
-  * [Build environment variables](../development/variables/set-variables.md#create-project-variables): environment variables can now accept the same `--visible-build` and `--visible-runtime` flags as project variables when created through the CLI. Build-visible variables are now a part of the build image ID, and therefore triggers a rebuild of the application when the value is updated. 
+  * [Build environment variables](../development/variables/set-variables.md#create-project-variables): environment variables can now accept the same `--visible-build` and `--visible-runtime` flags as project variables when created through the CLI. Build-visible variables are now a part of the build image ID, and therefore triggers a rebuild of the application when the value is updated.
   * **Breaking change**: The logic by which the build image ID has changed in order to support build environment variables above. Previously, every attribute in `.platform.app.yaml` was included in the build image, used to create the unique build ID, and *accessible* via the `PLATFORM_APPLICATION` environment variable at build time. This is no longer the case, and only a subset of `.platform.app.yaml` attributes are now accessible from `PLATFORM_APPLICATION` at build time. See the [Platform.sh-provided variables](../development/variables/use-variables.md#use-platformsh-provided-variables) section for more information.
 ---
 * **March 2021**
   * Observability: [a new page was added](../increase-observability/metrics/_index.md) describing observability and metrics available on Dedicated projects.
   * Node.js debugging: [a new page was added](../languages/nodejs/debug.md) that includes tips for debugging Node.js applications.
   * Parallel activities: [project activities](../integrations/activity/reference.md#maximum-activities-and-parallelism) have been split into separate queues, allowing for up to two activities across environments to occur simultaneously.
-  * Python 3.9: We now support [Python 3.9](../languages/python.md).
+  * Python 3.9: We now support [Python 3.9](../languages/python/_index.md).
   * Java 14: We now support [Java 14](../languages/java/_index.md).
   * PostgreSQL 13: [multiple databases](../add-services/postgresql.md#multiple-databases) are now supported for PostgreSQL 13.
   * Elasticsearch 7.9: We now support [Elasticsearch 7.9](../add-services/elasticsearch.md).
@@ -92,7 +92,7 @@ description: |
 ## 2019
 
 * **December 2019**
-  * Python 3.8: We now support [Python 3.8](../languages/python.md).
+  * Python 3.8: We now support [Python 3.8](../languages/python/_index.md).
   * Node.js 12: We now support [Node.js 12](../languages/nodejs/_index.md).
   * RabbitMQ 3.8: We now support [RabbitMQ 3.8](../add-services/rabbitmq.md).
 ---
@@ -160,7 +160,7 @@ description: |
 ---
 
 * **September 2018**
-  * Python 3.7 support: We now support [Python 3.7](../languages/python.md).
+  * Python 3.7 support: We now support [Python 3.7](../languages/python/_index.md).
 ---
 
 * **August 2018**
@@ -277,7 +277,7 @@ description: |
 
 * **November 2016**
   * Customizable build flavor:
-    Added a `none` build flavor which will not run any specific command during the build process. 
+    Added a `none` build flavor which will not run any specific command during the build process.
     Use it if your application requires a custom build process which can be defined in your build hook.
     Read more in our [blog post](https://platform.sh/2016/11/fully-customizable-build-flavors/).
 ---
@@ -289,7 +289,7 @@ description: |
 ---
 
 * **September 2016**
-  * Python 2.7 & 3.5: Language is [documented here](../languages/python.md).
+  * Python 2.7 & 3.5: Language is [documented here](../languages/python/_index.md).
   * Ruby 2.3: Language is [documented here](../languages/ruby.md).
 ---
 
