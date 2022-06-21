@@ -77,8 +77,9 @@ If necessary, [migrate your project](../projects/region-migration.md).
 
 ##### Size
 
-By default, Platform.sh allocates CPU and memory resources to each container automatically
-given the available resources in [your plan](../overview/pricing/_index.md).
+Resources are distributed across all containers in a project from the total available from your [plan size](../overview/pricing/_index.md).
+
+By default, Platform.sh allocates CPU and memory resources to each container automatically.
 Some services are optimized for high CPU load, some for high memory load.
 If your plan is sufficiently large for bigger containers, you can increase the size of your service container.
 
