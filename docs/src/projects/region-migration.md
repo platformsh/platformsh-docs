@@ -12,16 +12,22 @@ aliases:
 Platform.sh doesn't offer an automated way to migrate a project from one region to another after it's created.
 However, the process to do so manually is fairly straightforward and can be scripted.
 
-## Why migrate between regions?
+## Why migrate between regions
 
 * Different data centers are located in different geographic areas,
   and you may want to keep your site physically close to the bulk of your user base for reduced latency.
 * Some regions are running older versions of the Platform.sh orchestration system that offers fewer features.
-  In particular, the `us` and `eu` regions don't currently offer XL and 2XL plans,
-  self-terminating builds in case of a build process that runs too long,
-  or distributing environments across different grid hosts.
+  In particular, the `us` and `eu` regions don't currently offer the following features:
+  
+  * [Timeouts in build hooks](../create-apps/hooks/hooks-comparison.md#timeout)
+  * [Outbound firewalls](../create-apps/app-reference.md#firewall)
+  * [Network Storage service](../add-services/network-storage.md)
+  * [Deploy hook activity logs and SSH during deploy hooks](../create-apps/hooks/hooks-comparison.md#deploy-hook)
+  * [Live backups](../administration/backup-and-restore.md#live-backups)
+  * [Infrastructure metrics](../increase-observability/metrics/_index.md)
+
   These regions will be updated in the future.
-  If you are on one of those regions and desire those features now,
+  If you are on one of those regions and desire these features now,
   migrate to one of the newer regions.
 
 ## Scripted migration process
