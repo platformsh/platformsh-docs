@@ -11,12 +11,7 @@ const SuggestionsPrimary = ({ hits, title }) => {
     <li key={r.relurl}>
       <h5>
         <a href={r.url}>
-          <b>
-            {r.section}
-            {' '}
-            |
-            {' '}
-          </b>
+          <b dangerouslySetInnerHTML={{ __html: `${DOMPurify.sanitize(r.section)} | ` }} />
           {r.title}
         </a>
       </h5>
