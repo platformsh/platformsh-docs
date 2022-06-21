@@ -70,7 +70,12 @@ If you want this Python version to be available in the runtime environment, foll
            PYENV_ROOT="$PLATFORM_APP_DIR/.pyenv" $PLATFORM_APP_DIR/.pyenv/bin/pyenv rehash
    ```
 
-2. Create an ['.environment' file](../../development/variables/set-variables.md#set-variables-via-script).
+2. Create an [`.environment` file](../../development/variables/set-variables.md#set-variables-via-script):
+
+   ```bash
+   touch .environment
+   ```
+
 3. Update the PATH for the runtime environment:
 
     ```yaml {location=".environment"}
