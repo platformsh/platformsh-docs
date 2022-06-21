@@ -207,7 +207,8 @@ The following example shows how to set up purging.
    }
    ```
 
-   This is so that only requests from the listed IPs are accepted.
+   This list ensures that only requests from the listed IPs are accepted.
+   Choose which IPs to allow.
    If you are sending requests from an app, checkout the [outbound IPs for the region](../development/regions.md#public-ip-addresses).
 
    Alternatively, you could code in a token that must be sent with the request.
@@ -230,7 +231,8 @@ The following example shows how to set up purging.
    }
    ```
 
-3. Purge cache with a curl call:
+3. Set up cache purging to suit your needs.
+   The following cURL call gives an example of how this can work:
 
    ```bash
    curl -X PURGE "<URL_TO_PURGE>"
