@@ -284,9 +284,9 @@ Common functions to disable include:
 | `curl_exec`, `curl_multi_exec` | These functions allow a PHP script to make arbitrary HTTP requests. If you are using HTTP libraries like Guzzle, don't disable them. |
 | `show_source` | This function shows a syntax highlighted version of a named PHP source file. Rarely useful outside of development. |
 
-## Alternate start command
+## Alternate start commands
 
-For further control over your app you set the `start` command and specify an alternative process.
+For further control over your app you can set a `start` command to specify alternative processes.
 
 Typical use cases include running:
 
@@ -294,10 +294,10 @@ Typical use cases include running:
 - A thread-based worker process.
 - A custom php script.
 
-The alternative process uses PHP-CLI instead of PHP-CGI.
+The alternative processes use PHP-CLI instead of PHP-CGI.
 If you want to use PHP-CGI with PHP-FPM, in the `start` command, use the `/usr/bin/start-php-app` symlink instead of `php`.
 
-Note that the `start` command must run in the foreground and is executed before the [deploy hook](../../create-apps/hooks/hooks-comparison.md) runs.
+Note that the `start` commands must run in the foreground and are executed before the [deploy hook](../../create-apps/hooks/hooks-comparison.md) runs.
 Additionally, PHP-FPM can't run simultaneously along with another persistent process such as [ReactPHP](https://github.com/platformsh-examples/platformsh-example-reactphp) or [Amp](https://github.com/platformsh-examples/platformsh-example-amphp).
 If you need both, they have to run in separate containers.
 
