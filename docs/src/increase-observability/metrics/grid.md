@@ -33,6 +33,9 @@ If a redeploy is required for the specific environment, you see a note in the co
 This example should give you an idea of how the metrics appear.
 Grid environment metrics show resource usage for each app, service, and worker container.
 
+Note that resources are spread across all containers within the project.
+So the resources you see for a given container don't equal the total resources for the project.
+
 This reference project has a single app, two services (MySQL and Redis), and two workers.
 The plan size for this project is [Medium](https://platform.sh/pricing/).
 The appropriate resources have been [allocated automatically](../../create-apps/app-reference.md#sizes) for each container
@@ -50,6 +53,9 @@ at 1.91&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
 ![All of the metrics for the app container](/images/metrics/app-container.png)
 
 ### Service containers
+
+Unlike [app containers](#app-container), metrics graphs service containers don't show RAM allocation and usage.
+So you don't see all of your project's allocated RAM in the graphs.
 
 #### MySQL
 
