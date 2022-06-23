@@ -395,7 +395,7 @@ kbd {
   background: none;
 }
 
-#feedbackTable button:hover, #feedbackTable button:focus {
+#feedbackTable button:not(.secondarySearch):hover, #feedbackTable button:not(.secondarySearch):focus {
   background: var(--primary);
   filter: brightness(0.85);
 }
