@@ -48,10 +48,30 @@ Depending on the language, a brief description of the recommended way to handle 
 If available, include examples for connecting in an app
 (taken from https://examples.docs.platform.sh/).
 
-### Configuration reader
+{{< codetabs >}}
 
-If available, include the configuration reader available for the given language
-(for example, for [Python](https://github.com/platformsh/config-reader-python)).
+---
+title=<EXAMPLE_1>
+file=static/files/fetch/examples/<LANGUAGE_TYPE>/<SERVICE>
+highlight=js
+---
+
+<--->
+
+---
+title=<EXAMPLE_2>
+file=static/files/fetch/examples/<LANGUAGE_TYPE>/<SERVICE>
+highlight=js
+---
+
+{{< /codetabs >}}
+
+<!-- If available, include the configuration reader available for the given language
+(for example, for [Python](https://github.com/platformsh/config-reader-python)). -->
+
+{{% config-reader %}}
+[`<NAME_OF_THE_CONFIG_READER_FOR_THAT_LANGUAGE>`](<LINK_TO_THE_REPO>)
+{{% /config-reader%}}
 
 ## Any other functions specific to the language
 
