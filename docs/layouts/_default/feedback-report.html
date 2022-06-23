@@ -7,52 +7,84 @@
         <div class="col-xl-12 order-xl-1 duik-content">
 
           <h1>Feedback on specific docs pages</h1>
+          <div id="feedbackTable" x-data="feedbackData()" x-init="fetchFeedback()">
 
-          <table id="feedbackTable" x-data="feedbackData()" x-init="fetchFeedback()">
-            <thead>
-              <tr>
-                <th>
-                  Date
-                  {{ partial "feedback/sort-buttons" (dict "column" "date" ) }}
-                </th>
-                <th>
-                  URL
-                  {{ partial "feedback/sort-buttons" (dict "column" "url" ) }}
-                </th>
-                <th>
-                  Positive votes
-                  {{ partial "feedback/sort-buttons" (dict "column" "positiveFeedback" ) }}
-                </th>
-                <th>
-                  Negative votes
-                  {{ partial "feedback/sort-buttons" (dict "column" "negativeFeedback" ) }}
-                </th>
-              </tr>
-            </thhead>
-            <tbody>
-              <template x-for="feedbackItem in feedbackItems">
+            <button class="group" @click="groupByUrl()" x-show="showDate">
+              Group feedback by URL
+            </button>
+            <button class="group" @click="fetchFeedback()" x-show="!showDate">
+              Ungroup feedback
+            </button>
+
+            <table>
+              <thead>
                 <tr>
-                  <td x-text="new Date(feedbackItem.date).toDateString()"></td>   
-                  <td x-text="feedbackItem.url"></td>   
-                  <td x-text="feedbackItem.positiveFeedback"></td>   
-                  <td x-text="feedbackItem.negativeFeedback"></td>   
+                  <th x-show="showDate">
+                    Date
+                    {{ partial "feedback/sort-buttons" (dict "column" "date" ) }}
+                  </th>
+                  <th>
+                    URL
+                    {{ partial "feedback/sort-buttons" (dict "column" "url" ) }}
+                  </th>
+                  <th>
+                    Positive votes
+                    {{ partial "feedback/sort-buttons" (dict "column" "positiveFeedback" ) }}
+                  </th>
+                  <th>
+                    Negative votes
+                    {{ partial "feedback/sort-buttons" (dict "column" "negativeFeedback" ) }}
+                  </th>
                 </tr>
-              </template>
-            </tbody>
-          </table>
+              </thhead>
+              <tbody>
+                <template x-for="feedbackItem in feedbackItems">
+                  <tr>
+                    <td x-text="new Date(feedbackItem.date).toDateString()" x-show="showDate"></td>   
+                    <td x-text="feedbackItem.url"></td>   
+                    <td x-text="feedbackItem.positiveFeedback"></td>   
+                    <td x-text="feedbackItem.negativeFeedback"></td>   
+                  </tr>
+                </template>
+              </tbody>
+            </table>
+          </div>
 
           <script>
             function feedbackData() {
               return {
                 feedbackItems: null,
                 sortColumn: null,
+                showDate: true,
                 fetchFeedback() {
+                  this.showDate = true;
                   this.isLoading = true;
                   fetch("/feedback/data")
                     .then(res => res.json())
                     .then(data => {
                       this.feedbackItems = data;
                     })
+                },
+                groupByUrl() {
+                  this.showDate = false;
+                  // Combine all feedback on a given page into one row
+                  const summedFeedback = this.feedbackItems.reduce((result, item) => {
+                    // Check if the accumulator already has the URL
+                    const existing = result.find(x => x.url === item.url);
+
+                    // If so, add the current votes to the running total
+                    if (existing) {
+                      existing.positiveFeedback += item.positiveFeedback;
+                      existing.negativeFeedback += item.negativeFeedback;
+                    } else { // Otherwise, add a new item to the list
+                      delete item.date
+                      result.push(item);
+                    }
+                    return result
+                  }, [])
+
+                  this.feedbackItems = summedFeedback;
+
                 },
                 sort(column, sortAsc) {
                   this.sortColumn = column;
