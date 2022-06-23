@@ -104,7 +104,7 @@ Follow these steps to get your server started.
 
 Your app container comes with pip pre-installed.
 To add global dependencies (packages available as commands),
-add them to the `dependencies` in your [app configuration](../create-apps/app-reference.md#dependencies):
+add them to the `dependencies` in your [app configuration](../../create-apps/app-reference.md#dependencies):
 
 ```yaml {location=".platform.app.yaml"}
 dependencies:
@@ -116,7 +116,7 @@ dependencies:
 
 ## Connect to services
 
-The following examples show how to access various [services](../add-services/_index.md) with Python.
+The following examples show how to access various [services](../../add-services/_index.md) with Python.
 For more information on configuring a given service, see the page for that service.
 
 {{< codetabs >}}

@@ -49,7 +49,7 @@ View the [PHP documentation](../languages/php/_index.md).
 
 ## Python
 
-View the [Python documentation](../languages/python.md).
+View the [Python documentation](../languages/python/_index.md).
 
 {{< repolist noIntro=true lang="python" >}}
 
