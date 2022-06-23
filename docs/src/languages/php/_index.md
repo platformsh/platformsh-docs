@@ -15,8 +15,6 @@ You can deploy your PHP apps on Platform.sh.
 
 {{% image-versions-legacy "php" %}}
 
-Note that from PHP 7.1, the images use the Zend Thread Safe (ZTS) version of PHP.
-
 {{% language-specification type="php" display_name="PHP" %}}
 
 {{% deprecated-versions %}}
@@ -62,8 +60,29 @@ web:
             passthru: '/app.php'
 ```
 
-In the example above, the static requests made to your domain will be forwarded to the `public` directory.
-If no file matches the static request in the `public` directory, or if the request is dynamic, the requests will be forwarded to the passthru.
+In the above example all requests made to the root of your site (`/`) are sent to the `public` directory where the following happens:
+
+- Static files (`.css`, `.jpg`, ...) are served directly by the webserver.
+- Dynamic requests are handled by the existing matching `.php` files in `public`.
+- Requests to non-existing files are sent to `public/app.php`.
+
+Note that all requests will be sent to php.
+To have more fine grained control, you can define rules to specify which static files you want to allow:
+
+```yaml {location=".platform.app.yaml"}
+web:
+    locations:
+        '/':
+            # Handle dynamic requests
+            root: 'public'
+            passthru: '/index.php'
+            # Disallow static files
+            allow: false
+            rules:
+                # Allow common image files only.
+                '\.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$':
+                    allow: true
+```
 
 A [start command](../../create-apps/app-reference.md#required-command) is not required for PHP.
 
@@ -87,7 +106,7 @@ web:
             passthru: '/app.php'
 ```
 
-## Manage dependencies
+## Dependencies
 
 By default, PHP images use `composer` to manage dependencies.
 If a `composer.json` file is present on your project, `composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader` is run during [build](../../create-apps/hooks/hooks-comparison.md#build-hook).
@@ -222,9 +241,6 @@ By default, PHP is run in CGI mode using PHP-FPM (FastCGI Process Manager).
 
 It's possible to change some of the PHP-FPM runtime configuration via the `runtime` property in your [app configuration](../../create-apps/app-reference.md#runtime). You can set the [PHP  runtime timezone](../../create-apps/timezone.md).
 
-The default PHP values can be retrieved by calling the [`phpinfo()` function](https://www.php.net/manual/en/function.phpinfo.php) from within a php script.
-Don't forget to remove the file once you've retrieved all the information you need.
-
 Some noteworthy settings are:
 
 | Name | Value | Description |
@@ -232,6 +248,16 @@ Some noteworthy settings are:
 | `zend.assertions` | `-1` | Assertions are optimized out of existence and have no impact at runtime. You should have assertions set to `1` for your local development system. |
 | `opcache.memory_consumption` | `64` | This is the number of megabytes available for [the OPcache](./tuning.md#opcache-preloading). Increase this value for large applications with many files.|
 | `opcache.validate_timestamps` | `On` | [The OPcache](./tuning.md#opcache-preloading) checks for updated files on disk. This is necessary to support applications that generate compiled PHP code from user configuration. If you are certain your application does not do so then you can disable this setting for a small performance boost. |
+| `max_execution_time` | `0` | This is the maximum execution time, in seconds, for your PHP scripts and applications. A value of `0` means there are no time limits. |
+| `max_file_uploads` | `20` | This is the maximum number of files that can be uploaded per request. |
+| `max_input_time` | `-1` | This is the maximum time, in seconds, that your script is allowed to receive input (e.g for file uploads). A value of `-1` means there are no time limits. |
+| `max_input_vars` | `1000` | This is the maximum amount of input variables that are accepted per request. |
+| `memory_limit` | `512M` | The memory limit, in megabytes, that is set for PHP. |
+| `post_max_size` | `8M` | This is the maximum size, in megabytes, per uploaded file. Increase this value to upload larger files. |
+
+The default PHP values can be retrieved by running `php -i` when SSH-ed into your container.
+Use grep to get specific values.
+To get the value for `opcache.memory_consumption` you could run something like `php -i | grep opcache.memory_consumption`.
 
 ### Customize the PHP settings
 
@@ -343,7 +369,7 @@ If you want to launch your own server to return content and handle user requests
     ```
 
     By configuring your app to connect to Nginx via a TCP socket, you also enable the definition of the `$PORT` environment variable.
-    This variable can be useful as some scripts need to rely on its value to function correctly, which is typically the case when using [Swoole](https://github.com/swoole/swoole-src), or [Roadrunner](https://github.com/roadrunner-server/roadrunner). You might have to configure your app to connect with Nginx via the `$PORT` TCP socket.
+    This variable can be useful as some scripts need to rely on its value to function correctly, which is typically the case when using [Swoole](swoole.md), or [Roadrunner](https://github.com/roadrunner-server/roadrunner). You might have to configure your app to connect with Nginx via the `$PORT` TCP socket.
 3. Finally, you may also need to override the locations/redirection to let the custom web server handle these.
 
     ```yaml {location=".platform.app.yaml"}
@@ -354,6 +380,8 @@ If you want to launch your own server to return content and handle user requests
     ```
 
 {{< /codetabs >}}
+
+For runtime specific tasks such as clearing cache, you need to run these in the `start` command, with something like: `bash clearcache.sh && php <YOUR_FILE>.php`
 
 For more details, see the reference of [web commands](../../create-apps/app-reference.md#web-commands).
 
