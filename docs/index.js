@@ -63,8 +63,8 @@ app.get('/feedback/data', async (req, res) => {
 
   // Combine all feedback on a given page into one row
   const rowsWithCountedFeedback = rows.reduce((result, item) => {
-    // Check if the accumulator already has the URL
-    const existing = result.find(x => x.url === item.url);
+    // Check if the accumulator already has the URL for a given date
+    const existing = result.find(x => x.url === item.url && new Date(x.date).toDateString() === new Date(item.date).toDateString());
 
     // If so, add the current vote to the running total
     if (existing) {
