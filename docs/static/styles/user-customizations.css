@@ -389,3 +389,14 @@ kbd {
 .tabs .tab-content {
   padding: 1rem 0.5rem 0rem 0.5rem;
 }
+
+
+#feedbackTable button {
+  border: none;
+  background: none;
+}
+
+#feedbackTable button:hover, #feedbackTable button:focus {
+  background: var(--primary);
+  filter: brightness(0.85);
+}
