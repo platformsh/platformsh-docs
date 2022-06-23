@@ -16,13 +16,22 @@ With all of the requirements met, install the CLI to start developing with Platf
 
 {{% cli-installation %}}
 
-## 2. Clone your project locally
+## 2. Test the CLI
+
+To interact with your projects you need to be logged in.
+To open the authentication page and get a list of your Platform.sh projects, run:
+
+```bash
+platform
+```
+
+## 3. Clone your project locally
 
 To clone your project locally:
 
-1. Get a list of your Platform.sh projects with: `platform`.
-2. Copy the *ID* of your project from the project list.
-3. Download a local copy of the the project's code repository with:
+1. Get a list of your Platform.sh projects with: `platform project:list`.
+2. Copy the ID of your project from the project list.
+3. Download a local copy of the project's code repository with:
 
     ```bash
     platform get <PROJECT_ID>

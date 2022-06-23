@@ -10,13 +10,14 @@ In the previous steps, you checked that the requirements on your computer were m
 
 {{< asciinema src="videos/asciinema/verify-cli-extended.cast" >}}
 
-##  1. Install the CLI
+## 1. Install the CLI
 
 {{% cli-installation %}}
 
-##  2. Test the CLI
+## 2. Test the CLI
 
-To see a list of your Platform.sh projects and test that everything is setup properly, run:
+To interact with your projects you need to be logged in.
+To open the authentication page, run:
 
 ```bash
 platform

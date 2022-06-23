@@ -38,9 +38,9 @@ platform
 
 This process opens a browser tab for you to log in.
 It also creates certificates on your computer for [SSH connections](/development/ssh/_index.md).
-If you experience authentication issues or want to force a login, run the command `platform login`.
 
 Once you are logged in, a list of your projects appears, along with some tips for getting started.
+If you experience authentication issues or want to force a login, run the command `platform login`.
 
 Get a list of all available commands with:
 

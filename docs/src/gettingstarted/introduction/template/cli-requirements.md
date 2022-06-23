@@ -11,4 +11,4 @@ With the [management console](/administration/web/_index.md), you can start new 
 
 {{% cli-installation-requirements %}}
 
-{{< guide-buttons next="I have met all the requirements" >}}
+{{< guide-buttons next="I have everything ready" >}}
