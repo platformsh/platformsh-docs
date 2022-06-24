@@ -30,7 +30,7 @@ platform
 To clone your project locally:
 
 1. Get a list of your Platform.sh projects with: `platform project:list`.
-2. Copy the ID of your project from the project list.
+2. Copy the **ID** of your project from the project list.
 3. Download a local copy of the project's code repository with:
 
     ```bash
