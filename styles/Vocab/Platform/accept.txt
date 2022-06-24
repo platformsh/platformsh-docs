@@ -84,6 +84,7 @@ Pixelant
 pngcrush
 preprocessor
 preload(?:er|ing)?
+profiler
 progs
 proxied
 Pthreads

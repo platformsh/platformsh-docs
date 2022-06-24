@@ -34,7 +34,7 @@ It also removes the need to include these files later.
 When OPcache is correctly configured, it can result in significant improvements to both CPU and memory usage.
 
 Caching should only be used on files where caching is meaningful.
-Consult your frameworks's documentation to see
+Consult your framework's documentation to see
 if there are recommendations for optimal preload configuration or ready-to-use preload scripts.
 
 OPcache is only available on PHP 7.4+.

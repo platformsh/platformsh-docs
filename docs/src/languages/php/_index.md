@@ -318,7 +318,7 @@ Typical use cases include running:
 
 - An async PHP daemon.
 - A thread-based worker process.
-- A custom php script.
+- A custom PHP script.
 
 The alternative processes use PHP-CLI instead of PHP-CGI.
 If you want to use PHP-CGI with PHP-FPM, in the `start` command, use the `/usr/bin/start-php-app` symlink instead of `php`.
@@ -337,7 +337,7 @@ highlight=false
 
 If you want to run a custom script:
 
-1. Add your script in a php file,
+1. Add your script in a PHP file,
 2. Specify an alternative start command, similar to the following:
 
     ```yaml {location=".platform.app.yaml"}
@@ -356,7 +356,7 @@ highlight=false
 
 If you want to launch your own server to return content and handle user requests:
 
-1. Add your script in a php file,
+1. Add your script in a PHP file,
 2. Specify an alternative start command, similar to the following:
 
     ```yaml {location=".platform.app.yaml"}

@@ -32,7 +32,7 @@ Only incoming requests that have an Xdebug cookie or query parameter set are for
 All other requests are directed to the normal PHP-FPM process and thus have no performance impact.
 
 Xdebug has numerous other configuration options available.
-They can be set the same way as any other [php setting](./_index.md#php-settings).
+They can be set the same way as any other [PHP setting](./_index.md#php-settings).
 For a full list of available options, consult the [Xdebug documentation](https://xdebug.org/docs/).
 
 If you have the [router cache](../../define-routes/cache.md) enabled, you will also need to explicitly add the Xdebug cookie (`XDEBUG_SESSION`) to the cookie whitelist.  Depending on the cookies you already have listed there the result should look similar to this:
