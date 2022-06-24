@@ -512,7 +512,7 @@ Flavors are language-specific.
 See what the build flavor is for your language:
 
 * [Node.js](../languages/nodejs/_index.md#dependencies)
-* [PHP](../languages/php/_index.md#manage-dependencies)
+* [PHP](../languages/php/_index.md#dependencies)
 
 In all languages, you can also specify a flavor of `none` to take no action at all
 (which is the default for any language other than PHP and Node.js).
