@@ -45,38 +45,44 @@ Depending on the language, a brief description of the recommended way to handle 
 
 ## Connect to services
 
-If available, include examples for connecting in an app
+If available, include examples for connecting to different services in an app
 (taken from https://examples.docs.platform.sh/).
+
+The following examples show how to use <LANGUAGE_NAME> to access various [services](/add-services/_index.md).
+To configure a given service, see the page dedicated to that service.
 
 {{< codetabs >}}
 
 ---
-title=<EXAMPLE_1>
+title=<SERVICE_EXAMPLE>
 file=static/files/fetch/examples/<LANGUAGE_TYPE>/<SERVICE>
-highlight=js
+highlight=<LANGUAGE_TYPE>
+markdownify: false
 ---
 
 <--->
 
 ---
-title=<EXAMPLE_2>
-file=static/files/fetch/examples/<LANGUAGE_TYPE>/<SERVICE>
-highlight=js
+title=<DIFFERENT_SERVICE_EXAMPLE>
+file=static/files/fetch/examples/<LANGUAGE_TYPE>/<DIFFERENT_SERVICE>
+highlight=<LANGUAGE_TYPE>
+markdownify: false
 ---
 
 {{< /codetabs >}}
 
-<!-- If available, include the configuration reader available for the given language
-(for example, for [Python](https://github.com/platformsh/config-reader-python)). -->
+<!-- If available, include the configuration reader available for the given language,
+ by adding the shortcode below and providing the link to the specific flavour of the config reader
+(for example, for the Python library, the config reader link is: [platformshconfig](https://github.com/platformsh/config-reader-python)). -->
 
 {{% config-reader %}}
-[`<NAME_OF_THE_CONFIG_READER_FOR_THAT_LANGUAGE>`](<LINK_TO_THE_REPO>)
+[`<CONFIG_READER_NAME>`](<CONFIG_READER_REPOSITORY_URL>)
 {{% /config-reader%}}
 
 ## Any other functions specific to the language
 
 Structure like [how to steps](./how-to.md#1-do-this-step-first).
-Split each function 
+Split each function.
 
 ## Project templates
 
