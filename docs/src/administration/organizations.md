@@ -74,6 +74,7 @@ you can invite other users to your organization and grant them the following per
 * **Billing** (`billing`):
   Add, remove and edit billing information.
   Access invoices and vouchers.
+  Users with this permission receive monthly invoices by email.
 * **Plans** (`plans`):
   Add, remove, and edit plans and plan options for your existing projects.
   (Change plan, change storage, change the number of environments, change the number of user licenses)
@@ -81,7 +82,6 @@ you can invite other users to your organization and grant them the following per
   Add, remove, and edit organization-level users and permissions, including your own.
 * **Create projects** (`projects:create`):
   Create new projects within the organization.
-
 
 {{< note theme="warning" >}}
 
@@ -98,9 +98,9 @@ highlight=false
 ---
 
 1. Navigate to the organization you want to manage (or a project in it).
-1. Open the user menu (your name or profile picture).
-1. Click **Users**.
-1. Invite new users or edit existing users to manage their permissions.
+2. Open the user menu (your name or profile picture).
+3. Click **Users**.
+4. Invite new users or edit existing users to manage their permissions.
 
 <--->
 ---

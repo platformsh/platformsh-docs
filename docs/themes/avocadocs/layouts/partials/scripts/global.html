@@ -2,6 +2,8 @@
 <script src="{{ printf "docsuikit/assets/vendor/jquery/dist/jquery.min.js?version=%s" $.Site.Params.version | relURL }}"></script>
 <script src="{{ printf "docsuikit/assets/vendor/jquery-migrate/dist/jquery-migrate.min.js?version=%s" $.Site.Params.version | relURL }}"></script>
 <script src="{{ printf "docsuikit/assets/vendor/bootstrap/dist/js/bootstrap.min.js?version=%s" $.Site.Params.version | relURL }}"></script>
+<!-- Alpine.js support -->
+<script defer src="{{ printf "/alpinejs/cdn.min.js?version=%s" $.Site.Params.version }}"></script>
 {{ if (.Params.mermaid) }}
 <!-- MermaidJS support -->
 <script async src="{{ printf "/mermaid/mermaid.min.js?version=%s" $.Site.Params.version }}"></script>

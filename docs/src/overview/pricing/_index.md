@@ -151,17 +151,30 @@ Learn more about [Dedicated Generation 3](/dedicated-gen-3/overview).
 
 ## Agencies
 
-We offer three tiers for agencies with many perks.
+Agencies have access to several partner levels with many perks.
 
-* Free user licenses
-* A free site for your own agency
-* Up to 10% customer lifetime referral fees and 15% discounts
-* Access to an agency speciﬁc "Small" price plan
-* Free Medium or Large plan website for your own agency site
-* Free Small plan for every Enterprise project sold
-* &hellip;and more!
+* Agency partner levels: Registered, Bronze, Silver, Gold, Platinum, and Diamond
+* Free user licenses: Silver and above
+* Free development plan: Gold and above
+* Access to an agency-speciﬁc Small plan price: Bronze and above
+* Agency discounts for plans depending on the combination of the account tier and agency partner level:
 
-[Learn more and join today...](https://platform.sh/solutions/agency)
+  | Discount          | Registered | Bronze | Silver | Gold | Platinum | Diamond |
+  | ----------------- | ---------- | ------ | ------ | ---- | -------- | ------- |
+  | User license      |            |        | Free   | Free | Free     | Free    |
+  | Development plan  |            |        |        | Free | Free     | Free    |
+  | Professional tier |            |        | 10%    | 10%  | 10%      | 10%     |
+  | Premier tier      |            |        | 10%    | 10%  | 10%      | 10%     |
+  | Enterprise tier   |            |        | 10%    | 18%  | 20%      | 20%     |
+  | Elite tier        |            |        |        |      | 25%      | 30%     |
 
-If you have any questions,
-don't hesitate to [contact our sales department](https://platform.sh/contact/).
+* Agency partners may host their own agency website for free.
+  The size of the plan depends on the agency tier as seen in the following table:
+
+  | Registered | Bronze     | Silver        | Gold        | Platinum   | Diamond    |
+  | ---------- | ---------- | ------------- | ----------- | ---------- | ---------- |
+  | –          | Small plan | Standard plan | Medium plan | Large plan | Large plan |
+
+[Learn more and join today](https://platform.sh/solutions/agency).
+
+If you have any questions, don't hesitate to [contact Sales](https://platform.sh/contact/).

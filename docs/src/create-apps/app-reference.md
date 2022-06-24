@@ -62,7 +62,10 @@ These are used in the format `runtime:version`:
 
 ## Sizes
 
-Be default, resource sizes (CPU and memory) are chosen automatically for an app
+Resources are distributed across all containers in a project from the total available from your [plan size](../overview/pricing/_index.md).
+So if you have more than just a single app, it doesn't get all of the resources available.
+
+By default, resource sizes (CPU and memory) are chosen automatically for an app
 based on the plan size and the number of other containers in the cluster.
 Most of the time, this automatic sizing is enough.
 
@@ -77,7 +80,7 @@ To do so, set `size` to one of the following values:
 * `2XL`
 * `4XL`
 
-The total resources allocated across all apps and services can't exceed what's in [your plan](../overview/pricing/_index.md).
+The total resources allocated across all apps and services can't exceed what's in your plan.
 
 ### Sizes in development environments
 
