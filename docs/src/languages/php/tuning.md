@@ -178,8 +178,10 @@ Doing so would prevent updates to the generated code from being loaded.
 
 ### Restart PHP-FPM
 
-To force a restart of PHP-FPM, you can run `pkill -f php-fpm` or `sv restart app`.
-If you want to force a restart of PHP-FPM on every (re)deployment, add these commands to your [`deploy` hook](../../create-apps/hooks/hooks-comparison.md#deploy-hook).
+To force a restart of PHP-FPM, you can either run `sv restart app` or `pkill -f php-fpm`.
+
+If you want to force a restart of PHP-FPM on every (re)deployment, add either command to your [`deploy` hook](../../create-apps/hooks/hooks-comparison.md#deploy-hook).
+If you need to clear cache when PHP-FPM is restarted, add either command to your [`start` directive](../../create-apps/app-reference.md#web-commands).
 
 ## Optimize your code
 

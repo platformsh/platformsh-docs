@@ -77,6 +77,7 @@ optipng
 overutilize
 Packagist
 Papertrail
+passthru
 Pathauto
 Payara
 Pixelant

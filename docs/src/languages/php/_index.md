@@ -62,12 +62,12 @@ web:
 
 In the above example all requests made to the root of your site (`/`) are sent to the `public` directory where the following happens:
 
-- Static files (`.css`, `.jpg`, ...) are served directly by the webserver.
+- Static files (`.css`, `.jpg`, ...) are served directly by the web-server.
 - Dynamic requests are handled by the existing matching `.php` files in `public`.
 - Requests to non-existing files are sent to `public/app.php`.
 
-Note that all requests will be sent to php.
-To have more fine grained control, you can define rules to specify which static files you want to allow:
+Note that all requests are sent to PHP.
+To have more control, you can define rules to specify which static files you want to allow:
 
 ```yaml {location=".platform.app.yaml"}
 web:
@@ -84,7 +84,7 @@ web:
                     allow: true
 ```
 
-A [start command](../../create-apps/app-reference.md#required-command) is not required for PHP.
+A [start command](../../create-apps/app-reference.md#required-command) isn't required for PHP.
 
 ### Complete example
 
@@ -247,12 +247,12 @@ Some noteworthy settings are:
 |------|-------|-------------|
 | `zend.assertions` | `-1` | Assertions are optimized out of existence and have no impact at runtime. You should have assertions set to `1` for your local development system. |
 | `opcache.memory_consumption` | `64` | This is the number of megabytes available for [the OPcache](./tuning.md#opcache-preloading). Increase this value for large applications with many files.|
-| `opcache.validate_timestamps` | `On` | [The OPcache](./tuning.md#opcache-preloading) checks for updated files on disk. This is necessary to support applications that generate compiled PHP code from user configuration. If you are certain your application does not do so then you can disable this setting for a small performance boost. |
+| `opcache.validate_timestamps` | `On` | [The OPcache](./tuning.md#opcache-preloading) checks for updated files on disk. This is necessary to support applications that generate compiled PHP code from user configuration. If you are certain your application doesn't do so then you can disable this setting for a small performance boost. |
 | `max_execution_time` | `0` | This is the maximum execution time, in seconds, for your PHP scripts and applications. A value of `0` means there are no time limits. |
 | `max_file_uploads` | `20` | This is the maximum number of files that can be uploaded per request. |
 | `max_input_time` | `-1` | This is the maximum time, in seconds, that your script is allowed to receive input (e.g for file uploads). A value of `-1` means there are no time limits. |
 | `max_input_vars` | `1000` | This is the maximum amount of input variables that are accepted per request. |
-| `memory_limit` | `512M` | The memory limit, in megabytes, that is set for PHP. |
+| `memory_limit` | `512M` | The memory limit, in megabytes, that's set for PHP. |
 | `post_max_size` | `8M` | This is the maximum size, in megabytes, per uploaded file. Increase this value to upload larger files. |
 
 The default PHP values can be retrieved by running `php -i` when SSH-ed into your container.
@@ -288,7 +288,7 @@ For Dedicated, [see the configuration options](../../dedicated/overview/grid.md#
 ### Disable functions for security
 
 A common recommendation for securing PHP installations is disabling built-in functions frequently used in remote attacks.
-By default, Platform.sh does not disable any functions as they all have some legitimate use.
+By default, Platform.sh doesn't disable any functions as they all have some legitimate use.
 
 If you're sure a function isn't needed in your app, you can disable it.
 
@@ -323,7 +323,7 @@ Typical use cases include running:
 The alternative processes use PHP-CLI instead of PHP-CGI.
 If you want to use PHP-CGI with PHP-FPM, in the `start` command, use the `/usr/bin/start-php-app` symlink instead of `php`.
 
-Note that the `start` commands must run in the foreground and are executed before the [deploy hook](../../create-apps/hooks/hooks-comparison.md) runs.
+Note that the `start` commands must run in the foreground and are executed before the [deploy hook](../../create-apps/hooks/hooks-comparison.md).
 Additionally, PHP-FPM can't run simultaneously along with another persistent process such as [ReactPHP](https://github.com/platformsh-examples/platformsh-example-reactphp) or [Amp](https://github.com/platformsh-examples/platformsh-example-amphp).
 If you need both, they have to run in separate containers.
 
