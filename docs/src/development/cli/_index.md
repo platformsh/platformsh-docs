@@ -42,17 +42,17 @@ It also creates certificates on your computer for [SSH](../ssh/_index.md).
 Once you are logged in, a list of your projects appears, along with some tips for getting started.
 If you experience authentication issues or want to force a login, run the command `platform login`.
 
-Get a list of all available commands with:
-
-```bash
-platform list
-```
-
 ## 3. Use
 
 Now you can run actions on your projects such as branching and merging.
 You can also simulate a local build of your codebase as if you were pushing a change to Platform.sh,
 including your services and data.
+
+Get a list of all available commands with:
+
+```bash
+platform list
+```
 
 To get more information on a specific command, preface it with `help`:
 
