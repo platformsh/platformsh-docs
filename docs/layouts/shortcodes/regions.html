@@ -8,11 +8,12 @@
         <tr class="region-table-header">
             <th>Region</th>
             <th>Provider</th>
+            <th>Available to new orgs</th>
             <th>Outbound IPs</th>
             <th>Inbound IPs</th>
         </tr>
         <!-- List individual regions -->
-        {{ range $data }}
+        {{ range sort $data "available" "desc" }}
         <!-- Give the region a row -->
         <tr>
             <!-- Region overview -->
@@ -24,6 +25,7 @@
             </td>
             <!-- Provider -->
             <td>{{ .provider }}</td>
+            <td>{{ if .available }}✅{{ end }}</td>
             <!-- Outbound ips -->
             <td class="region-subtable">
                 <ul>
