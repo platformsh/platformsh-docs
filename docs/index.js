@@ -47,7 +47,7 @@ app.post("/feedback/submit", async (req, res) => {
 })
 
 /* Return a simple table of feedback submissions */
-app.get('/feedback/report.html', async (req, res) => {
+app.get('/feedback/data', async (req, res) => {
   const credentials = config.credentials("database");
 
   const connection = await mysql.createConnection({
@@ -63,28 +63,22 @@ app.get('/feedback/report.html', async (req, res) => {
 
   // Combine all feedback on a given page into one row
   const rowsWithCountedFeedback = rows.reduce((result, item) => {
-    // Check if the accumulator already has the URL
-    const existing = result.find(x => x.url === item.url);
+    // Check if the accumulator already has the URL for a given date
+    const existing = result.find(x => x.url === item.url && new Date(x.date).toDateString() === new Date(item.date).toDateString());
 
     // If so, add the current vote to the running total
     if (existing) {
       if (item.feedback === "positive") {
-        if (existing.positiveFeedback) {
-          existing.positiveFeedback += 1
-        } else {
-          existing.positiveFeedback = 1
-        }
+        existing.positiveFeedback += 1
       } else if (item.feedback === "negative") {
-        if (existing.negativeFeedback) {
-          existing.negativeFeedback += 1
-        } else {
-          existing.negativeFeedback = 1
-        }
+        existing.negativeFeedback += 1
       }
     } else { // Otherwise, add a new item to the list
       if (item.feedback === "positive") {
         item.positiveFeedback = 1
+        item.negativeFeedback = 0
       } else if (item.feedback === "negative") {
+        item.positiveFeedback = 0
         item.negativeFeedback = 1
       }
       delete item.id
@@ -93,47 +87,10 @@ app.get('/feedback/report.html', async (req, res) => {
     return result
   }, [])
 
-  // Map each SQL row to an HTML table row
-  const outputRows = rowsWithCountedFeedback
-    .map(({ date, url, positiveFeedback, negativeFeedback }) => `<tr><td>${new Date(date).toDateString()}</td><td>${url}</td><td>${positiveFeedback || 0}</td><td>${negativeFeedback || 0}</td></tr>\n`)
-    .join("\n");
 
-  const html = `
-    <!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <title>Docs feedback</title>
-        <style>
-          table {
-            border-collapse: collapse;
-          }
-          
-          th, td {
-            border: 1px solid black;
-            padding: 0.25rem 0.5rem;
-          }
-        </style>
-      </head>
-      <body>
-        <h1>Feedback on specific docs pages</h1>
-        <table>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>URL</th>
-              <th>Positive votes</th>
-              <th>Negative votes</th>
-            </tr>
-          </thhead>
-          <tbody>
-            ${outputRows}
-          </tbody>
-        </table>
-      </body>
-    </html>
-    `;
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify(rowsWithCountedFeedback));
 
-  res.send(html)
 })
 
 /* Handle 404 requests */
