@@ -6,8 +6,8 @@ layout: single
 
 ## Supported versions
 
-| **Grid** | **Dedicated** |
-|----------------------------------|---------------|
+| Grid and Dedicated Generation 3 | Dedicated |
+|---------------------------------|-----------|
 |  {{< image-versions image="php" status="supported" environment="grid" >}} | {{< image-versions image="php" status="supported" environment="dedicated" >}} |
 
 {{% image-versions-legacy "php" %}}
@@ -18,8 +18,8 @@ Note that from PHP 7.1, the images use the Zend Thread Safe (ZTS) version of PHP
 
 {{% deprecated-versions %}}
 
-| **Grid** | **Dedicated** |
-|----------------------------------|---------------|
+| Grid and Dedicated Generation 3 | Dedicated |
+|---------------------------------|-----------|
 |  {{< image-versions image="php" status="deprecated" environment="grid" >}} | {{< image-versions image="php" status="deprecated" environment="dedicated" >}} |
 
 ## Alternate start commands
