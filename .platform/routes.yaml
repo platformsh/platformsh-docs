@@ -109,6 +109,9 @@ https://{default}/:
       "/overview/environments(.*)":  { "to": "/environments$1", "code": 301, "regexp": true }
       "/overview/projects(.*)":  { "to": "/projects$1", "code": 301, "regexp": true }
 
+      # Changelog removal in June 2022
+      "/other/changelog.html": { "to": "https://portal.productboard.com/platformsh/2-platform-sh-portal", "code": 301 }
+
 
 "https://search.{default}/":
     type: upstream
