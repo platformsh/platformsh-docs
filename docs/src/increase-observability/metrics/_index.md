@@ -18,6 +18,10 @@ and their average for the Production environment.
 
 ![A screenshot of what the metrics dashboard displays for Dedicated environments](/images/metrics/all-dedicated.png "0.45")
 
+[Dedicated Generation 3 environments](../../dedicated-gen-3/overview.md): each of the three hosts and their average.
+
+![A screenshot of what the metrics dashboard displays for Dedicated Generation 3 environments](/images/metrics/all-dedicated-gen3.png "0.45")
+
 Grid environments: your service, app, and worker containers.
 
 ![A screenshot of what the metrics dashboard displays for Grid environments](/images/metrics/all-grid.png "0.45")
@@ -30,7 +34,7 @@ All of the graphs show labels for the following thresholds:
 
 * Usage that crosses _80%_ results in a **warning** label.
 * Usage that crosses _90%_ results in a **critical** label.
-* On Grid environments only, usage that crosses _100%_ results in a **burst** label.
+* On Dedicated Generation 3 and Grid environments, usage that crosses _100%_ results in a **burst** label.
 
   The burst capability is available for containerized environments
   and allows a container to get more resources than it's allocated.
@@ -51,6 +55,23 @@ you might want to consider:
 
 * [Optimizing your code](../integrate-observability/_index.md) (if possible)
 * [Increasing your plan](../../overview/pricing/_index.md)
+
+#### Dedicated Generation 3 environments
+
+For Dedicated Generation 3 environments, the thresholds are set for each host.
+If the resources are high and hovering close to the 100% threshold,
+you might want to consider:
+
+* [Optimizing your code](../integrate-observability/_index.md) (if possible)
+* Changing your [app size](../../create-apps/app-reference.md#sizes)
+  or [service size](../../add-services/_index.md#size)
+* [Increasing your plan](../../overview/pricing/_index.md)
+
+If your containers are in a prolonged burst state,
+review your configuration or plan size because burst isn't guaranteed for long periods.
+If the burst threshold is triggered for short, infrequent activities,
+it might not be an issue as long as the site is functioning properly.
+Burst allows your container to use additional resources when they aren't required on the container's host.
 
 #### Grid environments
   
