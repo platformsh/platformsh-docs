@@ -83,9 +83,9 @@ If you want your site to be accessible with `https://`{{<variable "YOUR_DOMAIN" 
 Examples of such workaround records include:
 
 <!-- vale Platform.condescending = NO -->
-- CNAME Flattening at [CloudFlare](https://www.cloudflare.com/)
-- ANAME at [easyDNS](https://www.easydns.com/), [DNS Made Easy](http://www.dnsmadeeasy.com/), or [Name.com](https://www.name.com/)
-- ALIAS at [DNSimple](https://dnsimple.com/) or [ClouDNS](https://www.cloudns.net/)
+* CNAME Flattening at [CloudFlare](https://www.cloudflare.com/)
+* ANAME at [easyDNS](https://www.easydns.com/), [DNS Made Easy](http://www.dnsmadeeasy.com/), or [Name.com](https://www.name.com/)
+* ALIAS at [DNSimple](https://dnsimple.com/) or [ClouDNS](https://www.cloudns.net/)
 <!-- vale Platform.condescending = YES -->
 
 Make sure that your registrar supports dynamic apex domains before registering your domain name with them.

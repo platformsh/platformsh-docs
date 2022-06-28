@@ -181,7 +181,25 @@ If you are planning on using subdomains across multiple projects, [the setup dif
 
 ## Result
 
+<<<<<<< HEAD
 With the assumption that all caches are empty, an incoming request where {{<variable "YOUR_DOMAIN" >}} is `example.com` results in the following:
+=======
+<--->
+
+---
+title=With a CDN
+file=none
+highlight=false
+---
+
+If you are serving the site through a CDN, configure your DNS provider to point at your CDN account.
+The address or CNAME to set for that varies with the CDN provider.
+Refer to their documentation or to the [CDN guide](/domains/cdn/_index.md).
+
+{{< /codetabs >}}
+
+## Bonus steps (Optional)
+>>>>>>> 5619ee5c (:memo: Update DNS configuration instructions)
 
 1. Your browser asks the DNS root servers for `example.com`'s DNS A record (the IP address of this host).
    The DNS root server responds with "it's an alias for `main-def456-abc123.eu-2.platformsh.site`" (the CNAME),
