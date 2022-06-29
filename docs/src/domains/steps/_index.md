@@ -50,7 +50,7 @@ You can find more information on pricing on the [pricing page](https://platform.
 ## 2. Get the CNAME target of your project
 
 The CNAME target is where your website is hosted within Platform.sh.
-Your domain needs to point to that target for your site to be live.
+Your domain {{<variable "YOUR_DOMAIN" >}} needs to point to that target for your site to be live.
 
 {{< codetabs >}}
 
