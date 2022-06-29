@@ -14,15 +14,6 @@ In the previous steps, you checked that the requirements on your computer were m
 
 {{% cli-installation %}}
 
-## 2. Test the CLI
-
-To interact with your projects, you need to be logged in.
-To authenticate, run:
-
-```bash
-platform
-```
-
 Now that you have installed the CLI and it is communicating with Platform.sh, you can configure and push your project to Platform.sh.
 
 {{< guide-buttons next="I've installed the CLI" >}}

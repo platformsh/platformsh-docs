@@ -16,15 +16,6 @@ With all of the requirements met, install the CLI to start developing with Platf
 
 {{% cli-installation %}}
 
-## 2. Test the CLI
-
-To interact with your projects, you need to be logged in.
-To authenticate, run:
-
-```bash
-platform
-```
-
 That's it!
 Now that you have the management console set up and the CLI installed on your computer,
 you're well on your way to exploring all of the ways that Platform.sh can improve your development workflow.
