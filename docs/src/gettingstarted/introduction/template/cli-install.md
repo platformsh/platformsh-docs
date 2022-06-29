@@ -18,8 +18,8 @@ With all of the requirements met, install the CLI to start developing with Platf
 
 ## 2. Test the CLI
 
-To interact with your projects you need to be logged in.
-To open the authentication page and get a list of your Platform.sh projects, run:
+To interact with your projects, you need to be logged in.
+To authenticate, run:
 
 ```bash
 platform
