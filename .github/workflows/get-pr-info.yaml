@@ -9,51 +9,66 @@ env:
 jobs:
   get_pr_info:
     runs-on: ubuntu-latest
+    # Don't run on forks since the CLI won't work
+    if: ${{ github.event.pull_request.head.repo.id == 21975579 }}
     steps: 
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
+      # Set up environment to use the Platform.sh CLI
+      - uses: adam7/platformsh-cli-action@v1.1
+        with: 
+          token: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+
       # Get the URL for the deployed environment
       - name: Get environment URL
         id: get_env_url
+        env:
+          BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
         run: |
           COMMIT_STATUS="pending"
           COMMIT_SHA=${{ github.event.pull_request.head.sha }}
 
-          # Wait for the initial status to be reported as pending or 10 minutes has passed
-          STATUSES=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$COMMIT_SHA  | jq -r 'length')
+          # Give time for the activity to be reported
+          sleep 60
+
+          # Get the most recent activity -- will be stable throughout based on ID
+          LATEST_ACTIVITY_ID=$(platform api:curl /projects/652soceglkw4u/environments/$BRANCH_NAME/activities | jq -r '.[0].id')
+          LATEST_ACTIVITY=$(platform api:curl /projects/652soceglkw4u/environments/$BRANCH_NAME/activities/$LATEST_ACTIVITY_ID)
+
+          # Get the state of the most recent activity
+          STATE=$(echo $LATEST_ACTIVITY | jq -r '.state')
+
+          # Set tries to 0 to start countdown to timeout
           STATUS_TRY=0
-          until [ $STATUSES != 0 ] || [ $STATUS_TRY == 20 ]; do
+
+          # Wait until state is complete or 10 minutes has passed
+          until [ $STATE == "complete" ] || [ $STATUS_TRY == 20 ]; do
             sleep 30
-            STATUSES=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$COMMIT_SHA  | jq -r 'length')
+            LATEST_ACTIVITY=$(platform api:curl /projects/652soceglkw4u/environments/$BRANCH_NAME/activities/$LATEST_ACTIVITY_ID)
+            STATE=$(echo $LATEST_ACTIVITY | jq -r '.state')
             ((STATUS_TRY+=1))
           done
-          
-          if [ $STATUSES == 0 ]; then
-            echo "No integration with Platform.sh reported. Skipping."
-            exit 1
-          else
-            # Keep trying until deployment either succeeds or fails
-            until [ "$COMMIT_STATUS" == "success" ] || [ "$COMMIT_STATUS" == "failure" ]; do
-              sleep 30
 
-              ENV_URL=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$COMMIT_SHA  | jq -r '.[0].target_url')
-              ENV_URL=${ENV_URL/http:/https:}
-              COMMIT_STATUS=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$COMMIT_SHA  | jq -r '.[0].state')
-              
-              echo "The Platform.sh environment is:"
-              echo "$COMMIT_STATUS"
-            done
-            if [ "$COMMIT_STATUS" == "success" ]; then
-              echo "Environment deployed to:"
-              echo "$ENV_URL"
-            fi
+          # Get the URL of the environment
+          ENV_URL=$(echo $LATEST_ACTIVITY | jq -r '.payload.environment.edge_hostname')
+          ENV_URL="https://$ENV_URL"
 
-            # Report the final statuses to be used in future jobs
-            echo "::set-output name=env_status::$COMMIT_STATUS"
-            echo "::set-output name=env_url::$ENV_URL"
+          # Get the status of the build activity
+          COMMIT_STATUS=$(echo $LATEST_ACTIVITY | jq -r '.result')
+
+          # Report findings
+          echo "The Platform.sh environment is:"
+          echo "$COMMIT_STATUS"
+          if [ "$COMMIT_STATUS" == "success" ]; then
+            echo "Environment deployed to:"
+            echo "$ENV_URL"
           fi
+
+          # Report the final statuses to be used in future jobs
+          echo "::set-output name=env_status::$COMMIT_STATUS"
+          echo "::set-output name=env_url::$ENV_URL"
 
       - name: Make artifact files
         run: |
