@@ -261,19 +261,16 @@ Cron jobs may invoke other services in unexpected ways, which can increase execu
 A common source of performance issues is a misconfigured cache.
 The most common issue is not allowing the right cookies as part of the router cache.
 
-Some cookies, such as session cookies, need to be allowed,
-whereas others, such as marketing and analytics cookies,
-usually shouldn't be allowed to be part of the cache key.
+Some cookies, such as session cookies, need to be allowed.
+Others, such as marketing and analytics cookies, usually shouldn't be part of the cache key.
 
 See more about [router cache](../define-routes/cache.md)
 and [cookie entry](../define-routes/cache.md#cookies).
 
-You also need to ensure that your application is sending the correct `cache-control` header.
-The router cache obeys whatever cache headers your application sends,
-so send it good ones.
+Because the router cache follows cache headers from your app,
+your app needs to send the correct `cache-control` header.
 
-Static assets cache headers are set using the `expires` key in `.platform.app.yaml`.
-See the [`web.locations` documentation](../create-apps/app-reference.md#locations) for more details.
+For static assets, set cache headers using the `expires` key in your [app configuration](../create-apps/app-reference.md#locations).
 
 ## Language-specific troubleshooting
 

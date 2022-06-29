@@ -178,12 +178,13 @@ such as enabling errors and configuring the Xdebug extension.
 
 To apply a setting to all environments or have a setting differ among multiple PHP containers in one project,
 specify the variables in the `.platform.app.yaml` file for your application.
-For more information, see how to [manage PHP settings](../../languages/php/_index.md#customize-the-php-settings).
+For more information, see how to [customize PHP settings](../../languages/php/_index.md#customize-php-settings).
 
 ### Framework-specific variables
 
 For specific frameworks, you can implement logic to override global configurations with environment-specific variables.
-So you can use the same codebase and default settings on different environments, but still adapt the framework's behavior on any environment.
+So you can use the same codebase and settings for all your environments,
+but still adapt the behavior to each environment.
 
 The Drupal templates show examples of overriding variables from Drupal's configuration system.
 You can apply similar logic for other frameworks.
@@ -191,9 +192,10 @@ You can apply similar logic for other frameworks.
 For Drupal 9:
 
 * To override a value in the global `$settings` array, use a [variable](../../development/variables/set-variables.md#create-environment-specific-variables) starting with `drupalsettings:` or `drupal:`.
-* To override a value in the global `$config` array, use a [variable](../../development/variables/set-variables.md#create-environment-specific-variables) starting with `drupalconfig:`.
+* To override a value in the global `$config` array,
+  create a variable with the prefix `drupalconfig:`.
 
 In this case, the variable name needs two colons, one for `drupalsettings:` and one for the name of the configuration object to override.
 For example, a variable named `drupalsettings:system.site:name` overrides the `name` property of the `system.site` configuration object.
 
-See details of implementation [for Drupal 9](https://github.com/platformsh-templates/drupal9/blob/master/web/sites/default/settings.platformsh.php#L125-L162).
+To get inspired for other frameworks, see the [Drupal 9 implementation](https://github.com/platformsh-templates/drupal9/blob/8d5d23cdcb91ffa3f96727adf9d3dba74dfc01db/web/sites/default/settings.platformsh.php#L125-L162).

@@ -13,7 +13,7 @@ They're also listed in approximately the order to investigate them.
 ## Upgrade to PHP 8
 
 To make a PHP-based site run faster, the first step is to upgrade the PHP version.
-Upgrading a PHP version might require changes on your app.
+Upgrading the PHP version might require changes to your app.
 For more details and recommendation, see the [PHP migration guides](https://www.php.net/manual/en/migration81.php).
 
 To change your PHP version, change the [`type` in your app configuration](../../create-apps/app-reference.md#example-configuration).
@@ -44,7 +44,7 @@ Note that the only way to clear the preload cache is by [restarting PHP-FPM](#re
 
 ### Enable OPcache
 
-To enable preloading add a variable that specifies a preload script:
+To enable preloading, add a variable that specifies a preload script:
 
 ```yaml {location=".platform.app.yaml"}
 variables:
@@ -84,14 +84,15 @@ To get started with configuration, see how to:
 - [Set the maximum amount of cached files](#set-the-maximum-amount-of-cached-files)
 - [Set the memory consumption](#set-the-memory-consumption)
 
-#### Set the maximum amount of cached files
+#### Set the maximum number of cached files
 
-`opcache.max_accelerated_files` is the maximum number of files that OPcache may cache at once.
-If this value is lower than the number of files in the application, the cache starts [thrashing](https://en.wikipedia.org/wiki/Thrashing_(computer_science)) and becomes less effective.
+`opcache.max_accelerated_files` is the maximum number of files that OPcache can cache at once.
+If this value is lower than the number of files in the app,
+the cache starts [thrashing](https://en.wikipedia.org/wiki/Thrashing_(computer_science)) and becomes less effective.
 
 To set `opcache.max_accelerated_files`:
 
-1. Determine roughly how many `.php` files your application has by running this command from [your app root](../../create-apps/app-reference.md#root-directory):
+1. Determine roughly how many `.php` files your app has by running this command from [your app root](../../create-apps/app-reference.md#root-directory):
 
     ```bash
     find . -type f -name '*.php' | wc -l
@@ -101,27 +102,28 @@ To set `opcache.max_accelerated_files`:
     Some apps have PHP code in files that don't end in `.php` or files that are generated at runtime.
 
 2. Set `opcache.max_accelerated_files` to a value slightly higher than the returned number.
-    PHP automatically rounds the value up to the next highest prime number.
+   PHP automatically rounds the value up to the next highest prime number.
 
-    An example configuration:
+   An example configuration:
 
-    ```yaml {location=".platform.app.yaml"}
-    variables:
-        php:
-            'opcache.max_accelerated_files': 22000
-    ```
+   ```yaml {location=".platform.app.yaml"}
+   variables:
+       php:
+           'opcache.max_accelerated_files': 22000
+   ```
 
-#### Set the memory consumption
+#### Set memory consumption
 
 `opcache.memory_consumption` is the total memory (in megabytes) that OPcache can use.
-If the application's usage is larger than this, the cache starts thrashing and becomes less effective.
+If the app uses more than this, the cache starts [thrashing](https://en.wikipedia.org/wiki/Thrashing_(computer_science)) and becomes less effective.
 
 Determining an optimal `opcache.memory_consumption` requires executing code via a web request to get adequate statistics.
 [`CacheTool`](https://github.com/gordalina/cachetool) is an open-source tool to help you get the statistics.
 
 To set `opcache.memory_consumption`:
 
-1. Connect via ssh using the [CLI](../../development/cli/_index.md) with: `platform ssh`.
+1. Connect to the container via SSH using the [CLI](../../development/cli/_index.md)
+   by running `platform ssh`.
 2. Change to the `/tmp` directory with `cd /tmp` (or any other non-web-accessible writable directory).
 3. Download CacheTool with `curl -sLO https://github.com/gordalina/cachetool/releases/latest/download/cachetool.phar`.
 4. Make CacheTool executable with `chmod +x cachetool.phar`.
@@ -134,23 +136,26 @@ To set `opcache.memory_consumption`:
    The `--fcgi=$SOCKET` option ensures the PHP-FPM process on the server connects through the right socket.
 6. Analyze the output to determine the optimal value for `opcache.memory_consumption`.
     The most important values from CacheTool's output are:
-    - `Memory used`,
-    - `Memory free`,
-    - `Oom restarts` (out of memory restarts).
-    If the value is different than 0, you don't have enough memory allocated to OPcache.
+
+    - `Memory used`
+    - `Memory free`
+    - `Oom restarts` (out of memory restarts)
+      If the value is different than 0, you don't have enough memory allocated to OPcache.
 
     If `Memory free` is too low or `Oom Restarts` too high,
     set a higher value for memory consumption.
-7. Set `opcache.memory_consumption`. Note: The unit for `opcache.memory_consumption` is megabytes.
-    An example configuration:
+7. Set `opcache.memory_consumption`.
+   Note: The unit for `opcache.memory_consumption` is megabytes.
 
-    ```yaml {location=".platform.app.yaml"}
-    variables:
-        php:
-            'opcache.memory_consumption': 96
-    ```
+   An example configuration:
 
-8. [Restart PHP-FPM](#restart-php-fpm) and make sure that OPcache works as expected by re-running CacheTool.
+   ```yaml {location=".platform.app.yaml"}
+   variables:
+       php:
+           'opcache.memory_consumption': 96
+   ```
+
+8. [Restart PHP-FPM](#restart-php-fpm) and make sure that OPcache works as expected by rerunning CacheTool.
 9. Remove CacheTool by deleting the `cachetools.phar` file.
 
 ### Disable OPcache timestamp validation
@@ -173,17 +178,17 @@ variables:
 When you have disabled OPcache timestamp validation,
 you need to explicitly clear OPcache on deployment by [restarting PHP-FPM](#restart-php-fpm).
 
-Note: If your application generates PHP code at runtime based on user configuration, you can't disable the timestamp validation.
+Note: If your app generates PHP code at runtime based on user configuration, don't disable timestamp validation.
 Doing so would prevent updates to the generated code from being loaded.
 
 ### Restart PHP-FPM
 
-To force a restart of PHP-FPM, you can either run `sv restart app` or `pkill -f php-fpm`.
+To force a restart of PHP-FPM, run `sv restart app`.
 
-If you want to force a restart of PHP-FPM on every (re)deployment, add either command to your [`deploy` hook](../../create-apps/hooks/hooks-comparison.md#deploy-hook).
-If you need to clear cache when PHP-FPM is restarted, add either command to your [`start` directive](../../create-apps/app-reference.md#web-commands).
+To force a restart of PHP-FPM on every deployment, add the command to your [`deploy` hook](../../create-apps/hooks/hooks-comparison.md#deploy-hook).
+To clear the cache when PHP-FPM is restarted, add the command to your [`start` command](../../create-apps/app-reference.md#web-commands).
 
 ## Optimize your code
 
 To optimize your app, consider using a [profiler](../../increase-observability/integrate-observability/_index.md).
-A profiler helps to determine what slow spots can be found and addressed and helps to improve performance.
+A profiler helps determine what slow spots can be found and addressed and helps improve performance.

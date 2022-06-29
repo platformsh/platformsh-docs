@@ -7,7 +7,7 @@ Platform.sh uses a heuristic to automatically set the number of workers of the P
 This heuristic is based on assumptions about the memory necessary on average to process a request.
 You can tweak those assumptions if your application typically uses considerably more or less memory.
 
-Note that this value is independent of the `memory_limit` set in the [PHP settings](_index.md#php-settings), which is the maximum amount of memory a single PHP process can use before it is automatically terminated.
+Note that this value is independent of the `memory_limit` set in the [PHP settings](./_index.md#php-settings), which is the maximum amount of memory a single PHP process can use before it is automatically terminated.
 These estimates are used only for determining the number of PHP-FPM workers to start.
 
 ## The heuristic
