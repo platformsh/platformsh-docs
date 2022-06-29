@@ -28,6 +28,15 @@ On Windows, the best way to get Bash is through [Windows Subsystem for Linux](ht
 
 {{% cli-installation %}}
 
+## 2. Test the CLI
+
+To interact with your projects, you need to log in.
+To authenticate, run:
+
+```bash
+platform
+```
+
 This process opens a browser tab for you to log in.
 It also creates certificates on your computer for [SSH](../ssh/_index.md).
 
