@@ -18,41 +18,28 @@ Its source code is hosted on [GitHub](https://github.com/platformsh/platformsh-c
 
 You need to have:
 
-* PHP 5.5.9+
-* Git
+* [PHP 5.5.9+](https://www.php.net/manual/en/install.php) with the following extensions installed: `curl`, `json`, `mbstring`, `pcre`, and `phar`
+* [Git](https://git-scm.com/downloads)
 * A Bash-like shell
 
-  On Windows, the best way to get Bash is through [Windows Subsystem for Linux](https://msdn.microsoft.com/en-gb/commandline/wsl/about).
-  You can also use another Bash-compatible shell such as [Git Bash](https://gitforwindows.org/),
-  which you might have installed with git.
-
-For full requirements, see the [requirements on GitHub](https://github.com/platformsh/platformsh-cli#user-content-requirements).
+On Windows, the best way to get Bash is through [Windows Subsystem for Linux](https://msdn.microsoft.com/en-gb/commandline/wsl/about).
 
 ## 1. Install
 
-Install the CLI using this command:
-
-```bash
-curl -fsS https://platform.sh/cli/installer | php
-```
-
-If you run into issues or want to install manually, see the [installation instructions on GitHub](https://github.com/platformsh/platformsh-cli#user-content-installation).
+{{% cli-installation %}}
 
 ## 2. Authenticate
 
-To see and manage projects, you need to be authenticated with Platform.sh
-Run this command:
+To list and manage your projects, authenticate by running the following command:
 
 ```bash
 platform
 ```
 
-You are asked to log in via a browser.
-This process creates SSH certificates on your computer for secure connections.
-(See more about [SSH connections](/development/ssh/_index.md).)
+This process opens a browser tab for you to log in.
+It also creates certificates on your computer for [SSH](../ssh/_index.md).
 
 Once you are logged in, a list of your projects appears, along with some tips for getting started.
-
 If you experience authentication issues or want to force a login, run the command `platform login`.
 
 ## 3. Use
@@ -61,8 +48,13 @@ Now you can run actions on your projects such as branching and merging.
 You can also simulate a local build of your codebase as if you were pushing a change to Platform.sh,
 including your services and data.
 
-To see all available commands, run `platform list`.
-To get more information on a particular command, preface that command with `help`:
+Get a list of all available commands with:
+
+```bash
+platform list
+```
+
+To get more information on a specific command, preface it with `help`:
 
 ```bash
 $ platform help get
