@@ -30,8 +30,7 @@ On Windows, the best way to get Bash is through [Windows Subsystem for Linux](ht
 
 ## 2. Authenticate
 
-To interact with your projects, you need to log in.
-To authenticate, run:
+To list and manage your projects, authenticate by running the following command:
 
 ```bash
 platform

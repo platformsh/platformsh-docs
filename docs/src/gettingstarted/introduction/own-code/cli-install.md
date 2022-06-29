@@ -16,8 +16,7 @@ In the previous steps, you checked that the requirements on your computer were m
 
 ## 2. Test the CLI
 
-To interact with your projects, you need to log in.
-To authenticate, run:
+To list and manage your projects, authenticate by running the following command:
 
 ```bash
 platform
