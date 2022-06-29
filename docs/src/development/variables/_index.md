@@ -38,11 +38,11 @@ Choose how to set the variable based on what you are trying to do.
 Some environment variables should be the same for all environments.
 For example:
 
-* Build tool versions.
+- Build tool versions.
   If you have scripts that use specific versions of build tools (such as a [specific Node.js version](../../languages/nodejs/node-version.md)),
   You want the tools to be versioned along with your code so you can track the impact of changes.
   Set those variables [in the application](./set-variables.md#set-variables-in-your-app).
-* Credentials for common services.
+- Credentials for common services.
   If you have credentials for services shared across your environments,
   you don't want to commit these secrets to code.
   Set them as sensitive [project variables](./set-variables.md#create-project-variables).
@@ -50,12 +50,12 @@ For example:
 Other configurations should vary between environment types.
 For example:
 
-* Service configuration for databases and such.
+- Service configuration for databases and such.
   This information be read from the Platform.sh-provided [`PLATFORM_RELATIONSHIPS` variable](./use-variables.md#use-platformsh-provided-variables).
   It varies by environment automatically.
-* Mode toggles such as enabling `debug` mode, disabling certain caches, and displaying more verbose errors.
+- Mode toggles such as enabling `debug` mode, disabling certain caches, and displaying more verbose errors.
   This information might vary by environment type and should be set on the [environment level](./set-variables.md#create-environment-specific-variables).
-* API keys for remote services, especially payment gateways.
+- API keys for remote services, especially payment gateways.
   If you have a different payment gateway for production and for testing,
   set its keys on the [environment level](./set-variables.md#create-environment-specific-variables).
 
@@ -182,20 +182,20 @@ For more information, see how to [customize PHP settings](../../languages/php/_i
 
 ### Framework-specific variables
 
-For specific frameworks, you can implement logic to override global configurations with environment-specific variables.
+For specific frameworks, you can implement logic to override global configurations with environment-specific [variables](../../development/variables/set-variables.md#create-environment-specific-variables).
 So you can use the same codebase and settings for all your environments,
 but still adapt the behavior to each environment.
 
 The Drupal templates show examples of overriding variables from Drupal's configuration system.
 You can apply similar logic for other frameworks.
 
-For Drupal 9:
+For Drupal 9 variable override:
 
-* To override a value in the global `$settings` array, use a [variable](../../development/variables/set-variables.md#create-environment-specific-variables) starting with `drupalsettings:` or `drupal:`.
-* To override a value in the global `$config` array,
-  create a variable with the prefix `drupalconfig:`.
-
-In this case, the variable name needs two colons, one for `drupalsettings:` and one for the name of the configuration object to override.
-For example, a variable named `drupalsettings:system.site:name` overrides the `name` property of the `system.site` configuration object.
+- The variable needs three colons: one for the prefix, one for the setting to override and one for the property.
+  For example, a variable named `drupalsettings:system.site:name` overrides the `name` property of the `system.site` configuration object.
+- To override a value in the global `$settings` array,
+  create a variable with the prefix `drupalsettings:` and add the configuration object and property to override.
+- To override a value in the global `$config` array,
+  create a variable with the prefix `drupalconfig:` and add the configuration object and property to override.
 
 To get inspired for other frameworks, see the [Drupal 9 implementation](https://github.com/platformsh-templates/drupal9/blob/8d5d23cdcb91ffa3f96727adf9d3dba74dfc01db/web/sites/default/settings.platformsh.php#L125-L162).

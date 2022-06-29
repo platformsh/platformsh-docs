@@ -7,7 +7,7 @@ Platform.sh uses a heuristic to automatically set the number of workers of the P
 This heuristic is based on assumptions about the memory necessary on average to process a request.
 You can tweak those assumptions if your application typically uses considerably more or less memory.
 
-Note that this value is independent of the `memory_limit` set in the [PHP settings](./_index.md#php-settings), which is the maximum amount of memory a single PHP process can use before it is automatically terminated.
+Note that this value is independent of the `memory_limit` set in the [PHP settings](./_index.md#php-settings), which is the maximum amount of memory a single PHP process can use before it's automatically terminated.
 These estimates are used only for determining the number of PHP-FPM workers to start.
 
 ## The heuristic
@@ -16,12 +16,11 @@ The heuristic is based on three input parameters:
 
 - The memory available for the container, which depends on the size of the container (`S`, `M`, `L`),
 - The memory that an average request is expected to require,
-- The memory that should be reserved for things that aren't specific to a request (memory for `nginx`, the op-code cache, some OS page cache, etc.)
+- The memory that should be reserved for things that aren't specific to a request (memory for `nginx`, the op-code cache, some OS page cache, ...)
 
 The number of workers is calculated as:
 
 ![FPM](/images/php/phpfpmworkers.png "0.3")
-
 
 ## Defaults
 
@@ -59,8 +58,8 @@ To see how much memory your PHP worker processes are using, you can open an [SSH
 less /var/log/php.access.log
 ```
 
-In the fifth column, you'll see the peak memory usage that occurred while each request was handled.
-The peak usage varies between requests, but in order to avoid the severe performance costs that come from swapping, your size hint should be somewhere between the average and worst case memory usages that you observe.
+The fifth column displays the peak memory usage that occurred while each request was handled.
+The peak usage varies between requests, but to avoid the severe performance costs that come from swapping, your size hint should be somewhere between the average and worst case memory usages that you observe.
 
 A good way to determine an optimal request memory is with the following command:
 
@@ -94,7 +93,3 @@ Most requests used up to around 10 MB of memory, while a few used as much as 18 
 A conservative approach would suggest an average request memory of 16 MB should be sufficient.
 A more aggressive stance would suggest 10 MB.
 The more aggressive approach would potentially allow for more concurrent requests at the risk of some requests needing to use swap memory, thus slowing them down.
-
-The web agency [Pixelant](https://www.pixelant.net/) has also published a [log analyzer tool for Platform.sh](https://github.com/pixelant/platformsh-analytics) that offers a better visualization of access logs to determine how much memory requests are using on average.
-It also offers additional insights into the operation of your site that can suggest places to further optimize your configuration and provide guidance on when it's time to increase your plan size.
-Please note that this tool is maintained by a 3rd party, not by Platform.sh.

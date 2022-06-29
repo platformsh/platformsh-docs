@@ -20,11 +20,11 @@ highlight=false
 
 Add the following to your `.platform.app.yaml` file:
 
-  ```yaml
-  variables:
-      php:
-          "date.timezone": "Europe/Paris"
-  ```
+```yaml
+variables:
+    php:
+        "date.timezone": "Europe/Paris"
+```
 
 <--->
 

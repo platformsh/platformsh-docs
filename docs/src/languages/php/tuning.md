@@ -8,13 +8,13 @@ Platform.sh offers a wide degree of flexibility in how PHP behaves,
 but that does mean you may need to take a few steps to ensure your site is running optimally.
 
 The following recommendations are guidelines only.
-They're also listed in approximately the order to investigate them.
+They're also listed in about the order to investigate them.
 
 ## Upgrade to PHP 8
 
 To make a PHP-based site run faster, the first step is to upgrade the PHP version.
 Upgrading the PHP version might require changes to your app.
-For more details and recommendation, see the [PHP migration guides](https://www.php.net/manual/en/migration81.php).
+For more details and recommendations, see the [PHP migration guides](https://www.php.net/manual/en/migration80.php).
 
 To change your PHP version, change the [`type` in your app configuration](../../create-apps/app-reference.md#example-configuration).
 Before merging to production, test the change on a branch and make sure that your application is working as expected.
@@ -33,12 +33,11 @@ OPcache preloading loads selected files into shared memory, making their content
 It also removes the need to include these files later.
 When OPcache is correctly configured, it can result in significant improvements to both CPU and memory usage.
 
-Caching should only be used on files where caching is meaningful.
 Consult your framework's documentation to see
 if there are recommendations for optimal preload configuration or ready-to-use preload scripts.
 
 OPcache is only available on PHP 7.4+.
-If you aren't using PHP 7.4, this is a good reason to upgrade.
+If your PHP version doesn't support OPcache, this is a good reason to upgrade.
 
 Note that the only way to clear the preload cache is by [restarting PHP-FPM](#restart-php-fpm).
 
@@ -49,13 +48,14 @@ To enable preloading, add a variable that specifies a preload script:
 ```yaml {location=".platform.app.yaml"}
 variables:
     php:
-        opcache.preload: 'preload.php'
+        opcache.preload: '<PRELOAD_SCRIPT>'
 ```
 
 The `opcache.preload` value is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
 It may be any PHP script that calls `opcache_compile_file()`.
 
-The following example preloads all `.php` files in the `vendor` directory (and subdirectories):
+The following example uses the `preload.php` file as preload script.
+This script loads all `.php` files in the `vendor` directory (and subdirectories):
 
 ```php {location="preload.php"}
 <?php
@@ -74,15 +74,9 @@ foreach ($regex as $key => $file) {
 OPcache needs to be tuned before production usage and can be configured [the same way as PHP](../php/_index.md#customize-the-php-settings).
 
 {{< note >}}
-On PHP 7.4+, let the application run for a while
-before tuning OPcache itself
-as the preload script may change the necessary configuration here.
+Let the application run for a while before tuning OPcache
+since the preload script may change some of the configuration.
 {{< /note >}}
-
-To get started with configuration, see how to:
-
-- [Set the maximum amount of cached files](#set-the-maximum-amount-of-cached-files)
-- [Set the memory consumption](#set-the-memory-consumption)
 
 #### Set the maximum number of cached files
 
@@ -90,7 +84,7 @@ To get started with configuration, see how to:
 If this value is lower than the number of files in the app,
 the cache starts [thrashing](https://en.wikipedia.org/wiki/Thrashing_(computer_science)) and becomes less effective.
 
-To set `opcache.max_accelerated_files`:
+To determine the maximum number of files to cache:
 
 1. Determine roughly how many `.php` files your app has by running this command from [your app root](../../create-apps/app-reference.md#root-directory):
 
@@ -114,13 +108,13 @@ To set `opcache.max_accelerated_files`:
 
 #### Set memory consumption
 
-`opcache.memory_consumption` is the total memory (in megabytes) that OPcache can use.
+`opcache.memory_consumption` is the total memory (in megabytes) that OPcache can use with FastCGI.
 If the app uses more than this, the cache starts [thrashing](https://en.wikipedia.org/wiki/Thrashing_(computer_science)) and becomes less effective.
 
-Determining an optimal `opcache.memory_consumption` requires executing code via a web request to get adequate statistics.
+Determining the optimal limit to memory consumption requires executing code via a web request to get adequate statistics.
 [`CacheTool`](https://github.com/gordalina/cachetool) is an open-source tool to help you get the statistics.
 
-To set `opcache.memory_consumption`:
+To determine the total amount of memory to use:
 
 1. Connect to the container via SSH using the [CLI](../../development/cli/_index.md)
    by running `platform ssh`.
@@ -167,7 +161,7 @@ If that file has changed, it gets reloaded and recached.
 If you know your code isn't going to change outside of a new deploy,
 you can disable that check and get a small performance improvement.
 
-Timestamp validation can be disabled by adding the following to your app configuration:
+Timestamp validation can be disabled by adding the following to your [app configuration](../../create-apps/_index.md):
 
 ```yaml {location=".platform.app.yaml"}
 variables:
@@ -181,7 +175,7 @@ you need to explicitly clear OPcache on deployment by [restarting PHP-FPM](#rest
 Note: If your app generates PHP code at runtime based on user configuration, don't disable timestamp validation.
 Doing so would prevent updates to the generated code from being loaded.
 
-### Restart PHP-FPM
+## Restart PHP-FPM
 
 To force a restart of PHP-FPM, run `sv restart app`.
 
@@ -192,3 +186,8 @@ To clear the cache when PHP-FPM is restarted, add the command to your [`start` c
 
 To optimize your app, consider using a [profiler](../../increase-observability/integrate-observability/_index.md).
 A profiler helps determine what slow spots can be found and addressed and helps improve performance.
+
+The web agency [Pixelant](https://www.pixelant.net/) has also published a [log analyzer tool for Platform.sh](https://github.com/pixelant/platformsh-analytics) that offers a better visualization of access logs to determine how much memory requests are using on average.
+It offers additional insights into the operation of your site and can suggest places to further optimize your configuration.
+It also provides guidance on when it's time to increase your plan size.
+Note that this tool is maintained by a 3rd party, not by Platform.sh.

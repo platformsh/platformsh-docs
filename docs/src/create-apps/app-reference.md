@@ -222,7 +222,7 @@ Just run it as normal and allow the Platform.sh supervisor to manage it.
 On all containers other than PHP, the value for `start` should be treated as required.
 
 On PHP containers, it's optional and defaults to starting PHP-FPM (`/usr/bin/start-php-app`).
-It can also be set explicitly on a PHP container in order to run a dedicated process,
+It can also be set explicitly on a PHP container to run a dedicated process,
 such as [React PHP](https://github.com/platformsh-examples/platformsh-example-reactphp)
 or [Amp](https://github.com/platformsh-examples/platformsh-example-amphp).
 
