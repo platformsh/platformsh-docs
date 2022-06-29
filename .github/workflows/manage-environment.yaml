@@ -35,4 +35,4 @@ jobs:
         with: 
           token: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
 
-      - run: platform environment:deactivate --no-delete-branch -y ${{ github.event.pull_request.head.ref }}
+      - run: platform environment:deactivate -p 652soceglkw4u --no-delete-branch -y ${{ github.event.pull_request.head.ref }}
