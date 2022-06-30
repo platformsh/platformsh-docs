@@ -112,8 +112,7 @@ web:
             rules:
                 \.(css|js|gif|jpe?g|png|svg)$:
                     expires: 4w
-                    
-web:
+
     commands:
         # Run a no-op process that uses no CPU resources since this is a static site
         start: sleep infinity
