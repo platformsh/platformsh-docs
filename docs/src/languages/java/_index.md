@@ -10,8 +10,8 @@ layout: single
 
 ### OpenJDK versions:
 
-| **Grid** | **Dedicated** |
-|----------------------------------|---------------|
+| Grid and Dedicated Generation 3 | Dedicated |
+|---------------------------------|-----------|
 |  {{< image-versions image="java" status="supported" environment="grid" >}} | {{< image-versions image="java" status="supported" environment="dedicated" >}} |
 
 {{% image-versions-legacy "java" %}}
