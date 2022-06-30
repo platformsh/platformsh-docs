@@ -28,7 +28,8 @@ jobs:
     # Don't run on forks since the CLI won't work
     if: >-
       github.event.pull_request.head.repo.id == 21975579 &&
-      github.event.action == 'closed'
+      github.event.action == 'closed' &&
+      github.event.pull_request.merged == false
     steps:
       # Set up environment to use the Platform.sh CLI
       - uses: adam7/platformsh-cli-action@v1.1
