@@ -640,7 +640,8 @@
       "deprecated": [],
       "supported": [
         "1.1",
-        "1.2"
+        "1.2",
+        "2.0"
       ],
       "legacy": [
         "1.1"
@@ -655,7 +656,8 @@
     "versions-dedicated-gen-3": {
       "deprecated": [],
       "supported": [
-        "1.2"
+        "1.2",
+        "2.0"
       ]
     }
   },
