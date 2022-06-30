@@ -53,7 +53,7 @@ jobs:
 
           # Get the URL of the environment
           ENV_URL=$(echo $LATEST_ACTIVITY | jq -r '.payload.environment.edge_hostname')
-          ENV_URL="https://$ENV_URL"
+          ENV_URL="https://$ENV_URL/"
 
           # Get the status of the build activity
           COMMIT_STATUS=$(echo $LATEST_ACTIVITY | jq -r '.result')
