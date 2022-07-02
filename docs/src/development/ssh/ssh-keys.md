@@ -70,7 +70,7 @@ generate a key and have it added to your Platform.sh account automatically.
 1. Run the following commands (replacing `PATH_TO_YOUR_KEY` with the location you copied):
 
    ```bash
-   val $(ssh-agent)
+   eval $(ssh-agent)
    ssh-add 'PATH_TO_YOUR_KEY'
    ```
 
