@@ -67,11 +67,11 @@ generate a key and have it added to your Platform.sh account automatically.
 1. If necessary, log in to a browser.
 1. Press `Y` and `enter` to create a new SSH key.
 1. Copy the location of the generated key.
-1. Run the following commands (replacing `PATH_TO_YOUR_KEY` with the location you copied):
+1. Run the following commands (replacing `<PATH_TO_YOUR_KEY>` with the location you copied):
 
    ```bash
-   val $(ssh-agent)
-   ssh-add 'PATH_TO_YOUR_KEY'
+   eval $(ssh-agent)
+   ssh-add '<PATH_TO_YOUR_KEY>'
    ```
 
 To generate a key otherwise, GitHub has a good [walk-through for creating SSH key pairs](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) on various operating systems.
