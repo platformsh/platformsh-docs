@@ -14,7 +14,7 @@ If the version of the PhpRedis extension available for your PHP version is not c
 
 Do *not* use this approach unless you really need to.  Using the provided PhpRedis extension is preferred in the vast majority of cases.
 
-A script is provided to ease the installation of a customer version of PhpRedis.  Invoke that script from your build hook, specifying a version.  Any tagged version of the library is acceptable:
+A [script](https://github.com/platformsh/snippets/blob/main/src/install-phpredis.sh) is provided to ease the installation of a customer version of PhpRedis.  Invoke that script from your build hook, specifying a version.  Any tagged version of the library is acceptable:
 
 ```yaml {location=".platform.app.yaml"}
 hooks:
@@ -32,7 +32,7 @@ That PHP extension is also a shared in-memory cache like APCu. All retrieved key
 
 That means if the FPM Worker #1 fetches the `users:count` key from Redis, the other FPM Workers #2, #3, … will instantaneously retrieve that key from Relay, without having to communicate with Redis.
 
-A script is provided to ease the installation of a customer version of PhpRedis.  Invoke that script from your build hook, specifying a version.  Any tagged version of the library is acceptable:
+A [script](https://github.com/platformsh/snippets/blob/main/src/install-relay.sh) is provided to ease the installation of a customer version of PhpRedis.  Invoke that script from your build hook, specifying a version.  Any tagged version of the library is acceptable:
 ## Changing extension of version
 If you ever wish to change the Redis extension or the version you are using, update the build hook and clear the build cache: `platform project:clear-build-cache`.  The new version will *not* be used until you clear the build cache.
 
