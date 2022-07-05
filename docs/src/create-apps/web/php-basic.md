@@ -70,7 +70,7 @@ web:
 
 You might want to set specific rules for specific locations.
 For example, you might have files in your `/public/images` directory that are served at `/images`.
-You could defined a specific cache time for them and limit them to only static image files.
+You could define a specific cache time for them and limit them to only static image files.
 
 ```yaml {location=".platform.app.yaml"}
 web:
