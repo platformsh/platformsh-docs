@@ -4,20 +4,28 @@ weight: 6
 sidebarTitle: "Xdebug"
 ---
 
-[Xdebug](https://xdebug.org/) is a real-time debugger extension for PHP. While usually used for local development, it can also be helpful for debugging aberrant behavior on the server. It's available on Platform.sh Grid instances running PHP 7.2 and higher.
+[Xdebug](https://xdebug.org/) is a real-time debugger extension for PHP.
+While usually used for local development, it can also be helpful for debugging aberrant behavior on the server.
+It's available on Platform.sh Grid instances running PHP 7.2 and higher.
 
 As configured on Platform.sh, it avoids any runtime overhead for non-debug requests, even in production, and only allows connections via SSH tunnels to avoid any security issues.
 
 Note Xdebug runs only on your app containers.
 So you can't use it for [worker containers](../../create-apps/workers.md).
 
-## Setting up Xdebug
+## Before you begin
 
-Xdebug isn't enabled the same way as other extensions, as it shouldn't be active on most requests.
-Xdebug has a substantial impact on performance and should'nt be run in a production process.
-Instead, Platform.sh runs a second PHP-FPM process with Xdebug that is used only for debug requests, leaving the normal process unaffected.
+You need to have:
 
-Enable Xdebug by adding the following to your [app configuration](../../create-apps/app-reference.md):
+- PHP 7.2+ on your project
+- The platform [CLI](../../development/cli/_index.md)
+- Have [PHPStorm](https://www.jetbrains.com/phpstorm/) installed on your machine. Any Xdebug compatible IDE should work too, but the setup instructions will differ. Consult your IDE's Xdebug documentation for setup instructions.
+
+## 1. Set up Xdebug
+
+Xdebug runs as a second PHP-FPM process that is used only for debugging requests, leaving the normal process unaffected.
+
+To enable Xdebug, add the following to your [app configuration](../../create-apps/app-reference.md):
 
 ```yaml {location=".platform.app.yaml"}
 runtime:
@@ -31,10 +39,6 @@ When that key is defined, Platform.sh starts a second PHP-FPM process on the con
 Only incoming requests that have an Xdebug cookie or query parameter set are forwarded to the debug PHP-FPM process.
 All other requests are directed to the normal PHP-FPM process and thus have no performance impact.
 
-Xdebug has numerous other configuration options available.
-They can be set the same way as any other [PHP setting](./_index.md#php-settings).
-For a full list of available options, consult the [Xdebug documentation](https://xdebug.org/docs/).
-
 If you have the [router cache](../../define-routes/cache.md) enabled, you need to explicitly add the Xdebug cookie (`XDEBUG_SESSION`) to the cookie whitelist. Depending on the cookies you already have listed there the result should look similar to this:
 
 ```yaml {location=".platform/routes.yaml"}
@@ -45,25 +49,29 @@ If you have the [router cache](../../define-routes/cache.md) enabled, you need t
         cookies: ['/^SS?ESS/', 'XDEBUG_SESSION']
 ```
 
-## Using Xdebug
+Xdebug has numerous configuration options available.
+They can be set the same way as any other [PHP setting](./_index.md#php-settings).
+For a full list of available options, consult the [Xdebug documentation](https://xdebug.org/docs/).
+
+## 2. Use Xdebug
 
 ### Open a tunnel
 
 From your local checkout of your application, run `platform environment:xdebug` (or just `platform xdebug`) to open an SSH tunnel to the server. That SSH tunnel allows your IDE and the server to communicate debug information securely.
 
-By default, Xdebug operates on port 9003. (Xdebug 2 used port 9000). Generally, it's best to configure your IDE to use that port. If you wish to use an alternate port use the `--port` flag.
+By default, Xdebug operates on port 9003. Generally, it's best to configure your IDE to use that port. If you wish to use an alternate port use the `--port` flag.
 
 To close the tunnel and terminate the debug connection, press `Ctrl-C`.
 
 {{< note title="On Dedicated Generation 3" >}}
-Note that because you have several VMs running but your tunnel is connected to only one of them, your requests won't always reach the same host.
+Note that because you have several VMs running, but your tunnel is connected to only one of them, your requests won't always reach the same host.
 {{< /note >}}
 
 ### Install an Xdebug helper
 
 While Xdebug can be triggered from the browser by adding a special query parameter, the preferred way is to use a browser plugin helper. One is available for [Firefox](https://addons.mozilla.org/en-US/firefox/addon/xdebug-helper-for-firefox/) and for [Chrome](https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc). Their respective plugin pages document how to trigger them when needed.
 
-## Using PHPStorm
+## 3. (optional) Use PHPStorm
 
 The configuration for Xdebug is slightly different for each IDE.
 The configuration instructions below are for PHPStorm/IntelliJ due to its popularity in the PHP ecosystem.
