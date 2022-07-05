@@ -36,7 +36,7 @@ When OPcache is correctly configured, it can result in significant improvements 
 Consult your framework's documentation to see
 if there are recommendations for optimal preload configuration or ready-to-use preload scripts.
 
-OPcache is only available on PHP 7.4+.
+OPcache is only available on PHP 7.4+ and uses PHP-CGI.
 If your PHP version doesn't support OPcache, this is a good reason to upgrade.
 
 Note that the only way to clear the preload cache is by [restarting PHP-FPM](#restart-php-fpm).
@@ -121,7 +121,7 @@ To determine the total amount of memory to use:
 2. Change to the `/tmp` directory with `cd /tmp` (or any other non-web-accessible writable directory).
 3. Download CacheTool with `curl -sLO https://github.com/gordalina/cachetool/releases/latest/download/cachetool.phar`.
 4. Make CacheTool executable with `chmod +x cachetool.phar`.
-5. Run CacheTool to check OPcache status for FastCGI commands with:
+5. Check the OPcache status for FastCGI commands.
 
    ```bash
    php cachetool.phar opcache:status --fcgi=$SOCKET

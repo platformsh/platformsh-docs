@@ -44,15 +44,7 @@ and add it to your [app configuration](../../create-apps/_index.md):
 ### 2. Specify a dependency manager
 
 To manage PHP dependencies and libraries, use [Composer](https://getcomposer.org/).
-
-PHP containers use Composer 1.x by default.
-To use Composer 2.x, add the following to your app configuration:
-
-```yaml {location=".platform.app.yaml"}
-dependencies:
-    php: 
-        composer/composer: '^2'
-```
+PHP containers use Composer 1.x by default. For more options, see [dependency management](#dependencies).
 
 ### 3. Serve your app
 
@@ -380,7 +372,7 @@ highlight=false
 
 ## Foreign function interfaces
 
-[Foreign function interfaces (FFIs)](https://en.wikipedia.org/wiki/Foreign_function_interface)
+[Foreign function interfaces (FFI)](https://en.wikipedia.org/wiki/Foreign_function_interface)
 allow your PHP program to call routines or use services written in C or Rust.
 
 Starting from PHP 7.4, you can use FFI on your app, though you shouldn't have to in most cases.

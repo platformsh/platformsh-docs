@@ -19,11 +19,11 @@ You need to have:
 
 - PHP 7.2+ on your project
 - The platform [CLI](../../development/cli/_index.md)
-- Have [PHPStorm](https://www.jetbrains.com/phpstorm/) installed on your machine. Any Xdebug compatible IDE should work too, but the setup instructions will differ. Consult your IDE's Xdebug documentation for setup instructions.
+- Have [PHPStorm](https://www.jetbrains.com/phpstorm/) installed on your machine. Any Xdebug compatible IDE should work too, but the setup instructions differ. Consult your IDE's Xdebug documentation for setup instructions.
 
 ## 1. Set up Xdebug
 
-Xdebug runs as a second PHP-FPM process that is used only for debugging requests, leaving the normal process unaffected.
+Xdebug runs as a second PHP-FPM process used only for debugging requests, leaving the normal process unaffected.
 
 To enable Xdebug, add the following to your [app configuration](../../create-apps/app-reference.md):
 
@@ -64,12 +64,14 @@ By default, Xdebug operates on port 9003. Generally, it's best to configure your
 To close the tunnel and terminate the debug connection, press `Ctrl-C`.
 
 {{< note title="On Dedicated Generation 3" >}}
-Note that because you have several VMs running, but your tunnel is connected to only one of them, your requests won't always reach the same host.
+Note that because you have several VMs running, but your tunnel is connected to only one of them, your requests don't always reach the same host.
 {{< /note >}}
 
 ### Install an Xdebug helper
 
-While Xdebug can be triggered from the browser by adding a special query parameter, the preferred way is to use a browser plugin helper. One is available for [Firefox](https://addons.mozilla.org/en-US/firefox/addon/xdebug-helper-for-firefox/) and for [Chrome](https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc). Their respective plugin pages document how to trigger them when needed.
+While Xdebug can be triggered from the browser by adding a special query parameter, the preferred way is to use a browser plugin helper.
+One is available for [Firefox](https://addons.mozilla.org/en-US/firefox/addon/xdebug-helper-for-firefox/) and for [Chrome](https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc).
+Their respective plugin pages document how to trigger them when needed.
 
 ## 3. (optional) Use PHPStorm
 
@@ -80,7 +82,7 @@ The configuration instructions below are for PHPStorm/IntelliJ due to its popula
 
 In your PHPStorm Settings window, go to `Languages & Frameworks` > `PHP` > `Debug`.
 
-Ensure that the "Debug port" is set to the expected value (9003, or whatever you want to use in the `--port` flag) and that "Can accept external connections" is checked.Other settings are at your discretion.
+Ensure that the "Debug port" is set to the expected value (9003, or whatever you want to use in the `--port` flag) and that "Can accept external connections" is checked. Other settings are at your discretion.
 
 ![Xdebug configuration screen](/images/xdebug/xdebug-settings.png "0.6")
 
@@ -88,7 +90,9 @@ Ensure that the "Debug port" is set to the expected value (9003, or whatever you
 
 In your PHPStorm Settings window, go to `Languages & Frameworks` > `PHP` > `Servers`.
 
-Add a new server for your Platform.sh environment. The "Host" should be the hostname of the environment on Platform.sh you are debugging. The "Port" should always be 443 and the "Debugger" set to Xdebug. Ensure that "Use path mappings" is checked, which makes available a tree of your project with a column to configure the remote path that it should map to.
+Add a new server for your Platform.sh environment. The "Host" should be the hostname of the environment on Platform.sh you are debugging.
+The "Port" should always be 443 and the "Debugger" set to Xdebug.
+Ensure that "Use path mappings" is checked, which makes available a tree of your project with a column to configure the remote path that it should map to.
 
 This page lets you define what remote paths on the server correspond to what path on your local machine.
 In the majority of cases you can just define [your app root](../../create-apps/app-reference.md#root-directory)
