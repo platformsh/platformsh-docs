@@ -178,7 +178,7 @@ such as enabling errors and configuring the Xdebug extension.
 
 To apply a setting to all environments or have a setting differ among multiple PHP containers in one project,
 specify the variables in the `.platform.app.yaml` file for your application.
-For more information, see how to [customize PHP settings](../../languages/php/_index.md#customize-php-settings).
+For more information, see how to [customize PHP settings](../../languages/php/_index.md#customize-the-php-settings).
 
 ### Framework-specific variables
 
