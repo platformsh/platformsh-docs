@@ -11,7 +11,7 @@ Sign up at https://newrelic.com and get your [license key](https://docs.newrelic
 Add your New Relic license key as an environment level variable:
 
 ```bash
-platform variable:create --level environment --environment '<your-environment>' --visible-build false --inheritable false php:newrelic.license --value '<your-new-relic-license-key>'
+platform variable:create --level environment --environment '<your-environment>' --visible-build false --inheritable false --json false --sensitive true --enabled true --visible-runtime true php:newrelic.license --value '<your-new-relic-license-key>'
 ```
 
 ## Give your application a name
@@ -19,7 +19,7 @@ platform variable:create --level environment --environment '<your-environment>' 
 Add a new environment level variable to give your application a recognizable name:
 
 ```bash
-platform variable:create --level environment --environment '<your-environment>' --visible-build false --inheritable false php:newrelic.appname --value '<your-application-name>'
+platform variable:create --level environment --environment '<your-environment>' --visible-build false --inheritable false --json false --sensitive true --enabled true --visible-runtime true php:newrelic.appname --value '<your-application-name>'
 ```
 
 {{< note >}}
