@@ -698,6 +698,13 @@ The offset is a random number of seconds up to 5 minutes or the cron frequency, 
 Crons are also paused while activities such as [backups](../dedicated/overview/backups.md) are running.
 The crons are queued to run after the other activity finishes.
 
+{{< note >}}
+
+In the upcoming weeks, the offset will be increased to a maximum of 20 minutes. Read more on our [blog post](https://platform.sh/blog/2022/increasing-cron-jitter/)
+
+{{< /note >}}
+
+
 To run cron jobs in a timezone other than UTC, set the [timezone property](#top-level-properties).
 
 ## Runtime
