@@ -5,6 +5,7 @@ on:
 
 env:
   PR_NUMBER: ${{ github.event.number }}
+  BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
 
 jobs:
   get_pr_info:
@@ -24,8 +25,6 @@ jobs:
       # Get the URL for the deployed environment
       - name: Get environment URL
         id: get_env_url
-        env:
-          BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
         run: |
           COMMIT_STATUS="pending"
           COMMIT_SHA=${{ github.event.pull_request.head.sha }}
@@ -87,7 +86,7 @@ jobs:
       - name: Create failure report
         if: steps.get_env_url.outputs.env_status == 'failure'
         run: |
-          echo -e "The environment on Platform.sh failed to deploy. :slightly_frowning_face:\n\nCheck the logs: https://console.platform.sh/projects/652soceglkw4u/pr-$PR_NUMBER" > pr_comment.txt
+          echo -e "The environment on Platform.sh failed to deploy. :slightly_frowning_face:\n\nCheck the logs: https://console.platform.sh/projects/652soceglkw4u/$BRANCH_NAME" > pr_comment.txt
         
       # Create a list of relevant changed pages
       - name: Report environment URL
