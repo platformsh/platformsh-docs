@@ -951,7 +951,7 @@
           "socket_family": "unix"
         },
         "commands": {
-          "start": "\"unicorn -l $SOCKET -E production config.ru\""
+          "start": "unicorn -l $SOCKET -E production config.ru"
         },
         "locations": {
           "/": {
