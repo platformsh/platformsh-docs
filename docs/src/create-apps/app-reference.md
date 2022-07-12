@@ -694,8 +694,10 @@ Minimum time between cron jobs being triggered:
 
 For each app container, only one cron job can run at a time.
 If a new job is triggered while another is running, the new job is paused until the other completes.
+
 To minimize conflicts, a random offset is applied to all triggers.
-The offset is a random number of seconds up to 5 minutes or the cron frequency, whichever is smaller.
+The offset is a random number of seconds up to 20 minutes or the cron frequency, whichever is smaller.
+
 Crons are also paused while activities such as [backups](../dedicated/overview/backups.md) are running.
 The crons are queued to run after the other activity finishes.
 
