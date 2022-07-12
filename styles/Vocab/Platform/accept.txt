@@ -82,6 +82,7 @@ Payara
 Pixelant
 plaintext
 pngcrush
+Predis
 preprocessor
 preload(?:er|ing)?
 progs
