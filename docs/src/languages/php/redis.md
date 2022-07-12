@@ -48,7 +48,7 @@ Any tagged version of the library is acceptable:
 hooks:
     build: |
         set -e
-        # Install PhpRedis v0.4.3:
+        # Install Relay v0.4.3:
         curl -fsS https://raw.githubusercontent.com/platformsh/snippets/main/src/install-relay.sh | { bash /dev/fd/3 0.4.3 ; } 3<&0
 ```
 ## Change extension or version
