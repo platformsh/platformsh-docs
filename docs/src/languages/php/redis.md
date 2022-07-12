@@ -43,12 +43,6 @@ all other FPM workers instantaneously retrieve that key from Relay without havin
 To ease the installation of a customer version of Relay, use the [Relay install script](https://github.com/platformsh/snippets/blob/main/src/install-relay.sh).
 Invoke this script from your build hook, specifying a version.
 Any tagged version of the library is acceptable:
-## Change extension or version
-
-To change the Redis extension or the version you are using, update the build hook and clear the build cache: `platform project:clear-build-cache`.
-The new version is *not* be used until you clear the build cache.
-
-There is no need to declare the extension in the `runtime` block.  That is only for pre-built extensions.
 
 ```yaml {location=".platform.app.yaml"}
 hooks:
@@ -57,6 +51,13 @@ hooks:
         # Install PhpRedis v0.4.3:
         curl -fsS https://raw.githubusercontent.com/platformsh/snippets/main/src/install-relay.sh | { bash /dev/fd/3 0.4.3 ; } 3<&0
 ```
+## Change extension or version
+
+To change the Redis extension or the version you are using, update the build hook and clear the build cache: `platform project:clear-build-cache`.
+
+The new version is *not* be used until you clear the build cache.
+
+There is no need to declare the extension in the `runtime` block.  That is only for pre-built extensions.
 
 ## What these scripts do
 
