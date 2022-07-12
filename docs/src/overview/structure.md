@@ -45,6 +45,8 @@ It maps incoming requests to the appropriate application container
 and provides basic caching of responses, if so configured.
 It has no persistent storage.
 
+If you don't include a `routes.yaml` file, a single [default route is deployed](../define-routes/_index.md#default-route-definition).
+
 ## Service
 
 Service containers are configured by the `services.yaml` file.
