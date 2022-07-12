@@ -4,17 +4,22 @@ sidebarTitle: Custom Redis
 weight: 7
 ---
 
-[Redis](../../add-services/redis.md) is a popular structured key-value service, supported by Platform.sh.  It's frequently used for caching.
+[Redis](../../add-services/redis.md) is a popular structured key-value service, supported by Platform.sh.
+It's frequently used for caching.
 
 ## Install PhpRedis
 
-The [PhpRedis](https://github.com/phpredis/phpredis) extension is available on Platform.sh's PHP container images.  However, the extension has been known to break its API between versions when removing deprecated functionality.  The version available on each application image is the latest available at the time that PHP version was built, which if your application is very sensitive to PhpRedis versions may not be ideal.
+The [PhpRedis](https://github.com/phpredis/phpredis) extension is available on Platform.sh's PHP container images.
+The extension has been known to break its API between versions when removing deprecated functionality.
+The version available on each application image is the latest available at the time that PHP version was built,
+which if your application is very sensitive to PhpRedis versions may not be ideal.
 
-If the version of the PhpRedis extension available for your PHP version is not compatible with your application
-and upgrading your application is not feasible,
-you can use the script linked below as an alternative to download and compile a precise version of the extension.
+It may happen that the version of the PhpRedis extension available for your PHP version
+isn't compatible with your app and upgrading your app isn't feasible.
+If so, use the following script as an alternative to download and compile a precise version of the extension.
 
-Do *not* use this approach unless you really need to.  Using the provided PhpRedis extension is preferred in the vast majority of cases.
+Do *not* use this approach unless you really need to.
+Using the provided PhpRedis extension is preferred in the vast majority of cases.
 
 To ease the installation of a customer version of PhpRedis, use a [PhpRedis install script](https://github.com/platformsh/snippets/blob/main/src/install-phpredis.sh).
 Invoke this script from your build hook, specifying a version.
@@ -33,7 +38,7 @@ hooks:
 Relay is a [Redis](../../add-services/redis.md) client
 similar to [PhpRedis](https://github.com/phpredis/phpredis) and
 [Predis](https://github.com/predis/predis).
-It is intended to be a drop-in replacement for those libraries.
+It's intended to be a drop-in replacement for those libraries.
 
 That PHP extension is also a shared in-memory cache like APCu. All retrieved keys are held in the PHP master process’ memory, which is shared across all FPM workers.
 
@@ -51,13 +56,15 @@ hooks:
         # Install Relay v0.4.3:
         curl -fsS https://raw.githubusercontent.com/platformsh/snippets/main/src/install-relay.sh | { bash /dev/fd/3 0.4.3 ; } 3<&0
 ```
+
 ## Change extension or version
 
 To change the Redis extension or the version you are using, update the build hook and clear the build cache: `platform project:clear-build-cache`.
 
 The new version is *not* be used until you clear the build cache.
 
-There is no need to declare the extension in the `runtime` block.  That is only for pre-built extensions.
+There's no need to declare the extension in the `runtime` block.
+That's only for pre-built extensions.
 
 ## What these scripts do
 
@@ -65,6 +72,7 @@ There is no need to declare the extension in the `runtime` block.  That is only 
 2. Check out the version specified in the build hook.
 3. Compile the extension.
 4. Copy the resulting `redis.so` file to [your app root](../../create-apps/app-reference.md#root-directory).
-5. Adds a line to the `php.ini` file in your app root to enable the extension, creating the file if necessary.
+5. Add a line to the `php.ini` file in your app root to enable the extension, creating the file if necessary.
 
-If the script does not find a `$PLATFORM_CACHE_DIR` directory defined, it exits silently.  That means if you run the build hook locally it will have no effect.
+If the script doesn't find a `$PLATFORM_CACHE_DIR` directory defined, it exits silently.
+So if you run the build hook locally, it has no effect.
