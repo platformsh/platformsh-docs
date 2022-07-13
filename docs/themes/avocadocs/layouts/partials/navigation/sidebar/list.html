@@ -1,7 +1,7 @@
 <!-- SECTION HEADING -->
-{{ $sectionHeading := printf "section-%s" .Context.Title | urlize }}
+{{ $sectionId := printf "section-%s-sidebar-id" .Context.Title | urlize }}
 <!-- Get rid of dots like in Platform.sh -->
-{{ $sectionHeading = replace $sectionHeading "." "" }}
+{{ $sectionId = replace $sectionId "." "" }}
 
 {{ $isCurrentSection := false }}
 {{ $currentSection := .Context.Section }}
@@ -45,9 +45,9 @@
       </a>
     </h4>
     <!-- Add button for expanding -->
-    {{ partial "navigation/sidebar/expand-button" (dict "itemID" $sectionHeading "isCurrentSection" $isCurrentSection )}}
+    {{ partial "navigation/sidebar/expand-button" (dict "itemID" $sectionId "isCurrentSection" $isCurrentSection )}}
   </div>
-  <ul class="duik-sidebar__nav dropdown-menu{{ if eq $isCurrentSection true }} show{{ end }}" aria-labelledby="nav-expand-{{ $sectionHeading }}" id="{{ $sectionHeading }}">
+  <ul class="duik-sidebar__nav dropdown-menu{{ if eq $isCurrentSection true }} show{{ end }}" aria-labelledby="nav-expand-{{ $sectionId }}" id="{{ $sectionId }}">
 
   <!-- Add the homepage as the first entry of the first section -->
   {{ if eq "overview" $currentSection }}
@@ -69,7 +69,7 @@
       {{ $itemTitle = . }}
     {{ end }}
     <!-- Create a machine readable ID with no dots (as in node.js) -->
-    {{ $itemId := ( replace ($itemTitle | urlize) "." "" ) }}
+    {{ $itemId := printf "%s-sidebar-id" ( replace ($itemTitle | urlize) "." "" ) }}
 
 
     <!-- FIRST LEVEL ITEM -->
