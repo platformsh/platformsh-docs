@@ -54,7 +54,7 @@ hooks:
     build: |
         set -e
         # Install Relay v0.4.3:
-        curl -fsS https://raw.githubusercontent.com/platformsh/snippets/main/src/install-relay.sh | { bash /dev/fd/3 0.4.3 ; } 3<&0
+        curl -fsS https://raw.githubusercontent.com/platformsh/snippets/main/src/install-relay.sh | { bash /dev/fd/3 v0.4.3 ; } 3<&0
 ```
 
 ## Change extension or version
@@ -71,7 +71,7 @@ That's only for pre-built extensions.
 1. Download the Relay/PhpRedis source code.
 2. Check out the version specified in the build hook.
 3. Compile the extension.
-4. Copy the resulting `redis.so` file to [your app root](../../create-apps/app-reference.md#root-directory).
+4. Copy the resulting `relay.so`/`redis.so` file to [your app root](../../create-apps/app-reference.md#root-directory).
 5. Add a line to the `php.ini` file in your app root to enable the extension, creating the file if necessary.
 
 If the script doesn't find a `$PLATFORM_CACHE_DIR` directory defined, it exits silently.
