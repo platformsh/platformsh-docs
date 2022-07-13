@@ -8,7 +8,7 @@ Platform.sh offers a wide degree of flexibility in how PHP behaves,
 but that does mean you may need to take a few steps to ensure your site is running optimally.
 
 The following recommendations are guidelines only.
-They're also listed in about the order to investigate them.
+They're also listed in approximately the order to investigate them.
 
 ## Upgrade to PHP 8
 
@@ -16,8 +16,8 @@ To make a PHP-based site run faster, the first step is to upgrade the PHP versio
 Upgrading the PHP version might require changes to your app.
 For more details and recommendations, see the [PHP migration guides](https://www.php.net/manual/en/migration80.php).
 
-To change your PHP version, change the [`type` in your app configuration](../../create-apps/app-reference.md#example-configuration).
-Before merging to production, test the change on a branch and make sure that your application is working as expected.
+To change your PHP version, change the [`type` in your app configuration](../../create-apps/app-reference.md#types).
+Before merging to production, test the change on a branch and make sure that your app is working as expected.
 
 ## Optimize the FPM worker count
 
@@ -88,9 +88,9 @@ To determine the maximum number of files to cache:
 
 1. Determine roughly how many `.php` files your app has by running this command from [your app root](../../create-apps/app-reference.md#root-directory):
 
-    ```bash
-    find . -type f -name '*.php' | wc -l
-    ```
+   ```bash
+   find . -type f -name '*.php' | wc -l
+   ```
 
     Note that the returned valued is an approximation.
     Some apps have PHP code in files that don't end in `.php` or files that are generated at runtime.
@@ -98,13 +98,13 @@ To determine the maximum number of files to cache:
 2. Set `opcache.max_accelerated_files` to a value slightly higher than the returned number.
    PHP automatically rounds the value up to the next highest prime number.
 
-   An example configuration:
+An example configuration:
 
-   ```yaml {location=".platform.app.yaml"}
-   variables:
-       php:
-           'opcache.max_accelerated_files': 22000
-   ```
+```yaml {location=".platform.app.yaml"}
+variables:
+    php:
+        'opcache.max_accelerated_files': 22000
+```
 
 #### Set memory consumption
 
@@ -118,7 +118,7 @@ To determine the total amount of memory to use:
 
 1. Connect to the container via SSH using the [CLI](../../development/cli/_index.md)
    by running `platform ssh`.
-2. Change to the `/tmp` directory with `cd /tmp` (or any other non-web-accessible writable directory).
+2. Change to the `/tmp` directory (or any other non-web-accessible writable directory) with `cd /tmp`.
 3. Download CacheTool with `curl -sLO https://github.com/gordalina/cachetool/releases/latest/download/cachetool.phar`.
 4. Make CacheTool executable with `chmod +x cachetool.phar`.
 5. Check the OPcache status for FastCGI commands.
@@ -129,15 +129,15 @@ To determine the total amount of memory to use:
 
    The `--fcgi=$SOCKET` option ensures the PHP-FPM process on the server connects through the right socket.
 6. Analyze the output to determine the optimal value for `opcache.memory_consumption`.
-    The most important values from CacheTool's output are:
+   The most important values from CacheTool's output are:
 
-    - `Memory used`
-    - `Memory free`
-    - `Oom restarts` (out of memory restarts)
-      If the value is different than 0, you don't have enough memory allocated to OPcache.
+   - `Memory used`
+   - `Memory free`
+   - `Oom restarts` (out of memory restarts)
+     If the value is different than 0, you don't have enough memory allocated to OPcache.
 
-    If `Memory free` is too low or `Oom Restarts` too high,
-    set a higher value for memory consumption.
+   If `Memory free` is too low or `Oom Restarts` too high,
+   set a higher value for memory consumption.
 7. Set `opcache.memory_consumption`.
    Note: The unit for `opcache.memory_consumption` is megabytes.
 

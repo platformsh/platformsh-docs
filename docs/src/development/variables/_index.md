@@ -146,7 +146,7 @@ Others are just available as a convention for your application code to follow.
 
 ### Top-level environment variables
 
-By default, project, and environment variables are only added to the `$PLATFORM_VARIABLES` environment variable.
+By default, project and environment variables are only added to the `$PLATFORM_VARIABLES` environment variable.
 You can also expose a variable as its own environment variable by giving it the prefix `env:`.
 
 For example, the variable `env:foo` creates an environment variable called `FOO`.
@@ -182,7 +182,7 @@ For more information, see how to [customize PHP settings](../../languages/php/_i
 
 ### Framework-specific variables
 
-For specific frameworks, you can implement logic to override global configurations with environment-specific [variables](../../development/variables/set-variables.md#create-environment-specific-variables).
+For specific frameworks, you can implement logic to override global configurations with environment-specific [variables](./set-variables.md#create-environment-specific-variables).
 So you can use the same codebase and settings for all your environments,
 but still adapt the behavior to each environment.
 
@@ -193,9 +193,9 @@ For Drupal 9 variable override:
 
 - The variable needs three colons: one for the prefix, one for the setting to override and one for the property.
   For example, a variable named `drupalsettings:system.site:name` overrides the `name` property of the `system.site` configuration object.
-- To override a value in the global `$settings` array,
-  create a variable with the prefix `drupalsettings:` and add the configuration object and property to override.
-- To override a value in the global `$config` array,
-  create a variable with the prefix `drupalconfig:` and add the configuration object and property to override.
+- To override a value in the global `$settings` array, create a variable with the prefix `drupalsettings:`.
+  In the value, add the configuration object and property to override.
+- To override a value in the global `$config` array, create a variable with the prefix `drupalconfig:`.
+  In the value, add the configuration object and property to override.
 
 To get inspired for other frameworks, see the [Drupal 9 implementation](https://github.com/platformsh-templates/drupal9/blob/8d5d23cdcb91ffa3f96727adf9d3dba74dfc01db/web/sites/default/settings.platformsh.php#L125-L162).

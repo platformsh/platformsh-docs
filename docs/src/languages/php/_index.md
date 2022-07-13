@@ -44,7 +44,8 @@ and add it to your [app configuration](../../create-apps/_index.md):
 ### 2. Specify a dependency manager
 
 To manage PHP dependencies and libraries, use [Composer](https://getcomposer.org/).
-PHP containers use Composer 1.x by default. For more options, see [dependency management](#dependencies).
+PHP containers use Composer 1.x by default.
+See more options for [dependency management](#dependencies).
 
 ### 3. Serve your app
 
@@ -57,7 +58,7 @@ To define from which URL path the content should be served, [set the `locations`
 
 Note that all requests are sent to PHP.
 
-In the below example, all requests made to the root of your site (`/`) are sent to the `public` directory:
+In the following example, all requests made to the root of your site (`/`) are sent to the `public` directory:
 
 ```yaml {location=".platform.app.yaml"}
 web:
@@ -88,9 +89,12 @@ web:
 
 ## Dependencies
 
-By default, to manage dependencies, PHP images use the latest Composer 1.x release as [build flavor](../../create-apps/app-reference.md#build).
+By default, PHP images assume you're using Composer 1.x to manage dependencies.
+If you have a `composer.json` file in your code, the default [build flavor is run](https://docs.platform.sh/create-apps/app-reference.html#build):
 
-If a `composer.json` file is present in your code, `composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader` is run during [build](../../create-apps/hooks/hooks-comparison.md#build-hook).
+```bash
+composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader
+```
 
 To use Composer 2.x on your project, in your app configuration, add the following [dependency](../../create-apps/app-reference.md#dependencies):
 
@@ -106,7 +110,7 @@ In addition to the standard `dependencies` format,
 you can specify alternative repositories for Composer to use as global dependencies.
 So you can install a forked version of a global dependency from a custom repository.
 
-To install from an alternate repository,
+To install from an alternative repository,
 specify explicit `require` and `repositories` blocks:
 
 ```yaml {location=".platform.app.yaml"}
@@ -223,7 +227,7 @@ You can set the [PHP runtime timezone](../../create-apps/timezone.md).
 Some commonly used settings are:
 
 | Name | Default | Description |
-|------|-------|-------------|
+|------|---------|-------------|
 | `max_execution_time` | `0` | This is the maximum execution time, in seconds, for your PHP scripts and applications. A value of `0` means there are no time limits. |
 | `max_file_uploads` | `20` | This is the maximum number of files that can be uploaded per request. |
 | `max_input_time` | `-1` | This is the maximum time, in seconds, that your script is allowed to receive input (e.g for file uploads). A value of `-1` means there are no time limits. |
@@ -234,15 +238,15 @@ Some commonly used settings are:
 | `opcache.memory_consumption` | `64` | This is the number of megabytes available for [the OPcache](./tuning.md#opcache-preloading). Increase this value for large applications with many files.|
 | `opcache.validate_timestamps` | `On` | [The OPcache](./tuning.md#opcache-preloading) checks for updated files on disk. This is necessary to support applications that generate compiled PHP code from user configuration. If you are certain your application doesn't do so then you can disable this setting for a small performance boost. |
 
-The default PHP values can be retrieved by running `php -i` when SSH-ed into your container.
-Use grep to get specific values.
+To retrieve the default PHP values, connect to the container with SSH and run `php -i`.
+To get specific default values, use grep.
 To get the value for `opcache.memory_consumption` you could run something like `php -i | grep opcache.memory_consumption`.
 
 ### Customize the PHP settings
 
-There are two ways to customize PHP values for your application.
-The recommended method is to [set variables using the `php` prefix](../../create-apps/app-reference.md#variables).
-For example, to change the PHP memory limit, you'd put the following:
+There are two ways to customize PHP values for your app.
+The recommended method is to [set variables using a `php:` prefix](../../create-apps/app-reference.md#variables).
+For example, to change the PHP memory limit, use the following configuration:
 
 ```yaml {location=".platform.app.yaml"}
 variables:
@@ -255,13 +259,13 @@ The advantage of this method is that you can use the same files for all your env
 To change the PHP configuration in a specific environment,
 in that environment override the app variables by adding a [PHP-specific environment variable](../../development/variables/_index.md#php-specific-variables).
 
-As an alternative, you can provide a custom `php.ini` file at the [app root](../../create-apps/app-reference.md#root-directory)
+As an alternative, you can provide a custom `php.ini` file at the [app root](../../create-apps/app-reference.md#root-directory).
 
 ```ini {location="php.ini"}
 memory_limit = 256M
 ```
 
-For Dedicated, [see the configuration options](../../dedicated/overview/grid.md#php).
+For Dedicated environments, see the [configuration options](../../dedicated/overview/grid.md#configuration-options).
 
 ### Disable functions for security
 
@@ -283,7 +287,7 @@ Common functions to disable include:
 | Name | Description |
 |------|-------------|
 | `create_function` | This function has been replaced by anonymous functions and shouldn't be used anymore.|
-| `exec`, `passthru`, `shell_exec`, `system`, `proc_open`, `popen` | These functions allow a PHP script to run a bash shell command. Rarely used by web applications except for build scripts that might need them. |
+| `exec`, `passthru`, `shell_exec`, `system`, `proc_open`, `popen` | These functions allow a PHP script to run a bash shell command. Rarely used by web apps except for build scripts that might need them. |
 | `pcntl_*` | The `pcntl_*` functions are responsible for process management. Most of them cause a fatal error if used within a web request. Cron tasks or workers may need them. Most are usually safe to disable. |
 | `curl_exec`, `curl_multi_exec` | These functions allow a PHP script to make arbitrary HTTP requests. If you're using HTTP libraries such as Guzzle, don't disable them. |
 | `show_source` | This function shows a syntax highlighted version of a named PHP source file. Rarely useful outside of development. |
@@ -297,9 +301,9 @@ PHP-CLI (command line interface) is the mode used for alternate start commands w
 PHP-CGI is the mode used by default in the general runtime.
 If you want to use PHP-CGI with PHP-FPM(FastCGI Process Manager), in the `start` commands, use the `/usr/bin/start-php-app` symlink instead of `php`.
 
-Note that the `start` commands must run in the foreground and are executed before the [deploy hook](../../create-apps/hooks/hooks-comparison.md).
+Note that the `start` command must run in the foreground and is executed before the [deploy hook](../../create-apps/hooks/hooks-comparison.md).
 That means that PHP-FPM can't run simultaneously along with another persistent process such as [ReactPHP](https://github.com/platformsh-examples/platformsh-example-reactphp) or [Amp](https://github.com/platformsh-examples/platformsh-example-amphp).
-If you need both, they have to run in separate containers.
+If you need multiple processes, they have to run in separate containers.
 
 Set up alternate start commands to:
 
@@ -340,8 +344,9 @@ highlight=false
                 protocol: http
     ```
 
-    By configuring your app to connect via a TCP socket, the `$PORT` environment variable is set.
-    You might have to configure your app to connect via the `$PORT` TCP socket, especially when using web servers like [Swoole](swoole.md), or [Roadrunner](https://github.com/roadrunner-server/roadrunner).
+    When you configure your app to connect via a TCP socket, the `$PORT` environment variable is automatically set.
+    You might have to configure your app to connect via the `$PORT` TCP socket,
+    especially when using web servers such as [Swoole](swoole.md) or [Roadrunner](https://github.com/roadrunner-server/roadrunner).
 3. You might also need to override redirects to let the custom web server handle them.
 
     ```yaml {location=".platform.app.yaml"}
