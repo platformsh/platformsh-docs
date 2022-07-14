@@ -1,0 +1,10 @@
+<div class="nav-tabs">
+  {{ range .tabs }}
+  <a
+    class="nav-link"
+    :class="{ 'active': frametech === '{{ .codename }}' }"
+    @click="switchFrametech('{{ .codename }}')">
+    {{ .title }}
+  </a>
+  {{ end }}
+</div>

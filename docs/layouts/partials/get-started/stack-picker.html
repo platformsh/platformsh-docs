@@ -1,30 +1,30 @@
 <ul class="stack-picker">
   <li :class="{ 'active': stack === 'php' }">
-    <a @click="switchStack('php')">
+    <a @click="switchStack('php'); switchFrametech('default')">
       <img src="/images/logos/php_logo.svg" alt="" />
       PHP
     </a>
   </li>
   <li :class="{ 'active': stack === 'python' }">
-    <a @click="switchStack('python')">
+    <a @click="switchStack('python'); switchFrametech('default')">
       <img src="/images/logos/python_logo.svg" alt="" />
       Python
     </a>
   </li>
   <li :class="{ 'active': stack === 'nodejs' }">
-    <a @click="switchStack('nodejs')">
+    <a @click="switchStack('nodejs'); switchFrametech('default')">
       <img src="/images/logos/nodejs_logo.svg" alt="" />
       Node.js
     </a>
   </li>
   <li :class="{ 'active': stack === 'golang' }">
-    <a @click="switchStack('golang')">
+    <a @click="switchStack('golang'); switchFrametech('default')">
       <img src="/images/logos/go_logo.svg" alt="" />
       Go
     </a>
   </li>
   <li :class="{ 'active': stack === 'java' }">
-    <a @click="switchStack('java')">
+    <a @click="switchStack('java'); switchFrametech('default')">
       Java
     </a>
   </li>

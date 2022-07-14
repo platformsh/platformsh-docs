@@ -22,13 +22,13 @@ Add basic properties for your app, such as its name and language:
 
 {{% get-started/build-hook %}}
 
-Commit your changes (this means saving your changes):
+Commit your changes (to save your changes):
 
 ```bash
 git commit -m "Add Platform.sh files"
 ```
 
-Push your changes (this means sharing your changes with everyone with access to your project/repository):
+Push your changes (to share your changes with everyone with access to your project/repository):
 
 ```bash
 platform push
