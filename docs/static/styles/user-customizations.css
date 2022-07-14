@@ -502,6 +502,10 @@ var {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  position: sticky;
+  top: 80px;
+  padding-top: 6px;
+  background-color: white;
 }
 
 .stack-picker li {
