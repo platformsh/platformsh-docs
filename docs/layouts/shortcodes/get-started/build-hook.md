@@ -2,7 +2,9 @@
 
 To build your app, you may also need to add commands to go through the build process.
 These are included in what's known as the build hook.
-Add the following to the end of the file you just added:
+
+Assuming you have your build process as part of a `build` script in your `package.json`,
+add the following to the end of the file you just added:
 </div>
 
 <div x-show="stack === 'python'">

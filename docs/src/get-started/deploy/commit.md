@@ -6,13 +6,15 @@ description: Start getting your project into Platform.sh.
 
 Once you have your project initialized, it's time to add the basics to get it deployed.
 
-## Add app configuration
-
 Create a file to hold your app configuration:
 
 ```bash
 touch .platform.app.yaml
 ```
+
+This file holds all the configuration for the container where your app lives.
+By keeping the configuration in this file,
+you ensure it remains the same across all environments, from development to production.
 
 Add basic properties for your app, such as its name and language:
 
@@ -20,43 +22,18 @@ Add basic properties for your app, such as its name and language:
 
 {{% get-started/build-hook %}}
 
-Add blank routes:
+Commit your changes (this means saving your changes):
 
 ```bash
-mkdir .platform
-touch .platform/routes.yaml
+git commit -m "Add Platform.sh files"
 ```
 
-Commit your changes:
-
-```bash
-git commit -m "Add Platform files"
-```
-
-Push your changes:
+Push your changes (this means sharing your changes with everyone with access to your project/repository):
 
 ```bash
 platform push
 ```
 
-Or `git push`.
-
-Nothing exposed.
-
-## Create route
-
-Edit the route file:
-
-```yaml {location=".platform/routes.yaml"}
-"https://{default}/":
-    type: upstream
-    upstream: "app:http"
-```
-
-If named app otherwise, change the first part of the `upstream`.
-
-Commit and push.
-
-{{< get-started/service-needed >}}
+{{% get-started/service-needed %}}
 
 {{< get-started/next-button next="/get-started/add-data/branch.html" nextText="I'm ready to branch" >}}

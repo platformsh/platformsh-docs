@@ -10,18 +10,25 @@ It enables you to run your web apps in the cloud with productive and consistent 
 
 You spend your time creating amazing experiences, not managing infrastructure.
 
-Get started by following this guide.
+Get started with Platform.sh by following this guide.
 
 ## Why
 
-DevOps is complicated.
-Want to scale with consistency.
+The process of testing, deploying, and monitoring web applications (often grouped together under the term DevOps)
+can be complicated.
+You want to scale your offerings while maintaining consistency and reliability across your applications.
 
-The idea is to create build images you can test and then deploy with confidence.
+Platform.sh simplifies your development workflows and helps you automate manual tasks across a fleet of websites.
+You can create build images you can test and then deploy with confidence,
+knowing the changes work the same in production as they have in your development process.
+
+See a more detailed overview of Platform.sh and how it can fit within your workflow in this video:
+
+{{< youtube ny2YeD6Qt3M >}}
 
 ## What you need
 
-See what you need
+You need a few things before you can start creating projects.
 
 ### A Platform.sh account
 
@@ -33,22 +40,33 @@ You can use an email address or a GitHub, Google, Bitbucket, or GitLab account.
 
 ### Git
 
-GitOps enables you to use familiar developer tools to manage Continuous Deployment in the cloud.
-Use the same version control system for your infrastructure as for your app development.
+GitOps is a term for workflows that use the Git version control software to manage infrastructure.
+It enables you to use familiar developer tools to manage Continuous Deployment in the cloud.
 
+Use the same version control system for your infrastructure as for your app development.
 You get a history of changes with an audit log.
 
-To take advantage, install Git.
+Git is at the center of work with Platform.sh.
+That's why each step in this guide is connected to a common Git command.
+
+Make sure your computer has [Git installed](https://git-scm.com/downloads).
 
 ### CLI
 
-To facilitate working with Platform.sh, you can use the command-line interface (CLI).
+To facilitate working with Platform.sh, you can use the Platform.sh command-line interface (CLI).
 This lets you carry out various actions from a terminal.
 
-Install the CLI.
+To install the CLI, you need:
+
+* [PHP 5.5.9+](https://www.php.net/manual/en/install.php) with the following extensions installed: `curl`, `json`, `mbstring`, `pcre`, and `phar`
+* A Bash-like shell
+
+  On Windows, the best way to get Bash is through [Windows Subsystem for Linux](https://msdn.microsoft.com/en-gb/commandline/wsl/about).
+
+{{% cli-installation %}}
 
 ## Choose your stack
 
-To get started with a project, choose what language or framework you want to use:
+To get started with a project, choose the language or framework you want to use:
 
 {{< get-started/choose-stack >}}
