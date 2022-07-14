@@ -497,6 +497,15 @@ var {
   margin: 0 2em;
 }
 
+.stack-wrapper .onlytext {
+  font-size: 3em;
+  text-decoration: none;
+}
+
+.stack-wrapper .onlytext:hover, .stack-wrapper .onlytext:focus {
+  color: var(--brand-font-color-black);
+}
+
 .stack-picker {
   list-style-type: none;
   display: flex;

@@ -67,3 +67,45 @@ web:
 
 You may need to adapt the start command to fit your app.
 </div>
+
+<div x-show="stack === 'golang'">
+
+```yaml {location=".platform.app.yaml"}
+# The name of the app. Must be unique within a project.
+name: app
+
+# The type of the application to build
+type: 'golang:1.18'
+
+# The size of the persistent disk of the application (in MB)
+disk: 512
+
+# The configuration of app when it's exposed to the web.
+web:
+    commands:
+        start: ./bin/app
+```
+
+You may need to adapt the start command to fit your app.
+</div>
+
+<div x-show="stack === 'java'">
+
+```yaml {location=".platform.app.yaml"}
+# The name of the app. Must be unique within a project.
+name: app
+
+# The type of the application to build
+type: 'java:14'
+
+# The size of the persistent disk of the application (in MB)
+disk: 512
+
+# The configuration of app when it's exposed to the web.
+web:
+    commands:
+        start: java -jar $JAVA_OPTS target/app.jar --server.port=$PORT
+```
+
+You may need to adapt the start command to fit your app.
+</div>

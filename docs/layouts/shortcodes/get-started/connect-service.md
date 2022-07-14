@@ -2,6 +2,8 @@
 
 Now connect the database to your app.
 
+<div x-show="stack === 'php' || stack === 'nodejs' || stack === 'python'">
+
 First, add the Platform.sh Config Reader library to make the connection easier.
 
 <div x-show="stack === 'php'">
@@ -30,6 +32,7 @@ pip install platformshconfig
 
 Then connect to the database in your app using the library.
 
+</div>
 
 <div x-show="stack === 'php'">
 
@@ -51,6 +54,22 @@ Then connect to the database in your app using the library.
 
 ```python
 {{ readFile "static/files/fetch/examples/python/mysql" }}
+```
+
+</div>
+
+<div x-show="stack === 'golang'">
+
+```python
+{{ readFile "static/files/fetch/examples/golang/mysql" }}
+```
+
+</div>
+
+<div x-show="stack === 'java'">
+
+```python
+{{ readFile "static/files/fetch/examples/golang/mysql" }}
 ```
 
 </div>

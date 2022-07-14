@@ -17,4 +17,15 @@
       Node.js
     </a>
   </li>
+  <li :class="{ 'active': stack === 'golang' }">
+    <a @click="switchStack('golang')">
+      <img src="/images/logos/go_logo.svg" alt="" />
+      Go
+    </a>
+  </li>
+  <li :class="{ 'active': stack === 'java' }">
+    <a @click="switchStack('java')">
+      Java
+    </a>
+  </li>
 </ul>
