@@ -59,6 +59,7 @@ That means that `example.com` can only point to an IP address like `192.0.2.1` a
 You can access the CNAME target from your terminal by using the [CLI](/administration/cli/_index.md) command:
 
 ```bash
+
 platform environment:info edge_hostname
 ```
 
