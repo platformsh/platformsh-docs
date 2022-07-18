@@ -157,7 +157,7 @@ The third tells to eZ Launchpad to import those data in the Docker stack.
 {{< note >}}
 
 The storage (images and files) synchronization is optional.
-Ibexa DXP provides a [placeholder generator mechanism](https://doc.ibexa.co/en/latest/guide/images/#generating-placeholder-images)
+Ibexa DXP provides a [placeholder generator mechanism](https://doc.ibexa.co/en/latest/guide/images/images/#generating-placeholder-images)
 that allows you to forget about the real images for your local.
 
 {{< /note >}}

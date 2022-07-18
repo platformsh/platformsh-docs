@@ -19,7 +19,7 @@ Make sure your computer meets the [system requirements for DDEV](https://ddev.re
 
 ## 1. Install DDEV
 
-To install DDEV, follow the [DDEV documentation for your operating system](https://ddev.readthedocs.io/en/stable/#installation).
+To install DDEV, follow the [DDEV documentation for your operating system](https://ddev.readthedocs.io/en/stable/users/install/ddev-installation/).
 
 This installs DDEV and `ddev`, its command-line interface (CLI).
 For more information on `ddev`, run `ddev help`.
@@ -106,7 +106,7 @@ ddev composer install
 
 If you have any other commands in your [build hook](../../create-apps/hooks/_index.md),
 you need to run those explicitly.
-You can also add them as [DDEV hooks in your configuration](https://ddev.readthedocs.io/en/stable/users/extending-commands/).
+You can also add them as [DDEV hooks in your configuration](https://ddev.readthedocs.io/en/stable/users/configuration/hooks/).
 
 ## 7. Run your project
 
