@@ -16,7 +16,7 @@ The heuristic is based on three input parameters:
 
 - The memory available for the container, which depends on the size of the container (`S`, `M`, `L`),
 - The memory that an average request is expected to require,
-- The memory that should be reserved for things that aren't specific to a request (memory for `nginx`, the op-code cache, some OS page cache, ...)
+- The memory that should be reserved for things that aren't specific to a request (such as memory for `nginx`, the op-code cache, some OS page cache)
 
 The number of workers is calculated as:
 
@@ -67,7 +67,7 @@ A good way to determine an optimal request memory is with the following command:
 tail -n 5000 /var/log/php.access.log | strings | awk '{print $6}' | sort -n | uniq -c
 ```
 
-This prints out a table of how many requests used how much memory, in KB, for the last 5000 requests that reached PHP-FPM.
+This prints out a table of how many requests used how much memory, in KB, for the last 5,000 requests that reached PHP-FPM.
 On an busy site you may need to increase that number.
 
 As an example, consider the following output:
@@ -87,7 +87,8 @@ As an example, consider the following output:
       6 131072
 ```
 
-This indicates that the majority of requests (4800) used 2048 KB of memory. In this case that's likely application caching at work.
+This indicates that the majority of requests (4,800) used 2048 KB of memory.
+In this case, that's likely application caching at work.
 Most requests used up to around 10 MB of memory, while a few used as much as 18 MB and a very few (6 requests) peaked at 131 MB (probably cache clears).
 
 A conservative approach would suggest an average request memory of 16 MB should be sufficient.

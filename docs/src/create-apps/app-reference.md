@@ -206,8 +206,6 @@ web:
         # start: 'redis-cli flushall ; sleep infinity'
 ```
 
-See how to setup [alternate start commands on PHP](../languages/php/_index.md#alternate-start-commands).
-
 {{< note >}}
 
 Never "background" a start process using `&`.
@@ -225,6 +223,7 @@ On PHP containers, it's optional and defaults to starting PHP-FPM (`/usr/bin/sta
 It can also be set explicitly on a PHP container to run a dedicated process,
 such as [React PHP](https://github.com/platformsh-examples/platformsh-example-reactphp)
 or [Amp](https://github.com/platformsh-examples/platformsh-example-amphp).
+See how to set up [alternate start commands on PHP](../languages/php/_index.md#alternate-start-commands).
 
 ### Upstream
 
@@ -699,6 +698,8 @@ The crons are queued to run after the other activity finishes.
 To run cron jobs in a timezone other than UTC, set the [timezone property](#top-level-properties).
 
 ## Runtime
+
+To set a runtime timezone for your app, see [App runtime timezone](../../create-apps/timezone.md).
 
 The following table presents the various possible modifications to your PHP or Lisp runtime:
 

@@ -178,7 +178,7 @@ such as enabling errors and configuring the Xdebug extension.
 
 To apply a setting to all environments or have a setting differ among multiple PHP containers in one project,
 specify the variables in the `.platform.app.yaml` file for your application.
-For more information, see how to [customize PHP settings](../../languages/php/_index.md#customize-the-php-settings).
+For more information, see how to [customize PHP settings](../../languages/php/_index.md#customize-php-settings).
 
 ### Framework-specific variables
 
@@ -189,13 +189,22 @@ but still adapt the behavior to each environment.
 The Drupal templates show examples of overriding variables from Drupal's configuration system.
 You can apply similar logic for other frameworks.
 
-For Drupal 9 variable override:
+In the Drupal 9 template, the variable override takes place by creating a new variable composed of three distinct parts each separated by colons:
 
-- The variable needs three colons: one for the prefix, one for the setting to override and one for the property.
-  For example, a variable named `drupalsettings:system.site:name` overrides the `name` property of the `system.site` configuration object.
-- To override a value in the global `$settings` array, create a variable with the prefix `drupalsettings:`.
-  In the value, add the configuration object and property to override.
-- To override a value in the global `$config` array, create a variable with the prefix `drupalconfig:`.
-  In the value, add the configuration object and property to override.
+- The prefix,
+- The configuration object to override,
+- The property you want to set.
+
+For example, to override the site name you'd have to set a variable named `drupalsettings:system.site:name` and give it the value you want.
+
+To set that value with the CLI:
+
+``` bash
+platform variable:create --name "drupalsettings:system.site:name" --value "<SITE_NAME>"
+```
+
+Setting that variable tells to override the `name` property of the `system.site` configuration object located in the global `$settings` array with the value you chose.
+
+The same logic applies for other configuration options, such as the global `$config` array which uses the variable prefix `drupalconfig:`.
 
 To get inspired for other frameworks, see the [Drupal 9 implementation](https://github.com/platformsh-templates/drupal9/blob/8d5d23cdcb91ffa3f96727adf9d3dba74dfc01db/web/sites/default/settings.platformsh.php#L125-L162).

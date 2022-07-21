@@ -3,7 +3,7 @@ title: "Performance tuning"
 weight: 3
 ---
 
-Once your application is up and running it still needs to be kept fast.
+Once your app is up and running it still needs to be kept fast.
 Platform.sh offers a wide degree of flexibility in how PHP behaves,
 but that does mean you may need to take a few steps to ensure your site is running optimally.
 
@@ -71,10 +71,10 @@ foreach ($regex as $key => $file) {
 
 ### Configure OPcache
 
-OPcache needs to be tuned before production usage and can be configured [the same way as PHP](../php/_index.md#customize-the-php-settings).
+OPcache needs to be tuned before production usage and can be configured [the same way as PHP](../php/_index.md#customize-php-settings).
 
 {{< note >}}
-Let the application run for a while before tuning OPcache
+Let the app run for a while before tuning OPcache
 since the preload script may change some of the configuration.
 {{< /note >}}
 
@@ -156,7 +156,8 @@ To determine the total amount of memory to use:
 
 By default, OPcache checks that the cached version of a file is always up to date.
 This means that every time a cached file is used, OPcache compares it to the file on disk.
-If that file has changed, it gets reloaded and recached.
+If that file has changed, it gets reloaded and re-cached.
+This allows to support apps that generate compiled PHP code from user configuration.
 
 If you know your code isn't going to change outside of a new deploy,
 you can disable that check and get a small performance improvement.

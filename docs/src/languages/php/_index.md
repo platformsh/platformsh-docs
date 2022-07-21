@@ -7,14 +7,9 @@ layout: single
 PHP is a popular scripting language that currently powers around 80% of websites.
 You can deploy your PHP apps on Platform.sh.
 
-PHP can be used in two modes:
-
-- CGI (common gateway interface) is a PHP interface to interact with web servers, and it's the mode used by default in the general runtime.
-    If you want to use the CLI instead, [see Alternate start commands](#alternate-start-commands).
-    PHP is run in CGI mode using PHP-FPM (FastCGI Process Manager).
-- CLI (command line interface) is the mode used when logged into your container via SSH or for [crons](../../create-apps/app-reference.md#crons).
-
 ## Supported versions
+
+For PHP 7.1+, the Zend Thread Safe (ZTS) version of PHP is used.
 
 | **Grid** | **Dedicated** |
 |----------------------------------|---------------|
@@ -49,16 +44,12 @@ See more options for [dependency management](#dependencies).
 
 ### 3. Serve your app
 
-Web requests are processed as follows:
+To serve your app, define what (and how) content should be served by [setting the `locations`](../../create-apps/app-reference.md#locations):
 
-- Static files such as `.css` or `.jpg` files are served directly by the web server.
-- Requests are handled by the existing matching `.php` files defined in the `root` folder. Nonexistent files are handled by the front controller (`passthru`).
+1. Set the `root` folder to which all requests for existing `.php` and static files (such as .css, .jpg) are sent.
+2. (Optional) Set a `passthru` to define a front controller to handle non-existent files. The `passthru` value is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
 
-To define from which URL path the content should be served, [set the `locations`](../../create-apps/app-reference.md#locations).
-
-Note that all requests are sent to PHP.
-
-In the following example, all requests made to the root of your site (`/`) are sent to the `public` directory:
+In the following example, all requests made to the root of your site (`/`) are sent to the `public` directory, non-existing files are handled by `app.php`:
 
 ```yaml {location=".platform.app.yaml"}
 web:
@@ -68,8 +59,8 @@ web:
             passthru: '/app.php'
 ```
 
-To have more control, you can [define rules to specify which static files you want to allow](../../create-apps/web/php-basic.md#set-different-rules-for-specific-locations).
-See also a step-by-step explanation on [how to create a basic PHP app with a front controller](../../create-apps/web/php-basic.md).
+See a step-by-step explanation on how to [create a basic PHP app with a front controller](../../create-apps/web/php-basic.md).
+To have more control, you can define rules to specify which files you want to allow [from which location](../../create-apps/web/php-basic.md#set-different-rules-for-specific-locations).
 
 ### Complete example
 
@@ -84,7 +75,6 @@ web:
     locations:
         '/':
             root: 'public'
-            passthru: '/app.php'
 ```
 
 ## Dependencies
@@ -104,36 +94,49 @@ dependencies:
         composer/composer: '^2'
 ```
 
+You can add several global dependencies to the dependencies block.
+
 ### Alternative repositories
 
 In addition to the standard `dependencies` format,
 you can specify alternative repositories for Composer to use as global dependencies.
 So you can install a forked version of a global dependency from a custom repository.
 
-To install from an alternative repository,
-specify explicit `require` and `repositories` blocks:
+To install from an alternative repository:
+
+1. Set an explicit `require` block:
+
+    ```yaml {location=".platform.app.yaml"}
+    dependencies:
+        php:
+            require:
+                "platformsh/client": "2.x-dev"
+    ```
+
+    The above is equivalent to `composer require platform/client 2.x-dev`.
+
+2. Add the repository to use:
+
+    ```yaml {location=".platform.app.yaml"}
+            repositories:
+                - type: vcs
+                  url: "git@github.com:platformsh/platformsh-client-php.git"
+    ```
+
+That installs `platformsh/client` from the specified repository url as a global dependency.
+
+For example, to install the `platform/client 2.x-dev` client from a custom repository in addition to composer 2, you can use:
 
 ```yaml {location=".platform.app.yaml"}
-dependencies:
-    php:
-        require:
-            "platformsh/client": "2.x-dev"
-        repositories:
-            - type: vcs
-              url: "git@github.com:platformsh/platformsh-client-php.git"
+    dependencies:
+        php:
+            composer/composer: '^2'
+            require:
+                "platformsh/client": "2.x-dev"
+            repositories:
+                - type: vcs
+                  url: "git@github.com:platformsh/platformsh-client-php.git"
 ```
-
-That installs `platformsh/client` from the specified repository as a global dependency.
-
-The `require` block is equivalent to the composer `require` command:
-
-```yaml {location=".platform.app.yaml"}
-dependencies:
-    php:
-        "platformsh/client": "2.x-dev"
-```
-
-The above is equivalent to `composer require platform/client 2.x-dev`.
 
 ## Connect to services
 
@@ -222,27 +225,25 @@ markdownify=false
 
 You can configure your PHP-FPM runtime configuration by specifying the [runtime in your app configuration](../../create-apps/app-reference.md#runtime).
 
-You can set the [PHP runtime timezone](../../create-apps/timezone.md).
-
 Some commonly used settings are:
 
 | Name | Default | Description |
 |------|---------|-------------|
-| `max_execution_time` | `0` | This is the maximum execution time, in seconds, for your PHP scripts and applications. A value of `0` means there are no time limits. |
-| `max_file_uploads` | `20` | This is the maximum number of files that can be uploaded per request. |
-| `max_input_time` | `-1` | This is the maximum time, in seconds, that your script is allowed to receive input (e.g for file uploads). A value of `-1` means there are no time limits. |
-| `max_input_vars` | `1000` | This is the maximum amount of input variables that are accepted per request. |
-| `memory_limit` | `512M` | The memory limit, in megabytes, that's set for PHP. |
-| `post_max_size` | `8M` | This is the maximum size, in megabytes, per uploaded file. Increase this value to upload larger files. |
+| `max_execution_time` | `0` | The maximum execution time, in seconds, for your PHP scripts and apps. A value of `0` means there are no time limits. |
+| `max_file_uploads` | `20` | The maximum number of files that can be uploaded in each request. |
+| `max_input_time` | `-1` | The maximum time in seconds that your script is allowed to receive input (such as for file uploads). A value of `-1` means there are no time limits. |
+| `max_input_vars` | `1000` | The maximum number of input variables that are accepted in each request. |
+| `memory_limit` | `512M` | The memory limit, in megabytes, for PHP. |
+| `post_max_size` | `8M` | The maximum size, in megabytes, per uploaded file. To upload larger files, increase the value. |
 | `zend.assertions` | `-1` | Assertions are optimized and have no impact at runtime. Set assertions to `1` for your local development system. [See more on assertions](https://www.php.net/manual/en/regexp.reference.assertions). |
-| `opcache.memory_consumption` | `64` | This is the number of megabytes available for [the OPcache](./tuning.md#opcache-preloading). Increase this value for large applications with many files.|
-| `opcache.validate_timestamps` | `On` | [The OPcache](./tuning.md#opcache-preloading) checks for updated files on disk. This is necessary to support applications that generate compiled PHP code from user configuration. If you are certain your application doesn't do so then you can disable this setting for a small performance boost. |
+| `opcache.memory_consumption` | `64` | The number of megabytes available for [the OPcache](./tuning.md#opcache-preloading). For large apps with many files, increase this value.|
+| `opcache.validate_timestamps` | `On` | If your app doesn't generate compiled PHP, you can [disable this setting](./tuning.md#disable-opcache-timestamp-validation). |
 
 To retrieve the default PHP values, connect to the container with SSH and run `php -i`.
 To get specific default values, use grep.
-To get the value for `opcache.memory_consumption` you could run something like `php -i | grep opcache.memory_consumption`.
+For example, to get the value for `opcache.memory_consumption`, run `php -i | grep opcache.memory_consumption`.
 
-### Customize the PHP settings
+### Customize PHP settings
 
 There are two ways to customize PHP values for your app.
 The recommended method is to [set variables using a `php:` prefix](../../create-apps/app-reference.md#variables).
@@ -292,14 +293,26 @@ Common functions to disable include:
 | `curl_exec`, `curl_multi_exec` | These functions allow a PHP script to make arbitrary HTTP requests. If you're using HTTP libraries such as Guzzle, don't disable them. |
 | `show_source` | This function shows a syntax highlighted version of a named PHP source file. Rarely useful outside of development. |
 
+## Execution mode
+
+PHP offers two execution modes depending on your use-case:
+
+- Command line interface (PHP-CLI) is the mode used for command line scripts and standalone applications.
+    This is the mode used when logged into your container via SSH, for [crons](../../create-apps/app-reference.md#crons)
+    and usually also for [alternate start commands](#alternate-start-commands).
+    To use PHP-CLI mode, run your script with `php <SCRIPT>.php`.
+- Common gateway interface (PHP-CGI) is the mode used for web applications and web requests.
+    This is the default mode when the `start` command isn't explicitly set.
+    To use PHP-CGI mode, run your script with the symlink: `/usr/bin/start-php-app <SCRIPT>.php` instead of `php`.
+    PHP is run in CGI mode using PHP-FPM (FastCGI Process Manager).
+
 ## Alternate start commands
 
-For further control over your app or to run a custom PHP script, a web server or a thread-based worker process, set a `start` command.
-See more on [web commands reference](../../create-apps/app-reference.md#web-commands).
+To specify an alternative process to run your code, set a `start` command.
+For more information about the start command, see [web commands reference](../../create-apps/app-reference.md#web-commands).
 
-PHP-CLI (command line interface) is the mode used for alternate start commands which differs from PHP-CGI (common gateway interface).
-PHP-CGI is the mode used by default in the general runtime.
-If you want to use PHP-CGI with PHP-FPM(FastCGI Process Manager), in the `start` commands, use the `/usr/bin/start-php-app` symlink instead of `php`.
+By default, start commands use the PHP-CLI and run your script with `php <SCRIPT>.php`.
+Find out how and when to use [which execution mode](#execution-mode).
 
 Note that the `start` command must run in the foreground and is executed before the [deploy hook](../../create-apps/hooks/hooks-comparison.md).
 That means that PHP-FPM can't run simultaneously along with another persistent process such as [ReactPHP](https://github.com/platformsh-examples/platformsh-example-reactphp) or [Amp](https://github.com/platformsh-examples/platformsh-example-amphp).
@@ -321,8 +334,10 @@ highlight=false
     ```yaml {location=".platform.app.yaml"}
     web:
         commands:
-            start: php <PATH_TO_FILE>.php
+            start: php <APP>.php
     ```
+
+    Where `<APP>` is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
 
 <--->
 
@@ -338,16 +353,24 @@ highlight=false
     ```yaml {location=".platform.app.yaml"}
     web:
         commands:
-            start: php <PATH_TO_FILE>.php
+            start: php <APP>.php
+    ```
+
+    Where `<APP>` is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
+3. Set the upstream to TCP:
+
+    ```yaml {location=".platform.app.yaml"}
         upstream:
-                socket_family: tcp
-                protocol: http
+            socket_family: tcp
+            protocol: http
+
     ```
 
     When you configure your app to connect via a TCP socket, the `$PORT` environment variable is automatically set.
+    See more options on [how to configure the upstream](../../create-apps/app-reference.md#upstream).
     You might have to configure your app to connect via the `$PORT` TCP socket,
     especially when using web servers such as [Swoole](swoole.md) or [Roadrunner](https://github.com/roadrunner-server/roadrunner).
-3. You might also need to override redirects to let the custom web server handle them.
+4. (optional) override redirects:
 
     ```yaml {location=".platform.app.yaml"}
     locations:
@@ -355,6 +378,8 @@ highlight=false
                 allow: false
                 passthru: true
     ```
+
+    To let the custom web server handle redirects, the .
 
 <--->
 
@@ -364,15 +389,19 @@ file=none
 highlight=false
 ---
 
-1. Create a separate shell script that includes runtime-specific tasks such as clearing cache. That script is executed before your app starts.
-2. Specify an alternative `start` command by adapting the variables:
+To execute runtime-specific tasks (such as clearing cache) before your app starts:
+
+1. Create a separate shell script that includes all the commands to be run.
+2. Specify an alternative `start` command by adapting the following:
 
     ```yaml {location=".platform.app.yaml"}
     web:
         commands:
-            start: bash <PATH_TO_FILE>.sh && php <PATH_TO_YOUR_APP>.php
+            start: bash <SCRIPT>.sh && php <APP>.php
     ```
 
+    Where `<SCRIPT>.sh` is the bash script created in the step 1 and `<APP>.php` is your app.
+    `<SCRIPT>` and `<APP>` are file paths relative to the [app root](../../create-apps/app-reference.md#root-directory).
 {{< /codetabs >}}
 
 ## Foreign function interfaces
