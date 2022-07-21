@@ -132,7 +132,7 @@ and turn off those on by default with the `disabled_extensions` key.
 | `xhprof`          | Avail | Avail | Avail |       |       |       |       |       |       |       |
 | `xml`             |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `xmlreader`       |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
-| `xmlrpc`          | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |       | Avail |
+| `xmlrpc`          | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |       |       |
 | `xmlwriter`       |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `xsl`             | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `yaml`            |       |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail |
