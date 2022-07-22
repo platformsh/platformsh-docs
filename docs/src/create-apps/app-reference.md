@@ -756,7 +756,7 @@ platform redeploy -p <PROJECT_ID> -e <ENVIRONMENT_NAME>
 
 ## Runtime
 
-To set a runtime timezone for your app, see [App runtime timezone](../../create-apps/timezone.md).
+To set a runtime timezone for your app, see [App runtime timezone](../create-apps/timezone.md).
 
 The following table presents the various possible modifications to your PHP or Lisp runtime:
 
