@@ -62,7 +62,10 @@ These are used in the format `runtime:version`:
 
 ## Sizes
 
-Be default, resource sizes (CPU and memory) are chosen automatically for an app
+Resources are distributed across all containers in a project from the total available from your [plan size](../overview/pricing/_index.md).
+So if you have more than just a single app, it doesn't get all of the resources available.
+
+By default, resource sizes (CPU and memory) are chosen automatically for an app
 based on the plan size and the number of other containers in the cluster.
 Most of the time, this automatic sizing is enough.
 
@@ -77,7 +80,7 @@ To do so, set `size` to one of the following values:
 * `2XL`
 * `4XL`
 
-The total resources allocated across all apps and services can't exceed what's in [your plan](../overview/pricing/_index.md).
+The total resources allocated across all apps and services can't exceed what's in your plan.
 
 ### Sizes in development environments
 
@@ -678,7 +681,6 @@ crons:
 {{< /codetabs >}}
 <!-- vale on -->
 
-
 ### Cron job timing
 
 Minimum time between cron jobs being triggered:
@@ -696,6 +698,61 @@ Crons are also paused while activities such as [backups](../dedicated/overview/b
 The crons are queued to run after the other activity finishes.
 
 To run cron jobs in a timezone other than UTC, set the [timezone property](#top-level-properties).
+
+### Paused crons
+
+Development environments are often used for a limited time and then abandoned.
+While it's useful for environments under active development to have scheduled tasks,
+unused environments don't need to run cron jobs.
+To minimize unnecessary resource use,
+crons on environments with no deployments are paused.
+The following table shows how long without a deployment an environment goes before crons are paused:
+
+| Plan             | Affected environments | Time before crons paused |
+| ---------------- | --------------------- | ------------------------ |
+| Development      | All                   | 4 days                   |
+| Live (Standard+) | Non-Production        | 14 days                  |
+
+Environments with deployments within the given time have crons with the status `running`.
+If there haven't been any deployments within the given time, the status is `paused`.
+
+You can see the status in the management console
+or using the CLI by running `platform environment:info` and looking under `deployment_state`.
+
+#### Restarting paused crons
+
+If the crons on your development environment are paused but you're still using them,
+you can push changes to the environment or redeploy it.
+
+To restart crons without changing anything:
+
+{{< codetabs >}}
+
+---
+title=In the console
+file=none
+highlight=false
+---
+
+1. In the console, navigate to your project.
+1. Open the environment where you'd like the crons to run.
+1. Click `Redeploy` next to the cron status of `Paused`.
+
+<--->
+
+---
+title=Using the CLI
+file=none
+highlight=false
+---
+
+Run the following command (replacing `<PROJECT_ID>` and `<ENVIRONMENT_NAME>` with the values for your project and environment):
+
+```bash
+platform redeploy -p <PROJECT_ID> -e <ENVIRONMENT_NAME>
+```
+
+{{< /codetabs >}}
 
 ## Runtime
 

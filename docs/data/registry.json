@@ -22,7 +22,8 @@
         "83",
         "84",
         "86",
-        "91"
+        "91",
+        "95"
       ],
       "legacy": [
         "73",
@@ -48,7 +49,7 @@
         },
         "locations": {
           "/": {
-            "root": "\"wwwroot\"",
+            "root": "wwwroot",
             "allow": true,
             "passthru": true
           }
@@ -167,7 +168,7 @@
         "locations": {
           "/": {
             "allow": false,
-            "root": "\"web\"",
+            "root": "web",
             "passthru": true
           }
         }
@@ -640,7 +641,8 @@
       "deprecated": [],
       "supported": [
         "1.1",
-        "1.2"
+        "1.2",
+        "2.0"
       ],
       "legacy": [
         "1.1"
@@ -655,7 +657,8 @@
     "versions-dedicated-gen-3": {
       "deprecated": [],
       "supported": [
-        "1.2"
+        "1.2",
+        "2.0"
       ]
     }
   },
@@ -692,7 +695,7 @@
       "web": {
         "locations": {
           "/": {
-            "root": "\"web\"",
+            "root": "web",
             "passthru": "/index.php"
           }
         }
@@ -878,7 +881,8 @@
         "3.5",
         "3.6",
         "3.7",
-        "3.8"
+        "3.8",
+        "3.9"
       ]
     }
   },
@@ -947,11 +951,11 @@
           "socket_family": "unix"
         },
         "commands": {
-          "start": "\"unicorn -l $SOCKET -E production config.ru\""
+          "start": "unicorn -l $SOCKET -E production config.ru"
         },
         "locations": {
           "/": {
-            "root": "\"public\"",
+            "root": "public",
             "passthru": true,
             "expires": "1h",
             "allow": true
@@ -1036,7 +1040,8 @@
     "versions-dedicated-gen-3": {
       "supported": [
         "6.6",
-        "8.6"
+        "8.6",
+        "8.11"
       ]
     }
   },
@@ -1098,7 +1103,8 @@
     },
     "versions-dedicated-gen-3": {
       "supported": [
-        "1.6"
+        "1.6",
+        "1.8"
       ]
     }
   }

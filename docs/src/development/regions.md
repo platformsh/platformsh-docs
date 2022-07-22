@@ -34,8 +34,21 @@ See all available information in the [API documentation](https://api.platform.sh
 
 ## Region availability
 
-The regions listed here may be different from those available when you create a new project.
-The list includes legacy regions as reference for existing projects.
+The regions listed here may be different from those available to you when you create a new project.
+Each organization can have its own rules for what regions to allow.
+When adding a new project, you only see regions allowed by your organization.
+
+The list of regions includes legacy regions as reference.
+
+### Legacy regions
+
+A legacy region is a region running an older version of the Platform.sh orchestration system.
+It doesn't include all available features.
+See a [list of not included features](../projects/region-migration.md#why-migrate-between-regions).
+
+These regions will be upgraded in the future.
+If you’re on a legacy region and want all features now,
+[migrate your project](../projects/region-migration.md) to a newer region.
 
 ## Public IP addresses
 
@@ -44,6 +57,8 @@ Before any change, you will be notified well in advance regarding affected proje
 
 They're useful for cases such as when you have a corporate firewall that blocks outgoing SSH connections.
 In such cases, add the inbound IP addresses for your region to your allow list.
+
+## Regions
 
 ### Europe
 

@@ -15,14 +15,14 @@ Otherwise, it will be necessary to download a local copy of your project first.
 
 1. **Get project ID**
 
-    You will need the your *project ID*. You can retrieve this ID at any time using the CLI command `platform`.
+    Retrieve the **ID** of your project, using the command:  `platform`.
 
 2. **Get a copy of the repository locally**
 
-    Next, use the CLI to download the code in your Platform.sh project using the command
+    Next, use the CLI to download the code in your Platform.sh project using the command:
 
     ```bash
-    platform get <project id>
+    platform get <PROJECT_ID>
     ```
 
 Next you can now connect to its services and build it on your machine.

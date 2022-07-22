@@ -1,147 +1,166 @@
 ---
 title: Change a project's region
 sidebarTitle: Change regions
-description: |
-  Platform.sh is available in a number of different **Regions**. Each region is a self-contained copy of Platform.sh in a single datacenter. When you first create a project you can specify which region it should be in.
+description: See how to change the region your project is in and why you might want to do so.
 aliases:
   - /guides/general/region-migration.html
 ---
 
-{{% description %}}
+To host your project data, Platform.sh offers several [regions](../development/regions.md).
+You specify a region when you create a project.
 
-Platform.sh doesn't offer an automated way to migrate a project from one region to another after it's created.
-However, the process to do so manually is fairly straightforward and can be scripted.
+You can also change the project's region after it's created.
 
-## Why migrate between regions?
+## Why migrate between regions
 
-* Different data centers are located in different geographic areas,
-  and you may want to keep your site physically close to the bulk of your user base for reduced latency.
-* Some regions are running older versions of the Platform.sh orchestration system that offers fewer features.
-  In particular, the `us` and `eu` regions don't currently offer XL and 2XL plans,
-  self-terminating builds in case of a build process that runs too long,
-  or distributing environments across different grid hosts.
+- Different data centers are located in different geographic areas.
+  You may want your site close to the your users for improved performance.
+- You may want to move to a region with a lower [environmental impact](../development/regions.md#environmental-impact).
+- Some regions are running older versions of the Platform.sh orchestration system that offers fewer features.
+  In particular, the `us` and `eu` regions don't currently offer the following features:
+  
+  - [Timeouts in build hooks](../create-apps/hooks/hooks-comparison.md#timeout)
+  - [Outbound firewalls](../create-apps/app-reference.md#firewall)
+  - [Network Storage service](../add-services/network-storage.md)
+  - [Deploy hook activity logs and SSH during deploy hooks](../create-apps/hooks/hooks-comparison.md#deploy-hook)
+  - [Live backups](../administration/backup-and-restore.md#live-backups)
+  - [Infrastructure metrics](../increase-observability/metrics/_index.md)
+
   These regions will be updated in the future.
-  If you are on one of those regions and desire those features now,
+  If you are on one of those regions and desire these features now,
   migrate to one of the newer regions.
 
-## Scripted migration process
+## 1. Plan the migration
 
-Although not directly supported by Platform.sh,
-an agency named [Contextual Code](https://www.contextualcode.com/) has built a bash migration script to automate most common configurations.
-If your site is a typical single application with a single SQL database,
-the script should take care of most of the process for you.
-(If you have additional backend systems you may need to do some additional work manually, as documented below.)
+Before starting the migration process, you need to plan for it:
 
-### 0. Prepare for scripted migration
+- Plan a time frame in which to handle the migration.
+  Your code shouldn't change during this time to ensure all changes are copied to the new project.
+  Prepare for a brief site outage when you migrate, just as with a relaunch of a site.
+- Set your DNS Time-to-Live as low as possible.
+  This ensures the switch to the new site propagates as quickly as possible.
 
-* Plan a time frame in which to handle the migration.
-  You should avoid developing any new code during that period (as your Git repository will change)
-  and be prepared for a brief site outage when you migrate.
-  You are essentially relaunching the site, just with the same host as previously.
-  Plan accordingly.
-* Set your DNS Time-to-Live as low as possible.
+## 2. Create a new project
 
-### 1. Create a new project
+In the target region, [create a new project from scratch]({{% create-project-link scratch=true %}}).
 
-[Create a new project from scratch]({{% create-project-link scratch=true %}}) in the desired region.
-You can initially create it as a Development project and change the plan size immediately before switching over
-or go ahead and use the desired size from the beginning.
-You don't need to push any code to the project yet.
-Note the new project's ID from the URL.
+If you plan to test for long, start with a Development plan and upsize it before switching the DNS.
+Otherwise, use the desired plan size from the start.
 
-### 2. Download and invoke the script
+## 3. Add code and environments
 
-Download the [Platform Migration](https://gitlab.com/contextualcode/platformsh-migration) tool from Contextual Code.
-The README file explains the step it uses in more detail.
-With a typical site, it takes you through the full process of
-transferring code, data, configuration, and the domain name to your new project.
+{{< codetabs >}}
 
-Note: You still need to update your DNS record with your registrar to point to the new project when you are ready to go live.
-Also be aware that the script does not transfer external integrations
-(such as health notifications or 3rd party Git provider integrations),
-so you need to re-enable those manually.
+---
+title=Without a source integration
+file=none
+highlight=false
+---
 
-### 3. Remove the old project
+1. Clone your existing project with Git.
+2. In the new clone, add a remote for the project:
 
-Once the new project is running and the DNS has fully propagated you can delete the old project.
+   ```bash
+   platform project:set-remote
+   ```
 
-## Manual migration process
+   Select your newly created blank project.
 
-### 0. Prepare for manual migration
+3. Push the code for your production branch:
 
-* Plan a time frame in which to handle the migration.
-  You will want to avoid developing any new code during that period (as your Git repository will change)
-  and be prepared for a brief site outage when you migrate.
-  You are essentially relaunching the site, just with the same host as previously.
-  Plan accordingly.
-* Set your DNS Time-to-Live as low as possible.
+   ```bash
+   platform push --target <PRODUCTION_BRANCH_NAME>
+   ```
 
-### 1. Create and populate a new project
+4. (Optional) Checkout other branches and then push their code:
 
-[Create a new project from scratch]({{% create-project-link scratch=true %}}) in the desired region.
-You can initially create it as a Development project and change the plan size immediately before switching over
-or go ahead and use the desired size from the beginning.
+   ```bash
+   platform push --activate --target <BRANCH_NAME> --parent <PRODUCTION_BRANCH_NAME>
+   ```
 
-Make a Git clone of your existing project.
-Then add a Git remote to the new project, using the Git URL shown in the management console.
-Push the code for at least your production branch to the new project.
-(You can also transfer other branches if desired.
-That's optional.)
+<--->
 
-Alternatively, if you are using a 3rd party Git repository (GitHub, BitBucket, GitLab),
-you can add an integration to the new project just as you did the old one.
-It automatically mirrors your 3rd party repository exactly the same way as the old project
-and you don't need to update it manually.
+---
+title=With a source integration
+file=none
+highlight=false
+---
 
-Copy your existing user files on the old project to your computer using `rsync`.
-See the [exporting](/tutorials/exporting.md) page for details.
-Then use `rsync` to copy them to the same directory on the new project.
-See the [migrating](/tutorials/migrating.md) page for details.
+For a [source integration](../integrations/source/_index.md) with GitHub, BitBucket, or GitLab,
+add the integration to your new project.
+Your new project then mirrors the configured repository automatically.
 
-Export your database from the old project and import it into the new project.
-Again, see the exporting and migration pages, as well as the instructions for your specific database services.
+{{< /codetabs >}}
 
-Re-enter any project or environment variables you've defined on your old project in your new project.
+## 4. Copy files
 
-Add any users to your new project that you want to continue to have access.
+If you have files in a mount, first download them:
 
-If you have any 3rd party integrations active, especially the [Health Notification](/integrations/notifications.md) checks,
-add them to the new project.
+```bash
+platform mount:download
+```
 
-### 2. Maintain the mirror
+Then upload them to your new project:
 
-Most sites have generated data in Solr, Elasticsearch, or other service that needs to be regenerated.
-Take whatever steps are needed to reindex such systems.
-That may be allowing cron to run for a while, or your system may have a command to reindex everything faster.
-That varies by your application.
+```bash
+platform mount:upload
+```
 
-You can also periodically re-sync your data.
-For `rsync` the process should be quite fast as long as you maintain your local copy of it,
-as rsync transfers only content that has changed.
-For the database it may take longer depending on the size of your data.
+See more options on [how to export files](../tutorials/exporting.md#downloading-files)
+and [how to import files](../tutorials/migrating.md#import-your-files).
 
-Depending on your site's size and your schedule, you can have the old and new project overlapping for only an hour or two or several weeks.
-That's up to you.
-Be sure to verify that the new site is working as desired before continuing.
+## 5. Copy data from services
 
-### 3. Launch the new site
+For services with generated data such as Solr and Redis, you don't need to copy data directly.
+Just rebuild the data in the new project.
 
-Once your new project is on the right production plan size you can cut over to it.
-Add your domain names to your new project.
-If you have a custom SSL certificate you will need to add that at the same time.
-(Because the projects are in separate regions it's safe to add the domain name to both at the same time,
-which reduces apparent downtime.)
+To download data from persistent services such as databases,
+see how to export and then import data for each service:
 
-If possible, put your site into read-only mode or maintenance mode.
-Then do one final data sync (code and database) to ensure the new project starts with all fo the data from the old one.
+- [InfluxDB](../add-services/influxdb.md#exporting-data)
+- [MongoDB](../add-services/mongodb.md#exporting-data)
+- [MariaDB/MySQL](../add-services/mysql/_index.md#exporting-data)
+- [PostgreSQL](../add-services/postgresql.md#exporting-data)
 
-Once the domain is set, update your DNS provider's records to point to the new site.
-Run `platform environment:info edge_hostname -p <NEW_PROJECT_ID>` to get the domain name to point the CNAME at.
+## 6. Migrate variables and project settings
+
+Make sure anything else connected to your old project is moved to your new project:
+
+- If you have project or environment variables defined on your old project, add them to your new project.
+  Get a list of all variables set outside of code by running `platform variables`.
+- Add any users to your new project that you want to continue to have access.
+- Add any existing [integrations](../integrations/_index.md).
+
+## 7. Test the site
+
+Verify that the new site is working as desired before continuing.
+You can leave the two projects running for as long as you need.
+After you have finished all your testing, sync all your data (code, files, database) for the last time.
+
+## 8. Switch to the new site
+
+Now that you know the new project works, switch public traffic to that site:
+
+1. Make sure your new project has the right plan size.
+2. If possible, put your site into read-only mode or maintenance mode.
+3. Add your domain names to your new project and remove them from the old project.
+4. (Optional) Add any custom SSL certificates you have.
+5. Update your DNS provider's records to point to the new site. See more on [setting custom domains](../domains/steps/_index.md).
 
 It may take some time for the DNS change and SSL change to propagate.
 Until it does, some browsers may not see the new site or may get an SSL mismatch error.
-In most cases that will resolve itself in 1-3 hours.
+In most cases that resolves itself in 1--3 hours.
 
-### 4. Remove the old project
+## 9. Remove the old project
 
-Once the new project is running and the DNS has fully propagated you can delete the old project.
+Once the new project is running and the DNS has fully propagated, delete the old project.
+
+## Alternative process
+
+Although not directly supported by Platform.sh,
+an agency named [Contextual Code](https://www.contextualcode.com/) has built a bash migration script.
+This script automates most common configurations.
+If your site is a typical single app with a single SQL database,
+the script should take care of most of the process for you.
+
+See more at the [Platform.sh Project Migration repository](https://gitlab.com/contextualcode/platformsh-migration).

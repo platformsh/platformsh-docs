@@ -15,7 +15,9 @@ install_poetry(){
     python3.10 -m pip install --upgrade pip
     echo "* Installing poetry"
     # Install poetry
+    export PIP_USER=false
     curl -sSL https://install.python-poetry.org | python3 - --version $POETRY_VERSION
+    export PIP_USER=true
     echo "* Installing dependencies"
     poetry install
 }

@@ -1,0 +1,39 @@
+name: Activate environment
+on:
+  pull_request:
+    branches: [main]
+    types:
+      - opened
+      - reopened
+      - closed
+
+jobs:
+  activate_environment:
+    runs-on: ubuntu-latest
+    # Don't run on forks since the CLI won't work
+    if: >-
+      github.event.pull_request.head.repo.id == 21975579 &&
+      (github.event.action == 'opened' ||
+      github.event.action== 'reopened')
+    steps:
+      # Set up environment to use the Platform.sh CLI
+      - uses: adam7/platformsh-cli-action@v1.1
+        with: 
+          token: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+
+      - run: platform environment:activate -p 652soceglkw4u -y ${{ github.event.pull_request.head.ref }}
+
+  deactivate_environment:
+    runs-on: ubuntu-latest
+    # Don't run on forks since the CLI won't work
+    if: >-
+      github.event.pull_request.head.repo.id == 21975579 &&
+      github.event.action == 'closed' &&
+      github.event.pull_request.merged == false
+    steps:
+      # Set up environment to use the Platform.sh CLI
+      - uses: adam7/platformsh-cli-action@v1.1
+        with: 
+          token: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+
+      - run: platform environment:deactivate -p 652soceglkw4u --no-delete-branch -y ${{ github.event.pull_request.head.ref }}

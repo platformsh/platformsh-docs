@@ -34,7 +34,9 @@ MySQL and MariaDB have the same behavior and the rest of this page applies to bo
 
 ### Supported versions on Dedicated environments
 
-On Dedicated and Dedicated Generation 3 environments, only MariaDB is available with Galera for replication:
+`oracle-mysql` is available for Dedicated Generation 3 environments but not Dedicated environments.
+
+On Dedicated and Dedicated Generation 3 environments, MariaDB is available with Galera for replication:
 
 {{< image-versions image="mariadb" status="supported" environment="dedicated" >}}
 

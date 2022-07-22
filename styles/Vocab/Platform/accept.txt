@@ -80,14 +80,16 @@ Papertrail
 Pathauto
 Payara
 Pixelant
+plaintext
 pngcrush
+Predis
 preprocessor
 preload(?:er|ing)?
 profiler
 progs
 proxied
 Pthreads
-plaintext
+Pyenv
 Quarkus
 rebase
 recache
