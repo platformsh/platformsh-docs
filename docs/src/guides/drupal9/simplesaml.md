@@ -130,7 +130,7 @@ if (isset($_ENV['PLATFORM_PROJECT_ENTROPY'])) {
 
 Depending on your Identity Provider (IdP),
 you may need to generate an SSL/TLS certificate to connect to the service provider.
-If so, you should generate the certificate locally following the instructions in the [SimpleSAMLphp documentation](https://simplesamlphp.org/docs/latest/simplesamlphp-sp).
+If so, you should generate the certificate locally following the instructions in the [SimpleSAMLphp documentation](https://simplesamlphp.org/docs/stable/index.html).
 Your resulting IdP file should be placed in the `simplesamlphp/metadata` directory.
 The certificate should be placed in the `simplesamlphp/cert` directory.
 (Create it if needed.)
