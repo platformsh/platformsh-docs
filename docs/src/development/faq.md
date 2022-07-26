@@ -80,7 +80,7 @@ All containers on development plans are "small" containers.
 See configuration options for [apps](../create-apps/app-reference.md#sizes)
 and [services](../add-services/_index.md#size).
 
-## What exactly am I SSHing into?
+## What exactly am I accessing with SSH?
 
 The `platform ssh` command allows you to log into your application container (where your PHP app or Node app or Java app is running).
 It's a fully running Linux environment,

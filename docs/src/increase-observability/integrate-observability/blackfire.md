@@ -53,7 +53,7 @@ and activate Monitoring for the required environment.
 
 ![A screenshot of where to find Organization Monitoring Usage](/images/integrations/blackfire/blackfire-organization-monitoring.png "0.40")
 
-![A screenshot of what is seen inMonitoring Activation](/images/integrations/blackfire/blackfire-monitoring-activation.png "0.40")
+![A screenshot of what is seen in Monitoring Activation](/images/integrations/blackfire/blackfire-monitoring-activation.png "0.40")
 
 Read more in the [Blackfire documentation](https://blackfire.io/docs/monitoring-cookbooks/index) about:
 

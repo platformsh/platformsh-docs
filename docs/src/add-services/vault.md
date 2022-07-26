@@ -40,7 +40,8 @@ To connect your app to the Vault KMS, use a token that is defined in the `$PLATF
 With this token for authentication,
 you can use any of the policies you [defined in your `.platform/services.yaml` file](#1-configure-the-service).
 
-The following examples use cURL as an example, which you could do in a hook or after SSHing into your app environment. Adapt the examples for your app's language.
+The following examples use cURL as an example, which you could do in a hook or after accessing your app with SSH.
+Adapt the examples for your app's language.
 
 ### Get the token
 
@@ -99,7 +100,7 @@ curl \
 
 ### Sign and verify payloads
 
-If you've set [sign and verify policies](#policies), you can use your keys to sign and verify various payloads, such as JSON Web Tokens (JWTs) for authentication in your app. Note that all payloads (all plaintext data) must be base64-encoded.
+If you've set [sign and verify policies](#policies), you can use your keys to sign and verify various payloads, such as a JSON Web Token (JWT) for authentication in your app. Note that all payloads (all plaintext data) must be base64-encoded.
 
 To sign a specific payload, run the following command:
 
@@ -126,7 +127,7 @@ You get back a JSON object that includes the signature for the payload:
 }
 ```
 
-You can then use `data.signature` to sign things such as JWTs.
+You can then use `data.signature` to sign things such as a JWT.
 
 To verify a payload, run the following command:
 

@@ -31,7 +31,7 @@ This allows you to create A records for your root domain that will point to Fast
 ## Initial setup
 
 For Enterprise-Dedicated plans, CDN setup is handled by Platform.sh as part of your onboarding.
-After the application is stood up on its Dedicated VMs,
+After the application is stood up on its Dedicated virtual machines,
 we can begin the collaborative process of provisioning the CDN and configuring DNS and caching setup.
 We provide CDN services for both staging and production.
 

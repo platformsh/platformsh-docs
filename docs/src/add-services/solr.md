@@ -194,7 +194,7 @@ searchsolr:
 
 In this example, `.platform/configsets/solr8` contains the configuration definition for multiple cores. There are then two cores created: `english_index` uses the defined configset, but specifically the `.platform/configsets/solr8/english/schema.xml` file, while `arabic_index` is identical except for using the `.platform/configsets/solr8/arabic/schema.xml` file. Each of those cores is then exposed as its own endpoint.
 
-Note that not all core.properties features make sense to specify in the `core_properties`. Some keys, such as name and dataDir, are not supported, and may result in a solrconfig that fails to work as intended, or at all.
+Note that not all core.properties features make sense to specify in the `core_properties`. Some keys, such as `name` and `dataDir`, are not supported, and may result in a solrconfig that fails to work as intended, or at all.
 
 ### Default configuration
 
