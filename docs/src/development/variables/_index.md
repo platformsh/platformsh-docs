@@ -193,3 +193,5 @@ Any variable that begins with `d8config:` is mapped to the global `$config` arra
 which is useful for overriding Drupal's exportable configuration system.
 In this case, the variable name needs two colons, one for `d8config:` and one for the name of the configuration object to override.
 For example, a variable named `d8config:system.site:name` overrides the `name` property of the `system.site` configuration object.
+
+Please note the naming of the Platform.sh is relative to the ones used in your `settings.platformsh.php` file. Make sure the Platform.sh variables starts with a string present in your `switch` statement.
