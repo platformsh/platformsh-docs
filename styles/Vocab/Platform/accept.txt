@@ -2,6 +2,8 @@ accessor
 advancecomp
 allowlist
 Anycast
+APCu
+APIs?
 asciinema
 async
 auditable
@@ -13,13 +15,17 @@ Bootsnap
 Brotli
 [Bb]undler
 Cloudwatt
+CDNs?
 CMS
+CNAMEs?
 [Cc]onfig
 Corepack
+CPUs?
 [Cc]ron
 coroutine
 DDEV
 denylist
+DNSimple
 Docksal
 Drush
 DXP
@@ -42,6 +48,8 @@ hostname
 Httpoxy
 Hunchentoot
 Ibexa
+IDEs?
+IPs?
 JVM
 imagetragick
 jpegoptim
@@ -55,6 +63,7 @@ Magestore
 Mailchimp
 Memcache
 middleware
+MSBuild
 Muffet
 multicast
 [Mm]ultifactor
@@ -69,16 +78,22 @@ Neve
 Nori
 npm
 nvm
+OAuth
 onboarding
 OPcache
 Opigno
 Opsgenie
 optipng
 overutilize
+OVHcloud
 Packagist
 Papertrail
 Pathauto
 Payara
+PDFs?
+pgRouting
+PHPMailer
+PHPStorm
 Pixelant
 plaintext
 pngcrush
@@ -113,6 +128,7 @@ subuser
 Swoole
 Symfony
 Thorntail
+TLDs?
 Tomitribe
 Toran
 transclusion
@@ -127,6 +143,12 @@ upsiz(?:e|ing)
 Verisign
 Webflux
 webpack
+WWWizer
 Xdebug
+XHProf
+XPath
 Yusuf
 Zend
+
+Below is for plural abbreviations
+[A-Z]{2,}s

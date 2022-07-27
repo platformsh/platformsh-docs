@@ -49,7 +49,7 @@ This is useful if you want to reuse some code components across multiple project
 
 The **Integrations** section allows you to manage all of your [integrations](../../integrations/_index.md).
 
-![pIntegrations](/images/management-console/settings-integrations.png "0.7")
+![Integrations](/images/management-console/settings-integrations.png "0.7")
 
 ## Variables
 

@@ -21,9 +21,9 @@ The default branches are slightly different, as noted in the [default limits](/d
 
 The Dedicated Cluster is a three-Virtual Machine redundant configuration provisioned by Platform.sh for each customer.
 Every service is replicated across all three virtual machines in a failover configuration (as opposed to sharding),
-allowing a site to remain up even if one of the VMs is lost entirely.
+allowing a site to remain up even if one of the virtual machines is lost entirely.
 
 The build process for your application is identical for both the Development Environment and the Dedicated Cluster.
-However, because the VMs are provisioned by Platform.sh, not as a container,
+However, because the virtual machines are provisioned by Platform.sh, not as a container,
 service configuration must be done by Platform.sh's Customer Success team.
 By and large the same flexibility is available but only via filing a support ticket.

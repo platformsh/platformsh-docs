@@ -60,7 +60,7 @@ This example should give you an idea of how the metrics appear.
 Dedicated environments metrics show the resource usage per host within the cluster.
 
 This reference project has a single PHP application and three services: MySQL, Redis, and Solr.
-It has been granted 4&nbsp;GB of memory and 2 vCPUs per host based on its plan.
+It has been granted 4&nbsp;GB of memory and 2 virtual CPUs per host based on its plan.
 
 Once you've read the metrics, see [recommendations for action](./_index.md#dedicated-environments).
 
@@ -68,7 +68,7 @@ Once you've read the metrics, see [recommendations for action](./_index.md#dedic
 
 ### CPU
 
-The project has 2 virtual CPUs (vCPUs) allocated per host, as seen in the upper limit for the CPU metric.
+The project has 2 virtual CPUs allocated per host, as seen in the upper limit for the CPU metric.
 
 ![A closeup of the CPU metrics](/images/metrics/cpu.png "0.5")
 

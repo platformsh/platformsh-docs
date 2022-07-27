@@ -12,7 +12,7 @@ Updates to application software (PHP code, JavaScript, etc.) are the responsibil
 
 ## Project isolation
 
-All Dedicated Clusters are single-tenant.  The three VMs are exclusively used by a single customer and each Dedicated cluster is launched into its own isolated network (VPC on AWS, equivalent on other providers).  The network is behind a firewall for incoming connections; only ports 22 (SSH), 80 (HTTP), 443 (HTTPS), 2221 (SFTP) are opened to incoming traffic.  There are **no exceptions** for this rule, so any incoming web service requests, ETL jobs, or otherwise will need to transact over one of these protocols.
+All Dedicated Clusters are single-tenant.  The three virtual machines are exclusively used by a single customer and each Dedicated cluster is launched into its own isolated network (VPC on AWS, equivalent on other providers).  The network is behind a firewall for incoming connections; only ports 22 (SSH), 80 (HTTP), 443 (HTTPS), 2221 (SFTP) are opened to incoming traffic.  There are **no exceptions** for this rule, so any incoming web service requests, ETL jobs, or otherwise will need to transact over one of these protocols.
 
 Outgoing TCP traffic is not behind a firewall.  Outgoing UDP traffic is disallowed.
 
