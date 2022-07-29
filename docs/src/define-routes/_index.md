@@ -12,6 +12,8 @@ for example when you have [multiple apps](../create-apps/multi-app.md) in one pr
 Or you might just want to direct requests to specific places, such as removing the `www` at the start of all requests.
 
 Control where external requests are directed by defining routes in a `.platform/routes.yaml` file in your Git repository.
+If you have a single route served by a single app, you don't need to include the file.
+Your project then includes a [default route](#default-route-definition).
 
 ![Routes](/images/config-diagrams/routes-basic.png "0.5")
 
@@ -19,7 +21,23 @@ Control where external requests are directed by defining routes in a `.platform/
 
 These examples show how to define routes.
 
-### Basic route definition
+### Default route definition
+
+If you don't include a file defining routes, a single default route is deployed.
+If you have one app to direct traffic to and its name is `myapp`,
+this is equivalent to the following:
+
+``` {location=".platform/routes.yaml"}
+https://{default}/:
+  type: upstream
+  upstream: myapp:http
+```
+
+All traffic to your domain (say, `https://example.com`) is sent to your app.
+This also includes redirecting requests from `http` to `https`.
+It affects your [default domain](#default).
+
+### Basic redirect definition
 
 In a basic situation, you have one app to direct traffic to.
 Say its name is `myapp`.

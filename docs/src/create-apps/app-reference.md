@@ -19,26 +19,27 @@ The following table presents all properties available at the top level of the YA
 The column _Set in instance?_ defines whether the given property can be overridden within a `web` or `workers` instance.
 To override any part of a property, you have to provide the entire property.
 
-| Name            | Type                                            | Required | Set in instance? | Description |
-| --------------- | ----------------------------------------------- | -------- | ---------------- | ----------- |
-| `name`          | `string`                                        | Yes      | No               | A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated with the app. |
-| `type`          | A [type](#types)                                | Yes      | No               | The base image to use with a specific app language. Format: `runtime:version`. |
-| `size`          | A [size](#sizes)                                |          | Yes              | How much resources to devote to the app. Defaults to `AUTO` in production environments. |
-| `relationships` | A dictionary of [relationships](#relationships) |          | Yes              | Connections to other services and apps. |
-| `disk`          | `integer` or `null`                             |          | Yes              | The size of the disk space for the app in MB. Minimum value is `128`. Defaults to `null`, meaning no disk is available. See [note on available space](#available-disk-space) |
-| `mounts`        | A dictionary of [mounts](#mounts)               |          | Yes              | Directories that are writable even after the app is built. If set as a local source, `disk` is required. |
-| `web`           | A [web instance](#web)                          |          | N/A              | How the web application is served. |
-| `workers`       | A [worker instance](#workers)                   |          | N/A              | Alternate copies of the application to run as background processes. |
-| `timezone`      | `string`                                        |          | No               | The timezone for crons to run. Format: a [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). Defaults to `UTC`, which is the timezone used for all logs no matter the value here. See also [app runtime timezones](./timezone.md) |
-| `access`        | An [access dictionary](#access)                 |          | Yes              | Access control for roles accessing app environments. |
-| `variables`     | A [variables dictionary](#variables)            |          | Yes              | Variables to control the environment. |
-| `firewall`      | A [firewall dictionary](#firewall)              |          | Yes              | Outbound firewall rules for the application. |
-| `build`         | A [build dictionary](#build)                    |          | No               | What happens when the app is built. |
-| `dependencies`  | A [dependencies dictionary](#dependencies)      |          | No               | What global dependencies to install before the `build` hook is run. |
-| `hooks`         | A [hooks dictionary](#hooks)                    |          | No               | What commands run at different stages in the build and deploy process. |
-| `crons`         | A [cron dictionary](#crons)                     |          | No               | Scheduled tasks for the app. |
-| `source`        | A [source dictionary](#source)                  |          | No               | Information on the app's source code and operations that can be run on it.  |
-| `runtime`       | A [runtime dictionary](#runtime)                |          | No               | Customizations to your PHP or Lisp runtime. |
+| Name               | Type                                                | Required | Set in instance? | Description |
+| ------------------ | --------------------------------------------------- | -------- | ---------------- | ----------- |
+| `name`             | `string`                                            | Yes      | No               | A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated with the app. |
+| `type`             | A [type](#types)                                    | Yes      | No               | The base image to use with a specific app language. Format: `runtime:version`. |
+| `size`             | A [size](#sizes)                                    |          | Yes              | How much resources to devote to the app. Defaults to `AUTO` in production environments. |
+| `relationships`    | A dictionary of [relationships](#relationships)     |          | Yes              | Connections to other services and apps. |
+| `disk`             | `integer` or `null`                                 |          | Yes              | The size of the disk space for the app in MB. Minimum value is `128`. Defaults to `null`, meaning no disk is available. See [note on available space](#available-disk-space) |
+| `mounts`           | A dictionary of [mounts](#mounts)                   |          | Yes              | Directories that are writable even after the app is built. If set as a local source, `disk` is required. |
+| `web`              | A [web instance](#web)                              |          | N/A              | How the web application is served. |
+| `workers`          | A [worker instance](#workers)                       |          | N/A              | Alternate copies of the application to run as background processes. |
+| `timezone`         | `string`                                            |          | No               | The timezone for crons to run. Format: a [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). Defaults to `UTC`, which is the timezone used for all logs no matter the value here. See also [app runtime timezones](./timezone.md) |
+| `access`           | An [access dictionary](#access)                     |          | Yes              | Access control for roles accessing app environments. |
+| `variables`        | A [variables dictionary](#variables)                |          | Yes              | Variables to control the environment. |
+| `firewall`         | A [firewall dictionary](#firewall)                  |          | Yes              | Outbound firewall rules for the application. |
+| `build`            | A [build dictionary](#build)                        |          | No               | What happens when the app is built. |
+| `dependencies`     | A [dependencies dictionary](#dependencies)          |          | No               | What global dependencies to install before the `build` hook is run. |
+| `hooks`            | A [hooks dictionary](#hooks)                        |          | No               | What commands run at different stages in the build and deploy process. |
+| `crons`            | A [cron dictionary](#crons)                         |          | No               | Scheduled tasks for the app. |
+| `source`           | A [source dictionary](#source)                      |          | No               | Information on the app's source code and operations that can be run on it.  |
+| `runtime`          | A [runtime dictionary](#runtime)                    |          | No               | Customizations to your PHP or Lisp runtime. |
+| `additional_hosts` | An [additional hosts dictionary](#additional-hosts) |          | Yes              | Maps of hostnames to IP addresses. |
 
 ## Root directory
 
@@ -692,8 +693,10 @@ Minimum time between cron jobs being triggered:
 
 For each app container, only one cron job can run at a time.
 If a new job is triggered while another is running, the new job is paused until the other completes.
+
 To minimize conflicts, a random offset is applied to all triggers.
-The offset is a random number of seconds up to 5 minutes or the cron frequency, whichever is smaller.
+The offset is a random number of seconds up to 20 minutes or the cron frequency, whichever is smaller.
+
 Crons are also paused while activities such as [backups](../dedicated/overview/backups.md) are running.
 The crons are queued to run after the other activity finishes.
 
@@ -811,3 +814,21 @@ The following table shows the properties that can be set in `source`:
 | ------------ | ------------------------ | -------- | ----------- |
 | `operations` | An operations dictionary |          |  Operations that can be applied to the source code. See [source operations](./source-operations.md) |
 | `root`       | `string`                 |          |  The path where the app code lives. Defaults to the directory of the `.platform.app.yaml` file. Useful for [multi-app setups](./multi-app.md). |
+
+## Additional hosts
+
+If you're using a private network with specific IP addresses you need to connect to,
+you might want to map those addresses to hostnames to better remember and organize them.
+In such cases, you can add a map of those IP addresses to whatever hostnames you like.
+Then when your app tries to access the hostname, it's sent to the proper IP address.
+
+So in the following example, if your app tries to access `api.example.com`, it's sent to `192.0.2.23`.
+
+```yaml {location=".platform.app.yaml"}
+additional_hosts:
+  extensions:
+    api.example.com: "192.0.2.23"
+    web.example.com: "203.0.113.42"
+```
+
+This is equivalent to adding the mapping to the `/etc/hosts` file for the container.

@@ -64,9 +64,7 @@ Be aware that after the build, it creates a read-only system. You have the [moun
 
 ### Route
 
-```yaml
-# .platform/routes.yaml
-
+```yaml {location=".platform/routes.yaml"}
 "https://{default}/":
     type: upstream
     upstream: [1]

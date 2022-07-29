@@ -26,5 +26,18 @@ More complex redirects are also possible.
 Don't worry about unencrypted HTTP routes.
 All requests on Platform.sh are TLS-enabled and HTTP requests are automatically redirected to HTTPS.
 
+If you don't include a `routes.yaml` file, a single default route is deployed.
+This is equivalent to the following:
+
+``` {location=".platform/routes.yaml"}
+https://{default}/:
+  type: upstream
+  upstream: <APP_NAME>:http
+```
+
+Where `<APP_NAME>` is the `name` you've defined in your [app configuration](/create-apps/app-reference.md).
+
+You can also create other routes as you like:
+
 {{ $file := printf "static/files/fetch/routesyaml/%s" (.Get "template" ) }}
 {{ highlight ( readFile $file ) "yaml" ""}}

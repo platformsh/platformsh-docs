@@ -121,7 +121,7 @@ the highest specified is used for the whole domain.
 ### `strict_transport_security`
 
 HTTP Strict Transport Security (HSTS) is a mechanism for telling browsers to use HTTPS exclusively with a particular website.
-You can toggle it on for your site at the router level without having to touch your application, and configure it's behavior from `routes.yaml`.
+You can toggle it on for your site at the router level without having to touch your application, and configure its behavior from `routes.yaml`.
 
 ```yaml
 tls:

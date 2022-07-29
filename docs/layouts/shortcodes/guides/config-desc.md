@@ -11,6 +11,7 @@ The configuration of that cluster is controlled by three [YAML files]({{ relref 
 
 - `.platform/routes.yaml` controls how incoming requests are routed to your app, or apps in a multi-app setup.
   It also controls the built-in HTTP cache.
+  If you're only using the single default route, you don't need this file.
 - `.platform/services.yaml` controls what additional services are created to support your app,
   such as databases or search servers.
   Each environment has its own independent copy of each service.
@@ -19,7 +20,7 @@ The configuration of that cluster is controlled by three [YAML files]({{ relref 
   It's the most powerful configuration file with the most options.
   So it can get somewhat long depending on your configuration.
 
-Each project on Platform.sh needs at least two of these files and each file can be customized however you need.
+Each project on Platform.sh needs at least the last file and each file can be customized however you need.
 But most {{ $name }} sites have a fairly similar configuration, at least to start.
 
 You can start by creating empty versions of each of these files in your repository:
