@@ -151,4 +151,4 @@ Yusuf
 Zend
 
 Below is for plural abbreviations
-[A-Z]{2,}s
+(?-i)[A-Z]{2,}s
