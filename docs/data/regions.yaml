@@ -67,6 +67,20 @@ europe:
             - "35.246.248.138"
             - "35.246.184.45"
             - "35.242.229.239"
+    fr-1:
+        name: France (fr-1)
+        label: fr-1.platform.sh
+        provider: Orange
+        available: false
+        outbound_ips: 
+            - "90.84.46.222"
+            - "90.84.47.148"
+            - "90.84.46.40"
+        inbound_location: gw.fr-1.platformsh.site
+        inbound_ips:
+            - "90.84.46.40"
+            - "90.84.47.148"
+            - "90.84.46.222"
     fr-3:
         name: France (fr-3)
         label: fr-3.platform.sh
