@@ -99,7 +99,7 @@ plaintext
 pngcrush
 Predis
 preprocessor
-preload(?:er|ing)?
+[Pp]reload(?:er|ing)?
 progs
 proxied
 Pthreads
