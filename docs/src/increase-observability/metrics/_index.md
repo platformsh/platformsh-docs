@@ -92,3 +92,14 @@ The interval between measurements then changes based on the range you choose.
 | < 2 hours       | 1 minute                  |
 | 2 to 5 hours    | 5 minutes                 |
 | 5 to 8/24 hours | 20 minutes                |
+
+## Deployments
+
+Sometimes deployment activities (pushes, merges, syncs) can influence the underlying infrastructure.
+You don't want to confuse a spike caused by a successful deploy with an issue that needs your attention.
+
+To see how deployment activity influences the infrastructure, turn on **Deployments** on your metrics.
+
+Each deployment activity appears as a line on each graph corresponding to the time the activity finished.
+To see information about the deployment activity, hover over the line.
+To see the build log for a specific deployment activity, click the line.
