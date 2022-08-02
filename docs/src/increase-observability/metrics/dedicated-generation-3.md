@@ -25,7 +25,7 @@ such as for accessing the environment using SSH.
 This example should give you an idea of how the metrics appear.
 Dedicated Generation 3 environments metrics show resource usage for each app, service, and worker container.
 
-This reference project has a single app, two services (MySQL and Redis), and two workers.
+This reference project has a single app, two services (MySQL and Redis), and one worker.
 
 Once you've read the metrics, see [recommendations for action](./_index.md#dedicated-generation-3-environments).
 
@@ -33,7 +33,7 @@ Once you've read the metrics, see [recommendations for action](./_index.md#dedic
 
 Metrics graphs for the app container show CPU, RAM, and disk allocation and usage.
 The persistent disk has been configured in the [app configuration](../../create-apps/app-reference.md#top-level-properties)
-at 1.91&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
+at 4.86&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
 
 ![All of the metrics for the app container](/images/metrics/app-container-gen3.png)
 
@@ -45,7 +45,7 @@ Metrics graphs for the service containers show CPU, RAM, and disk allocation and
 
 Metrics graphs for the MySQL service container show CPU and disk allocation and usage.
 The persistent disk has been configured in the [services configuration](../../add-services/_index.md)
-as 0.95&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
+as 24.55&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
 
 ![All of the metrics for the MySQL container](/images/metrics/mysql-container-gen3.png)
 
@@ -57,16 +57,10 @@ while the temporary disk is 3.99&nbsp;GB by default.
 
 ![All of the metrics for the Redis container](/images/metrics/redis-container-gen3.png)
 
-### Worker containers
+### Worker container
 
-Metrics graphs for the App-Horizon worker container show CPU, RAM, and disk allocation and usage.
+Metrics graphs for the Scheduler worker container show CPU, RAM, and disk allocation and usage.
 The persistent disk has been configured in the [app configuration](../../create-apps/app-reference.md#top-level-properties)
-at 1.91&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
+at 4.86&nbsp;GB (the same as the app), while the temporary disk is 3.99&nbsp;GB by default.
 
-![All of the metrics for the App-Horizon worker container](/images/metrics/horizon-worker-container-gen3.png)
-
-Metrics graphs for the App-Schedule worker container show CPU, RAM, and disk allocation and usage.
-The persistent disk has been configured in the [app configuration](../../create-apps/app-reference.md#top-level-properties)
-at 1.91&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
-
-![All of the metrics for the App-Horizon worker container](/images/metrics/schedule-worker-container-gen3.png)
+![All of the metrics for the Scheduler worker container](/images/metrics/schedule-worker-container-gen3.png)
