@@ -15,13 +15,13 @@ runs `composer install` during build, handling all of your dependencies automati
 
 * [Drupal 8/9 Guide](../../guides/drupal9/_index.md)
 
-### Community Support
+### Community support for Drupal
 
 Drupal FAQs, how-to guides and other tutorials right on [Platform.sh Community](https://community.platform.sh/).
 
 * [Drupal on Platform.sh Community](https://community.platform.sh/search?q=drupal)
 
-### Templates
+### Drupal templates
 
 * [Drupal 8](https://github.com/platformsh-templates/drupal8)
 * [Drupal 9](https://github.com/platformsh-templates/drupal9)
@@ -29,27 +29,13 @@ Drupal FAQs, how-to guides and other tutorials right on [Platform.sh Community](
 * [Opigno](https://github.com/platformsh-templates/drupal8-opigno)
 * [GovCMS8](https://github.com/platformsh-templates/drupal8-govcms8)
 
-## eZ Platform
-
-[eZ Platform](https://ezplatform.com/) is a CMS based on the Symfony full-stack framework. eZ Platform comes pre-configured for use with Platform.sh for versions 1.13 and later, all it takes is mapping a few environment variables to an existing project. Consult the caching, configuration, and local development best practices for eZ Platform and Fastly integration for more information.
-
-* [Ibexa DXP Best Practices](../../guides/ibexa/deploy.md)
-
-### Example Projects
-
-{{< note >}}
-Template projects (repositories in the [platformsh-templates](https://github.com/platformsh-templates) GitHub organization) are actively maintained by the Platform.sh team. Any other example projects come with less support, and remain in public repositories as proof-of-concepts.
-{{< /note >}}
-
-* [eZ Platform](https://github.com/ezsystems/ezplatform)
-
 ## Symfony
 
 [Symfony](https://symfony.com/) is a web application framework written in PHP. Symfony projects utilize native Composer to build applications and manage dependencies.
 
 * [Symfony Integration with Platform.sh](https://symfony.com/cloud)
 
-### Templates
+### Symfony templates
 
 * [Symfony 5](https://github.com/symfonycorp/platformsh-symfony-template/tree/5.4)
 * [Symfony 6](https://github.com/symfonycorp/platformsh-symfony-template/tree/6.0)
@@ -60,7 +46,7 @@ Template projects (repositories in the [platformsh-templates](https://github.com
 
 * [TYPO3 Guide](/guides/typo3/deploy/_index.md)
 
-### Templates
+### TYPO3 templates
 
 * [TYPO3](https://github.com/platformsh-templates/typo3)
 
@@ -70,12 +56,12 @@ Template projects (repositories in the [platformsh-templates](https://github.com
 
 * [WordPress best practices](/guides/wordpress/_index.md)
 
-### Community Support
+### Community support for WordPress
 
 All your WordPress FAQs, plus how-to guides and tutorials right on [Platform.sh Community](https://community.platform.sh/).
 
 * [WordPress on Platform.sh Community](https://community.platform.sh/search?q=wordpress)
 
-### Templates
+### WordPress templates
 
 * [WordPress](https://github.com/platformsh-templates/wordpress-composer)
