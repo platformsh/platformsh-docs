@@ -54,29 +54,30 @@ To configure a given service, see the page dedicated to that service.
 {{< codetabs >}}
 
 ---
-title=<SERVICE_EXAMPLE>
+title=<SERVICE>
 file=static/files/fetch/examples/<LANGUAGE_TYPE>/<SERVICE>
-highlight=<LANGUAGE_TYPE>
+highlight=<LANGUAGE_NAME>
 markdownify: false
 ---
 
 <--->
 
 ---
-title=<DIFFERENT_SERVICE_EXAMPLE>
+title=<DIFFERENT_SERVICE>
 file=static/files/fetch/examples/<LANGUAGE_TYPE>/<DIFFERENT_SERVICE>
-highlight=<LANGUAGE_TYPE>
+highlight=<LANGUAGE_NAME>
 markdownify: false
 ---
 
 {{< /codetabs >}}
 
-<!-- If available, include the configuration reader available for the given language,
- by adding the shortcode below and providing the link to the specific flavour of the config reader
-(for example, for the Python library, the config reader link is: [platformshconfig](https://github.com/platformsh/config-reader-python)). -->
-
 {{% config-reader %}}
 [`<CONFIG_READER_NAME>`](<CONFIG_READER_REPOSITORY_URL>)
+{{% /config-reader%}}
+
+For `Node.js`, that would result in the following:
+{{% config-reader %}}
+[platformshconfig](https://github.com/platformsh/config-reader-nodejs).
 {{% /config-reader%}}
 
 ## Any other functions specific to the language
