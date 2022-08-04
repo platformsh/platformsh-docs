@@ -44,13 +44,12 @@ For example, a web page at `foo.bar.baz.example.com` can usually set a cookie th
 to `bar.baz.example.com`, to `baz.example.com`, or to `example.com`, but *not* to all `.com` domains.
 That allows a single logical site to be segmented across different subdomains but use a single account login cookie.
 Setting a cookie for all `.com` domains would be a security risk.
-(There are other restrictions on a TLD, but cookies are the easiest example.)
+Other restrictions apply on a TLD, but cookies are the easiest example.
 
 Aside from true TLD, browser makers have a list of domain suffixes that get the same special handling
 called the [Public Suffix List (PSL)](https://publicsuffix.org/).
 If you added the `example.com` domain to the PSL,
-browsers would refuse to set a cookie on `example.com` from a page at `foo.example.com`.
-(They would still accept cookies from a page at `example.com`.)
+browsers would refuse to set a cookie on `example.com` from a page at `foo.example.com` but would still accept cookies from a page at `example.com`.
 
 ### Subdomain hijacking protection
 
