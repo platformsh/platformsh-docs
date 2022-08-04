@@ -175,6 +175,6 @@ Agencies have access to several partner levels with many perks.
   | ---------- | ---------- | ------------- | ----------- | ---------- | ---------- |
   | –          | Small plan | Standard plan | Medium plan | Large plan | Large plan |
 
-[Learn more and join today](https://platform.sh/solutions/agency).
+[Learn more and join today](https://platform.sh/solutions/digital-agencies/).
 
 If you have any questions, don't hesitate to [contact Sales](https://platform.sh/contact/).
