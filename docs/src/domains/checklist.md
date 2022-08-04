@@ -10,14 +10,26 @@ sidebarTitle: "Pre-Launch Checklist"
 
 ## 1. Check that your domain provider supports CNAME records on APEX domains
 
+<<<<<<< HEAD
 Before you go live, you need a domain name registered with the registrar of your choice.
 That registrar must allow you to use a Canonical Name (CNAME) record for your APEX domain.
 Some registrars may call these `ALIAS` or `ANAME`.
+=======
+You have a domain name registered for your site with a Registrar of your choice.
+The registrar must allow you to use a Canonical Name record (CNAME) for your domain.
+Some registrars may call these Aliases or similar.
+If your domain is currently active elsewhere,
+the Time-To-Live (TTL) on your domain is set to the lowest possible value in order to minimize transition time.
+>>>>>>> 020f3146 (:bug: Fix linting issues)
 
 {{< note >}}
 
 You can't use a `A` record.
+<<<<<<< HEAD
 Verify your Registrar supports CNAME for APEX domains.
+=======
+Verify your DNS provider supports CNAME and Apex domains.
+>>>>>>> 020f3146 (:bug: Fix linting issues)
 
 {{< /note >}}
 
@@ -42,6 +54,7 @@ To override that IP:
 
 
 
+<<<<<<< HEAD
 
 {{< codetabs >}}
 
@@ -88,6 +101,11 @@ After adding these lines the file looks something like:
 Once the domain is live, don't forget to delete the entry you added.
 
 <--->
+=======
+If you do wish to use a 3rd party certificate, ensure it's purchased and active before going live.
+
+## 4. (Optional) Configure your Content Delivery Network (CDN)
+>>>>>>> 020f3146 (:bug: Fix linting issues)
 
 ---
 title=On Windows
