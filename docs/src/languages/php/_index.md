@@ -49,7 +49,8 @@ To serve your app, define what (and how) content should be served by [setting th
 1. Set the `root` folder to which all requests for existing `.php` and static files (such as .css, .jpg) are sent.
 2. (Optional) Set a `passthru` to define a front controller to handle non-existent files. The `passthru` value is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
 
-In the following example, all requests made to the root of your site (`/`) are sent to the `public` directory, non-existing files are handled by `app.php`:
+In the following example, all requests made to the root of your site (`/`) are sent to the `public` directory
+and nonexistent files are handled by `app.php`:
 
 ```yaml {location=".platform.app.yaml"}
 web:
@@ -125,7 +126,8 @@ To install from an alternative repository:
 
 That installs `platformsh/client` from the specified repository url as a global dependency.
 
-For example, to install the `platform/client 2.x-dev` client from a custom repository in addition to composer 2, you can use:
+For example, to install the `platform/client 2.x-dev` library from a custom repository and also Composer 2,
+use the following:
 
 ```yaml {location=".platform.app.yaml"}
     dependencies:
@@ -297,28 +299,30 @@ Common functions to disable include:
 
 PHP offers two execution modes depending on your use-case:
 
-- Command line interface (PHP-CLI) is the mode used for command line scripts and standalone applications.
-    This is the mode used when logged into your container via SSH, for [crons](../../create-apps/app-reference.md#crons)
-    and usually also for [alternate start commands](#alternate-start-commands).
-    To use PHP-CLI mode, run your script with `php <SCRIPT>.php`.
-- Common gateway interface (PHP-CGI) is the mode used for web applications and web requests.
-    This is the default mode when the `start` command isn't explicitly set.
-    To use PHP-CGI mode, run your script with the symlink: `/usr/bin/start-php-app <SCRIPT>.php` instead of `php`.
-    PHP is run in CGI mode using PHP-FPM (FastCGI Process Manager).
+- Command line interface (PHP-CLI) is the mode used for command line scripts and standalone apps.
+  This is the mode used when you're logged into your container via SSH, for [crons](../../create-apps/app-reference.md#crons),
+  and usually also for [alternate start commands](#alternate-start-commands).
+  To use PHP-CLI mode, run your script with `php <SCRIPT>.php`.
+- Common gateway interface (PHP-CGI) is the mode used for web apps and web requests.
+  This is the default mode when the `start` command isn't explicitly set.
+  To use PHP-CGI mode, run your script with the symlink: `/usr/bin/start-php-app <SCRIPT>.php` instead of `php`.
+  In CGI mode, PHP is run using the FastCGI Process Manager (PHP-FPM).
 
 ## Alternate start commands
 
 To specify an alternative process to run your code, set a `start` command.
-For more information about the start command, see [web commands reference](../../create-apps/app-reference.md#web-commands).
+For more information about the start command, see the [web commands reference](../../create-apps/app-reference.md#web-commands).
 
 By default, start commands use the PHP-CLI and run your script with `php <SCRIPT>.php`.
 Find out how and when to use [which execution mode](#execution-mode).
 
 Note that the `start` command must run in the foreground and is executed before the [deploy hook](../../create-apps/hooks/hooks-comparison.md).
-That means that PHP-FPM can't run simultaneously along with another persistent process such as [ReactPHP](https://github.com/platformsh-examples/platformsh-example-reactphp) or [Amp](https://github.com/platformsh-examples/platformsh-example-amphp).
+That means that PHP-FPM can't run simultaneously with another persistent process
+such as [ReactPHP](https://github.com/platformsh-examples/platformsh-example-reactphp)
+or [Amp](https://github.com/platformsh-examples/platformsh-example-amphp).
 If you need multiple processes, they have to run in separate containers.
 
-Set up alternate start commands to:
+For example alternate start commands, see how to:
 
 {{< codetabs >}}
 
@@ -328,8 +332,8 @@ file=none
 highlight=false
 ---
 
-1. Add your script in a PHP file,
-2. Specify an alternative `start` command by adapting the variable:
+1. Add your script in a PHP file.
+2. Specify an alternative `start` command by adapting the following:
 
     ```yaml {location=".platform.app.yaml"}
     web:
@@ -347,8 +351,8 @@ file=none
 highlight=false
 ---
 
-1. Add your web server's code in a PHP file,
-2. Specify an alternative `start` command by adapting the variable:
+1. Add your web server's code in a PHP file.
+2. Specify an alternative `start` command by adapting the following:
 
     ```yaml {location=".platform.app.yaml"}
     web:
@@ -367,7 +371,7 @@ highlight=false
     ```
 
     When you configure your app to connect via a TCP socket, the `$PORT` environment variable is automatically set.
-    See more options on [how to configure the upstream](../../create-apps/app-reference.md#upstream).
+    See more options on how to [configure where requests are sent](../../create-apps/app-reference.md#upstream).
     You might have to configure your app to connect via the `$PORT` TCP socket,
     especially when using web servers such as [Swoole](swoole.md) or [Roadrunner](https://github.com/roadrunner-server/roadrunner).
 4. (optional) override redirects:

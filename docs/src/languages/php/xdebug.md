@@ -19,9 +19,10 @@ You need to have:
 
 - PHP 7.2+ on your project
 - The Platform.sh [CLI](../../development/cli/_index.md)
-- Have a Xdebug-compatible IDE installed on your machine.
+- A Xdebug-compatible IDE installed on your machine
+
     For setup instructions, consult your IDE's Xdebug documentation.
-    Optionally, you can use [PHPStorm](https://www.jetbrains.com/phpstorm/), for which detailed instructions are provided.
+  Optionally, you can use [PHPStorm](https://www.jetbrains.com/phpstorm/), for which detailed instructions are provided.
 
 ## 1. Set up Xdebug
 
@@ -83,7 +84,7 @@ Helpers are available for [Firefox](https://addons.mozilla.org/en-US/firefox/add
 and [Chrome](https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc).
 Their respective plugin pages document how to trigger them when needed.
 
-## 3. (Optional) Use PHPStorm
+## 3. Optional: Use PHPStorm
 
 The configuration for Xdebug is slightly different for each IDE.
 The configuration instructions below are for PHPStorm/IntelliJ due to its popularity in the PHP ecosystem.

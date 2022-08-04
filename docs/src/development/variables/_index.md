@@ -182,7 +182,7 @@ For more information, see how to [customize PHP settings](../../languages/php/_i
 
 ### Framework-specific variables
 
-For specific frameworks, you can implement logic to override global configurations with environment-specific [variables](./set-variables.md#create-environment-specific-variables).
+For specific frameworks, you can implement logic to override global configurations with [environment-specific variables](./set-variables.md#create-environment-specific-variables).
 So you can use the same codebase and settings for all your environments,
 but still adapt the behavior to each environment.
 
@@ -195,7 +195,8 @@ In the Drupal 9 template, the variable override takes place by creating a new va
 - The configuration object to override,
 - The property you want to set.
 
-For example, to override the site name you'd have to set a variable named `drupalsettings:system.site:name` and give it the value you want.
+For example, to override the site name, set a variable named `drupalsettings:system.site:name`
+and give it the value you want.
 
 To set that value with the CLI:
 
@@ -203,7 +204,8 @@ To set that value with the CLI:
 platform variable:create --name "drupalsettings:system.site:name" --value "<SITE_NAME>"
 ```
 
-Setting that variable tells to override the `name` property of the `system.site` configuration object located in the global `$settings` array with the value you chose.
+Setting that variable overrides the `name` property of the `system.site` configuration object
+located in the global `$settings` array.
 
 The same logic applies for other configuration options, such as the global `$config` array which uses the variable prefix `drupalconfig:`.
 

@@ -54,7 +54,7 @@ variables:
 The `opcache.preload` value is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
 It may be any PHP script that calls `opcache_compile_file()`.
 
-The following example uses the `preload.php` file as preload script.
+The following example uses a `preload.php` file as the preload script.
 This script loads all `.php` files in the `vendor` directory (and subdirectories):
 
 ```php {location="preload.php"}
@@ -71,7 +71,7 @@ foreach ($regex as $key => $file) {
 
 ### Configure OPcache
 
-OPcache needs to be tuned before production usage and can be configured [the same way as PHP](../php/_index.md#customize-php-settings).
+OPcache needs to be tuned before production usage and can be configured the [same way as PHP](../php/_index.md#customize-php-settings).
 
 {{< note >}}
 Let the app run for a while before tuning OPcache
@@ -188,7 +188,8 @@ To clear the cache when PHP-FPM is restarted, add the command to your [`start` c
 To optimize your app, consider using a [profiler](../../increase-observability/integrate-observability/_index.md).
 A profiler helps determine what slow spots can be found and addressed and helps improve performance.
 
-The web agency [Pixelant](https://www.pixelant.net/) has also published a [log analyzer tool for Platform.sh](https://github.com/pixelant/platformsh-analytics) that offers a better visualization of access logs to determine how much memory requests are using on average.
+The web agency [Pixelant](https://www.pixelant.net/) has also published a [log analyzer tool for Platform.sh](https://github.com/pixelant/platformsh-analytics)
+that offers a better visualization of access logs to determine how much memory requests are using on average.
 It offers additional insights into the operation of your site and can suggest places to further optimize your configuration.
 It also provides guidance on when it's time to increase your plan size.
-Note that this tool is maintained by a 3rd party, not by Platform.sh.
+Note that this tool is maintained by a third party, not by Platform.sh.
