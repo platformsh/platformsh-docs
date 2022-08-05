@@ -75,10 +75,12 @@ markdownify: false
 [`<CONFIG_READER_NAME>`](<CONFIG_READER_REPOSITORY_URL>)
 {{% /config-reader%}}
 
+<!-- 
 For Node.js, that would result in the following:
 {{% config-reader %}}
 [platformshconfig](https://github.com/platformsh/config-reader-nodejs).
 {{% /config-reader%}}
+-->
 
 ## Any other functions specific to the language
 
