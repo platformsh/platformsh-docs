@@ -18,7 +18,7 @@ We also strongly recommend creating a unique machine user for each project to be
 
 Like human users, every machine user account needs its own unique email address.
 
-The machine user can be given a very restrictive set of [access permissions](/administration/users.md) limited to just its needed tasks.
+The machine user can be given a very restrictive set of [access permissions](../users.md) limited to just its needed tasks.
 For example, backups require `Admin` access but no SSH key,
 while checking out code from a CI server to run tests on it would require an SSH key but only `Viewer` access.
 
@@ -73,8 +73,8 @@ we urge you to use the `--no-wait` flag on any commands that may take more than 
 To allow the Platform.sh CLI to be run on an app container, such as via a cron hook, use the API token.
 The CLI is able to auto-detect the current project and environment.
 
-Set the token as the [top-level](../variables/_index.md#top-level-environment-variables) environment variable `env:PLATFORMSH_CLI_TOKEN`
-either [through the Console](/administration/web/configure-environment.html#variables) or via the CLI, like so:
+Set the token as the [top-level](../../development/variables/_index.md#top-level-environment-variables) environment variable `env:PLATFORMSH_CLI_TOKEN`
+either [through the Console](../web/configure-environment.md#variables) or via the CLI, like so:
 
 ```bash
 platform variable:create -e <BRANCH_NAME> --level environment --name env:PLATFORMSH_CLI_TOKEN --sensitive true --value '<YOUR_API_TOKEN>'

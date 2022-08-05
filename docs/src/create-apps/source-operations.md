@@ -8,7 +8,7 @@ tier:
 A source operation is an operation defined in an application to apply and automate changes to its source code.
 
 To use source operations, first define them in your [app configuration](./_index.md).
-Then run them in the [Platform.sh CLI](../development/cli/_index.md) or [Console](https://console.platform.sh).
+Then run them in the [Platform.sh CLI](../administration/cli/_index.md) or [Console](https://console.platform.sh).
 
 ## 1. Define a source operation
 
@@ -167,8 +167,8 @@ You can use cron to automatically run your source operations.
 
 {{< note >}}
 
-To run automated source operations using cron, you need to use [an API token](../development/cli/api-tokens.md)
-with the [CLI installed](../development/cli/api-tokens.md#on-a-platformsh-environment) in your app container.
+To run automated source operations using cron, you need to use [an API token](../administration/cli/api-tokens.md)
+with the [CLI installed](../administration/cli/api-tokens.md#on-a-platformsh-environment) in your app container.
 
 {{< /note >}}
 

@@ -22,7 +22,7 @@ To connect to an app securely with SSH, follow two steps.
 
 To authenticate with the CLI:
 
-1. Install the [Platform.sh CLI](/development/cli/_index.md).
+1. Install the [Platform.sh CLI](/administration/cli/_index.md).
 1. Run `platform login`.
 1. In the open browser window, log in with your Platform.sh account credentials.
    (This webpage is encrypted with HTTPS [HTTP over TLS], making it secure.)
@@ -131,7 +131,7 @@ There are three basic ways to authenticate with Platform.sh:
   * Represents only a single authentication method.
   * Requires you to regularly change the keys to maintain security.
   * Useful for checking out code as part of an automated process.
-* [Using API tokens](../cli/api-tokens.md)
+* [Using API tokens](../../administration/cli/api-tokens.md)
   * Good for letting automation tools use the CLI.
   * Requires you to regularly change the tokens to maintain security.
 

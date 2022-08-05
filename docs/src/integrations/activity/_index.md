@@ -15,7 +15,7 @@ Activity scripts are configured as integrations.
 That means they're at the *project level*, not at the level of an individual environment.
 While you can store the scripts in your Git repository for access, they have no effect there.
 
-To install a new activity script, use the [Platform.sh CLI](/development/cli/_index.md).
+To install a new activity script, use the [Platform.sh CLI](/administration/cli/_index.md).
 
 ```bash
 platform integration:add --type script --file ./my_script.js

@@ -11,7 +11,7 @@ To change it after project creation, follow the steps below.
 
 You can complete some of these steps through the Console,
 but since all can be completed with the CLI those commands alone are listed.
-Be sure to [install the CLI](../development/cli/_index.md) if you haven't already done so.
+Be sure to [install the CLI](../administration/cli/_index.md) if you haven't already done so.
 It's assumed you are changing the default branch of your project on Platform.sh from `master` to `main`.
 If using another name for the default branch, update the commands accordingly.
 

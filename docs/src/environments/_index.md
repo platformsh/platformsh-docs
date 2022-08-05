@@ -19,7 +19,7 @@ often divided into [environment types](../administration/users.md#environment-ty
 If you have a live site, you have at least a production environment.
 You may also have additional environments for development, testing, staging, review, and so on.
 
-New environments can be created by branching existing environments using the [command line interface (CLI)](/development/cli/_index.md),
+New environments can be created by branching existing environments using the [command line interface (CLI)](/administration/cli/_index.md),
 or in the [Console](../administration/web/_index.md).
 Each created environment is an exact replica of its parent environment.
 This means new environments have all of the data and services from the parent

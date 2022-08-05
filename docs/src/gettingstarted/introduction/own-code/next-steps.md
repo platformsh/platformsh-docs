@@ -6,7 +6,7 @@ aliases:
   - "/gettingstarted/own-code/next-steps.html"
 ---
 
-In this guide you created a project using the [CLI](/development/cli/_index.md) and configured your project to run on Platform.sh using a few configuration files.
+In this guide you created a project using the [CLI](/administration/cli/_index.md) and configured your project to run on Platform.sh using a few configuration files.
 
 Don't stop now! There are far more features that make Platform.sh profoundly helpful to developers that you have left to explore.
 

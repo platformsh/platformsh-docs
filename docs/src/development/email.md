@@ -90,7 +90,7 @@ The `TXT` record looks similar to the following:
 
 ## 4. Test the email service
 
-To test the email service, use the [CLI](./cli/_index.md) to connect to your app by running `platform ssh`.
+To test the email service, use the [CLI](../administration/cli/_index.md) to connect to your app by running `platform ssh`.
 Run the following command:
 
 ```bash

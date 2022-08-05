@@ -48,7 +48,7 @@ Once you have configured the template application in the previous step, Platform
 In these few steps you created a free trial account, configured a template application on a project,
 and deployed it using the Console entirely from your browser.
 
-Using the [Platform.sh CLI](/development/cli/_index.md), you get even more control over your project configurations,
+Using the [Platform.sh CLI](/administration/cli/_index.md), you get even more control over your project configurations,
 including the ability to migrate your own applications to Platform.sh.
 Move to the next step to install it.
 

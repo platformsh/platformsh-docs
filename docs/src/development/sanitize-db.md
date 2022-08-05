@@ -21,7 +21,7 @@ You need:
 - A project with a [MySQL database](../add-services/mysql/_index.md).
 - A command interface installed:
   - With Drupal: [Drush](https://www.drush.org/latest/install/)
-  - Without Drupal: the [Platform CLI](../development/cli/_index.md)
+  - Without Drupal: the [Platform CLI](../administration/cli/_index.md)
 
 This guide is about sanitizing MySQL databases.
 

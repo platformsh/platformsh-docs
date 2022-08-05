@@ -9,7 +9,7 @@ layout: single
 
 {{% description %}}
 
-You need to have both [Git](/development/tools.md#git) and the [Platform.sh CLI](/development/cli/_index.md) installed before continuing.
+You need to have both [Git](/development/tools.md#git) and the [Platform.sh CLI](/administration/cli/_index.md) installed before continuing.
 
 ## Download the code
 

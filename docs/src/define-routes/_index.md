@@ -419,7 +419,7 @@ You can configure each route separately with the following properties:
 
 ## CLI access
 
-The [Platform.sh CLI](../development/cli/_index.md) can show you the routes you have configured for an environment.
+The [Platform.sh CLI](../administration/cli/_index.md) can show you the routes you have configured for an environment.
 These are the routes as defined in the `.platform/routes.yaml` file with the [placeholders](#route-placeholders)
 plus the default redirect from HTTP to HTTPS.
 They aren't the final generated routes.

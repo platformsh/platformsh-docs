@@ -93,7 +93,7 @@ or by installing the CLI tool into your application container and triggering the
 
 {{< note >}}
 
-Automated backups using cron requires you to [get an API token and install the CLI in your application container](/development/cli/api-tokens.md).
+Automated backups using cron requires you to [get an API token and install the CLI in your application container](./cli/api-tokens.md).
 
 {{< /note >}}
 
