@@ -101,10 +101,6 @@ code {
   display: inline-block;
 }
 
-table code {
-  white-space: nowrap;
-}
-
 .chroma {
   background-color: var(--primary) !important;
   /* word-wrap: normal !important;
