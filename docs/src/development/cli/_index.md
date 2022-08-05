@@ -2,7 +2,7 @@
 title: "Use the command line interface (CLI)"
 weight: 3
 description: |
-  See how to use and manage your Platform.sh projects directly from your terminal. Anything you can do within the management console can be done with the CLI.
+  See how to use and manage your Platform.sh projects directly from your terminal. Anything you can do within the Console can be done with the CLI.
 sidebarTitle: "Use the CLI"
 layout: single
 keywords:
@@ -142,7 +142,7 @@ platform project:set-remote <PROJECT_ID>
 ```
 
 Replace `<PROJECT_ID>` with the ID of your project.
-You can find that in the management console or by running `platform projects` to list all accessible projects.
+You can find that in the Console or by running `platform projects` to list all accessible projects.
 
 ### Choose between the CLI and Git commands
 

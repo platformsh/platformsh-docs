@@ -16,7 +16,7 @@ To change the environment's parent, follow these steps:
 {{< codetabs >}}
 
 ---
-title=In the console
+title=In the Console
 file=none
 highlight=false
 ---

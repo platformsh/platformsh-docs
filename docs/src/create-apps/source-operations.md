@@ -8,7 +8,7 @@ tier:
 A source operation is an operation defined in an application to apply and automate changes to its source code.
 
 To use source operations, first define them in your [app configuration](./_index.md).
-Then run them in the [Platform.sh CLI](../development/cli/_index.md) or [console](https://console.platform.sh).
+Then run them in the [Platform.sh CLI](../development/cli/_index.md) or [Console](https://console.platform.sh).
 
 ## 1. Define a source operation
 
@@ -46,11 +46,11 @@ For more possibilities, see other [operation examples](#source-operation-example
 
 ## 2. Run a source operation
 
-To run a source operation, you can use the CLI or console.
+To run a source operation, you can use the CLI or Console.
 
 {{< codetabs >}}
 ---
-title=In the console
+title=In the Console
 file=none
 highlight=false
 ---
@@ -117,7 +117,7 @@ Run the operation with the variable:
 {{< codetabs >}}
 
 ---
-title=In the console
+title=In the Console
 file=none
 highlight=false
 ---

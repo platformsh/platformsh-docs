@@ -18,7 +18,7 @@ To trigger a redeploy, follow these steps:
 {{< codetabs >}}
 
 ---
-title=In the console
+title=In the Console
 file=none
 highlight=false
 ---

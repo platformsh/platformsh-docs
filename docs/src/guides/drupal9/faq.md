@@ -15,7 +15,7 @@ drush -y config-import
 
 That will automatically run `update.php` and import configuration on every new deploy.
 
-The above configuration is included by default if you used our Drupal example repository or created a project through the management console.
+The above configuration is included by default if you used our Drupal example repository or created a project through the Console.
 
 ## I'm getting a PDO Exception 'MySQL server has gone away'
 

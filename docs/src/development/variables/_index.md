@@ -126,12 +126,12 @@ While in the `feature-x` environment, it looks like this:
 ```
 
 To get a visual overview of which variables are overridden in an environment,
-navigate in the management console to that environment's variables settings.
+navigate in the Console to that environment's variables settings.
 This example shows how it looks within the `feature-x` environment:
 
 <!-- vale Vale.Spelling = NO -->
 <!-- spelling turned off because of the "api_key" -->
-![The console showing the variables split into environment and project ones, with the environment variables `api_key` and `system_version` labeled as overridden and `debug_mode` as inherited the project variable `system_version` labeled as inactive.](/images/management-console/variables-overridden.png "0.5")
+![The Console showing the variables split into environment and project ones, with the environment variables `api_key` and `system_version` labeled as overridden and `debug_mode` as inherited the project variable `system_version` labeled as inactive.](/images/management-console/variables-overridden.png "0.5")
 <!-- vale Vale.Spelling = YES -->
 
 Project variables that conflict with environment variables are labeled as **Inactive**.

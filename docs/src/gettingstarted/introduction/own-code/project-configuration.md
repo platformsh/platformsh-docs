@@ -55,9 +55,9 @@ In the previous step, you created a new project on Platform.sh using the CLI. No
     touch .platform/services.yaml
     ```
 
-3. **(Optional) Follow the Project Setup Wizard instructions in the management console**
+3. **(Optional) Follow the Project Setup Wizard instructions in the Console**
 
-    All of the steps in this guide are also available in the Project Setup Wizard in your management console. Once you have created your project, the Wizard will appear at the top of your project page with detailed steps to help you properly configure your applications on Platform.sh.
+    All of the steps in this guide are also available in the Project Setup Wizard in your Console. Once you have created your project, the Wizard will appear at the top of your project page with detailed steps to help you properly configure your applications on Platform.sh.
 
     ![Project Setup Wizard](/images/management-console/setup-wizard.png "0.5")
 

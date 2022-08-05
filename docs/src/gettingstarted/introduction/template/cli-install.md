@@ -25,7 +25,7 @@ platform
 ```
 
 That's it!
-Now that you have the management console set up and the CLI installed on your computer,
+Now that you have the Console set up and the CLI installed on your computer,
 you're well on your way to exploring all of the ways that Platform.sh can improve your development workflow.
 
 {{< guide-buttons next="I've installed the CLI" >}}

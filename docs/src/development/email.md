@@ -20,7 +20,7 @@ To turn it on for a specific environment, follow these steps:
 {{< codetabs >}}
 
 ---
-title=In the console
+title=In the Console
 file=none
 highlight=false
 ---

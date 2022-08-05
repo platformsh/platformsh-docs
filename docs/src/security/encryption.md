@@ -4,7 +4,7 @@ title: Encryption
 
 ## Data in transit
 
-Data in transit between the World and Platform.sh is always encrypted as all of the sites and tools which Platform.sh supports and maintains require TLS or SSH to access. This includes the Platform.sh management console, Accounts site, git repositories, documentation, and help desk.
+Data in transit between the World and Platform.sh is always encrypted as all of the sites and tools which Platform.sh supports and maintains require TLS or SSH to access. This includes the Platform.sh Console, Accounts site, git repositories, documentation, and help desk.
 
 Data in transit between the world and customer applications is encrypted by default.  Only SSH and HTTPS connections are generally accepted, with HTTP requests redirected to HTTPS.  Users may opt-out of that redirect and accept HTTP requests via `routes.yaml` configuration, although that is not recommended.  By default HTTPS connections use an automatically generated Let's Encrypt certificate or users may provide their own TLS certificate.
 

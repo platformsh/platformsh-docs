@@ -629,7 +629,7 @@ The following table shows the properties for each job:
 | Name               | Type      | Required | Description |
 | ------------------ | --------- | -------- | ----------- |
 | `start`            | `string`  | Yes      | The command that's run. It's run in [Dash](https://en.wikipedia.org/wiki/Almquist_shell). |
-| `stop`             | `string`  | No       | The command that's issued to give the cron command a chance to shutdown gracefully, such as to finish an active item in a list of tasks. Issued when a cron task is interrupted by a user through the CLI or management console. If not specified, a `SIGTERM` signal is sent to the process. |
+| `stop`             | `string`  | No       | The command that's issued to give the cron command a chance to shutdown gracefully, such as to finish an active item in a list of tasks. Issued when a cron task is interrupted by a user through the CLI or Console. If not specified, a `SIGTERM` signal is sent to the process. |
 
 ```yaml {location=".platform.app.yaml"}
 crons:
@@ -719,7 +719,7 @@ The following table shows how long without a deployment an environment goes befo
 Environments with deployments within the given time have crons with the status `running`.
 If there haven't been any deployments within the given time, the status is `paused`.
 
-You can see the status in the management console
+You can see the status in the Console
 or using the CLI by running `platform environment:info` and looking under `deployment_state`.
 
 #### Restarting paused crons
@@ -732,12 +732,12 @@ To restart crons without changing anything:
 {{< codetabs >}}
 
 ---
-title=In the console
+title=In the Console
 file=none
 highlight=false
 ---
 
-1. In the console, navigate to your project.
+1. In the Console, navigate to your project.
 1. Open the environment where you'd like the crons to run.
 1. Click `Redeploy` next to the cron status of `Paused`.
 

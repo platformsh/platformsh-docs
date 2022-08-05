@@ -40,12 +40,12 @@ Once you have a machine user in place, you want to assign an API token to it.
 
 To get an API token:
 
-1. As the machine user, open the management console.
+1. As the machine user, open the Console.
 2. Open the user menu (your name or profile picture).
 3. Click **My profile**.
 4. Go to the **API Tokens** tab.
 5. Click **Create API Token**.
-   ![The Create API Token button in the console](/images/management-console/api-tokens-new.png "0.6")
+   ![The Create API Token button in the Console](/images/management-console/api-tokens-new.png "0.6")
 6. Enter a name to identify your token in the future if you have multiple tokens.
    ![Creating an API token with the name 'CI tests'](/images/management-console/api-tokens-name.png "0.6")
 7. Click **Copy** to copy the token to your clipboard.
@@ -74,7 +74,7 @@ To allow the Platform.sh CLI to be run on an app container, such as via a cron h
 The CLI is able to auto-detect the current project and environment.
 
 Set the token as the [top-level](../variables/_index.md#top-level-environment-variables) environment variable `env:PLATFORMSH_CLI_TOKEN`
-either [through the management console](/administration/web/configure-environment.html#variables) or via the CLI, like so:
+either [through the Console](/administration/web/configure-environment.html#variables) or via the CLI, like so:
 
 ```bash
 platform variable:create -e <BRANCH_NAME> --level environment --name env:PLATFORMSH_CLI_TOKEN --sensitive true --value '<YOUR_API_TOKEN>'

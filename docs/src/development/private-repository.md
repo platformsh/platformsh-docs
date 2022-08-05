@@ -15,7 +15,7 @@ you need to add the project's public SSH key to the deploy keys of your Git repo
 
 To get your project's public key:
 
-1. In the console, open the project you want.
+1. In the Console, open the project you want.
 2. Click **{{< icon settings >}} Settings**.
 3. Click **Deploy Key**.
 4. Click **{{< icon copy >}} Copy**.

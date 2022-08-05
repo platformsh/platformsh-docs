@@ -15,7 +15,7 @@ the proper functioning of the Platform.sh infrastructure, application container 
 have found possible bugs; or have general questions,
 open a support ticket:
 
-1. [Open the Management Console](https://console.platform.sh/)
+1. [Open the Console](https://console.platform.sh/)
 2. Select **User menu** (your name) > **Support**.
 3. Click **+ New ticket**.
 4. Fill in the ticket fields and click **Submit**.

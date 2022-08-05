@@ -136,7 +136,7 @@ which takes the form `https://console.platform.sh/<ORGANIZATION_NAME>`.
 They can only access projects they've been explicit invited to by a project admin.
 
 To see all the projects that you have access to,
-go to the [main console page](https://console.platform.sh) or click **All projects** within the console.
+go to the [main Console page](https://console.platform.sh) or click **All projects** within the Console.
 For more information on project access control, see [user administration](./users.md).
 
 ## Create a new organization

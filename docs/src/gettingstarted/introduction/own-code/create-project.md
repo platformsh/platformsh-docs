@@ -32,7 +32,7 @@ you can create a new project from the command line and connect it to your applic
 
       For now, press Enter to select the default number of environments.
 
-    * `Storage`: You can modify the amount of storage your application can use from the CLI and from the management console
+    * `Storage`: You can modify the amount of storage your application can use from the CLI and from the Console
       as well as upgrade that storage later once your project starts growing.
 
       For now, press Enter to select the default amount of storage.

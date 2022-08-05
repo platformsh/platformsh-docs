@@ -65,7 +65,7 @@ Let's Encrypt expects the `.well-known` endpoint on all domains added.
 You have 2 options:
 
 * Remove all domains pointing to Cloudflare from your Platform.sh project
-* Follow these steps in your Cloudflare console:
+* Follow these steps in your Cloudflare Console:
 
   1. On the SSL page, turn off **Always Use HTTPS**.
   2. Create a page rule for `/.well-known/acme-challenge/` with SSL set to **off**.

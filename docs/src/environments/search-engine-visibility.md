@@ -16,7 +16,7 @@ To change the environment's visibility to search engines, follow these steps:
 {{< codetabs >}}
 
 ---
-title=In the console
+title=In the Console
 file=none
 highlight=false
 ---

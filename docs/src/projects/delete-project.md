@@ -12,7 +12,7 @@ To delete a Platform.sh project, including all data, code, and active environmen
 {{< codetabs >}}
 
 ---
-title=In the console
+title=In the Console
 file=none
 highlight=false
 ---
