@@ -54,8 +54,8 @@ To configure a given service, see the page dedicated to that service.
 {{< codetabs >}}
 
 ---
-title=<SERVICE>
-file=static/files/fetch/examples/<LANGUAGE_TYPE>/<SERVICE>
+title=<SERVICE_NAME>
+file=static/files/fetch/examples/<LANGUAGE_TYPE>/<SERVICE_TYPE>
 highlight=<LANGUAGE_NAME>
 markdownify: false
 ---
@@ -75,7 +75,7 @@ markdownify: false
 [`<CONFIG_READER_NAME>`](<CONFIG_READER_REPOSITORY_URL>)
 {{% /config-reader%}}
 
-For `Node.js`, that would result in the following:
+For Node.js, that would result in the following:
 {{% config-reader %}}
 [platformshconfig](https://github.com/platformsh/config-reader-nodejs).
 {{% /config-reader%}}
