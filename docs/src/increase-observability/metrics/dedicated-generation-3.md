@@ -4,7 +4,7 @@ sidebarTitle: Dedicated Generation 3 metrics
 description: Understand how to read metrics for Dedicated Genration 3 environments.
 ---
 
-Dedicated Generation 3 environments consist of:
+Dedicated Generation 3 environments consist of various containers running across dedicated virtual machines:
 
 * App containers: one or more [app containers](../../create-apps/_index.md)
 * Service containers: zero or more [service containers](../../add-services/_index.md)
@@ -17,13 +17,14 @@ To select metrics for specific hosts, click **Filter**.
 
 ![Clicking Filter reveals a list of hosts you can filter](/images/metrics/filtering-gen3.png "0.4")
 
-The IDs for the hosts in the list for filtering match the IDs for interacting with a host,
+The ID numbers for the hosts in the list for filtering match the numbers for interacting with a host,
 such as for accessing the environment using SSH.
 
 ## Example of how to read metrics
 
 This example should give you an idea of how the metrics appear.
-Dedicated Generation 3 environments metrics show resource usage for each app, service, and worker container.
+Dedicated Generation 3 environments metrics show resource usage for each app, service, and worker container
+across all hosts.
 
 This reference project has a single app, two services (MySQL and Redis), and one worker.
 
@@ -39,11 +40,11 @@ at 4.86&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
 
 ### Service containers
 
-Metrics graphs for the service containers show CPU, RAM, and disk allocation and usage.
+Metrics graphs for the service containers show CPU, RAM, and disk allocation and usage across all hosts.
 
 #### MySQL
 
-Metrics graphs for the MySQL service container show CPU and disk allocation and usage.
+Metrics graphs for the MySQL service container show CPU and disk allocation and usage across all hosts.
 The persistent disk has been configured in the [services configuration](../../add-services/_index.md)
 as 24.55&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
 
@@ -51,7 +52,7 @@ as 24.55&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
 
 #### Redis
 
-Metrics graphs for the Redis service container show CPU and disk allocation and usage.
+Metrics graphs for the Redis service container show CPU and disk allocation and usage across all hosts.
 No persistent disk has been configured for Redis,
 while the temporary disk is 3.99&nbsp;GB by default.
 
@@ -59,7 +60,7 @@ while the temporary disk is 3.99&nbsp;GB by default.
 
 ### Worker container
 
-Metrics graphs for the Scheduler worker container show CPU, RAM, and disk allocation and usage.
+Metrics graphs for the Scheduler worker container show CPU, RAM, and disk allocation and usage across all hosts.
 The persistent disk has been configured in the [app configuration](../../create-apps/app-reference.md#top-level-properties)
 at 4.86&nbsp;GB (the same as the app), while the temporary disk is 3.99&nbsp;GB by default.
 
