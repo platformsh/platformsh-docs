@@ -85,7 +85,7 @@ so consider using a path like `https://{default}/api` instead.
 ## Trailing slashes
 
 All defined routes have at least a slash in the path.
-So you might define routes as follows:
+So you might define routes for 2 apps named `app` and `api` as follows:
 
 ```yaml {location==".platform/routes.yaml"}
 
@@ -94,7 +94,7 @@ So you might define routes as follows:
     upstream: "app:http"
 "https://subdomain.example.com":
     type: upstream
-    upstream: "subdomain:http"
+    upstream: "api:http"
 ```
 
 Both of these routes would be resolved with trailing slashes.
@@ -116,7 +116,7 @@ you see the following resolved routes (assuming `example.com` is your default do
     "id": null,
     "attributes": {},
     "type": "upstream",
-    "upstream": "subdomain",
+    "upstream": "api",
     "original_url": "https://subdomain.example.com"
   }
 }
