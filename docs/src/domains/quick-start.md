@@ -38,7 +38,7 @@ Now, add a single domain to your Platform.sh project for `mysite.com`:
 {{< codetabs >}}
 
 ---
-title=In the console
+title=In the Console
 file=none
 highlight=false
 ---

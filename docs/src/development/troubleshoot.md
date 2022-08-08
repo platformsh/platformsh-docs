@@ -18,7 +18,7 @@ To trigger a redeploy, follow these steps:
 {{< codetabs >}}
 
 ---
-title=In the console
+title=In the Console
 file=none
 highlight=false
 ---
@@ -106,7 +106,7 @@ The next build for each environment is likely to take longer as the cache rebuil
 In most cases, issues accessing a project are caused by missing permissions for a given user.
 For more information see how to [manage user permissions](../administration/users.md).
 
-If you are using the CLI, make sure that [you are authenticated](../development/cli/_index.md#2-authenticate).
+If you are using the CLI, make sure that [you are authenticated](../administration/cli/_index.md#2-authenticate).
 
 If you are using SSH, see how to [troubleshoot SSH access](../development/ssh/troubleshoot-ssh.md).
 

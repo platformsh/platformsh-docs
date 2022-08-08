@@ -89,16 +89,16 @@ in a terminal run the following command (replacing `<PATH_TO_YOUR_KEY>` with the
 platform ssh-key:add '<PATH_TO_YOUR_KEY>'
 ```
 
-You can also add it in the management console,
+You can also add it in the Console,
 similar to this [video](https://docs.platform.sh/videos/management-console/add-ssh-mc.mp4).
 
 Now you are ready to use the key to [connect to an environment](./_index.md#2-connect-to-an-app-with-ssh).
 
 ### 3. Connect to your server with SSH keys
 
-To connect to a server using SSH keys, find the details in the management console:
+To connect to a server using SSH keys, find the details in the Console:
 
-1. Open the [Platform.sh console](https://console.platform.sh/).
+1. Open the [Platform.sh Console](https://console.platform.sh/).
 1. Select a project.
 1. In the **Environment** dropdown, select the environment you want to access.
 1. Click the **SSH** dropdown.

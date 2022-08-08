@@ -33,7 +33,7 @@ With your configuration files complete, all that's left is to commit the changes
     This returns a list of your routes.
     Pick the primary route `0` and press Enter, which opens your application in a browser window.
 
-    Alternatively, you can also log back into the management console in your new project.
+    Alternatively, you can also log back into the Console in your new project.
     Select your production environment from the `Environments` list
     and click the link in the Overview.
 

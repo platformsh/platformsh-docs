@@ -39,7 +39,7 @@ There are also additional options:
 * **URLs** to access the deployed environment from the web.
 * **SSH** to access your project using SSH.
 * **Code**
-  * **CLI** for the command to get your project set up locally with the [Platform.sh CLI](../../development/cli/_index.md).
+  * **CLI** for the command to get your project set up locally with the [Platform.sh CLI](../cli/_index.md).
   * **Git** for the command to clone the codebase via Git.
   
     If you're using Platform.sh as your primary remote repository, the command clones from the project.

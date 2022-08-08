@@ -87,7 +87,7 @@ Blackfire Monitoring is [enabled by default](https://blackfire.io/docs/monitorin
 
 To disable Blackfire Monitoring, create an [environment variable](../../development/variables/set-variables.md#create-environment-specific-variables).
 
-In the management console, view the environment where you would like to disable Blackfire Monitoring
+In the Console, view the environment where you would like to disable Blackfire Monitoring
 and add the variable `env:BLACKFIRE_APM_ENABLED` with the value `0`.
 Otherwise, you can use the CLI command `platform variable:create --level environment --prefix env: --name BLACKFIRE_APM_ENABLED --value 0`
 

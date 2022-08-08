@@ -12,12 +12,12 @@ aliases:
 
 Changes to your environments, such as deployments, cron jobs, and code or variable updates,
 are each logged as activities.
-You can access the logs either in the console or using the CLI:
+You can access the logs either in the Console or using the CLI:
 
 {{< codetabs >}}
 
 ---
-title=In the console
+title=In the Console
 highlight=false
 file=none
 ---

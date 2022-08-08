@@ -7,7 +7,7 @@ aliases:
   - "/gettingstarted/template/cli-requirements.html"
 ---
 
-With the [management console](/administration/web/_index.md), you can start new projects from templates just as you did in the previous steps, but deploying your own applications requires you to also use the [Platform.sh CLI](/development/cli/_index.md).
+With the [Console](/administration/web/_index.md), you can start new projects from templates just as you did in the previous steps, but deploying your own applications requires you to also use the [Platform.sh CLI](/administration/cli/_index.md).
 
 {{% cli-installation-requirements %}}
 

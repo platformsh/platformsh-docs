@@ -20,7 +20,7 @@ These control who has access to projects.
 Users can still see projects that they can't access if they're a member of an organization.
 See more on access control for [organizations](./organizations.md).
 
-To see all projects you have a role in, from the main console page
+To see all projects you have a role in, from the main Console page
 click **All projects&nbsp;<span aria-label="and then">></span> All projects**.
 
 ## Environment types
@@ -62,7 +62,7 @@ To add a user to a project or an environment, follow these steps:
 {{< codetabs >}}
 
 ---
-title=In the console
+title=In the Console
 file=none
 highlight=false
 ---
@@ -94,7 +94,7 @@ platform user:add user1@example.com -r admin
 
 The user has to create an account before they can contribute to the project.
 Once you add a user to a project, they receive an email with instructions.
-For SSH access changes to apply after you add a user to a project, you have to redeploy each environment by either clicking **Redeploy** in the console or running `platform redeploy`.
+For SSH access changes to apply after you add a user to a project, you have to redeploy each environment by either clicking **Redeploy** in the Console or running `platform redeploy`.
 
 ### Delete a user from a project
 
@@ -105,7 +105,7 @@ To delete a user from a project, follow these steps:
 {{< codetabs >}}
 
 ---
-title=In the console
+title=In the Console
 file=none
 highlight=false
 ---
@@ -147,7 +147,7 @@ To change user permissions, follow these steps:
 {{< codetabs >}}
 
 ---
-title=In the console
+title=In the Console
 file=none
 highlight=false
 ---

@@ -47,22 +47,22 @@ Its value is one of:
 * `environment.backup.delete`: A user deleted a [backup](/administration/backup-and-restore.md)
 ---
 * `environment.push`: A user has pushed code to a branch, either existing or new.
-* `environment.branch`: A new branch has been created via the management console.
+* `environment.branch`: A new branch has been created via the Console.
   (A branch created via a push will show up only as an `environment.push`.)
 * `environment.activate`: A branch has been "activated", and an environment created for it.
 * `environment.initialize`: The default branch of the project has just been initialized with its first commit.
 * `environment.deactivate`: A branch has been "deactivated". The code is still there, but the environment was destroyed.
 * `environment.synchronize`: An environment has had its data and/or code re-copied from its parent environment.
-* `environment.merge`: A branch was merged through the management console or Platform.sh API.
+* `environment.merge`: A branch was merged through the Console or Platform.sh API.
   A basic Git merge will not trigger this event.
 * `environment.redeploy`: An environment was redeployed.
 * `environment.delete`: A branch was deleted.
 ---
-* `environment.route.create`: A new route has been created through the management console.
+* `environment.route.create`: A new route has been created through the Console.
   This will not fire for route edits made to the `routes.yaml` file directly.
-* `environment.route.delete`: A route has been deleted through the management console.
+* `environment.route.delete`: A route has been deleted through the Console.
   This will not fire for route edits made to the `routes.yaml` file directly.
-* `environment.route.update`: A route has been modified through the management console.
+* `environment.route.update`: A route has been modified through the Console.
   This will not fire for route edits made to the `routes.yaml` file directly.
 ---
 * `environment.variable.create`: A new variable has been created.

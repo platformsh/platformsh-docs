@@ -106,7 +106,7 @@ platform integration:add --type=<service> ... --build-pull-requests=false
 
 You can then go through this guide and activate the environment when you're ready to deploy
 
-\* You can purchase additional development environments at any time in the management console.
+\* You can purchase additional development environments at any time in the Console.
 Open your {{ .Get "name" }} project and select **Edit plan**.
 Add additional **Environments**, view a cost estimate, and confirm your changes.
 

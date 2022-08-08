@@ -10,10 +10,10 @@ Once you have configured the template application in the previous step, Platform
 
 {{< video src="videos/management-console/check-status.mp4" >}}
 
-1. **Explore the management console**
+1. **Explore the Console**
 
-   When the build screen has cleared, Platform.sh returns you to the management console.
-   Since you now have a project on your account, a version of this page is what you see each time you visit the console.
+   When the build screen has cleared, Platform.sh returns you to the Console.
+   Since you now have a project on your account, a version of this page is what you see each time you visit the Console.
 
    You start on the main page for your new project, `My First Project`.
    From here, you can control the settings of this project and monitor its status.
@@ -46,9 +46,9 @@ Once you have configured the template application in the previous step, Platform
 
 
 In these few steps you created a free trial account, configured a template application on a project,
-and deployed it using the management console entirely from your browser.
+and deployed it using the Console entirely from your browser.
 
-Using the [Platform.sh CLI](/development/cli/_index.md), you get even more control over your project configurations,
+Using the [Platform.sh CLI](/administration/cli/_index.md), you get even more control over your project configurations,
 including the ability to migrate your own applications to Platform.sh.
 Move to the next step to install it.
 

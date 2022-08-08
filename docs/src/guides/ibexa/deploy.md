@@ -141,7 +141,7 @@ The main ones are:
 * **Downstream database synchronization**: Getting it from the remote to the local.
 * **Downstream file storage synchronization**: Getting it from the remote to the local.
 
-To help you with that, Platform.sh provides a CLI that you can [install](../../development/cli/_index.md).
+To help you with that, Platform.sh provides a CLI that you can [install](../../administration/cli/_index.md).
 
 #### Database and storage synchronization
 

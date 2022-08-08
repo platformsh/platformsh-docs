@@ -16,7 +16,7 @@ These differences should be gone with [Dedicated Gen 3](../../dedicated-gen-3/ov
 Because of the differences between Dedicated and Grid environments,
 basic [syncs](../../other/glossary.md#sync) and [merges](../../other/glossary.md#merge)
 aren't available between Development environments and Production/Staging environments.
-So you don't see working buttons with those options in the management console.
+So you don't see working buttons with those options in the Console.
 
 To transfer data between environments, backup your Production/Staging data and then synchronize Development data.
 See how to [back up and transfer data](../../development/transfer-dedicated.md#synchronize-files-from-development-to-stagingproduction).

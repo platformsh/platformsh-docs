@@ -2,7 +2,7 @@
 title: "Backup and restore"
 weight: 2
 description: |
-  Backups are triggered directly via the management console or via the CLI. The backup creates a complete snapshot of the environment's data. It includes all persistent data from all running services (MySQL, Solr,...) and any files stored on the mounted volumes. Please note that the snapshot is stored internally and cannot be downloaded.
+  Backups are triggered directly via the Console or via the CLI. The backup creates a complete snapshot of the environment's data. It includes all persistent data from all running services (MySQL, Solr,...) and any files stored on the mounted volumes. Please note that the snapshot is stored internally and cannot be downloaded.
 ---
 
 {{% description %}}
@@ -93,7 +93,7 @@ or by installing the CLI tool into your application container and triggering the
 
 {{< note >}}
 
-Automated backups using cron requires you to [get an API token and install the CLI in your application container](/development/cli/api-tokens.md).
+Automated backups using cron requires you to [get an API token and install the CLI in your application container](./cli/api-tokens.md).
 
 {{< /note >}}
 
@@ -131,7 +131,7 @@ and you are unable to deploy new versions of the site until the backup creation 
 
 ## Restore
 
-You can see the backup in the activity feed of your environment in the Platform.sh management console.
+You can see the backup in the activity feed of your environment in the Platform.sh Console.
 You can trigger the restore by clicking on the `restore` link.
 You can also restore the backup to a different environment using the CLI.
 
@@ -183,5 +183,5 @@ The next redeploy of the environment uses the current commit from git.
 {{% legacy-regions featureIntro="Restoring backups to different environments" featureShort="to restore to different environments" %}}
 
 You can also open a support ticket to ask that a backup be restored to a different environment for you.
-Older regions may not appear in the management console in the same way that newer regions do.
+Older regions may not appear in the Console in the same way that newer regions do.
 You can check your project's region with the CLI command `platform project:info -p PROJECT_ID`.

@@ -9,7 +9,7 @@ To deactivate an environment, you need to be an admin for the project or the giv
 {{< note >}}
 
 Your default environment is protected.
-It can't be deactivated through the management console or the CLI.
+It can't be deactivated through the Console or the CLI.
 To change which environment is the default, see how to [rename the default branch](./default-environment.md).
 
 {{< /note >}}
@@ -29,7 +29,7 @@ To deactivate an environment, follow these steps:
 {{< codetabs >}}
 
 ---
-title=In the console
+title=In the Console
 file=none
 highlight=false
 ---
@@ -78,7 +78,7 @@ To reactivate an inactive environment, follow these steps:
 {{< codetabs >}}
 
 ---
-title=In the console
+title=In the Console
 file=none
 highlight=false
 ---

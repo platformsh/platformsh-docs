@@ -21,7 +21,7 @@ Application variables are available at both build time and runtime.
 ## Create project variables
 
 Add secrets for all environments in project variables
-using [the management console](../../administration/web/configure-project.md#variables) or the CLI.
+using [the Console](../../administration/web/configure-project.md#variables) or the CLI.
 
 For example, to create the project variable `foo` with the value `bar`, run:
 
@@ -37,12 +37,12 @@ When naming variables, be sure to take [variable prefixes](./_index.md#variable-
 
 ### Variable options
 
-Variables have several Boolean options you can set in the console or the CLI:
+Variables have several Boolean options you can set in the Console or the CLI:
 
 | Option    | CLI flag            | Default | Description |
 | --------- | ------------------- | ------- | ----------- |
 | JSON      | `--json`            | `false` | Whether the variable is a JSON-serialized value (`true`) or a string (`false`). |
-| Sensitive | `--sensitive`       | `false` | If set to `true`, the variable's value is hidden in the console and in CLI responses for added security. It's still readable within the app container. |
+| Sensitive | `--sensitive`       | `false` | If set to `true`, the variable's value is hidden in the Console and in CLI responses for added security. It's still readable within the app container. |
 | Runtime   | `--visible-runtime` | `true`  | Whether the variable is available at runtime. |
 | Build     | `--visible-build`   | `true`  | Whether the variable is available at build time. |
 
@@ -63,7 +63,7 @@ you need to [redeploy](../troubleshoot.md#force-a-redeploy) your environments.
 
 ## Create environment-specific variables
 
-Set variables for specific environments using [the management console](../../administration/web/configure-environment.md#variables) or the CLI.
+Set variables for specific environments using [the Console](../../administration/web/configure-environment.md#variables) or the CLI.
 Variables can be inherited or overridden from parent environments and project variables.
 See [more on overriding values](./_index.md#overrides)
 
@@ -80,7 +80,7 @@ When naming variables, be sure to take [variable prefixes](./_index.md#variable-
 ### Environment variable options
 
 Environment variables share all of the [options available for project variables](#variable-options),
-with the exception that visibility in the build and runtime can be set only with the CLI (not in the console).
+with the exception that visibility in the build and runtime can be set only with the CLI (not in the Console).
 Environment variables have one additional option:
 
 | Option      | CLI flag        | Default | Description |

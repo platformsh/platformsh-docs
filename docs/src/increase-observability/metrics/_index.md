@@ -8,7 +8,7 @@ aliases:
 
 Platform.sh projects are accompanied by live infrastructure metrics that provide an overview of resource usage for environments.  
 
-Within the console, metrics can be found for an environment under **Metrics**.
+Within the Console, metrics can be found for an environment under **Metrics**.
 
 The information under **Metrics** shows usage metrics for:
 

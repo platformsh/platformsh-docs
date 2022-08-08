@@ -9,9 +9,9 @@ aliases:
 You can set the name of your default/production branch when creating a project.
 To change it after project creation, follow the steps below.
 
-You can complete some of these steps through the management console,
+You can complete some of these steps through the Console,
 but since all can be completed with the CLI those commands alone are listed.
-Be sure to [install the CLI](../development/cli/_index.md) if you haven't already done so.
+Be sure to [install the CLI](../administration/cli/_index.md) if you haven't already done so.
 It's assumed you are changing the default branch of your project on Platform.sh from `master` to `main`.
 If using another name for the default branch, update the commands accordingly.
 
@@ -99,7 +99,7 @@ $ platform create --title='Main Project' --region=us-3.platform.sh --plan=develo
 This creates a new project with `master` as the default branch by default.
 Modify the flags to fit your use case, or skip them and the CLI will ask you to set them individually during creation.
 Copy the `Project ID` provided when the command completes, and substitute the value in the steps below.
-You can also visit the provided management console URL for the project (`https://console.platform.sh/<USER>/<PROJECT_ID>`)
+You can also visit the provided Console URL for the project (`https://console.platform.sh/<USER>/<PROJECT_ID>`)
 to verify the steps as you go along.
 
 The project you just created is empty, with no code initialized in its `master` environment.

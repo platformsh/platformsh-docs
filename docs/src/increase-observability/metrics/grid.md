@@ -24,7 +24,7 @@ The graphs switch to an overview of the average resource utilization for the sel
 ## Start metrics collection
 
 To start collecting metrics on Grid environments, you need to redeploy the environment.
-If a redeploy is required for the specific environment, you see a note in the console:
+If a redeploy is required for the specific environment, you see a note in the Console:
 
 ![Screenshot showing the text "Your metrics are almost here" and a prompt to redeploy](/images/metrics/metrics-redeploy-prompt.png "0.3")
 

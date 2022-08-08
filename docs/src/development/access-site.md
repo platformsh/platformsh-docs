@@ -2,7 +2,7 @@
 title: "Accessing your site"
 weight: 6
 description: |
-  Once you have an environment running, there are many ways to access it to perform needed tasks. The most straightforward way is to view it in a web browser; the available URLs are shown in the Platform.sh management console and on the command line after every Git push.
+  Once you have an environment running, there are many ways to access it to perform needed tasks. The most straightforward way is to view it in a web browser; the available URLs are shown in the Platform.sh Console and on the command line after every Git push.
 ---
 
 {{% description %}}
@@ -17,7 +17,7 @@ To find the URLs to access your site, follow these steps:
 {{< codetabs >}}
 
 ---
-title=In the console
+title=In the Console
 file=none
 highlight=false
 ---

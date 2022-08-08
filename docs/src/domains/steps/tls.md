@@ -28,13 +28,13 @@ openTLS rsa -in private.key -out private.rsa.key
 
 ### Add a custom certificate
 
-You can add a custom certificate in the [management console](/administration/web/_index.md)
-or using the [command line interface](../../development/cli/_index.md).
+You can add a custom certificate in the [Console](/administration/web/_index.md)
+or using the [command line interface](../../administration/cli/_index.md).
 
 {{< codetabs >}}
 
 ---
-title=In the console
+title=In the Console
 file=none
 highlight=false
 ---

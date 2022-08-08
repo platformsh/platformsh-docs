@@ -8,7 +8,7 @@ description: |
 
 It's possible to integrate a Platform.sh project with either the freely available Bitbucket Cloud product
 or with the self-hosted [Bitbucket Server](https://confluence.atlassian.com/bitbucketserver/).
-In both cases, you need to [install the Platform.sh CLI](../../development/cli/_index.md),
+In both cases, you need to [install the Platform.sh CLI](../../administration/cli/_index.md),
 if you haven't already done so, to set up the integration.
 
 ## Bitbucket Cloud

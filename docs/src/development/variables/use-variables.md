@@ -3,7 +3,7 @@ title: Use variables
 description: See how to use variables that have already been set so you can take control over your app's environment.
 ---
 
-Get a list of all variables defined on a given environment in [the management console](../../administration/web/configure-environment.md#variables)
+Get a list of all variables defined on a given environment in [the Console](../../administration/web/configure-environment.md#variables)
 or use the CLI:
 
 ```bash
@@ -392,7 +392,7 @@ If your application depends on whether it's running on a Dedicated Generation 3 
 
 While both production and staging Dedicated environments have `enterprise` for the `PLATFORM_MODE` variable,
 you can distinguish them by environment type.
-Make sure that the environment type is set correctly via the CLI or management console.
+Make sure that the environment type is set correctly via the CLI or Console.
 Then run different code based on the type:
 
 ```bash

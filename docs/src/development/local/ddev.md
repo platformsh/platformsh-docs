@@ -48,7 +48,7 @@ Your project should start running, though without any of the data from your Plat
 
 To connect DDEV with your Platform.sh account, use a Platform.sh API token.
 
-1. [Create an API token](./../cli/api-tokens.md#get-a-token) in the console.
+1. [Create an API token](../../administration/cli/api-tokens.md#get-a-token) in the Console.
 2. Add the token to your global DDEV configuration:
 
    ```yaml {location="~/.ddev/global_config.yaml"}

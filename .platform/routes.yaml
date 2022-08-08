@@ -112,6 +112,8 @@ https://{default}/:
       # Changelog removal in June 2022
       "/other/changelog.html": { "to": "https://portal.productboard.com/platformsh/2-platform-sh-portal", "code": 301 }
 
+      # Move CLI from Development to Administration in August 2022
+      "/development/cli(.*)":  { "to": "/administration/cli$1", "code": 301, "regexp": true }
 
 "https://search.{default}/":
     type: upstream

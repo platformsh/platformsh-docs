@@ -66,7 +66,7 @@ To download data from persistent services ([MySQL](../add-services/mysql/_index.
 
 If your project uses some environment variable (tokens, ...) it can be helpful to backup them if you didn't store them separately.
 
-As stated in the management console, several possibilities exist for the environment variables.
+As stated in the Console, several possibilities exist for the environment variables.
 
 * Variables beginning with `env:` will be exposed as Unix environment variables
 * Variables beginning with `php:` will be interpreted as `php.ini` directives.
@@ -74,7 +74,7 @@ As stated in the management console, several possibilities exist for the environ
 
 More details can be found [on the environment page](https://docs.platform.sh/administration/web/configure-environment.html#variables)
 
-You can access the content of the environment variable through the management console unless the `--sensitive true` flag was set.
+You can access the content of the environment variable through the Console unless the `--sensitive true` flag was set.
 
 In that case, you can run:
 `platform ssh -p <project id> -e <environment>`

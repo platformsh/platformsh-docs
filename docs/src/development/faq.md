@@ -29,7 +29,7 @@ If you have multiple projects, your subscription continues until you don't have 
 ## How do I delete my Platform.sh account?
 
 If you would like to delete your Platform.sh account,
-log in and select **Support** from the dropdown options when you click your name in the management console.
+log in and select **Support** from the dropdown options when you click your name in the Console.
 Create a new ticket, and request for your account to be deleted in the form provided there.
 A support agent receives your request and deletes your account shortly thereafter. 
 
@@ -101,7 +101,7 @@ It ends with a description of what was just deployed and the URLs that are now a
 
 To suppress the output, run `platform push -W`.
 The `-W` means `--no-wait` and disconnects the connection once the commits are pushed so that you can continue to use your local terminal.
-The exact same output is also available in the Web Management Console.
+The exact same output is also available in the Console.
 
 ## What Linux distribution is Platform.sh using?
 
@@ -173,5 +173,5 @@ you need to point the document root to the symlink again so that it refreshes th
 ## Do you support MFA/2FA/TFA authentication?
 
 Yes. We support multi-factor authentication (MFA) and encourage its use.
-To use it, in the management console, go to **My profile** under your name.
+To use it, in the Console, go to **My profile** under your name.
 Then click **Security**, where you can set up an **MFA Application**.

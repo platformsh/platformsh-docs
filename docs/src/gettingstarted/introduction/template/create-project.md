@@ -6,7 +6,7 @@ aliases:
   - "/gettingstarted/template/create-project.html"
 ---
 
-In the previous step, you set up a free trial account with Platform.sh. Now you have access to the Platform.sh [management console](/administration/web/_index.md).
+In the previous step, you set up a free trial account with Platform.sh. Now you have access to the Platform.sh [Console](/administration/web/_index.md).
 
 From here you can create projects, adjust account settings, and a lot more that you will explore throughout these Getting Started guides.
 
@@ -38,7 +38,7 @@ Since you do not yet have any projects on Platform.sh, the first thing you will 
 
 4. **Plan & Pricing**
 
-  Under your free trial, your project will be created under a "Development" plan size. The management console will tell you how many users, development environments, and the price of that plan after your trial has completed. After you have read through the features, click `Continue`.
+  Under your free trial, your project will be created under a "Development" plan size. The Console will tell you how many users, development environments, and the price of that plan after your trial has completed. After you have read through the features, click `Continue`.
 
 With these few selections Platform.sh will create the project and build the template in less than two minutes.
 

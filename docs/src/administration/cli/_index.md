@@ -2,7 +2,7 @@
 title: "Use the command line interface (CLI)"
 weight: 3
 description: |
-  See how to use and manage your Platform.sh projects directly from your terminal. Anything you can do within the management console can be done with the CLI.
+  See how to use and manage your Platform.sh projects directly from your terminal. Anything you can do within the Console can be done with the CLI.
 sidebarTitle: "Use the CLI"
 layout: single
 keywords:
@@ -37,7 +37,7 @@ platform
 ```
 
 This process opens a browser tab for you to log in.
-It also creates certificates on your computer for [SSH](../ssh/_index.md).
+It also creates certificates on your computer for [SSH](../../development/ssh/_index.md).
 
 Once you are logged in, a list of your projects appears, along with some tips for getting started.
 If you experience authentication issues or want to force a login, run the command `platform login`.
@@ -142,7 +142,7 @@ platform project:set-remote <PROJECT_ID>
 ```
 
 Replace `<PROJECT_ID>` with the ID of your project.
-You can find that in the management console or by running `platform projects` to list all accessible projects.
+You can find that in the Console or by running `platform projects` to list all accessible projects.
 
 ### Choose between the CLI and Git commands
 

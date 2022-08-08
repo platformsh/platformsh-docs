@@ -8,7 +8,7 @@ aliases:
 
 "Development" plan projects can't be assigned a domain name,
 so you can't go live until you upgrade to at least a Standard plan.
-This can be done using the management console.
+This can be done using the Console.
 
 {{< video src="videos/management-console/upgrade-plan.mp4" >}}
 

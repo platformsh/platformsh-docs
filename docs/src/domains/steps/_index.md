@@ -3,7 +3,7 @@ title: "Custom Domains - Step by step guide"
 weight: 2
 sidebarTitle: "Step by step guide"
 description: |
-  Configuring custom domains on Platform.sh is a simple two or three step process. You can either use the Platform.sh management console or the CLI to configure your project for production. Once you are familiar with it the whole process usually takes a couple of minutes.
+  Configuring custom domains on Platform.sh is a simple two or three step process. You can either use the Platform.sh Console or the CLI to configure your project for production. Once you are familiar with it the whole process usually takes a couple of minutes.
 layout: single
 ---
 
@@ -25,7 +25,7 @@ However, the domain used for non-production environments will always be generate
 even if your project is on a Production plan.
 {{< /note >}}
 
-In the [console](https://console.platform.sh), click the **More** button for your project and select **Edit plan**.
+In the [Console](https://console.platform.sh), click the **More** button for your project and select **Edit plan**.
 
 ![Edit Plan](/images/management-console/edit-plan.png "0.3")
 
@@ -82,7 +82,7 @@ The CDN should already have been configured in advance to point to Platform.sh a
 
 This step will tell the Platform.sh edge layer where to route requests for your web site.
 You can do this through the CLI with `platform domain:add example.com`
-or [using the management console](/administration/web/configure-project.md#domains).
+or [using the Console](/administration/web/configure-project.md#domains).
 
 You can add multiple domains to point to your project.
 Each domain can have its own custom SSL certificate, or use the default one provided.
@@ -130,5 +130,5 @@ Notifications can be sent via email, Slack, or PagerDuty.
 
 ### Configure automatic backups
 
-It's strongly recommended that you set up an [API token](/development/cli/api-tokens.md) and install the CLI
+It's strongly recommended that you set up an [API token](/administration/cli/api-tokens.md) and install the CLI
 to define [an automatic backup](/administration/backup-and-restore.md#automated-backups) cron task.
