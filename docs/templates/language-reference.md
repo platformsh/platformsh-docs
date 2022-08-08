@@ -45,18 +45,47 @@ Depending on the language, a brief description of the recommended way to handle 
 
 ## Connect to services
 
-If available, include examples for connecting in an app
+If available, include examples for connecting to different services in an app
 (taken from https://examples.docs.platform.sh/).
 
-### Configuration reader
+The following examples show how to use <LANGUAGE_NAME> to access various [services](/add-services/_index.md).
+To configure a given service, see the page dedicated to that service.
 
-If available, include the configuration reader available for the given language
-(for example, for [Python](https://github.com/platformsh/config-reader-python)).
+{{< codetabs >}}
+
+---
+title=<SERVICE_NAME>
+file=static/files/fetch/examples/<LANGUAGE_TYPE>/<SERVICE_TYPE>
+highlight=<LANGUAGE_NAME>
+markdownify: false
+---
+
+<--->
+
+---
+title=<DIFFERENT_SERVICE_NAME>
+file=static/files/fetch/examples/<LANGUAGE_TYPE>/<DIFFERENT_SERVICE_TYPE>
+highlight=<LANGUAGE_NAME>
+markdownify: false
+---
+
+{{< /codetabs >}}
+
+{{% config-reader %}}
+[`<CONFIG_READER_NAME>`](<CONFIG_READER_REPOSITORY_URL>)
+{{% /config-reader %}}
+
+<!-- 
+For Node.js, that would result in the following:
+{{% config-reader %}}
+[platformshconfig](https://github.com/platformsh/config-reader-nodejs).
+{{% /config-reader %}}
+-->
 
 ## Any other functions specific to the language
 
 Structure like [how to steps](./how-to.md#1-do-this-step-first).
-Split each function 
+Split each function.
 
 ## Project templates
 
