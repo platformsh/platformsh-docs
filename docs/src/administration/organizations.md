@@ -219,7 +219,13 @@ platform organization:delete --org acme
 
 ## Transfer project ownership
 
-If you want to transfer a project to a different organization,
-please [submit a support ticket](../overview/get-support.md) from the current project to ask for the transfer.
+To transfer a project to a different organization,
+[submit a support ticket](../overview/get-support.md) from the current project to ask for the transfer.
 
 Ownership transfer automatically transfers subscription charges to the new organization.
+
+## Transfer organization ownership
+
+To transfer an organization to a different owner, first make sure that user is part of the organization.
+If they aren't yet, [add them](#add-a-new-user).
+Then [submit a support ticket](../overview/get-support.md) from the current organization to ask for the transfer.
