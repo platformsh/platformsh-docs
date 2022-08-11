@@ -32,7 +32,7 @@ Once you've read the metrics, see [recommendations for action](./_index.md#dedic
 
 ### App container
 
-Metrics graphs for the app container show CPU, RAM, and disk allocation and usage.
+Metrics graphs for the app container show CPU, RAM, and disk allocation and usage across all hosts.
 The persistent disk has been configured in the [app configuration](../../create-apps/app-reference.md#top-level-properties)
 at 4.86&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
 
@@ -44,7 +44,7 @@ Metrics graphs for the service containers show CPU, RAM, and disk allocation and
 
 #### MySQL
 
-Metrics graphs for the MySQL service container show CPU and disk allocation and usage across all hosts.
+Metrics graphs for the MySQL service container show CPU, RAM, and disk allocation and usage across all hosts.
 The persistent disk has been configured in the [services configuration](../../add-services/_index.md)
 as 24.55&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
 
@@ -52,7 +52,7 @@ as 24.55&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
 
 #### Redis
 
-Metrics graphs for the Redis service container show CPU and disk allocation and usage across all hosts.
+Metrics graphs for the Redis service container show CPU, RAM, and disk allocation and usage across all hosts.
 No persistent disk has been configured for Redis,
 while the temporary disk is 3.99&nbsp;GB by default.
 
