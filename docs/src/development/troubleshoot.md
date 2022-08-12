@@ -145,6 +145,18 @@ you might encounter an error like the following:
 
 If you see this, add the command to your path with a [`.environment` file script](./variables/set-variables.md#set-variables-via-script).
 
+## Missing commits
+
+If you push code to Platform.sh without the full Git history, sometimes commits are missing.
+This can happen if you're pushing code from an external CI/CD pipeline, such as a GitHub action.
+Such pipelines often do only shallow clones by default.
+
+In such cases, your build fails with an internal error.
+
+To avoid the error, make sure you do a full clone of the repository before pushing code.
+For example, for the [Checkout GitHub action](https://github.com/actions/checkout),
+set `fetch-depth: 0` to clone the full history.
+
 ## Large JSON file upload failing
 
 When trying to upload a large JSON file to your API, you might see a 400 response code (`Malformed request`).
