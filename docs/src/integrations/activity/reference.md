@@ -28,12 +28,13 @@ Its value is one of:
 * `project.create`: A project has been created.
   Although it will appear in the activity feed exactly once,
   it will not be sent via a webhook as it will always happen before a webhook can be configured.
-* `project.domain.create`: A new domain has been added to the project.
-* `project.domain.delete`: A domain associated with the project has been removed.
-* `project.domain.update`: A domain associated with the project has been updated, including modifying it's SSL certificate.
 * `project.variable.create`: A new project variable has been created.
 * `project.variable.delete`: A project variable has been deleted.
 * `project.variable.update`: A project variable has been modified.
+---
+* `environment.domain.create`: A new domain has been associated with the environment.
+* `environment.domain.delete`: A domain associated with the environment has been removed.
+* `environment.domain.update`: A domain associated with the environment has been updated, such as having its SSL certificate modified.
 ---
 * `environment.access.add`: A new user has been given access to the environment.
 * `environment.access.remove`: A user has been removed from the environment.
