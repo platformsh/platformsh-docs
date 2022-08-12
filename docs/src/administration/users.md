@@ -180,16 +180,6 @@ After you change a user's role for an environment type, you must trigger a redep
 
 {{< /codetabs >}}
 
-### Transfer project ownership
-
-You can transfer your plan ownership to a different [organization](./organizations.md) at anytime.
-You have to be an organization owner or have the [manage plan](./organizations.md#manage-your-organization-users) permission.
-
-1. Make the new organization owner a Project Admin for the project you want to transfer.
-2. Submit a [support ticket](https://console.platform.sh/-/users/~/tickets) from your organization account to ask for the transfer.
-
-Once the transfer is completed, the new organization can administer all project settings and billing and receives future invoices.
-
 ## Troubleshooting
 
 If you have setup an external integration to GitHub, GitLab, or Bitbucket and your users can't clone the project locally,
