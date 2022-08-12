@@ -404,3 +404,7 @@ kbd {
   padding: 1em;
   margin-bottom: 1em;
 }
+
+table {
+  table-layout: fixed; /* Keep tables inside the content wrapper */
+}
