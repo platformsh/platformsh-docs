@@ -64,7 +64,7 @@ jobs:
       - name: Create issue from Markdown file
         id: create-issue
         if: ${{ always() }}
-        uses: peter-evans/create-issue-from-file@v2
+        uses: peter-evans/create-issue-from-file@v4
         with:
           title: ":bug: Broken links"
           content-filepath: broken_links.md
