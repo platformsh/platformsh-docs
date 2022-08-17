@@ -91,6 +91,17 @@ See a [list of current differences](../dedicated/overview/grid.md).
 
 These differences should disappear with [Dedicated Gen 3](../dedicated-gen-3/overview.md)
 
+## Deprecated versions
+
+Older versions of languages and services eventually reach the end of their lives.
+This means they stop getting security and other updates and may have security vulnerabilities.
+
+When that happens, the versions in Platform.sh are deprecated.
+This means you can still use them in your project, but they aren't fully secure.
+It's also possible they'll stop working at some point.
+
+If you're using a deprecated version, you should upgrade to a supported version as soon as possible.
+
 ## Drush
 
 Drush is a command-line shell and scripting interface for Drupal.
