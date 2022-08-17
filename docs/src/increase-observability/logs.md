@@ -124,14 +124,14 @@ The formatting of `php.access.log` is determined by the PHP settings.
 To determine the format, run the following:
 
 ```bash
-platform ssh cat -n /etc/php/<PHP_VERSION>-zts/fpm/pool.d/www.conf | grep "access.format"
+platform ssh cat -n /etc/php/<PHP_VERSION>-zts/fpm/php-fpm.conf | grep "access.format"
 ```
 
 You get a response such as the following:
 
 ```bash
-Connection to ssh.<REGION>.platform.sh closed.
-;access.format = "%R - %u %t \"%m %r%Q%q\" %s %f %{milli}d %{kilo}M %C%%"
+Connection to ssh.eu.platform.sh closed.
+access.format = "%{%FT%TZ}t %m %s %{mili}d ms %{kilo}M kB %C%% %{REQUEST_URI}e"
 ```
 
 See what [each value in this string means](https://www.php.net/manual/en/install.fpm.configuration.php#access-format).
