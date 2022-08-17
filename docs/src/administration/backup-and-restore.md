@@ -1,39 +1,50 @@
 ---
 title: "Backup and restore"
 weight: 2
-description: |
-  Backups are triggered directly via the Console or via the CLI. The backup creates a complete snapshot of the environment's data. It includes all persistent data from all running services (MySQL, Solr,...) and any files stored on the mounted volumes. Please note that the snapshot is stored internally and cannot be downloaded.
+description: See how to protect yourself from potential data loss by backing up your environments so they can be restored later.
+  
 ---
 
-{{% description %}}
+When you're making changes your apps,
+you want to be sure those changes only improve things and don't make you lose any data.
+You also want to have a disaster recovery plan in place.
+Backups help you protect yourself against potential data loss.
 
-Code is managed through Git and can be restored using normal Git routines.
-The built code file system isn't affected by backups or restores.
+Backups represent a complete snapshot of an environment's data.
+This includes all persistent data from all running [services](../add-services/_index.md)
+and any files stored on [mounts](../create-apps/app-reference.md#mounts).
+The snapshot is stored internally and can't be downloaded.
+Code is managed through Git and so isn't included.
+You can restore previous code using Git commands such as [revert](https://git-scm.com/docs/git-revert).
 
-{{< note title="Inactive environments" >}}
+You might want to make backups of your live environment before merging a different environment into it.
+or each time you increase the storage space of your services.
+Or just have regularly scheduled backups to cover most cases.
 
-Only active environments can be backed up and restored.
+You can only backup and restore active environments.
 To work with an [inactive environment](../other/glossary.md#inactive-environment),
 first activate it.
 
-{{< /note >}}
-
 ## Backups
 
-You need to have the "admin" role in order to create a backup of an environment.
+To back up an environment, you need an [Admin role for that environment type](./users.md).
 
-Backups on Platform.sh Professional are retained for at least 7 days.
-They're purged between 7 days and 6 months, at Platform.sh's discretion.
-See the [data retention page](/security/data-retention.md) for more information.
+### Backups and downtime
 
-{{< note >}}
+By default, triggering a backup causes a momentary pause in site availability so that all requests can complete.
+This enables the backup to be taken against a known consistent state.
+The total interruption is usually only 15 to 30 seconds
+and any requests during that time are held temporarily, not dropped.
 
-We advise you to make backups of your live environment before merging an environment to the live environment,
-or each time you increase the storage space of your services.
+To avoid this issue, create a [live backup](#live-backups).
 
-{{< /note >}}
+To keep consistent backups, create the backups during non-peak hours for your site.
 
-## Create a backup manually
+### Retention
+
+For information on how long backups are retrained, see the [data retention policy](../security/data-retention.md).
+
+### Create a backup manually
 
 You can create a manual backup using the [CLI](./cli/_index.md) or in the [Console](./web/_index.md).
 
@@ -62,33 +73,6 @@ highlight=false
 </ol>
 
 {{< /codetabs >}}
-
-Be aware that triggering a backup causes a momentary pause in site availability so that all requests can complete,
-allowing the backup to be taken against a known consistent state.
-The total interruption is usually only 15 to 30 seconds
-and any requests during that time are held temporarily, not dropped.
-
-To avoid this issue, create a [live backup](#live-backups).
-
-### Backups and downtime
-
-A backup does cause a momentary pause in service.
-We recommend running during non-peak hours for your site.
-
-### Retention
-
-See the [data retention page](/security/data-retention.md).
-
-### Physical storage location
-
-Backups are stored on Binary Large OBject (BLOB) storage separate from your cluster
-(for example, projects on an AWS backed region are stored on S3).
-Blob storage is replicated over multiple data centers on different locations.
-This means that in the rare event of data center unavailability, backups are still available.
-
-In such an event, Platform.sh moves all projects to another data center.
-Disaster recovery backups are also stored on BLOB storage and replicated over multiple data centers.
-You should still schedule regular backups stored in multiple locations and/or locally alongside this process.
 
 ### Live backups
 
@@ -133,104 +117,150 @@ When [creating the backup](#create-a-backup-manually), select **Run live backup*
 
 ### Automated backups
 
-Backups aren't triggered automatically on Platform.sh Professional plans. For Enterprise and Elite plans, see [backups](../dedicated/overview/backups.md).
+For Dedicated environments, [backups are taken automatically](../dedicated/overview/backups.md).
+In other environments, backups aren't triggered automatically.
 
-Backups may be triggered by calling the CLI from an automated system such as Jenkins or another CI service,
-or by installing the CLI tool into your application container and triggering the backup via cron.
+You can trigger regular backups using the [CLI](./cli/_index.md).
+Call it from your CI process or using a cron job.
 
-#### Automated backups using Cron
+#### Automate backups with cron jobs
 
-{{< note >}}
+To automate the backup process in a cron job, follow these steps:
 
-Automated backups using cron requires you to [get an API token and install the CLI in your application container](./cli/api-tokens.md).
+1. Create a [machine user](./cli/api-tokens.md#create-a-machine-user).
+2. Get an [API token for that user](./cli/api-tokens.md#get-a-token).
+3. Use the token to [authenticate and install the CLI in a build hook](./cli/api-tokens.md#on-a-platformsh-environment).
+4. Add a cron job to run once a day.
+   The following example runs a backup operation every day at 05:00 UTC only on the production environment:
 
-{{< /note >}}
+   ```yaml
+   crons:
+       backup:
+           spec: '0 5 * * *'
+           commands:
+               start: |
+                   if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
+                       platform backup:create --yes --no-wait
+                   fi
+   ```
 
-We ask that you not schedule a backup task more than once a day to minimize data usage.
+Some recommendations:
 
-Once the CLI is installed in your application container and an API token configured,
-you can add a cron task to run once a day and trigger a backup.
-The CLI reads the existing environment variables in the container and default to the project and environment it's running on.
-In most cases, such backups are only useful on the production environment.
+* To minimize data usage, don't schedule backups more than once per day.
+* To skip any interaction, use the `--yes` flag.
+* To prevent the cron job from blocking other tasks such as builds and deploys, use the `--no-wait` flag.
+  
+  Not using this flag means the cron job waits for the backup to complete,
+  which may take a while depending on how much data you have.
+  Passing the flag allows the cron job to end while the backup itself continues.
 
-A common cron specification for a daily backup on the production environment looks like this:
+### Physical storage location
 
-```yaml
-crons:
-    backup:
-        spec: '0 5 * * *'
-        commands:
-            start: |
-                if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-                    platform backup:create --yes --no-wait
-                fi
-```
-
-The above cron task runs once a day at 5 am (UTC),
-and, if the current environment is the production environment, it runs `platform backup:create` on the current project and environment
-The `--yes` flag skips any user-interaction.
-The `--no-wait` flag causes the command to complete immediately rather than waiting for the backup to complete.
-
-{{< note >}}
-
-It is very important to include the `--no-wait` flag.
-If you don't, the cron process blocks
-and you are unable to deploy new versions of the site until the backup creation process is complete.
-{{< /note >}}
+Backups are stored as binary large objects separate from your environments.
+This storage is replicated over multiple data centers in different locations.
+This means that in the rare event a data center becomes unavailable, your backups are still available.
 
 ## Restore
 
-You can see the backup in the activity feed of your environment in the Platform.sh Console.
-You can trigger the restore by clicking on the `restore` link.
-You can also restore the backup to a different environment using the CLI.
+To restore an environment, you need an [Admin role for that environment type](./users.md).
 
-You can list existing backups with the CLI as follows:
+### 1. List available backups
+
+To restore a backup, first select one of the available backups.
+
+{{< codetabs >}}
+---
+title=Using the CLI
+file=none
+highlight=false
+---
+
+Run the following command:
 
 ```bash
-$ platform backups
+platform backups
+```
 
-Backups on the project Test app (<PROJECT_ID>), environment main (type: production):
+You get a response similar to the following:
+
+```bash
+Backups on the project My Project (1234567abcdef), environment main (type: production):
 +---------------------------+----------------------------+------------+
 | Created                   | Backup ID                  | Restorable |
 +---------------------------+----------------------------+------------+
-| 2021-11-15T09:48:58+01:00 | 5ouvtgo4v75axijww7sqnftste | true       |
-| 2021-12-09T14:17:17+01:00 | 7jks7dru5xpx5p5id5wtypur2y | true       |
-| 2022-02-22T18:33:29+01:00 | f3jbyxlhtmalco67fmfoxs7n4m | true       |
+| 2022-08-15T09:48:58+01:00 | 5ouvtgo4v75axijww7sqnftste | true       |
+| 2022-07-09T14:17:17+01:00 | 7jks7dru5xpx5p5id5wtypur2y | true       |
+| 2022-06-22T18:33:29+01:00 | f3jbyxlhtmalco67fmfoxs7n4m | true       |
 +---------------------------+----------------------------+------------+
 ```
 
-You can then restore a specific restorable backup with the CLI as follows:
+Select one of the backups marked as **Restorable** and copy its **Backup ID**.
 
-```bash
-$ platform backup:restore 2ca4d90639f706283fee
-```
+<--->
+---
+title=In the Console
+file=none
+highlight=false
+---
 
-Or even restore the backup to a different branch with the CLI as follows:
+<!--This is in HTML to get the icon not to break the list. -->
+<ol>
+  <li>Navigate to the environment where you want to see backups.</li>
+  <li>Click <strong>Backups</strong>.</li>
+</ol>
 
-```bash
-$ platform backup:restore --target=RESTORE_BRANCH 2ca4d90639f706283fee
-```
+<p>Select one of the backups marked as having completed successfully {{< icon success >}}.</p>
 
-For this to work, it's important to act on the active branch on which the backup was taken.
-Restoring a backup from `develop` when working on the `staging` branch is impossible.
-Switch to the acting branch and set your `--target` as above snippet mentions.
+{{< /codetabs >}}
 
-If no branch already exists,
-you can specify the parent of the branch that is created to restore your backup to as follows:
+### 2. Restore from a backup
 
-```bash
-$ platform backup:restore --branch-from=PARENT_BRANCH 2ca4d90639f706283fee
-```
+To restore the backup you've selected, follow these steps:
 
-{{< note >}}
-You need "admin" role to restore your environment from a backup.
-{{< /note >}}
+{{< codetabs >}}
+---
+title=Using the CLI
+file=none
+highlight=false
+---
 
-Restoring a backup doesn't revert any code changes committed to git.
-The next redeploy of the environment uses the current commit from git.
+1. Run the following command:
+
+   ```bash
+   platform backup:restore <BACKUP_ID>
+   ```
+2. Press `enter` to agree with the consequences and continue.
+
+<--->
+---
+title=In the Console
+file=none
+highlight=false
+---
+
+<!--This is in HTML to get the icon not to break the list. -->
+<ol>
+  <li>Next to the backup you've selected, click More {{< icon more >}}.</li>
+  <li>Click <strong>Restore</strong>.</li>
+  <li>Read through the consequences and click <strong>Yes, Restore</strong>.</li>
+</ol>
+
+{{< /codetabs >}}
+
+The data is restored and your environment is rebuilt.
+This uses the current code for the environment, not the code from when the backup was taken.
+
+### Restore to a different environment
+
+You can restore backups to a different environment than they were created on using the CLI:
+
+1. Switch to the branch where the backup was created.
+2. Run the following command:
+
+   ```bash
+   platform backup:restore --target=<TARGET_BRANCH_NAME> <BACKUP_ID>
+   ```
 
 {{% legacy-regions featureIntro="Restoring backups to different environments" featureShort="to restore to different environments" %}}
 
 You can also open a support ticket to ask that a backup be restored to a different environment for you.
-Older regions may not appear in the Console in the same way that newer regions do.
-You can check your project's region with the CLI command `platform project:info -p PROJECT_ID`.

@@ -68,7 +68,7 @@ we urge you to use the `--no-wait` flag on any commands that may take more than 
 
 {{< /note >}}
 
-## On a Platform.sh environment
+### On a Platform.sh environment
 
 To allow the Platform.sh CLI to be run on an app container, such as via a cron hook, use the API token.
 The CLI is able to auto-detect the current project and environment.
