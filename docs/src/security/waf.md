@@ -102,7 +102,7 @@ Platform.sh's WAF also includes several protective rules for vulnerabilities fou
 
 ### Magento
 
-#### [Magestore extension vulnerability (2019-SQLi)](https://magento.com/security/news/critical-vulnerability-magestore-store-locator-extension) 
+#### [Magestore extension vulnerability (2019-SQLi)](https://web.archive.org/web/20210414043507/https://magento.com/security/news/critical-vulnerability-magestore-store-locator-extension)
 
 | Type:  | SQL injection  |
 |-----|-----|
