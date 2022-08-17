@@ -33,16 +33,42 @@ or each time you increase the storage space of your services.
 
 {{< /note >}}
 
-Using the CLI:
+## Create a backup manually
 
-```bash
-$ platform backup:create
-```
+You can create a manual backup using the [CLI](./cli/_index.md) or in the [Console](./web/_index.md).
+
+{{< codetabs >}}
+---
+title=Using the CLI
+file=none
+highlight=bash
+---
+
+platform backup:create
+
+<--->
+---
+title=In the Console
+file=none
+highlight=false
+---
+
+<!--This is in HTML to get the icon not to break the list. -->
+<ol>
+  <li>Navigate to the environment you want to back up.</li>
+  <li>Click <strong>Backups</strong>.</li>
+  <li>Click {{< icon backup >}} <strong>Backup</strong>.</li>
+  <li>Click <strong>Backup</strong>.</li>
+</ol>
+
+{{< /codetabs >}}
 
 Be aware that triggering a backup causes a momentary pause in site availability so that all requests can complete,
 allowing the backup to be taken against a known consistent state.
 The total interruption is usually only 15 to 30 seconds
 and any requests during that time are held temporarily, not dropped.
+
+To avoid this issue, create a [live backup](#live-backups).
 
 ### Backups and downtime
 
@@ -66,19 +92,42 @@ You should still schedule regular backups stored in multiple locations and/or lo
 
 ### Live backups
 
-There is an option available to create backups in a "live" state.
-This flavor leaves the environment running and open to connections, reducing downtime while the backup is taken.
-With live backups, however, there can be inconsistent states that make restorations less reliable.
-For this reason Platform.sh recommends instead scheduling [automated backups](#automated-backups) during non-peak hours,
+You can create backups without any downtime.
+This means your environment is running and open to connections during the backup.
+
+Because the connections may come in during backup creation, live backups may have data inconsistencies among containers.
+They may make restorations less reliable.
+To avoid such issues, instead schedule [automated backups](#automated-backups) during non-peak hours,
 when the short amount of downtime is least noticed.
 
-Backups are automatically live on [Dedicated projects](../dedicated/overview/_index.md) including [Dedicated Generation 3](../dedicated-gen-3/overview.md).
+Backups are automatically live on [Dedicated projects](../dedicated/overview/_index.md),
+including [Dedicated Generation 3](../dedicated-gen-3/overview.md).
 
-To trigger a live backup on a Grid project, use the `--live` flag with the CLI:
+You can create a manual live backup on a Grid project:
+
+{{< codetabs >}}
+---
+title=Using the CLI
+file=none
+highlight=false
+---
+
+Use the `--live` flag:
 
 ```bash
 platform backup:create --live
 ```
+
+<--->
+---
+title=In the Console
+file=none
+highlight=false
+---
+
+When [creating the backup](#create-a-backup-manually), select **Run live backup** in the last step.
+
+{{< /codetabs >}}
 
 {{% legacy-regions featureIntro="Live backups" featureShort="live backups" level=4 plural=true %}}
 
