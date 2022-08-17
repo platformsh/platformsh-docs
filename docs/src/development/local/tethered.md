@@ -19,7 +19,7 @@ Note that other Platform.sh environment configuration such as the routes or appl
 For the local web server the approach will vary depending on your language.
 
 * For a self-serving language (Go or Node.js), just run the program locally.
-* For PHP, you may install your own copy of Nginx (or Apache) and PHP-FPM, or just use the built-in PHP web server. Be aware however that by default the PHP web server will ignore environment variables by default. You will need to explicitly instruct it to read them, like so: `php -S -d variables_order=EGPCS localhost:8001`. That will start a basic web server capable of running PHP, serving the current directory, on port 8001, using available environment variables. See the [PHP manual](https://www.php.net/manual/en/features.commandline.webserver.php) for more information.
+* For PHP, you may install your own copy of Nginx (or Apache) and PHP-FPM, or just use the built-in PHP web server. Be aware however that by default the PHP web server will ignore environment variables by default. You will need to explicitly instruct it to read them, like so: `php -d variables_order=EGPCS -S localhost:8001`. That will start a basic web server capable of running PHP, serving the current directory, on port 8001, using available environment variables. See the [PHP manual](https://www.php.net/manual/en/features.commandline.webserver.php) for more information.
 * For other languages it is recommended that you install your own copy of Nginx or Apache.
 * A virtual machine or Docker image is also a viable option.
 
