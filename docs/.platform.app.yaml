@@ -15,11 +15,15 @@ relationships:
     search: "search:http"
     database: "db:mysql"
 
+build:
+    flavor: none
+
 # The hooks that will be triggered when the package is deployed.
 hooks:
     # Build hooks can modify the application files on disk but not access any services like databases.
     build: |
         set -e
+        npm i --verbose
         ./build_examples.sh
         ./build_docs.sh
     deploy: !include
