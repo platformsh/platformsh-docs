@@ -709,15 +709,13 @@ While it's useful for environments under active development to have scheduled ta
 unused environments don't need to run cron jobs.
 To minimize unnecessary resource use,
 crons on environments with no deployments are paused.
-The following table shows how long without a deployment an environment goes before crons are paused:
 
-| Plan             | Affected environments | Time before crons paused |
-| ---------------- | --------------------- | ------------------------ |
-| Development      | All                   | 4 days                   |
-| Live (Standard+) | Non-Production        | 14 days                  |
+This affects all environments that aren't live environments.
+This means all environments on Development plans
+and all non-Production environments on higher plans.
 
-Environments with deployments within the given time have crons with the status `running`.
-If there haven't been any deployments within the given time, the status is `paused`.
+Such environments with deployments within 14 days have crons with the status `running`.
+If there haven't been any deployments within 14 days, the status is `paused`.
 
 You can see the status in the Console
 or using the CLI by running `platform environment:info` and looking under `deployment_state`.
