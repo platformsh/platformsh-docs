@@ -33,38 +33,42 @@
 
 {{ end }}
 
-<div class="tabs">
+<!-- If page doesn't have multiple related codetabs,
+     create context just for this set of codetabs -->
+<div class="tabs"
+{{ if not $.Page.Params.multipleTabs }}
+  x-data="{
+    codetab: 'default',
+    switchCodetab(targetCodetab) { 
+      this.codetab = targetCodetab;
+    }
+  }"
+{{ end }}
+>
 
-  <!-- Create a randomID string, to keep multiple tabs on a single page from interacting -->
-  {{ $randomID := ( index ( split ( index ( split ( now.AddDate -2 0 0 ) " ") 1 ) "." ) 1 ) }}
-
-  <!-- Buttons -->
+  <!-- Buttons to control tab visibility-->
     <ul class="nav nav-tabs" id="pills-tab" role="tablist">
-      {{ $ariaselected := "true" }}
-      {{ $tabclass := "nav-link active"}}
-      {{ $id := 0 }}
 
       {{ range $tabKeys }}
 
-        {{ $content := $allContent.Get . }}
-        {{ with ( $allParams.Get . ) }}
+        {{ $tabIndex = . }}
 
+        {{ with ( $allParams.Get $tabIndex ) }}
+
+          {{ $title := .Get "title" }}
+
+          <!-- Set the first tab to "default" and others based on the title text -->
+          {{ $codetabCodename := $title | urlize }}
+          {{ if eq $tabIndex "0" }}
+            {{ $codetabCodename = "default" }}
+          {{ end }}
 
           <li class="nav-item">
-            <a class="{{ $tabclass }}" id="{{ printf "pills-tab-%s" ( string $id )}}" data-toggle="pill" href="{{ printf "#pills-%s-content-%s" $randomID ( string $id )}}" role="tab" aria-controls="{{ printf "pills-tab-%s" ( string $id )}}" aria-selected="{{ $ariaselected }}">
-              {{ ( .Get "title" ) | markdownify }}
+            <a class="nav-link" :class="{ 'active': codetab === '{{ $codetabCodename }}' }" role="tab" @click="switchCodetab('{{ $codetabCodename }}')">
+              {{ $title | markdownify }}
             </a>
           </li>
 
-
-        {{ end }}
-
-        {{ $id = add $id 1 }}
-        {{ if eq $ariaselected "true" }}
-          {{ $ariaselected = "false"}}
-        {{ end }}
-        {{ if eq $tabclass "nav-link active" }}
-          {{ $tabclass = "nav-link"}}
         {{ end }}
 
       {{ end }}
@@ -72,18 +76,26 @@
 
     </ul>
 
-    <!-- Content -->
+    <!-- Tab content -->
     <div class="tab-content" id="pills-tabContent">
-
-      {{ $contentclass := "tab-pane fade show active"}}
-      {{ $contentid := 0 }}
 
       {{ range $tabKeys }}
 
-          <div class="{{ $contentclass }}" id="{{ printf "pills-%s-content-%s" $randomID ( string $contentid )}}" role="tabpanel" aria-labelledby="{{ printf "pills-tab-%s" ( string $contentid )}}">
+        {{ $tabIndex = . }}
 
-            {{ $content := $allContent.Get . }}
-            {{ with ( $allParams.Get . ) }}
+        {{ with ( $allParams.Get $tabIndex ) }}
+
+          <!-- Match the title and codename information from the buttons -->
+          {{ $title := .Get "title" }}
+          {{ $codetabCodename := $title | urlize }}
+          {{ if eq $tabIndex "0" }}
+            {{ $codetabCodename = "default" }}
+          {{ end }}
+
+          <div class="tab-pane fade" :class="{ 'show active': codetab === '{{ $codetabCodename }}' }" role="tabpanel" x-show="codetab === '{{ $codetabCodename }}'">
+
+            {{ $content := $allContent.Get $tabIndex }}
+            {{ with ( $allParams.Get $tabIndex ) }}
               {{ if ne (.Get "highlight") "false" }}
                 {{ if ne (.Get "file") "none" }}
                   {{ highlight ( readFile ( .Get "file" ) ) ( .Get "highlight") "style=abap" | chomp }}
@@ -101,12 +113,7 @@
 
           </div>
 
-        <!-- Increment the tab ID -->
-        {{ $contentid = add $contentid 1 }}
-
-        <!-- Reset the contentclass -->
-        {{ $contentclass = "tab-pane fade"}}
-
+          {{ end }}
 
       {{ end }}
 
