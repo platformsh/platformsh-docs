@@ -135,9 +135,10 @@ hooks:
 Each plugin requires slightly different configuration.
 Place the code for your chosen plugin in the `wp-config.php` file,
 somewhere before the final `require_once(ABSPATH . 'wp-settings.php');` line.
-  
+
 {{< note >}}
-The code snippets below assume you are using the [Platform.sh Config Reader (PHP)](./customize.md#install-the-config-reader) in your wp-config.php file. {{</ note >}}
+The code snippets below assume you are using the [Platform.sh Config Reader (PHP)](./deploy/customize.md#install-the-config-reader) in your wp-config.php file.
+{{</ note >}}
 
 {{< codetabs >}}
 
@@ -178,7 +179,7 @@ if ($config->hasRelationship('redis') && extension_loaded('redis')) {
 
 {{< /codetabs >}}
 
-These sections set up the parameters the plugins look for in order to connect to the Redis server. 
+These sections set up the parameters the plugins look for in order to connect to the Redis server.
 If you used a different name for the relationship above, change it accordingly.
 This code has no impact when run on a local development environment.
 
@@ -196,4 +197,4 @@ After you push this code, you should run the command and notice that allocated m
 
 To verify the plugins are working, add a `redis` command to the WP CLI tool.
 While in a SSH session in your environment,
-you can run `wp help redis` to see the available commands your chosen plugin has added.  
+you can run `wp help redis` to see the available commands your chosen plugin has added.
