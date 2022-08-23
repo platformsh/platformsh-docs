@@ -135,6 +135,9 @@ hooks:
 Each plugin requires slightly different configuration.
 Place the code for your chosen plugin in the `wp-config.php` file,
 somewhere before the final `require_once(ABSPATH . 'wp-settings.php');` line.
+  
+{{< note >}}
+The code snippets below assume you are using the [Platform.sh Config Reader (PHP)](./customize.md#install-the-config-reader) in your wp-config.php file. {{</ note >}}
 
 {{< codetabs >}}
 
@@ -153,7 +156,7 @@ if ($config->hasRelationship('redis') && extension_loaded('redis')) {
             'port'     => $credentials['port'],
             'auth'     => $credentials['password'],
         );
-    }
+}
 
 <--->
 
@@ -171,7 +174,7 @@ if ($config->hasRelationship('redis') && extension_loaded('redis')) {
         define('WP_REDIS_CLIENT', 'phpredis');
         define('WP_REDIS_HOST', $credentials['host']);
         define('WP_REDIS_PORT', $credentials['port']);
-    }
+}
 
 {{< /codetabs >}}
 
