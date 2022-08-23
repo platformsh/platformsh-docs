@@ -120,7 +120,7 @@ web:
 ## Dependencies
 
 By default, Platform.sh assumes you're using npm as a package manager.
-If you have a `package.json` file in your code, the default [build flavor is run](../../create-apps/app-reference.md#build):
+If your code has a `package.json`, the following command is run as part of the default [build flavor](../../create-apps/app-reference.md#build):
 
 ```bash
 npm prune --userconfig .npmrc && npm install --userconfig .npmrc
