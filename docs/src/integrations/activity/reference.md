@@ -16,7 +16,6 @@ A unique opaque value to identify the activity.
 
 ### `project`
 
-The Project ID for which the activity was triggered.
 Use this value if you want to have multiple projects POST to the same URL.
 
 ### `type`
@@ -128,13 +127,13 @@ The most notable properties of this key are
 
 The Platform.sh user that triggered the activity.
 
-### `deployment`
+### `payload.deployment`
 
 This large block details all information about all services in the environment.
 That includes the resulting configuration objects derived from [`routes.yaml`](../../define-routes/_index.md),
 [`services.yaml`](../../add-services/_index.md), and [your app configuration](../../create-apps/_index.md).
 
-Most notably, the `deployment.routes` object's keys are all of the URLs made available by the environment.
+Most notably, the `payload.deployment.routes` object's keys are all of the URLs made available by the environment.
 Note that some will be redirects.
 To find those that are live URLs filter to those objects whose `type` property is `upstream`.
 
