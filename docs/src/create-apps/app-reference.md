@@ -135,6 +135,10 @@ So if your _plan storage size_ is 5 GB, you can, for example, assign it in one o
 If you exceed the total space available, you receive an error on pushing your code.
 You need to either increase your plan's storage or decrease the `disk` values you've assigned.
 
+### Downsize a disk
+
+{{% disk-downsize type="app" %}}
+
 ## Mounts
 
 Mounts define directories that are writable after the build is complete.
