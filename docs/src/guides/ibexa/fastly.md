@@ -27,7 +27,7 @@ In order to use Fastly, Varnish must be disabled:
 
 ## Setting up Ibexa DXP to use Fastly
 
-Ibexa DXP's documentation includes instructions on how to [configure Ibexa DXP for Fastly](https://doc.ibexa.co/en/latest/guide/cache/symfony_reverse_proxy/#using-varnish-or-fastly).
+Ibexa DXP's documentation includes instructions on how to [configure Ibexa DXP for Fastly](https://doc.ibexa.co/en/latest/infrastructure_and_maintenance/cache/http_cache/reverse_proxy/#using-varnish-or-fastly).
 Follow the steps there to prepare Ibexa DXP for Fastly.
 
 ## Set credentials on Platform.sh
