@@ -7,7 +7,7 @@ Activated environments go through Platform.sh's build and deploy phases,
 resulting in a fully isolated running site for each activated branch (or pull request) on that repository.
 
 Once an environment is activated, Platform.sh provisions a cluster of containers to deploy your app.
-The configuration of that cluster is controlled by three [YAML files]({{ relref . "/overview/yaml.md" }}):
+The configuration of that cluster is controlled by three [YAML files]({{ relref . "/overview/yaml/_index.md" }}):
 
 - `.platform/routes.yaml` controls how incoming requests are routed to your app, or apps in a multi-app setup.
   It also controls the built-in HTTP cache.
