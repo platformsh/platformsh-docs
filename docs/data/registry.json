@@ -189,10 +189,11 @@
     "runtime": true,
     "type": "elixir",
     "versions": {
-      "deprecated": [],
-      "supported": [
+      "deprecated": [
         "1.9",
-        "1.10",
+        "1.10"
+      ],
+      "supported": [
         "1.11",
         "1.12",
         "1.13"
