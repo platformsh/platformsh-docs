@@ -25,6 +25,7 @@ CPUs?
 coroutine
 DDEV
 denylist
+deprovision
 DNSimple
 Docksal
 Drush
@@ -124,6 +125,7 @@ Slowloris
 Stempel
 stdout
 Strapi
+[Ss]ubprocessor
 subuser
 Swoole
 Symfony
