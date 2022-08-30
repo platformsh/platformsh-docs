@@ -13,21 +13,29 @@
             <th>Inbound IPs</th>
         </tr>
         <!-- List individual regions -->
-        {{ range sort $data "available" "desc" }}
+        {{ range sort ( sort $data "label" "asc" ) "available" "desc" }}
         <!-- Give the region a row -->
         <tr>
             <!-- Region overview -->
             <td class="region-overview">
+                <span class="cell-heading">Region</span>
                 <!-- Name, region identifier -->
                 {{ $regionAnchor := anchorize ( printf "%s %s" .name .label ) }}
                 <h4><a href="#{{ $regionAnchor }}" id="{{ $regionAnchor }}" aria-label="Anchor">{{ .name }}</a></h4>
                 <code class="region-identifier">{{ .label }}</code>
             </td>
             <!-- Provider -->
-            <td>{{ .provider }}</td>
-            <td>{{ if .available }}✅{{ end }}</td>
+            <td>
+                <span class="cell-heading">Provider</span>
+                {{ .provider }}
+            </td>
+            <td>
+                <span class="cell-heading">Available to new orgs</span>
+                {{ if .available }}✅{{ end }}
+            </td>
             <!-- Outbound ips -->
             <td class="region-subtable">
+                <span class="cell-heading">Outbound ips</span>
                 <ul>
                     {{ range .outbound_ips }}
                     <li>{{ . }}</li>
@@ -36,6 +44,7 @@
             </td>
             <!-- Inbound ips -->
             <td class="region-subtable">
+                <span class="cell-heading">Inbound ips</span>
                 <code>{{ .inbound_location }}</code>
 
                 <ul>
