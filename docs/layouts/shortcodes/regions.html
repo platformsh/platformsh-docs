@@ -13,7 +13,7 @@
             <th>Inbound IPs</th>
         </tr>
         <!-- List individual regions -->
-        {{ range sort $data "available" "desc" }}
+        {{ range sort ( sort $data "label" "asc" ) "available" "desc" }}
         <!-- Give the region a row -->
         <tr>
             <!-- Region overview -->
