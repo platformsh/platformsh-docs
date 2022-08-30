@@ -71,9 +71,9 @@ The following table presents the keys you can define for each service:
 
 ##### Disk
 
-Downsizing a service's persistent disk isn't currently supported
-in the `eu.platform.sh` and `us.platform.sh` regions.
-If necessary, [migrate your project](../projects/region-migration.md).
+{{% disk-downsize type="service" %}}
+
+{{% legacy-regions featureIntro="Downsizing a service's persistent disk" featureShort="to downsize a disk" level=6 %}}
 
 ##### Size
 
