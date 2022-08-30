@@ -8,30 +8,6 @@ description: |
 
 {{% description %}}
 
-## General utilities
-
-```javascript
-/**
- * Returns a key/value object containing all variables relevant for the activity.
- *
- * That includes project level variables, plus any variables visible for
- * the relevant environment for the activity, if any.
- *
- * Note that JSON-encoded values will show up as a string, and need to be
- * decoded with JSON.parse().
- */
-function getEnvironmentVariables() {
-  return activity.payload.deployment.variables.reduce(
-    (vars, { name, value }) => ({
-      ...vars,
-      [name]: value,
-    }),
-    {}
-  );
-}
-```
-
-
 ## Route access
 
 ```javascript
