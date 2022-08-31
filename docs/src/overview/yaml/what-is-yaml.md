@@ -5,126 +5,165 @@ description: An introduction to what YAML is and how to create and modify YAML f
 ---
 
 [YAML](https://en.wikipedia.org/wiki/YAML) is a human-readable format for data serialization.
-This means it can be used for structured data, like those in configuration files
+This means it can be used for structured data, like what you can find in configuration files.
 
-## Basic YAML
+Some basic rules about YAML files:
 
-A YAML file is a text file that ends in `.yaml`.  (Some systems use an alternative `.yml` extension, but Platform.sh uses the four-letter extension.)  It consists primarily of key value pairs, and supports nesting.  For example:
+- YAML files end in `.yaml`.
+  Some other systems use the alternative `.yml` extension.
+- YAML is case-sensitive.
+- YAML is whitespace-sensitive and indentation defines the structure,
+  but it doesn't accept tabs for indentation.
+- Empty lines are ignored.
+- Comments are preceded by an octothorpe `#`.
 
-```yaml
-name: 'app'
-type: 'php:7.4'
-build:
-    flavor: 'composer'
+## Data types
 
+YAML represents data through three primitive data structures:
+
+- Scalars (strings/numbers/booleans)
+- Mappings (dictionaries/objects)
+- Sequences (arrays/lists)
+
+### Scalars (strings/numbers/booleans)
+
+The most straightforward data structure involves defining key–value pairs where the values are strings or integers.
+
+So you could have a basic configuration for an app:
+
+```yaml {location=".platform.app.yaml"}
+name: app
+type: "golang:1.18"
 disk: 1024
 ```
 
-This example defines a key `name` with value `app`, a key `type` with value `php:7.4`, a key `disk` with a value of `1024`, and a key `build` that is itself a nested set of key/value pairs, of which there is only one: `flavor`, whose value is `composer`.  Informally, nested values are often referenced using a dotted syntax, such as `build.flavor`, and that format is used in this documentation in various places.
+This results in three key–value pairs.
 
-Keys are always strings, and may be quoted or not.  Values may be strings, numbers, Boolean, or further nested key/value pairs.  Alphanumeric strings may be quoted or not.  More complex strings (with punctuation, etc.) must be quoted.  Numbers should not be quoted.  The Boolean values `true` and `false` should never be quoted.
+{{< readFile file="static/images/yaml/basic.svg" >}}
 
-For quoted values, both single quotes (`'`) and double quotes (`"`) are valid.  Double quotes, however, will interpolate common escape characters such as `\n` and so forth.  For that reason using single quotes is generally recommended unless you want escape characters to be processed rather than taken literally.
+You might notice you can define strings either with or without quotes, which can be single `'` or double `"`.
+Quotes let you escape characters (if double) and make sure the value is parsed as a string when you want it.
 
-In general the order of keys in a YAML file does not matter.  Neither do blank lines.  Indentation may be with any number of spaces, as long as it is consistent throughout the file.  Platform.sh examples by convention use four-space indentation.
+For example, you might be representing version numbers and want to parse them as strings.
+If you use `version: 1.10`, it's parsed as an integer.
+If you use `version: "1.10"`, it's parsed as a string and isn't seen as the same as `1.1`.
 
-## Multi-line strings
+### Mappings (dictionaries/objects)
 
-In case of long, multi-line strings, the `|` character tells the YAML parser that the following, indented lines are all part of the same string.  That is, this:
+In addition to basic scalar values, each key can also represent a set of other key–value pairs.
+So you can define entire dictionaries of pairs.
 
-```yaml
+The structure of the mapping is determined by the indentation.
+So children are indented more than parents and siblings have the same amount of indentation.
+The exact number of spaces in the indentation isn't important, just the level relative to the rest of the map.
+
+In contrast, when you define mappings, the order doesn't matter.
+
+So you could expand the configuration from before to add another mapping:
+
+```yaml {location=".platform.app.yaml"}
+name: app
+type: "golang:1.18"
+disk: 1024
+
+web:
+    commands:
+        start: ./bin/app
+    locations:
+        '/':
+            passthru: true
+            allow: false
+```
+
+This creates a `web` dictionary that has two dictionaries within it: `commands` and `locations`,
+each with their own mappings.
+
+{{< readFile file="static/images/yaml/mapping.svg" >}}
+
+### Sequences (arrays/lists)
+
+In addition to maps defining further key–value pairs, you can also use sequences to include lists of information.
+
+```yaml {location=".platform.app.yaml"}
+web:
+    locations:
+        '/':
+            index:
+                - index.html
+                - index.htm
+            passthru: true
+            allow: false
+```
+
+You can also define sequences using a flow syntax:
+
+```yaml {location=".platform.app.yaml"}
+web:
+    locations:
+        '/':
+            index: [index.html, index.htm]
+            passthru: true
+            allow: false
+```
+
+In either case, you get a list of values within `index`.
+
+{{< readFile file="static/images/yaml/sequence.svg" >}}
+
+## Define multi-line strings
+
+If you have a long string that spans multiple lines, use a pipe `|` to preserve line breaks.
+The new lines need to have at least the same indentation as the first
+(you can add more indentation that's then preserved).
+
+So you could add a multi-line string to a `build` key in the `hooks` map:
+
+```yaml {location=".platform.app.yaml"}
 hooks:
     build: |
         set -e
         cp a.txt b.txt
 ```
 
-creates a nested property `hooks.build`, which has the value `set -e\ncp a.txt b.txt`.  (That is, a string with a line break in it.)  That is useful primarily for hooks, which allow the user to enter small shell scripts within the YAML file.
+And the resulting value preserves the line break.
+This lets you do things like enter small shell scripts within a YAML file.
 
-## Anchors
+{{< readFile file="static/images/yaml/multi-line.svg" >}}
 
-YAML supports internal named references, known as "anchors."  They can be referenced using an "alias."  That allows you to have a large block of YAML that gets repeated multiple times in different places within a single file without having to copy-paste the whole block.
+## Reuse content
 
-An anchor is defined by appending `&name` to a segment, where "name" is some unique identifier.  For example:
+YAML supports internal named references, known as anchors, which can be referenced using an alias.
+This allows you to reuse YAML blocks in multiple places within a single file.
 
-```yaml
-relationships: &rels
-    database: 'mysqldb:db1'
-    cache: 'rediscache:redis'
-    search: 'searchserver:elasticsearch'
-```
+Define an anchor by adding `&<NAME>` to the start of a value, where `<NAME>` is a unique identifier.
+The anchor represents this entire value.
+Then refer to the anchor using `*<NAME>`.
 
-This block defines an anchor called `rels`, the contents of which is the 3 key/value pairs for `database`, `cache`, and `search`.
+The following example shows 4 different workers:
 
-An anchor can be referenced using an alias like `*name`, which will inject the anchored value into the file at that point.  That is, the following two snippets are logically equivalent:
-
-```yaml
-foo: &foo
-    thing: stuff
-    many: {'stuff', 'here'}
-bar: *foo
-```
-
-```yaml
-foo:
-    thing: stuff
-    many: {'stuff', 'here'}
-bar:
-    thing: stuff
-    many: {'stuff', 'here'}
-```
-
-By default, aliases will inject their child contents entirely.  If you want to overwrite a specific child key of an anchor there is a different alias syntax you must use:
-
-```yaml
-foo: &foo
-    thing: stuff
-    many: {'stuff', 'here'}
-bar:
-    <<: *foo
-    thing: other
-```
-
-Which is equivalent to:
-
-```yaml
-foo:
-    thing: stuff
-    many: {'stuff', 'here'}
-bar:
-    thing: other
-    many: {'stuff', 'here'}
-```
-
-Be aware that aliases sometimes have requirements around their whitespace formatting that may not be clear.
-In particular, when aliasing a anchor into a YAML array the alias reference must be at the same indentation level as any overrides.
-
-```yaml
-- &mylist
-    list: of
-    values: here
-
--
-    <<: *mylist    # These two lines must start at the same indentation.
-    values: there
-```
-
-### Anchor example
-
-Anchors and aliases are mainly useful when you want to repeat a given block of configuration.  For example, the following snippet will define three identical worker instances within a `.platform.app.yaml` file:
-
-```yaml
+```yaml {location=".platform.app.yaml"}
 workers:
     queue1: &runner
-        size: 'S'
+        size: S
         commands:
             start: python queue-worker.py
-        variables:
-            env:
-                type: 'worker'
     queue2: *runner
-    queue3: *runner
+    queue3: 
+        <<: *runner
+        size: M
+    queue4: 
+        <<: *runner
+        disk: 512
 ```
 
+- `queue1` and `queue2` are identical with the same `size` and `commands` properties.
+- `queue3` is the same as `queue1` except that it has a different value for `size`.
+- `queue4` is the same as `queue1` except that it has the `disk` property in addition to the same `size` and `commands` properties.
 
-s
+Note that you need to place an alias with `<<:` at the same level as the other keys within that value.
+
+## What's next
+
+- See what Platform.sh makes possible with [custom tags](./platform-yaml-tags.md).
+- Read everything that's possible with YAML in the [YAML specification](https://yaml.org/spec/1.2.2/).
+- See a [YAML file that explains YAML syntax](https://learnxinyminutes.com/docs/yaml/).
