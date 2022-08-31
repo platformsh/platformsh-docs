@@ -4,114 +4,122 @@ weight: 0
 description: A description of custom YAML tags available for Platform.sh files.
 ---
 
-YAML allows for special "tags" on values that change their meaning.
-These tags may be customized for individual applications so may vary from one system to another.
+In addition to the [basic functions you should be familiar with](./what-is-yaml.md), YAML allows for special tags.
+Platform.sh accepts certain custom tags to facilitate working with configuration files.
 
-## Includes
+These tags work with Platform.sh configuration files, but may not elsewhere.
 
-The main Platform.sh "local tag" is `!include`, which allows for external files to be logically embedded within the YAML file.  The referenced file is always relative to the YAML file's directory.
+## Include
+
+Use the `!include` tag to embed external files within a given YAML file.
+
+The tag requires two properties:
+
+| Property | Type     | Possible values               | Description |
+| -------- | -------- | ----------------------------- |
+| `type`   | `string` | `string`, `binary`, or `yaml` | See the descriptions of [strings](#string), [binaries](#binary), and [YAML](#yaml). Defaults to `yaml`. |
+| `path`   | `string` |                               | The path to the file to include, relative to the directory the YAML file is in. |
 
 ### `string`
 
-The `string` type allows an external file to be inline in the YAML file as though it had been entered as a multi-line string.  For example, given this file on disk named `build.sh`:
+Use `string` to include an external file inline in the YAML file as if entered as a multi-line string.
 
-```text
-set -e
-cp a.txt b.txt
-```
+For example, if you have a build hook like the following:
 
-Then the following two YAML fragments are exactly equivalent:
-
-```yaml
+```yaml {location=".platform.app.yaml"}
 hooks:
     build: |
         set -e
         cp a.txt b.txt
 ```
 
-```yaml
+You could create a file for the script:
+
+```text {location="build.sh"}
+set -e
+cp a.txt b.txt
+```
+
+And replace the hook with an include tag for an identical result:
+
+```yaml {location=".platform.app.yaml"}
 hooks:
     build: !include
         type: string
         path: build.sh
 ```
 
-That is primarily useful for breaking longer build scripts or inline configuration files out to a separate file for easier maintenance.
+This helps you break longer configuration like build scripts out into a separate file for easier maintenance.
 
 ### `binary`
 
-The `binary` type allows an external binary file to be inline in the YAML file.  The file will be base64 encoded.  For example:
+Use `binary` to include an external binary file inline in the YAML file.
+The file is base64 encoded.
 
-```yaml
+For example, you could include a `favicon.ico` file in the same folder as your app configuration.
+Then you can include it as follows:
+
+```yaml {location=".platform.app.yaml"}
 properties:
     favicon: !include
         type: binary
         path: favicon.ico
 ```
 
-will reference the `favicon.ico` file, which will be provided to Platform.sh's management system.
-
 ### `yaml`
 
-Finally, the `yaml` type allows an external YAML file to be inline into the file as though it had been typed in directly.  That can help simplify more complex files, such a `.platform.app.yaml` file with many highly customized `web.locations` blocks.
+Use `yaml` to include an external YAML file inline as if entered directly.
+Because `yaml` is the default you can use it without specifying the properties.
+
 
 The `yaml` type is the default, meaning it may reference a file inline without specifying a type.
 
-For example, given this file on disk named `main.yaml`:
+For example, you could have your configuration for works defined in a `worker.yaml` file:
 
-```yaml
-root: 'web'
-expires: 5m
-passthru: '/index.php'
-allow: false
-rules:
-    '\.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$':
-        allow: true
-    '^/robots\.txt$':
-        allow: true
-    '^/sitemap\.xml$':
-        allow: true
+```yaml {location="worker.yaml"}
+size: S
+commands:
+    start: python queue-worker.py
+variables:
+    env:
+        type: worker
 ```
 
-Then the following three `location` definitions are exactly equivalent:
+Then the following three configurations are exactly equivalent:
 
-```yaml
-web:
-    locations:
-        '/': !include "main.yaml"
+```yaml {location=".platform.app.yaml"}
+workers:
+    queue1: !include "worker.yaml"
 ```
 
-```yaml
-web:
-    locations:
-        '/': !include
-            type: yaml
-            path: 'main.yaml'
+```yaml {location=".platform.app.yaml"}
+workers:
+    queue1: !include
+        type: yaml
+        path: 'worker.yaml'
 ```
 
-```yaml
-web:
-    locations:
-        '/':
-            root: 'web'
-            expires: 5m
-            passthru: '/index.php'
-            allow: false
-            rules:
-                '\.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$':
-                    allow: true
-                '^/robots\.txt$':
-                    allow: true
-                '^/sitemap\.xml$':
-                    allow: true
+```yaml {location=".platform.app.yaml"}
+workers:
+    queue1: 
+        size: S
+        commands:
+            start: python queue-worker.py
+        variables:
+            env:
+                type: worker
 ```
 
+This can help simplify more complex files.
 
-### `!archive`
+## Archive
 
-Another custom tag available is `!archive`, which specifies a value is a reference to a directory on disk, relative to the location of the YAML file.  Essentially it defines the value of key as "this entire directory".  Consider this `services.yaml` fragment:
+Use the `!archive` tag for a reference to an entire directory specified relative to where the YAML file is.
 
-```yaml
+For example, you might want to define a configuration directory for your [Solr service](../../add-services/solr.md).
+You might do so as follows:
+
+```yaml {location=".platform/services.yaml"}
 mysearch:
     type: solr:8.0
     disk: 1024
@@ -119,4 +127,6 @@ mysearch:
         conf_dir: !archive "solr/conf"
 ```
 
-In this case, the `mysearch.configuration.conf_dir` value is not the string `solr/conf`, but the contents of the `solr/conf` directory (relative to the `services.yaml` file).  On Platform.sh, that is used primarily for service definitions in [`services.yaml`](../../add-services/_index.md) to provide a directory of configuration files for the service (such as Solr in this case).  Platform.sh will use that directive to copy the entire specified directory into our management system so that it can be deployed with the specified service.
+The `!archive` tag means that the value for `conf_dir` isn't the string `solr/conf` but the entire `solr/conf` directory.
+This directory is in the `.platform` directory, since that's where the `services.yaml` file is.
+The `solr/conf` directory is then copied into the Platform.sh management system to use with the service.
