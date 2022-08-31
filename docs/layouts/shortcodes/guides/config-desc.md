@@ -39,7 +39,7 @@ This script downloads any missing files from the official template.
 It doesn't affect any files you already created.
 
 {{ $platformifyComment := "# Platformify your app and automatically download the missing configuration files" }}
-{{ $platformifyContent := printf "sh <( curl -s 'https://raw.githubusercontent.com/platformsh/snippets/main/src/platformify.sh' ) -t %s" (.Get "platformify") }}
+{{ $platformifyContent := printf "curl -fsS https://raw.githubusercontent.com/platformsh/snippets/main/src/platformify.sh | { bash /dev/fd/3 -t %s ; } 3<&0" (.Get "platformify") }}
 {{- highlight (printf "%s\n%s" $platformifyComment $platformifyContent ) "bash" "" -}}
 
 When run on an empty folder, the entire template can be downloaded locally.
