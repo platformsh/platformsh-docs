@@ -10,26 +10,14 @@ sidebarTitle: "Pre-Launch Checklist"
 
 ## 1. Check that your domain provider supports CNAME records on APEX domains
 
-<<<<<<< HEAD
 Before you go live, you need a domain name registered with the registrar of your choice.
 That registrar must allow you to use a Canonical Name (CNAME) record for your APEX domain.
 Some registrars may call these `ALIAS` or `ANAME`.
-=======
-You have a domain name registered for your site with a Registrar of your choice.
-The registrar must allow you to use a Canonical Name record (CNAME) for your domain.
-Some registrars may call these Aliases or similar.
-If your domain is currently active elsewhere,
-the Time-To-Live (TTL) on your domain is set to the lowest possible value in order to minimize transition time.
->>>>>>> 020f3146 (:bug: Fix linting issues)
 
 {{< note >}}
 
 You can't use a `A` record.
-<<<<<<< HEAD
 Verify your Registrar supports CNAME for APEX domains.
-=======
-Verify your DNS provider supports CNAME and Apex domains.
->>>>>>> 020f3146 (:bug: Fix linting issues)
 
 {{< /note >}}
 
@@ -53,8 +41,6 @@ To override that IP:
 2.
 
 
-
-<<<<<<< HEAD
 
 {{< codetabs >}}
 
@@ -101,11 +87,6 @@ After adding these lines the file looks something like:
 Once the domain is live, don't forget to delete the entry you added.
 
 <--->
-=======
-If you do wish to use a 3rd party certificate, ensure it's purchased and active before going live.
-
-## 4. (Optional) Configure your Content Delivery Network (CDN)
->>>>>>> 020f3146 (:bug: Fix linting issues)
 
 ---
 title=On Windows
@@ -154,17 +135,18 @@ Once the domain is live, don't forget to delete the entry you added.
 Platform.sh automatically provides TLS certificates for all sites and environments.
 These certificates are issued by [Let's Encrypt](https://letsencrypt.org/) at no charge.
 [In most cases](../define-routes/https.md#limits), this is sufficient and no further action is necessary.
-
 If you want to use a [third-party TLS certificate](./steps/tls.md) to encrypt your production site,
 you can obtain one from any third-party TLS issuers.
 Platform.sh doesn't charge for using a third-party TLS certificate, although the issuer may.
 
 If you do wish to use a third-party certificate, ensure it's purchased and active before going live.
 
----
+## What's next
 
-* Your registrar allows CNAME on APEX domains?
-* Your code and data is tested and ready to launch on your production environment?
-* Your custom TLS certificate is purchased, if you're using one?
+After you checked that:
 
-**Time to [Go Live](/domains/steps/_index.md).**
+* Your registrar allows CNAME on APEX domains,
+* Your code and data are tested and ready to launch on your production environment,
+* Your custom TLS certificate is purchased, if you're using one,
+
+It's time to [go Live](/domains/steps/_index.md).

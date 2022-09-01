@@ -26,8 +26,13 @@ You need:
 If you are planning to host multiple subdomains on different projects,
 see the additional information about [Subdomains](/domains/steps/subdomains.md) *before* you add your domain to Platform.sh.
 
+<<<<<<< HEAD
 Note: adding a domain disables the automatically generated URL for the production environment but doesn't modify the automatically generated URLs used for non-production environments.
 The non-production URLs can't be customized.
+=======
+Note: adding a domain disables the automatically generated URL for the production environment.
+The automatically generated domains used for non-production environments can't be customized.
+>>>>>>> 981456c7 (:construction: Refactoring + adding vars)
 
 ## 1. Change your plan tier
 
@@ -39,18 +44,30 @@ To upgrade your plan tier, you must be an organization owner or have [the manage
 
 To upgrade your plan tier:
 
+<<<<<<< HEAD
 * On the tile of the project you want to upgrade, click **{{< icon more >}} More**.
 * Click **Edit plan**.
 * Change the plan to at least **Standard**.
 * Check the change to the monthly cost.
 * Click **Save**.
+=======
+- On the tile of the project you want to upgrade, click **{{< icon more >}} More**.
+- Click **Edit plan**.
+- Change the plan to at least **Standard**.
+- Check the change to the monthly cost.
+- Click **Save**.
+>>>>>>> 981456c7 (:construction: Refactoring + adding vars)
 
 You can find more information on pricing on the [pricing page](https://platform.sh/pricing).
 
 ## 2. Get the CNAME target of your project
 
 The CNAME target is where your website is hosted within Platform.sh.
+<<<<<<< HEAD
 Your domain {{<variable "YOUR_DOMAIN" >}} needs to point to that target for your site to be live.
+=======
+Your domain needs to point to that target for your site to be live.
+>>>>>>> 981456c7 (:construction: Refactoring + adding vars)
 
 {{< codetabs >}}
 
@@ -78,10 +95,15 @@ highlight=false
 For example if the URL to access your production environment is `https://main-def456-abc123.eu-2.platformsh.site`,the target is `main-def456-abc123.eu-2.platformsh.site`.
 
 {{< /codetabs >}}
+<<<<<<< HEAD
 
 ## 3. Configure your DNS provider
 
 Your DNS provider (usually your registrar) is where you manage your domain.
+=======
+
+## 3. Configure your DNS provider
+>>>>>>> 981456c7 (:construction: Refactoring + adding vars)
 
 {{< codetabs >}}
 
@@ -95,8 +117,13 @@ Configure your domain name to point to your project:
 
 1. Open your registrar's domain management system.
 2. Set the time to live (TTL) on your domain to the lowest possible value to minimize transition time.
+<<<<<<< HEAD
 3. Add a CNAME record from the `www` subdomain [pointing to the target](#2-get-the-cname-target-of-your-project).
 4. Add a CNAME/ANAME/ALIAS from your apex domain [pointing to the target](#2-get-the-cname-target-of-your-project).
+=======
+3. Add a CNAME record from the `www` subdomain (`www.{{<variable "YOUR_DOMAIN" >}})` pointing to the target.
+4. Add a CNAME/ANAME/ALIAS from your apex domain (`{{<variable "YOUR_DOMAIN" >}}`) pointing to the target.
+>>>>>>> 981456c7 (:construction: Refactoring + adding vars)
   Not all registrars allow these kinds of records.
   If yours doesn't, see [alternatives](./dns.md).
 5. Optional: If you have multiple domains you want to be served by the same app you need to add a CNAME record for each of them.
@@ -114,7 +141,11 @@ highlight=false
 For Enterprise plans you need to obtain a DNS TXT record from your Platform.sh support representative by [opening a ticket](/overview/get-support.md).
 
 1. Open your CDN's management system.
+<<<<<<< HEAD
 2. Make your CDN [point to the Platform.sh CNAME target](#2-get-the-cname-target-of-your-project).
+=======
+2. Make your CDN point to the Platform.sh CNAME target.
+>>>>>>> 981456c7 (:construction: Refactoring + adding vars)
 3. Get the CNAME target for your CDN.
 4. Open your registrar’s domain management system.
 5. Configure your DNS zone to point at your CDN's CNAME target.
@@ -154,6 +185,10 @@ Run the following command:
 </div>
 
 Once the domain is live, don't forget to delete the entry you added.
+
+```bash
+platform domain:add -p {{<variable "PROJECT_ID" >}} {{<variable "YOUR_DOMAIN" >}}
+```
 
 <--->
 

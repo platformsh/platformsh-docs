@@ -7,7 +7,7 @@ description: "How to handle multiple subdomains in different projects."
 
 You can host multiple subdomains, within a single project using [routes](../../define-routes/_index.md).
 
-To use subdomains across multiple projects, you need to add an additional DNS record.
+To use subdomains across multiple projects, you need to add a specific TXT record for your apex domain.
 If you don't, you may receive an error when trying to add a subdomain to a second project.
 
 ## Quick solution
@@ -41,10 +41,12 @@ is known as the top-level domain (TLD).
 Most Internet applications (such as web browsers) handle TLD specially, such as by restricting certain actions.
 
 For example, a web page at `foo.bar.baz.example.com` can usually set a cookie that's linked to:
-- `foo.bar.baz.example.com`,
-- `bar.baz.example.com`,
-- `baz.example.com`,
-- `example.com`
+
+* `foo.bar.baz.example.com`,
+* `bar.baz.example.com`,
+* `baz.example.com`,
+* `example.com`.
+
 But that web page can *not* set a cookie to all `.com` domains.
 
 That allows a single logical site to be segmented across different subdomains but use a single account login cookie without causing a security risk to all `.com` domains.
@@ -57,7 +59,10 @@ browsers would refuse to set a cookie on `example.com` from a page at `foo.examp
 
 ### Subdomain hijacking protection
 
+In this example `{{<variable "YOUR_DOMAIN" >}}` is `example.com`.
+
 By default, the subdomain hijacking protection is activated, allowing only one project to use a given domain at a time.
+
 This security measure is there to prevent a malicious actor from registering a project with `evil.example.com`
 and using that to set cookies on your `example.com` website.
 

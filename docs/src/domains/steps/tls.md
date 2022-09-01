@@ -69,12 +69,12 @@ file=none
 highlight=false
 ---
 
-- Select the project where you want to add a certificate.
-- Click {{< icon settings >}} **Settings**.
-- Click **Certificates**.
-- Click **+ Add**.
-- Fill in your private key, public key certificate, and (optionally) intermediate SSL certificates.
-- Click **Add Certificate**.
+* Select the project where you want to add a certificate.
+* Click {{< icon settings >}} **Settings**.
+* Click **Certificates**.
+* Click **+ Add**.
+* Fill in your private key, public key certificate, and (optionally) intermediate SSL certificates.
+* Click **Add Certificate**.
 
 {{< /codetabs >}}
 

@@ -2,7 +2,7 @@
 title: "Going Live - Troubleshooting"
 weight: 4
 description: |
-  If all steps above have been followed and the site still doesn't resolve (after waiting for the DNS update to propagate), here are a few simple self-help steps to take before contacting support.
+  If your site still does not resolve (after waiting for the DNS updates to propagate), follow these steps before contacting support.
 sidebarTitle: "Troubleshooting"
 ---
 
@@ -16,8 +16,8 @@ On the command line using macOS, Linux or the Linux subsystem for Windows, type:
 The response where `www.{{< variable "YOUR_DOMAIN" >}}` is `example.com` should be something like:
 
 ```text
-www.example.com is an alias for main-def456-abc123.eu-2.platformsh.site.
-main-def456-abc123.eu-2.platformsh.site has address 192.0.2.1
+www.{{<variable "YOUR_DOMAIN" >}} is an alias for main-t2xxqeifuhpzg.eu.platform.sh.
+main-t2xxqeifuhpzg.eu.platform.sh has address 192.0.2.1
 ```
 
 1. If it isn't, either you haven't configured correctly your DNS server, or the DNS configuration didn't propagate yet.
