@@ -35,6 +35,7 @@ A production environment is required to add a custom domain.
 Production environment are available for standard (or higher) plans.
 If you are on a development plan, you need to upgrade your tier.
 
+<<<<<<< HEAD
 To upgrade your plan tier, you must be an organization owner or have [the manage plans permission](administration/organizations.md#manage-your-organization-users)
 
 To upgrade your plan tier:
@@ -51,6 +52,19 @@ You can find more information on pricing on the [pricing page](https://platform.
 
 The CNAME target is where your website is hosted within Platform.sh.
 Your domain {{<variable "YOUR_DOMAIN" >}} needs to point to that target for your site to be live.
+=======
+You can find more information on pricing on the [pricing page](https://platform.sh/pricing).
+
+## 2. Configure your DNS provider
+
+{{< note >}}
+If you are serving the site through a CDN, configure your DNS provider to point at your CDN account.
+The address or CNAME to set for that varies with the CDN provider.
+Refer to their documentation or to the [CDN guide](/domains/cdn/_index.md).
+{{< /note >}}
+
+If you're not using a CDN, configure your domain name to point to your project:
+>>>>>>> d979f30e (:memo: Apply recommendations from review)
 
 {{< codetabs >}}
 
@@ -60,7 +74,22 @@ file=none
 highlight=false
 ---
 
+<<<<<<< HEAD
 Get the target by running the following [CLI](/administration/cli/_index.md) command: `platform environment:info edge_hostname`
+=======
+1. Sign in to your registrar's management system to configure your domain.
+2. Set the time to live (TTL) on your domain to the lowest possible value to minimize transition time.
+3. Get the CNAME target by running the [CLI](../../development/cli/_index.md) command `platform environment:info edge_hostname`.
+4. Add a CNAME record from the `www` subdomain (`www.<YOUR_DOMAIN>`) to the value of the CNAME target.
+  If you have multiple domains you want to be served by the same application you need to add a CNAME record for each of them.
+  If you are planning to host multiple subdomains on different projects,
+  see the additional information about [Subdomains](/domains/steps/subdomains.md) *before* you add your domain to Platform.sh.
+5. Add a CNAME/ANAME/ALIAS from your apex domain (`<YOUR_DOMAIN>`) to the value of the CNAME target.
+  Not all registrars allow these kinds of records.
+  If yours doesn't, see [alternatives](../steps/dns.md).
+6. Check that the domain and subdomain are working as expected.
+7. Set the TTL value back to its previous value.
+>>>>>>> d979f30e (:memo: Apply recommendations from review)
 
 <--->
 
@@ -70,6 +99,7 @@ file=none
 highlight=false
 ---
 
+<<<<<<< HEAD
 1. Access the [project overview](https://console.platform.sh)
 2. Click the tile of the project you want to access
 3. Access your production environment
@@ -82,6 +112,38 @@ For example if the URL to access your production environment is `https://main-de
 ## 3. Configure your DNS provider
 
 Your DNS provider (usually your registrar) is where you manage your domain.
+=======
+1. Sign in to your registrar's management system to configure your domain.
+2. Set the time to live (TTL) on your domain to the lowest possible value to minimize transition time.
+3. Get the CNAME target by accessing your production environment and adapting the auto-generated URL you use to access your website.
+  It's in the form `<branch>-<hash>-<project_id>.<region>.platformsh.site` minus the protocol (`https://`).
+  For example if the URL to access your domain is `https://main-def456-abc123.eu-2.platformsh.site`, the CNAME target is `main-def456-abc123.eu-2.platformsh.site`.
+4. Add a CNAME record from the `www` subdomain (`www.<YOUR_DOMAIN>`) to the value of the CNAME target.
+  If you have multiple domains you want to be served by the same application you need to add a CNAME record for each of them.
+  If you are planning to host multiple subdomains on different projects,
+  see the additional information about [Subdomains](/domains/steps/subdomains.md) *before* you add your domain to Platform.sh.
+5. Add a CNAME/ANAME/ALIAS from your apex domain (`<YOUR_DOMAIN>`) to the value of the CNAME target.
+  Not all registrars allow these kinds of records.
+  If yours doesn't, see [alternatives](../steps/dns.md).
+6. Check that the domain and subdomain are working as expected.
+7. Set the TTL value back to its previous value.
+
+{{< /codetabs >}}
+
+Note that depending on your registrar and the TTL you set on step 2,
+it can take anywhere from 15 minutes to 72 hours for DNS changes to be taken into account.
+
+Example where `<YOUR_DOMAIN>` is `mysite.com`:
+
+- `www.mysite.com` is a CNAME to `main-def456-abc123.eu-2.platformsh.site`.
+- `mysite.com` is an ALIAS/CNAME/ANAME  to `main-def456-abc123.eu-2.platformsh.site`.
+
+Both `www.mysite.com` and `mysite.com` point to the same target. The app handles the [redirects](../../define-routes/_index.md).
+
+## 3. Set your domain in Platform.sh
+
+Add a single domain to your Platform.sh project for `<YOUR_DOMAIN>`:
+>>>>>>> d979f30e (:memo: Apply recommendations from review)
 
 {{< codetabs >}}
 
@@ -152,6 +214,8 @@ Run the following command:
 <div class="highlight">
   <pre class="chroma"><code class="language-bash" data-lang="bash">platform domain:add -p {{<variable "PROJECT_ID" >}} {{<variable "YOUR_DOMAIN" >}}</code></pre>
 </div>
+
+Once the domain is live, don't forget to delete the entry you added.
 
 <--->
 

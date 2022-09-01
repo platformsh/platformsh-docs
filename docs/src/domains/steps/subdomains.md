@@ -35,16 +35,20 @@ though your DNS records should prevent them from actually using it
 
 ### The Public Suffix List
 
-Domain names are segmented into different hierarchical levels, separated by a `.`.
+Domain names are segmented into different hierarchical levels, separated by a dot.
 The right-most portion of the domain, such as `.com`, `.edu`, and `.fr`,
 is known as the top-level domain (TLD).
 Most Internet applications (such as web browsers) handle TLD specially, such as by restricting certain actions.
 
-For example, a web page at `foo.bar.baz.example.com` can usually set a cookie that's keyed to `foo.bar.baz.example.com`,
-to `bar.baz.example.com`, to `baz.example.com`, or to `example.com`, but *not* to all `.com` domains.
-That allows a single logical site to be segmented across different subdomains but use a single account login cookie.
-Setting a cookie for all `.com` domains would be a security risk.
-Other restrictions apply on a TLD, but cookies are the easiest example.
+For example, a web page at `foo.bar.baz.example.com` can usually set a cookie that's linked to:
+- `foo.bar.baz.example.com`,
+- `bar.baz.example.com`,
+- `baz.example.com`,
+- `example.com`
+But that web page can *not* set a cookie to all `.com` domains.
+
+That allows a single logical site to be segmented across different subdomains but use a single account login cookie without causing a security risk to all `.com` domains.
+Other restrictions apply on TLD's, but cookies are the easiest example.
 
 Aside from true TLD, browser makers have a list of domain suffixes that get the same special handling
 called the [Public Suffix List (PSL)](https://publicsuffix.org/).
