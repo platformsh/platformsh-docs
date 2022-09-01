@@ -34,7 +34,7 @@ The following example shows such a basic setup for PHP:
 name: 'app'
 
 # The language and version for your app.
-type: 'nodejs:8.1'
+type: 'nodejs:16'
 
 # The size of the app's persistent disk (in MB).
 disk: 2048
