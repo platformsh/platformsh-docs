@@ -160,3 +160,8 @@ jobs:
             pr_number.txt
             pr_sha.txt
           retention-days: 1
+      
+      # If environment failed to create, fail the workflow
+      - name: Fail workflow
+        if: steps.get_env_url.outputs.env_status == 'failure'
+        run: exit 1
