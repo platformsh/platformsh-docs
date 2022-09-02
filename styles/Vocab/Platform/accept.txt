@@ -106,7 +106,7 @@ proxied
 Pthreads
 Pyenv
 Quarkus
-rebase
+[Rr]ebase
 recache
 recertification
 redeployment

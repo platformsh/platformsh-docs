@@ -1,6 +1,16 @@
 {{ define "main" }}
 
-  <main class="ml-sm-auto col-md-9 col-lg-10 px-4 pt-0 pt-md-11">
+  <!-- If the page has "multipleTabs" set, set the codetab context on a page-wide basis -->
+  <main class="ml-sm-auto col-md-9 col-lg-10 px-4 pt-0 pt-md-11"
+  {{ if $.Page.Params.multipleTabs }}
+  x-data="{
+    codetab: 'default',
+    switchCodetab(targetCodetab) { 
+      this.codetab = targetCodetab;
+    }
+  }"
+  {{ end }}
+  >
     <div class="row pt-3">
 
         <div class="col-xl-12 order-xl-1 duik-content">
