@@ -9,10 +9,17 @@
   },
   "author": "Platform.sh",
   "scripts": {
+    "prepare": "husky install",
+    "check-links": "remark --no-config --quiet --frail --use validate-links --ignore-pattern '**/varnish.md' --ignore-pattern '**/vault.md' --ignore-pattern '**/nodejs/_index.md' docs/src",
     "lint-prose": "find . -type f -name '*.md' ! -path '*/node_modules/*' ! -name 'LICENSE.md' ! -path '*/avocadocs/*' ! -name 'lorem.md' ! -path '*/docsuikit/*' | xargs vale"
   },
-  "workspaces":[
+  "workspaces": [
     "docs",
     "docs/static/scripts/xss"
-  ]
+  ],
+  "devDependencies": {
+    "husky": "^8.0.1",
+    "remark-cli": "^11.0.0",
+    "remark-validate-links": "^12.0.0"
+  }
 }

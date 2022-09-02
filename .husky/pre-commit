@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Check if using nvm and set the correct PATH if so
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# Get a list of all staged files
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACMR)
+
+# If any files in doc/src changed, check all internal links
+if (echo $STAGED_FILES | grep -q "docs/src")
+then
+  npx remark --no-config --quiet --frail --use validate-links --ignore-pattern '**/varnish.md' --ignore-pattern '**/vault.md' --ignore-pattern '**/nodejs/_index.md' docs/src
+fi

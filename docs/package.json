@@ -13,7 +13,6 @@
     "assets-dist": "gulp dist",
     "build-searchapp": "cd static/scripts/xss && npm install && npm run-script build",
     "build": "npm run fetch-files && npm run registry-files && npm run build-searchapp",
-    "check-links": "remark --no-config --quiet --frail --use validate-links --ignore-pattern '**/varnish.md' --ignore-pattern '**/vault.md' --ignore-pattern '**/nodejs/_index.md' src",
     "dev": "npm run fetch-files && npm run registry-files",
     "fetch-files": "node static/scripts/fetch-examples.mjs && node static/scripts/fetchTemplates.mjs",
     "hugo-watch-dev": "hugo server --watch --verbose --buildDrafts --cleanDestinationDir --disableFastRender",
@@ -21,9 +20,7 @@
     "registry-files": "node static/scripts/updateExampleConfigFiles.js"
   },
   "devDependencies": {
-    "pshregistry-parser": "^1.5.6",
-    "remark-cli": "^11.0.0",
-    "remark-validate-links": "^12.0.0"
+    "pshregistry-parser": "^1.5.6"
   },
   "dependencies": {
     "alpinejs": "^3.10.2",
