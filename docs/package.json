@@ -11,8 +11,8 @@
   "author": "Platform.sh",
   "scripts": {
     "assets-dist": "gulp dist",
-    "build-searchapp": "cd static/scripts/xss && npm install && npm run-script build",
-    "build": "npm run fetch-files && npm run registry-files && npm run build-searchapp",
+    "build": "npm run fetch-files && npm run registry-files",
+    "build:search": "npm run build --workspace docs-search-input --prefix .",
     "dev": "npm run fetch-files && npm run registry-files",
     "fetch-files": "node static/scripts/fetch-examples.mjs && node static/scripts/fetchTemplates.mjs",
     "hugo-watch-dev": "hugo server --watch --verbose --buildDrafts --cleanDestinationDir --disableFastRender",
@@ -45,5 +45,8 @@
     "postcss": "^8.4.14",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
-  }
+  },
+  "workspaces": [
+    "static/scripts/xss"
+  ]
 }

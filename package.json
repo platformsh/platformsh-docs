@@ -14,8 +14,7 @@
     "lint-prose": "find . -type f -name '*.md' ! -path '*/node_modules/*' ! -name 'LICENSE.md' ! -path '*/avocadocs/*' ! -name 'lorem.md' ! -path '*/docsuikit/*' | xargs vale"
   },
   "workspaces": [
-    "docs",
-    "docs/static/scripts/xss"
+    "docs"
   ],
   "devDependencies": {
     "husky": "^8.0.1",
