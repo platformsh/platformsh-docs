@@ -107,7 +107,7 @@ jobs:
           ENV_URL: ${{ steps.get_env_url.outputs.env_url }}
         run: |
           files=()
-          for file in ${{ steps.changed-files.outputs.all_changed_and_modified_files }}; do
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
 
             # Rewrite all Markdown files in the source to be links in the final environment
             if [[ $file = "docs/src/"*".md" ]]; then
