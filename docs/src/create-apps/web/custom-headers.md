@@ -82,7 +82,7 @@ web:
             ...
             # Apply rules to all static files (dynamic files get rules from your app)
             headers:
-                Access-Control-Allow-Origin: *
+                Access-Control-Allow-Origin: "*"
 ```
 
 If you use the wildcard value, the headers are modified for each request in the following ways:
