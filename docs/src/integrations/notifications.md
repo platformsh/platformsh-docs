@@ -71,7 +71,9 @@ To add a new email notification, register a `health.email` integration as follow
 platform integration:add --type health.email --recipients them@example.com --recipients others@example.com
 ```
 
-The default `from-address` points to the "Platform.sh Bot". You must specify one or more `recipients`, each as its own switch.
+You must specify one or more `recipients`, each as its own switch.
+
+The default `from-address` points to the "Platform.sh Bot".
 
 You can also configure a custom `--from-address`. The `--from-address` is whatever address you want the email to appear to be from. It is completely fine to use the same email address for both `from-address` and `recipients`. Note that depending on the configuration of the recipient mail server (including SPF and DKIM DNS entries) when using a custom `from-address`, the email can be marked as spam or lost.
 
