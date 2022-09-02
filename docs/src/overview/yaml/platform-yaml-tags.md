@@ -16,7 +16,7 @@ Use the `!include` tag to embed external files within a given YAML file.
 The tag requires two properties:
 
 | Property | Type     | Possible values               | Description |
-| -------- | -------- | ----------------------------- |
+| -------- | -------- | ----------------------------- | ----------- |
 | `type`   | `string` | `string`, `binary`, or `yaml` | See the descriptions of [strings](#string), [binaries](#binary), and [YAML](#yaml). Defaults to `yaml`. |
 | `path`   | `string` |                               | The path to the file to include, relative to the directory the YAML file is in. |
 
@@ -69,10 +69,7 @@ properties:
 ### `yaml`
 
 Use `yaml` to include an external YAML file inline as if entered directly.
-Because `yaml` is the default you can use it without specifying the properties.
-
-
-The `yaml` type is the default, meaning it may reference a file inline without specifying a type.
+Because `yaml` is the default, you can use it without specifying the type.
 
 For example, you could have your configuration for works defined in a `worker.yaml` file:
 

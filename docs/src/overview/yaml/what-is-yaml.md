@@ -45,8 +45,8 @@ You might notice you can define strings either with or without quotes, which can
 Quotes let you escape characters (if double) and make sure the value is parsed as a string when you want it.
 
 For example, you might be representing version numbers and want to parse them as strings.
-If you use `version: 1.10`, it's parsed as an integer.
-If you use `version: "1.10"`, it's parsed as a string and isn't seen as the same as `1.1`.
+If you use `version: 1.10`, it's parsed as an integer and so is treated the same as `1.1`.
+If you use `version: "1.10"`, it's parsed as a string and isn't treated as the same as `1.1`.
 
 ### Mappings (dictionaries/objects)
 
