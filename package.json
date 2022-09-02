@@ -1,6 +1,18 @@
 {
-
+  "name": "platformsh-docs",
+  "version": "1.0.0",
+  "description": "This repository holds the public user documentation and supporting services for [Platform.sh](https://platform.sh/).",
+  "license": "CC-BY-NC-SA-4.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/platformsh/platformsh-docs.git"
+  },
+  "author": "Platform.sh",
   "scripts": {
     "lint-prose": "find . -type f -name '*.md' ! -path '*/node_modules/*' ! -name 'LICENSE.md' ! -path '*/avocadocs/*' ! -name 'lorem.md' ! -path '*/docsuikit/*' | xargs vale"
-  }
+  },
+  "workspaces":[
+    "docs",
+    "docs/static/scripts/xss"
+  ]
 }
