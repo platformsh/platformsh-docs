@@ -35,24 +35,24 @@ Remember `config/prod.exs` is evaluated at **build time** and has no access to r
 
 ## Building and running the application
 
-If you are using Hex to manage your dependencies, it is necessary to specify a set of environment variables in your `.platform.app.yaml` file that define the `MIX_ENV` and `SECRET_KEY_BASE`, which can be set to the Platform.sh-provided `PLATFORM_PROJECT_ENTROPY` environment variable:
+If you are using Hex to manage your dependencies, you need to specify the `MIX_ENV` environment variable:
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 variables:
     env:
         MIX_ENV: 'prod'
 ```
 
-Include in your build hook the steps to retrieve a local Hex and `rebar`, and then run `mix do deps.get, deps.compile, compile` on your application to build a binary.
+The `SECRET_KEY_BASE` variable is generated automatically based on the [`PLATFORM_PROJECT_ENTROPY` variable](../development/variables/use-variables.md#use-platformsh-provided-variables).
+You can change it.
 
-Environment variable `SECRET_KEY_BASE` will be generated based on the
-`PLATFORM_PROJECT_ENTROPY` and can be still changed.
+Include in your build hook the steps to retrieve a local Hex and `rebar`, and then run `mix do deps.get, deps.compile, compile` on your application to build a binary.
 
 {{< readFile file="src/registry/images/examples/full/elixir.hooks.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 {{< note >}}
 
-The above build hook works for most cases and assumes that your `mix.exs` file is located at [your app root](../create-apps/app-reference.md#root-directory).
+That build hook works for most cases and assumes that your `mix.exs` file is located at [your app root](../create-apps/app-reference.md#root-directory).
 
 {{< /note >}}
 
@@ -63,9 +63,9 @@ you can then start it from the `web.commands.start` directive.
 The start command _must_ run in the foreground, so you should set the `--no-halt` flag when calling `mix run`.
 {{< /note >}}
 
-The following basic `.platform.app.yaml` file is sufficient to run most Elixir applications.
+The following basic app configuration is sufficient to run most Elixir applications.
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 name: app
 
 type: elixir:1.9
