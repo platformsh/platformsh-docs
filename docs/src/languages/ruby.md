@@ -40,7 +40,7 @@ A complete example is included at the end of this section.
     variables:
         env:
             BUNDLE_CACHE_ALL: '1' # default
-            BUNDLE_CLEAN: '1' # /!\ if you are working with Ruby<2.7 this does not work well
+            BUNDLE_CLEAN: '1' # /!\ if you are working with Ruby <2.7, this doesn't work well
             BUNDLE_DEPLOYMENT: '1' # default
             BUNDLE_ERROR_ON_STDERR: '1' # default
             BUNDLE_WITHOUT: 'development:test'
@@ -54,6 +54,9 @@ A complete example is included at the end of this section.
             RAILS_LOG_TO_STDOUT: '1' # default (log to /var/log/app.log)
             RAILS_TMP: '/tmp' # default
     ```
+
+    The `SECRET_KEY_BASE` variable is generated automatically based on the [`PLATFORM_PROJECT_ENTROPY` variable](../development/variables/use-variables.md#use-platformsh-provided-variables).
+    You can change it.
 
 3. Build your application with the build hook.
 

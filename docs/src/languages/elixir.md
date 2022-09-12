@@ -35,14 +35,16 @@ Remember `config/prod.exs` is evaluated at **build time** and has no access to r
 
 ## Building and running the application
 
-If you are using Hex to manage your dependencies, it is necessary to specify a set of environment variables in your `.platform.app.yaml` file that define the `MIX_ENV` and `SECRET_KEY_BASE`, which can be set to the Platform.sh-provided `PLATFORM_PROJECT_ENTROPY` environment variable:
+If you are using Hex to manage your dependencies, you need to specify the `MIX_ENV` environment variable:
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 variables:
     env:
-        SECRET_KEY_BASE: $PLATFORM_PROJECT_ENTROPY
         MIX_ENV: 'prod'
 ```
+
+The `SECRET_KEY_BASE` variable is generated automatically based on the [`PLATFORM_PROJECT_ENTROPY` variable](../development/variables/use-variables.md#use-platformsh-provided-variables).
+You can change it.
 
 Include in your build hook the steps to retrieve a local Hex and `rebar`, and then run `mix do deps.get, deps.compile, compile` on your application to build a binary.
 
@@ -50,7 +52,7 @@ Include in your build hook the steps to retrieve a local Hex and `rebar`, and th
 
 {{< note >}}
 
-The above build hook works for most cases and assumes that your `mix.exs` file is located at [your app root](../create-apps/app-reference.md#root-directory).
+That build hook works for most cases and assumes that your `mix.exs` file is located at [your app root](../create-apps/app-reference.md#root-directory).
 
 {{< /note >}}
 
@@ -61,9 +63,9 @@ you can then start it from the `web.commands.start` directive.
 The start command _must_ run in the foreground, so you should set the `--no-halt` flag when calling `mix run`.
 {{< /note >}}
 
-The following basic `.platform.app.yaml` file is sufficient to run most Elixir applications.
+The following basic app configuration is sufficient to run most Elixir applications.
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 name: app
 
 type: elixir:1.9
@@ -71,7 +73,6 @@ type: elixir:1.9
 variables:
     env:
         MIX_ENV: 'prod'
-        SECRET_KEY_BASE: $PLATFORM_PROJECT_ENTROPY
 
 hooks:
     build: |
