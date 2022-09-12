@@ -40,18 +40,20 @@ you would add configuration for those services to the `settings.platformsh.php` 
 
 ## `.environment`
 
-Platform.sh runs `source .environment` in the application root when a project starts
-and when logging into the environment over SSH.
-That gives you a place to do extra environment variable setup prior to the application running,
+Platform.sh runs `source .environment` in the [app root](../../../create-apps/app-reference.md#root-directory) when a project starts
+and when you log into an environment over SSH.
+That gives you a place to do extra environment variable setup before the app runs,
 including modifying the system `$PATH` and other shell level customizations.
 
-For Drupal, a small [`.environment`](https://github.com/platformsh-templates/drupal9/blob/master/.environment) file modifies the `$PATH` to include the `vendor/bin` directory,
-where command line tools like Drush or Drupal Console are stored.
-While this step is optional, the Drupal cron task assumes it has run so that the `drush` command is always available.
+The Drupal template includes a small [`.environment` file](https://github.com/platformsh-templates/drupal9/blob/master/.environment).
+This modifies the `$PATH` to include the `vendor/bin` directory,
+where command line tools like Drush are stored.
 
-```text
-# .environment
+You need the file or one like it if you plan to run `drush` as a command,
+such as in a cron task like the one in the [app configuration from the previous step](./configure.md#application-container-platformappyaml).
+If you don't include the file, you get a [command not found error](../../../development/troubleshoot.md#command-not-found).
 
+```text {location=".environment"}
 # Allow executable app dependencies from Composer to be run from the path.
 if [ -n "$PLATFORM_APP_DIR" -a -f "$PLATFORM_APP_DIR"/composer.json ] ; then
   bin=$(composer config bin-dir --working-dir="$PLATFORM_APP_DIR" --no-interaction 2>/dev/null)
