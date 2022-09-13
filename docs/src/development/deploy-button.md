@@ -56,7 +56,7 @@ The easiest way to make a Deploy on Platform.sh button is to use our [button bui
 You provide it with either the Git URL of the repository or a URL to a corresponding template definition file.
 
 The button builder widget will give you an HTML fragment to copy and paste to wherever you want the button hosted.
-It will also include a tracking code so we can whose Deploy on Platform.sh button was clicked, but does not add any cookies to the site.
+It will also include a tracking code so we can know whose Deploy on Platform.sh button was clicked, but does not add any cookies to the site.
 
 ## Making a button manually
 
