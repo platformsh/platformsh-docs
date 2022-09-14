@@ -1,17 +1,20 @@
 {
-    "username": "mysql",
+    "username": "user",
     "scheme": "mysql",
     "service": "oraclemysql",
-    "ip": "169.254.237.53",
+    "fragment": null,
+    "ip": "169.254.150.190",
     "hostname": "7q5hllmmhoeuthu6th7qovoone.oraclemysql.service._.eu-3.platformsh.site",
+    "public": false,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "oraclemysql.internal",
     "rel": "mysql",
-    "path": "main",
     "query": {
         "is_master": true
     },
-    "password": "67fd28dc43c0398b7013682425d67a7a",
+    "path": "main",
+    "password": "",
     "type": "oracle-mysql:8.0",
-    "port": 3306
+    "port": 3306,
+    "host_mapped": false
 }

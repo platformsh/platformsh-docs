@@ -1,6 +1,6 @@
 {
     "service": "kafka25",
-    "ip": "169.254.196.29",
+    "ip": "169.254.27.10",
     "hostname": "t7lv3t3ttyh3vyrzgqguj5upwy.kafka25.service._.eu-3.platformsh.site",
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "kafka.internal",

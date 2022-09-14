@@ -3,7 +3,7 @@
     "scheme": "amqp",
     "service": "rabbitmq38",
     "fragment": null,
-    "ip": "169.254.121.99",
+    "ip": "169.254.57.5",
     "hostname": "iwrccysk3gpam2zdlwdr5fgs2y.rabbitmq38.service._.eu-3.platformsh.site",
     "public": false,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",

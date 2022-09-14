@@ -3,7 +3,7 @@
     "scheme": "mysql",
     "service": "mariadb104",
     "fragment": null,
-    "ip": "169.254.136.159",
+    "ip": "169.254.255.221",
     "hostname": "e3wffyxtwnrxujeyg5u3kvqi6y.mariadb104.service._.eu-3.platformsh.site",
     "public": false,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",

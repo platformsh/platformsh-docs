@@ -3,7 +3,7 @@
     "scheme": "http",
     "service": "opensearch12",
     "fragment": null,
-    "ip": "169.254.98.246",
+    "ip": "169.254.99.100",
     "hostname": "2e36wpnescmc5ffcddczsnhnai.opensearch12.service._.eu-3.platformsh.site",
     "public": false,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",

@@ -3,7 +3,7 @@
     "scheme": "pgsql",
     "service": "postgresql12",
     "fragment": null,
-    "ip": "169.254.236.31",
+    "ip": "169.254.38.66",
     "hostname": "zydalrxgkhif2czr3xqth3qkue.postgresql12.service._.eu-3.platformsh.site",
     "public": false,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",

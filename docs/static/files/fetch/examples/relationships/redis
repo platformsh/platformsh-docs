@@ -3,7 +3,7 @@
     "scheme": "redis",
     "service": "redis6",
     "fragment": null,
-    "ip": "169.254.175.235",
+    "ip": "169.254.22.75",
     "hostname": "7mnenhdiz7ecraovljrba6pmiy.redis6.service._.eu-3.platformsh.site",
     "public": false,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
