@@ -247,8 +247,10 @@ highlight=false
 
 {{< /codetabs >}}
 
-The data is restored and your environment is rebuilt.
-This uses the current code for the environment, not the code from when the backup was taken.
+The data is restored and your backed-up environment is deployed.
+This deployment uses the built app, including variables, from when the backup was taken.
+But the Git repository stays as it was before the restore, not when the backup was taken.
+So any future (re)deployments use the current Git repository to build the environment.
 
 ### Restore to a different environment
 
