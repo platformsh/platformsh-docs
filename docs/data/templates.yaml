@@ -91,28 +91,6 @@ php:
       Drush included<br />
       Automatic TLS certificates<br />
     runtime: php
-  - shortname: contentacms
-    name: Drupal 9
-    repo: https://github.com/platformsh-templates/contentacms
-    description: >
-      <p>This template builds Drupal 9 using the "Drupal Recommended" Composer
-      project.  It is pre-configured to use MariaDB and Redis for caching.  The
-      Drupal installer will skip asking for database credentials as they are
-      already provided.</p>
-
-      <p>Drupal is a flexible and extensible PHP-based CMS framework.</p>
-    image: >-
-      data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNi4yIDMuOUMxNi4yIDMuOSAxNC44MiAzLjMgMTQuMDQgMi44MkMxNC4wNCAyLjgyIDEzLjAyIDIuMjIgMTEuMzQgMEMxMS4zNCAwIDExLjQgMi41MiA4LjcgMy44NEM0LjQ0IDUuNTIgMS44IDkuMDYgMS44IDEzLjU2QzEuOCAxOS4yNiA2LjQ4IDIzLjk0IDEyLjE4IDIzLjk0QzE3Ljk0IDIzLjk0IDIyLjU2IDE5LjI2IDIyLjU2IDEzLjU2QzIyLjYyIDYuNiAxNi4yIDMuOSAxNi4yIDMuOVpNNC42OCA5LjZDMy4wNiA5Ljk2IDMuMTggOS4xMiAzLjQ4IDguNEMzLjYgNy45OCA0LjAyIDcuNSA0LjAyIDcuNUM1LjEgNS43NiA3LjUgNC41IDcuNSA0LjVDNy44IDQuMzggOC4zNCA0LjA4IDguODIgMy44NEM5Ljc4IDMuMyAxMC4wMiAzIDEwLjAyIDNDMTEuNCAxLjY4IDExLjI4IDAuMDYgMTEuMjggMEMxMi40OCAyLjQgMTEuMDQgMy40OCAxMS4wNCAzLjQ4QzExLjQgMy44NCAxMS4yOCA0LjIgMTEuMjggNC4yQzkuNDIgOC4yMiA0LjY4IDkuNiA0LjY4IDkuNlpNMTcuMjIgMjIuMkMxNy4xIDIyLjI2IDE1LjYgMjIuOTggMTMuODYgMjIuOThDMTIuOSAyMi45OCAxMS44OCAyMi43NCAxMC45OCAyMi4xNEMxMC42OCAyMS45IDEwLjU2IDIxLjQ4IDEwLjc0IDIxLjE4QzEwLjggMjEuMDYgMTEuMTYgMjAuNjQgMTIgMjEuMThDMTIuMDYgMjEuMjQgMTQuMDQgMjIuNTYgMTcuMSAyMC44OEMxNy4zNCAyMC43NiAxNy42NCAyMC44MiAxNy43NiAyMS4wNkMxNy45NCAyMS4zIDE4IDIxLjc4IDE3LjIyIDIyLjJaTTEzLjAyIDE5LjY4TDEzLjA4IDE5LjYyQzEzLjE0IDE5LjU2IDE0LjE2IDE4LjI0IDE1LjY2IDE4LjQyQzE1LjkgMTguNDIgMTYuNzQgMTguNDggMTcuMjggMTkuNUMxNy4zNCAxOS42MiAxNy40NiAyMC4wNCAxNy4yMiAyMC4zNEMxNy4xIDIwLjQ2IDE2LjkyIDIwLjU4IDE2LjU2IDIwLjQ2QzE2LjMyIDIwLjQgMTYuMiAyMC4xNiAxNi4yIDIwLjA0QzE2LjE0IDE5Ljg2IDE2LjA4IDE5Ljc0IDE1LjQ4IDE5LjY4QzE1IDE5LjYyIDE0LjcgMTkuODYgMTQuMzQgMjAuMTZDMTQuMTYgMjAuMzQgMTMuOTIgMjAuNTIgMTMuNjggMjAuNThDMTMuNjIgMjAuNjQgMTMuNTYgMjAuNjQgMTMuNDQgMjAuNjRDMTMuMzIgMjAuNjQgMTMuMiAyMC41OCAxMy4wOCAyMC41MkMxMi45IDIwLjM0IDEyLjg0IDIwLjEgMTMuMDIgMTkuNjhaTTE5Ljg2IDE5LjhDMTkuODYgMTkuOCAxOS4zMiAxOS45OCAxOC43OCAxOS4zOEMxOC43OCAxOS4zOCAxNy4xNiAxNy41MiAxNi4zOCAxNy4yMkMxNi4zOCAxNy4yMiAxNS45IDE3LjA0IDE1LjMgMTcuMjhDMTUuMyAxNy4yOCAxNC44OCAxNy4zNCAxMy4yNiAxOC40MkMxMy4yNiAxOC40MiAxMC41IDIwLjE2IDkuMTIgMTkuOTJDOS4xMiAxOS45MiA2IDE5Ljk4IDYuNDIgMTYuNjhDNi40MiAxNi42OCA3LjA4IDEyLjk2IDExLjQgMTMuOEMxMS40IDEzLjggMTIuMzYgMTMuOTggMTQuMSAxNS4zNkMxNC4xIDE1LjM2IDE1LjMgMTYuMjYgMTUuOSAxNi4yNkMxNS45IDE2LjI2IDE2LjM4IDE2LjMyIDE3LjQ2IDE1LjY2QzE3LjQ2IDE1LjY2IDE5LjU2IDE0LjA0IDIwLjM0IDE0LjFDMjAuNDYgMTQuMSAyMS44NCAxNC4wNCAyMS44NCAxNi4zMkMyMS43OCAxNi4yNiAyMS44NCAxOC45IDE5Ljg2IDE5LjhaIiBmaWxsPSIjMDA4RUNFIi8+Cjwvc3ZnPgo=
-    deploy: >-
-      https://console.platform.sh/projects/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/contentacms/.platform.template.yaml
-    content: |
-      PHP 8.1<br />
-      MariaDB 10.4<br />
-      Redis 6<br />
-      Drush included<br />
-      Automatic TLS certificates<br />
-      Composer-based build<br />
-    runtime: php
   - shortname: drupal8-govcms8
     name: GovCMS 8
     repo: https://github.com/platformsh-templates/drupal8-govcms8
@@ -520,7 +498,7 @@ php:
       Composer-based build<br />
     runtime: php
   - shortname: sylius
-    name: sylius
+    name: Sylius
     repo: https://github.com/platformsh-templates/sylius
     description: >
       <p>This template builds a Sylius application for Platform.sh, which can be
@@ -531,8 +509,8 @@ php:
       Framework.</p>
     image: >-
       data:image/svg+xml,%3Csvg id='Warstwa_1' data-name='Warstwa 1'
-      xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1012.77
-      417.76'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23fff;%7D.cls-2%7Bfill:%2330ba9d;%7D.cls-3%7Bfill:%231a9f83;%7D%3C/style%3E%3C/defs%3E%3Ctitle%3Esylius-logo%3C/title%3E%3Cpath
+      xmlns='http://www.w3.org/2000/svg' width='225'
+      height='223.8''%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23fff;%7D.cls-2%7Bfill:%2330ba9d;%7D.cls-3%7Bfill:%231a9f83;%7D%3C/style%3E%3C/defs%3E%3Ctitle%3Esylius-logo%3C/title%3E%3Cpath
       class='cls-1'
       d='M393.56,255.07s14.68,17.33,36.09,17.33c13.46,0,24.67-8.15,24.67-21.41,0-30.17-69.53-25.48-69.53-70.34,0-21.62,19-38.54,46.08-38.54,15.3,0,41,6.94,41,26.51v11.82H453.1v-6.72c0-7.55-10.81-13.05-22.23-13.05-15.49,0-25.28,8.56-25.28,19.36,0,29.16,69.33,22.64,69.33,69.94,0,22-17.13,41-45.67,41a64.37,64.37,0,0,1-47.72-21.4Z'/%3E%3Cpath
       class='cls-1'
@@ -1396,7 +1374,7 @@ python:
       data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIzLjAuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9InN2ZzI5NDgiIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCgkgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA2NC4xIDgyLjQiCgkgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNjQuMSA4Mi40OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+Cgkuc3Qwe2ZpbGwtcnVsZTpldmVub2RkO2NsaXAtcnVsZTpldmVub2RkO30KPC9zdHlsZT4KPGcgaWQ9ImxheWVyMSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTIxLjA2MzA2LC0zNTUuOTM5NzYpIj4KCTxwYXRoIGlkPSJwYXRoMjgzOCIgY2xhc3M9InN0MCIgZD0iTS0xMDcuNCwzOTguMmMwLDguMiw2LDEzLjEsMTUuNiwxMC45di0yMS43Qy0xMDEuNSwzODQuNC0xMDcuMywzOTAuNC0xMDcuNCwzOTguMiBNLTkxLjUsMzU1LjkKCQloMTMuMnY2Mi41Yy0xMi43LDIuMS0yNC44LDMuNC0zMy41LTEuNWMtMTEuMi02LjItMTIuMS0yNi4xLTMuMi0zNC45YzQuNS00LjUsMTMuNS03LjYsMjMuMi01LjZ2LTE5LjcKCQlDLTkxLjgsMzU2LjQtOTEuOSwzNTYtOTEuNSwzNTUuOSIvPgoJPHBhdGggaWQ9InBhdGgyODQwIiBjbGFzcz0ic3QwIiBkPSJNLTU2LjksMzY5LjdoLTEzLjJ2LTEzLjhoMTMuMlYzNjkuN3oiLz4KCTxwYXRoIGlkPSJwYXRoMjg2MCIgY2xhc3M9InN0MCIgZD0iTS01Ni45LDM3Ni43YzAsOS43LDAsMTYuNywwLDI4LjVjLTAuNiwxMS42LTAuNCwyMC45LTQuNywyNi40Yy0wLjgsMS4xLTIuNiwyLjctNC4xLDMuOAoJCWMtMS4zLDAuOS0zLjYsMi45LTUsMi45Yy0xLjQsMC4xLTQuOS0xLjktNi41LTIuNmMtMi4xLTEtNC0yLjMtNi4yLTIuOWM1LTMuMSw5LjgtNS40LDExLjctMTEuN2MxLjctNS41LDEuNS0xMy40LDEuNS0yMS4xCgkJYzAtNy42LDAtMTYuNSwwLTIzLjJMLTU2LjksMzc2LjdMLTU2LjksMzc2Ljd6Ii8+CjwvZz4KPC9zdmc+Cg==
     deploy: >-
       https://console.platform.sh/projects/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/django4/.platform.template.yaml
-    content: Python 3.9<br/>PostgreSQL 12
+    content: Python 3.10<br/>PostgreSQL 12
     runtime: python
   - shortname: fastapi
     name: FastAPI

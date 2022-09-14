@@ -3,7 +3,7 @@
     "scheme": "http",
     "service": "vault-kms",
     "fragment": "",
-    "ip": "169.254.148.179",
+    "ip": "169.254.196.95",
     "hostname": "ckmpv2fz7jtdmpkmrun7yfgut4.vault-kms.service._.eu-3.platformsh.site",
     "public": false,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
@@ -13,7 +13,7 @@
         "is_master": true
     },
     "path": "\/",
-    "password": "b.AAAAAQKhE8IxT8LWOnegjAaJoZatd4EBujEtB5F3bjfiM40gFtbOVJ5TyAbUEMSio40AZ0pCxTuzam_LmnBDGmnpq9GNAYlWafOIDLlTYKvR3aRjQVjdf8HUslSDRL5js5Z65fL5amvcFPKuL1AmybeYcV946qO_Zbt6LUV_-y-gVEjttglOWCJLr_BJWj4YPxZkKQqoMHI4__LfsmhOtCGJ5hs2ZCfPUGVXu3obqQ",
+    "password": "b.AAAAAQJqXe6v836nLZzvWdPHqfZAmb--uh6HWama4vpxS8uepEAMlLWCa8bBLgOdZlQXBvf_X1rWrDgFYIj8wO3PuWmXoZz1t0gakgjGv2clTi35TsaFnZFRXyKqbn5AXeiJ_6psqqd-Hd1hlpmWgQUEtP6gKhhwd1qYgtVyI1n7fYoYO-I3803HJKbwWI5CucjQTzblbFS-l_jD4ZRb6QGCYnvvUAKBmJ_T5NMdTg",
     "type": "vault-kms:1.6",
     "port": 8200,
     "host_mapped": false

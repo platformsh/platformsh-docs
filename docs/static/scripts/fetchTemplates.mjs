@@ -50,9 +50,11 @@ const getTemplateRuntime = async (name, url, count) => {
           case 4:
             return getTemplateRuntime(name, url.replace("strapi/", "search/"), 5)
           default:
-            // The Next.js templates don't currently files in the template builder repo
+            // The Next.js templates don't currently have files in the template builder repo
             // So just do it manually
             if (name === "nextjs-drupal" || name === "nextjs-wordpress") return "nodejs"
+            // The Django4 template has an .applications.yaml file with complicated includes
+            if (name === "django4") return "python"
             console.error(`Could not find the app configuration file for the ${name} template`, url)
             return ""
         }
