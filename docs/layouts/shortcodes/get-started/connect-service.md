@@ -36,40 +36,30 @@ Then connect to the database in your app using the library.
 
 <div x-show="stack === 'php'">
 
-```php
-{{ readFile "static/files/fetch/examples/php/mysql" }}
-```
+{{ highlight ( readFile "static/files/fetch/examples/php/mysql" ) "php" "" }}
 
 </div>
 
 <div x-show="stack === 'nodejs'">
 
-```js
-{{ readFile "static/files/fetch/examples/nodejs/mysql" }}
-```
+{{ highlight ( readFile "static/files/fetch/examples/nodejs/mysql" ) "js" "" }}
 
 </div>
 
 <div x-show="stack === 'python'">
 
-```python
-{{ readFile "static/files/fetch/examples/python/mysql" }}
-```
+{{ highlight ( readFile "static/files/fetch/examples/python/mysql" ) "python" "" }}
 
 </div>
 
 <div x-show="stack === 'golang'">
 
-```python
-{{ readFile "static/files/fetch/examples/golang/mysql" }}
-```
+{{ highlight ( readFile "static/files/fetch/examples/golang/mysql" ) "go" "" }}
 
 </div>
 
 <div x-show="stack === 'java'">
 
-```python
-{{ readFile "static/files/fetch/examples/golang/mysql" }}
-```
+{{ highlight ( readFile "static/files/fetch/examples/java/mysql" ) "java" "" }}
 
 </div>

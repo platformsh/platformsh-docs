@@ -32,7 +32,7 @@ This way, you can keep track of everything that happens in your project.
 ## View logs
 
 Another way to keep track of your project and troubleshoot any issues is to view its logs.
-There are different types of logs you can view, such as error logs and any logs your app creates.
+Different types of logs are available, such as error logs and any logs your app creates.
 
 See the access log, a list of all attempts to access your website, run the following command:
 
