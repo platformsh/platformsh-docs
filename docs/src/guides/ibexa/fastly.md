@@ -58,7 +58,8 @@ platform variable:set -e production env:FASTLY_KEY YOUR_ID_HERE
 ## Setup the correct VCL files
 
 There are two VCL files provided as starting points for using Fastly with Ibexa DXP;
-you can find them in `vendor/ezsystems/ezplatform-http-cache-fastly/fastly/*.vcl`.
+you can find them in `vendor/ibexa/fastly/fastly/ez_*.vcl`.
+A VCL snippet can be found in `vendor/ibexa/fastly/fastly/snippet_re_enable_shielding.vcl`.
 They handle varying cache by user context hash _(permissions)_
 as well as several other needs by Ibexa DXP and it's underlying HttpCache system.
 
