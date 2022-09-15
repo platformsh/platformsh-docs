@@ -1,21 +1,25 @@
 name: Get info on PR
 on:
-  pull_request:
+  pull_request_target:
     branches: [main]
 
 env:
   PR_NUMBER: ${{ github.event.number }}
-  BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
 
 jobs:
   get_pr_info:
     runs-on: ubuntu-latest
-    # Don't run on forks since the CLI won't work
-    if: ${{ github.event.pull_request.head.repo.id == 21975579 }}
     steps: 
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+      - name: Set branch name
+        id: branch_name
+        run: |
+          # For PRs from non-forked repos
+          if [ ${{ github.event.pull_request.head.repo.id }} == 21975579 ]; then
+            echo "::set-output name=branch_name::${{ github.event.pull_request.head.ref }}"
+          # For PRs from forks
+          else
+            echo "::set-output name=branch_name::pr-$PR_NUMBER"
+          fi
 
       # Set up environment to use the Platform.sh CLI
       - uses: adam7/platformsh-cli-action@v1.1
@@ -27,14 +31,13 @@ jobs:
         id: get_env_url
         run: |
           COMMIT_STATUS="pending"
-          COMMIT_SHA=${{ github.event.pull_request.head.sha }}
 
           # Give time for the activity to be reported
           sleep 60
 
           # Get the most recent activity -- will be stable throughout based on ID
-          LATEST_ACTIVITY_ID=$(platform api:curl /projects/652soceglkw4u/environments/$BRANCH_NAME/activities | jq -r '.[0].id')
-          LATEST_ACTIVITY=$(platform api:curl /projects/652soceglkw4u/environments/$BRANCH_NAME/activities/$LATEST_ACTIVITY_ID)
+          LATEST_ACTIVITY_ID=$(platform api:curl /projects/652soceglkw4u/environments/${{ steps.branch_name.outputs.branch_name }}/activities | jq -r '.[0].id')
+          LATEST_ACTIVITY=$(platform api:curl /projects/652soceglkw4u/environments/${{ steps.branch_name.outputs.branch_name }}/activities/$LATEST_ACTIVITY_ID)
 
           # Get the state of the most recent activity
           STATE=$(echo $LATEST_ACTIVITY | jq -r '.state')
@@ -45,7 +48,7 @@ jobs:
           # Wait until state is complete or 10 minutes has passed
           until [ $STATE == "complete" ] || [ $STATUS_TRY == 20 ]; do
             sleep 30
-            LATEST_ACTIVITY=$(platform api:curl /projects/652soceglkw4u/environments/$BRANCH_NAME/activities/$LATEST_ACTIVITY_ID)
+            LATEST_ACTIVITY=$(platform api:curl /projects/652soceglkw4u/environments/${{ steps.branch_name.outputs.branch_name }}/activities/$LATEST_ACTIVITY_ID)
             STATE=$(echo $LATEST_ACTIVITY | jq -r '.state')
             ((STATUS_TRY+=1))
           done
@@ -86,7 +89,7 @@ jobs:
       - name: Create failure report
         if: steps.get_env_url.outputs.env_status == 'failure'
         run: |
-          echo -e "The environment on Platform.sh failed to deploy. :slightly_frowning_face:\n\nCheck the logs: https://console.platform.sh/projects/652soceglkw4u/$BRANCH_NAME" > pr_comment.txt
+          echo -e "The environment on Platform.sh failed to deploy. :slightly_frowning_face:\n\nCheck the logs: https://console.platform.sh/projects/652soceglkw4u/${{ steps.branch_name.outputs.branch_name }}" > pr_comment.txt
         
       # Create a list of relevant changed pages
       - name: Report environment URL
@@ -163,5 +166,5 @@ jobs:
       
       # If environment failed to create, fail the workflow
       - name: Fail workflow
-        if: steps.get_env_url.outputs.env_status == 'failure'
+        if: steps.get_env_url.outputs.env_status != 'success'
         run: exit 1
