@@ -78,7 +78,7 @@ jobs:
         if: ${{ always() }}
         run: echo $PR_NUMBER > pr_number.txt
 
-      - name: Save PR number
+      - name: Save PR SHA
         if: ${{ always() }}
         run: echo "${{ github.event.pull_request.head.sha }}" > pr_sha.txt
 
