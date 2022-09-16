@@ -1,7 +1,6 @@
 savePath: "/static/files/fetch/gatsby"
 root: "https://raw.githubusercontent.com/platformsh-templates"
 branch: "master"
-file: "gatsby/gatsby-config.js"
+file: "client/gatsby-config.js"
 repos: 
-    - gatsby-strapi
-    - gatsby-wordpress
+    - gatsby-drupal
