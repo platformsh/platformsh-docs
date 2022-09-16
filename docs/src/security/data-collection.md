@@ -36,7 +36,7 @@ Application access logs are immutable to Customers to prevent tampering. These l
 
 ### SSH access logs
 
-SSH access logs are securely stored in our infrastructure and are not accessible to Customers.
+SSH access logs are securely stored in our infrastructure and aren't accessible to Customers.
 These logs can be accessed by Platform.sh support personnel as part of an audit, if requested.
 
 Access by Customers and Platform.sh support personnel to customer environments is logged.

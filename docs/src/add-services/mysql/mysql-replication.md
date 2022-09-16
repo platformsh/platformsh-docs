@@ -17,7 +17,7 @@ Consult the MySQL or MariaDB documentation for steps to do so.
 
 ## Create a replication user
 
-In order to set up replication you need to create a replication-enabled user.
+To set up replication you need to create a replication-enabled user.
 For each database that you'd like to replicate, you need to assign a `replication` permission/role, under a corresponding `endpoint`:
 
 ```yaml

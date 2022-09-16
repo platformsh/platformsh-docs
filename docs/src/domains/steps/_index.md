@@ -10,18 +10,18 @@ layout: single
 {{% description %}}
 
 {{< note >}}
-The order of operations is not really important, but if you are migrating a site from an existing provider,
+The order of operations isn't really important, but if you are migrating a site from an existing provider,
 you should first configure the domain on the Platform.sh side, and only then switch DNS over.
 {{< /note >}}
 
 ## 1. Change your plan to a production plan
 
-If you are on a Development plan, you cannot add a domain.
+If you are on a Development plan, you can't add a domain.
 You need to upgrade your subscription to a production plan.
 
 {{< note >}}
 You are able to add a domain to your production environment.
-However, the domain used for non-production environments will always be generated and cannot be customized,
+However, the domain used for non-production environments will always be generated and can't be customized,
 even if your project is on a Production plan.
 {{< /note >}}
 
@@ -97,7 +97,7 @@ Run `ping <that domain name>` to get its IP address.
 
 In OS X and Linux you can add that IP  to your `/etc/hosts` file.
 In Windows the file is named `c:\Windows\System32\Drivers\etc\hosts`.
-You need to be a admin user to be able to change that file.
+You need to be a admin user to change that file.
 So in OS X you will usually run something like `sudo vi /etc/hosts`.
 After adding the line the file will look something like:
 

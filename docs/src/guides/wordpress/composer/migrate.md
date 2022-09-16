@@ -41,7 +41,7 @@ Instead of committing all of WordPress to your repository (or adding it as a sub
 
     Your existing installation of WordPress core is assumed to be in some subdirectory of your repository, such as `wordpress`. When we start managing WordPress with Composer in the next step, *all code in this subdirectory will be overwritten*. The [previous guide](/guides/wordpress/vanilla/_index.md) instructs you to move all plugins and themes out of WordPress core and into a separate `plugins` subdirectory, so if you have not already done so consult that guide and do so now. 
 
-    Inspect WordPress core carefully, and ensure that their is not any data in that subdirectory you would not like to lose specific to your site. Unless you are managing WordPress core as a [submodule](/development/submodules.md#removing-submodules), you can now remove that subdirectory 
+    Inspect WordPress core carefully, and ensure that their isn't any data in that subdirectory you would not like to lose specific to your site. Unless you are managing WordPress core as a [submodule](/development/submodules.md#removing-submodules), you can now remove that subdirectory 
 
     ```bash
     $ rm -rf wordpress
@@ -98,7 +98,7 @@ Like WordPress core itself, themes and plugins can be installed as dependencies 
     Some themes and plugins for WordPress are also on Packagist,
     but most of them are accessible through a similar service specific to WordPress called [WPackagist](https://wpackagist.org). 
 
-    In order to pull from this repository, you'll need to add WPackagist to your `composer.json` file so that Composer knows to look for packages there. Run the command: 
+    To pull from this repository, you'll need to add WPackagist to your `composer.json` file so that Composer knows to look for packages there. Run the command: 
 
     ```bash
     $ composer config repositories.wppackagist composer https://wpackagist.org

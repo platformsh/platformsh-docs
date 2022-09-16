@@ -15,7 +15,7 @@ When caching is on...
 * you can configure cache behavior for different location blocks in your `.platform.app.yaml`;
 * the router will respect whatever cache headers are sent by the application;
 * cookies will bypass the cache;
-* responses with the `Cache-Control` header set to `Private`, `No-Cache`, or `No-Store` are not cached.
+* responses with the `Cache-Control` header set to `Private`, `No-Cache`, or `No-Store` aren't cached.
 
 You should _not_ use the Platform.sh HTTP cache if you're using Varnish or an external CDN
 such as [Fastly](../domains/cdn/fastly.md) or [Cloudflare](../domains/cdn/cloudflare.md).
@@ -79,7 +79,7 @@ The cache duration is decided based on the `Cache-Control` response header value
 
 ### Conditional requests
 
-Conditional requests using `If-Modified-Since` and `If-None-Match` are both supported. Our web server does not honor the `Pragma` request header.
+Conditional requests using `If-Modified-Since` and `If-None-Match` are both supported. Our web server doesn't honor the `Pragma` request header.
 
 ### Cache revalidation
 
@@ -89,7 +89,7 @@ If the `If-None-Match` header is sent in the conditional request when `Etag` hea
 
 ### Flushing
 
-The HTTP cache does not support a complete cache flush, however, you can invalidate the cache by setting `cache: false`. Alternatively, the cache clears on a rebuild, so triggering a rebuild (pushing a new commit) will effectively cause a complete cache flush.
+The HTTP cache doesn't support a complete cache flush, however, you can invalidate the cache by setting `cache: false`. Alternatively, the cache clears on a rebuild, so triggering a rebuild (pushing a new commit) will effectively cause a complete cache flush.
 
 ## Cache configuration properties
 
@@ -103,7 +103,7 @@ Turns the cache on or off for a route.
 **Required:** Yes
 
 **Values**
-* `true`: enable the cache for this route [default, but only if the `cache` key is not actually specified]
+* `true`: enable the cache for this route [default, but only if the `cache` key isn't actually specified]
 * `false`: disable the cache for this route
 {{< /note >}}
 
@@ -134,7 +134,7 @@ The cache is only applied to `GET` and `HEAD` requests. Some headers trigger spe
 
 Header field | Cache behavior
 -------------|----------------
-`Cache-Control`|Responses with the `Cache-Control` header set to `Private`, `No-Cache`, or `No-Store` are not cached. All other values override `default_ttl`.
+`Cache-Control`|Responses with the `Cache-Control` header set to `Private`, `No-Cache`, or `No-Store` aren't cached. All other values override `default_ttl`.
 `Vary`|A list of header fields to be taken into account when constructing the cache key. Multiple header fields can be listed, separated by commas. The Cache key is the union of the values of the Header fields listed in Vary header, and whatever is listed in the `routes.yaml` file.
 `Set-Cookie`|Not cached
 `Accept-Encoding`, `Connection`, `Proxy-Authorization`, `TE`, `Upgrade`|Not allowed, and will throw an error
@@ -188,7 +188,7 @@ this is the recommended approach.
 
 ### `default_ttl`
 
-Defines the default time-to-live for the cache, in seconds, for non-static responses, when the response does not specify one.
+Defines the default time-to-live for the cache, in seconds, for non-static responses, when the response doesn't specify one.
 
 The cache duration is decided based on the `Cache-Control` response header value. If no `Cache-Control` header is in the response, then the value of `default_ttl` is used. If the application code returns a `Cache-Control` header or if your `.platform.app.yaml` file is configured to set a cache lifetime, then this value is ignored in favor of the application headers.
 
@@ -206,7 +206,7 @@ All static assets have a Cache-Control header with a max age defaulting to 0 (wh
 
 ## Debugging
 
-Platform.sh adds an `X-Platform-Cache` header to each request which show whether your request is a cache HIT, MISS or BYPASS. This can be useful when trying to determine whether it is your application, the HTTP cache, or another proxy or CDN which is not behaving as expected.
+Platform.sh adds an `X-Platform-Cache` header to each request which show whether your request is a cache HIT, MISS or BYPASS. This can be useful when trying to determine whether it is your application, the HTTP cache, or another proxy or CDN which isn't behaving as expected.
 
 If in doubt, disable the cache using `cache: false`.
 
@@ -270,4 +270,4 @@ Set the Vary header to `X-Forwarded-Proto` [custom request header](/development/
 
 ### Cache zipped content separately
 
-Use `Vary: Accept-Encoding` to serve different content depending on the encoding. Useful for ensuring that gzipped content is not served to clients that can't read it.
+Use `Vary: Accept-Encoding` to serve different content depending on the encoding. Useful for ensuring that gzipped content isn't served to clients that can't read it.

@@ -36,7 +36,7 @@ Enforce your users to authenticate with Google. Please open a support ticket to 
 
 #### Issue with re-authenticating every 15 minutes
 
-If your organization has Google SSO enabled on Platform.sh, you may be required to re-authenticate with Google every 15 minutes. This happens when Platform.sh does not possess a valid refresh token from your Google account. 
+If your organization has Google SSO enabled on Platform.sh, you may be required to re-authenticate with Google every 15 minutes. This happens when Platform.sh doesn't possess a valid refresh token from your Google account. 
 
 To resolve that, you need to:
 

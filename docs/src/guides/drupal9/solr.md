@@ -6,12 +6,12 @@ description: |
 weight: -50
 ---
 
-The Drupal [Search API Solr](https://www.drupal.org/project/search_api_solr) module has a somewhat involved setup process, as it requires live access to the Solr server in order to generate the configuration files for it.
-The following procedure is therefore necessary to ensure each step is able to proceed.
+The Drupal [Search API Solr](https://www.drupal.org/project/search_api_solr) module has a somewhat involved setup process, as it requires live access to the Solr server to generate the configuration files for it.
+The following procedure is necessary to ensure each step can proceed.
 
 Search API Solr stores its configuration in the Drupal Configuration API.
-However, that system does not support environment-aware information.
-The setup process therefore depends on config-overrides in `settings.platformsh.php`, which may need to be modified slightly depending on  your Solr configuration.
+That system doesn't support environment-aware information.
+So the setup process depends on config-overrides in `settings.platformsh.php`, which may need to be modified slightly depending on  your Solr configuration.
 
 Search API Solr requires Solr 6.6 or higher, and recommends Solr 8 or higher.
 
@@ -126,7 +126,7 @@ Commit all of the changes above and then push to deploy.
 ### 5. Enable the modules
 
 Once the site is deployed, go to the `/admin/modules` page and enable the "Search API Solr" module.
-Also enable the "Search API Solr Search Defaults" module in order to get a default server configuration.
+Also enable the "Search API Solr Search Defaults" module to get a default server configuration.
 If you would rather create one yourself you may do so but then you must change the value of `$solr_server_name` in the code snippet in `settings.platformsh.php`.
 
 ### 6. Export and modify configuration
@@ -142,7 +142,7 @@ It should unpack into a directory named `solr_8.x_config` or similar.
 
 Inside that directory, locate the `solrcore.properties` file.
 In that file, *delete* the entry for `solr.install.dir` if it exists.
-Its default value will not work, and it is not required for Solr to operate.
+Its default value will not work, and it isn't required for Solr to operate.
 (The server already knows its installation directory.)
 
 Finally, move that directory to `.platform/`, and update the `maincore.conf_dir` to point to it.

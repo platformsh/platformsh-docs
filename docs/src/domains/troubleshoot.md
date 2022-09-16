@@ -2,7 +2,7 @@
 title: "Going Live - Troubleshooting"
 weight: 4
 description: |
-  If all steps above have been followed and the site still does not resolve (after waiting for the DNS update to propagate), here are a few simple self-help steps to take before contacting support.
+  If all steps above have been followed and the site still doesn't resolve (after waiting for the DNS update to propagate), here are a few simple self-help steps to take before contacting support.
 sidebarTitle: "Troubleshooting"
 ---
 

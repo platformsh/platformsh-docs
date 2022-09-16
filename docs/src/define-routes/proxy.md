@@ -5,7 +5,7 @@ description: |
 mermaid: true
 ---
 ​
-Sometimes you want your app to be able to pass requests on to another location,
+Sometimes you want your app to pass requests on to another location,
 such as a different Platform.sh project.
 Basic redirects only work within the same project, so use proxy routes for routes elsewhere.
 ​

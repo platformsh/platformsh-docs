@@ -7,13 +7,13 @@ aliases:
   - "/golive/steps/cloudflare.html"
 ---
 
-One of the main features that a modern DNS provider needs to have in order to work well with Platform.sh
+One of the main features that a modern DNS provider needs to have to work well with Platform.sh
 is colloquially known as "CNAME Flattening".
 This solves the problem of being able to point your "root domain" (example.com)
 to a domain name (CNAME) rather than an IP address (A record).
 [This post](https://blog.cloudflare.com/introducing-CNAME-flattening-rfc-compliant-cnames-at-a-domains-root/) explains it well.
 
-In order to correctly point DNS to your Platform.sh project,
+To correctly point DNS to your Platform.sh project,
 you need at the very least the production environment CNAME,
 in other words the domain of your site before you add a custom domain.
 This is the value you would get from [Step 4 of the pre-launch checklist](/domains/checklist.md).

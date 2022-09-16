@@ -33,7 +33,7 @@ $ platform integrations
 ```
 
 {{< note theme="info" >}}
-If you have created your account using the Bitbucket or GitHub OAuth Login, then in order to use the Platform.sh CLI you need to set up a password by visiting [https://accounts.platform.sh/user/password](https://accounts.platform.sh/user/password).
+If you have created your account using the Bitbucket or GitHub OAuth Login, then to use the Platform.sh CLI you need to set up a password by visiting [https://accounts.platform.sh/user/password](https://accounts.platform.sh/user/password).
 {{< /note >}}
 
 ## Validating integrations
@@ -59,7 +59,7 @@ When integrations run, they trigger "activities."  Activities are actions that h
 Usually these are triggered nearly instantaneously on the webhook endpoint. These activities may be delayed due to the external services having latency.
 
 Those logs are available via the CLI.
-In most cases they are not necessary but may be useful for debugging an integration if it is misbehaving for some reason.
+In most cases they aren't necessary but may be useful for debugging an integration if it is misbehaving for some reason.
 
 There are a handful of commands available, all under the `integrations` section.
 
@@ -131,7 +131,7 @@ Log:
 ```
 
 That will show the full output of the activity, including timestamps.
-That can be especially helpful if trying to determine why an integration is not behaving as expected.
+That can be especially helpful if trying to determine why an integration isn't behaving as expected.
 
 See the `--help` output of the command for more options.
 

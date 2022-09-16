@@ -2,7 +2,7 @@
 title: "Authenticated Composer repositories"
 sidebarTitle: "Authenticated Composer"
 description: |
-  Some PHP projects may need to use a private, third party Composer repository in addition to the public Packagist.org repository. Often, such third party repositories require authentication in order to download packages. These credentials shouldn't be located in the Git repository source code for security reasons.
+  Some PHP projects may need to use a private, third party Composer repository in addition to the public Packagist.org repository. Often, such third party repositories require authentication to download packages. These credentials shouldn't be located in the Git repository source code for security reasons.
 aliases:
   - /guides/general/composer-auth.html
 ---
@@ -62,4 +62,4 @@ Typically, a private dependency will be hosted in a private Git repository.
 While Platform.sh supports [private repositories](/development/private-repository.md) for the site itself, that doesn't help for pulling in third party dependencies from private repositories unless they have the same SSH keys associated with them.
 
 Fortunately, most private Composer tools (including Satis, Toran Proxy, and [Private Packagist](https://packagist.com/)) mirror tagged releases of dependencies and serve them directly rather than hitting the Git repository.
-Therefore as long as your dependencies specify tagged releases there should be no need to authenticate against a remote Git repository and there should be no authentication issue.
+As long as your dependencies specify tagged releases, there should be no need to authenticate against a remote Git repository and there should be no authentication issue.

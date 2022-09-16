@@ -112,7 +112,7 @@ You can also combine it with `started_at` to see how long the activity took.
 
 A text description of the action that happened.
 This is a human-friendly string that may be displayed to a user
-but should not be parsed for data as its structure is not guaranteed.
+but should not be parsed for data as its structure isn't guaranteed.
 
 ### `payload.environment`
 

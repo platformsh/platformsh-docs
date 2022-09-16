@@ -17,7 +17,7 @@ description: |
 
 {{% guides/config-service framework=Strapi %}}
 
-Strapi requires a database to be able to deploy.
+Strapi requires a database to deploy.
 By default, it uses a SQLite database but other database types are also supported.
 These other database types are Oracle MySQL, PostgreSQL, or MongoDB (available only in Strapi v3 and below).
 The Strapi template defines a PostgreSQL database service.

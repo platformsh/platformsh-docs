@@ -32,7 +32,7 @@ On Platform.sh's side, there is no automatic IP or range blocking. Blocking IP's
 
 ## Rate Limits
 
-* Please limit scans to a maximum of 20 Mb per second and 50 requests per second in order to prevent triggering denial of service bans.
+* Please limit scans to a maximum of 20 Mb per second and 50 requests per second to prevent triggering denial of service bans.
 
 ## Troubleshooting
 

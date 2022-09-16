@@ -196,7 +196,7 @@ They can be used for your data: file uploads, logs, and temporary files.
 ### Git push fails due to lack of disk space
 
 You might see the following message when attempting to run `git push`:
-`There is not enough free space to complete the push`
+`There isn't enough free space to complete the push`
 
 This usually indicates that large files are present in the repository (where they shouldn't be).
 Make sure that the paths for files like media files, dependencies, and databases are set to be ignored in your `.gitignore` file.

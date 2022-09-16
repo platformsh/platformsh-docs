@@ -15,7 +15,7 @@ Customers may request that their account be deleted and all related data be purg
 ## System logs
 
 System level access and security logs are maintained by Platform.sh for diagnostic purposes.
-These logs are not customer-accessible.
+These logs aren't customer-accessible.
 These logs are retained for at least 6 months and at most 2 years depending upon legal and standards compliance required for each system.
 
 ## Application logs
@@ -44,5 +44,5 @@ These "tombstone" backups are retained for between 7 days and 6 months depending
 
 ## Analytics
 
-Platform.sh uses Google Analytics on various web pages, and therefore Google Analytics will store collected data for a period of time.
+Platform.sh uses Google Analytics on various web pages, and so Google Analytics will store collected data for a period of time.
 We have configured our Google Analytics account to store data for 14 months from the time you last accessed our site, which is the minimum Google allows.

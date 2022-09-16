@@ -10,7 +10,7 @@ Git is the open source version control system that is utilized by Platform.sh.
 
 Any change you make to your Platform.sh project needs to be committed via Git. You can see all the Git commit messages of an environment in the activity feed of the Console.
 
-Before getting started, make sure you have it installed on your computer to be able to interact with Platform.sh.
+Before getting started, make sure you have it installed on your computer to interact with Platform.sh.
 
 {{< note title="See also">}}
 * [Install Git](https://docs.github.com/en/get-started/quickstart/set-up-git)

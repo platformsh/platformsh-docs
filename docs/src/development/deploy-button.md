@@ -11,7 +11,7 @@ However, you can also create arbitrary links to spawn projects on Platform.sh fr
 There are two ways to create such a link, shown below.
 In each case, when a user clicks on the link they will be redirected to create a new Platform.sh project,
 with the template selection step skipped in favor of the template specified.
-If the user does not have a Platform.sh account yet they will be prompted to create one.
+If the user doesn't have a Platform.sh account yet they will be prompted to create one.
 
 You may include the link on your own project's website, your company's internal Wiki,
 or anywhere else a link can go to make launching your code base as straightforward as possible.
@@ -56,7 +56,7 @@ The easiest way to make a Deploy on Platform.sh button is to use our [button bui
 You provide it with either the Git URL of the repository or a URL to a corresponding template definition file.
 
 The button builder widget will give you an HTML fragment to copy and paste to wherever you want the button hosted.
-It will also include a tracking code so we can know whose Deploy on Platform.sh button was clicked, but does not add any cookies to the site.
+It will also include a tracking code so we can know whose Deploy on Platform.sh button was clicked, but doesn't add any cookies to the site.
 
 ## Making a button manually
 

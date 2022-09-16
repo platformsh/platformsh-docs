@@ -46,7 +46,7 @@ you can create a new project from the command line and connect it to your applic
 
 2. **Set Platform.sh as remote for your application**
 
-    Next, you need to connect to the remote project in order to push your code to Platform.sh.
+    Next, you need to connect to the remote project to push your code to Platform.sh.
 
     If you haven't already initialized your project directory as a Git repository, you first need to do so:
 

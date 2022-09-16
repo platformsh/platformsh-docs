@@ -11,7 +11,7 @@ Now that you've had the chance to verify that your application built and deploye
 {{< asciinema src="videos/asciinema/snap-merge-restore.cast" >}}
 
 {{< note >}}
-The `--project` flag is not needed if you are running the `platform` command from within your local repository.
+The `--project` flag isn't needed if you are running the `platform` command from within your local repository.
 {{< /note >}}
 
 

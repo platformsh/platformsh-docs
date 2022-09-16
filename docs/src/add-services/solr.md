@@ -194,7 +194,7 @@ searchsolr:
 
 In this example, `.platform/configsets/solr8` contains the configuration definition for multiple cores. There are then two cores created: `english_index` uses the defined configset, but specifically the `.platform/configsets/solr8/english/schema.xml` file, while `arabic_index` is identical except for using the `.platform/configsets/solr8/arabic/schema.xml` file. Each of those cores is then exposed as its own endpoint.
 
-Note that not all core.properties features make sense to specify in the `core_properties`. Some keys, such as `name` and `dataDir`, are not supported, and may result in a solrconfig that fails to work as intended, or at all.
+Note that not all core.properties features make sense to specify in the `core_properties`. Some keys, such as `name` and `dataDir`, aren't supported, and may result in a solrconfig that fails to work as intended, or at all.
 
 ### Default configuration
 
@@ -217,7 +217,7 @@ The default configuration is based on an older version of the Drupal 8 Search AP
 
 The recommended maximum size for configuration directories (zipped) is 2MB. These need to be monitored to ensure they don't grow beyond that. If the zipped configuration directories grow beyond this, performance will decline and deploys will become longer. The directory archives will be compressed and string encoded. You could use this bash pipeline `echo $(($(tar czf - . | base64 | wc -c )/(1024*1024))) Megabytes` inside the directory to get an idea of the archive size.
 
-The configuration directory is a collection of configuration data, like a data dictionary, e.g. small collections of key/value sets. The best way to keep the size small is to restrict the directory context to plain configurations. Including binary data like plugin `.jar` files will inflate the archive size, and is not recommended.
+The configuration directory is a collection of configuration data, like a data dictionary, e.g. small collections of key/value sets. The best way to keep the size small is to restrict the directory context to plain configurations. Including binary data like plugin `.jar` files will inflate the archive size, and isn't recommended.
 
 ## Accessing the Solr server administrative interface
 
@@ -239,7 +239,7 @@ View tunnel details with: platform tunnel:info
 Close tunnels with: platform tunnel:close
 ```
 
-In this example, you can now open `http://localhost:30000/solr/` in a browser to access the Solr admin interface. Note that you cannot create indexes or users this way, but you can browse the existing indexes and manipulate the stored data.
+In this example, you can now open `http://localhost:30000/solr/` in a browser to access the Solr admin interface. Note that you can't create indexes or users this way, but you can browse the existing indexes and manipulate the stored data.
 
 
 {{< note >}}
@@ -249,7 +249,7 @@ Platform.sh Dedicated users can use `ssh -L 8888:localhost:8983 <user>@<cluster-
 
 ## Upgrading
 
-The Solr data format sometimes changes between versions in incompatible ways. Solr does not include a data upgrade mechanism as it is expected that all indexes can be regenerated from stable data if needed. To upgrade (or downgrade) Solr you need to use a new service from scratch.
+The Solr data format sometimes changes between versions in incompatible ways. Solr doesn't include a data upgrade mechanism as it is expected that all indexes can be regenerated from stable data if needed. To upgrade (or downgrade) Solr you need to use a new service from scratch.
 
 There are two ways of doing that.
 

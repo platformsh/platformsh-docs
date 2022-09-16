@@ -12,7 +12,7 @@ description: |
 
 * A software project released under a Free and Open Source license (*GPL, BSD, MIT, Apache, etc.)
 * A community-oriented conference or similar event run either by the community or a related non-profit corporation.
-For-profit events and organizations are not eligible.
+For-profit events and organizations aren't eligible.
 * An offline IT community organization, such as a local user group for a Free and Open Source project.
 * An online non-profit community project that supports one of the above.
 
@@ -36,7 +36,7 @@ A project is under no obligation to use the application container of their proje
 In return, eligible projects are expected to include an HTML snippet conspicuously on each page of the site.
 That may be in a sidebar or footer, with text no smaller than the standard body text size for the site. The image may be scaled via CSS as appropriate as long as the text is fully readable.
 The badge markup will be provided by Platform.sh when setting up the site and will include a link to Platform.sh and an analytics tracking value so we know where links are coming from.
-It does not include any cookies.
+It doesn't include any cookies.
 
 Platform.sh may from time to time update the widget’s contents and the sponsored site will update the contents in a timely fashion.
 

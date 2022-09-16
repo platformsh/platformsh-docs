@@ -172,7 +172,7 @@ web:
 
 ### Using Java Config Reader
 
-If your framework does not support configuration via environment variables, there is the [Platform.sh Config Reader](https://github.com/platformsh/config-reader-java).This library provides a streamlined way to interact with a Platform.sh environment. It offers utility methods to access routes and relationships more cleanly than reading the raw environment variables yourself. [See the maven dependency](https://mvnrepository.com/artifact/sh.platform/config).
+If your framework doesn't support configuration via environment variables, there is the [Platform.sh Config Reader](https://github.com/platformsh/config-reader-java).This library provides a streamlined way to interact with a Platform.sh environment. It offers utility methods to access routes and relationships more cleanly than reading the raw environment variables yourself. [See the maven dependency](https://mvnrepository.com/artifact/sh.platform/config).
 
 ```java
 import Config;

@@ -45,7 +45,7 @@ Adapt the examples for your app's language.
 
 ### Get the token
 
-In order to make any calls to the Vault KMS, you need your token. Get it from the `$PLATFORM_RELATIONSHIPS` environment variable:
+To make any calls to the Vault KMS, you need your token. Get it from the `$PLATFORM_RELATIONSHIPS` environment variable:
 
 ```bash
 echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".<SERVICE_NAME>[0].password"

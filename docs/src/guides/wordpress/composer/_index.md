@@ -8,7 +8,7 @@ description: |
 ---
 
 
-Using Composer is not traditionally the norm for WordPress development, but it is strongly recommended when deploying on Platform.sh. This guide is intended to provide an overview of why using Composer - including adding modules and themes locally as packages, as well as updating WordPress itself - is recommended. 
+Using Composer isn't traditionally the norm for WordPress development, but it is strongly recommended when deploying on Platform.sh. This guide is intended to provide an overview of why using Composer - including adding modules and themes locally as packages, as well as updating WordPress itself - is recommended. 
 
 ## Why use Composer
 
@@ -16,13 +16,13 @@ Like any other application, your WordPress site is most secure when you can ensu
 
 WordPress core, as well as its themes and plugins, should ideally work the same way, but very often this isn't the case. WordPress's administration panel provides one-click buttons to update all of these components when they're out of date, or otherwise expects write access to the file system to make configuration changes at runtime. Developing this way has its consequences, however. 
 
-First off, you are not always going to have write access to the file system at runtime (which is the case for Platform.sh), so depending on this mechanism for updates and configuration changes is entirely restricted for many hosting solutions. On the other hand, if you *do* have write access at runtime where you're hosting currently, installing a new module or theme presents a nontrivial security risk when the source is unknown. 
+First off, you aren't always going to have write access to the file system at runtime (which is the case for Platform.sh), so depending on this mechanism for updates and configuration changes is entirely restricted for many hosting solutions. On the other hand, if you *do* have write access at runtime where you're hosting currently, installing a new module or theme presents a nontrivial security risk when the source is unknown. 
 
 But, perhaps most importantly, updating WordPress at runtime decouples the state of your site from the code in your repository. A colleague working on a new feature on their local clone of the project could very well be a full major version behind the live site, introducing bugs with unknown (and more importantly, untested) consequences completely as a result of this workflow. 
 
 ## Advantages of using Composer
 
-Given the points raised above, managing your WordPress site with Composer has clear advantages. First, it allows you to explicitly define your dependencies in a committed file (`composer.lock`). This lock file is generated from a more descriptive list of dependency constraints (`composer.json`) when your dependencies are installed, and it becomes a part of your project's commit history. From then on, any new branch will work from the identical collection of dependencies, down to the exact commit hash. It does not matter at that point who contributes to the project or even where it is deployed - it's the same code for everyone everywhere.
+Given the points raised above, managing your WordPress site with Composer has clear advantages. First, it allows you to explicitly define your dependencies in a committed file (`composer.lock`). This lock file is generated from a more descriptive list of dependency constraints (`composer.json`) when your dependencies are installed, and it becomes a part of your project's commit history. From then on, any new branch will work from the identical collection of dependencies, down to the exact commit hash. It doesn't matter at that point who contributes to the project or even where it is deployed - it's the same code for everyone everywhere.
 
 Composer also removes the need to commit lots of external code to your repository. In the case of WordPress, *not* using Composer often requires you to commit all of the code for a theme, and even for WordPress core itself, to your own project. Besides making the repository unnecessarily large and slow to clone, updating these copies becomes a juggling act that nobody needs to deal with.
 

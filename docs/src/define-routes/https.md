@@ -26,7 +26,7 @@ In those cases, containers will be rebooted and the process will take a little l
 {{< /note >}}
 
 If you are using a custom TLS certificate, seven days before it expires
-Platform.sh issues a Let's Encrypt certificate and replaces the custom certificate with it in order to avoid interruption in service.
+Platform.sh issues a Let's Encrypt certificate and replaces the custom certificate with it to avoid interruption in service.
 If you wish to continue using the custom certificate,
 replace it with an updated certificate more than seven days before it expires.
 
@@ -113,7 +113,7 @@ tls:
 
 The above configuration results in requests using older TLS versions to be rejected.
 Legal values are `TLSv1.2` and `TLSv1.3`.
-TLS versions older than 1.2 are not supported by Platform.sh and are rejected regardless of the setting here.
+TLS versions older than 1.2 aren't supported by Platform.sh and are rejected regardless of the setting here.
 
 Note that if multiple routes for the same domain have different `min_version`s specified,
 the highest specified is used for the whole domain.
@@ -245,7 +245,7 @@ your branch names should be no more than 20 characters.
 
 ### DNS Challenge
 
-To be able to provide a valid SSL-certificate,
+To provide a valid SSL-certificate,
 Let's Encrypt needs to make sure that the requester is entitled to receive the SSL-certificate it asked for
 (usually through the presence of a specific token on the DNS zone of that domain).
 

@@ -210,8 +210,8 @@ crons:
             start: 'cd web ; drush core-cron'
 
 # The worker defined here will also have the same 6 mounts;
-# 2 of them will be shared with the web container,
-# the other 4 will be local to the worker.
+# 2 of them are shared with the web container,
+# the other 4 are local to the worker.
 workers:
     queue:
         commands:

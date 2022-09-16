@@ -25,10 +25,10 @@ Normally, this means there is a problem with the MySQL server container and you 
 Examine the watchdog logs and resolve the errors reported.
 2. Cron should run at regular intervals to ensure cache tables get cleared out.
 3. You are using database caching.
-That is not recommended, primarily because it can balloon the size of the database.
+That isn't recommended, primarily because it can balloon the size of the database.
 We recommend [Redis caching](/guides/drupal9/redis.md) for all Drupal sites.
 
-## Why do I get "MySQL cannot connect to the database server"?
+## Why do I get "MySQL can't connect to the database server"?
 
 If you are having a problem connecting to the database server, you need force a redeployment of the database container. To do so, you can edit the service definition to add or remove a small amount of storage and then push.
 

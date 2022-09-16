@@ -21,7 +21,7 @@ The three virtual machines are exclusively used by a single customer and each De
 The network is behind a firewall for incoming connections; only ports 22 (SSH), 80 (HTTP), 443 (HTTPS), 2221 (SFTP) are opened to incoming traffic.
 There are **no exceptions** for this rule, so any incoming web service requests, ETL jobs, or otherwise need to transact over one of these protocols.
 
-Outgoing TCP traffic is not behind a firewall.
+Outgoing TCP traffic isn't behind a firewall.
 Outgoing UDP traffic is disallowed.
 
 The Development Environment deploys each branch as a series of containers hosted on a shared underlying VM.

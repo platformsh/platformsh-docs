@@ -80,7 +80,7 @@ Ideally, all applications should run the latest LTS release of the JVM at least.
 That is currently Java 11.
 Java 11 has a number of performance improvements, particularly on container-based environments such as Platform.sh.
 
-However, in many cases, this is not possible.
+However, in many cases, this isn't possible.
 If you are still running on Java 8 there are two additional considerations.
 
 The default garbage collector for Java 8 is Parallel GC.

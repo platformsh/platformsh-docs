@@ -29,7 +29,7 @@ In the previous step, you created a new project on Platform.sh using the CLI. No
     └── < application code >
     ```
 
-    In order to successfully deploy to Platform.sh you need to add two YAML files:
+    To successfully deploy to Platform.sh you need to add two YAML files:
 
       * A `.platform/routes.yaml` file, which configures the [routes](../../../define-routes/_index.md) used in your environments.
         It describes how an incoming HTTP request is going to be processed by Platform.sh.

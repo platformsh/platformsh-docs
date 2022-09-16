@@ -10,13 +10,13 @@ sidebarTitle: "DNS and CNAMEs"
 ## Why CNAMEs?
 
 Platform.sh is a cloud hosting provider.
-That means each individual "site" is not its own computer but a set of containers running on one or more virtual machines, which are themselves running on any number of physical computers, all of which are shared with other customers running the same configuration.
+That means each individual "site" isn't its own computer but a set of containers running on one or more virtual machines, which are themselves running on any number of physical computers, all of which are shared with other customers running the same configuration.
 An entire region of projects runs behind our dedicated, high-performance edge routers, which are responsible for mapping incoming requests to the particular container on a particular host that is appropriate.
 
 All of that logic is quite robust and fast, but it does require that incoming requests all get sent first to the edge routers.
-While the [IP addresses of the edge routers](/development/regions.md) are fairly stable, they are not guaranteed to never change.
+While the [IP addresses of the edge routers](/development/regions.md) are fairly stable, they aren't guaranteed to never change.
 We also may add or remove routers to help scale the region, or take them offline one at a time for upgrades and maintenance.
-It is therefore critical that inbound requests always know what the IPs are of the edge routers at the time of the request.
+So it's critical that inbound requests always know what the IPs are of the edge routers at the time of the request.
 
 All of Platform.sh's "edge hostnames" (the auto-generated URLs in the form `<branch>-<hash>-<project_id>.<region>.platformsh.site`) are DNS records we control that resolve to the IP addresses of the edge routers for that region.
 If an edge router is updated, taken out of rotation, etc. then those domains will update quickly and automatically with no further action required.
@@ -64,7 +64,7 @@ Examples of such workaround records include:
 <!-- vale Platform.condescending = YES -->
 
 Platform.sh recommends ensuring that your DNS Provider supports dynamic apex domains before registering your domain name with them.
-If you are using a DNS Provider that does not support dynamic apex domains then you can't use `example.com` with Platform.sh, and need to use only `www.example.com` (or similar) instead.
+If you are using a DNS Provider that doesn't support dynamic apex domains then you can't use `example.com` with Platform.sh, and need to use only `www.example.com` (or similar) instead.
 
 ### (Alternate) Using a DNS provider with apex domain forwarding
 
@@ -87,7 +87,7 @@ The extra redirect adds only a millisecond or two to the first page load only, a
 
 ### (Alternate) Using A records
 
-If you absolutely cannot use a DNS provider that supports aliases or a redirection service, it is possible to use `A` records with Platform.sh.
+If you absolutely can't use a DNS provider that supports aliases or a redirection service, it is possible to use `A` records with Platform.sh.
 They will result in a sub-optimal experience, however.
 
 This process has a few limitations:

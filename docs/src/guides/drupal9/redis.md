@@ -83,7 +83,7 @@ if ($platformsh->hasRelationship('rediscache') && !\Drupal\Core\Installer\Instal
 
   // Use redis for container cache.
   // The container cache is used to load the container definition itself, and
-  // thus any configuration stored in the container itself is not available
+  // thus any configuration stored in the container itself isn't available
   // yet. These lines force the container cache to use Redis rather than the
   // default SQL cache.
   $settings['bootstrap_container_definition'] = [
@@ -143,4 +143,4 @@ After you push this code, you should run the command and notice that allocated m
 
 Once you've confirmed that your site is using Redis for caching, you can and should purge any remaining cache data in the MySQL database as it is now just taking up space.
 `TRUNCATE` any table that begins with `cache` *except* for `cache_form`.
-Despite its name `cache_form` is not part of the cache system proper and thus should not be moved out of SQL.
+Despite its name `cache_form` isn't part of the cache system proper and thus should not be moved out of SQL.

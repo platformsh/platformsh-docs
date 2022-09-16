@@ -30,7 +30,7 @@ An example `.platform/services.yaml` looks something like this:
 
 {{< readFile file="static/files/fetch/servicesyaml/drupal9" highlight="yaml" >}}
 
-If your application does not use any services at this point then you can leave it blank, but it must exist in your repository to run on Platform.sh.
+If your application doesn't use any services at this point then you can leave it blank, but it must exist in your repository to run on Platform.sh.
 
 If your application does use a database or other services, you can configure them with the following attributes:
 

@@ -9,7 +9,7 @@ aliases:
 Now that you have a local copy of your application code, you can make changes to the project without pushing to Platform.sh each time to test them. Instead you can locally build your application using the CLI, even when its functionality depends on a number of services.
 
 {{< note >}}
-If your application does not contain any services, you do not need to open a tunnel and can proceed to the next step.
+If your application doesn't contain any services, you do not need to open a tunnel and can proceed to the next step.
 {{< /note >}}
 
 {{< asciinema src="videos/asciinema/tunnel-open.cast" >}}
@@ -24,12 +24,12 @@ If your application does not contain any services, you do not need to open a tun
 
 2. **Export environment variables**
 
-    Platform.sh utilizes environment variables called Relationships within the application container. These store the credentials needed to connect to individual services. In order to connect with them remotely using the SSH tunnel you need to mimic the same environment variables locally.
+    Platform.sh utilizes environment variables called Relationships within the application container. These store the credentials needed to connect to individual services. To connect with them remotely using the SSH tunnel you need to mimic the same environment variables locally.
 
     ```bash
     export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"
     ```
-    In order to use these credentials to connect to your services, it may also be necessary to install the clients for those services are locally.
+    To use these credentials to connect to your services, it may also be necessary to install the clients for those services are locally.
 
     Additionally, if your application also needs access to the `PORT` environment variable, you can mock the variable used in a Platform.sh environment with
 

@@ -10,7 +10,7 @@ aliases:
 {{% description %}}
 
 A Fastly CDN is included for Platform.sh Dedicated instances.
-Platform.sh does not offer an integrated CDN on self-service Grid projects at this time,
+Platform.sh doesn't offer an integrated CDN on self-service Grid projects at this time,
 but it is a common choice for customers to self-configure.
 
 Launching a Platform.sh site with Fastly in front of it is nearly the same as launching normally.

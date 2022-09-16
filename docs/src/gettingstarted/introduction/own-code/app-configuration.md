@@ -63,7 +63,7 @@ markdownify=false
 
 The `.platform.app.yaml` file is extremely flexible, and can contain many lines with very fine-grained control over your application. At the very least, Platform.sh requires three principle attributes in this file to control your builds:
 
-* `name`: The [name of your application](../../../create-apps/app-reference.md) container does not have to be the same as your project name, and in most single application cases you can name it `app`. You should notice in the next step, when you configure how requests are handled in `.platform/routes.yaml` that `name` is reused there, and it is important that they are the same.
+* `name`: The [name of your application](../../../create-apps/app-reference.md) container doesn't have to be the same as your project name, and in most single application cases you can name it `app`. You should notice in the next step, when you configure how requests are handled in `.platform/routes.yaml` that `name` is reused there, and it is important that they are the same.
 
   {{< note >}}
 
@@ -84,9 +84,9 @@ The `.platform.app.yaml` file is extremely flexible, and can contain many lines 
 
 * `disk`: The [disk](../../../create-apps/app-reference.md) attribute defines that amount of persistent storage you need to have available for your application, and requires a minimum value of 256 MB.
 
-There are a few additional keys in `.platform.app.yaml` you will likely need to use to fully configure your application, but are not required:
+There are a few additional keys in `.platform.app.yaml` you will likely need to use to fully configure your application, but aren't required:
 
-* `relationships`: [Relationships](../../../create-apps/app-reference.md#relationships) define how services are mapped within your application. Without this block, an application cannot by default communicate with a service container. Provide a unique name for each relationship and associate it with a service. For example, if in the previous step you defined a MariaDB container in your `.platform/services.yaml` with
+* `relationships`: [Relationships](../../../create-apps/app-reference.md#relationships) define how services are mapped within your application. Without this block, an application can't by default communicate with a service container. Provide a unique name for each relationship and associate it with a service. For example, if in the previous step you defined a MariaDB container in your `.platform/services.yaml` with
 
   {{< readFile file="src/registry/images/examples/full/mysql.services.yaml" highlight="yaml">}}
 
@@ -124,7 +124,7 @@ There are a few additional keys in `.platform.app.yaml` you will likely need to 
                   root: 'web'
                   passthru: '/app.php'
       ```
-* `mounts`: Configuring mounts are not required, unless part of your application requires write-access. By default, Platform.sh provided a *read-only* filesystem for your projects so that you can be confident in the health and security of your application once it has deployed.
+* `mounts`: Configuring mounts aren't required, unless part of your application requires write-access. By default, Platform.sh provided a *read-only* filesystem for your projects so that you can be confident in the health and security of your application once it has deployed.
 
   If your application requires writable storage to function properly (i.e., saving files; mounts should not contain code) it can be defined like so:
 

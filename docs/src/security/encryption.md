@@ -8,7 +8,7 @@ Data in transit between the World and Platform.sh is always encrypted as all of 
 
 Data in transit between the world and customer applications is encrypted by default.
 Only SSH and HTTPS connections are generally accepted, with HTTP requests redirected to HTTPS.
-Users may opt-out of that redirect and accept HTTP requests via `routes.yaml` configuration, although that is not recommended.
+Users may opt-out of that redirect and accept HTTP requests via `routes.yaml` configuration, although that isn't recommended.
 By default HTTPS connections use an automatically generated Let's Encrypt certificate or users may provide their own TLS certificate.
 
 Data in transit on Platform.sh controlled networks (for example, between the application and a database) may or may not be encrypted, but is nonetheless protected by private networking rules.

@@ -188,10 +188,10 @@ The API is similar to the JavaScript `LocalStorage` API.
 
 ```javascript
 // Access the storage API.
-It is not pre-required.
+It isn't pre-required.
 var storage = require("storage");
 
-// Retrieve a stored value. If the value is not set it will return null.
+// Retrieve a stored value. If the value isn't set it will return null.
 var counter = storage.get('counter') || 0;
 
 if (counter) {

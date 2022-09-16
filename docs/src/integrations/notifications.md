@@ -8,7 +8,7 @@ description: |
 {{% description %}}
 
 {{< note >}}
-Remember that you must have `admin` access to a project in order to add or modify an integration.
+Remember that you must have `admin` access to a project to add or modify an integration.
 See [User administration roles](/administration/users.md#user-roles) for more details.
 {{< /note >}}
 
@@ -120,7 +120,7 @@ platform integration:add --type health.webhook --url=A-URL-THAT-CAN-RECEIVE-THE-
 
 Any notification will now be posted to the `health.webhook` URL.
 
-In order to let you verify that requests are coming from the integration, you can use the optional `shared-key` parameter which will add a `X-JWS-Signature` request header containing the JSON Web Token Signature in JWS Compact Serialization with Unencoded Detached Payload ([RFC7797](https://tools.ietf.org/html/rfc7797)).
+To let you verify that requests are coming from the integration, you can use the optional `shared-key` parameter which will add a `X-JWS-Signature` request header containing the JSON Web Token Signature in JWS Compact Serialization with Unencoded Detached Payload ([RFC7797](https://tools.ietf.org/html/rfc7797)).
 
 ```bash
 platform integration:add --type health.webhook --url=A-URL-THAT-CAN-RECEIVE-THE-POSTED-JSON --shared-key JWS-SYMMETRIC-KEY

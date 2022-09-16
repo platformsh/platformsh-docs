@@ -18,15 +18,15 @@ Our recommended CDN provider is [Fastly](./fastly.md).
 ## DNS management
 
 The distributed nature of most CDNs means that for proper functioning,
-any domains that you intend to make use of the CDN will be required to use CNAME records for pointing the DNS entries.
-Pointing the root domain (example.com) at a CNAME record is not possible for all DNS hosts,
+any domains that you intend to make use of the CDN are required to use CNAME records for pointing the DNS entries.
+Pointing the root domain (example.com) at a CNAME record isn't possible for all DNS hosts,
 so you need to confirm this functionality or migrate to a new DNS host.
 CloudFlare has a [more detailed writeup](https://blog.cloudflare.com/introducing-cname-flattening-rfc-compliant-cnames-at-a-domains-root/)
 of the challenges of root CNAMEs.
 
 In the event that you and your team choose a pure Fastly solution,
 this is negated by their providing a set of Anycast IP addresses for you.
-This allows you to create A records for your root domain that will point to Fastly’s CDN.
+This allows you to create A records for your root domain that point to Fastly’s CDN.
 
 ## Initial setup
 
@@ -44,18 +44,18 @@ there may be varying levels of flexibility with regard to caching and ongoing ca
 This should be discussed between your sales representative and senior technical members of your team
 if there are concerns with CDN configuration and functionality.
 
-If using Fastly as a CDN, it is possible to provide either custom VCL snippets or a full custom VCL file.
-Platform.sh will grant customers access to do so upon request.
-However, be aware that downtime caused by custom VCL configuration will not be covered by the SLA,
-just as application code in your repository is not covered by the SLA.
+If using Fastly as a CDN, you can provide either custom VCL snippets or a full custom VCL file.
+Platform.sh grants customers access to do so upon request.
+Be aware that downtime caused by custom VCL configuration isn't covered by the SLA,
+just as application code in your repository isn't covered by the SLA.
 
 ## TLS encryption
 
-Security and the related topic of encryption of data are fundamental principles here at Platform.sh,
-and as such we provide TLS certificates in the default Enterprise-Dedicated package.
+Security and the related topic of encryption of data are fundamental principles at Platform.sh,
+and so Platform.sh provides TLS certificates in the default Enterprise-Dedicated package.
 This allows for encryption of all traffic between your users and your application.
-By default, we will provision a shared certificate with the chosen CDN vendor.
-If you opt for the Global Application Cache, we will provision certificates for both the site subdomain (`www`) and the asset/CDN subdomain.
+By default, a shared certificate is provisioned with the chosen CDN vendor.
+If you opt for the Global Application Cache, certificates are provisioned for both the site subdomain (`www`) and the asset/CDN subdomain.
 We use wildcard certificates to secure production, staging, and any other subdomains simultaneously.
 If you need Extended Validation TLS certificates,
 you need to provide your own from an issuer of your choice that we can install for you.
@@ -75,10 +75,10 @@ Larger sizes will not work.
 
 The `Host` HTTP header tells the server what domain name is being requested,
 which may vary when multiple domains are served from the same server or through the same proxy, as is the case with a CDN.
-However, the CDN cannot use the production domain name in order to reach Platform.sh, as that domain already routes to the CDN.
-It therefore will use the origin name provided by Platform.sh.
+However, the CDN can't use the production domain name to reach Platform.sh, as that domain already routes to the CDN.
+So it uses the origin name provided by Platform.sh.
 
-In order to ensure your TLS certificates are valid for both requests from clients to the CDN and from the CDN to the server on Platform.sh,
+To ensure your TLS certificates are valid for both requests from clients to the CDN and from the CDN to the server on Platform.sh,
 you need to take two additional steps:
 
 1. Configure your CDN to set the `X-Forwarded-Host` HTTP header to the public domain (`example.com`).
@@ -140,7 +140,7 @@ This is the recommended approach for CloudFlare.
 
 ### Allowing and denying IP addresses
 
-If your CDN does not support adding headers to the request to origin, you can allow the IP addresses of your CDN.
+If your CDN doesn't support adding headers to the request to origin, you can allow the IP addresses of your CDN.
 
 {{< note >}}
 You *WILL* have to update your configuration when your CDN updates their IP addresses.

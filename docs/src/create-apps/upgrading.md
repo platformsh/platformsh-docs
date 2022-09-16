@@ -122,7 +122,7 @@ web:
 
 ## Changes in version 2016.4
 
-As of July 2016, we no longer create default configuration files if one is not provided.
+As of July 2016, we no longer create default configuration files if one isn't provided.
 The defaults we used to provide were tailored specifically for Drupal 7, which is now a legacy-support version with the release of Drupal 8 and not especially useful for non-Drupal or non-PHP sites.
 They also defaulted to software versions that are no longer current and recommended.
 Instead, you must provide your own `.platform.app.yaml`, `.platform/routes.yaml`, and `.platform/services.yaml` files.

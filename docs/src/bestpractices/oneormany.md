@@ -67,4 +67,4 @@ Leveraging multi-site capabilities of an application are appropriate if, and onl
 * Each individual site is relatively low traffic, such that the aggregate traffic is appropriate for your plan size.
 * All sites really do use the same codebase with no variation, just different data.
 
-If any of those is not the case, discrete projects will be a better long term plan.
+If any of those isn't the case, discrete projects will be a better long term plan.

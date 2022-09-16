@@ -90,7 +90,7 @@ If you see the message `Failed to read or write webhooks`, you need to add a web
 
 You can now start pushing code, creating new branches or opening pull requests directly on your GitHub repository.
 
-Note that if you have created your account using the GitHub OAuth Login then in order to use the Platform CLI,
+Note that if you have created your account using the GitHub OAuth Login then to use the Platform CLI,
 you need to [setup a password](https://accounts.platform.sh/user/password).
 
 ### 4. Validate the integration

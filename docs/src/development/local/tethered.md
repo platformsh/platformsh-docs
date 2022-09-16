@@ -47,7 +47,7 @@ Now you can connect to the remote database normally, as if it were local.
 $ mysql --host=127.0.0.1 --port=30001 --user='user' --password='' --database='main'
 ```
 
-The specific port that each service uses is not guaranteed, but is unlikely to change unless you add an additional service or connect to multiple projects at once.
+The specific port that each service uses isn't guaranteed, but is unlikely to change unless you add an additional service or connect to multiple projects at once.
 In most cases it's safe to add a local-configuration file for your application that connects to, in this case, `localhost:30001` for the SQL database and `localhost:30000` for Redis.
 
 After the tunnels are opened, you can confirm their presence:
@@ -86,7 +86,7 @@ export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"
 That will create a `PLATFORM_RELATIONSHIPS` environment variable locally that looks exactly the same as the one you'd see on Platform.sh, but pointing to the locally mapped SSH tunnels.
 Whatever code you have that looks for and decodes the relationship information from that variable (which is what runs on Platform.sh) will detect it and use it just as if you were running on Platform.sh.
 
-Note that the environment variable is set globally so you cannot use this mechanism to load multiple tethered Platform.sh projects at the same time.
+Note that the environment variable is set globally so you can't use this mechanism to load multiple tethered Platform.sh projects at the same time.
 If you need to run multiple tethered environments at once you will have to read the relationships information for each one from the application code, like so:
 
 {{< codetabs >}}

@@ -2,7 +2,7 @@
 title: "Platform.sh Third-Party Resources"
 sidebarTitle: "Third-party resources"
 description: |
-  This is a Big List of known third party resources for Platform.sh. These resources are not vetted by Platform.sh, but may be useful for people working with the platform.
+  This is a Big List of known third party resources for Platform.sh. These resources aren't vetted by Platform.sh, but may be useful for people working with the platform.
 ---
 
 {{% description %}}
@@ -38,7 +38,7 @@ description: |
 
 * [Modifying distribution make files for Platform.sh](https://www.nickvahalik.com/blog/modifying-distribution-makefiles-within-your-own-project-makefile-platformsh)
 * Platform.sh [Drupal 8 Development Workflow](https://github.com/JohnatasJMO/platformsh-development-workflow) by @JohnatasJMO
-* Syslogging is not supported on Platform.sh, instead, you can [Log using Monolog](https://gist.github.com/janstoeckler/7f251bf10fedbfb7f752b61ee5d2ef5e) to keep log files out of the database (and/or use whatever processors & handlers you want)
+* Syslogging isn't supported on Platform.sh, instead, you can [Log using Monolog](https://gist.github.com/janstoeckler/7f251bf10fedbfb7f752b61ee5d2ef5e) to keep log files out of the database (and/or use whatever processors & handlers you want)
 
 ### Sylius
 

@@ -47,7 +47,7 @@ php artisan optimize:clear
 * The `MAIL_DRIVER`, `MAIL_HOST`, and `MAIL_PORT` variables are set
   to support sending email through the Platform.sh mail gateway. 
   The `MAIL_ENCRYPTION` value is also set to `0` to disable TLS,
-  as it is not needed or supported within Platform.sh's network.
+  as it isn't needed or supported within Platform.sh's network.
   Note that doing so is only supported on Laravel 6.0.4 and later.
   On earlier versions, you *must* manually modify `mail.php` and set `encryption` to `null`:
 

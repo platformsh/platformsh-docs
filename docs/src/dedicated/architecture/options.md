@@ -9,7 +9,7 @@ By default, the staging instance and production instance run on the same trio of
 That ensures identical configuration between them but can incur a performance penalty for production if the load generated during QA and UAT in staging is of any appreciable size.
 
 A dedicated single-node staging machine can be provisioned for your application with an identical software configuration to your production hardware, but reduced hardware specs.
-This gives the advantages of isolating the staging load from the production hardware as well as having an identical software configuration to perform UAT, but this option does not provide a bed for performance testing as the physical hardware configuration is not the same as production.
+This gives the advantages of isolating the staging load from the production hardware as well as having an identical software configuration to perform UAT, but this option doesn't provide a bed for performance testing as the physical hardware configuration isn't the same as production.
 
 ## Multiple applications
 
@@ -36,7 +36,7 @@ This is for a few reasons:
 
 * Because the members of your cluster communicate with each other via TCP to perform DB replication, cache lookup, and other associated tasks, the latency between data centers/AZs can become a significant performance liability.
 Having your entire cluster within one AZ ensures that the latency between cluster members is minimal, having a direct effect on perceived end-user performance.
-* Network traffic between AZs is billed, whereas intra-AZ traffic is not.
+* Network traffic between AZs is billed, whereas intra-AZ traffic isn't.
 That leads to higher costs for this decreased performance.
 
 Some clients prefer the peace of mind of hosting across multiple AZs, but it should be noted that multiple-AZ configurations do not improve the contractual 99.99% uptime SLA, nor does our standard, single-AZ configuration decrease the 99.99% uptime SLA.

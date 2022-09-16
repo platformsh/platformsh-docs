@@ -23,7 +23,7 @@ When deploying to the Dedicated Cluster the process is slightly different than w
 
 * The new application image is built in the exact same fashion as for Platform.sh Professional.
 * Any active background tasks on the cluster, including cron tasks, are terminated.
-* The cluster (production or staging) is closed, meaning it does not accept new requests.
+* The cluster (production or staging) is closed, meaning it doesn't accept new requests.
 Incoming requests will receive an HTTP 500 error.
 * The application image on all three servers is replaced with the new image.
 * The deploy hook is run on one, and only one, of the three servers.
@@ -36,7 +36,7 @@ However, nearly all Platform.sh Dedicated instances are fronted by the Fastly Co
 Fastly can be configured to allow a "grace period," that is, requests to the origin that fail will be served from the existing cache, even if that cache item is stale.
 We configure a default grace period that is longer than a typical deployment, and can extend that time upon request.
 That means anonymous users should see no interruption in service at all.
-Authenticated traffic that cannot be served by the CDN will still see a brief interruption.
+Authenticated traffic that can't be served by the CDN will still see a brief interruption.
 
 ## Deployment philosophy
 

@@ -62,7 +62,7 @@ With respect to the GDPR, Platform.sh is both a Controller and Processor:
   Further, because the minimal personal data we collect comes from our direct customers in our account systems,
   we also act as the Controller for our Infrastructure Control Plane
   when we use this information to establish and operate regions, provision services, networks, and so on.
-  Our Infrastructure Control Plane is unique to our service and cannot be modified by our customers.
+  Our Infrastructure Control Plane is unique to our service and can't be modified by our customers.
   The one exception to this situation is that incoming connections transit this infrastructure
   from the internet to our customers' cardholder data environment,
   which may hold IP addresses and unencrypted URLs.

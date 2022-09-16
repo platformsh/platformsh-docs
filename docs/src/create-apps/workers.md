@@ -22,7 +22,7 @@ platform ssh --worker=queue
 
 If a worker instance needs to be updated during a new deployment,
 a `SIGTERM` signal will first be sent to the worker process to allow it to shut down gracefully.
-If your worker process cannot be interrupted mid-task, make sure it reacts to `SIGTERM` to pause its work gracefully.
+If your worker process can't be interrupted mid-task, make sure it reacts to `SIGTERM` to pause its work gracefully.
 
 If the process is still running after 15 seconds, a `SIGKILL` message will be sent that force-terminates the worker process,
 allowing the container to be shut down and restarted.
@@ -226,7 +226,7 @@ The `web` instance will start a Gunicorn process to serve a web application.
 * It will have access to both a MySQL database and a RabbitMQ server, both of which are defined in `services.yaml`.
 * Platform.sh will automatically allocate resources to it as available on the plan, once all fixed-size containers are allocated.
 
-The `queue` instance will be a worker that is not web-accessible.
+The `queue` instance will be a worker that isn't web-accessible.
 
 * It will run the `queue-worker.py` script, and restart it automatically if it ever terminates.
 * It will have an environment variable named `TYPE` with value `worker`.
@@ -235,7 +235,7 @@ The `queue` instance will be a worker that is not web-accessible.
   both of which are defined in `services.yaml` (because it doesn't specify otherwise).
 * It will have "Medium" levels of CPU and RAM allocated to it, always.
 
-The `mail` instance will be a worker that is not web-accessible.
+The `mail` instance will be a worker that isn't web-accessible.
 
 * It will run the `mail-worker.py` script, and restart it automatically if it ever terminates.
 * It will have an environment variable named `TYPE` with value `worker`.
@@ -246,7 +246,7 @@ The `mail` instance will be a worker that is not web-accessible.
 
 This way, the web instance has a large upload space, the queue instance has a small amount of scratch space for temporary files,
 and the mail instance has no persistent writable disk space at all as it doesn't need it.
-The mail instance also does not need any access to the SQL database so for security reasons it has none.
+The mail instance also doesn't need any access to the SQL database so for security reasons it has none.
 The workers have known fixed sizes, while web can scale to as large as the plan allows.
 Each instance can also check the `TYPE` environment variable to detect how it's running
 and, if appropriate, vary its behavior accordingly.

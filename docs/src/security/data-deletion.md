@@ -18,4 +18,4 @@ Media destruction is handled via our backend providers. When the provider decomm
 
 Data subject deletion requests where Platform is the controller are handled via a [support ticket](https://docs.platform.sh/overview/getting-help.html). For contracts designating Platform as the processor, deletion requests should be sent to the controller and we will forward any that we receive.
 
-Our product is a Platform as a Service. Platform does not directly edit customer data to ensure data confidentiality, security, and integrity. All data deletion requests for customer data must be handled by the concerned data controller.
+Our product is a Platform as a Service. Platform doesn't directly edit customer data to ensure data confidentiality, security, and integrity. All data deletion requests for customer data must be handled by the concerned data controller.

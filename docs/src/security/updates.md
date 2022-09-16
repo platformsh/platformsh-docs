@@ -12,7 +12,7 @@ Platform.sh periodically updates its container images for the latest security up
 (PHP versions, Ruby versions, MariaDB versions, etc.).
 These do not always happen immediately but when a security vulnerability is identified and released it tends to be fairly soon after.
 
-However, these updates are not automatically propagated to individual projects as that would involve potential customer downtime.
+However, these updates aren't automatically propagated to individual projects as that would involve potential customer downtime.
 Instead, the latest available version of every requested container is loaded on each deploy to a given environment.
 After a deploy you are always guaranteed to be running the latest Platform.sh-provided version of a container.
 
