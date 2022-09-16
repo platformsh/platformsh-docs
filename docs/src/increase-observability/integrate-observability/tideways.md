@@ -1,7 +1,7 @@
 ---
 title: "Tideways"
 description: |
-  Platform.sh supports [Tideways APM](https://tideways.com/) for PHP.  This functionality is only available on PHP 7.0 and later.
+  Platform.sh supports [Tideways APM](https://tideways.com/) for PHP. This functionality is only available on PHP 7.0 and later.
 ---
 
 {{% description %}}
@@ -46,7 +46,8 @@ git commit -m "Enable Tideways."
 git push
 ```
 
-Tideways should now be enabled.  Give it a few hours to a day to get a decent set of data before checking your Tideways dashboard.
+Tideways should now be enabled.
+Give it a few hours to a day to get a decent set of data before checking your Tideways dashboard.
 
 ## Deployment Integration
 

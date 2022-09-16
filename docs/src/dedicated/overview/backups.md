@@ -3,7 +3,7 @@ title: "Backups"
 weight: 4
 toc: false
 description: |
-  Platform.sh takes a byte-for-byte snapshot of Dedicated production environments every six (6) hours.  They are retained on a sliding scale, so more recent time frames have more frequent backups.
+  Platform.sh takes a byte-for-byte snapshot of Dedicated production environments every six (6) hours. They're retained on a sliding scale, so more recent time frames have more frequent backups.
 ---
 
 {{% description %}}
@@ -23,6 +23,11 @@ Platform.sh Dedicated creates the backup using snapshots to encrypted elastic bl
 
 These backups are only used in cases of catastrophic failure and can only be restored by Platform.sh. A ticket must be opened by the customer to request a restoration.
 
-The restoration process may take a few hours, depending on the infrastructure provider in use.  In the ticket, specify if you want backups of files, MySQL, or both.  Uploaded files will be placed in an SSH-accessible directory on the Dedicated Cluster.  MySQL will be provided as a MySQL dump file on the server.  You may restore these to your site at your leisure.  (We will not proactively overwrite your production site with a backup; you are responsible for determining a "safe" time to restore the backup, or for selectively restoring individual files if desired.)
+The restoration process may take a few hours, depending on the infrastructure provider in use.
+In the ticket, specify if you want backups of files, MySQL, or both.
+Uploaded files will be placed in an SSH-accessible directory on the Dedicated Cluster.
+MySQL will be provided as a MySQL dump file on the server.
+You may restore these to your site at your leisure.
+(We will not proactively overwrite your production site with a backup; you are responsible for determining a "safe" time to restore the backup, or for selectively restoring individual files if desired.)
 
 Customers are welcome to make their own backups using standard tools (`mysqldump`, rsync, etc.) at their own leisure.

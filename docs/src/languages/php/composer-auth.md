@@ -15,7 +15,8 @@ The advantage is that you can control who in your team has access to those varia
 
 ## Specify a third party repository in `composer.json`
 
-For this example, consider that there are several packages we want to install from a private repository hosted at `my-private-repos.example.com`.  List that repository in your `composer.json` file.
+For this example, consider that there are several packages we want to install from a private repository hosted at `my-private-repos.example.com`.
+List that repository in your `composer.json` file.
 
 ```json
 {
@@ -57,6 +58,8 @@ In that case, Composer will be able to authenticate and download dependencies fr
 
 ## Private repository hosting
 
-Typically, a private dependency will be hosted in a private Git repository.  While Platform.sh supports [private repositories](/development/private-repository.md) for the site itself, that doesn't help for pulling in third party dependencies from private repositories unless they have the same SSH keys associated with them.
+Typically, a private dependency will be hosted in a private Git repository.
+While Platform.sh supports [private repositories](/development/private-repository.md) for the site itself, that doesn't help for pulling in third party dependencies from private repositories unless they have the same SSH keys associated with them.
 
-Fortunately, most private Composer tools (including Satis, Toran Proxy, and [Private Packagist](https://packagist.com/)) mirror tagged releases of dependencies and serve them directly rather than hitting the Git repository.  Therefore as long as your dependencies specify tagged releases there should be no need to authenticate against a remote Git repository and there should be no authentication issue.
+Fortunately, most private Composer tools (including Satis, Toran Proxy, and [Private Packagist](https://packagist.com/)) mirror tagged releases of dependencies and serve them directly rather than hitting the Git repository.
+Therefore as long as your dependencies specify tagged releases there should be no need to authenticate against a remote Git repository and there should be no authentication issue.

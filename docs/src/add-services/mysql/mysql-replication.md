@@ -9,13 +9,16 @@ aliases:
 
 {{% description %}}
 
-Normally an automated backup is better for short-term usage and a `mysqldump` for longer term storage, but in some cases the data set is large enough that `mysqldump` is prohibitive.  In that case, you can enable external replication using an extra permission.
+Normally an automated backup is better for short-term usage and a `mysqldump` for longer term storage, but in some cases the data set is large enough that `mysqldump` is prohibitive.
+In that case, you can enable external replication using an extra permission.
 
-Note that this guide covers the Platform.sh side; you will need to set up and maintain your own replica instance.  Consult the MySQL or MariaDB documentation for steps to do so.
+Note that this guide covers the Platform.sh side; you will need to set up and maintain your own replica instance.
+Consult the MySQL or MariaDB documentation for steps to do so.
 
 ## Create a replication user
 
-In order to set up replication you need to create a replication-enabled user.  For each database that you'd like to replicate, you need to assign a `replication` permission/role, under a corresponding `endpoint`:
+In order to set up replication you need to create a replication-enabled user.
+For each database that you'd like to replicate, you need to assign a `replication` permission/role, under a corresponding `endpoint`:
 
 ```yaml
 db:
@@ -39,7 +42,8 @@ This will create a `replicator` user, and will grant read-only and table locking
 
 ## Add a relationship for the new endpoint
 
-Even if you won't be accessing the replication endpoint from your application, you still need to expose it to an application as a relationship so that you can connect to it over SSH.  Add a new relationship to your application container:
+Even if you won't be accessing the replication endpoint from your application, you still need to expose it to an application as a relationship so that you can connect to it over SSH.
+Add a new relationship to your application container:
 
 ```yaml
 relationships:
@@ -85,7 +89,8 @@ Download the dump file, then move it to the server where your replica lives to i
 $ mysql -u root < /path/to/dump.sql
 ```
 
-Note for live databases: You just need to make a local copy of the data, you don't need to keep the primary locked until the replica has imported the data.  Once the `mysqldump` has completed, you can release the lock on the primary by running `UNLOCK TABLES`.
+Note for live databases: You just need to make a local copy of the data, you don't need to keep the primary locked until the replica has imported the data.
+Once the `mysqldump` has completed, you can release the lock on the primary by running `UNLOCK TABLES`.
 
 ```sql
 mysql> UNLOCK TABLES;

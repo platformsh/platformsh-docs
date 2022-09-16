@@ -2,7 +2,7 @@
 title: "Set up your local development environment"
 weight: 4
 description: |
-  While Platform.sh is great as a tool for hosting an application during both development and production, it's naturally not the ideal place to edit code.  You can't, in fact, as the file system is read-only (as it should be). The proper place to edit your code is on your computer.
+  While Platform.sh is great as a tool for hosting an application during both development and production, it's naturally not the ideal place to edit code. You can't, in fact, as the file system is read-only (as it should be). The proper place to edit your code is on your computer.
 sidebarTitle: "Local development"
 layout: single
 ---
@@ -40,7 +40,8 @@ Checking connectivity... done.
 
 You should now have a repository folder, based on what you used for *[folder-name]* in the `platform get` command above.
 
-You will also notice a new directory in your project, `.platform/local`, which is excluded from Git.  This directory contains builds and any local metadata about your project needed by the CLI.
+You will also notice a new directory in your project, `.platform/local`, which is excluded from Git.
+This directory contains builds and any local metadata about your project needed by the CLI.
 
 ## Building the site locally
 
@@ -72,8 +73,12 @@ as an enclosed local development environment that doesn't affect your main syste
 
 ## Running the code
 
-Platform.sh supports whatever local development environment you wish to use.  There is no dependency on any particular tool so if you already have a local development workflow you're comfortable with you can keep using it without changes.  That's the "[untethered](/development/local/untethered.md)" option.
+Platform.sh supports whatever local development environment you wish to use.
+There is no dependency on any particular tool so if you already have a local development workflow you're comfortable with you can keep using it without changes.
+That's the "[untethered](/development/local/untethered.md)" option.
 
-For quick changes, you can also run your code locally but use the services hosted on Platform.sh.  That is, your site is "[tethered](/development/local/tethered.md)" to Platform.sh.  While this approach requires installing less on your system it can be quite slow as all communication with the database or cache server will need to travel from your computer to Platform.sh's servers.
+For quick changes, you can also run your code locally but use the services hosted on Platform.sh.
+That is, your site is "[tethered](/development/local/tethered.md)" to Platform.sh.
+While this approach requires installing less on your system it can be quite slow as all communication with the database or cache server will need to travel from your computer to Platform.sh's servers.
 
 Specific documentation is also available for the local development tools [Lando](/development/local/lando.md) and [Docksal](/development/local/docksal.md), which support most applications that Platform.sh supports.

@@ -62,9 +62,11 @@ Optional parameters:
 * `--build-pull-requests`: Track and deploy pull-requests (true by default)
 * `--build-draft-pull-requests`: If set to `true`, [draft pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) will also have an environment created.
   If false they will be ignored.
-  If `--build-pull-requests` is `false` this value is ignored.  (`true` by default)
+  If `--build-pull-requests` is `false` this value is ignored.
+  (`true` by default)
 * `--build-pull-requests-post-merge`: `false` to have Platform.sh build the branch specified in a PR.
-  `true` to build the result of merging the PR.  (`false` by default)
+  `true` to build the result of merging the PR.
+  (`false` by default)
 * `--pull-requests-clone-parent-data`:
   Set to `false` to disable cloning of parent environment data when creating a PR environment,
   so each PR environment starts with no data. (`true` by default)

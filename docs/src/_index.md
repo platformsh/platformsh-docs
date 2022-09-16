@@ -17,13 +17,15 @@ Finally, you can also get tips for setting up your own **Development** workflow 
 
 ## Git Driven Infrastructure
 
-As a Platform as a Service, or PaaS, Platform.sh automatically manages everything your application needs to run.  That means you can, and should, view your infrastructure needs as part of your application and address them under version control.
+As a Platform as a Service, or PaaS, Platform.sh automatically manages everything your application needs to run.
+That means you can, and should, view your infrastructure needs as part of your application and address them under version control.
 
 ### Infrastructure as code
 
 Platform.sh covers not only all of your hosting needs but also most of your DevOps needs. It is a single tool that covers the application life-cycle from development to production and scaling.
 
-You only need to write your code, including a few YAML files that specify your desired infrastructure, commit it to Git, and push.  You don't need to set up anything manually. The web server is already set up and configured, as is any database, search engine, or cache that you specify.
+You only need to write your code, including a few YAML files that specify your desired infrastructure, commit it to Git, and push.
+You don't need to set up anything manually. The web server is already set up and configured, as is any database, search engine, or cache that you specify.
 
 Every branch you push can be made a fully independent environment&mdash;complete with your application code, a copy of your database, a copy of your search index, a copy of your user files, everything.
 Its automatically generated URL can be sent to stakeholders or automated CI systems.

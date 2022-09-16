@@ -24,7 +24,8 @@ And then commit the changes to `composer.json` and `composer.lock`.
 
 ## Configuration
 
-Because Drupal defines connection information via the Configuration Management system, you will need to first define an Elasticsearch "Cluster" at `admin/config/search/elasticsearch-connector`.  Note the "machine name" the server is given.
+Because Drupal defines connection information via the Configuration Management system, you will need to first define an Elasticsearch "Cluster" at `admin/config/search/elasticsearch-connector`.
+Note the "machine name" the server is given.
 
 Then, paste the following code snippet into your `settings.platformsh.php` file.
 
@@ -64,4 +65,6 @@ if ($platformsh->hasRelationship($relationship_name)) {
 }
 ```
 
-Commit that code and push.  The specified cluster will now always point to the Elasticsearch service.  Then configure Search API as normal.
+Commit that code and push.
+The specified cluster will now always point to the Elasticsearch service.
+Then configure Search API as normal.

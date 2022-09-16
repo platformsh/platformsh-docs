@@ -2,16 +2,20 @@
 title: "One site or many"
 weight: 2
 description: |
-  Platform.sh supports running multiple "application containers" in a single project.  That can be extremely powerful in some cases, but if misused can lead to unnecessary maintenance difficulty and excessive costs.
+  Platform.sh supports running multiple "application containers" in a single project. That can be extremely powerful in some cases, but if misused can lead to unnecessary maintenance difficulty and excessive costs.
 ---
 
 {{% description %}}
 
-The way to determine what setup is appropriate for your use case is to think of your project as a collection of services, some of which you've written yourself.  That is, put "your code" and "the database" on the same level.  (That is essentially true from the Platform.sh perspective.)  Does your project consist of multiple "your code" pieces, but they all are parts of the same project?  Or are they discrete applications that conceptually exist independently of each other?
+The way to determine what setup is appropriate for your use case is to think of your project as a collection of services, some of which you've written yourself.
+That is, put "your code" and "the database" on the same level.
+(That is essentially true from the Platform.sh perspective.)  Does your project consist of multiple "your code" pieces, but they all are parts of the same project?  Or are they discrete applications that conceptually exist independently of each other?
 
 ## Discrete projects
 
-If your applications are discrete systems that are only incidentally related (such as because you wrote both of them), make them separate projects.  That will provide the most flexible development workflow.  It will also be cheaper, as running multiple applications in a single project requires at least a Medium plan, which costs more than two Standard plans.
+If your applications are discrete systems that are only incidentally related (such as because you wrote both of them), make them separate projects.
+That will provide the most flexible development workflow.
+It will also be cheaper, as running multiple applications in a single project requires at least a Medium plan, which costs more than two Standard plans.
 
 Discrete projects are appropriate if:
 
@@ -25,9 +29,11 @@ If you are uncertain how your needs map to projects, it probably means they shou
 
 ## Clustered applications
 
-A clustered application is one where your project requires multiple "app services", written by you, but are all part of the same conceptual project.  That is, removing one of the app services would render the others broken.
+A clustered application is one where your project requires multiple "app services", written by you, but are all part of the same conceptual project.
+That is, removing one of the app services would render the others broken.
 
-In a clustered application, you either have [multiple `.platform.app.yaml`](../create-apps/multi-app.md) files in different directories with separate code bases that deploy separately or you have a single application that spawns one or more [worker instances](../create-apps/app-reference.md#workers) that run background processes.  (See the link for details on how to set those up.)
+In a clustered application, you either have [multiple `.platform.app.yaml`](../create-apps/multi-app.md) files in different directories with separate code bases that deploy separately or you have a single application that spawns one or more [worker instances](../create-apps/app-reference.md#workers) that run background processes.
+(See the link for details on how to set those up.)
 
 A Clustered application requires at least a Medium plan.
 
@@ -49,7 +55,10 @@ Clustered applications are appropriate if:
 
 ## Multi-site applications
 
-Some Content Management Systems or other applications support running multiple logical "sites" off of a single code base.  Those will usually work on Platform.sh depending on the configuration details of the application but are generally not recommended.  Often their multi-site logic is dependant on the domain name of the incoming request, which on Platform.sh will vary by branch.  They also often recommend running multiple databases, which while supported just fine on Platform.sh makes the setup process for each site more difficult.
+Some Content Management Systems or other applications support running multiple logical "sites" off of a single code base.
+Those will usually work on Platform.sh depending on the configuration details of the application but are generally not recommended.
+Often their multi-site logic is dependant on the domain name of the incoming request, which on Platform.sh will vary by branch.
+They also often recommend running multiple databases, which while supported just fine on Platform.sh makes the setup process for each site more difficult.
 
 Leveraging multi-site capabilities of an application are appropriate if, and only if:
 

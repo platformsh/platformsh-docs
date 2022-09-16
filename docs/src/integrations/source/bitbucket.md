@@ -100,7 +100,8 @@ They can be changed using the `platform integration:update` command.
 * `--prune-branches`: Delete branches that do not exist in the remote Bitbucket repository (true by default)
 * `--build-pull-requests`: Track and deploy pull-requests (true by default)
 * `--build-pull-requests-post-merge`: `false` to have Platform.sh build the branch specified in a PR.
-  `true` to build the result of merging the PR.  (`false` by default)
+  `true` to build the result of merging the PR.
+  (`false` by default)
 
 For more information see:
 

@@ -22,7 +22,8 @@ Since you do not yet have any projects on Platform.sh, the first thing you will 
 
   Give your project a name like `My First Project`.
 
-  In the next field, you have the option to configure the project's region, which corresponds with the data center where your project will live.  Select the region that most closely matches where most of your traffic will come from and click `Next`.
+  In the next field, you have the option to configure the project's region, which corresponds with the data center where your project will live.
+Select the region that most closely matches where most of your traffic will come from and click `Next`.
 
 3. **Template**
 

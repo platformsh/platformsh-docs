@@ -5,7 +5,8 @@ weight: 5
 
 Platform.sh uses a heuristic to automatically set the number of workers of the PHP-FPM runtime based on the memory available in the container. This heuristic is based on assumptions about the memory necessary on average to process a request. You can tweak those assumptions if your application will typically use considerably more or less memory.
 
-Note that this value is independent of the `memory_limit` set in `php.ini`, which is the maximum amount of memory a single PHP process can use before it is automatically terminated.  These estimates are used only for determining the number of PHP-FPM workers to start.
+Note that this value is independent of the `memory_limit` set in `php.ini`, which is the maximum amount of memory a single PHP process can use before it is automatically terminated.
+These estimates are used only for determining the number of PHP-FPM workers to start.
 
 ## The heuristic
 
@@ -37,7 +38,8 @@ runtime:
         request_memory: 110
 ```
 
-The `request_memory` has a lower limit of 10 MB while `reserved_memory` has a lower limit of 70 MB.  Values lower than those will be replaced with those minimums.
+The `request_memory` has a lower limit of 10 MB while `reserved_memory` has a lower limit of 70 MB.
+Values lower than those will be replaced with those minimums.
 
 You can check the maximum number of PHP-FPM workers by opening an [SSH session](/development/ssh/_index.md) and running following command (example for PHP 7.x):
 
@@ -62,7 +64,9 @@ A good way to determine an optimal request memory is with the following command:
 tail -n5000 /var/log/php.access.log | awk '{print $6}' | sort -n | uniq -c
 ```
 
-This will print out a table of how many requests used how much memory, in KB, for the last 5000 requests that reached PHP-FPM.  (On an especially busy site you may need to increase that number).  As an example, consider the following output:
+This will print out a table of how many requests used how much memory, in KB, for the last 5000 requests that reached PHP-FPM.
+(On an especially busy site you may need to increase that number).
+As an example, consider the following output:
 
 ```text
       1
@@ -79,13 +83,21 @@ This will print out a table of how many requests used how much memory, in KB, fo
       6 131072
 ```
 
-This indicates that the majority of requests (4800) used 2048 KB of memory.  In this case that's likely application caching at work.  Most requests used up to around 10 MB of memory, while a few used as much as 18 MB and a very few (6 requests) peaked at 131 MB.  (In this example those are probably cache clears.)
+This indicates that the majority of requests (4800) used 2048 KB of memory.
+In this case that's likely application caching at work.
+Most requests used up to around 10 MB of memory, while a few used as much as 18 MB and a very few (6 requests) peaked at 131 MB.
+(In this example those are probably cache clears.)
 
-A conservative approach would suggest an average request memory of 16 MB should be sufficient.  A more aggressive stance would suggest 10 MB.  The more aggressive approach would potentially allow for more concurrent requests at the risk of some requests needing to use swap memory, thus slowing them down.
+A conservative approach would suggest an average request memory of 16 MB should be sufficient.
+A more aggressive stance would suggest 10 MB.
+The more aggressive approach would potentially allow for more concurrent requests at the risk of some requests needing to use swap memory, thus slowing them down.
 
-The web agency [Pixelant](https://www.pixelant.net/) has also published a [log analyzer tool for Platform.sh](https://github.com/pixelant/platformsh-analytics) that offers a better visualization of access logs to determine how much memory requests are using on average.  It also offers additional insights into the operation of your site that can suggest places to further optimize your configuration and provide guidance on when it's time to increase your plan size.  (Please note that this tool is maintained by a 3rd party, not by Platform.sh.)
+The web agency [Pixelant](https://www.pixelant.net/) has also published a [log analyzer tool for Platform.sh](https://github.com/pixelant/platformsh-analytics) that offers a better visualization of access logs to determine how much memory requests are using on average.
+It also offers additional insights into the operation of your site that can suggest places to further optimize your configuration and provide guidance on when it's time to increase your plan size.
+(Please note that this tool is maintained by a 3rd party, not by Platform.sh.)
 
 
 {{< note >}}
-If you are running on PHP 5.x then don't bother adjusting the worker memory usage until you upgrade to PHP 7.x.  PHP 7 is vastly more memory efficient than PHP 5 and you will likely need less than half as much memory per process under PHP 7.
+If you are running on PHP 5.x then don't bother adjusting the worker memory usage until you upgrade to PHP 7.x.
+PHP 7 is vastly more memory efficient than PHP 5 and you will likely need less than half as much memory per process under PHP 7.
 {{< /note >}}

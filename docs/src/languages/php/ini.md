@@ -43,7 +43,10 @@ See the note on [environment variables](../../development/variables/_index.md#ph
 
 ## Disabling functions
 
-A common recommendation for securing a PHP installation is to disable certain built-in functions that are frequently used in remote attacks.  By default, Platform.sh does not disable any functions as they all do have some legitimate use in various applications.  However, you may wish to disable them yourself if you know they are not needed.  For example, to disable `pcntl_exec` and `pcntl_fork` (which are not usable in a web request anyway):
+A common recommendation for securing a PHP installation is to disable certain built-in functions that are frequently used in remote attacks.
+By default, Platform.sh doesn't disable any functions as they all do have some legitimate use in various applications.
+You may wish to disable them yourself if you know they aren't needed.
+For example, to disable `pcntl_exec` and `pcntl_fork` (which aren't usable in a web request anyway):
 
 ```yaml
 variables:
@@ -53,13 +56,20 @@ variables:
 
 Common functions to disable include:
 
-* `create_function` - `create_function` has no useful purpose since PHP 5.3 and should not be used, ever.  It has been effectively replaced by anonymous functions.
-* `exec,passthru,shell_exec,system,proc_open,popen` - These functions all allow a PHP script to run a bash shell command. That is rarely used by web applications, although build scripts may need them.
-* `pcntl_exec,pcntl_fork,pcntl_setpriority` - The `pcntl_*` functions (including those not listed here) are responsible for process management.  Most of them will cause a fatal error if used within a web request.  Cron tasks or workers may make use of them, however.  Most are safe to disable unless you know that you are using them.
-* `curl_exec,curl_multi_exec` - These functions allow a PHP script to make arbitrary HTTP requests.  Note that they are frequently used by other HTTP libraries such as Guzzle, in which case you should *not* disable them.
-* `show_source` - This function shows a syntax highlighted version of a named PHP source file.  That is rarely useful outside of development.
+* `create_function` - `create_function` has no useful purpose since PHP 5.3 and shouldn't be used.
+  It has been effectively replaced by anonymous functions.
+* `exec,passthru,shell_exec,system,proc_open,popen` - These functions all allow a PHP script to run a bash shell command. That's rarely used by web applications, although build scripts may need them.
+* `pcntl_exec,pcntl_fork,pcntl_setpriority` - The `pcntl_*` functions (including those not listed here) are responsible for process management.
+  Most of them cause a fatal error if used within a web request.
+  Cron tasks or workers may make use of them.
+  Most are safe to disable unless you know that you are using them.
+* `curl_exec,curl_multi_exec` - These functions allow a PHP script to make arbitrary HTTP requests.
+  Note that they're frequently used by other HTTP libraries such as Guzzle, in which case you should *not* disable them.
+* `show_source` - This function shows a syntax highlighted version of a named PHP source file.
+  That's rarely useful outside of development.
 
-Naturally if your application does make use of any of these functions, it will fail if you disable them.  In that case, do not disable them.
+Naturally if your application does make use of any of these functions, it fails if you disable them.
+In that case, don't disable them.
 
 ## Default php.ini settings
 
@@ -70,7 +80,8 @@ The default values for some frequently modified `php.ini` settings are listed be
 * `upload_max_filesize=64M`
 * `display_errors=On`
 
-    This value is on by default to ease setting up a project on Platform.sh. We strongly recommend providing a custom error handler in your application or setting this value to `Off` before you make your site live.
+    This value is on by default to ease setting up a project on Platform.sh.
+    It's strongly recommended to provide a custom error handler in your application or setting this value to `Off` before you make your site live.
 * `zend.assertions=-1`
 
     Assertions are optimized out of existence and have no impact at runtime. You should have assertions set to `1` for your local development system.
@@ -79,8 +90,10 @@ The default values for some frequently modified `php.ini` settings are listed be
     This is the number of megabytes available for the OPcache. Large applications with many files may want to increase this value.
 * `opcache.validate_timestamps=On`
 
-    The OPcache will check for updated files on disk. This is necessary to support applications that generate compiled PHP code from user configuration. If you are certain your application does not do so then you can disable this setting for a small performance boost.
+    The OPcache checks for updated files on disk.
+    This is necessary to support applications that generate compiled PHP code from user configuration.
+    If you are certain your application doesn't do so, then you can disable this setting for a small performance boost.
 
 {{< note theme="warning" >}}
-We do not limit what you can put in your `php.ini` file, but many settings can break your application. This is a facility for advanced users.
+You aren't limited in what you can put in your `php.ini` file, but many settings can break your application. This is a facility for advanced users.
 {{< /note >}}

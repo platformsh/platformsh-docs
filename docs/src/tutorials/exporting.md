@@ -14,9 +14,12 @@ you can download your entire code history by running `git clone` or `platform ge
 
 ## Downloading files
 
-Your application runs on a read-only file system, so it cannot be edited.  That means there's nothing to download from most of it that isn't already in your Git repository.
+Your application runs on a read-only file system, so it can't be edited.
+That means there's nothing to download from most of it that isn't already in your Git repository.
 
-The only files to download are from any writable file mounts you may have defined in your `.platform.app.yaml` file.  The easiest way to download those is using the `rsync` tool.  For instance, suppose you have a mounts section that defines one web-accessible directory and one non-web-accessible directory:
+The only files to download are from any writable file mounts you may have defined in your `.platform.app.yaml` file.
+The easiest way to download those is using the `rsync` tool.
+For instance, suppose you have a mounts section that defines one web-accessible directory and one non-web-accessible directory:
 
 ```yaml
 mounts:
@@ -58,7 +61,8 @@ See the [`rsync` documentation](https://download.samba.org/pub/rsync/rsync.html)
 
 ## Download data from services
 
-The mechanism for downloading from each service (such as your database) varies.  For services designed to hold non-persistent information (such as Redis or Solr) it's generally not necessary to download data as it can be rebuilt from the primary data store.
+The mechanism for downloading from each service (such as your database) varies.
+For services designed to hold non-persistent information (such as Redis or Solr) it's generally not necessary to download data as it can be rebuilt from the primary data store.
 
 To download data from persistent services ([MySQL](../add-services/mysql/_index.md), [PostgreSQL](../add-services/postgresql.md), [MongoDB](../add-services/mongodb.md), or [InfluxDB](../add-services/influxdb.md)), see each service's page for instructions.
 

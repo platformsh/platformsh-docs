@@ -4,7 +4,8 @@ weight: 2
 sidebarTitle: "Moving to Platform.sh"
 ---
 
-It is common to have a Java application that you want to migrate to Platform.sh.  Platform.sh supports several styles of Java application, such as monolith, microservices, stateful, and stateless.
+It is common to have a Java application that you want to migrate to Platform.sh.
+Platform.sh supports several styles of Java application, such as monolith, microservices, stateful, and stateless.
 
 ## Minimum Requirement
 
@@ -76,7 +77,9 @@ Be aware that after the build, it creates a read-only system. You have the [moun
 1. It defines the application will link in the route, e.g.: `"app:http"`
 
 {{< note >}}
-Application instances have a limited amount of memory, the size of which depends on your plan and configuration.  The largest available is 8 GB.  A stateless application can be scaled horizontally to multiple application instances using Varnish in a [load balancer](https://community.platform.sh/t/how-to-configure-load-balancer-in-a-single-application/553) configuration.
+Application instances have a limited amount of memory, the size of which depends on your plan and configuration.
+The largest available is 8 GB.
+A stateless application can be scaled horizontally to multiple application instances using Varnish in a [load balancer](https://community.platform.sh/t/how-to-configure-load-balancer-in-a-single-application/553) configuration.
 {{< /note >}}
 
 ## Microservices
@@ -111,11 +114,14 @@ As a single application, in the multi-app, you have the option to set load balan
 
 When applications need to access a service, it is important to include the [Relationships key](../../create-apps/app-reference.md#relationships), because. by default an application may not talk to any other container within a project it includes others projects as a microservices architecture.
 
-To connect to a service from your deployed application, you will need to pass the relationships information into your application's configuration.  The way to do so varies with the application.  The most common mechanisms are listed below.
+To connect to a service from your deployed application, you will need to pass the relationships information into your application's configuration.
+The way to do so varies with the application.
+The most common mechanisms are listed below.
 
 ### Overwrite
 
-If you are using a framework that follows the [Twelve-Factor App](https://12factor.net/) methodology, particularly the [third point](https://12factor.net/config), you will be able to configure the application directly from environment variables.  Examples of such frameworks include Spring, Eclipse MicroProfile Config, Quarkus, and Micronauts.
+If you are using a framework that follows the [Twelve-Factor App](https://12factor.net/) methodology, particularly the [third point](https://12factor.net/config), you will be able to configure the application directly from environment variables.
+Examples of such frameworks include Spring, Eclipse MicroProfile Config, Quarkus, and Micronauts.
 
 The services information is available in the [**PLATFORM_RELATIONSHIPS** environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables).
 This variable is a base64-encoded JSON object with keys of the relationship name and values of arrays of relationship endpoint definitions.

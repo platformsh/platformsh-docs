@@ -1,6 +1,6 @@
 ---
 title: "Lisp"
-description: Platform.sh supports building and deploying applications written in Lisp using Common Lisp (the SBCL version) with ASDF and Quick Lisp support.  They are compiled during the Build phase, and support both committed dependencies and download-on-demand.
+description: Platform.sh supports building and deploying applications written in Lisp using Common Lisp (the SBCL version) with ASDF and Quick Lisp support. They're compiled during the Build phase, and support both committed dependencies and download-on-demand.
 ---
 
 {{% description %}}
@@ -68,7 +68,9 @@ To get the `PORT` environment variable (the port on which your web application i
 
 ## Building and running the application
 
-Assuming `example.lisp` and `example.asd` are present in your repository, the application will be automatically built on push.  You can then start it from the `web.commands.start` directive.  Note that the start command _must_ run in the foreground. Should the program terminate for any reason it will be automatically restarted. In the example below we sleep for a very, very long time. You could also choose to join the thread of your web server, or use other methods to make sure the program does not terminate.
+Assuming `example.lisp` and `example.asd` are present in your repository, the application will be automatically built on push.
+You can then start it from the `web.commands.start` directive.
+Note that the start command _must_ run in the foreground. Should the program terminate for any reason it will be automatically restarted. In the example below we sleep for a very, very long time. You could also choose to join the thread of your web server, or use other methods to make sure the program does not terminate.
 
 The following basic `.platform.app.yaml` file is sufficient to run most Lisp applications.
 
@@ -85,7 +87,8 @@ web:
 disk: 512
 ```
 
-Note that there will still be a proxy server in front of your application.  If desired, certain paths may be served directly by our router without hitting your application (for static files, primarily) or you may route all requests to the Lisp application unconditionally, as in the example above.
+Note that there will still be a proxy server in front of your application.
+If desired, certain paths may be served directly by our router without hitting your application (for static files, primarily) or you may route all requests to the Lisp application unconditionally, as in the example above.
 
 ## Accessing Services
 
