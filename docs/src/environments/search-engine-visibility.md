@@ -8,7 +8,7 @@ toc: false
 When you have development environments,
 you don't want search engines indexing them and diluting the SEO of your production site.
 
-All development environments are hidden.
+Search engine indexers are told to ignore all development environments.
 You can change the setting for Production environments that don't have a custom domain.
 
 To change the environment's visibility to search engines, follow these steps:
@@ -47,14 +47,20 @@ platform environment:info -e <ENVIRONMENT_NAME> restrict_robots true
 
 ## How it's done
 
-Environments are hidden by including a `X-Robots-Tag` header:
+Search engines are turned away from environments by including a `X-Robots-Tag` header:
 
 ```txt
 X-Robots-Tag: noindex, nofollow
 ```
 
-That tells search engines to not index these sites and not traverse links from these sites.
-This keeps non-production sites out of search engine indexes.
+That tells search engine indexers to not index these sites and not traverse links from these sites.
+This helps keeps non-Production sites out of search engine indexes.
 
-When this is off, your app can serve a `robots.txt` file from its root as normal.
-Use the [`location` section of your app configuration](../create-apps/app-reference.md#locations).
+## Override it
+
+You can also send instructions to search engine indexers using a `robots.txt` file.
+Your app can serve this as a static file from its disk or as a dynamic response from its `passthru`.
+Control either with the [`location` section of your app configuration](../create-apps/app-reference.md#locations).
+
+If your `robots.txt` file includes instructions to ignore a page,
+search engine indexers may ignore it even if you have configured Platform.sh to not send the header.
