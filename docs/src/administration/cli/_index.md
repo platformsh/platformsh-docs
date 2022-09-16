@@ -159,6 +159,19 @@ it doesn't affect your local codebase.
 You don't even need the code locally.
 The code is only merged between environments remotely.
 
+### Leverage the CLI in a script to automate repetitive tasks
+
+When you want to use the CLI in a script to automate repetitive tasks like synchronizing your files locally, you may want to use the option to answer `yes` to every command via the environment variable `PLATFORMSH_CLI_NO_INTERACTION`.
+
+For instance, to sync locally every mount point of the `app` container, you could use this command:
+
+  ```bash
+  export PLATFORM_PROJECT=my-project;
+  export PLATFORM_BRANCH=main;
+  export PLATFORMSH_CLI_NO_INTERACTION=1;
+  platform mount:download --all --app app --target local-backup
+  ```
+
 ### Customize the CLI
 
 You can customize how the CLI operates and what it returns with a configuration file (`.platform/local/project.yaml`)
