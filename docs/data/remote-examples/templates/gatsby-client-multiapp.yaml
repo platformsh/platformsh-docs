@@ -1,7 +1,6 @@
 savePath: "/static/files/fetch/multiappyaml"
 root: "https://raw.githubusercontent.com/platformsh-templates"
 branch: "master"
-file: "gatsby/.platform.app.yaml"
+file: "client/.platform.app.yaml"
 repos: 
-  - gatsby-strapi
-  - gatsby-wordpress
+  - gatsby-drupal
