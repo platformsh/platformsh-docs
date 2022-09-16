@@ -5,7 +5,7 @@ description: Find out how to include Lando in your local development workflow.
 weight: 1
 ---
 
-[Lando](https://docs.lando.dev) is third-party local development tool for which several stacks are available (LAMP, LEMP, MEAN).
+[Lando](https://docs.lando.dev) is a third-party local development tool for which several stacks are available (LAMP, LEMP, MEAN).
 Lando supports Platform.sh PHP projects out of the box through a plugin.
 The Lando Platform.sh plugin can read your Platform.sh configuration files and produce an equivalent local environment using Docker.
 
@@ -19,7 +19,7 @@ A quick-start guide is included below.
 
 For a complete reference, consult the following resources:
 
-- [Lando Platform.sh plugin documentation](https://docs.lando.dev/config/platformsh.html) and [source code](https://github.com/lando/platformsh)
+- [Lando Platform.sh plugin documentation](https://docs.lando.dev/platformsh/) and [source code](https://github.com/lando/platformsh)
 - [Lando documentation](https://docs.lando.dev/)
 
 ## Before you begin
@@ -33,9 +33,31 @@ To use a build hook that requires environment variables, manually [add them](htt
 
 Follow the [Lando installation instructions](https://docs.lando.dev/getting-started/installation.html).
 
-## 2. Initialize Lando
+## 2. Create an access token
+
+To authorize Lando to communicate with Platform.sh, create an [API token](../../administration/cli/api-tokens.md#get-a-token).
+Copy the value.
+
+## 3. Initialize Lando
 
 {{< codetabs >}}
+
+---
+title=On an existing Platform.sh project
+file=none
+highlight=false
+---
+
+If your code isn't present locally, retrieve your codebase with one of these methods:
+
+- Using the [Platform.sh CLI](../../administration/cli/_index.md) by running `platform get <PROJECT_ID>`
+- Using [Git](../../administration/web/configure-environment.md#actions)
+
+Otherwise, access the directory with your project.
+
+Run `lando init --recipe platformsh --source cwd --platformsh-auth <API_TOKEN>` and follow the instructions provided by the interactive prompt.
+
+<--->
 
 ---
 title=On a new Platform.sh project without code
@@ -49,38 +71,21 @@ It also includes the required Platform.sh configuration files out of the box.
 
 1. [Create a new project based on the PHP template]({{% create-project-link template="php" %}}).
 2. Clone that project locally in one of these ways:
-    - Using the [Platform.sh CLI](../../gettingstarted/introduction/own-code/cli-install.md) by running `platform get <PROJECT_ID>`
-    - Using [git](../../administration/web/configure-environment.md#actions)
-3. In the project's folder, run `lando init --recipe platformsh --source platformsh`.
+    - Using the [Platform.sh CLI](../../administration/cli/_index.md) by running `platform get <PROJECT_ID>`
+    - Using [Git](../../administration/web/configure-environment.md#actions)
+3. In the project's folder, run `lando init --recipe platformsh --source platformsh --platformsh-auth <API_TOKEN>`.
 4. Follow the instructions provided by the interactive prompt.
    On the `Which project?` step, select the project created in the first step.
-
-<--->
-
----
-title=On an existing Platform.sh project
-file=none
-highlight=false
----
-
-If your code isn't present locally, retrieve your codebase with one of these methods:
-
-- Using the [Platform.sh CLI](../../gettingstarted/introduction/own-code/cli-install.md) by running `platform get <PROJECT_ID>`
-- Using [git](../../administration/web/configure-environment.md#actions)
-
-Otherwise, access the directory with your project.
-
-Run `lando init --recipe platformsh --source cwd` and follow the instructions provided by the interactive prompt.
 
 {{< /codetabs >}}
 
 The `init` command generates the `.lando.yml` file required to start Lando.
 
-## 3. Start Lando
+## 4. Start Lando
 
 To start your app and services, run `lando start`.
 
-## 4. Access your local app
+## 5. Access your local app
 
 The last lines of the `lando start` command from the previous step contains URL to the different app and services.
 Access your app and services by opening the according URLs in your browser.
