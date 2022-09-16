@@ -80,6 +80,7 @@ It also includes the required Platform.sh configuration files out of the box.
 {{< /codetabs >}}
 
 The `init` command generates the `.lando.yml` file required to start Lando.
+It also adds to your account a [public SSH key](../ssh/ssh-keys.md).
 
 ## 4. Start Lando
 
