@@ -113,9 +113,9 @@ if ($platformsh->hasRelationship('rediscache') && !\Drupal\Core\Installer\Instal
 }
 ```
 
-The `example.services.yml` file noted above will also use Redis for the lock and flood control systems.
+The `example.services.yml` file noted above also uses Redis for the lock and flood control systems.
 
-The Redis module is able to use Redis as a queue backend, however, that should not be done on an ephemeral Redis instance as that could result in lost items when the Redis service instance is restarted or fills up.
+The Redis module can use Redis as a queue backend, but that shouldn't be done on an ephemeral Redis instance as that could result in lost items when the Redis service instance is restarted or fills up.
 If you wish to use Redis for the queue we recommend using a separate persistent Redis instance.
 See the [Redis documentation page](../../add-services/redis.md) for more information.
 

@@ -6,7 +6,7 @@ sidebarTitle: "Git submodules"
 
 ## Clone submodules during deployment
 
-Platform.sh allows you to use submodules in your Git repository. They are usually listed in a `.gitmodules` file at the root of your Git repository. When you push via Git, Platform.sh will try to clone them automatically.
+Platform.sh allows you to use submodules in your Git repository. They are usually listed in a `.gitmodules` file at the root of your Git repository. When you push via Git, Platform.sh tries to clone them automatically.
 
 Here is an example of a ``.gitmodules`` file:
 
@@ -50,7 +50,7 @@ Since the Platform.sh Git server can't connect to GitHub via SSH without being g
 
 ## Use of private git repositories
 
-When using Git submodules that are hosted on private repositories, using the `https` protocol will fail with errors like:
+When using Git submodules that are hosted on private repositories, using the `https` protocol fails with errors like:
 
 ```bash
 GitProtocolError: unexpected http resp 401 for https://bitbucket.org/myusername/mymodule.git/info/refs?service=git-upload-pack

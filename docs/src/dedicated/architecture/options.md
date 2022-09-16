@@ -47,7 +47,7 @@ Multi-AZ deployments are available only on select AWS regions.
 ## Additional application servers
 
 For especially high-traffic sites we can also add additional application-only servers.
-These servers will contain just the application code; data storage services (SQL, Solr, Redis, etc.) are limited to the standard three.
+These servers contain just the application code; data storage services (such as SQL, Solr, Redis) are limited to the standard three.
 The cluster begins to look more like a standard N-Tier architecture at this point, with a horizontal line of web application servers in front of a 3 node (N+1) cluster of Galera database servers.
 
 Speak to your sales representative about the costs associated with adding additional application servers.
@@ -69,14 +69,14 @@ the CDN continues to serve cached pages during the few seconds of deploy,
 so for the vast majority of users there is no downtime or even slow down.
 If a request does pass the CDN during a deploy, it isn't counted as downtime covered by our Service Level Agreement.
 
-By default, Platform.sh will serve generic Platform.sh-branded error pages for errors generated before a request reaches the application.
+By default, Platform.sh serves generic Platform.sh-branded error pages for errors generated before a request reaches the application.
 (500 errors, some 400 errors, etc.)  Alternatively you may provide a static error page for each desired error code via a ticket for us to configure with the CDN.
 This file may be any static HTML file but is limited to 64 KB in size.
 
 ## IP restrictions
 
 Platform.sh supports project-level IP restrictions (allow/deny) and HTTP Basic authentication.
-These may be configured through the Development Environment and will be automatically replicated from the `production` and `staging` branches to the production and staging environments, respectively.
+These may be configured through the Development Environment and are automatically replicated from the `production` and `staging` branches to the production and staging environments, respectively.
 
 {{< note >}}
 

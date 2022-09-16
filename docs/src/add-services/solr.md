@@ -215,9 +215,9 @@ The default configuration is based on an older version of the Drupal 8 Search AP
 
 ### Limitations
 
-The recommended maximum size for configuration directories (zipped) is 2MB. These need to be monitored to ensure they don't grow beyond that. If the zipped configuration directories grow beyond this, performance will decline and deploys will become longer. The directory archives will be compressed and string encoded. You could use this bash pipeline `echo $(($(tar czf - . | base64 | wc -c )/(1024*1024))) Megabytes` inside the directory to get an idea of the archive size.
+The recommended maximum size for configuration directories (zipped) is 2MB. These need to be monitored to ensure they don't grow beyond that. If the zipped configuration directories grow beyond this, performance declines and deploys become longer. The directory archives are compressed and string encoded. You could use this bash pipeline `echo $(($(tar czf - . | base64 | wc -c )/(1024*1024))) Megabytes` inside the directory to get an idea of the archive size.
 
-The configuration directory is a collection of configuration data, like a data dictionary, e.g. small collections of key/value sets. The best way to keep the size small is to restrict the directory context to plain configurations. Including binary data like plugin `.jar` files will inflate the archive size, and isn't recommended.
+The configuration directory is a collection of configuration data, like a data dictionary, e.g. small collections of key/value sets. The best way to keep the size small is to restrict the directory context to plain configurations. Including binary data like plugin `.jar` files inflates the archive size, and isn't recommended.
 
 ## Accessing the Solr server administrative interface
 
@@ -243,7 +243,7 @@ In this example, you can now open `http://localhost:30000/solr/` in a browser to
 
 
 {{< note >}}
-Platform.sh Dedicated users can use `ssh -L 8888:localhost:8983 <user>@<cluster-name>.ent.platform.sh` to open a tunnel instead, after which the Solr server administrative interface will be available at `http://localhost:8888/solr/`.
+Platform.sh Dedicated users can use `ssh -L 8888:localhost:8983 <user>@<cluster-name>.ent.platform.sh` to open a tunnel instead, after which the Solr server administrative interface is available at `http://localhost:8888/solr/`.
 {{< /note >}}
 
 
@@ -263,8 +263,8 @@ This approach has the downside of temporarily having an empty Solr instance, whi
 
 ### Transitional
 
-For a transitional approach you will temporarily have two Solr services. Add a second Solr service with the new version a new name and give it a new relationship in `.platform.app.yaml`. You can optionally run in that configuration for a while to allow your application to populate indexes in the new service as well.
+For a transitional approach you temporarily have two Solr services. Add a second Solr service with the new version a new name and give it a new relationship in `.platform.app.yaml`. You can optionally run in that configuration for a while to allow your application to populate indexes in the new service as well.
 
 Once you're ready to cut over, remove the old Solr service and relationship. You may optionally have the new Solr service use the old relationship name if that's easier for your application to handle. Your application is now using the new Solr service.
 
-This approach has the benefit of never being without a working Solr instance. On the downside, it requires two running Solr servers temporarily, each of which will consume resources and need adequate disk space. Depending on the size of your data that may be a lot of disk space.
+This approach has the benefit of never being without a working Solr instance. On the downside, it requires two running Solr servers temporarily, each of which consumes resources and need adequate disk space. Depending on the size of your data that may be a lot of disk space.

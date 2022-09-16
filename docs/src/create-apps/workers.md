@@ -21,10 +21,10 @@ platform ssh --worker=queue
 ## Stopping a worker
 
 If a worker instance needs to be updated during a new deployment,
-a `SIGTERM` signal will first be sent to the worker process to allow it to shut down gracefully.
+a `SIGTERM` signal is first sent to the worker process to allow it to shut down gracefully.
 If your worker process can't be interrupted mid-task, make sure it reacts to `SIGTERM` to pause its work gracefully.
 
-If the process is still running after 15 seconds, a `SIGKILL` message will be sent that force-terminates the worker process,
+If the process is still running after 15 seconds, a `SIGKILL` message is sent that force-terminates the worker process,
 allowing the container to be shut down and restarted.
 
 ## Workers vs cron jobs
@@ -60,8 +60,8 @@ For now there is only a single command, `start`, but more will be added in the f
 The `commands.start` property is required.
 
 The `start` key specifies the command to use to launch your worker application.
-It may be any valid shell command, although most often it will run a command in your application in the language of your application.
-If the command specified by the `start` key terminates it will be restarted automatically.
+It may be any valid shell command, although most often it runs a command in your application in the language of your application.
+If the command specified by the `start` key terminates it is restarted automatically.
 
 Note that [`deploy` and `post_deploy` hooks](./hooks/_index.md) as well as [`cron` commands](./app-reference.md#crons)
 run only on the [`web`](./app-reference.md#web) container, not on workers.
@@ -129,15 +129,15 @@ workers:
             database: 'mysqldb:mysql'
 ```
 
-In both cases, there will be two worker instances named `queue` and `mail`.
-Both will have access to a MySQL/MariaDB service defined in `services.yaml` named `mysqldb` through the `database` relationship.
-Both will also have their own separate, independent local disk mount at `/app/test` with 256 MB of allowed space.
+In both cases, there are two worker instances named `queue` and `mail`.
+Both have access to a MySQL/MariaDB service defined in `services.yaml` named `mysqldb` through the `database` relationship.
+Both also have their own separate, independent local disk mount at `/app/test` with 256 MB of allowed space.
 
 ## Customizing a worker
 
 The most common properties to set in a worker to override the top-level settings are `size` and `variables`.
-`size` lets you allocate fewer resources to a container that will be running only a single background process
-(unlike the web site which will be handling many requests at once),
+`size` lets you allocate fewer resources to a container that is running only a single background process
+(unlike the web site which is handling many requests at once),
 while `variables` lets you instruct the application to run differently as a worker than as a web site.
 
 For example, consider this `.platform.app.yaml`:
@@ -214,35 +214,35 @@ workers:
 ```
 
 There's a lot going on here, but it's all reasonably straightforward.
-This configuration will take a single Python 3.7 code base from your repository,
+This configuration takes a single Python 3.7 code base from your repository,
 download all dependencies in `requirements.txt`, and the install Gunicorn.
-That artifact (your code plus the downloaded dependencies) will be deployed as three separate container instances, all running Python 3.7.
+That artifact (your code plus the downloaded dependencies) is deployed as three separate container instances, all running Python 3.7.
 
-The `web` instance will start a Gunicorn process to serve a web application.
+The `web` instance starts a Gunicorn process to serve a web application.
 
-* It will run the Gunicorn process to serve web requests, defined by the `project/wsgi.py` file which contains an `application` definition.
-* It will have an environment variable named `TYPE` with value `web`.
-* It will have a writable mount at `/app/uploads` with a maximum space of 2048 MB.
-* It will have access to both a MySQL database and a RabbitMQ server, both of which are defined in `services.yaml`.
-* Platform.sh will automatically allocate resources to it as available on the plan, once all fixed-size containers are allocated.
+* It runs the Gunicorn process to serve web requests, defined by the `project/wsgi.py` file which contains an `application` definition.
+* It has an environment variable named `TYPE` with value `web`.
+* It has a writable mount at `/app/uploads` with a maximum space of 2048 MB.
+* It has access to both a MySQL database and a RabbitMQ server, both of which are defined in `services.yaml`.
+* Platform.sh automatically allocates resources to it as available on the plan, once all fixed-size containers are allocated.
 
-The `queue` instance will be a worker that isn't web-accessible.
+The `queue` instance is a worker that isn't web-accessible.
 
-* It will run the `queue-worker.py` script, and restart it automatically if it ever terminates.
-* It will have an environment variable named `TYPE` with value `worker`.
-* It will have a writable mount at `/app/scratch` with a maximum space of 512 MB.
-* It will have access to both a MySQL database and a RabbitMQ server,
+* It runs the `queue-worker.py` script, and restart it automatically if it ever terminates.
+* It has an environment variable named `TYPE` with value `worker`.
+* It has a writable mount at `/app/scratch` with a maximum space of 512 MB.
+* It has access to both a MySQL database and a RabbitMQ server,
   both of which are defined in `services.yaml` (because it doesn't specify otherwise).
-* It will have "Medium" levels of CPU and RAM allocated to it, always.
+* It has "Medium" levels of CPU and RAM allocated to it, always.
 
-The `mail` instance will be a worker that isn't web-accessible.
+The `mail` instance is a worker that isn't web-accessible.
 
-* It will run the `mail-worker.py` script, and restart it automatically if it ever terminates.
-* It will have an environment variable named `TYPE` with value `worker`.
-* It will have no writable file mounts at all.
-* It will have access only to the RabbitMQ server, through a different relationship name than on the `web` instance.
-  It will have no access to MySQL whatsoever.
-* It will have "Small" levels of CPU and RAM allocated to it, always.
+* It runs the `mail-worker.py` script, and restart it automatically if it ever terminates.
+* It has an environment variable named `TYPE` with value `worker`.
+* It has no writable file mounts at all.
+* It has access only to the RabbitMQ server, through a different relationship name than on the `web` instance.
+  It has no access to MySQL whatsoever.
+* It has "Small" levels of CPU and RAM allocated to it, always.
 
 This way, the web instance has a large upload space, the queue instance has a small amount of scratch space for temporary files,
 and the mail instance has no persistent writable disk space at all as it doesn't need it.

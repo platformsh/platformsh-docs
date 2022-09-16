@@ -238,7 +238,7 @@ type: 'nodejs:14'
 relationships:
     drupal: 'drupal:http'
 
-# The hooks that will be triggered when the package is deployed.
+# The hooks that are triggered when the package is deployed.
 hooks:
     # Gatsby's build is delayed to the post_deploy hook, when Drupal is available for requests.
     post_deploy: npm run build

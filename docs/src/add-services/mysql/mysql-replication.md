@@ -38,7 +38,7 @@ db:
                     main: replication
 ```
 
-This will create a `replicator` user, and will grant read-only and table locking rights on the `main` database (namely `Select_priv`, `Show_view_priv`, `Create_tmp_table_priv`, `Lock_tables_priv` privileges) along with global replication rights (namely `Repl_slave_priv` and `Repl_client_priv` privileges) and flushing rights (`Reload_priv` used for flushing before reading the binary log position). If there is at least one `replication` permission defined, the bin-logging will be enabled on the primary server, which is essential for the replication.
+This creates a `replicator` user, and grants read-only and table locking rights on the `main` database (namely `Select_priv`, `Show_view_priv`, `Create_tmp_table_priv`, `Lock_tables_priv` privileges) along with global replication rights (namely `Repl_slave_priv` and `Repl_client_priv` privileges) and flushing rights (`Reload_priv` used for flushing before reading the binary log position). If there is at least one `replication` permission defined, the bin-logging is enabled on the primary server, which is essential for the replication.
 
 ## Add a relationship for the new endpoint
 
@@ -59,7 +59,7 @@ Open the MySQL CLI to the `replication` relationship, either by accessing the cr
 platform sql -r replication
 ```
 
-Now you need to prevent any changes to the data while you view the binary log position. You'll use this to tell the replica at exactly which point it should start replicating from. On the primary server, flush and lock all tables by running `FLUSH TABLES WITH READ LOCK`. Keep this session running - exiting it will release the lock. Get the current position in the binary log by running `SHOW MASTER STATUS`:
+Now you need to prevent any changes to the data while you view the binary log position. You'll use this to tell the replica at exactly which point it should start replicating from. On the primary server, flush and lock all tables by running `FLUSH TABLES WITH READ LOCK`. Keep this session running - exiting it releases the lock. Get the current position in the binary log by running `SHOW MASTER STATUS`:
 
 ```sql
 mysql> FLUSH TABLES WITH READ LOCK;
@@ -73,12 +73,12 @@ mysql> SHOW MASTER STATUS;
 +-----------------+----------+--------------+------------------+
 ```
 
-Record the File and Position details. If binary logging has just been enabled, these will be blank. Now, with the lock still in place, copy the data from the primary to the replica.
+Record the File and Position details. If binary logging has just been enabled, these are blank. Now, with the lock still in place, copy the data from the primary to the replica.
 
 Login to the app container, then run:
 
 ```sh
-# Dump the data from primary. Note that it will dump only the databases, which "replicator" user has access to.
+# Dump the data from primary. Note that it dumps only the databases, which "replicator" user has access to.
 $ mysqldump --all-databases --single-transaction -h database.internal -P 3306 -u replicator -p > /path/to/dump.sql
 ```
 
@@ -152,7 +152,7 @@ mysql> CHANGE MASTER TO
   MASTER_CONNECT_RETRY=10;
 ```
 
-Where `<the.host>` will vary depending on the SSH tunneling configuration you have, and the `<your_replicator_password>` can be obtained by running `platform relationships`.
+Where `<the.host>` varies depending on the SSH tunneling configuration you have, and the `<your_replicator_password>` can be obtained by running `platform relationships`.
 
 Now start the replica with the `START SLAVE` command:
 

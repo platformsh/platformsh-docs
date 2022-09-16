@@ -42,11 +42,11 @@ If your application does use a database or other services, you can configure the
   type:version
   ```
 
-  Consult the table below that lists all Platform.sh maintained services, along with their `type` and supported `version`s. The links will take you to each service's dedicated page in the documentation.
+  Consult the table below that lists all Platform.sh maintained services, along with their `type` and supported `version`s. The links take you to each service's dedicated page in the documentation.
 
   {{< readFile file="src/registry/images/tables/services_supported.md" markdownify="true">}}
 
-* `disk`: The `disk` attribute configures the amount of persistent disk that will be allocated between all of your services. Projects by default are allocated 5 GB (5120 MB), and that space can be distributed across all of your services. Note that not all services require disk space. If you specify a `disk` attribute for a service that doesn't use it, like Redis, you will receive an error when trying to push your changes.
+* `disk`: The `disk` attribute configures the amount of persistent disk that is allocated between all of your services. Projects by default are allocated 5 GB (5120 MB), and that space can be distributed across all of your services. Note that not all services require disk space. If you specify a `disk` attribute for a service that doesn't use it, like Redis, you receive an error when trying to push your changes.
 
   {{< note >}}
 
@@ -62,8 +62,8 @@ If your application does use a database or other services, you can configure the
 
   {{< /note >}}
 
-Platform.sh provides _managed services_, and each service comes with considerable default configuration that you will not have to include yourself in `services.yaml`.
+Platform.sh provides _managed services_, and each service comes with considerable default configuration that you don't need to include yourself in `services.yaml`.
 
-Next, you will next need to tell Platform.sh how to build and deploy your application using the `.platform.app.yaml` file.
+Next, you next need to tell Platform.sh how to build and deploy your application using the `.platform.app.yaml` file.
 
 {{< guide-buttons next="I've configured my services" >}}

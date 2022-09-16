@@ -66,5 +66,5 @@ if ($platformsh->hasRelationship($relationship_name)) {
 ```
 
 Commit that code and push.
-The specified cluster will now always point to the Elasticsearch service.
+The specified cluster now always points to the Elasticsearch service.
 Then configure Search API as normal.

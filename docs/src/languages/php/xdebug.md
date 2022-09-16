@@ -30,14 +30,14 @@ runtime:
 The `idekey` value can be any arbitrary alphanumeric string.
 
 When that key is defined, Platform.sh will start a second PHP-FPM process on the container that is identically configured but also has Xdebug enabled.
-Only incoming requests that have an Xdebug cookie or query parameter set will be forwarded to the debug PHP-FPM process.
-All other requests will be directed to the normal PHP-FPM process and thus have no performance impact.
+Only incoming requests that have an Xdebug cookie or query parameter set are forwarded to the debug PHP-FPM process.
+All other requests are directed to the normal PHP-FPM process and thus have no performance impact.
 
 Xdebug has numerous other configuration options available.
 They are all set as `php.ini` values, and can be configured the same way as any other [`php.ini` setting](/languages/php/ini.md).
 Consult the [Xdebug documentation](https://xdebug.org/docs/) for a full list of available options, although in most cases the default configuration is sufficient.
 
-If you have the [router cache](../../define-routes/cache.md) enabled, you will also need to explicitly add the Xdebug cookie (`XDEBUG_SESSION`) to the cookie whitelist.
+If you have the [router cache](../../define-routes/cache.md) enabled, you also need to explicitly add the Xdebug cookie (`XDEBUG_SESSION`) to the cookie whitelist.
 Depending on the cookies you already have listed there the result should look similar to this:
 
 ```yaml
@@ -73,7 +73,7 @@ Their respective plugin pages document how to trigger them when needed.
 
 ## Using PHPStorm
 
-The configuration for Xdebug will be slightly different for each IDE.
+The configuration for Xdebug is slightly different for each IDE.
 Platform.sh has no preference as to the IDE or editor you use, but we have provided configuration instructions for PHPStorm/IntelliJ due to its popularity in the PHP ecosystem.
 
 ### 1. Configure Xdebug
@@ -90,7 +90,7 @@ Other settings are at your discretion.
 In your PHPStorm Settings window, go to `Languages & Frameworks` > `PHP` > `Servers`.
 
 Add a new server for your Platform.sh environment.
-The "Host" should be the hostname of the environment on Platform.sh you will be debugging.
+The "Host" should be the hostname of the environment on Platform.sh you are debugging.
 The "Port" should always be 443 and the "Debugger" set to Xdebug.
 Ensure that "Use path mappings" is checked, which will make available a tree of your project with a column to configure the remote path that it should map to.
 

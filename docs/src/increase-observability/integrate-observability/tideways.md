@@ -36,7 +36,7 @@ runtime:
         - tideways
 ```
 
-Enabling the extension will also activate the Tideways background process.
+Enabling the extension also activates the Tideways background process.
 
 Push the changes to your Platform.sh environment to enable Tideways as follows:
 

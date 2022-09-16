@@ -113,7 +113,7 @@ Enter a Support ticket with the suggested title "Connect Stg / Prod to Projectâ€
 In the ticket, request to have your project enabled with Staging and Production in the UI
 and confirm that you've taken the steps above to prepare your project.
 
-We will review the infrastructure and settings, create user and environment variables for Staging and Production environments,
+We review the infrastructure and settings, create user and environment variables for Staging and Production environments,
 and update the ticket with results.
 
 Once started the process usually takes less than an hour.

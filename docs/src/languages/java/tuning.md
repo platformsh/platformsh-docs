@@ -9,7 +9,7 @@ There are a number of settings that can be adjusted for each application to opti
 ## Memory limits
 
 The JVM generally requires specifying a maximum memory size it is allowed to use, using the `Xmx` parameter.
-That should be set based on the available memory on the application container, which will vary with its size.
+That should be set based on the available memory on the application container, which varies with its size.
 
 To extract the container-scaled value on the command line, use `$(jq .info.limits.memory /run/config.json)`.
 
@@ -37,7 +37,7 @@ java -jar -Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemory
 ```
 
 Java supports a number of different garbage collection strategies.
-Which one is optimal for your application will vary depending on your available memory, Java version, and application profile.
+Which one is optimal for your application varies depending on your available memory, Java version, and application profile.
 Determining which is best for your application is out of scope, but the main options and how to enable them are:
 
 | Name        | Command  Flag         | Description  |

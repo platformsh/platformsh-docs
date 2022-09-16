@@ -21,7 +21,7 @@ This is the value you would get from [Step 4 of the pre-launch checklist](/domai
 Assuming that you are using both a `www.` subdomain as well as the bare domain,
 you'll want to point both of those DNS entries to the same place.
 Whether you choose the bare domain version or the `www` subdomain doesn't make any practical difference,
-as they both will reach Platform.sh and be handled correctly.
+as they both reach Platform.sh and be handled correctly.
 
 {{% disable-cache CDN="Cloudflare" %}}
 
@@ -42,9 +42,9 @@ mostly like using your project's Let's Encrypt certificate.
 User <---------------> Cloudflare <-------------> Platform.sh
 ```
 
-The other option known as "Flexible SSL" will cause issues if you intend to redirect all traffic to HTTPS.
-The "Flexible SSL" option will use Cloudflare's TLS/SSL certificate to encrypt traffic between your users and the CDN,
-but will pass requests from the CDN back to your project at Platform.sh via HTTP.
+The other option known as "Flexible SSL" causes issues if you intend to redirect all traffic to HTTPS.
+The "Flexible SSL" option uses Cloudflare's TLS/SSL certificate to encrypt traffic between your users and the CDN,
+but passes requests from the CDN back to your project at Platform.sh via HTTP.
 This facilitates sites that don't have a TLS/SSL certificate beginning to offer their users a more secure experience,
 by at the least eliminating the unencrypted attack vector on the "last mile" to the user's browser.
 

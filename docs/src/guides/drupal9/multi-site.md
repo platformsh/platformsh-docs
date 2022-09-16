@@ -9,7 +9,7 @@ weight: -80
 
 {{% description %}}
 
-But they would be separate Drupal instances: they will have their assets separate and live their lives apart, and it would be much better for them not to share the same database (though they could).
+But they would be separate Drupal instances: they have their assets separate and live their lives apart, and it would be much better for them not to share the same database (though they could).
 
 ## Multisite Drupal and Platform.sh
 

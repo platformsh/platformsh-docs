@@ -18,10 +18,10 @@ the Time-To-Live (TTL) on your domain is set to the lowest possible value to min
 
 {{< note >}}
 
-You will not be able to use a `A` record.
+You can't use a `A` record.
 Verify your DNS provider supports CNAMES.
-(If it doesn't you will want to run away from it anyway).
-Also you will be much happier if it supports Apex domains (more in the next chapter).
+(If it doesn't you want to run away from it anyway).
+Also you are much happier if it supports Apex domains (more in the next chapter).
 
 {{< /note >}}
 
@@ -34,7 +34,7 @@ Make sure you have turned off [basic-authentication](/administration/web/configu
 
 If your production environment is on a Dedicated instance,
 ensure that the code is up to date in both your `staging` and `production` branches,
-as those are what will be mirrored to the Dedicated instances.
+as those are what are mirrored to the Dedicated instances.
 Also ensure that the data on the production instance is up to date and ready to launch.
 
 ## 3. Optionally obtain a 3rd party TLS certificate
@@ -48,7 +48,7 @@ Platform.sh doesn't charge for using a 3rd party TLS certificate, although the i
 Platform.sh supports all kinds of certificates including domain-validated certificates,
 extended validation (EV) certificates, high-assurance certificates and wildcard certificates.
 The use of HA or EV certificates is the main reason why you may wish to use a third party issuer rather than the default certificate.
-You will also need a custom certificate if you use wildcard routes, as Let's Encrypt doesn't support wildcard certificates.
+You also need a custom certificate if you use wildcard routes, as Let's Encrypt doesn't support wildcard certificates.
 
 If you do wish to use a 3rd party certificate, ensure it is purchased and active prior to going live.
 

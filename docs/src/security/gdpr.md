@@ -102,7 +102,7 @@ Sensitive data processed (if applicable) and applied restrictions or safeguards:
 * When we are hosting a marketing conference or event,
   we may collect health information regarding attendees' specific dietary or disability needs.
 * **Note:** This request for information is optional and is only used for the purpose of providing accommodations to our attendees.
-  Attendees will be asked to provide explicit consent for the utilization of their health information and can revoke consent at any time.
+  Attendees are asked to provide explicit consent for the utilization of their health information and can revoke consent at any time.
 
 Nature of the processing:
 

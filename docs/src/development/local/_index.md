@@ -40,7 +40,7 @@ Checking connectivity... done.
 
 You should now have a repository folder, based on what you used for *[folder-name]* in the `platform get` command above.
 
-You will also notice a new directory in your project, `.platform/local`, which is excluded from Git.
+You get a new directory in your project, `.platform/local`, which is excluded from Git.
 This directory contains builds and any local metadata about your project needed by the CLI.
 
 ## Building the site locally

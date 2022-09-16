@@ -37,7 +37,7 @@ If your application doesn't contain any services, you do not need to open a tunn
     export PORT=8888
     ```
 
-    If you are using a Config Reader library with the application, it will also be necessary to mock two additional variables
+    If you are using a Config Reader library with the application, it is also necessary to mock two additional variables:
 
     ```bash
     export PLATFORM_APPLICATION_NAME=<.platform.app.yaml name, i.e. app>
@@ -52,7 +52,7 @@ If your application doesn't contain any services, you do not need to open a tunn
     platform tunnel:list
     ```
 
-    The tunnel will close itself after a timeout period of inactivity, but you can also do so with the command
+    The tunnel closes itself after a timeout period of inactivity, but you can also do so with the command
 
     ```bash
     platform tunnel:close

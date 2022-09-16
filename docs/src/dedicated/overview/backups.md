@@ -25,9 +25,9 @@ These backups are only used in cases of catastrophic failure and can only be res
 
 The restoration process may take a few hours, depending on the infrastructure provider in use.
 In the ticket, specify if you want backups of files, MySQL, or both.
-Uploaded files will be placed in an SSH-accessible directory on the Dedicated Cluster.
-MySQL will be provided as a MySQL dump file on the server.
+Uploaded files are placed in an SSH-accessible directory on the Dedicated Cluster.
+MySQL is provided as a MySQL dump file on the server.
 You may restore these to your site at your leisure.
-(We will not proactively overwrite your production site with a backup; you are responsible for determining a "safe" time to restore the backup, or for selectively restoring individual files if desired.)
+(We don't proactively overwrite your production site with a backup; you are responsible for determining a "safe" time to restore the backup, or for selectively restoring individual files if desired.)
 
 Customers are welcome to make their own backups using standard tools (`mysqldump`, rsync, etc.) at their own leisure.

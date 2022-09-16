@@ -8,7 +8,7 @@ aliases:
 
 If you have already [pushed your code](/gettingstarted/introduction/own-code/_index.md) to Platform.sh, then you should already have a local repository that you can build from.
 
-Otherwise, it will be necessary to download a local copy of your project first.
+Otherwise, you need to download a local copy of your project first.
 
 {{< asciinema src="videos/asciinema/local-copy.cast" >}}
 

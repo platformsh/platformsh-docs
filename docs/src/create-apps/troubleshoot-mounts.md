@@ -14,7 +14,7 @@ W: The mount '/example' has a path that overlaps with a non-empty folder.
 The content of the non-empty folder either comes from:
 - your git repository (you may have accidentally committed files).
 - or from the build hook.
-Please be aware that this content will not be accessible at runtime.
+Please be aware that this content isn't accessible at runtime.
 ```
 
 This shows that the files in Git or from your build aren't available after the build.

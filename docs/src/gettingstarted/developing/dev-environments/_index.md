@@ -7,7 +7,7 @@ aliases:
   - "/gettingstarted/dev-environments.html"
 ---
 
-While you're developing your application, you will at some point create some new features for it. Typically you're going to develop that feature on a separate branch in your Git repository, run some tests, and then merge that feature into your production application.
+While you're developing your application, you at some point create some new features for it. Typically you're going to develop that feature on a separate branch in your Git repository, run some tests, and then merge that feature into your production application.
 
 This is where the stress comes in and where breaking your live site becomes a real worry.
 

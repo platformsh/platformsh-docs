@@ -27,7 +27,7 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 \* No High-Availability on Dedicated.
 
 {{< note >}}
-Upgrading to PostgreSQL 12 using the `postgis` extension isn't currently supported. Attempting to upgrade with this extension enabled will result in a failed deployment that will require support intervention to fix.
+Upgrading to PostgreSQL 12 using the `postgis` extension isn't currently supported. Attempting to upgrade with this extension enabled results in a failed deployment that requires support intervention to fix.
 
 See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-with-the-postgis-extension) section below for more details.
 {{< /note >}}
@@ -110,13 +110,13 @@ psql -U main -h postgresql.internal -p 5432
 
 ## Exporting data
 
-The easiest way to download all data in a PostgreSQL instance is with the Platform CLI. If you have a single SQL database, the following command will export all data using the `pg_dump` command to a local file:
+The easiest way to download all data in a PostgreSQL instance is with the Platform CLI. If you have a single SQL database, the following command exports all data using the `pg_dump` command to a local file:
 
 ```bash
 platform db:dump
 ```
 
-If you have multiple SQL databases it will prompt you which one to export. You can also specify one by relationship name explicitly:
+If you have multiple SQL databases it prompts you which one to export. You can also specify one by relationship name explicitly:
 
 ```bash
 platform db:dump --relationship database
@@ -158,7 +158,7 @@ platform sql --relationship database -e <BRANCH_NAME> < my_database_backup.sql
 ```
 
 {{< note >}}
-Importing a database backup is a destructive operation. It will overwrite data already in your database.
+Importing a database backup is a destructive operation. It overwrites data already in your database.
 Taking a backup or a database export before doing so is strongly recommended.
 {{< /note >}}
 
@@ -200,13 +200,13 @@ dbpostgres:
                     legacy: rw
 ```
 
-This example creates a single PostgreSQL service named `dbpostgres`. The server will have two databases, `main` and `legacy` with three endpoints created.
+This example creates a single PostgreSQL service named `dbpostgres`. The server has two databases, `main` and `legacy` with three endpoints created.
 
 * `admin`: has full access to both databases.
 * `reporter`: has `SELECT` query access to the `main` database, but no access to `legacy`.
 * `importer`: has `SELECT`/`INSERT`/`UPDATE`/`DELETE` access (but not DDL access) to the `legacy` database. It doesn't have access to `main`.
 
-If a given endpoint has access to multiple databases you should also specify which is listed by default in the relationships array. If one isn't specified, the `path` property of the relationship is `null`. While that may be acceptable for an application that knows the name of the database it's connecting to, automated tools like the Platform.sh CLI will not be able to access the database on that relationship. For that reason, defining the `default_database` property is always recommended.
+If a given endpoint has access to multiple databases you should also specify which is listed by default in the relationships array. If one isn't specified, the `path` property of the relationship is `null`. While that may be acceptable for an application that knows the name of the database it's connecting to, automated tools like the Platform.sh CLI can't access the database on that relationship. For that reason, defining the `default_database` property is always recommended.
 
 Once these endpoints are defined, you need to expose them to your application as a relationship. Continuing with the above example, your `relationships` in `.platform.app.yaml` might look like:
 
@@ -274,7 +274,7 @@ db:
             - hstore
 ```
 
-In this case you will have `pg_trgm` installed, providing functions to determine the similarity of text based on trigram matching, and `hstore` providing a key-value store.
+In this case, you have `pg_trgm` installed, providing functions to determine the similarity of text based on trigram matching, and `hstore` providing a key-value store.
 
 ### Available extensions
 
@@ -336,7 +336,7 @@ extensions not listed here.
 * `xml2` - XPath querying and XSLT
 
 {{< note >}}
-Upgrading to PostgreSQL 12 using the `postgis` extension isn't currently supported. Attempting to upgrade with this extension enabled will result in a failed deployment that will require support intervention to fix.
+Upgrading to PostgreSQL 12 using the `postgis` extension isn't currently supported. Attempting to upgrade with this extension enabled results in a failed deployment that requires support intervention to fix.
 
 See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-with-the-postgis-extension) section below for more details.
 {{< /note >}}
@@ -367,6 +367,6 @@ Downgrading isn't supported. If you want, for whatever reason, to downgrade you 
 
 ### Upgrading to PostgreSQL 12 with the `postgis` extension
 
-Upgrading to PostgreSQL 12 using the `postgis` extension isn't currently supported. Attempting to upgrade with this extension enabled will result in a failed deployment that will require support intervention to fix.
+Upgrading to PostgreSQL 12 using the `postgis` extension isn't currently supported. Attempting to upgrade with this extension enabled results in a failed deployment that requires support intervention to fix.
 
 If you need to upgrade, you should follow the same steps recommended for performing downgrades: dump the database, remove the service, recreate the service with PostgreSQL 12, and then import the dump to that service.

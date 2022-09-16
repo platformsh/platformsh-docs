@@ -26,7 +26,7 @@ You can also change the project's region after it's created.
   - [Live backups](../administration/backup-and-restore.md#live-backups)
   - [Infrastructure metrics](../increase-observability/metrics/_index.md)
 
-  These regions will be updated in the future.
+  These regions are updated in the future.
   If you are on one of those regions and desire these features now,
   migrate to one of the newer regions.
 

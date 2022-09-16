@@ -20,9 +20,11 @@ If you are on a Development plan, you can't add a domain.
 You need to upgrade your subscription to a production plan.
 
 {{< note >}}
-You are able to add a domain to your production environment.
-However, the domain used for non-production environments will always be generated and can't be customized,
+
+You can add a domain to your production environment.
+The domain used for non-production environments is always generated and can't be customized,
 even if your project is on a Production plan.
+
 {{< /note >}}
 
 In the [Console](https://console.platform.sh), click the **More** button for your project and select **Edit plan**.
@@ -36,7 +38,8 @@ You can make changes to the project by clicking ‘Upgrade Plan’.
 ![Edit Plan](/images/management-console/billing-plan-upgrade.png "0.6")
 
 You can make changes to the type of plan, the number of environments, amount of storage and number of users here.
-When you make changes, it will update the monthly price you will be paying. Click `Upgrade plan` to save the new settings.
+When you make changes, it updates the monthly price you're paying.
+Click `Upgrade plan` to save the new settings.
 
 ![Edit Plan Choose](/images/management-console/settings-upgrade-plan.png "0.6")
 
@@ -45,19 +48,19 @@ You can find more information on pricing on the [pricing page](https://platform.
 ## 2. (CDN version) Configure your DNS provider
 
 If you are serving the site through a CDN, configure your DNS provider to point at your CDN account.
-The address or CNAME to set for that will vary with the CDN provider.
+The address or CNAME to set for that varies with the CDN provider.
 Refer to their documentation or to the [CDN guide](/domains/cdn/_index.md).
 
 ## 2. (Non-CDN version) Configure your DNS provider
 
 Configure your DNS provider to point your domain to your Platform.sh production environment domain name.
 
-The way to do so will vary somewhat depending on your registrar, but nearly all registrars should allow you to set a CNAME.
-Some will call it an Alias or similar alternate name,
+The way to do so varies somewhat depending on your registrar, but nearly all registrars should allow you to set a CNAME.
+Some call it an Alias or similar alternate name,
 but either way the intent is to say "this domain should always resolve to... this other domain".
 
 You can access the CNAME target by running `platform environment:info edge_hostname`.
-That is the host name by which Platform.sh knows your environment.
+That's the host name by which Platform.sh knows your environment.
 Add a CNAME record from your desired domain (`www.example.com`) to the value of the `edge_hostname`.
 
 If you have multiple domains you want to be served by the same application you need to add a CNAME record for each of them.
@@ -80,7 +83,7 @@ The CDN should already have been configured in advance to point to Platform.sh a
 
 {{< /note >}}
 
-This step will tell the Platform.sh edge layer where to route requests for your web site.
+This step tells the Platform.sh edge layer where to route requests for your web site.
 You can do this through the CLI with `platform domain:add example.com`
 or [using the Console](/administration/web/configure-project.md#domains).
 
@@ -92,14 +95,14 @@ you can create a `hosts` file entry on your computer
 and point it to the IP address that resolves when you access your production project branch.
 
 To get the IP address, first run `platform environment:info edge_hostname`.
-That will print the "internal" domain name for your project.
+That prints the "internal" domain name for your project.
 Run `ping <that domain name>` to get its IP address.
 
 In OS X and Linux you can add that IP  to your `/etc/hosts` file.
 In Windows the file is named `c:\Windows\System32\Drivers\etc\hosts`.
 You need to be a admin user to change that file.
-So in OS X you will usually run something like `sudo vi /etc/hosts`.
-After adding the line the file will look something like:
+So in OS X you usually run something like `sudo vi /etc/hosts`.
+After adding the line, the file looks something like:
 
 ![Hosts File](/images/config-files/hosts-file.png "0.4")
 

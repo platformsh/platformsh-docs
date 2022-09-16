@@ -46,14 +46,14 @@ A legacy region is a region running an older version of the Platform.sh orchestr
 It doesn't include all available features.
 See a [list of not included features](../projects/region-migration.md#why-migrate-between-regions).
 
-These regions will be upgraded in the future.
+These regions are upgraded in the future.
 If you’re on a legacy region and want all features now,
 [migrate your project](../projects/region-migration.md) to a newer region.
 
 ## Public IP addresses
 
 The public IP addresses for regions are stable, but not guaranteed to never change.
-Before any change, you will be notified well in advance regarding affected projects.
+Before any change, you are notified well in advance regarding affected projects.
 
 They're useful for cases such as when you have a corporate firewall that blocks outgoing SSH connections.
 In such cases, add the inbound IP addresses for your region to your allow list.

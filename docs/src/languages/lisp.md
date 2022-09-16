@@ -19,7 +19,7 @@ description: Platform.sh supports building and deploying applications written in
 
 Platform.sh is making assumptions about your application to provide a more streamlined experience. These assumptions are the following:
 
-- Your `.asd` file is named like your system name. E.g. `example.asd` will have `(defsystem example ...)`.
+- Your `.asd` file is named like your system name. E.g. `example.asd` has `(defsystem example ...)`.
 
 Platform.sh will then run `(asdf:make :example)` on your system to build a binary.
 
@@ -68,9 +68,9 @@ To get the `PORT` environment variable (the port on which your web application i
 
 ## Building and running the application
 
-Assuming `example.lisp` and `example.asd` are present in your repository, the application will be automatically built on push.
+Assuming `example.lisp` and `example.asd` are present in your repository, the application is automatically built on push.
 You can then start it from the `web.commands.start` directive.
-Note that the start command _must_ run in the foreground. Should the program terminate for any reason it will be automatically restarted. In the example below we sleep for a very, very long time. You could also choose to join the thread of your web server, or use other methods to make sure the program doesn't terminate.
+Note that the start command _must_ run in the foreground. Should the program terminate for any reason it is automatically restarted. In the example below we sleep for a very, very long time. You could also choose to join the thread of your web server, or use other methods to make sure the program doesn't terminate.
 
 The following basic `.platform.app.yaml` file is sufficient to run most Lisp applications.
 

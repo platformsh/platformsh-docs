@@ -14,15 +14,15 @@ That is, put "your code" and "the database" on the same level.
 ## Discrete projects
 
 If your applications are discrete systems that are only incidentally related (such as because you wrote both of them), make them separate projects.
-That will provide the most flexible development workflow.
-It will also be cheaper, as running multiple applications in a single project requires at least a Medium plan, which costs more than two Standard plans.
+That provides the most flexible development workflow.
+It is cheaper, as running multiple applications in a single project requires at least a Medium plan, which costs more than two Standard plans.
 
 Discrete projects are appropriate if:
 
 * You want to deploy new releases of each application independently of the others.
 * The projects are for different customers/clients.
 * The projects do not need deep internal knowledge of each other's data.
-* Different teams will be working on different applications.
+* Different teams are working on different applications.
 * You want to develop true-microservices, where each microservice is fully stand-alone process with its own data.
 
 If you are uncertain how your needs map to projects, it probably means they should be separate, discrete projects.
@@ -37,7 +37,7 @@ In a clustered application, you either have [multiple `.platform.app.yaml`](../c
 
 A Clustered application requires at least a Medium plan.
 
-With a clustered application, you often will not need multiple service instances.
+With a clustered application, you often don't need multiple service instances.
 The [MySQL, MariaDB](../add-services/mysql/_index.md),
 and [Solr](../add-services/solr.md) services support defining multiple databases on a single service,
 which is significantly more efficient than defining multiple services.
@@ -56,8 +56,8 @@ Clustered applications are appropriate if:
 ## Multi-site applications
 
 Some Content Management Systems or other applications support running multiple logical "sites" off of a single code base.
-Those will usually work on Platform.sh depending on the configuration details of the application but are generally not recommended.
-Often their multi-site logic is dependant on the domain name of the incoming request, which on Platform.sh will vary by branch.
+Those usually works on Platform.sh depending on the configuration details of the application but are generally not recommended.
+Often their multi-site logic is dependant on the domain name of the incoming request, which on Platform.sh varies by branch.
 They also often recommend running multiple databases, which while supported just fine on Platform.sh makes the setup process for each site more difficult.
 
 Leveraging multi-site capabilities of an application are appropriate if, and only if:
@@ -67,4 +67,4 @@ Leveraging multi-site capabilities of an application are appropriate if, and onl
 * Each individual site is relatively low traffic, such that the aggregate traffic is appropriate for your plan size.
 * All sites really do use the same codebase with no variation, just different data.
 
-If any of those isn't the case, discrete projects will be a better long term plan.
+If any of those isn't the case, discrete projects are a better long term plan.

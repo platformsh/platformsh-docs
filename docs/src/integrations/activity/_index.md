@@ -75,7 +75,7 @@ platform integration:delete nadbowmhd67do
 
 Activity logs are available through their own CLI command, `platform integration:activities`.
 Every time your activity script runs it will generate a new log entry, including the output from the script.
-Any output produced by `console.log` will be available in the activity log, and that is the recommended way to debug scripts.
+Any output produced by `console.log` is available in the activity log, and that is the recommended way to debug scripts.
 
 See the [activity log](../overview.md#debugging-integrations) documentation for further details.
 

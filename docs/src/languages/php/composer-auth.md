@@ -58,7 +58,7 @@ In that case, Composer can authenticate and download dependencies from your auth
 
 ## Private repository hosting
 
-Typically, a private dependency will be hosted in a private Git repository.
+Typically, a private dependency is hosted in a private Git repository.
 While Platform.sh supports [private repositories](/development/private-repository.md) for the site itself, that doesn't help for pulling in third party dependencies from private repositories unless they have the same SSH keys associated with them.
 
 Fortunately, most private Composer tools (including Satis, Toran Proxy, and [Private Packagist](https://packagist.com/)) mirror tagged releases of dependencies and serve them directly rather than hitting the Git repository.

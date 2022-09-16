@@ -13,8 +13,8 @@ If a request is can be cached, Platform.sh builds a cache key from several reque
 When caching is on...
 
 * you can configure cache behavior for different location blocks in your `.platform.app.yaml`;
-* the router will respect whatever cache headers are sent by the application;
-* cookies will bypass the cache;
+* the router respects whatever cache headers are sent by the application;
+* cookies bypass the cache;
 * responses with the `Cache-Control` header set to `Private`, `No-Cache`, or `No-Store` aren't cached.
 
 You should _not_ use the Platform.sh HTTP cache if you're using Varnish or an external CDN
@@ -41,7 +41,9 @@ https://{default}/:
 
 ## Example
 
-In this example, requests will be cached based on the URI, the `Accept` header, `Accept-Language` header, and `X-Language-Locale` header; Any response that lacks a `Cache-Control` header will be cached for 60 seconds; and the presence of any cookie in the request will disable caching of that response.
+In this example, requests are cached based on the URI, the `Accept` header, `Accept-Language` header, and `X-Language-Locale` header.
+Any response that lacks a `Cache-Control` header is cached for 60 seconds.
+The presence of any cookie in the request disables caching of that response.
 
 ```yaml {location=".platform/routes.yaml"}
 https://{default}/:
@@ -83,13 +85,13 @@ Conditional requests using `If-Modified-Since` and `If-None-Match` are both supp
 
 ### Cache revalidation
 
-When the cache is expired (indicated by `Last-Modified` header in the response) the web server will send a request to your application with `If-Modified-Since` header.
+When the cache is expired (indicated by `Last-Modified` header in the response) the web server sends a request to your application with `If-Modified-Since` header.
 
 If the `If-None-Match` header is sent in the conditional request when `Etag` header is set in the cached response, your application can extend the validity of the cache by replying `HTTP 304 Not Modified`.
 
 ### Flushing
 
-The HTTP cache doesn't support a complete cache flush, however, you can invalidate the cache by setting `cache: false`. Alternatively, the cache clears on a rebuild, so triggering a rebuild (pushing a new commit) will effectively cause a complete cache flush.
+The HTTP cache doesn't support a complete cache flush, but you can invalidate the cache by setting `cache: false`. Alternatively, the cache clears on a rebuild, so triggering a rebuild (pushing a new commit) effectively causes a complete cache flush.
 
 ## Cache configuration properties
 
@@ -111,7 +113,7 @@ Turns the cache on or off for a route.
 
 Adds specific header fields to the cache key, enabling caching of separate responses for those headers.
 
-For example, if the `headers` key is the following, Platform.sh will cache a different response for each value of the `Accept` HTTP request header only:
+For example, if the `headers` key is the following, Platform.sh caches a different response for each value of the `Accept` HTTP request header only:
 
 ```yaml {location=".platform/routes.yaml"}
 https://{default}/:
@@ -137,8 +139,8 @@ Header field | Cache behavior
 `Cache-Control`|Responses with the `Cache-Control` header set to `Private`, `No-Cache`, or `No-Store` aren't cached. All other values override `default_ttl`.
 `Vary`|A list of header fields to be taken into account when constructing the cache key. Multiple header fields can be listed, separated by commas. The Cache key is the union of the values of the Header fields listed in Vary header, and whatever is listed in the `routes.yaml` file.
 `Set-Cookie`|Not cached
-`Accept-Encoding`, `Connection`, `Proxy-Authorization`, `TE`, `Upgrade`|Not allowed, and will throw an error
-`Cookie`|Not allowed, and will throw an error. Use the `cookies` value, instead.
+`Accept-Encoding`, `Connection`, `Proxy-Authorization`, `TE`, `Upgrade`|Not allowed, and throws an error
+`Cookie`|Not allowed, and throws an error. Use the `cookies` value, instead.
 `Pragma`|Ignored
 
 A full list of HTTP headers is available on [Wikipedia](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields).
@@ -147,10 +149,10 @@ A full list of HTTP headers is available on [Wikipedia](https://en.wikipedia.org
 
 A list of allowed cookie names to include values for in the cache key.
 
-All cookies will bypass the cache when using the default (`['*']`) or if the `Set-Cookie` header is present.
+All cookies bypass the cache when using the default (`['*']`) or if the `Set-Cookie` header is present.
 
 For example, for the cache key to depend on the value of the `foo` cookie in the request.
-Other cookies will be ignored.
+Other cookies are ignored.
 
 ```yaml {location=".platform/routes.yaml"}
 https://{default}/:
@@ -164,13 +166,13 @@ https://{default}/:
 **Type:** List
 
 **Values:**
-* `['*']`: any request with a cookie will bypass the cache [default]
+* `['*']`: any request with a cookie bypasses the cache [default]
 * `[]`: Ignore all cookies
 * `['cookie_1','cookie_2']`: A list of allowed cookies to include in the cache key. All other cookies are ignored.
 {{< /note >}}
 
 A cookie value may also be a regular expression.
-An entry that begins and ends with a `/` will be interpreted as a PCRE regular expression to match the cookie name.
+An entry that begins and ends with a `/` is interpreted as a PCRE regular expression to match the cookie name.
 For example:
 
 ```yaml {location=".platform/routes.yaml"}
@@ -181,8 +183,8 @@ https://{default}/:
         cookies: ['/^SS?ESS/']
 ```
 
-Will cause all cookies beginning with `SESS` or `SSESS` to be part of the cache key, as a single value.
-Other cookies will be ignored for caching.
+Causes all cookies beginning with `SESS` or `SSESS` to be part of the cache key, as a single value.
+Other cookies are ignored for caching.
 If your site uses a session cookie as well as 3rd party cookies, say from an analytics service,
 this is the recommended approach.
 

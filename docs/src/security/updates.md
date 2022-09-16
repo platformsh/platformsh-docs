@@ -16,5 +16,5 @@ However, these updates aren't automatically propagated to individual projects as
 Instead, the latest available version of every requested container is loaded on each deploy to a given environment.
 After a deploy you are always guaranteed to be running the latest Platform.sh-provided version of a container.
 
-If you are using Platform.sh-provided [Let's Encrypt TLS certificates](../define-routes/https.md), your site will be automatically redeployed approximately once every two months to ensure it always has an up to date certificate.
-That will also ensure your container versions are up to date at the same time.
+If you are using Platform.sh-provided [Let's Encrypt TLS certificates](../define-routes/https.md), your site is automatically redeployed approximately once every two months to ensure it always has an up to date certificate.
+That also ensures your container versions are up to date at the same time.

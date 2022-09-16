@@ -28,7 +28,7 @@ To use another service, replace `postgresql:12` in the example below with the na
 ```yaml
 # The services of the project.
 
-# Each service listed will be deployed
+# Each service listed is deployed
 # to power your Platform.sh project.
 
 db:

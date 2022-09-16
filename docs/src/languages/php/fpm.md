@@ -39,7 +39,7 @@ runtime:
 ```
 
 The `request_memory` has a lower limit of 10 MB while `reserved_memory` has a lower limit of 70 MB.
-Values lower than those will be replaced with those minimums.
+Values lower than those are replaced with those minimums.
 
 You can check the maximum number of PHP-FPM workers by opening an [SSH session](/development/ssh/_index.md) and running following command (example for PHP 7.x):
 

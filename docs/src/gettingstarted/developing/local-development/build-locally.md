@@ -18,7 +18,7 @@ Now that you've opened tunnels into your services, you'll have access to all of 
     platform build
     ```
 
-    The Platform CLI will first ask you for the source directory and the build destination, then it will use your `.platform.app.yaml` file to execute the [build process locally](/development/local/_index.md#building-the-site-locally). This will create a `_www` directory in the project root that is a symlink to the currently active build, which is now located in `.platform/local/builds`.
+    The Platform CLI first asks you for the source directory and the build destination, then it uses your `.platform.app.yaml` file to execute the [build process locally](/development/local/_index.md#building-the-site-locally). This creates a `_www` directory in the project root that is a symlink to the currently active build, which is now located in `.platform/local/builds`.
 
 2. **Verify**
 
@@ -59,9 +59,9 @@ ruby -run -e httpd . -p 8000
 {{< /codetabs >}}
 
 
-   Applications written in Node.js, Go and Java can be configured to listen on a port locally, so it will only be necessary to execute the program directly.
+   Applications written in Node.js, Go and Java can be configured to listen on a port locally, so you only need to execute the program directly.
 
-3. **Cleanup**
+1. **Cleanup**
 
     That's it! Now you can spin up a local build of your application and test new features with full access to all of the data in your services. When you are finished, shut down the web server and then close the tunnel to your services:
 

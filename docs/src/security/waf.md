@@ -34,7 +34,7 @@ As a general class of security vulnerabilities, header injections occur when HTT
 {{< note title="Protection rules">}}
 The WAF monitors for header injection attempts that can occur via the payload and the header itself. Requests are blocked for those that contain the carriage return (CR; `%0d`) and line feed (LF; `%0a`) characters so that data isn't returned in a response header and interpreted by the client, similar to the [response splitting](/security/waf.html#response-splitting) and [request smuggling](/security/waf.html#request-smuggling) protection rules. 
 
-It will also monitor and detect newline characters in `GET` request argument values. 
+It also monitors and detects newline characters in `GET` request argument values. 
 {{< /note >}}
 
 ### Response splitting

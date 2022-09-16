@@ -29,7 +29,7 @@ The only setup required to prepare the backend is to install a few additional mo
 $ composer require drupal/gatsby drupal/jsonapi_extras drupal/pathauto
 ```
 
-The [Pathauto](https://www.drupal.org/project/pathauto) module will help you assign alias paths for each piece of content on your Drupal site that can then be replicated on the frontend Gatsby site. For example, the Drupal alias `/article/some-new-article` will be the same path you will find that article at on Gatsby.
+The [Pathauto](https://www.drupal.org/project/pathauto) module will help you assign alias paths for each piece of content on your Drupal site that can then be replicated on the frontend Gatsby site. For example, the Drupal alias `/article/some-new-article` is the same path you will find that article at on Gatsby.
 
 ## Gatsby
 

@@ -9,7 +9,7 @@ description: |
 
 {{% description %}}
 
-As part of the onboarding service, you will continue to work with the Solutions Engineer who was present during the technical discovery and analysis during the pre-sales phase.
+As part of the onboarding service, you continue to work with the Solutions Engineer who was present during the technical discovery and analysis during the pre-sales phase.
 During the entire on-boarding process, your Solutions Engineer is available to assist with questions and prioritize any tickets that may be submitted through the help desk.
 
 {{< onboarding-table >}}

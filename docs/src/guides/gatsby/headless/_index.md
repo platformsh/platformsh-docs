@@ -39,7 +39,7 @@ Drupal is just one example of a backend CMS that can be used with this pattern, 
 
 ## Signing up for Platform.sh
 
-In each of the backend guides below, there will be a "Deploy on Platform.sh" button that will not only deploy the guide's project for you, but also sign you up for a trial account. If you are planning on deploying a template and following along with these guides for greater context, feel free to move onto the next section. 
+In each of the backend guides below, there is a "Deploy on Platform.sh" button that will not only deploy the guide's project for you, but also sign you up for a trial account. If you are planning on deploying a template and following along with these guides for greater context, feel free to move onto the next section. 
 
 If however you are planning on using the templates and guides to deploy your existing codebase to Platform.sh,
 you first need to [register for a trial Platform.sh account](https://auth.api.platform.sh/register). 

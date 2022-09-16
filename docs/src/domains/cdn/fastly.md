@@ -40,7 +40,7 @@ When Fastly has been added as an intermediary to your project, however, this aut
 Once a user visits your site with an HTTP request and is directed to Fastly,
 Fastly continues to query Platform.sh using HTTPS (since that is how origin has been configured),
 resulting in Platform.sh never detecting the HTTP request in the first place.
-Enabling the "Force TLS and enable HSTS" option will cause Fastly to do the same HTTP to HTTPS redirect as Platform.sh,
+Enabling the "Force TLS and enable HSTS" option causes Fastly to do the same HTTP to HTTPS redirect as Platform.sh,
 ensuring that all requests are over HTTPS end-to-end.
 
 ## DNS TXT records

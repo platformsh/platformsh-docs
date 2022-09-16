@@ -29,6 +29,6 @@ All updates should be done through composer to update the lock file, and then pu
 
 The TYPO3 install tool doesn't yet fully understand when you are working on a cloud environment and may warn you that some folders aren't writable.
 
-Don't worry, your TYPO3 installation will be fully functional.
+Don't worry, your TYPO3 installation is fully functional.
 
 {{< guide-buttons type="last" >}}

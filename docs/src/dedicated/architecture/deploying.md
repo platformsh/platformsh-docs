@@ -24,7 +24,7 @@ When deploying to the Dedicated Cluster the process is slightly different than w
 * The new application image is built in the exact same fashion as for Platform.sh Professional.
 * Any active background tasks on the cluster, including cron tasks, are terminated.
 * The cluster (production or staging) is closed, meaning it doesn't accept new requests.
-Incoming requests will receive an HTTP 500 error.
+Incoming requests receives an HTTP 500 error.
 * The application image on all three servers is replaced with the new image.
 * The deploy hook is run on one, and only one, of the three servers.
 * The cluster is opened to allow new requests.
@@ -33,10 +33,10 @@ The deploy usually takes approximately 30-90 seconds, although that is highly de
 
 During the deploy process the cluster is unavailable.
 However, nearly all Platform.sh Dedicated instances are fronted by the Fastly Content Delivery Network (CDN).
-Fastly can be configured to allow a "grace period," that is, requests to the origin that fail will be served from the existing cache, even if that cache item is stale.
+Fastly can be configured to allow a "grace period," that is, requests to the origin that fail are served from the existing cache, even if that cache item is stale.
 We configure a default grace period that is longer than a typical deployment, and can extend that time upon request.
 That means anonymous users should see no interruption in service at all.
-Authenticated traffic that can't be served by the CDN will still see a brief interruption.
+Authenticated traffic that can't be served by the CDN still sees a brief interruption.
 
 ## Deployment philosophy
 
@@ -44,7 +44,7 @@ Platform.sh values consistency over availability, acknowledging that it is nearl
 Because the deploy hook may make database changes that are incompatible with the previous code version it is unsafe to have both old and new code running in parallel (on different servers), as that could result in data loss.
 We believe that a minute of planned downtime for authenticated users is preferable to a risk of race conditions resulting in data corruption, especially with a CDN continuing to serve anonymous traffic uninterrupted.
 
-That brief downtime applies only to changes pushed to the `production` branch. Deployments to staging or to a development branch have no impact on the production environment and will cause no downtime.
+That brief downtime applies only to changes pushed to the `production` branch. Deployments to staging or to a development branch have no impact on the production environment and cause no downtime.
 
 <!--
 ## Service overview

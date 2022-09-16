@@ -5,7 +5,7 @@ weight: 3
 layout: single
 ---
 
-Platform.sh Dedicated plans include a Fastly CDN account by default, which will be managed by Platform.sh.
+Platform.sh Dedicated plans include a Fastly CDN account by default, which is managed by Platform.sh.
 Our experience has shown that effective caching can mean a huge difference in the perceived performance of an application by its users,
 and that placing the caches closer to your users (wherever they may be) is the best solution currently available.
 
@@ -69,13 +69,13 @@ Support for multiple certificates is offered only through a CDN such as CloudFro
 Self-signed certificates can optionally be used on the origin for development purposes or for enabling TLS between the CDN and origin.
 
 All TLS certificates used with CloudFront MUST be 2048 bit certificates.
-Larger sizes will not work.
+Larger sizes don't work.
 
 ## Host Header forwarding
 
 The `Host` HTTP header tells the server what domain name is being requested,
 which may vary when multiple domains are served from the same server or through the same proxy, as is the case with a CDN.
-However, the CDN can't use the production domain name to reach Platform.sh, as that domain already routes to the CDN.
+But the CDN can't use the production domain name to reach Platform.sh, as that domain already routes to the CDN.
 So it uses the origin name provided by Platform.sh.
 
 To ensure your TLS certificates are valid for both requests from clients to the CDN and from the CDN to the server on Platform.sh,
@@ -83,7 +83,7 @@ you need to take two additional steps:
 
 1. Configure your CDN to set the `X-Forwarded-Host` HTTP header to the public domain (`example.com`).
    That allows the request from the CDN to Platform.sh to still carry the original requested domain.
-   The specific way to do so will vary by the CDN.
+   The specific way to do so varies by the CDN.
 2. Ensure your application can read from the `X-Forwarded-Host` header should it need the Host information.
    Many popular applications already do so,
    but if you have a custom application make sure that it checks for that header
@@ -107,7 +107,7 @@ Modify your route in `.platform/routes.yaml` like so to disable the cache:
     type: upstream
     upstream: "app:http"
     cache:
-        # Disable the HTTP cache on this route. It will be handled by the CDN instead.
+        # Disable the HTTP cache on this route. It's handled by the CDN instead.
         enabled: false
 ```
 
@@ -128,7 +128,7 @@ Add a custom header to the origin request with the base64 encoded username:passw
 
 For example: `Aladdin:OpenSesame` would become `Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l`.
 
-Be aware that this approach will apply the same user and password to all development environments, too.
+Be aware that this approach applies the same user and password to all development environments, too.
 You can have developers enter credentials through their browser,
 or override the access control setting for each child environment.
 
@@ -151,7 +151,7 @@ List of IP ranges for:
 - [CloudFlare](https://www.cloudflare.com/ips/)
 - [Fastly](https://docs.fastly.com/en/guides/accessing-fastlys-ip-ranges)
 
-Be aware that this approach will apply the same IP restrictions to all development environments, too.
+Be aware that this approach applies the same IP restrictions to all development environments, too.
 To remove it from development environments, you need to disable it on each environment
 or else create a single child of the default environment where it is disabled,
 and them make all development branches off of that environment.

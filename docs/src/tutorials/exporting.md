@@ -72,9 +72,9 @@ If your project uses some environment variable (tokens, ...) it can be helpful t
 
 As stated in the Console, several possibilities exist for the environment variables.
 
-* Variables beginning with `env:` will be exposed as Unix environment variables
-* Variables beginning with `php:` will be interpreted as `php.ini` directives.
-* All other variables will be part of the environment `PLATFORM_VARIABLES` variable
+* Variables beginning with `env:` are exposed as Unix environment variables
+* Variables beginning with `php:` are interpreted as `php.ini` directives.
+* All other variables are part of the environment `PLATFORM_VARIABLES` variable
 
 More details can be found [on the environment page](https://docs.platform.sh/administration/web/configure-environment.html#variables)
 

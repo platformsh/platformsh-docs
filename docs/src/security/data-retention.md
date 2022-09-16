@@ -29,7 +29,7 @@ When an environment is deleted, its application logs are deleted as well.
 ## Grid Backups
 
 Application backups running on the Grid (e.g. If you subscribe to a Platform.sh Professional plan) are retained for at least 7 days.
-They will be purged between 7 days and 6 months, at Platform.sh's discretion.
+They are purged between 7 days and 6 months, at Platform.sh's discretion.
 
 ## Dedicated backups
 

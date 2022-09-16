@@ -296,6 +296,6 @@ environment) so most customers can now just omit this key in
 `.platform.app.yaml`.
 
 In addition, version 1.7.0 now has consistency checks for configuration
-files and will reject `git push` operations that contain configuration
+files and rejects `git push` operations that contain configuration
 files that are invalid. In this case, just fix the issues as they are
 reported, commit and push again.
