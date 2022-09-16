@@ -9,7 +9,7 @@ SimpleSAMLphp is a library for authenticating a PHP-based application against a 
 Although Drupal has modules available to authenticate using SimpleSAML some additional setup is required.
 
 The following configuration assumes you are building Drupal using Composer.
-If not, you will need to download the library manually and adjust some paths accordingly.
+If not, you need to download the library manually and adjust some paths accordingly.
 
 ## Download the library and Drupal module
 
@@ -60,7 +60,7 @@ That will map all requests to `example.com/simplesaml/` to the `vendor/simplesam
 
 ## Create a configuration directory
 
-Your SimpleSAMLphp configuration will need to be outside of the `vendor` directory.
+Your SimpleSAMLphp configuration needs to be outside of the `vendor` directory.
 The `composer require` will download a template configuration file to `vendor/simplesamlphp/simplesamlphp/config`.
 
 Rather than modifying that file in place (as it isn't included in Git),

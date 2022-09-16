@@ -61,6 +61,6 @@ In the previous step, you created a new project on Platform.sh using the CLI. No
 
     ![Project Setup Wizard](/images/management-console/setup-wizard.png "0.5")
 
-With the empty configuration files in place, you will need to specify your service configuration in `.platform/services.yaml`.
+With the empty configuration files in place, you need to specify your service configuration in `.platform/services.yaml`.
 
 {{< guide-buttons next="I've created empty configuration files" >}}

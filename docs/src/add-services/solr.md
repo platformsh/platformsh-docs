@@ -249,7 +249,7 @@ Platform.sh Dedicated users can use `ssh -L 8888:localhost:8983 <user>@<cluster-
 
 ## Upgrading
 
-The Solr data format sometimes changes between versions in incompatible ways. Solr does not include a data upgrade mechanism as it is expected that all indexes can be regenerated from stable data if needed. To upgrade (or downgrade) Solr you will need to use a new service from scratch.
+The Solr data format sometimes changes between versions in incompatible ways. Solr does not include a data upgrade mechanism as it is expected that all indexes can be regenerated from stable data if needed. To upgrade (or downgrade) Solr you need to use a new service from scratch.
 
 There are two ways of doing that.
 

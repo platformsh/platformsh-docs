@@ -14,7 +14,7 @@ Otherwise, it will be necessary to download a local copy of your project first.
 
 1. **Get project ID**
 
-    You will need the your *project ID*. You can retrieve this ID at any time using the CLI commands `platform` or `platform project:list`.
+    You need the your *project ID*. You can retrieve this ID at any time using the CLI commands `platform` or `platform project:list`.
 
 2. **Get a copy of the repository locally**
 

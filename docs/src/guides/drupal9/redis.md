@@ -24,7 +24,7 @@ If you are working from an older repository or migrating a pre-built site to Pla
 
 ### 3. Add the Drupal module
 
-You will need to add the [Redis](https://www.drupal.org/project/redis) module to your project.
+You need to add the [Redis](https://www.drupal.org/project/redis) module to your project.
 If you are using Composer to manage your Drupal site (which we recommend), run:
 
 ```bash
@@ -42,7 +42,7 @@ The example below is intended as a "most common case".
 (Note: This example assumes Drupal 8.8/Drupal 9.0 and later.)
 
 {{< note >}}
-If you do not already have the Platform.sh Config Reader library installed and referenced at the top of the file, you will need to install it with `composer require platformsh/config-reader` and then add the following code before the block below:
+If you do not already have the Platform.sh Config Reader library installed and referenced at the top of the file, you need to install it with `composer require platformsh/config-reader` and then add the following code before the block below:
 
 ```php
 <?php

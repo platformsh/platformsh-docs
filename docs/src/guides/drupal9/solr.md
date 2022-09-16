@@ -66,7 +66,7 @@ relationships:
 
 ### 3. Add the Drupal modules
 
-You will need to add the [Search API](https://www.drupal.org/project/search_api) and [Search API Solr](https://www.drupal.org/project/search_api_solr) modules to your project. If you are using Composer to manage your Drupal site (which we recommend), run:
+You need to add the [Search API](https://www.drupal.org/project/search_api) and [Search API Solr](https://www.drupal.org/project/search_api_solr) modules to your project. If you are using Composer to manage your Drupal site (which we recommend), run:
 
 ```bash
 $ composer require drupal/search_api_solr
@@ -80,7 +80,7 @@ The configuration can be managed from `settings.platformsh.php` by adding the fo
 It will override the environment-specific parts of the configuration object with the correct values to connect to the Platform.sh Solr instance.
 
 {{< note >}}
-If you do not already have the Platform.sh Config Reader library installed and referenced at the top of the file, you will need to install it with `composer require platformsh/config-reader` and then add the following code before the block below:
+If you do not already have the Platform.sh Config Reader library installed and referenced at the top of the file, you need to install it with `composer require platformsh/config-reader` and then add the following code before the block below:
 
 ```php
 <?php

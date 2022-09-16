@@ -24,7 +24,7 @@ If your application does not contain any services, you do not need to open a tun
 
 2. **Export environment variables**
 
-    Platform.sh utilizes environment variables called Relationships within the application container. These store the credentials needed to connect to individual services. In order to connect with them remotely using the SSH tunnel you will need to mimic the same environment variables locally.
+    Platform.sh utilizes environment variables called Relationships within the application container. These store the credentials needed to connect to individual services. In order to connect with them remotely using the SSH tunnel you need to mimic the same environment variables locally.
 
     ```bash
     export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"

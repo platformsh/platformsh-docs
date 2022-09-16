@@ -135,11 +135,11 @@ There are a few additional keys in `.platform.app.yaml` you will likely need to 
           source_path: uploads
   ```
 
-  In this case, the application will be able to write to a mount that is visible in the `/app/web/uploads` directory of the application container, and which has a local source at `/mnt/uploads`. Consult the [mounts documentation](../../../create-apps/app-reference.md#mounts) for a more thorough discussion of how these attributes should be written.
+  In this case, the application can write to a mount that is visible in the `/app/web/uploads` directory of the application container, and which has a local source at `/mnt/uploads`. Consult the [mounts documentation](../../../create-apps/app-reference.md#mounts) for a more thorough discussion of how these attributes should be written.
 
 {{< note >}}
 
-Each language and framework may have additional attributes that you will need to include in `.platform.app.yaml` depending on the needs of your application. To find out what else you may need to include to configure your application, consult
+Each language and framework may have additional attributes that you need to include in `.platform.app.yaml` depending on the needs of your application. To find out what else you may need to include to configure your application, consult
 
 * **The [Application](../../../create-apps/_index.md) documentation for Platform.sh:**
 

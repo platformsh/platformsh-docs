@@ -6,7 +6,7 @@ aliases:
   - "/gettingstarted/going-live/set-domain.html"
 ---
 
-You will need to configure your registered domain on your Platform.sh project before going live, and you can do that either through the Console or by using the CLI.
+You need to configure your registered domain on your Platform.sh project before going live, and you can do that either through the Console or by using the CLI.
 
 ## Through the Console
 

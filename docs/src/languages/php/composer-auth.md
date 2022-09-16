@@ -54,7 +54,7 @@ build:
     flavor: "composer"
 ```
 
-In that case, Composer will be able to authenticate and download dependencies from your authenticated repository.
+In that case, Composer can authenticate and download dependencies from your authenticated repository.
 
 ## Private repository hosting
 

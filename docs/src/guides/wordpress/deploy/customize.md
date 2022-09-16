@@ -29,7 +29,7 @@ Many other WordPress settings are pre-defined in this file for you, so consult t
 
 Through this guide you will set up your WordPress repository to install everything during it's build using Composer. That includes themes, plugins, and even WordPress Core itself. Any new plugins you want to use or migrate from your existing application can be committed as dependencies using Composer, but there are a few changes we need to make to the `composer.json` file to prepare it for the final Platform.sh environment.
 
-First, the John Bloch script has a default `wordpress` installation directory, so the `composer.json` file will need to know to know that all new themes and plugins have a destination within that subdirectory. 
+First, the John Bloch script has a default `wordpress` installation directory, so the `composer.json` file needs to know that all new themes and plugins have a destination within that subdirectory.
 
 ```json
   "extra": {
@@ -47,7 +47,7 @@ First, the John Bloch script has a default `wordpress` installation directory, s
   }
 ```
 
-Next, having placed `wp-config.php` in the root of your repository, you will need to add a `post-install-cmd` to move the file into `wordpress` after `composer install` has finished.
+Next, having placed `wp-config.php` in the root of your repository, you need to add a `post-install-cmd` to move the file into `wordpress` after `composer install` has finished.
 
 ```json
   "scripts": {

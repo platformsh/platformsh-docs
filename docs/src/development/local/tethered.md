@@ -15,14 +15,14 @@ You can now run your application locally, assuming it is configured to read its 
 
 Note that other Platform.sh environment configuration such as the routes or application secret value will still not be available.
 Also be aware that the environment variable exists only in your current shell.
-If you are starting multiple local command shells you will need to rerun the `export` command above in each of them.
+If you are starting multiple local command shells you need to rerun the `export` command above in each of them.
 
 ## Local web server
 
 For the local web server the approach will vary depending on your language.
 
 * For a self-serving language (Go or Node.js), just run the program locally.
-* For PHP, you may install your own copy of Nginx (or Apache) and PHP-FPM, or just use the built-in PHP web server. Be aware that by default the PHP web server will ignore environment variables by default. You will need to explicitly instruct it to read them, like so: `php -d variables_order=EGPCS -S localhost:8001`. That will start a basic web server capable of running PHP, serving the current directory, on port 8001, using available environment variables. See the [PHP manual](https://www.php.net/manual/en/features.commandline.webserver.php) for more information.
+* For PHP, you may install your own copy of Nginx (or Apache) and PHP-FPM, or just use the built-in PHP web server. Be aware that by default the PHP web server will ignore environment variables by default. You need to explicitly instruct it to read them, like so: `php -d variables_order=EGPCS -S localhost:8001`. That will start a basic web server capable of running PHP, serving the current directory, on port 8001, using available environment variables. See the [PHP manual](https://www.php.net/manual/en/features.commandline.webserver.php) for more information.
 * For other languages it is recommended that you install your own copy of Nginx or Apache.
 * A virtual machine or Docker image is also a viable option.
 

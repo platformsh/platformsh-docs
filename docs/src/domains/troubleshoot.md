@@ -54,4 +54,4 @@ Use a tool such as the [conversion tool provided by Verisign](https://www.verisi
 
 [Contact support](/overview/get-support.md)
 
-We are here to help. Please include as much detail as possible (we will be able to provide quicker help).
+We are here to help. Please include as much detail as possible (we can provide quicker help).

@@ -17,7 +17,7 @@ you should first configure the domain on the Platform.sh side, and only then swi
 ## 1. Change your plan to a production plan
 
 If you are on a Development plan, you cannot add a domain.
-You will need to upgrade your subscription to a production plan.
+You need to upgrade your subscription to a production plan.
 
 {{< note >}}
 You are able to add a domain to your production environment.
@@ -60,7 +60,7 @@ You can access the CNAME target by running `platform environment:info edge_hostn
 That is the host name by which Platform.sh knows your environment.
 Add a CNAME record from your desired domain (`www.example.com`) to the value of the `edge_hostname`.
 
-If you have multiple domains you want to be served by the same application you will need to add a CNAME record for each of them.
+If you have multiple domains you want to be served by the same application you need to add a CNAME record for each of them.
 
 Note that depending on your registrar and the TTL you set,
 it could take anywhere from 15 minutes to 72 hours for the DNS change to fully propagate across the Internet.
@@ -97,7 +97,7 @@ Run `ping <that domain name>` to get its IP address.
 
 In OS X and Linux you can add that IP  to your `/etc/hosts` file.
 In Windows the file is named `c:\Windows\System32\Drivers\etc\hosts`.
-You will need to be a admin user to be able to change that file.
+You need to be a admin user to be able to change that file.
 So in OS X you will usually run something like `sudo vi /etc/hosts`.
 After adding the line the file will look something like:
 

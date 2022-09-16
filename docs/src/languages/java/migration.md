@@ -9,7 +9,7 @@ Platform.sh supports several styles of Java application, such as monolith, micro
 
 ## Minimum Requirement
 
-To run a Java application at Platform.sh you will need:
+To run a Java application at Platform.sh you need:
 
 * [A supported Java version](/languages/java/_index.md#supported-versions)
 * [A build management tool](/languages/java/_index.md#support-build-automation)
@@ -114,13 +114,13 @@ As a single application, in the multi-app, you have the option to set load balan
 
 When applications need to access a service, it is important to include the [Relationships key](../../create-apps/app-reference.md#relationships), because. by default an application may not talk to any other container within a project it includes others projects as a microservices architecture.
 
-To connect to a service from your deployed application, you will need to pass the relationships information into your application's configuration.
+To connect to a service from your deployed application, you need to pass the relationships information into your application's configuration.
 The way to do so varies with the application.
 The most common mechanisms are listed below.
 
 ### Overwrite
 
-If you are using a framework that follows the [Twelve-Factor App](https://12factor.net/) methodology, particularly the [third point](https://12factor.net/config), you will be able to configure the application directly from environment variables.
+If you are using a framework that follows the [Twelve-Factor App](https://12factor.net/) methodology, particularly the [third point](https://12factor.net/config), you can configure the application directly from environment variables.
 Examples of such frameworks include Spring, Eclipse MicroProfile Config, Quarkus, and Micronauts.
 
 The services information is available in the [**PLATFORM_RELATIONSHIPS** environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables).

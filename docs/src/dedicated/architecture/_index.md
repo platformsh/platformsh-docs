@@ -21,7 +21,7 @@ Default storage is based on the default SSD block-storage offering for each clou
 
 ## Accessing services
 
-Your application will be able to connect to each service by referencing the exact same environment variables as a Grid environment.
+Your application can connect to each service by referencing the exact same environment variables as a Grid environment.
 While the configuration of the service will be performed by our team, the application configuration is the same and your code should be the same.
 See the [services documentation](../../add-services/_index.md) for service-specific details.
 Note that not all services and languages are available in a Dedicated environment.

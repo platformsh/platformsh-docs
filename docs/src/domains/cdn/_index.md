@@ -20,7 +20,7 @@ Our recommended CDN provider is [Fastly](./fastly.md).
 The distributed nature of most CDNs means that for proper functioning,
 any domains that you intend to make use of the CDN will be required to use CNAME records for pointing the DNS entries.
 Pointing the root domain (example.com) at a CNAME record is not possible for all DNS hosts,
-so you will need to confirm this functionality or migrate to a new DNS host.
+so you need to confirm this functionality or migrate to a new DNS host.
 CloudFlare has a [more detailed writeup](https://blog.cloudflare.com/introducing-cname-flattening-rfc-compliant-cnames-at-a-domains-root/)
 of the challenges of root CNAMEs.
 
@@ -152,7 +152,7 @@ List of IP ranges for:
 - [Fastly](https://docs.fastly.com/en/guides/accessing-fastlys-ip-ranges)
 
 Be aware that this approach will apply the same IP restrictions to all development environments, too.
-To remove it from development environments, you will need to disable it on each environment
+To remove it from development environments, you need to disable it on each environment
 or else create a single child of the default environment where it is disabled,
 and them make all development branches off of that environment.
 

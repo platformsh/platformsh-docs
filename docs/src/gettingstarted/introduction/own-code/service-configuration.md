@@ -50,7 +50,7 @@ If your application does use a database or other services, you can configure the
 
   {{< note >}}
 
-  Each language and framework may have additional attributes that you will need to include in `.platform/services.yaml` depending on the needs of your application. To find out what else you may need to include to configure your services, consult
+  Each language and framework may have additional attributes that you need to include in `.platform/services.yaml` depending on the needs of your application. To find out what else you may need to include to configure your services, consult
 
   * **The [Services](../../../add-services/_index.md) documentation for Platform.sh**
 

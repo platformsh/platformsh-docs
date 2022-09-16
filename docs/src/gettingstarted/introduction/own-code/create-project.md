@@ -39,7 +39,7 @@ you can create a new project from the command line and connect it to your applic
 
     When the CLI has finished creating a project, it outputs your *project ID*.
     This is the primary identifier for making changes to your projects
-    and you will need to use it to set Platform.sh as the remote for your repository in the next step.
+    and you need to use it to set Platform.sh as the remote for your repository in the next step.
 
     You can also retrieve the *project ID* with the command `platform project:list`,
     which lists all of your projects and their IDs in a table.

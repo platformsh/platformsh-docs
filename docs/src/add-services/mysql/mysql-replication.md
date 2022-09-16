@@ -12,7 +12,7 @@ aliases:
 Normally an automated backup is better for short-term usage and a `mysqldump` for longer term storage, but in some cases the data set is large enough that `mysqldump` is prohibitive.
 In that case, you can enable external replication using an extra permission.
 
-Note that this guide covers the Platform.sh side; you will need to set up and maintain your own replica instance.
+Note that this guide covers the Platform.sh side; you need to set up and maintain your own replica instance.
 Consult the MySQL or MariaDB documentation for steps to do so.
 
 ## Create a replication user

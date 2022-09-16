@@ -64,7 +64,7 @@ Examples of such workaround records include:
 <!-- vale Platform.condescending = YES -->
 
 Platform.sh recommends ensuring that your DNS Provider supports dynamic apex domains before registering your domain name with them.
-If you are using a DNS Provider that does not support dynamic apex domains then you will be unable to use `example.com` with Platform.sh, and will need to use only `www.example.com` (or similar) instead.
+If you are using a DNS Provider that does not support dynamic apex domains then you can't use `example.com` with Platform.sh, and need to use only `www.example.com` (or similar) instead.
 
 ### (Alternate) Using a DNS provider with apex domain forwarding
 
@@ -92,7 +92,7 @@ They will result in a sub-optimal experience, however.
 
 This process has a few limitations:
 
-* Should we ever need to change one of those IPs your configuration will need to be manually updated.
+* Should we ever need to change one of those IPs your configuration needs to be manually updated.
 Until it is some requests will be lost.
 * Directly pointing at the edge routers bypasses their load-balancing functionality.
 Should one of them go offline for maintenance (as happens periodically for upgrades) approximately 1/3 of requests to your site will go to the offline router and be lost, making the site appear offline.

@@ -29,7 +29,7 @@ Also you will be much happier if it supports Apex domains (more in the next chap
 
 Make sure your site is running and configured as you want it to be, on your production branch.
 In particular, see the [Routes documentation](../define-routes/_index.md).
-You will need your routes configured appropriately before you begin.
+You need your routes configured appropriately before you begin.
 Make sure you have turned off [basic-authentication](/administration/web/configure-environment.md) if it was turned on during development.
 
 If your production environment is on a Dedicated instance,

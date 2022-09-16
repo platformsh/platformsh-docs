@@ -30,7 +30,7 @@ We recommend [Redis caching](/guides/drupal9/redis.md) for all Drupal sites.
 
 ## Why do I get "MySQL cannot connect to the database server"?
 
-If you are having a problem connecting to the database server, you will need force a redeployment of the database container. To do so, you can edit the service definition to add or remove a small amount of storage and then push.
+If you are having a problem connecting to the database server, you need force a redeployment of the database container. To do so, you can edit the service definition to add or remove a small amount of storage and then push.
 
 ## Can I use the name of the session cookie for caching?
 
