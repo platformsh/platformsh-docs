@@ -1,3 +1,4 @@
+import {decode} from 'html-entities';
 import PropTypes from 'prop-types';
 import React from 'react'
 import DOMPurify from 'dompurify';
@@ -12,7 +13,7 @@ const Suggestions = ({ hits }) => {
     <li key={r.relurl}>
       <h5 className="secondary-header" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(r.section) }} />
       <h5 className="secondary-link">
-        <a href={r.url}>{r.title}</a>
+        <a href={r.url}>{decode(r.title)}</a>
       </h5>
     </li>
   ))

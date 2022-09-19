@@ -1,3 +1,4 @@
+import {decode} from 'html-entities';
 import PropTypes from 'prop-types';
 import DOMPurify from 'dompurify';
 import React from 'react';
@@ -12,7 +13,7 @@ const SuggestionsPrimary = ({ hits, title }) => {
       <h5>
         <a href={r.url}>
           <b dangerouslySetInnerHTML={{ __html: `${DOMPurify.sanitize(r.section)} | ` }} />
-          {r.title}
+          {decode(r.title)}
         </a>
       </h5>
       {/* Add keywords if they match */}
@@ -43,7 +44,6 @@ const SuggestionsPrimary = ({ hits, title }) => {
         {' '}
       </div>
       {' '}
-
     </div>
   )
 }
