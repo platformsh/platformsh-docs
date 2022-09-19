@@ -67,8 +67,8 @@ highlight=false
 ---
 
 ```bash
-export PROJECT_ID = "$PLATFORM_PROJECT"
-export VARIABLES = "$(echo "$PLATFORM_VARIABLES" | base64 --decode)"
+export PROJECT_ID="$PLATFORM_PROJECT"
+export VARIABLES="$(echo "$PLATFORM_VARIABLES" | base64 --decode)"
 ```
 
 <--->
