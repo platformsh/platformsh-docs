@@ -40,8 +40,8 @@ you would add configuration for those services to the `settings.platformsh.php` 
 
 ## `.environment`
 
-Platform.sh runs `source .environment` in the [app root](../../../create-apps/app-reference.md#root-directory) when a project starts
-and when you log into an environment over SSH.
+Platform.sh runs `source .environment` in the [app root](../../../create-apps/app-reference.md#root-directory)
+when a project starts, before cron commands are run, and when you log into an environment over SSH.
 That gives you a place to do extra environment variable setup before the app runs,
 including modifying the system `$PATH` and other shell level customizations.
 
