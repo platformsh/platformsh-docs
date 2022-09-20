@@ -49,7 +49,7 @@ You can then modify [`gatsby-config.js`](https://www.gatsbyjs.com/docs/reference
 
     The template file that defines how a single Drupal article should be formatted on Gatsby, retrieving the data from that article using the `nodeArticle` GraphQL query.
 
-- [`gatsby/src/pages/articles.js`](https://github.com/platformsh-templates/gatsby-strapi/blob/master/client/src/components/articlePreview.js)
+- [`gatsby/src/pages/articles.js`](https://github.com/platformsh-templates/gatsby-drupal/blob/master/client/src/components/articlePreview.js)
 
     Generates previews of articles at `/articles` on the Gatsby site using the `allNodeArticle` GraphQL query.
 
