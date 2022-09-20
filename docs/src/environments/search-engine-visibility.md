@@ -10,6 +10,8 @@ you don't want search engines indexing them and diluting the SEO of your product
 
 Search engine indexers are told to ignore all development environments.
 You can change the setting for Production environments that don't have a custom domain.
+Platform.sh can't guarantee that indexers follow the instructions.
+If you're concerned about access, set up [HTTP access control](./http-access-control.md).
 
 To change the environment's visibility to search engines, follow these steps:
 
