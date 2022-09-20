@@ -41,16 +41,20 @@ The documentation and the MeiliSearch search service are separate applications.
 It isn't necessary to run the MeiliSearch app to build the docs locally,
 but if you don't, the search field doesn't appear in the sidebar.
 
-To run the docs alone, clone this repository
-and then install its dependencies and download its example files:
+To run the docs alone, clone this repository and install dependencies:
+
+```bash
+npm install
+```
+
+Then download the necessary example files:
 
 ```bash
 cd docs
-npm install
 npm run dev
 ```
 
-Then build the site,
+Then build the site:
 
 ```bash
 hugo serve
@@ -83,9 +87,9 @@ If you would like to test the search server, follow these steps:
 
    ```bash
    cd ../docs
-   npm install
+   npm install --prefix .
    npm run dev
-   npm run build-searchapp
+   npm run build:search
    hugo
    # Export master key again in this terminal.
    export MEILI_MASTER_KEY=test

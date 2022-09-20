@@ -17,10 +17,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd docs
+          npm set-script prepare ""
           npm ci
 
       - name: Check links in Markdown
-        run: |
-          cd docs
-          npm run check-links
+        run: npm run check-links
