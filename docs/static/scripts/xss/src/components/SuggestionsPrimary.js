@@ -12,7 +12,7 @@ const SuggestionsPrimary = ({ hits, title }) => {
       <h5>
         <a href={r.url}>
           <b dangerouslySetInnerHTML={{ __html: `${DOMPurify.sanitize(r.section)} | ` }} />
-		  <span dangerouslySetInnerHTML={{ __html: `${DOMPurify.sanitize(r.title)}` }} />
+          <span dangerouslySetInnerHTML={{ __html: `${DOMPurify.sanitize(r.title)}` }} />
         </a>
       </h5>
       {/* Add keywords if they match */}

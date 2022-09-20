@@ -13,8 +13,8 @@ const Suggestions = ({ hits }) => {
       <h5 className="secondary-header" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(r.section) }} />
       <h5 className="secondary-link">
         <a href={r.url}>
-		  <span dangerouslySetInnerHTML={{ __html: `${DOMPurify.sanitize(r.title)}` }} />
-		</a>
+          <span dangerouslySetInnerHTML={{ __html: `${DOMPurify.sanitize(r.title)}` }} />
+        </a>
       </h5>
     </li>
   ))
