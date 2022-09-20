@@ -469,3 +469,11 @@ kbd {
 table {
   table-layout: fixed; /* Keep tables inside the content wrapper */
 }
+
+/* Styling for variables inside code blocks and such */
+var {
+  color: var(--brand-color-primary-blue);
+  text-decoration: underline var(--brand-color-primary-blue) dotted 2px;
+  font-style: italic;
+  cursor: help;
+}
