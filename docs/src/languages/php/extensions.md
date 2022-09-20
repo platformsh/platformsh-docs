@@ -103,6 +103,7 @@ and turn off those on by default with the `disabled_extensions` key.
 | `pspell`          | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `pthreads`        |       |       |       |       | Avail |       |       |       |       |       |
 | `raphf`           |       |       | Avail |       |       |       |       | Avail | Avail | Avail |
+| `rdkafka`         |       |       |       |       |       |       |       |       |       | Avail |
 | `readline`        | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `recode`          | Avail | Avail | Avail | Avail | Avail | Avail | Avail |       |       |       |
 | `redis`           | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
