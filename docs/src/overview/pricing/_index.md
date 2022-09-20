@@ -98,7 +98,7 @@ You cannot map a custom domain name to a Development plan.
 
 {{< /note >}}
 
-Application containers on development environments default to the Standard size,
+Application containers on development environments default to the {{< partial "plans/default-dev-env-size" >}} size,
 but they can be increased to match your production environment if needed.
 Go to the **Edit plan** administration section for your project
 and select your desired size under **Environments application size**.
@@ -123,9 +123,9 @@ but they share the global resources of the cluster.
 
 The resources of a **Standard plan aren't sufficient to run more than one application** in the same cluster
 if there is also a MySQL database as a service.
-Useful multi-app projects start at Medium.
+Useful multi-app projects start at {{< partial "plans/multiapp-plan-name" >}}.
 
-For example, a Medium plan can support 3 apps
+For example, a {{< partial "plans/multiapp-plan-name" >}} plan can support 3 apps
 with a MySQL instance and a Redis instance.
 
 If you aren't sure whether a specific setup would fit in a plan,

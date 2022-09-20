@@ -27,5 +27,5 @@ These users have access to both the Development Environment and the Dedicated Cl
 
 ## Larger developments environments
 
-By default, all containers in development environments are "Small" sized, as they have limited traffic needs.
+By default, all containers in development environments are {{< partial "plans/default-dev-env-size" >}} sized, as they have limited traffic needs.
 For more resource-intensive applications this size can be increased for an additional fee.
