@@ -23,6 +23,7 @@ from Platform.sh engineers to people from the community.
     - [Include alt text](#include-alt-text)
     - [Aim for simple sentences](#aim-for-simple-sentences)
     - [Use direct sentences](#use-direct-sentences)
+  - [Use clear examples](#use-clear-examples)
   - [Format screenshots for sustainability](#format-screenshots-for-sustainability)
   - [Use the present tense](#use-the-present-tense)
   - [Use contractions](#use-contractions)
@@ -204,6 +205,30 @@ The app forwards requests    | It is the app that forwards requests
 You should follow four rules | There are four rules that should be observed
 Your requests are redirected | The system redirects your requests
 This is caused by            | The cause of this issue has to do with
+
+## Use clear examples
+
+You use one of two basic types of examples:
+
+- Code that can be copied and pasted with minimal modifications
+- Code that shows what a command or response might look like in full
+
+For the first type, keep the code basic without any flags users might not need.
+For any text that should be replaced by users, use [variables in code](./markup-format.md#variables-in-code).
+
+For the second type, use example values based on the following table:
+
+| Item               | What to use |
+| ------------------ | ----------- |
+| IP address         | An [IP address reserved for documentation](https://en.wikipedia.org/wiki/Reserved_IP_addresses#IPv4). |
+| Domain             | A [domain reserved for documentation](https://en.wikipedia.org/wiki/Special-use_domain_name). |
+| Email address      | A domain reserved for documentation. A local-part that is generic, not a name. Example: `someone@example.com` |
+| Name               | Try to avoid using names. If you need to distinguish different users, try using job titles first. If you absolutely must use a name, [generate a random one](https://uxdummy.com/generator/fake-user-name). |
+| Project ID         | `abcdefgh1234567` |
+| Other IDs          | Half a string of letters starting from `a` and half numbers from `1`, similarly to the project ID. So for an ID with 8 characters, use `abcd1234`. |
+| Region             | `eu`, unless there is a specific reason not to. |
+| Branch/environment | On Grid: `main` for the default branch/environment and `feature` for a comparison branch/environment. On Dedicated: `production` for the default and `dev` for a second. |
+| Environment URL    | By combining the above standards, the default for Grid non-default environments is: `feature.abcd123.abcdefgh1234567.eu.platform.sh`. |
 
 ## Format screenshots for sustainability
 
