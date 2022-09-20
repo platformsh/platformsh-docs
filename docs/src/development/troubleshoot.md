@@ -134,9 +134,17 @@ Typical causes and potential solutions include:
 * A PHP process is killed by the kernel out-of-memory killer.
   * See [how to deal with killed processes](../languages/php/troubleshoot.md#php-process-is-killed).
 
+## Site outage
+
+If you can't access some part of your project, whether it's the live site, development environment, or Console,
+check the [Platform.sh status page](https://status.platform.sh/).
+There you can see planned maintenance and subscribe to updates for any potential outages.
+
+If the status is operational, [contact support](../overview/get-support.md).
+
 ## Command not found
 
-When you've added a command line tool (such as [Drush](../other/glossary.md#drush),
+When you've added a command line tool (such as [Drush](../other/glossary.md#drush)),
 you might encounter an error like the following:
 
 ```bash
@@ -221,7 +229,7 @@ If the activity has the result `success`, the build has completed successfully a
 If the result is still `running`, the build is stuck.
 
 In most regions, stuck builds terminate after one hour.
-In older regions (`us` and `eu`), create a [support ticket](https://console.platform.sh/-/users/~/tickets/open) to have the build killed.
+To have the build killed in [legacy regions](./regions.md#legacy-regions), create a [support ticket](https://console.platform.sh/-/users/~/tickets/open).
 
 When a _deployment_ is blocked, you should try the following:
 

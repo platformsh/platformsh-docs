@@ -127,8 +127,8 @@ If all else fails, contact support.
 
 Platform.sh works with multiple cloud infrastructure providers,
 including Amazon Web Services, Microsoft Azure, Google Cloud, OVHcloud, and Orange.
-We offer public Grid regions in several parts of the world:
-USA (East Coast), USA (West Coast), Canada (East Coast), Europe (Dublin), Europe (Germany), United Kingdom (London), and Australia (Sydney).
+Public Grid regions are available in several parts of the world.
+See a [full list of regions](https://platform.sh/regions/).
 
 Dedicated projects can deploy production to any public AWS or Azure region.
 
