@@ -53,18 +53,18 @@ Variables available during builds can be accessed in `build` hooks and those ava
 To access environment variables in your app, you can use the Platform.sh Config Reader for the given language:
 
 * [PHP](https://github.com/platformsh/config-reader-php)
-* [Node.js](https://github.com/platformsh/config-reader-nodejs)
 * [Python](https://github.com/platformsh/config-reader-python)
-* [Java](https://github.com/platformsh/config-reader-java)
+* [Node.js](https://github.com/platformsh/config-reader-nodejs)
 * [Go](https://github.com/platformsh/config-reader-go)
-* [Elixir](https://github.com/platformsh/config-reader-elixir)
+* [Java](https://github.com/platformsh/config-reader-java)
 * [Ruby](https://github.com/platformsh/platformsh-ruby-helper)
+* [Elixir](https://github.com/platformsh/config-reader-elixir)
 
 Alternative, use a built-in method for the given language.
   
 * PHP: The [`geten[v()` function](http://php.net/manual/en/function.getenv.php)
-* Node.js: The [`process.env` object](https://nodejs.org/api/process.html#process_process_env)
 * Python: The [`os.environ` object](https://docs.python.org/3/library/os.html#os.environ)
+* Node.js: The [`process.env` object](https://nodejs.org/api/process.html#process_process_env)
 * Ruby: The [`ENV` accessor](https://ruby-doc.org/core/ENV.html)
 * Java: The [`System.getenv()` method](https://docs.oracle.com/javase/8/docs/api/java/lang/System.html#getenv-java.lang.String-)
 
