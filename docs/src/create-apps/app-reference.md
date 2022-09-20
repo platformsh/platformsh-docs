@@ -87,8 +87,8 @@ The total resources allocated across all apps and services can't exceed what's i
 
 Containers in development environments don't follow the `size` specification.
 Application containers are set based on the plan's setting for **Environments application size**.
-The default is **Standard** (`S`), but you can increase it by editing your plan.
-(Service containers in development environments are always set to size `S`.)
+The default is **{{< partial "plans/default-dev-env-size" >}}**, but you can increase it by editing your plan.
+(Service containers in development environments are always set to {{ partial "plans/default-dev-env-size" }} size.)
 
 ## Relationships
 
@@ -362,7 +362,7 @@ workers:
                 ./worker.sh
 ```
 
-For resource allocation, using workers in your project requires a [Medium plan or larger](https://platform.sh/pricing/).
+For resource allocation, using workers in your project requires a [{{< partial "plans/multiapp-plan-name" >}} plan or larger](https://platform.sh/pricing/).
 
 ## Access
 

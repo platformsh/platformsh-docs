@@ -45,6 +45,8 @@ Any change to the service version results in existing data becoming inaccessible
 
 {{% legacy-regions featureIntro="The Network Storage service" featureShort="the service" %}}
 
+If you haven't yet migrated, you see a  `invalid service type` error when trying to add the service.
+
 ## Usage example
 
 {{% endpoint-description type="network-storage" noApp=true /%}}
@@ -291,12 +293,3 @@ The following approximate steps do so with a minimum of service interruption.
    Once that's done you can remove the `old-uploads` mount and push again to finish the process
    You are also free to reduce the `disk` size in the `.platform.app.yaml` file if desired,
    but make sure to leave enough for any remaining local mounts.
-
-## Why do I get an `invalid service type` error with network storage?
-
-The `network-storage` service is only available on our newer regions.
-If you are running on the older `us` or `eu` regions and try to create a `network-storage` service,
-you receive this error.
-
-To make use of `network-storage`, you need to migrate to the newer `us-2` or `eu-2` regions.
-See our [tutorial on how to migrate regions](../projects/region-migration.md) for more information.
