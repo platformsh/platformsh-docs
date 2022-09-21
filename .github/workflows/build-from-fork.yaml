@@ -24,4 +24,6 @@ jobs:
           PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
         run: |
           platform project:set-remote 652soceglkw4u
-          platform environment:push -vvv --activate --parent=main --target=pr-${{ github.event.number }} -y
+          git switch -C pr-${{ github.event.number }}
+          git push -u origin pr-${{ github.event.number }}
+          platform environment:activate -y pr-${{ github.event.number }}
