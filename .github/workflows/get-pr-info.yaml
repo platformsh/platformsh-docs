@@ -62,7 +62,14 @@ jobs:
           done
 
           # Get the URL of the environment
-          ENV_URL=$(echo $LATEST_ACTIVITY | jq -r '.payload.environment.edge_hostname')
+          # For PRs from non-forked repos
+          if [ ${{ github.event.pull_request.head.repo.id }} == 21975579 ]; then
+            ENV_URL=$(echo $LATEST_ACTIVITY | jq -r '.payload.environment.edge_hostname')
+          # For PRs from forks
+          else
+            ENV_URL=$(echo $LATEST_ACTIVITY | jq -r '.payload.outcome.edge_hostname')
+          fi
+          
           ENV_URL="https://$ENV_URL/"
 
           # Get the status of the build activity
