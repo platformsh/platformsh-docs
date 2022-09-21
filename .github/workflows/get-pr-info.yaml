@@ -2,6 +2,7 @@ name: Get info on PR
 on:
   pull_request_target:
     branches: [main]
+    types: [labeled,opened,reopened,synchronize]
 
 env:
   PR_NUMBER: ${{ github.event.number }}
@@ -10,6 +11,13 @@ jobs:
   get_pr_info:
     runs-on: ubuntu-latest
     steps: 
+      - uses: actions/checkout@v3
+        # Run only for PRs from default repo and approved PRs from forks
+        if: ${{ github.event.pull_request.head.repo.id == 21975579 }} || contains(github.event.pull_request.labels.*.name, 'build-fork')
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+
       - name: Set branch name
         id: branch_name
         run: |
