@@ -27,4 +27,8 @@ jobs:
           platform project:set-remote 652soceglkw4u
           git switch -C pr-${{ github.event.number }}
           git push -u origin pr-${{ github.event.number }}
-          platform environment:activate -y pr-${{ github.event.number }}
+
+          # If the environment isn't active, activate it
+          if [ $(platform api:curl /projects/652soceglkw4u/environments/pr-2555 | jq -r .status) == "inactive" ]; then
+            platform environment:activate -y pr-${{ github.event.number }}
+          fi
