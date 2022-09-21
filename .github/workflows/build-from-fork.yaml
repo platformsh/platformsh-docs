@@ -22,4 +22,6 @@ jobs:
       # Create an environment and activate it
       - env:
           PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
-        run: platform environment:push -p 652soceglkw4u --activate --parent=main --target=pr-${{ github.event.number }} -y
+        run: |
+          platform project:set-remote 652soceglkw4u
+          platform environment:push --activate --parent=main --target=pr-${{ github.event.number }} -y
