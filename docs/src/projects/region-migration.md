@@ -18,13 +18,16 @@ You can also change the project's region after it's created.
 - You may want to move to a region with a lower [environmental impact](../development/regions.md#environmental-impact).
 - Some regions are running older versions of the Platform.sh orchestration system that offers fewer features.
   In particular, the `us` and `eu` regions don't currently offer the following features:
-  
+
   - [Timeouts in build hooks](../create-apps/hooks/hooks-comparison.md#timeout)
   - [Outbound firewalls](../create-apps/app-reference.md#firewall)
   - [Network Storage service](../add-services/network-storage.md)
   - [Deploy hook activity logs and SSH during deploy hooks](../create-apps/hooks/hooks-comparison.md#deploy-hook)
+  - [Cron activity logs](../increase-observability/logs.md)
   - [Live backups](../administration/backup-and-restore.md#live-backups)
   - [Infrastructure metrics](../increase-observability/metrics/_index.md)
+  - [Paused crons](../create-apps/app-reference.md#paused-crons)
+  - [Static content during deployments](https://platform.sh/blog/2022/upcoming-improvements-deployment-caching-crons)
 
   These regions will be updated in the future.
   If you are on one of those regions and desire these features now,
