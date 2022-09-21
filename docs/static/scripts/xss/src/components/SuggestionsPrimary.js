@@ -12,7 +12,7 @@ const SuggestionsPrimary = ({ hits, title }) => {
       <h5>
         <a href={r.url}>
           <b dangerouslySetInnerHTML={{ __html: `${DOMPurify.sanitize(r.section)} | ` }} />
-          {r.title}
+          <span dangerouslySetInnerHTML={{ __html: `${DOMPurify.sanitize(r.title)}` }} />
         </a>
       </h5>
       {/* Add keywords if they match */}
@@ -35,6 +35,7 @@ const SuggestionsPrimary = ({ hits, title }) => {
       <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(r._formatted.text) }} />
     </li>
   ))
+
   return (
     <div className="suggestions suggestions-primary">
       <h4 className="section">{title}</h4>
@@ -43,7 +44,6 @@ const SuggestionsPrimary = ({ hits, title }) => {
         {' '}
       </div>
       {' '}
-
     </div>
   )
 }
@@ -59,4 +59,5 @@ SuggestionsPrimary.propTypes = {
   ).isRequired,
   title: PropTypes.string.isRequired
 }
+
 export default SuggestionsPrimary

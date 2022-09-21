@@ -1,6 +1,6 @@
 {
   "name": "docs-search-input",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A React project offering an input for search",
   "main": "index.js",
   "scripts": {
