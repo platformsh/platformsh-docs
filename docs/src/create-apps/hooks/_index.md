@@ -61,7 +61,7 @@ Create your `build` hook to install them all:
    ```
 
    This installs all the dependencies for the main app.
-3. Copy the [testing script from the template](https://github.com/platformsh-templates/nextjs-drupal/tree/master/client//test/next-drupal-debug).
+3. Copy the [testing script from the template](https://github.com/platformsh-templates/nextjs-drupal/tree/master/client/platformsh-scripts/test/next-drupal-debug).
    Copy the files in this directory into a `client/platformsh-scripts/test` directory.
    This script debugs the connection between Next.js and Drupal.
 4. In the hook, switch to the directory with the testing script.
@@ -278,10 +278,10 @@ relationships:
 hooks:
     build: |
         set -e
-        yarn --frozen-lockfile
+        yarn --frozen-lockfile # Install dependencies for the main app
 
-        cd ptest
-        yarn --frozen-lockfile
+        cd platformsh-scripts/test 
+        yarn --frozen-lockfile # Install dependencies for the testing script
     # Next.js's build is delayed to the post_deploy hook, when Drupal is available for requests.
     post_deploy: |
         . deploy/platformsh.environment
