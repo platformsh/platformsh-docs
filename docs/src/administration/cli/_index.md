@@ -193,7 +193,8 @@ If you experience issues, run `platform self:install` to attempt a reinstall of 
 ### Run commands on your container
 
 You can use the Platform.sh CLI to run commands on your container.
-You can use any command you've added in dependencies or the build hook.
+You can use any command you've added in [dependencies](../../create-apps/app-reference.md#dependencies)
+or a [hook](../../create-apps/app-reference.md#hooks).
 
 The syntax looks like the following:
 
