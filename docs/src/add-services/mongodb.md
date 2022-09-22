@@ -25,6 +25,11 @@ sidebarTitle: "MongoDB"
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="mongodb-enterprise" status="supported" environment="grid" >}} | {{< image-versions image="mongodb-enterprise" status="supported" environment="dedicated" >}} | {{< image-versions image="mongodb-enterprise" status="supported" environment="dedicated-gen-3" >}} |
 
+{{% deprecated-versions %}}
+| **Grid** | **Dedicated** | **Dedicated Generation 3** |
+|----------------------------------|---------------|---------------|
+|  {{< image-versions image="mongodb-enterprise" status="deprecated" environment="grid" >}} | {{< image-versions image="mongodb-enterprise" status="deprecated" environment="dedicated" >}} | {{< image-versions image="mongodb-enterprise" status="deprecated" environment="dedicated-gen-3" >}} |
+
 ### Legacy edition
 
 Previous non-Enterprise versions are available in your projects (and are listed below),
