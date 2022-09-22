@@ -118,6 +118,7 @@ jobs:
         uses: tj-actions/changed-files@v29
         with:
           sha: ${{ github.event.pull_request.head.sha }}
+          base_sha: ${{ github.event.pull_request.base.sha }}
 
       # Create a list of relevant changed pages
       - name: Get list of changed files
