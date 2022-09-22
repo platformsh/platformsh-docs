@@ -10,7 +10,7 @@ This page describes how things work on Grid projects.
 [Dedicated Gen 3](../dedicated-gen-3/overview.md) projects are similar,
 but they run on dedicated virtual machines and each container is replicated three times.
 
-For Dedicated projects, read about how [Dedicated projects are structured](../dedicated/overview/_index.md)
+For Dedicated projects, read about how [Dedicated projects are structured](../dedicated/overview/_index.md).
 
 {{< /note >}}
 
