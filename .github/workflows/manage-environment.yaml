@@ -10,10 +10,11 @@ on:
 jobs:
   activate_environment:
     runs-on: ubuntu-latest
-    # Activate when a PR is opened
+    # Activate when a PR is opened, but not for forks (handled through `build-from-fork` workflow)
     if: >-
-      github.event.action == 'opened' ||
-      github.event.action== 'reopened'
+      (github.event.action == 'opened' ||
+      github.event.action== 'reopened') &&
+      github.event.pull_request.head.repo.id == 21975579
     steps:
       # Set up environment to use the Platform.sh CLI
       - uses: adam7/platformsh-cli-action@v1.1
