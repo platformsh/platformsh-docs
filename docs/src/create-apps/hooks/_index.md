@@ -29,7 +29,7 @@ This makes it perfect for a `build` hook.
 In this case, the app has two sets of dependencies:
 
 * For the main app
-* For a testing script
+* For a script to test connections between the apps
 
 Create your `build` hook to install them all:
 
@@ -53,7 +53,7 @@ Create your `build` hook to install them all:
      If other hooks fail, the deploy still happens.
 2. Install your top-level dependencies inside this `build` hook:
 
-   ```yaml {location="drupal/.platform.app.yaml"}
+   ```yaml {location="client/.platform.app.yaml"}
    hooks:
        build: |
            set -e
@@ -61,28 +61,32 @@ Create your `build` hook to install them all:
    ```
 
    This installs all the dependencies for the main app.
-3. Switch to the directory with the testing script.
+3. Copy the [testing script from the template](https://github.com/platformsh-templates/nextjs-drupal/tree/master/client//test/next-drupal-debug).
+   Copy the files in this directory into a `client/platformsh-scripts/test` directory.
+   This script debugs the connection between Next.js and Drupal.
+4. In the hook, switch to the directory with the testing script.
    Each hook starts in the [app root](../app-reference.md#root-directory).
-   To run commands from a different directory, you need to change directories:
+   In this case, the app root is `client`.
+   To run commands from a different directory, you need to change directories (relative to the app root):
 
-   ```yaml {location="drupal/.platform.app.yaml"}
+   ```yaml {location="client/.platform.app.yaml"}
    hooks:
        build: |
            set -e
            yarn --frozen-lockfile
 
-           cd platformsh-scripts/test/next-drupal-debug
+           cd platformsh-scripts/test
    ```
 
-4. Install the dependencies for the testing script:
+5. Install the dependencies for the testing script:
 
-   ```yaml {location="drupal/.platform.app.yaml"}
+   ```yaml {location="client/.platform.app.yaml"}
    hooks:
        build: |
            set -e
            yarn --frozen-lockfile
 
-           cd platformsh-scripts/test/next-drupal-debug
+           cd platformsh-scripts/test
            yarn --frozen-lockfile
    ```
 
@@ -107,7 +111,7 @@ Because these steps should be done before the site accepts request, they should 
 All of this configuration and preparation can be handled in a bash script.
 
 1. Copy the [preparation script from the template](https://github.com/platformsh-templates/nextjs-drupal/blob/master/api/platformsh-scripts/hooks.deploy.sh)
-   into a file called `hooks.deploy.sh`.
+   into a file called `hooks.deploy.sh` in a `api/platformsh-scripts` directory.
    Note that hooks are executed using the dash shell, not the bash shell used by SSH logins.
 2. Copy the [Drush configuration script form the template](https://github.com/platformsh-templates/nextjs-drupal/blob/master/api/drush/platformsh_generate_drush_yml.php)
    into a `drush/platformsh_generate_drush_yml.php` file.
@@ -184,7 +188,7 @@ So you don't have to rebuild Drupal but you still get fresh content.
    hooks:
        post_deploy: |
            . deploy/platformsh.environment
-           cd platformsh-scripts/test/next-drupal-debug && yarn debug
+           cd platformsh-scripts/test && yarn debug
    ```
 
    Note that you could add `set -e` here, but even if the job fails, the build/deployment itself can still be counted as successful.
@@ -195,7 +199,7 @@ So you don't have to rebuild Drupal but you still get fresh content.
    hooks:
        post_deploy: |
            . deploy/platformsh.environment
-           cd platformsh-scripts/test/next-drupal-debug && yarn debug
+           cd platformsh-scripts/test && yarn debug
 
            cd $PLATFORM_APP_DIR && yarn build
    ```
@@ -276,12 +280,12 @@ hooks:
         set -e
         yarn --frozen-lockfile
 
-        cd platformsh-scripts/test/next-drupal-debug
+        cd ptest
         yarn --frozen-lockfile
     # Next.js's build is delayed to the post_deploy hook, when Drupal is available for requests.
     post_deploy: |
         . deploy/platformsh.environment
-        cd platformsh-scripts/test/next-drupal-debug && yarn debug
+        cd platformsh-scripts/test && yarn debug
 
         cd $PLATFORM_APP_DIR && yarn build
 
