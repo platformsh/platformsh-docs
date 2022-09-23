@@ -10,9 +10,6 @@ Each project represents one Git repository, a centralized place to store code an
 If you've signed up for Platform.sh with GitHub, Bitbucket, or GitLab, your repository can live there.
 Otherwise, Platform.sh represents the source of truth for your repository.
 
-To start a project, you should have code that you'd like to deploy.
-It can be a basic "Hello World" site, such as you can find in the [Platform.sh demos](https://github.com/platformsh-demos).
-
 To deploy your app, you need to connect its repository to a project in Platform.sh.
 
 First, create a Platform.sh project by running the following command:
