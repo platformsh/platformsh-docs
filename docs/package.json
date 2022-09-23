@@ -13,7 +13,7 @@
     "assets-dist": "gulp dist",
     "build": "npm run fetch-files && npm run registry-files",
     "build:search": "npm run build --workspace docs-search-input",
-    "check-links": "remark --no-config --quiet --frail --use validate-links --ignore-pattern '**/varnish.md' --ignore-pattern '**/vault.md' --ignore-pattern '**/nodejs/_index.md' docs/src",
+    "check-links": "remark --no-config --quiet --frail --use validate-links --ignore-pattern '**/varnish.md' --ignore-pattern '**/vault.md' --ignore-pattern '**/nodejs/_index.md' src",
     "dev": "npm run fetch-files && npm run registry-files",
     "fetch-files": "node static/scripts/fetch-examples.mjs && node static/scripts/fetchTemplates.mjs",
     "hugo-watch-dev": "hugo server --watch --verbose --buildDrafts --cleanDestinationDir --disableFastRender",
