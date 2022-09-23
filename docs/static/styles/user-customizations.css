@@ -492,18 +492,19 @@ var {
   justify-content: center;
 }
 
-.stack-wrapper img {
-  max-height: 5em;
-  margin: 0 2em;
-}
-
-.stack-wrapper .onlytext {
-  font-size: 3em;
+.stack-wrapper a {
+  padding: 1rem;
+  box-shadow: -0.125rem -0.125rem 0px 0px inset, 0.125rem 0.125rem 0px 0px inset;
+  margin: 0 1rem;
+  color: inherit;
   text-decoration: none;
+  display: flex;
+  font-size: 1.125rem;
 }
 
-.stack-wrapper .onlytext:hover, .stack-wrapper .onlytext:focus {
-  color: var(--brand-font-color-black);
+.stack-wrapper a:hover {
+  background-color: #000000;
+  color: #ffffff;
 }
 
 .stack-picker {
@@ -526,7 +527,45 @@ var {
   border-bottom: 1px solid currentColor;
 }
 
-.stack-picker img {
-  max-height: 1.25em;
-  margin-right: 0.25em
+.stack-picker a {
+  display: flex;
+  cursor: pointer;
+}
+
+/* Style the language logos*/
+
+.stack-wrapper .logo_holder, .stack-picker .logo_holder {
+  height: 24px;
+  width: 24px;
+  display: inline-block;
+  background-repeat: no-repeat;
+  margin-right: 0.5rem;
+}
+
+.stack-wrapper .logo_holder.php, .stack-picker .logo_holder.php {
+  background-image: url("/images/logos/php_logo.png");
+}
+
+.stack-wrapper a:hover .logo_holder.php {
+  background-image: url("/images/logos/php_logo--inverted.png");
+}
+
+.stack-wrapper .logo_holder.java, .stack-picker .logo_holder.java {
+  background-image: url("/images/logos/java_logo.png");
+}
+
+.stack-wrapper a:hover .logo_holder.java {
+  background-image: url("/images/logos/java_logo--inverted.png");
+}
+
+.stack-wrapper .logo_holder.nodejs, .stack-picker .logo_holder.nodejs {
+  background-image: url("/images/logos/nodejs_logo.png");
+}
+
+.stack-wrapper .logo_holder.go, .stack-picker .logo_holder.go {
+  background-image: url("/images/logos/go_logo.png");
+}
+
+.stack-wrapper .logo_holder.python, .stack-picker .logo_holder.python {
+  background-image: url("/images/logos/python_logo.png");
 }
