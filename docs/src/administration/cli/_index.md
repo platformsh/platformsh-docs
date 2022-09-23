@@ -189,3 +189,29 @@ This isn't available by default on macOS, but can be installed via `brew`.
 Check your home directory and ensure that the file `~/.platformsh/autocompletion.sh` is being included by your shell.
 
 If you experience issues, run `platform self:install` to attempt a reinstall of this utility.
+
+### Run commands on your container
+
+You can use the Platform.sh CLI to run commands on your container.
+You can use any command you've added in [dependencies](../../create-apps/app-reference.md#dependencies)
+or a [hook](../../create-apps/app-reference.md#hooks).
+
+The syntax looks like the following:
+
+```bash
+platform ssh -- <COMMAND> <ARGUMENTS>
+```
+
+For example, to run a specific Python script named `my-script.py` on your current environment,
+run the following command:
+
+```bash
+platform ssh -- python my-script.py
+```
+
+Or to use [Drush](https://www.drush.org/latest/install/) to rebuild the cache on the `feature` environment,
+run this command:
+
+```bash
+platform ssh -e feature -- drush -y cache-rebuild
+```
