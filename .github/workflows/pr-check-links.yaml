@@ -17,7 +17,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm set-script prepare ""
+          npm pkg delete scripts.prepare
           npm ci
 
       - name: Check links in Markdown
