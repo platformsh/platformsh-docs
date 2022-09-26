@@ -63,7 +63,7 @@ markdownify=false
 
 The `.platform.app.yaml` file is extremely flexible, and can contain many lines with very fine-grained control over your application. At the very least, Platform.sh requires three principle attributes in this file to control your builds:
 
-* `name`: The [name of your application](../../../create-apps/app-reference.md) container doesn't have to be the same as your project name, and in most single application cases you can name it `app`. You should notice in the next step, when you configure how requests are handled in `.platform/routes.yaml` that `name` is reused there, and it is important that they are the same.
+* `name`: The [name of your application](../../../create-apps/app-reference.md) container doesn't have to be the same as your project name, and in most single application cases you can name it `app`. You should notice in the next step, when you configure how requests are handled in `.platform/routes.yaml` that `name` is reused there, and it's important that they're the same.
 
   {{< note >}}
 
@@ -124,7 +124,7 @@ There are a few additional keys in `.platform.app.yaml` you likely need to use t
                   root: 'web'
                   passthru: '/app.php'
       ```
-* `mounts`: Configuring mounts aren't required, unless part of your application requires write-access. By default, Platform.sh provided a *read-only* filesystem for your projects so that you can be confident in the health and security of your application once it has deployed.
+* `mounts`: Configuring mounts aren't required, unless part of your application requires write-access. By default, a *read-only* filesystem for your projects is provided so that you can be confident in the health and security of your application once it has deployed.
 
   If your application requires writable storage to function properly (i.e., saving files; mounts should not contain code) it can be defined like so:
 
@@ -135,7 +135,7 @@ There are a few additional keys in `.platform.app.yaml` you likely need to use t
           source_path: uploads
   ```
 
-  In this case, the application can write to a mount that is visible in the `/app/web/uploads` directory of the application container, and which has a local source at `/mnt/uploads`. Consult the [mounts documentation](../../../create-apps/app-reference.md#mounts) for a more thorough discussion of how these attributes should be written.
+  In this case, the application can write to a mount that's visible in the `/app/web/uploads` directory of the application container, and which has a local source at `/mnt/uploads`. Consult the [mounts documentation](../../../create-apps/app-reference.md#mounts) for a more thorough discussion of how these attributes should be written.
 
 {{< note >}}
 

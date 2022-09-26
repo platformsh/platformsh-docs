@@ -11,7 +11,7 @@ However, you can also create arbitrary links to spawn projects on Platform.sh fr
 There are two ways to create such a link, shown below.
 In each case, when a user clicks on the link they are redirected to create a new Platform.sh project,
 with the template selection step skipped in favor of the template specified.
-If the user doesn't have a Platform.sh account yet they are prompted to create one.
+If the user doesn't have a Platform.sh account yet they're prompted to create one.
 
 You may include the link on your own project's website, your company's internal Wiki,
 or anywhere else a link can go to make launching your code base as straightforward as possible.
@@ -39,8 +39,8 @@ Use this mechanism when you want more control over how the template gets deploye
 
 The template definition file may be at any publicly accessible URL.
 It can be in the template repository itself or separate.
-Note that if it is in the template repository then it is included in every deployed user project from that template.
-(It won't hurt anything as it has no effect at runtime,
+Note that if it's in the template repository then it's included in every deployed user project from that template.
+(It doesn't hurt anything as it has no effect at runtime,
 but users have a copy of the file in their code base and may be confused by it.)
 
 A list of all [Platform.sh-supported templates](https://github.com/platformsh/template-builder/tree/master/templates) is available on GitHub.
@@ -52,11 +52,11 @@ in the 3rd party template repository.
 
 ## Making a button (with a widget)
 
-The easiest way to make a Deploy on Platform.sh button is to use our [button builder widget](https://platform.sh/deploy/).
+The easiest way to make a Deploy on Platform.sh button is to use the [button builder widget](https://platform.sh/deploy/).
 You provide it with either the Git URL of the repository or a URL to a corresponding template definition file.
 
 The button builder widget gives you an HTML fragment to copy and paste to wherever you want the button hosted.
-It also includes a tracking code so we can know whose Deploy on Platform.sh button was clicked, but doesn't add any cookies to the site.
+It also includes a tracking code to know whose Deploy on Platform.sh button was clicked, but doesn't add any cookies to the site.
 
 ## Making a button manually
 
@@ -75,7 +75,7 @@ For example, to install Platform.sh's [Drupal 8 template on GitHub](https://gith
 https://console.platform.sh/org/create-project/?template=https://github.com/platformsh-templates/drupal8.git
 ```
 
-(Note that is the URL of the Git repository as if you were cloning it, NOT the URL of the repository's home page on GitHub.)
+(Note that's the URL of the Git repository as if you were cloning it, NOT the URL of the repository's home page on GitHub.)
 
 A new project is created and then initialized with whatever code is at the tip of the default branch of that repository.
 This method works for any publicly visible Git repository,
@@ -107,5 +107,5 @@ Platform.sh welcomes project templates produced by the application vendor.
 If you have a Free Software application you want available in the Platform.sh setup wizard,
 create a template definition file and submit a pull request against the [3rd party templates repository](https://github.com/platformsh/templates-external/).
 The Developer Relations team reviews and evaluate the application and template, and may offer feedback before merging.
-Generally speaking, we welcome any Free Software application that is actively maintained and runs well on Platform.sh.
+Generally speaking, any Free Software application that's actively maintained and runs well on Platform.sh is welcome.
 Projects released under a non-Free license aren't accepted.

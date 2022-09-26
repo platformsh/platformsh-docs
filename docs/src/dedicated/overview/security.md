@@ -7,8 +7,8 @@ sidebarTitle: "Security and privacy"
 ## Updates &amp; upgrades
 
 Platform.sh updates the core software of the Dedicated Cluster (operating system, web server, PHP, MySQL, etc.) periodically, and after any significant security vulnerability is disclosed.
-These updates are deployed automatically with no additional work required by the user.
-We attempt to maintain parity with your development environment, but we do not guarantee absolute parity of point versions of your Dedicated environments with their corresponding development environments.
+These updates are deployed automatically with no additional work required by you.
+We attempt to maintain parity with your development environment, but we don't guarantee absolute parity of point versions of your Dedicated environments with their corresponding development environments.
 I.e, your development environment may have a PHP container running 5.6.30, but your production environment may lag behind at 5.6.22.
 We can upgrade point releases on request and always upgrade the underlying software in the event of security release.
 
@@ -26,14 +26,14 @@ Outgoing UDP traffic is disallowed.
 
 The Development Environment deploys each branch as a series of containers hosted on a shared underlying VM.
 Many customers generally share the same VM.
-However, all containers are allowed to connect only to other containers in their same environment, and even then only if an explicit "relationship" has been defined by the user via configuration file.
+All containers are allowed to connect only to other containers in their same environment, and even then only if an explicit "relationship" has been defined by the user via configuration file.
 
 ## Security incident handling procedure
 
 Should Platform.sh become aware of a security incident &mdash; such as an active or past hacking attempt, virus or worm, or data breach &mdash; senior personnel including the CTO are promptly notified.
 
 
-Our security incident procedures include isolating the affected systems, collecting forensic evidence for later analysis including a byte-for-byte copy of the affected system, and finally restoring normal operations. Once normal service is restored we perform a root cause analysis to determine exactly what happened.
+The security incident procedures include isolating the affected systems, collecting forensic evidence for later analysis including a byte-for-byte copy of the affected system, and finally restoring normal operations. Once normal service is restored a root cause analysis is performed to determine exactly what happened.
 A Reason for Outage report may be provided to the customer upon request that summarizes the incident, cause, and steps taken.
 
 Platform.sh cooperates with relevant law enforcement, and inform law enforcement in the event of an attempted malicious intrusion.

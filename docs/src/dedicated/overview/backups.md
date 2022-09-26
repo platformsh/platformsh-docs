@@ -21,7 +21,7 @@ Platform.sh Dedicated creates the backup using snapshots to encrypted elastic bl
 * **Recovery Point Objective (RPO)** is 6 hours (maximum time to last backup).
 * **Recovery Time Objective (RTO)** depends on the size of the storage. Large EBS volumes take more time to restore.
 
-These backups are only used in cases of catastrophic failure and can only be restored by Platform.sh. A ticket must be opened by the customer to request a restoration.
+These backups are only used in cases of catastrophic failure and can only be restored by Platform.sh. A support ticket must be opened to request a restoration.
 
 The restoration process may take a few hours, depending on the infrastructure provider in use.
 In the ticket, specify if you want backups of files, MySQL, or both.
@@ -30,4 +30,4 @@ MySQL is provided as a MySQL dump file on the server.
 You may restore these to your site at your leisure.
 (We don't proactively overwrite your production site with a backup; you are responsible for determining a "safe" time to restore the backup, or for selectively restoring individual files if desired.)
 
-Customers are welcome to make their own backups using standard tools (`mysqldump`, rsync, etc.) at their own leisure.
+You are free to make your own backups using standard tools (`mysqldump`, rsync, etc.) at your own leisure.

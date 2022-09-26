@@ -9,7 +9,9 @@ description: |
 
 The way to determine what setup is appropriate for your use case is to think of your project as a collection of services, some of which you've written yourself.
 That is, put "your code" and "the database" on the same level.
-(That is essentially true from the Platform.sh perspective.)  Does your project consist of multiple "your code" pieces, but they all are parts of the same project?  Or are they discrete applications that conceptually exist independently of each other?
+(That is essentially true from the Platform.sh perspective.)
+Does your project consist of multiple "your code" pieces, but they all are parts of the same project?
+Or are they discrete applications that conceptually exist independently of each other?
 
 ## Discrete projects
 

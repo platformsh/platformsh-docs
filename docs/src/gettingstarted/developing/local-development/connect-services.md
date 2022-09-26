@@ -9,7 +9,7 @@ aliases:
 Now that you have a local copy of your application code, you can make changes to the project without pushing to Platform.sh each time to test them. Instead you can locally build your application using the CLI, even when its functionality depends on a number of services.
 
 {{< note >}}
-If your application doesn't contain any services, you do not need to open a tunnel and can proceed to the next step.
+If your application doesn't contain any services, you don't need to open a tunnel and can proceed to the next step.
 {{< /note >}}
 
 {{< asciinema src="videos/asciinema/tunnel-open.cast" >}}
@@ -37,7 +37,7 @@ If your application doesn't contain any services, you do not need to open a tunn
     export PORT=8888
     ```
 
-    If you are using a Config Reader library with the application, it is also necessary to mock two additional variables:
+    If you are using a Config Reader library with the application, it's also necessary to mock two additional variables:
 
     ```bash
     export PLATFORM_APPLICATION_NAME=<.platform.app.yaml name, i.e. app>

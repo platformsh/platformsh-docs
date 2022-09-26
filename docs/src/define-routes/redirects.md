@@ -67,7 +67,7 @@ Each rule under `paths` is defined by its key describing the expression to match
     * `$args` evaluates to the full query string if any
     * `$arg_foo` evaluates to the value of the query parameter `foo`
     * `$uri` evaluates to the full URI of the request.
- * `prefix`: optional, specifies whether we should redirect both the path and all its children or just the path itself. Defaults to `true`, but not supported if `regexp` is `true`. For example,
+ * `prefix`: optional, specifies whether both the path and all its children or just the path itself should be redirected. Defaults to `true`, but not supported if `regexp` is `true`. For example,
 
    ```yaml
    https://{default}/:
@@ -113,7 +113,7 @@ Each rule under `paths` is defined by its key describing the expression to match
    ```
    In this example, redirects from `/from` would use a `308` HTTP status code, but redirects from `/here` would default to `302`.
 
- * `expires`: optional, the duration the redirect is cached for. Defaults to the `expires` value defined directly under the `redirects` key, but at this level we can fine-tune the expiration of individual partial redirects:
+ * `expires`: optional, the duration the redirect is cached for. Defaults to the `expires` value defined directly under the `redirects` key, but at this level the expiration of individual partial redirects can be fine-tuned:
 
    ```yaml
    https://{default}/:

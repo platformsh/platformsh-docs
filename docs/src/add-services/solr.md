@@ -236,7 +236,7 @@ Logs are written to: /home/myuser/.platformsh/tunnels.log
 
 List tunnels with: platform tunnels
 View tunnel details with: platform tunnel:info
-Close tunnels with: platform tunnel:close
+Close tunnels with: `platform tunnel:close`
 ```
 
 In this example, you can now open `http://localhost:30000/solr/` in a browser to access the Solr admin interface. Note that you can't create indexes or users this way, but you can browse the existing indexes and manipulate the stored data.

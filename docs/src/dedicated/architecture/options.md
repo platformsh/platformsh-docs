@@ -6,7 +6,7 @@ weight: 4
 ## Staging environments
 
 By default, the staging instance and production instance run on the same trio of virtual machines.
-That ensures identical configuration between them but can incur a performance penalty for production if the load generated during QA and UAT in staging is of any appreciable size.
+That ensures identical configuration between them but can incur a performance penalty for production if the load generated during quality assurance (QA) and user acceptance testing (UAT) in staging is of any appreciable size.
 
 A dedicated single-node staging machine can be provisioned for your application with an identical software configuration to your production hardware, but reduced hardware specs.
 This gives the advantages of isolating the staging load from the production hardware as well as having an identical software configuration to perform UAT, but this option doesn't provide a bed for performance testing as the physical hardware configuration isn't the same as production.

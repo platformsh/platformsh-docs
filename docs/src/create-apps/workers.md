@@ -61,7 +61,7 @@ The `commands.start` property is required.
 
 The `start` key specifies the command to use to launch your worker application.
 It may be any valid shell command, although most often it runs a command in your application in the language of your application.
-If the command specified by the `start` key terminates it is restarted automatically.
+If the command specified by the `start` key terminates, it's restarted automatically.
 
 Note that [`deploy` and `post_deploy` hooks](./hooks/_index.md) as well as [`cron` commands](./app-reference.md#crons)
 run only on the [`web`](./app-reference.md#web) container, not on workers.
@@ -215,7 +215,7 @@ workers:
 
 There's a lot going on here, but it's all reasonably straightforward.
 This configuration takes a single Python 3.7 code base from your repository,
-download all dependencies in `requirements.txt`, and the install Gunicorn.
+downloads all dependencies in `requirements.txt`, and then installs Gunicorn.
 That artifact (your code plus the downloaded dependencies) is deployed as three separate container instances, all running Python 3.7.
 
 The `web` instance starts a Gunicorn process to serve a web application.
@@ -241,7 +241,7 @@ The `mail` instance is a worker that isn't web-accessible.
 * It has an environment variable named `TYPE` with value `worker`.
 * It has no writable file mounts at all.
 * It has access only to the RabbitMQ server, through a different relationship name than on the `web` instance.
-  It has no access to MySQL whatsoever.
+  It has no access to MySQL.
 * It has "Small" levels of CPU and RAM allocated to it, always.
 
 This way, the web instance has a large upload space, the queue instance has a small amount of scratch space for temporary files,

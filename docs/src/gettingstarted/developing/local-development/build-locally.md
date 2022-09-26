@@ -59,7 +59,7 @@ ruby -run -e httpd . -p 8000
 {{< /codetabs >}}
 
 
-   Applications written in Node.js, Go and Java can be configured to listen on a port locally, so you only need to execute the program directly.
+   Applications written in Node.js, Go, and Java can be configured to listen on a port locally, so you only need to execute the program directly.
 
 1. **Cleanup**
 

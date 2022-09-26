@@ -81,7 +81,7 @@ The cache duration is decided based on the `Cache-Control` response header value
 
 ### Conditional requests
 
-Conditional requests using `If-Modified-Since` and `If-None-Match` are both supported. Our web server doesn't honor the `Pragma` request header.
+Conditional requests using `If-Modified-Since` and `If-None-Match` are both supported. The web server doesn't honor the `Pragma` request header.
 
 ### Cache revalidation
 
@@ -208,7 +208,7 @@ All static assets have a Cache-Control header with a max age defaulting to 0 (wh
 
 ## Debugging
 
-Platform.sh adds an `X-Platform-Cache` header to each request which show whether your request is a cache HIT, MISS or BYPASS. This can be useful when trying to determine whether it is your application, the HTTP cache, or another proxy or CDN which isn't behaving as expected.
+Platform.sh adds an `X-Platform-Cache` header to each request which show whether your request is a cache `HIT`, `MISS` or `BYPASS`. This can be useful when trying to determine whether it's your application, the HTTP cache, or another proxy or CDN which isn't behaving as expected.
 
 If in doubt, disable the cache using `cache: false`.
 
