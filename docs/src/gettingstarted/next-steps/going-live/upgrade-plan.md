@@ -7,16 +7,13 @@ aliases:
 ---
 
 "Development" plan projects can't be assigned a domain name,
-so you can't go live until you upgrade to at least a Standard plan.
+so you can't go live until you upgrade to at least a {{< partial "plans/min-production-size" >}} plan.
 This can be done using the Console.
 
 {{< video src="videos/management-console/upgrade-plan.mp4" >}}
 
 Development plans come with four environments: three development environments and one "future" production environment,
 which is based on your default branch.
-
-For example, "Small" plan sizes provide a production environment
-but restrict your application to the use of a single service (such as a database).
 
 On your project, click the **Go live** button in the top right hand corner of your project preview image.
 This lets you edit the project's plan.

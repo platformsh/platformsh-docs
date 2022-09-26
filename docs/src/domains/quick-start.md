@@ -17,7 +17,7 @@ Until that time, continue working with the Platform.sh generated URLs.
 
 {{< note>}}
 
-Custom domains can only be added to the default environment on production plans (Standard or larger).
+Custom domains can only be added to the default environment on production plans ({{< partial "plans/min-production-size" >}} or larger).
 
 {{< /note >}}
 

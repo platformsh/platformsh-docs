@@ -1,6 +1,6 @@
 name: Activate environment
 on:
-  pull_request:
+  pull_request_target:
     branches: [main]
     types:
       - opened
@@ -10,24 +10,26 @@ on:
 jobs:
   activate_environment:
     runs-on: ubuntu-latest
-    # Don't run on forks since the CLI won't work
+    # Activate when a PR is opened, but not for forks (handled through `build-from-fork` workflow)
     if: >-
-      github.event.pull_request.head.repo.id == 21975579 &&
       (github.event.action == 'opened' ||
-      github.event.action== 'reopened')
+      github.event.action== 'reopened') &&
+      github.event.pull_request.head.repo.id == 21975579
     steps:
       # Set up environment to use the Platform.sh CLI
       - uses: adam7/platformsh-cli-action@v1.1
         with: 
           token: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
 
-      - run: platform environment:activate -p 652soceglkw4u -y ${{ github.event.pull_request.head.ref }}
+      - env:
+          PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
+        run: platform environment:activate -p 652soceglkw4u -y ${{ github.event.pull_request.head.ref }}
 
   deactivate_environment:
     runs-on: ubuntu-latest
-    # Don't run on forks since the CLI won't work
+    # Deactivate when a PR is closed
+    # Don't need to run on merges since the integration takes care of it
     if: >-
-      github.event.pull_request.head.repo.id == 21975579 &&
       github.event.action == 'closed' &&
       github.event.pull_request.merged == false
     steps:
@@ -35,5 +37,17 @@ jobs:
       - uses: adam7/platformsh-cli-action@v1.1
         with: 
           token: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+      
+      - name: Set environment name
+        id: get_env_name
+        run: |
+          # For PRs from non-forked repos
+          if [ ${{ github.event.pull_request.head.repo.id }} == 21975579 ]; then
+            echo "::set-output name=env_name::${{ github.event.pull_request.head.ref }}"
+          # For PRs from forks
+          else
+            echo "::set-output name=env_name::pr-${{ github.event.number }}"
+          fi
 
-      - run: platform environment:deactivate -p 652soceglkw4u --no-delete-branch -y ${{ github.event.pull_request.head.ref }}
+      - name: Close environment
+        run: platform environment:deactivate -p 652soceglkw4u --no-delete-branch -y ${{ steps.get_env_name.outputs.env_name }}

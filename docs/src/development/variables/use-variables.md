@@ -37,7 +37,8 @@ $ echo $PLATFORM_VARIABLES | base64 --decode
 {"theanswer": "42"}
 ```
 
-You can also get the value for a single variable within the array, such as with this command:
+You can also get the value for a single variable within the array, such as with this command,
+which uses the [`jq` processor](https://stedolan.github.io/jq/):
 
 ```bash
 $ echo $PLATFORM_VARIABLES | base64 --decode | jq '.theanswer'
@@ -49,29 +50,26 @@ Variables available during builds can be accessed in `build` hooks and those ava
 
 ## Access variables in your app
 
-To access environment variables in your app, check the documentation page for your given language.
+To access environment variables in your app, you can use the Platform.sh Config Reader for the given language:
 
-* [Shell: The `jq` utility](https://stedolan.github.io/jq/)
-* [PHP: The `getenv()` function](http://php.net/manual/en/function.getenv.php)
-* [Node.js: The `process.env` object](https://nodejs.org/api/process.html#process_process_env)
-* [Python: The `os.environ` object](https://docs.python.org/3/library/os.html#os.environ)
-* [Ruby: The `ENV` accessor](https://ruby-doc.org/core/ENV.html)
-* [Java: The `System.getenv()` method](https://docs.oracle.com/javase/8/docs/api/java/lang/System.html#getenv-java.lang.String-)
+* [PHP](https://github.com/platformsh/config-reader-php)
+* [Python](https://github.com/platformsh/config-reader-python)
+* [Node.js](https://github.com/platformsh/config-reader-nodejs)
+* [Go](https://github.com/platformsh/config-reader-go)
+* [Java](https://github.com/platformsh/config-reader-java)
+* [Ruby](https://github.com/platformsh/platformsh-ruby-helper)
+* [Elixir](https://github.com/platformsh/config-reader-elixir)
+
+Alternative, use a built-in method for the given language.
+  
+* PHP: The [`geten[v()` function](http://php.net/manual/en/function.getenv.php)
+* Python: The [`os.environ` object](https://docs.python.org/3/library/os.html#os.environ)
+* Node.js: The [`process.env` object](https://nodejs.org/api/process.html#process_process_env)
+* Ruby: The [`ENV` accessor](https://ruby-doc.org/core/ENV.html)
+* Java: The [`System.getenv()` method](https://docs.oracle.com/javase/8/docs/api/java/lang/System.html#getenv-java.lang.String-)
 
 {{< codetabs >}}
 
----
-title=Shell
-file=none
-highlight=false
----
-
-```bash
-export PROJECT_ID = "$PLATFORM_PROJECT"
-export VARIABLES = "$(echo "$PLATFORM_VARIABLES" | base64 --decode)"
-```
-
-<--->
 ---
 title=PHP
 file=none

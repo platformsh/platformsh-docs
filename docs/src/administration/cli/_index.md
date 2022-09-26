@@ -165,6 +165,21 @@ You can customize how the CLI operates and what it returns with a configuration 
 or environment variables.
 For details, see the [customization instructions on GitHub](https://github.com/platformsh/platformsh-cli#user-content-customization).
 
+#### Automate repetitive tasks
+
+You might want to use the CLI in a script to automate repetitive tasks such as synchronizing your files locally.
+In such cases, you want to customize the CLI to bypass any confirmation questions.
+You can set the answer to every question as `yes` using the `PLATFORMSH_CLI_NO_INTERACTION` environment variable.
+
+For instance, to locally sync every mount point for your app named `app`, you could use this command:
+
+```bash
+export PLATFORM_PROJECT=my-project;
+export PLATFORM_BRANCH=main;
+export PLATFORMSH_CLI_NO_INTERACTION=1;
+platform mount:download --all --app app --target local-backup
+```
+
 ### Autocomplete commands
 
 The CLI provides tab autocompletion for commands, options, and some values (your projects, valid regions).
@@ -174,3 +189,29 @@ This isn't available by default on macOS, but can be installed via `brew`.
 Check your home directory and ensure that the file `~/.platformsh/autocompletion.sh` is being included by your shell.
 
 If you experience issues, run `platform self:install` to attempt a reinstall of this utility.
+
+### Run commands on your container
+
+You can use the Platform.sh CLI to run commands on your container.
+You can use any command you've added in [dependencies](../../create-apps/app-reference.md#dependencies)
+or a [hook](../../create-apps/app-reference.md#hooks).
+
+The syntax looks like the following:
+
+```bash
+platform ssh -- <COMMAND> <ARGUMENTS>
+```
+
+For example, to run a specific Python script named `my-script.py` on your current environment,
+run the following command:
+
+```bash
+platform ssh -- python my-script.py
+```
+
+Or to use [Drush](https://www.drush.org/latest/install/) to rebuild the cache on the `feature` environment,
+run this command:
+
+```bash
+platform ssh -e feature -- drush -y cache-rebuild
+```

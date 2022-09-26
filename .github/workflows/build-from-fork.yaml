@@ -1,0 +1,34 @@
+name: Build from fork
+
+on:
+  pull_request_target:
+    branches: [main]
+    types: [labeled]
+
+jobs:
+  build:
+    if: ${{ github.event.label.name == 'build-fork' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          token: ${{ secrets.WORKFLOW_TOKEN }}
+
+      # Set up workflow environment to use the Platform.sh CLI
+      - uses: adam7/platformsh-cli-action@v1.1
+        with: 
+          token: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+
+      # Create an environment and activate it
+      - env:
+          PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
+        run: |
+          platform project:set-remote 652soceglkw4u
+          git switch -C pr-${{ github.event.number }}
+          git push --force -u origin pr-${{ github.event.number }}
+
+          # If the environment isn't active, activate it
+          if [ $(platform api:curl /projects/652soceglkw4u/environments/pr-${{ github.event.number }} | jq -r .status) == "inactive" ]; then
+            platform environment:activate -y pr-${{ github.event.number }}
+          fi

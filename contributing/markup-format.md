@@ -18,6 +18,7 @@
     - [Indentation](#indentation)
     - [Note when low-level items are missing](#note-when-low-level-items-are-missing)
     - [Code block location](#code-block-location)
+    - [Variables in code](#variables-in-code)
   - [Refer to the UI and keys](#refer-to-the-ui-and-keys)
   - [Code tabs](#code-tabs)
   - [Reuse content](#reuse-content)
@@ -244,12 +245,21 @@ It should still be enough to copy and paste into a larger file.
 ### Code block location
 
 If it's helpful to note where the code should be placed (such as in a `.platform.app.yaml` file),
-note that as an attribute of that block and it will appear in a tab:
+note that as an attribute of that block and it appears in a tab:
 
 ```markdown
 ```yaml {location=".platform.app.yaml"}
 relationships:
     database: 'mysqldb:db
+```
+
+### Variables in code
+
+To mark where users should replace text with their own data, use the `variable` shortcode.
+Add the variable name in all capital letters and underscores in quotes:
+
+```markdown
+Run the command `platform environment:list --project {{<variable "PROJECT_ID" >}}`.
 ```
 
 ## Refer to the UI and keys

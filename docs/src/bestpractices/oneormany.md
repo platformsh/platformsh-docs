@@ -13,9 +13,9 @@ That is, put "your code" and "the database" on the same level.
 
 ## Discrete projects
 
-If your applications are discrete systems that are only incidentally related (such as because you wrote both of them), make them separate projects.
+If your apps are discrete systems that are only incidentally related (such as because you wrote both of them), make them separate projects.
 That provides the most flexible development workflow.
-It is cheaper, as running multiple applications in a single project requires at least a Medium plan, which costs more than two Standard plans.
+It's cheaper, as running multiple apps in a single project requires at least a {{< partial "plans/multiapp-plan-name" >}} plan.
 
 Discrete projects are appropriate if:
 
@@ -35,7 +35,7 @@ That is, removing one of the app services would render the others broken.
 In a clustered application, you either have [multiple `.platform.app.yaml`](../create-apps/multi-app.md) files in different directories with separate code bases that deploy separately or you have a single application that spawns one or more [worker instances](../create-apps/app-reference.md#workers) that run background processes.
 (See the link for details on how to set those up.)
 
-A Clustered application requires at least a Medium plan.
+A Clustered application requires at least a {{< partial "plans/multiapp-plan-name" >}} plan.
 
 With a clustered application, you often don't need multiple service instances.
 The [MySQL, MariaDB](../add-services/mysql/_index.md),

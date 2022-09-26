@@ -30,9 +30,9 @@ For more details, see [tuning](./tuning.md).
 
 ## Monolith/Single Application
 
-To start a Java application, you need to understand the [Platform.sh structure](/overview/structure.md).
-At minimum, you to configure your [application](../../create-apps/_index.md)
-and have two [YAML files](../../overview/yaml/_index.md) (though they can be blank if you don't need them):
+To start a Java application, you need to understand the [Platform.sh structure](../../overview/structure.md).
+At minimum, you need to configure your [application](../../create-apps/_index.md).
+You can also have two [YAML files](../../overview/yaml/_index.md)  if you need:
 
 * [Routes](../../define-routes/_index.md)
 * [Services](../../add-services/_index.md)

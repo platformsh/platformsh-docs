@@ -70,10 +70,10 @@ The `$PLATFORM_RELATIONSHIPS` environment variable also contains the information
 Assign it to a variable as follows:
 
 ```bash
-VAULT_URL=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".<SERVICE_NAME>[0].host"):$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".<SERVICE_NAME>[0].port")
+VAULT_URL=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "SERVICE_NAME" >}}[0].host"):$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "SERVICE_NAME" >}}[0].port")
 ```
 
-`<SERVICE_NAME>` is the name you [defined in your `.platform.app.yaml` file](#2-add-the-relationship).
+`{{< variable "SERVICE_NAME" >}}` is the name you [defined in your `.platform.app.yaml` file](#2-add-the-relationship).
 
 ### Manage your keys
 
