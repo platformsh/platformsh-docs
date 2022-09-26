@@ -40,7 +40,7 @@
           {{ range .Pages }}
             <div class="mx-auto text-center mb-7" style="max-width: 100%;">
               <button onclick="window.location.href = '{{ .RelPermalink }}';" type="button" class="btn btn-block btn-primary" style="text-align: left;">
-                <p><b>{{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle }}{{ else }}{{ .Title | .RenderString }}{{ end }}</b></p>
+                <p><b>{{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle | .RenderString }}{{ else }}{{ .Title | .RenderString }}{{ end }}</b></p>
                 <p>{{ .Params.description | .RenderString }}</p>
               </button>
             </div>
