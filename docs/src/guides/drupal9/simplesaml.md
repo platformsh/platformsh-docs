@@ -61,14 +61,14 @@ That will map all requests to `example.com/simplesaml/` to the `vendor/simplesam
 ## Create a configuration directory
 
 Your SimpleSAMLphp configuration needs to be outside of the `vendor` directory.
-The `composer require` will download a template configuration file to `vendor/simplesamlphp/simplesamlphp/config`.
+The `composer require` downloads a template configuration file to `vendor/simplesamlphp/simplesamlphp/config`.
 
 Rather than modifying that file in place (as it isn't included in Git),
 copy the `vendor/simplesamlphp/simplesamlphp/config` directory to `simplesamlphp/config` (in [your app root](../../create-apps/app-reference.md#root-directory)).
 It should contain two files, `config.php` and `authsources.php`.
 
 Additionally, create a `simplesamlphp/metadata` directory.
-This directory will hold your IdP definitions.
+This directory holds your IdP definitions.
 Consult the SimpleSAMLphp documentation and see the examples in `vendor/simplesamlphp/simplesamlphp/metadata-templates`.
 
 Next, you need to tell SimpleSAMLphp where to find that directory using an environment variable.
@@ -162,4 +162,4 @@ $config['certdir'] = dirname(__DIR__) . '/cert';
 Commit all changes and deploy the site, then enable the `simplesamlphp_auth` module within Drupal (usually by enabling it locally and pushing a config change).
 
 Consult the module documentation for further information on how to configure the module itself.
-Note that you should not check the "Activate authentication via SimpleSAMLphp" checkbox in the module configuration until you have the rest of the configuration completed, or you may be locked out of the site.
+Note that you shouldn't check the "Activate authentication via SimpleSAMLphp" checkbox in the module configuration until you have the rest of the configuration completed, or you may be locked out of the site.

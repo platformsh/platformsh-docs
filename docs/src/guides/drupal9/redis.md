@@ -141,6 +141,6 @@ After you push this code, you should run the command and notice that allocated m
 
 ### Clear SQL cache tables
 
-Once you've confirmed that your site is using Redis for caching, you can and should purge any remaining cache data in the MySQL database as it is now just taking up space.
+Once you've confirmed that your site is using Redis for caching, you can and should purge any remaining cache data in the MySQL database as it's now just taking up space.
 `TRUNCATE` any table that begins with `cache` *except* for `cache_form`.
-Despite its name `cache_form` isn't part of the cache system proper and thus should not be moved out of SQL.
+Despite its name `cache_form` isn't part of the cache system proper and thus shouldn't be moved out of SQL.

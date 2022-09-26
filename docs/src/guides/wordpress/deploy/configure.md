@@ -32,7 +32,7 @@ Notice that the build `flavor` is set to `composer`, which will automatically do
 {{< /guides/config-app >}}
 
 {{< note >}}
-During the template's build hook above, you will see an `rsync` command that allows you to commit and use plugins that aren't accessible via Composer. The command moves all non-Composer plugins in a committed `plugins` directory to the final `wp-content/plugins` destination so that they can be enabled through the administration panel. 
+During the template's build hook above, you see an `rsync` command that allows you to commit and use plugins that aren't accessible via Composer. The command moves all non-Composer plugins in a committed `plugins` directory to the final `wp-content/plugins` destination so that they can be enabled through the administration panel. 
 
 If you are migrating WordPress or starting from scratch, you should copy this line for your committed non-Composer plugins and, if needed, modify it to move committed `themes` to `wp-content/themes` in the same way.
 {{< /note >}}

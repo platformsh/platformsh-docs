@@ -29,7 +29,7 @@ The only setup required to prepare the backend is to install a few additional mo
 $ composer require drupal/gatsby drupal/jsonapi_extras drupal/pathauto
 ```
 
-The [Pathauto](https://www.drupal.org/project/pathauto) module will help you assign alias paths for each piece of content on your Drupal site that can then be replicated on the frontend Gatsby site. For example, the Drupal alias `/article/some-new-article` is the same path you will find that article at on Gatsby.
+The [Pathauto](https://www.drupal.org/project/pathauto) module helps you assign alias paths for each piece of content on your Drupal site that can then be replicated on the frontend Gatsby site. For example, the Drupal alias `/article/some-new-article` is the same path you find that article at on Gatsby.
 
 ## Gatsby
 
@@ -81,6 +81,6 @@ With Gatsby now deployed and pulling content from a backend Drupal application, 
 
 ### Live preview and incremental builds
 
-If you replicate the `web.commands.start` block in Gatsby's `.platform.app.yaml` file above, you can enable incremental builds on your projects. Once you save an update to a piece of Drupal content on a non-production branch, Drupal will place a request to a dedicated `/__refresh` endpoint on Gatsby (which is itself enabled by a [branch-dependent environment variable](https://github.com/platformsh-templates/gatsby-drupal/blob/master/gatsby/.environment)). Since Gatsby is running a development server on this non-production environment, this call will cause Gatsby to retrieve content from Drupal once again, resulting in a near instantly updated article on the frontend. 
+If you replicate the `web.commands.start` block in Gatsby's `.platform.app.yaml` file above, you can enable incremental builds on your projects. Once you save an update to a piece of Drupal content on a non-production branch, Drupal places a request to a dedicated `/__refresh` endpoint on Gatsby (which is itself enabled by a [branch-dependent environment variable](https://github.com/platformsh-templates/gatsby-drupal/blob/master/gatsby/.environment)). Since Gatsby is running a development server on this non-production environment, this call causes Gatsby to retrieve content from Drupal once again, resulting in a near instantly updated article on the frontend. 
 
 The process of enabling this feature is a little detailed, so it is best to consult the [template's README](https://github.com/platformsh-templates/gatsby-drupal#user-content-enabling-gatsby-live-preview-manual-configuration) for the most up-to-date instructions for how to do so.

@@ -98,7 +98,7 @@ Like WordPress core itself, themes and plugins can be installed as dependencies 
     Some themes and plugins for WordPress are also on Packagist,
     but most of them are accessible through a similar service specific to WordPress called [WPackagist](https://wpackagist.org). 
 
-    To pull from this repository, you'll need to add WPackagist to your `composer.json` file so that Composer knows to look for packages there. Run the command: 
+    To pull from this repository, you need to add WPackagist to your `composer.json` file so that Composer knows to look for packages there. Run the command: 
 
     ```bash
     $ composer config repositories.wppackagist composer https://wpackagist.org

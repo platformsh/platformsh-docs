@@ -51,7 +51,7 @@ web:
 ```
 
 On Platform.sh, we can set the environment variable `JAVA_OPTS` by committing a `.environment` file to the repository's root. Platform.sh runs `source .environment` in the application root when a project starts, and when logging into the environment over SSH.
-That gives you a place to do extra environment variable setup prior to the application running, including modifying the system `$PATH` and other shell level customizations.
+That gives you a place to do extra environment variable setup before the application runs, including modifying the system `$PATH` and other shell level customizations.
 It allows us to define `JAVA_OPTS` when running on Platform.sh, but otherwise not be used during local development testing. 
 
 ```shell

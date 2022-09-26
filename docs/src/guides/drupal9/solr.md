@@ -80,7 +80,7 @@ The configuration can be managed from `settings.platformsh.php` by adding the fo
 It will override the environment-specific parts of the configuration object with the correct values to connect to the Platform.sh Solr instance.
 
 {{< note >}}
-If you do not already have the Platform.sh Config Reader library installed and referenced at the top of the file, you need to install it with `composer require platformsh/config-reader` and then add the following code before the block below:
+If you don't already have the Platform.sh Config Reader library installed and referenced at the top of the file, you need to install it with `composer require platformsh/config-reader` and then add the following code before the block below:
 
 ```php
 <?php

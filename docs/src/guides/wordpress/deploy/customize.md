@@ -91,7 +91,7 @@ Then you can use the WordPress CLI within an application container from the `ven
 ./vendor/bin/wp plugin list
 ```
 
-If receive an error stating `This doesn't seem to be a WordPress installation.`,
+If you receive an error stating `This doesn't seem to be a WordPress installation.`,
 try providing the `--path` flag and point to your WordPress install path.
 
 {{< guide-buttons next="Deploy WordPress" >}}

@@ -46,7 +46,7 @@ If your application does use a database or other services, you can configure the
 
   {{< readFile file="src/registry/images/tables/services_supported.md" markdownify="true">}}
 
-* `disk`: The `disk` attribute configures the amount of persistent disk that is allocated between all of your services. Projects by default are allocated 5 GB (5120 MB), and that space can be distributed across all of your services. Note that not all services require disk space. If you specify a `disk` attribute for a service that doesn't use it, like Redis, you receive an error when trying to push your changes.
+* `disk`: The `disk` attribute configures the amount of persistent disk that's allocated between all of your services. Projects by default are allocated 5 GB (5120 MB), and that space can be distributed across all of your services. Note that not all services require disk space. If you specify a `disk` attribute for a service that doesn't use it, like Redis, you receive an error when trying to push your changes.
 
   {{< note >}}
 

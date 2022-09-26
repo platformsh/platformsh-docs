@@ -35,7 +35,7 @@ A project is under no obligation to use the application container of their proje
 
 In return, eligible projects are expected to include an HTML snippet conspicuously on each page of the site.
 That may be in a sidebar or footer, with text no smaller than the standard body text size for the site. The image may be scaled via CSS as appropriate as long as the text is fully readable.
-The badge markup is provided by Platform.sh when setting up the site and will include a link to Platform.sh and an analytics tracking value so we know where links are coming from.
+The badge markup is provided by Platform.sh when setting up the site and includes a link to Platform.sh and an analytics tracking value to know where links are coming from.
 It doesn't include any cookies.
 
 Platform.sh may from time to time update the widget’s contents and the sponsored site will update the contents in a timely fashion.

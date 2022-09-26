@@ -15,7 +15,7 @@ The advantage is that you can control who in your team has access to those varia
 
 ## Specify a third party repository in `composer.json`
 
-For this example, consider that there are several packages we want to install from a private repository hosted at `my-private-repos.example.com`.
+For this example, consider that there are several packages to install from a private repository hosted at `my-private-repos.example.com`.
 List that repository in your `composer.json` file.
 
 ```json

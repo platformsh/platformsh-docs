@@ -130,7 +130,7 @@ Log:
 [2020-04-15T13:46:59-05:00] W: No changes found, scheduling a retry..
 ```
 
-That will show the full output of the activity, including timestamps.
+That shows the full output of the activity, including timestamps.
 That can be especially helpful if trying to determine why an integration isn't behaving as expected.
 
 See the `--help` output of the command for more options.

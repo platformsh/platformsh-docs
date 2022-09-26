@@ -28,8 +28,8 @@ When an environment is deleted, its application logs are deleted as well.
 
 ## Grid Backups
 
-Application backups running on the Grid (e.g. If you subscribe to a Platform.sh Professional plan) are retained for at least 7 days.
-They are purged between 7 days and 6 months, at Platform.sh's discretion.
+Application backups running on the Grid (for example if you subscribe to a Platform.sh Professional plan) are retained for at least 7 days.
+They're purged between 7 days and 6 months, at Platform.sh's discretion.
 
 ## Dedicated backups
 
@@ -44,5 +44,5 @@ These "tombstone" backups are retained for between 7 days and 6 months depending
 
 ## Analytics
 
-Platform.sh uses Google Analytics on various web pages, and so Google Analytics will store collected data for a period of time.
+Platform.sh uses Google Analytics on various web pages, and so Google Analytics stores collected data for a period of time.
 We have configured our Google Analytics account to store data for 14 months from the time you last accessed our site, which is the minimum Google allows.
