@@ -44,13 +44,13 @@ but if you don't, the search field doesn't appear in the sidebar.
 To run the docs alone, clone this repository and install dependencies:
 
 ```bash
+cd docs
 npm install
 ```
 
 Then download the necessary example files:
 
 ```bash
-cd docs
 npm run dev
 ```
 
@@ -87,7 +87,7 @@ If you would like to test the search server, follow these steps:
 
    ```bash
    cd ../docs
-   npm install --prefix .
+   npm install
    npm run dev
    npm run build:search
    hugo
