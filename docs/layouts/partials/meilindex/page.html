@@ -10,7 +10,7 @@
 {{- $subections := "" -}}
 {{- $runningText := chomp ( partial "meilindex/fields/text" . ) -}}
 {{- $currentHeadingTitle := .Title -}}
-{{- $pageTitle := .Title -}}
+{{- $pageTitle := .Title | .RenderString -}}
 {{- $keywords := .Keywords -}}
 {{- $currentHeadingAnchor := "" -}}
 {{- $count := 0 -}}

@@ -1,7 +1,7 @@
 <head>
 
   <!-- Title -->
-  <title>{{ .Page.Title }} · {{ .Site.Title }}</title>
+  <title>{{ .Page.Title | .RenderString }} · {{ .Site.Title }}</title>
   {{ partial "head/required-meta" . }}
   {{ partial "head/favicon" . }}
   {{ partial "head/meta-tags" . }}
