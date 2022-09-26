@@ -47,7 +47,7 @@ platform variable:create -e main --level environment env:FASTLY_KEY --value 'YOU
 
 Replacing `YOUR_ID_HERE` with the Fastly Service ID and Key obtained from Fastly.
 
-Note: On a Platform.sh Dedicated Cluster, set those values on the `production` branch:
+Note: On a {{% names/dedicated-gen-2 %}} cluster, set those values on the `production` branch:
 
 ```bash
 platform variable:set -e production env:HTTPCACHE_PURGE_TYPE fastly

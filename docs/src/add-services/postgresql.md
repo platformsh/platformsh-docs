@@ -18,13 +18,13 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 
 ## Supported versions
 
-| **Grid** | **Dedicated** | **Dedicated Generation 3** |
-|----------------------------------|---------------|---------------|
-|  {{< image-versions image="postgresql" status="supported" environment="grid" >}} | {{< image-versions image="postgresql" status="supported" environment="dedicated" >}} | {{< image-versions image="postgresql" status="supported" environment="dedicated-gen-3" >}} |
+| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
+|------|-------------------------------|------------------------------ |
+|  {{< image-versions image="postgresql" status="supported" environment="grid" >}} | {{< image-versions image="postgresql" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="postgresql" status="supported" environment="dedicated-gen-2" >}} |
 
 {{% image-versions-legacy "postgresql" %}}
 
-\* No High-Availability on Dedicated.
+\* No High-Availability on {{% names/dedicated-gen-2 %}}.
 
 {{< note >}}
 Upgrading to PostgreSQL 12 using the `postgis` extension is not currently supported. Attempting to upgrade with this extension enabled will result in a failed deployment that will require support intervention to fix.
@@ -34,9 +34,9 @@ See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-
 
 {{% deprecated-versions %}}
 
-| **Grid** | **Dedicated** |
-|----------------------------------|---------------|
-|  {{< image-versions image="postgresql" status="deprecated" environment="grid" >}} | {{< image-versions image="postgresql" status="deprecated" environment="dedicated" >}} |
+| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
+|------|-------------------------------|------------------------------ |
+|  {{< image-versions image="postgresql" status="deprecated" environment="grid" >}} | {{< image-versions image="postgresql" status="deprecated" environment="dedicated-gen-3" >}} | {{< image-versions image="postgresql" status="deprecated" environment="dedicated-gen-2" >}} |
 
 ## Relationship
 

@@ -48,7 +48,7 @@ Platform.sh is responsible for:
   Platform.sh is responsible for providing access control mechanisms to customers and for vetting all Platform.sh personnel access.
 * **Backups**:
   Platform.sh is responsible for backing up the infrastructure and management components of the system.
-  On Platform.sh Dedicated Enterprise (only), Platform.sh also backs up application code and databases on behalf of customers.
+  On {{% names/dedicated-gen-2 %}}, Platform.sh also backs up application code and databases on behalf of customers.
 
 Customers are responsible for:
 

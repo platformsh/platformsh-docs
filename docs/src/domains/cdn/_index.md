@@ -5,7 +5,7 @@ weight: 3
 layout: single
 ---
 
-Platform.sh Dedicated plans include a Fastly CDN account by default, which will be managed by Platform.sh.
+Dedicated plans include a Fastly CDN account by default, which will be managed by Platform.sh.
 Our experience has shown that effective caching can mean a huge difference in the perceived performance of an application by its users,
 and that placing the caches closer to your users (wherever they may be) is the best solution currently available.
 
@@ -30,7 +30,7 @@ This allows you to create A records for your root domain that will point to Fast
 
 ## Initial setup
 
-For Enterprise-Dedicated plans, CDN setup is handled by Platform.sh as part of your onboarding.
+For Dedicated plans, CDN setup is handled by Platform.sh as part of your onboarding.
 After the application is stood up on its Dedicated virtual machines,
 we can begin the collaborative process of provisioning the CDN and configuring DNS and caching setup.
 We provide CDN services for both staging and production.
@@ -52,7 +52,7 @@ just as application code in your repository is not covered by the SLA.
 ## TLS encryption
 
 Security and the related topic of encryption of data are fundamental principles here at Platform.sh,
-and as such we provide TLS certificates in the default Enterprise-Dedicated package.
+and as such we provide TLS certificates in the default Dedicated package.
 This allows for encryption of all traffic between your users and your application.
 By default, we will provision a shared certificate with the chosen CDN vendor.
 If you opt for the Global Application Cache, we will provision certificates for both the site subdomain (`www`) and the asset/CDN subdomain.
@@ -64,7 +64,7 @@ If you need to provide your own TLS certificate, place the certificate, the unen
 and the necessary certificate chain supplied by your TLS provider in your application's `private` directory (not web accessible),
 and then open a ticket to let our team know to install it.
 
-Platform.sh Enterprise-Dedicated supports a single TLS certificate on the origin.
+Dedicated supports a single TLS certificate on the origin.
 Support for multiple certificates is offered only through a CDN such as CloudFront or Fastly.
 Self-signed certificates can optionally be used on the origin for development purposes or for enabling TLS between the CDN and origin.
 

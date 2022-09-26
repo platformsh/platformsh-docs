@@ -95,7 +95,7 @@ file=none
 1. Access the container by running `platform ssh -e <ENVIRONMENT_NAME>`.
 1. Change to the right directory by running `cd /var/log`.
 
-   If you're on a Dedicated cluster, run `/var/log/platform/<APP-NAME>/`.
+   If you're on a {{% names/dedicated-gen-2 %}} cluster, run `/var/log/platform/<APP-NAME>/`.
 1. Read the desired log, such as by running `tail access.log`.
 
 {{< /codetabs >}}

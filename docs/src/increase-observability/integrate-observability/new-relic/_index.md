@@ -7,14 +7,14 @@ layout: single
 
 {{% description %}}
 
-## On a Dedicated cluster
+## On a {{% names/dedicated-gen-2 %}} cluster
 
 Open a support ticket and let us know what your license key is.
 Our support team will install it and let you know when it's complete.
 
-## On a Grid plan
+## On a Grid plan or {{% names/dedicated-gen-3 %}} infrastructure
 
-On Grid plans, configure your project.
+On Grid plans and {{% names/dedicated-gen-3 %}} infrastructure, configure your project.
 The configuration for New Relic varies a bit by language.
 See language-specific instructions:
 

@@ -1,10 +1,10 @@
 ---
-title: Monitor Dedicated metrics
-sidebarTitle: Dedicated metrics
-description: Understand how to read metrics for Dedicated environments.
+title: "Monitor {{% names/dedicated-gen-2 %}} metrics"
+sidebarTitle: "{{% names/dedicated-gen-2 %}} metrics"
+description: "Understand how to read metrics for {{% names/dedicated-gen-2 %}} environments."
 ---
 
-For Dedicated environments, infrastructure metrics report CPU, RAM, and disk space per host and mount point.
+For {{% names/dedicated-gen-2 %}} environments, infrastructure metrics report CPU, RAM, and disk space per host and mount point.
 The graphs differ when the environment has multiple clusters.
 
 By default, the graphs include all hosts and an average over the hosts.
@@ -47,9 +47,9 @@ You can then match this ID with the one under **Metrics** for your investigation
 
 ## Multiple clusters
 
-Standard Dedicated environments have a single cluster of three hosts,
+Standard {{% names/dedicated-gen-2 %}} environments have a single cluster of three hosts,
 where each additional cluster adds at least three additional hosts to the project.
-Dedicated environments with two clusters display metrics in two separate groups:
+{{% names/dedicated-gen-2 %}} environments with two clusters display metrics in two separate groups:
 one for the web hosts that handle web requests and one for the service hosts that handle database, cache, and other services.
 
 ![Metrics split into Web hosts and Service hosts](/images/metrics/split-arch.png "0.75")
@@ -57,14 +57,14 @@ one for the web hosts that handle web requests and one for the service hosts tha
 ## Example of how to read metrics
 
 This example should give you an idea of how the metrics appear.
-Dedicated environments metrics show the resource usage per host within the cluster.
+{{% names/dedicated-gen-2 %}} environments metrics show the resource usage per host within the cluster.
 
 This reference project has a single PHP application and three services: MySQL, Redis, and Solr.
 It has been granted 4&nbsp;GB of memory and 2 virtual CPUs per host based on its plan.
 
-Once you've read the metrics, see [recommendations for action](./_index.md#dedicated-environments).
+Once you've read the metrics, see [recommendations for action](./_index.md#dedicated-gen-2-environments).
 
-![All of the metrics available for a Dedicated environment](/images/metrics/all-dedicated.png "0.5")
+![All of the metrics available for a {{% names/dedicated-gen-2 %}} environment](/images/metrics/all-dedicated.png "0.5")
 
 ### CPU
 
@@ -84,7 +84,7 @@ The upper limit in the graph is 3.62&nbsp;GB because 0.38&nbsp;GB of memory are 
 ### Disk
 
 Disk represents the plan space for all services and mounts,
-which for Dedicated production environments is [50&nbsp;GB](../../dedicated/architecture/_index.md).
+which for {{% names/dedicated-gen-2 %}} production environments is [50&nbsp;GB](../../dedicated/architecture/_index.md).
 
 This example has the following persistent disk space configured:
 

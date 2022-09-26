@@ -84,8 +84,8 @@ They may make restorations less reliable.
 To avoid such issues, instead schedule [automated backups](#automated-backups) during non-peak hours,
 when the short amount of downtime is least noticed.
 
-Backups are automatically live on [Dedicated projects](../dedicated/overview/_index.md),
-including [Dedicated Generation 3](../dedicated-gen-3/overview.md).
+Backups are automatically live on [{{% names/dedicated-gen-3 %}}](../dedicated-gen-3/overview.md)
+and [{{% names/dedicated-gen-2 %}}](../dedicated/overview/_index.md) projects.
 
 You can create a manual live backup on a Grid project:
 

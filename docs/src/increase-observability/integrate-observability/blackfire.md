@@ -29,12 +29,12 @@ All customers can also subscribe to Blackfire separately.
 
 ## Getting started
 
-### On a Grid plan or a Dedicated Generation 3 cluster
+### On a Grid plan or {{% names/dedicated-gen-3 %}} infrastructure
 
 To enable Blackfire on your PHP or Python applications,
 follow [the step-by-step instructions](https://blackfire.io/docs/integrations/paas/platformsh).
 
-### On other Dedicated Infrastructure
+### On {{% names/dedicated-gen-2 %}} infrastructure
 
 Open a support ticket with the Blackfire Server ID and Server Token.
 The Platform.sh support team installs it for you.

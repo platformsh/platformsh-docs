@@ -9,7 +9,7 @@ aliases:
 
 {{% description %}}
 
-A Fastly CDN is included for Platform.sh Dedicated instances.
+A Fastly CDN is included for Dedicated projects.
 Platform.sh does not offer an integrated CDN on self-service Grid projects at this time,
 but it is a common choice for customers to self-configure.
 
@@ -54,5 +54,5 @@ This step should be done well in advance of the actual go-live.
 
 You have the option of using either a [CNAME or a set of Anycast IP addresses](https://docs.fastly.com/guides/basic-configuration/using-fastly-with-apex-domains).
 Fastly prefers that you use the CNAME but either work.
-If using the Anycast IP addresses on a Dedicated production environment,
+If using the Anycast IP addresses on a {{% names/dedicated-gen-2 %}} production environment,
 open a support ticket with the new A records to provide to our support team.

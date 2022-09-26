@@ -27,10 +27,10 @@ Platform.sh takes a backup of environments every 24 hours.
 **RTO**: Variable.
 Recovery time depends upon the size of the data being recovered.
 
-## Enterprise/Elite Dedicated (Generation 2)
+## Enterprise/Elite {{% names/dedicated-gen-2 %}}
 
 **RPO**: 6 hours.
-Platform.sh takes a backup of Enterprise/Elite Dedicated (Generation 2) environments every 6 hours.
+Platform.sh takes a backup of Enterprise/Elite {{% names/dedicated-gen-2 %}} environments every 6 hours.
 
 **RTO**: Variable.
 Recovery time depends upon the size of the data being recovered.

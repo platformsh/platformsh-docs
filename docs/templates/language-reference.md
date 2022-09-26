@@ -19,9 +19,9 @@ A brief introduction (1--2 sentences) to the language.
 
 ## Supported versions
 
-| Grid and Dedicated Generation 3 | Dedicated |
-|---------------------------------|-----------|
-|  {{< image-versions image="<LANGUAGE_TYPE>" status="supported" environment="grid" >}} | {{< image-versions image="<LANGUAGE_TYPE>" status="supported" environment="dedicated" >}} |
+| Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
+|----------------------------------------|------------------------------ |
+|  {{< image-versions image="<LANGUAGE_TYPE>" status="supported" environment="grid" >}} | {{< image-versions image="<LANGUAGE_TYPE>" status="supported" environment="dedicated-gen-2" >}} |
 <!-- To automatically check any differences in the registry with legacy regions -->
 {{% image-versions-legacy "<LANGUAGE_TYPE>" %}}
 
@@ -30,9 +30,9 @@ A brief introduction (1--2 sentences) to the language.
 <!-- If there are any deprecated versions. -->
 {{% deprecated-versions %}}
 
-| Grid and Dedicated Generation 3 | Dedicated |
-|---------------------------------|-----------|
-|  {{< image-versions image="<LANGUAGE_TYPE>" status="supported" environment="grid" >}} | {{< image-versions image="<LANGUAGE_TYPE>" status="supported" environment="dedicated" >}} |
+| Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
+|----------------------------------------|------------------------------ |
+|  {{< image-versions image="<LANGUAGE_TYPE>" status="supported" environment="grid" >}} | {{< image-versions image="<LANGUAGE_TYPE>" status="supported" environment="dedicated-gen-2" >}} |
 
 ## Usage example
 

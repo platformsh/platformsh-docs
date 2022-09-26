@@ -6,13 +6,13 @@ sidebarTitle: "Security and privacy"
 
 ## Updates &amp; upgrades
 
-Platform.sh updates the core software of the Dedicated Cluster (operating system, web server, PHP, MySQL, etc.) periodically, and after any significant security vulnerability is disclosed.  These updates are deployed automatically with no additional work required by the user.  We attempt to maintain parity with your development environment, but we do not guarantee absolute parity of point versions of your Dedicated environments with their corresponding development environments.  I.e, your development environment may have a PHP container running 5.6.30, but your production environment may lag behind at 5.6.22.  We can upgrade point releases on request and will always upgrade the underlying software in the event of security release.
+Platform.sh updates the core software of the {{% names/dedicated-gen-2 %}} cluster (operating system, web server, PHP, MySQL, etc.) periodically, and after any significant security vulnerability is disclosed.  These updates are deployed automatically with no additional work required by the user.  We attempt to maintain parity with your development environment, but we do not guarantee absolute parity of point versions of your {{% names/dedicated-gen-2 %}} environments with their corresponding development environments.  I.e, your development environment may have a PHP container running 5.6.30, but your production environment may lag behind at 5.6.22.  We can upgrade point releases on request and will always upgrade the underlying software in the event of security release.
 
 Updates to application software (PHP code, JavaScript, etc.) are the responsibility of the customer.
 
 ## Project isolation
 
-All Dedicated Clusters are single-tenant.  The three virtual machines are exclusively used by a single customer and each Dedicated cluster is launched into its own isolated network (VPC on AWS, equivalent on other providers).  The network is behind a firewall for incoming connections; only ports 22 (SSH), 80 (HTTP), 443 (HTTPS), 2221 (SFTP) are opened to incoming traffic.  There are **no exceptions** for this rule, so any incoming web service requests, ETL jobs, or otherwise will need to transact over one of these protocols.
+All {{% names/dedicated-gen-2 %}} clusters are single-tenant.  The three virtual machines are exclusively used by a single customer and each {{% names/dedicated-gen-2 %}} cluster is launched into its own isolated network (VPC on AWS, equivalent on other providers).  The network is behind a firewall for incoming connections; only ports 22 (SSH), 80 (HTTP), 443 (HTTPS), 2221 (SFTP) are opened to incoming traffic.  There are **no exceptions** for this rule, so any incoming web service requests, ETL jobs, or otherwise will need to transact over one of these protocols.
 
 Outgoing TCP traffic is not behind a firewall.  Outgoing UDP traffic is disallowed.
 
@@ -48,7 +48,7 @@ As part of the security incident process we record a log of all steps taken to i
 
 ### AWS
 
-AWS EBS Volumes are encrypted on Platform.sh Dedicated sites are fully encrypted. Keys are managed by AWS’s KMS (Key Management Service). AWS automatically rotates these keys every three years. In some cases, temporary storage (such as swap) is stored on unencrypted local storage volumes.
+AWS EBS Volumes are encrypted on Platform.sh {{% names/dedicated-gen-2 %}} sites are fully encrypted. Keys are managed by AWS’s KMS (Key Management Service). AWS automatically rotates these keys every three years. In some cases, temporary storage (such as swap) is stored on unencrypted local storage volumes.
 
 ### Azure
 

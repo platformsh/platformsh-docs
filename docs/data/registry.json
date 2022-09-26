@@ -117,7 +117,7 @@
       ],
       "supported": []
     },
-    "versions-dedicated": {
+    "versions-dedicated-gen-2": {
       "supported": [],
       "deprecated" : [
         "7.10",
@@ -416,7 +416,7 @@
         "10.0"
       ]
     },
-    "versions-dedicated": {
+    "versions-dedicated-gen-2": {
       "supported": [
         "10.5 Galera",
         "10.4 Galera",
@@ -455,7 +455,7 @@
         "10.0"
       ]
     },
-    "versions-dedicated": {
+    "versions-dedicated-gen-2": {
       "supported": [
         "10.5 Galera",
         "10.4 Galera",
@@ -498,7 +498,7 @@
         "1.4"
       ]
     },
-    "versions-dedicated": {
+    "versions-dedicated-gen-2": {
       "supported": ["1.4"]
     }
   },
@@ -550,7 +550,7 @@
         "4.0"
       ]
     },
-    "versions-dedicated": {
+    "versions-dedicated-gen-2": {
       "supported": [
         "5.0",
         "4.4",
@@ -627,7 +627,7 @@
         "6"
       ]
     },
-    "versions-dedicated": {
+    "versions-dedicated-gen-2": {
       "supported": [
         "14",
         "12",
@@ -661,7 +661,7 @@
         "1.1"
       ]
     },
-    "versions-dedicated": {
+    "versions-dedicated-gen-2": {
       "deprecated": [],
       "supported": [
         "1.2"
@@ -732,7 +732,7 @@
     "name": "PHP",
     "runtime": true,
     "type": "php",
-    "versions-dedicated": {
+    "versions-dedicated-gen-2": {
       "supported": [
         "8.1",
         "8.0",
@@ -791,7 +791,7 @@
         "9.6"
       ]
     },
-    "versions-dedicated": {
+    "versions-dedicated-gen-2": {
       "deprecated": [
         "9.5",
         "9.4",
@@ -885,7 +885,7 @@
         "3.5"
       ]
     },
-    "versions-dedicated": {
+    "versions-dedicated-gen-2": {
       "supported": [
         "3.9",
         "3.8",
@@ -937,7 +937,7 @@
         "3.2"
       ]
     },
-    "versions-dedicated": {
+    "versions-dedicated-gen-2": {
       "supported": [
         "7.0",
         "6.2",
@@ -1051,7 +1051,7 @@
         "7.7"
       ]
     },
-    "versions-dedicated": {
+    "versions-dedicated-gen-2": {
       "supported": [
         "8.11",
         "8.6",
@@ -1121,7 +1121,7 @@
         "1.6"
       ]
     },
-    "versions-dedicated": {
+    "versions-dedicated-gen-2": {
       "supported": [
         "1.6"
       ]

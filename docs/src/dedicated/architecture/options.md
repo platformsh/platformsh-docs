@@ -11,7 +11,7 @@ A dedicated single-node staging machine can be provisioned for your application 
 
 ## Multiple applications
 
-Each application deployed to a Dedicated Cluster corresponds to a single Git repository in the Development Environment.
+Each application deployed to a {{% names/dedicated-gen-2 %}} cluster corresponds to a single Git repository in the Development Environment.
 Multiple `.platform.app.yaml` files aren't supported.
 While you can host multiple application code bases in separate subdirectories
 (such as `/app` and `/api`) controlled by a single `.platform.app.yaml`,
@@ -20,16 +20,16 @@ it isn't recommended and requires additional configuration.
 You can map one or more domains to your app.
 
 Experience has shown that hosting multiple apps on a common resource pool is often bad for all apps in the cluster.
-So the number of apps you can host on a single Dedicated Cluster is limited.
+So the number of apps you can host on a single {{% names/dedicated-gen-2 %}} cluster is limited.
 On a D6 instance, you can only have only one app.
-On D12 and larger Dedicated plans, you can have multiple applications at an extra cost.
+On D12 and larger {{% names/dedicated-gen-2 %}} plans, you can have multiple applications at an extra cost.
 Each application would correspond to a different Development Environment and Git repository.
 It can't share data or files with other apps.
 This configuration is discouraged.
 
 ## Multiple-AZ
 
-The default configuration for Platform.sh Dedicated clusters is to launch into a single Availability Zone (AZ).  This is for a few reasons:
+The default configuration for Platform.sh {{% names/dedicated-gen-2 %}} clusters is to launch into a single Availability Zone (AZ).  This is for a few reasons:
 
 * Because the members of your cluster communicate with each other via TCP to perform DB replication, cache lookup, and other associated tasks, the latency between data centers/AZs can become a significant performance liability.  Having your entire cluster within one AZ ensures that the latency between cluster members is minimal, having a direct effect on perceived end-user performance.
 * Network traffic between AZs is billed, whereas intra-AZ traffic is not.  That leads to higher costs for this decreased performance.
@@ -50,11 +50,11 @@ In addition to SSH accounts, SFTP accounts can be created with a custom user/pas
 
 ## Error handling
 
-On Platform.sh Professional, incoming requests are held at the edge router temporarily during a deploy.
+On Grid projects, incoming requests are held at the edge router temporarily during a deploy.
 That allows a site to "respond slowly" rather than be offline during a deploy, provided the deploy time is short (a few seconds).
 
-On Platform.sh Dedicated, incoming requests aren't held during deploy and receive a 503 error.
-As the Dedicated Cluster is almost always fronted by a CDN,
+On {{% names/dedicated-gen-2 %}} projects, incoming requests aren't held during deploy and receive a 503 error.
+As the {{% names/dedicated-gen-2 %}} cluster is almost always fronted by a CDN,
 the CDN continues to serve cached pages during the few seconds of deploy,
 so for the vast majority of users there is no downtime or even slow down.
 If a request does pass the CDN during a deploy, it isn't counted as downtime covered by our Service Level Agreement.
@@ -74,7 +74,7 @@ However, the changes aren't propagate to child environments until they're [manua
 
 ## Remote logging
 
-Platform.sh Dedicated supports sending logs to a remote logging service such as Loggly, Papertrail, or Logz.io using the `rsyslog` service.
+{{% names/dedicated-gen-2 %}} supports sending logs to a remote logging service such as Loggly, Papertrail, or Logz.io using the `rsyslog` service.
 This is an optional feature and you can request that it be enabled via a support ticket.
 Once enabled and configured your application can direct log output to the system `syslog` facility
 and is replicated to the remote service you have configured.

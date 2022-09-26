@@ -210,7 +210,7 @@ So it can be useful for things like clearing ephemeral cache.
 web:
     commands:
         start: 'redis-cli -h redis.internal flushall; sleep infinity'
-        # For a Dedicated environment use:
+        # For a {{% names/dedicated-gen-2 %}} environment use:
         # start: 'redis-cli flushall ; sleep infinity'
 ```
 
@@ -229,7 +229,7 @@ On all containers other than PHP, the value for `start` should be treated as req
 
 On PHP containers, it's optional and defaults to starting PHP-FPM
 (`/usr/sbin/php-fpm7.0` on PHP7 and `/usr/sbin/php5-fpm` on PHP5).
-It can also be set explicitly on a PHP container in order to run a dedicated process,
+It can also be set explicitly on a PHP container to run a dedicated process,
 such as [React PHP](https://github.com/platformsh-examples/platformsh-example-reactphp)
 or [Amp](https://github.com/platformsh-examples/platformsh-example-amphp).
 
@@ -437,11 +437,8 @@ firewall:
 
 ### Support for rules
 
-Where outbound rules for firewalls are supported:
-
-| Grid      | Dedicated                                     | Dedicated Generation 3 |
-| --------- | --------------------------------------------- | ---------------------- |
-| Supported | Supported (contact support for configuration) | Supported              |
+Where outbound rules for firewalls are supported in all environments.
+For {{% names/dedicated-gen-2 %}} projects, contact support for configuration.
 
 ### Multiple rules
 

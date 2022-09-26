@@ -3,7 +3,7 @@ title: "Resource and incident monitoring"
 weight: 2
 sidebarTitle: "Incident Monitoring"
 description: |
-  All of our Dedicated clusters are monitored 24/7 to ensure uptime and to measure server metrics such as available disk space, memory and disk usage, and several dozen other metrics that give us a complete picture of the health of your application’s infrastructure.
+  All of our {{% names/dedicated-gen-2 %}} clusters are monitored 24/7 to ensure uptime and to measure server metrics such as available disk space, memory and disk usage, and several dozen other metrics that give us a complete picture of the health of your application’s infrastructure.
 ---
 
 {{% description %}}
@@ -21,12 +21,12 @@ It also includes use Nagios as a point in time alerting system for our operation
 
 These tools are internal Platform.sh tools only.
 
-A third-party availability monitoring system is configured for every Dedicated project.
+A third-party availability monitoring system is configured for every {{% names/dedicated-gen-2 %}} project.
 
 ## Application performance monitoring
 
 Platform.sh offers application performance monitoring (APM) packaged with infrastructure monitoring in the Platform.sh Observability Suite.
-This APM relies on [Blackfire.io](../../increase-observability/integrate-observability/blackfire.md#on-other-dedicated-infrastructure),
+This APM relies on [Blackfire.io](../../increase-observability/integrate-observability/blackfire.md#on-dedicated-gen-2-infrastructure),
 which uniquely combines monitoring, profiling, and performance testing technologies.
 
 The Observability Suite is currently available only to Enterprise, Elite, and Fleet customers.
@@ -35,12 +35,12 @@ If you are a Enterprise, Elite, or Fleet customer and want to add the Observabil
 
 All customers can also [subscribe to Blackfire separately](https://www.blackfire.io/pricing).
 This lets you benefit from all of its features on Platform.sh.
-When purchased separately, features and usage may cost more than the equivalent bundled in the Observability Suite. 
+When purchased separately, features and usage may cost more than the equivalent bundled in the Observability Suite.
 
 By using Blackfire on Platform.sh, you benefit from an enhanced experience and support as well as upcoming unique features.
 You can contact your sales representative to get a quote for whatever size cluster is running your application.
 
-Platform.sh also [supports New Relic APM](../../increase-observability/integrate-observability/new-relic/_index.md#on-a-dedicated-cluster)
+Platform.sh also [supports New Relic APM](../../increase-observability/integrate-observability/new-relic/_index.md#on-a-dedicated-gen-2-cluster)
 After you have signed up with New Relic and gotten your license key,
 open a support ticket so that it can be installed on your project.
 New Relic infrastructure monitoring isn't supported.
