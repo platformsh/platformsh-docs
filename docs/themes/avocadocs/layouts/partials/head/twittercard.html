@@ -1,6 +1,6 @@
 <!-- Twitter card previews -->
 {{ if isset .Params "description" }}
-  <meta name="twitter:description" content="{{ .Params.description }}">
+  <meta name="twitter:description" content="{{ .Params.description | .RenderString }}">
 {{ else if isset .Site.Params "meta" }}
   {{ if isset .Site.Params.meta "description" }}
     <meta name="twitter:description" content="{{ .Site.Params.meta.twittercard.description }}">

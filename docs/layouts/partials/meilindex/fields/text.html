@@ -21,7 +21,7 @@
   {{- if isset .Params "layout" -}}
     {{- $finalText = $text | safeHTML -}}
   {{- else -}}
-    {{- $finalText = .Description | safeHTML -}}
+    {{- $finalText = .Description | .RenderString | safeHTML -}}
   {{- end -}}
 {{- end -}}
 
