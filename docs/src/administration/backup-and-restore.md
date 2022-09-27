@@ -85,7 +85,7 @@ To avoid such issues, instead schedule [automated backups](#automated-backups) d
 when the short amount of downtime is least noticed.
 
 Backups are automatically live on [{{% names/dedicated-gen-3 %}}](../dedicated-gen-3/overview.md)
-and [{{% names/dedicated-gen-2 %}}](../dedicated/overview/_index.md) projects.
+and [{{% names/dedicated-gen-2 %}}](../dedicated-gen-2/overview/_index.md) projects.
 
 You can create a manual live backup on a Grid project:
 
@@ -117,7 +117,7 @@ When [creating the backup](#create-a-backup-manually), select **Run live backup*
 
 ### Automated backups
 
-For Dedicated environments, [backups are taken automatically](../dedicated/overview/backups.md).
+For Dedicated environments, [backups are taken automatically](../dedicated-gen-2/overview/backups.md).
 In other environments, backups aren't triggered automatically.
 
 You can trigger regular backups using the [CLI](./cli/_index.md).

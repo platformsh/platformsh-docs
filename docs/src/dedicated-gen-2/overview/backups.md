@@ -4,6 +4,8 @@ weight: 4
 toc: false
 description: |
   Platform.sh takes a byte-for-byte snapshot of {{% names/dedicated-gen-2 %}} production environments every six (6) hours.  They are retained on a sliding scale, so more recent time frames have more frequent backups.
+aliases:
+  - /dedicated/overview/backups.html
 ---
 
 {{% description %}}

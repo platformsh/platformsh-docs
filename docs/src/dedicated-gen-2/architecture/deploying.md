@@ -2,6 +2,8 @@
 title: "Deployment"
 weight: 1
 sidebarTitle: "Deploying"
+aliases:
+  - /dedicated/architecture/deploying.html
 ---
 
 ## Deploying to Production and Staging

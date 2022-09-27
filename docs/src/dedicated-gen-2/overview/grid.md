@@ -3,6 +3,8 @@ title: "Differences between Production and Development environments"
 weight: 5
 sidebarTitle: "Differences in development"
 description: See the differences between your Production/Staging environments (which are {{% names/dedicated-gen-2 %}}) and your Development environments (which are Grid environments).
+aliases:
+  - /dedicated/overview/grid.html
 ---
 
 With {{% names/dedicated-gen-2 %}} plans, your Production and Staging environments are dedicated virtual machines,

@@ -30,7 +30,7 @@ Application backups running on the Grid (e.g. If you subscribe to a Platform.sh 
 
 ## {{% names/dedicated-gen-2 %}} backups
 
-Backups for applications running on a {{% names/dedicated-gen-2 %}} instance follow the schedule documented for [{{% names/dedicated-gen-2 %}} backups](/dedicated/overview/backups.md).
+Backups for applications running on a {{% names/dedicated-gen-2 %}} instance follow the schedule documented for [{{% names/dedicated-gen-2 %}} backups](/dedicated-gen-2/overview/backups.md).
 
 ## Tombstone backups
 

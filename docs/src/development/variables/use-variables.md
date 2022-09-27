@@ -372,7 +372,7 @@ and at runtime.
 
 ### Variables on {{% names/dedicated-gen-2 %}} environments
 
-[{{% names/dedicated-gen-2 %}} instances](../../dedicated/overview/_index.md) also have the following variables available:
+[{{% names/dedicated-gen-2 %}} instances](../../dedicated-gen-2/overview/_index.md) also have the following variables available:
 
 | Variable name    | Build | Runtime | Description |
 | ---------------- | ----- | ------- | ----------- |

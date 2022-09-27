@@ -21,7 +21,7 @@ or a requirement that production data can't be kept on shared infrastructure.
 
 ## Why a Generation 3?
 
-[{{% names/dedicated-gen-2 %}} infrastructure](../dedicated/overview/_index.md) ensures increased uptime and availability for your applications and services,
+[{{% names/dedicated-gen-2 %}} infrastructure](../dedicated-gen-2/overview/_index.md) ensures increased uptime and availability for your applications and services,
 but configuration or application topology changes have to go through the Customer Success team
 as Platform.sh provisions the virtual machines.
 {{% names/dedicated-gen-3 %}} gives you both the high availability of {{% names/dedicated-gen-2 %}}

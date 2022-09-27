@@ -12,8 +12,8 @@ Within the Console, metrics can be found for an environment under **Metrics**.
 
 The information under **Metrics** shows usage metrics for:
 
-[{{% names/dedicated-gen-2 %}} environments](../../dedicated/overview/_index.md):
-each of the three hosts in your [N+1 configuration](../../dedicated/architecture/_index.md)
+[{{% names/dedicated-gen-2 %}} environments](../../dedicated-gen-2/overview/_index.md):
+each of the three hosts in your [N+1 configuration](../../dedicated-gen-2/architecture/_index.md)
 and their average for the Production environment.
 
 ![A screenshot of what the metrics dashboard displays for {{% names/dedicated-gen-2 %}} environments](/images/metrics/all-dedicated.png "0.45")

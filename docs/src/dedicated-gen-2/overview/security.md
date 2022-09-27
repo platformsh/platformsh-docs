@@ -2,6 +2,8 @@
 title: "Security & data privacy"
 weight: 2
 sidebarTitle: "Security and privacy"
+aliases:
+  - /dedicated/overview/security.html
 ---
 
 ## Updates &amp; upgrades
