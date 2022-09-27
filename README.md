@@ -32,7 +32,7 @@ If you're not sure how, you can also open an issue and we can look into it.
 
 Requires:
 
-* Hugo >= 0.92.2
+* Hugo >= 0.100.2
 * Node.js >= 16
 
 ### Running locally without search
