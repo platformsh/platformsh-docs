@@ -15,12 +15,12 @@
     "build:search": "npm run build --workspace docs-search-input",
     "check-links": "remark --no-config --quiet --frail --use validate-links --ignore-pattern '**/varnish.md' --ignore-pattern '**/vault.md' --ignore-pattern '**/nodejs/_index.md' src",
     "dev": "npm run fetch-files && npm run registry-files",
-    "fetch-files": "node static/scripts/fetch-examples.mjs && node static/scripts/fetchTemplates.mjs",
+    "fetch-files": "node utils/fetch-examples.mjs && node utils/fetchTemplates.mjs",
     "hugo-watch-dev": "hugo server --watch --verbose --buildDrafts --cleanDestinationDir --disableFastRender",
     "hugo-watch-prod": "./hugo",
     "lint-prose": "find . -type f -name '*.md' ! -path '*/node_modules/*' ! -name 'LICENSE.md' ! -path '*/avocadocs/*' ! -name 'lorem.md' ! -path '*/docsuikit/*' | xargs vale",
     "prepare": "cd .. && husky install",
-    "registry-files": "node static/scripts/updateExampleConfigFiles.js"
+    "registry-files": "node utils/updateExampleConfigFiles.js"
 
   },
   "devDependencies": {
