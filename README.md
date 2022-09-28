@@ -65,6 +65,7 @@ hugo serve
 In addition to the above requirements, search also requires:
 
 * [Poetry](https://python-poetry.org/docs/)
+* [jq](https://stedolan.github.io/jq/)
 * [MeiliSearch](https://www.meilisearch.com/) (see below for installation)
 
 If you would like to test the search server, follow these steps:
