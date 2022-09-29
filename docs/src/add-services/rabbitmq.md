@@ -16,9 +16,9 @@ See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for
 
 ## Supported versions
 
-| **Grid** | **Dedicated** | **Dedicated Generation 3** |
-|----------------------------------|---------------|---------------|
-|  {{< image-versions image="rabbitmq" status="supported" environment="grid" >}} | {{< image-versions image="rabbitmq" status="supported" environment="dedicated" >}} | {{< image-versions image="rabbitmq" status="supported" environment="dedicated-gen-3" >}} |
+| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
+|------|-------------------------------|------------------------------ |
+|  {{< image-versions image="rabbitmq" status="supported" environment="grid" >}} | {{< image-versions image="rabbitmq" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="rabbitmq" status="supported" environment="dedicated-gen-2" >}} |
 
 {{% image-versions-legacy "rabbitmq" %}}
 

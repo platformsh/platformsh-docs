@@ -13,20 +13,18 @@
     "assets-dist": "gulp dist",
     "build": "npm run fetch-files && npm run registry-files",
     "build:search": "npm run build --workspace docs-search-input",
-    "check-links": "remark --no-config --quiet --frail --use validate-links --ignore-pattern '**/varnish.md' --ignore-pattern '**/vault.md' --ignore-pattern '**/nodejs/_index.md' src",
+    "check-links": "node utils/checkInternalLinks.mjs",
     "dev": "npm run fetch-files && npm run registry-files",
-    "fetch-files": "node static/scripts/fetch-examples.mjs && node static/scripts/fetchTemplates.mjs",
+    "fetch-files": "node utils/fetch-examples.mjs && node utils/fetchTemplates.mjs",
     "hugo-watch-dev": "hugo server --watch --verbose --buildDrafts --cleanDestinationDir --disableFastRender",
     "hugo-watch-prod": "./hugo",
     "lint-prose": "find . -type f -name '*.md' ! -path '*/node_modules/*' ! -name 'LICENSE.md' ! -path '*/avocadocs/*' ! -name 'lorem.md' ! -path '*/docsuikit/*' | xargs vale",
     "prepare": "cd .. && husky install",
-    "registry-files": "node static/scripts/updateExampleConfigFiles.js"
-
+    "registry-files": "node utils/updateExampleConfigFiles.js"
   },
   "devDependencies": {
     "husky": "^8.0.1",
     "pshregistry-parser": "^1.5.6",
-    "remark-cli": "^11.0.0",
     "remark-validate-links": "^12.0.0"
   },
   "dependencies": {
@@ -39,6 +37,7 @@
     "cssnano": "^5.1.13",
     "express": "^4.18.1",
     "glob-parent": "^6.0.2",
+    "globby": "^13.1.2",
     "gulp": "^4.0.2",
     "gulp-postcss": "^9.0.1",
     "gulp-rename": "^2.0.0",
@@ -50,6 +49,9 @@
     "p-limit": "^4.0.0",
     "platformsh-config": "^2.4.1",
     "postcss": "^8.4.16",
+    "remark": "^14.0.2",
+    "to-vfile": "^7.2.3",
+    "vfile-reporter": "^7.0.4",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
   },

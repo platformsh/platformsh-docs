@@ -19,7 +19,7 @@ On Platform.sh's side, there is no automatic IP or range blocking. Blocking IP's
 
 ## Approved Activities by Prior Arrangement
 
-* For Platform.sh Enterprise-Dedicated customers we do permit infrastructure penetration testing (but not load testing) by prior arrangement.
+* For Dedicated customers, we do permit infrastructure penetration testing (but not load testing) by prior arrangement.
   This requires special advanced preparation.
   You must submit a support ticket request a minimum of **three (3) weeks** in advance for us to coordinate this on your behalf.
 
@@ -28,7 +28,7 @@ On Platform.sh's side, there is no automatic IP or range blocking. Blocking IP's
 * Vulnerability scanning of web applications which you do not own.
 * Denial of Service tests and any other type of load testing which results in heavy network load.
 * Social engineering tests of Platform.sh services including falsely representing yourself as a Platform.sh employee.
-* Infrastructure penetration tests for non-Dedicated-Enterprise customers. This includes SSH and database testing.
+* Infrastructure penetration tests for non-Dedicated customers. This includes SSH and database testing.
 
 ## Rate Limits
 

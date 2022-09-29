@@ -2,24 +2,26 @@
 title: "Deployment"
 weight: 1
 sidebarTitle: "Deploying"
+aliases:
+  - /dedicated/architecture/deploying.html
 ---
 
 ## Deploying to Production and Staging
 
 The production branch of your Git repository is designated for production and a `staging` branch is designated for staging.
 Any code merged to those branches automatically triggers a rebuild
-of the production or staging environment in the Dedicated Cluster.
-Any defined users or environment variables are also propagated to the Dedicated Cluster.
+of the production or staging environment in the {{% names/dedicated-gen-2 %}} cluster.
+Any defined users or environment variables are also propagated to the {{% names/dedicated-gen-2 %}} cluster.
 
-Note that there is no automatic cloning of data from the Dedicated Cluster to the Development Environment
+Note that there is no automatic cloning of data from the {{% names/dedicated-gen-2 %}} cluster to the Development Environment
 the way there is between branches in the Development Environment.
 Production data may still be replicated to the Development Environment manually.
 
-Deploys of other branches don't trigger rebuilds of the Dedicated Cluster environments.
+Deploys of other branches don't trigger rebuilds of the {{% names/dedicated-gen-2 %}} cluster environments.
 
 ## Deployment process
 
-When deploying to the Dedicated Cluster the process is slightly different than when working with Platform.sh on the Grid.
+When deploying to the {{% names/dedicated-gen-2 %}} cluster the process is slightly different than when working with Platform.sh on the Grid.
 
 * The new application image is built in the exact same fashion as for Platform.sh Professional.
 * Any active background tasks on the cluster, including cron tasks, are terminated.
@@ -32,7 +34,7 @@ Incoming requests receive an HTTP 500 error.
 The deploy usually takes approximately 30-90 seconds, although that is highly dependent on how long the deploy hook takes to run.
 
 During the deploy process the cluster is unavailable.
-Nearly all Platform.sh Dedicated instances are fronted by the Fastly Content Delivery Network (CDN).
+Nearly all {{% names/dedicated-gen-2 %}} instances are fronted by the Fastly Content Delivery Network (CDN).
 Fastly can be configured to allow a "grace period", meaning that requests to the origin that fail are served from the existing cache, even if that cache item is stale.
 We configure a default grace period that is longer than a typical deployment, and can extend that time upon request.
 That means anonymous users should see no interruption in service at all.

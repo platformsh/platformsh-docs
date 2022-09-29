@@ -210,7 +210,7 @@ So it can be useful for things like clearing ephemeral cache.
 web:
     commands:
         start: 'redis-cli -h redis.internal flushall; sleep infinity'
-        # For a Dedicated environment use:
+        # For a {{% names/dedicated-gen-2 %}} environment use:
         # start: 'redis-cli flushall ; sleep infinity'
 ```
 
@@ -437,11 +437,8 @@ firewall:
 
 ### Support for rules
 
-Where outbound rules for firewalls are supported:
-
-| Grid      | Dedicated                                     | Dedicated Generation 3 |
-| --------- | --------------------------------------------- | ---------------------- |
-| Supported | Supported (contact support for configuration) | Supported              |
+Where outbound rules for firewalls are supported in all environments.
+For {{% names/dedicated-gen-2 %}} projects, contact support for configuration.
 
 ### Multiple rules
 
@@ -701,7 +698,7 @@ If a new job is triggered while another is running, the new job is paused until 
 To minimize conflicts, a random offset is applied to all triggers.
 The offset is a random number of seconds up to 20 minutes or the cron frequency, whichever is smaller.
 
-Crons are also paused while activities such as [backups](../dedicated/overview/backups.md) are running.
+Crons are also paused while activities such as [backups](../dedicated-gen-2/overview/backups.md) are running.
 The crons are queued to run after the other activity finishes.
 
 To run cron jobs in a timezone other than UTC, set the [timezone property](#top-level-properties).

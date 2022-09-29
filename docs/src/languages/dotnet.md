@@ -8,9 +8,9 @@ description: |
 
 ## Supported versions
 
-| Grid and Dedicated Generation 3 | Dedicated |
-|---------------------------------|-----------|
-|  {{< image-versions image="dotnet" status="supported" environment="grid" >}} | {{< image-versions image="dotnet" status="supported" environment="dedicated" >}} |
+| Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
+|----------------------------------------|------------------------------ |
+|  {{< image-versions image="dotnet" status="supported" environment="grid" >}} | {{< image-versions image="dotnet" status="supported" environment="dedicated-gen-2" >}} |
 
 {{% image-versions-legacy "dotnet" %}}
 

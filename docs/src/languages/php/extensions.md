@@ -9,8 +9,8 @@ Some of them are available for Platform.sh containers.
 
 {{< note >}}
 
-The information on this page applies to Grid and Dedicated Gen 3 plans.
-See also [PHP extensions on Dedicated plans](../../dedicated/overview/grid.md#extensions).
+The information on this page applies to Grid and  {{% names/dedicated-gen-3 %}} plans.
+See also [PHP extensions on {{% names/dedicated-gen-2 %}} plans](../../dedicated-gen-2/overview/grid.md#extensions).
 
 {{< /note >}}
 

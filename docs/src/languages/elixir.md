@@ -7,9 +7,9 @@ description: Platform.sh supports building and deploying applications written in
 
 ## Supported versions
 
-| Grid and Dedicated Generation 3 | Dedicated |
-|---------------------------------|-----------|
-|  {{< image-versions image="elixir" status="supported" environment="grid" >}} | {{< image-versions image="elixir" status="supported" environment="dedicated" >}} |
+| Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
+|----------------------------------------|------------------------------ |
+|  {{< image-versions image="elixir" status="supported" environment="grid" >}} | {{< image-versions image="elixir" status="supported" environment="dedicated-gen-2" >}} |
 
 {{% image-versions-legacy "elixir" %}}
 

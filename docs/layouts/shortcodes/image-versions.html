@@ -5,12 +5,12 @@
 {{ $environment := "" }}
 {{ if or (eq $envParam "grid") (eq $envParam "") }}
   {{ $environment = "versions" }}
-{{ else if eq $envParam "dedicated" }}
-  {{ $environment = "versions-dedicated" }}
+{{ else if eq $envParam "dedicated-gen-2" }}
+  {{ $environment = "versions-dedicated-gen-2" }}
 {{ else if eq $envParam "dedicated-gen-3" }}
   {{ $environment = "versions-dedicated-gen-3" }}
 {{ else }}
-  {{ errorf "Incorrect environment param: %q. Possible values are grid, dedicated and dedicated-gen-3. Empty defaults to \"grid\". Image: %s" $envParam $image }}
+  {{ errorf "Incorrect environment param: %q. Possible values are grid, dedicated-gen-2, and dedicated-gen-3. Empty defaults to \"grid\". Image: %s" $envParam $image }}
 {{ end }}
 
 {{ $notYet := "Working on it!"}}
@@ -28,7 +28,7 @@
     {{ end }}
   {{ end }}
 {{ else }}
-  {{ if and (eq $envParam "dedicated-gen-3") (eq $status "supported") }}
+  {{ if and (eq $envParam "dedicated") (eq $status "supported") }}
     {{ $notYet }}
   {{ else }}
     None available

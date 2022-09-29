@@ -18,9 +18,9 @@ A brief introduction (1--2 sentences) to what this service is used for.
 
 ## Supported versions
 
-| **Grid** | **Dedicated** | **Dedicated Generation 3** |
-|----------------------------------|---------------|---------------|
-|  {{< image-versions image="<SERVICE_NAME>" status="supported" environment="grid" >}} | {{< image-versions image="<SERVICE_NAME>" status="supported" environment="dedicated" >}} | {{< image-versions image="<SERVICE_NAME>" status="supported" environment="dedicated-gen-3" >}} |
+| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
+|------|-------------------------------|------------------------------ |
+|  {{< image-versions image="<SERVICE_NAME>" status="supported" environment="grid" >}} | {{< image-versions image="<SERVICE_NAME>" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="<SERVICE_NAME>" status="supported" environment="dedicated-gen-2" >}} |
 
 <!-- To automatically check any differences in the registry with legacy regions -->
 {{% image-versions-legacy "<SERVICE_NAME>" %}}
@@ -28,9 +28,9 @@ A brief introduction (1--2 sentences) to what this service is used for.
 <!-- If there are any deprecated versions. -->
 {{% deprecated-versions %}}
 
-| **Grid** | **Dedicated** | **Dedicated Generation 3** |
-|----------------------------------|---------------|---------------|
-|  {{< image-versions image="<SERVICE_NAME>" status="supported" environment="grid" >}} | {{< image-versions image="<SERVICE_NAME>" status="supported" environment="dedicated" >}} | {{< image-versions image="<SERVICE_NAME>" status="supported" environment="dedicated-gen-3" >}} |
+| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
+|------|-------------------------------|------------------------------ |
+|  {{< image-versions image="<SERVICE_NAME>" status="supported" environment="grid" >}} | {{< image-versions image="<SERVICE_NAME>" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="<SERVICE_NAME>" status="supported" environment="dedicated-gen-2" >}} |
 
 ## Usage example
 

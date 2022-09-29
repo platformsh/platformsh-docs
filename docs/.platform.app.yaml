@@ -9,7 +9,7 @@ type: 'nodejs:16'
 # Specify the Hugo version as an env variable.
 variables:
     env:
-        HUGOVERSION: 0.96.0
+        HUGOVERSION: 0.104.1
 
 relationships:
     search: "search:http"

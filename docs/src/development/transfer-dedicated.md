@@ -1,14 +1,14 @@
 ---
-title: "Transfer data to and from a Dedicated cluster"
+title: "Transfer data to and from a {{% names/dedicated-gen-2 %}} cluster"
 weight: 13
-sidebarTitle: "Sync to Dedicated"
+sidebarTitle: "Sync to {{% names/dedicated-gen-2 %}}"
 ---
 
-Transferring data to and from [a Dedicated cluster](../other/glossary.md#dedicated) slightly differs from the process on the Grid.
+Transferring data to and from [a {{% names/dedicated-gen-2 %}} cluster](../other/glossary.md#dedicated-gen-2) slightly differs from the process on the Grid.
 
 ## Back up your files
 
-Platform.sh automatically creates backups of the Staging and Production environments of a Dedicated cluster every six hours.
+Platform.sh automatically creates backups of the Staging and Production environments of a {{% names/dedicated-gen-2 %}}  cluster every six hours.
 These are only useful to fully restore an environment and are managed by the support team.
 
 You can make a manual local backup yourself by downloading data from your environment to your local system by running the following command:

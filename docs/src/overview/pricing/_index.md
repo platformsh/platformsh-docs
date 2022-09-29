@@ -131,7 +131,7 @@ with a MySQL instance and a Redis instance.
 If you aren't sure whether a specific setup would fit in a plan,
 don't hesitate to contact support.
 
-## Dedicated Generation 3
+## {{% names/dedicated-gen-3 %}}
 
 For a lower price compared to traditional managed hosting,
 you get included development and staging environments
@@ -145,7 +145,7 @@ as well as triple redundancy on every element of the stack with:
 
 {{< /note >}}
 
-Learn more about [Dedicated Generation 3](/dedicated-gen-3/overview).
+Learn more about [{{% names/dedicated-gen-3 %}}](/dedicated-gen-3/overview).
 
 [Contact our sales department](https://platform.sh/contact/) to discuss how we can help you.
 

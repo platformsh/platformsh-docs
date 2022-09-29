@@ -21,9 +21,9 @@ If your app does this regularly, a local mount is more effective.
 
 ## Supported versions
 
-| **Grid** | **Dedicated** | **Dedicated Generation 3** |
-|----------------------------------|---------------|---------------|
-|  {{< image-versions image="network-storage" status="supported" environment="grid" >}} | {{< image-versions image="network-storage" status="supported" environment="dedicated" >}} | {{< image-versions image="network-storage" status="supported" environment="dedicated-gen-3" >}} |
+| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
+|------|-------------------------------|------------------------------ |
+|  {{< image-versions image="network-storage" status="supported" environment="grid" >}} | {{< image-versions image="network-storage" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="network-storage" status="supported" environment="dedicated-gen-2" >}} |
 
 {{% image-versions-legacy "network-storage" %}}
 
@@ -39,9 +39,9 @@ Any change to the service version results in existing data becoming inaccessible
 
 {{% deprecated-versions %}}
 
-| Grid | Dedicated | Dedicated Generation 3 |
-| ---- | --------- | ---------------------- |
-|  {{< image-versions image="network-storage" status="deprecated" environment="grid" >}} | {{< image-versions image="network-storage" status="deprecated" environment="dedicated" >}} | {{< image-versions image="network-storage" status="deprecated" environment="dedicated-gen-3" >}} |
+| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
+|------|-------------------------------|------------------------------ |
+|  {{< image-versions image="network-storage" status="deprecated" environment="grid" >}} | {{< image-versions image="network-storage" status="deprecated" environment="dedicated-gen-3" >}} | {{< image-versions image="network-storage" status="deprecated" environment="dedicated-gen-2" >}} |
 
 {{% legacy-regions featureIntro="The Network Storage service" featureShort="the service" %}}
 

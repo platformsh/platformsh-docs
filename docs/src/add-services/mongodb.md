@@ -21,14 +21,15 @@ sidebarTitle: "MongoDB"
 
 {{< add-on-feature feature="MongoDB Enterprise" >}}
 
-| **Grid** | **Dedicated** | **Dedicated Generation 3** |
-|----------------------------------|---------------|---------------|
-|  {{< image-versions image="mongodb-enterprise" status="supported" environment="grid" >}} | {{< image-versions image="mongodb-enterprise" status="supported" environment="dedicated" >}} | {{< image-versions image="mongodb-enterprise" status="supported" environment="dedicated-gen-3" >}} |
+| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
+|------|-------------------------------|------------------------------ |
+|  {{< image-versions image="mongodb-enterprise" status="supported" environment="grid" >}} | {{< image-versions image="mongodb-enterprise" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="mongodb-enterprise" status="supported" environment="dedicated-gen-2" >}} |
 
 {{% deprecated-versions %}}
-| **Grid** | **Dedicated** | **Dedicated Generation 3** |
-|----------------------------------|---------------|---------------|
-|  {{< image-versions image="mongodb-enterprise" status="deprecated" environment="grid" >}} | {{< image-versions image="mongodb-enterprise" status="deprecated" environment="dedicated" >}} | {{< image-versions image="mongodb-enterprise" status="deprecated" environment="dedicated-gen-3" >}} |
+
+| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
+|------|-------------------------------|------------------------------ |
+|  {{< image-versions image="mongodb-enterprise" status="deprecated" environment="grid" >}} | {{< image-versions image="mongodb-enterprise" status="deprecated" environment="dedicated-gen-3" >}} | {{< image-versions image="mongodb-enterprise" status="deprecated" environment="dedicated-gen-2" >}} |
 
 ### Legacy edition
 

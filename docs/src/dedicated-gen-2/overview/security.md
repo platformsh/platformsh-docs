@@ -2,13 +2,15 @@
 title: "Security & data privacy"
 weight: 2
 sidebarTitle: "Security and privacy"
+aliases:
+  - /dedicated/overview/security.html
 ---
 
 ## Updates &amp; upgrades
 
-Platform.sh updates the core software of the Dedicated Cluster (operating system, web server, PHP, MySQL, etc.) periodically, and after any significant security vulnerability is disclosed.
+Platform.sh updates the core software of the {{% names/dedicated-gen-2 %}} cluster (operating system, web server, PHP, MySQL, etc.) periodically, and after any significant security vulnerability is disclosed.
 These updates are deployed automatically with no additional work required by you.
-We attempt to maintain parity with your development environment, but we don't guarantee absolute parity of point versions of your Dedicated environments with their corresponding development environments.
+We attempt to maintain parity with your development environment, but we don't guarantee absolute parity of point versions of your {{% names/dedicated-gen-2 %}} environments with their corresponding development environments.
 I.e, your development environment may have a PHP container running 5.6.30, but your production environment may lag behind at 5.6.22.
 We can upgrade point releases on request and always upgrade the underlying software in the event of security release.
 
@@ -16,8 +18,8 @@ Updates to application software (PHP code, JavaScript, etc.) are the responsibil
 
 ## Project isolation
 
-All Dedicated Clusters are single-tenant.
-The three virtual machines are exclusively used by a single customer and each Dedicated cluster is launched into its own isolated network (VPC on AWS, equivalent on other providers).
+All {{% names/dedicated-gen-2 %}} clusters are single-tenant.
+The three virtual machines are exclusively used by a single customer and each {{% names/dedicated-gen-2 %}} cluster is launched into its own isolated network (VPC on AWS, equivalent on other providers).
 The network is behind a firewall for incoming connections; only ports 22 (SSH), 80 (HTTP), 443 (HTTPS), 2221 (SFTP) are opened to incoming traffic.
 There are **no exceptions** for this rule, so any incoming web service requests, ETL jobs, or otherwise need to transact over one of these protocols.
 
@@ -31,7 +33,6 @@ All containers are allowed to connect only to other containers in their same env
 ## Security incident handling procedure
 
 Should Platform.sh become aware of a security incident &mdash; such as an active or past hacking attempt, virus or worm, or data breach &mdash; senior personnel including the CTO are promptly notified.
-
 
 The security incident procedures include isolating the affected systems, collecting forensic evidence for later analysis including a byte-for-byte copy of the affected system, and finally restoring normal operations. Once normal service is restored a root cause analysis is performed to determine exactly what happened.
 A Reason for Outage report may be provided to the customer upon request that summarizes the incident, cause, and steps taken.
@@ -62,7 +63,7 @@ This log may include:
 
 ### AWS
 
-AWS EBS Volumes are encrypted on Platform.sh Dedicated sites are fully encrypted. Keys are managed by AWS’s KMS (Key Management Service). AWS automatically rotates these keys every three years. In some cases, temporary storage (such as swap) is stored on unencrypted local storage volumes.
+AWS EBS Volumes are encrypted on Platform.sh {{% names/dedicated-gen-2 %}} sites are fully encrypted. Keys are managed by AWS’s KMS (Key Management Service). AWS automatically rotates these keys every three years. In some cases, temporary storage (such as swap) is stored on unencrypted local storage volumes.
 
 ### Azure
 

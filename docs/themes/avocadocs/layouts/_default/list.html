@@ -10,7 +10,7 @@
           <div class="mb-7">
 
             <!-- List page title -->
-            <h1>{{ .Title }}</h1>
+            <h1>{{ .Title | .RenderString }}</h1>
 
           </div>
 
@@ -40,7 +40,7 @@
           {{ range .Pages }}
             <div class="mx-auto text-center mb-7" style="max-width: 100%;">
               <button onclick="window.location.href = '{{ .RelPermalink }}';" type="button" class="btn btn-block btn-primary" style="text-align: left;">
-                <p><b>{{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle }}{{ else }}{{ .Title }}{{ end }}</b></p>
+                <p><b>{{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle | .RenderString }}{{ else }}{{ .Title | .RenderString }}{{ end }}</b></p>
                 <p>{{ .Params.description | .RenderString }}</p>
               </button>
             </div>

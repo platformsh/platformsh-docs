@@ -370,25 +370,25 @@ and at runtime.
 | `PORT`                      | No    | Yes     | A `string` representing the port to which requests are sent if the [`web.upstream.socket_family` property](../../create-apps/app-reference.md#upstream) is unset or set to `tcp`. |
 | `SOCKET`                    | No    | Yes     | A `string` representing the path to the Unix socket file to use if the [`web.upstream.socket_family` property](../../create-apps/app-reference.md#upstream) is set to `unix`. |
 
-### Variables on Dedicated environments
+### Variables on {{% names/dedicated-gen-2 %}} environments
 
-[Dedicated instances](../../dedicated/overview/_index.md) also have the following variables available:
+[{{% names/dedicated-gen-2 %}} instances](../../dedicated-gen-2/overview/_index.md) also have the following variables available:
 
 | Variable name    | Build | Runtime | Description |
 | ---------------- | ----- | ------- | ----------- |
-| `PLATFORM_CLUSTER` | No    | Yes     | The cluster ID. In older Dedicated instances, this is used to get the project ID. When several projects are linked, this provides the main project/cluster they're linked to, while `PLATFORM_PROJECT` offers the specific project ID. |
-| `PLATFORM_MODE`    | No    | Yes     | `enterprise` in all Dedicated production and staging environments. Note that an Enterprise support plan doesn't always imply a Dedicated environment, but a Dedicated environment always implies an Enterprise support plan. |
+| `PLATFORM_CLUSTER` | No    | Yes     | The cluster ID. In older {{% names/dedicated-gen-2 %}} instances, this is used to get the project ID. When several projects are linked, this provides the main project/cluster they're linked to, while `PLATFORM_PROJECT` offers the specific project ID. |
+| `PLATFORM_MODE`    | No    | Yes     | `enterprise` in all {{% names/dedicated-gen-2 %}} production and staging environments. Note that an Enterprise support plan doesn't always imply a {{% names/dedicated-gen-2 %}} environment, but a {{% names/dedicated-gen-2 %}} environment always implies an Enterprise support plan. |
 
 {{< note >}}
 
-The `PLATFORM_CLUSTER` environment variable isn't yet available on [Dedicated Generation 3](../../dedicated-gen-3/overview.md).
-If your application depends on whether it's running on a Dedicated Generation 3 host, use `PLATFORM_MODE`.
+The `PLATFORM_CLUSTER` environment variable isn't yet available on [{{% names/dedicated-gen-3 %}}](../../dedicated-gen-3/overview.md).
+If your application depends on whether it's running on a {{% names/dedicated-gen-3 %}} host, use `PLATFORM_MODE`.
 
 {{< /note >}}
 
-#### Distinguish Dedicated environment types
+#### Distinguish {{% names/dedicated-gen-2 %}} environment types
 
-While both production and staging Dedicated environments have `enterprise` for the `PLATFORM_MODE` variable,
+While both production and staging {{% names/dedicated-gen-2 %}} environments have `enterprise` for the `PLATFORM_MODE` variable,
 you can distinguish them by environment type.
 Make sure that the environment type is set correctly via the CLI or Console.
 Then run different code based on the type:

@@ -1,4 +1,4 @@
 ---
-title: "Dedicated Generation 3"
+title: "{{% names/dedicated-gen-3 %}}"
 weight: -19
 ---

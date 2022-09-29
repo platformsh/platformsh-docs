@@ -4,7 +4,7 @@ description: See how to change the timezone for a project and what it affects.
 toc: false
 ---
 
-The project timezone affects [automated backups](../dedicated/overview/backups.md).
+The project timezone affects [automated backups](../dedicated-gen-2/overview/backups.md).
 
 The project timezone doesn't affect:
 

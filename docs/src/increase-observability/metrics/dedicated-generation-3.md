@@ -1,10 +1,10 @@
 ---
-title: Monitor Dedicated Generation 3 metrics
-sidebarTitle: Dedicated Generation 3 metrics
-description: Understand how to read metrics for Dedicated Genration 3 environments.
+title: "Monitor {{% names/dedicated-gen-3 %}} metrics"
+sidebarTitle: "{{% names/dedicated-gen-3 %}} metrics"
+description: "Understand how to read metrics for {{% names/dedicated-gen-3 %}} environments."
 ---
 
-Dedicated Generation 3 environments consist of various containers running across dedicated virtual machines:
+{{% names/dedicated-gen-3 %}} environments consist of various containers running across dedicated virtual machines:
 
 * App containers: one or more [app containers](../../create-apps/_index.md)
 * Service containers: zero or more [service containers](../../add-services/_index.md)
@@ -23,7 +23,7 @@ such as for accessing the environment using SSH.
 ## Example of how to read metrics
 
 This example should give you an idea of how the metrics appear.
-Dedicated Generation 3 environments metrics show resource usage for each app, service, and worker container
+{{% names/dedicated-gen-3 %}} environments metrics show resource usage for each app, service, and worker container
 across all hosts.
 
 This reference project has a single app, two services (MySQL and Redis), and one worker.

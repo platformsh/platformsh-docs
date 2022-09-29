@@ -22,13 +22,13 @@ To do so, uncomment the `redissession` entry in the `.platform/services.yaml` fi
 and the corresponding relationship in the `.platform.app.yaml` file.
 The bridge code that is provided with eZ Platform 1.13 and later automatically detects the additional Redis service and use it for session storage.
 
-On a Dedicated instance, we strongly recommend using two separate Redis instances for Cache and Sessions.
+On a {{% names/dedicated-gen-2 %}} instance, we strongly recommend using two separate Redis instances for Cache and Sessions.
 The service and relationship names that ship with the default Platform.sh configuration in Ibexa DXP should be used as-is.
 To ensure the development environment works like Production, uncomment the `redissession` entry in the `.platform/services.yaml` file and the corresponding relationship in the `.platform.app.yaml` file.
 The bridge code that's provided with eZ Platform 1.13 and later
 automatically detects the additional Redis service and uses it for session storage.
 
-By default, on Dedicated instances, both Cache and Session storage are in "persistent" mode,
+By default, on {{% names/dedicated-gen-2 %}} instances, both Cache and Session storage are in "persistent" mode,
 so that data isn't lost in case of a system or process restart.
 That reduces the potential for cache stampede issues or inadvertently logging people out.
 

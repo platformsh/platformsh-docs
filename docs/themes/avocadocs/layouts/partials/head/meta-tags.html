@@ -5,7 +5,7 @@
 
 <!-- Description -->
 {{ if isset .Params "description" }}
-  <meta name="description" content="{{ .Params.Description }}">
+  <meta name="description" content="{{ .Params.Description | .RenderString }}">
 {{ else if isset .Site.Params "meta" }}
   {{ if isset .Site.Params.meta "description" }}
     <meta name="description" content="{{ .Site.Params.meta.description }}">

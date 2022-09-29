@@ -34,9 +34,10 @@
 <!-- Handle all other directories -->
 {{ else }}
 <div>
-  {{ $itemTitle := .Context.Title }}
-  {{ with .Context.Params.sidebarTitle }}
-    {{ $itemTitle = . }}
+  {{ .Page }}
+  {{ $itemTitle := .Context.Title | .Context.Page.RenderString }}
+  {{ if .Context.Params.sidebarTitle }}
+    {{ $itemTitle = .Context.Params.sidebarTitle | .Context.Page.RenderString }}
   {{ end }}
   <div class="sidebar__heading-wrapper sidebar__heading-wrapper-section">
     <h4 class="duik-sidebar__heading">
@@ -64,9 +65,9 @@
   {{ end }}
   <!-- Loop through pages in the section -->
   {{ range .Context.Pages }}
-    {{ $itemTitle = .Title }}
-    {{ with .Params.sidebarTitle }}
-      {{ $itemTitle = . }}
+    {{ $itemTitle = .Title | .Page.RenderString }}
+    {{ if .Params.sidebarTitle }}
+      {{ $itemTitle = .Params.sidebarTitle | .Page.RenderString }}
     {{ end }}
     <!-- Create a machine readable ID with no dots (as in node.js) -->
     {{ $itemId := printf "%s-sidebar-id" ( replace ($itemTitle | urlize) "." "" ) }}
@@ -102,7 +103,7 @@
                 <!-- SECOND LEVEL ITEM -->
                 <li class="duik-sidebar__item duik-sidebar__item--second-level">
                   <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if eq $currentPage . }} active{{ end }}">
-                      {{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle }}{{ else }}{{ .Title }}{{ end }}
+                      {{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle | .RenderString }}{{ else }}{{ .Title | .RenderString }}{{ end }}
                   </a>
                 </li>
               {{ end }}

@@ -15,6 +15,6 @@ Data in transit on Platform.sh controlled networks (for example, between the app
 
 ## Data at rest
 
-All application data is encrypted at rest by default using encrypted ephemeral storage (typically using an AES-256 block cipher). Some Enterprise-Dedicated clusters and the `FR-3` region do not have full encryption at rest.
+All application data is encrypted at rest by default using encrypted ephemeral storage (typically using an AES-256 block cipher). Some {{% names/dedicated-gen-2 %}} clusters and the `FR-3` region do not have full encryption at rest.
 
 If you have specific audit requirements surrounding data at rest encryption, please [contact support](/overview/get-support.md).

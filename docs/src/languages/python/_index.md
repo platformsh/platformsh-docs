@@ -8,9 +8,9 @@ You can deploy Python apps on Platform.sh using a server or a project such as [u
 
 ## Supported versions
 
-| Grid and Dedicated Generation 3 | Dedicated |
-|---------------------------------|-----------|
-|  {{< image-versions image="python" status="supported" environment="grid" >}} | {{< image-versions image="python" status="supported" environment="dedicated" >}} |
+| Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
+|----------------------------------------|------------------------------ |
+|  {{< image-versions image="python" status="supported" environment="grid" >}} | {{< image-versions image="python" status="supported" environment="dedicated-gen-2" >}} |
 
 {{% image-versions-legacy "python" %}}
 

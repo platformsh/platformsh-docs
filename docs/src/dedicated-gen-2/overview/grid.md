@@ -2,18 +2,20 @@
 title: "Differences between Production and Development environments"
 weight: 5
 sidebarTitle: "Differences in development"
-description: See the differences between your Production/Staging environments (which are Dedicated) and your Development environments (which are Grid environments).
+description: See the differences between your Production/Staging environments (which are {{% names/dedicated-gen-2 %}}) and your Development environments (which are Grid environments).
+aliases:
+  - /dedicated/overview/grid.html
 ---
 
-With Platform.sh Dedicated plans, your Production and Staging environments are dedicated virtual machines,
+With {{% names/dedicated-gen-2 %}} plans, your Production and Staging environments are dedicated virtual machines,
 while your Development environments run on the Grid, meaning shared redundant infrastructure.
 This difference means a few configuration options and tools function differently in the different environments.
 
-These differences should be gone with [Dedicated Gen 3](../../dedicated-gen-3/overview.md).
+These differences should be gone with [{{% names/dedicated-gen-3 %}}](../../dedicated-gen-3/overview.md).
 
 ## Syncing data between environments
 
-Because of the differences between Dedicated and Grid environments,
+Because of the differences between {{% names/dedicated-gen-2 %}} and Grid environments,
 basic [syncs](../../other/glossary.md#sync) and [merges](../../other/glossary.md#merge)
 aren't available between Development environments and Production/Staging environments.
 So you don't see working buttons with those options in the Console.
@@ -54,7 +56,7 @@ For other PHP options, such as the following, open a support ticket:
 
 ### Xdebug
 
-All Dedicated clusters that have [Xdebug](../../languages/php/xdebug.md) enabled have a second PHP-FPM process.
+All {{% names/dedicated-gen-2 %}} clusters that have [Xdebug](../../languages/php/xdebug.md) enabled have a second PHP-FPM process.
 This second process is used only when requests include the correct Xdebug key in a header.
 So you can keep Xdebug always on and not worry about performance issues as it's ignored on most requests.
 
@@ -66,7 +68,7 @@ Then whenever you have Xdebug enabled, the request uses the alternate developmen
 ## Solr
 
 On Grid environments, [Solr](../../add-services/solr.md) runs as a standalone instance.
-On Dedicated environments, it runs as [SolrCloud](https://solr.apache.org/guide/6_6/solrcloud.html):
+On {{% names/dedicated-gen-2 %}} environments, it runs as [SolrCloud](https://solr.apache.org/guide/6_6/solrcloud.html):
 a cluster of Solr servers to ensure high availability.
 This shouldn't affect you most of the time, but may influence certain advanced use cases.
 
@@ -75,7 +77,7 @@ This shouldn't affect you most of the time, but may influence certain advanced u
 How [cron tasks](../../create-apps/app-reference.md#crons) interact with deploys changes based on the environment.
 
 On Grid environments, a running cron task blocks a deploy until the cron is complete.
-On Dedicated environments, a deploy terminates a running cron task.
+On {{% names/dedicated-gen-2 %}} environments, a deploy terminates a running cron task.
 
 Specifically, when a deploy to either Production or Staging begins,
 any active cron tasks are sent a `SIGTERM` message so that they can terminate gracefully.
@@ -85,7 +87,7 @@ So it's best to ensure your cron tasks can receive a `SIGTERM` message and termi
 
 ## Configuration & change management
 
-You can't manage some configuration settings via YAML configuration files on Dedicated environments.
+You can't manage some configuration settings via YAML configuration files on {{% names/dedicated-gen-2 %}} environments.
 In these cases, you need to open a support ticket.
 You can have some settings different between Staging and Production environments.
 It's assumed you want the settings the same, unless you state otherwise in the ticket.
@@ -103,5 +105,5 @@ The following settings require a support ticket:
 
 ## Logs
 
-Dedicated environments have a slightly different location for [container logs](../../increase-observability/logs.md).
+{{% names/dedicated-gen-2 %}} environments have a slightly different location for [container logs](../../increase-observability/logs.md).
 The difference shouldn't be noticeable if you use the CLI.

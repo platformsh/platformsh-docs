@@ -19,17 +19,17 @@ Solr search with generic schemas provided, and a custom schema is also supported
 
 ## Supported versions
 
-| **Grid** | **Dedicated** | **Dedicated Generation 3** |
-|----------------------------------|---------------|---------------|
-|  {{< image-versions image="solr" status="supported" environment="grid" >}} | {{< image-versions image="solr" status="supported" environment="dedicated" >}} | {{< image-versions image="solr" status="supported" environment="dedicated-gen-3" >}} |
+| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
+|------|-------------------------------|------------------------------ |
+|  {{< image-versions image="solr" status="supported" environment="grid" >}} | {{< image-versions image="solr" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="solr" status="supported" environment="dedicated-gen-2" >}} |
 
 {{% image-versions-legacy "solr" %}}
 
 {{% deprecated-versions %}}
 
-| **Grid** | **Dedicated** | **Dedicated Generation 3** |
-|----------------------------------|---------------|---------------|
-|  {{< image-versions image="solr" status="deprecated" environment="grid" >}} | {{< image-versions image="solr" status="deprecated" environment="dedicated" >}} | {{< image-versions image="solr" status="deprecated" environment="dedicated-gen-3" >}} |
+| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
+|------|-------------------------------|------------------------------ |
+|  {{< image-versions image="solr" status="deprecated" environment="grid" >}} | {{< image-versions image="solr" status="deprecated" environment="dedicated-gen-3" >}} | {{< image-versions image="solr" status="deprecated" environment="dedicated-gen-2" >}} |
 
 ## Relationship
 
@@ -241,11 +241,12 @@ Close tunnels with: `platform tunnel:close`
 
 In this example, you can now open `http://localhost:30000/solr/` in a browser to access the Solr admin interface. Note that you can't create indexes or users this way, but you can browse the existing indexes and manipulate the stored data.
 
-
 {{< note >}}
-Platform.sh Dedicated users can use `ssh -L 8888:localhost:8983 <user>@<cluster-name>.ent.platform.sh` to open a tunnel instead, after which the Solr server administrative interface is available at `http://localhost:8888/solr/`.
-{{< /note >}}
 
+{{% names/dedicated-gen-2 %}} users can use `ssh -L 8888:localhost:8983 <user>@<cluster-name>.ent.platform.sh` to open a tunnel instead,
+after which the Solr server administrative interface is available at `http://localhost:8888/solr/`.
+
+{{< /note >}}
 
 ## Upgrading
 

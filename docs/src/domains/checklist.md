@@ -32,9 +32,9 @@ In particular, see the [Routes documentation](../define-routes/_index.md).
 You need your routes configured appropriately before you begin.
 Make sure you have turned off [basic-authentication](/administration/web/configure-environment.md) if it was turned on during development.
 
-If your production environment is on a Dedicated instance,
+If your production environment is on a {{% names/dedicated-gen-2 %}} instance,
 ensure that the code is up to date in both your `staging` and `production` branches,
-as those are what are mirrored to the Dedicated instances.
+as those are what are mirrored to the {{% names/dedicated-gen-2 %}} instances.
 Also ensure that the data on the production instance is up to date and ready to launch.
 
 ## 3. Optionally obtain a 3rd party TLS certificate
@@ -60,7 +60,7 @@ That includes setting the upstream on your CDN to point to the Platform.sh produ
 
 * For a Grid-based project, that's the domain connected to your production branch.
   Run `platform environment:info edge_hostname` to get the domain name to use.
-* For a Dedicated project, the upstream to use is provided by your Platform.sh onboarding representative.
+* For a {{% names/dedicated-gen-2 %}} project, the upstream to use is provided by your Platform.sh onboarding representative.
 
 Consult your CDN's documentation for how to set the CDN's upstream address.
 
