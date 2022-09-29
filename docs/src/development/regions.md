@@ -46,7 +46,7 @@ A legacy region is a region running an older version of the Platform.sh orchestr
 It doesn't include all available features.
 See a [list of not included features](../projects/region-migration.md#why-migrate-between-regions).
 
-These regions are upgraded in the future.
+These regions will be upgraded in the future.
 If you’re on a legacy region and want all features now,
 [migrate your project](../projects/region-migration.md) to a newer region.
 

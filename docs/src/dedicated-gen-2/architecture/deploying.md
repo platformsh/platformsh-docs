@@ -34,7 +34,7 @@ Incoming requests receive an HTTP 500 error.
 The deploy usually takes approximately 30-90 seconds, although that is highly dependent on how long the deploy hook takes to run.
 
 During the deploy process the cluster is unavailable.
-Nearly all {{% names/dedicated-gen-2 %}}  instances are fronted by the Fastly Content Delivery Network (CDN).
+Nearly all {{% names/dedicated-gen-2 %}} instances are fronted by the Fastly Content Delivery Network (CDN).
 Fastly can be configured to allow a "grace period", meaning that requests to the origin that fail are served from the existing cache, even if that cache item is stale.
 We configure a default grace period that is longer than a typical deployment, and can extend that time upon request.
 That means anonymous users should see no interruption in service at all.
