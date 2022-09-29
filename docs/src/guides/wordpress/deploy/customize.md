@@ -27,9 +27,9 @@ Many other WordPress settings are pre-defined in this file for you, so consult t
 
 ## Setting up Composer
 
-Through this guide you will set up your WordPress repository to install everything during it's build using Composer. That includes themes, plugins, and even WordPress Core itself. Any new plugins you want to use or migrate from your existing application can be committed as dependencies using Composer, but there are a few changes we need to make to the `composer.json` file to prepare it for the final Platform.sh environment.  
+Through this guide you will set up your WordPress repository to install everything during it's build using Composer. That includes themes, plugins, and even WordPress Core itself. Any new plugins you want to use or migrate from your existing application can be committed as dependencies using Composer, but there are a few changes we need to make to the `composer.json` file to prepare it for the final Platform.sh environment.
 
-First, the John Bloch script has a default `wordpress` installation directory, so the `composer.json` file will need to know to know that all new themes and plugins have a destination within that subdirectory. 
+First, the John Bloch script has a default `wordpress` installation directory, so the `composer.json` file needs to know that all new themes and plugins have a destination within that subdirectory.
 
 ```json
   "extra": {
@@ -47,7 +47,7 @@ First, the John Bloch script has a default `wordpress` installation directory, s
   }
 ```
 
-Next, having placed `wp-config.php` in the root of your repository, you will need to add a `post-install-cmd` to move the file into `wordpress` after `composer install` has finished.
+Next, having placed `wp-config.php` in the root of your repository, you need to add a `post-install-cmd` to move the file into `wordpress` after `composer install` has finished.
 
 ```json
   "scripts": {
@@ -58,7 +58,7 @@ Next, having placed `wp-config.php` in the root of your repository, you will nee
   },
 ```
 
-Since you'll likely be using [WPPackagist](https://wpackagist.org/) to download plugins and themes with Composer, you will also need to add `wpackagist.org` as a repository in `composer.json`.
+Since you're likely using [WPPackagist](https://wpackagist.org/) to download plugins and themes with Composer, you also need to add `wpackagist.org` as a repository in `composer.json`.
 
 ```json
   "repositories": [
@@ -91,7 +91,7 @@ Then you can use the WordPress CLI within an application container from the `ven
 ./vendor/bin/wp plugin list
 ```
 
-If receive an error stating `This does not seem to be a WordPress installation.`,
+If you receive an error stating `This doesn't seem to be a WordPress installation.`,
 try providing the `--path` flag and point to your WordPress install path.
 
 {{< guide-buttons next="Deploy WordPress" >}}

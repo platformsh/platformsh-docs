@@ -178,7 +178,7 @@ and add logic similar to the following to your VCL template:
 import vsthrottle;
 
 sub vcl_recv {
-  # The Platform.sh router will provide the real client IP as X-Client-IP
+  # The Platform.sh router provides the real client IP as X-Client-IP
   # This replaces client.identity in other implementations
   if (vsthrottle.is_denied(req.http.X-Client-IP, 20, 10s, 120s)) {
     # Client has exceeded 20 requests in 10 seconds.
@@ -218,7 +218,7 @@ The following example shows how to set up purging.
    ```bash {location=".platform/config.vcl"}
    sub vcl_recv {
        if (req.method == "PURGE") {
-           # The Platform.sh router will provide the real client IP as X-Client-IP
+           # The Platform.sh router provides the real client IP as X-Client-IP
            # Use std.ip to convert the string to an IP for comparison
            if (!std.ip(req.http.X-Client-IP) ~ purge) {
                # Deny all purge requests not from the allowed IPs

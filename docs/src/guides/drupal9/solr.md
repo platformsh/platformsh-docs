@@ -6,12 +6,12 @@ description: |
 weight: -50
 ---
 
-The Drupal [Search API Solr](https://www.drupal.org/project/search_api_solr) module has a somewhat involved setup process, as it requires live access to the Solr server in order to generate the configuration files for it.
-The following procedure is therefore necessary to ensure each step is able to proceed.
+The Drupal [Search API Solr](https://www.drupal.org/project/search_api_solr) module has a somewhat involved setup process, as it requires live access to the Solr server to generate the configuration files for it.
+The following procedure is necessary to ensure each step can proceed.
 
 Search API Solr stores its configuration in the Drupal Configuration API.
-However, that system does not support environment-aware information.
-The setup process therefore depends on config-overrides in `settings.platformsh.php`, which may need to be modified slightly depending on  your Solr configuration.
+That system doesn't support environment-aware information.
+So the setup process depends on config-overrides in `settings.platformsh.php`, which may need to be modified slightly depending on  your Solr configuration.
 
 Search API Solr requires Solr 6.6 or higher, and recommends Solr 8 or higher.
 
@@ -21,7 +21,7 @@ Advanced Solr service configuration and implementation in frameworks other than 
 
 ### 0. Upgrade Symfony Event Dispatcher
 
-If you are running Drupal older than 8.8 and installing Search API Solr older than 4.1, a small workaround will be needed.
+If you are running Drupal older than 8.8 and installing Search API Solr older than 4.1, a small workaround is needed.
 The Solarium library used by Search API Solr requires the 4.3 version of the Symfony Event Dispatcher, whereas Drupal core ships with 3.4.
 The Search API Solr issue queue has a [more detailed description](https://www.drupal.org/project/search_api_solr/issues/3085196) of the problem.
 
@@ -66,7 +66,7 @@ relationships:
 
 ### 3. Add the Drupal modules
 
-You will need to add the [Search API](https://www.drupal.org/project/search_api) and [Search API Solr](https://www.drupal.org/project/search_api_solr) modules to your project. If you are using Composer to manage your Drupal site (which we recommend), run:
+You need to add the [Search API](https://www.drupal.org/project/search_api) and [Search API Solr](https://www.drupal.org/project/search_api_solr) modules to your project. If you are using Composer to manage your Drupal site (which we recommend), run:
 
 ```bash
 $ composer require drupal/search_api_solr
@@ -80,7 +80,7 @@ The configuration can be managed from `settings.platformsh.php` by adding the fo
 It will override the environment-specific parts of the configuration object with the correct values to connect to the Platform.sh Solr instance.
 
 {{< note >}}
-If you do not already have the Platform.sh Config Reader library installed and referenced at the top of the file, you will need to install it with `composer require platformsh/config-reader` and then add the following code before the block below:
+If you don't already have the Platform.sh Config Reader library installed and referenced at the top of the file, you need to install it with `composer require platformsh/config-reader` and then add the following code before the block below:
 
 ```php
 <?php
@@ -126,23 +126,23 @@ Commit all of the changes above and then push to deploy.
 ### 5. Enable the modules
 
 Once the site is deployed, go to the `/admin/modules` page and enable the "Search API Solr" module.
-Also enable the "Search API Solr Search Defaults" module in order to get a default server configuration.
+Also enable the "Search API Solr Search Defaults" module to get a default server configuration.
 If you would rather create one yourself you may do so but then you must change the value of `$solr_server_name` in the code snippet in `settings.platformsh.php`.
 
 ### 6. Export and modify configuration
 
 In the Drupal admin area, go to `/admin/config/search/search-api` and select your server.
-(If you used the Search Defaults module, it will be named "Solr Server").
-First verify that the module is able to connect to your Solr instance by ensuring that the "Server connection" reports "The Solr server could be reached."
+(If you used the Search Defaults module, it's named "Solr Server").
+First verify that the module can connect to your Solr instance by ensuring that the "Server connection" reports "The Solr server could be reached."
 
 You can now generate a `config.zip` file using the button at the top of the page.
-That will produce a Solr configuration that is customized for your current field configuration.
+That produces a Solr configuration that is customized for your current field configuration.
 Extract the file into the `.platform` directory of your site.
 It should unpack into a directory named `solr_8.x_config` or similar.
 
 Inside that directory, locate the `solrcore.properties` file.
 In that file, *delete* the entry for `solr.install.dir` if it exists.
-Its default value will not work, and it is not required for Solr to operate.
+Its default value doesn't work, and it isn't required for Solr to operate.
 (The server already knows its installation directory.)
 
 Finally, move that directory to `.platform/`, and update the `maincore.conf_dir` to point to it.

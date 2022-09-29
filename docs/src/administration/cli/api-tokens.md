@@ -6,7 +6,7 @@ weight: 1
 
 When setting up CI services and other automation tools,
 you may want to allow them to use the Platform.sh CLI to carry out certain tasks.
-Logging in via a browser is not an option in these cases.
+Logging in via a browser isn't an option in these cases.
 
 To run the CLI from such a tool or on an app container, such as via a cron hook, set up an API token to authenticate.
 
@@ -22,7 +22,7 @@ The machine user can be given a very restrictive set of [access permissions](../
 For example, backups require `Admin` access but no SSH key,
 while checking out code from a CI server to run tests on it would require an SSH key but only `Viewer` access.
 
-It will also show up in logs and activity streams as a separate entry from human users.
+It also shows up in logs and activity streams as a separate entry from human users.
 
 To add the user:
 
@@ -58,7 +58,7 @@ Once you have the API token copied, you can use it for your automation tools.
 
 ### In another CI system
 
-Set the token in an environment variable named `PLATFORMSH_CLI_TOKEN` on the system where the CLI will run.
+Set the token in an environment variable named `PLATFORMSH_CLI_TOKEN` on the system where the CLI runs.
 Consult the documentation for your CI system to see how to do that.
 
 {{< note >}}
@@ -95,9 +95,9 @@ hooks:
         curl -fsS https://platform.sh/cli/installer | php
 ```
 
-This will download the CLI to a known directory, `.platformsh/bin`,
-which will be added to the PATH at runtime (via the .environment file).
-Because the API token is available, the CLI will now be able to run authenticated commands,
+This downloads the CLI to a known directory, `.platformsh/bin`,
+which is added to the PATH at runtime (via the .environment file).
+Because the API token is available, the CLI can now run authenticated commands,
 acting as the user who created the token.
 
 You can now call the CLI from within the shell on the app container or via a cron hook.

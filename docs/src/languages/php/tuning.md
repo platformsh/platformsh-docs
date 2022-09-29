@@ -26,7 +26,7 @@ As always, test it on a branch first before merging to production.
 
 Although not PHP-specific,
 a common source of performance issues is a misconfigured cache.
-The most common issue is not allowing the right cookies as part of the router cache.
+The most common issue isn't allowing the right cookies as part of the router cache.
 Some cookies, such as session cookies, need to be allowed,
 whereas others, such as marketing and analytics cookies,
 usually shouldn't be allowed to be part of the cache key.

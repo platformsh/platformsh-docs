@@ -39,7 +39,7 @@ Drupal is just one example of a backend CMS that can be used with this pattern, 
 
 ## Signing up for Platform.sh
 
-In each of the backend guides below, there will be a "Deploy on Platform.sh" button that will not only deploy the guide's project for you, but also sign you up for a trial account. If you are planning on deploying a template and following along with these guides for greater context, feel free to move onto the next section. 
+In each of the backend guides below, there is a "Deploy on Platform.sh" button that will not only deploy the guide's project for you, but also sign you up for a trial account. If you are planning on deploying a template and following along with these guides for greater context, feel free to move onto the next section. 
 
 If however you are planning on using the templates and guides to deploy your existing codebase to Platform.sh,
 you first need to [register for a trial Platform.sh account](https://auth.api.platform.sh/register). 
@@ -47,11 +47,11 @@ If you don't want to sign up initially with your e-mail address,
 you can sign up using an existing GitHub, Bitbucket, or Google account.
 If you choose one of these options, you can set a password for your Platform.sh account later.
 
-After creating an account, you will be prompted to create your first project. Since you'll be providing your own code, use the "Blank project" option. You will be able to give the project a title and choose a region closest to the visitors of your site. You also have the option to select more resources for your project. This is especially important with multi-application projects, so make sure to consult the [**Plan size**](#plan-size) note below for more details.
+After creating an account, you are prompted to create your first project. Since you're providing your own code, use the "Blank project" option. You can give the project a title and choose a region closest to the visitors of your site. You also have the option to select more resources for your project. This is especially important with multi-application projects, so make sure to consult the [**Plan size**](#plan-size) note below for more details.
 
 ## Plan size
 
-There are a few important points you will need to keep in mind when deploying this pattern if you have already [deployed Gatsby by itself](/guides/gatsby/deploy/_index.md) on Platform.sh, which are relevant to each backend example. After following the steps below, you may find that Gatsby fails to bundle assets during its build on projects of the "Development" plan size. This is a factor of both the size and number of Gatsby's dependencies on the frontend, as well as the amount of data being pulled from the backend. 
+There are a few important points you need to keep in mind when deploying this pattern if you have already [deployed Gatsby by itself](/guides/gatsby/deploy/_index.md) on Platform.sh, which are relevant to each backend example. After following the steps below, you may find that Gatsby fails to bundle assets during its build on projects of the "Development" plan size. This is a factor of both the size and number of Gatsby's dependencies on the frontend, as well as the amount of data being pulled from the backend. 
 
 Multi-application projects generally require more resources to run on Platform.sh, and so the trial's default `development` plan may not be enough to run your existing site. You are free to either proceed with a smaller plan to test or increase the resources at this point for the project. Otherwise, it may be best to initially deploy the templates listed in each backend guide to start out, and later modify that project to include your own code with more resources as you get used to developing on Platform.sh.
 

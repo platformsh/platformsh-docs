@@ -149,7 +149,7 @@ $redis->select(0);       // switch to DB 0
 $redis->set('x', '42'); // write 42 to x
 $redis->move('x', 1);  // move to DB 1
 $redis->select(1);    // switch to DB 1
-$redis->get('x');    // will return 42
+$redis->get('x');    // returns 42
 ```
 
 <--->

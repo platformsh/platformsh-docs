@@ -8,7 +8,8 @@ description: |
 {{% description %}}
 
 {{< note >}}
-Remember that you must have `admin` access to a project in order to add or modify an integration.  See [User administration roles](/administration/users.md#user-roles) for more details.
+Remember that you must have `admin` access to a project to add or modify an integration.
+See [User administration roles](/administration/users.md#user-roles) for more details.
 {{< /note >}}
 
 ## Default low-disk email notifications
@@ -77,10 +78,11 @@ The default `from-address` points to the "Platform.sh Bot".
 
 You can also configure a custom `--from-address`. The `--from-address` is whatever address you want the email to appear to be from. It is completely fine to use the same email address for both `from-address` and `recipients`. Note that depending on the configuration of the recipient mail server (including SPF and DKIM DNS entries) when using a custom `from-address`, the email can be marked as spam or lost.
 
-
 ### Slack notifications
 
-A notification can trigger a message to be sent to a Slack bot.  First, create a new custom "[bot user](https://api.slack.com/bot-users)" for your Slack group and configure the channels you wish it to live in.  Note the API token is the "Bot User OAuth Access Token" provided by Slack.
+A notification can trigger a message to be sent to a Slack bot.
+First, create a new custom "[bot user](https://api.slack.com/bot-users)" for your Slack group and configure the channels you wish it to live in.
+Note the API token is the "Bot User OAuth Access Token" provided by Slack.
 
 Then register that Slack bot with Platform.sh using a `health.slack` integration:
 
@@ -92,7 +94,9 @@ That will trigger the corresponding bot to post a notification to the `#channeln
 
 ### PagerDuty notifications
 
-A notification can trigger a message to be sent via PagerDuty, if you are using that service.  First, create a new PagerDuty "[integration](https://support.pagerduty.com/docs/services-and-integrations)" that uses the Events API v2.  Copy the "Integration Key" as known as the "routing key" for the integration.
+A notification can trigger a message to be sent via PagerDuty, if you are using that service.
+First, create a new PagerDuty "[integration](https://support.pagerduty.com/docs/services-and-integrations)" that uses the Events API v2.
+Copy the "Integration Key" as known as the "routing key" for the integration.
 
 Now register a `health.pagerduty` integration as follows:
 
@@ -102,6 +106,7 @@ platform integration:add --type health.pagerduty --routing-key YOUR_ROUTING_KEY
 ```
 
 Any notification will now trigger an alert in PagerDuty.
+
 
 ## Validate the integration
 

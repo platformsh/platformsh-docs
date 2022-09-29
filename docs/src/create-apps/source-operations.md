@@ -158,7 +158,7 @@ If you try running a source operation on a non-supported environment, you see th
 
 ```text
 [ApiFeatureMissingException] 
-This project does not support source operations.
+This project doesn't support source operations.
 ```
 
 ## Automated source operations using cron

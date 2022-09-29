@@ -20,14 +20,14 @@ Instead of committing all of WordPress to your repository (or adding it as a sub
 
 2. **Branch** 
     
-    Since you will be making changes to your repository and Platform.sh environment, branch your codebase:
+    Since you are making changes to your repository and Platform.sh environment, branch your codebase:
 
     ```bash
     $ git checkout -b composer
     ```
 3. **Initialize repository as Composer project**
 
-    You will need to have a `composer.json` on your project to use Composer. This file defines the dependencies you want to include (WordPress itself, plugins, and themes). When those dependencies are installed, a matching `composer.lock` file will be generated from it that locks each of them down to the minor version, ensuring repeatable builds until you update.
+    You need to have a `composer.json` on your project to use Composer. This file defines the dependencies you want to include (WordPress itself, plugins, and themes). When those dependencies are installed, a matching `composer.lock` file is generated from it that locks each of them down to the minor version, ensuring repeatable builds until you update.
     
     Run the command:
 
@@ -39,9 +39,9 @@ Instead of committing all of WordPress to your repository (or adding it as a sub
 
 4. **Cleanup WordPress core**
 
-    Your existing installation of WordPress core is assumed to be in some subdirectory of your repository, such as `wordpress`. When we start managing WordPress with Composer in the next step, *all code in this subdirectory will be overwritten*. The [previous guide](/guides/wordpress/vanilla/_index.md) instructs you to move all plugins and themes out of WordPress core and into a separate `plugins` subdirectory, so if you have not already done so consult that guide and do so now. 
+    Your existing installation of WordPress core is assumed to be in some subdirectory of your repository, such as `wordpress`. When we start managing WordPress with Composer in the next step, *all code in this subdirectory is overwritten*. The [previous guide](/guides/wordpress/vanilla/_index.md) instructs you to move all plugins and themes out of WordPress core and into a separate `plugins` subdirectory, so if you have not already done so consult that guide and do so now. 
 
-    Inspect WordPress core carefully, and ensure that their is not any data in that subdirectory you would not like to lose specific to your site. Unless you are managing WordPress core as a [submodule](/development/submodules.md#removing-submodules), you can now remove that subdirectory 
+    Inspect WordPress core carefully, and ensure that their isn't any data in that subdirectory you would not like to lose specific to your site. Unless you are managing WordPress core as a [submodule](/development/submodules.md#removing-submodules), you can now remove that subdirectory 
 
     ```bash
     $ rm -rf wordpress
@@ -98,7 +98,7 @@ Like WordPress core itself, themes and plugins can be installed as dependencies 
     Some themes and plugins for WordPress are also on Packagist,
     but most of them are accessible through a similar service specific to WordPress called [WPackagist](https://wpackagist.org). 
 
-    In order to pull from this repository, you'll need to add WPackagist to your `composer.json` file so that Composer knows to look for packages there. Run the command: 
+    To pull from this repository, you need to add WPackagist to your `composer.json` file so that Composer knows to look for packages there. Run the command: 
 
     ```bash
     $ composer config repositories.wppackagist composer https://wpackagist.org
@@ -137,7 +137,7 @@ Like WordPress core itself, themes and plugins can be installed as dependencies 
     }
     ```
 
-    Now any plugin that contains as a part of its package metadata a `type` of `wordpress-plugin` will be installed into `wordpress/wp-content/plugins/` instead of `vendor`, and the same goes for themes and must-use plugins. 
+    Now any plugin that contains as a part of its package metadata a `type` of `wordpress-plugin` is installed into `wordpress/wp-content/plugins/` instead of `vendor`, and the same goes for themes and must-use plugins. 
 
 3. **Install themes and modules**
 

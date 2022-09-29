@@ -14,7 +14,7 @@ weight: -100
 
 ### Add the Drupal modules
 
-You will need to add the [Search API](https://www.drupal.org/project/search_api) and [Elasticsearch Connector](https://www.drupal.org/project/elasticsearch_connector) modules to your project. If you are using composer, the easiest way to add them is to run:
+You need to add the [Search API](https://www.drupal.org/project/search_api) and [Elasticsearch Connector](https://www.drupal.org/project/elasticsearch_connector) modules to your project. If you are using composer, the easiest way to add them is to run:
 
 ```bash
 $ composer require drupal/search_api drupal/elasticsearch_connector
@@ -24,13 +24,14 @@ And then commit the changes to `composer.json` and `composer.lock`.
 
 ## Configuration
 
-Because Drupal defines connection information via the Configuration Management system, you will need to first define an Elasticsearch "Cluster" at `admin/config/search/elasticsearch-connector`.  Note the "machine name" the server is given.
+Because Drupal defines connection information via the Configuration Management system, you need to first define an Elasticsearch "Cluster" at `admin/config/search/elasticsearch-connector`.
+Note the "machine name" the server is given.
 
 Then, paste the following code snippet into your `settings.platformsh.php` file.
 
 {{< note >}}
 
-If you do not already have the Platform.sh Config Reader library installed and referenced at the top of the file, you will need to install it with `composer require platformsh/config-reader` and then add the following code before the block below:
+If you do not already have the Platform.sh Config Reader library installed and referenced at the top of the file, you need to install it with `composer require platformsh/config-reader` and then add the following code before the block below:
 
 ```php
 <?php
@@ -64,4 +65,6 @@ if ($platformsh->hasRelationship($relationship_name)) {
 }
 ```
 
-Commit that code and push.  The specified cluster will now always point to the Elasticsearch service.  Then configure Search API as normal.
+Commit that code and push.
+The specified cluster now always points to the Elasticsearch service.
+Then configure Search API as normal.

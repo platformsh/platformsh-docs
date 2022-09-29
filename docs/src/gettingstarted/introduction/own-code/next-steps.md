@@ -12,7 +12,7 @@ Don't stop now! There are far more features that make Platform.sh profoundly hel
 
 ### Developing on Platform.sh
 
-Once an application has been migrated to Platform.sh, there's plenty more features that will help improve your development life cycle.
+Once an application has been migrated to Platform.sh, there's plenty more features that help improve your development life cycle.
 
 {{< descbutton link="/gettingstarted/developing/local-development/_index.md" title="Local development" desc="Remotely connect to services and build your application locally during development.">}}
 

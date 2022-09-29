@@ -10,6 +10,6 @@ The best way to understand a tool is to use it. That's why Platform.sh offers a 
 
 [Register for a trial Platform.sh account](https://auth.api.platform.sh/register).
 
-Alternatively, you can sign up using an existing GitHub, Bitbucket, or Google account. If you choose this option, you will be able to set a password for your Platform.sh account later.
+Alternatively, you can sign up using an existing GitHub, Bitbucket, or Google account. If you choose this option, you can set a password for your Platform.sh account later.
 
 {{< guide-buttons next="I've made a free trial account" >}}

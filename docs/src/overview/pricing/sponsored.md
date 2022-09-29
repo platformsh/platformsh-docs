@@ -11,7 +11,8 @@ description: |
 ## Eligibility
 
 * A software project released under a Free and Open Source license (*GPL, BSD, MIT, Apache, etc.)
-* A community-oriented conference or similar event run either by the community or a related non-profit corporation.  For-profit events and organizations are not eligible.
+* A community-oriented conference or similar event run either by the community or a related non-profit corporation.
+For-profit events and organizations aren't eligible.
 * An offline IT community organization, such as a local user group for a Free and Open Source project.
 * An online non-profit community project that supports one of the above.
 
@@ -21,7 +22,10 @@ Platform.sh will periodically reevaluate sponsored sites to ensure they remain e
 
 ## Offering
 
-An eligible project is entitled to one (1) Standard instance, with the standard 3 environments and 5 GB of storage.  Any number of users may be added as needed for the project at no additional cost.  The site is to be used exclusively for content supporting and promoting the project.  (Brochureware sites, documentation, user forums, etc. are all acceptable.)
+An eligible project is entitled to one (1) Standard instance, with the standard 3 environments and 5 GB of storage.
+Any number of users may be added as needed for the project at no additional cost.
+The site is to be used exclusively for content supporting and promoting the project.
+(Brochureware sites, documentation, user forums, etc. are all acceptable.)
 
 There is no limit on the number of domains or application containers (subject to resource limits of the Standard Plan) that a project may use, although the project is expected to register and manage its own domains. Platform.sh will provision SSL certificates for free (as may be limited by the Let’s Encrypt API) but the hosted site may provide their own.
 
@@ -29,7 +33,10 @@ A project is under no obligation to use the application container of their proje
 
 ## Expectations
 
-In return, eligible projects are expected to include an HTML snippet conspicuously on each page of the site.  That may be in a sidebar or footer, with text no smaller than the standard body text size for the site. The image may be scaled via CSS as appropriate as long as the text is fully readable.  The badge markup will be provided by Platform.sh when setting up the site and will include a link to Platform.sh and an analytics tracking value so we know where links are coming from.  It does not include any cookies.
+In return, eligible projects are expected to include an HTML snippet conspicuously on each page of the site.
+That may be in a sidebar or footer, with text no smaller than the standard body text size for the site. The image may be scaled via CSS as appropriate as long as the text is fully readable.
+The badge markup is provided by Platform.sh when setting up the site and includes a link to Platform.sh and an analytics tracking value to know where links are coming from.
+It doesn't include any cookies.
 
 Platform.sh may from time to time update the widget’s contents and the sponsored site will update the contents in a timely fashion.
 

@@ -6,7 +6,7 @@ sidebarTitle: "Git submodules"
 
 ## Clone submodules during deployment
 
-Platform.sh allows you to use submodules in your Git repository. They are usually listed in a `.gitmodules` file at the root of your Git repository. When you push via Git, Platform.sh will try to clone them automatically.
+Platform.sh allows you to use submodules in your Git repository. They're usually listed in a `.gitmodules` file at the root of your Git repository. When you push via Git, Platform.sh tries to clone them automatically.
 
 Here is an example of a ``.gitmodules`` file:
 
@@ -46,11 +46,11 @@ E: Error validating submodules in tree:
     - git@github.com:orocommerce/orocommerce.git: HangupException: The remote server unexpectedly closed the connection.
 ```
 
-Since the Platform.sh Git server cannot connect to GitHub via SSH without being granted an SSH key to do so, you should not use an SSH URL: ``git@github.com:...``, but you should use an HTTPS URL instead: ``https://github.com/...``.
+Since the Platform.sh Git server can't connect to GitHub via SSH without being granted an SSH key to do so, you shouldn't use an SSH URL: ``git@github.com:...``, but you should use an HTTPS URL instead: ``https://github.com/...``.
 
 ## Use of private git repositories
 
-When using Git submodules that are hosted on private repositories, using the `https` protocol will fail with errors like:
+When using Git submodules that are hosted on private repositories, using the `https` protocol fails with errors like:
 
 ```bash
 GitProtocolError: unexpected http resp 401 for https://bitbucket.org/myusername/mymodule.git/info/refs?service=git-upload-pack
@@ -81,7 +81,7 @@ To fix this, you need to:
 
 ## Removing submodules
 
-These steps are not specific to Platform.sh, but kept as a reference for Git so that submodules are effectively removed prior to entering the build process.
+These steps aren't specific to Platform.sh, but kept as a reference for Git so that submodules are effectively removed before entering the build process.
 
 1. Delete information for the submodule you'd like to remove from `.gitmodules`.
 2. Stage changes to `.gitmodules`: 

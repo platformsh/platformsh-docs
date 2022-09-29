@@ -19,8 +19,8 @@ If you're migrating an existing site, you can move on to the next step.
 
 ```yaml
     # The deploy hook runs after your application has been deployed and started.
-    # Code cannot be modified at this point but the database is available.
-    # The site is not accepting requests while this script runs so keep it
+    # Code can't be modified at this point but the database is available.
+    # The site isn't accepting requests while this script runs so keep it
     # fast.
     deploy: |
         # Exit hook immediately if a command exits with a non-zero status.

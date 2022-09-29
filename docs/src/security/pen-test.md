@@ -13,12 +13,15 @@ On Platform.sh's side, there is no automatic IP or range blocking. Blocking IP's
 ## Approved Activities
 
 * Vulnerability scanning of your web application. You are free to perform this as often as required without approval from Platform.sh.
-* Web application penetration tests that do not result in high network load.  You are free to perform this as often as required without approval from Platform.sh.
-* Application level load testing that do not result in high network load. If the load test may result in the application to be down, we ask to open an urgent ticket as a courtesy 30 to 60 minutes before the load test begins. Typically application level load tests will trigger one or many NodePing alerts. Knowing that a load test is in progress will allow the on-call engineer to immediately snooze alerts.
+* Web application penetration tests that don't result in high network load.
+  You are free to perform this as often as required without approval from Platform.sh.
+* Application level load testing that don't result in high network load. If the load test may result in the application to be down, we ask to open an urgent ticket as a courtesy 30 to 60 minutes before the load test begins. Typically application level load tests will trigger one or many NodePing alerts. Knowing that a load test is in progress will allow the on-call engineer to immediately snooze alerts.
 
 ## Approved Activities by Prior Arrangement
 
-* For Dedicated customers, we do permit infrastructure penetration testing (but not load testing) by prior arrangement.  This requires special advanced preparation. You must submit a support ticket request a minimum of **three (3) weeks** in advance for us to coordinate this on your behalf.
+* For Dedicated customers, we do permit infrastructure penetration testing (but not load testing) by prior arrangement.
+  This requires special advanced preparation.
+  You must submit a support ticket request a minimum of **three (3) weeks** in advance for us to coordinate this on your behalf.
 
 ## Prohibited Activities
 
@@ -29,7 +32,7 @@ On Platform.sh's side, there is no automatic IP or range blocking. Blocking IP's
 
 ## Rate Limits
 
-* Please limit scans to a maximum of 20 Mb per second and 50 requests per second in order to prevent triggering denial of service bans.
+* Please limit scans to a maximum of 20 Mb per second and 50 requests per second to prevent triggering denial of service bans.
 
 ## Troubleshooting
 

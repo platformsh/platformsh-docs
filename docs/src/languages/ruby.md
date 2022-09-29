@@ -203,7 +203,7 @@ disk: 2048
 variables:
     env:
         BUNDLE_CACHE_ALL: '1'
-        BUNDLE_CLEAN: '1' # /!\ if you are working with Ruby<2.7 this does not work well
+        BUNDLE_CLEAN: '1' # /!\ if you are working with Ruby<2.7 this doesn't work well
         BUNDLE_DEPLOYMENT: '1'
         BUNDLE_ERROR_ON_STDERR: '1'
         BUNDLE_WITHOUT: 'development:test'

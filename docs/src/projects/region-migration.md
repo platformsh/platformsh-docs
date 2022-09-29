@@ -29,7 +29,7 @@ You can also change the project's region after it's created.
   - [Paused crons](../create-apps/app-reference.md#paused-crons)
   - [Static content during deployments](https://platform.sh/blog/2022/upcoming-improvements-deployment-caching-crons)
 
-  These regions will be updated in the future.
+  These regions are updated in the future.
   If you are on one of those regions and desire these features now,
   migrate to one of the newer regions.
 

@@ -22,11 +22,11 @@ Platform.sh provides managed service and runtime containers for your projects --
 security and system upgrades to those containers are applied automatically by us in the background.
 Whether or not an upgrade needs to be applied is judged during redeploys, but also during this renewal process.
 That means that most of the time renewals take a few seconds *unless* upgrades are available for your containers.
-In those cases, containers will be rebooted and the process will take a little longer. 
+In those cases, containers are rebooted and the process takes a little longer. 
 {{< /note >}}
 
 If you are using a custom TLS certificate, seven days before it expires
-Platform.sh issues a Let's Encrypt certificate and replaces the custom certificate with it in order to avoid interruption in service.
+Platform.sh issues a Let's Encrypt certificate and replaces the custom certificate with it to avoid interruption in service.
 If you wish to continue using the custom certificate,
 replace it with an updated certificate more than seven days before it expires.
 
@@ -113,7 +113,7 @@ tls:
 
 The above configuration results in requests using older TLS versions to be rejected.
 Legal values are `TLSv1.2` and `TLSv1.3`.
-TLS versions older than 1.2 are not supported by Platform.sh and are rejected regardless of the setting here.
+TLS versions older than 1.2 aren't supported by Platform.sh and are rejected regardless of the setting here.
 
 Note that if multiple routes for the same domain have different `min_version`s specified,
 the highest specified is used for the whole domain.
@@ -148,8 +148,8 @@ There are three sub-properties for the `strict_transport_security` property:
 If enabled, the `Strict-Transport-Security` header is always be sent with a lifetime of 1 year.
 The [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) has more detailed information on HSTS.
 
-Note: If multiple routes for the same domain specify different HSTS settings, the entire domain will still use a shared configuration.
-Specifically, if any route on the domain has `strict_transport_security.enabled` set to `false`, HSTS will be disabled for the whole domain.
+Note: If multiple routes for the same domain specify different HSTS settings, the entire domain still uses a shared configuration.
+Specifically, if any route on the domain has `strict_transport_security.enabled` set to `false`, HSTS is disabled for the whole domain.
 Otherwise, it's enabled for the whole domain if at least one such route has `enabled` set to `true`.
 As this logic may be tricky to configure correctly,
 it's strongly recommend to pick a single configuration for the whole domain and adding it on only a single route.
@@ -245,7 +245,7 @@ your branch names should be no more than 20 characters.
 
 ### DNS Challenge
 
-To be able to provide a valid SSL-certificate,
+To provide a valid SSL-certificate,
 Let's Encrypt needs to make sure that the requester is entitled to receive the SSL-certificate it asked for
 (usually through the presence of a specific token on the DNS zone of that domain).
 
@@ -258,7 +258,7 @@ The certificate also encompasses both these domains.
 Make sure that both your apex domain and it's `www` subdomain are pointing to your project,
 more information can be found in out go live [step-by-step guide](../gettingstarted/next-steps/going-live/configure-dns.md).
 
-Sometimes, that verification fails which will result in the following error-message:
+Sometimes, that verification fails, which results in the following error-message:
 `Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]`
 
 For the DNS challenge to work, domains and subdomains should point directly to your Platform.sh cluster (unless using a [CDN](../domains/cdn/_index.md)).

@@ -1,14 +1,14 @@
 ---
 title: "Tideways"
 description: |
-  Platform.sh supports [Tideways APM](https://tideways.com/) for PHP.  This functionality is only available on PHP 7.0 and later.
+  Platform.sh supports [Tideways APM](https://tideways.com/) for PHP. This functionality is only available on PHP 7.0 and later.
 ---
 
 {{% description %}}
 
 {{< note >}}
 The upstream now maintains two versions for Tideways, and both plugins are available on Platform.sh:
-* [Tideways_XHProf](https://github.com/tideways/php-xhprof-extension): The open source version, therefore no licensing is required (On the downside, less integration services are available). You can use it in combination with [XHProf UI](https://github.com/phacility/xhprof).
+* [Tideways_XHProf](https://github.com/tideways/php-xhprof-extension): The open source version and so no licensing is required (On the downside, less integration services are available). You can use it in combination with [XHProf UI](https://github.com/phacility/xhprof).
 * [tideways](https://tideways.com): The bundle proprietary full version of the product and plugins, which the rest of the guide is mostly aimed to cover.
 {{< /note >}}
 
@@ -36,7 +36,7 @@ runtime:
         - tideways
 ```
 
-Enabling the extension will also activate the Tideways background process.
+Enabling the extension also activates the Tideways background process.
 
 Push the changes to your Platform.sh environment to enable Tideways as follows:
 
@@ -46,7 +46,8 @@ git commit -m "Enable Tideways."
 git push
 ```
 
-Tideways should now be enabled.  Give it a few hours to a day to get a decent set of data before checking your Tideways dashboard.
+Tideways should now be enabled.
+Give it a few hours to a day to get a decent set of data before checking your Tideways dashboard.
 
 ## Deployment Integration
 
