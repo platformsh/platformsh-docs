@@ -17,7 +17,7 @@ Run through it as normal, but note that you will not be asked for the database c
 The `settings.platformsh.php` file added earlier automatically provides the database credentials
 and the installer is smart enough to not ask for them again.
 
-Once the installer is complete you will be presented with your new site. 
+Once the installer is complete you are presented with your new site. 
 
 {{% guides/data-migration %}}
 

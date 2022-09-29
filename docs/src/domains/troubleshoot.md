@@ -2,7 +2,7 @@
 title: "Going Live - Troubleshooting"
 weight: 4
 description: |
-  If all steps above have been followed and the site still does not resolve (after waiting for the DNS update to propagate), here are a few simple self-help steps to take before contacting support.
+  If all steps above have been followed and the site still doesn't resolve (after waiting for the DNS update to propagate), here are a few simple self-help steps to take before contacting support.
 sidebarTitle: "Troubleshooting"
 ---
 
@@ -19,7 +19,7 @@ www.example.com is an alias for main-t2xxqeifuhpzg.eu.platform.sh.
 main-t2xxqeifuhpzg.eu.platform.sh has address 54.76.136.188
 ```
 
-1. If it isn't, either you have not configured correctly your DNS server, or the DNS configuration did not propagate yet.
+1. If it isn't, either you haven't configured correctly your DNS server, or the DNS configuration didn't propagate yet.
    As a first step you can try and remove your local DNS cache.
 2. You can also try to set your DNS server to the Google public DNS server (8.8.8.8/8.8.4.4)
    to see if the issue is with the DNS server you are using.
@@ -34,8 +34,8 @@ On the command line with OS X or Linux (or using the Linux subsystem for Windows
 type `curl -I -v  https://example.com` (again using your own domain):
 
 The response should be long. Look for error messages.
-They are usually explicit enough.
-Often the problem will be with a mismatch between the certificate and the domain name.
+They're usually explicit enough.
+Often the problem is with a mismatch between the certificate and the domain name.
 
 ## Verify your application
 
@@ -54,4 +54,4 @@ Use a tool such as the [conversion tool provided by Verisign](https://www.verisi
 
 [Contact support](/overview/get-support.md)
 
-We are here to help. Please include as much detail as possible (we will be able to provide quicker help).
+We are here to help. Please include as much detail as possible (we can provide quicker help).

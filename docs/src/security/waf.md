@@ -32,9 +32,9 @@ The WAF monitors for requests that include a CRLF character or the word `http/\d
 As a general class of security vulnerabilities, header injections occur when HTTP response headers are generated based on user input. An attacker is able to exploit the vulnerable cycle to include malicious content in an application's response headers to subsequent requests.
 
 {{< note title="Protection rules">}}
-The WAF monitors for header injection attempts that can occur via the payload and the header itself. Requests are blocked for those that contain the carriage return (CR; `%0d`) and line feed (LF; `%0a`) characters so that data is not returned in a response header and interpreted by the client, similar to the [response splitting](/security/waf.html#response-splitting) and [request smuggling](/security/waf.html#request-smuggling) protection rules. 
+The WAF monitors for header injection attempts that can occur via the payload and the header itself. Requests are blocked for those that contain the carriage return (CR; `%0d`) and line feed (LF; `%0a`) characters so that data isn't returned in a response header and interpreted by the client, similar to the [response splitting](/security/waf.html#response-splitting) and [request smuggling](/security/waf.html#request-smuggling) protection rules. 
 
-It will also monitor and detect newline characters in `GET` request argument values. 
+It also monitors and detects newline characters in `GET` request argument values. 
 {{< /note >}}
 
 ### Response splitting
@@ -55,7 +55,7 @@ On top of the above rule set, the Platform.sh WAF implements a number of additio
 
     Request lines are validated against the HTTP RFC specification using rule negation with regex, which specifies the proper construction of URI request lines (such as `"http:" "//" host [":" port] [ abs_path ["?" query]]`). The incoming connection is terminated, and then the request reconstructed on the internal network, enforcing the valid format in transit.
 
-- **GET or HEAD requests with a body are not allowed**
+- **GET or HEAD requests with a body aren't allowed**
 
     The protocol allows for `GET` requests to have a body - while this is rarely used, attackers could try to force a request body on unsuspecting applications. When a `GET` request is detected, the WAF will check for the existence of the `Content-Length` and `Transfer-Encoding` headers. If either exist and the payload is either not 0 or not empty, then all body-related headers are stripped from those requests and then passed through otherwise unaltered. 
 
@@ -65,7 +65,7 @@ On top of the above rule set, the Platform.sh WAF implements a number of additio
 
 - **Missing/Empty Host Headers**
 
-    Route mapping is implemented based on host names. Because of this, requests are not relayed that do either do not include the host header, or if that header exists but is empty. 
+    Route mapping is implemented based on host names. Because of this, requests aren't relayed that do either do not include the host header, or if that header exists but is empty. 
 
 - **File upload limit**
 
@@ -85,7 +85,7 @@ On top of the above rule set, the Platform.sh WAF implements a number of additio
 
 - **Slowloris DoS attacks** 
 
-    The Slowloris denial of service attack exploits partial HTTP requests, consuming large amounts of bandwidth by continuing to keep those connections open for as long as possible. Apache web servers are vulnerable to Slowloris attacks, but for nginx this is not the case. Since Platform.sh Router services use nginx processes, projects are protected against this kind of an attack. 
+    The Slowloris denial of service attack exploits partial HTTP requests, consuming large amounts of bandwidth by continuing to keep those connections open for as long as possible. Apache web servers are vulnerable to Slowloris attacks, but for nginx this isn't the case. Since Platform.sh Router services use nginx processes, projects are protected against this kind of an attack. 
 
 ## Framework specific protections
 

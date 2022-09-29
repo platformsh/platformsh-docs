@@ -359,7 +359,7 @@ class EntityManagerConfiguration {
 
 ## Transaction
 
-To any Eclipse MicroProfile or any non-JTA application is essential to point out, CDI does not provide transaction management implementation as part of its specs. Transaction management is left to be implemented by the programmer through the interceptors, such as the code below.
+To any Eclipse MicroProfile or any non-JTA application is essential to point out, CDI doesn't provide transaction management implementation as part of its specs. Transaction management is left to be implemented by the programmer through the interceptors, such as the code below.
 
 ```java
 import javax.annotation.Priority;

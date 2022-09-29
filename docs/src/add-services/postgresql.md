@@ -27,7 +27,7 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 \* No High-Availability on Dedicated.
 
 {{< note >}}
-Upgrading to PostgreSQL 12 using the `postgis` extension is not currently supported. Attempting to upgrade with this extension enabled will result in a failed deployment that will require support intervention to fix.
+Upgrading to PostgreSQL 12 using the `postgis` extension isn't currently supported. Attempting to upgrade with this extension enabled results in a failed deployment that requires support intervention to fix.
 
 See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-with-the-postgis-extension) section below for more details.
 {{< /note >}}
@@ -110,19 +110,19 @@ psql -U main -h postgresql.internal -p 5432
 
 ## Exporting data
 
-The easiest way to download all data in a PostgreSQL instance is with the Platform CLI. If you have a single SQL database, the following command will export all data using the `pg_dump` command to a local file:
+The easiest way to download all data in a PostgreSQL instance is with the Platform CLI. If you have a single SQL database, the following command exports all data using the `pg_dump` command to a local file:
 
 ```bash
 platform db:dump
 ```
 
-If you have multiple SQL databases it will prompt you which one to export. You can also specify one by relationship name explicitly:
+If you have multiple SQL databases it prompts you which one to export. You can also specify one by relationship name explicitly:
 
 ```bash
 platform db:dump --relationship database
 ```
 
-By default the file will be uncompressed. If you want to compress it, use the `--gzip` (`-z`) option:
+By default the file is uncompressed. If you want to compress it, use the `--gzip` (`-z`) option:
 
 ```bash
 platform db:dump --gzip
@@ -158,7 +158,7 @@ platform sql --relationship database -e <BRANCH_NAME> < my_database_backup.sql
 ```
 
 {{< note >}}
-Importing a database backup is a destructive operation. It will overwrite data already in your database.
+Importing a database backup is a destructive operation. It overwrites data already in your database.
 Taking a backup or a database export before doing so is strongly recommended.
 {{< /note >}}
 
@@ -169,7 +169,7 @@ it's possible to define multiple databases as well as multiple users with differ
 To do so requires defining multiple endpoints.
 Under the `configuration` key of your service there are two additional keys:
 
-* `databases`:  This is a YAML array listing the databases that should be created. If not specified, a single database named `main` will be created.
+* `databases`:  This is a YAML array listing the databases that should be created. If not specified, a single database named `main` is created.
 * `endpoints`: This is a nested YAML object defining different credentials. Each endpoint may have access to one or more schemas (databases), and may have different levels of permission for each. The valid permission levels are:
   * `ro`: Using this endpoint only `SELECT` queries are allowed.
   * `rw`: Using this endpoint `SELECT` queries as well as `INSERT`/`UPDATE`/`DELETE` queries are allowed.
@@ -200,15 +200,15 @@ dbpostgres:
                     legacy: rw
 ```
 
-This example creates a single PostgreSQL service named `dbpostgres`. The server will have two databases, `main` and `legacy` with three endpoints created.
+This example creates a single PostgreSQL service named `dbpostgres`. The server has two databases, `main` and `legacy` with three endpoints created.
 
 * `admin`: has full access to both databases.
 * `reporter`: has `SELECT` query access to the `main` database, but no access to `legacy`.
-* `importer`: has `SELECT`/`INSERT`/`UPDATE`/`DELETE` access (but not DDL access) to the `legacy` database. It does not have access to `main`.
+* `importer`: has `SELECT`/`INSERT`/`UPDATE`/`DELETE` access (but not DDL access) to the `legacy` database. It doesn't have access to `main`.
 
-If a given endpoint has access to multiple databases you should also specify which will be listed by default in the relationships array. If one isn't specified, the `path` property of the relationship will be `null`. While that may be acceptable for an application that knows the name of the database it's connecting to, automated tools like the Platform.sh CLI will not be able to access the database on that relationship. For that reason, defining the `default_database` property is always recommended.
+If a given endpoint has access to multiple databases you should also specify which is listed by default in the relationships array. If one isn't specified, the `path` property of the relationship is `null`. While that may be acceptable for an application that knows the name of the database it's connecting to, automated tools like the Platform.sh CLI can't access the database on that relationship. For that reason, defining the `default_database` property is always recommended.
 
-Once these endpoints are defined, you will need to expose them to your application as a relationship. Continuing with the above example, your `relationships` in `.platform.app.yaml` might look like:
+Once these endpoints are defined, you need to expose them to your application as a relationship. Continuing with the above example, your `relationships` in `.platform.app.yaml` might look like:
 
 ```yaml
 relationships:
@@ -217,7 +217,7 @@ relationships:
     imports: "dbpostgres:importer"
 ```
 
-Each database will be accessible to your application through the `database`, `reports`, and `imports` relationships. They'll be available in the `PLATFORM_RELATIONSHIPS` environment variable and all have the same structure documented above, but with different credentials. You can use those to connect to the appropriate database with the specified restrictions using whatever the SQL access tools are for your language and application.
+Each database is accessible to your application through the `database`, `reports`, and `imports` relationships. They'll be available in the `PLATFORM_RELATIONSHIPS` environment variable and all have the same structure documented above, but with different credentials. You can use those to connect to the appropriate database with the specified restrictions using whatever the SQL access tools are for your language and application.
 
 A service configuration without the `configuration` block defined is equivalent to the following default values:
 
@@ -232,7 +232,7 @@ configuration:
             main: admin
 ```
 
-If you do not define `database` but `endpoints` are defined, then the single database `main` will be created with the following assumed configuration:
+If you do not define `database` but `endpoints` are defined, then the single database `main` is created with the following assumed configuration:
 
 ```yaml
 configuration:
@@ -241,7 +241,7 @@ configuration:
     endpoints: <your configuration>
 ```
 
-Alternatively, if you define multiple databases but no endpoints, a single user `main` will be created with `admin` access to each of your databases, equivalent to the configuration below:
+Alternatively, if you define multiple databases but no endpoints, a single user `main` is created with `admin` access to each of your databases, equivalent to the configuration below:
 
 ```yaml
 configuration:
@@ -274,11 +274,11 @@ db:
             - hstore
 ```
 
-In this case you will have `pg_trgm` installed, providing functions to determine the similarity of text based on trigram matching, and `hstore` providing a key-value store.
+In this case, you have `pg_trgm` installed, providing functions to determine the similarity of text based on trigram matching, and `hstore` providing a key-value store.
 
 ### Available extensions
 
-The following is the extensive list of supported extensions. Note that you cannot currently add custom
+The following is the extensive list of supported extensions. Note that you can't currently add custom
 extensions not listed here.
 
 * `address_standardizer` - Used to parse an address into constituent elements. Generally used to support geocoding address normalization step.
@@ -336,7 +336,7 @@ extensions not listed here.
 * `xml2` - XPath querying and XSLT
 
 {{< note >}}
-Upgrading to PostgreSQL 12 using the `postgis` extension is not currently supported. Attempting to upgrade with this extension enabled will result in a failed deployment that will require support intervention to fix.
+Upgrading to PostgreSQL 12 using the `postgis` extension isn't currently supported. Attempting to upgrade with this extension enabled results in a failed deployment that requires support intervention to fix.
 
 See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-with-the-postgis-extension) section below for more details.
 {{< /note >}}
@@ -351,7 +351,7 @@ If you see this error: `Fatal error: Uncaught exception 'PDOException' with mess
 
 PostgreSQL 10 and later include an upgrade utility that can convert databases from previous versions to version 10 or later. If you upgrade your service from a previous version of PostgreSQL to version 10 or above (by modifying the `services.yaml` file), it upgrades automatically.
 
-The utility can't upgrade PostgreSQL 9 versions, so upgrades from PostgreSQL 9.3 to 9.6 are not supported. Upgrade straight to version 11 instead.
+The utility can't upgrade PostgreSQL 9 versions, so upgrades from PostgreSQL 9.3 to 9.6 aren't supported. Upgrade straight to version 11 instead.
 
 {{< note theme="warning" >}}
 
@@ -363,10 +363,10 @@ Make sure you first test your migration on a separate branch.
 Be sure to take a backup of your production environment **before** you merge this change.
 {{< /note >}}
 
-Downgrading is not supported. If you want, for whatever reason, to downgrade you should dump to SQL, remove the service, recreate the service, and import your dump.
+Downgrading isn't supported. If you want, for whatever reason, to downgrade you should dump to SQL, remove the service, recreate the service, and import your dump.
 
 ### Upgrading to PostgreSQL 12 with the `postgis` extension
 
-Upgrading to PostgreSQL 12 using the `postgis` extension is not currently supported. Attempting to upgrade with this extension enabled will result in a failed deployment that will require support intervention to fix.
+Upgrading to PostgreSQL 12 using the `postgis` extension isn't currently supported. Attempting to upgrade with this extension enabled results in a failed deployment that requires support intervention to fix.
 
 If you need to upgrade, you should follow the same steps recommended for performing downgrades: dump the database, remove the service, recreate the service with PostgreSQL 12, and then import the dump to that service.

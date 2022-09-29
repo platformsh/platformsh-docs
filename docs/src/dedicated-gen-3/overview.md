@@ -11,10 +11,10 @@ description: |
 
 {{% description %}}
 
-Projects will often require a Dedicated production cluster when they require high availability, or they need more resources than normally offered by Platform.sh plans. 
-Data location requirements is also common in choosing a Dedicated cluster, such as the need to deploy to a location Platform.sh does not currently have a region, or that production data cannot be kept on shared infrastructure.
+Projects often require a Dedicated production cluster when they require high availability, or they need more resources than normally offered by Platform.sh plans. 
+Data location requirements is also common in choosing a Dedicated cluster, such as the need to deploy to a location Platform.sh doesn't currently have a region, or that production data can't be kept on shared infrastructure.
 
-Dedicated Generation 3 works nearly identically to Platform.sh environments, and does not require additional configuration on your part. The only difference is that of service availability.
+Dedicated Generation 3 works nearly identically to Platform.sh environments, and doesn't require additional configuration on your part. The only difference is that of service availability.
 
 ## Why a Generation 3?
 
@@ -25,7 +25,7 @@ This means that you are able to edit your configuration yourself - in your `serv
 ## Features
 
 * A minimum of three virtual machine cluster is associated with your default (production) environment, and also optionally with a staging environment. 
-* Configuration changes on development environments (through your `services.yaml`, `routes.yaml`, and `.platform.app.yaml` files) are reflected on these Dedicated Gen 3 clusters when you merge them. It is not necessary to open a support ticket to change production infrastructure like it is on Dedicated. 
+* Configuration changes on development environments (through your `services.yaml`, `routes.yaml`, and `.platform.app.yaml` files) are reflected on these Dedicated Gen 3 clusters when you merge them. It isn't necessary to open a support ticket to change production infrastructure like it is on Dedicated. 
 * You can deploy your application in any of our [supported cloud providers](../development/faq.md#which-geographic-zones-does-platformsh-cover).
 
 ## Differences from the Grid
@@ -34,18 +34,18 @@ Although Dedication Generation 3 adds plenty of features to your existing Grid a
 
 ### Available services
 
-In our [services documentation](../add-services/_index.md) you will notice that not every service is available on Dedicated Generation 3 that is available on the Grid, nor is every version. The table below shows the currently available services and their versions for Dedicated Generation 3. 
+The [services documentation](../add-services/_index.md) states that not every service is available on Dedicated Generation 3 that is available on the Grid, nor is every version. The table below shows the currently available services and their versions for Dedicated Generation 3. 
 
 {{< gen-3-services >}}
 
 ### Local mounts
 
-Because you get a redundant infrastructure, note that local mounts will be local to each Virtual Machine. Since you can't know which VM is going to handle a specific request, you also don't have a guarantee regarding which local mount is going to be used. Whether you actually want to use a local mount or in fact need to set up a network storage mount depends on your specific use-case.
+Because you get a redundant infrastructure, note that local mounts are local to each Virtual Machine. Since you can't know which VM is going to handle a specific request, you also don't have a guarantee regarding which local mount is going to be used. Whether you actually want to use a local mount or in fact need to set up a network storage mount depends on your specific use-case.
 
 ## Setting up
 
 If you are interested in Platform.sh's data cloning, environment control and infrastructure-as-code philosophy across our supported runtimes and services, but you also need a large amount of resources and data isolation, you can [contact us](https://platform.sh/contact) to start setting up a Dedicated Generation 3 project.
 
-At this time, existing Platform.sh Professional projects cannot be migrated to Dedicated Generation 3, but they soon will be. Migrations will then require contacting our sales team, at which point your infrastructure will be reviewed for compatibility and pricing. After that, your existing project settings will be modified to set up a production environment using Dedicated Generation 3. 
+At this time, existing Platform.sh Professional projects can't be migrated to Dedicated Generation 3, but they soon will be. Migrations will then require contacting sales, at which point your infrastructure is reviewed for compatibility and pricing. After that, your existing project settings are modified to set up a production environment using Dedicated Generation 3. 
 
-At the moment, Dedicated projects cannot be migrated to Dedicated Generation 3, but support for this type of migration will soon be available. 
+At the moment, Dedicated projects can't be migrated to Dedicated Generation 3, but support for this type of migration will soon be available. 

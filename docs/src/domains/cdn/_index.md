@@ -5,7 +5,7 @@ weight: 3
 layout: single
 ---
 
-Platform.sh Dedicated plans include a Fastly CDN account by default, which will be managed by Platform.sh.
+Platform.sh Dedicated plans include a Fastly CDN account by default, which is managed by Platform.sh.
 Our experience has shown that effective caching can mean a huge difference in the perceived performance of an application by its users,
 and that placing the caches closer to your users (wherever they may be) is the best solution currently available.
 
@@ -18,15 +18,15 @@ Our recommended CDN provider is [Fastly](./fastly.md).
 ## DNS management
 
 The distributed nature of most CDNs means that for proper functioning,
-any domains that you intend to make use of the CDN will be required to use CNAME records for pointing the DNS entries.
-Pointing the root domain (example.com) at a CNAME record is not possible for all DNS hosts,
-so you will need to confirm this functionality or migrate to a new DNS host.
+any domains that you intend to make use of the CDN are required to use CNAME records for pointing the DNS entries.
+Pointing the root domain (example.com) at a CNAME record isn't possible for all DNS hosts,
+so you need to confirm this functionality or migrate to a new DNS host.
 CloudFlare has a [more detailed writeup](https://blog.cloudflare.com/introducing-cname-flattening-rfc-compliant-cnames-at-a-domains-root/)
 of the challenges of root CNAMEs.
 
 In the event that you and your team choose a pure Fastly solution,
 this is negated by their providing a set of Anycast IP addresses for you.
-This allows you to create A records for your root domain that will point to Fastly’s CDN.
+This allows you to create A records for your root domain that point to Fastly’s CDN.
 
 ## Initial setup
 
@@ -44,18 +44,18 @@ there may be varying levels of flexibility with regard to caching and ongoing ca
 This should be discussed between your sales representative and senior technical members of your team
 if there are concerns with CDN configuration and functionality.
 
-If using Fastly as a CDN, it is possible to provide either custom VCL snippets or a full custom VCL file.
-Platform.sh will grant customers access to do so upon request.
-However, be aware that downtime caused by custom VCL configuration will not be covered by the SLA,
-just as application code in your repository is not covered by the SLA.
+If using Fastly as a CDN, you can provide either custom VCL snippets or a full custom VCL file.
+Platform.sh grants customers access to do so upon request.
+Be aware that downtime caused by custom VCL configuration isn't covered by the SLA,
+just as application code in your repository isn't covered by the SLA.
 
 ## TLS encryption
 
-Security and the related topic of encryption of data are fundamental principles here at Platform.sh,
-and as such we provide TLS certificates in the default Enterprise-Dedicated package.
+Security and the related topic of encryption of data are fundamental principles at Platform.sh,
+and so Platform.sh provides TLS certificates in the default Enterprise-Dedicated package.
 This allows for encryption of all traffic between your users and your application.
-By default, we will provision a shared certificate with the chosen CDN vendor.
-If you opt for the Global Application Cache, we will provision certificates for both the site subdomain (`www`) and the asset/CDN subdomain.
+By default, a shared certificate is provisioned with the chosen CDN vendor.
+If you opt for the Global Application Cache, certificates are provisioned for both the site subdomain (`www`) and the asset/CDN subdomain.
 We use wildcard certificates to secure production, staging, and any other subdomains simultaneously.
 If you need Extended Validation TLS certificates,
 you need to provide your own from an issuer of your choice that we can install for you.
@@ -69,21 +69,21 @@ Support for multiple certificates is offered only through a CDN such as CloudFro
 Self-signed certificates can optionally be used on the origin for development purposes or for enabling TLS between the CDN and origin.
 
 All TLS certificates used with CloudFront MUST be 2048 bit certificates.
-Larger sizes will not work.
+Larger sizes don't work.
 
 ## Host Header forwarding
 
 The `Host` HTTP header tells the server what domain name is being requested,
 which may vary when multiple domains are served from the same server or through the same proxy, as is the case with a CDN.
-However, the CDN cannot use the production domain name in order to reach Platform.sh, as that domain already routes to the CDN.
-It therefore will use the origin name provided by Platform.sh.
+But the CDN can't use the production domain name to reach Platform.sh, as that domain already routes to the CDN.
+So it uses the origin name provided by Platform.sh.
 
-In order to ensure your TLS certificates are valid for both requests from clients to the CDN and from the CDN to the server on Platform.sh,
+To ensure your TLS certificates are valid for both requests from clients to the CDN and from the CDN to the server on Platform.sh,
 you need to take two additional steps:
 
 1. Configure your CDN to set the `X-Forwarded-Host` HTTP header to the public domain (`example.com`).
    That allows the request from the CDN to Platform.sh to still carry the original requested domain.
-   The specific way to do so will vary by the CDN.
+   The specific way to do so varies by the CDN.
 2. Ensure your application can read from the `X-Forwarded-Host` header should it need the Host information.
    Many popular applications already do so,
    but if you have a custom application make sure that it checks for that header
@@ -107,7 +107,7 @@ Modify your route in `.platform/routes.yaml` like so to disable the cache:
     type: upstream
     upstream: "app:http"
     cache:
-        # Disable the HTTP cache on this route. It will be handled by the CDN instead.
+        # Disable the HTTP cache on this route. It's handled by the CDN instead.
         enabled: false
 ```
 
@@ -128,7 +128,7 @@ Add a custom header to the origin request with the base64 encoded username:passw
 
 For example: `Aladdin:OpenSesame` would become `Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l`.
 
-Be aware that this approach will apply the same user and password to all development environments, too.
+Be aware that this approach applies the same user and password to all development environments, too.
 You can have developers enter credentials through their browser,
 or override the access control setting for each child environment.
 
@@ -140,7 +140,7 @@ This is the recommended approach for CloudFlare.
 
 ### Allowing and denying IP addresses
 
-If your CDN does not support adding headers to the request to origin, you can allow the IP addresses of your CDN.
+If your CDN doesn't support adding headers to the request to origin, you can allow the IP addresses of your CDN.
 
 {{< note >}}
 You *WILL* have to update your configuration when your CDN updates their IP addresses.
@@ -151,8 +151,8 @@ List of IP ranges for:
 - [CloudFlare](https://www.cloudflare.com/ips/)
 - [Fastly](https://docs.fastly.com/en/guides/accessing-fastlys-ip-ranges)
 
-Be aware that this approach will apply the same IP restrictions to all development environments, too.
-To remove it from development environments, you will need to disable it on each environment
+Be aware that this approach applies the same IP restrictions to all development environments, too.
+To remove it from development environments, you need to disable it on each environment
 or else create a single child of the default environment where it is disabled,
 and them make all development branches off of that environment.
 

@@ -7,13 +7,13 @@ aliases:
   - "/golive/steps/cloudflare.html"
 ---
 
-One of the main features that a modern DNS provider needs to have in order to work well with Platform.sh
+One of the main features that a modern DNS provider needs to have to work well with Platform.sh
 is colloquially known as "CNAME Flattening".
 This solves the problem of being able to point your "root domain" (example.com)
 to a domain name (CNAME) rather than an IP address (A record).
 [This post](https://blog.cloudflare.com/introducing-CNAME-flattening-rfc-compliant-cnames-at-a-domains-root/) explains it well.
 
-In order to correctly point DNS to your Platform.sh project,
+To correctly point DNS to your Platform.sh project,
 you need at the very least the production environment CNAME,
 in other words the domain of your site before you add a custom domain.
 This is the value you would get from [Step 4 of the pre-launch checklist](/domains/checklist.md).
@@ -21,7 +21,7 @@ This is the value you would get from [Step 4 of the pre-launch checklist](/domai
 Assuming that you are using both a `www.` subdomain as well as the bare domain,
 you'll want to point both of those DNS entries to the same place.
 Whether you choose the bare domain version or the `www` subdomain doesn't make any practical difference,
-as they both will reach Platform.sh and be handled correctly.
+as they both reach Platform.sh and be handled correctly.
 
 {{% disable-cache CDN="Cloudflare" %}}
 
@@ -42,9 +42,9 @@ mostly like using your project's Let's Encrypt certificate.
 User <---------------> Cloudflare <-------------> Platform.sh
 ```
 
-The other option known as "Flexible SSL" will cause issues if you intend to redirect all traffic to HTTPS.
-The "Flexible SSL" option will use Cloudflare's TLS/SSL certificate to encrypt traffic between your users and the CDN,
-but will pass requests from the CDN back to your project at Platform.sh via HTTP.
+The other option known as "Flexible SSL" causes issues if you intend to redirect all traffic to HTTPS.
+The "Flexible SSL" option uses Cloudflare's TLS/SSL certificate to encrypt traffic between your users and the CDN,
+but passes requests from the CDN back to your project at Platform.sh via HTTP.
 This facilitates sites that don't have a TLS/SSL certificate beginning to offer their users a more secure experience,
 by at the least eliminating the unencrypted attack vector on the "last mile" to the user's browser.
 

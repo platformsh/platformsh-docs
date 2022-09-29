@@ -29,13 +29,13 @@ The only setup required to prepare the backend is to install a few additional mo
 $ composer require drupal/gatsby drupal/jsonapi_extras drupal/pathauto
 ```
 
-The [Pathauto](https://www.drupal.org/project/pathauto) module will help you assign alias paths for each piece of content on your Drupal site that can then be replicated on the frontend Gatsby site. For example, the Drupal alias `/article/some-new-article` will be the same path you will find that article at on Gatsby.
+The [Pathauto](https://www.drupal.org/project/pathauto) module helps you assign alias paths for each piece of content on your Drupal site that can then be replicated on the frontend Gatsby site. For example, the Drupal alias `/article/some-new-article` is the same path you find that article at on Gatsby.
 
 ## Gatsby
 
 {{% guides/gatsby/headless-gatsby name="Drupal" template="gatsby-drupal" %}}
 
-Additionally, there has been a change to Gatsby's start command,`web.commands.start`. In the generic Gatsby template, the static files in `public` are served via the [`web.locations` block](https://github.com/platformsh-templates/gatsby/blob/c764ed717752eacc3c3f3322b7e5415e276d02df/.platform.app.yaml#L29), but that attribute is removed in the file below. Instead, two separate start commands are defined depending on which branch you are developing on. This has been included in order to support [Live Preview and Incremental Builds](https://www.drupal.org/project/gatsby). It is not required, but you can consult the [section below](#live-preview-and-incremental-builds) for more information about enabling it.
+Additionally, there has been a change to Gatsby's start command,`web.commands.start`. In the generic Gatsby template, the static files in `public` are served via the [`web.locations` block](https://github.com/platformsh-templates/gatsby/blob/c764ed717752eacc3c3f3322b7e5415e276d02df/.platform.app.yaml#L29), but that attribute is removed in the file below. Instead, two separate start commands are defined depending on which branch you are developing on. This has been included to support [Live Preview and Incremental Builds](https://www.drupal.org/project/gatsby). It isn't required, but you can consult the [section below](#live-preview-and-incremental-builds) for more information about enabling it.
 
 You can then modify [`gatsby-config.js`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/) to read from the backend Drupal container through the `drupal` relationship defined above to configure the `baseUrl` attribute for `gatsby-source-drupal`. 
 
@@ -81,6 +81,6 @@ With Gatsby now deployed and pulling content from a backend Drupal application, 
 
 ### Live preview and incremental builds
 
-If you replicate the `web.commands.start` block in Gatsby's `.platform.app.yaml` file above, you will be able to enable incremental builds on your projects. Once you save an update to a piece of Drupal content on a non-production branch, Drupal will place a request to a dedicated `/__refresh` endpoint on Gatsby (which is itself enabled by a [branch-dependent environment variable](https://github.com/platformsh-templates/gatsby-drupal/blob/master/gatsby/.environment)). Since Gatsby is running a development server on this non-production environment, this call will cause Gatsby to retrieve content from Drupal once again, resulting in a near instantly updated article on the frontend. 
+If you replicate the `web.commands.start` block in Gatsby's `.platform.app.yaml` file above, you can enable incremental builds on your projects. Once you save an update to a piece of Drupal content on a non-production branch, Drupal places a request to a dedicated `/__refresh` endpoint on Gatsby (which is itself enabled by a [branch-dependent environment variable](https://github.com/platformsh-templates/gatsby-drupal/blob/master/gatsby/.environment)). Since Gatsby is running a development server on this non-production environment, this call causes Gatsby to retrieve content from Drupal once again, resulting in a near instantly updated article on the frontend. 
 
 The process of enabling this feature is a little detailed, so it is best to consult the [template's README](https://github.com/platformsh-templates/gatsby-drupal#user-content-enabling-gatsby-live-preview-manual-configuration) for the most up-to-date instructions for how to do so.

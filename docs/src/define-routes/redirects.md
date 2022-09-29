@@ -39,7 +39,7 @@ This format is more rich and works with any type of route, including routes serv
 
 Two keys are available under `redirects`:
 
- * `expires`: optional, the duration the redirect will be cached. Examples of valid values include `3600s`, `1d`, `2w`, `3m`.
+ * `expires`: optional, the duration the redirect is cached. Examples of valid values include `3600s`, `1d`, `2w`, `3m`.
  * `paths`: the paths to be redirected.
 
 Each rule under `paths` is defined by its key describing the expression to match against the request path and a value object describing both the destination to redirect to with detail on how to handle the redirection. The value object is defined with the following keys:
@@ -63,11 +63,11 @@ Each rule under `paths` is defined by its key describing the expression to match
    ```
    
    Note that special arguments in the `to` statement are also valid when `regexp` is set to `true`:
-    * `$is_args` will evaluate to `?` or empty string
-    * `$args` will evaluate to the full query string if any
-    * `$arg_foo` will evaluate to the value of the query parameter `foo`
-    * `$uri` will evaluate to the full URI of the request.
- * `prefix`: optional, specifies whether we should redirect both the path and all its children or just the path itself. Defaults to `true`, but not supported if `regexp` is `true`. For example,
+    * `$is_args` evaluates to `?` or empty string
+    * `$args` evaluates to the full query string if any
+    * `$arg_foo` evaluates to the value of the query parameter `foo`
+    * `$uri` evaluates to the full URI of the request.
+ * `prefix`: optional, specifies whether both the path and all its children or just the path itself should be redirected. Defaults to `true`, but not supported if `regexp` is `true`. For example,
 
    ```yaml
    https://{default}/:
@@ -79,8 +79,8 @@ Each rule under `paths` is defined by its key describing the expression to match
                     to: 'https://{default}/to'
                     prefix: true
    ```
-   with `prefix` set to `true`, `/from` will redirect to `/to` and `/from/another/path` will redirect to `/to/another/path`.
-   If `prefix` is set to `false` then `/from` will trigger a redirect, but `/from/another/path` will not.
+   with `prefix` set to `true`, `/from` redirects to `/to` and `/from/another/path` redirects to `/to/another/path`.
+   If `prefix` is set to `false` then `/from` triggers a redirect, but `/from/another/path` doesn't.
 
  * `append_suffix`: optional, determines if the suffix is carried over with the redirect. Defaults to `true`, but not supported if `regexp` is `true` or if `prefix` is `false`.
    If we redirect with `append_suffix` set to `false`, for example, then the following
@@ -113,7 +113,7 @@ Each rule under `paths` is defined by its key describing the expression to match
    ```
    In this example, redirects from `/from` would use a `308` HTTP status code, but redirects from `/here` would default to `302`.
 
- * `expires`: optional, the duration the redirect will be cached for. Defaults to the `expires` value defined directly under the `redirects` key, but at this level we can fine-tune the expiration of individual partial redirects:
+ * `expires`: optional, the duration the redirect is cached for. Defaults to the `expires` value defined directly under the `redirects` key, but at this level the expiration of individual partial redirects can be fine-tuned:
 
    ```yaml
    https://{default}/:

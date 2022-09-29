@@ -10,7 +10,7 @@ description: |
 
 Alerting is set up on these metrics, so if any of them goes outside of normal bounds an operations engineer can react accordingly to maintain the uptime and performance of your cluster.
 
-These alerts are sent to our support and operations teams, and are not directly accessible to the customer.
+These alerts are sent to our support and operations teams, and aren't directly accessible to the customer.
 
 ## Monitoring systems
 

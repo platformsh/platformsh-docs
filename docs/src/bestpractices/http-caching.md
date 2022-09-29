@@ -60,7 +60,8 @@ That should remain active regardless of the HTTP cache in use.
 HTTP-based caching systems generally default to including cookie values in cache keys
 to avoid serving authenticated content to the wrong user.
 While this is a safe default, it means that *any* cookie effectively disables the cache,
-including mundane cookies like analytics.  
+including mundane cookies like analytics.
+
 
 The solution is to set which cookies should impact the cache and limit them to session cookies.
 For the router cache, see [cookies in HTTP caching](../define-routes/cache.md#cookies).

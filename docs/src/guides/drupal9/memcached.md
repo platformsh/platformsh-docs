@@ -81,10 +81,10 @@ if ($platformsh->hasRelationship($relationship_name) && extension_loaded('memcac
   $host = $platformsh->formattedCredentials($relationship_name, 'drupal-memcached');
   $settings['memcache']['servers'][$host] = 'default';
 
-  // By default Drupal starts the cache_container on the database.  The following
+  // By default Drupal starts the cache_container on the database. The following
   // code overrides that.
   // Make sure that the $class_load->addPsr4 is pointing to the right location of
-  // the Memcache module.  The value below should be correct if Memcache was installed
+  // the Memcache module. The value below should be correct if Memcache was installed
   // using Drupal Composer.
   $memcache_exists = class_exists('Memcache', FALSE);
   $memcached_exists = class_exists('Memcached', FALSE);

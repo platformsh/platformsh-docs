@@ -67,4 +67,4 @@ end
 {{< /codetabs >}}
 
 
-(The specific way to inject configuration into your application will vary. Consult your application or framework's documentation.)
+(The specific way to inject configuration into your application varies. Consult your application or framework's documentation.)

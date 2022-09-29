@@ -91,7 +91,7 @@ Apache Tomcat is an open-source implementation of the Java Servlet,  JavaServer 
 {{< note >}}
 
 By default, Spring Boot provides an embedded Apache Tomcat build.
-Therefore, if you want to use Tomcat with Spring, check the [Spring section](#spring).
+So if you want to use Tomcat with Spring, check the [Spring section](#spring).
 
 {{< /note >}}
 

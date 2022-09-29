@@ -94,7 +94,7 @@ and includes 4 environments: 3 staging/development and 1 future production.
 
 {{< note theme="info" title="none" >}}
 
-You cannot map a custom domain name to a Development plan.
+You can't map a custom domain name to a Development plan.
 
 {{< /note >}}
 

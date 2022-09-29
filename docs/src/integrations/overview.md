@@ -9,7 +9,8 @@ description: |
 
 {{% description %}}
 
-Platform.sh supports native integrations with multiple services, first and foremost Git hosting services such as GitHub, GitLab, or Bitbucket.  You can continue to use those tools for your development workflow, and have Platform.sh environments created automatically for your pull requests and branches.
+Platform.sh supports native integrations with multiple services, first and foremost Git hosting services such as GitHub, GitLab, or Bitbucket.
+You can continue to use those tools for your development workflow, and have Platform.sh environments created automatically for your pull requests and branches.
 
 You can also add native integrations with performance monitoring tools. Platform.sh recommends [Blackfire](../increase-observability/integrate-observability//blackfire.md), which is part of the standard Platform.sh Observability Suite.
 Be aware that only a project administrator (someone with `admin` level access to the project) can add or remove integrations.
@@ -32,7 +33,7 @@ $ platform integrations
 ```
 
 {{< note theme="info" >}}
-If you have created your account using the Bitbucket or GitHub OAuth Login, then in order to use the Platform.sh CLI you will need to set up a password by visiting [https://accounts.platform.sh/user/password](https://accounts.platform.sh/user/password).
+If you have created your account using the Bitbucket or GitHub OAuth Login, then to use the Platform.sh CLI you need to set up a password by visiting [https://accounts.platform.sh/user/password](https://accounts.platform.sh/user/password).
 {{< /note >}}
 
 ## Validating integrations
@@ -57,7 +58,8 @@ When integrations run, they trigger "activities."  Activities are actions that h
 
 Usually these are triggered nearly instantaneously on the webhook endpoint. These activities may be delayed due to the external services having latency.
 
-Those logs are available via the CLI.  In most cases they are not necessary but may be useful for debugging an integration if it is misbehaving for some reason.
+Those logs are available via the CLI.
+In most cases they aren't necessary but may be useful for debugging an integration if it is misbehaving for some reason.
 
 There are a handful of commands available, all under the `integrations` section.
 
@@ -95,13 +97,17 @@ Activities on the project Platform.sh | Docs (6b2eocegfkwwg), integration c4opi5
 
 You may also specify which integration to display in the command line directly: `platform integration:activities c4opi5tjv3yfd`.
 
-The ID is an internal identifier for the activity event.  The Description field is an arbitrary string of text produced by the integration code.  The State and Result fields indicate if the activity completed successfully, failed for some reason, or is currently in progress.
+The ID is an internal identifier for the activity event.
+The Description field is an arbitrary string of text produced by the integration code.
+The State and Result fields indicate if the activity completed successfully, failed for some reason, or is currently in progress.
 
 See the `--help` output of the command for more options.
 
 ### Showing detailed information on an activity
 
-You can call up more detailed information on a specific activity by its ID, using the `platform integration:activity:log` command.  It requires both the integration ID and an activity ID from the list above.  It also works best with the `-t` option to include timestamps.
+You can call up more detailed information on a specific activity by its ID, using the `platform integration:activity:log` command.
+It requires both the integration ID and an activity ID from the list above.
+It also works best with the `-t` option to include timestamps.
 
 ```bash
 $ platform integration:activity:log c4opi5tjv3yfd 6456zmdtoykxa -t
@@ -124,7 +130,8 @@ Log:
 [2020-04-15T13:46:59-05:00] W: No changes found, scheduling a retry..
 ```
 
-That will show the full output of the activity, including timestamps.  That can be especially helpful if trying to determine why an integration is not behaving as expected.
+That shows the full output of the activity, including timestamps.
+That can be especially helpful if trying to determine why an integration isn't behaving as expected.
 
 See the `--help` output of the command for more options.
 

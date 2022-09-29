@@ -11,7 +11,7 @@ description: |
 ## Remove Varnish configuration
 
 In Ibexa DXP, Varnish is enabled by default when deploying on Platform.sh.
-In order to use Fastly, Varnish must be disabled:
+To use Fastly, Varnish must be disabled:
 
  - Remove environment variable `TRUSTED_PROXIES: "REMOTE_ADDR"` in [`.platform.app.yaml`](https://github.com/ezsystems/ezplatform/blob/master/.platform.app.yaml)
  - Remove the Varnish service in [.platform/services.yaml](https://github.com/ezsystems/ezplatform/blob/master/.platform/services.yaml)

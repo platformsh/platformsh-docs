@@ -33,7 +33,8 @@ title: "Upgrading"
 
 ## Changes in version 2017.11 (2017-11-09)
 
-* The `!archive` tag in YAML files is now deprecated in favor of the more generic [`!include`](../overview/yaml/_index.md).  For example, the following `services.yaml` snippet:
+* The `!archive` tag in YAML files is now deprecated in favor of the more generic [`!include`](../overview/yaml/_index.md).
+For example, the following `services.yaml` snippet:
 
     ```yaml
     mysearch:
@@ -55,7 +56,9 @@ title: "Upgrading"
                 path: "myconfdir"
     ```
 
-* The syntax for the `mounts` key in `.platform.app.yaml` has changed.  Rather than a parsed string, the value of each mount is a [multi-key definition](./app-reference.md#mounts).  That is, the following example:
+* The syntax for the `mounts` key in `.platform.app.yaml` has changed.
+Rather than a parsed string, the value of each mount is a [multi-key definition](./app-reference.md#mounts).
+That is, the following example:
 
     ```yaml
     mounts:
@@ -119,7 +122,10 @@ web:
 
 ## Changes in version 2016.4
 
-As of July 2016, we no longer create default configuration files if one is not provided.  The defaults we used to provide were tailored specifically for Drupal 7, which is now a legacy-support version with the release of Drupal 8 and not especially useful for non-Drupal or non-PHP sites.  They also defaulted to software versions that are no longer current and recommended.  Instead, you must provide your own `.platform.app.yaml`, `.platform/routes.yaml`, and `.platform/services.yaml` files.
+As of July 2016, we no longer create default configuration files if one isn't provided.
+The defaults we used to provide were tailored specifically for Drupal 7, which is now a legacy-support version with the release of Drupal 8 and not especially useful for non-Drupal or non-PHP sites.
+They also defaulted to software versions that are no longer current and recommended.
+Instead, you must provide your own `.platform.app.yaml`, `.platform/routes.yaml`, and `.platform/services.yaml` files.
 
 Additionally, a version for a language or service should always be specified as well. That allows you to control when you upgrade from one version to another without relying on a network default.
 
@@ -290,6 +296,6 @@ environment) so most customers can now just omit this key in
 `.platform.app.yaml`.
 
 In addition, version 1.7.0 now has consistency checks for configuration
-files and will reject `git push` operations that contain configuration
+files and rejects `git push` operations that contain configuration
 files that are invalid. In this case, just fix the issues as they are
 reported, commit and push again.

@@ -23,7 +23,7 @@ by creating an [OAuth consumer](https://confluence.atlassian.com/bitbucket/oauth
 3. Click the "Add consumer" button.
 4. Fill out the information for the consumer. In order for the integration to work correctly, it's required that you include:
     * **Name:** Give the consumer a recognizable name, like `Platform.sh consumer` or `Platform.sh integration`.
-    * **Callback URL:** The URL users will be redirected to after access authorization. It is sufficient to set this value to `http://localhost`.
+    * **Callback URL:** The URL users are redirected to after access authorization. It is sufficient to set this value to `http://localhost`.
     * **Set as a private consumer:** At the bottom of the "Details" section, select the "This is a private consumer" checkbox.
     * **Permissions:** Sets the integration permissions for Platform.sh.
       These permissions will create the webhooks that will enable Platform.sh to mirror actions from the Bitbucket repository.
@@ -93,14 +93,15 @@ platform integration:validate
 
 ## Optional parameters
 
-By default several parameters will be set for the Bitbucket integration.
+By default, several parameters are set for the Bitbucket integration.
 They can be changed using the `platform integration:update` command.
 
 * `--fetch-branches`: Track and deploy branches (true by default)
 * `--prune-branches`: Delete branches that do not exist in the remote Bitbucket repository (true by default)
 * `--build-pull-requests`: Track and deploy pull-requests (true by default)
 * `--build-pull-requests-post-merge`: `false` to have Platform.sh build the branch specified in a PR.
-  `true` to build the result of merging the PR.  (`false` by default)
+  `true` to build the result of merging the PR.
+  (`false` by default)
 
 For more information see:
 

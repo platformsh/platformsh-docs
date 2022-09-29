@@ -3,7 +3,7 @@ title: "Next steps"
 weight: 4
 toc: false
 description: |
-  Now that your application is up and running, here are some additional pieces of information that will help you make the most of every bit of technology Platform.sh has to offer.
+  Now that your application is up and running, here are some additional pieces of information that help you make the most of every bit of technology Platform.sh has to offer.
 ---
 
 {{< descbutton link="https://community.platform.sh/" title="Platform.sh Community Portal" desc="Check out how-tos, tutorials, and get help for your questions about Platform.sh.">}}

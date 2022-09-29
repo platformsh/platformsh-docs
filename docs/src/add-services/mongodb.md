@@ -38,7 +38,7 @@ and are no longer receiving security updates from upstream.
 
 {{< note >}}
 
-Downgrades of MongoDB are not supported.
+Downgrades of MongoDB aren't supported.
 MongoDB updates its own data files to a new version automatically but can't downgrade them.
 If you want to experiment with a later version without committing to it use a non-production environment.
 

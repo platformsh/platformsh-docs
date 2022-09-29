@@ -112,7 +112,7 @@ You can also combine it with `started_at` to see how long the activity took.
 
 A text description of the action that happened.
 This is a human-friendly string that may be displayed to a user
-but should not be parsed for data as its structure is not guaranteed.
+but should not be parsed for data as its structure isn't guaranteed.
 
 ### `payload.environment`
 
@@ -134,7 +134,7 @@ That includes the resulting configuration objects derived from [`routes.yaml`](.
 [`services.yaml`](../../add-services/_index.md), and [your app configuration](../../create-apps/_index.md).
 
 Most notably, the `payload.deployment.routes` object's keys are all of the URLs made available by the environment.
-Note that some will be redirects.
+Note that some are redirects.
 To find those that are live URLs filter to those objects whose `type` property is `upstream`.
 
 ## Maximum activities and parallelism

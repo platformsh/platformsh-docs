@@ -22,10 +22,10 @@ mysqldb:
 ```
 
 {{< note >}}
-If your application does not require access to services and you left `.platform/services.yaml` blank, feel free to proceed to the next step.
+If your application doesn't require access to services and you left `.platform/services.yaml` blank, feel free to proceed to the next step.
 {{< /note >}}
 
-In order to connect to this service and use it in your application, Platform.sh exposes its credentials in the application container within a base64-encoded JSON `PLATFORM_RELATIONSHIPS` environment variable.
+To connect to this service and use it in your application, Platform.sh exposes its credentials in the application container within a base64-encoded JSON `PLATFORM_RELATIONSHIPS` environment variable.
 
 To access this variable you can install a Platform.sh configuration reader library
 

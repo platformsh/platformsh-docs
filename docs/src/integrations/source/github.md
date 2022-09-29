@@ -60,11 +60,13 @@ Optional parameters:
 * `--fetch-branches`: Track and deploy branches (true by default)
 * `--prune-branches`: Delete branches that do not exist in the remote GitHub repository (true by default)
 * `--build-pull-requests`: Track and deploy pull-requests (true by default)
-* `--build-draft-pull-requests`: If set to `true`, [draft pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) will also have an environment created.
-  If false they will be ignored.
-  If `--build-pull-requests` is `false` this value is ignored.  (`true` by default)
+* `--build-draft-pull-requests`: If set to `true`, [draft pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) also have an environment created.
+  If `false`, they're ignored.
+  If `--build-pull-requests` is `false` this value is ignored.
+  (`true` by default)
 * `--build-pull-requests-post-merge`: `false` to have Platform.sh build the branch specified in a PR.
-  `true` to build the result of merging the PR.  (`false` by default)
+  `true` to build the result of merging the PR.
+  (`false` by default)
 * `--pull-requests-clone-parent-data`:
   Set to `false` to disable cloning of parent environment data when creating a PR environment,
   so each PR environment starts with no data. (`true` by default)
@@ -88,7 +90,7 @@ If you see the message `Failed to read or write webhooks`, you need to add a web
 
 You can now start pushing code, creating new branches or opening pull requests directly on your GitHub repository.
 
-Note that if you have created your account using the GitHub OAuth Login then in order to use the Platform CLI,
+Note that if you have created your account using the GitHub OAuth Login then to use the Platform CLI,
 you need to [setup a password](https://accounts.platform.sh/user/password).
 
 ### 4. Validate the integration

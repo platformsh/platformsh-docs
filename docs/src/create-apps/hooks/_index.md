@@ -274,7 +274,7 @@ build:
 relationships:
     api: 'api:http'
 
-# The hooks that will be triggered when the package is deployed.
+# The hooks that are triggered when the package is deployed.
 hooks:
     build: |
         set -e

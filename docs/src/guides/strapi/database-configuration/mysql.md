@@ -93,7 +93,7 @@ To configure a MySQL database for Strapi on Platform.sh, follow these steps.
          },
        };
      } catch (e) {
-       // Do nothing if 'pg' relationship is not found.
+       // Do nothing if 'pg' relationship isn't found.
        // Database configuration will fall back on the SQLite defaults.
      }
    } else {
