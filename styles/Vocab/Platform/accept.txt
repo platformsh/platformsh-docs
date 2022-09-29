@@ -62,6 +62,7 @@ Lucene
 Magento
 Magestore
 Mailchimp
+Meilisearch
 Memcache
 middleware
 MSBuild

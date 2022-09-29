@@ -17,7 +17,7 @@ The documentation site is build using [Hugo](https://gohugo.io), a Go static sit
 The build script is rerun on every deploy to produce a fresh static site instance.
 
 The cross-site search in the documentation is built as a separate Platform.sh app
-from the files in the `search` directory using [MeiliSearch](https://www.meilisearch.com/).
+from the files in the `search` directory using [Meilisearch](https://www.meilisearch.com/).
 
 ## Contributing
 
@@ -37,8 +37,8 @@ Requires:
 
 ### Running locally without search
 
-The documentation and the MeiliSearch search service are separate applications.
-It isn't necessary to run the MeiliSearch app to build the docs locally,
+The documentation and the Meilisearch search service are separate applications.
+It isn't necessary to run the Meilisearch app to build the docs locally,
 but if you don't, the search field doesn't appear in the sidebar.
 
 To run the docs alone, clone this repository and install dependencies:
@@ -65,26 +65,42 @@ hugo serve
 In addition to the above requirements, search also requires:
 
 * [Poetry](https://python-poetry.org/docs/)
-* [jq](https://stedolan.github.io/jq/)
-* [MeiliSearch](https://www.meilisearch.com/) (see below for installation)
+* [`jq`](https://stedolan.github.io/jq/)
+* [Meilisearch](https://www.meilisearch.com/) (see below for installation)
 
 If you would like to test the search server, follow these steps:
 
-1. Export the `MEILI_MASTER_KEY` environment variable and install and use MeiliSearch:
+1. Install dependencies and Meilisearch:
 
    ```bash
    cd search
-   # Install dependencies for communicating with MeiliSearch.
+   # Install dependencies for communicating with Meilisearch.
    poetry install
-   # Download MeiliSearch.
-   curl -L https://install.meilisearch.com | sh
+   # Set the same version as used for the docs
+   export MEILISEARCH_VERSION=0.27.1
+   # Set the right version for your operating system
+   # Replace the part after `meilisearch-`
+   # For macOS, use `macos-amd64`
+   # For Windows, use `windows-amd64.exe`
+   # For Linux, `linux-aarch64` is also available
+   export RELEASE_FILE=meilisearch-linux-amd64
+   # Download Meilisearch.
+   curl -OL "https://github.com/meilisearch/MeiliSearch/releases/download/v$MEILISEARCH_VERSION/$RELEASE_FILE"
+   # Make Meilisearch executable – skip for Windows, probably
+   mv "$RELEASE_FILE" "meilisearch"
+   chmod 744 "meilisearch
+   ```
+
+2. Run Meilisearch with a master key:
+
+   ```bash
    # Set a master key.
    export MEILI_MASTER_KEY=test
    # Run it.
    ./meilisearch
-    ```
+   ```
 
-2. In another terminal window, build the search interface:
+3. In another terminal window, build the search interface:
 
    ```bash
    cd ../docs
@@ -97,7 +113,7 @@ If you would like to test the search server, follow these steps:
    ./deploy.sh
    ```
 
-3. Update the MeiliSearch server:
+4. Update the Meilisearch server:
 
    ```bash
    cd ../search
@@ -105,7 +121,7 @@ If you would like to test the search server, follow these steps:
    ./post_deploy.sh
    ```
 
-4. Run the site:
+5. Run the site:
 
    ```bash
    cd ../docs
