@@ -47,7 +47,7 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
 
 ## Exporting data
 
-InfluxDB includes its own [export mechanism](https://docs.influxdata.com/influxdb/v1.2/tools/influx_inspect/).
+InfluxDB includes its own [export mechanism](https://docs.influxdata.com/influxdb/v2.3/reference/cli/influxd/inspect/).
 To gain access to the server from your local machine open an SSH tunnel with the Platform.sh CLI:
 
 ```bash
