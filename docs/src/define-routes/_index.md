@@ -130,7 +130,7 @@ Each route in your configuration file is defined in one of two ways:
 * A URL with a placeholder such as `https://{default}/blog`
 
 The available placeholders are `{default}` and `{all}`.
-They stand in for the [custom domains](../domains/quick-start.md) you've defined in your project.
+They stand in for the [custom domains](../domains/steps/_index.md) you've defined in your project.
 
 These domains can be top-level domains (`example.com`) or subdomains (`app.example.com`).
 

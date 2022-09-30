@@ -176,8 +176,8 @@ Follow the instructions to change the default branch to `main` for your provider
 
 ## 7. Update DNS records
 
-Whether or not you're using a CDN,
-if your site is live you have probably added a Platform.sh address somewhere when configuring a [custom domain](../domains/quick-start.md).
+Whether you're using a CDN,
+if your site is live you have probably added a Platform.sh address somewhere when configuring a [custom domain](../domains/steps/_index.md).
 If you have a CDN, it's with the CDN provider.
 If you don't have a CDN, it's probably a CNAME record.
 
@@ -187,7 +187,7 @@ Update the setting to use the new environment name.
 Verify that the new URL is correct by comparing it to the result from this command:
 
 ```bash
-platform environment:info edge_hostname -e main
+platform environment:info edge_hostname
 ```
 
 ## 8. Optional: Delete the `old` environment
