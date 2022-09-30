@@ -13,9 +13,21 @@ Consult your TLS issuer for instructions on how to generate an TLS certificate.
 A custom certificate isn't necessary for development environments.
 Platform.sh automatically provides wildcard certificates that cover all `*.platform.sh` domains, including development environments.
 
-{{< note >}}
+All kinds of certificates are supported including:
 
-The private key should be in the old style, which means it should start with `BEGIN RSA PRIVATE KEY`.
+* domain-validated certificates,
+* extended validation (EV) certificates,
+* high-assurance (HA) certificates,
+* wildcard certificates.
+
+The use of HA or EV certificates is the main reason why you may wish to use a third-party issuer rather than the default certificate.
+If you use wildcard routes, you need a custom certificate.
+
+### Add a custom certificate
+
+You can add a custom certificate by sing the [command line interface](../../administration/cli/_index.md) or in the [Console](/administration/web/_index.md).
+
+Your certificate's private key has to be in the old style, and start with `BEGIN RSA PRIVATE KEY`.
 If it starts with `BEGIN PRIVATE KEY`, it's bundled with the identifier for key type.
 
 To convert it to the old-style RSA key:
@@ -24,14 +36,32 @@ To convert it to the old-style RSA key:
 openTLS rsa -in private.key -out private.rsa.key
 ```
 
-{{< /note >}}
-
-### Add a custom certificate
-
-You can add a custom certificate in the [Console](/administration/web/_index.md)
-or using the [command line interface](../../administration/cli/_index.md).
+Add your custom certificate:
 
 {{< codetabs >}}
+
+---
+title=Using the CLI
+file=none
+highlight=false
+---
+
+Run the following command:
+
+<!-- This is in HTML to get the variable shortcode to work properly -->
+<div class="highlight">
+  <pre class="chroma"><code class="language-bash" data-lang="bash">platform domain:add -p {{<variable "PROJECT_ID" >}} {{<variable "DOMAIN" >}} --cert {{<variable "PATH_TO_CERTIFICATE_FILE" >}} --key {{<variable "PATH_TO_PRIVATE_KEY_FILE" >}}
+</code></pre></div>
+
+For example:
+
+```bash
+platform domain:add -p abcdefg123456 secure.example.com --cert /etc/TLS/private/secure-example-com.crt --key /etc/TLS/private/secure-example-com.key
+```
+
+You can optionally include intermediate SSL certificates by adding `--chain` {{<variable "PATH_TO_FILE" >}} for each one.
+
+<--->
 
 ---
 title=In the Console
@@ -46,27 +76,6 @@ highlight=false
 - Fill in your private key, public key certificate, and (optionally) intermediate SSL certificates.
 - Click **Add Certificate**.
 
-<--->
----
-title=Using the CLI
-file=none
-highlight=false
----
-
-Run the following command:
-
-```bash
-platform domain:add -p <PROJECT_ID> <DOMAIN> --cert <PATH_TO_CERTIFICATE_FILE> --key <PATH_TO_PRIVATE_KEY_FILE>
-```
-
-For example:
-
-```bash
-platform domain:add -p abcdefg123456 secure.example.com --cert /etc/TLS/private/secure-example-com.crt --key /etc/TLS/private/secure-example-com.key
-```
-
-You can optionally include intermediate SSL certificates by adding `--chain <PATH_TO_FILE>` for each one.
-
 {{< /codetabs >}}
 
 For the new certificate to be taken into account, you need to [redeploy the environment](../../development/troubleshoot.md#force-a-redeploy).
@@ -75,11 +84,7 @@ For the new certificate to be taken into account, you need to [redeploy the envi
 platform environment:redeploy
 ```
 
-{{< note theme="info" title="Success!" >}}
-
 Your site should now be live and accessible to the world (as soon as the DNS propagates).
-
-{{< /note >}}
 
 If something isn't working see the [troubleshooting guide](/domains/troubleshoot.md) for common issues.
 If that doesn't help, feel free to [contact support](../../overview/get-support.md).
