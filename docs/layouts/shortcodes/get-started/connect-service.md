@@ -31,6 +31,7 @@ pip install platformshconfig
 </div>
 
 Then connect to the database in your app using the library.
+You can choose where to do this that makes sense in your app.
 
 </div>
 

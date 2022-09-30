@@ -67,7 +67,7 @@ To install the CLI, you need:
 
 ### Code
 
-To start a project, you should have code that you'd like to deploy.
+To start a project, you should have code on your computer that you'd like to deploy.
 It can be a basic "Hello World" site, such as you can find in the [Platform.sh demos](https://github.com/platformsh-demos).
 Just something that you know runs.
 

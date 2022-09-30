@@ -6,9 +6,8 @@ description: Initialize your project
 
 The basic unit for organizing work within Platform.sh is a project.
 Each project represents one Git repository, a centralized place to store code and work history.
-
-If you've signed up for Platform.sh with GitHub, Bitbucket, or GitLab, your repository can live there.
-Otherwise, Platform.sh represents the source of truth for your repository.
+For now, Platform.sh represents the source of truth for your repository.
+You can later set up an integration with GitHub, Bitbucket, or GitLab.
 
 To deploy your app, you need to connect its repository to a project in Platform.sh.
 

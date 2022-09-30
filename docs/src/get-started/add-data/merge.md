@@ -32,6 +32,9 @@ Add a database service (or choose [another service](../../add-services/_index.md
        disk: 1024
    ```
 
+   Note that `db` is the name of the service.
+   You can give it any name you want with lowercase alphanumeric characters, hyphens, and underscores.
+
 3. Add a relationship between the database and your app in your app configuration:
 
    ```yaml {location=".platform.app.yaml"}
@@ -40,10 +43,13 @@ Add a database service (or choose [another service](../../add-services/_index.md
    ```
 
    This relationship is where connections are made.
+   The `database` is the name of the relationship, which you can change if you want.
+   The `db` has to be the same as the service name from step 2.
 
 4. Commit your changes and push:
 
    ```bash
+   git add .
    git commit -m "Add database and connect to app"
    platform push
    ```
@@ -51,6 +57,12 @@ Add a database service (or choose [another service](../../add-services/_index.md
 Now you have a database you can connect to your app.
 
 {{% get-started/connect-service %}}
+
+Check that your database was created by running the following command:
+
+```bash
+platform sql --environment dev 'SELECT * FROM People'
+```
 
 ## Merge your changes
 

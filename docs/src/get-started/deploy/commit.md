@@ -16,7 +16,8 @@ This file holds all the configuration for the container where your app lives.
 By keeping the configuration in this file,
 you ensure it remains the same across all environments, from development to production.
 
-Add basic properties for your app, such as its name and language:
+Start by adding basic properties for your app, such as its name and language.
+With all examples, you can adjust file to fit your code, such as the `start` command, or desires, such as changing the `name`.
 
 {{% get-started/basic-app %}}
 
@@ -25,6 +26,7 @@ Add basic properties for your app, such as its name and language:
 Commit your changes (to save your changes):
 
 ```bash
+git add .
 git commit -m "Add Platform.sh files"
 ```
 
