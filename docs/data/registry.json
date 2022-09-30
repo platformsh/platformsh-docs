@@ -933,27 +933,26 @@
     "versions-dedicated-gen-2": {
       "supported": [
         "7.0",
-        "6.2",
-        "6.0",
-        "5.0"
+        "6.2"
       ],
       "deprecated": [
+        "6.0",
         "5.0",
         "3.2"
       ]
     },
     "versions-dedicated-gen-3": {
       "deprecated": [
+        "6.0",
+        "5.0",
+        "4.0",
+        "3.2",
         "3.0",
         "2.8"
       ],
       "supported": [
         "7.0",
-        "6.2",
-        "6.0",
-        "5.0",
-        "4.0",
-        "3.2"
+        "6.2"
       ]
     }
   },
@@ -1062,7 +1061,9 @@
     },
     "versions-dedicated-gen-3": {
       "supported": [
-        "8.11",
+        "8.11"
+      ],
+      "deprecated": [
         "8.6",
         "6.6"
       ]
