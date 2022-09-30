@@ -10,7 +10,6 @@ sidebarTitle: "DNS and CNAMEs"
 ## Why CNAME records?
 
 Platform.sh is a cloud hosting provider.
-<<<<<<< HEAD
 Each individual hosted "site" is a set of containers running on one or more virtual machines,
 which are themselves running on any number of physical computers, all of which are shared with other customers running the same configuration.
 An entire region of projects runs behind dedicated, high-performance edge routers,
@@ -26,23 +25,9 @@ The Platform.sh "edge hostnames" are DNS records that resolve to the IP addresse
 They are auto-generated URLs in the form `<branch>-<hash>-<project_id>.<region>.platformsh.site`.
 
 If an edge router is updated, taken out of rotation, etc. then those domains are updated automatically with no action required from you.
-=======
-That means each individual "site" is not its own computer but a set of containers running on one or more virtual machines,
-which are themselves running on any number of physical computers, all of which are shared with other customers running the same configuration.
-An entire region of projects runs behind our dedicated, high-performance edge routers,
-which are responsible for mapping incoming requests to the particular container on a particular host that is appropriate.
 
-All of that logic is quite robust and fast, but it does require that incoming requests all get sent first to the edge routers.
-While the [IP addresses of the edge routers](/development/regions.md) are fairly stable, they are not guaranteed to never change.
-We also may add or remove routers to help scale the region, or take them offline one at a time for upgrades and maintenance.
-It's therefore critical that inbound requests always know what the IPs are of the edge routers at the time of the request.
-
-All of Platform.sh's "edge hostnames" (the auto-generated URLs in the form `<branch>-<hash>-<project_id>.<region>.platformsh.site`) are DNS records we control that resolve to the IP addresses of the edge routers for that region.
-If an edge router is updated, taken out of rotation, etc. then those domains update quickly and automatically with no further action required.
-
-An A record pointed at the same IP addresses would need to be updated manually every time an edge router changes or is temporarily offline.
+An A record pointed at the same IP addresses needs to be updated manually every time an edge router changes or is temporarily offline.
 That means every time Platform.sh is doing routine maintenance or upgrades on the edge routers there's a significant potential for a site to experience a partial outage if a request comes in for an offline edge router.
->>>>>>> 9b7082d3 (:memo: Smaller fixes)
 
 An A record pointed at the same IP addresses needs to be updated manually by you every time an edge router changes or is temporarily offline.
 
@@ -53,11 +38,7 @@ Using a CNAME DNS record pointing at the "edge hostname" avoids that problem, as
 ## Why are CNAME records problematic?
 
 The DNS specification was originally published in 1987 in [RFC 1034](https://tools.ietf.org/html/rfc1034) and [RFC 1035](https://tools.ietf.org/html/rfc1035), long before name-based HTTP hosting became prevalent.
-<<<<<<< HEAD
 Those RFCs plus the many follow-ups to clarify and expand on it are vague on the behavior of CNAME, but it's generally understood that an apex domain like `example.com` can't be used as an alias for another hostname (CNAME record) but can only point to an IP-address (A record).
-=======
-Those RFCs plus the many follow-ups to clarify and expand on it are somewhat vague on the behavior of CNAME, but it's generally understood that an apex domain (`<YOUR_DOMAIN>`) may not be used as an alias in a CNAME record.
->>>>>>> 9b7082d3 (:memo: Smaller fixes)
 That creates a problem if you want to use an apex domain with any container-based managed hosting service like Platform.sh, because of the point above.
 
 There's a [detailed thread](https://serverfault.com/questions/613829/why-cant-a-cname-record-be-used-at-the-apex-aka-root-of-a-domain) on the subject that provides more technical detail.
@@ -78,6 +59,7 @@ That means that `example.com` can only point to an IP address like `192.0.2.1` a
 You can access the CNAME target from your terminal by using the [CLI](/administration/cli/_index.md) command:
 
 ```bash
+
 platform environment:info edge_hostname
 ```
 
@@ -93,35 +75,23 @@ file=none
 highlight=false
 ---
 
-Many DNS providers have found a way around the CNAME-on-Apex limitation.
-<<<<<<< HEAD
-Some DNS registrars offer custom, non-standard records (sometimes called `ANAME` or `ALIAS`) that you can manage like a CNAME.
-It does an internal lookup behind the scenes and responds to DNS lookups as if they were `A` records.
+Many DNS providers have found a way around the CNAME-on-Apex limitation and offer custom, non-standard records (sometimes called `ANAME` or `ALIAS`) that you can manage like a CNAME.
+These non-standard records do an internal lookup behind the scenes and respond to DNS lookups as if they were `A` records.
 As these are non-standard their behavior (and quality) can vary, and not all DNS registrars offer such a feature.
 
 If you want your site to be accessible with `https://`{{<variable "YOUR_DOMAIN" >}} and not only `https://www.`{{<variable "YOUR_DOMAIN" >}} this is the best way to do so.
 
-=======
-Some DNS registrars now offer custom, non-standard records (sometimes called `ANAME` or `ALIAS`) that you can manage like a CNAME.
-It does an internal lookup behind the scenes and responds to DNS lookups as if they were an `A` record.
-As these are non-standard their behavior (and quality) can vary, and not all DNS registrars offer such a feature.
-
-If you want your site to be accessible with `https://<YOUR_DOMAIN>` and not only `https://www.<YOUR_DOMAIN>` this is the best way to do so.
->>>>>>> 9b7082d3 (:memo: Smaller fixes)
 Examples of such workaround records include:
 
 <!-- vale Platform.condescending = NO -->
-- CNAME Flattening at [CloudFlare](https://www.cloudflare.com/)
-- ANAME at [easyDNS](https://www.easydns.com/), [DNS Made Easy](http://www.dnsmadeeasy.com/), or [Name.com](https://www.name.com/)
-- ALIAS at [DNSimple](https://dnsimple.com/) or [ClouDNS](https://www.cloudns.net/)
+* CNAME Flattening at [CloudFlare](https://www.cloudflare.com/)
+* ANAME at [easyDNS](https://www.easydns.com/), [DNS Made Easy](http://www.dnsmadeeasy.com/), or [Name.com](https://www.name.com/)
+* ALIAS at [DNSimple](https://dnsimple.com/) or [ClouDNS](https://www.cloudns.net/)
 <!-- vale Platform.condescending = YES -->
 
-Platform.sh recommends ensuring that your DNS Provider supports dynamic apex domains before registering your domain name with them.
-<<<<<<< HEAD
-If you are using a DNS Provider that does not support dynamic apex domains then you aren't able to use {{<variable "YOUR_DOMAIN" >}} with Platform.sh, and can only use a subdomain like `www.`{{<variable "YOUR_DOMAIN" >}}.
-=======
-If you are using a DNS Provider that does not support dynamic apex domains then you are unable to use `<YOUR_DOMAIN>` with Platform.sh, and need to use only `www.<YOUR_DOMAIN>` (or similar) instead.
->>>>>>> 9b7082d3 (:memo: Smaller fixes)
+Make sure that your registrar supports dynamic apex domains before registering your domain name with them.
+If you are using a registrar that does not support dynamic apex domains then you aren't able to use {{<variable "YOUR_DOMAIN" >}} with Platform.sh, and can only use a subdomain like `www.`{{<variable "YOUR_DOMAIN" >}}.
+
 
 <--->
 
@@ -131,11 +101,7 @@ file=none
 highlight=false
 ---
 
-<<<<<<< HEAD
 If you are willing to make the `www.` version of your site the canonical version (which is recommended), some registrars may provide a domain redirect feature—also known as domain forwarding—from the apex domain {{<variable "YOUR_DOMAIN" >}} to `www.`{{<variable "YOUR_DOMAIN" >}}.
-=======
-If you are willing to make the `www.` version of your site the canonical version (which is recommended), some registrars or DNS providers may provide a domain redirect feature—also known as domain forwarding—from the apex domain `<YOUR_DOMAIN>` to `www.<YOUR_DOMAIN>`.
->>>>>>> 9b7082d3 (:memo: Smaller fixes)
 Before looking to change registrars, check whether your current provider supports both domain forwarding for the Apex *and* the DNS CNAME record to Platform.sh for the `www.` at the same time.
 The following DNS providers are known to support both apex forwarding and advanced DNS configurations simultaneously:
 
@@ -149,17 +115,11 @@ file=none
 highlight=false
 ---
 
-If your preferred registrar doesn't support either custom records or the apex domain forwarding options above, free services such as [WWWizer](http://wwwizer.com/) allow blind redirects and allow you to use a CNAME record to Platform.sh for `www.`{{<variable "YOUR_DOMAIN" >}} and an `A` record to their service at `<YOUR_DOMAIN>`, which in turn sends a redirect.
+If your preferred registrar doesn't support either custom records or the apex domain forwarding options above, free services such as [WWWizer](http://wwwizer.com/) allow blind redirects and allow you to use a CNAME record to Platform.sh for `www.`{{<variable "YOUR_DOMAIN" >}} and an `A` record to their service at `{{<variable "YOUR_DOMAIN" >}}`, which in turn sends a redirect.
 
 {{< note >}}
-<<<<<<< HEAD
 If using a redirection service, you must ensure that `http://`{{<variable "YOUR_DOMAIN" >}} redirects to `http://www.`{{<variable "YOUR_DOMAIN" >}}, not to `https://www.`{{<variable "YOUR_DOMAIN" >}}. A HTTP URL redirects to a HTTP URL, not to an HTTPS URL.
 Platform.sh automatically redirects that request to HTTPS itself. Trying to change the protocol and domain in the same redirect causes issues for Let's Encrypt and prevents the TLS certificate from being issued correctly.
-=======
-If using a redirection service, you must ensure that `http://<YOUR_DOMAIN>` redirects to `http://www.<YOUR_DOMAIN>`, not to `https://www.<YOUR_DOMAIN>` (That is, the HTTP URL redirects to an HTTP URL, not to an HTTPS URL.).
-Platform.sh automatically redirects that request to the HTTPS itself.
-Trying to change the protocol and domain in the same redirect causes issues for Let's Encrypt and prevents the TLS certificate from being issued correctly.
->>>>>>> 9b7082d3 (:memo: Smaller fixes)
 The extra redirect adds only a millisecond or two to the first page load only, and is imperceptible to most humans.
 {{< /note >}}
 

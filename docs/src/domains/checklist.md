@@ -42,8 +42,6 @@ To override that IP:
 
 
 
-
-
 {{< codetabs >}}
 
 ---
@@ -137,17 +135,18 @@ Once the domain is live, don't forget to delete the entry you added.
 Platform.sh automatically provides TLS certificates for all sites and environments.
 These certificates are issued by [Let's Encrypt](https://letsencrypt.org/) at no charge.
 [In most cases](../define-routes/https.md#limits), this is sufficient and no further action is necessary.
-
 If you want to use a [third-party TLS certificate](./steps/tls.md) to encrypt your production site,
 you can obtain one from any third-party TLS issuers.
 Platform.sh doesn't charge for using a third-party TLS certificate, although the issuer may.
 
 If you do wish to use a third-party certificate, ensure it's purchased and active before going live.
 
----
+## What's next
 
-* Your registrars allows CNAME on APEX domains?
-* Your code and data is tested and ready to launch on your production environment?
-* Your custom TLS certificate is purchased, if you're using one?
+After you checked that:
 
-**Time to [Go Live](/domains/steps/_index.md).**
+* Your registrar allows CNAME on APEX domains,
+* Your code and data are tested and ready to launch on your production environment,
+* Your custom TLS certificate is purchased, if you're using one,
+
+It's time to [go Live](/domains/steps/_index.md).
