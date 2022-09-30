@@ -43,14 +43,11 @@ file=none
 highlight=false
 ---
 
-<!--This is in HTML to get the icon not to break the list. -->
-<ol>
-  <li>Select the project where you want to add a domain.</li>
-  <li>Click {{< icon settings >}} <strong>Settings</strong>.</li>
-  <li>Click <strong>Domains</strong>.</li>
-  <li>Enter <code>mysite.com</code> into the <strong>Domain</strong> field.</li>
-  <li>Click <strong>+ Add</strong>.</li>
-</ol>
+- Select the project where you want to add a domain.
+- Click {{< icon settings >}} **Settings**.
+- Click **Domains**.
+- Enter `mysite.com` into the **Domain** field.
+- Click **+ Add**.
 
 <--->
 ---

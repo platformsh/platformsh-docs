@@ -55,15 +55,12 @@ file=none
 highlight=false
 ---
 
-<!--This is in HTML to get the icon not to break the list. -->
-<ol>
-  <li>Navigate to the environment where you want to run the operation.</li>
-  <li>Click {{< icon more >}} <strong>More</strong>.</li>
-  <li>Click <strong>Run source operation</strong>.</li>
-  <li>Select the operation you want to run.
-  <li>(Optional) Add the <a href="#use-variables-in-your-source-operations">variables</a> required by your source operation.</li>
-  <li>Click <strong>Run</strong>.</li>
-</ol>
+- Navigate to the environment where you want to run the operation.
+- Click {{< icon more >}} **More**.
+- Click **Run source operation**.
+- Select the operation you want to run.
+- Optional: Add the [variables](#use-variables-in-your-source-operations) required by your source operation.
+- Click **Run**.
 
 <--->
 ---
@@ -122,15 +119,12 @@ file=none
 highlight=false
 ---
 
-<!--This is in HTML to get the icon not to break the list. -->
-<ol>
-  <li>Navigate to the environment where you want to run the operation.</li>
-  <li>Click {{< icon more >}} <strong>More</strong>.</li>
-  <li>Click <strong>Run source operation</strong>.</li>
-  <li>Select the operation you want to run.
-  <li>Under <strong>Add/override variables</strong>, put <code>FILE</code> as the <strong>Variable name</strong> and <code>example.txt</code> as the <strong>Value</strong>. The variable is automatically prefixed with <code>env:</code>.</li>
-  <li>Click <strong>Run</strong>.</li>
-</ol>
+- Navigate to the environment where you want to run the operation.
+- Click {{< icon more >}} **More**.
+- Click **Run source operation**.
+- Select the operation you want to run.
+- Under **Add/override variables**, put `FILE` as the **Variable name** and `example.txt` as the **Value**. The variable is automatically prefixed with `env:`.
+- Click **Run**.
 
 <--->
 ---

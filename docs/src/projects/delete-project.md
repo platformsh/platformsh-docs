@@ -17,14 +17,11 @@ file=none
 highlight=false
 ---
 
-<!--This is in HTML to get the icon not to break the list. -->
-<ol>
-  <li>On the tile of the project you want to delete, click {{< icon more >}}</strong>More</strong>.</li>
-  <li>Click <strong>Edit plan</strong>.</li>
-  <li>Click <strong>Delete project</strong>.</li>
-  <li>To confirm your choice, enter the project's name.</li>
-  <li>Click <strong>Yes, Delete Project</strong>.</li>
-</ol>
+- On the tile of the project you want to delete, click **{{< icon more >}} More**.
+- Click **Edit plan**.
+- Click **Delete project**.
+- To confirm your choice, enter the project's name.
+- Click **Yes, Delete Project**.
 
 <--->
 ---

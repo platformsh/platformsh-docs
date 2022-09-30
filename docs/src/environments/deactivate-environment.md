@@ -34,16 +34,13 @@ file=none
 highlight=false
 ---
 
-<!--This is in HTML to get the icon not to break the list. -->
-<ol>
-  <li>Select the project with an environment you want to deactivate.</li>
-  <li>From the <strong>Environment</strong> menu, select the environment.</li>
-  <li>Click {{< icon settings >}} <strong>Settings</strong>.</li>
-  <li>In the row with <strong>Status</strong>, click <strong>Edit {{< icon chevron >}}</strong>.</li>
-  <li>Select the checkbox to show you understand the consequences.</li>
-  <li>Click <strong>Deactivate & Delete Data</strong>.</li>
-  <li>Confirm your choice.</li>
-</ol>
+- Select the project with an environment you want to deactivate.
+- From the **Environment** menu, select the environment.
+- Click {{< icon settings >}} **Settings**.
+- In the row with **Status**, click **Edit {{< icon chevron >}}**.
+- Select the checkbox to show you understand the consequences.
+- Click **Deactivate & Delete Data**.
+- Confirm your choice.
 
 <--->
 ---
@@ -83,14 +80,11 @@ file=none
 highlight=false
 ---
 
-<!--This is in HTML to get the icon not to break the list. -->
-<ol>
-  <li>Select the project with an environment you want to reactivate.</li>
-  <li>From the <strong>Environment</strong> menu, select the environment.</li>
-  <li>Click {{< icon settings >}} <strong>Settings</strong>.</li>
-  <li>In the row with <strong>Status</strong>, click <strong>Edit {{< icon chevron >}}</strong>.</li>
-  <li>Click <strong>Activate</strong>.</li>
-</ol>
+- Select the project with an environment you want to reactivate.
+- From the **Environment** menu, select the environment.
+- Click {{< icon settings >}} **Settings**.
+- In the row with **Status**, click **Edit {{< icon chevron >}}**.
+- Click **Activate**.
 
 <--->
 ---

@@ -42,14 +42,11 @@ file=none
 highlight=false
 ---
 
-<!--This is in HTML to get the icon not to break the list. -->
-<ol>
-  <li>Navigate to the environment you want to branch from.</li>
-  <li>Click {{< icon branch >}} <strong>Branch</strong>.</li>
-  <li>Enter a name for the new branch.</li>
-  <li>Select which environment type it should be.</li>
-  <li>Click <strong>Create branch</strong>.</li>
-</ol>
+- Navigate to the environment you want to branch from.
+- Click {{< icon branch >}} **Branch**.
+- Enter a name for the new branch.
+- Select which environment type it should be.
+- Click **Create branch**.
 
 <--->
 ---
