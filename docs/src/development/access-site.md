@@ -22,12 +22,9 @@ file=none
 highlight=false
 ---
 
-<!--This is in HTML to get the icon not to break the list. -->
-<ol>
-  <li>Select the project where you want to find the URLs.</li>
-  <li>From the <strong>Environment</strong> menu, select an environment.</li>
-  <li>Click <strong>URLs</strong>.</li>
-</ol>
+- Select the project where you want to find the URLs.
+- From the **Environment** menu, select an environment.
+- Click **URLs**.
 
 <--->
 

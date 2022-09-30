@@ -39,15 +39,12 @@ file=none
 highlight=false
 ---
 
-<!--This is in HTML to get the icon not to break the list. -->
-<ol>
-  <li>Select the project where you want to add a certificate.</li>
-  <li>Click {{< icon settings >}} <strong>Settings</strong>.</li>
-  <li>Click <strong>Certificates</strong>.</li>
-  <li>Click <strong>+ Add</strong>.</li>
-  <li>Fill in your private key, public key certificate, and (optionally) intermediate SSL certificates.</li>
-  <li>Click <strong>Add Certificate</strong>.</li>
-</ol>
+- Select the project where you want to add a certificate.
+- Click {{< icon settings >}} **Settings**.
+- Click **Certificates**.
+- Click **+ Add**.
+- Fill in your private key, public key certificate, and (optionally) intermediate SSL certificates.
+- Click **Add Certificate**.
 
 <--->
 ---

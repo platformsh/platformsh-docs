@@ -19,6 +19,7 @@
     - [Note when low-level items are missing](#note-when-low-level-items-are-missing)
     - [Code block location](#code-block-location)
     - [Variables in code](#variables-in-code)
+      - [Variables in codetabs](#variables-in-codetabs)
   - [Refer to the UI and keys](#refer-to-the-ui-and-keys)
   - [Code tabs](#code-tabs)
   - [Reuse content](#reuse-content)
@@ -260,6 +261,23 @@ Add the variable name in all capital letters and underscores in quotes:
 
 ```markdown
 Run the command `platform environment:list --project {{<variable "PROJECT_ID" >}}`.
+```
+
+#### Variables in codetabs
+
+If you want to use the `variable` shortcode in codetabs, you need to use HTML instead of Markdown.
+You can generate the code block outside the codetabs and then copy in the highlighting.
+
+Example:
+
+```markdown
+1. Run the following command:
+   
+   <!-- This is in HTML to get the variable shortcode to work properly -->
+   <div class="highlight">
+     <pre class="chroma"><code class="language-bash" data-lang="bash">platform backup:restore {{< variable "BACKUP_ID" >}}</code></pre>
+   </div>
+1. Press `enter` to agree with the consequences and continue.
 ```
 
 ## Refer to the UI and keys

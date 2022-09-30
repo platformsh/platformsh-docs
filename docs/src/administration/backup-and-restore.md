@@ -64,13 +64,10 @@ file=none
 highlight=false
 ---
 
-<!--This is in HTML to get the icon not to break the list. -->
-<ol>
-  <li>Navigate to the environment you want to back up.</li>
-  <li>Click <strong>Backups</strong>.</li>
-  <li>Click {{< icon backup >}} <strong>Backup</strong>.</li>
-  <li>Click <strong>Backup</strong>.</li>
-</ol>
+- Navigate to the environment you want to back up.
+- Click **Backups**.
+- Click {{< icon backup >}} **Backup**.
+- Click **Backup**.
 
 {{< /codetabs >}}
 
@@ -203,13 +200,10 @@ file=none
 highlight=false
 ---
 
-<!--This is in HTML to get the icon not to break the list. -->
-<ol>
-  <li>Navigate to the environment where you want to see backups.</li>
-  <li>Click <strong>Backups</strong>.</li>
-</ol>
+- Navigate to the environment where you want to see backups.
+- Click **Backups**.
 
-<p>Select one of the backups marked as having completed successfully {{< icon success >}}.</p>
+Select one of the backups marked as having completed successfully {{< icon success >}}.
 
 {{< /codetabs >}}
 
@@ -225,11 +219,12 @@ highlight=false
 ---
 
 1. Run the following command:
-
-   ```bash
-   platform backup:restore <BACKUP_ID>
-   ```
-2. Press `enter` to agree with the consequences and continue.
+   
+   <!-- This is in HTML to get the variable shortcode to work properly -->
+   <div class="highlight">
+     <pre class="chroma"><code class="language-bash" data-lang="bash">platform backup:restore {{< variable "BACKUP_ID" >}}</code></pre>
+   </div>
+1. Press `enter` to agree with the consequences and continue.
 
 <--->
 ---
@@ -238,12 +233,9 @@ file=none
 highlight=false
 ---
 
-<!--This is in HTML to get the icon not to break the list. -->
-<ol>
-  <li>Next to the backup you've selected, click More {{< icon more >}}.</li>
-  <li>Click <strong>Restore</strong>.</li>
-  <li>Read through the consequences and click <strong>Yes, Restore</strong>.</li>
-</ol>
+- Next to the backup you've selected, click **More** {{< icon more >}}.
+- Click **Restore**.
+- Read through the consequences and click **Yes, Restore**.
 
 {{< /codetabs >}}
 

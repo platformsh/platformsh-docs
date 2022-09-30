@@ -21,15 +21,12 @@ file=none
 highlight=false
 ---
 
-<!--This is in HTML to get the icon not to break the list. -->
-<ol>
-  <li>Select the project where you want to change the parent.</li>
-  <li>From the <strong>Environment</strong> menu, select the environment you want to change.</li>
-  <li>Click {{< icon settings >}} <strong>Settings</strong>.</li>
-  <li>In the row with the environment's name, click <strong>Edit {{< icon chevron >}}</strong>.</li>
-  <li>Select a <strong>Parent environment</strong>.</li>
-  <li>Click <strong>Save</strong>.</li>
-</ol>
+- Select the project where you want to change the parent.
+- From the **Environment** menu, select the environment you want to change.
+- Click {{< icon settings >}} **Settings**.
+- In the row with the environment's name, click **Edit {{< icon chevron >}}**.
+- Select a **Parent environment**.
+- Click **Save**.
 
 <--->
 ---

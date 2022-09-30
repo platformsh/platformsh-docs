@@ -67,15 +67,12 @@ file=none
 highlight=false
 ---
 
-<!--This is in HTML to get the icon not to break the list. -->
-<ol>
-  <li>Select the project where you want to add a new user.</li>
-  <li>Click {{< icon settings >}} <strong>Settings</strong>.</li>
-  <li>Click <strong>Access</strong>.</li>
-  <li>Click <strong>+ Add</strong>.</li>
-  <li>Add the user's details and choose their permissions.</li>
-  <li>Click <strong>Save</strong>.</li>
-</ol>
+- Select the project where you want to add a new user.
+- Click {{< icon settings >}} **Settings**.
+- Click **Access**.
+- Click **+ Add**.
+- Add the user's details and choose their permissions.
+- Click **Save**.
 
 <--->
 ---
@@ -110,15 +107,12 @@ file=none
 highlight=false
 ---
 
-<!--This is in HTML to get the icon not to break the list. -->
-<ol>
-  <li>Select the project where you want to add a new user.</li>
-  <li>Click {{< icon settings >}} <strong>Settings</strong>.</li>
-  <li>Click <strong>Access</strong>.</li>
-  <li>Expand the user you want to delete.</li>
-  <li>Click <strong>Delete</strong>.</li>
-  <li>Click <strong>Save</strong>.</li>
-</ol>
+- Select the project where you want to add a new user.
+- Click {{< icon settings >}} **Settings**.
+- Click **Access**.
+- Expand the user you want to delete.
+- Click **Delete**.
+- Click **Save**.
 
 <--->
 
@@ -152,15 +146,12 @@ file=none
 highlight=false
 ---
 
-<!--This is in HTML to get the icon not to break the list. -->
-<ol>
-  <li>Select the project where you want to add a new user.</li>
-  <li>Click {{< icon settings >}} <strong>Settings</strong>.</li>
-  <li>Click <strong>Access</strong>.</li>
-  <li>Expand the user you want to delete.</li>
-  <li>Click <strong>Delete</strong>.</li>
-  <li>Click <strong>Delete</strong> to confirm.</li>
-</ol>
+- Select the project where you want to add a new user.
+- Click {{< icon settings >}} **Settings**.
+- Click **Access**.
+- Expand the user you want to delete.
+- Click **Delete**.
+- Click **Delete** to confirm.
 
 <--->
 

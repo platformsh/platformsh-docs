@@ -23,14 +23,11 @@ file=none
 highlight=false
 ---
 
-<!--This is in HTML to get the icon not to break the list. -->
-<ol>
-  <li>Select the project where you want to change visibility.</li>
-  <li>From the <strong>Environment</strong> menu, select the environment you want to change.</li>
-  <li>Click {{< icon settings >}} <strong>Settings</strong>.</li>
-  <li>In the row with <strong>Hide from search engines</strong>, click <strong>Edit {{< icon chevron >}}</strong>.</li>
-  <li>Select or clear the <strong>Hide from search engines</strong> checkbox.</li>
-</ol>
+- Select the project where you want to change visibility.
+- From the **Environment** menu, select the environment you want to change.
+- Click {{< icon settings >}} **Settings**.
+- In the row with **Hide from search engines**, click **Edit {{< icon chevron >}}**.
+- Select or clear the **Hide from search engines** checkbox.
 
 <--->
 ---

@@ -23,13 +23,10 @@ file=none
 highlight=false
 ---
 
-<!--This is in HTML to get the icon not to break the list. -->
-<ol>
-  <li>Select the project with the given environment.</li>
-  <li>From the <strong>Environment</strong> menu, select the environment.</li>
-  <li>Click {{< icon more >}} <strong>More</strong>.</li>
-  <li>Click <strong>Redeploy</strong>.</li>
-</ol>
+- Select the project with the given environment.
+- From the **Environment** menu, select the environment.
+- Click {{< icon more >}} **More**.
+- Click **Redeploy**.
 
 <--->
 
