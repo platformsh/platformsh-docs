@@ -146,7 +146,7 @@ If you do wish to use a third-party certificate, ensure it's purchased and activ
 
 ---
 
-* Your registrars allows CNAME on APEX domains?
+* Your registrar allows CNAME on APEX domains?
 * Your code and data is tested and ready to launch on your production environment?
 * Your custom TLS certificate is purchased, if you're using one?
 
