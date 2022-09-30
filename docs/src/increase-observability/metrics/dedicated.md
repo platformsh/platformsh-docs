@@ -7,6 +7,9 @@ description: "Understand how to read metrics for {{% names/dedicated-gen-2 %}} e
 For {{% names/dedicated-gen-2 %}} environments, infrastructure metrics report CPU, RAM, and disk space per host and mount point.
 The graphs differ when the environment has multiple clusters.
 
+Metrics are available for Production environments and [Grid environments](./grid.md) (such as your development environments).
+They aren't available for other {{% names/dedicated-gen-2 %}} environments (such as a staging environment).
+
 By default, the graphs include all hosts and an average over the hosts.
 To select metrics for specific hosts, click **Filter**.
 
@@ -61,6 +64,8 @@ This example should give you an idea of how the metrics appear.
 
 This reference project has a single PHP application and three services: MySQL, Redis, and Solr.
 It has been granted 4&nbsp;GB of memory and 2 virtual CPUs per host based on its plan.
+
+The metrics below are for a single Production environment.
 
 Once you've read the metrics, see [recommendations for action](./_index.md#dedicated-gen-2-environments).
 
