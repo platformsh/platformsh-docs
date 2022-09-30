@@ -219,11 +219,12 @@ highlight=false
 ---
 
 1. Run the following command:
-
-   ```bash
-   platform backup:restore <BACKUP_ID>
-   ```
-2. Press `enter` to agree with the consequences and continue.
+   
+   <!-- This is in HTML to get the variable shortcode to work properly -->
+   <div class="highlight">
+     <pre class="chroma"><code class="language-bash" data-lang="bash">platform backup:restore {{< variable "BACKUP_ID" >}}</code></pre>
+   </div>
+1. Press `enter` to agree with the consequences and continue.
 
 <--->
 ---
