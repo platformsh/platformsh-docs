@@ -14,7 +14,7 @@ You can also change the project's region after it's created.
 ## Why migrate between regions
 
 - Different data centers are located in different geographic areas.
-  You may want your site close to the your users for improved performance.
+  You may want your site close to your users for improved performance.
 - You may want to move to a region with a lower [environmental impact](../development/regions.md#environmental-impact).
 - Some regions are running older versions of the Platform.sh orchestration system that offers fewer features.
   In particular, the `us` and `eu` regions don't currently offer the following features:
