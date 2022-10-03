@@ -1,35 +1,14 @@
 {{ define "main" }}
 
-  <!-- If in the Get started section, define context and methods
-       Otherwise, if the page has "multipleTabs" set, set the codetab context on a page-wide basis -->
+  <!-- If the page has "multipleTabs" set, set the codetab context on a page-wide basis -->
   <main class="ml-sm-auto col-md-9 col-lg-10 px-4 pt-0 pt-md-11"
-  {{ if eq .Section "get-started" }}
-  x-data="{ 
-    stack: new URLSearchParams(location.search).get('stack') || 'php',
-    switchStack(targetStack) { 
-      this.stack = targetStack
-      const url = new URL(window.location.href);
-
-      const targetStackString = targetStack
-        .toString()
-        .toLowerCase()
-        .replace('.', '');
-
-      url.searchParams.set('stack', targetStackString);
-      history.pushState(null, document.title, url.toString());
-    },
-    frametech: 'default',
-    switchFrametech(targetFrametech) { 
-      this.frametech = targetFrametech;
-    }
-  }"
-  {{ else if $.Page.Params.multipleTabs }}
-  x-data="{
-    codetab: 'default',
-    switchCodetab(targetCodetab) { 
-      this.codetab = targetCodetab;
-    }
-  }"
+  {{ if $.Page.Params.multipleTabs }}
+    x-data="{
+      codetab: 'default',
+      switchCodetab(targetCodetab) { 
+        this.codetab = targetCodetab;
+      }
+    }"
   {{ end }}>
     <div class="row pt-3">
 

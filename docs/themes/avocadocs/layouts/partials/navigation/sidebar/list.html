@@ -18,6 +18,12 @@
   {{ end }}
 {{ end }}
 
+<!-- If in Get started, add stack choice to nav links -->
+{{ $getStartedAttribute := "" }}
+{{ if hasPrefix .Context.RelPermalink "/get-started" }}
+  {{ $getStartedAttribute = ":href=\"$el.getAttribute('destination') + '?stack=' + $data.stack\"" }}
+{{ end }}
+
 <!-- Handle pages in `other` directory separately -->
 {{ if eq $currentSection "other" }}
   <!-- Loop through pages in the section -->
@@ -41,7 +47,7 @@
   {{ end }}
   <div class="sidebar__heading-wrapper sidebar__heading-wrapper-section">
     <h4 class="duik-sidebar__heading">
-      <a href="{{ .Context.RelPermalink }}" class="duik-sidebar__link{{ if $isCurrentSection }} active{{ end }}">
+      <a href="{{ .Context.RelPermalink }}" destination="{{ .Context.RelPermalink }}" {{ $getStartedAttribute | safeHTMLAttr }} class="duik-sidebar__link{{ if $isCurrentSection }} active{{ end }}">
         {{ $itemTitle }}
       </a>
       
@@ -86,9 +92,11 @@
       {{ $isCurrentSection = false }}
     {{ end }}
 
+    
+
     <li class="duik-sidebar__item">
       <div class="sidebar__heading-wrapper sidebar__heading-wrapper-first-level">
-        <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if $isCurrentSection }} active{{ end }}">
+        <a href="{{ .RelPermalink }}" destination="{{ .RelPermalink }}" {{ $getStartedAttribute | safeHTMLAttr }} class="duik-sidebar__link{{ if $isCurrentSection }} active{{ end }}">
             {{ $itemTitle }}
         </a>
 
