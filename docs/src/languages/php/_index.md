@@ -111,10 +111,25 @@ which runs `composer --no-ansi --no-interaction install --no-progress --prefer-d
 Note that by default, all PHP containers include the latest Composer 1.x release.
 If you wish to use Composer 2.x, add it as a `dependency`:
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 dependencies:
     php:
         composer/composer: '^2'
+```
+
+### Changing the flavor
+
+To not use the `composer` build flavor, such as to run your own Composer command,
+set the build flavor to `none` and add the command to the start of your `build` hook.
+The following example installs Composer dependencies but not development dependencies:
+
+```yaml {location=".platform.app.yaml"}
+build:
+    flavor: none
+hooks:
+    build: |
+        set -e
+        composer install --no-interaction --no-dev
 ```
 
 ## OPcache preloading
