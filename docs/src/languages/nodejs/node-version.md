@@ -25,54 +25,52 @@ The [`n` package](https://github.com/tj/n) works for various Unix-like systems,
 including Windows Subsystem for Linux.
 
 1. Add the desired Node.js version to your environment using `.nvmrc`, `.n-node-version`, `.node-version`, or `package.json`.
-   
-   {{< codetabs >}}
-   
-   ---
-   title=.nvmrc
-   file=none
-   highlight=false
-   ---
-   
-   Create a `.nvmrc` file in [your app root](../../create-apps/app-reference.md#root-directory):
+  {{< codetabs >}}
 
-   ```yaml {location=".nvmrc"}
-   v16.13.2
-   ```
-   
-   <--->
-   
-   ---
-   title=.n-node-version/.node-version
-   file=none
-   highlight=false
-   ---
-   
-   Create a `.n-node-version` or a `.node-version` file in [your app root](../../create-apps/app-reference.md#root-directory):
+---
+title=.nvmrc
+file=none
+highlight=false
+---
 
-   ```yaml {location=".n-node-version or .node-version"}
-   16.13.2
-   ```
-   
-   <--->
-   
-   ---
-   title=package.json
-   file=none
-   highlight=false
-   ---
-   
-   Update your `package.json` to include the `engines.node` property at the root level. The `engines.node` property accepts both exact versions and ranges:
+Create a `.nvmrc` file in [your app root](../../create-apps/app-reference.md#root-directory):
 
-   ```json {location="package.json"}
-   {
-     "engines": {
-       "node": ">=0.10.3 <15"
-     }
-   }
-   ```
-   
-   {{< /codetabs >}}
+```yaml {location=".nvmrc"}
+v16.13.2
+```
+
+<--->
+
+---
+title=.n-node-version/.node-version
+file=none
+highlight=false
+---
+
+Create a `.n-node-version` or a `.node-version` file in [your app root](../../create-apps/app-reference.md#root-directory):
+
+```yaml {location=".n-node-version or .node-version"}
+16.13.2
+```
+
+<--->
+
+---
+title=package.json
+file=none
+highlight=false
+---
+
+Update your `package.json` to include the `engines.node` property at the root level. The `engines.node` property accepts both exact versions and ranges:
+
+```json {location="package.json"}
+{
+  "engines": {
+    "node": ">=0.10.3 <15"
+  }
+}
+```
+  {{< /codetabs >}}
 
 1. Add it as a dependency:
 
