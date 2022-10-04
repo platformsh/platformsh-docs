@@ -126,10 +126,22 @@ The following example installs Composer dependencies but not development depende
 ```yaml {location=".platform.app.yaml"}
 build:
     flavor: none
+
 hooks:
     build: |
         set -e
         composer install --no-interaction --no-dev
+```
+
+You can achieve the same thing with the default build flavor and the `COMPOSER_NO_DEV` variable:
+
+```yaml {location=".platform.app.yaml"}
+variables:
+    env:
+        COMPOSER_NO_DEV: 1
+
+build:
+    flavor: default # You can leave this out if you like
 ```
 
 ## OPcache preloading
