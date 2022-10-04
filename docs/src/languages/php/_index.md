@@ -134,12 +134,38 @@ hooks:
 ```
 
 You can achieve the same thing with the default build flavor and the `COMPOSER_NO_DEV` variable.
-Add the variable to your Production environment using the [CLI](../../administration/cli/_index.md)
-with a command like the following:
+Add the variable to your Production environment:
 
-```bash
-platform variable:create --environment {{< variable PRODUCTION_ENVIRONMENT_NAME >}} --level environment --name COMPOSER_NO_DEV --value 1 --prefix env --json false --sensitive false --enabled true --inheritable true --visible-build false --visible-runtime false
-```
+{{< codetabs >}}
+---
+title=Using the CLI
+highlight=false
+file=none
+---
+
+Run a command like the following:
+
+<div class="highlight">
+  <pre class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">platform variable:create --environment {{< variable "PRODUCTION_ENVIRONMENT_NAME" >}} --level environment --name COMPOSER_NO_DEV --value <span class="m">1</span> --prefix env --json <span class="nb">false</span> --sensitive <span class="nb">false</span> --enabled <span class="nb">true</span> --inheritable <span class="nb">false</span> --visible-build <span class="nb">false</span> --visible-runtime <span class="nb">false</span>
+</span></span></code></pre>
+</div>
+<--->
+---
+title=In the Console
+highlight=false
+file=none
+---
+
+1. Navigate to your Production environment.
+2. Click {{< icon settings >}} **Settings**.
+3. Click **Variables**.
+4. Click **+ Add variable**.
+5. Fill in `env:COMPOSER_NO_DEV` for the name.
+6. Fill in `1` for the value.
+7. Make sure **Make inheritable** is *not* selected.
+8. Click **Add variable**.
+
+{{< /codetabs >}}
 
 ## OPcache preloading
 
