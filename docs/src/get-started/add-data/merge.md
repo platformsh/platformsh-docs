@@ -58,11 +58,9 @@ Now you have a database you can connect to your app.
 
 {{% get-started/connect-service %}}
 
-Check that your database was created by running the following command:
-
-```bash
-platform sql --environment dev 'SELECT * FROM People'
-```
+This example creates a table in your database, adds some data, prints the data as an HTML table,
+and deletes the database table.
+If you commit your changes and push, you should see the HTML table in your built app.
 
 ## Merge your changes
 
