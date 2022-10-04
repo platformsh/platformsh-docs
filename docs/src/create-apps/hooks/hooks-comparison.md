@@ -83,7 +83,7 @@ such as database schema updates or some types of cache clear (those where the co
 A task that can safely run concurrently with new incoming requests should be run as a `post_deploy` hook instead.
 
 After a Git push, in addition to the log shown in the activity log,
-the execution of the `deploy` hook is logged in the [deploy log](../../increase-observability/logs.md#container-logs).
+the execution of the `deploy` hook is logged in the [deploy log](../../increase-observability/logs/access-logs.md#container-logs).
 For example:
 
 ```bash
@@ -111,6 +111,6 @@ That makes it well suited to any updates that don't require exclusive database a
 What's "safe" to run in a `post_deploy` hook vs. in a `deploy` hook varies by the application.
 Often times content imports, some types of cache warmups, and other such tasks are good candidates for a `post_deploy` hook.
 
-In addition to the activity log, the `post_deploy` hook logs to the [post-deploy log](../../increase-observability/logs.md#container-logs).
+In addition to the activity log, the `post_deploy` hook logs to the [post-deploy log](../../increase-observability/logs/access-logs.md#container-logs).
 
 The `post_deploy` hook is the only hook that runs during a redeploy.
