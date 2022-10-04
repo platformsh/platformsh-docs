@@ -25,22 +25,20 @@ See more on [what an APEX domain is](/domains/steps/dns.md#what-is-an-apex-domai
 
 ## 2. Test your site
 
-If your production environment is on a Dedicated instance,
-ensure that the code is up-to-date in both your `staging` and `production` branches,
-as those are mirrored to the Dedicated instances.
-Also ensure that the data on the production instance is up-to-date and ready to launch.
-
 Make sure your site is running and configured as you want it to be, on your production branch.
 In particular, see the [Routes documentation](../define-routes/_index.md).
+
 If you turned on basic-authentication during development, make sure [to turn it off before launch](/administration/web/configure-environment.md).
+
+If your production environment is on a Dedicated instance:
+1. Ensure that the code is up-to-date in both your `staging` and `production` branches. Those are mirrored to the Dedicated instances.
+2. Ensure that the data on the production instance is up-to-date and ready to launch.
+
+### Override the IP
 
 You can test the behavior of the site before going live, by overriding the IP of that domain and make it point to the IP address for your project's production environment. This can be particularly useful to check that a CMS is properly set up.
 
 To override that IP:
-1. Get the CNAME target of your project's production environment, run `dig +short $(platform environment:info edge_hostname)`.
-2.
-
-
 
 {{< codetabs >}}
 
@@ -50,10 +48,12 @@ file=none
 highlight=false
 ---
 
-Dynamically switch DNS IP addresses without modifying your hosts file with a browser extension:
-
-* [Firefox LiveHosts add-on](https://addons.mozilla.org/en-US/firefox/addon/livehosts/)
-* [Chrome LiveHosts extension](https://chrome.google.com/webstore/detail/livehosts/hdpoplemgeaioijkmoebnnjcilfjnjdi)
+1. Get the CNAME target of your project's production environment, run `dig +short $(platform environment:info edge_hostname)`.
+2. Copy all IP addresses (usually 1-3) that are returned.
+3. Download the fitting browser extension:
+  * [Firefox LiveHosts add-on](https://addons.mozilla.org/en-US/firefox/addon/livehosts/)
+  * [Chrome LiveHosts extension](https://chrome.google.com/webstore/detail/livehosts/hdpoplemgeaioijkmoebnnjcilfjnjdi)
+4. Add the IP address(es) and domain name to override in the extension.
 
 <--->
 
@@ -63,10 +63,12 @@ file=none
 highlight=false
 ---
 
-1. With an admin account, open the `/etc/hosts` file with your favorite text editor.
-2. Add the {{<variable "IP" >}} and `www.`{{< variable "YOUR_DOMAIN" >}} to that file.
-3. Add the {{<variable "IP" >}} and {{< variable "YOUR_DOMAIN" >}} to that file.
-4. Save and close the file.
+1. Get the CNAME target of your project's production environment, run `dig +short $(platform environment:info edge_hostname)`.
+2. Copy all IP addresses (usually 1-3) that are returned.
+3. Open the `/etc/hosts` file with admin privileges using your favorite text editor.
+4. Add the {{<variable "IP" >}} and `www.`{{< variable "YOUR_DOMAIN" >}} to that file.
+5. Add the {{<variable "IP" >}} and {{< variable "YOUR_DOMAIN" >}} to that file.
+6. Save and close the file.
 
 After adding these lines the file looks something like:
 
@@ -84,8 +86,6 @@ After adding these lines the file looks something like:
 {{<variable "IP" >}}            {{<variable "YOUR_DOMAIN" >}}
 </code></pre></div>
 
-Once the domain is live, don't forget to delete the entry you added.
-
 <--->
 
 ---
@@ -94,10 +94,11 @@ file=none
 highlight=false
 ---
 
-1. With an admin account, open the `c:\Windows\System32\Drivers\etc\hosts` file with your favorite text editor.
-2. Add the {{<variable "IP" >}} and the `www.`{{<variable "YOUR_DOMAIN" >}} to that file.
-3. Add the {{<variable "IP" >}} and {{<variable "YOUR_DOMAIN" >}} to that file.
-4. Save and close the file.
+1. Get the CNAME target of your project's production environment, run `dig +short $(platform environment:info edge_hostname)`.
+2. Copy all IP addresses (usually 1-3) that are returned.
+3. Open the `c:\Windows\System32\Drivers\etc\hosts` file with admin privileges using your favorite text editor.
+4. Add the {{<variable "IP" >}} and `www.`{{<variable "YOUR_DOMAIN" >}} to that file.
+5. Add the {{<variable "IP" >}} and {{<variable "YOUR_DOMAIN" >}} to that file.
 
 After adding these lines the file looks something like:
 
@@ -125,10 +126,10 @@ After adding these lines the file looks something like:
 {{<variable "IP" >}}            www.{{<variable "YOUR_DOMAIN" >}}
 {{<variable "IP" >}}            {{<variable "YOUR_DOMAIN" >}}
 </code></pre></div>
-
-Once the domain is live, don't forget to delete the entry you added.
   
 {{< /codetabs >}}
+
+Once the domain is live, don't forget to delete the entries you added.
 
 ## 3. Optional: Obtain a third-party TLS certificate
 

@@ -1,5 +1,5 @@
 ---
-title: "(Optional) Configure a third-party TLS certificate"
+title: "Optional: Configure a third-party TLS certificate"
 weight: 3
 sidebarTitle: "Custom TLS"
 ---
@@ -7,7 +7,7 @@ sidebarTitle: "Custom TLS"
 Platform.sh automatically provides all production environments with standard TLS certificates issued by [Let's Encrypt](https://letsencrypt.org/).
 No further action is required to use TLS-encrypted connections beyond [specifying HTTPS routes](../../define-routes/https.md).
 
-Alternatively, you may provide your own third-party TLS certificate from the TLS issuer of your choice.
+Alternatively, you can provide your own third-party TLS certificate from the TLS issuer of your choice.
 Consult your TLS issuer for instructions on how to generate an TLS certificate.
 
 A custom certificate isn't necessary for development environments.
@@ -25,18 +25,11 @@ If you use wildcard routes, you need a custom certificate.
 
 ### Add a custom certificate
 
-You can add a custom certificate by sing the [command line interface](../../administration/cli/_index.md) or in the [Console](/administration/web/_index.md).
+You can add a custom certificate by using the [command line interface](../../administration/cli/_index.md) or in the [Console](/administration/web/_index.md).
 
-Your certificate's private key has to be in the old style, and start with `BEGIN RSA PRIVATE KEY`.
-If it starts with `BEGIN PRIVATE KEY`, it's bundled with the identifier for key type.
+Your certificate has to use the "PKCS#1" format and start with `BEGIN RSA PRIVATE KEY`. If it doesn't, see [how to change the private key format](#how-to-change-the-private-key-format)
 
-To convert it to the old-style RSA key:
-
-```bash
-openTLS rsa -in private.key -out private.rsa.key
-```
-
-Add your custom certificate:
+To add your custom certificate:
 
 {{< codetabs >}}
 
@@ -84,7 +77,18 @@ For the new certificate to be taken into account, you need to [redeploy the envi
 platform environment:redeploy
 ```
 
-Your site should now be live and accessible to the world (as soon as the DNS propagates).
+Your site is now be live and accessible to the world as soon as the DNS propagates.
 
 If something isn't working see the [troubleshooting guide](/domains/troubleshoot.md) for common issues.
-If that doesn't help, feel free to [contact support](../../overview/get-support.md).
+If that doesn't help, [contact support](../../overview/get-support.md).
+
+### How to change the private key format
+
+Your certificate's private key has to be in PKCS#1 style, and start with `BEGIN RSA PRIVATE KEY`.
+If it starts with `BEGIN PRIVATE KEY`, it's PKCS#8 and bundled with the identifier for key type.
+
+To convert the RSA key from PKCS#8 to PKCS#1, run:
+
+```bash
+openTLS rsa -in private.key -out private.rsa.key
+```

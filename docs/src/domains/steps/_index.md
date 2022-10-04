@@ -3,16 +3,11 @@ title: "Custom Domains - Step by step guide"
 weight: 2
 sidebarTitle: "Step by step guide"
 description: |
-  Once your project is ready for production, you can add a custom domain.
+    Find out how to take your application live on your own custom domain and replace the automatically generated URLs.
 layout: single
 ---
 
 {{% description %}}
-
-{{< note >}}
-If you are migrating a site from an existing provider,
-configure the domain on your project before switching DNS over.
-{{< /note >}}
 
 ## Before you begin
 
@@ -23,51 +18,16 @@ You need:
 * A registrar that allows CNAME records or [one of the alternatives](./dns.md).
 * Optional: Have the [CLI](/administration/cli/_index.md) installed locally.
 
-If you are planning to host multiple subdomains on different projects,
+If you are planning to use several subdomains of the same domain on different projects,
 see the additional information about [Subdomains](/domains/steps/subdomains.md) *before* you add your domain to Platform.sh.
 
-<<<<<<< HEAD
 Note: adding a domain disables the automatically generated URL for the production environment but doesn't modify the automatically generated URLs used for non-production environments.
 The non-production URLs can't be customized.
-=======
-Note: adding a domain disables the automatically generated URL for the production environment.
-The automatically generated domains used for non-production environments can't be customized.
->>>>>>> 981456c7 (:construction: Refactoring + adding vars)
 
-## 1. Change your plan tier
-
-A production environment is required to add a custom domain.
-Production environment are available for standard (or higher) plans.
-If you are on a development plan, you need to upgrade your tier.
-
-To upgrade your plan tier, you must be an organization owner or have [the manage plans permission](administration/organizations.md#manage-your-organization-users)
-
-To upgrade your plan tier:
-
-<<<<<<< HEAD
-* On the tile of the project you want to upgrade, click **{{< icon more >}} More**.
-* Click **Edit plan**.
-* Change the plan to at least **Standard**.
-* Check the change to the monthly cost.
-* Click **Save**.
-=======
-- On the tile of the project you want to upgrade, click **{{< icon more >}} More**.
-- Click **Edit plan**.
-- Change the plan to at least **Standard**.
-- Check the change to the monthly cost.
-- Click **Save**.
->>>>>>> 981456c7 (:construction: Refactoring + adding vars)
-
-You can find more information on pricing on the [pricing page](https://platform.sh/pricing).
-
-## 2. Get the CNAME target of your project
+## 1. Get the CNAME target of your project
 
 The CNAME target is where your website is hosted within Platform.sh.
-<<<<<<< HEAD
 Your domain {{<variable "YOUR_DOMAIN" >}} needs to point to that target for your site to be live.
-=======
-Your domain needs to point to that target for your site to be live.
->>>>>>> 981456c7 (:construction: Refactoring + adding vars)
 
 {{< codetabs >}}
 
@@ -95,15 +55,13 @@ highlight=false
 For example if the URL to access your production environment is `https://main-def456-abc123.eu-2.platformsh.site`,the target is `main-def456-abc123.eu-2.platformsh.site`.
 
 {{< /codetabs >}}
-<<<<<<< HEAD
 
-## 3. Configure your DNS provider
+## 2. Configure your DNS provider
 
 Your DNS provider (usually your registrar) is where you manage your domain.
-=======
-
-## 3. Configure your DNS provider
->>>>>>> 981456c7 (:construction: Refactoring + adding vars)
+Most registrars offer similar functionalities regarding DNS zone configuration but use different terminology or configuration.
+For example a few registrars require the use of `@` character to create a CNAME records on the APEX domain where most others registrars don't.
+Don't hesitate to consult your registrar's documentation.
 
 {{< codetabs >}}
 
@@ -117,13 +75,8 @@ Configure your domain name to point to your project:
 
 1. Open your registrar's domain management system.
 2. Set the time to live (TTL) on your domain to the lowest possible value to minimize transition time.
-<<<<<<< HEAD
 3. Add a CNAME record from the `www` subdomain [pointing to the target](#2-get-the-cname-target-of-your-project).
 4. Add a CNAME/ANAME/ALIAS from your apex domain [pointing to the target](#2-get-the-cname-target-of-your-project).
-=======
-3. Add a CNAME record from the `www` subdomain (`www.{{<variable "YOUR_DOMAIN" >}})` pointing to the target.
-4. Add a CNAME/ANAME/ALIAS from your apex domain (`{{<variable "YOUR_DOMAIN" >}}`) pointing to the target.
->>>>>>> 981456c7 (:construction: Refactoring + adding vars)
   Not all registrars allow these kinds of records.
   If yours doesn't, see [alternatives](./dns.md).
 5. Optional: If you have multiple domains you want to be served by the same app you need to add a CNAME record for each of them.
@@ -141,11 +94,7 @@ highlight=false
 For Enterprise plans you need to obtain a DNS TXT record from your Platform.sh support representative by [opening a ticket](/overview/get-support.md).
 
 1. Open your CDN's management system.
-<<<<<<< HEAD
 2. Make your CDN [point to the Platform.sh CNAME target](#2-get-the-cname-target-of-your-project).
-=======
-2. Make your CDN point to the Platform.sh CNAME target.
->>>>>>> 981456c7 (:construction: Refactoring + adding vars)
 3. Get the CNAME target for your CDN.
 4. Open your registrar’s domain management system.
 5. Configure your DNS zone to point at your CDN's CNAME target.
@@ -160,12 +109,21 @@ it can take anywhere from 15 minutes to 72 hours for DNS changes to be taken int
 So, if {{<variable "YOUR_DOMAIN" >}} is `example.com`:
 
 * `www.example.com` is a CNAME record pointing to `main-def456-abc123.eu-2.platformsh.site`.
-* `example.com` is a ALIAS/CNAME/ANAME record pointing to `main-def456-abc123.eu-2.platformsh.site`.
+* `example.com` is a CNAME/ANAME/ALIAS record pointing to `main-def456-abc123.eu-2.platformsh.site`.
 
 Both `www.example.com` and `example.com` point to the same target.
 Redirects are handled by the [router you configure](../../define-routes/_index.md).
 
-## 4. Set your domain in Platform.sh
+## 3. Set your domain in Platform.sh
+
+{{< note >}}
+If you are planning on using subdomains across multiple projects, [the setup differs slightly](subdomains.md).
+{{< /note >}}
+
+To add a custom domain, you need a [production environment](../../other/glossary.md#production-plan).
+Production environment are available for standard (or higher) plans. Find more information on [pricing](https://platform.sh/pricing).
+
+To upgrade your plan tier you must be an organization owner or have [the manage plans permission](../../administration/organizations.md#manage-your-organization-users)
 
 Add a single domain to your project:
 
@@ -177,18 +135,20 @@ file=none
 highlight=false
 ---
 
-Run the following command:
+1. If you are on a development plan, you need to upgrade your tier:
 
-<!-- This is in HTML to get the variable shortcode to work properly -->
-<div class="highlight">
-  <pre class="chroma"><code class="language-bash" data-lang="bash">platform domain:add -p {{<variable "PROJECT_ID" >}} {{<variable "YOUR_DOMAIN" >}}</code></pre>
-</div>
+    * On the tile of the project you want to upgrade, click **{{< icon more >}} More**.
+    * Click **Edit plan**.
+    * Change the plan to at least **Standard**.
+    * Check the change to the monthly cost.
+    * Click **Save**.
 
-Once the domain is live, don't forget to delete the entry you added.
+2. Add the custom domain, by running the following command:
 
-```bash
-platform domain:add -p {{<variable "PROJECT_ID" >}} {{<variable "YOUR_DOMAIN" >}}
-```
+    <!-- This is in HTML to get the variable shortcode to work properly -->
+    <div class="highlight">
+      <pre class="chroma"><code class="language-bash" data-lang="bash">platform domain:add {{<variable "YOUR_DOMAIN" >}}</code></pre>
+    </div>
 
 <--->
 
@@ -198,40 +158,22 @@ file=none
 highlight=false
 ---
 
-* Select the project where you want to add a domain.
-* Click {{< icon settings >}} **Settings**.
-* Click **Domains**.
-* Enter your domain into the **Domain** field.
-* Click **+ Add**.
+1. Select the project where you want to add a domain.
+2. Click {{< icon settings >}} **Settings**.
+3. Click **Domains**.
+4. If needed, upgrade to a production plan:
+    * Click **Upgrade plan**.
+    * Change the plan to at least **Standard**.
+    * Check the change to the monthly cost.
+    * Click **Save**.
+    * Click **Back to Plans**
+5. Enter your domain into the **Domain** field.
+6. Click **+ Add**.
 
 {{< /codetabs >}}
-
-When a domain is added to your project,
-the `{default}` in `routes.yaml` is replaced with {{<variable "YOUR_DOMAIN" >}} anywhere it appears when generating routes to respond to.
-Access the original internal domain by running `platform environment:info edge_hostname`.
-
-{{< note >}}
-If you are planning on using subdomains across multiple projects, [the setup differs slightly](subdomains.md).
-{{< /note >}}
-
-## Result
-
-With the assumption that all caches are empty, an incoming request where {{<variable "YOUR_DOMAIN" >}} is `example.com` results in the following:
-
-1. Your browser asks the DNS root servers for `example.com`'s DNS A record (the IP address of this host).
-   The DNS root server responds with "it's an alias for `main-def456-abc123.eu-2.platformsh.site`" (the CNAME),
-   which itself resolves to an A record with an IP address, for example `192.0.2.1`.
-   By default, DNS requests by browsers are recursive, so there is no performance penalty for using CNAME records.
-2. Your browser sends a request to `192.0.2.1` for domain `example.com`.
-3. Your router responds with an HTTP 301 redirect to `www.example.com` because that's that's what's specified in your [routes definition](../../define-routes/_index.md).
-4. Your browser looks up `www.example.com` and, as in step 1, receives an alias for `main-def456-abc123.eu-2.platformsh.site`, which resolves to the IP address `192.0.2.1`.
-5. Your browser sends a request to `192.0.2.1` for the domain `www.example.com`.
-   Your router passes the request to your app, which responds as you have set.
-
-On subsequent requests, your browser knows to connect to `192.0.2.1` for the domain `example.com` and skips the rest.
-The entire process takes only a few milliseconds.
 
 ## What's next
 
 * [use a content delivery network (CDN)](/domains/cdn/_index.md)
 * [use subdomains across multiple projects](subdomains.md)
+* [use a custom TLS certificate](tls.md)

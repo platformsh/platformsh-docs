@@ -20,13 +20,13 @@ www.{{<variable "YOUR_DOMAIN" >}} is an alias for main-t2xxqeifuhpzg.eu.platform
 main-t2xxqeifuhpzg.eu.platform.sh has address 192.0.2.1
 ```
 
-1. If it isn't, either you haven't configured correctly your DNS server, or the DNS configuration didn't propagate yet.
-   As a first step you can try and remove your local DNS cache.
-2. You can also try to set the DNS server of your computer to the Google public DNS server (8.8.8.8/8.8.4.4)
-   to see if the issue is with the DNS server you are using.
-3. Try to run `ping www.{{< variable "YOUR_DOMAIN" >}}`.
+If it isn't, either:
+
+1. Your DNS server isn't correctly configured or the DNS configuration didn't propagate yet. Try and remove your local DNS cache.
+2. Try to set the DNS server of your computer to the Google public DNS server (`8.8.8.8` and `8.8.4.4`) to see if the issue is with the DNS server you are using.
+3. Run `ping www.{{< variable "YOUR_DOMAIN" >}}`.
    If the result is different from what you got from the `host www.{{< variable "YOUR_DOMAIN" >}}`,
-   you might have left an IP-override [from testing](checklist.md#2-test-your-site).
+   IP-overrides could be leftover [from testing](checklist.md#2-test-your-site).
 
 ## Verify SSL
 
@@ -52,6 +52,4 @@ Use a tool such as the [conversion tool provided by Verisign](https://www.verisi
 
 {{% troubleshoot %}}
 
-[Contact support](/overview/get-support.md)
-
-We are here to help. Please include as much detail as possible (we can provide quicker help).
+If your website is still not working as expected, [contact support](/overview/get-support.md)
