@@ -133,15 +133,12 @@ hooks:
         composer install --no-interaction --no-dev
 ```
 
-You can achieve the same thing with the default build flavor and the `COMPOSER_NO_DEV` variable:
+You can achieve the same thing with the default build flavor and the `COMPOSER_NO_DEV` variable.
+Add the variable to your Production environment using the [CLI](../../administration/cli/_index.md)
+with a command like the following:
 
-```yaml {location=".platform.app.yaml"}
-variables:
-    env:
-        COMPOSER_NO_DEV: 1
-
-build:
-    flavor: default # You can leave this out if you like
+```bash
+platform variable:create --environment {{< variable PRODUCTION_ENVIRONMENT_NAME >}} --level environment --name COMPOSER_NO_DEV --value 1 --prefix env --json false --sensitive false --enabled true --inheritable true --visible-build false --visible-runtime false
 ```
 
 ## OPcache preloading
