@@ -19,7 +19,7 @@ premium: true
 
 ### Enterprise edition
 
-{{< add-on-feature feature="MongoDB Enterprise" >}}
+{{< premium-features/add-on feature="MongoDB Enterprise" >}}
 
 | Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |------|-------------------------------|------------------------------ |

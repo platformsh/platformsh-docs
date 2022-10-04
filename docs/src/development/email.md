@@ -64,7 +64,7 @@ Add the following `TXT` record to your domain's DNS records:
 
 ## 3. (Optional) Validate your email
 
-{{< tiered-feature "Enterprise and Elite" >}}
+{{< premium-features/tiered "Enterprise and Elite" >}}
 
 If you're on an Enterprise or Elite plan,
 you can request for DomainKeys Identified Mail (DKIM) to be enabled on your domain.

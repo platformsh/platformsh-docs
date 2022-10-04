@@ -410,7 +410,7 @@ You can also define and access more [complex values](../development/variables/us
 
 ## Firewall
 
-{{< tiered-feature "Elite and Enterprise" >}}
+{{< premium-features/tiered "Elite and Enterprise" >}}
 
 Set limits in outbound traffic from your app with no impact on inbound requests.
 

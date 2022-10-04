@@ -137,7 +137,7 @@ There are three basic ways to authenticate with Platform.sh:
 
 ## Multifactor authentication (MFA) over SSH
 
-{{< tiered-feature "Enterprise and Elite" >}}
+{{< premium-features/tiered "Enterprise and Elite" >}}
 
 To enhance security, Enterprise and Elite customers can enforce MFA over SSH within their organization.
 When this is enabled, every project contributor within your organization must enable MFA in their account

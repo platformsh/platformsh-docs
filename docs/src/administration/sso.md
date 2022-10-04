@@ -30,7 +30,7 @@ Please open a support ticket if you need to exclude a service user.
 
 ### Google
 
-{{< tiered-feature "Enterprise" >}}
+{{< premium-features/tiered "Enterprise" >}}
 
 Enforce your users to authenticate with Google. Please open a support ticket to enable Google SSO.
 
@@ -45,6 +45,6 @@ To resolve that, you need to:
 
 ### OpenId Connect
 
-{{< tiered-feature "Elite" >}}
+{{< premium-features/tiered "Elite" >}}
 
 Enforce your users to authenticate with your OpenID Connect provider. Please open a support ticket to enable SSO with your OpenID Connect provider.
