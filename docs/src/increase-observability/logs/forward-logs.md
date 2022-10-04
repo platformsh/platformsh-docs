@@ -1,13 +1,17 @@
 ---
 title: Forward logs
 description: Send your logs to a third-party service for further analysis.
+<<<<<<< HEAD
 observabilitySuite: true
+=======
+>>>>>>> 41831433 (🚚 Move premium features shortcodes to 1 directory)
 ---
 
 You might use a service to analyze logs from various parts of your fleet.
 You might want to consolidate all your logs in one place that everyone has access to
 without needing to grant them access to each project individually.
 
+<<<<<<< HEAD
 In such cases, forward your logs from Platform.sh to a third-party service.
 You can use a [service with an integration](#use-a-log-forwarding-integration)
 or any service that supports a [syslog endpoint](#forward-to-a-syslog-endpoint).
@@ -126,3 +130,11 @@ To include a property, add it as a flag, for example `--protocol tcp`.
 This should let you connect to any service that has syslog endpoints.
 
 To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
+=======
+In such cases, forward your logs from Platform.sh to a supported third-party service.
+
+{{< note >}}
+
+Log forwarding is available for Grid and {{% names/dedicated-gen-3 %}} projects.
+{{< /note >}}
+>>>>>>> 41831433 (🚚 Move premium features shortcodes to 1 directory)
