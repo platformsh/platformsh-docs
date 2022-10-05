@@ -24,13 +24,58 @@ You could also specify a different file or use [environment variables](../../dev
 The [`n` package](https://github.com/tj/n) works for various Unix-like systems,
 including Windows Subsystem for Linux.
 
-1. Add the desired Node.js version to a `.nvmrc` file in [your app root](../../create-apps/app-reference.md#root-directory):
+1. Add the desired Node.js version to your environment using `.nvmrc`, `.n-node-version`, `.node-version`, or `package.json`.
 
-   ```yaml {location=".nvmrc"}
-   v16.13.2
-   ```
+   {{< codetabs >}}
 
-1. Add it as a dependency:
+---
+title=.nvmrc
+file=none
+highlight=false
+---
+
+Create a `.nvmrc` file in [your app root](../../create-apps/app-reference.md#root-directory):
+
+```yaml {location=".nvmrc"}
+v16.13.2
+```
+
+<--->
+
+---
+title=.n-node-version/.node-version
+file=none
+highlight=false
+---
+
+Create a `.n-node-version` or `.node-version` file in [your app root](../../create-apps/app-reference.md#root-directory):
+
+```yaml {location=".n-node-version or .node-version"}
+16.13.2
+```
+
+<--->
+
+---
+title=package.json
+file=none
+highlight=false
+---
+
+Add an `engines.node` property to your `package.json`.
+This property accepts either an exact version or a range:
+
+```json {location="package.json"}
+{
+  "engines": {
+    "node": ">=0.10.3 <15"
+  }
+}
+```
+
+   {{< /codetabs >}}
+
+2. Add it as a dependency:
 
    ```yaml {location=".platform.app.yaml"}
    dependencies:
@@ -39,7 +84,7 @@ including Windows Subsystem for Linux.
    ```
 
    Adding it as a dependency ensures it's cached for future builds.
-1. Set the location for the Node.js version using the `N_PREFIX` environment variable:
+3. Set the location of the `n` files using the `N_PREFIX` environment variable:
 
    ```yaml {location=".platform.app.yaml"}
    variables:
@@ -47,7 +92,7 @@ including Windows Subsystem for Linux.
            N_PREFIX: /app/.global
    ```
 
-1. Install the specified version of Node.js in a [`build` hook](../../create-apps/hooks/hooks-comparison.md#build-hook):
+4. Install the specified version of Node.js in a [`build` hook](../../create-apps/hooks/hooks-comparison.md#build-hook):
 
    ```yaml {location=".platform.app.yaml"}
    hooks:
