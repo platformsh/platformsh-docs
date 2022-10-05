@@ -42,7 +42,9 @@ public class RabbitMQSample implements Supplier<String> {
             // Receive the message.
             TextMessage replyMsg = (TextMessage) consumer.receive(100);
 
+            logger.append("<p>");
             logger.append("Message: ").append(replyMsg.getText());
+            logger.append("</p>");
 
             // close connections.
             producer.close();

@@ -86,7 +86,7 @@ php:
     deploy: >-
       https://console.platform.sh/projects/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/backdrop/.platform.template.yaml
     content: |
-      PHP 7.3<br />
+      PHP 7.4<br />
       MariaDB 10.4<br />
       Drush included<br />
       Automatic TLS certificates<br />

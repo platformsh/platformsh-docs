@@ -32,18 +32,20 @@ public class KafkaSample implements Supplier<String> {
             configProducer.putIfAbsent(ProducerConfig.CLIENT_ID_CONFIG, "animals");
             final Producer<Long, String> producer = kafka.getProducer(configProducer);
 
+            logger.append("<ul>");
             // Sending data into the stream.
             RecordMetadata metadata = producer.send(new ProducerRecord<>("animals", "lion")).get();
-            logger.append("Record sent with to partition ").append(metadata.partition())
-                    .append(" with offset ").append(metadata.offset()).append('\n');
+            logger.append("<li>Record sent with to partition <code>").append(metadata.partition())
+                    .append("</code> with offset <code>").append(metadata.offset()).append("</code></li>");
 
             metadata = producer.send(new ProducerRecord<>("animals", "dog")).get();
-            logger.append("Record sent with to partition ").append(metadata.partition())
-                    .append(" with offset ").append(metadata.offset()).append('\n');
+            logger.append("<li>Record sent with to partition <code>").append(metadata.partition())
+                    .append("</code> with offset <code>").append(metadata.offset()).append("</code></li>");
 
             metadata = producer.send(new ProducerRecord<>("animals", "cat")).get();
-            logger.append("Record sent with to partition ").append(metadata.partition())
-                    .append(" with offset ").append(metadata.offset()).append('\n');
+            logger.append("<li>Record sent with to partition <code>").append(metadata.partition())
+                    .append("</code> with offset <code>").append(metadata.offset()).append("</code></li>");
+            logger.append("</ul>");
 
             // Consumer, read data from the stream.
             final HashMap<String, Object> configConsumer = new HashMap<>();
@@ -53,13 +55,15 @@ public class KafkaSample implements Supplier<String> {
             Consumer<Long, String> consumer = kafka.getConsumer(configConsumer, "animals");
             ConsumerRecords<Long, String> consumerRecords = consumer.poll(Duration.ofSeconds(3));
 
+            logger.append("<ul>");
             // Print each record.
             consumerRecords.forEach(record -> {
-                logger.append("Record: Key " + record.key());
-                logger.append(" value " + record.value());
-                logger.append(" partition " + record.partition());
-                logger.append(" offset " + record.offset()).append('\n');
+                logger.append("<li>Record: Key <code>" + record.key());
+                logger.append("</code> value <code>" + record.value());
+                logger.append("</code> partition <code>" + record.partition());
+                logger.append("</code> offset <code>" + record.offset()).append("</code></li>");
             });
+            logger.append("</ul>");
 
             // Commits the offset of record to broker.
             consumer.commitSync();

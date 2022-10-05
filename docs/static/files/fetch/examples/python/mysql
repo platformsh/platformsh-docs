@@ -24,7 +24,7 @@ def usage_example():
 
         sql = '''
                 CREATE TABLE People (
-                id SERIAL PRIMARY KEY,
+                id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                 name VARCHAR(30) NOT NULL,
                 city VARCHAR(30) NOT NULL
                 )

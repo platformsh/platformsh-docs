@@ -37,8 +37,8 @@ func UsageExampleMySQL() string {
 
 	// Creating a table.
 	sqlCreate := \x60
-CREATE TABLE IF NOT EXISTS PeopleGo (
-id SERIAL PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS People (
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 name VARCHAR(30) NOT NULL,
 city VARCHAR(30) NOT NULL)\x60
 
@@ -47,7 +47,7 @@ city VARCHAR(30) NOT NULL)\x60
 
 	// Insert data.
 	sqlInsert := \x60
-INSERT INTO PeopleGo (name, city) VALUES
+INSERT INTO People (name, city) VALUES
 ('Neil Armstrong', 'Moon'),
 ('Buzz Aldrin', 'Glen Ridge'),
 ('Sally Ride', 'La Jolla');\x60
@@ -65,7 +65,7 @@ INSERT INTO PeopleGo (name, city) VALUES
 	var name string
 	var city string
 
-	rows, err := db.Query("SELECT * FROM PeopleGo")
+	rows, err := db.Query("SELECT * FROM People")
 	if err != nil {
 		panic(err)
 	} else {
@@ -77,7 +77,7 @@ INSERT INTO PeopleGo (name, city) VALUES
 		table += "</tbody>\n</table>\n"
 	}
 
-	_, err = db.Exec("DROP TABLE PeopleGo;")
+	_, err = db.Exec("DROP TABLE People;")
 	checkErr(err)
 
 	return table
