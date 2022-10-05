@@ -28,7 +28,7 @@ across all hosts.
 
 This reference project has a single app, two services (MySQL and Redis), and one worker.
 
-Once you've read the metrics, see [recommendations for action](./_index.md#dedicated-generation-3-environments).
+Once you've read the metrics, see [recommendations for action](./_index.md#dedicated-gen-3-environments).
 
 ### App container
 
