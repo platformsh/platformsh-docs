@@ -23,7 +23,7 @@ jobs:
 
       - env:
           PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
-        run: platform environment:activate -p 652soceglkw4u -y ${{ github.event.pull_request.head.ref }}
+        run: platform environment:activate --no-wait -p 652soceglkw4u -y ${{ github.event.pull_request.head.ref }}
 
   deactivate_environment:
     runs-on: ubuntu-latest
