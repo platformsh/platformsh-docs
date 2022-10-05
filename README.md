@@ -88,7 +88,7 @@ If you would like to test the search server, follow these steps:
    curl -OL "https://github.com/meilisearch/MeiliSearch/releases/download/v$MEILISEARCH_VERSION/$RELEASE_FILE"
    # Make Meilisearch executable – skip for Windows, probably
    mv "$RELEASE_FILE" "meilisearch"
-   chmod 744 "meilisearch
+   chmod 744 "meilisearch"
    ```
 
 2. Run Meilisearch with a master key:
