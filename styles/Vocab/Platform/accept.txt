@@ -124,6 +124,7 @@ Servlet
 shard
 shortcode
 Slowloris
+Splunk
 Stempel
 stdout
 Strapi
