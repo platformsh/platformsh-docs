@@ -2,4 +2,4 @@
 
 | Service | `type` | Supported versions |
 | ------- | ------ | ------------------ |{{ range sort $registry "type" }}{{ if eq .runtime false }}
-| [{{ .name }}]({{ .docs.url }}) | `{{ .type }}` | {{ delimit .versions.supported ", " }} |{{ end }}{{ end }}
+| [{{ .name }}]({{ .docs.url }}){{ if .premium }} {{ partial "premium-features/badge" }}{{ end }} | `{{ .type }}` | {{ delimit .versions.supported ", " }} |{{ end }}{{ end }}

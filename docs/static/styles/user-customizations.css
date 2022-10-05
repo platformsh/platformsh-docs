@@ -477,3 +477,15 @@ var {
   font-style: italic;
   cursor: help;
 }
+
+/* Badge for premium features */
+.premium-badge {
+  font-size: 0.875rem;
+  line-height: 1.532;
+  color: #000000;
+  background-color: #a7c5ea;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  margin-left: 0.5rem;
+
+}
