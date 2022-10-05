@@ -75,31 +75,13 @@ Configure your domain name to point to your project:
 
 1. Open your registrar's domain management system.
 2. Set the time to live (TTL) on your domain to the lowest possible value to minimize transition time.
-3. Add a CNAME record from the `www` subdomain [pointing to the target](#2-get-the-cname-target-of-your-project).
-4. Add a CNAME/ANAME/ALIAS from your apex domain [pointing to the target](#2-get-the-cname-target-of-your-project).
+3. Add a CNAME record from the `www` subdomain [pointing to the target](#1-get-the-cname-target-of-your-project).
+4. Add a CNAME/ANAME/ALIAS from your apex domain [pointing to the target](#1-get-the-cname-target-of-your-project).
   Not all registrars allow these kinds of records.
   If yours doesn't, see [alternatives](./dns.md).
 5. Optional: If you have multiple domains you want to be served by the same app you need to add a CNAME record for each of them.
 6. Check that the domain and subdomain are working as expected.
 7. Set the TTL value back to its previous value.
-
-<--->
-
----
-title=Using a CDN
-file=none
-highlight=false
----
-
-For Enterprise plans you need to obtain a DNS TXT record from your Platform.sh support representative by [opening a ticket](/overview/get-support.md).
-
-1. Open your CDN's management system.
-2. Make your CDN [point to the Platform.sh CNAME target](#2-get-the-cname-target-of-your-project).
-3. Get the CNAME target for your CDN.
-4. Open your registrar’s domain management system.
-5. Configure your DNS zone to point at your CDN's CNAME target.
-The address or CNAME record to set for that varies with the CDN provider.
-Refer to their documentation or to the [CDN guide](/domains/cdn/_index.md).
 
 {{< /codetabs >}}
 

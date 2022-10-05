@@ -182,7 +182,7 @@ That means every time Platform.sh is doing routine maintenance or upgrades on th
 
 Using a CNAME DNS record pointing at the "edge hostname" avoids that problem, as it updates almost immediately should our edge router configuration change.
 
-## Example incoming request to your app
+## Example of an incoming request to your app
 
 With the assumptions that:
 

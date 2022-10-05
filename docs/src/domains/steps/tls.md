@@ -77,7 +77,7 @@ For the new certificate to be taken into account, you need to [redeploy the envi
 platform environment:redeploy
 ```
 
-Your site is now be live and accessible to the world as soon as the DNS propagates.
+Your site is now live and accessible to the world as soon as the DNS propagates.
 
 If something isn't working see the [troubleshooting guide](/domains/troubleshoot.md) for common issues.
 If that doesn't help, [contact support](../../overview/get-support.md).
