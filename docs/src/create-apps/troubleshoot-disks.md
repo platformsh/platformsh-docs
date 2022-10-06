@@ -6,7 +6,7 @@ title: "Troubleshoot disks"
 
 ## Exceeding plan storage limit
 
-Professional plans come with a default amount of storage that you can [change with your plan](../overview/pricing/_index.md).
+Professional plans come with a default amount of storage that you can [change with your plan](../administration/pricing/_index.md).
 The storage is allocated among your services and applications using the `disk` parameter in their configuration files.
 
 You might accidentally set the sum of all `disk` parameters in the files to exceed your plans storage limit.
