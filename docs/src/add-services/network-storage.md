@@ -103,7 +103,7 @@ For example, you can define a network storage service:
 
 ```yaml {location=".platform/services.yaml"}
 files:
-    type: network-storage:1.0
+    type: network-storage:2.0
     disk: 2048
 ```
 
@@ -160,7 +160,7 @@ For example, the following `.platform.app.yaml` file (fragment) keeps Drupal fil
 
 ```yaml
 name: 'app'
-type: 'php:7.2'
+type: 'php:8.1'
 
 relationships:
     database: 'db:mysql'
