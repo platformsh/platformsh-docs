@@ -160,7 +160,7 @@ For example, the following `.platform.app.yaml` file (fragment) keeps Drupal fil
 
 ```yaml
 name: 'app'
-type: 'php:7.2'
+type: 'php:8.1'
 
 relationships:
     database: 'db:mysql'
