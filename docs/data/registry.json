@@ -431,6 +431,18 @@
         "10.1 Galera",
         "10.0 Galera"
       ]
+    },
+    "versions-dedicated-gen-3": {
+      "supported": [
+        "10.6 Galera",
+        "10.5 Galera",
+        "10.4 Galera",
+        "10.3 Galera"
+      ],
+      "deprecated": [
+        "10.2 Galera",
+        "10.1 Galera"
+      ]
     }
   },
   "mysql": {
@@ -449,23 +461,25 @@
     "type": "mysql",
     "versions": {
       "deprecated": [
+        "10.2",
+        "10.1",
+        "10.0",
         "5.5"
       ],
       "supported": [
         "10.6",
         "10.5",
         "10.4",
-        "10.3",
-        "10.2",
-        "10.1",
-        "10.0"
+        "10.3"
       ]
     },
     "versions-dedicated-gen-2": {
       "supported": [
         "10.5 Galera",
         "10.4 Galera",
-        "10.3 Galera",
+        "10.3 Galera"
+      ],
+      "deprecated": [
         "10.2 Galera",
         "10.1 Galera",
         "10.0 Galera"
@@ -476,7 +490,9 @@
         "10.6 Galera",
         "10.5 Galera",
         "10.4 Galera",
-        "10.3 Galera",
+        "10.3 Galera"
+      ],
+      "deprecated": [
         "10.2 Galera",
         "10.1 Galera"
       ]
