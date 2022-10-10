@@ -10,6 +10,7 @@ env:
 jobs:
   get_pr_info:
     runs-on: ubuntu-latest
+    name: Get info on build from PR
     steps: 
       - uses: actions/checkout@v3
         # Run only for PRs from default repo and approved PRs from forks
@@ -17,6 +18,13 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Fail forked PRs without authorization
+        # If a PR is from a fork and doesn't have the `build-fork` label, fail the workflow
+        if: github.event.pull_request.head.repo.id != 21975579 && !contains(github.event.pull_request.labels.*.name, 'build-fork')
+        run: |
+          echo "This PR doesn't have sufficient permission to be built"
+          exit 1
 
       - name: Set branch name
         id: branch_name
