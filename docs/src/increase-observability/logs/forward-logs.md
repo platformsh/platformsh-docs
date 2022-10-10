@@ -11,7 +11,7 @@ without needing to grant them access to each project individually.
 In such cases, forward your logs from Platform.sh to a supported third-party service.
 
 Log forwarding is available for Grid and {{% names/dedicated-gen-3 %}} projects.
-For {{% names/dedicated-gen-2 %}} projects, see how [log remotely with `rsyslog`](../../dedicated-gen-2/architecture/options.md#remote-logging).
+For {{% names/dedicated-gen-2 %}} projects, see how to [log remotely with `rsyslog`](../../dedicated-gen-2/architecture/options.md#remote-logging).
 
 ## Supported third-party services
 
@@ -46,7 +46,7 @@ file=none
    You need a [license key](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/#license-key).
    Your New Relic organization likely has one, but you can create one by following the New Relic docs.
 2. Choose an API endpoint.
-   You can use the US endpoint `https://log-api.newrelic.com/log/v1`
+   You can use the U.S. endpoint `https://log-api.newrelic.com/log/v1`
    or the EU endpoint `https://log-api.eu.newrelic.com/log/v1`.
 3. Create the integration with the following command:
 
@@ -63,7 +63,7 @@ file=none
 
 1. In Splunk, get an Event Collector token on [Splunk Platform](https://docs.splunk.com/Documentation/Splunk/latest/Data/UsetheHTTPEventCollector#Create_an_Event_Collector_token_on_Splunk_Cloud_Platform)
    or [Splunk Enterprise](https://docs.splunk.com/Documentation/Splunk/latest/Data/UsetheHTTPEventCollector#Create_an_Event_Collector_token_on_Splunk_Enterprise).
-2. Determine your host. That is the Splunk instance that is collecting data.
+2. Determine your host, which is the Splunk instance that's collecting data.
 3. Choose an index name.
 4. Create the integration with the following command:
 
