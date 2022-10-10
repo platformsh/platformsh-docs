@@ -11,6 +11,7 @@ without needing to grant them access to each project individually.
 In such cases, forward your logs from Platform.sh to a supported third-party service.
 
 Log forwarding is available for Grid and {{% names/dedicated-gen-3 %}} projects.
+For {{% names/dedicated-gen-2 %}} projects, see how [log remotely with `rsyslog`](../../dedicated-gen-2/architecture/options.md#remote-logging).
 
 ## Supported third-party services
 
