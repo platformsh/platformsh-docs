@@ -27,27 +27,40 @@ jobs:
 
   deactivate_environment:
     runs-on: ubuntu-latest
+    # For non-forked PRs
     # Deactivate when a PR is closed
     # Don't need to run on merges since the integration takes care of it
     if: >-
       github.event.action == 'closed' &&
-      github.event.pull_request.merged == false
+      github.event.pull_request.merged == false &&
+      github.event.pull_request.head.repo.id == 21975579
     steps:
       # Set up environment to use the Platform.sh CLI
       - uses: adam7/platformsh-cli-action@v1.1
         with: 
           token: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
-      
-      - name: Set environment name
-        id: get_env_name
-        run: |
-          # For PRs from non-forked repos
-          if [ ${{ github.event.pull_request.head.repo.id }} == 21975579 ]; then
-            echo "::set-output name=env_name::${{ github.event.pull_request.head.ref }}"
-          # For PRs from forks
-          else
-            echo "::set-output name=env_name::pr-${{ github.event.number }}"
-          fi
 
       - name: Close environment
-        run: platform environment:deactivate -p 652soceglkw4u --no-delete-branch -y ${{ steps.get_env_name.outputs.env_name }}
+        run: platform environment:deactivate -p 652soceglkw4u --no-delete-branch -y ${{ github.event.pull_request.head.ref }}
+
+  deactivate_forked_environment:
+    runs-on: ubuntu-latest
+    # For forked PRs
+    # Delete branch when a PR is closed
+    if: >-
+      github.event.action == 'closed' &&
+      github.event.pull_request.head.repo.id != 21975579
+    steps:
+      # Set up environment to use the Platform.sh CLI
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Delete branch
+        # If the pr- branch exists, delete it
+        run: |
+          BRANCH=$(git ls-remote --heads origin pr-${{ github.event.number }})
+          echo $BRANCH
+
+          if [[ -n $BRANCH ]]; then
+            git push origin --delete pr-${{ github.event.number }}
+          fi
