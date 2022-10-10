@@ -827,7 +827,6 @@ So in the following example, if your app tries to access `api.example.com`, it's
 
 ```yaml {location=".platform.app.yaml"}
 additional_hosts:
-  extensions:
     api.example.com: "192.0.2.23"
     web.example.com: "203.0.113.42"
 ```
