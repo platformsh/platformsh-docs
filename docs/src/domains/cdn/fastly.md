@@ -15,8 +15,8 @@ but it is a common choice for customers to self-configure.
 
 Launching a Platform.sh site with Fastly in front of it is nearly the same as launching normally.
 There are only a few notable differences.
-Individual applications may have their own Fastly setup instructions or additional modules.
-Consult the documentation for your application for specific details.
+Individual apps may have their own Fastly setup instructions or additional modules.
+Consult the documentation for your app for specific details.
 
 {{% disable-cache CDN="Fastly" %}}
 

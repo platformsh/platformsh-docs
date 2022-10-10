@@ -62,12 +62,13 @@ file=none
 highlight=false
 ---
 
-* Select the project where you want to add a certificate.
-* Click {{< icon settings >}} **Settings**.
-* Click **Certificates**.
-* Click **+ Add**.
-* Fill in your private key, public key certificate, and (optionally) intermediate SSL certificates.
-* Click **Add Certificate**.
+1. Open the [Console](https://console.platform.sh)
+2. Click the tile of the project you want to access where you want to add a certificate.
+3. Click {{< icon settings >}} **Settings**.
+4. Click **Certificates**.
+5. Click **+ Add**.
+6. Fill in your private key, public key certificate, and (optionally) intermediate SSL certificates.
+7. Click **Add Certificate**.
 
 {{< /codetabs >}}
 

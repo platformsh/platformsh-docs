@@ -22,7 +22,7 @@ That record results in {{<variable "YOUR_DOMAIN" >}} being treated as a top-leve
 letting you add multiple subdomains to different projects.
 
 Note: You should add this record before you add your first domain to Platform.sh.
-You can remove the record after adding subdomains, which reinstates [hijacking protection](#subdomain-hijacking-protection).
+You can remove the record after adding subdomains, which reinstates [subdomain hijacking protection](#subdomain-hijacking-protection).
 
 If you don't add that record, and try to use a domain that's claimed, you see an error like the following:
 
@@ -34,10 +34,10 @@ This domain is already claimed by another project. If this is incorrect or you a
 
 ### The Public Suffix List
 
-Domain names are segmented into different hierarchical levels, separated by a dot.
+Domain names are segmented into different hierarchical levels, separated by a `.`.
 The right-most portion of the domain, such as `.com`, `.edu`, and `.fr`,
 is known as the top-level domain (TLD).
-Most Internet applications (such as web browsers) handle TLD specially, such as by restricting certain actions.
+Most Internet applications (such as web browsers) handle TLDs specially, such as by restricting certain actions.
 
 For example, a web page at `foo.bar.baz.example.com` can usually set a cookie that's linked to:
 
@@ -49,9 +49,9 @@ For example, a web page at `foo.bar.baz.example.com` can usually set a cookie th
 But that web page can *not* set a cookie to all `.com` domains.
 
 That allows a single logical site to be segmented across different subdomains but use a single account login cookie without causing a security risk to all `.com` domains.
-Other restrictions apply on TLD's, but cookies are the easiest example.
+Other restrictions apply on TLDs, but cookies are the easiest example.
 
-Aside from true TLD, browser makers have a list of domain suffixes that get the same special handling
+Aside from true TLDs, browser makers have a list of domain suffixes that should get the same special handling
 called the [Public Suffix List (PSL)](https://publicsuffix.org/).
 If you added the `example.com` domain to the PSL,
 browsers would refuse to set a cookie on `example.com` from a page at `foo.example.com` but would still accept cookies from a page at `example.com`.
@@ -70,7 +70,7 @@ that project now owns `example.com` as far as Platform.sh is concerned
 and no other project can have a domain anywhere in `*.example.com`.
 Multiple subdomains within that same project are perfectly fine.
 
-In most cases, the PSL is a welcomed added layer of security.
+In most cases, the PSL is a desirable added layer of security.
 But you may run into a problem when you want multiple subdomains from the same organization as separate projects.
 For example, multiple departments at the same university.
 One option would be to add `example.com` to the PSL, but you might not want or be able to do that.
@@ -92,7 +92,7 @@ The subdomain hijacking protection ensures that no other users can add a subdoma
 
 ## Locked domains
 
-In certain cases (such as if your domain was manually added by the support team),
+In certain cases (such as if your domain was added manually by Platform.sh support),
 your domain may be reserved for the project you added it to.
 Then you can't set up a second project with the bare domain (`example.com`) or a subdomain (`foo.example.com`).
 

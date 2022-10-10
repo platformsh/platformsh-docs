@@ -2,7 +2,7 @@
 title: "Going Live - Troubleshooting"
 weight: 4
 description: |
-  If your site still does not resolve (after waiting for the DNS updates to propagate), follow these steps before contacting support.
+  If your site still doesn't resolve after the DNS changes, check the troubleshooting before contacting support.
 sidebarTitle: "Troubleshooting"
 ---
 
@@ -16,15 +16,15 @@ On the command line using macOS, Linux or the Linux subsystem for Windows, type:
 The response where `www.{{< variable "YOUR_DOMAIN" >}}` is `example.com` should be something like:
 
 ```text
-www.{{<variable "YOUR_DOMAIN" >}} is an alias for main-t2xxqeifuhpzg.eu.platform.sh.
-main-t2xxqeifuhpzg.eu.platform.sh has address 192.0.2.1
+www.{{<variable "YOUR_DOMAIN" >}} is an alias for main-def456-abc123.eu-2.platformsh.site.
+main-def456-abc123.eu-2.platformsh.site has address 192.0.2.1
 ```
 
-If it isn't, either:
+If it isn't:
 
-1. Your DNS server isn't correctly configured or the DNS configuration didn't propagate yet. Try and remove your local DNS cache.
-2. Try to set the DNS server of your computer to the Google public DNS server (`8.8.8.8` and `8.8.4.4`) to see if the issue is with the DNS server you are using.
-3. Run `ping www.{{< variable "YOUR_DOMAIN" >}}`.
+* Your DNS server probably isn't correctly configured or the DNS configuration didn't propagate yet. Try and remove your local DNS cache.
+* Set the DNS server of your computer to the Google public DNS server (`8.8.8.8` and `8.8.4.4`) to see if the issue is with the DNS server you are using.
+* Run `ping www.{{< variable "YOUR_DOMAIN" >}}`.
    If the result is different from what you got from the `host www.{{< variable "YOUR_DOMAIN" >}}`,
    IP-overrides could be leftover [from testing](checklist.md#2-test-your-site).
 

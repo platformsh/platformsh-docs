@@ -13,13 +13,8 @@ sidebarTitle: "Pre-Launch Checklist"
 Before you go live, you need a domain name registered with the registrar of your choice.
 That registrar must allow you to use a Canonical Name (CNAME) record for your APEX domain.
 Some registrars may call these `ALIAS` or `ANAME`.
-
-{{< note >}}
-
 You can't use a `A` record.
 Verify your Registrar supports CNAME for APEX domains.
-
-{{< /note >}}
 
 See more on [what an APEX domain is](/domains/steps/dns.md#what-is-an-apex-domain).
 
@@ -31,6 +26,7 @@ In particular, see the [Routes documentation](../define-routes/_index.md).
 If you turned on basic-authentication during development, make sure [to turn it off before launch](/administration/web/configure-environment.md).
 
 If your production environment is on a Dedicated instance:
+
 1. Ensure that the code is up-to-date in both your `staging` and `production` branches. Those are mirrored to the Dedicated instances.
 2. Ensure that the data on the production instance is up-to-date and ready to launch.
 
@@ -48,12 +44,12 @@ file=none
 highlight=false
 ---
 
-1. Get the CNAME target of your project's production environment, run `dig +short $(platform environment:info edge_hostname)`.
+1. Get the CNAME target of your project's production environment by running `dig +short $(platform environment:info edge_hostname)`.
 2. Copy all IP addresses (usually 1-3) that are returned.
 3. Download the fitting browser extension:
   * [Firefox LiveHosts add-on](https://addons.mozilla.org/en-US/firefox/addon/livehosts/)
   * [Chrome LiveHosts extension](https://chrome.google.com/webstore/detail/livehosts/hdpoplemgeaioijkmoebnnjcilfjnjdi)
-4. Add the IP address(es) and domain name to override in the extension.
+4. In the browser extension, add the IP address(es) and domain name to override.
 
 <--->
 
@@ -63,7 +59,7 @@ file=none
 highlight=false
 ---
 
-1. Get the CNAME target of your project's production environment, run `dig +short $(platform environment:info edge_hostname)`.
+1. Get the IP's of your project's production environment by running `dig +short $(platform environment:info edge_hostname)`.
 2. Copy all IP addresses (usually 1-3) that are returned.
 3. Open the `/etc/hosts` file with admin privileges using your favorite text editor.
 4. Add the {{<variable "IP" >}} and `www.`{{< variable "YOUR_DOMAIN" >}} to that file.
@@ -94,11 +90,12 @@ file=none
 highlight=false
 ---
 
-1. Get the CNAME target of your project's production environment, run `dig +short $(platform environment:info edge_hostname)`.
+1. Get the IP's of your project's production environment by running `dig +short $(platform environment:info edge_hostname)`.
 2. Copy all IP addresses (usually 1-3) that are returned.
 3. Open the `c:\Windows\System32\Drivers\etc\hosts` file with admin privileges using your favorite text editor.
 4. Add the {{<variable "IP" >}} and `www.`{{<variable "YOUR_DOMAIN" >}} to that file.
 5. Add the {{<variable "IP" >}} and {{<variable "YOUR_DOMAIN" >}} to that file.
+6. Save and close the file.
 
 After adding these lines the file looks something like:
 
@@ -129,7 +126,7 @@ After adding these lines the file looks something like:
   
 {{< /codetabs >}}
 
-Once the domain is live, don't forget to delete the entries you added.
+Once your tests are over and the domain is live, don't forget to delete the entries you added.
 
 ## 3. Optional: Obtain a third-party TLS certificate
 
