@@ -562,6 +562,7 @@
     "name": "MongoDB",
     "runtime": false,
     "type": "mongodb-enterprise",
+    "premium": true,
     "versions": {
       "supported": [
         "5.0",

@@ -120,7 +120,7 @@ The following table presents the available service types and their versions.
 Add them to the `type` key of the [service configuration](#1-configure-the-service) in the format `type:version`.
 
 <!-- To update the versions in this table, use docs/data/registry.json -->
-{{< readFile file="src/registry/images/tables/services_supported.md" markdownify="true">}}
+{{% supported-services %}}
 
 ### Service versions
 
