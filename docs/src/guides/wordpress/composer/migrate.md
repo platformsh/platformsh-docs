@@ -6,70 +6,75 @@ description: |
     Everything you need to get started with WordPress on Platform.sh. 
 ---
 
-This guide will take you through the steps to update your [*vanilla*](/guides/wordpress/vanilla/_index.md), fully committed, WordPress repository to one fully managed with Composer. It is assumed that you already have (locally) a vanilla version of WordPress where all of core, themes, and plugins are committed to the repository or committed as submodules, and that it has been set up for deployment on Platform.sh. Because of these assumptions, you should already have Platform.sh configuration files in your repository to deploy the resulting Composer-based WordPress site on Platform.sh. If you do not, follow the [previous guide](/guides/wordpress/vanilla/_index.md) and add them. 
+Composer helps you declare, manage and install all the dependencies needed to run your project. It allows you to make your WordPress site [more stable, secure, and easier to maintain](/guides/wordpress/composer/_index.md).
 
-For more context regarding why Platform.sh recommends Composer-based installations of WordPress, see the ["Using Composer" guide](/guides/wordpress/composer/_index.md).
+To update your WordPress site to use Composer, check that:
+- You already have [a vanilla version of WordPress installed locally](/guides/wordpress/vanilla/_index.md).
+- Your WordPress core, themes and plugins are committed to your WordPress repository or committed as submodules.
+- Your project has been set up for deployment on Platform.sh. If you do not have Platform.sh configuration files in your repository, make sure you [deploy WordPress without Composer](/guides/wordpress/vanilla/_index.md) before upgrading to a Composer-based site.
 
-## WordPress Core
+## Install WordPress with Composer
 
-Instead of committing all of WordPress to your repository (or adding it as a submodule), this section will show you how to install WordPress through Composer. 
+Instead of committing all of WordPress to your repository (or adding it as a submodule), you can install it with Composer. To do so:
 
 1. **Download Composer** 
 
     If you do not already have Composer installed, [install it now](https://getcomposer.org/download/).
 
-2. **Branch** 
+2. **Switch to a new Git branch** 
     
-    Since you are making changes to your repository and Platform.sh environment, branch your codebase:
+    To safely make changes to your repository and Platform.sh environment, run the command:
 
     ```bash
     $ git checkout -b composer
     ```
-3. **Initialize repository as Composer project**
+3. **Turn your repository into a Composer repository**
 
-    You need to have a `composer.json` on your project to use Composer. This file defines the dependencies you want to include (WordPress itself, plugins, and themes). When those dependencies are installed, a matching `composer.lock` file is generated from it that locks each of them down to the minor version, ensuring repeatable builds until you update.
-    
-    Run the command:
+     To use Composer, you need:
+    - A `composer.json` file listing all the dependencies needed for your project to run (WordPress itself, its plugins and themes).
+    - A `composer.lock` file listing the exact versions of all the dependencies installed on your project. Generated from the `composer.json` file, it ensures repeatable builds until you update.
+
+    To turn your repository into a Composer repository and generate those files, run the command:
 
     ```bash
     $ composer init
     ```
 
-    This will prompt you to set some metadata attributes for the project, such as its name and license information. When you get to the part about installing dependencies, type `no`, as you will add them in a later step.
+    When prompted, set metadata attributes for your project (name, license information...). When you get to the part about installing dependencies, type `no`, as you will add them later.
 
-4. **Cleanup WordPress core**
+4. **Clean up WordPress core**
 
-    Your existing installation of WordPress core is assumed to be in some subdirectory of your repository, such as `wordpress`. When we start managing WordPress with Composer in the next step, *all code in this subdirectory is overwritten*. The [previous guide](/guides/wordpress/vanilla/_index.md) instructs you to move all plugins and themes out of WordPress core and into a separate `plugins` subdirectory, so if you have not already done so consult that guide and do so now. 
+     Your existing installation of WordPress core is assumed to be in a subdirectory of your repository (often named `wordpress`). For Composer to manage WordPress, **this subdirectory needs to be overwritten**. Make sure that you move all your important data to another subdirectory. For instance, add your plugins and themes to a separate `plugins` subdirectory. 
 
-    Inspect WordPress core carefully, and ensure that their isn't any data in that subdirectory you would not like to lose specific to your site. Unless you are managing WordPress core as a [submodule](/development/submodules.md#removing-submodules), you can now remove that subdirectory 
+    Unless you are managing WordPress core as a [submodule](/development/submodules.md#removing-submodules), you can now remove the `wordpress` subdirectory: 
 
     ```bash
     $ rm -rf wordpress
     ```
 
-    Add `wordpress` to your `.gitignore`, by adding our standard WordPress `.gitignore` to the bottom of your existing file. Platform.sh's template `.gitignore` will complete the setup for Composer, but also include other files specific to Platform.sh and developing locally with  Lando. 
+    Then, you need to overwrite your existing `.gitignore` file with Platform.sh’s template `.gitignore` file, which is then used to complete the setup for Composer. Note that the `wordpress` subdirectory is added to the resulting `.gitignore` file. This way, after Composer reinstalls WordPress, the `wordpress` subdirectory will be ignored in commits:
 
     ```bash
     $ curl https://raw.githubusercontent.com/platformsh/template-builder/master/templates/wordpress-composer/files/.gitignore >> .gitignore
     ```
     
-    Then, remove WordPress from the repository:
+    You can now remove WordPress from the repository:
 
     ```bash
     $ git rm -rf --cached wordpress && rm -rf wordpress
     $ git add . && git commit -m "Remove WordPress"
     ```
 
-4. **Install WordPress with Composer**
+4. **Launch the installation of WordPress with Composer**
 
-    Now that you have made your WordPress site into a Composer project, you can download packages via Composer. So, let's download WordPress itself. 
+    Now that you have made your WordPress site into a Composer project, you can download packages via Composer. To download WordPress itself, run the commands:
 
     ```bash
     $ composer require johnpbloch/wordpress-core-installer
     $ composer require johnpbloch/wordpress-core
     ```
 
-    You will notice that these two dependencies have been added to your `composer.json` file:
+    The two dependencies are now listed in your `composer.json` file:
 
     ```json
     {
@@ -80,31 +85,32 @@ Instead of committing all of WordPress to your repository (or adding it as a sub
     }
     ```
 
-    Run `composer install`. WordPress will now reinstall into the `wordpress` subdirectory, although it will now be ignored in commits.
+    Complete the installation:
+    
+    ```bash
+     $ composer install
+     ```
+     
+     Composer reinstalls WordPress into the `wordpress` subdirectory.
 
-## Platform.sh configuration
+## Install WordPress Themes and Plugins with Composer
 
-Switching to Composer-based installation will not require any modifications to your Platform.sh configuration files added in the The [previous guide](/guides/wordpress/vanilla/_index.md). Again, add them now if you would like to deploy your WordPress site on Platform.sh if you have not already.
+Just like WordPress core, you can install themes and plugins with the `composer require` command. To do so:
 
-## Themes and Plugins
+1. **Configure the WPackagist repository**
 
-Like WordPress core itself, themes and plugins can be installed as dependencies with Composer with the same `composer require` command used above. 
-
-1. **Configure the WPPackagist repository**
-
-    When you download dependencies using Composer, you by default retrieve them through [Packagist](https://packagist.org),
+    By default, when you download dependencies using Composer, you retrieve them through [Packagist](https://packagist.org),
     which is the primary Composer repository for public PHP packages.
-    In the previous section, you installed WordPress core through this repository.
     Some themes and plugins for WordPress are also on Packagist,
     but most of them are accessible through a similar service specific to WordPress called [WPackagist](https://wpackagist.org). 
 
-    To pull from this repository, you need to add WPackagist to your `composer.json` file so that Composer knows to look for packages there. Run the command: 
+    To allow Composer to download packages from the WPackagist repository, add it to your `composer.json` file: 
 
     ```bash
     $ composer config repositories.wppackagist composer https://wpackagist.org
     ```
 
-    You will see that this will add WPackagist to `composer.json`:
+    WPackagist is now listed in your `composer.json`:
 
     ```json
     {
@@ -117,9 +123,9 @@ Like WordPress core itself, themes and plugins can be installed as dependencies 
     }
     ```
 
-2. **Configure theme and plugin destination**
+2. **(Optional) Configure theme and plugin destination**
 
-    Typically, Composer places installed dependencies in a subdirectory called `vendor` in your repository. But as shown already with WordPress core, this can be configured to install elsewhere if desired (since core installed to `wordpress` instead). To get themes and plugins to install into `wp-content`, add the following block to your `composer.json` file:
+    By default, Composer places installed dependencies in a subdirectory called `vendor` in your repository. But you can configure a different destination for your themes and plugins. For instance, to install them into `wp-content`, add the following block to your `composer.json` file:
 
     ```json
     "extra": {
@@ -137,36 +143,54 @@ Like WordPress core itself, themes and plugins can be installed as dependencies 
     }
     ```
 
-    Now any plugin that contains as a part of its package metadata a `type` of `wordpress-plugin` is installed into `wordpress/wp-content/plugins/` instead of `vendor`, and the same goes for themes and must-use plugins. 
+    After inspecting package metadata, Composer now installs the plugins whose `type` matches `wordpress-plugin` into `wordpress/wp-content/plugins/` instead of `vendor`, and the same goes for themes and must-use plugins. 
 
-3. **Install themes and modules**
+3. **Launch the installation of plugins and themes with Composer**
 
-    Search for your existing themes and plugins [WPackagist](https://wpackagist.org) and install them through Composer with `composer require`:
+    To search for themes and plugins in [WPackagist](https://wpackagist.org) and install them through Composer, run a `composer require` command:
 
     ```bash
     # Plugin
-    composer require wpackagist-plugin/wordpress-seo
+    $ composer require wpackagist-plugin/wordpress-seo
 
     # Theme
-    composer require wpackagist-theme/hueman
+    $ composer require wpackagist-theme/hueman
     ```
 
-    You'll see those dependencies added to `composer.json`, and after running `composer install` their subdirectories within `wordpress/wp-content/`.
+    The two dependencies are now listed in your `composer.json` file.
 
-## Deploying to Platform.sh
+    Complete the installation:
+    
+    ```bash
+     $ composer install 
+     ````
 
-So long as you already have the [three Platform.sh configuration files from the previous guide](/guides/wordpress/vanilla/_index.md), you can now commit these changes and deploy your new Composer-based WordPress site to Platform.sh.
+    Each dependency is now installed and has a subdirectory in `wordpress/wp-content/`.
+
+
+## Deploy to Platform.sh
+
+Switching to a Composer-based installation doesn't require any modifications to the Platform.sh configuration files created when [you deployed your vanilla version](/guides/wordpress/vanilla/_index.md). Make sure that your project contains those three files. You can then commit all your changes and deploy your new Composer-based WordPress site to Platform.sh:
 
 ```bash
 $ git add . && git commit -m "Composerify plugins and themes."
 $ git push platform composer
 ```
 
-## Updating
+## Update your Composer-based WordPress site
 
-Updating WordPress and your themes and plugins becomes a lot simpler now that you're using Composer. Create a new branch and update any time a new version becomes available.
+### Perform a standard update with Composer
+
+Updating WordPress, your themes and plugins becomes a lot simpler with Composer. When a new version becomes available, create a new branch and launch the update:
 
 ```bash
 $ git checkout -b updates
 $ composer update
 ```
+
+### Automate your updates with a source operation
+
+{{< tiered-feature "Elite and Enterprise" >}}
+
+[Source operations](/create-apps/source-operations.md) allow you to automate the maintenance of your Composer-based WordPress site. 
+For instance, you can [update all the dependencies in your project with a single command](/create-apps/source-operations#update-dependencies).
