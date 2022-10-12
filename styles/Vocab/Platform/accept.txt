@@ -113,6 +113,7 @@ recache
 recertification
 redeployment
 reindex
+reinstall
 respawn
 [Rr]sync
 runtimes
