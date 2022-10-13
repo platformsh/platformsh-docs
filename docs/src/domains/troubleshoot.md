@@ -2,7 +2,7 @@
 title: "Going Live - Troubleshooting"
 weight: 4
 description: |
-  If your site still doesn't resolve after the DNS changes, check the troubleshooting before contacting support.
+  If your site doesn't resolve after you've made DNS changes, check potential solutions to common issues.
 sidebarTitle: "Troubleshooting"
 ---
 
@@ -10,28 +10,36 @@ sidebarTitle: "Troubleshooting"
 
 ## Verify DNS
 
-On the command line using macOS, Linux or the Linux subsystem for Windows, type:
-`host www.{{< variable "YOUR_DOMAIN" >}}`.
+On the command line using macOS, Linux, or the Windows Subsystem for Linux, run the following command:
 
-The response where `www.{{< variable "YOUR_DOMAIN" >}}` is `example.com` should be something like:
-
-```text
-www.{{<variable "YOUR_DOMAIN" >}} is an alias for main-def456-abc123.eu-2.platformsh.site.
-main-def456-abc123.eu-2.platformsh.site has address 192.0.2.1
+```bash
+host www.{{< variable "YOUR_DOMAIN" >}}
 ```
 
-If it isn't:
+If your domain is `example.com`, the response should be something like the following:
 
-* Your DNS server probably isn't correctly configured or the DNS configuration didn't propagate yet. Try and remove your local DNS cache.
-* Set the DNS server of your computer to the Google public DNS server (`8.8.8.8` and `8.8.4.4`) to see if the issue is with the DNS server you are using.
+```text
+www.example.com is an alias for main-abcd123.abcdefgh1234567.eu.platformsh.site.
+main-abcd123.abcdefgh1234567.eu.platformsh.site has address 192.0.2.1
+```
+
+If it isn't, try the following steps:
+
+* Your DNS server might not be correctly configured or the old DNS records are still cached.
+  Try removing your local DNS cache.
+* Set your computer's DNS server to Google Public DNS (`8.8.8.8` and `8.8.4.4`)
+  to see if the issue is with the DNS server you are using.
 * Run `ping www.{{< variable "YOUR_DOMAIN" >}}`.
-   If the result is different from what you got from the `host www.{{< variable "YOUR_DOMAIN" >}}`,
-   IP-overrides could be leftover [from testing](checklist.md#2-test-your-site).
+  If the result is different from what you got from running `host www.{{< variable "YOUR_DOMAIN" >}}`,
+  you might need to remove your [test settings](./checklist.md#2-test-your-site).
 
 ## Verify SSL
 
-On the command line using macOS, Linux or the Linux subsystem for Windows,
-type: `curl -I -v  https://www.{{< variable "YOUR_DOMAIN" >}}`.
+On the command line using macOS, Linux, or the Windows Subsystem for Linux, run the following command:
+
+```bash
+curl -I -v  https://www.{{< variable "YOUR_DOMAIN" >}}
+```
 
 The response should be long. Look for error messages.
 They're usually explicit enough.
@@ -52,4 +60,4 @@ Use a tool such as the [conversion tool provided by Verisign](https://www.verisi
 
 {{% troubleshoot %}}
 
-If your website is still not working as expected, [contact support](/overview/get-support.md)
+If your website is still not working as expected, [contact support](../overview/get-support.md).

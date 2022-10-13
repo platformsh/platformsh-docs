@@ -18,8 +18,8 @@ _public-suffix-root.{{<variable "YOUR_DOMAIN" >}} TXT "public-suffix-root={{<var
 ```
 
 Replace {{<variable "YOUR_DOMAIN" >}} with your actual domain name.
-That record results in {{<variable "YOUR_DOMAIN" >}} being treated as a top-level domain,
-letting you add multiple subdomains to different projects.
+This means {{<variable "YOUR_DOMAIN" >}} is treated as a top-level domain
+so you can add multiple subdomains to different projects.
 
 Note: You should add this record before you add your first domain to Platform.sh.
 You can remove the record after adding subdomains, which reinstates [subdomain hijacking protection](#subdomain-hijacking-protection).
@@ -41,10 +41,10 @@ Most Internet applications (such as web browsers) handle TLDs specially, such as
 
 For example, a web page at `foo.bar.baz.example.com` can usually set a cookie that's linked to:
 
-* `foo.bar.baz.example.com`,
-* `bar.baz.example.com`,
-* `baz.example.com`,
-* `example.com`.
+* `foo.bar.baz.example.com`
+* `bar.baz.example.com`
+* `baz.example.com`
+* `example.com`
 
 But that web page can *not* set a cookie to all `.com` domains.
 
@@ -54,11 +54,10 @@ Other restrictions apply on TLDs, but cookies are the easiest example.
 Aside from true TLDs, browser makers have a list of domain suffixes that should get the same special handling
 called the [Public Suffix List (PSL)](https://publicsuffix.org/).
 If you added the `example.com` domain to the PSL,
-browsers would refuse to set a cookie on `example.com` from a page at `foo.example.com` but would still accept cookies from a page at `example.com`.
+browsers would refuse to set a cookie on `example.com` from a page at `foo.example.com.
+They would still accept cookies from a page at `example.com`.
 
 ### Subdomain hijacking protection
-
-In this example `{{<variable "YOUR_DOMAIN" >}}` is `example.com`.
 
 By default, Platform.sh allows only one project to use a given domain at a time.
 This security measure is there to prevent a malicious actor from registering a project with a subdomain like `evil.example.com`
@@ -97,4 +96,4 @@ your domain may be reserved for the project you added it to.
 Then you can't set up a second project with the bare domain (`example.com`) or a subdomain (`foo.example.com`).
 
 If that happens, our support team can remove the protection for that domain.
-Include the project ID of the project that already has the domain in your [support ticket](/overview/get-support.md).
+[Open a support ticket](../../overview/get-support.md) and include the project ID of the project that already has the domain.

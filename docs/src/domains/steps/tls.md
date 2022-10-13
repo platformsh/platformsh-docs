@@ -20,16 +20,16 @@ All kinds of certificates are supported including:
 * high-assurance (HA) certificates,
 * wildcard certificates.
 
-The use of HA or EV certificates is the main reason why you may wish to use a third-party issuer rather than the default certificate.
+The main reasons to use a third-party issuer rather than the default certificate include using extended validation or high-assurance certificates.
 If you use wildcard routes, you need a custom certificate.
 
 ### Add a custom certificate
 
-You can add a custom certificate by using the [command line interface](../../administration/cli/_index.md) or in the [Console](/administration/web/_index.md).
+You can add a custom certificate using the [CLI](../../administration/cli/_index.md) or in the [Console](../../administration/web/_index.md).
 
 Your certificate has to use the "PKCS#1" format and start with `BEGIN RSA PRIVATE KEY`. If it doesn't, see [how to change the private key format](#how-to-change-the-private-key-format)
 
-To add your custom certificate:
+To add your custom certificate, follow these steps:
 
 {{< codetabs >}}
 
@@ -52,7 +52,7 @@ For example:
 platform domain:add -p abcdefg123456 secure.example.com --cert /etc/TLS/private/secure-example-com.crt --key /etc/TLS/private/secure-example-com.key
 ```
 
-You can optionally include intermediate SSL certificates by adding `--chain` {{<variable "PATH_TO_FILE" >}} for each one.
+You can optionally include intermediate SSL certificates by adding <code>--chain {{<variable "PATH_TO_FILE" >}}</code> for each one.
 
 <--->
 
@@ -62,8 +62,7 @@ file=none
 highlight=false
 ---
 
-1. Open the [Console](https://console.platform.sh)
-2. Click the tile of the project you want to access where you want to add a certificate.
+1. Open the project where you want to add a certificate.
 3. Click {{< icon settings >}} **Settings**.
 4. Click **Certificates**.
 5. Click **+ Add**.
@@ -80,15 +79,12 @@ platform environment:redeploy
 
 Your site is now live and accessible to the world as soon as the DNS propagates.
 
-If something isn't working see the [troubleshooting guide](/domains/troubleshoot.md) for common issues.
-If that doesn't help, [contact support](../../overview/get-support.md).
+### Change the private key format
 
-### How to change the private key format
+Your certificate's private key needs to be in PKCS #1 format, which means it has `BEGIN RSA PRIVATE KEY` near the start.
+If it has `BEGIN PRIVATE KEY` instead, it's in PKCS #8 format and you need to change it.
 
-Your certificate's private key has to be in PKCS#1 style, and start with `BEGIN RSA PRIVATE KEY`.
-If it starts with `BEGIN PRIVATE KEY`, it's PKCS#8 and bundled with the identifier for key type.
-
-To convert the RSA key from PKCS#8 to PKCS#1, run:
+To convert the key from PKCS #8 to PKCS #1 format, run the following command:
 
 ```bash
 openTLS rsa -in private.key -out private.rsa.key

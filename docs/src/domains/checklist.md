@@ -12,9 +12,9 @@ sidebarTitle: "Pre-Launch Checklist"
 
 Before you go live, you need a domain name registered with the registrar of your choice.
 That registrar must allow you to use a Canonical Name (CNAME) record for your APEX domain.
-Some registrars may call these `ALIAS` or `ANAME`.
+Some registrars may call these `ALIAS` or `ANAME` records.
 You can't use a `A` record.
-Verify your Registrar supports CNAME for APEX domains.
+Verify your registrar supports CNAME records for apex domains.
 
 See more on [what an APEX domain is](/domains/steps/dns.md#what-is-an-apex-domain).
 
@@ -23,18 +23,20 @@ See more on [what an APEX domain is](/domains/steps/dns.md#what-is-an-apex-domai
 Make sure your site is running and configured as you want it to be, on your production branch.
 In particular, see the [Routes documentation](../define-routes/_index.md).
 
-If you turned on basic-authentication during development, make sure [to turn it off before launch](/administration/web/configure-environment.md).
+If you turned on HTTP access control during development, [turn it off before launch](../administration/web/configure-environment.md#http-access-control).
 
-If your production environment is on a Dedicated instance:
+If your production environment is on a {{% names/dedicated-gen-2 %}} instance:
 
 1. Ensure that the code is up-to-date in both your `staging` and `production` branches. Those are mirrored to the Dedicated instances.
 2. Ensure that the data on the production instance is up-to-date and ready to launch.
 
 ### Override the IP
 
-You can test the behavior of the site before going live, by overriding the IP of that domain and make it point to the IP address for your project's production environment. This can be particularly useful to check that a CMS is properly set up.
+You can test your site's behavior before going live by locally pointing your domain
+to the IP addresses for your project's production environment.
+This can be particularly useful to check that a CMS is properly set up.
 
-To override that IP:
+To change where the domain points on your computer, choose one of the following methods:
 
 {{< codetabs >}}
 
@@ -59,7 +61,7 @@ file=none
 highlight=false
 ---
 
-1. Get the IP's of your project's production environment by running `dig +short $(platform environment:info edge_hostname)`.
+1. Get the IP addresses of your project's production environment by running `dig +short $(platform environment:info edge_hostname)`.
 2. Copy all IP addresses (usually 1-3) that are returned.
 3. Open the `/etc/hosts` file with admin privileges using your favorite text editor.
 4. Add the {{<variable "IP" >}} and `www.`{{< variable "YOUR_DOMAIN" >}} to that file.
@@ -131,13 +133,13 @@ Once your tests are over and the domain is live, don't forget to delete the entr
 ## 3. Optional: Obtain a third-party TLS certificate
 
 Platform.sh automatically provides TLS certificates for all sites and environments.
-These certificates are issued by [Let's Encrypt](https://letsencrypt.org/) at no charge.
-[In most cases](../define-routes/https.md#limits), this is sufficient and no further action is necessary.
+These certificates are issued at no charge by [Let's Encrypt](https://letsencrypt.org/).
+In most cases, this is sufficient and no further action is necessary, though see the [limits](../define-routes/https.md#limits).
 If you want to use a [third-party TLS certificate](./steps/tls.md) to encrypt your production site,
-you can obtain one from any third-party TLS issuers.
+you can obtain one from any third-party TLS issuer.
 Platform.sh doesn't charge for using a third-party TLS certificate, although the issuer may.
 
-If you do wish to use a third-party certificate, ensure it's purchased and active before going live.
+If you want to use a third-party certificate, ensure it's purchased and active before going live.
 
 ## What's next
 

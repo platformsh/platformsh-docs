@@ -1,6 +1,6 @@
 ---
-title: "Content Delivery Networks (CDNs)"
-sidebarTitle: "Content Delivery Networks"
+title: "Content delivery networks (CDNs)"
+sidebarTitle: "Content delivery networks"
 weight: 3
 description: |
     Find out how to provide high availability and improve performance for distributed end-users of your website.

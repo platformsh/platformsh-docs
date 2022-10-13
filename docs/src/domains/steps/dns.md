@@ -1,25 +1,27 @@
 ---
-title: "DNS management and Apex domains"
+title: "DNS management and apex domains"
 weight: 1
-description: "Platform.sh expects you to use a CNAME for most DNS records. But that doesn't work with some DNS registrars."
+description: See why CNAME records are used and what to do if your DNS registrar doesn't support them for apex domains.
 sidebarTitle: "DNS and CNAMEs"
 ---
 
-{{% description %}}
+Platform.sh expects you to use CNAME records for most DNS records.
+But that doesn't work with some DNS registrars.
+Learn why they're recommended and what else you can do.
 
-## Why are CNAME records problematic?
+## Why CNAME records are problematic
 
 The DNS specification was originally published in 1987, long before name-based HTTP hosting became prevalent.
-In the multiple RFCs that were written regarding CNAME records, the description of the behavior of these is rather vague.
+In the multiple RFCs that were written regarding CNAME records, the description of their behavior is rather vague.
 
 It's generally understood that a CNAME record for an apex domain like `example.com`:
 
-1. Can only point to an IP-address like `192.0.2.1` (A record).
-2. Can't be used as an alias for another hostname like `www.example.com` (CNAME record).
+- Can only point to an IP address like `192.0.2.1` (an A record).
+- Can't be used as an alias for another hostname like `www.example.com` (a CNAME record).
 
 The CNAME limitation (point 2) is especially problematic if you want to use an apex domain with any container-based managed hosting service like Platform.sh.
 
-Many registrars do allow CNAME records for apex domains.
+Many registrars allow CNAME records for apex domains.
 If yours doesn't, several solutions exist [to bypass that limitation](#handling-apex-domains).
 
 More information can be found in:
@@ -28,7 +30,7 @@ More information can be found in:
 * [RFC 1035](https://tools.ietf.org/html/rfc1035)
 * [Detailed thread on serverfault.com](https://serverfault.com/questions/613829/why-cant-a-CNAME-record-be-used-at-the-apex-aka-root-of-a-domain).
 
-## Where should CNAME records point to?
+## Where CNAME records should point
 
 You can access the CNAME target from your terminal by using the [CLI](/administration/cli/_index.md) command:
 
@@ -36,26 +38,22 @@ You can access the CNAME target from your terminal by using the [CLI](/administr
 platform environment:info edge_hostname
 ```
 
-## What is an Apex domain?
+## What an Apex domain is
 
 An apex domain is a domain name that doesn't include a subdomain.
-For example if {{<variable "YOUR_DOMAIN" >}} is `example.com`:
 
-* Your apex domain is `example.com`
-* `www.example.com` is the `www` subdomain of your apex domain.
-
-More about DNS terminology can be found in [RFC 7719](https://www.rfc-editor.org/rfc/rfc7719).
+For example, `example.com` is an apex domain and `www.example.com` is a subdomain.
 
 ## Handling Apex domains
 
 Some registrars don't allow CNAME records for [apex domains](#what-is-an-apex-domain).
-This is the so-called [CNAME-on-apex-domain-limitation](#why-are-CNAME-records-problematic).
+This is one of the [limitations to CNAME records](#why-CNAME-records-are-problematic).
 
 That means that `example.com` can only point to an IP address like `192.0.2.1` (A record) and can't point to another domain (or subdomain) like `www.example.com` (CNAME record).
 
-Check your registrar's documentation to make sure that CNAME record on apex domains are supported.
-If your registrar supports these, follow the [step-by-step guide](../steps/_index.md).
-If your registrar doesn't support these, there are a number of ways of handling the CNAME-on-apex-domain-limitation.
+Check your registrar's documentation to make sure that CNAME records on apex domains are supported.
+If your registrar supports them, follow the [guide to using such records](../steps/_index.md).
+If your registrar doesn't support them, there are a number of ways to handle the limitation.
 
 The recommended approach is to use custom records.
 
@@ -69,11 +67,11 @@ file=none
 highlight=false
 ---
 
-Some DNS providers offer custom, non-standard records (sometimes called `ANAME` or `ALIAS`) that you can manage like a CNAME.
-These non-standard records do an internal lookup behind the scenes and respond to DNS lookups as if they were `A` records.
+Some DNS providers offer custom, non-standard records (sometimes `ANAME` or `ALIAS` records) that you can manage like CNAME records.
+These nonstandard records make an internal lookup behind the scenes and respond to DNS lookups as if they were `A` records.
 As these are nonstandard, their behavior (and quality) can vary and not all DNS registrars offer such a feature.
 
-If you want your site to be accessible with `https://`{{<variable "YOUR_DOMAIN" >}} and not only `https://www.`{{<variable "YOUR_DOMAIN" >}},
+If you want your site to be accessible at a URL like `https://example.com` and not only `https://www.example.com`,
 this is the best way to do so.
 
 Configure your domain name to point to your project using custom records:
@@ -87,9 +85,12 @@ Configure your domain name to point to your project using custom records:
 Examples of such workaround records and providers include:
 
 <!-- vale Platform.condescending = NO -->
-* CNAME Flattening at [CloudFlare](https://developers.cloudflare.com/dns/additional-options/cname-flattening)
-* ANAME at [easyDNS](https://easydns.com/features/aname-root-domain-alias/), [DNS Made Easy](https://support.dnsmadeeasy.com/support/solutions/articles/47001001412-aname-records), or [Name.com](https://www.name.com/support/articles/115010493967-adding-an-aname-alias-record)
-* ALIAS at [DNSimple](https://support.dnsimple.com/articles/alias-record/) or [ClouDNS](https://www.cloudns.net/wiki/article/18/)
+* CNAME flattening at [CloudFlare](https://developers.cloudflare.com/dns/additional-options/cname-flattening)
+* `ANAME` records at [easyDNS](https://easydns.com/features/aname-root-domain-alias/),
+  [DNS Made Easy](https://support.dnsmadeeasy.com/support/solutions/articles/47001001412-aname-records),
+  and [Name.com](https://www.name.com/support/articles/115010493967-adding-an-aname-alias-record)
+* `ALIAS` records at [DNSimple](https://support.dnsimple.com/articles/alias-record/)
+  and [ClouDNS](https://www.cloudns.net/wiki/article/18/)
 <!-- vale Platform.condescending = YES -->
 
 <--->
@@ -116,7 +117,7 @@ Configure your domain name to point to your project using domain forwarding:
 6. Add a record forwarding requests from {{<variable "YOUR_DOMAIN" >}} to `www.`{{<variable "YOUR_DOMAIN" >}}.
 
 
-The following DNS providers are known to support both apex forwarding and advanced DNS configurations simultaneously:
+The following DNS providers are known to support both domain forwarding and advanced DNS configurations:
 
 * [Namecheap](https://www.namecheap.com/support/knowledgebase/article.aspx/385/2237/how-to-redirect-a-url-for-a-domain/)
 
@@ -133,8 +134,7 @@ If your registrar doesn't support custom records or domain forwarding you can co
 A redirection service uses an A record to redirect all requests
 from {{<variable "YOUR_DOMAIN" >}} to `www.`{{<variable "YOUR_DOMAIN" >}}.
 
-Examples of such redirection services:
-* [WWWizer](http://wwwizer.com/naked-domain-redirect)
+One such redirection service is [[WWWizer](http://wwwizer.com/naked-domain-redirect).
 
 Configure your domain name to point to your project using a redirection service:
 
@@ -167,8 +167,10 @@ Using A records is _strongly discouraged_ and [should only be used as a last res
 Using A records has limitations:
 
 * If the IPs change, you need to manually update your configuration.
-  Until then some requests are lost.
-* Directly pointing at the edge routers bypasses their load-balancing functionality. Should one of them go offline for maintenance (as happens periodically for upgrades) approximately 1/3 of requests to your site are sent to the offline router and are lost, making the site appear offline.
+  Until you do, some requests are lost.
+* Directly pointing at the edge routers bypasses their load-balancing functionality.
+  Should one of them go offline for maintenance (as happens periodically for upgrades),
+  about 1/3 of requests to your site are sent to the offline router and are lost, making the site appear offline.
 
 Configure your domain name to point to your project using A records:
 
@@ -183,15 +185,16 @@ Configure your domain name to point to your project using A records:
 
 ## Why CNAME records?
 
-Each individual Platform.sh hosted "site" is a set of containers running on one or more virtual machines.
-These virtual machines are running on any number of physical servers grouped by regions.
-An entire region runs behind dedicated edge routers.
-These routers are responsible for mapping incoming requests to the appropriate container.
+Each site on Platform.sh is made up of a set of containers.
+Platform.sh runs routers for each region to map incoming requests to the appropriate container.
 
-While the [IP addresses of the routers](/development/regions.md) are fairly stable, they can change in two cases:
+The IP addresses for the routers in [each region](../../development/regions.md) are fairly stable.
+They can change in two cases:
 
-* To up- or down- scale a region: routers can be added or removed.
-* For upgrades and maintenance: routers can get taken offline, one at a time, to apply the changes.
+* To up- or downscale a region.
+  Routers are added or removed.
+* For upgrades and maintenance.
+  Routers are taken offline, one at a time, to apply the changes.
 
 For inbound requests to be forwarded to the right container, the requests need to know the IPs of the routers at the time of the request.
 Since the IPs of the routers can change, "edge hostnames" are used as aliases.
@@ -208,20 +211,20 @@ Using a CNAME DNS record pointing at the "edge hostname" avoids that problem, as
 
 With the assumptions that:
 
-* your apex domain allows CNAME records,
-* all caches are empty,
-* your router redirects the apex domain to the `www` subdomain, as specified in your [routes definition](../../define-routes/_index.md)
+* Your registrar allows CNAME records and you have them configured for your apex domain.
+* All caches are empty.
+* Your router redirects your apex domain to the `www` subdomain, as specified in your [routes definition](../../define-routes/_index.md).
 
-An incoming request where {{<variable "YOUR_DOMAIN" >}} is `example.com` results in the following:
+An incoming request to `example.com` is handled in the following way:
 
-1. Your browser asks the DNS root servers for `example.com`'s DNS record.
+1. Your browser asks a DNS root server for the DNS record for `example.com`.
    The DNS root server responds with the CNAME for `main-def456-abc123.eu-2.platformsh.site`,
    which itself resolves to an A record with an IP address, for example `192.0.2.1`.
 2. Your browser sends a request to `192.0.2.1` for the domain `example.com`.
 3. Your router responds with an HTTP 301 redirect to `www.example.com`.
 4. Your browser looks up `www.example.com` and, as in step 1, receives an alias for `main-def456-abc123.eu-2.platformsh.site`, which resolves to the IP address `192.0.2.1`.
 5. Your browser sends a request to `192.0.2.1` for the domain `www.example.com`.
-  Your router passes the request to your app, which responds as you have set.
+   Your router passes the request to your app, which responds as you have configured it to.
 
 On subsequent requests, your browser knows to connect to `192.0.2.1` for the domain `example.com` and skips the rest.
 The entire process takes only a few milliseconds.
