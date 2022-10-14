@@ -107,7 +107,8 @@ To do so:
 
 ## Install WordPress themes and plugins with Composer
 
-Just like WordPress core, you can install themes and plugins with the `composer require` command. To do so:
+Just like with WordPress core, you can install themes and plugins with the `composer require` command.
+To do so:
 
 1. **Configure the WPackagist repository**
 
