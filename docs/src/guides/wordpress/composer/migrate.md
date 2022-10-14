@@ -6,7 +6,8 @@ description: |
     Everything you need to get started with WordPress on Platform.sh. 
 ---
 
-Composer helps you declare, manage and install all the dependencies needed to run your project. It allows you to make your WordPress site [more stable, secure, and easier to maintain](/guides/wordpress/composer/_index.md).
+Composer helps you declare, manage, and install all the dependencies needed to run your project.
+It allows you to make your WordPress site [more stable, more secure, and easier to maintain](./_index.md).
 
 To update your WordPress site to use Composer, check that:
 - You already have [a vanilla version of WordPress installed locally](/guides/wordpress/vanilla/_index.md).
