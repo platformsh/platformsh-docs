@@ -105,7 +105,7 @@ To do so:
      
      Composer reinstalls WordPress into the `wordpress` subdirectory.
 
-## Install WordPress Themes and Plugins with Composer
+## Install WordPress themes and plugins with Composer
 
 Just like WordPress core, you can install themes and plugins with the `composer require` command. To do so:
 
