@@ -138,7 +138,9 @@ To do so:
 
 2. **(Optional) Configure theme and plugin destination**
 
-    By default, Composer places installed dependencies in a subdirectory called `vendor` in your repository. But you can configure a different destination for your themes and plugins. For instance, to install them into `wp-content`, add the following block to your `composer.json` file:
+   By default, Composer places installed dependencies in a `vendor` subdirectory.
+   You can configure a different destination for your themes and plugins.
+   For instance, to install them into `wp-content`, add the following configuration:
 
     ```json
     "extra": {
