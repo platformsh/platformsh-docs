@@ -69,7 +69,7 @@ To do so:
     $ curl https://raw.githubusercontent.com/platformsh/template-builder/master/templates/wordpress-composer/files/.gitignore >> .gitignore
     ```
     
-    You can now remove WordPress from the repository:
+   Now remove WordPress from the repository:
 
     ```bash
     $ git rm -rf --cached wordpress && rm -rf wordpress
