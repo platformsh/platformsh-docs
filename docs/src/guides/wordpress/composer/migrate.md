@@ -46,7 +46,8 @@ Instead of committing all of WordPress to your repository (or adding it as a sub
     $ composer init
     ```
 
-    When prompted, set metadata attributes for your project (name, license information...). When you get to the part about installing dependencies, type `no`, as you will add them later.
+   When prompted, set metadata attributes for your project (name, license information...).
+   When you get to the part about installing dependencies, type `no`, as you will add them later.
 
 4. **Clean up WordPress core**
 
