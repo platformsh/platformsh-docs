@@ -27,7 +27,7 @@ Instead of committing all of WordPress to your repository (or adding it as a sub
 
 2. Switch to a new Git branch
     
-    To safely make changes to your repository and Platform.sh environment, run the command:
+   To safely make changes to your repository and Platform.sh environment, run the following command:
 
     ```bash
     $ git checkout -b composer
