@@ -59,9 +59,9 @@ To do so:
 
    Unless you are managing WordPress core as a [submodule](../../../development/submodules.md#removing-submodules), you can now remove the `wordpress` subdirectory: 
 
-    ```bash
-    $ rm -rf wordpress
-    ```
+   ```bash
+   $ rm -rf wordpress
+   ```
 
     Then, you need to overwrite your existing `.gitignore` file with Platform.sh’s template `.gitignore` file, which is then used to complete the setup for Composer. Note that the `wordpress` subdirectory is added to the resulting `.gitignore` file. This way, after Composer reinstalls WordPress, the `wordpress` subdirectory will be ignored in commits:
 
