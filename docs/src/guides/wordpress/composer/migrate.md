@@ -52,7 +52,10 @@ To do so:
 
 4. **Clean up WordPress core**
 
-     Your existing installation of WordPress core is assumed to be in a subdirectory of your repository (often named `wordpress`). For Composer to manage WordPress, **this subdirectory needs to be overwritten**. Make sure that you move all your important data to another subdirectory. For instance, add your plugins and themes to a separate `plugins` subdirectory. 
+   Your existing installation of WordPress core is assumed to be in a subdirectory of your repository (often named `wordpress`).
+   For Composer to manage WordPress, **this subdirectory needs to be overwritten**.
+   Make sure that you move all your important data to another subdirectory.
+   For instance, add your plugins and themes to a separate `plugins` subdirectory. 
 
     Unless you are managing WordPress core as a [submodule](/development/submodules.md#removing-submodules), you can now remove the `wordpress` subdirectory: 
 
