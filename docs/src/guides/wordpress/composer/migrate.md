@@ -40,7 +40,7 @@ Instead of committing all of WordPress to your repository (or adding it as a sub
    - A `composer.lock` file listing the exact versions of all the dependencies installed on your project.
      Generated from the `composer.json` file, it ensures repeatable builds until you update.
 
-    To turn your repository into a Composer repository and generate those files, run the command:
+   To turn your repository into a Composer repository and generate those files, run the following command:
 
     ```bash
     $ composer init
