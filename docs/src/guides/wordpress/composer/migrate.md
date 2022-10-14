@@ -136,7 +136,7 @@ To do so:
     }
     ```
 
-2. **(Optional) Configure theme and plugin destination**
+2. Optional: Configure theme and plugin destination
 
    By default, Composer places installed dependencies in a `vendor` subdirectory.
    You can configure a different destination for your themes and plugins.
