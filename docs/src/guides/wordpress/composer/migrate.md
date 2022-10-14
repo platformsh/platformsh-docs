@@ -78,7 +78,8 @@ To do so:
 
 4. **Launch the installation of WordPress with Composer**
 
-    Now that you have made your WordPress site into a Composer project, you can download packages via Composer. To download WordPress itself, run the commands:
+   Now that you have made your WordPress site into a Composer project, you can download packages via Composer.
+   To download WordPress itself, run the following commands:
 
     ```bash
     $ composer require johnpbloch/wordpress-core-installer
