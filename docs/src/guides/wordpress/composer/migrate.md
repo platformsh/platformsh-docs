@@ -25,7 +25,7 @@ Instead of committing all of WordPress to your repository (or adding it as a sub
 
     If you do not already have Composer installed, [install it now](https://getcomposer.org/download/).
 
-2. **Switch to a new Git branch** 
+2. Switch to a new Git branch
     
     To safely make changes to your repository and Platform.sh environment, run the command:
 
