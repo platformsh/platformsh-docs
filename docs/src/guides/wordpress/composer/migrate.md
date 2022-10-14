@@ -43,9 +43,9 @@ To do so:
 
    To turn your repository into a Composer repository and generate those files, run the following command:
 
-    ```bash
-    $ composer init
-    ```
+   ```bash
+   $ composer init
+   ```
 
    When prompted, set metadata attributes for your project (name, license information...).
    When you get to the part about installing dependencies, type `no`, as you will add them later.
