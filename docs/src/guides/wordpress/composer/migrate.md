@@ -158,7 +158,8 @@ To do so:
     }
     ```
 
-    After inspecting package metadata, Composer now installs the plugins whose `type` matches `wordpress-plugin` into `wordpress/wp-content/plugins/` instead of `vendor`, and the same goes for themes and must-use plugins. 
+   After inspecting package metadata, Composer now installs plugins with a `type` of `wordpress-plugin` into `wordpress/wp-content/plugins/` instead of `vendor`.
+   And similarly for themes and must-use plugins. 
 
 3. **Launch the installation of plugins and themes with Composer**
 
