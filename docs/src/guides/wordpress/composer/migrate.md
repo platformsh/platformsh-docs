@@ -12,7 +12,7 @@ It allows you to make your WordPress site [more stable, more secure, and easier 
 To update your WordPress site to use Composer, check that:
 
 - You already have a [vanilla version of WordPress installed locally](./_index.md).
-- Your WordPress core, themes and plugins are committed to your WordPress repository or committed as submodules.
+- Your WordPress core, themes, and plugins are committed to your WordPress repository or committed as submodules.
 - Your project has been set up for deployment on Platform.sh. If you do not have Platform.sh configuration files in your repository, make sure you [deploy WordPress without Composer](/guides/wordpress/vanilla/_index.md) before upgrading to a Composer-based site.
 
 ## Install WordPress with Composer
