@@ -29,9 +29,9 @@ Instead of committing all of WordPress to your repository (or adding it as a sub
     
    To safely make changes to your repository and Platform.sh environment, run the following command:
 
-    ```bash
-    $ git checkout -b composer
-    ```
+   ```bash
+   $ git checkout -b composer
+   ```
 3. **Turn your repository into a Composer repository**
 
    To use Composer, you need:
