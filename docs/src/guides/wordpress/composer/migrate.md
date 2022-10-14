@@ -34,7 +34,7 @@ Instead of committing all of WordPress to your repository (or adding it as a sub
     ```
 3. **Turn your repository into a Composer repository**
 
-     To use Composer, you need:
+   To use Composer, you need:
     - A `composer.json` file listing all the dependencies needed for your project to run (WordPress itself, its plugins and themes).
     - A `composer.lock` file listing the exact versions of all the dependencies installed on your project. Generated from the `composer.json` file, it ensures repeatable builds until you update.
 
