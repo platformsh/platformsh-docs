@@ -19,7 +19,8 @@ To update your WordPress site to use Composer, check that:
 
 ## Install WordPress with Composer
 
-Instead of committing all of WordPress to your repository (or adding it as a submodule), you can install it with Composer. To do so:
+Instead of committing all of WordPress to your repository (or adding it as a submodule), you can install it with Composer.
+To do so:
 
 1. **Download Composer** 
 
