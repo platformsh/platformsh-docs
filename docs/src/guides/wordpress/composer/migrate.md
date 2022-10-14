@@ -123,9 +123,9 @@ To do so:
     $ composer config repositories.wppackagist composer https://wpackagist.org
     ```
 
-    WPackagist is now listed in your `composer.json`:
+   WPackagist is now listed in your `composer.json`:
 
-    ```json
+   ```json {location="composer.json"}
     {
         "repositories": {
             "wppackagist": {
