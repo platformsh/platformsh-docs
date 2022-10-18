@@ -11,7 +11,7 @@ and also activity notifications whenever an event happens in your project.
 
 ## Get health notifications
 
-Health notification tell you when something in your project needs attention.
+Health notifications tell you when something in your project needs attention.
 At present, the only notification is a low-disk warning when your project is running out of disk space.
 
 This notification is automatically sent to all project admins.

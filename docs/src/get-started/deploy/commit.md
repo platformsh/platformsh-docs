@@ -6,7 +6,7 @@ description: Start getting your project into Platform.sh.
 
 Once you have your project initialized, it's time to add the basics to get it deployed.
 
-Create a file to hold your app configuration:
+In your repository, create a file to hold your app configuration:
 
 ```bash
 touch .platform.app.yaml
@@ -17,7 +17,7 @@ By keeping the configuration in this file,
 you ensure it remains the same across all environments, from development to production.
 
 Start by adding basic properties for your app, such as its name and language.
-With all examples, you can adjust file to fit your code, such as the `start` command, or desires, such as changing the `name`.
+You can adjust the file to fit your code, such as the `start` command to start your app, or desires, such as changing the `name`.
 
 {{% get-started/basic-app %}}
 

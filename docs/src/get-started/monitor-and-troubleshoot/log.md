@@ -34,7 +34,7 @@ This way, you can keep track of everything that happens in your project.
 Another way to keep track of your project and troubleshoot any issues is to view its logs.
 Different types of logs are available, such as error logs and any logs your app creates.
 
-See the access log, a list of all attempts to access your website, run the following command:
+To see the access log, a list of all attempts to access your website, run the following command:
 
 ```bash
 platform log access
@@ -82,7 +82,7 @@ You see your CPU, RAM, and disk usage over the past 15 minutes, with options for
 Now you know where to go to get information on your app's performance.
 Activities, logs, and metrics are useful for keeping track of changes and investigating issues.
 
-But to stay on top of everything, you want to be notified where you are.
+But to stay on top of everything, you want to be notified wherever you are.
 Continue to find out how.
 
 {{< get-started/next-button next="/get-started/monitor-and-troubleshoot/status.html" nextText="I want status updates" >}}
