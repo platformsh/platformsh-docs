@@ -9,10 +9,13 @@ weight: -70
 If you are using the Platform.sh-provided Drupal template, most of this work is already done for you.
 Redis is already configured and is enabled after the installation is complete.
 
-Note that this Redis service is ephemeral, meaning it doesn't persist if the container moves or is shut down.
+Note that this `redis` service is ephemeral, meaning it doesn't persist if the container moves or is shut down.
 Your app must treat it as ephemeral and not rely on it being there.
-One way to do this is emptying cache in the `start` key in [your web configuration](../../create-apps/app-reference.md#web-commands)
-so the cache is clean each time your app starts.
+
+There are two possible solutions:
+
+* Change the service to persistent Redis (`redis-persistent`).
+* Clean the cache each time your app starts in the `start` key in [your web configuration](../../create-apps/app-reference.md#web-commands).
 
 If you are working from an older repository or migrating a pre-built site to Platform.sh, see the instructions below.
 
