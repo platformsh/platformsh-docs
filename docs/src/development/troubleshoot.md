@@ -122,7 +122,7 @@ Typical causes and potential solutions include:
   * Check your `web.commands.start` entry or your `passthru` configuration.
 * The amount of traffic coming to your site exceeds the processing power of your application.
   * You may want to [check if bots are overwhelming your site](https://community.platform.sh/t/diagnosing-and-resolving-issues-with-excessive-bot-access/792).
-  * Alternatively, you may need to [increase your plan size](../overview/pricing/_index.md).
+  * Alternatively, you may need to [increase your plan size](../administration/pricing/_index.md).
 * Certain code paths in your application are too slow and timing out.
   * Check your code is running smoothly.
   * Consider adding an [observability solution](../increase-observability/integrate-observability/_index.md) to get a better view of your application.

@@ -111,11 +111,61 @@ which runs `composer --no-ansi --no-interaction install --no-progress --prefer-d
 Note that by default, all PHP containers include the latest Composer 1.x release.
 If you wish to use Composer 2.x, add it as a `dependency`:
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 dependencies:
     php:
         composer/composer: '^2'
 ```
+
+### Changing the flavor
+
+To not use the `composer` build flavor, such as to run your own Composer command,
+set the build flavor to `none` and add the command to the start of your `build` hook.
+The following example installs Composer dependencies but not development dependencies:
+
+```yaml {location=".platform.app.yaml"}
+build:
+    flavor: none
+
+hooks:
+    build: |
+        set -e
+        composer install --no-interaction --no-dev
+```
+
+You can achieve the same thing with the default build flavor and the `COMPOSER_NO_DEV` variable.
+Add the variable to your Production environment:
+
+{{< codetabs >}}
+---
+title=Using the CLI
+highlight=false
+file=none
+---
+
+Run a command like the following:
+
+<div class="highlight">
+  <pre class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">platform variable:create --environment {{< variable "PRODUCTION_ENVIRONMENT_NAME" >}} --level environment --name COMPOSER_NO_DEV --value <span class="m">1</span> --prefix env --json <span class="nb">false</span> --sensitive <span class="nb">false</span> --enabled <span class="nb">true</span> --inheritable <span class="nb">false</span> --visible-build <span class="nb">false</span> --visible-runtime <span class="nb">false</span>
+</span></span></code></pre>
+</div>
+<--->
+---
+title=In the Console
+highlight=false
+file=none
+---
+
+1. Navigate to your Production environment.
+2. Click {{< icon settings >}} **Settings**.
+3. Click **Variables**.
+4. Click **+ Add variable**.
+5. Fill in `env:COMPOSER_NO_DEV` for the name.
+6. Fill in `1` for the value.
+7. Make sure **Make inheritable** is *not* selected.
+8. Click **Add variable**.
+
+{{< /codetabs >}}
 
 ## OPcache preloading
 

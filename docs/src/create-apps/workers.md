@@ -7,6 +7,8 @@ Workers are instances of your code that can't interact with the outside world.
 They're good for handling background tasks.
 See how to [configure a worker](./app-reference.md#workers) for your app.
 
+Note that to have enough resources to support a worker and a service, you need at least a [{{< partial "plans/multiapp-plan-name" >}} plan](../administration/pricing/_index.md#multiple-apps-in-a-single-project).
+
 ## Accessing the Worker Container
 
 Like with any other application container,

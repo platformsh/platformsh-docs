@@ -79,13 +79,13 @@ you can invite other users to your organization and grant them the following per
   Add, remove, and edit plans and plan options for your existing projects.
   (Change plan, change storage, change the number of environments, change the number of user licenses)
 * **Users** (`members`):
-  Add, remove, and edit organization-level users and permissions, including your own.
+  Add, remove, and edit organization-level users and permissions, except your own.
 * **Create projects** (`projects:create`):
   Create new projects within the organization.
 
 {{< note theme="warning" >}}
 
-A user with the **Users** (`members`) permission can add, edit, or remove _any_ user's permissions.
+A user with the **Users** (`members`) permission can add, edit, or remove _any_ user's permissions except their own.
 
 {{< /note >}}
 

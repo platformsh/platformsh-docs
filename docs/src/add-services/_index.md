@@ -77,7 +77,7 @@ The following table presents the keys you can define for each service:
 
 ##### Size
 
-Resources are distributed across all containers in a project from the total available from your [plan size](../overview/pricing/_index.md).
+Resources are distributed across all containers in a project from the total available from your [plan size](../administration/pricing/_index.md).
 
 By default, Platform.sh allocates CPU and memory resources to each container automatically.
 Some services are optimized for high CPU load, some for high memory load.
@@ -120,7 +120,7 @@ The following table presents the available service types and their versions.
 Add them to the `type` key of the [service configuration](#1-configure-the-service) in the format `type:version`.
 
 <!-- To update the versions in this table, use docs/data/registry.json -->
-{{< readFile file="src/registry/images/tables/services_supported.md" markdownify="true">}}
+{{% supported-services %}}
 
 ### Service versions
 
