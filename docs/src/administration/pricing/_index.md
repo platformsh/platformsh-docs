@@ -44,7 +44,7 @@ Their resources are separate from Production environments.
 
 App containers on development environments default to a size of {{< partial "plans/default-dev-env-size" >}}.
 If you have the [`plans` permission](../organizations.md#manage-your-organization-users),
-but you can increase the size to match your production environment.
+you can increase the size to match your production environment.
 To do so, follow these steps:
 
 1. In your project in the Console, click **{{< icon settings >}} Settings**.
@@ -81,7 +81,7 @@ You can add the following extras:
   the fee is multiplied by 6.
   
   You can make any changes up to 100&nbsp;GB yourself.
-  For storage more than 100&nbsp;GB, create a [support ticket](https://console.platform.sh/-/users/~/tickets).
+  For storage over 100&nbsp;GB, create a [support ticket](https://console.platform.sh/-/users/~/tickets).
 
   You currently can't reduce your storage on your own for technical reasons.
   If you need to reduce storage, create a [support ticket](https://console.platform.sh/-/users/~/tickets).
