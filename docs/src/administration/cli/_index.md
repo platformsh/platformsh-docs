@@ -1,6 +1,6 @@
 ---
 title: "Use the command line interface (CLI)"
-weight: 3
+weight: -10
 description: |
   See how to use and manage your Platform.sh projects directly from your terminal. Anything you can do within the Console can be done with the CLI.
 sidebarTitle: "Use the CLI"

@@ -1,6 +1,6 @@
 ---
 title: "Console"
-weight: 4
+weight: -9
 layout: single
 description: |
   Platform.sh provides a web console so you can interact with your projects and manage your environments.

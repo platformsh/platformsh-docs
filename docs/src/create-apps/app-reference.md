@@ -63,7 +63,7 @@ These are used in the format `runtime:version`:
 
 ## Sizes
 
-Resources are distributed across all containers in a project from the total available from your [plan size](../overview/pricing/_index.md).
+Resources are distributed across all containers in a project from the total available from your [plan size](../administration/pricing/_index.md).
 So if you have more than just a single app, it doesn't get all of the resources available.
 
 By default, resource sizes (CPU and memory) are chosen automatically for an app

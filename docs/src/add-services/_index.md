@@ -77,7 +77,7 @@ The following table presents the keys you can define for each service:
 
 ##### Size
 
-Resources are distributed across all containers in a project from the total available from your [plan size](../overview/pricing/_index.md).
+Resources are distributed across all containers in a project from the total available from your [plan size](../administration/pricing/_index.md).
 
 By default, Platform.sh allocates CPU and memory resources to each container automatically.
 Some services are optimized for high CPU load, some for high memory load.

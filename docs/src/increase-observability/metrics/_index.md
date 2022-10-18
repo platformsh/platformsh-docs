@@ -58,7 +58,7 @@ If the resources are high and hovering close to the 100% threshold,
 you might want to consider:
 
 * [Optimizing your code](../integrate-observability/_index.md) (if possible)
-* [Increasing your plan](../../overview/pricing/_index.md)
+* [Increasing your plan](../../administration/pricing/_index.md)
 
 #### {{% names/dedicated-gen-3 %}} environments
 
@@ -69,7 +69,7 @@ you might want to consider:
 * [Optimizing your code](../integrate-observability/_index.md) (if possible)
 * Changing your [app size](../../create-apps/app-reference.md#sizes)
   or [service size](../../add-services/_index.md#size)
-* [Increasing your plan](../../overview/pricing/_index.md)
+* [Increasing your plan](../../administration/pricing/_index.md)
 
 If your containers are in a prolonged burst state,
 review your configuration or plan size because burst isn't guaranteed for long periods.
@@ -86,7 +86,7 @@ you might want to consider:
 * [Optimizing your code](../integrate-observability/_index.md) (if possible)
 * Changing your [app size](../../create-apps/app-reference.md#sizes)
   or [service size](../../add-services/_index.md#size)
-* [Increasing your plan](../../overview/pricing/_index.md)
+* [Increasing your plan](../../administration/pricing/_index.md)
 
 If your containers are in a prolonged burst state,
 review your configuration or plan size because burst isn't guaranteed for long periods.
