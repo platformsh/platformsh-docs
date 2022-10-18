@@ -18,16 +18,16 @@ You are only billed for the actual period used.
 
 ## Plans
 
+### Production plans
+
+Any plan larger than a Development plan counts as a Production plan:
+it comes with a [production environment](#production-environments).
+
 ### Development plans
 
 A Development plan is useful for developing your apps before they're ready to go live.
 
 With a Development plan, you can't use [custom domain names](../../domains/steps/_index.md).
-
-### Production plans
-
-Any plan larger than a Development plan counts as a Production plan:
-it comes with a [production environment](#production-environments).
 
 ### Production environments
 
@@ -97,7 +97,7 @@ For example, a {{< partial "plans/multiapp-plan-name" >}} plan can support 3 app
 with a MySQL service and a Redis service.
 
 If you aren't sure whether a specific setup would fit into a plan,
-don't hesitate to contact support.
+don't hesitate to [contact support](https://console.platform.sh/-/users/~/tickets).
 
 ## {{% names/dedicated-gen-3 %}}
 
@@ -119,12 +119,12 @@ Agencies have access to several partner levels with many perks.
 
   | Discount          | Registered | Bronze | Silver | Gold | Platinum | Diamond |
   | ----------------- | ---------- | ------ | ------ | ---- | -------- | ------- |
-  | User license      |            |        | Free   | Free | Free     | Free    |
-  | Development plan  |            |        |        | Free | Free     | Free    |
-  | Professional tier |            |        | 10%    | 10%  | 10%      | 10%     |
-  | Premier tier      |            |        | 10%    | 10%  | 10%      | 10%     |
-  | Enterprise tier   |            |        | 10%    | 18%  | 20%      | 20%     |
-  | Elite tier        |            |        |        |      | 25%      | 30%     |
+  | User license      | –          | –      | Free   | Free | Free     | Free    |
+  | Development plan  | –          | –      | –      | Free | Free     | Free    |
+  | Professional tier | –          | –      | 10%    | 10%  | 10%      | 10%     |
+  | Premier tier      | –          | –      | 10%    | 10%  | 10%      | 10%     |
+  | Enterprise tier   | –          | –      | 10%    | 18%  | 20%      | 20%     |
+  | Elite tier        | –          | –      | –      | –    | 25%      | 30%     |
 
 * Agency partners may host their own agency website for free.
   The size of the plan depends on the agency tier as seen in the following table:
