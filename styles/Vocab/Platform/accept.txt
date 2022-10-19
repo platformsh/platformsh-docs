@@ -23,6 +23,7 @@ Corepack
 CPUs?
 [Cc]ron
 coroutine
+Datadog
 DDEV
 denylist
 deprovision
@@ -57,6 +58,7 @@ jpegoptim
 Lando
 Laravel
 Loggly
+Logz
 lookups?
 Lucene
 Magento
@@ -64,6 +66,7 @@ Magestore
 Mailchimp
 Meilisearch
 Memcache
+Mezmo
 middleware
 MSBuild
 Muffet
@@ -132,6 +135,8 @@ Strapi
 subuser
 Swoole
 Symfony
+[Ss]yslog
+systemd
 Thorntail
 TLDs?
 Tomitribe
