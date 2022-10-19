@@ -101,7 +101,6 @@
     "repo_name": "elasticsearch",
     "runtime": false,
     "type": "elasticsearch",
-    "log_forwarding": true,
     "versions": {
       "deprecated": [
         "7.10",
@@ -409,7 +408,6 @@
     "name": "MariaDB/MySQL",
     "runtime": false,
     "type": "mariadb",
-    "log_forwarding": true,
     "versions": {
       "deprecated": [
         "10.2",
@@ -636,7 +634,6 @@
     "name": "Node.js",
     "runtime": true,
     "type": "nodejs",
-    "log_forwarding": true,
     "versions": {
       "deprecated": [
         "12",
@@ -758,7 +755,6 @@
     "name": "PHP",
     "runtime": true,
     "type": "php",
-    "log_forwarding": true,
     "versions-dedicated-gen-2": {
       "supported": [
         "8.1",
@@ -871,7 +867,6 @@
     "name": "Python",
     "runtime": true,
     "type": "python",
-    "log_forwarding": true,
     "versions": {
       "deprecated": [],
       "supported": [
@@ -899,7 +894,6 @@
     "name": "RabbitMQ",
     "runtime": false,
     "type": "rabbitmq",
-    "log_forwarding": true,
     "versions": {
       "deprecated": [
         "3.8",
@@ -947,7 +941,6 @@
     "name": "Redis",
     "runtime": false,
     "type": "redis",
-    "log_forwarding": true,
     "versions": {
       "deprecated": [
         "6.0",
