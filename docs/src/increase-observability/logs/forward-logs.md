@@ -119,21 +119,5 @@ The following table shows the other available properties:
 Place any property you want inside the `data` object of the cURL request.
 This should let you connect to any service that has syslog endpoints.
 
-The following services have documentation for their syslog endpoints:
-
-* [Datadog](https://docs.datadoghq.com/integrations/syslog_ng/): requires an `auth_mode` of `prefix`
-* [Loggly](https://documentation.solarwinds.com/en/success_center/loggly/content/admin/streaming-syslog-without-using-files.htm) --
-  requires an `auth_mode` of `structured_data`
-* [Logz](https://docs.logz.io/shipping/log-sources/linux.html) --
-  requires an `auth_mode` of `prefix`
-* [Mezmo](https://docs.mezmo.com/docs/syslog-ng) --
-  requires an `auth_mode` of `structured_data`
-* [New Relic](https://docs.newrelic.com/docs/logs/log-api/use-tcp-endpoint-forward-logs-new-relic/) --
-  requires an `auth_mode` of `prefix`
-* [Papertrail](https://www.papertrail.com/solution/tips/how-to-configure-remote-syslog/) --
-  uses the `udp` protocol and the `rfc3164` message format
-* [Sumo Logic](https://help.sumologic.com/03Send-Data/Sources/02Sources-for-Hosted-Collectors/Cloud-Syslog-Source) --
-  requires an `auth_mode` of `structured_data`
-
 Once you've added the service, logs start getting forwarded automatically after the integration has been resolved,
 which can take up to an hour.
