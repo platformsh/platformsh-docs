@@ -108,7 +108,7 @@ platform project:curl /integrations -X POST --data '{ "type":"syslog", "host":"{
 The following table shows the other available properties:
 
 | Property         | Type      | Default    | Description |
-| -------- --------| --------- | ---------- | ----------- |
+| ---------------- | --------- | ---------- | ----------- |
 | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`. |
 | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
 | `message_format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`. |
