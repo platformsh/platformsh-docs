@@ -1,9 +1,0 @@
-{{ $runtime := .Get "runtime" }}
-{{ $registry := .Site.Data.registry }}
-<ul>
-{{ range $registry }}
-  {{ if and ( eq .runtime $runtime ) (.log_forwarding) }}
-    <li>{{ .name }}</li>
-  {{ end }}
-{{ end }}
-</ul>
