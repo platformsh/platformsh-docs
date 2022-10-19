@@ -13,6 +13,7 @@ You can use a [service with an integration](#use-a-log-forwarding-integration)
 or any service that supports a [syslog endpoint](#forward-to-a-syslog-endpoint).
 
 Log forwarding is available for Grid and {{% names/dedicated-gen-3 %}} projects.
+It requires systemd containers, which are enabled once you add the Observability Suite.
 For {{% names/dedicated-gen-2 %}} projects, see how to [log remotely with `rsyslog`](../../dedicated-gen-2/architecture/options.md#remote-logging).
 
 To enable log forwarding in a project, you need to be a [project admin](../../administration/users.md).
