@@ -10,7 +10,7 @@ description: |
 
 With Professional and non-bundled Enterprise/Elite Grid plans,
 users can manage their own backup and restore functions.
-See more details on [how to backup and restore](../administration/backup-and-restore.md).
+See more details on how to [backup](../environments/backup.md) and [restore](../environments/restore.md).
 
 **RPO**: User defined.
 The RPO is configured by plan owners.
