@@ -28,12 +28,35 @@ When an environment is deleted, its application logs are deleted as well.
 
 ## Grid Backups
 
-Application backups running on the Grid (for example if you subscribe to a Platform.sh Professional plan) are retained for at least 7 days.
-They're purged between 7 days and 6 months, at Platform.sh's discretion.
+[Automated backups](../environments/backup.md#use-automated-backups) are retained for a specific amount of time
+depending on their type and your [backup schedule](../environments/backup.md#backup-schedule).
+
+| Type     | Essential | Advanced | Premium |
+| -------- | --------- | -------- | ------- |
+| 6-hourly | –         | –        | 1 day   |
+| Daily    | 2 days    | 1 week   | 1 month |
+| Weekly   | –         | 4 weeks  | –       |
+| Monthly  | –         | 1 year   | 1 year  |
+
+[Manual backups](../environments/backup.md#create-a-manual-backup) are retained until you delete them or replace them with another backup.
+
+For example, if you currently have 10 manual backups and are on the Advanced schedule,
+you keep all 10 manual backups until there are 15 automated backups.
+Then the automated backups start replacing the manual ones until you have only your allocated 4 manual backups.
 
 ## {{% names/dedicated-gen-2 %}} backups
 
-Backups for applications running on a {{% names/dedicated-gen-2 %}} instance follow the schedule documented for [{{% names/dedicated-gen-2 %}} backups](/dedicated-gen-2/overview/backups.md).
+Backups for {{% names/dedicated-gen-2 %}} environments are retained based on when they were taken.
+
+| When taken   | Retention            |
+| ------------ | -------------------- |
+| Days 1--3    | Every backup         |
+| Days 4--6    | One backup per day   |
+| Weeks 2--6   | One backup per week  |
+| Weeks 8--12  | One bi-weekly backup |
+| Weeks 12--22 | One backup per month |
+
+See more about [backups of {{% names/dedicated-gen-2 %}} environments](../dedicated-gen-2/overview/backups.md).
 
 ## Tombstone backups
 

@@ -2,23 +2,17 @@
 title: "Backups"
 weight: 4
 toc: false
-description: |
-  Platform.sh takes a byte-for-byte snapshot of {{% names/dedicated-gen-2 %}} production environments every six (6) hours. They're retained on a sliding scale, so more recent time frames have more frequent backups.
+description: See when backups of {{% names/dedicated-gen-2 %}} environments are taken
 aliases:
   - /dedicated/overview/backups.html
 ---
 
-{{% description %}}
+Platform.sh takes a byte-for-byte snapshot of {{% names/dedicated-gen-2 %}} production environments every 6 hours.
+They're retained for different lengths depending on when they were taken.
+See the [retention policy for backups](../../security/data-retention.md#dedicated-gen-2-backups)
 
-| Time frame | Backup retention     |
-|------------|----------------------|
-| Days 1-3   | Every backup         |
-| Days 4-6   | One backup per day   |
-| Weeks 2-6  | One backup per week  |
-| Weeks 8-12 | One bi-weekly backup |
-| Weeks 12-22| One backup per month |
-
-{{% names/dedicated-gen-2 %}} creates the backup using snapshots to encrypted elastic block storage (EBS) volumes. An EBS snapshot is immediate, but the time it takes to write to the storage service depends on the volume of changes.
+Backups are created using snapshots to encrypted elastic block storage (EBS) volumes.
+An EBS snapshot is immediate, but the time it takes to write to the storage service depends on the volume of changes.
 
 * **Recovery Point Objective (RPO)** is 6 hours (maximum time to last backup).
 * **Recovery Time Objective (RTO)** depends on the size of the storage. Large EBS volumes take more time to restore.
