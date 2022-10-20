@@ -88,7 +88,7 @@ The exact number of backups depends on your [backup schedule](#backup-schedule).
 
 Automated backups are always [live](#live-backups).
 
-{{% legacy-regions featureIntro="Automated backups" featureShort="automated backups" level=3 plural=true %}}
+{{% legacy-regions featureIntro="Live automated backups" featureShort="live automated backups" level=3 plural=true %}}
 
 ## Live backups
 
