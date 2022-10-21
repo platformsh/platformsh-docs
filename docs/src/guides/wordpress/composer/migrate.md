@@ -48,7 +48,7 @@ To do so:
    When prompted, set metadata attributes for your project, 
    such as its name and license information.
    When you get to the part about installing dependencies, type `no`, 
-   as you will add them later.
+   as you add them in step 5.
 
 3. Clean up WordPress core
 
