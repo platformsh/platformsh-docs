@@ -50,7 +50,7 @@ To do so:
    When you get to the part about installing dependencies, type `no`, 
    as you add them in step 5.
 
-3. Clean up WordPress core
+3. Clean up WordPress core.
 
    Your existing installation of WordPress core is assumed to be in a subdirectory of your repository (often named `wordpress`).
    For Composer to manage WordPress, this subdirectory needs to be overwritten.
