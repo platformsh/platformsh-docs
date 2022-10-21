@@ -53,11 +53,11 @@ The times are just for understanding as actual backup times vary by project.
 
 The first cycle is 4 backups (6-hourly backups) made in one day.
 
-![Four 6-hourly backups get taken on a Monday. No daily backups are taken.](/images/backup-cycles/first-cycle.png "0.215-inline")
+![Four 6-hourly backups get taken on a Monday.](/images/backup-cycles/first-cycle.png "0.215-inline")
 
-The first backup doesn’t expire but is retained for the next cycle.
+The first backup doesn’t expire after one day but is retained for the next cycle.
 
-![The first 6-hourly backup becomes a daily backup.](/images/backup-cycles/retain.png "0.215-inline")
+![The first 6-hourly backup is a daily backup.](/images/backup-cycles/retain.png "0.215-inline")
 
 As additional backups are created, the oldest backups are replaced and no longer available.
 
@@ -71,13 +71,13 @@ When the next cycle completes, it has replaced the previous cycle.
 
 The following diagram shows how the cycle works for the entire Advanced schedule:
 
-![Daily backups are retained for 1 week. The first daily backup becomes the weekly backup at the end of the week. Weekly backups are retained for 1 month. The first weekly backup becomes the monthly backup at the end of the month. Monthly backups are retained for 1 year.](/images/backup-cycles/advanced-retention.png "0.6")
+![Daily backups are retained for 1 week. The first daily backup is the weekly backup. Weekly backups are retained for 1 month. The first weekly backup is the monthly backup. Monthly backups are retained for 1 year.](/images/backup-cycles/advanced-retention.png "0.6")
 
 #### Premium schedule retention
 
 The following diagram shows how the cycle works for the entire Premium schedule:
 
-![Each 6-hourly backup is retained for 1 day. Each day, the first 6-hourly backup becomes the daily backup. Daily backups are retained for 30 days. The first daily backup becomes the monthly backup at the end of the month. Monthly backups are retained for 1 year.](/images/backup-cycles/premium-retention.png "0.6")
+![Each 6-hourly backup is retained for 1 day. The first 6-hourly backup is the daily backup. Daily backups are retained for 30 days. The first daily backup is the monthly backup. Monthly backups are retained for 1 year.](/images/backup-cycles/premium-retention.png "0.6")
 
 ## {{% names/dedicated-gen-2 %}} backups
 
