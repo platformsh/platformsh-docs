@@ -16,8 +16,8 @@ Log forwarding is available for Grid and {{% names/dedicated-gen-3 %}} projects.
 For {{% names/dedicated-gen-2 %}} projects, see how to [log remotely with `rsyslog`](../../dedicated-gen-2/architecture/options.md#remote-logging).
 
 To enable log forwarding in a project, you need to be a [project admin](../../administration/users.md).
-You also need to have systemd containers enabled for your project.
-Contact [support](https://console.platform.sh/-/users/~/tickets/open) or your account manager to ensure they're enabled.
+You also need your project to have the capability for log forwarding.
+To get that, contact [support](https://console.platform.sh/-/users/~/tickets/open).
 
 ## Use a log forwarding integration
 
