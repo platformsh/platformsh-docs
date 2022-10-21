@@ -65,7 +65,7 @@ To do so:
 
    Then, at the end of your existing `.gitignore` file, add the content of Platform.sh’s template `.gitignore` file. 
    This adds the `wordpress` subdirectory to the resulting `.gitignore` file. 
-   This way, after Composer reinstalls WordPress, the `wordpress` subdirectory will be ignored in commits:
+   This way, after Composer reinstalls WordPress, the `wordpress` subdirectory is ignored in commits:
 
    ```bash
    $ curl https://raw.githubusercontent.com/platformsh/template-builder/master/templates/wordpress-composer/files/.gitignore >> .gitignore
