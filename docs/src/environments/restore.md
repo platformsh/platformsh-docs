@@ -5,13 +5,13 @@ description: See how to restore an environment from a previous state.
 weight: -10
 ---
 
-Once you have [backups of your environment](./backup.md), you might want to restore data from a previous point.
+Once you have [backups of your environment](./backup.md), you can restore data from a previous point.
 
 To restore an environment, you need an [Admin role for that environment type](../administration/users.md).
 
 ## 1. List available backups
 
-To restore a backup, first select one of the available backups.
+To restore an environment, first select one of the available backups:
 
 {{< codetabs >}}
 ---
@@ -48,8 +48,8 @@ file=none
 highlight=false
 ---
 
-- Navigate to the environment where you want to see backups.
-- Click **Backups**.
+1. Navigate to the environment where you want to see backups.
+2. Click **Backups**.
 
 Select one of the backups marked as having completed successfully {{< icon success >}}.
 
@@ -105,4 +105,4 @@ You can restore backups to a different environment than they were created on usi
 
 {{% legacy-regions featureIntro="Restoring backups to different environments" featureShort="to restore to different environments" %}}
 
-You can also open a support ticket to ask that a backup be restored to a different environment for you.
+You can also open a [support ticket](https://console.platform.sh/-/users/~/tickets) to ask that a backup be restored to a different environment for you.

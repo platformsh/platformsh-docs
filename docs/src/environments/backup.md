@@ -31,10 +31,10 @@ To back up an environment, you need an [Admin role for that environment type](..
 
 By default, triggering a manual backup causes a momentary pause in site availability so that all requests can complete.
 This enables the backup to be taken against a known consistent state.
-The total interruption is usually only 15 to 30 seconds
-and any requests during that time are held temporarily, not dropped.
+The total interruption is usually only 15 to 30 seconds.
+Any requests during that time are held temporarily, not dropped.
 
-To avoid this issue, use [live backups](#live-backups).
+To avoid this downtime, use [live backups](#live-backups).
 
 For consistent backups, create the backups during non-peak hours for your site.
 
@@ -44,7 +44,7 @@ For information on how long backups are retained, see the [data retention policy
 
 ## Backup schedule
 
-Backups for Dedicated environments have a [separate frequency](../dedicated-gen-2/overview/backups.md).
+Backups for Dedicated environments have a [specific frequency](../dedicated-gen-2/overview/backups.md).
 
 On Grid environments, non-Production environments can have up to 2 [manual backups](#create-a-manual-backup).
 The number of available backups for Production environments depends on your schedule.
@@ -97,7 +97,7 @@ This means your environment is running and open to connections during the backup
 
 Because the connections may come in during backup creation, live backups may have data inconsistencies among containers.
 They may make restorations less reliable.
-To avoid such issues, instead schedule [manual backups](#create-a-manual-backup) during non-peak hours,
+To avoid such issues, schedule [manual backups](#create-a-manual-backup) during non-peak hours,
 when the short amount of downtime is least noticed.
 
 Automatic backups are always live, including those taken on [{{% names/dedicated-gen-3 %}}](../dedicated-gen-3/overview.md)
