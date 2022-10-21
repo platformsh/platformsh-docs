@@ -90,8 +90,7 @@ View your logs in the **Log Search** tab.
 
 {{< /codetabs >}}
 
-Logs start getting forwarded automatically after the integration has been resolved,
-which can take up to an hour.
+To start forwarding logs, [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
 
 ## Forward to a syslog endpoint
 
@@ -120,5 +119,4 @@ The following table shows the other available properties:
 Place any property you want inside the `data` object of the cURL request.
 This should let you connect to any service that has syslog endpoints.
 
-Once you've added the service, logs start getting forwarded automatically after the integration has been resolved,
-which can take up to an hour.
+To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
