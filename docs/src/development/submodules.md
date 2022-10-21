@@ -48,36 +48,36 @@ E: Error validating submodules in tree:
 
 Since the Platform.sh Git server can't connect to GitHub via SSH without being granted an SSH key to do so, you shouldn't use an SSH URL: ``git@github.com:...``, but you should use an HTTPS URL instead: ``https://github.com/...``.
 
-## Use of private git repositories
+## Use private Git repositories
 
-When using Git submodules that are hosted on private repositories, using the `https` protocol fails with errors like:
+When using Git submodules that are private repositories, URLs with the HTTPS protocol fail with errors such as the following:
 
 ```bash
 GitProtocolError: unexpected http resp 401 for https://bitbucket.org/myusername/mymodule.git/info/refs?service=git-upload-pack
 ```
 
-To fix this, you need to:
+To fix this, follow these steps:
 
-1. Change your `.gitmodules` file from HTTPS syntax to SSH syntax, e.g.
+1. Change your module declarations to use SSH for URLs.
 
-    from:
+    Your existing declaration might look like this:
 
-    ```bash
-    [submodule "support/mymodule"]
-        path = support/mymodule
-        url = https://bitbucket.org/myusername/mymodule.git
+    ```bash {location=".gitmodules"}
+    [submodule "support/module"]
+        path = support/module
+        url = https://bitbucket.org/username/module.git
     ```
 
-    to:
+    Change this to the following:
 
-    ```bash
-    [submodule "support/mymodule"]
-        path = support/mymodule
-        url=git@bitbucket.org:myusername/mymodule.git
+    ```bash {location=".gitmodules"}
+    [submodule "support/module"]
+        path = support/module
+        url = git@bitbucket.org:username/module.git
     ```
 
-2. Add the [project's public key to your remote Git repository](./private-repository.md#pull-code-from-a-private-git-repository).
-   This allows the Platform.sh Git service to pull the module from the remote Git service.
+2. Add the [project's public key to your remote Git repository](./private-repository.md).
+   This allows your Platform.sh project to pull the repository from the remote Git service.
 
 ## Removing submodules
 
