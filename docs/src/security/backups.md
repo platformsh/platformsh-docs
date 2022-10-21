@@ -16,7 +16,7 @@ See how to [back up](../environments/backup.md#create-a-manual-backup) and [rest
 The RPO is configured by plan owners.
 
 **RTO**: Variable.
-Recovery time depends upon the size of the data being recovered.
+Recovery time depends on the size of the data being recovered.
 
 ## Essential and Advanced schedules
 
@@ -24,7 +24,7 @@ Recovery time depends upon the size of the data being recovered.
 Production environments on Essential and Advanced schedules are backed up every 24 hours.
 
 **RTO**: Variable.
-Recovery time depends upon the size of the data being recovered.
+Recovery time depends on the size of the data being recovered.
 
 ## Premium schedule
 
@@ -32,7 +32,7 @@ Recovery time depends upon the size of the data being recovered.
 Production environments on a Premium schedule are backed up every 6 hours.
 
 **RTO**: Variable.
-Recovery time depends upon the size of the data being recovered.
+Recovery time depends on the size of the data being recovered.
 
 ## Dedicated environments
 
@@ -40,4 +40,4 @@ Recovery time depends upon the size of the data being recovered.
 Dedicated environments are backed up every 6 hours.
 
 **RTO**: Variable.
-Recovery time depends upon the size of the data being recovered.
+Recovery time depends on the size of the data being recovered.
