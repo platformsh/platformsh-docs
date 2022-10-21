@@ -13,8 +13,8 @@ To update your WordPress site to use Composer, check that:
 
 - You already have a [vanilla version of WordPress installed locally](../vanilla/_index.md).
 - Your project has been set up for deployment on Platform.sh.
-  If you do not have Platform.sh configuration files in your repository,
-  make sure you [deploy WordPress without Composer](../vanilla/_index.md) before upgrading to a Composer-based site.
+  If you don't have Platform.sh configuration files in your repository,
+  [deploy WordPress without Composer](../vanilla/_index.md) before upgrading to a Composer-based site.
 - You have [downloaded and installed Composer](https://getcomposer.org/download/).
 
 ## Install WordPress with Composer
