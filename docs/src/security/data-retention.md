@@ -44,6 +44,41 @@ For example, if you currently have 10 manual backups and are on the Advanced sch
 you keep all 10 manual backups until there are 15 automated backups.
 Then the automated backups start replacing the manual ones until you have only your allocated 4 manual backups.
 
+### Backup cycles
+
+Backups are created and retained in a cycle.
+As the cycle restarts, the first backup of that stage passes down to the next stage.
+The following is an example of the cycle using the shortest stage (6-hourly backups) from the Premium schedule.
+The times are just for understanding as actual backup times vary by project.
+
+The first cycle is 4 backups (6-hourly backups) made in one day.
+
+![Four 6-hourly backups get taken on a Monday. No daily backups are taken.](/images/backup-cycles/first-cycle.png "0.215-inline")
+
+The first backup doesn’t expire but is retained for the next cycle.
+
+![The first 6-hourly backup becomes a daily backup.](/images/backup-cycles/retain.png "0.215-inline")
+
+As additional backups are created, the oldest backups are replaced and no longer available.
+
+![When two backups are taken on Tuesday, the 6-hourly backups from Monday start becoming unavailable.](/images/backup-cycles/replace-backup.png "0.3-inline")
+
+When the next cycle completes, it has replaced the previous cycle.
+
+![When two backups are taken on Tuesday, the 6-hourly backups from Monday start becoming unavailable.](/images/backup-cycles/replace-cycle.png "0.375-inline")
+
+#### Advanced schedule retention
+
+The following diagram shows how the cycle works for the entire Advanced schedule:
+
+![Daily backups are retained for 1 week. The first daily backup becomes the weekly backup at the end of the week. Weekly backups are retained for 1 month. The first weekly backup becomes the monthly backup at the end of the month. Monthly backups are retained for 1 year.](/images/backup-cycles/advanced-retention.png "0.6")
+
+#### Premium schedule retention
+
+The following diagram shows how the cycle works for the entire Premium schedule:
+
+![Each 6-hourly backup is retained for 1 day. Each day, the first 6-hourly backup becomes the daily backup. Daily backups are retained for 30 days. The first daily backup becomes the monthly backup at the end of the month. Monthly backups are retained for 1 year.](/images/backup-cycles/premium-retention.png "0.6")
+
 ## {{% names/dedicated-gen-2 %}} backups
 
 Backups for {{% names/dedicated-gen-2 %}} environments are retained based on when they were taken.
