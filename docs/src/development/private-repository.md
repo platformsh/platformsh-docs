@@ -5,36 +5,35 @@ sidebarTitle: Private repositories
 description: See how to pull code from a private Git repository into your Platform.sh build process.
 ---
 
-Your organization may have code stored in private Git repositories that you need to build your Platform.sh project.
+To complete its build, your Platform.sh project may need to access pieces of code stored in private Git repositories.
 Examples include themes, libraries, and modules.
-You can configure these repositories to grant access to your project
-so it can pull the code and build it with the rest of your project.
+Configure these repositories to grant access to your project.
 
-To grant access to your private Git repository,
+To grant access to a private Git repository,
 add the project's public SSH key to your Git repository's deploy keys.
 
-1. Get your project's public key:
+## 1. Get your project's public key
 
-   1. In the Console, open the project you want.
-   2. Click **{{< icon settings >}} Settings**.
-   3. Under **Project settings**, click **Deploy key**.
-   4. Click **{{< icon copy >}} Copy**.
+1. In the Console, open the project you want.
+2. Click **{{< icon settings >}} Settings**.
+3. Under **Project settings**, click **Deploy key**.
+4. Click **{{< icon copy >}} Copy**.
 
-   ![Deploy Key](/images/management-console/settings-deploy-key.png "0.5")
+![Deploy Key](/images/management-console/settings-deploy-key.png "0.5")
 
-2. Add the key to your repository in your Git provider:
+## 2. Add the key to your repository in your Git provider
 
-   * [GitHub deploy key](https://docs.github.com/en/developers/overview/managing-deploy-keys#deploy-keys) 
-   * [GitLab deploy key](https://docs.gitlab.com/ee/user/project/deploy_keys/#grant-project-access-to-a-public-deploy-key)
-   * [Bitbucket access key](https://support.atlassian.com/bitbucket-cloud/docs/add-access-keys/#Step-3.-Add-the-public-key-to-your-repository)
+* [GitHub deploy key](https://docs.github.com/en/developers/overview/managing-deploy-keys#deploy-keys) 
+* [GitLab deploy key](https://docs.gitlab.com/ee/user/project/deploy_keys/#grant-project-access-to-a-public-deploy-key)
+* [Bitbucket access key](https://support.atlassian.com/bitbucket-cloud/docs/add-access-keys/#Step-3.-Add-the-public-key-to-your-repository)
 
-   If you're only pulling code, the key doesn't need write permissions.
+If you're only pulling code, the key doesn't need write permissions.
 
 Now your Platform.sh project can access your private repository via SSH, including to add dependencies.
 
 This means you can access the private repository through links like:
 <code>git@{{% variable "GIT_PROVIDER" %}}:{{% variable "PATH_OR_USERNAME" %}}/{{% variable "REPOSITORY" %}}.git</code>.
-For example, you could clone a repository in your [`build` hook](../create-apps/hooks/_index.md):
+For example, you can clone a repository in your [`build` hook](../create-apps/hooks/_index.md):
 
 ```yaml {location=".platform.app.yaml"}
 hooks:

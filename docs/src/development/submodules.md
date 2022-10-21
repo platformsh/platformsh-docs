@@ -48,7 +48,7 @@ E: Error validating submodules in tree:
 
 Since the Platform.sh Git server can't connect to GitHub via SSH without being granted an SSH key to do so, you shouldn't use an SSH URL: ``git@github.com:...``, but you should use an HTTPS URL instead: ``https://github.com/...``.
 
-## Use private git repositories
+## Use private Git repositories
 
 When using Git submodules that are private repositories, URLs with the HTTPS protocol fail with errors such as the following:
 
@@ -58,9 +58,9 @@ GitProtocolError: unexpected http resp 401 for https://bitbucket.org/myusername/
 
 To fix this, follow these steps:
 
-1. Change your modules declarations to use SSH for URLs.
+1. Change your module declarations to use SSH for URLs.
 
-    So your existing declaration might look like this:
+    Your existing declaration might look like this:
 
     ```bash {location=".gitmodules"}
     [submodule "support/module"]
