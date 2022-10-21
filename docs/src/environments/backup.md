@@ -4,7 +4,7 @@ description: See how to protect yourself from potential data loss by backing up 
 weight: -10
 ---
 
-When you're making changes your apps,
+When you're making changes to your apps,
 you want to be sure those changes only improve things and don't make you lose any data.
 You also want to have a disaster recovery plan in place.
 Backups help you protect yourself against potential data loss.
@@ -16,7 +16,7 @@ The snapshot is stored internally and can't be downloaded.
 Code is managed through Git and so isn't included.
 You can restore previous code using Git commands such as [revert](https://git-scm.com/docs/git-revert).
 
-You might want to make backups of your live environment before merging a different environment into it.
+You might want to make backups of your live environment before merging a different environment into it
 or each time you increase the storage space of your services.
 
 You also have regularly scheduled automated backups of your production environments to cover most cases.
@@ -30,7 +30,7 @@ To back up an environment, you need an [Admin role for that environment type](..
 ## Backups and downtime
 
 By default, triggering a manual backup causes a momentary pause in site availability so that all requests can complete.
-This enables the backup to be taken against a known consistent state.
+This means the environment is backed up in a known consistent state.
 The total interruption is usually only 15 to 30 seconds.
 Any requests during that time are held temporarily, not dropped.
 
@@ -151,10 +151,10 @@ file=none
 highlight=false
 ---
 
-- Navigate to the environment you want to back up.
-- Click **Backups**.
-- Click {{< icon backup >}} **Backup**.
-- Click **Backup**.
+1. Navigate to the environment you want to back up.
+2. Click **Backups**.
+3. Click {{< icon backup >}} **Backup**.
+4. Click **Backup**.
 
 {{< /codetabs >}}
 

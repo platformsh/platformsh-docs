@@ -81,9 +81,9 @@ file=none
 highlight=false
 ---
 
-- Next to the backup you've selected, click **More** {{< icon more >}}.
-- Click **Restore**.
-- Read through the consequences and click **Yes, Restore**.
+1. Next to the backup you've selected, click **More** {{< icon more >}}.
+2. Click **Restore**.
+3. Read through the consequences and click **Yes, Restore**.
 
 {{< /codetabs >}}
 
