@@ -158,37 +158,6 @@ highlight=false
 
 {{< /codetabs >}}
 
-### Create manual backups with cron jobs
-
-To automate the process of creating manual backups in a cron job, follow these steps:
-
-1. Create a [machine user](../administration/cli/api-tokens.md#create-a-machine-user).
-2. Get an [API token for that user](../administration/cli/api-tokens.md#get-a-token).
-3. Use the token to [authenticate and install the CLI in a build hook](../administration/cli/api-tokens.md#on-a-platformsh-environment).
-4. Add a cron job to run once a day.
-   The following example runs a backup operation every day at 05:00 UTC only on the production environment:
-
-   ```yaml
-   crons:
-       backup:
-           spec: '0 5 * * *'
-           commands:
-               start: |
-                   if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-                       platform backup:create --yes --no-wait
-                   fi
-   ```
-
-Some recommendations:
-
-- To minimize data usage, don't schedule backups more than once per day.
-- To skip any interaction, use the `--yes` flag.
-- To prevent the cron job from blocking other tasks such as builds and deploys, use the `--no-wait` flag.
-  
-  Not using this flag means the cron job waits for the backup to complete,
-  which may take a while depending on how much data you have.
-  Passing the flag allows the cron job to end while the backup itself continues.
-
 ## Physical storage location
 
 Backups are stored as binary large objects separate from your environments.
