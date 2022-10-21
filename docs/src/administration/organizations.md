@@ -68,7 +68,7 @@ highlight=false
 
 ## Manage your organization users
 
-As an organization owner or an organization user with the **Users** permission,
+As an organization owner or an organization user with the **Manage users** permission,
 you can invite other users to your organization and grant them the following permissions:
 
 * **Manage billing** (`billing`):
@@ -111,7 +111,7 @@ highlight=false
 
 ### Add a new user
 
-To invite `alice@example.com` to the `acme` organization with the **Billing** and **Create projects** permissions, run:
+To invite `alice@example.com` to the `acme` organization with the **Manage billing** and **Create projects** permissions, run:
 
 ```bash
 platform organization:user:add alice@example.com --org=acme --permission=billing,projects:create
@@ -122,7 +122,7 @@ Alice receives an invitation email with instructions.
 
 ### Manage existing users
 
-To update Alice's permissions in your organization so that she has only the **Billing** permission, run:
+To update Alice's permissions in your organization so that she has only the **Manage billing** permission, run:
 
 ```bash
 platform organization:user:update alice@example.com --org=acme --permission=billing
