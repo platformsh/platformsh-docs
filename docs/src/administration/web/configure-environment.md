@@ -52,7 +52,7 @@ There are also additional options:
 
 ## Environment settings
 
-To access the settings of an environment, click {{< icon settings >}} **Settings** within that environment:
+To access the settings of an environment, click {{< icon settings >}} **Settings** within that environment.
 
 ![Settings for an environment](/images/management-console/env-settings.png "0.75")
 
