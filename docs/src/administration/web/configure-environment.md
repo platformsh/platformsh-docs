@@ -112,7 +112,8 @@ To view the `.platform/routes.yaml` file where your routes are set up, click **C
 
 ### Applications
 
-To see detailed information about an app container, select it in the tree or list on the left-hand side:
+To see detailed information about an [app container](../../create-apps/_index.md),
+select it in the tree or list on the left-hand side:
 
 ![Services: app overview](/images/management-console/service-tab/app-overview.png "0.5")
 
