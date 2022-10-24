@@ -76,16 +76,17 @@ you can invite other users to your organization and grant them the following per
   Access invoices and vouchers.
   Users with this permission receive monthly invoices by email.
 * **Manage plans** (`plans`):
-  Add, remove, and edit plans and plan options for your existing projects.
+  Add, remove, and edit plans and plan options for existing projects.
   (Change plan, change storage, change the number of environments, change the number of user licenses)
 * **Manage users** (`members`):
-  Add, remove, and edit organization-level users and permissions, except your own.
+  Add, remove, and edit organization-level users and permissions, except their own.
+  Users with this permission can't grant other users permissions that they themselves don't have.
 * **Create projects** (`projects:create`):
   Create new projects within the organization.
 
 {{< note theme="warning" >}}
 
-A user with the **Manage users** (`members`) permission can add, edit, or remove _any_ user's permissions except their own.
+Users with the **Manage users** (`members`) permission can add, edit, or remove _any_ user's permissions except their own.
 
 {{< /note >}}
 
