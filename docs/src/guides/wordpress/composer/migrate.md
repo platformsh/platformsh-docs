@@ -1,9 +1,9 @@
 ---
-title: "How to update your WordPress site to use Composer"
+title: "How to upgrade your WordPress site to use Composer"
 sidebarTitle: Upgrade to use Composer
 weight: 2
 description: |
-    Everything you need to get started with WordPress on Platform.sh. 
+    Learn how to use WordPress with Composer on Platform.sh.
 ---
 
 Composer helps you declare, manage, and install all the dependencies needed to run your project.
@@ -19,8 +19,14 @@ To update your WordPress site to use Composer, check that:
 
 ## Install WordPress with Composer
 
-Instead of committing all of WordPress to your repository (or [adding it as a Git submodule](../../../development/submodules.md)), you can install it with Composer.
-To do so:
+Managing WordPress with Composer makes installing and updating WordPress and its dependencies much more lightweight.
+With Composer, you don't need to commit all of WordPress core, its themes and plugins to your project's Git repository. 
+You also don't need to manage any of these elements as Git submodules. 
+
+If you were managing WordPress and its dependencies as Git submodules, 
+see [how to remove them](../../../development/submodules.md#removing-submodules) before switching to Composer.
+
+To install WordPress with Composer:
 
 1. Switch to a new Git branch.
     
@@ -53,11 +59,7 @@ To do so:
 3. Clean up WordPress core.
 
    Your existing installation of WordPress core is assumed to be in a subdirectory of your repository (often named `wordpress`).
-   For Composer to manage WordPress, this subdirectory needs to be overwritten.
-   Make sure that you move all your important data to another subdirectory.
-   For instance, add your plugins and themes to a separate `plugins` subdirectory. 
-
-   You can now remove the `wordpress` subdirectory: 
+   For Composer to manage WordPress, remove this subdirectory: 
 
    ```bash
    $ rm -rf wordpress
@@ -91,7 +93,7 @@ To do so:
 
    The two dependencies are now listed in your `composer.json` file:
 
-   ```json {location="composer.json"}
+   ```json
     {
         "require": {
             "johnpbloch/wordpress-core-installer": "^2.0",
@@ -111,7 +113,7 @@ To do so:
 ## Install WordPress themes and plugins with Composer
 
 Just like with WordPress core, you can install themes and plugins with the `composer require` command.
-To do so:
+To do so, complete the following steps:
 
 1. Configure the WPackagist repository.
 
@@ -128,7 +130,7 @@ To do so:
 
    WPackagist is now listed in your `composer.json` file:
 
-   ```json {location="composer.json"}
+   ```json
     {
         "repositories": {
             "wppackagist": {
