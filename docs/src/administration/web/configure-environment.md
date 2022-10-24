@@ -64,7 +64,7 @@ Under **Environment name**, you can edit the name and type of your environment a
 
 ### Status
 
-Under **Status**, you can check if your environment is [active](../../other/glossary.md#active-environment) or not:
+Under **Status**, you can check whether or not your environment is [active](../../other/glossary.md#active-environment).
 
 ![Environment status](/images/management-console/env-status.png "0.5")
 
