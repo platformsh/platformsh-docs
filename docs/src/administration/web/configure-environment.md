@@ -108,11 +108,11 @@ You can see each route's type and check if caching and server side includes have
 
 ![Services: routes](/images/management-console/service-tab/routes.png "0.5")
 
-To view the `.platform/routes.yaml` file where your routes are set up, click **Configuration**.
+To view the configuration file where your routes are set up, click **Configuration**.
 
 ### Applications
 
-To see detailed information about an [app container](../../create-apps/_index.md),
+To see detailed information about an app container,
 select it in the tree or list on the left-hand side:
 
 ![Services: app overview](/images/management-console/service-tab/app-overview.png "0.5")
@@ -122,7 +122,7 @@ You can see the language version, the container size, the amount of persistent d
 the number of active workers and cron jobs, and the command to SSH into the container.
 You can also see all cron jobs with their name, frequency, and command.
 
-To view the `.platform/app.yaml` file where your app is set up, click **Configuration**.
+To view [the configuration file where your app is set up](../../create-apps/), click **Configuration**.
 
 ### Services
 
@@ -134,4 +134,4 @@ select it in the tree or list on the left-hand side:
 The **Overview** gives you information about the selected service.
 You can see the service version, the container size, and the disk size, if you've configured a persistent disk.
 
-To view the `.platform/services.yaml` file where your services are set up, click **Configuration**.
+To view the configuration file where your services are set up, click **Configuration**.
