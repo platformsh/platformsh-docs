@@ -58,7 +58,7 @@ To access the settings of an environment, click {{< icon settings >}} **Settings
 
 ### Environment name
 
-Under **Environment name**, you can edit the name and type of your environment, and view its parent environment:
+Under **Environment name**, you can edit the name and type of your environment and view its parent environment:
 
 ![Environment status](/images/management-console/env-name.png "0.5")
 
