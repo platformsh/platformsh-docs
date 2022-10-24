@@ -126,7 +126,8 @@ To view the `.platform/app.yaml` file where your app is set up, click **Configur
 
 ### Services
 
-To see detailed information about a running service, select it in the tree or list on the left-hand side:
+To see detailed information about a [running service](../../add-services/_index.md),
+select it in the tree or list on the left-hand side:
 
 ![Services: service overview](/images/management-console/service-tab/service-overview.png "0.5")
 
