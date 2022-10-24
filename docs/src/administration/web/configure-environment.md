@@ -103,7 +103,7 @@ By default, you see configured routes.
 
 ### Routes
 
-The **Router** section shows a list of all the routes configured on your environment.
+The **Router** section shows a list of all the [routes configured on your environment](../../define-routes/_index.md).
 You can see each route's type and check if caching and server side includes have been enabled for it:
 
 ![Services: routes](/images/management-console/service-tab/routes.png "0.5")
