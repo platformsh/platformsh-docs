@@ -11,9 +11,8 @@ From your project's main page in the Console, you can see all your environments 
 
 In this overview, the names of inactive environments are lighter. 
 Selecting an environment allows you to see details about it, 
-such as its [activity feed](./configure-environment.md#activity-feed), 
-[services](./configure-environment.md#service-information), 
-metrics or backups.
+such as its [activity feed](#activity-feed), [services](#service-information),
+[metrics](../../increase-observability/metrics/_index.md), and [backups](../backup-and-restore.md).
 
 ## Activity Feed
 
