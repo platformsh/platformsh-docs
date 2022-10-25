@@ -124,7 +124,7 @@ A short note.
 This shortcode accepts two optional parameters:
 
 - `theme`: Determines the color and the default title.
-  The default `theme` is `primary` and may be set to `info`, or `warning`.
+  The default `theme` is `primary` and may be set to `info` or `warning`.
 - `title`: Sets the title of the note.
   The default is the `theme` with the first letter capitalized and a colon (`Note:`).
   To have no title, set this to `none`.
@@ -138,6 +138,39 @@ Be careful!
 ```
 
 See the [content guidelines for notes](./content-style.md#use-notes-appropriately).
+
+### Notes inside shortcodes
+
+It's possible to use notes inside other shortcodes.
+To do so, use the following syntax:
+
+```markdown
+{{ $inner := `
+<MARKDOWN_TEXT>
+` }}
+{{ partial "note" (dict "Inner" $inner "context" .) }}
+```
+
+You can also add a title and theme.
+
+```markdown
+{{ $inner := `
+<MARKDOWN_TEXT>
+` }}
+{{ partial "note" (dict "Inner" $inner "context" . "title" "<TTILE>" "theme" "<THEME>") }}
+```
+
+Note that backticks to denote code aren't possible.
+You can use HTML tags instead.
+
+```markdown
+{{ $inner := `
+This is text with inline <code>code</code>.
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">This is a code block</code></pre></div>
+` }}
+{{ partial "note" (dict "Inner" $inner "context" .) }}
+```
 
 ### Footnotes
 
