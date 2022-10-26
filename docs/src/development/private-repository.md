@@ -42,7 +42,7 @@ hooks:
         git clone git@bitbucket.org:username/module.git
 ```
 
-You can also use [private repositories as submodules](./submodules.md#use-of-private-git-repositories).
+You can also use [private repositories as submodules](./submodules.md#use-private-git-repositories).
 
 ## Using multiple private GitHub repositories
 
