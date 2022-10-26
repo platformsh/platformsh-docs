@@ -1,5 +1,5 @@
 ---
-title: "How to upgrade your WordPress site to use Composer"
+title: "Upgrade your WordPress site to use Composer"
 sidebarTitle: Upgrade to use Composer
 weight: 2
 description: |
@@ -56,9 +56,9 @@ To install WordPress with Composer, complete the following steps:
 
 3. Clean up WordPress core.
 
-   If you've been managing managing WordPress and its dependencies as Git submodules, before switching to Composer [remove the submodules](../../../development/submodules.md#removing-submodules).
+   If you've been managing WordPress and its dependencies as Git submodules, [remove the submodules](../../../development/submodules.md#removing-submodules).
 
-   Your existing installation of WordPress core is assumed to be in a subdirectory of your repository (often named `wordpress`).
+   Otherwise, your existing installation of WordPress core is assumed to be in a subdirectory of your repository (often named `wordpress`).
    For Composer to manage WordPress, remove this subdirectory: 
 
    ```bash
