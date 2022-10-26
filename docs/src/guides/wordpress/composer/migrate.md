@@ -9,6 +9,11 @@ description: |
 Composer helps you declare, manage, and install all the dependencies needed to run your project.
 It allows you to make your WordPress site [more stable, more secure, and easier to maintain](./_index.md).
 
+With Composer, you don't need to commit all of WordPress core, its themes and plugins to your project's Git repository. 
+You also don't need to manage any of these elements as Git submodules. 
+
+## Before you begin
+
 To update your WordPress site to use Composer, check that:
 
 - You already have a [vanilla version of WordPress installed locally](../vanilla/_index.md).
@@ -17,16 +22,9 @@ To update your WordPress site to use Composer, check that:
   [deploy WordPress without Composer](../vanilla/_index.md) before upgrading to a Composer-based site.
 - You have [downloaded and installed Composer](https://getcomposer.org/download/).
 
-## Install WordPress with Composer
+## 1. Install WordPress with Composer
 
-Managing WordPress with Composer makes installing and updating WordPress and its dependencies much more lightweight.
-With Composer, you don't need to commit all of WordPress core, its themes and plugins to your project's Git repository. 
-You also don't need to manage any of these elements as Git submodules. 
-
-If you were managing WordPress and its dependencies as Git submodules, 
-see [how to remove them](../../../development/submodules.md#removing-submodules) before switching to Composer.
-
-To install WordPress with Composer:
+To install WordPress with Composer, complete the following steps:
 
 1. Switch to a new Git branch.
     
@@ -57,6 +55,8 @@ To install WordPress with Composer:
    as you add them in step 5.
 
 3. Clean up WordPress core.
+
+   If you've been managing managing WordPress and its dependencies as Git submodules, before switching to Composer [remove the submodules](../../../development/submodules.md#removing-submodules).
 
    Your existing installation of WordPress core is assumed to be in a subdirectory of your repository (often named `wordpress`).
    For Composer to manage WordPress, remove this subdirectory: 
@@ -110,7 +110,7 @@ To install WordPress with Composer:
      
    Composer reinstalls WordPress into the `wordpress` subdirectory.
 
-## Install WordPress themes and plugins with Composer
+## 2. Install WordPress themes and plugins with Composer
 
 Just like with WordPress core, you can install themes and plugins with the `composer require` command.
 To do so, complete the following steps:
@@ -193,7 +193,7 @@ To do so, complete the following steps:
    Each dependency is now installed.
 
 
-## Deploy to Platform.sh
+## 3. Deploy to Platform.sh
 
 Switching to a Composer-based installation doesn't require any modifications to the Platform.sh configuration files 
 created when [you deployed your vanilla version](../vanilla/_index.md). 
@@ -206,7 +206,7 @@ $ git add . && git commit -m "Composerify plugins and themes."
 $ git push platform composer
 ```
 
-## Update your Composer-based WordPress site
+## 4. Update your Composer-based WordPress site
 
 ### Perform a standard update with Composer
 
