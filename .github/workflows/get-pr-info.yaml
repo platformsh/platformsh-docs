@@ -31,10 +31,10 @@ jobs:
         run: |
           # For PRs from non-forked repos
           if [ ${{ github.event.pull_request.head.repo.id }} == 21975579 ]; then
-            echo "::set-output name=branch_name::${{ github.event.pull_request.head.ref }}"
+            echo "branch_name${{ github.event.pull_request.head.ref }}" >> $GITHUB_OUTPUT
           # For PRs from forks
           else
-            echo "::set-output name=branch_name::pr-$PR_NUMBER"
+            echo "branch_name=pr-$PR_NUMBER" >> $GITHUB_OUTPUT
           fi
 
       # Set up environment to use the Platform.sh CLI
@@ -86,8 +86,8 @@ jobs:
           fi
 
           # Report the final statuses to be used in future jobs
-          echo "::set-output name=env_status::$COMMIT_STATUS"
-          echo "::set-output name=env_url::$ENV_URL"
+          echo "env_status=COMMIT_STATUS" >> $GITHUB_OUTPUT
+          echo "env_url$ENV_URL" >> $GITHUB_OUTPUT
 
       - name: Make artifact files
         run: |
@@ -152,9 +152,9 @@ jobs:
           # Using "\n" here creates problems in passing data to the next step, so replace there instead
           if (( ${#files[@]} != 0 )); then
             echo $(printf "||%s" "${files[@]}")
-            echo ::set-output name=changed_files::$(printf "||%s" "${files[@]}")
+            echo changed_files=$(printf "||%s" "${files[@]}") >> $GITHUB_OUTPUT
           else
-            echo ::set-output name=changed_files::""
+            echo changed_files::"" >> $GITHUB_OUTPUT
           fi
 
       # If there are changed pages, create a comment with a checklist
