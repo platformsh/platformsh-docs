@@ -26,7 +26,7 @@ See how to [back up and transfer data](../../development/transfer-dedicated.md#s
 ## Backups
 
 Production environments are [backed up automatically](./backups.md).
-For other environments, trigger a [manual backup](../../administration/backup-and-restore.md).
+For other environments, trigger a [manual backup](../../environments/backup.md).
 
 ## PHP
 
