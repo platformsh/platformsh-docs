@@ -68,7 +68,7 @@ file=none
 3. Choose an index name.
 4. Create the integration with the following command:
 
-   <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">platform project:curl /integrations -X POST -d <span class="s1">'{ "type":"splunk", "url":"https://http-inputs.{{< variable "HOST" >}}.splunkcloud.com/services/collector/event", "index":"{{< variable "HOST" >}}", "token":"{{< variable "TOKEN" >}}" }'</span></span></span></code></pre></div>
+   <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">platform project:curl /integrations -X POST -d <span class="s1">'{ "type":"splunk", "url":"https://http-inputs.{{< variable "HOST" >}}.splunkcloud.com/services/collector/event", "index":"{{< variable "INDEX" >}}", "token":"{{< variable "TOKEN" >}}" }'</span></span></span></code></pre></div>
 
 View your logs in the **Apps->Search & Reporting** dashboard.
 Filter by the index name to find the relevant events.
