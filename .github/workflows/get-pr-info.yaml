@@ -31,7 +31,7 @@ jobs:
         run: |
           # For PRs from non-forked repos
           if [ ${{ github.event.pull_request.head.repo.id }} == 21975579 ]; then
-            echo "branch_name${{ github.event.pull_request.head.ref }}" >> $GITHUB_OUTPUT
+            echo "branch_name=${{ github.event.pull_request.head.ref }}" >> $GITHUB_OUTPUT
           # For PRs from forks
           else
             echo "branch_name=pr-$PR_NUMBER" >> $GITHUB_OUTPUT
@@ -87,7 +87,7 @@ jobs:
 
           # Report the final statuses to be used in future jobs
           echo "env_status=COMMIT_STATUS" >> $GITHUB_OUTPUT
-          echo "env_url$ENV_URL" >> $GITHUB_OUTPUT
+          echo "env_url=$ENV_URL" >> $GITHUB_OUTPUT
 
       - name: Make artifact files
         run: |
@@ -154,7 +154,7 @@ jobs:
             echo $(printf "||%s" "${files[@]}")
             echo changed_files=$(printf "||%s" "${files[@]}") >> $GITHUB_OUTPUT
           else
-            echo changed_files::"" >> $GITHUB_OUTPUT
+            echo changed_files="" >> $GITHUB_OUTPUT
           fi
 
       # If there are changed pages, create a comment with a checklist
