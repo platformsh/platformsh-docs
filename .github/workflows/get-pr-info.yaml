@@ -86,7 +86,7 @@ jobs:
           fi
 
           # Report the final statuses to be used in future jobs
-          echo "env_status=COMMIT_STATUS" >> $GITHUB_OUTPUT
+          echo "env_status=$COMMIT_STATUS" >> $GITHUB_OUTPUT
           echo "env_url=$ENV_URL" >> $GITHUB_OUTPUT
 
       - name: Make artifact files
