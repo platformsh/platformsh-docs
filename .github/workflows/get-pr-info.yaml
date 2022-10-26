@@ -1,6 +1,6 @@
 name: Get info on PR
 on:
-  pull_request_target:
+  pull_request:
     branches: [main]
     types: [labeled,opened,reopened,synchronize]
 
@@ -101,6 +101,8 @@ jobs:
       - name: Save PR SHA
         if: ${{ always() }}
         run: echo "${{ github.event.pull_request.head.sha }}" > pr_sha.txt
+
+      - run: echo "${{steps.get_env_url.outputs.env_status}}"
 
       # If no environment URL, create a report of that
       - name: Create failure report
