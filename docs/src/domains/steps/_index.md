@@ -134,4 +134,4 @@ Notifications can be sent via email, Slack, or PagerDuty.
 ### Configure automatic backups
 
 It's strongly recommended that you set up an [API token](/administration/cli/api-tokens.md) and install the CLI
-to define [an automatic backup](/administration/backup-and-restore.md#automated-backups) cron task.
+to define [an automatic backup](../../environments/backup.md#automated-backups) cron task.

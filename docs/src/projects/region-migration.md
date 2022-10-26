@@ -24,7 +24,7 @@ You can also change the project's region after it's created.
   - [Network Storage service](../add-services/network-storage.md)
   - [Deploy hook activity logs and SSH during deploy hooks](../create-apps/hooks/hooks-comparison.md#deploy-hook)
   - [Cron activity logs](../increase-observability/logs/access-logs.md)
-  - [Live backups](../administration/backup-and-restore.md#live-backups)
+  - [Live backups](../environments/backup.md#live-backups)
   - [Infrastructure metrics](../increase-observability/metrics/_index.md)
   - [Paused crons](../create-apps/app-reference.md#paused-crons)
   - [Static content during deployments](https://platform.sh/blog/2022/upcoming-improvements-deployment-caching-crons)

@@ -6,7 +6,7 @@ aliases:
   - "/gettingstarted/dev-environments/merge.html"
 ---
 
-Now that you've had the chance to verify that your application built and deployed correctly on your development environment, you're ready to merge it into your production site. Platform.sh provides [backup](/administration/backup-and-restore.md) features that protect against any unforeseen consequences of your merges, keeping a historical copy of all of your code and data.
+Now that you've had the chance to verify that your application built and deployed correctly on your development environment, you're ready to merge it into your production site. Platform.sh provides [backup](../../../environments/backup.md) features that protect you against any unforeseen consequences of your merges, keeping a historical copy of all of your code and data.
 
 {{< asciinema src="videos/asciinema/snap-merge-restore.cast" >}}
 
@@ -18,7 +18,7 @@ The `--project` flag isn't needed if you are running the `platform` command from
 1. **Create a backup**
 
     Before you merge the `dev` feature into your production environment,
-    create a [backup](/administration/backup-and-restore.md) of the production environment.
+    create a [backup](../../../environments/backup.md) of the production environment.
     The backup preserves both the code and all of its data.
 
     ```bash

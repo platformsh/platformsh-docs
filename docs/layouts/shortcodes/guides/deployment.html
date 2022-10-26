@@ -1,6 +1,10 @@
 <p>If you have been customizing your existing project as you go, now is the time to ensure all code is committed to Git and to run <code>git push</code> to Platform.sh to your production branch. Platform.sh then builds your code, producing a read-only image of your application, and deploys it into a running cluster of containers.</p>
 <p>You can view the process in the console or, if you aren't using a source integration, in your terminal after pushing. When the process is done, click the URL to see your site.</p>
 
-<div class="alert alert-primary" role="alert"><p><strong>Note:</strong></p><p class="alert-text"><p>If you set up an integration to a repository that contained many pull requests with the <code>--build-pull-requests=false</code> flag, you can now activate the current environment to complete your deployment.</p>
-    <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ platform environment:activate -p &lt;PROJECT_ID&gt; -e &lt;BRANCH_NAME&gt;</code></pre></div></p>
-    </div>
+{{ $inner := `
+
+If you set up an integration to a repository that contained many pull requests with the <code>--build-pull-requests=false</code> flag, you can now activate the current environment to complete your deployment.
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ platform environment:activate -p &lt;PROJECT_ID&gt; -e &lt;BRANCH_NAME&gt;</code></pre></div>
+` }}
+{{ partial "note" (dict "Inner" $inner "context" .) }}

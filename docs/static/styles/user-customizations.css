@@ -487,5 +487,9 @@ var {
   padding: 0.25rem;
   border-radius: 0.25rem;
   margin-left: 0.5rem;
+}
 
+/* Nested ordered lists should use letters */
+ol ol {
+  list-style-type: lower-alpha;
 }
