@@ -2,40 +2,30 @@
 title: "Content delivery networks (CDNs)"
 sidebarTitle: "Content delivery networks"
 weight: 3
-description: |
-    Find out how to provide high availability and improve performance for distributed end-users of your website.
+description: Improve performance for distributed end-users of your website with a Content delivery network (CDN).
 layout: single
 ---
 
+Effective caching can mean a huge difference in the perceived performance of an app by its users.
+Placing the caches closer to your users (wherever they may be) is the best solution currently available.
+
 Dedicated plans include a Fastly CDN account by default, which is managed by Platform.sh.
-Our experience has shown that effective caching can mean a huge difference in the perceived performance of an app by its users,
-and that placing the caches closer to your users (wherever they may be) is the best solution currently available.
 
 Self-Service Grid plans don't include a CDN by default, but you are welcome to configure one yourself.
 See our [guidelines](../../bestpractices/http-caching.md) for when and if to use a CDN for HTTP caching.
 
-We have partnerships with a variety of CDN vendors depending on your app’s needs.
 Our recommended CDN provider is [Fastly](./fastly.md).
 
 ## DNS management
 
 The distributed nature of most CDNs means that for proper functioning,
 any domains that you intend to make use of the CDN are required to use CNAME records for pointing the DNS entries.
-Pointing the root domain (example.com) at a CNAME record isn't possible for all DNS hosts,
-so you need to confirm this functionality or migrate to a new DNS host.
-CloudFlare has a [more detailed writeup](https://blog.cloudflare.com/introducing-cname-flattening-rfc-compliant-cnames-at-a-domains-root/)
-of the challenges of root CNAMEs.
-
-In the event that you and your team choose a pure Fastly solution,
-this is negated by their providing a set of Anycast IP addresses for you.
-This allows you to create A records for your root domain that point to Fastly’s CDN.
+Pointing from an apex domain such as `example.com` to a hostname with a CNAME record isn't possible for all DNS hosts,
+verify your registrar supports [Canonical Name (CNAME) records for apex domains](../steps/dns.md#handling-apex-domains).
 
 ## Initial setup
 
-For Dedicated plans, CDN setup is handled by Platform.sh as part of your onboarding.
-After the app is stood up on its Dedicated virtual machines,
-we can begin the collaborative process of provisioning the CDN and configuring DNS and caching setup.
-We provide CDN services for both staging and production.
+For Dedicated plans, CDN setup is handled for both staging and production by Platform.sh as part of your onboarding.
 
 For self-service Grid plans, the setup can be done at any time by the customer.
 
@@ -46,27 +36,26 @@ there may be varying levels of flexibility with regard to caching and ongoing ca
 This should be discussed between your sales representative and senior technical members of your team
 if there are concerns with CDN configuration and functionality.
 
-If using Fastly as a CDN, you can provide either custom VCL snippets or a full custom VCL file.
-Platform.sh grants customers access to do so upon request.
+If using Fastly as a CDN, you can provide custom VCL snippets or a full custom VCL file through a [support ticket](../../overview/get-support.md).
 Be aware that downtime caused by custom VCL configuration isn't covered by the SLA,
-just as app code in your repository isn't covered by the SLA.
+just as app code in your repository isn't covered by the SLA either.
 
 ## TLS encryption
 
 Security and the related topic of encryption of data are fundamental principles at Platform.sh,
-and as such we provide TLS certificates in the default Dedicated package.
+and as such TLS certificates are provided in the default Dedicated package.
 This allows for encryption of all traffic between your users and your app.
 By default, a shared certificate is provisioned with the chosen CDN vendor.
 If you opt for the Global Application Cache, certificates are provisioned for both the site subdomain (`www`) and the asset/CDN subdomain.
-We use wildcard certificates to secure production, staging, and any other subdomains simultaneously.
+Wildcard certificates are used to secure production, staging, and any other subdomains simultaneously.
 If you need Extended Validation TLS certificates,
-you need to provide your own from an issuer of your choice that we can install for you.
+you need to provide your own from an issuer of your choice that can then be installed for you.
 
 If you need to provide your own TLS certificate, place the certificate, the unencrypted private key,
 and the necessary certificate chain supplied by your TLS provider in your app's `private` directory (not web accessible),
 and then open a ticket to let our team know to install it.
 
-Dedicated supports a single TLS certificate on the origin.
+{{% names/dedicated-gen-2 %}} and {{% names/dedicated-gen-3 %}} support a single TLS certificate on the origin.
 Support for multiple certificates is offered only through a CDN such as CloudFront or Fastly.
 Self-signed certificates can optionally be used on the origin for development purposes or for enabling TLS between the CDN and origin.
 
@@ -83,7 +72,7 @@ So it uses the origin name provided by Platform.sh.
 To ensure your TLS certificates are valid for both requests from clients to the CDN and from the CDN to the server on Platform.sh,
 you need to take two additional steps:
 
-1. Configure your CDN to set the `X-Forwarded-Host` HTTP header to {{<variable "YOUR_DOMAIN" >}}.
+1. Configure your CDN to set the `X-Forwarded-Host` HTTP header to your domain like `example.com`.
    That allows the request from the CDN to Platform.sh to still carry the original requested domain.
    The specific way to do so varies by the CDN.
 2. Ensure your app can read from the `X-Forwarded-Host` header should it need the Host information.
@@ -94,7 +83,7 @@ you need to take two additional steps:
 ## Web Application Firewall & Anti-DDoS
 
 All Platform.sh-hosted sites, either Grid or Dedicated, live on infrastructure provided by major cloud vendors.
-These vendors include their own Level 3 DDoS protection that is sufficient for the vast majority of cases.
+These vendors include their own Level 3 DDoS protection that is sufficient for the majority of cases.
 
 Customers are welcome to put their own WAF in front of a Dedicated cluster or add other security measures not included in the offering.
 
@@ -116,7 +105,11 @@ Modify your route like so to disable the cache:
 ## Preventing direct access
 
 When using a CDN, you might not want users to access your Platform.sh origin directly.
-There are three ways to secure your origin.
+There are three ways to secure your origin:
+
+- **Password protected HTTP Authentication**: Restrict access to your project with the [HTTP access control](../../environments/http-access-control.md).
+- **Allowing and denying IP addresses**: If your CDN doesn't support adding headers to the request to origin, you can allow the IP addresses of your CDN.
+- **Client authenticated TLS**.
 
 {{< codetabs >}}
 
@@ -126,20 +119,18 @@ file=none
 highlight=false
 ---
 
-You can password protect your project using [HTTP access control](../../environments/http-access-control.md).
-This is the recommended approach for CloudFlare.
-
-Make sure that you generate a password of sufficient strength.
-You can then share the password with your CDN provider.
-Make sure the CDN adds a header to authenticate correctly to your origin.
-
-Add a custom header to the origin request with the base64 encoded username:password.
-
-For example: `Aladdin:OpenSesame` would become `Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l`.
-
-Be aware that this approach applies the same user and password to all development environments, too.
+This approach applies the same username and password to your production and all development environments.
 You can have developers enter credentials through their browser,
 or override the access control setting for each child environment.
+
+To use password protected HTTP Authentication:
+
+1. Consult your CDN's documentation to ensure it supports that feature.
+2. Generate a password of sufficient strength.
+3. Password protect your project using [HTTP access control](../../environments/http-access-control.md).
+4. Share the password with your CDN provider.
+5. Make sure the CDN adds a header to authenticate correctly to your origin by adding a custom header to the origin request with the base64 encoded `username:password` you chose in step 2.
+    For example: `Aladdin:OpenSesame` would become `Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l`.
 
 <--->
 
@@ -149,21 +140,22 @@ file=none
 highlight=false
 ---
 
-If your CDN doesn't support adding headers to the request to origin, you can allow the IP addresses of your CDN.
-
-{{< note >}}
-You have to update your configuration when your CDN updates their IP addresses.
-{{< /note >}}
-
-List of IP ranges for:
-
-- [CloudFlare](https://www.cloudflare.com/ips/)
-- [Fastly](https://docs.fastly.com/en/guides/accessing-fastlys-ip-ranges)
-
-Be aware that this approach applies the same IP restrictions to all development environments, too.
+This approach applies the same IP restrictions to your production and all development environments.
 To remove it from development environments, you need to disable it on each environment
 or else create a single child of the default environment where it is disabled,
 and them make all development branches off of that environment.
+
+You also have to update your configuration when your CDN updates their IP addresses.
+
+To allow and deny IP addresses:
+
+1. Set up your CDN.
+2. Get the IP range for your CDN provider:
+
+    - [CloudFlare](https://www.cloudflare.com/ips/)
+    - [Fastly](https://docs.fastly.com/en/guides/accessing-fastlys-ip-ranges)
+
+3. Allow these IPs for your project using [HTTP access control](../../environments/http-access-control.md#filter-ip-addresses).
 
 <--->
 
@@ -175,21 +167,19 @@ highlight=false
 
 If your CDN offers this option, an alternative way of securing the connection is [client authenticated TLS](../../define-routes/https.md#client-authenticated-tls).
 
-**note**: Remember to permit your developers to access the origin by creating your own certificate
-or else they won't be able to access the project URL directly (see below).
-
-CloudFlare has [a very good article](https://developers.cloudflare.com/ssl/origin-configuration/authenticated-origin-pull/)
-on what client authenticated TLS is and how to set this up.
+Note: Remember to permit your developers to access the origin by creating your own certificate
+or else they won't be able to access the project URL directly.
 
 To activate authenticated TLS follow the following steps:
 
-1. Download the correct certificate from your CDN provider.
-    - [CloudFlare](https://developers.cloudflare.com/ssl/static/authenticated_origin_pull_ca.pem)
-         - *Caveat! an attacker could make a Cloudflare account to bypass your origin restriction. For CloudFlare, using the HTTP access control described above is the recommended way of securing your origin.*
-     - [Fastly](https://docs.fastly.com/products/waf-tuning-plus-package#authenticated-tls-to-origin)
+1. Download the certificate from your CDN provider:
+    - [CloudFlare](https://developers.cloudflare.com/ssl/static/authenticated_origin_pull_ca.pem). Using Client authenticated TLS with Cloudflare is the recommended approach, it avoids the possibility that an attacker could make a Cloudflare account to bypass your origin restriction. Use the authenticated origin pull method to secure your origin.
+    - [Fastly](https://docs.fastly.com/products/waf-tuning-plus-package#authenticated-tls-to-origin)
+
 2. Make sure you have a `.crt` file. If you have a `.pem` file, rename it to `cdn.crt`
-3. Add the `cdn.crt` to your git repository
+3. Add the `cdn.crt` file to your git repository
 4. Add the relevant configuration:
+
     ```yaml {location=".platform.app.yaml"}
     tls:
         client_authentication: "require"

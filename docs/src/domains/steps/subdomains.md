@@ -8,27 +8,30 @@ description: "How to handle multiple subdomains in different projects."
 You can host multiple subdomains, such as `foo.example.com` and `bar.example.com`,
 within a single project using [routes](../../define-routes/_index.md).
 
-To use subdomains across multiple projects, you need to add a specific TXT record for your [apex domain](dns.md#what-is-an-apex-domain).
+If you try to use a domain that's claimed on another project, you see an error like the following:
+
+```text
+This domain is already claimed by another project. If this is incorrect or you are trying to add a subdomain, please open a ticket with support.
+```
+
+## Use subdomains across multiple projects
+
+To enable multiple projects to use subdomains of the same domain,
+you need to add a specific `TXT` record for your domain.
 Consult your registrar's documentation for how to add such a record.
 
-The record should look like the following:
+The `TXT` record should look like the following:
 
 ```text
 _public-suffix-root.{{<variable "YOUR_DOMAIN" >}} TXT "public-suffix-root={{<variable "YOUR_DOMAIN" >}}"
 ```
 
 Replace {{<variable "YOUR_DOMAIN" >}} with your actual domain name.
-This means {{<variable "YOUR_DOMAIN" >}} is treated as a top-level domain
+This means {{<variable "YOUR_DOMAIN" >}} is treated as a top-level domain,
 so you can add multiple subdomains to different projects.
 
 Note: You should add this record before you add your first domain to Platform.sh.
 You can remove the record after adding subdomains, which reinstates [subdomain hijacking protection](#subdomain-hijacking-protection).
-
-If you don't add that record, and try to use a domain that's claimed, you see an error like the following:
-
-```text
-This domain is already claimed by another project. If this is incorrect or you are trying to add a subdomain, please open a ticket with support.
-```
 
 ## The details
 
@@ -39,7 +42,7 @@ The right-most portion of the domain, such as `.com`, `.edu`, and `.fr`,
 is known as the top-level domain (TLD).
 Most Internet applications (such as web browsers) handle TLDs specially, such as by restricting certain actions.
 
-For example, a web page at `foo.bar.baz.example.com` can usually set a cookie that's linked to:
+For example, a web page at `foo.bar.baz.example.com` can usually set a cookie that's linked to one of the following domains:
 
 * `foo.bar.baz.example.com`
 * `bar.baz.example.com`
@@ -54,7 +57,7 @@ Other restrictions apply on TLDs, but cookies are the easiest example.
 Aside from true TLDs, browser makers have a list of domain suffixes that should get the same special handling
 called the [Public Suffix List (PSL)](https://publicsuffix.org/).
 If you added the `example.com` domain to the PSL,
-browsers would refuse to set a cookie on `example.com` from a page at `foo.example.com.
+browsers would refuse to set a cookie on `example.com` from a page at `foo.example.com`.
 They would still accept cookies from a page at `example.com`.
 
 ### Subdomain hijacking protection
@@ -69,7 +72,10 @@ that project now owns `example.com` as far as Platform.sh is concerned
 and no other project can have a domain anywhere in `*.example.com`.
 Multiple subdomains within that same project are perfectly fine.
 
-In most cases, the PSL is a desirable added layer of security.
+Subdomain hijacking protection ensures that no other users can add a subdomain to their project
+as long as you don't use wildcards DNS records pointing at Platform.sh.
+
+In most cases, that is a desirable added layer of security.
 But you may run into a problem when you want multiple subdomains from the same organization as separate projects.
 For example, multiple departments at the same university.
 One option would be to add `example.com` to the PSL, but you might not want or be able to do that.
@@ -86,8 +92,6 @@ _public-suffix-root.example.com TXT "public-suffix-root=example.com"
 Platform.sh would reserve one level down from `example.com`.
 In that case, adding `foo.bar.baz.example.com` to a project would reserve only `*.baz.example.com` for that project.
 So you could add `beep.example.com` to a different project without any issues.
-
-The subdomain hijacking protection ensures that no other users can add a subdomain to their project, as long as you don't use wildcards DNS records pointing at Platform.sh.
 
 ## Locked domains
 

@@ -22,7 +22,7 @@ Consult the documentation for your app for specific details.
 
 ## Set the Platform.sh domain on Fastly
 
-Rather than create a DNS CNAME for your default Platform.sh branch (for instance `main-7rqtwti-qwertyqwerty.eu.platform.sh`),
+Rather than create a DNS CNAME for your default Platform.sh branch (for instance `main-abcd123.abcdefgh1234567.eu.platformsh.site`),
 [configure Fastly](https://docs.fastly.com/guides/basic-configuration/working-with-domains)
 to respond to requests for your domain name and to treat the default Platform.sh branch as its backend server.
 Be sure to enable TLS for the backend connection to Platform.sh.
