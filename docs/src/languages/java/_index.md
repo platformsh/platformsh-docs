@@ -14,6 +14,9 @@ layout: single
 |----------------------------------------|------------------------------ |
 |  {{< image-versions image="java" status="supported" environment="grid" >}} | {{< image-versions image="java" status="supported" environment="dedicated-gen-2" >}} |
 
+These versions refer to the headless packages of OpenJDK.
+To save space and reduce potential vulnerabilities, they don't contain GUI classes, which can't be used on the server.
+
 {{% image-versions-legacy "java" %}}
 
 {{% language-specification type="java" display_name="Java" %}}
