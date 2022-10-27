@@ -18,7 +18,7 @@ remember that deactivating an environment is a destructive operation that can re
 To minimize potential issues, take the following steps:
 
 - Switch the default environment during non-peak hours.
-- Keep your data by taking a [backup of the `old` environment](../administration/backup-and-restore.md)
+- Keep your data by taking a [backup of the `old` environment](../environments/backup.md)
 - Reduce your DNS time-to-live (TTL) to a minimum.
 
 ## Requirements

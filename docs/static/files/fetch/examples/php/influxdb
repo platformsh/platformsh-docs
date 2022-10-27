@@ -16,7 +16,7 @@ $config = new Config();
 $credentials = $config->credentials('influxdb');
 
 try {
-    // Connecting to the InfluxDB server. By default it has no user defined, so you need to create it.
+    // Connecting to the InfluxDB server. By default it has no user defined, so you will need to create it.
     $client = new Client($credentials['host'], $credentials['port']);
 
     $password = base64_encode(random_bytes(12));

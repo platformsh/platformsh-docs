@@ -228,7 +228,7 @@ For the second type, use example values based on the following table:
 | Other IDs          | Half a string of letters starting from `a` and half numbers from `1`, similarly to the project ID. So for an ID with 8 characters, use `abcd1234`. |
 | Region             | `eu`, unless there is a specific reason not to. |
 | Branch/environment | On Grid: `main` for the default branch/environment and `feature` for a comparison branch/environment. On Dedicated Gen 2: `production` for the default and `dev` for a second. |
-| Environment URL    | By combining the above standards, the default for Grid non-default environments is: `feature.abcd123.abcdefgh1234567.eu.platform.sh`. |
+| Environment URL    | By combining the above standards, the default for Grid non-default environments is: `https://feature-abcd123-abcdefgh1234567.eu.platformsh.site`. |
 
 ## Format screenshots for sustainability
 

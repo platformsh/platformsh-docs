@@ -86,6 +86,7 @@
       <div class="sidebar__heading-wrapper sidebar__heading-wrapper-first-level">
         <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if $isCurrentSection }} active{{ end }}">
             {{ $itemTitle }}
+            {{ if .Params.premium }}{{ partial "premium-features/badge" }}{{ end }}
         </a>
 
         <!-- If this item has children -->
@@ -104,6 +105,7 @@
                 <li class="duik-sidebar__item duik-sidebar__item--second-level">
                   <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if eq $currentPage . }} active{{ end }}">
                       {{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle | .RenderString }}{{ else }}{{ .Title | .RenderString }}{{ end }}
+                      {{ if .Params.premium }}{{ partial "premium-features/badge" }}{{ end }}
                   </a>
                 </li>
               {{ end }}

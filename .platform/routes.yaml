@@ -115,6 +115,12 @@ https://{default}/:
       # Move CLI from Development to Administration in August 2022
       "/development/cli(.*)":  { "to": "/administration/cli$1", "code": 301, "regexp": true }
 
+      # Move pricing to Administration in October 2022
+      "/overview/pricing(.*)":  { "to": "/administration/pricing$1", "code": 301, "regexp": true }
+
+      # Move backup and restore to environments in October 2022
+      "/administration/backup-and-restore.html":  { "to": "/environments/backup.html", "code": 301 }
+
 "https://search.{default}/":
     type: upstream
     upstream: "search:http"

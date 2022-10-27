@@ -1,0 +1,20 @@
+name: Check labels
+on:
+  pull_request_target:
+    branches: [main]
+    types: [labeled,opened,reopened,synchronize]
+
+jobs:
+  check-for-upcoming:
+    runs-on: ubuntu-latest
+    name: Check if the PR is an upcoming change
+    steps: 
+      - name: Fail upcoming changes
+        # If the PR contains the label for future changes, fail the workflow
+        if: contains(github.event.pull_request.labels.*.name, 'upcoming version')
+        run: |
+          echo "This PR deals with a future change and so can't be merged yet"
+          exit 1
+      
+      - name: Pass current changes
+        run: echo "This PR is marked as only involving current changes"

@@ -1,6 +1,8 @@
 ---
 title: Set variables
 description: See how to set variables that you can later use to take control over your app's environment.
+keywords:
+  - .environment
 ---
 
 To set variables, determine which [type of variable](./_index.md#variable-types) to use.

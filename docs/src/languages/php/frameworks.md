@@ -38,7 +38,7 @@ Drupal FAQs, how-to guides and other tutorials right on [Platform.sh Community](
 ### Symfony templates
 
 * [Symfony 5](https://github.com/symfonycorp/platformsh-symfony-template/tree/5.4)
-* [Symfony 6](https://github.com/symfonycorp/platformsh-symfony-template/tree/6.0)
+* [Symfony 6](https://github.com/symfonycorp/platformsh-symfony-template/tree/6.1)
 
 ## TYPO3
 

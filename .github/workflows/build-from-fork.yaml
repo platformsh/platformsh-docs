@@ -29,6 +29,7 @@ jobs:
           git push --force -u origin pr-${{ github.event.number }}
 
           # If the environment isn't active, activate it
-          if [ $(platform api:curl /projects/652soceglkw4u/environments/pr-${{ github.event.number }} | jq -r .status) == "inactive" ]; then
+          BRANCH_STATUS=$(platform api:curl /projects/652soceglkw4u/environments/pr-${{ github.event.number }} | jq -r .status)
+          if [ $BRANCH_STATUS == "inactive" ] || [ $BRANCH_STATUS == "dirty" ] || [ $BRANCH_STATUS == "error" ]; then
             platform environment:activate --no-wait -y pr-${{ github.event.number }}
           fi

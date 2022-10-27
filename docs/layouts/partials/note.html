@@ -1,0 +1,13 @@
+<!-- Alerts -->
+{{ $title := "Note" }}
+{{ with .title }}
+  {{ $title = . }}
+{{- end -}}
+<div class="alert {{- " " -}}
+{{- with .theme -}}alert-{{.}}{{- else -}}alert-primary{{- end -}}
+" role="alert">
+{{ if ne $title "none" }}
+<p><strong>{{ $title }}</strong></p>
+{{ end }}
+<p class="alert-text">{{ .Inner | .context.Page.RenderString }}</p>
+</div>

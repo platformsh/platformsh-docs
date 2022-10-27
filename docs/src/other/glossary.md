@@ -164,7 +164,7 @@ Synchronizing an environment means copying changes from a parent into a child en
 and then redeploying the child environment.
 You can synchronize only the code, only the data (databases, files), or both.
 
-Be aware that sync has the same process and same concerns as [backups](../administration/backup-and-restore.md#backups-and-downtime).
+Be aware that sync has the same process and same concerns as [backups](../environments/backup.md#backups-and-downtime).
 
 Sync is only available if your branch has no unmerged commits and can be fast-forwarded.
 

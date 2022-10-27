@@ -1,36 +1,43 @@
 ---
 title: "Backup and restore"
-description: |
-  Backups vary by our offering and their retention is governed by our [data retention policy](./data-retention.md). This section details our Recovery Point Objective (RPO) and Recovery Time Objective (RTO) for our Professional, Enterprise, and Elite offerings.
+description: See backup policies and the recovery point objective (RPO) and recovery time objective (RTO) for various schedules.
 ---
 
-{{% description %}}
+The frequency of backups varies based on the [backup schedule](../environments/backup.md#backup-schedule).
+Retention is governed by the [data retention policy](./data-retention.md).
+This section details the recovery point objective (RPO) and recovery time objective (RTO) for each option.
 
-## Professional and non-bundled Enterprise/Elite Grid plans
+## Development environments
 
-With Professional and non-bundled Enterprise/Elite Grid plans,
-users can manage their own backup and restore functions.
-See more details on [how to backup and restore](../administration/backup-and-restore.md).
+For non-Production environments, users can manage their own manual backup and restore functions.
+See how to [back up](../environments/backup.md#create-a-manual-backup) and [restore](../environments/restore.md).
 
 **RPO**: User defined.
 The RPO is configured by plan owners.
 
 **RTO**: Variable.
-Recovery time depends upon the size of the data being recovered.
+Recovery time depends on the size of the data being recovered.
 
-## Bundled Enterprise/Elite Grid plans
+## Essential and Advanced schedules
 
 **RPO**: 24 hours.
-For bundled Enterprise/Elite Grid plans (such as G-XL and G-2XL),
-Platform.sh takes a backup of environments every 24 hours.
+Production environments on Essential and Advanced schedules are backed up every 24 hours.
 
 **RTO**: Variable.
-Recovery time depends upon the size of the data being recovered.
+Recovery time depends on the size of the data being recovered.
 
-## Enterprise/Elite {{% names/dedicated-gen-2 %}}
+## Premium schedule
 
 **RPO**: 6 hours.
-Platform.sh takes a backup of Enterprise/Elite {{% names/dedicated-gen-2 %}} environments every 6 hours.
+Production environments on a Premium schedule are backed up every 6 hours.
 
 **RTO**: Variable.
-Recovery time depends upon the size of the data being recovered.
+Recovery time depends on the size of the data being recovered.
+
+## Dedicated environments
+
+**RPO**: 6 hours.
+Dedicated environments are backed up every 6 hours.
+
+**RTO**: Variable.
+Recovery time depends on the size of the data being recovered.
