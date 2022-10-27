@@ -130,8 +130,3 @@ Setting the CNAME record with your DNS provider first helps to minimize that dis
 While not required, it's strongly recommended that you set up [health notifications](/integrations/notifications.md)
 to advise you if your site is experiencing issues such as running low on disk space.
 Notifications can be sent via email, Slack, or PagerDuty.
-
-### Configure automatic backups
-
-It's strongly recommended that you set up an [API token](/administration/cli/api-tokens.md) and install the CLI
-to define [an automatic backup](../../environments/backup.md#automated-backups) cron task.

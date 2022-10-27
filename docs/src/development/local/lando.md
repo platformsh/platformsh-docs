@@ -51,7 +51,7 @@ highlight=false
 If your code isn't present locally, retrieve your codebase with one of these methods:
 
 - Using the [Platform.sh CLI](../../administration/cli/_index.md) by running `platform get <PROJECT_ID>`
-- Using [Git](../../administration/web/configure-environment.md#actions)
+- Using [Git](../../administration/web/configure-environment.md#actions-on-environments)
 
 Otherwise, access the directory with your project.
 
@@ -72,7 +72,7 @@ It also includes the required Platform.sh configuration files out of the box.
 1. [Create a new project based on the PHP template]({{% create-project-link template="php" %}}).
 2. Clone that project locally in one of these ways:
     - Using the [Platform.sh CLI](../../administration/cli/_index.md) by running `platform get <PROJECT_ID>`
-    - Using [Git](../../administration/web/configure-environment.md#actions)
+    - Using [Git](../../administration/web/configure-environment.md#actions-on-environments)
 3. In the project's folder, run `lando init --recipe platformsh --source platformsh --platformsh-auth <API_TOKEN>`.
 4. Follow the instructions provided by the interactive prompt.
    On the `Which project?` step, select the project created in the first step.
