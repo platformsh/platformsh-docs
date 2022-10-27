@@ -25,5 +25,5 @@ jobs:
       - name: Post PR comment
         uses: marocchino/sticky-pull-request-comment@v2
         with:
-          number: pr_number.txt
+          number: $(cat pr_number.txt)
           path: pr_comment.txt
