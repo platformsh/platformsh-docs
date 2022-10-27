@@ -73,4 +73,4 @@ jobs:
 
       - if: contains(github.event.pull_request.labels.*.name, 'build-fork')
         name: Delete environment
-        run: platform environment:deactivate -p 652soceglkw4u --delete-branch -y ${{ github.event.pull_request.head.ref }}
+        run: platform environment:delete -p 652soceglkw4u --delete-branch --no-wait -y pr-${{ github.event.number }}
