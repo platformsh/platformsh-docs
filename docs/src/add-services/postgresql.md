@@ -27,7 +27,7 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 \* No High-Availability on {{% names/dedicated-gen-2 %}}.
 
 {{< note >}}
-Upgrading to PostgreSQL 12 using the `postgis` extension isn't currently supported. Attempting to upgrade with this extension enabled results in a failed deployment that requires support intervention to fix.
+Upgrading to PostgreSQL 13 using the `postgis` extension isn't currently supported. Attempting to upgrade with this extension enabled results in a failed deployment that requires support intervention to fix.
 
 See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-with-the-postgis-extension) section below for more details.
 {{< /note >}}
