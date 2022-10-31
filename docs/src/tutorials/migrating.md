@@ -85,7 +85,7 @@ highlight=false
 Set up the integration for your selected service:
 
 - [Bitbucket](../integrations/source/bitbucket.md)
-- [GitHUb](../integrations/source/github.md)
+- [GitHub](../integrations/source/github.md)
 - [GitLab](../integrations/source/gitlab.md)
 
 Then push code to that service as you do normally.
@@ -177,7 +177,7 @@ For any potential more details, see the [specific service](../add-services/_inde
 
 ## 6. Import files
 
-Your app may include content files, meaning files that aren't intended to be part of your code base so aren't in Git.
+Your app may include content files, meaning files that aren't intended to be part of your codebase so aren't in Git.
 You can upload such files to [mounts you created](../create-apps/app-reference.md#mounts).
 Upload to each mount separately.
 
@@ -205,7 +205,7 @@ Or upload to your mounts using a different [SSH method](../development/access-si
 
 ## Optional: Add variables
 
-If your app requires an environment variables to build properly, [add them to your environment](../development/variables/set-variables.md).
+If your app requires environment variables to build properly, [add them to your environment](../development/variables/set-variables.md).
 
 ## What's next
 
