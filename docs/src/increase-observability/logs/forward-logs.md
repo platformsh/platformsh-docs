@@ -51,7 +51,7 @@ file=none
    or the EU endpoint `https://log-api.eu.newrelic.com/log/v1`.
 3. Create the integration with the following command:
 
-   <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">platform project:curl /integrations -X POST -d <span class="s1">'{ "type":"newrelic", "url":"{{< variable "API_ENDPOINT" >}}", "license_key": "{{% variable "LICENSE_KEY" %}}" }'</span></span></span></code></pre></div>
+   <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">platform integration:add --type newrelic --url {{< variable "API_ENDPOINT" >}} --license_key {{% variable "LICENSE_KEY" %}}</span></code></pre></div>
 
 View your logs in the **Logs** dashboard.
 
@@ -68,7 +68,7 @@ file=none
 3. Choose an index name.
 4. Create the integration with the following command:
 
-   <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">platform project:curl /integrations -X POST -d <span class="s1">'{ "type":"splunk", "url":"https://http-inputs.{{< variable "HOST" >}}.splunkcloud.com/services/collector/event", "index":"{{< variable "INDEX" >}}", "token":"{{< variable "TOKEN" >}}" }'</span></span></span></code></pre></div>
+   <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">platform platform integration:add --type splunk --url https://http-inputs.{{< variable "HOST" >}}.splunkcloud.com/services/collector/event --index {{< variable "INDEX" >}} --token {{< variable "TOKEN" >}}</span></code></pre></div>
 
 View your logs in the **Apps->Search & Reporting** dashboard.
 Filter by the index name to find the relevant events.
@@ -84,7 +84,7 @@ file=none
    Make sure to copy the Source Category and collector URL.
 2. Create the integration with the following command:
 
-   <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">platform project:curl /integrations -X POST -d <span class="s1">'{ "type":"sumologic", "url":"{{< variable "COLLECTOR_URL" >}}", "category":"{{< variable "SOURCE_CATEGORY" >}}" }'</span></span></span></code></pre></div>
+   <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">platform integration:add --type sumologic --url {{< variable "COLLECTOR_URL" >}} --category {{< variable "SOURCE_CATEGORY" >}}</span></code></pre></div>
 
 View your logs in the **Log Search** tab.
 
@@ -101,7 +101,7 @@ You can forward your Platform.sh logs to any of those endpoints.
 To enable this forwarding, run a command like the following:
 
 ```bash
-platform project:curl /integrations -X POST --data '{ "type":"syslog", "host":"{{< variable "INGESTION_HOST" >}}", "port":"{{< variable "INGESTION_HOST_PORT" >}}" }'
+platform integration:add --type syslog --host {{< variable "INGESTION_HOST" >}} --port {{< variable "INGESTION_HOST_PORT" >}}
 ```
 
 `type`, `host`, and `port` are the only properties required for all endpoints.
@@ -109,11 +109,11 @@ The following table shows the other available properties:
 
 | Property         | Type      | Default    | Description |
 | ---------------- | --------- | ---------- | ----------- |
-| `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`. |
-| `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
-| `message_format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`. |
 | `auth_token`     | `string`  |            | The token to authenticate with the given service. |
 | `auth_mode`      | `string`  |            | The mode for authentication with the given service. Can be `prefix` or `structured_data`. |
+| `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
+| `message_format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`. |
+| `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`. |
 | `tls_verify`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol. |
 
 Place any property you want inside the `data` object of the cURL request.
