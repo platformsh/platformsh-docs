@@ -29,6 +29,10 @@ jobs:
       - name: Set branch name
         id: branch_name
         run: |
+          echo $PR_NUMBER
+          echo "$PR_NUMBER"
+          echo ${{ github.event.number }}
+          echo ${{ github.event.pull_request.number }}
           # For PRs from non-forked repos
           if [ ${{ github.event.pull_request.head.repo.id }} == 21975579 ]; then
             echo "branch_name=${{ github.event.pull_request.head.ref }}" >> $GITHUB_OUTPUT
