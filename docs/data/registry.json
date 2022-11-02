@@ -559,7 +559,7 @@
       "service_name": "dbmongo",
       "url": "/add-services/mongodb.html"
     },
-    "endpoint": "mongodb-enterprise",
+    "endpoint": "mongodb",
     "min_disk_size": 512,
     "name": "MongoDB",
     "runtime": false,
