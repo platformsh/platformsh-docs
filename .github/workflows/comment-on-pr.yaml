@@ -25,6 +25,7 @@ jobs:
       - name: Get PR number
         id: pr_number
         run: |
+          echo "hi"
           PR_NUMBER=$(cat pr_number.txt)
           echo "PR number is $PR_NUMBER"
           echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
