@@ -371,8 +371,9 @@ Downgrading isn't supported. If you want, for whatever reason, to downgrade you 
 
 You can't upgrade to PostgreSQL 12 with the `postgis` extension enabled.
 It involves a change to a major version that results in a failed deployment that requires support intervention to fix.
+Upgrading from 12 to a higher version is possible.
 
-If you need to upgrade, follow the same steps recommended for downgrading:
+If you need to upgrade to version 12, follow the same steps recommended for downgrading:
 
 1. Dump the database.
 2. Remove the service.
