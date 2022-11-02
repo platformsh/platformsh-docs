@@ -16,10 +16,9 @@ install_poetry(){
     echo "* Installing poetry"
     # Install poetry
     export PIP_USER=false
-    curl -sSL https://install.python-poetry.org | python3 - --version $POETRY_VERSION
-    export PIP_USER=true
+    pipx install poetry==$POETRY_VERSION
     echo "* Installing dependencies"
-    poetry install
+    /app/.local/bin/poetry install
 }
 
 set -e
