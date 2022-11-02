@@ -32,8 +32,10 @@ public class MongoDBSample implements Supplier<String> {
 
         collection.insertOne(doc);
         Document myDoc = collection.find(eq("_id", doc.get("_id"))).first();
+        logger.append("<p>");
         logger.append(myDoc.toJson()).append('\n');
         logger.append(collection.deleteOne(eq("_id", doc.get("_id"))));
+        logger.append("</p>");
         return logger.toString();
     }
 }

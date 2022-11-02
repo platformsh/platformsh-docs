@@ -48,12 +48,14 @@ public class PostgreSQLSample implements Supplier<String> {
             // Show table.
             sql = "SELECT * FROM JAVA_FRAMEWORKS";
             final ResultSet resultSet = statement.executeQuery(sql);
+            logger.append("<ul>");
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
-                logger.append(String.format("the JAVA_FRAMEWORKS id %d the name %s ", id, name));
-                logger.append('\n');
+                logger.append(String.format("<li>id <code>%d</code> has a name of <code>%s</code>", id, name));
+                logger.append("</li>");
             }
+            logger.append("</ul>");
             statement.execute("DROP TABLE JAVA_FRAMEWORKS");
             return logger.toString();
         } catch (SQLException exp) {

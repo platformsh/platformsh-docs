@@ -29,7 +29,7 @@ public class MySQLSample implements Supplier<String> {
         try (Connection connection = dataSource.getConnection()) {
 
             // Creating a table.
-            String sql = "CREATE TABLE JAVA_PEOPLE (" +
+            String sql = "CREATE TABLE IF NOT EXISTS People (" +
                     " id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY," +
                     "name VARCHAR(30) NOT NULL," +
                     "city VARCHAR(30) NOT NULL)";
@@ -38,7 +38,7 @@ public class MySQLSample implements Supplier<String> {
             statement.execute(sql);
 
             // Insert data.
-            sql = "INSERT INTO JAVA_PEOPLE (name, city) VALUES" +
+            sql = "INSERT INTO People (name, city) VALUES" +
                     "('Neil Armstrong', 'Moon')," +
                     "('Buzz Aldrin', 'Glen Ridge')," +
                     "('Sally Ride', 'La Jolla')";
@@ -46,16 +46,17 @@ public class MySQLSample implements Supplier<String> {
             statement.execute(sql);
 
             // Show table.
-            sql = "SELECT * FROM JAVA_PEOPLE";
+            sql = "SELECT * FROM People";
             final ResultSet resultSet = statement.executeQuery(sql);
+            logger.append("<table><thead><tr><th>Name</th><th>City</th></tr></thhead><tbody>");
             while (resultSet.next()) {
-                int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 String city = resultSet.getString("city");
-                logger.append(String.format("the JAVA_PEOPLE id %d the name %s and city %s", id, name, city));
+                logger.append(String.format("<tr><td>%s</td><td>%s</td></tr>", name, city));
                 logger.append('\n');
             }
-            statement.execute("DROP TABLE JAVA_PEOPLE");
+            logger.append("</tbody></table>");
+            statement.execute("DROP TABLE People");
             return logger.toString();
         } catch (SQLException exp) {
             throw new RuntimeException("An error when execute MySQL", exp);
