@@ -27,9 +27,10 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 \* No High-Availability on {{% names/dedicated-gen-2 %}}.
 
 {{< note >}}
-Upgrading to PostgreSQL 12 using the `postgis` extension isn't currently supported. Attempting to upgrade with this extension enabled results in a failed deployment that requires support intervention to fix.
 
-See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-with-the-postgis-extension) section below for more details.
+You can't upgrade to PostgreSQL 12 with the `postgis` extension enabled.
+For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-to-postgresql-12-with-the-postgis-extension).
+
 {{< /note >}}
 
 {{% deprecated-versions %}}
@@ -336,9 +337,10 @@ extensions not listed here.
 * `xml2` - XPath querying and XSLT
 
 {{< note >}}
-Upgrading to PostgreSQL 12 using the `postgis` extension isn't currently supported. Attempting to upgrade with this extension enabled results in a failed deployment that requires support intervention to fix.
 
-See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-with-the-postgis-extension) section below for more details.
+You can't upgrade to PostgreSQL 12 with the `postgis` extension enabled.
+For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-to-postgresql-12-with-the-postgis-extension).
+
 {{< /note >}}
 
 ## Notes
@@ -365,8 +367,15 @@ Be sure to take a backup of your production environment **before** you merge thi
 
 Downgrading isn't supported. If you want, for whatever reason, to downgrade you should dump to SQL, remove the service, recreate the service, and import your dump.
 
-### Upgrading to PostgreSQL 12 with the `postgis` extension
+### Upgrade to PostgreSQL 12 with the `postgis` extension
 
-Upgrading to PostgreSQL 12 using the `postgis` extension isn't currently supported. Attempting to upgrade with this extension enabled results in a failed deployment that requires support intervention to fix.
+You can't upgrade to PostgreSQL 12 with the `postgis` extension enabled.
+It involves a change to a major version that results in a failed deployment that requires support intervention to fix.
+Upgrading from 12 to a higher version is possible.
 
-If you need to upgrade, you should follow the same steps recommended for performing downgrades: dump the database, remove the service, recreate the service with PostgreSQL 12, and then import the dump to that service.
+If you need to upgrade to version 12, follow the same steps recommended for downgrading:
+
+1. Dump the database.
+2. Remove the service.
+3. Create a new service with PostgreSQL 12.
+4. Import the dump to that service.
