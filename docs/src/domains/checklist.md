@@ -11,7 +11,7 @@ sidebarTitle: "Pre-Launch Checklist"
 ## 1. Register a domain name with a supported provider
 
 Before you go live, you need a domain name registered with the registrar of your choice.
-Verify your registrar supports [Canonical Name (`CNAME`) records for apex domains](./steps/dns.md#handling-apex-domains).
+Verify your registrar supports [`CNAME` records for apex domains](./steps/dns.md#handling-apex-domains).
 Some registrars may call these `ALIAS` or `ANAME` records.
 
 See [what an apex domain is](./steps/dns.md#what-is-an-apex-domain).
@@ -25,8 +25,9 @@ If you turned on HTTP access control during development, [turn it off before lau
 
 If your production environment is on a {{% names/dedicated-gen-2 %}} instance, ensure that:
 
-* Your code is up-to-date in both your `staging` and `production` branches. Those are mirrored to the {{% names/dedicated-gen-2 %}} instances.
-* Your data on the {{% names/dedicated-gen-2 %}} production instance is up-to-date and ready to launch.
+* Your code is up-to-date in both your Staging and Production branches.
+  Those are mirrored to the {{% names/dedicated-gen-2 %}} instances.
+* Your data in the Production environment is up-to-date and ready to launch.
 
 ### Test the domain locally
 
@@ -66,15 +67,15 @@ highlight=false
 4. Add the IP and (sub)domains to override to that file.
 5. Save and close the file.
 
-After adding these lines the file looks something like:
+After adding these lines, the file looks something like the following:
 
 <!-- This is in HTML to get the variable shortcode to work properly -->
-<div class="highlight" location="/etc/hosts"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="cl">##
+<div class="highlight" location="/etc/hosts"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c">##
 # Host Database
 #
 # localhost is used to configure the loopback interface
 # when the system is booting.  Do not change this entry.
-##
+##</span>
 127.0.0.1	localhost
 255.255.255.255	broadcasthost
 ::1             localhost
@@ -98,16 +99,16 @@ file=none
 highlight=false
 ---
 
-1. Get the IP's of your project's production environment by running `dig +short $(platform environment:info edge_hostname)`.
+1. Get the IP addresses of your project's production environment by running `dig +short $(platform environment:info edge_hostname)`.
 2. Copy all IP addresses (usually 1-3) that are returned.
 3. Open the `c:\Windows\System32\Drivers\etc\hosts` file with admin privileges using your favorite text editor.
-4. Add the IP and (sub)domains to override to that file.
+4. Add the IP addresses and domains for mapping to that file.
 5. Save and close the file.
 
-After adding these lines the file looks something like:
+After adding these lines, the file looks something like the following:
 
 <!-- This is in HTML to get the variable shortcode to work properly -->
-<div class="highlight" location="c:\Windows\System32\Drivers\etc\hosts"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"># Copyright (c) 1993-2009 Microsoft Corp.
+<div class="highlight" location="c:\Windows\System32\Drivers\etc\hosts"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># Copyright (c) 1993-2009 Microsoft Corp.
 #
 # This is a sample HOSTS file used by Microsoft TCP/IP for Windows.
 #
@@ -126,7 +127,7 @@ After adding these lines the file looks something like:
 #       38.25.63.10     x.acme.com              # x client host
 # localhost name resolution is handled within DNS itself.
 #  127.0.0.1       localhost
-#  ::1             localhost
+#  ::1             localhost</span>
 {{<variable "IP_ADDRESS" >}}         {{<variable "YOUR_DOMAIN" >}}
 {{<variable "IP_ADDRESS" >}}         www.{{<variable "YOUR_DOMAIN" >}}
 </code></pre></div>

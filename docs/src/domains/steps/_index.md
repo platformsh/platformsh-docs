@@ -34,18 +34,18 @@ To upgrade your plan tier:
 
 * On the tile of the project you want to upgrade, click **{{< icon more >}} More**.
 * Click **Edit plan**.
-* Change the plan to at least **Standard**.
+* Change the plan to at least {{< partial "plans/min-production-size" >}}.
 * Check the change to the monthly cost.
 * Click **Save**.
 
-You can find more information on plan tiers pricing on the [pricing page](https://platform.sh/pricing).
+You can find [more information on plan tiers](https://platform.sh/pricing).
 
 ## 2. Get the target for your project
 
 You want to point your DNS record to the automatically generated URL.
 Your domain needs to point to that target for your site to go live.
 
-For Dedicated plans, the target of your project is communicated by your Platform.sh onboarding representative.
+For Dedicated plans, get the target for your project from your Platform.sh contact.
 
 {{< codetabs >}}
 
@@ -99,10 +99,11 @@ To configure your domain name to point to your project:
 1. Consult your provider's documentation to find out how to add or edit DNS records.
 2. Open your registrar's domain management system.
 3. Set the TTL on your domain to the lowest possible value to minimize transition time.
-4. Add a `CNAME` record pointing from {{<variable "YOUR_DOMAIN" >}} to [the target](#2-get-the-target-for-your-project).
+4. Add a `CNAME` record pointing from your domain to the [target](#2-get-the-target-for-your-project).
    Not all registrars allow these kinds of records.
    If yours doesn't, see the [alternatives](./dns.md#handling-apex-domains).
-5. Optional: If you have multiple domains you want to be served by the same app you need to add a `CNAME` record for each of them. That includes the `www` subdomain if you are using it in your [routes configuration](/define-routes.md).
+5. Optional: If you have multiple domains you want to be served by the same app, add a `CNAME` record for each of them.
+   That includes the `www` subdomain if you are using it in your [routes configuration](../../define-routes.md).
 6. Set the TTL value back to its previous value.
 
 If your domain is `example.com` and you are using the `www` subdomain, you have records like the following:
@@ -129,7 +130,8 @@ To configure your CDN and your domain name to point to your project:
 4. Configure your DNS to point at your CDN.
    The address or `CNAME` record to use varies by CDN provider.
    Refer to your provider's documentation or to the [CDN guide](../cdn/_index.md).
-5. Optional: If you have multiple domains you want to be served by the same app you need to add a `CNAME` record for each of them. That includes the `www` subdomain if you are using it in your [routes configuration](/define-routes.md).
+5. Optional: If you have multiple domains you want to be served by the same app, add a `CNAME` record for each of them.
+   That includes the `www` subdomain if you are using it in your [routes configuration](../../define-routes.md).
 
 {{< /codetabs >}}
 

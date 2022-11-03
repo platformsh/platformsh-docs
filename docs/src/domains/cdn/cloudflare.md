@@ -7,12 +7,12 @@ aliases:
   - "/golive/steps/cloudflare.html"
 ---
 
-Verify your registrar supports [Canonical Name (CNAME) records for apex domains](../steps/dns.md#handling-apex-domains).
-This solves the problem of being able to point your "root domain" like `example.com`
-to a domain name (`CNAME` record) rather than an IP address (`A` record).
+Verify your registrar supports [CNAME records for apex domains](../steps/dns.md#handling-apex-domains).
+This solves the problem of being able to point an apex domain such as `example.com`
+to a domain name (a CNAME record) rather than an IP address (an A record).
 
 To correctly point DNS to your Platform.sh project,
-you need the [production environment target](../../domains/steps/_index.md#2-get-the-target-for-your-project).
+you need the [target for your Production environment](../../domains/steps/_index.md#2-get-the-target-for-your-project).
 
 Assuming that you are using both a `www.` subdomain as well as the bare domain,
 you'll want to point both of those DNS entries to the same place.
