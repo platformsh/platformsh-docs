@@ -14,8 +14,9 @@ The Let’s Encrypt TLS Certificates are:
 - automatically renewed 28 days before expiration
 
 If a renewal is available and needed, the environment is automatically redeployed to renew the certificate.
+As no code changes are made, the build image is reused and build books are not run.
 The deploy and post-deploy hook are run during this process.
-During the redeploy, the system automatically checks and applies security and system upgrades to your containers when required.
+During the redeploy, security and system upgrades are automatically applied to your containers when required.
 That means that most of the time renewals take a few seconds *unless* upgrades are available for your containers.
 In those cases, containers are rebooted and the process takes a little longer.
 
@@ -29,7 +30,7 @@ In practice, they mean the same thing today, but TLS is the more correct term.
 
 {{% lets_encrypt_limitations %}}
 
-If you need more hostnames than that, obtain additional certificates or a wildcard certificate from [a third-party issuer](../domains/steps/tls.md).
+If you need more hostnames than that, obtain additional certificates or a wildcard certificate from a [third-party issuer](../domains/steps/tls.md).
 Alternatively, consider splitting your project up into multiple Platform.sh projects.
 
 ## Using HTTPS
