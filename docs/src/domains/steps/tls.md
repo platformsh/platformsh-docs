@@ -1,10 +1,10 @@
 ---
 title: "Configure a third-party TLS certificate"
 weight: 3
-sidebarTitle: "Custom TLS"
+sidebarTitle: "Custom TLS certificates"
 ---
 
-Platform.sh automatically provides all production and development environments with standard TLS certificates issued by [Let's Encrypt](https://letsencrypt.org/).
+Platform.sh automatically provides all environments with standard TLS certificates issued by [Let's Encrypt](https://letsencrypt.org/).
 Let's Encrypt certificates don't support wildcard routes,
   so you need a custom certificate if you want to use these.
 No further action is required to use TLS-encrypted connections beyond [specifying HTTPS routes](../../define-routes/https.md).
@@ -27,7 +27,7 @@ replace it with an updated certificate more than seven days before it expires.
 
 You can add a custom certificate using the [CLI](../../administration/cli/_index.md) or in the [Console](../../administration/web/_index.md).
 
-Your certificate has to use the "PKCS#1" format and start with `-----BEGIN RSA PRIVATE KEY-----`.
+Your certificate has to be in PKCS #1 format and start with `-----BEGIN RSA PRIVATE KEY-----`.
 If it doesn't start that way, [change the format](#change-the-private-key-format).
 
 To add your custom certificate, follow these steps:
@@ -42,22 +42,22 @@ highlight=false
 
 1. Add the certificate with the following command:
 
-    <!-- This is in HTML to get the variable shortcode to work properly -->
-    <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">platform domain:add {{<variable "DOMAIN" >}} --cert {{<variable "PATH_TO_CERTIFICATE_FILE" >}} --key {{<variable "PATH_TO_PRIVATE_KEY_FILE" >}}</code></pre></div>
+   <!-- This is in HTML to get the variable shortcode to work properly -->
+   <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">platform domain:add {{<variable "YOUR_DOMAIN" >}} --cert {{<variable "PATH_TO_CERTIFICATE_FILE" >}} --key {{<variable "PATH_TO_PRIVATE_KEY_FILE" >}}</code></pre></div>
 
-    For example:
+   For example:
 
-    ```bash
-    platform domain:add secure.example.com --cert /etc/TLS/private/secure-example-com.crt --key /etc/TLS/private/secure-example-com.key
-    ```
+   ```bash
+   platform domain:add secure.example.com --cert /etc/TLS/private/secure-example-com.crt --key /etc/TLS/private/secure-example-com.key
+   ```
 
-    You can optionally include intermediate SSL certificates by adding <code>--chain {{<variable "PATH_TO_FILE" >}}</code> for each one.
+   You can optionally include intermediate SSL certificates by adding <code>&hyphen;&hyphen;chain {{<variable "PATH_TO_FILE" >}}</code> for each one.
 
 2. Redeploy your production environment with the following command:
 
-    ```bash
-    platform environment:redeploy
-    ```
+   ```bash
+   platform environment:redeploy
+   ```
 
 <--->
 

@@ -56,7 +56,6 @@ imagetragick
 jpegoptim
 Lando
 Laravel
-Linux
 Loggly
 lookups?
 Lucene

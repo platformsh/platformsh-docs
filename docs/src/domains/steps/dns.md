@@ -5,7 +5,7 @@ description: See why CNAME records are used and what to do if your DNS registrar
 sidebarTitle: "DNS management caveats"
 ---
 
-Platform.sh expects you to use Canonical Name (`CNAME`) records on your [apex domain](../../other/glossary.md#apex-domain).
+Platform.sh expects you to use `CNAME` records on your [apex domain](../../other/glossary.md#apex-domain).
 But that doesn't work with some DNS registrars.
 Learn why they're recommended and what else you can do.
 
@@ -26,10 +26,11 @@ The edge hostname's destination IP addresses are updated automatically should th
 If a router is being upgraded and its IP changed, two possibilities arise:
 
 * Your apex domain points to the edge hostname using `CNAME`/`ANAME` or `ALIAS` records. The IP addresses for the routers are updated automatically. You don't need to do anything. Your website remains online.
-* Your apex domain points to your project's region using `A` records. The IP addresses for the routers aren't updated automatically.
+* Your apex domain points to your project's region using `A` records.
+  The IP addresses for the routers aren't updated automatically.
   Your website appears temporarily offline until you manually update your `A` records or the router is back from maintenance.
 
-The edge hostname value [can be retrieved through the CLI or the console](./_index.md#2-get-the-target-for-your-project).
+The edge hostname can be [retrieved through the CLI or the Console](./_index.md#2-get-the-target-for-your-project).
 
 The edge hostname URL is generated following the scheme:
 `{{<variable "BRANCH_NAME" >}}-{{<variable "RANDOM_HASH" >}}-{{<variable "PROJECT_ID" >}}.{{<variable "REGION" >}}.platformsh.site`
@@ -41,8 +42,8 @@ In the multiple RFCs that were written regarding `CNAME` records, the descriptio
 
 It's generally understood that a CNAME record for an apex domain like `example.com`:
 
-* Can only point to an IP address like `192.0.2.1` (`A` record).
-* Can't be used as an alias for another hostname like `www.example.com` (`CNAME` record).
+* Can only point to an IP address like `192.0.2.1` (an `A` record).
+* Can't be used as an alias for another hostname like `www.example.com` (a `CNAME` record).
 
 The `CNAME` record limitation is especially problematic if you want to use an apex domain with any container-based managed hosting service like Platform.sh.
 
@@ -103,7 +104,8 @@ If your domain is `example.com`, domain forwarding redirects all requests from `
 To configure your domain name to point to your project using domain forwarding:
 
 1. Make the `www.` version of your site the default (canonical) version and configure your app and routes to [use the `www` subdomain as upstream](../../define-routes/_index.md).
-2. Follow the instructions on [how to set up a custom domain](./_index.md) and instead of step 5 [of **Configure your DNS provider**](./_index.md#3-configure-your-dns-provider) add a record forwarding requests from {{<variable "YOUR_DOMAIN" >}} to `www.`{{<variable "YOUR_DOMAIN" >}}.
+2. Follow the instructions on [how to set up a custom domain](./_index.md).
+   When you come to configuring your DNS provider, replace the suggested `CNAME` record with a record forwarding requests from {{<variable "YOUR_DOMAIN" >}} to `www.`{{<variable "YOUR_DOMAIN" >}}.
 
 The following DNS providers are known to support both domain forwarding and advanced DNS configurations:
 
@@ -119,7 +121,7 @@ highlight=false
 
 If your registrar doesn't support custom records or domain forwarding you can consider using a redirection service.
 
-If your domain is `example.com`, a redirection service uses a `A` record to redirect all requests
+If your domain is `example.com`, a redirection service uses an `A` record to redirect all requests
 from `example.com` to `www.example.com`.
 
 One such redirection service is [WWWizer](http://wwwizer.com/naked-domain-redirect).
@@ -127,11 +129,15 @@ One such redirection service is [WWWizer](http://wwwizer.com/naked-domain-redire
 To configure your domain name to point to your project using a redirection service:
 
 1. Make the `www.` version of your site the default (canonical) version and configure your app and routes to [use the `www` subdomain as upstream](../../define-routes/_index.md).
-2. Follow the instructions on [how to set up a custom domain](./_index.md) and instead of step 5 [of **Configure your DNS provider**](./_index.md#3-configure-your-dns-provider), add a `A` record pointing from {{<variable "YOUR_DOMAIN" >}} to the redirection service. For WWWizer that's the IP `174.129.25.170`.
+2. Follow the instructions on [how to set up a custom domain](./_index.md).
+    When you come to configuring your DNS provider, replace the suggested `CNAME` record with
+    an `A` record pointing from your domain to the redirection service.
+    For WWWizer, that's the IP `174.129.25.170`.
 3. Ensure that your redirects use the same protocol:
-`http://example.com` redirects to `http://www.example.com`, not to `https://www.example.com`.
-Redirects from `http` to `https` are handled automatically.
-Trying to change the protocol and domain in the same redirect causes issues for Let's Encrypt and prevents the TLS certificate from being issued correctly.
+   `http://example.com` redirects to `http://www.example.com`, not to `https://www.example.com`.
+   Redirects from `http` to `https` are handled automatically.
+   Trying to change the protocol and domain in the same redirect causes issues for Let's Encrypt
+   and prevents the TLS certificate from being issued correctly.
 
 The extra redirect adds a few milliseconds to the first page load.
 
@@ -143,7 +149,7 @@ file=none
 highlight=false
 ---
 
-If your registrar doesn't support custom records or domain forwarding, and you can't use a redirection service, consider using `A` records.
+If your registrar doesn't support custom records or domain forwarding and you can't use a redirection service, consider using `A` records.
 
 Using `A` records is _strongly discouraged_ and [should only be used as a last resort](#why-cname-records).
 
@@ -159,6 +165,9 @@ To configure your domain name to point to your project using `A` records:
 
 1. Get the IP's of your project's production environment by running `dig +short $(platform environment:info edge_hostname)`.
 2. Copy all IP addresses (usually 1-3) that are returned.
-3. Follow the instructions on [how to set up a custom domain](./_index.md) and instead of [step 5 of **Configure your DNS provider**](./_index.md#3-configure-your-dns-provider), add separate `A` records pointing from {{<variable "YOUR_DOMAIN" >}} to each of the IP addresses from Step 1. Incoming DNS lookups pick one of those IPs at random to use for the given request (known as round-robin DNS).
+3. Follow the instructions on [how to set up a custom domain](./_index.md).
+   When you come to configuring your DNS provider, replace the suggested `CNAME` record
+   with separate `A` records pointing from your domain to each of the IP addresses from step 1.
+   Incoming DNS lookups pick one of those IP addresses at random to use for the given request (known as round-robin DNS).
 
 {{< /codetabs >}}

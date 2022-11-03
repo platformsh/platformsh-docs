@@ -27,7 +27,7 @@ _public-suffix-root.{{<variable "YOUR_DOMAIN" >}} TXT "public-suffix-root={{<var
 ```
 
 Replace {{<variable "YOUR_DOMAIN" >}} with your actual domain name.
-This means {{<variable "YOUR_DOMAIN" >}} is treated as a top-level domain,
+This means your domain is treated as a top-level domain
 so you can add multiple subdomains to different projects.
 
 Note: You should add this record before you add your first domain to Platform.sh.
@@ -63,7 +63,7 @@ They would still accept cookies from a page at `example.com`.
 ### Subdomain hijacking protection
 
 By default, Platform.sh allows only one project to use a given domain at a time.
-This security measure is there to prevent a malicious actor from registering a project with a subdomain like `evil.example.com`
+This is to prevent a malicious actor from registering a project with a subdomain such as `evil.example.com`
 and using that to set cookies on your `example.com` website.
 
 When a domain is added to any project, the first level of the domain not in the PSL is considered "reserved" for that project.
@@ -73,9 +73,9 @@ and no other project can have a domain anywhere in `*.example.com`.
 Multiple subdomains within that same project are perfectly fine.
 
 Subdomain hijacking protection ensures that no other users can add a subdomain to their project
-as long as you don't use wildcards DNS records pointing at Platform.sh.
+as long as you don't use wildcard DNS records pointing at Platform.sh.
 
-In most cases, that is a desirable added layer of security.
+In most cases, that's a desirable added layer of security.
 But you may run into a problem when you want multiple subdomains from the same organization as separate projects.
 For example, multiple departments at the same university.
 One option would be to add `example.com` to the PSL, but you might not want or be able to do that.
@@ -99,5 +99,5 @@ In certain cases (such as if your domain was added manually by Platform.sh suppo
 your domain may be reserved for the project you added it to.
 Then you can't set up a second project with the bare domain (`example.com`) or a subdomain (`foo.example.com`).
 
-If that happens, our support team can remove the protection for that domain.
-[Open a support ticket](../../overview/get-support.md) and include the project ID of the project that already has the domain.
+If that happens, remove protection for that domain by [contacting support](../../overview/get-support.md).
+Include the project ID of the project that already has the domain.
