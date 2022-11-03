@@ -1,8 +1,8 @@
 ---
-title: "DNS management and CNAME records caveats"
+title: "DNS management, CNAME and Apex domains"
 weight: 1
 description: See why CNAME records are used and what to do if your DNS registrar doesn't support them for apex domains.
-sidebarTitle: "DNS management caveats"
+sidebarTitle: "DNS management"
 ---
 
 Platform.sh expects you to use `CNAME` records on your [apex domain](../../other/glossary.md#apex-domain).
@@ -31,9 +31,6 @@ If a router is being upgraded and its IP changed, two possibilities arise:
   Your website appears temporarily offline until you manually update your `A` records or the router is back from maintenance.
 
 The edge hostname can be [retrieved through the CLI or the Console](./_index.md#2-get-the-target-for-your-project).
-
-The edge hostname URL is generated following the scheme:
-`{{<variable "BRANCH_NAME" >}}-{{<variable "RANDOM_HASH" >}}-{{<variable "PROJECT_ID" >}}.{{<variable "REGION" >}}.platformsh.site`
 
 ## Why CNAME records are problematic
 
@@ -76,7 +73,8 @@ As these are nonstandard, their behavior (and quality) can vary and not all DNS 
 If you want your site to be accessible at a URL like `https://example.com` and not only `https://www.example.com`,
 this is the best way to do so.
 
-To configure your domain name to point to your project using custom records, follow the instructions on [how to set up a custom domain](./_index.md) and instead of step 5 [of **Configure your DNS provider**](./_index.md#3-configure-your-dns-provider), add a `ANAME`/`ALIAS` record pointing from {{<variable "YOUR_DOMAIN" >}} to the target.
+To configure your domain name to point to your project using custom records, follow the instructions on [how to set up a custom domain](./_index.md).
+When you come to configuring your DNS provider, replace the suggested `CNAME` record with the custom record pointing from your domain to the target.
 
 Examples of such workaround records and providers include:
 
@@ -163,9 +161,8 @@ Using `A` records has several limitations:
 
 To configure your domain name to point to your project using `A` records:
 
-1. Get the IP's of your project's production environment by running `dig +short $(platform environment:info edge_hostname)`.
-2. Copy all IP addresses (usually 1-3) that are returned.
-3. Follow the instructions on [how to set up a custom domain](./_index.md).
+1. Get the IP addresses of your project's production environment by running `dig +short $(platform environment:info edge_hostname)`.
+2. Follow the instructions on [how to set up a custom domain](./_index.md).
    When you come to configuring your DNS provider, replace the suggested `CNAME` record
    with separate `A` records pointing from your domain to each of the IP addresses from step 1.
    Incoming DNS lookups pick one of those IP addresses at random to use for the given request (known as round-robin DNS).

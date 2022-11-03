@@ -32,6 +32,9 @@ so you can add multiple subdomains to different projects.
 
 Note: You should add this record before you add your first domain to Platform.sh.
 You can remove the record after adding subdomains, which reinstates [subdomain hijacking protection](#subdomain-hijacking-protection).
+This ensures no other users could possibly add a subdomain to their project,
+though your DNS records should prevent them from actually using it.
+Assuming you don't use wildcards pointing at Platform.sh.
 
 ## The details
 
@@ -42,14 +45,9 @@ The right-most portion of the domain, such as `.com`, `.edu`, and `.fr`,
 is known as the top-level domain (TLD).
 Most Internet applications (such as web browsers) handle TLDs specially, such as by restricting certain actions.
 
-For example, a web page at `foo.bar.baz.example.com` can usually set a cookie that's linked to one of the following domains:
-
-* `foo.bar.baz.example.com`
-* `bar.baz.example.com`
-* `baz.example.com`
-* `example.com`
-
-But that web page can *not* set a cookie to all `.com` domains.
+For example, a web page at `foo.bar.baz.example.com` can usually set a cookie that's set to `foo.bar.baz.example.com`,
+to `bar.baz.example.com`, to `baz.example.com`, or to `example.com`.
+But that web page can't set a cookie to all `.com` domains.
 
 That allows a single logical site to be segmented across different subdomains but use a single account login cookie without causing a security risk to all `.com` domains.
 Other restrictions apply on TLDs, but cookies are the easiest example.

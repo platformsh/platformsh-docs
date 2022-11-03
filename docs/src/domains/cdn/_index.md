@@ -23,6 +23,9 @@ any domains that you intend to make use of the CDN are required to use CNAME rec
 Pointing from an apex domain such as `example.com` to a hostname with a CNAME record isn't possible for all DNS hosts.
 Verify your registrar supports [CNAME records for apex domains](../steps/dns.md#handling-apex-domains).
 
+CloudFlare uses [CNAME Flattening](https://blog.cloudflare.com/introducing-cname-flattening-rfc-compliant-cnames-at-a-domains-root/).
+Whereas Fastly provides a set of Anycast IP addresses for you, so that you are able to [create A records for your root domain that point to Fastly’s CDN](https://docs.fastly.com/en/guides/using-fastly-with-apex-domains).
+
 ## Initial setup
 
 For Dedicated plans, a CDN is set up automatically for both Staging and Production environments as part of your onboarding.

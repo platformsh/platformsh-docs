@@ -14,7 +14,6 @@ Platform.sh doesn't charge for using a third-party TLS certificate, although the
 Consult your TLS issuer for instructions on how to generate an TLS certificate.
 
 You can use many kinds of certificates, including domain-validated, extended validation, high-assurance, and wildcard certificates.
-The main reasons to use a third-party issuer rather than the default certificate include using extended validation or high-assurance certificates.
 
 A custom certificate isn't necessary for development environments.
 
@@ -84,8 +83,8 @@ highlight=false
 Your certificate's private key needs to be in PKCS #1 format, which means it starts with `-----BEGIN RSA PRIVATE KEY-----`.
 If it has `-----BEGIN PRIVATE KEY-----` instead, it's in PKCS #8 format and you need to change it.
 
-To convert the private key from PKCS #8 to PKCS #1 format, run the following command:
+To convert your private key (`private.key`) from PKCS #8 to PKCS #1 format (`private.rsa.key`), run the following command:
 
 ```bash
-openTLS rsa -in {{<variable "PATH_TO_PRIVATE_KEY_FILE" >}}.key -out {{<variable "PATH_TO_PRIVATE_KEY_FILE" >}}.rsa.key
+openTLS rsa -in private.key -out private.rsa.key
 ```

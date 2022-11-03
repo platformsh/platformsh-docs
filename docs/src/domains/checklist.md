@@ -62,10 +62,9 @@ highlight=false
 ---
 
 1. Get the IP addresses of your project's production environment by running `dig +short $(platform environment:info edge_hostname)`.
-2. Copy all IP addresses (usually 1-3) that are returned.
-3. Open the `/etc/hosts` file with admin privileges using your favorite text editor.
-4. Add the IP and (sub)domains to override to that file.
-5. Save and close the file.
+2. Open the `/etc/hosts` file with admin privileges using your favorite text editor.
+3. Add the IP addresses and domains for mapping to that file.
+4. Save and close the file.
 
 After adding these lines, the file looks something like the following:
 
@@ -83,12 +82,14 @@ After adding these lines, the file looks something like the following:
 {{<variable "IP_ADDRESS" >}}      www.{{<variable "YOUR_DOMAIN" >}}
 </span></code></pre></div>
 
-For example, if your IP address is `192.0.2.1` and you added both the `example.com` domain and the `www.example.com` subdomain the bottom of the file looks like:
+For example, if your IP addresses are `192.0.2.1` and `192.0.2.2`, and you added both the `example.com` domain and the `www.example.com` subdomain the bottom of the file looks like the following:
 
 ```yaml {location="/etc/hosts"}
 ...
 192.0.2.1      example.com
 192.0.2.1      www.example.com
+192.0.2.2      example.com
+192.0.2.2      www.example.com
 ```
 
 <--->
@@ -100,10 +101,9 @@ highlight=false
 ---
 
 1. Get the IP addresses of your project's production environment by running `dig +short $(platform environment:info edge_hostname)`.
-2. Copy all IP addresses (usually 1-3) that are returned.
-3. Open the `c:\Windows\System32\Drivers\etc\hosts` file with admin privileges using your favorite text editor.
-4. Add the IP addresses and domains for mapping to that file.
-5. Save and close the file.
+2. Open the `c:\Windows\System32\Drivers\etc\hosts` file with admin privileges using your favorite text editor.
+3. Add the IP addresses and domains for mapping to that file.
+4. Save and close the file.
 
 After adding these lines, the file looks something like the following:
 
@@ -132,12 +132,14 @@ After adding these lines, the file looks something like the following:
 {{<variable "IP_ADDRESS" >}}         www.{{<variable "YOUR_DOMAIN" >}}
 </code></pre></div>
 
-For example, if your IP address is `192.0.2.1` and you added both the `example.com` domain and the `www.example.com` subdomain the bottom of the file looks like:
+For example, if your IP addresses are `192.0.2.1` and `192.0.2.2`, and you added both the `example.com` domain and the `www.example.com` subdomain the bottom of the file looks like the following:
 
 ```yaml {location="c:\Windows\System32\Drivers\etc\hosts"}
 ...
 192.0.2.1      example.com
 192.0.2.1      www.example.com
+192.0.2.2      example.com
+192.0.2.2      www.example.com
 ```
 
 {{< /codetabs >}}
@@ -151,6 +153,7 @@ These certificates are issued at no charge by [Let's Encrypt](https://letsencryp
 In most cases, this is sufficient and no further action is necessary, though see the [limits](../define-routes/https.md#limits).
 
 If you want to use a third-party certificate, ensure it's purchased and active before going live.
+The main reasons to use a third-party issuer rather than the default certificate include using extended validation or high-assurance certificates.
 See how to add a [third-party TLS certificate to your site](./steps/tls.md).
 
 ## 4. Optional: configure your CDN

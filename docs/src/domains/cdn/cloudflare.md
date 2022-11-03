@@ -10,11 +10,12 @@ aliases:
 Verify your registrar supports [CNAME records for apex domains](../steps/dns.md#handling-apex-domains).
 This solves the problem of being able to point an apex domain such as `example.com`
 to a domain name (a CNAME record) rather than an IP address (an A record).
+If that isn't an option for you, CloudFlare offers [CNAME Flattening for your domain](https://blog.cloudflare.com/introducing-cname-flattening-rfc-compliant-cnames-at-a-domains-root/).
 
 To correctly point DNS to your Platform.sh project,
 you need the [target for your Production environment](../../domains/steps/_index.md#2-get-the-target-for-your-project).
 
-Assuming that you are using both a `www.` subdomain as well as the bare domain,
+Assuming that you are using both a `www.` subdomain and the bare domain,
 you'll want to point both of those DNS entries to the same place.
 Whether you choose the bare domain version or the `www` subdomain doesn't make any practical difference,
 as they both reach Platform.sh and be handled correctly.

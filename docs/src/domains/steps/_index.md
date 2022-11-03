@@ -7,6 +7,8 @@ layout: single
 
 Once your project is ready for production, replace the automatically generated domain with your own custom domain.
 
+Note that adding a domain disables the automatically generated URL for your Production environment only.
+URLs for non-Production environments can't be customized.
 ## Before you begin
 
 You need:
@@ -19,10 +21,6 @@ You need:
 
 If you are planning to use several subdomains of the same domain on different projects,
 see how to [manage multiple subdomains](/domains/steps/subdomains.md) *before* you add your domain to Platform.sh.
-
-Note that adding a domain disables the automatically generated URL for your Production environment only.
-URLs for non-Production environments can't be customized.
-
 ## 1. Change your plan to a production plan
 
 If you are on a Development plan, you can't add a domain.
@@ -32,11 +30,35 @@ To upgrade your plan tier, you must be an organization owner or have [the manage
 
 To upgrade your plan tier:
 
-* On the tile of the project you want to upgrade, click **{{< icon more >}} More**.
-* Click **Edit plan**.
-* Change the plan to at least {{< partial "plans/min-production-size" >}}.
-* Check the change to the monthly cost.
-* Click **Save**.
+{{< codetabs >}}
+
+---
+title=Using the CLI
+file=none
+highlight=false
+---
+
+Run the following [CLI command](../../administration/cli/_index.md):
+
+```bash
+platform subscription:info plan standard
+```
+
+<--->
+
+---
+title=In the console
+file=none
+highlight=false
+---
+
+1. On the tile of the project you want to upgrade, click **{{< icon more >}} More**.
+2. Click **Edit plan**.
+3. Change the plan to at least {{< partial "plans/min-production-size" >}}.
+4. Check the change to the monthly cost.
+5. Click **Save**.
+
+{{< /codetabs >}}
 
 You can find [more information on plan tiers](https://platform.sh/pricing).
 
@@ -81,7 +103,7 @@ highlight=false
 
 Your DNS provider (usually your registrar) is where you manage your domain.
 Most registrars offer similar functionalities regarding DNS configuration but use different terminology or configuration.
-For example some registrars require the use of `@` character to create a `CNAME` record on the apex domain, where others don't.
+For example some registrars require the use of `@` character to create `CNAME` or custom records on the apex domain, where others don't.
 
 Note that depending on your registrar and the time to live (TTL) you set,
 it can take anywhere from 15 minutes to 72 hours for DNS changes to be taken into account.
@@ -103,7 +125,7 @@ To configure your domain name to point to your project:
    Not all registrars allow these kinds of records.
    If yours doesn't, see the [alternatives](./dns.md#handling-apex-domains).
 5. Optional: If you have multiple domains you want to be served by the same app, add a `CNAME` record for each of them.
-   That includes the `www` subdomain if you are using it in your [routes configuration](../../define-routes.md).
+   That includes the `www` subdomain if you are using it in your [routes configuration](../../define-routes/_index.md).
 6. Set the TTL value back to its previous value.
 
 If your domain is `example.com` and you are using the `www` subdomain, you have records like the following:
@@ -131,7 +153,7 @@ To configure your CDN and your domain name to point to your project:
    The address or `CNAME` record to use varies by CDN provider.
    Refer to your provider's documentation or to the [CDN guide](../cdn/_index.md).
 5. Optional: If you have multiple domains you want to be served by the same app, add a `CNAME` record for each of them.
-   That includes the `www` subdomain if you are using it in your [routes configuration](../../define-routes.md).
+   That includes the `www` subdomain if you are using it in your [routes configuration](../../define-routes/_index.md).
 
 {{< /codetabs >}}
 
