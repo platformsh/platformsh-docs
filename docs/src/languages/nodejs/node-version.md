@@ -138,16 +138,91 @@ hooks:
 
 ## Use `nvm`
 
-[Node Version Manager (`nvm`)](https://github.com/nvm-sh/nvm)
+[Node Version Manager (`nvm`)](https://github.com/nvm-sh/nvm) is a bash script for managing Node.js versions.
 
-You can:
+You can use it to:
 
-- Add it to the build hook to make that version available in the build.
+- Make a specific version available in the build and optionally the runtime container.
 - Control the specific versions to be installed with [environment variables](../../development/variables/_index.md),
   meaning you can also have different versions in different environments.
-- Cache `nvm` so you don't need to download it each time.
 
-Add it to your `.platform.app.yaml` file:
+To use `nvm`, follow these steps:
+
+1. Define which `nvm` version to use using an [environment variable](../../development/variables/_index.md).
+   Add it to your [app configuration](../../create-apps/_index.md):
+
+   ```yaml {location=".platform.app.yaml"}
+   variables:
+       env:
+           # Update for your desired NVM version.
+           NVM_VERSION: v0.38.0
+   ```
+
+2. Define your desired Node.js version using an environment variable.
+   For your base version, set it in your app configuration:
+
+   ```yaml {location=".platform.app.yaml"}
+   variables:
+       env:
+           # Update these for your desired NVM and Node versions.
+           NVM_VERSION: v0.38.0
+           NODE_VERSION: v18.12.0
+   ```
+
+   To get different versions in different environments, [set environment-specific variables](../../development/variables/set-variables.md#create-environment-specific-variables).
+
+3. Add a `.nvm` directory to your cache in your [build hook](../../create-apps/hooks/_index.md):
+
+   ```yaml {location=".platform.app.yaml"}
+   hooks:
+       build: |
+           set -e
+           unset NPM_CONFIG_PREFIX
+           export NVM_DIR="$PLATFORM_APP_DIR/.nvm"
+
+           # Link cache with app
+           if [ ! -d "$PLATFORM_CACHE_DIR/.nvm" ]; then
+               mkdir -p $PLATFORM_CACHE_DIR/.nvm
+           fi
+           ln -s $PLATFORM_CACHE_DIR/.nvm $NVM_DIR
+   ```
+
+4. Use the cache directory and install based on the variables if not present:
+
+   ```yaml {location=".platform.app.yaml"}
+   hooks:
+       build: |
+           ...
+           # Check for Node.js version and install if not present
+           if [ ! -d "$PLATFORM_CACHE_DIR/.nvm/versions/node/$NODE_VERSION" ]; then
+
+               # Get nvm install script if correct version not present
+               export NVM_INSTALL_FILE="${PLATFORM_CACHE_DIR}/nvm_${NVM_VERSION}_install.sh"
+               if [ ! -f "$NVM_INSTALL_FILE" ]; then
+                   wget -nc -O "$NVM_INSTALL_FILE" "https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VERSION/install.sh"
+               fi
+
+               # Install, automatically using NODE_VERSION
+               bash $NVM_INSTALL_FILE
+           fi
+
+           # Activate nvm
+           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+           # Use the specified version
+           nvm use "$NODE_VERSION"
+   ```
+
+5. Optional: To use the specified Node.js version in the runtime container and not just the build,
+   activate `nvm` via [script](../../development/variables/set-variables.md#set-variables-via-script):
+
+   ```bash {location=".environment"}
+   unset NPM_CONFIG_PREFIX
+   export NVM_DIR="$PLATFORM_APP_DIR/.nvm"
+   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+   ```
+
+Your final app configuration should look something like the following:
 
 ```yaml
 variables:
