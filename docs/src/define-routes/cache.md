@@ -150,6 +150,7 @@ A full list of HTTP headers is available on [Wikipedia](https://en.wikipedia.org
 A list of allowed cookie names to include values for in the cache key.
 
 All cookies bypass the cache when using the default (`['*']`) or if the `Set-Cookie` header is present.
+This is done by sending the following header: `X-Platform-Cache: BYPASS`.
 
 For example, for the cache key to depend on the value of the `foo` cookie in the request.
 Other cookies are ignored.
