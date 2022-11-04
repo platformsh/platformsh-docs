@@ -1137,8 +1137,10 @@
     "runtime": false,
     "type": "vault-kms",
     "versions": {
-      "deprecated": [],
       "supported": [
+        "1.12"
+      ],
+      "deprecated": [
         "1.8",
         "1.6"
       ],
@@ -1153,6 +1155,9 @@
     },
     "versions-dedicated-gen-3": {
       "supported": [
+        "1.12"
+      ],
+      "deprecated": [
         "1.8",
         "1.6"
       ]
