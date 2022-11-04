@@ -33,6 +33,28 @@ Platform.sh supports the most common project management tools in the Java ecosys
 * [Maven](https://maven.apache.org/)
 * [Ant](https://ant.apache.org/)
 
+### Manage Maven versions
+
+Java containers come with a version of Maven already installed.
+You may need to use a specific different version to manage your project.
+If the version you need differs from the version on your container, you can install the specific version that you need.
+
+Add something like the following to your [app configuration](../../create-apps/_index.md):
+
+```yaml {location=".platform.app.yaml"}
+variables:
+    env:
+        MAVEN_VERSION: {{< variable "DESIRED_VERSION_NUMBER" "3.8.6" >}}
+
+hooks:
+    build: |
+      curl -sfLO "https://dlcdn.apache.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz"
+      tar -zxf apache-maven-$MAVEN_VERSION-bin.tar.gz
+      export PATH="$PWD/apache-maven-$MAVEN_VERSION/bin:$PATH"
+      mvn --version
+      mvn clean package
+```
+
 ## Other JVM languages
 
 It’s worth remembering that the JVM by its specification [doesn't read Java code](https://docs.oracle.com/javase/specs/jvms/se8/html/index.html), but bytecode. So within the JVM, it’s possible to [run several languages](https://en.wikipedia.org/wiki/List_of_JVM_languages). Platform.sh supports several of them, such as Kotlin, Groovy, and Scala, so long as that language works with any build automation that Platform.sh supports.
