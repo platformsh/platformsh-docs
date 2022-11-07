@@ -220,7 +220,7 @@ $ composer update
 
 ### Automate your updates with a source operation
 
-{{< tiered-feature "Elite and Enterprise" >}}
+{{< premium-features/tiered "Elite and Enterprise" >}}
 
 [Source operations](../../../create-apps/source-operations.md) allow you to automate the maintenance of your Composer-based WordPress site. 
 For instance, you can [update all the dependencies in your project with a single command](../../../create-apps/source-operations.md#update-dependencies).
