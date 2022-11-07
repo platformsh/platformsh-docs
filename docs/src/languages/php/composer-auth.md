@@ -9,21 +9,21 @@ aliases:
 
 {{% description %}}
 
-To handle that situation, you can define a `env:COMPOSER_AUTH` [project variable](../../development/variables/set-variables.md#create-project-variables) which allows you to set up authentication as an environment variable. The contents of the variable should be a JSON formatted object containing an `http-basic` object (see [composer-auth specifications](https://getcomposer.org/doc/03-cli.md#composer-auth)).
+To handle that situation, you can define a `env:COMPOSER_AUTH` [project variable](../../development/variables/set-variables.md#create-project-variables) which allows you to set up authentication as an environment variable. The contents of the variable should be a JSON formatted object containing a `http-basic` object (see [composer-auth specifications](https://getcomposer.org/doc/03-cli.md#composer-auth)).
 
 The advantage is that you can control who in your team has access to those variables.
 
 ## Specify a third party repository in `composer.json`
 
-For this example, consider that there are several packages to install from a private repository hosted at `my-private-repos.example.com`.
+For this example, consider that there are several packages to install from a private repository.
 List that repository in your `composer.json` file.
 
-```json
+```json {location="composer.json"}
 {
     "repositories": [
         {
             "type": "composer",
-            "url": "https://my-private-repos.example.com"
+            "url": "https://{{<variable "PRIVATE_REPOSITORY_URL" >}}"
         }
     ]
 }
@@ -38,18 +38,22 @@ That can be done through the [Console](/administration/web/_index.md) or via the
 ```bash
 platform variable:create --level project --name env:COMPOSER_AUTH \
   --json true --visible-runtime false --sensitive true --visible-build true \
-  --value '{"http-basic": {"my-private-repos.example.com": {"username": "your-username", "password": "your-password"}}}'
+  --value '{"http-basic": {"{{<variable "PRIVATE_REPOSITORY_URL" >}}": {"username": "{{<variable "USERNAME" >}}", "password": "{{<variable "PASSWORD" >}}"}}}'
 ```
 
 The `env:` prefix will make that variable appear as its own Unix environment variable available by Composer during the build process. The optional `--no-visible-runtime` flag means the variable will only be defined during the build hook, which offers slightly better security.
 
-*Note:* The authentication credentials may be cached in your project's build container, so please make sure you clear the Composer cache upon changing any authentication credentials. You can use the `platform project:clear-build-cache` command.
+Note: The authentication credentials may be cached in your project's build container, so please make sure you clear the Composer cache upon changing any authentication credentials by running this [CLI command](../../administration/cli/_index.md):
 
-## Build your application with Composer
+```bash
+platform project:clear-build-cache
+```
 
-Enable the default Composer build mode in your `.platform.app.yaml`:
+## Build your app with Composer
 
-```yaml
+Enable the default Composer build mode:
+
+```yaml {location=".platform.app.yaml"}
 build:
     flavor: "composer"
 ```

@@ -106,6 +106,7 @@ pngcrush
 Predis
 preprocessor
 [Pp]reload(?:er|ing)?
+[Pp]rofiler
 progs
 proxied
 Pthreads

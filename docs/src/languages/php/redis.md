@@ -12,7 +12,7 @@ It's frequently used for caching.
 The [PhpRedis](https://github.com/phpredis/phpredis) extension is available on Platform.sh's PHP container images.
 The extension has been known to break its API between versions when removing deprecated functionality.
 The version available on each application image is the latest available at the time that PHP version was built,
-which if your application is very sensitive to PhpRedis versions may not be ideal.
+which if your app is very sensitive to PhpRedis versions may not be ideal.
 
 It may happen that the version of the PhpRedis extension available for your PHP version
 isn't compatible with your app and upgrading your app isn't feasible.
@@ -25,6 +25,7 @@ To ease the installation of a customer version of PhpRedis, use a [PhpRedis inst
 Invoke this script from your build hook, specifying a version.
 Any tagged version of the library is acceptable:
 
+TODO check if the same shortcode as for swoole can be used
 ```yaml {location=".platform.app.yaml"}
 hooks:
     build: |
@@ -49,6 +50,7 @@ To ease the installation of a customer version of Relay, use the [Relay install 
 Invoke this script from your build hook, specifying a version.
 Any tagged version of the library is acceptable:
 
+TODO check if the same shortcode as for swoole can be used
 ```yaml {location=".platform.app.yaml"}
 hooks:
     build: |

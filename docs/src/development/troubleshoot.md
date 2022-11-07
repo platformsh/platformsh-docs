@@ -93,7 +93,7 @@ while that service is experiencing issues.
 To clear the build cache, run the following command:
 
 ```sh
-platform project:clear-build-cache -p <PROJECT_ID>
+platform project:clear-build-cache -p {{<variable "PROJECT_ID" >}}
 ```
 
 The next build for each environment is likely to take longer as the cache rebuilds.
@@ -114,22 +114,22 @@ it indicates your application is crashing or unavailable.
 
 Typical causes and potential solutions include:
 
-* Your app is listening at the wrong place.
-  * Check your app's [upstream properties](../create-apps/app-reference.md#upstream).
-  * If your app listening at a port, make sure it's using the [`PORT` environment variable](./variables/use-variables.md#use-platformsh-provided-variables).
-* Your `.platform.app.yaml` configuration has an error and a process isn't starting
+- Your app is listening at the wrong place.
+  - Check your app's [upstream properties](../create-apps/app-reference.md#upstream).
+  - If your app listening at a port, make sure it's using the [`PORT` environment variable](./variables/use-variables.md#use-platformsh-provided-variables).
+- Your `.platform.app.yaml` configuration has an error and a process isn't starting
   or requests can't be forwarded to it correctly.
-  * Check your `web.commands.start` entry or your `passthru` configuration.
-* The amount of traffic coming to your site exceeds the processing power of your application.
-  * You may want to [check if bots are overwhelming your site](https://community.platform.sh/t/diagnosing-and-resolving-issues-with-excessive-bot-access/792).
-  * Alternatively, you may need to [increase your plan size](../administration/pricing/_index.md).
-* Certain code paths in your application are too slow and timing out.
-  * Check your code is running smoothly.
-  * Consider adding an [observability solution](../increase-observability/integrate-observability/_index.md) to get a better view of your application.
-* A PHP process is crashing because of a segmentation fault.
-  * See [how to deal with crashed processes](../languages/php/troubleshoot.md#php-process-crashed).
-* A PHP process is killed by the kernel out-of-memory killer.
-  * See [how to deal with killed processes](../languages/php/troubleshoot.md#php-process-is-killed).
+  - Check your `web.commands.start` entry or your `passthru` configuration.
+- The amount of traffic coming to your site exceeds the processing power of your application.
+  - You may want to [check if bots are overwhelming your site](https://community.platform.sh/t/diagnosing-and-resolving-issues-with-excessive-bot-access/792).
+  - Alternatively, you may need to [increase your plan size](../administration/pricing/_index.md).
+- Certain code paths in your application are too slow and timing out.
+  - Check your code is running smoothly.
+  - Consider adding an [observability solution](../increase-observability/integrate-observability/_index.md) to get a better view of your application.
+- A PHP process is crashing because of a segmentation fault.
+  - See [how to deal with crashed processes](../languages/php/troubleshoot.md#php-process-crashed).
+- A PHP process is killed by the kernel out-of-memory killer.
+  - See [how to deal with killed processes](../languages/php/troubleshoot.md#php-process-is-killed).
 
 ## Site outage
 
@@ -145,7 +145,7 @@ When you've added a command line tool (such as [Drush](../other/glossary.md#drus
 you might encounter an error like the following:
 
 ```bash
--bash: <COMMAND_NAME>: command not found
+-bash: {{<variable "COMMAND_NAME" >}}: command not found
 ```
 
 If you see this, add the command to your path with a [`.environment` file script](./variables/set-variables.md#set-variables-via-script).
@@ -173,7 +173,7 @@ Platform.sh enforces a 10&nbsp;MB limit on files with the `application/json` `Co
 To send large files, use the `multipart/form-data` header instead:
 
 ```bash
-$ curl -XPOST 'https://example.com/graphql' --header 'Content-Type: multipart/form-data' -F file=large_file.json
+curl -XPOST 'https://{{<variable "YOUR_DOMAIN" >}}/graphql' --header 'Content-Type: multipart/form-data' -F file=large_file.json
 ```
 
 ## Databases
@@ -214,44 +214,12 @@ can assist in cleaning up the repository by purging older commits, removing unne
 
 If none of these suggestions work, create a [support ticket](https://console.platform.sh/-/users/~/tickets/open).
 
-## Stuck build or deployment
-
-If you see a build or deployment running longer than expected, it may be one of the following cases:
-
-* The build is blocked by a process in your `build` hook.
-* The deployment is blocked by a long running process in your `deploy` hook.
-* The deployment is blocked by a long running cron job in the environment.
-* The deployment is blocked by a long running cron job in the parent environment.
-
-To determine if your environment is being stuck in the build or the deployment, check your [activity log](../increase-observability/logs/access-logs.md#activity-logs).
-
-If the activity has the result `success`, the build has completed successfully and the system is trying to deploy.
-If the result is still `running`, the build is stuck.
-
-In most regions, stuck builds terminate after one hour.
-To have the build killed in [legacy regions](./regions.md#legacy-regions), create a [support ticket](https://console.platform.sh/-/users/~/tickets/open).
-
-When a _deployment_ is blocked, you should try the following:
-
-1. Connect to your environment using [SSH](./ssh/_index.md).
-2. Find any long-running cron jobs or deploy hooks on the environment by running `ps afx`.
-3. Kill any long running processes with `kill <PID>`.
-  Replace `<PID>` with the process ID shown by `ps afx`.
-
-If a `sync` of `activate` process is stuck, try the above on the parent environment.
-
-## Slow or failing build or deployment
-
-Builds can take long time or fail.
-Most of the time, it's related to an application issue.
-Here are a few tips that can help you find the exact cause.
-
 ### Check for errors in the logs
 
 Invisible errors during the build and deploy phase can cause increased wait times, failed builds, and other problems.
 Investigate [each log](../increase-observability/logs/access-logs.md#container-logs) and fix any errors you find.
 
-### Build and deploy hooks
+## Build and deploy hooks
 
 [`build` and `deploy` hooks](../create-apps/hooks/_index.md) can cause long build times.
 If they run into issues, they can cause the build to fail or hang indefinitely.
@@ -264,17 +232,58 @@ Be careful not to test the scripts on production environments.
 You can also test your hooks with these Linux commands to help debug issues:
 
 ```text
-time $cmd # Print execution time
-strace -T $cmd # Print a system call report
+time {{<variable "YOUR_HOOK_COMMAND" >}} # Print execution time
+strace -T {{<variable "YOUR_HOOK_COMMAND" >}} # Print a system call report
 ```
 
-### Cron jobs
+### Stuck or slow build or deployment
+
+If you see a build or deployment running longer than expected, it may be one of the following cases:
+
+- The build is blocked by a process in your `build` hook.
+- The deployment is blocked by a long-running process in your `deploy` hook.
+- The deployment is blocked by a long-running cron job in the environment.
+- The deployment is blocked by a long-running cron job in the parent environment.
+
+To determine if your environment is being stuck in the build or the deployment, check your [activity log](../increase-observability/logs/access-logs.md#activity-logs).
+
+If the activity has the result `success`, the build has completed successfully and the system is trying to deploy.
+If the result is still `running`, the build is stuck.
+
+When a *deployment* is blocked, you can try the following:
+
+1. Connect to your environment using [SSH](./ssh/_index.md).
+2. Find any long-running cron jobs or deploy hooks on the environment by running `ps -afx`.
+3. Kill any long-running processes with `kill {{<variable "PID" >}}` where `{{<variable "PID" >}}` is the process ID shown by `ps -afx`.
+
+These steps also work on the parent environment when a `sync` or `activate` process is stuck.
+
+In most regions, stuck builds [time out after one hour](../create-apps/hooks/hooks-comparison.md#timeout).
+To have the build killed in [legacy regions](./regions.md#legacy-regions), create a [support ticket](../overview/get-support.md).
+
+## Cron jobs
 
 Containers can't be shutdown while long-running [cron jobs and scheduled tasks](../create-apps/app-reference.md#crons) are active.
 That means long-running cron jobs block a container from being shut down to make way for a new deploy.
 
 Make sure your custom cron jobs run quickly and properly.
 Cron jobs may invoke other services in unexpected ways, which can increase execution time.
+
+## Cache configuration
+
+A common source of performance issues is a misconfigured cache.
+The most common issue is not allowing the right cookies as part of the router cache.
+
+Some cookies, such as session cookies, need to be allowed.
+Others, such as marketing and analytics cookies, usually shouldn't be part of the cache key.
+
+See more about [router cache](../define-routes/cache.md)
+and [cookie entry](../define-routes/cache.md#cookies).
+
+Because the router cache follows cache headers from your app,
+your app needs to send the correct `cache-control` header.
+
+For static assets, set cache headers using the `expires` key in your [app configuration](../create-apps/app-reference.md#locations).
 
 ## Language-specific troubleshooting
 
