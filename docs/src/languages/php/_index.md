@@ -467,7 +467,7 @@ highlight=false
 
     ```
 
-    When you listen on a a TCP socket, the `$PORT` environment variable is automatically set.
+    When you listen on a TCP socket, the `$PORT` environment variable is automatically set.
     See more options on how to [configure where requests are sent](../../create-apps/app-reference.md#upstream).
     You might have to configure your app to connect via the `$PORT` TCP socket,
     especially when using web servers such as [Swoole](swoole.md) or [Roadrunner](https://github.com/roadrunner-server/roadrunner).

@@ -64,6 +64,7 @@ Lucene
 Magento
 Magestore
 Mailchimp
+[Mm]akefile
 Meilisearch
 Memcache
 Mezmo
