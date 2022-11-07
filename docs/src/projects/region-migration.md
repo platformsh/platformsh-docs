@@ -23,7 +23,7 @@ You can also change the project's region after it's created.
   - [Outbound firewalls](../create-apps/app-reference.md#firewall)
   - [Network Storage service](../add-services/network-storage.md)
   - [Deploy hook activity logs and SSH during deploy hooks](../create-apps/hooks/hooks-comparison.md#deploy-hook)
-  - [Cron activity logs](../increase-observability/logs.md)
+  - [Cron activity logs](../increase-observability/logs/access-logs.md)
   - [Live backups](../environments/backup.md#live-backups)
   - [Infrastructure metrics](../increase-observability/metrics/_index.md)
   - [Paused crons](../create-apps/app-reference.md#paused-crons)

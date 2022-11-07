@@ -10,7 +10,7 @@ The project timezone doesn't affect:
 
 - [App runtime](../create-apps/timezone.md).
 - [Cron jobs](../create-apps/app-reference.md#crons).
-- [System logs](../increase-observability/logs.md). UTC is the default timezone for all logs.
+- [System logs](../increase-observability/logs/_index.md). UTC is the default timezone for all logs.
 
 To change the timezone for a project, follow these steps:
 
