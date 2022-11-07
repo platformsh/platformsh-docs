@@ -213,13 +213,13 @@ The following values are allowed:
 * `noeviction`
 * `allkeys-lru`
 * `volatile-lru`
-* `allkeys-lfu` _(Available as of [Redis 4.0](https://redis.io/topics/lru-cache#the-new-lfu-mode))_
-* `volatile-lfu` _(Available as of [Redis 4.0](https://redis.io/topics/lru-cache#the-new-lfu-mode))_
+* `allkeys-lfu` _(Available as of [Redis 4.0](https://redis.io/docs/reference/eviction/#the-new-lfu-mode))_
+* `volatile-lfu` _(Available as of [Redis 4.0](https://redis.io/docs/reference/eviction/#the-new-lfu-mode))_
 * `allkeys-random`
 * `volatile-random`
 * `volatile-ttl`
 
-See the [Redis documentation](https://redis.io/topics/lru-cache#eviction-policies) for a description of each option.
+See the [Redis documentation](https://redis.io/docs/reference/eviction/) for a description of each option.
 
 ## Using redis-cli to access your Redis service
 
