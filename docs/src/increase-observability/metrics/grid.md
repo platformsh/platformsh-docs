@@ -14,6 +14,9 @@ Infrastructure metrics report CPU, RAM, and disk space for app and worker contai
 and CPU and disk space for service containers.
 These metrics are available for all of your Grid environments.
 
+Summaries of the metrics for each container separately can be seen in the Console under **Services** for a given environment.
+The full details are available under **Metrics**.
+
 App containers are shown first, with the app name and an image corresponding to the app type.
 Service containers follow next with the same pattern and worker containers are shown last.
 
