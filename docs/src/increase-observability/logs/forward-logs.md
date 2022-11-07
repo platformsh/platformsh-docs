@@ -116,7 +116,7 @@ The following table shows the other available properties:
 | `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`. |
 | `tls_verify`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol. |
 
-Place any property you want inside the `data` object of the cURL request.
+To include a property, add it as a flag, for example `--protocol tcp`.
 This should let you connect to any service that has syslog endpoints.
 
 To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
