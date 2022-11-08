@@ -1,81 +1,186 @@
 ---
-title: "Migrating to Platform.sh"
-description: |
-  Moving an already-built site to Platform.sh is generally straightforward. For the most part, the only part that varies from one framework to another is the details of the Platform.sh configuration files.
+title: Migrating to Platform.sh
+description: See how to migrate your app to Platform.sh so it's ready to be deployed.
 ---
 
-{{% description %}}
+If you already have an app running somewhere else, you want to migrate it to Platform.sh and deploy it.
+To do so, follow these steps.
 
-For more project-specific documentation,
-see the [project templates](../development/templates.md).
+## Before you begin
 
-## Preparation
+You need:
 
-First, assemble your Git repository as appropriate on your default branch.
-Be sure to include the Platform.sh configuration files
-as you can't push the repository to Platform.sh otherwise!
+- An app that works and is ready to be built
+- Code in Git
+- A Platform.sh account -- if you don't already have one, [start a trial](https://auth.api.platform.sh/register?trial_type=general)
+- Optional: the [Platform.sh CLI](../administration/cli/_index.md)
 
-For some applications, such as Drupal,
-you need to dump configuration to files before proceeding.
-You also need to provide appropriate configuration
-to read the credentials for your services at runtime
-and integrate them into your application's configuration.
-The details of that integration vary between systems.
-Be sure to see the appropriate project templates for recommended configurations.
+## 1. Export from previous system
 
-* [Go templates](../languages/go.md#project-templates)
-* [Java templates](../languages/java/_index.md#project-templates)
-* [Node.js templates](../languages/nodejs/_index.md#project-templates)
-* [PHP templates](../languages/php/_index.md#project-templates)
-* [Python templates](../languages/python/_index.md#project-templates)
+Start by exporting everything you might need from your current app.
+This includes data in databases, files on a file system,
+and for some apps, such as Drupal, configuration that you need to export from the system into files.
 
+## 2. Create a Platform.sh project
+
+{{< codetabs >}}
+---
+title=Using the CLI
+file=none
+highlight=false
+---
+
+Run the following command:
+
+```bash
+platform project:create
+```
+
+When prompted, fill in details like the project name, [region](../development/regions.md), and [plan](../administration/pricing/_index.md).
+
+<--->
+
+---
+title=In the Console
+file=none
+highlight=false
+---
 
 [Create a new project from scratch]({{% create-project-link scratch=true %}}).
 
-## Push your code
+In the form, fill in details like the project name and [region](../development/regions.md).
+The project is automatically created with a [Development plan](../administration/pricing/_index.md),
+which you can then upgrade.
 
-When you create a new project,
-you get a checklist of tasks to complete the project.
-(If you closed it, click **Finish setup** to bring it back.)
+{{< /codetabs >}}
 
-Two of the steps are important to .pushing any code you have ready.
+## 3. Add Platform.sh configuration
 
-First is **Set Platform.sh remote** and includes a command similar to this:
+The exact configuration you want depends on your app.
+You likely want to configure three areas:
+
+- [The app itself](../create-apps/_index.md) -- this is the only required configuration
+- [Services](../add-services/_index.md)
+- [Routes](../define-routes/_index.md)
+
+You can also take guidance from the [project templates](../development/templates.md),
+which are starting points for various technology stacks with working configuration examples.
+
+When you've added your configuration, make sure to commit it to Git.
+
+## 4. Push your code
+
+The way to push your code to Platform.sh depends on
+whether you're hosting your code with a third-party service using a [source integration](../integrations/source/_index.md).
+If you aren't, your repository is hosted in Platform.sh
+and you can use the CLI or just Git itself.
+
+{{< codetabs >}}
+---
+title=Using a source integration
+file=none
+highlight=false
+---
+
+Set up the integration for your selected service:
+
+- [Bitbucket](../integrations/source/bitbucket.md)
+- [GitHub](../integrations/source/github.md)
+- [GitLab](../integrations/source/gitlab.md)
+
+Then push code to that service as you do normally.
+Pushing to a branch creates an environment from that branch.
+
+Note that the source integration doesn't report any errors in configuration directly.
+You have to monitor those in your project activities.
+
+<--->
+
+---
+title=Using the CLI
+file=none
+highlight=false
+---
+
+1. Get your project ID by running the following command:
+
+   ```bash
+   platform projects
+   ```
+
+2. Add Platform.sh as a remote repository by running the following command:
+
+   <!-- This is in HTML to get the variable shortcode to work properly -->
+   <div class="highlight">
+     <pre class="chroma"><code class="language-bash" data-lang="bash">platform project:set-remote {{< variable "PROJECT_ID" >}}</code></pre>
+   </div>
+
+3. Push to the Platform.sh repository by running the following command:
+
+   <!-- This is in HTML to get the variable shortcode to work properly -->
+   <div class="highlight">
+     <pre class="chroma"><code class="language-bash" data-lang="bash">git push -u platform {{< variable "DEFAULT_BRANCH_NAME" >}}</code></pre>
+   </div>
+
+When you try to push, any detected errors in your configuration are reported and block the push.
+After any errors are fixed, a push creates a new environment.
+
+<--->
+
+---
+title=Using Git
+file=none
+highlight=false
+---
+
+1. Add an [SSH key](../development/ssh/ssh-keys.md).
+2. In the [Console], open your project and click **Code {{< icon chevron >}}**.
+3. Click **Git**.
+4. From the displayed command, copy the location of your repository.
+   It should have a format similar to the following:
+
+   ```text
+   abcdefgh1234567@git.eu.platform.sh:abcdefgh1234567.git
+   ```
+
+5. Add Platform.sh as a remote repository by running the following command:
+
+   <!-- This is in HTML to get the variable shortcode to work properly -->
+   <div class="highlight">
+     <pre class="chroma"><code class="language-bash" data-lang="bash">git remote add platform {{< variable "REPOSITORY_LOCATION" >}}</code></pre>
+   </div>
+
+6. Push to the Platform.sh repository by running the following command:
+
+   <!-- This is in HTML to get the variable shortcode to work properly -->
+   <div class="highlight">
+     <pre class="chroma"><code class="language-bash" data-lang="bash">git push -u platform {{< variable "DEFAULT_BRANCH_NAME" >}}</code></pre>
+   </div>
+
+When you try to push, any detected errors in your configuration are reported and block the push.
+After any errors are fixed, a push creates a new environment.
+
+{{< /codetabs >}}
+
+## 5. Import data
+
+Once you have an environment, you can import the data you backed up in step 1.
+The exact process may depend on the service you use.
+
+For SQL databases, for example, you can use a version of this command:
 
 ```bash
-platform project:set-remote uwjs5ezkzjpzw
+platform sql < {{< variable "BACKUP_FILE_NAME" >}}
 ```
 
-This adds a Git remote for the Platform.sh repository named `platform`.
-The name is significant as the Platform.sh CLI looks for either `platform` or `origin` to be the Platform.sh repository
-and some commands may not function correctly otherwise.
+For any potential more details, see the [specific service](../add-services/_index.md).
 
-The second is **Commit & push**, which includes a command to push code:
+## 6. Import files
 
-```bash
-git push -u platform main
-```
+Your app may include content files, meaning files that aren't intended to be part of your codebase so aren't in Git.
+You can upload such files to [mounts you created](../create-apps/app-reference.md#mounts).
+Upload to each mount separately.
 
-This pushes your repository's `main` branch to the Platform.sh `main` branch.
-Projects default to having the `main` branch as the default branch.
-You can change this when creating the project or [rename your default branch](../environments/default-environment.md) later.
-
-When you push, a new environment is created using your code and the provided configuration files.
-The system flags any errors with the configuration it can find.
-If any are flagged, correct the error and try again.
-
-## Import your database
-
-You need to have a dump or backup of the database you wish to start from.
-The process is essentially the same for each type of persistent data service.
-See the [MySQL](../add-services/mysql/_index.md), [PostgreSQL](../add-services/postgresql.md),
-and [MongoDB](../add-services/mongodb.md) documentation as appropriate.
-
-## Import your files
-
-Content files (files that aren't intended as part of your code base so aren't in Git)
-can be uploaded to your mounts using the Platform.sh CLI or by using `rsync`.
-You need to upload each directory's files separately.
 Suppose for instance you have the following file mounts defined:
 
 ```yaml
@@ -88,39 +193,26 @@ mounts:
         source_path: private
 ```
 
-While using the CLI and rsync are the most common solutions for uploading files to mounts,
-you can also use [scp](../development/access-site.md#scp).
-
-### Platform.sh CLI
-
-The easiest way to import files to your project mounts is to use the Platform.sh CLI `mount:upload` command.
-To upload to each of directories above, use the following commands.
+Upload to each of directories above by running the following commands:
 
 ```bash
 platform mount:upload --mount web/uploads --source ./uploads
 platform mount:upload --mount private --source ./private
 ```
 
-### rsync
+You can adjust these commands for your own case.
+Or upload to your mounts using a different [SSH method](../development/access-site.md#access-your-app-with-ssh).
 
-You can also use `rsync` to upload each directory.
-The `platform ssh --pipe` command returns the SSH URL for the current environment
-as an inline string that `rsync` can recognize.
-To use a non-default environment, use the `-e` switch after `--pipe`.
-Note that the trailing slash on the remote path means `rsync` copies just the files inside the specified directory,
-not the directory itself.
+## Optional: Add variables
 
-```bash
-rsync -az ./private `platform ssh --pipe`:/app/private/
-rsync -az ./web/uploads `platform ssh --pipe`:/app/web/uploads
-```
+If your app requires environment variables to build properly, [add them to your environment](../development/variables/set-variables.md).
 
-{{< note >}}
+## What's next
 
-If you're running `rsync` on MacOS,
-you should add `--iconv=utf-8-mac,utf-8` to your `rsync` call.
+Now that your app is ready to be deployed, you can do more:
 
-{{< /note >}}
-
-For more details on how to adjust the upload process,
-see the [`rsync` documentation](https://download.samba.org/pub/rsync/rsync.html).
+- Upgrade from a Development plan.
+- [Add a domain](../domains/steps/_index.md).
+- Set up for [local development](../development/local/_index.md).
+- Configure [health notifications](../integrations/notifications.md).
+- For monitoring and profiling, [integrate Blackfire](../increase-observability/integrate-observability/blackfire.md).

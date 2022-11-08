@@ -22,8 +22,15 @@ jobs:
           workflow_conclusion: completed
           name: pr-info
 
+      - name: Get PR number
+        id: pr_number
+        run: |
+          PR_NUMBER=$(cat pr_number.txt)
+          echo "PR number is $PR_NUMBER"
+          echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
+
       - name: Post PR comment
         uses: marocchino/sticky-pull-request-comment@v2
         with:
-          number: pr_number.txt
+          number: ${{ steps.pr_number.outputs.pr_number }}
           path: pr_comment.txt

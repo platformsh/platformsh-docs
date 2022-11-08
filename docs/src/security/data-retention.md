@@ -22,7 +22,7 @@ These logs are retained for at least 6 months and at most 2 years depending upon
 
 Application logs on each customer environment are retained with the environment.
 Individual log files are truncated at 100 MB, regardless of their age.
-See how to [get logs](../increase-observability/logs.md).
+See how to [access logs](../increase-observability/logs/access-logs.md).
 
 When an environment is deleted, its application logs are deleted as well.
 

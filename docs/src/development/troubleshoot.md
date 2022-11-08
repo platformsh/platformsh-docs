@@ -223,7 +223,7 @@ If you see a build or deployment running longer than expected, it may be one of 
 * The deployment is blocked by a long running cron job in the environment.
 * The deployment is blocked by a long running cron job in the parent environment.
 
-To determine if your environment is being stuck in the build or the deployment, check your [activity log](../increase-observability/logs.md#activity-logs).
+To determine if your environment is being stuck in the build or the deployment, check your [activity log](../increase-observability/logs/access-logs.md#activity-logs).
 
 If the activity has the result `success`, the build has completed successfully and the system is trying to deploy.
 If the result is still `running`, the build is stuck.
@@ -249,7 +249,7 @@ Here are a few tips that can help you find the exact cause.
 ### Check for errors in the logs
 
 Invisible errors during the build and deploy phase can cause increased wait times, failed builds, and other problems.
-Investigate [each log](../increase-observability/logs.md#container-logs) and fix any errors you find.
+Investigate [each log](../increase-observability/logs/access-logs.md#container-logs) and fix any errors you find.
 
 ### Build and deploy hooks
 

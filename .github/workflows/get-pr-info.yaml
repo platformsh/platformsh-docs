@@ -4,9 +4,6 @@ on:
     branches: [main]
     types: [labeled,opened,reopened,synchronize]
 
-env:
-  PR_NUMBER: ${{ github.event.number }}
-
 jobs:
   get_pr_info:
     runs-on: ubuntu-latest
@@ -34,7 +31,7 @@ jobs:
             echo "branch_name=${{ github.event.pull_request.head.ref }}" >> $GITHUB_OUTPUT
           # For PRs from forks
           else
-            echo "branch_name=pr-$PR_NUMBER" >> $GITHUB_OUTPUT
+            echo "branch_name=pr-${{ github.event.number }}" >> $GITHUB_OUTPUT
           fi
 
       # Set up environment to use the Platform.sh CLI
@@ -96,7 +93,7 @@ jobs:
 
       - name: Save PR number
         if: ${{ always() }}
-        run: echo $PR_NUMBER > pr_number.txt
+        run: echo ${{ github.event.number }} > pr_number.txt
 
       - name: Save PR SHA
         if: ${{ always() }}

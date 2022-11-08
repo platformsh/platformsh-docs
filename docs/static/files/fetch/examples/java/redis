@@ -33,7 +33,9 @@ public class RedisSample implements Supplier<String> {
 
         // Read it back.
         Set<String> cities = jedis.smembers("cities");
+        logger.append("<p>");
         logger.append("cities: " + cities);
+        logger.append("</p>");
         jedis.del("cities");
         return logger.toString();
     }
