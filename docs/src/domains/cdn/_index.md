@@ -19,12 +19,13 @@ Our recommended CDN provider is [Fastly](./fastly.md).
 ## DNS management
 
 The distributed nature of most CDNs means that for proper functioning,
-any domains that you intend to make use of the CDN are required to use CNAME records for pointing the DNS entries.
-Pointing from an apex domain such as `example.com` to a hostname with a CNAME record isn't possible for all DNS hosts.
-Verify your registrar supports [CNAME records for apex domains](../steps/dns.md#handling-apex-domains).
+any domains that you intend to make use of the CDN are required to use `CNAME` records for DNS entries.
+Not all DNS registrars support pointing from an apex domain such as `example.com` to a hostname with a `CNAME` record.
+Ideally, your registrar supports [`CNAME` records for apex domains](../steps/dns.md#handling-apex-domains).
 
-CloudFlare uses [CNAME Flattening](https://blog.cloudflare.com/introducing-cname-flattening-rfc-compliant-cnames-at-a-domains-root/).
-Whereas Fastly provides a set of Anycast IP addresses for you, so that you are able to [create A records for your root domain that point to Fastly’s CDN](https://docs.fastly.com/en/guides/using-fastly-with-apex-domains).
+CDNs have different methods to overcome this issue.
+CloudFlare uses [`CNAME` flattening](https://blog.cloudflare.com/introducing-cname-flattening-rfc-compliant-cnames-at-a-domains-root/).
+Fastly provides a set of Anycast IP addresses so you can [create A records for your root domain pointing to Fastly’s CDN](https://docs.fastly.com/en/guides/using-fastly-with-apex-domains).
 
 ## Initial setup
 
@@ -114,13 +115,7 @@ There are three ways to secure your origin:
 - **Allowing and denying IP addresses**: If your CDN doesn't support adding headers to the request to origin, you can allow the IP addresses of your CDN.
 - **Client-authenticated TLS**.
 
-{{< codetabs >}}
-
----
-title=Password protected HTTP Authentication
-file=none
-highlight=false
----
+### Password protected HTTP authentication
 
 This approach applies the same username and password to your production and all development environments.
 You can have developers enter credentials through their browser,
@@ -133,15 +128,9 @@ To use password protected HTTP Authentication:
 3. Password protect your project using [HTTP access control](../../environments/http-access-control.md).
 4. Share the password with your CDN provider.
 5. Make sure the CDN adds a header to authenticate correctly to your origin by adding a custom header to the origin request with the base64 encoded `username:password` you chose in step 2.
-    For example: `Aladdin:OpenSesame` would become `Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l`.
+   For example: `Aladdin:OpenSesame` would become `Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l`.
 
-<--->
-
----
-title=Allowing and denying IP addresses
-file=none
-highlight=false
----
+### Allowing and denying IP addresses
 
 This approach applies the same IP restrictions to your production and all development environments.
 To remove it from development environments, you need to disable it on each environment
@@ -160,16 +149,9 @@ To allow and deny IP addresses:
 
 3. Allow only these IPs for your project using [HTTP access control](../../environments/http-access-control.md#filter-ip-addresses).
 
-<--->
-
----
-title=Client-authenticated TLS
-file=none
-highlight=false
----
+### Client-authenticated TLS
 
 If your CDN offers this option, an alternative way of securing the connection is [client-authenticated TLS](../../define-routes/https.md#client-authenticated-tls).
-
 Note: Remember to permit your developers to access the origin by creating your own certificate
 or else they can't access the project URL directly.
 
@@ -197,9 +179,5 @@ To activate authenticated TLS follow the following steps:
                  path: cdn.crt
    ```
 
-{{< note >}}
-
-The steps above are generally similar but can vary for different CDN providers.
-Contact your CDN provider's support department for specific assistance.
-
-{{< /note >}}
+These steps are generally similar but can vary for different CDN providers.
+Contact your CDN provider's support for specific assistance.

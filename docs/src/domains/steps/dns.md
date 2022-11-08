@@ -1,15 +1,15 @@
 ---
-title: "DNS management, CNAME and Apex domains"
+title: "DNS management and apex domains"
 weight: 1
-description: See why CNAME records are used and what to do if your DNS registrar doesn't support them for apex domains.
-sidebarTitle: "DNS management"
+description: See why `CNAME` records are used and what to do if your DNS registrar doesn't support them for apex domains.
+sidebarTitle: "DNS and apex domains"
 ---
 
 Platform.sh expects you to use `CNAME` records on your [apex domain](../../other/glossary.md#apex-domain).
 But that doesn't work with some DNS registrars.
 Learn why they're recommended and what else you can do.
 
-## Why CNAME records?
+## Why `CNAME` records?
 
 Each site on Platform.sh is made up of a set of containers.
 Platform.sh runs routers for each region to map incoming requests to the appropriate container.
@@ -32,12 +32,12 @@ If a router is being upgraded and its IP changed, two possibilities arise:
 
 The edge hostname can be [retrieved through the CLI or the Console](./_index.md#2-get-the-target-for-your-project).
 
-## Why CNAME records are problematic
+## Why `CNAME` records are problematic
 
 The DNS specification was originally published in 1987, long before name-based HTTP hosting became prevalent.
 In the multiple RFCs that were written regarding `CNAME` records, the description of their behavior is rather vague.
 
-It's generally understood that a CNAME record for an apex domain like `example.com`:
+It's generally understood that a `CNAME` record for an apex domain like `example.com`:
 
 * Can only point to an IP address like `192.0.2.1` (an `A` record).
 * Can't be used as an alias for another hostname like `www.example.com` (a `CNAME` record).
@@ -66,7 +66,7 @@ file=none
 highlight=false
 ---
 
-Some DNS providers offer custom, non-standard records (sometimes `ANAME` or `ALIAS` records) that you can manage like CNAME records.
+Some DNS providers offer custom, non-standard records (sometimes `ANAME` or `ALIAS` records) that you can manage like `CNAME` records.
 These nonstandard records make an internal lookup behind the scenes and respond to DNS lookups as if they were `A` records.
 As these are nonstandard, their behavior (and quality) can vary and not all DNS registrars offer such a feature.
 
@@ -128,9 +128,9 @@ To configure your domain name to point to your project using a redirection servi
 
 1. Make the `www.` version of your site the default (canonical) version and configure your app and routes to [use the `www` subdomain as upstream](../../define-routes/_index.md).
 2. Follow the instructions on [how to set up a custom domain](./_index.md).
-    When you come to configuring your DNS provider, replace the suggested `CNAME` record with
-    an `A` record pointing from your domain to the redirection service.
-    For WWWizer, that's the IP `174.129.25.170`.
+   When you come to configuring your DNS provider, replace the suggested `CNAME` record with
+   an `A` record pointing from your domain to the redirection service.
+   For WWWizer, that's the IP `174.129.25.170`.
 3. Ensure that your redirects use the same protocol:
    `http://example.com` redirects to `http://www.example.com`, not to `https://www.example.com`.
    Redirects from `http` to `https` are handled automatically.

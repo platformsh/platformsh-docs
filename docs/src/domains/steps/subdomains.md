@@ -33,8 +33,8 @@ so you can add multiple subdomains to different projects.
 Note: You should add this record before you add your first domain to Platform.sh.
 You can remove the record after adding subdomains, which reinstates [subdomain hijacking protection](#subdomain-hijacking-protection).
 This ensures no other users could possibly add a subdomain to their project,
-though your DNS records should prevent them from actually using it.
-Assuming you don't use wildcards pointing at Platform.sh.
+though your DNS records should prevent them from actually using it
+(assuming you don't use wildcards pointing at Platform.sh).
 
 ## The details
 
@@ -45,12 +45,11 @@ The right-most portion of the domain, such as `.com`, `.edu`, and `.fr`,
 is known as the top-level domain (TLD).
 Most Internet applications (such as web browsers) handle TLDs specially, such as by restricting certain actions.
 
-For example, a web page at `foo.bar.baz.example.com` can usually set a cookie that's set to `foo.bar.baz.example.com`,
-to `bar.baz.example.com`, to `baz.example.com`, or to `example.com`.
-But that web page can't set a cookie to all `.com` domains.
-
-That allows a single logical site to be segmented across different subdomains but use a single account login cookie without causing a security risk to all `.com` domains.
-Other restrictions apply on TLDs, but cookies are the easiest example.
+For example, a web page at `foo.bar.baz.example.com` can usually set a cookie that's keyed to `foo.bar.baz.example.com`,
+to `bar.baz.example.com`, to `baz.example.com`, or to `example.com`, but *not* to all `.com` domains.
+That allows a single logical site to be segmented across different subdomains but use a single account login cookie.
+Setting a cookie for all `.com` domains would be a security risk.
+Other restrictions apply to TLDs, but cookies are the most basic example.
 
 Aside from true TLDs, browser makers have a list of domain suffixes that should get the same special handling
 called the [Public Suffix List (PSL)](https://publicsuffix.org/).
@@ -97,5 +96,5 @@ In certain cases (such as if your domain was added manually by Platform.sh suppo
 your domain may be reserved for the project you added it to.
 Then you can't set up a second project with the bare domain (`example.com`) or a subdomain (`foo.example.com`).
 
-If that happens, remove protection for that domain by [contacting support](../../overview/get-support.md).
+If that happens, [contact support](../../overview/get-support.md).
 Include the project ID of the project that already has the domain.

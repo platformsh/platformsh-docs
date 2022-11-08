@@ -179,7 +179,7 @@ Follow the instructions to change the default branch to `main` for your provider
 Whether or not you're using a CDN,
 if your site is live you have probably added a Platform.sh address somewhere when configuring a [custom domain](../domains/steps/_index.md).
 If you have a CDN, it's with the CDN provider.
-If you don't have a CDN, it's probably a CNAME record.
+If you don't have a CDN, it's probably a `CNAME` record.
 
 In either case, the setting probably has the old environment name as part of it.
 Update the setting to use the new environment name.

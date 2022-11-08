@@ -153,10 +153,11 @@ These certificates are issued at no charge by [Let's Encrypt](https://letsencryp
 In most cases, this is sufficient and no further action is necessary, though see the [limits](../define-routes/https.md#limits).
 
 If you want to use a third-party certificate, ensure it's purchased and active before going live.
-The main reasons to use a third-party issuer rather than the default certificate include using extended validation or high-assurance certificates.
+The main reasons to use a third-party issuer rather than the default certificate include
+using extended validation or high-assurance certificates.
 See how to add a [third-party TLS certificate to your site](./steps/tls.md).
 
-## 4. Optional: configure your CDN
+## 4. Optional: Configure your CDN
 
 If you are using a CDN, either one included with an Enterprise plan or one you provide for a self-service Grid project,
 ensure that your CDN account is registered and configured in advance.

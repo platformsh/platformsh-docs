@@ -10,18 +10,18 @@ The next step is to configure your DNS provider to point to the domain of your p
 
 {{< asciinema src="videos/asciinema/cname-target.cast" >}}
 
-You can access the CNAME target from your terminal by using the CLI and the command:
+You can access the `CNAME` target from your terminal by using the CLI and the command:
 
 ```bash
 platform environment:info edge_hostname
 ```
 
-Add a CNAME record from your desired domain (and it's `www` subdomain) to the value of the `edge_hostname`.
+Add a `CNAME` record from your desired domain (and it's `www` subdomain) to the value of the `edge_hostname`.
 Depending on your registrar, this value may be called an "Alias" or something similar.
 
-If your application is going to serve multiple domains, you need to add a CNAME record for each of them.
+If your application is going to serve multiple domains, you need to add a `CNAME` record for each of them.
 
-You can find out more information about using an apex domain and CNAME records
+You can find out more information about using an apex domain and `CNAME` records
 in the [Going Live documentation](/domains/steps/dns.md).
 
 Depending on your registrar and the TTL you set for the domain,

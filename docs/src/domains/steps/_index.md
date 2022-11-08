@@ -9,6 +9,7 @@ Once your project is ready for production, replace the automatically generated d
 
 Note that adding a domain disables the automatically generated URL for your Production environment only.
 URLs for non-Production environments can't be customized.
+
 ## Before you begin
 
 You need:
@@ -21,6 +22,7 @@ You need:
 
 If you are planning to use several subdomains of the same domain on different projects,
 see how to [manage multiple subdomains](/domains/steps/subdomains.md) *before* you add your domain to Platform.sh.
+
 ## 1. Change your plan to a production plan
 
 If you are on a Development plan, you can't add a domain.
@@ -103,7 +105,8 @@ highlight=false
 
 Your DNS provider (usually your registrar) is where you manage your domain.
 Most registrars offer similar functionalities regarding DNS configuration but use different terminology or configuration.
-For example some registrars require the use of `@` character to create `CNAME` or custom records on the apex domain, where others don't.
+For example, some registrars require you to use an `@` to create custom records on the apex domain, while others don't.
+Check your registrar's documentation.
 
 Note that depending on your registrar and the time to live (TTL) you set,
 it can take anywhere from 15 minutes to 72 hours for DNS changes to be taken into account.

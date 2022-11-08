@@ -4,9 +4,7 @@ weight: 3
 sidebarTitle: "Custom TLS certificates"
 ---
 
-Platform.sh automatically provides all environments with standard TLS certificates issued by [Let's Encrypt](https://letsencrypt.org/).
-Let's Encrypt certificates don't support wildcard routes,
-  so you need a custom certificate if you want to use these.
+Platform.sh automatically provides all environments with standard Transport Layer Security (TLS) certificates issued by [Let's Encrypt](https://letsencrypt.org/).
 No further action is required to use TLS-encrypted connections beyond [specifying HTTPS routes](../../define-routes/https.md).
 
 You can also provide your own third-party TLS certificate from the issuer of your choice.
@@ -16,6 +14,7 @@ Consult your TLS issuer for instructions on how to generate an TLS certificate.
 You can use many kinds of certificates, including domain-validated, extended validation, high-assurance, and wildcard certificates.
 
 A custom certificate isn't necessary for development environments.
+Platform.sh automatically provides wildcard certificates that cover all `*.platform.sh` domains, including development environments.
 
 If you are using a third-party certificate, seven days before it expires
 Platform.sh issues a Let's Encrypt certificate and replaces the custom certificate with it to avoid interruption in service.
