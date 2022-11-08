@@ -1,5 +1,5 @@
 ---
-title: "Accessing your site"
+title: "Access your site"
 weight: 6
 description: |
   Find the URLs you can use to access your site via a web browser.
@@ -20,7 +20,7 @@ highlight=false
 2. From the **Environment** menu, select an environment.
 3. Click **URLs**.
 
-   You can copy and paste any of those URLs into a web browser and access your site.
+Copy and paste any of these URLs into a web browser and access your site.
 
 <--->
 
@@ -33,14 +33,14 @@ highlight=false
 1. Run the following command:
 
    ```bash
-   platform url --project <PROJECT_ID>
+   platform url --project {{< variable "PROJECT_ID" >}} --environment  {{< variable "ENVIRONMENT_NAME" >}}
    ```
 
-2. Follow the prompts to select the environment and URL you want to view in a browser.
+2. Select the URL to open in a browser.
 
 {{< /codetabs >}}
 
 For more information about URLs in your project and how you can control access to your web applications, 
-see [Define routes](../define-routes/).
+see how to [define routes](../define-routes/).
 
 
