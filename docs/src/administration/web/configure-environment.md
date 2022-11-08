@@ -118,9 +118,13 @@ select it in the tree or list on the left-hand side:
 ![Services: app overview](/images/management-console/service-tab/app-overview.png "0.5")
 
 The **Overview** tab gives you information about your app.
-You can see the language version, the container size, the amount of persistent disk,
-the number of active workers and cron jobs, and the command to SSH into the container.
-You can also see all cron jobs with their name, frequency, and command.
+You can see:
+
+* The language version, the container size, the amount of persistent disk,
+  the number of cron jobs, and the command to SSH into the container.
+* A summary of [metrics for the environment](../../increase-observability/metrics/_index.md).
+* All cron jobs with their name, frequency, and command.
+* All workers with their name, size, amount of persistent disk, and command to SSH into the container.
 
 To view [the configuration file where your app is set up](../../create-apps/), click **Configuration**.
 
@@ -133,5 +137,6 @@ select it in the tree or list on the left-hand side:
 
 The **Overview** gives you information about the selected service.
 You can see the service version, the container size, and the disk size, if you've configured a persistent disk.
+You can also see a summary of [metrics for the environment](../../increase-observability/metrics/_index.md).
 
 To view the configuration file where your services are set up, click **Configuration**.
