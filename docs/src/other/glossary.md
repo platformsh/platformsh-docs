@@ -12,6 +12,12 @@ aliases:
 An environment that's deployed.
 See how to [deactivate an environment](../environments/deactivate-environment.md).
 
+## Apex domain
+
+An apex domain is a domain name that doesn't include a subdomain.
+
+For example, `example.com` is an apex domain and `www.example.com` is a subdomain.
+
 ## Branch
 
 Branching an environment means creating a new branch in the Git repository and an exact copy of that environment.

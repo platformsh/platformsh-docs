@@ -1,132 +1,204 @@
 ---
-title: "Custom Domains - Step by step guide"
+title: Set up a custom domain
 weight: 2
-sidebarTitle: "Step by step guide"
-description: |
-  Configuring custom domains on Platform.sh is a simple two or three step process. You can either use the Platform.sh Console or the CLI to configure your project for production. Once you are familiar with it the whole process usually takes a couple of minutes.
+description: Add a custom domain to your project once it's ready to go live.
 layout: single
+aliases:
+   - /domains/quick-start.html
 ---
 
-{{% description %}}
+Once your project is ready for production, replace the automatically generated domain with your own custom domain.
 
-{{< note >}}
-The order of operations isn't really important, but if you are migrating a site from an existing provider,
-you should first configure the domain on the Platform.sh side, and only then switch DNS over.
-{{< /note >}}
+Note that adding a domain disables the automatically generated URL for your Production environment only.
+URLs for non-Production environments can't be customized.
+
+## Before you begin
+
+You need:
+
+* A project that's ready to go live
+* A domain with access to its settings with the registrar
+* A registrar that allows `CNAME` records or [one of the alternatives](./dns.md) on [apex domains](../../other/glossary.md#apex-domain)
+* Optional: The [CLI](../../administration/cli/_index.md) installed locally
+* If you are on a development plan, you need to [upgrade your tier to a production plan](#1-change-your-plan-to-a-production-plan).
+
+If you are planning to use several subdomains of the same domain on different projects,
+see how to [manage multiple subdomains](/domains/steps/subdomains.md) *before* you add your domain to Platform.sh.
 
 ## 1. Change your plan to a production plan
 
 If you are on a Development plan, you can't add a domain.
-You need to upgrade your subscription to a production plan.
+You need to upgrade your subscription to a [production plan](../../other/glossary.md#production-plan).
 
-{{< note >}}
+To upgrade your plan tier, you must be an organization owner or have [the manage plans permission](../../administration/organizations.md#manage-your-organization-users)
 
-You can add a domain to your production environment.
-The domain used for non-production environments is always generated and can't be customized,
-even if your project is on a Production plan.
+To upgrade your plan tier:
 
-{{< /note >}}
+{{< codetabs >}}
 
-In the [Console](https://console.platform.sh), click the **More** button for your project and select **Edit plan**.
+---
+title=Using the CLI
+file=none
+highlight=false
+---
 
-![Edit Plan](/images/management-console/edit-plan.png "0.3")
+Run the following [CLI command](../../administration/cli/_index.md):
 
-You can also access information about the project's plan under "Billing"
-and then by selecting the project from your list of projects.
-You can make changes to the project by clicking ‘Upgrade Plan’.
+```bash
+platform subscription:info plan standard
+```
 
-![Edit Plan](/images/management-console/billing-plan-upgrade.png "0.6")
+<--->
 
-You can make changes to the type of plan, the number of environments, amount of storage and number of users here.
-When you make changes, it updates the monthly price you're paying.
-Click `Upgrade plan` to save the new settings.
+---
+title=In the console
+file=none
+highlight=false
+---
 
-![Edit Plan Choose](/images/management-console/settings-upgrade-plan.png "0.6")
+1. On the tile of the project you want to upgrade, click **{{< icon more >}} More**.
+2. Click **Edit plan**.
+3. Change the plan to at least {{< partial "plans/min-production-size" >}}.
+4. Check the change to the monthly cost.
+5. Click **Save**.
 
-You can find more information on pricing on the [pricing page](https://platform.sh/pricing).
+{{< /codetabs >}}
 
-## 2. (CDN version) Configure your DNS provider
+You can find [more information on plan tiers](https://platform.sh/pricing).
 
-If you are serving the site through a CDN, configure your DNS provider to point at your CDN account.
-The address or CNAME to set for that varies with the CDN provider.
-Refer to their documentation or to the [CDN guide](/domains/cdn/_index.md).
+## 2. Get the target for your project
 
-## 2. (Non-CDN version) Configure your DNS provider
+You want to point your DNS record to the automatically generated URL.
+Your domain needs to point to that target for your site to go live.
 
-Configure your DNS provider to point your domain to your Platform.sh production environment domain name.
+For Dedicated plans, get the target for your project from your Platform.sh contact.
 
-The way to do so varies somewhat depending on your registrar, but nearly all registrars should allow you to set a CNAME.
-Some call it an Alias or similar alternate name,
-but either way the intent is to say "this domain should always resolve to... this other domain".
+{{< codetabs >}}
 
-You can access the CNAME target by running `platform environment:info edge_hostname`.
-That's the host name by which Platform.sh knows your environment.
-Add a CNAME record from your desired domain (`www.example.com`) to the value of the `edge_hostname`.
+---
+title=Using the CLI
+file=none
+highlight=false
+---
 
-If you have multiple domains you want to be served by the same application you need to add a CNAME record for each of them.
+Get the target by running the following [CLI command](../../administration/cli/_index.md):
 
-Note that depending on your registrar and the TTL you set,
-it could take anywhere from 15 minutes to 72 hours for the DNS change to fully propagate across the Internet.
+```bash
+platform environment:info edge_hostname
+```
 
-If you are using an apex domain (`example.com`),
-see the additional information about [Apex domains and CNAME records](/domains/steps/dns.md).
+<--->
 
-If you are planning to host multiple subdomains on different projects,
-see the additional information about [Subdomains](/domains/steps/subdomains.md) *before* you add your domain to Platform.sh.
+---
+title=In the console
+file=none
+highlight=false
+---
 
-## 3. (Non-CDN version) Set your domain in Platform.sh
+1. In the Console, open your Production environment.
+2. Click **URLs** and copy the URL to your site excluding `https://`.
 
-{{< note >}}
+  For example, if the automatically generated URL is `https://main-abcd123.abcdefgh1234567.eu.platformsh.site`,
+  the target is `main-abcd123.abcdefgh1234567.eu.platformsh.site`.
 
-If using a CDN, skip this step.
-The CDN should already have been configured in advance to point to Platform.sh as its upstream.
+{{< /codetabs >}}
 
-{{< /note >}}
+## 3. Configure your DNS provider
 
-This step tells the Platform.sh edge layer where to route requests for your web site.
-You can do this through the CLI with `platform domain:add example.com`
-or [using the Console](/administration/web/configure-project.md#domains).
+Your DNS provider (usually your registrar) is where you manage your domain.
+Most registrars offer similar functionalities regarding DNS configuration but use different terminology or configuration.
+For example, some registrars require you to use an `@` to create custom records on the apex domain, while others don't.
+Check your registrar's documentation.
 
-You can add multiple domains to point to your project.
-Each domain can have its own custom SSL certificate, or use the default one provided.
+Note that depending on your registrar and the time to live (TTL) you set,
+it can take anywhere from 15 minutes to 72 hours for DNS changes to be taken into account.
 
-If you require access to the site before the domain name becomes active,
-you can create a `hosts` file entry on your computer
-and point it to the IP address that resolves when you access your production project branch.
+{{< codetabs >}}
 
-To get the IP address, first run `platform environment:info edge_hostname`.
-That prints the "internal" domain name for your project.
-Run `ping <that domain name>` to get its IP address.
+---
+title=Not using a CDN
+file=none
+highlight=false
+---
 
-In OS X and Linux you can add that IP  to your `/etc/hosts` file.
-In Windows the file is named `c:\Windows\System32\Drivers\etc\hosts`.
-You need to be a admin user to change that file.
-So in OS X you usually run something like `sudo vi /etc/hosts`.
-After adding the line, the file looks something like:
+To configure your domain name to point to your project:
 
-![Hosts File](/images/config-files/hosts-file.png "0.4")
+1. Consult your provider's documentation to find out how to add or edit DNS records.
+2. Open your registrar's domain management system.
+3. Set the TTL on your domain to the lowest possible value to minimize transition time.
+4. Add a `CNAME` record pointing from your domain to the [target](#2-get-the-target-for-your-project).
+   Not all registrars allow these kinds of records.
+   If yours doesn't, see the [alternatives](./dns.md#handling-apex-domains).
+5. Optional: If you have multiple domains you want to be served by the same app, add a `CNAME` record for each of them.
+   That includes the `www` subdomain if you are using it in your [routes configuration](../../define-routes/_index.md).
+6. Set the TTL value back to its previous value.
 
-Alternatively, there's an add-on for Firefox
-that allows you to dynamically switch DNS IP addresses without modifying your `hosts` file.
+If your domain is `example.com` and you are using the `www` subdomain, you have records like the following:
 
-* [Firefox LiveHosts add-on](https://addons.mozilla.org/en-US/firefox/addon/livehosts/)
+* `example.com` is a `CNAME`/`ANAME`/`ALIAS` record pointing to `main-abcd123.abcdefgh1234567.eu.platformsh.site`.
+* `www.example.com` is a `CNAME` record pointing to `main-abcd123.abcdefgh1234567.eu.platformsh.site`.
 
-{{< note >}}
+Both `example.com` and `www.example.com` point to the same target.
+Redirects are handled by the [router you configure](../../define-routes/_index.md).
 
-Don't put the IP address you see here, but the one you got from the ping command.
+<--->
 
-*Also, remember to remove this entry after you have configured DNS!*
+---
+title=Using a CDN
+file=none
+highlight=false
+---
 
-{{< /note >}}
+To configure your CDN and your domain name to point to your project:
 
-Sometimes it can take Let's Encrypt a couple of minutes to provision the certificate the first time.
-This is normal, and only means the first deploy after enabling a domain may take longer than usual.
-Setting the CNAME record with your DNS provider first helps to minimize that disruption.
+1. Open your CDN's management system.
+2. Point the CDN at your [target](#2-get-the-target-for-your-project).
+3. Open your registrar’s domain management system.
+4. Configure your DNS to point at your CDN.
+   The address or `CNAME` record to use varies by CDN provider.
+   Refer to your provider's documentation or to the [CDN guide](../cdn/_index.md).
+5. Optional: If you have multiple domains you want to be served by the same app, add a `CNAME` record for each of them.
+   That includes the `www` subdomain if you are using it in your [routes configuration](../../define-routes/_index.md).
 
-## 4. Bonus steps (Optional)
+{{< /codetabs >}}
 
-### Configure health notifications
+## 4. Set your domain in Platform.sh
 
-While not required, it's strongly recommended that you set up [health notifications](/integrations/notifications.md)
-to advise you if your site is experiencing issues such as running low on disk space.
-Notifications can be sent via email, Slack, or PagerDuty.
+Add a single domain to your project:
+
+{{< codetabs >}}
+
+---
+title=Using the CLI
+file=none
+highlight=false
+---
+
+Run the following command:
+
+<!-- This is in HTML to get the variable shortcode to work properly -->
+<div class="highlight">
+ <pre class="chroma"><code class="language-bash" data-lang="bash">platform domain:add {{<variable "YOUR_DOMAIN" >}}</code></pre>
+</div>
+
+<--->
+
+---
+title=In the console
+file=none
+highlight=false
+---
+
+1. Select the project where you want to add a domain.
+2. Click {{< icon settings >}} **Settings**.
+3. Click **Domains**.
+4. In the **Domain** field, enter your domain.
+5. Click **Add**.
+
+{{< /codetabs >}}
+
+## What's next
+
+* [Use a content delivery network](../cdn/_index.md)
+* [Use subdomains across multiple projects](./subdomains.md)
+* [Use a custom TLS certificate](./tls.md)
