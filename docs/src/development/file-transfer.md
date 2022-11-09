@@ -8,14 +8,14 @@ After your app is built, its file system is read-only.
 This means that the only way you can edit your app's code is through Git.
 
 However, you can transfer files to and from your built app without using Git.
+To do so, you need to configure mounts or use an SSH client.
 
-To do so, you need to configure [mounts](../create-apps/app-reference.md#mounts).
-Mounts let you set up directories that remain writable after the build is complete.
+[Mounts](../create-apps/app-reference.md#mounts) let you set up directories that remain writable after the build is complete.
 You can then transfer files directly to and from mounts inside your app
 with a single command via the [Platform.sh CLI](../administration/cli/_index.md).
 
-Alternatively, you can transfer files to and from your built app 
-using an SSH client such `scp` and `rsync`.
+Alternatively, you can transfer files to and from your built app using an SSH client 
+such as `scp` or `rsync`.
 
 ## Transfer files using the CLI
 
