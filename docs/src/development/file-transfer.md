@@ -5,7 +5,7 @@ sidebarTitle: Transfer files
 ---
 
 After your app is built, its file system is read-only.
-This means that the only way you can edit your app's files and code is through Git.
+This means that the only way you can edit your app's code is through Git.
 
 However, you can transfer files to and from your built app without using Git.
 
@@ -146,6 +146,6 @@ rsync -az uploads/ "$(platform ssh --pipe -p {{< variable "PROJECT_ID" >}} -e {{
 Note that `rsync` is very sensitive about trailing `/` characters.
 
 If you're using UTF-8 encoded files on macOS, 
-add the `--iconv=utf-8-mac,utf-8` flag to your `rsync`call.
+add the `--iconv=utf-8-mac,utf-8` flag to your `rsync` call.
 
 For more options, consult the [rsync documentation](https://man7.org/linux/man-pages/man1/rsync.1.html).
