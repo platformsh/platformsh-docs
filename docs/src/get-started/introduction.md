@@ -71,6 +71,9 @@ To start a project, you should have code on your computer that you'd like to dep
 It can be a basic "Hello World" site, such as you can find in the [Platform.sh demos](https://github.com/platformsh-demos).
 Just something that you know runs.
 
+An alternative is one of the [Platform.sh templates](../development/templates.md).
+These are example apps that come with everything needed to run on Platform.sh.
+
 ## Choose your stack
 
 To get started with a project, choose the language or framework your code uses:
