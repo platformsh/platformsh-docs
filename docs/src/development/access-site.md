@@ -32,9 +32,9 @@ highlight=false
 
 1. Run the following command:
 
-   ```bash
-   platform url --project {{< variable "PROJECT_ID" >}} --environment  {{< variable "ENVIRONMENT_NAME" >}}
-   ```
+   <div class="highlight">
+     <pre class="chroma"><code class="language-bash" data-lang="bash">platform url --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}</code></pre>
+   </div>
 
 2. Select the URL to open in a browser.
 

@@ -36,13 +36,16 @@ $ platform mounts --project {{< variable "PROJECT_ID" >}} --environment {{< vari
 The output is similar to the following:
 
 ```bash
-Mounts in the app drupal (environment main):
+Mounts on abcdefgh1234567-main-abcd123--app@ssh.eu.platform.sh:
 +-------------------------+----------------------+
-| Path                    | Definition           |
+| Mount path              | Definition           |
 +-------------------------+----------------------+
-| web/sites/default/files | shared:files/files   |
-| private                 | shared:files/private |
-| tmp                     | shared:files/tmp     |
+| web/sites/default/files | source: local        |
+|                         | source_path: files   |
+| private                 | source: local        |
+|                         | source_path: private |
+| tmp                     | source: local        |
+|                         | source_path: temp    |
 +-------------------------+----------------------+
 ```
 
@@ -60,17 +63,15 @@ $ platform mount:upload --mount private --source ./private
 You get the following output:
 
 ```bash
-This will add, replace, and delete files in the remote mount 'private'.
+Uploading files from ./private to the remote mount private
 
 Are you sure you want to continue? [Y/n]
-Uploading files from /Users/alice/Projects/foo/private to the remote mount /app/private
-  building file list ...
- done
+
+  sending incremental file list
+  example.sh
 
   sent 2.35K bytes  received 20 bytes  1.58K bytes/sec
   total size is 1.77M  speedup is 745.09
-  time: 0.72s
-The upload completed successfully.
 ```
 
 ### Transfer a file from a mount
@@ -87,17 +88,15 @@ $ platform mount:download --mount private --target ./private
 You get the following output:
 
 ```bash
-This will add, replace, and delete files in the local directory 'private'.
+Downloading files from the remote mount private to ./private
 
 Are you sure you want to continue? [Y/n]
-Downloading files from the remote mount /app/private to /Users/alice/Projects/foo/private
-  receiving file list ...
- done
 
-  sent 16 bytes  received 3.73K bytes  2.50K bytes/sec
-  total size is 1.77M  speedup is 471.78
-  time: 0.91s
-The download completed successfully.
+  receiving incremental file list
+  example.sh
+
+  sent 2.35K bytes  received 20 bytes  1.58K bytes/sec
+  total size is 1.77M  speedup is 745.09
 ```
 
 ## Transfer files using an SSH client
@@ -123,7 +122,7 @@ To copy files from your local directory to the Platform.sh environment,
 reverse the order of the parameters:
 
 ```bash
-scp diagram.png "$(platform ssh --pipe -p <PROJECT_ID> -e <ENVIRONMENT_NAME>)":web/uploads
+scp diagram.png "$(platform ssh --pipe -p {{< variable "PROJECT_ID" >}} -e {{< variable "ENVIRONMENT_NAME" >}})":web/uploads
 ```
 
 For other options, see the [`scp` documentation](https://www.man7.org/linux/man-pages/man1/scp.1.html).
@@ -143,7 +142,7 @@ rsync -az "$(platform ssh --pipe -p {{< variable "PROJECT_ID" >}} -e {{< variabl
 
 Note that `rsync` is very sensitive about trailing `/` characters.
 
-Also, if you're a MacOS user handling UTF-8 encoded files, 
+If you're using UTF-8 encoded files on macOS, 
 add the `--iconv=utf-8-mac,utf-8` flag to your `rsync`call.
 
-Consult the [rsync documentation](https://man7.org/linux/man-pages/man1/rsync.1.html) for more details.
+For more options, consult the [rsync documentation](https://man7.org/linux/man-pages/man1/rsync.1.html).
