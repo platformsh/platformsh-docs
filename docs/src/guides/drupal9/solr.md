@@ -126,8 +126,51 @@ Commit all of the changes above and then push to deploy.
 ### 5. Enable the modules
 
 Once the site is deployed, go to the `/admin/modules` page and enable the "Search API Solr" module.
-Also enable the "Search API Solr Search Defaults" module to get a default server configuration.
-If you would rather create one yourself you may do so but then you must change the value of `$solr_server_name` in the code snippet in `settings.platformsh.php`.
+Unfortunately, the "Search API Solr Search Defaults" module [has been deprecated]() so you will need to manually create a Search API server with the following options:
+
+* Server name: Solr Server
+* Machine name: default_solr_server
+* Enabled: yes
+* Description (optional): Default Solr server created by the Solr Search Defaults module - config copied from https://git.drupalcode.org/project/search_api_solr/-/commit/1568d2b#4f547dbec1b001e0aa88f925637aa20132616c30
+* Backend: Solr
+* Solr connector: Standard
+* Configure _Standard_ Solr connector:
+* - HTTP protocol: http
+* - Solr host: localhost
+* - Solr port: 8983
+* - Solr path: /
+* - Solr core: drupal
+* - Query timeout: 5
+* - Index timeout: 10
+* - Optimize timeout: 15
+* - Finalize timeout: 30
+* - Commit within: 10
+* - Connector workarounds:
+* -- Version override: determine automatically
+* -- HTTP method: AUTO
+* -- Skip schema verification: false
+* - Advanced server configuration:
+* -- Enable JMX: false
+* -- Enable JTS
+* -- solr.install.dir: '' (i.e. empty)
+* Advanced:
+* - Default result rows: 10
+* - Index single documents fallback count: 10
+* - Index empty fulltext fields: false
+* - Retrieve result data from Solr: false
+* - Retrieve highlighted snippets: false
+* - Suppress warnings about...: false
+* - Fallback to multiValued field types: false
+* - All index prefix: '' (i.e. empty)
+* - Targeted content domain: generic
+* - Targeted environment: default
+* - Optimize: false
+* Multi-site compatibility:
+* - Retrieve results for this site only: false
+
+{{< note >}}
+If you choose to use a different server name, you must change the value of `$solr_server_name` in the code snippet in `settings.platformsh.php`.
+{{< /note >}}
 
 ### 6. Export and modify configuration
 
