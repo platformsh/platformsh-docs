@@ -90,9 +90,7 @@ That's expected because you haven't provided configuration files yet.
 You add them in the next step.
 Remember to have a local clone of your project.
 
-<div class="alert alert-primary" role="alert">
-
-**Note:**
+{{ $inner := `
 
 If you're integrating a repository to Platform.sh that contains a number of open pull requests,
 don't use the default integration options.
@@ -100,9 +98,8 @@ Projects are limited to three\* development environments (active and deployed br
 and you would need to deactivate them individually to test this guide's migration changes.
 Instead, each service integration should be made with the following flag:
 
-```bash
-platform integration:add --type=<service> ... --build-pull-requests=false
-```
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">platform integration:add --type=&lt;service&gt; ... --build-pull-requests=false
+</code></pre></div>
 
 You can then go through this guide and activate the environment when you're ready to deploy
 
@@ -110,6 +107,7 @@ You can then go through this guide and activate the environment when you're read
 Open your {{ .Get "name" }} project and select **Edit plan**.
 Add additional **Environments**, view a cost estimate, and confirm your changes.
 
-</div>
+`}}
+{{ partial "note" (dict "Inner" $inner "context" .) }}
 
 Now that you have a local Git repository, a Platform.sh project, and a way to push code to that project, you're all set to continue.

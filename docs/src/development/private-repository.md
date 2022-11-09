@@ -1,55 +1,55 @@
 ---
-title: "Use a private Git repository"
+title: Pull code from a private Git repository
 weight: 10
-sidebarTitle: "Private repositories"
+sidebarTitle: Private repositories
+description: See how to pull code from a private Git repository into your Platform.sh build process.
 ---
 
-## Pull code from a private Git repository
+To complete its build, your Platform.sh project may need to access pieces of code stored in private Git repositories.
+Examples include themes, libraries, and modules.
+Configure these repositories to grant access to your project.
 
-Say you're building something that's stored in a private Git repository that you have access to
-and you want to use it in your project.
-Platform.sh allows you to include code dependencies that are stored in external private Git repositories.
+To grant access to a private Git repository,
+add the project's public SSH key to your Git repository's deploy keys.
 
-To grant Platform.sh access to your private Git repository,
-you need to add the project's public SSH key to the deploy keys of your Git repository.
-
-To get your project's public key:
+## 1. Get your project's public key
 
 1. In the Console, open the project you want.
 2. Click **{{< icon settings >}} Settings**.
-3. Click **Deploy Key**.
+3. Under **Project settings**, click **Deploy key**.
 4. Click **{{< icon copy >}} Copy**.
 
 ![Deploy Key](/images/management-console/settings-deploy-key.png "0.5")
 
-Then add the key to your repository:
+## 2. Add the key to your repository in your Git provider
 
-* [GitHub deploy keys](https://docs.github.com/en/developers/overview/managing-deploy-keys#deploy-keys) 
-* [GitLab deploy keys](https://docs.gitlab.com/ee/user/project/deploy_keys/)
-* [Bitbucket deployment keys](https://bitbucket.org/blog/deployment-keys)
+* [GitHub deploy key](https://docs.github.com/en/developers/overview/managing-deploy-keys#deploy-keys) 
+* [GitLab deploy key](https://docs.gitlab.com/ee/user/project/deploy_keys/#grant-project-access-to-a-public-deploy-key)
+* [Bitbucket access key](https://support.atlassian.com/bitbucket-cloud/docs/add-access-keys/#Step-3.-Add-the-public-key-to-your-repository)
 
-Then you can use the key.
-For example, with Drupal you can now use your private module by adding it to your make file:
+If you're only pulling code, the key doesn't need write permissions.
 
-```ini
-; Add private repository from GitHub
-projects[module_private][type] = module
-projects[module_private][subdir] = "contrib"
-projects[module_private][download][type] = git
-projects[module_private][download][branch] = dev
-projects[module_private][download][url] = "git@github.com:<REPOSITORY_PATH>.git"
+Now your Platform.sh project can access your private repository via SSH, including to add dependencies.
+
+This means you can access the private repository through links like:
+<code>git@{{% variable "GIT_PROVIDER" %}}:{{% variable "PATH_OR_USERNAME" %}}/{{% variable "REPOSITORY" %}}.git</code>.
+For example, you can clone a repository in your [`build` hook](../create-apps/hooks/_index.md):
+
+```yaml {location=".platform.app.yaml"}
+hooks:
+    build: |
+        set -e
+        git clone git@bitbucket.org:username/module.git
 ```
 
-In the make file, use the `<USER>@<HOST>:<PATH>.git` format or `ssh://<USER>@<HOST>:<PORT>/<PATH>.git` if using a non-standard port.
+You can also use [private repositories as submodules](./submodules.md#use-private-git-repositories).
 
 ## Using multiple private GitHub repositories
 
-More complex projects may have many repositories that they want to include,
-but GitHub only allows you to associate a deploy key with a single repository.
+GitHub requires a separate deploy key for each repository.
+To grant your project access to multiple repositories, create an automated user account, known as a machine user, with its own SSH key.
 
-If your project needs to access multiple repositories, you can choose to attach an SSH key to an automated user account.
-Since this account isn't used by a human, it's called a machine user.
-You can then add the machine account as collaborator
-or add the machine user to a team with access to the repositories it needs to manipulate.
+You can then add the machine account as collaborator to specific repositories
+or to a team with access to the repositories.
 
-More information about this is available on [GitHub](https://docs.github.com/en/developers/overview/managing-deploy-keys#machine-users).
+See more information about [machine users on GitHub](https://docs.github.com/en/developers/overview/managing-deploy-keys#machine-users).

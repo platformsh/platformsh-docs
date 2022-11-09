@@ -5,7 +5,7 @@ description: Use DDEV to set up local development environments.
 weight: 1
 ---
 
-[DDEV](https://ddev.readthedocs.io/en/stable/) is an open-source tool to get local PHP development environments.
+[DDEV](https://ddev.readthedocs.io/en/stable/) is an open-source tool for local PHP development environments.
 It allows you use Docker in your workflows while maintaining a GitOps workflow.
 You get fully containerized environments to run everything locally
 without having to install tools (including the Platform.sh CLI, PHP, and Composer) on your machine.
@@ -21,7 +21,7 @@ Make sure your computer meets the [system requirements for DDEV](https://ddev.re
 
 To install DDEV, follow the [DDEV documentation for your operating system](https://ddev.readthedocs.io/en/stable/users/install/ddev-installation/).
 
-This installs DDEV and `ddev`, its command-line interface (CLI).
+This installs the self-contained `ddev` command-line interface (CLI).
 For more information on `ddev`, run `ddev help`.
 
 ## 2. Add DDEV configuration to your project
@@ -49,15 +49,20 @@ Your project should start running, though without any of the data from your Plat
 To connect DDEV with your Platform.sh account, use a Platform.sh API token.
 
 1. [Create an API token](../../administration/cli/api-tokens.md#get-a-token) in the Console.
-2. Add the token to your global DDEV configuration:
+2. Add the token to your DDEV configuration.
+   You can do so globally (easiest for most people):
 
-   ```yaml {location="~/.ddev/global_config.yaml"}
-   web_environment:
-       - PLATFORMSH_CLI_TOKEN=<API_TOKEN>
+   ```bash
+   ddev config global --web-environment-add=PLATFORMSH_CLI_TOKEN={{< variable "API_TOKEN" >}}
    ```
 
-   Note that this isn't the configuration file in your project.
-3. Get DDEV to recognize the token by restarting DDEV:
+   You can also add the token only to the project:
+
+   ```bash
+   ddev config --web-environment-add=PLATFORMSH_CLI_TOKEN={{< variable "API_TOKEN" >}}
+   ```
+
+3. Get DDEV to recognize the token by restarting:
 
    ```bash
    ddev restart
@@ -67,16 +72,26 @@ Now you can run `ddev exec platform <command>` from your computer without needin
 
 ## 4. Connect DDEV to your project
 
-To get DDEV connected to your project, you need to tell it which project to use:
+The DDEV docs have up-to-date [instructions for connecting DDEV to your project](https://ddev.readthedocs.io/en/stable/users/providers/platform/).
 
-1. In your project's `.ddev/providers` directory, make a copy of `platform.yaml.example` and name it `platform.yaml`.
+To get DDEV connected to your project, you need to tell it which project to use.
+Use environment variables to set your project ID and environment name:
 
-   ```bash
-   cp .ddev/providers/platform.yaml.example .ddev/providers/platform.yaml
-   ```
+```bash
+ddev config --web-environment-add="PLATFORM_PROJECT={{< variable "PROJECT_ID" >}},PLATFORM_ENVIRONMENT={{< variable "ENVIRONMENT_NAME" >}}"
+```
 
-2. Update `environment_variables` with your project ID and environment name.
-   If you don't know your project ID, run `ddev exec platform`, which returns all your projects and their IDs.
+For example:
+
+```bash
+ddev config --web-environment-add="PLATFORM_PROJECT=nf36mudfdd23bi,PLATFORM_ENVIRONMENT=main"
+```
+
+Get DDEV to recognize the variables by restarting:
+
+```bash
+ddev restart
+```
 
 ## 5. Get your project data
 
@@ -85,9 +100,6 @@ To get your environment data (files, database), run the following command:
 ```bash
 ddev pull platform
 ```
-
-If you have configured your files in a mount other than the default,
-adjust the command in `.ddev/providers/platform.yaml` for the correct location.
 
 To skip pulling files, add `--skip-files` to the command.
 To skip pulling a database, add `--skip-db` to the command.

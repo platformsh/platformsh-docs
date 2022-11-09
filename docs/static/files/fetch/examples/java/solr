@@ -47,14 +47,18 @@ public class SolrSample implements Supplier<String> {
             query.set("q", "city:London");
             QueryResponse queryResponse = solrClient.query(query);
 
+            logger.append("<p>");
             SolrDocumentList results = queryResponse.getResults();
             logger.append(String.format("Selecting documents (1 expected):  %d \n", results.getNumFound()));
+            logger.append("</p>");
 
             // Delete one document
             solrClient.deleteById(id);
 
+            logger.append("<p>");
             logger.append(String.format("Deleting one document. Status (0 is success):  %s \n",
                     solrClient.commit().getStatus()));
+            logger.append("</p>");
         } catch (SolrServerException | IOException exp) {
             throw new RuntimeException("An error when execute Solr ", exp);
         }

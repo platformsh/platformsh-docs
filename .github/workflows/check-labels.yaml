@@ -11,7 +11,7 @@ jobs:
     steps: 
       - name: Fail upcoming changes
         # If the PR contains the label for future changes, fail the workflow
-        if: contains(github.event.pull_request.labels.*.name, 'upcoming-version')
+        if: contains(github.event.pull_request.labels.*.name, 'upcoming version')
         run: |
           echo "This PR deals with a future change and so can't be merged yet"
           exit 1

@@ -104,7 +104,7 @@ Now that you've mastered the basics, you can choose more advanced tasks to compl
 
 - Manage [multiple apps in a single project](../../create-apps/multi-app.md).
 - See how to set up for [local development](../../development/local/_index.md).
-- Go live at a [custom domain](../../domains/quick-start.md).
+- Go live at a [custom domain](../../domains/steps/_index.md).
 - To maintain code in a third-party repository, integrate with [Bitbucket, GitHub, or GitLab](../../integrations/source/_index.md).
 - Read more on [health notifications](../../integrations/notifications.md).
 - See a reference on [all options available for activity notifications](../../integrations/activity/reference.md) or

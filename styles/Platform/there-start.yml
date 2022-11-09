@@ -1,5 +1,5 @@
 extends: existence
-message: "Don't start a sentence with '%s'."
+message: "Try to avoid starting sentences with '%s'."
 ignorecase: false
 link: https://github.com/platformsh/platformsh-docs/blob/main/contributing/content-style.md#use-direct-sentences
 level: suggestion

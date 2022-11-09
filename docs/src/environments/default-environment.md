@@ -18,7 +18,7 @@ remember that deactivating an environment is a destructive operation that can re
 To minimize potential issues, take the following steps:
 
 - Switch the default environment during non-peak hours.
-- Keep your data by taking a [backup of the `old` environment](../administration/backup-and-restore.md)
+- Keep your data by taking a [backup of the `old` environment](../environments/backup.md)
 - Reduce your DNS time-to-live (TTL) to a minimum.
 
 ## Requirements
@@ -177,9 +177,9 @@ Follow the instructions to change the default branch to `main` for your provider
 ## 7. Update DNS records
 
 Whether or not you're using a CDN,
-if your site is live you have probably added a Platform.sh address somewhere when configuring a [custom domain](../domains/quick-start.md).
+if your site is live you have probably added a Platform.sh address somewhere when configuring a [custom domain](../domains/steps/_index.md).
 If you have a CDN, it's with the CDN provider.
-If you don't have a CDN, it's probably a CNAME record.
+If you don't have a CDN, it's probably a `CNAME` record.
 
 In either case, the setting probably has the old environment name as part of it.
 Update the setting to use the new environment name.
@@ -187,7 +187,7 @@ Update the setting to use the new environment name.
 Verify that the new URL is correct by comparing it to the result from this command:
 
 ```bash
-platform environment:info edge_hostname -e main
+platform environment:info edge_hostname
 ```
 
 ## 8. Optional: Delete the `old` environment

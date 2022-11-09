@@ -24,7 +24,10 @@ jobs:
 
       - name: Get PR number
         id: pr_number
-        run: echo "::set-output name=pr_number::$(cat pr_number.txt)"
+        run: |
+          PR_NUMBER=$(cat pr_number.txt)
+          echo "PR number is $PR_NUMBER"
+          echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
 
       - name: Post PR comment
         uses: marocchino/sticky-pull-request-comment@v2

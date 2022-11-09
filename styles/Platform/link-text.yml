@@ -5,5 +5,5 @@ level: warning
 nonword: true
 scope: link
 tokens:
-  - (?<!t)here
+  - \b(?<!t)here\b
   - click here

@@ -9,6 +9,10 @@ variables:
         POETRY_VIRTUALENVS_IN_PROJECT: true
         POETRY_VIRTUALENVS_CREATE: false
 
+dependencies:
+    python3:
+        pipx: 1.1.0
+
 hooks:
     build: !include
         type: string

@@ -12,6 +12,12 @@ aliases:
 An environment that's deployed.
 See how to [deactivate an environment](../environments/deactivate-environment.md).
 
+## Apex domain
+
+An apex domain is a domain name that doesn't include a subdomain.
+
+For example, `example.com` is an apex domain and `www.example.com` is a subdomain.
+
 ## Branch
 
 Branching an environment means creating a new branch in the Git repository and an exact copy of that environment.
@@ -158,7 +164,7 @@ Synchronizing an environment means copying changes from a parent into a child en
 and then redeploying the child environment.
 You can synchronize only the code, only the data (databases, files), or both.
 
-Be aware that sync has the same process and same concerns as [backups](../administration/backup-and-restore.md#backups-and-downtime).
+Be aware that sync has the same process and same concerns as [backups](../environments/backup.md#backups-and-downtime).
 
 Sync is only available if your branch has no unmerged commits and can be fast-forwarded.
 

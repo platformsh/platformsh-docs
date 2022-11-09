@@ -62,20 +62,22 @@ you might want to consider:
 
 #### {{% names/dedicated-gen-3 %}} environments
 
-For {{% names/dedicated-gen-3 %}} environments, the thresholds are set for each host.
-If the resources are high and hovering close to the 100% threshold,
-you might want to consider:
+For {{% names/dedicated-gen-3 %}} environments, the thresholds are set for each container.
 
-* [Optimizing your code](../integrate-observability/_index.md) (if possible)
+If you have one container in a temporary burst state but your host still has plenty of available resources,
+it might not be an issue as long as the site is functioning properly.
+Burst allows your container to use additional resources when they aren't needed elsewhere.
+
+If you have a container in a prolonged burst state, you might want to consider:
+
+* [Optimizing your code](../integrate-observability/_index.md)
 * Changing your [app size](../../create-apps/app-reference.md#sizes)
   or [service size](../../add-services/_index.md#size)
 * [Increasing your plan](../../administration/pricing/_index.md)
 
-If your containers are in a prolonged burst state,
-review your configuration or plan size because burst isn't guaranteed for long periods.
-If the burst threshold is triggered for short, infrequent activities,
-it might not be an issue as long as the site is functioning properly.
-Burst allows your container to use additional resources when they aren't required on the container's host.
+You can reallocate your existing resources if other containers have resources they aren't using.
+
+If you have multiple containers in a burst state, review your configuration or plan size.
 
 #### Grid environments
   

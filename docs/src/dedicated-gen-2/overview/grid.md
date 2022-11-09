@@ -26,7 +26,7 @@ See how to [back up and transfer data](../../development/transfer-dedicated.md#s
 ## Backups
 
 Production environments are [backed up automatically](./backups.md).
-For other environments, trigger a [manual backup](../../administration/backup-and-restore.md).
+For other environments, trigger a [manual backup](../../environments/backup.md).
 
 ## PHP
 
@@ -105,5 +105,5 @@ The following settings require a support ticket:
 
 ## Logs
 
-{{% names/dedicated-gen-2 %}} environments have a slightly different location for [container logs](../../increase-observability/logs.md).
+{{% names/dedicated-gen-2 %}} environments have a slightly different location for [container logs](../../increase-observability/logs/access-logs.md).
 The difference shouldn't be noticeable if you use the CLI.

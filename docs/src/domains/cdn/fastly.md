@@ -15,14 +15,14 @@ but it is a common choice for customers to self-configure.
 
 Launching a Platform.sh site with Fastly in front of it is nearly the same as launching normally.
 There are only a few notable differences.
-Individual applications may have their own Fastly setup instructions or additional modules.
-Consult the documentation for your application for specific details.
+Individual apps may have their own Fastly setup instructions or additional modules.
+Consult the documentation for your app for specific details.
 
 {{% disable-cache CDN="Fastly" %}}
 
 ## Set the Platform.sh domain on Fastly
 
-Rather than create a DNS CNAME for your default Platform.sh branch (for instance `main-7rqtwti-qwertyqwerty.eu.platform.sh`),
+Rather than create a DNS `CNAME` for your default Platform.sh branch (for instance `main-abcd123.abcdefgh1234567.eu.platformsh.site`),
 [configure Fastly](https://docs.fastly.com/guides/basic-configuration/working-with-domains)
 to respond to requests for your domain name and to treat the default Platform.sh branch as its backend server.
 Be sure to enable TLS for the backend connection to Platform.sh.
@@ -52,7 +52,7 @@ This step should be done well in advance of the actual go-live.
 
 ## Anycast
 
-You have the option of using either a [CNAME or a set of Anycast IP addresses](https://docs.fastly.com/guides/basic-configuration/using-fastly-with-apex-domains).
-Fastly prefers that you use the CNAME but either work.
+You have the option of using either a [`CNAME` or a set of Anycast IP addresses](https://docs.fastly.com/guides/basic-configuration/using-fastly-with-apex-domains).
+Fastly prefers that you use the `CNAME` but either work.
 If using the Anycast IP addresses on a {{% names/dedicated-gen-2 %}} production environment,
 open a support ticket with the new A records to provide to our support team.

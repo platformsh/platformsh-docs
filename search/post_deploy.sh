@@ -21,17 +21,21 @@ getDocsData() {
 update_index(){
     echo "* UPDATING INDEX"
     # Create indices for templates and docs
-    poetry run python createPrimaryIndex.py
+    $POETRY_LOCATION run python createPrimaryIndex.py
     # Update indexes
-    poetry run python main.py
+    $POETRY_LOCATION run python main.py
 }
 
 set -e
 
 cleanup 
 
+POETRY_LOCATION=/app/.local/bin/poetry
+
 if [ -z ${PLATFORM_APP_DIR+x} ]; then 
     echo "Using local poetry."
+
+    POETRY_LOCATION=poetry
 else 
     getDocsData
 fi

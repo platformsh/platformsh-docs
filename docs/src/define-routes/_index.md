@@ -130,7 +130,7 @@ Each route in your configuration file is defined in one of two ways:
 * A URL with a placeholder such as `https://{default}/blog`
 
 The available placeholders are `{default}` and `{all}`.
-They stand in for the [custom domains](../domains/quick-start.md) you've defined in your project.
+They stand in for the [custom domains](../domains/steps/_index.md) you've defined in your project.
 
 These domains can be top-level domains (`example.com`) or subdomains (`app.example.com`).
 
@@ -272,7 +272,7 @@ In projects created before November 2017, the `.` in subdomains was replaced wit
 It was switched to preserve `.` to simplify SSL handling and improve support for longer domains.
 If your project was created before November 2017, it still uses `---` to the left of the environment name.
 If you wish to switch to dotted-domains, please file a support ticket and we can do that for you.
-Doing so may change the domain name that your production domain name should CNAME to.
+Doing so may change the domain name that your production domain name should `CNAME` to.
 
 {{< /note >}}
 

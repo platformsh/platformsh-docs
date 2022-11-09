@@ -248,7 +248,7 @@ To access the stats, create a **separate app** with a relationship *to* Varnish,
 Define an [app configuration](../create-apps/app-reference.md) similar to the following:
 
 ```yaml {location=".platform.app.yaml"}
-name: statsApp
+name: stats-app
 type: "php:8.1"
 
 build:
@@ -269,7 +269,7 @@ The following paths are available:
 
 To access the Varnish stats endpoint from the command line:
 
-1. Connect to your stats app [using SSH](../development/ssh/_index.md): `platform ssh --app statsApp`
-   (replace `statsApp` with the name you gave the app).
+1. Connect to your stats app [using SSH](../development/ssh/_index.md): `platform ssh --app stats-app`
+   (replace `stats-app` with the name you gave the app).
 2. Display the [relationships array](../create-apps/app-reference.md#relationships) with `echo $PLATFORM_RELATIONSHIPS | base64 -d | jq .`,
 3. Query Varnish with `curl <HOST>:<PORT>/stats`, replacing `<HOST>` and `<PATH>` with the values from Step 2.

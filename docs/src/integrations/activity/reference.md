@@ -42,9 +42,9 @@ Its value is one of:
 * `environment_type.access.delete`: A user has had their access removed from an environment type.
 * `environment_type.access.update`: A user has had their access to an environment type updated.
 ---
-* `environment.backup`: A user triggered a [backup](/administration/backup-and-restore.md).
-* `environment.restore`: A user restored a [backup](/administration/backup-and-restore.md).
-* `environment.backup.delete`: A user deleted a [backup](/administration/backup-and-restore.md)
+* `environment.backup`: A user triggered a [backup](../../environments/backup.md).
+* `environment.restore`: A user restored a [backup](../../environments/backup.md).
+* `environment.backup.delete`: A user deleted a [backup](../../environments/backup.md)
 ---
 * `environment.push`: A user has pushed code to a branch, either existing or new.
 * `environment.branch`: A new branch has been created via the Console.

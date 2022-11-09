@@ -85,7 +85,7 @@ Assumptions:
 
    Adapt and run that query for all fields that you need to sanitize.
    If you modify fields that you shouldn't alter,
-   [you can restore them](../administration/backup-and-restore.md#restore) from the dump you took in step 1.
+   [you can restore them](../environments/restore.md) from the dump you took in step 1.
 
    You can create a script to automate the sanitization process to be run automatically on each new deployment.
    Once you have a working script, add your script to sanitize the database to [a `deploy` hook](../create-apps/hooks/hooks-comparison.md#deploy-hook):
