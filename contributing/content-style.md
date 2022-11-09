@@ -15,6 +15,7 @@ from Platform.sh engineers to people from the community.
   - [About the audience](#about-the-audience)
   - [Style defaults](#style-defaults)
   - [Address the reader directly](#address-the-reader-directly)
+  - [Aim for neutral text](#aim-for-neutral-text)
   - [Use inclusive language](#use-inclusive-language)
     - [Resources for inclusive language](#resources-for-inclusive-language)
     - [Use meaningful link text](#use-meaningful-link-text)
@@ -76,6 +77,17 @@ Only use `please` if you're asking for something that benefits Platform.sh
 or inconveniences the reader.
 
 So it's OK in phrases like `If you get an error, please open a support ticket.`
+
+## Aim for neutral text
+
+In general, aim to present facts without inserting too much opinion.
+Aim for an authoritative tone, but not one that condescends to readers.
+Don't use phrases that exaggerate.
+
+Use                                             | Avoid
+------------------------------------------------|-------
+Be careful not to break anything                | Of course, you naturally have to avoid breaking anything
+Making this small change can have large effects | Surprisingly, making this tiny change can have huge effects
 
 ## Use inclusive language
 
