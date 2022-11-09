@@ -5,21 +5,17 @@ sidebarTitle: Transfer files
 ---
 
 After your app is built, its file system is read-only.
+This means that the only way you can edit your app's files and code is through Git.
 
-The only way you can transfer files to your built app without using Git is through [mounts](../create-apps/app-reference.md#mounts).
+However, you can transfer files to and from your built app without using Git.
+
+To do so, you need to configure [mounts](../create-apps/app-reference.md#mounts).
 Mounts let you set up directories that remain writable after the build is complete.
-You can then upload files directly to mounts inside your app.
+You can then transfer files directly to and from mounts inside your app
+with a single command via the [Platform.sh CLI](../administration/cli/_index.md).
 
-To download files from your built app, 
-you can also use mounts or [an alternative data export method](../tutorials/exporting.md).
-
-## Before you begin
-
-Make sure you [set up mounts](../create-apps/app-reference.md#mounts).
-
-To upload and download files directly to and from a mount inside your built app, 
-you can then run a single command via the [Platform.sh CLI](../administration/cli/_index.md) 
-or an SSH client. 
+Alternatively, you can transfer files to and from your built app 
+using an SSH client such `scp` and `rsync`.
 
 ## Transfer files using the CLI
 
@@ -101,7 +97,7 @@ Are you sure you want to continue? [Y/n]
 
 ## Transfer files using an SSH client
 
-Another way to transfer files to and from a mount is to use an SSH client such as [`scp`](file-transfer.md#scp) or [`rsync`](file-transfer.md#rsync).
+Another way to transfer files to and from your built app is to use an SSH client such as [`scp`](file-transfer.md#scp) or [`rsync`](file-transfer.md#rsync).
 
 ### scp
 
@@ -129,7 +125,7 @@ For other options, see the [`scp` documentation](https://www.man7.org/linux/man-
 
 ### rsync
 
-You can use `rync` to copy files to and from a remote environment.
+You can use `rsync` to copy files to and from a remote environment.
 
 For example, to copy all the files in the `web/uploads` directory on the remote environment 
 to the local `uploads` directory,
@@ -138,6 +134,13 @@ run the following command
 
 ```bash
 rsync -az "$(platform ssh --pipe -p {{< variable "PROJECT_ID" >}} -e {{< variable "ENVIRONMENT_NAME" >}})":web/uploads/ ./uploads/
+```
+
+To copy files from your local directory to the Platform.sh environment, 
+reverse the order of the parameters:
+
+```bash
+rsync -az uploads/ "$(platform ssh --pipe -p {{< variable "PROJECT_ID" >}} -e {{< variable "ENVIRONMENT_NAME" >}})":web/uploads/
 ```
 
 Note that `rsync` is very sensitive about trailing `/` characters.
