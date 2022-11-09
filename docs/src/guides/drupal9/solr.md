@@ -126,7 +126,7 @@ Commit all of the changes above and then push to deploy.
 ### 5. Enable the modules
 
 Once the site is deployed, go to the `/admin/modules` page and enable the "Search API Solr" module.
-Unfortunately, the "Search API Solr Search Defaults" module [has been deprecated]() so you will need to manually create a Search API server with the following options:
+Unfortunately, the "Search API Solr Search Defaults" module [has been deprecated](https://www.drupal.org/project/search_api_solr/issues/3283191#comment-14560497) so you will need to manually create a Search API server with the following options:
 
 * Server name: Solr Server
 * Machine name: default_solr_server
