@@ -54,5 +54,13 @@
     <!-- Over-ride search style -->
     <link rel="stylesheet" href="{{ printf "styles/search.css?version=%s" .Site.Params.version | relURL}}">
 
+    {{ if .Page.Store.Get "hasMermaid" }}
+    <!-- MermaidJS support -->
+    <script async src="{{ printf "/mermaid/mermaid.min.js?version=%s" $.Site.Params.version }}"></script>
+    <script>
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    {{ end }}
+
   </body>
 </html>
