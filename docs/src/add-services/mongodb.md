@@ -109,6 +109,20 @@ highlight=python
 
 {{< /codetabs >}}
 
+## Access the service directly
+
+You can access MongoDB from you app container via [SSH](../../development/ssh/_index.md). From your [relationship data](#relationship), you need host. Then run the following command:
+
+```bash
+mongo <HOST>
+```
+
+Assuming the values from the reference, that would be:
+
+```bash
+mongo mongodb.internal
+```
+
 ## Exporting data
 
 The most straightforward way to export data from a MongoDB database is to open an SSH tunnel to it
