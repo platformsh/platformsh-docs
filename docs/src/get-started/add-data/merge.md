@@ -60,7 +60,7 @@ Now you have a database you can connect to your app.
 
 This example creates a table in your database, adds some data, prints the data as an HTML table,
 and deletes the database table.
-If you commit your changes and push, you should see the HTML table in your built app.
+If you commit your changes and push, you see the HTML table in your built app.
 
 ## Merge your changes
 
@@ -98,7 +98,7 @@ To see how the data in child environments is separate, follow these steps:
    platform sql --environment dev 'SELECT * FROM child_data'
    ```
 
-   You should get a table with a single column and 3 numbers.
+   You get a table with a single column and 3 numbers.
 
 3. Merge the environment:
 
@@ -130,7 +130,7 @@ To see how the data in parent environments can be inherited, follow these steps:
    platform sql --environment main 'SELECT * FROM parent_data'
    ```
 
-   You should get a table with a single column and 3 numbers.
+   You get a table with a single column and 3 numbers.
 
 3. Sync the data from your `dev` environment (this means copy the data from production):
 

@@ -21,7 +21,7 @@ See this notification by running this command:
 platform integration:list
 ```
 
-You should see a table similar to the following example:
+You see a table similar to the following example:
 
 ```bash
 +---------------+--------------+-------------+
@@ -31,7 +31,7 @@ You should see a table similar to the following example:
 +---------------+--------------+-------------+
 ```
 
-Assuming you want to keep admins being notified, you can add another recipient with a command like the following:
+Assuming you want to keep admins notified, you can add another recipient with a command like the following:
 
 ```bash
 platform integration:update <INTEGRATION_ID> --recipients '#admins' --recipients <ADDITIONAL_EMAIL_ADDRESS>
@@ -61,7 +61,7 @@ Integration abcdefg123456 (health.email) updated
 ```
 
 Now you can be sure you and Jane are notified whenever your app is running low on disk space.
-You could also set this up to be notified in Slack, PagerDuty, or anywhere that accepts a webhook.
+You can also set this up to be notified in Slack, PagerDuty, or anywhere that accepts a webhook.
 
 For now, focus on getting notified about activities.
 
