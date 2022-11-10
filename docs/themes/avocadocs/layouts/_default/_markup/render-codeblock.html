@@ -1,0 +1,10 @@
+{{ $lang  := .Attributes.lang  | default .Type }}
+{{ $location := .Attributes.location | default "" }}
+{{ with $location }}
+<div class="highlight-location">{{ . }}</div>
+{{ end }}
+{{ if transform.CanHighlight $lang }}
+{{ highlight .Inner $lang }}
+{{ else }}
+<pre><code>{{ .Inner }}</code></pre>
+{{ end }}

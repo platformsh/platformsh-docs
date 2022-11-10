@@ -391,21 +391,23 @@ the characters are escaped (appear as `&lt;` and so on).
 To avoid this problem, add the code block as a file to the `snippets` directory.
 Then include the block with the `readFile` function as in the following example:
 
-```markdown
-<div class="highlight-location"><LOCATION_TO_DISPLAY></div>
-{{ highlight ( readFile "<FILE_LOCATION>" ) "<LANGUAGE>" "" }}
+````markdown
+```<LANGUAGE> {location="><LOCATION_TO_DISPLAY>"}
+{{ readFile "<FILE_LOCATION>" | safeHTML }}
 ```
+````
 
+- `<LANGUAGE>` is the language for syntax highlighting
 - `<LOCATION_TO_DISPLAY>` is the location to show above the code block in the docs
 - `<FILE_LOCATION>` is where the snippet is
-- `<LANGUAGE>` is the language for syntax highlighting
 
 A complete example:
 
-```markdown
-<div class="highlight-location">.platform.app.yaml</div>
-{{ highlight ( readFile "snippets/example.yaml" ) "yaml" "" }}
+````markdown
+```yaml {location=">.platform.app.yaml"}
+{{ readFile "snippets/example.yaml" | safeHTML }}
 ```
+````
 
 ### Variables in the file
 
