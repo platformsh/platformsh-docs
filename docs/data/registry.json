@@ -808,6 +808,7 @@
         "9.3"
       ],
       "supported": [
+        "14",
         "13",
         "12",
         "11",
@@ -828,6 +829,7 @@
     "versions-dedicated-gen-3": {
       "deprecated": [],
       "supported": [
+        "14",
         "13",
         "12",
         "11",

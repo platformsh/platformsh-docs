@@ -1,6 +1,6 @@
 ---
 title: Send email
-weight: 8
+weight: 9
 sidebarTitle: Email
 description: Send email from your Platform.sh environments.
 ---
