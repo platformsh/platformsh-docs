@@ -53,7 +53,7 @@ If you want to experiment with a later version without committing to it use a no
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables):
+The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables):
 
 {{< relationship "mongodb" >}}
 
@@ -111,13 +111,15 @@ highlight=python
 
 ## Access the service directly
 
-You can access MongoDB from you app container via [SSH](../../development/ssh/_index.md). From your [relationship data](#relationship), you need host. Then run the following command:
+You can access MongoDB from you app container via [SSH](../development/ssh/_index.md).
+Get the `host` from your [relationship](#relationship).
+Then run the following command:
 
 ```bash
-mongo <HOST>
+mongo {{< variable "HOST" >}}
 ```
 
-Assuming the values from the reference, that would be:
+With the example value, that would be the following:
 
 ```bash
 mongo mongodb.internal
