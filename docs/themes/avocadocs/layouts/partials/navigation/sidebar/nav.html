@@ -6,7 +6,7 @@
 {{ range $books}}
   {{ $inCurrentBook := false }}
   <!-- For books that have only one directory, check if the current directory matches the book -->
-  {{ if or (eq .section "guides" ) (eq .section "gettingstarted" ) }}
+  {{ if or (eq .section "guides" ) (eq .section "get-started" ) }}
     {{ if eq .section $currentSection }}
       {{ $inCurrentBook = true }}
     {{ else }}
@@ -14,7 +14,7 @@
     {{ end }}
   <!-- For the rest, check that the current directory doesn't match the books above -->
   {{ else }}
-    {{ if and (ne $currentSection "guides" ) (ne $currentSection "gettingstarted" )}}
+    {{ if and (ne $currentSection "guides" ) (ne $currentSection "get-started" )}}
       {{ $inCurrentBook = true }}
     {{ end }}
   {{ end }}

@@ -2,8 +2,8 @@
 <!-- Regular single pages -->
 {{- if .IsPage -}}
   <!-- Everything in Getting started uses that section -->
-  {{- if eq .Section "gettingstarted" -}}
-    {{- $section = "Getting started" -}}
+  {{- if eq .Section "get-started" -}}
+    {{- $section = "Get started" -}}
   <!-- The other section doesn't have a title since ignored from sidebar. Give generic. -->
   {{- else if eq .Section "other" -}}
     {{- $section = .Site.Params.author -}}
