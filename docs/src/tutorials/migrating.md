@@ -201,7 +201,7 @@ platform mount:upload --mount private --source ./private
 ```
 
 You can adjust these commands for your own case.
-Or upload to your mounts using a different [SSH method](../development/access-site.md#access-your-app-with-ssh).
+Or upload to your mounts using a different [SSH method](../development/file-transfer.md#transfer-files-using-an-ssh-client).
 
 ## Optional: Add variables
 
