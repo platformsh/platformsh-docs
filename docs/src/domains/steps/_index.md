@@ -177,10 +177,9 @@ highlight=false
 
 Run the following command:
 
-<!-- This is in HTML to get the variable shortcode to work properly -->
-<div class="highlight">
- <pre class="chroma"><code class="language-bash" data-lang="bash">platform domain:add {{<variable "YOUR_DOMAIN" >}}</code></pre>
-</div>
+```bash
+platform domain:add {{<variable "YOUR_DOMAIN" >}}
+```
 
 <--->
 
