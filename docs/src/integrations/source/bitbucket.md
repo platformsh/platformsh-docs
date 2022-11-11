@@ -61,7 +61,7 @@ To integrate your Platform.sh project with a repository on a Bitbucket Server in
 you first need to create an access token associated with your account.
 
 [Generate a token](https://confluence.atlassian.com/display/BitbucketServer/HTTP+access+tokens).
-and give it at least read access to projects and write access to repositories.
+and give it at least read access to projects and admin access to repositories.
 Copy the token and make a note of it (temporarily).
 
 ### 2. Enable the Server integration

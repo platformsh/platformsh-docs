@@ -1,0 +1,9 @@
+{{ $destination := .Get "next" }}
+<div x-data="{ getDestination() { 
+  return($refs.next.getAttribute('destination') + '?stack=' + $data.stack)
+ } }">
+  <a href="{{ $destination }}" destination="{{ $destination }}" :href="getDestination" x-ref="next" type="button" class="btn2 btn-primary2">
+    <span class="text-button-">{{ .Get "nextText" }}</span>
+    <span class="icon"><img class="chevron-next2" aria-hidden="true" src="/images/icons/chevrons.svg" /></span>
+  </a>
+</div>

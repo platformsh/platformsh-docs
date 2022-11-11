@@ -14,8 +14,6 @@ Before you go live, you need a domain name registered with the registrar of your
 Verify your registrar supports [`CNAME` records for apex domains](./steps/dns.md#handling-apex-domains).
 Some registrars may call these `ALIAS` or `ANAME` records.
 
-See [what an apex domain is](./steps/dns.md#what-is-an-apex-domain).
-
 ## 2. Test your site
 
 Make sure your site is running and configured as you want it to be, on your production branch.

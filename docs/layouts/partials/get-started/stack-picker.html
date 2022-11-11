@@ -1,0 +1,32 @@
+<ul class="stack-picker">
+  <li :class="{ 'active': stack === 'php' }">
+    <a @click="switchStack('php'); switchFrametech('default')">
+      <div class="logo_holder php"></div>
+      <span>PHP</span>
+    </a>
+  </li>
+  <li :class="{ 'active': stack === 'python' }">
+    <a @click="switchStack('python'); switchFrametech('default')">
+      <div class="logo_holder python"></div>
+      <span>Python</span>
+    </a>
+  </li>
+  <li :class="{ 'active': stack === 'nodejs' }">
+    <a @click="switchStack('nodejs'); switchFrametech('default')">
+      <div class="logo_holder nodejs"></div>
+      <span>Node.js</span>
+    </a>
+  </li>
+  <li :class="{ 'active': stack === 'golang' }">
+    <a @click="switchStack('golang'); switchFrametech('default')">
+      <div class="logo_holder go"></div>
+      <span>Go</span>
+    </a>
+  </li>
+  <li :class="{ 'active': stack === 'java' }">
+    <a @click="switchStack('java'); switchFrametech('default')">
+      <div class="logo_holder java"></div>
+      <span>Java</span>
+    </a>
+  </li>
+</ul>
