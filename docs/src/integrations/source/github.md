@@ -101,8 +101,8 @@ You can then verify that your integration is functioning properly [using the CLI
 platform integration:validate
 ```
 
-{{% integration-environment-status source="GitHub" %}}
+{{% source-integration/environment-status source="GitHub" %}}
 
-{{% clone-commit name="GitHub" %}}
+{{% source-integration/clone-commit name="GitHub" %}}
 
-{{% integration-url source="GitHub" %}}
+{{% source-integration/url source="GitHub" %}}

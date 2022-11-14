@@ -117,8 +117,8 @@ even if specifically set to true.
 
 {{< /note >}}
 
-{{% integration-environment-status source="Bitbucket" %}}
+{{% source-integration/environment-status source="Bitbucket" %}}
 
-{{% clone-commit name="Bitbucket" %}}
+{{% source-integration/clone-commit name="Bitbucket" %}}
 
-{{% integration-url source="Bitbucket" %}}
+{{% source-integration/url source="Bitbucket" %}}

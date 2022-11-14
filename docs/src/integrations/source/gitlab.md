@@ -114,8 +114,8 @@ You can then verify that your integration is functioning properly [using the CLI
 platform integration:validate
 ```
 
-{{% integration-environment-status source="GitLab" %}}
+{{% source-integration/environment-status source="GitLab" %}}
 
-{{% clone-commit name="GitLab" %}}
+{{% source-integration/clone-commit name="GitLab" %}}
 
-{{% integration-url source="GitLab" %}}
+{{% source-integration/url source="GitLab" %}}
