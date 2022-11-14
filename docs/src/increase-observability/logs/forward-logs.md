@@ -51,7 +51,9 @@ file=none
    or the EU endpoint `https://log-api.eu.newrelic.com/log/v1`.
 3. Create the integration with the following command:
 
-   <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">platform integration:add --type newrelic --url {{< variable "API_ENDPOINT" >}} --license_key {{% variable "LICENSE_KEY" %}}</span></code></pre></div>
+   ```bash
+   platform integration:add --type newrelic --url {{< variable "API_ENDPOINT" >}} --license_key {{% variable "LICENSE_KEY" %}}
+   ```
 
 View your logs in the **Logs** dashboard.
 
@@ -68,7 +70,9 @@ file=none
 3. Choose an index name.
 4. Create the integration with the following command:
 
-   <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">platform platform integration:add --type splunk --url https://http-inputs.{{< variable "HOST" >}}.splunkcloud.com/services/collector/event --index {{< variable "INDEX" >}} --token {{< variable "TOKEN" >}}</span></code></pre></div>
+   ```bash
+   platform platform integration:add --type splunk --url https://http-inputs.{{< variable "HOST" >}}.splunkcloud.com/services/collector/event --index {{< variable "INDEX" >}} --token {{< variable "TOKEN" >}}
+   ```
 
 View your logs in the **Apps->Search & Reporting** dashboard.
 Filter by the index name to find the relevant events.
@@ -84,7 +88,9 @@ file=none
    Make sure to copy the Source Category and collector URL.
 2. Create the integration with the following command:
 
-   <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">platform integration:add --type sumologic --url {{< variable "COLLECTOR_URL" >}} --category {{< variable "SOURCE_CATEGORY" >}}</span></code></pre></div>
+   ```bash
+   platform integration:add --type sumologic --url {{< variable "COLLECTOR_URL" >}} --category {{< variable "SOURCE_CATEGORY" >}}
+   ```
 
 View your logs in the **Log Search** tab.
 

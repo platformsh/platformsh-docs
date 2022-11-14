@@ -141,9 +141,7 @@ title=Using the CLI
 file=none
 highlight=bash
 ---
-
 platform backup:create
-
 <--->
 ---
 title=In the Console

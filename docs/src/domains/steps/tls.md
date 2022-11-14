@@ -40,8 +40,9 @@ highlight=false
 
 1. Add the certificate with the following command:
 
-   <!-- This is in HTML to get the variable shortcode to work properly -->
-   <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">platform domain:add {{<variable "YOUR_DOMAIN" >}} --cert {{<variable "PATH_TO_CERTIFICATE_FILE" >}} --key {{<variable "PATH_TO_PRIVATE_KEY_FILE" >}}</code></pre></div>
+   ```bash
+   platform domain:add {{<variable "YOUR_DOMAIN" >}} --cert {{<variable "PATH_TO_CERTIFICATE_FILE" >}} --key {{<variable "PATH_TO_PRIVATE_KEY_FILE" >}}
+   ```
 
    For example:
 

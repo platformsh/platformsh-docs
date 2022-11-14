@@ -51,7 +51,6 @@ The following table presents the available options:
 | `layout`             | `single` or `list` | Set to `single` on `_index.md` files to give them the same layout as other pages. |
 | `aliases`            | list of strings    | Optionally creates redirects to the page from the given locations. Start with `/` for root-relative locations. Start with `../` for locations relative to the current page. |
 | `description`        | string             | Appears on `list` pages as a description of the page's content. Also overrides generic content for the `<meta name="description">` tag for SEO. Can be used in the page with the `description` shortcode. |
-| `mermaid`            | Boolean            | Whether to load the script to display [Mermaid.js diagrams](http://mermaid-js.github.io/mermaid/). Set to `true` for diagrams on the page. Not loaded by default. |
 | `multipleTabs`       | Boolean            | If set to true, codetabs are changed across the page. So changing the tabs in one place changes them for the entire page. Useful when codetabs are repeated often with the same title (such as comparing actions in the CLI and Console). |
 | `tier`               | list of strings    | Include to put at banner at the top indicating the feature is only available to certain plan tiers, such as only Enterprise and Elite customers. |
 | `observabilitySuite` | Boolean            | Set as `true` to put at banner at the top indicating the feature is only available as part of the Observability Suite. |
@@ -392,21 +391,23 @@ the characters are escaped (appear as `&lt;` and so on).
 To avoid this problem, add the code block as a file to the `snippets` directory.
 Then include the block with the `readFile` function as in the following example:
 
-```markdown
-<div class="highlight-location"><LOCATION_TO_DISPLAY></div>
-{{ highlight ( readFile "<FILE_LOCATION>" ) "<LANGUAGE>" "" }}
+````markdown
+```<LANGUAGE> {location="><LOCATION_TO_DISPLAY>"}
+{{ readFile "<FILE_LOCATION>" | safeHTML }}
 ```
+````
 
+- `<LANGUAGE>` is the language for syntax highlighting
 - `<LOCATION_TO_DISPLAY>` is the location to show above the code block in the docs
 - `<FILE_LOCATION>` is where the snippet is
-- `<LANGUAGE>` is the language for syntax highlighting
 
 A complete example:
 
-```markdown
-<div class="highlight-location">.platform.app.yaml</div>
-{{ highlight ( readFile "snippets/example.yaml" ) "yaml" "" }}
+````markdown
+```yaml {location=">.platform.app.yaml"}
+{{ readFile "snippets/example.yaml" | safeHTML }}
 ```
+````
 
 ### Variables in the file
 

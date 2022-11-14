@@ -66,23 +66,23 @@ highlight=false
 
 After adding these lines, the file looks something like the following:
 
-<!-- This is in HTML to get the variable shortcode to work properly -->
-<div class="highlight" location="/etc/hosts"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c">##
+```ini
+##
 # Host Database
 #
 # localhost is used to configure the loopback interface
 # when the system is booting.  Do not change this entry.
-##</span>
+##
 127.0.0.1	localhost
 255.255.255.255	broadcasthost
 ::1             localhost
 {{<variable "IP_ADDRESS" >}}      {{<variable "YOUR_DOMAIN" >}}
 {{<variable "IP_ADDRESS" >}}      www.{{<variable "YOUR_DOMAIN" >}}
-</span></code></pre></div>
+```
 
 For example, if your IP addresses are `192.0.2.1` and `192.0.2.2`, and you added both the `example.com` domain and the `www.example.com` subdomain the bottom of the file looks like the following:
 
-```yaml {location="/etc/hosts"}
+```ini {location="/etc/hosts"}
 ...
 192.0.2.1      example.com
 192.0.2.1      www.example.com
@@ -105,8 +105,8 @@ highlight=false
 
 After adding these lines, the file looks something like the following:
 
-<!-- This is in HTML to get the variable shortcode to work properly -->
-<div class="highlight" location="c:\Windows\System32\Drivers\etc\hosts"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># Copyright (c) 1993-2009 Microsoft Corp.
+```ini
+# Copyright (c) 1993-2009 Microsoft Corp.
 #
 # This is a sample HOSTS file used by Microsoft TCP/IP for Windows.
 #
@@ -128,11 +128,11 @@ After adding these lines, the file looks something like the following:
 #  ::1             localhost</span>
 {{<variable "IP_ADDRESS" >}}         {{<variable "YOUR_DOMAIN" >}}
 {{<variable "IP_ADDRESS" >}}         www.{{<variable "YOUR_DOMAIN" >}}
-</code></pre></div>
+```
 
 For example, if your IP addresses are `192.0.2.1` and `192.0.2.2`, and you added both the `example.com` domain and the `www.example.com` subdomain the bottom of the file looks like the following:
 
-```yaml {location="c:\Windows\System32\Drivers\etc\hosts"}
+```ini {location="c:\Windows\System32\Drivers\etc\hosts"}
 ...
 192.0.2.1      example.com
 192.0.2.1      www.example.com

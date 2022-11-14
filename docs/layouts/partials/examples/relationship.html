@@ -10,5 +10,6 @@
 {{ $l1 := "relationships:" }}
 {{ $l2 := printf "    <RELATIONSHIP_NAME>: \"<SERVICE_NAME>:%s\"" $endpoint}}
 
-<div class="highlight-location">.platform.app.yaml</div>
-{{ highlight (printf "%s\n%s" $l1 $l2) "yaml" "" }}
+```yaml {location=".platform.app.yaml"}
+{{ printf "%s\n%s" $l1 $l2 | safeHTML }}
+```

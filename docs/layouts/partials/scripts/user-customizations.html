@@ -5,21 +5,3 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MR3BJL');</script>
 <!-- End Google Tag Manager -->
-
-<!-- Put file locations at the start of code blocks -->
-<script>
-  const codeblockElements = document.getElementsByClassName("highlight");
-  window.addEventListener("load", function () {
-    for (const codeblock of codeblockElements) {
-      const fileLocation = codeblock.attributes.location
-      if (fileLocation){
-        const newNode = document.createElement("div");
-        const locationText = document.createTextNode(fileLocation.value);
-        newNode.appendChild(locationText);
-        newNode.classList.add("highlight-location");
-        const preNode = codeblock.firstChild;
-        codeblock.insertBefore(newNode, preNode);
-      }
-    }
-  })
-</script>

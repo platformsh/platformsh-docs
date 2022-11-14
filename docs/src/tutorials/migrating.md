@@ -110,17 +110,15 @@ highlight=false
 
 2. Add Platform.sh as a remote repository by running the following command:
 
-   <!-- This is in HTML to get the variable shortcode to work properly -->
-   <div class="highlight">
-     <pre class="chroma"><code class="language-bash" data-lang="bash">platform project:set-remote {{< variable "PROJECT_ID" >}}</code></pre>
-   </div>
+   ```bash
+   platform project:set-remote {{< variable "PROJECT_ID" >}}
+   ```
 
 3. Push to the Platform.sh repository by running the following command:
 
-   <!-- This is in HTML to get the variable shortcode to work properly -->
-   <div class="highlight">
-     <pre class="chroma"><code class="language-bash" data-lang="bash">git push -u platform {{< variable "DEFAULT_BRANCH_NAME" >}}</code></pre>
-   </div>
+   ```bash
+   git push -u platform {{< variable "DEFAULT_BRANCH_NAME" >}}
+   ```
 
 When you try to push, any detected errors in your configuration are reported and block the push.
 After any errors are fixed, a push creates a new environment.
@@ -145,17 +143,15 @@ highlight=false
 
 5. Add Platform.sh as a remote repository by running the following command:
 
-   <!-- This is in HTML to get the variable shortcode to work properly -->
-   <div class="highlight">
-     <pre class="chroma"><code class="language-bash" data-lang="bash">git remote add platform {{< variable "REPOSITORY_LOCATION" >}}</code></pre>
-   </div>
+   ```bash
+   git remote add platform {{< variable "REPOSITORY_LOCATION" >}}
+   ```
 
 6. Push to the Platform.sh repository by running the following command:
 
-   <!-- This is in HTML to get the variable shortcode to work properly -->
-   <div class="highlight">
-     <pre class="chroma"><code class="language-bash" data-lang="bash">git push -u platform {{< variable "DEFAULT_BRANCH_NAME" >}}</code></pre>
-   </div>
+   ```bash
+   git push -u platform {{< variable "DEFAULT_BRANCH_NAME" >}}
+   ```
 
 When you try to push, any detected errors in your configuration are reported and block the push.
 After any errors are fixed, a push creates a new environment.

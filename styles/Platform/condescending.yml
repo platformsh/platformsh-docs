@@ -4,13 +4,14 @@ link: https://css-tricks.com/words-avoid-educational-writing/
 level: error
 ignorecase: true
 tokens:
+  - clearly
+  - easily
+  - easy
+  - everyone knows
+  - naturally
   - obvious
   - obviously
+  - of course
   - simple
   - simply
-  - easy
-  - easily
-  - of course
-  - clearly
-  - everyone knows
   - trivial
