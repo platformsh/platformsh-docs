@@ -11,6 +11,7 @@ Once your project is ready for production, replace the automatically generated d
 
 Note that adding a domain disables the automatically generated URL for your Production environment only.
 URLs for non-Production environments can't be customized.
+{{% names/dedicated-gen-2 %}} customers can also customize the domain for their Staging environment.
 
 ## Before you begin
 
