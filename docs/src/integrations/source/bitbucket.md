@@ -8,8 +8,8 @@ description: |
 
 It's possible to integrate a Platform.sh project with either the freely available Bitbucket Cloud product
 or with the self-hosted [Bitbucket Server](https://confluence.atlassian.com/bitbucketserver/).
-In both cases, you need to [install the Platform.sh CLI](../../administration/cli/_index.md),
-if you haven't already done so, to set up the integration.
+
+{{% source-integration/requirements %}}
 
 ## Bitbucket Cloud
 
@@ -66,56 +66,67 @@ Copy the token and make a note of it (temporarily).
 
 ### 2. Enable the Server integration
 
-Retrieve a `PROJECT_ID` for an existing project with `platform project:list`
-or create a new project with `platform project:create`.
+To enable the integration, use either the [CLI](../../administration/cli/_index.md)
+or the [Console](../../administration/web/_index.md).
 
-Then run the integration command:
+{{< codetabs >}}
+---
+title:Using the CLI
+file=none
+highlight=false
+---
+
+Run the following command:
 
 ```bash
-platform integration:add --type=bitbucket_server --project <PLATFORMSH_PROJECT_ID> --base-url=<BASE_URL> --username=<USERNAME> --token=<TOKEN> --repository=<REPOSITORY>
+platform integration:add --type=bitbucket_server --base-url={{< variable "BITBUCKET_URL" >}} --username={{< variable "USERNAME" >}} --token={{< variable "BITBUCKET_ACCESS_TOKEN" >}} --repository={{< variable "REPOSITORY" >}} --project={{< variable "PLATFORM_SH_PROJECT_ID" >}}
 ```
 
-Where
-
-* `PLATFORMSH_PROJECT_ID` is the project ID for your Platform.sh project.
-* `BASE_URL`: The base URL of the server installation.
+* `BITBUCKET_URL`: The base URL of the server installation.
 * `USERNAME`: Your Bitbucket Server username.
-* `TOKEN`: The access token you created for the integration.
-* `REPOSITORY`: The repository  (e.g. 'owner/repository').
+* `BITBUCKET_ACCESS_TOKEN`: The access token you created for the integration.
+* `REPOSITORY`: The repository  (in the form `owner/repository`).
+* `PLATFORM_SH_PROJECT_ID`: The project ID for your Platform.sh project.
 
-## Validate the integration
-
-In both cases, you can verify that your integration is functioning properly [using the CLI](/integrations/overview.md#validating-integrations):
-
-```bash
-platform integration:validate
-```
-
-## Optional parameters
-
-By default, several parameters are set for the Bitbucket integration.
-They can be changed using the `platform integration:update` command.
+Optional parameters:
 
 * `--fetch-branches`: Track and deploy branches (true by default)
-* `--prune-branches`: Delete branches that do not exist in the remote Bitbucket repository (true by default)
+* `--prune-branches`: Delete branches that don't exist in the remote Bitbucket repository (true by default)
 * `--build-pull-requests`: Track and deploy pull-requests (true by default)
 * `--build-pull-requests-post-merge`: `false` to have Platform.sh build the branch specified in a PR.
   `true` to build the result of merging the PR.
   (`false` by default)
 
-For more information see:
+
+Note that the `--prune-branches` option depends on `--fetch-branches` being enabled.
+If `--fetch-branches` is disabled, `--prune-branches` is automatically be set to false, even if specifically set to true.
+
+<--->
+---
+title:In the Console
+file=none
+highlight=false
+---
+
+1. Select the project where you want to enable the integration.
+2. Click {{< icon settings >}} **Settings**.
+3. Under **Project settings**, click **Integrations**.
+4. Click **+ Add integration**.
+5. On the **Bitbucket server** integration, click **+ Add**.
+6. Complete the form with the URL of your server, your username, the token you generated, the project name,
+   and the repository  (in the form `owner/repository`).
+7. Check that the other options match what you want.
+8. Click **Add integration**.
+
+{{< /codetabs >}}
+
+## Validate the integration
+
+In both cases, verify that your integration is functioning properly [using the CLI](../overview.md#validating-integrations):
 
 ```bash
-platform help integration:update
+platform integration:validate
 ```
-
-{{< note >}}
-
-The `--prune-branches` option depends on `--fetch-branches` being enabled.
-If `--fetch-branches` is disabled, `--prune-branches` is automatically set to false,
-even if specifically set to true.
-
-{{< /note >}}
 
 {{% source-integration/environment-status source="Bitbucket" %}}
 
