@@ -71,28 +71,65 @@ we urge you to use the `--no-wait` flag on any commands that may take more than 
 ### On a Platform.sh environment
 
 To allow the Platform.sh CLI to be run on an app container, such as via a cron hook, use the API token.
-The CLI is able to auto-detect the current project and environment.
+The CLI can automatically detect the current project and environment.
 
-Set the token as the [top-level](../../development/variables/_index.md#top-level-environment-variables) environment variable `env:PLATFORMSH_CLI_TOKEN`
-either [through the Console](../web/configure-environment.md#variables) or via the CLI, like so:
+Set the token as a [top-level environment variable](../../development/variables/_index.md#top-level-environment-variables)
+either using the [CLI](../cli/_index.md) or in the [Console](../web/_index.md):
+
+{{< codetabs >}}
+---
+title:Using the CLI
+file=none
+highlight=false
+---
+
+Run the following command:
 
 ```bash
-platform variable:create -e <BRANCH_NAME> --level environment --name env:PLATFORMSH_CLI_TOKEN --sensitive true --value '<YOUR_API_TOKEN>'
+platform variable:create -e {{< variable "ENVIRONMENT_NAME" >}} --level environment --prefix 'env:' --name PLATFORMSH_CLI_TOKEN --sensitive true --value '{{< variable "API_TOKEN" >}}' --json false --enabled true --inheritable false --visible-build true --visible-runtime true
 ```
 
-{{< note >}}
+<--->
+---
+title:In the Console
+file=none
+highlight=false
+---
 
-It's important to include the `env:` so as to expose `$PLATFORMSH_CLI_TOKEN` on its own as a top level Unix environment variable,
-rather than as a part of `$PLATFORM_VARIABLES` like normal environment variables.
+1. Open the environment where you want to add the variable.
+2. Click {{< icon settings >}} **Settings**.
+3. Click **Variables**.
+4. Click **+ Add variable**.
+5. In the **Variable name** field, enter `env:PLATFORMSH_CLI_TOKEN`.
+6. In the **Value** field, enter your API token.
+7. Make sure the **Available at runtime** and **Sensitive variable** options are selected.
+8. Click **Add variable**.
 
-{{< /note >}}
+{{< /codetabs >}}
 
-Second, add a build hook to your `.platform.app.yaml` file to download the CLI as part of the build process.
+Then add a build hook to your app configuration to install the CLI as part of the build process.
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 hooks:
     build: |
-        curl -fsS https://platform.sh/cli/installer | php
+        set -e
+        echo "Downloading homebrew from repository"
+        curl -SsL https://github.com/Homebrew/brew/tarball/master -o brew.tar.gz
+
+        echo "Unpacking homebrew into .linuxbrew folder"
+        mkdir -p $PLATFORM_APP_DIR/.linuxbrew
+        tar xzf brew.tar.gz --strip-components 1 -C $PLATFORM_APP_DIR/.linuxbrew/
+        rm brew.tar.gz
+
+        echo "Initializing homebrew"
+        eval $($PLATFORM_APP_DIR/.linuxbrew/bin/brew shellenv)
+        brew analytics off
+
+        echo "Installing Platform.sh CLI"
+        brew install platformsh/tap/platformsh-cli
+
+        echo "Sourcing CLI for runtime and SSH access"
+        echo 'export PATH="'$PLATFORM_APP_DIR'/.linuxbrew/bin:'$PLATFORM_APP_DIR'/.linuxbrew/sbin${PATH+:$PATH}";' >> $PLATFORM_APP_DIR/.environment
 ```
 
 This downloads the CLI to a known directory, `.platformsh/bin`,
@@ -102,7 +139,17 @@ acting as the user who created the token.
 
 You can now call the CLI from within the shell on the app container or via a cron hook.
 
-To run a cron only on the production environment, wrap it in an if-check on the `$PLATFORM_BRANCH` variable, like so:
+For caching and other advanced topics,
+copy and use a [prepared script](https://github.com/matthiaz/platformsh-tools/blob/master/install_brew_packages.sh):
+
+```yaml {location=".platform.app.yaml"}
+hooks:
+    build: |
+        set -e
+        bash install_brew_packages.sh platformsh/tap/platformsh-cli
+```
+
+To run a cron only on your production environment, check the environment type as in the following example:
 
 ```yaml
 crons:
@@ -117,8 +164,8 @@ crons:
 
 {{< note >}}
 
-If running CLI commands from any automated system, including a Platform.sh cron task,
-we urge you to use the `--no-wait` flag on any commands that may take more than a second or two to avoid blocking the process.
+If you're running CLI commands from any automated system, including a Platform.sh cron task,
+it's best to use the `--no-wait` flag on any commands that may take more than a second or two to avoid blocking the process.
 Failure to do so may result in long deploy times and site downtime.
 
 {{< /note >}}
