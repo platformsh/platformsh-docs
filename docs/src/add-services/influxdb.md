@@ -28,22 +28,15 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../
 
 {{% endpoint-description type="influxdb" /%}}
 
-```php
-<?php
-// Install the ConfigReader here: https://github.com/platformsh/config-reader-php
-use Platformsh\ConfigReader\Config;
+{{< codetabs >}}
 
-$config = new Config();
+---
+title=PHP
+file=static/files/fetch/examples/php/influxdb
+highlight=php
+---
 
-if ($config->hasRelationship('influxtimedb')) {
-    $db = $config->credentials('influxtimedb');
-    $host = $db['host'];
-    $port = $db['port'];
-    $token = $db['api_token'];
-    $org = $db['org'];
-    $bucket = $db['bucket'];
-}
-```
+{{< /codetabs >}}
 
 ## Exporting data
 
