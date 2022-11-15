@@ -45,6 +45,8 @@ file=none
 
 {{< /codetabs >}}
 
+If a running activity is stuck, you can [cancel the activity](../../environments/cancel-activity.md).
+
 ### Sharing activity logs
 
 When trying to identify and resolve failures, it can often help to have another person's perspective.
