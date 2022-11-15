@@ -1,84 +1,142 @@
 ---
 title: "Set up your local development environment"
 weight: 4
-description: |
-  While Platform.sh is great as a tool for hosting an application during both development and production, it's naturally not the ideal place to edit code. You can't, in fact, as the file system is read-only (as it should be). The proper place to edit your code is on your computer.
+description: Set up a local development environment to edit your app's code.
 sidebarTitle: "Local development"
 layout: single
 ---
 
-{{% description %}}
+To make changes to your app's code and test them without affecting your production environment, 
+you need to set up a development environment on your computer.
 
-You need to have both [Git](/development/tools.md#git) and the [Platform.sh CLI](/administration/cli/_index.md) installed before continuing.
+## Before you begin
 
-## Download the code
+Make sure that:
 
-If you don't already have a local copy of your project's code, run `platform get` to download one. You can also run `platform projects` to list all of the projects in your account.
+- You have signed up for a Platform.sh account. 
+  As a new user, you can sign up for a [free trial account](https://auth.api.platform.sh/register). 
+- You have started a [template project](../../development/templates.md) 
+  or pushed your own code to Platform.sh.
+- Optional but recommended: 
+
+  You have installed a Docker-based local development environment tool 
+  such as [DDEV](./ddev.md), [Docksal](./docksal.md) or [Lando](./lando.md).
+  These tools are open-source, cross-platform and container-based.
+  They simplify how you can configure your local development environment 
+  regardless of how many different projects you have.
+
+  If you don't want to use a Docker-based local development environment tool, you can use:
+  - [Tethered local development](./tethered.md). This lets you run your project locally
+    by using a local web server but keeping all other services on Platform.sh 
+    and connecting to them over an SSH tunnel.
+  - [Untethered local development](./untethered.md) to run your entire site locally.
+
+Unless you use DDEV or Docksal, before you start, also make sure that: 
+- You have [installed Git](https://docs.github.com/en/get-started/quickstart/set-up-git).
+- You have [installed the Platform.sh CLI](../../administration/cli/_index.md).
+
+## 1. Download your app's code
+
+### View a list of your projects and environments
+
+If you have several projects on Platform.sh, 
+you might want to view a list of them before downloading a copy of your code.
+
+To do so, run the `platform` command.
+You get output similar to the following:
 
 ```bash
-~/htdocs $ platform projects
 Your projects are:
-+---------------+----------------------------+------------------------------------------------+
-| ID            | Name                       | URL                                            |
-+---------------+----------------------------+------------------------------------------------+
-| [project-id]  | New Platform Project       | https://eu.platform.sh/#/projects/[project-id] |
-+---------------+----------------------------+------------------------------------------------+
 
-Get a project by running platform get [id].
-List a project's environments by running platform environments.
++-----------------+--------------+------------------+------------------+
+| ID              | Title        | Region           | Organization     |
++-----------------+--------------+------------------+------------------+
+| abcdefgh1234567 | project-name | eu-3.platform.sh | organization-inc |
++-----------------+--------------+------------------+------------------+
 ```
 
-Now you can download the code using `platform get [project-id] [folder-name]`:
+In Platform.sh, each project can have several environments. 
+Each new environment is a child of the environment which you created it from.
+Child environments can sync code and/or data down from their parent environment. 
+They can also merge code up to their parent, 
+making them a good place for development, staging, and testing.
+
+Before downloading a copy of your code,
+you might want to view a list of all the environments in your project to pick one.
+
+To do so, run the following command:
 
 ```bash
-~/htdocs $ platform get [project-id] my-project
-Cloning into 'my-project/repository'...
-remote: counting objects: 11, done.
-Receiving objects: 100% (11/11), 1.36 KiB | 0 bytes/s, done.
-Checking connectivity... done.
+platform environments -p {{< variable "PROJECT_ID" >}}
 ```
 
-You should now have a repository folder, based on what you used for *[folder-name]* in the `platform get` command above.
-
-You get a new directory in your project, `.platform/local`, which is excluded from Git.
-This directory contains builds and any local metadata about your project needed by the CLI.
-
-## Building the site locally
-
-Run the `platform build` command to run through the same build process as would be run on Platform.sh.
-This creates a `_www` directory in your project root
-that's a symbolic link to the currently active build in the `.platform/local/builds` folder.
-Run your local server from the `www` directory.
+You get output similar to the following:
 
 ```bash
-$ platform build
-
-Building application app (runtime type: golang:1.17)
-Running post-build hooks
-Creating symbolic links to mimic shared file mounts
-  Symlinking .cache to .platform/local/shared/cache
-
-Build complete for application app
-Web root: <PATH_TO_PROJECT>/_www
+Your environments are: 
++--------------------+------------------+--------+-------------+
+| ID                 | Title            | Status | Type        |
++--------------------+------------------+--------+-------------+
+| main               | Main             | Active | production  |
+|   march-release    | march release    | Active | development |
+|   march-tests      | march tests      | Active | development |
+|   april-release    | april release    | Active | development |
+|   april-tests      | april tests      | Active | development |
++--------------------+------------------+--------+-------------+
 ```
 
-Because the `platform build` command runs locally,
-you need to have any runtime or tools used in your build process available in your local environment
-or the build fails.
+### Launch the download
 
-The process may also result in side effects,
-such as the installation on your local computer of packages referenced in your `dependencies` block.
-If you don't want that, use a local virtual machine
-as an enclosed local development environment that doesn't affect your main system.
+To download a copy of your app's code, run the following command. 
+{{< variable "DIRECTORY_NAME" >}} is the name you want to give to the target project directory on your computer:
 
-## Running the code
+```bash
+platform get {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}} {{< variable "DIRECTORY_NAME" >}}
+```
 
-Platform.sh supports whatever local development environment you wish to use.
-There is no dependency on any particular tool so if you already have a local development workflow you're comfortable with you can keep using it without changes.
-That's the "[untethered](/development/local/untethered.md)" option.
+You get output similar to the following:
 
-For quick changes, you can also run your code locally but use the services hosted on Platform.sh.
-That is, your site is "[tethered](/development/local/tethered.md)" to Platform.sh.
-While this approach requires installing less on your system it can be quite slow as all communication with the database or cache server needs to travel from your computer to Platform.sh's servers.
+```
+Downloading [project-id](abcdefgh1234567)
+  Cloning into '/Users/username/project-directory'...
+  remote: counting objects: 3318, done.        
+  Receiving objects: 100% (3318/3318), 20.23 MiB | 3.71 MiB/s, done.
+  Resolving deltas: 100% (568/568), done.
 
-Specific documentation is also available for the local development tools [Lando](/development/local/lando.md) and [Docksal](/development/local/docksal.md), which support most applications that Platform.sh supports.
+The project [project-id](abcdefgh1234567) was successfully downloaded to: 'project-directory'
+```
+
+You can now access your app's code from the project directory created on your computer.
+Note that inside the project directory, the `.platform/local` subdirectory is excluded from Git. 
+It contains builds and any local metadata about your project the [Platform.sh CLI](../../administration/cli/_index.md) needs.
+
+You can now make changes to your project without pushing to Platform.sh each time to test them. 
+Instead, you can locally build your application using the Platform.sh CLI.
+
+Note that if your app contains services, you need to open an SSH tunnel to connect to them.
+For more information, see how to [connect services](../../add-services#2-connect-the-service).
+
+## 2. Build your site locally
+
+Before you build your site, 
+check that any runtime or tools needed for the build process are available 
+in your local environment.
+
+If you want your local development environment to be enclosed 
+so your main system remains unaffected by the build, 
+you can use a local virtual machine.
+
+To build your site locally, run this command:
+
+```bash
+platform build
+```
+
+When prompted, specify the source directory and the build destination.
+Your app is then built locally.
+
+At the root of your local project directory, a `_www` subdirectory is created.
+It is a symbolic link pointing to the currently active build located in the `.platform/local/builds` directory.
+
+To check that the build is successful,
+move to the `_www` directory and run a local server. 
