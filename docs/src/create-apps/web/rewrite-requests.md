@@ -18,7 +18,7 @@ web:
         '/':
             ...
             rules:
-                '^/(?<category>.*)/(?<product>.*)/$':
+                '^/(?<category>[^/]+)/(?<product>[^/]+)/$':
                     passthru: '/?category=$category&product=$product'
 ```
 
