@@ -123,7 +123,7 @@ check that any runtime or tools needed for the build process are available
 in your local environment.
 
 If you want your local development environment to be enclosed 
-so your main system remains unaffected by the build, 
+so your main system remains unaffected by the build and its dependencies, 
 you can use a local virtual machine.
 
 To build your site locally, run this command:
