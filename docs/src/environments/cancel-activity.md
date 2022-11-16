@@ -43,6 +43,6 @@ highlight=false
 1. Open the environment where you want to cancel an activity.
 2. In the [activity log](../increase-observability/logs/access-logs.md#activity-logs),
    click {{< icon more >}} **More** next to the activity you want to cancel.
-3. Click **Stop run**.
+3. Click **Cancel**.
 
 {{< /codetabs >}}
