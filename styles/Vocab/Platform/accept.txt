@@ -130,6 +130,7 @@ shortcode
 Slowloris
 Splunk
 Stempel
+stderr
 stdout
 Strapi
 [Ss]ubprocessor
