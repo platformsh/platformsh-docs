@@ -40,10 +40,10 @@ highlight=php
 
 ## Exporting data
 
-To export your data from InfluxDB:
+To export your data from InfluxDB, follow these steps:
 
-1. Install and configure the [influx-cli](https://docs.influxdata.com/influxdb/cloud/tools/influx-cli/).
-2. Gain access to the server from your local machine with the [Platform.sh CLI](../administration/cli/_index.md):
+1. Install and configure the [`influx` CLI](https://docs.influxdata.com/influxdb/cloud/tools/influx-cli/).
+2. Connect to your InfluxDB service with the [Platform.sh CLI](../administration/cli/_index.md):
 
    ```bash
    platform tunnel:open
@@ -52,12 +52,12 @@ To export your data from InfluxDB:
    That command opens an SSH tunnel to all services on your current environment and produces output like:
 
    ```bash
-   SSH tunnel opened on port {{<variable "PORT" >}} to relationship: influxtimedb
+   SSH tunnel opened on port 30000 to relationship: influxdb
    ```
 
 3. Get the username and password [for your service](../development/variables/use-variables.md#access-variables-in-a-shell) with `echo $PLATFORM_RELATIONSHIPS | base64 --decode`.
 4. Run InfluxDB's CLI export command and [adapt it as desired](https://docs.influxdata.com/influxdb/v2.3/reference/cli/influx/backup/).
 
    ``` bash
-   influx backup --host http://localhost:{{<variable "PORT" >}} --token {{<variable "YOUR_INFLUXDB_API_TOKEN" >}}
+   influx backup --host http://localhost:30000
    ```
