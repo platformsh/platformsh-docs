@@ -15,6 +15,9 @@ or any service that supports a [syslog endpoint](#forward-to-a-syslog-endpoint).
 Log forwarding is available for Grid and {{% names/dedicated-gen-3 %}} projects.
 For {{% names/dedicated-gen-2 %}} projects, see how to [log remotely with `rsyslog`](../../dedicated-gen-2/architecture/options.md#remote-logging).
 
+Logs to stdout and stderr are forwarded.
+Logs in files can't be forwarded.
+
 To enable log forwarding in a project, you need to be a [project admin](../../administration/users.md).
 You also need your project to have the capability for log forwarding.
 To get that, contact [support](https://console.platform.sh/-/users/~/tickets/open).
