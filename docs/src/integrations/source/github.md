@@ -32,7 +32,7 @@ Copy the token and make a note of it (temporarily).
 Note that for the integration to work,
 your GitHub user needs to have permission to push code to the repository.
 
-### 2. Enable the integration
+## 2. Enable the integration
 
 To enable the integration, use either the [CLI](../../administration/cli/_index.md)
 or the [Console](../../administration/web/_index.md).
@@ -55,7 +55,7 @@ platform integration:add --type=gitlab --token={{< variable "GITHUB_ACCESS_TOKEN
 * `PLATFORM_SH_PROJECT_ID` is the ID for your Platform.sh project.
 
 For example, if your repository is located at `https://github.com/platformsh/platformsh-docs`,
-the command would be something like the following:
+the command is similar to the following:
 
 ```bash
 platform integration:add --type=github --token=abc123 --repository=platformsh/platformsh-docs --project=abcdefgh1234567
@@ -80,7 +80,7 @@ Optional parameters:
   If so, set this to the base URL of your private server (the part before the user and repository name).
 
 Note that the `--prune-branches` option depends on `--fetch-branches` being enabled.
-If `--fetch-branches` is disabled, `--prune-branches` is automatically be set to false, even if specifically set to true.
+If `--fetch-branches` is disabled, `--prune-branches` is automatically set to false, even if specifically set to true.
 
 <--->
 ---
@@ -115,16 +115,16 @@ platform integration:validate
 If the integration was added with correct permissions, the necessary webhook is added automatically.
 If you see the message `Failed to read or write webhooks`, you need to add a webhook manually:
 
-1. Get the webhook URL by running `platform integration:get`
+1. Get the webhook URL by running `platform integration:get`.
 2. Copy the `hook_url`.
-3. Go to your GitHub repository and click Settings, select the Webhooks and Services tab, and click Add webhook.
-4. Paste the hook URL, choose `application/json` for the content type,
-   choose `Send me everything` for the events you want to receive, and click Add webhook.
+3. Go to your GitHub repository and click **Settings**, select the **Webhooks** tab, and click **Add webhook**.
+4. Paste the hook URL, select **application/json** for the content type,
+   select **Send me everything** for the events you want to receive, and click **Add webhook**.
 
 You can now start pushing code, creating new branches or opening pull requests directly on your GitHub repository.
 
 Note that if you have created your account using the GitHub OAuth Login then to use the Platform CLI,
-you need to [setup a password](https://accounts.platform.sh/user/password).
+you need to [set up a password](https://accounts.platform.sh/user/password).
 
 {{% source-integration/environment-status source="GitHub" %}}
 

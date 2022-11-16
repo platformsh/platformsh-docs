@@ -66,7 +66,7 @@ platform integration:add --type=gitlab --token={{< variable "GITLAB_ACCESS_TOKEN
 * `PLATFORM_SH_PROJECT_ID` is the ID for your Platform.sh project.
 
 For example, if your repository is located at `https://gitlab.com/sandbox/application`,
-the command would be something like the following:
+the command is similar to the following:
 
 ```bash
 platform integration:add --type=gitlab --token=abc123 --base-url=https://gitlab.com --server-project=sandbox/application --project=abcdefgh1234567
@@ -125,10 +125,10 @@ If you see the message `Failed to read or write webhooks`, you need to add a web
 
 1. Get the webhook URL by running `platform integration:get`
 2. Copy the `hook_url`.
-3. Go to your GitLab repository and click Settings > Webhooks.
+3. Go to your GitLab repository and click **Settings** > **Webhooks**.
 4. Paste the hook URL.
-   In the Triggers section choose Push events, Tag push events and Merge Request events.
-   Click Add webhook.
+   In the **Trigger** section select **Push events**, **Tag push events**, and **Merge request events**.
+   Click **Add webhook**.
 
 You can now start pushing code, creating new branches or opening merge requests directly on your GitLab repository.
 You see environments get automatically created and updated on the Platform.sh side.

@@ -99,7 +99,7 @@ Optional parameters:
 
 
 Note that the `--prune-branches` option depends on `--fetch-branches` being enabled.
-If `--fetch-branches` is disabled, `--prune-branches` is automatically be set to false, even if specifically set to true.
+If `--fetch-branches` is disabled, `--prune-branches` is automatically set to false, even if specifically set to true.
 
 <--->
 ---
