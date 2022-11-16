@@ -12,7 +12,7 @@ or in the [Console](../administration/web/_index.md).
 
 {{< codetabs >}}
 ---
-title:Using the CLI
+title=Using the CLI
 file=none
 highlight=false
 ---
@@ -35,7 +35,7 @@ Get the ID from the [activity log](../increase-observability/logs/access-logs.md
 
 <--->
 ---
-title:In the Console
+title=In the Console
 file=none
 highlight=false
 ---
