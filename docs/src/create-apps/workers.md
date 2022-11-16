@@ -9,7 +9,7 @@ See how to [configure a worker](./app-reference.md#workers) for your app.
 
 Note that to have enough resources to support a worker and a service, you need at least a [{{< partial "plans/multiapp-plan-name" >}} plan](../administration/pricing/_index.md#multiple-apps-in-a-single-project).
 
-## Accessing the Worker Container
+## Access the worker container
 
 Like with any other application container,
 Platform.sh allows you to connect to the worker instance through SSH to inspect logs and interact with it.
@@ -28,6 +28,13 @@ If your worker process can't be interrupted mid-task, make sure it reacts to `SI
 
 If the process is still running after 15 seconds, a `SIGKILL` message is sent that force-terminates the worker process,
 allowing the container to be shut down and restarted.
+
+To restart a worker manually, [access the container](#access-the-worker-container) and run the following commands:
+
+```bash
+$ sv stop app
+$ sv start app
+```
 
 ## Workers vs cron jobs
 

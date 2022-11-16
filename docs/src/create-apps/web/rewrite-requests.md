@@ -8,7 +8,7 @@ You might want to rewrite requests so they're served by specific sections of you
 without having to redirect users.
 For example, you might want to make URLs seem semantic to users without having to rewrite your app architecture.
 
-In such a case, you might want requests to `/shoes/great-shoe` to be served
+In such a case, you might want requests to `/shoes/great-shoe/` to be served
 as if they were requests to `/?category=shoes&product=great-shoe`.
 If so, add a [rule](../app-reference.md#rules) similar to the following:
 
@@ -18,7 +18,7 @@ web:
         '/':
             ...
             rules:
-                '^/(?<category>.*)/(?<product>.*)/$':
+                '^/(?<category>[^/]+)/(?<product>[^/]+)/$':
                     passthru: '/?category=$category&product=$product'
 ```
 

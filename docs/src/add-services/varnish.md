@@ -1,7 +1,6 @@
 ---
 title: Varnish
 weight: 13
-mermaid: true
 ---
 
 Varnish is a popular HTTP proxy server, often used for caching.
@@ -22,15 +21,13 @@ But you can include Varnish as a service.
 All incoming requests go through the [standard router](../define-routes/_index.md).
 The Varnish service sits between the router and all apps in the project.
 
-<!-- vale off -->
-{{< mermaid >}}
+``` mermaid
 graph LR
     A(Request) -->B(Router)
     B --> C{Varnish}
     C -->D[App 1]
     C -->E[App 2]
-{{< /mermaid >}}
-<!-- vale on -->
+```
 
 ## Usage example
 

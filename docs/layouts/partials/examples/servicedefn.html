@@ -21,5 +21,6 @@
   {{ $l5 = printf "\n    configuration:\n        %s" . }}
 {{ end }}
 
-<div class="highlight-location">.platform/services.yaml</div>
-{{ highlight (printf "%s\n%s%s%s%s" $l1 $l2 $l3 $l4 $l5) "yaml" "" }}
+```yaml {location=".platform/services.yaml"}
+{{ printf "%s\n%s%s%s%s" $l1 $l2 $l3 $l4 $l5 | safeHTML }}
+```
