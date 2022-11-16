@@ -13,12 +13,14 @@ you need to set up a development environment on your computer.
 
 Make sure that:
 
+
 - You have signed up for a Platform.sh account. 
   As a new user, you can sign up for a [free trial account](https://auth.api.platform.sh/register). 
 - You have started a [template project](../../development/templates.md) 
   or pushed your own code to Platform.sh.
+- You have [installed Git](https://docs.github.com/en/get-started/quickstart/set-up-git).
+- You have [installed the Platform.sh CLI](../../administration/cli/_index.md).
 - Optional but recommended: 
-
   You have installed a Docker-based local development environment tool 
   such as [DDEV](./ddev.md), [Docksal](./docksal.md) or [Lando](./lando.md).
   These tools are open-source, cross-platform and container-based.
@@ -30,10 +32,6 @@ Make sure that:
     by using a local web server but keeping all other services on Platform.sh 
     and connecting to them over an SSH tunnel.
   - [Untethered local development](./untethered.md) to run your entire site locally.
-
-Unless you use DDEV or Docksal, before you start, also make sure that: 
-- You have [installed Git](https://docs.github.com/en/get-started/quickstart/set-up-git).
-- You have [installed the Platform.sh CLI](../../administration/cli/_index.md).
 
 ## 1. Download your app's code
 
@@ -87,13 +85,16 @@ Your environments are:
 
 ### Launch the download
 
-To download a copy of your app's code, run the following command. 
-{{< variable "DIRECTORY_NAME" >}} is the name you want to give to the target project directory on your computer:
+If your app's code isn't already present locally on your computer,
+you can download a copy of it.
+To do so, move to the directory where you want to save a copy of your project 
+and run this command:
 
 ```bash
-platform get {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}} {{< variable "DIRECTORY_NAME" >}}
+platform get {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
+When prompted, choose a name for the target project directory and press **Enter**.
 You get output similar to the following:
 
 ```
@@ -126,17 +127,30 @@ If you want your local development environment to be enclosed
 so your main system remains unaffected by the build and its dependencies, 
 you can use a local virtual machine.
 
-To build your site locally, run this command:
+To build your site locally:
 
-```bash
-platform build
-```
+1. Run the following command:
 
-When prompted, specify the source directory and the build destination.
-Your app is then built locally.
+   ```bash
+   platform build
+   ```
 
-At the root of your local project directory, a `_www` subdirectory is created.
-It is a symbolic link pointing to the currently active build located in the `.platform/local/builds` directory.
+2. When prompted, specify the source directory and the build destination.
 
-To check that the build is successful,
-move to the `_www` directory and run a local server. 
+  Your app is built locally.
+  At the root of your local project directory, a `_www` subdirectory is created.
+  It is a symbolic link pointing to the currently active build located in the `.platform/local/builds` directory.
+
+3. To check that the build was successful:
+   - If you are familiar with how to set up a local web server or already have one, 
+     you can move to the `_www` directory to find your build
+     and run your web server and services from there.
+   - If you don’t want to set up everything manually, 
+     you can switch to a Docker-based local development environment tool 
+     such as [DDEV](./ddev.md), [Docksal](./docksal.md) or [Lando](./lando.md).
+     These tools offer turnkey solutions to set up your local development, download your project and build it.
+
+   Other options include:
+   - [Tethered local development](./tethered.md) to run your project locally with a local web server 
+    while keeping all other services on Platform.sh.
+   - [Untethered local development](./untethered.md) to run your entire site locally.
