@@ -46,3 +46,10 @@ highlight=false
 3. Click **Cancel**.
 
 {{< /codetabs >}}
+
+## Non-cancellable activities
+
+An activity can finish in between when you load the Console and when you click **Cancel**.
+For example, when the activity is a [source operation](../create-apps/source-operations.md)
+and the related build hook has already completed.
+In such cases, you get a message that the activity can't be cancelled.
