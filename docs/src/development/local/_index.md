@@ -49,7 +49,7 @@ Your projects are:
 +-----------------+--------------+------------------+------------------+
 | ID              | Title        | Region           | Organization     |
 +-----------------+--------------+------------------+------------------+
-| abcdefgh1234567 | project-name | eu-3.platform.sh | organization-inc |
+| abcdefgh1234567 | project-name | eu               | organization-inc |
 +-----------------+--------------+------------------+------------------+
 ```
 
@@ -98,7 +98,7 @@ When prompted, choose a name for the target project directory and press **Enter*
 You get output similar to the following:
 
 ```
-Downloading [project-id](abcdefgh1234567)
+Downloading [project-name](abcdefgh1234567)
   Cloning into '/Users/username/project-directory'...
   remote: counting objects: 3318, done.        
   Receiving objects: 100% (3318/3318), 20.23 MiB | 3.71 MiB/s, done.
@@ -148,9 +148,7 @@ To build your site locally:
    - If you don’t want to set up everything manually, 
      you can switch to a Docker-based local development environment tool 
      such as [DDEV](./ddev.md), [Docksal](./docksal.md) or [Lando](./lando.md).
-     These tools offer turnkey solutions to set up your local development, download your project and build it.
 
    Other options include:
-   - [Tethered local development](./tethered.md) to run your project locally with a local web server 
-    while keeping all other services on Platform.sh.
-   - [Untethered local development](./untethered.md) to run your entire site locally.
+   - [Tethered local development](./tethered.md).
+   - [Untethered local development](./untethered.md).
