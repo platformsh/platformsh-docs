@@ -48,7 +48,7 @@ Your projects are:
 +-----------------+--------------+------------------+------------------+
 | ID              | Title        | Region           | Organization     |
 +-----------------+--------------+------------------+------------------+
-| abcdefgh1234567 | project-name | eu               | organization-inc |
+| abcdefgh1234567 | project-name | eu.platform.sh   | organization-inc |
 +-----------------+--------------+------------------+------------------+
 ```
 
@@ -64,7 +64,7 @@ you might want to view a list of all the environments in your project to pick on
 To do so, run the following command:
 
 ```bash
-platform environments -p {{< variable "PROJECT_ID" >}}
+platform environments --project {{< variable "PROJECT_ID" >}}
 ```
 
 You get output similar to the following:
