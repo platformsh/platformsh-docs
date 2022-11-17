@@ -13,21 +13,20 @@ you need to set up a development environment on your computer.
 
 Make sure that:
 
-
 - You have signed up for a Platform.sh account. 
   As a new user, you can sign up for a [free trial account](https://auth.api.platform.sh/register). 
 - You have started a [template project](../../development/templates.md) 
   or pushed your own code to Platform.sh.
 - You have [installed Git](https://docs.github.com/en/get-started/quickstart/set-up-git).
 - You have [installed the Platform.sh CLI](../../administration/cli/_index.md).
-- Optional but recommended: 
-  You have installed a Docker-based local development environment tool 
-  such as [DDEV](./ddev.md), [Docksal](./docksal.md) or [Lando](./lando.md).
-  These tools are open-source, cross-platform and container-based.
-  They simplify how you can configure your local development environment 
-  regardless of how many different projects you have.
 
-  If you don't want to use a Docker-based local development environment tool, you can use:
+Note that to run your build locally, you need to set up your dependencies locally 
+unless you use a third-party tool such as [DDEV](./ddev.md), [Docksal](./docksal.md) or [Lando](./lando.md).
+These Docker-based tools are open-source and cross-platform.
+They simplify how you can configure your local development environment 
+regardless of how many different projects you have.
+
+If you don't want to use a Docker-based local development environment tool, you can use:
   - [Tethered local development](./tethered.md). This lets you run your project locally
     by using a local web server but keeping all other services on Platform.sh 
     and connecting to them over an SSH tunnel.
@@ -91,7 +90,7 @@ To do so, move to the directory where you want to save a copy of your project
 and run this command:
 
 ```bash
-platform get {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
+platform get {{< variable "PROJECT_ID" >}}
 ```
 
 When prompted, choose a name for the target project directory and press **Enter**.
@@ -148,7 +147,5 @@ To build your site locally:
    - If you don’t want to set up everything manually, 
      you can switch to a Docker-based local development environment tool 
      such as [DDEV](./ddev.md), [Docksal](./docksal.md) or [Lando](./lando.md).
-
-   Other options include:
-   - [Tethered local development](./tethered.md).
-   - [Untethered local development](./untethered.md).
+     
+     Other options include [tethered local development](./tethered.md) and [untethered local development](./untethered.md).
