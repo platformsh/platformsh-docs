@@ -136,9 +136,9 @@ To build your site locally:
 
 2. When prompted, specify the source directory and the build destination.
 
-  Your app is built locally.
-  At the root of your local project directory, a `_www` subdirectory is created.
-  It is a symbolic link pointing to the currently active build located in the `.platform/local/builds` directory.
+   Your app is built locally.
+   At the root of your local project directory, a `_www` subdirectory is created.
+   It is a symbolic link pointing to the currently active build located in the `.platform/local/builds` directory.
 
 3. To check that the build was successful:
    - If you are familiar with how to set up a local web server or already have one, 
