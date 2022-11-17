@@ -68,7 +68,7 @@ Common functions to disable include:
 * `show_source` - This function shows a syntax highlighted version of a named PHP source file.
   That's rarely useful outside of development.
 
-Naturally if your application does make use of any of these functions, it fails if you disable them.
+If your application does make use of any of these functions, it fails if you disable them.
 In that case, don't disable them.
 
 ## Default php.ini settings

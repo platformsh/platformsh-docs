@@ -14,50 +14,12 @@ you can download your entire code history by running `git clone` or `platform ge
 
 ## Downloading files
 
-Your application runs on a read-only file system, so it can't be edited.
-That means there's nothing to download from most of it that isn't already in your Git repository.
+To download files from your built app,
+you can [set up mounts](../create-apps/app-reference.md#mounts) 
+and run commands using the Platform.sh CLI.
+You can also use an SSH client such as `rsync` or `scp`.
 
-The only files to download are from any writable file mounts you may have defined in your `.platform.app.yaml` file.
-The easiest way to download those is using the `rsync` tool.
-For instance, suppose you have a mounts section that defines one web-accessible directory and one non-web-accessible directory:
-
-```yaml
-mounts:
-    'web/uploads':
-        source: local
-        source_path: uploads
-    'private':
-        source: local
-        source_path: private
-```
-### Using the CLI
-
-The CLI provides a useful `mount` command for accessing mount data.
-
-```bash
-platform mount:list
-```
-
-Download a mount by running the following:
-
-```bash
-platform mount:download
-```
-
-### Using rsync
-To use `rsync` to download each directory, we can use the following commands. The `platform ssh --pipe` command will return the SSH URL for the current environment as an inline string that `rsync` can recognize. To use a non-default environment, use the `-e` flag with an environment name after `--pipe`. Note that the trailing slash on the remote path means `rsync` will copy just the files inside the specified directory, not the directory itself.
-
-```bash
-rsync -az `platform ssh --pipe`:/app/private/ ./private/
-rsync -az `platform ssh --pipe`:/app/web/uploads ./uploads/
-```
-
-
-{{< note >}}
-If you're running `rsync` on MacOS, you should add `--iconv=utf-8,utf-8-mac` to your `rsync` call.
-{{< /note >}}
-
-See the [`rsync` documentation](https://download.samba.org/pub/rsync/rsync.html) for more details on how to adjust the download process.
+For more information, see how to [transfer files to and from a built app](../development/file-transfer.md).
 
 ## Download data from services
 

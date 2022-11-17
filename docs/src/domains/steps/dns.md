@@ -50,7 +50,7 @@ If yours doesn't, several solutions exist [to bypass that limitation](#handling-
 ## Handling Apex domains
 
 Some DNS providers (usually your registrar) don't allow `CNAME` records for [apex domains](../../other/glossary.md#apex-domain).
-This is one of the [limitations to `CNAME` records](#why-CNAME-records-are-problematic).
+This is one of the [limitations to `CNAME` records](#why-cname-records-are-problematic).
 
 Check your registrar's documentation to make sure that `CNAME` records on apex domains are supported.
 If your registrar supports them, follow the [guide to using such records](../steps/_index.md).

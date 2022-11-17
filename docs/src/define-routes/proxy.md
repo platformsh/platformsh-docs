@@ -1,8 +1,6 @@
 ---
 title: Proxy routes
-description: |
-  Pass requests to a location outside your Platform.sh project using proxy routes.
-mermaid: true
+description: Pass requests to a location outside your Platform.sh project using proxy routes.
 ---
 ​
 Sometimes you want your app to pass requests on to another location,
@@ -86,8 +84,7 @@ For example, by changing `https://en.example.com/style.css` to `https://example.
 
 The following diagram shows the example project forwarding specific requests to the correct app.
 
-<!-- vale off -->
-{{< mermaid >}}
+``` mermaid
 sequenceDiagram
     participant User
     participant Project as Proxy project
@@ -109,8 +106,7 @@ sequenceDiagram
     Note over Pt: Changes asset links
     Pt-->>-Project: index.html
     Project-->>-User: index.html
-{{< /mermaid >}}
-<!-- vale on -->
+```
 
 ### Large projects
 

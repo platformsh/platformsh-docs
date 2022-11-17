@@ -15,6 +15,9 @@ or any service that supports a [syslog endpoint](#forward-to-a-syslog-endpoint).
 Log forwarding is available for Grid and {{% names/dedicated-gen-3 %}} projects.
 For {{% names/dedicated-gen-2 %}} projects, see how to [log remotely with `rsyslog`](../../dedicated-gen-2/architecture/options.md#remote-logging).
 
+Logs to stdout and stderr are forwarded.
+Logs in files can't be forwarded.
+
 To enable log forwarding in a project, you need to be a [project admin](../../administration/users.md).
 You also need your project to have the capability for log forwarding.
 To get that, contact [support](https://console.platform.sh/-/users/~/tickets/open).
@@ -51,7 +54,9 @@ file=none
    or the EU endpoint `https://log-api.eu.newrelic.com/log/v1`.
 3. Create the integration with the following command:
 
-   <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">platform integration:add --type newrelic --url {{< variable "API_ENDPOINT" >}} --license_key {{% variable "LICENSE_KEY" %}}</span></code></pre></div>
+   ```bash
+   platform integration:add --type newrelic --url {{< variable "API_ENDPOINT" >}} --license_key {{% variable "LICENSE_KEY" %}}
+   ```
 
 View your logs in the **Logs** dashboard.
 
@@ -68,7 +73,9 @@ file=none
 3. Choose an index name.
 4. Create the integration with the following command:
 
-   <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">platform platform integration:add --type splunk --url https://http-inputs.{{< variable "HOST" >}}.splunkcloud.com/services/collector/event --index {{< variable "INDEX" >}} --token {{< variable "TOKEN" >}}</span></code></pre></div>
+   ```bash
+   platform platform integration:add --type splunk --url https://http-inputs.{{< variable "HOST" >}}.splunkcloud.com/services/collector/event --index {{< variable "INDEX" >}} --token {{< variable "TOKEN" >}}
+   ```
 
 View your logs in the **Apps->Search & Reporting** dashboard.
 Filter by the index name to find the relevant events.
@@ -84,7 +91,9 @@ file=none
    Make sure to copy the Source Category and collector URL.
 2. Create the integration with the following command:
 
-   <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">platform integration:add --type sumologic --url {{< variable "COLLECTOR_URL" >}} --category {{< variable "SOURCE_CATEGORY" >}}</span></code></pre></div>
+   ```bash
+   platform integration:add --type sumologic --url {{< variable "COLLECTOR_URL" >}} --category {{< variable "SOURCE_CATEGORY" >}}
+   ```
 
 View your logs in the **Log Search** tab.
 

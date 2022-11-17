@@ -12,7 +12,29 @@
     <!-- Scripts -->
     {{ partial "scripts/scripts" . }}
 
-    <div class="container-fluid">
+    <!--If in the Get started section, define context and methods. -->
+    <div class="container-fluid"
+    {{ if eq .Section "get-started" }}
+      x-data="{ 
+        stack: new URLSearchParams(location.search).get('stack') || 'php',
+        switchStack(targetStack) { 
+          this.stack = targetStack
+          const url = new URL(window.location.href);
+
+          const targetStackString = targetStack
+            .toString()
+            .toLowerCase()
+            .replace('.', '');
+
+          url.searchParams.set('stack', targetStackString);
+          history.pushState(null, document.title, url.toString());
+        },
+        frametech: 'default',
+        switchFrametech(targetFrametech) { 
+          this.frametech = targetFrametech;
+        }
+      }"
+    {{ end }}>
 
       <div class="row pt-3">
 
@@ -31,6 +53,14 @@
 
     <!-- Over-ride search style -->
     <link rel="stylesheet" href="{{ printf "styles/search.css?version=%s" .Site.Params.version | relURL}}">
+
+    {{ if .Page.Store.Get "hasMermaid" }}
+    <!-- MermaidJS support -->
+    <script async src="{{ printf "/mermaid/mermaid.min.js?version=%s" $.Site.Params.version }}"></script>
+    <script>
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    {{ end }}
 
   </body>
 </html>

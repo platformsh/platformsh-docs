@@ -4,7 +4,7 @@
 <script src="{{ printf "docsuikit/assets/vendor/bootstrap/dist/js/bootstrap.min.js?version=%s" $.Site.Params.version | relURL }}"></script>
 <!-- Alpine.js support -->
 <script defer src="{{ printf "/alpinejs/cdn.min.js?version=%s" $.Site.Params.version }}"></script>
-{{ if (.Params.mermaid) }}
-<!-- MermaidJS support -->
-<script async src="{{ printf "/mermaid/mermaid.min.js?version=%s" $.Site.Params.version }}"></script>
+{{ if eq .Section "get-started" }}
+<!-- Alpine.js support -->
+<script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
 {{ end }}

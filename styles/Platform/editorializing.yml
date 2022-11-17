@@ -1,0 +1,42 @@
+extends: existence
+message: Considering avoiding '%s' to keep the text more neutral.
+level: warning
+ignorecase: true
+tokens:
+  - actually
+  - admit
+  - aptly
+  - are a number
+  - basically
+  - claim
+  - clearly
+  - completely
+  - essentially
+  - exceedingly
+  - excellent
+  - exceptional
+  - exceptionally
+  - extremely
+  - fairly
+  - fortunately
+  - huge
+  - interesting
+  - interestingly
+  - is a number
+  - it is important to realize
+  - it should be noted that
+  - largely
+  - mostly
+  - notably
+  - poorly
+  - quite
+  - relatively
+  - remarkably
+  - significantly
+  - substantially
+  - surprisingly
+  - totally
+  - unfortunately
+  - vast
+  - very
+  - without a doubt

@@ -145,10 +145,9 @@ file=none
 
 Run a command like the following:
 
-<div class="highlight">
-  <pre class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">platform variable:create --environment {{< variable "PRODUCTION_ENVIRONMENT_NAME" >}} --level environment --name COMPOSER_NO_DEV --value <span class="m">1</span> --prefix env --json <span class="nb">false</span> --sensitive <span class="nb">false</span> --enabled <span class="nb">true</span> --inheritable <span class="nb">false</span> --visible-build <span class="nb">false</span> --visible-runtime <span class="nb">false</span>
-</span></span></code></pre>
-</div>
+```bash
+platform variable:create --environment {{< variable "PRODUCTION_ENVIRONMENT_NAME" >}} --level environment --name COMPOSER_NO_DEV --value 1 --prefix env --json false --sensitive false --enabled true --inheritable false --visible-build false --visible-runtime false
+```
 <--->
 ---
 title=In the Console
