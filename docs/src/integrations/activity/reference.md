@@ -8,89 +8,103 @@ description: |
 
 {{% description %}}
 
+TODO clarify how to use and access the API + check the links
+https://api.platform.sh/docs/#section/Introduction/Using-the-REST-API
+
+  -P, --property=PROPERTY        The property to view
+
+      integration:activity:get  View detailed information on a single integration activity
+      integration:activity:list Get a list of activities for an integration
+      integration:activity:log  Display the log for an integration activity.
+
 ## Activity schema
 
 ### `id`
 
-A unique opaque value to identify the activity.
+A unique value to identify the activity.
 
 ### `project`
 
-Use this value if you want to have multiple projects POST to the same URL.
+Use this value if you want to have multiple projects `POST` to the same URL.
 
 ### `type`
 
 The `type` property specifies the event that happened.
 Its value is one of:
 
-* `project.modify.title`: The human-friendly title of the project has been changed.
-* `project.create`: A project has been created.
-  Although it will appear in the activity feed exactly once,
-  it will not be sent via a webhook as it will always happen before a webhook can be configured.
-* `project.variable.create`: A new project variable has been created.
-* `project.variable.delete`: A project variable has been deleted.
-* `project.variable.update`: A project variable has been modified.
----
-* `environment.domain.create`: A new domain has been associated with the environment.
-* `environment.domain.delete`: A domain associated with the environment has been removed.
-* `environment.domain.update`: A domain associated with the environment has been updated, such as having its SSL certificate modified.
----
-* `environment.access.add`: A new user has been given access to the environment.
-* `environment.access.remove`: A user has been removed from the environment.
----
-* `environment_type.access.create`: A user has been given access to an environment type (Production, Staging, Development).
-* `environment_type.access.delete`: A user has had their access removed from an environment type.
-* `environment_type.access.update`: A user has had their access to an environment type updated.
----
-* `environment.backup`: A user triggered a [backup](../../environments/backup.md).
-* `environment.restore`: A user restored a [backup](../../environments/backup.md).
-* `environment.backup.delete`: A user deleted a [backup](../../environments/backup.md)
----
-* `environment.push`: A user has pushed code to a branch, either existing or new.
-* `environment.branch`: A new branch has been created via the Console.
-  (A branch created via a push will show up only as an `environment.push`.)
-* `environment.activate`: A branch has been "activated", and an environment created for it.
-* `environment.initialize`: The default branch of the project has just been initialized with its first commit.
-* `environment.deactivate`: A branch has been "deactivated". The code is still there, but the environment was destroyed.
-* `environment.synchronize`: An environment has had its data and/or code re-copied from its parent environment.
-* `environment.merge`: A branch was merged through the Console or Platform.sh API.
-  A basic Git merge will not trigger this event.
-* `environment.redeploy`: An environment was redeployed.
-* `environment.delete`: A branch was deleted.
----
-* `environment.route.create`: A new route has been created through the Console.
-  This will not fire for route edits made to the `routes.yaml` file directly.
-* `environment.route.delete`: A route has been deleted through the Console.
-  This will not fire for route edits made to the `routes.yaml` file directly.
-* `environment.route.update`: A route has been modified through the Console.
-  This will not fire for route edits made to the `routes.yaml` file directly.
----
-* `environment.variable.create`: A new variable has been created.
-* `environment.variable.delete`: A variable has been deleted.
-* `environment.variable.update`: A variable has been modified.
----
-* `environment.update.http_access`: HTTP access rules for an environment have been modified.
-* `environment.update.smtp`: Sending of emails has been enabled/disabled for an environment.
-* `environment.update.restrict_robots`: The block-all-robots feature has been enabled/disabled.
-* `environment.subscription.update`: The production environment has been resized because the subscription has changed.
-  There are no content changes.
----
-* `environment.cron`: A cron task just completed.
-* `environment.source-operation`: A source operation triggered and has completed.
----
-* `environment.certificate.renewal`: An environment's SSL certificate has been renewed.
----
-* `integration.bitbucket.fetch`: Changes in BitBucket repository have been pulled.
-* `integration.bitbucket.register_hooks`: Integration hook have been registered on BitBucket.
-* `integration.bitbucket_server.fetch`: Changes in BitBucket repository have been pulled.
-* `integration.bitbucket_server.register_hooks`: Integration hook have been registered on BitBucket.
-* `integration.github.fetch`: Changes in GitHub repository have been pulled.
-* `integration.gitlab.fetch`: Changes in GitLab repository have been pulled.
-* `integration.health.email`: Health event sent by email.
-* `integration.health.pagerduty`: Health event sent to PagerDuty.
-* `integration.health.slack`: Health event sent to slack.
-* `integration.webhook`: Webhook triggered.
-* `integration.script`: An activity script has run.
+- [Project](#project)
+- [Environment](#environment)
+- [Integration](#integration)
+
+#### Project
+
+https://api.platform.sh/docs/#tag/Project/Project-Overview
+
+| Name | Description |
+|------|-------------|
+| `project.modify.title` | The human-friendly title of the project has been changed. |
+| `project.create` |A project has been created. Although it will appear in the activity feed exactly once, it will not be sent via a webhook as it will always happen before a webhook can be configured. |
+| `project.variable.create` | A new project variable has been created. |
+| `project.variable.delete` | A project variable has been deleted. |
+| `project.variable.update` | A project variable has been modified. |
+
+#### Environment
+
+https://api.platform.sh/docs/#tag/Environment-Activity
+
+| Name | Description |
+|------|-------------|
+| `environment.domain.create` |  A new domain has been associated with the environment. |
+| `environment.domain.delete` | A domain associated with the environment has been removed. |
+| `environment.domain.update` | A domain associated with the environment has been updated, such as having its SSL certificate modified. |
+| `environment.access.add` | A new user has been given access to the environment. |
+| `environment.access.remove` | A user has been removed from the environment. |
+| `environment_type.access.create` |  A user has been given access to an environment type (Production, Staging, Development). |
+| `environment_type.access.delete` | A user has had their access removed from an environment type. |
+| `environment_type.access.update` | A user has had their access to an environment type updated. |
+| `environment.backup` |  A user triggered a [backup](../../environments/backup.md). |
+| `environment.restore` | A user restored a [backup](../../environments/backup.md). |
+| `environment.backup.delete` | A user deleted a [backup](../../environments/backup.md) |
+| `environment.push` | A user has pushed code to a branch, either existing or new.
+| `environment.branch` | A new branch has been created via the Console. (A branch created via a push will show up only as an `environment.push`.) |
+| `environment.activate` | A branch has been "activated", and an environment created for it. |
+| `environment.initialize` | The default branch of the project has just been initialized with its first commit. |
+| `environment.deactivate` | A branch has been "deactivated". The code is still there, but the environment was destroyed. |
+| `environment.synchronize` | An environment has had its data and/or code re-copied from its parent environment. |
+| `environment.merge` | A branch was merged through the Console or Platform.sh API. A basic Git merge will not trigger this event. |
+| `environment.redeploy` | An environment was redeployed. |
+| `environment.delete` | A branch was deleted. |
+| `environment.route.create` | A new route has been created through the Console. This will not fire for route edits made to the `routes.yaml` file directly. |
+| `environment.route.delete` | A route has been deleted through the Console. This will not fire for route edits made to the `routes.yaml` file directly. |
+| `environment.route.update` | A route has been modified through the Console. This will not fire for route edits made to the `routes.yaml` file directly. |
+| `environment.variable.create` | A new variable has been created. |
+| `environment.variable.delete` | A variable has been deleted. |
+| `environment.variable.update` | A variable has been modified. |
+| `environment.update.http_access` | HTTP access rules for an environment have been modified. |
+| `environment.update.smtp` | Sending of emails has been enabled/disabled for an environment. |
+| `environment.update.restrict_robots` | The block-all-robots feature has been enabled/disabled. |
+| `environment.subscription.update` | The production environment has been resized because the subscription has changed. There are no content changes. |
+| `environment.cron` | A cron task just completed. |
+| `environment.source-operation` | A source operation triggered and has completed. |
+| `environment.certificate.renewal` | An environment's SSL certificate has been renewed. |
+
+#### Integration
+
+https://api.platform.sh/docs/#tag/Third-Party-Integrations
+
+| Name | Description |
+|------|-------------|
+| `integration.bitbucket.fetch` | Changes in BitBucket repository have been pulled. |
+| `integration.bitbucket.register_hooks` | Integration hook have been registered on BitBucket. |
+| `integration.bitbucket_server.fetch` | Changes in BitBucket repository have been pulled. |
+| `integration.bitbucket_server.register_hooks` | Integration hook have been registered on BitBucket. |
+| `integration.github.fetch` | Changes in GitHub repository have been pulled. |
+| `integration.gitlab.fetch` | Changes in GitLab repository have been pulled. |
+| `integration.health.email` | Health event sent by email. |
+| `integration.health.pagerduty` | Health event sent to PagerDuty. |
+| `integration.health.slack` | Health event sent to slack. |
+| `integration.webhook` | Webhook triggered. |
+| `integration.script` | An activity script has run. |
 
 ### `environments`
 
@@ -114,20 +128,22 @@ A text description of the action that happened.
 This is a human-friendly string that may be displayed to a user
 but should not be parsed for data as its structure isn't guaranteed.
 
-### `payload.environment`
+### `payload`
+
+#### `payload.environment`
 
 This block contains information about the environment itself, after the action has taken place.
 The most notable properties of this key are
 
-* `name` (the name of the branch)
-* `machine_name` (the name of the environment)
-* `head_commit` (the Git commit ID that triggered the event)
+| `name` (the name of the branch)
+| `machine_name` (the name of the environment)
+| `head_commit` (the Git commit ID that triggered the event)
 
-### `payload.user`
+#### `payload.user`
 
 The Platform.sh user that triggered the activity.
 
-### `payload.deployment`
+#### `payload.deployment`
 
 This large block details all information about all services in the environment.
 That includes the resulting configuration objects derived from [`routes.yaml`](../../define-routes/_index.md),
@@ -139,12 +155,12 @@ To find those that are live URLs filter to those objects whose `type` property i
 
 ## Maximum activities and parallelism
 
-Project activities are distributed across separate queues, which enables **two** simultaneous activities to occur in parallel across your environments. For a given environment, only one activity can run at a time. Those queues include:
+Project activities are distributed across separate queues, which enables **two*| simultaneous activities to occur in parallel across your environments. For a given environment, only one activity can run at a time. Those queues include:
 
-* `default`: these include the most common activities on repositories (pushes, merges) and environments (syncs, redeployments).
-* `integrations`: source and webhook integration activities.
-* `backup`: backup activities.
-* `cron`: cron activities.
+| `default` | these include the most common activities on repositories (pushes, merges) and environments (syncs, redeployments). |
+| `integrations` | source and webhook integration activities. |
+| `backup` | backup activities. |
+| `cron` | cron activities. |
 
 Production activities are prioritized across all queues.
 While it is still possible for a non-production environment activity to block production activities,

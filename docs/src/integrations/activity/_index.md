@@ -30,8 +30,7 @@ platform integrations
 +---------------+--------------+--------------+
 | ID            | Type         | Summary      |
 +---------------+--------------+--------------+
-| nadbowmhd67do | script       | ...
-        |
+| nadbowmhd67do | script       | ...          |
 | rcqf6b69jdcx6 | health.email | From:        |
 |               |              | To: #admins  |
 +---------------+--------------+--------------+
