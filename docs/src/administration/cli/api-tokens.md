@@ -102,7 +102,7 @@ acting as the user who created the token.
 
 You can now call the CLI from within the shell on the app container or via a cron hook.
 
-To run a cron only on the production environment, wrap it in an if-check on the `$PLATFORM_BRANCH` variable, like so:
+To run a cron only on the production environment, wrap it in an if-check on the `$PLATFORM_ENVIRONMENT_TYPE` or `$PLATFORM_BRANCH` variable, like so:
 
 ```yaml
 crons:
