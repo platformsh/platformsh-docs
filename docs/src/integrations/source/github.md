@@ -39,7 +39,7 @@ or the [Console](../../administration/web/_index.md).
 
 {{< codetabs >}}
 ---
-title:Using the CLI
+title=Using the CLI
 file=none
 highlight=false
 ---
@@ -84,7 +84,7 @@ If `--fetch-branches` is disabled, `--prune-branches` is automatically set to fa
 
 <--->
 ---
-title:In the Console
+title=In the Console
 file=none
 highlight=false
 ---
