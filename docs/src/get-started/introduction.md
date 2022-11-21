@@ -56,14 +56,7 @@ Make sure your computer has [Git installed](https://git-scm.com/downloads).
 To facilitate working with Platform.sh, you can use the Platform.sh command-line interface (CLI).
 This lets you carry out various actions from a terminal.
 
-To install the CLI, you need:
-
-* [PHP 5.5.9+](https://www.php.net/manual/en/install.php) with the following extensions installed: `curl`, `json`, `mbstring`, `pcre`, and `phar`
-* A Bash-like shell
-
-  On Windows, the best way to get Bash is through [Windows Subsystem for Linux](https://msdn.microsoft.com/en-gb/commandline/wsl/about).
-
-{{% cli-installation %}}
+{{< cli-installation >}}
 
 ### Code
 
