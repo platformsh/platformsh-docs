@@ -3,70 +3,107 @@ title: "PHP-FPM sizing"
 weight: 5
 ---
 
-Platform.sh uses a heuristic to automatically set the number of workers of the PHP-FPM runtime based on the memory available in the container. This heuristic is based on assumptions about the memory necessary on average to process a request. You can tweak those assumptions if your application will typically use considerably more or less memory.
 
-Note that this value is independent of the `memory_limit` set in `php.ini`, which is the maximum amount of memory a single PHP process can use before it is automatically terminated.
-These estimates are used only for determining the number of PHP-FPM workers to start.
+## Glossary
+
+- Worker: An instance of your code that runs background processes.
+  Workers handle requests that don't hit your site's cache.
+  The number of workers available to your site can therefore affect its performances.
+  For more information, see how to [work with workers](../../create-apps/workers.md).
+
+- Heuristic: a method of solving a problem using approximations rather than precise calculations 
+  to provide quicker solutions.
+
+## Introduction
+
+Platform.sh uses a heuristic to automatically set the number of workers of the PHP-FPM runtime 
+depending on how much server memory is available for the PHP container. 
+This heuristic is based on assumptions about how much memory is necessary on average to process a request. 
+You can adjust those assumptions if your application typically uses more or less memory.
+
+Note that these assumptions are used only for determining the number of PHP-FPM workers to start.
+They are independent of the `memory_limit` set in `php.ini`, 
+which is the maximum amount of memory a single PHP process can use before it is automatically terminated.
 
 ## The heuristic
 
 The heuristic is based on three input parameters:
 
- * The memory available for the container, which depends on the size of the container (`S`, `M`, `L`),
- * The memory that an average request is expected to require,
- * The memory that should be reserved for things that aren't specific to a request (memory for `nginx`, the op-code cache, some OS page cache, etc.)
+- The memory available for the container, which depends on the size of the container (`S`, `M`, `L`).
+- The memory that an average request is expected to require.
+- The memory that needs to be reserved for things that aren't specific to a request 
+  (memory for `nginx`, the op-code cache, some OS page cache, etc.).
 
 The number of workers is calculated as:
 
 ![FPM](/images/php/phpfpmworkers.png "0.3")
 
 
-## Defaults
+## Adjust default assumptions 
 
-The default assumptions are:
+The default assumptions used by the heuristic are:
 
- * `45 MB` for the average per-request memory
- * `70 MB` for the reserved memory
+ - `45 MB` for the average per-request memory.
+ - `70 MB` for the reserved memory.
 
-These are deliberately conservative values that should allow most programs to run without modification.
+These values allow most programs to run but you can adjust them to fit your needs.
 
-You can change them by using the `runtime.sizing_hints.reserved_memory` and `runtime.sizing_hints.request_memory` in your `.platform.app.yaml`. For example, if your application consumes on average `110 MB` of memory for a request use:
+To do so, in your `.platform.app.yaml` file, adjust the values of the `runtime.sizing_hints.reserved_memory` and `runtime.sizing_hints.request_memory` keys.
 
-```yaml
+For example, if your application consumes on average `110 MB` of memory for a request, you can use:
+
+```yaml {location=".platform.app.yaml"}
 runtime:
     sizing_hints:
         request_memory: 110
 ```
 
-The `request_memory` has a lower limit of 10 MB while `reserved_memory` has a lower limit of 70 MB.
-Values lower than those are replaced with those minimums.
+Note that the minimum value for the `request_memory` key is 10 MB
+and the minimum value for the `reserved_memory` key is 70 MB.
+If you set lower values, they are automatically overridden with those minimums.
 
-You can check the maximum number of PHP-FPM workers by opening an [SSH session](/development/ssh/_index.md) and running following command (example for PHP 7.x):
+For information on how to estimate the best `request_memory` value depending on your needs, 
+see how to [measure PHP worker memory usage](./fpm.md#measure-php-worker-memory-usage). 
+
+To check the maximum number of PHP-FPM workers available to your site,
+open an [SSH session](/development/ssh/_index.md) and run the following command:
 
 ```bash
 grep -e '^pm.max_children' /etc/php/*/fpm/php-fpm.conf
+```
+
+You get output similar to the following,
+where workers are referred to as `children`:
+
+```bash
 pm.max_children = 2
 ```
 
-## Measuring PHP worker memory usage
+## Measure PHP worker memory usage
 
-To see how much memory your PHP worker processes are using, you can open an [SSH session](/development/ssh/_index.md) and look at the PHP access log:
+To see how much memory your PHP worker processes use, 
+open an [SSH session](/development/ssh/_index.md) 
+and look at the PHP access log:
 
 ```bash
 less /var/log/php.access.log
 ```
 
-In the fifth column, you'll see the peak memory usage that occurred while each request was handled. The peak usage will probably vary between requests, but to avoid the severe performance costs that come from swapping, your size hint should be somewhere between the average and worst case memory usages that you observe.
+In the fifth column of the output, 
+you can see the peak memory usage that occurred when each request was handled. 
+The optimal request memory is somewhere between the average and worst case memory usages listed.
 
-A good way to determine an optimal request memory is with the following command:
+To help determine what the optimal request memory is, run the following command:
 
 ```bash
 tail -n5000 /var/log/php.access.log | awk '{print $6}' | sort -n | uniq -c
 ```
 
-This will print out a table of how many requests used how much memory, in KB, for the last 5000 requests that reached PHP-FPM.
-(On an especially busy site you may need to increase that number).
-As an example, consider the following output:
+Note that the above command takes into account the last 5000 requests that reached PHP-FPM.
+You can adjust this number depending on the amount of traffic on your site.
+
+In the output, you can see how many requests used how much memory, in KB.
+For example:
 
 ```text
       1
@@ -83,21 +120,29 @@ As an example, consider the following output:
       6 131072
 ```
 
-This indicates that the majority of requests (4800) used 2048 KB of memory.
-In this case that's likely application caching at work.
-Most requests used up to around 10 MB of memory, while a few used as much as 18 MB and a very few (6 requests) peaked at 131 MB.
-(In this example those are probably cache clears.)
+In the above output:
 
-A conservative approach would suggest an average request memory of 16 MB should be sufficient.
-A more aggressive stance would suggest 10 MB.
-The more aggressive approach would potentially allow for more concurrent requests at the risk of some requests needing to use swap memory, thus slowing them down.
+- The majority of requests (4800) peaked at 2048 KB of memory, 
+  likely thanks to application caching.
+- Most other requests (3206) used up to around 10 MB of memory.
+- 758 requests used more than 10 MB and up to around 18 MB of memory.
+- Only 6 requests peaked at 131 MB of memory, 
+  likely due to cache clears.
 
-The web agency [Pixelant](https://www.pixelant.net/) has also published a [log analyzer tool for Platform.sh](https://github.com/pixelant/platformsh-analytics) that offers a better visualization of access logs to determine how much memory requests are using on average.
-It also offers additional insights into the operation of your site that can suggest places to further optimize your configuration and provide guidance on when it's time to increase your plan size.
-(Please note that this tool is maintained by a 3rd party, not by Platform.sh.)
+In such a situation, you might want to remain cautious and set an average request memory of 16 MB.
+A more aggressive approach might be for you to set an average request memory of 10 MB instead.
+Note that, with the more aggressive approach, there is a risk of allowing more concurrent requests 
+and needing to use swap memory. 
+This can result in latencies.
 
+For further help in estimating your optimal average request memory, 
+you can use the [log analyzer tool for Platform.sh](https://github.com/pixelant/platformsh-analytics) 
+from the web agency [Pixelant](https://www.pixelant.net/). 
+This tool offers a better visualization of access logs to determine how much memory requests use on average.
+It also offers additional insights into the operation of your site. 
+These can help further optimize your configuration 
+and provide guidance on when to increase your plan size.
+Note that this tool is maintained by a third party, not by Platform.sh.
 
-{{< note >}}
-If you are running on PHP 5.x then don't bother adjusting the worker memory usage until you upgrade to PHP 7.x.
-PHP 7 is vastly more memory efficient than PHP 5 and you will likely need less than half as much memory per process under PHP 7.
-{{< /note >}}
+For information on how to set an average request memory, see how to [adjust default assumptions](./fpm.md#adjust-default-assumptions).
+
