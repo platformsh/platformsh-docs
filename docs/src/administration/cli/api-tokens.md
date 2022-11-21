@@ -78,7 +78,7 @@ either using the [CLI](../cli/_index.md) or in the [Console](../web/_index.md):
 
 {{< codetabs >}}
 ---
-title:Using the CLI
+title=Using the CLI
 file=none
 highlight=false
 ---
@@ -91,7 +91,7 @@ platform variable:create -e {{< variable "ENVIRONMENT_NAME" >}} --level environm
 
 <--->
 ---
-title:In the Console
+title=In the Console
 file=none
 highlight=false
 ---
