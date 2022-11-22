@@ -7,6 +7,10 @@ on:
       - reopened
       - closed
 
+env:
+  PLATFORMSH_CLI_NO_INTERACTION: 1
+  PLATFORM_PROJECT: 652soceglkw4u
+
 jobs:
   activate_environment:
     runs-on: ubuntu-latest
@@ -16,14 +20,14 @@ jobs:
       github.event.action== 'reopened') &&
       github.event.pull_request.head.repo.id == 21975579
     steps:
-      # Set up environment to use the Platform.sh CLI
-      - uses: adam7/platformsh-cli-action@v1.1
-        with: 
-          token: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+      # Set up workflow environment to use the Platform.sh CLI
+      - name: Set up Platform.sh CLI
+        uses: ./.github/actions/set-up-cli
 
       - env:
           PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
-        run: platform environment:activate --no-wait -p 652soceglkw4u -y ${{ github.event.pull_request.head.ref }}
+          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+        run: platform environment:activate --no-wait ${{ github.event.pull_request.head.ref }}
 
   deactivate_environment:
     runs-on: ubuntu-latest
@@ -35,23 +39,24 @@ jobs:
       github.event.pull_request.merged == false &&
       github.event.pull_request.head.repo.id == 21975579
     steps:
-      # Set up environment to use the Platform.sh CLI
-      - uses: adam7/platformsh-cli-action@v1.1
-        with: 
-          token: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+      # Set up workflow environment to use the Platform.sh CLI
+      - name: Set up Platform.sh CLI
+        uses: ./.github/actions/set-up-cli
 
       - name: Close environment
-        run: platform environment:deactivate -p 652soceglkw4u --no-delete-branch -y ${{ github.event.pull_request.head.ref }}
+        env:
+          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+        run: platform environment:deactivate --no-delete-branch ${{ github.event.pull_request.head.ref }}
 
   deactivate_forked_environment:
     runs-on: ubuntu-latest
-    # For forked PRs
+    # For forked PRs labelled as build-fork
     # Delete branch when a PR is closed
     if: >-
       github.event.action == 'closed' &&
-      github.event.pull_request.head.repo.id != 21975579
+      github.event.pull_request.head.repo.id != 21975579 &&
+      contains(github.event.pull_request.labels.*.name, 'build-fork')
     steps:
-      # Set up environment to use the Platform.sh CLI
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -64,13 +69,12 @@ jobs:
           if [[ -n $BRANCH ]]; then
             git push origin --delete pr-${{ github.event.number }}
           fi
-      
-      # If the PR is labelled to build from the fork, use the Platform.sh CLI to delete the environment
-      - if: contains(github.event.pull_request.labels.*.name, 'build-fork')
-        uses: adam7/platformsh-cli-action@v1.1
-        with: 
-          token: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
 
-      - if: contains(github.event.pull_request.labels.*.name, 'build-fork')
-        name: Delete environment
-        run: platform environment:delete -p 652soceglkw4u --delete-branch --no-wait -y pr-${{ github.event.number }}
+        # Set up workflow environment to use the Platform.sh CLI
+      - name: Set up Platform.sh CLI
+        uses: ./.github/actions/set-up-cli
+
+      - name: Delete environment
+        env:
+          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+        run: platform environment:delete --delete-branch --no-wait pr-${{ github.event.number }}
