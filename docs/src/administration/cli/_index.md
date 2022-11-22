@@ -14,19 +14,9 @@ keywords:
 The CLI uses the git interface and the [Platform.sh REST API](https://api.platform.sh/docs/) to accomplish tasks.
 Its source code is hosted on [GitHub](https://github.com/platformsh/platformsh-cli).
 
-## Before you begin
-
-You need to have:
-
-* [PHP 5.5.9+](https://www.php.net/manual/en/install.php) with the following extensions installed: `curl`, `json`, `mbstring`, `pcre`, and `phar`
-* [Git](https://git-scm.com/downloads)
-* A Bash-like shell
-
-On Windows, the best way to get Bash is through [Windows Subsystem for Linux](https://msdn.microsoft.com/en-gb/commandline/wsl/about).
-
 ## 1. Install
 
-{{% cli-installation %}}
+{{< cli-installation >}}
 
 ## 2. Authenticate
 
