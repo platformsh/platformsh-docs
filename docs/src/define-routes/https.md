@@ -233,43 +233,43 @@ depending on the region.
 Since this pattern for generated URLs should remain similar even if it may change slightly,
 your branch names should be no more than 20 characters.
 
-### DNS Challenge
+### DNS challenge
 
-To provide a valid SSL-certificate,
-Let's Encrypt needs to make sure that the requester is entitled to receive the SSL-certificate it asked for
-(usually through the presence of a specific token on the DNS zone of that domain).
-
-This ownership verification is achieved through the so called _Challenge_ step,
-more background information can be found in the [Let's Encrypt Documentation](https://letsencrypt.org/docs/challenge-types/).
+To provide a valid SSL certificate,
+Let's Encrypt checks that the requester is entitled to receive the SSL certificate it asked for.
+It verifies ownership through a _challenge_.
+For Platform.sh projects, it involves a [HTTP-01 challenge](https://letsencrypt.org/docs/challenge-types/#http-01-challenge).
 
 If you include them in your [routes definition](./_index.md),
 Platform.sh checks that both the `example.platform.sh` and `www.example.platform.sh` domains are pointing to your project.
 The certificate also encompasses both these domains.
-Make sure that both your apex domain and it's `www` subdomain are pointing to your project,
-more information can be found in out go live [step-by-step guide](../domains/steps/_index.md).
+See more information about [custom domains](../domains/steps/_index.md).
 
 Sometimes, that verification fails, which results in the following error-message:
-`Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]`
+`Couldn't complete challenge HTTP01: pending`
 
-For the DNS challenge to work, domains and subdomains should point directly to your Platform.sh cluster (unless using a [CDN](../domains/cdn/_index.md)).
+For the DNS challenge to work, your domains and subdomains should point directly to Platform.sh
+(unless you're using a [CDN](../domains/cdn/_index.md)).
 Otherwise, you see the following error:
 
 ```text
-  E: Error validating domain www.some-example.platform.sh: Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]
-  Unable to validate domains www.some-example.platform.sh, will retry in the background.
+  E: Error validating domain www.example.platform.sh: Couldn't complete challenge HTTP01: pending
+  Unable to validate domains www.example.platform.sh, will retry in the background.
 ```
 or
 
 ```text
-  W: Failed to verify the challenge at the gateway for the domain 'www.some-example.platform.sh'
-  E: Error validating domain www.some-example.platform.sh: Couldn't complete challenge [HTTP01: There was a problem with a DNS query during identifier validation]
+  W: Failed to verify the challenge at the gateway for the domain 'www.example.platform.sh'
+  E: Error validating domain www.example.platform.sh: Couldn't complete challenge [HTTP01: There was a problem with a DNS query during identifier validation]
 ```
 
-Make sure that both the apex domain and it's `www` subdomain are both pointing to the cluster.
-Note that DNS changes can take up to 24-48 hours to propagate.
-See the [step-by-step guide](../domains/steps/_index.md) for more information.
-If you have waited the 24-48 hours, properly configured the subdomain, and are still seeing an error of this type,
-[redeploying](../development/troubleshoot.md#force-a-redeploy) the impacted environment usually solves the issue.
+Make sure that both the apex domain and it's `www` subdomain are both pointing to Platform.sh.
+If you're adding a new domain, make sure to set your time to live (TTL) to a low value such as `60`.
+DNS changes can take up to 72 hours to be taken into account.
+See more information about [custom domains](../domains/steps/_index.md).
+
+If you have waited 72 hours, properly configured the subdomain, and are still seeing an error of this type,
+try [redeploying the environment](../development/troubleshoot.md#force-a-redeploy).
 
 Also make sure that no conflicting DNS records exist for the domain.
 For example, a conflicting AAAA (IPv6) DNS record usually results in a `[HTTP01: The client lacks sufficient authorization]` error.
