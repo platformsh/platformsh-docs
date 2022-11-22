@@ -47,7 +47,7 @@ jobs:
           COMMIT_STATUS="pending"
 
           # Give time for the activity to be reported
-          sleep 60
+          sleep 30
 
           # Get the most recent activity -- will be stable throughout based on ID
           LATEST_ACTIVITY_ID=$(platform api:curl /projects/652soceglkw4u/environments/${{ steps.branch_name.outputs.branch_name }}/activities | jq -r '.[0].id')
