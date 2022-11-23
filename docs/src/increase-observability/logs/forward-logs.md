@@ -55,7 +55,7 @@ file=none
 3. Create the integration with the following command:
 
    ```bash
-   platform integration:add --type newrelic --url {{< variable "API_ENDPOINT" >}} --license_key {{% variable "LICENSE_KEY" %}}
+   platform integration:add --type newrelic --url {{< variable "API_ENDPOINT" >}} --license-key {{% variable "LICENSE_KEY" %}}
    ```
 
 View your logs in the **Logs** dashboard.
