@@ -94,7 +94,7 @@ file=none
 highlight=false
 ---
 
-See how to transfer files [using `scp`](../development/file-transfer.md#scp) or [`rsync`](../development/file-transfer.md#rsync).
+You can transfer files through SSH using `scp` or `rsync`.
 
 {{< /codetabs >}}
 
@@ -104,7 +104,7 @@ For more examples, see how to [transfer files to and from a built app](../develo
 
 The mechanism for downloading from each service (such as your database) varies.
 
-For services designed to hold non-persistent data, such as Redis or Solr,
+For services designed to hold non-persistent data, such as [Redis](../add-services/redis.md) or [Solr](../add-services/solr.md),
 it's generally not necessary to download data as it can be rebuilt from the primary data store.
 
 For services designed to hold persistent data, see each service's page for instructions:
@@ -141,13 +141,13 @@ highlight=false
    platform ssh --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT" >}} -- 'echo $PLATFORM_VARIABLES | base64 -d | jq'
    ```
 
-2. Optional: To get all the environment variable values, run:
+   Note that you can also get all the environment variable values, with:
 
    ```bash
    platform ssh --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT" >}} -- env
    ```
 
-3. Store the data on your local computer, for example in an encrypted text file for sensitive tokens.
+2. Store the data on your local computer, for example in an encrypted text file for sensitive tokens.
 
 <--->
 
