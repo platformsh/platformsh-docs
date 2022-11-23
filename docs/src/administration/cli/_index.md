@@ -1,13 +1,12 @@
 ---
-title: "Command Line Interface (CLI)"
+title: Command line interface (CLI)
 weight: -10
 description: |
   See how to use and manage your Platform.sh projects directly from your terminal. Anything you can do within the Console can be done with the CLI.
-sidebarTitle: "Command Line Interface (CLI)"
 layout: single
 keywords:
   - CLI
-  - Command Line Interface
+  - Command line interface
   - Terminal
 ---
 
