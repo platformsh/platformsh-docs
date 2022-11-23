@@ -1,12 +1,10 @@
 ---
 title: "Exporting data"
-description: See how to export your code, files and service's data.
+description: See how to export your code, files and service data.
 ---
 
-Platform.sh never wants to lock you in to our service.
-Your code and your data belong to you,
-and you should always be able to download your site's data for local development,
-backup, or to "take your data elsewhere".
+As a Platform.sh user, your code and data belong to you.
+At any time, you can download your site's data for local development, to back up your data, or to change provider.
 ## Before you begin
 
 You need:
@@ -18,7 +16,7 @@ You need:
 
 ## 1. Download your app's code
 
-Your app code is maintained through the Git version control system.
+Your app's code is maintained through the Git version control system.
 
 To download your entire app's code history:
 
@@ -36,7 +34,7 @@ highlight=false
    platform projects
    ```
 
-2. Retrieve the project you want to backup with:
+2. Retrieve the project you want to back up with:
 
    ```bash
    platform get {{< variable "PROJECT_ID" >}}
@@ -52,9 +50,8 @@ highlight=false
 
 1. In the [Console](https://console.platform.sh/), open your project and click **Code {{< icon chevron >}}**.
 2. Click **Git**.
-3. Click **{{< icon copy >}}** to copy the command.
-4. Run the command to clone the repository.
-   It looks similar to the following:
+3. To copy the command, click **{{< icon copy >}}**.
+4. To clone the repository, run a command similar to the following:
 
    ```text
    git clone abcdefgh1234567@git.eu.platform.sh:abcdefgh1234567.git project-name
@@ -77,13 +74,13 @@ file=none
 highlight=false
 ---
 
-1. Get a list of all your mounts:
+1. Get a list of all your mounts with:
 
    ```bash
    platform mount:list
    ```
 
-2. Download all of your files from a given mount:
+2. Download all of your files from a given mount with:
 
    ```bash
    platform mount:download --mount {{< variable "MOUNT_PATH" >}} --target ./{{< variable "LOCAL_FOLDER" >}}
@@ -128,7 +125,7 @@ Environment variables beginning with:
 
 All other variables are [part of `$PLATFORM_VARIABLES`](../development/variables/use-variables.md#use-platformsh-provided-variables).
 
-To backup your environment variables:
+To back up your environment variables:
 
 {{< codetabs >}}
 
@@ -138,7 +135,7 @@ file=none
 highlight=false
 ---
 
-1. Get the variable's values, by running:
+1. Get the variable's values with:
 
    ```bash
    platform ssh --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT" >}} -- 'echo $PLATFORM_VARIABLES | base64 -d | jq'
@@ -150,7 +147,7 @@ highlight=false
    platform ssh --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT" >}} -- env
    ```
 
-3. Store the data on your local computer in the way you see fit, for example in an encrypted text file for sensitive tokens.
+3. Store the data on your local computer, for example in an encrypted text file for sensitive tokens.
 
 <--->
 
@@ -163,7 +160,7 @@ highlight=false
 1. In the [Console](https://console.platform.sh/), open your project and click **{{< icon settings >}}**.
 2. Click **Project Settings {{< icon chevron >}}**.
 3. Click **Variables** and access your variable's values and settings.
-4. Store the data on your local computer in the way you see fit, for example in an encrypted text file for sensitive tokens.
+4. Store the data on your local computer, for example in an encrypted text file for sensitive tokens.
 
 Note that in the Console, you can't access the value of variables that have been created using the [`--sensitive true` flag](../development/variables/set-variables.md#variable-options).
 Use the CLI instead to retrieve these values.
