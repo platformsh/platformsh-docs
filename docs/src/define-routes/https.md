@@ -241,7 +241,7 @@ It verifies ownership through a _challenge_.
 For Platform.sh projects, it involves a [HTTP-01 challenge](https://letsencrypt.org/docs/challenge-types/#http-01-challenge).
 
 If you include them in your [routes definition](./_index.md),
-Platform.sh checks that both the `example.platform.sh` and `www.example.platform.sh` domains are pointing to your project.
+Platform.sh checks that both the `example.com` and `www.example.com` domains are pointing to your project.
 The certificate also encompasses both these domains.
 See more information about [custom domains](../domains/steps/_index.md).
 
@@ -253,14 +253,14 @@ For the DNS challenge to work, your domains and subdomains should point directly
 Otherwise, you see the following error:
 
 ```text
-  E: Error validating domain www.example.platform.sh: Couldn't complete challenge HTTP01: pending
-  Unable to validate domains www.example.platform.sh, will retry in the background.
+  E: Error validating domain www.example.com: Couldn't complete challenge HTTP01: pending
+  Unable to validate domains www.example.com, will retry in the background.
 ```
 or
 
 ```text
-  W: Failed to verify the challenge at the gateway for the domain 'www.example.platform.sh'
-  E: Error validating domain www.example.platform.sh: Couldn't complete challenge [HTTP01: There was a problem with a DNS query during identifier validation]
+  W: Failed to verify the challenge at the gateway for the domain 'www.example.com'
+  E: Error validating domain www.example.com: Couldn't complete challenge [HTTP01: There was a problem with a DNS query during identifier validation]
 ```
 
 Make sure that both the apex domain and it's `www` subdomain are both pointing to Platform.sh.
