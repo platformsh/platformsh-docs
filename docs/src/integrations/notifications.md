@@ -26,9 +26,9 @@ All projects created prior to 6 April 2020 that did not have any health notifica
 
 Platform.sh monitors disk space usage on all applications and services in your cluster.
 
-* If and when available disk space drops below 20%, a warning notification is generated.
-* If and when available disk space drops below 10%, a critical notification is generated.
-* If and when available disk space goes back above 20% after previously having been lower, an all-clear notification is generated.
+* When available disk space drops below 20% or 4&nbsp;GB, whichever is smaller, a warning notification is generated.
+* When available disk space drops below 10% or 2&nbsp;GB, whichever is smaller, a critical notification is generated.
+* When available disk space returns above 20% or 4&nbsp;GB, whichever is smaller, an all-clear notification is generated.
 
 Notifications are generated every 5 minutes, so there may be a brief delay between when the threshold is crossed and when the notification is triggered.
 
