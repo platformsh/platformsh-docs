@@ -10,7 +10,7 @@ This is particularly useful when your app needs to handle a high number of simul
 
 By default, Platform.sh automatically sets a maximum number of PHP-FPM workers for your app. 
 This number is calculated based on three parameters:
-- The amount of memory you can allot for PHP processing depending on your server specifications.
+- The amount of memory you can allot for PHP processing depending on [app size](../../create-apps/app-reference.md#sizes].
 - The request memory.
   This is the amount of memory an average PHP request is expected to require.
 - The reserved memory. 
@@ -32,7 +32,7 @@ you can refer to your PHP access logs.
 Run a command similar to:
 
 ```bash
-platform log --lines 5000 | awk '{print $6}' | sort -n | uniq -c
+$ platform log --lines 5000 | awk '{print $6}' | sort -n | uniq -c
 ```
 
 This command takes into account the last 5,000 requests that reached PHP-FPM.
@@ -57,7 +57,7 @@ The output shows that:
 - Only 68 requests peaked at around 46 MB of memory.
 
 In this situation, you might want to be cautious 
-and [set your request memory parameter](#2-adjust-the-maximum-number-of-php-fpm-workers) to 12 MB.
+and [set your request memory](#2-adjust-the-maximum-number-of-php-fpm-workers) to 12 MB.
 Setting a lower request memory presents a risk of allowing more concurrent requests. 
 This can result in memory swapping and latencies.
 
@@ -73,7 +73,7 @@ not by Platform.sh.
 
 ## 2. Adjust the maximum number of PHP-FPM workers
 
-By default, the request memory is set to 45 MB,
+By default, the request memory is set to 45 MB
 and the reserved memory is set to 70 MB.
 These values allow most programs to run, 
 but you can amend them to fit your needs.
@@ -94,7 +94,7 @@ runtime:
         reserved_memory: 80
 ```
 
-Note that the minimum value for the `request_memory` key is 10 MB,
+Note that the minimum value for the `request_memory` key is 10 MB
 and the minimum value for the `reserved_memory` key is 70 MB.
 If you set lower values, 
 they're automatically overridden with those minimums.
@@ -104,7 +104,7 @@ open an [SSH session](../../development/ssh/_index.md).
 Run the following command, where `children` refers to PHP-FPM workers:
 
 ```bash
-grep -e '^pm.max_children' /etc/php/*/fpm/php-fpm.conf
+platform ssh -- grep -e '^pm.max_children' /etc/php/*/fpm/php-fpm.conf
 ```
 
 You get output similar to the following:
