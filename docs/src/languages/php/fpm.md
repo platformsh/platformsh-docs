@@ -10,7 +10,7 @@ This is particularly useful when your app needs to handle a high number of simul
 
 By default, Platform.sh automatically sets a maximum number of PHP-FPM workers for your app. 
 This number is calculated based on three parameters:
-- The amount of memory you can allot for PHP processing depending on [app size](../../create-apps/app-reference.md#sizes].
+- The amount of memory you can allot for PHP processing depending on [app size](../../create-apps/app-reference.md#sizes).
 - The request memory.
   This is the amount of memory an average PHP request is expected to require.
 - The reserved memory. 
@@ -24,6 +24,11 @@ You need:
 
 - An up-and-running web app in PHP, complete with [PHP-FPM](https://www.php.net/manual/en/install.fpm.php)
 - The [Platform.sh CLI](../../administration/cli/_index.md)
+
+Note that the memory settings mentioned on this page are different from the `memory_limit` PHP setting 
+defined in your app configuration. 
+The `memory_limit` setting is the maximum amount of memory a single PHP process can use 
+before it is automatically terminated.
 
 ## 1. Estimate the optimal request memory for your app
 
@@ -104,7 +109,7 @@ open an [SSH session](../../development/ssh/_index.md).
 Run the following command, where `children` refers to PHP-FPM workers:
 
 ```bash
-platform ssh -- grep -e '^pm.max_children' /etc/php/*/fpm/php-fpm.conf
+$ grep -e '^pm.max_children' /etc/php/*/fpm/php-fpm.conf
 ```
 
 You get output similar to the following:
