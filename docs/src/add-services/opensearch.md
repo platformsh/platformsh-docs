@@ -21,6 +21,9 @@ To update the versions in this table, use docs/data/registry.json
 |------|-------------------------------|------------------------------ |
 |  {{< image-versions image="opensearch" status="supported" environment="grid" >}} | {{< image-versions image="opensearch" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="opensearch" status="supported" environment="dedicated-gen-2" >}} |
 
+From version 2, you only specify the major version.
+The latest compatible minor version and patches are applied automatically.
+
 {{% image-versions-legacy "opensearch" %}}
 
 ## Relationship
