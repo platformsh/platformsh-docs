@@ -141,7 +141,7 @@ highlight=false
    platform ssh --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT" >}} -- 'echo $PLATFORM_VARIABLES | base64 -d | jq'
    ```
 
-   Note that you can also get all the environment variable values, with:
+   Note that you can also get all the environment variable values with:
 
    ```bash
    platform ssh --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT" >}} -- env
