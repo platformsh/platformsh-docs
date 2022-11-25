@@ -28,7 +28,7 @@ Configure your app to use PHP on Platform.sh.
 
 ### 1. Specify the version
 
-Choose a version from the [list](#supported-versions)
+Choose a [supported version](#supported-versions)
 and add it to your [app configuration](../../create-apps/_index.md):
 
 {{< readFile file="src/registry/images/examples/full/php.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
@@ -53,20 +53,21 @@ See more options for [dependency management](#dependencies).
 To serve your app, define what (and how) content should be served by [setting the `locations`](../../create-apps/app-reference.md#locations):
 
 - Set the `root` folder to which all requests for existing `.php` and static files (such as `.css`, `.jpg`) are sent.
-- Optional: Set a `passthru` to define a front controller to handle non-existent files. The `passthru` value is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
+- Optional: Set a `passthru` to define a front controller to handle non-existent files.
+  The value is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
 
-In the following example, all requests made to the root of your site (`/`) are sent to the `public` directory
-and nonexistent files are handled by `{{<variable "APP" >}}.php`:
+In the following example, all requests made to your site's root (`/`) are sent to the `public` directory
+and nonexistent files are handled by `app.php`:
 
 ```yaml {location=".platform.app.yaml"}
 web:
     locations:
         '/':
             root: 'public'
-            passthru: '/{{<variable "APP" >}}.php'
+            passthru: '/app.php'
 ```
 
-See a step-by-step explanation on how to [create a basic PHP app with a front controller](../../create-apps/web/php-basic.md).
+See how to [create a basic PHP app with a front controller](../../create-apps/web/php-basic.md).
 To have more control, you can define rules to specify which files you want to allow [from which location](../../create-apps/web/php-basic.md#set-different-rules-for-specific-locations).
 
 ### Complete example
@@ -86,7 +87,7 @@ web:
 
 ## Dependencies
 
-By default, PHP images assume you're using Composer 1.x to manage dependencies.
+By default, PHP images assume you're using [Composer](https://getcomposer.org/) 1.x to manage dependencies.
 If you have a `composer.json` file in your code, the default [build flavor is run](../../create-apps/app-reference.md#build):
 
 ```bash
@@ -97,16 +98,16 @@ To use Composer 2.x on your project, in your app configuration, add the followin
 
 ```yaml {location=".platform.app.yaml"}
 dependencies:
-    php: 
+    php:
         composer/composer: '^2'
 ```
 
-When you add a dependency to the `dependencies` block it's made globally available.
-You can add multiple global dependencies to the [dependencies block](../../create-apps/app-reference.md#dependencies).
+Adding a dependency to the [dependencies block](../../create-apps/app-reference.md#dependencies) makes it available globally.
+So you can then use included dependencies as commands within your app container.
+You can add multiple global dependencies to the dependencies block.
 
-If you don't want to use composer or need more control over Composer, you can adapt the [build flavor](#changing-the-flavor).
-
-You can also use [a private, authenticated third party Composer repository](./composer-auth.md).
+To not use Composer or have more control over Composer, adapt the [build flavor](#changing-the-flavor).
+You can also use a [private, authenticated third-party Composer repository](./composer-auth.md).
 
 ### Changing the flavor
 
@@ -307,21 +308,21 @@ Some commonly used settings are:
 To retrieve the default PHP values, connect to the environment and run this [CLI command](../../administration/cli/_index.md):
 
 ```bash
-platform ssh -p {{<variable "PROJECT_ID" >}} -e {{<variable "ENVIRONMENT_ID" >}} 'php -i'
+platform ssh -- php -i
 ```
 
 To get specific default values, use grep.
-For example, to get the value for `opcache.memory_consumption`, run:
+For example, to get the value for `opcache.memory_consumption`, run the following command:
 
 ```bash
-platform ssh -p {{<variable "PROJECT_ID" >}} -e {{<variable "ENVIRONMENT_ID" >}} 'php -i | grep opcache.memory_consumption'
+platform ssh -- php -i | grep opcache.memory_consumption
 ```
 
 ### Customize PHP settings
 
 For {{% names/dedicated-gen-2 %}}, see the [configuration options](../../dedicated-gen-2/overview/grid.md#configuration-options).
 
-There are two ways to customize PHP values for your app.
+You can customize PHP values for your app in two ways.
 The recommended method is to use variables.
 
 {{< codetabs >}}
@@ -335,11 +336,10 @@ file=none
 You can [set variables using the `php:` prefix](../../create-apps/app-reference.md#variables).
 The advantage of this method is that you can use the same files for all your environments and override values on any given environment if needed.
 
-For example, to set the PHP memory limit to 256 MB on a specific environment, run this [CLI command](../../administration/cli/_index.md):
+For example, to set the PHP memory limit to 256 MB on a specific environment, run the following [CLI command](../../administration/cli/_index.md):
 
-<!-- This is in HTML to get the variable shortcode to work properly -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">platform variable:create --project<span class="o">=</span><var spellcheck="false" title="Replace 'PROJECT_ID' with your own data">PROJECT_ID</var> --environment<span class="o">=</span><var spellcheck="false" title="Replace 'ENVIRONMENT' with your own data">ENVIRONMENT</var> --level<span class="o">=</span>environment --prefix<span class="o">=</span>php --name<span class="o">=</span>memory_limit --value<span class="o">=</span>256M --yes
-</code></pre></div>
+```bash
+platform variable:create --environment={{< variable "ENVIRONMENT_NAME" >}} --level=environment --prefix=php --name=memory_limit --value=256M 
 
 You can also set variables directly in the `.platform.app.yaml` file to use them globally.
 To change the PHP memory limit for all environments, use the following configuration:
@@ -359,7 +359,8 @@ file=none
 ---
 
 You can provide a custom `php.ini` file at the [app root](../../create-apps/app-reference.md#root-directory).
-Using that method is not recommended since it offers less flexibility, and is more error-prone, consider using variables instead.
+Using that method isn't recommended since it offers less flexibility and is more error-prone.
+Consider using variables instead.
 
 For example, to change the PHP memory limit, use the following configuration:
 
@@ -398,21 +399,23 @@ Common functions to disable include:
 
 PHP has two execution modes you can choose from:
 
-- Command line interface (PHP-CLI) is the mode used for command line scripts and standalone apps.
+- The command line interface mode (PHP-CLI) is the mode used for command line scripts and standalone apps.
   This is the mode used when you're logged into your container via SSH, for [crons](../../create-apps/app-reference.md#crons),
   and usually also for [alternate start commands](#alternate-start-commands).
-  To use PHP-CLI mode, run your script with `php {{<variable "PATH_TO_SCRIPT" >}}.php` where {{<variable "PATH_TO_SCRIPT" >}} is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
-- Common gateway interface (PHP-CGI) is the mode used for web apps and web requests.
+  To use PHP-CLI, run your script with `php {{<variable "PATH_TO_SCRIPT" >}}`,
+  where {{<variable "PATH_TO_SCRIPT" >}} is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
+- The Common Gateway Interface mode (PHP-CGI) is the mode used for web apps and web requests.
   This is the default mode when the `start` command isn't explicitly set.
-  To use PHP-CGI mode, run your script with the symlink: `/usr/bin/start-php-app {{<variable "PATH_TO_SCRIPT" >}}.php`, where {{<variable "PATH_TO_SCRIPT" >}} is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory), instead of `php`.
-  In CGI mode, PHP is run using the FastCGI Process Manager (PHP-FPM).
+  To use PHP-CGI, run your script with a symlink: `/usr/bin/start-php-app {{<variable "PATH_TO_SCRIPT" >}}`,
+  where {{<variable "PATH_TO_SCRIPT" >}} is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
+  With PHP-CGI, PHP is run using the FastCGI Process Manager (PHP-FPM).
 
 ## Alternate start commands
 
 To specify an alternative process to run your code, set a `start` command.
 For more information about the start command, see the [web commands reference](../../create-apps/app-reference.md#web-commands).
 
-By default, start commands use the PHP-CLI.
+By default, start commands use PHP-CLI.
 Find out how and when to use [which execution mode](#execution-mode).
 
 Note that the `start` command must run in the foreground and is executed before the [deploy hook](../../create-apps/hooks/hooks-comparison.md).
@@ -461,6 +464,7 @@ highlight=false
 3. Configure the container to listen on a TCP socket:
 
     ```yaml {location=".platform.app.yaml"}
+    web:
         upstream:
             socket_family: tcp
             protocol: http
@@ -471,13 +475,13 @@ highlight=false
     See more options on how to [configure where requests are sent](../../create-apps/app-reference.md#upstream).
     You might have to configure your app to connect via the `$PORT` TCP socket,
     especially when using web servers such as [Swoole](swoole.md) or [Roadrunner](https://github.com/roadrunner-server/roadrunner).
-4. Optional: override redirects to let the custom web server handle them:
+4. Optional: Override redirects to let the custom web server handle them:
 
     ```yaml {location=".platform.app.yaml"}
     locations:
-            "/":
-                allow: false
-                passthru: true
+        "/":
+            allow: false
+            passthru: true
     ```
 
 <--->
@@ -488,7 +492,7 @@ file=none
 highlight=false
 ---
 
-To execute runtime-specific tasks (such as clearing cache) before your app starts:
+To execute runtime-specific tasks (such as clearing cache) before your app starts, follow these steps:
 
 1. Create a separate shell script that includes all the commands to be run.
 2. Specify an alternative `start` command by adapting the following:
@@ -497,18 +501,16 @@ To execute runtime-specific tasks (such as clearing cache) before your app start
         commands:
             start: </span><span class="l">bash {{<variable "PATH_TO_SCRIPT" >}}.sh && php {{< variable "PATH_TO_APP" >}}.php</span></code></pre></div>
 
-    Where {{<variable "PATH_TO_SCRIPT" >}}`.sh` is the bash script created in the step 1.
+    Where {{<variable "PATH_TO_SCRIPT" >}}`.sh` is the bash script created in step 1.
     Both {{<variable "PATH_TO_SCRIPT" >}} and {{<variable "PATH_TO_APP" >}} are file paths relative to the [app root](../../create-apps/app-reference.md#root-directory).
 {{< /codetabs >}}
 
 ## Foreign function interfaces
 
-PHP 7.4 introduced support for Foreign Function Interfaces (FFI),
+PHP 7.4 introduced support for [foreign function interfaces (FFIs)](https://en.wikipedia.org/wiki/Foreign_function_interface).
+FFIs allow your PHP program to call routines or use services written in C or Rust.
 
-[Foreign function interfaces (FFI)](https://en.wikipedia.org/wiki/Foreign_function_interface)
-allow your PHP program to call routines or use services written in C or Rust.
-
-Note: FFI are only intended for advanced use cases.
+Note: FFIs are only intended for advanced use cases.
 Use with caution.
 
 If you are using C code, you need `.so` library files.
@@ -517,7 +519,7 @@ Note: The `.so` library files shouldn't be located in a publicly accessible dire
 
 If you are compiling Rust code, use the build hook to [install Rust](https://doc.rust-lang.org/stable/book/ch01-01-installation.html).
 
-To leverage FFI:
+To leverage FFIs, follow these steps:
 
 1. [Enable and configure OPcache](tuning.md#enable-opcache).
 2. Enable the FFI extension:
@@ -528,9 +530,9 @@ To leverage FFI:
             - ffi
    ```
 
-3. Specify a [preload script file](./tuning.md#opcache-preloading) for example `{{<variable "PRELOAD_SCRIPT" >}}.php` in which you call `FFI::load()`.
-    Using `FFI::load()` in preload is considerably faster than loading the linked library on each request or script run.
-4. If you are running FFI from the command line,
+3. Specify a [preload script file](./tuning.md#opcache-preloading), for example `preload.php`, in which you call `FFI::load()`.
+   Using `FFI::load()` in preload is considerably faster than loading the linked library on each request or script run.
+4. If you are running FFIs from the command line,
     enable OPcache for command line scripts in addition to the preloader.
     The standard pattern for the command is `php -d opcache.preload="{{<variable "PRELOAD_SCRIPT" >}}.php" -d opcache.enable_cli=true {{<variable "CLI_SCRIPT" >}}.php`
 

@@ -160,7 +160,7 @@ There are also built-in modules that are always on:
 To see a complete list of extensions in your environment:
 
 ```bash
-platform ssh -p {{<variable "PROJECT_ID" >}} -e {{<variable "ENVIRONMENT_ID" >}} 'php -m'
+platform ssh -p {{<variable "PROJECT_ID" >}} -e {{<variable "ENVIRONMENT_NAME" >}} 'php -m'
 ```
 
 ## Custom PHP extensions
@@ -172,12 +172,12 @@ but it takes slightly more work:
    It can also be added to your Git repository if the file isn't publicly downloadable.
    Note that committing large binary blobs to Git is generally not recommended.
 
-2. Loads the extension using an absolute path by customizing [the PHP settings](./_index.md#customize-php-settings)
+2. Load the extension using an absolute path by [customizing the PHP settings](./_index.md#customize-php-settings)
    For example, if the extension is named `spiffy.so` and is in your app root,
    your configuration looks like:
 
    ```yaml {location=".platform.app.yaml"}
    variables:
-    php:
-        extension=/app/spiffy.so
+       php:
+           extension=/app/spiffy.so
    ```

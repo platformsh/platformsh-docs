@@ -56,7 +56,7 @@ variables:
         opcache.preload: '{{<variable "PRELOAD_SCRIPT" >}}'
 ```
 
-The `opcache.preload` value is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
+`{{<variable "PRELOAD_SCRIPT" >}}` is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
 It may be any PHP script that calls `opcache_compile_file()`.
 
 The following example uses a `preload.php` file as the preload script.
@@ -76,7 +76,7 @@ foreach ($regex as $key => $file) {
 
 ### Configure OPcache
 
-OPcache needs to be tuned before production usage and can be configured the [same way as PHP](../php/_index.md#customize-php-settings).
+OPcache needs to be tuned before production usage and can be configured the [same way as PHP](./_index.md#customize-php-settings).
 
 Let the app run for a while before tuning OPcache
 since the preload script may change some of the configuration.
@@ -87,7 +87,7 @@ since the preload script may change some of the configuration.
 If this value is lower than the number of files in the app,
 the cache becomes less effective because it starts [thrashing](https://en.wikipedia.org/wiki/Thrashing_(computer_science)).
 
-To determine the maximum number of files to cache:
+To determine the maximum number of files to cache, follow these steps:
 
 1. Determine roughly how many `.php` files your app has by running this command from [your app root](../../create-apps/app-reference.md#root-directory):
 
@@ -117,14 +117,14 @@ If the app uses more than this, the cache starts [thrashing](https://en.wikipedi
 Determining the optimal limit to memory consumption requires executing code via a web request to get adequate statistics.
 [`CacheTool`](https://github.com/gordalina/cachetool) is an open-source tool to help you get the statistics.
 
-To determine the total amount of memory to use:
+To determine the total amount of memory to use, follow these steps:
 
 1. Connect to the container via SSH using the [CLI](../../administration/cli/_index.md)
    by running `platform ssh`.
 2. Change to the `/tmp` directory (or any other non-web-accessible writable directory) with `cd /tmp`.
 3. Download CacheTool with `curl -sLO https://github.com/gordalina/cachetool/releases/latest/download/cachetool.phar`.
 4. Make CacheTool executable with `chmod +x cachetool.phar`.
-5. Check the OPcache status for FastCGI commands.
+5. Check the OPcache status for FastCGI commands by running the following command:
 
    ```bash
    php cachetool.phar opcache:status --fcgi=$SOCKET

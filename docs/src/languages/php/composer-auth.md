@@ -9,7 +9,7 @@ aliases:
 
 {{% description %}}
 
-To handle that situation, you can define a `env:COMPOSER_AUTH` [project variable](../../development/variables/set-variables.md#create-project-variables) which allows you to set up authentication as an environment variable. The contents of the variable should be a JSON formatted object containing a `http-basic` object (see [composer-auth specifications](https://getcomposer.org/doc/03-cli.md#composer-auth)).
+To handle that situation, you can define a `env:COMPOSER_AUTH` [project variable](../../development/variables/set-variables.md#create-project-variables) which allows you to set up authentication as an environment variable. The contents of the variable should be a JSON formatted object containing an `http-basic` object (see [composer-auth specifications](https://getcomposer.org/doc/03-cli.md#composer-auth)).
 
 The advantage is that you can control who in your team has access to those variables.
 
@@ -43,7 +43,8 @@ platform variable:create --level project --name env:COMPOSER_AUTH \
 
 The `env:` prefix will make that variable appear as its own Unix environment variable available by Composer during the build process. The optional `--no-visible-runtime` flag means the variable will only be defined during the build hook, which offers slightly better security.
 
-Note: The authentication credentials may be cached in your project's build container, so please make sure you clear the Composer cache upon changing any authentication credentials by running this [CLI command](../../administration/cli/_index.md):
+Note: The authentication credentials may be cached in your project's build container.
+Make sure you clear the Composer cache after changing credentials by running the following [CLI command](../../administration/cli/_index.md):
 
 ```bash
 platform project:clear-build-cache

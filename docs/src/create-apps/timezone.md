@@ -18,10 +18,10 @@ file=none
 highlight=false
 ---
 
-Add the following to your `.platform.app.yaml` file:
+Add the following to your app configuration:
 
-  ```yaml
-  variables:
+```yaml {location=".platform.app.yaml"}
+variables:
       php:
           "date.timezone": "Europe/Paris"
   ```

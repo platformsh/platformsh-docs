@@ -145,7 +145,7 @@ When you've added a command line tool (such as [Drush](../other/glossary.md#drus
 you might encounter an error like the following:
 
 ```bash
--bash: {{<variable "COMMAND_NAME" >}}: command not found
+-bash: drush: command not found
 ```
 
 If you see this, add the command to your path with a [`.environment` file script](./variables/set-variables.md#set-variables-via-script).

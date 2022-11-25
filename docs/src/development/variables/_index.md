@@ -182,14 +182,12 @@ You can apply similar logic for other frameworks.
 
 In the Drupal 9 template, the variable override takes place by creating a new variable composed of three distinct parts each separated by colons:
 
-- The prefix,
-- The configuration object to override,
-- The property you want to set.
+- A prefix
+- The configuration object to override
+- The property to set
 
-For example, to override the site name, set a variable named `drupalsettings:system.site:name`
-and give it the value you want.
-
-To set that value with the [CLI](../../administration/cli/_index.md):
+For example, to override the site name, set a variable named `drupalsettings:system.site:name`.
+To set that value with the [CLI](../../administration/cli/_index.md), run the following command:
 
 ``` bash
 platform variable:create --name "drupalsettings:system.site:name" --value "{{<variable "SITE_NAME" >}}"
@@ -202,5 +200,5 @@ The same logic applies for other configuration options,
 such as the global `$config` array, which uses the variable prefix `drupalconfig`.
 
 To get inspired for other frameworks, see the [Drupal 9 implementation](https://github.com/platformsh-templates/drupal9/blob/8d5d23cdcb91ffa3f96727adf9d3dba74dfc01db/web/sites/default/settings.platformsh.php#L125-L162).
-Please note that the naming of the Platform.sh variables is relative to the ones used in your `settings.platformsh.php` file.
+You need to name your Platform.sh variables to match the ones used in your `settings.platformsh.php` file.
 Make sure that the Platform.sh variables start with a string present in your `switch` statement.
