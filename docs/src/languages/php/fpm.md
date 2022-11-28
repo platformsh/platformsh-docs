@@ -105,11 +105,10 @@ If you set lower values,
 they're automatically overridden with those minimums.
 
 To check the maximum number of PHP-FPM workers available to your app,
-open an [SSH session](../../development/ssh/_index.md).
-Run the following command, where `children` refers to PHP-FPM workers:
+run the following command, where `children` refers to PHP-FPM workers:
 
 ```bash
-$ grep -e '^pm.max_children' /etc/php/*/fpm/php-fpm.conf
+$ platform ssh "grep -e '^pm.max_children' /etc/php/*/fpm/php-fpm.conf"      
 ```
 
 You get output similar to the following:
