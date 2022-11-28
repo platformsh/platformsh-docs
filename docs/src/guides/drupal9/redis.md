@@ -7,10 +7,10 @@ weight: -70
 
 Redis is a fast open-source in-memory database and cache, 
 useful for application-level caching. 
-For more information on this service, see [our dedicated Redis page](../../add-services/redis.md) 
+For more information on this service, see the [dedicated Redis page](../../add-services/redis.md) 
 or the [official Redis documentation](https://redis.io/docs/).
 
-The following steps let you:
+Follow the instructions on this page to do one of the following:
 
 - Add and configure Redis for Drupal 9.x if you have deployed Drupal manually.
 - Fine-tune your existing configuration if you have deployed Drupal 9 using a [Platform.sh template](../../development/templates.md).
@@ -63,7 +63,7 @@ To configure your Redis service:
 1. After [installing the Platform.sh Config Reader library](../../guides/drupal9/deploy/customize.md#install-the-config-reader), 
    add the following code at the top of your `settings.platformsh.php` file:
 
-   ```php
+   ```php {location="settings.platformsh.php"}
     <?php
 
     $platformsh = new \Platformsh\ConfigReader\Config();
@@ -133,7 +133,7 @@ To configure your Redis service:
    ```
 
    You can customize your configuration further 
-   using the inline comments from the above example configuration.
+   using the inline comments from this example configuration.
    For more information on possible configuration options, 
    see the `README.txt` file delivered with the Redis module 
    or the [official Redis documentation](https://redis.io/docs/). 
@@ -166,7 +166,7 @@ After verifying that your site uses Redis for caching,
 if you have a MySQL database,
 purge any remaining cache data in it.
 
-To do so, use the [TRUNCATE TABLE statement](https://dev.mysql.com/doc/refman/8.0/en/truncate-table.html) 
+To do so, use the [`TRUNCATE TABLE` statement](https://mariadb.com/kb/en/truncate-table/) 
 to empty all tables beginning with `cache` except for `cache_form`.
-Despite its name, `cache_form` isn't part of the cache system properties,
+Despite its name, `cache_form` isn't part of the cache system properties
 and shouldn't be moved out of SQL.
