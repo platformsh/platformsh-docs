@@ -10,13 +10,18 @@ This is particularly useful when your app needs to handle a high number of simul
 
 By default, Platform.sh automatically sets a maximum number of PHP-FPM workers for your app. 
 This number is calculated based on three parameters:
-- The amount of memory you can allot for PHP processing depending on [app size](../../create-apps/app-reference.md#sizes).
-- The request memory.
-  This is the amount of memory an average PHP request is expected to require.
-- The reserved memory. 
-  This is the amount of memory you need to reserve for tasks that aren't related to requests. 
+- The container memory: the amount of memory you can allot for PHP processing 
+  depending on [app size](../../create-apps/app-reference.md#sizes).
+- The request memory: the amount of memory an average PHP request is expected to require.
+- The reserved memory: the amount of memory you need to reserve for tasks that aren't related to requests. 
 
-Follow the steps to adjust the maximum number of PHP-FPM workers depending on your app's needs.
+The calculation is performed as follows: ![FPM](/images/php/PHP-FPM-Workers-Calculation.png "0.2")
+
+Note that when the resulting number is a decimal, 
+it is rounded up to set the maximum number of workers.
+Also, the minimum number of PHP-FPM workers is 2.  
+
+To adjust the maximum number of PHP-FPM workers depending on your app's needs, follow the instructions on this page.
 
 ## Before you begin
 
