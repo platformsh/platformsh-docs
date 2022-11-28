@@ -33,7 +33,7 @@ highlight=false
 1. Run the following command:
 
    ```bash
-   platform project:delete --project <PROJECT_ID>
+   platform project:delete --project {{< variable "PROJECT_ID" >}}
    ```
 
 2. Read the consequences to deletion and enter `y`.

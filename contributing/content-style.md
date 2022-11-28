@@ -229,6 +229,8 @@ You use one of two basic types of examples:
 
 For the first type, keep the code basic without any flags users might not need.
 For any text that should be replaced by users, use [variables in code](./markup-format.md#variables-in-code).
+To make the code easier to copy and paste, don't include variables unless necessary.
+For example, don't include the project ID for every CLI command.
 
 For the second type, use example values based on the following table:
 
