@@ -3,7 +3,7 @@ title: "Work with workers"
 description: Interact with your worker instances to handle background tasks for your apps.
 ---
 
-Workers are instances of your code that can't interact with the outside world.
+Workers are instances of your code that aren't open to connections with other apps or services or the outside world.
 They're good for handling background tasks.
 See how to [configure a worker](./app-reference.md#workers) for your app.
 
