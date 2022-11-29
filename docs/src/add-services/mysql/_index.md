@@ -123,11 +123,10 @@ highlight=python
 
 There may be cases where you want to configure a database connection manually.
 
-To get the URL to connect to the database, run the following command
-(replacing `<PROJECT_ID>` and `<ENVIRONMENT_NAME>` with your values):
+To get the URL to connect to the database, run the following command:
 
 ```bash
-platform relationships -p <PROJECT_ID> <ENVIRONMENT_NAME>
+platform relationships
 ```
 
 The result is the complete [information for all relationships](#relationship-reference) with an additional `url` property.

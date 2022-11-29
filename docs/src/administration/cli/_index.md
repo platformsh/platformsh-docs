@@ -129,7 +129,7 @@ Then the CLI hasn't been able to determine the project to use.
 To fix this, run:
 
 ```bash
-platform project:set-remote <PROJECT_ID>
+platform project:set-remote --project {{< variable "PROJECT_ID" >}}
 ```
 
 Replace `<PROJECT_ID>` with the ID of your project.
