@@ -162,7 +162,7 @@ There are also built-in modules that are always on:
 To see a complete list of extensions in your environment:
 
 ```bash
-platform ssh -p <PROJECT_ID> -e <ENVIRONMENT_ID> 'php -m'
+platform ssh 'php -m'
 ```
 
 ## Custom PHP extensions
