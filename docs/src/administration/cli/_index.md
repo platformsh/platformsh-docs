@@ -1,12 +1,13 @@
 ---
-title: "Use the command line interface (CLI)"
+title: Command line interface (CLI)
 weight: -10
 description: |
   See how to use and manage your Platform.sh projects directly from your terminal. Anything you can do within the Console can be done with the CLI.
-sidebarTitle: "Use the CLI"
 layout: single
 keywords:
   - CLI
+  - Command line interface
+  - Terminal
 ---
 
 {{% description %}}
@@ -128,7 +129,7 @@ Then the CLI hasn't been able to determine the project to use.
 To fix this, run:
 
 ```bash
-platform project:set-remote <PROJECT_ID>
+platform project:set-remote --project {{< variable "PROJECT_ID" >}}
 ```
 
 Replace `<PROJECT_ID>` with the ID of your project.

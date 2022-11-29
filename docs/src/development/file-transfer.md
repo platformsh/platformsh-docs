@@ -26,7 +26,7 @@ you may want to view a list of all the mounts inside your app.
 To do so, run the following command:
 
 ```bash
-$ platform mounts --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
+$ platform mounts
 ```
 
 The output is similar to the following:
@@ -105,11 +105,10 @@ As a command-line utility, `scp` lets you copy files to and from a remote enviro
 
 For example, to download a `diagram.png` file from the `web/uploads` directory 
 (relative to the [app root](../create-apps/app-reference.md#root-directory)),
-run the following command 
-(replacing {{< variable "PROJECT_ID" >}} and {{< variable "ENVIRONMENT_NAME" >}} with appropriate values):
+run the following command:
 
 ```bash
-scp "$(platform ssh --pipe -p {{< variable "PROJECT_ID" >}} -e {{< variable "ENVIRONMENT_NAME" >}}":web/uploads/diagram.png .
+scp "$(platform ssh --pipe)":web/uploads/diagram.png .
 ```
 
 The `diagram.png` file is copied to the current local directory.
@@ -118,7 +117,7 @@ To copy files from your local directory to the Platform.sh environment,
 reverse the order of the parameters:
 
 ```bash
-scp diagram.png "$(platform ssh --pipe -p {{< variable "PROJECT_ID" >}} -e {{< variable "ENVIRONMENT_NAME" >}})":web/uploads
+scp diagram.png "$(platform ssh --pipe)":web/uploads
 ```
 
 For other options, see the [`scp` documentation](https://www.man7.org/linux/man-pages/man1/scp.1.html).
@@ -129,18 +128,17 @@ You can use `rsync` to copy files to and from a remote environment.
 
 For example, to copy all the files in the `web/uploads` directory on the remote environment 
 to the local `uploads` directory,
-run the following command 
-(replacing {{< variable "PROJECT_ID" >}} and {{< variable "ENVIRONMENT_NAME" >}} with appropriate values):
+run the following command:
 
 ```bash
-rsync -az "$(platform ssh --pipe -p {{< variable "PROJECT_ID" >}} -e {{< variable "ENVIRONMENT_NAME" >}})":web/uploads/ ./uploads/
+rsync -az "$(platform ssh --pipe)":web/uploads/ ./uploads/
 ```
 
 To copy files from your local directory to the Platform.sh environment, 
 reverse the order of the parameters:
 
 ```bash
-rsync -az uploads/ "$(platform ssh --pipe -p {{< variable "PROJECT_ID" >}} -e {{< variable "ENVIRONMENT_NAME" >}})":web/uploads/
+rsync -az uploads/ "$(platform ssh --pipe)":web/uploads/
 ```
 
 Note that `rsync` is very sensitive about trailing `/` characters.

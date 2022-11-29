@@ -34,19 +34,20 @@ jobs:
             echo "branch_name=pr-${{ github.event.number }}" >> $GITHUB_OUTPUT
           fi
 
-      # Set up environment to use the Platform.sh CLI
-      - uses: adam7/platformsh-cli-action@v1.1
-        with: 
-          token: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+      # Set up workflow environment to use the Platform.sh CLI
+      - name: Set up Platform.sh CLI
+        uses: ./.github/actions/set-up-cli
 
       # Get the URL for the deployed environment
       - name: Get environment URL
+        env:
+          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         id: get_env_url
         run: |
           COMMIT_STATUS="pending"
 
           # Give time for the activity to be reported
-          sleep 60
+          sleep 30
 
           # Get the most recent activity -- will be stable throughout based on ID
           LATEST_ACTIVITY_ID=$(platform api:curl /projects/652soceglkw4u/environments/${{ steps.branch_name.outputs.branch_name }}/activities | jq -r '.[0].id')
