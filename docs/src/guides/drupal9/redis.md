@@ -55,7 +55,7 @@ and `composer.lock` files.
 
 ## Configure your Redis service
 
-To configure your Redis service
+To configure your Redis service, follow these steps:
 
 1. Add the following code at the top of your `settings.platformsh.php` file:
 
