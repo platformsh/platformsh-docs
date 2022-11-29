@@ -293,9 +293,13 @@ relationships:
 To mark where users should replace text with their own data, use the `variable` shortcode.
 Add the variable name in all capital letters and underscores in quotes:
 
-```markdown
-Run the command `platform environment:list --project {{<variable "PROJECT_ID" >}}`.
+````markdown
+Run the following command:
+
+```bash
+platform project:set-remote --project {{< variable "PROJECT_ID" >}}
 ```
+````
 
 #### Variables in codetabs
 
