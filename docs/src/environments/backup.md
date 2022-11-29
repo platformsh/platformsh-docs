@@ -156,6 +156,16 @@ highlight=false
 
 {{< /codetabs >}}
 
+### Automate manual backups
+
+You can also automate the process of creating manual backups through [cron jobs](../create-apps/app-reference.md#crons).
+The cron job should use the CLI command to backup the environment.
+It requires you to [set up the CLI on the environment with an API token](../administration/cli/api-tokens.md#on-a-platformsh-environment).
+
+Although this process is automated,
+backups created in this way count as manual for the [backup schedule](#backup-schedule).
+They don't affect the automated backups taken as part of the schedule.
+
 ## Physical storage location
 
 Backups are stored as binary large objects separate from your environments.
