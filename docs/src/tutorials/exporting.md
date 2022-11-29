@@ -138,13 +138,13 @@ highlight=false
 1. Get the variable's values with:
 
    ```bash
-   platform ssh --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT" >}} -- 'echo $PLATFORM_VARIABLES | base64 -d | jq'
+   platform ssh -- 'echo $PLATFORM_VARIABLES | base64 -d | jq'
    ```
 
    Note that you can also get all the environment variable values with:
 
    ```bash
-   platform ssh --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT" >}} -- env
+   platform ssh -- env
    ```
 
 2. Store the data on your local computer, for example in an encrypted text file for sensitive tokens.

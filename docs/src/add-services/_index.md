@@ -154,11 +154,10 @@ Connecting to a service is a two-step process.
 
 ### 1. Obtain service credentials
 
-To get the credentials for a given service, run the following command
-(replacing `<PROJECT_ID>` and `<ENVIRONMENT_NAME>` with appropriate values):
+To get the credentials for a given service, run the following command:
 
 ```bash
-$ platform relationships -p <PROJECT_ID> -e <ENVIRONMENT_NAME>
+$ platform relationships
 database:
     -
         username: user

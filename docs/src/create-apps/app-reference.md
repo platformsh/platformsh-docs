@@ -750,10 +750,10 @@ file=none
 highlight=false
 ---
 
-Run the following command (replacing `<PROJECT_ID>` and `<ENVIRONMENT_NAME>` with the values for your project and environment):
+Run the following command:
 
 ```bash
-platform redeploy -p <PROJECT_ID> -e <ENVIRONMENT_NAME>
+platform redeploy
 ```
 
 {{< /codetabs >}}
