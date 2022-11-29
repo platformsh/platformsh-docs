@@ -15,10 +15,10 @@ This number is calculated based on three parameters:
 - The request memory: the amount of memory an average PHP request is expected to require.
 - The reserved memory: the amount of memory you need to reserve for tasks that aren't related to requests. 
 
-The calculation is performed as follows: ![FPM](/images/php/PHP-FPM-Workers-Calculation.png "0.2")
+The number is calculated as follows: ![The sum of container memory minus reserved memory divided by request memory](/images/php/PHP-FPM-Workers-Calculation.png "0.2")
 
 Note that when the resulting number is a decimal, 
-it is rounded up to set the maximum number of workers.
+it's rounded up to set the maximum number of workers.
 Also, the minimum number of PHP-FPM workers is 2.  
 
 To adjust the maximum number of PHP-FPM workers depending on your app's needs, follow the instructions on this page.
@@ -32,7 +32,7 @@ You need:
 
 Note that the memory settings mentioned on this page are different from the [`memory_limit` PHP setting](./_index.md). 
 The `memory_limit` setting is the maximum amount of memory a single PHP process can use 
-before it is automatically terminated.
+before it's automatically terminated.
 
 ## 1. Estimate the optimal request memory for your app
 
