@@ -21,12 +21,11 @@ You need:
 
 - A [Drupal 9 version deployed on Platform.sh](../drupal9/deploy/_index.md)
 - The [Platform.sh CLI](../../administration/cli/)
-- [Composer](https://getcomposer.org/), which is recommended by both Platform.sh and Drupal 
-  to [add the Redis module to your Drupal project](../../guides/drupal9/redis.md#3-add-the-drupal-module).
-  Platform.sh also recommends you use Composer to manage your whole site and its dependencies
+- [Composer](https://getcomposer.org/)
 - The [Platform.sh Config Reader library](../../guides/drupal9/deploy/customize.md#install-the-config-reader)
-- A `settings.platformsh.php` file from which you can [manage the configuration of the Redis service](../drupal9/deploy/customize.md#settingsphp) 
-  (already present if you installed Drupal 9 with a template)
+
+You also need a `settings.platformsh.php` file from which you can [manage the configuration of the Redis service](../drupal9/deploy/customize.md#settingsphp). 
+If you installed Drupal 9 with a template, this file is already present in your project.
 
 Note that, by default, Redis is an ephemeral service.
 This means that the Redis storage isn't persistent 
