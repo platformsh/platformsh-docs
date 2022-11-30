@@ -157,10 +157,10 @@ There are also built-in modules that are always on:
 - `Zend OPcache` (from 5.5)
 - `zlib`
 
-To see a complete list of extensions in your environment:
+To see a complete list of the compiled PHP extensions in your environment, run the following [CLI command](../../administration/cli/_index.md):
 
 ```bash
-platform ssh -p {{<variable "PROJECT_ID" >}} -e {{<variable "ENVIRONMENT_NAME" >}} 'php -m'
+platform ssh --environment {{<variable "ENVIRONMENT_NAME" >}} -- php -m
 ```
 
 ## Custom PHP extensions

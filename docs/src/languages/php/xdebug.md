@@ -19,10 +19,8 @@ You need to have:
 
 - PHP 7.2+ on your project
 - The Platform.sh [CLI](../../administration/cli/_index.md)
-- A Xdebug-compatible IDE installed on your machine
-
-    For setup instructions, consult your IDE's Xdebug documentation.
-  Optionally, you can use [PHPStorm](https://www.jetbrains.com/phpstorm/), for which detailed instructions are provided.
+- A Xdebug-compatible IDE installed on your machine.
+    For setup instructions, consult your IDE's Xdebug documentation, such as that for [PHPStorm](https://www.jetbrains.com/help/phpstorm/configuring-xdebug.html).
 
 ## 1. Set up Xdebug
 
@@ -33,10 +31,10 @@ To enable Xdebug, add the following to your [app configuration](../../create-app
 ```yaml {location=".platform.app.yaml"}
 runtime:
     xdebug:
-        idekey: PHPSTORM
+        idekey: {{< variable "YOUR_KEY" >}}
 ```
 
-The `idekey` value can be any arbitrary alphanumeric string.
+{{< variable "YOUR_KEY" >}} can be any arbitrary alphanumeric string.
 
 When that key is defined, Platform.sh starts a second PHP-FPM process on the container that's identically configured but also has Xdebug enabled.
 Only incoming requests that have an Xdebug cookie or query parameter set are forwarded to the debug PHP-FPM process.
@@ -62,8 +60,12 @@ For a full list of available options, consult the [Xdebug documentation](https:/
 
 ### Open a tunnel
 
-From a local checkout of your app,
-run `platform environment:xdebug` (or just `platform xdebug`) to open an SSH tunnel to the server.
+To open an SSH tunnel to the server from a local checkout of your app, run the following [CLI command](../../administration/cli/_index.md) :
+
+```bash
+platform environment:xdebug
+```
+
 That SSH tunnel allows your IDE and the server to communicate debug information securely.
 
 By default, Xdebug operates on port `9003`.
@@ -84,54 +86,23 @@ Helpers are available for [Firefox](https://addons.mozilla.org/en-US/firefox/add
 and [Chrome](https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc).
 Their respective plugin pages document how to trigger them when needed.
 
-## 3. Optional: Use PHPStorm
+## 3. Configure your IDE
 
-The configuration for Xdebug is slightly different for each IDE.
-The configuration instructions are for PHPStorm/IntelliJ due to its popularity in the PHP ecosystem.
+Follow the instructions for your IDE, such as those for [PHPStorm](https://www.jetbrains.com/help/phpstorm/configuring-xdebug.html).
 
-### 1. Configure Xdebug
+The common steps for setup usually include:
 
-In your PHPStorm Settings window, go to **Languages & Frameworks** > **PHP** > **Debug**.
-
-Ensure that the **Debug port** is set to the expected value (`9003`, or whatever you want to use in the `--port` flag)
-and that **Can accept external connections** is checked.
-Other settings are at your discretion.
-
-![Xdebug configuration screen](/images/xdebug/xdebug-settings.png "0.6")
-
-### 2. Configure a server
-
-In your PHPStorm Settings window, go to **Languages & Frameworks** > **PHP** > **Servers**.
-
-Add a new server for your Platform.sh environment.
-The **Host** should be the hostname of the environment on Platform.sh you are debugging.
-The **Port** should always be `443` and the **Debugger** set to `Xdebug`.
-Ensure that **Use path mappings** is selected,
-which makes available a tree of your project with a column to configure the remote path that it should map to.
-
-This page lets you define what remote paths on the server correspond to what path on your local machine.
-In the majority of cases you can just define [your app root](../../create-apps/app-reference.md#root-directory)
-to map to `app`, as in the example below.
-
-![PHP server configuration](/images/xdebug/xdebug-servers.png "0.6")
-
-{{< note >}}
-It may be easier to allow the debug process to connect once, allow it to fail,
-and then select **Configure server mappings**.
-That pre-populates most of the fields in this page and only requires you to set the `app` root mapping.
-{{< /note >}}
-
-### 3. Listen for connections
-
-Toggle on PHPStorm's Xdebug listener.
-Either select **Run** > **Start listening for PHP debug connections** from the menu
-or click the ![Listen for connections](/images/xdebug/xdebug-phpstorm-not-listening.png "0.025-inline") button in the toolbar.
-
-To disable PHPStorm's listener, either select **Run** > **Stop listening for PHP debug connections** from the menu or toggle the ![Stop listening for connections](/images/xdebug/xdebug-phpstorm-listening.png "0.025-inline") icon in the toolbar.
-
-### 4. Start debugging
-
-While in listen mode, start the `platform xdebug` tunnel.
-Use the Xdebug helper plugin for your browser to enable debugging.
-Set a break point in your app, then load a page in your browser.
-The request should pause at the break point and allow you to examine the running app.
+1. Configuring the Xdebug debug port and making sure it's set to the expected value (`9003` as default or the value you chose with `--port` when opening the tunnel).
+2. Making sure that external connections are allowed.
+3. Adding a new server for your Platform.sh environment.
+    The Host should be the hostname of the environment on Platform.sh you are debugging.
+    The Port should always be `443` and the Debugger set to `Xdebug`.
+4. Ensuring path mappings is enabled.
+    This lets you define what remote paths on the server correspond to what path on your local machine.
+    In the majority of cases you can just define [your app root](../../create-apps/app-reference.md#root-directory)
+    to map to `app`.
+5. Listening for connections.
+6. Starting debugging. While in listen mode, start the `platform xdebug` tunnel.
+    Use the Xdebug helper plugin for your browser to enable debugging.
+    Set a break point in your app, then load a page in your browser.
+    The request should pause at the break point and allow you to examine the running app.

@@ -3,6 +3,7 @@ title: Variables overview
 weight: 5
 description: |
   Variables give you control over your project's build process and runtime environment. You can set them in your code to make changes across your project or independent of the code for environment-specific settings.
+layout: single
 keywords:
   - environment variables
 ---
@@ -165,40 +166,61 @@ bar
 
 ### PHP-specific variables
 
-Any variable with the prefix `php:` is added to the PHP configuration for all PHP-based application containers in the project.
+Any variable with the prefix `php` is added to the PHP configuration for all PHP-based application containers in the project.
 
-To apply a setting to all environments or have a setting differ among multiple PHP containers in one project,
-specify the variables in the `.platform.app.yaml` file for your application.
-For more information, see how to [customize PHP settings](../../languages/php/_index.md#customize-php-settings).
+Using variables, you can use the same files for all your environments and override values on any given environment if needed.
+
+You can set the PHP memory limit to 256 MB on a specific environment, by running the following [CLI command](../../administration/cli/_index.md):
+
+```bash
+platform variable:create --level environment --prefix php --name memory_limit --value 256M --environment {{< variable "ENVIRONMENT_NAME" >}}
+```
+
+You can also set variables directly in the `.platform.app.yaml` file to use them globally.
+For example, to change the PHP memory limit for all environments, use the following configuration:
+
+```yaml {location=".platform.app.yaml"}
+variables:
+    php:
+        memory_limit: "256M"
+```
 
 ### Framework-specific variables
 
 For specific frameworks, you can implement logic to override global configurations with [environment-specific variables](./set-variables.md#create-environment-specific-variables).
 So you can use the same codebase and settings for all your environments,
 but still adapt the behavior to each environment.
+See an [implementation example](#implementation-example).
 
-The Drupal templates show examples of overriding variables from Drupal's configuration system.
-You can apply similar logic for other frameworks.
+#### Implementation example
 
-In the Drupal 9 template, the variable override takes place by creating a new variable composed of three distinct parts each separated by colons:
+The [Drupal 9 template](https://github.com/platformsh-templates/drupal9/) shows examples of overriding variables from Drupal's configuration system through environment variables.
 
-- A prefix
-- The configuration object to override
-- The property to set
+The parsing of the variables to override happens in [the `settings.platformsh.php` script](https://github.com/platformsh-templates/drupal9/blob/8d5d23cdcb91ffa3f96727adf9d3dba74dfc01db/web/sites/default/settings.platformsh.php#L125-L162).
 
-For example, to override the site name, set a variable named `drupalsettings:system.site:name`.
-To set that value with the [CLI](../../administration/cli/_index.md), run the following command:
+In that script the override of the site name is defined to look for a variable named `drupalsettings:system.site:name`.
+Variables for the override are composed of three distinct parts each separated by colons:
 
-``` bash
-platform variable:create --name "drupalsettings:system.site:name" --value "{{<variable "SITE_NAME" >}}"
-```
+- A prefix (`drupalsettings`)
+- The configuration object to override (`system.site`)
+- The property to set (`name`)
 
-Setting that variable overrides the `name` property of the `system.site` configuration object
-located in the global `$settings` array.
+Setting the `drupalsettings:system.site:name` variable overrides the `name` property of the `system.site` configuration object located in the global `$settings` array.
 
 The same logic applies for other configuration options,
 such as the global `$config` array, which uses the variable prefix `drupalconfig`.
 
-To get inspired for other frameworks, see the [Drupal 9 implementation](https://github.com/platformsh-templates/drupal9/blob/8d5d23cdcb91ffa3f96727adf9d3dba74dfc01db/web/sites/default/settings.platformsh.php#L125-L162).
-You need to name your Platform.sh variables to match the ones used in your `settings.platformsh.php` file.
+You need to name your Platform.sh variables to match the ones used in your script.
 Make sure that the Platform.sh variables start with a string present in your `switch` statement.
+
+To override the values from the Drupal 9 template:
+
+1. Find out which variables are parsed and the values that can be overridden in the [settings script](https://github.com/platformsh-templates/drupal9/blob/8d5d23cdcb91ffa3f96727adf9d3dba74dfc01db/web/sites/default/settings.platformsh.php#L125-L162). Adapt the script if needed.
+2. If the variables to override don't exist yet, [create them](../../development/variables/set-variables.md).
+    To override the site name on Drupal 9, set the variable by running the following [CLI command](../../administration/cli/_index.md):
+
+    ``` bash
+    platform variable:create --name "drupalsettings:system.site:name" --value "{{<variable "SITE_NAME" >}}"
+    ```
+
+You can apply similar logic [for other frameworks and languages](../../development/variables/use-variables.md#access-variables-in-your-app).

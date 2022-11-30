@@ -46,17 +46,17 @@ Note that the only way to clear the preload cache is by [restarting PHP-FPM](#re
 If you have [disabled OPcache timestamp validation](#disable-opcache-timestamp-validation),
 you need to clear the OPcache explicitly on deployment (which can be done by restarting PHP-FPM).
 
-### Enable OPcache
+### Enable OPcache preloading
 
 To enable preloading, add a variable that specifies a preload script:
 
 ```yaml {location=".platform.app.yaml"}
 variables:
     php:
-        opcache.preload: '{{<variable "PRELOAD_SCRIPT" >}}'
+        opcache.preload: '{{< variable "PRELOAD_SCRIPT" >}}'
 ```
 
-`{{<variable "PRELOAD_SCRIPT" >}}` is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
+`{{< variable "PRELOAD_SCRIPT" >}}` is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
 It may be any PHP script that calls `opcache_compile_file()`.
 
 The following example uses a `preload.php` file as the preload script.
@@ -89,7 +89,9 @@ the cache becomes less effective because it starts [thrashing](https://en.wikipe
 
 To determine the maximum number of files to cache, follow these steps:
 
-1. Determine roughly how many `.php` files your app has by running this command from [your app root](../../create-apps/app-reference.md#root-directory):
+1. Connect to the container via SSH using the [CLI](../../administration/cli/_index.md)
+   by running `platform ssh`.
+2. Determine roughly how many `.php` files your app has by running this command from [your app root](../../create-apps/app-reference.md#root-directory):
 
    ```bash
    find . -type f -name '*.php' | wc -l
@@ -98,7 +100,7 @@ To determine the maximum number of files to cache, follow these steps:
     Note that the returned valued is an approximation.
     Some apps have PHP code in files that don't end in `.php` or files that are generated at runtime.
 
-2. Set `opcache.max_accelerated_files` to a value slightly higher than the returned number.
+3. Set `opcache.max_accelerated_files` to a value slightly higher than the returned number.
    PHP automatically rounds the value up to the next highest prime number.
 
 An example configuration:
@@ -115,7 +117,7 @@ variables:
 If the app uses more than this, the cache starts [thrashing](https://en.wikipedia.org/wiki/Thrashing_(computer_science)) and becomes less effective.
 
 Determining the optimal limit to memory consumption requires executing code via a web request to get adequate statistics.
-[`CacheTool`](https://github.com/gordalina/cachetool) is an open-source tool to help you get the statistics.
+[CacheTool](https://github.com/gordalina/cachetool) is an open-source tool to help you get the statistics.
 
 To determine the total amount of memory to use, follow these steps:
 
@@ -186,11 +188,13 @@ Doing so would prevent updates to the generated code from being loaded.
 
 ## Restart PHP-FPM
 
-To force a restart of PHP-FPM, run `sv restart app`.
+To force a restart of PHP-FPM:
+1. Connect to the container via SSH using the [CLI](../../administration/cli/_index.md) by running `platform ssh`
+2. Run `sv restart app`
 
-To force a restart of PHP-FPM on every deployment, add the command to your [`deploy` hook](../../create-apps/hooks/hooks-comparison.md#deploy-hook).
+To force a restart of PHP-FPM on every deployment, add the `sv restart app` command to your [`deploy` hook](../../create-apps/hooks/hooks-comparison.md#deploy-hook).
 
-To clear the cache when PHP-FPM is restarted, add the command to your [`start` command](../../create-apps/app-reference.md#web-commands).
+To clear the cache when PHP-FPM is restarted, add the `sv restart app` command to your [`start` command](../../create-apps/app-reference.md#web-commands).
 
 ## Optimize your code
 

@@ -71,14 +71,14 @@ Assuming you want to do this for your `main` environment,
 first create a `REBUILD_DATE` environment variable:
 
 ```bash
-platform variable:create -l environment -e main --prefix env: --name REBUILD_DATE --value "$(date)" --visible-build true
+platform variable:create --level environment --prefix env: --name REBUILD_DATE --value "$(date)" --visible-build true -environment main
 ```
 
 This triggers a build right away to propagate the variable.
 To force a rebuild at any time, update the variable with a new value:
 
 ```bash
-platform variable:update -e main --value "$(date)" "env:REBUILD_DATE"
+platform variable:update --value "$(date)" "env:REBUILD_DATE" -environment main
 ```
 
 This forces your application to be built even if no code has changed.
@@ -93,7 +93,7 @@ while that service is experiencing issues.
 To clear the build cache, run the following command:
 
 ```sh
-platform project:clear-build-cache -p {{<variable "PROJECT_ID" >}}
+platform project:clear-build-cache
 ```
 
 The next build for each environment is likely to take longer as the cache rebuilds.
@@ -173,7 +173,7 @@ Platform.sh enforces a 10&nbsp;MB limit on files with the `application/json` `Co
 To send large files, use the `multipart/form-data` header instead:
 
 ```bash
-curl -XPOST 'https://{{<variable "YOUR_DOMAIN" >}}/graphql' --header 'Content-Type: multipart/form-data' -F file=large_file.json
+$ curl -XPOST 'https://example.com/graphql' --header 'Content-Type: multipart/form-data' --form file=large_file.json
 ```
 
 ## Databases
@@ -212,7 +212,7 @@ Make sure that the paths for files like media files, dependencies, and databases
 If large files are already in the repository, the open-source tool [bfg-repo-cleaner](https://rtyley.github.io/bfg-repo-cleaner/)
 can assist in cleaning up the repository by purging older commits, removing unnecessary files, and more.
 
-If none of these suggestions work, create a [support ticket](../overview/get-support.md).
+If none of these suggestions work, create a [support ticket](https://console.platform.sh/-/users/~/tickets/open).
 
 ### Check for errors in the logs
 
@@ -232,8 +232,8 @@ Be careful not to test the scripts on production environments.
 You can also test your hooks with these Linux commands to help debug issues:
 
 ```text
-time {{<variable "YOUR_HOOK_COMMAND" >}} # Print execution time
-strace -T {{<variable "YOUR_HOOK_COMMAND" >}} # Print a system call report
+time {{< variable "YOUR_HOOK_COMMAND" >}} # Print execution time
+strace -T {{< variable "YOUR_HOOK_COMMAND" >}} # Print a system call report
 ```
 
 ### Stuck or slow build or deployment
@@ -254,12 +254,12 @@ When a *deployment* is blocked, you can try the following:
 
 1. Connect to your environment using [SSH](./ssh/_index.md).
 2. Find any long-running cron jobs or deploy hooks on the environment by running `ps -afx`.
-3. Kill any long-running processes with `kill {{<variable "PID" >}}` where `{{<variable "PID" >}}` is the process ID shown by `ps -afx`.
+3. Kill any long-running processes with `kill {{< variable "PID" >}}` where `{{< variable "PID" >}}` is the process ID shown by `ps -afx`.
 
 These steps also work on the parent environment when a `sync` or `activate` process is stuck.
 
 In most regions, stuck builds [time out after one hour](../create-apps/hooks/hooks-comparison.md#timeout).
-To have the build killed in [legacy regions](./regions.md#legacy-regions), create a [support ticket](../overview/get-support.md).
+To have the build killed in [legacy regions](./regions.md#legacy-regions), create a [support ticket](https://console.platform.sh/-/users/~/tickets/open).
 
 ## Cron jobs
 
