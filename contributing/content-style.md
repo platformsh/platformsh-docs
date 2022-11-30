@@ -29,7 +29,9 @@ from Platform.sh engineers to people from the community.
   - [Use the present tense](#use-the-present-tense)
   - [Use contractions](#use-contractions)
   - [Explain abbreviations](#explain-abbreviations)
-  - [Use the long form of commands](#use-the-long-form-of-commands)
+  - [Use clear CLI commands](#use-clear-cli-commands)
+    - [Use the long form of commands](#use-the-long-form-of-commands)
+    - [Make commands work across shells](#make-commands-work-across-shells)
   - [Use notes appropriately](#use-notes-appropriately)
   - [Add short descriptions](#add-short-descriptions)
   - [Guidance enforcement](#guidance-enforcement)
@@ -227,6 +229,8 @@ You use one of two basic types of examples:
 
 For the first type, keep the code basic without any flags users might not need.
 For any text that should be replaced by users, use [variables in code](./markup-format.md#variables-in-code).
+To make the code easier to copy and paste, don't include variables unless necessary.
+For example, don't include the project ID for every CLI command.
 
 For the second type, use example values based on the following table:
 
@@ -298,7 +302,9 @@ Use                                                                         | Av
 It's a new key management service (KMS). You should use this KMS carefully. | It's a new KMS. You should use this KMS carefully.
 You have many service options, including Elasticsearch and Kafka.           | You have many service options, e.g. Elasticsearch, Kafka, etc.
 
-## Use the long form of commands
+## Use clear CLI commands
+
+### Use the long form of commands
 
 The Platform.sh CLI has aliases for certain commands to make typing shorter.
 Some of these are semantically valid, but some might be confusing.
@@ -313,6 +319,16 @@ Use                                                           | Avoid
 To see all available variables, run `platform variable:list`. | To see all available variables, run `platform var`.
 To get a list of users, run `platform user:list`.             | To get a list of users, run `platform users`.
 To login, run `platform login`.                               | To login, run `platform auth:login`.
+
+### Make commands work across shells
+
+Not all shells handle special characters such as `*` the same.
+To ensure commands work on various shells,
+prefer CLI commands with quotes instead of double dashes.
+
+Use                                                                     | Avoid
+------------------------------------------------------------------------|-------
+`platform ssh "grep -e '^pm.max_children' /etc/php/*/fpm/php-fpm.conf"` | `platform ssh -- grep -e '^pm.max_children' /etc/php/*/fpm/php-fpm.conf`
 
 ## Use notes appropriately
 

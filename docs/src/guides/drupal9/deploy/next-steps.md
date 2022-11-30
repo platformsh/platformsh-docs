@@ -59,7 +59,7 @@ All updates should be done through composer to update the lock file, and then pu
 [Drush site aliases](https://www.drush.org/latest/site-aliases/) help you manage your development websites.
 
 The Platform.sh CLI can generate Drush aliases for you automatically
-when you clone a project using the `platform get <PROJECT_ID>` command.
+when you clone a project using the <code>platform get {{< variable "PROJECT_ID" >}}</code> command.
 
 To see the aliases that are created, run `platform drush-aliases` and you should get output similar to that below:
 

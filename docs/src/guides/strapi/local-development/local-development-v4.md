@@ -9,7 +9,7 @@ To run your Strapi v4 app locally with all of its services, follow these steps:
 1. Download your deployed code by running the following command using the Platform.sh CLI:
 
    ```bash
-   platform get <PROJECT_ID>
+   platform get {{< variable "PROJECT_ID" >}}
    ```
 
 2. Create a new branch.

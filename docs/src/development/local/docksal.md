@@ -47,7 +47,7 @@ Now you can run `fin platform <command>` from your computer without needing to i
 To get your project, pull it with the following command:
 
 ```bash
-fin pull init --hosting-platform='platformsh' --hosting-site=<PROJECT_ID> --hosting-env=<ENVIRONMENT_NAME> <TARGET_DIRECTORY_NAME>
+fin pull init --hosting-platform='platformsh' --hosting-site={{< variable "PROJECT_ID" >}} --hosting-env={{< variable "ENVIRONMENT_NAME" >}} {{< variable "TARGET_DIRECTORY_NAME" >}}
 ```
 
 This creates a directory with the specified name with all your files and code.
