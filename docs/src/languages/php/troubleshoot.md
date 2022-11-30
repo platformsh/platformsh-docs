@@ -19,7 +19,7 @@ This means some requests have to wait until another finishes.
 Platform.sh sets the number of workers based on the available memory of your container
 and the estimated average memory size of each process.
 
-There are two ways to increase the number of workers:
+You have two ways to increase the number of workers:
 
 - Adjust the [worker sizing hints](./fpm.md) for your project.
 - Upgrade your Platform.sh plan to get more computing resources.

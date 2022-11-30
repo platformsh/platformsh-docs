@@ -140,7 +140,7 @@ and turn off those on by default with the `disabled_extensions` key.
 | `zendopcache`     | Def   | *     | *     | *     | *     | *     | *     | *     | *     | *     |
 | `zip`             |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 
-There are also built-in modules that are always on:
+Some built-in modules are always on:
 
 - `date`
 - `filter`

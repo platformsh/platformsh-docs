@@ -8,7 +8,7 @@ Platform.sh offers a wide degree of flexibility in how PHP behaves,
 but that does mean you may need to take a few steps to ensure your site is running optimally.
 
 The following recommendations are guidelines only.
-They're also listed in approximately the order to investigate them.
+They're also listed in about the order to investigate them.
 
 ## Upgrade to PHP 8
 
