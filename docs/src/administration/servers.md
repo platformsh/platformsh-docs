@@ -5,12 +5,11 @@ weight: 10
 ---
 
 Platform.sh runs a variety of servers to deliver its services.
-To get you the newest features, these servers are occasionally updated.
-This ensures your projects get the latest features.
+To ensure your projects get the newest features, these servers are occasionally updated.
 
 You don't have to do anything to get the updates.
 When they're ready for your project, you see an activity about the server being updated in your [activity logs](../increase-observability/logs/access-logs.md#activity-logs).
-These activities shouldn't cause downtime for your project.
+These activities don't cause downtime for your project.
 
 The log of the specific activity includes a description of what has changed with the update.
 
