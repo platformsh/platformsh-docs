@@ -849,40 +849,6 @@ hr {
   border-bottom: .1rem solid #ffffff;
 }
 
-
-.nav-tabs .nav-link {
-  color: var(--brand-font-color-black);
-  background-color: var(--info);
-  color: var(--white);
-}
-
-.nav-tabs .nav-link.active,
-.nav-tabs .show > .nav-link {
-  color: var(--brand-color-primary-blue);
-  background-color: #fff;
-  border-bottom: .5px solid var(--primary);
-  /* border-bottom: none; */
-  background-color: var(--primary);
-}
-
-.tab-content > .active {
-  display: block;
-  /* background-color: var(--primary); */
-  /* background-color: #f0f0f0; */
-  /* border: 1.5px solid #dddddd; */
-  /* border: 0rem !important; */
-  /* border-right: 1px solid var(--brand-font-color-black);
-  border-left: 1px solid var(--brand-font-color-black);
-  border-bottom: 1px solid var(--brand-font-color-black); */
-  /* padding: 1rem !important; */
-  padding-bottom: .5rem;
-  /* box-sizing: none !important; */
-  /* max-height: 200px;
-  overflow-y: scroll;
-  top: 0;
-  bottom: 0; */
-}
-
 .tab-content > .active > .highlight > pre {
   max-height: 30rem;
   overflow: scroll;
