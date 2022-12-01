@@ -177,8 +177,8 @@ and then runs the `update` source operation:
 ```yaml {location=".platform.app.yaml"}
 crons:
     update:
-        # Run the 'update' source operation every day at midnight.
-        spec: '0 0 * * *'
+        # Run the 'update' source operation every day between midnight and 01:00.
+        spec: 'H 0 * * *'
         commands:
             start: |
                 set -e
