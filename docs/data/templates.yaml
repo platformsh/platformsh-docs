@@ -300,6 +300,40 @@ php:
       Automatic TLS certificates<br />
       Composer-based build<br />
     runtime: php
+  - shortname: drupal9-govcms9
+    name: GovCMS 9
+    repo: https://github.com/platformsh-templates/drupal9-govcms9
+    description: >
+      <p>This template builds the Australian government's GovCMS Drupal 9
+      distribution using the Drupal Composer project for better flexibility.  It
+      is pre-configured to use MariaDB and Redis for caching.  The Drupal
+      installer will skip asking for database credentials as they are already
+      provided.</p>
+
+      <p>GovCMS is a Drupal distribution built for the Australian government,
+      and includes configuration optimized for managing government websites.</p>
+    image: >-
+      data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'
+      width='199.37'
+      height='225'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%232ba9e0%7D%3C/style%3E%3C/defs%3E%3Cg
+      %3E%3Cg %3E%3Cpath class='cls-1' d='M93.78 139.31a35.5 35.5 0 1 0 35.5
+      35.5 35.51 35.51 0 0 0-35.5-35.5zM138 132.51a61.17 61.17 0 0 1-9.26
+      92.49c29.31-9 53.56-31.06 64.4-57.73 15-36.92 1-64.67-22.43-89.87a45.68
+      45.68 0 0 1 1.15 10.11 46.88 46.88 0 0 1-33.86 45zM97.82 87.57A27.19 27.19
+      0 1 0 125 60.43a27.16 27.16 0 0 0-27.18 27.14z'/%3E%3Cpath class='cls-1'
+      d='M47 214.22a61.17 61.17 0 0 1 39.55-100.1 46.82 46.82 0 0 1
+      44.75-72.89C116 28 100.72 14.62 88.66 0c6.13 64.13-58.4 40.82-82.32
+      100C-9.62 139.58 4.79 188.56 47 214.22z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E
+    deploy: >-
+      https://console.platform.sh/projects/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/drupal9-govcms9/.platform.template.yaml
+    content: |
+      PHP 8.0<br />
+      MariaDB 10.4<br />
+      Redis 6<br />
+      Drush included<br />
+      Automatic TLS certificates<br />
+      Composer-based build<br />
+    runtime: php
   - shortname: drupal9-multisite
     name: Drupal 9 Multisite
     repo: https://github.com/platformsh-templates/drupal9-multisite

@@ -33,7 +33,7 @@ highlight=false
 1. Run the following command:
 
    ```bash
-   platform url --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
+   platform url
    ```
 
 2. Select the URL to open in a browser.

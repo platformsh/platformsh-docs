@@ -68,7 +68,7 @@ and turn off those on by default with the `disabled_extensions` key.
 | `imap`            | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `interbase`       | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |       |
 | `intl`            | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
-| `ioncube`         |       |       |       | Avail | Avail | Avail |       |       |       |       |
+| `ioncube`         |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail |       |
 | `json`            |       |       | Def   | Def   | Def   | Def   | Def   | Def   | *     | *     |
 | `ldap`            | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `mailparse`       |       |       |       | Avail | Avail | Avail |       | Avail | Avail | Avail |
@@ -162,7 +162,7 @@ There are also built-in modules that are always on:
 To see a complete list of extensions in your environment:
 
 ```bash
-platform ssh -p <PROJECT_ID> -e <ENVIRONMENT_ID> 'php -m'
+platform ssh 'php -m'
 ```
 
 ## Custom PHP extensions
