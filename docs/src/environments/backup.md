@@ -86,6 +86,9 @@ For Dedicated environments, see more about [backups of Dedicated environments](.
 For Grid environments, automated backups are taken for Production environments at least once every day.
 The exact number of backups depends on your [backup schedule](#backup-schedule).
 
+Daily backups are taken at around 4:00 every day based on the [project timezone](../projects/change-project-timezone.md).
+The time for 6-hourly backups is based on the daily backup.
+
 Automated backups are always [live](#live-backups).
 
 {{% legacy-regions featureIntro="Live automated backups" featureShort="live automated backups" level=3 plural=true %}}
@@ -155,6 +158,16 @@ highlight=false
 4. Click **Backup**.
 
 {{< /codetabs >}}
+
+### Automate manual backups
+
+You can also automate the process of creating manual backups through [cron jobs](../create-apps/app-reference.md#crons).
+The cron job uses the CLI command to back up the environment.
+It requires you to [set up the CLI on the environment with an API token](../administration/cli/api-tokens.md#on-a-platformsh-environment).
+
+Although this process is automated,
+backups created in this way count as manual for the [backup schedule](#backup-schedule).
+They don't affect the automated backups taken as part of the schedule.
 
 ## Physical storage location
 

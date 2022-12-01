@@ -41,10 +41,11 @@ You are now ready to run CLI commands and connect to an environment.
 To access an app in a given environment via the CLI, run the following command:
 
 ```bash
-platform ssh -p <PROJECT_ID> -e <ENVIRONMENT_NAME> -A <APPLICATION_NAME>
+platform ssh --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}} --app {{< variable "APPLICATION_NAME" >}}
 ```
 
-Replace each of `<PROJECT_ID>`, `<ENVIRONMENT_NAME>`, and `<APPLICATION_NAME>` with the values you want to access.
+Replace each of <code>{{< variable "PROJECT_ID" >}}</code>, <code>{{< variable "ENVIRONMENT_NAME" >}}</code>, and <code>{{< variable "APPLICATION_NAME" >}}</code>
+with the values you want to access.
 
 Alternatively, just run `platform ssh` and select the values from each list presented to you.
 
@@ -103,11 +104,10 @@ Consult the documentation for your application for how to enter SSH credentials.
 
 #### Get SSH connection details
 
-To get the host and username for connections, run the following command
-(replacing `<PROJECT_ID>` and `<ENVIRONMENT_NAME>` with appropriate values):
+To get the host and username for connections, run the following command:
 
 ```bash
-$ platform ssh --pipe -p <PROJECT_ID> -e <ENVIRONMENT_NAME>
+$ platform ssh --pipe
 jyu7waly36ncj-main-7rqtwti--app@ssh.us.platform.sh
 ```
 

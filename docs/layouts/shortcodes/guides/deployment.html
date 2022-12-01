@@ -5,6 +5,6 @@
 
 If you set up an integration to a repository that contained many pull requests with the <code>--build-pull-requests=false</code> flag, you can now activate the current environment to complete your deployment.
 
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ platform environment:activate -p &lt;PROJECT_ID&gt; -e &lt;BRANCH_NAME&gt;</code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ platform environment:activate -e &lt;ENVIRONMENT_NAME&gt;</code></pre></div>
 ` }}
 {{ partial "note" (dict "Inner" $inner "context" .) }}

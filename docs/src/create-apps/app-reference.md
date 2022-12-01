@@ -620,7 +620,7 @@ The following table shows the properties for each job:
 
 | Name               | Type                                         | Required | Description |
 | ------------------ | -------------------------------------------- | -------- | ----------- |
-| `spec`             | `string`                                     | Yes      | The [cron specification](https://en.wikipedia.org/wiki/Cron#CRON_expression). |
+| `spec`             | `string`                                     | Yes      | The [cron specification](https://en.wikipedia.org/wiki/Cron#CRON_expression). To prevent competition for resources that might hurt performance, use `H` in definitions to indicate an unspecified but invariant time. For example, instead of using `0 * * * *` to indicate the cron job runs at the start of every hour, you can use `H * * * *` to indicate it runs every hour, but not necessarily at the start. This prevents multiple cron jobs from trying to start at the same time. |
 | `commands`         | A [cron commands dictionary](#cron-commands) | Yes      | A definition of what commands to run when starting and stopping the cron job. |
 | `shutdown_timeout` | `integer`                                    | No       | When a cron is canceled, this represents the number of seconds after which a `SIGKILL` signal is sent to the process to force terminate it. The default is `10` seconds. |
 | `timeout`          | `integer`                                    | No       | The maximum amount of time a cron can run before it's terminated. Defaults to the maximum allowed value of `86400` seconds (24 hours).
@@ -635,7 +635,7 @@ The following table shows the properties for each job:
 ```yaml {location=".platform.app.yaml"}
 crons:
     mycommand:
-        spec: '*/19 * * * *'
+        spec: 'H * * * *'
         commands:
             start: sleep 60 && echo sleep-60-finished && date
             stop: killall sleep
@@ -750,10 +750,10 @@ file=none
 highlight=false
 ---
 
-Run the following command (replacing `<PROJECT_ID>` and `<ENVIRONMENT_NAME>` with the values for your project and environment):
+Run the following command:
 
 ```bash
-platform redeploy -p <PROJECT_ID> -e <ENVIRONMENT_NAME>
+platform redeploy
 ```
 
 {{< /codetabs >}}
