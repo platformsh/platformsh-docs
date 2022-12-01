@@ -1,80 +1,98 @@
 ---
-title: "Authenticating with API tokens"
+title: "Authenticate the Platform.sh CLI using an API token"
 sidebarTitle: "API tokens"
 weight: 1
 ---
 
-When setting up CI services and other automation tools,
-you may want to allow them to use the Platform.sh CLI to carry out certain tasks.
-Logging in via a browser isn't an option in these cases.
+You need to set up an API token to authenticate the Platform.sh CLI and do the following:
+- Run automated tasks from a CI system using the CLI.
+- Run automated tasks directly on app container, for example via a cron hook, using the CLI.
 
-To run the CLI from such a tool or on an app container, such as via a cron hook, set up an API token to authenticate.
+## Before you begin
 
-## Create a machine user
+You need the [Platform.sh CLI](../cli/_index.md).
 
-For security reasons, we recommend creating a dedicated machine user to run automation tasks,
-such as taking backups and triggering source operations.
-We also strongly recommend creating a unique machine user for each project to be automated.
+## 1. Create a machine user
 
-Like human users, every machine user account needs its own unique email address.
+To safely run automated tasks, you need to create machine users.
+Each machine user has its own Platform.sh account associated with a unique email address.
+You can grant them restrictive [access permissions](../users.md) to handle specific automated tasks.
+For security purposes, create a machine user for each type of task you want to automate.
 
-The machine user can be given a very restrictive set of [access permissions](../users.md) limited to just its needed tasks.
-For example, backups require `Admin` access but no SSH key,
-while checking out code from a CI server to run tests on it would require an SSH key but only `Viewer` access.
+To create a machine user, follow the steps:
 
-It also shows up in logs and activity streams as a separate entry from human users.
+1. Run the following command using your machine user's email address.
+   ```bash
+   platform user:add email@example.com
+   ```
+2. Choose the project where you want to add the machine user.
+3. To make the machine user a viewer of the project, press **Enter**.
+4. Grant the user [permissions](/administration/users.md) depending on your needs and the environment type.
+5. To send an invitation to the email address provided in step 1, press **Enter**. 
+6. In the email invitation, click **Create account**.
+7. To create a Platform.sh account for the machine user, follow the steps.
 
-To add the user:
+## 2. Assign an API token to your machine user
 
-1. In a terminal, run `platform user:add email@example.com`, replacing the email with the one for your machine user.
-1. (If not within a specific project) choose a project to add the user to.
-1. Press `enter` to make the user a viewer of the entire project.
-1. Assign the user the correct permissions for each environment type.
-   (See the [users documentation](/administration/users.md) for more on access levels.)
-1. Press `enter` to send the invitation.
-1. In your email, click the link in the invitation to accept and then follow the steps to create an account.
+### Create a Platform.sh API token
 
-## Get a token
-
-Once you have a machine user in place, you want to assign an API token to it.
-
-To get an API token:
-
-1. As the machine user, open the Console.
-2. Open the user menu (your name or profile picture).
+1. Log in to the Console as your machine user.
+2. To open the user menu, click the downward arrow at the top right-hand side of the screen:
+   ![The user menu in the Console](/images/management-console/user-menu.png "0.6")
 3. Click **My profile**.
-4. Go to the **API Tokens** tab.
+4. Go to the **API TOKENS** tab.
 5. Click **Create API Token**.
-   ![The Create API Token button in the Console](/images/management-console/api-tokens-new.png "0.6")
-6. Enter a name to identify your token in the future if you have multiple tokens.
+   ![The Create API Token button in the Console](/images/management-console/create-api-token-button.png "0.6")
+6. Enter a name for your API token and click **Create API Token**.
    ![Creating an API token with the name 'CI tests'](/images/management-console/api-tokens-name.png "0.6")
-7. Click **Copy** to copy the token to your clipboard.
-   Make sure to store the key safely as you can't view the API token again.
+7. To copy the API token to your clipboard, click **Copy**.
    ![Viewing the API token after it's created](/images/management-console/api-tokens-view.png "0.6")
+8. Store the API token somewhere secure on your computer.
+   Note that after you quit the Console, you can't display the API token again.
 
-## Use the API token to authenticate the CLI
+### Check the validity of your API token
 
-Once you have the API token copied, you can use it for your automation tools.
+To check that your API token is valid, run the following command:
 
-### In another CI system
+```bash
+$ platform auth:api-token-login
+```
 
-Set the token in an environment variable named `PLATFORMSH_CLI_TOKEN` on the system where the CLI runs.
-Consult the documentation for your CI system to see how to do that.
+When prompted, enter your API token and press **Enter**.
 
-{{< note >}}
+You get output similar to this:
 
-If running CLI commands from any automated system,
-we urge you to use the `--no-wait` flag on any commands that may take more than a second or two to avoid blocking the process.
+```bash
+The API token is valid.
+You are logged in.
+```
 
-{{< /note >}}
+For security reasons, rotate your API tokens regularly.
+When an API token is compromised, revoke it immediately.
 
-### On a Platform.sh environment
+## 3. Authenticate the Platform.sh CLI using your API token
 
-To allow the Platform.sh CLI to be run on an app container, such as via a cron hook, use the API token.
-The CLI can automatically detect the current project and environment.
+After you create your API token, you can use it to do the following:
 
-Set the token as a [top-level environment variable](../../development/variables/_index.md#top-level-environment-variables)
-either using the [CLI](../cli/_index.md) or in the [Console](../web/_index.md):
+-  Allow a CI system to run automated tasks using the Platform.sh CLI.
+-  Run automated tasks on an app container using the Platform.sh CLI, 
+   for example via a cron hook. 
+
+Note that, when running CLI commands from a CI system or on an app container,
+some operations might take time to complete. 
+To avoid waiting for an operation to complete before moving on to the next one, 
+use the `--no-wait` flag.
+
+### Authentication in a CI system
+
+You can allow your CI system to run automated tasks using the Platform.sh CLI.
+To do so, create an environment variable named `PLATFORMSH_CLI_TOKEN` using your API token. 
+For more information, see your CI system's official documentation.
+
+### Authentication on a Platform.sh environment
+
+You can run automated tasks on an app container using the Platform.sh CLI.
+To do so, set your API token as a [top-level environment variable](../../development/variables/_index.md#top-level-environment-variables).
 
 {{< codetabs >}}
 ---
@@ -98,7 +116,7 @@ highlight=false
 
 1. Open the environment where you want to add the variable.
 2. Click {{< icon settings >}} **Settings**.
-3. Click **Variables**.
+3. Click **VARIABLES**.
 4. Click **+ Add variable**.
 5. In the **Variable name** field, enter `env:PLATFORMSH_CLI_TOKEN`.
 6. In the **Value** field, enter your API token.
@@ -132,11 +150,6 @@ hooks:
         echo 'export PATH="'$PLATFORM_APP_DIR'/.linuxbrew/bin:'$PLATFORM_APP_DIR'/.linuxbrew/sbin${PATH+:$PATH}";' >> $PLATFORM_APP_DIR/.environment
 ```
 
-This downloads the CLI to a known directory, `.platformsh/bin`,
-which is added to the PATH at runtime (via the .environment file).
-Because the API token is available, the CLI can now run authenticated commands,
-acting as the user who created the token.
-
 You can now call the CLI from within the shell on the app container or via a cron hook.
 
 For caching and other advanced topics,
@@ -154,18 +167,10 @@ To run a cron only on your production environment, check the environment type as
 ```yaml
 crons:
     backup:
-        spec: 'H 4 * * *'
+        spec: '0 0 * * *'
         commands:
             start: |
                 if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-                   platform backup:create --yes --no-wait
+                   platform source-operation:run update --no-wait --yes
                 fi
 ```
-
-{{< note >}}
-
-If you're running CLI commands from any automated system, including a Platform.sh cron task,
-it's best to use the `--no-wait` flag on any commands that may take more than a second or two to avoid blocking the process.
-Failure to do so may result in long deploy times and site downtime.
-
-{{< /note >}}
