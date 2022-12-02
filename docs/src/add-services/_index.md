@@ -140,41 +140,64 @@ For some services, you can change the timezone for the running service
 
 ## Connect to a service
 
-Once a service is running and exposed as a relationship,
-its appropriate credentials (such as the host, username, and password) are available through the `PLATFORM_RELATIONSHIPS` environment variable.
-The structure of each is documented on the appropriate service's page along with sample code for how to connect to it from your application.
+For security reasons, you can't access services directly through HTTP.
+You can connect through your app or by opening an SSH tunnel to access the service directly.
+
+{{< codetabs >}}
+---
+title=In an app
+highlight=false
+file=none
+---
+
+When connecting to a service from an app, you may want to use one of the Platform.sh [configuration readers](https://github.com/platformsh/?q=config+reader).
+These tools make it easier to get credentials inside your app.
+
+Alternatively, once a service is running and exposed as a relationship,
+its credentials (such as the host, username, and password) are available through the `PLATFORM_RELATIONSHIPS` environment variable.
+The available information is documented on each service's page along with sample code for how to connect to it from your app.
 
 The keys in the `PLATFORM_RELATIONSHIPS` variable are fixed, but the values may change on deployment or restart.
-So you should check the environment variable every time your script or app starts.
+So use the environment variable rather than hard coding the values.
 
-Access to the database or other services is only available from your apps.
-For security reasons, they can't be accessed directly.
+<--->
+---
+title=Through an SSH tunnel
+highlight=false
+file=none
+---
 
-Connecting to a service is a two-step process.
+Connecting to a service using an SSH tunnel is a two-step process.
 
 ### 1. Obtain service credentials
+
 
 To get the credentials for a given service, run the following command:
 
 ```bash
 $ platform relationships
+```
+
+You get output like the following:
+
+```bash
 database:
     -
         username: user
         scheme: mysql
         service: database
         fragment: null
-        ip: 246.0.80.37
-        hostname: e3wffyxtwnrxujeyg5u3kvqi6y.database.service._.us.platformsh.site
+        ip: 198.51.100.37
+        hostname: abcdefghijklm1234567890123.database.service._.eu.platformsh.site
         public: false
-        cluster: jyu7waly36ncj-main-7rqtwti
+        cluster: abcdefgh1234567-main-abcd123
         host: database.internal
         rel: mysql
         query:
             is_master: true
         path: main
         password: ''
-        type: 'mariadb:10.5'
+        type: 'mariadb:10.6'
         port: 3306
         host_mapped: false
         url: 'mysql://user:@database.internal:3306/main'
@@ -182,15 +205,21 @@ database:
 
 With this example, you can connect to the `database` relationship
 with the user `user`, an empty password, and the database name `main` (from the `path`).
-Find a full database connection in the `url` property.
+The `url` property shows a full database connection that can be used from your app.
 
-### 2. Connect to an SSH tunnel
+### 2. Open an SSH tunnel
 
-Once you have [opened an SSH tunnel](../development/ssh/_index.md#connect-to-services),
-you can use it to connect to your service.
+Open a single [SSH tunnel](../development/ssh/_index.md#connect-to-services) by running the following CLI command:
 
-If you have a direct tunnel,
-you might connect to `127.0.0.1:30000` to the `main` database with the username `user` and an empty password.
+```bash
+platform tunnel:single --relationship {{< variable "RELATIONSHIP_NAME" >}}
+```
 
-If you have an app tunnel, you might SSH to `ssh.us.platform.sh` as user `jyu7waly36ncj-main-7rqtwti--app`
-and then connect to host `database.internal` to the `main` database with the username `user` and an empty password.
+By default, this opens a tunnel at `127.0.0.1:30000`.
+You can specify the port for the connection using the `--port` flag.
+
+You can then connect to this service in a separate terminal or locally running app.
+With the example above, you connect to a URL like the following:
+`mysql://user:@127.0.0.1:30000/main'`
+
+{{< /codetabs >}}
