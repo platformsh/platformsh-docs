@@ -224,22 +224,14 @@ The configuration directory is a collection of configuration data, like a data d
 Because Solr uses HTTP for both its API and admin interface it's possible to access the admin interface over an SSH tunnel.
 
 ```bash
-platform tunnel:open
+platform tunnel:open --relationship {{< variable "RELATIONSHIP_NAME" >}}
 ```
 
-That opens an SSH tunnel to all services on the current environment and gives an output similar to:
+By default, this opens a tunnel at `127.0.0.1:30000`.
 
-```bash
-SSH tunnel opened on port 30000 to relationship: solrsearch
-SSH tunnel opened on port 30001 to relationship: database
-Logs are written to: /home/myuser/.platformsh/tunnels.log
-
-List tunnels with: platform tunnels
-View tunnel details with: platform tunnel:info
-Close tunnels with: `platform tunnel:close`
-```
-
-In this example, you can now open `http://localhost:30000/solr/` in a browser to access the Solr admin interface. Note that you can't create indexes or users this way, but you can browse the existing indexes and manipulate the stored data.
+You can now open `http://localhost:30000/solr/` in a browser to access the Solr admin interface.
+Note that you can't create indexes or users this way,
+but you can browse the existing indexes and manipulate the stored data.
 
 {{< note >}}
 
