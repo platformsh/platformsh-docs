@@ -57,7 +57,7 @@ The Blackfire automated integration is available for Grid environments only.
 When you create a new environment,
 it automatically triggers the creation of a Blackfire environment with the same settings.
 On this Blackfire environment, you have access to [all the features provided by Blackfire](https://www.blackfire.io/features/).
-This includes monitoring, profiling, alerting and build-related features.
+This includes monitoring, profiling, alerting, and build-related features.
 
 When a Blackfire environment is created based on a Grid environment,
 user access settings are replicated from the Platform.sh Console to Blackfire.
