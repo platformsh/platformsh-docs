@@ -925,7 +925,9 @@
     "versions-dedicated-gen-3": {
       "deprecated": [],
       "supported": [
-        "3.9 BETA"
+        "3.11",
+        "3.10",
+        "3.9"
       ]
     }
   },
