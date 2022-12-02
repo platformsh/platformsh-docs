@@ -71,14 +71,14 @@ Assuming you want to do this for your `main` environment,
 first create a `REBUILD_DATE` environment variable:
 
 ```bash
-platform variable:create --level environment --prefix env: --name REBUILD_DATE --value "$(date)" --visible-build true -environment main
+platform variable:create --environment main --level environment --prefix env --name REBUILD_DATE --value "$(date)" --visible-build true
 ```
 
 This triggers a build right away to propagate the variable.
 To force a rebuild at any time, update the variable with a new value:
 
 ```bash
-platform variable:update --value "$(date)" "env:REBUILD_DATE" -environment main
+platform variable:update --environment main --value "$(date)" "env:REBUILD_DATE"
 ```
 
 This forces your application to be built even if no code has changed.

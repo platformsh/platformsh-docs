@@ -160,7 +160,7 @@ Some built-in modules are always on:
 To see a complete list of the compiled PHP extensions, run the following [CLI command](../../administration/cli/_index.md):
 
 ```bash
-platform ssh -- php -m
+platform ssh "php -m"
 ```
 
 ## Custom PHP extensions
@@ -169,12 +169,12 @@ It's possible to use an extension not listed here,
 but it takes slightly more work:
 
 1. Download the `.so` file for the extension as part of your build hook using `curl` or similar.
-   It can also be added to your Git repository if the file isn't publicly downloadable.
-   Note that committing large binary blobs to Git is generally not recommended.
+   It can also be added to your Git repository if the file isn't publicly downloadable,
+   but committing large binary blobs to Git is generally not recommended.
 
 2. Load the extension using an absolute path by [customizing the PHP settings](./_index.md#customize-php-settings)
    For example, if the extension is named `spiffy.so` and is in your app root,
-   your configuration looks like:
+   your configuration looks like the following:
 
    ```yaml {location=".platform.app.yaml"}
    variables:

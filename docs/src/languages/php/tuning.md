@@ -134,7 +134,7 @@ To determine the total amount of memory to use, follow these steps:
 
    The `--fcgi=$SOCKET` option ensures the PHP-FPM process on the server connects through the right socket.
 6. Analyze the output to determine the optimal value for `opcache.memory_consumption`.
-   The most important values from CacheTool's output are:
+   The most important values from CacheTool's output are the following:
 
    - `Memory used`
    - `Memory free`
@@ -154,7 +154,8 @@ To determine the total amount of memory to use, follow these steps:
            'opcache.memory_consumption': 96
    ```
 
-8. [Restart PHP-FPM](#restart-php-fpm) and make sure that OPcache works as expected by rerunning CacheTool with:
+8. [Restart PHP-FPM](#restart-php-fpm) and make sure that OPcache works as expected by rerunning CacheTool
+   with the following command:
 
     ```bash
     php cachetool.phar opcache:status --fcgi=$SOCKET

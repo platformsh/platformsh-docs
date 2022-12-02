@@ -43,7 +43,8 @@ platform variable:create --level project --name env:COMPOSER_AUTH \
 ```
 
 The `env:` prefix makes that variable appear as its own Unix environment variable available by Composer during the build process.
-The optional `--no-visible-runtime` flag means the variable is only defined during the build hook, which offers slightly better security.
+The optional `--visible-runtime false` and `--visible-build true` flags mean the variable is only defined during the build hook,
+which offers slightly better security.
 
 Note: The authentication credentials may be cached in your project's build container.
 Make sure you clear the Composer cache after changing credentials by running the following [CLI command](../../administration/cli/_index.md):

@@ -45,11 +45,12 @@ To use Composer 2.x on your project or for more options, see [dependency managem
 To serve your app, define what (and how) content should be served by [setting the `locations`](../../create-apps/app-reference.md#locations).
 
 Usually, it contains the two following (optional) keys:
-- A `root` directory (docroot) folder to which all requests for existing `.php` and static files (such as `.css`, `.jpg`) are sent.
-- A `passthru` to define a front controller to handle non-existent files.
+- `root` for the document root,
+  the directory to which all requests for existing `.php` and static files (such as `.css`, `.jpg`) are sent.
+- `passthru` to define a front controller to handle nonexistent files.
   The value is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
 
-Adjust the `locations` block to your needs.
+Adjust the `locations` block to fit your needs.
 
 In the following example, all requests made to your site's root (`/`) are sent to the `public` directory
 and nonexistent files are handled by `app.php`:
@@ -75,10 +76,6 @@ name: 'app'
 type: 'php:8.1'
 
 disk: 2048
-
-hooks:
-    build: |
-        set -e
 
 web:
     locations:
@@ -115,7 +112,8 @@ You can also use a [private, authenticated third-party Composer repository](./co
 
 If you need more control over the dependency management, you can either use your custom build flavor or interact with Composer itself through [its environment variables](https://getcomposer.org/doc/03-cli.md#environment-variables).
 
-For example, if you want to install Composer dependencies but not development dependencies:
+For example, to still install production dependencies with Composer but not development dependencies,
+choose one of the following methods:
 
 {{< codetabs >}}
 
@@ -129,7 +127,7 @@ You can use the default build flavor and the `COMPOSER_NO_DEV` variable.
 To add the variable to your Production environment, run a command like the following:
 
 ```bash
-platform variable:create --level environment --name COMPOSER_NO_DEV --value 1 --prefix env --json false --sensitive false --enabled true --inheritable false --visible-build false --visible-runtime false
+platform variable:create --environment {{< variable "PRODUCTION_ENVIRONMENT_NAME" >}} --level environment --name COMPOSER_NO_DEV --value 1 --prefix env --inheritable false --visible-runtime false --no-interaction
 ```
 
 <--->
@@ -160,8 +158,8 @@ highlight=false
 file=none
 ---
 
-You can remove the `composer` build flavor and run your own commands for complete control over your build.
-Set the build flavor to `none` and add the commands you need at the start of your `build` hook, to have something like:
+You can remove the default build flavor and run your own commands for complete control over your build.
+Set the build flavor to `none` and add the commands you need to your `build` hook, as in the following example:
 
 ```yaml {location=".platform.app.yaml"}
 build:
@@ -175,7 +173,7 @@ hooks:
 
 {{< /codetabs >}}
 
-See more on [build flavor](../../create-apps/app-reference.md#build).
+See more on [build flavors](../../create-apps/app-reference.md#build).
 
 ### Alternative repositories
 
@@ -327,14 +325,14 @@ Some commonly used settings are:
 To retrieve the default PHP values, run the following [CLI command](../../administration/cli/_index.md):
 
 ```bash
-platform ssh -- php --info
+platform ssh "php --info"
 ```
 
 To get specific default values, use grep.
 For example, to get the value for `opcache.memory_consumption`, run the following command:
 
 ```bash
-platform ssh -- php --info | grep opcache.memory_consumption
+platform ssh "php --info" | grep opcache.memory_consumption
 ```
 
 ### Retrieve the settings
@@ -344,10 +342,10 @@ To see the settings used on your environment:
 1. Find the PHP configuration files with the following [CLI command](../../administration/cli/_index.md):
 
     ```bash
-    platform ssh -- php --ini
+    platform ssh "php --ini"
     ```
 
-    Which returns something along the line of:
+    The output is something like the following:
 
     ```bash
     Configuration File (php.ini) Path: /etc/php/8.0-zts/cli
@@ -356,10 +354,10 @@ To see the settings used on your environment:
     Additional .ini files parsed:      (none)
     ```
 
-2. Display the `Loaded Configuration File` by adapting the following command with the output from step 1:
+2. Display the configuration file by adapting the following command with the output from step 1:
 
     ```bash
-    platform ssh -- cat {{< variable "LOADED_CONFIGURATION_FILE_PATH" >}}
+    platform ssh "cat {{< variable "LOADED_CONFIGURATION_FILE_PATH" >}}"
     ```
 
 ### Customize PHP settings
@@ -377,12 +375,12 @@ highlight=false
 file=none
 ---
 
-You can override PHP settings for a given environment using the [CLI](../../administration/cli/_index.md).
+Set variables to override PHP settings for a given environment using the [CLI](../../administration/cli/_index.md).
 
-For example, you can set the PHP memory limit to 256 MB on a specific environment, by running the following CLI command:
+For example, to set the PHP memory limit to 256 MB on a specific environment, run the following CLI command:
 
 ```bash
-platform variable:create --level environment --prefix php --name memory_limit --value 256M --environment {{< variable "ENVIRONMENT_NAME" >}}
+platform variable:create --level environment --prefix php --name memory_limit --value 256M --environment {{< variable "ENVIRONMENT_NAME" >}} --no-interaction
 ```
 
 For more information, see how to use [PHP-specific variables](../../development/variables/_index.md#php-specific-variables).
@@ -396,7 +394,7 @@ file=none
 ---
 
 You can provide a custom `php.ini` file at the [app root](../../create-apps/app-reference.md#root-directory).
-Using that method isn't recommended since it offers less flexibility and is more error-prone.
+Using this method isn't recommended since it offers less flexibility and is more error-prone.
 Consider using variables instead.
 
 For example, to change the PHP memory limit, use the following configuration:
@@ -414,7 +412,7 @@ By default, Platform.sh doesn't disable any functions.
 
 If you're sure a function isn't needed in your app, you can disable it.
 
-For example, to disable `pcntl_exec` and `pcntl_fork`:
+For example, to disable `pcntl_exec` and `pcntl_fork`, add the following to your [app configuration](../../create-apps/_index.md):
 
 ```yaml {location=".platform.app.yaml"}
 variables:
@@ -453,7 +451,7 @@ To specify an alternative process to run your code, set a `start` command.
 For more information about the start command, see the [web commands reference](../../create-apps/app-reference.md#web-commands).
 
 By default, start commands use PHP-CLI.
-Find out how and when to use [which execution mode](#execution-mode).
+Find out how and when to use each [execution mode](#execution-mode).
 
 Note that the `start` command must run in the foreground and is executed before the [deploy hook](../../create-apps/hooks/hooks-comparison.md).
 That means that PHP-FPM can't run simultaneously with another persistent process
@@ -477,10 +475,10 @@ highlight=false
    ```yaml {location:".platform.app.yaml"}
    web:
         commands:
-            start: php {{< variable "PATH_TO_APP" >}}
+            start: /usr/bin/start-php-app {{< variable "PATH_TO_APP" >}}
    ```
 
-    {{<variable "PATH_TO_APP" >}} is a file path that includes the file and its extension relative to the [app root](../../create-apps/app-reference.md#root-directory).
+   {{<variable "PATH_TO_APP" >}} is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
 
 <--->
 
@@ -496,10 +494,10 @@ highlight=false
    ```yaml {location:".platform.app.yaml"}
    web:
         commands:
-            start: php {{< variable "PATH_TO_APP" >}}
+            start: /usr/bin/start-php-app {{< variable "PATH_TO_APP" >}}
    ```
 
-    {{<variable "PATH_TO_APP" >}} is a file path that includes the file and its extension relative to the [app root](../../create-apps/app-reference.md#root-directory).
+   {{<variable "PATH_TO_APP" >}} is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
 3. Configure the container to listen on a TCP socket:
 
     ```yaml {location=".platform.app.yaml"}
@@ -539,11 +537,11 @@ To execute runtime-specific tasks (such as clearing cache) before your app start
     ```yaml {location:".platform.app.yaml"}
     web:
             commands:
-                start: bash {{< variable "PATH_TO_SCRIPT" >}} && php {{< variable "PATH_TO_APP" >}}
+                start: bash {{< variable "PATH_TO_SCRIPT" >}} && /usr/bin/start-php-app {{< variable "PATH_TO_APP" >}}
     ```
 
     {{<variable "PATH_TO_SCRIPT" >}} is the bash script created in step 1.
-    Both {{<variable "PATH_TO_SCRIPT" >}} and {{<variable "PATH_TO_APP" >}} are file paths that include the files and their extensions relative to the [app root](../../create-apps/app-reference.md#root-directory).
+   Both {{<variable "PATH_TO_SCRIPT" >}} and {{<variable "PATH_TO_APP" >}} are file paths relative to the [app root](../../create-apps/app-reference.md#root-directory).
 
 {{< /codetabs >}}
 
@@ -563,7 +561,7 @@ If you are compiling Rust code, use the build hook to [install Rust](https://doc
 
 To leverage FFIs, follow these steps:
 
-1. [Enable and configure OPcache](tuning.md#enable-opcache).
+1. [Enable and configure OPcache preloading](./tuning.md#enable-opcache-preloading).
 2. Enable the FFI extension:
 
     ```yaml {location=".platform.app.yaml"}
@@ -572,21 +570,21 @@ To leverage FFIs, follow these steps:
             - ffi
    ```
 
-3. Make sure that your [preload script file](./tuning.md#opcache-preloading) calls the `FFI::load()` function.
+3. Make sure that your [preload script](./tuning.md#opcache-preloading) calls the `FFI::load()` function.
    Using this function in preload is considerably faster than loading the linked library on each request or script run.
 4. If you are running FFIs from the command line,
-    enable the preloader by adding the following configuration:
+   enable the preloader by adding the following configuration:
 
-    ```yaml {location=".platform.app.yaml"}
-    variables:
-        php:
-            opcache.enable_cli: true
-    ```
+   ```yaml {location=".platform.app.yaml"}
+   variables:
+       php:
+           opcache.enable_cli: true
+   ```
 
-5. Run your script with:
+5. Run your script with the following command:
 
     ```bash
-    php {{<variable "CLI_SCRIPT" >}}.php
+    php {{<variable "CLI_SCRIPT" >}}
     ```
 
 See [complete working examples for C and Rust](https://github.com/platformsh-examples/php-ffi).
