@@ -1,12 +1,12 @@
 ---
-title: "Authenticate the Platform.sh CLI using an API token"
+title: "Authenticate the CLI using an API token"
 sidebarTitle: "API tokens"
 weight: 1
 ---
 
-You need to set up an API token to authenticate the Platform.sh CLI and do the following:
-- Run automated tasks from a CI system using the CLI.
-- Run automated tasks directly on app container, for example via a cron hook, using the CLI.
+You need to set up an API token to authenticate the Platform.sh CLI for any of the following tasks:
+- Running automated tasks on a CI system
+- Running automated tasks directly on app container, for example in a cron job
 
 ## Before you begin
 
@@ -14,16 +14,16 @@ You need the [Platform.sh CLI](../cli/_index.md).
 
 ## 1. Create a machine user
 
-To safely run automated tasks, you need to create machine users.
+To safely run automated tasks, first create machine users.
 Each machine user has its own Platform.sh account associated with a unique email address.
 You can grant them restrictive [access permissions](../users.md) to handle specific automated tasks.
 For security purposes, create a machine user for each type of task you want to automate.
 
-To create a machine user, follow the steps:
+To create a machine user, follow these steps:
 
 1. Run the following command using your machine user's email address.
    ```bash
-   platform user:add email@example.com
+   platform user:add {{< variable "EMAIL_ADDRESS" >}}
    ```
 2. Choose the project where you want to add the machine user.
 3. To make the machine user a viewer of the project, press **Enter**.
@@ -40,12 +40,12 @@ To create a machine user, follow the steps:
 2. To open the user menu, click the downward arrow at the top right-hand side of the screen:
    ![The user menu in the Console](/images/management-console/user-menu.png "0.6")
 3. Click **My profile**.
-4. Go to the **API TOKENS** tab.
+4. Go to the **API Tokens** tab.
 5. Click **Create API Token**.
    ![The Create API Token button in the Console](/images/management-console/create-api-token-button.png "0.6")
-6. Enter a name for your API token and click **Create API Token**.
+6. Enter a name for your API token and click **Create API token**.
    ![Creating an API token with the name 'CI tests'](/images/management-console/api-tokens-name.png "0.6")
-7. To copy the API token to your clipboard, click **Copy**.
+7. To copy the API token to your clipboard, click **{{< icon copy >}} Copy**.
    ![Viewing the API token after it's created](/images/management-console/api-tokens-view.png "0.6")
 8. Store the API token somewhere secure on your computer.
    Note that after you quit the Console, you can't display the API token again.
@@ -76,23 +76,23 @@ After you create your API token, you can use it to do the following:
 
 -  Allow a CI system to run automated tasks using the Platform.sh CLI.
 -  Run automated tasks on an app container using the Platform.sh CLI, 
-   for example via a cron hook. 
+   for example in a cron job. 
 
-Note that, when running CLI commands from a CI system or on an app container,
+Note that when running CLI commands in these cases,
 some operations might take time to complete. 
 To avoid waiting for an operation to complete before moving on to the next one, 
 use the `--no-wait` flag.
 
-### Authentication in a CI system
+### Authenticate in a CI system
 
 You can allow your CI system to run automated tasks using the Platform.sh CLI.
-To do so, create an environment variable named `PLATFORMSH_CLI_TOKEN` using your API token. 
+To do so, create an environment variable named `PLATFORMSH_CLI_TOKEN` with your API token as its value. 
 For more information, see your CI system's official documentation.
 
-To run commands that are not specific to the Platform.sh CLI on a project through SSH, 
-see how to [trigger the loading of the Platform.sh CLI SSH certificate](#platformsh-cli-ssh-certificate).
+To run SSH-based commands that aren't specific to the Platform.sh CLI,
+see how to [load the proper SSH certificate](#platformsh-cli-ssh-certificate).
 
-### Authentication on a Platform.sh environment
+### Authenticate in a Platform.sh environment
 
 You can run automated tasks on an app container using the Platform.sh CLI.
 To do so, set your API token as a [top-level environment variable](../../development/variables/_index.md#top-level-environment-variables).
@@ -119,7 +119,7 @@ highlight=false
 
 1. Open the environment where you want to add the variable.
 2. Click {{< icon settings >}} **Settings**.
-3. Click **VARIABLES**.
+3. Click **Variables**.
 4. Click **+ Add variable**.
 5. In the **Variable name** field, enter `env:PLATFORMSH_CLI_TOKEN`.
 6. In the **Value** field, enter your API token.
@@ -153,10 +153,10 @@ hooks:
         echo 'export PATH="'$PLATFORM_APP_DIR'/.linuxbrew/bin:'$PLATFORM_APP_DIR'/.linuxbrew/sbin${PATH+:$PATH}";' >> $PLATFORM_APP_DIR/.environment
 ```
 
-You can now call the CLI from within the shell on the app container or via a cron hook.
+You can now call the CLI from within the shell on the app container or in a cron job.
 
-To run commands that are not specific to the Platform.sh CLI on a project through SSH, 
-see how to [trigger the loading of the Platform.sh CLI SSH certificate](#platformsh-cli-ssh-certificate).
+To run SSH-based commands that aren't specific to the Platform.sh CLI,
+see how to [load the proper SSH certificate](#platformsh-cli-ssh-certificate).
 
 For caching and other advanced topics,
 copy and use a [prepared script](https://github.com/matthiaz/platformsh-tools/blob/master/install_brew_packages.sh):
@@ -177,19 +177,19 @@ crons:
         commands:
             start: |
                 if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-                   platform source-operation:run update --no-wait --yes
+                   platform source-operation:run update --no-wait --no-interaction
                 fi
 ```
-### Platform.sh CLI SSH certificate
+## Use the CLI SSH certificate for other commands
 
 When authenticating the CLI via a `PLATFORMSH_CLI_TOKEN` environment variable,
 you might want to do the following:
 
 - Use the CLI's SSH certificate for improved security.
 - Use SSH to run commands that are not specific to the Platform.sh CLI on a project.
-  For example, you might want to run `ssh`, `git`, `rsync` or `scp` commands.
+  For example, you might want to run `ssh`, `git`, `rsync`, or `scp` commands.
 
-In this case, to set up the SSH configuration and ensure your commands work,
+In such cases, to set up the SSH configuration and ensure your commands work,
 run the following command first:
 
 ```bash
