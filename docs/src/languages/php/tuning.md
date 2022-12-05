@@ -89,7 +89,7 @@ the cache becomes less effective because it starts [thrashing](https://en.wikipe
 
 To determine the maximum number of files to cache, follow these steps:
 
-1. Connect to the container via SSH using the [CLI](../../administration/cli/_index.md)
+1. Connect to the container via SSH using the [CLI](../../development/ssh/_index.md)
    by running `platform ssh`.
 2. Determine roughly how many `.php` files your app has by running this command from [your app root](../../create-apps/app-reference.md#root-directory):
 
@@ -121,7 +121,7 @@ Determining the optimal limit to memory consumption requires executing code via 
 
 To determine the total amount of memory to use, follow these steps:
 
-1. Connect to the container via SSH using the [CLI](../../administration/cli/_index.md)
+1. Connect to the container via SSH using the [CLI](../../development/ssh/_index.md)
    by running `platform ssh`.
 2. Change to the `/tmp` directory (or any other non-web-accessible writable directory) with `cd /tmp`.
 3. Download CacheTool with `curl -sLO https://github.com/gordalina/cachetool/releases/latest/download/cachetool.phar`.
@@ -170,7 +170,7 @@ This means that every time a cached file is used, OPcache compares it to the fil
 If that file has changed, it gets reloaded and re-cached.
 This allows to support apps that generate compiled PHP code from user configuration.
 
-If you know your code isn't going to change outside a new deploy,
+If you know your code isn't going to change outside a new deployment,
 you can disable that check and get a small performance improvement.
 
 Timestamp validation can be disabled by adding the following variable to your [app configuration](../../create-apps/_index.md):
@@ -190,7 +190,8 @@ Doing so would prevent updates to the generated code from being loaded.
 ## Restart PHP-FPM
 
 To force a restart of PHP-FPM:
-1. Connect to the container via SSH using the [CLI](../../administration/cli/_index.md) by running `platform ssh`
+
+1. Connect to the container via SSH using the [CLI](../../development/ssh/_index.md) by running `platform ssh`
 2. Run `sv restart app`
 
 To force a restart of PHP-FPM on every deployment, add the `sv restart app` command to your [`deploy` hook](../../create-apps/hooks/hooks-comparison.md#deploy-hook).

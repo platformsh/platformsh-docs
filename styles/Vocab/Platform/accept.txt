@@ -29,7 +29,6 @@ DDEV
 denylist
 deprovision
 DNSimple
-docroot
 Docksal
 Drush
 DXP

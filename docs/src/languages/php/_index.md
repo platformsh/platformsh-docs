@@ -33,18 +33,20 @@ and add it to your [app configuration](../../create-apps/_index.md):
 
 {{< readFile file="src/registry/images/examples/full/php.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
-### 2. Specify a dependency manager
+### 2. Optional: specify a dependency manager
 
-To manage PHP dependencies and libraries, use [Composer](https://getcomposer.org/).
+To manage PHP dependencies and libraries, you can use [Composer](https://getcomposer.org/).
 PHP containers use Composer 1.x by default.
 
-To use Composer 2.x on your project or for more options, see [dependency management](#dependencies).
+If you use Composer 1.x to manage your app, no changes are needed.
+If you need to use Composer 2.x or for more options, see [dependency management](#dependencies).
 
 ### 3. Serve your app
 
 To serve your app, define what (and how) content should be served by [setting the `locations`](../../create-apps/app-reference.md#locations).
 
 Usually, it contains the two following (optional) keys:
+
 - `root` for the document root,
   the directory to which all requests for existing `.php` and static files (such as `.css`, `.jpg`) are sent.
 - `passthru` to define a front controller to handle nonexistent files.

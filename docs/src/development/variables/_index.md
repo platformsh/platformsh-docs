@@ -3,7 +3,6 @@ title: Variables overview
 weight: 5
 description: |
   Variables give you control over your project's build process and runtime environment. You can set them in your code to make changes across your project or independent of the code for environment-specific settings.
-layout: single
 keywords:
   - environment variables
 ---
@@ -212,7 +211,7 @@ such as the global `$config` array, which uses the variable prefix `drupalconfig
 You need to name your Platform.sh variables to match the ones used in your script.
 Make sure that the Platform.sh variables start with a string present in your `switch` statement.
 
-To override the values from the Drupal 9 template:
+To override values using the script in the Drupal 9 template:
 
 1. Find out which settings can be overridden in the [settings script](https://github.com/platformsh-templates/drupal9/blob/8d5d23cdcb91ffa3f96727adf9d3dba74dfc01db/web/sites/default/settings.platformsh.php#L125-L162).
    Adapt the script if needed.
