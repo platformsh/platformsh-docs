@@ -51,16 +51,11 @@ InfluxDB includes its own [export mechanism](https://docs.influxdata.com/influxd
 To gain access to the server from your local machine open an SSH tunnel with the Platform.sh CLI:
 
 ```bash
-platform tunnel:open
+platform tunnel:single --relationship {{< variable "RELATIONSHIP_NAME" >}}
 ```
 
-That opens an SSH tunnel to all services on your current environment and produce output like the following:
+By default, this opens a tunnel at `127.0.0.1:30000`.
 
-```bash
-SSH tunnel opened on port 30000 to relationship: influxtimedb
-```
-
-The port may vary in your case.
 Then run InfluxDB's export commands as desired.
 
 ```bash

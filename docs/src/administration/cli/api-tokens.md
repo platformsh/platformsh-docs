@@ -154,7 +154,7 @@ To run a cron only on your production environment, check the environment type as
 ```yaml
 crons:
     backup:
-        spec: '0 5 * * *'
+        spec: 'H 4 * * *'
         commands:
             start: |
                 if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then

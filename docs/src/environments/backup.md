@@ -86,6 +86,9 @@ For Dedicated environments, see more about [backups of Dedicated environments](.
 For Grid environments, automated backups are taken for Production environments at least once every day.
 The exact number of backups depends on your [backup schedule](#backup-schedule).
 
+Daily backups are taken at around 4:00 every day based on the [project timezone](../projects/change-project-timezone.md).
+The time for 6-hourly backups is based on the daily backup.
+
 Automated backups are always [live](#live-backups).
 
 {{% legacy-regions featureIntro="Live automated backups" featureShort="live automated backups" level=3 plural=true %}}

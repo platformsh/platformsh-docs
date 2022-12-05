@@ -67,7 +67,7 @@ and turn off those on by default with the `disabled_extensions` key.
 | `imap`            | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `interbase`       | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |       |
 | `intl`            | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
-| `ioncube`         |       |       |       | Avail | Avail | Avail |       |       |       |       |
+| `ioncube`         |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail |       |
 | `json`            |       |       | Def   | Def   | Def   | Def   | Def   | Def   | *     | *     |
 | `ldap`            | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `mailparse`       |       |       |       | Avail | Avail | Avail |       | Avail | Avail | Avail |

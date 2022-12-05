@@ -159,7 +159,7 @@ To run your Strapi v4 app locally with all of its services, follow these steps:
    If you get the error `The pcntl PHP extension is required` error, use this command instead:
 
    ```bash
-   platform single:open -A <APP_NAME> -e updates
+   platform tunnel:single -A <APP_NAME> -e updates
    ```
 
 5. Add an environment variable that contains the service credentials:
