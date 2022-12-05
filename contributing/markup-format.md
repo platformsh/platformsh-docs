@@ -504,3 +504,5 @@ the start of list item should be at 4 spaces.
 If you have all list items aligned at 3 spaces, the first warning is to `add 1 space`.
 Then if you add 1 space, the second warning is to `remove 1 space`.
 Fix this by adding 1 space to the paragraphs or code blocks so they all align at 4 spaces.
+
+All pull requests against the default branch are linted automatically.
