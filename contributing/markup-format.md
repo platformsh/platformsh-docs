@@ -346,19 +346,19 @@ Tabs are divided by `<--->` and can each have different properties.
 ```markdown
 {{< codetabs >}}
 
----
++++
 title=Elasticsearch
 file=static/files/fetch/examples/php/elasticsearch
 highlight=php
----
++++
 
 <--->
 
----
++++
 title=Memcached
 file=none
 highlight=python
----
++++
 
 from jwcrypto import jws, jwk
 

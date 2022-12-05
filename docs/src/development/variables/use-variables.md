@@ -70,11 +70,11 @@ Alternative, use a built-in method for the given language.
 
 {{< codetabs >}}
 
----
++++
 title=PHP
 file=none
 highlight=false
----
++++
 
 ```php
 <?php
@@ -87,11 +87,11 @@ $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), TRUE);
 ```
 
 <--->
----
++++
 title=Python
 file=none
 highlight=false
----
++++
 
 ```python
 import os
@@ -106,11 +106,11 @@ variables = json.loads(base64.b64decode(os.getenv('PLATFORM_VARIABLES')).decode(
 ```
 
 <--->
----
++++
 title=Node.js
 file=none
 highlight=false
----
++++
 
 ```js
 const { env } = process;
@@ -133,11 +133,11 @@ const variables = read_base64_json('PLATFORM_VARIABLES');
 
 <--->
 
----
++++
 title=Ruby
 file=none
 highlight=false
----
++++
 
 ```ruby
 # A simple variable.
@@ -148,11 +148,11 @@ variables = JSON.parse(Base64.decode64(ENV["PLATFORM_VARIABLES"]))
 ```
 
 <--->
----
++++
 title=Java
 file=none
 highlight=false
----
++++
 
 ```java
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -206,11 +206,11 @@ You can access these nested variables as follows:
 
 {{< codetabs >}}
 
----
++++
 title=Shell
 file=none
 highlight=false
----
++++
 
 ```bash
 $ echo $BASIC
@@ -234,11 +234,11 @@ $ echo "$PLATFORM_VARIABLES" | base64 --decode | jq '."stuff:COLORS"'
 ```
 
 <--->
----
++++
 title=PHP
 file=none
 highlight=false
----
++++
 
 ```php
 <?php
@@ -279,11 +279,11 @@ array(3) {
 ```
 
 <--->
----
++++
 title=Python
 file=none
 highlight=false
----
++++
 
 ```python
 import os
@@ -308,11 +308,11 @@ print variables['stuff:COLORS']
 ```
 
 <--->
----
++++
 title=Node.js
 file=none
 highlight=false
----
++++
 
 ```java
 scriptconst { BASIC, INGREDIENTS, QUANTITIES, PLATFORM_VARIABLES } = process.env;

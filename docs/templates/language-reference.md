@@ -53,7 +53,7 @@ To configure a given service, see the page dedicated to that service.
 
 {{< codetabs >}}
 
----
++++
 title=<SERVICE_NAME>
 file=static/files/fetch/examples/<LANGUAGE_TYPE>/<SERVICE_TYPE>
 highlight=<LANGUAGE_NAME>
@@ -62,7 +62,7 @@ markdownify: false
 
 <--->
 
----
++++
 title=<DIFFERENT_SERVICE_NAME>
 file=static/files/fetch/examples/<LANGUAGE_TYPE>/<DIFFERENT_SERVICE_TYPE>
 highlight=<LANGUAGE_NAME>

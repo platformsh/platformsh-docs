@@ -24,11 +24,11 @@ To add a username and password, follow these steps:
 
 {{< codetabs >}}
 
----
++++
 title=In the Console
 file=none
 highlight=false
----
++++
 
 - Select the project where you want to add login details.
 - From the **Environment** menu, select an environment.
@@ -39,11 +39,11 @@ highlight=false
 - Click **Save**.
 
 <--->
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 Run the following command:
 
@@ -78,11 +78,11 @@ To control access based on IP address, follow these steps:
 
 {{< codetabs >}}
 
----
++++
 title=In the Console
 file=none
 highlight=false
----
++++
 
 - Select the project where you want to control access.
 - From the **Environment** menu, select the environment to control.
@@ -92,11 +92,11 @@ highlight=false
 - Click **Save**.
 
 <--->
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 Run the following command:
 

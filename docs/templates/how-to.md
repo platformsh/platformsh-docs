@@ -67,11 +67,11 @@ split the various ways into tabs so users only see what's relevant to them:
 
 {{< codetabs >}}
 
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 1. Do this action first with the CLI.
 1. Do this action next with the CLI.
@@ -80,11 +80,11 @@ highlight=false
 
 <--->
 
----
++++
 title=In the console
 file=none
 highlight=false
----
++++
 
 1. Do this action first in the console.
 1. Do this action next in the console.

@@ -14,11 +14,11 @@ As an organization owner, you can manage the basic settings for your organizatio
 
 {{< codetabs >}}
 
----
++++
 title=Using the Console
 file=none
 highlight=false
----
++++
 
 1. Navigate to the organization you want to manage (or a project in it).
 1. Open the user menu (your name or profile picture).
@@ -27,11 +27,11 @@ highlight=false
 1. Click **Save**.
 
 <--->
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 To change the name (URL) and label of the `acme` organization, run:
 
@@ -54,11 +54,11 @@ you can access and download invoices and edit billing information such as the st
 
 {{< codetabs >}}
 
----
++++
 title=Using the Console
 file=none
 highlight=false
----
++++
 
 1. Navigate to the organization you want to manage (or a project in it).
 1. Open the user menu (your name or profile picture).
@@ -92,11 +92,11 @@ Users with the **Manage users** (`members`) permission can add, edit, or remove 
 
 {{< codetabs >}}
 
----
++++
 title=Using the Console
 file=none
 highlight=false
----
++++
 
 1. Navigate to the organization you want to manage (or a project in it).
 2. Open the user menu (your name or profile picture).
@@ -104,11 +104,11 @@ highlight=false
 4. Invite new users or edit existing users to manage their permissions.
 
 <--->
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 ### Add a new user
 
@@ -149,11 +149,11 @@ and organize your projects as you want.
 
 {{< codetabs >}}
 
----
++++
 title=Using the Console
 file=none
 highlight=false
----
++++
 
 1. Navigate to your existing organization or a project in it.
 1. Open the user menu (your name or profile picture).
@@ -162,11 +162,11 @@ highlight=false
 1. Click **Create organization**.
 
 <--->
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 To create an organization with the label `Acme` and the name (URL) `acme`, run:
 
@@ -191,11 +191,11 @@ To have it deleted, [contact support](../overview/get-support.md).
 
 {{< codetabs >}}
 
----
++++
 title=Using the Console
 file=none
 highlight=false
----
++++
 
 1. Navigate to your existing organization or a project in it.
 2. Open the user menu (your name or profile picture).
@@ -204,11 +204,11 @@ highlight=false
 5. Confirm your decision by clicking **Delete**.
 
 <--->
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 To delete the organization `acme`, run:
 
