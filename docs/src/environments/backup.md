@@ -1,5 +1,5 @@
 ---
-title: Back up environments
+title: Back up an environment
 description: See how to protect yourself from potential data loss by backing up your environments so they can be restored later.
 weight: -10
 ---
@@ -16,20 +16,20 @@ The snapshot is stored internally and can't be downloaded.
 Code is managed through Git and so isn't included.
 You can restore previous code using Git commands such as [revert](https://git-scm.com/docs/git-revert).
 
-You might want to make backups of your live environment before merging a different environment into it
+You might want to create backups of your live environment before merging a different environment into it
 or each time you increase the storage space of your services.
 
 You also have regularly scheduled automated backups of your production environments to cover most cases.
 
-You can only backup and restore active environments.
+You can only create backups and restore active environments.
 To work with an [inactive environment](../other/glossary.md#inactive-environment),
 first activate it.
 
-To back up an environment, you need an [Admin role for that environment type](../administration/users.md).
+To create a backup of an environment, you need an [Admin role for that environment type](../administration/users.md).
 
 ## Backups and downtime
 
-By default, triggering a manual backup causes a momentary pause in site availability so that all requests can complete.
+By default, creating a manual backup causes a momentary pause in site availability so that all requests can complete.
 This means the environment is backed up in a known consistent state.
 The total interruption is usually only 15 to 30 seconds.
 Any requests during that time are held temporarily, not dropped.
@@ -103,7 +103,7 @@ They may make restorations less reliable.
 To avoid such issues, schedule [manual backups](#create-a-manual-backup) during non-peak hours,
 when the short amount of downtime is least noticed.
 
-Automatic backups are always live, including those taken on [{{% names/dedicated-gen-3 %}}](../dedicated-gen-3/overview.md)
+Automated backups are always live, including those taken on [{{% names/dedicated-gen-3 %}}](../dedicated-gen-3/overview.md)
 and [{{% names/dedicated-gen-2 %}}](../dedicated-gen-2/overview/_index.md) environments.
 
 You can create a manual live backup on a Grid project:
