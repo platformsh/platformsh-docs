@@ -89,6 +89,9 @@ You can allow your CI system to run automated tasks using the Platform.sh CLI.
 To do so, create an environment variable named `PLATFORMSH_CLI_TOKEN` using your API token. 
 For more information, see your CI system's official documentation.
 
+To run commands that are not specific to the Platform.sh CLI on a project through SSH, 
+see how to [trigger the loading of the Platform.sh CLI SSH certificate](#platformsh-cli-ssh-certificate).
+
 ### Authentication on a Platform.sh environment
 
 You can run automated tasks on an app container using the Platform.sh CLI.
@@ -152,6 +155,9 @@ hooks:
 
 You can now call the CLI from within the shell on the app container or via a cron hook.
 
+To run commands that are not specific to the Platform.sh CLI on a project through SSH, 
+see how to [trigger the loading of the Platform.sh CLI SSH certificate](#platformsh-cli-ssh-certificate).
+
 For caching and other advanced topics,
 copy and use a [prepared script](https://github.com/matthiaz/platformsh-tools/blob/master/install_brew_packages.sh):
 
@@ -173,4 +179,19 @@ crons:
                 if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
                    platform source-operation:run update --no-wait --yes
                 fi
+```
+### Platform.sh CLI SSH certificate
+
+When authenticating the CLI via a `PLATFORMSH_CLI_TOKEN` environment variable,
+you might want to do the following:
+
+- Use the CLI's SSH certificate for improved security.
+- Use SSH to run commands that are not specific to the Platform.sh CLI on a project.
+  For example, you might want to run `ssh`, `git`, `rsync` or `scp` commands.
+
+In this case, to set up the SSH configuration and ensure your commands work,
+run the following command first:
+
+```bash
+$ platform ssh-cert:load
 ```
