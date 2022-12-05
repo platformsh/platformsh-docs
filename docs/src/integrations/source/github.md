@@ -38,11 +38,11 @@ To enable the integration, use either the [CLI](../../administration/cli/_index.
 or the [Console](../../administration/web/_index.md).
 
 {{< codetabs >}}
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 Run the following command:
 
@@ -83,11 +83,11 @@ Note that the `--prune-branches` option depends on `--fetch-branches` being enab
 If `--fetch-branches` is disabled, `--prune-branches` is automatically set to false, even if specifically set to true.
 
 <--->
----
++++
 title=In the Console
 file=none
 highlight=false
----
++++
 
 1. Select the project where you want to enable the integration.
 2. Click {{< icon settings >}} **Settings**.

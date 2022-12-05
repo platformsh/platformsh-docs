@@ -43,43 +43,43 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../
 
 {{< codetabs >}}
 
----
++++
 title=Go
 file=static/files/fetch/examples/golang/solr
 highlight=go
----
++++
 
 <--->
 
----
++++
 title=Java
 file=static/files/fetch/examples/java/solr
 highlight=java
----
++++
 
 <--->
 
----
++++
 title=Node.js
 file=static/files/fetch/examples/nodejs/solr
 highlight=js
----
++++
 
 <--->
 
----
++++
 title=PHP
 file=static/files/fetch/examples/php/solr
 highlight=php
----
++++
 
 <--->
 
----
++++
 title=Python
 file=static/files/fetch/examples/python/solr
 highlight=python
----
++++
 
 {{< /codetabs >}}
 

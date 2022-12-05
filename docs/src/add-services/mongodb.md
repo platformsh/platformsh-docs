@@ -69,43 +69,43 @@ The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](../de
 
 {{< codetabs >}}
 
----
++++
 title=Go
 file=static/files/fetch/examples/golang/mongodb
 highlight=go
----
++++
 
 <--->
 
----
++++
 title=Java
 file=static/files/fetch/examples/java/mongodb
 highlight=java
----
++++
 
 <--->
 
----
++++
 title=Node.js
 file=static/files/fetch/examples/nodejs/mongodb
 highlight=js
----
++++
 
 <--->
 
----
++++
 title=PHP
 file=static/files/fetch/examples/php/mongodb
 highlight=php
----
++++
 
 <--->
 
----
++++
 title=Python
 file=static/files/fetch/examples/python/mongodb
 highlight=python
----
++++
 
 {{< /codetabs >}}
 

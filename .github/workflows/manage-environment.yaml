@@ -1,4 +1,4 @@
-name: Activate environment
+name: Manage environment
 on:
   pull_request_target:
     branches: [main]
@@ -82,14 +82,14 @@ jobs:
         if: steps.branch_exists.outputs.branch_exists == 'true'
         uses: ./.github/actions/set-up-cli
 
+      - name: Delete branch
+        # If the pr- branch exists, delete it from GitHub
+        if: steps.branch_exists.outputs.branch_exists == 'true'
+        run: git push origin --delete pr-${{ github.event.number }}
+
         # If the pr- branch exists, delete it from Platform.sh
       - name: Delete environment
         if: steps.branch_exists.outputs.branch_exists == 'true'
         env:
           PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         run: platform environment:delete --delete-branch --no-wait pr-${{ github.event.number }}
-
-      - name: Delete branch
-        # If the pr- branch exists, delete it from GitHub
-        if: steps.branch_exists.outputs.branch_exists == 'true'
-        run: git push origin --delete pr-${{ github.event.number }}

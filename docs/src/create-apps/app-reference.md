@@ -647,11 +647,11 @@ crons:
 <!-- vale off -->
 {{< codetabs >}}
 
----
++++
 title=Drupal
 file=none
 highlight=yaml
----
++++
 
 crons:
     # Run Drupal's cron tasks every 19 minutes.
@@ -668,11 +668,11 @@ crons:
 
 <--->
 
----
++++
 title=Ruby on Rails
 file=none
 highlight=yaml
----
++++
 
 crons:
     ruby:
@@ -732,11 +732,11 @@ To restart crons without changing anything:
 
 {{< codetabs >}}
 
----
++++
 title=In the Console
 file=none
 highlight=false
----
++++
 
 1. In the Console, navigate to your project.
 1. Open the environment where you'd like the crons to run.
@@ -744,11 +744,11 @@ highlight=false
 
 <--->
 
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 Run the following command:
 

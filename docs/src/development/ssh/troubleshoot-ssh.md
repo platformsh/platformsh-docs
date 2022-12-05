@@ -93,21 +93,21 @@ If you are using just `ssh` and not `platform ssh`, you may see only the second 
 To resolve this:
 
 {{< codetabs >}}
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 Log in using the browser by running `platform login`.
 
 <--->
 
----
++++
 title=In the Console
 file=none
 highlight=false
----
++++
 
 1. Open the user menu (your name or profile picture).
 2. Click **My profile**

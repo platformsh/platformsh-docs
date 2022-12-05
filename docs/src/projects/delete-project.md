@@ -11,11 +11,11 @@ To delete a Platform.sh project, including all data, code, and active environmen
 
 {{< codetabs >}}
 
----
++++
 title=In the Console
 file=none
 highlight=false
----
++++
 
 - On the tile of the project you want to delete, click **{{< icon more >}} More**.
 - Click **Edit plan**.
@@ -24,11 +24,11 @@ highlight=false
 - Click **Yes, Delete Project**.
 
 <--->
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 1. Run the following command:
 

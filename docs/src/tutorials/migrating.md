@@ -24,11 +24,11 @@ and for some apps, such as Drupal, configuration that you need to export from th
 ## 2. Create a Platform.sh project
 
 {{< codetabs >}}
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 Run the following command:
 
@@ -40,11 +40,11 @@ When prompted, fill in details like the project name, [region](../development/re
 
 <--->
 
----
++++
 title=In the Console
 file=none
 highlight=false
----
++++
 
 [Create a new project from scratch]({{% create-project-link scratch=true %}}).
 
@@ -76,11 +76,11 @@ If you aren't, your repository is hosted in Platform.sh
 and you can use the CLI or just Git itself.
 
 {{< codetabs >}}
----
++++
 title=Using a source integration
 file=none
 highlight=false
----
++++
 
 Set up the integration for your selected service:
 
@@ -96,11 +96,11 @@ You have to monitor those in your project activities.
 
 <--->
 
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 1. Get your project ID by running the following command:
 
@@ -125,29 +125,29 @@ After any errors are fixed, a push creates a new environment.
 
 <--->
 
----
++++
 title=Using Git
 file=none
 highlight=false
----
++++
 
-1. Add an [SSH key](../development/ssh/ssh-keys.md).
-2. In the [Console], open your project and click **Code {{< icon chevron >}}**.
-3. Click **Git**.
-4. From the displayed command, copy the location of your repository.
+1.  Add an [SSH key](../development/ssh/ssh-keys.md).
+2.  In the [Console], open your project and click **Code {{< icon chevron >}}**.
+3.  Click **Git**.
+4.  From the displayed command, copy the location of your repository.
    It should have a format similar to the following:
 
    ```text
    abcdefgh1234567@git.eu.platform.sh:abcdefgh1234567.git
    ```
 
-5. Add Platform.sh as a remote repository by running the following command:
+5.  Add Platform.sh as a remote repository by running the following command:
 
    ```bash
    git remote add platform {{< variable "REPOSITORY_LOCATION" >}}
    ```
 
-6. Push to the Platform.sh repository by running the following command:
+6.  Push to the Platform.sh repository by running the following command:
 
    ```bash
    git push -u platform {{< variable "DEFAULT_BRANCH_NAME" >}}

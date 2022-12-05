@@ -51,43 +51,43 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../
 
 {{< codetabs >}}
 
----
++++
 title=Go
 file=static/files/fetch/examples/golang/postgresql
 highlight=go
----
++++
 
 <--->
 
----
++++
 title=Java
 file=static/files/fetch/examples/java/postgresql
 highlight=java
----
++++
 
 <--->
 
----
++++
 title=Node.js
 file=static/files/fetch/examples/nodejs/postgresql
 highlight=js
----
++++
 
 <--->
 
----
++++
 title=PHP
 file=static/files/fetch/examples/php/postgresql
 highlight=php
----
++++
 
 <--->
 
----
++++
 title=Python
 file=static/files/fetch/examples/python/postgresql
 highlight=python
----
++++
 
 {{< /codetabs >}}
 
