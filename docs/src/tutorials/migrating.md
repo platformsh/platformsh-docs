@@ -131,23 +131,23 @@ file=none
 highlight=false
 +++
 
-1. Add an [SSH key](../development/ssh/ssh-keys.md).
-2. In the [Console], open your project and click **Code {{< icon chevron >}}**.
-3. Click **Git**.
-4. From the displayed command, copy the location of your repository.
+1.  Add an [SSH key](../development/ssh/ssh-keys.md).
+2.  In the [Console], open your project and click **Code {{< icon chevron >}}**.
+3.  Click **Git**.
+4.  From the displayed command, copy the location of your repository.
    It should have a format similar to the following:
 
    ```text
    abcdefgh1234567@git.eu.platform.sh:abcdefgh1234567.git
    ```
 
-5. Add Platform.sh as a remote repository by running the following command:
+5.  Add Platform.sh as a remote repository by running the following command:
 
    ```bash
    git remote add platform {{< variable "REPOSITORY_LOCATION" >}}
    ```
 
-6. Push to the Platform.sh repository by running the following command:
+6.  Push to the Platform.sh repository by running the following command:
 
    ```bash
    git push -u platform {{< variable "DEFAULT_BRANCH_NAME" >}}

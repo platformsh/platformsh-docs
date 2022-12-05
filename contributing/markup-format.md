@@ -11,6 +11,7 @@
   - [Links](#links)
     - [Links to headers](#links-to-headers)
   - [Notes](#notes)
+    - [Notes inside shortcodes](#notes-inside-shortcodes)
     - [Footnotes](#footnotes)
   - [Images](#images)
   - [Videos \& asciinema](#videos--asciinema)
@@ -26,6 +27,7 @@
     - [Variables in the file](#variables-in-the-file)
     - [Inner content](#inner-content)
     - [Static files](#static-files)
+  - [Guidance enforcement](#guidance-enforcement)
 
 ## Markdown
 
@@ -466,3 +468,39 @@ Property      | Description
 `markdownify` | Optional. For when you are using a `.md` file and want to include markdown.
 `highlight`   | Optional. For when you're including code examples. The language to use for highlighting, as in [code blocks](#code).
 `location`    | Optional. To mark where the included code should be placed, for example `.platform.app.yaml`.
+
+
+## Guidance enforcement
+
+We check for consistency in Markdown using [remarklint](https://github.com/remarkjs/remark-lint)
+via ESLint, specifically the [ESLint MDX plugin](https://github.com/mdx-js/eslint-mdx).
+
+Because no checking tool is perfect,
+the rules are set to warnings rather than errors.
+So automated checks show when something might be wrong,
+but use your common sense and ignore them when appropriate.
+
+To see all feedback, [install all dependencies](../README.md#running-locally)
+and run `lint:markdown` from the `docs` directory.
+Or use it in your IDE, such as with the [VS Code ESLint extension](https://open-vsx.org/extension/dbaeumer/vscode-eslint).
+If the extension in VS Code doesn't immediately start working,
+you may need to add the following to your settings:
+
+```json
+"settings": {
+		"eslint.validate": [
+			{  
+        "language":"markdown",
+        "autoFix":false
+    	},
+		]
+	}
+```
+
+The feedback for ordered lists may be a little confusion at first.
+If you have a loose list (a list with paragraphs or code blocks in it),
+the start of list item should be at 4 spaces.
+
+If you have all list items aligned at 3 spaces, the first warning is to `add 1 space`.
+Then if you add 1 space, the second warning is to `remove 1 space`.
+Fix this by adding 1 space to the paragraphs or code blocks so they all align at 4 spaces.
