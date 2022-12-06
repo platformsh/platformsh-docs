@@ -47,14 +47,10 @@ jobs:
           COMMIT_STATUS="pending"
 
           # Give time for the activity to be reported
-          sleep 30
-
-          # Get the most recent activity -- will be stable throughout based on ID
-          LATEST_ACTIVITY_ID=$(platform api:curl /projects/652soceglkw4u/environments/${{ steps.branch_name.outputs.branch_name }}/activities | jq -r '.[0].id')
-          LATEST_ACTIVITY=$(platform api:curl /projects/652soceglkw4u/environments/${{ steps.branch_name.outputs.branch_name }}/activities/$LATEST_ACTIVITY_ID)
+          sleep 60
 
           # Get the state of the most recent activity
-          STATE=$(echo $LATEST_ACTIVITY | jq -r '.state')
+          STATE=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy" --no-header --columns "state" --limit 1 --environment ${{ steps.branch_name.outputs.branch_name }})
 
           # Set tries to 0 to start countdown to timeout
           STATUS_TRY=0
@@ -62,13 +58,12 @@ jobs:
           # Wait until state is complete or 10 minutes has passed
           until [ $STATE == "complete" ] || [ $STATUS_TRY == 20 ]; do
             sleep 30
-            LATEST_ACTIVITY=$(platform api:curl /projects/652soceglkw4u/environments/${{ steps.branch_name.outputs.branch_name }}/activities/$LATEST_ACTIVITY_ID)
-            STATE=$(echo $LATEST_ACTIVITY | jq -r '.state')
+            STATE=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy" --no-header --columns "state" --limit 1 --environment ${{ steps.branch_name.outputs.branch_name }})
             ((STATUS_TRY+=1))
           done
 
           # Get the URL of the environment
-          ENV_URL=$(echo $LATEST_ACTIVITY | jq -r '.payload.environment.edge_hostname')
+          ENV_URL=$(platform url --primary --pipe --environment ${{ steps.branch_name.outputs.branch_name }})
           
           ENV_URL="https://$ENV_URL/"
 
