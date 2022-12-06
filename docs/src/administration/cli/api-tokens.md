@@ -10,7 +10,10 @@ You need to set up an API token to authenticate the Platform.sh CLI for any of t
 
 ## Before you begin
 
-You need the [Platform.sh CLI](../cli/_index.md).
+To [check the validity of an API token](#check-the-validity-of-your-api-token) 
+or [use the CLI SSH certificate](#use-the-cli-ssh-certificate-for-other-commands) 
+for commands that aren't specific to Platform.sh,
+you need the [Platform.sh CLI](../cli/_index.md).
 
 ## 1. Create a machine user
 
@@ -23,34 +26,26 @@ To create a machine user, follow these steps:
 
 1. Run the following command using your machine user's email address.
    ```bash
-   platform user:add {{< variable "EMAIL_ADDRESS" >}}
+   platform user:add {{< variable "EMAIL_ADDRESS" >}} --project {{< variable "PROJECT_ID" >}} --role viewer
    ```
-2. Choose the project where you want to add the machine user.
-3. To make the machine user a viewer of the project, press **Enter**.
-4. Grant the user [permissions](/administration/users.md) depending on your needs and the environment type.
-5. To send an invitation to the email address provided in step 1, press **Enter**. 
-6. In the email invitation, click **Create account**.
-7. To create a Platform.sh account for the machine user, follow the steps.
+2. For each [environment type](../users.md#environment-types), assign a role to your machine user depending on your needs.
+3. To send an invitation to the email address provided in step 1, press **Enter**. 
+4. In the email invitation, click **Create account**.
+5. To create a Platform.sh account for the machine user, click **Sign up** and follow the instructions.
 
-## 2. Assign an API token to your machine user
-
-### Create a Platform.sh API token
+## 2. Create a Platform.sh API token
 
 1. Log in to the Console as your machine user.
-2. To open the user menu, click the downward arrow at the top right-hand side of the screen:
-   ![The user menu in the Console](/images/management-console/user-menu.png "0.6")
+2. Open the user menu (your name or profile picture).
 3. Click **My profile**.
-4. Go to the **API Tokens** tab.
-5. Click **Create API Token**.
-   ![The Create API Token button in the Console](/images/management-console/create-api-token-button.png "0.6")
-6. Enter a name for your API token and click **Create API token**.
-   ![Creating an API token with the name 'CI tests'](/images/management-console/api-tokens-name.png "0.6")
-7. To copy the API token to your clipboard, click **{{< icon copy >}} Copy**.
-   ![Viewing the API token after it's created](/images/management-console/api-tokens-view.png "0.6")
-8. Store the API token somewhere secure on your computer.
-   Note that after you quit the Console, you can't display the API token again.
+4. Go to the **API tokens** tab and click **Create API token**.
+5. Enter a name for your API token and click **Create API token**.
+6. To copy the API token to your clipboard, click **{{< icon copy >}} Copy**.
+   ![Copying the API token after it's created](/images/management-console/copy-api-token.png "0.6")
+   Note that after you quit the **API tokens** tab, you can't display the API token again.
+7. Store the API token somewhere secure on your computer.
 
-### Check the validity of your API token
+### Optional: check the validity of your API token
 
 To check that your API token is valid, run the following command:
 
@@ -58,8 +53,7 @@ To check that your API token is valid, run the following command:
 $ platform auth:api-token-login
 ```
 
-When prompted, enter your API token and press **Enter**.
-
+When prompted, enter your API token.
 You get output similar to this:
 
 ```bash
@@ -107,7 +101,7 @@ highlight=false
 Run the following command:
 
 ```bash
-platform variable:create -e {{< variable "ENVIRONMENT_NAME" >}} --level environment --prefix 'env:' --name PLATFORMSH_CLI_TOKEN --sensitive true --value '{{< variable "API_TOKEN" >}}' --json false --enabled true --inheritable false --visible-build true --visible-runtime true
+platform variable:create -e {{< variable "ENVIRONMENT_NAME" >}} --level environment --prefix 'env' --name PLATFORMSH_CLI_TOKEN --sensitive true --value '{{< variable "API_TOKEN" >}}' --inheritable false --visible-build true --no-interaction
 ```
 
 <--->
@@ -172,26 +166,24 @@ To run a cron only on your production environment, check the environment type as
 
 ```yaml
 crons:
-    backup:
-        spec: '0 0 * * *'
+    sendemails:
+        spec: '*/7 * * * *'
         commands:
             start: |
                 if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-                   platform source-operation:run update --no-wait --no-interaction
+                   cd public && send-pending-emails.sh
                 fi
 ```
+
 ## Use the CLI SSH certificate for other commands
 
-When authenticating the CLI via a `PLATFORMSH_CLI_TOKEN` environment variable,
-you might want to do the following:
+After you authenticate the CLI via a `PLATFORMSH_CLI_TOKEN` environment variable,
+you might want to run commands that aren't CLI commands.
+For example, you might want to run `ssh`, `git`, `rsync`, or `scp` commands.
 
-- Use the CLI's SSH certificate for improved security.
-- Use SSH to run commands that are not specific to the Platform.sh CLI on a project.
-  For example, you might want to run `ssh`, `git`, `rsync`, or `scp` commands.
-
-In such cases, to set up the SSH configuration and ensure your commands work,
-run the following command first:
+To do so, load the CLI SSH certificate first by running the following command:
 
 ```bash
 $ platform ssh-cert:load
 ```
+
