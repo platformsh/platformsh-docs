@@ -10,10 +10,11 @@ You need to set up an API token to authenticate the Platform.sh CLI for any of t
 
 ## Before you begin
 
-To [check the validity of an API token](#check-the-validity-of-your-api-token) 
-or [use the CLI SSH certificate](#use-the-cli-ssh-certificate-for-other-commands) 
-for commands that aren't specific to Platform.sh,
-you need the [Platform.sh CLI](../cli/_index.md).
+You might need the [Platform.sh CLI](../cli/_index.md) to perform certain tasks.
+For example, you need the CLI to do the following:
+- [Check the validity of an API token](#optional-check-the-validity-of-your-api-token) 
+- [Run non-CLI commands](#use-the-cli-ssh-certificate-for-other-commands) 
+  after you authenticate the CLI using a `PLATFORMSH_CLI_TOKEN` environment variable
 
 ## 1. Create a machine user
 
@@ -84,7 +85,7 @@ To do so, create an environment variable named `PLATFORMSH_CLI_TOKEN` with your 
 For more information, see your CI system's official documentation.
 
 To run SSH-based commands that aren't specific to the Platform.sh CLI,
-see how to [load the proper SSH certificate](#platformsh-cli-ssh-certificate).
+see how to [load the proper SSH certificate](#use-the-cli-ssh-certificate-for-other-commands).
 
 ### Authenticate in a Platform.sh environment
 
@@ -150,7 +151,7 @@ hooks:
 You can now call the CLI from within the shell on the app container or in a cron job.
 
 To run SSH-based commands that aren't specific to the Platform.sh CLI,
-see how to [load the proper SSH certificate](#platformsh-cli-ssh-certificate).
+see how to [load the proper SSH certificate](#use-the-cli-ssh-certificate-for-other-commands).
 
 For caching and other advanced topics,
 copy and use a [prepared script](https://github.com/matthiaz/platformsh-tools/blob/master/install_brew_packages.sh):
@@ -177,7 +178,7 @@ crons:
 
 ## Use the CLI SSH certificate for other commands
 
-After you authenticate the CLI via a `PLATFORMSH_CLI_TOKEN` environment variable,
+After you authenticate the CLI using a `PLATFORMSH_CLI_TOKEN` environment variable,
 you might want to run commands that aren't CLI commands.
 For example, you might want to run `ssh`, `git`, `rsync`, or `scp` commands.
 
