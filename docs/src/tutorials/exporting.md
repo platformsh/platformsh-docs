@@ -135,5 +135,5 @@ Use the CLI to retrieve these values.
 
 ## What's next
 
-- Set up your [local development environment](../development/local/_index.md).
+- Migrate data from elsewhere [into Platform.sh](./migrating.md).
 - Migrate to [another region](../projects/region-migration.md).
