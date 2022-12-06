@@ -51,7 +51,7 @@ highlight=false
 1. In the [Console](https://console.platform.sh/), open your project and click **Code {{< icon chevron >}}**.
 2. Click **Git**.
 3. To copy the command, click **{{< icon copy >}} Copy**.
-4. The command is similar to the following:
+   The command is similar to the following:
 
    ```text
    git clone abcdefgh1234567@git.eu.platform.sh:abcdefgh1234567.git project-name
@@ -86,8 +86,8 @@ Environment variables can contain critical information such as tokens or additio
 
 Environment variables can have different prefixes:
 
-- `env:` are exposed [as Unix environment variables](../development/variables/_index.md#top-level-environment-variables).
-- `php:` are interpreted [as `php.ini` directives](../development/variables/_index.md#php-specific-variables).
+- Variables beginning with `env:` are exposed [as Unix environment variables](../development/variables/_index.md#top-level-environment-variables).
+- Variables beginning with `php:` are interpreted [as `php.ini` directives](../development/variables/_index.md#php-specific-variables).
 
 All other variables are [part of `$PLATFORM_VARIABLES`](../development/variables/use-variables.md#use-platformsh-provided-variables).
 
@@ -128,7 +128,7 @@ highlight=false
 3. Click **Variables** and access your variable's values and settings.
 4. Store the data somewhere secure on your computer.
 
-Note that in the Console, you can't access the value of variables that have [marked as sensitive](../development/variables/set-variables.md#variable-options).
+Note that in the Console, you can't access the value of variables that have been [marked as sensitive](../development/variables/set-variables.md#variable-options).
 Use the CLI to retrieve these values.
 
 {{< /codetabs >}}
