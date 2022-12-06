@@ -191,12 +191,12 @@ Doing so would prevent updates to the generated code from being loaded.
 
 To force a restart of PHP-FPM:
 
-1. Connect to the container via SSH using the [CLI](../../development/ssh/_index.md) by running `platform ssh`
-2. Run `sv restart app`
+1. Connect to the container via SSH using the [CLI](../../development/ssh/_index.md) by running `platform ssh`.
+2. Run `sv restart app`.
 
-To force a restart of PHP-FPM on every deployment, add the `sv restart app` command to your [`deploy` hook](../../create-apps/hooks/hooks-comparison.md#deploy-hook).
+To force a restart of PHP-FPM on every deployment, add this command to your [`deploy` hook](../../create-apps/hooks/hooks-comparison.md#deploy-hook).
 
-To clear the cache when PHP-FPM is restarted, add the `sv restart app` command to your [`start` command](../../create-apps/app-reference.md#web-commands).
+To clear the cache when PHP-FPM is restarted, add this command to your [`start` command](../../create-apps/app-reference.md#web-commands).
 
 ## Optimize your code
 

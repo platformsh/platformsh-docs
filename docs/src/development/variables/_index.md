@@ -204,6 +204,11 @@ Variables for the override are composed of three distinct parts each separated b
 - The property to set (`name`)
 
 Setting the `drupalsettings:system.site:name` variable overrides the `name` property of the `system.site` configuration object located in the global `$settings` array.
+You can do this by running the following [CLI command](../../administration/cli/_index.md):
+
+``` bash
+platform variable:create --name "drupalsettings:system.site:name" --value "{{<variable "SITE_NAME" >}}"
+```
 
 The same logic applies for other configuration options,
 such as the global `$config` array, which uses the variable prefix `drupalconfig`.
@@ -211,15 +216,5 @@ such as the global `$config` array, which uses the variable prefix `drupalconfig
 You need to name your Platform.sh variables to match the ones used in your script.
 Make sure that the Platform.sh variables start with a string present in your `switch` statement.
 
-To override values using the script in the Drupal 9 template:
 
-1. Find out which settings can be overridden in the [settings script](https://github.com/platformsh-templates/drupal9/blob/8d5d23cdcb91ffa3f96727adf9d3dba74dfc01db/web/sites/default/settings.platformsh.php#L125-L162).
-   Adapt the script if needed.
-2. [Create variables that match the script](../../development/variables/set-variables.md).
-   For example, to override the site name, run the following [CLI command](../../administration/cli/_index.md):
-
-    ``` bash
-    platform variable:create --name "drupalsettings:system.site:name" --value "{{<variable "SITE_NAME" >}}"
-    ```
-
-You can apply similar logic [for other frameworks and languages](../../development/variables/use-variables.md#access-variables-in-your-app).
+You can apply similar logic for [other frameworks and languages](../../development/variables/use-variables.md#access-variables-in-your-app).

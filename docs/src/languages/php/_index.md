@@ -43,7 +43,7 @@ If you need to use Composer 2.x or for more options, see [dependency management]
 
 ### 3. Serve your app
 
-To serve your app, define what (and how) content should be served by [setting the `locations`](../../create-apps/app-reference.md#locations).
+To serve your app, define what (and how) content should be served by setting the [`locations` parameter](../../create-apps/app-reference.md#locations).
 
 Usually, it contains the two following (optional) keys:
 
