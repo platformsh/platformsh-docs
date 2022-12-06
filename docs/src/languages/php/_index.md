@@ -33,15 +33,7 @@ and add it to your [app configuration](../../create-apps/_index.md):
 
 {{< readFile file="src/registry/images/examples/full/php.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
-### 2. Optional: specify a dependency manager
-
-To manage PHP dependencies and libraries, you can use [Composer](https://getcomposer.org/).
-PHP containers use Composer 1.x by default.
-
-If you use Composer 1.x to manage your app, no changes are needed.
-If you need to use Composer 2.x or for more options, see [dependency management](#dependencies).
-
-### 3. Serve your app
+### 2. Serve your app
 
 To serve your app, define what (and how) content should be served by setting the [`locations` parameter](../../create-apps/app-reference.md#locations).
 
@@ -114,52 +106,6 @@ You can also use a [private, authenticated third-party Composer repository](./co
 
 If you need more control over the dependency management, you can either use your custom build flavor or interact with Composer itself through [its environment variables](https://getcomposer.org/doc/03-cli.md#environment-variables).
 
-For example, to still install production dependencies with Composer but not development dependencies,
-choose one of the following methods:
-
-{{< codetabs >}}
-
----
-title=Using the CLI
-highlight=false
-file=none
----
-
-You can use the default build flavor and the `COMPOSER_NO_DEV` variable.
-To add the variable to your Production environment, run a command like the following:
-
-```bash
-platform variable:create --environment {{< variable "PRODUCTION_ENVIRONMENT_NAME" >}} --level environment --name COMPOSER_NO_DEV --value 1 --prefix env --inheritable false --visible-runtime false --no-interaction
-```
-
-<--->
-
----
-title=In the Console
-highlight=false
-file=none
----
-
-You can use the default build flavor and the `COMPOSER_NO_DEV` variable.
-To add the variable to your Production environment:
-
-1. Navigate to your Production environment.
-2. Click {{< icon settings >}} **Settings**.
-3. Click **Variables**.
-4. Click **+ Add variable**.
-5. Fill in `env:COMPOSER_NO_DEV` for the name.
-6. Fill in `1` for the value.
-7. Make sure **Make inheritable** is *not* selected.
-8. Click **Add variable**.
-
-<--->
-
----
-title=Using a custom build flavor
-highlight=false
-file=none
----
-
 You can remove the default build flavor and run your own commands for complete control over your build.
 Set the build flavor to `none` and add the commands you need to your `build` hook, as in the following example:
 
@@ -173,7 +119,8 @@ hooks:
         composer install --no-interaction --no-dev
 ```
 
-{{< /codetabs >}}
+That installs production dependencies with Composer but not development dependencies.
+The same can be achieved by using the default build flavor and [adding the `COMPOSER_NO_DEV` variable](../../development/variables/set-variables.md#create-environment-specific-variables).
 
 See more on [build flavors](../../create-apps/app-reference.md#build).
 

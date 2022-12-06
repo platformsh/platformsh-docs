@@ -210,16 +210,48 @@ This usually indicates that large files are present in the repository (where the
 Make sure that the paths for files like media files, dependencies, and databases are set to be ignored in your `.gitignore` file.
 
 If large files are already in the repository, the open-source tool [bfg-repo-cleaner](https://rtyley.github.io/bfg-repo-cleaner/)
-can assist in cleaning up the repository by purging older commits, removing unnecessary files, and more.
+can help in cleaning up the repository by purging older commits, removing unnecessary files, and more.
 
 If none of these suggestions work, create a [support ticket](https://console.platform.sh/-/users/~/tickets/open).
+
+## Stuck build or deployment
+
+If you see a build or deployment running longer than expected, it may be one of the following cases:
+
+- The build is blocked by a process in your `build` hook.
+- The deployment is blocked by a long-running process in your `deploy` hook.
+- The deployment is blocked by a long-running cron job in the environment.
+- The deployment is blocked by a long-running cron job in the parent environment.
+
+To determine if your environment is being stuck in the build or the deployment, check your [activity log](../increase-observability/logs/access-logs.md#activity-logs).
+
+If the activity has the result `success`, the build has completed successfully and the system is trying to deploy.
+If the result is still `running`, the build is stuck.
+
+In most regions, stuck builds terminate after one hour.
+To have the build killed in [legacy regions](./regions.md#legacy-regions), create a [support ticket](https://console.platform.sh/-/users/~/tickets/open).
+
+When a deployment is blocked, you should try the following:
+
+1. Connect to your environment using [SSH](./ssh/_index.md).
+2. Find any long-running cron jobs or deploy hooks on the environment by running `ps afx`.
+3. Kill any long-running processes with `kill {{< variable "PID" >}}`.
+  Replace `{{< variable "PID" >}}` with the process ID shown by `ps afx`.
+
+If a `sync` of `activate` process is stuck, try the above on the parent environment.
+
+## Slow or failing build or deployment
+
+Builds can take long time or fail.
+Most of the time, it's related to an application issue.
+Here are a few tips that can help you find the exact cause.
 
 ### Check for errors in the logs
 
 Invisible errors during the build and deploy phase can cause increased wait times, failed builds, and other problems.
 Investigate [each log](../increase-observability/logs/access-logs.md#container-logs) and fix any errors you find.
 
-## Build and deploy hooks
+### Build and deploy hooks
 
 [`build` and `deploy` hooks](../create-apps/hooks/_index.md) can cause long build times.
 If they run into issues, they can cause the build to fail or hang indefinitely.
@@ -236,31 +268,6 @@ time {{< variable "YOUR_HOOK_COMMAND" >}} # Print execution time
 strace -T {{< variable "YOUR_HOOK_COMMAND" >}} # Print a system call report
 ```
 
-### Stuck or slow build or deployment
-
-If you see a build or deployment running longer than expected, it may be one of the following cases:
-
-- The build is blocked by a process in your `build` hook.
-- The deployment is blocked by a long-running process in your `deploy` hook.
-- The deployment is blocked by a long-running cron job in the environment.
-- The deployment is blocked by a long-running cron job in the parent environment.
-
-To determine if your environment is being stuck in the build or the deployment, check your [activity log](../increase-observability/logs/access-logs.md#activity-logs).
-
-If the activity has the result `success`, the build has completed successfully and the system is trying to deploy.
-If the result is still `running`, the build is stuck.
-
-When a *deployment* is blocked, you can try the following:
-
-1. Connect to your environment using [SSH](./ssh/_index.md).
-2. Find any long-running cron jobs or deploy hooks on the environment by running `ps -afx`.
-3. Kill any long-running processes with `kill {{< variable "PID" >}}` where `{{< variable "PID" >}}` is the process ID shown by `ps -afx`.
-
-These steps also work on the parent environment when a `sync` or `activate` process is stuck.
-
-In most regions, stuck builds [time out after one hour](../create-apps/hooks/hooks-comparison.md#timeout).
-To have the build killed in [legacy regions](./regions.md#legacy-regions), create a [support ticket](https://console.platform.sh/-/users/~/tickets/open).
-
 ## Cron jobs
 
 Containers can't be shutdown while long-running [cron jobs and scheduled tasks](../create-apps/app-reference.md#crons) are active.
@@ -272,7 +279,7 @@ Cron jobs may invoke other services in unexpected ways, which can increase execu
 ## Cache configuration
 
 A common source of performance issues is a misconfigured cache.
-The most common issue is not allowing the right cookies as part of the router cache.
+The most common issue isn't allowing the right cookies as part of the router cache.
 
 Some cookies, such as session cookies, need to be allowed.
 Others, such as marketing and analytics cookies, usually shouldn't be part of the cache key.

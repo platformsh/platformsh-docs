@@ -22,9 +22,9 @@ Add the following to your app configuration:
 
 ```yaml {location=".platform.app.yaml"}
 variables:
-      php:
-          "date.timezone": "Europe/Paris"
-  ```
+    php:
+        "date.timezone": "Europe/Paris"
+```
 
 <--->
 

@@ -216,5 +216,4 @@ such as the global `$config` array, which uses the variable prefix `drupalconfig
 You need to name your Platform.sh variables to match the ones used in your script.
 Make sure that the Platform.sh variables start with a string present in your `switch` statement.
 
-
 You can apply similar logic for [other frameworks and languages](../../development/variables/use-variables.md#access-variables-in-your-app).
