@@ -49,6 +49,9 @@ jobs:
           # Give time for the activity to be reported
           sleep 60
 
+          # Set the project
+          platform project:set-remote 652soceglkw4u
+
           # Get the state of the most recent activity
           STATE=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy" --no-header --columns "state" --limit 1 --environment ${{ steps.branch_name.outputs.branch_name }})
 
