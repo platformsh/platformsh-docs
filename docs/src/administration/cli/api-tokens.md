@@ -40,9 +40,8 @@ highlight=false
    with no access to other environment types.
    Note that you can further [adjust user roles](../users.md#environment-types) depending on your needs and each environment type.
 
-2. To send an invitation to the email address provided in step 1, press **Enter**. 
-3. In the email invitation, click **Create account**.
-4. To create a Platform.sh account for the machine user, click **Sign up** and follow the instructions.
+2. In the email invitation, click **Create account**.
+3. To create a Platform.sh account for the machine user, click **Sign up** and follow the instructions.
 
 <--->
 ---
@@ -218,7 +217,7 @@ In this case, to ensure all your commands work, load the CLI SSH certificate fir
 To do so, run the following command:
 
 ```bash
-$ platform ssh-cert:load
+$ platform ssh-cert:load --no-interaction
 ```
 
 
