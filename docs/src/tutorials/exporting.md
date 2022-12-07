@@ -5,6 +5,7 @@ description: See how to export your code, files and service data.
 
 As a Platform.sh user, your code and data belong to you.
 At any time, you can download your site's data for local development, to back up your data, or to change provider.
+
 ## Before you begin
 
 You need:
@@ -137,3 +138,4 @@ Use the CLI to retrieve these values.
 
 - Migrate data from elsewhere [into Platform.sh](./migrating.md).
 - Migrate to [another region](../projects/region-migration.md).
+- To use your production data with your development environment, download your data locally and set up your [local development environment](../development/local/_index.md).
