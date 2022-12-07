@@ -40,7 +40,7 @@ Integrations exist for the following third-party services to enable log forwardi
 Enable log forwarding for a specific project by following the steps for your selected service.
 
 {{< codetabs >}}
----
++++
 title=New Relic
 highlight=false
 file=none
@@ -61,7 +61,7 @@ file=none
 View your logs in the **Logs** dashboard.
 
 <--->
----
++++
 title=Splunk
 highlight=false
 file=none
@@ -81,7 +81,7 @@ View your logs in the **Apps->Search & Reporting** dashboard.
 Filter by the index name to find the relevant events.
 
 <--->
----
++++
 title=Sumo Logic
 highlight=false
 file=none

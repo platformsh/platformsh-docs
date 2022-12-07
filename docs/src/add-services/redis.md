@@ -93,35 +93,35 @@ The format is identical regardless of whether it's a persistent or ephemeral ser
 
 {{< codetabs >}}
 
----
++++
 title=Java
 file=static/files/fetch/examples/java/redis
 highlight=java
----
++++
 
 <--->
 
----
++++
 title=Node.js
 file=static/files/fetch/examples/nodejs/redis
 highlight=js
----
++++
 
 <--->
 
----
++++
 title=PHP
 file=static/files/fetch/examples/php/redis
 highlight=php
----
++++
 
 <--->
 
----
++++
 title=Python
 file=static/files/fetch/examples/python/redis
 highlight=python
----
++++
 
 {{< /codetabs >}}
 
@@ -135,11 +135,11 @@ The way to access a particular database depends on the [client library](https://
 
 {{< codetabs >}}
 
----
++++
 title=PHP
 file=none
 highlight=false
----
++++
 
 Use the Redis [`select` command](https://redis.io/commands/select):
 
@@ -154,11 +154,11 @@ $redis->get('x');    // returns 42
 
 <--->
 
----
++++
 title=Python
 file=none
 highlight=false
----
++++
 
 To manage [thread safety](https://github.com/redis/redis-py/blob/master/docs/advanced_features.rst#user-content-a-note-about-threading),
 the Python library suggests using separate client instances for each database:
@@ -177,11 +177,11 @@ database1 = Redis(host='xxxxxx.cache.amazonaws.com', port=6379, db=0)
 
 <--->
 
----
++++
 title=Node.js
 file=none
 highlight=false
----
++++
 
 Use the Redis [`select` command](https://redis.io/commands/select):
 

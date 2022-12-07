@@ -42,11 +42,11 @@ To create a new branch from an existing environment:
 
 {{< codetabs >}}
 
----
++++
 title=In the Console
 file=none
 highlight=false
----
++++
 
 - Navigate to the environment you want to branch from.
 - Click {{< icon branch >}} **Branch**.
@@ -55,11 +55,11 @@ highlight=false
 - Click **Create branch**.
 
 <--->
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 Run:
 

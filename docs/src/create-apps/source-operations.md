@@ -49,11 +49,11 @@ For more possibilities, see other [operation examples](#source-operation-example
 To run a source operation, you can use the CLI or Console.
 
 {{< codetabs >}}
----
++++
 title=In the Console
 file=none
 highlight=false
----
++++
 
 - Navigate to the environment where you want to run the operation.
 - Click {{< icon more >}} **More**.
@@ -63,11 +63,11 @@ highlight=false
 - Click **Run**.
 
 <--->
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 Run the following command:
 
@@ -113,11 +113,11 @@ Run the operation with the variable:
 
 {{< codetabs >}}
 
----
++++
 title=In the Console
 file=none
 highlight=false
----
++++
 
 - Navigate to the environment where you want to run the operation.
 - Click {{< icon more >}} **More**.
@@ -127,11 +127,11 @@ highlight=false
 - Click **Run**.
 
 <--->
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 ```bash
 platform source-operation:run update --variable env:FILE="example.txt"
@@ -177,8 +177,8 @@ and then runs the `update` source operation:
 ```yaml {location=".platform.app.yaml"}
 crons:
     update:
-        # Run the 'update' source operation every day at midnight.
-        spec: '0 0 * * *'
+        # Run the 'update' source operation every day between midnight and 01:00.
+        spec: 'H 0 * * *'
         commands:
             start: |
                 set -e
@@ -198,11 +198,11 @@ Do so in a source operation depending on your dependency manager:
 <!--vale off -->
 {{< codetabs >}}
 
----
++++
 title=Composer
 file=none
 highlight=yaml
----
++++
 
 source:
     operations:
@@ -215,11 +215,11 @@ source:
 
 <--->
 
----
++++
 title=npm
 file=none
 highlight=yaml
----
++++
 
 source:
     operations:
@@ -232,11 +232,11 @@ source:
 
 <--->
 
----
++++
 title=Yarn
 file=none
 highlight=yaml
----
++++
 
 source:
     operations:
@@ -249,11 +249,11 @@ source:
 
 <--->
 
----
++++
 title=Go
 file=none
 highlight=yaml
----
++++
 
 source:
     operations:
@@ -267,11 +267,11 @@ source:
 
 <--->
 
----
++++
 title=Pipenv
 file=none
 highlight=yaml
----
++++
 
 source:
     operations:
@@ -284,11 +284,11 @@ source:
 
 <--->
 
----
++++
 title=Bundler
 file=none
 highlight=yaml
----
++++
 
 source:
     operations:

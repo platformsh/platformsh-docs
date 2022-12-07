@@ -77,11 +77,11 @@ Set the token as a [top-level environment variable](../../development/variables/
 either using the [CLI](../cli/_index.md) or in the [Console](../web/_index.md):
 
 {{< codetabs >}}
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 Run the following command:
 
@@ -90,11 +90,11 @@ platform variable:create -e {{< variable "ENVIRONMENT_NAME" >}} --level environm
 ```
 
 <--->
----
++++
 title=In the Console
 file=none
 highlight=false
----
++++
 
 1. Open the environment where you want to add the variable.
 2. Click {{< icon settings >}} **Settings**.
@@ -154,7 +154,7 @@ To run a cron only on your production environment, check the environment type as
 ```yaml
 crons:
     backup:
-        spec: '0 5 * * *'
+        spec: 'H 4 * * *'
         commands:
             start: |
                 if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then

@@ -22,11 +22,11 @@ To download your entire app's code history:
 
 {{< codetabs >}}
 
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 1. List all your projects by running the following command:
 
@@ -42,11 +42,11 @@ highlight=false
 
 <--->
 
----
++++
 title=Using Git
 file=none
 highlight=false
----
++++
 
 1. In the [Console](https://console.platform.sh/), open your project and click **Code {{< icon chevron >}}**.
 2. Click **Git**.
@@ -95,11 +95,11 @@ To back up your environment variables:
 
 {{< codetabs >}}
 
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 1. Get the variable's values by running the following command:
 
@@ -117,11 +117,11 @@ highlight=false
 
 <--->
 
----
++++
 title=In the Console
 file=none
 highlight=false
----
++++
 
 1. In the [Console](https://console.platform.sh/), open your project and click **{{< icon settings >}}**.
 2. Click **Project Settings {{< icon chevron >}}**.

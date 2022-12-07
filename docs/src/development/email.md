@@ -19,11 +19,11 @@ To turn it on for a specific environment, follow these steps:
 
 {{< codetabs >}}
 
----
++++
 title=In the Console
 file=none
 highlight=false
----
++++
 
 - Select the project with the given environment.
 - From the **Environment** menu, select the environment.
@@ -35,11 +35,11 @@ To turn off outgoing email, clear the **Email sending** checkbox.
 
 <--->
 
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 To turn on outgoing email, run the following command:
 
@@ -123,11 +123,11 @@ See some examples for given languages.
 
 {{< codetabs >}}
 
----
++++
 title=PHP
 file=none
 highlight=false
----
++++
 
 To send email in PHP, you can use the built-in [`mail()` function](http://php.net/manual/en/function.mail.php).
 The PHP runtime is configured to send email automatically with the correct configuration.
@@ -142,11 +142,11 @@ be sure to sanitize it first.
 
 <--->
 
----
++++
 title=Java
 file=none
 highlight=false
----
++++
 
 JavaMail is a Java API used to send and receive email via SMTP, POP3, and IMAP.
 JavaMail is built into the [Jakarta EE](https://jakarta.ee/) platform, but also provides an optional package for use in Java SE.

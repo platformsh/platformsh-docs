@@ -15,11 +15,11 @@ To change the environment's parent, follow these steps:
 
 {{< codetabs >}}
 
----
++++
 title=In the Console
 file=none
 highlight=false
----
++++
 
 - Select the project where you want to change the parent.
 - From the **Environment** menu, select the environment you want to change.
@@ -29,11 +29,11 @@ highlight=false
 - Click **Save**.
 
 <--->
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 Run the following command:
 

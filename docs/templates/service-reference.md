@@ -51,7 +51,7 @@ A brief introduction (1--2 sentences) to what this service is used for.
 
 {{< codetabs >}}
 
----
++++
 title=<LANGUAGE>
 file=static/files/fetch/examples/<LANGUAGE_NAME>/<SERVICE_TYPE>
 highlight=<LANGUAGE>

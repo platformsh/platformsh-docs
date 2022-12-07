@@ -17,7 +17,7 @@ You can access the logs either in the Console or using the CLI:
 
 {{< codetabs >}}
 
----
++++
 title=In the Console
 highlight=false
 file=none
@@ -31,7 +31,7 @@ file=none
 
 <--->
 
----
++++
 title=Using the CLI
 highlight=false
 file=none
@@ -44,6 +44,8 @@ file=none
 1. Get a log of any given activity by running `platform activity:log <ACTIVITY_ID>`.
 
 {{< /codetabs >}}
+
+If a running activity is stuck, you can [cancel the activity](../../environments/cancel-activity.md).
 
 ### Sharing activity logs
 
@@ -69,7 +71,7 @@ To access the logs of various types of events:
 
 {{< codetabs >}}
 
----
++++
 title=Using the CLI
 highlight=false
 file=none
@@ -87,7 +89,7 @@ To view more lines, use the `--lines` flag.
 
 <--->
 
----
++++
 title=Using SSH directly
 highlight=false
 file=none

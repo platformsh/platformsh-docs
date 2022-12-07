@@ -71,75 +71,75 @@ To access various [services](../../add-services/_index.md) with Java, see the fo
 
 {{< codetabs >}}
 
----
++++
 title=Elasticsearch
 file=static/files/fetch/examples/java/elasticsearch
 highlight=java
----
++++
 
 <--->
 
----
++++
 title=Kafka
 file=static/files/fetch/examples/java/kafka
 highlight=java
----
++++
 
 <--->
 
----
++++
 title=Memcached
 file=static/files/fetch/examples/java/memcached
 highlight=java
----
++++
 
 <--->
 
----
++++
 title=MongoDB
 file=static/files/fetch/examples/java/mongodb
 highlight=java
----
++++
 
 <--->
 
----
++++
 title=MySQL
 file=static/files/fetch/examples/java/mysql
 highlight=java
----
++++
 
 <--->
 
----
++++
 title=PostgreSQL
 file=static/files/fetch/examples/java/postgresql
 highlight=java
----
++++
 
 <--->
 
----
++++
 title=RabbitMQ
 file=static/files/fetch/examples/java/rabbitmq
 highlight=java
----
++++
 
 <--->
 
----
++++
 title=Redis
 file=static/files/fetch/examples/java/redis
 highlight=java
----
++++
 
 <--->
 
----
++++
 title=Solr
 file=static/files/fetch/examples/java/solr
 highlight=java
----
++++
 
 {{< /codetabs >}}
 

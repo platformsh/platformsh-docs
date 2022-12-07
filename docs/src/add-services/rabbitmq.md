@@ -34,35 +34,35 @@ The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](../de
 
 {{< codetabs >}}
 
----
++++
 title=Go
 file=static/files/fetch/examples/golang/rabbitmq
 highlight=go
----
++++
 
 <--->
 
----
++++
 title=Java
 file=static/files/fetch/examples/java/rabbitmq
 highlight=java
----
++++
 
 <--->
 
----
++++
 title=PHP
 file=static/files/fetch/examples/php/rabbitmq
 highlight=php
----
++++
 
 <--->
 
----
++++
 title=Python
 file=static/files/fetch/examples/python/rabbitmq
 highlight=python
----
++++
 
 {{< /codetabs >}}
 
