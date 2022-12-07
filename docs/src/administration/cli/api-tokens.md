@@ -26,11 +26,11 @@ For security purposes, create a machine user for each type of task you want to a
 To create a machine user, follow these steps:
 
 {{< codetabs >}}
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 1. Run the following command using your machine user's email address.
    ```bash
@@ -44,11 +44,11 @@ highlight=false
 3. To create a Platform.sh account for the machine user, click **Sign up** and follow the instructions.
 
 <--->
----
++++
 title=In the Console
 file=none
 highlight=false
----
++++
 
 1. Go to your project and click {{< icon settings >}} **Settings**.
 2. In the **Project Settings** menu, click **Access**.
