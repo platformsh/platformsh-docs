@@ -481,7 +481,7 @@ So automated checks show when something might be wrong,
 but use your common sense and ignore them when appropriate.
 
 To see all feedback, [install all dependencies](../README.md#running-locally)
-and run `lint:markdown` from the `docs` directory.
+and run `npm run lint:markdown` from the `docs` directory.
 Or use it in your IDE, such as with the [VS Code ESLint extension](https://open-vsx.org/extension/dbaeumer/vscode-eslint).
 If the extension in VS Code doesn't immediately start working,
 you may need to add the following to your settings:

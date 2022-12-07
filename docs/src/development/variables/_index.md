@@ -29,7 +29,7 @@ If there are conflicts between variables with the same name, variables [take pre
 So Platform.sh-provided values (1) override environment variables (2), which override project variables (3),
 which override application-provided variables (4).
 
-All of the variables can also be [overridden via script](./set-variables.md#set-variables-via-script).
+All the variables can also be [overridden via a script](./set-variables.md#set-variables-via-script).
 
 ### Choosing a variable type
 

@@ -136,22 +136,21 @@ To install from an alternative repository:
 
 1. Set an explicit `require` block:
 
-    ```yaml {location=".platform.app.yaml"}
-    dependencies:
-        php:
-            require:
-                "platformsh/client": "2.x-dev"
-    ```
+   ```yaml {location=".platform.app.yaml"}
+   dependencies:
+       php:
+           require:
+               "platformsh/client": "2.x-dev"
+   ```
 
-    This is equivalent to `composer require platform/client 2.x-dev`.
-
+   This is equivalent to `composer require platform/client 2.x-dev`.
 2. Add the repository to use:
 
-    ```yaml {location=".platform.app.yaml"}
-            repositories:
-                - type: vcs
-                  url: "git@github.com:platformsh/platformsh-client-php.git"
-    ```
+   ```yaml {location=".platform.app.yaml"}
+           repositories:
+               - type: vcs
+                   url: "git@github.com:platformsh/platformsh-client-php.git"
+   ```
 
 That installs `platformsh/client` from the specified repository URL as a global dependency.
 
@@ -159,14 +158,14 @@ For example, to install Composer 2 and the `platform/client 2.x-dev` library fro
 use the following:
 
 ```yaml {location=".platform.app.yaml"}
-    dependencies:
-        php:
-            composer/composer: '^2'
-            require:
-                "platformsh/client": "2.x-dev"
-            repositories:
-                - type: vcs
-                  url: "git@github.com:platformsh/platformsh-client-php.git"
+dependencies:
+    php:
+        composer/composer: '^2'
+        require:
+            "platformsh/client": "2.x-dev"
+        repositories:
+            - type: vcs
+                url: "git@github.com:platformsh/platformsh-client-php.git"
 ```
 
 ## Connect to services
@@ -292,24 +291,24 @@ To see the settings used on your environment:
 
 1. Find the PHP configuration files with the following [CLI command](../../administration/cli/_index.md):
 
-    ```bash
-    platform ssh "php --ini"
-    ```
+   ```bash
+   platform ssh "php --ini"
+   ```
 
-    The output is something like the following:
+   The output is something like the following:
 
-    ```bash
-    Configuration File (php.ini) Path: /etc/php/8.0-zts/cli
-    Loaded Configuration File:         /etc/php/8.0-zts/cli/php.ini
-    Scan for additional .ini files in: /etc/php/8.0-zts/cli/conf.d
-    Additional .ini files parsed:      (none)
-    ```
+   ```bash
+   Configuration File (php.ini) Path: /etc/php/8.0-zts/cli
+   Loaded Configuration File:         /etc/php/8.0-zts/cli/php.ini
+   Scan for additional .ini files in: /etc/php/8.0-zts/cli/conf.d
+   Additional .ini files parsed:      (none)
+   ```
 
 2. Display the configuration file by adapting the following command with the output from step 1:
 
-    ```bash
-    platform ssh "cat {{< variable "LOADED_CONFIGURATION_FILE_PATH" >}}"
-    ```
+   ```bash
+   platform ssh "cat {{< variable "LOADED_CONFIGURATION_FILE_PATH" >}}"
+   ```
 
 ### Customize PHP settings
 
@@ -451,26 +450,25 @@ highlight=false
    {{<variable "PATH_TO_APP" >}} is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
 3. Configure the container to listen on a TCP socket:
 
-    ```yaml {location=".platform.app.yaml"}
-    web:
-        upstream:
-            socket_family: tcp
-            protocol: http
+   ```yaml {location=".platform.app.yaml"}
+   web:
+       upstream:
+           socket_family: tcp
+           protocol: http
+   ```
 
-    ```
-
-    When you listen on a TCP socket, the `$PORT` environment variable is automatically set.
-    See more options on how to [configure where requests are sent](../../create-apps/app-reference.md#upstream).
-    You might have to configure your app to connect via the `$PORT` TCP socket,
-    especially when using web servers such as [Swoole](swoole.md) or [Roadrunner](https://github.com/roadrunner-server/roadrunner).
+   When you listen on a TCP socket, the `$PORT` environment variable is automatically set.
+   See more options on how to [configure where requests are sent](../../create-apps/app-reference.md#upstream).
+   You might have to configure your app to connect via the `$PORT` TCP socket,
+   especially when using web servers such as [Swoole](swoole.md) or [Roadrunner](https://github.com/roadrunner-server/roadrunner).
 4. Optional: Override redirects to let the custom web server handle them:
 
-    ```yaml {location=".platform.app.yaml"}
-    locations:
-        "/":
-            allow: false
-            passthru: true
-    ```
+   ```yaml {location=".platform.app.yaml"}
+   locations:
+       "/":
+           allow: false
+           passthru: true
+   ```
 
 <--->
 
@@ -485,13 +483,13 @@ To execute runtime-specific tasks (such as clearing cache) before your app start
 1. Create a separate shell script that includes all the commands to be run.
 2. Specify an alternative `start` command by adapting the following:
 
-    ```yaml {location:".platform.app.yaml"}
-    web:
-            commands:
-                start: bash {{< variable "PATH_TO_SCRIPT" >}} && /usr/bin/start-php-app {{< variable "PATH_TO_APP" >}}
-    ```
+   ```yaml {location:".platform.app.yaml"}
+   web:
+           commands:
+               start: bash {{< variable "PATH_TO_SCRIPT" >}} && /usr/bin/start-php-app {{< variable "PATH_TO_APP" >}}
+   ```
 
-    {{<variable "PATH_TO_SCRIPT" >}} is the bash script created in step 1.
+   {{<variable "PATH_TO_SCRIPT" >}} is the bash script created in step 1.
    Both {{<variable "PATH_TO_SCRIPT" >}} and {{<variable "PATH_TO_APP" >}} are file paths relative to the [app root](../../create-apps/app-reference.md#root-directory).
 
 {{< /codetabs >}}
@@ -515,10 +513,10 @@ To leverage FFIs, follow these steps:
 1. [Enable and configure OPcache preloading](./tuning.md#enable-opcache-preloading).
 2. Enable the FFI extension:
 
-    ```yaml {location=".platform.app.yaml"}
-    runtime:
-        extensions:
-            - ffi
+   ```yaml {location=".platform.app.yaml"}
+   runtime:
+      extensions:
+           - ffi
    ```
 
 3. Make sure that your [preload script](./tuning.md#opcache-preloading) calls the `FFI::load()` function.
@@ -534,9 +532,9 @@ To leverage FFIs, follow these steps:
 
 5. Run your script with the following command:
 
-    ```bash
-    php {{<variable "CLI_SCRIPT" >}}
-    ```
+   ```bash
+   php {{<variable "CLI_SCRIPT" >}}
+   ```
 
 See [complete working examples for C and Rust](https://github.com/platformsh-examples/php-ffi).
 
