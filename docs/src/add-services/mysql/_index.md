@@ -79,43 +79,43 @@ Configure your service with at least 256 MB in disk space.
 
 {{< codetabs >}}
 
----
++++
 title=Go
 file=static/files/fetch/examples/golang/mysql
 highlight=go
----
++++
 
 <--->
 
----
++++
 title=Java
 file=static/files/fetch/examples/java/mysql
 highlight=java
----
++++
 
 <--->
 
----
++++
 title=Node.js
 file=static/files/fetch/examples/nodejs/mysql
 highlight=js
----
++++
 
 <--->
 
----
++++
 title=PHP
 file=static/files/fetch/examples/php/mysql
 highlight=php
----
++++
 
 <--->
 
----
++++
 title=Python
 file=static/files/fetch/examples/python/mysql
 highlight=python
----
++++
 
 {{< /codetabs >}}
 

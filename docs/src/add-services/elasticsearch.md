@@ -46,35 +46,35 @@ The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](../de
 
 {{< codetabs >}}
 
----
++++
 title=Java
 file=static/files/fetch/examples/java/elasticsearch
 highlight=java
----
++++
 
 <--->
 
----
++++
 title=Node.js
 file=static/files/fetch/examples/nodejs/elasticsearch
 highlight=js
----
++++
 
 <--->
 
----
++++
 title=PHP
 file=static/files/fetch/examples/php/elasticsearch
 highlight=php
----
++++
 
 <--->
 
----
++++
 title=Python
 file=static/files/fetch/examples/python/elasticsearch
 highlight=python
----
++++
 
 {{< /codetabs >}}
 

@@ -67,7 +67,7 @@ To access various [services](../add-services/_index.md) with Go, see the followi
 
 {{< codetabs >}}
 
----
++++
 title=Memcached
 file=static/files/fetch/examples/golang/memcached
 highlight=go
@@ -76,7 +76,7 @@ markdownify=false
 
 <--->
 
----
++++
 title=MongoDB
 file=static/files/fetch/examples/golang/mongodb
 highlight=golang
@@ -85,7 +85,7 @@ markdownify=false
 
 <--->
 
----
++++
 title=MySQL
 file=static/files/fetch/examples/golang/mysql
 highlight=golang
@@ -94,7 +94,7 @@ markdownify=false
 
 <--->
 
----
++++
 title=PostgreSQL
 file=static/files/fetch/examples/golang/postgresql
 highlight=golang
@@ -103,7 +103,7 @@ markdownify=false
 
 <--->
 
----
++++
 title=RabbitMQ
 file=static/files/fetch/examples/golang/rabbitmq
 highlight=golang
@@ -112,7 +112,7 @@ markdownify=false
 
 <--->
 
----
++++
 title=Solr
 file=static/files/fetch/examples/golang/solr
 highlight=golang

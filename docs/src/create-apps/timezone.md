@@ -12,11 +12,11 @@ The way to set a different timezone for a specific app depends on the given runt
 
 {{< codetabs >}}
 
----
++++
 title=PHP
 file=none
 highlight=false
----
++++
 
 Add the following to your app configuration:
 
@@ -28,31 +28,31 @@ variables:
 
 <--->
 
----
++++
 title=Node.js
 file=none
 highlight=false
----
++++
 
 Start the server with `env TZ='<timezone>' node server.js`.
 
 <--->
 
----
++++
 title=Python
 file=none
 highlight=false
----
++++
 
 Start the server with `env TZ='<timezone>' python server.py`.
 
 <--->
 
----
++++
 title=Java
 file=none
 highlight=false
----
++++
 
 * Start the server with `env TZ='<timezone>' java -jar ...` OR
 * Set the Java virtual machine argument `user.timezone`.

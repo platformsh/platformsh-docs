@@ -61,11 +61,11 @@ To add a user to a project or an environment, follow these steps:
 
 {{< codetabs >}}
 
----
++++
 title=In the Console
 file=none
 highlight=false
----
++++
 
 - Select the project where you want to add a new user.
 - Click {{< icon settings >}} **Settings**.
@@ -75,11 +75,11 @@ highlight=false
 - Click **Save**.
 
 <--->
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 Say you want to add `user1@example.com` to the project with a Project Admin role:
 
@@ -101,11 +101,11 @@ To delete a user from a project, follow these steps:
 
 {{< codetabs >}}
 
----
++++
 title=In the Console
 file=none
 highlight=false
----
++++
 
 - Select the project where you want to add a new user.
 - Click {{< icon settings >}} **Settings**.
@@ -116,11 +116,11 @@ highlight=false
 
 <--->
 
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 To delete existing users:
 
 ```bash
@@ -140,11 +140,11 @@ To change user permissions, follow these steps:
 
 {{< codetabs >}}
 
----
++++
 title=In the Console
 file=none
 highlight=false
----
++++
 
 - Select the project where you want to add a new user.
 - Click {{< icon settings >}} **Settings**.
@@ -155,11 +155,11 @@ highlight=false
 
 <--->
 
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 Say you want `user1@example.com` to have the Viewer role for Production environments
 and the Contributor role for Development environments:
 

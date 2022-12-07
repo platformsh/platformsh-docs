@@ -17,11 +17,11 @@ To trigger a redeploy, follow these steps:
 
 {{< codetabs >}}
 
----
++++
 title=In the Console
 file=none
 highlight=false
----
++++
 
 - Select the project with the given environment.
 - From the **Environment** menu, select the environment.
@@ -30,11 +30,11 @@ highlight=false
 
 <--->
 
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 Run the following command:
 

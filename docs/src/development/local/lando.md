@@ -42,11 +42,11 @@ Copy the value.
 
 {{< codetabs >}}
 
----
++++
 title=On an existing Platform.sh project
 file=none
 highlight=false
----
++++
 
 If your code isn't present locally, retrieve your codebase with one of these methods:
 
@@ -59,11 +59,11 @@ Run `lando init --recipe platformsh --source cwd --platformsh-auth <API_TOKEN>` 
 
 <--->
 
----
++++
 title=On a new Platform.sh project without code
 file=none
 highlight=false
----
++++
 
 For a quicker start, create a project based on the Platform.sh [PHP template](https://github.com/platformsh-templates/php).
 The template provides the most basic configuration for running a custom PHP project built with Composer.

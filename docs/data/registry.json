@@ -781,6 +781,7 @@
         "5.4"
       ],
       "supported": [
+        "8.2",
         "8.1",
         "8.0"
       ]
@@ -925,7 +926,9 @@
     "versions-dedicated-gen-3": {
       "deprecated": [],
       "supported": [
-        "3.9 BETA"
+        "3.11",
+        "3.10",
+        "3.9"
       ]
     }
   },

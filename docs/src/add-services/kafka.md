@@ -30,23 +30,23 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../
 
 {{< codetabs >}}
 
----
++++
 title=Java
 file=static/files/fetch/examples/java/kafka
 highlight=java
----
++++
 
 <--->
 
----
++++
 title=Python
 file=static/files/fetch/examples/python/kafka
 highlight=python
----
++++
 
 <--->
 
----
++++
 title=Ruby
 file=none
 highlight=ruby

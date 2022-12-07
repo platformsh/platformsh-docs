@@ -42,11 +42,11 @@ To get a database dump, run: `platform db:dump -e <DEVELOPMENT_ENVIRONMENT_NAME>
 
 {{< codetabs >}}
 
----
++++
 title=Manually
 file=none
 highlight=false
----
++++
 
 Assumptions:
 
@@ -103,11 +103,11 @@ Assumptions:
 
 <--->
 
----
++++
 title=With Drupal and Drush
 file=none
 highlight=false
----
++++
 
 1. To sanitize your database and get rid of sensitive, live information, use the `drush sql:sanitize` command.
    Add your script to sanitize the database to [a `deploy` hook](../create-apps/hooks/hooks-comparison.md#deploy-hook)

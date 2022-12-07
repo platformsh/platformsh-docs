@@ -174,7 +174,7 @@ The individual service pages have more information on configuring each service.
 
 {{< codetabs >}}
 
----
++++
 title=Elasticsearch
 file=static/files/fetch/examples/php/elasticsearch
 highlight=php
@@ -183,7 +183,7 @@ markdownify=false
 
 <--->
 
----
++++
 title=Memcached
 file=static/files/fetch/examples/php/memcached
 highlight=php
@@ -192,7 +192,7 @@ markdownify=false
 
 <--->
 
----
++++
 title=MongoDB
 file=static/files/fetch/examples/php/mongodb
 highlight=php
@@ -201,7 +201,7 @@ markdownify=false
 
 <--->
 
----
++++
 title=MySQL
 file=static/files/fetch/examples/php/mysql
 highlight=php
@@ -210,7 +210,7 @@ markdownify=false
 
 <--->
 
----
++++
 title=PostgreSQL
 file=static/files/fetch/examples/php/postgresql
 highlight=php
@@ -219,7 +219,7 @@ markdownify=false
 
 <--->
 
----
++++
 title=RabbitMQ
 file=static/files/fetch/examples/php/rabbitmq
 highlight=php
@@ -228,7 +228,7 @@ markdownify=false
 
 <--->
 
----
++++
 title=Redis
 file=static/files/fetch/examples/php/redis
 highlight=php
@@ -237,7 +237,7 @@ markdownify=false
 
 <--->
 
----
++++
 title=Solr
 file=static/files/fetch/examples/php/solr
 highlight=php
