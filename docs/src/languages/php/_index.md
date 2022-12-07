@@ -179,7 +179,7 @@ title=Elasticsearch
 file=static/files/fetch/examples/php/elasticsearch
 highlight=php
 markdownify=false
----
++++
 
 <--->
 
@@ -188,7 +188,7 @@ title=Memcached
 file=static/files/fetch/examples/php/memcached
 highlight=php
 markdownify=false
----
++++
 
 <--->
 
@@ -197,7 +197,7 @@ title=MongoDB
 file=static/files/fetch/examples/php/mongodb
 highlight=php
 markdownify=false
----
++++
 
 <--->
 
@@ -206,7 +206,7 @@ title=MySQL
 file=static/files/fetch/examples/php/mysql
 highlight=php
 markdownify=false
----
++++
 
 <--->
 
@@ -215,7 +215,7 @@ title=PostgreSQL
 file=static/files/fetch/examples/php/postgresql
 highlight=php
 markdownify=false
----
++++
 
 <--->
 
@@ -224,7 +224,7 @@ title=RabbitMQ
 file=static/files/fetch/examples/php/rabbitmq
 highlight=php
 markdownify=false
----
++++
 
 <--->
 
@@ -233,7 +233,7 @@ title=Redis
 file=static/files/fetch/examples/php/redis
 highlight=php
 markdownify=false
----
++++
 
 <--->
 
@@ -242,7 +242,7 @@ title=Solr
 file=static/files/fetch/examples/php/solr
 highlight=php
 markdownify=false
----
++++
 
 {{< /codetabs >}}
 
@@ -318,11 +318,11 @@ The recommended method is to use variables.
 
 {{< codetabs >}}
 
----
++++
 title=Using variables
 highlight=false
 file=none
----
++++
 
 Set variables to override PHP settings for a given environment using the [CLI](../../administration/cli/_index.md).
 
@@ -336,11 +336,11 @@ For more information, see how to use [PHP-specific variables](../../development/
 
 <--->
 
----
++++
 title=Using `php.ini`
 highlight=false
 file=none
----
++++
 
 You can provide a custom `php.ini` file at the [app root](../../create-apps/app-reference.md#root-directory).
 Using this method isn't recommended since it offers less flexibility and is more error-prone.
@@ -412,11 +412,11 @@ See some generic examples on how to use alternate start commands:
 
 {{< codetabs >}}
 
----
++++
 title=Run a custom script
 file=none
 highlight=false
----
++++
 
 1. Add your script in a PHP file.
 2. Specify an alternative `start` command by adapting the following:
@@ -431,11 +431,11 @@ highlight=false
 
 <--->
 
----
++++
 title=Run a custom web server
 file=none
 highlight=false
----
++++
 
 1. Add your web server's code in a PHP file.
 2. Specify an alternative `start` command by adapting the following:
@@ -472,11 +472,11 @@ highlight=false
 
 <--->
 
----
++++
 title=Run specific tasks
 file=none
 highlight=false
----
++++
 
 To execute runtime-specific tasks (such as clearing cache) before your app starts, follow these steps:
 
