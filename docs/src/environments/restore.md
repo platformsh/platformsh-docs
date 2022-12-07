@@ -1,6 +1,6 @@
 ---
 title: Restore an environment from a backup
-sidebarTitle: Restore environments
+sidebarTitle: Restore an environment
 description: See how to restore an environment from a previous state.
 weight: -10
 ---

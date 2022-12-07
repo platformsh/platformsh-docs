@@ -109,7 +109,7 @@ Then upload them to your new project:
 platform mount:upload
 ```
 
-See more options on [how to export files](../tutorials/exporting.md#downloading-files)
+See more options on [how to export files](../tutorials/exporting.md)
 and [how to import files](../tutorials/migrating.md#6-import-files).
 
 ## 5. Copy data from services
