@@ -12,9 +12,9 @@ You need to set up an API token to authenticate the Platform.sh CLI for any of t
 
 You might need the [Platform.sh CLI](../cli/_index.md) to perform certain tasks.
 For example, you need the CLI to do the following:
-- [Check the validity of an API token](#optional-check-the-validity-of-your-api-token) 
-- [Run non-CLI commands](#use-the-cli-ssh-certificate-for-other-commands) 
-  after you authenticate the CLI using a `PLATFORMSH_CLI_TOKEN` environment variable
+- [Check the validity of an API token](#optional-check-the-validity-of-your-api-token). 
+- [Load the CLI SSH certificate for non-CLI commands](#use-the-cli-ssh-certificate-for-non-cli-commands).
+
 
 ## 1. Create a machine user
 
@@ -25,14 +25,40 @@ For security purposes, create a machine user for each type of task you want to a
 
 To create a machine user, follow these steps:
 
+{{< codetabs >}}
+---
+title=Using the CLI
+file=none
+highlight=false
+---
+
 1. Run the following command using your machine user's email address.
    ```bash
-   platform user:add {{< variable "EMAIL_ADDRESS" >}} --project {{< variable "PROJECT_ID" >}} --role viewer
+   platform user:add  {{< variable "EMAIL_ADDRESS" >}} --role viewer --role development:contributor
    ```
-2. For each [environment type](../users.md#environment-types), assign a role to your machine user depending on your needs.
-3. To send an invitation to the email address provided in step 1, press **Enter**. 
-4. In the email invitation, click **Create account**.
-5. To create a Platform.sh account for the machine user, click **Sign up** and follow the instructions.
+   This sets your machine user as a viewer on your project and a contributor on development environments, 
+   with no access to other environment types.
+   Note that you can further [adjust user roles](../users.md#environment-types) depending on your needs and each environment type.
+
+2. To send an invitation to the email address provided in step 1, press **Enter**. 
+3. In the email invitation, click **Create account**.
+4. To create a Platform.sh account for the machine user, click **Sign up** and follow the instructions.
+
+<--->
+---
+title=In the Console
+file=none
+highlight=false
+---
+
+1. Go to your project and click {{< icon settings >}} **Settings**.
+2. In the **Project Settings** menu, click **Access**.
+3. Click **Add**.
+4. Enter your machine user's email address.
+5. For each [environment type](../users.md#environment-types), assign a role to your machine user and click **Save**.
+
+{{< /codetabs >}}
+
 
 ## 2. Create a Platform.sh API token
 
@@ -85,7 +111,7 @@ To do so, create an environment variable named `PLATFORMSH_CLI_TOKEN` with your 
 For more information, see your CI system's official documentation.
 
 To run SSH-based commands that aren't specific to the Platform.sh CLI,
-see how to [load the proper SSH certificate](#use-the-cli-ssh-certificate-for-other-commands).
+see how to [load the proper SSH certificate](#use-the-cli-ssh-certificate-for-non-cli-commands).
 
 ### Authenticate in a Platform.sh environment
 
@@ -151,7 +177,7 @@ hooks:
 You can now call the CLI from within the shell on the app container or in a cron job.
 
 To run SSH-based commands that aren't specific to the Platform.sh CLI,
-see how to [load the proper SSH certificate](#use-the-cli-ssh-certificate-for-other-commands).
+see how to [load the proper SSH certificate](#use-the-cli-ssh-certificate-for-non-cli-commands).
 
 For caching and other advanced topics,
 copy and use a [prepared script](https://github.com/matthiaz/platformsh-tools/blob/master/install_brew_packages.sh):
@@ -163,28 +189,36 @@ hooks:
         bash install_brew_packages.sh platformsh/tap/platformsh-cli
 ```
 
-To run a cron only on your production environment, check the environment type as in the following example:
+You can set up a cron job on a specific type of environment.
+For example, to run the `update` source operation on your production environment, 
+use the following cron job: 
 
 ```yaml
 crons:
-    sendemails:
-        spec: '*/7 * * * *'
+    update:
+       spec: '0 0 * * *'
         commands:
             start: |
                 if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-                   cd public && send-pending-emails.sh
+                   platform backup:create --yes --no-wait
+                   platform source-operation:run update --no-wait --yes
                 fi
 ```
 
-## Use the CLI SSH certificate for other commands
+## Use the CLI SSH certificate for non-CLI commands
 
-After you authenticate the CLI using a `PLATFORMSH_CLI_TOKEN` environment variable,
-you might want to run commands that aren't CLI commands.
-For example, you might want to run `ssh`, `git`, `rsync`, or `scp` commands.
+When you set a `PLATFORMSH_CLI_TOKEN` environment variable,
+the CLI authentication isn't complete until your run a CLI command 
+or load the CLI SSH certificate.
 
-To do so, load the CLI SSH certificate first by running the following command:
+For example, after setting a `PLATFORMSH_CLI_TOKEN` environment variable,
+you might need to run `ssh`, `git`, `rsync`, or `scp` commands before you run any CLI commands.
+
+In this case, to ensure all your commands work, load the CLI SSH certificate first.
+To do so, run the following command:
 
 ```bash
-$ platform ssh-cert:load --no-interaction
+$ platform ssh-cert:load
 ```
+
 
