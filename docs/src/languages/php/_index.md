@@ -141,7 +141,7 @@ Add the variable to your Production environment:
 title=Using the CLI
 highlight=false
 file=none
----
++++
 
 Run a command like the following:
 
@@ -153,7 +153,7 @@ platform variable:create --environment {{< variable "PRODUCTION_ENVIRONMENT_NAME
 title=In the Console
 highlight=false
 file=none
----
++++
 
 1. Navigate to your Production environment.
 2. Click {{< icon settings >}} **Settings**.

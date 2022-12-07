@@ -67,8 +67,6 @@ jobs:
 
           # Get the URL of the environment
           ENV_URL=$(platform url --primary --pipe --environment ${{ steps.branch_name.outputs.branch_name }})
-          
-          ENV_URL="https://$ENV_URL/"
 
           # Get the status of the build activity
           COMMIT_STATUS=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy" --no-header --columns "result" --limit 1 --environment ${{ steps.branch_name.outputs.branch_name }})
