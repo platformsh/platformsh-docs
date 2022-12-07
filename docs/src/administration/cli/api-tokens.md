@@ -43,7 +43,7 @@ To create a machine user, follow these steps:
 5. Enter a name for your API token and click **Create API token**.
 6. To copy the API token to your clipboard, click **{{< icon copy >}} Copy**.
    ![Copying the API token after it's created](/images/management-console/copy-api-token.png "0.6")
-   Note that after you quit the **API tokens** tab, you can't display the API token again.
+   Note that after you close the **API tokens** tab, you can't display the API token again.
 7. Store the API token somewhere secure on your computer.
 
 ### Optional: check the validity of your API token
@@ -185,6 +185,6 @@ For example, you might want to run `ssh`, `git`, `rsync`, or `scp` commands.
 To do so, load the CLI SSH certificate first by running the following command:
 
 ```bash
-$ platform ssh-cert:load
+$ platform ssh-cert:load --no-interaction
 ```
 
