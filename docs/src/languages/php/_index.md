@@ -99,12 +99,14 @@ Adding a dependency to the [dependencies block](../../create-apps/app-reference.
 So you can then use included dependencies as commands within your app container.
 You can add multiple global dependencies to the dependencies block, such as [Node.js](../nodejs/_index.md#2-specify-any-global-dependencies).
 
-If you want to have more control over Composer or if you don't want to use Composer at all, adapt the [build flavor](#changing-the-flavor).
+If you want to have more control over Composer or if you don't want to use Composer at all, adapt the [build flavor](#change-the-build-flavor).
 You can also use a [private, authenticated third-party Composer repository](./composer-auth.md).
 
-### Changing the flavor
+### Change the build flavor
 
-If you need more control over the dependency management, you can either use your custom build flavor or interact with Composer itself through [its environment variables](https://getcomposer.org/doc/03-cli.md#environment-variables).
+If you need more control over the dependency management,
+you can either use your custom build flavor
+or interact with Composer itself through [its environment variables](https://getcomposer.org/doc/03-cli.md#environment-variables).
 
 You can remove the default build flavor and run your own commands for complete control over your build.
 Set the build flavor to `none` and add the commands you need to your `build` hook, as in the following example:
@@ -120,7 +122,7 @@ hooks:
 ```
 
 That installs production dependencies with Composer but not development dependencies.
-The same can be achieved by using the default build flavor and [adding the `COMPOSER_NO_DEV` variable](../../development/variables/set-variables.md#create-environment-specific-variables).
+The same can be achieved by using the default build flavor and [adding the `COMPOSER_NO_DEV` variable](../../development/variables/set-variables.md).
 
 See more on [build flavors](../../create-apps/app-reference.md#build).
 

@@ -268,7 +268,7 @@ time {{< variable "YOUR_HOOK_COMMAND" >}} # Print execution time
 strace -T {{< variable "YOUR_HOOK_COMMAND" >}} # Print a system call report
 ```
 
-## Cron jobs
+### Cron jobs
 
 Containers can't be shutdown while long-running [cron jobs and scheduled tasks](../create-apps/app-reference.md#crons) are active.
 That means long-running cron jobs block a container from being shut down to make way for a new deploy.
