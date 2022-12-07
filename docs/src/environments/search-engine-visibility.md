@@ -17,11 +17,11 @@ To change the environment's visibility to search engines, follow these steps:
 
 {{< codetabs >}}
 
----
++++
 title=In the Console
 file=none
 highlight=false
----
++++
 
 - Select the project where you want to change visibility.
 - From the **Environment** menu, select the environment you want to change.
@@ -30,11 +30,11 @@ highlight=false
 - Select or clear the **Hide from search engines** checkbox.
 
 <--->
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 Run the following command:
 

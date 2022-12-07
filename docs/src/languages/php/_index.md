@@ -137,11 +137,11 @@ You can achieve the same thing with the default build flavor and the `COMPOSER_N
 Add the variable to your Production environment:
 
 {{< codetabs >}}
----
++++
 title=Using the CLI
 highlight=false
 file=none
----
++++
 
 Run a command like the following:
 
@@ -149,11 +149,11 @@ Run a command like the following:
 platform variable:create --environment {{< variable "PRODUCTION_ENVIRONMENT_NAME" >}} --level environment --name COMPOSER_NO_DEV --value 1 --prefix env --json false --sensitive false --enabled true --inheritable false --visible-build false --visible-runtime false
 ```
 <--->
----
++++
 title=In the Console
 highlight=false
 file=none
----
++++
 
 1. Navigate to your Production environment.
 2. Click {{< icon settings >}} **Settings**.
@@ -281,7 +281,7 @@ The individual service pages have more information on configuring each service.
 
 {{< codetabs >}}
 
----
++++
 title=Elasticsearch
 file=static/files/fetch/examples/php/elasticsearch
 highlight=php
@@ -290,7 +290,7 @@ markdownify=false
 
 <--->
 
----
++++
 title=Memcached
 file=static/files/fetch/examples/php/memcached
 highlight=php
@@ -299,7 +299,7 @@ markdownify=false
 
 <--->
 
----
++++
 title=MongoDB
 file=static/files/fetch/examples/php/mongodb
 highlight=php
@@ -308,7 +308,7 @@ markdownify=false
 
 <--->
 
----
++++
 title=MySQL
 file=static/files/fetch/examples/php/mysql
 highlight=php
@@ -317,7 +317,7 @@ markdownify=false
 
 <--->
 
----
++++
 title=PostgreSQL
 file=static/files/fetch/examples/php/postgresql
 highlight=php
@@ -326,7 +326,7 @@ markdownify=false
 
 <--->
 
----
++++
 title=RabbitMQ
 file=static/files/fetch/examples/php/rabbitmq
 highlight=php
@@ -335,7 +335,7 @@ markdownify=false
 
 <--->
 
----
++++
 title=Redis
 file=static/files/fetch/examples/php/redis
 highlight=php
@@ -344,7 +344,7 @@ markdownify=false
 
 <--->
 
----
++++
 title=Solr
 file=static/files/fetch/examples/php/solr
 highlight=php

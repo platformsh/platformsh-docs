@@ -22,11 +22,11 @@ To download your entire app's code history:
 
 {{< codetabs >}}
 
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 1. List all your projects with:
 
@@ -42,11 +42,11 @@ highlight=false
 
 <--->
 
----
++++
 title=Using Git
 file=none
 highlight=false
----
++++
 
 1. In the [Console](https://console.platform.sh/), open your project and click **Code {{< icon chevron >}}**.
 2. Click **Git**.
@@ -68,11 +68,11 @@ To download your files:
 
 {{< codetabs >}}
 
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 1. Get a list of all your mounts with:
 
@@ -88,11 +88,11 @@ highlight=false
 
 <--->
 
----
++++
 title=Using SSH
 file=none
 highlight=false
----
++++
 
 You can transfer files through SSH using `scp` or `rsync`.
 
@@ -129,11 +129,11 @@ To back up your environment variables:
 
 {{< codetabs >}}
 
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 1. Get the variable's values with:
 
@@ -151,11 +151,11 @@ highlight=false
 
 <--->
 
----
++++
 title=In the Console
 file=none
 highlight=false
----
++++
 
 1. In the [Console](https://console.platform.sh/), open your project and click **{{< icon settings >}}**.
 2. Click **Project Settings {{< icon chevron >}}**.

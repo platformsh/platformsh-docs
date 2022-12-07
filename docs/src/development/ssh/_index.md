@@ -94,7 +94,10 @@ Use the returned host (in this case `http://127.0.0.1:30000`) for your connectio
 and fill in the details with the rest of your [service credentials](../../add-services/_index.md#1-obtain-service-credentials).
 
 The `tunnel:open` command connects all relationships defined in your [app configuration](../../create-apps/_index.md).
+
 To open only one connection when you have multiple relationships defined, run `tunnel:single`.
+By default, this opens a tunnel at `http://127.0.0.1:30000`.
+You can specify the port for the connection using the `--port` flag.
 
 ### Use an app tunnel
 

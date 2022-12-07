@@ -29,9 +29,12 @@ All customers can also subscribe to Blackfire separately.
 
 ## Getting started
 
-### On a Grid plan or {{% names/dedicated-gen-3 %}} infrastructure
+### On a Grid plan or {{% names/dedicated-gen-3 %}} infrastructure 
 
-To enable Blackfire on your PHP or Python applications,
+If you have the Platform.sh [Observability Suite](https://platform.sh/features/observability-suite/), 
+the [Blackfire automated integration](#automated-integration) is enabled on Grid environments by default. 
+
+Otherwise, to enable Blackfire on your PHP or Python applications,
 follow [the step-by-step instructions](https://blackfire.io/docs/integrations/paas/platformsh).
 
 ### On {{% names/dedicated-gen-2 %}} infrastructure
@@ -44,6 +47,31 @@ navigate to your [organizations list](https://blackfire.io/my/organizations) > S
 
 Note: Make sure that [your CDN is configured](https://blackfire.io/docs/integrations/proxies/index)
 to let Blackfire profile the code running on your servers.
+
+## Automated integration
+
+{{< partial "observability-suite/body" >}}
+
+The Blackfire automated integration is available for Grid environments only.
+
+When you create a new environment,
+it automatically triggers the creation of a Blackfire environment with the same settings.
+On this Blackfire environment, you have access to [all the features provided by Blackfire](https://www.blackfire.io/features/).
+This includes monitoring, profiling, alerting, and build-related features.
+
+When a Blackfire environment is created based on a Grid environment,
+user access settings are replicated from the Platform.sh Console to Blackfire.
+This includes all [access levels](https://blackfire.io/docs/up-and-running/access-management).
+ 
+To access the Blackfire environment, each project user needs a Blackfire account.
+When a project user doesn't already have a Blackfire account, 
+a new one is automatically created using the user's Platform.sh credentials.
+ 
+You might have Blackfire variables already set on your project.
+In this case, the existing variables override the settings of the automated integration.
+
+Note that to trigger the synchronization of changes to users and their access levels,
+you need to redeploy the environment.
 
 ## Setting-up Blackfire Monitoring
 

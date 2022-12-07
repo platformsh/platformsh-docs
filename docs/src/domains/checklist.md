@@ -37,11 +37,11 @@ To change where the domain points on your computer, choose one of the following 
 
 {{< codetabs >}}
 
----
++++
 title=In your browser
 file=none
 highlight=false
----
++++
 
 1. Get the IP addresses of your project's production environment by running `dig +short $(platform environment:info edge_hostname)`.
 2. Download a suitable browser extension:
@@ -53,11 +53,11 @@ highlight=false
 
 <--->
 
----
++++
 title=On macOS and Linux
 file=none
 highlight=false
----
++++
 
 1. Get the IP addresses of your project's production environment by running `dig +short $(platform environment:info edge_hostname)`.
 2. Open the `/etc/hosts` file with admin privileges using your favorite text editor.
@@ -92,11 +92,11 @@ For example, if your IP addresses are `192.0.2.1` and `192.0.2.2`, and you added
 
 <--->
 
----
++++
 title=On Windows
 file=none
 highlight=false
----
++++
 
 1. Get the IP addresses of your project's production environment by running `dig +short $(platform environment:info edge_hostname)`.
 2. Open the `c:\Windows\System32\Drivers\etc\hosts` file with admin privileges using your favorite text editor.

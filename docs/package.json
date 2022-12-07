@@ -18,13 +18,21 @@
     "fetch-files": "node utils/fetch-examples.mjs && node utils/fetchTemplates.mjs",
     "hugo-watch-dev": "hugo server --watch --verbose --buildDrafts --cleanDestinationDir --disableFastRender",
     "hugo-watch-prod": "./hugo",
-    "lint-prose": "find . -type f -name '*.md' ! -path '*/node_modules/*' ! -name 'LICENSE.md' ! -path '*/avocadocs/*' ! -name 'lorem.md' ! -path '*/docsuikit/*' | xargs vale",
+    "lint:markdown": "eslint src",
+    "lint:prose": "find . -type f -name '*.md' ! -path '*/node_modules/*' ! -name 'LICENSE.md' ! -path '*/avocadocs/*' ! -name 'lorem.md' ! -path '*/docsuikit/*' | xargs vale",
     "prepare": "cd .. && husky install",
     "registry-files": "node utils/updateExampleConfigFiles.js"
   },
   "devDependencies": {
+    "eslint": "^8.28.0",
+    "eslint-plugin-mdx": "^2.0.5",
     "husky": "^8.0.1",
     "pshregistry-parser": "^1.5.6",
+    "remark-cli": "^11.0.0",
+    "remark-frontmatter": "^4.0.1",
+    "remark-preset-lint-consistent": "^5.1.1",
+    "remark-preset-lint-markdown-style-guide": "^5.1.2",
+    "remark-preset-lint-recommended": "^6.1.2",
     "remark-validate-links": "^12.0.0"
   },
   "dependencies": {
@@ -57,5 +65,25 @@
   },
   "workspaces": [
     "static/scripts/xss"
-  ]
+  ],
+  "remarkConfig": {
+    "plugins": [
+      "remark-frontmatter",
+      "remark-preset-lint-consistent",
+      "remark-preset-lint-recommended",
+      "remark-preset-lint-markdown-style-guide",
+      [
+        "remark-lint-maximum-line-length",
+        140
+      ],
+      [
+        "remark-lint-ordered-list-marker-value",
+        "ordered"
+      ],
+      [
+        "remark-lint-no-file-name-irregular-characters",
+        "\\.a-zA-Z0-9-_"
+      ]
+    ]
+  }
 }

@@ -17,11 +17,11 @@ You can access the logs either in the Console or using the CLI:
 
 {{< codetabs >}}
 
----
++++
 title=In the Console
 highlight=false
 file=none
----
++++
 
 1. Open the project you are interested in.
 1. From the **Environment** menu, select an environment.
@@ -31,11 +31,11 @@ file=none
 
 <--->
 
----
++++
 title=Using the CLI
 highlight=false
 file=none
----
++++
 
 1. Get a list of activities by running `platform activity:list -e <ENVIRONMENT_NAME>`.
    Pass the `--start` flag to get activities from a specific date in the past.
@@ -71,11 +71,11 @@ To access the logs of various types of events:
 
 {{< codetabs >}}
 
----
++++
 title=Using the CLI
 highlight=false
 file=none
----
++++
 
 Use the `platform log` command and specify the type of log you want.
 For example, to get the access log, run:
@@ -89,11 +89,11 @@ To view more lines, use the `--lines` flag.
 
 <--->
 
----
++++
 title=Using SSH directly
 highlight=false
 file=none
----
++++
 
 1. Access the container by running `platform ssh -e <ENVIRONMENT_NAME>`.
 1. Change to the right directory by running `cd /var/log`.
