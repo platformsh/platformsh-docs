@@ -124,7 +124,7 @@ class Search:
         # Create a new index
         create_index_task = client.create_index(uid=self.docs_index, options={'primaryKey': self.primaryKey, 'uid': self.index_name})
 
-        client.wait_for_task(create_index_task['uid'])
+        client.wait_for_task(create_index_task['taskUid'])
 
         index = client.get_index(create_index_task['indexUid'])
 
