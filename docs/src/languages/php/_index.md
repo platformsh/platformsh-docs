@@ -80,7 +80,7 @@ web:
 
 ## Dependencies
 
-Up to PHP version 8.1, the image assume you're using [Composer](https://getcomposer.org/) 1.x to manage dependencies.
+Up to PHP version 8.1, it's assumed that you're using [Composer](https://getcomposer.org/) 1.x to manage dependencies.
 If you have a `composer.json` file in your code, the default [build flavor is run](../../create-apps/app-reference.md#build):
 
 ```bash
