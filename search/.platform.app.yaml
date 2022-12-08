@@ -50,5 +50,8 @@ mounts:
     "data":
         source: local
         source_path: "data"
+    "dumps":
+        source: local
+        source_path: "dumps"
 
 size: L
