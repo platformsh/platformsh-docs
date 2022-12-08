@@ -162,7 +162,7 @@ You can use cron to automatically run your source operations.
 {{< note >}}
 
 To run automated source operations using cron, you need to use [an API token](../administration/cli/api-tokens.md)
-with the [CLI installed](../administration/cli/api-tokens.md#on-a-platformsh-environment) in your app container.
+with the [CLI installed](../administration/cli/api-tokens.md#authenticate-in-a-platformsh-environment) in your app container.
 
 {{< /note >}}
 
