@@ -12,7 +12,7 @@ layout: single
 
 {{% image-versions-legacy "php" %}}
 
-Note that from PHP 7.1, the images use the Zend Thread Safe (ZTS) version of PHP.
+Note that from PHP versions 7.1 to 8.1, the images support the Zend Thread Safe (ZTS) version of PHP.
 
 {{% language-specification type="php" display_name="PHP" %}}
 
@@ -67,7 +67,7 @@ A complete basic app configuration looks like the following:
 ```yaml {location=".platform.app.yaml"}
 name: 'app'
 
-type: 'php:8.1'
+type: 'php:8.2'
 
 disk: 2048
 
@@ -80,14 +80,14 @@ web:
 
 ## Dependencies
 
-By default, PHP images assume you're using [Composer](https://getcomposer.org/) 1.x to manage dependencies.
+Up to PHP version 8.1, the image assume you're using [Composer](https://getcomposer.org/) 1.x to manage dependencies.
 If you have a `composer.json` file in your code, the default [build flavor is run](../../create-apps/app-reference.md#build):
 
 ```bash
 composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader
 ```
 
-To use Composer 2.x on your project, in your app configuration, add the following [dependency](../../create-apps/app-reference.md#dependencies):
+To use Composer 2.x on your project, either use PHP 8.2+ or, in your app configuration, add the following [dependency](../../create-apps/app-reference.md#dependencies):
 
 ```yaml {location=".platform.app.yaml"}
 dependencies:
