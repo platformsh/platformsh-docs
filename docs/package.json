@@ -58,6 +58,7 @@
     "platformsh-config": "^2.4.1",
     "postcss": "^8.4.18",
     "remark": "^14.0.2",
+    "remark-gfm": "^3.0.1",
     "to-vfile": "^7.2.3",
     "vfile-reporter": "^7.0.4",
     "vinyl-buffer": "^1.0.1",
@@ -69,6 +70,7 @@
   "remarkConfig": {
     "plugins": [
       "remark-frontmatter",
+      "remark-gfm",
       "remark-preset-lint-consistent",
       "remark-preset-lint-recommended",
       "remark-preset-lint-markdown-style-guide",
