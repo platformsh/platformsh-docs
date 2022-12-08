@@ -1,13 +1,13 @@
 # Search and docs.platform.sh
 
-During the Hugo migration, the public docs became a multi-app project:
+The public docs have two apps:
 
 - `docs`: the Hugo site and what you see at docs.platform.sh
-- `search`: a Meilisearch application; our search engine users place queries on when using the search bar on docs.platform.sh.
+- `search`: a Meilisearch app to run the search engine for docs.platform.sh
 
 ## High level goals
 
-There are a two goals accomplished by all the implementation details in the `build`, `deploy` and `post_deploy` phases of the project:
+The hooks in each app have two collective goals:
 
 1. The `search` app should be *protected* from users modifying the index, but `docs` should be *authorized* to communicate with the backend `search` app.
     - *Protect Meilisearch & creating a public key:* Meilisearch is protected with a *master key*, which is required to modify the documents that can be searched and configure how results are sorted. In this project, the `PLATFORM_PROJECT_ENTROPY` environment variable is used for this purpose. It saves us having to define one from scratch, and it's a value that both `docs` and `search` already know about.
@@ -15,9 +15,9 @@ There are a two goals accomplished by all the implementation details in the `bui
 2. Users should be able to search not just the content committed to the `docs` app, but we'd like our *other resources* to be included in those results (from community.platform.sh, api.platform.sh/docs, from the main marketing website, and from our templates organization on GitHub). If there are results from each of these sites for a given query, results from the public documentation (actually committed to `docs`) should have the *highest priority*. 
     - *Create compatible indexes for all 5 sites:* We want Meilisearch to serve an *index of documents* that include all content from our five main sites.
         1. *docs.platform.sh*: Hugo builds markdown files and provided templates and themes to generate static HTML output. It is also possible to define [custom output formats](https://gohugo.io/templates/output-formats/), which we use to create an index for the documentation during builds.
-        2. *github.com/platformsh-templates*: We also include an index of templates within the docs, which was originally created to support the accordians on language pages. We can take that data and modify it slightly to be included in the final search index. 
+        2. *github.com/platformsh-templates*: We also include an index of templates within the docs, which was originally created to support the accordions on language pages. We can take that data and modify it slightly to be included in the final search index. 
         3. *api.platform.sh, community.platform.sh, platform.sh:* To collect documents from each of these sites, we can use the python web scraping tool [scrapy](https://scrapy.org/) to create them. 
-    - *Getting docs & templates index to `search`:* docs & github indexes are made within the `docs` container, and are accessible by the `search` app via an external request. All other sites are scraped during the post_deploy hook. 
+    - *Getting docs & templates index to `search`:* docs & GitHub indexes are made within the `docs` container, and are accessible by the `search` app via an external request. All other sites are scraped during the post_deploy hook. 
     - *Prioritizing results:* Each site is given a `rank`. Pages from the public documentation are given a rank of `1`, and all other sites a greater number. We then modify Meilisearch's setting to list results according to `rank` first, so that docs results are prioritized during queries. 
 
 ## Data transfer
