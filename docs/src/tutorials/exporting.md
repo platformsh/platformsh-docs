@@ -138,4 +138,4 @@ Use the CLI to retrieve these values.
 
 - Migrate data from elsewhere [into Platform.sh](./migrating.md).
 - Migrate to [another region](../projects/region-migration.md).
-- To use your production data with your development environment, download your data locally and set up your [local development environment](../development/local/_index.md).
+- To use data from an environment locally, export your data and set up your [local development environment](../development/local/_index.md).
