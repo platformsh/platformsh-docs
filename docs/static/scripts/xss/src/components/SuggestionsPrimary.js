@@ -17,7 +17,7 @@ const SuggestionsPrimary = ({ hits, title }) => {
       </h5>
       {/* Add keywords if they match */}
       {/* eslint-disable-next-line no-underscore-dangle */}
-      {r._matchesInfo.keywords
+      {r.keywords
         && (
         <p>
           Keywords:
