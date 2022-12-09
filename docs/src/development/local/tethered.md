@@ -97,7 +97,6 @@ file=none
 highlight=php
 markdownify=false
 +++
-
 <?php
 if ($relationships_encoded = shell_exec('platform tunnel:info --encode')) {
     $relationships = json_decode(base64_decode($relationships_encoded, TRUE), TRUE);
@@ -111,7 +110,6 @@ file=none
 highlight=python
 markdownify=false
 +++
-
 import json
 import base64
 import subprocess
@@ -129,7 +127,6 @@ file=none
 highlight=javascript
 markdownify=false
 +++
-
 const child_process = require("child_process");
 
 const { stdout: encoded } = child_process.spawnSync("platform", ["tunnel:info", "--encode"], { encoding : "utf8" });
@@ -138,3 +135,5 @@ const relationships = encoded ? JSON.parse(Buffer.from(encoded, "base64").toStri
 // ...
 
 {{< /codetabs >}}
+
+
