@@ -51,7 +51,8 @@ title=Ruby
 file=none
 highlight=ruby
 markdownify=false
----
++++
+
 ## With the ruby-kafka gem
 
 # Producer
@@ -65,6 +66,5 @@ kafka.each_message(topic: "greetings") do |message|
 end
 
 {{< /codetabs >}}
-
 
 (The specific way to inject configuration into your application varies. Consult your application or framework's documentation.)

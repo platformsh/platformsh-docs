@@ -5,7 +5,7 @@ weight: 2
 ---
 
 The simplest way to run a project locally is to use a local web server, but keep all other services on Platform.sh and connect to them over an SSH tunnel.
-This approach needs very little setup, but requires an active Internet connection, and depending on the speed of your connection and how I/O intensive your application is, it may not have suitable performance for day-to-day use.
+This approach needs little setup, but requires an active Internet connection, and depending on the speed of your connection and how I/O intensive your application is, it may not have suitable performance for day-to-day use.
 
 ## Quick Start
 
@@ -96,19 +96,22 @@ title=PHP
 file=none
 highlight=php
 markdownify=false
----
++++
+
 <?php
 if ($relationships_encoded = shell_exec('platform tunnel:info --encode')) {
     $relationships = json_decode(base64_decode($relationships_encoded, TRUE), TRUE);
     // ...
 }
 <--->
+
 +++
 title=Python
 file=none
 highlight=python
 markdownify=false
----
++++
+
 import json
 import base64
 import subprocess
@@ -117,19 +120,21 @@ encoded = subprocess.check_output(['platform', 'tunnel:info', '--encode'])
 if (encoded):
     json.loads(base64.b64decode(encoded).decode('utf-8'))
     # ...
+
 <--->
+
 +++
 title=Node.js
 file=none
 highlight=javascript
 markdownify=false
----
++++
+
 const child_process = require("child_process");
 
 const { stdout: encoded } = child_process.spawnSync("platform", ["tunnel:info", "--encode"], { encoding : "utf8" });
 const relationships = encoded ? JSON.parse(Buffer.from(encoded, "base64").toString()) : {};
 
 // ...
+
 {{< /codetabs >}}
-
-

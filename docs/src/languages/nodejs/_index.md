@@ -12,7 +12,7 @@ You can also develop a microservice architecture mixing JavaScript and other app
 
 | Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |----------------------------------------|------------------------------ |
-|  {{< image-versions image="nodejs" status="supported" environment="grid" >}} | {{< image-versions image="nodejs" status="supported" environment="dedicated-gen-2" >}} |
+| {{< image-versions image="nodejs" status="supported" environment="grid" >}} | {{< image-versions image="nodejs" status="supported" environment="dedicated-gen-2" >}} |
 
 {{% image-versions-legacy "nodejs" %}}
 
@@ -24,7 +24,7 @@ To use a specific version in a container with a different language, [use a versi
 
 | Grid | {{% names/dedicated-gen-2 %}} |
 | ---- | ----------------------------- |
-|  {{< image-versions image="nodejs" status="deprecated" environment="grid" >}} | {{< image-versions image="nodejs" status="deprecated" environment="dedicated-gen-2" >}} |
+| {{< image-versions image="nodejs" status="deprecated" environment="grid" >}} | {{< image-versions image="nodejs" status="deprecated" environment="dedicated-gen-2" >}} |
 
 ## Usage example
 

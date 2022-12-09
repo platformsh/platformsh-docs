@@ -10,7 +10,7 @@ You can deploy Python apps on Platform.sh using a server or a project such as [u
 
 | Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |----------------------------------------|------------------------------ |
-|  {{< image-versions image="python" status="supported" environment="grid" >}} | {{< image-versions image="python" status="supported" environment="dedicated-gen-2" >}} |
+| {{< image-versions image="python" status="supported" environment="grid" >}} | {{< image-versions image="python" status="supported" environment="dedicated-gen-2" >}} |
 
 {{% image-versions-legacy "python" %}}
 
@@ -126,7 +126,7 @@ title=Elasticsearch
 file=static/files/fetch/examples/python/elasticsearch
 highlight=python
 markdownify=false
----
++++
 
 <--->
 
@@ -135,7 +135,7 @@ title=Kafka
 file=static/files/fetch/examples/python/kafka
 highlight=python
 markdownify=false
----
++++
 
 <--->
 
@@ -144,7 +144,7 @@ title=Memcached
 file=static/files/fetch/examples/python/memcached
 highlight=python
 markdownify=false
----
++++
 
 <--->
 
@@ -153,7 +153,7 @@ title=MongoDB
 file=static/files/fetch/examples/python/mongodb
 highlight=python
 markdownify=false
----
++++
 
 <--->
 
@@ -162,7 +162,7 @@ title=MySQL
 file=static/files/fetch/examples/python/mysql
 highlight=python
 markdownify=false
----
++++
 
 <--->
 
@@ -171,7 +171,7 @@ title=PostgreSQL
 file=static/files/fetch/examples/python/postgresql
 highlight=python
 markdownify=false
----
++++
 
 <--->
 
@@ -180,7 +180,7 @@ title=RabbitMQ
 file=static/files/fetch/examples/python/rabbitmq
 highlight=python
 markdownify=false
----
++++
 
 <--->
 
@@ -189,7 +189,7 @@ title=Redis
 file=static/files/fetch/examples/python/redis
 highlight=python
 markdownify=false
----
++++
 
 <--->
 
@@ -198,10 +198,9 @@ title=Solr
 file=static/files/fetch/examples/python/solr
 highlight=python
 markdownify=false
----
++++
 
 {{< /codetabs >}}
-
 
 {{% config-reader %}}
 [`platformshconfig` library](https://github.com/platformsh/config-reader-python)
