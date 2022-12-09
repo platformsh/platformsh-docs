@@ -9,15 +9,14 @@ Some of them are available for Platform.sh containers.
 
 {{< note >}}
 
-The information on this page applies to Grid and  {{% names/dedicated-gen-3 %}} plans.
+The information on this page applies to Grid and {{% names/dedicated-gen-3 %}} plans.
 See also [PHP extensions on {{% names/dedicated-gen-2 %}} plans](../../dedicated-gen-2/overview/grid.md#extensions).
 
 {{< /note >}}
 
 You can define the PHP extensions you want to enable or disable:
 
-```yaml
-# .platform.app.yaml
+```yaml {location=".platform.app.yaml"}
 runtime:
     extensions:
         - raphf
@@ -141,8 +140,7 @@ and turn off those on by default with the `disabled_extensions` key.
 | `zendopcache`     | Def   | *     | *     | *     | *     | *     | *     | *     | *     | *     | *     |
 | `zip`             |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 
-
-There are also built-in modules that are always on:
+Some built-in modules are always on:
 
 - `date`
 - `filter`
@@ -159,26 +157,27 @@ There are also built-in modules that are always on:
 - `Zend OPcache` (from 5.5)
 - `zlib`
 
-To see a complete list of extensions in your environment:
+To see a complete list of the compiled PHP extensions, run the following [CLI command](../../administration/cli/_index.md):
 
 ```bash
-platform ssh 'php -m'
+platform ssh "php -m"
 ```
 
 ## Custom PHP extensions
 
-It's possible to use an extension not listed here but it takes slightly more
-work:
+It's possible to use an extension not listed here,
+but it takes slightly more work:
 
-1. Download the .so file for the extension as part of your build hook using `curl` or similar.
+1. Download the `.so` file for the extension as part of your build hook using `curl` or similar.
    It can also be added to your Git repository if the file isn't publicly downloadable,
-   although committing large binary blobs to Git is generally not recommended.
+   but committing large binary blobs to Git is generally not recommended.
 
-2. Provide a custom `php.ini` file in [your app root](../../create-apps/app-reference.md#root-directory)
-   that loads the extension using an absolute path.
+2. Load the extension using an absolute path by [customizing the PHP settings](./_index.md#customize-php-settings)
    For example, if the extension is named `spiffy.so` and is in your app root,
-   your `php.ini` file includes:
+   your configuration looks like the following:
 
-   ```ini
-   extension=/app/spiffy.so
+   ```yaml {location=".platform.app.yaml"}
+   variables:
+       php:
+           extension=/app/spiffy.so
    ```

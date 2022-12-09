@@ -12,14 +12,14 @@ It's frequently used for caching.
 The [PhpRedis](https://github.com/phpredis/phpredis) extension is available on Platform.sh's PHP container images.
 The extension has been known to break its API between versions when removing deprecated functionality.
 The version available on each application image is the latest available at the time that PHP version was built,
-which if your application is very sensitive to PhpRedis versions may not be ideal.
+which if your app is sensitive to PhpRedis versions may not be ideal.
 
 It may happen that the version of the PhpRedis extension available for your PHP version
 isn't compatible with your app and upgrading your app isn't feasible.
 If so, use the following script as an alternative to download and compile a precise version of the extension.
 
 Do *not* use this approach unless you really need to.
-Using the provided PhpRedis extension is preferred in the vast majority of cases.
+Using the provided PhpRedis extension is preferred in the majority of cases.
 
 To ease the installation of a customer version of PhpRedis, use a [PhpRedis install script](https://github.com/platformsh/snippets/blob/main/src/install-phpredis.sh).
 Invoke this script from your build hook, specifying a version.

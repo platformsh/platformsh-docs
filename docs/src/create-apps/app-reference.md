@@ -227,11 +227,11 @@ Just run it as normal and allow the Platform.sh supervisor to manage it.
 
 On all containers other than PHP, the value for `start` should be treated as required.
 
-On PHP containers, it's optional and defaults to starting PHP-FPM
-(`/usr/sbin/php-fpm7.0` on PHP7 and `/usr/sbin/php5-fpm` on PHP5).
+On PHP containers, it's optional and defaults to starting PHP-FPM (`/usr/bin/start-php-app`).
 It can also be set explicitly on a PHP container to run a dedicated process,
 such as [React PHP](https://github.com/platformsh-examples/platformsh-example-reactphp)
 or [Amp](https://github.com/platformsh-examples/platformsh-example-amphp).
+See how to set up [alternate start commands on PHP](../languages/php/_index.md#alternate-start-commands).
 
 ### Upstream
 
@@ -516,7 +516,7 @@ Flavors are language-specific.
 See what the build flavor is for your language:
 
 * [Node.js](../languages/nodejs/_index.md#dependencies)
-* [PHP](../languages/php/_index.md#build-flavor)
+* [PHP](../languages/php/_index.md#dependencies)
 
 In all languages, you can also specify a flavor of `none` to take no action at all
 (which is the default for any language other than PHP and Node.js).
@@ -770,6 +770,8 @@ The following table presents the various possible modifications to your PHP or L
 | `sizing_hints`              | A [sizing hints definition](#sizing-hints)                 | PHP      | The assumptions for setting the number of workers in your PHP-FPM runtime. |
 | `xdebug`                    | An Xdebug definition                                       | PHP      | The setting to turn on [Xdebug](../languages/php/xdebug.md). |
 | `quicklisp`                 | Distribution definitions                                   | Lisp     | [Distributions for QuickLisp](../languages/lisp.md#quicklisp-options) to use. |
+
+You can also set your [app's runtime timezone](../create-apps/timezone.md).
 
 ### Extensions
 

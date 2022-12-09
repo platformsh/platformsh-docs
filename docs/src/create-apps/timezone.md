@@ -18,14 +18,13 @@ file=none
 highlight=false
 +++
 
-* Provide a [custom php.ini](/languages/php/ini.md) OR
-* Add the following to your `.platform.app.yaml` file:
+Add the following to your app configuration:
 
-  ```yaml
-  variables:
-      php:
-          "date.timezone": "Europe/Paris"
-  ```
+```yaml {location=".platform.app.yaml"}
+variables:
+    php:
+        "date.timezone": "Europe/Paris"
+```
 
 <--->
 

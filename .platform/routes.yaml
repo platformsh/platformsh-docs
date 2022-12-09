@@ -125,6 +125,10 @@ https://{default}/:
       # Move backup and restore to environments in October 2022
       "/administration/backup-and-restore.html":  { "to": "/environments/backup.html", "code": 301 }
 
+      # PHP rework PR 2669
+      "/languages/php/frameworks.html":  { "to": "/languages/php.html#project-templates", "code": 301 }
+      "/languages/php/ini.html":  { "to": "/languages/php.html#php-settings", "code": 301 }
+
 "https://search.{default}/":
     type: upstream
     upstream: "search:http"

@@ -31,7 +31,7 @@ web:
         socket_family: tcp
         protocol: http
     commands:
-        start: php path/to/swoole/start/command --port=$PORT
+        start: php {{<variable "PATH_TO_SWOOLE_START_COMMAND" >}} --port=$PORT
     locations:
         "/":
             allow: false
