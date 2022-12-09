@@ -267,7 +267,7 @@ Some commonly used settings are:
 | `memory_limit` | `512M` | The memory limit, in megabytes, for PHP. |
 | `post_max_size` | `8M` | The maximum size, in megabytes, per uploaded file. To upload larger files, increase the value. |
 | `zend.assertions` | `-1` | Assertions are optimized and have no impact at runtime. Set assertions to `1` for your local development system. [See more on assertions](https://www.php.net/manual/en/regexp.reference.assertions). |
-| `opcache.memory_consumption` | `64` | The number of megabytes available for [the OPcache](./tuning.md#opcache-preloading). For large apps with many files, increase this value.|
+| `opcache.memory_consumption` | `64` | The number of megabytes available for [the OPcache](./tuning.md#opcache-preloading). For large apps with many files, increase this value. |
 | `opcache.validate_timestamps` | `On` | If your app doesn't generate compiled PHP, you can [disable this setting](./tuning.md#disable-opcache-timestamp-validation). |
 
 ### Retrieve the default values
@@ -289,26 +289,26 @@ platform ssh "php --info" | grep opcache.memory_consumption
 
 To see the settings used on your environment:
 
-1. Find the PHP configuration files with the following [CLI command](../../administration/cli/_index.md):
+1.  Find the PHP configuration files with the following [CLI command](../../administration/cli/_index.md):
 
-   ```bash
-   platform ssh "php --ini"
-   ```
+    ```bash
+    platform ssh "php --ini"
+    ```
 
-   The output is something like the following:
+    The output is something like the following:
 
-   ```bash
-   Configuration File (php.ini) Path: /etc/php/8.0-zts/cli
-   Loaded Configuration File:         /etc/php/8.0-zts/cli/php.ini
-   Scan for additional .ini files in: /etc/php/8.0-zts/cli/conf.d
-   Additional .ini files parsed:      (none)
-   ```
+    ```bash
+    Configuration File (php.ini) Path: /etc/php/8.0-zts/cli
+    Loaded Configuration File:         /etc/php/8.0-zts/cli/php.ini
+    Scan for additional .ini files in: /etc/php/8.0-zts/cli/conf.d
+    Additional .ini files parsed:      (none)
+    ```
 
-2. Display the configuration file by adapting the following command with the output from step 1:
+2.  Display the configuration file by adapting the following command with the output from step 1:
 
-   ```bash
-   platform ssh "cat {{< variable "LOADED_CONFIGURATION_FILE_PATH" >}}"
-   ```
+    ```bash
+    platform ssh "cat {{< variable "LOADED_CONFIGURATION_FILE_PATH" >}}"
+    ```
 
 ### Customize PHP settings
 
@@ -374,7 +374,7 @@ Common functions to disable include:
 
 | Name | Description |
 |------|-------------|
-| `create_function` | This function has been replaced by anonymous functions and shouldn't be used anymore.|
+| `create_function` | This function has been replaced by anonymous functions and shouldn't be used anymore. |
 | `exec`, `passthru`, `shell_exec`, `system`, `proc_open`, `popen` | These functions allow a PHP script to run a bash shell command. Rarely used by web apps except for build scripts that might need them. |
 | `pcntl_*` | The `pcntl_*` functions are responsible for process management. Most of them cause a fatal error if used within a web request. Cron tasks or workers may need them. Most are usually safe to disable. |
 | `curl_exec`, `curl_multi_exec` | These functions allow a PHP script to make arbitrary HTTP requests. If you're using HTTP libraries such as Guzzle, don't disable them. |
@@ -438,37 +438,40 @@ file=none
 highlight=false
 +++
 
-1. Add your web server's code in a PHP file.
-2. Specify an alternative `start` command by adapting the following:
+1.  Add your web server's code in a PHP file.
 
-   ```yaml {location:".platform.app.yaml"}
-   web:
+2.  Specify an alternative `start` command by adapting the following:
+
+    ```yaml {location:".platform.app.yaml"}
+    web:
         commands:
             start: /usr/bin/start-php-app {{< variable "PATH_TO_APP" >}}
-   ```
+    ```
 
-   {{<variable "PATH_TO_APP" >}} is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
-3. Configure the container to listen on a TCP socket:
+    {{<variable "PATH_TO_APP" >}} is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
 
-   ```yaml {location=".platform.app.yaml"}
-   web:
-       upstream:
-           socket_family: tcp
-           protocol: http
-   ```
+3.  Configure the container to listen on a TCP socket:
 
-   When you listen on a TCP socket, the `$PORT` environment variable is automatically set.
-   See more options on how to [configure where requests are sent](../../create-apps/app-reference.md#upstream).
-   You might have to configure your app to connect via the `$PORT` TCP socket,
-   especially when using web servers such as [Swoole](swoole.md) or [Roadrunner](https://github.com/roadrunner-server/roadrunner).
-4. Optional: Override redirects to let the custom web server handle them:
+    ```yaml {location=".platform.app.yaml"}
+    web:
+        upstream:
+            socket_family: tcp
+            protocol: http
+    ```
 
-   ```yaml {location=".platform.app.yaml"}
-   locations:
-       "/":
-           allow: false
-           passthru: true
-   ```
+    When you listen on a TCP socket, the `$PORT` environment variable is automatically set.
+    See more options on how to [configure where requests are sent](../../create-apps/app-reference.md#upstream).
+    You might have to configure your app to connect via the `$PORT` TCP socket,
+    especially when using web servers such as [Swoole](swoole.md) or [Roadrunner](https://github.com/roadrunner-server/roadrunner).
+
+4.  Optional: Override redirects to let the custom web server handle them:
+
+    ```yaml {location=".platform.app.yaml"}
+    locations:
+        "/":
+            allow: false
+            passthru: true
+    ```
 
 <--->
 
@@ -480,17 +483,18 @@ highlight=false
 
 To execute runtime-specific tasks (such as clearing cache) before your app starts, follow these steps:
 
-1. Create a separate shell script that includes all the commands to be run.
-2. Specify an alternative `start` command by adapting the following:
+1.  Create a separate shell script that includes all the commands to be run.
 
-   ```yaml {location:".platform.app.yaml"}
-   web:
-           commands:
-               start: bash {{< variable "PATH_TO_SCRIPT" >}} && /usr/bin/start-php-app {{< variable "PATH_TO_APP" >}}
-   ```
+2.  Specify an alternative `start` command by adapting the following:
 
-   {{<variable "PATH_TO_SCRIPT" >}} is the bash script created in step 1.
-   Both {{<variable "PATH_TO_SCRIPT" >}} and {{<variable "PATH_TO_APP" >}} are file paths relative to the [app root](../../create-apps/app-reference.md#root-directory).
+    ```yaml {location:".platform.app.yaml"}
+    web:
+        commands:
+            start: bash {{< variable "PATH_TO_SCRIPT" >}} && /usr/bin/start-php-app {{< variable "PATH_TO_APP" >}}
+    ```
+
+    {{<variable "PATH_TO_SCRIPT" >}} is the bash script created in step 1.
+    Both {{<variable "PATH_TO_SCRIPT" >}} and {{<variable "PATH_TO_APP" >}} are file paths relative to the [app root](../../create-apps/app-reference.md#root-directory).
 
 {{< /codetabs >}}
 
@@ -510,31 +514,33 @@ If you are compiling Rust code, use the build hook to [install Rust](https://doc
 
 To leverage FFIs, follow these steps:
 
-1. [Enable and configure OPcache preloading](./tuning.md#enable-opcache-preloading).
-2. Enable the FFI extension:
+1.  [Enable and configure OPcache preloading](./tuning.md#enable-opcache-preloading).
 
-   ```yaml {location=".platform.app.yaml"}
-   runtime:
-      extensions:
-           - ffi
-   ```
+2.  Enable the FFI extension:
 
-3. Make sure that your [preload script](./tuning.md#opcache-preloading) calls the `FFI::load()` function.
-   Using this function in preload is considerably faster than loading the linked library on each request or script run.
-4. If you are running FFIs from the command line,
-   enable the preloader by adding the following configuration:
+    ```yaml {location=".platform.app.yaml"}
+    runtime:
+       extensions:
+            - ffi
+    ```
 
-   ```yaml {location=".platform.app.yaml"}
-   variables:
-       php:
-           opcache.enable_cli: true
-   ```
+3.  Make sure that your [preload script](./tuning.md#opcache-preloading) calls the `FFI::load()` function.
+    Using this function in preload is considerably faster than loading the linked library on each request or script run.
 
-5. Run your script with the following command:
+4.  If you are running FFIs from the command line,
+    enable the preloader by adding the following configuration:
 
-   ```bash
-   php {{<variable "CLI_SCRIPT" >}}
-   ```
+    ```yaml {location=".platform.app.yaml"}
+    variables:
+        php:
+            opcache.enable_cli: true
+    ```
+
+5.  Run your script with the following command:
+
+    ```bash
+    php {{<variable "CLI_SCRIPT" >}}
+    ```
 
 See [complete working examples for C and Rust](https://github.com/platformsh-examples/php-ffi).
 
