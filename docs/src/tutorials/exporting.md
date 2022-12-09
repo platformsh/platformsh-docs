@@ -5,6 +5,7 @@ description: See how to export your code, files and service data.
 
 As a Platform.sh user, your code and data belong to you.
 At any time, you can download your site's data for local development, to back up your data, or to change provider.
+
 ## Before you begin
 
 You need:
@@ -28,13 +29,13 @@ file=none
 highlight=false
 +++
 
-1. List all your projects with:
+1. List all your projects by running the following command:
 
    ```bash
    platform projects
    ```
 
-2. Retrieve the project you want to back up with:
+2. Retrieve the project you want to back up by running the following command:
 
    ```bash
    platform get {{< variable "PROJECT_ID" >}}
@@ -50,8 +51,8 @@ highlight=false
 
 1. In the [Console](https://console.platform.sh/), open your project and click **Code {{< icon chevron >}}**.
 2. Click **Git**.
-3. To copy the command, click **{{< icon copy >}}**.
-4. To clone the repository, run a command similar to the following:
+3. To copy the command, click **{{< icon copy >}} Copy**.
+   The command is similar to the following:
 
    ```text
    git clone abcdefgh1234567@git.eu.platform.sh:abcdefgh1234567.git project-name
@@ -64,41 +65,7 @@ highlight=false
 Some files might not be stored in Git,
 such as data your app writes [in mounts](../create-apps/app-reference.md#mounts).
 
-To download your files:
-
-{{< codetabs >}}
-
-+++
-title=Using the CLI
-file=none
-highlight=false
-+++
-
-1. Get a list of all your mounts with:
-
-   ```bash
-   platform mount:list
-   ```
-
-2. Download all of your files from a given mount with:
-
-   ```bash
-   platform mount:download --mount {{< variable "MOUNT_PATH" >}} --target ./{{< variable "LOCAL_FOLDER" >}}
-   ```
-
-<--->
-
-+++
-title=Using SSH
-file=none
-highlight=false
-+++
-
-You can transfer files through SSH using `scp` or `rsync`.
-
-{{< /codetabs >}}
-
-For more examples, see how to [transfer files to and from a built app](../development/file-transfer.md).
+You can download your files [using the CLI](../development/file-transfer.md#transfer-files-using-the-cli) or [using SSH](../development/file-transfer.md#transfer-files-using-an-ssh-client).
 
 ## 3. Download data from services
 
@@ -114,14 +81,14 @@ For services designed to hold persistent data, see each service's page for instr
 - [MongoDB](../add-services/mongodb.md#exporting-data)
 - [InfluxDB](../add-services/influxdb.md#exporting-data)
 
-## 4. Get the environment variables
+## 4. Get environment variables
 
 Environment variables can contain critical information such as tokens or additional configuration options for your app.
 
-Environment variables beginning with:
+Environment variables can have different prefixes:
 
-- `env:` are exposed [as Unix environment variables](../development/variables/_index.md#top-level-environment-variables).
-- `php:` are interpreted [as `php.ini` directives](../development/variables/_index.md#php-specific-variables).
+- Variables beginning with `env:` are exposed [as Unix environment variables](../development/variables/_index.md#top-level-environment-variables).
+- Variables beginning with `php:` are interpreted [as `php.ini` directives](../development/variables/_index.md#php-specific-variables).
 
 All other variables are [part of `$PLATFORM_VARIABLES`](../development/variables/use-variables.md#use-platformsh-provided-variables).
 
@@ -135,19 +102,19 @@ file=none
 highlight=false
 +++
 
-1. Get the variable's values with:
+1. Get the variable's values by running the following command:
 
    ```bash
    platform ssh -- 'echo $PLATFORM_VARIABLES | base64 -d | jq'
    ```
 
-   Note that you can also get all the environment variable values with:
+   Note that you can also get all the environment variable values by running the following command:
 
    ```bash
    platform ssh -- env
    ```
 
-2. Store the data on your local computer, for example in an encrypted text file for sensitive tokens.
+2. Store the data somewhere secure on your computer.
 
 <--->
 
@@ -160,14 +127,15 @@ highlight=false
 1. In the [Console](https://console.platform.sh/), open your project and click **{{< icon settings >}}**.
 2. Click **Project Settings {{< icon chevron >}}**.
 3. Click **Variables** and access your variable's values and settings.
-4. Store the data on your local computer, for example in an encrypted text file for sensitive tokens.
+4. Store the data somewhere secure on your computer.
 
-Note that in the Console, you can't access the value of variables that have been created using the [`--sensitive true` flag](../development/variables/set-variables.md#variable-options).
-Use the CLI instead to retrieve these values.
+Note that in the Console, you can't access the value of variables that have been [marked as sensitive](../development/variables/set-variables.md#variable-options).
+Use the CLI to retrieve these values.
 
 {{< /codetabs >}}
 
 ## What's next
 
-- Set up your [local development environment](../development/local/_index.md)
-- Migrate to [another region](../projects/region-migration.md)
+- Migrate data from elsewhere [into Platform.sh](./migrating.md).
+- Migrate to [another region](../projects/region-migration.md).
+- To use data from an environment locally, export your data and set up your [local development environment](../development/local/_index.md).
