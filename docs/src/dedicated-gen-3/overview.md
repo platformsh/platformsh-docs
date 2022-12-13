@@ -6,7 +6,8 @@ layout: single
 description: |
     {{% names/dedicated-gen-3 %}} provides a scalable solution as an additional option on top of your existing Grid applications.
     It provides redundant configuration with a minimum of three Virtual Machine instances. 
-    Every service is replicated across all three virtual machines in a failover configuration (as opposed to sharding, allowing a site to remain up even if one of the VMs is lost entirely.
+    Every service is replicated across all three virtual machines in a failover configuration
+    (as opposed to sharding, allowing a site to remain up even if one of the VMs is lost entirely).
 ---
 
 {{% description %}}
