@@ -20,7 +20,7 @@ Self-Service Grid plans don't include a CDN by default, but you can set up one a
 You need:
 
 - An up-and-running Platform.sh project
-- A CDN
+- A CDN such as [Fastly](./fastly.md) or [Cloudflare](./cloudflare.md)
 
 ## Check your DDoS protection
 
@@ -32,14 +32,11 @@ Note that Enterprise and Elite projects on Platform.sh also include a Web Applic
 However, depending on your needs, you can [install your own WAF](../../security/waf.md) 
 and add security measures not included in your plan.  
 
-## Optional: Change the domain name for your CDN distribution 
+## Create a CNAME record for your domain name
 
-When using a CDN, your CDN provider automatically assigns a domain name to your CDN distribution.
-This domain name can be complex.
-
-To set up a more user-friendly, branded domain name for your CDN distribution, 
-you can create `CNAME` records through your DNS provider.
-For more information, see your DNS provider's official documentation.
+To start routing client traffic through your CDN,
+create a `CNAME` record for your domain name through your DNS provider.
+For more information, see you DNS provider's official documentation.
 
 Note that `CNAME` records can't point to apex domains.
 However, most CDN providers offer [workarounds](../steps/dns.md#handling-apex-domains). 
