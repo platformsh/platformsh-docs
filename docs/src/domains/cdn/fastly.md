@@ -36,14 +36,16 @@ To do so, follow these steps:
 
 ## Force TLS and enable HSTS
 
-To ensure that all communication between Fastly and your Platform.sh origin server remains secure,
-you can [force TLS and enabling HSTS](https://docs.fastly.com/en/guides/enabling-hsts-through-fastly#forcing-tls-and-enabling-hsts).
+For enhanced security, you can enforce HTTPS communication between your visitors and Fastly,
+and between Fastly and your Platform.sh origin server.   
+
+To do so, from your Fastly account, [force TLS and enable HSTS](https://docs.fastly.com/en/guides/enabling-hsts-through-fastly#forcing-tls-and-enabling-hsts).
 All HTTP requests are then automatically redirected to HTTPS.
 
-## Anycast
+## Use Cloudflare Anycast options for your apex domain
 
 To start routing client traffic through Fastly,
-you can [create a `CNAME` record for your domain name](../../domains/steps/dns.md#why-cname-records) 
+you need to [create `CNAME` records for your domain names](../../domains/steps/dns.md#why-cname-records) 
 through your DNS provider.
 
 However, `CNAME` records can't point to apex domains.

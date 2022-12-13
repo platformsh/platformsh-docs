@@ -12,7 +12,7 @@ Each PoP accommodates an edge server that behaves like a local cache to nearby u
 Bringing content closer to users helps enhance your site's perceived performance,
 and can therefore improve user engagement and retention.
  
-By default, Dedicated plans include a [Fastly](./fastly.md) CDN managed by Platform.sh.
+By default, Dedicated projects include a [Fastly](./fastly.md) CDN managed by Platform.sh.
 Self-Service Grid plans don't include a CDN by default, but you can set up one at any time.
 
 ## Before you begin
@@ -35,7 +35,7 @@ and add security measures not included in your plan.
 ## Create a CNAME record for your domain name
 
 To start routing client traffic through your CDN,
-create a `CNAME` record for your domain name through your DNS provider.
+create `CNAME` records for your domain names through your DNS provider.
 For more information, see you DNS provider's official documentation.
 
 Note that `CNAME` records can't point to apex domains.
