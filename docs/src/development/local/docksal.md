@@ -2,6 +2,7 @@
 title: Use Docksal for local development
 sidebarTitle: Docksal
 weight: 1
+sectionBefore: Supported environments
 ---
 
 [Docksal](https://docksal.io) is a Docker-based local development tool that plays nicely with Platform.sh.
