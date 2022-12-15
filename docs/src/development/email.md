@@ -44,7 +44,7 @@ highlight=false
 To turn on outgoing email, run the following command:
 
 ```bash
-platform environment:info -e <ENVIRONMENT_NAME> enable_smtp true
+platform environment:info --environment {{< variable "ENVIRONMENT_NAME" >}} enable_smtp true
 ```
 
 To turn off outgoing email, replace `true` with `false`.
@@ -59,7 +59,7 @@ Improve deliverability of your email with [Sender Policy Framework (SPF)](https:
 Add the following `TXT` record to your domain's DNS records:
 
 ```txt
->v=spf1 include:sendgrid.net -all
+v=spf1 include:sendgrid.net -all
 ```
 
 ## 3. (Optional) Validate your email
@@ -82,7 +82,7 @@ Checks for the expected DNS records run every 15 minutes before validation.
 The `TXT` record looks similar to the following:
 
 ```txt
->v=spf1 include:u17504801.wl.sendgrid.net -all
+v=spf1 include:u17504801.wl.sendgrid.net -all
 ```
 
 ## 4. Test the email service
@@ -91,7 +91,7 @@ To test the email service, use the [CLI](../administration/cli/_index.md) to con
 Run the following command:
 
 ```bash
-printf "From: <SENDER_EMAIL_ADDRESS>\nSubject: Test \nThis is a test message" | /usr/sbin/sendmail <RECIPIENT_EMAIL_ADDRESS>
+printf "From: {{< variable "SENDER_EMAIL_ADDRESS" >}}\nSubject: Test \nThis is a test message" | /usr/sbin/sendmail {{< variable "RECIPIENT_EMAIL_ADDRESS" >}}
 ```
 
 Replace the variables with actual email addresses as in the following example:
