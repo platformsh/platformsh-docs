@@ -12,7 +12,7 @@ description: |
 
 | Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |----------------------------------------|------------------------------ |
-|  {{< image-versions image="ruby" status="supported" environment="grid" >}} | {{< image-versions image="ruby" status="supported" environment="dedicated-gen-2" >}} |
+| {{< image-versions image="ruby" status="supported" environment="grid" >}} | {{< image-versions image="ruby" status="supported" environment="dedicated-gen-2" >}} |
 
 {{% image-versions-legacy "ruby" %}}
 

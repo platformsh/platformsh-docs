@@ -12,7 +12,7 @@ layout: single
 
 | Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |----------------------------------------|------------------------------ |
-|  {{< image-versions image="java" status="supported" environment="grid" >}} | {{< image-versions image="java" status="supported" environment="dedicated-gen-2" >}} |
+| {{< image-versions image="java" status="supported" environment="grid" >}} | {{< image-versions image="java" status="supported" environment="dedicated-gen-2" >}} |
 
 These versions refer to the headless packages of OpenJDK.
 To save space and reduce potential vulnerabilities, they don't contain GUI classes, which can't be used on the server.
