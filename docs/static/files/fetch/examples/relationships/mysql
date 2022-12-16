@@ -5,16 +5,16 @@
     "fragment": null,
     "ip": "169.254.255.221",
     "hostname": "e3wffyxtwnrxujeyg5u3kvqi6y.mariadb104.service._.eu-3.platformsh.site",
-    "public": false,
+    "port": 3306,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "mysql.internal",
     "rel": "mysql",
+    "path": "main",
     "query": {
         "is_master": true
     },
-    "path": "main",
     "password": "",
     "type": "mariadb:10.4",
-    "port": 3306,
+    "public": false,
     "host_mapped": false
 }
