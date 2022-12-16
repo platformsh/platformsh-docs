@@ -310,13 +310,15 @@
     "runtime": true,
     "type": "java",
     "versions": {
-      "deprecated": [],
-      "supported": [
-        "18",
-        "17",
+      "deprecated": [
         "14",
         "13",
-        "12",
+        "12"
+      ],
+      "supported": [
+        "19",
+        "18",
+        "17",
         "11",
         "8"
       ]
