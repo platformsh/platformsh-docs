@@ -6,8 +6,8 @@ weight: 1
 sectionBefore: Integrated environments
 ---
 
-[DDEV](https://ddev.readthedocs.io/en/stable/) is an open-source tool for local PHP and Node.js development environments.
-It allows you use Docker in your workflows while maintaining a GitOps workflow.
+[DDEV](https://ddev.readthedocs.io/en/stable/) is an open-source tool for local PHP development environments.
+It allows you to use Docker in your workflows while maintaining a GitOps workflow.
 You get fully containerized environments to run everything locally
 without having to install tools (including the Platform.sh CLI, PHP, and Composer) on your machine.
 
@@ -64,29 +64,18 @@ To connect DDEV with your Platform.sh account, use a Platform.sh API token.
     ddev config --web-environment-add=PLATFORMSH_CLI_TOKEN={{< variable "API_TOKEN" >}}
     ```
 
-Now you can run `ddev exec platform <command>` from your computer without needing to install the Platform.sh CLI.
-
 ## 4. Connect DDEV to your project
 
-To connect DDEV to your project, you need to tell it which project to use.
-Use environment variables to set your project ID and environment name:
+The best way to connect your local DDEV to your Platform.sh project is through the [Platform.sh DDEV add-on](https://github.com/drud/ddev-platformsh).
+To add it, run the following command:
 
 ```bash
-ddev config --web-environment-add="PLATFORM_PROJECT={{< variable "PROJECT_ID" >}},PLATFORM_ENVIRONMENT={{< variable "ENVIRONMENT_NAME" >}}"
+ddev get drud/ddev-platformsh
 ```
 
-For example:
+Answer the interactive prompts with your project ID and the name of the environment to pull data from.
 
-```bash
-ddev config --web-environment-add="PLATFORM_PROJECT=abcdefgh1234567,PLATFORM_ENVIRONMENT=main"
-```
-
-The best way to connect your local DDEV to your Platform.sh project is through the [Platform.sh DDEV add-on](https://github.com/platformsh/ddev-platformsh).
-Add it by running the following command:
-
-```bash
-ddev get platformsh/ddev-platformsh
-```
+With the add-on, you can now run `ddev platform <command>` from your computer without needing to install the Platform.sh CLI.
 
 ## 5. Optional: Get your project data
 
@@ -99,29 +88,15 @@ ddev pull platform
 To skip pulling files, add `--skip-files` to the command.
 To skip pulling a database, add `--skip-db` to the command.
 
-## 6. Optional: Install dependencies
-
-If your project has dependencies, you can install them with Composer.
-Using the DDEV version of Composer means you don't need to install Composer on your machine.
-You can also use different Composer versions in different projects based on their DDEV configurations.
-
-Run the following command:
-
-```bash
-ddev composer install
-```
-
-If you have any other commands in your [build hook](../../create-apps/hooks/_index.md),
-you need to run those explicitly.
-You can also add them as [DDEV hooks in your configuration](https://ddev.readthedocs.io/en/stable/users/configuration/hooks/).
-
-## 7. Run your project
+## 6. Run your project
 
 Now your project is ready to run:
 
 ```bash
 ddev start
 ```
+
+This runs all your hooks and builds your project like on Platform.sh.
 
 The command returns the project URL `http://{{< variable "PROJECT_NAME" >}}.ddev.site/`
 as well as a specific port on `http://127.0.0.1`.

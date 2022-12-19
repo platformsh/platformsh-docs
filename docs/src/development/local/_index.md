@@ -47,6 +47,8 @@ If you don't have your app code on your computer, download a copy.
     platform get {{< variable "PROJECT_ID" >}} {{< variable "TARGET_DIRECTORY_NAME" >}}
     ```
 
+    Or pull from your [integrated Git repository](../../integrations/source/_index.md).
+
 You can now access your code from the project directory on your computer.
 The CLI created a `.platform/local` directory that's excluded from Git. 
 It contains builds and local metadata about your project.
