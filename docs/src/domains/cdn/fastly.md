@@ -1,10 +1,10 @@
- ---
+---
 title: "Configure your Fastly CDN"
 sidebarTitle: "Fastly"
 weight: 1
 description: |
 aliases:
-- "/golive/steps/fastly.html"
+  - "/golive/steps/fastly.html"
 ---
 
 You can [use a CDN](./_index.md) to deliver your site's content to users more quickly.
@@ -48,7 +48,8 @@ To use Anycast IP addresses on a {{% names/dedicated-gen-2 %}} production enviro
 
 ## 5. Optional: Protect your site from on-path attacks
 
-An on-path attack occurs when a hacker intercepts or modifies the communication between a client and a server.
+An on-path attack occurs when a hacker intercepts 
+or modifies the communication between a client and a server.
 This can lead to sensitive data leaks.
 To prevent such attacks, make sure all communication with your site is encrypted through HTTPS
 and can't be downgraded to HTTP.
