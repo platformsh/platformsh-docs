@@ -1,0 +1,8 @@
+DirectoryPath: public
+EnforceHTTPS: true
+IgnoreAltEmpty: true
+CheckExternal: false
+IgnoreHTTPS:
+  - wwwizer.com
+IgnoreDirs:
+  - docsuikit/assets/vendor/sticky-sidebar/test

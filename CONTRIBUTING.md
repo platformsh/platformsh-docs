@@ -169,11 +169,20 @@ It uses emoji other than the ones for [commit messages](#commit-messages).
 To ensure the docs work smoothly, a few checks run on each pull request:
 
 - Vale enforces the [style guidelines](./contributing/content-style.md).
-- [Remark](https://remark.js.org/) with the [`remark-validate-links` plugin](https://github.com/remarkjs/remark-validate-links)
-  checks that all links between Markdown files are valid (including whether linked headers exist).
-  A couple of files (such as Vault and Varnish service overviews) using includes with headings that are linked,
-  so these files are ignored in this check.
-  Any errors are found in the regular check of all links.
+
+- [`htmltest`](https://github.com/wjdp/htmltest) to check that all internal links in the built site are valid
+  (including whether linked headers exist).
+  Any errors in links to external sites are found in the regular check of all links.
+
+  To run this check locally, run the following commands:
+
+  ```bash
+  # Download the htmltest tool
+  curl https://htmltest.wjdp.uk | bash
+  # Run the check
+  ./bin/htmltest
+  ```
+
 - Custom workflows [check all changed files](./.github/workflows/get-pr-info.yaml) within `docs/src`
   and [comment with links](./.github/workflows/comment-on-pr.yaml) to the deployed pages for review.
 

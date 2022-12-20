@@ -129,7 +129,7 @@ file=none
 highlight=false
 +++
 
-To send email in PHP, you can use the built-in [`mail()` function](http://php.net/manual/en/function.mail.php).
+To send email in PHP, you can use the built-in [`mail()` function](https://www.php.net/manual/en/function.mail.php).
 The PHP runtime is configured to send email automatically with the correct configuration.
 This works even for libraries such as PHPMailer, which uses the `mail()` function by default.
 

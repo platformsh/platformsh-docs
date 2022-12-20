@@ -19,7 +19,6 @@ description: |
 
 * [Set up your Mac for Platform.sh using MAMP](https://github.com/owntheweb/platform-quick-starter) by [@owntheweb](https://github.com/owntheweb)
 * How Platform.sh can [simplify your contribution workflow on GitHub](https://medium.com/akeneo-labs/how-platform-sh-can-simplify-your-contribution-workflow-on-github-6e2a557a1bcc) by Mickaël Andrieu from Akeneo
-* Nacho Digital has a guide on [moving an existing site](http://www.nachodigital.com.ar/content/moving-existing-site-platformsh) to Platform.sh
 * All the stuff you need for a [pro-dev-flow using platform.sh](https://github.com/thinktandem/platform-workflow-demo) as your deploy target  again by https://www.thinktandem.io
 
 ### Working with Platform.sh
@@ -45,7 +44,7 @@ description: |
 
 ## Examples
 
-Platform.sh lists maintained examples on its Github page, with some cross-referencing from http://docs.platform.sh. Examples listed below could work fine, or may be out-of-date or unmaintained. Use at your own risk.
+Platform.sh lists maintained examples on its Github page, with some cross-referencing from https://docs.platform.sh. Examples listed below could work fine, or may be out-of-date or unmaintained. Use at your own risk.
 
 ### NodeJS
 
@@ -109,7 +108,7 @@ Framework  | Credit
 
 ### Development environments
 
-* [**Beetbox**](http://beetbox.readthedocs.io/en/stable/), a pre-provisioned L*MP stack for Drupal and other frameworks, with Platform.sh CLI integration
+* [**Beetbox**](https://beetbox.readthedocs.io/en/stable/), a pre-provisioned L*MP stack for Drupal and other frameworks, with Platform.sh CLI integration
 * A **Docker** image with the Platform.sh CLI on it https://github.com/maxc0d3r/docker-platformshcli
 * Some tips on using Platform.sh with **DrupalVM** https://github.com/geerlingguy/drupal-vm/issues/984
 * [**Vagrant with Ansible**](https://github.com/mglaman/platformsh-vagrant)for Platform.sh, opinionated towards Drupal, by @mglaman.

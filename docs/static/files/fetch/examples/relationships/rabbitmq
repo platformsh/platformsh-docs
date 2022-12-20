@@ -5,14 +5,14 @@
     "fragment": null,
     "ip": "169.254.57.5",
     "hostname": "iwrccysk3gpam2zdlwdr5fgs2y.rabbitmq38.service._.eu-3.platformsh.site",
-    "public": false,
+    "port": 5672,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "rabbitmq.internal",
     "rel": "rabbitmq",
-    "query": [],
     "path": null,
+    "query": [],
     "password": "guest",
     "type": "rabbitmq:3.8",
-    "port": 5672,
+    "public": false,
     "host_mapped": false
 }

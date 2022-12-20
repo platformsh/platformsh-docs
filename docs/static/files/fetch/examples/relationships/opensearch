@@ -5,14 +5,14 @@
     "fragment": null,
     "ip": "169.254.99.100",
     "hostname": "2e36wpnescmc5ffcddczsnhnai.opensearch12.service._.eu-3.platformsh.site",
-    "public": false,
+    "port": 9200,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "opensearch.internal",
     "rel": "opensearch",
-    "query": [],
     "path": null,
+    "query": [],
     "password": null,
     "type": "opensearch:1.2",
-    "port": 9200,
+    "public": false,
     "host_mapped": false
 }

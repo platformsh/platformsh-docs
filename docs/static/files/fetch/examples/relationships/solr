@@ -5,14 +5,14 @@
     "fragment": null,
     "ip": "169.254.68.119",
     "hostname": "csjsvtdhmjrdre2uaoeim22xjy.solr86.service._.eu-3.platformsh.site",
-    "public": false,
+    "port": 8080,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "solr.internal",
     "rel": "solr",
-    "query": [],
     "path": "solr\/maincore",
+    "query": [],
     "password": null,
     "type": "solr:8.6",
-    "port": 8080,
+    "public": false,
     "host_mapped": false
 }

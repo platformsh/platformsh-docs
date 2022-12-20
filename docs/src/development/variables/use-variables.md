@@ -62,7 +62,7 @@ To access environment variables in your app, you can use the Platform.sh Config 
 
 Alternative, use a built-in method for the given language.
   
-* PHP: The [`geten[v()` function](http://php.net/manual/en/function.getenv.php)
+* PHP: The [`geten[v()` function](https://www.php.net/manual/en/function.getenv.php)
 * Python: The [`os.environ` object](https://docs.python.org/3/library/os.html#os.environ)
 * Node.js: The [`process.env` object](https://nodejs.org/api/process.html#process_process_env)
 * Ruby: The [`ENV` accessor](https://ruby-doc.org/current/ENV.html)
