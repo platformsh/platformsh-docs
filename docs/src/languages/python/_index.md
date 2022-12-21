@@ -16,6 +16,13 @@ You can deploy Python apps on Platform.sh using a server or a project such as [u
 
 {{% language-specification type="python" display_name="Python" %}}
 
+{{% deprecated-versions %}}
+
+{{< image-versions image="python" status="deprecated" >}}
+
+\* This version won't receive any updates at all.
+You are strongly recommended to upgrade to a supported version.
+
 ## Usage example
 
 ### Run your own server
