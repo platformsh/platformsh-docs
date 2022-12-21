@@ -15,7 +15,7 @@ This ensures the changes you make locally appear as they would on your Platform.
 It also means you don't have to worry about configuring your machine with
 the various dependencies, certificates, and connections your app needs to run.
 
-The recommended tool for local development with Platform.sh is [DDEV](./ddev.md).
+The **recommended tool** for local development with Platform.sh is **[DDEV](./ddev.md)**.
 The integration with DDEV is maintained by Platform.sh to ensure it works smoothly.
 Other Docker-based tools are also supported, such as [Docksal](./docksal.md) and [Lando](./lando.md).
 

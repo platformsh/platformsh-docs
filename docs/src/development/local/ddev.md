@@ -100,7 +100,7 @@ This runs all your hooks and builds your project like on Platform.sh.
 
 The command returns the project URL `http://{{< variable "PROJECT_NAME" >}}.ddev.site/`
 as well as a specific port on `http://127.0.0.1`.
-Open one of the URLs to see your project running.
+To see your project running, open one of these URLs.
 
 ## What's next
 
