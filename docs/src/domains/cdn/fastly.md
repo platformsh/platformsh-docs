@@ -1,10 +1,7 @@
 ---
 title: "Fastly"
 weight: 1
-description: |
-  In some cases you may want to opt to use a CDN such as Fastly rather than the Platform.sh router's cache. Using a CDN can offer a better time-to-first-byte for cached content across a wider geographic region at the cost of the CDN service.
-aliases:
-  - "/golive/steps/fastly.html"
+description: In some cases you may want to opt to use a CDN such as Fastly rather than the Platform.sh router's cache. Using a CDN can offer a better time-to-first-byte for cached content across a wider geographic region at the cost of the CDN service.
 ---
 
 {{% description %}}

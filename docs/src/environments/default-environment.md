@@ -2,8 +2,6 @@
 title: Rename the default environment
 description: See how to change the name of your default/production environment after creating a project.
 multipleTabs: true
-aliases:
-  - /guides/general/default-branch.html
 ---
 
 You can set the name of your default/production environment when creating a project.

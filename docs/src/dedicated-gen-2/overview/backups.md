@@ -3,8 +3,6 @@ title: "Backups"
 weight: 4
 toc: false
 description: See when backups of {{% names/dedicated-gen-2 %}} environments are taken.
-aliases:
-  - /dedicated/overview/backups.html
 ---
 
 Platform.sh takes a byte-for-byte snapshot of {{% names/dedicated-gen-2 %}} production environments every 6 hours.
