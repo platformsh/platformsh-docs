@@ -1,0 +1,10 @@
+name = "Platform.sh Docs"
+license = "CC-BY-SA-4.0"
+licenselink = "https://github.com/platformsh/platformsh-docs/blob/main/docs/themes/psh-docs/LICENSE.md"
+description = "A theme for the Platform.sh docs"
+homepage = "http://example.com/"
+min_version = "0.104.0"
+
+[author]
+  name = "Platform.sh"
+  homepage = "https://platform.sh"

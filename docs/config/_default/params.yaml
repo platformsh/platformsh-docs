@@ -25,23 +25,6 @@ _404:
   image: "/images/404/404-8.png"
   issues: "https://github.com/platformsh/platformsh-docs/issues/new"
 
-# Books
-# Note: If you would like sections to match uglyurls, add the ".html" extension manually to `section`.
-#     (i.e. books.example.section: example.html)
-books:
-  home:
-    title: Guides and reference
-    section: home
-    weight: -120
-  get-started:
-    title: Get started
-    section: get-started
-    weight: -110
-  guides:
-    title: Stacks
-    section: guides
-    weight: -100
-
 # Metadata
 meta:
   sitename: "Platform.sh User Documentation"

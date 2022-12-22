@@ -61,7 +61,8 @@
     "vinyl-source-stream": "^2.0.0"
   },
   "workspaces": [
-    "static/scripts/xss"
+    "static/scripts/xss",
+    "themes/psh-docs"
   ],
   "remarkConfig": {
     "plugins": [
