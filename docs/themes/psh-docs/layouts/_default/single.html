@@ -1,7 +1,7 @@
 {{ define "main" }}
 
   <!-- If the page has "multipleTabs" set, set the codetab context on a page-wide basis -->
-  <main class="ml-sm-auto col-md-9 col-lg-10 px-4 pt-0 pt-md-11"
+  <main class="md:col-span-8 md:max-w-[75%] xl:max-w-[120ch] xl:text-lg"
   {{ if $.Page.Params.multipleTabs }}
     x-data="{
       codetab: 'default',
@@ -27,9 +27,9 @@
             <h1>{{ .Title | .RenderString }}</h1>
           </div>
 
-          <div class="content-grid">
+          <div class="grid md:grid-cols-80-20">
 
-            <div class="order-2 right-sidebar-wrapper">
+            <div class="md:order-2 md:top-nav-height md:sticky max-h-fullv">
               <!-- Table of contents -->
               {{ if and (ne .Params.toc false) (ne .TableOfContents "<nav id=\"TableOfContents\"></nav>") }}
                 <div class="toc">

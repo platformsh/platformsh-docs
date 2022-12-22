@@ -4,7 +4,7 @@
   <!-- Head -->
   {{ partial "head/head" . }}
 
-  <body class="bg-white">
+  <body class="bg-white p-4">
 
     <!-- Header -->
     {{ partial "header/header" . }}
@@ -13,7 +13,7 @@
     {{ partial "scripts/scripts" . }}
 
     <!--If in the Get started section, define context and methods. -->
-    <div class="container-fluid"
+    <div class="grid md:grid-cols-9 gap-4"
     {{ if eq .Section "get-started" }}
       x-data="{ 
         stack: new URLSearchParams(location.search).get('stack') || 'php',
@@ -36,15 +36,11 @@
       }"
     {{ end }}>
 
-      <div class="row pt-3">
+      <!-- Sidebar -->
+      {{ partial "navigation/sidebar/sidebar" . }}
 
-        <!-- Sidebar -->
-        {{ partial "navigation/sidebar/sidebar" . }}
-
-        <!-- Main content block -->
-        {{- block "main" . }}{{- end }}
-
-      </div>
+      <!-- Main content block -->
+      {{- block "main" . }}{{- end }}
 
     </div>
 
