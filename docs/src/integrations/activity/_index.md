@@ -22,58 +22,82 @@ platform integration:add --type script --file ./my_script.js
 ```
 
 That installs and enables the `my_script.js` file as an activity script on the current project.
-You can get its ID by listing the integrations on the current project:
-
-```bash
-platform integrations
-
-+---------------+--------------+--------------+
-| ID            | Type         | Summary      |
-+---------------+--------------+--------------+
-| nadbowmhd67do | script       | ...
-        |
-| rcqf6b69jdcx6 | health.email | From:        |
-|               |              | To: #admins  |
-+---------------+--------------+--------------+
-```
-
-The just-installed script's ID in this example is `nadbowmhd67do`.
 
 Do not run the `integration:add` command a second time,
-or it will install a second integration that happens to have the same code.
+or it will install a second integration with the same code.
 
 ## Updating
 
-To update an existing activity script, use the `integration:update` command.
-You need the ID of the integration to update (as above).
+To update an existing activity script you need its ID:
 
-```bash
-platform integration:update --file ./my_script.js nadbowmhd67do
-```
+1. Get the {{<variable  "ID" >}} by running:
 
-That updates the integration in place, permanently overwriting the previous version.
+   ```bash
+   platform integrations
+   ```
 
-{{< note >}}
+   The command will return something like the following:
 
-To test an Activity Script update, a redeployment can be triggered using the CLI:
+   ```bash
+   +---------------+--------------+--------------+
+   | ID            | Type         | Summary      |
+   +---------------+--------------+--------------+
+   | nadbowmhd67do | script       | ...          |
+   | rcqf6b69jdcx6 | health.email | From:        |
+   |               |              | To: #admins  |
+   +---------------+--------------+--------------+
+   ```
 
-```bash
-platform redeploy
-```
+2. Update the integration with:
 
-{{</ note >}}
+   ```bash
+   platform integration:update --file ./my_script.js {{<variable  "ID" >}}
+   ```
+
+   That updates the integration in place, permanently overwriting the previous version.
+
+3. Test the activity script update, by triggering a redeployment with:
+
+   ```bash
+   platform redeploy
+   ```
 
 ## Removing
 
-To disable an activity script, use the `integration:delete` command:
+To disable an activity script you need its ID:
 
-```bash
-platform integration:delete nadbowmhd67do
-```
+1. Get the {{<variable "ID" >}} by running:
+
+   ```bash
+   platform integrations
+   ```
+
+   The command will return something like the following:
+
+   ```bash
+   +---------------+--------------+--------------+
+   | ID            | Type         | Summary      |
+   +---------------+--------------+--------------+
+   | nadbowmhd67do | script       | ...          |
+   | rcqf6b69jdcx6 | health.email | From:        |
+   |               |              | To: #admins  |
+   +---------------+--------------+--------------+
+   ```
+
+2. Delete the integration with:
+
+   ```bash
+   platform integration:delete {{<variable "ID" >}}
+   ```
 
 ## Debugging
 
-Activity logs are available through their own CLI command, `platform integration:activities`.
+Activity logs are available with:
+
+```bash
+platform integration:activities
+```
+
 Every time your activity script runs it will generate a new log entry, including the output from the script.
 Any output produced by `console.log` is available in the activity log, and that is the recommended way to debug scripts.
 
@@ -91,10 +115,10 @@ There are many types of activity to which a script could respond.
 By default, it will activate only after a successful `git push` operation.
 That trigger is configurable via command line switches when adding or updating a script.
 
-For example, to have a script trigger any time an environment is activated or deactivated, you would run:
+For example, to have a script trigger any time an environment is activated or deactivated, run:
 
 ```bash
-platform integration:update --events='environment.activate, environment.deactivate' nadbowmhd67do
+platform integration:update --events='environment.activate, environment.deactivate' {{<variable "INTEGRATION_ID" >}}
 ```
 
 A complete list of possible events is available in the [webhook documentation](/integrations/activity/reference.md).
@@ -104,7 +128,7 @@ The default is only when they reach "complete".
 To have a script execute when a synchronize action first starts, for example, you would run:
 
 ```bash
-platform integration:update --events=environment.synchronize --states=in_progress nadbowmhd67do
+platform integration:update --events=environment.synchronize --states=in_progress {{<variable "INTEGRATION_ID" >}}
 ```
 
 It is also possible to restrict scripts to certain environments by name.
@@ -113,7 +137,7 @@ Most commonly, that is used to have them execute only for your production enviro
 The following example executes only for backup actions on the `production` environment:
 
 ```bash
-platform integration:update --events=environment.backup --environments=production nadbowmhd67do
+platform integration:update --events=environment.backup --environments=production {{<variable "INTEGRATION_ID" >}}
 ```
 
 There is also an `--exclude-environments` switch to excluded environments by name rather than allow.
@@ -123,13 +147,13 @@ rather than firing on all activities and then filtering out undesired use cases 
 
 ## Available APIs
 
-Activity scripts can be written in ES2021 and do not support installing additional packages.
-We provide a series of [utility functions you can reuse](/integrations/activity/utility.md)
+Activity scripts can be written in ES2021 and don't support installing additional packages.
+We provide a series of [utility functions you can reuse](./utility.md)
 as well as the following libraries, APIs, and global variables to facilitate building out custom functionality.
 
 ### `underscore.js`
 
-[`Underscore.js`](https://github.com/jashkenas/underscore) 1.13.1 is available out-of-the-box to make writing Activity scripts more pleasant.
+[`Underscore.js`](https://github.com/jashkenas/underscore) is available out-of-the-box to make writing Activity scripts more pleasant.
 See [Underscore's documentation](https://underscorejs.org/) for available functions and utilities.
 
 ### `activity`
