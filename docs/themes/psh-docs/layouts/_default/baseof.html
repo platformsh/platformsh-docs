@@ -4,7 +4,7 @@
   <!-- Head -->
   {{ partial "head/head" . }}
 
-  <body class="bg-white p-4">
+  <body class="bg-white">
 
     <!-- Header -->
     {{ partial "header/header" . }}
@@ -13,7 +13,7 @@
     {{ partial "scripts/scripts" . }}
 
     <!--If in the Get started section, define context and methods. -->
-    <div class="grid md:grid-cols-9 gap-4"
+    <div class="grid md:grid-cols-9 gap-4 mt-24"
     {{ if eq .Section "get-started" }}
       x-data="{ 
         stack: new URLSearchParams(location.search).get('stack') || 'php',

@@ -85,7 +85,7 @@ const Search = ({ fullPage }) => {
   const apidocs = hits.apidocs.length > 0 ? <Suggestions title="API Docs" hits={hits.apidocs} /> : ''
 
   const summedSecondary = hits.community.length + hits.website.length
-        + hits.apidocs.length + hits.templates.length
+    + hits.apidocs.length + hits.templates.length
   const noPrimaryResults = (hits.docs.length === 0 && summedSecondary > 0) ? (
     <div className="suggestions suggestions-primary">
       <h4 className="section">Documentation</h4>
@@ -129,34 +129,35 @@ const Search = ({ fullPage }) => {
             value={query}
             placeholder="Search Platform.sh"
             onChange={handleInputChange}
-            className="searchinput"
+            className="bg-no-repeat bg-[length:15px_15px] bg-center-4 h-16 w-full pl-12 text-slate border-none"
+            style={{ 'background-image': 'url(/images/svg/search-solid.svg)' }}
             autoComplete="off"
           />
           {query && query.length > 1
             && (
-            <button
-              type="button"
-              id="clearsearch"
-              className="clearinput"
-              onClick={clearInputFunc}
-            >
-              <span className="sr-only">Clear search</span>
-            </button>
+              <button
+                type="button"
+                id="clearsearch"
+                className="clearinput"
+                onClick={clearInputFunc}
+              >
+                <span className="sr-only">Clear search</span>
+              </button>
             )}
         </div>
       </form>
       {fullPage && hits.docs.length >= (basicMaxResults - 1) && query && query.length > 1
         && (
-        <button
-          type="button"
-          className="secondarySearch"
-          onClick={() => {
-            if (maxResults === basicMaxResults) setMaxResults(200)
-            else setMaxResults(basicMaxResults)
-          }}
-        >
-          <span>{maxResults === basicMaxResults ? 'Show all results' : 'Hide extra results'}</span>
-        </button>
+          <button
+            type="button"
+            className="secondarySearch"
+            onClick={() => {
+              if (maxResults === basicMaxResults) setMaxResults(200)
+              else setMaxResults(basicMaxResults)
+            }}
+          >
+            <span>{maxResults === basicMaxResults ? 'Show all results' : 'Hide extra results'}</span>
+          </button>
         )}
       {(query && query.length > 1) ? allResults : noQuery}
     </>

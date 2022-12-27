@@ -1,16 +1,13 @@
 <!-- Header -->
-<header class="duik-header">
-  <nav class="navbar navbar-dark fixed-top bg-primary-darker flex-nowrap p-0">
+<header class="bg-primary-darker flex p-4 text-white fixed top-0 w-full z-50">
 
-    <!-- Logo -->
-    {{ partial "header/logo" . }}
+  <!-- Logo -->
+  {{ partial "header/logo" . }}
 
-    {{ partial "header/search" . }}
+  {{ partial "header/search" . }}
 
-    <!-- Upper right widget -->
-    {{ partial "header/upper-widget" . }}
-
-  </nav>
+  <!-- Upper right widget -->
+  {{ partial "header/actions" . }}
 
 </header>
 <!-- End Header -->
