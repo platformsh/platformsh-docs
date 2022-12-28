@@ -1,10 +1,10 @@
-<div class="feedback-form" x-data="FeedbackForm()">
-  <h3>Is this page helpful?</h3>
-  <div class="feedback-buttons">
-    <button x-show="!feedbackSubmitted" @click="handleClick" title="Yes">
+<div class="p-4" x-data="FeedbackForm()">
+  <h3 class="pt-4 pb-2 font-light">Is this page helpful?</h3>
+  <div class="text-sm">
+    <button x-show="!feedbackSubmitted" @click="handleClick" title="Yes" class="py-4 px-4 hover:bg-skye-light text-xl">
       👍️
     </button>
-    <button x-show="!feedbackSubmitted" @click="handleClick" title="No">
+    <button x-show="!feedbackSubmitted" @click="handleClick" title="No" class="py-4 px-4 hover:bg-skye-light text-xl">
       👎️
     </button>
     <div
@@ -18,9 +18,9 @@
       class="feedback-message"
     >
       😞 Thanks for the feedback. <br />
-      <a :href="editPageUrl">Suggest a change</a>
+      <a :href="editPageUrl" class="text-skye-dark hover:underline focus:underline">Suggest a change</a>
       <br />
-      <a :href="issueUrl">Submit an issue</a>
+      <a :href="issueUrl" class="text-skye-dark hover:underline focus:underline">Submit an issue</a>
     </div>
     <div
       x-show="feedbackSubmitted && feedback === 'error'"
