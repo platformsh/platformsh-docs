@@ -1,7 +1,7 @@
 {{ define "main" }}
 
   <!-- If the page has "multipleTabs" set, set the codetab context on a page-wide basis -->
-  <main class="md:col-span-8 xl:max-w-[120ch] xl:text-lg px-4"
+  <div
   {{ if $.Page.Params.multipleTabs }}
     x-data="{
       codetab: 'default',
@@ -10,61 +10,9 @@
       }
     }"
   {{ end }}>
-    <div class="row pt-3">
 
-        <div class="col-xl-12 order-xl-1 duik-content">
+    {{ partial "page-content" ( dict "context" . ) }}
 
-          <!-- Platform.sh tier-gated features -->
-          {{ partial "tiered-features/banner.html" . }}
-
-          <!-- If the feature is part of the Observability Suite -->
-          {{ partial "observability-suite/banner.html" . }}
-
-          {{ partial "editpagebutton.html" . }}
-
-          <!-- Page title -->
-          <div class="">
-            <h1>{{ .Title | .RenderString }}</h1>
-          </div>
-
-          <div class="grid md:grid-cols-80-20">
-
-            <div class="md:order-2 md:top-24 md:sticky max-h-fullv overflow-y-scroll">
-              <!-- Table of contents -->
-              {{ if and (ne .Params.toc false) (ne .TableOfContents "<nav id=\"TableOfContents\"></nav>") }}
-                <div class="border border-stone px-6 pt-1 pb-4 text-sm [&_a]:text-skye-dark hover:[&_a]:underline focus:[&_a]:underline [&_ul_ul]:pl-4">
-                  <h3 class="pt-4 pb-2 font-light text-base text-slate">On this page</h3>
-                  {{ .TableOfContents }}
-                </div>
-              {{ end }}
-
-              <!-- Feedback form -->
-              <div class="hidden md:block">
-                {{ partial "feedback-form" }}
-              </div>
-            </div>
-
-            <div class="content-wrapper">
-
-              <!-- Add the stack picker for Get started section -->
-              {{ if and ( eq .Section "get-started" ) ( ne .Title "Introduction" ) }}
-                {{ partial "get-started/stack-picker" }}
-              {{ end }}
-
-              <!-- Page content, anchorized -->
-              {{ partial "headline-hash.html" .Content }}
-            </div>
-
-          </div>
-
-        </div>
-      </div>
-
-    <!-- Feedback form -->
-    <div class="block md:hidden">
-      {{ partial "feedback-form" }}
-    </div>
-
-  </main>
+  </div>
 
 {{ end }}

@@ -40,7 +40,9 @@
       {{ partial "sidebar/sidebar" . }}
 
       <!-- Main content block -->
-      {{- block "main" . }}{{- end }}
+      <main class="md:col-span-8 xl:max-w-[120ch] xl:text-lg px-4 pt-4">
+        {{- block "main" . }}{{- end }}
+      </main>
 
     </div>
 

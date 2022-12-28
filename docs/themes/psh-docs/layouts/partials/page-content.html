@@ -1,0 +1,56 @@
+<!-- Platform.sh tier-gated features -->
+{{ partial "tiered-features/banner.html" .context }}
+
+<!-- If the feature is part of the Observability Suite -->
+{{ partial "observability-suite/banner.html" .context }}
+
+{{ partial "editpagebutton.html" .context }}
+
+<!-- Page title -->
+<h1>{{ .context.Title | .context.RenderString }}</h1>
+
+<div class="grid md:grid-cols-80-20">
+
+  <div class="md:order-2 md:top-24 md:sticky max-h-fullv overflow-y-scroll">
+    <!-- Table of contents -->
+    {{ if and (ne .context.Params.toc false) (ne .context.TableOfContents "<nav id=\"TableOfContents\"></nav>") }}
+      <div class="border border-stone px-6 pt-1 pb-4 text-sm [&_a]:text-skye-dark hover:[&_a]:underline focus:[&_a]:underline [&_ul_ul]:pl-4">
+        <h3 class="pt-4 pb-2 font-light text-base text-slate">On this page</h3>
+        {{ .context.TableOfContents }}
+      </div>
+    {{ end }}
+
+    <!-- Feedback form for wide screens -->
+    <div class="hidden md:block">
+      {{ partial "feedback-form" }}
+    </div>
+  </div>
+
+  <div class="content-wrapper">
+    <!-- Add the stack picker for Get started section -->
+    {{ if and ( eq .context.Section "get-started" ) ( ne .context.Title "Introduction" ) }}
+      {{ partial "get-started/stack-picker" }}
+    {{ end }}
+
+    <!-- Page content, anchorized -->
+    {{ partial "headline-hash.html" .context.Content }}
+  </div>
+
+  <!-- If the page is a list page, add section cards -->
+  {{ if .isList }}
+    {{ range .context.Pages }}
+      <div class="mx-auto text-center mb-7" style="max-width: 100%;">
+        <a href="{{ .RelPermalink }}" type="button" class="btn btn-block btn-primary" style="text-align: left;">
+          <p><b>{{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle | .RenderString }}{{ else }}{{ .Title | .RenderString }}{{ end }}</b></p>
+          <p>{{ .Params.description | .RenderString }}</p>
+        </button>
+      </div>
+    {{ end }}
+  {{ end }}
+
+</div>
+
+<!-- Feedback form for narrow screens -->
+<div class="block md:hidden">
+  {{ partial "feedback-form" }}
+</div>
