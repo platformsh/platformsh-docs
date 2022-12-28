@@ -1,7 +1,7 @@
 {{ define "main" }}
 
   <!-- If the page has "multipleTabs" set, set the codetab context on a page-wide basis -->
-  <main class="md:col-span-8 md:max-w-[75%] xl:max-w-[120ch] xl:text-lg"
+  <main class="md:col-span-8 xl:max-w-[120ch] xl:text-lg"
   {{ if $.Page.Params.multipleTabs }}
     x-data="{
       codetab: 'default',

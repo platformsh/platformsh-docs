@@ -129,7 +129,7 @@ const Search = ({ fullPage }) => {
             value={query}
             placeholder="Search Platform.sh"
             onChange={handleInputChange}
-            className="bg-no-repeat bg-[length:15px_15px] bg-center-4 h-16 w-full pl-12 text-slate border-none"
+            className="bg-no-repeat bg-[length:15px_15px] bg-left-4 h-16 w-full pl-12 text-slate border-none"
             style={{ 'background-image': 'url(/images/svg/search-solid.svg)' }}
             autoComplete="off"
           />

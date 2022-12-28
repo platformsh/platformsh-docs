@@ -28,9 +28,9 @@
 {{ if eq $currentSection "other" }}
   <!-- Loop through pages in the section -->
     {{ range .Context.Pages }}
-      <div class="sidebar__heading-wrapper sidebar__heading-wrapper-section">
-        <h4 class="duik-sidebar__heading">
-          <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if $isCurrentSection }} active{{ end }}">
+      <div class="pl-8 py-2 pr-2 flex items-center justify-between">
+        <h4 class="pr-2 font-semibold text-sm">
+          <a href="{{ .RelPermalink }}" class="hover:text-skye-dark focus:text-skye-dark{{ if $isCurrentSection }} text-skye-dark{{ end }}">
             {{ .Title }}
           </a>
         </h4>
@@ -39,15 +39,15 @@
 
 <!-- Handle all other directories -->
 {{ else }}
-<div>
+<div class="text-sm" x-data="{ topExpanded: {{ $isCurrentSection }} }">
   {{ .Page }}
   {{ $itemTitle := .Context.Title | .Context.Page.RenderString }}
   {{ if .Context.Params.sidebarTitle }}
     {{ $itemTitle = .Context.Params.sidebarTitle | .Context.Page.RenderString }}
   {{ end }}
-  <div class="sidebar__heading-wrapper sidebar__heading-wrapper-section">
-    <h4 class="duik-sidebar__heading">
-      <a href="{{ .Context.RelPermalink }}" destination="{{ .Context.RelPermalink }}" {{ $getStartedAttribute | safeHTMLAttr }} class="duik-sidebar__link{{ if $isCurrentSection }} active{{ end }}">
+  <div class="pl-8 pr-2 flex items-center justify-between">
+    <h4 class="pr-2 font-semibold">
+      <a href="{{ .Context.RelPermalink }}" destination="{{ .Context.RelPermalink }}" {{ $getStartedAttribute | safeHTMLAttr }} class="hover:text-skye-dark focus:text-skye-dark{{ if $isCurrentSection }} text-skye-dark{{ end }}">
         {{ $itemTitle }}
       </a>
       
@@ -55,24 +55,22 @@
 
     <!-- Add button for expanding if has children-->
     {{ if eq .Context.Kind "section" }}
-      {{ partial "navigation/sidebar/expand-button" (dict "itemID" $sectionId "isCurrentSection" $isCurrentSection )}}
+      {{ partial "sidebar/expand-button" (dict "itemID" $sectionId "isCurrentSection" $isCurrentSection "expandLevel" "topExpanded" )}}
     {{ end }}
   </div>
-  <ul class="duik-sidebar__nav dropdown-menu{{ if eq $isCurrentSection true }} show{{ end }}" aria-labelledby="nav-expand-{{ $sectionId }}" id="{{ $sectionId }}">
+  <ul x-show="topExpanded" class="pl-12" aria-labelledby="nav-expand-{{ $sectionId }}" id="{{ $sectionId }}">
 
   <!-- Add the homepage as the first entry of the first section -->
   {{ if eq "overview" $currentSection }}
-
-    <!-- FIRST LEVEL ITEM -->
-    <li class="duik-sidebar__item">
-      <div class="sidebar__heading-wrapper sidebar__heading-wrapper-first-level">
-        <a href="/" class="duik-sidebar__link{{ if $currentPage.IsHome }} active{{ end }}">
+    <li>
+      <div class="py-2">
+        <a href="/" class="hover:text-skye-dark focus:text-skye-dark{{ if $currentPage.IsHome }} text-skye-dark{{ end }}">
             {{ .Context.Site.Home.Title }}
         </a>
       </div>
     </li>
-
   {{ end }}
+
   <!-- Loop through pages in the section -->
   {{ range .Context.Pages }}
     {{ $itemTitle = .Title | .Page.RenderString }}
@@ -81,7 +79,6 @@
     {{ end }}
     <!-- Create a machine readable ID with no dots (as in node.js) -->
     {{ $itemId := printf "%s-sidebar-id" ( replace ($itemTitle | urlize) "." "" ) }}
-
 
     <!-- FIRST LEVEL ITEM -->
     <!-- Check if current page is in this hierarchy -->
@@ -92,11 +89,9 @@
       {{ $isCurrentSection = false }}
     {{ end }}
 
-    
-
-    <li class="duik-sidebar__item">
-      <div class="sidebar__heading-wrapper sidebar__heading-wrapper-first-level">
-        <a href="{{ .RelPermalink }}" destination="{{ .RelPermalink }}" {{ $getStartedAttribute | safeHTMLAttr }} class="duik-sidebar__link{{ if $isCurrentSection }} active{{ end }}">
+    <li x-data="{ secondExpanded: {{ $isCurrentSection }} }">
+      <div class="flex items-center justify-between{{ if ne .Kind "section" }} py-2 {{ end }}">
+        <a href="{{ .RelPermalink }}" destination="{{ .RelPermalink }}" {{ $getStartedAttribute | safeHTMLAttr }} class="hover:text-skye-dark focus:text-skye-dark{{ if $isCurrentSection }} text-skye-dark{{ end }}">
             {{ $itemTitle }}
             {{ if .Params.premium }}{{ partial "premium-features/badge" }}{{ end }}
         </a>
@@ -105,17 +100,17 @@
         {{ if eq .Kind "section"}}
 
           <!-- Add button for expanding -->
-          {{ partial "navigation/sidebar/expand-button" (dict "itemID" $itemId "isCurrentSection" $isCurrentSection )}}
+          {{ partial "sidebar/expand-button" (dict "itemID" $itemId "isCurrentSection" $isCurrentSection "expandLevel" "secondExpanded")}}
       </div>
-          <ul class="duik-sidebar__nav duik-sidebar__nav--second-level dropdown-menu{{ if eq $isCurrentSection true }} show{{ end }}" aria-labelledby="nav-expand-{{ $itemId }}" id="{{ $itemId }}">
+          <ul x-show="secondExpanded" class="pl-4 py-2" aria-labelledby="nav-expand-{{ $itemId }}" id="{{ $itemId }}">
 
             <!-- Loop through children -->
             {{ range $levelTwoPages }}
 
               {{ if not ( isset .Params "sidebarIgnore" )}}
                 <!-- SECOND LEVEL ITEM -->
-                <li class="duik-sidebar__item duik-sidebar__item--second-level">
-                  <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if eq $currentPage . }} active{{ end }}">
+                <li class="border-l border-stone py-1 pl-2">
+                  <a href="{{ .RelPermalink }}" class="hover:text-skye-dark focus:text-skye-dark{{ if eq $currentPage . }} text-skye-dark{{ end }}">
                       {{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle | .RenderString }}{{ else }}{{ .Title | .RenderString }}{{ end }}
                       {{ if .Params.premium }}{{ partial "premium-features/badge" }}{{ end }}
                   </a>

@@ -7,17 +7,21 @@ module.exports = {
     "./themes/**/content/**/*.{html,md}",
     "./static/scripts/xss/**/*.js"
   ],
+  safelist: ['-rotate-90'],
   theme: {
     extend: {
       backgroundPosition: {
-        "center-4": "1rem center"
+        "left-4": "1rem center",
+        "right-2": "right 0.5rem center"
       },
       colors: {
+        "grey": "#F0F2F5",
         "primary-darker": "#171719",
         "skye": "#4786FF",
         "skye-light": "#E7F0FF",
         "skye-dark": "#1664FF",
-        "slate": "#5F5E70"
+        "slate": "#5F5E70",
+        "stone": "#E7E7E7",
       },
       gridTemplateColumns: {
         "80-20": "minmax(20rem,80%) minmax(10rem,20%)",

@@ -1,0 +1,22 @@
+<!-- Sidebar -->
+
+<nav class="md:col-span-2 pt-2 pl-2 pb-28 max-h-fullv overflow-y-scroll top-24 sticky h-[calc(100vh - 6rem)]" >
+
+  <div class="md:hidden">
+
+    <!-- Sidebar Responsive Toggle (mobile) -->
+    {{ partial "sidebar/hamburger" . }}
+
+  </div>
+  <!-- Sidebar Nav -->
+  <h2 class="sr-only">Site navigation</h2>
+  <div class="hidden md:block" id="sidebar-nav">
+
+      <!-- Sidebar navigation entries -->
+      {{ partial "sidebar/nav" . }}
+
+  </div>
+  <!-- End Sidebar Nav -->
+
+</nav>
+<!-- End Sidebar -->
