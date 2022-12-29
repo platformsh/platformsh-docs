@@ -109,6 +109,11 @@ module.exports = {
             table: {
               tableLayout: 'fixed',
             },
+            tbody: {
+              'td:first-child': {
+                paddingLeft: '0.5rem',
+              },
+            },
             td: {
               border: `1px solid ${theme('colors.stone')}`,
             },
