@@ -131,6 +131,7 @@ module.exports = {
           css: {
             pre: {
               lineHeight: '1.5rem',
+              marginTop: '0',
             },
           },
         },
