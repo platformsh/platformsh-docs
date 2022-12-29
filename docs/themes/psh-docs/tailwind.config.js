@@ -16,6 +16,8 @@ module.exports = {
       },
       colors: {
         "grey": "#F0F2F5",
+        "pink": "#FFBDBB",
+        "pink-light": "#FFD9D9",
         "primary-darker": "#171719",
         "skye": "#4786FF",
         "skye-light": "#E7F0FF",

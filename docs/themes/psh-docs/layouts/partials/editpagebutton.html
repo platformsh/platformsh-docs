@@ -1,10 +1,7 @@
 <!-- Edit page button link -->
-<div class="mb-7">
-  <div class="edit-page">
-    {{ $editLocation := printf "%sedit/main/docs/src/%s" site.Params.repo .File.Path}}
-    <button onclick="window.location.href = '{{ $editLocation }}';" type="button" class="btn2 btn-primary2 btn-edit-page">
-      <span class="text-button-">Edit page</span>
-      <span class="icon"><img class="chevron-next2" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" /></span>
-    </button>
-  </div>
+<div class="mb-6">
+  {{ $editLocation := printf "%sedit/main/docs/src/%s" site.Params.repo .File.Path}}
+  <a href="{{ $editLocation }}" rel="noopener" class="p-2 text-sm font-mono bg-gradient-to-r from-pink-light hover:bg-none hover:bg-pink transition ease-in">
+    Edit page <img class="inline" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" />
+  </a>
 </div>
