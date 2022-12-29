@@ -127,6 +127,12 @@ module.exports = {
                 top: '6rem',
               },
             },
+            var: {
+              color: theme('colors.skye-dark'),
+              textDecoration: `underline ${theme('colors.skye-dark')} dotted 2px`,
+              fontStyle: 'italic',
+              cursor: 'help',
+            },
           },
         },
         lg: {
