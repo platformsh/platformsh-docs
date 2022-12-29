@@ -46,7 +46,7 @@
 >
 
   <!-- Buttons to control tab visibility-->
-    <ul class="flex list-none border-b border-stone m-0 pl-0" role="tablist">
+    <ul class="flex list-none border-b border-stone !m-0 !pl-0" role="tablist">
 
       {{ range $tabKeys }}
 
@@ -62,7 +62,7 @@
             {{ $codetabCodename = "default" }}
           {{ end }}
 
-          <li class="text-sm xl:text-base border-b mb-0">
+          <li class="text-sm xl:text-base border-b !mb-0">
             <a class="mx-2 py-1 px-2 text-base xl:text-lg border-ebony text-slate font-semibold hover:text-ebony hover:border-b hover:font-bold hover:no-underline" :class="{ '!text-ebony font-bold border-b': codetab === '{{ $codetabCodename }}' }" role="tab" :aria-selected="codetab === '{{ $codetabCodename }}'" @click="switchCodetab('{{ $codetabCodename }}')">
               {{ $title | markdownify }}
             </a>
