@@ -7,9 +7,9 @@
 {{ partial "editpagebutton.html" .context }}
 
 <!-- Page title -->
-<h1 class="font-black text-2xl mb-8">{{ .context.Title | .context.RenderString }}</h1>
+<h1 class="font-black text-2xl mb-8 xl:text-4xl">{{ .context.Title | .context.RenderString }}</h1>
 
-<div class="grid md:grid-cols-80-20">
+<div class="grid md:grid-cols-80-20 md:gap-2">
 
   <div class="md:order-2 md:top-24 md:sticky max-h-fullv overflow-y-scroll">
     <!-- Table of contents -->
@@ -26,7 +26,7 @@
     </div>
   </div>
 
-  <div class="content-wrapper">
+  <div class="prose xl:prose-lg max-w-none prose-code:!mb-0 prose-h2:text-xl prose-h3:text-xl prose-h4:text-lg">
     <!-- Add the stack picker for Get started section -->
     {{ if and ( eq .context.Section "get-started" ) ( ne .context.Title "Introduction" ) }}
       {{ partial "get-started/stack-picker" }}

@@ -6,7 +6,128 @@
 <script defer src="{{ printf "/alpinejs/cdn.min.js?version=%s" $.Site.Params.version }}"></script>
 <!-- Include entire Tailwind in development only to test styles-->
 {{ if not hugo.IsProduction }}
-<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          "ebony": "#302F45",
+          "ebony-light": "#4A495E",
+          "grey": "#F0F2F5",
+          "pink": "#FFBDBB",
+          "pink-light": "#FFD9D9",
+          "primary-darker": "#171719",
+          "skye": "#4786FF",
+          "skye-light": "#E7F0FF",
+          "skye-dark": "#1664FF",
+          "slate": "#5F5E70",
+          "stone": "#E7E7E7",
+        },
+        fontFamily: {
+          sans: ["Overpass", "Helvetica Neue", "Helvetica", "Arial", "sans-serif"],
+          mono: ["SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"]
+        },
+        typography: ({ theme }) => ({
+          DEFAULT: {
+            css: {
+              a: {
+                color: theme('colors.skye-dark'),
+                textDecoration: 'none',
+                fontWeight: '400',
+                '&:hover': {
+                  textDecoration: 'underline',
+                },
+              },
+              code: {
+                marginBottom: '0',
+                color: theme('colors.skye'),
+                backgroundColor: theme('colors.stone'),
+                fontWeight: '400',
+                padding: '0.25rem',
+              },
+              'code::before': {
+                content: '',
+              },
+              'code::after': {
+                content: '',
+              },
+              h2: {
+                display: 'inline',
+                img: {
+                  display: 'inline',
+                },
+                fontWeight: '900',
+              },
+              h3: {
+                display: 'inline',
+                img: {
+                  display: 'inline',
+                },
+                fontWeight: '500',
+              },
+              h4: {
+                display: 'inline',
+                img: {
+                  display: 'inline',
+                },
+                fontWeight: '300',
+              },
+              h5: {
+                display: 'inline',
+                img: {
+                  display: 'inline',
+                },
+                fontWeight: '400',
+              },
+              h6: {
+                display: 'inline',
+                img: {
+                  display: 'inline',
+                },
+                fontWeight: '500',
+              },
+              p: {
+                color: theme('colors.ebony-light'),
+              },
+              pre: {
+                backgroundColor: theme('colors.stone'),
+                color: theme('colors.ebony-light'),
+                lineHeight: '1.5rem',
+              },
+              table: {
+                tableLayout: 'fixed',
+              },
+              td: {
+                border: `1px solid ${theme('colors.stone')}`,
+              },
+              th: {
+                backgroundColor: theme('colors.stone'),
+                padding: '0.5rem',
+              },
+              thead: {
+                'th:first-child': {
+                  paddingLeft: '0.5rem',
+                },
+                tr: {
+                  position: 'sticky',
+                  top: '6rem',
+                },
+              },
+            },
+          },
+          lg: {
+            css: {
+              pre: {
+                lineHeight: '1.5rem',
+              },
+            },
+          },
+        }),
+      }
+    }
+  }
+</script>
 {{ end }}
 {{ if eq .Section "get-started" }}
 <!-- Alpine.js support -->
