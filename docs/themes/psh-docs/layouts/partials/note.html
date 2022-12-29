@@ -3,11 +3,17 @@
 {{ with .title }}
   {{ $title = . }}
 {{- end -}}
-<div class="alert {{- " " -}}
-{{- with .theme -}}alert-{{.}}{{- else -}}alert-primary{{- end -}}
-" role="alert">
-{{ if ne $title "none" }}
-<p><strong>{{ $title }}</strong></p>
+{{ $bg := "stone" }}
+{{ with .theme }}
+  {{ if eq . "warning" }}
+    {{ $bg = "pink-light" }}
+  {{ else if eq . "info" }}
+    {{ $bg = "skye-light" }}
+  {{ end }}
 {{ end }}
-<p class="alert-text">{{ .Inner | .context.Page.RenderString }}</p>
+<div class="bg-{{ $bg }} p-4 mb-4 [&>p:last-child]:mb-0 [&>h3]:mt-0" role="alert">
+  {{ if ne $title "none" }}
+    <h3 class="font-bold text-base">{{ $title }}</h3>
+  {{ end }}
+  <p>{{ .Inner | .context.Page.RenderString }}</p>
 </div>

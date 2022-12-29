@@ -18,6 +18,7 @@ module.exports = {
         "ebony": "#302F45",
         "ebony-light": "#4A495E",
         "grey": "#F0F2F5",
+        "grey-dark": "#8C94A1",
         "pink": "#FFBDBB",
         "pink-light": "#FFD9D9",
         "primary-darker": "#171719",
@@ -25,6 +26,7 @@ module.exports = {
         "skye-light": "#E7F0FF",
         "skye-dark": "#1664FF",
         "slate": "#5F5E70",
+        "snow": "#FFFFFF",
         "stone": "#E7E7E7",
       },
       fontFamily: {
