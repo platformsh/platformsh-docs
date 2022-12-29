@@ -1,7 +1,7 @@
 {{ $lang  := .Attributes.lang  | default .Type }}
 {{ $location := .Attributes.location | default "" }}
 {{ with $location }}
-<div class="highlight-location">{{ . }}</div>
+<div class="bg-stone px-4 pt-2 rounded-t-lg inline-block text-base pb-1">{{ . }}</div>
 {{ end }}
 {{ if transform.CanHighlight $lang }}
 {{ $content := .Inner | safeHTML }}

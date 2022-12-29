@@ -101,7 +101,10 @@ module.exports = {
             },
             pre: {
               backgroundColor: theme('colors.stone'),
+              borderRadius: '0',
               color: theme('colors.ebony-light'),
+              lineHeight: '1.5rem',
+              marginTop: '0',
             },
             table: {
               tableLayout: 'fixed',
