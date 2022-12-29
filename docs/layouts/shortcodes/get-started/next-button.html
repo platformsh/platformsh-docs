@@ -2,8 +2,8 @@
 <div x-data="{ getDestination() { 
   return($refs.next.getAttribute('destination') + '?stack=' + $data.stack)
  } }">
-  <a href="{{ $destination }}" destination="{{ $destination }}" :href="getDestination" x-ref="next" type="button" class="btn2 btn-primary2">
+  <a href="{{ $destination }}" destination="{{ $destination }}" :href="getDestination" x-ref="next" type="button" class="p-2 text-sm text-ebony hover:no-underline font-mono bg-gradient-to-r from-pink-light hover:bg-none hover:bg-pink transition ease-in">
     <span class="text-button-">{{ .Get "nextText" }}</span>
-    <span class="icon"><img class="chevron-next2" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" /></span>
+    <img class="inline" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" />
   </a>
 </div>
