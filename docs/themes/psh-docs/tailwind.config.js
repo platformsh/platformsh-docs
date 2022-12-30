@@ -110,6 +110,9 @@ module.exports = {
               'td:first-child': {
                 paddingLeft: '0.5rem',
               },
+              'td:last-child': {
+                paddingRight: '0.5rem',
+              },
             },
             td: {
               border: `1px solid ${theme('colors.stone')}`,
