@@ -3,17 +3,13 @@
 {{ if not (.Page.Scratch.Get "asciinema") }}
 
 <!-- Include asciinema only first time -->
-<script src="{{ printf "/mermaid/mermaid.min.js?version=%s" $.Site.Params.version }}"></script>
+<script src="{{ printf "/asciinema/asciinema-player.min.js?version=%s" $.Site.Params.version }}"></script>
 
 {{ .Page.Scratch.Set "asciinema" true }}
 {{ end }}
 
-<div class="asciinema-div" align="center">
-  <p class="mb-4">
-
-    {{- with .Get "src" -}}
-      <asciinema-player src="{{ . | relURL}}" preload=1></asciinema-player>
-    {{end}}
-
-  </p>
+<div>
+  {{- with .Get "src" -}}
+    <asciinema-player class="mx-auto w-[70%]" src="{{ . | relURL}}" preload=1></asciinema-player>
+  {{end}}
 </div>

@@ -1,13 +1,9 @@
 <!-- Video resources -->
 
-<div class="video-div" align="center">
-  <p class="mb-4">
-
-    {{- with .Get "src" -}}
-      <video width="70%" controls>
-          <source src="{{ . | relURL}}" type="video/mp4">
-      </video>
-    {{end}}
-    
-  </p>
+<div>
+  {{- with .Get "src" -}}
+    <video class="mx-auto w-[70%]" controls>
+      <source src="{{ . | relURL}}" type="video/mp4">
+    </video>
+  {{end}}
 </div>
