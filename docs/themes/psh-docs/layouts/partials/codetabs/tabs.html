@@ -46,7 +46,7 @@
 >
 
   <!-- Buttons to control tab visibility-->
-    <ul class="flex list-none border-b border-stone !m-0 !pl-0" role="tablist">
+    <ul class="{{ partial "codetabs/tab-control-list-styles" }}" role="tablist">
 
       {{ range $tabKeys }}
 
@@ -62,8 +62,8 @@
             {{ $codetabCodename = "default" }}
           {{ end }}
 
-          <li class="text-sm xl:text-base border-b !mb-0">
-            <a class="mx-2 py-1 px-2 text-base xl:text-lg border-ebony text-slate font-semibold hover:text-ebony hover:border-b hover:font-bold hover:no-underline" :class="{ '!text-ebony font-bold border-b': codetab === '{{ $codetabCodename }}' }" role="tab" :aria-selected="codetab === '{{ $codetabCodename }}'" @click="switchCodetab('{{ $codetabCodename }}')">
+          <li class="{{ partial "codetabs/tab-control-tab-styles" }}">
+            <a class="{{ partial "codetabs/tab-control-link-styles" }}" :class="{ '{{ partial "codetabs/tab-control-link-active-styles" }}': codetab === '{{ $codetabCodename }}' }" role="tab" :aria-selected="codetab === '{{ $codetabCodename }}'" @click="switchCodetab('{{ $codetabCodename }}')">
               {{ $title | markdownify }}
             </a>
           </li>
@@ -76,7 +76,7 @@
     </ul>
 
     <!-- Tab content -->
-    <div class="border border-stone px-5 pt-6 pb-4">
+    <div class="{{ partial "codetabs/tab-styles" }}">
 
       {{ range $tabKeys }}
 
@@ -91,7 +91,7 @@
             {{ $codetabCodename = "default" }}
           {{ end }}
 
-          <div class="[&>:first-child]:mt-0 [&>:last-child]:mb-0" :class="{ 'show active': codetab === '{{ $codetabCodename }}' }" role="tabpanel" x-show="codetab === '{{ $codetabCodename }}'" :aria-hidden="codetab !== '{{ $codetabCodename }}'">
+          <div class="{{ partial "codetabs/tab-children-styles" }}" role="tabpanel" x-show="codetab === '{{ $codetabCodename }}'" :aria-hidden="codetab !== '{{ $codetabCodename }}'">
 
             {{ $content := $allContent.Get $tabIndex }}
             {{ with ( $allParams.Get $tabIndex ) }}
