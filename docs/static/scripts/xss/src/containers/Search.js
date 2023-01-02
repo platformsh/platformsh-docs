@@ -31,7 +31,13 @@ const Search = ({ fullPage }) => {
     url: ''
   })
 
-  const urlQuery = fullPage ? new URLSearchParams(window.location.search).get('q') : '';
+  let urlQuery = fullPage ? new URLSearchParams(window.location.search).get('q') : '';
+
+  // If it's the 404 page, check the URL to prepopulate the search
+  if (fullPage && document.querySelector('[data-page="404"]')) {
+    const url = new URL(window.location.href)
+    urlQuery = url.pathname.replace('.html', '').replaceAll('/', ' ').replaceAll('-', ' ')
+  }
 
   const limit = fullPage ? maxResults : 7
 
