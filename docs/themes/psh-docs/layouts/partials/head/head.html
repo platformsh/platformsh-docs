@@ -4,12 +4,13 @@
   <title>{{ .Page.Title | .RenderString }} · {{ .Site.Title }}</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  {{ partial "head/favicon" . }}
+  {{ if isset .Site.Params "favicon" }}
+    <link rel="shortcut icon" href="{{ .Site.Params.favicon | relURL }}">
+  {{ end }}
   {{ partial "head/seo-meta" . }}
   {{ partial "head/twittercard" . }}
   {{ partial "head/opengraph" . }}
-  {{ partial "head/fonts" . }}
   {{ partial "head/css" . }}
-  {{ partial "head/head-customizations" . }}
+  {{ partial "scripts/global" . }}
 
 </head>

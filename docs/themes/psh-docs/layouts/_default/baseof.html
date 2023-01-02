@@ -9,9 +9,6 @@
     <!-- Header -->
     {{ partial "header/header" . }}
 
-    <!-- Scripts -->
-    {{ partial "scripts/scripts" . }}
-
     <!--If in the Get started section, define context and methods. -->
     <div class="grid md:grid-cols-10 divide-x-4 mt-24"
     {{ if eq .Section "get-started" }}
@@ -48,9 +45,6 @@
 
     <!-- XSS bundle -->
     <script src="{{printf "/scripts/xss/dist/bundle.js?version=%s" .Site.Params.version | relURL}}"></script>
-
-    <!-- Over-ride search style -->
-    <link rel="stylesheet" href="{{ printf "styles/search.css?version=%s" .Site.Params.version | relURL}}">
 
     {{ if .Page.Store.Get "hasMermaid" }}
     <!-- MermaidJS support -->
