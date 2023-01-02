@@ -93,6 +93,13 @@ module.exports = {
               },
               fontWeight: '500',
             },
+            kbd: {
+              padding: '0.2rem 0.4rem',
+              color: theme('colors.skye'),
+              backgroundColor: theme('colors.stone'),
+              borderRadius: '0.2rem',
+              boxShadow: 'inset 0 -2px 0 var(--primary)',
+            },
             p: {
               color: theme('colors.ebony-light'),
             },
