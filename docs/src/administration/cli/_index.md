@@ -139,7 +139,7 @@ You can find that in the Console or by running `platform projects` to list all a
 
 Some CLI commands (especially many within the `environment` namespace) have some overlap with Git commands.
 Generally, they offer more options than the Git commands alone.
-For example, `platform push` offers options such as `--activate` (to active an environment before pushing)
+For example, `platform push` offers options such as `--activate` (to activate an environment before pushing)
 and `--no-wait` (so you can continue working without waiting for the push to complete).
 
 For all of them, you don't need to configure a Git remote.

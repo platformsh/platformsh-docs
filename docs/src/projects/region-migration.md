@@ -2,8 +2,6 @@
 title: Change a project's region
 sidebarTitle: Change regions
 description: See how to change the region your project is in and why you might want to do so.
-aliases:
-  - /guides/general/region-migration.html
 ---
 
 To host your project data, Platform.sh offers several [regions](../development/regions.md).

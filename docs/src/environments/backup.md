@@ -49,18 +49,18 @@ Backups for Dedicated environments have a [specific frequency](../dedicated-gen-
 On Grid environments, non-Production environments can have up to 2 [manual backups](#create-a-manual-backup).
 The number of available backups for Production environments depends on your schedule.
 
-| Schedule  | Manual backups | Automated backups                |
-| --------- | -------------- | -------------------------------- |
-| Essential | 2              | 2: daily                         |
-| Advanced  | 4              | 21: daily, weekly, and monthly   |
-| Premium   | 4              | 44: 6-hourly, daily, and monthly |
+| Schedule | Manual backups | Automated backups                |
+| -------- | -------------- | -------------------------------- |
+| Basic    | 2              | 2: daily                         |
+| Advanced | 4              | 21: daily, weekly, and monthly   |
+| Premium  | 4              | 44: 6-hourly, daily, and monthly |
 
 The schedules available to you depend on your [tier](https://platform.sh/pricing/).
 
-| Tier             | Default schedule  | Possible upgrade |
-| ---------------- | ----------------- | ---------------- |
-| Professional     | Essential         | Advanced         |
-| Enterprise/Elite | Advanced          | Premium          |
+| Tier             | Default schedule | Possible upgrade |
+| ---------------- | ---------------- | ---------------- |
+| Professional     | Basic            | Advanced         |
+| Enterprise/Elite | Advanced         | Premium          |
 
 An upgrade comes at an additional cost.
 The exact cost depends on the size of your storage.

@@ -2,7 +2,7 @@
 title: "Configure your Fastly CDN"
 sidebarTitle: "Fastly"
 weight: 1
-description: |
+description: Learn how to configure your Fastly CDN.
 aliases:
   - "/golive/steps/fastly.html"
 ---

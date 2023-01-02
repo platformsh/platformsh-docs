@@ -1034,3 +1034,9 @@ blockquote p {
   padding: 0.5rem 0;
   font-size: 0.9rem;
 }
+
+h5.section-title {
+  font-size: 0.8rem;
+  margin: 0.25rem 0 0.25rem 4rem;
+  font-variant: small-caps;
+}

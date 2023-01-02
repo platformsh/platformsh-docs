@@ -18,13 +18,13 @@ The **General** section shows you the project's region and allows you to update 
 
 ## Access
 
-The *Access* section allows you to [manage user access to the project](../users.md).
+The **Access** section allows you to [manage user access to the project](../users.md).
 
 ![Project configure icon](/images/management-console/settings-project-access.png "0.7")
 
 ## Certificates
 
-The *Access* section shows a list of your project's TLS certificates.
+The **Certificates** section shows a list of your project's TLS certificates.
 To see details about a certificate or delete one, click **Edit {{< icon chevron >}}**.
 See how to [add custom certificates](../../domains/steps/tls.md).
 
@@ -32,7 +32,7 @@ See how to [add custom certificates](../../domains/steps/tls.md).
 
 ## Domains
 
-The `Domains` screen allows you to manage the domains where your project is accessible.
+The **Domains** section allows you to manage the domains where your project is accessible.
 See how to [set up your domain](../../domains/steps/_index.md).
 
 ![project domain](/images/management-console/settings-domains.png "0.7")

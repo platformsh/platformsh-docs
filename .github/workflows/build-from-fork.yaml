@@ -3,7 +3,7 @@ name: Build from fork
 on:
   pull_request_target:
     branches: [main]
-    types: [labeled]
+    types: [labeled,unlabeled]
 
 env:
   PLATFORMSH_CLI_NO_INTERACTION: 1

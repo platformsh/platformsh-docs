@@ -51,7 +51,7 @@ title=Ruby
 file=none
 highlight=ruby
 markdownify=false
----
++++
 ## With the ruby-kafka gem
 
 # Producer

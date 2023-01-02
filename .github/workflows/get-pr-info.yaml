@@ -59,7 +59,7 @@ jobs:
           STATUS_TRY=0
 
           # Wait until state is complete or 10 minutes has passed
-          until [ $STATE == "complete" ] || [ $STATUS_TRY == 20 ]; do
+          until [ "$STATE" == "complete" ] || [ $STATUS_TRY == 20 ]; do
             sleep 30
             STATE=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy" --no-header --columns "state" --limit 1 --environment ${{ steps.branch_name.outputs.branch_name }})
             ((STATUS_TRY+=1))

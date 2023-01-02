@@ -1,8 +1,6 @@
 ---
 title: "Options"
 weight: 4
-aliases:
-  - /dedicated/architecture/options.html
 ---
 
 ## Staging environments

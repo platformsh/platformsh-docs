@@ -56,6 +56,7 @@ The following table presents the available options:
 | `multipleTabs`       | Boolean            | If set to true, codetabs are changed across the page. So changing the tabs in one place changes them for the entire page. Useful when codetabs are repeated often with the same title (such as comparing actions in the CLI and Console). |
 | `tier`               | list of strings    | Include to put at banner at the top indicating the feature is only available to certain plan tiers, such as only Enterprise and Elite customers. |
 | `observabilitySuite` | Boolean            | Set as `true` to put at banner at the top indicating the feature is only available as part of the Observability Suite. |
+| `sectionBefore`      | string             | Title of a header to add before the given page in the main navigation. |
 
 ## Headings
 
@@ -259,6 +260,26 @@ web:
 Keep the top-level key visible so readers can understand the code in context.
 (For example, don't leave out `web:` in the example above.)
 
+### Multiline strings
+
+When writing multiline strings in YAML, known as scalar content,
+examples often use a literal style as shown with a `|`.
+In such cases, the string that comes needs to span multiple lines.
+Otherwise, the parser doesn't accept it as a scalar and the spacing and highlighting is wrong.
+
+To resolve this, either put the comment on a single line without the `|`
+or add an ellipsis to indicate content is missing, as in the following example:
+
+```yaml
+hooks:
+    build: |
+        ...
+        git pull
+```
+
+The highlighter also adds extra whitespace at the end of multiline strings.
+These are [known issues](https://github.com/alecthomas/chroma/issues/475).
+
 ### Note when low-level items are missing
 
 If there's a complicated block (such as `web.locations`) with many settings not relevant to the current idea,
@@ -302,23 +323,6 @@ Run the following command:
 platform project:set-remote --project {{< variable "PROJECT_ID" >}}
 ```
 ````
-
-#### Variables in codetabs
-
-If you want to use the `variable` shortcode in codetabs, you need to use HTML instead of Markdown.
-You can generate the code block outside the codetabs and then copy in the highlighting.
-
-Example:
-
-```markdown
-1. Run the following command:
-   
-   <!-- This is in HTML to get the variable shortcode to work properly -->
-   <div class="highlight">
-     <pre class="chroma"><code class="language-bash" data-lang="bash">platform backup:restore {{< variable "BACKUP_ID" >}}</code></pre>
-   </div>
-1. Press `enter` to agree with the consequences and continue.
-```
 
 ## Refer to the UI and keys
 

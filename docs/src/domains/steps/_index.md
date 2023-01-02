@@ -3,8 +3,6 @@ title: Set up a custom domain
 weight: 2
 description: Add a custom domain to your project once it's ready to go live.
 layout: single
-aliases:
-   - /domains/quick-start.html
 ---
 
 Once your project is ready for production, replace the automatically generated domain with your own custom domain.

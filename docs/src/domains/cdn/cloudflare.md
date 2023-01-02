@@ -2,9 +2,7 @@
 title: "Configure your Cloudflare CDN"
 weight: 2
 sidebarTitle: "Cloudflare"
-toc: false
-aliases:
-  - "/golive/steps/cloudflare.html"
+description: Learn how to configure your Cloudflare CDN.
 ---
 
 You can [use a CDN](./_index.md) to deliver your site's content to users more quickly.

@@ -310,13 +310,15 @@
     "runtime": true,
     "type": "java",
     "versions": {
-      "deprecated": [],
-      "supported": [
-        "18",
-        "17",
+      "deprecated": [
         "14",
         "13",
-        "12",
+        "12"
+      ],
+      "supported": [
+        "19",
+        "18",
+        "17",
         "11",
         "8"
       ]
@@ -869,15 +871,17 @@
     "runtime": true,
     "type": "python",
     "versions": {
-      "deprecated": [],
+      "deprecated": [
+        "3.6",
+        "3.5",
+        "2.7*"
+      ],
       "supported": [
+        "3.11",
         "3.10",
         "3.9",
         "3.8",
-        "3.7",
-        "3.6",
-        "3.5",
-        "2.7"
+        "3.7"
       ]
     }
   },
