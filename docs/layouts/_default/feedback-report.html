@@ -10,10 +10,10 @@
       <option value="365">Past year</option>
     </select>
 
-    <button class="secondarySearch" @click="groupByUrl()" x-show="!groupedUrls">
+    <button class="py-2 px-4 border-2 border-ebony font-bold text-ebony hover:text-snow hover:bg-ebony" @click="groupByUrl()" x-show="!groupedUrls">
       <span>Group feedback by URL</span>
     </button>
-    <button class="secondarySearch" @click="ungroupByUrl()" x-show="groupedUrls">
+    <button class="py-2 px-4 border-2 border-ebony font-bold text-ebony hover:text-snow hover:bg-ebony" @click="ungroupByUrl()" x-show="groupedUrls">
       <span>Ungroup feedback</span>
     </button>
 

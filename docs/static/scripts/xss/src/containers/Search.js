@@ -87,49 +87,47 @@ const Search = ({ fullPage }) => {
   const summedSecondary = hits.community.length + hits.website.length
     + hits.apidocs.length + hits.templates.length
   const noPrimaryResults = (hits.docs.length === 0 && summedSecondary > 0) ? (
-    <div className="suggestions suggestions-primary">
-      <h4 className="section">Documentation</h4>
-      <div className="hits">
-        <ul>No documentation matched your search, but you can try the other resources below.</ul>
-      </div>
+    <div>
+      <h2 className="text-lg font-bold">Documentation</h2>
+      <p>No documentation matched your search, but you can try the other resources below.</p>
     </div>
   ) : ''
   const noResults = (hits.docs.length === 0 && summedSecondary === 0) ? (
-    <div className="suggestions suggestions-primary">
-      <h4 className="section">No results</h4>
-      <div className="hits">
-        <ul>No documentation matched your search.</ul>
-      </div>
+    <div>
+      <h2 className="text-lg font-bold">No results</h2>
+      <p>No documentation matched your search.</p>
     </div>
   ) : ''
-  const secondaryResults = summedSecondary > 0 ? <div className="suggestions"><h4 className="section section-secondary">Other resources from Platform.sh</h4></div> : ''
+  const secondaryResults = summedSecondary > 0 ? <h2 className="text-lg font-bold mb-4">Other resources from Platform.sh</h2> : ''
 
   const allResults = (
-    <div className={fullPage ? 'search-page-results' : 'search-all-results'}>
+    <div className={`${fullPage ? 'w-[94vw] md:w-full md:max-w-4xl 2xl:max-w-6xl ' : 'absolute max-h-[75vh] overflow-y-auto z-10 mb-4'} bg-grey p-6 w-full text-ebony`}>
       {noResults}
       {docs}
-      {noPrimaryResults}
-      {secondaryResults}
-      {templates}
-      {community}
-      {website}
-      {apidocs}
+      <div className="bg-white -mx-6 -mb-6 p-6">
+        {noPrimaryResults}
+        {secondaryResults}
+        {templates}
+        {community}
+        {website}
+        {apidocs}
+      </div>
     </div>
   )
   const noQuery = ''
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={`max-w-4xl ${fullPage ? 'bg-grey mb-4' : ''}`}>
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label className="sr-only" htmlFor="searchwicon">Search our docs</label>
-        <div className="searchInputHolder">
+        <div className="flex items-center">
           <input
             id="searchwicon"
             value={query}
             placeholder="Search Platform.sh"
             onChange={handleInputChange}
-            className="bg-no-repeat bg-[length:15px_15px] bg-left-4 h-16 w-full pl-12 text-slate border-none"
+            className={`bg-no-repeat bg-[length:15px_15px] bg-left-4 h-16 w-full pl-12 text-slate border-none focus-visible:outline-none ${fullPage ? 'bg-grey' : ''}`}
             style={{ 'background-image': 'url(/images/svg/search-solid.svg)' }}
             autoComplete="off"
           />
@@ -138,10 +136,10 @@ const Search = ({ fullPage }) => {
               <button
                 type="button"
                 id="clearsearch"
-                className="clearinput"
+                className={`p-4 hover:bg-${fullPage ? 'white' : 'grey'}`}
                 onClick={clearInputFunc}
               >
-                <span className="sr-only">Clear search</span>
+                <img src="/images/icons/close.svg" alt="Clear search" />
               </button>
             )}
         </div>
@@ -150,13 +148,13 @@ const Search = ({ fullPage }) => {
         && (
           <button
             type="button"
-            className="secondarySearch"
+            className="py-2 px-4 mb-2 border-2 border-ebony font-bold text-ebony hover:text-snow hover:bg-ebony"
             onClick={() => {
               if (maxResults === basicMaxResults) setMaxResults(200)
               else setMaxResults(basicMaxResults)
             }}
           >
-            <span>{maxResults === basicMaxResults ? 'Show all results' : 'Hide extra results'}</span>
+            {maxResults === basicMaxResults ? 'Show all results' : 'Hide extra results'}
           </button>
         )}
       {(query && query.length > 1) ? allResults : noQuery}
