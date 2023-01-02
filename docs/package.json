@@ -47,7 +47,7 @@
     "gulp-rename": "^2.0.0",
     "gulp-uglify": "^3.0.2",
     "js-yaml": "^4.1.0",
-    "mermaid": "^9.2.2",
+    "mermaid": "^9.3.0",
     "mysql2": "^2.3.3",
     "normalize-url": "^8.0.0",
     "p-limit": "^4.0.0",
