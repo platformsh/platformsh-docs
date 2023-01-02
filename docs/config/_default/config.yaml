@@ -10,8 +10,6 @@ theme: psh-docs
 uglyurls: true
 pygmentsUseClasses: true
 
-enableGitInfo: true
-
 # Language settings
 languages:
   en:
