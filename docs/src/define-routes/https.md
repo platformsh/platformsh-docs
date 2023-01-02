@@ -4,11 +4,11 @@ title: HTTPS
 
 ## Let's Encrypt
 
-All environments on Platform.sh support both HTTP and HTTPS automatically.
-Production TLS certificates are provided by [Let's Encrypt](https://letsencrypt.org/).
-You may alternatively [provide your own TLS certificate from a third-party issuer](../domains/steps/tls.md) of your choice at no charge from us.
+{{% tls-introduction %}}
 
-The Let’s Encrypt TLS Certificates are:
+See how to add a [third-party TLS certificate to your site](../domains/steps/tls.md).
+
+The default Let’s Encrypt TLS Certificates are:
 
 - valid for 90 days
 - automatically renewed 28 days before expiration
@@ -18,7 +18,7 @@ As no code changes are made, the build image is reused and build books are not r
 The deploy and post-deploy hook are run during this process.
 During the redeploy, security and system upgrades are automatically applied to your containers when required.
 That means that most of the time renewals take a few seconds *unless* upgrades are available for your containers.
-In those cases, containers are rebooted and the process takes a little longer.
+In those cases, containers are rebooted and the process takes longer.
 
 {{< note >}}
 TLS certificates are often still called SSL certificates.
@@ -35,15 +35,10 @@ Alternatively, consider splitting your project up into multiple Platform.sh proj
 
 ## Using HTTPS
 
-Platform.sh recommends using HTTPS requests for all sites exclusively.
-Doing so provides better security, access to certain features that web browsers only permit over HTTPS,
-and access to HTTP/2 connections on all sites, which can greatly improve performance.
-
 How HTTPS redirection is handled depends on the routes you have defined.
-Platform.sh recommends specifying all HTTPS routes in your `routes.yaml` file.
-That results in all pages being served over TLS, and any requests for an HTTP URL are automatically redirected to HTTPS.
+To serve all pages over TLS and automatically redirect any requests from HTTP to HTTPS, you can use something along the lines of:
 
-```yaml
+```yaml {location=".platform/routes.yaml"}
 "https://{default}/":
     type: upstream
     upstream: "app:http"
@@ -56,10 +51,17 @@ That results in all pages being served over TLS, and any requests for an HTTP UR
 Specifying only HTTP routes results in duplicate HTTPS routes being created automatically,
 allowing the site to be served from both HTTP and HTTPS without redirects.
 
-Although Platform.sh doesn't recommend it, you can also redirect HTTPS requests to HTTP explicitly to serve the site over HTTP only.
+[See more example on routes configuration](../define-routes/_index.md).
+
+## Using HTTP only
+
+Platform.sh recommends using HTTPS requests for all sites exclusively (although both HTTP and HTTPS are supported).
+Using only HTTPS provides better security and access to certain features that web browsers only permit over HTTPS such as HTTP/2 connections, which can greatly improve performance.
+
+Although Platform.sh doesn't recommend it, you can redirect HTTPS requests to HTTP explicitly to serve the site over HTTP only.
 The use cases for this configuration are few.
 
-```yaml
+```yaml {location=".platform/routes.yaml"}
 "http://{default}/":
     type: upstream
     upstream: "app:http"
@@ -83,7 +85,7 @@ More complex routing logic is also possible if the situation calls for it.
 
 Optionally, it's possible to further refine how secure TLS connections are handled on your cluster via the `tls` route property.
 
-```yaml
+```yaml {location=".platform/routes.yaml"}
 https://{default}/:
     type: upstream
     upstream: app:http
@@ -96,7 +98,7 @@ https://{default}/:
 Setting a minimum version of TLS makes the server automatically reject any connections using an older version of TLS.
 Rejecting older versions with known security vulnerabilities is necessary for some security compliance processes.
 
-```yaml
+```yaml {location=".platform/routes.yaml"}
 tls:
     min_version: TLSv1.3
 ```
@@ -113,7 +115,7 @@ the highest specified is used for the whole domain.
 HTTP Strict Transport Security (HSTS) is a mechanism for telling browsers to use HTTPS exclusively with a particular website.
 You can toggle it on for your site at the router level without having to touch your application, and configure its behavior from `routes.yaml`.
 
-```yaml
+```yaml {location=".platform/routes.yaml"}
 tls:
     strict_transport_security:
         enabled: true
@@ -123,13 +125,13 @@ tls:
 
 There are three sub-properties for the `strict_transport_security` property:
 
-* `enabled`: Can be `true`, `false`, or `null`.
+- `enabled`: Can be `true`, `false`, or `null`.
   Defaults to `null`.
   If `false`, the other properties are ignored.
-* `include_subdomains`: Can be `true` or `false`.
+- `include_subdomains`: Can be `true` or `false`.
   Defaults to `false`.
   If `true`, browsers are instructed to apply HSTS restrictions to all subdomains as well.
-* `preload`: Can be `true` or `false`.
+- `preload`: Can be `true` or `false`.
   Defaults to `false`.
   If `true`, Google and others may add your site to a lookup reference of sites that should only ever be connected to over HTTPS. 
   Many, although not all, browsers consult this list before connecting to a site over HTTP and switch to HTTPS if instructed.
@@ -155,7 +157,7 @@ Alternatively, you can restrict access to TLS certs issued by just those certifi
 (The latter is generally only applicable if you are building a mass-market IoT device or similar.)
 To do so, set `client_authentication` required and then provide a list of the certificates of the certificate authorities you wish to allow.
 
-```yaml
+```yaml {location=".platform/routes.yaml"}
 tls:
     client_authentication: "require"
     client_certificate_authorities:
@@ -170,7 +172,7 @@ tls:
 In this case, the certificate files are resolved relative to the `.platform` directory.
 Alternatively, the certificates can be specified inline in the file:
 
-```yaml
+```yaml {location=".platform/routes.yaml"}
 tls:
     client_authentication: "require"
     client_certificate_authorities:
@@ -221,12 +223,12 @@ See [URLs in non-Production environments](./_index.md#urls-in-non-production-env
 <DEFAULT_DOMAIN>.<PLATFORM_ENVIRONMENT>-<PLATFORM_PROJECT>.<REGION>.platformsh.site
 ```
 
-* `DEFAULT_DOMAIN` = however many characters your default domain is
-* `PLATFORM_ENVIRONMENT` = `PLATFORM_BRANCH` + 7 character hash
-* `PLATFORM_PROJECT` = 13 characters
-* `REGION` = 2 to 4 characters, depending on the region
-* `platformsh.site` = 15 characters
-* extra characters (`.` & `-`) = 4 to 5 characters, depending on if you have a default domain
+- `DEFAULT_DOMAIN` = however many characters your default domain is
+- `PLATFORM_ENVIRONMENT` = `PLATFORM_BRANCH` + 7 character hash
+- `PLATFORM_PROJECT` = 13 characters
+- `REGION` = 2 to 4 characters, depending on the region
+- `platformsh.site` = 15 characters
+- extra characters (`.` & `-`) = 4 to 5 characters, depending on if you have a default domain
 
 This leaves you with 21 to 23 characters for your branch name (`PLATFORM_BRANCH`) without going over the 64 character limit,
 depending on the region.
@@ -256,6 +258,7 @@ Otherwise, you see the following error:
   E: Error validating domain www.example.com: Couldn't complete challenge HTTP01: pending
   Unable to validate domains www.example.com, will retry in the background.
 ```
+
 or
 
 ```text

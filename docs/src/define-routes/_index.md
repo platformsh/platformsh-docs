@@ -24,13 +24,13 @@ These examples show how to define routes.
 ### Default route definition
 
 If you don't include a file defining routes, a single default route is deployed.
-If you have one app to direct traffic to and its name is `myapp`,
+If you have one app to direct traffic to and its name is `app`,
 this is equivalent to the following:
 
 ```yaml {location=".platform/routes.yaml"}
 "https://{default}/":
   type: upstream
-  upstream: myapp:http
+  upstream: app:http
 ```
 
 All traffic to your domain (say, `https://example.com`) is sent to your app.
@@ -40,7 +40,7 @@ It affects your [default domain](#default).
 ### Basic redirect definition
 
 In a basic situation, you have one app to direct traffic to.
-Say its name is `myapp`.
+Say its name is `app`.
 And say you want to redirect requests from `https://www.example.com` to `https://example.com`.
 
 Define your routes like this:
@@ -48,7 +48,7 @@ Define your routes like this:
 ```yaml {location=".platform/routes.yaml"}
 "https://{default}/":
     type: upstream
-    upstream: "myapp:http"
+    upstream: "app:http"
 "https://www.{default}/":
     type: redirect
     to: "https://{default}/"
