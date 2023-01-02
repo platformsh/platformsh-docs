@@ -1,12 +1,13 @@
 ---
-title: "Use the command line interface (CLI)"
+title: Command line interface (CLI)
 weight: -10
 description: |
   See how to use and manage your Platform.sh projects directly from your terminal. Anything you can do within the Console can be done with the CLI.
-sidebarTitle: "Use the CLI"
 layout: single
 keywords:
   - CLI
+  - Command line interface
+  - Terminal
 ---
 
 {{% description %}}
@@ -14,19 +15,9 @@ keywords:
 The CLI uses the git interface and the [Platform.sh REST API](https://api.platform.sh/docs/) to accomplish tasks.
 Its source code is hosted on [GitHub](https://github.com/platformsh/platformsh-cli).
 
-## Before you begin
-
-You need to have:
-
-* [PHP 5.5.9+](https://www.php.net/manual/en/install.php) with the following extensions installed: `curl`, `json`, `mbstring`, `pcre`, and `phar`
-* [Git](https://git-scm.com/downloads)
-* A Bash-like shell
-
-On Windows, the best way to get Bash is through [Windows Subsystem for Linux](https://msdn.microsoft.com/en-gb/commandline/wsl/about).
-
 ## 1. Install
 
-{{% cli-installation %}}
+{{< cli-installation >}}
 
 ## 2. Authenticate
 
@@ -138,7 +129,7 @@ Then the CLI hasn't been able to determine the project to use.
 To fix this, run:
 
 ```bash
-platform project:set-remote <PROJECT_ID>
+platform project:set-remote --project {{< variable "PROJECT_ID" >}}
 ```
 
 Replace `<PROJECT_ID>` with the ID of your project.
@@ -148,7 +139,7 @@ You can find that in the Console or by running `platform projects` to list all a
 
 Some CLI commands (especially many within the `environment` namespace) have some overlap with Git commands.
 Generally, they offer more options than the Git commands alone.
-For example, `platform push` offers options such as `--activate` (to active an environment before pushing)
+For example, `platform push` offers options such as `--activate` (to activate an environment before pushing)
 and `--no-wait` (so you can continue working without waiting for the push to complete).
 
 For all of them, you don't need to configure a Git remote.

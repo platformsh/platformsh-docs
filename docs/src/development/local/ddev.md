@@ -3,10 +3,11 @@ title: Use DDEV for local development
 sidebarTitle: DDEV
 description: Use DDEV to set up local development environments.
 weight: 1
+sectionBefore: Integrated environments
 ---
 
 [DDEV](https://ddev.readthedocs.io/en/stable/) is an open-source tool for local PHP development environments.
-It allows you use Docker in your workflows while maintaining a GitOps workflow.
+It allows you to use Docker in your workflows while maintaining a GitOps workflow.
 You get fully containerized environments to run everything locally
 without having to install tools (including the Platform.sh CLI, PHP, and Composer) on your machine.
 
@@ -16,6 +17,14 @@ If you're starting from scratch, first [create a project from a PHP template]({{
 ## Before you begin
 
 Make sure your computer meets the [system requirements for DDEV](https://ddev.readthedocs.io/en/stable/#system-requirements).
+
+For the integration to run smoothly, you also need the following tools:
+
+- `jq`
+- `base64`
+- `perl`
+
+If you don't have these already installed, use your normal package manager.
 
 ## 1. Install DDEV
 
@@ -36,64 +45,39 @@ If you started with a Drupal template, your repository already had DDEV configur
 Otherwise, you have to answer a couple of questions about what your repository is
 so the correct files are added.
 
-Test the configuration by running the following command:
-
-```bash
-ddev start
-```
-
-Your project should start running, though without any of the data from your Platform.sh environment.
-
 ## 3. Add an API token
 
 To connect DDEV with your Platform.sh account, use a Platform.sh API token.
 
-1. [Create an API token](../../administration/cli/api-tokens.md#get-a-token) in the Console.
-2. Add the token to your DDEV configuration.
-   You can do so globally (easiest for most people):
+1.  [Create an API token](../../administration/cli/api-tokens.md#2-create-a-platformsh-api-token) in the Console.
 
-   ```bash
-   ddev config global --web-environment-add=PLATFORMSH_CLI_TOKEN={{< variable "API_TOKEN" >}}
-   ```
+2.  Add the token to your DDEV configuration.
+    You can do so globally (easiest for most people):
 
-   You can also add the token only to the project:
+    ```bash
+    ddev config global --web-environment-add=PLATFORMSH_CLI_TOKEN={{< variable "API_TOKEN" >}}
+    ```
 
-   ```bash
-   ddev config --web-environment-add=PLATFORMSH_CLI_TOKEN={{< variable "API_TOKEN" >}}
-   ```
+    You can also add the token only to the project:
 
-3. Get DDEV to recognize the token by restarting:
-
-   ```bash
-   ddev restart
-   ```
-
-Now you can run `ddev exec platform <command>` from your computer without needing to install the Platform.sh CLI.
+    ```bash
+    ddev config --web-environment-add=PLATFORMSH_CLI_TOKEN={{< variable "API_TOKEN" >}}
+    ```
 
 ## 4. Connect DDEV to your project
 
-The DDEV docs have up-to-date [instructions for connecting DDEV to your project](https://ddev.readthedocs.io/en/stable/users/providers/platform/).
-
-To get DDEV connected to your project, you need to tell it which project to use.
-Use environment variables to set your project ID and environment name:
+The best way to connect your local DDEV to your Platform.sh project is through the [Platform.sh DDEV add-on](https://github.com/drud/ddev-platformsh).
+To add it, run the following command:
 
 ```bash
-ddev config --web-environment-add="PLATFORM_PROJECT={{< variable "PROJECT_ID" >}},PLATFORM_ENVIRONMENT={{< variable "ENVIRONMENT_NAME" >}}"
+ddev get drud/ddev-platformsh
 ```
 
-For example:
+Answer the interactive prompts with your project ID and the name of the environment to pull data from.
 
-```bash
-ddev config --web-environment-add="PLATFORM_PROJECT=nf36mudfdd23bi,PLATFORM_ENVIRONMENT=main"
-```
+With the add-on, you can now run `ddev platform <command>` from your computer without needing to install the Platform.sh CLI.
 
-Get DDEV to recognize the variables by restarting:
-
-```bash
-ddev restart
-```
-
-## 5. Get your project data
+## 5. Optional: Get your project data
 
 To get your environment data (files, database), run the following command:
 
@@ -104,23 +88,7 @@ ddev pull platform
 To skip pulling files, add `--skip-files` to the command.
 To skip pulling a database, add `--skip-db` to the command.
 
-## 6. (Optional) Install dependencies
-
-If your project has dependencies, you can install them with Composer.
-Using the DDEV version of Composer means you don't need to install Composer on your machine.
-You can also use different Composer versions in different projects based on their DDEV configurations.
-
-Run the following command:
-
-```bash
-ddev composer install
-```
-
-If you have any other commands in your [build hook](../../create-apps/hooks/_index.md),
-you need to run those explicitly.
-You can also add them as [DDEV hooks in your configuration](https://ddev.readthedocs.io/en/stable/users/configuration/hooks/).
-
-## 7. Run your project
+## 6. Run your project
 
 Now your project is ready to run:
 
@@ -128,9 +96,11 @@ Now your project is ready to run:
 ddev start
 ```
 
-The command returns the project URL `https://<PROJECT_NAME>.ddev.site/`
-as well as a specific port on `https://127.0.0.1`.
-Open one of the URLs to see your project running.
+This runs all your hooks and builds your project like on Platform.sh.
+
+The command returns the project URL `http://{{< variable "PROJECT_NAME" >}}.ddev.site/`
+as well as a specific port on `http://127.0.0.1`.
+To see your project running, open one of these URLs.
 
 ## What's next
 

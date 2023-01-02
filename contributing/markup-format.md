@@ -11,6 +11,7 @@
   - [Links](#links)
     - [Links to headers](#links-to-headers)
   - [Notes](#notes)
+    - [Notes inside shortcodes](#notes-inside-shortcodes)
     - [Footnotes](#footnotes)
   - [Images](#images)
   - [Videos \& asciinema](#videos--asciinema)
@@ -26,6 +27,7 @@
     - [Variables in the file](#variables-in-the-file)
     - [Inner content](#inner-content)
     - [Static files](#static-files)
+  - [Guidance enforcement](#guidance-enforcement)
 
 ## Markdown
 
@@ -54,6 +56,7 @@ The following table presents the available options:
 | `multipleTabs`       | Boolean            | If set to true, codetabs are changed across the page. So changing the tabs in one place changes them for the entire page. Useful when codetabs are repeated often with the same title (such as comparing actions in the CLI and Console). |
 | `tier`               | list of strings    | Include to put at banner at the top indicating the feature is only available to certain plan tiers, such as only Enterprise and Elite customers. |
 | `observabilitySuite` | Boolean            | Set as `true` to put at banner at the top indicating the feature is only available as part of the Observability Suite. |
+| `sectionBefore`      | string             | Title of a header to add before the given page in the main navigation. |
 
 ## Headings
 
@@ -257,6 +260,26 @@ web:
 Keep the top-level key visible so readers can understand the code in context.
 (For example, don't leave out `web:` in the example above.)
 
+### Multiline strings
+
+When writing multiline strings in YAML, known as scalar content,
+examples often use a literal style as shown with a `|`.
+In such cases, the string that comes needs to span multiple lines.
+Otherwise, the parser doesn't accept it as a scalar and the spacing and highlighting is wrong.
+
+To resolve this, either put the comment on a single line without the `|`
+or add an ellipsis to indicate content is missing, as in the following example:
+
+```yaml
+hooks:
+    build: |
+        ...
+        git pull
+```
+
+The highlighter also adds extra whitespace at the end of multiline strings.
+These are [known issues](https://github.com/alecthomas/chroma/issues/475).
+
 ### Note when low-level items are missing
 
 If there's a complicated block (such as `web.locations`) with many settings not relevant to the current idea,
@@ -293,26 +316,13 @@ relationships:
 To mark where users should replace text with their own data, use the `variable` shortcode.
 Add the variable name in all capital letters and underscores in quotes:
 
-```markdown
-Run the command `platform environment:list --project {{<variable "PROJECT_ID" >}}`.
+````markdown
+Run the following command:
+
+```bash
+platform project:set-remote --project {{< variable "PROJECT_ID" >}}
 ```
-
-#### Variables in codetabs
-
-If you want to use the `variable` shortcode in codetabs, you need to use HTML instead of Markdown.
-You can generate the code block outside the codetabs and then copy in the highlighting.
-
-Example:
-
-```markdown
-1. Run the following command:
-   
-   <!-- This is in HTML to get the variable shortcode to work properly -->
-   <div class="highlight">
-     <pre class="chroma"><code class="language-bash" data-lang="bash">platform backup:restore {{< variable "BACKUP_ID" >}}</code></pre>
-   </div>
-1. Press `enter` to agree with the consequences and continue.
-```
+````
 
 ## Refer to the UI and keys
 
@@ -342,19 +352,19 @@ Tabs are divided by `<--->` and can each have different properties.
 ```markdown
 {{< codetabs >}}
 
----
++++
 title=Elasticsearch
 file=static/files/fetch/examples/php/elasticsearch
 highlight=php
----
++++
 
 <--->
 
----
++++
 title=Memcached
 file=none
 highlight=python
----
++++
 
 from jwcrypto import jws, jwk
 
@@ -462,3 +472,41 @@ Property      | Description
 `markdownify` | Optional. For when you are using a `.md` file and want to include markdown.
 `highlight`   | Optional. For when you're including code examples. The language to use for highlighting, as in [code blocks](#code).
 `location`    | Optional. To mark where the included code should be placed, for example `.platform.app.yaml`.
+
+
+## Guidance enforcement
+
+We check for consistency in Markdown using [remarklint](https://github.com/remarkjs/remark-lint)
+via ESLint, specifically the [ESLint MDX plugin](https://github.com/mdx-js/eslint-mdx).
+
+Because no checking tool is perfect,
+the rules are set to warnings rather than errors.
+So automated checks show when something might be wrong,
+but use your common sense and ignore them when appropriate.
+
+To see all feedback, [install all dependencies](../README.md#running-locally)
+and run `lint:markdown` from the `docs` directory.
+Or use it in your IDE, such as with the [VS Code ESLint extension](https://open-vsx.org/extension/dbaeumer/vscode-eslint).
+If the extension in VS Code doesn't immediately start working,
+you may need to add the following to your settings:
+
+```json
+"settings": {
+		"eslint.validate": [
+			{  
+        "language":"markdown",
+        "autoFix":false
+    	},
+		]
+	}
+```
+
+The feedback for ordered lists may be a little confusion at first.
+If you have a loose list (a list with paragraphs or code blocks in it),
+the start of list item should be at 4 spaces.
+
+If you have all list items aligned at 3 spaces, the first warning is to `add 1 space`.
+Then if you add 1 space, the second warning is to `remove 1 space`.
+Fix this by adding 1 space to the paragraphs or code blocks so they all align at 4 spaces.
+
+All pull requests against the default branch are linted automatically.

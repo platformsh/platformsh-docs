@@ -19,11 +19,11 @@ To turn it on for a specific environment, follow these steps:
 
 {{< codetabs >}}
 
----
++++
 title=In the Console
 file=none
 highlight=false
----
++++
 
 - Select the project with the given environment.
 - From the **Environment** menu, select the environment.
@@ -35,16 +35,16 @@ To turn off outgoing email, clear the **Email sending** checkbox.
 
 <--->
 
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 To turn on outgoing email, run the following command:
 
 ```bash
-platform environment:info -e <ENVIRONMENT_NAME> enable_smtp true
+platform environment:info --environment {{< variable "ENVIRONMENT_NAME" >}} enable_smtp true
 ```
 
 To turn off outgoing email, replace `true` with `false`.
@@ -59,7 +59,7 @@ Improve deliverability of your email with [Sender Policy Framework (SPF)](https:
 Add the following `TXT` record to your domain's DNS records:
 
 ```txt
->v=spf1 include:sendgrid.net -all
+v=spf1 include:sendgrid.net -all
 ```
 
 ## 3. (Optional) Validate your email
@@ -82,7 +82,7 @@ Checks for the expected DNS records run every 15 minutes before validation.
 The `TXT` record looks similar to the following:
 
 ```txt
->v=spf1 include:u17504801.wl.sendgrid.net -all
+v=spf1 include:u17504801.wl.sendgrid.net -all
 ```
 
 ## 4. Test the email service
@@ -91,7 +91,7 @@ To test the email service, use the [CLI](../administration/cli/_index.md) to con
 Run the following command:
 
 ```bash
-printf "From: <SENDER_EMAIL_ADDRESS>\nSubject: Test \nThis is a test message" | /usr/sbin/sendmail <RECIPIENT_EMAIL_ADDRESS>
+printf "From: {{< variable "SENDER_EMAIL_ADDRESS" >}}\nSubject: Test \nThis is a test message" | /usr/sbin/sendmail {{< variable "RECIPIENT_EMAIL_ADDRESS" >}}
 ```
 
 Replace the variables with actual email addresses as in the following example:
@@ -123,13 +123,13 @@ See some examples for given languages.
 
 {{< codetabs >}}
 
----
++++
 title=PHP
 file=none
 highlight=false
----
++++
 
-To send email in PHP, you can use the built-in [`mail()` function](http://php.net/manual/en/function.mail.php).
+To send email in PHP, you can use the built-in [`mail()` function](https://www.php.net/manual/en/function.mail.php).
 The PHP runtime is configured to send email automatically with the correct configuration.
 This works even for libraries such as PHPMailer, which uses the `mail()` function by default.
 
@@ -142,11 +142,11 @@ be sure to sanitize it first.
 
 <--->
 
----
++++
 title=Java
 file=none
 highlight=false
----
++++
 
 JavaMail is a Java API used to send and receive email via SMTP, POP3, and IMAP.
 JavaMail is built into the [Jakarta EE](https://jakarta.ee/) platform, but also provides an optional package for use in Java SE.

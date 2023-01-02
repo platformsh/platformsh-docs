@@ -1,6 +1,6 @@
 ---
 title: Restore an environment from a backup
-sidebarTitle: Restore environments
+sidebarTitle: Restore an environment
 description: See how to restore an environment from a previous state.
 weight: -10
 ---
@@ -14,11 +14,11 @@ To restore an environment, you need an [Admin role for that environment type](..
 To restore an environment, first select one of the available backups:
 
 {{< codetabs >}}
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 Run the following command:
 
@@ -42,11 +42,11 @@ Backups on the project My Project (1234567abcdef), environment main (type: produ
 Select one of the backups marked as **Restorable** and copy its **Backup ID**.
 
 <--->
----
++++
 title=In the Console
 file=none
 highlight=false
----
++++
 
 1. Navigate to the environment where you want to see backups.
 2. Click **Backups**.
@@ -60,11 +60,11 @@ Select one of the backups marked as having completed successfully {{< icon succe
 To restore the backup you've selected, follow these steps:
 
 {{< codetabs >}}
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 1. Run the following command:
    
@@ -75,11 +75,11 @@ highlight=false
 2. Press `enter` to agree with the consequences and continue.
 
 <--->
----
++++
 title=In the Console
 file=none
 highlight=false
----
++++
 
 1. Next to the backup you've selected, click **More** {{< icon more >}}.
 2. Click **Restore**.

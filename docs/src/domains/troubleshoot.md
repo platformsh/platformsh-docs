@@ -31,7 +31,7 @@ If it isn't, try the following steps:
   to see if the issue is with the DNS server you are using.
 * Run `ping www.{{< variable "YOUR_DOMAIN" >}}`.
   If the result is different from what you got from running `host www.{{< variable "YOUR_DOMAIN" >}}`,
-  you might need to remove your [test settings](./checklist.md#2-test-your-site).
+  you might need to remove your test settings.
 
 ## Verify SSL
 

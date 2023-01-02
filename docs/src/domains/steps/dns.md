@@ -60,11 +60,11 @@ The recommended approach is to use custom records.
 
 {{< codetabs >}}
 
----
++++
 title=Use custom records
 file=none
 highlight=false
----
++++
 
 Some DNS providers offer custom, non-standard records (sometimes `ANAME` or `ALIAS` records) that you can manage like `CNAME` records.
 These nonstandard records make an internal lookup behind the scenes and respond to DNS lookups as if they were `A` records.
@@ -89,11 +89,11 @@ Examples of such workaround records and providers include:
 
 <--->
 
----
++++
 title=Use domain forwarding
 file=none
 highlight=false
----
++++
 
 If your registrar doesn't support custom records, you can consider using domain forwarding.
 
@@ -111,11 +111,11 @@ The following DNS providers are known to support both domain forwarding and adva
 
 <--->
 
----
++++
 title=Use a `www` redirection service
 file=none
 highlight=false
----
++++
 
 If your registrar doesn't support custom records or domain forwarding you can consider using a redirection service.
 
@@ -141,11 +141,11 @@ The extra redirect adds a few milliseconds to the first page load.
 
 <--->
 
----
++++
 title=Use `A` records
 file=none
 highlight=false
----
++++
 
 If your registrar doesn't support custom records or domain forwarding and you can't use a redirection service, consider using `A` records.
 

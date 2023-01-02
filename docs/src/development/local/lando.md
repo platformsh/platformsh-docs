@@ -35,22 +35,22 @@ Follow the [Lando installation instructions](https://docs.lando.dev/getting-star
 
 ## 2. Create an access token
 
-To authorize Lando to communicate with Platform.sh, create an [API token](../../administration/cli/api-tokens.md#get-a-token).
+To authorize Lando to communicate with Platform.sh, create an [API token](../../administration/cli/api-tokens.md#2-create-a-platformsh-api-token).
 Copy the value.
 
 ## 3. Initialize Lando
 
 {{< codetabs >}}
 
----
++++
 title=On an existing Platform.sh project
 file=none
 highlight=false
----
++++
 
 If your code isn't present locally, retrieve your codebase with one of these methods:
 
-- Using the [Platform.sh CLI](../../administration/cli/_index.md) by running `platform get <PROJECT_ID>`
+- Using the [Platform.sh CLI](../../administration/cli/_index.md) by running <code>platform get {{< variable "PROJECT_ID" >}}</code>
 - Using [Git](../../administration/web/configure-environment.md#actions-on-environments)
 
 Otherwise, access the directory with your project.
@@ -59,11 +59,11 @@ Run `lando init --recipe platformsh --source cwd --platformsh-auth <API_TOKEN>` 
 
 <--->
 
----
++++
 title=On a new Platform.sh project without code
 file=none
 highlight=false
----
++++
 
 For a quicker start, create a project based on the Platform.sh [PHP template](https://github.com/platformsh-templates/php).
 The template provides the most basic configuration for running a custom PHP project built with Composer.
@@ -71,7 +71,7 @@ It also includes the required Platform.sh configuration files out of the box.
 
 1. [Create a new project based on the PHP template]({{% create-project-link template="php" %}}).
 2. Clone that project locally in one of these ways:
-    - Using the [Platform.sh CLI](../../administration/cli/_index.md) by running `platform get <PROJECT_ID>`
+    - Using the [Platform.sh CLI](../../administration/cli/_index.md) by running <code>platform get {{< variable "PROJECT_ID" >}}</code>.
     - Using [Git](../../administration/web/configure-environment.md#actions-on-environments)
 3. In the project's folder, run `lando init --recipe platformsh --source platformsh --platformsh-auth <API_TOKEN>`.
 4. Follow the instructions provided by the interactive prompt.

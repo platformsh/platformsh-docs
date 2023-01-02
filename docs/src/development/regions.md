@@ -5,8 +5,6 @@
 title: Regions
 weight: 14
 description: See information about Platform.sh regions, including their environmental impact and IP addresses.
-aliases:
-  - /development/public-ips.html
 ---
 
 Platform.sh offers several different regions for hosting project data.

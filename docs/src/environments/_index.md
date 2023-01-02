@@ -3,8 +3,6 @@ title: "Manage Platform.sh environments"
 weight: -75
 sidebarTitle: Manage environments
 description: Learn what environments on Platform.sh are and how to take advantage of them.
-aliases: 
-  - /administration/web/environments.html
 ---
 
 On Platform.sh, an environment is a logically separate instance of an app or group of apps
@@ -154,6 +152,6 @@ You can see an environment's status in multiple ways:
   * Inactive environments are lighter in the environment list and don't appear in the environment selector.
   * Open an environment to see its status in the information panel.
 * Using the CLI:
-  * Run `platform environments --project <PROJECT_ID` or just `platform` within a project directory.
+  * Run `platform environments` within a project directory.
 
 See how to [change an environment's status](./deactivate-environment.md)

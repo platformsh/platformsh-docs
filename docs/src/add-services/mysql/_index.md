@@ -34,7 +34,8 @@ MySQL and MariaDB have the same behavior and the rest of this page applies to bo
 
 ### Supported versions on Dedicated environments
 
-`oracle-mysql` is available for {{% names/dedicated-gen-3 %}} environments but not {{% names/dedicated-gen-2 %}} environments.
+`oracle-mysql` is not yet available for {{% names/dedicated-gen-3 %}} environments.
+It also isn't available for {{% names/dedicated-gen-2 %}} environments.
 
 On {{% names/dedicated-gen-3 %}} and {{% names/dedicated-gen-2 %}} environments, MariaDB is available with Galera for replication:
 
@@ -79,43 +80,43 @@ Configure your service with at least 256 MB in disk space.
 
 {{< codetabs >}}
 
----
++++
 title=Go
 file=static/files/fetch/examples/golang/mysql
 highlight=go
----
++++
 
 <--->
 
----
++++
 title=Java
 file=static/files/fetch/examples/java/mysql
 highlight=java
----
++++
 
 <--->
 
----
++++
 title=Node.js
 file=static/files/fetch/examples/nodejs/mysql
 highlight=js
----
++++
 
 <--->
 
----
++++
 title=PHP
 file=static/files/fetch/examples/php/mysql
 highlight=php
----
++++
 
 <--->
 
----
++++
 title=Python
 file=static/files/fetch/examples/python/mysql
 highlight=python
----
++++
 
 {{< /codetabs >}}
 
@@ -123,11 +124,10 @@ highlight=python
 
 There may be cases where you want to configure a database connection manually.
 
-To get the URL to connect to the database, run the following command
-(replacing `<PROJECT_ID>` and `<ENVIRONMENT_NAME>` with your values):
+To get the URL to connect to the database, run the following command:
 
 ```bash
-platform relationships -p <PROJECT_ID> <ENVIRONMENT_NAME>
+platform relationships
 ```
 
 The result is the complete [information for all relationships](#relationship-reference) with an additional `url` property.
@@ -202,24 +202,49 @@ If your database relationship has a password, pass the `-p` switch and enter the
 mysql -p -h mysql.internal -P 3306 -u user main
 ```
 
-## Multiple databases
+## Define permissions
 
-With version `10.0` or later, you can define multiple databases and multiple users with different permissions.
+With version `10.0` or later, you can define multiple users with different permissions for your database.
 To do so, define multiple endpoints in your [service configuration](#configuration-options).
 
 For each endpoint you add, you can define the following properties:
 
 | Name             | Type                     | Required | Description |
 | ---------------- | ------------------------ | -------- | ----------- |
-| `default_schema` | `string`                 |          | Which of the schemas defined above to default to. If not specified, the `path` property of the relationship is `null` and so tools such as the Platform CLI can't access the relationship. |
+| `default_schema` | `string`                 |          | Which of the defined schemas to default to. If not specified, the `path` property of the relationship is `null` and so tools such as the Platform CLI can't access the relationship. |
 | `privileges`     | A permissions dictionary |          | For each of the defined schemas, what permissions the given endpoint has. |
 
 Possible permissions:
 
-* `ro`: Only SELECT queries are allowed.
-* `rw`: SELECT queries and INSERT/UPDATE/DELETE queries are allowed.
-* `admin`: All queries are allowed including data definition language (DDL) queries (such as `CREATE TABLE`, `DROP TABLE`).
+| Name        | Type          | Description                                         |
+| ----------- | ------------- | --------------------------------------------------- |
+| Read-only   | `ro`          | Can select, create temporary tables, and see views. |
+| Read-write  | `rw`          | In addition to read-only permissions, can also insert, update, delete, manage and execute events, execute routines, create and drop indexes, manage and execute triggers, and lock tables. |
+| Admin       | `admin`       | In addition to read-write permissions, can also create, drop, and alter tables; create views; and create and alter routines. |
+| Replication | `replication` | For [replicating databases](./mysql-replication.md). In addition to read-only permissions, can also lock tables. |
 
+You can also specify `schemas` for [multiple databases](#multiple-databases).
+If neither `schemas` nor `endpoints` is included, it's equivalent to the following default:
+
+```yaml {location=".platform/services.yaml"}
+    configuration:
+        schemas:
+            - main
+        endpoints:
+            mysql:
+                default_schema: main
+                privileges:
+                    main: admin
+```
+
+If either `schemas` or `endpoints` are defined, no default is applied and you have to specify the full configuration.
+
+## Multiple databases
+
+With version `10.0` or later, you can define multiple databases.
+To do so, define multiple `schemas` in your [service configuration](#configuration-options).
+
+You can also specify multiple `endpoints` for [permissions](#define-permissions).
 If neither `schemas` nor `endpoints` is included, it's equivalent to the following default:
 
 ```yaml {location=".platform/services.yaml"}

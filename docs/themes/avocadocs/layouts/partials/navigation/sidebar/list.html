@@ -113,6 +113,10 @@
             {{ range $levelTwoPages }}
 
               {{ if not ( isset .Params "sidebarIgnore" )}}
+                <!-- Additional structure without expansion -->
+                {{ with .Params.sectionBefore }}
+                  <h5 class="section-title">{{ . }}</h5>
+                {{ end }}
                 <!-- SECOND LEVEL ITEM -->
                 <li class="duik-sidebar__item duik-sidebar__item--second-level">
                   <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if eq $currentPage . }} active{{ end }}">

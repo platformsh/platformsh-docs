@@ -426,35 +426,42 @@ kbd {
 
 .nav-tabs {
   display: flex;
-  border: none;
+  border-bottom: #C9D0E4 1px solid;
 }
 
-.nav-tabs .nav-items {
-  margin: 0;
+
+.nav-tabs .nav-item {
+  border-bottom: 0.125rem solid #C9D0E4;
 }
 
-.nav-tabs .nav-link.active,.nav-tabs .nav-link:hover {
+.nav-tabs .nav-link.active,.nav-tabs .nav-link:hover,.nav-tabs .nav-link:focus {
   background: white none repeat scroll 0% 0%;
-  color: rgb(20, 92, 198);
-  box-shadow: rgba(73, 71, 95, 0.1) 0rem 0.062rem 0.25rem;
-  padding: 0.25rem 0.5rem;
-  border: 0.125rem solid transparent;
+  color: #302F45;
+  border-bottom: 0.125rem solid currentColor;
+  font-weight: 700;
 }
 
 .nav-tabs .nav-link {
   background-color: white;
-  color: rgb(121, 116, 119);
+  margin: 0 0.5rem;
+  margin-bottom: -1px;
+  color: #5F5E70;
   padding: 0.25rem 0.5rem;
   font-family: Overpass, Arial;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 1rem;
-  line-height: 1.562;
+  line-height: 1.5;
   cursor: pointer;
-  border: 0.125rem solid transparent;
 }
 
 .tabs .tab-content {
-  padding: 1rem 0.5rem 0rem 0.5rem;
+  padding: 1.5rem 1.25rem 1rem 1.25rem;
+  border: #C9D0E4 1px solid;
+}
+
+/* Remove padding for only code blocks */
+.tabs .tab-pane > .highlight:first-child {
+  margin: -1.5rem -1.25rem -2rem -1.25rem;
 }
 
 #feedbackTable button {

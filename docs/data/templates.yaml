@@ -86,10 +86,32 @@ php:
     deploy: >-
       https://console.platform.sh/projects/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/backdrop/.platform.template.yaml
     content: |
-      PHP 7.4<br />
+      PHP 8.1<br />
       MariaDB 10.4<br />
       Drush included<br />
       Automatic TLS certificates<br />
+    runtime: php
+  - shortname: drupal10
+    name: Drupal 10
+    repo: https://github.com/platformsh-templates/drupal10
+    description: >
+      <p>This template builds Drupal 10 using the "Drupal Recommended" Composer
+      project.  It is pre-configured to use MariaDB and Redis for caching.  The
+      Drupal installer will skip asking for database credentials as they are
+      already provided.</p>
+
+      <p>Drupal is a flexible and extensible PHP-based CMS framework.</p>
+    image: >-
+      data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNi4yIDMuOUMxNi4yIDMuOSAxNC44MiAzLjMgMTQuMDQgMi44MkMxNC4wNCAyLjgyIDEzLjAyIDIuMjIgMTEuMzQgMEMxMS4zNCAwIDExLjQgMi41MiA4LjcgMy44NEM0LjQ0IDUuNTIgMS44IDkuMDYgMS44IDEzLjU2QzEuOCAxOS4yNiA2LjQ4IDIzLjk0IDEyLjE4IDIzLjk0QzE3Ljk0IDIzLjk0IDIyLjU2IDE5LjI2IDIyLjU2IDEzLjU2QzIyLjYyIDYuNiAxNi4yIDMuOSAxNi4yIDMuOVpNNC42OCA5LjZDMy4wNiA5Ljk2IDMuMTggOS4xMiAzLjQ4IDguNEMzLjYgNy45OCA0LjAyIDcuNSA0LjAyIDcuNUM1LjEgNS43NiA3LjUgNC41IDcuNSA0LjVDNy44IDQuMzggOC4zNCA0LjA4IDguODIgMy44NEM5Ljc4IDMuMyAxMC4wMiAzIDEwLjAyIDNDMTEuNCAxLjY4IDExLjI4IDAuMDYgMTEuMjggMEMxMi40OCAyLjQgMTEuMDQgMy40OCAxMS4wNCAzLjQ4QzExLjQgMy44NCAxMS4yOCA0LjIgMTEuMjggNC4yQzkuNDIgOC4yMiA0LjY4IDkuNiA0LjY4IDkuNlpNMTcuMjIgMjIuMkMxNy4xIDIyLjI2IDE1LjYgMjIuOTggMTMuODYgMjIuOThDMTIuOSAyMi45OCAxMS44OCAyMi43NCAxMC45OCAyMi4xNEMxMC42OCAyMS45IDEwLjU2IDIxLjQ4IDEwLjc0IDIxLjE4QzEwLjggMjEuMDYgMTEuMTYgMjAuNjQgMTIgMjEuMThDMTIuMDYgMjEuMjQgMTQuMDQgMjIuNTYgMTcuMSAyMC44OEMxNy4zNCAyMC43NiAxNy42NCAyMC44MiAxNy43NiAyMS4wNkMxNy45NCAyMS4zIDE4IDIxLjc4IDE3LjIyIDIyLjJaTTEzLjAyIDE5LjY4TDEzLjA4IDE5LjYyQzEzLjE0IDE5LjU2IDE0LjE2IDE4LjI0IDE1LjY2IDE4LjQyQzE1LjkgMTguNDIgMTYuNzQgMTguNDggMTcuMjggMTkuNUMxNy4zNCAxOS42MiAxNy40NiAyMC4wNCAxNy4yMiAyMC4zNEMxNy4xIDIwLjQ2IDE2LjkyIDIwLjU4IDE2LjU2IDIwLjQ2QzE2LjMyIDIwLjQgMTYuMiAyMC4xNiAxNi4yIDIwLjA0QzE2LjE0IDE5Ljg2IDE2LjA4IDE5Ljc0IDE1LjQ4IDE5LjY4QzE1IDE5LjYyIDE0LjcgMTkuODYgMTQuMzQgMjAuMTZDMTQuMTYgMjAuMzQgMTMuOTIgMjAuNTIgMTMuNjggMjAuNThDMTMuNjIgMjAuNjQgMTMuNTYgMjAuNjQgMTMuNDQgMjAuNjRDMTMuMzIgMjAuNjQgMTMuMiAyMC41OCAxMy4wOCAyMC41MkMxMi45IDIwLjM0IDEyLjg0IDIwLjEgMTMuMDIgMTkuNjhaTTE5Ljg2IDE5LjhDMTkuODYgMTkuOCAxOS4zMiAxOS45OCAxOC43OCAxOS4zOEMxOC43OCAxOS4zOCAxNy4xNiAxNy41MiAxNi4zOCAxNy4yMkMxNi4zOCAxNy4yMiAxNS45IDE3LjA0IDE1LjMgMTcuMjhDMTUuMyAxNy4yOCAxNC44OCAxNy4zNCAxMy4yNiAxOC40MkMxMy4yNiAxOC40MiAxMC41IDIwLjE2IDkuMTIgMTkuOTJDOS4xMiAxOS45MiA2IDE5Ljk4IDYuNDIgMTYuNjhDNi40MiAxNi42OCA3LjA4IDEyLjk2IDExLjQgMTMuOEMxMS40IDEzLjggMTIuMzYgMTMuOTggMTQuMSAxNS4zNkMxNC4xIDE1LjM2IDE1LjMgMTYuMjYgMTUuOSAxNi4yNkMxNS45IDE2LjI2IDE2LjM4IDE2LjMyIDE3LjQ2IDE1LjY2QzE3LjQ2IDE1LjY2IDE5LjU2IDE0LjA0IDIwLjM0IDE0LjFDMjAuNDYgMTQuMSAyMS44NCAxNC4wNCAyMS44NCAxNi4zMkMyMS43OCAxNi4yNiAyMS44NCAxOC45IDE5Ljg2IDE5LjhaIiBmaWxsPSIjMDA4RUNFIi8+Cjwvc3ZnPgo=
+    deploy: >-
+      https://console.platform.sh/projects/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/drupal10/.platform.template.yaml
+    content: |
+      PHP 8.1<br />
+      MariaDB 10.4<br />
+      Redis 6<br />
+      Drush included<br />
+      Automatic TLS certificates<br />
+      Composer-based build<br />
     runtime: php
   - shortname: drupal8-govcms8
     name: GovCMS 8
@@ -297,6 +319,40 @@ php:
       PHP 7.4<br />
       MariaDB 10.4<br />
       Redis 6<br />
+      Automatic TLS certificates<br />
+      Composer-based build<br />
+    runtime: php
+  - shortname: drupal9-govcms9
+    name: GovCMS 9
+    repo: https://github.com/platformsh-templates/drupal9-govcms9
+    description: >
+      <p>This template builds the Australian government's GovCMS Drupal 9
+      distribution using the Drupal Composer project for better flexibility.  It
+      is pre-configured to use MariaDB and Redis for caching.  The Drupal
+      installer will skip asking for database credentials as they are already
+      provided.</p>
+
+      <p>GovCMS is a Drupal distribution built for the Australian government,
+      and includes configuration optimized for managing government websites.</p>
+    image: >-
+      data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'
+      width='199.37'
+      height='225'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%232ba9e0%7D%3C/style%3E%3C/defs%3E%3Cg
+      %3E%3Cg %3E%3Cpath class='cls-1' d='M93.78 139.31a35.5 35.5 0 1 0 35.5
+      35.5 35.51 35.51 0 0 0-35.5-35.5zM138 132.51a61.17 61.17 0 0 1-9.26
+      92.49c29.31-9 53.56-31.06 64.4-57.73 15-36.92 1-64.67-22.43-89.87a45.68
+      45.68 0 0 1 1.15 10.11 46.88 46.88 0 0 1-33.86 45zM97.82 87.57A27.19 27.19
+      0 1 0 125 60.43a27.16 27.16 0 0 0-27.18 27.14z'/%3E%3Cpath class='cls-1'
+      d='M47 214.22a61.17 61.17 0 0 1 39.55-100.1 46.82 46.82 0 0 1
+      44.75-72.89C116 28 100.72 14.62 88.66 0c6.13 64.13-58.4 40.82-82.32
+      100C-9.62 139.58 4.79 188.56 47 214.22z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E
+    deploy: >-
+      https://console.platform.sh/projects/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/drupal9-govcms9/.platform.template.yaml
+    content: |
+      PHP 8.0<br />
+      MariaDB 10.4<br />
+      Redis 6<br />
+      Drush included<br />
       Automatic TLS certificates<br />
       Composer-based build<br />
     runtime: php
@@ -508,29 +564,7 @@ php:
       <p>Sylius is a modern e-commerce solution for PHP, based on Symfony
       Framework.</p>
     image: >-
-      data:image/svg+xml,%3Csvg id='Warstwa_1' data-name='Warstwa 1'
-      xmlns='http://www.w3.org/2000/svg' width='225'
-      height='223.8''%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23fff;%7D.cls-2%7Bfill:%2330ba9d;%7D.cls-3%7Bfill:%231a9f83;%7D%3C/style%3E%3C/defs%3E%3Ctitle%3Esylius-logo%3C/title%3E%3Cpath
-      class='cls-1'
-      d='M393.56,255.07s14.68,17.33,36.09,17.33c13.46,0,24.67-8.15,24.67-21.41,0-30.17-69.53-25.48-69.53-70.34,0-21.62,19-38.54,46.08-38.54,15.3,0,41,6.94,41,26.51v11.82H453.1v-6.72c0-7.55-10.81-13.05-22.23-13.05-15.49,0-25.28,8.56-25.28,19.36,0,29.16,69.33,22.64,69.33,69.94,0,22-17.13,41-45.67,41a64.37,64.37,0,0,1-47.72-21.4Z'/%3E%3Cpath
-      class='cls-1'
-      d='M507.53,314.2c8,0,14.27-5.71,18.15-14.88l4.69-11.22-35.28-81.76c-1.42-3.27-3.26-4.08-6.52-4.08h-2.45V185.34h11.62c8.36,0,11.42,2.24,14.68,10.4l23.45,58.1a110.31,110.31,0,0,1,3.67,12.44h.4a93.93,93.93,0,0,1,3.47-12.44l21.41-58.1c3.06-8.16,6.73-10.4,15.09-10.4h11.83v16.92h-2.66c-3.25,0-5.09.81-6.52,4.08L541.78,307.06c-6.32,15.9-18.76,24.27-33.23,24.27a34.19,34.19,0,0,1-24.26-10.2l8.15-14.27C492.44,307.06,498.76,314.2,507.53,314.2Z'/%3E%3Cpath
-      class='cls-1'
-      d='M611.5,166c0-3.06-1.63-4.49-4.48-4.49h-8.36V144.56h19.57c9.17,0,13,3.87,13,13.05V267.1c0,3.06,1.63,4.49,4.49,4.49h8.35v16.92H624.55c-9.17,0-13-3.88-13-13.05Z'/%3E%3Cpath
-      class='cls-1'
-      d='M673.23,206.75c0-3.06-1.63-4.49-4.49-4.49h-8.36V185.34h19.38c9.17,0,13,3.87,13,13V267.1c0,3.06,1.63,4.49,4.49,4.49h8.36v16.92H686.28c-9.18,0-13-3.88-13-13.05Zm.41-62.19h17.73v20.59H673.64Z'/%3E%3Cpath
-      class='cls-1'
-      d='M730.7,206.75c0-3.06-1.63-4.49-4.49-4.49h-8.36V185.34h19.37c9.38,0,13.25,3.87,13.25,12.64v48.93c0,14.28,2.86,25.69,19.17,25.69,21.21,0,33.64-18.55,33.64-38.94V185.34h19.78V267.1c0,3.06,1.63,4.49,4.49,4.49h8.35v16.92h-19c-8.76,0-13.05-4.08-13.05-11.42v-3.87c0-3.27.21-5.91.21-5.91h-.41C799.41,277.5,786.16,291,765.77,291c-23.25,0-35.07-12.23-35.07-39.55Z'/%3E%3Cpath
-      class='cls-1'
-      d='M858.91,259.56s12.23,15.29,31.2,15.29c9.58,0,17.94-4.29,17.94-13.26,0-18.55-56.27-16.51-56.27-49.74,0-19.78,17.32-29,38.33-29,12.44,0,33.84,4.28,33.84,20v9.78H906.21v-5.1c0-6.12-9.17-8.77-15.49-8.77-11.62,0-19.17,4.09-19.17,12.24,0,19.57,56.28,15.29,56.28,49.75,0,18.35-16.31,30.17-37.93,30.17-27.52,0-41.18-18.14-41.18-18.14Z'/%3E%3Cpolygon
-      class='cls-2' points='119.37 230.23 168.96 329.41 260.49 329.56 282.64
-      298.38 119.37 230.23'/%3E%3Cpolygon class='cls-3' points='84.95 241.12
-      151.62 332.64 260.49 332.82 282.64 298.58 84.95 241.12'/%3E%3Cpolygon
-      class='cls-3' points='164.89 129.63 197.34 154.8 226.68 98.5 216.71 92.12
-      164.89 129.63'/%3E%3Cpolygon class='cls-2' points='260.49 332.82 164.89
-      129.63 185.34 114.83 296.58 277.01 260.49 332.82'/%3E%3Cpolygon
-      class='cls-2' points='207.51 98.78 269.78 149.08 226.08 84.95 207.51
-      98.78'/%3E%3C/svg%3E
+      data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDQ4IDQ4Ij4KPHBhdGggZmlsbD0iIzMwYmE5ZCIgZD0iTTEwLjIsMjguMWw5LjYsMTkuMmwxNy43LDBsNC4zLTZMMTAuMiwyOC4xTDEwLjIsMjguMXoiLz4KPHBhdGggZmlsbD0iIzFhOWY4MyIgZD0iTTMuNSwzMC4yTDE2LjQsNDhsMjEuMSwwbDQuMy02LjZMMy41LDMwLjJ6IE0xOSw4LjdsNi4zLDQuOUwzMSwyLjZMMjksMS40QzI5LDEuNCwxOSw4LjcsMTksOC43eiIvPgo8cGF0aCBmaWxsPSIjMzBiYTlkIiBkPSJNMzcuNSw0OEwxOSw4LjdsNC0yLjlsMjEuNSwzMS40TDM3LjUsNDh6IE0yNy4yLDIuN2wxMi4xLDkuN0wzMC44LDBDMzAuOCwwLDI3LjIsMi43LDI3LjIsMi43eiIvPgo8L3N2Zz4K
     deploy: >-
       https://console.platform.sh/projects/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/sylius/.platform.template.yaml
     content: |
@@ -621,7 +655,7 @@ php:
     deploy: >-
       https://console.platform.sh/projects/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/wordpress-composer/.platform.template.yaml
     content: |
-      PHP 7.4<br />
+      PHP 8.1<br />
       MariaDB 10.4<br />
       Automatic TLS certificates<br />
       Composer-based build<br />
@@ -1113,7 +1147,7 @@ nodejs:
       https://console.platform.sh/projects/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/gatsby-wordpress/.platform.template.yaml
     content: |
       Node.js 14<br />
-      PHP 7.4<br />
+      PHP 8.1<br />
       MariaDB 10.4<br />
       Automatic TLS certificates<br />
       npm-based build for Gatsby<br />

@@ -17,11 +17,11 @@ To trigger a redeploy, follow these steps:
 
 {{< codetabs >}}
 
----
++++
 title=In the Console
 file=none
 highlight=false
----
++++
 
 - Select the project with the given environment.
 - From the **Environment** menu, select the environment.
@@ -30,11 +30,11 @@ highlight=false
 
 <--->
 
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 Run the following command:
 
@@ -71,14 +71,14 @@ Assuming you want to do this for your `main` environment,
 first create a `REBUILD_DATE` environment variable:
 
 ```bash
-platform variable:create -l environment -e main --prefix env: --name REBUILD_DATE --value "$(date)" --visible-build true
+platform variable:create --environment main --level environment --prefix env --name REBUILD_DATE --value "$(date)" --visible-build true
 ```
 
 This triggers a build right away to propagate the variable.
 To force a rebuild at any time, update the variable with a new value:
 
 ```bash
-platform variable:update -e main --value "$(date)" "env:REBUILD_DATE"
+platform variable:update --environment main --value "$(date)" "env:REBUILD_DATE"
 ```
 
 This forces your application to be built even if no code has changed.
@@ -93,7 +93,7 @@ while that service is experiencing issues.
 To clear the build cache, run the following command:
 
 ```sh
-platform project:clear-build-cache -p <PROJECT_ID>
+platform project:clear-build-cache
 ```
 
 The next build for each environment is likely to take longer as the cache rebuilds.
@@ -114,22 +114,22 @@ it indicates your application is crashing or unavailable.
 
 Typical causes and potential solutions include:
 
-* Your app is listening at the wrong place.
-  * Check your app's [upstream properties](../create-apps/app-reference.md#upstream).
-  * If your app listening at a port, make sure it's using the [`PORT` environment variable](./variables/use-variables.md#use-platformsh-provided-variables).
-* Your `.platform.app.yaml` configuration has an error and a process isn't starting
+- Your app is listening at the wrong place.
+  - Check your app's [upstream properties](../create-apps/app-reference.md#upstream).
+  - If your app listening at a port, make sure it's using the [`PORT` environment variable](./variables/use-variables.md#use-platformsh-provided-variables).
+- Your `.platform.app.yaml` configuration has an error and a process isn't starting
   or requests can't be forwarded to it correctly.
-  * Check your `web.commands.start` entry or your `passthru` configuration.
-* The amount of traffic coming to your site exceeds the processing power of your application.
-  * You may want to [check if bots are overwhelming your site](https://community.platform.sh/t/diagnosing-and-resolving-issues-with-excessive-bot-access/792).
-  * Alternatively, you may need to [increase your plan size](../administration/pricing/_index.md).
-* Certain code paths in your application are too slow and timing out.
-  * Check your code is running smoothly.
-  * Consider adding an [observability solution](../increase-observability/integrate-observability/_index.md) to get a better view of your application.
-* A PHP process is crashing because of a segmentation fault.
-  * See [how to deal with crashed processes](../languages/php/troubleshoot.md#php-process-crashed).
-* A PHP process is killed by the kernel out-of-memory killer.
-  * See [how to deal with killed processes](../languages/php/troubleshoot.md#php-process-is-killed).
+  - Check your `web.commands.start` entry or your `passthru` configuration.
+- The amount of traffic coming to your site exceeds the processing power of your application.
+  - You may want to [check if bots are overwhelming your site](https://community.platform.sh/t/diagnosing-and-resolving-issues-with-excessive-bot-access/792).
+  - Alternatively, you may need to [increase your plan size](../administration/pricing/_index.md).
+- Certain code paths in your application are too slow and timing out.
+  - Check your code is running smoothly.
+  - Consider adding an [observability solution](../increase-observability/integrate-observability/_index.md) to get a better view of your application.
+- A PHP process is crashing because of a segmentation fault.
+  - See [how to deal with crashed processes](../languages/php/troubleshoot.md#php-process-crashed).
+- A PHP process is killed by the kernel out-of-memory killer.
+  - See [how to deal with killed processes](../languages/php/troubleshoot.md#php-process-is-killed).
 
 ## Site outage
 
@@ -145,7 +145,7 @@ When you've added a command line tool (such as [Drush](../other/glossary.md#drus
 you might encounter an error like the following:
 
 ```bash
--bash: <COMMAND_NAME>: command not found
+-bash: drush: command not found
 ```
 
 If you see this, add the command to your path with a [`.environment` file script](./variables/set-variables.md#set-variables-via-script).
@@ -173,7 +173,7 @@ Platform.sh enforces a 10&nbsp;MB limit on files with the `application/json` `Co
 To send large files, use the `multipart/form-data` header instead:
 
 ```bash
-$ curl -XPOST 'https://example.com/graphql' --header 'Content-Type: multipart/form-data' -F file=large_file.json
+$ curl -XPOST 'https://example.com/graphql' --header 'Content-Type: multipart/form-data' --form file=large_file.json
 ```
 
 ## Databases
@@ -210,7 +210,7 @@ This usually indicates that large files are present in the repository (where the
 Make sure that the paths for files like media files, dependencies, and databases are set to be ignored in your `.gitignore` file.
 
 If large files are already in the repository, the open-source tool [bfg-repo-cleaner](https://rtyley.github.io/bfg-repo-cleaner/)
-can assist in cleaning up the repository by purging older commits, removing unnecessary files, and more.
+can help in cleaning up the repository by purging older commits, removing unnecessary files, and more.
 
 If none of these suggestions work, create a [support ticket](https://console.platform.sh/-/users/~/tickets/open).
 
@@ -218,10 +218,10 @@ If none of these suggestions work, create a [support ticket](https://console.pla
 
 If you see a build or deployment running longer than expected, it may be one of the following cases:
 
-* The build is blocked by a process in your `build` hook.
-* The deployment is blocked by a long running process in your `deploy` hook.
-* The deployment is blocked by a long running cron job in the environment.
-* The deployment is blocked by a long running cron job in the parent environment.
+- The build is blocked by a process in your `build` hook.
+- The deployment is blocked by a long-running process in your `deploy` hook.
+- The deployment is blocked by a long-running cron job in the environment.
+- The deployment is blocked by a long-running cron job in the parent environment.
 
 To determine if your environment is being stuck in the build or the deployment, check your [activity log](../increase-observability/logs/access-logs.md#activity-logs).
 
@@ -231,12 +231,12 @@ If the result is still `running`, the build is stuck.
 In most regions, stuck builds terminate after one hour.
 To have the build killed in [legacy regions](./regions.md#legacy-regions), create a [support ticket](https://console.platform.sh/-/users/~/tickets/open).
 
-When a _deployment_ is blocked, you should try the following:
+When a deployment is blocked, you should try the following:
 
 1. Connect to your environment using [SSH](./ssh/_index.md).
 2. Find any long-running cron jobs or deploy hooks on the environment by running `ps afx`.
-3. Kill any long running processes with `kill <PID>`.
-  Replace `<PID>` with the process ID shown by `ps afx`.
+3. Kill any long-running processes with `kill {{< variable "PID" >}}`.
+  Replace `{{< variable "PID" >}}` with the process ID shown by `ps afx`.
 
 If a `sync` of `activate` process is stuck, try the above on the parent environment.
 
@@ -264,8 +264,8 @@ Be careful not to test the scripts on production environments.
 You can also test your hooks with these Linux commands to help debug issues:
 
 ```text
-time $cmd # Print execution time
-strace -T $cmd # Print a system call report
+time {{< variable "YOUR_HOOK_COMMAND" >}} # Print execution time
+strace -T {{< variable "YOUR_HOOK_COMMAND" >}} # Print a system call report
 ```
 
 ### Cron jobs
@@ -275,6 +275,22 @@ That means long-running cron jobs block a container from being shut down to make
 
 Make sure your custom cron jobs run quickly and properly.
 Cron jobs may invoke other services in unexpected ways, which can increase execution time.
+
+## Cache configuration
+
+A common source of performance issues is a misconfigured cache.
+The most common issue isn't allowing the right cookies as part of the router cache.
+
+Some cookies, such as session cookies, need to be allowed.
+Others, such as marketing and analytics cookies, usually shouldn't be part of the cache key.
+
+See more about [router cache](../define-routes/cache.md)
+and [cookie entry](../define-routes/cache.md#cookies).
+
+Because the router cache follows cache headers from your app,
+your app needs to send the correct `cache-control` header.
+
+For static assets, set cache headers using the `expires` key in your [app configuration](../create-apps/app-reference.md#locations).
 
 ## Language-specific troubleshooting
 

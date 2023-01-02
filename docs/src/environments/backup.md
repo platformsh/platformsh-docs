@@ -1,5 +1,5 @@
 ---
-title: Back up environments
+title: Back up an environment
 description: See how to protect yourself from potential data loss by backing up your environments so they can be restored later.
 weight: -10
 ---
@@ -16,20 +16,20 @@ The snapshot is stored internally and can't be downloaded.
 Code is managed through Git and so isn't included.
 You can restore previous code using Git commands such as [revert](https://git-scm.com/docs/git-revert).
 
-You might want to make backups of your live environment before merging a different environment into it
+You might want to create backups of your live environment before merging a different environment into it
 or each time you increase the storage space of your services.
 
 You also have regularly scheduled automated backups of your production environments to cover most cases.
 
-You can only backup and restore active environments.
+You can only create backups and restore active environments.
 To work with an [inactive environment](../other/glossary.md#inactive-environment),
 first activate it.
 
-To back up an environment, you need an [Admin role for that environment type](../administration/users.md).
+To create a backup of an environment, you need an [Admin role for that environment type](../administration/users.md).
 
 ## Backups and downtime
 
-By default, triggering a manual backup causes a momentary pause in site availability so that all requests can complete.
+By default, creating a manual backup causes a momentary pause in site availability so that all requests can complete.
 This means the environment is backed up in a known consistent state.
 The total interruption is usually only 15 to 30 seconds.
 Any requests during that time are held temporarily, not dropped.
@@ -49,18 +49,18 @@ Backups for Dedicated environments have a [specific frequency](../dedicated-gen-
 On Grid environments, non-Production environments can have up to 2 [manual backups](#create-a-manual-backup).
 The number of available backups for Production environments depends on your schedule.
 
-| Schedule  | Manual backups | Automated backups                |
-| --------- | -------------- | -------------------------------- |
-| Essential | 2              | 2: daily                         |
-| Advanced  | 4              | 21: daily, weekly, and monthly   |
-| Premium   | 4              | 44: 6-hourly, daily, and monthly |
+| Schedule | Manual backups | Automated backups                |
+| -------- | -------------- | -------------------------------- |
+| Basic    | 2              | 2: daily                         |
+| Advanced | 4              | 21: daily, weekly, and monthly   |
+| Premium  | 4              | 44: 6-hourly, daily, and monthly |
 
 The schedules available to you depend on your [tier](https://platform.sh/pricing/).
 
-| Tier             | Default schedule  | Possible upgrade |
-| ---------------- | ----------------- | ---------------- |
-| Professional     | Essential         | Advanced         |
-| Enterprise/Elite | Advanced          | Premium          |
+| Tier             | Default schedule | Possible upgrade |
+| ---------------- | ---------------- | ---------------- |
+| Professional     | Basic            | Advanced         |
+| Enterprise/Elite | Advanced         | Premium          |
 
 An upgrade comes at an additional cost.
 The exact cost depends on the size of your storage.
@@ -86,6 +86,9 @@ For Dedicated environments, see more about [backups of Dedicated environments](.
 For Grid environments, automated backups are taken for Production environments at least once every day.
 The exact number of backups depends on your [backup schedule](#backup-schedule).
 
+Daily backups are taken at around 4:00 every day based on the [project timezone](../projects/change-project-timezone.md).
+The time for 6-hourly backups is based on the daily backup.
+
 Automated backups are always [live](#live-backups).
 
 {{% legacy-regions featureIntro="Live automated backups" featureShort="live automated backups" level=3 plural=true %}}
@@ -100,17 +103,17 @@ They may make restorations less reliable.
 To avoid such issues, schedule [manual backups](#create-a-manual-backup) during non-peak hours,
 when the short amount of downtime is least noticed.
 
-Automatic backups are always live, including those taken on [{{% names/dedicated-gen-3 %}}](../dedicated-gen-3/overview.md)
+Automated backups are always live, including those taken on [{{% names/dedicated-gen-3 %}}](../dedicated-gen-3/overview.md)
 and [{{% names/dedicated-gen-2 %}}](../dedicated-gen-2/overview/_index.md) environments.
 
 You can create a manual live backup on a Grid project:
 
 {{< codetabs >}}
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 Use the `--live` flag:
 
@@ -119,11 +122,11 @@ platform backup:create --live
 ```
 
 <--->
----
++++
 title=In the Console
 file=none
 highlight=false
----
++++
 
 When [creating the backup](#create-a-manual-backup), select **Run live backup** in the last step.
 
@@ -136,18 +139,18 @@ When [creating the backup](#create-a-manual-backup), select **Run live backup** 
 You can create a manual backup using the [CLI](../administration/cli/_index.md) or in the [Console](../administration/web/_index.md).
 
 {{< codetabs >}}
----
++++
 title=Using the CLI
 file=none
 highlight=bash
----
++++
 platform backup:create
 <--->
----
++++
 title=In the Console
 file=none
 highlight=false
----
++++
 
 1. Navigate to the environment you want to back up.
 2. Click **Backups**.
@@ -155,6 +158,16 @@ highlight=false
 4. Click **Backup**.
 
 {{< /codetabs >}}
+
+### Automate manual backups
+
+You can also automate the process of creating manual backups through [cron jobs](../create-apps/app-reference.md#crons).
+The cron job uses the CLI command to back up the environment.
+It requires you to [set up the CLI on the environment with an API token](../administration/cli/api-tokens.md#authenticate-in-a-platformsh-environment).
+
+Although this process is automated,
+backups created in this way count as manual for the [backup schedule](#backup-schedule).
+They don't affect the automated backups taken as part of the schedule.
 
 ## Physical storage location
 

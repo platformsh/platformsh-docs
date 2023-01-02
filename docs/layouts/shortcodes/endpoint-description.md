@@ -16,19 +16,18 @@
 
 <!-- Clarify the `type` that should be used. -->
 <!-- mysql.md is special, so change the sentence slightly to show all `type`s for the single endpoint. -->
-Use {{ if eq ($type) "mariadb" }}
+To define the service, use {{ if eq ($type) "mariadb" }}
   the `{{ $type }}` or `mysql` type for MariaDB or the `oracle-mysql` type for Oracle MySQL
   {{ else if eq $type "redis" }}
   the `{{ $type }}` type for ephemeral Redis
   {{ else }}
-  the `{{ $type }}` type
-  {{ end }}to define the service:
+  the `{{ $type }}` type{{ end }}:
 
 <!-- Create an example services.yaml file from data in the registry. -->
 {{ partial "examples/servicedefn" $data }}
 
 {{ if eq $type "redis" }}
-Or the `redis-persistent` type for persistent Redis:
+Alternatively, use the `redis-persistent` type for persistent Redis:
 
   {{ $redis_data := index .Site.Data.registry "redis-persistent" }}
   {{ partial "examples/servicedefn" $redis_data }}
@@ -54,9 +53,9 @@ Always backup your data before changing the service.
 {{ if ne $type "network-storage" }}
 <!-- Clarify the endpoint that should be used. -->
 <!-- If a link and text have been set, adds exception that directs users to the subsection that describes explicit endpoints. -->
-Use the {{ if eq $type "vault-kms" }}endpoint you [defined in step 1](#1-configure-the-service){{ else }}`{{ $data.endpoint }}` endpoint{{ end }}
-to define the relationship{{ if and (gt (len ( $sectionLink )) 0) (gt (len ( $multipleText )) 0) }}
-(unless you have [multiple {{$multipleText}}]({{ $sectionLink }})){{ end }}:
+To define the relationship, use the {{ if eq $type "vault-kms" }}endpoint you [defined 
+in step 1](#1-configure-the-service){{ else }}`{{ $data.endpoint }}` endpoint{{ end }}
+{{ if and (gt (len ( $sectionLink )) 0) (gt (len ( $multipleText )) 0) }} (unless you have [multiple {{$multipleText}}]({{ $sectionLink }})){{ end }}:
 
 <!-- Create a dummy example `relationships` block from the registry's example naming in `.docs` -->
 {{ partial "examples/relationship" $data }}

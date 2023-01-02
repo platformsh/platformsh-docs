@@ -3,8 +3,6 @@ title: Set up a custom domain
 weight: 2
 description: Add a custom domain to your project once it's ready to go live.
 layout: single
-aliases:
-   - /domains/quick-start.html
 ---
 
 Once your project is ready for production, replace the automatically generated domain with your own custom domain.
@@ -37,11 +35,11 @@ To upgrade your plan tier:
 
 {{< codetabs >}}
 
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 Run the following [CLI command](../../administration/cli/_index.md):
 
@@ -51,11 +49,11 @@ platform subscription:info plan standard
 
 <--->
 
----
++++
 title=In the console
 file=none
 highlight=false
----
++++
 
 1. On the tile of the project you want to upgrade, click **{{< icon more >}} More**.
 2. Click **Edit plan**.
@@ -76,11 +74,11 @@ For Dedicated plans, get the target for your project from your Platform.sh conta
 
 {{< codetabs >}}
 
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 Get the target by running the following [CLI command](../../administration/cli/_index.md):
 
@@ -90,11 +88,11 @@ platform environment:info edge_hostname
 
 <--->
 
----
++++
 title=In the console
 file=none
 highlight=false
----
++++
 
 1. In the Console, open your Production environment.
 2. Click **URLs** and copy the URL to your site excluding `https://`.
@@ -116,11 +114,11 @@ it can take anywhere from 15 minutes to 72 hours for DNS changes to be taken int
 
 {{< codetabs >}}
 
----
++++
 title=Not using a CDN
 file=none
 highlight=false
----
++++
 
 To configure your domain name to point to your project:
 
@@ -144,11 +142,11 @@ Redirects are handled by the [router you configure](../../define-routes/_index.m
 
 <--->
 
----
++++
 title=Using a CDN
 file=none
 highlight=false
----
++++
 
 To configure your CDN and your domain name to point to your project:
 
@@ -169,11 +167,11 @@ Add a single domain to your project:
 
 {{< codetabs >}}
 
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 Run the following command:
 
@@ -183,11 +181,11 @@ platform domain:add {{<variable "YOUR_DOMAIN" >}}
 
 <--->
 
----
++++
 title=In the console
 file=none
 highlight=false
----
++++
 
 1. Select the project where you want to add a domain.
 2. Click {{< icon settings >}} **Settings**.

@@ -6,7 +6,7 @@ sidebarTitle: "RabbitMQ"
 
 RabbitMQ is an open source message broker software (sometimes called message-oriented middleware) that implements the Advanced Message Queuing Protocol (AMQP).
 
-See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for more information.
+See the [RabbitMQ documentation](https://www.rabbitmq.com/documentation.html) for more information.
 
 {{% frameworks %}}
 
@@ -34,35 +34,35 @@ The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](../de
 
 {{< codetabs >}}
 
----
++++
 title=Go
 file=static/files/fetch/examples/golang/rabbitmq
 highlight=go
----
++++
 
 <--->
 
----
++++
 title=Java
 file=static/files/fetch/examples/java/rabbitmq
 highlight=java
----
++++
 
 <--->
 
----
++++
 title=PHP
 file=static/files/fetch/examples/php/rabbitmq
 highlight=php
----
++++
 
 <--->
 
----
++++
 title=Python
 file=static/files/fetch/examples/python/rabbitmq
 highlight=python
----
++++
 
 {{< /codetabs >}}
 

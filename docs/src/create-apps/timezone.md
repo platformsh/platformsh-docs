@@ -12,48 +12,47 @@ The way to set a different timezone for a specific app depends on the given runt
 
 {{< codetabs >}}
 
----
++++
 title=PHP
 file=none
 highlight=false
----
++++
 
-* Provide a [custom php.ini](/languages/php/ini.md) OR
-* Add the following to your `.platform.app.yaml` file:
+Add the following to your app configuration:
 
-  ```yaml
-  variables:
-      php:
-          "date.timezone": "Europe/Paris"
-  ```
+```yaml {location=".platform.app.yaml"}
+variables:
+    php:
+        "date.timezone": "Europe/Paris"
+```
 
 <--->
 
----
++++
 title=Node.js
 file=none
 highlight=false
----
++++
 
 Start the server with `env TZ='<timezone>' node server.js`.
 
 <--->
 
----
++++
 title=Python
 file=none
 highlight=false
----
++++
 
 Start the server with `env TZ='<timezone>' python server.py`.
 
 <--->
 
----
++++
 title=Java
 file=none
 highlight=false
----
++++
 
 * Start the server with `env TZ='<timezone>' java -jar ...` OR
 * Set the Java virtual machine argument `user.timezone`.

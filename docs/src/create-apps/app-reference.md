@@ -227,11 +227,11 @@ Just run it as normal and allow the Platform.sh supervisor to manage it.
 
 On all containers other than PHP, the value for `start` should be treated as required.
 
-On PHP containers, it's optional and defaults to starting PHP-FPM
-(`/usr/sbin/php-fpm7.0` on PHP7 and `/usr/sbin/php5-fpm` on PHP5).
+On PHP containers, it's optional and defaults to starting PHP-FPM (`/usr/bin/start-php-app`).
 It can also be set explicitly on a PHP container to run a dedicated process,
 such as [React PHP](https://github.com/platformsh-examples/platformsh-example-reactphp)
 or [Amp](https://github.com/platformsh-examples/platformsh-example-amphp).
+See how to set up [alternate start commands on PHP](../languages/php/_index.md#alternate-start-commands).
 
 ### Upstream
 
@@ -516,7 +516,7 @@ Flavors are language-specific.
 See what the build flavor is for your language:
 
 * [Node.js](../languages/nodejs/_index.md#dependencies)
-* [PHP](../languages/php/_index.md#build-flavor)
+* [PHP](../languages/php/_index.md#dependencies)
 
 In all languages, you can also specify a flavor of `none` to take no action at all
 (which is the default for any language other than PHP and Node.js).
@@ -620,7 +620,7 @@ The following table shows the properties for each job:
 
 | Name               | Type                                         | Required | Description |
 | ------------------ | -------------------------------------------- | -------- | ----------- |
-| `spec`             | `string`                                     | Yes      | The [cron specification](https://en.wikipedia.org/wiki/Cron#CRON_expression). |
+| `spec`             | `string`                                     | Yes      | The [cron specification](https://en.wikipedia.org/wiki/Cron#Cron_expression). To prevent competition for resources that might hurt performance, use `H` in definitions to indicate an unspecified but invariant time. For example, instead of using `0 * * * *` to indicate the cron job runs at the start of every hour, you can use `H * * * *` to indicate it runs every hour, but not necessarily at the start. This prevents multiple cron jobs from trying to start at the same time. |
 | `commands`         | A [cron commands dictionary](#cron-commands) | Yes      | A definition of what commands to run when starting and stopping the cron job. |
 | `shutdown_timeout` | `integer`                                    | No       | When a cron is canceled, this represents the number of seconds after which a `SIGKILL` signal is sent to the process to force terminate it. The default is `10` seconds. |
 | `timeout`          | `integer`                                    | No       | The maximum amount of time a cron can run before it's terminated. Defaults to the maximum allowed value of `86400` seconds (24 hours).
@@ -635,7 +635,7 @@ The following table shows the properties for each job:
 ```yaml {location=".platform.app.yaml"}
 crons:
     mycommand:
-        spec: '*/19 * * * *'
+        spec: 'H * * * *'
         commands:
             start: sleep 60 && echo sleep-60-finished && date
             stop: killall sleep
@@ -647,11 +647,11 @@ crons:
 <!-- vale off -->
 {{< codetabs >}}
 
----
++++
 title=Drupal
 file=none
 highlight=yaml
----
++++
 
 crons:
     # Run Drupal's cron tasks every 19 minutes.
@@ -668,11 +668,11 @@ crons:
 
 <--->
 
----
++++
 title=Ruby on Rails
 file=none
 highlight=yaml
----
++++
 
 crons:
     ruby:
@@ -732,11 +732,11 @@ To restart crons without changing anything:
 
 {{< codetabs >}}
 
----
++++
 title=In the Console
 file=none
 highlight=false
----
++++
 
 1. In the Console, navigate to your project.
 1. Open the environment where you'd like the crons to run.
@@ -744,16 +744,16 @@ highlight=false
 
 <--->
 
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
-Run the following command (replacing `<PROJECT_ID>` and `<ENVIRONMENT_NAME>` with the values for your project and environment):
+Run the following command:
 
 ```bash
-platform redeploy -p <PROJECT_ID> -e <ENVIRONMENT_NAME>
+platform redeploy
 ```
 
 {{< /codetabs >}}
@@ -770,6 +770,8 @@ The following table presents the various possible modifications to your PHP or L
 | `sizing_hints`              | A [sizing hints definition](#sizing-hints)                 | PHP      | The assumptions for setting the number of workers in your PHP-FPM runtime. |
 | `xdebug`                    | An Xdebug definition                                       | PHP      | The setting to turn on [Xdebug](../languages/php/xdebug.md). |
 | `quicklisp`                 | Distribution definitions                                   | Lisp     | [Distributions for QuickLisp](../languages/lisp.md#quicklisp-options) to use. |
+
+You can also set your [app's runtime timezone](../create-apps/timezone.md).
 
 ### Extensions
 

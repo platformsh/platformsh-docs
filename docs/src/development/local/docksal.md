@@ -2,6 +2,7 @@
 title: Use Docksal for local development
 sidebarTitle: Docksal
 weight: 1
+sectionBefore: Supported environments
 ---
 
 [Docksal](https://docksal.io) is a Docker-based local development tool that plays nicely with Platform.sh.
@@ -33,7 +34,7 @@ See all [restrictions on the projects directory](https://docs.docksal.io/getting
 
 To connect Docksal with your Platform.sh account, use a Platform.sh API token.
 
-1. [Create an API token](../../administration/cli/api-tokens.md#get-a-token) in the Console.
+1. [Create an API token](../../administration/cli/api-tokens.md#2-create-a-platformsh-api-token) in the Console.
 2. Add the token to your Docksal configuration by running this command:
 
    ```bash
@@ -47,7 +48,7 @@ Now you can run `fin platform <command>` from your computer without needing to i
 To get your project, pull it with the following command:
 
 ```bash
-fin pull init --hosting-platform='platformsh' --hosting-site=<PROJECT_ID> --hosting-env=<ENVIRONMENT_NAME> <TARGET_DIRECTORY_NAME>
+fin pull init --hosting-platform='platformsh' --hosting-site={{< variable "PROJECT_ID" >}} --hosting-env={{< variable "ENVIRONMENT_NAME" >}} {{< variable "TARGET_DIRECTORY_NAME" >}}
 ```
 
 This creates a directory with the specified name with all your files and code.
@@ -81,11 +82,11 @@ For example, to install dependencies, use a command like the following depending
 
 {{< codetabs >}}
 
----
++++
 title=npm
 file=none
 highlight=false
----
++++
 
 ```bash {location=".docksal/commands/init"}
 #!/usr/bin/env bash
@@ -100,11 +101,11 @@ npm install
 ```
 <--->
 
----
++++
 title=Composer
 file=none
 highlight=false
----
++++
 
 ```bash {location=".docksal/commands/init"}
 #!/usr/bin/env bash
@@ -141,19 +142,19 @@ add them to the Docksal environment.
 
 {{< codetabs >}}
 
----
++++
 title=Using the CLI
 file=none
 highlight=bash
----
++++
 fin config set <VARIABLE_NAME>=<VARIABLE_VALUE>
 <--->
 
----
++++
 title=Directly in the configuration file
 file=none
 highlight=false
----
++++
 
 ```txt {location=".docksal/docksal.env"}
 <VARIABLE_NAME>=<VARIABLE_VALUE>

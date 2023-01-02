@@ -2,8 +2,6 @@
 title: Change a project's region
 sidebarTitle: Change regions
 description: See how to change the region your project is in and why you might want to do so.
-aliases:
-  - /guides/general/region-migration.html
 ---
 
 To host your project data, Platform.sh offers several [regions](../development/regions.md).
@@ -54,11 +52,11 @@ Otherwise, use the desired plan size from the start.
 
 {{< codetabs >}}
 
----
++++
 title=Without a source integration
 file=none
 highlight=false
----
++++
 
 1. Clone your existing project with Git.
 2. In the new clone, add a remote for the project:
@@ -83,11 +81,11 @@ highlight=false
 
 <--->
 
----
++++
 title=With a source integration
 file=none
 highlight=false
----
++++
 
 For a [source integration](../integrations/source/_index.md) with GitHub, BitBucket, or GitLab,
 add the integration to your new project.
@@ -109,7 +107,7 @@ Then upload them to your new project:
 platform mount:upload
 ```
 
-See more options on [how to export files](../tutorials/exporting.md#downloading-files)
+See more options on [how to export files](../tutorials/exporting.md)
 and [how to import files](../tutorials/migrating.md#6-import-files).
 
 ## 5. Copy data from services

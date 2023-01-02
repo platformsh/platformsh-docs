@@ -12,7 +12,7 @@ You can also develop a microservice architecture mixing JavaScript and other app
 
 | Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |----------------------------------------|------------------------------ |
-|  {{< image-versions image="nodejs" status="supported" environment="grid" >}} | {{< image-versions image="nodejs" status="supported" environment="dedicated-gen-2" >}} |
+| {{< image-versions image="nodejs" status="supported" environment="grid" >}} | {{< image-versions image="nodejs" status="supported" environment="dedicated-gen-2" >}} |
 
 {{% image-versions-legacy "nodejs" %}}
 
@@ -24,7 +24,7 @@ To use a specific version in a container with a different language, [use a versi
 
 | Grid | {{% names/dedicated-gen-2 %}} |
 | ---- | ----------------------------- |
-|  {{< image-versions image="nodejs" status="deprecated" environment="grid" >}} | {{< image-versions image="nodejs" status="deprecated" environment="dedicated-gen-2" >}} |
+| {{< image-versions image="nodejs" status="deprecated" environment="grid" >}} | {{< image-versions image="nodejs" status="deprecated" environment="dedicated-gen-2" >}} |
 
 ## Usage example
 
@@ -152,11 +152,11 @@ What you do next depends on the versions of Yarn and Node.js you want.
 
 {{< codetabs >}}
 
----
++++
 title=Yarn 3.x and Node.js 16
 file=none
 highlight=false
----
++++
 
 3. Use Corepack to run Yarn in your build hook:
 
@@ -168,11 +168,11 @@ highlight=false
 
 <--->
 
----
++++
 title=Yarn 3.x and Node.js 14
 file=none
 highlight=false
----
++++
 
 3. Enable Corepack (which is opt-in):
 
@@ -192,11 +192,11 @@ highlight=false
 
 <--->
 
----
++++
 title=Yarn < 3
 file=none
 highlight=false
----
++++
 
 3. Add Yarn as a global dependency:
 
@@ -224,59 +224,59 @@ To configure a given service, see the page dedicated to that service.
 
 {{< codetabs >}}
 
----
++++
 title=Elasticsearch
 file=static/files/fetch/examples/nodejs/elasticsearch
 highlight=js
----
++++
 
 <--->
 
----
++++
 title=Memcached
 file=static/files/fetch/examples/nodejs/memcached
 highlight=js
----
++++
 
 <--->
 
----
++++
 title=MongoDB
 file=static/files/fetch/examples/nodejs/mongodb
 highlight=js
----
++++
 
 <--->
 
----
++++
 title=MySQL
 file=static/files/fetch/examples/nodejs/mysql
 highlight=js
----
++++
 
 <--->
 
----
++++
 title=PostgreSQL
 file=static/files/fetch/examples/nodejs/postgresql
 highlight=js
----
++++
 
 <--->
 
----
++++
 title=Redis
 file=static/files/fetch/examples/nodejs/redis
 highlight=js
----
++++
 
 <--->
 
----
++++
 title=Solr
 file=static/files/fetch/examples/nodejs/solr
 highlight=js
----
++++
 
 {{< /codetabs >}}
 

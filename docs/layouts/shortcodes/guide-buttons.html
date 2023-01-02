@@ -13,12 +13,12 @@
       <!-- Back button -->
       {{ if .Page.NextInSection }}
         <button type="button" onclick="window.location.href = '{{ .Page.NextInSection.Permalink }}';" type="button" class="btn2 btn-secondary2">
-          <span class="icon"><img class="chevron-back" aria-hidden="true" src="/images/icons/chevrons.svg" /></span>
+          <span class="icon"><img class="chevron-back" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" /></span>
           <span class="text-button-back">Back</span>
         </button>
       {{ else }}
         <button type="button" onclick="window.location.href = '{{ .Page.CurrentSection.Permalink }}';" type="button" class="btn2 btn-secondary2">
-          <span class="icon"><img class="chevron-back" aria-hidden="true" src="/images/icons/chevrons.svg" /></span>
+          <span class="icon"><img class="chevron-back" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" /></span>
           <span class="text-button-back">Back</span>
         </button>
       {{ end }}
@@ -28,7 +28,7 @@
       <span>
           <button onclick="window.location.href = '{{ .Page.PrevInSection.Permalink }}';" type="button" class="btn2 btn-primary2">
             <span class="text-button-">{{ with .Get "next" }}{{ . }}{{ end }}</span>
-            <span class="icon"><img class="chevron-next2" aria-hidden="true" src="/images/icons/chevrons.svg" /></span>
+            <span class="icon"><img class="chevron-next2" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" /></span>
           </button>
       </span>
 
@@ -41,12 +41,12 @@
 
       {{ if .Page.NextInSection }}
           <button type="button" onclick="window.location.href = '{{ .Page.NextInSection.Permalink }}';" type="button" class="btn2 btn-secondary2">
-            <span class="icon"><img class="chevron-back" aria-hidden="true" src="/images/icons/chevrons.svg" /></span>
+            <span class="icon"><img class="chevron-back" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" /></span>
             <span class="text-button-back">Back</span>
           </button>
       {{ else }}
           <button type="button" onclick="window.location.href = '{{ .Page.CurrentSection.Permalink }}';" type="button" class="btn2 btn-secondary2">
-            <span class="icon"><img class="chevron-back" aria-hidden="true" src="/images/icons/chevrons.svg" /></span>
+            <span class="icon"><img class="chevron-back" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" /></span>
             <span class="text-button-back">Back</span>
           </button>
       {{ end }}
@@ -63,7 +63,7 @@
         {{ end }}
         <button onclick="window.location.href = '{{ $firstPageInSection.Permalink  }}';" type="button" class="btn2 btn-primary2">
           <span class="text-button-">{{ with .Get "next" }}{{ . }}{{ end }}</span>
-          <span class="icon"><img class="chevron-next2" aria-hidden="true" src="/images/icons/chevrons.svg" /></span>
+          <span class="icon"><img class="chevron-next2" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" /></span>
         </button>
     {{ end }}
 

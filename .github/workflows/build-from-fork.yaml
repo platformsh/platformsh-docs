@@ -3,7 +3,12 @@ name: Build from fork
 on:
   pull_request_target:
     branches: [main]
-    types: [labeled]
+    types: [labeled,unlabeled]
+
+env:
+  PLATFORMSH_CLI_NO_INTERACTION: 1
+  PLATFORM_PROJECT: 652soceglkw4u
+  PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
 
 jobs:
   build:
@@ -16,20 +21,18 @@ jobs:
           token: ${{ secrets.WORKFLOW_TOKEN }}
 
       # Set up workflow environment to use the Platform.sh CLI
-      - uses: adam7/platformsh-cli-action@v1.1
-        with: 
-          token: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+      - name: Set up Platform.sh CLI
+        uses: ./.github/actions/set-up-cli
 
       # Create an environment and activate it
       - env:
-          PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
+          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         run: |
-          platform project:set-remote 652soceglkw4u
           git switch -C pr-${{ github.event.number }}
           git push --force -u origin pr-${{ github.event.number }}
 
           # If the environment isn't active, activate it
           BRANCH_STATUS=$(platform api:curl /projects/652soceglkw4u/environments/pr-${{ github.event.number }} | jq -r .status)
           if [ $BRANCH_STATUS == "inactive" ] || [ $BRANCH_STATUS == "dirty" ] || [ $BRANCH_STATUS == "error" ]; then
-            platform environment:activate --no-wait -y pr-${{ github.event.number }}
+            platform environment:activate --no-wait pr-${{ github.event.number }}
           fi

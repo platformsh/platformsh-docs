@@ -38,16 +38,16 @@ To enable the integration, use either the [CLI](../../administration/cli/_index.
 or the [Console](../../administration/web/_index.md).
 
 {{< codetabs >}}
----
++++
 title=Using the CLI
 file=none
 highlight=false
----
++++
 
 Run the following command:
 
 ```bash
-platform integration:add --type=gitlab --token={{< variable "GITHUB_ACCESS_TOKEN" >}} --server-project={{< variable "OWNER/REPOSITORY" >}} --project={{< variable "PLATFORM_SH_PROJECT_ID" >}}
+platform integration:add --type=github --token={{< variable "GITHUB_ACCESS_TOKEN" >}} --server-project={{< variable "OWNER/REPOSITORY" >}} --project={{< variable "PLATFORM_SH_PROJECT_ID" >}}
 ```
 
 * `GITHUB_ACCESS_TOKEN` is the token you generated.
@@ -83,11 +83,11 @@ Note that the `--prune-branches` option depends on `--fetch-branches` being enab
 If `--fetch-branches` is disabled, `--prune-branches` is automatically set to false, even if specifically set to true.
 
 <--->
----
++++
 title=In the Console
 file=none
 highlight=false
----
++++
 
 1. Select the project where you want to enable the integration.
 2. Click {{< icon settings >}} **Settings**.

@@ -12,7 +12,7 @@ description: |
 
 | Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |----------------------------------------|------------------------------ |
-|  {{< image-versions image="ruby" status="supported" environment="grid" >}} | {{< image-versions image="ruby" status="supported" environment="dedicated-gen-2" >}} |
+| {{< image-versions image="ruby" status="supported" environment="grid" >}} | {{< image-versions image="ruby" status="supported" environment="dedicated-gen-2" >}} |
 
 {{% image-versions-legacy "ruby" %}}
 
@@ -39,10 +39,6 @@ A complete example is included at the end of this section.
     ```yaml
     variables:
         env:
-            BUNDLE_CACHE_ALL: '1' # default
-            BUNDLE_CLEAN: '1' # /!\ if you are working with Ruby <2.7, this doesn't work well
-            BUNDLE_DEPLOYMENT: '1' # default
-            BUNDLE_ERROR_ON_STDERR: '1' # default
             BUNDLE_WITHOUT: 'development:test'
             DEFAULT_BUNDLER_VERSION: "2.2.26" # in case none is mentioned in Gemfile.lock
             EXECJS_RUNTIME: 'Node'
@@ -51,8 +47,6 @@ A complete example is included at the end of this section.
             NVM_VERSION: v0.38.0
             RACK_ENV: 'production'
             RAILS_ENV: 'production'
-            RAILS_LOG_TO_STDOUT: '1' # default (log to /var/log/app.log)
-            RAILS_TMP: '/tmp' # default
     ```
 
     The `SECRET_KEY_BASE` variable is generated automatically based on the [`PLATFORM_PROJECT_ENTROPY` variable](../development/variables/use-variables.md#use-platformsh-provided-variables).
@@ -202,10 +196,6 @@ disk: 2048
 
 variables:
     env:
-        BUNDLE_CACHE_ALL: '1'
-        BUNDLE_CLEAN: '1' # /!\ if you are working with Ruby<2.7 this doesn't work well
-        BUNDLE_DEPLOYMENT: '1'
-        BUNDLE_ERROR_ON_STDERR: '1'
         BUNDLE_WITHOUT: 'development:test'
         DEFAULT_BUNDLER_VERSION: "2.2.26" # in case none is mentioned in Gemfile.lock
         EXECJS_RUNTIME: 'Node'
@@ -214,8 +204,6 @@ variables:
         NVM_VERSION: v0.38.0
         RACK_ENV: 'production'
         RAILS_ENV: 'production'
-        RAILS_LOG_TO_STDOUT: '1'
-        RAILS_TMP: '/tmp'
 
 hooks:
     build: |

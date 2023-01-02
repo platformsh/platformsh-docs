@@ -7,10 +7,10 @@
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "mongodb.internal",
     "rel": "mongodb",
-    "path": "main",
     "query": {
         "is_master": true
     },
+    "path": "main",
     "password": "main",
     "type": "mongodb:3.6",
     "port": 27017

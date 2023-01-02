@@ -9,7 +9,7 @@ To run your Strapi v4 app locally with all of its services, follow these steps:
 1. Download your deployed code by running the following command using the Platform.sh CLI:
 
    ```bash
-   platform get <PROJECT_ID>
+   platform get {{< variable "PROJECT_ID" >}}
    ```
 
 2. Create a new branch.
@@ -159,7 +159,7 @@ To run your Strapi v4 app locally with all of its services, follow these steps:
    If you get the error `The pcntl PHP extension is required` error, use this command instead:
 
    ```bash
-   platform single:open -A <APP_NAME> -e updates
+   platform tunnel:single -A <APP_NAME> -e updates
    ```
 
 5. Add an environment variable that contains the service credentials:

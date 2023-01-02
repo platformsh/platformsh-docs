@@ -1,11 +1,11 @@
-name: Linting
+name: Lint prose
 on:
   push:
     branches-ignore:
       - main
 
 jobs:
-  prose:
+  lint-prose:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout

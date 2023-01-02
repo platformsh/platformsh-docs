@@ -79,6 +79,8 @@ You can add the following extras:
 * Storage -- extra storage can be added for a fee per 5&nbsp;GB per environment.
   So if you have added 3 additional environments for a total of 6 development environments,
   the fee is multiplied by 6.
+  To ensure environments are available on demand, the fee applies to all environments you have added
+  even if you aren't currently actively using them.
   
   You can make any changes up to 100&nbsp;GB yourself.
   For storage over 100&nbsp;GB, create a [support ticket](https://console.platform.sh/-/users/~/tickets).

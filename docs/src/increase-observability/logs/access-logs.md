@@ -3,8 +3,6 @@ title: "Access your logs"
 sidebarTitle: Access logs
 weight: 9
 description: Increase your knowledge of how your apps are performing by accessing their container and activity logs.
-aliases:
-  - /development/logs.html
 ---
 
 {{% legacy-regions featureIntro="Deploy hook and cron activity logs" featureShort="these logs" plural=true %}}
@@ -17,11 +15,11 @@ You can access the logs either in the Console or using the CLI:
 
 {{< codetabs >}}
 
----
++++
 title=In the Console
 highlight=false
 file=none
----
++++
 
 1. Open the project you are interested in.
 1. From the **Environment** menu, select an environment.
@@ -31,11 +29,11 @@ file=none
 
 <--->
 
----
++++
 title=Using the CLI
 highlight=false
 file=none
----
++++
 
 1. Get a list of activities by running `platform activity:list -e <ENVIRONMENT_NAME>`.
    Pass the `--start` flag to get activities from a specific date in the past.
@@ -44,6 +42,8 @@ file=none
 1. Get a log of any given activity by running `platform activity:log <ACTIVITY_ID>`.
 
 {{< /codetabs >}}
+
+If a running activity is stuck, you can [cancel the activity](../../environments/cancel-activity.md).
 
 ### Sharing activity logs
 
@@ -69,11 +69,11 @@ To access the logs of various types of events:
 
 {{< codetabs >}}
 
----
++++
 title=Using the CLI
 highlight=false
 file=none
----
++++
 
 Use the `platform log` command and specify the type of log you want.
 For example, to get the access log, run:
@@ -87,11 +87,11 @@ To view more lines, use the `--lines` flag.
 
 <--->
 
----
++++
 title=Using SSH directly
 highlight=false
 file=none
----
++++
 
 1. Access the container by running `platform ssh -e <ENVIRONMENT_NAME>`.
 1. Change to the right directory by running `cd /var/log`.

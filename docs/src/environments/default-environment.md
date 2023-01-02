@@ -2,8 +2,6 @@
 title: Rename the default environment
 description: See how to change the name of your default/production environment after creating a project.
 multipleTabs: true
-aliases:
-  - /guides/general/default-branch.html
 ---
 
 You can set the name of your default/production environment when creating a project.
@@ -38,11 +36,11 @@ If it does, GitHub, GitLab, or BitBucket hosts your primary remote repository fo
 ## 1. Create a `main` environment
 
 {{< codetabs >}}
----
++++
 title=Without a source integration
 file=none
 highlight=false
----
++++
 
 In your local copy of your repository, create a new environment from `old` called `main`:
 
@@ -51,11 +49,11 @@ platform environment:branch main old
 ```
 
 <--->
----
++++
 title=With a source integration
 file=none
 highlight=false
----
++++
 In your local copy of the external repository, make sure your default branch is up to date:
 
 ```bash
@@ -100,11 +98,11 @@ platform environment:info -e main parent -
 ## 4. Make `main` the parent for other environments
 
 {{< codetabs >}}
----
++++
 title=Without a source integration
 file=none
 highlight=false
----
++++
 You probably have other environments that are children of `old`.
 For each environment, update its parent to `main`:
 
@@ -113,11 +111,11 @@ platform environment:info -e <ENVIRONMENT_NAME> parent main
 ```
 
 <--->
----
++++
 title=With a source integration
 file=none
 highlight=false
----
++++
 
 To preserve your data on Platform.sh,
 it's best to switch your work in progress to be based off of `main`.
@@ -141,11 +139,11 @@ platform environment:delete --no-delete-branch old
 ## 6. Set `main` as the default branch
 
 {{< codetabs >}}
----
++++
 title=Without a source integration
 file=none
 highlight=false
----
++++
 
 Once `old` has been deactivated, set the project's default branch to `main`:
 
@@ -154,11 +152,11 @@ platform project:info default_branch main
 ```
 
 <--->
----
++++
 title=With a source integration
 file=none
 highlight=false
----
++++
 
 Once `old` has been deactivated, set the project's default branch in Platform.sh to `main`:
 

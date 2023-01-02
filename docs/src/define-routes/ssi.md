@@ -87,4 +87,4 @@ echo date(DATE_RFC2822);
 Then you can visit `index.php` and refresh the page a few times.
 You see the first number updating to the current time, while the second (included) one only changes every 60 seconds.
 
-For more on SSI, see the [nginx documentation](http://nginx.org/en/docs/http/ngx_http_ssi_module.html).
+For more on SSI, see the [nginx documentation](https://nginx.org/en/docs/http/ngx_http_ssi_module.html).

@@ -16,5 +16,7 @@ deleteIndexPreMeilisearchUpgrade() {
 
 # Delete previous database files if upgrading.
 deleteIndexPreMeilisearchUpgrade
+
+echo "Starting Meilisearch"
 # Start the server.
 ./meilisearch --http-addr localhost:${PORT} --master-key $PLATFORM_PROJECT_ENTROPY

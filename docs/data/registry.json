@@ -310,13 +310,15 @@
     "runtime": true,
     "type": "java",
     "versions": {
-      "deprecated": [],
-      "supported": [
-        "18",
-        "17",
+      "deprecated": [
         "14",
         "13",
-        "12",
+        "12"
+      ],
+      "supported": [
+        "19",
+        "18",
+        "17",
         "11",
         "8"
       ]
@@ -676,7 +678,7 @@
     "versions": {
       "deprecated": [],
       "supported": [
-        "2.0",
+        "2",
         "1.2",
         "1.1"
       ],
@@ -693,7 +695,7 @@
     "versions-dedicated-gen-3": {
       "deprecated": [],
       "supported": [
-        "2.0",
+        "2",
         "1.2"
       ]
     }
@@ -758,10 +760,10 @@
     "versions-dedicated-gen-2": {
       "supported": [
         "8.1",
-        "8.0",
-        "7.4"
+        "8.0"
       ],
       "deprecated": [
+        "7.4",
         "7.3",
         "7.2",
         "7.1",
@@ -771,6 +773,7 @@
     },
     "versions": {
       "deprecated": [
+        "7.4",
         "7.3",
         "7.2",
         "7.1",
@@ -780,9 +783,9 @@
         "5.4"
       ],
       "supported": [
+        "8.2",
         "8.1",
-        "8.0",
-        "7.4"
+        "8.0"
       ]
     }
   },
@@ -868,15 +871,17 @@
     "runtime": true,
     "type": "python",
     "versions": {
-      "deprecated": [],
+      "deprecated": [
+        "3.6",
+        "3.5",
+        "2.7*"
+      ],
       "supported": [
+        "3.11",
         "3.10",
         "3.9",
         "3.8",
-        "3.7",
-        "3.6",
-        "3.5",
-        "2.7"
+        "3.7"
       ]
     }
   },
@@ -902,6 +907,8 @@
         "3.5"
       ],
       "supported": [
+        "3.11",
+        "3.10",
         "3.9"
       ],
       "legacy": [
@@ -923,7 +930,9 @@
     "versions-dedicated-gen-3": {
       "deprecated": [],
       "supported": [
-        "3.9 BETA"
+        "3.11",
+        "3.10",
+        "3.9"
       ]
     }
   },

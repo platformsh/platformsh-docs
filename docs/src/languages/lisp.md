@@ -9,7 +9,7 @@ description: Platform.sh supports building and deploying applications written in
 
 | Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |----------------------------------------|------------------------------ |
-|  {{< image-versions image="lisp" status="supported" environment="grid" >}} | {{< image-versions image="lisp" status="supported" environment="dedicated-gen-2" >}} |
+| {{< image-versions image="lisp" status="supported" environment="grid" >}} | {{< image-versions image="lisp" status="supported" environment="dedicated-gen-2" >}} |
 
 {{% image-versions-legacy "lisp" %}}
 
