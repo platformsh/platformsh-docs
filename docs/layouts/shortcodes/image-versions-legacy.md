@@ -12,7 +12,7 @@ The following versions aren't available in the EU-1 and US-1 regions:
   {{ end }}
 {{ end }}
 
-Consider [region migration](/guides/general/region-migration.html) if your project is in those regions.
+Consider [region migration](/projects/region-migration.html) if your project is in those regions.
 
   {{ end }}
 {{ end }}
