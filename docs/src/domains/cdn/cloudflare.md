@@ -2,9 +2,6 @@
 title: "Cloudflare configuration"
 weight: 2
 sidebarTitle: "Cloudflare"
-toc: false
-aliases:
-  - "/golive/steps/cloudflare.html"
 ---
 
 Verify your registrar supports [`CNAME` records for apex domains](../steps/dns.md#handling-apex-domains).
