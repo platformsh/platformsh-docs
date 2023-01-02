@@ -5,6 +5,6 @@ module.exports = {
     require('tailwindcss')(themeDir + 'themes/psh-docs/tailwind.config.js'),
     require('autoprefixer')({
       path: [themeDir]
-  }),
+    }),
   ]
 }

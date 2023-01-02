@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import 'styles/searchbox.css'
 
 import App from 'App'
 
