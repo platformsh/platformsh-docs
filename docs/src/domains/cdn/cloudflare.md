@@ -22,6 +22,7 @@ You need:
 
 To properly configure your Cloudflare CDN, 
 see the Cloudflare official documentation on [how to get started](https://developers.cloudflare.com/cache/get-started/).
+Make sure your CDN points to your [project target](../../domains/steps/_index.md#2-get-the-target-for-your-project).
 
 ## 3. Handle apex domains
 
@@ -50,22 +51,3 @@ For enhanced security, make sure your HTTPS connections can't be downgraded to H
 To do so, in your Cloudflare account,
 [enable HTTP strict transport security (HSTS)](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/http-strict-transport-security/).
 
-## 5. Let's Encrypt users: Renew your TLS certificates
-
-To secure connections and prevent data leaks,
-authenticate your Platform.sh server with a [transport layer security (TL
-S) certificate](../../other/glossary.md#transport-layer-security-tls).
-
-TLS certificates are provided by trusted certificate authorities (CA) such as Let's Encrypt.
-If you use TLS certificates provided by Let's Encrypt,
-you need to renew them [every 90 days](https://letsencrypt.org/docs/faq/#what-is-the-lifetime-for-let-s-encrypt-certificates-for-how-long-are-they-valid). 
-
-To ensure such renewals succeed, remove all domains pointing to Cloudflare from your Platform.sh project 
-before the renewal process starts.
-
-Alternatively, go to your Cloudflare account and follow these steps:
-
-1. Go to **SSL/TLS**>**Edge Certificates** and turn off **Always Use HTTPS**.
-2. [Create a page rule](https://support.cloudflare.com/hc/en-us/articles/218411427-Understanding-and-configuring-Cloudflare-Page-Rules-Page-Rules-Tutorial-#h_38Gq7mduJiXIjpVLxp3q19) 
-   for `/.well-known/acme-challenge/` with **SSL** set to **off**.
-3. Create a second page rule for `*` that turns **Always Use HTTPS** back on.

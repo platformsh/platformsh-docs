@@ -1,5 +1,5 @@
 ---
-title: "Configure a content delivery network (CDN)"
+title: "Content delivery networks (CDNs)"
 sidebarTitle: "Content delivery networks"
 weight: 3
 description: Improve performance for distributed end-users of your website with a content delivery network (CDN).
@@ -9,7 +9,7 @@ layout: single
 Using a CDN speeds up the delivery of your site's content to its users.
 The CDN deploys edge servers at many locations around the world.
 These edge servers behave like local caches to nearby users.
-Bringing content closer to users helps enhance your site's perceived performance,
+Bringing content closer to users helps enhance your site's perceived performance
 and so can improve user engagement and retention.
 
 Fastly is the recommended CDN for Platform.sh projects.
@@ -46,11 +46,16 @@ an apex and a wildcard one.
 This allows for encryption of all traffic between your users and your app. 
 
 If you want to, you can also provide your own third-party TLS certificate.
-To do so, place the certificate, the unencrypted private key, 
-and the necessary certificate chain supplied by your TLS provider in your app's `private` directory. 
-In this way, they're stored in a secure location. 
+[Transfer your certificate](../../development/file-transfer.md), 
+its unencrypted private key and the intermediate certificate to a non-web accessible [mount](../../create-apps/app-reference.md#mounts), 
+on an environment that only Platform.sh support and trusted users can access.
+In this way, your private key can't be compromised.
 To add the TLS certificate to your CDN configuration, 
 [create a support ticket](../../overview/get-support.md#create-a-support-ticket).
+
+Note that when you add your own third-party TLS certificate,
+you are responsible for renewing them in due time.
+Failure to do so may result in outages and compromised security for your site.
 
 If you need an Extended Validation TLS certificate, you can get it from any TLS provider. 
 To add it to your CDN configuration, [create a support ticket](../../overview/get-support.md#create-a-support-ticket).
@@ -62,9 +67,13 @@ The value of this header is the domain name the request is made to.
 When a server hosts multiple websites, like what a CDN does,
 it can use the `Host` header to identify which domain to access to handle the request.
 
-When you use a CDN, the value of the `Host` header points to the CDN itself. 
-To allow the CDN edge server to direct the request to the appropriate Platform.sh server,
-set up an `X-Forwarded-Host` HTTP header. 
+When a request is made from a client for an object on a CDN edge server, 
+the `Host` header value is rewritten to point to the CDN. 
+If the object isn't cached on the edge server, 
+the edge server makes a request to the Platform.sh server to pull and cache the object.
+
+For this process to be successful, 
+set an `X-Forwarded-Host` header to forward the original `Host` header value to the Platform.sh server.
 Use your root domain as the value of your `X-Forwarded-Host` header, 
 for example: `example.com`.
 
@@ -91,13 +100,13 @@ To disable it, change your cache configuration for the routes behind a CDN to th
  
 When you use a CDN, there are three ways to prevent direct access to your Platform.sh server:
  
-- HTTP basic authentication.
-- Allowing and denying IP addresses.
-- Client-authenticated TLS.
+- HTTP basic authentication
+- Allowing and denying IP addresses
+- Client-authenticated TLS
  
 ### HTTP basic authentication
  
-You can restrict access to your site through HTTP basic authentication at environment-level.
+You can restrict access to your site's environments through HTTP basic authentication.
 To access a restricted environment, users need to enter credentials through their browser.
 By default, child environments inherit access settings configured on their parent environment.
 
@@ -106,12 +115,12 @@ follow these steps:
 
 1. Generate a strong password.
 2. Set up the authentication using [HTTP access control](../../environments/http-access-control.md#use-a-username-and-password).
-3. Share your password with your CDN provider.
+3. Share your credentials with your CDN provider.
  
 ### Allow and deny IP addresses
  
-You can secure your site by allowing and denying IP addresses at environment-level.
-By default, child environments inherit access settings configured on their parent environment.
+You can secure your site's environments by allowing and denying IP addresses.
+By default, child environments inherit the access settings configured on their parent environment.
  
 Note that allowing and denying IP addresses means you have to update your configuration 
 when your CDN provider updates their IP addresses.

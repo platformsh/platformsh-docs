@@ -22,19 +22,19 @@ You need:
 
 {{% disable-cache CDN="Fastly" %}}
 
-## 2. Dedicated: Get a DNS TXT record
-
-To use a Fastly CDN included in a Dedicated plan, 
-before going live you need to [request a DNS TXT record from support](../../overview/get-support.md#create-a-support-ticket).
-To add this DNS TXT record to your domain settings,
-contact your domain registrar.
-
-## 3. Set up your Fastly CDN
+## 2. Set up your Fastly CDN
 
 To properly configure your Fastly CDN, 
 see the Fastly official documentation on [how to get started](https://docs.fastly.com/en/guides/getting-started#_basics).
+Make sure your CDN points to your [project target](../../domains/steps/_index.md#2-get-the-target-for-your-project).
 
-## 4. Handle apex domains
+If you use Fastly as part of your Enterprise subscription,
+when you request that a new domain is added to your Fastly service,
+Platform.sh support provides you with a CNAME record for domain control validation.
+To add this CNAME record to your domain settings,
+contact your DNS provider.
+
+## 3. Handle apex domains
 
 To start routing client traffic through Fastly,
 [create `CNAME` records for your domain names](../../domains/steps/dns.md#why-cname-records) 
@@ -46,7 +46,7 @@ As a workaround, Fastly offers [Anycast options](https://docs.fastly.com/en/guid
 To use Anycast IP addresses on a {{% names/dedicated-gen-2 %}} production environment,
 [open a support ticket](../../overview/get-support.md#create-a-support-ticket).
 
-## 5. Optional: Protect your site from on-path attacks
+## 4. Optional: Protect your site from on-path attacks
 
 An on-path attack occurs when a hacker intercepts 
 or modifies the communication between a client and a server.
