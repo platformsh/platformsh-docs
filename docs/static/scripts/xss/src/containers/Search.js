@@ -104,8 +104,8 @@ const Search = ({ fullPage }) => {
     <div className={`${fullPage ? 'w-[94vw] md:w-full md:max-w-4xl 2xl:max-w-6xl ' : 'absolute max-h-[75vh] overflow-y-auto z-10 mb-4'} bg-grey p-6 w-full text-ebony`}>
       {noResults}
       {docs}
-      <div className="bg-white -mx-6 -mb-6 p-6">
-        {noPrimaryResults}
+      {noPrimaryResults}
+      <div className={`bg-white -mx-6 -mb-6 p-6 ${(noResults || noPrimaryResults) && 'hidden'}`}>
         {secondaryResults}
         {templates}
         {community}
