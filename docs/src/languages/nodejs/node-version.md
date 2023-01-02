@@ -1,10 +1,7 @@
 ---
 title: "Manage Node.js versions"
 weight: 1
-toc: false
-description: See how to manage different Node.js versions in your Platform.sh containers.
-aliases:
-    - "/languages/nodejs/nvm.html"
+description: See how to manage different Node.js versions in your Platform.sh containers."
 ---
 
 You may need to use a specific version of Node.js that isn't available in an app container for a different language.

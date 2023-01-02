@@ -108,6 +108,10 @@
             {{ range $levelTwoPages }}
 
               {{ if not ( isset .Params "sidebarIgnore" )}}
+                <!-- Additional structure without expansion -->
+                {{ with .Params.sectionBefore }}
+                  <h5 class="text-xs my-1 uppercase">{{ . }}</h5>
+                {{ end }}
                 <!-- SECOND LEVEL ITEM -->
                 <li class="border-l border-stone py-1 pl-2">
                   <a href="{{ .RelPermalink }}" class="hover:text-skye-dark focus:text-skye-dark{{ if eq $currentPage . }} text-skye-dark{{ end }}">

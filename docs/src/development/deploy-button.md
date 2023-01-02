@@ -1,8 +1,5 @@
 ---
-title: "Deploy on Platform.sh"
-aliases:
-  - /frameworks/deploy-button.html
-  - /guides/general/deploy-button.html
+title: Deploy on Platform.sh
 ---
 
 Platform.sh offers a number of project templates as part of the Project Creation Wizard to help bootstrap a new project.

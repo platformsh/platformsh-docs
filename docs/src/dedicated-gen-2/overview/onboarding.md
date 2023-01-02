@@ -3,10 +3,7 @@ title: "Onboarding process"
 weight: 3
 sidebarTitle: "Onboarding"
 toc: false
-description: |
-  On-Boarding a new {{% names/dedicated-gen-2 %}} client is a three phase process that begins the moment your contract is closed with your sales representative.
-aliases:
-  - /dedicated/overview/onboarding.html
+description: Onboarding a new {{% names/dedicated-gen-2 %}} client is a three phase process that begins the moment your contract is closed with your sales representative.
 ---
 
 {{% description %}}

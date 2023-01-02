@@ -2,8 +2,6 @@
 title: Monitor metrics
 weight: 5
 description: See all of the live infrastructure metrics available to give you an overview of resource usage.
-aliases:
-  - /dedicated/architecture/metrics.html
 ---
 
 Platform.sh projects are accompanied by live infrastructure metrics that provide an overview of resource usage for environments.

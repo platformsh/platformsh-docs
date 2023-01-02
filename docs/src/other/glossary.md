@@ -2,9 +2,6 @@
 title: "Glossary"
 weight: 1
 sidebarIgnore: true
-aliases:
-  - "/glossary.html"
-  - "/GLOSSARY.html"
 ---
 
 ## Active environment

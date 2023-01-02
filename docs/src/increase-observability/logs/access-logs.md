@@ -3,8 +3,6 @@ title: "Access your logs"
 sidebarTitle: Access logs
 weight: 9
 description: Increase your knowledge of how your apps are performing by accessing their container and activity logs.
-aliases:
-  - /development/logs.html
 ---
 
 {{% legacy-regions featureIntro="Deploy hook and cron activity logs" featureShort="these logs" plural=true %}}
