@@ -118,7 +118,7 @@ const Search = ({ fullPage }) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className={`max-w-4xl ${fullPage ? 'bg-grey mb-4' : ''}`}>
+      <form onSubmit={handleSubmit} className={`${fullPage ? 'max-w-4xl bg-grey mb-4' : ''}`}>
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label className="sr-only" htmlFor="searchwicon">Search our docs</label>
         <div className="flex items-center">
