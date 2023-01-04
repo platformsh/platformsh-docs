@@ -8,18 +8,18 @@ import React from 'react';
 // and prioritized as primary results via the index's `rank` attribute.
 const SuggestionsPrimary = ({ hits, title }) => {
   const results = hits.map((r) => (
-    <li key={r.relurl}>
-      <h5>
-        <a href={r.url}>
+    <li className="mb-4 border-b border-grey-dark" key={r.relurl}>
+      <h3 className="mb-2">
+        <a className="text-skye-dark hover:underline" href={r.url}>
           <b dangerouslySetInnerHTML={{ __html: `${DOMPurify.sanitize(r.section)} | ` }} />
           <span dangerouslySetInnerHTML={{ __html: `${DOMPurify.sanitize(r.title)}` }} />
         </a>
-      </h5>
+      </h3>
       {/* Add keywords if they match */}
       {/* eslint-disable-next-line no-underscore-dangle */}
       {r.keywords
         && (
-        <p>
+        <p className="mb-4">
           Keywords:
           {' '}
           {/* eslint-disable-next-line no-underscore-dangle */}
@@ -32,18 +32,14 @@ const SuggestionsPrimary = ({ hits, title }) => {
         </p>
         )}
       {/* eslint-disable-next-line no-underscore-dangle, react/no-danger */}
-      <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(r._formatted.text) }} />
+      <p className="truncate mb-2" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(r._formatted.text) }} />
     </li>
   ))
 
   return (
-    <div className="suggestions suggestions-primary">
-      <h4 className="section">{title}</h4>
-      <div className="hits">
-        <ul>{results}</ul>
-        {' '}
-      </div>
-      {' '}
+    <div>
+      <h2 className="text-lg font-bold mb-6">{title}</h2>
+      <ul>{results}</ul>
     </div>
   )
 }

@@ -1,10 +1,10 @@
-<div class="services-not-needed" x-show="stack === 'php'">
+<div x-show="stack === 'php'">
   
 You can now see your built app at the returned URL.
 
 </div>
 
-<div class="services-needed" x-show="stack === 'python' | stack === 'nodejs'">
+<div x-show="stack === 'python' | stack === 'nodejs'">
 
 Your app is built and served at the returned URL, but it doesn't yet have all the services it needs to work.
 </div>
