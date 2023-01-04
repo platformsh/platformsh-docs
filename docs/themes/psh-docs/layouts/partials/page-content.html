@@ -1,0 +1,54 @@
+<!-- Platform.sh tier-gated features -->
+{{ partial "tiered-features/banner.html" .context }}
+
+<!-- If the feature is part of the Observability Suite -->
+{{ partial "observability-suite/banner.html" .context }}
+
+{{ partial "editpagebutton.html" .context }}
+
+<!-- Page title -->
+<h1 class="font-black text-2xl mb-8 xl:text-4xl">{{ .context.Title | .context.RenderString }}</h1>
+
+<div class="grid md:grid-cols-80-20 md:gap-4">
+
+  <div class="md:order-2 md:top-24 md:sticky max-h-fullv overflow-y-scroll">
+    <!-- Table of contents -->
+    {{ if and (ne .context.Params.toc false) (ne .context.TableOfContents "<nav id=\"TableOfContents\"></nav>") }}
+      <div class="border border-stone px-6 pt-1 pb-4 text-sm [&_a]:text-skye-dark hover:[&_a]:underline focus:[&_a]:underline [&_ul_ul]:pl-4">
+        <h3 class="pt-4 pb-2 font-light text-base text-slate">On this page</h3>
+        {{ .context.TableOfContents }}
+      </div>
+    {{ end }}
+
+    <!-- Feedback form for wide screens -->
+    <div class="hidden md:block">
+      {{ partial "feedback/form" }}
+    </div>
+  </div>
+
+  <div class="prose xl:prose-lg max-w-none prose-code:!mb-0 prose-h2:text-xl prose-h3:text-xl prose-h4:text-lg">
+    <!-- Add the stack picker for Get started section -->
+    {{ if and ( eq .context.Section "get-started" ) ( ne .context.Title "Introduction" ) }}
+      {{ partial "get-started/stack-picker" }}
+    {{ end }}
+
+    <!-- Page content, anchorized -->
+    {{ partial "headline-hash.html" .context.Content }}
+
+    <!-- If the page is a list page, add section cards -->
+    {{ if .isList }}
+      {{ range .context.Pages }}
+        <a href="{{ .RelPermalink }}" class="block mb-7 p-8 text-primary-darker border-l-4 border-skye-dark hover:no-underline bg-stone hover:bg-skye-dark hover:text-white focus:bg-skye-dark focus:text-white">
+          <span class="block font-bold mb-4">{{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle | .RenderString }}{{ else }}{{ .Title | .RenderString }}{{ end }}</span>
+          <span class="block">{{ .Params.description | .RenderString }}</span>
+        </a>
+      {{ end }}
+    {{ end }}
+  </div>
+
+</div>
+
+<!-- Feedback form for narrow screens -->
+<div class="block md:hidden">
+  {{ partial "feedback/form" }}
+</div>

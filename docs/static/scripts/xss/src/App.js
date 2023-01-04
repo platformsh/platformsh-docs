@@ -4,7 +4,7 @@ import React from 'react'
 import Search from 'containers/Search'
 
 const App = ({ fullPage }) => (
-  <div className="searchContainer">
+  <div className="bg-white relative">
     <Search fullPage={fullPage} />
   </div>
 )

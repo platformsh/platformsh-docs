@@ -1,0 +1,17 @@
+<!-- Logo and version badge -->
+
+{{ if isset .Site.Params "logo" }}
+
+  <!-- Logo -->
+  {{ $logolinksto := "/" }}
+  {{ if isset .Site.Params "logolinksto" }}
+    {{ $logolinksto = .Site.Params.logolinksto }}
+  {{ end }}
+
+  <a class="basis-1/4 md:basis-1/6 flex justify-center" href="{{ $logolinksto }}">
+
+    <img class="min-w-32 max-w-[175px]" src="{{ .Site.Params.logo | relURL }}" alt="{{ if isset .Site.Params "logoAlt" }}{{ .Site.Params.logoAlt }}{{ else if isset .Site.Params.meta "sitename" }}{{ .Site.Params.meta.sitename }}{{ end }}">
+
+  </a>
+
+{{ end }}

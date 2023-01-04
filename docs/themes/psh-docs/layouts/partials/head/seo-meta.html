@@ -1,0 +1,24 @@
+<!--  Meta tags -->
+
+<!-- Site verification -->
+<meta name="google-site-verification" content="AA3wwwZ69DTZVM0_qzBVXOWa5i4Dim8HNql-jGdOKvA" />
+
+<!-- Description -->
+{{ if isset .Params "description" }}
+  <meta name="description" content="{{ .Params.Description | .RenderString }}">
+{{ else }}
+  {{ with .Site.Params.meta.description }}
+    <meta name="description" content="{{ . }}">
+  {{ end }}
+{{ end }}
+
+<!-- Thumbnail -->
+{{ with .Site.Params.meta.image }}
+  <meta itemprop="image" content="{{ . }}">
+{{ end }}
+
+
+<!-- Keywords -->
+{{ with .Site.Params.meta.keywords }}
+  <meta name="keywords" content="{{ range . }}{{ . }},{{ end }}">
+{{ end }}

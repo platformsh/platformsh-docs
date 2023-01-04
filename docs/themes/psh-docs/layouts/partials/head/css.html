@@ -1,0 +1,16 @@
+<!-- Asciinema player -->
+<link rel="stylesheet" href="{{ printf "/asciinema/asciinema-player.css?version=%s" $.Site.Params.version }}">
+
+<!-- Syntax highlighting -->
+<link rel="stylesheet" href="{{ printf "/css/syntax-highlighting.css?version=%s" $.Site.Params.version }}">
+
+<!-- TailwindCSS files -->
+{{ $style := resources.Get "css/main.css" | resources.PostCSS }}
+<link rel="stylesheet" href="{{ printf "%s?version=%s" $style.RelPermalink $.Site.Params.version }}">
+
+<!-- Print stylesheets -->
+{{ with .File }}
+  {{- if eq .Dir "security/transparency/" -}}
+  <link rel="stylesheet" media="print" href="{{ printf "styles/print.css?version=%s" $.Site.Params.version | relURL}}">
+  {{- end -}}
+{{ end }}
