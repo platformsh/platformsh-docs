@@ -127,6 +127,9 @@ module.exports = {
             th: {
               backgroundColor: theme('colors.stone'),
               padding: '0.5rem',
+              code: {
+                backgroundColor: theme('colors.snow'),
+              },
             },
             thead: {
               'th:first-child': {
