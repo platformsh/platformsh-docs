@@ -1125,12 +1125,14 @@
     "runtime": false,
     "type": "varnish",
     "versions": {
-      "deprecated": [],
-      "supported": [
-        "6.3",
-        "6.0",
+      "deprecated": [
         "5.2",
         "5.1"
+      ],
+      "supported": [
+        "7.1",
+        "6.3",
+        "6.0"
       ]
     }
   },
