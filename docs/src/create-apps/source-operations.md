@@ -80,7 +80,7 @@ Replace `<OPERATION_NAME>` with the name of your operation, such as `update-file
 {{< /codetabs >}}
 
 After running a source operation, 
-apply the changes to your local development environment by running the `git pull` command.
+apply the changes to your local development environment by running `git pull`.
 
 ## How source operations work
 
