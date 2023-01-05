@@ -37,7 +37,7 @@ module.exports = {
         "80-20": "minmax(20rem,80%) minmax(10rem,20%)",
       },
       spacing: {
-        "fullv": "100vh",
+        "fullv": "calc(100vh - 6rem)",
       },
       typography: ({ theme }) => ({
         DEFAULT: {
@@ -111,7 +111,9 @@ module.exports = {
               marginTop: '0',
             },
             table: {
-              tableLayout: 'fixed',
+              position: 'relative',
+              zIndex: '10',
+              backgroundColor: theme('colors.snow'),
             },
             tbody: {
               'td:first-child': {
@@ -132,12 +134,13 @@ module.exports = {
               },
             },
             thead: {
+              position: 'sticky',
+              top: '6rem',
               'th:first-child': {
                 paddingLeft: '0.5rem',
               },
-              tr: {
-                position: 'sticky',
-                top: '6rem',
+              'th:last-child': {
+                paddingRight: '0.5rem',
               },
             },
             var: {
