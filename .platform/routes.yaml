@@ -144,7 +144,7 @@ https://{default}/:
       "/domains/quick-start.html":  { "to": "/domains/steps.html", "code": 301 }
       "/administration/web/environments.html":  { "to": "/environments.html", "code": 301 }
       "/guides/general/default-branch.html":  { "to": "/environments/default-environment.html", "code": 301 }
-      "/development/logs.html":  { "to": "/increase-observability/access-logs.html", "code": 301 }
+      "/development/logs.html":  { "to": "/increase-observability/logs/access-logs.html", "code": 301 }
       "/languages/nodejs/nvm.html":  { "to": "/languages/nodejs/node-version.html", "code": 301 }
       "/guides/general/composer-auth.htmll":  { "to": "/languages/php/composer-auth.html", "code": 301 }
       "/GLOSSARY.html":  { "to": "/other/glossary.html", "code": 301 }

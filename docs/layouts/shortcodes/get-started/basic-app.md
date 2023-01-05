@@ -1,23 +1,27 @@
 <div x-show="stack === 'php'">
 
-<div class="nav-tabs">
+<ul class="{{ partial "codetabs/tab-control-list-styles" }}">
+  <li class="{{ partial "codetabs/tab-control-tab-styles" }}">
     <a
-      class="nav-link"
-      :class="{ 'active': frametech === 'default' }"
+      class="{{ partial "codetabs/tab-control-link-styles" }}"
+      :class="{ '{{ partial "codetabs/tab-control-link-active-styles" }}': frametech === 'default' }"
       @click="switchFrametech('default')"
     >
         Using PHP-FPM
     </a>
+  </li>
+  <li class="{{ partial "codetabs/tab-control-tab-styles" }}">
     <a
-      class="nav-link"
-      :class="{ 'active': frametech === 'socket' }"
+      class="{{ partial "codetabs/tab-control-link-styles" }}"
+      :class="{ '{{ partial "codetabs/tab-control-link-active-styles" }}': frametech === 'socket' }"
       @click="switchFrametech('socket')"
     >
         Listening on a socket
     </a>
-</div>
+  </li>
+</ul>
 
-<div x-show="frametech === 'default'">
+<div role="tabpanel" x-show="frametech === 'default'" :aria-hidden="frametech === 'default'" class="{{ partial "codetabs/tab-styles" }} {{ partial "codetabs/tab-children-styles" }}">
 
 ```yaml {location=".platform.app.yaml"}
 # The name of the app. Must be unique within a project.
@@ -47,7 +51,7 @@ web:
 
 </div>
 
-<div x-show="frametech === 'socket'">
+<div role="tabpanel" x-show="frametech === 'socket'" :aria-hidden="frametech === 'socket'" class="{{ partial "codetabs/tab-styles" }} {{ partial "codetabs/tab-children-styles" }}">
 
 ```yaml {location=".platform.app.yaml"}
 # The name of the app. Must be unique within a project.
@@ -89,31 +93,37 @@ web:
 
 <div x-show="stack === 'python'">
 
-<div class="nav-tabs">
+<ul class="{{ partial "codetabs/tab-control-list-styles" }}">
+  <li class="{{ partial "codetabs/tab-control-tab-styles" }}">
     <a
-      class="nav-link"
-      :class="{ 'active': frametech === 'default' }"
+      class="{{ partial "codetabs/tab-control-link-styles" }}"
+      :class="{ '{{ partial "codetabs/tab-control-link-active-styles" }}': frametech === 'default' }"
       @click="switchFrametech('default')"
     >
         Using pip
     </a>
+  </li>
+  <li class="{{ partial "codetabs/tab-control-tab-styles" }}">
     <a
-      class="nav-link"
-      :class="{ 'active': frametech === 'pipenv' }"
+      class="{{ partial "codetabs/tab-control-link-styles" }}"
+      :class="{ '{{ partial "codetabs/tab-control-link-active-styles" }}': frametech === 'pipenv' }"
       @click="switchFrametech('pipenv')"
     >
         Using pipenv
     </a>
+  </li>
+  <li class="{{ partial "codetabs/tab-control-tab-styles" }}">
     <a
-      class="nav-link"
-      :class="{ 'active': frametech === 'poetry' }"
+      class="{{ partial "codetabs/tab-control-link-styles" }}"
+      :class="{ '{{ partial "codetabs/tab-control-link-active-styles" }}': frametech === 'poetry' }"
       @click="switchFrametech('poetry')"
     >
         Using poetry
     </a>
-</div>
+  </li>
+</ul>
 
-<div x-show="frametech === 'default'">
+<div role="tabpanel" x-show="frametech === 'default'" :aria-hidden="frametech === 'default'" class="{{ partial "codetabs/tab-styles" }} {{ partial "codetabs/tab-children-styles" }}">
 
 ```yaml {location=".platform.app.yaml"}
 # The name of the app. Must be unique within a project.
@@ -135,7 +145,7 @@ You may need to adapt the start command to fit your app.
 
 </div>
 
-<div x-show="frametech === 'pipenv'">
+<div role="tabpanel" x-show="frametech === 'pipenv'" :aria-hidden="frametech === 'pipenv'" class="{{ partial "codetabs/tab-styles" }} {{ partial "codetabs/tab-children-styles" }}">
 
 ```yaml {location=".platform.app.yaml"}
 # The name of the app. Must be unique within a project.
@@ -172,7 +182,7 @@ web:
 
 </div>
 
-<div x-show="frametech === 'poetry'">
+<div role="tabpanel" x-show="frametech === 'poetry'" :aria-hidden="frametech === 'poetry'" class="{{ partial "codetabs/tab-styles" }} {{ partial "codetabs/tab-children-styles" }}">
 
 ```yaml {location=".platform.app.yaml"}
 # The name of the app. Must be unique within a project.
@@ -214,31 +224,37 @@ web:
 
 <div x-show="stack === 'nodejs'">
 
-<div class="nav-tabs">
+<ul class="{{ partial "codetabs/tab-control-list-styles" }}">
+  <li class="{{ partial "codetabs/tab-control-tab-styles" }}">
     <a
-      class="nav-link"
-      :class="{ 'active': frametech === 'default' }"
+      class="{{ partial "codetabs/tab-control-link-styles" }}"
+      :class="{ '{{ partial "codetabs/tab-control-link-active-styles" }}': frametech === 'default' }"
       @click="switchFrametech('default')"
     >
         Using npm
     </a>
+  </li>
+  <li class="{{ partial "codetabs/tab-control-tab-styles" }}">
     <a
-      class="nav-link"
-      :class="{ 'active': frametech === 'yarn3' }"
+      class="{{ partial "codetabs/tab-control-link-styles" }}"
+      :class="{ '{{ partial "codetabs/tab-control-link-active-styles" }}': frametech === 'yarn3' }"
       @click="switchFrametech('yarn3')"
     >
         Using yarn 3+
     </a>
+  </li>
+  <li class="{{ partial "codetabs/tab-control-tab-styles" }}">
     <a
-      class="nav-link"
-      :class="{ 'active': frametech === 'yarnOld' }"
+      class="{{ partial "codetabs/tab-control-link-styles" }}"
+      :class="{ '{{ partial "codetabs/tab-control-link-active-styles" }}': frametech === 'yarnOld' }"
       @click="switchFrametech('yarnOld')"
     >
         Using yarn &lt;3
     </a>
-</div>
+  </li>
+</ul>
 
-<div x-show="frametech === 'default'">
+<div role="tabpanel" x-show="frametech === 'default'" :aria-hidden="frametech === 'default'" class="{{ partial "codetabs/tab-styles" }} {{ partial "codetabs/tab-children-styles" }}">
 
 ```yaml {location=".platform.app.yaml"}
 # The name of the app. Must be unique within a project.
@@ -257,7 +273,7 @@ web:
 ```
 </div>
 
-<div x-show="frametech === 'yarn3'">
+<div role="tabpanel" x-show="frametech === 'yarn3'" :aria-hidden="frametech === 'yarn3'" class="{{ partial "codetabs/tab-styles" }} {{ partial "codetabs/tab-children-styles" }}">
 
 ```yaml {location=".platform.app.yaml"}
 # The name of the app. Must be unique within a project.
@@ -281,7 +297,7 @@ web:
 
 </div>
 
-<div x-show="frametech === 'yarnOld'">
+<div role="tabpanel" x-show="frametech === 'yarnOld'" :aria-hidden="frametech === 'yarnOld'" class="{{ partial "codetabs/tab-styles" }} {{ partial "codetabs/tab-children-styles" }}">
 
 ```yaml {location=".platform.app.yaml"}
 # The name of the app. Must be unique within a project.
@@ -338,24 +354,28 @@ You may need to adapt the start command to fit your app.
 
 <div x-show="stack === 'java'">
 
-<div class="nav-tabs">
+<ul class="{{ partial "codetabs/tab-control-list-styles" }}">
+  <li class="{{ partial "codetabs/tab-control-tab-styles" }}">
     <a
-      class="nav-link"
-      :class="{ 'active': frametech === 'default' }"
+      class="{{ partial "codetabs/tab-control-link-styles" }}"
+      :class="{ '{{ partial "codetabs/tab-control-link-active-styles" }}': frametech === 'default' }"
       @click="switchFrametech('default')"
     >
         Using Maven
     </a>
+  </li>
+  <li class="{{ partial "codetabs/tab-control-tab-styles" }}">
     <a
-      class="nav-link"
-      :class="{ 'active': frametech === 'gradle' }"
+      class="{{ partial "codetabs/tab-control-link-styles" }}"
+      :class="{ '{{ partial "codetabs/tab-control-link-active-styles" }}': frametech === 'gradle' }"
       @click="switchFrametech('gradle')"
     >
         Using Gradle
     </a>
-</div>
+  </li>
+</ul>
 
-<div x-show="frametech === 'default'">
+<div role="tabpanel" x-show="frametech === 'default'" :aria-hidden="frametech === 'default'" class="{{ partial "codetabs/tab-styles" }} {{ partial "codetabs/tab-children-styles" }}">
 
 ```yaml {location=".platform.app.yaml"}
 # The name of the app. Must be unique within a project.
@@ -374,7 +394,7 @@ web:
 ```
 </div>
 
-<div x-show="frametech === 'gradle'">
+<div role="tabpanel" x-show="frametech === 'gradle'" :aria-hidden="frametech === 'gradle'" class="{{ partial "codetabs/tab-styles" }} {{ partial "codetabs/tab-children-styles" }}">
 
 ```yaml {location=".platform.app.yaml"}
 # The name of the app. Must be unique within a project.

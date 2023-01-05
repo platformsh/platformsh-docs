@@ -8,24 +8,28 @@ Add something similar to the following to the end of the file you just added:
 
 <div x-show="stack === 'python'">
 
-<div class="nav-tabs">
+<ul class="{{ partial "codetabs/tab-control-list-styles" }}">
+  <li class="{{ partial "codetabs/tab-control-tab-styles" }}">
     <a
-      class="nav-link"
-      :class="{ 'active': frametech === 'default' || frametech === 'pipenv' }"
+      class="{{ partial "codetabs/tab-control-link-styles" }}"
+      :class="{ '{{ partial "codetabs/tab-control-link-active-styles" }}': frametech === 'default' || frametech === 'pipenv' }"
       @click="switchFrametech('pipenv')"
     >
         Using pipenv
     </a>
+  </li>
+  <li class="{{ partial "codetabs/tab-control-tab-styles" }}">
     <a
-      class="nav-link"
-      :class="{ 'active': frametech === 'poetry' }"
+      class="{{ partial "codetabs/tab-control-link-styles" }}"
+      :class="{ '{{ partial "codetabs/tab-control-link-active-styles" }}': frametech === 'poetry' }"
       @click="switchFrametech('poetry')"
     >
         Using poetry
     </a>
-</div>
+  </li>
+</ul>
 
-<div x-show="frametech === 'default' || frametech === 'pipenv'">
+<div role="tabpanel" x-show="frametech === 'default' || frametech === 'pipenv'" :aria-hidden="frametech === 'default' || frametech === 'pipenv'" class="{{ partial "codetabs/tab-styles" }} {{ partial "codetabs/tab-children-styles" }}">
 
 ```yaml {location=".platform.app.yaml"}
 hooks:
@@ -34,7 +38,7 @@ hooks:
 
 </div>
 
-<div x-show="frametech === 'poetry'">
+<div role="tabpanel" x-show="frametech === 'poetry'" :aria-hidden="frametech === 'poetry'" class="{{ partial "codetabs/tab-styles" }} {{ partial "codetabs/tab-children-styles" }}">
 
 ```yaml {location=".platform.app.yaml"}
 hooks:
@@ -57,31 +61,37 @@ hooks:
 
 (This assumes you have your build process as part of a `build` script in your `package.json`)
 
-<div class="nav-tabs">
+<ul class="{{ partial "codetabs/tab-control-list-styles" }}">
+  <li class="{{ partial "codetabs/tab-control-tab-styles" }}">
     <a
-      class="nav-link"
-      :class="{ 'active': frametech === 'default' }"
+      class="{{ partial "codetabs/tab-control-link-styles" }}"
+      :class="{ '{{ partial "codetabs/tab-control-link-active-styles" }}': frametech === 'default' }"
       @click="switchFrametech('default')"
     >
         Using npm
     </a>
+  </li>
+  <li class="{{ partial "codetabs/tab-control-tab-styles" }}">
     <a
-      class="nav-link"
-      :class="{ 'active': frametech === 'yarn3' }"
+      class="{{ partial "codetabs/tab-control-link-styles" }}"
+      :class="{ '{{ partial "codetabs/tab-control-link-active-styles" }}':frametech === 'yarn3' }"
       @click="switchFrametech('yarn3')"
     >
         Using yarn 3+
     </a>
+  </li>
+  <li class="{{ partial "codetabs/tab-control-tab-styles" }}">
     <a
-      class="nav-link"
-      :class="{ 'active': frametech === 'yarnOld' }"
+      class="{{ partial "codetabs/tab-control-link-styles" }}"
+      :class="{ '{{ partial "codetabs/tab-control-link-active-styles" }}': frametech === 'yarnOld' }"
       @click="switchFrametech('yarnOld')"
     >
         Using yarn &lt;3
     </a>
-</div>
+  </li>
+</ul>
 
-<div x-show="frametech === 'default'">
+<div role="tabpanel" x-show="frametech === 'default'" :aria-hidden="frametech === 'default'" class="{{ partial "codetabs/tab-styles" }} {{ partial "codetabs/tab-children-styles" }}">
 
 ```yaml {location=".platform.app.yaml"}
 hooks:
@@ -90,7 +100,7 @@ hooks:
 
 </div>
 
-<div x-show="frametech === 'yarn3'">
+<div role="tabpanel" x-show="frametech === 'yarn3'" :aria-hidden="frametech === 'yarn3'" class="{{ partial "codetabs/tab-styles" }} {{ partial "codetabs/tab-children-styles" }}">
 
 ```yaml {location=".platform.app.yaml"}
 hooks:
@@ -103,7 +113,7 @@ hooks:
 
 </div>
 
-<div x-show="frametech === 'yarnOld'">
+<div role="tabpanel" x-show="frametech === 'yarnOld'" :aria-hidden="frametech === 'yarnOld'" class="{{ partial "codetabs/tab-styles" }} {{ partial "codetabs/tab-children-styles" }}">
 
 ```yaml {location=".platform.app.yaml"}
 hooks:
@@ -130,24 +140,28 @@ hooks:
 
 <div x-show="stack === 'java'">
 
-<div class="nav-tabs">
+<ul class="{{ partial "codetabs/tab-control-list-styles" }}">
+  <li class="{{ partial "codetabs/tab-control-tab-styles" }}">
     <a
-      class="nav-link"
-      :class="{ 'active': frametech === 'default' }"
+      class="{{ partial "codetabs/tab-control-link-styles" }}"
+      :class="{ '{{ partial "codetabs/tab-control-link-active-styles" }}': frametech === 'default' }"
       @click="switchFrametech('default')"
     >
         Using Maven
     </a>
+  </li>
+  <li class="{{ partial "codetabs/tab-control-tab-styles" }}">
     <a
-      class="nav-link"
-      :class="{ 'active': frametech === 'gradle' }"
+      class="{{ partial "codetabs/tab-control-link-styles" }}"
+      :class="{ '{{ partial "codetabs/tab-control-link-active-styles" }}':frametech === 'gradle' }"
       @click="switchFrametech('gradle')"
     >
         Using Gradle
     </a>
-</div>
+  </li>
+</ul>
 
-<div x-show="frametech === 'default'">
+<div role="tabpanel" x-show="frametech === 'default'" :aria-hidden="frametech === 'default'" class="{{ partial "codetabs/tab-styles" }} {{ partial "codetabs/tab-children-styles" }}">
 
 ```yaml {location=".platform.app.yaml"}
 hooks:
@@ -156,7 +170,7 @@ hooks:
 
 </div>
 
-<div x-show="frametech === 'gradle'">
+<div role="tabpanel" x-show="frametech === 'gradle'" :aria-hidden="frametech === 'gradle'" class="{{ partial "codetabs/tab-styles" }} {{ partial "codetabs/tab-children-styles" }}">
 
 Assuming you've committed Gradle to your repository.
 

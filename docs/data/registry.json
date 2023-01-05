@@ -805,17 +805,18 @@
     "type": "postgresql",
     "versions": {
       "deprecated": [
+        "10",
         "9.6",
         "9.5",
         "9.4",
         "9.3"
       ],
       "supported": [
+        "15",
         "14",
         "13",
         "12",
-        "11",
-        "10"
+        "11"
       ]
     },
     "versions-dedicated-gen-2": {
