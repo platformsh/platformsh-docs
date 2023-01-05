@@ -129,7 +129,7 @@ To configure your domain name to point to your project:
 3. Set the TTL on your domain to the lowest possible value to minimize transition time.
 4. Add a `CNAME` record pointing from your domain to the [target](#2-get-the-target-for-your-project).
    Not all registrars allow these kinds of records.
-   If yours doesn't, see the [alternatives](./dns.md#handling-apex-domains).
+   If yours doesn't, see the [alternatives](./dns.md#workarounds-for-apex-domains).
 5. Optional: If you have multiple domains you want to be served by the same app, add a `CNAME` record for each of them.
    That includes the `www` subdomain if you are using it in your [routes configuration](../../define-routes/_index.md).
 6. Set the TTL value back to its previous value.

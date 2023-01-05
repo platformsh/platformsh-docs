@@ -7,7 +7,7 @@ aliases:
   - "/golive/steps/cloudflare.html"
 ---
 
-Verify your registrar supports [`CNAME` records for apex domains](../steps/dns.md#handling-apex-domains).
+Verify your registrar supports [`CNAME` records for apex domains](../steps/dns.md#workarounds-for-apex-domains).
 This solves the problem of being able to point an apex domain such as `example.com`
 to a domain name (using a `CNAME` record) rather than an IP address (using an A record).
 CloudFlare offers [`CNAME` flattening as an alternative](https://blog.cloudflare.com/introducing-cname-flattening-rfc-compliant-cnames-at-a-domains-root/).

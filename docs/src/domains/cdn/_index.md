@@ -21,7 +21,7 @@ Our recommended CDN provider is [Fastly](./fastly.md).
 The distributed nature of most CDNs means that for proper functioning,
 any domains that you intend to make use of the CDN are required to use `CNAME` records for DNS entries.
 Not all DNS registrars support pointing from an apex domain such as `example.com` to a hostname with a `CNAME` record.
-Ideally, your registrar supports [`CNAME` records for apex domains](../steps/dns.md#handling-apex-domains).
+Ideally, your registrar supports [`CNAME` records for apex domains](../steps/dns.md#workarounds-for-apex-domains).
 
 CDNs have different methods to overcome this issue.
 CloudFlare uses [`CNAME` flattening](https://blog.cloudflare.com/introducing-cname-flattening-rfc-compliant-cnames-at-a-domains-root/).
