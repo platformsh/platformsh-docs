@@ -22,6 +22,9 @@
           sans: ["Overpass", "Helvetica Neue", "Helvetica", "Arial", "sans-serif"],
           mono: ["SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"]
         },
+        spacing: {
+          "fullv": "calc(100vh - 6rem)",
+        },
         typography: ({ theme }) => ({
           DEFAULT: {
             css: {
@@ -94,7 +97,9 @@
                 marginTop: '0',
               },
               table: {
-                tableLayout: 'fixed',
+                position: 'relative',
+                zIndex: '10',
+                backgroundColor: theme('colors.snow'),
               },
               tbody: {
                 'td:first-child': {
@@ -115,12 +120,13 @@
                 },
               },
               thead: {
+                position: 'sticky',
+                top: '6rem',
                 'th:first-child': {
                   paddingLeft: '0.5rem',
                 },
-                tr: {
-                  position: 'sticky',
-                  top: '6rem',
+                'th:last-child': {
+                  paddingRight: '0.5rem',
                 },
               },
               var: {

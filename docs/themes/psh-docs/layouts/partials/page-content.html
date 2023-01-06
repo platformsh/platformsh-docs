@@ -11,10 +11,10 @@
 
 <div class="grid md:grid-cols-80-20 md:gap-4">
 
-  <div class="md:order-2 md:top-24 md:sticky max-h-fullv overflow-y-scroll">
+  <div class="max-w-[92vw] md:max-w-none md:order-2 md:top-24 md:sticky md:max-h-fullv md:overflow-y-scroll border-t border-stone">
     <!-- Table of contents -->
     {{ if and (ne .context.Params.toc false) (ne .context.TableOfContents "<nav id=\"TableOfContents\"></nav>") }}
-      <div class="border border-stone px-6 pt-1 pb-4 text-sm [&_a]:text-skye-dark hover:[&_a]:underline focus:[&_a]:underline [&_ul_ul]:pl-4">
+      <div class="border border-stone border-t-0 px-6 pt-1 pb-4 mb-8 md:mb-0 text-sm [&_a]:text-skye-dark hover:[&_a]:underline focus:[&_a]:underline [&_ul_ul]:pl-4">
         <h3 class="pt-4 pb-2 font-light text-base text-slate">On this page</h3>
         {{ .context.TableOfContents }}
       </div>
@@ -26,7 +26,7 @@
     </div>
   </div>
 
-  <div class="prose xl:prose-lg max-w-none prose-code:!mb-0 prose-h2:text-xl prose-h3:text-xl prose-h4:text-lg">
+  <div class="prose xl:prose-lg max-w-[96vw] md:max-w-none prose-code:!mb-0 prose-h2:text-xl prose-h3:text-xl prose-h4:text-lg">
     <!-- Add the stack picker for Get started section -->
     {{ if and ( eq .context.Section "get-started" ) ( ne .context.Title "Introduction" ) }}
       {{ partial "get-started/stack-picker" }}
