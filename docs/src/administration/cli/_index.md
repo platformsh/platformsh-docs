@@ -13,7 +13,7 @@ keywords:
 {{% description %}}
 
 The CLI uses the git interface and the [Platform.sh REST API](https://api.platform.sh/docs/) to accomplish tasks.
-Its source code is hosted on [GitHub](https://github.com/platformsh/platformsh-cli).
+Its source code is hosted on [GitHub](https://github.com/platformsh/cli).
 
 ## 1. Install
 
@@ -152,9 +152,9 @@ The code is only merged between environments remotely.
 
 ### Customize the CLI
 
-You can customize how the CLI operates and what it returns with a configuration file (`.platform/local/project.yaml`)
+You can customize how the CLI operates and what it returns with a configuration file (`~/.platformsh/config.yaml`)
 or environment variables.
-For details, see the [customization instructions on GitHub](https://github.com/platformsh/platformsh-cli#user-content-customization).
+For details, see the [customization instructions on GitHub](https://github.com/platformsh/legacy-cli#user-content-customization).
 
 #### Automate repetitive tasks
 
