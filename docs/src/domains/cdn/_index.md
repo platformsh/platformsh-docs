@@ -23,42 +23,9 @@ create `CNAME` records for your domain names through your DNS provider.
 For more information, see you DNS provider's official documentation.
 
 Note that `CNAME` records can't point to apex domains,
-but most CDN providers offer [workarounds](../steps/dns.md#handling-apex-domains).
-
-## DDoS protection
-
-In a distributed denial of service (DDoS) attack, 
-an attacker floods a server with fake requests.
-The resources hosted by that server become inaccessible to real users.
-
-All sites hosted by Platform.sh live on infrastructure provided by major cloud providers.
-By default, you benefit from the powerful DDoS protection services these cloud providers offer.
-In most cases, these protection services are enough to keep your site safe from DDoS attacks,
-including when you use a CDN.
-
-Enterprise and Elite projects on Platform.sh also include a [web application firewall (WAF)](../../security/waf.md). 
-Depending on your needs, you can install your own WAF and add security measures not included in your plan.  
-
-## Third-party TLS certificates
-
-Dedicated plans include two [transport layer security (TLS) certificates](../../other/glossary.md#transport-layer-security-tls), 
-an apex and a wildcard one.
-This allows for encryption of all traffic between your users and your app. 
-
-If you want to, you can also provide your own third-party TLS certificate.
-[Transfer your certificate](../../development/file-transfer.md), 
-its unencrypted private key and the intermediate certificate to a non-web accessible [mount](../../create-apps/app-reference.md#mounts), 
-on an environment that only Platform.sh support and trusted users can access.
-In this way, your private key can't be compromised.
-To add the TLS certificate to your CDN configuration, 
-[create a support ticket](../../overview/get-support.md#create-a-support-ticket).
-
-Note that when you add your own third-party TLS certificate,
-you are responsible for renewing them in due time.
-Failure to do so may result in outages and compromised security for your site.
-
-If you need an Extended Validation TLS certificate, you can get it from any TLS provider. 
-To add it to your CDN configuration, [create a support ticket](../../overview/get-support.md#create-a-support-ticket).
+but most CDN providers offer workarounds.
+For example, Fastly offers [Anycast options](https://docs.fastly.com/en/guides/using-fastly-with-apex-domains) 
+and Cloudflare offers [`CNAME` flattening](https://blog.cloudflare.com/introducing-cname-flattening-rfc-compliant-cnames-at-a-domains-root/).
 
 ## Host header forwarding
 
@@ -67,10 +34,10 @@ The value of this header is the domain name the request is made to.
 When a server hosts multiple websites, like what a CDN does,
 it can use the `Host` header to identify which domain to access to handle the request.
 
-When a request is made from a client for an object on a CDN edge server, 
+When a request is made from a client to fetch a resource on a CDN edge server, 
 the `Host` header value is rewritten to point to the CDN. 
-If the object isn't cached on the edge server, 
-the edge server makes a request to the Platform.sh server to pull and cache the object.
+If the requested resource isn't cached on the edge server, 
+the edge server makes a request to the Platform.sh server to pull and cache the resource.
 
 For this process to be successful, 
 set an `X-Forwarded-Host` header to forward the original `Host` header value to the Platform.sh server.
@@ -98,11 +65,7 @@ To disable it, change your cache configuration for the routes behind a CDN to th
  
 ## Prevent direct access to your Platform.sh server
  
-When you use a CDN, there are three ways to prevent direct access to your Platform.sh server:
- 
-- HTTP basic authentication
-- Allowing and denying IP addresses
-- Client-authenticated TLS
+When you use a CDN, you might want to prevent direct access to your Platform.sh server for security purposes.
  
 ### HTTP basic authentication
  
