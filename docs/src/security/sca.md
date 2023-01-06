@@ -12,6 +12,6 @@ The article states:
 
 > Payment service providers shall apply strong customer authentication when a payer creates, amends, or initiates for the first time, a series of recurring transactions with the same amount and with the same payee.
 
-SCA is part of the [Revised Payment Services Directive](https://ec.europa.eu/info/law/payment-services-psd-2-directive-eu-2015-2366_en), acting as a regulatory requirement to reduce fraud and to make online transactions more secure.
+SCA is part of the [Revised Payment Services Directive](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex%3A32015L2366), acting as a regulatory requirement to reduce fraud and to make online transactions more secure.
 
 The law went into effect September 14, 2019, and European card holders have been required since October 1, 2019 to authenticate recurring payments with their payment institutions.
