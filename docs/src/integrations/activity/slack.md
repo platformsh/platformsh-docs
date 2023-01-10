@@ -70,7 +70,5 @@ sendSlackMessage(activity.text, activity.log);
 
 Common properties you may want to send to Slack (in the last line of the script) include:
 
-- `activity.text`: A brief, one-line statement of what happened.
-- `activity.log`: The complete build and deploy log output, as it would be seen in the Console log screen.
-
-For more properties, see the [activity reference](./reference.md).
+* `activity.text`: A brief, one-line statement of what happened.
+* `activity.log`: The complete build and deploy log output, as it would be seen in the Console log screen.
