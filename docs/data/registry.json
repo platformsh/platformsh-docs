@@ -1082,6 +1082,7 @@
         "3.6"
       ],
       "supported": [
+        "9.1",
         "8.11"
       ]
     },
@@ -1100,6 +1101,7 @@
     },
     "versions-dedicated-gen-3": {
       "supported": [
+        "9.1",
         "8.11"
       ],
       "deprecated": [
