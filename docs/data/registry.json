@@ -831,13 +831,15 @@
       ]
     },
     "versions-dedicated-gen-3": {
-      "deprecated": [],
+      "deprecated": [
+        "10"
+      ],
       "supported": [
+        "15",
         "14",
         "13",
         "12",
-        "11",
-        "10"
+        "11"
       ]
     }
   },
