@@ -135,7 +135,7 @@ https://{default}/:
       # Deprecate Hugo aliases
       "/guides/general/mysql-replication.html":  { "to": "/add-services/mysql/mysql-replication.html", "code": 301 }
       "/dedicated.html":  { "to": "/dedicated-gen-2.html", "code": 301 }
-      "/dedicated/(.*)":  { "to": "/dedicated-gen-2/$1", "code": 301, "regexp": true }
+      "/dedicated/(.*).html":  { "to": "/dedicated-gen-2/$1.html", "code": 301, "regexp": true }
       "/guides/general/deploy-button.html":  { "to": "/development/deploy-button.html", "code": 301 }
       "/frameworks/deploy-button.html":  { "to": "/development/deploy-button.html", "code": 301 }
       "/development/public-ips.html":  { "to": "/development/regions.html", "code": 301 }

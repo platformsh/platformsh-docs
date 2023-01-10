@@ -25,7 +25,7 @@ add the project's public SSH key to your Git repository's deploy keys.
 
 * [GitHub deploy key](https://docs.github.com/en/developers/overview/managing-deploy-keys#deploy-keys) 
 * [GitLab deploy key](https://docs.gitlab.com/ee/user/project/deploy_keys/#grant-project-access-to-a-public-deploy-key)
-* [Bitbucket access key](https://support.atlassian.com/bitbucket-cloud/docs/add-access-keys/#Step-3.-Add-the-public-key-to-your-repository)
+* [Bitbucket access key](https://support.atlassian.com/bitbucket-cloud/docs/configure-repository-settings/)
 
 If you're only pulling code, the key doesn't need write permissions.
 
