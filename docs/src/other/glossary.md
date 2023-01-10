@@ -153,7 +153,7 @@ The best example is Platform.sh (although we're a little biased).
 ## Production plan
 
 A subscription level that allows you to host your production website
-by adding a domain and a custom SSL certificate.
+by adding a domain and [a custom SSL certificate](../domains/steps/tls.md).
 
 ## Sync
 

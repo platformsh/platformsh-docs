@@ -9,19 +9,15 @@ sidebarTitle: "Custom TLS certificates"
 A custom certificate isn't necessary for development environments.
 Platform.sh automatically provides wildcard certificates that cover all `*.platform.sh` domains, including development environments.
 
-Platform.sh doesn't charge for using a third-party TLS certificate, although the issuer may.
-Consult your TLS issuer for instructions on how to generate an TLS certificate.
+Platform.sh doesn't charge for using a third-party TLS certificate.
+Consult your TLS issuer for pricing and instructions on how to generate an TLS certificate.
 
 If you want to use a third-party certificate, ensure it's purchased and active before going live.
-The main reasons to use a third-party issuer rather than the default certificate include
-using extended validation or high-assurance certificates.
 
-In addition to these, you can use many other kinds of certificates, including domain-validated, and wildcard certificates.
+You can use many kinds of custom certificates, including domain-validated, extended validation, high-assurance, or wildcard certificates.
 
-If you are using a third-party certificate, seven days before it expires
-Platform.sh issues a Let's Encrypt certificate and replaces the custom certificate with it to avoid interruption in service.
-If you wish to continue using the custom certificate,
-replace it with an updated certificate more than seven days before it expires.
+If you are using a third-party custom certificate, seven days before it expires Platform.sh issues a Let’s Encrypt certificate to replace the custom certificate and avoid downtime.
+If you wish to continue using the custom certificate, replace it with an updated certificate more than seven days before it expires.
 
 ### Add a custom certificate
 

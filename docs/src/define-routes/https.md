@@ -2,29 +2,19 @@
 title: HTTPS
 ---
 
-## Let's Encrypt
-
 {{% tls-introduction %}}
-
-See how to add a [third-party TLS certificate to your site](../domains/steps/tls.md).
 
 The default Let’s Encrypt TLS Certificates are:
 
 - valid for 90 days
 - automatically renewed 28 days before expiration
 
-If a renewal is available and needed, the environment is automatically redeployed to renew the certificate.
-As no code changes are made, the build image is reused and build books are not run.
-The deploy and post-deploy hook are run during this process.
-During the redeploy, security and system upgrades are automatically applied to your containers when required.
-That means that most of the time renewals take a few seconds *unless* upgrades are available for your containers.
-In those cases, containers are rebooted and the process takes longer.
+When a new certificate is required, your environment is automatically redeployed to renew the certificate.
+During the redeployment, if required security and system upgrades are applied to your containers and only [the `deploy` and `post-deploy` hooks are run](../create-apps/hooks/hooks-comparison.md).
+Certificate renewals take a few seconds *unless* upgrades are available for your containers.
+In this case, containers are rebooted and the process takes longer.
 
-{{< note >}}
-TLS certificates are often still called SSL certificates.
-TLS is a newer encryption system that has replaced SSL, but the name SSL is still widely recognized.
-In practice, they mean the same thing today, but TLS is the more correct term.
-{{</ note >}}
+If you don't want to use Let's Encrypt, or prefer to use your own certificate, see how to add a [third-party TLS certificate to your site](../domains/steps/tls.md).
 
 ### Limits
 
@@ -48,8 +38,7 @@ To serve all pages over TLS and automatically redirect any requests from HTTP to
     to: "https://{default}/"
 ```
 
-Specifying only HTTP routes results in duplicate HTTPS routes being created automatically,
-allowing the site to be served from both HTTP and HTTPS without redirects.
+All traffic to your domain is sent to your app. The `www` subdomain redirects to the default domain. This also includes redirecting requests from http to https. It affects your [default domain](../define-routes/_index.md#default).
 
 [See more example on routes configuration](../define-routes/_index.md).
 
@@ -78,6 +67,9 @@ The use cases for this configuration are few.
     type: redirect
     to: "http://{default}/"
 ```
+
+Specifying only HTTP routes results in duplicate HTTPS routes being created automatically,
+allowing the site to be served from both HTTP and HTTPS without redirects.
 
 More complex routing logic is also possible if the situation calls for it.
 
@@ -144,7 +136,7 @@ Note: If multiple routes for the same domain specify different HSTS settings, th
 Specifically, if any route on the domain has `strict_transport_security.enabled` set to `false`, HSTS is disabled for the whole domain.
 Otherwise, it's enabled for the whole domain if at least one such route has `enabled` set to `true`.
 As this logic may be tricky to configure correctly,
-it's strongly recommend to pick a single configuration for the whole domain and adding it on only a single route.
+it's strongly recommended to pick a single configuration for the whole domain and adding it on only a single route.
 
 ### Client authenticated TLS
 
@@ -188,95 +180,4 @@ tls:
 
 ## Troubleshooting
 
-For easier troubleshooting, feel free to use [the certificate checker tool](https://certcheck.pltfrm.sh/).
-This tool assists in finding out where your domain is pointing to and provides some generic guidance.
-It also assists when a CDN (Fastly, Cloudflare, ...) is used.
-It's good practice to check both the apex and the `www` domain to ensure that both point to the cluster.
-
-### Error provisioning certificates
-
-You may encounter Let's Encrypt certificates failing to provision after the build hook has completed:
-
-```bash
-Provisioning certificates
-  Validating 1 new domain
-  E: Error provisioning the new certificate, will retry in the background.
-  (Next refresh will be at 2022-02-13 14:29:22.860563+00:00.)
-  Environment certificates
-W: Missing certificate for domain a-new-and-really-awesome-feature-abc1234-defghijk56789.eu3.platformsh.site
-```
-
-The renewal may fail because of the 64 character limit Let's Encrypt places on URLs.
-If you have a branch with a long name, the environment URL is over this limit and the certificate is rejected.
-Shortening the branch name to fewer than 20 characters should solve the issue.
-
-Generated URLs have the following pattern:
-
-```bash
-<PLATFORM_ENVIRONMENT>-<PLATFORM_PROJECT>.<REGION>.platformsh.site
-```
-
-If you have a default domain and include it as an absolute URL, it's added to the start of your URL.
-See [URLs in non-Production environments](./_index.md#urls-in-non-production-environments).
-
-```bash
-<DEFAULT_DOMAIN>.<PLATFORM_ENVIRONMENT>-<PLATFORM_PROJECT>.<REGION>.platformsh.site
-```
-
-- `DEFAULT_DOMAIN` = however many characters your default domain is
-- `PLATFORM_ENVIRONMENT` = `PLATFORM_BRANCH` + 7 character hash
-- `PLATFORM_PROJECT` = 13 characters
-- `REGION` = 2 to 4 characters, depending on the region
-- `platformsh.site` = 15 characters
-- extra characters (`.` & `-`) = 4 to 5 characters, depending on if you have a default domain
-
-This leaves you with 21 to 23 characters for your branch name (`PLATFORM_BRANCH`) without going over the 64 character limit,
-depending on the region.
-Since this pattern for generated URLs should remain similar even if it may change slightly,
-your branch names should be no more than 20 characters.
-
-### DNS challenge
-
-To provide a valid SSL certificate,
-Let's Encrypt checks that the requester is entitled to receive the SSL certificate it asked for.
-It verifies ownership through a _challenge_.
-For Platform.sh projects, it involves a [HTTP-01 challenge](https://letsencrypt.org/docs/challenge-types/#http-01-challenge).
-
-If you include them in your [routes definition](./_index.md),
-Platform.sh checks that both the `example.com` and `www.example.com` domains are pointing to your project.
-The certificate also encompasses both these domains.
-See more information about [custom domains](../domains/steps/_index.md).
-
-Sometimes, that verification fails, which results in the following error-message:
-`Couldn't complete challenge HTTP01: pending`
-
-For the DNS challenge to work, your domains and subdomains should point directly to Platform.sh
-(unless you're using a [CDN](../domains/cdn/_index.md)).
-Otherwise, you see the following error:
-
-```text
-  E: Error validating domain www.example.com: Couldn't complete challenge HTTP01: pending
-  Unable to validate domains www.example.com, will retry in the background.
-```
-
-or
-
-```text
-  W: Failed to verify the challenge at the gateway for the domain 'www.example.com'
-  E: Error validating domain www.example.com: Couldn't complete challenge [HTTP01: There was a problem with a DNS query during identifier validation]
-```
-
-Make sure that both the apex domain and it's `www` subdomain are both pointing to Platform.sh.
-If you're adding a new domain, make sure to set your time to live (TTL) to a low value such as `60`.
-DNS changes can take up to 72 hours to be taken into account.
-See more information about [custom domains](../domains/steps/_index.md).
-
-If you have waited 72 hours, properly configured the subdomain, and are still seeing an error of this type,
-try [redeploying the environment](../development/troubleshoot.md#force-a-redeploy).
-
-Also make sure that no conflicting DNS records exist for the domain.
-For example, a conflicting AAAA (IPv6) DNS record usually results in a `[HTTP01: The client lacks sufficient authorization]` error.
-
-If the certificate generation issue persists,
-you could also verify if an outage is currently ongoing on [with Let's Encrypt](https://letsencrypt.status.io/).
-If that isn't the case, please open a support ticket.
+See the [SSL troubleshooting page](../domains/troubleshoot.md#verify-ssl).
