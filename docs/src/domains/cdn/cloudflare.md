@@ -1,7 +1,7 @@
 ---
-title: "Configure your Cloudflare CDN"
-weight: 2
-sidebarTitle: "Cloudflare"
+title: "Set up your Cloudflare CDN"
+weight: 3
+sidebarTitle: "Cloudflare setup"
 description: Learn how to configure your Cloudflare CDN.
 ---
 

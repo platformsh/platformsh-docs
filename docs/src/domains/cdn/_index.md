@@ -16,7 +16,7 @@ Fastly is the recommended CDN for Platform.sh projects.
 By default, Dedicated projects include a [Fastly](./fastly.md) CDN managed by Platform.sh.
 Self-service Grid plans don't include a CDN by default, but you can set up one at any time.
 
-## CNAME records
+## `CNAME` records
 
 To start routing client traffic through your CDN,
 create `CNAME` records for your domain names through your DNS provider.
@@ -24,12 +24,12 @@ For more information, see you DNS provider's official documentation.
 
 Note that `CNAME` records can't point to apex domains,
 but most CDN providers offer workarounds.
-For example, Fastly offers [Anycast options](https://docs.fastly.com/en/guides/using-fastly-with-apex-domains) 
-and Cloudflare offers [`CNAME` flattening](https://blog.cloudflare.com/introducing-cname-flattening-rfc-compliant-cnames-at-a-domains-root/).
+For example, Fastly offers [Anycast options](./fastly.md#3-handle-apex-domains) 
+and Cloudflare offers [`CNAME` flattening](./cloudflare.md#3-handle-apex-domains).
 
 ## Host header forwarding
 
-When a HTTP request is made to a website, the client adds a `Host` header to the request. 
+When an HTTP request is made to a website, the client adds a `Host` header to the request. 
 The value of this header is the domain name the request is made to. 
 When a server hosts multiple websites, like what a CDN does,
 it can use the `Host` header to identify which domain to access to handle the request.
