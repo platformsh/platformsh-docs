@@ -2,7 +2,7 @@
 title: "DNS management and apex domains"
 weight: 1
 description: See why `CNAME` records are used and how to handle apex domains.
-sidebarTitle: "DNS management and apex domains"
+sidebarTitle: "DNS and apex domains"
 ---
 
 Using `CNAME` records helps [prevent downtime](#cname-records) during maintenance operations.
@@ -43,9 +43,9 @@ Although `CNAME` records can't point to apex domains,
 most DNS providers offer workarounds.
 Contact your DNS provider and choose the option that works for you.
 
-Note that workarounds are also available for use with a CDN.
-For example, [Fastly](../cdn/fastly.md) offers [Anycast options](https://docs.fastly.com/en/guides/using-fastly-with-apex-domains) 
-and [Cloudflare](../cdn/cloudflare.md) offers [`CNAME` flattening options](https://developers.cloudflare.com/dns/additional-options/cname-flattening/).
+If you use a CDN, you likely already have a workaround in place,
+such as with [Fastly](../cdn/fastly.md#3-handle-apex-domains)
+and [Cloudflare](../cdn/cloudflare.md#3-handle-apex-domains).
  
 ### Custom records
 
@@ -101,6 +101,7 @@ Until you do, your site can appear offline because requests are lost.
 To use `A` records, follow these steps:
 
 1.  To get the IP addresses of your project's production environment, run the following command:
+
     ```bash
     dig +short $(platform environment:info edge_hostname)
     ```
