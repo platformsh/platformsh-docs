@@ -271,7 +271,7 @@ you need to provide a [custom TLS certificate](../domains/steps/tls.md).
 In projects created before November 2017, the `.` in subdomains was replaced with a triple hyphen (`---`).
 It was switched to preserve `.` to simplify SSL handling and improve support for longer domains.
 If your project was created before November 2017, it still uses `---` to the left of the environment name.
-If you wish to switch to dotted-domains, please file a support ticket and we can do that for you.
+If you wish to switch to dotted-domains, [contact support](../overview/get-support.md).
 Doing so may change the domain name that your production domain name should `CNAME` to.
 
 {{< /note >}}

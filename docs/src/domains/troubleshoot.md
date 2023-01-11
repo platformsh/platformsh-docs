@@ -109,7 +109,7 @@ Platform.sh checks that all the routes you defined are pointing to your project,
 Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]
 ```
 
-For the DNS challenge to complete, domains and subdomains must point directly to your Platform.sh project (unless using a [CDN](../domains/cdn/_index.md)).
+For the DNS challenge to complete, domains, and subdomains must point directly to your Platform.sh project (unless using a [CDN](../domains/cdn/_index.md)).
 Otherwise, you see the following error:
 
 ```text

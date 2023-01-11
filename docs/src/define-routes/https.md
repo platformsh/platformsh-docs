@@ -115,7 +115,7 @@ tls:
         preload: true
 ```
 
-There are three sub-properties for the `strict_transport_security` property:
+The sub-properties of `strict_transport_security` are:
 
 - `enabled`: Can be `true`, `false`, or `null`.
   Defaults to `null`.
@@ -127,7 +127,7 @@ There are three sub-properties for the `strict_transport_security` property:
   Defaults to `false`.
   If `true`, Google and others may add your site to a lookup reference of sites that should only ever be connected to over HTTPS.
   Many, although not all, browsers consult this list before connecting to a site over HTTP and switch to HTTPS if instructed.
-  Although not part of the HSTS specification, it is supported by most browsers.
+  Although not part of the HSTS specification, it's supported by most browsers.
 
 If enabled, the `Strict-Transport-Security` header is always be sent with a lifetime of 1 year.
 The [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) has more detailed information on HSTS.

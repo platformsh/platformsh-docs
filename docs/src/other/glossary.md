@@ -172,4 +172,4 @@ It's good practice to take a backup of your environment before synchronizing it.
 TLS is the successor of Secure Socket Layer (SSL).
 It provides the cryptographic "S" in HTTPS.
 It's often still referred to as SSL
-even though it has largely replaced SSL for online encrypted connections.
+even though it has mostly replaced SSL for online encrypted connections.
