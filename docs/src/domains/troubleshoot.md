@@ -38,7 +38,7 @@ If it isn't, try the following steps:
 For troubleshooting, feel free to use [the certificate checker tool](https://certcheck.pltfrm.sh/).
 This tool assists in finding out where your domain is pointing to and provides some generic guidance.
 It also assists when a CDN (Fastly, Cloudflare, ...) is used.
-It's good practice to check both the apex and the `www` domain to ensure that both point to the cluster.
+It's good practice to check both the apex and the `www` domain to ensure that both point to your project.
 
 For more in-depth investigations, on the command line using macOS, Linux, or the Windows Subsystem for Linux, run the following command:
 
@@ -48,7 +48,7 @@ curl -I -v  https://www.{{< variable "YOUR_DOMAIN" >}}
 
 The response should be long. Look for error messages.
 They're usually explicit enough.
-Often the problem is with a mismatch between the certificate and the domain name or an expired [custom certificate](steps/tls.md).
+Often the problem is caused by a mismatch between the certificate and the domain name or an expired [custom certificate](steps/tls.md).
 
 ### Error provisioning certificates
 
@@ -63,30 +63,32 @@ Provisioning certificates
 W: Missing certificate for domain a-new-and-really-awesome-feature-abc1234-defghijk56789.eu3.platformsh.site
 ```
 
-The renewal may fail because of the 64 character limit Let's Encrypt places on URLs.
+The renewal may fail because of the 64-character limit Let's Encrypt places on URLs.
 If you have a branch with a long name, the environment URL is over this limit and the certificate is rejected.
 Shortening the branch name to fewer than 20 characters should solve the issue.
 
-Generated URLs have the following pattern:
+Generated URLs for environments have the following pattern:
 
 ```bash
 {{<variable "ENVIRONMENT" >}}-{{<variable "PROJECT_ID" >}}.{{<variable "REGION" >}}.platformsh.site
 ```
 
-If you have a default domain and include it as an absolute URL, it's added to the start of your URL.
+If you have a [default domain](../define-routes/_index.md#default) set up, the generated URL has the following pattern:
 
 ```bash
-{{<variable "DEFAULT_DOMAIN" >}}.{{<variable "ENVIRONMENT" >}}-{{<variable "PROJECT_ID" >}}.{{<variable "REGION" >}}.platformsh.site
+{{<variable "YOUR_DOMAIN" >}}.{{<variable "ENVIRONMENT" >}}-{{<variable "PROJECT_ID" >}}.{{<variable "REGION" >}}.platformsh.site
 ```
 
-- `{{<variable "DEFAULT_DOMAIN" >}}` = however many characters your default domain is
+The generated URLs consist of:
+
+- `{{<variable "YOUR_DOMAIN" >}}` = the amount of characters your domain has
 - `{{<variable "ENVIRONMENT" >}}` = `{{<variable "BRANCH_NAME" >}}` + 7 character hash
 - `{{<variable "PROJECT_ID" >}}` = 13 characters
 - `{{<variable "REGION" >}}` = 2 to 4 characters, depending on the region
 - `platformsh.site` = 15 characters
-- extra characters (`.` & `-`) = 4 to 5 characters, depending on if you have a default domain
+- extra characters like `.` and `-` = 4 to 5 characters, depending on if you have a default domain
 
-This leaves you with 21 to 23 characters for your branch name (`{{<variable "BRANCH_NAME" >}}`) without going over the 64 character limit,
+This leaves you with 21 to 23 characters for your branch name (`{{<variable "BRANCH_NAME" >}}`) without going over the 64-character limit,
 depending on the region.
 Since this pattern for generated URLs should remain similar even if it may change slightly,
 your branch names should be no more than 20 characters.
@@ -94,38 +96,38 @@ your branch names should be no more than 20 characters.
 ### DNS Challenge
 
 To provide a valid SSL-certificate,
-Let's Encrypt needs to make sure that the requester is entitled to receive the SSL-certificate it asked for
+Let's Encrypt needs to ensure that the requester is entitled to receive the SSL-certificate it asked for
 (usually through the presence of a specific token on the DNS zone of that domain).
 
 This ownership verification is achieved through the so-called [_Challenge_ step](https://letsencrypt.org/docs/challenge-types/).
 
-If you include them in your [routes definition](./_index.md),
-Platform.sh checks that both the `example.platform.sh` and `www.example.platform.sh` domains are pointing to your project.
-The certificate also encompasses both these domains.
-Make sure that both your apex domain and it's `www` subdomain are pointing to your project,
-more information can be found in out go live [step-by-step guide](../domains/steps/_index.md).
+The certificate request is generated based on your [routes definition](../define-routes/_index.md).
+If you want your site to be available with `example.com` and its `www.example.com` subdomain, make sure both are defined in your routes.
+Platform.sh checks that all the routes you defined are pointing to your project, if that's not the case, the verification fails, which results in the following error-message:
 
-Sometimes, that verification fails, which results in the following error-message:
-`Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]`
+```text
+Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]
+```
 
-For the DNS challenge to work, domains and subdomains should point directly to your Platform.sh cluster (unless using a [CDN](../domains/cdn/_index.md)).
+For the DNS challenge to complete, domains and subdomains must point directly to your Platform.sh project (unless using a [CDN](../domains/cdn/_index.md)).
 Otherwise, you see the following error:
 
 ```text
-  E: Error validating domain www.some-example.platform.sh: Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]
-  Unable to validate domains www.some-example.platform.sh, will retry in the background.
+  E: Error validating domain www.example.com: Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]
+  Unable to validate domains www.example.com, will retry in the background.
 ```
 
 or
 
 ```text
-  W: Failed to verify the challenge at the gateway for the domain 'www.some-example.platform.sh'
-  E: Error validating domain www.some-example.platform.sh: Couldn't complete challenge [HTTP01: There was a problem with a DNS query during identifier validation]
+  W: Failed to verify the challenge at the gateway for the domain 'www.some-example.example.com'
+  E: Error validating domain www.example.com: Couldn't complete challenge [HTTP01: There was a problem with a DNS query during identifier validation]
 ```
 
-Make sure that both the apex domain and it's `www` subdomain are both pointing to the cluster.
+Make sure that the [apex domain](../other/glossary.md#apex-domain) and its `www` subdomain are both pointing to your project.
 Note that it can take anywhere from 15 minutes to 72 hours for DNS changes to be taken into account.
 See the [step-by-step guide](../domains/steps/_index.md) for more information.
+
 If you have waited a couple of hours, properly configured the subdomain, and are still seeing an error of this type,
 [redeploying](../development/troubleshoot.md#force-a-redeploy) the impacted environment usually solves the issue.
 

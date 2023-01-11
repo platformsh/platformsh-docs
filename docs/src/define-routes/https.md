@@ -38,7 +38,7 @@ To serve all pages over TLS and automatically redirect any requests from HTTP to
     to: "https://{default}/"
 ```
 
-All traffic to your domain is sent to your app. The `www` subdomain redirects to the default domain. This also includes redirecting requests from http to https. It affects your [default domain](../define-routes/_index.md#default).
+All traffic to your domain is sent to your app. The `www` subdomain redirects to the default domain. This also includes redirecting requests from HTTP to HTTPS. It affects your [default domain](../define-routes/_index.md#default).
 
 [See more example on routes configuration](../define-routes/_index.md).
 
@@ -125,7 +125,7 @@ There are three sub-properties for the `strict_transport_security` property:
   If `true`, browsers are instructed to apply HSTS restrictions to all subdomains as well.
 - `preload`: Can be `true` or `false`.
   Defaults to `false`.
-  If `true`, Google and others may add your site to a lookup reference of sites that should only ever be connected to over HTTPS. 
+  If `true`, Google and others may add your site to a lookup reference of sites that should only ever be connected to over HTTPS.
   Many, although not all, browsers consult this list before connecting to a site over HTTP and switch to HTTPS if instructed.
   Although not part of the HSTS specification, it is supported by most browsers.
 
