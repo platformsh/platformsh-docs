@@ -38,10 +38,10 @@
     <!-- If the page is a list page, add section cards -->
     {{ if .isList }}
       {{ range .context.Pages }}
-        <a href="{{ .RelPermalink }}" class="block mb-7 p-8 text-primary-darker border-l-4 border-skye-dark hover:no-underline bg-stone hover:bg-skye-dark hover:text-white focus:bg-skye-dark focus:text-white">
+        <button onclick="location.href = '{{ .RelPermalink }}';" class="block text-left mb-7 p-8 text-primary-darker border-l-4 border-skye-dark hover:no-underline bg-stone hover:bg-skye-dark hover:text-white focus:bg-skye-dark focus:text-white hover:cursor-pointer [&:hover_a]:text-snow [&:focus_a]:text-snow [&:hover_a]:font-extrabold [&:focus_a]:font-extrabold">
           <span class="block font-bold mb-4">{{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle | .RenderString }}{{ else }}{{ .Title | .RenderString }}{{ end }}</span>
           <span class="block">{{ .Params.description | .RenderString }}</span>
-        </a>
+        </button>
       {{ end }}
     {{ end }}
   </div>
