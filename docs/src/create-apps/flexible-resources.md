@@ -7,7 +7,7 @@ Sometimes you have apps that are more memory-intensive.
 In such cases, you can adjust the amount of memory using the `resources` key in your [app configuration](./_index.md).
 All memory must stay within the limits set by your plan.
 
-The resources key has the following possible options:
+The `resources` key has the following possible options:
 
 | Name           | Type      | Default | Minimum | Description                                                               |
 | -------------- | --------- | ------- | ------- | ------------------------------------------------------------------------- |
@@ -50,7 +50,7 @@ set the values within the `resources` key to be lower for your workers.
 
 ## Performance profiles
 
-The two options for `resources` allows for different performance profiles.
+The two options for `resources` allow for different performance profiles.
 Some apps, such as many PHP apps, don't require so much memory to start
 but need a lot of memory for each parallel request.
 Such apps benefit from a low `base_memory` and a high `memory_ratio`.
