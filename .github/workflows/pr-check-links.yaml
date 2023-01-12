@@ -46,6 +46,11 @@ jobs:
           cd docs
           hugo
 
+      - name: Minify assets
+        run: |
+          cd docs
+          npm run build:assets
+
       - name: Check links in Markdown
         run: |
           set -e
