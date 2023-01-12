@@ -31,9 +31,9 @@ If your third-party service isn't supported, you can forward to a [syslog endpoi
 
 Integrations exist for the following third-party services to enable log forwarding:
 
-* [New Relic](https://newrelic.com/)
-* [Splunk](https://www.splunk.com/)
-* [Sumo Logic](https://www.sumologic.com/)
+- [New Relic](https://newrelic.com/)
+- [Splunk](https://www.splunk.com/)
+- [Sumo Logic](https://www.sumologic.com/)
 
 ### Enable a log forwarding integration
 
@@ -110,20 +110,20 @@ You can forward your Platform.sh logs to any of those endpoints.
 To enable this forwarding, run a command like the following:
 
 ```bash
-platform integration:add --type syslog --host {{< variable "INGESTION_HOST" >}} --port {{< variable "INGESTION_HOST_PORT" >}}
+platform integration:add --type syslog --syslog-host {{< variable "INGESTION_HOST" >}} --syslog-port {{< variable "INGESTION_HOST_PORT" >}}
 ```
 
-`type`, `host`, and `port` are the only properties required for all endpoints.
+`type`, `syslog-host`, and `syslog-port` are the only properties required for all endpoints.
 The following table shows the other available properties:
 
-| Property         | Type      | Default    | Description |
-| ---------------- | --------- | ---------- | ----------- |
-| `auth_token`     | `string`  |            | The token to authenticate with the given service. |
-| `auth_mode`      | `string`  |            | The mode for authentication with the given service. Can be `prefix` or `structured_data`. |
+| Property         | Type      | Default    | Description                                                                                                                                           |
+| ---------------- | --------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
+| `auth-mode`      | `string`  |            | The mode for authentication with the given service. Can be `prefix` or `structured_data`.                                                             |
 | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
-| `message_format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`. |
-| `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`. |
-| `tls_verify`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol. |
+| `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
+| `protocol`       | `string`  |            | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`.                                                                  |
+| `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
 
 To include a property, add it as a flag, for example `--protocol tcp`.
 This should let you connect to any service that has syslog endpoints.
