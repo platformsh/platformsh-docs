@@ -31,9 +31,9 @@ If your third-party service isn't supported, you can forward to a [syslog endpoi
 
 Integrations exist for the following third-party services to enable log forwarding:
 
-- [New Relic](https://newrelic.com/)
-- [Splunk](https://www.splunk.com/)
-- [Sumo Logic](https://www.sumologic.com/)
+* [New Relic](https://newrelic.com/)
+* [Splunk](https://www.splunk.com/)
+* [Sumo Logic](https://www.sumologic.com/)
 
 ### Enable a log forwarding integration
 
