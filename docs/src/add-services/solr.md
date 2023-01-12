@@ -216,7 +216,7 @@ searchsolr:
 
 The example configuration directory is equivalent to the [Solr example configuration set](https://github.com/apache/solr/tree/main/solr/server/solr/configsets/sample_techproducts_configs/conf).
 This default configuration is designed only for testing.
-You are strongly recommended to defined your own configuration with a custom core and endpoint.
+You are strongly recommended to define your own configuration with a custom core and endpoint.
 
 #### Default for versions below 9
 
@@ -234,7 +234,7 @@ searchsolr:
 ```
 
 The default configuration is based on an older version of the Drupal 8 Search API Solr module that is no longer in use.
-You are strongly recommended to defined your own configuration with a custom core and endpoint.
+You are strongly recommended to define your own configuration with a custom core and endpoint.
 
 ### Limitations
 
