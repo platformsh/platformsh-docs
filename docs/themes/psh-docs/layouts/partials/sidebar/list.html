@@ -88,46 +88,47 @@
     {{ else }}
       {{ $isCurrentSection = false }}
     {{ end }}
+    {{ if not ( .Params.sidebarIgnore )}}
+      <li x-data="{ secondExpanded: {{ $isCurrentSection }} }">
+        <div class="flex items-center justify-between{{ if ne .Kind "section" }} py-2 {{ end }}">
+          <a href="{{ .RelPermalink }}" destination="{{ .RelPermalink }}" {{ $getStartedAttribute | safeHTMLAttr }} class="hover:text-skye-dark focus:text-skye-dark{{ if $isCurrentSection }} text-skye-dark{{ end }}">
+              {{ $itemTitle }}
+              {{ if .Params.premium }}{{ partial "premium-features/badge" }}{{ end }}
+          </a>
 
-    <li x-data="{ secondExpanded: {{ $isCurrentSection }} }">
-      <div class="flex items-center justify-between{{ if ne .Kind "section" }} py-2 {{ end }}">
-        <a href="{{ .RelPermalink }}" destination="{{ .RelPermalink }}" {{ $getStartedAttribute | safeHTMLAttr }} class="hover:text-skye-dark focus:text-skye-dark{{ if $isCurrentSection }} text-skye-dark{{ end }}">
-            {{ $itemTitle }}
-            {{ if .Params.premium }}{{ partial "premium-features/badge" }}{{ end }}
-        </a>
+          <!-- If this item has children -->
+          {{ if eq .Kind "section"}}
 
-        <!-- If this item has children -->
-        {{ if eq .Kind "section"}}
+            <!-- Add button for expanding -->
+            {{ partial "sidebar/expand-button" (dict "itemID" $itemId "isCurrentSection" $isCurrentSection "expandLevel" "secondExpanded")}}
+        </div>
+            <ul x-show="secondExpanded" class="pl-4 py-2" aria-labelledby="nav-expand-{{ $itemId }}" id="{{ $itemId }}">
 
-          <!-- Add button for expanding -->
-          {{ partial "sidebar/expand-button" (dict "itemID" $itemId "isCurrentSection" $isCurrentSection "expandLevel" "secondExpanded")}}
-      </div>
-          <ul x-show="secondExpanded" class="pl-4 py-2" aria-labelledby="nav-expand-{{ $itemId }}" id="{{ $itemId }}">
+              <!-- Loop through children -->
+              {{ range $levelTwoPages }}
 
-            <!-- Loop through children -->
-            {{ range $levelTwoPages }}
-
-              {{ if not ( isset .Params "sidebarIgnore" )}}
-                <!-- Additional structure without expansion -->
-                {{ with .Params.sectionBefore }}
-                  <h5 class="text-xs my-1 uppercase">{{ . }}</h5>
+                {{ if not ( .Params.sidebarIgnore )}}
+                  <!-- Additional structure without expansion -->
+                  {{ with .Params.sectionBefore }}
+                    <h5 class="text-xs my-1 uppercase">{{ . }}</h5>
+                  {{ end }}
+                  <!-- SECOND LEVEL ITEM -->
+                  <li class="border-l border-stone py-1 pl-2">
+                    <a href="{{ .RelPermalink }}" class="hover:text-skye-dark focus:text-skye-dark{{ if eq $currentPage . }} text-skye-dark{{ end }}">
+                        {{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle | .RenderString }}{{ else }}{{ .Title | .RenderString }}{{ end }}
+                        {{ if .Params.premium }}{{ partial "premium-features/badge" }}{{ end }}
+                    </a>
+                  </li>
                 {{ end }}
-                <!-- SECOND LEVEL ITEM -->
-                <li class="border-l border-stone py-1 pl-2">
-                  <a href="{{ .RelPermalink }}" class="hover:text-skye-dark focus:text-skye-dark{{ if eq $currentPage . }} text-skye-dark{{ end }}">
-                      {{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle | .RenderString }}{{ else }}{{ .Title | .RenderString }}{{ end }}
-                      {{ if .Params.premium }}{{ partial "premium-features/badge" }}{{ end }}
-                  </a>
-                </li>
               {{ end }}
-            {{ end }}
 
-          </ul>
-        {{ else }}
-      </div>
-        {{ end }}
+            </ul>
+          {{ else }}
+        </div>
+          {{ end }}
 
-  </li>
+      </li>
+    {{ end }}
 
   {{ end }}
 
