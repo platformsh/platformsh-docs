@@ -198,9 +198,31 @@ Note that not all core.properties features make sense to specify in the `core_pr
 
 ### Default configuration
 
-If no configuration is specified, the default configuration is equivalent to:
+#### Default for version 9+
 
-```yaml
+If you don't specify any configuration, the following default is used:
+
+```yaml {location=".platform/services.yaml"}
+searchsolr:
+    type: solr:9.1
+    configuration:
+        cores:
+            collection1:
+                conf_dir: !archive "example"
+        endpoints:
+            solr:
+                core: collection1
+```
+
+The example configuration directory is equivalent to the [Solr example configuration set](https://github.com/apache/solr/tree/main/solr/server/solr/configsets/sample_techproducts_configs/conf).
+This default configuration is designed only for testing.
+You are strongly recommended to define your own configuration with a custom core and endpoint.
+
+#### Default for versions below 9
+
+If you don't specify any configuration, the following default is used:
+
+```yaml {location=".platform/services.yaml"}
 searchsolr:
     type: solr:8.4
     configuration:
@@ -211,7 +233,8 @@ searchsolr:
                 core: collection1
 ```
 
-The default configuration is based on an older version of the Drupal 8 Search API Solr module that is no longer in use. While it may work for generic cases defining your own custom configuration, core, and endpoint is strongly recommended.
+The default configuration is based on an older version of the Drupal 8 Search API Solr module that is no longer in use.
+You are strongly recommended to define your own configuration with a custom core and endpoint.
 
 ### Limitations
 
