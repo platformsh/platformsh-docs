@@ -2,9 +2,7 @@
   "name": "platformsh-docs-theme",
   "version": "0.1.0",
   "description": "A theme for the Platform.sh docs",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/platformsh/platformsh-docs.git"

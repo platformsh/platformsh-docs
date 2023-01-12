@@ -11,6 +11,7 @@
   "author": "Platform.sh",
   "scripts": {
     "build": "npm run fetch-files && npm run registry-files",
+    "build:assets": "postcss --use cssnano --no-map --output 'public/asciinema/asciinema-player-mini.css' 'public/asciinema/asciinema-player.css' && postcss --use cssnano --no-map --output 'public/css/main-mini.css' 'public/css/main.css' && postcss --use cssnano --no-map --output 'public/css/syntax-highlighting-mini.css' 'public/css/syntax-highlighting.css'",
     "build:search": "npm run build --workspace docs-search-input",
     "dev": "npm run fetch-files && npm run registry-files",
     "fetch-files": "node utils/fetch-examples.mjs && node utils/fetchTemplates.mjs",
@@ -19,10 +20,12 @@
     "registry-files": "node utils/updateExampleConfigFiles.js"
   },
   "devDependencies": {
+    "cssnano": "^5.1.14",
     "eslint": "^8.31.0",
     "eslint-plugin-mdx": "^2.0.5",
     "p-limit": "^4.0.0",
     "postcss": "^8.4.19",
+    "postcss-cli": "^10.1.0",
     "pshregistry-parser": "^1.5.7",
     "remark": "^14.0.2",
     "remark-cli": "^11.0.0",
