@@ -132,6 +132,10 @@ https://{default}/:
       # Removal of the pre-launch checklist in Custom Domains section in December 2022
       "/domains/checklist.html":  { "to": "/domains/steps.html", "code": 301 }
 
+      # CDN docs rework PR 2746
+      "/golive/steps/cloudflare.html":  { "to": "/domains/cdn/cloudflare.html", "code": 301 }
+      "/golive/steps/fastly.html":  { "to": "/domains/cdn/fastly.html", "code": 301 }
+
       # Deprecate Hugo aliases
       "/guides/general/mysql-replication.html":  { "to": "/add-services/mysql/mysql-replication.html", "code": 301 }
       "/dedicated.html":  { "to": "/dedicated-gen-2.html", "code": 301 }
@@ -139,8 +143,6 @@ https://{default}/:
       "/guides/general/deploy-button.html":  { "to": "/development/deploy-button.html", "code": 301 }
       "/frameworks/deploy-button.html":  { "to": "/development/deploy-button.html", "code": 301 }
       "/development/public-ips.html":  { "to": "/development/regions.html", "code": 301 }
-      "/golive/steps/cloudflare.html":  { "to": "/domains/cdn/cloudflare.html", "code": 301 }
-      "/golive/steps/fastly.html":  { "to": "/domains/cdn/fastly.html", "code": 301 }
       "/domains/quick-start.html":  { "to": "/domains/steps.html", "code": 301 }
       "/administration/web/environments.html":  { "to": "/environments.html", "code": 301 }
       "/guides/general/default-branch.html":  { "to": "/environments/default-environment.html", "code": 301 }
@@ -152,7 +154,6 @@ https://{default}/:
       "/configuration/yaml.html":  { "to": "/overview/yaml.html", "code": 301 }
       "/administration/web/delete.html":  { "to": "/projects/delete-project.html", "code": 301 }
       "/guides/general/region-migration.html":  { "to": "/projects/region-migration.html", "code": 301 }
-
 
 "https://search.{default}/":
     type: upstream

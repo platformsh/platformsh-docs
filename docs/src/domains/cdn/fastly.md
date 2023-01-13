@@ -3,8 +3,6 @@ title: "Set up your Fastly CDN"
 sidebarTitle: "Fastly setup"
 weight: 1
 description: Learn how to configure your Fastly CDN.
-aliases:
- - "/golive/steps/fastly.html"
 ---
  
 You can [use a CDN](./_index.md) to deliver your site's content to users more quickly.
