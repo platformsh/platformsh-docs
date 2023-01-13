@@ -1,66 +1,51 @@
 ---
-title: "Cloudflare configuration"
-weight: 2
-sidebarTitle: "Cloudflare"
+title: "Set up your Cloudflare CDN"
+weight: 3
+sidebarTitle: "Cloudflare setup"
+description: Learn how to configure your Cloudflare CDN.
 ---
 
-Verify your registrar supports [`CNAME` records for apex domains](../steps/dns.md#handling-apex-domains).
-This solves the problem of being able to point an apex domain such as `example.com`
-to a domain name (using a `CNAME` record) rather than an IP address (using an A record).
-CloudFlare offers [`CNAME` flattening as an alternative](https://blog.cloudflare.com/introducing-cname-flattening-rfc-compliant-cnames-at-a-domains-root/).
+You can [use a CDN](./_index.md) to deliver your site's content to users more quickly.
 
-To correctly point DNS to your Platform.sh project,
-you need the [target for your Production environment](../../domains/steps/_index.md#2-get-the-target-for-your-project).
+## Before you begin
 
-Assuming that you are using both a `www.` subdomain and the bare domain,
-point both of those DNS entries to the same place.
-Whether you choose the bare domain version or the `www` subdomain doesn't make any practical difference,
-as they both reach Platform.sh and are handled correctly.
+You need:
+
+- An up-and-running Platform.sh project
+- A [Cloudflare](https://www.cloudflare.com/) CDN subscription 
 
 {{% disable-cache CDN="Cloudflare" %}}
 
-## Enable "Full SSL" option in the Cloudflare admin
+## 2. Set up your Cloudflare CDN
 
-Cloudflare also makes it possible to use their free TLS/SSL service to secure your site via HTTPS,
-while also being behind their CDN if you so choose.
-If you decide to use Cloudflare's CDN functionality in addition to their DNS service,
-you should be sure to choose the **Full SSL** option in the Cloudflare admin.
+To properly configure your Cloudflare CDN, 
+see the Cloudflare official documentation on [how to get started](https://developers.cloudflare.com/cache/get-started/).
+Make sure your CDN points to your [project target](../../domains/steps/_index.md#2-get-the-target-for-your-project).
 
-This means that traffic to your site is encrypted from the client (browser) to Cloudflare's servers using their certificate,
-and also between Cloudflare's servers and your project hosting here at Platform.sh,
-mostly like using your project's Let's Encrypt certificate.
+## 3. Handle apex domains
 
-```text
-# Cloudflare's Full SSL option
-          https                       https
-User <---------------> Cloudflare <-------------> Platform.sh
-```
+To start routing client traffic through Cloudflare,
+you need to [create `CNAME` records for your domain names](../../domains/steps/dns.md#why-cname-records) 
+through your DNS provider.
 
-The other option known as **Flexible SSL** causes issues if you intend to redirect all traffic to HTTPS.
-The **Flexible SSL** option uses Cloudflare's TLS/SSL certificate to encrypt traffic between your users and the CDN,
-but passes requests from the CDN back to your project at Platform.sh via HTTP.
-This facilitates sites that don't have a TLS/SSL certificate beginning to offer their users a more secure experience,
-by at the least eliminating the unencrypted attack vector on the "last mile" to the user's browser.
+But `CNAME` records can't point to apex domains.
+As a workaround, Cloudflare offers [`CNAME` flattening](https://developers.cloudflare.com/dns/additional-options/cname-flattening/).
 
-```text
-# Cloudflare's Flexible SSL option
-          https                       http
-User <---------------> Cloudflare <-------------> Platform.sh
-```
+## 4. Optional: Protect your site from on-path attacks
 
-This causes all traffic from Cloudflare to your project to be redirected to HTTPS,
-which sets off an endless loop as HTTPS traffic is presented as HTTP to your project no matter what.
+An on-path attack occurs when a hacker intercepts or modifies the communication between a client and a server.
+This can lead to sensitive data leaks.
+To prevent such attacks, make sure all communication with your site is encrypted through HTTPS
+and can't be downgraded to HTTP.
 
-In short: *Always use **Full SSL** unless you have a very clear reason to do otherwise*
+To do so, [enable full strict SSL/TLS encryption](https://developers.cloudflare.com/ssl/origin-configuration/ssl-modes/full-strict/).
+Any communication between a client and Cloudflare 
+or between Cloudflare and your Platform.sh server is then encrypted through HTTPS.
+In addition, Cloudflare checks that your Platform.sh server's [TLS certificate](../../other/glossary.md#transport-layer-security-tls) 
+was issued by a trusted certificate authority.
+This confirms the client is truly communicating with your Platform.sh server.
 
-## Let's Encrypt certificate renewal
+For enhanced security, make sure your HTTPS connections can't be downgraded to HTTP.
+To do so, in your Cloudflare account,
+[enable HTTP strict transport security (HSTS)](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/http-strict-transport-security/).
 
-Let's Encrypt expects the `.well-known` endpoint on all domains added.
-You have 2 options:
-
-* Remove all domains pointing to Cloudflare from your Platform.sh project
-* Follow these steps in your Cloudflare Console:
-
-  1. On the SSL page, turn off **Always Use HTTPS**.
-  2. Create a page rule for `/.well-known/acme-challenge/` with SSL set to **off**.
-  3. Create a second page rule for `*` that turns **Always Use HTTPS** back on.

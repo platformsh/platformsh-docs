@@ -153,7 +153,6 @@ https://{default}/:
       "/administration/web/delete.html":  { "to": "/projects/delete-project.html", "code": 301 }
       "/guides/general/region-migration.html":  { "to": "/projects/region-migration.html", "code": 301 }
 
-
 "https://search.{default}/":
     type: upstream
     upstream: "search:http"
