@@ -13,7 +13,7 @@ Bringing content closer to users helps enhance your site's perceived performance
 and so can improve user engagement and retention.
 
 Fastly is the recommended CDN for Platform.sh projects.
-By default, Dedicated projects include a [Fastly](./managed-fastly.md) CDN managed by Platform.sh.
+By default, Dedicated projects include a [Fastly CDN managed by Platform.sh](./managed-fastly.md).
 Self-service Grid plans don't include a CDN by default, but you can set up one at any time,
 such as [Fastly](./fastly.md) or [Cloudflare](./cloudflare.md).
 

@@ -15,8 +15,8 @@ These CDNs are exclusively set up and managed by Platform.sh.
 
 To modify any settings for a managed Fastly CDN,
 [open a support ticket](https://console.platform.sh/-/users/~/tickets/open).
-For information on how to subscribe to a managed Fastly CDN,
-[contact our sales team](https://platform.sh/contact/).
+To add a managed Fastly CDN to your project,
+[contact sales](https://platform.sh/contact/).
 
 ### Domain control validation
  
