@@ -18,10 +18,10 @@ The RPO is configured by plan owners.
 **RTO**: Variable.
 Recovery time depends on the size of the data being recovered.
 
-## Essential and Advanced schedules
+## Basic and Advanced schedules
 
 **RPO**: 24 hours.
-Production environments on Essential and Advanced schedules are backed up every 24 hours.
+Production environments on Basic and Advanced schedules are backed up every 24 hours.
 
 **RTO**: Variable.
 Recovery time depends on the size of the data being recovered.

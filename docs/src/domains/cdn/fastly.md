@@ -1,58 +1,53 @@
 ---
-title: "Fastly"
+title: "Set up your Fastly CDN"
+sidebarTitle: "Fastly setup"
 weight: 1
-description: |
-  In some cases you may want to opt to use a CDN such as Fastly rather than the Platform.sh router's cache. Using a CDN can offer a better time-to-first-byte for cached content across a wider geographic region at the cost of the CDN service.
-aliases:
-  - "/golive/steps/fastly.html"
+description: Learn how to configure your Fastly CDN.
 ---
+ 
+You can [use a CDN](./_index.md) to deliver your site's content to users more quickly.
 
-{{% description %}}
+To set up a Fastly CDN with your own Fastly subscription,
+follow the instructions on this page.
 
-A Fastly CDN is included for Dedicated projects.
-Platform.sh doesn't offer an integrated CDN on self-service Grid projects at this time,
-but it is a common choice for customers to self-configure.
-
-Launching a Platform.sh site with Fastly in front of it is nearly the same as launching normally.
-There are only a few notable differences.
-Individual apps may have their own Fastly setup instructions or additional modules.
-Consult the documentation for your app for specific details.
-
+If you are using a Fastly CDN provided by Platform.sh, 
+for example as part of a Dedicated project,  
+see guidance about [Fastly CDNs managed by Platform.sh](./managed-fastly.md).  
+ 
+## Before you begin
+ 
+You need:
+ 
+- An up-and-running Platform.sh project
+- A [Fastly](https://www.fastly.com/) CDN subscription
+ 
 {{% disable-cache CDN="Fastly" %}}
-
-## Set the Platform.sh domain on Fastly
-
-Rather than create a DNS `CNAME` for your default Platform.sh branch (for instance `main-abcd123.abcdefgh1234567.eu.platformsh.site`),
-[configure Fastly](https://docs.fastly.com/guides/basic-configuration/working-with-domains)
-to respond to requests for your domain name and to treat the default Platform.sh branch as its backend server.
-Be sure to enable TLS for the backend connection to Platform.sh.
-Then configure your DNS to point your domain at Fastly instead.
-See the [Fastly documentation](https://docs.fastly.com/guides/basic-configuration/connecting-to-origins) for further details.
-
-## HTTP Redirect
-
-From the Fastly interface under "Configure",
-edit the configuration for your origin to enable the ["Force TLS and enable HSTS"](https://docs.fastly.com/en/guides/enabling-hsts-through-fastly).
-
-Generally, Platform.sh recommends specifying only HTTPS routes in your `routes.yaml` file.
-This results in all pages being served over SSL and any requests for an HTTP URL automatically redirected to HTTPS.
-When Fastly has been added as an intermediary to your project, however, this automatic redirect fails.
-Once a user visits your site with an HTTP request and is directed to Fastly,
-Fastly continues to query Platform.sh using HTTPS (since that is how origin has been configured),
-resulting in Platform.sh never detecting the HTTP request in the first place.
-Enabling the "Force TLS and enable HSTS" option causes Fastly to do the same HTTP to HTTPS redirect as Platform.sh,
-ensuring that all requests are over HTTPS end-to-end.
-
-## DNS TXT records
-
-If using the Fastly CDN that is included with a Platform.sh Enterprise subscription,
-you need to obtain a DNS TXT record from your Customer Support Engineer prior to going live.
-You need to enter that as a DNS TXT record with your domain registrar.
-This step should be done well in advance of the actual go-live.
-
-## Anycast
-
-You have the option of using either a [`CNAME` or a set of Anycast IP addresses](https://docs.fastly.com/guides/basic-configuration/using-fastly-with-apex-domains).
-Fastly prefers that you use the `CNAME` but either work.
-If using the Anycast IP addresses on a {{% names/dedicated-gen-2 %}} production environment,
-open a support ticket with the new A records to provide to our support team.
+ 
+## 2. Set up your Fastly CDN
+ 
+To properly configure your Fastly CDN,
+see the Fastly official documentation on [how to get started](https://docs.fastly.com/en/guides/getting-started#_basics).
+Make sure your CDN points to your [project target](../../domains/steps/_index.md#2-get-the-target-for-your-project).
+ 
+## 3. Handle apex domains
+ 
+To start routing client traffic through Fastly,
+[create `CNAME` records for your domain names](../../domains/steps/dns.md#why-cname-records)
+through your DNS provider.
+`CNAME` records can't point to apex domains.
+As a workaround, Fastly offers [Anycast options](https://docs.fastly.com/en/guides/using-fastly-with-apex-domains).
+ 
+## 4. Optional: Protect your site from on-path attacks
+ 
+An on-path attack occurs when a hacker intercepts
+or modifies the communication between a client and a server.
+This can lead to sensitive data leaks.
+To prevent such attacks, make sure all communication with your site is encrypted through HTTPS
+and can't be downgraded to HTTP.
+ 
+To do so, enable HTTP strict transport security (HSTS).
+HSTS forces clients to always communicate with your site over HTTPS.
+ 
+You can [enable HSTS](https://docs.fastly.com/en/guides/enabling-hsts-through-fastly#forcing-tls-and-enabling-hsts)
+in your Fastly account.
+All HTTP requests are then automatically redirected to HTTPS.

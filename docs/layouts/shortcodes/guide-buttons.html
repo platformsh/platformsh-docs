@@ -2,70 +2,48 @@
 {{ with .Get "type" }}
   {{ $navType = . }}
 {{ end }}
-<br><br>
 
-<div class="buttons-nav">
+<div class="text-center">
 
 <!-- If exists both a next and previous page (two buttons) -->
 {{ if eq $navType "*" }}
+  <!-- Back button -->
+  <a href="{{ if .Page.NextInSection }}{{ .Page.NextInSection.Permalink }}{{ else }}{{ .Page.CurrentSection.Permalink }}{{ end }}" type="button" class="p-2 text-ebony hover:no-underline font-mono">
+    <img class="inline rotate-180" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" />
+    Back
+  </a>
 
-      <span>
-      <!-- Back button -->
-      {{ if .Page.NextInSection }}
-        <button type="button" onclick="window.location.href = '{{ .Page.NextInSection.Permalink }}';" type="button" class="btn2 btn-secondary2">
-          <span class="icon"><img class="chevron-back" aria-hidden="true" src="/images/icons/chevrons.svg" /></span>
-          <span class="text-button-back">Back</span>
-        </button>
-      {{ else }}
-        <button type="button" onclick="window.location.href = '{{ .Page.CurrentSection.Permalink }}';" type="button" class="btn2 btn-secondary2">
-          <span class="icon"><img class="chevron-back" aria-hidden="true" src="/images/icons/chevrons.svg" /></span>
-          <span class="text-button-back">Back</span>
-        </button>
-      {{ end }}
-      </span>
-
-      <!-- Next page button -->
-      <span>
-          <button onclick="window.location.href = '{{ .Page.PrevInSection.Permalink }}';" type="button" class="btn2 btn-primary2">
-            <span class="text-button-">{{ with .Get "next" }}{{ . }}{{ end }}</span>
-            <span class="icon"><img class="chevron-next2" aria-hidden="true" src="/images/icons/chevrons.svg" /></span>
-          </button>
-      </span>
-
+  <!-- Next button -->
+  <a href="{{ .Page.PrevInSection.Permalink }}" type="button" class="{{ partial "pink-button-styles" }}">
+    {{ with .Get "next" }}{{ . }}{{ end }}
+    <img class="inline" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" />
+  </a>
 
 <!-- Single button -->
 {{ else }}
 
-    <!-- Only contains a back button -->
-    {{ if eq $navType "last" }}
+  <!-- Only contains a back button -->
+  {{ if eq $navType "last" }}
+  <a href="{{ if .Page.NextInSection }}{{ .Page.NextInSection.Permalink }}{{ else }}{{ .Page.CurrentSection.Permalink }}{{ end }}" type="button" class="p-2 text-ebony hover:no-underline font-mono">
+    <img class="inline rotate-180" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" />
+    Back
+  </a>
 
-      {{ if .Page.NextInSection }}
-          <button type="button" onclick="window.location.href = '{{ .Page.NextInSection.Permalink }}';" type="button" class="btn2 btn-secondary2">
-            <span class="icon"><img class="chevron-back" aria-hidden="true" src="/images/icons/chevrons.svg" /></span>
-            <span class="text-button-back">Back</span>
-          </button>
-      {{ else }}
-          <button type="button" onclick="window.location.href = '{{ .Page.CurrentSection.Permalink }}';" type="button" class="btn2 btn-secondary2">
-            <span class="icon"><img class="chevron-back" aria-hidden="true" src="/images/icons/chevrons.svg" /></span>
-            <span class="text-button-back">Back</span>
-          </button>
-      {{ end }}
-
-    <!-- Only contains a next button -->
-    {{ else }}
-        {{ $loop := 0 }}
-        {{ $firstPageInSection := "*" }}
-        {{ range .Page.CurrentSection.Pages }}
-          {{ if eq $loop 0}}
-            {{ $firstPageInSection =  . }}
-            {{ $loop = 1}}
-          {{ end }}
+  <!-- Only contains a next button -->
+  {{ else }}
+      {{ $loop := 0 }}
+      {{ $firstPageInSection := "*" }}
+      {{ range .Page.CurrentSection.Pages }}
+        {{ if eq $loop 0}}
+          {{ $firstPageInSection =  . }}
+          {{ $loop = 1}}
         {{ end }}
-        <button onclick="window.location.href = '{{ $firstPageInSection.Permalink  }}';" type="button" class="btn2 btn-primary2">
-          <span class="text-button-">{{ with .Get "next" }}{{ . }}{{ end }}</span>
-          <span class="icon"><img class="chevron-next2" aria-hidden="true" src="/images/icons/chevrons.svg" /></span>
-        </button>
-    {{ end }}
+      {{ end }}
+      <a href="{{ $firstPageInSection.Permalink }}" type="button" class="{{ partial "pink-button-styles" }}">
+        {{ with .Get "next" }}{{ . }}{{ end }}
+        <img class="inline" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" />
+      </a>
+  {{ end }}
 
 {{ end }}
 </div>

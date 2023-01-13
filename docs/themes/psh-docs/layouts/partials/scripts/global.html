@@ -1,0 +1,8 @@
+<!-- Alpine.js support -->
+<script defer src="{{ printf "/alpinejs/cdn.min.js?version=%s" $.Site.Params.version }}"></script>
+<!-- Include entire Tailwind in development only to test styles-->
+{{ if not hugo.IsProduction }}
+  {{ partial "scripts/tailwind" }}
+{{ else }}
+  {{ partial "scripts/external" }}
+{{ end }}

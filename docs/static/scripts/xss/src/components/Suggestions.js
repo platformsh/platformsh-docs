@@ -9,18 +9,18 @@ import DOMPurify from 'dompurify';
 // below primary results from the documentation itself.
 const Suggestions = ({ hits }) => {
   const results = hits.map((r) => (
-    <li key={r.relurl}>
-      <h5 className="secondary-header" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(r.section) }} />
-      <h5 className="secondary-link">
-        <a href={r.url}>
+    <li className="mb-4 border-b border-grey-dark" key={r.relurl}>
+      <h3 className="my-2" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(r.section) }} />
+      <p className="mb-4">
+        <a className="text-skye-dark hover:underline" href={r.url}>
           <span dangerouslySetInnerHTML={{ __html: `${DOMPurify.sanitize(r.title)}` }} />
         </a>
-      </h5>
+      </p>
     </li>
   ))
 
   return (
-    <div className="suggestions">
+    <div>
       <div className="hits"><ul>{results}</ul></div>
       {' '}
     </div>

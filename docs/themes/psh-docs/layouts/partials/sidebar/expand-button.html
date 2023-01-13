@@ -1,0 +1,3 @@
+<button class="py-2" id="nav-expand-{{ .itemID }}" aria-controls="{{ .itemID }}" aria-expanded="{{ .isCurrentSection }}" aria-label="Toggle section">
+  <svg :class="{{ .expandLevel }} ? '' : '-rotate-90'" @click="{{ .expandLevel }} = ! {{ .expandLevel }}" width="24" height="24" viewBox="0 0 24 24" fill="current" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">{{ readFile "layouts/shortcodes/icon-paths/expand.html" | safeHTML }}</svg>
+</button>

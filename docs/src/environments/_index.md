@@ -3,8 +3,6 @@ title: "Manage Platform.sh environments"
 weight: -75
 sidebarTitle: Manage environments
 description: Learn what environments on Platform.sh are and how to take advantage of them.
-aliases: 
-  - /administration/web/environments.html
 ---
 
 On Platform.sh, an environment is a logically separate instance of an app or group of apps

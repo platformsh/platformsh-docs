@@ -2,3 +2,5 @@ node_modules
 public
 resources
 hugo
+bin
+tmp

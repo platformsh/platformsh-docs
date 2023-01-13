@@ -17,7 +17,7 @@ highlight=bash
 $ scoop bucket add platformsh https://github.com/platformsh/homebrew-tap.git
 $ scoop install platform
 `}}
-{{ partial "codetabs" ( dict "Inner" $Inner "Page" .Page ) }}
+{{ partial "codetabs/tabs" ( dict "Inner" $Inner "Page" .Page ) }}
 
 <p>For manual installation, you can also <a href="https://github.com/platformsh/cli/releases/latest">download the latest binaries</a>.</p>
 
@@ -38,4 +38,4 @@ highlight=bash
 +++
 $ scoop update platform
 `}}
-{{ partial "codetabs" ( dict "Inner" $Inner "Page" .Page ) }}
+{{ partial "codetabs/tabs" ( dict "Inner" $Inner "Page" .Page ) }}

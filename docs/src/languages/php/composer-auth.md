@@ -1,10 +1,7 @@
 ---
 title: "Authenticated Composer repositories"
 sidebarTitle: "Authenticated Composer"
-description: |
-  Some PHP projects may need to use a private, third-party Composer repository in addition to the public Packagist.org repository. Often, such third party repositories require authentication to download packages. These credentials shouldn't be located in the Git repository source code for security reasons.
-aliases:
-  - /guides/general/composer-auth.html
+description: Some PHP projects may need to use a private, third-party Composer repository in addition to the public Packagist.org repository. Often, such third party repositories require authentication to download packages. These credentials shouldn't be located in the Git repository source code for security reasons.
 ---
 
 {{% description %}}

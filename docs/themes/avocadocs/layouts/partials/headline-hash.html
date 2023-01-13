@@ -1,5 +1,0 @@
-<!-- Adds anchors to h2 and lower -->
-
-{{ $icon := "images/svg/link.svg" | relURL }}
-{{ $replaceString := printf ( "${1}&nbsp;<a class=\"headline-hash\" href=\"#${2}\" ariaLabel=\"Anchor\"><img src=\"%s\"></a> ${3}" ) $icon }}
-{{ . | replaceRE "(<h[1-9] id=\"([^\"]+)\".+)(</h[1-9]+>)" $replaceString | safeHTML }}

@@ -2,26 +2,58 @@ name: Check internal links
 on:
   pull_request:
     branches: [main]
+    types: [opened,reopened,synchronize,labeled,unlabeled]
 
 
 jobs:
   check-internal-links:
     name: Check internal links
     runs-on: ubuntu-latest
+    # Run only for PRs from default repo and approved PRs from forks
+    if: github.event.pull_request.head.repo.id == 21975579 || contains(github.event.pull_request.labels.*.name, 'build-fork')
     steps: 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v2
+      - name: Set up Node
+        uses: actions/setup-node@v3
         with:
-          node-version: "16"
+          node-version: 18
+          cache: npm
+          cache-dependency-path: docs/package-lock.json
 
       - name: Install dependencies
         run: |
           cd docs
-          npm pkg delete scripts.prepare
           npm ci
+
+      - name: Get templates and other external files
+        run: |
+          cd docs
+          npm run dev
+
+      - name: Build search script
+        run: |
+          cd docs
+          npm run build:search
+
+      - name: Set up Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: '0.108.0'
+
+      - name: Build Hugo site
+        run: |
+          cd docs
+          hugo
+
+      - name: Minify assets
+        run: |
+          cd docs
+          npm run build:assets
 
       - name: Check links in Markdown
         run: |
+          set -e
           cd docs
-          npm run check-links
+          curl https://htmltest.wjdp.uk | bash
+          bin/htmltest

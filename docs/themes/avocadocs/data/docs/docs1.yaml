@@ -1,6 +1,0 @@
-header:
-  logo:
-    image: "docsuikit/assets/img/logo-light.png"
-    link: "https://example.com"
-  search: true
-  hamburger: true

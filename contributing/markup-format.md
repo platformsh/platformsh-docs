@@ -51,11 +51,11 @@ The following table presents the available options:
 | `weight`             | integer            | Defines the order in which the page should appear in the sidebar. Higher numbers are lower. |
 | `toc`                | Boolean            | Optionally allows you to hide the table of contents on a page (by setting to `false`). |
 | `layout`             | `single` or `list` | Set to `single` on `_index.md` files to give them the same layout as other pages. |
-| `aliases`            | list of strings    | Optionally creates redirects to the page from the given locations. Start with `/` for root-relative locations. Start with `../` for locations relative to the current page. |
 | `description`        | string             | Appears on `list` pages as a description of the page's content. Also overrides generic content for the `<meta name="description">` tag for SEO. Can be used in the page with the `description` shortcode. |
 | `multipleTabs`       | Boolean            | If set to true, codetabs are changed across the page. So changing the tabs in one place changes them for the entire page. Useful when codetabs are repeated often with the same title (such as comparing actions in the CLI and Console). |
 | `tier`               | list of strings    | Include to put at banner at the top indicating the feature is only available to certain plan tiers, such as only Enterprise and Elite customers. |
 | `observabilitySuite` | Boolean            | Set as `true` to put at banner at the top indicating the feature is only available as part of the Observability Suite. |
+| `sectionBefore`      | string             | Title of a header to add before the given page in the main navigation. |
 
 ## Headings
 
@@ -258,6 +258,26 @@ web:
 
 Keep the top-level key visible so readers can understand the code in context.
 (For example, don't leave out `web:` in the example above.)
+
+### Multiline strings
+
+When writing multiline strings in YAML, known as scalar content,
+examples often use a literal style as shown with a `|`.
+In such cases, the string that comes needs to span multiple lines.
+Otherwise, the parser doesn't accept it as a scalar and the spacing and highlighting is wrong.
+
+To resolve this, either put the comment on a single line without the `|`
+or add an ellipsis to indicate content is missing, as in the following example:
+
+```yaml
+hooks:
+    build: |
+        ...
+        git pull
+```
+
+The highlighter also adds extra whitespace at the end of multiline strings.
+These are [known issues](https://github.com/alecthomas/chroma/issues/475).
 
 ### Note when low-level items are missing
 
