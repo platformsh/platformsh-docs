@@ -122,7 +122,7 @@ The following table shows the other available properties:
 | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
 | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
 | `message-format` | `string`  | `rfc5424`  | The standard to use for the message format. Can be `rfc5424` or `rfc3164`.                                                                            |
-| `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                              |
+| `protocol`       | `string`  | `tls`      | The network protocol to use in the connection. Can be one of `tls`, `tcp`, or `udp`. Defaults to `tls`.                                               |
 | `verify-tls`     | `boolean` | `true`     | Whether to verify Transport Layer Security (TLS) certification when using the TLS protocol.                                                           |
 
 To include a property, add it as a flag, for example `--protocol tcp`.
