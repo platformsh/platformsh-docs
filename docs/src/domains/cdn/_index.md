@@ -23,7 +23,7 @@ To start routing client traffic through your CDN,
 create `CNAME` records for your domain names through your DNS provider.
 For more information, see you DNS provider's official documentation.
 
-Note that `CNAME` records can't point to apex domains,
+Note that [`CNAME` records can't point to apex domains](../steps/dns.md),
 but most CDN providers offer workarounds.
 For example, Fastly offers [Anycast options](./fastly.md#3-handle-apex-domains) 
 and Cloudflare offers [`CNAME` flattening](./cloudflare.md#3-handle-apex-domains).
@@ -54,7 +54,7 @@ see your CDN provider's official documentation.
  
 When you use a CDN, the Platform.sh router [HTTP caching](../../define-routes/cache.md) becomes redundant.
 To disable it, change your cache configuration for the routes behind a CDN to the following:
- 
+
 ```yaml {location=".platform/routes.yaml"}
 "https://{default}/":
    type: upstream
