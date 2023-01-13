@@ -25,7 +25,7 @@ Make sure your CDN points to your [project target](../../domains/steps/_index.md
 ## 3. Handle apex domains
 
 To start routing client traffic through Cloudflare,
-you need to [create `CNAME` records for your domain names](../../domains/steps/dns.md#why-cname-records) 
+you need to [create `CNAME` records for your domain names](../../domains/steps/dns.md) 
 through your DNS provider.
 
 But `CNAME` records can't point to apex domains.

@@ -32,7 +32,7 @@ Make sure your CDN points to your [project target](../../domains/steps/_index.md
 ## 3. Handle apex domains
  
 To start routing client traffic through Fastly,
-[create `CNAME` records for your domain names](../../domains/steps/dns.md#why-cname-records)
+[create `CNAME` records for your domain names](../../domains/steps/dns.md)
 through your DNS provider.
 `CNAME` records can't point to apex domains.
 As a workaround, Fastly offers [Anycast options](https://docs.fastly.com/en/guides/using-fastly-with-apex-domains).
