@@ -8,9 +8,9 @@ description: |
 
 **Features supported:**
 
-* Create a new environment when creating a branch or opening a pull request on GitLab.
+* Create a new environment when creating a branch or opening a merge request on GitLab.
 * Rebuild the environment when pushing new code to GitLab.
-* Delete the environment when merging a pull request.
+* Delete the environment when merging a request.
 
 {{% source-integration/requirements %}}
 
@@ -103,7 +103,7 @@ highlight=false
 4. Click **+ Add integration**.
 5. On the GitLab integration, click **+ Add**.
 6. Add the token you generated.
-7. Optional: If your GitLab instance is not hosted at `https://gitlab.com`, enter its base URL.
+7. Optional: If your GitLab instance isn't hosted at `https://gitlab.com`, enter its base URL.
 8. Choose the repository to use for the project.
 9. Check that the other options match what you want.
 10. Click **Add integration**.

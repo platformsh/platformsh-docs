@@ -9,7 +9,7 @@ layout: single
 Platform.sh supports both MariaDB and Oracle MySQL to manage your relational databases.
 Their infrastructure setup is nearly identical, though they differ in some features.
 See the [MariaDB documentation](https://mariadb.org/learn/)
-or [MySQL documentation](https://dev.mysql.com/doc/refman/8.0/en/) for more information.
+or [MySQL documentation](https://dev.mysql.com/doc/refman/en/) for more information.
 
 {{% frameworks %}}
 
@@ -344,7 +344,7 @@ ALTER TABLE table_name CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE table_name CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
-Consult the [MySQL documentation](https://dev.mysql.com/doc/refman/8.0/en/charset-mysql.html) for further details.
+For further details, see the [MariaDB documentation](https://mariadb.com/kb/en/character-set-and-collation-overview/).
 
 ## Storage Engine
 
