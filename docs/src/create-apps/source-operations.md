@@ -79,6 +79,9 @@ Replace `<OPERATION_NAME>` with the name of your operation, such as `update-file
 
 {{< /codetabs >}}
 
+After running a source operation, 
+apply the changes to your local development environment by running `git pull`.
+
 ## How source operations work
 
 When you trigger a source operation, the following happens in order:

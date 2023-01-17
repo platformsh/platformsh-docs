@@ -27,8 +27,8 @@ If you don't include a file defining routes, a single default route is deployed.
 If you have one app to direct traffic to and its name is `myapp`,
 this is equivalent to the following:
 
-``` {location=".platform/routes.yaml"}
-https://{default}/:
+```yaml {location=".platform/routes.yaml"}
+"https://{default}/":
   type: upstream
   upstream: myapp:http
 ```

@@ -20,8 +20,9 @@ hooks:
     # Build hooks can modify the application files on disk but not access any services like databases.
     build: |
         set -e
-        ./build_examples.sh
+        npm run build
         ./build_docs.sh
+        npm run build:assets
     deploy: !include
       type: string
       path: deploy.sh
