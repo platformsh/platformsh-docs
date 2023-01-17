@@ -9,18 +9,22 @@ Activities are responses to actions in your project, including when you deploy y
 
 ## Activity schema
 
-Any activity has a JSON object linked to it containing all information for that activity such as timestamps, duration, configuration, and much more.
+Any activity has a JSON object linked to it containing all information for that activity such as timestamps,
+duration, configuration, and much more.
 That object can be parsed and reacted to through custom hooks.
-These hooks can be used to automate your workflows.
+You can use these hooks to automate your workflows.
 
 Depending on the activity, the JSON object response differs and not all fields are always available.
-This reference contains everything that's needed to get the relevant information out of the activity schema.
+
+When referring to a JSON object, the term "property" is used and "element" for a JSON array, according to the [JSON terminology](https://json-schema.org/draft-04/json-schema-core.html#rfc.section.3).
+
+This reference contains everything you need to get the relevant information out of the activity schema.
 
 For a quick test, see the [webhook setup](./webhooks.md#setup).
 
 ### Example response
 
-A shortened example of what a JSON object response can look like for the [sync of an environment](../../other/glossary.md#sync):
+Here is a shortened example of what a JSON object response looks like for the [sync of an environment](../../other/glossary.md#sync):
 
 ``` json
 {
@@ -64,33 +68,36 @@ A unique `id` value to identify the activity itself.
 
 ### `*_at`
 
-The `created_at`, `started_at`, `updated_at`, `cancelled_at`, `completed_at`, `expires_at` properties are all timestamps in UTC.
-If you need only a point in time when the action happened, use `completed_at`.
-You can also combine it with `started_at` to see how long the activity itself took.
-See also `timings` for more time computation.
+The `created_at`, `started_at`, `updated_at`, `cancelled_at`, `completed_at`, `expires_at` values are all timestamps in UTC.
+If you need only a point in time when a given action happened, use `completed_at`.
+If needed, you can use these properties to compute the duration of the different steps of a task.
+For more time computation, [see `timings`](#timings).
 
 ### `parameters`
 
-The parameters include detailed information regarding which user ID triggered the activity, the environment impacted, commands run with crons, or if changes in the codebase happened the ID of the git commits.
+The parameters property include detailed information regarding which user ID triggered the activity,
+the environment impacted, the ID of the git commits, commands run with crons, or if changes in the codebase happened.
 The response changes based on the activity.
 
 ### `project`
 
-The ID of the project in which the activity took place.
-Use the `project` value if you want to have multiple projects `POST` to the same URL.
+The ID value of the project in which the activity took place.
+Use the `project`'s value if you want to have multiple projects `POST` to the same URL.
+
+Not to be mistaken with the [`Project` type action](#type).
 
 ### `type`
 
-The `type` specifies the type of event that happened.
-Its value is one of:
+The `type` value is a combination of the scope and the action itself for that event.
+Its scope can be in one of the following categories:
 
 - [Project](#project)
 - [Environment](#environment)
 - [Integration](#integration)
 
-#### `Project`
+#### `Project` event value
 
-The project type contains all changes relative to a project.
+This value describes the action that happened on a given project, its value can be any from the following table.
 
 | Name | Description |
 |------|-------------|
@@ -100,9 +107,11 @@ The project type contains all changes relative to a project.
 | `project.variable.delete` | A project variable has been deleted. |
 | `project.variable.update` | A project variable has been modified. |
 
-#### `Environment`
+For an overview of the different actions that can take place, see [the type](#type).
 
-The environment type contains all changes relative to a project's environment.
+#### `Environment` event value
+
+This value describes the action that happened on a project's environment, its value can be any from the following table.
 
 | Name | Description |
 |------|-------------|
@@ -121,9 +130,9 @@ The environment type contains all changes relative to a project's environment.
 | `environment.merge` | A branch was merged through the Console or Platform.sh API. A basic Git merge doesn't trigger this event. |
 | `environment.redeploy` | An environment was redeployed. |
 | `environment.delete` | A branch was deleted. |
-| `environment.route.create` | A new route has been created through the Console. This doesn't fire for route edits made to the `routes.yaml` file directly. |
-| `environment.route.delete` | A route has been deleted through the Console. This doesn't fire for route edits made to the `routes.yaml` file directly. |
-| `environment.route.update` | A route has been modified through the Console. This doesn't fire for route edits made to the `routes.yaml` file directly. |
+| `environment.route.create` | A new route has been created through the API or the Console. This doesn't fire for route edits made to the `routes.yaml` file directly. |
+| `environment.route.delete` | A route has been deleted through the API or the Console. This doesn't fire for route edits made to the `routes.yaml` file directly. |
+| `environment.route.update` | A route has been modified through the API or the Console. This doesn't fire for route edits made to the `routes.yaml` file directly. |
 | `environment.variable.create` | A new variable has been created. |
 | `environment.variable.delete` | A variable has been deleted. |
 | `environment.variable.update` | A variable has been modified. |
@@ -135,9 +144,13 @@ The environment type contains all changes relative to a project's environment.
 | `environment.source-operation` | A source operation triggered and has completed. |
 | `environment.certificate.renewal` | An environment's SSL certificate has been renewed. |
 
-#### `Integration`
+Note that changes regarding user access to an environment/project aren't available anymore through the environment object.
 
-The integration type contains all changes relative to a project's integration.
+For an overview of the different actions that can take place, see [the type](#type).
+
+#### `Integration` event value
+
+This value describes the action that happened on a project's integration, its value can be any from the following table.
 
 | Name | Description |
 |------|-------------|
@@ -153,31 +166,35 @@ The integration type contains all changes relative to a project's integration.
 | `integration.webhook` | Webhook triggered. |
 | `integration.script` | An activity script has run. |
 
+For an overview of the different actions that can take place, see [the type](#type).
+
 ### `environments`
 
 An array listing the `environments` that were involved in the activity.
-This is usually single-value.
+This is usually a single-value element.
 
 ### `state`
 
 The current state of the activity.
-It can be `pending`, `in_progress`, or `complete`.
+Its value can be `pending`, `in_progress`, or `complete`.
 
 ### `completion_percent`
 
-The completion percentage of the activity.
+The completion percentage value of the activity.
 
 ### `result`
 
 Whether the activity itself completed successfully or not.
-It should be `success` if all went as planned.
+Its value is `success` if all went as planned.
 The result isn't taking into account if your crons executed properly or if the (re)deploy ran successfully.
 
 ### `timings`
 
 The amount of time required by the activity.
 
-- `wait`: The time delay if a command is set to wait before beeing executed.
+This property includes the following values:
+
+- `wait`: The time delay if a command is set to wait before being executed.
 - `build`: The execution time for the build hook.
 - `deploy`: The execution time for the deploy hook.
 - `execute`: The execution time for your script or your cron task.
@@ -198,12 +215,12 @@ A short, human-readable description of the activity.
 
 ### `payload`
 
-The payload contains all settings and details about the activity itself.
+The payload element contains all settings and details about the activity itself.
 Its content is based on the type of activity.
 
 | Name | Description |
 |------|-------------|
-| `payload.user` | The user object that triggered the activity. |
+| `payload.user` | The user object that triggered the activity. See [`user`](#user). |
 | `payload.environment` | The environments impacted by the activity. See [`environment`](#environment). |
 | `payload.commits` | The git metadata for the changes. |
 | `payload.commits_count` | The amount of git commits.  |
@@ -211,12 +228,21 @@ Its content is based on the type of activity.
 
 #### `user`
 
-The Platform.sh user (`payload.user.display_name`) that triggered the activity.
+This element contains information about the Platform.sh user that triggered the activity.
+
+| Name | Description |
+|------|-------------|
+| `payload.user.created_at` | The date the user was created. |
+| `payload.user.display_name` | The human-friendly name of the user that triggered the activity. |
+| `payload.user.id` | The user ID of the user. |
+| `payload.user.updated_at` | The date that user was updated. |
 
 #### `environment`
 
-This block contains information about the environment itself and its settings or cron commands that have been run, after the action has taken place.
-The most notable properties of this key are:
+This element contains information about the environment itself,
+its settings and cron commands that have been run,
+after the action has taken place.
+The most notable values of this element are:
 
 | Name | Description |
 |------|-------------|
@@ -226,16 +252,20 @@ The most notable properties of this key are:
 | `payload.environment.head_commit` | The Git commit ID that triggered the event. |
 | `payload.environment.edge_hostname` | The edge hostname of the environment. |
 
+Not to be mistaken with the [`Environment` type action](#type).
+
 #### `deployment`
 
-The `deployment` block returns information about all services in the environment.
+This element contains information about all services in the environment.
+The most notable values of this element are:
 
 | Name | Description |
 |------|-------------|
 | `payload.deployment.routes` | All the URLs made available by the environment. Note that some are redirects. To find those that are live URLs filter to those objects whose `type` is `upstream`. |
+| `payload.deployment.services` | All the services on your environment. |
 | `payload.deployment.variables` | The variables you [set on the environment](../../administration/web/configure-environment.md#variables).  |
 
-That configuration includes the resulting configuration objects derived from:
+The deployment block includes the configuration extracted from:
 
 - [your routes](../../define-routes/_index.md)
 - [your app configuration](../../create-apps/_index.md)
@@ -243,7 +273,8 @@ That configuration includes the resulting configuration objects derived from:
 
 ## Maximum activities and parallelism
 
-Project activities are distributed across separate queues, which enables **two* simultaneous activities to occur in parallel across your environments.
+Project activities are distributed across separate queues,
+which enables **two* simultaneous activities to occur in parallel across your environments.
 For a given environment, only one activity can run at a time.
 Those queues include:
 
