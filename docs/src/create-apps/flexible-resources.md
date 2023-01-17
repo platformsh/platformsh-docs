@@ -37,7 +37,7 @@ resources:
 ```
 
 If your app is set with a `size` of `S`, it gets 218&nbsp;MB of memory: `128 + (0.5 * 180) = 218`.
-If you change the `size` to `L`, it gets 488&nbsp;MB of memory: `128 + (2 * 180) = 218`.
+If you change the `size` to `L`, it gets 488&nbsp;MB of memory: `128 + (2 * 180) = 488`.
 
 ## Other containers and workers
 
