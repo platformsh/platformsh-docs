@@ -91,9 +91,9 @@ Not to be mistaken with the [`Project` type action](#type).
 The `type` value is a combination of the scope and the action itself for that event.
 Its scope can be in one of the following categories:
 
-- [Project](#project)
-- [Environment](#environment)
-- [Integration](#integration)
+- [Project](#project-event-value)
+- [Environment](#environment-event-value)
+- [Integration](#integration-event-value)
 
 #### `Project` event value
 
