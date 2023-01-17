@@ -13,7 +13,7 @@
 {{ end }}
 <div class="bg-{{ $bg }} p-4 mb-4 [&>p:last-child]:mb-0 [&>h3]:mt-0" role="alert">
   {{ if ne $title "none" }}
-    <h3 class="font-bold text-base">{{ $title }}</h3>
+  <h3 class="font-bold text-base">{{ $title }}</h3>
   {{ end }}
   <p>{{ .Inner | .context.Page.RenderString }}</p>
 </div>
