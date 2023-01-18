@@ -12,15 +12,13 @@ Platform.sh automatically provides wildcard certificates that cover all `*.platf
 Platform.sh allows you to use third-party TLS certificates free of charge.
 Consult your TLS issuer for pricing and instructions on how to generate a TLS certificate.
 
-If you want to use a third-party certificate, ensure it's purchased and active before going live.
-
 You can use many kinds of custom certificates, including domain-validated, extended validation, high-assurance, or wildcard certificates.
 
-Seven days before a third-party custom certificate is due to expire, 
+Seven days before a third-party custom certificate is due to expire,
 Platform.sh replaces it with a new default Let’s Encrypt certificate.
 This helps prevent downtime.
 To avoid switching to a default certificate,
-make sure you replace your custom certificate with an updated one 
+make sure you replace your custom certificate with an updated one
 more than seven days before its expiration date.
 
 ### Add a custom certificate

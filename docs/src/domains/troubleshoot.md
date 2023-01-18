@@ -27,7 +27,7 @@ If it isn't, try the following steps:
 
 - Your DNS server might not be correctly configured or the old DNS records are still cached.
   Try removing your local DNS cache.
-- Set your computer's DNS server to Google Public DNS (`8.8.8.8` and `8.8.4.4`)
+- Set your computer's DNS server to any Public DNS resolver (like [CloudFlare](https://developers.cloudflare.com/1.1.1.1/) or [Google](https://developers.google.com/speed/public-dns/docs/using))
   to see if the issue is with the DNS server you are using.
 - Run `ping www.{{< variable "YOUR_DOMAIN" >}}`.
   If the result is different from what you got from running `host www.{{< variable "YOUR_DOMAIN" >}}`,
@@ -35,9 +35,9 @@ If it isn't, try the following steps:
 
 ## Verify SSL
 
-To find out where your domain is pointing to, 
-you can use [the certificate checker tool](https://certcheck.pltfrm.sh/). 
-This tool provides provides guidance on certificates, 
+To find out where your domain is pointing to,
+you can use [the certificate checker tool](https://certcheck.pltfrm.sh/).
+This tool provides guidance on certificates,
 including when you use a [CDN](./cdn/_index.md).
 Check both the apex and the `www` domains to ensure they both point to your project.
 
@@ -47,8 +47,7 @@ For further investigations, run the following command in a shell:
 curl -I -v  https://www.{{< variable "YOUR_DOMAIN" >}}
 ```
 
-The response should be long. Look for error messages.
-They're usually explicit enough.
+Look for error messages.
 Often the problem is caused by a mismatch between the certificate and the domain name or an expired [custom certificate](steps/tls.md).
 
 ### Error provisioning certificates
@@ -98,8 +97,8 @@ keep your branch names under 20 characters.
 ### DNS Challenge
 
 To provide a valid SSL-certificate,
-Let's Encrypt needs to ensure that the requester is entitled to receive the SSL-certificate it asked for
-(usually through the presence of a specific token on the DNS zone of that domain).
+Let's Encrypt needs to ensure that the requester is entitled to receive the SSL-certificate it asked for.
+This is usually checked through the presence of a specific token on the DNS zone of that domain.
 
 This ownership verification is achieved through the so-called [_Challenge_ step](https://letsencrypt.org/docs/challenge-types/).
 
@@ -112,8 +111,8 @@ If not, the verification fails and you get the following error-message:
 Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]
 ```
 
-For the DNS challenge to complete, 
-domains and subdomains must point directly to your Platform.sh project, 
+For the DNS challenge to complete,
+domains and subdomains must point directly to your Platform.sh project,
 unless you use a [CDN](../domains/cdn/_index.md)).
 Otherwise, you see the following error:
 
@@ -145,13 +144,13 @@ If not, [contact Support](../overview/get-support.md).
 
 ## Verify your application
 
-On the command line type `platform logs app` and see there are no clear anomalies there.
-Do the same with `platform logs error`.
+Check your app's log and look for anomalies.
+On the command line type `platform logs app` and `platform logs error`.
 
 ## Use ASCII for the domain
 
 Platform.sh expects an ASCII representation of your domain.
-To use an internationalized domain name, convert your IDN domain to ASCII.
+To use an internationalized domain name (IDN), convert it to ASCII.
 Use a tool such as the [conversion tool provided by Verisign](https://www.verisign.com/en_US/channel-resources/domain-registry-products/idn/idn-conversion-tool/index.xhtml).
 
 ## Something still wrong?

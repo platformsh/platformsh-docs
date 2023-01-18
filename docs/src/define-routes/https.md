@@ -10,13 +10,13 @@ The default Let’s Encrypt TLS Certificates are:
 - automatically renewed 28 days before expiration
 
 When a new certificate is required, your environment is automatically redeployed to renew the certificate.
-During the redeployment, 
-required security and system upgrades are applied to your containers 
+During the redeployment,
+required security and system upgrades are applied to your containers
 and only [the `deploy` and `post-deploy` hooks are run](../create-apps/hooks/hooks-comparison.md).
 Certificate renewals take seconds unless upgrades are available for your containers.
 In this case, containers are rebooted and the process takes longer.
 
-If you don't want to use the default certificates, 
+If you don't want to use the default certificates,
 configure your own [third-party TLS certificates](../domains/steps/tls.md).
 
 ### Limits
@@ -42,13 +42,16 @@ use a routing configuration similar to the following:
     to: "https://{default}/"
 ```
 
-All traffic to your domain is sent to your app. The `www` subdomain redirects to the default domain. This also includes redirecting requests from HTTP to HTTPS. It affects your [default domain](../define-routes/_index.md#default).
+All traffic to your domain is sent to your app.
+The `www` subdomain redirects to the default domain.
+This also includes redirecting requests from HTTP to HTTPS.
+It affects your [default domain](../define-routes/_index.md#default).
 
 For more information, see how to [define routes](../define-routes/_index.md).
 
 ## Using HTTP only
 
-Using only HTTPS provides enhanced security for your site. 
+Using only HTTPS provides enhanced security for your site.
 When you use HTTPS, you can also access features that most web browsers only support over HTTPS,  
 such as HTTP/2 connections, which can improve performance.
 
@@ -78,7 +81,7 @@ This allows your site to be served from both HTTP and HTTPS without redirects.
 
 ## TLS configuration
 
-Optionally, it's possible to further refine how secure TLS connections are handled on your cluster via the `tls` route property.
+Optionally, you can specify how secure TLS connections are handled via the `tls` route property.
 
 ```yaml {location=".platform/routes.yaml"}
 https://{default}/:
@@ -87,6 +90,8 @@ https://{default}/:
     tls:
         # ...
 ```
+
+For troubleshooting SSL issues, see the [recommendations](../domains/troubleshoot.md#verify-ssl).
 
 ### `min_version`
 
@@ -100,7 +105,7 @@ tls:
 
 The above configuration results in requests using older TLS versions to be rejected.
 Legal values are `TLSv1.2` and `TLSv1.3`.
-TLS versions older than 1.2 aren't supported by Platform.sh and are rejected regardless of the setting here.
+TLS versions older than 1.2 aren't supported and are rejected regardless of the setting here.
 
 Note that if multiple routes for the same domain have different `min_version`s specified,
 the highest specified is used for the whole domain.
@@ -120,26 +125,17 @@ tls:
 
 The sub-properties of `strict_transport_security` are:
 
-- `enabled`: Can be `true`, `false`, or `null`.
-  Defaults to `null`.
-  If `false`, the other properties are ignored.
-- `include_subdomains`: Can be `true` or `false`.
-  Defaults to `false`.
-  If `true`, browsers are instructed to apply HSTS restrictions to all subdomains as well.
-- `preload`: Can be `true` or `false`.
-  Defaults to `false`.
-  If `true`, Google and others may add your site to a lookup reference of sites that should only ever be connected to over HTTPS.
-  Many, although not all, browsers consult this list before connecting to a site over HTTP and switch to HTTPS if instructed.
-  Although not part of the HSTS specification, it's supported by most browsers.
+| Name | Type | Default | Possible values | Description |
+|------|------|---------|-----------------|-------------|
+| `enabled` | `boolean` | `null` | `true`, `false`, or `null` | If enabled, the `Strict-Transport-Security` header is always sent with a lifetime of 1 year. The [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) has more detailed information on HSTS. If `false`, the other properties are ignored. |
+| `include_subdomains` | `boolean` | `false` | `true` or `false` | Whether browsers should apply HSTS restrictions to all subdomains. |
+| `preload` | `boolean` | `false` | `true` or `false` | The HSTS preloaded list is a list of websites that should only be connected to over HTTPS. Many browsers consult this list before connecting to a site. Setting `preload` to `true` gives the option for your website to be added to that list. Note that this list isn't part of the HSTS specification but is supported by most browsers. |
 
-If enabled, the `Strict-Transport-Security` header is always sent with a lifetime of 1 year.
-The [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) has more detailed information on HSTS.
-
-Note: If multiple routes for the same domain specify different HSTS settings, the entire domain still uses a shared configuration.
+Note: If multiple routes for the same domain specify different HSTS settings, the entire domain uses a shared configuration.
 Specifically, if any route on the domain has `strict_transport_security.enabled` set to `false`, HSTS is disabled for the whole domain.
 Otherwise, it's enabled for the whole domain if at least one such route has `enabled` set to `true`.
-As this logic may be tricky to configure correctly,
-it's strongly recommended to pick a single configuration for the whole domain and adding it on only a single route.
+As this logic can be tricky to configure correctly,
+pick a single configuration for the whole domain and add it on only a single route.
 
 ### Client authenticated TLS
 
@@ -180,7 +176,3 @@ tls:
             ### Several lines of different random characters here ###
             -----END CERTIFICATE-----
 ```
-
-## Troubleshooting
-
-See the [SSL troubleshooting page](../domains/troubleshoot.md#verify-ssl).
