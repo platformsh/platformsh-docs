@@ -35,12 +35,13 @@ If it isn't, try the following steps:
 
 ## Verify SSL
 
-For troubleshooting, feel free to use [the certificate checker tool](https://certcheck.pltfrm.sh/).
-This tool assists in finding out where your domain is pointing to and provides some generic guidance.
-It also assists when a CDN (Fastly, Cloudflare, ...) is used.
-It's good practice to check both the apex and the `www` domain to ensure that both point to your project.
+To find out where your domain is pointing to, 
+you can use [the certificate checker tool](https://certcheck.pltfrm.sh/). 
+This tool provides provides guidance on certificates, 
+including when you use a [CDN](./cdn/_index.md).
+Check both the apex and the `www` domains to ensure they both point to your project.
 
-For more in-depth investigations, on the command line using macOS, Linux, or the Windows Subsystem for Linux, run the following command:
+For further investigations, run the following command in a shell:
 
 ```bash
 curl -I -v  https://www.{{< variable "YOUR_DOMAIN" >}}
@@ -52,7 +53,8 @@ Often the problem is caused by a mismatch between the certificate and the domain
 
 ### Error provisioning certificates
 
-You may encounter Let's Encrypt certificates failing to provision after the build hook has completed:
+When a Let's Encrypt certificate fails to provision after the build hook has completed,
+you get output similar to the following:
 
 ```bash
 Provisioning certificates
@@ -65,7 +67,7 @@ W: Missing certificate for domain a-new-and-really-awesome-feature-abc1234-defgh
 
 The renewal may fail because of the 64-character limit Let's Encrypt places on URLs.
 If you have a branch with a long name, the environment URL is over this limit and the certificate is rejected.
-Shortening the branch name to fewer than 20 characters should solve the issue.
+To solve this, shorten your branch name so it doesn't exceed 20 characters.
 
 Generated URLs for environments have the following pattern:
 
@@ -88,10 +90,10 @@ The generated URLs consist of:
 - `platformsh.site` = 15 characters
 - extra characters like `.` and `-` = 4 to 5 characters, depending on if you have a default domain
 
-This leaves you with 21 to 23 characters for your branch name (`{{<variable "BRANCH_NAME" >}}`) without going over the 64-character limit,
+This leaves you with 21 to 23 characters for your branch name (`{{<variable "BRANCH_NAME" >}}`) without exceeding the 64-character limit,
 depending on the region.
-Since this pattern for generated URLs should remain similar even if it may change slightly,
-your branch names should be no more than 20 characters.
+To ensure your renewals succeed,  
+keep your branch names under 20 characters.
 
 ### DNS Challenge
 
@@ -103,13 +105,16 @@ This ownership verification is achieved through the so-called [_Challenge_ step]
 
 The certificate request is generated based on your [routes definition](../define-routes/_index.md).
 If you want your site to be available with `example.com` and its `www.example.com` subdomain, make sure both are defined in your routes.
-Platform.sh checks that all the routes you defined are pointing to your project, if that's not the case, the verification fails, which results in the following error-message:
+Platform.sh checks that all the routes you defined are pointing to your project.
+If not, the verification fails and you get the following error-message:
 
 ```text
 Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]
 ```
 
-For the DNS challenge to complete, domains, and subdomains must point directly to your Platform.sh project (unless using a [CDN](../domains/cdn/_index.md)).
+For the DNS challenge to complete, 
+domains and subdomains must point directly to your Platform.sh project, 
+unless you use a [CDN](../domains/cdn/_index.md)).
 Otherwise, you see the following error:
 
 ```text
@@ -125,18 +130,18 @@ or
 ```
 
 Make sure that the [apex domain](../other/glossary.md#apex-domain) and its `www` subdomain are both pointing to your project.
-Note that it can take anywhere from 15 minutes to 72 hours for DNS changes to be taken into account.
-See the [step-by-step guide](../domains/steps/_index.md) for more information.
+Note that it can take up to 72 hours for DNS changes to be effective.
+For more information, see how to [set up a custom domain](../domains/steps/_index.md).
 
-If you have waited a couple of hours, properly configured the subdomain, and are still seeing an error of this type,
-[redeploying](../development/troubleshoot.md#force-a-redeploy) the impacted environment usually solves the issue.
+If the changes take longer than expected,
+[redeploy](../development/troubleshoot.md#force-a-redeploy) the impacted environment.
 
 Also make sure that no conflicting DNS records exist for the domain.
 For example, a conflicting AAAA (IPv6) DNS record usually results in a `[HTTP01: The client lacks sufficient authorization]` error.
 
 If the certificate generation issue persists,
-you could also verify if an outage is currently ongoing on [with Let's Encrypt](https://letsencrypt.status.io/).
-If that isn't the case, [contact support](../overview/get-support.md).
+check if an outage is ongoing [with Let's Encrypt](https://letsencrypt.status.io/).
+If not, [contact Support](../overview/get-support.md).
 
 ## Verify your application
 

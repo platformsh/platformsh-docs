@@ -10,11 +10,14 @@ The default Let’s Encrypt TLS Certificates are:
 - automatically renewed 28 days before expiration
 
 When a new certificate is required, your environment is automatically redeployed to renew the certificate.
-During the redeployment, if required security and system upgrades are applied to your containers and only [the `deploy` and `post-deploy` hooks are run](../create-apps/hooks/hooks-comparison.md).
-Certificate renewals take a few seconds *unless* upgrades are available for your containers.
+During the redeployment, 
+required security and system upgrades are applied to your containers 
+and only [the `deploy` and `post-deploy` hooks are run](../create-apps/hooks/hooks-comparison.md).
+Certificate renewals take seconds unless upgrades are available for your containers.
 In this case, containers are rebooted and the process takes longer.
 
-If you don't want to use Let's Encrypt, or prefer to use your own certificate, see how to add a [third-party TLS certificate to your site](../domains/steps/tls.md).
+If you don't want to use the default certificates, 
+configure your own [third-party TLS certificates](../domains/steps/tls.md).
 
 ### Limits
 
@@ -26,7 +29,8 @@ Alternatively, consider splitting your project up into multiple Platform.sh proj
 ## Using HTTPS
 
 How HTTPS redirection is handled depends on the routes you have defined.
-To serve all pages over TLS and automatically redirect any requests from HTTP to HTTPS, you can use something along the lines of:
+To serve all pages over TLS and automatically redirect requests from HTTP to HTTPS,
+use a routing configuration similar to the following:
 
 ```yaml {location=".platform/routes.yaml"}
 "https://{default}/":
@@ -40,15 +44,16 @@ To serve all pages over TLS and automatically redirect any requests from HTTP to
 
 All traffic to your domain is sent to your app. The `www` subdomain redirects to the default domain. This also includes redirecting requests from HTTP to HTTPS. It affects your [default domain](../define-routes/_index.md#default).
 
-[See more example on routes configuration](../define-routes/_index.md).
+For more information, see how to [define routes](../define-routes/_index.md).
 
 ## Using HTTP only
 
-Platform.sh recommends using HTTPS requests for all sites exclusively (although both HTTP and HTTPS are supported).
-Using only HTTPS provides better security and access to certain features that web browsers only permit over HTTPS such as HTTP/2 connections, which can greatly improve performance.
+Using only HTTPS provides enhanced security for your site. 
+When you use HTTPS, you can also access features that most web browsers only support over HTTPS,  
+such as HTTP/2 connections, which can improve performance.
 
-Although Platform.sh doesn't recommend it, you can redirect HTTPS requests to HTTP explicitly to serve the site over HTTP only.
-The use cases for this configuration are few.
+If you have no other choice, you can serve your site over HTTP only.
+To do so, redirect HTTPS requests to HTTP using a configuration similar to the following:
 
 ```yaml {location=".platform/routes.yaml"}
 "http://{default}/":
@@ -68,10 +73,8 @@ The use cases for this configuration are few.
     to: "http://{default}/"
 ```
 
-Specifying only HTTP routes results in duplicate HTTPS routes being created automatically,
-allowing the site to be served from both HTTP and HTTPS without redirects.
-
-More complex routing logic is also possible if the situation calls for it.
+When you only define HTTP routes, duplicate HTTPS routes are created automatically.
+This allows your site to be served from both HTTP and HTTPS without redirects.
 
 ## TLS configuration
 
@@ -129,7 +132,7 @@ The sub-properties of `strict_transport_security` are:
   Many, although not all, browsers consult this list before connecting to a site over HTTP and switch to HTTPS if instructed.
   Although not part of the HSTS specification, it's supported by most browsers.
 
-If enabled, the `Strict-Transport-Security` header is always be sent with a lifetime of 1 year.
+If enabled, the `Strict-Transport-Security` header is always sent with a lifetime of 1 year.
 The [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) has more detailed information on HSTS.
 
 Note: If multiple routes for the same domain specify different HSTS settings, the entire domain still uses a shared configuration.
