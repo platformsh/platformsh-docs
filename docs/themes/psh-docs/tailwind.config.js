@@ -7,7 +7,7 @@ module.exports = {
     "./themes/**/content/**/*.{html,md}",
     "./static/scripts/xss/**/*.js"
   ],
-  safelist: ['-rotate-90'],
+  safelist: ['-rotate-90','bg-pink-light'],
   theme: {
     extend: {
       backgroundPosition: {
