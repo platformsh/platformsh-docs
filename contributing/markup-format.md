@@ -175,6 +175,15 @@ This is text with inline <code>code</code>.
 {{ partial "note" (dict "Inner" $inner "context" .) }}
 ```
 
+To include variables from a shortcode, use `printf` and `%s` as in the following example:
+
+```markdown
+{{ $inner := printf `
+This is text in the %s shortcode.
+` ( .Get "name" ) }}
+{{ partial "note" (dict "Inner" $inner "context" .) }}
+```
+
 ### Footnotes
 
 To add a footnote, add two parts:
