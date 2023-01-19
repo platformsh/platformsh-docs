@@ -198,8 +198,6 @@ Add the following to your shell's startup (`.bashrc`, `.zshrc`, or the equivalen
 eval $(platform completion)
 ```
 
-This requires the `bash-completion` package to be installed.
-
 {{< /codetabs >}}
 
 ### Run commands on your container
