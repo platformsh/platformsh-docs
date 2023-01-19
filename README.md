@@ -147,9 +147,10 @@ brew install htmltest
 npm install
 npm run dev
 npm run build:search
-npm run build:assets
 # Build the `public` repository
 hugo
+# Build the assets
+npm run build:assets
 # Run the link check
 htmltest
 ```
