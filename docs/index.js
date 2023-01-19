@@ -36,10 +36,7 @@ app.post("/feedback/submit", async (req, res) => {
   // Insert feedback record
   try {
     await connection.query(
-      `INSERT INTO Feedback (date, url, feedback)
-      VALUES
-        ('${feedback.date}', '${feedback.url}', '${feedback.feedback}');`
-    );
+      'INSERT INTO Feedback (date, url, feedback) VALUES (?,?,?)',[feedback.date, feedback.url, feedback.feedback]);
   } catch (err) { res.status(500).send("Error entering feedback into database") }
 
   res.status(200).send("Feedback recorded");
