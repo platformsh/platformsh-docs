@@ -20,22 +20,3 @@ $ scoop install platform
 {{ partial "codetabs/tabs" ( dict "Inner" $Inner "Page" .Page ) }}
 
 <p>For manual installation, you can also <a href="https://github.com/platformsh/cli/releases/latest">download the latest binaries</a>.</p>
-
-<p>Upgrade using the same tool:</p>
-
-{{ $Inner := `
-+++
-title=Homebrew
-file=none
-highlight=bash
-+++
-$ brew upgrade platformsh-cli
-<--->
-+++
-title=Scoop
-file=none
-highlight=bash
-+++
-$ scoop update platform
-`}}
-{{ partial "codetabs/tabs" ( dict "Inner" $Inner "Page" .Page ) }}

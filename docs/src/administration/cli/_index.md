@@ -206,3 +206,28 @@ run this command:
 ```bash
 platform ssh -e feature -- drush -y cache-rebuild
 ```
+
+### Update the CLI
+
+To update to the latest version, use the same tool as for [installation](#1-install):
+
+{{< codetabs >}}
++++
+title=Homebrew
+file=none
+highlight=bash
++++
+$ brew upgrade platformsh-cli
+<--->
++++
+title=Scoop
+file=none
+highlight=bash
++++
+$ scoop update platform
+{{< /codetabs >}}
+
+## Upgrade from the legacy CLI
+
+To upgrade from the legacy CLI, follow the [installation instructions](#1-install).
+Once you've installed the latest version, the CLI guides you through removing the installed legacy CLI.
