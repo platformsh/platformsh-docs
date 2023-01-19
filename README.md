@@ -128,6 +128,32 @@ If you would like to test the search server, follow these steps:
    hugo serve
    ```
 
+### Check the links locally
+
+To check that links in the documentation are valid, [htlmtest](https://github.com/wjdp/htmltest) is used.
+It runs as part of the [GitHub workflows](https://github.com/platformsh/platformsh-docs/tree/main/.github/workflows), but you can also run it on your machine.
+
+Requires:
+
+* [brew](https://brew.sh/) to be installed on your machine
+* To have cloned this repository 
+
+To install and use htmltest, run the following in your shell:
+```bash
+cd docs
+# Install the tool
+brew install htmltest
+# Install all dependencies
+npm install
+npm run dev
+npm run build:search
+npm run build:assets
+# Build the `public` repository
+hugo
+# Run the link check
+htmltest
+```
+
 ## Cache of static assets
 
 Given that the website itself isn't updated so often,
