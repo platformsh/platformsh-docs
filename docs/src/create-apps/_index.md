@@ -27,7 +27,7 @@ To create a very basic app, you need a few things:
 * A `disk` size for your deployed files.
 * A definition of how to handle requests from the outside `web`.
 
-The following example shows such a basic setup for PHP:
+The following example shows such a basic setup for Node.js:
 
 ```yaml {location=".platform.app.yaml"}
 # The app's name, which must be unique within the project.
