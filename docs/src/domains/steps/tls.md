@@ -6,13 +6,10 @@ sidebarTitle: "Custom TLS certificates"
 
 {{% tls-introduction %}}
 
-A custom certificate isn't necessary for development environments.
-Platform.sh automatically provides wildcard certificates that cover all `*.platform.sh` domains, including development environments.
+You can use many kinds of custom certificates, including domain-validated, extended validation, high-assurance, or wildcard certificates.
 
 Platform.sh allows you to use third-party TLS certificates free of charge.
 Consult your TLS issuer for pricing and instructions on how to generate a TLS certificate.
-
-You can use many kinds of custom certificates, including domain-validated, extended validation, high-assurance, or wildcard certificates.
 
 Seven days before a third-party custom certificate is due to expire,
 Platform.sh replaces it with a new default Let’s Encrypt certificate.
@@ -20,6 +17,9 @@ This helps prevent downtime.
 To avoid switching to a default certificate,
 make sure you replace your custom certificate with an updated one
 more than seven days before its expiration date.
+
+Note that custom certificates aren't necessary for development environments.
+Wildcard certificates that cover all `*.platform.sh` domains, including development environments, are automatically provided.
 
 ### Add a custom certificate
 
@@ -80,8 +80,9 @@ highlight=false
 
 ### Change the private key format
 
-Your certificate's private key needs to be in PKCS #1 format, which means it starts with `-----BEGIN RSA PRIVATE KEY-----`.
-If it has `-----BEGIN PRIVATE KEY-----` instead, it's in PKCS #8 format and you need to change it.
+The expected format for your certificate’s private key is PKCS #1.
+Private keys in PKCS #1 format start with `-----BEGIN RSA PRIVATE KEY-----`.
+If your private key starts with `-----BEGIN PRIVATE KEY-----`, it’s in PKCS #8 format, which isn’t appropriate.
 
 To convert your private key (`private.key`) from PKCS #8 to PKCS #1 format (`private.rsa.key`), run the following command:
 
