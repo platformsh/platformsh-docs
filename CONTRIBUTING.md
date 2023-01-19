@@ -186,13 +186,28 @@ To ensure the docs work smoothly, a few checks run on each pull request:
   (including whether linked headers exist).
   Any errors in links to external sites are found in the regular check of all links.
 
-  To run this check locally, run the following commands:
+  Requires:
+
+  * [brew](https://brew.sh/) to be installed on your machine
+  * To have cloned this repository
+
+  It runs as part of the [GitHub workflows](https://github.com/platformsh/platformsh-docs/tree/main/.github/workflows), but you can also run it on your machine.
+  To install and run this check locally, run the following commands:
 
   ```bash
-  # Download the htmltest tool
-  curl https://htmltest.wjdp.uk | bash
-  # Run the check
-  ./bin/htmltest
+  cd docs
+  # Install the tool
+  brew install htmltest
+  # Install all dependencies
+  npm install
+  npm run dev
+  npm run build:search
+  # Build the `public` repository
+  hugo
+  # Build the assets
+  npm run build:assets
+  # Run the link check
+  htmltest
   ```
 
 - Custom workflows [check all changed files](./.github/workflows/get-pr-info.yaml) within `docs/src`
