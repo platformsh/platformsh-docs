@@ -174,12 +174,33 @@ platform mount:download --all --app app --target local-backup
 ### Autocomplete commands
 
 The CLI provides tab autocompletion for commands, options, and some values (your projects, valid regions).
+To enable autocompletion, follow this step:
 
-Your system must include the `bash-completion` package or an equivalent.
-This isn't available by default on macOS, but can be installed via `brew`.
-Check your home directory and ensure that the file `~/.platformsh/autocompletion.sh` is being included by your shell.
+{{< codetabs >}}
++++
+title=Using Homebrew
+highlight=false
+file=none
++++
 
-If you experience issues, run `platform self:install` to attempt a reinstall of this utility.
+Follow the [Homebrew documentation on shell completion](https://docs.brew.sh/Shell-Completion).
+
+<--->
++++
+title=Manually
+highlight=false
+file=none
++++
+
+Add the following to your shell's startup (`.bashrc`, `.zshrc`, or the equivalent):
+
+```bash
+eval $(platform completion)
+```
+
+This requires the `bash-completion` package to be installed.
+
+{{< /codetabs >}}
 
 ### Run commands on your container
 
