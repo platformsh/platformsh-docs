@@ -189,7 +189,6 @@ To ensure the docs work smoothly, a few checks run on each pull request:
   To run this check locally, run the following commands:
 
   ```bash
-  cd docs
   # Download the htmltest tool
   curl https://htmltest.wjdp.uk | bash
   # If you haven't done so, install dependencies
