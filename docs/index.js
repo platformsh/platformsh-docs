@@ -38,7 +38,7 @@ app.post("/feedback/submit", async (req, res) => {
       `CREATE TABLE IF NOT EXISTS Feedback (
           id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
           date DATETIME NOT NULL,
-          url VARCHAR(100) NOT NULL,
+          url VARCHAR(300) NOT NULL,
           feedback VARCHAR(10) NOT NULL
         )`
     );
