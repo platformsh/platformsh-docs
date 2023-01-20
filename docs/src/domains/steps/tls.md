@@ -38,7 +38,7 @@ file=none
 highlight=false
 +++
 
-1. Add the certificate with the following command:
+1. Run the following command:
 
    ```bash
    platform domain:add {{<variable "YOUR_DOMAIN" >}} --cert {{<variable "PATH_TO_CERTIFICATE_FILE" >}} --key {{<variable "PATH_TO_PRIVATE_KEY_FILE" >}}
