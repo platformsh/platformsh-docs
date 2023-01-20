@@ -133,4 +133,4 @@ Note that client-authenticated TLS is a mutual authentication process.
 It allows your CDN to check that it's communicating with your Platform.sh server
 and vice versa.
 So in addition to the CA certificate supplied by your CDN provider,
-you need to [create your own TLS certificate](../../define-routes/https.md#lets-encrypt).
+you need to [create your own TLS certificate](../../define-routes/https.md).
