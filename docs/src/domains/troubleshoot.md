@@ -91,21 +91,19 @@ The generated URLs consist of:
 
 This leaves you with 21 to 23 characters for your branch name (`{{<variable "BRANCH_NAME" >}}`) without exceeding the 64-character limit,
 depending on the region.
-To ensure your renewals succeed,  
+To ensure your renewals succeed, 
 keep your branch names under 20 characters.
 
 ### DNS Challenge
 
 To provide a valid SSL-certificate,
-Let's Encrypt needs to ensure that the requester is entitled to receive the SSL-certificate it asked for.
-This is usually checked through the presence of a specific token on the DNS zone of that domain.
-
-This ownership verification is achieved through the so-called [_Challenge_ step](https://letsencrypt.org/docs/challenge-types/).
+Let's Encrypt checks that the requester is entitled to receive the requested SSL certificate.
+This check is known as the [_Challenge_ step](https://letsencrypt.org/docs/challenge-types/).
 
 The certificate request is generated based on your [routes definition](../define-routes/_index.md).
 If you want your site to be available with `example.com` and its `www.example.com` subdomain, make sure both are defined in your routes.
 Platform.sh checks that all the routes you defined are pointing to your project.
-If not, the verification fails and you get the following error-message:
+If not, the verification fails and you get the following error message:
 
 ```text
 Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]
@@ -144,7 +142,7 @@ If not, [contact Support](../overview/get-support.md).
 
 ## Verify your application
 
-Check your app's log and look for anomalies.
+Check your app's logs and look for anomalies.
 On the command line type `platform logs app` and `platform logs error`.
 
 ## Use ASCII for the domain

@@ -43,9 +43,8 @@ use a routing configuration similar to the following:
 ```
 
 All traffic to your domain is sent to your app.
-The `www` subdomain redirects to the default domain.
+The `www` subdomain redirects to the [default domain](../define-routes/_index.md#default).
 This also includes redirecting requests from HTTP to HTTPS.
-It affects your [default domain](../define-routes/_index.md#default).
 
 For more information, see how to [define routes](../define-routes/_index.md).
 
