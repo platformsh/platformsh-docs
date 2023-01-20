@@ -20,26 +20,37 @@ app.post("/feedback/submit", async (req, res) => {
   });
 
   const feedback = req.body
+  const today = new Date().toISOString().slice(0, 19)
 
-  // Create a feedback table if it doesn't exist
-  try {
-    await connection.query(
-      `CREATE TABLE IF NOT EXISTS Feedback (
-        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        date DATETIME NOT NULL,
-        url VARCHAR(100) NOT NULL,
-        feedback VARCHAR(10) NOT NULL
-      )`
-    );
-  } catch (err) { res.status(500).send("Error creating a table for feedback") }
+  // Validate URL in feedback
+  if ((typeof feedback.url !== 'string') || !feedback.url.startsWith(config.getPrimaryRoute().url)) {
+    res.status(400).send("The submitted URL isn't valid")
+  }
+  // Validate feedback itself
+  else if ((typeof feedback.feedback !== 'string') || !['positive', 'negative'].includes(feedback.feedback)) {
+    res.status(400).send("The submitted feedback isn't valid")
+  }
+  else {
+    // Create a feedback table if it doesn't exist
+    try {
+      await connection.query(
+        `CREATE TABLE IF NOT EXISTS Feedback (
+          id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+          date DATETIME NOT NULL,
+          url VARCHAR(100) NOT NULL,
+          feedback VARCHAR(10) NOT NULL
+        )`
+      );
+    } catch (err) { res.status(500).send("Error creating a table for feedback") }
 
-  // Insert feedback record
-  try {
-    await connection.query(
-      'INSERT INTO Feedback (date, url, feedback) VALUES (?,?,?)',[feedback.date, feedback.url, feedback.feedback]);
-  } catch (err) { res.status(500).send("Error entering feedback into database") }
+    // Insert feedback record
+    try {
+      await connection.query(
+        'INSERT INTO Feedback (date, url, feedback) VALUES (?,?,?)', [today, feedback.url, feedback.feedback]);
+    } catch (err) { res.status(500).send("Error entering feedback into database") }
 
-  res.status(200).send("Feedback recorded");
+    res.status(200).send("Feedback recorded");
+  }
 
 })
 
