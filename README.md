@@ -60,8 +60,6 @@ Then build the site:
 hugo serve
 ```
 
-Optionally, to check that the documentation changes fit our recommendations, you can [run additional tools locally](./CONTRIBUTING.md#checks).
-
 ### Running locally with search
 
 In addition to the above requirements, search also requires:
