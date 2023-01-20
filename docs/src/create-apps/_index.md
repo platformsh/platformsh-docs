@@ -27,21 +27,21 @@ To create a very basic app, you need a few things:
 * A `disk` size for your deployed files.
 * A definition of how to handle requests from the outside `web`.
 
-The following example shows such a basic setup for PHP:
+The following example shows such a basic setup for Node.js:
 
 ```yaml {location=".platform.app.yaml"}
 # The app's name, which must be unique within the project.
-name: 'app'
+{{< code-link destination="/create-apps/app-reference.html#top-level-properties" text="name" >}}: 'app'
 
 # The language and version for your app.
-type: 'nodejs:16'
+{{< code-link destination="/create-apps/app-reference.html#types" text="type" >}}: 'nodejs:16'
 
 # The size of the app's persistent disk (in MB).
-disk: 2048
+{{< code-link destination="/create-apps/app-reference.html#top-level-properties" text="disk" >}}: 2048
 
 # The app's configuration when it's exposed to the web.
-web:
-    locations:
+{{< code-link destination="/create-apps/app-reference.html#web" text="web" >}}:
+    {{< code-link destination="/create-apps/app-reference.html#locations" text="locations" >}}:
         '/':
             # The public directory relative to the app root.
             root: 'public'
@@ -115,24 +115,24 @@ The following example shows a setup for a PHP app with comments to explain the s
 
 ```yaml {location=".platform.app.yaml"}
 # The app's name, which must be unique within the project.
-name: 'app'
+{{< code-link destination="/create-apps/app-reference.html#top-level-properties" text="name" >}}: 'app'
 
-# The type key specifies the language and version for your app.
-type: 'php:8.1'
+# The language and version for your app.
+{{< code-link destination="/create-apps/app-reference.html#types" text="type" >}}: 'php:8.1'
 
 # Global dependencies to be added and cached and then available as commands.
-dependencies:
+{{< code-link destination="/create-apps/app-reference.html#dependencies" text="dependencies" >}}:
     php:
         composer/composer: '^2'
 
 # The app's relationships (connections) with services or other applications.
 # The key is the relationship name that can be viewed in the app.
 # The value is specific to how the service is configured.
-relationships:
+{{< code-link destination="/create-apps/app-reference.html#relationships" text="relationships" >}}:
     database: 'mysqldb:mysql'
 
 # Scripts that are run as part of the build and deploy process.
-hooks:
+{{< code-link destination="/create-apps/hooks.html" text="hooks" >}}:
     # Build hooks can modify app files on disk but not access any services like databases.
     build: ./build.sh
     # Deploy hooks can access services but the file system is now read-only.
@@ -141,19 +141,19 @@ hooks:
     post_deploy: ./post_deploy.sh
 
 # The size of the app's persistent disk (in MB).
-disk: 2048
+{{< code-link destination="/create-apps/app-reference.html#top-level-properties" text="disk" >}}: 2048
 
 # Define writable, persistent filesystem mounts.
 # The key is the directory path relative to the application root.
 # In this case, `web-files` is just a unique name for the mount.
-mounts:
+{{< code-link destination="/create-apps/app-reference.html#mounts" text="mounts" >}}:
     'web/files':
         source: local
         source_path: 'web-files'
 
-# The app configuration when it's exposed to the web.
-web:
-    locations:
+# The app's configuration when it's exposed to the web.
+{{< code-link destination="/create-apps/app-reference.html#web" text="web" >}}:
+    {{< code-link destination="/create-apps/app-reference.html#locations" text="locations" >}}:
         '/':
             # The app's public directory relative to its root.
             root: 'public'
