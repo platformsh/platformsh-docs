@@ -186,13 +186,7 @@ To ensure the docs work smoothly, a few checks run on each pull request:
   (including whether linked headers exist).
   Any errors in links to external sites are found in the regular check of all links.
 
-  Requires:
-
-  * [brew](https://brew.sh/) to be installed on your machine
-  * To have cloned this repository
-
-  It runs as part of the [GitHub workflows](https://github.com/platformsh/platformsh-docs/tree/main/.github/workflows), but you can also run it on your machine.
-  To install and run this check locally, run the following commands:
+  To run this check locally, run the following commands:
 
   ```bash
   cd docs
