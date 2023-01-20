@@ -196,18 +196,19 @@ To ensure the docs work smoothly, a few checks run on each pull request:
 
   ```bash
   cd docs
-  # Install the tool
-  brew install htmltest
-  # Install all dependencies
+  # Download the htmltest tool
+  curl https://htmltest.wjdp.uk | bash
+  # If you haven't done so, install dependencies
   npm install
+  # Generate necessary files
   npm run dev
   npm run build:search
-  # Build the `public` repository
+  # Build HTML pages to check
   hugo
-  # Build the assets
+  # Build production JavaScript and CSS files
   npm run build:assets
-  # Run the link check
-  htmltest
+  # Run the check
+  ./bin/htmltest
   ```
 
 - Custom workflows [check all changed files](./.github/workflows/get-pr-info.yaml) within `docs/src`
