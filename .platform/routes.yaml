@@ -152,6 +152,11 @@ https://{default}/:
       "/configuration/yaml.html":  { "to": "/overview/yaml.html", "code": 301 }
       "/administration/web/delete.html":  { "to": "/projects/delete-project.html", "code": 301 }
       "/guides/general/region-migration.html":  { "to": "/projects/region-migration.html", "code": 301 }
+      
+      # Remove get started index pages
+      "/get-started/deploy.html(.*)" : { "to": "/get-started/deploy/init.html$1", "code": 301, "regexp": true }
+      "/get-started/add-data.html(.*)" : { "to": "/get-started/add-data/branch.html$1", "code": 301, "regexp": true }
+      "/get-started/monitor-and-troubleshoot.html(.*)" : { "to": "/get-started/monitor-and-troubleshoot/log.html$1", "code": 301, "regexp": true }
 
 "https://search.{default}/":
     type: upstream
