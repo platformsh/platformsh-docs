@@ -28,23 +28,22 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../
 
 {{% endpoint-description type="influxdb" /%}}
 
-{{< codetabs >}}
+```php
+<?php
+// This assumes a fictional application with an array named $settings.
+if (getenv('PLATFORM_RELATIONSHIPS')) {
+	$relationships = json_decode(base64_decode($relationships), TRUE);
 
----
-title=PHP
-file=static/files/fetch/examples/php/influxdb
-highlight=php
----
-
-<--->
-
----
-title=Node.js
-file=static/files/fetch/examples/nodejs/influxdb
-highlight=js
----
-
-{{< /codetabs >}}
+	// For a relationship named 'influxtimedb' referring to one endpoint.
+	if (!empty($relationships['influxtimedb'])) {
+		foreach ($relationships['influxtimedb'] as $endpoint) {
+			$settings['influxdb_host'] = $endpoint['host'];
+			$settings['influxdb_port'] = $endpoint['port'];
+			break;
+		}
+	}
+}
+```
 
 ## Exporting data
 
