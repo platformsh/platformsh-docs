@@ -6,9 +6,9 @@ sidebarTitle: "Custom TLS certificates"
 
 {{% tls-introduction %}}
 
-You can use many kinds of custom certificates, including domain-validated, extended validation, high-assurance, or wildcard certificates.
-
 Platform.sh allows you to use third-party TLS certificates free of charge.
+
+You can use many kinds of custom certificates, including domain-validated, extended validation, high-assurance, or wildcard certificates.
 Consult your TLS issuer for pricing and instructions on how to generate a TLS certificate.
 
 Seven days before a third-party custom certificate is due to expire,
