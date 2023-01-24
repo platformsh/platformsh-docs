@@ -42,7 +42,7 @@ the `Host` header value is rewritten to point to the CDN.
 If the requested resource isn't cached on the edge server,
 the edge server makes a request to the Platform.sh server to pull and cache the resource.
 
-For this process to be successful, 
+For this process to be successful,
 set an `X-Forwarded-Host` header to forward the original `Host` header value to the Platform.sh server.
 Use your root domain as the value of your `X-Forwarded-Host` header,
 for example: `example.com`.
@@ -99,7 +99,7 @@ To allow and deny IP addresses, follow these steps:
     - [Fastly](https://docs.fastly.com/en/guides/accessing-fastlys-ip-ranges) 
     - [CloudFlare](https://www.cloudflare.com/ips/)
 
-3.  To allow only these IPs on an environment, 
+3.  To allow only these IPs on an environment,
    set up [HTTP access control](../../environments/http-access-control.md#filter-ip-addresses).
 
 ### Client-authenticated TLS
