@@ -23,7 +23,7 @@ app.post("/feedback/submit", async (req, res) => {
   const today = new Date().toISOString().slice(0, 19)
 
   // Validate URL in feedback
-  if ((typeof feedback.url !== 'string') || !feedback.url.startsWith(config.getPrimaryRoute().url)) {
+  if ((typeof feedback.url !== 'string') || /[<>\s]/.test(feedback.url) || !feedback.url.startsWith(config.getPrimaryRoute().url)) {
     return res.status(400).send("The submitted URL isn't valid")
   }
 
