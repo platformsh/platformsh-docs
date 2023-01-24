@@ -35,14 +35,29 @@ app.post("/feedback/submit", async (req, res) => {
   // Create a feedback table if it doesn't exist
   try {
     await connection.query(
-      `CREATE TABLE IF NOT EXISTS Feedback (
-          id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-          date DATETIME NOT NULL,
-          url VARCHAR(300) NOT NULL,
-          feedback VARCHAR(10) NOT NULL
-        )`
+      `SELECT count(*) FROM information_schema.TABLES
+      WHERE (TABLE_SCHEMA = '${credentials.path}')
+      AND (TABLE_NAME = 'Feedback')`,
+      async (error, result) => {
+        if (error) {
+          return res.status(500).send("Error looking for feedback table")
+        }
+        if (result.length === 0) {
+          try {
+            await connection.query(
+              `CREATE TABLE Feedback (
+                id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                date DATETIME NOT NULL,
+                url VARCHAR(300) NOT NULL,
+                feedback VARCHAR(10) NOT NULL
+              )`
+            )
+          }
+          catch (err) { return res.status(500).send("Error creating a table for feedback") }
+        }
+      }
     );
-  } catch (err) { return res.status(500).send("Error creating a table for feedback") }
+  } catch (err) { return res.status(500).send("Error connecting to database") }
 
   // Insert feedback record
   try {
