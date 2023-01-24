@@ -10,6 +10,7 @@ on:
 env:
   PLATFORMSH_CLI_NO_INTERACTION: 1
   PLATFORM_PROJECT: 652soceglkw4u
+  PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
 
 jobs:
   activate_environment:
