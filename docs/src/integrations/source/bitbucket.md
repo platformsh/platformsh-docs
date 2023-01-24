@@ -22,15 +22,15 @@ by creating an [OAuth consumer](https://confluence.atlassian.com/bitbucket/oauth
 2. Under "APPS AND FEATURES" click "OAuth Consumers".
 3. Click the "Add consumer" button.
 4. Fill out the information for the consumer. In order for the integration to work correctly, it's required that you include:
-    * **Name:** Give the consumer a recognizable name, like `Platform.sh consumer` or `Platform.sh integration`.
-    * **Callback URL:** The URL users are redirected to after access authorization. It is sufficient to set this value to `http://localhost`.
-    * **Set as a private consumer:** At the bottom of the "Details" section, select the "This is a private consumer" checkbox.
-    * **Permissions:** Sets the integration permissions for Platform.sh.
+    - **Name:** Give the consumer a recognizable name, like `Platform.sh consumer` or `Platform.sh integration`.
+    - **Callback URL:** The URL users are redirected to after access authorization. It is sufficient to set this value to `http://localhost`.
+    - **Set as a private consumer:** At the bottom of the "Details" section, select the "This is a private consumer" checkbox.
+    - **Permissions:** Sets the integration permissions for Platform.sh.
       These permissions will create the webhooks that will enable Platform.sh to mirror actions from the Bitbucket repository.
-      * **Account** - Email, Read
-      * **Repositories** - Read, Write
-      * **Pull requests** - Read
-      * **Webhooks** - Read and write
+      - **Account** - Email, Read
+      - **Repositories** - Read, Write
+      - **Pull requests** - Read
+      - **Webhooks** - Read and write
 5. After you have completed the form, `Save` the consumer.
 6. After you have saved, you will see your consumer listed in the "OAuth consumers" section.
    If you open that item, it exposes two variables that you need to complete the integration using the Platform.sh CLI: `Key` and `Secret`.
@@ -43,15 +43,15 @@ or create a new project with `platform project:create`.
 Then run the integration command:
 
 ```bash
- platform integration:add --type=bitbucket --project <PLATFORMSH_PROJECT_ID> --key <CONSUMER_KEY> --secret <CONSUMER_SECRET> --repository <USER>/<REPOSITORY>
+ platform integration:add --type=bitbucket --project {{<variable "PROJECT_ID" >}} --key {{<variable "CONSUMER_KEY" >}} --secret {{<variable "CONSUMER_SECRET" >}} --repository {{<variable "REPOSITORY" >}}
 ```
 
 where
 
-* `PLATFORMSH_PROJECT_ID` is the project ID for your Platform.sh project.
-* `CONSUMER_KEY` is the `Key` variable of the consumer you created.
-* `CONSUMER_SECRET` is the `Secret` variable of the consumer you created.
-* `USER/REPOSITORY` is the location of the repository.
+- `PLATFORMSH_PROJECT_ID` is the project ID for your Platform.sh project.
+- `CONSUMER_KEY` is the `Key` variable of the consumer you created.
+- `CONSUMER_SECRET` is the `Secret` variable of the consumer you created.
+- `USER/REPOSITORY` is the location of the repository.
 
 ## Bitbucket Server
 
@@ -79,29 +79,29 @@ highlight=false
 Run the following command:
 
 ```bash
-platform integration:add --type=bitbucket_server --base-url={{< variable "BITBUCKET_URL" >}} --username={{< variable "USERNAME" >}} --token={{< variable "BITBUCKET_ACCESS_TOKEN" >}} --repository={{< variable "REPOSITORY" >}} --project={{< variable "PLATFORM_SH_PROJECT_ID" >}}
+platform integration:add --type=bitbucket_server --base-url={{< variable "BITBUCKET_URL" >}} --username={{< variable "USERNAME" >}} --token={{< variable "BITBUCKET_ACCESS_TOKEN" >}} --repository={{< variable "OWNER/REPOSITORY" >}} --project={{< variable "PLATFORM_SH_PROJECT_ID" >}}
 ```
 
 * `BITBUCKET_URL`: The base URL of the server installation.
 * `USERNAME`: Your Bitbucket Server username.
 * `BITBUCKET_ACCESS_TOKEN`: The access token you created for the integration.
-* `REPOSITORY`: The repository  (in the form `owner/repository`).
+* `OWNER/REPOSITORY`: The repository  (in the form `owner/repository`).
 * `PLATFORM_SH_PROJECT_ID`: The project ID for your Platform.sh project.
 
 Optional parameters:
 
-* `--fetch-branches`: Track and deploy branches (true by default)
-* `--prune-branches`: Delete branches that don't exist in the remote Bitbucket repository (true by default)
-* `--build-pull-requests`: Track and deploy pull-requests (true by default)
-* `--build-pull-requests-post-merge`: `false` to have Platform.sh build the branch specified in a PR.
-  `true` to build the result of merging the PR.
-  (`false` by default)
-
+| Name | Default | Description |
+|------|---------|-------------|
+| `--fetch-branches` | `true` | Track and deploy branches |
+| `--prune-branches`| `true` | Delete branches that don't exist in the remote Bitbucket repository |
+| `--build-pull-requests` | `true` | Track and deploy pull-requests |
+| `--build-pull-requests-post-merge` | `false` | `false` to have Platform.sh build the branch specified in a PR. `true` to build the result of merging the PR. |
 
 Note that the `--prune-branches` option depends on `--fetch-branches` being enabled.
 If `--fetch-branches` is disabled, `--prune-branches` is automatically set to false, even if specifically set to true.
 
 <--->
+
 +++
 title=In the Console
 file=none

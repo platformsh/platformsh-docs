@@ -13,12 +13,13 @@ but you haven’t added them to the remote repository on GitHub, GitLab, or Bitb
 they can't clone the project locally.
 
 If that user tries to use `platform get` with the CLI:
-```
-$ platform get <projectID>
+
+``` bash
+$ platform get {{<variable "PROJECT_ID" >}}
 ```
 it returns the following error:
 
-```
+``` text
 Failed to connect to the Git repository: git@github.com:user/github-repo.git
 Please make sure you have the correct access rights and the repository exists.
 ```

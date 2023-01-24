@@ -8,9 +8,9 @@ description: |
 
 **Features supported:**
 
-* Create a new environment when creating a branch or opening a pull request on GitHub.
-* Rebuild the environment when pushing new code to GitHub.
-* Delete the environment when merging a pull request.
+- Create a new environment when creating a branch or opening a pull request on GitHub.
+- Rebuild the environment when pushing new code to GitHub.
+- Delete the environment when merging a pull request.
 
 {{% source-integration/requirements %}}
 
@@ -21,11 +21,11 @@ To integrate your Platform.sh project with an existing GitHub repository,
 
 Give it a description and then ensure the token has the following scopes:
 
-* To integrate with public repositories: `public_repo`
-* To integrate with your own private repositories: `repo`
-* To integrate with your organization's private repositories:
+- To integrate with public repositories: `public_repo`
+- To integrate with your own private repositories: `repo`
+- To integrate with your organization's private repositories:
   `repo` and `read:org`
-* To automatically create web hooks: `admin:repo_hook`
+- To automatically create web hooks: `admin:repo_hook`
 
 Copy the token and make a note of it (temporarily).
 
@@ -50,9 +50,9 @@ Run the following command:
 platform integration:add --type=github --token={{< variable "GITHUB_ACCESS_TOKEN" >}} --repository={{< variable "OWNER/REPOSITORY" >}} --project={{< variable "PLATFORM_SH_PROJECT_ID" >}}
 ```
 
-* `GITHUB_ACCESS_TOKEN` is the token you generated.
-* `OWNER/REPOSITORY` is the name of the repository in GitHub.
-* `PLATFORM_SH_PROJECT_ID` is the ID for your Platform.sh project.
+- `GITHUB_ACCESS_TOKEN` is the token you generated.
+- `OWNER/REPOSITORY` is the name of the repository in GitHub.
+- `PLATFORM_SH_PROJECT_ID` is the ID for your Platform.sh project.
 
 For example, if your repository is located at `https://github.com/platformsh/platformsh-docs`,
 the command is similar to the following:
@@ -63,21 +63,15 @@ platform integration:add --type=github --token=abc123 --repository=platformsh/pl
 
 Optional parameters:
 
-* `--fetch-branches`: Track and deploy branches (true by default)
-* `--prune-branches`: Delete branches that don't exist in the remote GitHub repository (true by default)
-* `--build-pull-requests`: Track and deploy pull-requests (true by default)
-* `--build-draft-pull-requests`: If set to `true`, [draft pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) also have an environment created.
-  If `false`, they're ignored.
-  If `--build-pull-requests` is `false` this value is ignored.
-  (`true` by default)
-* `--build-pull-requests-post-merge`: `false` to have Platform.sh build the branch specified in a PR.
-  `true` to build the result of merging the PR.
-  (`false` by default)
-* `--pull-requests-clone-parent-data`:
-  Set to `false` to disable cloning of parent environment data when creating a PR environment,
-  so each PR environment starts with no data. (`true` by default)
-* `--base-url`: Only set if using GitHub Enterprise, hosted on your own server.
-  If so, set this to the base URL of your private server (the part before the user and repository name).
+| Name | Default | Description |
+|------|---------|-------------|
+| `--fetch-branches` | `true` | Track and deploy branches |
+| `--prune-branches` | `true` | Delete branches that don't exist in the remote GitHub repository |
+| `--build-pull-requests` | `true` | Track and deploy pull-requests |
+| `--build-draft-pull-requests` | `true` | If set to `true`, [draft pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) also have an environment created. If `false`, they're ignored. If `--build-pull-requests` is `false` this value is ignored. |
+| `--build-pull-requests-post-merge` |  `false` | `false` to have Platform.sh build the branch specified in a PR. `true` to build the result of merging the PR. |
+| `--pull-requests-clone-parent-data` |  `true` | Set to `false` to disable cloning of parent environment data when creating a PR environment, so each PR environment starts with no data. |
+| `--base-url` |   | Only set if using GitHub Enterprise, hosted on your own server.  If so, set this to the base URL of your private server (the part before the user and repository name). |
 
 Note that the `--prune-branches` option depends on `--fetch-branches` being enabled.
 If `--fetch-branches` is disabled, `--prune-branches` is automatically set to false, even if specifically set to true.
