@@ -17,41 +17,43 @@ By default, Dedicated projects include a [Fastly CDN managed by Platform.sh](./m
 Self-service Grid plans don't include a CDN by default, but you can set up one at any time,
 such as [Fastly](./fastly.md) or [Cloudflare](./cloudflare.md).
 
-## `CNAME` records
+## DNS records
 
 To start routing client traffic through your CDN,
-create `CNAME` records for your domain names through your DNS provider.
-For more information, see you DNS provider's official documentation.
+several specific records on your DNS are required.
+These usually are the `_acme-challenge` subdomain and `CNAME` records.
+You can create these records for your domain names through your DNS provider.
+For more information, see you DNS and your CDN provider's official documentations.
 
 Note that [`CNAME` records can't point to apex domains](../steps/dns.md),
 but most CDN providers offer workarounds.
-For example, Fastly offers [Anycast options](./fastly.md#3-handle-apex-domains) 
+For example, Fastly offers [Anycast options](./fastly.md#3-handle-apex-domains)
 and Cloudflare offers [`CNAME` flattening](./cloudflare.md#3-handle-apex-domains).
 
 ## Host header forwarding
 
-When an HTTP request is made to a website, the client adds a `Host` header to the request. 
-The value of this header is the domain name the request is made to. 
+When an HTTP request is made to a website, the client adds a `Host` header to the request.
+The value of this header is the domain name the request is made to.
 When a server hosts multiple websites, like what a CDN does,
 it can use the `Host` header to identify which domain to access to handle the request.
 
-When a request is made from a client to fetch a resource on a CDN edge server, 
-the `Host` header value is rewritten to point to the CDN. 
-If the requested resource isn't cached on the edge server, 
+When a request is made from a client to fetch a resource on a CDN edge server,
+the `Host` header value is rewritten to point to the CDN.
+If the requested resource isn't cached on the edge server,
 the edge server makes a request to the Platform.sh server to pull and cache the resource.
 
 For this process to be successful, 
 set an `X-Forwarded-Host` header to forward the original `Host` header value to the Platform.sh server.
-Use your root domain as the value of your `X-Forwarded-Host` header, 
+Use your root domain as the value of your `X-Forwarded-Host` header,
 for example: `example.com`.
 
 To ensure your app handles the `X-Forwarded-Host` header,
 you might need to adjust your app configuration.
-For more information on how to set up an `X-Forwarded-Host` HTTP header, 
+For more information on how to set up an `X-Forwarded-Host` HTTP header,
 see your CDN provider's official documentation.
 
 ## Disable the Platform.sh router cache
- 
+
 When you use a CDN, the Platform.sh router [HTTP caching](../../define-routes/cache.md) becomes redundant.
 To disable it, change your cache configuration for the routes behind a CDN to the following:
 
@@ -63,34 +65,34 @@ To disable it, change your cache configuration for the routes behind a CDN to th
        # Disable the HTTP cache on this route. It's handled by the CDN instead.
        enabled: false
 ```
- 
+
 ## Prevent direct access to your Platform.sh server
- 
+
 When you use a CDN, you might want to prevent direct access to your Platform.sh server for security purposes.
- 
+
 ### HTTP basic authentication
- 
+
 You can restrict access to your site's environments through HTTP basic authentication.
 To access a restricted environment, users need to enter credentials through their browser.
 By default, child environments inherit access settings configured on their parent environment.
 
-To enable HTTP basic authentication, 
+To enable HTTP basic authentication,
 follow these steps:
 
 1. Generate a strong password.
 2. Set up the authentication using [HTTP access control](../../environments/http-access-control.md#use-a-username-and-password).
 3. Share your credentials with your CDN provider.
- 
+
 ### Allow and deny IP addresses
- 
+
 You can secure your site's environments by allowing and denying IP addresses.
 By default, child environments inherit the access settings configured on their parent environment.
- 
-Note that allowing and denying IP addresses means you have to update your configuration 
+
+Note that allowing and denying IP addresses means you have to update your configuration
 when your CDN provider updates their IP addresses.
- 
+
 To allow and deny IP addresses, follow these steps:
- 
+
 1.  Set up your CDN.
 
 2.  Get your CDN provider's current IP ranges:
@@ -99,14 +101,14 @@ To allow and deny IP addresses, follow these steps:
 
 3.  To allow only these IPs on an environment, 
    set up [HTTP access control](../../environments/http-access-control.md#filter-ip-addresses).
- 
+
 ### Client-authenticated TLS
- 
-If your CDN provider supports it, 
+
+If your CDN provider supports it,
 you can secure your site through [client-authenticated TLS](../../define-routes/https.md#client-authenticated-tls).
 
 To enable client-authenticated TLS, follow these steps:
- 
+
 1.  Obtain an Origin Certificate Authority (CA) certificate from your CDN provider.
 
 2.  Check that the CA certificate is a `.crt` file.

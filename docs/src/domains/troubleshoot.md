@@ -102,6 +102,15 @@ This check is known as the [_Challenge_ step](https://letsencrypt.org/docs/chall
 
 The certificate request is generated based on your [routes definition](../define-routes/_index.md).
 If you want your site to be available with `example.com` and its `www.example.com` subdomain, make sure both are defined in your routes.
+
+{{< codetabs >}}
+
++++
+title=Without a CDN
+file=none
+highlight=false
++++
+
 Platform.sh checks that all the routes you defined are pointing to your project.
 If not, the verification fails and you get the following error message:
 
@@ -109,9 +118,9 @@ If not, the verification fails and you get the following error message:
 Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]
 ```
 
-For the DNS challenge to complete,
-domains and subdomains must point directly to your Platform.sh project,
-unless you use a [CDN](../domains/cdn/_index.md)).
+For the challenge to complete,
+domains, and subdomains must point directly to your Platform.sh project.
+
 Otherwise, you see the following error:
 
 ```text
@@ -122,18 +131,43 @@ Otherwise, you see the following error:
 or
 
 ```text
-  W: Failed to verify the challenge at the gateway for the domain 'www.some-example.example.com'
+  W: Failed to verify the challenge at the gateway for the domain 'www.example.com'
   E: Error validating domain www.example.com: Couldn't complete challenge [HTTP01: There was a problem with a DNS query during identifier validation]
 ```
 
-Make sure that the [apex domain](../other/glossary.md#apex-domain) and its `www` subdomain are both pointing to your project.
+<--->
+
++++
+title=Using a CDN
+file=none
+highlight=false
++++
+
+When using a CDN, there are several requirements for the completion of the [_Challenge_ step](https://letsencrypt.org/docs/challenge-types/):
+
+- Your domains and subdomains must point to your CDN.
+- The [`_acme-challenge.` subdomain](https://www.rfc-editor.org/rfc/rfc8555#section-8.4) (like in `_acme-challenge.example.com`) must point to your CDN.
+- The [`/.well-known/` route](https://www.rfc-editor.org/rfc/rfc8555#section-8.3) (like in `https://www.example.com/.well-known/`) must be accessible (no redirects).
+
+If the requirements aren't met, you get an error message similar to:
+
+``` text
+  W: Failed to verify the challenge at the gateway for the domain 'www.example.com'
+  E: Error validating domain www.example.com: Couldn't complete challenge [HTTP01: The client lacks sufficient authorization]
+```
+
+See how to setup your [CDN](../domains/cdn/_index.md).
+
+{{< /codetabs >}}
+
+Make sure that the [apex domain](../other/glossary.md#apex-domain) and its `www` subdomain are both pointing where needed.
 Note that it can take up to 72 hours for DNS changes to be effective.
 For more information, see how to [set up a custom domain](../domains/steps/_index.md).
 
 If the changes take longer than expected,
 [redeploy](../development/troubleshoot.md#force-a-redeploy) the impacted environment.
 
-Also make sure that no conflicting DNS records exist for the domain.
+Also make sure that no conflicting DNS records exist for your domain.
 For example, a conflicting AAAA (IPv6) DNS record usually results in a `[HTTP01: The client lacks sufficient authorization]` error.
 
 If the certificate generation issue persists,

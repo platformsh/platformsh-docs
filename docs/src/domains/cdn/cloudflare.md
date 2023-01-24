@@ -12,15 +12,15 @@ You can [use a CDN](./_index.md) to deliver your site's content to users more qu
 You need:
 
 - An up-and-running Platform.sh project
-- A [Cloudflare](https://www.cloudflare.com/) CDN subscription 
+- A [Cloudflare](https://www.cloudflare.com/) CDN subscription
 
 {{% disable-cache CDN="Cloudflare" %}}
 
 ## 2. Set up your Cloudflare CDN
 
-To properly configure your Cloudflare CDN, 
+To properly configure your Cloudflare CDN,
 see the Cloudflare official documentation on [how to get started](https://developers.cloudflare.com/cache/get-started/).
-Make sure your CDN points to your [project target](../../domains/steps/_index.md#2-get-the-target-for-your-project).
+Make sure your CDN points to your [project target](../../domains/steps/_index.md#2-get-the-target-for-your-project) for the [DNS challenge to succeed](../troubleshoot.md#dns-challenge).
 
 ## 3. Handle apex domains
 
@@ -39,7 +39,7 @@ To prevent such attacks, make sure all communication with your site is encrypted
 and can't be downgraded to HTTP.
 
 To do so, [enable full strict SSL/TLS encryption](https://developers.cloudflare.com/ssl/origin-configuration/ssl-modes/full-strict/).
-Any communication between a client and Cloudflare 
+Any communication between a client and Cloudflare
 or between Cloudflare and your Platform.sh server is then encrypted through HTTPS.
 In addition, Cloudflare checks that your Platform.sh server's [TLS certificate](../../other/glossary.md#transport-layer-security-tls) 
 was issued by a trusted certificate authority.
