@@ -119,7 +119,7 @@ Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pendi
 ```
 
 For the challenge to complete,
-domains, and subdomains must point directly to your Platform.sh project.
+domains and subdomains must point directly to your Platform.sh project.
 
 Otherwise, you see the following error:
 
@@ -143,20 +143,20 @@ file=none
 highlight=false
 +++
 
-When using a CDN, there are several requirements for the completion of the [_Challenge_ step](https://letsencrypt.org/docs/challenge-types/):
+When you use a CDN, to ensure the [_Challenge_ step](https://letsencrypt.org/docs/challenge-types/) succeeds, check that:
 
-- Your domains and subdomains must point to your CDN.
-- The [`_acme-challenge.` subdomain](https://www.rfc-editor.org/rfc/rfc8555#section-8.4) (like in `_acme-challenge.example.com`) must point to your CDN.
-- The [`/.well-known/` route](https://www.rfc-editor.org/rfc/rfc8555#section-8.3) (like in `https://www.example.com/.well-known/`) must be accessible (no redirects).
+- Your domains and subdomains point to your CDN
+- The [`_acme-challenge.` subdomain](https://www.rfc-editor.org/rfc/rfc8555#section-8.4), as in `_acme-challenge.example.com`, points to your CDN
+- The [`/.well-known/` route](https://www.rfc-editor.org/rfc/rfc8555#section-8.3), as in `https://www.example.com/.well-known/`, are accessible with no redirects
 
-If the requirements aren't met, you get an error message similar to:
+If you don't follow those requirements, you get an error message similar to:
 
 ``` text
   W: Failed to verify the challenge at the gateway for the domain 'www.example.com'
   E: Error validating domain www.example.com: Couldn't complete challenge [HTTP01: The client lacks sufficient authorization]
 ```
 
-See how to setup your [CDN](../domains/cdn/_index.md).
+For more information, see how to [setup your CDN](../domains/cdn/_index.md).
 
 {{< /codetabs >}}
 
@@ -168,7 +168,7 @@ If the changes take longer than expected,
 [redeploy](../development/troubleshoot.md#force-a-redeploy) the impacted environment.
 
 Also make sure that no conflicting DNS records exist for your domain.
-For example, a conflicting AAAA (IPv6) DNS record usually results in a `[HTTP01: The client lacks sufficient authorization]` error.
+For example, a conflicting AAAA (IPv6) DNS record can result in a `[HTTP01: The client lacks sufficient authorization]` error.
 
 If the certificate generation issue persists,
 check if an outage is ongoing [with Let's Encrypt](https://letsencrypt.status.io/).
