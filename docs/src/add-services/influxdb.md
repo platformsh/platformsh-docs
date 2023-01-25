@@ -62,8 +62,13 @@ To export your data from InfluxDB, follow these steps:
    SSH tunnel opened to influxdb at: http://127.0.0.1:30000
    ```
 
-3. Get the username and password [for your service](../development/variables/use-variables.md#access-variables-in-a-shell) with `echo $PLATFORM_RELATIONSHIPS | base64 --decode`.
-4.  Adapt and run [InfluxDB's CLI export command](https://docs.influxdata.com/influxdb/v2.3/reference/cli/influx/backup/).
+3. Get the username and password from the [relationship](#relationship) by running the following command:
+
+   ```bash
+   platform relationships -P {{<variable "RELATIONSHIP_NAME" >}}
+   ```
+
+4. Adapt and run [InfluxDB's CLI export command](https://docs.influxdata.com/influxdb/v2.3/reference/cli/influx/backup/).
 
     ``` bash
     influx backup --host {{< variable "URL_FROM_STEP_2" >}}

@@ -20,11 +20,9 @@ paths:
         - solr
     nodejs:
         - elasticsearch
-        - influxdb
         - memcached
         - mongodb
         - mysql
-        - opensearch
         - postgresql
         - redis
         - solr
