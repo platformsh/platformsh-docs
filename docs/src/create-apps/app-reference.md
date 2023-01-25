@@ -51,6 +51,9 @@ use the [`source.root` property](#source).
 ## Types
 
 The `type` defines the base container image used to run the application.
+The version is the major and sometimes minor version numbers.
+Security and other patches are taken care of for you automatically.
+
 Available languages and their supported versions:
 
 {{< readFile file="src/registry/images/tables/runtimes_supported.md" markdownify="true">}}

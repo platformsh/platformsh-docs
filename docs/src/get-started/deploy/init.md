@@ -24,6 +24,7 @@ Then go through each of the steps to create the project:
    The CLI lists each region's location, cloud provider, and average carbon intensity.
 3. Choose a plan.
    A Development plan is enough before you deploy anything.
+   You can't choose production plans during a free trial.
 4. Select enough environments.
    This defaults to 3 environments, which are included in any production-level plan, but you can add more.
 5. Select enough storage.
