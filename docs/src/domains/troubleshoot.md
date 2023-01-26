@@ -33,7 +33,7 @@ If it isn't, try the following steps:
   If the result is different from what you got from running `host www.{{< variable "YOUR_DOMAIN" >}}`,
   you might need to remove your test settings.
 
-## Verify SSL
+## Verify SSL/TLS encryption
 
 To find out where your domain is pointing to,
 you can use [the certificate checker tool](https://certcheck.pltfrm.sh/).
@@ -94,14 +94,16 @@ depending on the region.
 To ensure your renewals succeed, 
 keep your branch names under 20 characters.
 
-### DNS Challenge
+### Ownership verification
 
-To provide a valid SSL-certificate,
-Let's Encrypt checks that the requester is entitled to receive the requested SSL certificate.
-This check is known as the [_Challenge_ step](https://letsencrypt.org/docs/challenge-types/).
+To provide a valid TLS-certificate,
+the certificate issuer checks that the requester is entitled to receive the requested certificate.
+This check is known as the _Challenge_ step.
 
 The certificate request is generated based on your [routes definition](../define-routes/_index.md).
 If you want your site to be available with `example.com` and its `www.example.com` subdomain, make sure both are defined in your routes.
+
+To pass this verification, there are requirements you need to meet.
 
 {{< codetabs >}}
 
@@ -112,27 +114,14 @@ highlight=false
 +++
 
 Platform.sh checks that all the routes you defined are pointing to your project.
-If not, the verification fails and you get the following error message:
-
-```text
-Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]
-```
-
 For the challenge to complete,
 domains and subdomains must point directly to your Platform.sh project.
 
-Otherwise, you see the following error:
+Otherwise, you get an error similar to:
 
 ```text
   E: Error validating domain www.example.com: Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]
   Unable to validate domains www.example.com, will retry in the background.
-```
-
-or
-
-```text
-  W: Failed to verify the challenge at the gateway for the domain 'www.example.com'
-  E: Error validating domain www.example.com: Couldn't complete challenge [HTTP01: There was a problem with a DNS query during identifier validation]
 ```
 
 <--->
@@ -143,11 +132,13 @@ file=none
 highlight=false
 +++
 
-When you use a CDN, to ensure the [_Challenge_ step](https://letsencrypt.org/docs/challenge-types/) succeeds, check that:
+When you use a CDN, to ensure the challenge succeeds, check that:
 
 - Your domains and subdomains point to your CDN
-- The [`_acme-challenge.` subdomain](https://www.rfc-editor.org/rfc/rfc8555#section-8.4), as in `_acme-challenge.example.com`, points to your CDN
-- The [`/.well-known/` route](https://www.rfc-editor.org/rfc/rfc8555#section-8.3), as in `https://www.example.com/.well-known/`, are accessible with no redirects
+- The [`_acme-challenge.` subdomain](https://www.rfc-editor.org/rfc/rfc8555#section-8.4),
+  as in `_acme-challenge.example.com`, points to your CDN
+- The [`/.well-known/` route](https://www.rfc-editor.org/rfc/rfc8555#section-8.3),
+  as in `https://www.example.com/.well-known/`, are accessible with no redirects
 
 If you don't follow those requirements, you get an error message similar to:
 
@@ -157,6 +148,7 @@ If you don't follow those requirements, you get an error message similar to:
 ```
 
 For more information, see how to [setup your CDN](../domains/cdn/_index.md).
+See Let's Encrypt [challenge step](https://letsencrypt.org/docs/challenge-types/).
 
 {{< /codetabs >}}
 
@@ -171,7 +163,7 @@ Also make sure that no conflicting DNS records exist for your domain.
 For example, a conflicting AAAA (IPv6) DNS record can result in a `[HTTP01: The client lacks sufficient authorization]` error.
 
 If the certificate generation issue persists,
-check if an outage is ongoing [with Let's Encrypt](https://letsencrypt.status.io/).
+check if an outage is ongoing [with Let's Encrypt](https://letsencrypt.status.io/) or your CDN provider.
 If not, [contact Support](../overview/get-support.md).
 
 ## Verify your application

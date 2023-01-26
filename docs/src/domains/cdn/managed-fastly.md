@@ -21,7 +21,7 @@ To add a managed Fastly CDN to your project,
 ### Domain control validation
 
 When you request for a new domain to be added to your Fastly service,
-Platform.sh support provides you with a [`CNAME` record](../../domains/steps/dns.md) for [domain control validation](../troubleshoot.md#dns-challenge).
+Platform.sh support provides you with a [`CNAME` record](../../domains/steps/dns.md) for [domain control validation](../troubleshoot.md#challenge-step).
 To add this `CNAME` record to your domain settings,
 see how to [configure your DNS provider](../steps/_index.md#3-configure-your-dns-provider).
 

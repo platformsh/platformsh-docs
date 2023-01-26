@@ -20,8 +20,9 @@ such as [Fastly](./fastly.md) or [Cloudflare](./cloudflare.md).
 ## DNS records
 
 To start routing client traffic through your CDN,
-several specific records on your DNS are required.
-These usually are the `_acme-challenge` subdomain and `CNAME` records.
+some configuration on your DNS are required.
+Such as adding a `TXT` record for the `_acme-challenge` subdomain
+and several `CNAME` records to point to your CDN.
 You can create these records for your domain names through your DNS provider.
 For more information, see you DNS and your CDN provider's official documentations.
 
