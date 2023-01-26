@@ -23,14 +23,22 @@ $ scoop install platform
 <p>A word about Macbooks with the M1 chip: It may be that you imported your brew
   formulae from a pre-M1 Mac, in which case your installation could be in the
   wrong place.</p>
+<h3>How to diagnose this problem</h3>
 <pre>
-1. Make a list of your installed formulae: `brew list --formulae >~/Downloads/formulae.txt`
-2. Unlink all of those formulae: `brew unlink $(brew list --formulae)`
-3. Clear out your current Homebrew: `sudo rm -r /usr/local/Homebrew`
-4. Reinstall Homebrew: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
-5. use Homebrew to reinstall all of your formulae: `brew install $(cat ~/Downloads/formulae.txt)`
+  1. Determine your Mac's architecture: `arch`
+  2. If the response is 'arm64', you have an M1 chip and this section is relevant to you.
+  2. Find where your Mac is looking for homebrew: `which brew`
+  3. If the response is '/usr/local/bin/brew', your Mac's homebrew is misconfigured.
 </pre>
-<p>You may have some formulae that Homebrew cannot find (for example, your
+<h3>How to fix this problem</h3>
+<pre>
+  1. Make a list of your installed formulae: `brew list --formulae >~/Downloads/formulae.txt`
+  2. Unlink all of those formulae: `brew unlink $(brew list --formulae)`
+  3. Clear out your current Homebrew: `sudo rm -r /usr/local/Homebrew`
+  4. Reinstall Homebrew: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+  5. use Homebrew to reinstall all of your formulae: `brew install $(cat ~/Downloads/formulae.txt)`
+</pre>
+<p><em>You may have some formulae that Homebrew cannot find (for example, your
   formulae.txt file will have an entry for `platforms-cli`. Change that to read
   `platformsh/tap/platformsh-cli`, save the file and try Step #5 again. Repeat
-  as necessary for other formulae that Homebrew cannot find.</p>
+  as necessary for other formulae that Homebrew cannot find.</em></p>
