@@ -148,7 +148,8 @@ If you don't follow those requirements, you get an error message similar to:
 ```
 
 For more information, see how to [setup your CDN](../domains/cdn/_index.md).
-See Let's Encrypt [challenge step](https://letsencrypt.org/docs/challenge-types/).
+For more details regarding the challenge step, consult your certificate issuer's documentation.
+A common issuer is [Let's Encrypt](https://letsencrypt.org/docs/challenge-types/).
 
 {{< /codetabs >}}
 
@@ -163,7 +164,8 @@ Also make sure that no conflicting DNS records exist for your domain.
 For example, a conflicting AAAA (IPv6) DNS record can result in a `[HTTP01: The client lacks sufficient authorization]` error.
 
 If the certificate generation issue persists,
-check if an outage is ongoing [with Let's Encrypt](https://letsencrypt.status.io/) or your CDN provider.
+check if an outage is ongoing with your certificate issuer (the most common one is [Let's Encrypt](https://letsencrypt.status.io/))
+and with your CDN provider if you have one.
 If not, [contact Support](../overview/get-support.md).
 
 ## Verify your application
