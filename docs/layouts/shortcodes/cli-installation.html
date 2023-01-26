@@ -20,3 +20,17 @@ $ scoop install platform
 {{ partial "codetabs/tabs" ( dict "Inner" $Inner "Page" .Page ) }}
 
 <p>For manual installation, you can also <a href="https://github.com/platformsh/cli/releases/latest">download the latest binaries</a>.</p>
+<p>A word about Macbooks with the M1 chip: It may be that you imported your brew
+  formulae from a pre-M1 Mac, in which case your installation could be in the
+  wrong place.</p>
+<pre>
+1. Make a list of your installed formulae: `brew list --formulae >~/Downloads/formulae.txt`
+2. Unlink all of those formulae: `brew unlink $(brew list --formulae)`
+3. Clear out your current Homebrew: `sudo rm -r /usr/local/Homebrew`
+4. Reinstall Homebrew: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+5. use Homebrew to reinstall all of your formulae: `brew install $(cat ~/Downloads/formulae.txt)`
+</pre>
+<p>You may have some formulae that Homebrew cannot find (for example, your
+  formulae.txt file will have an entry for `platforms-cli`. Change that to read
+  `platformsh/tap/platformsh-cli`, save the file and try Step #5 again. Repeat
+  as necessary for other formulae that Homebrew cannot find.</p>
