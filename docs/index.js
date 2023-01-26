@@ -27,6 +27,9 @@ app.post("/feedback/submit", async (req, res) => {
     return res.status(400).send("The submitted URL isn't valid")
   }
 
+  // Encode URL
+  const urlForFeedback = encodeURI(feedback.url)
+
   // Validate feedback itself
   if ((typeof feedback.feedback !== 'string') || !['positive', 'negative'].includes(feedback.feedback)) {
     return res.status(400).send("The submitted feedback isn't valid")
@@ -62,7 +65,7 @@ app.post("/feedback/submit", async (req, res) => {
   // Insert feedback record
   try {
     await connection.query(
-      'INSERT INTO Feedback (date, url, feedback) VALUES (?,?,?)', [today, feedback.url, feedback.feedback]);
+      'INSERT INTO Feedback (date, url, feedback) VALUES (?,?,?)', [today, urlForFeedback, feedback.feedback]);
   } catch (err) { return res.status(500).send("Error entering feedback into database") }
 
   res.status(200).send("Feedback recorded");
