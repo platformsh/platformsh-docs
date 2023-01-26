@@ -90,7 +90,7 @@ https://{default}/:
         # ...
 ```
 
-For troubleshooting SSL issues, see the [recommendations](../domains/troubleshoot.md#verify-ssl).
+For troubleshooting SSL issues, see the [recommendations](../domains/troubleshoot.md#verify-ssltls-encryption).
 
 ### `min_version`
 

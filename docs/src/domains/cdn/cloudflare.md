@@ -20,7 +20,7 @@ You need:
 
 To properly configure your Cloudflare CDN,
 see the Cloudflare official documentation on [how to get started](https://developers.cloudflare.com/cache/get-started/).
-Make sure your CDN points to your [project target](../../domains/steps/_index.md#2-get-the-target-for-your-project) for the [DNS challenge to succeed](../troubleshoot.md#challenge-step).
+Make sure your CDN points to your [project target](../../domains/steps/_index.md#2-get-the-target-for-your-project) for the [DNS challenge to succeed](../troubleshoot.md#ownership-verification).
 
 ## 3. Handle apex domains
 
