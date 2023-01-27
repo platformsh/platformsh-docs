@@ -96,7 +96,7 @@ Read more in the [Blackfire documentation](https://blackfire.io/docs/monitoring-
 Blackfire's native integration with Platform.sh enables you to verify the performance of your application
 each time you deploy a branch, in production, staging, or development.
 
-1. Set up the [Blackfire Builds integration](https://blackfire.io/docs/integrations/paas/platformsh#builds-level-enterprise).
+1. Set up the [Blackfire Builds integration](https://blackfire.io/docs/integrations/paas/platformsh#builds-level-production).
 2. Optionally, set up an [integration with your Git provider](https://blackfire.io/docs/integrations/git/index)
    and get commit status updates from build reports.
 3. [Write scenarios](https://blackfire.io/docs/builds-cookbooks/scenarios) to test business-critical use cases.
