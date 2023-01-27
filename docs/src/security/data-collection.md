@@ -1,8 +1,9 @@
 ---
 title: Data collection
+description: Information about the kinds of data that are collected and where to learn more.
 ---
 
-Information about Data Privacy, including our Record of Processing Activities, can be found on our [Trust Center](https://platform.sh/trust-center/).
+Information about data privacy, including our Record of Processing Activities, can be found at our [Trust Center](https://platform.sh/trust-center/).
 
 ## Application logs
 
