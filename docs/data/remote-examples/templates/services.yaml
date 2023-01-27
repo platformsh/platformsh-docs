@@ -10,3 +10,6 @@ repos:
     - gatsby-drupal
     - gatsby-strapi
     - gatsby-wordpress
+    - django4 
+    - fastapi
+    - flask

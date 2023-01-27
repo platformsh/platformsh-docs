@@ -25,3 +25,5 @@ repos:
     - gatsby
     - strapi4
     - laravel
+    - fastapi
+    - flask

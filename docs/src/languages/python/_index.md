@@ -35,7 +35,8 @@ Once you have it configured, add the following configuration to get it running o
     {{< readFile file="/registry/images/examples/full/python.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 2. Install the requirements for your app.
-   {{% pipenv %}}
+
+    {{% pipenv %}}
 
 3. Define the command to start your web server:
 
@@ -110,6 +111,9 @@ Follow these steps to get your server started.
 ## Package management
 
 Your app container comes with pip pre-installed.
+
+For information about managing packages with Pip, Pipenv, and Poetry, see the [managing dependencies](/languages/python/dependencies) documentation.
+
 To add global dependencies (packages available as commands),
 add them to the `dependencies` in your [app configuration](../../create-apps/app-reference.md#dependencies):
 
@@ -213,6 +217,35 @@ markdownify=false
 {{% config-reader %}}
 [`platformshconfig` library](https://github.com/platformsh/config-reader-python)
 {{% /config-reader%}}
+
+## Web servers
+
+The Python ecosystem offers a number of web servers that can be used to deploy to Platform.sh outside of the simple uWSGI example shown above. 
+Consult the [python web servers](/languages/python/server) documentation for more information about running the following:
+
+- [Daphne](/languages/python/server#daphne)
+- [Gunicorn](/languages/python/server#gunicorn)
+- [Hypercorn](/languages/python/server#hypercorn)
+- [Uvicorn](/languages/python/server#uvicorn)
+
+## Sanitizing data
+
+Data inheritance on Platform.sh provides true staging environments by default.
+That is, data is inherited automatically by each child environment from its parent.
+
+It's not uncommon that Python projects require the sanitization of data in non-production environments for compliance reasons, however.
+Because the build and deploy process is customizable, it's possible to include custom scripts that perform sanitization according to environment type. 
+
+See the [sanitizing databases](/development/sanitize-db) documentation for more information.
+
+## Frameworks
+
+All of the major Python web frameworks can be deployed on Platform.sh.
+This documentation contains a number of dedicated guides for deploying and working with each of them:
+
+- [Django](/guides/django)
+<!-- - [FastAPI](/guides/fastapi) -->
+<!-- - [Flask](/guides/flask) -->
 
 ## Project templates
 
