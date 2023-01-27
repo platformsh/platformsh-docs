@@ -1,17 +1,9 @@
 ---
 title: Data collection
-description: |
-  As part of our normal business operations, we collect various types of data.
+description: Information about the kinds of data that are collected and where to learn more.
 ---
 
-{{% description %}}
-
-The following list describes the categories of data we collect in GDPR terms:
-
-* Article 4 "personal data": Our accounts system contains some "personal data" (name, address, phone, etc.) to allow us to bill your account appropriately.
-  This information can be verified, changed, and deleted by [logging into your account](https://accounts.platform.sh/).
-* Article 9 "special categories": We do not collect nor store any "special categories of personal data" (race, religion, sexual orientation, etc.) or any other attributes that are irrelevant to our business.
-* Article 30 "records of processing activities": The only "records" we collect are IP addresses and Log files.
+Information about data privacy, including our Record of Processing Activities, can be found at our [Trust Center](https://platform.sh/trust-center/).
 
 ## Application logs
 
