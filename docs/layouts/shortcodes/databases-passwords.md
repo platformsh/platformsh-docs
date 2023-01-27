@@ -15,7 +15,7 @@ After your custom endpoints are exposed as relationships in your [app configurat
 you can retrieve the password for each endpoint
 through the `PLATFORM_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables).
 You can access the `PLATFORM_RELATIONSHIPS` environment variable directly [in your app](../../development/variables/use-variables.md#access-variables-in-your-app),
-for example using a Platform.sh Configuration Reader.
+for example using a Platform.sh configuration reader.
  
 When you switch from the default configuration with an empty password to custom endpoints,
 make sure your service name remains unchanged.
