@@ -422,7 +422,7 @@ Then include the block with the `readFile` function as in the following example:
 A complete example:
 
 ````markdown
-```yaml {location=">.platform.app.yaml"}
+```yaml {location=".platform.app.yaml"}
 {{ readFile "snippets/example.yaml" | safeHTML }}
 ```
 ````
