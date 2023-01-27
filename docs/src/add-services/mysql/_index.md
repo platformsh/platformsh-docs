@@ -348,6 +348,8 @@ ALTER TABLE table_name CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_
 
 For further details, see the [MariaDB documentation](https://mariadb.com/kb/en/character-set-and-collation-overview/).
 
+{{% databases-passwords %}} 
+
 ## Storage Engine
 
 It's best to use the InnoDB storage engine wherever possible.
