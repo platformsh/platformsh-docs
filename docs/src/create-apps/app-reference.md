@@ -51,7 +51,8 @@ use the [`source.root` property](#source).
 ## Types
 
 The `type` defines the base container image used to run the application.
-The version is the major and sometimes minor version numbers.
+The version is the major (`X`) and sometimes minor (`X.Y`) version numbers,
+depending on the service, as in the following table.
 Security and other patches are taken care of for you automatically.
 
 Available languages and their supported versions:
