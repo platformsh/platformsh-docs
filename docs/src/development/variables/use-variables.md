@@ -72,8 +72,6 @@ Alternative, use a built-in method for the given language.
 
 +++
 title=PHP
-file=none
-highlight=false
 +++
 
 ```php
@@ -89,8 +87,6 @@ $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), TRUE);
 <--->
 +++
 title=Python
-file=none
-highlight=false
 +++
 
 ```python
@@ -108,8 +104,6 @@ variables = json.loads(base64.b64decode(os.getenv('PLATFORM_VARIABLES')).decode(
 <--->
 +++
 title=Node.js
-file=none
-highlight=false
 +++
 
 ```js
@@ -135,8 +129,6 @@ const variables = read_base64_json('PLATFORM_VARIABLES');
 
 +++
 title=Ruby
-file=none
-highlight=false
 +++
 
 ```ruby
@@ -150,8 +142,6 @@ variables = JSON.parse(Base64.decode64(ENV["PLATFORM_VARIABLES"]))
 <--->
 +++
 title=Java
-file=none
-highlight=false
 +++
 
 ```java
@@ -208,8 +198,6 @@ You can access these nested variables as follows:
 
 +++
 title=Shell
-file=none
-highlight=false
 +++
 
 ```bash
@@ -236,8 +224,6 @@ $ echo "$PLATFORM_VARIABLES" | base64 --decode | jq '."stuff:COLORS"'
 <--->
 +++
 title=PHP
-file=none
-highlight=false
 +++
 
 ```php
@@ -281,8 +267,6 @@ array(3) {
 <--->
 +++
 title=Python
-file=none
-highlight=false
 +++
 
 ```python
@@ -310,8 +294,6 @@ print variables['stuff:COLORS']
 <--->
 +++
 title=Node.js
-file=none
-highlight=false
 +++
 
 ```java

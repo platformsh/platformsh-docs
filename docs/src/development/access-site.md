@@ -12,8 +12,6 @@ To find which URLs you can use to access your site, follow these steps:
 
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 1. Select the project whose URLs you want to find.
@@ -26,8 +24,6 @@ Copy and paste any of these URLs into a web browser and access your site.
 
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 1. Run the following command:

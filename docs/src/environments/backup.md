@@ -111,8 +111,6 @@ You can create a manual live backup on a Grid project:
 {{< codetabs >}}
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 Use the `--live` flag:
@@ -124,8 +122,6 @@ platform backup:create --live
 <--->
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 When [creating the backup](#create-a-manual-backup), select **Run live backup** in the last step.
@@ -141,15 +137,12 @@ You can create a manual backup using the [CLI](../administration/cli/_index.md) 
 {{< codetabs >}}
 +++
 title=Using the CLI
-file=none
 highlight=bash
 +++
 platform backup:create
 <--->
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 1. Navigate to the environment you want to back up.
