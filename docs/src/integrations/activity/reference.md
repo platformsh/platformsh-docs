@@ -21,9 +21,10 @@ You can use these hooks to automate your workflows.
 
 Depending on the activity, the JSON object response differs and not all fields are always available.
 
-When referring to a JSON object, the term "property" is used and "element" for a JSON array, according to the [JSON terminology](https://json-schema.org/draft-04/json-schema-core.html#rfc.section.3).
+In [JSON terminology](https://json-schema.org/draft-04/json-schema-core.html#rfc.section.3),
+"property" refers to a JSON object and "element" refers to a JSON array.
 
-For a quick test, see the [webhook setup](./webhooks.md#setup).
+See full examples of [the activity schema](#examples).
 
 ### Example response
 
@@ -282,10 +283,10 @@ Those queues include:
 
 | Name | Description |
 |------|-------------|
-| `default` | these include the most common activities on repositories (pushes, merges) and environments (syncs, redeployments). |
-| `integrations` | source and webhook integration activities. |
-| `backup` | backup activities. |
-| `cron` | cron activities. |
+| `default` | These include the most common activities on repositories (pushes, merges) and environments (syncs, redeployments). |
+| `integrations` | Source and webhook integration activities. |
+| `backup` | Backup activities. |
+| `cron` | Cron activities. |
 
 Production activities are prioritized across all queues.
 While it's still possible for a non-production environment activity to block production activities,
@@ -295,6 +296,7 @@ it's temporary and unlikely, since the moment that production activity is trigge
 
 The usual content of the JSON object response is long, the examples provided are shortened by ellipses.
 Remember, that depending on the activity, the JSON object response differs and not all fields are always available.
+
 For a quick test, see the [webhook setup](./webhooks.md#setup).
 
 ### Cron
@@ -928,7 +930,7 @@ The `environment` property contains your environment's settings:
 ...
 ```
 
-The `deployment` contains your deployment's settings such as the [image type](../../create-apps/app-reference.md#types),
+The `deployment` property contains the settings used such as the [image type](../../create-apps/app-reference.md#types),
 the [resource allocation](../../create-apps/app-reference.md#sizes) and much more.
 
 A shortened excerpt of that property looks like:
