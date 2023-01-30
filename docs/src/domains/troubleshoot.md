@@ -138,7 +138,7 @@ When you use a CDN, to ensure the challenge succeeds, check that:
 - The [`_acme-challenge.` subdomain](https://www.rfc-editor.org/rfc/rfc8555#section-8.4),
   as in `_acme-challenge.example.com`, points to your CDN
 - The [`/.well-known/` route](https://www.rfc-editor.org/rfc/rfc8555#section-8.3),
-  as in `https://www.example.com/.well-known/`, are accessible with no redirects
+  as in `https://www.example.com/.well-known/`, is accessible with no redirects
 
 If you don't follow those requirements, you get an error message similar to:
 
