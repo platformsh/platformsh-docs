@@ -10,8 +10,7 @@ description: |
 
 Anything included in these guides applies to not only to Django, but also [Wagtail](https://wagtail.org/), the content management system built with Django. 
 
-See an example Django project in the official [Platform.sh Django template](https://github.com/platformsh-templates/django4).
-It isn't ready for production, but you can use it as a starting point for your own project.
+See an example Django project in the official [Platform.sh Django template](https://github.com/platformsh-templates/django4), which you can use as a starting point for your own project.
 
 If you already have a Django project ready to deploy,
 see the template's [example Platform.sh files](https://github.com/platformsh-templates/django4/tree/master/.platform).
