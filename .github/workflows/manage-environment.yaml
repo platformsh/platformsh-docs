@@ -10,6 +10,7 @@ on:
 env:
   PLATFORMSH_CLI_NO_INTERACTION: 1
   PLATFORM_PROJECT: 652soceglkw4u
+  PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
 
 jobs:
   activate_environment:
@@ -66,30 +67,26 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Check if branch exists
-        id: branch_exists
-        # Check if the pr- branch exists
-        run: |
-          BRANCH=$(git ls-remote --heads origin pr-${{ github.event.number }})
-          echo $BRANCH
-
-          if [[ -n $BRANCH ]]; then
-            echo "branch_exists=true" >> $GITHUB_OUTPUT
-          fi
-
-        # If the pr- branch exists, set up workflow environment to use the Platform.sh CLI
+        # Set up workflow environment to use the Platform.sh CLI
       - name: Set up Platform.sh CLI
-        if: steps.branch_exists.outputs.branch_exists == 'true'
         uses: ./.github/actions/set-up-cli
 
-      - name: Delete branch
-        # If the pr- branch exists, delete it from GitHub
-        if: steps.branch_exists.outputs.branch_exists == 'true'
-        run: git push origin --delete pr-${{ github.event.number }}
+      - name: Check if environment exists
+        id: environment_exists
+        env:
+          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+        # Check if the built environment exists
+        run: |
+          BRANCH_TITLE=pr-${{ github.event.number }}
+          BRANCH=$(platform environments --pipe --columns title | grep $BRANCH_TITLE})
 
-        # If the pr- branch exists, delete it from Platform.sh
+          if [[ -n $BRANCH ]]; then
+            echo "environment_exists=true" >> $GITHUB_OUTPUT
+          fi
+
+        # If the branch or environment exists, delete it from Platform.sh
       - name: Delete environment
-        if: steps.branch_exists.outputs.branch_exists == 'true'
+        if: steps.environment_exists.outputs.environment_exists == 'true'
         env:
           PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         run: platform environment:delete --delete-branch --no-wait pr-${{ github.event.number }}
