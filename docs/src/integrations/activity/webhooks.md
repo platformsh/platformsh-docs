@@ -15,10 +15,8 @@ platform integration:add --type=webhook --url={{<variable "URL_THAT_CAN_RECEIVE_
 
 The webhook URL receives a POST message for every "Activity" that's triggered,
 the message contains complete information about the entire state of the project at that time.
-In practice most of the message can be ignored but is available if needed.
-The most commonly used values are documented below.
 
-It's also possible to set the integration to only send certain activity types, or only activities on certain branches.
+It's possible to set the integration to only send certain activity types, or only activities on certain branches.
 The CLI prompts you to specify which to include or exclude.
 Leave at the default values to get all events on all environments in a project.
 
