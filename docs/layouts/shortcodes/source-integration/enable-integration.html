@@ -1,11 +1,15 @@
+<!-- Handle the source name in a few varieties-->
 {{ $source := .Get "source" }}
 {{ $source_variable :=  replace $source " " "_" | lower }}
 {{ $token_variable := printf "%s_ACCESS_TOKEN" $source_variable | upper }}
 {{ $base_url_variable := printf "%s_URL" $source_variable | upper }}
+<!-- Handle GitLab's MRs -->
 {{ $pull := "pull" }}
 {{ if eq $source "GitLab" }}{{ $pull = "merge" }}{{ end }}
 <p>To enable the integration, use either the <a href="/administration/cli.html">CLI</a> or the <a href="/administration/web.html">Console</a>.</p>
 
+<!-- Different services have different first steps and access variables,
+  so we handle the list in the Console differently -->
 {{ $tokenConsoleInstructions := "" }}
 {{ if or ( eq $source "GitHub" ) ( eq $source "GitLab" ) }}
   {{ $tokenConsoleInstructions = printf `
@@ -55,7 +59,8 @@
   {{ $exampleUrl = "bitbucket.org" }}
 {{ end }}
 
-<!-- Bitbucket has a different access pattern for each version -->
+<!-- Bitbucket has a different access pattern for each version,
+     The initial settings are used for GitLab and GitHub -->
 {{ $accessFlagsVariable := printf "--token {{< variable %s >}}" $token_variable }}
 {{ $accessFlagsExplanation := printf `- <code>%s</code> is the [token you generated](#1-generate-a-token).` $token_variable }}
 {{ $accessFlagsExample := "--token abc123" }}
@@ -70,6 +75,8 @@
   {{ $accessFlagsExample = "--key abcd1234 --secret abcd1234" }}
 {{ end }}
 
+<!-- Generate the code tabs
+     The strings above are added in by their index at the end of the literal string -->
 {{ $Inner := printf `
 +++
 title=Using the CLI
@@ -142,6 +149,7 @@ highlight=false
   {{ $extraOption = `| <code>resync-pull-requests</code> | <code>false</code> | Whether to sync data from the parent environment on every push to a pull request. |` }}
 {{ end }}
 
+<!-- Create the table for the options -->
 {{ $OptionsTable := printf `
 | CLI flag | Default | Description |
 | -------- | ------- | ----------- |
