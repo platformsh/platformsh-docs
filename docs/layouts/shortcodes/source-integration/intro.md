@@ -12,7 +12,7 @@ This means you shouldn't push code directly to Platform.sh.
 Any changes you push directly get overwritten by the integration when changes happen in the {{ $source }} repository.
 
 When you set up an integration with {{ $source }},
-it automates the following processes for you
+it automates the following processes for you:
 
 - Creating a new environment when a branch is created or a {{ $pull }} request is opened.
 - Rebuilding the environment when new code is pushed to {{ $source }}.
