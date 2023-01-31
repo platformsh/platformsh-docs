@@ -25,8 +25,6 @@ To download your entire app's code history:
 
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 1. List all your projects by running the following command:
@@ -45,8 +43,6 @@ highlight=false
 
 +++
 title=Using Git
-file=none
-highlight=false
 +++
 
 1. In the [Console](https://console.platform.sh/), open your project and click **Code {{< icon chevron >}}**.
@@ -98,8 +94,6 @@ To back up your environment variables:
 
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 1. Get the variable's values by running the following command:
@@ -120,8 +114,6 @@ highlight=false
 
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 1. In the [Console](https://console.platform.sh/), open your project and click **{{< icon settings >}}**.

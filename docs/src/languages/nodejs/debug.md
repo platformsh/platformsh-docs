@@ -27,8 +27,6 @@ platform branch debug-branch
 
 +++
 title=Remote
-file=none
-highlight=false
 +++
 
 Access your app container via [SSH](../../development/ssh/_index.md):
@@ -41,8 +39,6 @@ platform ssh
 
 +++
 title=Local
-file=none
-highlight=false
 +++
 
 To access deployed apps and services, open tunnels to everything your app has relationships with:
@@ -67,8 +63,6 @@ export PORT=8888
 
 +++
 title=Remote
-file=none
-highlight=false
 +++
 
 Stop the current process and restart it in inspect mode:
@@ -82,8 +76,6 @@ node --inspect <START_FILE>
 
 +++
 title=Local
-file=none
-highlight=false
 +++
 
 In the same terminal as the previous step, run the following command:
@@ -122,8 +114,6 @@ See examples with some common tools:
 
 +++
 title=Using Chrome developer tools
-file=none
-highlight=false
 +++
 
 Go to `chrome://inspect`.
@@ -134,8 +124,6 @@ Click **inspect** to start the debugger.
 
 +++
 title=Using Visual Studio Code
-file=none
-highlight=false
 +++
 
 Use the `Node.js: Attach` debugger option.
@@ -165,8 +153,6 @@ Set breakpoints:
 
 +++
 title=Remote
-file=none
-highlight=false
 +++
 
 In the JavaScript files from your remote site:
@@ -176,8 +162,6 @@ On the **Run and Debug** tab under **Loaded Scripts** find `Attach: Remote Proce
 
 +++
 title=Local
-file=none
-highlight=false
 +++
 
 Directly in your source files.

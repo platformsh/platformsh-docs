@@ -72,8 +72,6 @@ Alternative, use a built-in method for the given language.
 
 +++
 title=PHP
-file=none
-highlight=false
 +++
 
 ```php
@@ -89,8 +87,6 @@ $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), TRUE);
 <--->
 +++
 title=Python
-file=none
-highlight=false
 +++
 
 ```python
@@ -108,8 +104,6 @@ variables = json.loads(base64.b64decode(os.getenv('PLATFORM_VARIABLES')).decode(
 <--->
 +++
 title=Node.js
-file=none
-highlight=false
 +++
 
 ```js
@@ -135,8 +129,6 @@ const variables = read_base64_json('PLATFORM_VARIABLES');
 
 +++
 title=Ruby
-file=none
-highlight=false
 +++
 
 ```ruby
@@ -150,8 +142,6 @@ variables = JSON.parse(Base64.decode64(ENV["PLATFORM_VARIABLES"]))
 <--->
 +++
 title=Java
-file=none
-highlight=false
 +++
 
 ```java
@@ -208,8 +198,6 @@ You can access these nested variables as follows:
 
 +++
 title=Shell
-file=none
-highlight=false
 +++
 
 ```bash
@@ -236,8 +224,6 @@ $ echo "$PLATFORM_VARIABLES" | base64 --decode | jq '."stuff:COLORS"'
 <--->
 +++
 title=PHP
-file=none
-highlight=false
 +++
 
 ```php
@@ -281,8 +267,6 @@ array(3) {
 <--->
 +++
 title=Python
-file=none
-highlight=false
 +++
 
 ```python
@@ -310,8 +294,6 @@ print variables['stuff:COLORS']
 <--->
 +++
 title=Node.js
-file=none
-highlight=false
 +++
 
 ```java
@@ -364,7 +346,7 @@ and at runtime.
 | `PLATFORM_RELATIONSHIPS`    | No    | Yes     | A base64-encoded JSON object of relationships. The keys are the relationship name and the values are arrays of relationship endpoint definitions. The exact format is defined differently for each [service](../../add-services/_index.md). |
 | `PLATFORM_ROUTES`           | No    | Yes     | A base64-encoded JSON object that describes the routes for the environment. It maps the content of your [routes configuration](../../define-routes/_index.md). |
 | `PLATFORM_SMTP_HOST`        | No    | Yes     | The SMTP host to send email messages through. Is empty when mail is disabled for the current environment. |
-| `PLATFORM_SOURCE_DIR`       | Yes   | No      | Equivalent to `PLATFORM_APP_DIR` in the context of a running [source operation](../../create-apps/source-operations.md). The directory contains a writable copy of your repository that you can commit to during the operation. |
+| `PLATFORM_SOURCE_DIR`       | Yes   | No      | The path to the root directory of your code repository in the context of a running [source operation](../../create-apps/source-operations.md). The directory contains a writable copy of your repository that you can commit to during the operation. |
 | `PLATFORM_TREE_ID`          | Yes   | Yes     | The ID of the tree the application was built from, essentially the SHA hash of the tree in Git. Use when you need a unique ID for each build. |
 | `PLATFORM_VARIABLES`        | Some  | Some    | A base64-encoded JSON object with all user-defined project and environment variables that don't use a [prefix](./_index.md#variable-prefixes). The keys are the variable names and the values are the variable values. Availability during builds and at runtime depends on the settings for each variable. See how to [access individual variables](#access-variables-in-a-shell). |
 | `PORT`                      | No    | Yes     | A `string` representing the port to which requests are sent if the [`web.upstream.socket_family` property](../../create-apps/app-reference.md#upstream) is unset or set to `tcp`. |

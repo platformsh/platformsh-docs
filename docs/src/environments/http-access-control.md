@@ -26,8 +26,6 @@ To add a username and password, follow these steps:
 
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 - Select the project where you want to add login details.
@@ -41,8 +39,6 @@ highlight=false
 <--->
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 Run the following command:
@@ -80,8 +76,6 @@ To control access based on IP address, follow these steps:
 
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 - Select the project where you want to control access.
@@ -94,8 +88,6 @@ highlight=false
 <--->
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 Run the following command:

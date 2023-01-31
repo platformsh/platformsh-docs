@@ -19,8 +19,6 @@ To change the environment's visibility to search engines, follow these steps:
 
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 - Select the project where you want to change visibility.
@@ -32,8 +30,6 @@ highlight=false
 <--->
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 Run the following command:
@@ -55,7 +51,7 @@ X-Robots-Tag: noindex, nofollow
 That tells search engine indexers to not index these sites and not traverse links from these sites.
 This helps keep non-Production sites out of search engine indexes.
 
-## Override it
+## Alternative method
 
 You can also send instructions to search engine indexers using a `robots.txt` file.
 Your app can serve this as a static file from its disk or as a dynamic response from its `passthru`.
