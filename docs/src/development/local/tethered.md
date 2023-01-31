@@ -93,7 +93,6 @@ If you need to run multiple tethered environments at once you have to read the r
 
 +++
 title=PHP
-file=none
 highlight=php
 markdownify=false
 +++
@@ -106,7 +105,6 @@ if ($relationships_encoded = shell_exec('platform tunnel:info --encode')) {
 
 +++
 title=Python
-file=none
 highlight=python
 markdownify=false
 +++
@@ -123,7 +121,6 @@ if (encoded):
 
 +++
 title=Node.js
-file=none
 highlight=javascript
 markdownify=false
 +++
