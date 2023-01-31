@@ -1,9 +1,11 @@
 ---
 title: "Integrate observability"
 weight: 10
-description: Find a third-party observability service for optimizing your code.
+description: Find an observability service to optimize your code.
 ---
 
-Platform.sh supports a number of observability services for optimizing your code.
-These are third-party services and may have their own associated cost.
-They're language-specific and may not be available for all languages.
+The recommended observability service to optimize your code as a Platform.sh user is Blackfire.
+
+Platform.sh also supports third-party services such as New Relic and Tideways.
+Note that these third-party services have their own associated cost,
+are language-specific and may not be available for all languages.
