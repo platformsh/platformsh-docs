@@ -69,8 +69,6 @@ split the various ways into tabs so users only see what's relevant to them:
 
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 1. Do this action first with the CLI.
@@ -82,8 +80,6 @@ highlight=false
 
 +++
 title=In the console
-file=none
-highlight=false
 +++
 
 1. Do this action first in the console.

@@ -320,8 +320,6 @@ The recommended method is to use variables.
 
 +++
 title=Using variables
-highlight=false
-file=none
 +++
 
 Set variables to override PHP settings for a given environment using the [CLI](../../administration/cli/_index.md).
@@ -338,8 +336,6 @@ For more information, see how to use [PHP-specific variables](../../development/
 
 +++
 title=Using `php.ini`
-highlight=false
-file=none
 +++
 
 You can provide a custom `php.ini` file at the [app root](../../create-apps/app-reference.md#root-directory).
@@ -414,8 +410,6 @@ See some generic examples on how to use alternate start commands:
 
 +++
 title=Run a custom script
-file=none
-highlight=false
 +++
 
 1. Add your script in a PHP file.
@@ -433,8 +427,6 @@ highlight=false
 
 +++
 title=Run a custom web server
-file=none
-highlight=false
 +++
 
 1.  Add your web server's code in a PHP file.
@@ -476,8 +468,6 @@ highlight=false
 
 +++
 title=Run specific tasks
-file=none
-highlight=false
 +++
 
 To execute runtime-specific tasks (such as clearing cache) before your app starts, follow these steps:

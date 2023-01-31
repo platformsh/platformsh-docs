@@ -26,8 +26,6 @@ and for some apps, such as Drupal, configuration that you need to export from th
 {{< codetabs >}}
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 Run the following command:
@@ -42,8 +40,6 @@ When prompted, fill in details like the project name, [region](../development/re
 
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 [Create a new project from scratch]({{% create-project-link scratch=true %}}).
@@ -78,8 +74,6 @@ and you can use the CLI or just Git itself.
 {{< codetabs >}}
 +++
 title=Using a source integration
-file=none
-highlight=false
 +++
 
 Set up the integration for your selected service:
@@ -98,8 +92,6 @@ You have to monitor those in your project activities.
 
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 1. Get your project ID by running the following command:
@@ -127,8 +119,6 @@ After any errors are fixed, a push creates a new environment.
 
 +++
 title=Using Git
-file=none
-highlight=false
 +++
 
 1.  Add an [SSH key](../development/ssh/ssh-keys.md).

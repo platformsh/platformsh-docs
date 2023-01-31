@@ -179,8 +179,6 @@ To enable autocompletion, follow this step:
 {{< codetabs >}}
 +++
 title=Using Homebrew
-highlight=false
-file=none
 +++
 
 Follow the [Homebrew documentation on shell completion](https://docs.brew.sh/Shell-Completion).
@@ -188,8 +186,6 @@ Follow the [Homebrew documentation on shell completion](https://docs.brew.sh/She
 <--->
 +++
 title=Manually
-highlight=false
-file=none
 +++
 
 Add the following to your shell's startup (`.bashrc`, `.zshrc`, or the equivalent):
@@ -233,14 +229,12 @@ To update to the latest version, use the same tool as for [installation](#1-inst
 {{< codetabs >}}
 +++
 title=Homebrew
-file=none
 highlight=bash
 +++
 $ brew upgrade platformsh-cli
 <--->
 +++
 title=Scoop
-file=none
 highlight=bash
 +++
 $ scoop update platform

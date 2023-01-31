@@ -84,8 +84,6 @@ For example, to install dependencies, use a command like the following depending
 
 +++
 title=npm
-file=none
-highlight=false
 +++
 
 ```bash {location=".docksal/commands/init"}
@@ -103,8 +101,6 @@ npm install
 
 +++
 title=Composer
-file=none
-highlight=false
 +++
 
 ```bash {location=".docksal/commands/init"}
@@ -144,7 +140,6 @@ add them to the Docksal environment.
 
 +++
 title=Using the CLI
-file=none
 highlight=bash
 +++
 fin config set <VARIABLE_NAME>=<VARIABLE_VALUE>
@@ -152,8 +147,6 @@ fin config set <VARIABLE_NAME>=<VARIABLE_VALUE>
 
 +++
 title=Directly in the configuration file
-file=none
-highlight=false
 +++
 
 ```txt {location=".docksal/docksal.env"}
