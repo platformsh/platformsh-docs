@@ -42,8 +42,6 @@ Enable log forwarding for a specific project by following the steps for your sel
 {{< codetabs >}}
 +++
 title=New Relic
-highlight=false
-file=none
 +++
 
 1. Get an API key from New Relic.
@@ -63,8 +61,6 @@ View your logs in the **Logs** dashboard.
 <--->
 +++
 title=Splunk
-highlight=false
-file=none
 +++
 
 1. In Splunk, get an Event Collector token on [Splunk Platform](https://docs.splunk.com/Documentation/Splunk/latest/Data/UsetheHTTPEventCollector#Create_an_Event_Collector_token_on_Splunk_Cloud_Platform)
@@ -83,8 +79,6 @@ Filter by the index name to find the relevant events.
 <--->
 +++
 title=Sumo Logic
-highlight=false
-file=none
 +++
 
 1. In Sumo Logic, [configure an HTTP source](https://help-opensource.sumologic.com/docs/send-data/hosted-collectors/http-source/logs-metrics/#configure-an-httplogs-and-metrics-source).

@@ -19,8 +19,6 @@ To change the environment's visibility to search engines, follow these steps:
 
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 - Select the project where you want to change visibility.
@@ -32,8 +30,6 @@ highlight=false
 <--->
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 Run the following command:
