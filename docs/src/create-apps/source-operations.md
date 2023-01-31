@@ -1,9 +1,13 @@
 ---
 title: Source operations
+description: |
+  Run automated code updates via source operations.
 tier:
   - Elite
   - Enterprise
 ---
+
+You can run automated code updates via a Platform.sh mechanism called: source operation.
 
 A source operation is an operation defined in an application to apply and automate changes to its source code.
 
