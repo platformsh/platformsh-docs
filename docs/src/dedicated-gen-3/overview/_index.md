@@ -18,11 +18,12 @@ Another common reason is data location requirements,
 such as the need to deploy to a location  without a current region
 or a requirement that production data can't be kept on shared infrastructure.
 
-{{% names/dedicated-gen-3 %}} works nearly identically to Grid environments and doesn't require additional configuration on your part. The only difference is that of service availability.
+{{% names/dedicated-gen-3 %}} works nearly identically to Grid environments and doesn't require additional configuration on your part. 
+The only difference is that of service availability.
 
 ## Why a Generation 3?
 
-[{{% names/dedicated-gen-2 %}} infrastructure](../dedicated-gen-2/overview/_index.md) ensures increased uptime and availability for your applications and services,
+[{{% names/dedicated-gen-2 %}} infrastructure](../../dedicated-gen-2/overview/_index.md) ensures increased uptime and availability for your applications and services,
 but configuration or application topology changes have to go through the Customer Success team
 as Platform.sh provisions the virtual machines.
 {{% names/dedicated-gen-3 %}} gives you both the high availability of {{% names/dedicated-gen-2 %}}
@@ -33,10 +34,10 @@ This means that you can edit your configuration yourself
 
 ## Features
 
-* A minimum of three virtual machine cluster is associated with your default (production) environment, and also optionally with a staging environment.
-* Configuration changes on development environments (through your `services.yaml`, `routes.yaml`, and `.platform.app.yaml` files) are reflected on these {{% names/dedicated-gen-3 %}} clusters when you merge them.
+- A minimum of three virtual machine cluster is associated with your default (production) environment, and also optionally with a staging environment.
+- Configuration changes on development environments (through your `services.yaml`, `routes.yaml`, and `.platform.app.yaml` files) are reflected on these {{% names/dedicated-gen-3 %}} clusters when you merge them.
   It isn't necessary to open a support ticket to change production infrastructure like it is for {{% names/dedicated-gen-2 %}}. 
-* You can deploy your application in any [supported cloud provider](../development/faq.md#which-geographic-zones-does-platformsh-cover).
+- You can deploy your application in any [supported cloud provider](../../development/faq.md#which-geographic-zones-does-platformsh-cover).
 
 ## Differences from the Grid
 
@@ -44,7 +45,7 @@ Although {{% names/dedicated-gen-3 %}} adds plenty of features to your existing 
 
 ### Available services
 
-The [services documentation](../add-services/_index.md) states that not every service or version available on the Grid is available on {{% names/dedicated-gen-3 %}}.
+The [services documentation](../../add-services/_index.md) states that not every service or version available on the Grid is available on {{% names/dedicated-gen-3 %}}.
 The table below shows the currently available services and their versions for {{% names/dedicated-gen-3 %}}.
 
 {{< gen-3-services >}}
