@@ -654,7 +654,6 @@ crons:
 
 +++
 title=Drupal
-file=none
 highlight=yaml
 +++
 
@@ -675,7 +674,6 @@ crons:
 
 +++
 title=Ruby on Rails
-file=none
 highlight=yaml
 +++
 
@@ -739,8 +737,6 @@ To restart crons without changing anything:
 
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 1. In the Console, navigate to your project.
@@ -751,8 +747,6 @@ highlight=false
 
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 Run the following command:

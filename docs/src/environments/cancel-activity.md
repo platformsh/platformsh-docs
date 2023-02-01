@@ -13,8 +13,6 @@ or in the [Console](../administration/web/_index.md).
 {{< codetabs >}}
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 Run the following command:
@@ -36,8 +34,6 @@ Get the ID from the [activity log](../increase-observability/logs/access-logs.md
 <--->
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 1. Open the environment where you want to cancel an activity.

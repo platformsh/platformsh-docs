@@ -48,7 +48,6 @@ highlight=python
 
 +++
 title=Ruby
-file=none
 highlight=ruby
 markdownify=false
 +++

@@ -28,8 +28,6 @@ To create a machine user, follow these steps:
 {{< codetabs >}}
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 1. Run the following command using your machine user's email address.
@@ -46,8 +44,6 @@ highlight=false
 <--->
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 1. Go to your project and click {{< icon settings >}} **Settings**.
@@ -120,8 +116,6 @@ To do so, set your API token as a [top-level environment variable](../../develop
 {{< codetabs >}}
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 Run the following command:
@@ -133,8 +127,6 @@ platform variable:create -e {{< variable "ENVIRONMENT_NAME" >}} --level environm
 <--->
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 1. Open the environment where you want to add the variable.

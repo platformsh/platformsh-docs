@@ -78,7 +78,7 @@ jobs:
         # Check if the built environment exists
         run: |
           BRANCH_TITLE=pr-${{ github.event.number }}
-          BRANCH=$(platform environments --pipe --columns title | grep $BRANCH_TITLE})
+          BRANCH=$(platform environments --pipe --columns title | grep $BRANCH_TITLE)
 
           if [[ -n $BRANCH ]]; then
             echo "environment_exists=true" >> $GITHUB_OUTPUT

@@ -40,8 +40,6 @@ or the [Console](../../administration/web/_index.md).
 {{< codetabs >}}
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 Run the following command:
@@ -85,8 +83,6 @@ If `--fetch-branches` is disabled, `--prune-branches` is automatically set to fa
 <--->
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 1. Select the project where you want to enable the integration.

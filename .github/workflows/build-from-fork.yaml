@@ -28,9 +28,9 @@ jobs:
       - env:
           PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         run: |
-          BRANCH_TITLE=pr-${{ github.event.number }
+          BRANCH_TITLE=pr-${{ github.event.number }}
           # Check if environment exists
-          BRANCH=$(platform env --pipe --columns title | grep $BRANCH_TITLE})
+          BRANCH=$(platform env --pipe --columns title | grep $BRANCH_TITLE)
           # If the environment doesn't exist, create it it
           if [[ -z $BRANCH ]]; then
             platform branch $BRANCH_TITLE main
