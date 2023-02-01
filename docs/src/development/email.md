@@ -49,7 +49,7 @@ To turn off outgoing email, replace `true` with `false`.
 
 Changing the setting rebuilds the environment.
 
-## 2. (Optional) Improve deliverability
+## 2. (Recommended) Improve deliverability
 
 Improve deliverability of your email with [Sender Policy Framework (SPF)](https://docs.sendgrid.com/ui/account-and-settings/spf-records).
 Add the following `TXT` record to your domain's DNS records:
