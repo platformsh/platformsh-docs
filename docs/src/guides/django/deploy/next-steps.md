@@ -11,9 +11,7 @@ description: |
 Once Django has been deployed on Platform.sh, you'll need to set up a local development environment to beging making revisions.
 Below are a few of the available guides to get you and the rest of your team started:
 
-- [DDEV](/guides/django/local#ddev)
-- [Docker Compose](/guides/django/local#docker-compose)
-- [Tethered local](/guides/django/local#tethered-local)
+Consult the [Django local development guides](/guides/django/local) for more information.
 
 ## Package management
 
@@ -36,7 +34,5 @@ As a consequence, a developer working on a small feature will have access to pro
 This workflow is not always desireable, or even acceptable based on your compliance requirements.
 
 Consult the [sanitizing databases](/development/sanitize-db) documentation for more information about how to enforce compliance requirements for user data across environments.
-
-/development/sanitize-db
 
 {{< guide-buttons type="last" >}}
