@@ -6,7 +6,7 @@ description: Find an observability service to optimize your code.
 
 As the **official Platform.sh observability service**, 
 [Blackfire](https://www.blackfire.io/) allows you to best optimize your code.
-From development to test, staging, and production,
+From development to testing, staging, and production,
 Blackfire offers a unique blend of monitoring and profiling features. 
 Blackfire works integrally with the Platform.sh workflow,
 offering a smooth user experience.
