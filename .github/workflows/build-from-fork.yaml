@@ -35,5 +35,5 @@ jobs:
             platform push --force -e $BRANCH_TITLE --activate
           else
             # If it doesn't exist, create it
-            platform branch $BRANCH_TITLE main
+            platform branch $BRANCH_TITLE main --force
           fi
