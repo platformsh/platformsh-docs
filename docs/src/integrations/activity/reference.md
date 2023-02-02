@@ -1,34 +1,32 @@
 ---
 title: "Activity reference"
-sidebarTitle: "Activity reference"
 weight: -10
-description: Reference for the activities
+description: A reference of the properties found in various activities.
 ---
 
 Activities are responses to actions in your project,
 including when you deploy your app,
-when you [push code](#push) or when a [cron job is run](#cron).
+when you [push code](#push), and when a [cron job is run](#cron).
 
 ## Activity schema
 
-Any activity has a JSON object linked to it containing all information for that activity such as timestamps,
-duration, configuration, and much more.
-In practice a big part of that JSON object's content can be ignored.
-The most commonly used values are documented on this reference.
+All activity have corresponding JSON objects containing all information for that activity,
+including timestamps, configuration, and sometimes logs.
+In practice, you can ignore much of the JSON object's content.
+The most commonly used values are documented in this reference.
 
 The JSON object can be parsed and reacted to through custom hooks.
 You can use these hooks to automate your workflows.
 
-Depending on the activity, the JSON object response differs and not all fields are always available.
+The response differs depending on the activity and doesn't always include all fields.
 
 In [JSON terminology](https://json-schema.org/draft-04/json-schema-core.html#rfc.section.3),
 "property" refers to a JSON object and "element" refers to a JSON array.
 
-See full examples of [the activity schema](#examples).
-
 ### Example response
 
-Here is a shortened example of what a JSON object response looks like for the [sync of an environment](../../other/glossary.md#sync):
+The following is a shortened example of a response for an [environment sync](../../other/glossary.md#sync).
+You can also see [complete examples of responses](#examples).
 
 ``` json
 {
@@ -72,50 +70,49 @@ A unique `id` value to identify the activity itself.
 
 ### `*_at`
 
-The `created_at`, `started_at`, `updated_at`, `cancelled_at`, `completed_at`, `expires_at` values are all timestamps in UTC.
-If you need only a point in time when a given action happened, use `completed_at`.
-If needed, you can use these properties to compute the duration of the different steps of a task.
-For more time computation, [see `timings`](#timings).
+`created_at`, `started_at`, `updated_at`, `cancelled_at`, `completed_at`, and `expires_at` are all timestamps in UTC.
+For when a given action happened, use `completed_at`.
+You can use these properties to calculate the duration of the activity.
+To calculate the timing for steps in the activity, see the [`timings` property](#timings).
 
 ### `parameters`
 
-The parameters property include detailed information regarding which user ID triggered the activity,
-the environment impacted, the ID of the git commits, commands run with crons, or if changes in the codebase happened.
+The `parameters` property includes detailed information about what triggered the activity,
+such as the user, the impacted environment, the git commits, or the cron commands.
 The response changes based on the activity.
 
 ### `project`
 
-The ID value of the project in which the activity took place.
-Use the `project`'s value if you want to have multiple projects `POST` to the same URL.
+The ID of the project in which the activity took place.
+Use this value to distinguish multiple projects sent the same URL.
 
-Not to be mistaken with the [`Project` type action](#type).
+Different from [`project` events](#type).
 
 ### `type`
 
-The `type` value is a combination of the scope and the action itself for that event.
-Its scope can be in one of the following categories:
+The type of the activity in one of the following categories:
 
-- [Project](#project-event-value)
-- [Environment](#environment-event-value)
-- [Integration](#integration-event-value)
+- [Project](#project-events)
+- [Environment](#environment-events)
+- [Integration](#integration-events)
 
-#### `Project` event value
+#### `project` events
 
-This value describes the action that happened on a given project, its value can be any from the following table.
+Events that happened on a given project.
+The following table presents the possible events:
 
 | Name | Description |
 |------|-------------|
-| `project.modify.title` | The human-friendly title of the project has been changed. |
+| `project.modify.title` | The project title has changed. |
 | `project.create` | A project has been created. Although it appears in the activity feed exactly once, it's not sent via a webhook as it always happens before a webhook can be configured. |
 | `project.variable.create` | A new project variable has been created. |
 | `project.variable.delete` | A project variable has been deleted. |
 | `project.variable.update` | A project variable has been modified. |
 
-For an overview of the different actions that can take place, see [the type](#type).
+#### `environment` events
 
-#### `Environment` event value
-
-This value describes the action that happened on a project's environment, its value can be any from the following table.
+Events that happened on an environment.
+The following table presents the possible events:
 
 | Name | Description |
 |------|-------------|
@@ -123,59 +120,54 @@ This value describes the action that happened on a project's environment, its va
 | `environment.domain.delete` | A domain associated with the environment has been removed. |
 | `environment.domain.update` | A domain associated with the environment has been updated, such as having its SSL certificate modified. |
 | `environment.backup` |  A user triggered a [backup](../../environments/backup.md). |
-| `environment.backup.delete` | A user deleted a [backup](../../environments/backup.md) |
+| `environment.backup.delete` | A user deleted a [backup](../../environments/backup.md). |
 | `environment.restore` | A user restored a [backup](../../environments/backup.md). |
-| `environment.push` | A user has pushed code to a branch, either existing or new. |
-| `environment.branch` | A new branch has been created via the Console. (A branch created via a push shows up as `environment.push`.) |
-| `environment.activate` | A branch has been "activated", and an environment created for it. |
+| `environment.push` | A user pushed code to a branch, either existing or new. |
+| `environment.branch` | A new branch has been created via the CLI, Console, or API. A branch created via a push shows up as `environment.push`. |
+| `environment.activate` | The environment has been made [active](../../other/glossary.md#active-environment). |
 | `environment.initialize` | The default branch of the project has just been initialized with its first commit. |
-| `environment.deactivate` | A branch has been "deactivated". The code is still there, but the environment was destroyed. |
-| `environment.synchronize` | An environment has had its data and/or code re-copied from its parent environment. |
-| `environment.merge` | A branch was merged through the Console or Platform.sh API. A basic Git merge doesn't trigger this event. |
+| `environment.deactivate` | An environment has been made [inactive](../../other/glossary.md#inactive-environment). |
+| `environment.synchronize` | An environment has had its data and/or code replaced with the data and/or code from its parent environment. |
+| `environment.merge` | An environment was merged through the CLI, Console, or API. A basic Git merge doesn't trigger this event. |
 | `environment.redeploy` | An environment was redeployed. |
 | `environment.delete` | A branch was deleted. |
-| `environment.route.create` | A new route has been created through the API or the Console. This doesn't fire for route edits made to the `routes.yaml` file directly. |
-| `environment.route.delete` | A route has been deleted through the API or the Console. This doesn't fire for route edits made to the `routes.yaml` file directly. |
-| `environment.route.update` | A route has been modified through the API or the Console. This doesn't fire for route edits made to the `routes.yaml` file directly. |
+| `environment.route.create` | A new route has been created through the API. Edits made using Git to the `routes.yaml` file don't trigger this activity. |
+| `environment.route.delete` | A route has been deleted through the API. Edits made using Git to the `routes.yaml` file don't trigger this activity. |
+| `environment.route.update` | A route has been modified through the API. Edits made using Git to the `routes.yaml` file don't trigger this activity. |
 | `environment.variable.create` | A new variable has been created. |
 | `environment.variable.delete` | A variable has been deleted. |
 | `environment.variable.update` | A variable has been modified. |
 | `environment.update.http_access` | HTTP access rules for an environment have been modified. |
-| `environment.update.smtp` | Sending of emails has been enabled/disabled for an environment. |
-| `environment.update.restrict_robots` | The block-all-robots feature has been enabled/disabled. |
-| `environment.subscription.update` | The production environment has been resized because the subscription has changed. There's no content changes. |
+| `environment.update.smtp` | Email sending has been enabled or disabled for an environment. |
+| `environment.update.restrict_robots` | The option to [hide from search engines](../../environments/search-engine-visibility.html) has been enabled or disabled for an environment. |
+| `environment.subscription.update` | The production environment has been resized because the plan has changed. The content of the environment hasn't changed. |
 | `environment.cron` | A cron task just completed. |
-| `environment.source-operation` | A source operation triggered and has completed. |
+| `environment.source-operation` | A source operation has completed. |
 | `environment.certificate.renewal` | An environment's SSL certificate has been renewed. |
 
-Note that changes regarding user access to an environment/project aren't available anymore through the environment object.
+#### `integration` events
 
-For an overview of the different actions that can take place, see [the type](#type).
-
-#### `Integration` event value
-
-This value describes the action that happened on a project's integration, its value can be any from the following table.
+Events that relate to an integration.
+The following table presents the possible events:
 
 | Name | Description |
 |------|-------------|
-| `integration.bitbucket.fetch` | Changes in BitBucket repository have been pulled. |
-| `integration.bitbucket.register_hooks` | Integration hook have been registered on BitBucket. |
-| `integration.bitbucket_server.fetch` | Changes in BitBucket repository have been pulled. |
-| `integration.bitbucket_server.register_hooks` | Integration hook have been registered on BitBucket. |
-| `integration.github.fetch` | Changes in GitHub repository have been pulled. |
-| `integration.gitlab.fetch` | Changes in GitLab repository have been pulled. |
-| `integration.health.email` | Health event sent by email. |
-| `integration.health.pagerduty` | Health event sent to PagerDuty. |
-| `integration.health.slack` | Health event sent to slack. |
-| `integration.webhook` | Webhook triggered. |
-| `integration.script` | An activity script has run. |
-
-For an overview of the different actions that can take place, see [the type](#type).
+| `integration.bitbucket.fetch` | Changes in a Bitbucket Cloud repository have been pulled. |
+| `integration.bitbucket.register_hooks` | An integration hook has been registered with Bitbucket Cloud. |
+| `integration.bitbucket_server.fetch` | Changes in a Bitbucket Server repository have been pulled. |
+| `integration.bitbucket_server.register_hooks` | An integration hook has been registered with Bitbucket Server. |
+| `integration.github.fetch` | Changes in a GitHub repository have been pulled. |
+| `integration.gitlab.fetch` | Changes in a GitLab repository have been pulled. |
+| `integration.health.email` | A [health notification](../notifications.md) was sent by email. |
+| `integration.health.email` | A [health notification](../notifications.md) was sent to PagerDuty. |
+| `integration.health.email` | A [health notification](../notifications.md) was sent to Slack. |
+| `integration.webhook` | A webhook was triggered. |
+| `integration.script` | An activity script has completed. |
 
 ### `environments`
 
-An array listing the `environments` that were involved in the activity.
-This is usually a single-value element.
+An array listing the environments that were involved in the event.
+It is usually only a single value representing one environment.
 
 ### `state`
 
@@ -184,7 +176,7 @@ Its value can be `pending`, `in_progress`, or `complete`.
 
 ### `completion_percent`
 
-The completion percentage value of the activity.
+What percentage of the activity is complete.
 
 ### `result`
 
@@ -210,99 +202,98 @@ The log shouldn't be parsed for data as its structure isn't guaranteed.
 
 ### `description`
 
-A short, non-human-readable description of the activity.
+A short machine-readable description of the activity.
 
 ### `text`
 
-A short, human-readable description of the activity.
+A short human-readable description of the activity.
 
 ### `payload`
 
-The payload element contains all settings and details about the activity itself.
-Its content is based on the type of activity.
+Contains settings and details related to the completed activity.
+Its content varies based on the activity type.
 
 | Name | Description |
 |------|-------------|
-| `payload.user` | The user object that triggered the activity. See [`user`](#user). |
-| `payload.environment` | The environments impacted by the activity. See [`environment`](#environment). |
-| `payload.commits` | The git metadata for the changes. |
-| `payload.commits_count` | The amount of git commits.  |
-| `payload.deployment` | See [`deployment`](#deployment). |
+| `payload.user` | The [user](#user) that triggered the activity. |
+| `payload.environment` | The [environment](#environment) impacted by the activity. |
+| `payload.commits` | A list of changes with their Git metadata. |
+| `payload.commits_count` | The number of Git commits.  |
+| `payload.deployment` | Information about the deployed environment. See [`deployment`](#deployment). |
 
 #### `user`
 
-This element contains information about the Platform.sh user that triggered the activity.
+Contains information about the Platform.sh user that triggered the activity.
 
 | Name | Description |
 |------|-------------|
 | `payload.user.created_at` | The date the user was created. |
 | `payload.user.display_name` | The human-friendly name of the user that triggered the activity. |
 | `payload.user.id` | The user ID of the user. |
-| `payload.user.updated_at` | The date that user was updated. |
+| `payload.user.updated_at` | The date the user was last updated. |
 
 #### `environment`
 
-This element contains information about the environment itself,
-its settings and cron commands that have been run,
-after the action has taken place.
-The most notable values of this element are:
+Contains information about the environment associated with the activity,
+including its settings, state, and deployment.
+The following table presents the most notable properties of the environment:
 
 | Name | Description |
 |------|-------------|
-| `payload.environment.name` | The name of the branch. |
-| `payload.environment.machine_name` | The name of the environment. |
-| `payload.environment.type` | The type of the environment. |
+| `payload.environment.name` | The environment name. |
+| `payload.environment.type` | The [environment type](../../administration/users.md#environment-types). |
 | `payload.environment.head_commit` | The Git commit ID that triggered the event. |
 | `payload.environment.edge_hostname` | The edge hostname of the environment. |
 
-Not to be mistaken with the [`Environment` type action](#type).
+Different from [`environment` events](#type).
 
 #### `deployment`
 
-This element contains information about all services in the environment.
-The most notable values of this element are:
+Contains information about the deployed environment, if one is associated with the activity.
+The following table presents the most notable properties of the deployment:
 
 | Name | Description |
 |------|-------------|
-| `payload.deployment.routes` | All the URLs made available by the environment. Note that some are redirects. To find those that are live URLs filter to those objects whose `type` is `upstream`. |
+| `payload.deployment.routes` | All of the URLs connected to the environment. The list includes redirects. To exclude redirects, find objects whose `type` is `upstream`. |
 | `payload.deployment.services` | All the services on your environment. |
-| `payload.deployment.variables` | The variables you [set on the environment](../../administration/web/configure-environment.md#variables).  |
+| `payload.deployment.variables` | All of the [variables for the environment](../../development/variables.md).  |
 
-The deployment block includes the configuration extracted from:
+The `payload.deployment` property includes the configuration extracted from the following sources:
 
-- [your routes](../../define-routes/_index.md)
-- [your app configuration](../../create-apps/_index.md)
-- [your services](../../add-services/_index.md) (if any)
+- Your [app configuration](../../create-apps/_index.md)
+- Your [routes](../../define-routes/_index.md)
+- Your [services](../../add-services/_index.md)
 
 ## Maximum activities and parallelism
 
 Project activities are distributed across separate queues,
 which enables **two* simultaneous activities to occur in parallel across your environments.
 For a given environment, only one activity can run at a time.
-Those queues include:
+Those queues include the following types of activities:
 
 | Name | Description |
 |------|-------------|
-| `default` | These include the most common activities on repositories (pushes, merges) and environments (syncs, redeployments). |
+| `default` | The most common activities on repositories (pushes, merges) and environments (syncs, redeployments). |
 | `integrations` | Source and webhook integration activities. |
 | `backup` | Backup activities. |
 | `cron` | Cron activities. |
 
 Production activities are prioritized across all queues.
-While it's still possible for a non-production environment activity to block production activities,
-it's temporary and unlikely, since the moment that production activity is triggered it jumps to the top of the queue automatically.
+When an activity for the production environment is triggered, it is placed a the top of the queue.
+This makes it unlikely that activities on non-production environments block activities for the production environment,
+though there may be a temporary wait.
 
 ## Examples
 
-The usual content of the JSON object response is long, the examples provided are shortened by ellipses.
-Remember, that depending on the activity, the JSON object response differs and not all fields are always available.
+The response often is usually long, so the following examples are shortened using ellipses.
+Remember that the response differs depending on the activity and not all fields are always available.
 
-For a quick test, see the [webhook setup](./webhooks.md#setup).
+To test responses, [set up a webhook](./webhooks.md#setup).
 
 ### Cron
 
-When a cron job is triggered, the activity contains all [the job's information](../../create-apps/app-reference.md#crons).
-The activity looks like:
+When a cron job is triggered, the activity contains all of the [job's information](../../create-apps/app-reference.md#crons).
+The following presents an example activity:
 
 ``` json
 {
@@ -466,7 +457,7 @@ runs `sleep 60 && echo \"hello world\" && date` and timeouts after 86400 seconds
 
 ### Push
 
-A git push to your project will trigger an activity similar to the following:
+The following example shows a response to a Git push:
 
 ``` json
 {

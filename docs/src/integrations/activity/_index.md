@@ -28,15 +28,15 @@ or it will install a second integration with the same code.
 
 ## Updating
 
-To update an existing activity script you need its ID:
+To update an existing activity script, follow these steps:
 
-1. Get the {{<variable  "ID" >}} by running:
+1. Get the activity script's ID by running the following command:
 
    ```bash
    platform integrations
    ```
 
-   The command will return something like the following:
+   This returns something like the following:
 
    ```bash
    +---------------+--------------+--------------+
@@ -48,15 +48,15 @@ To update an existing activity script you need its ID:
    +---------------+--------------+--------------+
    ```
 
-2. Update the integration with:
+2. Update the integration by running the following command:
 
    ```bash
-   platform integration:update --file ./my_script.js {{<variable  "ID" >}}
+   platform integration:update --file ./my_script.js {{<variable "SCRIPT_ID" >}}
    ```
 
    That updates the integration in place, permanently overwriting the previous version.
 
-3. Test the activity script update, by triggering a redeployment with:
+3. Test the activity script update, by triggering a redeployment with the following command:
 
    ```bash
    platform redeploy
@@ -64,15 +64,15 @@ To update an existing activity script you need its ID:
 
 ## Removing
 
-To disable an activity script you need its ID:
+To disable an activity script, follow these steps:
 
-1. Get the {{<variable "ID" >}} by running:
+1. Get the activity script's ID by running the following command:
 
    ```bash
    platform integrations
    ```
 
-   The command will return something like the following:
+   This returns something like the following:
 
    ```bash
    +---------------+--------------+--------------+
@@ -84,15 +84,15 @@ To disable an activity script you need its ID:
    +---------------+--------------+--------------+
    ```
 
-2. Delete the integration with:
+2. Delete the integration by running the following command:
 
    ```bash
-   platform integration:delete {{<variable "ID" >}}
+   platform integration:delete {{<variable "SCRIPT_ID" >}}
    ```
 
 ## Debugging
 
-Activity logs are available with:
+Get activity logs by running the following command:
 
 ```bash
 platform integration:activities
@@ -118,7 +118,7 @@ That trigger is configurable via command line switches when adding or updating a
 For example, to have a script trigger any time an environment is activated or deactivated, run:
 
 ```bash
-platform integration:update --events='environment.activate, environment.deactivate' {{<variable "INTEGRATION_ID" >}}
+platform integration:update --events='environment.activate, environment.deactivate' {{<variable "SCRIPT_ID" >}}
 ```
 
 A complete list of possible events is available in the [webhook documentation](/integrations/activity/reference.md).
@@ -128,7 +128,7 @@ The default is only when they reach "complete".
 To have a script execute when a synchronize action first starts, for example, you would run:
 
 ```bash
-platform integration:update --events=environment.synchronize --states=in_progress {{<variable "INTEGRATION_ID" >}}
+platform integration:update --events=environment.synchronize --states=in_progress {{<variable "SCRIPT_ID" >}}
 ```
 
 It is also possible to restrict scripts to certain environments by name.
@@ -137,7 +137,7 @@ Most commonly, that is used to have them execute only for your production enviro
 The following example executes only for backup actions on the `production` environment:
 
 ```bash
-platform integration:update --events=environment.backup --environments=production {{<variable "INTEGRATION_ID" >}}
+platform integration:update --events=environment.backup --environments=production {{<variable "SCRIPT_ID" >}}
 ```
 
 There is also an `--exclude-environments` switch to excluded environments by name rather than allow.
@@ -148,7 +148,7 @@ rather than firing on all activities and then filtering out undesired use cases 
 ## Available APIs
 
 Activity scripts can be written in ES2021 and don't support installing additional packages.
-We provide a series of [utility functions you can reuse](./utility.md)
+There are a series of [utility functions you can reuse](./utility.md)
 as well as the following libraries, APIs, and global variables to facilitate building out custom functionality.
 
 ### `underscore.js`
