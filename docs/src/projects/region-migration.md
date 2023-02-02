@@ -54,8 +54,6 @@ Otherwise, use the desired plan size from the start.
 
 +++
 title=Without a source integration
-file=none
-highlight=false
 +++
 
 1. Clone your existing project with Git.
@@ -83,8 +81,6 @@ highlight=false
 
 +++
 title=With a source integration
-file=none
-highlight=false
 +++
 
 For a [source integration](../integrations/source/_index.md) with GitHub, BitBucket, or GitLab,

@@ -44,8 +44,6 @@ To get a database dump, run: `platform db:dump -e <DEVELOPMENT_ENVIRONMENT_NAME>
 
 +++
 title=Manually
-file=none
-highlight=false
 +++
 
 Assumptions:
@@ -105,8 +103,6 @@ Assumptions:
 
 +++
 title=With Drupal and Drush
-file=none
-highlight=false
 +++
 
 1. To sanitize your database and get rid of sensitive, live information, use the `drush sql:sanitize` command.
