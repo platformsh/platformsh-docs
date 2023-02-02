@@ -20,9 +20,6 @@ You can use these hooks to automate your workflows.
 
 The response differs depending on the activity and doesn't always include all fields.
 
-In [JSON terminology](https://json-schema.org/draft-04/json-schema-core.html#rfc.section.3),
-"property" refers to a JSON object and "element" refers to a JSON array.
-
 ### Example response
 
 The following is a shortened example of a response for an [environment sync](../../other/glossary.md#sync).
