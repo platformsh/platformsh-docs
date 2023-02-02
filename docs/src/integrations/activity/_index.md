@@ -23,8 +23,8 @@ platform integration:add --type script --file ./my_script.js
 
 That installs and enables the `my_script.js` file as an activity script on the current project.
 
-Do not run the `integration:add` command a second time,
-or it will install a second integration with the same code.
+Don't run the `integration:add` command a second time,
+or it installs a second integration with the same code.
 
 ## Updating
 
@@ -98,8 +98,8 @@ Get activity logs by running the following command:
 platform integration:activities
 ```
 
-Every time your activity script runs it will generate a new log entry, including the output from the script.
-Any output produced by `console.log` is available in the activity log, and that is the recommended way to debug scripts.
+Every time your activity script runs it generates a new log entry, including the output from the script.
+Any output produced by `console.log` is available in the activity log, and that's the recommended way to debug scripts.
 
 See the [activity log](../overview.md#debugging-integrations) documentation for further details.
 
@@ -131,8 +131,8 @@ To have a script execute when a synchronize action first starts, for example, yo
 platform integration:update --events=environment.synchronize --states=in_progress {{<variable "SCRIPT_ID" >}}
 ```
 
-It is also possible to restrict scripts to certain environments by name.
-Most commonly, that is used to have them execute only for your production environment or for all other environments.
+It's also possible to restrict scripts to certain environments by name.
+Most commonly, that's used to have them execute only for your production environment or for all other environments.
 
 The following example executes only for backup actions on the `production` environment:
 
@@ -142,7 +142,7 @@ platform integration:update --events=environment.backup --environments=productio
 
 There is also an `--exclude-environments` switch to excluded environments by name rather than allow.
 
-As a general rule, it is better to have an activity script only execute on the specific events and branches you're interested in
+As a general rule, it's better to have an activity script only execute on the specific events and branches you're interested in
 rather than firing on all activities and then filtering out undesired use cases in the script itself.
 
 ## Available APIs
