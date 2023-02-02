@@ -100,7 +100,6 @@ The following table presents the possible events:
 | Name | Description |
 |------|-------------|
 | `project.modify.title` | The project title has changed. |
-| `project.create` | A project has been created. Although it appears in the activity feed exactly once, it's not sent via a webhook as it always happens before a webhook can be configured. |
 | `project.variable.create` | A new project variable has been created. Visibility of its value depends on the [sensitivity flag](../../development/variables/set-variables.md#variable-options) |
 | `project.variable.delete` | A project variable has been deleted. |
 | `project.variable.update` | A project variable has been modified. |
