@@ -3,10 +3,7 @@ title: "{{% names/dedicated-gen-2 %}}"
 weight: 1
 sidebarTitle: "Overview"
 layout: single
-description: |
-  {{% names/dedicated-gen-2 %}} is a robust, redundant layer. It is well-suited for those who like the Platform.sh development experience but need more resources and redundancy for their production environment. It is available only with an Enterprise contract.
-aliases:
-  - /dedicated/overview.html
+description:  "{{% names/dedicated-gen-2 %}} is a robust, redundant layer. It's well-suited for those who like the Platform.sh development experience but need more resources and redundancy for their production environment. It's available only with an Enterprise contract."
 ---
 
 {{% description %}}

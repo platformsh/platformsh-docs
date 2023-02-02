@@ -40,14 +40,12 @@ or the [Console](../../administration/web/_index.md).
 {{< codetabs >}}
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 Run the following command:
 
 ```bash
-platform integration:add --type=github --token={{< variable "GITHUB_ACCESS_TOKEN" >}} --server-project={{< variable "OWNER/REPOSITORY" >}} --project={{< variable "PLATFORM_SH_PROJECT_ID" >}}
+platform integration:add --type=github --token={{< variable "GITHUB_ACCESS_TOKEN" >}} --repository={{< variable "OWNER/REPOSITORY" >}} --project={{< variable "PLATFORM_SH_PROJECT_ID" >}}
 ```
 
 * `GITHUB_ACCESS_TOKEN` is the token you generated.
@@ -85,8 +83,6 @@ If `--fetch-branches` is disabled, `--prune-branches` is automatically set to fa
 <--->
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 1. Select the project where you want to enable the integration.

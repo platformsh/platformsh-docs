@@ -20,27 +20,53 @@ app.post("/feedback/submit", async (req, res) => {
   });
 
   const feedback = req.body
+  const today = new Date().toISOString().slice(0, 19)
+
+  // Validate URL in feedback
+  if ((typeof feedback.url !== 'string') || /[<>\s]/.test(feedback.url) || !feedback.url.startsWith(config.getPrimaryRoute().url)) {
+    return res.status(400).send("The submitted URL isn't valid")
+  }
+
+  // Encode URL
+  const urlForFeedback = encodeURI(feedback.url)
+
+  // Validate feedback itself
+  if ((typeof feedback.feedback !== 'string') || !['positive', 'negative'].includes(feedback.feedback)) {
+    return res.status(400).send("The submitted feedback isn't valid")
+  }
 
   // Create a feedback table if it doesn't exist
   try {
     await connection.query(
-      `CREATE TABLE IF NOT EXISTS Feedback (
-        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        date DATETIME NOT NULL,
-        url VARCHAR(100) NOT NULL,
-        feedback VARCHAR(10) NOT NULL
-      )`
+      `SELECT count(*) FROM information_schema.TABLES
+      WHERE (TABLE_SCHEMA = '${credentials.path}')
+      AND (TABLE_NAME = 'Feedback')`,
+      async (error, result) => {
+        if (error) {
+          return res.status(500).send("Error looking for feedback table")
+        }
+        if (result.length === 0) {
+          try {
+            await connection.query(
+              `CREATE TABLE Feedback (
+                id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                date DATETIME NOT NULL,
+                url VARCHAR(300) NOT NULL,
+                feedback VARCHAR(10) NOT NULL
+              )`
+            )
+          }
+          catch (err) { return res.status(500).send("Error creating a table for feedback") }
+        }
+      }
     );
-  } catch (err) { res.status(500).send("Error creating a table for feedback") }
+  } catch (err) { return res.status(500).send("Error connecting to database") }
 
   // Insert feedback record
   try {
     await connection.query(
-      `INSERT INTO Feedback (date, url, feedback)
-      VALUES
-        ('${feedback.date}', '${feedback.url}', '${feedback.feedback}');`
-    );
-  } catch (err) { res.status(500).send("Error entering feedback into database") }
+      'INSERT INTO Feedback (date, url, feedback) VALUES (?,?,?)', [today, urlForFeedback, feedback.feedback]);
+  } catch (err) { return res.status(500).send("Error entering feedback into database") }
 
   res.status(200).send("Feedback recorded");
 

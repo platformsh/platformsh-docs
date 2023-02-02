@@ -55,7 +55,6 @@ install your chosen Redis plugin with a Composer command depending on the plugin
 
 +++
 title=WP Redis
-file=none
 highlight=bash
 +++
 
@@ -65,7 +64,6 @@ composer require "wpackagist-plugin/wp-redis":"^1.1.4"
 
 +++
 title=Redis Object Cache
-file=none
 highlight=bash
 +++
 
@@ -85,8 +83,6 @@ adjusting the paths based on where your plugins are located:
 {{< codetabs >}}
 +++
 title=WP Redis
-file=none
-highlight=false
 +++
 
 ```yaml {location=".platform.app.yaml"}
@@ -102,8 +98,6 @@ hooks:
 
 +++
 title=Redis Object Cache
-file=none
-highlight=false
 +++
 
 ```yaml {location=".platform.app.yaml"}
@@ -147,8 +141,6 @@ The following examples assume you are using the [Platform.sh Config Reader](./de
 
 +++
 title=WP Redis
-file=none
-highlight=false
 +++
 
 ```php {location="wp-config.php"}
@@ -168,8 +160,6 @@ if ($config->hasRelationship('redis') && extension_loaded('redis')) {
 
 +++
 title=Redis Object Cache
-file=none
-highlight=false
 +++
 
 ```php {location="wp-config.php"}

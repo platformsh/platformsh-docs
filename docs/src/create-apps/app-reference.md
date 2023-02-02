@@ -51,6 +51,10 @@ use the [`source.root` property](#source).
 ## Types
 
 The `type` defines the base container image used to run the application.
+The version is the major (`X`) and sometimes minor (`X.Y`) version numbers,
+depending on the service, as in the following table.
+Security and other patches are taken care of for you automatically.
+
 Available languages and their supported versions:
 
 {{< readFile file="src/registry/images/tables/runtimes_supported.md" markdownify="true">}}
@@ -63,8 +67,9 @@ These are used in the format `runtime:version`:
 
 ## Sizes
 
-Resources are distributed across all containers in a project from the total available from your [plan size](../administration/pricing/_index.md).
+Resources are distributed across all containers in an environment from the total available from your [plan size](../administration/pricing/_index.md).
 So if you have more than just a single app, it doesn't get all of the resources available.
+Each environment has its own resources and there are different [sizing rules for non-production environments](#sizes-in-non-production-environments).
 
 By default, resource sizes (CPU and memory) are chosen automatically for an app
 based on the plan size and the number of other containers in the cluster.
@@ -83,7 +88,7 @@ To do so, set `size` to one of the following values:
 
 The total resources allocated across all apps and services can't exceed what's in your plan.
 
-### Sizes in development environments
+### Sizes in non-production environments
 
 Containers in development environments don't follow the `size` specification.
 Application containers are set based on the plan's setting for **Environments application size**.
@@ -649,7 +654,6 @@ crons:
 
 +++
 title=Drupal
-file=none
 highlight=yaml
 +++
 
@@ -670,7 +674,6 @@ crons:
 
 +++
 title=Ruby on Rails
-file=none
 highlight=yaml
 +++
 
@@ -734,8 +737,6 @@ To restart crons without changing anything:
 
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 1. In the Console, navigate to your project.
@@ -746,8 +747,6 @@ highlight=false
 
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 Run the following command:

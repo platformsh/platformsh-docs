@@ -9,7 +9,7 @@ layout: single
 Platform.sh supports both MariaDB and Oracle MySQL to manage your relational databases.
 Their infrastructure setup is nearly identical, though they differ in some features.
 See the [MariaDB documentation](https://mariadb.org/learn/)
-or [MySQL documentation](https://dev.mysql.com/doc/refman/8.0/en/) for more information.
+or [MySQL documentation](https://dev.mysql.com/doc/refman/en/) for more information.
 
 {{% frameworks %}}
 
@@ -312,11 +312,13 @@ For MariaDB 10.1 and later and Oracle MySQL 8.0 and later, you can set some conf
 In your settings, add the `properties` key to the `configuration` key.
 It offers the following properties:
 
-| Name        | Type               | Default                                                      | Description |
-| ----------- | ------------------ | ------------------------------------------------------------ | ----------- |
-| `max_allowed_packet` | `integer` | `16`                                                         | The maximum size for packets in MB. Can be from `1` to `100`. |
-| `default_charset`    | `string`  | `latin1` before February 2020 and `utf8mb4` after            | The default character set. Affects any tables created after it's set. |
-| `default_collation`  | `string`  | `latin1` before February 2020 and `utf8mb4_unicode_ci` after | The default collation. Affects any tables created after it's set. |
+| Name                                  | Type      | Default                                                      | Description                                                                                                                                                                           |
+|---------------------------------------|-----------|--------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `max_allowed_packet`                  | `integer` | `16`                                                         | The maximum size for packets in MB. Can be from `1` to `100`.                                                                                                                         |
+| `default_charset`                     | `string`  | `utf8mb4` after February 2020 and `latin1` before            | The default character set. Affects any tables created after it's set.                                                                                                                 |
+| `default_collation`                   | `string`  | `utf8mb4_unicode_ci` after February 2020 and `latin1` before | The default collation. Affects any tables created after it's set.                                                                                                                     |
+| `optimizer_switch`                    | `string`  |                                                              | A place to set various server optimization variables. See the [MariaDB documentation](https://mariadb.com/kb/en/optimizer-switch/).                                                   |
+| `optimizer_use_condition_selectivity` | `integer` | `4` in version 10.4.1+ and `1` before that                   | Which statistics are used by the optimizer. From `1` to `5`. See the [MariaDB documentation](https://mariadb.com/kb/en/server-system-variables/#optimizer_use_condition_selectivity). |
 
 An example of setting these properties:
 
@@ -344,7 +346,9 @@ ALTER TABLE table_name CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE table_name CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
-Consult the [MySQL documentation](https://dev.mysql.com/doc/refman/8.0/en/charset-mysql.html) for further details.
+For further details, see the [MariaDB documentation](https://mariadb.com/kb/en/character-set-and-collation-overview/).
+
+{{% databases-passwords %}} 
 
 ## Storage Engine
 

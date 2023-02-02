@@ -1,9 +1,13 @@
 ---
 title: Source operations
+description: |
+  Run automated code updates via source operations.
 tier:
   - Elite
   - Enterprise
 ---
+
+You can run automated code updates via a Platform.sh mechanism called: source operation.
 
 A source operation is an operation defined in an application to apply and automate changes to its source code.
 
@@ -51,8 +55,6 @@ To run a source operation, you can use the CLI or Console.
 {{< codetabs >}}
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 - Navigate to the environment where you want to run the operation.
@@ -65,8 +67,6 @@ highlight=false
 <--->
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 Run the following command:
@@ -78,6 +78,9 @@ platform source-operation:run <OPERATION_NAME>
 Replace `<OPERATION_NAME>` with the name of your operation, such as `update-file`) in the [example above](#1-define-a-source-operation).
 
 {{< /codetabs >}}
+
+After running a source operation, 
+apply the changes to your local development environment by running `git pull`.
 
 ## How source operations work
 
@@ -115,8 +118,6 @@ Run the operation with the variable:
 
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 - Navigate to the environment where you want to run the operation.
@@ -129,8 +130,6 @@ highlight=false
 <--->
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 ```bash
@@ -200,7 +199,6 @@ Do so in a source operation depending on your dependency manager:
 
 +++
 title=Composer
-file=none
 highlight=yaml
 +++
 
@@ -217,7 +215,6 @@ source:
 
 +++
 title=npm
-file=none
 highlight=yaml
 +++
 
@@ -234,7 +231,6 @@ source:
 
 +++
 title=Yarn
-file=none
 highlight=yaml
 +++
 
@@ -251,7 +247,6 @@ source:
 
 +++
 title=Go
-file=none
 highlight=yaml
 +++
 
@@ -269,7 +264,6 @@ source:
 
 +++
 title=Pipenv
-file=none
 highlight=yaml
 +++
 
@@ -286,7 +280,6 @@ source:
 
 +++
 title=Bundler
-file=none
 highlight=yaml
 +++
 

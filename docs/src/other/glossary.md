@@ -2,9 +2,6 @@
 title: "Glossary"
 weight: 1
 sidebarIgnore: true
-aliases:
-  - "/glossary.html"
-  - "/GLOSSARY.html"
 ---
 
 ## Active environment
@@ -44,8 +41,6 @@ To create a new branch from an existing environment:
 
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 - Navigate to the environment you want to branch from.
@@ -57,8 +52,6 @@ highlight=false
 <--->
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 Run:

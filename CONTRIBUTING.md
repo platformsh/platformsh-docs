@@ -90,6 +90,18 @@ To add a security transparency report for a new year (after receiving the data):
 
 The report text is in `docs/data/transparency-reports.yaml`.
 
+## Redirect pages
+
+You sometimes need to move pages around to new locations.
+To keep links from other sites working, set up redirects from the old URL to the new one.
+
+Although Hugo has a built-in `aliases` property for this purpose,
+it uses meta refresh tags and so you shouldn't use it.
+Instead, prefer redirects that return 301 codes (Moved Permanently).
+
+Set them up in the [Platform.sh routes configuration](./.platform/routes.yaml).
+For more information, see how to [redirect routes](https://docs.platform.sh/define-routes/redirects.html).
+
 ## Commit messages
 
 To help understand why changes happened and not repeat work already done,
@@ -179,6 +191,15 @@ To ensure the docs work smoothly, a few checks run on each pull request:
   ```bash
   # Download the htmltest tool
   curl https://htmltest.wjdp.uk | bash
+  # If you haven't done so, install dependencies
+  npm install
+  # Generate necessary files
+  npm run dev
+  npm run build:search
+  # Build HTML pages to check
+  hugo
+  # Build production JavaScript and CSS files
+  npm run build:assets
   # Run the check
   ./bin/htmltest
   ```

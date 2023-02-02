@@ -1,6 +1,6 @@
 
 # Basics
-version: "1.0.15"
+version: "1.0.17"
 description: Platform.sh User Documentation
 author: Platform.sh
 title: User documentation
@@ -11,7 +11,17 @@ editPageButton: true
 # Images (kept in static/)
 logo: "images/logos/Platformsh_logo_white.svg"
 logolinksto: "https://platform.sh"
+logoAlt: "Platform.sh"
 favicon: "images/logos/favicon.ico"
+
+# Actions in main header
+headerActions:
+  headerActionPrimary:
+    destination: https://auth.api.platform.sh/register
+    linkText: Free trial
+  headerActionSecondary:
+    destination: https://console.platform.sh/
+    linkText: Log in
 
 # Search
 rank: 1
@@ -25,10 +35,8 @@ _404:
   image: "/images/404/404-8.png"
   issues: "https://github.com/platformsh/platformsh-docs/issues/new"
 
-# Books
-# Note: If you would like sections to match uglyurls, add the ".html" extension manually to `section`.
-#     (i.e. books.example.section: example.html)
-books:
+# Sections in the navigation sidebar
+navSections:
   home:
     title: Guides and reference
     section: home

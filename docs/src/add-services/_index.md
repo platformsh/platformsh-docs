@@ -146,8 +146,6 @@ You can connect through your app or by opening an SSH tunnel to access the servi
 {{< codetabs >}}
 +++
 title=In an app
-highlight=false
-file=none
 +++
 
 When connecting to a service from an app, you may want to use one of the Platform.sh [configuration readers](https://github.com/platformsh/?q=config+reader).
@@ -163,8 +161,6 @@ So use the environment variable rather than hard coding the values.
 <--->
 +++
 title=Through an SSH tunnel
-highlight=false
-file=none
 +++
 
 Connecting to a service using an SSH tunnel is a two-step process.

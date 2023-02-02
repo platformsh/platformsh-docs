@@ -1,10 +1,7 @@
 ---
 title: "Manage Node.js versions"
 weight: 1
-toc: false
-description: See how to manage different Node.js versions in your Platform.sh containers.
-aliases:
-    - "/languages/nodejs/nvm.html"
+description: See how to manage different Node.js versions in your Platform.sh containers."
 ---
 
 You may need to use a specific version of Node.js that isn't available in an app container for a different language.
@@ -30,8 +27,6 @@ including Windows Subsystem for Linux.
 
 +++
 title=.nvmrc
-file=none
-highlight=false
 +++
 
 Create a `.nvmrc` file in [your app root](../../create-apps/app-reference.md#root-directory):
@@ -44,8 +39,6 @@ v16.13.2
 
 +++
 title=.n-node-version/.node-version
-file=none
-highlight=false
 +++
 
 Create a `.n-node-version` or `.node-version` file in [your app root](../../create-apps/app-reference.md#root-directory):
@@ -58,8 +51,6 @@ Create a `.n-node-version` or `.node-version` file in [your app root](../../crea
 
 +++
 title=package.json
-file=none
-highlight=false
 +++
 
 Add an `engines.node` property to your `package.json`.

@@ -1,8 +1,6 @@
 ---
 title: Delete a project
 description: See how to delete projects you no longer need.
-aliases:
-  - /administration/web/delete.html
 ---
 
 To delete a project, you must be an organization owner or have the [manage plans permission](../administration/organizations.md#manage-your-organization-users)
@@ -13,8 +11,6 @@ To delete a Platform.sh project, including all data, code, and active environmen
 
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 - On the tile of the project you want to delete, click **{{< icon more >}} More**.
@@ -26,8 +22,6 @@ highlight=false
 <--->
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 1. Run the following command:

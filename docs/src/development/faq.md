@@ -150,7 +150,7 @@ and whose motto is: "Loyal and Unshakeable", which we also strive to be.
 
 MAMP pro:
 
-In order for MAMP to work well with the symlinks created by the [Platform.sh CLI](https://github.com/platformsh/platformsh-cli),
+In order for MAMP to work well with the symlinks created by the [Platform.sh CLI](../administration/cli/_index.md),
 add the following to the section under Hosts \> Advanced called "Customized virtual host general settings".
 For more details visit [MAMP Pro documentation page](https://documentation.mamp.info/).
 

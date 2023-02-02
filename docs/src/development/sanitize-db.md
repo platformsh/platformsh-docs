@@ -44,8 +44,6 @@ To get a database dump, run: `platform db:dump -e <DEVELOPMENT_ENVIRONMENT_NAME>
 
 +++
 title=Manually
-file=none
-highlight=false
 +++
 
 Assumptions:
@@ -74,7 +72,7 @@ Assumptions:
    3 rows in set (0.00 sec)
    ```
 
-1. Change the fields where PII is contained with the [`UPDATE` statement](https://dev.mysql.com/doc/refman/8.0/en/update.html).
+1. Change the fields where PII is contained with the [`UPDATE` statement](https://mariadb.com/kb/en/update/).
    For example, to change the first name of users with an email address not in your company's domain, run the following query:
 
    ```sql
@@ -105,8 +103,6 @@ Assumptions:
 
 +++
 title=With Drupal and Drush
-file=none
-highlight=false
 +++
 
 1. To sanitize your database and get rid of sensitive, live information, use the `drush sql:sanitize` command.
@@ -140,5 +136,5 @@ To add a faker, adapt your sanitizing queries to replace each value that contain
 
 You might also want to make sure that you [implement input validation](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html#goals-of-input-validation).
 
-If your database contains a lot of data, consider using the [`OPTIMIZE TABLE` statement](https://dev.mysql.com/doc/refman/8.0/en/optimize-table.html)
+If your database contains a lot of data, consider using the [`OPTIMIZE TABLE` statement](https://mariadb.com/kb/en/optimize-table/)
 to reduce its size and help improve performance.

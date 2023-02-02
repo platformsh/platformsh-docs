@@ -2,8 +2,6 @@
 title: Change a project's region
 sidebarTitle: Change regions
 description: See how to change the region your project is in and why you might want to do so.
-aliases:
-  - /guides/general/region-migration.html
 ---
 
 To host your project data, Platform.sh offers several [regions](../development/regions.md).
@@ -56,8 +54,6 @@ Otherwise, use the desired plan size from the start.
 
 +++
 title=Without a source integration
-file=none
-highlight=false
 +++
 
 1. Clone your existing project with Git.
@@ -85,8 +81,6 @@ highlight=false
 
 +++
 title=With a source integration
-file=none
-highlight=false
 +++
 
 For a [source integration](../integrations/source/_index.md) with GitHub, BitBucket, or GitLab,

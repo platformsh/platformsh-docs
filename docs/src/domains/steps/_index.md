@@ -3,8 +3,6 @@ title: Set up a custom domain
 weight: 2
 description: Add a custom domain to your project once it's ready to go live.
 layout: single
-aliases:
-   - /domains/quick-start.html
 ---
 
 Once your project is ready for production, replace the automatically generated domain with your own custom domain.
@@ -39,8 +37,6 @@ To upgrade your plan tier:
 
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 Run the following [CLI command](../../administration/cli/_index.md):
@@ -53,8 +49,6 @@ platform subscription:info plan standard
 
 +++
 title=In the console
-file=none
-highlight=false
 +++
 
 1. On the tile of the project you want to upgrade, click **{{< icon more >}} More**.
@@ -78,8 +72,6 @@ For Dedicated plans, get the target for your project from your Platform.sh conta
 
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 Get the target by running the following [CLI command](../../administration/cli/_index.md):
@@ -92,8 +84,6 @@ platform environment:info edge_hostname
 
 +++
 title=In the console
-file=none
-highlight=false
 +++
 
 1. In the Console, open your Production environment.
@@ -118,8 +108,6 @@ it can take anywhere from 15 minutes to 72 hours for DNS changes to be taken int
 
 +++
 title=Not using a CDN
-file=none
-highlight=false
 +++
 
 To configure your domain name to point to your project:
@@ -129,7 +117,7 @@ To configure your domain name to point to your project:
 3. Set the TTL on your domain to the lowest possible value to minimize transition time.
 4. Add a `CNAME` record pointing from your domain to the [target](#2-get-the-target-for-your-project).
    Not all registrars allow these kinds of records.
-   If yours doesn't, see the [alternatives](./dns.md#handling-apex-domains).
+   If yours doesn't, see the [alternatives](./dns.md#workarounds-for-apex-domains).
 5. Optional: If you have multiple domains you want to be served by the same app, add a `CNAME` record for each of them.
    That includes the `www` subdomain if you are using it in your [routes configuration](../../define-routes/_index.md).
 6. Set the TTL value back to its previous value.
@@ -146,8 +134,6 @@ Redirects are handled by the [router you configure](../../define-routes/_index.m
 
 +++
 title=Using a CDN
-file=none
-highlight=false
 +++
 
 To configure your CDN and your domain name to point to your project:
@@ -171,8 +157,6 @@ Add a single domain to your project:
 
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 Run the following command:
@@ -185,8 +169,6 @@ platform domain:add {{<variable "YOUR_DOMAIN" >}}
 
 +++
 title=In the console
-file=none
-highlight=false
 +++
 
 1. Select the project where you want to add a domain.

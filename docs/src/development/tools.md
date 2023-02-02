@@ -13,7 +13,7 @@ Any change you make to your Platform.sh project needs to be committed via Git. Y
 Before getting started, make sure you have it installed on your computer to interact with Platform.sh.
 
 {{< note title="See also">}}
-* [Install Git](https://docs.github.com/en/get-started/quickstart/set-up-git)
+* [Install Git](https://git-scm.com/downloads)
 * [Learn more about Git](https://git-scm.com/)
 {{< /note >}}
 

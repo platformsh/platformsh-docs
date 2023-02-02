@@ -2,10 +2,7 @@
 title: "Platform.sh development environments"
 weight: 2
 sidebarTitle: "Dev environments"
-description: |
-  {{% names/dedicated-gen-2 %}} customers have a development environment for their project that consists of a Platform.sh Grid project, typically provisioned by the Platform.sh team to reflect the amount of storage in your contract. This environment provides you with all the DevOps, Continuous Integration, Continuous Deployment, and other workflow tooling of the professional product, but segregates the performance impacts from your production hardware.
-aliases:
-  - /dedicated/architecture/development.html
+description: "{{% names/dedicated-gen-2 %}} customers have a development environment for their project that consists of a Platform.sh Grid project, typically provisioned by the Platform.sh team to reflect the amount of storage in your contract. This environment provides you with all the DevOps, Continuous Integration, Continuous Deployment, and other workflow tooling of the professional product, but segregates the performance impacts from your production hardware."
 ---
 
 ## Architecture (Development Environments)
