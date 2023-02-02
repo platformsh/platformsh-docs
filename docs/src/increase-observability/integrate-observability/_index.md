@@ -11,6 +11,6 @@ Blackfire offers a unique blend of monitoring and profiling features.
 Blackfire works integrally with the Platform.sh workflow,
 offering a smooth user experience.
 
-Platform.sh also supports third-party services such as New Relic.
+Platform.sh also supports third-party services such as New Relic and Tideways.
 Note that these third-party services have their own associated cost,
 are language-specific, and may not be available for all languages.
