@@ -1,11 +1,12 @@
 ---
-title: "Source Integrations"
+title: Source integrations
 weight: -4
-description: Platform.sh allows you to maintain your code base in a third party repository and link it to your Platform.sh project.
+description: See how to maintain your code in a third-party repository that's linked to your Platform.sh project.
 ---
 
-Platform.sh allows you to maintain your code base in a third party repository and link it to your Platform.sh project.
-The remote repository is the canonical, definitive copy of your application code and the Platform.sh project is just a read-only mirror.
+You might want to keep your code in a third-party repository that's linked to your Platform.sh project.
+This means you keep all your workflows where you want and use Platform.sh for deploying.
 
-Note that when a source integration is enabled, you should not push code directly to the Platform.sh repository.
-It will get overwritten the next time the integration is triggered.
+Your Platform.sh project becomes a mirror of your code repository elsewhere.
+This means you shouldn't push code directly to Platform.sh.
+Any changes you push directly get overwritten by the integration when changes happen in the third-party repository.
