@@ -14,7 +14,7 @@ follow the instructions on this page.
 You need:
 - A Platform.sh project using [WordPress with Composer](../../guides/wordpress/composer/_index.md)
 - Credentials to access a private third-party Composer repository
-- The [Platform.sh CLI](/administration/cli/_index.md)
+- The [Platform.sh CLI](../../administration/cli/_index.md)
 
 ## 1. Declare a private Composer repository
 
@@ -59,7 +59,7 @@ platform project:clear-build-cache
 
 ## Private repository hosting
 
-Private dependencies are usually hosted in [private Git repositories](/development/private-repository.md).
+Private dependencies are usually hosted in [private Git repositories](../../development/private-repository.md).
 Access to such private Git repositories is restricted through the use of SSH keys.
 But most private Composer tools mirror tagged releases of dependencies and serve them directly without hitting the Git repository.
 
