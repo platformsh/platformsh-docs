@@ -307,7 +307,7 @@ To test responses, [set up a webhook](./webhooks.md#setup).
 
 When a cron job is triggered, the activity contains all the [job's information](../../create-apps/app-reference.md#crons).
 In that example, the cron is scheduled to run every five minutes (`5 * * * *`),
-runs `sleep 60 && echo \"hello world\" && date` and timeouts after 86400 seconds.
+runs `sleep 60 && echo sleep-60-finished && date` and timeouts after 86400 seconds.
 
 To get details about your cron, see the `parameters` property:
 
@@ -322,7 +322,7 @@ To get details about your cron, see the `parameters` property:
     "spec": {
       "spec": "5 * * * *",
       "commands": {
-        "start": "sleep 60 && echo \"hello world\" && date",
+        "start": "sleep 60 && echo sleep-60-finished && date",
         "stop": null
       },
       "shutdown_timeout": null,
@@ -356,7 +356,7 @@ The following presents the full activity response to a cron:
     "spec": {
       "spec": "5 * * * *",
       "commands": {
-        "start": "sleep 60 && echo \"hello world\" && date",
+        "start": "sleep 60 && echo sleep-60-finished && date",
         "stop": null
       },
       "shutdown_timeout": null,
@@ -486,7 +486,7 @@ The `commits` property contains everything related to the git push you made:
         "parents": [
           "6aac318907b50252976c47e4e62ed95d438af0ea"
         ],
-        "message": "Replace sleep with wait"
+        "message": "Add cron"
       }
     ],
 ...
@@ -707,7 +707,7 @@ The following presents the full activity response to a Git push:
         "parents": [
           "6aac318907b50252976c47e4e62ed95d438af0ea"
         ],
-        "message": "Replace sleep with wait"
+        "message": "Add cron"
       }
     ],
     "commits_count": 1,
@@ -1005,7 +1005,7 @@ The following presents the full activity response to a Git push:
             "saybye": {
               "spec": "5 * * * *",
               "commands": {
-                "start": "wait 60 && echo \"hello world\" && date",
+                "start": "sleep 60 && echo sleep-60-finished && date",
                 "stop": null
               },
               "shutdown_timeout": null,
