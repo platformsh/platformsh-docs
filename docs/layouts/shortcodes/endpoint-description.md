@@ -101,7 +101,7 @@ If you split the service into multiple endpoints, define multiple relationships.
 {{ else }}
 Add the service to your app configuration:
 
-```yaml {location=services.yaml}
+```yaml {location=app.platform.yaml}
 mounts:
     '<TARGET_PATH>':
         source: service

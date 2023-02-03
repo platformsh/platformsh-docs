@@ -1,0 +1,158 @@
+<!-- Handle the source name in a few varieties-->
+{{ $source := .Get "source" }}
+{{ $source_variable :=  replace $source " " "_" | lower }}
+{{ $token_variable := printf "%s_ACCESS_TOKEN" $source_variable | upper }}
+{{ $base_url_variable := printf "%s_URL" $source_variable | upper }}
+<!-- Handle GitLab's MRs -->
+{{ $pull := "pull" }}
+{{ if eq $source "GitLab" }}{{ $pull = "merge" }}{{ end }}
+<p>To enable the integration, use either the <a href="/administration/cli.html">CLI</a> or the <a href="/administration/web.html">Console</a>.</p>
+
+<!-- Different services have different first steps and access variables,
+  so we handle the list in the Console differently -->
+{{ $tokenConsoleInstructions := "" }}
+{{ if or ( eq $source "GitHub" ) ( eq $source "GitLab" ) }}
+  {{ $tokenConsoleInstructions = printf `
+1. Add the [token you generated](#1-generate-a-token).
+1. Optional: If your %[1]s project isn't hosted at %[2]s.com, enter your %[1]s custom domain.
+1. Click **Continue**.
+1. Choose the repository to use for the project.` $source ( $source | lower ) }}
+
+{{ else if ( eq $source "Bitbucket" )}}
+{{ $tokenConsoleInstructions = `
+1. Complete the form with:
+   - The repository in the form <code>owner/repository</code>
+   - The [key and secret you generated](#1-create-an-oauth-consumer)` }}
+{{ else if ( eq $source "Bitbucket server" )}}
+  {{ $tokenConsoleInstructions = `
+1. Complete the form with:
+   - Your server URL
+   - Your username
+   - The [token you generated](#1-generate-a-token)
+   - The Bitbucket server project name
+   - The repository in the form <code>owner/repository</code>` }}
+{{ end }}
+
+<!-- Add explanations for the base-url flag for various sources -->
+{{ $baseUrlExpanation := "" }}
+{{ $baseUrlServer := "GitLab" }}
+{{ $baseUrlSource := "https://gitlab.com" }}
+{{ $baseUrlExample := "" }}
+{{ $baseUrlVariable := printf "--base-url {{< variable %s >}} " $base_url_variable }}
+{{ $exampleUrl := "example.com" }}
+{{ if eq $source "GitHub" }}
+  {{ $baseUrlServer = "GitHub Enterprise" }}
+  {{ $baseUrlSource = "https://github.com" }}
+  {{ $exampleUrl = "github.com" }}
+{{ end }}
+{{ if eq $source "GitLab" }}
+  {{ $baseUrlExample = "--base-url https://example.com " }}
+{{ end }}
+{{ if or ( eq $source "GitHub" ) ( eq $source "GitLab" ) }}
+{{ $baseUrlExpanation = printf `- <code>%[1]s</code> is the base URL for your %[2]s server if you self-host.
+  If you use <code>%[3]s</code>, don't include the <code>base-url</code> flag.` $base_url_variable $baseUrlServer $baseUrlSource }}
+{{ else if ( eq $source "Bitbucket server" )}}
+  {{ $baseUrlExpanation = printf `- <code>%[1]s</code> is the base URL for your Bitbucket server.` $base_url_variable }}
+  {{ $baseUrlExample = "--base-url https://example.com " }}
+{{ else if ( eq $source "Bitbucket" ) }}
+  {{ $baseUrlVariable = "" }}
+  {{ $exampleUrl = "bitbucket.org" }}
+{{ end }}
+
+<!-- Bitbucket has a different access pattern for each version,
+     The initial settings are used for GitLab and GitHub -->
+{{ $accessFlagsVariable := printf "--token {{< variable %s >}}" $token_variable }}
+{{ $accessFlagsExplanation := printf `- <code>%s</code> is the [token you generated](#1-generate-a-token).` $token_variable }}
+{{ $accessFlagsExample := "--token abc123" }}
+{{ if ( eq $source "Bitbucket server" ) }}
+  {{ $accessFlagsVariable = printf "--username {{< variable USERNAME >}} %s" $accessFlagsVariable }}
+  {{ $accessFlagsExample = printf "--username user@example.com %s" $accessFlagsExample}}
+{{ end }}
+{{ if ( eq $source "Bitbucket" ) }}
+  {{ $accessFlagsVariable = "--key {{< variable CONSUMER_KEY >}} --secret {{< variable CONSUMER_SECRET >}} " }}
+  {{ $accessFlagsExplanation = `- <code>CONSUMER_KEY</code> is the key of the [OAuth consumer you created](#1-create-an-oauth-consumer).
+- <code>CONSUMER_SECRET</code> is the secret of the [OAuth consumer you created](#1-create-an-oauth-consumer).` }}
+  {{ $accessFlagsExample = "--key abcd1234 --secret abcd1234" }}
+{{ end }}
+
+<!-- Generate the code tabs
+     The strings above are added in by their index at the end of the literal string -->
+{{ $Inner := printf `
++++
+title=Using the CLI
++++
+
+Run the following command:
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">platform integration:add --type %[1]s \
+%[2]s --repository {{< variable "OWNER/REPOSITORY" >}} \
+%[3]s--project {{< variable "PLATFORM_SH_PROJECT_ID" >}}</code></pre></div>
+
+
+%[4]s
+- <code>OWNER/REPOSITORY</code> is the name of the repository in %[5]s.
+- <code>PLATFORM_SH_PROJECT_ID</code> is the ID of your Platform.sh project.
+%[6]s
+
+For example, if your repository is located at <code>https://%[7]s/platformsh/platformsh-docs</code>,
+the command is similar to the following:
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">platform integration:add --type %[1]s \
+%[8]s --repository platformsh/platformsh-docs \
+%[9]s--project abcdefgh1234567</code></pre></div>
+
+<--->
++++
+title=In the Console
++++
+
+1. Select the project where you want to enable the integration.
+1. Click {{< icon settings >}} **Settings**.
+1. Under **Project settings**, click **Integrations**.
+1. Click **+ Add integration**.
+1. Under **%[5]s**, click **+ Add**.
+%[10]s
+1. Check that the other options match what you want.
+1. Click **Add integration**.
+
+` $source_variable $accessFlagsVariable $baseUrlVariable $accessFlagsExplanation $source $baseUrlExpanation $exampleUrl $accessFlagsExample $baseUrlExample $tokenConsoleInstructions }}
+{{ partial "codetabs/tabs" ( dict "Inner" $Inner "Page" .Page ) }}
+
+<p>In both the CLI and Console, you can choose from the following options:</p>
+
+<!-- Build table row for draft/WIP requests -->
+{{ $draftOption := "" }}
+{{ if or ( eq $source "GitHub" ) ( eq $source "GitLab") }}
+  {{ $draftOption = printf `
+  | <code>build-draft-%[1]s-requests</code> | <code>true</code> | Whether to also track and build draft %[1]s requests. Automatically disabled when %[1]s requests aren't built. |` $pull }}
+{{ end }}
+{{ if eq $source "GitLab" }}
+  {{ $draftOption = replace $draftOption "-draft-" "-wip-" }}
+{{ end }}
+
+<!-- Bitbucket Cloud is the only one without an option to clone parent data -->
+{{ $cloneOption := "" }}
+{{ if ne $source "Bitbucket" }}
+  {{ $cloneOption = printf `| <code>%[1]s-requests-clone-parent-data</code> | <code>true</code> | Whether to clone data from the parent environment when creating a %[2]s request environment. |` $pull }}
+{{ end }}
+
+<!-- Add options only for certainly integrations -->
+{{ $extraOption := "" }}
+{{ if eq $source "GitHub" }}
+  {{ $extraOption = `
+| <code>build-pull-requests-post-merge</code> | <code>false</code> | Whether to build what would be the result of merging each pull request. Turning it on forces rebuilds any time something is merged to the target branch. |` }}
+{{ else if eq $source "Bitbucket" }}
+  {{ $extraOption = `| <code>resync-pull-requests</code> | <code>false</code> | Whether to sync data from the parent environment on every push to a pull request. |` }}
+{{ end }}
+
+<!-- Create the table for the options -->
+{{ $OptionsTable := printf `
+| CLI flag | Default | Description |
+| -------- | ------- | ----------- |
+| <code>fetch-branches</code> | <code>true</code> | Whether to track all branches and create inactive environments from them. |
+| <code>prune-branches</code> | <code>true</code> | Whether to delete branches from Platform.sh that don't exist in the %[1]s repository. Automatically disabled when fetching branches is disabled. |
+| <code>build-%[2]s-requests</code> | <code>true</code> | Whether to track all %[2]s requests and create active environments from them, which builds the %[2]s request. |%[3]s
+%[4]s%[5]s
+
+` $source $pull $draftOption $cloneOption $extraOption }}
+{{ $OptionsTable | markdownify }}

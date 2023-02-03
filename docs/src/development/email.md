@@ -21,8 +21,6 @@ To turn it on for a specific environment, follow these steps:
 
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 - Select the project with the given environment.
@@ -37,8 +35,6 @@ To turn off outgoing email, clear the **Email sending** checkbox.
 
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 To turn on outgoing email, run the following command:
@@ -53,7 +49,7 @@ To turn off outgoing email, replace `true` with `false`.
 
 Changing the setting rebuilds the environment.
 
-## 2. (Optional) Improve deliverability
+## 2. Recommended: Improve deliverability
 
 Improve deliverability of your email with [Sender Policy Framework (SPF)](https://docs.sendgrid.com/ui/account-and-settings/spf-records).
 Add the following `TXT` record to your domain's DNS records:
@@ -125,8 +121,6 @@ See some examples for given languages.
 
 +++
 title=PHP
-file=none
-highlight=false
 +++
 
 To send email in PHP, you can use the built-in [`mail()` function](https://www.php.net/manual/en/function.mail.php).
@@ -144,8 +138,6 @@ be sure to sanitize it first.
 
 +++
 title=Java
-file=none
-highlight=false
 +++
 
 JavaMail is a Java API used to send and receive email via SMTP, POP3, and IMAP.
