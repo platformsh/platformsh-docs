@@ -4,7 +4,12 @@ weight: 10
 description: Find an observability service to optimize your code.
 ---
 
-The recommended observability service to optimize your code as a Platform.sh user is Blackfire.
+As the **official Platform.sh observability service**, 
+[Blackfire](https://www.blackfire.io/) allows you to best optimize your code.
+From development to testing, staging, and production,
+Blackfire offers a unique blend of monitoring and profiling features. 
+Blackfire works integrally with the Platform.sh workflow,
+offering a smooth user experience.
 
 Platform.sh also supports third-party services such as New Relic and Tideways.
 Note that these third-party services have their own associated cost,

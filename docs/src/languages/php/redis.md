@@ -53,8 +53,8 @@ Any tagged version of the library is acceptable:
 hooks:
     build: |
         set -e
-        # Install Relay v0.4.6:
-        curl -fsS https://raw.githubusercontent.com/platformsh/snippets/main/src/install-relay.sh | { bash /dev/fd/3 v0.4.6 ; } 3<&0
+        # Install Relay v0.6.0:
+        curl -fsS https://raw.githubusercontent.com/platformsh/snippets/main/src/install-relay.sh | { bash /dev/fd/3 v0.6.0 ; } 3<&0
 ```
 
 ## Change extension or version
