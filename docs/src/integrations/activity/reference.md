@@ -212,12 +212,12 @@ Its content varies based on the activity type.
 
 | Name | Description |
 |------|-------------|
-| `payload.user` | The [user](#user) that triggered the activity. |
-| `payload.environment` | The [environment](#environment) impacted by the activity. |
+| `payload.user` | The [user](#user-payload) that triggered the activity. |
+| `payload.environment` | The [environment](#environment-payload) impacted by the activity. |
 | `payload.commits` | A list of changes with their Git metadata. |
 | `payload.commits_count` | The number of Git commits.  |
 | `payload.deployment` | Information about the deployed environment. See [`deployment`](#deployment). |
-| `payload.project` | Information about the project. See [`project`](#project). |
+| `payload.project` | Information about the project. See [`project`](#project-payload). |
 
 #### `user` payload
 
