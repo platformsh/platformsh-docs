@@ -24,25 +24,21 @@ Make sure that you only sanitize development environments and **never** the prod
 Otherwise you may lose most or even all of the relevant data stored in your database.
 
 First, take a [database dump](/add-services/postgresql#exporting-data) of your development environment.
-You won't alter your production data.
-This is just a safety precaution.
+This is just a safety precaution -- production data is not altered.
 To get a database dump, run: `platform db:dump -e <DEVELOPMENT_ENVIRONMENT_NAME>`.
 
 {{< codetabs >}}
-
 +++
 title=Manually
-file=none
-highlight=false
 +++
 
 Assumptions:
 
-- `users` is the table where all of your PII is stored in the `staging` development database.
+- `users` is the table where all of your PII (Personally Identifiable Information) is stored in the `staging` development database.
 - `staging` is an exact copy of your production database.
 
 1. Connect to the `staging` database by running `platform sql -e staging`.
-1. Display all fields from your `users` table, to select which ones need to be redacted.
+2. Display all fields from your `users` table, to select which ones need to be redacted.
    Run the following query:
 
    ```sql
@@ -63,7 +59,7 @@ Assumptions:
    (3 rows)
    ```
 
-1. Change the fields where PII is contained with the [`UPDATE` statement](https://mariadb.com/kb/en/update/).
+3. Change the fields where PII is contained with the [`UPDATE` statement](https://mariadb.com/kb/en/update/).
    For example, to change the username of users to a random redacted value, run the following query:
 
    ```sql
@@ -76,11 +72,8 @@ Assumptions:
    [you can restore them](/environments/restore.md) from the dump you took in step 1.
 
 <--->
-
 +++
-title=Using a script with Django and psql
-file=none
-highlight=false
+title=Using a script with Django and `psql`
 +++
 
 Assumptions:
@@ -95,7 +88,7 @@ Assumptions:
 
 1. Retrieve service credentials from the `PLATFORM_RELATIONSHIPS` environment variable.
 
-    Having these credentials will allow you to use the `psql` command interface.
+    Having these credentials allows you to use the `psql` command interface.
     You can export these values to a [`.environment` file](/development/variables/set-variables#set-variables-via-script), or include them directly in a sanitization script.
 
     ```bash {location=".environment"}
@@ -149,7 +142,7 @@ Assumptions:
     ```
 
     Push the changes to `staging` and verify sanitization took place on that environment's database.
-    Once merged, all future non-production environment's data will be sanitized when created.
+    Once merged, all future non-production environment's data is sanitized when created.
 
 {{< /codetabs >}}
 

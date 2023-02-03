@@ -17,7 +17,7 @@ On Platform.sh, you have the option to connect a locally running application to 
 
 {{% guides/django-local-assumptions %}}
 
-Assuming you have followed the [Django deployment guide](/guides/django/deploy), your `settings.py` should contain a Platformsh-specific block that looks like the below:
+Assuming you have followed the [Django deployment guide](/guides/django/deploy), your `settings.py` should contain a Platform.sh specific block that looks like the below:
 
 ```py {location="settings.py"}
 import os
@@ -115,155 +115,84 @@ Setting up a [tethered connection](/development/local/tethered) to a Platform.sh
     {{< codetabs >}}
 +++
 title=Pip
-file=none
 highlight=bash
+markdownify=false
 +++
 python pip install -r requirements.txt
 <--->
 +++
 title=Pipenv
-file=none
 highlight=bash
+markdownify=false
 +++
 pipenv install
 <--->
 +++
 title=Poetry
-file=none
 highlight=bash
+markdownify=false
 +++
 poetry install
     {{< /codetabs >}}
+
 
 5. Collect static assets.
 
     {{< codetabs >}}
 +++
 title=Pip
-file=none
 highlight=bash
+markdownify=false
 +++
 python manage.py collectstatic
 <--->
 +++
 title=Pipenv
-file=none
 highlight=bash
+markdownify=false
 +++
 pipenv run python manage.py collectstatic
 <--->
 +++
 title=Poetry
-file=none
 highlight=bash
+markdownify=false
 +++
 poetry run python manage.py collectstatic 
     {{< /codetabs >}}
+
 
 6. Start the local server.
 
     {{< codetabs >}}
 +++
 title=Pip
-file=none
 highlight=bash
+markdownify=false
 +++
 python manage.py runserver
 <--->
 +++
 title=Pipenv
-file=none
 highlight=bash
+markdownify=false
 +++
 pipenv run python manage.py runserver
 <--->
 +++
 title=Poetry
-file=none
 highlight=bash
+markdownify=false
 +++
 poetry run python manage.py runserver
     {{< /codetabs >}}
 
-7. Shut down the tunnel.
+
+7. When finished with your work, shut down the tunnel.
 
     ```bash
     platform tunnel:close --all -y
     ```
-
-8. Onboarding collaborators.
-
-    As a part of a larger organization, you may wish to streamline this process for the sake of consistency. 
-    You can commit a script to the repository that simplifies setting up a local development environment that contains all of the above steps. 
-
-    {{< codetabs >}}
-+++
-title=Pip
-file=none
-highlight=bash
-+++
-# init-local.sh
-
-ENVIRONMENT=$1
-PARENT=$2
-
-platform branch $ENVIRONMENT $PARENT
-
-platform tunnel:open
-export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"
-export PLATFORM_APPLICATION_NAME=django && export PLATFORM_ENVIRONMENT=new-feature
-
-python pip install -r requirements.txt
-python manage.py collectstatic
-<--->
-+++
-title=Pipenv
-file=none
-highlight=bash
-+++
-# init-local.sh
-
-ENVIRONMENT=$1
-PARENT=$2
-
-platform branch $ENVIRONMENT $PARENT
-
-platform tunnel:open
-export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"
-export PLATFORM_APPLICATION_NAME=django && export PLATFORM_ENVIRONMENT=new-feature
-
-pipenv install
-pipen run python manage.py collectstatic
-<--->
-+++
-title=Poetry
-file=none
-highlight=bash
-+++
-# init-local.sh
-
-ENVIRONMENT=$1
-PARENT=$2
-
-platform branch $ENVIRONMENT $PARENT
-
-platform tunnel:open
-export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"
-export PLATFORM_APPLICATION_NAME=django && export PLATFORM_ENVIRONMENT=new-feature
-
-poetry install
-poetry run python manage.py collectstatic
-    {{< /codetabs >}}
-
-    Any user can then run
-
-    ```bash
-    $ platform get PROJECT_ID
-    $ cd PROJECT_NAME
-    $ ./init-local.sh another-new-feature main
-    ```
-
-    to set up their environment once merged into production.
 
 ## Next steps
 
@@ -273,7 +202,7 @@ Below are some examples.
 ### Onboard collaborators
 
 It's essential for every developer on your team to have a local development environment to work on revisions from. 
-Placing the above configuration into a script will help ensure this, and is a simple revision that can be merged into production. 
+Placing the above configuration into a script helps ensure this, and is a revision that can be merged into production. 
 
 1. [Set up your local development environment](#setting-up) for a new environment called `local-config`.
 2. Create an executable script for setting up a local environment for a new Platform.sh environment. 
@@ -285,8 +214,8 @@ Placing the above configuration into a script will help ensure this, and is a si
     {{< codetabs >}}
 +++
 title=Pip
-file=none
 highlight=bash
+markdownify=false
 +++
 #!/usr/bin/env bash
 # init-local.sh
@@ -338,8 +267,8 @@ ddev restart
 <--->
 +++
 title=Pipenv
-file=none
 highlight=docker
+markdownify=false
 +++
 #!/usr/bin/env bash
 # init-local.sh
@@ -391,8 +320,8 @@ ddev restart
 <--->
 +++
 title=Poetry
-file=none
 highlight=docker
+markdownify=false
 +++
 #!/usr/bin/env bash
 # init-local.sh
@@ -442,6 +371,7 @@ ddev start
 ddev pull platform -y
 ddev restart
     {{< /codetabs >}}
+
 
 3. Commit and push the revisions.
 

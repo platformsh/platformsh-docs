@@ -20,7 +20,7 @@ You can deploy Python apps on Platform.sh using a server or a project such as [u
 
 {{< image-versions image="python" status="deprecated" >}}
 
-\* This version won't receive any updates at all.
+\* This version doesn't receive any updates at all.
 You are strongly recommended to upgrade to a supported version.
 
 ## Usage example
@@ -83,13 +83,13 @@ Follow these steps to get your server started.
 
    ```ini {location="config/uwsgi.ini"}
    [uwsgi]
-    # UNIX socket to use to talk with the web server
-    # Uses the variable defined in the configuration in step 2
-    socket = $(SOCKET)
-    protocol = http
+   # Unix socket to use to talk with the web server
+   # Uses the variable defined in the configuration in step 2
+   socket = $(SOCKET)
+   protocol = http
 
-    # the entry point to your app
-    wsgi-file = app.py
+   # the entry point to your app
+   wsgi-file = app.py
    ```
 
    Replace `app.py` with whatever your file is.
@@ -220,7 +220,7 @@ markdownify=false
 
 ## Web servers
 
-The Python ecosystem offers a number of web servers that can be used to deploy to Platform.sh outside of the simple uWSGI example shown above. 
+The Python ecosystem offers a number of web servers that can be used to deploy to Platform.sh outside of the uWSGI example shown above. 
 Consult the [python web servers](/languages/python/server) documentation for more information about running the following:
 
 - [Daphne](/languages/python/server#daphne)
@@ -231,9 +231,9 @@ Consult the [python web servers](/languages/python/server) documentation for mor
 ## Sanitizing data
 
 Data inheritance on Platform.sh provides true staging environments by default.
-That is, data is inherited automatically by each child environment from its parent.
+Data is inherited automatically by each child environment from its parent.
 
-It's not uncommon that Python projects require the sanitization of data in non-production environments for compliance reasons, however.
+It's not uncommon that Python projects require the sanitization of data in non-production environments for compliance reasons.
 Because the build and deploy process is customizable, it's possible to include custom scripts that perform sanitization according to environment type. 
 
 See the [sanitizing databases](/development/sanitize-db) documentation for more information.

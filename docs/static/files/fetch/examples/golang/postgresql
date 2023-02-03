@@ -3,7 +3,6 @@ package examples
 import (
 	"database/sql"
 	"fmt"
-
 	_ "github.com/lib/pq"
 	psh "github.com/platformsh/config-reader-go/v2"
 	libpq "github.com/platformsh/config-reader-go/v2/libpq"
@@ -32,28 +31,30 @@ func UsageExamplePostgreSQL() string {
 	defer db.Close()
 
 	// Creating a table.
-	sqlCreate := "CREATE TABLE IF NOT EXISTS PeopleGo (" +
-		"id SERIAL PRIMARY KEY," +
-		"name VARCHAR(30) NOT NULL," +
-		"city VARCHAR(30) NOT NULL);"
+	sqlCreate := \x60
+CREATE TABLE IF NOT EXISTS PeopleGo (
+id SERIAL PRIMARY KEY,
+name VARCHAR(30) NOT NULL,
+city VARCHAR(30) NOT NULL);\x60
 
 	_, err = db.Exec(sqlCreate)
 	checkErr(err)
 
 	// Insert data.
-	sqlInsert := "INSERT INTO PeopleGo(name, city) VALUES" +
-		"('Neil Armstrong', 'Moon')," +
-		"('Buzz Aldrin', 'Glen Ridge')," +
-		"('Sally Ride', 'La Jolla');"
+	sqlInsert := \x60
+INSERT INTO PeopleGo(name, city) VALUES
+('Neil Armstrong', 'Moon'),
+('Buzz Aldrin', 'Glen Ridge'),
+('Sally Ride', 'La Jolla');\x60
 
 	_, err = db.Exec(sqlInsert)
 	checkErr(err)
 
-	table := "<table>" +
-		"<thead>" +
-		"<tr><th>Name</th><th>City</th></tr>" +
-		"</thead>" +
-		"<tbody>"
+	table := \x60<table>
+<thead>
+<tr><th>Name</th><th>City</th></tr>
+</thead>
+<tbody>\x60
 
 	var id int
 	var name string

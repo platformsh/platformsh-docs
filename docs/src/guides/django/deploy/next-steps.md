@@ -8,7 +8,7 @@ description: |
 
 ## Local development
 
-Once Django has been deployed on Platform.sh, you'll need to set up a local development environment to beging making revisions.
+Once Django has been deployed on Platform.sh, you need to set up a local development environment to begin making revisions.
 Below are a few of the available guides to get you and the rest of your team started:
 
 Consult the [Django local development guides](/guides/django/local) for more information.
@@ -22,16 +22,16 @@ Consult the [managing Python dependencies](/languages/python/dependencies) docum
 
 ## Web servers
 
-The examples in this guide primarily use Gunicorn as a webserver for Django apps, but additional servers like Daphne, Uvicorn, and more are equally supported. 
+The examples in this guide primarily use Gunicorn as a web server for Django apps, but additional servers like Daphne, Uvicorn, and more are equally supported. 
 
 Consult the [Python web servers](/languages/python/server) documentation for more information about how to configure them. 
 
-## PII & sanitizing data
+## Sanitizing data
 
 Each development environment on Platform.sh automatically inherits all data from their parent environments by default.
-As a consequence, a developer working on a small feature will have access to production data - including PII - in that environment. 
+As a consequence, a developer working on a small feature has access to production data - including PII (Personally Identifiable Information) - in that environment. 
 
-This workflow is not always desireable, or even acceptable based on your compliance requirements.
+This workflow isn't always desirable, or even acceptable based on your compliance requirements.
 
 Consult the [sanitizing databases](/development/sanitize-db) documentation for more information about how to enforce compliance requirements for user data across environments.
 

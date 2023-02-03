@@ -27,8 +27,7 @@ Make sure that you only sanitize development environments and **never** the prod
 Otherwise you may lose most or even all of the relevant data stored in your database.
 
 First, take a [database dump](/add-services/mysql/_index.md#exporting-data) of your development environment.
-You won't alter your production data.
-This is just a safety precaution.
+This is just a safety precaution -- production data is not altered.
 To get a database dump, run: `platform db:dump -e <DEVELOPMENT_ENVIRONMENT_NAME>`.
 
 {{< codetabs >}}
@@ -39,7 +38,7 @@ title=Manually
 
 Assumptions:
 
-- `users` is the table where all of your PII is stored in the `staging` development database.
+- `users` is the table where all of your PII (Personally Identifiable Information) is stored in the `staging` development database.
 - `staging` is an exact copy of your production database.
 
 1. Connect to the `staging` database by running `platform sql -e staging`.

@@ -11,15 +11,17 @@ They assume a `myapp/wsgi.py` or `myapp/asgi.py` are present with the applicatio
 
 ## Gunicorn
 
-[Gunicorn](https://docs.gunicorn.org/) ‘Green Unicorn’ is a Python WSGI HTTP Server for UNIX. It’s a pre-fork worker model ported from Ruby’s Unicorn project. The Gunicorn server is broadly compatible with various web frameworks, simply implemented, light on server resource usage, and fairly speedy.
+[Gunicorn](https://docs.gunicorn.org/) ‘Green Unicorn’ is a Python WSGI HTTP Server for Unix.
+It’s a pre-fork worker model ported from Ruby’s Unicorn project. 
+The Gunicorn server is broadly compatible with various web frameworks, light on server resource usage, and fast.
 
 {{% guides/sockets server="Gunicorn" %}}
 
 {{< codetabs >}}
 +++
 title=Pip (TCP)
-file=none
 highlight=yaml
+markdownify=false
 +++
 # The configuration of the application when it is exposed to the web.
 web:
@@ -35,8 +37,8 @@ web:
 <--->
 +++
 title=Pip (Unix)
-file=none
 highlight=yaml
+markdownify=false
 +++
 # The configuration of the application when it is exposed to the web.
 web:
@@ -54,8 +56,8 @@ web:
 <--->
 +++
 title=Pipenv (TCP)
-file=none
 highlight=yaml
+markdownify=false
 +++
 # The configuration of the application when it is exposed to the web.
 web:
@@ -71,8 +73,8 @@ web:
 <--->
 +++
 title=Pipenv (Unix)
-file=none
 highlight=yaml
+markdownify=false
 +++
 # The configuration of the application when it is exposed to the web.
 web:
@@ -90,8 +92,8 @@ web:
 <--->
 +++
 title=Poetry (TCP)
-file=none
 highlight=yaml
+markdownify=false
 +++
 # The configuration of the application when it is exposed to the web.
 web:
@@ -107,8 +109,8 @@ web:
 <--->
 +++
 title=Poetry (Unix)
-file=none
 highlight=yaml
+markdownify=false
 +++
 # The configuration of the application when it is exposed to the web.
 web:
@@ -125,9 +127,10 @@ web:
             allow: true
 {{< /codetabs >}}
 
+
 The examples above define four worker processes with `-w 4`.
 Consult the [Gunicorn documentation](https://docs.gunicorn.org/en/stable/faq.html#worker-processes) for more details on tuning this parameter.
-Workers can also be defined with a custom [worker class](https://docs.gunicorn.org/en/latest/settings.html#worker-class) like [Uvicorn](https://www.uvicorn.org/#running-with-gunicorn), [Gevent](http://www.gevent.org/), or [Tornado](http://www.tornadoweb.org/) for production.
+Workers can also be defined with a custom [worker class](https://docs.gunicorn.org/en/latest/settings.html#worker-class) like [Uvicorn](https://www.uvicorn.org/#running-with-gunicorn), [gevent](https://www.gevent.org/), or [Tornado](https://www.tornadoweb.org/) for production.
 
 ```yaml {location=".platform.app.yaml - Pip (Unix)"}
 web:
@@ -148,8 +151,8 @@ Include the appropriate worker class for your application within this start comm
 {{< codetabs >}}
 +++
 title=Pip (TCP)
-file=none
 highlight=yaml
+markdownify=false
 +++
 # The configuration of the application when it is exposed to the web.
 web:
@@ -165,8 +168,8 @@ web:
 <--->
 +++
 title=Pip (Unix)
-file=none
 highlight=yaml
+markdownify=false
 +++
 # The configuration of the application when it is exposed to the web.
 web:
@@ -182,8 +185,8 @@ web:
 <--->
 +++
 title=Pipenv (TCP)
-file=none
 highlight=yaml
+markdownify=false
 +++
 # The configuration of the application when it is exposed to the web.
 web:
@@ -199,8 +202,8 @@ web:
 <--->
 +++
 title=Pipenv (Unix)
-file=none
 highlight=yaml
+markdownify=false
 +++
 # The configuration of the application when it is exposed to the web.
 web:
@@ -216,8 +219,8 @@ web:
 <--->
 +++
 title=Poetry (TCP)
-file=none
 highlight=yaml
+markdownify=false
 +++
 # The configuration of the application when it is exposed to the web.
 web:
@@ -233,8 +236,8 @@ web:
 <--->
 +++
 title=Poetry (Unix)
-file=none
 highlight=yaml
+markdownify=false
 +++
 # The configuration of the application when it is exposed to the web.
 web:
@@ -258,8 +261,8 @@ web:
 {{< codetabs >}}
 +++
 title=Pip (TCP)
-file=none
 highlight=yaml
+markdownify=false
 +++
 # The configuration of the application when it is exposed to the web.
 web:
@@ -275,8 +278,8 @@ web:
 <--->
 +++
 title=Pip (Unix)
-file=none
 highlight=yaml
+markdownify=false
 +++
 # The configuration of the application when it is exposed to the web.
 web:
@@ -294,8 +297,8 @@ web:
 <--->
 +++
 title=Pipenv (TCP)
-file=none
 highlight=yaml
+markdownify=false
 +++
 # The configuration of the application when it is exposed to the web.
 web:
@@ -311,8 +314,8 @@ web:
 <--->
 +++
 title=Pipenv (Unix)
-file=none
 highlight=yaml
+markdownify=false
 +++
 # The configuration of the application when it is exposed to the web.
 web:
@@ -330,8 +333,8 @@ web:
 <--->
 +++
 title=Poetry (TCP)
-file=none
 highlight=yaml
+markdownify=false
 +++
 # The configuration of the application when it is exposed to the web.
 web:
@@ -347,8 +350,8 @@ web:
 <--->
 +++
 title=Poetry (Unix)
-file=none
 highlight=yaml
+markdownify=false
 +++
 # The configuration of the application when it is exposed to the web.
 web:
@@ -365,20 +368,21 @@ web:
             allow: true
 {{< /codetabs >}}
 
+
 The examples above define four worker processes with `-w 4`.
 Consult the [Uvicorn documentation](https://www.uvicorn.org/settings/#timeouts) for more detailed production recommendations for tuning this and other flags. You can also export the `WEB_CONCURRENCY` variable in place of the `--workers` flag, which defaults to `1`. See [how to set variables](/development/variables/set-variables) for more information.
 
 ## Hypercorn
 
-[Hypercorn](https://hypercorn.readthedocs.io/) is an ASGI and WSGI web server based on the sans-io hyper, h11, h2, and wsproto libraries and inspired by Gunicorn.
+[Hypercorn](https://hypercorn.readthedocs.io/) is an ASGI and WSGI web server inspired by Gunicorn.
 
 {{% guides/sockets server="Hypercorn" %}}
 
 {{< codetabs >}}
 +++
 title=Pip (TCP)
-file=none
 highlight=yaml
+markdownify=false
 +++
 # The configuration of the application when it is exposed to the web.
 web:
@@ -394,8 +398,8 @@ web:
 <--->
 +++
 title=Pip (Unix)
-file=none
 highlight=yaml
+markdownify=false
 +++
 # The configuration of the application when it is exposed to the web.
 web:
@@ -413,8 +417,8 @@ web:
 <--->
 +++
 title=Pipenv (TCP)
-file=none
 highlight=yaml
+markdownify=false
 +++
 # The configuration of the application when it is exposed to the web.
 web:
@@ -430,8 +434,8 @@ web:
 <--->
 +++
 title=Pipenv (Unix)
-file=none
 highlight=yaml
+markdownify=false
 +++
 # The configuration of the application when it is exposed to the web.
 web:
@@ -449,8 +453,8 @@ web:
 <--->
 +++
 title=Poetry (TCP)
-file=none
 highlight=yaml
+markdownify=false
 +++
 # The configuration of the application when it is exposed to the web.
 web:
@@ -466,8 +470,8 @@ web:
 <--->
 +++
 title=Poetry (Unix)
-file=none
 highlight=yaml
+markdownify=false
 +++
 # The configuration of the application when it is exposed to the web.
 web:
@@ -483,6 +487,7 @@ web:
             expires: 1h
             allow: true
 {{< /codetabs >}}
+
 
 The examples above define four worker processes with `-w 4`.
 Consult the [Hypercorn documentation](https://hypercorn.readthedocs.io/en/latest/how_to_guides/configuring.html) for more details on tuning this and other parameters.

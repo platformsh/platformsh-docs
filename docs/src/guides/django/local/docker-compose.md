@@ -23,8 +23,8 @@ Starting with a `Dockerfile` for Python 3.10:
 {{< codetabs >}}
 +++
 title=Pip
-file=none
 highlight=docker
+markdownify=false
 +++
 FROM python:3.10
 WORKDIR /code
@@ -34,8 +34,8 @@ RUN pip install -r requirements.txt
 <--->
 +++
 title=Pipenv
-file=none
 highlight=docker
+markdownify=false
 +++
 FROM python:3.10
 WORKDIR /code
@@ -46,8 +46,8 @@ RUN pipenv install --ignore-pipfile --deploy
 <--->
 +++
 title=Poetry
-file=none
 highlight=docker
+markdownify=false
 +++
 FROM python:3.10
 WORKDIR /code
@@ -60,13 +60,14 @@ RUN pip install poetry
 RUN poetry install
 {{< /codetabs >}}
 
+
 and a corresponding `docker-compose.yaml` file:
 
 {{< codetabs >}}
 +++
 title=Pip
-file=none
 highlight=yaml
+markdownify=false
 +++
 services:
   db:
@@ -95,8 +96,8 @@ services:
 <--->
 +++
 title=Pipenv
-file=none
 highlight=yaml
+markdownify=false
 +++
 services:
   db:
@@ -125,8 +126,8 @@ services:
 <--->
 +++
 title=Poetry
-file=none
 highlight=yaml
+markdownify=false
 +++
 services:
   db:
@@ -154,14 +155,15 @@ services:
       - db
 {{< /codetabs >}}
 
+
 1. Create a new environment off of production.
 
     ```bash
     platform branch new-feature main
     ```
 
-    If working from a [source integration](/integrations/source), it will be necessary for a merge/pull request environment to be opened beforehand. 
-    Otherwise, work from an existing staging environment, and resync to the active merge/pull request environment once it's been activiated. 
+    If working from a [source integration](/integrations/source), it's necessary for a merge/pull request environment to be opened beforehand. 
+    Otherwise, work from an existing staging environment, and sync to the active merge/pull request environment once it's been activated. 
 
 2. Retrieve the inherited production data.
 
@@ -169,7 +171,7 @@ services:
     platform db:dump -e new-feature
     ```
 
-    This will create a database dump file with the format: `PROJECT_ID--PLATFORM_BRANCH--SERVICE_NAME--dump.sql` For merge/pull request environments, substitute `new-feature` for the name of the environment (i.e. `pr-42`).
+    This creates a database dump file with the format: `PROJECT_ID--PLATFORM_BRANCH--SERVICE_NAME--dump.sql` For merge/pull request environments, substitute `new-feature` for the name of the environment (for example, `pr-42`).
 
 3. Make sure to ignore this file in future commits.
 
@@ -209,7 +211,7 @@ services:
 The section `-i $(docker-compose ps -q db)` is used to get the `id` for the `db` service container.
     {{< /note >}}
 
-You will now have a local development environment that's in sync with the `new-feature` environment on Platform.sh to work from.
+You now have a local development environment that's in sync with the `new-feature` environment on Platform.sh to work from.
 
 8. When finished with your work, shut down the containers.
 
@@ -225,7 +227,7 @@ Below are some examples.
 ### Onboard collaborators
 
 It's essential for every developer on your team to have a local development environment to work on revisions from. 
-Placing the above configuration into a script will help ensure this, and is a simple revision that can be merged into production. 
+Placing the above configuration into a script helps ensure this, and is a revision that can be merged into production. 
 
 1. [Set up your local development environment](#setting-up) for a new environment called `local-config`.
 2. Create an executable script for setting up a local environment for a new Platform.sh environment. 
@@ -237,8 +239,8 @@ Placing the above configuration into a script will help ensure this, and is a si
     {{< codetabs >}}
 +++
 title=Pip
-file=none
 highlight=bash
+markdownify=false
 +++
 # init-local.sh
 
@@ -259,8 +261,8 @@ docker exec -i $(docker-compose ps -q $SERVICE_NAME) psql -U $DB_USER < $DUMP_FI
 <--->
 +++
 title=Pipenv
-file=none
 highlight=bash
+markdownify=false
 +++
 # init-local.sh
 
@@ -281,8 +283,8 @@ docker exec -i $(docker-compose ps -q $SERVICE_NAME) psql -U $DB_USER < $DUMP_FI
 <--->
 +++
 title=Poetry
-file=none
 highlight=bash
+markdownify=false
 +++
 # init-local.sh
 
@@ -301,6 +303,7 @@ docker-compose up -d
 wait 10
 docker exec -i $(docker-compose ps -q $SERVICE_NAME) psql -U $DB_USER < $DUMP_FILE
     {{< /codetabs >}}
+
 
     Once the script is merged into production, any user can then run
 
@@ -336,15 +339,15 @@ to set up their local environment.
 
 ### Sanitize data
 
-It's often a compliance requirement that only a minimal subset of developers within an organization actually have access to production data during their work.
-Platform.sh by default, however, provides a model that automatically clones production data into _every_ child environment.
+It's often a compliance requirement that a minimal subset of developers within an organization have access to production data during their work.
+Platform.sh by default provides a model that automatically clones production data into _every_ child environment.
 
 Since the build and deploy lifecycle of an application is customizable, it's possible to include a script that sanitizes the data within every non-production environment created to help here. 
 
 1. [Set up your local development environment](#setting-up) for a new environment called `sanitize-non-prod`.
 2. Modify deploy hook to sanitize data.
 
-    Once your local environment has been set up, follow the [sanitizing PostgreSQL with Django](development/sanitize-db/postgresql) example to add a sanitization script to the deploy hook of `.platform.app.yaml` specific to your data, which will run on non-production environments.
+    Once your local environment has been set up, follow the [sanitizing PostgreSQL with Django](development/sanitize-db/postgresql) example to add a sanitization script to the deploy hook of `.platform.app.yaml` specific to your data, which runs on non-production environments.
 
 3. Commit and push the revisions.
 
@@ -358,4 +361,4 @@ Since the build and deploy lifecycle of an application is customizable, it's pos
     platform merge sanitize-non-prod
     ```
 
-Once the script is merged into production, every non-production environment created on Platform.sh - and the local environments contributors work from - will contain sanitized data free of your users' PII.
+Once the script is merged into production, every non-production environment created on Platform.sh - and the local environments contributors work from - contains sanitized data free of your users' PII (Personally Identifiable Information).

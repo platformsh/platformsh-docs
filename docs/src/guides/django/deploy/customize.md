@@ -9,7 +9,7 @@ description: |
 
 Now that your code contains all of the configuration to deploy on Platform.sh,
 it's time to make your Django site itself ready to run on a Platform.sh environment.
-There are a number of additional steps that are either required or recommended, depending on how well you want to optimize your site.
+A number of additional steps are either required or recommended, depending on how well you want to optimize your site.
 
 ## (Optional) Config Reader
 
@@ -38,10 +38,11 @@ ALLOWED_HOSTS = [
 ]
 ```
 
-[`ALLOWED_HOSTS`](https://docs.djangoproject.com/en/4.1/ref/settings/#allowed-hosts) defines the host names that your Django site can serve, and it is here where you would define not only `locahost`, but also the primary domain of the application.
+[`ALLOWED_HOSTS`](https://docs.djangoproject.com/en/4.1/ref/settings/#allowed-hosts) defines the host names that your Django site can serve, and it's here where you would define not only `locahost`, but also the primary domain of the application.
 
 On Platform.sh, every branch or pull request you create can become an active environment - a staging server where you can test revisions. 
-When the environment is created a URL will be generated with the format `ENVIRONMENT_NAME-ENVIRONMENT_HASH.REGION.platform.site`, and you will need to add this suffix to `ALLOWED_HOSTS` to accomadate this pattern.
+When the environment is created a URL is generated with the format `ENVIRONMENT_NAME-ENVIRONMENT_HASH.REGION.platform.site`.
+Add this suffix to `ALLOWED_HOSTS` to accommodate this pattern.
 
 ### Decoding variables
 
@@ -69,11 +70,11 @@ def decode(variable):
         print('Error decoding JSON, code %d', json.decoder.JSONDecodeError)
 ```
 
-Environment variables on Platform.sh, which you will use to retrieve credentials to connect to services within an environment, are often obscured. 
+Environment variables on Platform.sh, which contain credentials to connect to services within an environment, are often obscured. 
 `PLATFORM_RELATIONSHIPS` for example, which contains those service examples, is a base64-encoded JSON object.
 
 Within `settings.py`, the Django template starts a block of Platform.sh-specific configuration meant to override options configured above it. 
-Starting that section is the helper function `decode`, which will be helpful in subsequent settings.
+Starting that section is the helper function `decode`, is used in subsequent settings.
 
 {{< note >}}
 Decoding these types of variables comes built into the [Platform.sh Config Reader](#optional-config-reader).
@@ -133,12 +134,12 @@ Remember, when configuring the application itself in `.platform.app.yaml`, no ma
   if (os.getenv('PLATFORM_APP_DIR') is not None):
       STATIC_ROOT = os.path.join(os.getenv('PLATFORM_APP_DIR'), 'static')
   ```
-- Platform.sh provides a hash variable `PLATFORM_PROJECT_ENTROPY`, unique to the project, which is reused to define Django's [`SECRET_KEY`]()
+- Platform.sh provides a hash variable `PLATFORM_PROJECT_ENTROPY`, unique to the project, which is reused to define Django's [`SECRET_KEY`](https://docs.djangoproject.com/en/4.1/ref/settings/#secret-key)
   ```py {location="settings.py"}
   if (os.getenv('PLATFORM_PROJECT_ENTROPY') is not None):
       SECRET_KEY = os.getenv('PLATFORM_PROJECT_ENTROPY')
   ```
-- During the build phase, servies on Platform.sh (like PostgreSQL) are not yet available.
+- During the build phase, services on Platform.sh (like PostgreSQL) aren't yet available.
   This is an important restriction, as it enables environment-independent builds that makes the Platform.sh inheritance model possible. 
   Because of this, when defining `DATABASES` to connect to a service, it's necessary to include a catch that confirms settings are only overwritten during the deploy phase, which can be determined using the `PLATFORM_ENVIRONMENT` variable only available at deploy time. 
   ```py {location="settings.py"}
@@ -172,7 +173,7 @@ when a project starts, before cron commands are run, and when you log into an en
 That gives you a place to do extra environment variable setup before the app runs,
 including modifying the system `$PATH` and other shell level customizations.
 
-On its own, simple Django projects like the one shown here using Pip or Pipenv do not need to commit a `.environment` file to run. 
+On its own, Django projects like the one shown here using Pip or Pipenv don't need to commit a `.environment` file to run. 
 Poetry, on the other hand, requires an additional piece of configuration to ensure that it can be called during the deploy phase and SSH sessions.
 
 ```text {location=".environment"}

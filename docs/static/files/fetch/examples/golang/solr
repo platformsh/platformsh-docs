@@ -2,7 +2,6 @@ package examples
 
 import (
 	"fmt"
-
 	psh "github.com/platformsh/config-reader-go/v2"
 	gosolr "github.com/platformsh/config-reader-go/v2/gosolr"
 	solr "github.com/rtt/Go-Solr"
@@ -56,10 +55,10 @@ func UsageExampleSolr() string {
 	resDel, err := connection.Update(docDelete, true)
 	checkErr(err)
 
-	message := fmt.Sprintf("Adding one document - %s<br>"+
-		"Selecting document (1 expected): %d<br>"+
-		"Deleting document - %s<br>",
-		respAdd, resSelect.Results.NumFound, resDel)
+	message := fmt.Sprintf(\x60Adding one document - %s<br>
+Selecting document (1 expected): %d<br>
+Deleting document - %s<br>
+  \x60, respAdd, resSelect.Results.NumFound, resDel)
 
 	return message
 }

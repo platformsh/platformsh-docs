@@ -23,40 +23,40 @@ sectionBefore: Integrated environments
 
 ### Steps
 
-1. Create a new environment off of production.
+1.  Create a new environment off of production.
 
     ```bash
     platform branch new-feature main
     ```
 
-    If working from a [source integration](/integrations/source), it will be necessary for a merge/pull request environment to be opened beforehand. 
-    Otherwise, work from an existing staging environment, and resync to the active merge/pull request environment once it's been activiated. 
+    If working from a [source integration](/integrations/source), a merge/pull request environment needs to be opened beforehand. 
+    Otherwise, work from an existing staging environment, and sync to the active merge/pull request environment once it's been activated. 
 
-2. Add DDEV configuration to the project.
+2.  Add DDEV configuration to the project.
 
     ```bash
     ddev config --auto
     ```
 
-3. Add a Python alias package to the configuration.
+3.  Add a Python alias package to the configuration.
 
     ```bash
     ddev config --webimage-extra-packages python-is-python3
     ```
 
-4. Add an API token.
+4.  Add an API token.
 
     {{% ddev/token %}}
 
-5. Connect DDEV to your project and environment (`new-feature`).
+5.  Connect DDEV to your project and environment (`new-feature`).
 
     {{% ddev/connect %}}
 
-6. Update DDEV's `php_version` and `post-start` commands.
+6.  Update DDEV's `php_version` and `post-start` commands.
 
     Python support in DDEV and the Platform.sh integration is in active development. 
     At this time, the only officially supported runtime is PHP. 
-    With a few changes, however, the generated configuration can be modified to run local Django environments.
+    With a few changes, the generated configuration can be modified to run local Django environments.
 
     So far, a `.ddev` directory has been created in the repository containing DDEV configuration up to this point. 
 
@@ -74,8 +74,8 @@ sectionBefore: Integrated environments
     {{< codetabs >}}
 +++
 title=Pip
-file=none
 highlight=yaml
+markdownify=false
 +++
 # .ddev/docker-compose.django.yaml
     hooks:
@@ -87,8 +87,8 @@ highlight=yaml
 <--->
 +++
 title=Pipenv
-file=none
 highlight=yaml
+markdownify=false
 +++
 # .ddev/docker-compose.django.yaml
     hooks:
@@ -100,8 +100,8 @@ highlight=yaml
 <--->
 +++
 title=Poetry
-file=none
 highlight=yaml
+markdownify=false
 +++
 # .ddev/docker-compose.django.yaml
     hooks:
@@ -112,9 +112,10 @@ highlight=yaml
     poetry run python manage.py runserver 0.0.0.0:8000
     {{< /codetabs >}}
 
-7. Create a custom `.ddev/docker-compose.django.yaml` file.
 
-    Create a Docker Compose file that defines the port that will be exposed for the container we're building, `web`:
+7.  Create a custom `.ddev/docker-compose.django.yaml` file.
+
+    Create a Docker Compose file that defines the port exposed for the container you're building, `web`:
 
     ```yaml {location=".ddev/docker-compose.django.yaml"}
     version: "3.6"
@@ -129,16 +130,15 @@ highlight=yaml
                 test: "true"
     ```
 
+8.  Create a custom `.ddev/web-build/Dockerfile.python`.
 
-8. Create a custom `.ddev/web-build/Dockerfile.python`.
-
-    Similarly, create a custom Dockerfile that installs Python into the container.
+    Similarly, create a custom `Dockerfile` that installs Python into the container.
 
     ```{location=".ddev/web-build/Dockerfile.python"}
     RUN apt-get install -y python3.10 python3-pip
     ```
 
-9. Update `ALLOWED_HOSTS`.
+9.  Update `ALLOWED_HOSTS`.
 
     Update `ALLOWED_HOSTS` in `settings.py` to include the expected DDEV domain suffix:
 
@@ -187,7 +187,7 @@ Failed to start django: Unable to listen on required ports, port 80 is already i
 either cancel the running process on port `80`, or edit both
 
 - `router_http_port` to another port like `8080` in `.ddev/config.yaml`
-- the `services.web.environment` variable `HTTP_EXPOSE` (i.e. update to `HTTP_EXPOSE=8080:8000`) in `ddev/docker-compose.django.yaml`
+- the `services.web.environment` variable `HTTP_EXPOSE` (that is, update to `HTTP_EXPOSE=8080:8000`) in `ddev/docker-compose.django.yaml`
 
     {{< /note >}}
 
@@ -205,9 +205,9 @@ either cancel the running process on port `80`, or edit both
     ddev restart
     ```
 
-You will now have a local development environment that's in sync with the `new-feature` environment on Platform.sh to work from.
+    You now have a local development environment that's in sync with the `new-feature` environment on Platform.sh to work from.
 
-15. When finished with your work, shut down DDEV.
+14. When finished with your work, shut down DDEV.
 
     ```bash
     ddev stop
@@ -221,7 +221,7 @@ Below are some examples.
 ### Onboard collaborators
 
 It's essential for every developer on your team to have a local development environment to work on revisions from. 
-Placing the above configuration into a script will help ensure this, and is a simple revision that can be merged into production. 
+Placing the above configuration into a script helps ensure this, and is a revision that can be merged into production. 
 
 1. [Set up your local development environment](#setting-up) for a new environment called `local-config`.
 2. Create an executable script for setting up a local environment for a new Platform.sh environment. 
@@ -233,8 +233,8 @@ Placing the above configuration into a script will help ensure this, and is a si
     {{< codetabs >}}
 +++
 title=Pip
-file=none
 highlight=bash
+markdownify=false
 +++
 #!/usr/bin/env bash
 # init-local.sh
@@ -286,8 +286,8 @@ ddev restart
 <--->
 +++
 title=Pipenv
-file=none
 highlight=docker
+markdownify=false
 +++
 #!/usr/bin/env bash
 # init-local.sh
@@ -339,8 +339,8 @@ ddev restart
 <--->
 +++
 title=Poetry
-file=none
 highlight=docker
+markdownify=false
 +++
 #!/usr/bin/env bash
 # init-local.sh
@@ -389,7 +389,9 @@ RUN apt-get install -y python3.10 python3-pip
 ddev start
 ddev pull platform -y
 ddev restart
-    {{< /codetabs >}}
+{{< /codetabs >}}
+
+
 
 3. Commit and push the revisions.
 

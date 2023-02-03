@@ -7,7 +7,7 @@ description: |
     Create a Platform.sh account, download a few tools, and prepare to deploy Django.
 ---
 
-Django is a web application framework written in Python with a built-in ORM.
+Django is a web application framework written in Python with a built-in ORM (Object-Relational Mapper).
 
 This guide provides instructions for deploying, and working with, Django on Platform.sh. 
 It includes examples for working with Django on all of the major package managers: pip, Pipenv, and Poetry. 
@@ -38,10 +38,10 @@ This guide is written for Django 4, but should apply almost exactly the same for
    git add . && git commit -m "Create basic Django app."
    ```
 
-   There are other open-source starting points maintained by the community also available:
+   The community also provides a number of open-source starting points you can consult:
 
-    - [django-simple-deploy](https://github.com/ehmatthes/django-simple-deploy) maintained by [@ehmatthes](https://github.com/ehmatthes)
-    - [DjangoX](https://github.com/wsvincent/djangox) maintained by [@wsvincent](https://github.com/wsvincent)
+    - [`django-simple-deploy`](https://github.com/ehmatthes/django-simple-deploy) maintained by [@ehmatthes](https://github.com/ehmatthes)
+    - [`djangox`](https://github.com/wsvincent/djangox) maintained by [@wsvincent](https://github.com/wsvincent)
 
 {{% /guides/signup %}}
 

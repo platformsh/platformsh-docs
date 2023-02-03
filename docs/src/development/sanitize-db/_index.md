@@ -10,7 +10,7 @@ Using a new branch makes sure that you don't risk breaking your live, production
 
 Creating a branch on Platform.sh copies both the code and the database to that new development branch.
 These code and database changes need to be tested before being merged into production.
-Depending on your processes, internal or external teams may interact with the development environment branch.
+Depending on your processes, internal, or external teams may interact with the development environment branch.
 
 Databases of live websites often contain personally identifiable information (PII)
 such as full names, mailing addresses, and phone numbers.

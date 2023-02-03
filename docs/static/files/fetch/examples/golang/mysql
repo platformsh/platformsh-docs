@@ -3,7 +3,6 @@ package examples
 import (
 	"database/sql"
 	"fmt"
-
 	_ "github.com/go-sql-driver/mysql"
 	psh "github.com/platformsh/config-reader-go/v2"
 	sqldsn "github.com/platformsh/config-reader-go/v2/sqldsn"
@@ -32,33 +31,35 @@ func UsageExampleMySQL() string {
 
 	// Force MySQL into modern mode.
 	db.Exec("SET NAMES=utf8")
-	db.Exec("SET sql_mode = 'ANSI,STRICT_TRANS_TABLES,STRICT_ALL_TABLES," +
-		"NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO," +
-		"NO_AUTO_CREATE_USER,ONLY_FULL_GROUP_BY'")
+	db.Exec(\x60SET sql_mode = 'ANSI,STRICT_TRANS_TABLES,STRICT_ALL_TABLES,
+    NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,
+    NO_AUTO_CREATE_USER,ONLY_FULL_GROUP_BY'\x60)
 
 	// Creating a table.
-	sqlCreate := "CREATE TABLE IF NOT EXISTS People (" +
-		"id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY," +
-		"name VARCHAR(30) NOT NULL," +
-		"city VARCHAR(30) NOT NULL)"
+	sqlCreate := \x60
+CREATE TABLE IF NOT EXISTS People (
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(30) NOT NULL,
+city VARCHAR(30) NOT NULL)\x60
 
 	_, err = db.Exec(sqlCreate)
 	checkErr(err)
 
 	// Insert data.
-	sqlInsert := "INSERT INTO People (name, city) VALUES" +
-		"('Neil Armstrong', 'Moon')," +
-		"('Buzz Aldrin', 'Glen Ridge')," +
-		"('Sally Ride', 'La Jolla');"
+	sqlInsert := \x60
+INSERT INTO People (name, city) VALUES
+('Neil Armstrong', 'Moon'),
+('Buzz Aldrin', 'Glen Ridge'),
+('Sally Ride', 'La Jolla');\x60
 
 	_, err = db.Exec(sqlInsert)
 	checkErr(err)
 
-	table := "<table>" +
-		"<thead>" +
-		"<tr><th>Name</th><th>City</th></tr>" +
-		"</thead>" +
-		"<tbody>"
+	table := \x60<table>
+<thead>
+<tr><th>Name</th><th>City</th></tr>
+</thead>
+<tbody>\x60
 
 	var id int
 	var name string

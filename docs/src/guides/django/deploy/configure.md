@@ -25,16 +25,15 @@ Below is an example configuration to make [PostgreSQL](/add-services/postgresql)
 
 ## Application container: `.platform.app.yaml`
 
-The `.platform.app.yaml file` is the heart of your configuration. It has an [extensive set of options](https://docs.platform.sh/create-apps/app-reference.html) that allow you to configure nearly any aspect of your app. Most of it is explained with comments inline. This file changes over time as you build out your site.
+The `.platform.app.yaml file` is the heart of your configuration. It has an [extensive set of options](https://docs.platform.sh/create-apps/app-reference.html) that allow you to configure nearly any aspect of your app. Most of it's explained with comments inline. This file changes over time as you build out your site.
 
 Below are three examples of `.platform.app.yaml` files for Django using Pip, Pipenv, or Poetry to manage dependencies.
 
 {{< codetabs >}}
-
 +++
 title=Pip
-file=none
 highlight=yaml
+markdownify=false
 +++
 #########################
 # Django 4 using pip
@@ -68,7 +67,7 @@ hooks:
 ##########################
 # Web configuration
 
-# The configuration of the application when it is exposed to the web.
+# The configuration of the application when it's exposed to the web.
 web:
     upstream:
         socket_family: unix
@@ -87,7 +86,7 @@ web:
 
 # The relationships of the application with services or other applications.
 #
-# The left-hand side is the name of the relationship as it will be exposed
+# The left-hand side is the name of the relationship as it's exposed
 # to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
 # side is in the form `<service name>:<endpoint name>`.
 relationships:
@@ -109,8 +108,8 @@ mounts:
 
 +++
 title=Pipenv
-file=none
 highlight=yaml
+markdownify=false
 +++
 #########################
 # Django4 using pipenv
@@ -149,7 +148,7 @@ hooks:
 ##########################
 # Web configuration
 
-# The configuration of the application when it is exposed to the web.
+# The configuration of the application when it's exposed to the web.
 web:
     upstream:
         socket_family: unix
@@ -168,7 +167,7 @@ web:
 
 # The relationships of the application with services or other applications.
 #
-# The left-hand side is the name of the relationship as it will be exposed
+# The left-hand side is the name of the relationship as it's exposed
 # to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
 # side is in the form `<service name>:<endpoint name>`.
 relationships:
@@ -193,8 +192,8 @@ mounts:
 
 +++
 title=Poetry
-file=none
 highlight=yaml
+markdownify=false
 +++
 #########################
 # Django4 using Poetry
@@ -244,7 +243,7 @@ hooks:
 ##########################
 # Web configuration
 
-# The configuration of the application when it is exposed to the web.
+# The configuration of the application when it's exposed to the web.
 web:
     upstream:
         socket_family: unix
@@ -263,7 +262,7 @@ web:
 
 # The relationships of the application with services or other applications.
 #
-# The left-hand side is the name of the relationship as it will be exposed
+# The left-hand side is the name of the relationship as it's exposed
 # to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
 # side is in the form `<service name>:<endpoint name>`.
 relationships:
@@ -283,21 +282,23 @@ mounts:
 
 {{< /codetabs >}}
 
+
+
 ### `web.commands.start`
 
-In each of the application configuration examples above, a start command (`web.commands.start`) is defined for an application using `gunicorn` WSGI and Unix sockets.
+In each of the application configuration examples above, a start command (`web.commands.start`) is defined for an application using `gunicorn` WSGI (Web Server Gateway Interface) and Unix sockets.
 
 {{< codetabs >}}
 
 +++
 title=Pip
-file=none
 highlight=yaml
+markdownify=false
 +++
 ##########################
 # Web configuration
 
-# The configuration of the application when it is exposed to the web.
+# The configuration of the application when it's exposed to the web.
 web:
     upstream:
         socket_family: unix
@@ -316,13 +317,13 @@ web:
 
 +++
 title=Pipenv
-file=none
 highlight=yaml
+markdownify=false
 +++
 ##########################
 # Web configuration
 
-# The configuration of the application when it is exposed to the web.
+# The configuration of the application when it's exposed to the web.
 web:
     upstream:
         socket_family: unix
@@ -341,13 +342,13 @@ web:
 
 +++
 title=Poetry
-file=none
 highlight=yaml
+markdownify=false
 +++
 ##########################
 # Web configuration
 
-# The configuration of the application when it is exposed to the web.
+# The configuration of the application when it's exposed to the web.
 web:
     upstream:
         socket_family: unix
@@ -364,8 +365,9 @@ web:
 ##########################
 {{< /codetabs >}}
 
+
 If you are using a different web server, update this line, and consult the [web server portion of this section](/languages/python/server) for examples of how to do so.
 
-If following this example exactly, be sure to update the WSGI application gunicorn calls, which in this case assumes a main `myapp/wsgi.py` present in the repository with a callable `application` defined.
+If following this example exactly, be sure to update the WSGI application Gunicorn calls, which in this case assumes a main `myapp/wsgi.py` present in the repository with a callable `application` defined.
 
 {{< guide-buttons next="Customize Django" >}}
