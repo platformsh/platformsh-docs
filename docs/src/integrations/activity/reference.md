@@ -216,7 +216,7 @@ Its content varies based on the activity type.
 | `payload.environment` | The [environment](#environment-payload) impacted by the activity. |
 | `payload.commits` | A list of changes with their Git metadata. |
 | `payload.commits_count` | The number of Git commits.  |
-| `payload.deployment` | Information about the deployed environment. See [`deployment`](#deployment). |
+| `payload.deployment` | Information about the deployed environment. See [`deployment`](#deployment-payload). |
 | `payload.project` | Information about the project. See [`project`](#project-payload). |
 
 #### `user` payload
