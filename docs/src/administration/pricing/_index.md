@@ -25,9 +25,15 @@ it comes with a [production environment](#production-environments).
 
 ### Development plans
 
-A Development plan is useful for developing your apps before they're ready to go live.
+A Development plan provides all the tools to build your website.
+You can create as many development profiles as you want.
 
 With a Development plan, you can't use [custom domain names](../../domains/steps/_index.md).
+You also can't use a Development plan for production
+since it doesn’t allow for full production-level resources.
+
+After your project is complete and ready for production,
+choose [another plan](../pricing/_index.md) to go live.
 
 ### Production environments
 

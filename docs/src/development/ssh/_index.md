@@ -23,10 +23,10 @@ To connect to an app securely with SSH, follow two steps.
 To authenticate with the CLI:
 
 1. Install the [Platform.sh CLI](/administration/cli/_index.md).
-1. Run `platform login`.
-1. In the open browser window, log in with your Platform.sh account credentials.
+2. Run `platform login`.
+3. In the open browser window, log in with your Platform.sh account credentials.
    (This webpage is encrypted with HTTPS [HTTP over TLS], making it secure.)
-1. Authorize the CLI to use your account.
+4. Authorize the CLI to use your account.
 
 A certificate gets stored in your local SSH configuration.
 The certificate is automatically cycled every hour for a new certificate as long as your session is active.
@@ -66,6 +66,8 @@ web@wk5fqz6qoo123-main--php:~$
 ```
 
 Now you can interact with the environment as you want.
+Note that your app's file system is read-only,
+except for mounts you may have defined. 
 
 ## Connect to services
 
