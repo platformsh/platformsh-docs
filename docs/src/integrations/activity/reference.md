@@ -4,7 +4,7 @@ weight: -10
 description: A reference of the properties found in various activities.
 ---
 
-Activities are responses to actions in your project,
+Activities log changes to your project,
 including when you deploy your app,
 when you [push code](#push), and when a [cron job is run](#cron).
 
@@ -12,7 +12,7 @@ To automate your workflows, you can parse and react to the activity's JSON objec
 
 ## Activity schema
 
-All activity have corresponding JSON objects containing all information for that activity,
+Every activity has a corresponding JSON object containing all information for that activity,
 including timestamps, configuration, and sometimes logs.
 In practice, you can ignore much of the JSON object's content.
 The most commonly used values are documented in this reference.
@@ -21,7 +21,7 @@ The response differs depending on the activity and doesn't always include all fi
 
 ### Example response
 
-The following is a shortened example of a response for an [environment sync](../../other/glossary.md#sync).
+The following is a shortened example of a response for an [environment sync activity](../../other/glossary.md#sync).
 You can also see [complete examples of responses](#examples).
 
 ``` json
@@ -82,20 +82,20 @@ The response changes based on the activity.
 The ID of the project in which the activity took place.
 Use this value to distinguish multiple projects sent the same URL.
 
-Different from [`project` events](#type).
+Different from [`project` activities](#type).
 
 ### `type`
 
 The type of the activity in one of the following categories:
 
-- [Project](#project-events)
-- [Environment](#environment-events)
-- [Integration](#integration-events)
+- [Project](#project-activities)
+- [Environment](#environment-activities)
+- [Integration](#integration-activities)
 
-#### `project` events
+#### `project` activities
 
-Events that happened on a given project.
-The following table presents the possible events:
+Activities that happened on a given project.
+The following table presents the possible activities:
 
 | Name | Description |
 |------|-------------|
@@ -104,10 +104,10 @@ The following table presents the possible events:
 | `project.variable.delete` | A project variable has been deleted. |
 | `project.variable.update` | A project variable has been modified. |
 
-#### `environment` events
+#### `environment` activities
 
-Events that happened on an environment.
-The following table presents the possible events:
+Activities that happened on an environment.
+The following table presents the possible activities:
 
 | Name | Description |
 |------|-------------|
@@ -123,9 +123,9 @@ The following table presents the possible events:
 | `environment.initialize` | The default branch of the project has just been initialized with its first commit. |
 | `environment.deactivate` | An environment has been made [inactive](../../other/glossary.md#inactive-environment). |
 | `environment.synchronize` | An environment has had its data and/or code replaced with the data and/or code from its parent environment. |
-| `environment.merge` | An environment was merged through the CLI, Console, or API. A basic Git merge doesn't trigger this event. |
+| `environment.merge` | An environment was merged through the CLI, Console, or API. A basic Git merge doesn't trigger this activity. |
 | `environment.redeploy` | An environment was redeployed. |
-| `environment.delete` | An environment was deleted through Git. |
+| `environment.delete` | An environment's code was deleted through Git. |
 | `environment.route.create` | A new route has been created through the API. Edits made using Git to the `routes.yaml` file don't trigger this activity. |
 | `environment.route.delete` | A route has been deleted through the API. Edits made using Git to the `routes.yaml` file don't trigger this activity. |
 | `environment.route.update` | A route has been modified through the API. Edits made using Git to the `routes.yaml` file don't trigger this activity. |
@@ -140,10 +140,10 @@ The following table presents the possible events:
 | `environment.source-operation` | A source operation has completed. |
 | `environment.certificate.renewal` | An environment's SSL certificate has been renewed. |
 
-#### `integration` events
+#### `integration` activities
 
-Events that relate to an integration.
-The following table presents the possible events:
+Activities that relate to an integration.
+The following table presents the possible activities:
 
 | Name | Description |
 |------|-------------|
@@ -161,7 +161,7 @@ The following table presents the possible events:
 
 ### `environments`
 
-An array listing the environments that were involved in the event.
+An array listing the environments that were involved in the activity.
 It's usually only a single value representing one environment.
 
 ### `state`
@@ -194,7 +194,7 @@ This property can include the following properties:
 
 ### `log`
 
-A human-friendly text description of the event that happened.
+A human-friendly text description of the activity that happened.
 The log shouldn't be parsed for data as its structure isn't guaranteed.
 
 ### `description`
@@ -217,8 +217,9 @@ Its content varies based on the activity type.
 | `payload.commits` | A list of changes with their Git metadata. |
 | `payload.commits_count` | The number of Git commits.  |
 | `payload.deployment` | Information about the deployed environment. See [`deployment`](#deployment). |
+| `payload.project` | Information about the project. See [`project`](#project). |
 
-#### `user`
+#### `user` payload
 
 Contains information about the Platform.sh user that triggered the activity.
 
@@ -229,7 +230,7 @@ Contains information about the Platform.sh user that triggered the activity.
 | `payload.user.id` | The user ID of the user. |
 | `payload.user.updated_at` | The date the user was last updated. |
 
-#### `environment`
+#### `environment` payload
 
 Contains information about the environment associated with the activity,
 including its settings, state, and deployment.
@@ -239,12 +240,27 @@ The following table presents the most notable properties of the environment:
 |------|-------------|
 | `payload.environment.name` | The environment name. |
 | `payload.environment.type` | The [environment type](../../administration/users.md#environment-types). |
-| `payload.environment.head_commit` | The Git commit ID that triggered the event. |
+| `payload.environment.head_commit` | The Git commit ID that triggered the activity. |
 | `payload.environment.edge_hostname` | Your project's [target](../../other/glossary.md#target). |
 
-Different from [`environment` events](#type).
+Different from [`environment` activities](#type).
 
-#### `deployment`
+#### `project` payload
+
+Contains information about the project associated with the activity,
+including subscription details, timezone, and state.
+The following table presents the most notable properties of the environment:
+
+| Name | Description |
+|------|-------------|
+| `payload.project.timezone` | Your project's [timezone](../../projects/change-project-timezone.md). |
+| `payload.project.region` | Your project's [region](../../development/regions.md#regions). |
+| `payload.project.title` | Your project's name. |
+| `payload.project.subscription` | Your project's [billing details including extras](../../administration/pricing/_index.md). |
+
+Different from [`project` activities](#type).
+
+#### `deployment` payload
 
 Contains information about the deployed environment, if one is associated with the activity.
 The following table presents the most notable properties of the deployment:
@@ -315,7 +331,7 @@ To get details about your cron, see the `parameters` property:
 ...
 ```
 
-The following presents the full example activity:
+The following presents the full activity response to a cron:
 
 ``` json
 {
@@ -592,7 +608,7 @@ A shortened excerpt of the `deployment` property looks like:
 ...
 ```
 
-The following presents the full example response to a Git push:
+The following presents the full activity response to a Git push:
 
 ``` json
 {
