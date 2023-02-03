@@ -12,7 +12,7 @@ follow the instructions on this page.
 ## Before you begin
 
 You need:
-- A Platform.sh project using [WordPress with Composer](../../guides/wordpress/composer/_index.md)
+- A Platform.sh project using [PHP](../php/_index.md) and Composer
 - Credentials to access a private third-party Composer repository
 - The [Platform.sh CLI](../../administration/cli/_index.md)
 
@@ -35,7 +35,7 @@ declare the repository in your Composer setup.
 ## 2. Set up Composer authentication using a variable
 
 To allow Composer to successfully authenticate when accessing the declared private repository,
-set an `env:COMPOSER_AUTH` variable for your project.
+set an [`env:COMPOSER_AUTH` variable](../../development/variables/_index.md) for your project.
 
 To do so, run the following command:
 
@@ -45,8 +45,9 @@ platform variable:create --level project --name env:COMPOSER_AUTH \
   --value '{"http-basic": {"{{< variable "PRIVATE_REPOSITORY_URL" >}}": {"username": "{{< variable "USERNAME" >}}", "password": "{{< variable "PASSWORD" >}}"}}}'
 ```
 
-The `env:` prefix means that the variable is exposed as its own Unix environment variable,
-available to Composer only during build time.
+The [`env:` prefix](../../development/variables/_index.md#top-level-environment-variables) means that the variable is exposed
+as its own Unix environment variable.
+The `--visible-runtime false` and `--visible-build true` flags mean the variable is available to Composer only during the build.
 
 ## 3. Clear your project's build cache
 
@@ -57,11 +58,12 @@ To do so, run the following command:
 platform project:clear-build-cache
 ```
 
-## Private repository hosting
+## Access dependencies downloaded from a private repository
 
-Private dependencies are usually hosted in [private Git repositories](../../development/private-repository.md).
-Access to such private Git repositories is restricted through the use of SSH keys.
-But most private Composer tools mirror tagged releases of dependencies and serve them directly without hitting the Git repository.
-
+When you download a dependency from a private third-party Composer repository,
+that dependency is usually hosted in a [private Git repository](../../development/private-repository.md).
+Access to private Git repositories is restricted through the use of SSH keys.
+But most private Composer tools mirror tagged releases of dependencies
+and serve them directly without hitting the Git repository.
 To avoid having to authenticate against a remote Git repository,
 make sure your dependencies specify tagged releases.
