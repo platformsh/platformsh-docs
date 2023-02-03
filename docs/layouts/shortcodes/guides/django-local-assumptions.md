@@ -18,7 +18,7 @@ It also assumes that there is a local copy of the project repository on your com
 This can be done with the CLI command `platform get PROJECT_ID`, or by cloning an integrated source repository where `platform project:set-remote PROJECT_ID` has been run.
 
 The steps below are presented for pip, Pipenv, and Poetry to run the built-in lightweight development server with `manage.py runserver`. 
-If matching a production web server locally, [modify those commands accordingly](/languages/python/server).
+If matching a production web server locally (Gunicorn, Daphne, etc.), [modify those commands accordingly](/languages/python/server).
 
 Finally, this example mostly assumes that a Platform.sh is the primary remote for the project. 
 When using source integrations, the steps will be identical in most cases and addressed otherwise.

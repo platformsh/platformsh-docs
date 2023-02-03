@@ -11,6 +11,12 @@ description: |
 
 On Platform.sh, you have the option to connect a locally running application to service containers on an active environment. 
 
+## Setting up
+
+### Assumptions
+
+{{% guides/django-local-assumptions %}}
+
 Assuming you have followed the [Django deployment guide](/guides/django/deploy), your `settings.py` should contain a Platformsh-specific block that looks like the below:
 
 ```py {location="settings.py"}
@@ -61,6 +67,8 @@ if (os.getenv('PLATFORM_APPLICATION_NAME') is not None):
 
 Where a helper function `decode` is also defined in that file to decode base64 encoded JSON objects -- the format of the service credential-containing built-in environment variable `PLATFORM_RELATIONSHIPS`.
 Setting up a [tethered connection](/development/local/tethered) to a Platform.sh environment's services leverages this block by mocking the conditions of that environment locally. 
+
+### Steps
 
 1. Create a new environment off of production.
 
@@ -199,7 +207,7 @@ highlight=bash
 ENVIRONMENT=$1
 PARENT=$2
 
-platform branch $ENVIRONMENT
+platform branch $ENVIRONMENT $PARENT
 
 platform tunnel:open
 export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"
@@ -218,7 +226,7 @@ highlight=bash
 ENVIRONMENT=$1
 PARENT=$2
 
-platform branch $ENVIRONMENT
+platform branch $ENVIRONMENT $PARENT
 
 platform tunnel:open
 export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"
@@ -237,7 +245,7 @@ highlight=bash
 ENVIRONMENT=$1
 PARENT=$2
 
-platform branch $ENVIRONMENT
+platform branch $ENVIRONMENT $PARENT
 
 platform tunnel:open
 export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"
@@ -256,3 +264,224 @@ poetry run python manage.py collectstatic
     ```
 
     to set up their environment once merged into production.
+
+## Next steps
+
+Using the instructions above, you can now use your local environment to develop revisions for review on Platform.sh environments.
+Below are some examples.
+
+### Onboard collaborators
+
+It's essential for every developer on your team to have a local development environment to work on revisions from. 
+Placing the above configuration into a script will help ensure this, and is a simple revision that can be merged into production. 
+
+1. [Set up your local development environment](#setting-up) for a new environment called `local-config`.
+2. Create an executable script for setting up a local environment for a new Platform.sh environment. 
+
+    ```bash
+    touch init-local.sh && chmod +x init-local.sh
+    ```
+
+    {{< codetabs >}}
++++
+title=Pip
+file=none
+highlight=bash
++++
+#!/usr/bin/env bash
+# init-local.sh
+
+PROJECT=$1
+ENVIRONMENT=$2
+PARENT=$3
+
+# Create the new environment
+platform branch $ENVIRONMENT $PARENT
+
+# Configure DDEV
+ddev config --auto
+ddev config --web-environment-add PLATFORM_PROJECT=$PROJECT
+ddev config --web-environment-add PLATFORM_ENVIRONMENT=$ENVIRONMENT
+ddev config --webimage-extra-packages python-is-python3
+
+ddev get drud/ddev-platformsh
+
+# Update .ddev/config.platformsh.yaml
+#   1. hooks.post-start
+printf "  # platformsh start command\n  - exec: |\n      python manage.py runserver 0.0.0.0:8000" >> .ddev/config.platformsh.yaml
+#   2. php_version
+grep -v "php_version" .ddev/config.platformsh.yaml > tmpfile && mv tmpfile .ddev/config.platformsh.yaml
+printf "\nphp_version: 8.0" >> .ddev/config.platformsh.yaml
+
+# Create a docker-compose.django.yaml
+printf "
+version: \"3.6\"
+services:
+    web:
+        expose:
+            - 8000
+        environment:
+            - HTTP_EXPOSE=80:8000
+            - HTTPS_EXPOSE=443:8000
+        healthcheck:
+            test: \"true\"
+" > .ddev/docker-compose.django.yaml
+
+# Create Dockerfile.python
+printf "
+RUN apt-get install -y python3.10 python3-pip
+" > .ddev/web-build/Dockerfile.python
+
+ddev start
+ddev pull platform -y
+ddev restart
+<--->
++++
+title=Pipenv
+file=none
+highlight=docker
++++
+#!/usr/bin/env bash
+# init-local.sh
+
+PROJECT=$1
+ENVIRONMENT=$2
+PARENT=$3
+
+# Create the new environment
+platform branch $ENVIRONMENT $PARENT
+
+# Configure DDEV
+ddev config --auto
+ddev config --web-environment-add PLATFORM_PROJECT=$PROJECT
+ddev config --web-environment-add PLATFORM_ENVIRONMENT=$ENVIRONMENT
+ddev config --webimage-extra-packages python-is-python3
+
+ddev get drud/ddev-platformsh
+
+# Update .ddev/config.platformsh.yaml
+#   1. hooks.post-start
+printf "  # platformsh start command\n  - exec: |\n      pipenv run python manage.py runserver 0.0.0.0:8000" >> .ddev/config.platformsh.yaml
+#   2. php_version
+grep -v "php_version" .ddev/config.platformsh.yaml > tmpfile && mv tmpfile .ddev/config.platformsh.yaml
+printf "\nphp_version: 8.0" >> .ddev/config.platformsh.yaml
+
+# Create a docker-compose.django.yaml
+printf "
+version: \"3.6\"
+services:
+    web:
+        expose:
+            - 8000
+        environment:
+            - HTTP_EXPOSE=80:8000
+            - HTTPS_EXPOSE=443:8000
+        healthcheck:
+            test: \"true\"
+" > .ddev/docker-compose.django.yaml
+
+# Create Dockerfile.python
+printf "
+RUN apt-get install -y python3.10 python3-pip
+" > .ddev/web-build/Dockerfile.python
+
+ddev start
+ddev pull platform -y
+ddev restart
+<--->
++++
+title=Poetry
+file=none
+highlight=docker
++++
+#!/usr/bin/env bash
+# init-local.sh
+
+PROJECT=$1
+ENVIRONMENT=$2
+PARENT=$3
+
+# Create the new environment
+platform branch $ENVIRONMENT $PARENT
+
+# Configure DDEV
+ddev config --auto
+ddev config --web-environment-add PLATFORM_PROJECT=$PROJECT
+ddev config --web-environment-add PLATFORM_ENVIRONMENT=$ENVIRONMENT
+ddev config --webimage-extra-packages python-is-python3
+
+ddev get drud/ddev-platformsh
+
+# Update .ddev/config.platformsh.yaml
+#   1. hooks.post-start
+printf "  # platformsh start command\n  - exec: |\n      poetry run python manage.py runserver 0.0.0.0:8000" >> .ddev/config.platformsh.yaml
+#   2. php_version
+grep -v "php_version" .ddev/config.platformsh.yaml > tmpfile && mv tmpfile .ddev/config.platformsh.yaml
+printf "\nphp_version: 8.0" >> .ddev/config.platformsh.yaml
+
+# Create a docker-compose.django.yaml
+printf "
+version: \"3.6\"
+services:
+    web:
+        expose:
+            - 8000
+        environment:
+            - HTTP_EXPOSE=80:8000
+            - HTTPS_EXPOSE=443:8000
+        healthcheck:
+            test: \"true\"
+" > .ddev/docker-compose.django.yaml
+
+# Create Dockerfile.python
+printf "
+RUN apt-get install -y python3.10 python3-pip
+" > .ddev/web-build/Dockerfile.python
+
+ddev start
+ddev pull platform -y
+ddev restart
+    {{< /codetabs >}}
+
+3. Commit and push the revisions.
+
+    ```bash
+    git add . && git commit -m "Add local configuration." && git push platform local-config
+    ```
+
+4. Merge the revision.
+
+    ```bash
+    platform merge local-config
+    ```
+
+Once the script is merged into production, any user can then run
+
+```bash
+$ platform get PROJECT_ID
+$ cd PROJECT_NAME
+$ ./init-local.sh PROJECT_ID another-new-feature main
+```
+
+to set up their local environment.
+
+### Sanitize data
+
+1. [Set up your local development environment](#setting-up) for a new environment called `sanitize-non-prod`.
+2. Modify deploy hook to sanitize data.
+
+    Once your local environment has been set up, follow the [sanitizing PostgreSQL with Django](development/sanitize-db/postgresql) example to add a sanitization script to the deploy hook of `.platform.app.yaml` specific to your data, which will run on non-production environments.
+
+3. Commit and push the revisions.
+
+    ```bash
+    git add . && git commit -m "Add local configuration." && git push platform sanitize-non-prod
+    ```
+
+4. Merge the revision.
+
+    ```bash
+    platform merge sanitize-non-prod
+    ```
+
+Once the script is merged into production, every non-production environment created on Platform.sh - and the local environments contributors work from - will contain sanitized data free of your users' PII.

@@ -18,5 +18,3 @@ repos:
     - strapi4
     - laravel
     - django4
-    - fastapi
-    - flask

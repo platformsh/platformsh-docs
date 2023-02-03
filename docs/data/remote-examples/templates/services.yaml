@@ -11,5 +11,3 @@ repos:
     - gatsby-strapi
     - gatsby-wordpress
     - django4 
-    - fastapi
-    - flask

@@ -10,11 +10,13 @@ sectionBefore: Supported environments
 {{% guides/local-ddev-note name="Django" link="/guides/django/local/ddev" %}}
 {{< /note >}}
 
-## Assumptions
+## Setting up
+
+### Assumptions
 
 {{% guides/django-local-assumptions %}}
 
-## Steps
+### Steps
 
 Starting with a `Dockerfile` for Python 3.10:
 
@@ -209,16 +211,28 @@ The section `-i $(docker-compose ps -q db)` is used to get the `id` for the `db`
 
 You will now have a local development environment that's in sync with the `new-feature` environment on Platform.sh to work from.
 
-8. Shut down the container.
+8. When finished with your work, shut down the containers.
 
     ```bash
     docker-compose down
     ```
 
-9. Onboarding collaborators.
+## Next steps
 
-    As a part of a larger organization, you may wish to streamline this process for the sake of consistency. 
-    You can commit a script to the repository that simplifies setting up a local development environment that contains all of the above steps. 
+Using the instructions above, you can now use your local environment to develop revisions for review on Platform.sh environments.
+Below are some examples.
+
+### Onboard collaborators
+
+It's essential for every developer on your team to have a local development environment to work on revisions from. 
+Placing the above configuration into a script will help ensure this, and is a simple revision that can be merged into production. 
+
+1. [Set up your local development environment](#setting-up) for a new environment called `local-config`.
+2. Create an executable script for setting up a local environment for a new Platform.sh environment. 
+
+    ```bash
+    touch init-local.sh && chmod +x init-local.sh
+    ```
 
     {{< codetabs >}}
 +++
@@ -235,7 +249,7 @@ DUMP_FILE="$ENVIRONMENT--dump.sql"
 SERVICE_NAME="db"
 DB_USER="postgres"
 
-platform branch $ENVIRONMENT
+platform branch $ENVIRONMENT $PARENT
 platform db:dump -e $ENVIRONMENT -f $DUMP_FILE
 
 docker-compose build
@@ -257,7 +271,7 @@ DUMP_FILE="$ENVIRONMENT--dump.sql"
 SERVICE_NAME="db"
 DB_USER="postgres"
 
-platform branch $ENVIRONMENT
+platform branch $ENVIRONMENT $PARENT
 platform db:dump -e $ENVIRONMENT -f $DUMP_FILE
 
 docker-compose build
@@ -279,7 +293,7 @@ DUMP_FILE="$ENVIRONMENT--dump.sql"
 SERVICE_NAME="db"
 DB_USER="postgres"
 
-platform branch $ENVIRONMENT
+platform branch $ENVIRONMENT $PARENT
 platform db:dump -e $ENVIRONMENT -f $DUMP_FILE
 
 docker-compose build
@@ -298,6 +312,50 @@ docker exec -i $(docker-compose ps -q $SERVICE_NAME) psql -U $DB_USER < $DUMP_FI
 
     to set up their local environment.
 
-    {{< note title="Sanitizing production data" theme="info" >}}
-{{% guides/sanitize-note %}}
-    {{< /note >}}
+3. Commit and push the revisions.
+
+    ```bash
+    git add . && git commit -m "Add local configuration." && git push platform local-config
+    ```
+
+4. Merge the revision.
+
+    ```bash
+    platform merge local-config
+    ```
+
+Once the script is merged into production, any user can then run
+
+```bash
+$ platform get PROJECT_ID
+$ cd PROJECT_NAME
+$ ./init-local.sh PROJECT_ID another-new-feature main
+```
+
+to set up their local environment.
+
+### Sanitize data
+
+It's often a compliance requirement that only a minimal subset of developers within an organization actually have access to production data during their work.
+Platform.sh by default, however, provides a model that automatically clones production data into _every_ child environment.
+
+Since the build and deploy lifecycle of an application is customizable, it's possible to include a script that sanitizes the data within every non-production environment created to help here. 
+
+1. [Set up your local development environment](#setting-up) for a new environment called `sanitize-non-prod`.
+2. Modify deploy hook to sanitize data.
+
+    Once your local environment has been set up, follow the [sanitizing PostgreSQL with Django](development/sanitize-db/postgresql) example to add a sanitization script to the deploy hook of `.platform.app.yaml` specific to your data, which will run on non-production environments.
+
+3. Commit and push the revisions.
+
+    ```bash
+    git add . && git commit -m "Add local configuration." && git push platform sanitize-non-prod
+    ```
+
+4. Merge the revision.
+
+    ```bash
+    platform merge sanitize-non-prod
+    ```
+
+Once the script is merged into production, every non-production environment created on Platform.sh - and the local environments contributors work from - will contain sanitized data free of your users' PII.

@@ -6,32 +6,18 @@ weight: 1
 sectionBefore: Integrated environments
 ---
 
-[DDEV](https://ddev.readthedocs.io/en/stable/) is an open-source tool for local PHP development environments.
-It allows you to use Docker in your workflows while maintaining a GitOps workflow.
-You get fully containerized environments to run everything locally
-without having to install tools (including the Platform.sh CLI, PHP, and Composer) on your machine.
+{{% ddev/definition %}}
 
 This guide assumes you have a project already running with Platform.sh and you have the code on your computer.
 If you're starting from scratch, first [create a project from a PHP template]({{% create-project-link template=true %}}).
 
 ## Before you begin
 
-Make sure your computer meets the [system requirements for DDEV](https://ddev.readthedocs.io/en/stable/#system-requirements).
-
-For the integration to run smoothly, you also need the following tools:
-
-- `jq`
-- `base64`
-- `perl`
-
-If you don't have these already installed, use your normal package manager.
+{{% ddev/requirements %}}
 
 ## 1. Install DDEV
 
-To install DDEV, follow the [DDEV documentation for your operating system](https://ddev.readthedocs.io/en/stable/users/install/ddev-installation/).
-
-This installs the self-contained `ddev` command-line interface (CLI).
-For more information on `ddev`, run `ddev help`.
+{{% ddev/install %}}
 
 ## 2. Add DDEV configuration to your project
 
