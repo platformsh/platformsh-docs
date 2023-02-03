@@ -23,17 +23,42 @@ Application variables are available at both build time and runtime.
 ## Create project variables
 
 Add secrets for all environments in project variables
-using [the Console](../../administration/web/configure-project.md#variables) or the CLI.
-
-For example, to create the project variable `foo` with the value `bar`, run:
-
-```bash
-platform variable:create --level project --name foo --value bar
-```
+using [the Console](../../administration/web/configure-project.md#variables) or the [CLI](../../administration/cli/_index.md).
 
 For example, you may need to set a variable to vary between production and other environments, such as API gateway credentials.
 You can set the non-production version as a project variable
 and then set a [variable specific to the production environment](#create-environment-specific-variables) to override it.
+
+{{< codetabs>}}
++++
+title=Using the CLI
++++
+
+To add a project variable, run the following command:
+
+```bash
+platform variable:create --level project --name {{< variable "VARIABLE_NAME" >}} --value {{< variable "VARIABLE_VALUE" >}}
+```
+
+To specify other options, use the [flags for variable options](#variable-options).
+
+<--->
++++
+title=In the Console
++++
+
+To add a project variable, follow these steps:
+
+1. Select the project where you want to create a variable.
+2. Click {{< icon settings >}} **Settings**.
+3. Under **Project settings**, **Variables**.
+4. Click **+ Create variable**.
+5. Enter a name for the variable.
+6. Enter the variable value.
+7. Ensure you have selected the right [other options](#variable-options).
+8. Click **Create variable**.
+
+{{< /codetabs >}}
 
 When naming variables, be sure to take [variable prefixes](./_index.md#variable-prefixes) into account.
 
@@ -48,13 +73,15 @@ Variables have several Boolean options you can set in the Console or the CLI:
 | Runtime   | `--visible-runtime` | `true`  | Whether the variable is available at runtime. |
 | Build     | `--visible-build`   | `true`  | Whether the variable is available at build time. |
 
-So if you want the `foo` variable to be visible at build time but hidden during runtime, you can set it like this:
+So if you want the `foo` variable to be visible at build time but hidden during runtime,
+you can set it by running the following command:
 
 ```bash
 platform variable:create --level project --name foo --value bar --visible-build true --visible-runtime false
 ```
 
-You can also change the variable options after you create them (except for sensitive values, which can't be set to non-sensitive). For example, to make the `foo` variable visible at runtime and hidden during the build, run this command:
+You can also change the variable options after you create them (except for sensitive values, which can't be set to non-sensitive).
+For example, to make the `foo` variable visible at runtime and hidden during the build, run this command:
 
 ```bash
 platform variable:update foo --visible-build false --visible-runtime true
@@ -67,29 +94,54 @@ you need to [redeploy](../troubleshoot.md#force-a-redeploy) your environments.
 
 Set variables for specific environments using [the Console](../../administration/web/configure-environment.md#variables) or the CLI.
 Variables can be inherited or overridden from parent environments and project variables.
-See [more on overriding values](./_index.md#overrides)
+See [more on overriding values](./_index.md#overrides).
 
-For example, to create the environment variable `foo` with the value `bar` on the current environment, run:
+{{< codetabs>}}
++++
+title=Using the CLI
++++
+
+To create a variable for the current environment, run the following command:
 
 ```bash
-platform variable:create --level environment --name foo --value bar  --visible-build true --visible-runtime false
+platform variable:create --level environment --name {{< variable "VARIABLE_NAME" >}} --value {{< variable "VARIABLE_VALUE" >}}
 ```
 
 To specify the environment for the variable, use the `-e` flag to specify its name.
+To specify other options, use the [flags for variable options](#environment-variable-options).
+
+<--->
++++
+title=In the Console
++++
+
+To add a project variable, follow these steps:
+
+1. Select the project where you want to create a variable.
+2. Click {{< icon settings >}} **Settings**.
+3. Under **Environments**, click the environment where you want to create a variable.
+4. Click **Variables**.
+5. Click **+ Create variable**.
+6. Enter a name for the variable.
+7. Enter the variable value.
+8. Ensure you have selected the right [other options](#environment-variable-options).
+9. Click **Create variable**.
+
+{{< /codetabs >}}
 
 When naming variables, be sure to take [variable prefixes](./_index.md#variable-prefixes) into account.
 
 ### Environment variable options
 
-Environment variables share all of the [options available for project variables](#variable-options),
-with the exception that visibility in the build and runtime can be set only with the CLI (not in the Console).
+Environment variables share all of the [options available for project variables](#variable-options).
 Environment variables have one additional option:
 
 | Option      | CLI flag        | Default | Description |
 | ----------- | --------------- | ------- | ----------- |
 | Inheritable | `--inheritable` | `true`  | Whether the variable is inherited by child environments. |
 
-This option is useful for  setting production-only values such as credentials. For example, to set a PayPal secret value for only the `main` branch and have it not be readable elsewhere, run:
+This option is useful for  setting production-only values such as credentials.
+For example, to set a PayPal secret value for only the `main` branch and have it not be readable elsewhere, run:
 
 ```bash
 platform variable:create -e main --name paypal_id --inheritable false --sensitive true
@@ -103,7 +155,8 @@ To make the new value accessible to those environments, [trigger a redeploy](../
 
 ### Example environment variable
 
-Environment variables are a good place to store values that apply only on Platform.sh and not on your local development environment. This includes API credentials for third-party services, mode settings, and which server (development vs. production) to use.
+Environment variables are a good place to store values that apply only on Platform.sh and not on your local development environment.
+This includes API credentials for third-party services, mode settings, and which server (development vs. production) to use.
 
 One example would be to define a Node.js application's build on a production branch (`NODE_ENV=production`),
 but use development mode (`NODE_ENV=development`) for each of your development environments.
