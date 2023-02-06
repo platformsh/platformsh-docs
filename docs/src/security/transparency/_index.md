@@ -4,7 +4,7 @@ sidebarTitle: "Transparency & abuse reports"
 layout: single
 toc: false
 description: |
-    Platform.sh provides two reports on an annual basis according to the EU Digital Services Act Package, French law, and European Data Protection Board's requirements and recommendations outlining transparency and abuse during that year. The contents of that report are listed below, and can also be downloaded as a PDF. 
+    In accordance with the EU Digital Services Act Package, French law, and the European Data Protection Board's requirements and recommendations, Platform.sh provides two reports on an annual basis outlining governmental authority requests and abuse reports received during that year. The contents of those reports are listed below, and can also be downloaded as a PDF. 
 ---
 
 {{% description %}}

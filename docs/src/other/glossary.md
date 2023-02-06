@@ -158,7 +158,7 @@ Platform or Platform.sh is the infrastructure which is running all your projects
 ## Production plan
 
 A subscription level that allows you to host your production website
-by adding a domain and a custom SSL certificate.
+by adding a domain and [a custom SSL certificate](../domains/steps/tls.md).
 
 ## Project
 A [project](../projects/_index.md) is the site that you’re working on. 
@@ -183,4 +183,4 @@ It's good practice to take a backup of your environment before synchronizing it.
 TLS is the successor of Secure Socket Layer (SSL).
 It provides the cryptographic "S" in HTTPS.
 It's often still referred to as SSL
-even though it has widely replaced SSL for online encrypted connections.
+even though it has mostly replaced SSL for online encrypted connections.
