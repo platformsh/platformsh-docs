@@ -109,7 +109,6 @@ To pass this verification, there are requirements you need to meet.
 
 +++
 title=Without a CDN
-file=none
 highlight=false
 +++
 
@@ -128,7 +127,6 @@ Otherwise, you get an error similar to:
 
 +++
 title=Using a CDN
-file=none
 highlight=false
 +++
 
