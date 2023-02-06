@@ -112,11 +112,21 @@ To zoom in on smaller intervals, select specific ranges in a graph.
 
 The interval between measurements then changes based on the range you choose.
 
-| View            | Time between measurements |
-| :-------------- | :------------------------ |
-| < 2 hours       | 1 minute                  |
-| 2 to 5 hours    | 5 minutes                 |
-| 5 to 8/24 hours | 20 minutes                |
+| View         | Time between measurements |
+| :----------- | :------------------------ |
+| < 2 hours    | 1 minute                  |
+| 2 to 5 hours | 5 minutes                 |
+| 5+ hours     | 20 minutes                |
+
+### Longer time intervals
+
+{{< partial "observability-suite/body" >}}
+
+If you have the Observability Suite, you can access historical data for up to 30 days.
+These data should help you understand trends over time
+and whether a given measurement is normal, something that occurs occasionally, or a true anomaly.
+
+To see data over a given time frame, use the date picker to select the range to display.
 
 ## Deployments
 

@@ -34,8 +34,6 @@ To add your custom certificate, follow these steps:
 
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 1. Run the following command:
@@ -62,8 +60,6 @@ highlight=false
 
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 1. Open the project where you want to add a certificate.

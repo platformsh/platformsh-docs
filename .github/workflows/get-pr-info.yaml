@@ -4,6 +4,11 @@ on:
     branches: [main]
     types: [labeled,opened,reopened,synchronize]
 
+env:
+  PLATFORMSH_CLI_NO_INTERACTION: 1
+  PLATFORM_PROJECT: 652soceglkw4u
+  PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
+
 jobs:
   get_pr_info:
     runs-on: ubuntu-latest
@@ -46,22 +51,16 @@ jobs:
         run: |
           COMMIT_STATUS="pending"
 
-          # Give time for the activity to be reported
-          sleep 60
-
-          # Set the project
-          platform project:set-remote 652soceglkw4u
-
-          # Get the state of the most recent activity
-          STATE=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy" --no-header --columns "state" --limit 1 --environment ${{ steps.branch_name.outputs.branch_name }})
+          # Get the state of the most recent deployment activity
+          STATE=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy environment.branch" --no-header --columns "state" --limit 1 --environment ${{ steps.branch_name.outputs.branch_name }})
 
           # Set tries to 0 to start countdown to timeout
           STATUS_TRY=0
 
-          # Wait until state is complete or 10 minutes has passed
-          until [ "$STATE" == "complete" ] || [ $STATUS_TRY == 20 ]; do
+          # Wait until state is complete or 20 minutes has passed
+          until [ "$STATE" == "complete" ] || [ $STATUS_TRY == 40 ]; do
             sleep 30
-            STATE=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy" --no-header --columns "state" --limit 1 --environment ${{ steps.branch_name.outputs.branch_name }})
+            STATE=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy environment.branch" --no-header --columns "state" --limit 1 --environment ${{ steps.branch_name.outputs.branch_name }})
             ((STATUS_TRY+=1))
           done
 
@@ -69,7 +68,7 @@ jobs:
           ENV_URL=$(platform url --primary --pipe --environment ${{ steps.branch_name.outputs.branch_name }})
 
           # Get the status of the build activity
-          COMMIT_STATUS=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy" --no-header --columns "result" --limit 1 --environment ${{ steps.branch_name.outputs.branch_name }})
+          COMMIT_STATUS=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy environment.branch" --no-header --columns "result" --limit 1 --environment ${{ steps.branch_name.outputs.branch_name }})
 
           # Report findings
           echo "The Platform.sh environment is:"

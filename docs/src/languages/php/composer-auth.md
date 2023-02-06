@@ -1,20 +1,25 @@
 ---
 title: "Authenticated Composer repositories"
 sidebarTitle: "Authenticated Composer"
-description: Some PHP projects may need to use a private, third-party Composer repository in addition to the public Packagist.org repository. Often, such third party repositories require authentication to download packages. These credentials shouldn't be located in the Git repository source code for security reasons.
+description: Allow Composer to authenticate against a private third-party Composer repository and download PHP packages from it.
 ---
 
-{{% description %}}
+[Packagist](https://packagist.org/) is the primary Composer repository for public PHP packages.
+But you can also have Composer download PHP packages from a private, third-party Composer repository.
+To make sure Composer has the necessary credentials to do so,
+follow the instructions on this page.
 
-To handle that situation, you can define a `env:COMPOSER_AUTH` [project variable](../../development/variables/set-variables.md#create-project-variables) which allows you to set up authentication as an environment variable.
-The contents of the variable should be a JSON formatted object containing an `http-basic` object (see [composer-auth specifications](https://getcomposer.org/doc/03-cli.md#composer-auth)).
+## Before you begin
 
-The advantage is that you can control who in your team has access to those variables.
+You need:
+- A Platform.sh project using [PHP](../php/_index.md) and Composer
+- Credentials to access a private third-party Composer repository
+- The [Platform.sh CLI](../../administration/cli/_index.md)
 
-## Specify a third party repository in `composer.json`
+## 1. Declare a private Composer repository
 
-For this example, consider that there are several packages to install from a private repository.
-List that repository in your `composer.json` file.
+To allow Composer to download packages from a private third-party repository,
+declare the repository in your Composer setup.
 
 ```json {location="composer.json"}
 {
@@ -27,11 +32,12 @@ List that repository in your `composer.json` file.
 }
 ```
 
-## Set a project variable
+## 2. Set up Composer authentication using a variable
 
-Set the Composer authentication by adding a project level variable called `env:COMPOSER_AUTH` as JSON and available only during build time.
+To allow Composer to successfully authenticate when accessing the declared private repository,
+set an [`env:COMPOSER_AUTH` variable](../../development/variables/_index.md) for your project.
 
-That can be done through the [Console](/administration/web/_index.md) or via the command line, like so:
+To do so, run the following command:
 
 ```bash
 platform variable:create --level project --name env:COMPOSER_AUTH \
@@ -39,21 +45,25 @@ platform variable:create --level project --name env:COMPOSER_AUTH \
   --value '{"http-basic": {"{{< variable "PRIVATE_REPOSITORY_URL" >}}": {"username": "{{< variable "USERNAME" >}}", "password": "{{< variable "PASSWORD" >}}"}}}'
 ```
 
-The `env:` prefix makes that variable appear as its own Unix environment variable available by Composer during the build process.
-The optional `--visible-runtime false` and `--visible-build true` flags mean the variable is only defined during the build hook,
-which offers slightly better security.
+The [`env:` prefix](../../development/variables/_index.md#top-level-environment-variables) means that the variable is exposed
+as its own Unix environment variable.
+The `--visible-runtime false` and `--visible-build true` flags mean the variable is available to Composer only during the build.
 
-Note: The authentication credentials may be cached in your project's build container.
-Make sure you clear the Composer cache after changing credentials by running the following [CLI command](../../administration/cli/_index.md):
+## 3. Clear your project's build cache
+
+For security reasons, make sure that the authentication credentials aren't cached in your project's build container.
+To do so, run the following command:
 
 ```bash
 platform project:clear-build-cache
 ```
 
-## Private repository hosting
+## Access dependencies downloaded from a private repository
 
-Typically, a private dependency is hosted in a private Git repository.
-While Platform.sh supports [private repositories](/development/private-repository.md) for the site itself, that doesn't help for pulling in third party dependencies from private repositories unless they have the same SSH keys associated with them.
-
-Most private Composer tools (including Satis, Toran Proxy, and [Private Packagist](https://packagist.com/)) mirror tagged releases of dependencies and serve them directly rather than hitting the Git repository.
-As long as your dependencies specify tagged releases, you don't need to authenticate against a remote Git repository.
+When you download a dependency from a private third-party Composer repository,
+that dependency is usually hosted in a [private Git repository](../../development/private-repository.md).
+Access to private Git repositories is restricted through the use of SSH keys.
+But most private Composer tools mirror tagged releases of dependencies
+and serve them directly without hitting the Git repository.
+To avoid having to authenticate against a remote Git repository,
+make sure your dependencies specify tagged releases.

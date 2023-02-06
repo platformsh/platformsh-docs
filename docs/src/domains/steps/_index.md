@@ -37,8 +37,6 @@ To upgrade your plan tier:
 
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 Run the following [CLI command](../../administration/cli/_index.md):
@@ -51,8 +49,6 @@ platform subscription:info plan standard
 
 +++
 title=In the console
-file=none
-highlight=false
 +++
 
 1. On the tile of the project you want to upgrade, click **{{< icon more >}} More**.
@@ -76,8 +72,6 @@ For Dedicated plans, get the target for your project from your Platform.sh conta
 
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 Get the target by running the following [CLI command](../../administration/cli/_index.md):
@@ -90,8 +84,6 @@ platform environment:info edge_hostname
 
 +++
 title=In the console
-file=none
-highlight=false
 +++
 
 1. In the Console, open your Production environment.
@@ -116,8 +108,6 @@ it can take anywhere from 15 minutes to 72 hours for DNS changes to be taken int
 
 +++
 title=Not using a CDN
-file=none
-highlight=false
 +++
 
 To configure your domain name to point to your project:
@@ -144,8 +134,6 @@ Redirects are handled by the [router you configure](../../define-routes/_index.m
 
 +++
 title=Using a CDN
-file=none
-highlight=false
 +++
 
 To configure your CDN and your domain name to point to your project:
@@ -169,8 +157,6 @@ Add a single domain to your project:
 
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 Run the following command:
@@ -183,8 +169,6 @@ platform domain:add {{<variable "YOUR_DOMAIN" >}}
 
 +++
 title=In the console
-file=none
-highlight=false
 +++
 
 1. Select the project where you want to add a domain.

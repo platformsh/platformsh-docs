@@ -137,8 +137,6 @@ The way to access a particular database depends on the [client library](https://
 
 +++
 title=PHP
-file=none
-highlight=false
 +++
 
 Use the Redis [`select` command](https://redis.io/commands/select):
@@ -156,8 +154,6 @@ $redis->get('x');    // returns 42
 
 +++
 title=Python
-file=none
-highlight=false
 +++
 
 To manage [thread safety](https://github.com/redis/redis-py/blob/master/docs/advanced_features.rst#user-content-a-note-about-threading),
@@ -179,8 +175,6 @@ database1 = Redis(host='xxxxxx.cache.amazonaws.com', port=6379, db=0)
 
 +++
 title=Node.js
-file=none
-highlight=false
 +++
 
 Use the Redis [`select` command](https://redis.io/commands/select):

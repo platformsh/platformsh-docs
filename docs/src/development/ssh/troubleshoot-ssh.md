@@ -95,8 +95,6 @@ To resolve this:
 {{< codetabs >}}
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 Log in using the browser by running `platform login`.
@@ -105,8 +103,6 @@ Log in using the browser by running `platform login`.
 
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 1. Open the user menu (your name or profile picture).

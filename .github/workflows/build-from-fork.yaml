@@ -28,11 +28,12 @@ jobs:
       - env:
           PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         run: |
-          git switch -C pr-${{ github.event.number }}
-          git push --force -u origin pr-${{ github.event.number }}
-
-          # If the environment isn't active, activate it
-          BRANCH_STATUS=$(platform api:curl /projects/652soceglkw4u/environments/pr-${{ github.event.number }} | jq -r .status)
-          if [ $BRANCH_STATUS == "inactive" ] || [ $BRANCH_STATUS == "dirty" ] || [ $BRANCH_STATUS == "error" ]; then
-            platform environment:activate --no-wait pr-${{ github.event.number }}
+          BRANCH_TITLE=pr-${{ github.event.number }}
+          # Check if environment exists
+          if $(platform env --pipe --columns title | grep -q $BRANCH_TITLE); then
+            # If the environment exists, update it
+            platform push --force -e $BRANCH_TITLE --activate
+          else
+            # If it doesn't exist, create it
+            platform branch $BRANCH_TITLE main --force
           fi

@@ -257,6 +257,8 @@ configuration:
             thirddb: admin
 ```
 
+{{% databases-passwords %}} 
+
 ## Service timezone
 
 To change the timezone for the current session, run `SET TIME ZONE <timezone>;`.

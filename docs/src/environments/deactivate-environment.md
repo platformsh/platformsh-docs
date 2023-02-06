@@ -30,8 +30,6 @@ To deactivate an environment, follow these steps:
 
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 - Select the project with an environment you want to deactivate.
@@ -45,8 +43,6 @@ highlight=false
 <--->
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 Run the following command:
@@ -76,8 +72,6 @@ To reactivate an inactive environment, follow these steps:
 
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 - Select the project with an environment you want to reactivate.
@@ -89,8 +83,6 @@ highlight=false
 <--->
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 Run the following command:
