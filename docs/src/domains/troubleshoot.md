@@ -109,7 +109,6 @@ To pass this verification, there are requirements you need to meet.
 
 +++
 title=Without a CDN
-highlight=false
 +++
 
 Platform.sh checks that all the routes you defined are pointing to your project.
@@ -127,7 +126,6 @@ Otherwise, you get an error similar to:
 
 +++
 title=Using a CDN
-highlight=false
 +++
 
 When you use a CDN, to ensure the challenge succeeds, check that:
