@@ -149,7 +149,7 @@ The best example is Platform.sh (although we're a little biased).
 ## Production plan
 
 A subscription level that allows you to host your production website
-by adding a domain and a custom SSL certificate.
+by adding a domain and [a custom SSL certificate](../domains/steps/tls.md).
 
 ## Sync
 
@@ -168,4 +168,4 @@ It's good practice to take a backup of your environment before synchronizing it.
 TLS is the successor of Secure Socket Layer (SSL).
 It provides the cryptographic "S" in HTTPS.
 It's often still referred to as SSL
-even though it has largely replaced SSL for online encrypted connections.
+even though it has mostly replaced SSL for online encrypted connections.
