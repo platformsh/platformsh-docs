@@ -33,10 +33,10 @@ This means that you can edit your configuration yourself
 
 ## Features
 
-* A minimum of three virtual machine cluster is associated with your default (production) environment, and also optionally with a staging environment.
-* Configuration changes on development environments (through your `services.yaml`, `routes.yaml`, and `.platform.app.yaml` files) are reflected on these {{% names/dedicated-gen-3 %}} clusters when you merge them.
+- A minimum of three virtual machine cluster is associated with your default (production) environment, and also optionally with a staging environment.
+- Configuration changes on development environments (through your `services.yaml`, `routes.yaml`, and `.platform.app.yaml` files) are reflected on these {{% names/dedicated-gen-3 %}} clusters when you merge them.
   It isn't necessary to open a support ticket to change production infrastructure like it is for {{% names/dedicated-gen-2 %}}. 
-* You can deploy your application in any supported cloud provider.
+- You can deploy your application in any [supported cloud provider](../development/regions.md#regions).
 
 ## Differences from the Grid
 

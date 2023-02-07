@@ -67,7 +67,7 @@ web@wk5fqz6qoo123-main--php:~$
 
 Now you can interact with the environment as you want.
 Note that your app's file system is read-only,
-except for mounts you may have defined. 
+except for any [mounts you've defined](../../create-apps/app-reference.md#mounts). 
 
 ## Connect to services
 

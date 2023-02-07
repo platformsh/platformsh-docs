@@ -41,3 +41,8 @@ on how to get the most out of Platform.sh.
 
 If you have questions about pricing or need help figuring out if Platform.sh is the right solution for your team,
 get in touch with [Sales](https://platform.sh/contact/).
+
+## Delete your Account
+
+To permanently delete your Platform.sh account,
+[contact Support](https://console.platform.sh/-/users/~/tickets/open).

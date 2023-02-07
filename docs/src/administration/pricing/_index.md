@@ -25,8 +25,8 @@ it comes with a [production environment](#production-environments).
 
 ### Development plans
 
-A Development plan provides all the tools to build your website.
-You can create as many development profiles as you want.
+A Development plan provides all the tools you need to build your website 
+before it's ready to go live.
 
 With a Development plan, you can't use [custom domain names](../../domains/steps/_index.md).
 You also can't use a Development plan for production

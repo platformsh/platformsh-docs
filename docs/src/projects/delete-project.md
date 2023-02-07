@@ -38,9 +38,4 @@ title=Using the CLI
 You are billed only for the portion of a month when the project was active.
 
 When you remove all your projects from your user account,
-your subscription is canceled and you're not charged.
-To permanently delete your Platform.sh account,
-[contact Support](https://console.platform.sh/-/users/~/tickets/open).
-
-
-
+you stop being charged.

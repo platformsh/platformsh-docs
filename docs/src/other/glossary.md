@@ -111,10 +111,11 @@ The Platform.sh CLI configures Drush aliases for you on your local environment
 You can also configure them manually.
 
 ## Environment
+
 An [environment](../environments/_index.md) is a standalone copy of your site,
 complete with code, data, and running services.
-Your [default branch](../environments/_index.md#default-environment) is the production environment,
-and you can set up any other branch as an identical testing environment.
+Your production environment comes from the [default branch](../environments/_index.md#default-environment)
+and you can set up any other branch as a testing environment.
 
 ## Grid
 
@@ -152,18 +153,16 @@ A Platform as a Service is an end-to-end hosting solution
 that includes workflow tools, APIs, and other functionality above and beyond basic hosting.
 The best example is Platform.sh (although we're a little biased).
 
-## Platform
-Platform or Platform.sh is the infrastructure which is running all your projects.
-
 ## Production plan
 
 A subscription level that allows you to host your production website
 by adding a domain and [a custom SSL certificate](../domains/steps/tls.md).
 
 ## Project
+
 A [project](../projects/_index.md) is the site that you’re working on. 
 Each project corresponds to one Git repository. 
-A project can contain multiple applications that run in their own isolated containers. 
+A project can contain multiple apps that run in their own isolated containers. 
 Each branch of a project can be deployed in its own environment.
 
 ## Sync

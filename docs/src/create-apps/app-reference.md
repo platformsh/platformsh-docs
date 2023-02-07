@@ -184,7 +184,6 @@ the mounts on that environment are backed up too.
 Also, mounted directories aren't deleted when they're removed from `.platform.app.yaml`.
 The files still exist on disk until manually removed.
 
-
 ## Web
 
 Use the `web` key to configure the web server running in front of your app.

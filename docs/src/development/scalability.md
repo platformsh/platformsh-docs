@@ -7,7 +7,6 @@ description: Learn how to scale your live site.
 Your production environment gets a [pool of resources](../create-apps/app-reference.md#sizes)
 based on your [plan size](../administration/pricing/_index.md).
 These resources are split up between the applications and services you have defined.
-Here is an example distribution: PHP 40%, MySQL 30%, Redis 10%, Solr 20%.
 
 To increase the pool of resources available to your project,
 upgrade your plan and redeploy your site.

@@ -11,7 +11,8 @@ The main requirement of Platform.sh is that you use Git to manage your applicati
 Your project's configuration is driven almost entirely by a small number of YAML files in your Git repository.
 The **Configuration** section covers those in more detail and can serve as both a tutorial and a quick reference.
 
-Platform.sh supports many different programming **Languages** and environments, and it features recommended optimizations for several **Featured Frameworks**.
+Platform.sh is built on Debian, supports many different programming **Languages** and environments,
+and features recommended optimizations for several **Featured Frameworks**.
 
 Finally, you can also get tips for setting up your own **Development** workflow and **Administering** your Platform.sh account.
 
