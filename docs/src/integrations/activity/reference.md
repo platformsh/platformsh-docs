@@ -242,7 +242,7 @@ The following table presents the most notable properties of the environment:
 | `payload.environment.name` | The environment name. |
 | `payload.environment.type` | The [environment type](../../administration/users.md#environment-types). |
 | `payload.environment.head_commit` | The ID of the environment's latest Git commit. |
-| `payload.environment.edge_hostname` | The URL you should target when setting up a [custom domain](../../domains/steps.md). |
+| `payload.environment.edge_hostname` | The URL you should target when setting up a [custom domain](../../domains/steps/_index.md). |
 
 Different from [`environment` activities](#type).
 
