@@ -56,7 +56,7 @@ To update an existing activity script, follow these steps:
 
    That updates the integration in place, permanently overwriting the previous version.
 
-3. Test the activity script update, by triggering a redeployment with the following command:
+3. Test the activity script update by triggering a redeployment with the following command:
 
    ```bash
    platform redeploy
@@ -99,7 +99,7 @@ platform integration:activities
 ```
 
 Every time your activity script runs it generates a new log entry, including the output from the script.
-Any output produced by `console.log` is available in the activity log, and that's the recommended way to debug scripts.
+Any output produced by `console.log` is available in the activity log, which is the recommended way to debug scripts.
 
 See the [activity log](../overview.md#debugging-integrations) documentation for further details.
 

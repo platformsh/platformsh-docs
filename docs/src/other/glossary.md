@@ -167,12 +167,6 @@ Sync is only available if your branch has no unmerged commits and can be fast-fo
 
 It's good practice to take a backup of your environment before synchronizing it.
 
-## Target
-
-The target (edge hostname) of a project is the URL you use to access your environment during development.
-For your site to go live, the target is where your domain needs to point to.
-See more on [how to setup custom domains](../domains/steps/_index.md).
-
 ## Transport Layer Security (TLS)
 
 TLS is the successor of Secure Socket Layer (SSL).

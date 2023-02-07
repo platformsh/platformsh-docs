@@ -67,7 +67,7 @@ A unique `id` value to identify the activity itself.
 ### `*_at`
 
 `created_at`, `started_at`, `updated_at`, `cancelled_at`, `completed_at`, and `expires_at` are all timestamps in UTC.
-For when a given action happened, use `completed_at`.
+For when a given activity occurred, use `completed_at`.
 You can use these properties to calculate the duration of the activity.
 To calculate the timing for steps in the activity, see the [`timings` property](#timings).
 
@@ -100,7 +100,7 @@ The following table presents the possible activities:
 | Name | Description |
 |------|-------------|
 | `project.modify.title` | The project title has changed. |
-| `project.variable.create` | A new project variable has been created. Visibility of its value depends on the [sensitivity flag](../../development/variables/set-variables.md#variable-options) |
+| `project.variable.create` | A new project variable has been created. The value is visible only if the variable is not [set as sensitive](../../development/variables/set-variables.md#variable-options). |
 | `project.variable.delete` | A project variable has been deleted. |
 | `project.variable.update` | A project variable has been modified. |
 
@@ -118,7 +118,7 @@ The following table presents the possible activities:
 | `environment.backup.delete` | A user deleted a [backup](../../environments/backup.md). |
 | `environment.restore` | A user restored a [backup](../../environments/backup.md). |
 | `environment.push` | A user pushed code to a branch, either existing or new. |
-| `environment.branch` | A new branch has been created via the CLI, Console, or API. A branch created via a push shows up as `environment.push`. |
+| `environment.branch` | A new branch has been created via the CLI, Console, or API. A branch created via Git shows up as `environment.push`. |
 | `environment.activate` | The environment has been made [active](../../other/glossary.md#active-environment). |
 | `environment.initialize` | The default branch of the project has just been initialized with its first commit. |
 | `environment.deactivate` | An environment has been made [inactive](../../other/glossary.md#inactive-environment). |
@@ -129,14 +129,14 @@ The following table presents the possible activities:
 | `environment.route.create` | A new route has been created through the API. Edits made using Git to the `routes.yaml` file don't trigger this activity. |
 | `environment.route.delete` | A route has been deleted through the API. Edits made using Git to the `routes.yaml` file don't trigger this activity. |
 | `environment.route.update` | A route has been modified through the API. Edits made using Git to the `routes.yaml` file don't trigger this activity. |
-| `environment.variable.create` | A new variable has been created. |
+| `environment.variable.create` | A new variable has been created. The value is visible only if the variable is not [set as sensitive](../../development/variables/set-variables.md#variable-options). |
 | `environment.variable.delete` | A variable has been deleted. |
 | `environment.variable.update` | A variable has been modified. |
 | `environment.update.http_access` | HTTP access rules for an environment have been modified. |
 | `environment.update.smtp` | Email sending has been enabled or disabled for an environment. |
 | `environment.update.restrict_robots` | The option to [hide from search engines](../../environments/search-engine-visibility.html) has been enabled or disabled for an environment. |
 | `environment.subscription.update` | The production environment has been resized because the plan has changed. The content of the environment hasn't changed. |
-| `environment.cron` | A cron task just completed. |
+| `environment.cron` | A cron job has completed. |
 | `environment.source-operation` | A source operation has completed. |
 | `environment.certificate.renewal` | An environment's SSL certificate has been renewed. |
 
@@ -175,26 +175,27 @@ What percentage of the activity is complete.
 
 ### `result`
 
-Whether the activity itself completed successfully or not.
-Its value is `success` if all went as planned.
-The result doesn't take into account if your cron task executed properly or if the (re)deploy ran successfully.
+Whether or not the activity completed successfully.
+If it did, the value is `success`.
+Note that certain activities, such as deploy hooks,
+can be marked as successful activities even if some commands failed.
 
 ### `timings`
 
 The amount of time required by the activity.
 
-This property can include the following properties:
+It can include the following properties:
 
 | Name | Description |
 |------|-------------|
-| `wait` | The time delay if a command is set to wait before being executed. |
+| `wait` | The delay if a command is set to wait before being executed. |
 | `build` | The execution time for the build hook. |
 | `deploy` | The execution time for the deploy hook. |
-| `execute` | The execution time for your script or your cron task. |
+| `execute` | The execution time for your script or cron job. |
 
 ### `log`
 
-A human-friendly text description of the activity that happened.
+A human-friendly record of what happened in the activity.
 The log shouldn't be parsed for data as its structure isn't guaranteed.
 
 ### `description`
@@ -212,12 +213,12 @@ Its content varies based on the activity type.
 
 | Name | Description |
 |------|-------------|
-| `payload.user` | The [user](#user-payload) that triggered the activity. |
-| `payload.environment` | The [environment](#environment-payload) impacted by the activity. |
+| `payload.user` | The user that triggered the activity. For details on its properties, see the [`user` payload](#user-payload). |
+| `payload.environment` | The environment affected by the activity. For details on its properties, see the [`environment` payload](#environment-payload). |
 | `payload.commits` | A list of changes with their Git metadata. |
 | `payload.commits_count` | The number of Git commits.  |
-| `payload.deployment` | Information about the deployed environment. See [`deployment`](#deployment-payload). |
-| `payload.project` | Information about the project. See [`project`](#project-payload). |
+| `payload.deployment` | Information about the deployed environment. For details on its properties, see the [`deployment` payload](#deployment-payload). |
+| `payload.project` | Information about the project. For details on its properties, see the [`project` payload](#project-payload). |
 
 #### `user` payload
 
@@ -226,8 +227,8 @@ Contains information about the Platform.sh user that triggered the activity.
 | Name | Description |
 |------|-------------|
 | `payload.user.created_at` | The date the user was created. |
-| `payload.user.display_name` | The human-friendly name of the user that triggered the activity. |
-| `payload.user.id` | The user ID of the user. |
+| `payload.user.display_name` | The user's name in a human-friendly format. |
+| `payload.user.id` | The user's ID. |
 | `payload.user.updated_at` | The date the user was last updated. |
 
 #### `environment` payload
@@ -240,23 +241,23 @@ The following table presents the most notable properties of the environment:
 |------|-------------|
 | `payload.environment.name` | The environment name. |
 | `payload.environment.type` | The [environment type](../../administration/users.md#environment-types). |
-| `payload.environment.head_commit` | The Git commit ID that triggered the activity. |
-| `payload.environment.edge_hostname` | Your project's [target](../../other/glossary.md#target). |
+| `payload.environment.head_commit` | The ID of the environment's latest Git commit. |
+| `payload.environment.edge_hostname` | The URL you should target when setting up a [custom domain](../../domains/steps.md). |
 
 Different from [`environment` activities](#type).
 
 #### `project` payload
 
 Contains information about the project associated with the activity,
-including subscription details, timezone, and state.
-The following table presents the most notable properties of the environment:
+including plan details, timezone, and region.
+The following table presents the most notable properties of the project:
 
 | Name | Description |
 |------|-------------|
 | `payload.project.timezone` | Your project's [timezone](../../projects/change-project-timezone.md). |
 | `payload.project.region` | Your project's [region](../../development/regions.md#regions). |
 | `payload.project.title` | Your project's name. |
-| `payload.project.subscription` | Your project's [billing details including extras](../../administration/pricing/_index.md). |
+| `payload.project.subscription` | All of the detail's about your project's [plan](../../administration/pricing/_index.md). |
 
 Different from [`project` activities](#type).
 
@@ -280,7 +281,7 @@ The `payload.deployment` property includes the configuration extracted from the 
 ## Maximum activities and parallelism
 
 Project activities are distributed across separate queues,
-which enables **two* simultaneous activities to occur in parallel across your environments.
+which enables *two* simultaneous activities to occur in parallel across your environments.
 For a given environment, only one activity can run at a time.
 Those queues include the following types of activities:
 
@@ -293,7 +294,7 @@ Those queues include the following types of activities:
 
 Production activities are prioritized across all queues.
 When an activity for the production environment is triggered, it's placed at the top of the queue.
-This makes it unlikely that activities on non-production environments block activities for the production environment,
+This makes it unlikely that activities on non-production environments block activities for the production environment for long,
 though there may be a temporary wait.
 
 ## Examples
@@ -306,10 +307,11 @@ To test responses, [set up a webhook](./webhooks.md#setup).
 ### Cron
 
 When a cron job is triggered, the activity contains all the [job's information](../../create-apps/app-reference.md#crons).
-In that example, the cron is scheduled to run every five minutes (`5 * * * *`),
-runs `sleep 60 && echo sleep-60-finished && date` and timeouts after 86400 seconds.
+The following example response was triggered by a setting
+where the cron is scheduled to run every five minutes (`5 * * * *`)
+with the command `sleep 60 && echo sleep-60-finished && date` and times out after 86,400 seconds.
 
-To get details about your cron, see the `parameters` property:
+To get details about the configured cron job, see the `parameters` property:
 
 ``` json
 ...
@@ -331,7 +333,7 @@ To get details about your cron, see the `parameters` property:
 ...
 ```
 
-The following presents the full activity response to a cron:
+The following example shows the full activity response to a cron job:
 
 ``` json
 {
@@ -471,7 +473,7 @@ The following presents the full activity response to a cron:
 ### Push
 
 A push activity contains several properties.
-The `commits` property contains everything related to the git push you made:
+The `commits` property contains everything related to the Git push that triggered the activity:
 
 ``` json
 ...
@@ -492,7 +494,7 @@ The `commits` property contains everything related to the git push you made:
 ...
 ```
 
-The `environment` property contains your environment's settings:
+The `environment` property contains the settings for the environment that was pushed to:
 
 ``` json
 ...
@@ -540,10 +542,11 @@ The `environment` property contains your environment's settings:
 ...
 ```
 
-The `deployment` property contains the settings used such as the [image type](../../create-apps/app-reference.md#types),
-the [resource allocation](../../create-apps/app-reference.md#sizes) and much more.
+The `deployment` property contains the settings for the deployment,
+including the [image type](../../create-apps/app-reference.md#types) and
+[resource allocation](../../create-apps/app-reference.md#sizes).
 
-A shortened excerpt of the `deployment` property looks like:
+The following example shows a shortened excerpt of the `deployment` property:
 
 ``` json
 ...
@@ -608,7 +611,7 @@ A shortened excerpt of the `deployment` property looks like:
 ...
 ```
 
-The following presents the full activity response to a Git push:
+The following example shows the full activity response to a Git push:
 
 ``` json
 {

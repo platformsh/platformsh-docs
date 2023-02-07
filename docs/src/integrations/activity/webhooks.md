@@ -20,7 +20,7 @@ It's possible to set the integration to only send certain activity types, or onl
 The CLI prompts you to specify which to include or exclude.
 Leave at the default values to get all events on all environments in a project.
 
-For testing purposes, you can use a service like [webhook.site](https://webhook.site/)
+For testing purposes, you can generate a URL from a service such as [webhook.site](https://webhook.site/)
 and use the generated URL as `{{<variable "URL_TO_RECEIVE_JSON" >}}`.
 
 ## Webhook schema
