@@ -10,16 +10,18 @@ layout: single
 ## Setup
 
 ```bash
-platform integration:add --type=webhook --url=A-URL-THAT-CAN-RECEIVE-THE-POSTED-JSON
+platform integration:add --type=webhook --url={{<variable "URL_TO_RECEIVE_JSON" >}}
 ```
 
-The webhook URL receives a POST message for every "Activity" that is triggered, the message contains complete information about the entire state of the project at that time.
-In practice most of the message can be ignored but is available if needed.
-The most commonly used values are documented below.
+The webhook URL receives a POST message for every activity that's triggered.
+The message contains complete information about the entire state of the project at that time.
 
-It's also possible to set the integration to only send certain activity types, or only activities on certain branches.
-The CLI will prompt you to specify which to include or exclude.
+It's possible to set the integration to only send certain activity types, or only activities on certain branches.
+The CLI prompts you to specify which to include or exclude.
 Leave at the default values to get all events on all environments in a project.
+
+For testing purposes, you can generate a URL from a service such as [webhook.site](https://webhook.site/)
+and use the generated URL as `{{<variable "URL_TO_RECEIVE_JSON" >}}`.
 
 ## Webhook schema
 
@@ -27,7 +29,7 @@ See the [activity script](/integrations/activity/reference.md) reference for a d
 
 ## Validate the integration
 
-You can then verify that your integration is functioning properly [using the CLI](/integrations/overview.md#validating-integrations) command
+To verify your integration is functioning properly, run the following [CLI command](/integrations/overview.md#validating-integrations):
 
 ```bash
 platform integration:validate
