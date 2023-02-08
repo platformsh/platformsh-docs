@@ -148,11 +148,7 @@ The following table presents the possible activities:
 | Name | Description |
 |------|-------------|
 | `integration.bitbucket.register_hooks` | An integration hook has been registered with Bitbucket Cloud. |
-| `integration.bitbucket_server.fetch` | Changes in a Bitbucket Server repository have been pulled. |
 | `integration.bitbucket_server.register_hooks` | An integration hook has been registered with Bitbucket Server. |
-| `integration.bitbucket.fetch` | Changes in a Bitbucket Cloud repository [have been fetched](../../integrations/overview.md#list-all-activities). |
-| `integration.github.fetch` | Changes in a GitHub repository [have been fetched](../../integrations/overview.md#list-all-activities). |
-| `integration.gitlab.fetch` | Changes in a GitLab repository [have been fetched](../../integrations/overview.md#list-all-activities). |
 | `integration.health.email` | A [health notification](../notifications.md) was sent by email. |
 | `integration.health.email` | A [health notification](../notifications.md) was sent to PagerDuty. |
 | `integration.health.email` | A [health notification](../notifications.md) was sent to Slack. |
