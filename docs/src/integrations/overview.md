@@ -62,14 +62,12 @@ These activities may be delayed due to the external services having latency.
 Those logs are available via the CLI.
 In most cases they aren't necessary but may be useful for debugging an integration if it is misbehaving for some reason.
 
-You can get the full payload for each activity via [webhooks](../integrations/activity/webhooks.md).
-
 There are a handful of CLI commands available, all under the `integrations` section.
 
 ### List all activities
 
-The commands `platform integration:activity:list` or its alias `platform integration:activities`
-will list all updates triggered by [activities](../integrations/activity/reference.md) on a given project and integration.
+The command `platform integration:activities` lists
+all updates triggered by [activities](../integrations/activity/reference.md) on a given project and integration.
 
 For example, for the project for this site, the command `platform integration:activity:list` outputs:
 
