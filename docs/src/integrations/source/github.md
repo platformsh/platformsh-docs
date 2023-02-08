@@ -13,8 +13,11 @@ To integrate your Platform.sh project with an existing GitHub repository,
 [generate a new token](https://github.com/settings/tokens/new).
 Fine-grained access tokens aren't currently supported.
 For the integration to work,
-your GitHub user needs to have permission to push code to the repository and manage its webhooks.
-This means your user needs to be a repository admin.
+your GitHub user needs to have permission to push code to the repository.
+
+When you set up or update an integration, it also needs permission to manage its webhooks.
+This means your user needs to be a repository admin to create the integration.
+You can remove this permission after setup.
 
 Give your token a description and then ensure the token has the scopes that correspond to what you want to do:
 
