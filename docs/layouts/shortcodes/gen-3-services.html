@@ -4,7 +4,8 @@
     <th>Supported versions</th>
   </tr>
   {{- range $image, $info := .Site.Data.registry -}}
-    {{- if and (isset $info "versions-dedicated-gen-3") (ne $image "redis-persistent") -}}
+    <!-- Skip persistent Redis and MySQL to avoid duplication -->
+    {{- if and (isset $info "versions-dedicated-gen-3") (ne $image "redis-persistent") (ne $image "mysql") -}}
       {{- $label :=  index $info "name" -}}
       {{- $versions := index ( index $info "versions-dedicated-gen-3") "supported" -}}
       {{- $docs_link := index (index $info "docs") "url" -}}
@@ -14,26 +15,12 @@
           {{- $service_versions := "" -}}
           {{- range $versions -}}
             {{- if eq ( len $service_versions ) 0 -}}
-              {{- if eq $image "mysql" -}}
-                {{- $stripped := index ( split . " ") 0 -}}
-                {{- $service_versions = printf "%s%s" $service_versions $stripped -}}
-              {{- else -}}
-                {{- $service_versions = printf "%s%s" $service_versions . -}}
-              {{- end -}}
+              {{- $service_versions = printf "%s%s" $service_versions . -}}
             {{- else -}}
-              {{- if eq $image "mysql" -}}
-                {{- $stripped := index ( split . " ") 0 -}}
-                {{- $service_versions = printf "%s, %s" $service_versions $stripped -}}
-              {{- else -}}
-                {{- $service_versions = printf "%s, %s" $service_versions . -}}
-              {{- end -}}
+              {{- $service_versions = printf "%s, %s" $service_versions . -}}
             {{- end -}}
           {{- end -}}
-          {{- if eq $image "mysql" -}}
-            {{ printf "%s (all using Galera, for replication)" $service_versions }}
-          {{- else -}}
-            {{ $service_versions }}
-          {{- end -}}
+          {{ $service_versions }}
         </td>                                                                                                                                                                                                                                                                                                                                                                          </td>
       </tr>
     {{- end -}}

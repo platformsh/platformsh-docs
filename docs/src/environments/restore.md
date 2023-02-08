@@ -16,8 +16,6 @@ To restore an environment, first select one of the available backups:
 {{< codetabs >}}
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 Run the following command:
@@ -44,8 +42,6 @@ Select one of the backups marked as **Restorable** and copy its **Backup ID**.
 <--->
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 1. Navigate to the environment where you want to see backups.
@@ -62,8 +58,6 @@ To restore the backup you've selected, follow these steps:
 {{< codetabs >}}
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 1. Run the following command:
@@ -77,8 +71,6 @@ highlight=false
 <--->
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 1. Next to the backup you've selected, click **More** {{< icon more >}}.

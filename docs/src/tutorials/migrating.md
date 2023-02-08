@@ -1,6 +1,8 @@
 ---
 title: Migrating to Platform.sh
 description: See how to migrate your app to Platform.sh so it's ready to be deployed.
+keywords:
+  - "set remote"
 ---
 
 If you already have an app running somewhere else, you want to migrate it to Platform.sh and deploy it.
@@ -26,8 +28,6 @@ and for some apps, such as Drupal, configuration that you need to export from th
 {{< codetabs >}}
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 Run the following command:
@@ -42,8 +42,6 @@ When prompted, fill in details like the project name, [region](../development/re
 
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 [Create a new project from scratch]({{% create-project-link scratch=true %}}).
@@ -77,29 +75,7 @@ and you can use the CLI or just Git itself.
 
 {{< codetabs >}}
 +++
-title=Using a source integration
-file=none
-highlight=false
-+++
-
-Set up the integration for your selected service:
-
-- [Bitbucket](../integrations/source/bitbucket.md)
-- [GitHub](../integrations/source/github.md)
-- [GitLab](../integrations/source/gitlab.md)
-
-Then push code to that service as you do normally.
-Pushing to a branch creates an environment from that branch.
-
-Note that the source integration doesn't report any errors in configuration directly.
-You have to monitor those in your project activities.
-
-<--->
-
-+++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 1. Get your project ID by running the following command:
@@ -124,11 +100,25 @@ When you try to push, any detected errors in your configuration are reported and
 After any errors are fixed, a push creates a new environment.
 
 <--->
++++
+title=Using a source integration
++++
 
+Set up the integration for your selected service:
+
+- [Bitbucket](../integrations/source/bitbucket.md)
+- [GitHub](../integrations/source/github.md)
+- [GitLab](../integrations/source/gitlab.md)
+
+Then push code to that service as you do normally.
+Pushing to a branch creates an environment from that branch.
+
+Note that the source integration doesn't report any errors in configuration directly.
+You have to monitor those in your project activities.
+
+<--->
 +++
 title=Using Git
-file=none
-highlight=false
 +++
 
 1.  Add an [SSH key](../development/ssh/ssh-keys.md).

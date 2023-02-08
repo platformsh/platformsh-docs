@@ -11,8 +11,6 @@ To delete a Platform.sh project, including all data, code, and active environmen
 
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 - On the tile of the project you want to delete, click **{{< icon more >}} More**.
@@ -24,8 +22,6 @@ highlight=false
 <--->
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 1. Run the following command:
@@ -40,4 +36,6 @@ highlight=false
 {{< /codetabs >}}
 
 You are billed only for the portion of a month when the project was active.
-A user account with no projects has no charges.
+
+When you remove all your projects from your user account,
+you stop being charged.

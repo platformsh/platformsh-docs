@@ -95,14 +95,14 @@
 
             {{ $content := $allContent.Get $tabIndex }}
             {{ with ( $allParams.Get $tabIndex ) }}
-              {{ if ne (.Get "highlight") "false" }}
-                {{ if ne (.Get "file") "none" }}
+              {{ if ne (.Get "highlight") nil }}
+                {{ if ne (.Get "file") nil }}
                   {{ highlight ( readFile ( .Get "file" ) ) ( .Get "highlight") "style=abap" | chomp }}
                 {{ else }}
                   {{ highlight $content ( .Get "highlight") "style=abap" | chomp }}
                 {{ end }}
               {{ else }}
-                {{ if ne (.Get "file") "none" }}
+                {{ if ne (.Get "file") nil }}
                   {{  readFile ( .Get "file" ) | markdownify | chomp }}
                 {{ else }}
                   {{ $content | $.Page.RenderString }}

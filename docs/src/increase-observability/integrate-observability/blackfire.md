@@ -1,7 +1,10 @@
 ---
 title: "Blackfire"
+sidebarTitle: Blackfire
+weight: 1
+sectionBefore: Official observability tool 
 description: |
-  Platform.sh recommends [Blackfire.io](https://blackfire.io/) for monitoring and profiling web sites and applications. From development to test, staging and production Blackfire offers a unique blend of monitoring, often called APM, and profiling features. Blackfire supports PHP and Python.
+  Platform.sh recommends [Blackfire.io](https://blackfire.io/) for monitoring and profiling web sites and applications. Blackfire supports PHP and Python.
 ---
 
 {{% description %}}
@@ -96,7 +99,7 @@ Read more in the [Blackfire documentation](https://blackfire.io/docs/monitoring-
 Blackfire's native integration with Platform.sh enables you to verify the performance of your application
 each time you deploy a branch, in production, staging, or development.
 
-1. Set up the [Blackfire Builds integration](https://blackfire.io/docs/integrations/paas/platformsh#builds-level-enterprise).
+1. Set up the [Blackfire Builds integration](https://blackfire.io/docs/integrations/paas/platformsh#builds-level-production).
 2. Optionally, set up an [integration with your Git provider](https://blackfire.io/docs/integrations/git/index)
    and get commit status updates from build reports.
 3. [Write scenarios](https://blackfire.io/docs/builds-cookbooks/scenarios) to test business-critical use cases.

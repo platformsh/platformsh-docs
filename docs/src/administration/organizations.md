@@ -16,8 +16,6 @@ As an organization owner, you can manage the basic settings for your organizatio
 
 +++
 title=Using the Console
-file=none
-highlight=false
 +++
 
 1. Navigate to the organization you want to manage (or a project in it).
@@ -29,8 +27,6 @@ highlight=false
 <--->
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 To change the name (URL) and label of the `acme` organization, run:
@@ -56,8 +52,6 @@ you can access and download invoices and edit billing information such as the st
 
 +++
 title=Using the Console
-file=none
-highlight=false
 +++
 
 1. Navigate to the organization you want to manage (or a project in it).
@@ -94,8 +88,6 @@ Users with the **Manage users** (`members`) permission can add, edit, or remove 
 
 +++
 title=Using the Console
-file=none
-highlight=false
 +++
 
 1. Navigate to the organization you want to manage (or a project in it).
@@ -106,8 +98,6 @@ highlight=false
 <--->
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 ### Add a new user
@@ -151,8 +141,6 @@ and organize your projects as you want.
 
 +++
 title=Using the Console
-file=none
-highlight=false
 +++
 
 1. Navigate to your existing organization or a project in it.
@@ -164,8 +152,6 @@ highlight=false
 <--->
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 To create an organization with the label `Acme` and the name (URL) `acme`, run:
@@ -193,8 +179,6 @@ To have it deleted, [contact support](../overview/get-support.md).
 
 +++
 title=Using the Console
-file=none
-highlight=false
 +++
 
 1. Navigate to your existing organization or a project in it.
@@ -206,8 +190,6 @@ highlight=false
 <--->
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 To delete the organization `acme`, run:

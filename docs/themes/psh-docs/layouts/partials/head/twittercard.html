@@ -10,7 +10,7 @@
 {{ if .Page.IsHome }}
     <meta name="twitter:title" content="{{ .Site.Params.meta.twittercard.title }}">
 {{ else }}
-    <meta name="twitter:title" content="{{ .Title }}">
+    <meta name="twitter:title" content="{{ .Title | .RenderString }}">
 {{ end }}
 
 {{ if isset .Site.Params "meta" }}

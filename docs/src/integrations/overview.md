@@ -32,10 +32,6 @@ $ platform integrations
 +---------------+-------------+-------------------------------------------------------------------------------------+
 ```
 
-{{< note theme="info" >}}
-If you have created your account using the Bitbucket or GitHub OAuth Login, then to use the Platform.sh CLI you need to set up a password by visiting [https://accounts.platform.sh/user/password](https://accounts.platform.sh/user/password).
-{{< /note >}}
-
 ## Validating integrations
 
 Once your integration has been configured, you can validate that it is functioning properly with the command:

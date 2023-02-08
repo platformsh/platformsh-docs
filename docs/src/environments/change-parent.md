@@ -17,8 +17,6 @@ To change the environment's parent, follow these steps:
 
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 - Select the project where you want to change the parent.
@@ -32,8 +30,6 @@ highlight=false
 
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 Run the following command:

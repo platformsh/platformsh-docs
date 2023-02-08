@@ -90,8 +90,7 @@ That's expected because you haven't provided configuration files yet.
 You add them in the next step.
 Remember to have a local clone of your project.
 
-{{ $inner := `
-
+{{ $inner := printf `
 If you're integrating a repository to Platform.sh that contains a number of open pull requests,
 don't use the default integration options.
 Projects are limited to three\* development environments (active and deployed branches or pull requests)
@@ -104,10 +103,9 @@ Instead, each service integration should be made with the following flag:
 You can then go through this guide and activate the environment when you're ready to deploy
 
 \* You can purchase additional development environments at any time in the Console.
-Open your {{ .Get "name" }} project and select **Edit plan**.
+Open your %s project and select **Edit plan**.
 Add additional **Environments**, view a cost estimate, and confirm your changes.
-
-`}}
+` ( .Get "name" ) }}
 {{ partial "note" (dict "Inner" $inner "context" .) }}
 
 Now that you have a local Git repository, a Platform.sh project, and a way to push code to that project, you're all set to continue.

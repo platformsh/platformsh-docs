@@ -242,6 +242,9 @@
     "type": "golang",
     "versions": {
       "deprecated": [
+        "1.18",
+        "1.17",
+        "1.16",
         "1.15",
         "1.14",
         "1.13",
@@ -252,10 +255,8 @@
         "1.8"
       ],
       "supported": [
-        "1.19",
-        "1.18",
-        "1.17",
-        "1.16"
+        "1.20",
+        "1.19"
       ]
     }
   },
@@ -694,10 +695,7 @@
     },
     "versions-dedicated-gen-3": {
       "deprecated": [],
-      "supported": [
-        "2",
-        "1.2"
-      ]
+      "supported": []
     }
   },
   "oracle-mysql": {

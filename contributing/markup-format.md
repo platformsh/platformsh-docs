@@ -175,6 +175,15 @@ This is text with inline <code>code</code>.
 {{ partial "note" (dict "Inner" $inner "context" .) }}
 ```
 
+To include variables from a shortcode, use `printf` and `%s` as in the following example:
+
+```markdown
+{{ $inner := printf `
+This is text in the %s shortcode.
+` ( .Get "name" ) }}
+{{ partial "note" (dict "Inner" $inner "context" .) }}
+```
+
 ### Footnotes
 
 To add a footnote, add two parts:
@@ -348,7 +357,7 @@ To select multiple lines, hold <kbd>Shift</kbd>.
 Display code examples in multiple languages with code tabs.
 Tabs are divided by `<--->` and can each have different properties.
 
-```markdown
+````markdown
 {{< codetabs >}}
 
 +++
@@ -361,20 +370,29 @@ highlight=php
 
 +++
 title=Memcached
-file=none
 highlight=python
 +++
 
 from jwcrypto import jws, jwk
 
-{{< /codetabs >}}
++++
+title=MySQL
++++
+
+First, do this:
+
+```bash
+awesome_command
 ```
+
+{{< /codetabs >}}
+````
 
 Property      | Description
 ------------- | ----------
 `title`       | The title that appears on the tab.
-`highlight`   | The language to use for highlighting, as in [code blocks](#code). If set to `false`, content renders as Markdown.
-`file`        | If not set to `none`, the displayed code comes from the specified local file.
+`highlight`   | The language to use for highlighting, as in [code blocks](#code). If not set, content renders as Markdown.
+`file`        | If set, the displayed code comes from the specified local file.
 `markdownify` | Whether to transform the block to Markdown. Defaults to `true`. Set to `false` when the file/block is code.
 
 Note that if you're using code inside the Markdown file,
@@ -413,7 +431,7 @@ Then include the block with the `readFile` function as in the following example:
 A complete example:
 
 ````markdown
-```yaml {location=">.platform.app.yaml"}
+```yaml {location=".platform.app.yaml"}
 {{ readFile "snippets/example.yaml" | safeHTML }}
 ```
 ````

@@ -21,18 +21,18 @@ Branching an environment means creating a new branch in the Git repository and a
 
 The new environment includes all of the parent environment's:
 
-* Code
-* Running services and their configuration (only copies, not the data)
-* Data that's stored on disk (databases, uploaded files, and so on)
+- Code
+- Running services and their configuration (only copies, not the data)
+- Data that's stored on disk (databases, uploaded files, and so on)
 
 This means that when you branch an environment, you also branch the complete infrastructure.
 
 When you branch an environment, three things happen:
 
-* A new branch is created in Git.
-* Your apps are rebuilt on the new branch, if necessary.
+- A new branch is created in Git.
+- Your apps are rebuilt on the new branch, if necessary.
   (This is skipped if the same code with the same [variables](../development/variables/_index.md) has been built for any environment.)
-* The new branch is deployed.
+- The new branch is deployed.
 
 To create a new branch from an existing environment:
 
@@ -41,8 +41,6 @@ To create a new branch from an existing environment:
 
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 - Navigate to the environment you want to branch from.
@@ -54,8 +52,6 @@ highlight=false
 <--->
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 Run:
@@ -114,6 +110,13 @@ The Platform.sh CLI configures Drush aliases for you on your local environment
 (via `platform get` or `platform drush-aliases`).
 You can also configure them manually.
 
+## Environment
+
+An [environment](../environments/_index.md) is a standalone copy of your site,
+complete with code, data, and running services.
+Your production environment comes from the [default branch](../environments/_index.md#default-environment)
+and you can set up any other branch as a testing environment.
+
 ## Grid
 
 Grid environments are standard for Professional plans.
@@ -139,10 +142,10 @@ and redeploying the parent.
 
 When you merge an environment, three things happen:
 
-* Any code changes are merged via Git to the parent branch.
-* Your apps rebuilt on the parent branch, if necessary.
+- Any code changes are merged via Git to the parent branch.
+- Your apps rebuilt on the parent branch, if necessary.
   (This is skipped if the same code with the same [variables](../development/variables/_index.md) has been built for any environment.)
-* The parent branch is deployed.
+- The parent branch is deployed.
 
 ## PaaS
 
@@ -153,7 +156,14 @@ The best example is Platform.sh (although we're a little biased).
 ## Production plan
 
 A subscription level that allows you to host your production website
-by adding a domain and a custom SSL certificate.
+by adding a domain and [a custom SSL certificate](../domains/steps/tls.md).
+
+## Project
+
+A [project](../projects/_index.md) is the site that you’re working on. 
+Each project corresponds to one Git repository. 
+A project can contain multiple apps that run in their own isolated containers. 
+Each branch of a project can be deployed in its own environment.
 
 ## Sync
 
@@ -172,4 +182,4 @@ It's good practice to take a backup of your environment before synchronizing it.
 TLS is the successor of Secure Socket Layer (SSL).
 It provides the cryptographic "S" in HTTPS.
 It's often still referred to as SSL
-even though it has largely replaced SSL for online encrypted connections.
+even though it has mostly replaced SSL for online encrypted connections.

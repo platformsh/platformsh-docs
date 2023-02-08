@@ -27,7 +27,7 @@ As part of our measures, we have implemented the following:
   We comply with these individual rights.
   Nearly all information can be edited through a user's account,
   and we can delete accounts upon request.
-* **Personally identifiable information (PII)**: We audited our systems to confirm that your personal data is encrypted and protected. 
+* **Personal Data or Personally identifiable information (PII)**: We audited our systems to confirm that your personal data is encrypted and protected. 
 * **Data Flows**: We identified and classified data, and created a high-level data flow diagram that maps out data shared with vendors,
   including cross-border transfers.
 * **Privacy Impact Assessment (PIA)**: We perform internal PIAs to ensure that we comply with GDPR principles and obligations.
@@ -45,7 +45,7 @@ As part of our measures, we have implemented the following:
 
 ### Overview
 
-Under Article 7 of the GDPR, a Controller is defined as a body that "determines the purposes and means of the processing of personal data."
+Under Article 4 of the GDPR, a Controller is defined as a body that "determines the purposes and means of the processing of personal data."
 A Processor is defined as a body that "processes personal data on behalf of the controller."
 
 ### Platform.sh roles under the GDPR
@@ -66,14 +66,14 @@ With respect to the GDPR, Platform.sh is both a Controller and Processor:
   The one exception to this situation is that incoming connections transit this infrastructure
   from the internet to our customers' cardholder data environment,
   which may hold IP addresses and unencrypted URLs.
-* We are a *Processor* for the customers' project environment
+* We are a *Processor* for the customers' project environment.
   * **Note:** While we provide the project environment to the customer (Controller) and store the data that the customer puts on their environment,
   we do not know whether this includes personal data as defined by the GDPR
   nor are we responsible for the Controller's obligations as it relates to the collection of such personal data.
   We operate under the assumption that the Controller's project environment includes personal data
   and possibly even sensitive personal data
   and we treat the environment accordingly,
-  such as applying appropriate security and data protection safeguards that are audited by third-party auditors.
+  such as by applying appropriate security and data protection safeguards that are audited by third-party auditors.
 
 GDPR Data Processing Agreements (DPAs) executed with our customers apply to our processing activities
 related to the Customer Data Plane when we are acting as a Processor.
@@ -90,7 +90,7 @@ Categories of data subjects whose personal data is processed:
 
 Categories of personal data processed:
 
-* The names, emails addresses, and other contact details of the controller's personnel
+* The names, email addresses, and other contact details of the controller's personnel
   with whom we need to liaise in the provision of the services.
 * Platform.sh may also collect the following data elements from the controller's personnel:
   (a) names; (b) addresses; (c) countries; (d) email addresses, (e) telephone numbers;
@@ -131,17 +131,17 @@ Purposes for which the personal data is processed:
 Duration of the processing:
 
 * Until expressly stopped by customer, or
+* Until the personal data are no longer necessary for the purpose collected, or
 * Until deletion of all customer data pursuant to termination of the customer's subscription to our services, whichever event occurs first.
 
 ### Subprocessors
 
 Find the most up-to-date list at the [Trust Center](https://platform.sh/trust-center/).
 
-We execute GDPR contracts with all third parties whose services we utilize if we are sending them EU personal information.
-Specifically, we execute relevant Standard Contractual Clauses (SCCs)
-to ensure compliance with obligations related to international transfers under the GDPR.
 When Platform.sh acts as a Processor of our customer's data, we may use subprocessors to assist us with such processing,
-such as backend hosting providers.
+such as backend hosting providers. We execute DPAs with all third parties whose services we utilize if they are processing  EU personal information on our behalf.
+In addition, we execute relevant Standard Contractual Clauses (SCCs)
+to ensure compliance with obligations related to international transfers under the GDPR.
 
 Similarly, when Platform.sh acts as a Controller of our customer's data, we may engage processors to help us with certain processing,
 such as account management, marketing, or processing payments. 

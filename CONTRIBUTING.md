@@ -191,6 +191,15 @@ To ensure the docs work smoothly, a few checks run on each pull request:
   ```bash
   # Download the htmltest tool
   curl https://htmltest.wjdp.uk | bash
+  # If you haven't done so, install dependencies
+  npm install
+  # Generate necessary files
+  npm run dev
+  npm run build:search
+  # Build HTML pages to check
+  hugo
+  # Build production JavaScript and CSS files
+  npm run build:assets
   # Run the check
   ./bin/htmltest
   ```

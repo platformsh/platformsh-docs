@@ -154,8 +154,6 @@ What you do next depends on the versions of Yarn and Node.js you want.
 
 +++
 title=Yarn 3.x and Node.js 16
-file=none
-highlight=false
 +++
 
 3. Use Corepack to run Yarn in your build hook:
@@ -170,8 +168,6 @@ highlight=false
 
 +++
 title=Yarn 3.x and Node.js 14
-file=none
-highlight=false
 +++
 
 3. Enable Corepack (which is opt-in):
@@ -194,8 +190,6 @@ highlight=false
 
 +++
 title=Yarn < 3
-file=none
-highlight=false
 +++
 
 3. Add Yarn as a global dependency:
