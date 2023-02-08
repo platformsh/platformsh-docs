@@ -178,7 +178,10 @@ mounts:
 The accessibility to the web of a mounted directory depends on the [`web.locations` configuration](#web).
 Files can be all public, all private, or with different rules for different paths and file types.
 
-Note that mounted directories aren't deleted when they're removed from `.platform.app.yaml`.
+Note that when you back up an environment,
+the mounts on that environment are backed up too.
+
+Also, mounted directories aren't deleted when they're removed from `.platform.app.yaml`.
 The files still exist on disk until manually removed.
 
 ## Web
