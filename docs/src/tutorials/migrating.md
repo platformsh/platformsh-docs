@@ -1,6 +1,8 @@
 ---
 title: Migrating to Platform.sh
 description: See how to migrate your app to Platform.sh so it's ready to be deployed.
+keywords:
+  - "set remote"
 ---
 
 If you already have an app running somewhere else, you want to migrate it to Platform.sh and deploy it.
@@ -73,24 +75,6 @@ and you can use the CLI or just Git itself.
 
 {{< codetabs >}}
 +++
-title=Using a source integration
-+++
-
-Set up the integration for your selected service:
-
-- [Bitbucket](../integrations/source/bitbucket.md)
-- [GitHub](../integrations/source/github.md)
-- [GitLab](../integrations/source/gitlab.md)
-
-Then push code to that service as you do normally.
-Pushing to a branch creates an environment from that branch.
-
-Note that the source integration doesn't report any errors in configuration directly.
-You have to monitor those in your project activities.
-
-<--->
-
-+++
 title=Using the CLI
 +++
 
@@ -116,7 +100,23 @@ When you try to push, any detected errors in your configuration are reported and
 After any errors are fixed, a push creates a new environment.
 
 <--->
++++
+title=Using a source integration
++++
 
+Set up the integration for your selected service:
+
+- [Bitbucket](../integrations/source/bitbucket.md)
+- [GitHub](../integrations/source/github.md)
+- [GitLab](../integrations/source/gitlab.md)
+
+Then push code to that service as you do normally.
+Pushing to a branch creates an environment from that branch.
+
+Note that the source integration doesn't report any errors in configuration directly.
+You have to monitor those in your project activities.
+
+<--->
 +++
 title=Using Git
 +++

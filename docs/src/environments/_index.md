@@ -71,12 +71,12 @@ There are no rules you must follow when branching environments.
 You can choose a structure that might best fit your workflow.
 Some possible approaches:
 
-* **Agile**: A child environment per sprint.
+- **Agile**: A child environment per sprint.
   Each story in the sprint can have its own environment as a child of the sprint environment.
-* **Developer-centric**: One QA environment and a few development environments
+- **Developer-centric**: One QA environment and a few development environments
   (*per developer*, *per task*, or similar).
-* **Testing**: An operational test environment, a user test environment, and a few unit test environments.
-* **Hotfix**: One environment for every bug, security, or hotfix that needs deployment.
+- **Testing**: An operational test environment, a user test environment, and a few unit test environments.
+- **Hotfix**: One environment for every bug, security, or hotfix that needs deployment.
 
 Here is an example of a possible Agile workflow.
 
@@ -141,17 +141,19 @@ Staging
 
 Your environments can have one of two statuses:
 
-* [Active](../other/glossary.md#active-environment):
+- [Active](../other/glossary.md#active-environment):
   A deployed environment with services and data.
-* [Inactive](../other/glossary.md#inactive-environment):
+- [Inactive](../other/glossary.md#inactive-environment):
   An environment that isn't deployed and has no services or data, only code.
+  For example, when you push a local branch created with Git to your project,
+  it generates an inactive environment.
 
 You can see an environment's status in multiple ways:
 
-* [In the Console](../administration/web/configure-environment.md):
-  * Inactive environments are lighter in the environment list and don't appear in the environment selector.
-  * Open an environment to see its status in the information panel.
-* Using the CLI:
-  * Run `platform environments` within a project directory.
+- [In the Console](../administration/web/configure-environment.md):
+  - Inactive environments are lighter in the environment list and don't appear in the environment selector.
+  - Open an environment to see its status in the information panel.
+- Using the CLI:
+  - Run `platform environments` within a project directory.
 
 See how to [change an environment's status](./deactivate-environment.md)
