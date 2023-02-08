@@ -56,16 +56,20 @@ The integration is valid.
 
 When integrations run, they trigger "activities."  Activities are actions that happen on Platform.sh, and they get logged.
 
-Usually these are triggered nearly instantaneously on the webhook endpoint. These activities may be delayed due to the external services having latency.
+Usually these are triggered nearly instantaneously on the webhook endpoint.
+These activities may be delayed due to the external services having latency.
 
 Those logs are available via the CLI.
 In most cases they aren't necessary but may be useful for debugging an integration if it is misbehaving for some reason.
 
-There are a handful of commands available, all under the `integrations` section.
+You can get the full payload for each activity via [webhooks](../integrations/activity/webhooks.md).
+
+There are a handful of CLI commands available, all under the `integrations` section.
 
 ### List all activities
 
-The commands `platform integration:activity:list` or its alias `platform integration:activities` will list all activities on a given project and integration.
+The commands `platform integration:activity:list` or its alias `platform integration:activities`
+will list all updates triggered by [activities](../integrations/activity/reference.md) on a given project and integration.
 
 For example, for the project for this site, the command `platform integration:activity:list` outputs:
 
@@ -95,7 +99,7 @@ Activities on the project Platform.sh | Docs (6b2eocegfkwwg), integration c4opi5
 +---------------+---------------------------+-------------------------------------------------------------+----------+---------+
 ```
 
-You may also specify which integration to display in the command line directly: `platform integration:activities c4opi5tjv3yfd`.
+You may also specify an integration to display in the command line directly: `platform integration:activities c4opi5tjv3yfd`.
 
 The ID is an internal identifier for the activity event.
 The Description field is an arbitrary string of text produced by the integration code.

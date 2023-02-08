@@ -147,12 +147,12 @@ The following table presents the possible activities:
 
 | Name | Description |
 |------|-------------|
-| `integration.bitbucket.fetch` | Changes in a Bitbucket Cloud repository have been pulled. |
 | `integration.bitbucket.register_hooks` | An integration hook has been registered with Bitbucket Cloud. |
 | `integration.bitbucket_server.fetch` | Changes in a Bitbucket Server repository have been pulled. |
 | `integration.bitbucket_server.register_hooks` | An integration hook has been registered with Bitbucket Server. |
-| `integration.github.fetch` | Changes in a GitHub repository have been pulled. |
-| `integration.gitlab.fetch` | Changes in a GitLab repository have been pulled. |
+| `integration.bitbucket.fetch` | Changes in a Bitbucket Cloud repository [have been fetched](../../integrations/overview.md#list-all-activities). |
+| `integration.github.fetch` | Changes in a GitHub repository [have been fetched](../../integrations/overview.md#list-all-activities). |
+| `integration.gitlab.fetch` | Changes in a GitLab repository [have been fetched](../../integrations/overview.md#list-all-activities). |
 | `integration.health.email` | A [health notification](../notifications.md) was sent by email. |
 | `integration.health.email` | A [health notification](../notifications.md) was sent to PagerDuty. |
 | `integration.health.email` | A [health notification](../notifications.md) was sent to Slack. |
@@ -257,7 +257,7 @@ The following table presents the most notable properties of the project:
 | `payload.project.timezone` | Your project's [timezone](../../projects/change-project-timezone.md). |
 | `payload.project.region` | Your project's [region](../../development/regions.md#regions). |
 | `payload.project.title` | Your project's name. |
-| `payload.project.subscription` | All of the detail's about your project's [plan](../../administration/pricing/_index.md). |
+| `payload.project.subscription` | All of the details about your project's [plan](../../administration/pricing/_index.md). |
 
 Different from [`project` activities](#type).
 
