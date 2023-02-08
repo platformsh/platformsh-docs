@@ -133,7 +133,7 @@ title=In the Console
 <!-- Bitbucket Cloud is the only one without an option to clone parent data -->
 {{ $cloneOption := "" }}
 {{ if ne $source "Bitbucket" }}
-  {{ $cloneOption = printf `| <code>%[1]s-requests-clone-parent-data</code> | <code>true</code> | Whether to clone data from the parent environment when creating a %[2]s request environment. |` $pull }}
+  {{ $cloneOption = printf `| <code>%[1]s-requests-clone-parent-data</code> | <code>true</code> | Whether to clone data from the parent environment when creating a %[1]s request environment. |` $pull }}
 {{ end }}
 
 <!-- Add options only for certainly integrations -->
