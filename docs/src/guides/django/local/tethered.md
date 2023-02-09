@@ -9,13 +9,11 @@ description: |
 {{% guides/local-ddev-note name="Django" link="/guides/django/local/ddev" %}}
 {{< /note >}}
 
-On Platform.sh, you have the option to connect a locally running application to service containers on an active environment. 
+On Platform.sh, you have the option to connect a locally running application to service containers on an active environment.
 
-## Setting up
+{{% guides/local-requirements %}}
 
-### Assumptions
-
-{{% guides/django-local-assumptions %}}
+{{% guides/django/local-assumptions %}}
 
 Assuming you have followed the [Django deployment guide](/guides/django/deploy), your `settings.py` should contain a Platform.sh specific block that looks like the below:
 

@@ -10,11 +10,9 @@ sectionBefore: Supported environments
 {{% guides/local-ddev-note name="Django" link="/guides/django/local/ddev" %}}
 {{< /note >}}
 
-## Setting up
+{{% guides/local-requirements %}}
 
-### Assumptions
-
-{{% guides/django-local-assumptions %}}
+{{% guides/django/local-assumptions %}}
 
 ### Steps
 

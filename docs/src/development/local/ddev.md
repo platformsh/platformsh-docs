@@ -33,35 +33,11 @@ so the correct files are added.
 
 ## 3. Add an API token
 
-To connect DDEV with your Platform.sh account, use a Platform.sh API token.
-
-1.  [Create an API token](../../administration/cli/api-tokens.md#2-create-a-platformsh-api-token) in the Console.
-
-2.  Add the token to your DDEV configuration.
-    You can do so globally (easiest for most people):
-
-    ```bash
-    ddev config global --web-environment-add=PLATFORMSH_CLI_TOKEN={{< variable "API_TOKEN" >}}
-    ```
-
-    You can also add the token only to the project:
-
-    ```bash
-    ddev config --web-environment-add=PLATFORMSH_CLI_TOKEN={{< variable "API_TOKEN" >}}
-    ```
+{{% ddev/token %}}
 
 ## 4. Connect DDEV to your project
 
-The best way to connect your local DDEV to your Platform.sh project is through the [Platform.sh DDEV add-on](https://github.com/drud/ddev-platformsh).
-To add it, run the following command:
-
-```bash
-ddev get drud/ddev-platformsh
-```
-
-Answer the interactive prompts with your project ID and the name of the environment to pull data from.
-
-With the add-on, you can now run `ddev platform <command>` from your computer without needing to install the Platform.sh CLI.
+{{% ddev/connect %}}
 
 ## 5. Optional: Get your project data
 
