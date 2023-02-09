@@ -29,11 +29,13 @@ jobs:
           PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         run: |
           BRANCH_TITLE=pr-${{ github.event.number }}
-          # Check if environment exists
-          if $(platform env --pipe --columns title | grep -q $BRANCH_TITLE); then
-            # If the environment exists, update it
-            platform push --force -e $BRANCH_TITLE --activate
-          else
-            # If it doesn't exist, create it
+
+          platform project:set-remote $PLATFORM_PROJECT
+
+          # If environment doesn't exist, create it
+          if ! $(platform env --pipe --columns title | grep -q $BRANCH_TITLE); then
             platform branch $BRANCH_TITLE main --force
           fi
+
+          # Update the branch with the code
+          platform push --force -e $BRANCH_TITLE --activate
