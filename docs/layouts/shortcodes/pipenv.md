@@ -7,5 +7,6 @@ dependencies:
 
 hooks:
     build: |
-    pipenv install --system --deploy
+        set -eu
+        pipenv install --system --deploy
 ```
