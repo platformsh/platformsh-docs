@@ -38,7 +38,7 @@ file=/static/files/fetch/appyaml/poetry/django4
 ### How to start your app
 
 Each of these examples includes a command to start your app under `web.commands.start`.
-It uses the Gunicorn Web Server Gateway Interface (WSGI) server and Unix sockets.
+It uses the Gunicorn WSGI server and Unix sockets.
 
 {{< codetabs >}}
 
