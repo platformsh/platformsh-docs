@@ -18,25 +18,24 @@ there's a useful guide in the TYPO3 documentation for [migrating a TYPO3 project
 
 {{< /note >}}
 
-{{% guides/starting-point name="TYPO3" templateRepo="typo3" composerLink="https://github.com/TYPO3/TYPO3.CMS.BaseDistribution" %}}
+{{% guides/starting-point name="TYPO3" templateRepo="typo3" composerLink="https://github.com/TYPO3/TYPO3.CMS.BaseDistribution" initExample=true %}}
 
-## Tools
+{{% guides/requirements %}}
 
-{{% guides/tools %}}
+## Initialize a project
 
-## Sign up for Platform.sh and initialize your project
+{{< guides/initialize name="TYPO3" template="typo3" >}}
 
-{{% guides/signup name="TYPO3" template="typo3" %}}
+If you don't have code, create a new TYPO3 project from scratch.
+The following commands create a brand new TYPO3 project using Composer.
 
-3. Initialize your project:
+```bash
+composer create-project typo3/cms-base-distribution <PROJECT_NAME> ^10
+cd <PROJECT_NAME>
+git init
+git add . && git commit -m "Init TYPO3 from upstream."
+```
 
-   ```bash
-   composer create-project typo3/cms-base-distribution <PROJECT_NAME> ^10
-   cd <PROJECT_NAME>
-   git init
-   git add . && git commit -m "Init TYPO3 from upstream."
-    ```
-
-{{% /guides/signup %}}
+{{< /guides/initialize >}}
 
 {{< guide-buttons next="Configure repository" type="first" >}}

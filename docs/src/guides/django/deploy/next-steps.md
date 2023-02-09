@@ -9,30 +9,31 @@ description: |
 ## Local development
 
 Once Django has been deployed on Platform.sh, you need to set up a local development environment to begin making revisions.
-Below are a few of the available guides to get you and the rest of your team started:
-
-Consult the [Django local development guides](/guides/django/local) for more information.
+For more information, consult the [Django local development guides](../local/_index.md).
 
 ## Package management
 
-pip comes pre-installed in all Python containers on Platform.sh.
-You are also free to use Pipenv and Poetry to manage dependencies locally and on project environments, but there are a few set of caveats to keep in mind when using those tools.
+pip comes pre-installed on all Python containers.
+You can also use Pipenv and Poetry to manage dependencies,
+but there are a caveats to keep in mind when using those tools.
 
-Consult the [managing Python dependencies](/languages/python/dependencies) documentation for more information.
+For more information, see how to [manage Python dependencies](../../../languages/python/dependencies.md).
 
 ## Web servers
 
-The examples in this guide primarily use Gunicorn as a web server for Django apps, but additional servers like Daphne, Uvicorn, and more are equally supported. 
+The examples in this guide primarily use Gunicorn as a web server for Django apps.
+Other servers such as Daphne and Uvicorn are equally supported.
 
-Consult the [Python web servers](/languages/python/server) documentation for more information about how to configure them. 
+See how to configure [Python web servers](../../../languages/python/server.md).
 
-## Sanitizing data
+## Sanitize data
 
-Each development environment on Platform.sh automatically inherits all data from their parent environments by default.
-As a consequence, a developer working on a small feature has access to production data - including PII (Personally Identifiable Information) - in that environment. 
+By default, each development environment automatically inherits all data from its parent environment.
+So a developer working on a small feature has access to production data,
+including personally identifiable information (PII).
+This workflow isn't always desirable or even acceptable based on your compliance requirements.
 
-This workflow isn't always desirable, or even acceptable based on your compliance requirements.
-
-Consult the [sanitizing databases](/development/sanitize-db) documentation for more information about how to enforce compliance requirements for user data across environments.
+For how to enforce compliance requirements for user data across environments,
+see how to [sanitize databases](../../../development/sanitize-db/_index.md).
 
 {{< guide-buttons type="last" >}}

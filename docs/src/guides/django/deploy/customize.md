@@ -2,33 +2,41 @@
 title: "Customize Django for Platform.sh"
 sidebarTitle: "Customize"
 weight: -90
-# toc: false
 description: |
     Add some helpful dependencies, and modify your Django site to read from a Platform.sh environment.
 ---
 
 Now that your code contains all of the configuration to deploy on Platform.sh,
 it's time to make your Django site itself ready to run on a Platform.sh environment.
-A number of additional steps are either required or recommended, depending on how well you want to optimize your site.
+A number of additional steps are either required or recommended, depending on how much you want to optimize your site.
 
-## (Optional) Config Reader
+## Optional: Set up the Config Reader
 
 {{% guides/config-reader-info lang="python" %}}
 
-Any of the examples below that retrieve and decode environment variables directly can be replaced with this library.
+In all of the following examples,
+you can replace retrieving and decoding environment variables with this library.
 
-## `settings.py`
+## Django configuration
 
-`settings.py` is the main Django configuration file.
-It contains the service credentials, and various other settings.
+Most configuration for Django, such as service credentials, is done in a `settings.py` file.
+You can see an example of a [complete settings file in the Django template](https://github.com/platformsh-templates/django4/blob/master/myapp/settings.py).
 
-In the Django template, the [`settings.py`](https://github.com/platformsh-templates/django4/blob/master/myapp/settings.py) file sets up configuration for application settings and credentials for connecting to a PostgreSQL database. 
-Through the use of these environment variables, Django applications remain environment-independent when branching.
+The example file configures app settings and credentials for connecting to a PostgreSQL database. 
+The environment variables defined there enable Django apps to remain independent of their environment.
 
-The file itself is a bit long, but a few important snippets are included below to highlight where this configuration should be modified in your code. 
-Consult the [`settings.py`](https://github.com/platformsh-templates/django4/blob/master/myapp/settings.py) file in the template for more information.
+The example file itself contains a lot of settings,
+the most important of which are highlighted here to show where you could modify your code.
 
-### `ALLOWED_HOSTS`
+### Allowed hosts
+
+[`ALLOWED_HOSTS`](https://docs.djangoproject.com/en/4.1/ref/settings/#allowed-hosts) defines the host names that your Django site can serve.
+It's where you define `localhost` and also your site's primary domain.
+
+On Platform.sh, every branch or pull request you create can become an active environment:
+a deployed site where you can test changes. 
+The environment is given a URL that ends with `.platform.site`.
+To allow your site to serve these environment, add this suffix to `ALLOWED_HOSTS`.
 
 ```py {location="settings.py"}
 ALLOWED_HOSTS = [
@@ -38,13 +46,13 @@ ALLOWED_HOSTS = [
 ]
 ```
 
-[`ALLOWED_HOSTS`](https://docs.djangoproject.com/en/4.1/ref/settings/#allowed-hosts) defines the host names that your Django site can serve, and it's here where you would define not only `locahost`, but also the primary domain of the application.
-
-On Platform.sh, every branch or pull request you create can become an active environment - a staging server where you can test revisions. 
-When the environment is created a URL is generated with the format `ENVIRONMENT_NAME-ENVIRONMENT_HASH.REGION.platform.site`.
-Add this suffix to `ALLOWED_HOSTS` to accommodate this pattern.
-
 ### Decoding variables
+
+Platform.sh environment variables, which contain information on deployed environments, are often obscured. 
+For example, `PLATFORM_RELATIONSHIPS`, which contains credentials to connect to services, is a base64-encoded JSON object.
+
+The example Django configuration file has a `decode` helper function to help with these variables.
+Alternatively, you can use the [Platform.sh Config Reader](#optional-set-up-the-config-reader).
 
 ```py {location="settings.py"}
 #################################################################################
@@ -70,31 +78,37 @@ def decode(variable):
         print('Error decoding JSON, code %d', json.decoder.JSONDecodeError)
 ```
 
-Environment variables on Platform.sh, which contain credentials to connect to services within an environment, are often obscured. 
-`PLATFORM_RELATIONSHIPS` for example, which contains those service examples, is a base64-encoded JSON object.
+### Platform.sh overrides
 
-Within `settings.py`, the Django template starts a block of Platform.sh-specific configuration meant to override options configured above it. 
-Starting that section is the helper function `decode`, is used in subsequent settings.
-
-{{< note >}}
-Decoding these types of variables comes built into the [Platform.sh Config Reader](#optional-config-reader).
-{{< /note >}}
-
-### Platform.sh overrides 
+Once you have a [way to decode variables](#decoding-variables),
+you can use them to override settings based on the environment.
+The following example uses the `decode` function to set access to the one service defined in this example,
+a PostgreSQL database.
 
 ```py {location="settings.py"}
-# This variable should always match the primary database relationship name,
+# This variable must always match the primary database relationship name,
 #   configured in .platform.app.yaml.
 PLATFORMSH_DB_RELATIONSHIP="database"
 
 # Import some Platform.sh settings from the environment.
+# The following block is only applied within Platform.sh environments
+# That is, only when this Platform.sh variable is defined
 if (os.getenv('PLATFORM_APPLICATION_NAME') is not None):
     DEBUG = False
+
+    # Redefine the static root based on the Platform.sh directory
+    # See https://docs.djangoproject.com/en/4.1/ref/settings/#static-root
     if (os.getenv('PLATFORM_APP_DIR') is not None):
         STATIC_ROOT = os.path.join(os.getenv('PLATFORM_APP_DIR'), 'static')
+
+    # PLATFORM_PROJECT_ENTROPY is unique to your project
+    # Use it to define define Django's SECRET_KEY
+    # See https://docs.djangoproject.com/en/4.1/ref/settings/#secret-key
     if (os.getenv('PLATFORM_PROJECT_ENTROPY') is not None):
         SECRET_KEY = os.getenv('PLATFORM_PROJECT_ENTROPY')
-    # Database service configuration, post-build only.
+
+    # Database service configuration, post-build only
+    # As services aren't available during the build
     if (os.getenv('PLATFORM_ENVIRONMENT') is not None):
         platformRelationships = decode(os.getenv('PLATFORM_RELATIONSHIPS'))
         db_settings = platformRelationships[PLATFORMSH_DB_RELATIONSHIP][0]
@@ -114,67 +128,21 @@ if (os.getenv('PLATFORM_APPLICATION_NAME') is not None):
         }
 ```
 
-The large block above leverages `decode` to override settings that may have been set previously in `settings.py` when in the context of a Platform.sh environment. 
-Remember, when configuring the application itself in `.platform.app.yaml`, no matter which package manager chosen, access was defined to one service - a PostgreSQL database.
+As noted in comments in the example, services on Platform.sh (like PostgreSQL) aren't yet available during the build.
+This it enables the environment-independent builds that make the Platform.sh inheritance model possible.
 
-- `PLATFORMSH_DB_RELATIONSHIP="database"` is included to start the block, which matches the name of the relationship the Django application can access PostgreSQL from. 
-
-  ```yaml {location=".platform.app.yaml"}
-  relationships:
-      database: "db:postgresql"
-  ```
-- The next block ensures that the settings provided are only applied when run on Platform.sh - using the built-in variable `PLATFORM_APPLICATION_NAME` as a catch.
-  In this scenario, `DEBUG = False`, because every environment is treated as identical to production.
-  ```py {location="settings.py"}
-  if (os.getenv('PLATFORM_APPLICATION_NAME') is not None):
-      DEBUG = False
-  ```
-- The Platform.sh built in variable `PLATFORM_APP_DIR` is used to redefine [`STATIC_ROOT`](https://docs.djangoproject.com/en/4.1/ref/settings/#static-root).
-  ```py {location="settings.py"}
-  if (os.getenv('PLATFORM_APP_DIR') is not None):
-      STATIC_ROOT = os.path.join(os.getenv('PLATFORM_APP_DIR'), 'static')
-  ```
-- Platform.sh provides a hash variable `PLATFORM_PROJECT_ENTROPY`, unique to the project, which is reused to define Django's [`SECRET_KEY`](https://docs.djangoproject.com/en/4.1/ref/settings/#secret-key)
-  ```py {location="settings.py"}
-  if (os.getenv('PLATFORM_PROJECT_ENTROPY') is not None):
-      SECRET_KEY = os.getenv('PLATFORM_PROJECT_ENTROPY')
-  ```
-- During the build phase, services on Platform.sh (like PostgreSQL) aren't yet available.
-  This is an important restriction, as it enables environment-independent builds that makes the Platform.sh inheritance model possible. 
-  Because of this, when defining `DATABASES` to connect to a service, it's necessary to include a catch that confirms settings are only overwritten during the deploy phase, which can be determined using the `PLATFORM_ENVIRONMENT` variable only available at deploy time. 
-  ```py {location="settings.py"}
-  if (os.getenv('PLATFORM_ENVIRONMENT') is not None):
-      platformRelationships = decode(os.getenv('PLATFORM_RELATIONSHIPS'))
-      db_settings = platformRelationships[PLATFORMSH_DB_RELATIONSHIP][0]
-  ```
-  The credential data is decoded using `decode`, and then settings for the PostgreSQL service are retrieved using the `PLATFORMSH_DB_RELATIONSHIP` relationship name defined previously.
-- Finally, `DATABASES` itself is redefined using the credentials now available in `db_settings`
-  ```py {location="settings.py"}
-  DATABASES = {
-      'default': {
-          'ENGINE': 'django.db.backends.postgresql',
-          'NAME': db_settings['path'],
-          'USER': db_settings['username'],
-          'PASSWORD': db_settings['password'],
-          'HOST': db_settings['host'],
-          'PORT': db_settings['port'],
-      },
-      'sqlite': {
-          'ENGINE': 'django.db.backends.sqlite3',
-          'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-      }
-  }
-  ```
+For this reason, when defining a service connection, you need to overwrite the settings during the deploy phase.
+You can determine the deploy phase using the `PLATFORM_ENVIRONMENT` variable, which is only available at deploy time.
 
 ## `.environment` and Poetry
 
-Platform.sh runs `source .environment` in the [app root](../../../create-apps/app-reference.md#root-directory)
+`source .environment` is run in the [app root](../../../create-apps/app-reference.md#root-directory)
 when a project starts, before cron commands are run, and when you log into an environment over SSH.
-That gives you a place to do extra environment variable setup before the app runs,
+So you can use the `.environment` file to make further changes to environment variables before the app runs,
 including modifying the system `$PATH` and other shell level customizations.
 
-On its own, Django projects like the one shown here using Pip or Pipenv don't need to commit a `.environment` file to run. 
-Poetry, on the other hand, requires an additional piece of configuration to ensure that it can be called during the deploy phase and SSH sessions.
+Django projects like this example using Pip or Pipenv don't need a `.environment` file to run. 
+Using Poetry requires additional configuration to ensure that Poetry can be called during the deploy phase and SSH sessions.
 
 ```text {location=".environment"}
 # Updates PATH when Poetry is used, making it available during deploys and SSH.
@@ -183,6 +151,7 @@ if [ -n "$POETRY_VERSION" ]; then
 fi
 ```
 
-Feel free to include any other environment variables your application depends on in this file that you don't them mind being committed.
+If you have other environment variables your app depends on that aren't sensitive and so can be committed to Git,
+you can include them in the `.environment` file 
 
 {{< guide-buttons next="Deploy Django" >}}

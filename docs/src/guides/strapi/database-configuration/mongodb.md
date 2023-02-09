@@ -2,12 +2,11 @@
 title: "Configure MongoDB for Strapi on Platform.sh"
 sidebarTitle: "MongoDB"
 weight: -70
-toc: false
 description: |
   Configure your strapi application to use a MongoDB database on Platform.sh (v3 only).
 ---
 
-Strapi can also be configured to use MongoDB as it’s default database,
+Strapi can also be configured to use MongoDB as its default database,
 although due to compatibility issues this database type is only available in Strapi v3 and [not supported in Strapi v4](https://forum.strapi.io/t/mongodb-compatibility-delayed-on-v4/4549).
 To use MongoDB with a Strapi v3 application on Platform.sh, follow these steps.
 

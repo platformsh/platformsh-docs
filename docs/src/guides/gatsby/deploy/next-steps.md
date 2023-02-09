@@ -2,12 +2,9 @@
 title: "Additional resources"
 sidebarTitle: "Next steps"
 weight: -70
-toc: false
 description: |
     A collection of resources for the further development of your Gatsby site.
 ---
-
-## Multi-app configuration and headless CMS content sources
 
 Platform.sh supports [multi-app configuration](../../../create-apps/multi-app.md) on projects - that is, including code for two separate sites that are deployed on their own containers within a single project cluster. 
 

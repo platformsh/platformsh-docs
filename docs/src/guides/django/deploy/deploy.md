@@ -6,18 +6,18 @@ description: |
     Now that your site is ready, push it to Platform.sh and import your data.
 ---
 
-## Deployment
+{{% guides/deployment %}}
 
-{{< guides/deployment >}}
-
-{{% guides/data-migration %}}
-
-{{% /guides/data-migration %}}
+{{% guides/data-migration /%}}
 
 {{< note >}}
-The example Django application used in this guide can be migrated solely by importing data into the database. 
-Other forms of data within mounts - user uploads, for example - also need to be migrated in the way described above. 
-Consult the [mounts](/create-apps/app-reference#mounts) documentation to view the syntax for defining directories that retain write access at runtime, then follow the commands above to upload that data to them.
+
+The example Django app used in this guide can be migrated solely by importing data into the database.
+Other forms of data, such as user uploads, also need to be migrated in the way described above.
+
+To see how to define directories that are writable at runtime, see the [mounts reference](../../../create-apps/app-reference#mounts).
+Then adjust the previous commands to upload files to them.
+
 {{< /note >}}
 
 Go forth and Deploy (even on Friday)!

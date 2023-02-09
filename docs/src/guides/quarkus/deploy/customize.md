@@ -2,7 +2,6 @@
 title: "Customize Quarkus for Platform.sh"
 sidebarTitle: "Customize"
 weight: -90
-toc: false
 description: |
     Add some helpful dependencies, and modify your Quarkus site to read from a Platform.sh environment.
 ---

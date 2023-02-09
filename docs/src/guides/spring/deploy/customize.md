@@ -2,7 +2,6 @@
 title: "Customize Spring for Platform.sh"
 sidebarTitle: "Customize"
 weight: -90
-toc: false
 description: |
     Add some helpful dependencies, and modify your Spring site to read from a Platform.sh environment.
 ---

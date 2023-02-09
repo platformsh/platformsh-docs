@@ -40,9 +40,7 @@ so each new pull request environment can test changes to either the frontend or 
 
 Gatsby is just one example of a frontend that can be used with this pattern.
 
-## Tools
-
-{{% guides/tools %}}
+{{% guides/requirements %}}
 
 ## Signing up for Platform.sh
 

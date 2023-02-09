@@ -3,8 +3,7 @@ title: Deploy Django on Platform.sh
 sidebarTitle: Get started
 weight: -130
 layout: single
-description: |
-    Create a Platform.sh account, download a few tools, and prepare to deploy Django.
+description: See how to get started deploying Django on Platform.sh.
 ---
 
 Django is a web application framework written in Python with a built-in ORM (Object-Relational Mapper).
@@ -12,7 +11,7 @@ Django is a web application framework written in Python with a built-in ORM (Obj
 This guide provides instructions for deploying, and working with, Django on Platform.sh. 
 It includes examples for working with Django on all of the major package managers: pip, Pipenv, and Poetry. 
 
-{{% guides/starting-point name="Django" templateRepo="django4" %}}
+{{% guides/starting-point name="Django" templateRepo="django4" initExample=true %}}
 
 {{< note >}}
 
@@ -20,29 +19,27 @@ This guide is written for Django 4, but should apply almost exactly the same for
 
 {{< /note >}}
 
-## Tools
+{{% guides/requirements %}}
 
-{{% guides/tools %}}
+## Initialize a project
 
-## Sign up for Platform.sh and initialize your project
+{{< guides/initialize name="Django" template="django4" >}}
 
-{{% guides/signup name="Django" template="django4" %}}
+If you don't have code, create a new Django project from scratch.
+The following commands create a brand new Django project using [Django Admin](https://docs.djangoproject.com/en/4.1/intro/tutorial01/#creating-a-project).
 
-3. Initialize or clone your Git repository with existing code or create a new Django project from scratch.
-   The commands below create a brand new Django project using [Django Admin](https://docs.djangoproject.com/en/4.1/intro/tutorial01/#creating-a-project), which you can then modify according to the rest of this guide.
+```bash
+$ django-admin startproject {{< variable "PROJECT_NAME" >}}
+$ cd {{< variable "PROJECT_NAME" >}}
+$ git init
+$ git add . && git commit -m "Create basic Django app."
+```
 
-   ```bash
-   django-admin startproject mysite
-   cd <PROJECT_NAME>
-   git init
-   git add . && git commit -m "Create basic Django app."
-   ```
+The community also provides a number of open-source starting points you can consult:
 
-   The community also provides a number of open-source starting points you can consult:
+- [`django-simple-deploy`](https://github.com/ehmatthes/django-simple-deploy) maintained by [@ehmatthes](https://github.com/ehmatthes)
+- [`djangox`](https://github.com/wsvincent/djangox) maintained by [@wsvincent](https://github.com/wsvincent)
 
-    - [`django-simple-deploy`](https://github.com/ehmatthes/django-simple-deploy) maintained by [@ehmatthes](https://github.com/ehmatthes)
-    - [`djangox`](https://github.com/wsvincent/djangox) maintained by [@wsvincent](https://github.com/wsvincent)
-
-{{% /guides/signup %}}
+{{< /guides/initialize >}}
 
 {{< guide-buttons next="Configure repository" type="first" >}}

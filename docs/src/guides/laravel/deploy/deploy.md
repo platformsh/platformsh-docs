@@ -5,7 +5,7 @@ weight: -80
 description: |
   Now that your Laravel app is ready, push it to Platform.sh and import your data.
 ---
-{{< guides/deployment >}} 
+{{% guides/deployment %}} 
 
 {{% guides/data-migration /%}}
 
