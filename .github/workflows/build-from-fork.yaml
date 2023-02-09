@@ -32,6 +32,7 @@ jobs:
 
           # If environment doesn't exist, create it
           if ! $(platform env --pipe | grep -q $BRANCH_TITLE); then
+            git checkout ${{ github.event.pull_request.head.sha }}
             git switch -C $BRANCH_TITLE
           fi
 
