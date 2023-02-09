@@ -115,6 +115,37 @@ Learn more about [{{% names/dedicated-gen-3 %}}](../../dedicated-gen-3/overview.
 
 To discuss how {{% names/dedicated-gen-3 %}} could work for you, [contact Sales](https://platform.sh/contact/).
 
+## Enteprise overages 
+
+**The following applies to all Enterprise and Elite subscriptions.**
+
+If your applications happen to receive and send more traffic during the month than your plan includes, you will be charged the overage rate for additional bandwidth consumption.
+
+In case of repeating overages, please reach out to your Customer Success Manager to review your existing contract.
+
+If you have subscribed to a plan with a Fastly CDN service or selected the extra `FASTLY-SERVICE` product, the following is included:
+
+  - 1Tb of egress (outgoing) bandwith on the CDN (Fastly)
+  - 500 Millions ingress requests on the CDN
+
+*If your plan does not include a Fastly Service, the Origin pricing below will be applied instead.*
+
+### Overage prices
+
+| SKU | Description | USD | EUR | AUD | CAD | GBP
+|---|---|---|---|---|---|---|
+| `BDW-1-POST` | Additional 1Tb of egress bandwidth and 500M ingress requests  | $88 | 77€ | AU$128 | CA$119 | £68
+| `EDGE-REQ-POST` | Additional 100M ingress requests | $66 | 62€ | AU$95 | CA$88 | £54
+| `ORN-1-POST` | Additional 1Tb of egress bandwidth and 500M ingress requests at the origin | $209 | 167€ | AU$316 | CA$284 | £189
+
+### DDoS surge protection
+
+In case your site is suffering from a DDoS attack, overages may apply. You can contact your Customer Success Manager to add our DDoS surge protection offer to your plan.
+
+| SKU | Description | USD | EUR | AUD | CAD | GBP
+|---|---|---|---|---|---|---|
+| `EDGE-DDOS-PROTECTION` | Surge protection for DDoS related overages | $2400 | 2220€ | AU$3444 | CA$3216 | £1968
+
 ## Agencies
 
 Agencies have access to several partner levels with many perks.
