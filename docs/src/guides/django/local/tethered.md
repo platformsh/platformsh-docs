@@ -202,7 +202,7 @@ Below are some examples.
 It's essential for every developer on your team to have a local development environment to work on revisions from. 
 Placing the above configuration into a script helps ensure this, and is a revision that can be merged into production. 
 
-1. [Set up your local development environment](#setting-up) for a new environment called `local-config`.
+1. Create a new environment called `local-config`.
 2. Create an executable script for setting up a local environment for a new Platform.sh environment. 
 
     ```bash
@@ -395,7 +395,7 @@ to set up their local environment.
 
 ### Sanitize data
 
-1. [Set up your local development environment](#setting-up) for a new environment called `sanitize-non-prod`.
+1. Create a new environment called `sanitize-non-prod`.
 2. Modify deploy hook to sanitize data.
 
     Once your local environment has been set up, follow the [sanitizing PostgreSQL with Django](development/sanitize-db/postgresql) example to add a sanitization script to the deploy hook of `.platform.app.yaml` specific to your data, which will run on non-production environments.
