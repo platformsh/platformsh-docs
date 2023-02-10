@@ -1,4 +1,5 @@
-Let's Encrypt has a limit of 100 hostnames per certificate and 64 character per hostname.
-Each of your environments can have 1 Let's Encrypt certificate.
-If you define both a `{default}` and `www.{default}` route for each domain you use, you have a limit of 50 hostnames.
-Adding more than that results in a warning on deploy and no new TLS certificates are issued.
+Let's Encrypt allows a maximum of 100 hostnames per certificate and 64 characters per hostname.
+As a Platform.sh user, you can have 1 Let's Encrypt certificate for each of your environments.
+If you define both a `{default}` and a `www.{default}` route for each domain you use,
+you can add up to 50 hostnames.
+Going over this limitation results in a warning on deploy and no new TLS certificates are issued.
