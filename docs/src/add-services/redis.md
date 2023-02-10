@@ -5,11 +5,11 @@ sidebarTitle: "Redis"
 ---
 
 [Redis](https://redis.io/documentation) is a multi-model database that allows you to store data in memory
-for high-performance data retrieval and storage purposes.
+for high-performance data retrieval and key-value storage.
 Platform.sh supports two different Redis configurations:
 
-- [Ephemeral Redis](#ephemeral-redis): for application-level caching with no persistent storage
-- [Persistent Redis](#persistent-redis): for fast application-level key-value persistent storage
+- [Ephemeral](#ephemeral-redis): to set up a non-persistent cache for your application
+- [Persistent](#persistent-redis): to set up fast persistent storage for your application
 
 {{% frameworks %}}
 
@@ -52,10 +52,12 @@ Ephemeral Redis stores data only in memory and requires no disk space.
 When the service reaches its memory limit, it triggers a cache cleanup.
 To customize those cache cleanups, set up an [eviction policy](#eviction-policy).
 
-When you use ephemeral Redis,
-make sure the cache is cleaned up regularly.
-To trigger a cache cleanup every time your app starts,
-configure a `start` [web command](../create-apps/app-reference.md#web-commands) similar to:
+Make sure your app doesn't rely on ephemeral Redis for persistent storage as it can cause issues.
+For example, if a container is moved during region maintenance,
+the `deploy` and `post_deploy` hooks can't run and the app shows errors.
+
+To avoid such issues, trigger a cache cleanup every time your app starts.
+To do so, configure a `start` [web command](../create-apps/app-reference.md#web-commands) similar to the following:
 
 ```yaml {location=".platform.app.yaml"}
 web:
@@ -63,10 +65,9 @@ web:
         start: 'redis-cli -h redis.internal flushall'
 ```
 
-Note that when you use ephemeral Redis,
-data can be lost when a container is moved or shut down.
-To prevent this, use the [persistent Redis](#persistent-redis) configuration 
-that sets up a Redis cache with persistent storage.
+To prevent data from getting lost when a container is moved or shut down,
+you can use the [persistent Redis](#persistent-redis) configuration. 
+Persistent Redis provides a cache with persistent storage.
 
 ### Persistent Redis
 
@@ -124,9 +125,9 @@ highlight=python
 Redis 3.0 and above support up to 64 databases.
 But you can't set up different access rights to each database.
 When you set up a relationship connection,
-access to all the databases is automatically granted.
+access to all of the databases is automatically granted.
 
-The way you can access a particular database depends on the [client library](https://redis.io/clients) you're using:
+The way to access a particular database depends on the [client library](https://redis.io/clients) you're using:
 
 {{< codetabs >}}
 
@@ -186,37 +187,32 @@ const value = await client.get('x'); // returns 42
 
 ## Relationship
 
-After you've [configured your Redis service](#usage-example),
-you can retrieve information such as the credentials and port you need to connect to your Redis service.
-
-To do so, you can access the [`PLATFORM_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables) directly [in your app](../../development/variables/use-variables.md#access-variables-in-your-app),
-for example using a Platform.sh configuration reader.
-
-The format exposed in the `PLATFORM_RELATIONSHIPS` environment variable is identical
-for [ephemeral](#ephemeral-redis) and [persistent](#persistent-redis) Redis:
+Example information available through the [`$PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-platformsh-provided-variables)
+or by running `platform relationships`:
 
 {{< relationship "redis" >}}
 
+The format of the relationship is identical whether your Redis service is [ephemeral](#ephemeral-redis) or [persistent](#persistent-redis).
+
 ## Eviction policy
 
-When the [ephemeral Redis](#ephemeral-redis) reaches its memory limit,
+When [ephemeral Redis](#ephemeral-redis) reaches its memory limit,
 it triggers a cache cleanup.
-To customize those cache cleanups, set up an eviction policy:
+To customize those cache cleanups, set up an eviction policy such as the following:
 
 ```yaml {location=".platform.app.yaml"}
 web:
-cache:
-    type: redis:5.0
-    configuration:
-        maxmemory_policy: allkeys-lru
+    cache:
+        type: redis:5.0
+        configuration:
+            maxmemory_policy: allkeys-lfu
 ```
 
-The value of the `maxmemory-policy` key defines which eviction policy applies.
-Possible values are:
+The following table presents the possible values:
 
 | Value             | Policy description                                                                                          |
 |-------------------|-------------------------------------------------------------------------------------------------------------|
-| `allkeys-lru`     | Removes the oldest cache items first. This is the default policy.                                           |
+| `allkeys-lru`     | Removes the oldest cache items first. This is the default policy when `maxmemory_policy` isn't set.         |
 | `noeviction`      | New items aren’t saved when the memory limit is reached.                                                    |
 | `allkeys-lfu`     | Removes least frequently used cache items first.                                                            |
 | `volatile-lru`    | Removes least recently used cache items with the `expire` field set to `true`.                              |
@@ -235,8 +231,7 @@ you can access it using the [Redis CLI](https://redis.io/docs/ui/cli/).
 
 Retrieve the hostname and port you can connect to 
 through the `PLATFORM_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables).
-You can access the `PLATFORM_RELATIONSHIPS` environment variable directly [in your app](../../development/variables/use-variables.md#access-variables-in-your-app),
-for example using a Platform.sh configuration reader.
+To do so, run the `platform relationships` command.
 
 After you've retrieved the hostname and port, [open an SSH session](../development/ssh/_index.md).
 To access your Redis service, run the following command:
