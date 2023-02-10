@@ -36,4 +36,6 @@ title=Using the CLI
 {{< /codetabs >}}
 
 You are billed only for the portion of a month when the project was active.
-A user account with no projects has no charges.
+
+When you remove all your projects from your user account,
+you stop being charged.
