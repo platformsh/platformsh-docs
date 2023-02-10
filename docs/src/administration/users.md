@@ -89,11 +89,11 @@ The user has to create an account before they can contribute to the project.
 Once you add a user to a project, they receive an email with instructions.
 For SSH access changes to apply after you add a user to a project, you have to redeploy each environment by either clicking **Redeploy** in the Console or running `platform redeploy`.
 
-### Delete a user from a project
+### Remove a user from a project
 
-To delete a user, you need to be a [Project Admin](#user-roles).
+To remove a user from a project, you need to be a [Project Admin](#user-roles).
 
-To delete a user from a project, follow these steps:
+To remove a user, follow these steps:
 
 {{< codetabs >}}
 
@@ -104,9 +104,9 @@ title=In the Console
 - Select the project where you want to add a new user.
 - Click {{< icon settings >}} **Settings**.
 - Click **Access**.
-- Expand the user you want to delete.
-- Click **Delete**.
-- Click **Save**.
+- Click the user you want to delete.
+- Click **Remove user**.
+- Click **Accept**.
 
 <--->
 
@@ -128,7 +128,7 @@ you must [trigger a redeploy](../development/troubleshoot.md#force-a-redeploy) t
 
 To manage user permissions, you need to be a [Project Admin](#user-roles).
 
-To change user permissions, follow these steps:
+Follow these steps:
 
 {{< codetabs >}}
 
@@ -139,9 +139,9 @@ title=In the Console
 - Select the project where you want to add a new user.
 - Click {{< icon settings >}} **Settings**.
 - Click **Access**.
-- Expand the user you want to delete.
-- Click **Delete**.
-- Click **Delete** to confirm.
+- Click the user whose permissions you want to manage.
+- Change the settings.
+- Click **Save**.
 
 <--->
 
