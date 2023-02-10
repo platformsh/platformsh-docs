@@ -89,4 +89,6 @@ jobs:
         if: steps.environment_exists.outputs.environment_exists == 'true'
         env:
           PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
-        run: platform environment:delete --delete-branch --no-wait pr-${{ github.event.number }}
+        run: |
+          git branch -D pr-${{ github.event.number }}
+          git push
