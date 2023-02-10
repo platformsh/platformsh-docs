@@ -30,18 +30,12 @@ jobs:
         run: |
           BRANCH_TITLE=pr-${{ github.event.number }}
 
-          # If environment doesn't exist, create it
-          if ! $(platform env --pipe | grep -q $BRANCH_TITLE); then
-            echo "Creating branch"
-            git checkout ${{ github.event.pull_request.head.sha }}
-            git switch -c $BRANCH_TITLE
-          fi
+          # Get most recent changes
+          git checkout ${{ github.event.pull_request.head.sha }}
 
-          git config user.name "GitHub Workflow"
-          git config user.email "username@users.noreply.github.com"
-          touch ${{ github.event.pull_request.head.sha }}.txt
-          git add .
-          git commit -m "💚 Adding an irrelevant change"
+          # Put most recent changes on the branch
+          echo "Switching to branch"
+          git switch -C $BRANCH_TITLE
 
           echo "Pushing most recent changes"
           git push --force origin $BRANCH_TITLE
