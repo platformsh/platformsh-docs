@@ -207,6 +207,7 @@ You could then configure this into three apps as in the following configuration:
 The `api` app is built from the `api-app` directory.
 Both the `main` and `admin` apps are built from the `main-app` directory,
 but they have different configurations for how they serve the files.
+To build multiple apps from the repostory root, set `source.root` to `/`.
 
 This allows you to control all your apps in one place and even build multiple apps from the same source code.
 
