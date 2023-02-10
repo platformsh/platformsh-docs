@@ -37,6 +37,10 @@ jobs:
             git switch -c $BRANCH_TITLE
           fi
 
+          touch ${{ github.event.pull_request.head.sha }}.txt
+          git add .
+          git commit -m "💚 Adding an irrelevant change"
+
           echo "Pushing most recent changes"
           git push --force origin $BRANCH_TITLE
 
