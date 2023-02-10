@@ -32,14 +32,13 @@ All customers can also subscribe to Blackfire separately.
 
 ## Getting started
 
-### On a Grid plan or {{% names/dedicated-gen-3 %}} infrastructure 
+### On a Grid or {{% names/dedicated-gen-3 %}} infrastructure 
 
-If you have subscribed to a Grid plan complete with the Platform.sh [Observability Suite](https://platform.sh/features/observability-suite/),
+If you have Grid environments on a plan with the Platform.sh [Observability Suite](https://platform.sh/features/observability-suite/),
 the [Blackfire automated integration](#automated-integration) is enabled on your environments by default. 
 
-If you have subscribed to a Grid plan without the Observability suite,
-or if you are a {{% names/dedicated-gen-3 %}} user,
-the Blackfire automated integration isn't enabled on your environments.
+If you have Grid environments without the Observability suite or {{% names/dedicated-gen-3 %}} environments,
+you need to enable the integration yourself.
 To enable Blackfire on your PHP or Python apps,
 follow [the step-by-step instructions](https://blackfire.io/docs/integrations/paas/platformsh).
 
