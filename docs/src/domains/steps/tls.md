@@ -6,8 +6,8 @@ sidebarTitle: "Custom TLS certificates"
 
 Platform.sh automatically provides standard Transport Layer Security (TLS) certificates for all sites and environments.
 These certificates are issued at no charge by [Let's Encrypt](https://letsencrypt.org/) and cover most needs.
-To use them, you need to [specify HTTPS routes](/define-routes/https.md#using-https). 
-Note that some [limitations](/define-routes/https.md#limits) apply.
+To use them, you need to [specify HTTPS routes](../../define-routes/https.md#enable-https). 
+Note that some [limitations](../../define-routes/https.md#lets-encrypt-limitations) apply.
 
 Platform.sh allows you to use third-party TLS certificates free of charge.
 

@@ -106,7 +106,7 @@ To allow and deny IP addresses, follow these steps:
 ### Client-authenticated TLS
 
 If your CDN provider supports it,
-you can secure your site through [client-authenticated TLS](../../define-routes/https.md#client-authenticated-tls).
+you can secure your site through [client-authenticated TLS](../../define-routes/https.md#enable-client-authenticated-tls).
 
 To enable client-authenticated TLS, follow these steps:
 

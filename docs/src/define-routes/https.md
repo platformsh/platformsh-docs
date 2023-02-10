@@ -20,8 +20,8 @@ Platform.sh automatically provides TLS certificates for all sites and environmen
 These certificates are issued at no charge by [Let's Encrypt](https://letsencrypt.org/) and cover most needs.
 They're valid for 90 days and automatically renewed 28 days before expiration.
 
-To use them, you only need to [specify HTTPS routes](/define-routes/https.md#enable-https). 
-Note that [limitations](/define-routes/https.md#limits) apply.
+To use them, you only need to [specify HTTPS routes](#enable-https). 
+Note that [limitations](#lets-encrypt-limitations) apply.
 If you encounter issues with the TLS certificates provided by Platform.sh,
 check that [TLS encryption is up-and-running](../domains/troubleshoot.md#verify-ssltls-encryption).
 
