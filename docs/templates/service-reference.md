@@ -64,10 +64,10 @@ highlight=<LANGUAGE>
 <!-- If the service has options in the `configuration` key -->
 ## Configuration options
 
-You can configure your <SERVICE_NAME> service in the [services configuration](./_index.md) with the following options:
+You can configure your <SERVICE_NAME> service in the [services configuration](#1-configure-the-service) with the following options:
 
-| Name   | Type     | Required | Description |
-| ------ | -------- | -------- | ----------- |
+| Name   | Type     | Required | Description   |
+|--------|----------|----------|---------------|
 | `type` | `string` | Yes      | What it does. |
 
 ## Relationship reference
