@@ -103,7 +103,7 @@ you see the following resolved routes (assuming `example.com` is your default do
 
 ```json
 {
-  "http://example.com/": {
+  "https://example.com/": {
     "primary": true,
     "id": null,
     "attributes": {},
@@ -111,7 +111,7 @@ you see the following resolved routes (assuming `example.com` is your default do
     "upstream": "app",
     "original_url": "https://{default}"
   },
-  "http://subdomain.example.com/": {
+  "https://subdomain.example.com/": {
     "primary": false,
     "id": null,
     "attributes": {},
