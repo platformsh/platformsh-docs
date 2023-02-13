@@ -1,114 +1,59 @@
 ---
 title: Tethered local
 weight: -90
-description: |
-    Connect a locally running Django server directly to active services on a Platform.sh environment.
+description: Connect a locally running Django server directly to active services on a Platform.sh environment.
 ---
 
 {{< note theme="info" >}}
-{{% guides/local-ddev-note name="Django" link="/guides/django/local/ddev" %}}
+{{% ddev/local-note name="Django" link="/guides/django/local/ddev" %}}
 {{< /note >}}
 
-On Platform.sh, you have the option to connect a locally running application to service containers on an active environment.
+To test changes locally, you can connect your locally running Django server
+to service containers on an active Platform.sh environment.
 
 {{% guides/local-requirements %}}
 
 {{% guides/django/local-assumptions %}}
 
-Assuming you have followed the [Django deployment guide](/guides/django/deploy), your `settings.py` should contain a Platform.sh specific block that looks like the below:
+If you followed the [Django deployment guide](../deploy/_index.md),
+you should have a Django configuration file with settings for [decoding variables](../deploy/customize.md#decoding-variables)
+and also [overrides for Platform.sh](../deploy/customize.md#decoding-variables).
 
-```py {location="settings.py"}
-import os
-import json
-import base64
+You can use these settings to set up a tethered connection to services running on a Platform.sh environment.
+The settings are used to mock the conditions of the environment locally.
 
-...
+## Create the tethered connection
 
-PLATFORMSH_DB_RELATIONSHIP="database"
-
-# Helper function for decoding base64-encoded JSON variables.
-def decode(variable):
-    try:
-        if sys.version_info[1] > 5:
-            return json.loads(base64.b64decode(variable))
-        else:
-            return json.loads(base64.b64decode(variable).decode('utf-8'))
-    except json.decoder.JSONDecodeError:
-        print('Error decoding JSON, code %d', json.decoder.JSONDecodeError)
-
-# Import some Platform.sh settings from the environment.
-if (os.getenv('PLATFORM_APPLICATION_NAME') is not None):
-    DEBUG = False
-    if (os.getenv('PLATFORM_APP_DIR') is not None):
-        STATIC_ROOT = os.path.join(os.getenv('PLATFORM_APP_DIR'), 'static')
-    if (os.getenv('PLATFORM_PROJECT_ENTROPY') is not None):
-        SECRET_KEY = os.getenv('PLATFORM_PROJECT_ENTROPY')
-    # Database service configuration, post-build only.
-    if (os.getenv('PLATFORM_ENVIRONMENT') is not None):
-        platformRelationships = decode(os.getenv('PLATFORM_RELATIONSHIPS'))
-        db_settings = platformRelationships[PLATFORMSH_DB_RELATIONSHIP][0]
-        DATABASES = {
-            'default': {
-                'ENGINE': 'django.db.backends.postgresql',
-                'NAME': db_settings['path'],
-                'USER': db_settings['username'],
-                'PASSWORD': db_settings['password'],
-                'HOST': db_settings['host'],
-                'PORT': db_settings['port'],
-            },
-            'sqlite': {
-                'ENGINE': 'django.db.backends.sqlite3',
-                'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-            }
-        }
-```
-
-Where a helper function `decode` is also defined in that file to decode base64 encoded JSON objects -- the format of the service credential-containing built-in environment variable `PLATFORM_RELATIONSHIPS`.
-Setting up a [tethered connection](/development/local/tethered) to a Platform.sh environment's services leverages this block by mocking the conditions of that environment locally. 
-
-### Steps
-
-1. Create a new environment off of production.
+1.  Create a new environment off of production.
 
     ```bash
     platform branch new-feature main
     ```
 
-2. Open an SSH tunnel to the new environment's services.
+2.  Open an SSH tunnel to the new environment's services by running the following command:
 
     ```bash
     platform tunnel:open
     ```
 
-    You can verify the connection to the service:
+    This command returns the addresses for SSH tunnels to all of your services.
 
-    ```bash
-    $ platform tunnels --all
-    +-------+---------------+-------------+-----+--------------+
-    | Port  | Project       | Environment | App | Relationship |
-    +-------+---------------+-------------+-----+--------------+
-    | 30000 | ssoxcxcqhqgme | main        | app | database     |
-    +-------+---------------+-------------+-----+--------------+
+3.  Mock the environment variables needed for your configuration file to work.
 
-    View tunnel details with: platform tunnel:info
-    Close tunnels with: platform tunnel:close
-    ```
-
-3. Mock environment variables.
-
-    First, export the `PLATFORMSH_RELATIONSHIPS` environment variable provided when running the `tunnel:open` command:
+    First, export the `PLATFORMSH_RELATIONSHIPS` environment variable with information from the open tunnel:
 
     ```bash
     export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"
     ```
 
-    Then, ensure that the Platform.sh block in `settings.py` is used, but mocking two additional variables present in active environments:
+    Then,  to ensure your `settings.py` file acts as if in a Platform.sh environment,
+    mock two additional variables present in active environments:
 
     ```bash
     export PLATFORM_APPLICATION_NAME=django && export PLATFORM_ENVIRONMENT=new-feature
     ```
 
-4. Install dependencies.
+4.  Install dependencies by running the command for your package manager:
 
     {{< codetabs >}}
 +++
@@ -134,7 +79,7 @@ poetry install
     {{< /codetabs >}}
 
 
-5. Collect static assets.
+5.  Collect static assets.
 
     {{< codetabs >}}
 +++
@@ -160,7 +105,7 @@ poetry run python manage.py collectstatic
     {{< /codetabs >}}
 
 
-6. Start the local server.
+6.  Start your local server by running the following command based on your package manager:
 
     {{< codetabs >}}
 +++
@@ -186,230 +131,29 @@ poetry run python manage.py runserver
     {{< /codetabs >}}
 
 
-7. When finished with your work, shut down the tunnel.
+7.  When you've finished your work, close the tunnels to your services by running the following command:
 
     ```bash
     platform tunnel:close --all -y
     ```
 
-## Next steps
-
-Using the instructions above, you can now use your local environment to develop revisions for review on Platform.sh environments.
-Below are some examples.
-
-### Onboard collaborators
-
-It's essential for every developer on your team to have a local development environment to work on revisions from. 
-Placing the above configuration into a script helps ensure this, and is a revision that can be merged into production. 
-
-1. Create a new environment called `local-config`.
-2. Create an executable script for setting up a local environment for a new Platform.sh environment. 
-
-    ```bash
-    touch init-local.sh && chmod +x init-local.sh
-    ```
+{{% guides/django/local-next-steps-start %}}
 
     {{< codetabs >}}
 +++
 title=Pip
-highlight=bash
-markdownify=false
 +++
-#!/usr/bin/env bash
-# init-local.sh
-
-PROJECT=$1
-ENVIRONMENT=$2
-PARENT=$3
-
-# Create the new environment
-platform branch $ENVIRONMENT $PARENT
-
-# Configure DDEV
-ddev config --auto
-ddev config --web-environment-add PLATFORM_PROJECT=$PROJECT
-ddev config --web-environment-add PLATFORM_ENVIRONMENT=$ENVIRONMENT
-ddev config --webimage-extra-packages python-is-python3
-
-ddev get drud/ddev-platformsh
-
-# Update .ddev/config.platformsh.yaml
-#   1. hooks.post-start
-printf "  # platformsh start command\n  - exec: |\n      python manage.py runserver 0.0.0.0:8000" >> .ddev/config.platformsh.yaml
-#   2. php_version
-grep -v "php_version" .ddev/config.platformsh.yaml > tmpfile && mv tmpfile .ddev/config.platformsh.yaml
-printf "\nphp_version: 8.0" >> .ddev/config.platformsh.yaml
-
-# Create a docker-compose.django.yaml
-printf "
-version: \"3.6\"
-services:
-    web:
-        expose:
-            - 8000
-        environment:
-            - HTTP_EXPOSE=80:8000
-            - HTTPS_EXPOSE=443:8000
-        healthcheck:
-            test: \"true\"
-" > .ddev/docker-compose.django.yaml
-
-# Create Dockerfile.python
-printf "
-RUN apt-get install -y python3.10 python3-pip
-" > .ddev/web-build/Dockerfile.python
-
-ddev start
-ddev pull platform -y
-ddev restart
+{{< readFile file="snippets/guides/django/local-pip.sh" highlight="yaml" location="init-local.sh" >}}
 <--->
 +++
 title=Pipenv
-highlight=docker
-markdownify=false
 +++
-#!/usr/bin/env bash
-# init-local.sh
-
-PROJECT=$1
-ENVIRONMENT=$2
-PARENT=$3
-
-# Create the new environment
-platform branch $ENVIRONMENT $PARENT
-
-# Configure DDEV
-ddev config --auto
-ddev config --web-environment-add PLATFORM_PROJECT=$PROJECT
-ddev config --web-environment-add PLATFORM_ENVIRONMENT=$ENVIRONMENT
-ddev config --webimage-extra-packages python-is-python3
-
-ddev get drud/ddev-platformsh
-
-# Update .ddev/config.platformsh.yaml
-#   1. hooks.post-start
-printf "  # platformsh start command\n  - exec: |\n      pipenv run python manage.py runserver 0.0.0.0:8000" >> .ddev/config.platformsh.yaml
-#   2. php_version
-grep -v "php_version" .ddev/config.platformsh.yaml > tmpfile && mv tmpfile .ddev/config.platformsh.yaml
-printf "\nphp_version: 8.0" >> .ddev/config.platformsh.yaml
-
-# Create a docker-compose.django.yaml
-printf "
-version: \"3.6\"
-services:
-    web:
-        expose:
-            - 8000
-        environment:
-            - HTTP_EXPOSE=80:8000
-            - HTTPS_EXPOSE=443:8000
-        healthcheck:
-            test: \"true\"
-" > .ddev/docker-compose.django.yaml
-
-# Create Dockerfile.python
-printf "
-RUN apt-get install -y python3.10 python3-pip
-" > .ddev/web-build/Dockerfile.python
-
-ddev start
-ddev pull platform -y
-ddev restart
+{{< readFile file="snippets/guides/django/local-pipenv.sh" highlight="yaml" location="init-local.sh" >}}
 <--->
 +++
 title=Poetry
-highlight=docker
-markdownify=false
 +++
-#!/usr/bin/env bash
-# init-local.sh
-
-PROJECT=$1
-ENVIRONMENT=$2
-PARENT=$3
-
-# Create the new environment
-platform branch $ENVIRONMENT $PARENT
-
-# Configure DDEV
-ddev config --auto
-ddev config --web-environment-add PLATFORM_PROJECT=$PROJECT
-ddev config --web-environment-add PLATFORM_ENVIRONMENT=$ENVIRONMENT
-ddev config --webimage-extra-packages python-is-python3
-
-ddev get drud/ddev-platformsh
-
-# Update .ddev/config.platformsh.yaml
-#   1. hooks.post-start
-printf "  # platformsh start command\n  - exec: |\n      poetry run python manage.py runserver 0.0.0.0:8000" >> .ddev/config.platformsh.yaml
-#   2. php_version
-grep -v "php_version" .ddev/config.platformsh.yaml > tmpfile && mv tmpfile .ddev/config.platformsh.yaml
-printf "\nphp_version: 8.0" >> .ddev/config.platformsh.yaml
-
-# Create a docker-compose.django.yaml
-printf "
-version: \"3.6\"
-services:
-    web:
-        expose:
-            - 8000
-        environment:
-            - HTTP_EXPOSE=80:8000
-            - HTTPS_EXPOSE=443:8000
-        healthcheck:
-            test: \"true\"
-" > .ddev/docker-compose.django.yaml
-
-# Create Dockerfile.python
-printf "
-RUN apt-get install -y python3.10 python3-pip
-" > .ddev/web-build/Dockerfile.python
-
-ddev start
-ddev pull platform -y
-ddev restart
+{{< readFile file="snippets/guides/django/local-poetry.sh" highlight="yaml" location="init-local.sh" >}}
     {{< /codetabs >}}
 
-
-3. Commit and push the revisions.
-
-    ```bash
-    git add . && git commit -m "Add local configuration." && git push platform local-config
-    ```
-
-4. Merge the revision.
-
-    ```bash
-    platform merge local-config
-    ```
-
-Once the script is merged into production, any user can then run
-
-```bash
-$ platform get PROJECT_ID
-$ cd PROJECT_NAME
-$ ./init-local.sh PROJECT_ID another-new-feature main
-```
-
-to set up their local environment.
-
-### Sanitize data
-
-1. Create a new environment called `sanitize-non-prod`.
-2. Modify deploy hook to sanitize data.
-
-    Once your local environment has been set up, follow the [sanitizing PostgreSQL with Django](development/sanitize-db/postgresql) example to add a sanitization script to the deploy hook of `.platform.app.yaml` specific to your data, which will run on non-production environments.
-
-3. Commit and push the revisions.
-
-    ```bash
-    git add . && git commit -m "Add local configuration." && git push platform sanitize-non-prod
-    ```
-
-4. Merge the revision.
-
-    ```bash
-    platform merge sanitize-non-prod
-    ```
-
-Once the script is merged into production, every non-production environment created on Platform.sh - and the local environments contributors work from - will contain sanitized data free of your users' PII.
+{{% guides/django/local-next-steps-end %}}
