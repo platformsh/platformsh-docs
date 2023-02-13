@@ -131,14 +131,14 @@ to the local `uploads` directory,
 run the following command:
 
 ```bash
-rsync -az "$(platform ssh --pipe)":web/uploads/ ./uploads/
+rsync -azP "$(platform ssh --pipe)":web/uploads/ ./uploads/
 ```
 
 To copy files from your local directory to the Platform.sh environment, 
 reverse the order of the parameters:
 
 ```bash
-rsync -az uploads/ "$(platform ssh --pipe)":web/uploads/
+rsync -azP uploads/ "$(platform ssh --pipe)":web/uploads/
 ```
 
 Note that `rsync` is very sensitive about trailing `/` characters.
