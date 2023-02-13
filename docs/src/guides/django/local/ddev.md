@@ -200,17 +200,17 @@ hooks:
 +++
 title=Pip
 +++
-{{< readFile file="snippets/guides/django/local-pip.sh" highlight="yaml" location="init-local.sh" >}}
+{{< readFile file="snippets/guides/django/ddev/local-pip.sh" highlight="yaml" location="init-local.sh" >}}
 <--->
 +++
 title=Pipenv
 +++
-{{< readFile file="snippets/guides/django/local-pipenv.sh" highlight="yaml" location="init-local.sh" >}}
+{{< readFile file="snippets/guides/django/ddev/local-pipenv.sh" highlight="yaml" location="init-local.sh" >}}
 <--->
 +++
 title=Poetry
 +++
-{{< readFile file="snippets/guides/django/local-poetry.sh" highlight="yaml" location="init-local.sh" >}}
+{{< readFile file="snippets/guides/django/ddev/local-poetry.sh" highlight="yaml" location="init-local.sh" >}}
     {{< /codetabs >}}
 
 {{% guides/django/local-next-steps-end %}}
