@@ -152,7 +152,20 @@ Create an `applications.yaml` file within the `.platform` directory and define e
 Since your code lives in a different directory,
 define the root directory for each app with the `source.root` for that app.
 
-For example, the following configuration defines three apps:
+For example, if you have code for a Go app and code for two PHP apps,
+you could organize the repository like this:
+
+```txt
+├── api-app
+│   └── ...                 <- Go app code
+├── main-app
+|  └── ...                  <- PHP app code
+└── .platform
+    ├── .platform.app.yaml  <- Drupal app configuration
+    └── routes.yaml
+```
+
+You could then configure this into three apps as in the following configuration:
 
 ```yaml {location=".platform/applications.yaml"}
 -   name: api
@@ -194,6 +207,7 @@ For example, the following configuration defines three apps:
 The `api` app is built from the `api-app` directory.
 Both the `main` and `admin` apps are built from the `main-app` directory,
 but they have different configurations for how they serve the files.
+To build multiple apps from the repository root, set `source.root` to `/`.
 
 This allows you to control all your apps in one place and even build multiple apps from the same source code.
 
