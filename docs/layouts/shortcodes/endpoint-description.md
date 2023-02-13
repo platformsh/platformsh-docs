@@ -37,7 +37,7 @@ Persistent Redis requires a disk to store data.
 You can define `<SERVICE_NAME>` as you like, but it shouldn't include underscores (`_`).
 {{ end }}
 
-Note that changing the name of the service replaces it with by a brand new service
+Note that changing the name of the service replaces it with a brand new service
 and all existing data is lost.
 Back up your data before changing the service.
 

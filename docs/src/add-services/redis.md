@@ -54,7 +54,7 @@ To customize those cache cleanups, set up an [eviction policy](#eviction-policy)
 
 Make sure your app doesn't rely on ephemeral Redis for persistent storage as it can cause issues.
 For example, if a container is moved during region maintenance,
-the `deploy` and `post_deploy` hooks can't run and the app shows errors.
+the `deploy` and `post_deploy` hooks don't run and an app that treats the cache as permanent shows errors.
 
 To avoid such issues, trigger a cache cleanup every time your app starts.
 To do so, configure a `start` [web command](../create-apps/app-reference.md#web-commands) similar to the following:
@@ -185,9 +185,9 @@ const value = await client.get('x'); // returns 42
 
 {{< /codetabs >}}
 
-## Relationship
+## Relationship reference
 
-Example information available through the [`$PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-platformsh-provided-variables)
+Example information available through the [`$PLATFORM_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables)
 or by running `platform relationships`:
 
 {{< relationship "redis" >}}
