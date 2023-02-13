@@ -156,7 +156,7 @@ its credentials (such as the host, username, and password) are available through
 The available information is documented on each service's page along with sample code for how to connect to it from your app.
 
 The keys in the `PLATFORM_RELATIONSHIPS` variable are fixed, but the values may change on deployment or restart.
-So use the environment variable rather than hard coding the values.
+So **use the environment variable** rather than hard coding the values.
 
 <--->
 +++
