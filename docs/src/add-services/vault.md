@@ -36,9 +36,11 @@ You can create multiple endpoints, such as to have key management separate from 
 
 ## Use Vault KMS
 
-To connect your app to the Vault KMS, use a token that is defined in the `$PLATFORM_RELATIONSHIPS` environment variable.
+To connect your app to the Vault KMS, use a token that's defined in the `$PLATFORM_RELATIONSHIPS` environment variable.
 With this token for authentication,
 you can use any of the policies you [defined in your `.platform/services.yaml` file](#1-configure-the-service).
+
+{{% service-values-change %}}
 
 The following examples use cURL as an example, which you could do in a hook or after accessing your app with SSH.
 Adapt the examples for your app's language.
@@ -239,9 +241,9 @@ In the JSON object that's returned, you can notice that the `ciphertext` is diff
 }
 ```
 
-## Relationship
+{{% relationship-ref-intro %}}
 
-The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables):
+{{% service-values-change %}}
 
 {{< relationship "vault-kms" >}}
 

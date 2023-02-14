@@ -18,9 +18,9 @@ It exposes an HTTP API for client interaction. See the [InfluxDB documentation](
 
 {{% image-versions-legacy "influxdb" %}}
 
-## Relationship
+{{% relationship-ref-intro %}}
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables):
+{{% service-values-change %}}
 
 {{< relationship "influxdb" >}}
 

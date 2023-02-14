@@ -39,9 +39,9 @@ For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-
 |------|-------------------------------|------------------------------ |
 |  {{< image-versions image="postgresql" status="deprecated" environment="grid" >}} | {{< image-versions image="postgresql" status="deprecated" environment="dedicated-gen-3" >}} | {{< image-versions image="postgresql" status="deprecated" environment="dedicated-gen-2" >}} |
 
-## Relationship
+{{% relationship-ref-intro %}}
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables):
+{{% service-values-change %}}
 
 {{< relationship "postgresql" >}}
 
@@ -108,6 +108,8 @@ Using the values from the [example](#relationship), that would be:
 ```bash
 psql -U main -h postgresql.internal -p 5432
 ```
+
+{{% service-values-change %}}
 
 ## Exporting data
 

@@ -203,6 +203,8 @@ With this example, you can connect to the `database` relationship
 with the user `user`, an empty password, and the database name `main` (from the `path`).
 The `url` property shows a full database connection that can be used from your app.
 
+{{% service-values-change %}}
+
 ### 2. Open an SSH tunnel
 
 Open a single [SSH tunnel](../development/ssh/_index.md#connect-to-services) by running the following CLI command:
