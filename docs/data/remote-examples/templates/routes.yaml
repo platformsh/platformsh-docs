@@ -17,3 +17,4 @@ repos:
     - typo3
     - strapi4
     - laravel
+    - django4

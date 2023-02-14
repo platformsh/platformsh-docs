@@ -15,12 +15,10 @@ Micronaut's cloud support is built right in, including support for common discov
 
 {{% guides/starting-point name="Micronaut" templateRepo=micronaut %}}
 
-## Tools
+{{% guides/requirements %}}
 
-{{% guides/tools %}}
+## Initialize a project
 
-## Sign up for Platform.sh and initialize your project
-
-{{% guides/signup name="Micronaut" template="micronaut" /%}}
+{{< guides/initialize name="Micronaut" template="micronaut" />}}
 
 {{< guide-buttons next="Configure repository" type="first" >}}

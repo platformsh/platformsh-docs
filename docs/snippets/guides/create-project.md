@@ -1,0 +1,1 @@
+platform create \-\-title {{< variable "PROJECT_TITLE" >}}
