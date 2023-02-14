@@ -152,7 +152,7 @@ Example of an Agile workflow :
 You can organize and work with your development environments in many different ways.
 It can help to introduce a convention for how you name and structure your environments.
 
-For each environment, choose a name that represents the environment's purpose.
+For each environment, choose a name that represents what the environment is for.
 If you use Agile, for example, you can adopt a naming convention similar to the following:
 
 ```text
