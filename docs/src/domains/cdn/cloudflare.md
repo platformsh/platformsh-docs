@@ -20,7 +20,9 @@ You need:
 
 To properly configure your Cloudflare CDN,
 see the Cloudflare official documentation on [how to get started](https://developers.cloudflare.com/cache/get-started/).
-Make sure your CDN points to your [project target](../../domains/steps/_index.md#2-get-the-target-for-your-project) for the [DNS challenge to succeed](../troubleshoot.md#ownership-verification).
+Then set up a [custom domain](../steps/_index.md).
+To get the [DNS challenge to succeed](../troubleshoot.md#ownership-verification),
+have your CDN point to your [project's target URL](../../domains/steps/_index.md#2-get-the-target-for-your-project).
 
 ## 3. Handle apex domains
 
@@ -48,4 +50,3 @@ This confirms the client is truly communicating with your Platform.sh server.
 For enhanced security, make sure your HTTPS connections can't be downgraded to HTTP.
 To do so, in your Cloudflare account,
 [enable HTTP strict transport security (HSTS)](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/http-strict-transport-security/).
-

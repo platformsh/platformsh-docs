@@ -5,7 +5,7 @@ weight: 3
 description: Improve performance for distributed end-users of your website with a content delivery network (CDN).
 layout: single
 ---
- 
+
 Using a CDN speeds up the delivery of your site's content to its users.
 The CDN deploys edge servers at many locations around the world.
 These edge servers behave like local caches to nearby users.
@@ -19,15 +19,10 @@ such as [Fastly](./fastly.md) or [Cloudflare](./cloudflare.md).
 
 ## DNS records
 
-To start routing client traffic through your CDN,
-some configuration on your DNS are required.
-Such as adding a `TXT` record for the `_acme-challenge` subdomain
-and several `CNAME` records to point to your CDN.
-You can create these records for your domain names through your DNS provider.
-For more information, see you DNS and your CDN provider's official documentations.
+To start routing client traffic through your CDN, [set up a custom domain](../steps/_index.md).
 
-Note that [`CNAME` records can't point to apex domains](../steps/dns.md),
-but most CDN providers offer workarounds.
+If you use `CNAME` records for your custom domain, these records [can't point to apex domains](../steps/dns.md).
+But most CDN providers offer workarounds.
 For example, Fastly offers [Anycast options](./fastly.md#3-handle-apex-domains)
 and Cloudflare offers [`CNAME` flattening](./cloudflare.md#3-handle-apex-domains).
 
