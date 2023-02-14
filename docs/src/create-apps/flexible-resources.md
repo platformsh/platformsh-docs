@@ -3,6 +3,33 @@ title: Flexible resources
 sidebarIgnore: true
 ---
 
+If you have a high-memory plan, your project is allocated additional RAM resources.
+If your containers aren't using all of your project's allocated CPU,
+they're automatically upgraded to the next highest available container size.
+
+If the CPU resources are already fully allocated,
+your containers aren't upgraded because there isn't room for CPU upgrades.
+
+{{< note title="Example" >}}
+
+If you have a Medium plan, your project is allocated 2&nbsp;vCPU and 3&nbsp;GB RAM.
+If you upgrade this to a high-memory Medium plan, the RAM limit rises to 4&nbsp;GB.
+
+If your containers were using less than the full 2&nbsp;vCPU,
+they can be automatically upgraded in size to take advantage of the additional memory.
+
+But if your containers were already using the full 2&nbsp;vCPU,
+they remain at their original size and the additional memory isn't used.
+
+{{< /note >}}
+
+If your project is using the full allocation of CPU and so can't be allocated memory automatically,
+you can set the resources to be more flexible.
+This allows you to free up CPU from less-CPU-intensive containers
+so that other containers can increase in size and use the available memory.
+
+## Use flexible resources
+
 Sometimes you have apps that are more memory-intensive.
 In such cases, you can adjust the amount of memory using the `resources` key in your [app configuration](./_index.md).
 All memory must stay within the limits set by your plan.
