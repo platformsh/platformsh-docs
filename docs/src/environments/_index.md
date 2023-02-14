@@ -1,51 +1,86 @@
 ---
 title: "Manage Platform.sh environments"
 weight: -75
+layout: single
 sidebarTitle: Manage environments
 description: Learn what environments on Platform.sh are and how to take advantage of them.
 ---
 
-On Platform.sh, an environment is a logically separate instance of an app or group of apps
-with all of the services needed to run the app.
+A Platform.sh environment contains one instance of an app (or [group of apps](../create-apps/multi-app.md))
+with all the services needed for it to run.
 
 You can think of an environment as a complete working website
-that's related to but safely isolated from others in the project.
+that's related to but safely isolated from others in your project.
 So you can run tests and review a complete working copy without worrying about damaging anything in production.
 
 Each project includes multiple environments,
 often divided into [environment types](../administration/users.md#environment-types).
 If you have a live site, you have at least a production environment.
 You may also have additional environments for development, testing, staging, review, and so on.
-
-New environments can be created by branching existing environments using the [command line interface (CLI)](/administration/cli/_index.md),
-or in the [Console](../administration/web/_index.md).
-Each created environment is an exact replica of its parent environment.
-This means new environments have all of the data and services from the parent
-(like databases, network storage, queues, routing).
-
 To organize your environments, you can create [hierarchical relationships](#hierarchy).
 
-An environment is tied to a Git branch and can be created on demand.
-With Bitbucket and GitHub integrations you can even get a "development server" automatically for each and every pull request.
+To create new environments, you can branch existing environments using the [CLI](/administration/cli/_index.md)
+or the [Console](../administration/web/_index.md).
+Each created environment is an exact replica of its parent environment.
+This means new environments inherit all of the data and services from their parent environment.
+This includes databases, network storage, queues, and routing configurations.
 
-You can have branches that aren't tied to a running instance of your application.
-These are called [inactive environments](../other/glossary.md#inactive-environment).
+You can create environments on demand.
+Each environment is tied to a Git branch.
+With [Bitbucket](../integrations/source/bitbucket.md) and [GitHub](../integrations/source/github.md) integrations,
+you can even get a "development server" automatically for every pull request.
+
+You can also have branches that aren't tied to a running instance of your application.
+These are called [inactive environments](#environment-status).
 
 ## Default environment
 
-Your default environment comes from your default branch and is a [Production environment](../administration/users.md#environment-types).
+Your default environment comes from your default branch and is a [production environment](../administration/users.md#environment-types).
+Your project must have a default environment,
+but you can [name it as you want](./default-environment.md).
 
-If you subscribed to a production plan, this environment is your **live site**
-and you can give it a [custom domain name](../domains/steps/_index.md) and a custom SSL certificate.
+If you subscribed to a production plan, this environment is your **live site**.
+You can give it a [custom domain name](../domains/steps/_index.md) and a [custom TLS certificate](../domains/steps/tls.md).
 
-{{< note >}}
+## Environment status
 
-Your project must have a default environment, but you can give it any name.
-See how to [rename the default environment](./default-environment.md).
+Your environments can have one of two statuses:
 
-{{< /note >}}
+-   [Active](../other/glossary.md#active-environment):
+    A deployed environment with services and data.
 
-## Hierarchy
+-   [Inactive](../other/glossary.md#inactive-environment):
+    An environment that isn't deployed and has no services or data, only code.
+    For example, when you push a local branch created with Git to your project,
+    it creates an inactive environment.
+
+You can see the status of your environments in the [Console](../administration/web/_index.md) or the [CLI](/administration/cli/_index.md).
+
+{{< codetabs >}}
++++
+title=In the Console
++++
+
+When you open your project, inactive environments appear lighter in the environment list.
+You also can't select them from the **Environment** dropdown menu.
+
+To check the status of an environment,
+you can also open it and view its information panel.
+
+<--->
++++
+title=Using the CLI
++++
+
+To check the status of all your environments, run the `platform environments` command within your project directory.
+
+{{< /codetabs >}}
+
+Note that you can [change an environment's status](./deactivate-environment.md).
+
+## Organize your environments
+
+### Hierarchy
 
 ![Environment hierarchy](/images/management-console/environments.png "0.5")
 
@@ -54,106 +89,91 @@ Each new environment you create is considered a **child** of the **parent** envi
 
 Each child environment can [sync](../other/glossary.md#sync) code and/or data down from its parent
 and [merge](../other/glossary.md#merge) code up to its parent.
-The child environments are used for development, staging, and testing.
+You can use child environments for development, staging, and testing.
 
 When you [branch](../other/glossary.md#branch) an environment to create a new child environment,
 its parent is the environment it was created from.
 If you push a branch through Git or a [source integration](../integrations/source/_index.md),
-the parent defaults to the default environment.
+the parent environment is your [default environment](#default-environment).
 
 You can always [change an environment's parent](./change-parent.md).
 
-## Workflows
+### Workflows
 
-Since you can organize your environments as you want, you can create your own workflows.
-There are no rules you must follow when branching environments.
+Since you can customize your [environment hierarchy](#hierarchy), you can create your own workflows. 
+You don't have to follow any rules when branching environments.
+You can decide which structure best fits your needs. 
 
-You can choose a structure that might best fit your workflow.
-Some possible approaches:
+#### Possible approaches
 
-- **Agile**: A child environment per sprint.
-  Each story in the sprint can have its own environment as a child of the sprint environment.
-- **Developer-centric**: One QA environment and a few development environments
-  (*per developer*, *per task*, or similar).
-- **Testing**: An operational test environment, a user test environment, and a few unit test environments.
-- **Hotfix**: One environment for every bug, security, or hotfix that needs deployment.
+You may want to take one of the following approaches when creating your workflows:
 
-Here is an example of a possible Agile workflow.
+-   **Agile**: A child environment per sprint.
+    Each story in the sprint can have its own environment as a child of the sprint environment.
 
-The administrator started by [branching](../other/glossary.md#branch) the Live environment to create a Sprint environment.
-They then give each developer permission to branch the Sprint environment to create new feature environments.
+-   **Developer-centric**: One QA environment and a few development environments
+    (*per developer*, *per task*, or similar).
 
-![Agile branches with Live as the top parent, Sprint as a child, and Feature 1 and Feature 2 as children of Sprint](/images/workflow/branches.svg "0.2")
+-   **Testing**: An operational test environment, a user test environment, and a few unit test environments.
 
-As Feature 1 is developed, work is reviewed by accessing the deployed Feature 1 environment.
-When the review is done, Feature 1 is [merged](../other/glossary.md#merge) into the Sprint environment.
+-   **Hotfix**: One environment for every bug, security, or hotfix that needs deployment.
 
-Once the Sprint environment has Feature 1,
-the remaining features [sync](../other/glossary.md#sync) with the Sprint environment.
-This ensures their working environment is up-to-date with the latest code.
+#### Example workflow
 
-![Features from the Sprint environment are synced with the Feature 2 environment](/images/workflow/sync.svg "0.2")
+Example of an Agile workflow :
 
-When the sprint is complete and all features merged into the Sprint environment,
-the administrator can make a backup of the live site.
-Then they can merge the Sprint environment into the Live environment.
+1.  The admin [branches](../other/glossary.md#branch) the Live environment to create a Sprint environment.
 
-![Features from the Sprint environment are merged into the Live environment](/images/workflow/merge-live.svg "0.2")
+2.  The admin gives each developer permission to branch the Sprint environment to create new feature environments.
 
-The administrator can then sync the next sprint's environment with the Live environment
-to repeat and continue the development process.
+    ![Agile branches with Live as the top parent, Sprint as a child, and Feature 1 and Feature 2 as children of Sprint](/images/workflow/branches.svg "0.2")
 
-## Naming conventions
+3.  Feature 1 is developed and work is reviewed by accessing the deployed Feature 1 environment.
+
+4.  When the review is done, Feature 1 is [merged](../other/glossary.md#merge) into the Sprint environment.
+
+5.  The remaining features [sync](../other/glossary.md#sync) with the Sprint environment.
+    This ensures their working environment is up-to-date with the latest code.
+
+    ![Features from the Sprint environment are synced with the Feature 2 environment](/images/workflow/sync.svg "0.2")
+
+6.  When the sprint is complete and all features merged into the Sprint environment,
+    the admin makes a backup of the live site.
+
+7.  The admin merges the Sprint environment into the Live environment.
+
+    ![Features from the Sprint environment are merged into the Live environment](/images/workflow/merge-live.svg "0.2")
+
+8.  The admin syncs the next sprint's environment with the Live environment
+    to repeat and continue the development process.
+
+### Naming conventions
 
 You can organize and work with your development environments in many different ways.
 It can help to introduce a convention for how you name and structure your environments.
 
-The name should represent the environment's purpose.
-Is it a Staging site to show to your client? Is it an implementation of a new feature?
-Is it a hotfix?
-
-If you use Agile, for example, you could create hierarchical environments and name them like this:
+For each environment, choose a name that represents the environment's purpose.
+If you use Agile, for example, you can adopt a naming convention similar to the following:
 
 ```text
 Live
-  Sprint1
-    Feature1
-    Feature2
-    Feature3
-  Sprint2
-    Feature1
-    Feature2
+ Sprint1
+   Feature1
+   Feature2
+   Feature3
+ Sprint2
+   Feature1
+   Feature2
 ```
 
 If you prefer splitting your environments per developer and having a specific environment for each task or ticket,
-you could use something like this:
+you can adopt a naming convention similar to the following:
 
 ```text
 Staging
-  Developer1
-    Ticket-526
-    Ticket-593
-  Developer2
-    Ticket-395
+ Developer1
+   Ticket-526
+   Ticket-593
+ Developer2
+   Ticket-395
 ```
-
-## Environment status
-
-Your environments can have one of two statuses:
-
-- [Active](../other/glossary.md#active-environment):
-  A deployed environment with services and data.
-- [Inactive](../other/glossary.md#inactive-environment):
-  An environment that isn't deployed and has no services or data, only code.
-  For example, when you push a local branch created with Git to your project,
-  it generates an inactive environment.
-
-You can see an environment's status in multiple ways:
-
-- [In the Console](../administration/web/configure-environment.md):
-  - Inactive environments are lighter in the environment list and don't appear in the environment selector.
-  - Open an environment to see its status in the information panel.
-- Using the CLI:
-  - Run `platform environments` within a project directory.
-
-See how to [change an environment's status](./deactivate-environment.md)
