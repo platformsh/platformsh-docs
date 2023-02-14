@@ -2,6 +2,7 @@
 title: Tethered local
 weight: -90
 description: Connect a locally running Django server directly to active services on a Platform.sh environment.
+sectionBefore: Supported environments
 ---
 
 {{< note theme="info" >}}

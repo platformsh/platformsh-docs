@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# init-local.sh
 
 PROJECT=$1
 ENVIRONMENT=$2
