@@ -1,0 +1,67 @@
+{{ $data := index $.Site.Data.php_extensions "grid" }}
+
+<!-- Create a map of all extensions with the versions that support it -->
+{{ $allExtensions := dict }}
+{{ range $version,$support_type := $data }}
+  <!-- Go through each type of support (available, default, etc.) -->
+  {{ range $support_type_name,$extensions := $support_type}}
+    <!-- Go through each listed extension -->
+    {{ range $extensions }}
+      {{ $newVersion := dict }}
+      <!-- If the extension is already in the map, add the new version -->
+      {{ with index $allExtensions . }}
+        {{ $newVersion = merge . ( dict $version $support_type_name ) }}
+      <!-- Otherwise add the extension to the map with just the one version -->
+      {{ else }}
+        {{ $newVersion =  dict $version $support_type_name }}
+      {{ end }}
+      {{ $allExtensions = merge $allExtensions (dict . $newVersion ) }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+<table>
+  <thead>
+    <tr>
+      <th>Extension</th>
+      <!-- List all the versions (keys in the data file) -->
+      {{ range $version,$support_type := $data }}
+        <th>{{ $version }}</th>
+      {{ end }}
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Sort the extension list as if all were lower case -->
+    {{ $.Scratch.Set "lower_names" (slice) }}
+    {{ range $extension,$versions := $allExtensions }}
+      {{ $.Scratch.Add "lower_names" (lower $extension) }}
+    {{ end }}
+    {{ range sort ($.Scratch.Get "lower_names") }}
+      {{ $lower_ext := . }}
+      <!-- For each extension in the map, create a row -->
+      {{ range $extension,$versions := $allExtensions }}
+        {{ if eq $lower_ext (lower $extension) }}
+          <tr>
+            <td><code>{{ $extension }}</code></td>
+            <!-- Loop through all the versions (keys in the data file) -->
+            {{ range $version,$extensions := $data }}
+              <td>
+                <!-- If the map has this version, add an emoji-->
+                {{ with index $versions $version }}
+                  {{ if eq . "default"}}
+                    Def
+                  {{ else if eq . "available" }}
+                    Avail
+                  {{ else if eq . "built-in" }}
+                    *
+                  {{ else if eq . "with-webp" }}
+                    Avail with<br /><code>webp</code>
+                  {{ end }}
+                {{ end }}
+              </td>
+            {{ end }}
+          </tr>
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  </tbody>
+</table>
