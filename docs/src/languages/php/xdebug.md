@@ -6,7 +6,6 @@ sidebarTitle: "Xdebug"
 
 [Xdebug](https://xdebug.org/) is a real-time debugger extension for PHP.
 While usually used for local development, it can also be helpful for debugging aberrant behavior on the server.
-It's available on Platform.sh Grid instances running PHP 7.2 and higher.
 
 As configured on Platform.sh, it avoids any runtime overhead for non-debug requests, even in production, and only allows connections via SSH tunnels to avoid any security issues.
 
@@ -15,9 +14,12 @@ So you can't use it for [worker containers](../../create-apps/workers.md).
 
 ## Before you begin
 
-You need to have:
+The following table shows the PHP versions where Xdebug is available on Grid environments:
 
-- PHP 7.2+ on your project
+{{< php-extensions/single extension="xdebug" >}}
+
+You also need:
+
 - The Platform.sh [CLI](../../administration/cli/_index.md)
 - A Xdebug-compatible IDE installed on your machine.
     For setup instructions, consult your IDE's Xdebug documentation, such as that for [PHPStorm](https://www.jetbrains.com/help/phpstorm/configuring-xdebug.html).
