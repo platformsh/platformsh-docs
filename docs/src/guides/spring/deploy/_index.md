@@ -11,12 +11,10 @@ description: |
 
 {{% guides/starting-point name="Spring" templateRepo=spring-mvc-maven-mongodb %}}
 
-## Tools
+{{% guides/requirements %}}
 
-{{% guides/tools %}}
+## Initialize a project
 
-## Sign up for Platform.sh and initialize your project
-
-{{% guides/signup name="Spring" template="spring-mvc-maven-mongodb" /%}}
+{{< guides/initialize name="Spring" template="spring-mvc-maven-mongodb" />}}
 
 {{< guide-buttons next="Configure repository" type="first" >}}

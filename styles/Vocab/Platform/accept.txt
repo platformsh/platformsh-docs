@@ -6,6 +6,7 @@ APCu
 APIs?
 asciinema
 async
+Asyncio
 auditable
 autoload(?:er|ing)?
 Blackfire
@@ -37,6 +38,7 @@ failover
 Fastly
 Galera
 Gemfile
+gevent
 geocod(?:er|ing)
 gitmoji
 glibc
@@ -50,6 +52,7 @@ hostname
 [Hh]otfix
 Httpoxy
 Hunchentoot
+Hypercorn
 Ibexa
 IDEs?
 IPs?
@@ -70,6 +73,7 @@ Meilisearch
 Memcache
 Mezmo
 middleware
+Miniconda
 MSBuild
 Muffet
 multicast
@@ -102,6 +106,7 @@ PDFs?
 pgRouting
 PHPMailer
 PHPStorm
+Pipenv
 Pixelant
 plaintext
 pngcrush
@@ -151,6 +156,8 @@ transclusion
 [Uu]nencoded
 unencrypted
 unmerged
+Uvicorn
+Uvloop
 [Uu]nmount
 [Uu]ntrusted
 upscal(?:e|ing)

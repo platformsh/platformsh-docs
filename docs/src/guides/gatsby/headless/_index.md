@@ -33,9 +33,7 @@ Above is the repository structure for a Decoupled Drupal (Gatsby sourcing Drupal
 
 Drupal is just one example of a backend CMS that can be used with this pattern, and at the bottom of this page are a few additional guides for alternatives that work well on Platform.sh. 
 
-## Tools
-
-{{% guides/tools %}}
+{{% guides/requirements %}}
 
 ## Signing up for Platform.sh
 

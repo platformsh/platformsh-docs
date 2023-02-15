@@ -1,54 +1,48 @@
 {{ $name := .Get "name" }}
-The end goal of this guide is to deploy your {{ $name }} app to a *project* on Platform.sh.
+You now have a *project* running on Platform.sh.
 In many ways, a project is just a collection of tools around a Git repository.
-A project replicates the branching structure of a repository exactly, but with one important addition:
-any branch can be *activated* to become an *environment* on Platform.sh.
-Activated environments go through Platform.sh's build and deploy phases,
-resulting in a fully isolated running site for each activated branch (or pull request) on that repository.
+Just like a Git repository, a project has branches, called *environments*.
+Each environment can then be activated.
+*Active* environments are built and deployed,
+giving you a fully isolated running site for each active environment.
 
-Once an environment is activated, Platform.sh provisions a cluster of containers to deploy your app.
-The configuration of that cluster is controlled by three [YAML files]({{ relref . "/overview/yaml/_index.md" }}):
+Once an environment is activated, your app is deployed through a cluster of containers.
+You can configure these containers in three ways, each corresponding to a [YAML file]({{ relref . "/overview/yaml/_index.md" }}):
 
-- `.platform/routes.yaml` controls how incoming requests are routed to your app, or apps in a multi-app setup.
-  It also controls the built-in HTTP cache.
-  If you're only using the single default route, you don't need this file.
-- `.platform/services.yaml` controls what additional services are created to support your app,
+- **Configure apps** in a `.platform.app.yaml` file.
+  This controls the configuration of the container where your app lives.
+- **Add services** in a `.platform/services.yaml` file.
+  This controls what additional services are created to support your app,
   such as databases or search servers.
   Each environment has its own independent copy of each service.
   If you're not using any services, you don't need this file.
-- `.platform.app.yaml` controls the configuration of the container where your app lives.
-  It's the most powerful configuration file with the most options.
-  So it can get somewhat long depending on your configuration.
+- **Define routes** in a `.platform/routes.yaml` file.
+  This controls how incoming requests are routed to your app or apps.
+  It also controls the built-in HTTP cache.
+  If you're only using the single default route, you don't need this file.
 
-Each project on Platform.sh needs at least the last file and each file can be customized however you need.
-But most {{ $name }} sites have a fairly similar configuration, at least to start.
+Start by creating empty versions of each of these files in your repository:
 
-You can start by creating empty versions of each of these files in your repository:
-
-{{ $configComment := "# Create empty Platform.sh configuration files" }}
-{{ $configContent := "touch .platform.app.yaml && mkdir -p .platform && touch .platform/routes.yaml" }}
-{{ $configContent2 := "" }}
-{{ if not (.Get "noService") }}
-    {{ $configContent2 := printf "&& touch .platform/services.yaml" }}
-{{ end }}
-{{- highlight (printf "%s\n%s%s" $configComment $configContent $configContent2 ) "bash" "" -}}
+```bash
+# Create empty Platform.sh configuration files
+touch .platform.app.yaml && mkdir -p .platform && touch .platform/routes.yaml{{ if not (.Get "noService") }} && touch .platform/services.yaml{{ end }}
+```
 
 {{ if isset .Params "platformify" }}
 Alternatively, you could use the `platformify` script to initialize these files.
 This script downloads any missing files from the official template.
 It doesn't affect any files you already created.
 
-{{ $platformifyComment := "# Platformify your app and automatically download the missing configuration files" }}
-{{ $platformifyContent := printf "curl -fsS https://raw.githubusercontent.com/platformsh/snippets/main/src/platformify.sh | { bash /dev/fd/3 -t %s ; } 3<&0" (.Get "platformify") }}
-{{- highlight (printf "%s\n%s" $platformifyComment $platformifyContent ) "bash" "" -}}
+```bash
+# Platformify your app and automatically download the missing configuration files
+curl -fsS https://raw.githubusercontent.com/platformsh/snippets/main/src/platformify.sh | { bash /dev/fd/3 -t {{(.Get "platformify")}} ; } 3<&0
+```
 
-When run on an empty folder, the entire template can be downloaded locally.
+If you run this command on an empty folder, the entire template is downloaded.
 
 {{ end }}
 
 Now that you've added these files to your project,
-you can go through and configure each of them for {{ $name }} one by one in the sections below.
-Each section covers a particular configuration file, defines what each attribute configures,
-and then shows a final code snippet that includes the recommended configuration for {{ $name }} pulled from its template.
-Within that snippet, be sure to read each of the comments
-as they provide additional information and reasoning for why {{ $name }} requires those values.
+configure each one for {{ $name }} in the following sections.
+Each section covers basic configuration options and presents a complete example
+with comments on why {{ $name }} requires those values.

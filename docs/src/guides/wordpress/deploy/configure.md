@@ -2,28 +2,11 @@
 title: "Configure WordPress for Platform.sh"
 sidebarTitle: "Configure"
 weight: -100
-toc: false
 description: |
     Review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for WordPress.
 ---
 
 {{% guides/config-desc name="WordPress" %}}
-
-## Requests configuration: `routes.yaml`
-
-{{% guides/config-routes template="wordpress-composer" name="WordPress" %}}
-
-## Service configuration: `services.yaml`
-
-{{% guides/config-service WordPress=true framework=WordPress %}}
-
-We recommend the latest [MariaDB](../../../add-services/mysql/_index.md) version for WordPress.
-
-{{% /guides/config-service %}}
-
-{{< readFile file="static/files/fetch/servicesyaml/wordpress-composer" highlight="yaml" >}}
-
-## Application container: `.platform.app.yaml`
 
 {{% guides/config-app template="wordpress-composer" %}}
 
@@ -36,5 +19,15 @@ During the template's build hook above, you see an `rsync` command that allows y
 
 If you are migrating WordPress or starting from scratch, you should copy this line for your committed non-Composer plugins and, if needed, modify it to move committed `themes` to `wp-content/themes` in the same way.
 {{< /note >}}
+
+{{% guides/config-service WordPress=true framework=WordPress %}}
+
+We recommend the latest [MariaDB](../../../add-services/mysql/_index.md) version for WordPress.
+
+{{% /guides/config-service %}}
+
+{{< readFile file="static/files/fetch/servicesyaml/wordpress-composer" highlight="yaml" >}}
+
+{{% guides/config-routes template="wordpress-composer" name="WordPress" %}}
 
 {{< guide-buttons next="Customize WordPress" >}}

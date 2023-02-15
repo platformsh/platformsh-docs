@@ -10,3 +10,4 @@ repos:
     - gatsby-drupal
     - gatsby-strapi
     - gatsby-wordpress
+    - django4 

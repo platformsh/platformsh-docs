@@ -395,7 +395,7 @@ Property      | Description
 `file`        | If set, the displayed code comes from the specified local file.
 `markdownify` | Whether to transform the block to Markdown. Defaults to `true`. Set to `false` when the file/block is code.
 
-Note that if you're using code inside the Markdown file,
+Note that if you're using code inside the given tab,
 leave two empty lines after `{{ /codetabs }}` to turn off spell checking inside the block.
 
 ## Reuse content
