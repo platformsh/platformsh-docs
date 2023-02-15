@@ -1,5 +1,7 @@
 ---
-title: Manage Python versions
+title: Manage Python versions in non-Python containers
+sidebarTitle: Python in non-Python containers
+weight: 0
 description: See how to manage different Python versions in your Platform.sh containers.
 ---
 

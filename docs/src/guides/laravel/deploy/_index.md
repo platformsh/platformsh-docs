@@ -11,12 +11,10 @@ description: |
 
 {{% guides/starting-point name="Laravel" templateRepo=laravel %}}
 
-## Tools
+{{% guides/requirements %}}
 
-{{% guides/tools %}}
+## Initialize a project
 
-## Sign up for Platform.sh and initialize your project
-
-{{% guides/signup name="Laravel" template="laravel" /%}}
+{{< guides/initialize name="Laravel" template="laravel" />}}
 
 {{< guide-buttons next="Configure Laravel" type="first" >}}

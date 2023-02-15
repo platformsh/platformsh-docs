@@ -1035,48 +1035,6 @@ nodejs:
       Automatic TLS certificates<br />
       npm-based build<br />
     runtime: nodejs
-  - shortname: gatsby-drupal
-    name: Gatsby with Drupal
-    repo: https://github.com/platformsh-templates/gatsby-drupal
-    description: >
-      <p>This template builds a two-application project to deploy the Headless
-      CMS pattern using Gatsby as its frontend and Drupal 8 for its backend. The
-      <code>gatsby-source-drupal</code> source plugin is used to pull data from
-      Drupal during the <code>post_deploy</code> hook into the Gatsby Data Layer
-      and build the frontend site. Gatsby utilizes the Platform.sh Configuration
-      Reader library for Node.js to define the backend data source in its
-      configuration. It is intended for you to use as a starting point and
-      modify for your own needs.</p>
-
-      <p>Note that after you have completed the Drupal installation and included
-      a few articles, the project will require a redeploy to build and deploy
-      Gatsby for the first time. See the included README's post-install section
-      for details.</p>
-
-      <p>Gatsby is a free and open source framework based on React that helps
-      developers build statically-generated websites and apps, and Drupal is a
-      flexible and extensible PHP-based CMS framework.</p>
-    image: >-
-      data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='225'
-      height='225'%3E%3Cg %3E%3Cpath d='M112.5 0A112.5 112.5 0 1 0 225 112.5
-      112.5 112.5 0 0 0 112.5 0zM24.17 113.67l87.16 87.16a88.35 88.35 0 0
-      1-87.16-87.16zm108.1 85L26.38 92.73a88.35 88.35 0 0 1 157.54-32.22L171.69
-      71.3a72.13 72.13 0 0 0-127 16.64l92.38 92.38a72.26 72.26 0 0 0
-      45.46-50.51h-38.3V112.5h56.61a88.38 88.38 0 0 1-68.57 86.12z'
-      style='fill:%23744c9e' /%3E%3C/g%3E%3C/svg%3E
-    deploy: >-
-      https://console.platform.sh/projects/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/gatsby-drupal/.platform.template.yaml
-    content: |
-      Node.js 12<br />
-      PHP 7.4<br/>
-      MariaDB 10.4<br/>
-      Redis 5.0<br/>
-      Automatic TLS certificates<br />
-      npm-based build for Gatsby<br />
-      Composer-based build for Drupal<br />
-      Multi-app configuration<br />
-      Delayed SSG build (post deploy hook)<br />
-    runtime: nodejs
   - shortname: gatsby-strapi
     name: Gatsby with Strapi
     repo: https://github.com/platformsh-templates/gatsby-strapi
@@ -1653,6 +1611,49 @@ python:
       Automatic TLS certificates<br />
       Pipfile-based build<br />
     runtime: python
+'':
+  - shortname: gatsby-drupal
+    name: Gatsby with Drupal
+    repo: https://github.com/platformsh-templates/gatsby-drupal
+    description: >
+      <p>This template builds a two-application project to deploy the Headless
+      CMS pattern using Gatsby as its frontend and Drupal 8 for its backend. The
+      <code>gatsby-source-drupal</code> source plugin is used to pull data from
+      Drupal during the <code>post_deploy</code> hook into the Gatsby Data Layer
+      and build the frontend site. Gatsby utilizes the Platform.sh Configuration
+      Reader library for Node.js to define the backend data source in its
+      configuration. It is intended for you to use as a starting point and
+      modify for your own needs.</p>
+
+      <p>Note that after you have completed the Drupal installation and included
+      a few articles, the project will require a redeploy to build and deploy
+      Gatsby for the first time. See the included README's post-install section
+      for details.</p>
+
+      <p>Gatsby is a free and open source framework based on React that helps
+      developers build statically-generated websites and apps, and Drupal is a
+      flexible and extensible PHP-based CMS framework.</p>
+    image: >-
+      data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='225'
+      height='225'%3E%3Cg %3E%3Cpath d='M112.5 0A112.5 112.5 0 1 0 225 112.5
+      112.5 112.5 0 0 0 112.5 0zM24.17 113.67l87.16 87.16a88.35 88.35 0 0
+      1-87.16-87.16zm108.1 85L26.38 92.73a88.35 88.35 0 0 1 157.54-32.22L171.69
+      71.3a72.13 72.13 0 0 0-127 16.64l92.38 92.38a72.26 72.26 0 0 0
+      45.46-50.51h-38.3V112.5h56.61a88.38 88.38 0 0 1-68.57 86.12z'
+      style='fill:%23744c9e' /%3E%3C/g%3E%3C/svg%3E
+    deploy: >-
+      https://console.platform.sh/projects/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/gatsby-drupal/.platform.template.yaml
+    content: |
+      Node.js 12<br />
+      PHP 7.4<br/>
+      MariaDB 10.4<br/>
+      Redis 5.0<br/>
+      Automatic TLS certificates<br />
+      npm-based build for Gatsby<br />
+      Composer-based build for Drupal<br />
+      Multi-app configuration<br />
+      Delayed SSG build (post deploy hook)<br />
+    runtime: ''
 java:
   - shortname: jenkins
     name: Jenkins

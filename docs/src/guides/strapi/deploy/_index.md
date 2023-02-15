@@ -11,12 +11,10 @@ description: |
 
 {{% guides/starting-point name="Strapi" templateRepo=strapi4 %}}
 
-## Tools
+{{% guides/requirements %}}
 
-{{% guides/tools %}}
+## Initialize a project
 
-## Sign up for Platform.sh and initialize your project
-
-{{% guides/signup name="Strapi" template="strapi4" /%}}
+{{< guides/initialize name="Strapi" template="strapi4" />}}
 
 {{< guide-buttons next="Configure Strapi" type="first" >}}

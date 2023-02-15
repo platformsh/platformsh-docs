@@ -2,7 +2,6 @@
 title: "Customize TYPO3 for Platform.sh"
 sidebarTitle: "Customize"
 weight: -90
-toc: false
 description: |
     Add some helpful dependencies, and modify your TYPO3 site to read from a Platform.sh environment.
 ---
