@@ -96,14 +96,14 @@ highlight=python
 Access the service using the Platform CLI by running `platform sql`.
 
 You can also access it from your app container via [SSH](../development/ssh/_index.md).
-From your [relationship data](#relationship), you need: `username`, `host`, and `port`.
+From your [relationship data](#relationship-reference), you need: `username`, `host`, and `port`.
 Then run the following command:
 
 ```bash
 psql -U <USERNAME> -h <HOST> -p <PORT>
 ```
 
-Using the values from the [example](#relationship), that would be:
+Using the values from the [example](#relationship-reference), that would be:
 
 ```bash
 psql -U main -h postgresql.internal -p 5432

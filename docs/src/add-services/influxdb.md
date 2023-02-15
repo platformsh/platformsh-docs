@@ -62,7 +62,7 @@ To export your data from InfluxDB, follow these steps:
    SSH tunnel opened to influxdb at: http://127.0.0.1:30000
    ```
 
-3. Get the username and password from the [relationship](#relationship) by running the following command:
+3. Get the username and password from the [relationship](#relationship-reference) by running the following command:
 
    ```bash
    platform relationships -P {{<variable "RELATIONSHIP_NAME" >}}

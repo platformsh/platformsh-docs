@@ -112,7 +112,7 @@ highlight=python
 ## Access the service directly
 
 You can access MongoDB from you app container via [SSH](../development/ssh/_index.md).
-Get the `host` from your [relationship](#relationship).
+Get the `host` from your [relationship](#relationship-reference).
 Then run the following command:
 
 ```bash
