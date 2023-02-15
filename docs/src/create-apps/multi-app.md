@@ -161,7 +161,7 @@ you could organize the repository like this:
 ├── main-app
 |  └── ...                  <- PHP app code
 └── .platform
-    ├── .platform.app.yaml  <- Drupal app configuration
+    ├── .applications.yaml  <- Unified app configuration
     └── routes.yaml
 ```
 
