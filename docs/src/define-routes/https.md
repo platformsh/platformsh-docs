@@ -55,12 +55,12 @@ To enable HTTPS, add a routing configuration similar to the following:
 
 ```yaml {location=".platform/routes.yaml"}
 "https://{default}/":
-   type: upstream
-   upstream: "app:http"
+    type: upstream
+    upstream: "app:http"
 
 "https://www.{default}/":
-   type: redirect
-   to: "https://{default}/"
+    type: redirect
+    to: "https://{default}/"
 ```
 
 All traffic to your domain is then sent to your app.
@@ -82,7 +82,7 @@ enforce TLS 1.3 using the `min_version` setting:
 
 ```yaml {location=".platform/routes.yaml"}
 tls:
-   min_version: TLSv1.3
+    min_version: TLSv1.3
 ```
 
 Note that TLS versions older than 1.2 are deprecated and are rejected by default.
@@ -94,10 +94,10 @@ To enable HSTS, use `strict_transport_security` in a configuration similar to th
 
 ```yaml {location=".platform/routes.yaml"}
 tls:
-   strict_transport_security:
-       enabled: true
-       include_subdomains: true
-       preload: true
+    strict_transport_security:
+        enabled: true
+        include_subdomains: true
+        preload: true
 ```
 
 The following table presents the possible properties for `strict_transport_security`:
@@ -122,7 +122,7 @@ To do so, enable client-authenticated TLS by adding the following configuration:
 
 ```yaml {location=".platform/routes.yaml"}
 tls:
-   client_authentication: "require"
+    client_authentication: "require"
 ```
 
 By default, all valid TLS certificates issued by a legitimate certificate authority are accepted.
@@ -132,14 +132,14 @@ To do so, add a configuration similar to the following:
 
 ```yaml {location=".platform/routes.yaml"}
 tls:
-   client_authentication: "require"
-   client_certificate_authorities:
-       - !include
-           type: string
-           path: root-ca1.crt
-       - !include
-           type: string
-           path: root-ca2.crt
+    client_authentication: "require"
+    client_certificate_authorities:
+        - !include
+            type: string
+            path: root-ca1.crt
+        - !include
+            type: string
+            path: root-ca2.crt
 ```
 
 In this case, the certificate files are resolved relative to the `.platform` directory.
@@ -147,14 +147,14 @@ Alternatively, you can specify the certificates inline in the file:
 
 ```yaml {location=".platform/routes.yaml"}
 tls:
-   client_authentication: "require"
-   client_certificate_authorities:
-       - |
-           -----BEGIN CERTIFICATE-----
-           ### Several lines of characters here ###
-           -----END CERTIFICATE-----
-       - |
-           -----BEGIN CERTIFICATE-----
-           ### Several lines of different characters here ###
-           -----END CERTIFICATE-----
+    client_authentication: "require"
+    client_certificate_authorities:
+        - |
+            -----BEGIN CERTIFICATE-----
+            ### Several lines of characters here ###
+            -----END CERTIFICATE-----
+        - |
+            -----BEGIN CERTIFICATE-----
+            ### Several lines of different characters here ###
+            -----END CERTIFICATE-----
 ```
