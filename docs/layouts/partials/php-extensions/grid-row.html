@@ -1,0 +1,29 @@
+{{ $data := .data }}
+{{ $extension_name := .extension_name }}
+{{ $row_extension := .row_extension | lower }}
+{{ range $extension,$versions := .allExtensions }}
+  {{ if eq $row_extension (lower $extension) }}
+    <tr>
+      {{ if $extension_name }}
+        <td><code>{{ $extension }}</code></td>
+      {{ end }}
+      <!-- Loop through all the versions (keys in the data file) -->
+      {{ range $version,$extensions := $data }}
+        <td>
+          <!-- If the map has this version, add an emoji-->
+          {{ with index $versions $version }}
+            {{ if eq . "default"}}
+              Def
+            {{ else if eq . "available" }}
+              Avail
+            {{ else if eq . "built-in" }}
+              *
+            {{ else if eq . "with-webp" }}
+              Avail with<br /><code>webp</code>
+            {{ end }}
+          {{ end }}
+        </td>
+      {{ end }}
+    </tr>
+  {{ end }}
+{{ end }}
