@@ -123,7 +123,7 @@ platform user:delete user1@example.com
 {{< /codetabs >}}
 
 Once you remove a user, they can no longer access the project.
-For SSH access changes to apply after you add a remove a user from a project or an environment type,
+For SSH access changes to apply after you remove a user from a project or an environment type,
 you have to redeploy each environment by either clicking **Redeploy** in the Console or running `platform redeploy`.
 
 ### Change existing permissions for environment types
@@ -157,7 +157,7 @@ and the Contributor role for Development environments:
 platform user:update user1@example.com -r production:v,development:c
 ```
 
-After you change a user's role for an environment type, you must trigger a redeploy each environment to propagate access changes.
+After you change a user's role for an environment type, you must redeploy each environment to propagate access changes.
 You can redeploy using the CLI command `platform redeploy`.
 
 {{< /codetabs >}}
