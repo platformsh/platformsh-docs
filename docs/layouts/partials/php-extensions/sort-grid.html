@@ -2,7 +2,7 @@
 {{ $allExtensions := dict }}
 {{ range $version,$support_type := $data }}
   <!-- Go through each type of support (available, default, etc.) -->
-  {{ range $support_type_name,$extensions := $support_type}}
+  {{ range $support_type_name,$extensions := $support_type }}
     <!-- Go through each listed extension -->
     {{ range $extensions }}
       {{ $newVersion := dict }}
@@ -13,7 +13,7 @@
       {{ else }}
         {{ $newVersion =  dict $version $support_type_name }}
       {{ end }}
-      {{ $allExtensions = merge $allExtensions (dict . $newVersion ) }}
+      {{ $allExtensions = merge $allExtensions ( dict . $newVersion ) }}
     {{ end }}
   {{ end }}
 {{ end }}

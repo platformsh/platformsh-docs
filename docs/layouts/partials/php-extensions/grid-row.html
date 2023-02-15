@@ -1,5 +1,5 @@
-{{ $data := .data}}
-{{ $extension_name := .extension_name}}
+{{ $data := .data }}
+{{ $extension_name := .extension_name }}
 {{ $row_extension := .row_extension | lower }}
 {{ range $extension,$versions := .allExtensions }}
   {{ if eq $row_extension (lower $extension) }}

@@ -12,7 +12,7 @@
     {{ else }}
       {{ $newVersions = slice $version }}
     {{ end }}
-    {{ $allExtensions = merge $allExtensions (dict . $newVersions ) }}
+    {{ $allExtensions = merge $allExtensions ( dict . $newVersions ) }}
   {{ end }}
 {{ end }}
 <table>
