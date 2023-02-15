@@ -12,8 +12,9 @@ Learn about user roles and environment types, how to add and delete users, and h
 
 Within a project, each user has a role that controls their access and permission levels.
 
-* Project Admin: Users who can configure project settings, add and remove users, administer environment permissions, push code, and execute actions on all project environments.
-* Project Viewer: Any user with access to environment types automatically gets this role.
+- Project admin: Users who can configure project settings, add and remove users, administer environment permissions, push code,
+  and execute actions on all project environments.
+- Project viewer: Any user with access to environment types automatically gets this role.
 
 These control who has access to projects.
 
@@ -37,17 +38,18 @@ User1 has **Admin** permissions for all environments of that type.
 
 A few things to consider:
 
-* Only one environment per project can be the Production type. It's set automatically as the default branch and can't be overridden separately.
-* You can change an environment's type (if it's not Production).
-* You can have multiple Staging and Development environments.
+- Only one environment per project can be the Production type.
+  It's set automatically as the default branch and can't be overridden separately.
+- You can change an environment's type (if it's not Production).
+- You can have multiple Staging and Development environments.
 
 The following table shows the available roles for environment types.
 
-| Role | View environment | Push code | Branch environment | SSH access | Change settings | Execute actions |
-| ---- | ---------------- | --------- | ------------------ | ---------- | --------------- | --------------- |
-| Viewer | Yes | No |  No |  No |  No |  No |
-| Contributor | Yes | Yes | Yes | Yes | No | No |
-| Admin| Yes | Yes | Yes | Yes | Yes | Yes |
+| Role        | View environment | Push code | Branch environment | SSH access | Change settings | Execute actions |
+|-------------|------------------|-----------|--------------------|------------|-----------------|-----------------|
+| Viewer      | Yes              | No        | No                 | No         | No              | No              |
+| Contributor | Yes              | Yes       | Yes                | Yes        | No              | No              |
+| Admin       | Yes              | Yes       | Yes                | Yes        | Yes             | Yes             |
 
 To customize who can use SSH, [set the access key](../create-apps/app-reference.md#access) in your `platform.app.yaml` file.
 
@@ -55,29 +57,28 @@ To customize who can use SSH, [set the access key](../create-apps/app-reference.
 
 ### Add a user to a project
 
-To add a user, you need to be a [Project Admin](#user-roles).
+To add a user, you need to be a [project admin](#user-roles).
 
 To add a user to a project or an environment, follow these steps:
 
 {{< codetabs >}}
-
 +++
 title=In the Console
 +++
 
-- Select the project where you want to add a new user.
-- Click {{< icon settings >}} **Settings**.
-- Click **Access**.
-- Click **+ Add**.
-- Add the user's details and choose their permissions.
-- Click **Save**.
+1. Select the project where you want to add a new user.
+2. Click {{< icon settings >}} **Settings**.
+3. Click **Access**.
+4. Click **+ Add**.
+5. Add the user's details and choose their permissions.
+6. Click **Save**.
 
 <--->
 +++
 title=Using the CLI
 +++
 
-Say you want to add `user1@example.com` to the project with a Project Admin role:
+Say you want to add `user1@example.com` to the project as a project admin:
 
 ```bash
 platform user:add user1@example.com -r admin
@@ -87,11 +88,12 @@ platform user:add user1@example.com -r admin
 
 The user has to create an account before they can contribute to the project.
 Once you add a user to a project, they receive an email with instructions.
-For SSH access changes to apply after you add a user to a project, you have to redeploy each environment by either clicking **Redeploy** in the Console or running `platform redeploy`.
+For SSH access changes to apply after you add a user to a project,
+you have to redeploy each environment by either clicking **Redeploy** in the Console or running `platform redeploy`.
 
 ### Remove a user from a project
 
-To remove a user from a project, you need to be a [Project Admin](#user-roles).
+To remove a user from a project, you need to be a [project admin](#user-roles).
 
 To remove a user, follow these steps:
 
@@ -101,32 +103,32 @@ To remove a user, follow these steps:
 title=In the Console
 +++
 
-- Select the project where you want to add a new user.
-- Click {{< icon settings >}} **Settings**.
-- Click **Access**.
-- Click the user you want to delete.
-- Click **Remove user**.
-- Click **Accept**.
+1. Select the project where you want to add a new user.
+2. Click {{< icon settings >}} **Settings**.
+3. Click **Access**.
+4. Click the user you want to delete.
+5. Click **Remove user**.
+6. Click **Accept**.
 
 <--->
 
 +++
 title=Using the CLI
 +++
-To delete existing users:
+To remove an existing user:
 
 ```bash
 platform user:delete user1@example.com
 ```
 {{< /codetabs >}}
 
-Once you delete a user, they can no longer access the project.
-After you delete a user from a project or an environment type,
-you must [trigger a redeploy](../development/troubleshoot.md#force-a-redeploy) to propagate SSH access changes to each environment.
+Once you remove a user, they can no longer access the project.
+For SSH access changes to apply after you add a remove a user from a project or an environment type,
+you have to redeploy each environment by either clicking **Redeploy** in the Console or running `platform redeploy`.
 
 ### Change existing permissions for environment types
 
-To manage user permissions, you need to be a [Project Admin](#user-roles).
+To manage user permissions, you need to be a [project admin](#user-roles).
 
 Follow these steps:
 
@@ -136,12 +138,12 @@ Follow these steps:
 title=In the Console
 +++
 
-- Select the project where you want to add a new user.
-- Click {{< icon settings >}} **Settings**.
-- Click **Access**.
-- Click the user whose permissions you want to manage.
-- Change the settings.
-- Click **Save**.
+1. Select the project where you want to add a new user.
+2. Click {{< icon settings >}} **Settings**.
+3. Click **Access**.
+4. Click the user whose permissions you want to manage.
+5. Change the settings.
+6. Click **Save**.
 
 <--->
 
@@ -155,7 +157,8 @@ and the Contributor role for Development environments:
 platform user:update user1@example.com -r production:v,development:c
 ```
 
-After you change a user's role for an environment type, you must trigger a redeploy each environment to propagate access changes. You can redeploy using the CLI command `platform redeploy`.
+After you change a user's role for an environment type, you must trigger a redeploy each environment to propagate access changes.
+You can redeploy using the CLI command `platform redeploy`.
 
 {{< /codetabs >}}
 
