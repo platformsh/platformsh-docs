@@ -2,22 +2,11 @@
 title: "Configure Gatsby for Platform.sh"
 sidebarTitle: "Configure"
 weight: -100
-toc: false
 description: |
     Review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for Gatsby.
 ---
 
 {{% guides/config-desc name="Gatsby" noService=true %}}
-
-## Requests configuration: `routes.yaml`
-
-{{% guides/config-routes template="gatsby" name="Gatsby" %}}
-
-## Service configuration: `services.yaml`
-
-{{% guides/config-service name=Gatsby noService=true /%}}
-
-## Application container: `.platform.app.yaml`
 
 {{% guides/config-app template="gatsby" %}}
 
@@ -31,5 +20,9 @@ In the template, `yarn` is run during the build hook to install all of Gatsby's 
 All traffic is then directed to the `public` subdirectory once the deployment has completed via the `web.locations` section.
 
 {{< /guides/config-app >}}
+
+{{% guides/config-service name=Gatsby noService=true /%}}
+
+{{% guides/config-routes template="gatsby" name="Gatsby" %}}
 
 {{< guide-buttons next="Deploy Gatsby" >}}
