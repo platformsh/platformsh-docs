@@ -18,3 +18,4 @@ repos:
     - strapi4
     - laravel
     - django4
+    - symfony

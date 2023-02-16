@@ -1,9 +1,15 @@
-The best way to connect your local DDEV to your Platform.sh project is through the [Platform.sh DDEV add-on](https://github.com/drud/ddev-platformsh).
+The best way to connect your local DDEV to your Platform.sh project is through the [Platform.sh DDEV add-on](https://github.com/ddev/ddev-platformsh).
 To add it, run the following command:
 
-```bash
-ddev get drud/ddev-platformsh
-```
+  ```bash
+  ddev get ddev/ddev-platformsh
+      Please enter your platform.sh token:
+      <Platform.sh API Token>
+      Please enter your platform.sh project ID (like '6k4ypl5iendqd'):
+      <ProjectID>
+      Please enter your platform.sh project environment (like 'main'):
+      main
+  ```
 
 Answer the interactive prompts with your project ID and the name of the environment to pull data from.
 

@@ -1,8 +1,16 @@
 ---
 title: "Symfony"
-weight: -100
+weight: 130
 description: |
-    Everything you need to get started with Symfony on Platform.sh. 
+    Everything you need to get started with [Symfony](https://www.symfony.com/), a [PHP](../../development/templates.md#php) framework for web development, on Platform.sh.
 ---
 
 {{% description %}}
+
+See an example Symfony project in the official [Symfony template repository](https://github.com/symfonycorp/platformsh-symfony-template), which you can use as a starting point for your own project.
+
+If you already have a Symfony project ready to deploy,
+see the template's [example Platform.sh files](https://github.com/symfonycorp/platformsh-symfony-template/tree/6.2/.platform).
+These files let you [configure your app](../../create-apps/_index.md),
+[add services](../../add-services/_index.md), and [define routes](../../define-routes/_index.md).
+

@@ -5,6 +5,12 @@
 {{ if ne $composerLink "" }}
   {{ $site = printf "[Composer-flavored %s](%s)" $name $composerLink }}
 {{ end }}
+
+{{ $org := .Get "templateOrg" }}
+{{ if eq $org "" }}
+  {{ $org = "platformsh-templates" }}
+{{ end }}
+
 To get {{ $name }} running on Platform.sh, you have two potential starting places:
 
 -   You already have a {{ $site }} site you are trying to deploy.
@@ -17,7 +23,7 @@ To get {{ $name }} running on Platform.sh, you have two potential starting place
     -   Generate a basic {{ $site }} site.
         {{ if .Get "initExample" }}See an example for doing this under initializing a project.{{ end }}
 
-    -   Use a ready-made [{{ $name }} template](https://github.com/platformsh-templates/{{ $repo }}).
+    -   Use a ready-made [{{ $name }} template](https://github.com/{{ $org }}/{{ $repo }}).
         {{ markdownify (readFile "/layouts/shortcodes/template-intro.md") }}
 
         To use a template, click the button below to create a {{ .Get "name" }} template project.

@@ -1,8 +1,8 @@
 ---
 title: "WordPress"
-weight: -90
+weight: 150
 description: |
-    Everything you need to get started with WordPress on Platform.sh. 
+    Everything you need to get started with WordPress on Platform.sh.
 ---
 
 {{% description %}}

@@ -20,6 +20,7 @@ Platform.sh supports two different Redis configurations:
 - [Quarkus](../guides/quarkus/redis.md)
 - [Spring](../guides/spring/redis.md)
 - [WordPress](../guides/wordpress/redis.md)
+- [Symfony](../guides/symfony/customize/redis.md)
 
 {{% /frameworks %}}
 
@@ -66,7 +67,7 @@ web:
 ```
 
 To prevent data from getting lost when a container is moved or shut down,
-you can use the [persistent Redis](#persistent-redis) configuration. 
+you can use the [persistent Redis](#persistent-redis) configuration.
 Persistent Redis provides a cache with persistent storage.
 
 ### Persistent Redis
@@ -228,7 +229,7 @@ see the official [Redis documentation](https://redis.io/docs/reference/eviction/
 After you've [configured your Redis service](#usage-example),
 you can access it using the [Redis CLI](https://redis.io/docs/ui/cli/).
 
-Retrieve the hostname and port you can connect to 
+Retrieve the hostname and port you can connect to
 through the `PLATFORM_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables).
 To do so, run the `platform relationships` command.
 
@@ -241,8 +242,8 @@ redis-cli -h {{< variable "HOSTNAME" >}} -p {{< variable "PORT" >}}
 
 ## Use Redis as a handler for PHP sessions
 
-A PHP session allows you to store different data for each user through a unique session ID. 
-By default, PHP handles sessions using files. 
+A PHP session allows you to store different data for each user through a unique session ID.
+By default, PHP handles sessions using files.
 But you can use Redis as a session handler,
 which means Redis stores and retrieves the data saved into sessions.
 
