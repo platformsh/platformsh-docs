@@ -533,7 +533,6 @@ grid:
       - pdo_pgsql
       - pdo_sqlsrv
       - pgsql
-      - pinba
       - pspell
       - readline
       - recode
@@ -568,7 +567,6 @@ grid:
       - intl
       - json
       - mbstring
-      - mysql
       - mysqli
       - mysqlnd
       - opcache
@@ -610,7 +608,7 @@ grid:
       - mailparse
       - mcrypt
       - memcached
-      - mongo
+      - mongodb
       - msgpack
       - newrelic
       - oauth
@@ -621,7 +619,6 @@ grid:
       - pdo_pgsql
       - pdo_sqlsrv
       - pgsql
-      - pinba
       - pspell
       - pthreads
       - readline
@@ -661,7 +658,6 @@ grid:
       - intl
       - json
       - mbstring
-      - mysql
       - mysqli
       - mysqlnd
       - opcache
@@ -701,7 +697,7 @@ grid:
       - ldap
       - mailparse
       - memcached
-      - mongo
+      - mongodb
       - msgpack
       - newrelic
       - oauth
@@ -712,7 +708,6 @@ grid:
       - pdo_pgsql
       - pdo_sqlsrv
       - pgsql
-      - pinba
       - pspell
       - readline
       - recode
@@ -751,7 +746,6 @@ grid:
       - intl
       - json
       - mbstring
-      - mysql
       - mysqli
       - mysqlnd
       - opcache
@@ -791,7 +785,7 @@ grid:
       - ioncube
       - ldap
       - memcached
-      - mongo
+      - mongodb
       - msgpack
       - newrelic
       - oauth
@@ -802,7 +796,6 @@ grid:
       - pdo_pgsql
       - pdo_sqlsrv
       - pgsql
-      - pinba
       - pspell
       - readline
       - recode
@@ -841,7 +834,6 @@ grid:
       - intl
       - json
       - mbstring
-      - mysql
       - mysqli
       - mysqlnd
       - opcache
@@ -884,7 +876,7 @@ grid:
       - ldap
       - mailparse
       - memcached
-      - mongo
+      - mongodb
       - msgpack
       - newrelic
       - oauth
@@ -895,7 +887,6 @@ grid:
       - pdo_pgsql
       - pdo_sqlsrv
       - pgsql
-      - pinba
       - pspell
       - raphf
       - readline
@@ -933,7 +924,6 @@ grid:
       - intl
       - json
       - mbstring
-      - mysql
       - mysqli
       - mysqlnd
       - opcache
@@ -973,7 +963,7 @@ grid:
       - ldap
       - mailparse
       - memcached
-      - mongo
+      - mongodb
       - msgpack
       - newrelic
       - oauth
@@ -983,7 +973,6 @@ grid:
       - pdo_pgsql
       - pdo_sqlsrv
       - pgsql
-      - pinba
       - pspell
       - raphf
       - readline
@@ -1018,7 +1007,6 @@ grid:
       - iconv
       - intl
       - mbstring
-      - mysql
       - mysqli
       - mysqlnd
       - opcache
@@ -1059,7 +1047,7 @@ grid:
       - ldap
       - mailparse
       - memcached
-      - mongo
+      - mongodb
       - msgpack
       - newrelic
       - oauth
@@ -1069,7 +1057,6 @@ grid:
       - pdo_pgsql
       - pdo_sqlsrv
       - pgsql
-      - pinba
       - pspell
       - raphf
       - rdkafka
@@ -1105,7 +1092,6 @@ grid:
       - iconv
       - intl
       - mbstring
-      - mysql
       - mysqli
       - mysqlnd
       - opcache
@@ -1151,7 +1137,6 @@ grid:
       - pdo_odbc
       - pdo_pgsql
       - pgsql
-      - pinba
       - pspell
       - raphf
       - rdkafka
@@ -1163,7 +1148,6 @@ grid:
       - ssh2
       - sybase
       - tideways
-      - tideways_xhprof
       - tidy
       - uuid
       - xsl
@@ -1185,7 +1169,6 @@ grid:
       - iconv
       - intl
       - mbstring
-      - mysql
       - mysqli
       - mysqlnd
       - opcache
