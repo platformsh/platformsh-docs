@@ -522,7 +522,6 @@ grid:
       - mailparse
       - mcrypt
       - memcached
-      - mongo
       - msgpack
       - newrelic
       - oauth
