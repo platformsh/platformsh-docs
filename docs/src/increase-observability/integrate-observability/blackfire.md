@@ -1,7 +1,10 @@
 ---
 title: "Blackfire"
+sidebarTitle: Blackfire
+weight: 1
+sectionBefore: Official observability tool 
 description: |
-  Platform.sh recommends [Blackfire.io](https://blackfire.io/) for monitoring and profiling web sites and applications. From development to test, staging and production Blackfire offers a unique blend of monitoring, often called APM, and profiling features. Blackfire supports PHP and Python.
+  Platform.sh recommends [Blackfire.io](https://blackfire.io/) for monitoring and profiling web sites and applications. Blackfire supports PHP and Python.
 ---
 
 {{% description %}}
@@ -29,12 +32,14 @@ All customers can also subscribe to Blackfire separately.
 
 ## Getting started
 
-### On a Grid plan or {{% names/dedicated-gen-3 %}} infrastructure 
+### On a Grid or {{% names/dedicated-gen-3 %}} infrastructure 
 
-If you have the Platform.sh [Observability Suite](https://platform.sh/features/observability-suite/), 
-the [Blackfire automated integration](#automated-integration) is enabled on Grid environments by default. 
+If you have Grid environments on a plan with the Platform.sh [Observability Suite](https://platform.sh/features/observability-suite/),
+the [Blackfire automated integration](#automated-integration) is enabled on your environments by default. 
 
-Otherwise, to enable Blackfire on your PHP or Python applications,
+If you have Grid environments without the Observability suite or {{% names/dedicated-gen-3 %}} environments,
+you need to enable the integration yourself.
+To enable Blackfire on your PHP or Python apps,
 follow [the step-by-step instructions](https://blackfire.io/docs/integrations/paas/platformsh).
 
 ### On {{% names/dedicated-gen-2 %}} infrastructure

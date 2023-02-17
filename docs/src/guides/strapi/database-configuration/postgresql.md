@@ -2,7 +2,6 @@
 title: "Configure PostgreSQL for Strapi on Platform.sh"
 sidebarTitle: "PostgreSQL"
 weight: -90
-toc: false
 description: |
   Configure your Strapi application to use a PostgreSQL database on Platform.sh.
 ---

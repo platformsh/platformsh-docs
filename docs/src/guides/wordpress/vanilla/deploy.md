@@ -2,14 +2,11 @@
 title: "Deploy WordPress"
 sidebarTitle: "Deploy"
 weight: -80
-toc: false
 description: |
     Now that your site is ready, push it to Platform.sh and import your data.
 ---
 
-## Deployment
-
-{{< guides/deployment >}}
+{{% guides/deployment %}}
 
 {{% guides/data-migration WordPress=true /%}}
 

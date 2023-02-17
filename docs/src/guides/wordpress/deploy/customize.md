@@ -2,7 +2,6 @@
 title: "Customize WordPress for Platform.sh"
 sidebarTitle: "Customize"
 weight: -90
-toc: false
 description: |
     Add some helpful dependencies, and modify your WordPress site to read from a Platform.sh environment.
 ---
@@ -80,7 +79,7 @@ With these packages included, the WordPress CLI is available when you SSH into t
 composer require wp-cli/wp-cli-bundle psy/psysh --ignore-platform-reqs
 ```
 
-If you've installed the WordPress CLI as a dependency as in the [previous step](./configure.md#application-container-platformappyaml),
+If you've installed the WordPress CLI as a dependency as in the [previous step](./configure.md#configure-apps-in-platformappyaml),
 you can use it directly.
 (As long as you have only `wp-cli/wp-cli-bundle` as a dependency and not `wp-cli/wp-cli`.)
 

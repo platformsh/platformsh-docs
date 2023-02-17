@@ -47,7 +47,7 @@ This ensures that the command starts at the right moment and stops gracefully wh
 Also, should the program terminate for any reason, it's automatically restarted.
 Note that the start command _must_ run in the foreground.
 
-Incoming requests are passed to the application using either a TCP (default) or UNIX socket.
+Incoming requests are passed to the application using either a TCP (default) or Unix socket.
 The application must use the [appropriate environment variable](../create-apps/app-reference.md#where-to-listen) to determine the URI to listen on.
 For a TCP socket ([recommended](https://go.microsoft.com/fwlink/?linkid=874850)), the application must listen on `http://127.0.0.1`,
 using the `PORT` environment variable.
@@ -58,7 +58,7 @@ and also has marginal performance benefits.
 
 Note that HTTPS is also terminated at the Nginx proxy,
 so the `app.UseHttpsRedirection();` line in `Startup.cs` should be removed.
-To force HTTPS-only, refer to the [routes documentation](../define-routes/https.md#using-https).
+To force HTTPS-only, refer to the [routes documentation](../define-routes/https.md#enable-https).
 
 The following example configures an environment to serve the static content folders commonly found in [ASP.NET MVC](https://dotnet.microsoft.com/apps/aspnet/mvc) templates using Nginx,
 while routing other traffic to the .NET application.

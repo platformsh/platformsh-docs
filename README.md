@@ -77,7 +77,7 @@ If you would like to test the search server, follow these steps:
    # Install dependencies for communicating with Meilisearch.
    poetry install
    # Set the same version as used for the docs
-   export MEILISEARCH_VERSION=0.27.1
+   export MEILISEARCH_VERSION=0.30.1
    # Set the right version for your operating system
    # Replace the part after `meilisearch-`
    # For macOS, use `macos-amd64`

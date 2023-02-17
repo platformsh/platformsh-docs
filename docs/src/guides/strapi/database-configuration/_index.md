@@ -2,7 +2,6 @@
 title: "Configuring Database Services for Strapi on Platform.sh"
 sidebarTitle: "Database Configuration"
 weight: -90
-toc: false
 description: |
   Configure a preferred database for your Strapi application on Platform.sh
 ---

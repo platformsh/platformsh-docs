@@ -25,9 +25,15 @@ it comes with a [production environment](#production-environments).
 
 ### Development plans
 
-A Development plan is useful for developing your apps before they're ready to go live.
+A Development plan provides all the tools you need to build your website 
+before it's ready to go live.
 
 With a Development plan, you can't use [custom domain names](../../domains/steps/_index.md).
+You also can't use a Development plan for production
+since it doesn’t allow for full production-level resources.
+
+After your project is complete and ready for production,
+choose [another plan](../pricing/_index.md) to go live.
 
 ### Production environments
 
@@ -109,6 +115,39 @@ Learn more about [{{% names/dedicated-gen-3 %}}](../../dedicated-gen-3/overview/
 
 To discuss how {{% names/dedicated-gen-3 %}} could work for you, [contact Sales](https://platform.sh/contact/).
 
+## Enterprise overages 
+
+**The following applies to all Enterprise and Elite subscriptions.**
+
+If your apps happen to receive and send more traffic during the month than your plan includes,
+you are charged the overage rate for additional bandwidth consumption.
+
+If you experience repeated overages, please reach out to your Customer Success Manager to review your existing contract.
+
+Plans with a Fastly CDN service or the extra Fastly Service include the following:
+
+- 1&nbsp;Tb of egress (outgoing) bandwidth on the CDN (Fastly)
+- 500 million ingress (incoming) requests on the CDN
+
+*Plans without the Fastly Service are instead charged at the following origin prices.*
+
+### Overage prices
+
+| SKU             | Description                                                                             | USD  | EUR  | AUD    | CAD    | GBP  |
+|-----------------|-----------------------------------------------------------------------------------------|------|------|--------|--------|------|
+| `BDW-1-POST`    | Additional 1&nbsp;Tb of egress bandwidth and 500 million ingress requests               | $88  | €77  | AU$128 | CA$119 | £68  |
+| `EDGE-REQ-POST` | Additional 100 million ingress requests                                                 | $66  | €62  | AU$95  | CA$88  | £54  |
+| `ORN-1-POST`    | Additional 1&nbsp;Tb of egress bandwidth and 500 million ingress requests at the origin | $209 | €167 | AU$316 | CA$284 | £189 |
+
+### DDoS surge protection
+
+If your site is suffering from a DDoS attack, overages may apply.
+You can contact your Customer Success Manager to add DDoS surge protection to your plan.
+
+| SKU                    | Description                                | USD    | EUR    | AUD      | CAD      | GBP    |
+|------------------------|--------------------------------------------|--------|--------|----------|----------|--------|
+| `EDGE-DDOS-PROTECTION` | Surge protection for DDoS related overages | $2,400 | €2,220 | AU$3,444 | CA$3,216 | £1,968 |
+
 ## Agencies
 
 Agencies have access to several partner levels with many perks.
@@ -120,7 +159,7 @@ Agencies have access to several partner levels with many perks.
 * Agency discounts for plans depending on the combination of the account tier and agency partner level:
 
   | Discount          | Registered | Bronze | Silver | Gold | Platinum | Diamond |
-  | ----------------- | ---------- | ------ | ------ | ---- | -------- | ------- |
+  |-------------------|------------|--------|--------|------|----------|---------|
   | User license      | –          | –      | Free   | Free | Free     | Free    |
   | Development plan  | –          | –      | –      | Free | Free     | Free    |
   | Professional tier | –          | –      | 10%    | 10%  | 10%      | 10%     |
@@ -132,7 +171,7 @@ Agencies have access to several partner levels with many perks.
   The size of the plan depends on the agency tier as seen in the following table:
 
   | Registered | Bronze     | Silver        | Gold        | Platinum   | Diamond    |
-  | ---------- | ---------- | ------------- | ----------- | ---------- | ---------- |
+  |------------|------------|---------------|-------------|------------|------------|
   | –          | Small plan | Standard plan | Medium plan | Large plan | Large plan |
 
 [Learn more and join today](https://platform.sh/solutions/digital-agencies/).

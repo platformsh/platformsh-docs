@@ -1,5 +1,5 @@
 {
-    "username": "mysql",
+    "username": "user",
     "scheme": "mysql",
     "service": "oraclemysql",
     "fragment": null,
@@ -13,7 +13,7 @@
     "query": {
         "is_master": true
     },
-    "password": "67fd28dc43c0398b7013682425d67a7a",
+    "password": "",
     "type": "oracle-mysql:8.0",
     "public": false,
     "host_mapped": false
