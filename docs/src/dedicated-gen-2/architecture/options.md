@@ -3,15 +3,9 @@ title: "Options"
 weight: 4
 ---
 
-You can enable [staging environments](#staging-environments),
-[error handling](#error-handling) features 
-and [remote logging](#remote-logging) on your Dedicated Generation 2 projects.
-Other optional features include:
-- [multiple applications](../../dedicated-gen-3/architecture/options.md#multiple-applications)
-- [multiple availability zones](../../dedicated-gen-3/architecture/options.md#multiple-az)
-- [additional application servers](../../dedicated-gen-3/architecture/options.md#additional-application-servers)
-- [SFTP accounts](../../dedicated-gen-3/architecture/options.md#sftp-accounts)
-- and [IP restrictions](../../dedicated-gen-3/architecture/options.md#ip-restrictions)
+You can enable the following features on your Dedicated Generation 2 projects,
+as well as [multiple applications](../../dedicated-gen-3/architecture/options.md#multiple-applications)
+and [multiple availability zones](../../dedicated-gen-3/architecture/options.md#multiple-az).
 
 To enable an optional feature or get more information on potential fees,
 [contact Sales](https://platform.sh/contact/).
@@ -20,6 +14,22 @@ To enable an optional feature or get more information on potential fees,
 
 A dedicated single-node staging machine is provisioned for your application with an identical software configuration to your production hardware, but reduced hardware specs.
 This gives the advantages of isolating the staging load from the production hardware as well as having an identical software configuration to perform UAT, but this option doesn't provide a bed for performance testing as the physical hardware configuration isn't the same as production.
+
+## Additional application servers
+
+For especially high-traffic sites we can also add additional application-only servers.
+These servers contain just the application code; data storage services (such as SQL, Solr, Redis) are limited to the standard three.
+The cluster begins to look more like a standard N-Tier architecture at this point, with a horizontal line of web application servers in front of a 3 node (N+1) cluster of Galera database servers.
+
+Speak to your sales representative about the costs associated with adding additional application servers. 
+This configuration requires a separate setup from the default so advanced planning is required.
+
+## SFTP accounts
+
+In addition to SSH accounts, SFTP accounts can be created with a custom user/password that are restricted to certain directories. 
+These directories must be one of the writeable mounts (or rather, there’s no point assigning them to the read-only code directory). 
+There is no cost for this configuration, and it can be requested at any time via a support ticket. 
+SSH public key based authentication is also supported on the SFTP account.
 
 ## Error handling
 
@@ -50,3 +60,10 @@ When contacting support to enable `rsyslog`, you need:
 - The specific log files you want forwarded to your logging service.
 
 There is no cost for this functionality.
+
+## IP restrictions
+
+Platform.sh supports project-level IP restrictions (allow/deny) and HTTP Basic authentication. These may be configured through the Development Environment and are automatically replicated from the production and staging branches to the production and staging environments, respectively.
+
+Changing access control triggers a new deploy of the current environment. 
+However, the changes aren’t propagate to child environments until they’re manually redeployed.
