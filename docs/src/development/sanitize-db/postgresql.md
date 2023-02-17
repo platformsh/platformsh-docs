@@ -60,7 +60,20 @@ Set up a script by following these steps:
         # Sanitize data
         PGPASSWORD=$DB_PASS psql -c "UPDATE users SET display_name=substring(md5(display_name||'$PLATFORM_PROJECT_ENTROPY') for 8);" -U $DB_USER -h $DB_HOST -p $DB_PORT
         PGPASSWORD=$DB_PASS psql -c "UPDATE users SET email=substring(md5(email||'$PLATFORM_PROJECT_ENTROPY') for 8);" -U $DB_USER -h $DB_HOST -p $DB_PORT
-    fi   
+    fi
+    ```
+
+    To sanitize only on the initial deploy and not all future deploys,
+    on sanitization create a file on a [mount](/create-apps/app-reference.md#mounts).
+    Then add a check for the file as in the following example:
+
+    ```bash {location="sanitize.sh"}
+    #!/usr/bin/env bash
+
+    if [ "$PLATFORM_ENVIRONMENT_TYPE" != production ] && [ ! -f {{< variable "MOUNT_PATH" >}}/is_sanitized ]; then
+        # Sanitize data
+        touch {{< variable "MOUNT_PATH" >}}/is_sanitized
+    fi
     ```
 
 4.  Update the deploy hook to run your script on each deploy.
