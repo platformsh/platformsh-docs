@@ -71,11 +71,13 @@ Assumptions:
     hooks:
         deploy: |
             cd /app/public
-            if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ] && [ ! -f {{ `{{< variable "MOUNT_PATH" >}}/is_sanitized` | .Page.RenderString }} ]; then
+            if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
                 # Do whatever you want on the production site.
             else
-                # The sanitization of the database should happen here (since it's non-production)
-                sanitize_the_database.sh
-                touch {{ `{{< variable "MOUNT_PATH" >}}/is_sanitized` | .Page.RenderString }}
+                if [ ! -f {{ `{{< variable "MOUNT_PATH" >}}/is_sanitized` | .Page.RenderString }} ]; then
+                    # The sanitization of the database should happen here (since it's non-production)
+                    sanitize_the_database.sh
+                    touch {{ `{{< variable "MOUNT_PATH" >}}/is_sanitized` | .Page.RenderString }}
+                fi
             fi
     ```
