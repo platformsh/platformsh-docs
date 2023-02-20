@@ -74,9 +74,11 @@ Assumptions:
             if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
                 # Do whatever you want on the production site.
             else
+                # Check if the database has been sanitized yet
                 if [ ! -f {{ `{{< variable "MOUNT_PATH" >}}/is_sanitized` | .Page.RenderString }} ]; then
-                    # The sanitization of the database should happen here (since it's non-production)
+                    # Sanitize your database here
                     sanitize_the_database.sh
+                    # Create a record that sanitization has happened
                     touch {{ `{{< variable "MOUNT_PATH" >}}/is_sanitized` | .Page.RenderString }}
                 fi
             fi
