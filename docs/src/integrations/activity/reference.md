@@ -150,8 +150,8 @@ The following table presents the possible activities:
 | `integration.bitbucket.register_hooks` | An integration hook has been registered with Bitbucket Cloud. |
 | `integration.bitbucket_server.register_hooks` | An integration hook has been registered with Bitbucket Server. |
 | `integration.health.email` | A [health notification](../notifications.md) was sent by email. |
-| `integration.health.email` | A [health notification](../notifications.md) was sent to PagerDuty. |
-| `integration.health.email` | A [health notification](../notifications.md) was sent to Slack. |
+| `integration.health.pagerduty` | A [health notification](../notifications.md) was sent to PagerDuty. |
+| `integration.health.slack` | A [health notification](../notifications.md) was sent to Slack. |
 | `integration.webhook` | A webhook was triggered. |
 | `integration.script` | An activity script has completed. |
 

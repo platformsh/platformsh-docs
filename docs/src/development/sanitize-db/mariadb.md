@@ -25,19 +25,35 @@ To sanitize your database and get rid of sensitive, live information, use the `d
 Add your script to sanitize the database to [a `deploy` hook](../../create-apps/hooks/hooks-comparison.md#deploy-hook)
 for non-production environments:
 
-```yaml
-deploy: |
-    cd /app/public
-    if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-        # Do whatever you want on the production site.
-    else
-        drush -y sql:sanitize
-    fi
-    drush -y updatedb
+```yaml {location=".platform.app.yaml"}
+hooks:
+    deploy: |
+        cd /app/public
+        if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
+            # Do whatever you want on the production site.
+        else
+            drush -y sql:sanitize
+        fi
+        drush -y updatedb
 ```
 
 More options are available.
-These are described in [Drush's documentation](https://www.drush.org/latest/commands/sql_sanitize/).
+These are described in the [Drush documentation](https://www.drush.org/latest/commands/sql_sanitize/).
+
+To sanitize only on the initial deploy and not all future deploys,
+use [Drush state](https://www.drush.org/latest/commands/state_set/) as in the following example:
+
+```yaml {location=".platform.app.yaml"}
+hooks:
+    deploy: |
+        cd /app/public
+        if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ] && [ "$(drush state:get --format=string mymodule.sanitized)" != yes ]; then
+            # Do whatever you want on the production site.
+        else
+            drush -y sql:sanitize
+            drush state:set --input-format=string mymodule.sanitized yes
+        fi
+        
 
 {{< /codetabs >}}
 
