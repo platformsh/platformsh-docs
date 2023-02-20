@@ -57,6 +57,8 @@ jobs:
 
   deactivate_forked_environment:
     runs-on: ubuntu-latest
+    env:
+      BRANCH_TITLE: pr-${{ github.event.number }}
     # For forked PRs labelled as build-fork
     # Delete branch when a PR is closed
     if: >-
@@ -67,17 +69,43 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Check if Git branch exists
+        id: branch_exists
+        env:
+          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+        # Check if the Git branch exists
+        run: |
+          BRANCH=$(git ls-remote --heads origin $BRANCH_TITLE)
+          echo $BRANCH
+
+          if [[ -n $BRANCH ]]; then
+            echo "branch_exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "branch_exists=false" >> $GITHUB_OUTPUT
+          fi
+
+        # If the branch or environment exists, delete it from Platform.sh
+      - name: Delete environment
+        if: steps.branch_exists.outputs.branch_exists == 'true'
+        env:
+          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+        run: |
+          git branch -D pr-${{ github.event.number }}
+          git push
+
         # Set up workflow environment to use the Platform.sh CLI
       - name: Set up Platform.sh CLI
+        # If the Git branch was deleted, skip checks for the environment
+        if: steps.branch_exists.outputs.branch_exists != 'true'
         uses: ./.github/actions/set-up-cli
 
       - name: Check if environment exists
         id: environment_exists
+        if: steps.branch_exists.outputs.branch_exists != 'true'
         env:
           PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         # Check if the built environment exists
         run: |
-          BRANCH_TITLE=pr-${{ github.event.number }}
           BRANCH=$(platform environments --pipe --columns title | grep $BRANCH_TITLE)
 
           if [[ -n $BRANCH ]]; then
@@ -86,9 +114,8 @@ jobs:
 
         # If the branch or environment exists, delete it from Platform.sh
       - name: Delete environment
-        if: steps.environment_exists.outputs.environment_exists == 'true'
+        if: steps.branch_exists.outputs.branch_exists != 'true' && steps.environment_exists.outputs.environment_exists == 'true'
         env:
           PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         run: |
-          git branch -D pr-${{ github.event.number }}
-          git push
+          platform environment:delete --delete-branch --no-wait $BRANCH_TITLE
