@@ -72,11 +72,11 @@ you can also open it and view its information panel.
 title=Using the CLI
 +++
 
-To check the status of all your environments, run the `platform environments` command within your project directory.
+To check the status of all your environments, from your project directory run the `platform environments` command.
 
 {{< /codetabs >}}
 
-Note that you can [change an environment's status](./deactivate-environment.md).
+You can [change an environment's status](./deactivate-environment.md).
 
 ## Organize your environments
 
@@ -101,7 +101,6 @@ You can always [change an environment's parent](./change-parent.md).
 ### Workflows
 
 Since you can customize your [environment hierarchy](#hierarchy), you can create your own workflows. 
-You don't have to follow any rules when branching environments.
 You can decide which structure best fits your needs. 
 
 #### Possible approaches
@@ -116,13 +115,13 @@ You may want to take one of the following approaches when creating your workflow
 
 -   **Testing**: An operational test environment, a user test environment, and a few unit test environments.
 
--   **Hotfix**: One environment for every bug, security, or hotfix that needs deployment.
+-   **Hotfix**: One environment for each bug, security issue, or hotfix that needs deployment.
 
 #### Example workflow
 
-Example of an Agile workflow :
+Example Agile workflow:
 
-1.  The admin [branches](../other/glossary.md#branch) the Live environment to create a Sprint environment.
+1.  An admin [branches](../other/glossary.md#branch) the Live (default) environment to create a Sprint environment.
 
 2.  The admin gives each developer permission to branch the Sprint environment to create new feature environments.
 
@@ -157,13 +156,13 @@ If you use Agile, for example, you can adopt a naming convention similar to the 
 
 ```text
 Live
- Sprint1
-   Feature1
-   Feature2
-   Feature3
- Sprint2
-   Feature1
-   Feature2
+  Sprint1
+    Feature1
+    Feature2
+    Feature3
+  Sprint2
+    Feature1
+    Feature2
 ```
 
 If you prefer splitting your environments per developer and having a specific environment for each task or ticket,
@@ -171,9 +170,9 @@ you can adopt a naming convention similar to the following:
 
 ```text
 Staging
- Developer1
-   Ticket-526
-   Ticket-593
- Developer2
-   Ticket-395
+  Developer1
+    Ticket-526
+    Ticket-593
+  Developer2
+    Ticket-395
 ```
