@@ -21,8 +21,7 @@ Within a project, each user has a role that controls their access and permission
 - Project viewer:
   Users with access to specific environment types.
 
-Users can still see projects that they can't access if they're a member of an organization.
-See more on access control for [organizations](./organizations.md).
+Users can still see projects that they can't access if they have the [**List projects** permission](#organization-user-permissions).
 
 ### Environment types
 
@@ -65,7 +64,8 @@ see how to [troubleshoot source integrations](../integrations/source/troubleshoo
 
 ### Add a user to a project
 
-To add a user to a project or an environment, you need to be a [project admin](#project-user-permissions).
+To add a user to a project or an environment, you need to be a [project admin](#project-user-permissions)
+or have the [**Manage users** permission for the organization](#organization-user-permissions).
 
 To add a user, follow these steps:
 
@@ -118,7 +118,8 @@ To apply SSH access changes after you add a user to a project,
 
 ### Remove a user from a project
 
-To remove a user from a project, you need to be a [project admin](#project-user-permissions).
+To remove a user from a project, you need to be a [project admin](#project-user-permissions)
+or have the [**Manage users** permission for the organization](#organization-user-permissions).
 
 To remove a user, follow these steps:
 
@@ -138,23 +139,25 @@ platform user:delete user1@example.com
 title=In the Console
 +++
 
-1. Select the project where you want to add a new user.
-2. Click {{< icon settings >}} **Settings**.
-3. Under **Project settings**, click **Access**.
-4. Click the user you want to remove.
-5. Click **Remove user**.
-6. Click **Accept**.
+1. Navigate to your organization or a project in it.
+2. Open the user menu (your name or profile picture).
+3. Click **Users**.
+4. For the user you want to remove, click **{{< icon more >}} More**.
+5. For the project you want to remove them from, click **{{< icon more >}} More**.
+6. Click **Remove from project**.
+7. Click **Yes**.
 
 {{< /codetabs >}}
 
-Once you delete a user, they can no longer access the project.
+Once you remove a user, they can no longer access the project.
 
 To apply SSH access changes after you add a remove a user from a project or environment type,
 [trigger a redeploy](../development/troubleshoot.md#force-a-redeploy).
 
 ### Change existing permissions for environment types
 
-To manage user permissions for environment types, you need to be a [project admin](#project-user-permissions).
+To manage user permissions for environment types, you need to be a [project admin](#project-user-permissions)
+or have the [**Manage users** permission for the organization](#organization-user-permissions).
 
 To change user permissions, follow these steps:
 
@@ -182,12 +185,13 @@ platform user:update user1@example.com -r production:viewer,development:contribu
 title=In the Console
 +++
 
-1. Select the project where you want to add a new user.
-2. Click {{< icon settings >}} **Settings**.
-3. Under **Project settings**, click **Access**.
-4. Click the user whose permissions you want to change.
-5. Update the permissions.
-6. Click **Save**.
+1. Navigate to your organization or a project in it.
+2. Open the user menu (your name or profile picture).
+3. Click **Users**.
+4. For the user you want to remove, click **{{< icon more >}} More**.
+5. For the project you want to remove them from, click **{{< icon more >}} More**.
+6. Update the permissions.
+7. Click **Save**.
 
 {{< /codetabs >}}
 
@@ -197,6 +201,7 @@ To apply SSH access changes after changing a user's permissions for an environme
 ## Manage organization users
 
 All users who are added to any project within an organization become members of that organization.
+By default, such users have no [organization permissions](#organization-user-permissions).
 You can also have organization admins who aren't part of any projects.
 
 Users who are a part of an organization can see all projects in that organization at the organization's URL,
@@ -221,12 +226,17 @@ you can invite other users to your organization and grant them the following per
   Users with this permission can't grant other users permissions that they themselves don't have.
 - **Create projects** (`projects:create`):
   Create new projects within the organization.
+- **List projects** (`projects:list`):
+  See all projects in an organization, even those the user can't access.
 
 {{< note theme="warning" >}}
 
 Users with the **Manage users** (`members`) permission can add, edit, or remove _any_ user's permissions except their own.
 
 {{< /note >}}
+
+Users without any of these permissions can only access [projects where they're users](#project-user-permissions).
+They can't access or manage the rest of the organization.
 
 ### Add a user to an organization
 
@@ -338,6 +348,5 @@ title=Using the Console
 5. Click **Remove from organization**.
 
 To delete users in bulk, select the users to remove and click **Remove users from organization**.
-
 
 {{< /codetabs >}}
