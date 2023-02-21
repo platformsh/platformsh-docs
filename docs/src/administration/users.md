@@ -39,13 +39,22 @@ and can change each of their types.
 
 The following table shows the permissions for each environment type role.
 
-| Role        | View environment | Push code | Branch environment | SSH access | Change settings | Execute actions |
-|-------------|------------------|-----------|--------------------|------------|-----------------|-----------------|
-| Viewer      | Yes              | No        | No                 | No         | No              | No              |
-| Contributor | Yes              | Yes       | Yes                | Yes        | No              | No              |
-| Admin       | Yes              | Yes       | Yes                | Yes        | Yes             | Yes             |
+| Role        | View environment | Push code | Branch environment | SSH access | Change settings | Execute actions\* |
+|-------------|------------------|-----------|--------------------|------------|-----------------|-------------------|
+| Viewer      | Yes              | No        | No                 | No         | No              | No                |
+| Contributor | Yes              | Yes       | Yes                | Yes        | No              | No                |
+| Admin       | Yes              | Yes       | Yes                | Yes        | Yes             | Yes               |
 
 To customize which roles can use SSH, set [`access` in your app configuration](../create-apps/app-reference.md#access).
+
+\* The actions available to admins are:
+[activating](../environments/deactivate-environment.m#reactivate-an-environment), [deactivating](../environments/deactivate-environment.md),
+[redeploying](../development/troubleshoot.md#force-a-redeploy), [merging](../other/glossary.md#merge),
+and [syncing](../other/glossary.md#sync) environments;
+managing [backups](../environments/backup.md) and [variables](../development/variables/_index.md);
+and triggering [source operations](../create-apps/source-operations.md).
+To merge or sync an environment with another,
+you need to be an admin for both environment types.
 
 ### Project access
 
@@ -63,8 +72,6 @@ To add a user, follow these steps:
 {{< codetabs >}}
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 To add a user, run the following command:
@@ -91,8 +98,6 @@ platform user:add user2@example.com -r development:contributor -r staging:viewer
 <--->
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 1. Select the project where you want to add a new user.
@@ -120,8 +125,6 @@ To remove a user, follow these steps:
 {{< codetabs >}}
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 Run the following command:
@@ -133,8 +136,6 @@ platform user:delete user1@example.com
 <--->
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 1. Select the project where you want to add a new user.
@@ -160,8 +161,6 @@ To change user permissions, follow these steps:
 {{< codetabs >}}
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 To update an existing user's permissions, run the following command:
@@ -181,8 +180,6 @@ platform user:update user1@example.com -r production:viewer,development:contribu
 <--->
 +++
 title=In the Console
-file=none
-highlight=false
 +++
 
 1. Select the project where you want to add a new user.
@@ -236,8 +233,6 @@ Users with the **Manage users** (`members`) permission can add, edit, or remove 
 {{< codetabs >}}
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 To invite a user to your organization, run the following command:
@@ -256,8 +251,6 @@ platform organization:user:add alice@example.com --org acme --permission billing
 <--->
 +++
 title=Using the Console
-file=none
-highlight=false
 +++
 
 1. Navigate to the organization you want to manage (or a project in it).
@@ -277,8 +270,6 @@ All users you invite receive an invitation email with instructions.
 {{< codetabs >}}
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 To update permissions for a user in your organization, run the following command:
@@ -297,8 +288,6 @@ platform organization:user:update alice@example.com --org acme --permission bill
 <--->
 +++
 title=Using the Console
-file=none
-highlight=false
 +++
 
 1. Navigate to the organization you want to manage (or a project in it).
@@ -323,8 +312,6 @@ To edit their organization permissions, follow these steps:
 {{< codetabs >}}
 +++
 title=Using the CLI
-file=none
-highlight=false
 +++
 
 To update remove a user from your organization, run the following command:
@@ -342,8 +329,6 @@ platform organization:user:delete alice@example.com --org acme
 <--->
 +++
 title=Using the Console
-file=none
-highlight=false
 +++
 
 1. Navigate to the organization you want to manage (or a project in it).

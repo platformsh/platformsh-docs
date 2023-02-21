@@ -64,16 +64,17 @@ highlight=<LANGUAGE>
 <!-- If the service has options in the `configuration` key -->
 ## Configuration options
 
-You can configure your <SERVICE_NAME> service in the [services configuration](./_index.md) with the following options:
+You can configure your <SERVICE_NAME> service in the [services configuration](#1-configure-the-service) with the following options:
 
-| Name   | Type     | Required | Description |
-| ------ | -------- | -------- | ----------- |
+| Name   | Type     | Required | Description   |
+|--------|----------|----------|---------------|
 | `type` | `string` | Yes      | What it does. |
 
-## Relationship reference
+<!-- An introduction to the relationship reference -->
+{{% relationship-ref-intro %}}
 
-Example information available through the [`$PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-platformsh-provided-variables)
-or by running `platform relationships`:
+<!-- A generic reminder to use the variable and not hard code things -->
+{{% service-values-change %}}
 
 <!-- A yaml file taken from https://examples.docs.platform.sh/ that contains all the properties people need to access/use the service. -->
 {{< relationship "<SERVICE_NAME>" >}}

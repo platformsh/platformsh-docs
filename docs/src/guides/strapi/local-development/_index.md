@@ -2,7 +2,6 @@
 title: "Local development: Running Strapi on your local machine with Platform.sh"
 sidebarTitle: "Local development"
 weight: -80
-toc: false
 description: |
   Run your Strapi application deployed on Platform.sh on your local machine
 ---

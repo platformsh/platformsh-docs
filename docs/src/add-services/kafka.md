@@ -18,9 +18,9 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 
 {{% image-versions-legacy "kafka" %}}
 
-## Relationship
+{{% relationship-ref-intro %}}
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables):
+{{% service-values-change %}}
 
 {{< relationship "kafka" >}}
 
@@ -48,7 +48,6 @@ highlight=python
 
 +++
 title=Ruby
-file=none
 highlight=ruby
 markdownify=false
 +++

@@ -39,9 +39,9 @@ For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-
 |------|-------------------------------|------------------------------ |
 |  {{< image-versions image="postgresql" status="deprecated" environment="grid" >}} | {{< image-versions image="postgresql" status="deprecated" environment="dedicated-gen-3" >}} | {{< image-versions image="postgresql" status="deprecated" environment="dedicated-gen-2" >}} |
 
-## Relationship
+{{% relationship-ref-intro %}}
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables):
+{{% service-values-change %}}
 
 {{< relationship "postgresql" >}}
 
@@ -96,18 +96,20 @@ highlight=python
 Access the service using the Platform CLI by running `platform sql`.
 
 You can also access it from your app container via [SSH](../development/ssh/_index.md).
-From your [relationship data](#relationship), you need: `username`, `host`, and `port`.
+From your [relationship data](#relationship-reference), you need: `username`, `host`, and `port`.
 Then run the following command:
 
 ```bash
 psql -U <USERNAME> -h <HOST> -p <PORT>
 ```
 
-Using the values from the [example](#relationship), that would be:
+Using the values from the [example](#relationship-reference), that would be:
 
 ```bash
 psql -U main -h postgresql.internal -p 5432
 ```
+
+{{% service-values-change %}}
 
 ## Exporting data
 
@@ -256,6 +258,8 @@ configuration:
             seconddb: admin
             thirddb: admin
 ```
+
+{{% databases-passwords %}} 
 
 ## Service timezone
 

@@ -18,9 +18,9 @@ It exposes an HTTP API for client interaction. See the [InfluxDB documentation](
 
 {{% image-versions-legacy "influxdb" %}}
 
-## Relationship
+{{% relationship-ref-intro %}}
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables):
+{{% service-values-change %}}
 
 {{< relationship "influxdb" >}}
 
@@ -47,17 +47,29 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
 
 ## Exporting data
 
-InfluxDB includes its own [export mechanism](https://docs.influxdata.com/influxdb/v1.2/tools/influx_inspect/).
-To gain access to the server from your local machine open an SSH tunnel with the Platform.sh CLI:
+To export your data from InfluxDB, follow these steps:
 
-```bash
-platform tunnel:single --relationship {{< variable "RELATIONSHIP_NAME" >}}
-```
+1. Install and set up the [`influx` CLI](https://docs.influxdata.com/influxdb/cloud/tools/influx-cli/).
+2. Connect to your InfluxDB service with the [Platform.sh CLI](../administration/cli/_index.md):
 
-By default, this opens a tunnel at `127.0.0.1:30000`.
+   ```bash
+   platform tunnel:single
+   ```
 
-Then run InfluxDB's export commands as desired.
+   This opens an SSH tunnel to your InfluxDB service on your current environment and produces output like the following:
 
-```bash
-influx_inspect export -compress
-```
+   ```bash
+   SSH tunnel opened to influxdb at: http://127.0.0.1:30000
+   ```
+
+3. Get the username and password from the [relationship](#relationship-reference) by running the following command:
+
+   ```bash
+   platform relationships -P {{<variable "RELATIONSHIP_NAME" >}}
+   ```
+
+4. Adapt and run [InfluxDB's CLI export command](https://docs.influxdata.com/influxdb/v2.3/reference/cli/influx/backup/).
+
+    ``` bash
+    influx backup --host {{< variable "URL_FROM_STEP_2" >}}
+    ```

@@ -2,7 +2,6 @@
 title: "Additional resources"
 sidebarTitle: "Next steps"
 weight: -70
-toc: false
 description: |
     Upgrading, adding modules, and further development of your site.
 ---

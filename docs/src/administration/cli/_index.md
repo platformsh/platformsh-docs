@@ -174,12 +174,27 @@ platform mount:download --all --app app --target local-backup
 ### Autocomplete commands
 
 The CLI provides tab autocompletion for commands, options, and some values (your projects, valid regions).
+To enable autocompletion, follow this step:
 
-Your system must include the `bash-completion` package or an equivalent.
-This isn't available by default on macOS, but can be installed via `brew`.
-Check your home directory and ensure that the file `~/.platformsh/autocompletion.sh` is being included by your shell.
+{{< codetabs >}}
++++
+title=Using Homebrew
++++
 
-If you experience issues, run `platform self:install` to attempt a reinstall of this utility.
+Follow the [Homebrew documentation on shell completion](https://docs.brew.sh/Shell-Completion).
+
+<--->
++++
+title=Manually
++++
+
+Add the following to your shell's startup (`.bashrc`, `.zshrc`, or the equivalent):
+
+```bash
+eval $(platform completion)
+```
+
+{{< /codetabs >}}
 
 ### Run commands on your container
 
@@ -206,3 +221,26 @@ run this command:
 ```bash
 platform ssh -e feature -- drush -y cache-rebuild
 ```
+
+### Update the CLI
+
+To update to the latest version, use the same tool as for [installation](#1-install):
+
+{{< codetabs >}}
++++
+title=Homebrew
+highlight=bash
++++
+$ brew upgrade platformsh-cli
+<--->
++++
+title=Scoop
+highlight=bash
++++
+$ scoop update platform
+{{< /codetabs >}}
+
+## Upgrade from the legacy CLI
+
+To upgrade from the legacy CLI, follow the [installation instructions](#1-install).
+Once you've installed the latest version, the CLI guides you through removing the installed legacy CLI.

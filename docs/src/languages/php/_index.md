@@ -259,12 +259,12 @@ Some commonly used settings are:
 
 | Name | Default | Description |
 |------|---------|-------------|
-| `max_execution_time` | `0` | The maximum execution time, in seconds, for your PHP scripts and apps. A value of `0` means there are no time limits. |
+| `max_execution_time` | `300` | The maximum execution time, in seconds, for your PHP scripts and apps. A value of `0` means there are no time limits. |
 | `max_file_uploads` | `20` | The maximum number of files that can be uploaded in each request. |
-| `max_input_time` | `-1` | The maximum time in seconds that your script is allowed to receive input (such as for file uploads). A value of `-1` means there are no time limits. |
+| `max_input_time` | `60` | The maximum time in seconds that your script is allowed to receive input (such as for file uploads). A value of `-1` means there are no time limits. |
 | `max_input_vars` | `1000` | The maximum number of input variables that are accepted in each request. |
-| `memory_limit` | `512M` | The memory limit, in megabytes, for PHP. |
-| `post_max_size` | `8M` | The maximum size, in megabytes, per uploaded file. To upload larger files, increase the value. |
+| `memory_limit` | `128M` | The memory limit, in megabytes, for PHP. Ensure that the PHP memory limit is set to a lower value than your environment's memory. |
+| `post_max_size` | `64M` | The maximum size, in megabytes, per uploaded file. To upload larger files, increase the value. |
 | `zend.assertions` | `-1` | Assertions are optimized and have no impact at runtime. Set assertions to `1` for your local development system. [See more on assertions](https://www.php.net/manual/en/regexp.reference.assertions). |
 | `opcache.memory_consumption` | `64` | The number of megabytes available for [the OPcache](./tuning.md#opcache-preloading). For large apps with many files, increase this value. |
 | `opcache.validate_timestamps` | `On` | If your app doesn't generate compiled PHP, you can [disable this setting](./tuning.md#disable-opcache-timestamp-validation). |
@@ -320,8 +320,6 @@ The recommended method is to use variables.
 
 +++
 title=Using variables
-highlight=false
-file=none
 +++
 
 Set variables to override PHP settings for a given environment using the [CLI](../../administration/cli/_index.md).
@@ -338,8 +336,6 @@ For more information, see how to use [PHP-specific variables](../../development/
 
 +++
 title=Using `php.ini`
-highlight=false
-file=none
 +++
 
 You can provide a custom `php.ini` file at the [app root](../../create-apps/app-reference.md#root-directory).
@@ -414,8 +410,6 @@ See some generic examples on how to use alternate start commands:
 
 +++
 title=Run a custom script
-file=none
-highlight=false
 +++
 
 1. Add your script in a PHP file.
@@ -433,8 +427,6 @@ highlight=false
 
 +++
 title=Run a custom web server
-file=none
-highlight=false
 +++
 
 1.  Add your web server's code in a PHP file.
@@ -476,8 +468,6 @@ highlight=false
 
 +++
 title=Run specific tasks
-file=none
-highlight=false
 +++
 
 To execute runtime-specific tasks (such as clearing cache) before your app starts, follow these steps:

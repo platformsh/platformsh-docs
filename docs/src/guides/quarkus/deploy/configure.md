@@ -2,22 +2,11 @@
 title: "Configure Quarkus for Platform.sh"
 sidebarTitle: "Configure"
 weight: -100
-toc: false
 description: |
     Review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for Quarkus.
 ---
 
 {{% guides/config-desc name="Quarkus" noService=true %}}
-
-## Requests configuration: `routes.yaml`
-
-{{% guides/config-routes template="quarkus" name="Quarkus" %}}
-
-## Service configuration: `services.yaml`
-
-{{% guides/config-service name=Quarkus noService=true /%}}
-
-## Application container: `.platform.app.yaml`
 
 {{% guides/config-app template="quarkus" %}}
 Explaining the file line by line, notice the following settings:
@@ -30,5 +19,9 @@ Explaining the file line by line, notice the following settings:
    using the `PORT` environment variable provided by Platform.sh to the application container.
 
 {{< /guides/config-app >}}
+
+{{% guides/config-service name=Quarkus noService=true /%}}
+
+{{% guides/config-routes template="quarkus" name="Quarkus" %}}
 
 {{< guide-buttons next="Customize Quarkus" >}}

@@ -2,7 +2,6 @@
 title: "Configure SQLite for Strapi on Platform.sh"
 sidebarTitle: "SQLite"
 weight: -100
-toc: false
 description: |
   Configure your Strapi application to use a SQLite database on Platform.sh.
 ---

@@ -24,13 +24,13 @@ These examples show how to define routes.
 ### Default route definition
 
 If you don't include a file defining routes, a single default route is deployed.
-If you have one app to direct traffic to and its name is `myapp`,
+If you have one app to direct traffic to and its name is `app`,
 this is equivalent to the following:
 
 ```yaml {location=".platform/routes.yaml"}
 "https://{default}/":
   type: upstream
-  upstream: myapp:http
+  upstream: app:http
 ```
 
 All traffic to your domain (say, `https://example.com`) is sent to your app.
@@ -40,7 +40,7 @@ It affects your [default domain](#default).
 ### Basic redirect definition
 
 In a basic situation, you have one app to direct traffic to.
-Say its name is `myapp`.
+Say its name is `app`.
 And say you want to redirect requests from `https://www.example.com` to `https://example.com`.
 
 Define your routes like this:
@@ -48,7 +48,7 @@ Define your routes like this:
 ```yaml {location=".platform/routes.yaml"}
 "https://{default}/":
     type: upstream
-    upstream: "myapp:http"
+    upstream: "app:http"
 "https://www.{default}/":
     type: redirect
     to: "https://{default}/"
@@ -103,7 +103,7 @@ you see the following resolved routes (assuming `example.com` is your default do
 
 ```json
 {
-  "http://example.com/": {
+  "https://example.com/": {
     "primary": true,
     "id": null,
     "attributes": {},
@@ -111,7 +111,7 @@ you see the following resolved routes (assuming `example.com` is your default do
     "upstream": "app",
     "original_url": "https://{default}"
   },
-  "http://subdomain.example.com/": {
+  "https://subdomain.example.com/": {
     "primary": false,
     "id": null,
     "attributes": {},
@@ -271,7 +271,7 @@ you need to provide a [custom TLS certificate](../domains/steps/tls.md).
 In projects created before November 2017, the `.` in subdomains was replaced with a triple hyphen (`---`).
 It was switched to preserve `.` to simplify SSL handling and improve support for longer domains.
 If your project was created before November 2017, it still uses `---` to the left of the environment name.
-If you wish to switch to dotted-domains, please file a support ticket and we can do that for you.
+To switch to dotted-domains, [contact support](../overview/get-support.md).
 Doing so may change the domain name that your production domain name should `CNAME` to.
 
 {{< /note >}}
@@ -414,7 +414,7 @@ You can configure each route separately with the following properties:
 | `cache`      | Object    | No                      | Defines caching policies for the given route. Enabled by default. For details and options, see [route caching](./cache.md). |
 | `id`         | `string`  | No                      | A unique identifier for the route. See [route identifiers](#route-identifiers). |
 | `primary`    | `boolean` | No                      | Whether the route is the primary route for the project. Can only be `true` for one route in the configuration file, but if you use the [`{all}` placeholder](#all), it can be `true` for multiple final routes. Defaults to the first defined `upstream` route. |
-| `tls`        | Object    | No                      | TLS configuration. See [HTTPS](./https.md#tls-configuration). |
+| `tls`        | Object    | No                      | TLS configuration. See [HTTPS](./https.md#optional-configure-tls-connections). |
 | `attributes` | Object    | No                      | Any key-value pairs you want to make available to your app. See [route attributes](#route-attributes). |
 
 ## CLI access
