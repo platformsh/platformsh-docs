@@ -43,13 +43,22 @@ A few things to consider:
 
 The following table shows the available roles for environment types.
 
-| Role | View environment | Push code | Branch environment | SSH access | Change settings | Execute actions |
-| ---- | ---------------- | --------- | ------------------ | ---------- | --------------- | --------------- |
-| Viewer | Yes | No |  No |  No |  No |  No |
-| Contributor | Yes | Yes | Yes | Yes | No | No |
-| Admin| Yes | Yes | Yes | Yes | Yes | Yes |
+| Role        | View environment | Push code | Branch environment | SSH access | Change settings | Execute actions\* |
+|-------------|------------------|-----------|--------------------|------------|-----------------|-------------------|
+| Viewer      | Yes              | No        | No                 | No         | No              | No                |
+| Contributor | Yes              | Yes       | Yes                | Yes        | No              | No                |
+| Admin       | Yes              | Yes       | Yes                | Yes        | Yes             | Yes               |
 
 To customize who can use SSH, [set the access key](../create-apps/app-reference.md#access) in your `platform.app.yaml` file.
+
+\* The actions available to admins are:
+[activating](../environments/deactivate-environment.m#reactivate-an-environment), [deactivating](../environments/deactivate-environment.md),
+[redeploying](../development/troubleshoot.md#force-a-redeploy), [merging](../other/glossary.md#merge),
+and [syncing](../other/glossary.md#sync) environments;
+managing [backups](../environments/backup.md) and [variables](../development/variables/_index.md);
+and triggering [source operations](../create-apps/source-operations.md).
+To merge or sync an environment with another,
+you need to be an admin for both environment types.
 
 ## Manage users
 

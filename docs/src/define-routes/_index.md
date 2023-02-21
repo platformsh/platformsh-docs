@@ -414,7 +414,7 @@ You can configure each route separately with the following properties:
 | `cache`      | Object    | No                      | Defines caching policies for the given route. Enabled by default. For details and options, see [route caching](./cache.md). |
 | `id`         | `string`  | No                      | A unique identifier for the route. See [route identifiers](#route-identifiers). |
 | `primary`    | `boolean` | No                      | Whether the route is the primary route for the project. Can only be `true` for one route in the configuration file, but if you use the [`{all}` placeholder](#all), it can be `true` for multiple final routes. Defaults to the first defined `upstream` route. |
-| `tls`        | Object    | No                      | TLS configuration. See [HTTPS](./https.md#tls-configuration). |
+| `tls`        | Object    | No                      | TLS configuration. See [HTTPS](./https.md#optional-configure-tls-connections). |
 | `attributes` | Object    | No                      | Any key-value pairs you want to make available to your app. See [route attributes](#route-attributes). |
 
 ## CLI access
