@@ -30,7 +30,8 @@ An attacker sends a malicious request.
 If the malicious request is mistakenly included in a legitimate request,
 the attacker can bypass the app’s security methods and access sensitive information.
 
-The Platform.sh WAF detects and blocks requests that include features of an attempt to inject a malicious request.
+The Platform.sh WAF detects and blocks requests that contain [both the `Content-Length` and `Transfer-Encoding` headers](#ban-on-use-of-content-length-and-transfer-encoding-together).
+It also detects and blocks requests that include other features of an attempt to inject a malicious request.
 These features are the following:
 
 - a carriage return line feed (CRLF) character or `http/\d`
@@ -126,13 +127,6 @@ on the root path or a path beneath it.
 ### Restricted HTTP headers
 
 The following headers are disallowed: `Connection`, `Proxy-Authorization`, `TE`, and `Upgrade`.
-
-### Backup/"working" file extension
-
-Enforced by the WAF and configured by the user under [`web.locations`](../create-apps/app-reference.md#locations) 
-using the `scripts` attribute where it can be disabled.
-[Regular expressions](../create-apps/app-reference.md#rules) can also be created
-to catch unwanted requests to script extensions.
 
 ### Slowloris DoS attacks
 
