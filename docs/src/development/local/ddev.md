@@ -4,6 +4,8 @@ sidebarTitle: DDEV
 description: Use DDEV to set up local development environments.
 weight: 1
 sectionBefore: Integrated environments
+keywords:
+    - ddev 
 ---
 
 {{% ddev/definition %}}
