@@ -108,6 +108,19 @@ title=In the Console
 6. If necessary, accept that adding a user increases your bill.
 7. Click **Add user**.
 
+The user is added to your organization.
+
+If the user is already a member of your organization,
+you can add them by following these steps:
+
+1. Navigate to your organization or a project in it.
+2. Open the user menu (your name or profile picture).
+3. Click **Users**.
+4. For the user you want to add, click **{{< icon more >}} More**.
+5. Click **Add to project**.
+6. Select the project you want to add and their permissions
+7. Click **Save**.
+
 {{< /codetabs >}}
 
 Once you add a user to a project, they receive an email with instructions.
