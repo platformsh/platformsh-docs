@@ -13,9 +13,7 @@ A source operation is an operation defined in an application to apply and automa
 
 To use source operations, first define them in your [app configuration](./_index.md).
 Then run them in the [Platform.sh CLI](../administration/cli/_index.md) or [Console](https://console.platform.sh).
-
-Use crons to automatically run your source operations and therefore automatically update your code.
-
+You can also define [cron jobs](./app-reference.md#crons) to run your source operations and update your code automatically.
 
 ## 1. Define a source operation
 
@@ -393,7 +391,7 @@ you need to enable the new extension via the Drupal management interface or usin
 
 ### Update Git submodules 
 
-The following source operation updates recursively all Git submobules:
+The following source operation updates all Git submobules recursively:
 
 ```yaml {location=".platform.app.yaml"}
 source:
