@@ -9,26 +9,34 @@ description: Learn what environments on Platform.sh are and how to take advantag
 A Platform.sh environment contains one instance of an app (or [group of apps](../create-apps/multi-app.md))
 with all the services needed for it to run.
 
-You can think of an environment as a complete working website
-that's related to but safely isolated from others in your project.
-So you can run tests and review a complete working copy without worrying about damaging anything in production.
-
-Each project includes multiple environments,
+Each project can include multiple environments,
 often divided into [environment types](../administration/users.md#environment-types).
 If you have a live site, you have at least a production environment.
-You may also have additional environments for development, testing, staging, review, and so on.
+You can think of other environments as copies of your live site,
+where you can run tests without worrying about damaging anything in production.
+Once you have completed your tests,
+you can merge your changes so that they're instantly and seamlessly deployed to production.
+
+You may create environments for development, testing, staging, review, and so on.
 To organize your environments, you can create [hierarchical relationships](#hierarchy).
 
-To create new environments, you can branch existing environments using the [CLI](/administration/cli/_index.md)
-or the [Console](../administration/web/_index.md).
-Each created environment is an exact replica of its parent environment.
-This means new environments inherit all of the data and services from their parent environment.
+## Create environments
+
+To create new environments, you can:
+
+-   push a local branch through Git or a [source integration](../integrations/source/_index.md)
+
+-   [branch](../other/glossary.md#branch) existing environments using the [CLI](/administration/cli/_index.md)
+    or the [Console](../administration/web/_index.md)
+
+When you branch an environment, you might want to create exact replicas of it.
+In this case, each new environment inherits all of the data and services from its parent environment.
 This includes databases, network storage, queues, and routing configurations.
 
-You can create environments on demand.
+You can create Platform.sh environments on demand.
 Each environment is tied to a Git branch.
-With [Bitbucket](../integrations/source/bitbucket.md) and [GitHub](../integrations/source/github.md) integrations,
-you can even get a "development server" automatically for every pull request.
+If you use a [source integration](../integrations/source/_index.md),
+you can even have environments created automatically for your pull requests and branches.
 
 You can also have branches that aren't tied to a running instance of your application.
 These are called [inactive environments](#environment-status).
@@ -40,7 +48,7 @@ Your project must have a default environment,
 but you can [name it as you want](./default-environment.md).
 
 If you subscribed to a production plan, this environment is your **live site**.
-You can give it a [custom domain name](../domains/steps/_index.md) and a [custom TLS certificate](../domains/steps/tls.md).
+You might want to give it a [custom domain name](../domains/steps/_index.md).
 
 ## Environment status
 
@@ -51,8 +59,6 @@ Your environments can have one of two statuses:
 
 -   [Inactive](../other/glossary.md#inactive-environment):
     An environment that isn't deployed and has no services or data, only code.
-    For example, when you push a local branch created with Git to your project,
-    it creates an inactive environment.
 
 You can see the status of your environments in the [Console](../administration/web/_index.md) or the [CLI](/administration/cli/_index.md).
 
@@ -76,7 +82,7 @@ To check the status of all your environments, from your project directory run th
 
 {{< /codetabs >}}
 
-You can [change an environment's status](./deactivate-environment.md).
+You can [change an environment's status](./deactivate-environment.md) at any time.
 
 ## Organize your environments
 
@@ -84,19 +90,20 @@ You can [change an environment's status](./deactivate-environment.md).
 
 ![Environment hierarchy](/images/management-console/environments.png "0.5")
 
-In Platform.sh, your environments are organized in a hierarchy.
-Each new environment you create is considered a **child** of the **parent** environment from which it was created.
+In Platform.sh, your environments are organized in a hierarchy featuring parent and child environments.
+
+When you [branch](../other/glossary.md#branch) an environment,
+the parent of the new environment is the environment it was created from.
+You can [change the environment's parent](./change-parent.md) after it's been created using the [CLI](/administration/cli/_index.md).
+
+When you push a branch through Git or a [source integration](../integrations/source/_index.md),
+the parent environment of the new environment is your [default environment](#default-environment),
+unless you specify otherwise using the `--parent` flag in the [CLI](/administration/cli/_index.md).
+Alternatively, you can [change the environment's parent](./change-parent.md) after it's been created.
 
 Each child environment can [sync](../other/glossary.md#sync) code and/or data down from its parent
 and [merge](../other/glossary.md#merge) code up to its parent.
 You can use child environments for development, staging, and testing.
-
-When you [branch](../other/glossary.md#branch) an environment to create a new child environment,
-its parent is the environment it was created from.
-If you push a branch through Git or a [source integration](../integrations/source/_index.md),
-the parent environment is your [default environment](#default-environment).
-
-You can always [change an environment's parent](./change-parent.md).
 
 ### Workflows
 
