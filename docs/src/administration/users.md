@@ -64,8 +64,8 @@ see how to [troubleshoot source integrations](../integrations/source/troubleshoo
 
 ### Add a user to a project
 
-To add a user to a project or an environment, you need to be a [project admin](#project-user-permissions)
-or have the [**Manage users** permission for the organization](#organization-user-permissions).
+To add a user to a project or an environment, you need to be a [project admin](#project-user-permissions),
+be an organization owner, or have the [**Manage users** permission for the organization](#organization-user-permissions).
 
 To add a user, follow these steps:
 
@@ -119,7 +119,7 @@ To apply SSH access changes after you add a user to a project,
 ### Remove a user from a project
 
 To remove a user from a project, you need to be a [project admin](#project-user-permissions)
-or have the [**Manage users** permission for the organization](#organization-user-permissions).
+be an organization owner, or have the [**Manage users** permission for the organization](#organization-user-permissions).
 
 To remove a user, follow these steps:
 
@@ -157,7 +157,7 @@ To apply SSH access changes after you add a remove a user from a project or envi
 ### Change existing permissions for environment types
 
 To manage user permissions for environment types, you need to be a [project admin](#project-user-permissions)
-or have the [**Manage users** permission for the organization](#organization-user-permissions).
+be an organization owner, or have the [**Manage users** permission for the organization](#organization-user-permissions).
 
 To change user permissions, follow these steps:
 
