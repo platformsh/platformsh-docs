@@ -1,6 +1,6 @@
 ---
 title: "Server Side Includes (SSI)"
-weight: 4
+weight: 1
 toc: false
 description: |
   SSI commands enable you to include files within other pages.

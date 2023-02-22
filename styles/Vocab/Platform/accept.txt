@@ -34,6 +34,7 @@ Docksal
 Drush
 DXP
 Ecto
+ESLint
 failover
 Fastly
 Galera
@@ -78,6 +79,7 @@ MSBuild
 Muffet
 multicast
 [Mm]ultifactor
+[Mm]ultiline
 [Mm]ultisite
 multithread
 Munin

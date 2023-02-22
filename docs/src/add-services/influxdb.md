@@ -18,9 +18,9 @@ It exposes an HTTP API for client interaction. See the [InfluxDB documentation](
 
 {{% image-versions-legacy "influxdb" %}}
 
-## Relationship
+{{% relationship-ref-intro %}}
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables):
+{{% service-values-change %}}
 
 {{< relationship "influxdb" >}}
 
@@ -62,7 +62,7 @@ To export your data from InfluxDB, follow these steps:
    SSH tunnel opened to influxdb at: http://127.0.0.1:30000
    ```
 
-3. Get the username and password from the [relationship](#relationship) by running the following command:
+3. Get the username and password from the [relationship](#relationship-reference) by running the following command:
 
    ```bash
    platform relationships -P {{<variable "RELATIONSHIP_NAME" >}}

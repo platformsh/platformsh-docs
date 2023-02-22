@@ -31,9 +31,9 @@ Solr search with generic schemas provided, and a custom schema is also supported
 |------|-------------------------------|------------------------------ |
 |  {{< image-versions image="solr" status="deprecated" environment="grid" >}} | {{< image-versions image="solr" status="deprecated" environment="dedicated-gen-3" >}} | {{< image-versions image="solr" status="deprecated" environment="dedicated-gen-2" >}} |
 
-## Relationship
+{{% relationship-ref-intro %}}
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables):
+{{% service-values-change %}}
 
 {{< relationship "solr" >}}
 
