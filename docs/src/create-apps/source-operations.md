@@ -391,7 +391,7 @@ you need to enable the new extension via the Drupal management interface or usin
 
 ### Update Git submodules 
 
-The following source operation updates all Git submobules recursively:
+The following source operation updates all Git submodules recursively:
 
 ```yaml {location=".platform.app.yaml"}
 source:
