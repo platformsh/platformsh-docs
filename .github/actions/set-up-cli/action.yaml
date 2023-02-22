@@ -1,13 +1,9 @@
 name: Set up Platform.sh CLI
-description: Installs the Platform.sh CLI from Homebrew.
+description: Installs the Platform.sh CLI.
 
 runs:
   using: "composite"
   steps:
-    - name: Set up Homebrew
-      id: set-up-homebrew
-      uses: Homebrew/actions/setup-homebrew@master
-
     - name: Install CLI
-      run: brew install platformsh/tap/platformsh-cli
+      run: curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
       shell: bash

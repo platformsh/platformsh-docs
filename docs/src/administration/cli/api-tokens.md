@@ -113,6 +113,14 @@ see how to [load the proper SSH certificate](#use-the-cli-ssh-certificate-for-no
 You can run automated tasks on an app container using the Platform.sh CLI.
 To do so, set your API token as a [top-level environment variable](../../development/variables/_index.md#top-level-environment-variables).
 
+{{< note theme="warning" >}}
+
+Once you add the token as an environment variable,
+anyone with [SSH access](../../development/ssh/_index.md) can read its value.
+Make sure your [machine user has only the necessary permissions](#1-create-a-machine-user).
+
+{{< /note >}}
+
 {{< codetabs >}}
 +++
 title=Using the CLI
@@ -146,39 +154,17 @@ Then add a build hook to your app configuration to install the CLI as part of th
 hooks:
     build: |
         set -e
-        echo "Downloading homebrew from repository"
-        curl -SsL https://github.com/Homebrew/brew/tarball/master -o brew.tar.gz
-
-        echo "Unpacking homebrew into .linuxbrew folder"
-        mkdir -p $PLATFORM_APP_DIR/.linuxbrew
-        tar xzf brew.tar.gz --strip-components 1 -C $PLATFORM_APP_DIR/.linuxbrew/
-        rm brew.tar.gz
-
-        echo "Initializing homebrew"
-        eval $($PLATFORM_APP_DIR/.linuxbrew/bin/brew shellenv)
-        brew analytics off
-
         echo "Installing Platform.sh CLI"
-        brew install platformsh/tap/platformsh-cli
+        curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
 
-        echo "Sourcing CLI for runtime and SSH access"
-        echo 'export PATH="'$PLATFORM_APP_DIR'/.linuxbrew/bin:'$PLATFORM_APP_DIR'/.linuxbrew/sbin${PATH+:$PATH}";' >> $PLATFORM_APP_DIR/.environment
+        echo "Testing Platform.sh CLI"
+        platform
 ```
 
 You can now call the CLI from within the shell on the app container or in a cron job.
 
 To run SSH-based commands that aren't specific to the Platform.sh CLI,
 see how to [load the proper SSH certificate](#use-the-cli-ssh-certificate-for-non-cli-commands).
-
-For caching and other advanced topics,
-copy and use a [prepared script](https://github.com/matthiaz/platformsh-tools/blob/master/install_brew_packages.sh):
-
-```yaml {location=".platform.app.yaml"}
-hooks:
-    build: |
-        set -e
-        bash install_brew_packages.sh platformsh/tap/platformsh-cli
-```
 
 You can set up a cron job on a specific type of environment.
 For example, to run the `update` source operation on your production environment, 
