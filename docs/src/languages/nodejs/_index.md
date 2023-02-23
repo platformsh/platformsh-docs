@@ -1,6 +1,6 @@
 ---
-title: "Node.js"
-description: Get started creating Node.js apps on Platform.sh.
+title: "JavaScript/Node.js"
+description: Get started creating JavaScript apps with Node.js on Platform.sh.
 layout: single
 ---
 
@@ -28,13 +28,13 @@ To use a specific version in a container with a different language, [use a versi
 
 ## Usage example
 
-To use Node.js on Platform.sh and Node.js together, configure the `.platform.app.yaml` file with a few key settings
+To use JavaScript with Node.js on Platform.sh, configure your [app configuration](../../create-apps/_index.md)
 (a complete example is included at the end).
 
 ### 1. Specify the version
 
-Choose a version from the [list above](#supported-versions)
-and add it to your [app configuration](../../create-apps/_index.md):
+Choose a version from the [list of supported versions](#supported-versions)
+and add it to your app configuration:
 
 {{< readFile file="src/registry/images/examples/full/nodejs.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
@@ -45,7 +45,7 @@ Add the following to your app configuration:
 ```yaml {location=".platform.app.yaml"}
 dependencies:
     nodejs:
-        yarn: "*"
+        sharp: "*"
 ```
 
 These are now available as commands, the same as installing with `npm install -g`.
@@ -99,13 +99,13 @@ A complete basic app configuration looks like the following:
 ```yaml {location=".platform.app.yaml"}
 name: node-app
 
-type: nodejs:16
+type: nodejs:18
 
 disk: 512
 
 dependencies:
     nodejs:
-        yarn: "*"
+        sharp: "*"
 
 hooks:
     build: |
@@ -153,7 +153,7 @@ What you do next depends on the versions of Yarn and Node.js you want.
 {{< codetabs >}}
 
 +++
-title=Yarn 3.x and Node.js 16
+title=Yarn 3.x and Node.js 16+
 +++
 
 3. Use Corepack to run Yarn in your build hook:
