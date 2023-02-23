@@ -175,12 +175,10 @@ This is text with inline <code>code</code>.
 {{ partial "note" (dict "Inner" $inner "context" .) }}
 ```
 
-To include variables from a shortcode, use `printf` and `%s` as in the following example:
+To include variables from a shortcode, use `print` as in the following example:
 
 ```markdown
-{{ $inner := printf `
-This is text in the %s shortcode.
-` ( .Get "name" ) }}
+{{ $inner := print `This is text in the ` ( .Get "name" ) ` shortcode.`}}
 {{ partial "note" (dict "Inner" $inner "context" .) }}
 ```
 
