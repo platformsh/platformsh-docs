@@ -131,26 +131,30 @@ Example Agile workflow:
 
 2.  The admin gives each developer permission to branch the Sprint environment to create new feature environments.
 
-    ![Agile branches with Live as the top parent, Sprint as a child, and Feature 1 and Feature 2 as children of Sprint](/images/workflow/branches.svg "0.2")
+    ![Agile branches with Live as the top parent, Sprint 1 as a child, and Feature 1 and Feature 2 as children of Sprint](/images/workflow/branches.svg "0.2")
 
 3.  Feature 1 is developed and work is reviewed by accessing the deployed Feature 1 environment.
 
 4.  When the review is done, Feature 1 is [merged](../other/glossary.md#merge) into the Sprint environment.
 
+    ![Feature 1 is merged into the Sprint 1 environment](/images/workflow/merge-feature.svg "0.25")
+
 5.  The remaining features [sync](../other/glossary.md#sync) with the Sprint environment.
     This ensures their working environment is up-to-date with the latest code.
 
-    ![Features from the Sprint environment are synced with the Feature 2 environment](/images/workflow/sync.svg "0.2")
+    ![Features from the Sprint 1 environment are synced with the Feature 2 environment](/images/workflow/sync.svg "0.25")
 
 6.  When the sprint is complete and all features merged into the Sprint environment,
     the admin makes a backup of the live site.
 
 7.  The admin merges the Sprint environment into the Live environment.
 
-    ![Features from the Sprint environment are merged into the Live environment](/images/workflow/merge-live.svg "0.2")
+    ![Features from the Sprint 1 environment are merged into the Live environment](/images/workflow/merge-live.svg "0.2")
 
 8.  The admin syncs the next sprint's environment with the Live environment
     to repeat and continue the development process.
+
+    ![Features from the Live environment are synced with the Sprint 2 environment](/images/workflow/sync-live.svg "0.2")
 
 ### Naming conventions
 
