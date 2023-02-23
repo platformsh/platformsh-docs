@@ -15,7 +15,7 @@ At such times, you want your site to have enough resources to handle the additio
 
 How your site handles the need to scale depends on your plan.
 On higher tiers with the Observability Suite,
-everything is taken care of you automatically.
+everything is taken care of automatically.
 When your site starts experiencing pressure,
 it gets the resources needed to handle that pressure.
 On lower tiers, you have to handle that yourself, often after your site has gone down.
