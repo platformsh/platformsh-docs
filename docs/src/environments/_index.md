@@ -12,22 +12,22 @@ with all the services needed for it to run.
 Each project can include multiple environments,
 often divided into [environment types](../administration/users.md#environment-types).
 If you have a live site, you have at least a production environment.
-You can think of other environments as copies of your live site,
+You can think of other environments as copies of your live site
 where you can run tests without worrying about damaging anything in production.
 Once you have completed your tests,
 you can merge your changes so that they're instantly and seamlessly deployed to production.
 
-You may create environments for development, testing, staging, review, and so on.
+You can create environments for development, testing, staging, review, and so on.
 To organize your environments, you can create [hierarchical relationships](#hierarchy).
 
 ## Create environments
 
-To create new environments, you can:
+You can create new environments in one of two ways:
 
--   push a local branch through Git or a [source integration](../integrations/source/_index.md)
+-   Push a local branch through Git or a [source integration](../integrations/source/_index.md).
 
--   [branch](../other/glossary.md#branch) existing environments using the [CLI](/administration/cli/_index.md)
-    or the [Console](../administration/web/_index.md)
+-   [Branch](../other/glossary.md#branch) existing environments using the [CLI](/administration/cli/_index.md)
+    or the [Console](../administration/web/_index.md).
 
 When you branch an environment, you might want to create exact replicas of it.
 In this case, each new environment inherits all of the data and services from its parent environment.
@@ -35,7 +35,7 @@ This includes databases, network storage, queues, and routing configurations.
 
 You can create Platform.sh environments on demand.
 Each environment is tied to a Git branch.
-If you use a [source integration](../integrations/source/_index.md),
+If you use a source integration,
 you can even have environments created automatically for your pull requests and branches.
 
 You can also have branches that aren't tied to a running instance of your application.
@@ -94,11 +94,10 @@ In Platform.sh, your environments are organized in a hierarchy featuring parent 
 
 When you [branch](../other/glossary.md#branch) an environment,
 the parent of the new environment is the environment it was created from.
-You can [change the environment's parent](./change-parent.md) after it's been created using the [CLI](/administration/cli/_index.md).
+You can [change the environment's parent](./change-parent.md) after it's been created.
 
 When you push a branch through Git or a [source integration](../integrations/source/_index.md),
-the parent environment of the new environment is your [default environment](#default-environment),
-unless you specify otherwise using the `--parent` flag in the [CLI](/administration/cli/_index.md).
+the parent environment of the new environment is your [default environment](#default-environment).
 Alternatively, you can [change the environment's parent](./change-parent.md) after it's been created.
 
 Each child environment can [sync](../other/glossary.md#sync) code and/or data down from its parent
