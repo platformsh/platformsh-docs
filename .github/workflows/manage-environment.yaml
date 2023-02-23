@@ -85,13 +85,12 @@ jobs:
           fi
 
         # If the branch or environment exists, delete it from Platform.sh
-      - name: Delete environment
+      - name: Delete branch
         if: steps.branch_exists.outputs.branch_exists == 'true'
         env:
           PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         run: |
-          git branch -D pr-${{ github.event.number }}
-          git push
+          git push origin -d pr-${{ github.event.number }}
 
         # Set up workflow environment to use the Platform.sh CLI
       - name: Set up Platform.sh CLI
