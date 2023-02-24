@@ -75,7 +75,7 @@ When the `resources` key is set, the CPU sizes come from the following table:
 | M    | 1    |
 | L    | 2    |
 | XL   | 4    |
-| 2X L | 8    |
+| 2XL  | 8    |
 
 So you might have the `resources` set as follows:
 
