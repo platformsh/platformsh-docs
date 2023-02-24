@@ -51,13 +51,35 @@ Assumptions:
     You can create a script to automate the sanitization process to be run automatically on each new deployment.
     Once you have a working script, add your script to sanitize the database to [a `deploy` hook](../../create-apps/hooks/hooks-comparison.md#deploy-hook):
 
-    ```yaml
-    deploy: |
-        cd /app/public
-        if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-            # Do whatever you want on the production site.
-        else
-            # The sanitization of the database should happen here (since it's non-production)
-            sanitize_the_database.sh
-        fi
+    ```yaml {location=".platform.app.yaml"}
+    hooks:
+        deploy: |
+            cd /app/public
+            if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
+                # Do whatever you want on the production site.
+            else
+                # The sanitization of the database should happen here (since it's non-production)
+                sanitize_the_database.sh
+            fi
+    ```
+
+    To sanitize only on the initial deploy and not all future deploys,
+    on sanitization create a file on a [mount](/create-apps/app-reference.md#mounts).
+    Then add a check for the file as in the following example:
+
+    ```yaml {location=".platform.app.yaml"}
+    hooks:
+        deploy: |
+            cd /app/public
+            if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
+                # Do whatever you want on the production site.
+            else
+                # Check if the database has been sanitized yet
+                if [ ! -f {{ `{{< variable "MOUNT_PATH" >}}/is_sanitized` | .Page.RenderString }} ]; then
+                    # Sanitize your database here
+                    sanitize_the_database.sh
+                    # Create a record that sanitization has happened
+                    touch {{ `{{< variable "MOUNT_PATH" >}}/is_sanitized` | .Page.RenderString }}
+                fi
+            fi
     ```

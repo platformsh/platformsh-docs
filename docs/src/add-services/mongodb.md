@@ -51,9 +51,9 @@ If you want to experiment with a later version without committing to it use a no
 |----------------------------------|
 |  {{< image-versions image="mongodb" status="deprecated" environment="grid" >}} |
 
-## Relationship
+{{% relationship-ref-intro %}}
 
-The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables):
+{{% service-values-change %}}
 
 {{< relationship "mongodb" >}}
 
@@ -112,7 +112,7 @@ highlight=python
 ## Access the service directly
 
 You can access MongoDB from you app container via [SSH](../development/ssh/_index.md).
-Get the `host` from your [relationship](#relationship).
+Get the `host` from your [relationship](#relationship-reference).
 Then run the following command:
 
 ```bash
@@ -124,6 +124,8 @@ With the example value, that would be the following:
 ```bash
 mongo mongodb.internal
 ```
+
+{{% service-values-change %}}
 
 ## Exporting data
 

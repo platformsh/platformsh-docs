@@ -26,9 +26,9 @@ The latest compatible minor version and patches are applied automatically.
 
 {{% image-versions-legacy "opensearch" %}}
 
-## Relationship
+{{% relationship-ref-intro %}}
 
-The format exposed in the [`$PLATFORM_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables):
+{{% service-values-change %}}
 
 {{< relationship "opensearch" >}}
 
@@ -64,6 +64,7 @@ search:
 That enables mandatory HTTP Basic auth on all requests.
 The credentials are available in any relationships that point at that service,
 in the `username` and `password` properties.
+{{% service-values-change %}}
 
 This functionality is generally not required if OpenSearch isn't exposed on its own public HTTP route.
 However, certain applications may require it, or it allows you to safely expose OpenSearch directly to the web.

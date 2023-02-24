@@ -132,8 +132,8 @@ platform relationships
 
 The result is the complete [information for all relationships](#relationship-reference) with an additional `url` property.
 Use the `url` property as your connection.
-Note that `url` can change if you modify the relationship or add additional databases.
-So always check it each time your app starts.
+
+{{% service-values-change %}}
 
 You can also see a guide on how to [convert the `PLATFORM_RELATIONSHIPS` environment variable to a different form](https://community.platform.sh/t/convert-platform-relationships-to-database-url/841).
 
@@ -165,10 +165,9 @@ db:
             max_allowed_packet: 64
 ```
 
-## Relationship reference
+{{% relationship-ref-intro %}}
 
-Example information available through the [`$PLATFORM_RELATIONSHIPS` environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables)
-or by running `platform relationships`:
+{{% service-values-change %}}
 
 ### MariaDB reference
 

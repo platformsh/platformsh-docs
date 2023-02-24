@@ -34,6 +34,7 @@ Docksal
 Drush
 DXP
 Ecto
+ESLint
 failover
 Fastly
 Galera
@@ -69,6 +70,7 @@ Magento
 Magestore
 Mailchimp
 [Mm]akefile
+[Mm]ebibyte
 Meilisearch
 Memcache
 Mezmo
@@ -78,6 +80,7 @@ MSBuild
 Muffet
 multicast
 [Mm]ultifactor
+[Mm]ultiline
 [Mm]ultisite
 multithread
 Munin
