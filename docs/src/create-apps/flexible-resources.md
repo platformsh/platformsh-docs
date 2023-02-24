@@ -12,14 +12,20 @@ your containers aren't upgraded because there isn't room for CPU upgrades.
 
 {{< note title="Example" >}}
 
-If you have a Medium plan, your project is allocated 2&nbsp;vCPU and 3&nbsp;GB RAM.
-If you upgrade this to a high-memory Medium plan, the RAM limit rises to 4&nbsp;GB.
+If you have a Standard plan, your project is allocated 1&nbsp;vCPU and 1&nbsp;GB RAM.
+If you upgrade this to a high-memory Standard plan, the RAM limit rises to 2&nbsp;GB.
 
-If your containers were using less than the full 2&nbsp;vCPU,
-they can be automatically upgraded in size to take advantage of the additional memory.
+You might be running a project based on the [Django guide](../guides/django/_index.md)
+or [Django template](https://github.com/platformsh-templates/django4).
+With just the basics, you have a Django app container and a PostgreSQL database container.
 
-But if your containers were already using the full 2&nbsp;vCPU,
-they remain at their original size and the additional memory isn't used.
+By default, your Django app is allocated 0.4&nbsp;CPU and your database is allocated 0.25&nbsp;CPU.
+This means you're using 0.65&nbsp;CPU of your total 1&nbsp;vCPU.
+You have CPU resources to spare. 
+
+If you upgrade to a high-memory Standard plan,
+your database is automatically updated to the next highest size,
+using 0.4&nbsp;CPU and more than doubling its available RAM.
 
 {{< /note >}}
 
@@ -27,6 +33,22 @@ If your project is using the full allocation of CPU and so can't be allocated me
 you can set the resources to be more flexible.
 This allows you to free up CPU from less-CPU-intensive containers
 so that other containers can increase in size and use the available memory.
+
+{{< note title="Example" >}}
+
+If you have a Medium plan, your project is allocated 2&nbsp;vCPU and 3&nbsp;GB RAM.
+If you upgrade this to a high-memory Medium plan, the RAM limit rises to 4&nbsp;GB.
+
+If you have the same setup as the previous example,
+your Django app is allocated 1.2&nbsp;CPU and your database is allocated 0.75&nbsp;CPU.
+This means you're using 1.95&nbsp;CPU of your total 2&nbsp;vCPU.
+You don't have CPU resources to spare. 
+
+If you upgrade to a high-memory Medium plan, you don't see a change in container size.
+The containers don't have room to grow to the next size.
+Define `resources` for your Django app to free up resources for your database.
+
+{{< /note >}}
 
 ## Use flexible resources
 
