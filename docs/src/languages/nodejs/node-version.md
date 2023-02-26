@@ -156,7 +156,7 @@ To use `nvm`, follow these steps:
    variables:
        env:
            # Update these for your desired NVM and Node versions.
-           NVM_VERSION: v0.39.
+           NVM_VERSION: v0.39.3
            NODE_VERSION: v18.14.2
    ```
 
@@ -219,7 +219,7 @@ Your final app configuration should look something like the following:
 variables:
     env:
         # Update these for your desired NVM and Node versions.
-        NVM_VERSION: v0.38.0
+        NVM_VERSION: v0.39.3
         NODE_VERSION: v18.14.2
 
 hooks:
