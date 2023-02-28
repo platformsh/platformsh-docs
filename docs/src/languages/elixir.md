@@ -68,7 +68,7 @@ The following basic app configuration is sufficient to run most Elixir applicati
 ```yaml {location=".platform.app.yaml"}
 name: app
 
-type: elixir:1.9
+type: elixir:1.13
 
 variables:
     env:
