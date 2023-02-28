@@ -9,9 +9,9 @@
 <!-- Page title -->
 <h1 class="font-black text-2xl mb-8 xl:text-4xl">{{ .context.Title | .context.RenderString }}</h1>
 
-<div class="grid md:grid-cols-80-20 md:gap-4">
+<div class="grid md:grid-cols-80-20 md:gap-4 print:block">
 
-  <div class="max-w-[92vw] md:max-w-none md:order-2 md:top-24 md:sticky md:max-h-fullv md:overflow-y-auto border-t border-stone">
+  <div class="print:hidden max-w-[92vw] md:max-w-none md:order-2 md:top-24 md:sticky md:max-h-fullv md:overflow-y-auto border-t border-stone">
     <!-- Table of contents -->
     {{ if and (ne .context.Params.toc false) (ne .context.TableOfContents "<nav id=\"TableOfContents\"></nav>") }}
       <div class="border border-stone border-t-0 px-6 pt-1 pb-4 mb-8 md:mb-0 text-sm [&_a]:text-skye-dark hover:[&_a]:underline focus:[&_a]:underline [&_ul_ul]:pl-4">
@@ -21,7 +21,7 @@
     {{ end }}
 
     <!-- Feedback form for wide screens -->
-    <div class="hidden md:block">
+    <div class="print:hidden hidden md:block">
       {{ partial "feedback/form" }}
     </div>
   </div>
@@ -49,6 +49,6 @@
 </div>
 
 <!-- Feedback form for narrow screens -->
-<div class="block md:hidden">
+<div class="print:hidden block md:hidden">
   {{ partial "feedback/form" }}
 </div>
