@@ -33,7 +33,7 @@ they should interpret as the end of a request, attackers can smuggle requests.
 If a malicious request is mistakenly included in a legitimate request,
 the attacker can bypass the app’s security methods and access sensitive information.
 
-The WAF detects and blocks requests that contain [both the `Content-Length` and `Transfer-Encoding` headers](#ban-on-use-of-content-length-and-transfer-encoding-together).
+The WAF detects and blocks requests that contain [both the `Content-Length` and `Transfer-Encoding` headers](#content-length-and-transfer-encoding-headers-together).
 It also detects and blocks requests that include **both** of the following features of an attempt to inject a malicious request:
 
 - A [CRLF character sequence](#crlf-injection-prevention) or `http/\d`
