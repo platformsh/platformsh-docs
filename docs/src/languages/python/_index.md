@@ -47,6 +47,9 @@ Once you have it configured, add the following configuration to get it running o
             start: python server.py
     ```
 
+You can choose from many web servers such as Daphne, Gunicorn, Hypercorn, and Uvicorn.
+See more about [running Python web servers](./server.md).
+
 ### Use uWSGI
 
 You can also use [uWSGI](https://uwsgi-docs.readthedocs.io/en/latest/) to manage your server.
@@ -217,32 +220,18 @@ markdownify=false
 [`platformshconfig` library](https://github.com/platformsh/config-reader-python)
 {{% /config-reader%}}
 
-## Web servers
-
-The Python ecosystem offers a number of web servers that can be used to deploy to Platform.sh outside of the uWSGI example shown above. 
-Consult the [python web servers](/languages/python/server) documentation for more information about running the following:
-
-- [Daphne](/languages/python/server#daphne)
-- [Gunicorn](/languages/python/server#gunicorn)
-- [Hypercorn](/languages/python/server#hypercorn)
-- [Uvicorn](/languages/python/server#uvicorn)
-
 ## Sanitizing data
 
-Data inheritance on Platform.sh provides true staging environments by default.
-Data is inherited automatically by each child environment from its parent.
-
-It's not uncommon that Python projects require the sanitization of data in non-production environments for compliance reasons.
-Because the build and deploy process is customizable, it's possible to include custom scripts that perform sanitization according to environment type. 
-
-See the [sanitizing databases](/development/sanitize-db) documentation for more information.
+By default, data is inherited automatically by each child environment from its parent.
+If you need to sanitize data in non-production environments for compliance,
+see how to [sanitize databases](../../development/sanitize-db/_index.md).
 
 ## Frameworks
 
-All of the major Python web frameworks can be deployed on Platform.sh.
-This documentation contains a number of dedicated guides for deploying and working with each of them:
+All major Python web frameworks can be deployed on Platform.sh.
+See dedicated guides for deploying and working with them:
 
-- [Django](/guides/django)
+- [Django](../../guides/django/_index.md)
 <!-- - [FastAPI](/guides/fastapi) -->
 <!-- - [Flask](/guides/flask) -->
 
