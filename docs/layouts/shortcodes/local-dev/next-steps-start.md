@@ -15,10 +15,8 @@ You can merge this change into production.
 
 1.  Create a new environment called `local-config`.
 
-2.  Create an executable script to set up a local environment for a new Platform.sh environment. 
+1.  Create an executable script to set up a local environment for a new Platform.sh environment. 
 
     ```bash
     touch init-local.sh && chmod +x init-local.sh
     ```
-
-    Fill it with the following example, depending on your package manger:

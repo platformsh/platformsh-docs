@@ -9,7 +9,7 @@ sectionBefore: Integrated environments
 
 {{% ddev/definition %}}
 
-{{% guides/local-requirements %}}
+{{% guides/local-requirements framework="Django" %}}
 - DDEV installed on your computer.
   
   {{% ddev/requirements %}}
@@ -137,7 +137,7 @@ hooks:
     ]
     ```
 
-11. Update your databases configuration to include environment variables provided by DDEV:
+11. Update your database configuration to include environment variables provided by DDEV:
 
     ```py {location="APP_NAME/settings.py"}
     DATABASES = {
@@ -151,6 +151,9 @@ hooks:
         }
     }
     ```        
+
+    This example assumes you have a PostgreSQL database with `db` as the relationship name.
+    If you have a different setup, adjust the values accordingly.
 
 12. Start DDEV.
 
@@ -194,7 +197,9 @@ hooks:
     ddev stop
     ```
 
-{{% guides/django/local-next-steps-start name="DDEV" %}}
+{{% local-dev/next-steps-start name="DDEV" %}}
+
+    Fill it with the following example, depending on your package manger:
 
     {{< codetabs >}}
 +++
@@ -213,4 +218,6 @@ title=Poetry
 {{< readFile file="snippets/guides/django/ddev/local-poetry.sh" highlight="yaml" location="init-local.sh" >}}
     {{< /codetabs >}}
 
-{{% guides/django/local-next-steps-end %}}
+{{% local-dev/next-steps-end %}}
+
+{{% guides/django/local-sanitize-example %}}
