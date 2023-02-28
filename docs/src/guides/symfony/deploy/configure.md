@@ -16,14 +16,14 @@ The examples vary based on using Symfony Base or Symfony Demo skeleton.
 +++
 title=Base
 highlight=yaml
-file=/static/files/fetch/appyaml/symfony/base
+file=/static/files/fetch/appyaml/symfony-base/platformsh-symfony-template
 +++
 
 <--->
 +++
 title=Demo
 highlight=yaml
-file=/static/files/fetch/appyaml/symfony/demo
+file=/static/files/fetch/appyaml/symfony-demo/platformsh-symfony-template
 +++
 
 {{< /codetabs >}}
@@ -49,7 +49,7 @@ Usage of the symfony configurator is also a way to contribute to Symfony project
 
 {{% /guides/config-service %}}
 
-{{% guides/config-routes template="symfony" name="Symfony" %}}
+{{% guides/config-routes template="platformsh-symfony-template" name="Symfony" %}}
 
 ## Tips and tricks
 

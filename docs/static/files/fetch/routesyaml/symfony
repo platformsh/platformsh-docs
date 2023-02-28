@@ -1,8 +1,0 @@
-# The routes of the project.
-#
-# Each route describes how an incoming URL is going
-# to be processed by Platform.sh.
-
-"https://{all}/": { type: upstream, upstream: "app:http" }
-"http://{all}/": { type: redirect, to: "https://{all}/" }
-
