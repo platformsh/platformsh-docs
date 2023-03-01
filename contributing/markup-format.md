@@ -55,6 +55,7 @@ The following table presents the available options:
 | `multipleTabs`       | Boolean            | If set to true, code tabs are changed across the page. So changing the tabs in one place changes them for the entire page. Useful when code tabs are repeated often with the same title (such as comparing actions in the CLI and Console). |
 | `tier`               | list of strings    | Include to put at banner at the top indicating the feature is only available to certain plan tiers, such as only Enterprise and Elite customers. |
 | `observabilitySuite` | Boolean            | Set as `true` to put at banner at the top indicating the feature is only available as part of the Observability Suite. |
+| `betaFlag`           | Boolean            | Set as `true` to put at banner at the top indicating the feature is in beta and only available to certain projects. |
 | `sectionBefore`      | string             | Title of a header to add before the given page in the main navigation. |
 
 ## Headings
