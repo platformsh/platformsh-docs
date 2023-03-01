@@ -40,8 +40,14 @@ the [Blackfire automated integration](#automated-integration) is enabled on your
 
 If you have Grid environments without the Observability suite or {{% names/dedicated-gen-3 %}} environments,
 you need to enable the integration yourself.
-To enable Blackfire on your PHP or Python apps,
-follow [the instructions from the Blackfire documentation](https://blackfire.io/docs/integrations/paas/platformsh).
+To do so, follow these steps:
+
+1. Create a [Blackfire account](https://blackfire.io/signup?target=/login).
+2. In your Blackfire account, create an organization and [ask Support](https://console.platform.sh/-/users/~/tickets/open) to activate it.
+3. In your organization, create an environment.
+4. In your environment, click **Settings/Environment Credentials**.
+5. Retrieve your Blackfire server ID and server token.
+6. Follow [the instructions from the Blackfire documentation](https://blackfire.io/docs/integrations/paas/platformsh).
 
 If you're using a [Content Delivery Network (CDN)](../../domains/cdn/_index.md), 
 make sure you [configure it](https://blackfire.io/docs/integrations/proxies/index)
