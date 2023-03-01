@@ -35,44 +35,48 @@ All customers can also subscribe to Blackfire separately.
 
 ### On a Grid or {{% names/dedicated-gen-3 %}} infrastructure 
 
-If you have Grid environments on a plan with the Platform.sh [Observability Suite](https://platform.sh/features/observability-suite/),
-the [Blackfire automated integration](#automated-integration) is enabled on your environments by default. 
+If you're using a plan with the [Observability Suite](https://platform.sh/features/observability-suite/),
+the [Blackfire automated integration](#automated-integration) is enabled on your environments by default.
 
-If you have Grid environments without the Observability suite or {{% names/dedicated-gen-3 %}} environments,
+If you have a {{% names/dedicated-gen-3 %}} cluster or Grid environments without the Observability suite,
 you need to enable the integration yourself.
 To do so, follow these steps:
 
-1. Create a [Blackfire account](https://blackfire.io/signup?target=/login).
+1. Create a [Blackfire account](https://blackfire.io/signup?target=/login), preferably using your Platform.sh login.
 2. In your Blackfire account, create an organization and [ask Support](https://console.platform.sh/-/users/~/tickets/open) to activate it.
 3. In your organization, create an environment.
 4. In your environment, click **Settings/Environment Credentials**.
 5. Retrieve your Blackfire server ID and server token.
 6. Follow [the instructions from the Blackfire documentation](https://blackfire.io/docs/integrations/paas/platformsh).
 
-If you're using a [Content Delivery Network (CDN)](../../domains/cdn/_index.md), 
+If you're using the [Managed Fastly CDN](../../domains/cdn/managed-fastly.md),
+it's already configured to operate with Blackfire. 
+If you're using a different [Content Delivery Network (CDN)](../../domains/cdn/_index.md), 
 make sure you [configure it](https://blackfire.io/docs/integrations/proxies/index)
-to let Blackfire profile the code running on your servers. 
+to let Blackfire profile the code running on your servers.
 
 ### On {{% names/dedicated-gen-2 %}} infrastructure
 
 To install Blackfire on your {{% names/dedicated-gen-2 %}} environments:
 
-1. Create a [Blackfire account](https://blackfire.io/signup?target=/login).
+1. Create a [Blackfire account](https://blackfire.io/signup?target=/login), preferably using your Platform.sh login.
 2. In your Blackfire account, create an organization and [ask Support](https://console.platform.sh/-/users/~/tickets/open) to activate it.
 3. In your organization, create an environment.
 4. In your environment, click **Settings/Environment Credentials**.
 5. Retrieve your Blackfire server ID and server token.
 6. Send those credentials to [Support](https://console.platform.sh/-/users/~/tickets/open) so they complete the installation.
 
-If you're using a [Content Delivery Network (CDN)](../../domains/cdn/_index.md),
+If you're using the [Managed Fastly CDN](../../domains/cdn/managed-fastly.md),
+it's already configured to operate with Blackfire. 
+If you're using a different [Content Delivery Network (CDN)](../../domains/cdn/_index.md), 
 make sure you [configure it](https://blackfire.io/docs/integrations/proxies/index)
-to let Blackfire profile the code running on your servers. 
+to let Blackfire profile the code running on your servers.
 
 ### Automated integration
 
 {{< partial "observability-suite/body" >}}
 
-The Blackfire automated integration is available for Grid environments only.
+The Blackfire automated integration is available for Grid and {{% names/dedicated-gen-3 %}} environments.
 
 When you create a new environment,
 it automatically triggers the creation of a Blackfire environment with the same settings.
