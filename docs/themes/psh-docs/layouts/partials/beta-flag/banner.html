@@ -1,4 +1,4 @@
 <!-- Creates single page banner note for beta warning -->
 {{ if .Params.betaFlag }}
-  {{ partial "beta-flag/body.html" }}
+  {{ partial "beta-flag/body.md" . }}
 {{ end }}
