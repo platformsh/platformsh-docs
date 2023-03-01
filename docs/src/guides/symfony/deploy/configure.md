@@ -39,10 +39,11 @@ In the build hook, the [configurator](https://symfony.com/doc/current/cloud/conf
 - [Symfony CLI](https://symfony.com/download)
 - [Composer](https://getcomposer.org/download/)
 
-Additionally, it creates some helpers: [symfony-build](https://symfony.com/doc/current/cloud/config.html#symfony-build), [symfony-start](https://symfony.com/doc/current/cloud/config.html#symfony-start), [symfony-deploy](https://symfony.com/doc/current/cloud/config.html#symfony-deploy), [symfony-database-migrate](https://symfony.com/doc/current/cloud/config.html#symfony-database-migrate), [php-ext-install](https://symfony.com/doc/current/cloud/config.html#php-ext-install), and [yarn-install](https://symfony.com/doc/current/cloud/config.html#yarn-install).
+Additionally, it creates some helpers: [`symfony-build`](https://symfony.com/doc/current/cloud/config.html#symfony-build), [`symfony-start`](https://symfony.com/doc/current/cloud/config.html#symfony-start), [`symfony-deploy`](https://symfony.com/doc/current/cloud/config.html#symfony-deploy), [`symfony-database-migrate`](https://symfony.com/doc/current/cloud/config.html#symfony-database-migrate), [`php-ext-install`](https://symfony.com/doc/current/cloud/config.html#php-ext-install), and [`yarn-install`](https://symfony.com/doc/current/cloud/config.html#yarn-install).
 
 {{< note >}}
-Usage of the symfony configurator is also a way to contribute to Symfony project as it triggers an event on Platform.sh side to give back a percentage of every plan to the Symfony organization.
+Usage of the Symfony configurator is also a way to contribute to a Symfony project
+as it triggers an event on Platform.sh side to give back a percentage of every plan to the Symfony organization.
 {{< /note >}}
 
 {{% guides/config-service name="Symfony" noService=1 %}}

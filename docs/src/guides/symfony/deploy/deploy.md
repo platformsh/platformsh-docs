@@ -25,7 +25,8 @@ symfony ssh -- php bin/console doctrine:fixture:load -e dev
 ```
 
 {{< note >}}
-Note that Doctrine fixture commands are only available in Symfony dev environment, explaining why option `-e dev` is needed
+Note that Doctrine fixture commands are only available in Symfony development environments,
+which is why `-e dev` is needed.
 {{< /note >}}
 
 {{< guide-buttons next="More resources" >}}
