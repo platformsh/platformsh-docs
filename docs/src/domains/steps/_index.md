@@ -141,11 +141,19 @@ To configure your CDN and your domain name to point to your project:
 1. Open your CDN's management system.
 2. Point the CDN at your [target](#2-get-the-target-for-your-project).
 3. Open your registrar’s domain management system.
-4. Configure your DNS to point at your CDN.
+4. Open your registrar's domain management system and configure your DNS zone settings to point at your CDN.
    The address or `CNAME` record to use varies by CDN provider.
-   Refer to your provider's documentation or to the [CDN guide](../cdn/_index.md).
-5. Optional: If you have multiple domains you want to be served by the same app, add a `CNAME` record for each of them.
+   Refer to the official documentation of your DNS provider and CDN provider.
+5. Check that redirects and subdomains are set correctly for the [TLS certificate ownership verification](../troubleshoot.md#ownership-verification).
+6. [Disable the router cache](../cdn/_index.md#disable-the-platformsh-router-cache).
+7. Optional: For increased security and to prevent the CDN from being bypassed,
+   you can force all traffic to [go through the CDN](../cdn/_index.md#prevent-direct-access-to-your-platformsh-server).
+8. Optional: If you have multiple domains you want to be served by the same app, add a `CNAME` record for each of them.
    That includes the `www` subdomain if you are using it in your [routes configuration](../../define-routes/_index.md).
+
+Adding a custom domain sets your site as [visible to search engines](../../environments/search-engine-visibility.md#how-its-done).
+
+See how you can further [configure your CDN](../cdn/_index.md).
 
 {{< /codetabs >}}
 

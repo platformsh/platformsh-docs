@@ -20,7 +20,7 @@ You can deploy Python apps on Platform.sh using a server or a project such as [u
 
 {{< image-versions image="python" status="deprecated" >}}
 
-\* This version won't receive any updates at all.
+\* This version doesn't receive any updates at all.
 You are strongly recommended to upgrade to a supported version.
 
 ## Usage example
@@ -30,86 +30,92 @@ You are strongly recommended to upgrade to a supported version.
 You can define any server to handle requests.
 Once you have it configured, add the following configuration to get it running on Platform.sh:
 
-1. Specify one of the [supported versions](#supported-versions):
+1.  Specify one of the [supported versions](#supported-versions):
 
     {{< readFile file="/registry/images/examples/full/python.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
-2. Install the requirements for your app.
-   {{% pipenv %}}
+2.  Install the requirements for your app.
+    {{% pipenv %}}
 
-3. Define the command to start your web server:
+3.  Define the command to start your web server:
 
-   ```yaml {location=".platform.app.yaml"}
-   web:
-       # Start your app with the configuration you define
-       # You can replace the file location with your location
-       commands:
-           start: python server.py
-   ```
+    ```yaml {location=".platform.app.yaml"}
+    web:
+        # Start your app with the configuration you define
+        # You can replace the file location with your location
+        commands:
+            start: python server.py
+    ```
+
+You can choose from many web servers such as Daphne, Gunicorn, Hypercorn, and Uvicorn.
+See more about [running Python web servers](./server.md).
 
 ### Use uWSGI
 
 You can also use [uWSGI](https://uwsgi-docs.readthedocs.io/en/latest/) to manage your server.
 Follow these steps to get your server started.
 
-1. Specify one of the [supported versions](#supported-versions):
+1.  Specify one of the [supported versions](#supported-versions):
 
     {{< readFile file="/registry/images/examples/full/python.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
-2. Define the conditions for your web server:
+2.  Define the conditions for your web server:
 
-   ```yaml {location=".platform.app.yaml"}
-   web:
-       upstream:
-           # Send requests to the app server through a unix socket
-           # Its location is defined in the SOCKET environment variable
-           socket_family: "unix"
+    ```yaml {location=".platform.app.yaml"}
+    web:
+        upstream:
+            # Send requests to the app server through a unix socket
+            # Its location is defined in the SOCKET environment variable
+            socket_family: "unix"
 
-       # Start your app with the configuration you define
-       # You can replace the file location with your location
-       commands:
-           start: "uwsgi --ini conf/uwsgi.ini"
+        # Start your app with the configuration you define
+        # You can replace the file location with your location
+        commands:
+            start: "uwsgi --ini conf/uwsgi.ini"
 
-       locations:
-           # The folder from which to serve static assets
-           "/":
-               root: "public"
-               passthru: true
-               expires: 1h
-   ```
+        locations:
+            # The folder from which to serve static assets
+            "/":
+                root: "public"
+                passthru: true
+                expires: 1h
+    ```
 
-3. Create configuration for uWSGI such as the following:
+3.  Create configuration for uWSGI such as the following:
 
-   ```ini {location="config/uwsgi.ini"}
-   [uwsgi]
-    # UNIX socket to use to talk with the web server
+    ```ini {location="config/uwsgi.ini"}
+    [uwsgi]
+    # Unix socket to use to talk with the web server
     # Uses the variable defined in the configuration in step 2
     socket = $(SOCKET)
     protocol = http
 
     # the entry point to your app
     wsgi-file = app.py
-   ```
+    ```
 
-   Replace `app.py` with whatever your file is.
+    Replace `app.py` with whatever your file is.
 
-4. Install the requirements for your app.
-   {{% pipenv %}}
+4.  Install the requirements for your app.
+    {{% pipenv %}}
 
-5. Define the entry point in your app:
+5.  Define the entry point in your app:
 
-   ```python
-   # You can name the function differently and pass the new name as a flag
-   # start: "uwsgi --ini conf/uwsgi.ini --callable <NAME>"
-   def application(env, start_response):
+    ```python
+    # You can name the function differently and pass the new name as a flag
+    # start: "uwsgi --ini conf/uwsgi.ini --callable <NAME>"
+    def application(env, start_response):
 
-       start_response('200 OK', [('Content-Type', 'text/html')])
-       return [b"Hello world from Platform.sh"]
-   ```
+        start_response('200 OK', [('Content-Type', 'text/html')])
+        return [b"Hello world from Platform.sh"]
+    ```
 
 ## Package management
 
 Your app container comes with pip pre-installed.
+For more about managing packages with pip, Pipenv, and Poetry,
+see how to [manage dependencies](./dependencies.md).
+
 To add global dependencies (packages available as commands),
 add them to the `dependencies` in your [app configuration](../../create-apps/app-reference.md#dependencies):
 
@@ -213,6 +219,21 @@ markdownify=false
 {{% config-reader %}}
 [`platformshconfig` library](https://github.com/platformsh/config-reader-python)
 {{% /config-reader%}}
+
+## Sanitizing data
+
+By default, data is inherited automatically by each child environment from its parent.
+If you need to sanitize data in non-production environments for compliance,
+see how to [sanitize databases](../../development/sanitize-db/_index.md).
+
+## Frameworks
+
+All major Python web frameworks can be deployed on Platform.sh.
+See dedicated guides for deploying and working with them:
+
+- [Django](../../guides/django/_index.md)
+<!-- - [FastAPI](/guides/fastapi) -->
+<!-- - [Flask](/guides/flask) -->
 
 ## Project templates
 

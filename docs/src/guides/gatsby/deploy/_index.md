@@ -11,12 +11,10 @@ description: |
 
 {{% guides/starting-point name="Gatsby" templateRepo=gatsby %}}
 
-## Tools
+{{% guides/requirements %}}
 
-{{% guides/tools %}}
+## Initialize a project
 
-## Sign up for Platform.sh and initialize your project
-
-{{% guides/signup name="Gatsby" template="gatsby" /%}}
+{{< guides/initialize name="Gatsby" template="gatsby" />}}
 
 {{< guide-buttons next="Configure repository" type="first" >}}

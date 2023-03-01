@@ -10,7 +10,7 @@ sidebarTitle: "Memcached"
 
 See the [Memcached documentation](https://memcached.org) for more information.
 
-Both Memcached and Redis can be used for application caching. As a general rule, Memcached is simpler and thus more widely supported while Redis is more robust. Platform.sh recommends using Redis if possible but Memcached is fully supported if an application favors that cache service."
+Both Memcached and Redis can be used for application caching. As a general rule, Memcached is simpler and thus more widely supported while Redis is more robust. Platform.sh recommends using Redis if possible but Memcached is fully supported if an application favors that cache service.
 
 {{% frameworks %}}
 
@@ -26,9 +26,9 @@ Both Memcached and Redis can be used for application caching. As a general rule,
 
 {{% image-versions-legacy "memcached" %}}
 
-## Relationship
+{{% relationship-ref-intro %}}
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables):
+{{% service-values-change %}}
 
 {{< relationship "memcached" >}}
 
@@ -85,3 +85,5 @@ To access the Memcached service directly you can use `netcat` as Memcached doesn
 ```bash
 netcat cache.internal 11211
 ```
+
+{{% service-values-change %}}

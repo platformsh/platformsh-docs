@@ -1,4 +1,0 @@
-Platform.sh automatically provides standard Transport Layer Security (TLS) certificates for all sites and environments.
-These certificates are issued at no charge by [Let's Encrypt](https://letsencrypt.org/).
-In most cases, this is sufficient and only requires you to [specify HTTPS routes](/define-routes/https.md#using-https). 
-Note that some [limits](/define-routes/https.md#limits) apply.

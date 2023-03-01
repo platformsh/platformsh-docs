@@ -8,7 +8,7 @@ description: |
 
 ## Deployment
 
-{{< guides/deployment >}}
+{{% guides/deployment %}}
 
 ## Post-install (new site)
 
@@ -21,7 +21,7 @@ Once the installer is complete you are presented with your new site.
 
 {{% guides/data-migration %}}
 
-Drupal has a number of database tables that are entirely useless when migrating
+Drupal has a number of database tables that are useless when migrating
 and you're better off excluding their data.
 
 * If you're using a database cache backend then you can and should exclude all `cache_*` table data.
