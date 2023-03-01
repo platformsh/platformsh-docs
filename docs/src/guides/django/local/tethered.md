@@ -34,7 +34,7 @@ The settings are used to mock the conditions of the environment locally.
     export PLATFORM_APPLICATION_NAME=django && export PLATFORM_ENVIRONMENT=new-feature
     ```
 
-1.  Install dependencies by running the command for your package manager:
+1.  To install dependencies, run the command for your package manager:
 
     {{< codetabs >}}
 +++
@@ -86,7 +86,7 @@ poetry run python manage.py collectstatic
     {{< /codetabs >}}
 
 
-1.  Start your local server by running the following command based on your package manager:
+1.  To start your local server, run the following command based on your package manager:
 
     {{< codetabs >}}
 +++
@@ -116,7 +116,7 @@ poetry run python manage.py runserver
 
 {{% local-dev/next-steps-start %}}
 
-    Fill it with the following example, depending on your package manger:
+    Fill it with the following example, depending on your package manager:
 
     {{< codetabs >}}
 +++

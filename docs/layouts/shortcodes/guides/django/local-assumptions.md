@@ -6,6 +6,6 @@ It's assumed you want to run a built-in lightweight development server with `man
 To match a production web server (such as Gunicorn or Daphne),
 [modify those commands accordingly](../../../languages/python/server.md).
 
-It's generally assumed that a Platform.sh is the primary remote for the project. 
+It's generally assumed that Platform.sh is the primary remote for the project. 
 If you use a source integration, the steps are identical in most cases.
 When they differ, the alternative is noted.

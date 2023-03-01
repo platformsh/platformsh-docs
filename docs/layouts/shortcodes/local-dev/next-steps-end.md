@@ -1,4 +1,4 @@
-1.  Commit and push the revisions by running the following command:
+1.  To commit and push the revisions, run the following command:
 
     ```bash
     git add . && git commit -m "Add local configuration" && git push platform local-config
@@ -7,7 +7,7 @@
 1.  Merge the change into production.
 
 Once the script is merged into production,
-any user can then set up their local environment by running the following commands:
+any user can set up their local environment by running the following commands:
 
 ```bash
 {{ `$ platform get {{< variable "PROJECT_ID" >}}

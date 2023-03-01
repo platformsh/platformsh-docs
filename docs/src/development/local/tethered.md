@@ -31,7 +31,7 @@ Because it replies on a local web server, it's also less consistent across your 
 ## Connect to services directly
 
 With open tunnels to all your services, you can also connect to the running services directly.
-Get information on all running services by running the following command:
+To get information on all running services, run the following command:
 
 ```bash
 $ platform tunnels

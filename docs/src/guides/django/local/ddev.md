@@ -199,7 +199,7 @@ hooks:
 
 {{% local-dev/next-steps-start name="DDEV" %}}
 
-    Fill it with the following example, depending on your package manger:
+    Fill it with the following example, depending on your package manager:
 
     {{< codetabs >}}
 +++

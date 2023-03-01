@@ -7,7 +7,7 @@
     If you're using a [source integration](/integrations/source.html),
     open a merge/pull request.
 
-2.  Open an SSH tunnel to the new environment's services by running the following command:
+2.  To open an SSH tunnel to the new environment's services, run the following command:
 
     ```bash
     platform tunnel:open
