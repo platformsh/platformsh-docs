@@ -3,7 +3,7 @@
 
 You need:
 
-- A local copy of the repository for a {{ with .Get "framework" }}[{{ . }}](../deploy/_index.md) {{ end }}project running on Platform.sh.
+- A local copy of the repository for a {{ with .Get "framework" }}[{{ . }}](../deploy/_index.md) {{ end }} project running on Platform.sh.
 
   You can get one by running the following command:
   <code>{{ if $isSymfony }}symfony{{ else }}platform{{ end }} get {{ `{{< variable "PROJECT_ID" >}}` | .Page.RenderString }}</code>.<br>
