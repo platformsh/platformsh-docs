@@ -634,7 +634,7 @@
     },
     "endpoint": null,
     "min_disk_size": null,
-    "name": "Node.js",
+    "name": "JavaScript/Node.js",
     "runtime": true,
     "type": "nodejs",
     "versions": {

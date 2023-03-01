@@ -49,6 +49,11 @@ Platform.sh is responsible for:
 * **Backups**:
   Platform.sh is responsible for backing up the infrastructure and management components of the system.
   On {{% names/dedicated-gen-2 %}}, Platform.sh also backs up application code and databases on behalf of customers.
+* **Managed CDN and web application firewall (WAF)**:
+  If a customer's plan includes a [managed CDN](../domains/cdn/managed-fastly.md)
+  and/or a [managed WAF](./waf.md),
+  Platform.sh is responsible for setting up and maintaining the included measures.
+  See more details about each at their respective documentation pages.
 
 Customers are responsible for:
 
@@ -64,3 +69,7 @@ Customers are responsible for:
   Customers are responsible for effectively leveraging available access control mechanisms, including proper access control settings, secrets management, SSH key management, and the use of two-factor authentication.
 * **Backups**:
   On Platform.sh, Professional customers are responsible for all application and database backups.
+* **CDN and web application firewall (WAF)**:
+  If a customer's plan does *not* include a [managed CDN](../domains/cdn/managed-fastly.md)
+  or [managed WAF](./waf.md),
+  the customer is responsible for setting up and maintaining such measures.
