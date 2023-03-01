@@ -181,7 +181,6 @@ allow the `__blackfire` cookie to go through the cache.
 To do so, add [a configuration](../../define-routes/cache.md#allowing-only-specific-cookies) similar to the following:
 
 ```yaml {location=".platform/routes.yaml"}
-relationships:
 cache:
     enabled: true
     cookies: ["/SESS.*/", "__blackfire"]
