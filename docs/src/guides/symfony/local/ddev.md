@@ -9,7 +9,7 @@ sectionBefore: Integrated environments
 
 {{% ddev/definition %}}
 
-{{% guides/symfony/local-requirements %}}
+{{% guides/local-requirements name="Symfony" %}}
 - DDEV installed on your computer.
 
   {{% ddev/requirements %}}
@@ -68,7 +68,4 @@ sectionBefore: Integrated environments
 
 ## Tips and tricks
 
-### Symfony
-{{% tips-and-tricks/symfony/cli %}}
-### DDEV
 {{% tips-and-tricks/ddev %}}

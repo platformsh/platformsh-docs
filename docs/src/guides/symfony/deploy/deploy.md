@@ -6,9 +6,9 @@ description: |
     Now that your site is ready, push it to Platform.sh and import your data.
 ---
 
-{{% guides/symfony/deployment %}}
+{{% guides/deployment Symfony=true %}}
 
-{{% guides/symfony/data-migration /%}}
+{{% guides/data-migration Symfony=true /%}}
 
 Go forth and Deploy (even on Friday)!
 

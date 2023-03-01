@@ -12,7 +12,7 @@ sectionBefore: Supported environments
 To test changes locally, you can connect your locally running Django server
 to service containers on an active Platform.sh environment.
 
-{{% guides/symfony/local-requirements %}}
+{{% guides/local-requirements name="Symfony" %}}
 
 {{% guides/symfony/local-assumptions redis-guide-link=../customize/redis postgresql-guide-link=../customize/postgresql %}}
 
@@ -84,8 +84,3 @@ The settings are used to mock the conditions of the environment locally.
 {{< readFile file="snippets/guides/symfony/tethered/local.sh" highlight="yaml" location="init-local.sh" >}}
 
 {{% guides/symfony/local-next-steps-end %}}
-
-## Tips and tricks
-### Symfony CLI
-{{% tips-and-tricks/symfony/cli %}}
-{{% tips-and-tricks/symfony/cli-tunnels %}}

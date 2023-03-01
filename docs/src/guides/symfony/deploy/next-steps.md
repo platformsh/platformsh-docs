@@ -31,4 +31,10 @@ This workflow isn't always desirable or even acceptable based on your compliance
 For how to enforce compliance requirements for user data across environments,
 see how to [sanitize databases](../../../development/sanitize-db/postgresql-symfony.md).
 
+## Tips and tricks
+
+### Symfony CLI
+
+{{% tips-and-tricks/symfony/cli %}}
+
 {{< guide-buttons type="last" >}}

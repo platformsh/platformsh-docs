@@ -12,7 +12,7 @@ Symfony is a web application framework written in PHP. Platform.sh is the offici
 This guide provides instructions for deploying, and working with, Symfony on Platform.sh.
 It includes examples for working with Symfony on all the major package managers: composer.
 
-{{% guides/symfony/starting-point name="Symfony" templateRepo="platformsh-symfony-template" templateRepoMetadata="platformsh-symfony-template-metadata" template="symfony-6.2.template" initExample=true %}}
+{{% guides/starting-point name="Symfony" template="symfony-6.2.template" initExample=true %}}
 
 {{< note >}}
 
@@ -20,7 +20,7 @@ This guide is written for Symfony 6.2, but should apply almost exactly the same 
 
 {{< /note >}}
 
-{{% guides/symfony/requirements %}}
+{{% guides/requirements name="Symfony" %}}
 
 {{< note >}}
 
@@ -56,13 +56,6 @@ The community also provides a number of open-source starting points you can cons
 
 ## Initialize a Platform.sh project
 
-{{< guides/symfony/initialize name="Symfony" template="symfony" >}}
-
-{{< /guides/symfony/initialize >}}
-
-## Tips and tricks
-
-### Symfony CLI
-{{% tips-and-tricks/symfony/cli %}}
+{{< guides/initialize name="Symfony" template="symfony" />}}
 
 {{< guide-buttons next="Configure repository" type="first" >}}

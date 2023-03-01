@@ -1,15 +1,23 @@
-Connect to remote Redis
-  ```bash
-  platform redis
-  ```
+{{ $cliCommand := "platform" }}
+{{ if eq ( .Get "framework" ) "Symfony" }}
+  {{ $cliCommand = "symfony" }}
+{{ end }}
+You may find the following commands useful when using Redis.
 
-Connect to DDEV Redis service
-  ```bash
-  ddev redis-cli
-  ```
+-   Connect to a remote Redis service:
 
-Connect to Local Redis using [redis-cli](https://redis.io/docs/getting-started/)
-  ```bash
-  redi-cli
-  ```
+    ```bash
+    {{ $cliCommand }} redis
+    ```
 
+-   Connect to a DDEV Redis service:
+
+    ```bash
+    ddev redis-cli
+    ```
+
+-   Connect to a local Redis instance using the [Redis CLI](https://redis.io/docs/getting-started/):
+
+    ```bash
+    redi-cli
+    ```

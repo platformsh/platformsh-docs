@@ -1,14 +1,19 @@
-Open Platform.sh console from the terminal
-  ```bash
-  symfony cloud:web
-  ```
+You may find the following commands useful when using the Symfony CLI.
 
-Open current environment url from the terminal
-  ```bash
-  symfony cloud:url
-  ```
+-   Open the web administration console:
 
-SSH connect to your environment
-  ```bash
-  symfony ssh
-  ```
+    ```bash
+    symfony web
+    ```
+
+-   Open the current environment's URL:
+
+    ```bash
+    symfony url
+    ```
+
+-   Open an SSH connection to your environment:
+
+    ```bash
+    symfony ssh
+    ```

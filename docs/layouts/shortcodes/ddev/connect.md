@@ -3,12 +3,6 @@ To add it, run the following command:
 
   ```bash
   ddev get ddev/ddev-platformsh
-      Please enter your platform.sh token:
-      <Platform.sh API Token>
-      Please enter your platform.sh project ID (like '6k4ypl5iendqd'):
-      <ProjectID>
-      Please enter your platform.sh project environment (like 'main'):
-      main
   ```
 
 Answer the interactive prompts with your project ID and the name of the environment to pull data from.

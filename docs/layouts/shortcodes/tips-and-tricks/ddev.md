@@ -1,25 +1,33 @@
-List all available DDEV commands
-  ```bash
-  ddev
-  ```
+You may find the following commands useful when using DDEV.
 
-Open DDEV front office from the terminal
-  ```bash
-  ddev launch
-  ```
+-   List all available DDEV commands:
 
-List all existing DDEV services for current project
-  ```bash
-  ddev status
-  ```
+    ```bash
+    ddev
+    ```
 
-Start a shell session to your DDEV project’s web service
-  ```bash
-  ddev ssh
-  ```
+-   Open DDEV front office from the terminal:
 
-Start a shell session to your DDEV project’s db service
-You can specify which DDEV service you want to connect to with option -s <service>
-  ```bash
-  ddev ssh -s db
-  ```
+    ```bash
+    ddev launch
+    ```
+
+-   List all existing DDEV services for current project:
+
+    ```bash
+    ddev status
+    ```
+
+-   Start a shell session to your DDEV project’s web service:
+
+    ```bash
+    ddev ssh
+    ```
+
+-   Start a shell session to a specific service.
+    Specify which DDEV service you want to connect to with the {{ `-s {{< variable "SERVICE_NAME" >}}` | .Page.RenderString }} option.
+    So if your database has the name `db`, connect to it with the following command:
+
+    ```bash
+    ddev ssh -s db
+    ```

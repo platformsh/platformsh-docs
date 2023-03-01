@@ -7,15 +7,15 @@ layout: list
 
 {{% sanitize-dbs/intro database="PostgreSQL" framework="Symfony" %}}
 
-{{% sanitize-dbs/symfony/requirements database="PostgreSQL" framework="Symfony" %}}
+{{% sanitize-dbs/requirements database="PostgreSQL" framework="Symfony" %}}
 
-{{% sanitize-dbs/symfony/sanitize-intro database="PostgreSQL" %}}
+{{% sanitize-dbs/sanitize-intro database="PostgreSQL" framework="Symfony" %}}
 
 {{< codetabs >}}
 +++
 title=Manually
 +++
-{{% sanitize-dbs/symfony/sanitize-manually database="PostgreSQL" %}}
+{{% sanitize-dbs/sanitize-manually database="PostgreSQL" framework="Symfony" %}}
 
 <--->
 +++
@@ -90,7 +90,7 @@ Set up a script by following these steps:
     }
     ```
 
-4.  Update the deploy hook to run your Symfony Command on each deploy.
+2.  Update the deploy hook to run your Symfony Command on each deploy.
 
     ```yaml {location=".platform.app.yaml"}
     hooks:
@@ -115,7 +115,7 @@ Set up a script by following these steps:
         fi
     ```
 
-5.  Commit your changes by running the following command:
+3.  Commit your changes by running the following command:
 
     ```bash
     git add src/Command/SanitizeDataCommand.php .platform.app.yaml && git commit -m "Add sanitization."

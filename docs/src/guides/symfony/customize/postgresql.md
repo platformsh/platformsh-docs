@@ -182,9 +182,5 @@ If you already have custom data in your SQLite database, see this tutorial on [h
 
 
 ## Tips and tricks
-### Symfony CLI
-{{% tips-and-tricks/symfony/cli %}}
+
 {{% tips-and-tricks/symfony/cli-database %}}
-### DDEV
-{{% tips-and-tricks/ddev %}}
-{{% tips-and-tricks/ddev-postgresql %}}

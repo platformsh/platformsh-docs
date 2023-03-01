@@ -178,10 +178,5 @@ title=Using Symfony Server
 
 
 ## Tips and tricks
-### Redis
-{{% tips-and-tricks/symfony/redis %}}
 
-### Symfony CLI
-{{% tips-and-tricks/symfony/cli %}}
-### DDEV
-{{% tips-and-tricks/ddev %}}
+{{% tips-and-tricks/redis framework="Symfony" %}}

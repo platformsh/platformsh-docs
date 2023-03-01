@@ -6,9 +6,14 @@
   {{ $site = printf "[Composer-flavored %s](%s)" $name $composerLink }}
 {{ end }}
 
-{{ $org := .Get "templateOrg" }}
-{{ if eq $org "" }}
-  {{ $org = "platformsh-templates" }}
+{{ $org := "platformsh-templates" }}
+{{ with .Get "templateOrg" }}
+  {{ $org = . }}
+{{ end }}
+
+{{ $templateUrl := print `https://raw.githubusercontent.com/platformsh/template-builder/master/templates/` ( .Get "template" ) `/.platform.template.yaml ` }}
+{{ if eq $name "Symfony" }}
+  {{ $templateUrl = print `https://raw.githubusercontent.com/symfonycorp/platformsh-symfony-template-metadata/main/` ( .Get "template" ) `.yaml` }}
 {{ end }}
 
 To get {{ $name }} running on Platform.sh, you have two potential starting places:
@@ -28,8 +33,8 @@ To get {{ $name }} running on Platform.sh, you have two potential starting place
 
         To use a template, click the button below to create a {{ .Get "name" }} template project.
 
-        <p align="center">
-          <a href='https://console.platform.sh/org/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/{{ .Get "template" }}/.platform.template.yaml&_utm_campaign=cta_deploy_marketplace_template&utm_source=public_documentation&_utm_medium=organic'>
+        <p class="flex justify-center not-prose">
+          <a href='https://console.platform.sh/org/create-project?template={{ $templateUrl }}&_utm_campaign=cta_deploy_marketplace_template&utm_source=public_documentation&_utm_medium=organic'>
             <img src="https://platform.sh/images/deploy/lg-blue.svg" alt="Deploy on Platform.sh" width="180px" />
           </a>
         </p>
