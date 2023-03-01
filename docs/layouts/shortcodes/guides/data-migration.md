@@ -19,7 +19,7 @@ Next, import the database into your Platform.sh site by running the following co
 
 {{ if $isSymfony }}
 ```bash
-symfony sql < dump.sql
+symfony cloud:sql < dump.sql
 ```
 {{ else }}
 ```bash
@@ -43,7 +43,7 @@ all of your user files to your local `files/user` directory and your public file
 {{ end }}, but adjust accordingly for their actual locations.
 
 Next, upload your files to your mounts
-using the `{{ if $isSymfony }}symfony{{ else }}platform{{ end }} mount:upload` command.
+using the {{ if $isSymfony }}`symfony cloud:mount:upload`{{ else }}`platform mount:upload`{{ end }} command.
 Run the following command from your local Git repository root,
 modifying the `--source` path if needed.
 
@@ -53,7 +53,7 @@ platform mount:upload --mount wordpress/wp-content/uploads --source ./wordpress/
 ```
 {{ else if $isSymfony}}
 ```bash
-symfony mount:upload --mount public/var --source ./public/var
+symfony cloud:mount:upload --mount public/var --source ./public/var
 ```
 {{ else }}
 ```bash

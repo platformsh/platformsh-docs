@@ -6,11 +6,11 @@ description: |
     Review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for Symfony.
 ---
 
-{{% guides/symfony/config-desc name="Symfony" %}}
+{{% guides/config-desc name="Symfony" %}}
 
-{{% guides/symfony/config-app noExample=true /%}}
+{{% guides/config-app noExample=true /%}}
 
-The examples vary based on using Symfony Base or Symfony Demo skeleton.
+The examples vary based on whether you want to use a Symfony Base or Symfony Demo reference app.
 
 {{< codetabs >}}
 +++
@@ -50,10 +50,5 @@ Usage of the symfony configurator is also a way to contribute to Symfony project
 {{% /guides/config-service %}}
 
 {{% guides/config-routes template="platformsh-symfony-template" name="Symfony" %}}
-
-## Tips and tricks
-
-### Symfony CLI
-{{% tips-and-tricks/symfony/cli %}}
 
 {{< guide-buttons next="Deploy Symfony" >}}
