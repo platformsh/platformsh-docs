@@ -14,7 +14,7 @@ It helps protect your app from attacks such as distributed denial of service (DD
 
 Carriage return and line feed (CRLF) injection occurs when an attacker injects a CRLF character sequence to manipulate HTTP requests.
 CRLF injection can lead to [request smuggling](#request-smuggling),
-[header injection](#header-injection) and [response splitting](#response-splitting) attacks.
+[header injection](#header-injection), and [response splitting](#response-splitting) attacks.
 
 To protect your app from such attacks, the WAF detects and blocks requests containing CRLF character sequences.
 
@@ -36,7 +36,7 @@ the attacker can bypass the app’s security methods and access sensitive inform
 The WAF detects and blocks requests that contain [both the `Content-Length` and `Transfer-Encoding` headers](#content-length-and-transfer-encoding-headers-together).
 It also detects and blocks requests that include **both** of the following features of an attempt to inject a malicious request:
 
-- A [CRLF character sequence](#crlf-injection-prevention) or `http/\d`
+- A [CRLF character](#crlf-injection-prevention) or `http/\d`
 - An `HTTP` or `WEBDAV` method name
 
 ### Header injection
@@ -132,7 +132,7 @@ the Platform.sh WAF blocks requests with an empty or absent `host` header.
 
 The following headers are disallowed: `Connection`, `Proxy-Authorization`, `TE`, and `Upgrade`.
 
-## Slowloris DDoS attacks prevention
+## Slowloris DDoS attack prevention
 
 Slowloris DDoS attacks use partial HTTP requests to open connections between a single computer and a targeted web server.
 These connections are then kept open for as long as possible to overwhelm the web server.
