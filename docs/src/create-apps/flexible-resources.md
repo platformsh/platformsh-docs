@@ -1,11 +1,19 @@
 ---
-title: Flexible resources
+title: Use flexible resources
 sidebarIgnore: true
 ---
 
 Sometimes you have apps that are more memory-intensive.
 In such cases, you can adjust the amount of memory using the `resources` key in your [app configuration](./_index.md).
 All memory must stay within the limits set by your plan.
+
+{{< note >}}
+
+If you don't understand how your resources are being allocated or are having issues configuring them,
+[open a support ticket](https://console.platform.sh/-/users/~/tickets/open?category=high-mem-plans).
+The Support team can look into the details of your project.
+
+{{< /note >}}
 
 The `resources` key has the following possible options:
 
