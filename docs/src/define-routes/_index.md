@@ -82,6 +82,35 @@ The route for the `api` app could be anything in the domain, even a subdomain li
 Be aware that using a subdomain might [double your network traffic](https://nickolinger.com/blog/2021-08-04-you-dont-need-that-cors-request/),
 so consider using a path like `https://{default}/api` instead.
 
+Then you need to configure each app `web.locations` with the following:
+* `web.locations` definition for the `app` app:
+
+```yaml {location="app/.platform.app.yaml"}
+web:
+  locations:
+    "/":
+      passthru: "/index.php"
+      root: "public"
+      index:
+        - index.php
+```
+
+* `web.locations` definition for `api` app:
+
+```yaml {location="api/.platform.app.yaml"}
+web:
+  locations:
+    "/api":
+      passthru: "/api/index.php"
+      root: "public"
+      index:
+        - index.php
+```
+
+{{< note >}}
+If using a path like `https://{default}/<something>` for your app, you will need to repeat `<something>` in your `web.locations` definition, as shown in the `api` app example above.
+{{< /note >}}
+
 ## Trailing slashes
 
 All defined routes have at least a slash in the path.
