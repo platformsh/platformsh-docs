@@ -4,133 +4,68 @@ sidebarTitle: Tethered
 weight: 2
 ---
 
-The simplest way to run a project locally is to use a local web server, but keep all other services on Platform.sh and connect to them over an SSH tunnel.
-This approach needs little setup, but requires an active Internet connection, and depending on the speed of your connection and how I/O intensive your application is, it may not have suitable performance for day-to-day use.
+To test changes locally, you can connect your locally running web server
+to service containers on an active Platform.sh environment.
+This method requires less configuration than tools such as [DDEV](./ddev.md),
+but may not perform well enough for everyday use.
+Because it replies on a local web server, it's also less consistent across your team.
 
-## Quick Start
+{{% guides/local-requirements %}}
 
-In your application directory run `platform tunnel:open &&  export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"`. This opens an SSH tunnel to your current Platform.sh environment and expose a local environment variable that mimics the relationships array on Platform.sh.
+## Create the tethered connection
 
-You can now run your application locally, assuming it's configured to read its configuration from the Platform.sh environment variables.
+{{% tethered-dev/steps-start %}}
 
-Note that other Platform.sh environment configuration such as the routes or application secret value still aren't available.
-Also be aware that the environment variable exists only in your current shell.
-If you are starting multiple local command shells you need to rerun the `export` command above in each of them.
+1.  Run your application locally.
+    Make sure it's set up to read configuration from Platform.sh environment variables.
 
-## Local web server
+    If you app relies on other Platform.sh environment configuration, such as routes or secret variables,
+    make sure to mock those variables as well.
 
-For the local web server the approach varies depending on your language.
+    Your options for running the app depend on the language and configuration.
+    You can use the serve for your language, install a copy of Nginx,
+    or use a virtual machine or Docker image.
 
-* For a self-serving language (Go or Node.js), just run the program locally.
-* For PHP, you may install your own copy of Nginx (or Apache) and PHP-FPM, or just use the built-in PHP web server. Be aware that by default the PHP web server ignores environment variables by default. You need to explicitly instruct it to read them, like so: `php -d variables_order=EGPCS -S localhost:8001`. That starts a basic web server capable of running PHP, serving the current directory, on port 8001, using available environment variables. See the [PHP manual](https://www.php.net/manual/en/features.commandline.webserver.php) for more information.
-* For other languages it's recommended that you install your own copy of Nginx or Apache.
-* A virtual machine or Docker image is also a viable option.
+{{% tethered-dev/steps-end %}}
 
-## SSH tunneling
+## Connect to services directly
 
-Now that the code is running, it needs to connect it to its services. For that, open an SSH tunnel to the current project.
-
-```bash
-$ platform tunnel:open
-SSH tunnel opened on port 30000 to relationship: redis
-SSH tunnel opened on port 30001 to relationship: database
-Logs are written to: ~/.platformsh/tunnels.log
-
-List tunnels with: platform tunnels
-View tunnel details with: platform tunnel:info
-Close tunnels with: platform tunnel:close
-```
-
-Now you can connect to the remote database normally, as if it were local.
+With open tunnels to all your services, you can also connect to the running services directly.
+To get information on all running services, run the following command:
 
 ```bash
-$ mysql --host=127.0.0.1 --port=30001 --user='user' --password='' --database='main'
+$ platform tunnels
 ```
 
-The specific port that each service uses isn't guaranteed, but is unlikely to change unless you add an additional service or connect to multiple projects at once.
-In most cases it's safe to add a local-configuration file for your application that connects to, in this case, `localhost:30001` for the SQL database and `localhost:30000` for Redis.
-
-After the tunnels are opened, you can confirm their presence:
+You get a response similar to the following:
 
 ```bash
-platform tunnel:list
++-------+---------------+-------------+-----+--------------+
+| Port  | Project       | Environment | App | Relationship |
++-------+---------------+-------------+-----+--------------+
+| 30000 | abcdefg123456 | new-feature | app | cache        |
+| 30001 | abcdefg123456 | new-feature | app | database     |
++-------+---------------+-------------+-----+--------------+
 ```
 
-You can show more information about the open tunnels with:
+You can use the port information to connect directly to a service.
+If you need more detailed information, such as a path or password, run the following command:
 
 ```bash
-platform tunnel:info
+$ platform tunnel:info
 ```
 
-and you can close tunnels with:
+You can use the information returned to connect to the remote database as if it were local.
+For example, the following command would connect to a MySQL database running through a tethered connection:
 
 ```bash
-platform tunnel:close
+$ mysql --host=127.0.0.1 --port={{ variable "PORT" }} --user='{{ variable "USERNAME" }}' --password='{{ variable "PASSWORD" }}' --database='{{ variable "PATH" }}'
 ```
 
-{{< note >}}
-The `platform tunnel:open` command requires the `pcntl` and `posix` PHP extensions. Run `php -m | grep -E 'posix|pcntl'` to check if they're there.
+{{% local-dev/next-steps-start %}}
 
-If you don't have these extensions installed, you can use the `platform tunnel:single` command to open one tunnel at a time. This command also lets you specify a local port number.
-{{< /note >}}
+    Fill it with something similar to the following example, depending on your app and configuration:
 
-### Local environment variables
+    {{< readFile file="snippets/local-dev-onboarding.sh" highlight="bash" location="init-local.sh">}}
 
-Alternatively, you can read the relationship information directly from Platform.sh and expose it locally in the same form.
-From the command line, run:
-
-```bash
-export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"
-```
-
-That creates a `PLATFORM_RELATIONSHIPS` environment variable locally that looks exactly the same as the one you'd see on Platform.sh, but pointing to the locally mapped SSH tunnels.
-Whatever code you have that looks for and decodes the relationship information from that variable (which is what runs on Platform.sh) detects it and uses it just as if you were running on Platform.sh.
-
-Note that the environment variable is set globally so you can't use this mechanism to load multiple tethered Platform.sh projects at the same time.
-If you need to run multiple tethered environments at once you have to read the relationships information for each one from the application code, like so:
-
-{{< codetabs >}}
-
-+++
-title=PHP
-highlight=php
-markdownify=false
-+++
-<?php
-if ($relationships_encoded = shell_exec('platform tunnel:info --encode')) {
-    $relationships = json_decode(base64_decode($relationships_encoded, TRUE), TRUE);
-    // ...
-}
-<--->
-
-+++
-title=Python
-highlight=python
-markdownify=false
-+++
-import json
-import base64
-import subprocess
-
-encoded = subprocess.check_output(['platform', 'tunnel:info', '--encode'])
-if (encoded):
-    json.loads(base64.b64decode(encoded).decode('utf-8'))
-    # ...
-
-<--->
-
-+++
-title=Node.js
-highlight=javascript
-markdownify=false
-+++
-const child_process = require("child_process");
-
-const { stdout: encoded } = child_process.spawnSync("platform", ["tunnel:info", "--encode"], { encoding : "utf8" });
-const relationships = encoded ? JSON.parse(Buffer.from(encoded, "base64").toString()) : {};
-
-// ...
-
-{{< /codetabs >}}
-
-
+{{% local-dev/next-steps-end %}}

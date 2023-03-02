@@ -70,6 +70,7 @@ Magento
 Magestore
 Mailchimp
 [Mm]akefile
+[Mm]ebibyte
 Meilisearch
 Memcache
 Mezmo
