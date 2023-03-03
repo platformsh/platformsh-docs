@@ -1,88 +1,142 @@
 ---
 title: Web application firewall (WAF)
-sidebarTitle: WAF
-description: |
-    Enterprise and Elite projects on Platform.sh come with a Web application firewall (WAF) at no additional cost, which monitors requests to your application and blocks suspicious requests according to our ruleset. WAFs can be an important line of defense against well-known exploit vectors that can otherwise make an application vulnerable to malicious requests and distributed denial of service (DDoS) attacks.
+description: Learn how the WAF included in Enterprise and Elite plans can help protect your site from distributed denial of service (DDoS) attacks.
 tier:
   - Enterprise
   - Elite
 ---
 
-{{% description %}}
+Enterprise and Elite projects on Platform.sh come with a web application firewall (WAF) at no additional cost.
+This WAF monitors requests to your app and blocks suspicious ones.
+It helps protect your app from attacks such as distributed denial of service (DDoS) attacks.
 
-## HTTP protocol attacks
+## CRLF injection prevention
 
-Platform.sh's WAF implements a number of request filtering rules for common security vulnerabilities on the HTTP protocol. 
+Carriage return and line feed (CRLF) injection occurs when an attacker injects a CRLF character sequence to manipulate HTTP requests.
+CRLF injection can lead to [request smuggling](#request-smuggling),
+[header injection](#header-injection), and [response splitting](#response-splitting) attacks.
+
+To protect your app from such attacks, the WAF detects and blocks requests containing CRLF character sequences.
 
 ### Request smuggling
 
-The [HTTP specification](https://tools.ietf.org/html/rfc2616) allows for two ways to define where a request ends within its header: `Content-Length` and `Transfer-Encoding`. Both can be used, but the specification additionally outlines that if both headers are present in a single request, `Transfer-Encoding` should be used over `Content-Length`. HTTP request smuggling occurs when
+When a frontend server forwards HTTP requests to a backend server,
+it usually sends a series of requests at once.
+The backend server then parses the request headers
+to determine where one request ends and the next one begins.
 
-- the front end and back end services vary slightly in deciding when one header should be used over the other and determining the beginning and end of the same requests.
-- a malicious agent is able to determine and exploit the fact that this disagreement exists, sending malicious requests that get parsed with legitimate requests in unintended ways.
+The [HTTP protocol](https://tools.ietf.org/html/rfc2616) provides two different headers
+to specify where an HTTP request ends: `Content-Length` and `Transfer-Encoding`.
 
-When a malicious request header is mistakenly included as part of a legitimate (victim) request to the site instead of two separate requests, it could circumvent that application's security methods and disclose sensitive information in the process. The malicious request usually attempts to exploit this end of message disagreement by including CRLF (carriage return and line feed) characters in the request header, which would typically be used to parse individual requests.
+When the frontend and backend servers don’t agree on which header
+they should interpret as the end of a request, attackers can smuggle requests.
+If a malicious request is mistakenly included in a legitimate request,
+the attacker can bypass the app’s security methods and access sensitive information.
 
-{{< note title="Protection rules">}}
-The WAF monitors for requests that include a CRLF character or the word `http/\d`, in combination with an `HTTP` or `WEBDAV` method name, since the presence of these features indicate an attempt to inject a second request.
-{{< /note >}}
+The WAF detects and blocks requests that contain [both the `Content-Length` and `Transfer-Encoding` headers](#content-length-and-transfer-encoding-headers-together).
+It also detects and blocks requests that include **both** of the following features of an attempt to inject a malicious request:
+
+- A [CRLF character](#crlf-injection-prevention) or `http/\d`
+- An `HTTP` or `WEBDAV` method name
 
 ### Header injection
 
-As a general class of security vulnerabilities, header injections occur when HTTP response headers are generated based on user input. An attacker is able to exploit the vulnerable cycle to include malicious content in an application's response headers to subsequent requests.
+During a header injection attack, the attacker tricks your app
+into inserting extra HTTP headers into legitimate HTTP responses.
+These attacks can happen when HTTP response headers are generated based on user input.
 
-{{< note title="Protection rules">}}
-The WAF monitors for header injection attempts that can occur via the payload and the header itself. Requests are blocked for those that contain the carriage return (CR; `%0d`) and line feed (LF; `%0a`) characters so that data isn't returned in a response header and interpreted by the client, similar to the [response splitting](/security/waf.html#response-splitting) and [request smuggling](/security/waf.html#request-smuggling) protection rules. 
+Header injection attacks can have various impacts,
+including cookie injection, [cross-origin resource sharing](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) header injection,
+and bypassing your content security policy.
+Such attacks enable [response splitting](#response-splitting),
+which in turn can lead to [cross-site scripting](https://developer.mozilla.org/en-US/docs/Glossary/Cross-site_scripting),
+web cache poisoning, and so on.
 
-It also monitors and detects newline characters in `GET` request argument values. 
-{{< /note >}}
+The WAF detects header injection attempts occurring through the payload and the header itself.
+By [blocking requests containing CRLF](#crlf-injection-prevention) character sequences,
+the WAF prevents malicious data from being returned in a response header and interpreted by the client.
 
 ### Response splitting
 
-Response splitting is enabled by the presence of header injection vulnerabilities. The standard HTTP request and response cycle results in a single HTTP response returned to a user for each HTTP request they place on the server. An HTTP response splitting attack occurs when an attacker modifies the data included in the HTTP response header. That malicious data can then be returned to a user placing subsequent requests. 
+When a user makes an HTTP request, the web server usually returns a single HTTP response.
+But when an attacker succeeds in [injecting headers](#header-injection),
+they can launch a [response splitting attack](https://www.cs.montana.edu/courses/csci476/topics/http_response_splitting.pdf).
 
-Depending on the characters added to the response header (such as line feeds and carriage returns), an attacker can create and return additional responses to legitimate user requests, hence the name response *splitting*. 
+During a response splitting attack, the attacker uses CRLF characters to inject additional HTTP responses into legitimate user requests.
+This enables further attacks such as [cross-site scripting](https://developer.mozilla.org/en-US/docs/Glossary/Cross-site_scripting),
+web cache poisoning, browser cache poisoning, and cross-user attacks.
 
-{{< note title="Protection rules">}}
-The WAF monitors for requests that include the carriage return (CR; `%0d`) and line feed (LF; `%0a`) characters. The presence of these characters indicate an attempt to inject data in the response header and potentially force intermediate proxy servers to treat the message as two separate responses. 
-{{< /note >}}
+As the WAF [blocks requests containing CRLF](#crlf-injection-prevention) character sequences,
+your app is protected from response splitting attacks.
 
 ## HTTP protocol enforcement
 
-On top of the above rule set, the Platform.sh WAF implements a number of additional rules intended to enforce the HTTP protocol. 
+In addition to protecting your site against [CRLF injection-related](#crlf-injection-prevention) attacks,
+the WAF implements additional rules to enforce the HTTP protocol.
 
-- **HTTP Request Line Format Enforcement**
+### Uniform Resource Identifier (URI) syntax
 
-    Request lines are validated against the HTTP RFC specification using rule negation with regex, which specifies the proper construction of URI request lines (such as `"http:" "//" host [":" port] [ abs_path ["?" query]]`). The incoming connection is terminated, and then the request reconstructed on the internal network, enforcing the valid format in transit.
+[RFC 3986](https://www.rfc-editor.org/rfc/rfc3986) defines the generic syntax for URIs.
+When the WAF detects a URI with incorrect syntax, the incoming connection is terminated.
+The request is then reconstructed on the internal Platform.sh network,
+enforcing the valid format in transit.
 
-- **GET or HEAD requests with a body aren't allowed**
+### File upload limit
 
-    The protocol allows for `GET` requests to have a body - while this is rarely used, attackers could try to force a request body on unsuspecting applications. When a `GET` request is detected, the WAF will check for the existence of the `Content-Length` and `Transfer-Encoding` headers. If either exist and the payload is either not 0 or not empty, then all body-related headers are stripped from those requests and then passed through otherwise unaltered. 
+The WAF enforces a file upload limit.
+By default, this limit is set at 250&nbsp;MB.
 
-- **Disallow Content-Length and Transfer-Encoding Headers together**
+You can customize the file upload limit by amending your [app configuration](../create-apps/_index.md).
+In the [`web.locations` dictionary](../create-apps/app-reference.md#locations),
+add your desired value for the `max_request_size` property.
 
-    Requests [must not contain](https://tools.ietf.org/html/rfc7230#section-3.3.2) both a `Content-Length` and `Transfer-Encoding` header, as the presence of leaves applications vulnerable to [request smuggling](#request-smuggling). The WAF forces requests to use chunked transfer-encoding only on the internal network. 
+### File extension restriction
 
-- **Missing/Empty Host Headers**
+The WAF enforces any file extension restriction you may have defined in your [app configuration](../create-apps/_index.md).
 
-    Route mapping is implemented based on host names. Because of this, requests aren't relayed that do either do not include the host header, or if that header exists but is empty. 
+To set up a file extension restriction,
+adjust the [`web.locations` dictionary](../create-apps/app-reference.md#locations).
+Set up [rules](../create-apps/app-reference.md#rules) to allow only certain file extensions on a given path.
 
-- **File upload limit**
+### Disallowed requests and headers
 
-    File upload limits are enforced, but are configured by the application's configuration in `.platform.app.yaml` using the `max_request_size` attribute in [`web.locations`](../create-apps/app-reference.md#locations). Note that this limit is set by default at 250MB if not set to something different. 
+#### `GET` requests with a body
 
-- **File extension restriction**
+The [HTTP specification](https://tools.ietf.org/html/rfc2616) allows for `GET` requests to have a body.
+This enables attackers to try and force a request body on unsuspecting applications,
+which could result in a [request smuggling attack](#request-smuggling).
 
-    File extensions are restricted according to the application's configuration in `.platform.app.yaml` in `web.locations`. The root path, or a path beneath it, can be configured to allow only certain file extensions by defining [rules](../create-apps/app-reference.md#rules) for them using regular expressions.
+To prevent such attacks, when the WAF detects a `GET` request,
+it scans the request for a potential `Content-Length` or `Transfer-Encoding` header.
 
-- **Restricted HTTP headers**
+If one of those headers is found and the payload isn't `0` or empty,
+all body-related headers are removed from the request.
+The request is then passed through otherwise unaltered.
 
-    The following headers are disallowed: `Connection`, `Proxy-Authorization`, `TE`, `Upgrade`.
+#### `Content-Length` and `Transfer-Encoding` headers together
 
-- **Backup/"working" file extension**
+According to the [HTTP specification](https://tools.ietf.org/html/rfc2616),
+requests mustn't contain [both a `Content-Length` and a `Transfer-Encoding` header](https://tools.ietf.org/html/rfc7230#section-3.3.2).
+This rule helps protect apps from [request smuggling](#request-smuggling).
 
-    Enforced by the WAF and configured by the user under [`web.locations`](../create-apps/app-reference.md#locations) using the `scripts` attribute where it can be disabled. [Regular expressions](../create-apps/app-reference.md#rules) can also be created to catch unwanted requests to script extensions.
+The WAF detects and blocks requests featuring both headers
+and forces requests to use [chunked transfer encoding](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Transfer-Encoding)
+only on the internal Platform.sh network.
 
-- **Slowloris DoS attacks** 
+#### Missing or empty `host` headers
 
-    The Slowloris denial of service attack exploits partial HTTP requests, consuming large amounts of bandwidth by continuing to keep those connections open for as long as possible. Apache web servers are vulnerable to Slowloris attacks, but for nginx this isn't the case. Since Platform.sh Router services use nginx processes, projects are protected against this kind of an attack. 
+As [routes are mapped](../define-routes/_index.md) based on host names,
+the Platform.sh WAF blocks requests with an empty or absent `host` header.
+
+#### Other restricted HTTP headers
+
+The following headers are disallowed: `Connection`, `Proxy-Authorization`, `TE`, and `Upgrade`.
+
+## Slowloris DDoS attack prevention
+
+Slowloris DDoS attacks use partial HTTP requests to open connections between a single computer and a targeted web server.
+These connections are then kept open for as long as possible to overwhelm the web server.
+
+While Apache web servers are vulnerable to Slowloris attacks, Nginx servers aren't.
+Since Platform.sh router services use Nginx processes,
+your projects are protected against such attacks.
