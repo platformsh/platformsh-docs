@@ -55,7 +55,7 @@ to let Blackfire profile the code running on your servers.
 
 ## Automated integration
 
-{{< partial "observability-suite/body" >}}
+{{< partial "observability-suite/body.md" >}}
 
 The Blackfire automated integration is available for Grid environments only.
 
