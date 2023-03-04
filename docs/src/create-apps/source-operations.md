@@ -155,7 +155,7 @@ If you try running a source operation on a non-supported environment, you see th
 This project doesn't support source operations.
 ```
 
-## Automated source operations using cron
+## Automated source operations using a cron job
 
 You can use cron to automatically run your source operations.
 
@@ -192,109 +192,8 @@ crons:
 
 ### Update dependencies
 
-You might want to automatically update your project's dependencies.
-Do so in a source operation depending on your dependency manager:
-
-<!--vale off -->
-{{< codetabs >}}
-
-+++
-title=Composer
-highlight=yaml
-+++
-
-source:
-    operations:
-        update:
-            command: |
-                set -e
-                composer update
-                git add composer.lock
-                git commit -m "Update Composer dependencies"
-
-<--->
-
-+++
-title=npm
-highlight=yaml
-+++
-
-source:
-    operations:
-        update:
-            command: |
-                set -e
-                npm update
-                git add package.json package-lock.json 
-                git commit -m "Update npm dependencies"
-
-<--->
-
-+++
-title=Yarn
-highlight=yaml
-+++
-
-source:
-    operations:
-        update:
-            command: |
-                set -e
-                yarn upgrade
-                git add yarn.lock
-                git commit -m "Update yarn dependencies"
-
-<--->
-
-+++
-title=Go
-highlight=yaml
-+++
-
-source:
-    operations:
-        update:
-            command: |
-                set -e
-                go get -u
-                go mod tidy
-                git add go.mod go.sum
-                git commit -m "Update Go dependencies"
-
-<--->
-
-+++
-title=Pipenv
-highlight=yaml
-+++
-
-source:
-    operations:
-        update:
-            command: |
-                set -e
-                pipenv update
-                git add Pipfile Pipfile.lock
-                git commit -m "Update Python dependencies"
-
-<--->
-
-+++
-title=Bundler
-highlight=yaml
-+++
-
-source:
-    operations:
-        update:
-            command: |
-                set -e
-                bundle update --all
-                git add Gemfile Gemfile.lock
-                git commit -m "Update Ruby dependencies"
-
-{{< /codetabs >}}
-<!--vale on -->
+You can set up a source operation [to automate your dependency updates](../create-apps/dependency-updates.md).
+You might even want to automatically trigger your dependency updates [using a cron job](#automated-source-operations-using-cron).
 
 ### Update a site from an upstream repository or template
 
