@@ -193,7 +193,7 @@ crons:
 ### Update dependencies
 
 You can set up a source operation [to automate your dependency updates](../create-apps/dependency-updates.md).
-You might even want to automatically trigger your dependency updates [using a cron job](#automated-source-operations-using-cron).
+You might even want to automatically trigger your dependency updates [using a cron job](#automated-source-operations-using-a-cron-job).
 
 ### Update a site from an upstream repository or template
 

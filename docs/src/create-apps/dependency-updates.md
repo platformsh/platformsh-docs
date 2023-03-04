@@ -119,4 +119,4 @@ source:
 
 After you've set up your source operation,
 you might want to automatically trigger it.
-To do so, [set up a cron job](../create-apps/source-operations.md#automated-source-operations-using-cron).
+To do so, [set up a cron job](../create-apps/source-operations.md#automated-source-operations-using-a-cron-job).
