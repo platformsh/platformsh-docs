@@ -5,7 +5,7 @@
 
 This example makes a few assumptions, which you may need to adjust for your own circumstances.
 
-It assumes that you've already [deployed a Symfony project on Platform.sh](../deploy/_index.md)
+It assumes that you've already [deployed a Symfony project on Platform.sh](../getting-started/_index.md)
 that has production data in a [PostgreSQL database]({{ $postgresqlGuide }}) and use [Redis component]({{ $redisGuide }}).
 
 It's assumed that your project has the following service definitions:

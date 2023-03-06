@@ -64,7 +64,7 @@ title=Using DDEV
 +++
 Assumption:
 
-- Your project is already running locally using [DDEV](../local/ddev.md)
+- Your project is already running locally using [Symfony Server](../local/symfony-server.md)
 
 When managing many projects, it’s complex to handle all the dependencies.
 DDEV is useful to embed those needed components into Docker containers without needs of writing complex DockerFile files.

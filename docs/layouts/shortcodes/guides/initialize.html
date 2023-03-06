@@ -9,7 +9,7 @@
     <li>
         <p>Create your first project by running the following command:</p>
 
-        <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">{{  print $cliCommand ` create --title {{< variable "PROJECT_TITLE" >}}`  | .Page.RenderString }}</code></pre></div>
+        <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">{{  print $cliCommand ` create \-\-title {{< variable "PROJECT_TITLE" >}}`  | .Page.RenderString }}</code></pre></div>
 
         <p>Then choose the region you want to deploy to, such as the one closest to your site visitors.
         You can also select more resources for your project through additional flags,

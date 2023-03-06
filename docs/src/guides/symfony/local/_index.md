@@ -1,5 +1,5 @@
 ---
-title: Local development
+title: "[DEPRECATED] Local development"
 weight: -110
 description: |
     Sync Platform.sh with your local environments to start contributing.

@@ -31,6 +31,12 @@ This workflow isn't always desirable or even acceptable based on your compliance
 For how to enforce compliance requirements for user data across environments,
 see how to [sanitize databases](../../../development/sanitize-db/postgresql-symfony.md).
 
+## External resources
+The community also provides a number of open-source starting points you can consult:
+
+- [SymfonyCasts](https://symfonycasts.com/tracks/symfony) maintained by [@weaverryan](https://github.com/weaverryan)
+- [Symfony blog - Introducing the Symfony Demo application](https://symfony.com/blog/introducing-the-symfony-demo-application) maintained by [@javier.eguiluz](https://connect.symfony.com/profile/javier.eguiluz)
+
 ## Tips and tricks
 
 ### Symfony CLI

@@ -1,20 +1,19 @@
 ---
-title: DDEV
+title: Symfony Server
 weight: -110
 layout: single
 description: |
-    Set up an environment with Platform.sh's recommended local development tool, DDEV.
+    Set up an environment with Platform.sh's recommended local development tool, Symfony Server.
 sectionBefore: Integrated environments
 ---
 
-{{% ddev/definition %}}
 
 {{% guides/local-requirements name="Symfony" %}}
 - DDEV installed on your computer.
 
-  {{% ddev/requirements %}}
+{{% ddev/requirements %}}
 
-  {{% ddev/install %}}
+{{% ddev/install %}}
 
 {{% guides/symfony/local-assumptions redis-guide-link=../customize/redis postgresql-guide-link=../customize/postgresql %}}
 
