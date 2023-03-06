@@ -22,9 +22,9 @@ You need:
 - A [Drupal 9 version deployed on Platform.sh](../drupal9/deploy/_index.md)
 - The [Platform.sh CLI](../../administration/cli/)
 - [Composer](https://getcomposer.org/)
-- The [Platform.sh Config Reader library](../../guides/drupal9/deploy/customize.md#install-the-config-reader)
+- The [Config Reader library](../../guides/drupal9/deploy/customize.md#install-the-config-reader)
 
-You also need a `settings.platformsh.php` file from which you can [manage the configuration of the Redis service](../drupal9/deploy/customize.md#settingsphp). 
+You also need a `settings.platformsh.php` file from which you can [manage the configuration of the Redis service](../drupal9/deploy/customize.md#settingsphp).
 If you installed Drupal 9 with a template, this file is already present in your project.
 
 Note that, by default, Redis is an ephemeral service.
