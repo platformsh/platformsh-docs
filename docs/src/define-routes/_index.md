@@ -116,7 +116,7 @@ If using a path like `https://{default}/<something>` for your app, you will need
 All defined routes have at least a slash in the path.
 So you might define routes for 2 apps named `app` and `api` as follows:
 
-```yaml {location==".platform/routes.yaml"}
+```yaml {location=".platform/routes.yaml"}
 
 "https://{default}":
     type: upstream
@@ -454,7 +454,7 @@ plus the default redirect from HTTP to HTTPS.
 They aren't the final generated routes.
 
 ```bash
-$ platform environment:routes 
+$ platform environment:routes
 Routes on the project Example (abcdef123456), environment main (type: production):
 +---------------------------+----------+---------------------------+
 | Route                     | Type     | To                        |
