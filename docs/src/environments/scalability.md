@@ -26,7 +26,7 @@ You're only charged for the time when the plan was higher.
 
 ## Auto-scaling Dedicated environments
 
-{{< partial "observability-suite/body" >}}
+{{< partial "observability-suite/body.md" >}}
 
 If you have the Observability Suite on a Dedicated environment,
 your site is monitored for traffic spikes.
