@@ -8,9 +8,11 @@ tier:
 ---
 
 Platform.sh allows you to run automated code updates through [source operations](../create-apps/source-operations.md).
-
 For example, you can set up a source operation to run dependency updates on your project.
-To do, use one of the following configurations depending on your dependency manager:
+
+## Update your dependencies using a source operation
+
+To facilitate dependency updates in your project, set up a source operation depending on your dependency manager:
 
 {{< codetabs >}}
 
@@ -117,6 +119,23 @@ source:
 
 {{< /codetabs >}}
 
-After you've set up your source operation,
-you might want to automatically trigger it.
-To do so, [set up a cron job](../create-apps/source-operations.md#automated-source-operations-using-a-cron-job).
+## Run your dependency updates automatically using a cron job
+
+After you've set up a source operation to [run dependency updates on your project](#update-your-dependencies-using-a-source-operation),
+you can [trigger it using a cron job](../create-apps/source-operations.md#automated-source-operations-using-a-cron-job).
+
+For example, you can set up a cron to automatically update your dependencies once a day:
+
+```yaml {location=".platform.app.yaml"}
+crons:
+   update:
+       # Run the 'update' source operation every day at midnight.
+       spec: '0 0 * * *'
+       commands:
+           start: |
+               set -e
+               if [ "$PLATFORM_BRANCH" = update-dependencies ]; then
+                   platform environment:sync code data --no-wait --yes
+                   platform source-operation:run update --no-wait --yes
+               fi
+```
