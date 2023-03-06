@@ -133,7 +133,7 @@ somewhere before the final `require_once(ABSPATH . 'wp-settings.php');` line.
 
 {{< note >}}
 
-The following examples assume you are using the [Platform.sh Config Reader](./deploy/customize.md#install-the-config-reader).
+The following examples assume you are using the [Config Reader library](../../development/variables/use-variables.md#access-variables-in-your-app).
 
 {{</ note >}}
 
