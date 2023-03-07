@@ -13,7 +13,7 @@ description: |
 
 ## Deploying a Project
 
-To deploy the project to the cloud, run:
+To deploy your project to the cloud, run:
 
 ```bash
 symfony deploy
