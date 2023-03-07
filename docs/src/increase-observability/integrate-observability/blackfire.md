@@ -2,21 +2,18 @@
 title: "Blackfire"
 sidebarTitle: Blackfire
 weight: 1
-sectionBefore: Official observability tool 
+sectionBefore: In-house observability tool 
 description: Blackfire is the official Platform.sh observability service for monitoring and profiling your PHP and Python apps.
 ---
 
 As the **official Platform.sh observability service**, 
 [Blackfire](https://www.blackfire.io/) helps you improve the performance of your apps at each stage of their lifecycle.
-With Blackfire's unique Application Performance Monitoring (APM) and profiling features,
+With Blackfire's unique Application Performance Monitoring (APM) and Profiling features,
 you can achieve the following goals:
 
--   Avoid performance bottlenecks by proactively identifying issues in your code
-
--   Promptly solve identified issues by taking advantage of actionable recommendations
-
--   Ensure no feature is introduced at the cost of performance and user experience
-    by verifying and validating improvements before they're introduced to production
+- Avoid performance bottlenecks by proactively identifying issues in your code
+- Promptly solve identified issues by taking advantage of actionable recommendations
+- Create performance budgets for critical parts of your app and get alerted of any problem before a change hits your production
 
 {{< youtube bS4dzuzkir0 >}}
 
