@@ -186,7 +186,7 @@ To solve the issue, remove the printed output from your `.environment` file.
 
 If your app needs different names for environment variable than those set by Platform.sh, which is common for database connections,
 map the Platform.sh's variable names to those required by the application.
-Do this in the app with the help of a [Config Reader library](https://github.com/platformsh?q=config-reader) or via a shell script.
+Do this in the app with the help of the [Config Reader library](./use-variables.md#access-variables-in-your-app) or via a shell script.
 
 For example, the following [`.environment` script](#set-variables-via-script) exports variables that are visible to the application.
 It uses the `jq` library, which is included in all app containers for this purpose.

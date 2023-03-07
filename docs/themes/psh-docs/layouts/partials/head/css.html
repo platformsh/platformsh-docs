@@ -20,6 +20,6 @@
 <!-- Print stylesheets -->
 {{ with .File }}
   {{- if eq .Dir "security/transparency/" -}}
-  <link rel="stylesheet" media="print" href="{{ printf "styles/print.css?version=%s" $.Site.Params.version | relURL}}">
+  <link rel="stylesheet" media="print" href="{{ printf "styles/print/transparency-reports.css?version=%s" $.Site.Params.version | relURL}}">
   {{- end -}}
 {{ end }}

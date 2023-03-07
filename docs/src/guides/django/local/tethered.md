@@ -12,7 +12,7 @@ sectionBefore: Supported environments
 To test changes locally, you can connect your locally running Django server
 to service containers on an active Platform.sh environment.
 
-{{% guides/local-requirements %}}
+{{% guides/local-requirements framework="Django" %}}
 
 {{% guides/django/local-assumptions %}}
 
@@ -25,36 +25,16 @@ The settings are used to mock the conditions of the environment locally.
 
 ## Create the tethered connection
 
-1.  Create a new environment off of production.
+{{% tethered-dev/steps-start %}}
 
-    ```bash
-    platform branch new-feature main
-    ```
-
-2.  Open an SSH tunnel to the new environment's services by running the following command:
-
-    ```bash
-    platform tunnel:open
-    ```
-
-    This command returns the addresses for SSH tunnels to all of your services.
-
-3.  Mock the environment variables needed for your configuration file to work.
-
-    First, export the `PLATFORMSH_RELATIONSHIPS` environment variable with information from the open tunnel:
-
-    ```bash
-    export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"
-    ```
-
-    Then,  to ensure your `settings.py` file acts as if in a Platform.sh environment,
-    mock two additional variables present in active environments:
+1.  To ensure your `settings.py` file acts as if in a Platform.sh environment,
+    mock two variables present in active environments:
 
     ```bash
     export PLATFORM_APPLICATION_NAME=django && export PLATFORM_ENVIRONMENT=new-feature
     ```
 
-4.  Install dependencies by running the command for your package manager:
+1.  To install dependencies, run the command for your package manager:
 
     {{< codetabs >}}
 +++
@@ -80,7 +60,7 @@ poetry install
     {{< /codetabs >}}
 
 
-5.  Collect static assets.
+1.  Collect static assets.
 
     {{< codetabs >}}
 +++
@@ -106,7 +86,7 @@ poetry run python manage.py collectstatic
     {{< /codetabs >}}
 
 
-6.  Start your local server by running the following command based on your package manager:
+1.  To start your local server, run the following command based on your package manager:
 
     {{< codetabs >}}
 +++
@@ -132,13 +112,11 @@ poetry run python manage.py runserver
     {{< /codetabs >}}
 
 
-7.  When you've finished your work, close the tunnels to your services by running the following command:
+{{% tethered-dev/steps-end %}}
 
-    ```bash
-    platform tunnel:close --all -y
-    ```
+{{% local-dev/next-steps-start %}}
 
-{{% guides/django/local-next-steps-start %}}
+    Fill it with the following example, depending on your package manager:
 
     {{< codetabs >}}
 +++
@@ -157,4 +135,6 @@ title=Poetry
 {{< readFile file="snippets/guides/django/tethered/local-poetry.sh" highlight="yaml" location="init-local.sh" >}}
     {{< /codetabs >}}
 
-{{% guides/django/local-next-steps-end %}}
+{{% local-dev/next-steps-end %}}
+
+{{% guides/django/local-sanitize-example %}}

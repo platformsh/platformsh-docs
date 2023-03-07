@@ -121,10 +121,7 @@ markdownify=false
 
 {{< /codetabs >}}
 
-
-{{% config-reader %}}
-[Config Reader library](https://github.com/platformsh/config-reader-go)
-{{% /config-reader%}}
+{{% guides/config-reader-info lang="go" %}}
 
 You can also use the library to read other environment variables.
 

@@ -1,8 +1,7 @@
 {{ $lang := .Get "lang" }}
 You can get all information about a deployed environment,
 including how to connect to services, through [environment variables]({{ relref . "/development/variables/_index.md" }}).
-Your app can access these variables directly or use the [Config Reader library](https://github.com/platformsh/config-reader-{{ $lang }}).
-It's a set of utilities to wrap the environment variables and make them easier to work with.
+Your app can [access these variables]({{ relref . "development/variables/use-variables.md#access-variables-in-your-app" }}).
 
 {{ if eq $lang "nodejs" }}
 Install the package with your preferred package manager:
