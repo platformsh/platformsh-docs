@@ -100,7 +100,7 @@ From your [relationship data](#relationship-reference), you need: `username`, `h
 Then run the following command:
 
 ```bash
-psql -U <USERNAME> -h <HOST> -p <PORT>
+psql -U {{<variable "USERNAME" >}} -h {{<variable "HOST" >}} -p {{<variable "PORT" >}}
 ```
 
 Using the values from the [example](#relationship-reference), that would be:
@@ -157,7 +157,7 @@ That works for any SQL file, so the usual caveats about importing an SQL dump ap
 As with exporting, you can also specify a specific environment to use and a specific database relationship to use, if there are multiple.
 
 ```bash
-platform sql --relationship database -e <BRANCH_NAME> < my_database_backup.sql
+platform sql --relationship database -e {{<variable "BRANCH_NAME" >}} < my_database_backup.sql
 ```
 
 {{< note >}}
@@ -263,7 +263,7 @@ configuration:
 
 ## Service timezone
 
-To change the timezone for the current session, run `SET TIME ZONE <timezone>;`.
+To change the timezone for the current session, run `SET TIME ZONE {{<variable "TIMEZONE" >}};`.
 
 ## Extensions
 
