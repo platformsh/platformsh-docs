@@ -8,44 +8,33 @@ betaFlag: true
 
 {{< premium-features/tiered "Elite and Enterprise" >}}
 
-Your Platform.sh environments are organized [in a hierarchy featuring parent and child environments](../../environments/_index.md#hierarchy).
-Once you've added a custom domain to your production environment,
-you might want to do the same for its [child development and/or staging environments](../../administration/users.md#environment-types).
+You can add a custom domain to a staging or development environment without modifying your [routes configuration](../../define-routes/_index.md).
 
-To add a custom domain to a non-production environment,
-check that its parent production environment has its own custom domain set up first.
-
-To create a new custom domain for a non-production environment,
-Platform.sh retrieves the parent environment's custom domain from your [routes configuration](../../define-routes/_index.md).
-It then replaces it with the new custom domain to use for the non-production environment.
-This operation happens under the hood and doesn't affect your production environment's custom domain.
+To do so, you need to attach the new non-production custom domain
+to an existing production custom domain.
 
 {{< note title="Example" >}}
 
-You have a production environment (**Main**) and a child staging environment (**Staging**).
+You have two environments, a production environment and a staging environment.
+You've added the `example.com` custom domain to your production environment.
 
-![Hierarchy tree showing the **Main** production environment as parent and the **Staging** environment as child.](/images/custom-domains/custom-domains-non-prod.png "0.4")
-
-As you've added the `example.com` custom domain to your production environment,
-your [routes configuration](../../define-routes/_index.md) is the following:
-
-```yaml
-https://{default}/:
-  type: upstream
-  upstream: "example:http"
-```
-
-To add a custom domain to your staging environment,
-Platform.sh retrieves the `example.com` custom domain from your routes configuration
-and replaces it with `staging.example.com`.
+You can only create the `staging.example.com` custom domain if you attach it to the `example.com` custom domain. 
 
 You can then access your staging environment through `staging.example.com`
 and still access your production environment through `example.com`.
 
 {{< /note >}}
 
-Each non-production environment's custom domain is therefore attached to a production environment's custom domain.
-If you delete a production environment's custom domain,
+If you have multiple production environments,
+when you create a non-production custom domain,
+Platform.sh retrieves the `{default}` placeholder in your [routes configuration](../../define-routes/_index.md).
+It then replaces it with the correct production custom domain
+according to what you specify [in the setup command](#add-a-custom-domain-to-a-non-production-environment).
+
+Note that you must be a project admin to add non-production custom domains.
+You can add up to 5 non-production custom domains per project.
+
+If you delete a production custom domain,
 all of the attached non-production custom domains are deleted too.
 
 If you downgrade from an Elite or Enterprise plan to a Professional plan,
@@ -54,12 +43,29 @@ Downgrading your plan doesn't affect custom domains set on your production envir
 
 ## Add a custom domain to a non-production environment
 
+The creation of non-production custom domains
+from the [Platform.sh Console](../../administration/cli/_index.md) isn't available in the Beta version,
+but will be soon. In the meantime, use the [Platform.sh CLI](/administration/cli/_index.md).
+
 To add a custom domain to a non-production environment,
 run a command similar to the following:
 
 ```bash
 platform domain:add staging.example.com --environment {{< variable "STAGING_ENVIRONMENT_ID" >}} --replace {{< variable "PRODUCTION_CUSTOM_DOMAIN_TO_REPLACE" >}}
 ```
+
+{{< note title="Example" >}}
+
+You've added the `mysite.com` custom domain to your production environment.
+You now want to add the `development.mysite.com` custom domain to a development environment called `Dev`.
+
+To do so, run the following command:
+
+```bash
+platform domain:add development.mysite.com --environment Dev --replace mysite.com
+```
+
+{{< /note >}}
 
 You can't update a non-production custom domain.
 You can only delete it and create a new one as a replacement.
