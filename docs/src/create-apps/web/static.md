@@ -97,6 +97,10 @@ such as a [script to handle 404 errors](https://community.platform.sh/t/custom-4
 ## Complete example
 
 ```yaml {location=".platform.app.yaml"}
+name: app
+
+type: 'python:3.11'
+
 web:
     locations:
         '/':
