@@ -8,7 +8,10 @@ That means your database and your files.
 ### Import the database
 
 First, obtain a database dump from your current site,
-such as using the [`mysqldump` command for MariaDB](https://mariadb.com/kb/en/mysqldump/).
+such as using the
+* [`pg_dump` command for PostgreSQL](https://www.postgresql.org/docs/current/app-pgdump.html)
+* [`mysqldump` command for MariaDB](https://mariadb.com/kb/en/mysqldump/)
+* [`sqlite-dump` command for SQLite](https://www.sqlitetutorial.net/sqlite-dump/)
 
 {{ .Inner | .Page.RenderString }}
 

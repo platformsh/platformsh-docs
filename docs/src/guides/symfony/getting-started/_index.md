@@ -152,8 +152,9 @@ as the integration will override your modification next time the integration pro
 
 {{< /codetabs >}}
 
-
 {{% guides/deployment Symfony=true %}}
+
+Go forth and Deploy (even on Friday)!
 
 ## Working on a Project
 

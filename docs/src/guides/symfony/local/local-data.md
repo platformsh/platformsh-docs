@@ -7,61 +7,43 @@ description: |
 sectionBefore: Supported environments
 ---
 
-{{% guides/config-desc name="Symfony" %}}
+A significant amount of work developing Symfony takes place locally rather than on an active Platform.sh environment.
+You want to ensure that the process of local development is as close as possible to a deployed environment.
 
-{{% guides/config-app noExample=true /%}}
+You can achieve this through various approaches.
 
-The examples vary based on whether you want to use a Symfony Demo or Symfony Base reference app.
+To test changes locally, you can pull data from an active Platform.sh environment.
 
-{{< codetabs >}}
-+++
-title=Demo
-highlight=yaml
-file=/static/files/fetch/appyaml/symfony-demo/platformsh-symfony-template
-+++
-<--->
-+++
-title=Base
-highlight=yaml
-file=/static/files/fetch/appyaml/symfony-base/platformsh-symfony-template
-+++
-{{< /codetabs >}}
+{{% guides/local-requirements name="Symfony"%}}
+## Start your Symfony Server
+At first, you need to start your web Server locally to display your Symfony application.
 
-The Symfony Demo skeleton used in this guide uses SQLite database. The mount point `/data` allows the Symfony application to update `database.sqlite` file.
+```bash
+symfony server:start -d
+symfony open:local
+```
 
-To see how to define directories that are writable at runtime, see the [mounts reference](../../../create-apps/app-reference#mounts).
+It will start the Symfony server and open the application in your local browser.
 
+## Dump your Platform.sh project's database
 
-In the build hook, the [configurator](https://symfony.com/doc/current/cloud/config.html#configurator) is a script specially crafted for Platform.sh. It ensures that projects are always using the most up-to-date version of some tools:
+Dump your Platform.sh project's database into a local file by running
 
-- [croncape](https://github.com/symfonycorp/croncape)
-- [Symfony CLI](https://symfony.com/download)
-- [Composer](https://getcomposer.org/download/)
+```bash
+symfony cloud:db:dump -f dump.sql
+```
 
-Additionally, it creates some helpers:
-[`symfony-build`](https://symfony.com/doc/current/cloud/config.html#symfony-build),
-[`symfony-start`](https://symfony.com/doc/current/cloud/config.html#symfony-start),
-[`symfony-deploy`](https://symfony.com/doc/current/cloud/config.html#symfony-deploy),
-[`symfony-database-migrate`](https://symfony.com/doc/current/cloud/config.html#symfony-database-migrate),
-[`php-ext-install`](https://symfony.com/doc/current/cloud/config.html#php-ext-install), and [`yarn-install`](https://symfony.com/doc/current/cloud/config.html#yarn-install).
+## Import dump file locally
+```bash
+symfony console doctrine:query:sql < dump.sql
+```
 
-{{< note >}}
-Usage of the Symfony configurator is also a way to contribute to a Symfony project
-as it triggers an event on Platform.sh side to give back a percentage of every plan to the Symfony organization.
-{{< /note >}}
+## Import assets
+```bash
+symfony cloud:mount:download --mount public/var --target ./public/var
+```
 
-{{% guides/config-service name="Symfony" noService=1 %}}
-
-{{% /guides/config-service %}}
-
-{{% guides/config-routes template="platformsh-symfony-template" name="Symfony" %}}
-
-
-
-TODO
-{{% guides/data-migration Symfony=true /%}}
-
-Go forth and Deploy (even on Friday)!
+Et voilà, your Symfony application data are sync with your Platform.sh project
 
 {{< note >}}
 Another method to get locally your existing Platform.sh project's database and assets is by using [Symfony Server](../local)
