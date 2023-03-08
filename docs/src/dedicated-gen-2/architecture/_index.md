@@ -14,4 +14,4 @@ Moreover, the Cores assigned to production are solely for production.
 
 For more information,
 learn about [default storage settings](../../dedicated-gen-3/architecture/_index.md#storage)
-and how your app can [connect to services](../../dedicated-gen-3/architecture/_index.md#accessing-services).
+and how your app can [connect to services](../../dedicated-gen-3/architecture/_index.md#access-services).
