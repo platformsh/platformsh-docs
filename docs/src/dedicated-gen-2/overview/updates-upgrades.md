@@ -1,7 +1,6 @@
 ---
 title: "Updates and upgrades"
 weight: 3
-sidebarTitle: "Updates and upgrades"
 ---
 
 Platform.sh updates the core software of the {{% names/dedicated-gen-2 %}} cluster (operating system, web server, PHP, MySQL, etc.) periodically, and after any significant security vulnerability is disclosed.

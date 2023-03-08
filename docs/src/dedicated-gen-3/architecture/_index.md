@@ -18,7 +18,7 @@ This storage is intended for your data -- databases, search indexes, user upload
 
 Default storage is based on the default SSD block-storage offering for each cloud. Extra provisioned IOPS can be discussed with your sales representative.
 
-## Accessing services
+## Access services
 
 Your application can connect to each service by referencing the exact same environment variables as a Grid environment.
 While the configuration of the service is performed by Platform.sh, the app configuration is the same and your code should be the same.

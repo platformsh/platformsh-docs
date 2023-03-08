@@ -63,7 +63,7 @@ There is no cost for this functionality.
 
 ## IP restrictions
 
-Platform.sh supports project-level IP restrictions (allow/deny) and HTTP Basic authentication. These may be configured through the Development Environment and are automatically replicated from the production and staging branches to the production and staging environments, respectively.
+Platform.sh supports [project-level IP restrictions (allow/deny) and HTTP Basic authentication](../../environments/http-access-control.md). These may be configured through the Development Environment and are automatically replicated from the production and staging branches to the production and staging environments, respectively.
 
 Changing access control triggers a new deploy of the current environment. 
-However, the changes aren’t propagate to child environments until they’re manually redeployed.
+However, the changes aren’t propagated to child environments until they’re manually redeployed.
