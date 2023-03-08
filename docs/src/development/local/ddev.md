@@ -79,7 +79,7 @@ add them to the project's DDEV environment:
 
 ```yaml {location=".ddev/config.yaml"}
 web_environment:
-    - <VARIABLE_NAME>: <VALUE>
+    - {{< variable "VARIABLE_NAME" >}}: {{< variable "VALUE" >}}
 ```
 
 To apply your changes, run the following command:
