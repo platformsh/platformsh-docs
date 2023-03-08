@@ -1,5 +1,5 @@
 ---
-title: "Options"
+title: "Optional features"
 weight: 4
 ---
 

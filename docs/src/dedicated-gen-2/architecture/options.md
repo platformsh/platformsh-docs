@@ -4,8 +4,8 @@ weight: 4
 ---
 
 You can enable the following features on your Dedicated Generation 2 projects,
-as well as [multiple applications](../../dedicated-gen-3/architecture/options.md#multiple-applications)
-and [multiple availability zones](../../dedicated-gen-3/architecture/options.md#multiple-az).
+as well as [multiple applications](../../dedicated-gen-3/options.md#multiple-applications)
+and [multiple availability zones](../../dedicated-gen-3/options.md#multiple-applications).
 
 To enable an optional feature or get more information on potential fees,
 [contact Sales](https://platform.sh/contact/).

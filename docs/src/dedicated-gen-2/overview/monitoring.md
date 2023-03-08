@@ -8,5 +8,5 @@ description: |
 
 {{% description %}}
 
-For more information, see which [monitoring systems](../../dedicated-gen-3/overview/monitoring.md#monitoring-systems) Platform.sh uses to [monitor application performance](../../dedicated-gen-3/overview/monitoring.md#application-performance-monitoring)
-and detect [availability incidents](../../dedicated-gen-3/overview/monitoring.md#availability-incident-handling-procedure).
+For more information, see which [monitoring systems](../../dedicated-gen-3/monitoring.md#monitoring-systems) Platform.sh uses to [monitor application performance](../../dedicated-gen-3/monitoring.md#application-performance-monitoring)
+and detect [availability incidents](../../dedicated-gen-3/monitoring.md#availability-incident-handling-procedure).
