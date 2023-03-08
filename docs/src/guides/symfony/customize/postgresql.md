@@ -183,4 +183,4 @@ If you already have custom data in your SQLite database, see this tutorial on [h
 
 ## Tips and tricks
 
-{{% tips-and-tricks/symfony/cli-database %}}
+{{% tips-and-tricks/cli-database framework="Symfony" %}}

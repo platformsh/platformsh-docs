@@ -41,8 +41,8 @@ The community also provides a number of open-source starting points you can cons
 
 ### Symfony CLI
 
-{{% tips-and-tricks/symfony/cli %}}
+{{% tips-and-tricks/cli framework="Symfony" %}}
 {{% tips-and-tricks/symfony/cli-common %}}
-{{% tips-and-tricks/symfony/cli-database %}}
+{{% tips-and-tricks/cli-database framework="Symfony" %}}
 
 {{< guide-buttons type="last" >}}
