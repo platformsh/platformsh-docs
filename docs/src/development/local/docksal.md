@@ -38,10 +38,10 @@ To connect Docksal with your Platform.sh account, use a Platform.sh API token.
 2. Add the token to your Docksal configuration by running this command:
 
    ```bash
-   fin config set --global SECRET_PLATFORMSH_CLI_TOKEN="<API_TOKEN>"
+   fin config set --global SECRET_PLATFORMSH_CLI_TOKEN="{{< variable "API_TOKEN" >}}"
    ```
 
-Now you can run `fin platform <command>` from your computer without needing to install the Platform.sh CLI.
+Now you can run `fin platform {{< variable "COMMAND" >}}` from your computer without needing to install the Platform.sh CLI.
 
 ## 4. Get your project
 
@@ -73,7 +73,7 @@ fin project start
 
 This command removes any running Docksal containers and starts new ones.
 You can add new commands here that run on `fin init`
-or create a new file to run on `fin <NAME_OF_FILE>`.
+or create a new file to run on `fin {{< variable "NAME_OF_FILE" >}}`.
 
 You can add your build flavor and hook commands after these commands.
 That way the Docksal CLI container is running and can process commands.
@@ -122,7 +122,7 @@ fin composer install
 Now your project is ready to run.
 In your project directory, run `fin init`.
 
-The command returns the project URL `http://<DIRECTORY_NAME>.docksal/`.
+The command returns the project URL `http://{{< variable "DIRECTORY_NAME" >}}.docksal/`.
 Open this URL to see your project running.
 
 ## What's next
@@ -140,9 +140,12 @@ add them to the Docksal environment.
 
 +++
 title=Using the CLI
-highlight=bash
 +++
-fin config set <VARIABLE_NAME>=<VARIABLE_VALUE>
+
+```txt
+fin config set {{% variable "VARIABLE_NAME" %}}={{% variable "VARIABLE_VALUE" %}}
+```
+
 <--->
 
 +++
@@ -150,7 +153,7 @@ title=Directly in the configuration file
 +++
 
 ```txt {location=".docksal/docksal.env"}
-<VARIABLE_NAME>=<VARIABLE_VALUE>
+{{% variable "VARIABLE_NAME" %}}={{% variable "VARIABLE_VALUE" %}}
 
 HOSTING_PLATFORM="platformsh"
 ```
@@ -169,7 +172,7 @@ Docksal comes configured with a default PHP container (known as the CLI containe
 web container, and database container.
 You can customize the versions for each.
 
-Check the available versions for each by running `fin image registry <IMAGE>`.
+Check the available versions for each by running `fin image registry {{< variable "IMAGE" >}}`.
 For example, to check the available containers for the app, run `fin image registry docksal/cli`.
 
 You can then use the version you want by adding it as an [environment variable](#add-environment-variables).

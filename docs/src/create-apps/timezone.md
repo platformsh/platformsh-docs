@@ -30,7 +30,7 @@ variables:
 title=Node.js
 +++
 
-Start the server with `env TZ='<timezone>' node server.js`.
+Start the server with <code>env TZ='{{% variable "TIMEZONE" %}}' node server.js</code>.
 
 <--->
 
@@ -38,7 +38,7 @@ Start the server with `env TZ='<timezone>' node server.js`.
 title=Python
 +++
 
-Start the server with `env TZ='<timezone>' python server.py`.
+Start the server with <code>env TZ='{{% variable "TIMEZONE" %}}' python server.py</code>.
 
 <--->
 
@@ -46,14 +46,14 @@ Start the server with `env TZ='<timezone>' python server.py`.
 title=Java
 +++
 
-* Start the server with `env TZ='<timezone>' java -jar ...` OR
-* Set the Java virtual machine argument `user.timezone`.
+- Start the server with <code>env TZ='{{% variable "TIMEZONE" %}}' java -jar ...</code> OR.
+- Set the Java virtual machine argument `user.timezone`.
   This Java virtual machine argument takes precedence over the environment variable TZ.
   For example, you can use the flag `-D` when running the application:
   `java -jar -D user.timezone=GMT` or `java -jar -D user.timezone="Asia/Kolkata"`
 
 {{< /codetabs >}}
 
-Setting the application timezone only affects the application itself, not system operations such as log files.
+Setting the application {{< variable "TIMEZONE" >}} only affects the application itself, not system operations such as log files.
 
 You can also set the [timezone for a project](../administration/web/configure-project.md#general), but it doesn't affect the timezone for the app runtime.

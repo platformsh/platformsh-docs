@@ -14,24 +14,24 @@ public class RedisSample implements Supplier<String> {
     public String get() {
         StringBuilder logger = new StringBuilder();
 
-        // To ease the reading of Platform.sh environment variables, create a new config object.
-        // Alternatively, use getenv().
+        // Create a new config object to ease reading the Platform.sh environment variables.
+        // You can alternatively use getenv() yourself.
         Config config = new Config();
 
-        // The 'database' relationship is often the name of the primary database of an application, but not always.
-        // Here, it's called "redis".
+        // The 'database' relationship is generally the name of primary database of an application.
+        // It could be anything, though, as in the case here here where it's called "redis".
         Redis database = config.getCredential("redis", Redis::new);
         JedisPool dataSource = database.get();
 
-        // Get a Redis Client.
+        // Get a Redis Client
         final Jedis jedis = dataSource.getResource();
 
-        // Set values.
+        // Set a values
         jedis.sadd("cities", "Salvador");
         jedis.sadd("cities", "London");
         jedis.sadd("cities", "São Paulo");
 
-        // Read them back.
+        // Read it back.
         Set<String> cities = jedis.smembers("cities");
         logger.append("<p>");
         logger.append("cities: " + cities);
