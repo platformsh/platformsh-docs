@@ -2,25 +2,23 @@
 title: "Blackfire"
 sidebarTitle: Blackfire
 weight: 1
-sectionBefore: Official observability tool 
-description: |
-  Platform.sh recommends [Blackfire.io](https://blackfire.io/) for monitoring and profiling web sites and applications. Blackfire supports PHP and Python.
+sectionBefore: In-house observability tool 
+description: Blackfire is the official Platform.sh observability service for monitoring and profiling your PHP and Python apps.
 ---
 
-{{% description %}}
+As the **official Platform.sh observability service**, 
+[Blackfire](https://www.blackfire.io/) helps you improve the performance of your apps at each stage of their lifecycle.
+With Blackfire's unique Application Performance Monitoring (APM) and Profiling features,
+you can achieve the following goals:
+
+- Avoid performance bottlenecks by proactively identifying issues in your code
+- Promptly solve identified issues by taking advantage of actionable recommendations
+- Create performance budgets for critical parts of your app and get alerted of any problem before a change hits your production
 
 {{< youtube bS4dzuzkir0 >}}
 
-Across all of your sites and testing pipelines and get actionable reports and insights that help you fix issues.
-
-Blackfire grants detailed information on the resources your application consumes across
-Wall-Time, CPU, I/O, Memory, Network Calls, HTTP requests ,and SQL queries.
-
-In addition, it can profile your code automatically and notify you
-whenever your application doesn't comply with best practices for PHP, Python, and most Open-Source frameworks.
-
-Blackfire's features are powerful especially when running on Platform.sh.
-Watch the [full video tutorial](https://www.youtube.com/watch?v=Bq-LFjgD6L0).
+Blackfire is installed natively on Platform.sh and [works integrally with the Platform.sh workflow](https://www.youtube.com/watch?v=Bq-LFjgD6L0).
+This results in an effortless setup process and smooth user experience.
 
 {{< note >}}
 
@@ -30,34 +28,52 @@ All customers can also subscribe to Blackfire separately.
 
 {{< /note >}}
 
-## Getting started
+## Set up Blackfire
 
 ### On a Grid or {{% names/dedicated-gen-3 %}} infrastructure 
 
-If you have Grid environments on a plan with the Platform.sh [Observability Suite](https://platform.sh/features/observability-suite/),
-the [Blackfire automated integration](#automated-integration) is enabled on your environments by default. 
+If you're using a plan with the [Observability Suite](https://platform.sh/features/observability-suite/),
+the [Blackfire automated integration](#automated-integration) is enabled on your environments by default.
 
-If you have Grid environments without the Observability suite or {{% names/dedicated-gen-3 %}} environments,
+If you have a {{% names/dedicated-gen-3 %}} cluster or Grid environments without the Observability suite,
 you need to enable the integration yourself.
-To enable Blackfire on your PHP or Python apps,
-follow [the step-by-step instructions](https://blackfire.io/docs/integrations/paas/platformsh).
+To do so, follow these steps:
+
+1. Create a [Blackfire account](https://blackfire.io/signup?target=/login), preferably using your Platform.sh login.
+2. In your Blackfire account, create an organization and [ask Support](https://console.platform.sh/-/users/~/tickets/open) to activate it.
+3. In your organization, create an environment.
+4. In your environment, click **Settings/Environment Credentials**.
+5. Retrieve your Blackfire server ID and server token.
+6. Follow [the instructions from the Blackfire documentation](https://blackfire.io/docs/integrations/paas/platformsh).
+
+If you're using the [Managed Fastly CDN](../../domains/cdn/managed-fastly.md),
+it's already configured to operate with Blackfire. 
+If you're using a different [Content Delivery Network (CDN)](../../domains/cdn/_index.md), 
+make sure you [configure it](https://blackfire.io/docs/integrations/proxies/index)
+to let Blackfire profile the code running on your servers.
 
 ### On {{% names/dedicated-gen-2 %}} infrastructure
 
-Open a support ticket with the Blackfire Server ID and Server Token.
-The Platform.sh support team installs it for you.
+To install Blackfire on your {{% names/dedicated-gen-2 %}} environments:
 
-To find your server credentials,
-navigate to your [organizations list](https://blackfire.io/my/organizations) > Select an Organization > Select an Environment > Go to the Settings/Environment Credentials menu.
+1. Create a [Blackfire account](https://blackfire.io/signup?target=/login), preferably using your Platform.sh login.
+2. In your Blackfire account, create an organization and [ask Support](https://console.platform.sh/-/users/~/tickets/open) to activate it.
+3. In your organization, create an environment.
+4. In your environment, click **Settings/Environment Credentials**.
+5. Retrieve your Blackfire server ID and server token.
+6. Send those credentials to [Support](https://console.platform.sh/-/users/~/tickets/open) so they complete the installation.
 
-Note: Make sure that [your CDN is configured](https://blackfire.io/docs/integrations/proxies/index)
+If you're using the [Managed Fastly CDN](../../domains/cdn/managed-fastly.md),
+it's already configured to operate with Blackfire. 
+If you're using a different [Content Delivery Network (CDN)](../../domains/cdn/_index.md), 
+make sure you [configure it](https://blackfire.io/docs/integrations/proxies/index)
 to let Blackfire profile the code running on your servers.
 
-## Automated integration
+### Automated integration
 
 {{< partial "observability-suite/body.md" >}}
 
-The Blackfire automated integration is available for Grid environments only.
+The Blackfire automated integration is available for Grid and {{% names/dedicated-gen-3 %}} environments.
 
 When you create a new environment,
 it automatically triggers the creation of a Blackfire environment with the same settings.
@@ -78,93 +94,140 @@ In this case, the existing variables override the settings of the automated inte
 Note that to trigger the synchronization of changes to users and their access levels,
 you need to redeploy the environment.
 
-## Setting-up Blackfire Monitoring
+## Get started with Blackfire Monitoring
 
-Once Blackfire is configured on your cluster,
-navigate to your [Organizations List](https://blackfire.io/my/organizations) > Select an Organization > Go to the Organization Monitoring Usage menu,
-and activate Monitoring for the required environment.
+Once Blackfire is [set up on your infrastructure](#set-up-blackfire), 
+to start monitoring your environment follow these steps:
 
-![A screenshot of where to find Organization Monitoring Usage](/images/integrations/blackfire/blackfire-organization-monitoring.png "0.40")
+1. For Python apps, you need to [activate Blackfire Monitoring](#1-activate-blackfire-monitoring) first.
+2. For both Python and PHP apps, you need to [enable Blackfire Monitoring on the required environments](#2-enable-blackfire-monitoring-on-your-environments).
 
-![A screenshot of what is seen in Monitoring Activation](/images/integrations/blackfire/blackfire-monitoring-activation.png "0.40")
+### 1. Activate Blackfire Monitoring
 
-Read more in the [Blackfire documentation](https://blackfire.io/docs/monitoring-cookbooks/index) about:
+If you want to monitor a PHP app, Blackfire Monitoring is available by default on your environments.
+You only need to [specify which environments](#2-enable-blackfire-monitoring-on-your-environments) you want to monitor.
 
-* Configuring alerts
-* Events API
-* Monitoring third-party calls
-* Monitoring consumers
-* Advanced settings
+If you want to monitor a Python app, you need to activate Blackfire Monitoring yourself.
+To do so, create the following [environment variable](../../development/variables/set-variables.md#create-environment-specific-variables):
 
-## Testing the performance of each new deployment
+```bash
+platform variable:create --level environment --prefix env: --name BLACKFIRE_APM_ENABLED --value 1
+```
 
-Blackfire's native integration with Platform.sh enables you to verify the performance of your application
-each time you deploy a branch, in production, staging, or development.
+If you later need to deactivate Blackfire Monitoring, change the value of the variable to `0`.
 
-1. Set up the [Blackfire Builds integration](https://blackfire.io/docs/integrations/paas/platformsh#builds-level-production).
-2. Optionally, set up an [integration with your Git provider](https://blackfire.io/docs/integrations/git/index)
-   and get commit status updates from build reports.
-3. [Write scenarios](https://blackfire.io/docs/builds-cookbooks/scenarios) to test business-critical use cases.
+### 2. Enable Blackfire Monitoring on your environments
 
-## Profiling
+To enable Blackfire Monitoring on your environments, follow these steps:
 
-Blackfire lets you profile your application anywhere it is deployed,
+1.  Go to your [organizations list](https://blackfire.io/my/organizations) 
+    and select the organization where you want to enable Blackfire Monitoring.
+
+2.  Click **Organization Monitoring Usage**.
+
+    ![A screenshot of where to find Organization Monitoring Usage](/images/integrations/blackfire/blackfire-organization-monitoring.png "0.40")
+
+3.  In the **Monitoring Activation** section,
+    enable monitoring on the environments of your choice.
+
+    ![A screenshot of what's seen in Monitoring Activation](/images/integrations/blackfire/blackfire-monitoring-activation.png "0.40")
+
+For more information on Blackfire Monitoring features,
+see the [Blackfire documentation](https://blackfire.io/docs/monitoring-cookbooks/index).
+
+## Blackfire Profiling
+
+While your code is running, the Blackfire profiler collects deep performance metrics
+and provides full details and context of your code's behavior.
+This helps you find the root cause of performance bottlenecks.
+
+Blackfire lets you profile your application anywhere it's deployed,
 including on your local development machines.
-Using a browser extension or CLI command, profile HTTP requests, CLI scripts, Consumers, and Daemons.
+Using a browser extension or CLI command, 
+you can profile HTTP requests, CLI scripts, Consumers, and Daemons.
 
-Read more in the [Blackfire documentation](https://blackfire.io/docs/profiling-cookbooks/index).
+For more information on Blackfire profiling features,
+see the [Blackfire documentation](https://blackfire.io/docs/profiling-cookbooks/index).
 
-## Disabling Blackfire Monitoring
+## Test the performance of each new deployment
 
-Blackfire Monitoring is [enabled by default](https://blackfire.io/docs/monitoring-cookbooks/configuration#activating-monitoring-on-an-environment) for Monitoring customers.
+Blackfire's native integration with Platform.sh enables you to test your app's performance
+every time you deploy a branch in production, staging, or development.
+Follow these steps:
 
-To disable Blackfire Monitoring, create an [environment variable](../../development/variables/set-variables.md#create-environment-specific-variables).
+1.  Set up the [Blackfire Builds integration](https://blackfire.io/docs/integrations/paas/platformsh#builds-level-production).
 
-In the Console, view the environment where you would like to disable Blackfire Monitoring
-and add the variable `env:BLACKFIRE_APM_ENABLED` with the value `0`.
-Otherwise, you can use the CLI command `platform variable:create --level environment --prefix env: --name BLACKFIRE_APM_ENABLED --value 0`
+2.  Optional: set up an [integration with your Git provider](https://blackfire.io/docs/integrations/git/index)
+    and get commit status updates from build reports.
+
+3.  To test business-critical use cases, [write scenarios](https://blackfire.io/docs/builds-cookbooks/scenarios).
 
 ## Troubleshooting
 
-### Bypassing Reverse Proxy, Cache, and Content Delivery Networks (CDNs)
+### Bypass your reverse proxy, load balancer or CDN
 
-If you are using one of these tools, you need them to let Blackfire access your servers.
-Read more on [how to configure a bypass](https://blackfire.io/docs/reference-guide/reverse-proxies#documentation).
+To use [Blackfire profiling](#blackfire-profiling),
+you need to bypass any reverse proxy, load balancer or [CDN](../../domains/cdn/_index.md) that sits in front of your app.
+See [how to configure a bypass](https://blackfire.io/docs/reference-guide/reverse-proxies#documentation).
 
-### HTTP Cache configuration
+### Configure your HTTP cache
 
-If you are using the HTTP cache with cookies,
-update in your `.platform/routes.yaml` the cookies that are allowed to go through the cache.
-You need to allow the `__blackfire` cookie name.
+To take advantage of Blackfire features while using the HTTP cache with cookies,
+allow the `__blackfire` cookie to go through the cache.
 
-Something like:
+To do so, add [a configuration](../../define-routes/cache.md#allowing-only-specific-cookies) similar to the following:
 
-```yaml
+```yaml {location=".platform/routes.yaml"}
 cache:
     enabled: true
     cookies: ["/SESS.*/", "__blackfire"]
 ```
 
-## Reaching out to the Blackfire support
+## Get support
 
-If the above didn't help, collect the following and send it to the [Blackfire support](https://support.blackfire.io):
+If you're experiencing issues with Blackfire and [troubleshooting](#troubleshooting) information doesn't help,
+follow these steps:
 
-* The output of `platform ssh -- php -d display_startup_errors=on --ri blackfire` command
-* The Blackfire logs
+1. Retrieve [startup errors](#1-retrieve-startup-errors).
+2. Retrieve your [Blackfire logs](#2-retrieve-your-blackfire-logs).
+3. Send this data to [Blackfire support](https://support.blackfire.io).
 
-### Getting the Blackfire logs
+### 1. Retrieve startup errors
 
-Please execute the following in the environment where you're facing the issue:
+To retrieve startup errors, run the following command:
 
-* `platform variable:create php:blackfire.log_file --value /tmp/blackfire.log`
-* `platform variable:create php:blackfire.log_level --value 4`
-* start a profile/build again
+```bash
+platform ssh -- php -d display_startup_errors=on --ri blackfire 
+```
 
-You can get the logs with `platform ssh -- cat /tmp/blackfire.log > blackfire.log`.
+### 2. Retrieve your Blackfire logs
 
-### Disabling the Blackfire logs
+To retrieve your Blackfire logs, follow these steps:
 
-Once you are done, disable logging by running:
+1.  On the environment where you're facing issues, create the following [variable](../../development/variables/set-variables.md):
 
-* `platform variable:delete php:blackfire.log_file`
-* `platform variable:delete php:blackfire.log_level`
+    ```bash
+    platform variable:create php:blackfire.log_file --value /tmp/blackfire.log
+    ```
+
+2.  To set the verbosity of the logs to level 4 (debug level), create the following variable:
+
+    ```bash
+    platform variable:create php:blackfire.log_level --value 4
+    ```
+
+3.  Start a profile or build.
+
+4.  To display the logs, run the following command:
+
+    ```bash
+    platform ssh -- cat /tmp/blackfire.log > blackfire.log
+    ```
+
+After you've retrieved the logs, you can disable them.
+To do so, run the following commands:
+
+```bash
+platform variable:delete php:blackfire.log_file
+platform variable:delete php:blackfire.log_level
+```
