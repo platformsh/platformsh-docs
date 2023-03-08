@@ -1,9 +1,10 @@
 ---
-title: "Configure Symfony for Platform.sh"
-sidebarTitle: "Configure"
+title: ""
+sidebarTitle: "Symfony Server with local data"
 weight: -80
 description: |
-    Review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for Symfony.
+    Import Platform.sh data within your local Symfony application to start contributing.
+sectionBefore: Supported environments
 ---
 
 {{% guides/config-desc name="Symfony" %}}
@@ -30,6 +31,7 @@ The Symfony Demo skeleton used in this guide uses SQLite database. The mount poi
 
 To see how to define directories that are writable at runtime, see the [mounts reference](../../../create-apps/app-reference#mounts).
 
+
 In the build hook, the [configurator](https://symfony.com/doc/current/cloud/config.html#configurator) is a script specially crafted for Platform.sh. It ensures that projects are always using the most up-to-date version of some tools:
 
 - [croncape](https://github.com/symfonycorp/croncape)
@@ -54,4 +56,13 @@ as it triggers an event on Platform.sh side to give back a percentage of every p
 
 {{% guides/config-routes template="platformsh-symfony-template" name="Symfony" %}}
 
-{{< guide-buttons next="More Ressources" >}}
+
+
+TODO
+{{% guides/data-migration Symfony=true /%}}
+
+Go forth and Deploy (even on Friday)!
+
+{{< note >}}
+Another method to get locally your existing Platform.sh project's database and assets is by using [Symfony Server](../local)
+{{< /note >}}

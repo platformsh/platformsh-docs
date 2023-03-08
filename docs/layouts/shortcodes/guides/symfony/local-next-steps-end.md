@@ -10,15 +10,31 @@
     ```bash
     symfony merge local-config
     ```
+5.  Grant access on the project to the new member of your team
+
+    ```bash
+    symfony user:add bob@example.com -r production:v -r development:c
+    ```
+
+    You can also use the Web Console to [add a new user to your project](/administration/users.html#add-a-user-to-a-project).
+
 
 Once the script is merged into production,
-any user can then set up their local environment by running the following commands:
+any granted user can then set up their local environment by running the following commands:
 
 ```bash
 {{ ` symfony get {{< variable "PROJECT_ID" >}}
  cd {{< variable "PROJECT_NAME" >}}
  ./init-local.sh {{< variable "PROJECT_ID" >}} another-new-feature main` | .Page.RenderString }}
 ```
+
+<div class="bg-stone p-4 mb-4 [&amp;>p:last-child]:mb-0 [&amp;>h3]:mt-0" role="alert">
+  <h3 class="font-bold text-base">Warning</h3>
+
+  <p>Working on remote environment data can lead your local updates to be pushed in production and thus, crash your production website.
+  Be careful when using this method.</p>
+</div>
+
 
 ### Sanitize data
 

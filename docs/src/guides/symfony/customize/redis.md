@@ -64,7 +64,7 @@ title=Using DDEV
 +++
 Assumption:
 
-- Your project is already running locally using [Symfony Server](../local/symfony-server.md)
+- Your project is already running locally using [Symfony Server](../local/tethered.md)
 
 When managing many projects, it’s complex to handle all the dependencies.
 DDEV is useful to embed those needed components into Docker containers without needs of writing complex DockerFile files.
@@ -159,7 +159,7 @@ title=Using Symfony Server
 
     Commit your modified files into your git branch and then deploy it to your environment.
     ```bash
-    git add . && git commit -m "Add Redis 7.0 component" && symfony deploy
+    git add . && git commit -m "Add Redis 7.0 component" && symfony cloud:deploy
     ```
     After deployment, the Redis component is up and ready to use.
 
