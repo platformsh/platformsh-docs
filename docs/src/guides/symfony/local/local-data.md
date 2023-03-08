@@ -14,7 +14,17 @@ You can achieve this through various approaches.
 
 To test changes locally, you can pull data from an active Platform.sh environment.
 
-{{% guides/local-requirements name="Symfony"%}}
+{{% guides/local-requirements name="Symfony" %}}
+- your Platform.sh project is not using SQLite (default database engine if you're using 'a fresh Symfony Demo skeleton),
+  otherwise, follow the [Use PostgreSQL tutorial](../customize/postgresql.md)
+
+## get your Symfony application
+
+TODO
+- symfony get <projectID>
+- follow getting start guide
+- get existing Symfony application (git clone) + `symfony cloud:init`
+
 ## Start your Symfony Server
 At first, you need to start your web Server locally to display your Symfony application.
 
