@@ -122,10 +122,10 @@ And reload the replica instance for the changes to take an effect.
 
 You need to set up an SSH tunnel from the replica server to the primary, tunneled through the application.
 To do so using the Platform.sh CLI, run the following
-(replacing `{{<variable "BRANCH_NAME" >}}` with the name of your production branch):
+(replacing `{{< variable "BRANCH_NAME" >}}` with the name of your production branch):
 
 ```bash
-platform tunnel:open --project {{<variable "PROJECT_ID" >}} --environment {{<variable "BRANCH_NAME" >}}
+platform tunnel:open --project {{< variable "PROJECT_ID" >}} --environment {{< variable "BRANCH_NAME" >}}
 ```
 
 This opens local SSH tunnels to all services accessible from the application. In practice, you may be better served by setting up the tunnel manually using SSH. Consult the SSH documentation for the best way to do so.
@@ -140,16 +140,16 @@ Once the data has been imported, you are ready to start replicating. Begin by ru
 
 ```sql
 mysql> CHANGE MASTER TO
-  MASTER_HOST='{{<variable "HOST" >}}',
+  MASTER_HOST='{{< variable "HOST" >}}',
   MASTER_USER='replicator',
-  MASTER_PASSWORD='{{<variable "REPLICATOR_PASSWORD" >}}',
+  MASTER_PASSWORD='{{< variable "REPLICATOR_PASSWORD" >}}',
   MASTER_PORT=3306,
   MASTER_LOG_FILE='binlogs.000002',
   MASTER_LOG_POS=1036,
   MASTER_CONNECT_RETRY=10;
 ```
 
-Where `{{<variable "HOST" >}}` varies depending on the SSH tunneling configuration you have, and the `{{<variable "REPLICATOR_PASSWORD" >}}` can be obtained by running `platform relationships`.
+Where `{{< variable "HOST" >}}` varies depending on the SSH tunneling configuration you have, and the `{{< variable "REPLICATOR_PASSWORD" >}}` can be obtained by running `platform relationships`.
 
 Now start the replica with the `START SLAVE` command:
 

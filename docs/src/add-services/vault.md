@@ -18,11 +18,11 @@ The Vault key management service (KMS) provides key management and access contro
 
 {{% endpoint-description type="vault-kms" noApp=true %}}
 
-- {{<variable "SERVICE_NAME" >}} is the name you choose to identify the service.
-- {{<variable "VERSION" >}} is a supported version of the service.
-- {{<variable "ENDPOINT_ID" >}} is an identifier you choose for the endpoint.
-- {{<variable "KEY_NAME" >}} is the name of the key to be stored in the Vault KMS.
-- {{<variable "POLICY" >}} is one of the available [policies](#policies) based on what you want to accomplish.
+- {{< variable "SERVICE_NAME" >}} is the name you choose to identify the service.
+- {{< variable "VERSION" >}} is a supported version of the service.
+- {{< variable "ENDPOINT_ID" >}} is an identifier you choose for the endpoint.
+- {{< variable "KEY_NAME" >}} is the name of the key to be stored in the Vault KMS.
+- {{< variable "POLICY" >}} is one of the available [policies](#policies) based on what you want to accomplish.
 - The `type` is one of:
 
   - `sign`: for signing payloads, with the type `ecdsa-p256`
@@ -50,17 +50,17 @@ Adapt the examples for your app's language.
 To make any calls to the Vault KMS, you need your token. Get it from the `$PLATFORM_RELATIONSHIPS` environment variable:
 
 ```bash
-echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".{{<variable "SERVICE_NAME" >}}[0].password"
+echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "SERVICE_NAME" >}}[0].password"
 ```
 
-`{{<variable "SERVICE_NAME" >}}` is the name you [defined in your `.platform.app.yaml` file](#2-add-the-relationship).
+`{{< variable "SERVICE_NAME" >}}` is the name you [defined in your `.platform.app.yaml` file](#2-add-the-relationship).
 
 The `-r` flag returns the string itself, not wrapped in quotes.
 
 You can also store this as a variable:
 
 ```bash
-VAULT_TOKEN=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".{{<variable "SERVICE_NAME" >}}[0].password")
+VAULT_TOKEN=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "SERVICE_NAME" >}}[0].password")
 ```
 
 A given token is valid for one year from its creation.

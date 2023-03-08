@@ -122,7 +122,7 @@ platform organization:user:update alice@example.com --org=acme --permission=bill
 {{< /codetabs >}}
 
 Users who are a part of an organization can see all projects in that organization at the organization's URL,
-which takes the form `https://console.platform.sh/{{<variable "ORGANIZATION_NAME" >}}`.
+which takes the form `https://console.platform.sh/{{< variable "ORGANIZATION_NAME" >}}`.
 
 They can only access projects they've been explicit invited to by a project admin.
 
