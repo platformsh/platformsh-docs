@@ -68,7 +68,7 @@ The following basic app configuration is sufficient to run most Elixir applicati
 ```yaml {location=".platform.app.yaml"}
 name: app
 
-type: elixir:1.9
+type: elixir:1.13
 
 variables:
     env:
@@ -106,9 +106,7 @@ You can commit a `mix.exs` file in your repository and the system downloads the 
 
 ## Accessing Services
 
-{{% config-reader %}}
-[Platform.sh Config Reader library](https://hex.pm/packages/platformshconfig) 
-{{% /config-reader%}}
+{{% guides/config-reader-info lang="elixir" %}}
 
 If you are building a Phoenix app for example, it would suffice to add a database to `.platform/services.yaml` and a relationship in `.platform.app.yaml`. Put the lib in your `deps` and, assuming you renamed the `prod.secret.exs` to `releases.exs` per the [Phoenix guide](https://hexdocs.pm/phoenix/releases.html), change:
 
@@ -122,7 +120,7 @@ to
 Platformsh.Config.ecto_dsn_formatter("database")
 ```
 
-See [Platform.sh Config Reader Documentation](https://hexdocs.pm/platformshconfig/Platformsh.Config.html) for the full API.
+See [Config Reader Documentation](../development/variables/use-variables.md#access-variables-in-your-app) for the full API.
 
 ### Accessing Services Manually
 

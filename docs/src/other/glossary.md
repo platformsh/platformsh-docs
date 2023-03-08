@@ -135,6 +135,19 @@ See how to [reactivate an environment](../environments/deactivate-environment.md
 
 A publicly accessible environment that's deployed from the Production branch under a production plan.
 
+## MB
+
+MB stands for megabyte, which means 1,000,000 bytes.
+This unit is based on powers of 10.
+
+Some reporting tools, such as those used by the [CLI](../administration/cli/_index.md),
+use binary megabytes, also known as mebibytes and abbreviated as MiB.
+This unit is based on powers of 2 and so 1&nbsp;MiB equals 1024<sup>2</sup> or 1,048,576 bytes.
+So 1&nbsp;MB is less than 1&nbsp;MiB.
+
+So you may see differences in the numbers you configure for a disk (in MB)
+and the values reported when you check disk size with tools that report in MiB.
+
 ## Merge
 
 Merging an environment means copying any code changes from that environment into its parent environment

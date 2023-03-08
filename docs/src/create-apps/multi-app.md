@@ -233,10 +233,18 @@ Assume you have an app for a CMS and another app for the frontend defined as fol
     ...
 ```
 
-You could then define routes for your apps as follows:
+You don't need to define a route for each app in the repository.
+If an app isn't specified, then it isn't accessible to the web.
+You can achieve the same thing by defining the app as  [`worker`](./app-reference.md#workers).
+
+Below are two approaches to configuring the Router container: using subdomains, and using subdirectories.
+
+#### Using subdomains per application
+
+You can define routes for your apps as follows:
 
 ```yaml {location=".platform/routes.yaml"}
-"https://backend.{default}/":
+"https://api.{default}/":
     type: upstream
     upstream: "cms:http"
 "https://{default}/":
@@ -246,12 +254,61 @@ You could then define routes for your apps as follows:
 
 So if your default domain is `example.com`, that means:
 
-* `https://backend.example.com/` is served by your CMS app.
+* `https://api.example.com/` is served by your CMS app.
 * `https://example.com/` is served by your frontend app.
 
-You don't need to define a route for each app.
-If an app isn't specified, then it isn't accessible to the web.
-You can achieve the same thing by defining the app as  [`worker`](./app-reference.md#workers).
+{{< note >}}
+Be aware that using a subdomain might [double your network traffic](https://nickolinger.com/blog/2021-08-04-you-dont-need-that-cors-request/),
+so consider using a path like `https://{default}/api` instead.
+{{< /note >}}
+
+#### Using subdirectories per application
+
+Using the same example, you could also define your routes as follows:
+
+```yaml {location=".platform/routes.yaml"}
+"https://{default}/":
+    type: upstream
+    upstream: "frontend:http"
+"https://{default}/api":
+    type: upstream
+    upstream: "cms:http"
+```
+
+Then you need to configure each app `web.locations` to match these paths:
+
+```yaml {location=".platform/applications.yaml"}
+-   name: cms
+    type: php:8.1
+    source:
+        root: drupal
+    ...
+    web:
+        locations:
+            "/api":
+                passthru: "/api/index.php"
+                root: "public"
+                index:
+                    - index.php
+
+-   name: frontend
+    type: nodejs:16
+    source:
+        root: react
+    ...
+    web:
+        locations:
+            "/":
+                passthru: "/index.js"
+                root: "build"
+                index:
+                    - index.js
+```
+
+So if your default domain is `example.com`, that means:
+
+* `https://example.com/` is served by your frontend app.
+* `https://example.com/api` is served by your CMS app.
 
 ## Relationships
 

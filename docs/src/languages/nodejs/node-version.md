@@ -146,7 +146,7 @@ To use `nvm`, follow these steps:
    variables:
        env:
            # Update for your desired NVM version.
-           NVM_VERSION: v0.38.0
+           NVM_VERSION: v0.39.3
    ```
 
 2. Define your desired Node.js version using an environment variable.
@@ -156,8 +156,8 @@ To use `nvm`, follow these steps:
    variables:
        env:
            # Update these for your desired NVM and Node versions.
-           NVM_VERSION: v0.38.0
-           NODE_VERSION: v18.12.0
+           NVM_VERSION: v0.39.3
+           NODE_VERSION: v18.14.2
    ```
 
    To get different versions in different environments, [set environment-specific variables](../../development/variables/set-variables.md#create-environment-specific-variables).
@@ -219,8 +219,8 @@ Your final app configuration should look something like the following:
 variables:
     env:
         # Update these for your desired NVM and Node versions.
-        NVM_VERSION: v0.38.0
-        NODE_VERSION: v14.17.6
+        NVM_VERSION: v0.39.3
+        NODE_VERSION: v18.14.2
 
 hooks:
     build: |

@@ -120,7 +120,7 @@ The interval between measurements then changes based on the range you choose.
 
 ### Longer time intervals
 
-{{< partial "observability-suite/body" >}}
+{{< partial "observability-suite/body.md" >}}
 
 If you have the Observability Suite, you can access historical data for up to 30 days.
 These data should help you understand trends over time

@@ -1,5 +1,5 @@
 ---
-title: Source operations
+title: Automated code updates
 description: |
   Run automated code updates via source operations.
 tier:
@@ -13,6 +13,7 @@ A source operation is an operation defined in an application to apply and automa
 
 To use source operations, first define them in your [app configuration](./_index.md).
 Then run them in the [Platform.sh CLI](../administration/cli/_index.md) or [Console](https://console.platform.sh).
+You can also define [cron jobs](./app-reference.md#crons) to run your source operations and update your code automatically.
 
 ## 1. Define a source operation
 
@@ -382,7 +383,28 @@ source:
                 git commit -am "Automated install of: $EXTENSION via Composer."
 ```
 
-Now every time you run  the `download-drupal-extension` operation, it downloads the defined extension.
+Now every time you run the `download-drupal-extension` operation, it downloads the defined extension.
 
 If it's a new extension, after the source operation finishes,
 you need to enable the new extension via the Drupal management interface or using Drush.
+
+
+### Update Git submodules 
+
+The following source operation updates all Git submodules recursively:
+
+```yaml {location=".platform.app.yaml"}
+source:
+    operations:
+        rebuild:
+            command: |
+                set -e
+                git submodule update --init --recursive
+                git submodule update --remote --checkout
+                SHA=$(git submodule | awk -F' ' '{print $1}' | sed -s 's/+//g')
+                echo -n "$SHA" > .sha
+                git add uppler .sha
+                git commit -m "Updating submodule to commit '$SHA'"
+```
+
+Now every time you run the `rebuild` operation, it updates the Git submodules.
