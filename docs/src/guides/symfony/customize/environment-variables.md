@@ -86,7 +86,7 @@ If your project has multiple applications, the configuration is exposed via the 
 
 ## MySQL/MariaDB
 
-[MySQL/MariaDB](https://docs.platform.sh/configuration/services/mysql.html) configuration is exposed via the following environment variables (where ``DATABASE`` is the upper-cased version of the key defined in the relationship above):
+[MySQL/MariaDB](/configuration/services/mysql.html) configuration is exposed via the following environment variables (where ``DATABASE`` is the upper-cased version of the key defined in the relationship above):
 
 * ``DATABASE_URL``: The database URL (in the PHP or Go format depending on your application)
 * ``DATABASE_SERVER``: The database server
@@ -104,7 +104,7 @@ The database version and a default charset is included in the database URL. Over
 {{< /note >}}
 ## PostgreSQL
 
-`PostgreSQL`_ configuration is exposed via the following environment variables (where ``DATABASE`` is the upper-cased version of the key defined in the relationship):
+[PostgreSQL](/configuration/services/postgresql.html) configuration is exposed via the following environment variables (where ``DATABASE`` is the upper-cased version of the key defined in the relationship):
 
 * ``DATABASE_URL``: The database URL (in the PHP or Go format depending on your application)
 * ``DATABASE_SERVER``: The database server
@@ -117,13 +117,13 @@ The database version and a default charset is included in the database URL. Over
 * ``DATABASE_USERNAME``: The database username
 * ``DATABASE_PASSWORD``: The database password
 
-.. tip::
-
-    The database version and a default charset is included in the database URL. Override them using the ``DATABASE_VERSION`` and ``DATABASE_CHARSET`` environment variables respectively.
+{{< note title="Tip">}}
+The database version and a default charset is included in the database URL. Override them using the ``DATABASE_VERSION`` and ``DATABASE_CHARSET`` environment variables respectively.
+{{< /note >}}
 
 ## Redis
 
-`Redis`_ configuration is exposed via the following environment variables (where ``REDIS`` is the upper-cased version of the key defined in the relationship):
+[Redis](/configuration/services/redis.html) configuration is exposed via the following environment variables (where ``REDIS`` is the upper-cased version of the key defined in the relationship):
 
 * ``REDIS_URL``: The Redis URL
 * ``REDIS_HOST``: The Redis host
@@ -132,7 +132,7 @@ The database version and a default charset is included in the database URL. Over
 
 ## Memcached
 
-`Memcached`_ configuration is exposed via the following environment variables (where ``CACHE`` is the upper-cased version of the key defined in the relationship):
+[Memcached](/configuration/services/memcached.html) configuration is exposed via the following environment variables (where ``CACHE`` is the upper-cased version of the key defined in the relationship):
 
 * ``CACHE_HOST``
 * ``CACHE_PORT``
@@ -140,7 +140,7 @@ The database version and a default charset is included in the database URL. Over
 
 ## Elasticsearch
 
-`Elasticsearch`_ configuration is exposed via the following environment variables (where ``ELASTICSEARCH`` is the upper-cased version of the key defined in the relationship):
+[Elasticsearch](/configuration/services/elasticsearch.html) configuration is exposed via the following environment variables (where ``ELASTICSEARCH`` is the upper-cased version of the key defined in the relationship):
 
 * ``ELASTICSEARCH_URL``: The full URL of the Elasticsearch service
 * ``ELASTICSEARCH_HOST``: The Elasticsearch host
@@ -149,7 +149,7 @@ The database version and a default charset is included in the database URL. Over
 
 ## Solr
 
-`Apache Solr`_ configuration is exposed via the following environment variables (where ``SOLR`` is the upper-cased version of the key defined in the relationship):
+[Apache Solr](/configuration/services/solr.html) configuration is exposed via the following environment variables (where ``SOLR`` is the upper-cased version of the key defined in the relationship):
 
 * ``SOLR_HOST``: The Solr host
 * ``SOLR_PORT``: The Solr port
@@ -158,7 +158,7 @@ The database version and a default charset is included in the database URL. Over
 
 ## RabbitMQ
 
-`RabbitMQ`_ configuration is exposed via the following environment variables (where ``RABBITMQ`` is the upper-cased version of the key defined in the relationship):
+[RabbitMQ](/configuration/services/rabbitmq.html) configuration is exposed via the following environment variables (where ``RABBITMQ`` is the upper-cased version of the key defined in the relationship):
 
 * ``RABBITMQ_URL``: The RabbitMQ standardized URL
 * ``RABBITMQ_SERVER``: The RabbitMQ server
@@ -171,7 +171,7 @@ The database version and a default charset is included in the database URL. Over
 
 ## MongoDB
 
-`MongoDB`_ configuration is exposed via the following environment variables (where ``MONGODB`` is the upper-cased version of the key defined in the relationship):
+[MongoDB](/configuration/services/mongodb.html) configuration is exposed via the following environment variables (where ``MONGODB`` is the upper-cased version of the key defined in the relationship):
 
 * ``MONGODB_SERVER``
 * ``MONGODB_HOST``
@@ -185,7 +185,7 @@ The database version and a default charset is included in the database URL. Over
 
 ## InfluxDB
 
-`InfluxDB`_ configuration is exposed via the following environment variables (where ``TIMEDB`` is the upper-cased version of the key defined in the relationship):
+[InfluxDB](/configuration/services/influxdb.html) configuration is exposed via the following environment variables (where ``TIMEDB`` is the upper-cased version of the key defined in the relationship):
 
 * ``TIMEDB_SCHEME``
 * ``TIMEDB_HOST``
@@ -194,23 +194,10 @@ The database version and a default charset is included in the database URL. Over
 
 ## Kafka
 
-`Apache Kafka`_ configuration is exposed via the following environment variables (where ``KAFKA`` is the upper-cased version of the key defined in the relationship):
+[Apache Kafka](/configuration/services/kafka.html) configuration is exposed via the following environment variables (where ``KAFKA`` is the upper-cased version of the key defined in the relationship):
 
 * ``KAFKA_URL``
 * ``KAFKA_SCHEME``
 * ``KAFKA_HOST``
 * ``KAFKA_PORT``
 * ``KAFKA_IP``
-
-.. _`environment variables`: https://docs.platform.sh/development/variables.html
-.. _`exposes environment variables`: https://docs.platform.sh/development/variables/use-variables.html#use-platformsh-provided-variables
-.. _`MySQL/MariaDB`: https://docs.platform.sh/configuration/services/mysql.html
-.. _`Apache Kafka`: https://docs.platform.sh/configuration/services/kafka.html
-.. _`InfluxDB`: https://docs.platform.sh/configuration/services/influxdb.html
-.. _`MongoDB`: https://docs.platform.sh/configuration/services/mongodb.html
-.. _`RabbitMQ`: https://docs.platform.sh/configuration/services/rabbitmq.html
-.. _`Elasticsearch`: https://docs.platform.sh/configuration/services/elasticsearch.html
-.. _`Apache Solr`: https://docs.platform.sh/configuration/services/solr.html
-.. _`Memcached`: https://docs.platform.sh/configuration/services/memcached.html
-.. _`Redis`: https://docs.platform.sh/configuration/services/redis.html
-.. _`PostgreSQL`: https://docs.platform.sh/configuration/services/postgresql.html
