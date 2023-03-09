@@ -37,10 +37,9 @@ symfony cloud:branch feat-add-redis
        driver: local
    ```
 
-   This will install a Redis server.
+   This will install a Redis server locally.
 
-   We also expose the Redis port (`6379`) of the container to the local host.
-   That will help us access the Redis server from our machine:
+   Then, expose the Redis port (`6379`) of the container to the local host:
 
     ```yaml {location="./docker-compose.override.yml"}
     version: '3'

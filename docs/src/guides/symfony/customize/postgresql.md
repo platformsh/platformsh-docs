@@ -23,7 +23,7 @@ symfony cloud:branch feat-add-postgresql
 ```
 
 ## Configure your Symfony Application to use PostgreSQL
-On your local machine, we have decided to use Docker to manage services.
+On your local machine, let's use Docker to manage services.
 {{< note >}}
 If you prefer to [install PostgreSQL locally](https://www.postgresql.org/download/), you can skip this step.
 {{< /note >}}
@@ -32,10 +32,9 @@ If you prefer to [install PostgreSQL locally](https://www.postgresql.org/downloa
     The generated docker-compose.yml file already contains PostgreSQL as a service: {{< readFile file="static/files/fetch/appyaml/symfony-docker-compose/platformsh-symfony-template" highlight="yaml" location="docker-compose.yml" >}}
 
     This will install a PostgreSQL server and configure some environment variables that control the database name and credentials.
-    The values do not really matter.
+    The values don't really matter.
 
-    We also expose the PostgreSQL port (`5432`) of the container to the local host.
-    That will help us access the database from our machine:
+    Then, expose the PostgreSQL port (`5432`) of the container to the local host:
 
     ```yaml {location="./docker-compose.override.yml"}
     version: '3'

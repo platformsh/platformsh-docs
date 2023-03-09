@@ -57,8 +57,7 @@ symfony cloud:create --title PROJECT_TITLE
 ## Link your local Symfony application with your Platform.sh project
 
 
-You can use Platform.sh as your Git repository or connect to a third-party provider:
-GitHub, GitLab, or BitBucket.
+You can use Platform.sh as your Git repository or connect to a third-party provider such as GitHub, GitLab, or BitBucket:
 
 {{< codetabs >}}
 +++
@@ -178,7 +177,7 @@ symfony cloud:branch feat-a
 This command creates a new local `feat-a` Git branch based on the main Git branch and activate a related environment on Platform.sh.
 If you have some services enabled, the new environment inherits the data of the parent environment (the production one here).
 
-Let's make some simple visual changes.
+Let's make some visual changes.
 If you have created a Symfony demo application, edit the `templates/default/homepage.html.twig` template and make the following change:
 
 ```html {location="templates/default/homepage.html.twig"}

@@ -17,7 +17,7 @@ The generated files are based on [Open-Source templates](https://github.com/symf
 
 ## Hooks
 
-The `hooks` section defines the scripts that Platform.sh runs at specific times of an application lifecycle, build, deploy and post-deploy:
+The **hooks** section defines the scripts that Platform.sh runs at specific times of an application lifecycle, build, deploy and post-deploy:
 
 ```yaml {location=".platform.app.yaml"}
 hooks:
@@ -60,15 +60,15 @@ The **configurator** is a script specially crafted for Platform.sh. It ensures t
 - [Composer](https://getcomposer.org/download/)
 
 Additionally, it creates some helpers:
-[`symfony-build`](https://symfony.com/doc/current/cloud/config.html#symfony-build),
-[`symfony-start`](https://symfony.com/doc/current/cloud/config.html#symfony-start),
-[`symfony-deploy`](https://symfony.com/doc/current/cloud/config.html#symfony-deploy),
-[`symfony-database-migrate`](https://symfony.com/doc/current/cloud/config.html#symfony-database-migrate),
-[`php-ext-install`](https://symfony.com/doc/current/cloud/config.html#php-ext-install), and [`yarn-install`](https://symfony.com/doc/current/cloud/config.html#yarn-install).
+[`symfony-build`](#symfony-build),
+[`symfony-start`](#symfony-start),
+[`symfony-deploy`](#symfony-deploy),
+[`symfony-database-migrate`](#symfony-database-migrate),
+[`php-ext-install`](#php-ext-install), and [`yarn-install`](#yarn-install).
 
 ### symfony-build
 
-**symfony-build** is our recipe to build a Symfony application the best way possible on Platform.sh.
+**symfony-build** is the recipe to build a Symfony application the best way possible on Platform.sh.
 It removes the development frontend file if needed, install the application dependencies using Composer (and Yarn, by running [yarn-install](#yarn-install)), optimize the autoloader,
 build Symfony cache if possible and finally build the production assets using Encore.
 
@@ -86,10 +86,10 @@ One can also set `NO_YARN` to any value to disable all Yarn and assets automatio
 
 ### symfony-deploy
 **symfony-deploy** is to be used each time a Symfony application is deployed.
-Its purpose is to run the [symfony-start](#symfony-start) helper and when executed from the web container, restart FPM and run the symfony-database-migrate helper.
+Its purpose is to run the [symfony-start](#symfony-start) helper and when executed from the web container, restart FPM and run the [symfony-database-migrate](#symfony-database-migrate) helper.
 
 ### symfony-start
-symfony-start is to be used each time a Symfony application starts in a new container. Its purpose is to move the Symfony cache built by symfony-build to be used by the application or built the cache otherwise. It is automatically executed by symfony-deploy and Platform.sh automatically runs it before starting (or restarting) workers.
+symfony-start is to be used each time a Symfony application starts in a new container. Its purpose is to move the Symfony cache built by [symfony-build](#symfony-build) to be used by the application or built the cache otherwise. It's automatically executed by [symfony-deploy](#symfony-deploy) and Platform.sh automatically runs it before starting (or restarting) workers.
 
 ### symfony-database-migrate
 
@@ -101,16 +101,16 @@ You can use this script at any moment if you need to run migrations manually or 
 ### php-ext-install
 
 **php-ext-install** is a script that you can use to compile and install PHP extensions not provided out of the box by Platform.sh.
-It is written specifically for Platform.sh to ensure fast and reliable setup during the build step.
+It's written specifically for Platform.sh to ensure fast and reliable setup during the build step.
 It currently supports three ways to fetch the sources from:
 
-* From PECL: ``php-ext-install redis 5.3.2``
+* From [PECL](https://pecl.php.net/): ``php-ext-install redis 5.3.2``
 
 * From a URL: ``php-ext-install redis https://github.com/phpredis/phpredis/archive/5.3.2.tar.gz``
 
 * From a Git repository: ``php-ext-install redis https://github.com/phpredis/phpredis.git 5.3.2``
 
-To ensure your application can be built properly, it is recommended to run ``php-ext-install`` after the [configurator](#configurator) but before [symfony-build](#symfony-build):
+To ensure your application can be built properly, it's recommended to run ``php-ext-install`` after the [configurator](#configurator) but before [symfony-build](#symfony-build):
 
 ```yaml {location=".platform.app.yaml"}
 hooks:
@@ -122,7 +122,7 @@ hooks:
         symfony-build
 ```
 
-When installing PECL PHP extensions, you can configure them directly as *variables* instead:
+When installing [PECL](https://pecl.php.net/) PHP extensions, you can configure them directly as *variables* instead:
 
 ```yaml {location=".platform.app.yaml"}
 variables:
@@ -135,7 +135,7 @@ Source code is cached between builds and compilation is skipped if it has alread
 {{< /note >}}
 
 {{< note title="Tip">}}
-When downloading the source code, the compression algorithm will be automatically detected. The usual algorithms used by GNU tar are supported.
+When downloading the source code, the compression algorithm will be automatically detected. The usual algorithms used by [GNU tar](https://www.gnu.org/software/tar/) are supported.
 {{< /note >}}
 
 ### yarn-install
@@ -149,7 +149,7 @@ Similarly to Composer install, you can customize Node setup and Yarn install beh
 
 * ``YARN_FLAGS``: Flags to pass to ``yarn install``. No value by default.
 
-Shall you need to use the Node installation setup by [symfony-build](#symfony-build), you can use the following snippet:
+If you need to use the Node installation setup by [symfony-build](#symfony-build), you can use the following snippet:
 
 ```yaml {location=".platform.app.yaml"}
 hooks:
@@ -192,7 +192,7 @@ hooks:
 
 ## Cron Jobs
 
-Cron jobs allow you to run scheduled tasks at specified times or intervals.
+**Cron jobs** allow you to run scheduled tasks at specified times or intervals.
 To get feedback when something goes wrong, prefix the command with ``croncape``. ``croncape`` will send an email to the address defined by the ``MAILTO`` environment variable.
 Don't forget to set it first via the following command:
 
@@ -247,7 +247,8 @@ On Platform.sh, worker containers run the exact same code as the web container.
 The container image is built only once, and then deployed multiple times in its own container along the web one.
 The *build* hook and dependencies may not vary but as these containers are independent they can be customized the same way using common properties (default values are the one defined for the main container).
 
-The ``commands.start`` key is required and specifies the command to use to launch the application worker. If the command specified by the ``start`` key terminates it will be restarted automatically.
+The ``commands.start`` key is required and specifies the command to use to launch the application worker.
+If the command specified by the ``start`` key terminates it will be restarted automatically.
 
 Follow this link to get more info on [Workers](../../../create-apps/app-reference.html#workers).
 
