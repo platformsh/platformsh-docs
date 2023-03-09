@@ -207,7 +207,7 @@ Setting the `drupalsettings:system.site:name` variable overrides the `name` prop
 You can do this by running the following [CLI command](../../administration/cli/_index.md):
 
 ``` bash
-platform variable:create --name "drupalsettings:system.site:name" --value "{{<variable "SITE_NAME" >}}"
+platform variable:create --name "drupalsettings:system.site:name" --value "{{< variable "SITE_NAME" >}}"
 ```
 
 The same logic applies for other configuration options,

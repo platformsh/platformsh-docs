@@ -186,7 +186,7 @@ From your [relationship data](#relationship-reference), you need: `host`, `port`
 Then run the following command:
 
 ```bash
-mysql -h <HOST> -P <PORT> -u <USER> <PATH>
+mysql -h {{< variable "HOST" >}} -P {{< variable "PORT" >}} -u {{< variable "USER" >}} {{< variable "PATH" >}}
 ```
 
 Assuming the values from the [MariaDB reference](#mariadb-reference), that would be:
@@ -356,26 +356,26 @@ MyISAM is only properly supported in non-Dedicated environments.
 In Dedicated environments, there is no replication of MyISAM tables.
 
 If MyISAM tables have been inadvertently created or imported in a Dedicated environment
-(if you see `ENGINE=MyISAM` in the response to `SHOW CREATE TABLE <existing_table>`),
+(if you see `ENGINE=MyISAM` in the response to `SHOW CREATE TABLE {{< variable "EXISTING_TABLE" >}}`),
 convert them to use the InnoDB storage engine as follows:
 
 1. Rename the existing table.
 
-   ```sql
-   RENAME TABLE <existing_table> <table_old>;
+   ```text
+   RENAME TABLE {{< variable "EXISTING_TABLE" >}} {{< variable "OLD_TABLE" >}};
    ```
 
 1. Create a new table from the data in the existing table.
 
-   ```sql
-   CREATE TABLE <existing_table> SELECT * from <table_old>;
+   ```text
+   CREATE TABLE {{< variable "EXISTING_TABLE" >}} SELECT * from {{< variable "OLD_TABLE" >}};
    ```
 
-Now when you run `SHOW CREATE TABLE <existing_table>`, you see `ENGINE=InnoDB`.
+Now when you run `SHOW CREATE TABLE {{< variable "EXISTING_TABLE" >}}`, you see `ENGINE=InnoDB`.
 
 ## Service timezone
 
-To change the timezone for a given connection, run `SET time_zone = <timezone>;`.
+To change the timezone for a given connection, run `SET time_zone = {{< variable "TIMEZONE" >}};`.
 
 ## Exporting data
 
@@ -390,7 +390,7 @@ If you have multiple SQL databases, you are prompted for which one to export.
 You can also specify a database by its relationship name:
 
 ```bash
-platform db:dump --relationship <RELATIONSHIP_NAME>
+platform db:dump --relationship {{< variable "RELATIONSHIP_NAME" >}}
 ```
 
 ### Compression
@@ -426,7 +426,7 @@ That works for any SQL file, so the usual caveats about importing an SQL dump ap
 As with exporting, you can specify a specific environment and a specific database relationship to use:
 
 ```bash
-platform sql --relationship <RELATIONSHIP_NAME> -e <BRANCH_NAME> < my_database_backup.sql
+platform sql --relationship {{< variable "RELATIONSHIP_NAME" >}} -e {{< variable "BRANCH_NAME" >}} < my_database_backup.sql
 ```
 
 {{< note >}}

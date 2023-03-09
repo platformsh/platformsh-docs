@@ -1,8 +1,6 @@
 {{ $feature := .Get "feature" }}
-<div class="prose xl:prose-lg bg-skye-light p-4 mb-4 max-w-none">
-
-  <p><strong>Premium feature</strong></p>
-
-  <p>{{ $feature }} isn&apos;t included in any Platform.sh plan. You need to add it separately at an additional cost. To add {{ $feature }}, <a href="https://platform.sh/contact/">contact Sales</a>.</p>
-
-  </div>
+{{ $content := print $feature ` isn't included in any Platform.sh plan.
+You need to add it separately at an additional cost.
+To add ` $feature `, [contact Sales](https://platform.sh/contact/).`}}
+    
+{{ partial "premium-features/banner" ( dict "context" . "content" $content "title" "Beta" )}}

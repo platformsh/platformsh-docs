@@ -4,6 +4,8 @@ sidebarTitle: DDEV
 description: Use DDEV to set up local development environments.
 weight: 1
 sectionBefore: Integrated environments
+keywords:
+    - ddev 
 ---
 
 {{% ddev/definition %}}
@@ -77,7 +79,7 @@ add them to the project's DDEV environment:
 
 ```yaml {location=".ddev/config.yaml"}
 web_environment:
-    - <VARIABLE_NAME>: <VALUE>
+    - {{< variable "VARIABLE_NAME" >}}: {{< variable "VALUE" >}}
 ```
 
 To apply your changes, run the following command:

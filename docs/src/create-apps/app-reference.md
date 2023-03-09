@@ -25,7 +25,7 @@ To override any part of a property, you have to provide the entire property.
 | `type`             | A [type](#types)                                    | Yes      | No               | The base image to use with a specific app language. Format: `runtime:version`. |
 | `size`             | A [size](#sizes)                                    |          | Yes              | How much resources to devote to the app. Defaults to `AUTO` in production environments. |
 | `relationships`    | A dictionary of [relationships](#relationships)     |          | Yes              | Connections to other services and apps. |
-| `disk`             | `integer` or `null`                                 |          | Yes              | The size of the disk space for the app in MB. Minimum value is `128`. Defaults to `null`, meaning no disk is available. See [note on available space](#available-disk-space) |
+| `disk`             | `integer` or `null`                                 |          | Yes              | The size of the disk space for the app in [MB](../other/glossary.md#mb). Minimum value is `128`. Defaults to `null`, meaning no disk is available. See [note on available space](#available-disk-space) |
 | `mounts`           | A dictionary of [mounts](#mounts)                   |          | Yes              | Directories that are writable even after the app is built. If set as a local source, `disk` is required. |
 | `web`              | A [web instance](#web)                              |          | N/A              | How the web application is served. |
 | `workers`          | A [worker instance](#workers)                       |          | N/A              | Alternate copies of the application to run as background processes. |
@@ -127,18 +127,20 @@ relationships:
 
 ## Available disk space
 
-The maximum total space available to all applications and services is set by the storage in your plan settings.
+The maximum total space available to all apps and services is set by the storage in your plan settings.
 When deploying your project, the sum of all `disk` keys defined in app and service configurations
 must be *equal or less* than the plan storage size.
 
-So if your _plan storage size_ is 5 GB, you can, for example, assign it in one of the following ways:
+So if your *plan storage size* is 5&nbsp;GB, you can, for example, assign it in one of the following ways:
 
-* 2 GB to your application, 3 GB to your database
-* 1 GB to your application, 4 GB to your database
-* 1 GB to your application, 1 GB to your database, 3 GB to your Elasticsearch service
+- 2&nbsp;GB to your app, 3&nbsp;GB to your database
+- 1&nbsp;GB to your app, 4&nbsp;GB to your database
+- 1&nbsp;GB to your app, 1&nbsp;GB to your database, 3&nbsp;GB to your OpenSearch service
 
 If you exceed the total space available, you receive an error on pushing your code.
 You need to either increase your plan's storage or decrease the `disk` values you've assigned.
+
+{{% disk-space-mb %}}
 
 ### Downsize a disk
 
@@ -151,12 +153,12 @@ They aren't available during the build.
 
 ```yaml {location=".platform.app.yaml"}
 mounts:
-    '<DIRECTORY>':
-        source: <SOURCE_LOCATION>
-        source_path: <SOURCE_PATH_LOCATION>
+    '{{< variable "DIRECTORY" >}}':
+        source: {{< variable "SOURCE_LOCATION" >}}
+        source_path: {{< variable "SOURCE_PATH_LOCATION" >}}
 ```
 
-The `<DIRECTORY>` is relative to the [app's root](#root-directory) and represents the path in the app.
+The `{{< variable "DIRECTORY" >}}` is relative to the [app's root](#root-directory) and represents the path in the app.
 If you already have a directory with that name, you get a warning that it isn't accessible after the build.
 See how to [troubleshoot the warning](./troubleshoot-mounts.md#overlapping-folders).
 

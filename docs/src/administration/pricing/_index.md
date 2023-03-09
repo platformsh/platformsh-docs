@@ -136,7 +136,7 @@ Plans with a Fastly CDN service or the extra Fastly Service include the followin
 | SKU             | Description                                                                             | USD  | EUR  | AUD    | CAD    | GBP  |
 |-----------------|-----------------------------------------------------------------------------------------|------|------|--------|--------|------|
 | `BDW-1-POST`    | Additional 1&nbsp;Tb of egress bandwidth and 500 million ingress requests               | $88  | €77  | AU$128 | CA$119 | £68  |
-| `EDGE-REQ-POST` | Additional 100 million ingress requests                                                 | $66  | €62  | AU$95  | CA$88  | £54  |
+| `EDGE-REQ-POST` | Additional 50 million ingress requests                                                  | $66  | €62  | AU$95  | CA$88  | £54  |
 | `ORN-1-POST`    | Additional 1&nbsp;Tb of egress bandwidth and 500 million ingress requests at the origin | $209 | €167 | AU$316 | CA$284 | £189 |
 
 ### DDoS surge protection

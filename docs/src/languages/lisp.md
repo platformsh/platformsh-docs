@@ -41,7 +41,7 @@ If you wish to change the distributions that QuickLisp is using, you can specify
 ```yaml
 runtime:
     quicklisp:
-        <distribution name>:
+        {{< variable "DISTRIBUTION_NAME" >}}:
             url: "..."
             version: "..."
 ```

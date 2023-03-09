@@ -1,5 +1,5 @@
 ---
-title: Source operations
+title: Automated code updates
 description: |
   Run automated code updates via source operations.
 tier:
@@ -13,22 +13,23 @@ A source operation is an operation defined in an application to apply and automa
 
 To use source operations, first define them in your [app configuration](./_index.md).
 Then run them in the [Platform.sh CLI](../administration/cli/_index.md) or [Console](https://console.platform.sh).
+You can also define [cron jobs](./app-reference.md#crons) to run your source operations and update your code automatically.
 
 ## 1. Define a source operation
 
 A source operation requires two things:
 
-* A name that must be unique within the application.
+- A name that must be unique within the application.
   The name is the key of the block defined under `source.operations` in your [app configuration](./app-reference.md#source).
-* A `command` that defines what's run when the operation is triggered.
+- A `command` that defines what's run when the operation is triggered.
 
 The syntax looks like the following:
 
 ```yaml {location=".platform.app.yaml"}
 source:
     operations:
-        <NAME>:
-            command: <COMMAND>
+        {{< variable "NAME" >}}:
+            command: {{< variable "COMMAND" >}}
 ```
 
 For example, to update a file from a remote location, you could define an operation like this:
@@ -72,10 +73,10 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform source-operation:run <OPERATION_NAME>
+platform source-operation:run {{< variable "OPERATION_NAME" >}}
 ```
 
-Replace `<OPERATION_NAME>` with the name of your operation, such as `update-file`) in the [example above](#1-define-a-source-operation).
+Replace `{{< variable "OPERATION_NAME" >}}` with the name of your operation, such as `update-file`) in the [example above](#1-define-a-source-operation).
 
 {{< /codetabs >}}
 
@@ -304,8 +305,8 @@ The following source operation syncronizes your branch with an upstream Git repo
    That makes that repository available as a Unix environment variable in all environments,
    including in the source operation's environment.
 
-   * Variable name: `env:UPSTREAM_REMOTE`
-   * Variable example value: `https://github.com/platformsh/platformsh-docs`
+   - Variable name: `env:UPSTREAM_REMOTE`
+   - Variable example value: `https://github.com/platformsh/platformsh-docs`
 
 2. In your app configuration, define a source operation to fetch from that upstream repository:
 
@@ -382,7 +383,28 @@ source:
                 git commit -am "Automated install of: $EXTENSION via Composer."
 ```
 
-Now every time you run  the `download-drupal-extension` operation, it downloads the defined extension.
+Now every time you run the `download-drupal-extension` operation, it downloads the defined extension.
 
 If it's a new extension, after the source operation finishes,
 you need to enable the new extension via the Drupal management interface or using Drush.
+
+
+### Update Git submodules 
+
+The following source operation updates all Git submodules recursively:
+
+```yaml {location=".platform.app.yaml"}
+source:
+    operations:
+        rebuild:
+            command: |
+                set -e
+                git submodule update --init --recursive
+                git submodule update --remote --checkout
+                SHA=$(git submodule | awk -F' ' '{print $1}' | sed -s 's/+//g')
+                echo -n "$SHA" > .sha
+                git add uppler .sha
+                git commit -m "Updating submodule to commit '$SHA'"
+```
+
+Now every time you run the `rebuild` operation, it updates the Git submodules.
