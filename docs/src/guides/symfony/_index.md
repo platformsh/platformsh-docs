@@ -6,10 +6,13 @@ description: |
 ---
 {{% description %}}
 
-See an example Symfony project in the official [Symfony template repository](https://github.com/symfonycorp/platformsh-symfony-template), which you can use as a starting point for your own project.
+[comment]: <> (See an example Symfony project in the official [Symfony template repository]&#40;https://github.com/symfonycorp/platformsh-symfony-template&#41;, which you can use as a starting point for your own project.)
 
-If you already have a Symfony project ready to deploy,
-see the template's [example Platform.sh files](https://github.com/symfonycorp/platformsh-symfony-template/tree/6.2).
-These files let you [configure your app](../../create-apps/_index.md),
-[add services](../../add-services/_index.md), and [define routes](../../define-routes/_index.md).
+[comment]: <> (If you already have a Symfony project ready to deploy,)
+
+[comment]: <> (see the template's [example Platform.sh files]&#40;https://github.com/symfonycorp/platformsh-symfony-template/tree/6.2&#41;.)
+
+[comment]: <> (These files let you [configure your app]&#40;../../create-apps/_index.md&#41;,)
+
+[comment]: <> ([add services]&#40;../../add-services/_index.md&#41;, and [define routes]&#40;../../define-routes/_index.md&#41;.)
 
