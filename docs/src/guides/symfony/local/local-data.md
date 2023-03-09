@@ -15,15 +15,7 @@ You can achieve this through various approaches.
 To test changes locally, you can pull data from an active Platform.sh environment.
 
 {{% guides/local-requirements name="Symfony" %}}
-- your Platform.sh project is not using SQLite (default database engine if you're using 'a fresh Symfony Demo skeleton),
-  otherwise, follow the [Use PostgreSQL tutorial](../customize/postgresql.md)
-
-## get your Symfony application
-
-TODO
-- symfony get <projectID>
-- follow getting start guide
-- get existing Symfony application (git clone) + `symfony cloud:init`
+- your Platform.sh project is using PostgreSQL, otherwise, follow the [Use PostgreSQL tutorial](../customize/postgresql.md)
 
 ## Start your Symfony Server
 At first, you need to start your web Server locally to display your Symfony application.
@@ -53,8 +45,8 @@ symfony console doctrine:query:sql < dump.sql
 symfony cloud:mount:download --mount public/var --target ./public/var
 ```
 
-Et voilà, your Symfony application data are sync with your Platform.sh project
+Et voilà, your local Symfony application is sync with your Platform.sh project
 
-{{< note >}}
-Another method to get locally your existing Platform.sh project's database and assets is by using [Symfony Server](../local)
-{{< /note >}}
+{{% guides/symfony/local-next-steps-start %}}
+{{< readFile file="snippets/guides/symfony/local.sh" highlight="yaml" location="init-local.sh" >}}
+{{% guides/symfony/local-next-steps-end %}}

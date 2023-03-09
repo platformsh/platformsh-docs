@@ -17,6 +17,9 @@ to service containers on an active Platform.sh environment.
 You can use these settings to set up a tethered connection to services running on a Platform.sh environment.
 The settings are used to mock the conditions of the environment locally.
 
+{{% guides/local-requirements name="Symfony" %}}
+
+
 ## Start your Symfony Server
 At first, you need to start your web Server locally to display your Symfony application.
 
@@ -77,5 +80,5 @@ Be careful when using this method.
 {{< /note >}}
 
 {{% guides/symfony/local-next-steps-start %}}
-    {{< readFile file="snippets/guides/symfony/tethered/local.sh" highlight="yaml" location="init-local.sh" >}}
+    {{< readFile file="snippets/guides/symfony/tethered.sh" highlight="yaml" location="init-local.sh" >}}
 {{% guides/symfony/local-next-steps-end %}}
