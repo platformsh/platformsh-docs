@@ -48,7 +48,12 @@ you can only add and manage non-production custom domains through the [Platform.
 In later versions,
 you'll be able to do so in the [Platform.sh Console](../../administration/web/_index.md) too.
 
-You can only add non-production custom domains yourself on Grid environments.
+To add non-production custom domains yourself,
+you must have Grid or {{% names/dedicated-gen-3 %}} environments.
+If you use a [Managed Fastly](../cdn/managed-fastly.md) CDN,
+it needs to be configured to operate with non-production custom domains.
+For more information, contact [Support](https://console.platform.sh/-/users/~/tickets/open).   
+
 If you have {{% names/dedicated-gen-2 %}} environments
 and want to add non-production custom domains to your project,
 contact [Support](https://console.platform.sh/-/users/~/tickets/open).
@@ -58,6 +63,7 @@ You can add custom domains to up to 5 environments per project (production envir
 
 If you delete a production custom domain,
 all of the attached non-production custom domains are deleted too.
+You need to rebuild the affected non-production environments for the change to be complete.
 
 If you downgrade from an Elite or Enterprise plan to a Professional plan,
 all of the custom domains set on non-production environments are automatically removed.
