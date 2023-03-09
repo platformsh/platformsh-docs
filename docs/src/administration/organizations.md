@@ -1,12 +1,13 @@
 ---
-title: "Organizations"
+title: Organizations
 weight: -1
-sidebarTitle: "Organizations"
-description: |
-  Organizations allow you to manage your Platform.sh projects, users, and billing.
+description: See how to manage multiple Platform.sh projects at once through organizations.
 ---
 
-{{% description %}}
+Organizations allow you to manage your Platform.sh projects, users, and billing.
+You can group multiple projects in one organization and manage them together.
+
+To manage users within your organization, see how to [manage organization users](./users.md#manage-organization-users).
 
 ## Manage your organization settings
 
@@ -19,10 +20,10 @@ title=Using the Console
 +++
 
 1. Navigate to the organization you want to manage (or a project in it).
-1. Open the user menu (your name or profile picture).
-1. Click **Settings**.
-1. Click **Edit** to edit the label or click in the **Organization URL** field to edit the URL.
-1. Click **Save**.
+2. Open the user menu (your name or profile picture).
+3. Click **Settings**.
+4. Click **Edit** to edit the label or click in the **Organization URL** field to edit the URL.
+5. Click **Save**.
 
 <--->
 +++
@@ -60,6 +61,8 @@ title=Using the Console
 
 {{< /codetabs >}}
 
+<<<<<<< HEAD
+=======
 ## Manage your organization users
 
 As an organization owner or an organization user with the **Manage users** permission,
@@ -130,6 +133,7 @@ To see all the projects that you have access to,
 go to the [main Console page](https://console.platform.sh) or click **All projects** within the Console.
 For more information on project access control, see [user administration](./users.md).
 
+>>>>>>> main
 ## Create a new organization
 
 When you create a new project, if you don't already have an organization, one is created for you automatically.
@@ -203,10 +207,11 @@ platform organization:delete --org acme
 ## Transfer project ownership
 
 You can transfer your plan ownership to a different organization at anytime.
-You have to be an organization owner or have the [manage plan permission](#manage-your-organization-users).
+You have to be an organization owner or have the [manage plan permission](./users.md#organization-user-permissions).
 
-1. Make the new organization owner a Project Admin for the project you want to transfer.
-2. Submit a [support ticket](https://console.platform.sh/-/users/~/tickets) from your organization account to ask for the transfer.
+1. Make the new organization owner a [project admin](./users.md#project-user-permissions)
+   for the project you want to transfer.
+2. To ask for the transfer, from you organization account submit a [support ticket](https://console.platform.sh/-/users/~/tickets).
 
 Once the transfer is completed, the new organization can administer all project settings and billing and receives future invoices.
 Ownership transfer automatically transfers subscription charges to the new organization.
@@ -214,5 +219,5 @@ Ownership transfer automatically transfers subscription charges to the new organ
 ## Transfer organization ownership
 
 To transfer an organization to a different owner, first make sure that user is part of the organization.
-If they aren't yet, [add them](#manage-your-organization-users).
+If they aren't yet, [add them](./users.md#add-a-user-to-an-organization).
 Then submit a [support ticket](https://console.platform.sh/-/users/~/tickets) from the current organization to ask for the transfer.
