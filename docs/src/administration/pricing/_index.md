@@ -49,7 +49,7 @@ Development environments can't be mapped to [custom domain names](../../domains/
 Their resources are separate from Production environments.
 
 App containers on development environments default to a size of {{< partial "plans/default-dev-env-size" >}}.
-If you have the [`plans` permission](../organizations.md#manage-your-organization-users),
+If you have the [manage plans permission](../users.md#organization-user-permissions),
 you can increase the size to match your production environment.
 To do so, follow these steps:
 
