@@ -186,3 +186,16 @@ Staging
   Developer2
     Ticket-395
 ```
+
+## Resume a paused environment
+
+To prevent unnecessary consumption of resources,
+Platform.sh automatically pauses development environments that haven't been used in 15 days.
+
+To resume a paused environment, run the following command:
+
+```bash
+platform environment:resume
+```
+
+The environment is redeployed and becomes available for use again.
