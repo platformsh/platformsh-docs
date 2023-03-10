@@ -43,7 +43,7 @@ source:
                 set -e
                 composer update
                 git add composer.lock
-                git commit -m "Update Composer dependencies"
+                git commit -m --allow-empty "Update Composer dependencies"
 ```
 
 <--->
@@ -60,7 +60,7 @@ source:
                 set -e
                 npm update
                 git add package.json package-lock.json 
-                git commit -m "Update npm dependencies"
+                git commit -m --allow-empty "Update npm dependencies"
 ```
 
 <--->
@@ -77,7 +77,7 @@ source:
                 set -e
                 yarn upgrade
                 git add yarn.lock
-                git commit -m "Update yarn dependencies"
+                git commit -m --allow-empty "Update yarn dependencies"
 ```
 
 <--->
@@ -95,7 +95,7 @@ source:
                 go get -u
                 go mod tidy
                 git add go.mod go.sum
-                git commit -m "Update Go dependencies"
+                git commit -m --allow-empty "Update Go dependencies"
 ```
 
 <--->
@@ -112,7 +112,24 @@ source:
                 set -e
                 pipenv update
                 git add Pipfile Pipfile.lock
-                git commit -m "Update Python dependencies"
+                git commit -m --allow-empty "Update Pipenv dependencies"
+````
+
+<--->
+
++++
+title=Pipenv
++++
+
+```bash
+source:
+    operations:
+        update:
+            command: |
+                set -e
+                poetry update
+                git add pyproject.toml poetry.lock
+                git commit -m --allow-empty "Update Poetry dependencies"
 ````
 
 <--->
@@ -129,10 +146,17 @@ source:
                 set -e
                 bundle update --all
                 git add Gemfile Gemfile.lock
-                git commit -m "Update Ruby dependencies"
+                git commit -m --allow-empty "Update Ruby dependencies"
 ```
 
 {{< /codetabs >}}
+
+{{< note >}}
+
+- **Pipenv:** The Pipenv example above assumes [`pipenv` is installed as a build dependency](https://docs.platform.sh/languages/python/dependencies.html#pipenv).
+- **Poetry:** The Poetry example above assumes [Poetry is installed with an external script](https://docs.platform.sh/languages/python/dependencies.html#poetry).
+
+{{< /note >}}
 
 ## 2. Run your dependency updates automatically with a cron job
 
@@ -145,7 +169,9 @@ so you can run a cron job in your app container.
 You can then add a cron job to run your source operation once a day.
 
 Note that it’s best not to run source operations on your production environment,
-but rather on a dedicated environment where you can test changes.
+but rather on a dedicated environment where you can test changes and handle conflicts.
+In the example below, a dedicated `update-dependencies` development environment has been
+set aside for this task.
 
 To set up a cron job to automatically update your dependencies once a day,
 use a configuration similar to the following:

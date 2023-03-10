@@ -42,7 +42,7 @@ source:
                 set -e
                 curl -O https://example.com/myfile.txt
                 git add myfile.txt
-                git commit -m "Update remote file"
+                git commit -m --allow-empty "Update remote file"
 ```
 
 The name in this case is `update-file`.
@@ -170,6 +170,8 @@ Once the CLI is installed with an API token,
 you can add a cron task to run your source operations once a day.
 It's best not to run source operations on your production environment,
 but rather on a dedicated environment where you can test changes.
+In the example below, a dedicated `update-dependencies` development environment has been
+set aside for this task.
 
 The following example synchronizes the `update-dependencies` environment with its parent
 and then runs the `update` source operation:
@@ -257,7 +259,7 @@ source:
                 set -e
                 composer update drupal/core --with-dependencies
                 git add composer.lock
-                git commit -m "Automated Drupal Core update."
+                git commit -m --allow-empty "Automated Drupal Core update."
 ```
 
 `--with-dependencies` is used to also update Drupal Core dependencies.
@@ -279,7 +281,7 @@ source:
                 set -e
                 composer require $EXTENSION
                 git add composer.json
-                git commit -am "Automated install of: $EXTENSION via Composer."
+                git commit -m --allow-empty "Automated install of: $EXTENSION via Composer."
 ```
 
 Now every time you run the `download-drupal-extension` operation, it downloads the defined extension.
@@ -303,7 +305,7 @@ source:
                 SHA=$(git submodule | awk -F' ' '{print $1}' | sed -s 's/+//g')
                 echo -n "$SHA" > .sha
                 git add uppler .sha
-                git commit -m "Updating submodule to commit '$SHA'"
+                git commit -m --allow-empty "Updating submodule to commit '$SHA'"
 ```
 
 Now every time you run the `rebuild` operation, it updates the Git submodules.
