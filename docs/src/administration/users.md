@@ -94,6 +94,8 @@ Once you add a user to a project, they receive an email with instructions.
 For SSH access changes to apply after you add a user to a project,
 you have to redeploy each environment by either clicking **Redeploy** in the Console or running `platform redeploy`.
 
+{{< /codetabs >}}
+
 ### Remove a user from a project
 
 To remove a user from a project, you need to be a [project admin](#user-roles).
@@ -151,6 +153,7 @@ To remove an existing user:
 ```bash
 platform user:delete user1@example.com
 ```
+
 {{< /codetabs >}}
 
 Once you remove a user, they can no longer access the project.
