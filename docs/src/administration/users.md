@@ -58,7 +58,7 @@ see how to [troubleshoot source integrations](../integrations/source/troubleshoo
 
 ### Add a user to a project
 
-To add a user, you need to be a [project admin](#user-roles).
+To add a user, you need to be a [project admin](#project-user-permissions).
 
 To add a user, follow these steps:
 
@@ -98,7 +98,7 @@ you have to redeploy each environment by either clicking **Redeploy** in the Con
 
 ### Remove a user from a project
 
-To remove a user from a project, you need to be a [project admin](#user-roles).
+To remove a user from a project, you need to be a [project admin](#project-user-permissions).
 
 To remove a user, follow these steps:
 
@@ -162,7 +162,7 @@ you have to redeploy each environment by either clicking **Redeploy** in the Con
 
 ### Change existing permissions for environment types
 
-To manage user permissions, you need to be a [project admin](#user-roles).
+To manage user permissions, you need to be a [project admin](#project-user-permissions).
 
 Follow these steps:
 
