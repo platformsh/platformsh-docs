@@ -11,7 +11,7 @@ description: Increase your knowledge of how your apps are performing by accessin
 
 Changes to your environments, such as deployments, cron jobs, and code or variable updates,
 are each logged as activities.
-You can access the logs either in the Console or using the CLI:
+You can access the logs either in the Console or using the [CLI](../../administration/cli/_index.md):
 
 {{< codetabs >}}
 
@@ -20,8 +20,8 @@ title=In the Console
 +++
 
 1. Open the project you are interested in.
-1. From the **Environment** menu, select an environment.
-1. Click a recent activity from the activity feed or click **All** to see the complete history.
+2. From the **Environment** menu, select an environment.
+3. Click a recent activity from the activity feed or click **All** to see the complete history.
 
 ![An activity feed within an environment](/images/management-console/activity.png "0.5")
 
@@ -38,14 +38,16 @@ title=Using the CLI
    ```
 
    Pass the `--start` flag to get activities from a specific date in the past.
-1. To see details about the activity's state and timing, run
+
+2. To see details about the activity's state and timing, run
 
    ``` bash
    platform activity:get {{% variable "ACTIVITY_ID" %}}
    ```
 
    Where {{% variable "ACTIVITY_ID" %}} comes from the list in step 1.
-1. Get a log of any given activity by running
+
+3. Get a log of any given activity by running
 
    ``` bash
    platform activity:log {{% variable "ACTIVITY_ID" %}}
@@ -73,7 +75,7 @@ hovering on the next unselected line gives you the amount of time that passed be
 
 Events that occur within an app container are logged within that container.
 The logs can be written to, but you should do so only with standard logging mechanisms.
-If your app has its own logging mechanism, use it to write to a dedicated logs mount.
+If your app has its own logging mechanism, use it to write to a dedicated logs [mount](../../create-apps/app-reference.md#mounts).
 
 To access the logs of various types of events:
 
@@ -90,7 +92,7 @@ For example, to get the access log, run:
 platform log -e {{% variable "ENVIRONMENT_NAME" %}} access
 ```
 
-To get other logs, just replace `access` with the type of log.
+To get other logs, just replace `access` with the [type of log](#types-of-container-logs).
 To view more lines, use the `--lines` flag.
 
 <--->
@@ -105,7 +107,7 @@ title=Using SSH directly
    platform ssh -e {{% variable "ENVIRONMENT_NAME" %}}
    ```
 
-1. Change to the right directory by running `cd /var/log`.
+2. Change to the right directory by running `cd /var/log`.
 
    If you're on a {{% names/dedicated-gen-2 %}} cluster, run
 
@@ -113,7 +115,7 @@ title=Using SSH directly
    /var/log/platform/{{% variable "APP_NAME" %}}/
    ```
 
-1. Read the desired log, such as by running `tail access.log`.
+3. Read the desired log, such as by running `tail access.log`.
 
 {{< /codetabs >}}
 
