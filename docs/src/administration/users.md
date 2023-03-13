@@ -77,7 +77,7 @@ title=Using the CLI
 To add a user, run the following command:
 
 ```bash
-platform user:add {{ variable "EMAIL_ADDRESS" }} -r {{ variable "PERMISSIONS_TO_GRANT" }}
+platform user:add {{< variable "EMAIL_ADDRESS" >}} -r {{< variable "PERMISSIONS_TO_GRANT" >}}
 ```
 
 For example, if you want to add `user1@example.com` to the project as a project admin,
@@ -182,7 +182,7 @@ title=Using the CLI
 To update an existing user's permissions, run the following command:
 
 ```bash
-platform user:update {{ variable "EMAIL_ADDRESS" }} -r {{ variable "PERMISSIONS_TO_GRANT" }}
+platform user:update {{< variable "EMAIL_ADDRESS" >}} -r {{< variable "PERMISSIONS_TO_GRANT" >}}
 ```
 
 If you want `user1@example.com` to be a viewer for Production environments
@@ -218,7 +218,7 @@ By default, such users have no [organization permissions](#organization-user-per
 You can also have organization admins who aren't part of any projects.
 
 Users who are a part of an organization can see all projects in that organization at the organization's URL,
-which takes the form `https://console.platform.sh/<ORGANIZATION_NAME>`.
+which takes the form `https://console.platform.sh/{{< variable "ORGANIZATION_NAME" >}}`.
 They can only access projects they've been explicitly invited to.
 For more information on project access control, see how to [manage project users](#manage-project-users).
 
