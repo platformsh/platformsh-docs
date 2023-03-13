@@ -17,7 +17,7 @@ Outgoing UDP traffic is disallowed.
 
 The Development Environment deploys each branch as a series of containers hosted on a shared underlying VM.
 Many customers generally share the same VM.
-All containers are allowed to connect only to other containers in their same environment, and even then only if an explicit "relationship" has been defined by the user via configuration file.
+All containers are allowed to connect only to other containers in their same environment, and even then only if an explicit [`relationship`](../create-apps/app-reference.md#relationships) has been defined by the user via configuration file.
 
 ## Security incident handling procedure
 

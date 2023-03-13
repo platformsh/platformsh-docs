@@ -56,7 +56,7 @@ The table below shows the currently available services and their versions for {{
 
 ### Local mounts
 
-Because you get a redundant infrastructure, note that local mounts are local to each Virtual Machine. Since you can't know which VM is going to handle a specific request, you also don't have a guarantee regarding which local mount is going to be used. Whether you actually want to use a local mount or in fact need to set up a network storage mount depends on your specific use-case.
+Because you get a redundant infrastructure, note that local mounts are local to each Virtual Machine. Since you can't know which VM is going to handle a specific request, you also don't have a guarantee regarding which local mount is going to be used. Whether you actually want to use a local mount or in fact need to set up a [Network Storage mount](../add-services/network-storage.md) depends on your specific use-case.
 
 ## Storage 
 
