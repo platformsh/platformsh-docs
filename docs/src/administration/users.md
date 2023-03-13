@@ -15,17 +15,9 @@ You can also [manage organization users](#manage-organization-users).
 
 Within a project, each user has a role that controls their access and permission levels.
 
-<<<<<<< HEAD
 - Project admin: Users who can configure project settings, add and remove users, administer environment permissions, push code,
   and execute actions on all project environments.
 - Project viewer: Any user with access to environment types automatically gets this role.
-=======
-- Project admin:
-  Users who can configure project settings, add and remove users,
-  administer environment permissions, push code, and execute actions on all project environments.
-- Project viewer:
-  Users with access to specific environment types.
->>>>>>> main
 
 Users can still see projects that they can't access if they have the [**List projects** permission](#organization-user-permissions).
 
@@ -44,37 +36,18 @@ and can change each of their types.
 
 The following table shows the permissions for each environment type role.
 
-<<<<<<< HEAD
 - Only one environment per project can be the Production type.
   It's set automatically as the default branch and can't be overridden separately.
 - You can change an environment's type (if it's not Production).
 - You can have multiple Staging and Development environments.
-=======
-| Role        | View environment | Push code | Branch environment | SSH access | Change settings | Execute actions\* |
-|-------------|------------------|-----------|--------------------|------------|-----------------|-------------------|
-| Viewer      | Yes              | No        | No                 | No         | No              | No                |
-| Contributor | Yes              | Yes       | Yes                | Yes        | No              | No                |
-| Admin       | Yes              | Yes       | Yes                | Yes        | Yes             | Yes               |
->>>>>>> main
 
 To customize which roles can use SSH, set [`access` in your app configuration](../create-apps/app-reference.md#access).
 
-<<<<<<< HEAD
 | Role        | View environment | Push code | Branch environment | SSH access | Change settings | Execute actions |
 |-------------|------------------|-----------|--------------------|------------|-----------------|-----------------|
 | Viewer      | Yes              | No        | No                 | No         | No              | No              |
 | Contributor | Yes              | Yes       | Yes                | Yes        | No              | No              |
 | Admin       | Yes              | Yes       | Yes                | Yes        | Yes             | Yes             |
-=======
-\* The actions available to admins are:
-[activating](../environments/deactivate-environment.m#reactivate-an-environment), [deactivating](../environments/deactivate-environment.md),
-[redeploying](../development/troubleshoot.md#force-a-redeploy), [merging](../other/glossary.md#merge),
-and [syncing](../other/glossary.md#sync) environments;
-managing [backups](../environments/backup.md) and [variables](../development/variables/_index.md);
-and triggering [source operations](../create-apps/source-operations.md).
-To merge or sync an environment with another,
-you need to be an admin for both environment types.
->>>>>>> main
 
 ### Project access
 
@@ -85,17 +58,11 @@ see how to [troubleshoot source integrations](../integrations/source/troubleshoo
 
 ### Add a user to a project
 
-<<<<<<< HEAD
 To add a user, you need to be a [project admin](#user-roles).
-=======
-To add a user to a project or an environment, you need to be a [project admin](#project-user-permissions),
-be an organization owner, or have the [**Manage users** permission for the organization](#organization-user-permissions).
->>>>>>> main
 
 To add a user, follow these steps:
 
 {{< codetabs >}}
-<<<<<<< HEAD
 +++
 title=In the Console
 +++
@@ -108,24 +75,11 @@ title=In the Console
 6. Click **Save**.
 
 <--->
-=======
->>>>>>> main
 +++
 title=Using the CLI
 +++
 
-<<<<<<< HEAD
 Say you want to add `user1@example.com` to the project as a project admin:
-=======
-To add a user, run the following command:
-
-```bash
-platform user:add {{ variable "EMAIL_ADDRESS" }} -r {{ variable "PERMISSIONS_TO_GRANT" }}
-```
-
-For example, if you want to add `user1@example.com` to the project as a project admin,
-run the following command:
->>>>>>> main
 
 ```bash
 platform user:add user1@example.com -r admin
@@ -135,7 +89,6 @@ If you want to add `user2@example.com` to the project as a contributor for Devel
 and a viewer for Staging environments,
 run the following command:
 
-<<<<<<< HEAD
 The user has to create an account before they can contribute to the project.
 Once you add a user to a project, they receive an email with instructions.
 For SSH access changes to apply after you add a user to a project,
@@ -148,11 +101,6 @@ To remove a user from a project, you need to be a [project admin](#user-roles).
 To remove a user, follow these steps:
 
 {{< codetabs >}}
-=======
-```bash
-platform user:add user2@example.com -r development:contributor -r staging:viewer
-```
->>>>>>> main
 
 <--->
 +++
@@ -161,18 +109,10 @@ title=In the Console
 
 1. Select the project where you want to add a new user.
 2. Click {{< icon settings >}} **Settings**.
-<<<<<<< HEAD
 3. Click **Access**.
 4. Click the user you want to delete.
 5. Click **Remove user**.
 6. Click **Accept**.
-=======
-3. Under **Project settings**, click **Access**.
-4. Click **+ Add**.
-5. Add the user's email and choose their permissions.
-6. If necessary, accept that adding a user increases your bill.
-7. Click **Add user**.
->>>>>>> main
 
 The user is added to your organization.
 
@@ -206,17 +146,11 @@ To remove a user, follow these steps:
 +++
 title=Using the CLI
 +++
-<<<<<<< HEAD
 To remove an existing user:
-=======
-
-Run the following command:
->>>>>>> main
 
 ```bash
 platform user:delete user1@example.com
 ```
-<<<<<<< HEAD
 {{< /codetabs >}}
 
 Once you remove a user, they can no longer access the project.
@@ -230,15 +164,12 @@ To manage user permissions, you need to be a [project admin](#user-roles).
 Follow these steps:
 
 {{< codetabs >}}
-=======
->>>>>>> main
 
 <--->
 +++
 title=In the Console
 +++
 
-<<<<<<< HEAD
 1. Select the project where you want to add a new user.
 2. Click {{< icon settings >}} **Settings**.
 3. Click **Access**.
@@ -260,15 +191,6 @@ platform user:update user1@example.com -r production:v,development:c
 
 After you change a user's role for an environment type, you must redeploy each environment to propagate access changes.
 You can redeploy using the CLI command `platform redeploy`.
-=======
-1. Navigate to your organization or a project in it.
-2. Open the user menu (your name or profile picture).
-3. Click **Users**.
-4. For the user you want to remove, click **{{< icon more >}} More**.
-5. For the project you want to remove them from, click **{{< icon more >}} More**.
-6. Click **Remove from project**.
-7. Click **Yes**.
->>>>>>> main
 
 {{< /codetabs >}}
 
