@@ -6,8 +6,6 @@ description: Learn how to set up custom domains on your staging and development 
 betaFlag: true
 ---
 
-{{< premium-features/tiered "Elite and Enterprise" >}}
-
 You can add a custom domain to a staging or development environment without modifying your [routes configuration](../../define-routes/_index.md).
 To do so, you need to attach the new non-production custom domain
 to an existing production custom domain.
