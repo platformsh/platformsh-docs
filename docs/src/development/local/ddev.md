@@ -4,34 +4,22 @@ sidebarTitle: DDEV
 description: Use DDEV to set up local development environments.
 weight: 1
 sectionBefore: Integrated environments
+keywords:
+    - ddev 
 ---
 
-[DDEV](https://ddev.readthedocs.io/en/stable/) is an open-source tool for local PHP development environments.
-It allows you to use Docker in your workflows while maintaining a GitOps workflow.
-You get fully containerized environments to run everything locally
-without having to install tools (including the Platform.sh CLI, PHP, and Composer) on your machine.
+{{% ddev/definition %}}
 
 This guide assumes you have a project already running with Platform.sh and you have the code on your computer.
 If you're starting from scratch, first [create a project from a PHP template]({{% create-project-link template=true %}}).
 
 ## Before you begin
 
-Make sure your computer meets the [system requirements for DDEV](https://ddev.readthedocs.io/en/stable/#system-requirements).
-
-For the integration to run smoothly, you also need the following tools:
-
-- `jq`
-- `base64`
-- `perl`
-
-If you don't have these already installed, use your normal package manager.
+{{% ddev/requirements %}}
 
 ## 1. Install DDEV
 
-To install DDEV, follow the [DDEV documentation for your operating system](https://ddev.readthedocs.io/en/stable/users/install/ddev-installation/).
-
-This installs the self-contained `ddev` command-line interface (CLI).
-For more information on `ddev`, run `ddev help`.
+{{% ddev/install %}}
 
 ## 2. Add DDEV configuration to your project
 
@@ -47,35 +35,11 @@ so the correct files are added.
 
 ## 3. Add an API token
 
-To connect DDEV with your Platform.sh account, use a Platform.sh API token.
-
-1.  [Create an API token](../../administration/cli/api-tokens.md#2-create-a-platformsh-api-token) in the Console.
-
-2.  Add the token to your DDEV configuration.
-    You can do so globally (easiest for most people):
-
-    ```bash
-    ddev config global --web-environment-add=PLATFORMSH_CLI_TOKEN={{< variable "API_TOKEN" >}}
-    ```
-
-    You can also add the token only to the project:
-
-    ```bash
-    ddev config --web-environment-add=PLATFORMSH_CLI_TOKEN={{< variable "API_TOKEN" >}}
-    ```
+{{% ddev/token %}}
 
 ## 4. Connect DDEV to your project
 
-The best way to connect your local DDEV to your Platform.sh project is through the [Platform.sh DDEV add-on](https://github.com/drud/ddev-platformsh).
-To add it, run the following command:
-
-```bash
-ddev get drud/ddev-platformsh
-```
-
-Answer the interactive prompts with your project ID and the name of the environment to pull data from.
-
-With the add-on, you can now run `ddev platform <command>` from your computer without needing to install the Platform.sh CLI.
+{{% ddev/connect %}}
 
 ## 5. Optional: Get your project data
 
@@ -115,7 +79,7 @@ add them to the project's DDEV environment:
 
 ```yaml {location=".ddev/config.yaml"}
 web_environment:
-    - <VARIABLE_NAME>: <VALUE>
+    - {{< variable "VARIABLE_NAME" >}}: {{< variable "VALUE" >}}
 ```
 
 To apply your changes, run the following command:

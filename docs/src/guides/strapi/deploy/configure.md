@@ -2,46 +2,11 @@
 title: "Configure Strapi for Platform.sh"
 sidebarTitle: "Configure"
 weight: -100
-toc: false
 description: |
   Review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for Strapi.
 ---
 
 {{% guides/config-desc name="Strapi" %}}
-
-## Requests configuration: `routes.yaml`
-
-{{% guides/config-routes template="strapi4" name="Strapi" %}}
-
-## Service configuration: `services.yaml`
-
-{{% guides/config-service framework=Strapi %}}
-
-Strapi requires a database to deploy.
-By default, it uses a SQLite database but other database types are also supported.
-These other database types are Oracle MySQL, PostgreSQL, or MongoDB (available only in Strapi v3 and below).
-The Strapi template defines a PostgreSQL database service.
-To use another service, replace `postgresql:12` in the example below with the name and version of the database you want.
-
-{{% /guides/config-service %}}
-
-```yaml
-# The services of the project.
-
-# Each service listed is deployed
-# to power your Platform.sh project.
-
-db:
-  type: postgresql:12
-  disk: 256
-
-# Uncomment the line below to use a MySQL database
-# dbmysql:
-#   type: oracle-mysql:8.0
-#   disk: 256
-```
-
-## Application container: `.platform.app.yaml`
 
 {{% guides/config-app template="strapi4" %}}
 
@@ -69,5 +34,33 @@ In this case, the following folders are mounted for Strapi.
 - `uploads` folder in the `public` directory
 
 {{< /guides/config-app >}}
+
+{{% guides/config-service framework="Strapi" %}}
+
+Strapi requires a database to deploy.
+By default, it uses a SQLite database but other database types are also supported.
+These other database types are Oracle MySQL, PostgreSQL, or MongoDB (available only in Strapi v3 and below).
+The Strapi template defines a PostgreSQL database service.
+To use another service, replace `postgresql:12` in the example below with the name and version of the database you want.
+
+{{% /guides/config-service %}}
+
+```yaml
+# The services of the project.
+
+# Each service listed is deployed
+# to power your Platform.sh project.
+
+db:
+  type: postgresql:12
+  disk: 256
+
+# Uncomment the line below to use a MySQL database
+# dbmysql:
+#   type: oracle-mysql:8.0
+#   disk: 256
+```
+
+{{% guides/config-routes template="strapi4" name="Strapi" %}}
 
 {{< guide-buttons next="Deploy Strapi" >}}

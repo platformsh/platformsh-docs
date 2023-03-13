@@ -39,9 +39,9 @@ For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-
 |------|-------------------------------|------------------------------ |
 |  {{< image-versions image="postgresql" status="deprecated" environment="grid" >}} | {{< image-versions image="postgresql" status="deprecated" environment="dedicated-gen-3" >}} | {{< image-versions image="postgresql" status="deprecated" environment="dedicated-gen-2" >}} |
 
-## Relationship
+{{% relationship-ref-intro %}}
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables):
+{{% service-values-change %}}
 
 {{< relationship "postgresql" >}}
 
@@ -96,18 +96,20 @@ highlight=python
 Access the service using the Platform CLI by running `platform sql`.
 
 You can also access it from your app container via [SSH](../development/ssh/_index.md).
-From your [relationship data](#relationship), you need: `username`, `host`, and `port`.
+From your [relationship data](#relationship-reference), you need: `username`, `host`, and `port`.
 Then run the following command:
 
 ```bash
-psql -U <USERNAME> -h <HOST> -p <PORT>
+psql -U {{< variable "USERNAME" >}} -h {{< variable "HOST" >}} -p {{< variable "PORT" >}}
 ```
 
-Using the values from the [example](#relationship), that would be:
+Using the values from the [example](#relationship-reference), that would be:
 
 ```bash
 psql -U main -h postgresql.internal -p 5432
 ```
+
+{{% service-values-change %}}
 
 ## Exporting data
 
@@ -155,7 +157,7 @@ That works for any SQL file, so the usual caveats about importing an SQL dump ap
 As with exporting, you can also specify a specific environment to use and a specific database relationship to use, if there are multiple.
 
 ```bash
-platform sql --relationship database -e <BRANCH_NAME> < my_database_backup.sql
+platform sql --relationship database -e {{< variable "BRANCH_NAME" >}} < my_database_backup.sql
 ```
 
 {{< note >}}
@@ -261,7 +263,7 @@ configuration:
 
 ## Service timezone
 
-To change the timezone for the current session, run `SET TIME ZONE <timezone>;`.
+To change the timezone for the current session, run `SET TIME ZONE {{< variable "TIMEZONE" >}};`.
 
 ## Extensions
 

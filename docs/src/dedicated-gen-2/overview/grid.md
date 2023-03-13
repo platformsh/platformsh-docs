@@ -34,7 +34,7 @@ The following table shows all of the extensions that are enabled by default in e
 To add any other extension with a pre-existing package in the Debian Apt repository,
 open a support ticket.
 
-{{< php-extensions architecture="dedicated" >}}
+{{< php-extensions/dedicated >}}
 
 ### Configuration options
 

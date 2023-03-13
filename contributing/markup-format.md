@@ -17,10 +17,10 @@
   - [Videos \& asciinema](#videos--asciinema)
   - [Code](#code)
     - [Indentation](#indentation)
+    - [Multiline strings](#multiline-strings)
     - [Note when low-level items are missing](#note-when-low-level-items-are-missing)
     - [Code block location](#code-block-location)
     - [Variables in code](#variables-in-code)
-      - [Variables in codetabs](#variables-in-codetabs)
   - [Refer to the UI and keys](#refer-to-the-ui-and-keys)
   - [Code tabs](#code-tabs)
   - [Reuse content](#reuse-content)
@@ -52,9 +52,10 @@ The following table presents the available options:
 | `toc`                | Boolean            | Optionally allows you to hide the table of contents on a page (by setting to `false`). |
 | `layout`             | `single` or `list` | Set to `single` on `_index.md` files to give them the same layout as other pages. |
 | `description`        | string             | Appears on `list` pages as a description of the page's content. Also overrides generic content for the `<meta name="description">` tag for SEO. Can be used in the page with the `description` shortcode. |
-| `multipleTabs`       | Boolean            | If set to true, codetabs are changed across the page. So changing the tabs in one place changes them for the entire page. Useful when codetabs are repeated often with the same title (such as comparing actions in the CLI and Console). |
+| `multipleTabs`       | Boolean            | If set to true, code tabs are changed across the page. So changing the tabs in one place changes them for the entire page. Useful when code tabs are repeated often with the same title (such as comparing actions in the CLI and Console). |
 | `tier`               | list of strings    | Include to put at banner at the top indicating the feature is only available to certain plan tiers, such as only Enterprise and Elite customers. |
 | `observabilitySuite` | Boolean            | Set as `true` to put at banner at the top indicating the feature is only available as part of the Observability Suite. |
+| `betaFlag`           | Boolean            | Set as `true` to put at banner at the top indicating the feature is in beta and only available to certain projects. |
 | `sectionBefore`      | string             | Title of a header to add before the given page in the main navigation. |
 
 ## Headings
@@ -175,12 +176,10 @@ This is text with inline <code>code</code>.
 {{ partial "note" (dict "Inner" $inner "context" .) }}
 ```
 
-To include variables from a shortcode, use `printf` and `%s` as in the following example:
+To include variables from a shortcode, use `print` as in the following example:
 
 ```markdown
-{{ $inner := printf `
-This is text in the %s shortcode.
-` ( .Get "name" ) }}
+{{ $inner := print `This is text in the ` ( .Get "name" ) ` shortcode.`}}
 {{ partial "note" (dict "Inner" $inner "context" .) }}
 ```
 
@@ -332,6 +331,16 @@ platform project:set-remote --project {{< variable "PROJECT_ID" >}}
 ```
 ````
 
+If this block is inside a shortcode, render the variable as in the following example:
+
+````markdown
+Run the following command:
+
+```bash
+platform project:set-remote --project {{ `{{< variable "PROJECT_ID" >}}` | .Page.RenderString }}
+```
+````
+
 ## Refer to the UI and keys
 
 When referring to text in the UI, use bold:
@@ -395,7 +404,7 @@ Property      | Description
 `file`        | If set, the displayed code comes from the specified local file.
 `markdownify` | Whether to transform the block to Markdown. Defaults to `true`. Set to `false` when the file/block is code.
 
-Note that if you're using code inside the Markdown file,
+Note that if you're using code inside the given tab,
 leave two empty lines after `{{ /codetabs }}` to turn off spell checking inside the block.
 
 ## Reuse content
@@ -493,7 +502,7 @@ Property      | Description
 
 ## Guidance enforcement
 
-We check for consistency in Markdown using [remarklint](https://github.com/remarkjs/remark-lint)
+We check for consistency in Markdown using [remark-lint](https://github.com/remarkjs/remark-lint)
 via ESLint, specifically the [ESLint MDX plugin](https://github.com/mdx-js/eslint-mdx).
 
 Because no checking tool is perfect,

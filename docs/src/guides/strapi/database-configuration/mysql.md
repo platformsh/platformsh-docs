@@ -2,7 +2,6 @@
 title: "Configure MySQL for Strapi on Platform.sh"
 sidebarTitle: "MySQL"
 weight: -80
-toc: false
 description: |
   Configure your Strapi application to use a MySQL database on Platform.sh.
 ---

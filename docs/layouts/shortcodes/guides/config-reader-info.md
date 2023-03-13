@@ -1,10 +1,11 @@
 {{ $lang := .Get "lang" }}
-Platform.sh provides all information about the running environment,
+You can get all information about a deployed environment,
 including how to connect to services, through [environment variables]({{ relref . "/development/variables/_index.md" }}).
-These may be accessed directly, but it's often easier to use the Platform.sh [Config Reader library](https://github.com/platformsh/config-reader-{{ $lang }}).
-It's a set of utilities to wrap the environment variables and make them a bit more ergonomic to work with.
+Your app can [access these variables]({{ relref . "development/variables/use-variables.md#access-variables-in-your-app" }}).
 
 {{ if eq $lang "nodejs" }}
+Install the package with your preferred package manager:
+
 ```bash
 npm install platformsh-config 
 

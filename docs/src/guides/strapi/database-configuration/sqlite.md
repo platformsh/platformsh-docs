@@ -2,7 +2,6 @@
 title: "Configure SQLite for Strapi on Platform.sh"
 sidebarTitle: "SQLite"
 weight: -100
-toc: false
 description: |
   Configure your Strapi application to use a SQLite database on Platform.sh.
 ---
@@ -11,7 +10,7 @@ Strapi uses SQLite database by default when it's run on a local machine.
 When you create a new Strapi project, you can use SQLite or a custom database installation (PostgreSQL, MongoDB, or MySQL).
 Since Strapi uses SQLite by default, you don't need much configuration, just follow these steps:
 
-1. In your Strapi project, install the Platfom.sh config reader.
+1. In your Strapi project, install the [config reader](../../../development/variables/use-variables.md#access-variables-in-your-app).
 
    ```bash
    npm install platformsh-config

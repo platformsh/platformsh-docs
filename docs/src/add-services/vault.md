@@ -18,15 +18,15 @@ The Vault key management service (KMS) provides key management and access contro
 
 {{% endpoint-description type="vault-kms" noApp=true %}}
 
-* `<SERVICE_NAME>` is the name you choose to identify the service.
-* `<VERSION>` is a supported version of the service.
-* `<ENDPOINT_ID>` is an identifier you choose for the endpoint.
-* `<KEY_NAME>` is the name of the key to be stored in the Vault KMS.
-* `<POLICY>` is one of the available [policies](#policies) based on what you want to accomplish.
-* The `type` is one of:
+- {{< variable "SERVICE_NAME" >}} is the name you choose to identify the service.
+- {{< variable "VERSION" >}} is a supported version of the service.
+- {{< variable "ENDPOINT_ID" >}} is an identifier you choose for the endpoint.
+- {{< variable "KEY_NAME" >}} is the name of the key to be stored in the Vault KMS.
+- {{< variable "POLICY" >}} is one of the available [policies](#policies) based on what you want to accomplish.
+- The `type` is one of:
 
-  * `sign`: for signing payloads, with the type `ecdsa-p256`
-  * `encrypt` (for encrypt`chacha20-poly1305`).
+  - `sign`: for signing payloads, with the type `ecdsa-p256`
+  - `encrypt` (for encrypt`chacha20-poly1305`).
 
   The `type` can't be changed after creation.
 
@@ -36,9 +36,11 @@ You can create multiple endpoints, such as to have key management separate from 
 
 ## Use Vault KMS
 
-To connect your app to the Vault KMS, use a token that is defined in the `$PLATFORM_RELATIONSHIPS` environment variable.
+To connect your app to the Vault KMS, use a token that's defined in the `$PLATFORM_RELATIONSHIPS` environment variable.
 With this token for authentication,
 you can use any of the policies you [defined in your `.platform/services.yaml` file](#1-configure-the-service).
+
+{{% service-values-change %}}
 
 The following examples use cURL as an example, which you could do in a hook or after accessing your app with SSH.
 Adapt the examples for your app's language.
@@ -48,17 +50,17 @@ Adapt the examples for your app's language.
 To make any calls to the Vault KMS, you need your token. Get it from the `$PLATFORM_RELATIONSHIPS` environment variable:
 
 ```bash
-echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".<SERVICE_NAME>[0].password"
+echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "SERVICE_NAME" >}}[0].password"
 ```
 
-`<SERVICE_NAME>` is the name you [defined in your `.platform.app.yaml` file](#2-add-the-relationship).
+`{{< variable "SERVICE_NAME" >}}` is the name you [defined in your `.platform.app.yaml` file](#2-add-the-relationship).
 
 The `-r` flag returns the string itself, not wrapped in quotes.
 
 You can also store this as a variable:
 
 ```bash
-VAULT_TOKEN=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".<SERVICE_NAME>[0].password")
+VAULT_TOKEN=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "SERVICE_NAME" >}}[0].password")
 ```
 
 A given token is valid for one year from its creation.
@@ -239,9 +241,9 @@ In the JSON object that's returned, you can notice that the `ciphertext` is diff
 }
 ```
 
-## Relationship
+{{% relationship-ref-intro %}}
 
-The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables):
+{{% service-values-change %}}
 
 {{< relationship "vault-kms" >}}
 

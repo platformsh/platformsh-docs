@@ -138,7 +138,7 @@ Permission denied (publickey).
 or
 
 ```bash
-GIT_SSH_COMMAND="ssh -v" git clone <REPO_URL>
+GIT_SSH_COMMAND="ssh -v" git clone {{< variable "REPO_URL" >}}
 ```
 
 You can use this information to make one last check of the private key file.

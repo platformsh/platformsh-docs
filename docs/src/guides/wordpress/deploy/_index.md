@@ -13,7 +13,7 @@ WordPress is a popular Content Management System written in PHP. The recommended
 With some caveats, it's possible to deploy WordPress to Platform.sh without using Composer, [though not recommended](/guides/wordpress/composer/_index.md). You can consult the ["WordPress without Composer on Platform.sh"](/guides/wordpress/vanilla/_index.md) guide to set that up, but do consider [upgrading to use Composer](/guides/wordpress/composer/migrate.md).
 {{< /note >}}
 
-{{% guides/starting-point name="WordPress" templateRepo="wordpress-composer" composerLink="https://github.com/johnpbloch/wordpress" %}}
+{{% guides/starting-point name="WordPress" templateRepo="wordpress-composer" composerLink="https://github.com/johnpbloch/wordpress" initExample=true %}}
 
 {{< note >}}
 All of the examples in this deployment guide use the [`wordpress-composer`](https://github.com/platformsh-templates/wordpress-composer) template maintained by the Platform.sh team. That template is built using the [John Bloch Composer fork](https://github.com/johnpbloch/wordpress) of WordPress, which is meant to facilitate managing WordPress with Composer, but the template comes with its own assumptions. One is that WordPress core is downloaded by default into a `wordpress` subdirectory when installed, but other teams would rather specify another subdirectory along with many more assumptions. 
@@ -21,21 +21,19 @@ All of the examples in this deployment guide use the [`wordpress-composer`](http
 An alternative approach is shown in Platform.sh's [Bedrock template](https://github.com/platformsh-templates/wordpress-bedrock), which installs core into `web/wp`, exports environment customization to a separate `config/environments` directory, and largely depends on setting environment variables to configure the database. Your are free to follow that template as an example with this guide, though there are slight differences. For its ease of use, the Bedrock approach is often used as a substitute starting point in some of the other WordPress guides in this documentation.
 {{< /note >}}
 
-## Tools
+{{% guides/requirements %}}
 
-{{% guides/tools %}}
+## Initialize a project
 
-## Sign up for Platform.sh and initialize your project
+{{< guides/initialize name="WordPress" template="wordpress-composer" >}}
 
-{{% guides/signup name="WordPress" template="wordpress-composer" %}}
+If you don't have code, create a new WordPress project from scratch.
+The following command creates a brand new WordPress project.
 
-3. Initialize or clone your Git repository with existing code or create a new Composer-based project from scratch.
-   The commands below create a brand new WordPress project using Composer, which you can then modify according to the rest of this guide.
+```bash
+git clone https://github.com/johnpbloch/wordpress && cd wordpress
+```
 
-   ```bash
-   git clone https://github.com/johnpbloch/wordpress && cd wordpress
-   ```
-
-{{% /guides/signup %}}
+{{< /guides/initialize >}}
 
 {{< guide-buttons next="Configure repository" type="first" >}}

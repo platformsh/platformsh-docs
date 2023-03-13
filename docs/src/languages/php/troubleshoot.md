@@ -58,7 +58,7 @@ Otherwise, you may check if the following options are applicable:
   Refer to [how caching works](../../define-routes/cache.md).
 - Upgrade your Platform.sh plan to get more computing resources.
 
-## PHP process crashed
+## Troubleshoot a crashed PHP process
 
 If your PHP process crashed with a segmentation fault,
 you encounter a message like the following:
@@ -68,10 +68,10 @@ WARNING: [pool web] child 112 exited on signal 11 (SIGSEGV) after 7.405936 secon
 ```
 
 Either a PHP extension is hitting a segmentation fault or your PHP app code is crashing.
-You should review recent changes in your app and try to find the cause of it, 
-probably with the help of [Xdebug](./xdebug.md).
+Review recent changes in your app and try to find the root cause.
+You might want to use a tool such as [Xdebug](./xdebug.md) for quicker troubleshooting.
 
-## PHP process is killed
+## Troubleshoot a killed PHP process
 
 If your PHP process is killed by the kernel,
 you encounter a message like the following:
@@ -81,11 +81,22 @@ WARNING: [pool web] child 429 exited on signal 9 (SIGKILL) after 50.938617 secon
 ```
 
 That means the memory usage of your container exceeds the limit allowed on your plan, so the kernel kills the offending process.
-You should try the following:
+To solve this issue, try the following approaches:
 
-- Check if the memory usage of your app is expected and try to optimize it.
+- Check if the memory usage of your app is as expected and try to optimize it.
 - Use [sizing hints](./fpm.md) to reduce the amount of PHP workers, which reduces the memory footprint.
 - Upgrade your Platform.sh plan to get more computing resources.
+
+## Restart PHP processes stuck during a build or deployment
+
+If your [build or deployment is running longer than expected](../../development/troubleshoot.md#stuck-build-or-deployment),
+it might be because of a PHP process getting stuck.
+
+To restart your PHP processes, run the following command in your app container:
+
+```bash
+pkill -f php-fpm
+```
 
 ## Resource temporarily unavailable
 

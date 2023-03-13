@@ -37,9 +37,9 @@ Persistent Redis requires a disk to store data.
 You can define `<SERVICE_NAME>` as you like, but it shouldn't include underscores (`_`).
 {{ end }}
 
-Note that if you later change the name, it's treated as an entirely new service.
-This removes all data from your service.
-Always backup your data before changing the service.
+Note that changing the name of the service replaces it with a brand new service
+and all existing data is lost.
+Back up your data before changing the service.
 
 <!-- Extra text to explain service configuration -->
 {{ .Inner }}
@@ -130,6 +130,7 @@ mounts:
 
 <!-- Don't add use in app intro to Headless Chrome, which has different content -->
 {{ if ne ($type) "chrome-headless" }}
-Then use the service in your app with a configuration file like the following:
+To use the configured service in your app,
+add a configuration file similar to the following to your project:
 {{ end }}
 {{ end }}

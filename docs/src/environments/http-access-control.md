@@ -44,7 +44,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform environment:http-access -e <ENVIRONMENT_NAME> --auth <USERNAME>:<PASSWORD>
+platform environment:http-access -e {{< variable "ENVIRONMENT_NAME" >}} --auth {{< variable "USERNAME" >}}:{{< variable "PASSWORD" >}}
 ```
 
 For example, to add the username `name` with the password `12321` to the `test` environment, run:
@@ -93,7 +93,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform environment:http-access -e <ENVIRONMENT_NAME> --access allow:<IPS_TO_ALLOW> --access deny:<IPS_TO_DENY>
+platform environment:http-access -e {{< variable "ENVIRONMENT_NAME" >}} --access allow:{{< variable "IPS_TO_ALLOW" >}} --access deny:{{< variable "IPS_TO_DENY" >}}
 ```
 
 {{< /codetabs >}}

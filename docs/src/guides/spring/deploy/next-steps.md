@@ -2,7 +2,6 @@
 title: "Additional resources"
 sidebarTitle: "Next steps"
 weight: -70
-toc: false
 description: |
     Resources for further developing your site.
 ---

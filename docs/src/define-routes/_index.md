@@ -65,29 +65,14 @@ Redirects from `http` to `https` are generally included by default and don't nee
 
 ### Multi-app route definition
 
-You can define routes for multiple apps per environment.
-For example, if you have a front-end app with the name `app` and another app with the name `api`,
-you could define your routes like this:
-
-```yaml {location=".platform/routes.yaml"}
-"https://{default}/":
-    type: upstream
-    upstream: "app:http"
-"https://{default}/api":
-    type: upstream
-    upstream: "api:http"
-```
-
-The route for the `api` app could be anything in the domain, even a subdomain like `https://api.{default}/`.
-Be aware that using a subdomain might [double your network traffic](https://nickolinger.com/blog/2021-08-04-you-dont-need-that-cors-request/),
-so consider using a path like `https://{default}/api` instead.
+The specifics of configuring the Router container for multiple applications is explored in detail in the [Multiple apps](/create-apps/multi-app.md#routes) documentation.
 
 ## Trailing slashes
 
 All defined routes have at least a slash in the path.
 So you might define routes for 2 apps named `app` and `api` as follows:
 
-```yaml {location==".platform/routes.yaml"}
+```yaml {location=".platform/routes.yaml"}
 
 "https://{default}":
     type: upstream
@@ -414,7 +399,7 @@ You can configure each route separately with the following properties:
 | `cache`      | Object    | No                      | Defines caching policies for the given route. Enabled by default. For details and options, see [route caching](./cache.md). |
 | `id`         | `string`  | No                      | A unique identifier for the route. See [route identifiers](#route-identifiers). |
 | `primary`    | `boolean` | No                      | Whether the route is the primary route for the project. Can only be `true` for one route in the configuration file, but if you use the [`{all}` placeholder](#all), it can be `true` for multiple final routes. Defaults to the first defined `upstream` route. |
-| `tls`        | Object    | No                      | TLS configuration. See [HTTPS](./https.md#tls-configuration). |
+| `tls`        | Object    | No                      | TLS configuration. See [HTTPS](./https.md#optional-configure-tls-connections). |
 | `attributes` | Object    | No                      | Any key-value pairs you want to make available to your app. See [route attributes](#route-attributes). |
 
 ## CLI access
@@ -425,7 +410,7 @@ plus the default redirect from HTTP to HTTPS.
 They aren't the final generated routes.
 
 ```bash
-$ platform environment:routes 
+$ platform environment:routes
 Routes on the project Example (abcdef123456), environment main (type: production):
 +---------------------------+----------+---------------------------+
 | Route                     | Type     | To                        |

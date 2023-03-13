@@ -19,29 +19,17 @@ Puppeteer can be used to generate PDFs and screenshots of web pages, automate fo
 
 {{% image-versions-legacy "chrome-headless" %}}
 
-## Relationship
+{{% relationship-ref-intro %}}
 
-The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables):
+{{% service-values-change %}}
 
-```yaml
-{
-    "service": "headless",
-    "ip": "169.254.73.96",
-    "hostname": "3rxha4e2w4yv36lqlypy7qlkza.headless.service._.eu-3.platformsh.site",
-    "cluster": "moqwtrvgc63mo-main-7rqtwti",
-    "host": "headless.internal",
-    "rel": "http",
-    "scheme": "http",
-    "type": "chrome-headless:73",
-    "port": 9222
-}
-```
+{{< relationship "headlesschrome" >}}
 
 ## Requirements
 
 Puppeteer requires at least Node.js version 6.4.0, while using the async and await examples below requires Node 7.6.0 or greater.
 
-Using the Platform.sh [Config Reader](https://github.com/platformsh/config-reader-nodejs) library requires Node.js 10 or later.
+Using the [Config Reader](../development/variables/use-variables.md#access-variables-in-your-app) library requires Node.js 10 or later.
 
 ### Other languages
 
@@ -62,7 +50,7 @@ After configuration, include Puppeteer as a dependency:
 }
 ```
 
-Using the [Node.js Config Reader](https://github.com/platformsh/config-reader-nodejs) library, you can retrieve formatted credentials for connecting to headless Chrome with Puppeteer:
+Using the [Node.js Config Reader library](../development/variables/use-variables.md#access-variables-in-your-app), you can retrieve formatted credentials for connecting to headless Chrome with Puppeteer:
 
 ```js
 const platformsh = require('platformsh-config');

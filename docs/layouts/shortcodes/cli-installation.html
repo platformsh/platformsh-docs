@@ -1,7 +1,14 @@
-<p>To install the CLI, use either <a href="https://brew.sh/">Homebrew</a> (on Linux, macOS, or the Windows Subsystem for Linux)
-or <a href="https://scoop.sh/">Scoop</a> (on Windows):</p>
+<p>To install the CLI, use a <a href="https://github.com/platformsh/cli#user-content-bash-installer">Bash installation script</a>.
+You can also install with <a href="https://brew.sh/">Homebrew</a> (on Linux, macOS, or the Windows Subsystem for Linux)
+or <a href="https://scoop.sh/">Scoop</a> (on Windows).</p>
 
 {{ $Inner := `
++++
+title=Installation script
+highlight=bash
++++
+$ curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
+<--->
 +++
 title=Homebrew
 highlight=bash
@@ -17,6 +24,4 @@ $ scoop install platform
 `}}
 {{ partial "codetabs/tabs" ( dict "Inner" $Inner "Page" .Page ) }}
 
-<p>For manual installation, you can also <a href="https://github.com/platformsh/cli/releases/latest">download the latest binaries</a>.</p>
-
-<p>If you have issues with missing libraries on a Mac, see how to <a href="https://community.platform.sh/t/troubleshoot-cli-installation-on-m1-macs/1202">troubleshoot CLI installation on M1 Macs</a>.</p>
+<p>If you have issues with installation on a Mac, such as missing libraries, see how to <a href="https://community.platform.sh/t/troubleshoot-cli-installation-on-m1-macs/1202">troubleshoot CLI installation on M1 Macs</a>.</p>
