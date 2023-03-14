@@ -132,7 +132,7 @@ To fix this, run:
 platform project:set-remote --project {{< variable "PROJECT_ID" >}}
 ```
 
-Replace `<PROJECT_ID>` with the ID of your project.
+Replace `{{< variable "PROJECT_ID" >}}` with the ID of your project.
 You can find that in the Console or by running `platform projects` to list all accessible projects.
 
 ### Choose between the CLI and Git commands
@@ -205,7 +205,7 @@ or a [hook](../../create-apps/app-reference.md#hooks).
 The syntax looks like the following:
 
 ```bash
-platform ssh -- <COMMAND> <ARGUMENTS>
+platform ssh -- {{< variable "COMMAND" >}} {{< variable "ARGUMENTS" >}}
 ```
 
 For example, to run a specific Python script named `my-script.py` on your current environment,

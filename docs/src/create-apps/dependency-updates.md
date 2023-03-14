@@ -139,8 +139,8 @@ Note that it’s best not to run source operations on your production environmen
 but rather on a dedicated environment where you can test changes.
 
 1.  Make sure you have the [Platform.sh CLI](../administration/cli/_index.md) installed
-   and [an API token](../administration/cli/api-tokens.md#2-create-a-platformsh-api-token)
-   so you can run a cron job in your app container.
+    and [an API token](../administration/cli/api-tokens.md#2-create-a-platformsh-api-token)
+    so you can run a cron job in your app container.
 
 2.  Set your API token as a top-level environment variable:
 
@@ -180,32 +180,32 @@ Make sure you carefully check your [user access on this project](../administrati
 
 3.  Add a build hook to your app configuration to install the CLI as part of the build process:
 
-   ```yaml {location=".platform.app.yaml"}
-   hooks:
-       build: |
-           set -e
-           echo "Installing Platform.sh CLI"
-           curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
+    ```yaml {location=".platform.app.yaml"}
+    hooks:
+        build: |
+            set -e
+            echo "Installing Platform.sh CLI"
+            curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
       
-           echo "Testing Platform.sh CLI"
-           platform  
-   ```
+            echo "Testing Platform.sh CLI"
+            platform  
+    ```
 
 4.  Then, to configure a cron job to automatically update your dependencies once a day,
-   use a configuration similar to the following:
+    use a configuration similar to the following:
 
-   ```yaml {location=".platform.app.yaml"}
-   crons:
-      update:
-          # Run the code below every day at midnight.
-          spec: '0 0 * * *'
-          commands:
-              start: |
-                  set -e
-                      platform sync -e development code data --no-wait --yes
-                      platform source-operation:run update --no-wait --yes
-                  fi
-   ```
+    ```yaml {location=".platform.app.yaml"}
+    crons:
+       update:
+           # Run the code below every day at midnight.
+           spec: '0 0 * * *'
+           commands:
+               start: |
+                   set -e
+                       platform sync -e development code data --no-wait --yes
+                       platform source-operation:run update --no-wait --yes
+                   fi
+    ```
 
 The example above synchronizes the `development` environment with its parent
 and then runs the `update` source operation defined [previously](#define-a-source-operation-to-update-your-dependencies).
@@ -228,60 +228,60 @@ through a message posted on a Slack channel.
 To do so, follow these steps:
 
 1.  In your Slack administrative interface, [create a new Slack webhook](https://api.slack.com/messaging/webhooks).
-   You get a URL starting with `https://hooks.slack.com/`.
+    You get a URL starting with `https://hooks.slack.com/`.
 
 2.  Replace `SLACK_URL` in the following `.js` script with your webhook URL.
 
 3.  Add the following code to a `.js` file:
 
-   ```javascript
-   /**
-   * Sends a color-coded formatted message to Slack.
-   *
-   * To control what events trigger it, use the --events switch in
-   * the Platform.sh CLI.
-   *
-   * Replace SLACK_URL in the following script with your Slack webhook URL.
-   * Get one here: https://api.slack.com/messaging/webhooks
-   * You should get something like: const url = 'https://hooks.slack.com/...';
-   *
-   * activity.text: a brief, one-line statement of what happened.
-   * activity.log: the complete build and deploy log output, as it would be seen in the Console log screen.
-   */
-   function sendSlackMessage(title, message) {
-     const url = 'SLACK_URL';
-     const messageTitle = title;
-     const color = activity.result === "success" ? "#66c000" : "#ff0000";
-     const body = {
-       attachments: [
-         {
-           title: messageTitle,
-           text: message,
-           color: color,
-         },
-       ],
-     };
-     const resp = fetch(url, {
-       method: "POST",
-       headers: {
-         "Content-Type": "application/json",
-       },
-       body: JSON.stringify(body),
-     });
-     if (!resp.ok) {
-       console.log("Sending slack message failed: " + resp.body.text());
-     }
-   }
-   sendSlackMessage(activity.text, activity.log);
-   ```
+    ```javascript
+    /**
+    * Sends a color-coded formatted message to Slack.
+    *
+    * To control what events trigger it, use the --events switch in
+    * the Platform.sh CLI.
+    *
+    * Replace SLACK_URL in the following script with your Slack webhook URL.
+    * Get one here: https://api.slack.com/messaging/webhooks
+    * You should get something like: const url = 'https://hooks.slack.com/...';
+    *
+    * activity.text: a brief, one-line statement of what happened.
+    * activity.log: the complete build and deploy log output, as it would be seen in the Console log screen.
+    */
+    function sendSlackMessage(title, message) {
+      const url = 'SLACK_URL';
+      const messageTitle = title;
+      const color = activity.result === "success" ? "#66c000" : "#ff0000";
+      const body = {
+        attachments: [
+          {
+            title: messageTitle,
+            text: message,
+            color: color,
+          },
+        ],
+      };
+      const resp = fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
+      if (!resp.ok) {
+        console.log("Sending slack message failed: " + resp.body.text());
+      }
+    }
+    sendSlackMessage(activity.text, activity.log);
+    ```
 
 4.  Run the following [Platform.sh CLI](../administration/cli/_index.md) command:
 
-   ```bash
-   platform integration:add --type script --file ./my_script.js --events=environment.source-operation
-   ```
-   Optional: to only get notifications about specific environments,
-   add the following flag to the command: `--environments=your_environment_name`.
+    ```bash
+    platform integration:add --type script --file ./my_script.js --events=environment.source-operation
+    ```
+    Optional: to only get notifications about specific environments,
+    add the following flag to the command: `--environments=your_environment_name`.
 
 Anytime a dependency is updated via a source operation,
 the activity script now reports it to Slack.

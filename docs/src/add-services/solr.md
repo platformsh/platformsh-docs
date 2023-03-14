@@ -94,7 +94,7 @@ searchsolr:
     type: solr:4.10
     disk: 1024
     configuration:
-        core_config: !archive "<directory>"
+        core_config: !archive "{{< variable "DIRECTORY" >}}"
 ```
 
 The `directory` parameter points to a directory in the Git repository, in or below the `.platform/` folder. This directory needs to contain everything that Solr needs to start a core. At the minimum, `solrconfig.xml` and `schema.xml`. For example, place them in `.platform/solr/conf/` such that the `schema.xml` file is located at `.platform/solr/conf/schema.xml`. You can then reference that path like this -
@@ -247,7 +247,7 @@ The configuration directory is a collection of configuration data, like a data d
 Because Solr uses HTTP for both its API and admin interface it's possible to access the admin interface over an SSH tunnel.
 
 ```bash
-platform tunnel:open --relationship {{< variable "RELATIONSHIP_NAME" >}}
+platform tunnel:single --relationship {{< variable "RELATIONSHIP_NAME" >}}
 ```
 
 By default, this opens a tunnel at `127.0.0.1:30000`.
@@ -256,12 +256,8 @@ You can now open `http://localhost:30000/solr/` in a browser to access the Solr 
 Note that you can't create indexes or users this way,
 but you can browse the existing indexes and manipulate the stored data.
 
-{{< note >}}
-
-{{% names/dedicated-gen-2 %}} users can use `ssh -L 8888:localhost:8983 <user>@<cluster-name>.ent.platform.sh` to open a tunnel instead,
+For {{% names/dedicated-gen-2 %}} use `ssh -L 8888:localhost:8983 {{< variable "USER" >}}@{{< variable "CLUSTER_NAME" >}}.ent.platform.sh` to open a tunnel instead,
 after which the Solr server administrative interface is available at `http://localhost:8888/solr/`.
-
-{{< /note >}}
 
 ## Upgrading
 

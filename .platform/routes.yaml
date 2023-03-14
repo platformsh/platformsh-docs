@@ -164,6 +164,11 @@ https://{default}/:
       # New scalability page
       "/dedicated-gen-2/architecture/scalability.html": { "to": "/environments/scalability.html", "code": 301 }
 
+      # Redirects for new DG2 and DG3 sections
+      "/dedicated-gen-3/overview.html" : { "to": "/dedicated-gen-3.html", "code": 301 }
+      "/dedicated-gen-2/overview/onboarding.html" : { "to": "/dedicated-gen-2.html", "code": 301 }
+
+
 "https://search.{default}/":
     type: upstream
     upstream: "search:http"

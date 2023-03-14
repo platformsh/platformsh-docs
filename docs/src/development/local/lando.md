@@ -53,7 +53,7 @@ If your code isn't present locally, retrieve your codebase with one of these met
 
 Otherwise, access the directory with your project.
 
-Run `lando init --recipe platformsh --source cwd --platformsh-auth <API_TOKEN>` and follow the instructions provided by the interactive prompt.
+Run <code>lando init --recipe platformsh --source cwd --platformsh-auth {{% variable "API_TOKEN" %}}</code> and follow the instructions provided by the interactive prompt.
 
 <--->
 
@@ -69,7 +69,7 @@ It also includes the required Platform.sh configuration files out of the box.
 2. Clone that project locally in one of these ways:
     - Using the [Platform.sh CLI](../../administration/cli/_index.md) by running <code>platform get {{< variable "PROJECT_ID" >}}</code>.
     - Using [Git](../../administration/web/configure-environment.md#actions-on-environments)
-3. In the project's folder, run `lando init --recipe platformsh --source platformsh --platformsh-auth <API_TOKEN>`.
+3. In the project's folder, run <code>lando init --recipe platformsh --source platformsh --platformsh-auth {{% variable "API_TOKEN" %}}</code>.
 4. Follow the instructions provided by the interactive prompt.
    On the `Which project?` step, select the project created in the first step.
 
@@ -112,7 +112,7 @@ To access specific logs:
 
 1. Run `lando list` to get a list of the services you are using.
 2. Choose the one you'd like to inspect.
-3. Run `lando logs -s <SERVICE_TO_INSPECT>`.
+3. Run <code>lando logs -s {{% variable "SERVICE_TO_INSPECT" %}}</code>.
 
 For more guidance regarding logs, check the [Lando logs documentation](https://docs.lando.dev/help/logs.html)
 

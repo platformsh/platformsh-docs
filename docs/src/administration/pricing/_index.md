@@ -49,7 +49,7 @@ Development environments can't be mapped to [custom domain names](../../domains/
 Their resources are separate from Production environments.
 
 App containers on development environments default to a size of {{< partial "plans/default-dev-env-size" >}}.
-If you have the [`plans` permission](../organizations.md#manage-your-organization-users),
+If you have the [manage plans permission](../users.md#organization-user-permissions),
 you can increase the size to match your production environment.
 To do so, follow these steps:
 
@@ -111,7 +111,7 @@ don't hesitate to [contact support](https://console.platform.sh/-/users/~/ticket
 
 For more resources along with triple redundancy on every element of the stack, use a {{% names/dedicated-gen-3 %}} plan.
 
-Learn more about [{{% names/dedicated-gen-3 %}}](../../dedicated-gen-3/overview.md).
+Learn more about [{{% names/dedicated-gen-3 %}}](../../dedicated-gen-3/_index.md).
 
 To discuss how {{% names/dedicated-gen-3 %}} could work for you, [contact Sales](https://platform.sh/contact/).
 
@@ -127,7 +127,7 @@ If you experience repeated overages, please reach out to your Customer Success M
 Plans with a Fastly CDN service or the extra Fastly Service include the following:
 
 - 1&nbsp;Tb of egress (outgoing) bandwidth on the CDN (Fastly)
-- 500 million ingress (incoming) requests on the CDN
+- 50 million ingress (incoming) requests on the CDN
 
 *Plans without the Fastly Service are instead charged at the following origin prices.*
 
@@ -135,9 +135,9 @@ Plans with a Fastly CDN service or the extra Fastly Service include the followin
 
 | SKU             | Description                                                                             | USD  | EUR  | AUD    | CAD    | GBP  |
 |-----------------|-----------------------------------------------------------------------------------------|------|------|--------|--------|------|
-| `BDW-1-POST`    | Additional 1&nbsp;Tb of egress bandwidth and 500 million ingress requests               | $88  | €77  | AU$128 | CA$119 | £68  |
+| `BDW-1-POST`    | Additional 1&nbsp;Tb of egress bandwidth and 50 million ingress requests               | $88  | €77  | AU$128 | CA$119 | £68  |
 | `EDGE-REQ-POST` | Additional 50 million ingress requests                                                  | $66  | €62  | AU$95  | CA$88  | £54  |
-| `ORN-1-POST`    | Additional 1&nbsp;Tb of egress bandwidth and 500 million ingress requests at the origin | $209 | €167 | AU$316 | CA$284 | £189 |
+| `ORN-1-POST`    | Additional 1&nbsp;Tb of egress bandwidth and 50 million ingress requests at the origin | $209 | €167 | AU$316 | CA$284 | £189 |
 
 ### DDoS surge protection
 

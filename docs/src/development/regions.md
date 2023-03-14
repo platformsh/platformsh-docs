@@ -7,7 +7,7 @@ weight: 14
 description: See information about Platform.sh regions, including their environmental impact and IP addresses.
 ---
 
-Platform.sh offers several different regions for hosting project data.
+Platform.sh offers several regions for hosting project data.
 You can choose a region based on criteria such as its closeness to your users and its environmental impact.
 
 ## Environmental impact
@@ -25,7 +25,7 @@ Information on carbon intensity is also available in the Platform.sh API.
 For example, to get a JSON object of the regions with their carbon intensities, run the following command:
 
 ```bash
-platform api:curl regions | jq -r '.regions | map({(.label|tostring):.environmental_impact.carbon_intensity}) | add'
+platform api:curl regions | jq -r '.regions[] | select(.available != false) | .label + ": " + .environmental_impact.carbon_intensity'
 ```
 
 See all available information in the [API documentation](https://api.platform.sh/docs/#tag/Regions).
@@ -37,6 +37,16 @@ Each organization can have its own rules for what regions to allow.
 When adding a new project, you only see regions allowed by your organization.
 
 The list of regions includes legacy regions as reference.
+
+## Region location
+
+To find out where a given region is hosted, use the following command:
+
+``` bash
+platform api:curl regions | jq '.regions[] | select(.available != false)  | .id + ": " + .provider.name + " - " + .zone + " - " + .timezone' | sort
+```
+
+The returned list contains, for each available region, its name, provider, geographic zone and its timezone.
 
 ### Legacy regions
 

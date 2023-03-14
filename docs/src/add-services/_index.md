@@ -29,8 +29,8 @@ All service configuration happens in the services configuration file (`.platform
 Configure your service in the following pattern:
 
 ```yaml {location=".platform/services.yaml"}
-<SERVICE_NAME>:
-    type: <SERVICE_TYPE>:<VERSION>
+{{<variable "SERVICE_NAME" >}}:
+    type: {{<variable "SERVICE_TYPE" >}}:{{<variable "VERSION" >}}
     # Other options...
 ```
 
@@ -96,7 +96,7 @@ The relationship follows this pattern:
 
 ```yaml {location=".platform.app.yaml"}
 relationships:
-    <RELATIONSHIP_NAME>: "<SERVICE_NAME>:<ENDPOINT>"
+    {{< variable "RELATIONSHIP_NAME" >}}: "{{< variable "SERVICE_NAME" >}}:{{< variable "ENDPOINT" >}}"
 ```
 
 An example relationship to connect to the databases given in the [example in step 1](#1-configure-the-service):

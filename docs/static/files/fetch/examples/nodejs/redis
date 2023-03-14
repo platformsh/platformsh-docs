@@ -6,7 +6,7 @@ exports.usageExample = async function() {
     const credentials = config.credentials('redis');
     const client = redis.createClient(credentials.port, credentials.host);
 
-    // Make the Redis client promise-aware.
+    // The Redis client is not Promise-aware, so make it so.
     const redisGet = promisify(client.get).bind(client);
     const redisSet = promisify(client.set).bind(client);
 
