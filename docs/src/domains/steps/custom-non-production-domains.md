@@ -1,7 +1,7 @@
 ---
 title: Set up a custom domain on your non-production environments
-sidebarTitle: (Beta) Custom non-production domains
-weight: 2
+sidebarTitle: (Beta) Non-production environments
+weight: 3
 description: Learn how to set up custom domains on your staging and development environments
 betaFlag: true
 ---
@@ -98,12 +98,8 @@ platform domain:add development.mysite.com --environment Dev --replace mysite.co
 
 Note that in the above example, the `Dev` environment needs to exist
 for you to add the `development.mysite.com` custom domain successfully.
-
 If the `Dev` environment is later removed,
 the `development.mysite.com` custom domain is removed too.
-
-In this case, you can't create a new environment called `Dev` to restore the `development.mysite.com` custom domain.
-You have to create a new `development.mysite.com` custom domain. 
 
 Also, you can't update a custom non-production domain.
 You can only delete it and create a new one as a replacement.
