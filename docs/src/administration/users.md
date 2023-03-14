@@ -84,10 +84,9 @@ If you want to add `user2@example.com` to the project as a contributor for Devel
 and a viewer for Staging environments,
 run the following command:
 
-The user has to create an account before they can contribute to the project.
-Once you add a user to a project, they receive an email with instructions.
-For SSH access changes to apply after you add a user to a project,
-you have to redeploy each environment by either clicking **Redeploy** in the Console or running `platform redeploy`.
+```bash
+platform user:add user2@example.com -r development:contributor -r staging:viewer
+```
 
 <--->
 +++
@@ -102,6 +101,11 @@ title=In the Console
 6. Click **Save**.
 
 {{< /codetabs >}}
+
+The user has to create an account before they can contribute to the project.
+Once you add a user to a project, they receive an email with instructions.
+For SSH access changes to apply after you add a user to a project,
+you have to redeploy each environment by either clicking **Redeploy** in the Console or running `platform redeploy`.
 
 ### Remove a user from a project
 
