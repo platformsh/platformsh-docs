@@ -240,7 +240,7 @@ Make sure you carefully check your [user access on this project](../administrati
     ```
 
 The example above synchronizes the `development` environment with its parent
-and then runs the `update` source operation defined [previously](#define-a-source-operation-to-update-your-dependencies).
+and then runs the `update` source operation defined [previously](#1-define-a-source-operation).
 
 ## Source operation examples
 
