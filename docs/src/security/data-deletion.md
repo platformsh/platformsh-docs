@@ -16,6 +16,6 @@ Media destruction is handled via our backend providers. When the provider decomm
 
 ## Data subject removal
 
-Data subject deletion requests where Platform.sh is the controller are handled via a [support ticket](https://docs.platform.sh/overview/getting-help.html). For contracts designating Platform.sh as the processor, deletion requests should be sent to the controller, and we will forward any that we receive.
+Data subject deletion requests where Platform.sh is the controller are handled via a [support ticket](https://docs.platform.sh/overview/getting-help.html). For contracts designating Platform.sh as the processor, deletion requests are sent to the controller, we forward any requests that we receive.
 
 Our product is a Platform as a Service. Platform.sh doesn't directly edit customer data to ensure data confidentiality, security, and integrity. All data deletion requests for customer data must be handled by the concerned data controller.
