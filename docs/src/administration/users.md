@@ -45,7 +45,7 @@ To customize which roles can use SSH, set [`access` in your app configuration](.
 
 | Role        | View environment | Push code | Branch environment | SSH access | Change settings | Execute actions |
 |-------------|------------------|-----------|--------------------|------------|-----------------|-----------------|
-| Viewer      | Yes              | No        | No                 | No         | No              | No              |
+| Viewer      | Yes              | No        | Yes                | No         | No              | No              |
 | Contributor | Yes              | Yes       | Yes                | Yes        | No              | No              |
 | Admin       | Yes              | Yes       | Yes                | Yes        | Yes             | Yes             |
 
@@ -63,18 +63,6 @@ To add a user, you need to be a [project admin](#project-user-permissions).
 To add a user, follow these steps:
 
 {{< codetabs >}}
-+++
-title=In the Console
-+++
-
-1. Select the project where you want to add a new user.
-2. Click {{< icon settings >}} **Settings**.
-3. Click **Access**.
-4. Click **+ Add**.
-5. Add the user's details and choose their permissions.
-6. Click **Save**.
-
-<--->
 +++
 title=Using the CLI
 +++
@@ -94,6 +82,18 @@ Once you add a user to a project, they receive an email with instructions.
 For SSH access changes to apply after you add a user to a project,
 you have to redeploy each environment by either clicking **Redeploy** in the Console or running `platform redeploy`.
 
+<--->
++++
+title=In the Console
++++
+
+1. Select the project where you want to add a new user.
+2. Click {{< icon settings >}} **Settings**.
+3. Click **Access**.
+4. Click **+ Add**.
+5. Add the user's details and choose their permissions.
+6. Click **Save**.
+
 {{< /codetabs >}}
 
 ### Remove a user from a project
@@ -103,6 +103,15 @@ To remove a user from a project, you need to be a [project admin](#project-user-
 To remove a user, follow these steps:
 
 {{< codetabs >}}
++++
+title=Using the CLI
++++
+
+To remove an existing user, run the following command:
+
+```bash
+platform user:delete user1@example.com
+```
 
 <--->
 +++
@@ -116,44 +125,6 @@ title=In the Console
 5. Click **Remove user**.
 6. Click **Accept**.
 
-The user is added to your organization.
-
-If the user is already a member of your organization,
-you can add them by following these steps:
-
-1. Navigate to your organization or a project in it.
-2. Open the user menu (your name or profile picture).
-3. Click **Users**.
-4. For the user you want to add, click **{{< icon more >}} More**.
-5. Click **Add to project**.
-6. Select the project you want to add and their permissions
-7. Click **Save**.
-
-{{< /codetabs >}}
-
-Once you add a user to a project, they receive an email with instructions.
-If they don't yet have an account, they need to create one.
-
-To apply SSH access changes after you add a user to a project,
-[trigger a redeploy](../development/troubleshoot.md#force-a-redeploy).
-
-### Remove a user from a project
-
-To remove a user from a project, you need to be a [project admin](#project-user-permissions)
-be an organization owner, or have the [**Manage users** permission for the organization](#organization-user-permissions).
-
-To remove a user, follow these steps:
-
-{{< codetabs >}}
-+++
-title=Using the CLI
-+++
-To remove an existing user:
-
-```bash
-platform user:delete user1@example.com
-```
-
 {{< /codetabs >}}
 
 Once you remove a user, they can no longer access the project.
@@ -162,49 +133,7 @@ you have to redeploy each environment by either clicking **Redeploy** in the Con
 
 ### Change existing permissions for environment types
 
-To manage user permissions, you need to be a [project admin](#project-user-permissions).
-
-Follow these steps:
-
-{{< codetabs >}}
-
-<--->
-+++
-title=In the Console
-+++
-
-1. Select the project where you want to add a new user.
-2. Click {{< icon settings >}} **Settings**.
-3. Click **Access**.
-4. Click the user whose permissions you want to manage.
-5. Change the settings.
-6. Click **Save**.
-
-<--->
-
-+++
-title=Using the CLI
-+++
-Say you want `user1@example.com` to have the Viewer role for Production environments
-and the Contributor role for Development environments:
-
-```bash
-platform user:update user1@example.com -r production:v,development:c
-```
-
-After you change a user's role for an environment type, you must redeploy each environment to propagate access changes.
-You can redeploy using the CLI command `platform redeploy`.
-
-{{< /codetabs >}}
-
-Once you remove a user, they can no longer access the project.
-
-To apply SSH access changes after you add a remove a user from a project or environment type,
-[trigger a redeploy](../development/troubleshoot.md#force-a-redeploy).
-
-### Change existing permissions for environment types
-
-To manage user permissions for environment types, you need to be a [project admin](#project-user-permissions)
+To manage user permissions for environment types, you need to be a [project admin](#project-user-permissions),
 be an organization owner, or have the [**Manage users** permission for the organization](#organization-user-permissions).
 
 To change user permissions, follow these steps:
@@ -217,7 +146,7 @@ title=Using the CLI
 To update an existing user's permissions, run the following command:
 
 ```bash
-platform user:update {{ variable "EMAIL_ADDRESS" }} -r {{ variable "PERMISSIONS_TO_GRANT" }}
+platform user:update {{< variable "EMAIL_ADDRESS" >}} -r {{< variable "PERMISSIONS_TO_GRANT" >}}
 ```
 
 If you want `user1@example.com` to be a viewer for Production environments
