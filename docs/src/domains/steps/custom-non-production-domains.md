@@ -1,6 +1,6 @@
 ---
 title: Set up a custom domain on your non-production environments
-sidebarTitle: (Beta) Non-production custom domains
+sidebarTitle: (Beta) Custom non-production domains
 weight: 2
 description: Learn how to set up custom domains on your staging and development environments
 betaFlag: true
@@ -32,15 +32,15 @@ and still access your production environment through `example.com`.
 {{< /note >}}
 
 If you have multiple custom domains on your production environment,
-when you create a non-production custom domain,
+when you create a custom non-production domain,
 you still don't need to update your [routes configuration](../../define-routes/_index.md).
 Platform.sh automatically figures out the routing of your non-production environment
 based on the following elements:
 
 - The production custom domains in your existing [routes configuration](../../define-routes/_index.md)
-- The non-production custom domains attached to each of those production custom domains
+- The custom non-production domains attached to each of those production custom domains
 
-## Get started with non-production custom domains
+## Get started with custom non-production domains
 
 You need:
 
@@ -53,21 +53,21 @@ you can only add and manage non-production custom domains through the [Platform.
 In later versions,
 you'll be able to do so in the [Platform.sh Console](../../administration/web/_index.md) too.
 
-To add non-production custom domains yourself,
+To add custom non-production domains yourself,
 you must have Grid or {{% names/dedicated-gen-3 %}} environments.
 If you use a [Managed Fastly](../cdn/managed-fastly.md) CDN,
-it needs to be configured to operate with non-production custom domains.
+it needs to be configured to operate with custom non-production domains.
 For more information, contact [Support](https://console.platform.sh/-/users/~/tickets/open).   
 
 If you have {{% names/dedicated-gen-2 %}} environments
-and want to add non-production custom domains to your project,
+and want to add custom non-production domains to your project,
 contact [Support](https://console.platform.sh/-/users/~/tickets/open).
 
-To add non-production custom domains yourself, you must be a **project admin**.
+To add custom non-production domains yourself, you must be a **project admin**.
 You can add custom domains to up to 5 environments per project (production environment included).
 
 If you delete a production custom domain,
-all of the attached non-production custom domains are deleted too.
+all of the attached custom non-production domains are deleted too.
 You need to rebuild the affected non-production environments for the change to be complete.
 
 If you downgrade from an Elite or Enterprise plan to a Professional plan,
@@ -101,10 +101,11 @@ for you to add the `development.mysite.com` custom domain successfully.
 
 If the `Dev` environment is later removed,
 the `development.mysite.com` custom domain is removed too.
+
 In this case, you can't create a new environment called `Dev` to restore the `development.mysite.com` custom domain.
 You have to create a new `development.mysite.com` custom domain. 
 
-Also, you can't update a non-production custom domain.
+Also, you can't update a custom non-production domain.
 You can only delete it and create a new one as a replacement.
 
 ## List the custom domains of a non-production environment
@@ -116,7 +117,7 @@ run a command similar to the following:
 platform domain:list --environment {{< variable "STAGING_ENVIRONMENT_ID" >}}
 ```
 
-## Get a specific non-production custom domain
+## Get a specific custom non-production domain
 
 To retrieve a specific custom domain added to a non-production environment,
 run a command similar to the following:
