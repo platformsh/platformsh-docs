@@ -4,7 +4,7 @@ title: Node.js
 
 ## Get your license key
 
-Sign up at New Relic to [get your license key](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/).
+Subscribe to New Relic to [get your license key](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/).
 
 ## Add your license key
 
