@@ -68,11 +68,14 @@ When using [Docker with Symfony Server](https://symfony.com/doc/current/setup/do
    You need to configure your Symfony application to use Redis by modifying your `config/packages/cache.yaml` with the following:
 
     ```yaml {location="config/packages/cache.yaml"}
+       parameters:
+        env(CACHE_URL): 'redis://cache:6379'
+
       framework:
          cache:
            # Redis
            app: cache.adapter.redis
-           default_redis_provider: redis://localhost
+           default_redis_provider: '%env(resolve:CACHE_URL)%'
     ```
 1. Clear Symfony Cache pool
     ```bash
@@ -164,7 +167,7 @@ Et voilà, your Symfony application is using Redis locally.
 
    ```bash
    relationships:
-      rediscache: "cache:redis"
+      cache: "cache:redis"
    ```
 
    Follow this link to get more info on [relationships](../../../create-apps/app-reference.html#relationships).
