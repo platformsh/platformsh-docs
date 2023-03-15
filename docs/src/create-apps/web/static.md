@@ -107,7 +107,8 @@ web:
             # The public directory of the application relative to its root
             root: 'public'
             # The files to look for when serving a directory
-            index: ['index.html']
+            index: 
+              - 'index.html'
             # Disable server-side scripts
             scripts: false
             allow: true
