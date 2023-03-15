@@ -1,7 +1,8 @@
 ---
 title: Vault key management service
 sidebarTitle: Vault KMS
-weight: 14
+weight: -70
+sectionBefore: Secrets management
 ---
 
 The Vault key management service (KMS) provides key management and access control for your secrets. The Platform.sh Vault KMS offers the transit secrets engine to sign, verify, encrypt, decrypt, and rewrap information.

@@ -1,6 +1,7 @@
 ---
 title: "Memcached (Object cache)"
-weight: 5
+weight: -200
+sectionBefore: Cache
 description: |
   Memcached is a simple in-memory object store well-suited for application level caching.
 sidebarTitle: "Memcached"

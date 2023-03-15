@@ -1,6 +1,6 @@
 ---
 title: "OpenSearch (search service)"
-weight: 1
+weight: -90
 description: |
   OpenSearch is a distributed RESTful search engine built for the cloud.
 sidebarTitle: "OpenSearch"

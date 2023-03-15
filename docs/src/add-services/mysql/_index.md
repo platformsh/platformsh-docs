@@ -1,6 +1,6 @@
 ---
 title: "MariaDB/MySQL (database service)"
-weight: 7
+weight: -160
 sidebarTitle: "MariaDB/MySQL"
 description: See how to configure a MariaDB/MySQL server to store your data.
 layout: single

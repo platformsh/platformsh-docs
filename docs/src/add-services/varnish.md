@@ -1,6 +1,7 @@
 ---
 title: Varnish
-weight: 13
+weight: -130
+sectionBefore: Proxy
 ---
 
 Varnish is a popular HTTP proxy server, often used for caching.
