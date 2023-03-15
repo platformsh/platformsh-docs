@@ -54,14 +54,14 @@ In later versions,
 you'll be able to do so in the [Platform.sh Console](../../administration/web/_index.md) too.
 
 To add custom non-production domains yourself,
-you must have Grid or {{% names/dedicated-gen-3 %}} environments.
+you must have a Grid or {{% names/dedicated-gen-3 %}} project.
 If you use a [Managed Fastly](../cdn/managed-fastly.md) CDN,
 it needs to be configured to operate with custom non-production domains.
 For more information, contact [Support](https://console.platform.sh/-/users/~/tickets/open).   
 
-If you have {{% names/dedicated-gen-2 %}} environments
-and want to add custom non-production domains to your project,
-contact [Support](https://console.platform.sh/-/users/~/tickets/open).
+If you have a {{% names/dedicated-gen-2 %}} project,
+currently you can only add a custom domain to the dedicated environments of your project (production and staging).
+To do so, contact [Support](https://console.platform.sh/-/users/~/tickets/open).
 
 To add custom non-production domains yourself, you must be a **project admin**.
 You can add custom domains to up to 5 environments per project (production environment included).
