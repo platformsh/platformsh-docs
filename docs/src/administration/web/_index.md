@@ -28,7 +28,7 @@ You can personalize the display settings for the Console.
 To do so:
 
 1. Open the user menu (your name or profile picture).
-2. Click **Settings**.
+2. Click **My Profile**.
 3. Choose the mode you want.
 4. Click **Save**.
 

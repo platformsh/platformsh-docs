@@ -14,11 +14,11 @@ These are only useful to fully restore an environment and are managed by the sup
 You can make a manual local backup yourself by downloading data from your environment to your local system by running the following command:
 
 ```bash
-platform scp -r remote:<DIRECTORY_TO_SYNCHRONIZE> <LOCAL_DIRECTORY>
+platform scp -r remote:{{< variable "DIRECTORY_TO_SYNCHRONIZE" >}} {{< variable "LOCAL_DIRECTORY" >}}
 ```
 
-This command copies all files from the `<DIRECTORY_TO_SYNCHRONIZE>` in the environment you want to back up
-to your `<LOCAL_DIRECTORY>`.
+This command copies all files from the `{{< variable "DIRECTORY_TO_SYNCHRONIZE" >}}` in the environment you want to back up
+to your `{{< variable "LOCAL_DIRECTORY" >}}`.
 Before running the command, make sure that you don't overwrite local data (or do a backup first).
 
 ## Back up your database

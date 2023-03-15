@@ -34,8 +34,8 @@ graph LR
 {{% endpoint-description type="varnish" noApp=true %}}
 
 The `relationships` block defines the connection between Varnish and your app.
-You can define `<RELATIONSHIP_NAME>` as you like.
-`<APP_NAME>` should match your app's `name` in the [app configuration](../create-apps/app-reference.md).
+You can define `{{< variable "RELATIONSHIP_NAME" >}}` as you like.
+`{{< variable "APP_NAME" >}}` should match your app's `name` in the [app configuration](../create-apps/app-reference.md).
 
 The `configuration` block must reference a VCL file inside the `.platform` directory.
 The `path` defines the file relative to the `.platform` directory.
@@ -80,11 +80,11 @@ To serve one app, your VCL template needs at least the following function:
 
 ```bash {location=".platform/config.vcl"}
 sub vcl_recv {
-    set req.backend_hint = <RELATIONSHIP_NAME>.backend();
+    set req.backend_hint = {{< variable "RELATIONSHIP_NAME" >}}.backend();
 }
 ```
 
-Where `<RELATIONSHIP_NAME>` is the name of the relationship you defined in [Step 1](#1-configure-the-service).
+Where `{{< variable "RELATIONSHIP_NAME" >}}` is the name of the relationship you defined in [Step 1](#1-configure-the-service).
 With the [example configuration](#example-configuration), that would be the following:
 
 ```bash {location=".platform/config.vcl"}
@@ -232,7 +232,7 @@ The following example shows how to set up purging.
    The following cURL call gives an example of how this can work:
 
    ```bash
-   curl -X PURGE "<URL_TO_PURGE>"
+   curl -X PURGE "{{< variable "URL_TO_PURGE" >}}"
    ```
 
 ## Stats endpoint
@@ -269,4 +269,4 @@ To access the Varnish stats endpoint from the command line:
 1. Connect to your stats app [using SSH](../development/ssh/_index.md): `platform ssh --app stats-app`
    (replace `stats-app` with the name you gave the app).
 2. Display the [relationships array](../create-apps/app-reference.md#relationships) with `echo $PLATFORM_RELATIONSHIPS | base64 -d | jq .`,
-3. Query Varnish with `curl <HOST>:<PORT>/stats`, replacing `<HOST>` and `<PATH>` with the values from Step 2.
+3. Query Varnish with `curl {{< variable "HOST" >}}:{{<variable "PORT" >}}/stats`, replacing `{{< variable "HOST" >}}` and `{{< variable "PATH" >}}` with the values from Step 2.

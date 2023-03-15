@@ -29,7 +29,7 @@ Puppeteer can be used to generate PDFs and screenshots of web pages, automate fo
 
 Puppeteer requires at least Node.js version 6.4.0, while using the async and await examples below requires Node 7.6.0 or greater.
 
-Using the Platform.sh [Config Reader](https://github.com/platformsh/config-reader-nodejs) library requires Node.js 10 or later.
+Using the [Config Reader](../development/variables/use-variables.md#access-variables-in-your-app) library requires Node.js 10 or later.
 
 ### Other languages
 
@@ -50,7 +50,7 @@ After configuration, include Puppeteer as a dependency:
 }
 ```
 
-Using the [Node.js Config Reader](https://github.com/platformsh/config-reader-nodejs) library, you can retrieve formatted credentials for connecting to headless Chrome with Puppeteer:
+Using the [Node.js Config Reader library](../development/variables/use-variables.md#access-variables-in-your-app), you can retrieve formatted credentials for connecting to headless Chrome with Puppeteer:
 
 ```js
 const platformsh = require('platformsh-config');

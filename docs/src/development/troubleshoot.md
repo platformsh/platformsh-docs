@@ -123,9 +123,9 @@ Typical causes and potential solutions include:
   - Check your code is running smoothly.
   - Consider adding an [observability solution](../increase-observability/integrate-observability/_index.md) to get a better view of your application.
 - A PHP process is crashing because of a segmentation fault.
-  - See [how to deal with crashed processes](../languages/php/troubleshoot.md#php-process-crashed).
+  - See [how to deal with crashed processes](../languages/php/troubleshoot.md#troubleshoot-a-crashed-php-process).
 - A PHP process is killed by the kernel out-of-memory killer.
-  - See [how to deal with killed processes](../languages/php/troubleshoot.md#php-process-is-killed).
+  - See [how to deal with killed processes](../languages/php/troubleshoot.md#troubleshoot-a-killed-php-process).
 
 ## Site outage
 
@@ -235,6 +235,10 @@ When a deployment is blocked, you should try the following:
   Replace `{{< variable "PID" >}}` with the process ID shown by `ps afx`.
 
 If a `sync` of `activate` process is stuck, try the above on the parent environment.
+
+Note that, for PHP apps, 
+you can [restart processes that get stuck during a build or deployment](../languages/php/troubleshoot.md#restart-php-processes-stuck-during-a-build-or-deployment)
+from your app container.
 
 ## Slow or failing build or deployment
 

@@ -19,17 +19,17 @@ You can also define [cron jobs](./app-reference.md#crons) to run your source ope
 
 A source operation requires two things:
 
-* A name that must be unique within the application.
+- A name that must be unique within the application.
   The name is the key of the block defined under `source.operations` in your [app configuration](./app-reference.md#source).
-* A `command` that defines what's run when the operation is triggered.
+- A `command` that defines what's run when the operation is triggered.
 
 The syntax looks like the following:
 
 ```yaml {location=".platform.app.yaml"}
 source:
     operations:
-        <NAME>:
-            command: <COMMAND>
+        {{< variable "NAME" >}}:
+            command: {{< variable "COMMAND" >}}
 ```
 
 For example, to update a file from a remote location, you could define an operation like this:
@@ -73,10 +73,10 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform source-operation:run <OPERATION_NAME>
+platform source-operation:run {{< variable "OPERATION_NAME" >}}
 ```
 
-Replace `<OPERATION_NAME>` with the name of your operation, such as `update-file`) in the [example above](#1-define-a-source-operation).
+Replace `{{< variable "OPERATION_NAME" >}}` with the name of your operation, such as `update-file`) in the [example above](#1-define-a-source-operation).
 
 {{< /codetabs >}}
 
@@ -305,8 +305,8 @@ The following source operation syncronizes your branch with an upstream Git repo
    That makes that repository available as a Unix environment variable in all environments,
    including in the source operation's environment.
 
-   * Variable name: `env:UPSTREAM_REMOTE`
-   * Variable example value: `https://github.com/platformsh/platformsh-docs`
+   - Variable name: `env:UPSTREAM_REMOTE`
+   - Variable example value: `https://github.com/platformsh/platformsh-docs`
 
 2. In your app configuration, define a source operation to fetch from that upstream repository:
 

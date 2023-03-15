@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 use Platformsh\ConfigReader\Config;
 
-// To ease the reading of Platform.sh environment variables, create a new config object.
-// Alternatively, use getenv().
+// Create a new config object to ease reading the Platform.sh environment variables.
+// You can alternatively use getenv() yourself.
 $config = new Config();
 
 // Get the credentials to connect to the Redis service.
 $credentials = $config->credentials('redis');
 
 try {
-    // Connect to the Redis server.
+    // Connecting to Redis server.
     $redis = new Redis();
     $redis->connect($credentials['host'], $credentials['port']);
 

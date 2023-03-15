@@ -122,7 +122,7 @@ add them to the `dependencies` in your [app configuration](../../create-apps/app
 ```yaml {location=".platform.app.yaml"}
 dependencies:
     python3:
-        <PACKAGE_NAME>: <PACKAGE_VERSION>
+        {{< variable "PACKAGE_NAME" >}}: {{< variable "PACKAGE_VERSION" >}}
 ```
 
 {{% pipenv %}}

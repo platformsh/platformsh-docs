@@ -153,12 +153,12 @@ They aren't available during the build.
 
 ```yaml {location=".platform.app.yaml"}
 mounts:
-    '<DIRECTORY>':
-        source: <SOURCE_LOCATION>
-        source_path: <SOURCE_PATH_LOCATION>
+    '{{< variable "DIRECTORY" >}}':
+        source: {{< variable "SOURCE_LOCATION" >}}
+        source_path: {{< variable "SOURCE_PATH_LOCATION" >}}
 ```
 
-The `<DIRECTORY>` is relative to the [app's root](#root-directory) and represents the path in the app.
+The `{{< variable "DIRECTORY" >}}` is relative to the [app's root](#root-directory) and represents the path in the app.
 If you already have a directory with that name, you get a warning that it isn't accessible after the build.
 See how to [troubleshoot the warning](./troubleshoot-mounts.md#overlapping-folders).
 

@@ -97,13 +97,18 @@ such as a [script to handle 404 errors](https://community.platform.sh/t/custom-4
 ## Complete example
 
 ```yaml {location=".platform.app.yaml"}
+name: app
+
+type: 'python:3.11'
+
 web:
     locations:
         '/':
             # The public directory of the application relative to its root
             root: 'public'
             # The files to look for when serving a directory
-            index: ['index.html']
+            index: 
+              - 'index.html'
             # Disable server-side scripts
             scripts: false
             allow: true
