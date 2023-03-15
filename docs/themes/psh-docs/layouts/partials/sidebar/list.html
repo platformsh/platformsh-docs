@@ -45,6 +45,10 @@
   {{ if .Context.Params.sidebarTitle }}
     {{ $itemTitle = .Context.Params.sidebarTitle | .Context.Page.RenderString }}
   {{ end }}
+  <!-- Allow for top-level sectionBefore titles -->
+  {{ with .Context.Params.sectionBefore }}
+    <h5 class="text-xs px-6 uppercase">{{ . }}</h5>
+  {{ end }}
   <div class="pl-8 pr-2 flex items-center justify-between min-h-[2.5rem]">
     <h4 class="pr-2 font-semibold">
       <a href="{{ .Context.RelPermalink }}" destination="{{ .Context.RelPermalink }}" {{ $getStartedAttribute | safeHTMLAttr }} class="hover:text-skye-dark focus:text-skye-dark{{ if $isCurrentSection }} text-skye-dark{{ end }}">
