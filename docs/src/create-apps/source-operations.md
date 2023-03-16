@@ -1,55 +1,83 @@
 ---
 title: Automated code updates
 description: |
- Run automated code updates via source operations.
+Run automated code updates via source operations.
 weight: 5
 tier:
- - Elite
- - Enterprise
+- Elite
+- Enterprise
 ---
 
-You can run automated code updates via a Platform.sh mechanism called source: operation.
-A source operation is an operation defined in an app to apply and automate changes to its source code.
+On Platform.sh, you can run automated code updates through a feature called **source operations**.
+Defined in your [app configuration](./_index.md), source operations let you specify commands
+that can commit changes to your project's repository when called.
 
-To use source operations, first define them in your [app configuration](./_index.md).
-Then run them in the [Platform.sh CLI](../administration/cli/_index.md) or [Console](https://console.platform.sh).
-You can also define [cron jobs](./app-reference.md#crons) to run your source operations and update your code automatically.
+For example, you can set up a source operation to [automatically update your application dependencies](../tutorials/dependency-updates.md),
+[update a site from an upstream repository](#update-a-site-from-an-upstream-repository-or-template),
+or [revert to the last commit](#revert-to-the-last-commit) pushed to your Git repository.
 
-## 1. Define a source operation
+To run your source operations, you can use the [Platform.sh CLI](../administration/cli/_index.md) or the [Console](https://console.platform.sh).
+If you want to run your source operations and update your code automatically,
+you can also define [cron jobs](./app-reference.md#crons).
+
+## How source operations work
+
+When you trigger a source operation [defined in your app configuration](#define-a-source-operation),
+the following happens in order:
+
+1.  The current environment HEAD commit is checked out in Git.
+    It doesn't have any remotes or tags defined in the project.
+    It only has the current environment branch.
+
+2.  Sequentially, for each app that has [the name](#define-a-source-operation) of the triggered source operation in its configuration,
+    the operation command is run in the app container.
+    The container isn't part of the environment's runtime cluster
+    and doesn't require that the environment is running.
+
+    The environment has all of the variables normally available during the build phase.
+    These may be optionally overridden by the variables specified when the operation is run.
+
+3.  If any new commits were created, they're pushed to the repository and the normal build process is triggered.
+
+    If multiple apps in a single project both result in a new commit,
+    there are two distinct commits in the Git history but only a single new build process.
+
+## Define a source operation
 
 A source operation requires two things:
 
-- A name that must be unique within the app.
- The name is the key of the block defined under `source.operations` in your [app configuration](./app-reference.md#source).
-- A `command` that defines what's run when the operation is triggered.
+-   A name that must be unique within the app.
+    The name is the key of the block defined under `source.operations` in your [app configuration](./app-reference.md#source).
 
-The syntax looks like the following:
+-   A `command` that defines what's run when the operation is triggered.
+
+The syntax is similar to the following:
 
 ```yaml {location=".platform.app.yaml"}
 source:
-   operations:
-       {{< variable "NAME" >}}:
-           command: {{< variable "COMMAND" >}}
+    operations:
+        <NAME>:
+            command: <COMMAND>
 ```
 
 For example, to update a file from a remote location, you could define an operation like this:
 
 ```yaml {location=".platform.app.yaml"}
 source:
-   operations:
-       update-file:
-           command: |
-               set -e
-               curl -O https://example.com/myfile.txt
-               git add myfile.txt
-               git commit -m "Update remote file"
+    operations:
+        update-file:
+            command: |
+                set -e
+                curl -O https://example.com/myfile.txt
+                git add myfile.txt
+                git commit --allow-empty -m "Update remote file"
 ```
 
 The name in this case is `update-file`.
 
 For more possibilities, see other [operation examples](#source-operation-examples).
 
-## 2. Run a source operation
+## Run a source operation
 
 To run a source operation, you can use the CLI or Console.
 
@@ -81,41 +109,19 @@ Replace `{{< variable "OPERATION_NAME" >}}` with the name of your operation, suc
 {{< /codetabs >}}
 
 After running a source operation,
-apply the changes to your local development environment by running `git pull`.
-
-## How source operations work
-
-When you trigger a source operation, the following happens in order:
-
-1.  The current environment HEAD commit is checked out in Git.
-    It doesn't have any remotes or tags defined in the project.
-    It only has the current environment branch.
-
-2.  Sequentially, for each app that has an operation with this name in its configuration,
-    the operation command is run in the app container.
-    The container isn't part of the environment's runtime cluster
-    and doesn't require that the environment is running.
-
-    The environment has all of the variables normally available during the build phase.
-    These may be optionally overridden by the variables specified when the operation is run.
-
-3.  If any new commits were created, they're pushed to the repository and the normal build process is triggered.
-
-    If multiple apps in a single project both result in a new commit,
-    there are two distinct commits in the Git history but only a single new build process.
+to apply the changes to your local development environment
+run the `git pull` command.
 
 ## Use variables in your source operations
 
-You can add variables to the environment of the source operation.
+You can add [variables](../development/variables/_index.md) to the environment of the source operation.
 
-They're interpreted the same way as any other [variable](../development/variables/_index.md)
-already set in your project.
-That means you need an `env:` prefix to expose them as a Unix environment variable.
+Use the `env:` prefix to expose each of those variables as a Unix environment variable.
+In this way, they're referenced by the source operation
+and interpreted the same way as any other variable set in your project.
 
-They can then be referenced by the source operation like any other variable.
-
-Say you wanted to have a `FILE` variable available with the value `example.txt`.
-Run the operation with the variable:
+For example, if you want to have a `FILE` variable available with the value `example.txt`,
+follow these steps to run the source operation:
 
 {{< codetabs >}}
 
@@ -132,7 +138,7 @@ title=In the Console
 4.  Select the operation you want to run.
 
 5.  Under **Add/override variables**, put `FILE` as the **Variable name** and `example.txt` as the **Value**.
-    The variable is automatically prefixed with `env:`.
+   The variable is automatically prefixed with `env:`.
 
 6.  Click **Run**.
 
@@ -165,16 +171,16 @@ This project doesn't support source operations.
 
 ## Automated source operations using cron
 
-You can use cron to automatically run your source operations.
+You can use cron jobs to automatically run your source operations.
 
 Note that it’s best not to run source operations on your production environment,
 but rather on a dedicated environment where you can test changes.
 
-1.  Make sure you have the [Platform.sh CLI](../administration/cli/_index.md) installed
-    and [an API token](../administration/cli/api-tokens.md#2-create-a-platformsh-api-token)
-    so you can run a cron job in your app container.
+Make sure you have the [Platform.sh CLI](../administration/cli/_index.md) installed
+and [an API token](../administration/cli/api-tokens.md#2-create-a-platformsh-api-token)
+so you can run a cron job in your app container.
 
-2.  Set your API token as a top-level environment variable:
+1.  Set your API token as a top-level environment variable:
 
 {{< codetabs >}}
 +++
@@ -210,34 +216,34 @@ Make sure you carefully check your [user access on this project](../administrati
 
 {{< /note >}}
 
-3.  Add a build hook to your app configuration to install the CLI as part of the build process:
+2.  Add a build hook to your app configuration to install the CLI as part of the build process:
 
-    ```yaml {location=".platform.app.yaml"}
-    hooks:
-        build: |
-            set -e
-            echo "Installing Platform.sh CLI"
-            curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
-      
-            echo "Testing Platform.sh CLI"
-            platform  
-    ```
+```yaml {location=".platform.app.yaml"}
+hooks:
+    build: |
+        set -e
+        echo "Installing Platform.sh CLI"
+        curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
 
-4.  Then, to configure a cron job to automatically update your dependencies once a day,
-    use a configuration similar to the following:
+        echo "Testing Platform.sh CLI"
+        platform
+```
 
-    ```yaml {location=".platform.app.yaml"}
-    crons:
-       update:
-           # Run the code below every day at midnight.
-           spec: '0 0 * * *'
-           commands:
-               start: |
-                   set -e
-                       platform sync -e development code data --no-wait --yes
-                       platform source-operation:run update --no-wait --yes
-                   fi
-    ```
+3.  Then, to configure a cron job to automatically update your dependencies once a day,
+   use a configuration similar to the following:
+
+```yaml {location=".platform.app.yaml"}
+crons:
+   update:
+       # Run the code below every day at midnight.
+       spec: '0 0 * * *'
+       commands:
+           start: |
+               set -e
+                   platform sync -e development code data --no-wait --yes
+                   platform source-operation:run update --no-wait --yes
+               fi
+```
 
 The example above synchronizes the `development` environment with its parent
 and then runs the `update` source operation defined [previously](#1-define-a-source-operation).
@@ -246,7 +252,7 @@ and then runs the `update` source operation defined [previously](#1-define-a-sou
 
 ### Update dependencies
 
-You can set up a source operation and a cron job [to automate your dependency updates](../create-apps/dependency-updates.md).
+You can set up a source operation and a cron job [to automate your dependency updates](../tutorials/dependency-updates.md).
 
 ### Update a site from an upstream repository or template
 
@@ -262,16 +268,16 @@ The following source operation synchronizes your branch with an upstream Git rep
 
 2.  In your app configuration, define a source operation to fetch from that upstream repository:
 
-    ```yaml {location=".platform.app.yaml"}
-    source:
-        operations:
-            upstream-update:
-                command: |
-                    set -e
-                    git remote add upstream $UPSTREAM_REMOTE
-                    git fetch --all
-                    git merge upstream/main
-    ``` 
+   ```yaml {location=".platform.app.yaml"}
+   source:
+       operations:
+           upstream-update:
+               command: |
+                   set -e
+                   git remote add upstream $UPSTREAM_REMOTE
+                   git fetch --all
+                   git merge upstream/$BRANCH_NAME --allow-unrelated-histories
+   ```
 
 3.  Now every time you run the `upstream-update` operation on a given branch,
     the branch fetches all changes from the upstream git repository
@@ -289,10 +295,10 @@ and you need to quickly revert to the previous state.
 
 ```yaml {location=".platform.app.yaml"}
 source:
-   operations:
-       revert:
-           command: |               
-               git reset --hard HEAD~
+    operations:
+        revert:
+            command: |                
+                git reset --hard HEAD~
 ```
 
 Now every time you run the `revert` operation on a given branch,
@@ -304,13 +310,13 @@ The following source operation uses Composer to update Drupal Core:
 
 ```yaml {location=".platform.app.yaml"}
 source:
-   operations:
-       update-drupal-core:
-           command: |
-               set -e
-               composer update drupal/core --with-dependencies
-               git add composer.lock
-               git commit -m "Automated Drupal Core update."
+    operations:
+        update-drupal-core:
+            command: |
+                set -e
+                composer update drupal/core --with-all-dependencies
+                git add composer.lock
+                git commit --allow-empty -m "Automated Drupal Core update."
 ```
 
 `--with-dependencies` is used to also update Drupal Core dependencies.
@@ -326,13 +332,13 @@ or [overriding it](#use-variables-in-your-source-operations) when running the so
 
 ```yaml {location=".platform.app.yaml"}
 source:
-   operations:
-       download-drupal-extension:
-           command: |
-               set -e
-               composer require $EXTENSION
-               git add composer.json
-               git commit -am "Automated install of: $EXTENSION via Composer."
+    operations:
+        download-drupal-extension:
+            command: |
+                set -e
+                composer require $EXTENSION
+                git add composer.json
+                git commit --allow-empty -am "Automated install of: $EXTENSION via Composer."
 ```
 
 Now every time you run the `download-drupal-extension` operation, it downloads the defined extension.
@@ -346,16 +352,16 @@ The following source operation updates all Git submodules recursively:
 
 ```yaml {location=".platform.app.yaml"}
 source:
-   operations:
-       rebuild:
-           command: |
-             set -e
-               git submodule update --init --recursive
-               git submodule update --remote --checkout
-               SHA=$(git submodule | awk -F' ' '{print $1}' | sed -s 's/+//g')
-               echo -n "$SHA" > .sha
-               git add .sha
-               git commit --allow-empty -m "Updating submodule to commit '$SHA'"
+    operations:
+        rebuild:
+            command: |
+                set -e
+                git submodule update --init --recursive
+                git submodule update --remote --checkout
+                SHA=$(git submodule | awk -F' ' '{print $1}' | sed -s 's/+//g')
+                echo -n "$SHA" > .sha
+                git add .sha
+                git commit --allow-empty -m "Updating submodule to commit '$SHA'"
 ```
 
 Now every time you run the `rebuild` operation, it updates the Git submodules.

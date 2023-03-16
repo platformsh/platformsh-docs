@@ -1,10 +1,10 @@
 ---
 title: Update your dependencies
+sidebarTitle: Update your dependencies
 description: Learn how to automate your dependency updates through a source operation. You can even trigger your dependency updates automatically using crons.
-weight: 6
 tier:
- - Elite
- - Enterprise
+  - Elite
+  - Enterprise
 ---
 
 Platform.sh allows you to update your dependencies through [source operations](../create-apps/source-operations.md).
@@ -27,105 +27,105 @@ depending on your dependency manager:
 
 +++
 title=Composer
+file=none
+highlight=yaml
 +++
 
-```yaml
 source:
-   operations:
-       update:
-           command: |
-               set -e
-               composer update
-               git add composer.lock
-               git add -A
-               git diff-index --quiet HEAD || git commit --allow-empty -m "Update Composer dependencies"
-```
+    operations:
+        update:
+            command: |
+                set -e
+                composer update
+                git add composer.lock
+                git add -A
+                git diff-index --quiet HEAD || git commit --allow-empty -m "Update Composer dependencies"
 
 <--->
 +++
 title=npm
+file=none
+highlight=yaml
 +++
 
-```yaml
 source:
-   operations:
-       update:
-           command: |
-               set -e
-               npm update
-               git add package.json package-lock.json
-               git add -A
-               git diff-index --quiet HEAD || git commit --allow-empty -m "Update npm dependencies"
-```
+    operations:
+        update:
+            command: |
+                set -e
+                npm update
+                git add package.json package-lock.json 
+                git add -A
+                git diff-index --quiet HEAD || git commit --allow-empty -m "Update npm dependencies"
 
 <--->
 +++
 title=Yarn
+file=none
+highlight=yaml
 +++
 
-```yaml
 source:
-   operations:
-       update:
-           command: |
-               set -e
-               yarn upgrade
-               git add yarn.lock
-               git add -A
-               git diff-index --quiet HEAD || git commit --allow-empty -m "Update yarn dependencies"
-```
+    operations:
+        update:
+            command: |
+                set -e
+                yarn upgrade
+                git add yarn.lock
+                git add -A
+                git diff-index --quiet HEAD || git commit --allow-empty -m "Update yarn dependencies"
 
 <--->
 +++
 title=Go
+file=none
+highlight=yaml
 +++
 
-```yaml
 source:
-   operations:
-       update:
-           command: |
-               set -e
-               go get -u
-               go mod tidy
-               git add go.mod go.sum
-               git add -A
-               git diff-index --quiet HEAD || git commit --allow-empty -m "Update Go dependencies"
-```
+    operations:
+        update:
+            command: |
+                set -e
+                go get -u
+                go mod tidy
+                git add go.mod go.sum
+                git add -A
+                git diff-index --quiet HEAD || git commit --allow-empty -m "Update Go dependencies"
 
 <--->
 +++
 title=Pipenv
+file=none
+highlight=yaml
 +++
 
-```yaml
 source:
-   operations:
-       update:
-           command: |
-               set -e
-               pipenv update
-               git add Pipfile Pipfile.lock
-               git add -A
-               git diff-index --quiet HEAD || git commit --allow-empty -m "Update Python dependencies"
-```
+    operations:
+        update:
+            command: |
+                set -e
+                pipenv update
+                git add Pipfile Pipfile.lock
+                git add -A
+                git diff-index --quiet HEAD || git commit --allow-empty -m "Update Python dependencies"
 
 <--->
 +++
 title=Bundler
+file=none
+highlight=yaml
 +++
 
-```yaml
 source:
-   operations:
-       update:
-           command: |
-               set -e
-               bundle update --all
-               git add Gemfile Gemfile.lock
-               git add -A
-               git diff-index --quiet HEAD || git commit --allow-empty -m "Update Ruby dependencies"
-```
+    operations:
+        update:
+            command: |
+                set -e
+                bundle update --all
+                git add Gemfile Gemfile.lock
+                git add -A
+                git diff-index --quiet HEAD || git commit --allow-empty -m "Update Ruby dependencies"
 
 {{< /codetabs >}}
 <!--vale on -->
@@ -142,41 +142,41 @@ Make sure you have the [Platform.sh CLI](../administration/cli/_index.md) instal
 and [an API token](../administration/cli/api-tokens.md#2-create-a-platformsh-api-token)
 so you can run a cron job in your app container.
 
-1.  Set your API token as a top-level environment variable:
+1.  Set your API token as a top-level environment variable: 
 
-{{< codetabs >}}
-+++
-title=Using the CLI
-+++
+    {{< codetabs >}}
+    +++
+    title=Using the CLI
+    +++
 
-Run the following command:
+    Run the following command:
 
-```bash
-platform variable:create --environment main --level environment --prefix 'env' --name PLATFORMSH_CLI_TOKEN --sensitive true --value 'YOUR_PLATFORMSH_CLI_TOKEN' --inheritable false --visible-build true --json false --enabled true --visible-runtime true
-```
+    ```bash
+    platform variable:create --environment main --level environment --prefix 'env' --name PLATFORMSH_CLI_TOKEN --sensitive true --value 'YOUR_PLATFORMSH_CLI_TOKEN' --inheritable false --visible-build true --json false --enabled true --visible-runtime true
+    ```
 
-<--->
-+++
-title=In the Console
-+++
+    <--->
+    +++
+    title=In the Console
+    +++
 
-1. Open the environment where you want to add the variable.
-2. Click {{< icon settings >}} **Settings**.
-3. Click **Variables**.
-4. Click **+ Add variable**.
-5. In the **Variable name** field, enter `env:PLATFORMSH_CLI_TOKEN`.
-6. In the **Value** field, enter your API token.
-7. Make sure the **Available at runtime** and **Sensitive variable** options are selected.
-8. Click **Add variable**.
+    1. Open the environment where you want to add the variable.
+    2. Click {{< icon settings >}} **Settings**.
+    3. Click **Variables**.
+    4. Click **+ Add variable**.
+    5. In the **Variable name** field, enter `env:PLATFORMSH_CLI_TOKEN`.
+    6. In the **Value** field, enter your API token.
+    7. Make sure the **Available at runtime** and **Sensitive variable** options are selected.
+    8. Click **Add variable**.
 
-{{< /codetabs >}}
+    {{< /codetabs >}}
 
-{{< note theme="warning" >}}
+    {{< note theme="warning" >}}
 
-Once you add the API token as an environment variable, anyone with [SSH access](../development/ssh/_index.md) can read its value.
-Make sure you carefully check your [user access on this project](../administration/users.md#manage-project-users).
+    Once you add the API token as an environment variable, anyone with [SSH access](../development/ssh/_index.md) can read its value.
+    Make sure you carefully check your [user access on this project](../administration/users.md#manage-project-users).
 
-{{< /note >}}
+    {{< /note >}}
 
 2.  Add a build hook to your app configuration to install the CLI as part of the build process:
 
@@ -186,9 +186,9 @@ Make sure you carefully check your [user access on this project](../administrati
             set -e
             echo "Installing Platform.sh CLI"
             curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
-      
+        
             echo "Testing Platform.sh CLI"
-            platform  
+            platform   
     ```
 
 3.  Then, to configure a cron job to automatically update your dependencies once a day,
@@ -218,7 +218,7 @@ you can configure activity scripts or webhooks.
 ### Notifications through an activity script
 
 After you've defined a source operation to [update your dependencies on your project](#define-a-source-operation-to-update-your-dependencies),
-you can configure an activity script
+you can configure an activity script 
 to receive notifications every time a dependency update is triggered.
 
 {{< note title="Example" >}}
@@ -236,18 +236,18 @@ To do so, follow these steps:
 
     ```javascript
     /**
-    * Sends a color-coded formatted message to Slack.
-    *
-    * To control what events trigger it, use the --events switch in
-    * the Platform.sh CLI.
-    *
-    * Replace SLACK_URL in the following script with your Slack webhook URL.
-    * Get one here: https://api.slack.com/messaging/webhooks
-    * You should get something like: const url = 'https://hooks.slack.com/...';
-    *
-    * activity.text: a brief, one-line statement of what happened.
-    * activity.log: the complete build and deploy log output, as it would be seen in the Console log screen.
-    */
+     * Sends a color-coded formatted message to Slack.
+     *
+     * To control what events trigger it, use the --events switch in
+     * the Platform.sh CLI.
+     *
+     * Replace SLACK_URL in the following script with your Slack webhook URL.
+     * Get one here: https://api.slack.com/messaging/webhooks 
+     * You should get something like: const url = 'https://hooks.slack.com/...';
+     *
+     * activity.text: a brief, one-line statement of what happened.
+     * activity.log: the complete build and deploy log output, as it would be seen in the Console log screen.
+     */
     function sendSlackMessage(title, message) {
       const url = 'SLACK_URL';
       const messageTitle = title;
@@ -281,10 +281,10 @@ To do so, follow these steps:
     platform integration:add --type script --file ./my_script.js --events=environment.source-operation
     ```
     Optional: to only get notifications about specific environments,
-    add the following flag to the command: `--environments=your_environment_name`.
+    add the following flag to the command: `--environments=your_environment_name`.
 
-Anytime a dependency is updated via a source operation,
-the activity script now reports it to Slack.
+As a result, anytime a dependency is updated via a source operation,
+the activity script now reports it to Slack. 
 
 {{< /note >}}
 
@@ -305,13 +305,12 @@ platform integration:add --type=webhook --url=URL_TO_RECEIVE_JSON --events=envir
 ```
 
 Optional: to only get notifications about specific environments,
-add the following flag to the command: `--environments=your_environment_name`.
+add the following flag to the command: `--environments=your_environment_name`.
 
 To test the integration and the JSON response,
 you can generate a URL from a service such as [webhook.site](https://webhook.site)
-and use the generated URL as `URL_TO_RECEIVE_JSON`.
-This URL then receives the JSON response when a source operation is triggered.
+and use the generated URL as `URL_TO_RECEIVE_JSON`. This URL will receive the JSON response when a source operation is triggered.
 
-Anytime a dependency is updated via a source operation,
+As a result, anytime a dependency is updated via a source operation,
 the webhook now receives a POST message.
 This POST message contains complete information about the entire state of the project at that time.
