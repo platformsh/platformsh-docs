@@ -16,7 +16,7 @@ You need:
 - The [Platform.sh CLI](../administration/cli/_index.md)
 - An [API token](../administration/cli/api-tokens.md#2-create-a-platformsh-api-token)
 
-## Define a source operation to update your dependencies
+## 1. Define a source operation to update your dependencies
 
 To facilitate updating your dependencies in your project,
 define a source operation in your `.platform.app.yaml` file,
@@ -130,7 +130,7 @@ source:
 {{< /codetabs >}}
 <!--vale on -->
 
-## Automate your dependency updates with a cron job
+## 2. Automate your dependency updates with a cron job
 
 After you've defined a source operation to [update your dependencies on your project](#define-a-source-operation-to-update-your-dependencies),
 you can automate it using a cron job.
@@ -138,11 +138,11 @@ you can automate it using a cron job.
 Note that it’s best not to run source operations on your production environment,
 but rather on a dedicated environment where you can test changes.
 
-1.  Make sure you have the [Platform.sh CLI](../administration/cli/_index.md) installed
-    and [an API token](../administration/cli/api-tokens.md#2-create-a-platformsh-api-token)
-    so you can run a cron job in your app container.
+Make sure you have the [Platform.sh CLI](../administration/cli/_index.md) installed
+and [an API token](../administration/cli/api-tokens.md#2-create-a-platformsh-api-token)
+so you can run a cron job in your app container.
 
-2.  Set your API token as a top-level environment variable:
+1.  Set your API token as a top-level environment variable:
 
 {{< codetabs >}}
 +++
@@ -178,7 +178,7 @@ Make sure you carefully check your [user access on this project](../administrati
 
 {{< /note >}}
 
-3.  Add a build hook to your app configuration to install the CLI as part of the build process:
+2.  Add a build hook to your app configuration to install the CLI as part of the build process:
 
     ```yaml {location=".platform.app.yaml"}
     hooks:
@@ -191,7 +191,7 @@ Make sure you carefully check your [user access on this project](../administrati
             platform  
     ```
 
-4.  Then, to configure a cron job to automatically update your dependencies once a day,
+3.  Then, to configure a cron job to automatically update your dependencies once a day,
     use a configuration similar to the following:
 
     ```yaml {location=".platform.app.yaml"}
@@ -210,7 +210,7 @@ Make sure you carefully check your [user access on this project](../administrati
 The example above synchronizes the `development` environment with its parent
 and then runs the `update` source operation defined [previously](#define-a-source-operation-to-update-your-dependencies).
 
-## Optional: Configure notifications about dependency updates
+## 3. Configure notifications about dependency updates
 
 To get notified every time a source operation is triggered and therefore every time a dependency is updated,
 you can configure activity scripts or webhooks.
