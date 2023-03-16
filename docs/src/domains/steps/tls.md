@@ -1,6 +1,6 @@
 ---
 title: "Configure a third-party TLS certificate"
-weight: 3
+weight: 2
 sidebarTitle: "Custom TLS certificates"
 ---
 
