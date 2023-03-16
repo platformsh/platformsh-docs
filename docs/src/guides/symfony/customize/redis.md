@@ -66,15 +66,17 @@ symfony cloud:branch feat-add-redis
    You need to configure your Symfony application to use Redis by modifying your `config/packages/cache.yaml` with the following:
 
     ```yaml {location="config/packages/cache.yaml"}
-       parameters:
-        env(CACHE_URL): 'redis://cache:6379'
-
-      framework:
-         cache:
-           # Redis
-           app: cache.adapter.redis
-           default_redis_provider: '%env(resolve:CACHE_URL)%'
+    framework:
+      cache:
+        # Redis
+        app: cache.adapter.redis
+        default_redis_provider: '%env(REDIS_URL)%'
     ```
+1. Create a new environment variable `REDIS_URL`
+    ```yaml
+    REDIS_URL=redis://cache:6379
+    ```
+
 1. Clear Symfony Cache pool
     ```bash
     symfony console cache:clear
@@ -165,15 +167,19 @@ Et voilà, your Symfony application is using Redis locally.
 
    ```bash
    relationships:
-      cache: "cache:redis"
+      redis: "cache:redis"
    ```
 
    Follow this link to get more info on [relationships](../../../create-apps/app-reference.html#relationships).
+   {{< note >}}
+   Relationship key ``redis`` is important because it conditions the name of the corresponding auto-generated Symfony environment variable `REDIS_URL` as defined above in the [`config/packages/cache.yaml` file](#configure-your-symfony-application-to-use-redis).</br>
+   Follow this link to get more info on [Symfony Environment Variables](./environment-variables.md#redis)
+   {{< /note >}}
 
-1. Add the Redis PHP extension
+1. Add the PHP Redis extension
 
    For PHP to communicate with your Redis component, a php-ext is needed.
-   All PHP extensions that need to be installed during runtime are listed in the `.platform.app.yaml` file, section `runtime`
+   All PHP extensions that need to be installed during runtime are listed in the `.platform.app.yaml` file, section `runtime`:
 
    ```bash {location=".platform.app.yaml"}
    runtime:
@@ -200,7 +206,7 @@ Et voilà, your Symfony application is using Redis locally.
    ```
 
    {{< note >}}
-   `symfony merge` command merge your environment `feat-add-redis` to your production environment, but it doesn't pull the merge result locally. That’s why you need to run `git pull -r` before doing anything else on that branch.
+   `symfony merge` command merge your environment `feat-add-redis` to your production environment, but it doesn't pull back the merge result locally. That’s why you need to run `git pull -r` before doing anything else on that branch.
    {{< /note >}}
 
 
