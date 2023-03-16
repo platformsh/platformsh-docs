@@ -59,9 +59,7 @@ symfony cloud:branch feat-add-redis
     docker-compose up -d
     ```
 
-{{< note >}}
-When using [Docker with Symfony Server](https://symfony.com/doc/current/setup/docker.html), then your Symfony Server can automatically detect your Docker services and expose them as environment variables.
-{{< /note >}}
+    {{< note >}}When using [Docker with Symfony Server](https://symfony.com/doc/current/setup/docker.html), then your Symfony Server can automatically detect your Docker services and expose them as environment variables. {{< /note >}}
 
 1. Configure your Symfony application to use this Redis component
 
