@@ -1,6 +1,6 @@
 ---
 title: "Micronaut"
-weight: 80
+weight: 20
 description: |
     Everything you need to get started with Micronaut on Platform.sh.
 ---
