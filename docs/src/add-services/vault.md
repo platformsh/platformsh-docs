@@ -32,6 +32,8 @@ The Vault key management service (KMS) provides key management and access contro
 
 You can create multiple endpoints, such as to have key management separate from key use.
 
+512 MB is the minimum required disk space for the Vault KMS service.
+
 {{% /endpoint-description %}}
 
 ## Use Vault KMS
