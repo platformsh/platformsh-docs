@@ -46,7 +46,7 @@ You need:
 
 - A production environment with at least one custom domain already set up
 - At least one non-production (staging or development) environment
-- The [Platform.sh CLI](../../administration/cli/_index.md)
+- The [Platform.sh CLI](../../administration/cli/_index.md) using v4.3.0+
 
 In the current Beta version,
 you can only add and manage non-production custom domains through the [Platform.sh CLI](../../administration/cli/_index.md).
