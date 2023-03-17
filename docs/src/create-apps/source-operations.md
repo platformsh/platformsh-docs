@@ -247,7 +247,7 @@ and then runs the `update-file` source operation defined [previously](#1-define-
 
 ## Source operation examples
 
-### Update dependencies
+### Update your application dependencies
 
 You can set up a source operation and a cron job to [automate your dependency updates](../tutorials/dependency-updates.md).
 
