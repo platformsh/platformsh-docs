@@ -232,14 +232,14 @@ hooks:
 
 ```yaml {location=".platform.app.yaml"}
 crons:
-   update:
-       # Run the code below every day at midnight.
-       spec: '0 0 * * *'
-       commands:
-           start: |
-               set -e
-                   platform sync -e development code data --no-wait --yes
-                   platform source-operation:run update --no-wait --yes
+    update:
+        # Run the code below every day at midnight.
+        spec: '0 0 * * *'
+        commands:
+            start: |
+                set -e
+                platform sync -e development code data --no-wait --yes
+                platform source-operation:run update --no-wait --yes
 ```
 
 The example above synchronizes the `development` environment with its parent
