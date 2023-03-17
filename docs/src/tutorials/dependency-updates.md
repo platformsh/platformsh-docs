@@ -1,7 +1,8 @@
 ---
-title: Update your dependencies
-sidebarTitle: Update your dependencies
-description: Learn how to automate your dependency updates through a source operation. You can even trigger your dependency updates automatically using crons.
+title: Automatically update your application dependencies
+sidebarTitle: Update your application dependencies
+description: Learn how to automate your dependency updates through a source operation.
+weight: 1
 tier:
   - Elite
   - Enterprise
@@ -19,7 +20,7 @@ You need:
 ## 1. Define a source operation to update your dependencies
 
 To facilitate updating your dependencies in your project,
-define a source operation in your `.platform.app.yaml` file,
+define a source operation in your `.platform.app.yaml` file
 depending on your dependency manager:
 
 <!--vale off -->
@@ -27,7 +28,6 @@ depending on your dependency manager:
 
 +++
 title=Composer
-file=none
 highlight=yaml
 +++
 
@@ -44,7 +44,6 @@ source:
 <--->
 +++
 title=npm
-file=none
 highlight=yaml
 +++
 
@@ -61,7 +60,6 @@ source:
 <--->
 +++
 title=Yarn
-file=none
 highlight=yaml
 +++
 
@@ -78,7 +76,6 @@ source:
 <--->
 +++
 title=Go
-file=none
 highlight=yaml
 +++
 
@@ -96,7 +93,6 @@ source:
 <--->
 +++
 title=Pipenv
-file=none
 highlight=yaml
 +++
 
@@ -113,7 +109,6 @@ source:
 <--->
 +++
 title=Bundler
-file=none
 highlight=yaml
 +++
 
@@ -142,73 +137,74 @@ Make sure you have the [Platform.sh CLI](../administration/cli/_index.md) instal
 and [an API token](../administration/cli/api-tokens.md#2-create-a-platformsh-api-token)
 so you can run a cron job in your app container.
 
-1.  Set your API token as a top-level environment variable: 
+1. Set your API token as a top-level environment variable:
 
-    {{< codetabs >}}
-    +++
-    title=Using the CLI
-    +++
+{{< codetabs >}}
 
-    Run the following command:
++++
+title=From the CLI
++++
 
-    ```bash
-    platform variable:create --environment main --level environment --prefix 'env' --name PLATFORMSH_CLI_TOKEN --sensitive true --value 'YOUR_PLATFORMSH_CLI_TOKEN' --inheritable false --visible-build true --json false --enabled true --visible-runtime true
-    ```
+Run the following command:
 
-    <--->
-    +++
-    title=In the Console
-    +++
+```bash
+platform variable:create --environment main --level environment --prefix 'env' --name PLATFORMSH_CLI_TOKEN --sensitive true --value 'YOUR_PLATFORMSH_CLI_TOKEN' --inheritable false --visible-build true --json false --enabled true --visible-runtime true
+```
 
-    1. Open the environment where you want to add the variable.
-    2. Click {{< icon settings >}} **Settings**.
-    3. Click **Variables**.
-    4. Click **+ Add variable**.
-    5. In the **Variable name** field, enter `env:PLATFORMSH_CLI_TOKEN`.
-    6. In the **Value** field, enter your API token.
-    7. Make sure the **Available at runtime** and **Sensitive variable** options are selected.
-    8. Click **Add variable**.
+<--->
++++
+title=From the Console
++++
 
-    {{< /codetabs >}}
+1. Open the environment where you want to add the variable.
+2. Click {{< icon settings >}} **Settings**.
+3. Click **Variables**.
+4. Click **+ Add variable**.
+5. In the **Variable name** field, enter `env:PLATFORMSH_CLI_TOKEN`.
+6. In the **Value** field, enter your API token.
+7. Make sure the **Available at runtime** and **Sensitive variable** options are selected.
+8. Click **Add variable**.
 
-    {{< note theme="warning" >}}
+{{< /codetabs >}}
 
-    Once you add the API token as an environment variable, anyone with [SSH access](../development/ssh/_index.md) can read its value.
-    Make sure you carefully check your [user access on this project](../administration/users.md#manage-project-users).
+{{< note theme="warning" >}}
 
-    {{< /note >}}
+Once you add the API token as an environment variable,
+anyone with [SSH access](../development/ssh/_index.md) can read its value.
+Make sure you carefully check your [user access on this project](../administration/users.md#manage-project-users).
 
-2.  Add a build hook to your app configuration to install the CLI as part of the build process:
+{{< /note >}}
 
-    ```yaml {location=".platform.app.yaml"}
-    hooks:
-        build: |
-            set -e
-            echo "Installing Platform.sh CLI"
-            curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
-        
-            echo "Testing Platform.sh CLI"
-            platform   
-    ```
+2. Add a build hook to your app configuration to install the CLI as part of the build process:
 
-3.  Then, to configure a cron job to automatically update your dependencies once a day,
-    use a configuration similar to the following:
+```yaml {location=".platform.app.yaml"}
+hooks:
+    build: |
+        set -e
+        echo "Installing Platform.sh CLI"
+        curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
 
-    ```yaml {location=".platform.app.yaml"}
-    crons:
-       update:
-           # Run the code below every day at midnight.
-           spec: '0 0 * * *'
-           commands:
-               start: |
-                   set -e
-                       platform sync -e development code data --no-wait --yes
-                       platform source-operation:run update --no-wait --yes
-                   fi
-    ```
+        echo "Testing Platform.sh CLI"
+        platform
+```
+
+3. Then, to configure a cron job to automatically update your dependencies once a day,
+   use a configuration similar to the following:
+
+```yaml {location=".platform.app.yaml"}
+crons:
+   update:
+       # Run the code below every day at midnight.
+       spec: '0 0 * * *'
+       commands:
+           start: |
+               set -e
+                   platform sync -e development code data --no-wait --yes
+                   platform source-operation:run update --no-wait --yes
+```
 
 The example above synchronizes the `development` environment with its parent
-and then runs the `update` source operation defined [previously](#define-a-source-operation-to-update-your-dependencies).
+and then runs the `update-file` source operation defined [previously](#1-define-a-source-operation).
 
 ## 3. Configure notifications about dependency updates
 
@@ -283,7 +279,7 @@ To do so, follow these steps:
     Optional: to only get notifications about specific environments,
     add the following flag to the command: `--environments=your_environment_name`.
 
-As a result, anytime a dependency is updated via a source operation,
+Anytime a dependency is updated via a source operation,
 the activity script now reports it to Slack. 
 
 {{< /note >}}
@@ -309,8 +305,9 @@ add the following flag to the command: `--environments=your_environment_name`.
 
 To test the integration and the JSON response,
 you can generate a URL from a service such as [webhook.site](https://webhook.site)
-and use the generated URL as `URL_TO_RECEIVE_JSON`. This URL will receive the JSON response when a source operation is triggered.
+and use the generated URL as `URL_TO_RECEIVE_JSON`.
+This URL then receives the JSON response when a source operation is triggered.
 
-As a result, anytime a dependency is updated via a source operation,
+Anytime a dependency is updated via a source operation,
 the webhook now receives a POST message.
 This POST message contains complete information about the entire state of the project at that time.

@@ -1,11 +1,10 @@
 ---
-title: Automated code updates
-description: |
-Run automated code updates via source operations.
+title: Source operations
+description: Run automated code updates via source operations.
 weight: 5
 tier:
-- Elite
-- Enterprise
+  - Elite
+  - Enterprise
 ---
 
 On Platform.sh, you can run automated code updates through a feature called **source operations**.
@@ -22,42 +21,42 @@ you can also define [cron jobs](./app-reference.md#crons).
 
 ## How source operations work
 
-When you trigger a source operation [defined in your app configuration](#define-a-source-operation),
-the following happens in order:
+When you trigger a source operation, the following happens in order:
 
-1.  The current environment HEAD commit is checked out in Git.
-    It doesn't have any remotes or tags defined in the project.
-    It only has the current environment branch.
+1. The current environment HEAD commit is checked out in Git.
+   It doesn't have any remotes or tags defined in the project.
+   It only has the current environment branch.
 
-2.  Sequentially, for each app that has [the name](#define-a-source-operation) of the triggered source operation in its configuration,
-    the operation command is run in the app container.
-    The container isn't part of the environment's runtime cluster
-    and doesn't require that the environment is running.
+2. Sequentially, for each app that has an operation bearing [the name](#define-a-source-operation)
+   of the triggered source operation in its configuration,
+   the operation command is run in the app container.
+   The container isn't part of the environment's runtime cluster
+   and doesn't require that the environment is running.
 
-    The environment has all of the variables normally available during the build phase.
-    These may be optionally overridden by the variables specified when the operation is run.
+   The environment has all of the variables normally available during the build phase.
+   These may be optionally overridden by the variables specified when the operation is run.
 
-3.  If any new commits were created, they're pushed to the repository and the normal build process is triggered.
+3. If any new commits were created, they're pushed to the repository and the normal build process is triggered.
 
-    If multiple apps in a single project both result in a new commit,
-    there are two distinct commits in the Git history but only a single new build process.
+   If multiple apps in a single project both result in a new commit,
+   there are two distinct commits in the Git history but only a single new build process.
 
 ## Define a source operation
 
 A source operation requires two things:
 
--   A name that must be unique within the app.
-    The name is the key of the block defined under `source.operations` in your [app configuration](./app-reference.md#source).
+- A name that must be unique within the application.
+  The name is the key of the block defined under `source.operations` in your [app configuration](./app-reference.md#source).
 
--   A `command` that defines what's run when the operation is triggered.
+- A `command` that defines what's run when the operation is triggered.
 
 The syntax is similar to the following:
 
 ```yaml {location=".platform.app.yaml"}
 source:
     operations:
-        <NAME>:
-            command: <COMMAND>
+        {{< variable "NAME" >}}:
+            command: {{< variable "COMMAND" >}}
 ```
 
 For example, to update a file from a remote location, you could define an operation like this:
@@ -70,16 +69,14 @@ source:
                 set -e
                 curl -O https://example.com/myfile.txt
                 git add myfile.txt
-                git commit --allow-empty -m "Update remote file"
+                git commit -m "Update remote file"
 ```
 
 The name in this case is `update-file`.
 
-For more possibilities, see other [operation examples](#source-operation-examples).
+For more possibilities, see other [source operation examples](#source-operation-examples).
 
 ## Run a source operation
-
-To run a source operation, you can use the CLI or Console.
 
 {{< codetabs >}}
 +++
@@ -108,9 +105,8 @@ Replace `{{< variable "OPERATION_NAME" >}}` with the name of your operation, suc
 
 {{< /codetabs >}}
 
-After running a source operation,
-to apply the changes to your local development environment
-run the `git pull` command.
+After running a source operation, 
+to apply the changes to your local development environment run the `git pull` command.
 
 ## Use variables in your source operations
 
@@ -138,7 +134,7 @@ title=In the Console
 4.  Select the operation you want to run.
 
 5.  Under **Add/override variables**, put `FILE` as the **Variable name** and `example.txt` as the **Value**.
-   The variable is automatically prefixed with `env:`.
+    The variable is automatically prefixed with `env:`.
 
 6.  Click **Run**.
 
@@ -165,13 +161,13 @@ you can't run source operations on environments created from pull or merge reque
 If you try running a source operation on a non-supported environment, you see the following error:
 
 ```text
-[ApiFeatureMissingException]
+[ApiFeatureMissingException] 
 This project doesn't support source operations.
 ```
 
-## Automated source operations using cron
+## Automated source operations using a cron job
 
-You can use cron jobs to automatically run your source operations.
+You can use cron to automatically run your source operations.
 
 Note that it’s best not to run source operations on your production environment,
 but rather on a dedicated environment where you can test changes.
@@ -183,8 +179,9 @@ so you can run a cron job in your app container.
 1.  Set your API token as a top-level environment variable:
 
 {{< codetabs >}}
+
 +++
-title=Using the CLI
+title=From the CLI
 +++
 
 Run the following command:
@@ -195,7 +192,7 @@ platform variable:create --environment main --level environment --prefix 'env' -
 
 <--->
 +++
-title=In the Console
+title=From the Console
 +++
 
 1. Open the environment where you want to add the variable.
@@ -211,7 +208,8 @@ title=In the Console
 
 {{< note theme="warning" >}}
 
-Once you add the API token as an environment variable, anyone with [SSH access](../development/ssh/_index.md) can read its value.
+Once you add the API token as an environment variable,
+anyone with [SSH access](../development/ssh/_index.md) can read its value.
 Make sure you carefully check your [user access on this project](../administration/users.md#manage-project-users).
 
 {{< /note >}}
@@ -230,7 +228,7 @@ hooks:
 ```
 
 3.  Then, to configure a cron job to automatically update your dependencies once a day,
-   use a configuration similar to the following:
+    use a configuration similar to the following:
 
 ```yaml {location=".platform.app.yaml"}
 crons:
@@ -242,31 +240,30 @@ crons:
                set -e
                    platform sync -e development code data --no-wait --yes
                    platform source-operation:run update --no-wait --yes
-               fi
 ```
 
 The example above synchronizes the `development` environment with its parent
-and then runs the `update` source operation defined [previously](#1-define-a-source-operation).
+and then runs the `update-file` source operation defined [previously](#1-define-a-source-operation).
 
 ## Source operation examples
 
 ### Update dependencies
 
-You can set up a source operation and a cron job [to automate your dependency updates](../tutorials/dependency-updates.md).
+You can set up a source operation and a cron job to [automate your dependency updates](../tutorials/dependency-updates.md).
 
 ### Update a site from an upstream repository or template
 
-The following source operation synchronizes your branch with an upstream Git repository:
+The following source operation syncronizes your branch with an upstream Git repository.
 
-1.  [Add a project-level variable](../development/variables/set-variables.md#create-project-variables)
-    named `env:UPSTREAM_REMOTE` with the Git URL of the upstream repository.
-    That makes that repository available as a Unix environment variable in all environments,
-    including in the source operation's environment.
+1. [Add a project-level variable](../development/variables/set-variables.md#create-project-variables)
+   named `env:UPSTREAM_REMOTE` with the Git URL of the upstream repository.
+   That makes that repository available as a Unix environment variable in all environments,
+   including in the source operation's environment.
 
-    - Variable name: `env:UPSTREAM_REMOTE`
-    - Variable example value: `https://github.com/platformsh/platformsh-docs`
+   - Variable name: `env:UPSTREAM_REMOTE`
+   - Variable example value: `https://github.com/platformsh/platformsh-docs`
 
-2.  In your app configuration, define a source operation to fetch from that upstream repository:
+2. In your app configuration, define a source operation to fetch from that upstream repository:
 
    ```yaml {location=".platform.app.yaml"}
    source:
@@ -276,14 +273,14 @@ The following source operation synchronizes your branch with an upstream Git rep
                    set -e
                    git remote add upstream $UPSTREAM_REMOTE
                    git fetch --all
-                   git merge upstream/$BRANCH_NAME --allow-unrelated-histories
+                   git merge upstream/main
    ```
 
-3.  Now every time you run the `upstream-update` operation on a given branch,
-    the branch fetches all changes from the upstream git repository
-    and then merges the latest changes from the default branch in the upstream repository.
-    If there’s a conflict merging from the upstream repository,
-    the source operation fails and doesn't update from the upstream repository.
+3. Now every time you run the `upstream-update` operation on a given branch,
+   the branch fetches all changes from the upstream git repository
+   and then merges the latest changes from the default branch in the upstream repository.
+   If there’s a conflict merging from the upstream repository,
+   the source operation fails and doesn't update from the upstream repository.
 
 Run the `upstream-update` operation on a Development environment rather than directly on Production.
 
@@ -314,9 +311,9 @@ source:
         update-drupal-core:
             command: |
                 set -e
-                composer update drupal/core --with-all-dependencies
+                composer update drupal/core --with-dependencies
                 git add composer.lock
-                git commit --allow-empty -m "Automated Drupal Core update."
+                git commit -m "Automated Drupal Core update."
 ```
 
 `--with-dependencies` is used to also update Drupal Core dependencies.
@@ -326,7 +323,7 @@ Now every time you run the `update-drupal-core` operation, it updates Drupal Cor
 
 ### Download a Drupal extension
 
-The following source operation downloads a Drupal extension.
+The following source operation downloads a Drupal extension.
 You can define the Drupal extension by setting an `EXTENSION` variable
 or [overriding it](#use-variables-in-your-source-operations) when running the source operation.
 
@@ -338,7 +335,7 @@ source:
                 set -e
                 composer require $EXTENSION
                 git add composer.json
-                git commit --allow-empty -am "Automated install of: $EXTENSION via Composer."
+                git commit -am "Automated install of: $EXTENSION via Composer."
 ```
 
 Now every time you run the `download-drupal-extension` operation, it downloads the defined extension.
@@ -346,7 +343,8 @@ Now every time you run the `download-drupal-extension` operation, it downloads t
 If it's a new extension, after the source operation finishes,
 you need to enable the new extension via the Drupal management interface or using Drush.
 
-### Update Git submodules
+
+### Update Git submodules 
 
 The following source operation updates all Git submodules recursively:
 
@@ -360,8 +358,8 @@ source:
                 git submodule update --remote --checkout
                 SHA=$(git submodule | awk -F' ' '{print $1}' | sed -s 's/+//g')
                 echo -n "$SHA" > .sha
-                git add .sha
-                git commit --allow-empty -m "Updating submodule to commit '$SHA'"
+                git add uppler .sha
+                git commit -m "Updating submodule to commit '$SHA'"
 ```
 
 Now every time you run the `rebuild` operation, it updates the Git submodules.
