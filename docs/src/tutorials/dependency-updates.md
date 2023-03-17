@@ -127,7 +127,7 @@ source:
 
 ## 2. Automate your dependency updates with a cron job
 
-After you've defined a source operation to [update your dependencies on your project](#define-a-source-operation-to-update-your-dependencies),
+After you've defined a source operation to [update your dependencies on your project](#1-define-a-source-operation-to-update-your-dependencies),
 you can automate it using a cron job.
 
 Note that it’s best not to run source operations on your production environment,
@@ -204,7 +204,7 @@ crons:
 ```
 
 The example above synchronizes the `development` environment with its parent
-and then runs the `update-file` source operation defined [previously](#1-define-a-source-operation).
+and then runs the `update-file` source operation defined [previously](#1-define-a-source-operation-to-update-your-dependencies).
 
 ## 3. Configure notifications about dependency updates
 
@@ -213,7 +213,7 @@ you can configure activity scripts or webhooks.
 
 ### Notifications through an activity script
 
-After you've defined a source operation to [update your dependencies on your project](#define-a-source-operation-to-update-your-dependencies),
+After you've defined a source operation to [update your dependencies on your project](#1-define-a-source-operation-to-update-your-dependencies),
 you can configure an activity script 
 to receive notifications every time a dependency update is triggered.
 
@@ -286,7 +286,7 @@ the activity script now reports it to Slack.
 
 ### Notifications through a webhook
 
-After you've defined a source operation to [update your dependencies on your project](#define-a-source-operation-to-update-your-dependencies),
+After you've defined a source operation to [update your dependencies on your project](#1-define-a-source-operation-to-update-your-dependencies),
 you can configure a webhook to receive notifications every time a dependency update is triggered.
 
 [Webhooks](../integrations/activity/webhooks.md) allow you to host a script yourself externally.

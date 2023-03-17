@@ -101,7 +101,7 @@ Run the following command:
 platform source-operation:run {{< variable "OPERATION_NAME" >}}
 ```
 
-Replace `{{< variable "OPERATION_NAME" >}}` with the name of your operation, such as `update-file`) in the [example above](#1-define-a-source-operation).
+Replace `{{< variable "OPERATION_NAME" >}}` with the name of your operation, such as `update-file`) in the [example above](#define-a-source-operation).
 
 {{< /codetabs >}}
 
@@ -243,7 +243,7 @@ crons:
 ```
 
 The example above synchronizes the `development` environment with its parent
-and then runs the `update-file` source operation defined [previously](#1-define-a-source-operation).
+and then runs the `update-file` source operation defined [previously](#define-a-source-operation).
 
 ## Source operation examples
 
