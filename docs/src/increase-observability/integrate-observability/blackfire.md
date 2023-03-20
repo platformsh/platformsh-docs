@@ -196,7 +196,7 @@ follow these steps:
 
 1. Retrieve [startup errors](#1-retrieve-startup-errors).
 2. Retrieve your [Blackfire logs](#2-retrieve-your-blackfire-logs).
-3. Send this data to [Blackfire support](https://support.blackfire.io).
+3. Send this data to [Blackfire Support](https://support.blackfire.io).
 
 ### 1. Retrieve startup errors
 
