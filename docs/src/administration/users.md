@@ -11,7 +11,13 @@ To help manage permissions, group your environments by [environment type](#envir
 Each user in a project is also added to your organization.
 You can also [manage organization users](#manage-organization-users).
 
-## Project user permissions
+
+## Manage project users
+
+If you have set up an external integration to GitHub, GitLab, or Bitbucket and your users can't clone the project locally,
+see how to [troubleshoot source integrations](../integrations/source/troubleshoot.md).
+
+### Project user permissions
 
 Within a project, each user has a role that controls their access and permission levels.
 
@@ -48,13 +54,6 @@ To customize which roles can use SSH, set [`access` in your app configuration](.
 | Viewer      | Yes              | No        | Yes                | No         | No              | No              |
 | Contributor | Yes              | Yes       | Yes                | Yes        | No              | No              |
 | Admin       | Yes              | Yes       | Yes                | Yes        | Yes             | Yes             |
-
-### Project access
-
-If you have set up an external integration to GitHub, GitLab, or Bitbucket and your users can't clone the project locally,
-see how to [troubleshoot source integrations](../integrations/source/troubleshoot.md).
-
-## Manage project users
 
 ### Add a user to a project
 
@@ -104,43 +103,8 @@ title=In the Console
 
 The user has to create an account before they can contribute to the project.
 Once you add a user to a project, they receive an email with instructions.
-For SSH access changes to apply after you add a user to a project,
-you have to redeploy each environment by either clicking **Redeploy** in the Console or running `platform redeploy`.
-
-### Remove a user from a project
-
-To remove a user from a project, you need to be a [project admin](#project-user-permissions).
-
-To remove a user, follow these steps:
-
-{{< codetabs >}}
-+++
-title=Using the CLI
-+++
-
-To remove an existing user, run the following command:
-
-```bash
-platform user:delete user1@example.com
-```
-
-<--->
-+++
-title=In the Console
-+++
-
-1. Select the project where you want to add a new user.
-2. Click {{< icon settings >}} **Settings**.
-3. Click **Access**.
-4. Click the user you want to delete.
-5. Click **Remove user**.
-6. Click **Accept**.
-
-{{< /codetabs >}}
-
-Once you remove a user, they can no longer access the project.
-For SSH access changes to apply after you remove a user from a project or an environment type,
-you have to redeploy each environment by either clicking **Redeploy** in the Console or running `platform redeploy`.
+If they don't yet have an account, they need to create one.
+After you add a user to a project, SSH access changes are automatically applied and you don't need to redeploy. 
 
 ### Change existing permissions for environment types
 
@@ -173,18 +137,53 @@ platform user:update user1@example.com -r production:viewer,development:contribu
 title=In the Console
 +++
 
+1. Select the project where you want to update user access.
+2. Click {{< icon settings >}} **Settings**.
+3. Click **Access**.
+4. Click the user you want to update permissions for.
+5. Update environment type permissions, or click **Remove user**.
+6. Click **Accept**.
+
+{{< /codetabs >}}
+
+After you change a user's permissions for an environment type, SSH access changes are automatically applied and you don't need to redeploy. 
+
+### Remove a user from a project
+
+To remove a user from a project, you need to be a [project admin](#project-user-permissions),
+be an organization owner, or have the [**Manage users** permission for the organization](#organization-user-permissions).
+
+To remove a user, follow these steps:
+
+{{< codetabs >}}
++++
+title=Using the CLI
++++
+
+Run the following command:
+
+```bash
+platform user:delete user1@example.com
+```
+
+<--->
++++
+title=In the Console
++++
+
 1. Navigate to your organization or a project in it.
 2. Open the user menu (your name or profile picture).
 3. Click **Users**.
 4. For the user you want to remove, click **{{< icon more >}} More**.
 5. For the project you want to remove them from, click **{{< icon more >}} More**.
-6. Update the permissions.
-7. Click **Save**.
+6. Click **Remove from project**.
+7. Click **Yes**.
 
 {{< /codetabs >}}
 
-To apply SSH access changes after changing a user's permissions for an environment type,
-[trigger a redeploy](../development/troubleshoot.md#force-a-redeploy).
+Once you remove a user, they can no longer access the project.
+
+After you remove a user from a project or environment type, SSH access changes are automatically applied and you don't need to redeploy. 
 
 ## Manage organization users
 
@@ -192,7 +191,7 @@ All users who are added to any project within an organization become members of 
 By default, such users have no [organization permissions](#organization-user-permissions).
 You can also have organization admins who aren't part of any projects.
 
-Users who are a part of an organization can see all projects in that organization at the organization's URL,
+Users who are a part of an organization with the **List projects** permission can see all projects in that organization at the organization's URL,
 which takes the form `https://console.platform.sh/{{< variable "ORGANIZATION_NAME" >}}`.
 They can only access projects they've been explicitly invited to.
 For more information on project access control, see how to [manage project users](#manage-project-users).
@@ -338,3 +337,5 @@ title=Using the Console
 To delete users in bulk, select the users to remove and click **Remove users from organization**.
 
 {{< /codetabs >}}
+
+Remove a user from an organization will remove them from all projects they were a member of.
