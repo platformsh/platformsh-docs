@@ -40,7 +40,10 @@ you need to enable the integration yourself.
 To do so, follow these steps:
 
 1. Create a [Blackfire account](https://blackfire.io/signup?target=/login), preferably using your Platform.sh login.
-2. In your Blackfire account, create an organization and [ask Support](https://console.platform.sh/-/users/~/tickets/open) to activate it.
+2. In your Blackfire account, create an organization.
+   If you subscribed to Blackfire independently, your organization is automatically activated.
+   If you subscribed to Blackfire through Platform.sh,
+   [ask **Platform.sh** Support](https://console.platform.sh/-/users/~/tickets/open) to activate your organization.
 3. In your organization, create an environment.
 4. In your environment, click **Settings/Environment Credentials**.
 5. Retrieve your Blackfire server ID and server token.
@@ -57,7 +60,10 @@ to let Blackfire profile the code running on your servers.
 To install Blackfire on your {{% names/dedicated-gen-2 %}} environments:
 
 1. Create a [Blackfire account](https://blackfire.io/signup?target=/login), preferably using your Platform.sh login.
-2. In your Blackfire account, create an organization and [ask Support](https://console.platform.sh/-/users/~/tickets/open) to activate it.
+2. In your Blackfire account, create an organization.
+   If you subscribed to Blackfire independently, your organization is automatically activated.
+   If you subscribed to Blackfire through Platform.sh,
+   [ask **Platform.sh** Support](https://console.platform.sh/-/users/~/tickets/open) to activate your organization.
 3. In your organization, create an environment.
 4. In your environment, click **Settings/Environment Credentials**.
 5. Retrieve your Blackfire server ID and server token.
@@ -190,7 +196,7 @@ follow these steps:
 
 1. Retrieve [startup errors](#1-retrieve-startup-errors).
 2. Retrieve your [Blackfire logs](#2-retrieve-your-blackfire-logs).
-3. Send this data to [Blackfire support](https://support.blackfire.io).
+3. Send this data to [Blackfire Support](https://support.blackfire.io).
 
 ### 1. Retrieve startup errors
 
