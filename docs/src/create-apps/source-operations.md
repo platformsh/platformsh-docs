@@ -76,11 +76,11 @@ Run the following command:
 platform source-operation:run {{< variable "OPERATION_NAME" >}}
 ```
 
-Replace `{{< variable "OPERATION_NAME" >}}` with the name of your operation, such as `update-file`) in the [example above](#1-define-a-source-operation).
+Replace {{< variable "OPERATION_NAME" >}} with the name of your operation, such as `update-file` in the [example above](#1-define-a-source-operation).
 
 {{< /codetabs >}}
 
-After running a source operation, 
+After running a source operation,
 apply the changes to your local development environment by running `git pull`.
 
 ## How source operations work
