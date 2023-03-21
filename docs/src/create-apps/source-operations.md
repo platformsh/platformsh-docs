@@ -101,12 +101,40 @@ Run the following command:
 platform source-operation:run {{< variable "OPERATION_NAME" >}}
 ```
 
+<<<<<<< HEAD
 Replace `{{< variable "OPERATION_NAME" >}}` with the name of your operation, such as `update-file`) in the [example above](#define-a-source-operation).
 
 {{< /codetabs >}}
 
 After running a source operation, 
 to apply the changes to your local development environment run the `git pull` command.
+=======
+Replace {{< variable "OPERATION_NAME" >}} with the name of your operation, such as `update-file` in the [example above](#1-define-a-source-operation).
+
+{{< /codetabs >}}
+
+After running a source operation,
+apply the changes to your local development environment by running `git pull`.
+
+## How source operations work
+
+When you trigger a source operation, the following happens in order:
+
+1. The current environment HEAD commit is checked out in Git.
+   It doesn't have any remotes or tags defined in the project.
+   It only has the current environment branch.
+2. Sequentially, for each app that has an operation with this name in its configuration,
+   the operation command is run in the app container.
+   The container isn't part of the environment's runtime cluster
+   and doesn't require that the environment is running.
+
+   The environment has all of the variables normally available during the build phase.
+   These may be optionally overridden by the variables specified when the operation is run.
+3. If any new commits were created, they're pushed to the repository and the normal build process is triggered.
+
+   If multiple apps in a single project both result in a new commit,
+   there are two distinct commits in the Git history but only a single new build process.
+>>>>>>> main
 
 ## Use variables in your source operations
 
