@@ -222,7 +222,7 @@ https://{default}/:
       "/user_guide/using/backup-and-restore.html" : { "to": "/security/backups.html", "code": 301 }
       "/user_guide/using/going-live.html" : { "to": "/domains/steps.html", "code": 301 }
       "/user_guide/using/integrations/blackfire.html" : { "to": "/increase-observability/integrate-observability/blackfire.html", "code": 301 }
-      "user_guide/using/use-SSH.html" : { "to": "/development/ssh.html", "code": 301 }
+      "/user_guide/using/use-SSH.html" : { "to": "/development/ssh.html", "code": 301 }
       "/using-platform/003-migrating-an-existing-site.html#import-your-files" : { "to": "/tutorials/migrating.html", "code": 301 }
 
 "https://search.{default}/":
