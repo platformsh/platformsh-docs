@@ -59,9 +59,13 @@ If you use a [Managed Fastly](../cdn/managed-fastly.md) CDN,
 it needs to be configured to operate with custom non-production domains.
 For more information, contact [Support](https://console.platform.sh/-/users/~/tickets/open).   
 
+{{< note theme="warning" >}}
+
 If you have a {{% names/dedicated-gen-2 %}} project,
 currently you can only add a custom domain to the dedicated environments of your project (production and staging).
 To do so, contact [Support](https://console.platform.sh/-/users/~/tickets/open).
+
+{{< /note >}}
 
 To add custom non-production domains yourself, you must be a **project admin**.
 You can add custom domains to up to 5 environments per project (production environment included).
