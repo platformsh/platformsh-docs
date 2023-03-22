@@ -191,8 +191,7 @@ Staging
 
 Development environments are often used for a limited time and then abandoned.
 To prevent unnecessary consumption of resources,
-Platform.sh automatically pauses development environments (development and staging [environment types](../administration/users.md#environment-types))
-that haven't been used in 15 days.
+Platform.sh automatically pauses development environments that haven't been used in 15 days.
 
 You can resume a paused environment at any time.
 
