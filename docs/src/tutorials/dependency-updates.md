@@ -1,6 +1,6 @@
 ---
 title: Automatically update your application dependencies
-sidebarTitle: Update your application dependencies
+sidebarTitle: Schedule dependency updates
 description: Learn how to automate your dependency updates through a source operation.
 weight: 1
 tier:
