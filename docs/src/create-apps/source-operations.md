@@ -67,8 +67,8 @@ source:
         update-file:
             command: |
                 set -e
-                curl -O https://example.com/myfile.txt
-                git add myfile.txt
+                curl -O https://example.com/$FILE
+                git add $FILE
                 git commit -m "Update remote file"
 ```
 
@@ -101,7 +101,7 @@ Run the following command:
 platform source-operation:run {{< variable "OPERATION_NAME" >}}
 ```
 
-Replace {{< variable "OPERATION_NAME" >}} with the name of your operation, such as `update-file`) in the [example above](#define-a-source-operation).
+Replace {{< variable "OPERATION_NAME" >}} with the name of your operation, such as `update-file` in the [example above](#define-a-source-operation).
 
 {{< /codetabs >}}
 
@@ -116,8 +116,21 @@ Use the `env:` prefix to expose each of those variables as a Unix environment va
 In this way, they're referenced by the source operation
 and interpreted the same way as any other variable set in your project.
 
-For example, if you want to have a `FILE` variable available with the value `example.txt`,
-follow these steps to run the source operation:
+For example, you might want to have a `FILE` variable available with the value `example.txt`
+to pass to a source operation similar to the following:
+
+```yaml {location=".platform.app.yaml"}
+source:
+    operations:
+        update-file:
+            command: |
+                set -e
+                curl -O https://example.com/$FILE
+                git add $FILE
+                git commit -m "Update remote file"
+```
+
+Follow these steps to run the source operation:
 
 {{< codetabs >}}
 
@@ -227,7 +240,7 @@ hooks:
         platform
 ```
 
-3.  Then, to configure a cron job to automatically update your dependencies once a day,
+3.  Then, to configure a cron job to automatically run a source operation once a day,
     use a configuration similar to the following:
 
 ```yaml {location=".platform.app.yaml"}
@@ -239,7 +252,7 @@ crons:
             start: |
                 set -e
                 platform sync -e development code data --no-wait --yes
-                platform source-operation:run update --no-wait --yes
+                platform source-operation:run update-file --no-wait --yes
 ```
 
 The example above synchronizes the `development` environment with its parent
