@@ -67,8 +67,8 @@ source:
         update-file:
             command: |
                 set -e
-                curl -O https://example.com/$FILE
-                git add $FILE
+                curl -O https://example.com/myfile.txt
+                git add myfile.txt
                 git commit -m "Update remote file"
 ```
 
@@ -157,7 +157,7 @@ title=Using the CLI
 +++
 
 ```bash
-platform source-operation:run update --variable env:FILE="example.txt"
+platform source-operation:run update-file --variable env:FILE="example.txt"
 ```
 
 {{< /codetabs >}}

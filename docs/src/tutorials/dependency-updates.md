@@ -33,7 +33,7 @@ highlight=yaml
 
 source:
     operations:
-        update:
+        update-file:
             command: |
                 set -e
                 composer update
@@ -49,7 +49,7 @@ highlight=yaml
 
 source:
     operations:
-        update:
+        update-file:
             command: |
                 set -e
                 npm update
@@ -65,7 +65,7 @@ highlight=yaml
 
 source:
     operations:
-        update:
+        update-file:
             command: |
                 set -e
                 yarn upgrade
@@ -81,7 +81,7 @@ highlight=yaml
 
 source:
     operations:
-        update:
+        update-file:
             command: |
                 set -e
                 go get -u
@@ -98,7 +98,7 @@ highlight=yaml
 
 source:
     operations:
-        update:
+        update-file:
             command: |
                 set -e
                 pipenv update
@@ -114,7 +114,7 @@ highlight=yaml
 
 source:
     operations:
-        update:
+        update-file:
             command: |
                 set -e
                 bundle update --all
@@ -200,7 +200,7 @@ crons:
             start: |
                 set -e
                 platform sync -e development code data --no-wait --yes
-                platform source-operation:run update --no-wait --yes
+                platform source-operation:run update-file --no-wait --yes
 ```
 
 The example above synchronizes the `development` environment with its parent
