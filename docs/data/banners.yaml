@@ -31,6 +31,10 @@ tiered-feature:
         [Compare the Platform.sh tiers](https://platform.sh/pricing/) on our pricing page, 
         or [contact our sales team](https://platform.sh/contact/) for more information.
 
-observabilitySuite: same as above
+observability-suite:
+    title: Observability Suite
+    body: This feature is available as part of the [Observability Suite](https://platform.sh/features/observability-suite/).
+        To add the Observability Suite to your project and take advantage of this feature,
+        [contact Sales](https://platform.sh/contact/).
 
 premium: same as above

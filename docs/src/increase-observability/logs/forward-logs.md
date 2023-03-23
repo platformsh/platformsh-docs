@@ -1,7 +1,8 @@
 ---
 title: Forward logs
 description: Send your logs to a third-party service for further analysis.
-observabilitySuite: true
+banner: 
+    type: observability-suite
 ---
 
 You might use a service to analyze logs from various parts of your fleet.
