@@ -33,7 +33,7 @@ highlight=yaml
 
 source:
     operations:
-        update-file:
+        update:
             command: |
                 set -e
                 composer update
@@ -49,7 +49,7 @@ highlight=yaml
 
 source:
     operations:
-        update-file:
+        update:
             command: |
                 set -e
                 npm update
@@ -65,7 +65,7 @@ highlight=yaml
 
 source:
     operations:
-        update-file:
+        update:
             command: |
                 set -e
                 yarn upgrade
@@ -81,7 +81,7 @@ highlight=yaml
 
 source:
     operations:
-        update-file:
+        update:
             command: |
                 set -e
                 go get -u
@@ -98,7 +98,7 @@ highlight=yaml
 
 source:
     operations:
-        update-file:
+        update:
             command: |
                 set -e
                 pipenv update
@@ -114,7 +114,7 @@ highlight=yaml
 
 source:
     operations:
-        update-file:
+        update:
             command: |
                 set -e
                 bundle update --all
@@ -200,11 +200,11 @@ crons:
             start: |
                 set -e
                 platform sync -e development code data --no-wait --yes
-                platform source-operation:run update-file --no-wait --yes
+                platform source-operation:run update --no-wait --yes
 ```
 
 The example above synchronizes the `development` environment with its parent
-and then runs the `update-file` source operation defined [previously](#1-define-a-source-operation-to-update-your-dependencies).
+and then runs the `update` source operation defined [previously](#1-define-a-source-operation-to-update-your-dependencies).
 
 ## 3. Configure notifications about dependency updates
 
