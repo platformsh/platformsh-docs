@@ -2,9 +2,8 @@
 title: Automated code updates
 description: |
   Run automated code updates via source operations.
-tier:
-  - Elite
-  - Enterprise
+banner: 
+    type: tiered-feature
 ---
 
 You can run automated code updates via a Platform.sh mechanism called: source operation.

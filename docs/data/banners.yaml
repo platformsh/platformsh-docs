@@ -26,8 +26,10 @@ beta:
 # tiered-enterprise
 # ...
 tiered-feature: 
-    title: Loaded
-    body: Loaded
+    title: Tier availability
+    body: This feature is available for **Elite** and **Enterprise** customers. 
+        [Compare the Platform.sh tiers](https://platform.sh/pricing/) on our pricing page, 
+        or [contact our sales team](https://platform.sh/contact/) for more information.
 
 observabilitySuite: same as above
 
