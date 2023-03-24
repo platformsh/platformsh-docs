@@ -1,7 +1,6 @@
 ---
 title: Source operations
-description: |
-  Run automated code updates via source operations.
+description: Run automated code updates via source operations.
 weight: 5
 banner: 
     title: Availability
