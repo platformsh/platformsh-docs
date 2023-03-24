@@ -1,9 +1,8 @@
 ---
 title: Web application firewall (WAF)
 description: Learn how the WAF included in Enterprise and Elite plans can help protect your site from distributed denial of service (DDoS) attacks.
-tier:
-  - Enterprise
-  - Elite
+banner: 
+    type: tiered-feature
 ---
 
 Enterprise and Elite projects on Platform.sh come with a web application firewall (WAF) at no additional cost.

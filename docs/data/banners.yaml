@@ -1,0 +1,38 @@
+# PAGE BANNERS
+#
+# To enable on a page:
+# 
+# banner:
+#   type: beta 
+#   # title: Override the default values below by setting a banner.title
+#   # body: Override the default values below by setting a banner.body
+#
+# You can also set a completely custom banner (without a 'type'), as long as body and title are defined
+#
+# banner:
+#   title: Custom banner title
+#   body: Explanation of the custom banner title
+beta:
+    title: Beta
+    body: This feature is only available to Enterprise and Elite customers and is currently in Beta.
+        If you’re an Enterprise or Elite customer, to become a Beta tester [contact Support](/overview/get-support.html).
+        If you’re a Professional customer, you need to [contact Sales](https://platform.sh/contact/) first to upgrade your plan.
+
+# For now, the only tier-gated feature is applicable BOTH to Enterprise and Elite. 
+# If this changes, it may make sense to use instead
+#
+# tiered-elite-enterprise
+# tiered-elite
+# tiered-enterprise
+# ...
+tiered-feature: 
+    title: Tier availability
+    body: This feature is available for **Elite** and **Enterprise** customers. 
+        [Compare the Platform.sh tiers](https://platform.sh/pricing/) on our pricing page, 
+        or [contact our sales team](https://platform.sh/contact/) for more information.
+
+observability-suite:
+    title: Observability Suite
+    body: This feature is available as part of the [Observability Suite](https://platform.sh/features/observability-suite/).
+        To add the Observability Suite to your project and take advantage of this feature,
+        [contact Sales](https://platform.sh/contact/).
