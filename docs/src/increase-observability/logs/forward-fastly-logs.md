@@ -6,8 +6,9 @@ weight: 11
 ---
 
 When you use a Fastly Content delivery network (CDN),
-you can fine-tune its performance by [forwarding your CDN logs](https://docs.fastly.com/en/guides/about-fastlys-realtime-log-streaming-features)
-to a third-party service.
+[forwarding your CDN logs](https://docs.fastly.com/en/guides/about-fastlys-realtime-log-streaming-features) to a third-party service
+can help you diagnose caching issues,
+and therefore improve your site's overall performance.
 
 To enable log forwarding on your Fastly CDN,
 follow these directions:
