@@ -3,7 +3,8 @@ title: Set up a custom domain on your non-production environments
 sidebarTitle: (Beta) Non-production environments
 weight: 3
 description: Learn how to set up custom domains on your staging and development environments
-betaFlag: true
+banner: 
+    type: beta
 ---
 
 You can add a custom domain to a non-production environment (`staging` or `development` environment types)

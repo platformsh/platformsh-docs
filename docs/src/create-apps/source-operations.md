@@ -1,10 +1,12 @@
 ---
 title: Source operations
-description: Run automated code updates via source operations.
+description: |
+  Run automated code updates via source operations.
 weight: 5
-tier:
-  - Elite
-  - Enterprise
+banner: 
+    title: Availability
+    body: All of the examples on this page can be run on Enterprise or Elite projects only.
+          To upgrade your plan or request a trial, [contact Sales](https://platform.sh/contact/).
 ---
 
 On Platform.sh, you can run automated code updates through a feature called **source operations**.
