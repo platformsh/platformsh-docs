@@ -27,6 +27,8 @@ Within a project, each user has a role that controls their access and permission
 
 Users can still see projects that they can't access if they have the [**List projects** permission](#organization-user-permissions).
 
+The organization owner has **Project admin** access on all the organization's projects by default.
+
 ### Environment types
 
 Each environment type groups one or more environments together so that you can manage access for all environments of that type.
@@ -189,7 +191,7 @@ After you remove a user from a project or environment type, SSH access changes a
 
 All users who are added to any project within an organization become members of that organization.
 By default, such users have no [organization permissions](#organization-user-permissions).
-You can also have organization admins who aren't part of any projects.
+You can also have organization users who aren't part of any projects.
 
 Users who are a part of an organization with the **List projects** permission can see all projects in that organization at the organization's URL,
 which takes the form `https://console.platform.sh/{{< variable "ORGANIZATION_NAME" >}}`.
@@ -224,6 +226,9 @@ Users with the **Manage users** (`members`) permission can add, edit, or remove 
 
 Users without any of these permissions can only access [projects where they're users](#project-user-permissions).
 They can't access or manage the rest of the organization.
+
+The organization owner has all organization permissions and cannot be edited. They cannot be removed from the organization, except via an [ownership transfer](../organizations.md#transfer-project-ownership).
+
 
 ### Add a user to an organization
 
