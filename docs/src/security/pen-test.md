@@ -3,6 +3,11 @@ title: Vulnerability scanning and penetration testing
 sidebarTitle: Security scans
 description: |
   Platform.sh understands the need for application owners to ensure the integrity, and standards compliance, of their applications. Because there could be adverse impacts to other clients which would violate our terms of service, we only permit certain types of tests.
+keywords:
+  - pentesting
+  - pentests
+  - penetration testing
+  - penetration tests
 ---
 
 {{% description %}}
