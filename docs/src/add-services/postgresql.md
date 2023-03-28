@@ -1,6 +1,6 @@
 ---
 title: "PostgreSQL (Database service)"
-weight: -140
+weight: -10
 sidebarTitle: "PostgreSQL"
 ---
 

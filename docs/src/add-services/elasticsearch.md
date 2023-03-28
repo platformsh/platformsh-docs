@@ -1,7 +1,6 @@
 ---
 title: "Elasticsearch (Search service)"
 weight: -100
-sectionBefore: Search
 description: |
   Elasticsearch is a distributed RESTful search engine built for the cloud.
 sidebarTitle: "Elasticsearch"

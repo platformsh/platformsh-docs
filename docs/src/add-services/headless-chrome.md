@@ -1,7 +1,6 @@
 ---
 title: "Headless Chrome"
-weight: -50
-sectionBefore: Visual regression
+weight: -90
 description: |
   Headless Chrome is a headless browser that can be configured on projects like any other service on Platform.sh.
 ---

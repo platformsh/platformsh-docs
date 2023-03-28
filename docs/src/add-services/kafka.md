@@ -1,7 +1,6 @@
 ---
 title: "Kafka (Message queue service)"
-weight: -120
-sectionBefore: Queues
+weight: -70
 description: |
   Apache Kafka is an open-source stream-processing software platform.
 sidebarTitle: "Kafka"

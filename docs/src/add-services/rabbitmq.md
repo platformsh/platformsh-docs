@@ -1,6 +1,6 @@
 ---
 title: "RabbitMQ (message queue service)"
-weight: -110
+weight: 10
 sidebarTitle: RabbitMQ
 description: See how to configure RabbitMQ for your messaging needs.
 ---

@@ -1,7 +1,6 @@
 ---
 title: "Network Storage"
-weight: -60
-sectionBefore: Storage
+weight: -30
 ---
 
 Platform.sh supports internal "storage as a service" to provide a file store that can be shared between different application containers.
