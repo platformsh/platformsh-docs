@@ -1,6 +1,7 @@
 ---
-title: Forward logs
-description: Send your logs to a third-party service for further analysis.
+title: Forward Platform.sh logs
+description: Send your Platform.sh logs to a third-party service for further analysis.
+weight: 10
 banner: 
     type: observability-suite
 ---
