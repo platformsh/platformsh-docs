@@ -168,6 +168,62 @@ https://{default}/:
       "/dedicated-gen-3/overview.html" : { "to": "/dedicated-gen-3.html", "code": 301 }
       "/dedicated-gen-2/overview/onboarding.html" : { "to": "/dedicated-gen-2.html", "code": 301 }
 
+      # Redirects for broken backlinks
+      "/administration/web/email.html" : { "to": "/development/email.html", "code": 301 }
+      "/administration/web/email.html#sending-e-mail][1]" : { "to": "/development/email.html", "code": 301 }
+      "/administration/web/email.html#sending-e-mail%5D%5B1%5D" : { "to": "/development/email.html", "code": 301 }
+      "/development/going-live.html" : { "to": "/domains/steps.html", "code": 301 }
+      "/development/going-live.html#prerequisites" : { "to": "/domains/steps.html", "code": 301 }
+      "/development/protective-block.html" : { "to": "/security.html", "code": 301 }
+      "/drupal_migrate/guides/local/git-initialize-repository.html" : { "to": "/tutorials/migrating.html", "code": 301 }
+      "/drupal_migrate/guides/type/php/drupal/migrate/import-database.html" : { "to": "/tutorials/migrating.html", "code": 301 }
+      "/drupal_migrate/guides/type/php/drupal/migrate/import-files.html" : { "to": "/tutorials/migrating.html", "code": 301 } 
+      "/drupal_migrate/guides/type/php/drupal/rebuild-site-registry.html" : { "to": "/tutorials/migrating.html", "code": 301 }
+      "/drupal/guides/local/get-project.html" : { "to": "/guides/drupal9/deploy.html", "code": 301 } 
+      "/drupal/guides/prerequisites/platform-cli.html" : { "to": "/guides/drupal9/deploy.html", "code": 301 } 
+      "/frameworks/drupal.html" : { "to": "/guides/drupal9/deploy.html", "code": 301 } 
+      "/guides/general/composer-auth.html" : { "to": "/languages/php/composer-auth.html", "code": 301 }
+      "/images/getting-started/free-trial.png" : { "to": "/get-started/introduction.html", "code": 301 }
+      "/images/integrations/bitbucket_server.png" : { "to": "/integrations/source/bitbucket.html", "code": 301 }
+      "/images/xdebug/xdebug-servers.png" : { "to": "/languages/php/xdebug.html", "code": 301 }
+      "/images/xdebug/xdebug-settings.png" : { "to": "/languages/php/xdebug.html", "code": 301 }
+      "/integration/blackfire.html" : { "to": "/increase-observability/integrate-observability/blackfire.html", "code": 301 }
+      "/integrations/observability/blackfire.html" : { "to": "/increase-observability/integrate-observability/blackfire.html", "code": 301 }
+      "/integrations/source/bitbuckethtml" : { "to": "/integrations/source/bitbucket.html", "code": 301 }
+      "/labels/beginner" : { "to": "/get-started/introduction.html", "code": 301 }
+      "/labels/bug" : { "to": "/development/troubleshoot.html", "code": 301 }
+      "/labels/documentation" : { "to": "/get-started/introduction.html", "code": 301 }
+      "/labels/enhancement" : { "to": "https://next.platform.sh/", "code": 301 }
+      "/labels/help-wanted" : { "to": "/overview/get-support.html", "code": 301 }
+      "/overview/cli.html" : { "to": "/administration/cli.html", "code": 301 }
+      "/overview/cli.html#how-do-i-get-it" : { "to": "/administration/cli.html#1-install", "code": 301 }
+      "/overview/how-it-looks.html" : { "to": "/administration/web.html", "code": 301 }
+      "/reference/configuration-files" : { "to": "/create-apps.html", "code": 301 }
+      "/toolstacks/symfony/symfony-getting-started" : { "to": "/guides/symfony/deploy.html", "code": 301 }
+      "/user_guide/overview/cli/index.html" : { "to": "/administration/cli.html", "code": 301 }
+      "/user_guide/overview/technical-requirements.html" : { "to": "/get-started/introduction.html", "code": 301 }
+      "/user_guide/overview/web-ui/configure-environment.html" : { "to": "/administration/web/configure-environment.html", "code": 301 }
+      "/user_guide/reference/configuration-files.html" : { "to": "/create-apps.html", "code": 301 }
+      "/user_guide/reference/configuration-files.html#/configure-your-application" : { "to": "/create-apps.html", "code": 301 }
+      "/user_guide/reference/platform-app-yaml.html" : { "to": "/create-apps.html", "code": 301 }
+      "/user_guide/reference/platform-app-yaml.html#default-configuration-file" : { "to": "/create-apps.html", "code": 301 }
+      "/user_guide/reference/platform-app-yaml.html#hooks" : { "to": "/create-apps/app-reference.html#hooks", "code": 301 }
+      "/user_guide/reference/platform-app-yaml.html#relationships" : { "to": "/create-apps/app-reference.html#relationships", "code": 301 }
+      "/user_guide/reference/platform-app-yaml.html#web" : { "to": "/create-apps/app-reference.html#web", "code": 301 }
+      "/user_guide/reference/routes-yaml.html" : { "to": "/define-routes.html", "code": 301 }
+      "/user_guide/reference/services-yaml.html" : { "to": "/add-services.html", "code": 301 }
+      "/user_guide/reference/services/solr.html" : { "to": "/add-services/solr.html", "code": 301 }
+      "/user_guide/reference/toolstacks/nodejs/index.html" : { "to": "/languages/nodejs.html", "code": 301 }
+      "/user_guide/reference/toolstacks/php/configure-php.html" : { "to": "/languages/php.html", "code": 301 }
+      "/user_guide/reference/toolstacks/php/drupal/customizing-settings-php.html" : { "to": "/languages/php.html#customize-php-settings", "code": 301 }
+      "/user_guide/reference/toolstacks/php/drupal7/redis.html" : { "to": "/guides/drupal9/redis.html", "code": 301 }
+      "/user_guide/reference/upgrade/index.html" : { "to": "/get-started/introduction.html", "code": 301 }
+      "/user_guide/using/backup-and-restore.html" : { "to": "/security/backups.html", "code": 301 }
+      "/user_guide/using/going-live.html" : { "to": "/domains/steps.html", "code": 301 }
+      "/user_guide/using/integrations/blackfire.html" : { "to": "/increase-observability/integrate-observability/blackfire.html", "code": 301 }
+      "/user_guide/using/use-SSH.html" : { "to": "/development/ssh.html", "code": 301 }
+      "/using-platform/003-migrating-an-existing-site.html" : { "to": "/tutorials/migrating.html", "code": 301 }
+      "/golive/steps/tls.html" : { "to": "/domains/steps/tls.html", "code": 301 }
 
 "https://search.{default}/":
     type: upstream

@@ -1,8 +1,9 @@
 ---
 title: Forward Platform.sh logs
 description: Send your Platform.sh logs to a third-party service for further analysis.
-observabilitySuite: true
 weight: 10
+banner: 
+    type: observability-suite
 ---
 
 You might use a service to analyze logs from various parts of your fleet.
