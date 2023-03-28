@@ -3,6 +3,11 @@ title: Vulnerability scanning and penetration testing
 sidebarTitle: Security scans
 description: |
   Platform.sh understands the need for application owners to ensure the integrity, and standards compliance, of their applications. Because there could be adverse impacts to other clients which would violate our terms of service, we only permit certain types of tests.
+keywords:
+  - pentesting
+  - pentests
+  - penetration testing
+  - penetration tests
 ---
 
 {{% description %}}
@@ -13,7 +18,7 @@ On Platform.sh's side, there is no automatic IP or range blocking. Blocking IP's
 ## Approved Activities
 
 * Vulnerability scanning of your web application. You are free to perform this as often as required without approval from Platform.sh.
-* Web application penetration tests that don't result in high network load.
+* Web application penetration tests (pentests) that don't result in high network load.
   You are free to perform this as often as required without approval from Platform.sh.
 * Application level load testing that don't result in high network load. If the load test may result in the application to be down, we ask to open an urgent ticket as a courtesy 30 to 60 minutes before the load test begins. Typically application level load tests will trigger one or many NodePing alerts. Knowing that a load test is in progress will allow the on-call engineer to immediately snooze alerts.
 
