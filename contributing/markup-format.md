@@ -57,7 +57,7 @@ The following table presents the available options:
 | `observabilitySuite` | Boolean            | Set as `true` to put at banner at the top indicating the feature is only available as part of the Observability Suite. |
 | `betaFlag`           | Boolean            | Set as `true` to put at banner at the top indicating the feature is in beta and only available to certain projects. |
 | `sectionBefore`      | string             | Title of a header to add before the given page in the main navigation. |
-| `keywords`      | `single` or `list`      | Improve search by providing additional, related terms. |
+| `keywords`           | `single` or `list`      | Improve search by providing additional, related terms. |
 
 ## Headings
 
