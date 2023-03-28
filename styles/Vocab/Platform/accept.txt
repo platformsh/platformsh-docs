@@ -95,6 +95,7 @@ nvm
 OAuth
 octothorpe
 onboarding
+Okta
 OPcache
 Opigno
 Opsgenie
