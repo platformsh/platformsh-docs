@@ -182,7 +182,7 @@ https://{default}/:
       "/drupal/guides/local/get-project.html" : { "to": "/guides/drupal9/deploy.html", "code": 301 } 
       "/drupal/guides/prerequisites/platform-cli.html" : { "to": "/guides/drupal9/deploy.html", "code": 301 } 
       "/frameworks/drupal.html" : { "to": "/guides/drupal9/deploy.html", "code": 301 } 
-      "/guides/general/composer-auth.html" : { "to": "languages/php/composer-auth.html", "code": 301 }
+      "/guides/general/composer-auth.html" : { "to": "/languages/php/composer-auth.html", "code": 301 }
       "/images/getting-started/free-trial.png" : { "to": "/get-started/introduction.html", "code": 301 }
       "/images/integrations/bitbucket_server.png" : { "to": "/integrations/source/bitbucket.html", "code": 301 }
       "/images/xdebug/xdebug-servers.png" : { "to": "/languages/php/xdebug.html", "code": 301 }
@@ -215,7 +215,7 @@ https://{default}/:
       "/user_guide/reference/services/solr.html" : { "to": "/add-services/solr.html", "code": 301 }
       "/user_guide/reference/toolstacks/nodejs/index.html" : { "to": "/languages/nodejs.html", "code": 301 }
       "/user_guide/reference/toolstacks/php/configure-php.html" : { "to": "/languages/php.html", "code": 301 }
-      "/user_guide/reference/toolstacks/php/drupal/customizing-settings-php.html" : { "to": "languages/php.html#customize-php-settings", "code": 301 }
+      "/user_guide/reference/toolstacks/php/drupal/customizing-settings-php.html" : { "to": "/languages/php.html#customize-php-settings", "code": 301 }
       "/user_guide/reference/toolstacks/php/drupal7/redis.html" : { "to": "/guides/drupal9/redis.html", "code": 301 }
       "/user_guide/reference/upgrade/index.html" : { "to": "/get-started/introduction.html", "code": 301 }
       "/user_guide/using/backup-and-restore.html" : { "to": "/security/backups.html", "code": 301 }
