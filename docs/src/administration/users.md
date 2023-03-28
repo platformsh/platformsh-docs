@@ -27,6 +27,39 @@ Within a project, each user has a role that controls their access and permission
 
 Users can still see projects that they can't access if they have the [**List projects** permission](#organization-user-permissions).
 
+#### View a user's permissions across all of the projects in your organization
+
+For each user, you can view a summary of the user roles (and therefore permissions)
+they've been granted on all of the projects in your organization.
+
+{{< codetabs >}}
++++
+title=Using the CLI
++++
+
+This feature is available for **v4.1.2+** of the CLI.
+
+Run a command similar to the following,
+using the email address of the user whose permissions you want to view:
+
+```bash
+platform oups --org {{< variable "ORGANIZATION_NAME" >}} {{< variable "EMAIL_ADDRESS" >}}
+```
+
+<--->
++++
+title=In the Console
++++
+
+1. Navigate to your organization.
+2. Open the user menu (your name or profile picture).
+3. Click **Users**.
+4. For the user whose user permissions you want to view,
+   click **{{< icon more >}} More**.
+5. Click **Edit user**.
+
+{{< /codetabs >}}
+
 ### Environment types
 
 Each environment type groups one or more environments together so that you can manage access for all environments of that type.

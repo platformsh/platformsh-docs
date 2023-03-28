@@ -350,6 +350,16 @@ memory_limit = 256M
 
 {{< /codetabs >}}
 
+If you're using [PHP-CLI](#execution-mode),
+you need to take into account the default settings of PHP-CLI when you customize your PHP settings.
+The default settings of PHP-CLI can't be overwritten and are the following:
+
+```text
+max_execution_time=0
+max_input_time=-1
+memory_limit=-1
+```
+
 ### Disable functions for security
 
 A common recommendation for securing PHP installations is disabling built-in functions frequently used in remote attacks.
