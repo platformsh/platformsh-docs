@@ -27,7 +27,7 @@ Within a project, each user has a role that controls their access and permission
 
 Users can still see projects that they can't access if they have the [**List projects** permission](#organization-user-permissions).
 
-The organization owner has **Project admin** access on all the organization's projects by default.
+By default, organization owners have **Project admin** access on all of the projects within their organization.
 
 #### View a user's permissions across all of the projects in your organization
 
@@ -260,8 +260,10 @@ Users with the **Manage users** (`members`) permission can add, edit, or remove 
 Users without any of these permissions can only access [projects where they're users](#project-user-permissions).
 They can't access or manage the rest of the organization.
 
-The organization owner has all organization permissions and cannot be edited. They cannot be removed from the organization, except via an [ownership transfer](../organizations.md#transfer-project-ownership).
-
+Organization owners have all permissions within their organization.
+Their permission level can't be edited.
+Organization owners can't be removed from their organization,
+except through an [ownership transfer](../administration/organizations.md#transfer-project-ownership).
 
 ### Add a user to an organization
 
