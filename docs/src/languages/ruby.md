@@ -344,6 +344,10 @@ or [one for Rails apps](https://github.com/platformsh/platformsh-rails-helper)
 * For garbage collection tuning, you can read [this article](https://shopify.engineering/17489064-tuning-rubys-global-method-cache)
   and look for [discourse configurations](https://github.com/discourse/discourse_docker/blob/b259c8d38e0f42288fd279c9f9efd3cefbc2c1cb/templates/web.template.yml#L8)
 
+* We do release new images on a regular basis for security patches, we recommend
+    to use `ruby "~>3.1"` on the `Gemfile` to avoid issues on the patch update
+    of the image.
+
 ## Project templates
 
 {{< repolist lang="ruby" displayName="Ruby" >}}
