@@ -3,9 +3,8 @@ title: "Single sign-on (SSO)"
 weight: 4
 description: |
   Platform.sh allows you to set up mandatory SSO with a third-party identity provider (IdP) for all your users.
-tier:
-  - Elite
-  - Enterprise
+banner: 
+    type: tiered-feature
 ---
 
 {{% description %}}

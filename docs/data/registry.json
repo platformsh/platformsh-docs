@@ -192,13 +192,14 @@
     "type": "elixir",
     "versions": {
       "deprecated": [
+        "1.11",
         "1.10",
         "1.9"
       ],
       "supported": [
+        "1.14",
         "1.13",
-        "1.12",
-        "1.11"
+        "1.12"
       ],
       "legacy": [
         "1.10",
@@ -1147,7 +1148,7 @@
       "service_name": "vault-kms",
       "url": "/add-services/vault.html"
     },
-    "endpoint": "sign",
+    "endpoint": "manage_keys",
     "min_disk_size": 512,
     "configuration": "endpoints:\n            <ENDPOINT_ID>:\n                - policy: <POLICY>\n                  key: \"<KEY_NAME>\"\n                  type: <ENDPOINT_TYPE>",
     "name": "Vault KMS",

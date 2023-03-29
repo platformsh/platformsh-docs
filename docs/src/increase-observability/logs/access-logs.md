@@ -11,7 +11,7 @@ description: Increase your knowledge of how your apps are performing by accessin
 
 Changes to your environments, such as deployments, cron jobs, and code or variable updates,
 are each logged as activities.
-You can access the logs either in the Console or using the CLI:
+You can access the logs either in the Console or using the [CLI](../../administration/cli/_index.md):
 
 {{< codetabs >}}
 
@@ -20,8 +20,8 @@ title=In the Console
 +++
 
 1. Open the project you are interested in.
-1. From the **Environment** menu, select an environment.
-1. Click a recent activity from the activity feed or click **All** to see the complete history.
+2. From the **Environment** menu, select an environment.
+3. Click a recent activity from the activity feed or click **All** to see the complete history.
 
 ![An activity feed within an environment](/images/management-console/activity.png "0.5")
 
@@ -31,11 +31,27 @@ title=In the Console
 title=Using the CLI
 +++
 
-1. Get a list of activities by running `platform activity:list -e <ENVIRONMENT_NAME>`.
+1. Get a list of activities by running
+
+   ``` bash
+   platform activity:list -e {{% variable "ENVIRONMENT_NAME" %}}
+   ```
+
    Pass the `--start` flag to get activities from a specific date in the past.
-1. To see details about the activity's state and timing, run `platform activity:get <ACTIVITY_ID>`,
-   where `<ACTIVITY_ID>` comes from the list in step 1.
-1. Get a log of any given activity by running `platform activity:log <ACTIVITY_ID>`.
+
+2. To see details about the activity's state and timing, run
+
+   ``` bash
+   platform activity:get {{% variable "ACTIVITY_ID" %}}
+   ```
+
+   Where {{% variable "ACTIVITY_ID" %}} comes from the list in step 1.
+
+3. Get a log of any given activity by running
+
+   ``` bash
+   platform activity:log {{% variable "ACTIVITY_ID" %}}
+   ```
 
 {{< /codetabs >}}
 
@@ -59,7 +75,7 @@ hovering on the next unselected line gives you the amount of time that passed be
 
 Events that occur within an app container are logged within that container.
 The logs can be written to, but you should do so only with standard logging mechanisms.
-If your app has its own logging mechanism, use it to write to a dedicated logs mount.
+If your app has its own logging mechanism, use it to write to a dedicated logs [mount](../../create-apps/app-reference.md#mounts).
 
 To access the logs of various types of events:
 
@@ -73,10 +89,10 @@ Use the `platform log` command and specify the type of log you want.
 For example, to get the access log, run:
 
 ```bash
-platform log -e <ENVIRONMENT_NAME> access
+platform log -e {{% variable "ENVIRONMENT_NAME" %}} access
 ```
 
-To get other logs, just replace `access` with the type of log.
+To get other logs, just replace `access` with the [type of log](#types-of-container-logs).
 To view more lines, use the `--lines` flag.
 
 <--->
@@ -85,11 +101,21 @@ To view more lines, use the `--lines` flag.
 title=Using SSH directly
 +++
 
-1. Access the container by running `platform ssh -e <ENVIRONMENT_NAME>`.
-1. Change to the right directory by running `cd /var/log`.
+1. Access the container by running 
 
-   If you're on a {{% names/dedicated-gen-2 %}} cluster, run `/var/log/platform/<APP-NAME>/`.
-1. Read the desired log, such as by running `tail access.log`.
+   ``` bash
+   platform ssh -e {{% variable "ENVIRONMENT_NAME" %}}
+   ```
+
+2. Change to the right directory by running `cd /var/log`.
+
+   If you're on a {{% names/dedicated-gen-2 %}} cluster, run
+
+   ``` bash
+   /var/log/platform/{{% variable "APP_NAME" %}}/
+   ```
+
+3. Read the desired log, such as by running `tail access.log`.
 
 {{< /codetabs >}}
 
@@ -117,7 +143,7 @@ The formatting of `php.access.log` is determined by the PHP settings.
 To determine the format, run the following:
 
 ```bash
-platform ssh cat -n /etc/php/<PHP_VERSION>-zts/fpm/php-fpm.conf | grep "access.format"
+platform ssh cat -n /etc/php/{{< variable "PHP_VERSION" >}}-zts/fpm/php-fpm.conf | grep "access.format"
 ```
 
 You get a response such as the following:

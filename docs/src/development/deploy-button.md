@@ -66,10 +66,10 @@ https://console.platform.sh/org/create-project?template=GIT_URL
 ```
 
 Where `GIT_URL` is the URL of a publicly visible Git repository.
-For example, to install Platform.sh's [Drupal 8 template on GitHub](https://github.com/platformsh-templates/drupal8) you would use:
+For example, to install Platform.sh's [Drupal 10 template on GitHub](https://github.com/platformsh-templates/drupal10) you would use:
 
 ```text
-https://console.platform.sh/org/create-project/?template=https://github.com/platformsh-templates/drupal8.git
+https://console.platform.sh/org/create-project/?template=https://github.com/platformsh-templates/drupal10.git
 ```
 
 (Note that's the URL of the Git repository as if you were cloning it, NOT the URL of the repository's home page on GitHub.)
@@ -88,10 +88,10 @@ https://console.platform.sh/org/create-project?template=TEMPLATE_URL
 ```
 
 Where `TEMPLATE_URL` is the URL of a publicly visible template definition file.
-For example, to install Platform.sh's [Drupal 8 template](https://github.com/platformsh-templates/drupal8) you would use:
+For example, to install Platform.sh's [Drupal 10 template](https://github.com/platformsh-templates/drupal10) you would use:
 
 ```text
-https://console.platform.sh/org/create-project/?template=https://github.com/platformsh/template-builder/blob/master/templates/drupal8/.platform.template.yaml
+https://console.platform.sh/org/create-project/?template=https://github.com/platformsh/template-builder/blob/master/templates/drupal10/.platform.template.yaml
 ```
 
 A new project is created, initialized with whatever code is at the tip of the default branch of the repository referenced by that file,
