@@ -1,8 +1,7 @@
 ---
 title: Forward logs
 description: Send your logs to a third-party service for further analysis.
-banner: 
-    type: observability-suite
+observabilitySuite: true
 ---
 
 You might use a service to analyze logs from various parts of your fleet.
@@ -71,7 +70,7 @@ title=Splunk
 4. Create the integration with the following command:
 
    ```bash
-   platform integration:add --type splunk --url https://http-inputs.{{< variable "HOST" >}}.splunkcloud.com/services/collector/event --index {{< variable "INDEX" >}} --token {{< variable "TOKEN" >}}
+   platform platform integration:add --type splunk --url https://http-inputs.{{< variable "HOST" >}}.splunkcloud.com/services/collector/event --index {{< variable "INDEX" >}} --token {{< variable "TOKEN" >}}
    ```
 
 View your logs in the **Apps->Search & Reporting** dashboard.

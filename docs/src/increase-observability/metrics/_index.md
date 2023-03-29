@@ -18,7 +18,7 @@ but are available for Grid environments (such as your development environments).
 
 ![A screenshot of what the metrics dashboard displays for {{% names/dedicated-gen-2 %}} environments](/images/metrics/all-dedicated.png "0.45")
 
-[{{% names/dedicated-gen-3 %}} environments](../../dedicated-gen-3/_index.md): each of the three hosts and their average.
+[{{% names/dedicated-gen-3 %}} environments](../../dedicated-gen-3/overview.md): each of the three hosts and their average.
 These metrics are available for all of your {{% names/dedicated-gen-3 %}} environments.
 
 ![A screenshot of what the metrics dashboard displays for {{% names/dedicated-gen-3 %}} environments](/images/metrics/all-dedicated-gen3.png "0.45")

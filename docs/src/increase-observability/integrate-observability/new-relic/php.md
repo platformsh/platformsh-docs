@@ -4,14 +4,14 @@ title: "PHP"
 
 ## Get your license key
 
-Sign up at New Relic to [get your license key](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/).
+Sign up at https://newrelic.com and get your [license key](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/#license-key).
 
 ## Add your license key
 
 Add your New Relic license key as an environment level variable:
 
 ```bash
-platform variable:create --level environment --environment {{< variable "ENVIRONMENT_NAME" >}} --visible-build false --inheritable false --json false --sensitive true --enabled true --visible-runtime true php:newrelic.license --value {{< variable "NEW_RELIC_LICENSE_KEY" >}}
+platform variable:create --level environment --environment <ENVIRONMENT-NAME> --visible-build false --inheritable false --json false --sensitive true --enabled true --visible-runtime true php:newrelic.license --value '<YOUR-NEW-RELIC-LICENSE-KEY>'
 ```
 
 ## Give your application a name
@@ -19,7 +19,7 @@ platform variable:create --level environment --environment {{< variable "ENVIRON
 Add a new environment level variable to give your application a recognizable name:
 
 ```bash
-platform variable:create --level environment --environment {{< variable "ENVIRONMENT_NAME" >}} --visible-build false --inheritable false --json false --sensitive true --enabled true --visible-runtime true php:newrelic.appname --value {{< variable "APP_NAME" >}}
+platform variable:create --level environment --environment <ENVIRONMENT-NAME> --visible-build false --inheritable false --json false --sensitive true --enabled true --visible-runtime true php:newrelic.appname --value <APP-NAME>
 ```
 
 {{< note >}}

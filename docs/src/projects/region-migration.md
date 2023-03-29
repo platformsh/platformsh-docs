@@ -68,13 +68,13 @@ title=Without a source integration
 3. Push the code for your production branch:
 
    ```bash
-   platform push --target {{% variable "PRODUCTION_BRANCH_NAME" %}}
+   platform push --target <PRODUCTION_BRANCH_NAME>
    ```
 
 4. (Optional) Checkout other branches and then push their code:
 
    ```bash
-   platform push --activate --target {{% variable "BRANCH_NAME" %}} --parent {{% variable "PRODUCTION_BRANCH_NAME" %}}
+   platform push --activate --target <BRANCH_NAME> --parent <PRODUCTION_BRANCH_NAME>
    ```
 
 <--->

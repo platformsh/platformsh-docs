@@ -3,8 +3,9 @@ title: "Managed Fastly CDN"
 sidebarTitle: "Managed Fastly CDN"
 weight: 2
 description: Bring your content closer to users with a Fastly CDN fully managed by Platform.sh.
-banner: 
-    type: tiered-feature
+tier:
+  - Elite
+  - Enterprise
 ---
 
 Instead of starting your own Fastly subscription and [managing your CDN yourself](./fastly.md),

@@ -13,6 +13,13 @@ This guide assumes you are using the well-supported Composer flavor of Drupal 9.
 
 {{% guides/starting-point name="Drupal 9" templateRepo="drupal9" composerLink="https://github.com/drupal/recommended-project/tree/9.0.x" initExample=true %}}
 
+{{< note >}}
+
+This guide is written for Drupal 9, but should apply almost exactly the same for later Drupal 8 releases (8.8 and later).
+If you're on an earlier Drupal 8 version, you should upgrade to at least 8.8 before proceeding.
+
+{{< /note >}}
+
 {{% guides/requirements %}}
 
 ## Initialize a project

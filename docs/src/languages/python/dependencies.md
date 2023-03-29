@@ -149,7 +149,7 @@ To set up Poetry on Platform.sh, follow these steps:
     - [`POETRY_VIRTUALENVS_IN_PROJECT`](https://python-poetry.org/docs/configuration/#virtualenvsin-project):
       Setting this to `true` places the virtual environment at the root of the app container: `/app/.venv`.
     - [`POETRY_VIRTUALENVS_CREATE`](https://python-poetry.org/docs/configuration/#virtualenvscreate):
-      Setting this to `true` ensures that the same virtual environment created during the build hook is reused in subsequent steps. 
+      Setting this to `false` ensures that the same virtual environment created during the build hook is reused in subsequent steps. 
 
     Set the variables as follows:
 
@@ -157,7 +157,7 @@ To set up Poetry on Platform.sh, follow these steps:
     variables:
         env:
             POETRY_VIRTUALENVS_IN_PROJECT: true
-            POETRY_VIRTUALENVS_CREATE: true
+            POETRY_VIRTUALENVS_CREATE: false
     ```
 
 
@@ -175,7 +175,7 @@ type: 'python:3.11'
 variables:
     env:
         POETRY_VIRTUALENVS_IN_PROJECT: true
-        POETRY_VIRTUALENVS_CREATE: true
+        POETRY_VIRTUALENVS_CREATE: false
 
 hooks:
     build: |
@@ -205,9 +205,9 @@ type: 'python:3.11'
 
 variables:
     env:
-        POETRY_VERSION: '1.4.0'
+        POETRY_VERSION: '1.3.2'
         POETRY_VIRTUALENVS_IN_PROJECT: true
-        POETRY_VIRTUALENVS_CREATE: true
+        POETRY_VIRTUALENVS_CREATE: false
 
 hooks:
     build: |

@@ -4,14 +4,14 @@ title: Java
 
 ## Get your license key
 
-Subscribe to New Relic to [get your license key](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/).
+Sign up at https://newrelic.com and get your license key.
 
 ## Add your license key
 
 Add your New Relic license key as an environment level variable:
 
 ```bash
-platform variable:create --level environment --environment {{< variable "ENVIRONMENT_NAME" >}} --visible-build false --inheritable false env:NEW_RELIC_LICENSE_KEY --value {{< variable "NEW_RELIC_LICENSE_KEY" >}}
+platform variable:create --level environment --environment '<your-environment>' --visible-build false --inheritable false env:NEW_RELIC_LICENSE_KEY --value '<your-new-relic-license-key>'
 ```
 
 ## Give your application a name
@@ -19,7 +19,7 @@ platform variable:create --level environment --environment {{< variable "ENVIRON
 Add a new environment level variable to give your application a recognizable name:
 
 ```bash
-platform variable:create --level environment --environment {{< variable "ENVIRONMENT_NAME" >}} --visible-build false --inheritable false env:NEW_RELIC_APP_NAME --value {{< variable "APP_NAME" >}}
+platform variable:create --level environment --environment '<your-environment>' --visible-build false --inheritable false env:NEW_RELIC_APP_NAME --value '<your-application-name>'
 ```
 
 {{< note >}}
@@ -43,7 +43,7 @@ Configure your `pom.xml` to download `newrelic-java.zip`:
 <dependency>
   <groupId>com.newrelic.agent.java</groupId>
   <artifactId>newrelic-java</artifactId>
-    <version>{{< variable "JAVA_AGENT_VERSION" >}}</version>
+    <version>JAVA_AGENT_VERSION</version>
   <scope>provided</scope>
   <type>zip</type>
 </dependency>
@@ -102,7 +102,7 @@ web:
 
 ### Manual Configuration
 
-To use this installation it is only required that you modify `.platform.app.yaml`, which will download and set the New Relic Java agent for you.
+To use this installation it is only required that you modify `.platform.app.yaml` , which will download and set the New Relic Java agent for you.
 
 ```yaml
 name: app
@@ -129,4 +129,4 @@ web:
             -javaagent:/app/newrelic/newrelic.jar
 ```
 
-You need to wait a bit for your New Relic dashboard to be generated.
+You need to wait a little bit for your New Relic dashboard to be generated.

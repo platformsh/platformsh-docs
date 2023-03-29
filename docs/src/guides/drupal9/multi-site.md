@@ -19,7 +19,7 @@ Additionally, because of the dynamic nature of the domain names that are created
 We recommend running separate projects for separate Drupal sites, or using one of the various "single instance" options available such as [Domain Access](https://www.drupal.org/project/domain), [Organic Groups](https://www.drupal.org/project/og), or [Workbench Access](https://www.drupal.org/project/workbench_access).
 
 The only reason to use multisite Drupal would be to manage a series of nearly identical sites with separate databases.
-For that case we have built a [template repository](https://github.com/platformsh-templates/drupal9-multisite) that uses a unified lookup key for a subdomain, database name, and file paths.
+For that case we have built a [template repository](https://github.com/platformsh-templates/drupal8-multisite) that uses a unified lookup key for a subdomain, database name, and file paths.
 Note that it will likely require modification for your specific setup and some configurations may require a different approach.
 
 In particular, this example:

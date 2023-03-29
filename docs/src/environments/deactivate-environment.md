@@ -41,7 +41,6 @@ title=In the Console
 - Confirm your choice.
 
 <--->
-
 +++
 title=Using the CLI
 +++
@@ -49,7 +48,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform environment:deactivate {{< variable "ENVIRONMENT_NAME" >}}
+platform environment:deactivate <ENVIRONMENT_NAME>
 ```
 
 {{< /codetabs >}}
@@ -60,7 +59,7 @@ Inactive environments still have branches in Git.
 To delete the branch entirely, run the following command:
 
 ```bash
-git push origin --delete {{< variable "BRANCH_NAME" >}}
+git push origin --delete <BRANCH_NAME>
 ```
 
 ## Reactivate an environment
@@ -89,7 +88,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform environment:activate {{< variable "ENVIRONMENT_NAME" >}}
+platform environment:activate <ENVIRONMENT_NAME>
 ```
 
 {{< /codetabs >}}
