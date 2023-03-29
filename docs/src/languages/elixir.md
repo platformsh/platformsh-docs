@@ -59,10 +59,6 @@ That build hook works for most cases and assumes that your `mix.exs` file is loc
 Assuming `mix.exs` is present at your app root and your build hook matches the above,
 you can then start it from the `web.commands.start` directive.
 
-{{< note >}}
-The start command _must_ run in the foreground, so you should set the `--no-halt` flag when calling `mix run`.
-{{< /note >}}
-
 The following basic app configuration is sufficient to run most Elixir applications.
 
 ```yaml {location=".platform.app.yaml"}
@@ -82,7 +78,7 @@ hooks:
 
 web:
     commands:
-        start: mix run --no-halt
+        start: mix phx.server
     locations:
         /:
             allow: false
@@ -93,7 +89,7 @@ Note that there is still an Nginx proxy server sitting in front of your applicat
 
 ## Dependencies
 
-The recommended way to handle Elixir dependencies on Platform.sh is using Hex. 
+The recommended way to handle Elixir dependencies on Platform.sh is using Hex.
 You can commit a `mix.exs` file in your repository and the system downloads the dependencies in your `deps` section using the build hook above.
 
 ```elixir
