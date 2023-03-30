@@ -102,7 +102,7 @@ To start forwarding logs, [trigger a redeploy](../../development/troubleshoot.md
 
 #### In the Console
 
-To enable log forwarding for a specific project using the [Platform.sh CLI](../../administration/cli/_index.md),
+To enable log forwarding for a specific project from the Console,
 follow these steps:
 
 1. Navigate to your project.
