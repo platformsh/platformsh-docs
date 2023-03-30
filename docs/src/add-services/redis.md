@@ -1,6 +1,6 @@
 ---
 title: "Redis (Object cache)"
-weight: 11
+weight: 20
 sidebarTitle: "Redis"
 ---
 
