@@ -14,8 +14,9 @@ In this section of the Platform.sh docs,
 you can find information on how Platform.sh handles [data retention](./data-retention.md)
 and [backups and recoveries](./backups.md).
 You can also learn how the Platform.sh [web application firewall (WAF)](./waf.md)
-can help you protect your data.
+can help you protect your data,
+or consult the transparency and abuse reports Platform.sh publishes every year.
 
 For more information about the security, privacy,
 and compliance of the Platform.sh products and services,
-check out the Platform.sh [Trust Center](https://platform.sh/trust-center/).
+go to the Platform.sh [Trust Center](https://platform.sh/trust-center/).
