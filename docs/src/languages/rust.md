@@ -21,12 +21,12 @@ The latest compatible minor version and patches are applied automatically.
 ## Dependencies
 
 The recommended way to handle Rust dependencies on Platform.sh is using Cargo.
-Commit a `cargo.toml` and a `cargo.lock` file in your repository
+Commit a `Cargo.toml` and a `Cargo.lock` file in your repository
 so the system automatically downloads dependencies using Cargo.
 
 ## Building and running your app
 
-Assuming your `cargo.toml` and `cargo.lock` files are present in your repository,
+Assuming your `Cargo.toml` and `Cargo.lock` files are present in your repository,
 you can build your app using the `cargo build` command to produce a working executable.
 
 You can then start it from the `web.commands.start` directive.
@@ -34,6 +34,7 @@ Note that the start command _must_ run in the foreground.
 If the program terminates for any reason it is automatically restarted.
 
 The following basic [app configuration](../../create-apps/_index.md) is sufficient to run most Rust apps.
+See the [complete example](#complete-example) below for more details.
 
 ```yaml {location=".platform.app.yaml"}
 
@@ -59,7 +60,7 @@ web:
         /:
             # Route all requests to the Rust app, unconditionally.
             # If you want some files served directly by the web server without hitting Rust, see
-            # https://docs.platform.../create-apps/app-reference.html
+            # https://docs.platform.sh/create-apps/app-reference.html
             allow: false
             passthru: true
 ```
@@ -78,7 +79,7 @@ let port : String = env::var("PORT").unwrap_or(String::from("8888"));
 ```
 
 Note that some of the environment variables are in JSON format and are base64 encoded.
-For example, to decode the `PLATFORM_RELATIONSHIPS`,
+For example, to decode the `PLATFORM_RELATIONSHIPS` environment variable,
 use the following snippet: 
 
 ```rust
