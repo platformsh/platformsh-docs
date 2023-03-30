@@ -94,9 +94,31 @@ use the following snippet:
 ## Complete example
 
 Here is a basic hello world app to illustrate how you can use Rust with Platform.sh. 
-To serve a static `index.html` file, you could follow these steps:
+It builds from a `hello.rs` file to serve a static `index.html`.
+Follow these steps:
 
-1. Use the following [app configuration](../../create-apps/_index.md):
+1. Add the following `Cargo.toml` file to your repository:
+
+```toml
+[package]
+name = "hello_world"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "hello"
+path = "hello.rs"
+
+[dependencies]
+time = "0.1.12"
+regex = "0.1.41"
+base64 = "0.21.0"
+serde = { version = "1.0", features = ["derive"] }
+
+serde_json = "1.0"
+```
+
+2. Add the following [app configuration](../../create-apps/_index.md):
 
 ```yaml {location=".platform.app.yaml"}
 
@@ -118,7 +140,7 @@ web:
       start: './target/debug/hello'
 ```
 
-2. Use the following `hello.rs` file:
+3. Add the following `hello.rs` file:
 
 ```rust
 /* Simple HTTP Server */
