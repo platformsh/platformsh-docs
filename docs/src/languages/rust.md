@@ -15,7 +15,8 @@ Platform.sh supports building and deploying applications written in Rust.
 |----------------------------------------|------------------------------ |
 | {{< image-versions image="rust" status="supported" environment="grid" >}} | {{< image-versions image="rust" status="supported" environment="dedicated-gen-2" >}} |
 
-{{% language-specification type="rust" display_name="Rust" %}}
+You only need to specify the major version.
+The latest compatible minor version and patches are applied automatically.
 
 ## Dependencies
 
@@ -40,7 +41,7 @@ The following basic [app configuration](../../create-apps/_index.md) is sufficie
 name: 'app'
 
 # The language and version for your app.
-type: 'rust:1.68'
+type: 'rust:1'
 
 # The size of the app's persistent disk (in MB).
 disk: 2048
@@ -67,15 +68,31 @@ Note that there is still an Nginx proxy server sitting in front of your applicat
 
 ## Platform.sh variables
 
-Platform.sh exposes relationships and other configuration as environment variables.
-To get the `PORT` environment variable (the port on which your app is supposed to listen):
+Platform.sh exposes relationships and other configuration as [environment variables](../development/variables/_index.md).
 
-```bash
-COMMAND TO BE DOCUMENTED
+To get the `PORT` environment variable (the port on which your app is supposed to listen),
+use the following snippet:
+
+```rust
+let port : String = env::var("PORT").unwrap_or(String::from("8888"));
+```
+
+Note that some of the environment variables are in JSON format and are base64 encoded.
+For example, to decode the `PLATFORM_RELATIONSHIPS`,
+use the following snippet: 
+
+```rust
+    use base64::{Engine as _, engine::{general_purpose}};
+    use serde_json::Value;
+
+    let bytes = general_purpose::STANDARD.decode(env::var("PLATFORM_RELATIONSHIPS").unwrap_or(String::new())).unwrap();
+    let psh_config: Value = serde_json::from_slice(&bytes).unwrap();
+    println!("{}", psh_config["database"]);
 ```
 
 ## Complete example
 
+Here is a basic hello world app to illustrate how you can use Rust with Platform.sh. 
 To serve a static `index.html` file, you could follow these steps:
 
 1. Use the following [app configuration](../../create-apps/_index.md):
@@ -109,22 +126,23 @@ use std::io::prelude::*;
 use std::net::TcpListener;
 use std::net::TcpStream;
 use std::fs;
+use std::env;
 
 fn main() {
     
-    /* Creating a Local TcpListener at Port 8477 */
+    /* Creating a Local TcpListener at Port 8888 */
     const HOST : &str ="127.0.0.1";
-    const PORT : &str ="8888";
+    let port : String = env::var("PORT").unwrap_or(String::from("8888"));
 
     /* Concating Host address and Port to Create Final Endpoint */
-    let end_point : String = HOST.to_owned() + ":" +  PORT;
+    let end_point : String = HOST.to_owned() + ":" +  &port;
 
     /*Creating TCP Listener at our end point */
     let listener = TcpListener::bind(end_point).unwrap();
 
-    println!("Web server is listening at port {}",PORT);
+    println!("Web server is listening at port {}",port);
 
-    /* Conneting to any incoming connections */
+    /* Connecting to any incoming connections */
     for stream in listener.incoming() {
         let _stream = stream.unwrap();
         // Call Function to process any incomming connections
