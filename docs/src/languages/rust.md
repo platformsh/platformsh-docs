@@ -97,102 +97,111 @@ Here is a basic hello world app to illustrate how you can use Rust with Platform
 It builds from a `hello.rs` file to serve a static `index.html`.
 Follow these steps:
 
-1. Add the following `Cargo.toml` file to your repository:
+1. [Install Rust and Cargo](https://www.rust-lang.org/tools/install).
 
-```toml
-[package]
-name = "hello_world"
-version = "0.1.0"
-edition = "2021"
+2. Create a repository for your app and add the following `Cargo.toml` file:
 
-[[bin]]
-name = "hello"
-path = "hello.rs"
+   ```toml
+   [package]
+   name = "hello_world"
+   version = "0.1.0"
+   edition = "2021"
 
-[dependencies]
-time = "0.1.12"
-regex = "0.1.41"
-base64 = "0.21.0"
-serde = { version = "1.0", features = ["derive"] }
+   [[bin]]
+   name = "hello"
+   path = "hello.rs"
 
-serde_json = "1.0"
-```
+   [dependencies]
+   time = "0.1.12"
+   regex = "0.1.41"
+   base64 = "0.21.0"
+   serde = { version = "1.0", features = ["derive"] }
 
-2. Add the following [app configuration](../../create-apps/_index.md):
+   serde_json = "1.0"
+   ```
 
-```yaml {location=".platform.app.yaml"}
+3. Add the following [app configuration](../../create-apps/_index.md):
 
-# The app's name, which must be unique within the project.
-name: 'app'
+   ```yaml {location=".platform.app.yaml"}
 
-# The language and version for your app.
-type: 'rust:1'
+   # The app's name, which must be unique within the project.
+   name: 'app'
 
-# The size of the app's persistent disk (in MB).
-disk: 2048
+   # The language and version for your app.
+   type: 'rust:1'
 
-hooks:
-  build:
-    cargo build
+   # The size of the app's persistent disk (in MB).
+   disk: 2048
 
-web:
-  commands:
-      start: './target/debug/hello'
-```
+   hooks:
+     build:
+       cargo build
 
-3. Add the following `hello.rs` file:
+   web:
+     commands:
+         start: './target/debug/hello'
+   ```
 
-```rust
-/* Simple HTTP Server */
-/* Author : Ramesh Vyas */
-use std::io::prelude::*;
-use std::net::TcpListener;
-use std::net::TcpStream;
-use std::fs;
-use std::env;
+4. To generate a `Cargo.lock` file,
+   run the following command:
 
-fn main() {
+   ```bash
+   cargo generate-lockfile
+   ```
+
+5. Add the following `hello.rs` file:
+
+   ```rust
+   /* Simple HTTP Server */
+   /* Author : Ramesh Vyas */
+   use std::io::prelude::*;
+   use std::net::TcpListener;
+   use std::net::TcpStream;
+   use std::fs;
+   use std::env;
+
+   fn main() {
     
-    /* Creating a Local TcpListener at Port 8888 */
-    const HOST : &str ="127.0.0.1";
-    let port : String = env::var("PORT").unwrap_or(String::from("8888"));
+       /* Creating a Local TcpListener at Port 8888 */
+       const HOST : &str ="127.0.0.1";
+       let port : String = env::var("PORT").unwrap_or(String::from("8888"));
 
-    /* Concating Host address and Port to Create Final Endpoint */
-    let end_point : String = HOST.to_owned() + ":" +  &port;
+       /* Concating Host address and Port to Create Final Endpoint */
+       let end_point : String = HOST.to_owned() + ":" +  &port;
 
-    /*Creating TCP Listener at our end point */
-    let listener = TcpListener::bind(end_point).unwrap();
+       /*Creating TCP Listener at our end point */
+       let listener = TcpListener::bind(end_point).unwrap();
 
-    println!("Web server is listening at port {}",port);
+       println!("Web server is listening at port {}",port);
 
-    /* Connecting to any incoming connections */
-    for stream in listener.incoming() {
-        let _stream = stream.unwrap();
-        // Call Function to process any incomming connections
-        handle_connection(_stream);
-    }
+       /* Connecting to any incoming connections */
+       for stream in listener.incoming() {
+           let _stream = stream.unwrap();
+           // Call Function to process any incomming connections
+           handle_connection(_stream);
+       }
     
-}
+   }
 
-fn handle_connection(mut stream: TcpStream) {
-    let mut buffer = [0; 1024];
-    stream.read(&mut buffer).unwrap();
+   fn handle_connection(mut stream: TcpStream) {
+       let mut buffer = [0; 1024];
+       stream.read(&mut buffer).unwrap();
 
-    let get = b"GET / HTTP/1.1\r\n";
+       let get = b"GET / HTTP/1.1\r\n";
 
-    if buffer.starts_with(get) {
-        let contents = fs::read_to_string("index.html").unwrap();
+       if buffer.starts_with(get) {
+           let contents = fs::read_to_string("index.html").unwrap();
 
-        let response = format!(
-            "HTTP/1.1 200 OK\r\nContent-Length: {}\r\n\r\n{}",
-            contents.len(),
-            contents
-        );
+           let response = format!(
+               "HTTP/1.1 200 OK\r\nContent-Length: {}\r\n\r\n{}",
+               contents.len(),
+               contents
+           );
 
-        stream.write(response.as_bytes()).unwrap();
-        stream.flush().unwrap();
-    } else {
-        // some other request
-    }
-}
-```
+           stream.write(response.as_bytes()).unwrap();
+           stream.flush().unwrap();
+       } else {
+           // some other request
+       }
+   }
+   ```
