@@ -81,7 +81,7 @@ title=In the Console
 
 The data is restored and your backed-up environment is deployed.
 This deployment uses the built app, including variables, from when the backup was taken.
-But **by default code isn't restored**,
+But **code isn't restored**,
 so any future (re)deployments use the current Git repository to build the environment.
 
 To restore your code to its previous state when the backup was taken,

@@ -11,9 +11,9 @@ Backups help you protect yourself against potential data loss.
 
 {{< note theme="warning">}}
 
-Backups represent a complete snapshot of an environment's data.
-However, by default you can only restore code through Git,
-using commands such as [revert](https://git-scm.com/docs/git-revert).
+Backups include the environment's complete data but exclude code.
+To restore code to its previous state when the backup was taken,
+use Git commands such as [revert](https://git-scm.com/docs/git-revert).
 
 {{</note>}}
 
