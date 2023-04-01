@@ -154,4 +154,4 @@ Note that deploying production was fast as it reused the image built for the `fe
 
 For a long running branch, you can keep the code up-to-date with main via `git merge main` or `git rebase main`. And you can also keep the data in sync with the production environment via `symfony env:sync`.
 
-{{< guide-buttons next="More resources" type="first" >}}
+{{< guide-buttons next="Next steps" type="first" >}}

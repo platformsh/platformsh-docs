@@ -173,7 +173,7 @@ Et voilà, your Symfony application is using Redis locally.
    Follow this link to get more info on [relationships](../../../create-apps/app-reference.html#relationships).
    {{< note >}}
    Relationship key ``redis`` is important because it conditions the name of the corresponding auto-generated Symfony environment variable `REDIS_URL` as defined above in the [`config/packages/cache.yaml` file](#configure-your-symfony-application-to-use-redis).</br>
-   Follow this link to get more info on [Symfony Environment Variables](./environment-variables.md#redis)
+   Follow this link to get more info on [Symfony Environment Variables](../environment-variables.md#redis)
    {{< /note >}}
 
 1. Add the PHP Redis extension

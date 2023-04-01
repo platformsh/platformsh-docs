@@ -8,7 +8,7 @@ description: |
 
 ## Local development
 
-Once Symfony has been deployed on Platform.sh, you need to set up a local development environment to begin making revisions.
+Once Symfony has been deployed on Platform.sh, you might want to set up a local development environment.
 For more information, consult the [Symfony local development guides](../local).
 
 ## Use Redis component

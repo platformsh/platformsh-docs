@@ -222,7 +222,7 @@ To ensure better reliability, by default ``croncape`` sends its emails using ``p
 If you wish to use a custom SMTP and/or use a custom sender address you need to follow these steps:
 
 1. Define the sender address by defining the ``MAILFROM`` environment variable;
-1. Define the environment variables required to use your own email service, refers to the [emails](./environment-variables#emails) documentation to check their names.
+1. Define the environment variables required to use your own email service, refers to the [emails](../environment-variables#emails) documentation to check their names.
    Please note that only SMTP connections are supported;
 1. Disable the provided SMTP service using ``symfony cloud:env:info enable_smtp false``
 
