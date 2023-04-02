@@ -91,7 +91,10 @@ Each hook is executed as a single script, so they will be considered failed only
 
 Follow this link to get more info on [Hooks](../../../create-apps/hooks/hooks-comparison).
 
-To better understand the big picture and how those steps articulate with each other, we invite you to read about building the application and deploying the application in the [What is Platform.sh?](https://symfony.com/doc/current/cloud/intro.html) article.
+To better understand the big picture and how those steps articulate with each
+other, we invite you to read about building the application and deploying the
+application in the [What is
+Platform.sh?](https://symfony.com/doc/current/cloud/intro.html) article.
 
 {{< note title="Tip">}}
 
