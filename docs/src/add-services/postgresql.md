@@ -13,7 +13,7 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 - [Hibernate](../guides/hibernate/deploy.md#mysql)
 - [Jakarta EE](../guides/jakarta/deploy.md#mysql)
 - [Spring](../guides/spring/mysql.md)
-- [Symfony](../guides/symfony/customize/postgresql.md)
+- [Symfony](../guides/symfony/services/postgresql.md)
 
 {{% /frameworks %}}
 

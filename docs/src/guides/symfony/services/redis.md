@@ -1,9 +1,8 @@
 ---
-title: "Configure Symfony to use Redis component"
-sidebarTitle: "Use Redis"
+title: "Configure Symfony to use Redis"
+sidebarTitle: "Redis"
 weight: -101
-description: |
-    Modify your Symfony site to use Redis.
+description: "Use Redis with your Symfony project."
 ---
 
 Now that your code contains all needed configuration to deploy on Platform.sh,

@@ -1,7 +1,7 @@
 ---
-title: Getting Started
-sidebarTitle: "Getting started"
-weight: -110
+title: Get Started
+sidebarTitle: "Get started"
+weight: -255
 layout: single
 description: |
     See how to get started deploying Symfony on Platform.sh.
@@ -40,14 +40,16 @@ The command generates a default set of configuration files: `.platform.app.yaml`
 
 Commit the new files in your repository:
 
-````bash
+```bash
 git add .platform.app.yaml .platform/services.yaml .platform/routes.yaml php.ini
 git commit -m "Add Platform.sh configuration"
-````
+```
 {{< /note >}}
 
-Platform.sh manages the entire infrastructure of your project, from code to services (databases, queues, search, ...), from email sending to [cron-jobs](../customize/configuration.md#cron-jobs) and [workers](../customize/configuration.md#workers).
-This infrastructure is described through configuration files, stored along side your code.
+Platform.sh manages the entire infrastructure of your project, from code to
+services (databases, queues, search, ...), from email sending to
+[cron-jobs](./crons) and [workers](./workers). This infrastructure is
+described through configuration files, stored along side your code.
 
 ## Creating the Project on Platform.sh
 
@@ -76,7 +78,7 @@ symfony cloud:deploy
 
 {{< note title="Tip" >}}
 During deploy, within your terminal, it displays logs of the deployment process from the Platform.sh API.
-You can kill the process using ``CTRL+C`` command line without interrupting the deployment process.</BR>
+You can kill the process using `CTRL+C` command line without interrupting the deployment process.</BR>
 If you want to get your eyes back on the logs, use `symfony activity:log`.
 {{< /note >}}
 
@@ -154,4 +156,38 @@ Note that deploying production was fast as it reused the image built for the `fe
 
 For a long running branch, you can keep the code up-to-date with main via `git merge main` or `git rebase main`. And you can also keep the data in sync with the production environment via `symfony env:sync`.
 
-{{< guide-buttons next="Next steps" type="first" >}}
+## Next Steps
+
+### Symfony Integration
+
+Learn more about the [Symfony integration](./integration), a set of tools and
+auto-configurations that makes it easier to use Platform.sh for Symfony
+projects.
+
+### Environment Variables
+
+When using the Symfony integration, more [environment
+variables](./environment-variables) related to Symfony are defined.
+
+### Use more Services
+
+Platform.sh supports a wide range of services. For more information about how to use them with a Symfony project, consult the [Services for Symfony projects](./services).
+
+### Local development
+
+Once Symfony has been deployed on Platform.sh, you might want to set up a local development environment.
+For more information, consult the [Symfony local development guides](./local).
+
+### External resources
+
+The community also provides a number of Open-Source starting points you can consult:
+
+### Symfony CLI Tips
+
+FIXME: Some commands should be explained differently on Symfony CLI like tunnel
+
+{{% tips-and-tricks/cli framework="Symfony" %}}
+{{% tips-and-tricks/symfony/cli-common %}}
+{{% tips-and-tricks/cli-database framework="Symfony" %}}
+
+{{< guide-buttons type="last" >}}

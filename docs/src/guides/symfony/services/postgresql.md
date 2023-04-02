@@ -1,8 +1,8 @@
 ---
 title: "Configure Symfony to use PostgreSQL database engine"
-sidebarTitle: "Use PostgreSQL"
+sidebarTitle: "PostgreSQL"
 weight: -100
-description: "Modify your Symfony site to use PostgreSQL."
+description: "Use PostgreSQL with your Symfony project."
 ---
 
 [comment]: <> ( already exists here : https://symfony.com/doc/current/the-fast-track/en/7-database.html)

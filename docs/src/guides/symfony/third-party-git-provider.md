@@ -1,7 +1,7 @@
 ---
 title: "Use a third party Git provider"
 sidebarTitle: "Use a third party Git provider"
-weight: -100
+weight: -50
 description: "Use integration capability to link your Symfony application to an existing third party Git provider"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Environment Variables"
 sidebarTitle: "Environment Variables"
-weight: -105
+weight: -120
 description: |
     Environment variables added by the Symfony integration.
 ---
@@ -49,7 +49,7 @@ The Symfony integration exposes some more:
   configured in the application `.env` file.
 
 * `MAILFROM` is set to a random value, which is used as a From header when
-  using [croncape](./integration#croncape).
+  using [croncape](./crons#croncape).
 
 * `SYMFONY_IS_WORKER` is set to `1` when the container is running in the
   context of a worker (instead of the main application container).

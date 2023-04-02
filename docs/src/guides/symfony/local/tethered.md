@@ -3,7 +3,6 @@ title: Symfony Server with tethered data
 weight: -110
 description: |
     Sync Platform.sh data with your local Symfony application to start contributing.
-sectionBefore: Integrated environments
 ---
 
 A significant amount of work developing Symfony takes place locally rather than on an active Platform.sh environment.

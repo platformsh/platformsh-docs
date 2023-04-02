@@ -1,6 +1,6 @@
 ---
 title: Local development
-weight: -110
+weight: -80
 description: |
     Sync Platform.sh with your local environments to start contributing.
 ---
