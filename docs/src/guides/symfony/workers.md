@@ -41,7 +41,7 @@ The ``commands.start`` key is required and specifies the command to use to
 launch the application worker. If the command specified by the ``start`` key
 terminates it will be restarted automatically.
 
-Follow this link to get more info on [Workers](../../../create-apps/app-reference.html#workers).
+Follow this link to get more info on [Workers](../../create-apps/app-reference#workers).
 
 {{< note title="Caution">}}
 

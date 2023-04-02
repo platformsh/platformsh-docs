@@ -1,9 +1,9 @@
 The best way to connect your local DDEV to your Platform.sh project is through the [Platform.sh DDEV add-on](https://github.com/ddev/ddev-platformsh).
 To add it, run the following command:
 
-  ```bash
-  ddev get ddev/ddev-platformsh
-  ```
+```bash
+ddev get ddev/ddev-platformsh
+```
 
 Answer the interactive prompts with your project ID and the name of the environment to pull data from.
 

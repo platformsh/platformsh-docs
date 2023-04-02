@@ -47,11 +47,8 @@ The following sections explain the Symfony integration in mode details:
 Additionally, it installs some helper scripts:
 
 * [`symfony-build`](#symfony-build);
-* [`symfony-start`](#symfony-start);
 * [`symfony-deploy`](#symfony-deploy);
-* [`symfony-database-migrate`](#symfony-database-migrate);
-* [`php-ext-install`](#php-ext-install);
-* [`yarn-install`](#yarn-install).
+* [`php-ext-install`](#php-ext-install).
 
 ## Tools
 
@@ -59,7 +56,7 @@ The **configurator** (`curl -fs https://get.symfony.com/cloud/configurator |
 bash`) is a script specially crafted for Platform.sh. It ensures
 that projects are always using the most up-to-date version of some tools:
 
-* [croncape](./crons#croncape) for cron feedback;
+* [croncape](./crons#using-croncape) for cron feedback;
 * [Symfony CLI](https://symfony.com/download);
 * [Composer](https://getcomposer.org/download/).
 
@@ -178,7 +175,7 @@ three ways to fetch the sources from:
 * From a Git repository: ``php-ext-install redis https://github.com/phpredis/phpredis.git 5.3.2``
 
 To ensure your application can be built properly, it's recommended to run
-``php-ext-install`` after the [configurator](#configurator) but before
+``php-ext-install`` after the configurator but before
 [symfony-build](#symfony-build):
 
 ```yaml {location=".platform.app.yaml"}
