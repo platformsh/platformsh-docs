@@ -1,6 +1,6 @@
 ---
 title: "MongoDB (Database service)"
-weight: 6
+weight: -40
 description: "MongoDB is a cross-platform, document-oriented database.<br><br>For more information on using MongoDB, see <a href=\"https://docs.mongodb.com/manual/\">MongoDB's own documentation</a>."
 sidebarTitle: "MongoDB"
 premium: true

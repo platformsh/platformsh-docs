@@ -45,6 +45,10 @@
   {{ if .Context.Params.sidebarTitle }}
     {{ $itemTitle = .Context.Params.sidebarTitle | .Context.Page.RenderString }}
   {{ end }}
+  <!-- Allow for top-level sectionBefore titles -->
+  {{ with .Context.Params.sectionBefore }}
+    <h5 class="text-xs px-5 pt-2 pb-2 uppercase">{{ . }}</h5>
+  {{ end }}
   <div class="pl-8 pr-2 flex items-center justify-between min-h-[2.5rem]">
     <h4 class="pr-2 font-semibold">
       <a href="{{ .Context.RelPermalink }}" destination="{{ .Context.RelPermalink }}" {{ $getStartedAttribute | safeHTMLAttr }} class="hover:text-skye-dark focus:text-skye-dark{{ if $isCurrentSection }} text-skye-dark{{ end }}">
@@ -63,7 +67,7 @@
   <!-- Add the homepage as the first entry of the first section -->
   {{ if eq "overview" $currentSection }}
     <li>
-      <div class="py-2">
+      <div class="py-2 pl-4">
         <a href="/" class="hover:text-skye-dark focus:text-skye-dark{{ if $currentPage.IsHome }} text-skye-dark{{ end }}">
             {{ .Context.Site.Home.Title }}
         </a>
@@ -89,8 +93,12 @@
       {{ $isCurrentSection = false }}
     {{ end }}
     {{ if not ( .Params.sidebarIgnore )}}
+      <!-- Allow for second-level sectionBefore titles -->
+      {{ with .Params.sectionBefore }}
+        <h5 class="text-xs pt-2 pb-2 uppercase">{{ . }}</h5>
+      {{ end }}
       <li x-data="{ secondExpanded: {{ $isCurrentSection }} }">
-        <div class="flex items-center justify-between{{ if ne .Kind "section" }} py-2 {{ end }}">
+        <div class="flex items-center pl-4 justify-between{{ if ne .Kind "section" }} py-2 pl-4 {{ end }}">
           <a href="{{ .RelPermalink }}" destination="{{ .RelPermalink }}" {{ $getStartedAttribute | safeHTMLAttr }} class="hover:text-skye-dark focus:text-skye-dark{{ if $isCurrentSection }} text-skye-dark{{ end }}">
               {{ $itemTitle }}
               {{ if .Params.premium }}{{ partial "premium-features/badge" }}{{ end }}
@@ -113,7 +121,7 @@
                     <h5 class="text-xs my-1 uppercase">{{ . }}</h5>
                   {{ end }}
                   <!-- SECOND LEVEL ITEM -->
-                  <li class="border-l border-stone py-1 pl-2">
+                  <li class="border-l border-stone py-1 pl-4">
                     <a href="{{ .RelPermalink }}" class="hover:text-skye-dark focus:text-skye-dark{{ if eq $currentPage . }} text-skye-dark{{ end }}">
                         {{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle | .RenderString }}{{ else }}{{ .Title | .RenderString }}{{ end }}
                         {{ if .Params.premium }}{{ partial "premium-features/badge" }}{{ end }}

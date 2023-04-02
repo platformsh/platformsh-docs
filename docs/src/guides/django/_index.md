@@ -1,6 +1,7 @@
 ---
 title: "Django"
-weight: -120
+weight: -200
+sectionBefore: Python
 description: |
   Everything you need to get started with [Django](https://www.djangoproject.com/), a Python framework for web development, on Platform.sh.
 ---

@@ -1,6 +1,6 @@
 ---
 title: Varnish
-weight: 13
+weight: 40
 ---
 
 Varnish is a popular HTTP proxy server, often used for caching.
@@ -34,8 +34,8 @@ graph LR
 {{% endpoint-description type="varnish" noApp=true %}}
 
 The `relationships` block defines the connection between Varnish and your app.
-You can define `{{< variable "RELATIONSHIP_NAME" >}}` as you like.
-`{{< variable "APP_NAME" >}}` should match your app's `name` in the [app configuration](../create-apps/app-reference.md).
+You can define <code>{{< variable "RELATIONSHIP_NAME" >}}</code> as you like.
+<code>{{< variable "APP_NAME" >}}</code> should match your app's `name` in the [app configuration](../create-apps/app-reference.md).
 
 The `configuration` block must reference a VCL file inside the `.platform` directory.
 The `path` defines the file relative to the `.platform` directory.

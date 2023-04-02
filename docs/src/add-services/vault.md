@@ -1,10 +1,16 @@
 ---
 title: Vault key management service
 sidebarTitle: Vault KMS
-weight: 14
+weight: 50
 ---
 
-The Vault key management service (KMS) provides key management and access control for your secrets. The Platform.sh Vault KMS offers the transit secrets engine to sign, verify, encrypt, decrypt, and rewrap information.
+The Vault key management service (KMS) provides key management and access control for your secrets.
+The Platform.sh Vault KMS offers the [transit secrets engine](https://developer.hashicorp.com/vault/docs/secrets/transit)
+to sign, verify, encrypt, decrypt, and rewrap information. 
+
+Vault doesn't store the data sent to the transit secrets engine,
+so it can be viewed as encryption as a service.
+To store secrets such as API keys, create sensitive [environment variables](../development/variables/_index.md).
 
 ## Supported versions
 
@@ -31,6 +37,8 @@ The Vault key management service (KMS) provides key management and access contro
   The `type` can't be changed after creation.
 
 You can create multiple endpoints, such as to have key management separate from key use.
+
+512 MB is the minimum required disk space for the Vault KMS service.
 
 {{% /endpoint-description %}}
 

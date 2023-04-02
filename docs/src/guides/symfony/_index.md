@@ -1,6 +1,6 @@
 ---
 title: "Symfony"
-weight: -100
+weight: -120
 description: |
     Everything you need to get started with [Symfony](https://www.symfony.com/), a [PHP](../../development/templates.md#php) framework for web development, on Platform.sh.
 ---

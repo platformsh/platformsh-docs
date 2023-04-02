@@ -7,18 +7,12 @@ description: |
 
 {{% description %}}
 
-{{< note >}}
-Remember that you must have `admin` access to a project to add or modify an integration.
-See [User administration roles](/administration/users.md#user-roles) for more details.
-{{< /note >}}
+To add or modify an integration for a project, you need to be a [project admin](../administration/users.md#project-user-permissions).
 
 ## Default low-disk email notifications
 
-When you create a new project, Platform.sh creates a default [low-disk email notification](#low-disk-warning) for all [Project Admins](/administration/users.md#user-roles).
-
-{{< note >}}
-All projects created prior to 6 April 2020 that did not have any health notifications enabled had an email notification added for admin users.
-{{< /note >}}
+When you create a new project,
+Platform.sh creates a default [low-disk email notification](#low-disk-warning) for all [project admins](../administration/users.md#project-user-permissions).
 
 ## Available notifications
 
