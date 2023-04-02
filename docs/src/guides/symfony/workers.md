@@ -20,6 +20,9 @@ workers:
             start: symfony console messenger:consume --time-limit=60 --memory-limit=128M
 ```
 
+Note that the `symfony` binary available when using the [Symfony
+integration](./integration) in your Platform.sh application configuration.
+
 On Platform.sh, worker containers run the exact same code as the web container.
 The container image is built only once, and then deployed multiple times in its
 own container along the web one. The *build* hook and dependencies may not vary
@@ -40,16 +43,10 @@ terminates it will be restarted automatically.
 
 Follow this link to get more info on [Workers](../../../create-apps/app-reference.html#workers).
 
-{{< note title="Tip">}}
-
-Running the [symfony-deploy](#symfony-deploy) command before starting your worker is not necessary anymore, Platform.sh takes care of running it automatically.
-
-{{< /note >}}
-
 {{< note title="Caution">}}
 
-Web and worker containers do not share mounts targets.
-Sharing files between those containers using the filesystem is not possible.
-Every data sharing needs to be done using services.
+Web and worker containers do not share mounts targets. Sharing files between
+those containers using the filesystem is not possible. Every data sharing needs
+to be done using services.
 
 {{< /note >}}

@@ -6,21 +6,20 @@ description: |
     Understand how to configure Symfony cron jobs.
 ---
 
-**Cron jobs** allow you to run scheduled tasks at specified times or intervals.
-To get feedback when something goes wrong, prefix the command with
-`croncape`. `croncape` will send an email to the address defined by the
-`MAILTO` environment variable. Don't forget to set it first via the following
-command:
+**Cron jobs** allow you to run scheduled tasks at specified times or intervals:
 
-```bash
-symfony var:create -y --level=project --name=env:MAILTO --value=sysadmin@example.com
+```yaml {location=".platform.app.yaml"}
+crons:
+    snapshot:
+        spec: 0 5 * * *
+        cmd: |
+            croncape symfony ...
 ```
 
 If you want to run a command in a cron hook for specific environment types,
 check the `PLATFORM_ENVIRONMENT_TYPE` environment variable:
 
 ```yaml {location=".platform.app.yaml"}
-
 crons:
     snapshot:
         spec: 0 5 * * *
@@ -29,6 +28,17 @@ crons:
             if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
                 croncape symfony ...
             fi
+```
+
+## Using croncape
+
+To get feedback when something goes wrong, prefix the command with `croncape`
+(which is available when using the [Symfony integration](./integration)).
+`croncape` will send an email to the address defined by the `MAILTO`
+environment variable. Don't forget to set it first via the following command:
+
+```bash
+symfony var:create -y --level=project --name=env:MAILTO --value=sysadmin@example.com
 ```
 
 To ensure better reliability, `croncape` sends its emails using

@@ -14,9 +14,9 @@ Place the {{ $name }} configuration into a script to ensure everyone has this.
 You can merge this change into production.
 
 1.  Create a new environment called `local-config`.
-    ````bash
+    ```bash
     symfony branch local-config
-    ````
+    ```
 
 2.  Create an executable script to set up a local environment for a new Platform.sh environment.
 
