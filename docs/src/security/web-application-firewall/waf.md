@@ -1,6 +1,7 @@
 ---
-title: Web application firewall (WAF)
+title: Platform.sh WAF
 description: Learn how the WAF included in Enterprise and Elite plans can help protect your site from distributed denial of service (DDoS) attacks.
+weight: 1
 banner: 
     type: tiered-feature
 ---
@@ -85,17 +86,17 @@ enforcing the valid format in transit.
 The WAF enforces a file upload limit.
 By default, this limit is set at 250&nbsp;MB.
 
-You can customize the file upload limit by amending your [app configuration](../create-apps/_index.md).
-In the [`web.locations` dictionary](../create-apps/app-reference.md#locations),
+You can customize the file upload limit by amending your [app configuration](../../create-apps/_index.md).
+In the [`web.locations` dictionary](../../create-apps/app-reference.md#locations),
 add your desired value for the `max_request_size` property.
 
 ### File extension restriction
 
-The WAF enforces any file extension restriction you may have defined in your [app configuration](../create-apps/_index.md).
+The WAF enforces any file extension restriction you may have defined in your [app configuration](../../create-apps/_index.md).
 
 To set up a file extension restriction,
-adjust the [`web.locations` dictionary](../create-apps/app-reference.md#locations).
-Set up [rules](../create-apps/app-reference.md#rules) to allow only certain file extensions on a given path.
+adjust the [`web.locations` dictionary](../../create-apps/app-reference.md#locations).
+Set up [rules](../../create-apps/app-reference.md#rules) to allow only certain file extensions on a given path.
 
 ### Disallowed requests and headers
 
@@ -124,7 +125,7 @@ only on the internal Platform.sh network.
 
 #### Missing or empty `host` headers
 
-As [routes are mapped](../define-routes/_index.md) based on host names,
+As [routes are mapped](../../define-routes/_index.md) based on host names,
 the Platform.sh WAF blocks requests with an empty or absent `host` header.
 
 #### Other restricted HTTP headers
