@@ -12,7 +12,7 @@ without needing to grant them access to each project individually.
 
 In such cases, forward your logs from Platform.sh to a third-party service.
 You can use a [service with an integration](#use-a-log-forwarding-integration)
-or any service that supports a [syslog endpoint](#forward-to-a-syslog-endpoint) or [http endpoint](#forward-to-a-http-endpoint).
+or any service that supports a [syslog endpoint](#forward-to-a-syslog-endpoint) or [HTTP endpoint](#forward-to-a-http-endpoint).
 
 Log forwarding is available for Grid and {{% names/dedicated-gen-3 %}} projects.
 For {{% names/dedicated-gen-2 %}} projects, see how to [log remotely with `rsyslog`](../../dedicated-gen-2/architecture/options.md#remote-logging).
@@ -99,7 +99,7 @@ To start forwarding logs, [trigger a redeploy](../../development/troubleshoot.md
 
 ## Forward to a syslog endpoint
 
-Syslog is a standard protocol for transfering log messages.
+Syslog is a standard protocol for transferring log messages.
 Many third-party services offer endpoints for ingesting syslog events.
 You can forward your Platform.sh logs to any of those endpoints.
 
@@ -124,18 +124,22 @@ The following table shows the other available properties:
 To include a property, add it as a flag, for example `--protocol tcp`.
 This should let you connect to any service that has syslog endpoints.
 
-## Forward to a HTTP endpoint
+## Forward to an HTTP endpoint
 
-Some third-party services support ingesting log messages through an HTTP endpoint, e.g., Elasticsearch/OpenSearch.
-HTTP forwarding can be used to forward Platform.sh logs to such third-party services.
-HTTP forwarding makes `POST` HTTP request with `application/json` body while forwarding the log messages to the endpoint.
+Some third-party services, such as [Elasticsearch](../../add-services/elasticsearch.md) and [OpenSearch](../../add-services/opensearch.md),
+support ingesting log messages through an HTTP endpoint.
+You can use HTTP forwarding to forward Platform.sh logs to such third-party services.
 
-For example, to enable http forwarding, run the following command
+HTTP forwarding makes a `POST` HTTP request with an `application/json` body while forwarding the log messages to the endpoint.
+
+To enable HTTP forwarding, run a command similar to the following:
 
 ```
-platform integration:add --type httplog --url "https://<elasticsearch_opensearch_url>/<index_name>/_docs" --headers '{ "Authorization": "Basic <basic_auth_token>", "Content-Type":"application/json" }}'
+platform integration:add --type httplog --url "https://{{< variable "THIRD_PARTY_SERVICE_URL" >}}/{{< variable "INDEX_NAME" >}}/_docs" --headers '{ "Authorization": "Basic <basic_auth_token>", "Content-Type":"application/json" }'
 ```
 
-`type` and `url` are the only properties required for all endpoints. Optionally `headers` property can be specified to pass additional headers in the http requests.
+`type` and `url` are the only properties required for all endpoints.
+Optionally, you can use the `headers` property to pass additional headers in the HTTP requests.
 
-To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
+Once you've [added the service](../../add-services/_index.md),
+to start forwarding logs [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
