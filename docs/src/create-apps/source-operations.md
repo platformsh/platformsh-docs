@@ -109,6 +109,8 @@ Replace {{< variable "OPERATION_NAME" >}} with the name of your operation, such 
 After running a source operation, 
 to apply the changes to your local development environment run the `git pull` command.
 
+Note that you can [cancel pending or running source operations](../environments/cancel-activity.md).
+
 ## Use variables in your source operations
 
 You can add [variables](../development/variables/_index.md) to the environment of the source operation.
