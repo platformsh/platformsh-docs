@@ -1,6 +1,6 @@
 ---
 title: "Solr (Search service)"
-weight: 12
+weight: 30
 sidebarTitle: "Solr"
 ---
 

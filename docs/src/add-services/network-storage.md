@@ -1,6 +1,6 @@
 ---
 title: "Network Storage"
-weight: 8
+weight: -30
 ---
 
 Platform.sh supports internal "storage as a service" to provide a file store that can be shared between different application containers.
@@ -207,7 +207,7 @@ mounts:
 # same mounts as the web container.
 crons:
     drupal:
-        spec: 'H * * * *'
+        spec: '*/20 * * * *'
         commands:
             start: 'cd web ; drush core-cron'
 

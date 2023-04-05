@@ -95,6 +95,7 @@ nvm
 OAuth
 octothorpe
 onboarding
+Okta
 OPcache
 Opigno
 Opsgenie
@@ -106,6 +107,7 @@ Papertrail
 Pathauto
 Payara
 PDFs?
+pentests
 pgRouting
 PHPMailer
 PHPStorm

@@ -79,12 +79,12 @@ You can set sizing suggestions for production environments when you know a given
 Such as a worker that doesn't need much and can free up resources for other apps.
 To do so, set `size` to one of the following values:
 
-* `S`
-* `M`
-* `L`
-* `XL`
-* `2XL`
-* `4XL`
+- `S`
+- `M`
+- `L`
+- `XL`
+- `2XL`
+- `4XL`
 
 The total resources allocated across all apps and services can't exceed what's in your plan.
 
@@ -356,9 +356,9 @@ You can then define how each worker differs from the `web` instance using the [t
 
 Each worker can differ from the `web` instance in all properties _except_ for:
 
-* `build` and `dependencies` properties, which must be the same
-* `crons` as cron jobs don't run on workers
-* `hooks` as the `build` hook must be the same
+- `build` and `dependencies` properties, which must be the same
+- `crons` as cron jobs don't run on workers
+- `hooks` as the `build` hook must be the same
   and the `deploy` and `post_deploy` hooks don't run on workers.
 
 A worker named `queue` that was small and had a different start command could look like this:
@@ -404,8 +404,8 @@ All other variables are available in the [`$PLATFORM_VARIABLES` environment vari
 
 The following example sets two variables:
 
-* A variable named `env:AUTHOR` with the value `Juan` that's available in the environment as `$AUTHOR`
-* A variable named `d8config:system.site:name` with the value `My site rocks`
+- A variable named `env:AUTHOR` with the value `Juan` that's available in the environment as `$AUTHOR`
+- A variable named `d8config:system.site:name` with the value `My site rocks`
   that's available in the `$PLATFORM_VARIABLES` environment variable
 
 ```yaml {location=".platform.app.yaml"}
@@ -525,8 +525,8 @@ Flavors are language-specific.
 
 See what the build flavor is for your language:
 
-* [Node.js](../languages/nodejs/_index.md#dependencies)
-* [PHP](../languages/php/_index.md#dependencies)
+- [Node.js](../languages/nodejs/_index.md#dependencies)
+- [PHP](../languages/php/_index.md#dependencies)
 
 In all languages, you can also specify a flavor of `none` to take no action at all
 (which is the default for any language other than PHP and Node.js).
@@ -599,14 +599,16 @@ If you want the entire process to run, see how to [manually trigger builds](../d
 
 During the `build` hook, there are three writeable directories:
 
-* `$PLATFORM_APP_DIR`:
+- `$PLATFORM_APP_DIR`:
   Where your code is checked out and the working directory when the `build` hook starts.
   Becomes the app that gets deployed.
-* `$PLATFORM_CACHE_DIR`:
+- `$PLATFORM_CACHE_DIR`:
   Persists between builds, but isn't deployed.
   Shared by all builds on all branches.
-* `/tmp`:
+- `/tmp`:
   Isn't deployed and is wiped between each build.
+  Note that `$PLATFORM_CACHE_DIR` is mapped to `/tmp`
+  and together they offer about 8GB of free space.
 
 ### Hook failure
 
@@ -630,10 +632,12 @@ The following table shows the properties for each job:
 
 | Name               | Type                                         | Required | Description |
 | ------------------ | -------------------------------------------- | -------- | ----------- |
-| `spec`             | `string`                                     | Yes      | The [cron specification](https://en.wikipedia.org/wiki/Cron#Cron_expression). To prevent competition for resources that might hurt performance, use `H` in definitions to indicate an unspecified but invariant time. For example, instead of using `0 * * * *` to indicate the cron job runs at the start of every hour, you can use `H * * * *` to indicate it runs every hour, but not necessarily at the start. This prevents multiple cron jobs from trying to start at the same time. |
+| `spec`             | `string`                                     | Yes      | The [cron specification](https://en.wikipedia.org/wiki/Cron#Cron_expression). To prevent competition for resources that might hurt performance, on **Grid or {{% names/dedicated-gen-3 %}}** projects use `H` in definitions to indicate an unspecified but invariant time. For example, instead of using `0 * * * *` to indicate the cron job runs at the start of every hour, you can use `H * * * *` to indicate it runs every hour, but not necessarily at the start. This prevents multiple cron jobs from trying to start at the same time. **The `H` syntax isn't available on {{% names/dedicated-gen-2 %}} projects.**|
 | `commands`         | A [cron commands dictionary](#cron-commands) | Yes      | A definition of what commands to run when starting and stopping the cron job. |
 | `shutdown_timeout` | `integer`                                    | No       | When a cron is canceled, this represents the number of seconds after which a `SIGKILL` signal is sent to the process to force terminate it. The default is `10` seconds. |
 | `timeout`          | `integer`                                    | No       | The maximum amount of time a cron can run before it's terminated. Defaults to the maximum allowed value of `86400` seconds (24 hours).
+
+Note that you can [cancel pending or running crons](../environments/cancel-activity.md).
 
 ### Cron commands
 
@@ -651,6 +655,10 @@ crons:
             stop: killall sleep
         shutdown_timeout: 18
 ```
+
+In this example configuration, the [cron specification](#crons) uses the `H` syntax.
+Note that this syntax is only supported on Grid and {{% names/dedicated-gen-3 %}} projects.
+On {{% names/dedicated-gen-2 %}} projects, use the [standard cron syntax](https://en.wikipedia.org/wiki/Cron#Cron_expression).
 
 ### Example cron jobs
 

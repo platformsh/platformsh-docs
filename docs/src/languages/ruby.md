@@ -323,8 +323,8 @@ This should give you something like the following:
 
 For Rails, you have two choices:
 
-* Use the standard Rails `config/database.yml` with the values found with the snippet provided before
-* Use the [platformsh-rails-helper gem](https://github.com/platformsh/platformsh-rails-helper)
+- Use the standard Rails `config/database.yml` with the values found with the snippet provided before
+- Use the [platformsh-rails-helper gem](https://github.com/platformsh/platformsh-rails-helper)
   by adding it to your `Gemfile` and commenting the production block in `config/database.yml`
 
 {{% config-reader %}}
@@ -334,15 +334,18 @@ or [one for Rails apps](https://github.com/platformsh/platformsh-rails-helper)
 
 ## Other tips
 
-* To speed up boot you can use the [Bootsnap gem](https://github.com/Shopify/bootsnap)
+- To speed up boot you can use the [Bootsnap gem](https://github.com/Shopify/bootsnap)
   and configure it with the local `/tmp`:
 
   ```ruby {location="config/boot.rb"}
   Bootsnap.setup(cache_dir: "/tmp/cache")
   ```
 
-* For garbage collection tuning, you can read [this article](https://shopify.engineering/17489064-tuning-rubys-global-method-cache)
+- For garbage collection tuning, you can read [this article](https://shopify.engineering/17489064-tuning-rubys-global-method-cache)
   and look for [discourse configurations](https://github.com/discourse/discourse_docker/blob/b259c8d38e0f42288fd279c9f9efd3cefbc2c1cb/templates/web.template.yml#L8)
+
+- New images are released on a regular basis to apply security patches.
+  To avoid issues when such updates are performed, use `ruby "~>3.1"` in your `Gemfile`. 
 
 ## Project templates
 
@@ -363,4 +366,4 @@ You may encounter an error like the following during a build:
 To resolve this error:
 
 1. Run `bundle install` with the same `ruby` and `bundler` versions defined in your `.platform.app.yaml` file.
-1. Push the `Gemfile.lock` to your repository.
+2. Push the `Gemfile.lock` to your repository.

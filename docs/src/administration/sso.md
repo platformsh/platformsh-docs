@@ -46,4 +46,7 @@ To resolve that, you need to:
 
 {{< premium-features/tiered "Elite" >}}
 
-Enforce your users to authenticate with your OpenID Connect provider. Please open a support ticket to enable SSO with your OpenID Connect provider.
+Enforce your users to authenticate with your OpenID Connect provider,
+such as Okta, Azure Active Directory or Ping Identity. 
+To enable SSO with your OpenID Connect provider,
+[contact Support](https://console.platform.sh/-/users/~/tickets). 
