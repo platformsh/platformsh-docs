@@ -377,7 +377,7 @@ Now when you run `SHOW CREATE TABLE {{< variable "EXISTING_TABLE" >}}`, you see 
 
 To change the timezone for a given connection, run `SET time_zone = {{< variable "TIMEZONE" >}};`.
 
-## Exporting data
+## Export data
 
 To download all data from your SQL database, use the Platform.sh CLI.
 If you have a single SQL database, the following command exports all data to a local file:
@@ -411,7 +411,7 @@ For example, to create a bzip2-compressed file, run:
 platform db:dump --stdout | bzip2 > dump.sql.bz2
 ```
 
-## Importing data
+## Import data
 
 To load data into a database, pipe an SQL dump through the `platform sql` command, like so:
 
@@ -437,6 +437,11 @@ It's best to run it against an empty database.
 If not, make a backup or do a database export before importing.
 
 {{< /note >}}
+
+## Sanitize data
+
+To ensure people reviewing code changes can’t access personally identifiable information (PII) stored in your database,
+[sanitize your development environments](../../development/sanitize-db/mariadb.md).
 
 ## Replication
 
