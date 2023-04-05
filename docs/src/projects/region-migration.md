@@ -114,10 +114,10 @@ Just rebuild the data in the new project.
 To download data from persistent services such as databases,
 see how to export and then import data for each service:
 
-- [InfluxDB](../add-services/influxdb.md#export-data)
-- [MongoDB](../add-services/mongodb.md#export-data)
-- [MariaDB/MySQL](../add-services/mysql/_index.md#export-data)
-- [PostgreSQL](../add-services/postgresql.md#export-data)
+- [InfluxDB](../add-services/influxdb.md#exporting-data)
+- [MongoDB](../add-services/mongodb.md#exporting-data)
+- [MariaDB/MySQL](../add-services/mysql/_index.md#exporting-data)
+- [PostgreSQL](../add-services/postgresql.md#exporting-data)
 
 ## 6. Migrate variables and project settings
 
