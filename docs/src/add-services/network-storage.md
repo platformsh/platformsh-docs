@@ -207,7 +207,7 @@ mounts:
 # same mounts as the web container.
 crons:
     drupal:
-        spec: 'H * * * *'
+        spec: '*/20 * * * *'
         commands:
             start: 'cd web ; drush core-cron'
 
