@@ -72,10 +72,10 @@ it's generally not necessary to download data as it can be rebuilt from the prim
 
 For services designed to hold persistent data, see each service's page for instructions:
 
-- [MySQL](../add-services/mysql/_index.md#export-data)
-- [PostgreSQL](../add-services/postgresql.md#export-data)
-- [MongoDB](../add-services/mongodb.md#export-data)
-- [InfluxDB](../add-services/influxdb.md#export-data)
+- [MySQL](../add-services/mysql/_index.md#exporting-data)
+- [PostgreSQL](../add-services/postgresql.md#exporting-data)
+- [MongoDB](../add-services/mongodb.md#exporting-data)
+- [InfluxDB](../add-services/influxdb.md#exporting-data)
 
 ## 4. Get environment variables
 

@@ -57,20 +57,20 @@ If you change the service type, your data is removed.
 
 To switch service types:
 
-1. [Export your data](#export-data).
+1. [Export your data](#exporting-data).
 1. Remove the old service from your [service configuration](../_index.md).
 1. Specify a new service type.
-1. [Import your data](import-data) into the new service.
+1. [Import your data](#importing-data) into the new service.
 
 ### Downgrade
 
 You can't downgrade to a previous version and retain your data.
 To downgrade your database, follow these steps:
 
-1. [Export your data](#export-data).
+1. [Export your data](#exporting-data).
 1. Remove the old service from your [service configuration](../_index.md).
 1. Add a new service with a different name and your desired version.
-1. [Import your data](#import-data) into the new service.
+1. [Import your data](#importing-data) into the new service.
 
 ## Usage example
 
