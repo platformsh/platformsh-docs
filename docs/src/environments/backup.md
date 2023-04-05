@@ -9,12 +9,17 @@ you want to be sure those changes only improve things and don't make you lose an
 You also want to have a disaster recovery plan in place.
 Backups help you protect yourself against potential data loss.
 
-Backups represent a complete snapshot of an environment's data.
-This includes all persistent data from all running [services](../add-services/_index.md)
+{{< note theme="warning">}}
+
+Backups include the environment's complete data but exclude code.
+To restore code to its previous state when the backup was taken,
+use Git commands such as [revert](https://git-scm.com/docs/git-revert).
+
+{{</note>}}
+
+Backups include all persistent data from all running [services](../add-services/_index.md)
 and any files stored on [mounts](../create-apps/app-reference.md#mounts).
 The snapshot is stored internally and can't be downloaded.
-Code is managed through Git and so isn't included.
-You can restore previous code using Git commands such as [revert](https://git-scm.com/docs/git-revert).
 
 You might want to create backups of your live environment before merging a different environment into it
 or each time you increase the storage space of your services.
