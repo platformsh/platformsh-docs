@@ -111,7 +111,7 @@ psql -U main -h postgresql.internal -p 5432
 
 {{% service-values-change %}}
 
-## Export data
+## Exporting data
 
 The easiest way to download all data in a PostgreSQL instance is with the Platform CLI. If you have a single SQL database, the following command exports all data using the `pg_dump` command to a local file:
 
@@ -137,7 +137,7 @@ You can use the `--stdout` option to pipe the result to another command. For exa
 platform db:dump --stdout | bzip2 > dump.sql.bz2
 ```
 
-## Import data
+## Importing data
 
 Make sure that the imported file contains objects with cleared ownership and `IF EXISTS` clauses. For example, you can create a DB dump with following parameters:
 
@@ -164,11 +164,6 @@ platform sql --relationship database -e {{< variable "BRANCH_NAME" >}} < my_data
 Importing a database backup is a destructive operation. It overwrites data already in your database.
 Taking a backup or a database export before doing so is strongly recommended.
 {{< /note >}}
-
-## Sanitize data
-
-To ensure people reviewing code changes can’t access personally identifiable information (PII) stored in your database,
-[sanitize your development environments](../development/sanitize-db/postgresql.md).
 
 ## Multiple databases
 
