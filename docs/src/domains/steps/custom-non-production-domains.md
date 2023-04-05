@@ -69,7 +69,9 @@ To do so, contact [Support](https://console.platform.sh/-/users/~/tickets/open).
 {{< /note >}}
 
 To add custom non-production domains yourself, you must be a **project admin**.
-You can add custom domains to up to 5 environments per project (production environment included).
+To prevent abuse, by default you can add custom domains to up to 5 environments per project only (not including the production environment).
+But you can increase this limit without charge.
+To do so, [contact Support](../../overview/get-support.md).
 
 If you delete a production custom domain,
 all of the attached custom non-production domains are deleted too.
