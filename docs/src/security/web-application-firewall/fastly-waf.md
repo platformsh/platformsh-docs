@@ -1,6 +1,6 @@
 ---
 title: Fastly Next-Gen WAF
-description: You can subscribe to the Fastly Next-Gen Web Application Firewall (WAF) through Platform.sh. 
+description: Find out about the three offers you can choose from to subscribe to the Fastly Next-Gen Web Application Firewall (WAF) through Platform.sh. 
 weight: 2
 banner: 
     type: tiered-feature
@@ -14,16 +14,17 @@ you can subscribe to the Fastly Next-Gen WAF to further protect your app from se
 If you want to subscribe to the Fastly Next-Gen WAF through Platform.sh,
 you can choose from three offers:
 
-- The **Basic** and **Managed** offers are fully managed by Platform.sh
-- The **Advanced** offer is a self-service offer with no support from Platform.sh
+- If you subscribe to the **Basic** or **Managed** offer, your WAF is fully managed by Platform.sh.
+- If you subscribe to the **Advanced** offer, after your WAF is installed by Platform.sh,
+  you have access to more features that you manage yourself.
 
-You can view a list of all the features included in each offer in the following table.
+To view a list of all the features included in each offer, see the following table.
 
 {{< note >}}
 
 Links to the official [Fastly Next-Gen WAF documentation](https://docs.fastly.com/products/fastly-next-gen-waf) are provided for reference only.
 The offers described on this page have been designed specifically for Platform.sh customers.
-Included features may present limitations compared to those advertised by Fastly and intended for their direct customers.
+Included features may present limitations compared to those advertised by Fastly to their direct customers.
 
 {{< /note >}}
 
