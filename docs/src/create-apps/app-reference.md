@@ -635,6 +635,8 @@ The following table shows the properties for each job:
 | `shutdown_timeout` | `integer`                                    | No       | When a cron is canceled, this represents the number of seconds after which a `SIGKILL` signal is sent to the process to force terminate it. The default is `10` seconds. |
 | `timeout`          | `integer`                                    | No       | The maximum amount of time a cron can run before it's terminated. Defaults to the maximum allowed value of `86400` seconds (24 hours).
 
+Note that you can [cancel pending or running crons](../environments/cancel-activity.md).
+
 ### Cron commands
 
 | Name               | Type      | Required | Description |
