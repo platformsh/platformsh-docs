@@ -57,20 +57,20 @@ If you change the service type, your data is removed.
 
 To switch service types:
 
-1. [Export your data](#exporting-data).
+1. [Export your data](#export-data).
 1. Remove the old service from your [service configuration](../_index.md).
 1. Specify a new service type.
-1. [Import your data](importing-data) into the new service.
+1. [Import your data](import-data) into the new service.
 
 ### Downgrade
 
 You can't downgrade to a previous version and retain your data.
 To downgrade your database, follow these steps:
 
-1. [Export your data](#exporting-data).
+1. [Export your data](#export-data).
 1. Remove the old service from your [service configuration](../_index.md).
 1. Add a new service with a different name and your desired version.
-1. [Import your data](#importing-data) into the new service.
+1. [Import your data](#import-data) into the new service.
 
 ## Usage example
 
@@ -377,7 +377,7 @@ Now when you run `SHOW CREATE TABLE {{< variable "EXISTING_TABLE" >}}`, you see 
 
 To change the timezone for a given connection, run `SET time_zone = {{< variable "TIMEZONE" >}};`.
 
-## Exporting data
+## Export data
 
 To download all data from your SQL database, use the Platform.sh CLI.
 If you have a single SQL database, the following command exports all data to a local file:
@@ -411,7 +411,7 @@ For example, to create a bzip2-compressed file, run:
 platform db:dump --stdout | bzip2 > dump.sql.bz2
 ```
 
-## Importing data
+## Import data
 
 To load data into a database, pipe an SQL dump through the `platform sql` command, like so:
 
@@ -438,7 +438,7 @@ If not, make a backup or do a database export before importing.
 
 {{< /note >}}
 
-## Sanitizing data
+## Sanitize data
 
 To ensure people reviewing code changes can’t access personally identifiable information (PII) stored in your database,
 [sanitize your development environments](../../development/sanitize-db/mariadb.md).

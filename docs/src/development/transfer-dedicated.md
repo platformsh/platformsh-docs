@@ -29,7 +29,7 @@ To back up your database, adapt and run the following command on your local comp
 platform db:dump --gzip 
 ```
 
-For more backup options and examples, see how to [export data from an SQL database](../add-services/mysql/_index.md#exporting-data).
+For more backup options and examples, see how to [export data from an SQL database](../add-services/mysql/_index.md#export-data).
 
 ## Synchronize files from Development to Staging/Production
 
@@ -75,7 +75,7 @@ To synchronize your database:
    platform db:dump --environment {{< variable "DEVELOPMENT_ENVIRONMENT" >}} --file=dump.sql
    ```
 
-   For more backup options and examples, see how to [export data from an SQL database](../add-services/mysql/_index.md#exporting-data).
+   For more backup options and examples, see how to [export data from an SQL database](../add-services/mysql/_index.md#export-data).
 
 2. Import the Development database dump file into the remote Staging/Production database:
 
