@@ -206,97 +206,97 @@ The database version and a default charset is included in the database URL. Over
 
 ### Redis
 
-[Redis](/add-services/redis) configuration is exposed via the following
+The [Redis](/add-services/redis) configuration is exposed via the following
 environment variables (where `REDIS` is the upper-cased version of the key
 defined in the relationship):
 
-* `REDIS_URL`: The Redis URL
-* `REDIS_HOST`: The Redis host
-* `REDIS_PORT`: The Redis port
-* `REDIS_SCHEME`: The Redis scheme
+- `REDIS_URL`: The Redis URL
+- `REDIS_HOST`: The Redis host
+- `REDIS_PORT`: The Redis port
+- `REDIS_SCHEME`: The Redis scheme
 
 ### Memcached
 
-[Memcached](/add-services/memcached) configuration is exposed via the following
+The [Memcached](/add-services/memcached) configuration is exposed via the following
 environment variables (where `CACHE` is the upper-cased version of the key
 defined in the relationship):
 
-* `CACHE_HOST`
-* `CACHE_PORT`
-* `CACHE_IP`
+- `CACHE_HOST`
+- `CACHE_PORT`
+- `CACHE_IP`
 
 ### Elasticsearch
 
-[Elasticsearch](/add-services/elasticsearch) configuration is exposed via the
+The [Elasticsearch](/add-services/elasticsearch) configuration is exposed via the
 following environment variables (where `ELASTICSEARCH` is the upper-cased
 version of the key defined in the relationship):
 
-* `ELASTICSEARCH_URL`: The full URL of the Elasticsearch service
-* `ELASTICSEARCH_HOST`: The Elasticsearch host
-* `ELASTICSEARCH_PORT`: The Elasticsearch port
-* `ELASTICSEARCH_SCHEME`: The Elasticsearch protocol scheme (`http` or `https`)
+- `ELASTICSEARCH_URL`: The full URL of the Elasticsearch service
+- `ELASTICSEARCH_HOST`: The Elasticsearch host
+- `ELASTICSEARCH_PORT`: The Elasticsearch port
+- `ELASTICSEARCH_SCHEME`: The Elasticsearch protocol scheme (`http` or `https`)
 
 ### Solr
 
-[Apache Solr](/add-services/solr) configuration is exposed via the following
+The [Apache Solr](/add-services/solr) configuration is exposed via the following
 environment variables (where `SOLR` is the upper-cased version of the key
 defined in the relationship):
 
-* `SOLR_HOST`: The Solr host
-* `SOLR_PORT`: The Solr port
-* `SOLR_NAME`: The Solr name
-* `SOLR_DATABASE`: An alias for `SOLR_NAME`
+- `SOLR_HOST`: The Solr host
+- `SOLR_PORT`: The Solr port
+- `SOLR_NAME`: The Solr name
+- `SOLR_DATABASE`: An alias for `SOLR_NAME`
 
 ### RabbitMQ
 
-[RabbitMQ](/add-services/rabbitmq) configuration is exposed via the following
+The [RabbitMQ](/add-services/rabbitmq) configuration is exposed via the following
 environment variables (where `RABBITMQ` is the upper-cased version of the key
 defined in the relationship):
 
-* `RABBITMQ_URL`: The RabbitMQ standardized URL
-* `RABBITMQ_SERVER`: The RabbitMQ server
-* `RABBITMQ_HOST`: The RabbitMQ host
-* `RABBITMQ_PORT`: The RabbitMQ port
-* `RABBITMQ_SCHEME`: The RabbitMQ scheme
-* `RABBITMQ_USER`: The RabbitMQ username
-* `RABBITMQ_USERNAME`: The RabbitMQ username
-* `RABBITMQ_PASSWORD`: The RabbitMQ password
+- `RABBITMQ_URL`: The RabbitMQ standardized URL
+- `RABBITMQ_SERVER`: The RabbitMQ server
+- `RABBITMQ_HOST`: The RabbitMQ host
+- `RABBITMQ_PORT`: The RabbitMQ port
+- `RABBITMQ_SCHEME`: The RabbitMQ scheme
+- `RABBITMQ_USER`: The RabbitMQ username
+- `RABBITMQ_USERNAME`: The RabbitMQ username
+- `RABBITMQ_PASSWORD`: The RabbitMQ password
 
 ### MongoDB
 
-[MongoDB](/add-services/mongodb) configuration is exposed via the following
+The [MongoDB](/add-services/mongodb) configuration is exposed via the following
 environment variables (where `MONGODB` is the upper-cased version of the key
 defined in the relationship):
 
-* `MONGODB_SERVER`
-* `MONGODB_HOST`
-* `MONGODB_PORT`
-* `MONGODB_SCHEME`
-* `MONGODB_NAME`
-* `MONGODB_DATABASE`
-* `MONGODB_USER`
-* `MONGODB_USERNAME`
-* `MONGODB_PASSWORD`
+- `MONGODB_SERVER`
+- `MONGODB_HOST`
+- `MONGODB_PORT`
+- `MONGODB_SCHEME`
+- `MONGODB_NAME`
+- `MONGODB_DATABASE`
+- `MONGODB_USER`
+- `MONGODB_USERNAME`
+- `MONGODB_PASSWORD`
 
 ### InfluxDB
 
-[InfluxDB](/add-services/influxdb) configuration is exposed via the following
+The [InfluxDB](/add-services/influxdb) configuration is exposed via the following
 environment variables (where `TIMEDB` is the upper-cased version of the key
 defined in the relationship):
 
-* `TIMEDB_SCHEME`
-* `TIMEDB_HOST`
-* `TIMEDB_PORT`
-* `TIMEDB_IP`
+- `TIMEDB_SCHEME`
+- `TIMEDB_HOST`
+- `TIMEDB_PORT`
+- `TIMEDB_IP`
 
 ### Kafka
 
-[Apache Kafka](/add-services/kafka) configuration is exposed via the following
+The [Apache Kafka](/add-services/kafka) configuration is exposed via the following
 environment variables (where `KAFKA` is the upper-cased version of the key
 defined in the relationship):
 
-* `KAFKA_URL`
-* `KAFKA_SCHEME`
-* `KAFKA_HOST`
-* `KAFKA_PORT`
-* `KAFKA_IP`
+- `KAFKA_URL`
+- `KAFKA_SCHEME`
+- `KAFKA_HOST`
+- `KAFKA_PORT`
+- `KAFKA_IP`
