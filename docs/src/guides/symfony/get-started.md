@@ -93,7 +93,7 @@ symfony cloud:domain:add {{< variable "YOUR_DOMAIN" >}}
 
 Go forth and Deploy (even on Friday)!
 
-## Working on a Project
+## Make changes to your project 
 
 Now that the project is deployed, let's describe a typical scenario where you want to fix a bug or add a new feature.
 
