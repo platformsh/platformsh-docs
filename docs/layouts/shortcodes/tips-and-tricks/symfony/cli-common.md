@@ -10,7 +10,7 @@
     symfony cloud:domains
     ```
 
--   Create a new environment
+-   Create a new environment:
 
     ```bash
     symfony cloud:branch new-branch
