@@ -154,13 +154,13 @@ Symfony Mailer uses the value of `MAILER_DSN` automatically.
 
 ### HTTP
 
-If your project has multiple applications, the configuration is exposed via the following environment variables (where `SOME_SERVICE` is the upper-cased version of the key defined in the relationship):
+If your project has multiple apps, the configuration is exposed via the following environment variables (where `SOME_SERVICE` is the upper-cased version of the key defined in the relationship):
 
-* `SOME_SERVICE_URL`: The full URL of the service
-* `SOME_SERVICE_IP`: The HTTP service IP
-* `SOME_SERVICE_PORT`: The HTTP service port
-* `SOME_SERVICE_SCHEME`: The HTTP service scheme
-* `SOME_SERVICE_HOST`: The HTTP service host
+- `SOME_SERVICE_URL`: The full URL of the service
+- `SOME_SERVICE_IP`: The HTTP service IP
+- `SOME_SERVICE_PORT`: The HTTP service port
+- `SOME_SERVICE_SCHEME`: The HTTP service scheme
+- `SOME_SERVICE_HOST`: The HTTP service host
 
 ### MySQL/MariaDB
 
