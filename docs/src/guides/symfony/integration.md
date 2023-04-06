@@ -3,7 +3,7 @@ title: "Symfony Integration"
 sidebarTitle: "Symfony Integration"
 weight: -130
 description: |
-    How to use the Symfony integration for a better Platform.sh experience.
+    Learn how to use the Symfony integration for a better Platform.sh experience.
 ---
 
 Symfony has a special "integration" with Platform.sh that makes it easier to
