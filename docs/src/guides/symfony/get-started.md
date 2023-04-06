@@ -95,7 +95,7 @@ Go forth and Deploy (even on Friday)!
 
 ## Make changes to your project 
 
-Now that the project is deployed, let's describe a typical scenario where you want to fix a bug or add a new feature.
+Now that your project is deployed, you can start making changes to it. For example, you might want to fix a bug or add a new feature.
 
 In your project, the main branch always represents the production environment. Other branches are for developing new features, fixing bugs, or updating the infrastructure.
 
