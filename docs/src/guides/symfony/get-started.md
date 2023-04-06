@@ -70,7 +70,7 @@ symfony project:set-remote {{< variable "PROJECT_ID" >}}
 
 ## Deploy your project
 
-Use the following command to deploy the project:
+To deploy your project, run the following command:
 
 ```bash
 symfony cloud:deploy
