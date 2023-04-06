@@ -61,7 +61,7 @@ symfony cloud:create --title PROJECT_TITLE --set-remote
 The `--set-remote` flag will set this new project as the remote for this repository.
 
 {{< note title="Tip" >}}
-You can link any repository to an existing Platform.sh project using following command:
+You can link any repository to an existing Platform.sh project using the following command:
 
 ```bash
 symfony project:set-remote {{< variable "PROJECT_ID" >}}
