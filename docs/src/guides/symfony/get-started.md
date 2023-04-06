@@ -68,7 +68,7 @@ symfony project:set-remote {{< variable "PROJECT_ID" >}}
 ```
 {{< /note >}}
 
-## Deploying your Project
+## Deploy your project
 
 Use the following command to deploy the project:
 
