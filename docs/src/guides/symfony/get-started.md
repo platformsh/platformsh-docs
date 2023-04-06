@@ -99,7 +99,10 @@ Now that your project is deployed, you can start making changes to it. For examp
 
 In your project, the main branch always represents the production environment. Other branches are for developing new features, fixing bugs, or updating the infrastructure.
 
-Let's create a new environment (a Git branch) to make some changes, without impacting production:
+To make changes to your project, follow these steps:
+
+1. To create a new environment (a Git branch) to make changes without impacting production, run the following command:
+
 
 ```bash
 symfony cloud:branch feat-a
