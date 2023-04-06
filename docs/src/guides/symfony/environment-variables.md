@@ -164,20 +164,20 @@ If your project has multiple applications, the configuration is exposed via the 
 
 ### MySQL/MariaDB
 
-[MySQL/MariaDB](/add-services/mysql) configuration is exposed via the following
+The [MySQL/MariaDB](/add-services/mysql) configuration is exposed via the following
 environment variables (where `DATABASE` is the upper-cased version of the key
 defined in the relationship above):
 
-* `DATABASE_URL`: The database URL (in the PHP or Go format depending on your application)
-* `DATABASE_SERVER`: The database server
-* `DATABASE_DRIVER`: The database driver
-* `DATABASE_VERSION`: The database version
-* `DATABASE_HOST`: The database host
-* `DATABASE_PORT`: The database port
-* `DATABASE_NAME`: The database name
-* `DATABASE_DATABASE`: Alias for `DATABASE_NAME`
-* `DATABASE_USERNAME`: The database username
-* `DATABASE_PASSWORD`: The database password
+- `DATABASE_URL`: The database URL (in the PHP or Go format depending on your app)
+- `DATABASE_SERVER`: The database server
+- `DATABASE_DRIVER`: The database driver
+- `DATABASE_VERSION`: The database version
+- `DATABASE_HOST`: The database host
+- `DATABASE_PORT`: The database port
+- `DATABASE_NAME`: The database name
+- `DATABASE_DATABASE`: Alias for `DATABASE_NAME`
+- `DATABASE_USERNAME`: The database username
+- `DATABASE_PASSWORD`: The database password
 
 {{< note title="Tip">}}
 The database version and a default charset is included in the database URL. Override them using the `DATABASE_VERSION` and `DATABASE_CHARSET` environment variables respectively.
