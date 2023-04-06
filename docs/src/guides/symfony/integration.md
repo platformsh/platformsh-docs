@@ -1,6 +1,5 @@
 ---
 title: "Symfony Integration"
-sidebarTitle: "Symfony Integration"
 weight: -130
 description: |
     Learn how to use the Symfony integration for a better Platform.sh experience.
