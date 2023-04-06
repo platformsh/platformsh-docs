@@ -105,7 +105,7 @@ Let's create a new environment (a Git branch) to make some changes, without impa
 symfony cloud:branch feat-a
 ```
 
-This command creates a new local `feat-a` Git branch based on the main Git branch and activate a related environment on Platform.sh.
+This command creates a new local `feat-a` Git branch based on the main Git branch and activates a related environment on Platform.sh.
 The new environment inherits the data (service data and assets) of the parent environment (the production one here).
 
 Let's make some visual changes.
