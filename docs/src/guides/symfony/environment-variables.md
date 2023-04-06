@@ -185,20 +185,20 @@ The database version and a default charset is included in the database URL. Over
 
 ### PostgreSQL
 
-[PostgreSQL](/add-services/postgresql) configuration is exposed via the
+The [PostgreSQL](/add-services/postgresql) configuration is exposed via the
 following environment variables (where `DATABASE` is the upper-cased version of
 the key defined in the relationship):
 
-* `DATABASE_URL`: The database URL (in the PHP or Go format depending on your application)
-* `DATABASE_SERVER`: The database server
-* `DATABASE_DRIVER`: The database driver
-* `DATABASE_VERSION`: The database version
-* `DATABASE_HOST`: The database host
-* `DATABASE_PORT`: The database port
-* `DATABASE_NAME`: The database name
-* `DATABASE_DATABASE`: Alias for `DATABASE_NAME`
-* `DATABASE_USERNAME`: The database username
-* `DATABASE_PASSWORD`: The database password
+- `DATABASE_URL`: The database URL (in the PHP or Go format depending on your application)
+- `DATABASE_SERVER`: The database server
+- `DATABASE_DRIVER`: The database driver
+- `DATABASE_VERSION`: The database version
+- `DATABASE_HOST`: The database host
+- `DATABASE_PORT`: The database port
+- `DATABASE_NAME`: The database name
+- `DATABASE_DATABASE`: Alias for `DATABASE_NAME`
+- `DATABASE_USERNAME`: The database username
+- `DATABASE_PASSWORD`: The database password
 
 {{< note title="Tip">}}
 The database version and a default charset are included in the database URL. To override them, use the `DATABASE_VERSION` and `DATABASE_CHARSET` environment variables respectively.
