@@ -97,7 +97,7 @@ Go forth and Deploy (even on Friday)!
 
 Now that the project is deployed, let's describe a typical scenario where you want to fix a bug or add a new feature.
 
-First, you need to know that the main branch always represents the production environment. Any other branch is for developing new features, fixing bugs, or updating the infrastructure.
+In your project, the main branch always represents the production environment. Other branches are for developing new features, fixing bugs, or updating the infrastructure.
 
 Let's create a new environment (a Git branch) to make some changes, without impacting production:
 
