@@ -154,7 +154,7 @@ symfony cloud:deploy
 Note that deploying production was fast as it reused the image built for the `feat-a` environment.
 {{< /note >}}
 
-For a long running branch, you can keep the code up-to-date with main via `git merge main` or `git rebase main`. And you can also keep the data in sync with the production environment via `symfony env:sync`.
+For a long running branch, you can keep the code up-to-date with main via `git merge main` or `git rebase main`.You can also keep the data in sync with the production environment via `symfony env:sync`.
 
 ## Next Steps
 
