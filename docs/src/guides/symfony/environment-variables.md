@@ -201,7 +201,7 @@ the key defined in the relationship):
 * `DATABASE_PASSWORD`: The database password
 
 {{< note title="Tip">}}
-The database version and a default charset is included in the database URL. Override them using the `DATABASE_VERSION` and `DATABASE_CHARSET` environment variables respectively.
+The database version and a default charset are included in the database URL. To override them, use the `DATABASE_VERSION` and `DATABASE_CHARSET` environment variables respectively.
 {{< /note >}}
 
 ### Redis
