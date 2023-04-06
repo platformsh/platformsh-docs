@@ -140,7 +140,7 @@ Notice that the domain name is different now (each environment has its own domai
 symfony cloud:url --primary
 ```
 
-Iterate by changing the code, committing, and deploying. When satisfied with the changes, merge it to main, deploy, and remove the feature branch:
+Iterate by changing the code, committing, and deploying. When satisfied with your changes, merge them to main, deploy, and remove the feature branch:
 
 ```bash
 git checkout main
