@@ -122,7 +122,7 @@ If you created a Symfony demo application, edit the `templates/default/homepage.
 
 ```
 
-Commit the change:
+3. To commit your changes, run the following command:
 
 ```bash
 git commit -a -m "Update text"
