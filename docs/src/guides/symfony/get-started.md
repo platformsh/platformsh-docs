@@ -106,7 +106,7 @@ symfony cloud:branch feat-a
 ```
 
 This command creates a new local `feat-a` Git branch based on the main Git branch and activates a related environment on Platform.sh.
-The new environment inherits the data (service data and assets) of the parent environment (the production one here).
+The new environment inherits the data (service data and assets) of its parent environment (the production environment here).
 
 Let's make some visual changes.
 If you created a Symfony demo application, edit the `templates/default/homepage.html.twig` template and make the following change:
