@@ -5,21 +5,24 @@ weight: -101
 description: "Use Redis with your Symfony project."
 ---
 
-Now that your code contains all needed configuration to deploy on Platform.sh,
-it's time to make your Symfony site itself ready to use a Redis cache system.
+Once you've set up your Symfony app [to be deployed on Platform.sh](../get-started.md),
+you can configure it to use a Redis cache system.
+To do so, follow these steps:
 
+## 1. Create a new branch
 
-## Create a new branch
-From your terminal, at the root of your Symfony application, create a new Git branch:
+Run the following command at the root of your Symfony app:
 
 ```bash
 symfony cloud:branch feat-add-redis
 ```
 
-## Configure your Symfony Application to use Redis
+## 2. Configure your Symfony app to use Redis
 
-1. Create a DockerFile for Redis
-   The generated docker-compose.yml file already contains PostgreSQL as a service:
+1. Create a DockerFile for Redis.
+
+   The generated `docker-compose.yml` file already contains Redis as a service:
+
    ```yaml
    version: '3'
 
@@ -36,9 +39,9 @@ symfony cloud:branch feat-add-redis
        driver: local
    ```
 
-   This will install a Redis server locally.
+   This installs a Redis server locally.
 
-   Then, expose the Redis port (`6379`) of the container to the local host:
+2. Expose the Redis port (`6379`) of the container to the local host:
 
     ```yaml {location="./docker-compose.override.yml"}
     version: '3'
@@ -51,18 +54,21 @@ symfony cloud:branch feat-add-redis
     ###< doctrine/doctrine-bundle ###
     ```
 
-1. Start Docker Compose
+3. Start Docker Compose in the background (`-d`):
 
-   Start Docker Compose in the background (-d):
-    ```bash
-    docker-compose up -d
-    ```
+   ```bash
+   docker-compose up -d
+   ```
+   
+   {{< note >}}
+   
+   When you use [Docker with Symfony Server](https://symfony.com/doc/current/setup/docker.html),
+   your Symfony Server can automatically detect your Docker services and expose them as environment variables.
+   
+   {{< /note >}}
 
-    {{< note >}}When using [Docker with Symfony Server](https://symfony.com/doc/current/setup/docker.html), then your Symfony Server can automatically detect your Docker services and expose them as environment variables. {{< /note >}}
-
-1. Configure your Symfony application to use this Redis component
-
-   You need to configure your Symfony application to use Redis by modifying your `config/packages/cache.yaml` with the following:
+4. To configure your Symfony app to use the Redis component,
+   update your `config/packages/cache.yaml` file with the following configuration:
 
     ```yaml {location="config/packages/cache.yaml"}
     framework:
@@ -71,23 +77,26 @@ symfony cloud:branch feat-add-redis
         app: cache.adapter.redis
         default_redis_provider: '%env(REDIS_URL)%'
     ```
-1. Create a new environment variable `REDIS_URL`
+
+5. To create a new `REDIS_URL` environment variable,
+   run the following command:
+
     ```yaml
     REDIS_URL=redis://cache:6379
     ```
 
-1. Clear Symfony Cache pool
+6. To clear the Symfony cache pool, run the following commands:
+
     ```bash
     symfony console cache:clear
          // Clearing the cache for the dev environment with debug true
          [OK] Cache for the "dev" environment (debug=true) was successfully cleared.
     symfony console cache:pool:clear cache.app
-        // Clearing cache pool: cache.app
-        [OK] Cache was successfully cleared.
+         // Clearing cache pool: cache.app
+         [OK] Cache was successfully cleared.
     ```
 
-6. Use Symfony Cache component within your application
-
+7. Use the Symfony cache component within your app:
 
 {{< codetabs >}}
 +++
@@ -113,6 +122,7 @@ class MyController
     }
 }
 ```
+
 <--->
 +++
 title=In a Service
@@ -139,17 +149,20 @@ class SomeClass
     }
 }
 ```
+
 {{< /codetabs >}}
 
-Et voilà, your Symfony application is using Redis locally.
+Your Symfony app is now using Redis locally.
 
-## Make your Platform.sh project use Redis
+## 3. Make your Platform.sh project use Redis
 
-1. Add a Redis component
+1. Add a Redis component.
 
-   All components used for your Platform.sh environment are listed in `.platform/services.yaml` file.
-   Cache component is part of it and you need to add a new Redis component in this file.
-    ```php {location=".platform/services.yaml"}
+   [All the components](../../../add-services#available-services) used for your Platform.sh environment,
+   including the cache component, are listed in the `.platform/services.yaml` file.
+   To add a new Redis component, add the following configuration:
+
+    ```yaml {location=".platform/services.yaml"}
     cache:
       type: redis:7.0
       configuration:
@@ -157,57 +170,64 @@ Et voilà, your Symfony application is using Redis locally.
         # any other finetuning here
     ```
 
-   Follow this link to get more info on [all available components](../../../add-services#available-services).
+2. Add a new relationship.
 
-1. Add a new relationship
+   To manage access to containers within your project, 
+   define [relationships](../../../create-apps/app-reference.html#relationships)
+   in the `relationships` section of your `.platform.app.yaml` file.
+   To do so, add the following configuration:
 
-   To manage access to containers within your project, you need to define a relationship to it.
-   These relationships are defined in the `.platform.app.yaml` file, section `relationships`.
-
-   ```bash
+   ```yaml {location=".platform.app.yaml"}
    relationships:
       redis: "cache:redis"
    ```
 
-   Follow this link to get more info on [relationships](../../../create-apps/app-reference.html#relationships).
    {{< note >}}
-   Relationship key ``redis`` is important because it conditions the name of the corresponding auto-generated Symfony environment variable `REDIS_URL` as defined above in the [`config/packages/cache.yaml` file](#configure-your-symfony-application-to-use-redis).</br>
-   Follow this link to get more info on [Symfony Environment Variables](../environment-variables.md#redis)
+
+   The ``redis`` relationship key conditions the name of the corresponding [auto-generated `REDIS_URL` Symfony environment variable](#2-configure-your-symfony-app-to-use-redis).
+   For more information, see [Symfony environment variables](../environment-variables.md#redis).
+
    {{< /note >}}
 
-1. Add the PHP Redis extension
+3. Add the PHP Redis extension.
 
-   For PHP to communicate with your Redis component, a php-ext is needed.
-   All PHP extensions that need to be installed during runtime are listed in the `.platform.app.yaml` file, section `runtime`:
+   For PHP to communicate with your Redis component, a `php-ext` is needed.
+   All the PHP extensions that need to be installed during runtime are listed
+   in the `runtime` section of your `.platform.app.yaml` file.
+   To add the PHP Redis extension, use the following configuration:
 
-   ```bash {location=".platform.app.yaml"}
+   ```yaml {location=".platform.app.yaml"}
    runtime:
       extensions:
           - ...
           - redis
    ```
 
-7. Commit your files and deploy
+4. Commit your files and deploy.
 
-    Commit your modified files into your git branch and then deploy it to your environment.
-    ```bash
-    git add . && git commit -m "Add Redis 7.0 component" && symfony cloud:deploy
-    ```
+   To commit your modified files to your Git branch and deploy those changes to your environment,
+   run the following command:
+
+   ```bash
+   git add . && git commit -m "Add Redis 7.0 component" && symfony cloud:deploy
+   ```
+
     After deployment, the Redis component is up and ready to use.
 
-8. Deploy Redis in production
+5. To deploy Redis in production, run the following commands:
 
-    If there is no issue on your Platform.sh environment using the Redis component, you can deploy it to production.
-    ```bash
-    symfony checkout main
-    symfony merge feat-add-redis
-    git pull -r
+   ```bash
+   symfony checkout main
+   symfony merge feat-add-redis
+   git pull -r
    ```
 
    {{< note >}}
-   `symfony merge` command merge your environment `feat-add-redis` to your production environment, but it doesn't pull back the merge result locally. That’s why you need to run `git pull -r` before doing anything else on that branch.
-   {{< /note >}}
 
+   The `symfony merge` command merges your `feat-add-redis` environment into your production environment.
+   But it doesn't pull the merge result locally. To do so, run `git pull -r` before doing anything else on the branch.
+
+   {{< /note >}}
 
 ## Tips and tricks
 

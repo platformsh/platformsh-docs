@@ -1,71 +1,66 @@
 ---
 title: Philosophy
-sidebarTitle: "Philosophy"
 weight: -200
 layout: single
 description: |
     Understand the big picture of Symfony on Platform.sh.
 ---
 
-If you are looking for the best way to host your Symfony projects, test
-Platform.sh, the **Official Symfony PaaS**.
+The best way to host your Symfony projects is through Platform.sh, the **Official Symfony PaaS**.
 
-Symfony provides a [tight integration](./integration) with Platform.sh, based
-on conventions to reduce configuration and make developers more productive.
+Symfony provides a [tight integration](./integration) with Platform.sh,
+based on conventions to reduce configuration and make developers more productive.
 
-You can think of Platform.sh as being the hosting framework part of Symfony. It
-abstracts your project infrastructure and manages it for you: never install nor
+You can think of Platform.sh as being the hosting framework part of Symfony. 
+It abstracts your project infrastructure and manages it for you: never install nor
 configure services like a Web server, a MySQL database, or a Redis cache again.
 
-Platform.sh is built on one main idea: your server infrastructure is part of
-your application, so it should be version controlled along with your
-application.
+Platform.sh is built on one main idea:
+your server infrastructure is part of your app,
+so it should be version controlled along with your app.
 
-Every branch you push to your Git repository can come with bug fixes, new
-features, **and** infrastructure changes. Everything can then be tested as an
-independent deployment, including the application code and all services with a
-copy of their data (database entries, search index, user files, ...).
+Every branch you push to your Git repository can come with bug fixes,
+new features, **and** infrastructure changes.
+Everything can then be tested as an independent deployment,
+including the application code and all services with a copy of their data
+(database entries, search index, user files, etc.).
 
-It really is "what would my site look like if I merge these changes to
-production?".
+It really is "What would my site look like if I merged these changes to production?".
 
-The following sections introduce the main concepts and how Symfony projects are
-deployed on Platform.sh.
+The following sections introduce the main concepts
+and describe how Symfony projects are deployed on Platform.sh.
 
-## The Basics
+## The basics
 
-On Platform.sh, a **project** is linked to a Git repository. A project is
-composed of one or more **applications**. An application is a directory in your
-Git repository with a specific Platform.sh configuration and dedicated HTTP
-endpoints (via the `.platform.app.yaml` file).
+On Platform.sh, a **project** is linked to a Git repository.
+A project is composed of one or more **apps**.
+An app is a directory in your Git repository with a specific Platform.sh configuration
+and dedicated HTTP endpoints (via the `.platform.app.yaml` file).
 
-Projects are deployed in **environments**. An environment is a standalone copy
-of your live applications which can be used for testing, Q&A, implementing new
-features, fixing bugs, ...
+Projects are deployed in **environments**.
+An environment is a standalone copy of your live app which can be used for testing,
+Q&A, implementing new features, fixing bugs, etc.
 
-Every project you deploy on Platform.sh is built as a *virtual cluster*,
-containing a series of containers. The main branch of your Git repository is
-always deployed as a production cluster. Any other branch can be deployed as a
-production, staging, or development cluster.
+Every project you deploy on Platform.sh is built as a *virtual cluster* containing a series of containers.
+The main branch of your Git repository is always deployed as a production cluster.
+Any other branch can be deployed as a production, staging, or development cluster.
 
-There are three types of containers within your cluster, all configured by
-files stored alongside your code:
+There are three types of containers within your cluster,
+all configured by files stored alongside your code:
 
-* The *Router*, configured in `.platform/routes.yaml`, is a single nginx
-  process responsible for mapping incoming requests to an Application
-  container, and to optionally provide HTTP caching.
+- The [*router*](../../define-routes/_index.md), configured in `.platform/routes.yaml`,
+  is a single Nginx process responsible for mapping incoming requests to an app container,
+  and to optionally provide HTTP caching
 
-* One or more *Applications*, configured via `.platform.app.yaml` files,
-  holding the code of your project.
+- One or more [*apps*](../../create-apps/_index.md), configured via `.platform.app.yaml` files, holding the code of your project
 
-* Some optional *Services*, configured in `.platform/services.yaml`, like
-  MySQL/MariaDB, Elasticsearch, Redis, or RabbitMQ; they come as optimized
-  pre-built images.
+- Some optional [*services*](../../add-services/_index.md), configured in `.platform/services.yaml`,
+  like MySQL/MariaDB, Elasticsearch, Redis, or RabbitMQ.
+  They come as optimized pre-built images
 
-## The Workflow
+## The workflow
 
-Every time you deploy a branch to Platform.sh, the code is *built* and then
-*deployed* on a new cluster.
+Every time you deploy a branch to Platform.sh, the code is *built* and then *deployed* on a new cluster.
 
 The **build** process looks through the configuration files in your repository
 and assembles the necessary containers.
@@ -73,52 +68,50 @@ and assembles the necessary containers.
 The **deploy** process makes those containers live, replacing the previous
 versions, with no service downtime.
 
-### Building the Application
+### How your app is built
 
-During the [build step](./integration#symfony-build), any dependencies
-specified in `.platform.app.yaml` are installed on application containers.
+During the [build step](./integration#symfony-build),
+dependencies specified in `.platform.app.yaml` are installed on application containers.
 
-You can also customize the build step by providing a `build` hook composed of
-one or more shell commands that help creating your production code base. That
-could be compiling TypeScript files, running some scripts, rearranging files on
-disk, or whatever else you want. Note that at this point all you have access to
-is the filesystem; there are no services or other databases available. Your
-live website is unaffected.
+You can also customize the build step by providing a `build` hook composed of one or more shell commands
+that help create your production code base.
+That could be compiling TypeScript files, running some scripts,
+rearranging files on disk, or whatever else you want.
 
-The default build step for Symfony removes development front controllers, warms
-up the cache, compiles your assets, and more.
+Note that at this point all you have access to is the filesystem;
+there are no services or other databases available.
+Your live website is unaffected.
 
-Once all of that is completed, the filesystem is frozen and a read-only
-container image is created. That filesystem is the final build artifact.
+The default build step for Symfony removes development front controllers,
+warms up the cache, compiles your assets, and more.
 
-### Deploying the Application
+Once all of that is completed, the filesystem is frozen and a read-only container image is created.
+That filesystem is the final build artifact.
 
-Before starting the [deployment](./integration#symfony-deploy) of your
-application, we pause all incoming requests and hold them so that there is no
-downtime.
+### How your app is deployed
 
-Then, we stop the current containers and start the new ones. We then open
-networking connections between the various containers, as specified in the
-configuration files. The connection information for each service is available
-as [environment variables](./environment-variables).
+Before starting the [deployment](./integration#symfony-deploy) of your app,
+Platform.sh pauses all incoming requests and holds them to avoid downtime.
 
-As for the build step, you can define a deploy hook to prepare your
-application. Your application has complete access to all services, but the
-filesystem where your code lives is now read-only.
+Then, the current containers are stopped and the new ones are started.
+Platform.sh then opens networking connections between the various containers,
+as specified in the configuration files.
+The connection information for each service is available as [environment variables](./environment-variables).
 
-The default deploy step for Symfony replaces the current cache with the newly
-warmed up one and, for the web container, runs Doctrine migrations if any, and
-more.
+Similarly to the build step, you can define a [deploy hook](./integration.md#hooks) to prepare your app.
+Your app has complete access to all services, but the filesystem where your code lives is now read-only.
 
-Finally, we open the floodgates and let incoming requests through your newly
-deployed application. You are done!
+The default deploy step for Symfony replaces the current cache with the newly warmed-up cache and,
+for the web container, runs Doctrine migrations (if any), and more.
 
-## Getting Help
+Finally, Platform.sh opens the floodgates and lets incoming requests through your newly deployed app.
 
-If you are facing any issue with Platform.sh, submit a [support
-ticket](https://console.platform.sh/-/users/~/tickets/open).
+## Get support
 
-## What's Next?
+If you are facing an issue with Platform.sh,
+submit a [Support ticket](https://console.platform.sh/-/users/~/tickets/open).
 
-To get a feeling of what it looks like working with Symfony on Platform.sh,
+## What's next?
+
+To get a feeling of what working with Symfony on Platform.sh entails,
 jump to the [Get Started](./get-started) guide.

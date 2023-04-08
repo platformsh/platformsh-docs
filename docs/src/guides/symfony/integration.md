@@ -5,13 +5,14 @@ description: |
     Learn how to use the Symfony integration for a better Platform.sh experience.
 ---
 
-Symfony has a special "integration" with Platform.sh that makes it easier to
-use Platform.sh for Symfony projects.
+Symfony has a special integration with Platform.sh that makes it easier to use Platform.sh for Symfony projects.
 
-To enable the Symfony integration, check that the following line is at the top
-of the application build hook script:
+To enable the Symfony integration, follow these steps:
 
-```yaml {location=".platform.app.yaml"}
+1. (Recommended) You can unlock various features that make deploying a Symfony project on Platform.sh much easier.
+   To do so, add the following configuration:
+
+   ```yaml {location=".platform.app.yaml"}
     hooks:
         build: |
             set -x -e
@@ -19,50 +20,52 @@ of the application build hook script:
             curl -fs https://get.symfony.com/cloud/configurator | bash
 
             # ...
-```
+   ```
 
-If not, we highly recommend that you are using it to unlock many features that
-will make your life easier when deploying a Symfony project on Platform.sh.
+2. Generate a sensible default Platform.sh configuration.
 
-When creating a new project via `symfony new`, use the `--cloud` flag to
-automatically generates a sensible default configuration. On an existing
-project, run `symfony project:init` instead.
+   To do so, when you create a new project using the `symfony new` command,
+   use the `--cloud` flag.
 
-```bash
-symfony project:init
-```
+   On an existing project, run the following command instead:
 
-The main configuration files that are generated to automatically enable the
-Symfony integration are the following: `.platform.app.yaml`,
-`.platform/services.yaml`, `.platform/routes.yaml`, and `php.ini`.
+   ```bash
+   symfony project:init
+   ```
+   This generates a default set of configuration files: `.platform.app.yaml`, `.platform/services.yaml`, `.platform/routes.yaml`, and `php.ini`.
+   These files automatically enable the Symfony integration.
 
-The following sections explain the Symfony integration in mode details:
+   The following helper scripts are also installed:
 
-* [Extra tools](#tools);
-* [Default build and deploy hook scripts](#hooks);
-* [Additional infrastructure environment variables](./environment-variables#symfony-environment-variables);
-* [Environment variables for all services](./environment-variables#service-environment-variables).
+   - [`symfony-build`](#symfony-build)
+   - [`symfony-deploy`](#symfony-deploy)
+   - [`php-ext-install`](#php-ext-install)  
 
-Additionally, it installs some helper scripts:
+For further information about the Symfony integration,
+see the [extra tools](#tools) and [default build and deploy hook scripts](#hooks) you can use.
 
-* [`symfony-build`](#symfony-build);
-* [`symfony-deploy`](#symfony-deploy);
-* [`php-ext-install`](#php-ext-install).
+You might also want to learn more about [additional infrastructure environment variables](./environment-variables#symfony-environment-variables)
+and [environment variables for all services](./environment-variables#service-environment-variables).
 
 ## Tools
 
-The **configurator** (`curl -fs https://get.symfony.com/cloud/configurator |
-bash`) is a script specially crafted for Platform.sh. It ensures
-that projects are always using the most up-to-date version of some tools:
+The **configurator** (`curl -fs https://get.symfony.com/cloud/configurator | bash`) is a script specially crafted for Platform.sh.
+It ensures that projects are always using the latest version of the following tools:
 
-* [croncape](./crons#using-croncape) for cron feedback;
-* [Symfony CLI](https://symfony.com/download);
-* [Composer](https://getcomposer.org/download/).
+- [croncape](./crons#use-croncape) for cron feedback
+- [Symfony CLI](https://symfony.com/download)
+- [Composer](https://getcomposer.org/download/)
 
 ## Hooks
 
-The **hooks** section defines the scripts that Platform.sh runs at specific
-times of an application lifecycle, build, deploy and post-deploy:
+The `hooks` section defines the scripts that Platform.sh runs at specific times of an application lifecycle:
+
+- The [build hook](../../create-apps/hooks/hooks-comparison.md#build-hook) is run during the build process
+- The [deploy hook](../../create-apps/hooks/hooks-comparison.md#deploy-hook) is run during the deployment process
+- The [post-deploy hook](../../create-apps/hooks/hooks-comparison.md#post-deploy-hook) is run after the deploy hook,
+  once the application container starts accepting connections
+
+Here's an example `hooks` section:
 
 ```yaml {location=".platform.app.yaml"}
 hooks:
@@ -81,22 +84,23 @@ hooks:
 
 {{< note title="Warning" >}}
 
-Each hook is executed as a single script, so they will be considered failed only if the final command fails. Starts the script with `set -e` to make them fail on the first failed command.
+As each hook is executed as a single script, a hook is considered as failed only if the final command fails.
+To have your hooks fail on the first failed command, start your scripts with `set -e`.
 
 {{< /note >}}
 
-Follow this link to get more info on [Hooks](../../../create-apps/hooks/hooks-comparison).
+For more information, see [Hooks](../../../create-apps/hooks/hooks-comparison).
 
-To better understand the big picture and how those steps articulate with each
-other, we invite you to read about building the application and deploying the
-application in the [What is
-Platform.sh?](https://symfony.com/doc/current/cloud/intro.html) article.
+To gain a better understanding of how hooks relate to each other when building and deploying an app,
+see [What is Platform.sh?](https://symfony.com/doc/current/cloud/intro.html).
 
 {{< note title="Tip">}}
 
-To execute some actions during the *deploy or post_deploy* hooks only for a specific environment type, the simplest way is to use the `PLATFORM_ENVIRONMENT_TYPE` environment variable in a condition:
+During the `deploy` or `post_deploy` hooks, you can execute actions for a specific environment type only.
+To do so, in your `.platform.app.yaml`file,
+use the `PLATFORM_ENVIRONMENT_TYPE` [environment variable](../../development/variables/_index.md)) in a condition:
 
-```yaml {location=".platform.app.yaml"}
+```yaml
 hooks:
     deploy: |
         if [ "PLATFORM_ENVIRONMENT_TYPE" != "production" ]; then
@@ -106,24 +110,22 @@ hooks:
 
 {{< /note >}}
 
-## symfony-build
+### symfony-build
 
-**symfony-build** is the script that builds a Symfony application in an
-optimized way for Platform.sh (it should be used as the main build script in
-the `build` hook).
+**symfony-build** is the script that builds a Symfony app in an optimized way for Platform.sh.
+Use it as the main build script in your `build` hook.
 
-It does the following:
+**symfony-build** performs the following actions:
 
-* Remove the development frontend file (Symfony <4);
-* Install PHP extensions via the [`php-ext-install` script](#php-ext-install);
-* Install the application dependencies using Composer;
-* Optimize the autoloader;
-* Build the Symfony cache in an optimized way to limit the time it takes to deploy;
-* Install the JavaScript dependencies via NPM or Yarn;
-* Build the production assets using Encore.
+- Removes the development frontend file (Symfony <4)
+- Installs PHP extensions through the [`php-ext-install` script](#php-ext-install)
+- Installs application dependencies using Composer
+- Optimizes the autoloader
+- Builds the Symfony cache in an optimized way to limit the time it takes to deploy
+- Installs the JavaScript dependencies via npm or Yarn
+- Builds the production assets using Encore
 
-You can override the flags used by Composer by using the `$COMPOSER_FLAGS`
-environment variable:
+To override the flags used by Composer, use the `$COMPOSER_FLAGS` environment variable:
 
 ```yaml {location=".platform.app.yaml"}
 hooks:
@@ -135,47 +137,44 @@ hooks:
         COMPOSER_FLAGS="--ignore-platform-reqs" symfony-build
 ```
 
-When installing the dependencies, the script automatically detects if the
-application is using NPM or Yarn.
+When installing dependencies, the script automatically detects if the app is using npm or Yarn.
 
-You can disable the Javascript dependencies and asset building by setting
-`NO_NPM` or `NO_YARN` to `1` depending on the package manager you are using.
+To disable the JavaScript dependencies and asset building,
+set `NO_NPM` or `NO_YARN` to `1` depending on your package manager.
 
-You can customize Node/NPM/Yarn behaviors by prefixing the `symfony-build`
-script with the following environment variables:
+To customize Node/npm/Yarn behaviors,
+prefix the `symfony-build` script with the following environment variables:
 
-* ``NODE_VERSION``: Pinpoint the Node version that NVM is going to install;
-  default is ``--lts``;
-* ``YARN_FLAGS``: Flags to pass to ``yarn install``; no value by default.
+- ``NODE_VERSION``:  to pinpoint the Node version that nvm is going to install. 
+  The default value is ``--lts``.
+- ``YARN_FLAGS``: flags to pass to ``yarn install``.
+  There is no default value.
 
-## symfony-deploy
+### symfony-deploy
 
-**symfony-deploy** should be used as the main deploy script in the `deploy`
-hook. It only works if you are using the `symfony-build` script in your `build`
-hook.
+Use **symfony-deploy** as the main deploy script in the `deploy` hook.
+It only works if you're using the [`symfony-build` script](#symfony-build) in your `build` hook.
 
-It does the following:
+**symfony-deploy** performs the following actions:
 
-* Replace the Symfony cache with the one generated during the build hook;
-* Migrate the database (when the Doctrine migration bundle is used).
+- Replaces the Symfony cache with the cache generated during the build hook
+- Migrates the database when the Doctrine migration bundle is used
 
-## php-ext-install
+### php-ext-install
 
-**php-ext-install** is a script that you can use to compile and install PHP
-extensions not provided out of the box by Platform.sh or when you need a
-specific version of an extension. It's written specifically for Platform.sh to
-ensure fast and reliable setup during the build step. It currently supports
-three ways to fetch the sources from:
+You can use the **php-ext-install** script to compile and install PHP extensions
+not provided out of the box by Platform.sh,
+or when you need a specific version of an extension.
+The script is written specifically for Platform.sh to ensure fast and reliable setup during the build step.
 
-* From [PECL](https://pecl.php.net/): ``php-ext-install redis 5.3.2``
+**php-ext-install** currently supports three ways of fetching sources:
 
-* From a URL: ``php-ext-install redis https://github.com/phpredis/phpredis/archive/5.3.2.tar.gz``
+- From [PECL](https://pecl.php.net/): ``php-ext-install redis 5.3.2``
+- From a URL: ``php-ext-install redis https://github.com/phpredis/phpredis/archive/5.3.2.tar.gz``
+- From a Git repository: ``php-ext-install redis https://github.com/phpredis/phpredis.git 5.3.2``
 
-* From a Git repository: ``php-ext-install redis https://github.com/phpredis/phpredis.git 5.3.2``
-
-To ensure your application can be built properly, it's recommended to run
-``php-ext-install`` after the configurator but before
-[symfony-build](#symfony-build):
+To ensure your app can be built properly, run ``php-ext-install`` after the [configurator](#tools)
+but before [symfony-build](#symfony-build):
 
 ```yaml {location=".platform.app.yaml"}
 hooks:
@@ -200,16 +199,15 @@ variables:
 
 {{< note >}}
 
-The source code is cached between builds and compilation is skipped if it has
-already been done. Changing the source of downloads or the version will
-invalidate this cache.
+The source code is cached between builds so compilation is skipped if it's already been done.
+Changing the source of downloads or the version invalidates this cache.
 
 {{< /note >}}
 
-## Advanced Node Configuration
+### Advanced Node configuration
 
-If you need to use the Node installation setup by
-[symfony-build](#symfony-build), you can use the following snippet:
+If you need to use the Node installation setup by [symfony-build](#symfony-build),
+use the following configuration:
 
 ```yaml {location=".platform.app.yaml"}
 hooks:
@@ -228,7 +226,8 @@ hooks:
         yarn encore dev
 ```
 
-Or if you want to use two different Node versions:
+If you want to use two different Node versions,
+use the following configuration instead:
 
 ```yaml {location=".platform.app.yaml"}
 hooks:

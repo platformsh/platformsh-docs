@@ -1,4 +1,4 @@
-You may find the following commands useful when using the Symfony CLI.
+You might find the following commands useful when using the Symfony CLI.
 
 -   Open the web administration console:
 
@@ -6,7 +6,7 @@ You may find the following commands useful when using the Symfony CLI.
     symfony web
     ```
 
--   Open the current environment's URL:
+-   Open the URL of the current environment:
 
     ```bash
     symfony url

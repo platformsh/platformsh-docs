@@ -1,71 +1,84 @@
 ---
 title: Get Started
-sidebarTitle: "Get started"
 weight: -255
 layout: single
 description: |
     See how to get started deploying Symfony on Platform.sh.
 ---
 
-Symfony is a PHP framework that you can use to create web applications. Platform.sh is the official Symfony PaaS.
+Symfony is a PHP framework that you can use to create web applications.
+Platform.sh is the official Symfony PaaS.
 
 This guide provides instructions for deploying, and working with, Symfony on Platform.sh.
 
 {{% guides/requirements name="Symfony" %}}
 
 {{< note >}}
-When using Symfony, all commands using Platform CLI `platform <command>` can be replaced by `symfony cloud:<command>` as Symfony CLI wraps the [Platform.sh CLI](/administration/cli/_index.md) with added features related to Symfony.
+
+The Symfony CLI wraps the [Platform.sh CLI](/administration/cli/_index.md) with added features related to Symfony.
+So when using Symfony, you can replace `platform <command>` by `symfony cloud:<command>` in all of your commands.
+
 {{< /note >}}
 
-## Creating your Symfony Application
+## Create your Symfony app
 
-To get familiar with Platform.sh, create a new Symfony project from scratch (we will use the [Symfony Demo](https://symfony.com/doc/current/setup.html#the-symfony-demo-application)):
+To get familiar with Platform.sh, create a new Symfony project from scratch.
+The present tutorial uses the [Symfony Demo](https://symfony.com/doc/current/setup.html#the-symfony-demo-application) app as an example :
 
 ```bash
 symfony new {{< variable "PROJECT_NAME" >}} --demo --cloud
 cd {{< variable "PROJECT_NAME" >}}
 ```
 
-The `--demo` flag pulls the [Symfony demo skeleton](https://github.com/symfony/demo).</br>
+The `--demo` flag pulls the [Symfony Demo skeleton](https://github.com/symfony/demo).</br>
 The `--cloud` flag automatically generates the Platform.sh configuration files.
 
 {{< note >}}
-If you want to deploy an **existing project**, generate a sensible default Platform.sh configuration from within the project's directory:
 
-```bash
-symfony project:init
-```
+Alternatively, you can deploy an **existing Symfony project**.
+To do so, follow these steps:
 
-The command generates a default set of configuration files: `.platform.app.yaml`, `.platform/services.yaml`, `.platform/routes.yaml`, and `php.ini`.
+1. To generate a sensible default Platform.sh configuration,
+   run the following command from within the project's directory:
 
-Commit the new files in your repository:
+   ```bash
+   symfony project:init
+   ```
+  
+   This generates a default set of configuration files: `.platform.app.yaml`, `.platform/services.yaml`, `.platform/routes.yaml`, and `php.ini`.
 
-```bash
-git add .platform.app.yaml .platform/services.yaml .platform/routes.yaml php.ini
-git commit -m "Add Platform.sh configuration"
-```
+2. Commit these new files to your repository:
+
+   ```bash
+   git add .platform.app.yaml .platform/services.yaml .platform/routes.yaml php.ini
+   git commit -m "Add Platform.sh configuration"
+   ```
+
 {{< /note >}}
 
-Platform.sh manages the entire infrastructure of your project, from code to
-services (databases, queues, search, ...), from email sending to
-[cron-jobs](./crons) and [workers](./workers). This infrastructure is
-described through configuration files, stored along side your code.
+Platform.sh manages the entire infrastructure of your project,
+from code to services (such as databases, queues, or search engines),
+all the way to email sending, [cron jobs](./crons), and [workers](./workers).
+This infrastructure is described through configuration files stored alongside your code.
 
-## Creating the Project on Platform.sh
+## Create the project on Platform.sh
 
-Create the project on Platform.sh by running the following command from within the project's directory:
+To create the project on Platform.sh, run the following command from within the project's directory:
+
 ```bash
 symfony cloud:create --title PROJECT_TITLE --set-remote
 ```
 
-The `--set-remote` flag will set this new project as the remote for this repository.
+The `--set-remote` flag sets the new project as the remote for this repository.
 
 {{< note title="Tip" >}}
+
 You can link any repository to an existing Platform.sh project using the following command:
 
 ```bash
 symfony project:set-remote {{< variable "PROJECT_ID" >}}
 ```
+
 {{< /note >}}
 
 ## Deploy your project
@@ -77,120 +90,131 @@ symfony cloud:deploy
 ```
 
 {{< note title="Tip" >}}
-During deploy, within your terminal, it displays logs of the deployment process from the Platform.sh API.
-You can kill the process using `CTRL+C` command line without interrupting the deployment process.</BR>
-If you want to get your eyes back on the logs, use `symfony activity:log`.
+
+During deployment, the logs from the Platform.sh API are displayed in your terminal so you can monitor progress.
+To stop the display of the logs **without interrupting the deployment**,
+use `CTRL+C` in your terminal.
+To go back to displaying the logs, run `symfony activity:log`.
+
 {{< /note >}}
 
-**Congrats!**</BR>
-**Your first Symfony application has been deployed on Platform.sh.**
+Congratulations, your first Symfony app has been deployed on Platform.sh!
 
-Now that your application is deployed in a production mode, you can define a custom domain for your live website by following this [link](/administration/web/configure-project.html#domains) or use the following command:
+Now that your app is deployed in production mode,
+you can define a custom domain for your live website.
+To do so, see how to [set up a custom domain on Platform.sh](/administration/web/configure-project.html#domains),
+or run the following command:
 
 ```bash
 symfony cloud:domain:add {{< variable "YOUR_DOMAIN" >}}
 ```
 
-Go forth and Deploy (even on Friday)!
-
 ## Make changes to your project 
 
-Now that your project is deployed, you can start making changes to it. For example, you might want to fix a bug or add a new feature.
+Now that your project is deployed, you can start making changes to it.
+For example, you might want to fix a bug or add a new feature.
 
-In your project, the main branch always represents the production environment. Other branches are for developing new features, fixing bugs, or updating the infrastructure.
+In your project, the main branch always represents the production environment.
+Other branches are for developing new features, fixing bugs, or updating the infrastructure.
 
 To make changes to your project, follow these steps:
 
-1. To create a new environment (a Git branch) to make changes without impacting production, run the following command:
+1. Create a new environment (a Git branch) to make changes without impacting production:
 
+   ```bash
+   symfony cloud:branch feat-a
+   ```
 
-```bash
-symfony cloud:branch feat-a
-```
+   This command creates a new local `feat-a` Git branch based on the main Git branch
+   and activates a related environment on Platform.sh.
+   The new environment inherits the data (service data and assets) of its parent environment (the production environment here).
 
-This command creates a new local `feat-a` Git branch based on the main Git branch and activates a related environment on Platform.sh.
-The new environment inherits the data (service data and assets) of its parent environment (the production environment here).
+2. Make changes to your project.
 
-Let's make some visual changes.
-If you created a Symfony demo application, edit the `templates/default/homepage.html.twig` template and make the following change:
+   For example, if you created a Symfony Demo app,
+   edit the `templates/default/homepage.html.twig` template and make the following visual changes:
 
-```html {location="templates/default/homepage.html.twig"}
-{% block body %}
-    <div class="page-header">
--        <h1>{{ 'title.homepage'|trans|raw }}</h1>
-+        <h1>Welcome to the Platform.sh Demo</h1>
-    </div>
+   ```html {location="templates/default/homepage.html.twig"}
+   {% block body %}
+       <div class="page-header">
+   -        <h1>{{ 'title.homepage'|trans|raw }}</h1>
+   +        <h1>Welcome to the Platform.sh Demo</h1>
+       </div>
 
-    <div class="row">
+       <div class="row">
 
-```
+   ```
 
-3. To commit your changes, run the following command:
+3. Commit your changes:
 
-```bash
-git commit -a -m "Update text"
-```
+   ```bash
+   git commit -a -m "Update text"
+   ```
 
-And deploy the change to the `feat-a` environment:
+4. Deploy your changes to the `feat-a` environment:
 
-```bash
-symfony cloud:deploy
-```
+   ```bash
+   symfony cloud:deploy
+   ```
+   
+   Note that each environment has its own domain name.
+   To view the domain name of your new environment, run the following command:
 
-Notice that the domain name is different now (each environment has its own domain name):
+   ```bash
+   symfony cloud:url --primary
+   ```
 
-```bash
-symfony cloud:url --primary
-```
+5. Iterate by changing the code, committing, and deploying.
+   When satisfied with your changes, merge them to the main branch, deploy,
+   and remove the feature branch:
 
-Iterate by changing the code, committing, and deploying. When satisfied with your changes, merge them to main, deploy, and remove the feature branch:
+   ```bash
+   git checkout main
+   git merge feat-a
+   symfony environment:delete feat-a
+   git branch -d feat-a
+   symfony cloud:deploy
+   ```
 
-```bash
-git checkout main
-git merge feat-a
-symfony environment:delete feat-a
-git branch -d feat-a
-symfony cloud:deploy
-```
+   {{< note >}}
 
-{{< note >}}
-Note that deploying production was fast as it reused the image built for the `feat-a` environment.
-{{< /note >}}
+   Deploying to production was fast because the image built for the `feat-a` environment was reused.
 
-For a long running branch, you can keep the code up-to-date with main via `git merge main` or `git rebase main`.You can also keep the data in sync with the production environment via `symfony env:sync`.
+   {{< /note >}}
 
-## Next Steps
+   For a long running branch, to keep the code up-to-date with the main branch, use `git merge main` or `git rebase main`.
+   You can also keep the data in sync with the production environment by using `symfony env:sync`.
 
-### Symfony Integration
+## Next steps
 
-Learn more about the [Symfony integration](./integration), a set of tools and
-auto-configurations that makes it easier to use Platform.sh for Symfony
-projects.
+### Symfony integration
 
-### Environment Variables
+Learn more about the [Symfony integration](./integration), 
+a set of tools and auto-configurations that makes it easier to use Platform.sh for Symfony projects.
 
-When using the Symfony integration, more [environment
-variables](./environment-variables) related to Symfony are defined.
+### Environment variables
 
-### Use more Services
+When you use the Symfony integration,
+more [environment variables](./environment-variables) related to Symfony are defined.
 
-Platform.sh supports a wide range of services. For more information about how to use them with a Symfony project, consult the [Services for Symfony projects](./services).
+### Use more services
+
+Platform.sh supports a wide range of services.
+Learn how to [use those services with a Symfony project](./services).
 
 ### Local development
 
-Once Symfony has been deployed on Platform.sh, you might want to set up a local development environment.
-For more information, consult the [Symfony local development guides](./local).
+Once Symfony has been deployed on Platform.sh,
+you might want to [set up a local development environment](./local).
 
 ### External resources
 
 The community also provides a number of Open-Source starting points you can consult:
 
-### Symfony CLI Tips
+### Symfony CLI tips
 
 FIXME: Some commands should be explained differently on Symfony CLI like tunnel
 
 {{% tips-and-tricks/cli framework="Symfony" %}}
 {{% tips-and-tricks/symfony/cli-common %}}
 {{% tips-and-tricks/cli-database framework="Symfony" %}}
-
-{{< guide-buttons type="last" >}}

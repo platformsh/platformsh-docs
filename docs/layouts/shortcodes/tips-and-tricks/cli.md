@@ -5,7 +5,7 @@
   {{ $cliName = "Symfony CLI" }}
 {{ end }}
 
-You may find the following commands useful when using the {{ $cliName }}.
+You might find the following commands useful when using the {{ $cliName }}.
 
 -   Open the web administration console:
 
@@ -13,7 +13,7 @@ You may find the following commands useful when using the {{ $cliName }}.
     {{ $cliCommand }}web
     ```
 
--   Open the current environment's URL:
+-   Open the URL of the current environment:
 
     ```bash
     {{ $cliCommand }}url

@@ -1,160 +1,145 @@
 ---
 title: "Environment Variables"
-sidebarTitle: "Environment Variables"
 weight: -120
 description: |
-    Environment variables added by the Symfony integration.
+    Learn about the environment variables added by the Symfony integration.
 ---
 
-By default, Platform.sh exposes some [environment
-variables](/development/variables/use-variables#use-platformsh-provided-variables).
+By default, Platform.sh exposes some [environment variables](/development/variables/use-variables#use-platformsh-provided-variables).
+If you're using the [Symfony integration](./integration),
+more [infrastructure environment variables](#symfony-environment-variables) related to Symfony are defined.
 
-If you are using the [Symfony integration](./integration), more [infrastructure
-environment variables](#symfony-environment-variables) related to Symfony are
-defined.
+As Symfony relies heavily on environment variables to configure application services (such as the database or the mailer DSN),
+the Symfony integration automatically defines [environment variables for all the services](#service-environment-variables) connected to your app.
 
-As Symfony relies heavily on environment variables to configure application
-services (like the database or the mailer DSN), the Symfony integration
-automatically defines [environment variables for all
-services](#service-environment-variables) connected to the application.
+{{< note title="Tip" >}}
 
-{{< note theme="tip" >}}
-
-The code that defines these additional environment variables is part of the
-Open-Source [Symfony CLI tool](https://symfony.com/download). Check the code for
-[infrastructure](https://github.com/symfony-cli/symfony-cli/blob/main/envs/remote.go#L139)
-and
-[service](https://github.com/symfony-cli/symfony-cli/blob/main/envs/envs.go#L110)
-environment variables on Github.
+The code that defines these additional environment variables is part of the open-source [Symfony CLI tool](https://symfony.com/download).
+Check the code for [infrastructure](https://github.com/symfony-cli/symfony-cli/blob/main/envs/remote.go#L139)
+and [service](https://github.com/symfony-cli/symfony-cli/blob/main/envs/envs.go#L110) environment variables on GitHub.
 
 {{< /note >}}
 
-## Symfony Environment Variables
+## Symfony environment variables
 
-Platform.sh exposes [environment
-variables](/development/variables/use-variables#use-platformsh-provided-variables) about the application and its infrastructure.
+Platform.sh exposes [environment variables](/development/variables/use-variables#use-platformsh-provided-variables)
+about the app and its infrastructure.
 
-The Symfony integration exposes some more:
+The Symfony integration exposes more environment variables:
 
-* `APP_ENV` is set to `prod` by default. You can manually override this value
-  for a development environment by setting the `SYMFONY_ENV` environment
-  variable to `dev`, and remove it when done.
+- `APP_ENV` is set to `prod` by default. 
+  You can manually override this value for a development environment
+  by setting the `SYMFONY_ENV` environment variable to `dev`, and remove it when done.
 
-* `APP_DEBUG` us set to `0` by default. You can manually override this value
-  for a development environment by setting the `SYMFONY_DEBUG` environment
-  variable to `1`, and remove it when done.
+- `APP_DEBUG` is set to `0` by default.
+  You can manually override this value for a development environment
+  by setting the `SYMFONY_DEBUG` environment variable to `1`, and remove it when done.
 
-* `APP_SECRET` is set to the value of `PLATFORM_PROJECT_ENTROPY` which is a
-  random and unique value for all Platform.sh projects; it overrides the one
-  configured in the application `.env` file.
+- `APP_SECRET` is set to the value of `PLATFORM_PROJECT_ENTROPY`, which is a random and unique value for all Platform.sh projects.
+  It overrides the value configured in the `.env` file of your app.
 
-* `MAILFROM` is set to a random value, which is used as a From header when
-  using [croncape](./crons#using-croncape).
+- `MAILFROM` is set to a random value.
+  This value is used as a `From` header when using [croncape](./crons#use-croncape).
 
-* `SYMFONY_IS_WORKER` is set to `1` when the container is running in the
-  context of a worker (instead of the main application container).
+- `SYMFONY_IS_WORKER` is set to `1` when the container is running in the context of a worker 
+  (instead of the main application container).
 
-* `SYMFONY_CACHE_DIR` (only available during the build hook execution): The
-  absolute path to a subdirectory of our build cache directory.
+- `SYMFONY_CACHE_DIR` (only available during the build hook execution):
+  The absolute path to a subdirectory of your build cache directory.
 
-  The build cache directory is persisted between builds, but is **not** deployed. It’s a good place to store build artifacts, such as downloaded files, that can be reused between builds.
+  Note that the build cache directory is persisted between builds but **isn't** deployed.
+  It’s a good place to store build artifacts, such as downloaded files that can be reused between builds.
 
   {{< note title="Tip">}}
-  This directory is shared by **all** builds on **all** branches, make sure your build hook accounts for that.
+
+  This directory is shared by **all** builds on **all** branches.
+  Make sure your [build hook](./integration.md#hooks) accounts for that.
+
   {{< /note >}}
 
-  {{< note >}}
-  If you need to clear the build cache directory, use the `symfony cloud:project:clear-build-cache` command.
-  {{< /note >}}
+  If you need to clear the build cache directory, run the `symfony cloud:project:clear-build-cache` command.
 
-* `SYMFONY_PROJECT_DEFAULT_ROUTE_URL` (only defined at **runtime**): The default endpoint serving your project.
-  It can be used to avoid hard-coding domains that can be used to reach non-production environments.
-  Parts of the URL are also exposed as their own variables whose name starts with `SYMFONY_PROJECT_DEFAULT_ROUTE_` followed by the name of the part (`SCHEME`, `DOMAIN`, `PORT`, and `PATH`).
+- `SYMFONY_PROJECT_DEFAULT_ROUTE_URL` (only defined at **runtime**): The default endpoint serving your project.
+  Use this variable to avoid hard-coding domains that can be used to reach non-production environments.
+  Parts of the URL are also exposed as their own variables using the following syntax:
+  `SYMFONY_PROJECT_DEFAULT_ROUTE_` followed by the name of the part (`SCHEME`, `DOMAIN`, `PORT`, and `PATH`).
 
-  Guessing the default endpoint is usually straightforward but can become complicated for multi-routes or multi-applications projects. For these cases, the following   preference order is used:
+  Guessing the default endpoint can prove difficult for multi-routes or multi-app projects.
+  In such cases, the following preference order is used:
 
-  1. project wide route defined only by `{default}` or `{all}` (no path)
-  2. project wide route defined by `www.{default}` or `www.{all}` (no path)
-  3. route for the **current application** including `{default}` or `{all}` (might include a path)
-  4. route for the **current application** including `www.{default}` or `www.{all}` (might include a path)
-  5. first route for the current application
-  6. first route for the whole project
+  1. Project-wide route defined only by `{default}` or `{all}` (no path)
+  2. Project-wide route defined by `www.{default}` or `www.{all}` (no path)
+  3. Route for the **current application** including `{default}` or `{all}` (might include a path)
+  4. Route for the **current application** including `www.{default}` or `www.{all}` (might include a path)
+  5. First route for the current application
+  6. First route for the whole project
 
   When several routes match a rule, the first one wins, the user order is kept. There's no preference regarding protocols.
 
   {{< note title="Tip">}}
 
-  For multi-applications projects where several applications are publicly reachable, but one needs to determine the current application endpoint (for webhooks for example) and the project endpoint (to send emails for instance), an additional `SYMFONY_APPLICATION_DEFAULT_ROUTE_*` environment variables set is available. The same rules are applied to determine their value but only routes matching the current application are evaluated.
+   If you have a multi-app project containing several publicly reachable apps,
+   you might need to determine the current application endpoint (for webhooks for example)
+   and the project endpoint (to send emails for example).
+
+   In this case, you can use an additional `SYMFONY_APPLICATION_DEFAULT_ROUTE_*` set of environment variables.
+   The same rules are applied to determine their value, but only routes matching the current application are evaluated.
 
   {{< /note >}}
 
-## Service Environment Variables
-
+## Service environment variables
 
 When using the [Symfony integration](./integration), information about services
 are exposed via environment variables.
 
-List all exposed environment variables with the following command:
+To list all of the exposed environment variables, run the following command:
 
 ```bash
 symfony ssh -- symfony var:export --multiline
 ```
 
-Each exposed environment variable is prefixed by the relationship name. For
-instance, given the following relationships:
+Each exposed environment variable is prefixed by the relationship name.
+For example, if you have the following relationships in your configuration:
 
 ```yaml
 relationships:
     database: "securitydb:postgresql"
 ```
 
-The environment variables for the database service will be prefixed by
-`DATABASE_`, the upper-cased version of the key defined in the relationship;
-like `DATABASE_URL`.
+The environment variables for the database service is prefixed by `DATABASE_`
+which is the upper-cased version of the key defined in the relationship.
+For example, you could have a `DATABASE_URL` environment variable.
 
-While most environment variable names are derived from the relationship and
-service names, some are defined based on Symfony conventions like `MAILER_DSN`.
+Most environment variable names are derived from the relationship and service names.
+But some are defined based on Symfony conventions, such as [`MAILER_DSN`](#emails).
 
 {{< note theme="warning" >}}
 
-Be aware that service environment variables are not exposed when running
-the build hook script as services are not available during the build hook.
+Environment variables aren't exposed when the build hook script is running
+as services aren't available during the [build process](../../overview/build-deploy.md#the-build).
 
 {{< /note >}}
-
-The following sections lists all exposed environment variables that are automatically defined for each service:
-
-* [Emails](#emails)
-* [HTTP](#http)
-* [PostgreSQL](#postgresql)
-* [MySQL/MariaDB](#mysqlmariadb)
-* [MongoDB](#mongodb)
-* [Redis](#redis)
-* [RabbitMQ](#rabbitmq)
-* [Elasticsearch](#elasticsearch)
-* [Kafka](#kafka)
-* [InfluxDB](#influxdb)
-* [Memcached](#memcached)
-* [Solr](#solr)
 
 ### Emails
 
 The configuration is exposed via the following environment variables:
 
-* `MAILER_ENABLED`: 1 if outgoing emails are enabled, 0 otherwise
-* `MAILER_DSN`/`MAILER_URL`: The Symfony-compatible mailer URL
-* `MAILER_HOST`: The SMTP server host
-* `MAILER_PORT`: The SMTP server port
-* `MAILER_TRANSPORT`: The SMTP transport mode (`smtp`)
-* `MAILER_AUTH_MODE`: The SMTP auth mode (`plain`)
-* `MAILER_USER`: The SMTP server user
-* `MAILER_PASSWORD`: The SMTP server password
+- `MAILER_ENABLED`: 1 if outgoing emails are enabled, 0 otherwise
+- `MAILER_DSN`/`MAILER_URL`: The Symfony-compatible mailer URL
+- `MAILER_HOST`: The SMTP server host
+- `MAILER_PORT`: The SMTP server port
+- `MAILER_TRANSPORT`: The SMTP transport mode (`smtp`)
+- `MAILER_AUTH_MODE`: The SMTP auth mode (`plain`)
+- `MAILER_USER`: The SMTP server user
+- `MAILER_PASSWORD`: The SMTP server password
 
-Symfony Mailer uses the value of `MAILER_DSN` automatically.
+Symfony Mailer automatically uses the value of `MAILER_DSN`.
 
 ### HTTP
 
-If your project has multiple apps, the configuration is exposed via the following environment variables (where `SOME_SERVICE` is the upper-cased version of the key defined in the relationship):
+If your project has multiple apps,
+the configuration is exposed via the following environment variables
+(where `SOME_SERVICE` is the upper-cased version of the key defined in the relationship):
 
 - `SOME_SERVICE_URL`: The full URL of the service
 - `SOME_SERVICE_IP`: The HTTP service IP
@@ -164,11 +149,10 @@ If your project has multiple apps, the configuration is exposed via the followin
 
 ### MySQL/MariaDB
 
-The [MySQL/MariaDB](/add-services/mysql) configuration is exposed via the following
-environment variables (where `DATABASE` is the upper-cased version of the key
-defined in the relationship above):
+The [MySQL/MariaDB](/add-services/mysql) configuration is exposed via the following environment variables
+(where `DATABASE` is the upper-cased version of the key defined in the relationship above):
 
-- `DATABASE_URL`: The database URL (in the PHP or Go format depending on your app)
+- `DATABASE_URL`: The database URL (in PHP or Go format depending on your app)
 - `DATABASE_SERVER`: The database server
 - `DATABASE_DRIVER`: The database driver
 - `DATABASE_VERSION`: The database version
@@ -180,16 +164,18 @@ defined in the relationship above):
 - `DATABASE_PASSWORD`: The database password
 
 {{< note title="Tip">}}
-The database version and a default charset is included in the database URL. Override them using the `DATABASE_VERSION` and `DATABASE_CHARSET` environment variables respectively.
+
+The database version and a default charset are included in the database URL.
+To override them, use the `DATABASE_VERSION` and `DATABASE_CHARSET` environment variables respectively.
+
 {{< /note >}}
 
 ### PostgreSQL
 
-The [PostgreSQL](/add-services/postgresql) configuration is exposed via the
-following environment variables (where `DATABASE` is the upper-cased version of
-the key defined in the relationship):
+The [PostgreSQL](/add-services/postgresql) configuration is exposed via the following environment variables
+(where `DATABASE` is the upper-cased version of the key defined in the relationship):
 
-- `DATABASE_URL`: The database URL (in the PHP or Go format depending on your application)
+- `DATABASE_URL`: The database URL (in PHP or Go format depending on your app)
 - `DATABASE_SERVER`: The database server
 - `DATABASE_DRIVER`: The database driver
 - `DATABASE_VERSION`: The database version
@@ -201,14 +187,16 @@ the key defined in the relationship):
 - `DATABASE_PASSWORD`: The database password
 
 {{< note title="Tip">}}
-The database version and a default charset are included in the database URL. To override them, use the `DATABASE_VERSION` and `DATABASE_CHARSET` environment variables respectively.
+
+The database version and a default charset are included in the database URL.
+To override them, use the `DATABASE_VERSION` and `DATABASE_CHARSET` environment variables respectively.
+
 {{< /note >}}
 
 ### Redis
 
-The [Redis](/add-services/redis) configuration is exposed via the following
-environment variables (where `REDIS` is the upper-cased version of the key
-defined in the relationship):
+The [Redis](/add-services/redis) configuration is exposed via the following environment variables
+(where `REDIS` is the upper-cased version of the key defined in the relationship):
 
 - `REDIS_URL`: The Redis URL
 - `REDIS_HOST`: The Redis host
@@ -217,9 +205,8 @@ defined in the relationship):
 
 ### Memcached
 
-The [Memcached](/add-services/memcached) configuration is exposed via the following
-environment variables (where `CACHE` is the upper-cased version of the key
-defined in the relationship):
+The [Memcached](/add-services/memcached) configuration is exposed via the following environment variables
+(where `CACHE` is the upper-cased version of the key defined in the relationship):
 
 - `CACHE_HOST`
 - `CACHE_PORT`
@@ -227,9 +214,8 @@ defined in the relationship):
 
 ### Elasticsearch
 
-The [Elasticsearch](/add-services/elasticsearch) configuration is exposed via the
-following environment variables (where `ELASTICSEARCH` is the upper-cased
-version of the key defined in the relationship):
+The [Elasticsearch](/add-services/elasticsearch) configuration is exposed via the following environment variables
+(where `ELASTICSEARCH` is the upper-cased version of the key defined in the relationship):
 
 - `ELASTICSEARCH_URL`: The full URL of the Elasticsearch service
 - `ELASTICSEARCH_HOST`: The Elasticsearch host
@@ -238,9 +224,8 @@ version of the key defined in the relationship):
 
 ### Solr
 
-The [Apache Solr](/add-services/solr) configuration is exposed via the following
-environment variables (where `SOLR` is the upper-cased version of the key
-defined in the relationship):
+The [Apache Solr](/add-services/solr) configuration is exposed via the following environment variables
+(where `SOLR` is the upper-cased version of the key defined in the relationship):
 
 - `SOLR_HOST`: The Solr host
 - `SOLR_PORT`: The Solr port
@@ -249,9 +234,8 @@ defined in the relationship):
 
 ### RabbitMQ
 
-The [RabbitMQ](/add-services/rabbitmq) configuration is exposed via the following
-environment variables (where `RABBITMQ` is the upper-cased version of the key
-defined in the relationship):
+The [RabbitMQ](/add-services/rabbitmq) configuration is exposed via the following environment variables
+(where `RABBITMQ` is the upper-cased version of the key defined in the relationship):
 
 - `RABBITMQ_URL`: The RabbitMQ standardized URL
 - `RABBITMQ_SERVER`: The RabbitMQ server
@@ -264,9 +248,8 @@ defined in the relationship):
 
 ### MongoDB
 
-The [MongoDB](/add-services/mongodb) configuration is exposed via the following
-environment variables (where `MONGODB` is the upper-cased version of the key
-defined in the relationship):
+The [MongoDB](/add-services/mongodb) configuration is exposed via the following environment variables
+(where `MONGODB` is the upper-cased version of the key defined in the relationship):
 
 - `MONGODB_SERVER`
 - `MONGODB_HOST`
@@ -280,9 +263,8 @@ defined in the relationship):
 
 ### InfluxDB
 
-The [InfluxDB](/add-services/influxdb) configuration is exposed via the following
-environment variables (where `TIMEDB` is the upper-cased version of the key
-defined in the relationship):
+The [InfluxDB](/add-services/influxdb) configuration is exposed via the following environment variables
+(where `TIMEDB` is the upper-cased version of the key defined in the relationship):
 
 - `TIMEDB_SCHEME`
 - `TIMEDB_HOST`
@@ -291,9 +273,8 @@ defined in the relationship):
 
 ### Kafka
 
-The [Apache Kafka](/add-services/kafka) configuration is exposed via the following
-environment variables (where `KAFKA` is the upper-cased version of the key
-defined in the relationship):
+The [Apache Kafka](/add-services/kafka) configuration is exposed via the following environment variables
+(where `KAFKA` is the upper-cased version of the key defined in the relationship):
 
 - `KAFKA_URL`
 - `KAFKA_SCHEME`

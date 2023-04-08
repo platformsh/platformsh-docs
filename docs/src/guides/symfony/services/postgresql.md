@@ -1,40 +1,55 @@
 ---
-title: "Configure Symfony to use PostgreSQL database engine"
+title: "Configure Symfony to use a PostgreSQL database engine"
 sidebarTitle: "PostgreSQL"
 weight: -100
 description: "Use PostgreSQL with your Symfony project."
 ---
 
-[comment]: <> ( already exists here : https://symfony.com/doc/current/the-fast-track/en/7-database.html)
+[comment]: <> (already exists here: https://symfony.com/doc/current/the-fast-track/en/7-database.html)
 
-The Symfony Demo skeleton embeds by default a SQLite database engine.
+[Symfony Demo](https://symfony.com/doc/current/setup.html#the-symfony-demo-application) embeds an SQLite database engine by default.
+So if you created your project using Symfony Demo,
+you might want to switch to a PostgreSQL database engine.
 
-In this how-to tutorial, you can learn how to switch to PostgreSQL database engine.
-And if using the Symfony Base version, you can learn how to use PostgreSQL from scratch.
+If you created a standard Symfony project,
+you might want to set up PostgreSQL from scratch.
+
+Either way, follow the directions on this page.
 
 {{% guides/local-requirements name="Symfony" %}}
-- [Docker app](https://docs.docker.com/engine/install/) installed
+- [Docker app](https://docs.docker.com/engine/install/)
+- The [`pdo_pgsql` extension](https://www.php.net/manual/en/ref.pdo-pgsql.php) (likely installed when you set up PHP)
 
-## Create a new branch
-From your terminal, at the root of your Symfony application, create a new Git branch:
+## 1. Create a new branch
+
+To create a new branch, run the following command at the root of your Symfony app:
 
 ```bash
 symfony cloud:branch feat-add-postgresql
 ```
 
-## Configure your Symfony Application to use PostgreSQL
-On your local machine, let's use Docker to manage services.
+## 2. Configure your Symfony app to use PostgreSQL
+
+To manage services, use Docker on your local machine.
+
 {{< note >}}
-If you prefer to [install PostgreSQL locally](https://www.postgresql.org/download/), you can skip this step.
+
+Alternatively, you can [install PostgreSQL locally](https://www.postgresql.org/download/),
+then jump to [updating the PostgreSQL schema](#2-update-the-postgresql-schema).
+
 {{< /note >}}
 
-1. Create a DockerFile for PostgreSQL
-    The generated docker-compose.yml file already contains PostgreSQL as a service: {{< readFile file="static/files/fetch/appyaml/symfony-docker-compose/platformsh-symfony-template" highlight="yaml" location="docker-compose.yml" >}}
+1. Create a DockerFile for PostgreSQL.
 
-    This will install a PostgreSQL server and configure some environment variables that control the database name and credentials.
-    The values don't really matter.
+   The generated `docker-compose.yml` file already contains PostgreSQL as a service:
 
-    Then, expose the PostgreSQL port (`5432`) of the container to the local host:
+   {{< readFile file="static/files/fetch/appyaml/symfony-docker-compose/platformsh-symfony-template" highlight="yaml" location="docker-compose.yml" >}}
+
+   This installs a PostgreSQL server and configures environment variables that control the database name and credentials.
+   The values don't really matter.
+
+2. To expose the PostgreSQL port (`5432`) of the container to the local host,
+   add the following configuration:
 
     ```yaml {location="./docker-compose.override.yml"}
     version: '3'
@@ -47,33 +62,39 @@ If you prefer to [install PostgreSQL locally](https://www.postgresql.org/downloa
     ###< doctrine/doctrine-bundle ###
     ```
 
-    The `pdo_pgsql` extension should have been installed when PHP was set up in a previous step.
+3. To start Docker Compose in the background (`-d`), run the following command:
 
-1. Start Docker Compose
+   ```bash
+   docker-compose up -d
+   ```
 
-    Start Docker Compose in the background (-d):
-    ```bash
-    docker-compose up -d
-    ```
+   {{< note >}}
+    
+   When you use [Docker with Symfony Server](https://symfony.com/doc/current/setup/docker.html),
+   your Symfony Server can automatically detect your Docker services and expose them as environment variables.
+    
+   {{< /note >}}
 
-{{< note >}}
-When using [Docker with Symfony Server](https://symfony.com/doc/current/setup/docker.html), then your Symfony Server can automatically detect your Docker services and expose them as environment variables.
-{{< /note >}}
+## 2. Update the PostgreSQL schema
 
-## Update PostgreSQL schema
-If you're using Symfony Demo or if you already have created entities in your Symfony application, run the following
+If you're using Symfony Demo or if you've already created entities in your Symfony app,
+update the PostgreSQL schema by running the following command:
+
 ```bash
 symfony console doctrine:schema:update --force
 ```
 
-## Import data
-Depending on the data source you want to import, run the following:
+## 3. Import data
+
+To import data, run the following command depending on the source:
 
 {{< codetabs >}}
 +++
 title=Demo fixtures
 +++
-To import demo fixtures locally, run the following:
+
+To import demo fixtures locally, run the following command:
+
 ```bash
 symfony console doctrine:fixtures:load
 ```
@@ -82,44 +103,55 @@ symfony console doctrine:fixtures:load
 +++
 title=SQL dump
 +++
-To import an existing SQL dump, run the following:
+To import an existing SQL dump, run the following command:
+
 ```bash
 symfony run psql < dump.sql
 ```
+
 {{< note >}}
-If you already have custom data in your previous SQLite database, see this tutorial on [how to migrate from SQLite to PostgreSQL using `pgloader`](https://pgloader.readthedocs.io/en/latest/ref/sqlite.html)
+
+If you already have custom data in your previous SQLite database,
+see [how to migrate from SQLite to PostgreSQL using `pgloader`](https://pgloader.readthedocs.io/en/latest/ref/sqlite.html).
+
 {{< /note >}}
+
 {{< /codetabs >}}
 
-You're ready to go locally with PostgreSQL.
+## 4. Configure your Platform.sh project to use PostgreSQL
 
-## Configure your Platform.sh project to use PostgreSQL
+1. Add a PostgreSQL database engine component.
 
-1. Add a PostgreSQL database engine component
-    All components used for your Platform.sh environment are listed in the .platform/services.yaml file.
-    Database engine is part of it and you need to add a new PostgreSQL component in this file.
+   [All the components](../../../add-services#available-services) used for your Platform.sh environment,
+   including the cache component, are listed in the `.platform/services.yaml` file.
+   To add a new PostgreSQL database engine component, add the following configuration:
 
     ```yaml {location=".platform/services.yaml"}
     database:
       type: postgresql:15
       disk: 1024
     ```
-    Follow this link to get more info on [all available components](../../../add-services#available-services).
 
-1. Add a new relationship
-    To manage access to containers within your project, you need to define a relationship to it.
-    These relationships are defined in the `.platform.app.yaml` file, section `relationships`.
+2. Add a new relationship.
+
+   To manage access to containers within your project, 
+   define [relationships](../../../create-apps/app-reference.html#relationships)
+   in the `relationships` section of your `.platform.app.yaml` file.
+   To do so, add the following configuration:
+
     ```yaml {location=".platform.app.yaml"}
     relationships:
         database: "database:postgresql"
     ```
-   Follow this link to get more info on [relationships](../../../create-apps/app-reference.html#relationships).
 
-1. Add the PHP extension
-    For PHP to communicate with the PostgreSQL database engine, a php-ext is needed.
-    All PHP extensions that need to be installed during runtime are listed in the `.platform.app.yaml` file, section `runtime`
-    runtime:
-    ```bash {location=".platform.app.yaml"}
+3. Add the PHP extension.
+
+   For PHP to communicate with your PostgreSQL database engine component, a `php-ext` is needed.
+   All the PHP extensions that need to be installed during runtime are listed
+   in the `runtime` section of your `.platform.app.yaml` file.
+   Use the following configuration:
+
+    ```yaml {location=".platform.app.yaml"}
     runtime:
        extensions:
           - ...
@@ -129,51 +161,67 @@ You're ready to go locally with PostgreSQL.
    comment/remove `pdo_sqlite` php-ext and add `pdo_pgsql` from the list
 
 
-1. Commit your files and deploy
+4. Commit your files and deploy.
 
-   Commit your modified files into your git branch and then deploy it to your environment.
+   To commit your modified files to your Git branch and deploy those changes to your environment,
+   run the following command:
+
     ```bash
     git add . && git commit -m "change database engine to PostgreSQL" && symfony deploy
     ```
+
    After deployment, the PostgreSQL database engine is up and ready to use.
 
-1. Import data
+5. Import data.
 
-   Depending on the data source you want to import, run the following:
+   To import data, run the following command depending on the source:
 
 {{< codetabs >}}
+
 +++
 title=Demo fixtures
 +++
-To import demo fixtures on your Platform.sh project, run the following:
+
+To import demo fixtures on your Platform.sh project, run the following command:
+
 ```bash
 symfony ssh -- php bin/console doctrine:fixtures:load -y
 ```
+
 <--->
 +++
 title=SQL dump
 +++
-To import an existing SQL dump, run the following:
+
+To import an existing SQL dump, run the following command:
+
 ```bash
 symfony cloud:sql < dump.sql
 ```
+
 {{< note >}}
-If you already have custom data in your previous SQLite database, see this tutorial on [how to migrate from SQLite to PostgreSQL using `pgloader`](https://pgloader.readthedocs.io/en/latest/ref/sqlite.html)
+
+If you already have custom data in your previous SQLite database,
+see [how to migrate from SQLite to PostgreSQL using `pgloader`](https://pgloader.readthedocs.io/en/latest/ref/sqlite.html)
+
 {{< /note >}}
+
 {{< /codetabs >}}
 
-## Deploy PostgresSQL in production
+6. To deploy PostgreSQL in production, run the following commands:
 
-If there is no issue on your Platform.sh environment using the Redis component, you can deploy it to production.
-```bash
-symfony checkout main
-symfony merge feat-add-postgresql
-git pull -r
-```
+   ```bash
+   symfony checkout main
+   symfony merge feat-add-postgresql
+   git pull -r
+   ```
 
-{{< note >}}
-`symfony merge` command merge your environment `feat-add-postgresql` to your production environment, but it doesn't pull the merge result locally. That’s why you need to run `git pull -r` before doing anything else on that branch.
-{{< /note >}}
+   {{< note >}}
+
+   The `symfony merge` command merges your `feat-add-postgresql` environment into your production environment.
+   But it doesn't pull the merge result locally. To do so, run `git pull -r` before doing anything else on the branch.
+
+   {{< /note >}}
 
 ## Tips and tricks
 

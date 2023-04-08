@@ -1,12 +1,12 @@
 ---
 title: "Cron Jobs"
-sidebarTitle: "Cron Jobs"
 weight: -105
 description: |
     Understand how to configure Symfony cron jobs.
 ---
 
-**Cron jobs** allow you to run scheduled tasks at specified times or intervals:
+Cron jobs allow you to run scheduled tasks at specified times or intervals.
+To set up a cron job, add a configuration similar to the following:
 
 ```yaml {location=".platform.app.yaml"}
 crons:
@@ -16,8 +16,8 @@ crons:
             croncape symfony ...
 ```
 
-If you want to run a command in a cron hook for specific environment types,
-check the `PLATFORM_ENVIRONMENT_TYPE` environment variable:
+To run a command in a cron hook for specific environment types,
+use the `PLATFORM_ENVIRONMENT_TYPE` environment variable:
 
 ```yaml {location=".platform.app.yaml"}
 crons:
@@ -30,26 +30,29 @@ crons:
             fi
 ```
 
-## Using croncape
+## Use croncape
 
-To get feedback when something goes wrong, prefix the command with `croncape`
-(which is available when using the [Symfony integration](./integration)).
-`croncape` will send an email to the address defined by the `MAILTO`
-environment variable. Don't forget to set it first via the following command:
+When using the [Symfony integration](./integration),
+you can use `croncape` to get feedback through emails when something goes wrong.
+
+To specify which email address `croncape` must send the feedback emails to,
+add a `MAILTO` environment variable.
+To do so, run the following command:
 
 ```bash
 symfony var:create -y --level=project --name=env:MAILTO --value=sysadmin@example.com
 ```
 
-To ensure better reliability, `croncape` sends its emails using
-`project-id@cron.noreply.platformsh.site` as the sender address
-(`project-id+branch@cron.noreply.platformsh.site` for non-main environments)
-and the provided :ref:`Platform.sh SMTP <email-env-vars>` service; even if you
-define your own `MAILER_*` environment variables.
+To ensure better reliability, `croncape` sends the emails using:
 
-If you wish to use a custom SMTP and/or use a custom sender address you need to follow these steps:
+- `project-id@cron.noreply.platformsh.site` as the sender address (`project-id+branch@cron.noreply.platformsh.site` for non-main environments)
+- the provided :ref:`Platform.sh SMTP <email-env-vars>` service, even if you define your own `MAILER_*` environment variables
 
-1. Define the sender address by defining the `MAILFROM` environment variable;
-2. Define the environment variables required to use your own email service, refers to the [emails](./environment-variables#emails) documentation to check their names.
-   Please note that only SMTP connections are supported;
-3. Disable the provided SMTP service using `symfony cloud:env:info enable_smtp false`
+To use a custom SMTP and/or custom sender address, follow these steps:
+
+1. To specify a sender address, define a [`MAILFROM` environment variable](./environment-variables.md#symfony-environment-variables).
+
+2. Define the mandatory [environment variables to use your own email service](./environment-variables#emails).
+   Note that only SMTP connections are supported.
+
+3. To disable the provided SMTP service, run `symfony cloud:env:info enable_smtp false`.

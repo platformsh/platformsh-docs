@@ -6,45 +6,52 @@ description: |
     Import Platform.sh data within your local Symfony application to start contributing.
 ---
 
-A significant amount of work developing Symfony takes place locally rather than on an active Platform.sh environment.
-You want to ensure that the process of local development is as close as possible to a deployed environment.
+{{% guides/symfony/local-development-intro %}}
 
-You can achieve this through various approaches.
-
-To test changes locally, you can pull data from an active Platform.sh environment.
+To do so, when testing changes locally, you can pull data from an active Platform.sh environment.
 
 {{% guides/local-requirements name="Symfony" %}}
-- your Platform.sh project is using PostgreSQL, otherwise, follow the [Use PostgreSQL tutorial](../services/postgresql.md)
+- A Platform.sh project using PostgreSQL.
+  See how to switch to, or [set up PostgreSQL](../services/postgresql.md) from scratch.
 
-## Start your Symfony Server
-At first, you need to start your web Server locally to display your Symfony application.
+## 1. Start your Symfony Server
+
+To start your Symfony Server locally and display your Symfony app,
+run the following command:
 
 ```bash
 symfony server:start -d
 symfony open:local
 ```
 
-It will start the Symfony server and open the application in your local browser.
+This starts the Symfony Server and opens the app in your local browser.
 
-## Dump your Platform.sh project's database
+## 2. Dump your Platform.sh project database
 
-Dump your Platform.sh project's database into a local file by running
+To dump your Platform.sh project database into a local file,
+run the following command:
 
 ```bash
 symfony cloud:db:dump -f dump.sql
 ```
 
-## Import dump file locally
+## 3. Import the dump file locally
+
+To import the dump file locally, run the following command:
+
 ```bash
 symfony console doctrine:query:sql < dump.sql
 ```
 
-## Import assets
+## 4. Import assets
+
+To import assets, run the following commands:
+
 ```bash
 symfony cloud:mount:download --mount public/var --target ./public/var
 ```
 
-Et voilà, your local Symfony application is sync with your Platform.sh project
+Your local Symfony app is now synced with your Platform.sh project.
 
 {{% guides/symfony/local-next-steps-start %}}
 {{< readFile file="snippets/guides/symfony/local.sh" highlight="yaml" location="init-local.sh" >}}

@@ -1,15 +1,14 @@
 ---
-title: "Use a third party Git provider"
-sidebarTitle: "Use a third party Git provider"
+title: "Use a third-party Git provider"
 weight: -50
-description: "Use integration capability to link your Symfony application to an existing third party Git provider"
+description: "Link your Symfony app to an existing third-party Git provider."
 ---
 
-When you choose to use a third-party Git hosting service
+When you choose to use a third-party Git hosting service,
 the Platform.sh Git repository becomes a read-only mirror of the third-party repository.
 All your changes take place in the third-party repository.
 
-Add an integration to your existing third party repository.
+Add an integration to your existing third-party repository.
 
 The process varies a bit for each supported service, so check the specific pages for each one.
 
@@ -36,79 +35,100 @@ symfony cloud:integration:add --type=service ... --build-pull-requests=false
 
 You can then go through this guide and activate the environment when you're ready to deploy
 
-\* You can purchase additional development environments at any time in the [Web Console](/administration/web/_index.md).
-Open your project and select **Edit plan**.
+{{< note title="Tip" >}}
+
+You can purchase additional development environments at any time in the [Web Console](/administration/web/_index.md).
+
+To do so, open your project and select **Edit plan**.
 Add additional **Environments**, view a cost estimate, and confirm your changes.
 
+{{< /note >}}
 
 {{% guides/deployment Symfony=true %}}
 
-## Deploy your Project
-Use common way to push your code to your Git repository, and the integration will automatically deploy your Git branch to corresponding Platform.sh environment.
+## Deploy your project
+
+For the integration to automatically deploy your Git branch to the corresponding environment,
+push your code to your Git repository:
+
 ```bash
 git push origin
 ```
 
-## Working on a Project
+## Make changes to your project
 
-Now that the project is deployed, let's describe a typical scenario where you want to fix a bug or add a new feature.
+Now that your project is deployed, you can start making changes to it. For example, you might want to fix a bug or add a new feature.
 
-First, you need to know that the main branch always represents the production environment. Any other branch is for developing new features, fixing bugs, or updating the infrastructure.
+In your project, the main branch always represents the production environment. Other branches are for developing new features, fixing bugs, or updating the infrastructure.
 
-Let's create a new environment (a Git branch) to make some changes, without impacting production:
+To make changes to your project, follow these steps:
 
-```bash
-git checkout main
-git checkout -b feat-a
-```
+1. Create a new environment (a Git branch) to make changes without impacting production:
 
-This command creates a new local feat-a Git branch based on the main Git branch
+   ```bash
+   git checkout main
+   git checkout -b feat-a```
 
-Let's make some simple visual changes.
-If you have created a Symfony demo application, edit the `templates/default/homepage.html.twig` template and make the following change:
+   This command creates a new local `feat-a` Git branch based on the main Git branch and activates a related environment on Platform.sh.
 
-```html {location="templates/default/homepage.html.twig"}
-{% block body %}
-    <div class="page-header">
--        <h1>{{ 'title.homepage'|trans|raw }}</h1>
-+        <h1>Welcome to the Platform.sh Demo</h1>
-    </div>
+2. Make changes to your project.
 
-    <div class="row">
-```
+   For example,  if you created a Symfony Demo app,
+   edit the `templates/default/homepage.html.twig` template and make the following visual changes:
 
-Commit the change:
-```bash
-git commit -a -m "Update text"
-```
+   ```html {location="templates/default/homepage.html.twig"}
+   {% block body %}
+       <div class="page-header">
+   -        <h1>{{ 'title.homepage'|trans|raw }}</h1>
+   +        <h1>Welcome to the Platform.sh Demo</h1>
+       </div>
 
-And deploy the change to the `feat-a` environment:
+       <div class="row">
+   ```
 
-```bash
-git push --set-upstream origin feat-a
-```
-Through the integration process, this will activate a related environment on Platform.sh.
-If you have some services enabled, the new environment inherits the data of the parent environment (the production one here).
+3. Commit your changes:
 
-Browse the new version and notice that the domain name is different now (each environment has its own domain name):
+   ```bash
+   git commit -a -m "Update text"
+   ```
 
-```bash
-symfony cloud:url --primary
-```
+4. Deploy your changes to the `feat-a` environment:
 
-Iterate by changing the code, committing, and deploying. When satisfied with the changes, merge it to main, deploy, and remove the feature branch:
+   ```bash
+   git push --set-upstream origin feat-a
+   ```
 
-```bash
-git checkout main
-git merge feat-a
-git push origin main
-git branch -d feat-a
-git push origin --delete feat-a
-symfony environment:delete feat-a
-```
+   A related environment on Platform.sh is activated through the integration process.
+   The new environment inherits the data (service data and assets) of its parent environment (the production environment here).
 
-{{< note >}}
-Note that deploying production was fast as it reused the image built for the feat-a environment.
-{{< /note >}}
+   {{< note >}}
 
-For a long running branch, you can keep the code up-to-date with main via `git merge main` or `git rebase main`. And you can also keep the data in sync with the production environment via `symfony env:sync`.
+   Each environment has its own domain name.
+   To view the domain name of your new environment, run the following command:
+
+   ```bash
+   symfony cloud:url --primary
+   ```
+
+   {{< /note >}}
+
+5. Iterate by changing the code, committing, and deploying.
+   When satisfied with your changes, merge them to the main branch, deploy, and remove the feature branch:
+
+   ```bash
+   git checkout main
+   git merge feat-a
+   git push origin main
+   git branch -d feat-a
+   git push origin --delete feat-a
+   symfony environment:delete feat-a
+   ```
+
+   {{< note >}}
+
+   Deploying to production was fast because the image built for the `feat-a` environment was reused.
+
+   {{< /note >}}
+
+   For a long running branch, to keep the code up-to-date with the main branch, use `git merge main` or `git rebase main`.
+   You can also keep the data in sync with the production environment by using `symfony env:sync`.

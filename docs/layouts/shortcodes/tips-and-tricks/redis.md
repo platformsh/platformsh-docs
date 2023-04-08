@@ -2,7 +2,7 @@
 {{ if eq ( .Get "framework" ) "Symfony" }}
   {{ $cliCommand = "symfony cloud:" }}
 {{ end }}
-You may find the following commands useful when using Redis.
+You might find the following commands useful when using Redis with your Symfony app.
 
 -   Connect to a remote Redis service:
 

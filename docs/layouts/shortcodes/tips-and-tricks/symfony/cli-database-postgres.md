@@ -1,4 +1,4 @@
-You may find the following commands useful when using a PostgreSQL database with your Symfony application.
+You might find the following commands useful when using a PostgreSQL database with your Symfony app.
 
 -   Create a dump of the local database:
 
@@ -6,7 +6,7 @@ You may find the following commands useful when using a PostgreSQL database with
     symfony run pg_dump --data-only
     ```
 
--   Run a SQL query on the remote database:
+-   Run an SQL query on the remote database:
 
     ```bash
     symfony run psql 'SHOW TABLES'

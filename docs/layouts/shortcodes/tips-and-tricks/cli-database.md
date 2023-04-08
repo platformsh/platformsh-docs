@@ -5,7 +5,7 @@
   {{ $cliName = "Symfony CLI" }}
 {{ end }}
 
-You may find the following commands useful when using a database with your Symfony application.
+You might find the following commands useful when using a database with your Symfony app.
 
 -   Create a local dump of the remote database:
 
@@ -13,7 +13,7 @@ You may find the following commands useful when using a database with your Symfo
     {{ $cliCommand }}db:dump --relationship database
     ```
 
--   Run a SQL query on the remote database:
+-   Run an SQL query on the remote database:
 
     ```bash
     {{ $cliCommand }}sql 'SHOW TABLES'

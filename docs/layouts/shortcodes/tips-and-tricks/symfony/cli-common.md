@@ -4,7 +4,7 @@
     symfony project:init
     ```
 
--   Get a list of all domains:
+-   Get a list of all the domains:
 
     ```bash
     symfony cloud:domains
@@ -16,7 +16,7 @@
     symfony cloud:branch new-branch
     ```
 
--   Get a list of environments
+-   Get a list of all the environments:
 
     ```bash
     symfony cloud:environments
@@ -28,7 +28,7 @@
     symfony cloud:push
     ```
 
--   Get a list of all active projects:
+-   Get a list of all the active projects:
 
     ```bash
     symfony cloud:projects
