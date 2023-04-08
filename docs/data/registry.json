@@ -1056,6 +1056,32 @@
       ]
     }
   },
+  "rust": {
+    "description": "",
+    "repo_name": "rust",
+    "disk": true,
+    "docs": {
+      "relationship_name": null,
+      "service_name": null,
+      "url": "/languages/rust.html",
+      "web": {
+        "commands": {
+          "start": "./target/debug/hello"
+        }
+      }
+    },
+    "endpoint": null,
+    "min_disk_size": null,
+    "name": "Rust",
+    "runtime": true,
+    "type": "rust",
+    "versions": {
+      "deprecated": [],
+      "supported": [
+        "1"
+      ]
+    }
+  },
   "solr": {
     "description": "",
     "repo_name": "solr",
