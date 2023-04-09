@@ -1,21 +1,41 @@
 ---
-title: Symfony Server with tethered data
-weight: -110
+title: Local development
+weight: -80
 description: |
-    Sync Platform.sh data with your local Symfony application to start contributing.
+    Sync Platform.sh with your local environments to start contributing.
 ---
 
-{{% guides/symfony/local-development-intro %}}
+When you develop a Symfony project, a significant amount of work takes place
+locally rather than on an active Platform.sh environment. You want to ensure
+that the process of local development is as close as possible to a deployed
+environment.
 
-To do so, when testing changes locally, you can connect your locally running Symfony Server
-to service containers on an active Platform.sh environment.
+You can achieve this through various approaches. For example, you can use
+Symfony Server with tethered data
+
+To do so, when testing changes locally, you can connect your locally running
+Symfony Server to service containers on an active Platform.sh environment.
+
+This methodology has several advantages:
+
+- It avoids installing anything on your local machine but PHP;
+- It ensures that you are using the same versions of all services on your local
+  machine and in production.
+
+{{< note theme="warning" title="Warning">}}
+
+Never use this method on the **main** environment as changes made on your local
+machine will impact production data.
+
+{{< /note >}}
 
 {{% guides/local-requirements name="Symfony" %}}
 
 ## 1. Start your Symfony Server
 
-To start your Symfony Server locally and display your Symfony app,
-run the following command:
+To start your [Symfony
+Server](https://symfony.com/doc/current/setup/symfony_server.html) locally and
+display your Symfony app, run the following command:
 
 ```bash
 symfony server:start -d
@@ -54,15 +74,15 @@ This starts the Symfony Server and opens the app in your local browser.
         export PLATFORM_RELATIONSHIPS="$(symfony tunnel:info --encode)"
     ```
 
-3.  To connect your Symfony app to all of your Platform.sh services,
-    open SSH tunnels.
-    To do so, run the following command:
+3.  To expose Platform.sh services to your Symfony app, run the following
+    command:
 
     ```bash
     symfony var:expose-from-tunnel
     ```
 
-    This automatically configures your local Symfony app to use all your defined services (remote database, remote Redis component, etc.).
+    This automatically configures your local Symfony app to use all your
+    remote Platform.sh services (remote database, remote Redis component, etc.).
 
     To check that you're now using remote data and components from Platform.sh,
     reload your local app within your browser.
@@ -74,15 +94,3 @@ This starts the Symfony Server and opens the app in your local browser.
     symfony var:expose-from-tunnel --off
     symfony tunnel:close --all -y
     ```
-
-{{< note theme="warning" title="Warning">}}
-
-When working on remote environment data, there's a risk your local updates might be pushed to production,
-potentially causing your production website to crash.
-Be cautious when using this method.
-
-{{< /note >}}
-
-{{% guides/symfony/local-next-steps-start %}}
-    {{< readFile file="snippets/guides/symfony/tethered.sh" highlight="yaml" location="init-local.sh" >}}
-{{% guides/symfony/local-next-steps-end %}}

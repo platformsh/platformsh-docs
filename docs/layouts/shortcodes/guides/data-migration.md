@@ -36,8 +36,6 @@ The easiest way is likely with rsync, but consult your host's documentation.
 
 This guide assumes that you have already downloaded {{ if $isWordPress }}
 all of your uploaded files to your local `wordpress/wp-content/uploads` directory
-{{ else if $isSymfony }}
-all of your public files to your local `public/var` directory
 {{ else }}
 all of your user files to your local `files/user` directory and your public files to `files/public`
 {{ end }}, but adjust accordingly for their actual locations.
@@ -50,10 +48,6 @@ modifying the `--source` path if needed.
 {{ if $isWordPress }}
 ```bash
 platform mount:upload --mount wordpress/wp-content/uploads --source ./wordpress/wp-content/uploads
-```
-{{ else if $isSymfony}}
-```bash
-symfony cloud:mount:upload --mount public/var --source ./public/var
 ```
 {{ else }}
 ```bash

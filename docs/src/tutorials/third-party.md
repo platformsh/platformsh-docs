@@ -97,7 +97,6 @@ Framework  | Credit
 
 ## Tools & development
 
-- Create [**deploy commands you can run from composer**](https://github.com/dnunez24/platformsh-deploy-php), using Symfony
 - A small tool from Hanoii https://github.com/hanoii/drocal
 - Script to **sync a Drupal site** from Production to Local https://github.com/pjcdawkins/platformsh-sync
 - Matt Pope's [Platform.sh automated mysql and files backup script](https://bitbucket.org/snippets/kaypro4/gnB4E)

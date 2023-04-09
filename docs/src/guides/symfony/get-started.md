@@ -6,7 +6,7 @@ description: |
     See how to get started deploying Symfony on Platform.sh.
 ---
 
-Symfony is a PHP framework that you can use to create web applications.
+[Symfony](https://symfony.com/) is a PHP framework that you can use to create web applications.
 Platform.sh is the official Symfony PaaS.
 
 This guide provides instructions for deploying, and working with, Symfony on Platform.sh.
@@ -44,8 +44,8 @@ To do so, follow these steps:
    ```bash
    symfony project:init
    ```
-  
-   This generates a default set of configuration files: `.platform.app.yaml`, `.platform/services.yaml`, `.platform/routes.yaml`, and `php.ini`.
+
+   This generates the following set of configuration files: `.platform.app.yaml`, `.platform/services.yaml`, `.platform/routes.yaml`, and `php.ini`.
 
 2. Commit these new files to your repository:
 
@@ -94,7 +94,7 @@ symfony cloud:deploy
 During deployment, the logs from the Platform.sh API are displayed in your terminal so you can monitor progress.
 To stop the display of the logs **without interrupting the deployment**,
 use `CTRL+C` in your terminal.
-To go back to displaying the logs, run `symfony activity:log`.
+To go back to displaying the logs, run `symfony cloud:activity:log`.
 
 {{< /note >}}
 
@@ -183,7 +183,19 @@ To make changes to your project, follow these steps:
    {{< /note >}}
 
    For a long running branch, to keep the code up-to-date with the main branch, use `git merge main` or `git rebase main`.
-   You can also keep the data in sync with the production environment by using `symfony env:sync`.
+   You can also keep the data in sync with the production environment by using `symfony cloud:env:sync`.
+
+## Use a third-party Git provider
+
+When you choose to use a third-party Git hosting service, the Platform.sh Git
+repository becomes a read-only mirror of the third-party repository. All your
+changes take place in the third-party repository.
+
+Add an integration to your existing third-party repository:
+
+- [BitBucket](/integrations/source/bitbucket.md)
+- [GitHub](/integrations/source/github.md)
+- [GitLab](/integrations/source/gitlab.md)
 
 ## Next steps
 
@@ -207,13 +219,7 @@ Learn how to [use those services with a Symfony project](./services).
 Once Symfony has been deployed on Platform.sh,
 you might want to [set up a local development environment](./local).
 
-### External resources
-
-The community also provides a number of Open-Source starting points you can consult:
-
 ### Symfony CLI tips
-
-FIXME: Some commands should be explained differently on Symfony CLI like tunnel
 
 {{% tips-and-tricks/cli framework="Symfony" %}}
 {{% tips-and-tricks/symfony/cli-common %}}

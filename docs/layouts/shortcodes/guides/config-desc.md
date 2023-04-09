@@ -42,8 +42,8 @@ If you run this command on an empty folder, the entire template is downloaded.
 
 {{ else if eq $name "Symfony" }}
 Alternatively, you could use the Symfony CLI to initialize these files.
-This script downloads any missing files from the official template.
-It doesn't affect any files you already created.
+This command generates a sensible default configuration depending on your project
+dependencies.
 
 ```bash
 symfony project:init

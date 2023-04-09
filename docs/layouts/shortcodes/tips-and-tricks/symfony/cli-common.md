@@ -34,12 +34,6 @@
     symfony cloud:projects
     ```
 
--   Open SSH tunnels to an app's relationships:
-
-    ```bash
-    symfony cloud:tunnel:open
-    ```
-
 -   Add a user to the project:
 
     ```bash

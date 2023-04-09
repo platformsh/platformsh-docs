@@ -1,2 +1,0 @@
-When you develop a Symfony project, a significant amount of work takes place locally rather than on an active Platform.sh environment.
-You want to ensure that the process of local development is as close as possible to a deployed environment.

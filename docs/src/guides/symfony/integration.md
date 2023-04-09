@@ -7,10 +7,17 @@ description: |
 
 Symfony has a special integration with Platform.sh that makes it easier to use Platform.sh for Symfony projects.
 
-To enable the Symfony integration, follow these steps:
+**When using the Symfony integration, you are contributing financially to the Symfony project.**
 
-1. (Recommended) You can unlock various features that make deploying a Symfony project on Platform.sh much easier.
-   To do so, add the following configuration:
+The Symfony integration is automatically enabled when:
+
+- You run the `symfony new` command with the `--cloud` option;
+
+- You run `symfony project:init` on an existing project to automatically
+  generate the Platform.sh configuration.
+
+If you already have a Platform.sh configuration without the Symfony
+integration, enable it by adding the following configuration:
 
    ```yaml {location=".platform.app.yaml"}
     hooks:
@@ -22,30 +29,19 @@ To enable the Symfony integration, follow these steps:
             # ...
    ```
 
-2. Generate a sensible default Platform.sh configuration.
+The **configurator** enables the following integration:
 
-   To do so, when you create a new project using the `symfony new` command,
-   use the `--cloud` flag.
+- It installs some helper scripts that you can use as the [default build and deploy hook scripts](#hooks):
+    - [`symfony-build`](#symfony-build);
+    - [`symfony-deploy`](#symfony-deploy);
+    - [`php-ext-install`](#php-ext-install).
 
-   On an existing project, run the following command instead:
+- It adds some [extra tools](#tools);
 
-   ```bash
-   symfony project:init
-   ```
-   This generates a default set of configuration files: `.platform.app.yaml`, `.platform/services.yaml`, `.platform/routes.yaml`, and `php.ini`.
-   These files automatically enable the Symfony integration.
-
-   The following helper scripts are also installed:
-
-   - [`symfony-build`](#symfony-build)
-   - [`symfony-deploy`](#symfony-deploy)
-   - [`php-ext-install`](#php-ext-install)  
-
-For further information about the Symfony integration,
-see the [extra tools](#tools) and [default build and deploy hook scripts](#hooks) you can use.
-
-You might also want to learn more about [additional infrastructure environment variables](./environment-variables#symfony-environment-variables)
-and [environment variables for all services](./environment-variables#service-environment-variables).
+- It defines [additional infrastructure environment
+variables](./environment-variables#symfony-environment-variables) and
+[environment variables for all
+services](./environment-variables#service-environment-variables).
 
 ## Tools
 
@@ -65,7 +61,7 @@ The `hooks` section defines the scripts that Platform.sh runs at specific times 
 - The [post-deploy hook](../../create-apps/hooks/hooks-comparison.md#post-deploy-hook) is run after the deploy hook,
   once the application container starts accepting connections
 
-Here's an example `hooks` section:
+Here's the default `hooks` section optimized for Symfony projects:
 
 ```yaml {location=".platform.app.yaml"}
 hooks:
@@ -92,7 +88,7 @@ To have your hooks fail on the first failed command, start your scripts with `se
 For more information, see [Hooks](../../../create-apps/hooks/hooks-comparison).
 
 To gain a better understanding of how hooks relate to each other when building and deploying an app,
-see [What is Platform.sh?](https://symfony.com/doc/current/cloud/intro.html).
+see the [Platform.sh philosophy](./philosophy) article.
 
 {{< note title="Tip">}}
 

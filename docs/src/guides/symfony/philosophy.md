@@ -63,10 +63,12 @@ all configured by files stored alongside your code:
 Every time you deploy a branch to Platform.sh, the code is *built* and then *deployed* on a new cluster.
 
 The **build** process looks through the configuration files in your repository
-and assembles the necessary containers.
+and assembles the necessary containers; the Symfony integration comes with a
+[default build hook](./integration#symfony-build) that fits most needs.
 
 The **deploy** process makes those containers live, replacing the previous
-versions, with no service downtime.
+versions, with no service downtime; the Symfony integration comes with a
+[default deploy hook](./integration#symfony-deploy) that fits most needs.
 
 ### How your app is built
 
@@ -79,7 +81,7 @@ That could be compiling TypeScript files, running some scripts,
 rearranging files on disk, or whatever else you want.
 
 Note that at this point all you have access to is the filesystem;
-there are no services or other databases available.
+there are **no services or other databases available**.
 Your live website is unaffected.
 
 The default build step for Symfony removes development front controllers,
