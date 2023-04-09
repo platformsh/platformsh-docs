@@ -209,11 +209,6 @@ a set of tools and auto-configurations that makes it easier to use Platform.sh f
 When you use the Symfony integration,
 more [environment variables](./environment-variables) related to Symfony are defined.
 
-### Use more services
-
-Platform.sh supports a wide range of services.
-Learn how to [use those services with a Symfony project](./services).
-
 ### Local development
 
 Once Symfony has been deployed on Platform.sh,

@@ -20,7 +20,6 @@ Platform.sh supports two different Redis configurations:
 - [Quarkus](../guides/quarkus/redis.md)
 - [Spring](../guides/spring/redis.md)
 - [WordPress](../guides/wordpress/redis.md)
-- [Symfony](../guides/symfony/services/redis.md)
 
 {{% /frameworks %}}
 
