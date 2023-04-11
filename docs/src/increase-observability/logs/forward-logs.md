@@ -24,6 +24,14 @@ To enable log forwarding in a project, you need to be a [project admin](../../ad
 You also need your project to have the capability for log forwarding.
 To get that, contact [support](https://console.platform.sh/-/users/~/tickets/open).
 
+{{< note >}}
+
+The log forwarding feature currently does not preserve the original log level. However, to preserve the original log level, there are two alternatives:
+1. Use language specific syslog module/package for logging, which will preserve the original log level
+2. Prefix each log messages with "<severity-level>" which will cause them to be forwarded at the given level. Refer https://en.wikipedia.org/wiki/Syslog#Severity_level for the support severity levels
+
+{{</ note >}}
+
 ## Use a log forwarding integration
 
 Certain services have a specific integration for forwarding logs.
