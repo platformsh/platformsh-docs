@@ -264,7 +264,7 @@ configuration:
             thirddb: admin
 ```
 
-{{% databases-passwords %}} 
+{{% databases-passwords %}}
 
 ## Service timezone
 

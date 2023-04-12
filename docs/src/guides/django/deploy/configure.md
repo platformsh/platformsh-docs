@@ -10,7 +10,7 @@ description: |
 
 {{% guides/config-app noExample=true /%}}
 
-The examples vary based on using Pip, Pipenv, or Poetry to manage dependencies.
+The examples vary based on whether you use Pip, Pipenv, or Poetry to manage dependencies.
 
 {{< codetabs >}}
 +++
