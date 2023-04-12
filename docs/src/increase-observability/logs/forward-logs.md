@@ -128,9 +128,9 @@ To start forwarding logs, once you've added the service [trigger a redeploy](../
 
 ## Log levels
 
-Though your application may output logs with distinct levels, as all logs are read from stdout, this distinction is lost and everything will be logged at the `INFO` level.
+Though your application may output logs with distinct levels, as all logs are read from stdout, this distinction is lost and everything gets logged at the `INFO` level.
 
-In order to preserve the original log level you should use the language specific syslog module/package for logging.
+To preserve the original log level you should use the language specific syslog module/package for logging.
 
 The following example code snippets show how logs can be written to syslog.
 
@@ -173,13 +173,13 @@ import (
 )
 
 func main() {
-	syslogWriter, err := syslog.Dial("", "", syslog.LOG_LOCAL0|syslog.LOG_INFO, "")
-	if err != nil {
-		log.Fatal(err)
-	}
+  syslogWriter, err := syslog.Dial("", "", syslog.LOG_LOCAL0|syslog.LOG_INFO, "")
+  if err != nil {
+	  log.Fatal(err)
+  }
   defer syslogWriter.Close()
-  
-	fmt.Fprintf(syslogWriter, "Operation has started")
+
+  fmt.Fprintf(syslogWriter, "Operation has started")
 	syslogWriter.Err("Operation failed")
 }
 ```
