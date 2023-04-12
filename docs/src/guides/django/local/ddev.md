@@ -11,7 +11,7 @@ sectionBefore: Integrated environments
 
 {{% guides/local-requirements framework="Django" %}}
 - DDEV installed on your computer.
-  
+
   {{% ddev/requirements %}}
 
   {{% ddev/install %}}
@@ -55,7 +55,7 @@ sectionBefore: Integrated environments
     At this time, the only officially supported runtime is PHP.
     With a few changes, the generated configuration can be modified to run local Django environments.
 
-    A `.ddev` directory has been created in the repository containing DDEV configuration. 
+    A `.ddev` directory has been created in the repository containing DDEV configuration.
 
     In the `.ddev/config.platformsh.yaml` file, update the `php_version` attribute to a supported version, like `8.2`.
 
@@ -67,7 +67,7 @@ sectionBefore: Integrated environments
 
 7.  Update the DDEV `post-start` hooks.
 
-    The generated configuration contains a `hooks.post-start` attribute that contains Django's `hooks.build` and `hooks.deploy`. 
+    The generated configuration contains a `hooks.post-start` attribute that contains Django's `hooks.build` and `hooks.deploy`.
     Add another item to the end of that array with the start command defined in `.platform.app.yaml`:
 
     {{< codetabs >}}
@@ -150,14 +150,14 @@ hooks:
             'PORT': 5432,
         }
     }
-    ```        
+    ```
 
     This example assumes you have a PostgreSQL database with `db` as the relationship name.
     If you have a different setup, adjust the values accordingly.
 
 12. Start DDEV.
 
-    Build and start up Django for the first time. 
+    Build and start up Django for the first time.
 
     ```bash
     ddev start
