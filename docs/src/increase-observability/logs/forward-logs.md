@@ -24,14 +24,6 @@ To enable log forwarding in a project, you need to be a [project admin](../../ad
 You also need your project to have the capability for log forwarding.
 To get that, contact [support](https://console.platform.sh/-/users/~/tickets/open).
 
-{{< note >}}
-
-The log forwarding feature currently does not preserve the original log level. However, to preserve the original log level, there are two alternatives:
-1. Use language specific syslog module/package for logging, which will preserve the original log level
-2. Prefix each log messages with "<severity-level>" which will cause them to be forwarded at the given level. Refer https://en.wikipedia.org/wiki/Syslog#Severity_level for the support severity levels
-
-{{</ note >}}
-
 ## Use a log forwarding integration
 
 Certain services have a specific integration for forwarding logs.
@@ -133,3 +125,64 @@ To include a property, add it as a flag, for example `--protocol tcp`.
 This should let you connect to any service that has syslog endpoints.
 
 To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
+
+## Log levels
+
+Though your application may output logs with distinct levels, as all logs are read from stdout, this distinction is lost and everything will be logged at the `INFO` level.
+
+In order to preserve the original log level you should use the language specific syslog module/package for logging.
+
+The following example code snippets show how logs can be written to syslog.
+
+{{< codetabs >}}
++++
+title=PHP
++++
+
+```php
+openlog("", LOG_PID, LOG_LOCAL1);
+syslog(LOG_LOCAL1|LOG_ERR, "Operation failed");
+closelog();
+```
+
+<--->
++++
+title=Python
++++
+
+```python
+import syslog
+
+syslog.openlog(logoption=syslog.LOG_PID, facility=syslog.LOG_LOCAL1)
+syslog.syslog(syslog.LOG_ERR, "Operation failed")
+syslog.closelog()
+```
+
+<--->
++++
+title=Go
++++
+
+```go
+package main
+
+import (
+	"fmt"
+	"log"
+	"log/syslog"
+)
+
+func main() {
+	syslogWriter, err := syslog.Dial("", "", syslog.LOG_LOCAL0|syslog.LOG_INFO, "")
+	if err != nil {
+		log.Fatal(err)
+	}
+  defer syslogWriter.Close()
+  
+	fmt.Fprintf(syslogWriter, "Operation has started")
+	syslogWriter.Err("Operation failed")
+}
+```
+
+{{< /codetabs >}}
+
