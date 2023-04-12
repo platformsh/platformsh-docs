@@ -128,13 +128,15 @@ To start forwarding logs, once you've added the service [trigger a redeploy](../
 
 ## Log levels
 
-Though your application may output logs with distinct levels, as all logs are read from stdout, this distinction is lost and everything gets logged at the `INFO` level.
+Your app might output logs with distinct severity levels.
+But as Plaform.sh only reads logs from `stdout`, this distinction is lost and everything gets logged at `INFO` level.
 
-To preserve the original log level you should use the language specific syslog module/package for logging.
+To preserve the original log level, use a language-specific syslog module/package for logging.
 
-The following example code snippets show how logs can be written to syslog.
+The following example code snippets show how logs can be written to syslog:
 
 {{< codetabs >}}
+
 +++
 title=PHP
 +++
