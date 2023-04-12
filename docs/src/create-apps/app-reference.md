@@ -301,7 +301,8 @@ The key of each item is a regular expression to match paths exactly.
 If an incoming request matches the rule, it's handled by the properties under the rule,
 overriding any conflicting rules from the rest of the `locations` dictionary.
 
-Each key can set all of the other possible [`locations` properties](#locations).
+Under `rules`, you can set all of the other possible [`locations` properties](#locations)
+except `root`, `index` and `request_buffering`.
 
 In the following example, the `allow` key disallows requests for static files anywhere in the site.
 This is overridden by a rule that explicitly allows common image file formats.
