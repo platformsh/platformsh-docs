@@ -2,7 +2,7 @@
 title: Introduction
 ---
 
-This is another test...
+This is another test...But we need to commit something else...
 
 Platform.sh is a second-generation Platform-as-a-Service built especially for continuous deployment.
 It allows you to host web applications on the cloud while making your development and testing workflows more productive.
