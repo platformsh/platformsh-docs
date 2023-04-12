@@ -128,7 +128,7 @@ To start forwarding logs, once you've added the service [trigger a redeploy](../
 
 ## Log levels
 
-Your app might output logs with distinct severity levels.
+Your app may output logs with distinct severity levels.
 But as Plaform.sh only reads logs from `stdout`, this distinction is lost and everything gets logged at `INFO` level.
 
 To preserve the original log level, use a language-specific syslog module/package for logging.
