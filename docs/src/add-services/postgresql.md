@@ -165,6 +165,11 @@ Importing a database backup is a destructive operation. It overwrites data alrea
 Taking a backup or a database export before doing so is strongly recommended.
 {{< /note >}}
 
+## Sanitizing data
+
+To ensure people who review code changes can't access personally identifiable information stored in your database,
+[sanitize your development environments](../development/sanitize-db/postgresql.md).
+
 ## Multiple databases
 
 If you are using version `10`, `11`, `12`, `13`, or later of this service,
@@ -259,7 +264,7 @@ configuration:
             thirddb: admin
 ```
 
-{{% databases-passwords %}} 
+{{% databases-passwords %}}
 
 ## Service timezone
 
