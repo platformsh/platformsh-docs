@@ -40,6 +40,16 @@ curl -fsS https://raw.githubusercontent.com/platformsh/snippets/main/src/platfor
 
 If you run this command on an empty folder, the entire template is downloaded.
 
+{{ else if eq $name "Symfony" }}
+Alternatively, you could use the Symfony CLI to initialize these files.
+This command generates a sensible default configuration depending on your project
+dependencies.
+
+```bash
+symfony project:init
+git add . && git commit -m "Add Platform.sh configuration files"
+```
+
 {{ end }}
 
 Now that you've added these files to your project,
