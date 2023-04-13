@@ -699,6 +699,24 @@ crons:
 {{< /codetabs >}}
 <!-- vale on -->
 
+### Conditional crons
+
+If you want to set up customized cron schedules depending on the environment type,
+define conditional crons.
+To do so, use a configuration similar to the following:
+
+```yaml {location=".platform.app.yaml"}
+crons:
+    update:
+       spec: '0 0 * * *'
+        commands:
+            start: |
+                if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
+                   platform backup:create --yes --no-wait
+                   platform source-operation:run update --no-wait --yes
+                fi
+```
+
 ### Cron job timing
 
 Minimum time between cron jobs being triggered:
