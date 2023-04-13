@@ -131,9 +131,9 @@ To start forwarding logs, once you've added the service [trigger a redeploy](../
 Your app may output logs with distinct severity levels.
 But as Platform.sh only reads logs from `stdout`, this distinction is lost and everything gets logged at `INFO` level.
 
-To preserve the original log level, use a language-specific Syslog module/package for logging.
+To preserve the original log level, use a language-specific syslog module/package for logging.
 
-The following example code snippets show how logs can be written to Syslog:
+The following example code snippets show how logs can be written to syslog:
 
 {{< codetabs >}}
 
@@ -142,9 +142,8 @@ title=PHP
 +++
 
 ```php
-openlog("", LOG_PID, LOG_LOCAL0);
-syslog(LOG_INFO, "Operation started");
-syslog(LOG_ERR, "Operation failed");
+openlog("", LOG_PID, LOG_LOCAL1);
+syslog(LOG_LOCAL1|LOG_ERR, "Operation failed");
 closelog();
 ```
 
@@ -153,26 +152,10 @@ closelog();
 title=Python
 +++
 
-Using a logging module:
-
-```python
-import logging
-import logging.handlers
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-handler = logging.handlers.SysLogHandler(address="/dev/log")
-logger.addHandler(handler)
-logger.info("Operation started")
-logger.error("Operation failed")
-```
-
-Using the Syslog module:
-
 ```python
 import syslog
+
 syslog.openlog(logoption=syslog.LOG_PID, facility=syslog.LOG_LOCAL1)
-syslog.openlog(logoption=syslog.LOG_PID, facility=syslog.LOG_LOCAL0)
-syslog.syslog(syslog.LOG_INFO, "Operation started")
 syslog.syslog(syslog.LOG_ERR, "Operation failed")
 syslog.closelog()
 ```
@@ -182,45 +165,22 @@ syslog.closelog()
 title=Go
 +++
 
-Using a log package:
-
 ```go
 package main
-import (
-	"log"
-	"log/syslog"
-)
-func main() {
-	logger, err := syslog.NewLogger(syslog.LOG_LOCAL0|syslog.LOG_INFO, log.LstdFlags)
-	if err != nil {
-		panic(err)
-	}
-	logger.Println("Operation started...")
-	logger.Fatalln("Operation failed")
-}
-```
 
-Using the Syslog package:
-
-```go
-package main
 import (
 	"fmt"
 	"log"
 	"log/syslog"
 )
+
 func main() {
-  syslogWriter, err := syslog.Dial("", "", syslog.LOG_LOCAL0|syslog.LOG_INFO, "")
-  if err != nil {
-	  log.Fatal(err)
-  }
-  defer syslogWriter.Close()
 	syslogWriter, err := syslog.Dial("", "", syslog.LOG_LOCAL0|syslog.LOG_INFO, "")
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer syslogWriter.Close()
-  fmt.Fprintf(syslogWriter, "Operation has started")
+  defer syslogWriter.Close()
+  
 	fmt.Fprintf(syslogWriter, "Operation has started")
 	syslogWriter.Err("Operation failed")
 }
