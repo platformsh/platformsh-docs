@@ -20,7 +20,7 @@ you can choose from three offers:
 
 To view a list of all the features included in each offer, see the following table.
 
-{{< note >}}
+{{< note theme="info" >}}
 
 Links to the official [Fastly Next-Gen WAF documentation](https://docs.fastly.com/products/fastly-next-gen-waf) are provided for reference only.
 The offers described on this page have been designed specifically for Platform.sh customers.
@@ -28,17 +28,19 @@ Included features may present limitations compared to those advertised by Fastly
 
 {{< /note >}}
 
-| Capability                                                                                                                                               | Basic offer        | Managed offer                     | Advanced offer                    |
-|----------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|-----------------------------------|-----------------------------------|
-| Available modes                                                                                                                                          | Blocking mode only | Blocking, not blocking, off modes | Blocking, not blocking, off modes |
-| [Default attack signals](https://docs.fastly.com/signalsciences/using-signal-sciences/signals/using-system-signals/#attacks)                             | Yes                | Yes                               | Yes                               |
-| [Default anomaly signals](https://docs.fastly.com/signalsciences/using-signal-sciences/signals/using-system-signals/#anomalies)                          | Yes                | Yes                               | Yes                               |
-| [Virtual patching](https://docs.fastly.com/signalsciences/using-signal-sciences/rules/working-with-templated-rules/#working-with-virtual-patching-rules) | No                 | Yes                               | Yes                               |
-| [Default dashboards](https://docs.fastly.com/signalsciences/using-signal-sciences/web-interface/about-the-site-overview-page/)                           | No                 | During quarterly business reviews | Yes                               |
-| [Custom response codes](https://docs.fastly.com/signalsciences/using-signal-sciences/custom-response-codes/)                                             | No                 | No                                | Yes                               |
-| [Custom signals](https://docs.fastly.com/signalsciences/using-signal-sciences/signals/working-with-custom-signals/)                                      | No                 | No                                | Yes                               |
-| [Standard API & ATO signals](https://docs.fastly.com/signalsciences/using-signal-sciences/rules/working-with-templated-rules/)                           | No                 | No                                | Yes                               |
-| [Edge Rate Limiting](https://docs.fastly.com/en/guides/working-with-rate-limiting-policies)                                                              | No                 | No                                | Yes                               |
+| Capability                                                                                                                                               | Basic offer     | Managed offer                     | Advanced offer                 |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------|-----------------------------------|--------------------------------|
+| Available modes                                                                                                                                          | Block mode only | Block, not blocking, off modes    | Block, not blocking, off modes |
+| [Default attack signals](https://docs.fastly.com/signalsciences/using-signal-sciences/signals/using-system-signals/#attacks)                             | Yes             | Yes                               | Yes                            |
+| [Default anomaly signals](https://docs.fastly.com/signalsciences/using-signal-sciences/signals/using-system-signals/#anomalies)                          | Yes             | Yes                               | Yes                            |
+| [Virtual patching](https://docs.fastly.com/signalsciences/using-signal-sciences/rules/working-with-templated-rules/#working-with-virtual-patching-rules) | No              | Yes, in block mode only        | Yes, via custom signals        |
+| [Default dashboards](https://docs.fastly.com/signalsciences/using-signal-sciences/web-interface/about-the-site-overview-page/)                           | No              | During quarterly business reviews | Yes                            |
+| [Custom response codes](https://docs.fastly.com/signalsciences/using-signal-sciences/custom-response-codes/)                                             | No              | No                                | Yes                            |
+| [Custom signals](https://docs.fastly.com/signalsciences/using-signal-sciences/signals/working-with-custom-signals/)                                      | No              | No                                | Yes                            |
+| [Standard API & ATO signals](https://docs.fastly.com/signalsciences/using-signal-sciences/rules/working-with-templated-rules/)                           | No              | No                                | Yes                            |
+| Dedicated workspace                                                                                                                                      | No              | Yes                               | Yes                            |
+| Dedicated [corp](https://docs.fastly.com/signalsciences/using-signal-sciences/corp-management/)                                                          | No              | No                                | Yes                            |
+| Application management                                                                                                                                   | Yes             | Yes                               | Yes                            |                            | Yes                               |
 
 To subscribe to a Fastly Next-Gen WAF offer through Platform.sh,
 [contact Sales](https://platform.sh/contact/).
