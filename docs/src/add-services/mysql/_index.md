@@ -438,6 +438,11 @@ If not, make a backup or do a database export before importing.
 
 {{< /note >}}
 
+## Sanitizing data
+
+To ensure people who review code changes can't access personally identifiable information stored in your database,
+[sanitize your development environments](../../development/sanitize-db/mariadb.md).
+
 ## Replication
 
 In non-Dedicated environments, there is no on-site primary/replica supports.
