@@ -25,16 +25,18 @@ that are available at build time.
 
 During the `build` hook, there are three writeable directories:
 
-* `$PLATFORM_APP_DIR`:
+- `$PLATFORM_APP_DIR`:
   This is where your code is checked out and is the working directory when the `build` hook starts.
   The contents of this directory after the build hook is the application that gets deployed.
-* `$PLATFORM_CACHE_DIR`:
+- `$PLATFORM_CACHE_DIR`:
   This directory persists between builds, but isn't deployed as part of your application.
   It's a good place for temporary build artifacts that can be reused between builds.
   It's shared by all builds on all branches.
-* `/tmp`:
+- `/tmp`:
   The temp directory is also useful for writing files that aren't needed in the final application,
   but it's wiped between each build.
+  Note that `$PLATFORM_CACHE_DIR` is mapped to `/tmp`
+  and together they offer about 8GB of free space.
 
 The only constraint on what can be downloaded during a `build` hook is the disk space available for builds.
 This is _not_ the `disk` specified in your [app configuration](../app-reference.md#top-level-properties).
