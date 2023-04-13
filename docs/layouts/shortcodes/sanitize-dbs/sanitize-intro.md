@@ -3,6 +3,10 @@
 {{ if eq $db "MySQL" }}
   {{ $pageLink = "mysql/_index.md" }}
 {{ end }}
+{{ $cliCommand := "platform" }}
+{{ if eq ( .Get "framework" ) "Symfony" }}
+  {{ $cliCommand = "symfony" }}
+{{ end }}
 ## Sanitize the database
 
 Make sure that you only sanitize development environments and **never** the production environment.
@@ -12,4 +16,4 @@ First, take a [database dump](../../add-services/{{ $pageLink }}#exporting-data)
 This is just a safety precaution.
 Production data isn't altered.
 To get a database dump, run the following command:
-<code>platform db:dump -e {{ `{{< variable "DEVELOPMENT_ENVIRONMENT_NAME" >}}` | .Page.RenderString }}</code>.
+<code>{{ $cliCommand }} db:dump -e {{ `{{< variable "DEVELOPMENT_ENVIRONMENT_NAME" >}}` | .Page.RenderString }}</code>.

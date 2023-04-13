@@ -25,7 +25,6 @@ description: |
 
 - How to [connect to your MySQL database](https://www.thinktandem.io/blog/2017/03/03/connecting-to-a-remote-platform-sh-database) using Sequel Pro
 - How to [set up XDebug](https://ghosty.co.uk/2015/09/debugging-on-platform-sh/)
-- Official [Symfony documentation](https://symfony.com/doc/current/cloud/intro.html) on deploying to Platform.sh
 - Official [Sylius](https://docs.sylius.com/en/latest/cookbook/deployment/platform-sh.html) documentation on deploying to Platform.sh
 - How to install [Apache Tika on Platform.sh](https://thinktandem.io/blog/2017/11/10/apache-tika-on-platform-sh/)
 - How to [store complete logs at AWS S3](https://gitlab.com/contextualcode/platformsh-store-logs-at-s3) by [Contextual Code](https://www.contextualcode.com/)
@@ -98,7 +97,6 @@ Framework  | Credit
 
 ## Tools & development
 
-- Create [**deploy commands you can run from composer**](https://github.com/dnunez24/platformsh-deploy-php), using Symfony
 - A small tool from Hanoii https://github.com/hanoii/drocal
 - Script to **sync a Drupal site** from Production to Local https://github.com/pjcdawkins/platformsh-sync
 - Matt Pope's [Platform.sh automated mysql and files backup script](https://bitbucket.org/snippets/kaypro4/gnB4E)

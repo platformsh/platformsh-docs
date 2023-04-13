@@ -1,0 +1,6 @@
+savePath: "/static/files/fetch/servicesyaml"
+root: "https://raw.githubusercontent.com/symfonycorp"
+branch: "6.2"
+file: ".platform/services.yaml"
+repos:
+    - platformsh-symfony-template

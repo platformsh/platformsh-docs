@@ -1,0 +1,6 @@
+savePath: "/static/files/fetch/appyaml/symfony-base"
+root: "https://raw.githubusercontent.com/symfonycorp"
+branch: "6.2"
+file: ".platform.app.yaml"
+repos:
+    - platformsh-symfony-template
