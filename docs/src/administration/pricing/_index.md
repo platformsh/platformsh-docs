@@ -1,7 +1,7 @@
 ---
 title: Pricing
 weight: 3
-description: See the basics of the plans Platform.sh offers and how to adjust them. 
+description: See the basics of the plans Platform.sh offers and how to adjust them.
 layout: single
 ---
 
@@ -25,7 +25,7 @@ it comes with a [production environment](#production-environments).
 
 ### Development plans
 
-A Development plan provides all the tools you need to build your website 
+A Development plan provides all the tools you need to build your website
 before it's ready to go live.
 
 With a Development plan, you can't use [custom domain names](../../domains/steps/_index.md).
@@ -87,7 +87,7 @@ You can add the following extras:
   the fee is multiplied by 6.
   To ensure environments are available on demand, the fee applies to all environments you have added
   even if you aren't currently actively using them.
-  
+
   You can make any changes up to 100&nbsp;GB yourself.
   For storage over 100&nbsp;GB, create a [support ticket](https://console.platform.sh/-/users/~/tickets).
 
@@ -115,7 +115,7 @@ Learn more about [{{% names/dedicated-gen-3 %}}](../../dedicated-gen-3/_index.md
 
 To discuss how {{% names/dedicated-gen-3 %}} could work for you, [contact Sales](https://platform.sh/contact/).
 
-## Enterprise overages 
+## Enterprise overages
 
 **The following applies to all Enterprise and Elite subscriptions.**
 
