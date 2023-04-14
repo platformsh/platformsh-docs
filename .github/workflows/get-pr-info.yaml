@@ -93,7 +93,7 @@ jobs:
         if: steps.get_env_url.outputs.env_status == 'failure'
         run: |
           echo -e "The environment on Platform.sh failed to deploy. :slightly_frowning_face:\n\nCheck the logs: https://console.platform.sh/projects/652soceglkw4u/${{ steps.branch_name.outputs.branch_name }}" > pr_comment.txt
-        
+
       # Create a list of relevant changed pages
       - name: Report environment URL
         if: steps.get_env_url.outputs.env_status == 'success'
@@ -129,7 +129,7 @@ jobs:
 
               # Shift index pages up a level
               page=${page/"/_index.html"/".html"}
-              
+
               files+=("$ENV_URL$page")
             fi
           done
@@ -169,8 +169,16 @@ jobs:
             pr_number.txt
             pr_sha.txt
           retention-days: 1
-      
+
       # If environment failed to create, fail the workflow
       - name: Fail workflow
         if: steps.get_env_url.outputs.env_status != 'success'
         run: exit 1
+  dont_run_nonlabeled_forks:
+    name: Warn about non-labeled PRs from forks
+    if: github.event.pull_request.head.repo.id != 21975579 && !contains(github.event.pull_request.labels.*.name, 'build-fork')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Warn the environment will not be built
+        run: |
+          echo "::warning::Pull Requests from forks will not have an environment built until they are given the appropriate label."
