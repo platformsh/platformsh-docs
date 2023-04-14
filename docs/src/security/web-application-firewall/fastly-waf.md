@@ -38,9 +38,6 @@ Included features may present limitations compared to those advertised by Fastly
 | [Custom response codes](https://docs.fastly.com/signalsciences/using-signal-sciences/custom-response-codes/)                                             | No              | No                                | Yes                            |
 | [Custom signals](https://docs.fastly.com/signalsciences/using-signal-sciences/signals/working-with-custom-signals/)                                      | No              | No                                | Yes                            |
 | [Standard API & ATO signals](https://docs.fastly.com/signalsciences/using-signal-sciences/rules/working-with-templated-rules/)                           | No              | No                                | Yes                            |
-| Dedicated workspace                                                                                                                                      | No              | Yes                               | Yes                            |
-| Dedicated [corp](https://docs.fastly.com/signalsciences/using-signal-sciences/corp-management/)                                                          | No              | No                                | Yes                            |
-| Application management                                                                                                                                   | Yes             | Yes                               | Yes                            |                            | Yes                               |
 
 To subscribe to a Fastly Next-Gen WAF offer through Platform.sh,
 [contact Sales](https://platform.sh/contact/).
