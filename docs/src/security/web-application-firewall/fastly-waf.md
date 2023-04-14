@@ -1,6 +1,6 @@
 ---
 title: Fastly Next-Gen WAF
-description: Find out about the three offers you can choose from to subscribe to the Fastly Next-Gen Web Application Firewall (WAF) through Platform.sh. 
+description: Find out about the offers you can choose from to subscribe to the Fastly Next-Gen Web Application Firewall (WAF) through Platform.sh. 
 weight: 2
 banner: 
     type: tiered-feature
