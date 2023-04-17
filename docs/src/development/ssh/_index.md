@@ -3,6 +3,12 @@ title: Connect securely with SSH
 weight: 12
 description: Keep your project and apps safe by connecting with SSH when you're interacting with your deployed environments or using the Platform.sh CLI.
 layout: single
+keywords: 
+- 2fa
+- twofactor
+- two factor
+- mfa
+- multifactor authentication
 sidebarTitle: Connect with SSH
 ---
 
