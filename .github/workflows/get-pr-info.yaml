@@ -48,7 +48,10 @@ jobs:
           COMMIT_STATUS="pending"
 
           # Get the state of the most recent deployment activity
-          STATE=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy environment.branch" --no-header --columns "state" --limit 1 --environment ${{ steps.branch_name.outputs.branch_name }})
+          # run commands in workflows are are automatically launched with shell: /usr/bin/bash -e {0}. If for some
+          # reason the psh cli errors (e.g. branch hasn't reached psh and therefore doesnt exist, api times out, etc)
+          # this will cause our workflow to exit. Instead, call the cli with an | true so we can attempt to query again
+          STATE=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy environment.branch" --no-header --columns "state" --limit 1 --environment ${{ steps.branch_name.outputs.branch_name }} | true)
           echo "::notice::Attempting to retrieve deployed environment URL. Current state is: ${STATE}"
           # Set tries to 0 to start countdown to timeout
           STATUS_TRY=1
@@ -60,7 +63,7 @@ jobs:
           until [ "${STATE}" = "complete" ] || [ ${STATUS_TRY} = ${NUM_ATTEMPTS} ]; do
             sleep ${SLEEP_TIME}
             echo "::notice::Environment is not deployed. Attempting to retrieve deployed status. Attempt ${STATUS_TRY} of ${NUM_ATTEMPTS}."
-            STATE=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy environment.branch" --no-header --columns "state" --limit 1 --environment ${{ steps.branch_name.outputs.branch_name }})
+            STATE=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy environment.branch" --no-header --columns "state" --limit 1 --environment ${{ steps.branch_name.outputs.branch_name }} | true)
             echo "::notice::Status retrieved: ${STATE}"
 
             if [ "${STATE}" = "complete" ]; then
