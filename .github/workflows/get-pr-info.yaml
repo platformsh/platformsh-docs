@@ -52,9 +52,9 @@ jobs:
           echo "::notice::Attempting to retrieve deployed environment URL. Current state is: ${STATE}"
           # Set tries to 0 to start countdown to timeout
           STATUS_TRY=1
-          # We'll try up to 20 minutes, so (SLEEP_TIME*NUM_ATTEMPTS)/60
+          # We'll try up to 20 minutes, so (SLEEP_TIME*NUM_ATTEMPTS)/60 = 10*
           SLEEP_TIME=10
-          =120
+          NUM_ATTEMPTS=120
 
           # Wait until state is complete or 20 minutes has passed
           until [ "${STATE}" = "complete" ] || [ ${STATUS_TRY} = ${NUM_ATTEMPTS} ]; do
