@@ -108,3 +108,7 @@ The common steps for setup usually include:
     Use the Xdebug helper plugin for your browser to enable debugging.
     Set a break point in your app, then load a page in your browser.
     The request should pause at the break point and allow you to examine the running app.
+
+# Limitations (custom command)
+
+The setup relies on passing along to `fpm` some command line directives. This means that if the application specifies a custom start argument, we can't reliably alter it so that FPM gets the required arguments. If a custom start command is detected, Xdebug is disabled. When this happens, a log message stating the case can be found in the container logs.
