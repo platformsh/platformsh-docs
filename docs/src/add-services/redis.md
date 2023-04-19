@@ -239,7 +239,8 @@ To access your Redis service, run the following command:
 redis-cli -h {{< variable "HOSTNAME" >}} -p {{< variable "PORT" >}}
 ```
 
-Please note that the admin commands `CONFIG GET` and `CONFIG SET` are restricted on the grid projects. To get the current configuration, you can use
+If you have a Grid project, note that the `CONFIG GET` and `CONFIG SET` admin commands are restricted.
+To get the current configuration, run the following command:
 
 ```bash
 redis-cli -h {{< variable "HOSTNAME" >}} -p {{< variable "PORT" >}} info
