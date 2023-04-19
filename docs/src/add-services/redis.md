@@ -239,6 +239,12 @@ To access your Redis service, run the following command:
 redis-cli -h {{< variable "HOSTNAME" >}} -p {{< variable "PORT" >}}
 ```
 
+Please note that the admin commands `CONFIG GET` and `CONFIG SET` are restricted on the grid projects. To get the current configuration, you can use
+
+```bash
+redis-cli -h {{< variable "HOSTNAME" >}} -p {{< variable "PORT" >}} info
+```
+
 ## Use Redis as a handler for PHP sessions
 
 A PHP session allows you to store different data for each user through a unique session ID.
