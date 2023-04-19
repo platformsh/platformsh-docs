@@ -19,7 +19,7 @@ Assumptions:
 - `users` is the table where all of your PII is stored in the `staging` development database.
 - `staging` is an exact copy of your production database.
 
-1.  Connect to the `staging` database by running `platform sql -e staging`.
+1.  Connect to the `staging` database by running `{{ if eq ( .Get "framework") "Symfony" }}symfony{{ else }}platform{{ end }} sql -e staging`.
 
 2.  Display all fields from your `users` table, to select which ones need to be redacted.
     Run the following query:
