@@ -6,6 +6,6 @@
     "host": "influxdb.internal",
     "rel": "influxdb",
     "scheme": "http",
-    "type": "influxdb:1.8",
+    "type": "influxdb:2.3",
     "port": 8086
 }
