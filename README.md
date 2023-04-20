@@ -1,6 +1,6 @@
 # Platform.sh User Documentation
 
-## TESTING ONLY
+## TESTING ONLY. Seriously, please don't merge me
 
 This repository holds the public user documentation for Platform.sh.
 
