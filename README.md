@@ -1,5 +1,7 @@
 # Platform.sh User Documentation
 
+## TESTING ONLY
+
 This repository holds the public user documentation for Platform.sh.
 
 The documentation site ([docs.platform.sh](https://docs.platform.sh/)) is itself hosted on Platform.sh
