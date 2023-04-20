@@ -133,7 +133,7 @@ But as Plaform.sh only reads logs from `stdout`, this distinction is lost and ev
 
 To preserve the original log level, use a language-specific syslog module/package for logging.
 
-The following example code snippets show how logs can be written to syslog:
+The following example code snippets show how logs can be written to Syslog:
 
 {{< codetabs >}}
 
@@ -153,7 +153,7 @@ closelog();
 title=Python
 +++
 
-Using logging module
+Using the logging module
 
 ```python
 import logging
@@ -168,7 +168,7 @@ logger.info("Operation started")
 logger.error("Operation failed")
 ```
 
-Using syslog module
+Using the Syslog module:
 
 ```python
 import syslog
@@ -184,7 +184,7 @@ syslog.closelog()
 title=Go
 +++
 
-Using log package
+Using the log package:
 
 ```go
 package main
@@ -206,7 +206,7 @@ func main() {
 
 ```
 
-Using syslog package
+Using the Syslog package:
 
 ```go
 package main
