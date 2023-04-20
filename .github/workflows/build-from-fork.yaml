@@ -11,7 +11,7 @@ env:
   PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
   SLEEP_TIME: 5
   NUM_TRIES: 30
-  BFF_PREFX: ${{ vars.BFF_PREFIX }}-
+  BFF_PREFIX: ${{ vars.BFF_PREFIX }}-
 
 jobs:
   build:

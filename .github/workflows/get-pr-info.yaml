@@ -8,7 +8,7 @@ env:
   PLATFORMSH_CLI_NO_INTERACTION: 1
   PLATFORM_PROJECT: 652soceglkw4u
   PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
-  BFF_PREFX: ${{ vars.BFF_PREFIX }}-
+  BFF_PREFIX: ${{ vars.BFF_PREFIX }}-
 jobs:
   get_pr_info:
     runs-on: ubuntu-latest
