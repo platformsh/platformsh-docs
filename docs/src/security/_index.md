@@ -18,4 +18,4 @@ can help you protect your data.
 
 For more information about the security, privacy,
 and compliance of the Platform.sh products and services,
-check out the Platform.sh [Trust Center](https://platform.sh/trust-center/).
+go to the Platform.sh [Trust Center](https://platform.sh/trust-center/).

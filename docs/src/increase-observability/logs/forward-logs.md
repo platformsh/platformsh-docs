@@ -33,13 +33,16 @@ If your third-party service isn't supported, you can forward to a [syslog endpoi
 
 Integrations exist for the following third-party services to enable log forwarding:
 
-* [New Relic](https://newrelic.com/)
-* [Splunk](https://www.splunk.com/)
-* [Sumo Logic](https://www.sumologic.com/)
+- [New Relic](https://newrelic.com/)
+- [Splunk](https://www.splunk.com/)
+- [Sumo Logic](https://www.sumologic.com/)
 
 ### Enable a log forwarding integration
 
-Enable log forwarding for a specific project by following the steps for your selected service.
+#### Using the CLI 
+
+To enable log forwarding for a specific project using the [Platform.sh CLI](../../administration/cli/_index.md),
+follow the steps for your selected service.
 
 {{< codetabs >}}
 +++
@@ -97,13 +100,35 @@ View your logs in the **Log Search** tab.
 
 To start forwarding logs, [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
 
+#### In the Console
+
+To enable log forwarding for a specific project from the Console,
+follow these steps:
+
+1. Navigate to your project.
+2. Click {{< icon settings >}} **Settings**.
+3. Click **Integrations**.
+4. Click **Add Integration**.
+5. Select the integration you want to enable.
+6. In the **Configure your integration** window,
+   specify your configuration options.
+7. Click **Add Integration**.
+   The new integration overview is displayed,
+   and you can view your logs in the **Activity** section.
+
 ## Forward to a syslog endpoint
 
 Syslog is a standard for message logging.
 Many third-party services offer endpoints for ingesting syslog events.
 You can forward your Platform.sh logs to any of those endpoints.
 
-To enable this forwarding, run a command like the following:
+{{< codetabs >}}
++++
+title=Using the CLI
++++
+
+To enable log forwarding to a syslog endpoint, 
+run a command similar to the following:
 
 ```bash
 platform integration:add --type syslog --syslog-host {{< variable "INGESTION_HOST" >}} --syslog-port {{< variable "INGESTION_HOST_PORT" >}}
@@ -129,7 +154,8 @@ To start forwarding logs, once you've added the service [trigger a redeploy](../
 ## Log levels
 
 Your app may output logs with distinct severity levels.
-But as Plaform.sh only reads logs from `stdout`, this distinction is lost and everything gets logged at `INFO` level.
+But as Plaform.sh only reads logs from `stdout`,
+this distinction is lost and everything gets logged at `INFO` level.
 
 To preserve the original log level, use a language-specific syslog module/package for logging.
 
@@ -153,7 +179,7 @@ closelog();
 title=Python
 +++
 
-Using the logging module
+Using the logging module:
 
 ```python
 import logging
