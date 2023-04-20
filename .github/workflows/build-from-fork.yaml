@@ -11,6 +11,7 @@ env:
   PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
   SLEEP_TIME: 5
   NUM_TRIES: 30
+  BFF_PREFX: ${{ vars.BFF_PREFIX }}-
 
 jobs:
   build:
@@ -30,7 +31,7 @@ jobs:
       - env:
           PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         run: |
-          BRANCH_TITLE=pr-${{ github.event.number }}
+          BRANCH_TITLE="${{ env.BFF_PREFIX }}${{ github.event.number }}"
 
           # Get most recent changes
           git checkout ${{ github.event.pull_request.head.sha }}
