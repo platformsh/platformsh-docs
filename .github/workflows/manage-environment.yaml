@@ -89,7 +89,7 @@ jobs:
         env:
           PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         run: |
-          git push origin -d ${{ env.BFF_PREFIX }}${{ github.event.number }}
+          git push origin -d ${{ env.BRANCH_TITLE }}
 
         # Set up workflow environment to use the Platform.sh CLI
       - name: Set up Platform.sh CLI
