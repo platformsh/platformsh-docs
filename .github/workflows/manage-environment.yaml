@@ -11,6 +11,7 @@ env:
   PLATFORMSH_CLI_NO_INTERACTION: 1
   PLATFORM_PROJECT: 652soceglkw4u
   PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
+  BRANCH_TITLE: ${{ vars.BFF_PREFIX }}-${{ github.event.number }}
 
 jobs:
   activate_environment:
@@ -57,8 +58,6 @@ jobs:
 
   deactivate_forked_environment:
     runs-on: ubuntu-latest
-    env:
-      BRANCH_TITLE: ${{ vars.BFF_PREFIX }}-${{ github.event.number }}
     # For forked PRs labelled as build-fork
     # Delete branch when a PR is closed
     if: >-
@@ -75,7 +74,7 @@ jobs:
           PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         # Check if the Git branch exists
         run: |
-          BRANCH=$(git ls-remote --heads origin $BRANCH_TITLE)
+          BRANCH=$(git ls-remote --heads origin ${{ env.BRANCH_TITLE }})
           echo $BRANCH
 
           if [[ -n $BRANCH ]]; then
@@ -105,7 +104,7 @@ jobs:
           PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         # Check if the built environment exists
         run: |
-          BRANCH=$(platform environments --pipe --columns title | grep $BRANCH_TITLE)
+          BRANCH=$(platform environments --pipe --columns title | grep ${{ env.BRANCH_TITLE }})
 
           if [[ -n $BRANCH ]]; then
             echo "environment_exists=true" >> $GITHUB_OUTPUT
@@ -117,4 +116,4 @@ jobs:
         env:
           PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         run: |
-          platform environment:delete --delete-branch --no-wait $BRANCH_TITLE
+          platform environment:delete --delete-branch --no-wait ${{ env.BRANCH_TITLE }}
