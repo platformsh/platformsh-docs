@@ -1,5 +1,5 @@
 # Self-indexing `docs` for `search`
-## Changed via Fork, and some more
+## PLEASE LET THIS BE THE LAST TEST
 Hugo allows you to define custom output formats besides HTML. We've defined a `json` output format as well for the root `_index.md` location, which uses the files below to index the documentation itself and serve that index at `docs.platform.sh/index.json` (`public/index.json` when built). Comments are placed here rather than inline so they do not affect the template formatting in these individual partials during builds.
 
 - `config/_default/config.yaml`: The `json` output format is defined, but only for `home` (`_index.md`).
