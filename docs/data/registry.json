@@ -428,6 +428,9 @@
     },
     "versions-dedicated-gen-2": {
       "supported": [
+        "10.8 Galera",
+        "10.7 Galera",
+        "10.6 Galera",
         "10.5 Galera",
         "10.4 Galera",
         "10.3 Galera"
@@ -695,6 +698,8 @@
     "versions-dedicated-gen-2": {
       "deprecated": [],
       "supported": [
+        "2.5",
+        "2.4",
         "1.2"
       ]
     },
@@ -762,6 +767,7 @@
     "type": "php",
     "versions-dedicated-gen-2": {
       "supported": [
+        "8.2",
         "8.1",
         "8.0"
       ],
@@ -770,8 +776,7 @@
         "7.3",
         "7.2",
         "7.1",
-        "7.0",
-        "5.6"
+        "7.0"
       ]
     },
     "versions": {
@@ -927,6 +932,8 @@
     },
     "versions-dedicated-gen-2": {
       "supported": [
+        "3.11",
+        "3.10",
         "3.9"
       ],
       "deprecated": [
