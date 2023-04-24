@@ -55,6 +55,14 @@ Otherwise, access the directory with your project.
 
 Run <code>lando init --recipe platformsh --source cwd --platformsh-auth {{% variable "API_TOKEN" %}}</code> and follow the instructions provided by the interactive prompt.
 
+{{< note >}}
+
+If you get an error stating that the `recipe` argument is invalid,
+[install the latest version of the Platform.sh plugin](https://docs.lando.dev/platformsh/getting-started.html#custom-installation)
+and run the command again.
+
+{{< /note >}}
+
 <--->
 
 +++
