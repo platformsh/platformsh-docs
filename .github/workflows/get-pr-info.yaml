@@ -189,7 +189,14 @@ jobs:
       # If environment failed to create, fail the workflow
       - name: Fail workflow
         if: steps.get_env_url.outputs.env_status != 'success'
-        run: exit 1
+        run: |
+          echo "::error::The environment for pull request ${{ github.event.number }} failed to deploy. Please rerun this workflow."
+          echo "The last status we received was ${{ steps.get_env_url.outputs.env_status }}"
+          echo "List of activities that we ask for, but not limited to the last one:"
+          platform activities --type "environment.push environment.activate environment.redeploy environment.branch" --environment ${{ steps.branch_name.outputs.branch_name }}
+          echo "Now a list of the (up to) last 20 activities for branch ${{ steps.branch_name.outputs.branch_name }}:"
+          platform activities --environment ${{ steps.branch_name.outputs.branch_name }} --limit 20
+          exit 1
   dont_run_nonlabeled_forks:
     name: Warn about non-labeled PRs from forks
     if: github.event.pull_request.head.repo.id != 21975579 && !contains(github.event.pull_request.labels.*.name, 'build-fork')
