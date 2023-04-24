@@ -31,6 +31,7 @@ jobs:
 
       - name: Set environment title
         run: |
+          # @todo - this is the same as the last step in build-from-fork:jobs:build. See if we can combine the two
           newTitle="(pr-${{ github.event.number }}) ${{ github.event.pull_request.title }}"
           currentTitle=$(platform environment:info title)
           if [[ "${currentTitle}" != "${newTitle}" ]]; then
