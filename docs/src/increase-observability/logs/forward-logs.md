@@ -151,6 +151,27 @@ This should let you connect to any service that has syslog endpoints.
 
 To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
 
+<--->
++++
+title=In the Console
++++
+
+To enable log forwarding to a syslog endpoint for a specific project using the [Platform.sh CLI](../../administration/cli/_index.md),
+follow these steps:
+
+1. Navigate to your project.
+2. Click {{< icon settings >}} **Settings**.
+3. Click **Integrations**.
+4. Click **Add Integration**.
+5. Select the syslog integration.
+6. In the **Configure your integration** window,
+   specify your configuration options.
+7. Click **Add Integration**.
+   The new integration overview is displayed,
+   and you can view your logs in the **Activity** section.
+
+{{< /codetabs >}}
+
 ## Log levels
 
 Your app may output logs with distinct severity levels.
