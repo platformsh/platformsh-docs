@@ -39,7 +39,7 @@
       "supported": [
         "95"
       ]
-    },
+    }
   },
   "dotnet": {
     "description": "ASP.NET 5 application container.",
