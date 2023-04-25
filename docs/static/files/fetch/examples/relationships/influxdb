@@ -1,7 +1,7 @@
 {
-    "service": "influxdb18",
+    "service": "influxdb23",
     "ip": "169.254.244.110",
-    "hostname": "duqbjfn7t4dwr2fi2o7bsvqafy.influxdb18.service._.eu-3.platformsh.site",
+    "hostname": "duqbjfn7t4dwr2fi2o7bsvqafy.influxdb23.service._.eu-3.platformsh.site",
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "influxdb.internal",
     "rel": "influxdb",
