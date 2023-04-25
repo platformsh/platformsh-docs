@@ -8,7 +8,7 @@ env:
   PLATFORMSH_CLI_NO_INTERACTION: 1
   PLATFORM_PROJECT: 652soceglkw4u
   PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
-
+  BRANCH_TITLE: ${{ vars.BFF_PREFIX }}-${{ github.event.number }}
 jobs:
   get_pr_info:
     runs-on: ubuntu-latest
@@ -30,7 +30,7 @@ jobs:
 
           # For PRs from forks
           else
-            branch_name="pr-${{ github.event.number }}"
+            branch_name="${{ env.BRANCH_TITLE }}"
           fi
           echo "::notice::Setting branch name to ${branch_name}."
           echo "branch_name=${branch_name}" >> $GITHUB_OUTPUT
