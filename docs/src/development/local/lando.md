@@ -57,7 +57,8 @@ Run <code>lando init --recipe platformsh --source cwd --platformsh-auth {{% vari
 
 {{< note >}}
 
-If you get an error stating that the `recipe` argument is invalid,
+If for some reason you get an error using the Platform.sh recipe,
+be sure to 
 [install the latest version of the Platform.sh plugin](https://docs.lando.dev/platformsh/getting-started.html#custom-installation)
 and run the command again.
 
