@@ -33,13 +33,13 @@
         "80",
         "73"
       ]
-    }
-  },
-  "versions-dedicated-gen-3": {
-    "deprecated": [],
-    "supported": [
-      "95"
-    ]
+    },
+    "versions-dedicated-gen-3": {
+      "deprecated": [],
+      "supported": [
+        "95"
+      ]
+    },
   },
   "dotnet": {
     "description": "ASP.NET 5 application container.",
