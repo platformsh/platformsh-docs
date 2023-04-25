@@ -70,6 +70,12 @@ jobs:
               echo "::notice::Activity is complete."
             fi
 
+            # we want to clear the cli cache every 3rd attempt in case it is caching too heavily
+            if [ $(expr ${STATUS_TRY} % 3) = 0 ]; then
+              echo "Clearing the cli cache..."
+              platform clear-cache
+            fi
+
             STATUS_TRY=$((++STATUS_TRY))
           done
 
