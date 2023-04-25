@@ -196,6 +196,10 @@ jobs:
           platform activities --type "environment.push environment.activate environment.redeploy environment.branch" --environment ${{ steps.branch_name.outputs.branch_name }}
           echo "Now a list of the (up to) last 20 activities for branch ${{ steps.branch_name.outputs.branch_name }}:"
           platform activities --environment ${{ steps.branch_name.outputs.branch_name }} --limit 20
+          # Get the ID of failed activity and output its log:
+          failedID=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy environment.branch" --no-header --columns "ID" --limit 1 --environment ${{ steps.branch_name.outputs.branch_name }} --result=failure)
+          echo "Log for the failed activity, ID ${failedID}"
+          platform activity:log ${failedID} --environment ${{ steps.branch_name.outputs.branch_name }}
           exit 1
   dont_run_nonlabeled_forks:
     name: Warn about non-labeled PRs from forks
