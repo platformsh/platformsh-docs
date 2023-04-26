@@ -9,8 +9,11 @@ While usually used for local development, it can also be helpful for debugging a
 
 As configured on Platform.sh, it avoids any runtime overhead for non-debug requests, even in production, and only allows connections via SSH tunnels to avoid any security issues.
 
-Note Xdebug runs only on your app containers.
+Note that Xdebug runs only on your app containers.
 So you can't use it for [worker containers](../../create-apps/workers.md).
+
+Also, note that if you use a [custom start command](./_index.md#alternate-start-commands),
+Xdebug is automatically disabled.
 
 ## Before you begin
 
@@ -77,8 +80,10 @@ To use an alternate port, use the `--port` flag.
 To close the tunnel and terminate the debug connection, press <kbd>Ctrl</kbd> + <kbd>C</kbd>.
 
 {{< note title="On {{% names/dedicated-gen-3 %}}" >}}
+
 Note that because you have several virtual machines running but your tunnel is connected to only one of them,
 your requests don't always reach the same host.
+
 {{< /note >}}
 
 ### Install an Xdebug helper
@@ -108,7 +113,3 @@ The common steps for setup usually include:
     Use the Xdebug helper plugin for your browser to enable debugging.
     Set a break point in your app, then load a page in your browser.
     The request should pause at the break point and allow you to examine the running app.
-
-# Limitations (custom command)
-
-The setup relies on passing along to `fpm` some command line directives. This means that if the application specifies a custom start argument, we can't reliably alter it so that FPM gets the required arguments. If a custom start command is detected, Xdebug is disabled. When this happens, a log message stating the case can be found in the container logs.
