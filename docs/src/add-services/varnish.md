@@ -217,7 +217,7 @@ The following example shows how to set up purging.
        if (req.method == "PURGE") {
            # The Platform.sh router provides the real client IP as X-Client-IP
            # Use std.ip to convert the string to an IP for comparison
-           if (!std.ip(req.http.X-Client-IP) ~ purge) {
+           if (!std.ip(req.http.X-Client-IP, "0.0.0.0") ~ purge) {
                # Deny all purge requests not from the allowed IPs
                return(synth(403,"Not allowed."));
            }
@@ -227,6 +227,10 @@ The following example shows how to set up purging.
        ...
    }
    ```
+  
+  {{< note theme="info" >}}
+  The snippet above has been produced for Varnish 7.x. If using a different version, consult the [Varnish documentation](https://varnish-cache.org/docs/) for potential differences in syntax and required parameters.
+  {{< /note >}}
 
 3. Set up cache purging to suit your needs.
    The following cURL call gives an example of how this can work:
