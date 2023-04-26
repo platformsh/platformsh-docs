@@ -113,3 +113,7 @@ The common steps for setup usually include:
     Use the Xdebug helper plugin for your browser to enable debugging.
     Set a break point in your app, then load a page in your browser.
     The request should pause at the break point and allow you to examine the running app.
+
+## What's next
+
+Learn more about how to [set up Xdebug on Dedicated server clusters](https://community.platform.sh/t/set-up-xdebug-on-dedicated-pro-server-clusters/403).
