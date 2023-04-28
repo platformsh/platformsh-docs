@@ -14,15 +14,23 @@ mkdir static/files/indexes && cp data/templates.yaml static/files/indexes/templa
 # cache is reset every so often
 if [ ! -f "${PLATFORM_CACHE_DIR}/hugo_${HUGOVERSION}_Linux-64bit/hugo" ]; then
   # we don't have the file. Do we have the original archive?
-  if [! -f "${PLATFORM_CACHE_DIR}/hugo_${HUGOVERSION}_Linux-64bit.tar.gz"]; then
-    wget --quiet -c ${DOWNLOAD} -o ${PLATFORM_CACHE_DIR}
+  echo "Hugo binary is not cached. Going to get it."
+  if [ ! -f "${PLATFORM_CACHE_DIR}/hugo_${HUGOVERSION}_Linux-64bit.tar.gz" ]; then
+    echo "Hugo archive is not cached. Going to go get it."
+    wget --quiet -c "${DOWNLOAD}" -o "${PLATFORM_CACHE_DIR}"
+  else
+    echo "We already have the hugo archive in cache. Continuing."
   fi
 
   #now that we know we have the archive, let's extract
   # extract just the hugo executable from the archive to our cache directory
-  tar -C ${PLATFORM_CACHE_DIR} -xf "${PLATFORM_CACHE_DIR}/hugo_${HUGOVERSION}_Linux-64bit.tar.gz" hugo
+  echo "Extracting the hugo binary from the hugo archive."
+  tar -C "${PLATFORM_CACHE_DIR}" -xf "${PLATFORM_CACHE_DIR}/hugo_${HUGOVERSION}_Linux-64bit.tar.gz" hugo
+else
+  echo "We already have the hugo binary. Proceeding."
 fi
 
+echo "Moving the hugo binary from cache into the application."
 cp "${PLATFORM_CACHE_DIR}/hugo_${HUGOVERSION}_Linux-64bit/hugo" "${PLATFORM_APP_DIR}"
 
 # Build the Hugo site
