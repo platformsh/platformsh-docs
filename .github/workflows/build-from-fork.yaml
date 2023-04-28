@@ -60,7 +60,11 @@ jobs:
           fi
 
           # If environment not active, activate it
-          if ! $(platform env --format plain --columns title,status | grep '${{ env.BRANCH_TITLE }}' | grep -q Active); then
-            echo "Activating environment"
+          if ! $(platform environment --format plain --columns title,status | grep '${{ env.BRANCH_TITLE }}' | grep -q Active); then
+            echo "::notice::Updating Platform.sh environment title for better tracking..."
+            # in this case we DO want to staticaly include `pr-##` since we're referring to a pull request number
+            newTitle="(pr-${{ github.event.number }}) ${{ github.event.pull_request.title }}"
+            platform environment:info title "${newTitle}" -e ${{ env.BRANCH_TITLE }}
+            echo "::notice::Activating environment ${{ env.BRANCH_TITLE }}"
             platform environment:activate -e ${{ env.BRANCH_TITLE }}
           fi
