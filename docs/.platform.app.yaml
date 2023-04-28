@@ -10,6 +10,7 @@ type: 'nodejs:16'
 variables:
     env:
         HUGOVERSION: 0.104.1
+        BARFOO: barbfoo
 
 relationships:
     search: "search:http"
