@@ -10,6 +10,7 @@ npm run build:search
 mkdir static/files/indexes && cp data/templates.yaml static/files/indexes/templates.yaml
 
 # Get Hugo
+DOWNLOAD="https://github.com/gohugoio/hugo/releases/download/v${HUGOVERSION}/hugo_${HUGOVERSION}_Linux-64bit.tar.gz"
 # @todo this assumes that we don't need to worry about cleaning up old versions of the hugo archive because the build
 # cache is reset every so often
 if [ ! -f "${PLATFORM_CACHE_DIR}/hugo_${HUGOVERSION}_Linux-64bit/hugo" ]; then
