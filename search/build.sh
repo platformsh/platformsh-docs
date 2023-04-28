@@ -5,9 +5,14 @@ install_meilisearch() {
     echo "* INSTALLING MEILISEARCH"
     # Replicates Meilisearch download (https://github.com/meilisearch/MeiliSearch/blob/master/download-latest.sh) with locked version.
     release_file="meilisearch-linux-amd64"
-    curl -OL "https://github.com/meilisearch/MeiliSearch/releases/download/v$MEILISEARCH_VERSION/$release_file"
-    mv "$release_file" "meilisearch"
-    chmod 744 "meilisearch"
+
+    if [ ! -f "${PLATFORM_CACHE_DIR}/${MEILISEARCH_VERSION}-${release_file}" ]; then
+      # if we dont have the meilisearch binary, download the designated version, and save it into the cache dir
+      curl -o ${PLATFORM_CACHE_DIR}/${MEILISEARCH_VERSION}-${release_file} -L "https://github.com/meilisearch/MeiliSearch/releases/download/v${MEILISEARCH_VERSION}/${release_file}"
+    fi
+
+    cp "${PLATFORM_CACHE_DIR}/${MEILISEARCH_VERSION}-${release_file}" "${PLATFORM_APP_DIR}/meilisearch"
+    chmod 744 "${PLATFORM_APP_DIR}/meilisearch"
 }
 
 install_poetry(){
