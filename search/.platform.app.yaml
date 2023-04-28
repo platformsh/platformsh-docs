@@ -24,11 +24,11 @@ hooks:
 web:
     commands:
       # Run the Meilisearch server
-      start: !include 
+      start: !include
             type: string
             path: start.sh
 
-# The size of the persistent disk of the application (in MB).
+# The size of the persistent disk of the application (in MB)..
 disk: 2048
 
 crons:
