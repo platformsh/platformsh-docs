@@ -18,7 +18,8 @@ if [ ! -f "${PLATFORM_CACHE_DIR}/hugo_${HUGOVERSION}_Linux-64bit/hugo" ]; then
   echo "Hugo binary is not cached. Going to get it."
   if [ ! -f "${PLATFORM_CACHE_DIR}/hugo_${HUGOVERSION}_Linux-64bit.tar.gz" ]; then
     echo "Hugo archive is not cached. Going to go get it."
-    wget --quiet -c "${DOWNLOAD}" -o "${PLATFORM_CACHE_DIR}"
+    # @todo I wonder if there's a reason we're using wget here instead of curl? :thinkingface:
+    wget --quiet -c "${DOWNLOAD}" -P "${PLATFORM_CACHE_DIR}"
   else
     echo "We already have the hugo archive in cache. Continuing."
   fi
