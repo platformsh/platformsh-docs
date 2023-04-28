@@ -16,6 +16,7 @@ Bootsnap
 Brotli
 [Bb]undler
 CacheTool
+charset
 Cloudwatt
 CDNs?
 CMS
@@ -51,6 +52,7 @@ Helidon
 highjack
 hostname
 [Hh]otfix
+HTTPClient
 Httpoxy
 Hunchentoot
 Hypercorn
@@ -76,6 +78,7 @@ Memcache
 Mezmo
 middleware
 Miniconda
+Monolog
 MSBuild
 Muffet
 multicast
@@ -150,6 +153,7 @@ Strapi
 subuser
 Swoole
 Symfony
+symfony
 [Ss]yslog
 systemd
 Thorntail

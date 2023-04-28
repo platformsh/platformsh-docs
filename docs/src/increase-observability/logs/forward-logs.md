@@ -33,13 +33,16 @@ If your third-party service isn't supported, you can forward to a [syslog endpoi
 
 Integrations exist for the following third-party services to enable log forwarding:
 
-* [New Relic](https://newrelic.com/)
-* [Splunk](https://www.splunk.com/)
-* [Sumo Logic](https://www.sumologic.com/)
+- [New Relic](https://newrelic.com/)
+- [Splunk](https://www.splunk.com/)
+- [Sumo Logic](https://www.sumologic.com/)
 
 ### Enable a log forwarding integration
 
-Enable log forwarding for a specific project by following the steps for your selected service.
+#### Using the CLI 
+
+To enable log forwarding for a specific project using the [Platform.sh CLI](../../administration/cli/_index.md),
+follow the steps for your selected service.
 
 {{< codetabs >}}
 +++
@@ -97,13 +100,35 @@ View your logs in the **Log Search** tab.
 
 To start forwarding logs, [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
 
+#### In the Console
+
+To enable log forwarding for a specific project from the Console,
+follow these steps:
+
+1. Navigate to your project.
+2. Click {{< icon settings >}} **Settings**.
+3. Click **Integrations**.
+4. Click **Add Integration**.
+5. Select the integration you want to enable.
+6. In the **Configure your integration** window,
+   specify your configuration options.
+7. Click **Add Integration**.
+   The new integration overview is displayed,
+   and you can view your logs in the **Activity** section.
+
 ## Forward to a syslog endpoint
 
 Syslog is a standard protocol for transferring log messages.
 Many third-party services offer endpoints for ingesting syslog events.
 You can forward your Platform.sh logs to any of those endpoints.
 
-To enable this forwarding, run a command like the following:
+{{< codetabs >}}
++++
+title=Using the CLI
++++
+
+To enable log forwarding to a syslog endpoint, 
+run a command similar to the following:
 
 ```bash
 platform integration:add --type syslog --syslog-host {{< variable "INGESTION_HOST" >}} --syslog-port {{< variable "INGESTION_HOST_PORT" >}}
@@ -124,6 +149,29 @@ The following table shows the other available properties:
 To include a property, add it as a flag, for example `--protocol tcp`.
 This should let you connect to any service that has syslog endpoints.
 
+To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
+
+<--->
++++
+title=In the Console
++++
+
+To enable log forwarding to a syslog endpoint for a specific project using the [Platform.sh CLI](../../administration/cli/_index.md),
+follow these steps:
+
+1. Navigate to your project.
+2. Click {{< icon settings >}} **Settings**.
+3. Click **Integrations**.
+4. Click **Add Integration**.
+5. Select the syslog integration.
+6. In the **Configure your integration** window,
+   specify your configuration options.
+7. Click **Add Integration**.
+   The new integration overview is displayed,
+   and you can view your logs in the **Activity** section.
+
+{{< /codetabs >}}
+
 ## Forward to an HTTP endpoint
 
 Some third-party services, such as [Elasticsearch](../../add-services/elasticsearch.md) and [OpenSearch](../../add-services/opensearch.md),
@@ -143,3 +191,109 @@ Optionally, you can use the `headers` property to pass additional headers in the
 
 Once you've [added the service](../../add-services/_index.md),
 to start forwarding logs [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
+
+## Log levels
+
+Your app may output logs with distinct severity levels.
+But as Plaform.sh only reads logs from `stdout`,
+this distinction is lost and everything gets logged at `INFO` level.
+
+To preserve the original log level, use a language-specific syslog module/package for logging.
+
+The following example code snippets show how logs can be written to Syslog:
+
+{{< codetabs >}}
+
++++
+title=PHP
++++
+
+```php
+openlog("", LOG_PID, LOG_LOCAL0);
+syslog(LOG_INFO, "Operation started");
+syslog(LOG_ERR, "Operation failed");
+closelog();
+```
+
+<--->
++++
+title=Python
++++
+
+Using the logging module:
+
+```python
+import logging
+import logging.handlers
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+handler = logging.handlers.SysLogHandler(address="/dev/log")
+logger.addHandler(handler)
+
+logger.info("Operation started")
+logger.error("Operation failed")
+```
+
+Using the Syslog module:
+
+```python
+import syslog
+
+syslog.openlog(logoption=syslog.LOG_PID, facility=syslog.LOG_LOCAL0)
+syslog.syslog(syslog.LOG_INFO, "Operation started")
+syslog.syslog(syslog.LOG_ERR, "Operation failed")
+syslog.closelog()
+```
+
+<--->
++++
+title=Go
++++
+
+Using the log package:
+
+```go
+package main
+
+import (
+	"log"
+	"log/syslog"
+)
+
+func main() {
+	logger, err := syslog.NewLogger(syslog.LOG_LOCAL0|syslog.LOG_INFO, log.LstdFlags)
+	if err != nil {
+		panic(err)
+	}
+
+	logger.Println("Operation started...")
+	logger.Fatalln("Operation failed")
+}
+
+```
+
+Using the Syslog package:
+
+```go
+package main
+
+import (
+	"fmt"
+	"log"
+	"log/syslog"
+)
+
+func main() {
+	syslogWriter, err := syslog.Dial("", "", syslog.LOG_LOCAL0|syslog.LOG_INFO, "")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer syslogWriter.Close()
+
+	fmt.Fprintf(syslogWriter, "Operation has started")
+	syslogWriter.Err("Operation failed")
+}
+```
+
+{{< /codetabs >}}

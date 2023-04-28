@@ -225,6 +225,24 @@ https://{default}/:
       "/using-platform/003-migrating-an-existing-site.html" : { "to": "/tutorials/migrating.html", "code": 301 }
       "/golive/steps/tls.html" : { "to": "/domains/steps/tls.html", "code": 301 }
 
+      # Redirects for Trust Center migration
+      "/security/hipaa.html" : { "to": "https://platform.sh/trust-center/privacy/hippa/", "code": 301 }
+      "/security/sca.html" : { "to": "https://platform.sh/trust-center/security/sca/", "code": 301 }
+      "/security/data-access.html" : { "to": "https://platform.sh/trust-center/security/data-access/", "code": 301 }
+      "/security/data-breach-notifications.html" : { "to": "https://platform.sh/trust-center/security/data-breach-notifications/", "code": 301 }
+      "/security/data-collection.html" : { "to": "https://platform.sh/trust-center/security/data-collection/", "code": 301 }
+      "/security/data-deletion.html" : { "to": "https://platform.sh/trust-center/security/data-deletion/", "code": 301 }
+      "/security/encryption.html" : { "to": "https://platform.sh/trust-center/security/encryption/", "code": 301 }
+      "/security/compliance-guidance.html" : { "to": "https://platform.sh/trust-center/security/compliance-guidance/", "code": 301 }
+      "/security/updates.html" : { "to": "https://platform.sh/trust-center/security/updates/", "code": 301 }
+      "/security/pci.html" : { "to": "https://platform.sh/trust-center/security/pci/", "code": 301 }
+      "/security/wcag.html" : { "to": "https://platform.sh/trust-center/legal/wcag/", "code": 301 }
+      "/security/transparency.html" : { "to": "https://platform.sh/trust-center/legal/transparency/", "code": 301 }
+      "/security/gdpr.html" : { "to": "https://platform.sh/trust-center/privacy/gdpr/", "code": 301 }
+      "/security/data-location.html" : { "to": "https://platform.sh/trust-center/security/data-location/", "code": 301 }
+      "/security/iaas_resources.html" : { "to": "https://platform.sh/trust-center/security/iaas-resources/", "code": 301 }
+      "/security/pen-test.html" : { "to": "https://platform.sh/trust-center/security/penetration-testing/", "code": 301 }
+
 "https://search.{default}/":
     type: upstream
     upstream: "search:http"

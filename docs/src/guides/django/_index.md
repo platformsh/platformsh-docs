@@ -8,7 +8,7 @@ description: |
 
 {{% description %}}
 
-Anything included in these guides applies to not only to Django, but also [Wagtail](https://wagtail.org/), the content management system built with Django. 
+Anything included in these guides applies to not only to Django, but also [Wagtail](https://wagtail.org/), the content management system built with Django.
 
 See an example Django project in the official [Platform.sh Django template](https://github.com/platformsh-templates/django4), which you can use as a starting point for your own project.
 

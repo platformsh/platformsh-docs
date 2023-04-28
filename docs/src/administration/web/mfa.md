@@ -2,6 +2,12 @@
 title: Set up multi-factor authentication
 weight: 4
 sidebarTitle: MFA
+keywords: 
+- 2fa
+- twofactor
+- two factor
+- mfa
+- multifactor authentication
 description: Enable multi-factor authentication on your Platform.sh account for enhanced security.
 ---
 
