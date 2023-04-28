@@ -6,11 +6,10 @@ name: 'docs'
 # The type key specifies the language and version for your application.
 type: 'nodejs:16'
 
-# Specify the Hugo version as an env variable..
+# Specify the Hugo version as an env variable.
 variables:
     env:
         HUGOVERSION: 0.104.1
-        BARFOO: barbfoo
 
 relationships:
     search: "search:http"
