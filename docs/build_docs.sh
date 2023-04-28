@@ -28,6 +28,8 @@ if [ ! -f "${PLATFORM_CACHE_DIR}/hugo_${HUGOVERSION}_Linux-64bit/hugo" ]; then
   # extract just the hugo executable from the archive to our cache directory
   echo "Extracting the hugo binary from the hugo archive."
   tar -C "${PLATFORM_CACHE_DIR}" -xf "${PLATFORM_CACHE_DIR}/hugo_${HUGOVERSION}_Linux-64bit.tar.gz" hugo
+  echo "Hugo archive extracted. Contents of PLATFORM_CACHE_DIR..."
+  ls -al "${PLATFORM_CACHE_DIR}"
 else
   echo "We already have the hugo binary. Proceeding."
 fi
