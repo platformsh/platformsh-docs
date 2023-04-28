@@ -34,10 +34,10 @@ jobs:
         run: |
           # @todo - this is the same as the last step in build-from-fork:jobs:build. See if we can combine the two
           newTitle="(pr-${{ github.event.number }}) ${{ github.event.pull_request.title }}"
-          currentTitle=$(platform environment:info title)
+          currentTitle=$(platform environment:info -e ${{ github.event.pull_request.head.ref }} title)
           if [[ "${currentTitle}" != "${newTitle}" ]]; then
             echo "::notice::Setting environment's title"
-            platform environment:info title "${newTitle}"
+            platform environment:info -e ${{ github.event.pull_request.head.ref }} title "${newTitle}"
           fi
       - name: Activate environment
         run: platform environment:activate --no-wait ${{ github.event.pull_request.head.ref }}
