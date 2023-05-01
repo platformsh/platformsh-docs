@@ -26,7 +26,7 @@ We recommend the latest [MariaDB](../../../add-services/mysql/_index.md) version
 
 {{% /guides/config-service %}}
 
-{{< readFile file="static/files/fetch/servicesyaml/wordpress-composer" highlight="yaml" >}}
+{{< ghExample repo="platformsh-templates/wordpress-composer" path=".platform/services.yaml" lang="yaml" >}}
 
 {{% guides/config-routes template="wordpress-composer" name="WordPress" %}}
 
