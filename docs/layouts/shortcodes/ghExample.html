@@ -1,0 +1,15 @@
+{{ $repo := .Get "repo" }}
+{{ $path := .Get "path" }}
+{{ $lang := .Get "lang" }}
+
+{{ $url := printf "https://api.github.com/repos/%s/contents/%s" $repo $path }}
+
+<!-- Requires a HUGO_GH_TOKEN environment variable -->
+
+{{ $token := site.Params.GH_TOKEN }}
+{{ $resp := getJSON $url (dict "Accept" "application/vnd.github+json" "Authorization" $token ) }}
+
+{{ $contents:= index $resp "content" | base64Decode }}
+
+<div class="bg-stone px-4 pt-2 rounded-t-lg inline-block text-base pb-1">{{ $path }}</div>
+{{ transform.Highlight $contents $lang }}
