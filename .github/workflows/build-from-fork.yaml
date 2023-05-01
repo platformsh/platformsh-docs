@@ -53,14 +53,14 @@ jobs:
           done
 
           if [[ -z "${branchReceived}" ]]; then
-            echo "::warniing::It appears that Platform.sh did not receive our branch ${{ env.BRANCH_TITLE }}. Please look at the logs and try again."
+            echo "::warning::It appears that Platform.sh did not receive our branch ${{ env.BRANCH_TITLE }}. Please look at the logs and try again."
             exit 24;
           else
             echo "::notice::Branch ${{ env.BRANCH_TITLE }} was successfully pushed to Platform.sh. Continuing..."
           fi
 
           # If environment not active, activate it
-          if ! $(platform environment --format plain --columns title,status | grep '${{ env.BRANCH_TITLE }}' | grep -q Active); then
+          if ! $(platform environments --format plain --columns title,status | grep '${{ env.BRANCH_TITLE }}' | grep -q Active); then
             echo "::notice::Updating Platform.sh environment title for better tracking..."
             # in this case we DO want to staticaly include `pr-##` since we're referring to a pull request number
             newTitle="(pr-${{ github.event.number }}) ${{ github.event.pull_request.title }}"
