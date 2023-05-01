@@ -30,7 +30,7 @@ hooks:
 # The configuration of the application when it is exposed to the web.
 web:
     commands:
-      # Run (404) error and feedback handler 
+      # Run (404) error and feedback handler
       start: node index.js
     locations:
         '/':
