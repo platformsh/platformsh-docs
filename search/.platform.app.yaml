@@ -24,7 +24,7 @@ hooks:
 web:
     commands:
       # Run the Meilisearch server
-      start: !include 
+      start: !include
             type: string
             path: start.sh
 
