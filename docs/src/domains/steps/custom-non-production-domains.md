@@ -108,8 +108,8 @@ for you to add the `development.mysite.com` custom domain successfully.
 If the `Dev` environment is later removed,
 the `development.mysite.com` custom domain is removed too.
 
-As for any new custom domain, it is necessary to configure your DNS provider to add a new entry for this non-production environment domain.
-The DNS configuration for a non-production environment is similar to the one for production, using the same target for your project ([for more information](https://docs.platform.sh/domains/steps.html)).
+For any new custom domain (production or non-production), it is necessary to configure your DNS provider so that this domain points to your project.
+DNS configuration for a non-production environment is done in a similar way as for the production, but using the target of the environment ([for more information](https://docs.platform.sh/domains/steps.html)).
 
 Also, you can't update a custom non-production domain.
 You can only delete it and create a new one as a replacement.
