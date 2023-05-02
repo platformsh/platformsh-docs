@@ -83,6 +83,8 @@ web:
         '/images':
             expires: 300
             passthru: true
+            # Do not execute PHP scripts from this location and do not deliver their source code (for enhanced security).
+            scripts: false
             allow: false
             rules:
                 # Only allow static image files in this location
@@ -116,6 +118,8 @@ web:
         '/images':
             expires: 300
             passthru: true
+            # Do not execute PHP scripts from this location and do not deliver their source code (for enhanced security).
+            scripts: false
             allow: false
             rules:
                 # Only allow static image files in this location
