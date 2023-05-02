@@ -86,4 +86,3 @@ static assets on the site such as CSS and JavaScript files have a long cache per
 If you are making a change to such files, bust the cache so users aren't served out-of-date files.
 
 To clear the cache, update the `version` in [`docs/config/_default/params.yaml`](./docs/config/_default/params.yaml).
-<!--- forced integration push --->
