@@ -50,7 +50,7 @@ operations:
 
 The name of the runtime operation in this case is `clear-rebuild`.
 
-For more possibilities, see other [runtime operation examples](#runtime-operations-examples). 
+For more possibilities, see other [runtime operation examples](#runtime-operation-examples). 
 
 ## Run a runtime operation
 
@@ -63,7 +63,7 @@ platform p:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/curr
 ```
 
 You can only trigger a runtime operation if you have permission to do so.
-Permissions are granted through the `role` option specified in the [runtime operation configuration](#how-runtime-operations-work).
+Permissions are granted through the `role` option specified in the [runtime operation configuration](#define-a-runtime-operation).
 
 For example, to trigger the runtime operation [defined previously](#define-a-runtime-operation),
 you could use the following command:
