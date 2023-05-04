@@ -1,2 +1,8 @@
-{{- $content := readFile ( printf "/static/files/fetch/examples/relationships/%s" ( .Get 0 ) ) -}}
-{{- highlight $content "json" "" -}}
+{{- $file := printf "/static/files/fetch/examples/relationships/%s" ( .Get 0 ) -}}
+{{- $contentLength := len ( readFile $file ) -}}
+{{- if ne $contentLength 0 }}
+    {{- $content := readFile ( printf "/static/files/fetch/examples/relationships/%s" ( .Get 0 ) ) -}}
+    {{- highlight $content "json" "" -}}
+{{- else -}}
+    {{ partial "file-not-found" $file }}
+{{- end -}}
