@@ -11,6 +11,8 @@ env:
   PLATFORMSH_CLI_NO_INTERACTION: 1
   PLATFORM_PROJECT: 652soceglkw4u
   PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
+  PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+  BRANCH_TITLE: ${{ vars.BFF_PREFIX }}-${{ github.event.number }}
 
 jobs:
   activate_environment:
@@ -28,9 +30,16 @@ jobs:
       - name: Set up Platform.sh CLI
         uses: ./.github/actions/set-up-cli
 
-      - env:
-          PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
-          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+      - name: Set environment title
+        run: |
+          # @todo - this is the same as the last step in build-from-fork:jobs:build. See if we can combine the two
+          newTitle="(pr-${{ github.event.number }}) ${{ github.event.pull_request.title }}"
+          currentTitle=$(platform environment:info -e ${{ github.event.pull_request.head.ref }} title)
+          if [[ "${currentTitle}" != "${newTitle}" ]]; then
+            echo "::notice::Setting environment's title"
+            platform environment:info -e ${{ github.event.pull_request.head.ref }} title "${newTitle}"
+          fi
+      - name: Activate environment
         run: platform environment:activate --no-wait ${{ github.event.pull_request.head.ref }}
 
   deactivate_environment:
@@ -51,14 +60,10 @@ jobs:
         uses: ./.github/actions/set-up-cli
 
       - name: Close environment
-        env:
-          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         run: platform environment:deactivate --no-delete-branch ${{ github.event.pull_request.head.ref }}
 
   deactivate_forked_environment:
     runs-on: ubuntu-latest
-    env:
-      BRANCH_TITLE: pr-${{ github.event.number }}
     # For forked PRs labelled as build-fork
     # Delete branch when a PR is closed
     if: >-
@@ -71,11 +76,9 @@ jobs:
 
       - name: Check if Git branch exists
         id: branch_exists
-        env:
-          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         # Check if the Git branch exists
         run: |
-          BRANCH=$(git ls-remote --heads origin $BRANCH_TITLE)
+          BRANCH=$(git ls-remote --heads origin ${{ env.BRANCH_TITLE }})
           echo $BRANCH
 
           if [[ -n $BRANCH ]]; then
@@ -87,10 +90,8 @@ jobs:
         # If the branch or environment exists, delete it from Platform.sh
       - name: Delete branch
         if: steps.branch_exists.outputs.branch_exists == 'true'
-        env:
-          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         run: |
-          git push origin -d pr-${{ github.event.number }}
+          git push origin -d ${{ env.BRANCH_TITLE }}
 
         # Set up workflow environment to use the Platform.sh CLI
       - name: Set up Platform.sh CLI
@@ -101,11 +102,9 @@ jobs:
       - name: Check if environment exists
         id: environment_exists
         if: steps.branch_exists.outputs.branch_exists != 'true'
-        env:
-          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         # Check if the built environment exists
         run: |
-          BRANCH=$(platform environments --pipe --columns title | grep $BRANCH_TITLE)
+          BRANCH=$(platform environments --pipe --columns title | grep ${{ env.BRANCH_TITLE }})
 
           if [[ -n $BRANCH ]]; then
             echo "environment_exists=true" >> $GITHUB_OUTPUT
@@ -114,7 +113,5 @@ jobs:
         # If the branch or environment exists, delete it from Platform.sh
       - name: Delete environment
         if: steps.branch_exists.outputs.branch_exists != 'true' && steps.environment_exists.outputs.environment_exists == 'true'
-        env:
-          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         run: |
-          platform environment:delete --delete-branch --no-wait $BRANCH_TITLE
+          platform environment:delete --delete-branch --no-wait ${{ env.BRANCH_TITLE }}

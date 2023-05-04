@@ -41,8 +41,21 @@ Usually, it contains the two following (optional) keys:
 
 - `root` for the document root,
   the directory to which all requests for existing `.php` and static files (such as `.css`, `.jpg`) are sent.
-- `passthru` to define a front controller to handle nonexistent files.
+- `passthru` to [define a front controller](../../create-apps/web/php-basic.md#set-different-rules-for-specific-locations) to handle nonexistent files.
   The value is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
+
+  {{< note >}}
+
+  For enhanced security, when setting `passthru` to `true`, you might also want to add the following configuration:
+
+  1. Set `scripts` to `false`.
+     This prevents PHP scripts from being executed from the specified location.
+
+  2. Set `allow` to `false`.
+     By default, when PHP scripts aren't executed, their source code is delivered.
+     Setting `allow` to `false` allows you to keep the source code of your PHP scripts confidential.
+
+  {{< /note >}}
 
 Adjust the `locations` block to fit your needs.
 
@@ -470,8 +483,9 @@ title=Run a custom web server
     ```yaml {location=".platform.app.yaml"}
     locations:
         "/":
-            allow: false
             passthru: true
+            scripts: false
+            allow: false
     ```
 
 <--->

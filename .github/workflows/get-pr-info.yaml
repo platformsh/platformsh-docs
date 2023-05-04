@@ -8,7 +8,7 @@ env:
   PLATFORMSH_CLI_NO_INTERACTION: 1
   PLATFORM_PROJECT: 652soceglkw4u
   PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
-
+  BRANCH_TITLE: ${{ vars.BFF_PREFIX }}-${{ github.event.number }}
 jobs:
   get_pr_info:
     runs-on: ubuntu-latest
@@ -30,7 +30,7 @@ jobs:
 
           # For PRs from forks
           else
-            branch_name="pr-${{ github.event.number }}"
+            branch_name="${{ env.BRANCH_TITLE }}"
           fi
           echo "::notice::Setting branch name to ${branch_name}."
           echo "branch_name=${branch_name}" >> $GITHUB_OUTPUT
@@ -68,6 +68,12 @@ jobs:
 
             if [ "${STATE}" = "complete" ]; then
               echo "::notice::Activity is complete."
+            fi
+
+            # we want to clear the cli cache every 3rd attempt in case it is caching too heavily
+            if [ $(expr ${STATUS_TRY} % 3) = 0 ]; then
+              echo "Clearing the cli cache..."
+              platform clear-cache
             fi
 
             STATUS_TRY=$((++STATUS_TRY))
@@ -189,7 +195,18 @@ jobs:
       # If environment failed to create, fail the workflow
       - name: Fail workflow
         if: steps.get_env_url.outputs.env_status != 'success'
-        run: exit 1
+        run: |
+          echo "::error::The environment for pull request ${{ github.event.number }} failed to deploy. Please rerun this workflow."
+          echo "The last status we received was ${{ steps.get_env_url.outputs.env_status }}"
+          echo "List of activities that we ask for, but not limited to the last one:"
+          platform activities --type "environment.push environment.activate environment.redeploy environment.branch" --environment ${{ steps.branch_name.outputs.branch_name }}
+          echo "Now a list of the (up to) last 20 activities for branch ${{ steps.branch_name.outputs.branch_name }}:"
+          platform activities --environment ${{ steps.branch_name.outputs.branch_name }} --limit 20
+          # Get the ID of failed activity and output its log:
+          failedID=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy environment.branch" --no-header --columns "ID" --limit 1 --environment ${{ steps.branch_name.outputs.branch_name }} --result=failure)
+          echo "Log for the failed activity, ID ${failedID}"
+          platform activity:log ${failedID} --environment ${{ steps.branch_name.outputs.branch_name }}
+          exit 1
   dont_run_nonlabeled_forks:
     name: Warn about non-labeled PRs from forks
     if: github.event.pull_request.head.repo.id != 21975579 && !contains(github.event.pull_request.labels.*.name, 'build-fork')

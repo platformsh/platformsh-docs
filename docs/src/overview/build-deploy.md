@@ -1,6 +1,6 @@
 ---
 title: Build and deploy
-weight: 2
+weight: 3
 description: See how applications get built and deployed with Platform.sh.
 ---
 
