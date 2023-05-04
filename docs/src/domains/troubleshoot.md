@@ -57,12 +57,14 @@ you get output similar to the following:
 
 ```bash
 Provisioning certificates
-  Validating 1 new domain
-  E: Error provisioning the new certificate, will retry in the background.
-  (Next refresh will be at 2022-02-13 14:29:22.860563+00:00.)
-  Environment certificates
-W: Missing certificate for domain a-new-and-really-awesome-feature-abc1234-defghijk56789.eu3.platformsh.site
-```
+  Validating 2 new domains
+  
+  E: Error validating domains: urn:ietf:params:acme:error:rejectedIdentifier :: The server will not issue certificates for the identifier :: NewOrder request did not include a SAN short enough to fit in CN
+  Unable to validate domains domain a-new-and-really-awesome-feature-abc1234-defghijk56789.eu3.platformsh.site, www.domain a-new-and-really-awesome-feature-abc1234-defghijk56789.eu3.platformsh.site, will retry in the background.
+  (Next refresh will be at 2023-04-28 02:22:50.639301+00:00.)
+  
+  E: Error: TLS Certificate provisioning failed
+ ```
 
 The renewal may fail because of the 64-character limit Let's Encrypt places on URLs.
 If you have a branch with a long name, the environment URL is over this limit and the certificate is rejected.
