@@ -87,7 +87,6 @@ web:
             allow: false
             passthru: true
             scripts: false
-            allow: false
 ```
 
 </div>
