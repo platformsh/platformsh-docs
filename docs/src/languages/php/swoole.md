@@ -34,6 +34,7 @@ web:
         start: php {{<variable "PATH_TO_SWOOLE_START_COMMAND" >}} --port=$PORT
     locations:
         "/":
-            allow: false
             passthru: true
+            scripts: false
+            allow: false
 ```

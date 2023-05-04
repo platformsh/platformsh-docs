@@ -1,6 +1,6 @@
 ---
 title: Structure
-weight: 1
+weight: 2
 description: Learn about how your Platform.sh environments are structured and which files control that structure.
 ---
 
