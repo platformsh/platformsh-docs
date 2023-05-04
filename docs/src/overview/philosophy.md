@@ -6,7 +6,7 @@ description: Gain insight into the philosophy of Platform.sh.
 
 Platform.sh aims at reducing configuration and making developers more productive.
 It abstracts your project infrastructure and manages it for you,
-so you never have to configure services like a web server, a MySQL database, or a Redis cache again.
+so you never have to configure services like a web server, a MySQL database, or a Redis cache from scratch again.
 
 Platform.sh is built on one main idea &mdash; your server infrastructure is part of your app,
 so it should be version controlled along with your app.
@@ -31,7 +31,7 @@ Q&A, implementing new features, fixing bugs, and so on.
 
 Every project you deploy on Platform.sh is built as a *virtual cluster* containing a series of containers.
 The main branch of your Git repository is always deployed as a production cluster.
-Any other branch can be deployed as a production, staging, or development cluster.
+Any other branch can be deployed as a staging or development cluster.
 
 There are three types of containers within your cluster,
 all configured by files stored alongside your code:
@@ -58,7 +58,7 @@ versions, with no service downtime.
 
 Depending on your needs, you can also [set up a **post-deploy** hook](#add-a-post-deploy-hook) to run after your app is deployed and your application container starts accepting traffic.
 Adding a [`post-deploy` hook](../create-apps/hooks/hooks-comparison.md#post-deploy-hook) can be useful to run updates that don't require exclusive database access.
-Note that if you're using [Gatsby with a headless backend](../guides/gatsby/headless/_index.md),
+Note that if you're using [Gatsby](../guides/gatsby/headless/_index.md) to pull from a backend container on the same environment,
 you need a `post-deploy` hook to successfully build and deploy your app.
 
 ### How your app is built
@@ -88,7 +88,7 @@ Platform.sh then opens networking connections between the various containers,
 as specified in the configuration files.
 The connection information for each service is available as [environment variables](../guides/symfony/environment-variables.md).
 
-Similarly to the build step, you can define a [deploy hook](../create-apps/hooks/hooks-comparison.md#deploy-hook) to prepare your app.
+Similar to the build step, you can define a [deploy hook](../create-apps/hooks/hooks-comparison.md#deploy-hook) to prepare your app.
 Your app has complete access to all services, but the filesystem where your code lives is now read-only.
 
 Finally, Platform.sh opens the floodgates and lets incoming requests through your newly deployed app.
@@ -101,8 +101,6 @@ Similar to the [`deploy` hook](../create-apps/hooks/hooks-comparison.md#deploy-h
 the `post-deploy` hook only runs once your application container accepts requests.
 So you can use it to run updates such as content imports or cache warmups that can be executed simultaneously with normal traffic.
 
-Note that if you're using [Gatsby with a headless backend](../guides/gatsby/headless/_index.md),
-you need a `post-deploy` hook to successfully build and deploy your app.
 
 During a redeploy, the `post-deploy` hook is the only hook that is run.
 
