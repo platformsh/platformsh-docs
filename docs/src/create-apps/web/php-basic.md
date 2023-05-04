@@ -83,7 +83,8 @@ web:
         '/images':
             expires: 300
             passthru: true
-            # Do not execute PHP scripts from this location and do not deliver their source code (for enhanced security).
+            # Do not execute PHP scripts from this location and do not 
+            # deliver their source code (for enhanced security).
             scripts: false
             allow: false
             rules:
@@ -118,7 +119,8 @@ web:
         '/images':
             expires: 300
             passthru: true
-            # Do not execute PHP scripts from this location and do not deliver their source code (for enhanced security).
+            # Do not execute PHP scripts from this location and do not 
+            # deliver their source code (for enhanced security).
             scripts: false
             allow: false
             rules:
