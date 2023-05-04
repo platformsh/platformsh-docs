@@ -83,36 +83,68 @@ Downgrading your plan doesn't affect custom domains set on your production envir
 
 ## Add a custom domain to a non-production environment
 
-To add a custom domain to a non-production environment,
-run a command similar to the following:
+To add a custom domain to a non-production environment, follow these steps:
+
+1. Run a command similar to the following:
+
+   ```bash
+   platform domain:add staging.example.com --environment {{< variable "STAGING_ENVIRONMENT_ID" >}} --replace {{< variable "PRODUCTION_CUSTOM_DOMAIN_TO_REPLACE" >}}
+   ```
+
+   {{< note title="Example" >}}
+
+   You've added the `mysite.com` custom domain to your production environment.
+   You now want to add the `development.mysite.com` custom domain to a development environment called `Dev`.
+
+   To do so, run the following command:
+
+   ```bash
+   platform domain:add development.mysite.com --environment Dev --replace mysite.com
+   ```
+
+   {{< /note >}}
+
+   In the above example, the `Dev` environment needs to exist
+   for you to add the `development.mysite.com` custom domain successfully.
+   If the `Dev` environment is later removed,
+   the `development.mysite.com` custom domain is removed too.
+
+2. Get the target for your non-production environment.
+
+{{< codetabs >}}
++++
+title=Using the CLI
++++
+
+Run the following command:
 
 ```bash
-platform domain:add staging.example.com --environment {{< variable "STAGING_ENVIRONMENT_ID" >}} --replace {{< variable "PRODUCTION_CUSTOM_DOMAIN_TO_REPLACE" >}}
+platform environment:info edge_hostname --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
-{{< note title="Example" >}}
+<--->
++++
+title=In the Console
++++
 
-You've added the `mysite.com` custom domain to your production environment.
-You now want to add the `development.mysite.com` custom domain to a development environment called `Dev`.
+1. In the Console, open your non-production environment.
+2. Click **URLs** and copy the URL to your site excluding `https://`.
 
-To do so, run the following command:
+   For example, if the automatically generated URL is `https://dev-abcd123.abcdefgh1234567.eu.platformsh.site`,
+   the target is `dev-abcd123.abcdefgh1234567.eu.platformsh.site`.
 
-```bash
-platform domain:add development.mysite.com --environment Dev --replace mysite.com
-```
+{{< /codetabs >}}
+
+3. Configure your DNS provider and set your domain in Platform.sh,
+   just like you would for a [production custom domain](../steps/_index.md).
+   In particular, make sure your DNS record points to the target of your non-production environment.
+
+{{< note >}}
+
+You can’t update a custom non-production domain.
+You can only delete it and create a new one as a replacement.
 
 {{< /note >}}
-
-Note that in the above example, the `Dev` environment needs to exist
-for you to add the `development.mysite.com` custom domain successfully.
-If the `Dev` environment is later removed,
-the `development.mysite.com` custom domain is removed too.
-
-For any new custom domain (production or non-production), it is necessary to configure your DNS provider so that this domain points to your project.
-DNS configuration for a non-production environment is done in a similar way as for the production, but using the target of the environment ([for more information](https://docs.platform.sh/domains/steps.html)).
-
-Also, you can't update a custom non-production domain.
-You can only delete it and create a new one as a replacement.
 
 ## List the custom domains of a non-production environment
 
