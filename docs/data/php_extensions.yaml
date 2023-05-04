@@ -1131,6 +1131,7 @@ grid:
       - mailparse
       - memcached
       - msgpack
+      - newrelic
       - odbc
       - pdo_dblib
       - pdo_odbc
