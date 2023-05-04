@@ -98,7 +98,7 @@
               {{ if ne (.Get "highlight") nil }}
                 {{ if ne (.Get "file") nil }}
 
-                  {{ $content := readFile ( .Get "file" ) }}
+                  {{ $content := readFile ( .Get "file" ) | default "" }}
                   {{- $contentLength := len $content -}}
                   {{- if ne $contentLength 0 }}
                     {{ highlight $content ( .Get "highlight") "style=abap" | chomp }}
