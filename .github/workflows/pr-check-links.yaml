@@ -26,10 +26,10 @@ jobs:
           cd docs
           npm ci
 
-      # - name: Get templates and other external files
-      #   run: |
-      #     cd docs
-      #     npm run dev
+      - name: Build registry snippets
+        run: |
+          cd docs
+          npm run registry-files
 
       # - name: Build search script
       #   run: |
