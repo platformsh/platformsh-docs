@@ -86,9 +86,13 @@ You can use a runtime operation to trigger it after the initial deployment of yo
 You can also trigger it when you need to fetch content from your backend system
 but want to avoid going through the whole Platform.sh [build and deploy processes](../overview/build-deploy.md) again.
 
-#### Run the Gatsby build step
+{{< codetabs >}}
++++
+title=Gatsby
++++
 
-To run the Gatsby build step, define a runtime operation similar to the following:
+To run the [Gatsby build](https://www.gatsbyjs.com/docs/conceptual/overview-of-the-gatsby-build-process/#understanding-gatsby-build-build-time) step,
+define a runtime operation similar to the following:
 
 ```yaml {location=".platform.app.yaml"}
 operations:
@@ -105,9 +109,13 @@ To trigger your runtime operation, run a cURL command similar to the following:
 $ platform p:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "gatsby-build", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
 ```
 
-#### Run the Next.js build step
+<--->
++++
+title=Next.js
++++
 
-To run the Next.js build step, define a runtime operation similar to the following:
+To run the [Next.js build](https://nextjs.org/docs/deployment#nextjs-build-api) step,
+define a runtime operation similar to the following:
 
 ```yaml {location=".platform.app.yaml"}
 operations:
@@ -115,9 +123,9 @@ operations:
         role: admin
         commands:
             # All below are valid, depending on your setup
-            start: npm run build
-            # start: npx next build 
-            # start: next build
+            start: next build
+            # start: npx next build
+            # start: npm run build
             stop: null
 ```
 
@@ -127,30 +135,84 @@ To trigger your runtime operation, run a cURL command similar to the following:
 $ platform p:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "next-rebuild", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
 ```
 
-### Restart your Node.js app
+{{< /codetabs >}}
 
-To restart your Node.js app, define a runtime operation similar to the following:
+### Execute actions on your Node.js app
+
+{{< codetabs >}}
++++
+title=Ping your app
++++
+
+To ping your Node.js app, define a runtime operation similar to the following:
 
 ```yaml {location=".platform.app.yaml"}
 operations:
-    pm2-ping|reload|restart:
+    pm2-ping:
         role: admin 
         commands: 
             start: |
                 # Assuming pm2 start npm --no-daemon --watch --name $APP -- start -- -p $PORT
                 APP=$(cat package.json | jq -r '.name')
-                # pm2 ping $APP
-                # pm2 reload $APP 
-                pm2 restart $APP
+                pm2 ping $APP
 ``` 
 
-To trigger your runtime operation, run a cURL command similar to the following:
+To trigger your runtime operation, run a command similar to the following:
 
 ```bash
-$ platform p:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "pm2-ping|reload|restart", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
+$ platform p:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "pm2-ping", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
 ```
 
-### Define management commands on a Django project
+<--->
++++
+title=Reload your app
++++
+
+To reload your Node.js app, define a runtime operation similar to the following:
+
+```yaml {location=".platform.app.yaml"}
+operations:
+    pm2-reload:
+        role: admin 
+        commands: 
+            start: |
+                # Assuming pm2 start npm --no-daemon --watch --name $APP -- start -- -p $PORT
+                APP=$(cat package.json | jq -r '.name')
+                pm2 reload $APP
+``` 
+To trigger your runtime operation, run a command similar to the following:
+
+```bash
+$ platform p:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "pm2-reload", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
+```
+
+<--->
++++
+title=Restart your app
++++
+
+To restart your Node.js app, define a runtime operation similar to the following:
+
+```yaml {location=".platform.app.yaml"}
+operations:
+    pm2-restart:
+        role: admin 
+        commands: 
+            start: |
+                # Assuming pm2 start npm --no-daemon --watch --name $APP -- start -- -p $PORT
+                APP=$(cat package.json | jq -r '.name')
+                pm2 restart $APP 
+``` 
+
+To trigger your runtime operation, run a command similar to the following:
+
+```bash
+$ platform p:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "pm2-restart", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
+```
+
+{{< /codetabs >}}
+
+### Define management commands on your Django project
 
 On a Django project, you can define management commands, for example to run a migration outside of the Django ORM.
 To do so, define a runtime operation similar to the following:
@@ -168,3 +230,20 @@ To trigger your runtime operation, run a cURL command similar to the following:
 ```bash
 $ platform p:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "manual-migration", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
 ```
+
+### Clear the cache of your Laravel site
+
+To clear the cache of your Laravel site, define a runtime operation similar to the following:
+
+```yaml {location=".platform.app.yaml"}
+operations:
+  clear-cache:
+    role: admin
+    commands:
+      start: php artisan optimize:clear
+```
+
+To trigger your runtime operation, run a cURL command similar to the following:
+
+```bash
+$ platform p:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "clear-cache", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
