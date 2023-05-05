@@ -14,6 +14,8 @@ To switch from Elasticsearch, follow the same procedure as for [upgrading](#upgr
 
 ## Supported versions
 
+{{% major-minor-versions-note %}}
+
 <!--
 To update the versions in this table, use docs/data/registry.json
 -->

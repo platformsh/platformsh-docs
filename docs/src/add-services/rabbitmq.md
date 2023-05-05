@@ -18,6 +18,8 @@ and your messages a safe place to live until they're received.
 
 ## Supported versions
 
+{{% major-minor-versions-note %}}
+
 | Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |------|-------------------------------|------------------------------ |
 | {{< image-versions image="rabbitmq" status="supported" environment="grid" >}} | {{< image-versions image="rabbitmq" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="rabbitmq" status="supported" environment="dedicated-gen-2" >}} |

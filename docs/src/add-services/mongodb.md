@@ -17,6 +17,8 @@ premium: true
 
 ## Supported versions
 
+{{% major-minor-versions-note %}}
+
 ### Enterprise edition
 
 {{< premium-features/add-on feature="MongoDB Enterprise" >}}

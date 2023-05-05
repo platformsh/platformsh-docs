@@ -22,6 +22,8 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 
 ## Supported versions
 
+{{% major-minor-versions-note %}}
+
 {{% image-versions-legacy "elasticsearch" %}}
 
 Due to a licensing change, Elasticsearch versions after 7.10 aren't supported.

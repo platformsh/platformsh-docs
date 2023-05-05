@@ -6,6 +6,8 @@ layout: single
 
 ## Supported versions
 
+{{% major-minor-versions-note %}}
+
 | Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |----------------------------------------|------------------------------ |
 | {{< image-versions image="php" status="supported" environment="grid" >}} | {{< image-versions image="php" status="supported" environment="dedicated-gen-2" >}} |

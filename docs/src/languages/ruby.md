@@ -8,6 +8,8 @@ description: |
 
 ## Supported versions
 
+{{% major-minor-versions-note %}}
+
 ### Ruby MRI
 
 | Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |

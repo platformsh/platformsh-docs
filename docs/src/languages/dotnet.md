@@ -8,6 +8,8 @@ description: |
 
 ## Supported versions
 
+{{% major-minor-versions-note %}}
+
 | Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |----------------------------------------|------------------------------ |
 | {{< image-versions image="dotnet" status="supported" environment="grid" >}} | {{< image-versions image="dotnet" status="supported" environment="dedicated-gen-2" >}} |
