@@ -16,3 +16,4 @@ description: |
 
 [comment]: <> ([add services]&#40;../../add-services/_index.md&#41;, and [define routes]&#40;../../define-routes/_index.md&#41;.)
 
+{{% guides/link-philosophy %}}
