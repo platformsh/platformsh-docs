@@ -42,7 +42,8 @@
     "js-yaml": "^4.1.0",
     "mermaid": "^9.3.0",
     "mysql2": "^3.1.2",
-    "platformsh-config": "^2.4.1"
+    "platformsh-config": "^2.4.1",
+    "octokit": "^2.0.14"
   },
   "workspaces": [
     "static/scripts/xss",
