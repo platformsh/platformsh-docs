@@ -47,3 +47,9 @@ module:
           lang: "en"
         - source: "static"
           target: "static"
+
+security:
+  funcs:
+    getenv: none
+  http:
+    methods: none
