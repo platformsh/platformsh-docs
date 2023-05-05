@@ -111,15 +111,15 @@ title=In the Console
 
 {{< /codetabs >}}
 
+2. [Configure your DNS provider](../steps/_index.md#3-configure-your-dns-provider).
+   In particular, make sure your DNS record points to the target of your non-production environment.
+
    {{< note >}}
 
    Using the target of your production environment to configure your DNS provider is technically possible,
    but Platform.sh recommends using the target of your non-production environment as a best practice.
 
    {{< /note >}}
-
-2. [Configure your DNS provider](../steps/_index.md#3-configure-your-dns-provider) like you would for a custom production domain.
-   In particular, make sure your DNS record points to the target of your non-production environment.
 
 3. Run a command similar to the following:
 
