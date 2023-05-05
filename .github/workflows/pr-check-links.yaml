@@ -31,10 +31,10 @@ jobs:
           cd docs
           npm run registry-files
 
-      # - name: Build search script
-      #   run: |
-      #     cd docs
-      #     npm run build:search
+      - name: Build search script
+        run: |
+          cd docs
+          npm run build:search
 
       - name: Set up Hugo
         uses: peaceiris/actions-hugo@v2
