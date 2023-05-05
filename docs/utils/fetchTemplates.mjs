@@ -2,14 +2,42 @@ import * as fsPromises from 'fs/promises';
 import { default as yaml } from 'js-yaml';
 import { default as axios } from 'axios'
 import pLimit from 'p-limit';
+import * as path from "path";
+import { existsSync, copyFile, copyFileSync } from 'node:fs';
+import { Octokit } from "octokit";
 
 // Limit the number of requests running at once to not run out of memory or anything
 const fetchConcurrency = pLimit(10);
 
+const githubOrgName = "platformsh"
+const templateBuildRepoName = "template-builder"
+const pathToTemplatesInTB = "templates"
+
+// where our cache for the template file is located
+const cachedTemplatePath = process.env.PLATFORM_CACHE_DIR
+// the name of the cached template file
+const cachedTemplateName = "templates.yaml"
+// full path + name
+const cachedTemplateFileFull = cachedTemplatePath + path.sep + cachedTemplateName
+// where the template file should ultimately end up before deployment
+const destinationTemplatePath = process.cwd() + path.sep + "data"
+// full path + name
+const destinationTemplateFull = destinationTemplatePath + path.sep + cachedTemplateName
+
+const ocktokit = new Octokit ({
+  auth: process.env.GITHUB_API_TOKEN
+})
+
+
 // Get all templates from the template builder repo directory structure
 const getTemplateList = async () => {
-  const response = await axios.get("https://api.github.com/repos/platformsh/template-builder/contents/templates")
-    .catch(err => console.error("The request to get the templates failed: ", err))
+  const response = await ocktokit.request("GET /repos/{owner}/{repo}/contents/{path}",{
+    owner: githubOrgName,
+    repo: templateBuildRepoName,
+    path: pathToTemplatesInTB
+  }).catch(err => console.error("The request to get the templates failed: ", err));
+  //const response = await axios.get("https://api.github.com/repos/platformsh/template-builder/contents/templates")
+    //.catch(err => console.error("The request to get the templates failed: ", err))
 
   return response.data
 }
@@ -112,7 +140,7 @@ const fetchTemplates = async () => {
 
   const allInfo = await Promise.all(templateList)
 
-  
+
   const finalInfo = allInfo
     // Filter out any objects that didn't return data
     // So the resulting YAML file is valid
@@ -127,14 +155,49 @@ const fetchTemplates = async () => {
 
   return yaml.dump(finalInfo)
 }
-  
 
+
+// retrieves all the template data we need and writes it the build cache
 const writeTemplateInfo = async () => {
-  fsPromises.writeFile(`${process.cwd()}/data/templates.yaml`, await fetchTemplates())
+  await fsPromises.writeFile(cachedTemplateFileFull, await fetchTemplates())
+}
+
+// copies the cached version of the templates file from build cache to where hugo expects it
+const getTemplateInfo = async () => {
+  try {
+    // if the file doesn't exist. we need to create it and copy it into the build cache
+    if (!existsSync(cachedTemplateFileFull)) {
+      await writeTemplateInfo()
+    } else {
+      console.log(cachedTemplateName + " already exists.")
+    }
+  } catch (err) {
+    console.error(err)
+  }
+
+
+  // now that we know we have the file, let's copy it into the correct location
+  try {
+    copyFileSync(cachedTemplateFileFull,destinationTemplateFull)
+  } catch (err) {
+    console.log(`Errors were encountered attempting to copy the cached ${cachedTemplateName} file`)
+    console.log(`Attempted to copy from ${cachedTemplateFileFull} to ${destinationTemplateFull}`)
+  }
+}
+
+const reportAPILimit = async () => {
+  const apiLimit = await octokit.request('GET /rate_limit', {
+    headers: {
+      'X-GitHub-Api-Version': '2022-11-28'
+    }
+  })
+
+  console.log(`Current rate limit is ${reportAPILimit.rate.limit}`)
+  console.log(`Number of requests remaining: ${reportAPILimit.rate.}`)
 }
 
 console.log(`
 ### Getting info on Platform.sh templates
 `);
 
-writeTemplateInfo()
+getTemplateInfo()
