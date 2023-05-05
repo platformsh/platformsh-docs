@@ -22,6 +22,8 @@ You can set it to `http://localhost`.
 
 Copy the **Key** and **Secret** for your consumer.
 
+![A screenshot of how to setup the Bitbucket OAuth consumer](/images/integrations/bitbucket/bitbucket-oauth-consumer.png "0.40")
+
 ### 2. Enable the Cloud integration
 
 {{< source-integration/enable-integration source="Bitbucket" >}}
