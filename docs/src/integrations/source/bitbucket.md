@@ -16,13 +16,14 @@ or a self-hosted [Bitbucket Server](https://confluence.atlassian.com/bitbucketse
 ### 1. Create an OAuth consumer
 
 To integrate your Platform.sh project with an existing Bitbucket Cloud repository,
-[create an OAuth consumer](https://support.atlassian.com/bitbucket-cloud/docs/use-oauth-on-bitbucket-cloud/).
+[create an OAuth consumer](https://support.atlassian.com/bitbucket-cloud/docs/use-oauth-on-bitbucket-cloud/):
+
+![A screenshot of how to setup the Bitbucket OAuth consumer](/images/integrations/bitbucket/bitbucket-oauth-consumer.svg "0.35")
+
 The **Callback URL** isn't important in this case.
 You can set it to `http://localhost`.
 
 Copy the **Key** and **Secret** for your consumer.
-
-![A screenshot of how to setup the Bitbucket OAuth consumer](/images/integrations/bitbucket/bitbucket-oauth-consumer.png "0.40")
 
 ### 2. Enable the Cloud integration
 
