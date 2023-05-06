@@ -111,6 +111,13 @@ const getTemplateRuntime = async (name, url, count) => {
 
 // Get info on each template based on the information file inside the templace builder repo
 const getTemplatesFullInfo = async (templateInfo) => {
+  let continueTemplateCall = await reportAPILimit()
+
+  // for now we're going to make sure we have api calls remaining before making another call
+  if(!continueTemplateCall) {
+    return {shortname: name, runtime: "over-api-limits" }
+  }
+
   const templateData = await ocktokit.request("GET /repos/{owner}/{repo}/contents/{path}", {
     owner: githubOrgName,
     repo: templateBuildRepoName,
@@ -193,7 +200,9 @@ const fetchTemplates = async () => {
     // Skip initializing file
     .filter(template => template.name !== "__init__.py")
     .map(template => {
+      // @todo we should check current api limits and skip if we've exceeded
       const name = template.name
+      // @todo url can be removed as we're no longer using it
       const url = `https://raw.githubusercontent.com/platformsh/template-builder/master/templates/${name}`
       return fetchConcurrency(getTemplatesFullInfo, { name, url })
     })
@@ -249,13 +258,12 @@ const getTemplateInfo = async () => {
 
 const reportAPILimit = async () => {
   const apiLimit = await ocktokit.request('GET /rate_limit', {
-    headers: {
-      'X-GitHub-Api-Version': '2022-11-28'
-    }
+    headers: ghHeaders
   })
 
-  console.log(`Current rate limit is ${apiLimit.data.rate.limit}`)
-  console.log(`Number of requests remaining: ${apiLimit.data.rate.remaining}`)
+  console.log(`Number of requests remaining: ${apiLimit.data.rate.remaining} out of ${apiLimit.data.rate.limit}`)
+
+  return (apiLimit.data.rate.remaining > 0)
 }
 
 console.log(`
