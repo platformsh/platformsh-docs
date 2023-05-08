@@ -20,6 +20,9 @@ To integrate your Platform.sh project with an existing Bitbucket Cloud repositor
 
 ![A screenshot of how to setup the Bitbucket OAuth consumer](/images/integrations/bitbucket/bitbucket-oauth-consumer.svg "0.35")
 
+{{< note theme="info" >}}
+Be sure to define the above as a _private_ consumer by checking the "This is a private consumer" box.
+{{< /note >}}
 The **Callback URL** isn't important in this case.
 You can set it to `http://localhost`.
 
