@@ -48,8 +48,11 @@ module:
         - source: "static"
           target: "static"
 
+
 security:
   funcs:
-    getenv: none
+    getenv:
+    - ^GITHUB_
+    - ^HUGO_HEAP_ID
   http:
     methods: none
