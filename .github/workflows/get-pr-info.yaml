@@ -194,6 +194,8 @@ jobs:
 
       # If environment failed to create, fail the workflow
       - name: Fail workflow
+        env:
+          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         if: steps.get_env_url.outputs.env_status != 'success'
         run: |
           echo "::error::The environment for pull request ${{ github.event.number }} failed to deploy. Please rerun this workflow."
