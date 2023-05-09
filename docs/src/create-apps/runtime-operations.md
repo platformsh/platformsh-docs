@@ -234,7 +234,7 @@ $ platform p:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/cu
 ```
 
 To show you how much effort using such a runtime operation saves you,
-here's an example of a standard call and command to generate fake data in a Django project.
+here's an example of a standard call and command to generate fake data in a [Django project](https://github.com/blackfireio/bigfoot-django).
 
 - Call:
 
