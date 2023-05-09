@@ -21,7 +21,7 @@ In particular, notice:
   So the Gatsby build is postponed until the [`post_deploy` hook](/create-apps/hooks/hooks-comparison.html#post-deploy-hook).
 
   To run `gatsby build` on-demand, or to trigger a rebuild from the backend when content is updated,
-  define a [runtime operation](/create-apps/runtime-operations.html#run-the-gatsby-build-step).
+  define a [runtime operation](/create-apps/runtime-operations.html#build-your-app-when-using-a-static-site-generator).
 
 - `mounts`
 
