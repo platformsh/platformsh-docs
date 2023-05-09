@@ -119,7 +119,7 @@ define a runtime operation similar to the following:
 
 ```yaml {location=".platform.app.yaml"}
 operations:
-    next-rebuild:
+    next-build:
         role: admin
         commands:
             # All below are valid, depending on your setup
@@ -214,7 +214,7 @@ $ platform p:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/cu
 
 ### Define management commands on your Django project
 
-On a Django project, you can define management commands, for example to run a migration outside of the Django ORM.
+On a Django project, you can [define custom `django-admin` commands](https://docs.djangoproject.com/en/4.2/howto/custom-management-commands/), for example to run a migration outside of the Django ORM.
 To do so, define a runtime operation similar to the following:
 
 ```yaml {location=".platform.app.yaml"}

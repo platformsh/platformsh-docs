@@ -20,7 +20,7 @@ In particular, notice:
   {{ .Get "name" }} isn't available until after the deploy hook.
   So the Gatsby build is postponed until the [`post_deploy` hook](/create-apps/hooks/hooks-comparison.html#post-deploy-hook).
 
-  To run the `gatsby build` command without having to set up a `post_deploy` hook,
+  To run `gatsby build` on-demand, or to trigger a rebuild from the backend when content is updated,
   define a [runtime operation](/create-apps/runtime-operations.html#run-the-gatsby-build-step).
 
 - `mounts`
