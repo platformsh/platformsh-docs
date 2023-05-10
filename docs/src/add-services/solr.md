@@ -19,6 +19,8 @@ Solr search with generic schemas provided, and a custom schema is also supported
 
 ## Supported versions
 
+{{% major-minor-versions-note configMinor="true" %}}
+
 | Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |------|-------------------------------|------------------------------ |
 |  {{< image-versions image="solr" status="supported" environment="grid" >}} | {{< image-versions image="solr" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="solr" status="supported" environment="dedicated-gen-2" >}} |
