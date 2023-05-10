@@ -1,5 +1,7 @@
 <head>
 
+  {{ partial "header/gtm_script" . }}
+
   <!-- Title -->
   {{ $title := .Page.Title | .RenderString }}
   <!-- If space, add the site name -->
