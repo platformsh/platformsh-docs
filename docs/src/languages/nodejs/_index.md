@@ -10,6 +10,8 @@ You can also develop a microservice architecture mixing JavaScript and other app
 
 ## Supported versions
 
+{{% major-minor-versions-note %}}
+
 | Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |----------------------------------------|------------------------------ |
 | {{< image-versions image="nodejs" status="supported" environment="grid" >}} | {{< image-versions image="nodejs" status="supported" environment="dedicated-gen-2" >}} |
