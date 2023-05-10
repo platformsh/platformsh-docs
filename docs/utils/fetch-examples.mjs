@@ -9,7 +9,9 @@ import * as ghCommon from './common.mjs'
 import * as util from "util";
 
 
-// Example file data.
+/**
+ * Example file data location and function to use for retrieval
+ */
 const dataDirectories = {
     "templates": {
         dir: 'data/remote-examples/templates/',
@@ -29,8 +31,10 @@ const cachedFilesPath = path.join(cachedBuildPath,fetchedFilesPath)
 const localFetchedFiles = path.join(process.cwd(),fetchedFilesPath)
 
 
-
-// Ensure subdirectory we're saving to exists.
+/**
+ * Ensure subdirectory we're saving into exists.
+ * @param {string} savePath
+ */
 function ensureSubdir(savePath) {
     if (!fs.existsSync(savePath)){
         // Create subdirectory if doesn't exist.
@@ -43,7 +47,13 @@ function ensureSubdir(savePath) {
     }
 }
 
-// Function to place the request and write to the file.
+/**
+ * Function to place the request and write to the file
+ * @param {string} target
+ * @param {string} destination
+ * @returns {Promise<void>}
+ * @uses writeFile
+ */
 async function writeFileFromTarget(target, destination) {
     // Get the file.
     const res = await axios.get(target, {responseType: 'arraybuffer', timeout: 60000}) // wait 1 minute for a response
@@ -61,6 +71,12 @@ async function writeFileFromTarget(target, destination) {
     await writeFile(res.data,destination)
 }
 
+/**
+ * Writes our data to a file at <destination>
+ * @param {string} data
+ * @param {string} destination
+ * @returns {Promise<void>}
+ */
 async function writeFile(data, destination) {
   if (data) {
     try {
@@ -72,7 +88,14 @@ async function writeFile(data, destination) {
   }
 }
 
-// Function to parse out an example file's target and destination before request is made.
+/**
+ * Checks to see if we have the destination file in build cache, and if not, prepares the data needed for retrieving it
+ * from the GH API.
+ *
+ * @param data template information as parsed from its yaml file in ./data/remote-examples/templates
+ * @returns {Promise<void>}
+ * @uses writeFileFromGH
+ */
 async function fetchFilesTemplates(data) {
     let fetches = [];
 
@@ -82,10 +105,6 @@ async function fetchFilesTemplates(data) {
       // we only want to retrieve the file if we dont already have it in cache
       if(! fs.existsSync(destination)) {
         console.log(`Retrieving ${data["repos"][repo]}/${data["file"]}...`)
-        // Format target and destination.
-
-        //var target = `${data["root"]}/${data["repos"][repo]}/${data["branch"]}/${data["file"]}`;
-
         // Ensure subdirectory exists.
         ensureSubdir(path.join(cachedBuildPath,data["savePath"]))
         // Place the request and write the file.
@@ -97,6 +116,16 @@ async function fetchFilesTemplates(data) {
     await Promise.all(fetches);
 }
 
+/**
+ * Retrieves a file's contents from a repository and writes those contents to <destination>
+ * @param {string} repoOrg - Organization as retrieve from repoOrg property in *.yaml
+ * @param {string} repoName - Name of the repo
+ * @param {string} fileName - path+file of the file we need to retrieve
+ * @param {string} destination - where we should save the data once retrieved
+ * @param {string} branch - Branch name to use when retrieving <fileName>. Optional. Defaults to default_branch in git
+ * @returns {Promise<void>}
+ * @uses writeFile
+ */
 async function writeFileFromGH(repoOrg,repoName,fileName,destination,branch=""){
   // @todo move this into common
   // /repos/{owner}/{repo}/contents/{path}
@@ -125,7 +154,11 @@ async function writeFileFromGH(repoOrg,repoName,fileName,destination,branch=""){
   })
 }
 
-// Function to parse out an example file's target and destination before request is made.
+/**
+ * Function to parse out an example file's target and destination before request is made.
+ * @param data
+ * @returns {Promise<void>}
+ */
 async function fetchFilesExamples(data) {
     // Ensure that the examples subdirectory exists.
     ensureSubdir(path.join(cachedBuildPath,data["savePath"]));
@@ -153,7 +186,11 @@ async function fetchFilesExamples(data) {
     }
 }
 
-// Main fetch function.
+/**
+ * Fetches itesm as defined in <dataDirectories>
+ * @param exampleGroup
+ * @returns {Promise<void>}
+ */
 async function fetch(exampleGroup) {
     // Get data for the current group of examples.
     var dir = dataDirectories[exampleGroup]["dir"];
@@ -169,13 +206,21 @@ async function fetch(exampleGroup) {
     }
 }
 
-// Main run function.
+/**
+ * Triggers the retrieval of all files not already in cache
+ * @returns {Promise<void>}
+ */
 async function run(){
     for (let exampleGroup in dataDirectories) {
         await fetch(exampleGroup)
     }
 }
 
+/**
+ * Ensures our storage directory exists in the cache directory, triggers run() to retrieve any missing files that do
+ * not exist in the cache, then copies all files from the cache directory into our application container
+ * @returns {Promise<void>}
+ */
 async function buildAndCopy() {
 
   if(!fs.existsSync(cachedFilesPath)) {
