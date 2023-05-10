@@ -134,3 +134,9 @@ Each rule under `paths` is defined by its key describing the expression to match
 ## Application-driven redirects
 
 If neither of the above options satisfy your redirection needs, you can still implement redirects directly in your application. If sent with the appropriate caching headers, this is nearly as efficient as implementing the redirect through one of the two configurations described above. Implementing application-driven redirects depends on your own code or framework and is beyond the scope of this documentation.
+
+## Query-strings based redirect are unsupported
+
+Platform.sh does not support redirects based on query strings.
+
+If you want to redirect based on query strings, this logic has to be implemented by your application.
