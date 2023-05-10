@@ -26,8 +26,6 @@ Due to a licensing change, Elasticsearch versions after 7.10 aren't supported.
 For newer versions, use [OpenSearch](./opensearch.md) instead.
 To switch to OpenSearch, follow the same procedure as for [upgrading](#upgrading).
 
-{{% major-minor-versions-note %}}
-
 {{% image-versions-legacy "elasticsearch" %}}
 
 {{% deprecated-versions %}}

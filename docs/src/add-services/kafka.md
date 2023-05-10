@@ -12,7 +12,7 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 
 ## Supported versions
 
-{{% major-minor-versions-note %}}
+{{% major-minor-versions-note configMinor="true" %}}
 
 | Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |------|-------------------------------|------------------------------ |

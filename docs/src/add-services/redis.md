@@ -25,7 +25,7 @@ Platform.sh supports two different Redis configurations:
 
 ## Supported versions
 
-{{% major-minor-versions-note %}}
+{{% major-minor-versions-note configMinor="true" %}}
 
 | Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |------|-------------------------------|------------------------------ |

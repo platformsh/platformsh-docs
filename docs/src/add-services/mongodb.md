@@ -17,7 +17,7 @@ premium: true
 
 ## Supported versions
 
-{{% major-minor-versions-note %}}
+{{% major-minor-versions-note configMinor="true" %}}
 
 ### Enterprise edition
 
