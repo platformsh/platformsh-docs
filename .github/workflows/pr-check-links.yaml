@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     # Run only for PRs from default repo and approved PRs from forks
     if: github.event.pull_request.head.repo.id == 21975579 || contains(github.event.pull_request.labels.*.name, 'build-fork')
-    steps: 
+    steps:
       - uses: actions/checkout@v3
 
       - name: Set up Node
@@ -25,11 +25,6 @@ jobs:
         run: |
           cd docs
           npm ci
-
-      - name: Get templates and other external files
-        run: |
-          cd docs
-          npm run dev
 
       - name: Build search script
         run: |
