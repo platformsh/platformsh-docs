@@ -14,6 +14,8 @@ logolinksto: "https://platform.sh"
 logoAlt: "Platform.sh"
 favicon: "images/logos/favicon.ico"
 
+gtm: "GTM-54RWC4C"
+
 # Actions in main header
 headerActions:
   headerActionPrimary:
