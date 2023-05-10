@@ -186,7 +186,7 @@ const getTemplateInfo = async () => {
       }
       await writeTemplateInfo()
     } else {
-      console.log(cachedTemplateName + " already exists.")
+      console.log(cachedTemplateName + " already exists in cache.")
     }
   } catch (err) {
     console.error(err)

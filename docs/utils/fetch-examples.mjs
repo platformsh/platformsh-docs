@@ -81,7 +81,7 @@ async function fetchFilesTemplates(data) {
 
       // we only want to retrieve the file if we dont already have it in cache
       if(! fs.existsSync(destination)) {
-        console.log(`I do not have the file ${data["repos"][repo]}/${data["file"]} in cache so I will retrieve it.`)
+        console.log(`Retrieving ${data["repos"][repo]}/${data["file"]}...`)
         // Format target and destination.
 
         //var target = `${data["root"]}/${data["repos"][repo]}/${data["branch"]}/${data["file"]}`;
@@ -91,8 +91,6 @@ async function fetchFilesTemplates(data) {
         // Place the request and write the file.
         let branch = (data["branch"] != "master") ? data["branch"] : ""
         fetches.push(fetchConcurrency(writeFileFromGH,data["repoOrg"], data["repos"][repo], data["file"], destination,branch));
-      } else {
-        //console.log(`${data["repos"][repo]}/${data["file"]} is already in cache.`)
       }
     }
 
@@ -114,8 +112,6 @@ async function writeFileFromGH(repoOrg,repoName,fileName,destination,branch=""){
     return
   }
 
-  //console.log("Requesting",repoOrg,repoName,requestPath)
-
   const ghResponse = await ghCommon.ocktokit.request(`GET ${requestPath}`,{
     owner: ghCommon.githubOrgName,
     repo: ghCommon.templateBuildRepoName,
@@ -125,9 +121,7 @@ async function writeFileFromGH(repoOrg,repoName,fileName,destination,branch=""){
     if(ghResponse && 200 === ghResponse.status  && ghResponse.data.content) {
       const templateContents = ghCommon.decodeBase64Contents(ghResponse.data.content)
       writeFile(templateContents,destination)
-    } //else if(404 === ghResponse.status) {
-    //    console.error(`Request to GH for template ${repoName} returned a 404.`, ghResponse)
-    // }
+    }
   })
 }
 
@@ -150,10 +144,8 @@ async function fetchFilesExamples(data) {
             var destination = path.join(languageDestDir,data["paths"][language][service])
             // Place the request and write the file.
             if(!fs.existsSync(destination)) {
-              console.log(`The example file ${language}/${data["paths"][language][service]} is not cached. Retrieving.`)
+              console.log(`Retrieving ${language}/${data["paths"][language][service]}...`)
               fetches.push(fetchConcurrency(writeFileFromTarget, target, destination));
-            } else {
-              //console.log(`The example file ${language}/${data["paths"][language][service]} is already cached. Skipping.`)
             }
         }
 
@@ -187,7 +179,6 @@ async function run(){
 async function buildAndCopy() {
 
   if(!fs.existsSync(cachedFilesPath)) {
-    //console.log(`Cache directory ${cachedFilesPath} doesn't exist. Creating.`)
     fs.mkdirSync(cachedFilesPath, {recursive: true})
   }
 
