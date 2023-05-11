@@ -1,9 +1,10 @@
 ---
-title: "Options"
+title: "Optional features"
 weight: 4
+description: Add optional features to your {{% names/dedicated-gen-2 %}} project.
 ---
 
-You can enable the following features on your Dedicated Generation 2 projects,
+You can enable the following features on your {{% names/dedicated-gen-2 %}} projects,
 as well as [multiple applications](../../dedicated-gen-3/options.md#multiple-applications)
 and [multiple availability zones](../../dedicated-gen-3/options.md#multiple-applications).
 
