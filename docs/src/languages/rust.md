@@ -11,12 +11,11 @@ Platform.sh supports building and deploying applications written in Rust.
 
 ## Supported versions
 
+{{% major-minor-versions-note %}}
+
 | Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |----------------------------------------|------------------------------ |
 | {{< image-versions image="rust" status="supported" environment="grid" >}} | {{< image-versions image="rust" status="supported" environment="dedicated-gen-2" >}} |
-
-You only need to specify the major version.
-The latest compatible minor version and patches are applied automatically.
 
 ## Dependencies
 

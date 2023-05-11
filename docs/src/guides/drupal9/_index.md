@@ -7,3 +7,5 @@ description: |
 ---
 
 {{% description %}}
+
+{{% guides/link-philosophy %}}
