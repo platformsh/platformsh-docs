@@ -18,6 +18,8 @@ languages:
 
 disableKinds: ["taxonomy", "taxonomyTerm"]
 
+baseURL: "https://docs.platform.sh"
+
 summaryLength: 3
 
 outputs:
