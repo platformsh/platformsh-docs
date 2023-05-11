@@ -130,20 +130,24 @@ title=In the Console
    {{< note title="Example" >}}
 
    You've added the `mysite.com` custom domain to your production environment.
-   You now want to add the `development.mysite.com` custom domain to a development environment called `Dev`.
+   You now want to add the `mydevelopmentsite.com` custom domain to a development environment called `Dev`.
 
    To do so, run the following command:
 
    ```bash
-   platform domain:add development.mysite.com --environment Dev --replace mysite.com
+   platform domain:add mydevelopmentsite.com --environment Dev --replace mysite.com
    ```
 
    {{< /note >}}
 
    In the above example, the `Dev` environment needs to exist
-   for you to add the `development.mysite.com` custom domain successfully.
+   for you to add the `mydevelopmentsite.com` custom domain successfully.
    If the `Dev` environment is later removed,
-   the `development.mysite.com` custom domain is removed too.
+   the `mydevelopmentsite.com` custom domain is removed too.
+   
+   As you can see in this example,
+   you can use any domain for your non-production environments,
+   not necessarily a subdomain of the production.
 
 {{< note >}}
 
