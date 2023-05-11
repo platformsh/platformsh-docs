@@ -81,8 +81,11 @@ title=In the Console
 
 The data is restored and your backed-up environment is deployed.
 This deployment uses the built app, including variables, from when the backup was taken.
-But the Git repository stays as it was before the restore, not when the backup was taken.
-So any future (re)deployments use the current Git repository to build the environment.
+But **code isn't restored**,
+so any future (re)deployments use the current Git repository to build the environment.
+
+To restore your code to its previous state when the backup was taken,
+use Git commands such as [revert](https://git-scm.com/docs/git-revert).
 
 ## Restore to a different environment
 
@@ -92,7 +95,7 @@ You can restore backups to a different environment than they were created on usi
 2. Run the following command:
 
    ```bash
-   platform backup:restore --target=<TARGET_BRANCH_NAME> <BACKUP_ID>
+   platform backup:restore --target={{% variable "TARGET_BRANCH_NAME" %}} {{% variable "BACKUP_ID" %}}
    ```
 
 {{% legacy-regions featureIntro="Restoring backups to different environments" featureShort="to restore to different environments" %}}

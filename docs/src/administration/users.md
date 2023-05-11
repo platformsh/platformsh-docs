@@ -27,6 +27,8 @@ Within a project, each user has a role that controls their access and permission
 
 Users can still see projects that they can't access if they have the [**List projects** permission](#organization-user-permissions).
 
+By default, organization owners have **Project admin** access on all of the projects within their organization.
+
 #### View a user's permissions across all of the projects in your organization
 
 For each user, you can view a summary of the user roles (and therefore permissions)
@@ -43,7 +45,7 @@ Run a command similar to the following,
 using the email address of the user whose permissions you want to view:
 
 ```bash
-platform oups --org {{< variable "ORGANIZATION_NAME" >}} {{< variable "EMAIL_ADDRESS" >}}
+platform organization:user:projects --org {{< variable "ORGANIZATION_NAME" >}} {{< variable "EMAIL_ADDRESS" >}}
 ```
 
 <--->
@@ -222,7 +224,7 @@ After you remove a user from a project or environment type, SSH access changes a
 
 All users who are added to any project within an organization become members of that organization.
 By default, such users have no [organization permissions](#organization-user-permissions).
-You can also have organization admins who aren't part of any projects.
+You can also have organization users who aren't part of any projects.
 
 Users who are a part of an organization with the **List projects** permission can see all projects in that organization at the organization's URL,
 which takes the form `https://console.platform.sh/{{< variable "ORGANIZATION_NAME" >}}`.
@@ -257,6 +259,11 @@ Users with the **Manage users** (`members`) permission can add, edit, or remove 
 
 Users without any of these permissions can only access [projects where they're users](#project-user-permissions).
 They can't access or manage the rest of the organization.
+
+Organization owners have all permissions within their organization.
+Their permission level can't be edited.
+Organization owners can't be removed from their organization,
+except through an [ownership transfer](../administration/organizations.md#transfer-project-ownership).
 
 ### Add a user to an organization
 

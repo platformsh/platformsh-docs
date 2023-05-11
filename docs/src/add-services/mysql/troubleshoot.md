@@ -66,7 +66,7 @@ to learn about low disk space before it becomes an issue.
 
 ### Packet size limitations
 
-`MySQL server has gone awa` errors may be caused by the size of the database packets.
+`MySQL server has gone away` errors may be caused by the size of the database packets.
 If so, the logs may show warnings like `Error while sending QUERY packet` before the error.
 
 One way to resolve the issue is to use the [`max_allowed_packet` parameter](./_index.md#configure-the-database).

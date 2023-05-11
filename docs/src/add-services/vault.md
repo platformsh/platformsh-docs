@@ -1,7 +1,7 @@
 ---
 title: Vault key management service
 sidebarTitle: Vault KMS
-weight: 14
+weight: 50
 ---
 
 The Vault key management service (KMS) provides key management and access control for your secrets.
@@ -13,6 +13,8 @@ so it can be viewed as encryption as a service.
 To store secrets such as API keys, create sensitive [environment variables](../development/variables/_index.md).
 
 ## Supported versions
+
+{{% major-minor-versions-note configMinor="true" %}}
 
 | Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |------|-------------------------------|------------------------------ |

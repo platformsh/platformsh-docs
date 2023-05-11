@@ -1,6 +1,6 @@
 ---
 title: "PostgreSQL (Database service)"
-weight: 9
+weight: -10
 sidebarTitle: "PostgreSQL"
 ---
 
@@ -17,6 +17,8 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 {{% /frameworks %}}
 
 ## Supported versions
+
+{{% major-minor-versions-note %}}
 
 | Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |------|-------------------------------|------------------------------ |
@@ -165,6 +167,11 @@ Importing a database backup is a destructive operation. It overwrites data alrea
 Taking a backup or a database export before doing so is strongly recommended.
 {{< /note >}}
 
+## Sanitizing data
+
+To ensure people who review code changes can't access personally identifiable information stored in your database,
+[sanitize your development environments](../development/sanitize-db/postgresql.md).
+
 ## Multiple databases
 
 If you are using version `10`, `11`, `12`, `13`, or later of this service,
@@ -259,7 +266,7 @@ configuration:
             thirddb: admin
 ```
 
-{{% databases-passwords %}} 
+{{% databases-passwords %}}
 
 ## Service timezone
 

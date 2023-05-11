@@ -1,6 +1,6 @@
 ---
 title: Build and deploy
-weight: 2
+weight: 3
 description: See how applications get built and deployed with Platform.sh.
 ---
 
@@ -52,6 +52,7 @@ Once the app has gone through all of the build steps, it can connect to services
    It could be compiling Sass files, running a bundler, rearranging files on disk, or compiling.
    The committed build hook runs in the build container.
    During this time, commands have write access to the file system, but there aren't connections to other containers (services and other apps).
+   Note that you can [cancel deployments stuck on the build hook](../environments/cancel-activity.md).
 1. **Freeze app container**:
    The file system is frozen and produces a read-only container image, which is the final build artifact.
 

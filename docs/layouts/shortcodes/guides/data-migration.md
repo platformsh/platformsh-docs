@@ -1,3 +1,5 @@
+{{ $isWordPress := .Get "WordPress" }}
+{{ $isSymfony := .Get "Symfony" }}
 ## Migrate your data
 
 If you are moving an existing site to Platform.sh, then in addition to code you also need to migrate your data.
@@ -6,15 +8,24 @@ That means your database and your files.
 ### Import the database
 
 First, obtain a database dump from your current site,
-such as using the [`mysqldump` command for MariaDB](https://mariadb.com/kb/en/mysqldump/).
+such as using the
+* [`pg_dump` command for PostgreSQL](https://www.postgresql.org/docs/current/app-pgdump.html)
+* [`mysqldump` command for MariaDB](https://mariadb.com/kb/en/mysqldump/)
+* [`sqlite-dump` command for SQLite](https://www.sqlitetutorial.net/sqlite-dump/)
 
 {{ .Inner | .Page.RenderString }}
 
 Next, import the database into your Platform.sh site by running the following command:
 
+{{ if $isSymfony }}
+```bash
+symfony cloud:sql < dump.sql
+```
+{{ else }}
 ```bash
 platform sql < dump.sql
 ```
+{{ end }}
 
 That connects to the database service through an SSH tunnel and imports the SQL.
 
@@ -23,17 +34,18 @@ That connects to the database service through an SSH tunnel and imports the SQL.
 First, download your files from your current hosting environment.
 The easiest way is likely with rsync, but consult your host's documentation.
 
-This guide assumes that you have already downloaded {{ if .Get "WordPress" }}
+This guide assumes that you have already downloaded {{ if $isWordPress }}
 all of your uploaded files to your local `wordpress/wp-content/uploads` directory
 {{ else }}
 all of your user files to your local `files/user` directory and your public files to `files/public`
 {{ end }}, but adjust accordingly for their actual locations.
 
-Next, upload your files to your mounts using the `platform mount:upload` command.
+Next, upload your files to your mounts
+using the {{ if $isSymfony }}`symfony cloud:mount:upload`{{ else }}`platform mount:upload`{{ end }} command.
 Run the following command from your local Git repository root,
 modifying the `--source` path if needed.
 
-{{ if .Get "WordPress" }}
+{{ if $isWordPress }}
 ```bash
 platform mount:upload --mount wordpress/wp-content/uploads --source ./wordpress/wp-content/uploads
 ```

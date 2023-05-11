@@ -1,6 +1,6 @@
 ---
 title: "Elasticsearch (Search service)"
-weight: 1
+weight: -100
 description: |
   Elasticsearch is a distributed RESTful search engine built for the cloud.
 sidebarTitle: "Elasticsearch"
@@ -22,11 +22,11 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 
 ## Supported versions
 
-{{% image-versions-legacy "elasticsearch" %}}
-
 Due to a licensing change, Elasticsearch versions after 7.10 aren't supported.
 For newer versions, use [OpenSearch](./opensearch.md) instead.
 To switch to OpenSearch, follow the same procedure as for [upgrading](#upgrading).
+
+{{% image-versions-legacy "elasticsearch" %}}
 
 {{% deprecated-versions %}}
 
