@@ -40,12 +40,12 @@ For containers to be allowed to connect to each other, the following requirement
 ## Security incident handling procedure
 
 Should Platform.sh become aware of a security incident &mdash; such as an active or past hacking attempt, virus or worm, or data breach &mdash;
-senior personnel including the CTO are promptly notified.
+senior personnel, including the CTO, are promptly notified.
 
 The security incident procedure includes the following steps:
 
 1. Isolating the affected systems.
-2. Collecting forensic evidence for later analysis, including a byte-for-byte copy of the affected system.
+2. Collecting forensic evidence for later analysis, including a byte-for-byte copy of the affected systems.
 3. Restoring normal operations.
 
 Once normal service is restored, a root cause analysis is performed to determine exactly what happened.

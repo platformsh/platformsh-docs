@@ -11,7 +11,7 @@ A wide range of server metrics, including disk space, memory, and disk usage are
 These metrics provide a complete picture of the health of your application infrastructure.
 
 As soon as a metric goes out of bounds, Platform.sh Support and Operations teams are alerted.
-When an outage is detected, a point in time report is generated
+When an outage is detected, a Point in Time report is generated
 so Platform.sh Support can triage the cause of the outage.
 
 On top of internal Platform.sh tools,

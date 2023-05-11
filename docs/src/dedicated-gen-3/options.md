@@ -24,12 +24,12 @@ for the following reasons:
   This has a direct effect on perceived end-user performance.
 
 - Network traffic between AZs is billed, whereas intra-AZ traffic isn't.
-  So launching Dedicated clusters across multiple AZs leads to higher costs for this decreased performance.
+  So launching Dedicated clusters across multiple AZs leads to higher costs for decreased performance.
 
 If you prefer the peace of mind of hosting across multiple AZs,
 you can request a different configuration.
-But note that multiple-AZ configurations don't improve the contractual 99.99% uptime SLA,
-nor does the standard, single-AZ configuration decrease the 99.99% uptime SLA.
+But note that multiple-AZ configurations don't improve the contractual 99.99% uptime SLA
+(nor does the standard, single-AZ configuration decrease the 99.99% uptime SLA).
 Platform.sh is responsible for meeting the 99.99% uptime SLA no matter what,
 so multiple-AZ deployments should only be considered in cases where they're truly appropriate.
 
