@@ -1,6 +1,6 @@
 ---
 title: "InfluxDB (Database service)"
-weight: 3
+weight: -80
 description: |
   InfluxDB is a time series database optimized for high-write-volume use cases such as logs, sensor data, and real-time analytics.
 sidebarTitle: "InfluxDB"
@@ -11,6 +11,8 @@ sidebarTitle: "InfluxDB"
 It exposes an HTTP API for client interaction. See the [InfluxDB documentation](https://docs.influxdata.com/influxdb) for more information.
 
 ## Supported versions
+
+{{% major-minor-versions-note configMinor="true" %}}
 
 | Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |------|-------------------------------|------------------------------ |
@@ -62,7 +64,7 @@ To export your data from InfluxDB, follow these steps:
    SSH tunnel opened to influxdb at: http://127.0.0.1:30000
    ```
 
-3. Get the username and password from the [relationship](#relationship-reference) by running the following command:
+3. Get the username, password and token from the [relationship](#relationship-reference) by running the following command:
 
    ```bash
    platform relationships -P {{<variable "RELATIONSHIP_NAME" >}}
@@ -71,5 +73,5 @@ To export your data from InfluxDB, follow these steps:
 4. Adapt and run [InfluxDB's CLI export command](https://docs.influxdata.com/influxdb/v2.3/reference/cli/influx/backup/).
 
     ``` bash
-    influx backup --host {{< variable "URL_FROM_STEP_2" >}}
+    influx backup --host {{< variable "URL_FROM_STEP_2" >}} --token {{< variable "API_TOKEN_FROM_STEP_3" >}}
     ```

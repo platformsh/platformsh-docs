@@ -1,6 +1,6 @@
 ---
 title: "Memcached (Object cache)"
-weight: 5
+weight: -50
 description: |
   Memcached is a simple in-memory object store well-suited for application level caching.
 sidebarTitle: "Memcached"
@@ -19,6 +19,8 @@ Both Memcached and Redis can be used for application caching. As a general rule,
 {{% /frameworks %}}
 
 ## Supported versions
+
+{{% major-minor-versions-note configMinor="true" %}}
 
 | Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |------|-------------------------------|------------------------------ |

@@ -1,5 +1,9 @@
 ---
 title: "Ibexa DXP"
-weight: -40
+weight: -160
 description: Everything you need to get started with Ibexa DXP on Platform.sh. 
 ---
+
+{{% description %}}
+
+{{% guides/link-philosophy %}}

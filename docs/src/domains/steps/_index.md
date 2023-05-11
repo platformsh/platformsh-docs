@@ -8,7 +8,7 @@ layout: single
 Once your project is ready for production, replace the automatically generated domain with your own custom domain.
 
 Note that adding a domain disables the automatically generated URL for your Production environment only.
-URLs for non-Production environments can't be customized.
+If you are an Enterprise or Elite customer and have a Grid or {{% names/dedicated-gen-3 %}} project, you can [customize the URLs for your non-production environments](/domains/steps/custom-non-production-domains).
 {{% names/dedicated-gen-2 %}} customers can also customize the domain for their Staging environment.
 
 ## Before you begin
@@ -48,7 +48,7 @@ platform subscription:info plan standard
 <--->
 
 +++
-title=In the console
+title=In the Console
 +++
 
 1. On the tile of the project you want to upgrade, click **{{< icon more >}} More**.
@@ -83,7 +83,7 @@ platform environment:info edge_hostname
 <--->
 
 +++
-title=In the console
+title=In the Console
 +++
 
 1. In the Console, open your Production environment.
@@ -176,14 +176,14 @@ platform domain:add {{<variable "YOUR_DOMAIN" >}}
 <--->
 
 +++
-title=In the console
+title=In the Console
 +++
 
 1. Select the project where you want to add a domain.
 2. Click {{< icon settings >}} **Settings**.
 3. Click **Domains**.
 4. In the **Domain** field, enter your domain.
-5. Click **Add**.
+5. Click **Add domain**.
 
 {{< /codetabs >}}
 

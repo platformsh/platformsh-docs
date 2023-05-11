@@ -86,6 +86,7 @@ web:
             # Send all requests through to the app
             allow: false
             passthru: true
+            scripts: false
 ```
 
 </div>

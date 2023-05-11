@@ -28,7 +28,7 @@ You can personalize the display settings for the Console.
 To do so:
 
 1. Open the user menu (your name or profile picture).
-2. Click **Settings**.
+2. Click **My Profile**.
 3. Choose the mode you want.
 4. Click **Save**.
 
@@ -38,5 +38,5 @@ The Console can be displayed in three ways:
 * High contrast mode
 * Dark mode
 
-To meet our [commitment to accessibility](/security/wcag.md),
+To meet our [commitment to accessibility](https://platform.sh/trust-center/legal/wcag/),
 all three options are compliant with level AA of the Web Content Accessibility Guidelines 2.0.

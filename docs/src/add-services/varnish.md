@@ -1,6 +1,6 @@
 ---
 title: Varnish
-weight: 13
+weight: 40
 ---
 
 Varnish is a popular HTTP proxy server, often used for caching.
@@ -9,6 +9,8 @@ and a CDN would cover more advanced uses.
 But you can include Varnish as a service.
 
 ## Supported versions
+
+{{% major-minor-versions-note configMinor="true" %}}
 
 | Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |------|-------------------------------|------------------------------ |
@@ -34,8 +36,8 @@ graph LR
 {{% endpoint-description type="varnish" noApp=true %}}
 
 The `relationships` block defines the connection between Varnish and your app.
-You can define `{{< variable "RELATIONSHIP_NAME" >}}` as you like.
-`{{< variable "APP_NAME" >}}` should match your app's `name` in the [app configuration](../create-apps/app-reference.md).
+You can define <code>{{< variable "RELATIONSHIP_NAME" >}}</code> as you like.
+<code>{{< variable "APP_NAME" >}}</code> should match your app's `name` in the [app configuration](../create-apps/app-reference.md).
 
 The `configuration` block must reference a VCL file inside the `.platform` directory.
 The `path` defines the file relative to the `.platform` directory.
@@ -217,7 +219,7 @@ The following example shows how to set up purging.
        if (req.method == "PURGE") {
            # The Platform.sh router provides the real client IP as X-Client-IP
            # Use std.ip to convert the string to an IP for comparison
-           if (!std.ip(req.http.X-Client-IP) ~ purge) {
+           if (!std.ip(req.http.X-Client-IP, "0.0.0.0") ~ purge) {
                # Deny all purge requests not from the allowed IPs
                return(synth(403,"Not allowed."));
            }
@@ -227,6 +229,10 @@ The following example shows how to set up purging.
        ...
    }
    ```
+  
+  {{< note theme="info" >}}
+  The snippet above has been produced for Varnish 7.x. If using a different version, consult the [Varnish documentation](https://varnish-cache.org/docs/) for potential differences in syntax and required parameters.
+  {{< /note >}}
 
 3. Set up cache purging to suit your needs.
    The following cURL call gives an example of how this can work:

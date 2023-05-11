@@ -9,12 +9,17 @@ you want to be sure those changes only improve things and don't make you lose an
 You also want to have a disaster recovery plan in place.
 Backups help you protect yourself against potential data loss.
 
-Backups represent a complete snapshot of an environment's data.
-This includes all persistent data from all running [services](../add-services/_index.md)
+{{< note theme="warning">}}
+
+Backups include the environment's complete data but exclude code.
+To restore code to its previous state when the backup was taken,
+use Git commands such as [revert](https://git-scm.com/docs/git-revert).
+
+{{</note>}}
+
+Backups include all persistent data from all running [services](../add-services/_index.md)
 and any files stored on [mounts](../create-apps/app-reference.md#mounts).
 The snapshot is stored internally and can't be downloaded.
-Code is managed through Git and so isn't included.
-You can restore previous code using Git commands such as [revert](https://git-scm.com/docs/git-revert).
 
 You might want to create backups of your live environment before merging a different environment into it
 or each time you increase the storage space of your services.
@@ -103,7 +108,7 @@ They may make restorations less reliable.
 To avoid such issues, schedule [manual backups](#create-a-manual-backup) during non-peak hours,
 when the short amount of downtime is least noticed.
 
-Automated backups are always live, including those taken on [{{% names/dedicated-gen-3 %}}](../dedicated-gen-3/overview.md)
+Automated backups are always live, including those taken on [{{% names/dedicated-gen-3 %}}](../dedicated-gen-3/_index.md)
 and [{{% names/dedicated-gen-2 %}}](../dedicated-gen-2/overview/_index.md) environments.
 
 You can create a manual live backup on a Grid project:

@@ -1,0 +1,56 @@
+<!-- Creates single page banner note for page warning -->
+
+<!-- Get default banner data -->
+{{ $banners := .Site.Data.banners }}
+{{ $bannerTypes := slice }}
+{{ range $bannerType, $y := $banners }}
+   {{ $bannerTypes = $bannerTypes | append $bannerType}}
+{{ end }}
+
+<!-- Build the banner if 'banner' param exists on the page -->
+{{- if .Params.banner -}}
+
+<!-- NOTE: a future version could allow for banner types to have a default, and overridable color... -->
+<div class="prose xl:prose-lg bg-skye-light p-4 mb-4 max-w-none">
+
+  <!-- Check if 'banner.type' exists, to load default strings in data/banners.yaml -->
+  {{- if .Params.banner.type -}}
+    <!-- Check that the provided banner type exists -->
+    {{- if in $bannerTypes .Params.banner.type -}}
+
+      <!-- Use provided or banner type default title -->
+      {{- if .Params.banner.title -}}
+        <p><strong>{{ .Params.banner.title }}</strong></p>
+      {{- else -}}
+        <p><strong>{{ index .Site.Data.banners .Params.banner.type "title" }}</strong></p>
+      {{- end -}}
+      <!-- Use provided or or banner type default body -->
+      {{- if .Params.banner.body -}}
+        <p>{{ .Params.banner.body | .Page.RenderString }}</p>
+      {{- else -}}
+        <p>{{ index .Site.Data.banners .Params.banner.type "body"  | .Page.RenderString }}</p>
+      {{- end -}}
+
+    {{- end -}}
+
+  <!-- If no .Params.banner.type provided... -->
+  {{- else -}}
+
+    <!-- Use provided or some default title -->
+    {{- if .Params.banner.title -}}
+      <p><strong>{{ .Params.banner.title }}</strong></p>
+    {{- else -}}
+      <p><strong>Note</strong></p>
+    {{- end -}}
+    <!-- Use provided or some default body -->
+    {{- if .Params.banner.body -}}
+      <p>{{ .Params.banner.body | .Page.RenderString }}</p>
+    {{- else -}}
+      <p>Lorem ipsum is the thing to say.</p>
+    {{- end -}}
+
+  {{- end -}}
+
+  </div>
+
+{{- end -}}
