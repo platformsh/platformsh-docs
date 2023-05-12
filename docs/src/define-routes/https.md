@@ -43,11 +43,8 @@ Alternatively, consider splitting your project up into multiple Platform.sh proj
 When you use the [TLS certificates](#tls-certificates) provided by Platform.sh,
 certificate renewals are automatic.
 They trigger a redeployment of your environment.
-During this redeployment, required security and system upgrades are applied to your containers
-and only the [`post-deploy` hook is run](../create-apps/hooks/hooks-comparison.md).
-
-Renewals take seconds unless upgrades are available for your containers.
-If upgrades are available, your containers are rebuilt, which lengthens the process.
+During this redeployment, required security and system upgrades are applied to your containers.
+So the duration of the redeployment depends on what needs to be upgraded.
 
 ## Enable HTTPS
 
