@@ -18,7 +18,7 @@ Note that you can only create backups and restore active environments.
 To work with an [inactive environment](../other/glossary.md#inactive-environment),
 first activate it.
 
-## How backups and restores work
+## How backup and restore works on Platform.sh
 
 1. As an [admin user](../administration/users.md), you can do a backup of your environment. 
    This backup includes the complete data and code of the environment.
