@@ -49,3 +49,12 @@ module:
           lang: "en"
         - source: "static"
           target: "static"
+
+
+security:
+  funcs:
+    getenv:
+    - ^GITHUB_
+    - ^HUGO_HEAP_ID
+  http:
+    methods: none
