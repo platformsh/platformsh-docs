@@ -77,7 +77,7 @@ title=Using the Console
 1. Navigate to your existing organization or a project in it.
 1. Open the user menu (your name or profile picture).
 1. Click **Create Organization**.
-1. Enter the required information (label, organization URL, country).
+1. Enter the required information (label, organization URL, company name, country, security contact).
 1. Click **Create organization**.
 
 <--->
