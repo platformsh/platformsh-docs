@@ -24,7 +24,9 @@ first activate it.
    This backup includes the complete data and code of the environment.
    All persistent data from all running [services](../add-services/_index.md)
    and any files stored on [mounts](../create-apps/app-reference.md#mounts) are included.
-   The snapshot is stored internally and can't be downloaded.
+   The backup is stored internally on Platform.sh.
+   That is, the backup can be applied to environments on Platform.sh, but it can't be downloaded.
+   If you need to download backups, instead [export your mount and service data](../tutorials/exporting.md)).
 
 2. You restore your environment using the backup.
    At this point, the data and code from the backup are restored to ensure a consistent state.
