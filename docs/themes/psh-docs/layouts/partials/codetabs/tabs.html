@@ -97,7 +97,19 @@
             {{ with ( $allParams.Get $tabIndex ) }}
               {{ if ne (.Get "highlight") nil }}
                 {{ if ne (.Get "file") nil }}
-                  {{ highlight ( readFile ( .Get "file" ) ) ( .Get "highlight") "style=abap" | chomp }}
+
+                {{- if eq ( len ( getenv "GITHUB_WORKFLOW" ) ) 0 }}
+                    {{ $content := readFile ( .Get "file" ) | default "" }}
+                    {{- $contentLength := len $content -}}
+                    {{- if ne $contentLength 0 }}
+                        {{ highlight $content ( .Get "highlight") "style=abap" | chomp }}
+                    {{- else -}}
+                        {{ errorf "File %s not found" ( .Get "file" ) }}
+                    {{- end -}}
+                {{- else -}}
+                    {{ partial "file-not-found" ( .Get "file" ) }}
+                {{- end -}}
+                
                 {{ else }}
                   {{ highlight $content ( .Get "highlight") "style=abap" | chomp }}
                 {{ end }}
