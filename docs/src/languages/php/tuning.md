@@ -192,7 +192,7 @@ Doing so would prevent updates to the generated code from being loaded.
 To force a restart of PHP-FPM:
 
 1. Connect to your app container via SSH using the [CLI](../../development/ssh/_index.md) by running `platform ssh`.
-2. Run `pkill -f php-fpm`.
+2. Run `pkill -f -u "$(whoami)" php-fpm`.
 
 ## Optimize your code
 
