@@ -9,28 +9,40 @@ you want to be sure those changes only improve things and don't make you lose an
 You also want to have a disaster recovery plan in place.
 Backups help you protect yourself against potential data loss.
 
-{{< note theme="warning">}}
-
-Backups include the environment's complete data but exclude code.
-To restore code to its previous state when the backup was taken,
-use Git commands such as [revert](https://git-scm.com/docs/git-revert).
-
-{{</note>}}
-
-Backups include all persistent data from all running [services](../add-services/_index.md)
-and any files stored on [mounts](../create-apps/app-reference.md#mounts).
-The snapshot is stored internally and can't be downloaded.
-
 You might want to create backups of your live environment before merging a different environment into it
 or each time you increase the storage space of your services.
 
 You also have regularly scheduled automated backups of your production environments to cover most cases.
 
-You can only create backups and restore active environments.
+Note that you can only create backups and restore active environments.
 To work with an [inactive environment](../other/glossary.md#inactive-environment),
 first activate it.
 
-To create a backup of an environment, you need an [Admin role for that environment type](../administration/users.md).
+## How backups and restores work
+
+1. As an [admin user](../administration/users.md), you can do a backup of your environment. 
+   This backup includes the complete data and code of the environment.
+   All persistent data from all running [services](../add-services/_index.md)
+   and any files stored on [mounts](../create-apps/app-reference.md#mounts) are included.
+   The snapshot is stored internally and can't be downloaded.
+
+2. You restore your environment using the backup.
+   At this point, the data and code from the backup are restored to ensure a consistent state.
+   The latest code in your repository may have been modified such that it no longer works correctly with the old, restored data.
+
+   {{< note theme="warning" title="Warning" >}}
+
+   But Platform.sh doesn’t modify your Git repository. So by default, any further changes you make use the latest code in your repository.
+
+   {{< /note >}}
+
+3. Depending on your needs, you can do the following:
+
+   a) To use the code from the time of the backup as a baseline for future changes,
+      make sure you restore it yourself in your Git repository.
+      To do so, use Git commands such as `revert`.
+
+   b) To use your latest code instead, just redeploy your environment or push a new change.
 
 ## Backups and downtime
 

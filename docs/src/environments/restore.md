@@ -81,11 +81,18 @@ title=In the Console
 
 The data is restored and your backed-up environment is deployed.
 This deployment uses the built app, including variables, from when the backup was taken.
-But **code isn't restored**,
-so any future (re)deployments use the current Git repository to build the environment.
+
+{{< note theme="warning" title="Warning" >}}
+
+The code is also initially restored, but Platform.sh doesn't modify your Git repository.
+So any future (re)deployments use the current Git repository to build the environment.
 
 To restore your code to its previous state when the backup was taken,
 use Git commands such as [revert](https://git-scm.com/docs/git-revert).
+
+See [how backups and restores work](../environments/backup.md#how-backups-and-restores-work).
+
+{{< /note >}}
 
 ## Restore to a different environment
 
