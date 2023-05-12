@@ -145,6 +145,7 @@ shard
 shortcode
 Slowloris
 Splunk
+Strict_Transport_Security
 Stempel
 stderr
 stdout
