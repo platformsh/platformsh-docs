@@ -1,8 +1,9 @@
 savePath: "/static/files/fetch/appyaml"
 root: "https://raw.githubusercontent.com/platformsh-templates"
+repoOrg: "platformsh-templates"
 branch: "master"
 file: ".platform.app.yaml"
-repos: 
+repos:
     - typo3
     - drupal7
     - drupal8

@@ -1,6 +1,7 @@
 savePath: "/static/files/fetch/config-examples"
 root: "https://raw.githubusercontent.com/platformsh-templates"
+repoOrg: "platformsh-templates"
 branch: "master"
 file: "web/sites/default/settings.platformsh.php"
-repos: 
+repos:
     - drupal9

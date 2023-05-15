@@ -1,5 +1,6 @@
 savePath: "/static/files/fetch/appyaml/symfony-docker-compose"
 root: "https://raw.githubusercontent.com/symfonycorp"
+repoOrg: "symfonycorp"
 branch: "6.2"
 file: "docker-compose.yml"
 repos:

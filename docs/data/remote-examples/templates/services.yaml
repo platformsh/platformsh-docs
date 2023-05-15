@@ -1,8 +1,9 @@
 savePath: "/static/files/fetch/servicesyaml"
 root: "https://raw.githubusercontent.com/platformsh-templates"
+repoOrg: "platformsh-templates"
 branch: "master"
 file: ".platform/services.yaml"
-repos: 
+repos:
     - drupal9
     - typo3
     - wordpress-composer
@@ -10,4 +11,4 @@ repos:
     - gatsby-drupal
     - gatsby-strapi
     - gatsby-wordpress
-    - django4 
+    - django4
