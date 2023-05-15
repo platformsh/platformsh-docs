@@ -69,7 +69,7 @@ You need:
   through the [Platform.sh CLI](../../administration/cli/_index.md).
   In future versions, you'll be able to do so in the [Platform.sh Console](../../administration/web/_index.md) too.
 
-To prevent abuse, by default you can add custom domains to up to 5 environments per project only,
+To prevent abuse, by default you can add custom domains to up to 5 environments per project only.
 This limit doesn't include the production environment,
 and you can increase it without charge.
 To do so, [contact Support](../../overview/get-support.md).
@@ -146,9 +146,9 @@ title=In the Console
    {{< /note >}}
 
    In the above example, the `Dev` environment needs to exist
-   for you to add the `development.mysite.com` custom domain successfully.
+   for you to add the `mydev.com` custom domain successfully.
    If the `Dev` environment is later removed,
-   the `development.mysite.com` custom domain is removed too.
+   the `mydev.com` custom domain is removed too.
 
    As shown in the example, you can use any domain for your non-production environments,
    and not necessarily a subdomain of the production.
