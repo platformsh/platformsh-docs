@@ -77,7 +77,7 @@ title=Using the Console
 1. Navigate to your existing organization or a project in it.
 1. Open the user menu (your name or profile picture).
 1. Click **Create Organization**.
-1. Enter the required information (label, organization URL, country).
+1. Enter the required information (label, organization URL, company name, country, security contact).
 1. Click **Create organization**.
 
 <--->
@@ -138,7 +138,7 @@ You have to be an organization owner or have the [manage plan permission](./user
 
 1. Make the new organization owner a [project admin](./users.md#project-user-permissions)
    for the project you want to transfer.
-2. To ask for the transfer, from you organization account submit a [support ticket](https://console.platform.sh/-/users/~/tickets).
+2. To ask for the transfer, from your organization account submit a [support ticket](https://console.platform.sh/-/users/~/tickets).
 
 Once the transfer is completed, the new organization can administer all project settings and billing and receives future invoices.
 Ownership transfer automatically transfers subscription charges to the new organization.

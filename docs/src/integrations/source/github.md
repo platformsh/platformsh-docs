@@ -10,8 +10,11 @@ description: See how to manage your Platform.sh environments directly from your 
 ## 1. Generate a token
 
 To integrate your Platform.sh project with an existing GitHub repository,
-[generate a new token](https://github.com/settings/tokens/new).
-Fine-grained access tokens aren't currently supported.
+you need to [generate a new token](https://github.com/settings/tokens/new).
+You can generate a classic personal access token,
+or a [fine-grained personal access token](https://github.blog/changelog/2022-10-18-introducing-fine-grained-personal-access-tokens/)
+for even greater control over the permissions you grant.
+
 For the integration to work,
 your GitHub user needs to have permission to push code to the repository.
 
@@ -19,7 +22,10 @@ When you set up or update an integration, it also needs permission to manage its
 This means your user needs to be a repository admin to create the integration.
 You can remove this permission after setup.
 
-Give your token a description and then ensure the token has the scopes that correspond to what you want to do:
+Make sure you give your token a description.
+
+If you're generating a classic personal access token,
+ensure the token has the appropriate scopes based on what you want to do:
 
 | Scope                 | Purpose                                                                |
 | --------------------- | ---------------------------------------------------------------------- |
@@ -28,7 +34,20 @@ Give your token a description and then ensure the token has the scopes that corr
 | `repo`                | To integrate with your private repositories.                           |
 | `repo` and `read:org` | To integrate with private repositories in organizations you belong to. |
 
-Copy the token.
+If you're generating a fine-grained personal access token,
+ensure the token has the right [repository permissions](https://docs.github.com/en/rest/overview/permissions-required-for-fine-grained-personal-access-tokens?apiVersion=2022-11-28)
+for the integration to work:
+
+| Permission        | Access level    |
+| ------------------| ----------------|
+| `Commit statuses` | Read and write  |
+| `Contents`        | Read and write  |
+| `Metadata`        | Read-only       |
+| `Pull request`    | Read and write  |
+| `Webhooks`        | Read and write  |
+
+After you've set the needed scopes or permissions,
+generate and copy your token.
 
 ## 2. Enable the integration
 

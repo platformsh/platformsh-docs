@@ -16,3 +16,5 @@ If you already have a Django project ready to deploy,
 see the template's [example Platform.sh files](https://github.com/platformsh-templates/django4/tree/master/.platform).
 These files let you [configure your app](../../create-apps/_index.md),
 [add services](../../add-services/_index.md), and [define routes](../../define-routes/_index.md).
+
+{{% guides/link-philosophy %}}

@@ -4,17 +4,42 @@ on:
     branches: [main]
     types: [labeled,opened,reopened,synchronize]
 
+env:
+  GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+
 jobs:
   check-for-upcoming:
     runs-on: ubuntu-latest
     name: Check if the PR is an upcoming change
-    steps: 
+    steps:
       - name: Fail upcoming changes
         # If the PR contains the label for future changes, fail the workflow
         if: contains(github.event.pull_request.labels.*.name, 'upcoming version')
         run: |
           echo "This PR deals with a future change and so can't be merged yet"
           exit 1
-      
+
       - name: Pass current changes
         run: echo "This PR is marked as only involving current changes"
+
+  add-markdown-prose-label:
+    runs-on: ubuntu-latest
+    if: github.event.action == 'opened' || github.event.action == 'reopened'
+    steps:
+      - name: Get repo
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Verify label exists
+        shell: bash
+        run: |
+          if [[ "${{ vars.LBL_MRKDWNPROSE }}" != $(gh label list --search "${{ vars.LBL_MRKDWNPROSE }}" --json name -q '.[] | .name') ]]; then
+            echo "Label ${{ vars.LBL_MRKDWNPROSE }} doesn't exist so I need to create it."
+            gh label create "${{ vars.LBL_MRKDWNPROSE }}"
+          else
+            echo "Label ${{ vars.LBL_MRKDWNPROSE }} already exists so no need to create it."
+          fi
+      - name: Add prose label
+        shell: bash
+        run: |
+          gh pr edit ${{ github.event.pull_request.number }} --add-label "${{ vars.LBL_MRKDWNPROSE }}"

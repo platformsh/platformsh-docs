@@ -45,7 +45,7 @@ Run a command similar to the following,
 using the email address of the user whose permissions you want to view:
 
 ```bash
-platform oups --org {{< variable "ORGANIZATION_NAME" >}} {{< variable "EMAIL_ADDRESS" >}}
+platform organization:user:projects --org {{< variable "ORGANIZATION_NAME" >}} {{< variable "EMAIL_ADDRESS" >}}
 ```
 
 <--->
