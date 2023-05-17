@@ -682,7 +682,7 @@
     "versions": {
       "deprecated": [],
       "supported": [
-        "2.5",
+        "2",
         "1.2",
         "1.1"
       ],
@@ -693,12 +693,13 @@
     "versions-dedicated-gen-2": {
       "deprecated": [],
       "supported": [
+        "2.5",
         "1.2"
       ]
     },
     "versions-dedicated-gen-3": {
       "deprecated": [],
-      "supported": []
+      "supported": [2]
     }
   },
   "oracle-mysql": {
