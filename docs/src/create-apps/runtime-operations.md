@@ -69,7 +69,7 @@ For example, to trigger the runtime operation [defined previously](#define-a-run
 you could use the following command:
 
 ```bash
-$ platform p:curl /environments/environment_abcd1234/deployments/current/operations -X POST -d '{"operation": "clear-rebuild", "service": "app"}' -p abcdefgh1234567
+platform p:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "clear-rebuild", "service": "app"}' -p {{< variable "PROJECT_ID" >}}
 ```
 
 ## Runtime operation examples
@@ -232,102 +232,3 @@ To trigger your runtime operation, run a cURL command similar to the following:
 ```bash
 $ platform p:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "manual-migration", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
 ```
-
-To show you how much effort using such a runtime operation saves you,
-here's an example of a standard call and command to generate fake data in a [Django project](https://github.com/blackfireio/bigfoot-django).
-
-- Call:
-
-```bash
-pipenv run python manage.py generate_fake_data
-```
-
-- Command:
-
-```python
-import faker
-import random
-
-from django.db import transaction
-from django.core.management.base import BaseCommand
-
-from bigfoot.models import User, Sighting, Comment
-
-NUSERS = 100
-NSIGHTINGS = 200
-NCOMMENTS = 4000
-
-
-class Command(BaseCommand):
-    help = "Generates fake data"
-
-    @transaction.atomic
-    def handle(self, *args, **kwargs):
-        self.stdout.write("Deleting old data...")
-        models = [User, Sighting, Comment]
-        for m in models:
-            m.objects.all().delete()
-
-        faker_obj = faker.Faker()
-        faker.Faker.seed(4321)  # always generate same data
-
-        self.stdout.write("Generating users...")
-        users = []
-        for _ in range(NUSERS):
-            user = User(
-                username=faker_obj.unique.name(),
-                email=faker_obj.unique.email()
-            )
-            user.save()
-
-            users.append(user)
-
-        self.stdout.write("Generating sightings...")
-        sightings = []
-        for _ in range(NSIGHTINGS):
-            sighting = Sighting(
-                description=faker_obj.text(),
-                title=faker_obj.text()[:80],
-                owner=random.choice(users),
-                date_added=faker_obj.date_between(start_date='-6m'),
-            )
-            sighting.save()
-            sightings.append(sighting)
-
-        self.stdout.write("Generating comments...")
-        for i in range(NCOMMENTS):
-            if i % 5 == 0:
-                # make every 5th comment done by a small set of users
-                # Wow! They must *love* Bigfoot!
-                owner = random.choice(users[:len(users) // 10])
-            else:
-                owner = random.choice(users)
-            sighting = random.choice(sightings)
-
-            comment = Comment(
-                owner=owner,
-                sighting=sighting,
-                content=faker_obj.text(),
-                date_added=faker_obj.date_between(
-                    start_date=sighting.date_added
-                )
-            )
-            comment.save()
-```
-
-### Clear the cache of your Laravel site
-
-To clear the cache of your Laravel site, define a runtime operation similar to the following:
-
-```yaml {location=".platform.app.yaml"}
-operations:
-  clear-cache:
-    role: admin
-    commands:
-      start: php artisan optimize:clear
-```
-
-To trigger your runtime operation, run a cURL command similar to the following:
-
-```bash
-$ platform p:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "clear-cache", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
