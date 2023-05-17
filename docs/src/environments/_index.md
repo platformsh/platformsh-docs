@@ -191,9 +191,10 @@ Staging
 
 Development environments are often used for a limited time and then abandoned.
 To prevent unnecessary consumption of resources,
-Platform.sh automatically pauses development environments where code hasn't been pushed in 15 days.
+Platform.sh automatically pauses development environments where code hasn't been pushed in 14 days.
 
-You can resume a paused environment at any time.
+Pushing new code or redeploying a paused environment automatically resumes it.
+You can also resume it manually at any time. 
 
 {{< codetabs >}}
 +++
@@ -218,3 +219,10 @@ title=In the Console
 {{< /codetabs >}}
 
 The environment is redeployed and becomes available for use again.
+
+You can pause a development environment yourself from the Console at any time.
+To do so, follow these steps:
+
+1. Navigate to your project and click {{< icon settings >}} **Settings**.
+2. Under **Environments**, select the environment you want to pause.
+3. In the **Status** tab, click **Pause environment**.
