@@ -5,7 +5,7 @@ on:
     types: [labeled,opened,reopened,synchronize]
 
 env:
-  GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+  GH_TOKEN: ${{ secrets.WORKFLOW__LABEL_TOKEN }}
 
 jobs:
   check-for-upcoming:
