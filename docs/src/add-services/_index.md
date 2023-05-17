@@ -127,7 +127,7 @@ Add them to the `type` key of the [service configuration](#1-configure-the-servi
 ### Service versions
 
 These services generally follow [semantic versioning conventions](https://semver.org/).
-You choose which major/minor version to add to your project.
+You can select the major version, but the latest compatible minor is applied automatically and can’t be overridden.
 Patch versions are applied periodically for bug fixes and the like.
 When you deploy your app, you always get the latest available patches.
 

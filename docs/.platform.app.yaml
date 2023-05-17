@@ -9,7 +9,7 @@ type: 'nodejs:16'
 # Specify the Hugo version as an env variable.
 variables:
     env:
-        HUGOVERSION: 0.104.1
+        HUGOVERSION: 0.111.3
 
 relationships:
     search: "search:http"
@@ -30,7 +30,7 @@ hooks:
 # The configuration of the application when it is exposed to the web.
 web:
     commands:
-      # Run (404) error and feedback handler 
+      # Run (404) error and feedback handler
       start: node index.js
     locations:
         '/':

@@ -25,6 +25,8 @@ Platform.sh supports two different Redis configurations:
 
 ## Supported versions
 
+{{% major-minor-versions-note configMinor="true" %}}
+
 | Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |------|-------------------------------|------------------------------ |
 | {{< image-versions image="redis" status="supported" environment="grid" >}} | {{< image-versions image="redis" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="redis" status="supported" environment="dedicated-gen-2" >}} |
@@ -237,6 +239,13 @@ To access your Redis service, run the following command:
 
 ```bash
 redis-cli -h {{< variable "HOSTNAME" >}} -p {{< variable "PORT" >}}
+```
+
+If you have a Grid project, note that the `CONFIG GET` and `CONFIG SET` admin commands are restricted.
+To get the current configuration, run the following command:
+
+```bash
+redis-cli -h {{< variable "HOSTNAME" >}} -p {{< variable "PORT" >}} info
 ```
 
 ## Use Redis as a handler for PHP sessions

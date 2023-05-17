@@ -18,6 +18,8 @@ languages:
 
 disableKinds: ["taxonomy", "taxonomyTerm"]
 
+baseURL: "https://docs.platform.sh"
+
 summaryLength: 3
 
 outputs:
@@ -47,3 +49,12 @@ module:
           lang: "en"
         - source: "static"
           target: "static"
+
+
+security:
+  funcs:
+    getenv:
+    - ^GITHUB_
+    - ^HUGO_HEAP_ID
+  http:
+    methods: none

@@ -51,7 +51,7 @@ Platform.sh is responsible for:
   On {{% names/dedicated-gen-2 %}}, Platform.sh also backs up application code and databases on behalf of customers.
 * **Managed CDN and web application firewall (WAF)**:
   If a customer's plan includes a [managed CDN](../domains/cdn/managed-fastly.md)
-  and/or a [managed WAF](./web-application-firewall/waf.md),
+  and/or a [managed WAF](./web-application-firewall/fastly-waf.md),
   Platform.sh is responsible for setting up and maintaining the included measures.
   See more details about each at their respective documentation pages.
 
