@@ -620,6 +620,29 @@ If a `build` hook fails for any reason, the build is aborted and the deploy does
 Note that this only works for `build` hooks --
 if other hooks fail, the app is still deployed.
 
+#### Automated testing
+
+It’s preferable that you set up and run automated tests in a dedicated CI/CD tool.
+Relying on Platform.sh hooks for such tasks can prove difficult.
+
+During the `build` hook, you can halt the deployment on a test failure but the following limitations apply:
+
+- Access to services such as databases, Redis, Vault KMS, and even writable mounts is disabled.
+  So any testing that relies on it is sure to fail.
+- If you haven’t made changes to your app, an existing build image is reused and the build hook isn’t run.
+- Test results are written into your app container, so they might get exposed to a third party.
+
+During the `deploy` hook, you can access services but **you can’t halt the deployment based on a test failure**.
+Note that there are other downsides:
+
+- Your app container is read-only during the deploy hook,
+  so if your tests need to write reports and other information, you need to create a file mount for them.
+- Your app can only be deployed once the deploy hook has been completed.
+  Therefore, running automated testing via the deploy hook generates slower deployments.
+- Your environment isn’t available externally during the deploy hook.
+  Unit and integration testing might work without the environment being available,
+  but you can’t typically perform end-to-end testing until after the environment is up and available.
+
 ## Crons
 
 The keys of the `crons` definition are the names of the cron jobs.
