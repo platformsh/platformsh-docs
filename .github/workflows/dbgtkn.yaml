@@ -1,0 +1,14 @@
+name: Debug
+on:
+  workflow_dispatch:
+
+jobs:
+  who-are-you-and-where-did-you-come-from:
+    runs-on: ubuntu-latest
+    steps:
+      - name: output auth info
+        id: out-auth
+        env:
+          GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+        run: |
+          gh auth status
