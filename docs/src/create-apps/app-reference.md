@@ -219,9 +219,9 @@ So it can be useful for things like clearing ephemeral cache.
 ```yaml {location=".platform.app.yaml"}
 web:
     commands:
-        start: 'redis-cli -h redis.internal flushall; sleep infinity'
+        start: 'redis-cli -h redis.internal flushall && /bin/bash /etc/platform/start-app'
         # For a {{% names/dedicated-gen-2 %}} environment use:
-        # start: 'redis-cli flushall ; sleep infinity'
+        # start: 'redis-cli flushall && /bin/bash /etc/platform/start-app'
 ```
 
 {{< note >}}

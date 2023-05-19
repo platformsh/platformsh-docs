@@ -64,7 +64,7 @@ To do so, configure a `start` [web command](../create-apps/app-reference.md#web-
 ```yaml {location=".platform.app.yaml"}
 web:
     commands:
-        start: 'redis-cli -h redis.internal flushall'
+        start: 'redis-cli -h redis.internal flushall && /bin/bash /etc/platform/start-app'
 ```
 
 To prevent data from getting lost when a container is moved or shut down,
