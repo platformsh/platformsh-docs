@@ -79,12 +79,32 @@ platform p:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/curr
 During every Platform.sh deployment, a standard [`build` step](../overview/build-deploy.md#the-build) is run.
 When you use a static site generator like [Gatsby](../guides/gatsby/_index.md)
 or [Next.js](../guides/nextjs/_index.md) with [a headless backend](../guides/gatsby/headless/_index.md),
-you need to run another `build` step to get your app ready for production.
+you need to run a second `build` step to get your app ready for production.
 
-This extra `build` step includes the generation of all the HTML pages your site can then serve in a static way.
-You can use a runtime operation to trigger it after the initial deployment of your app or after a redeployment.
-You can also trigger it when you need to fetch content from your backend system
+This is because, as its framework is being built,
+your frontend needs to pull content-related data from your backend’s API
+(to generate all the static HTML pages your site is to serve).
+To accomplish this on Platform.sh, where each app goes through a build-deploy pipeline in parallel,
+your frontend’s build must be delayed _until after_ your backend has fully deployed.
+It's often delayed up until the [`post_deploy` hook](../create-apps/hooks/hooks-comparison.md#post-deploy-hook) stage,
+when the filesystem is read-only.
+
+You can use a runtime operation to trigger the second `build` step
+after the initial deployment of your app or after a redeployment.
+You can also trigger it when you need to fetch content from your backend
 but want to avoid going through the whole Platform.sh [build and deploy processes](../overview/build-deploy.md) again.
+
+{{< note >}}
+
+The following examples assume that the frontend and backend containers are included in the same environment.
+This isn’t necessary for the commands to run successfully.<BR>
+What _is_ necessary is that the build destination for your frontend **is  writable at runtime**
+(meaning, you must [define a mount](../create-apps/app-reference.md#mounts) for it).
+If you don’t want to include a build within a mount (especially if your data source **isn’t** on Platform.sh),
+you can use [source operations](../create-apps/source-operations.md) to achieve a similar effect,
+but through generating a new commit.
+
+{{< /note >}}
 
 {{< codetabs >}}
 +++
