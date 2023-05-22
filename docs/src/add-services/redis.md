@@ -58,15 +58,6 @@ Make sure your app doesn't rely on ephemeral Redis for persistent storage as it 
 For example, if a container is moved during region maintenance,
 the `deploy` and `post_deploy` hooks don't run and an app that treats the cache as permanent shows errors.
 
-To avoid such issues, trigger a cache cleanup every time your app starts.
-To do so, configure a `start` [web command](../create-apps/app-reference.md#web-commands) similar to the following:
-
-```yaml {location=".platform.app.yaml"}
-web:
-    commands:
-        start: 'redis-cli -h redis.internal flushall && /bin/bash /etc/platform/start-app'
-```
-
 To prevent data from getting lost when a container is moved or shut down,
 you can use the [persistent Redis](#persistent-redis) configuration.
 Persistent Redis provides a cache with persistent storage.

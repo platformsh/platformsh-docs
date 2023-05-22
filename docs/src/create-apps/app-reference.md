@@ -214,15 +214,6 @@ web:
 ```
 
 This command runs every time your app is restarted, regardless of whether or not new code is deployed.
-So it can be useful for things like clearing ephemeral cache.
-
-```yaml {location=".platform.app.yaml"}
-web:
-    commands:
-        start: 'redis-cli -h redis.internal flushall && /bin/bash /etc/platform/start-app'
-        # For a {{% names/dedicated-gen-2 %}} environment use:
-        # start: 'redis-cli flushall && /bin/bash /etc/platform/start-app'
-```
 
 {{< note >}}
 
