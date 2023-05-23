@@ -139,7 +139,9 @@ title=In the Console
 The user has to create an account before they can contribute to the project.
 Once you add a user to a project, they receive an email with instructions.
 If they don't yet have an account, they need to create one.
-After you add a user to a project, SSH access changes are automatically applied and you don't need to redeploy. 
+
+To apply SSH access changes after you add a user to a project,
+[trigger a redeploy](../development/troubleshoot.md#force-a-redeploy).
 
 ### Change existing permissions for environment types
 
@@ -181,7 +183,8 @@ title=In the Console
 
 {{< /codetabs >}}
 
-After you change a user's permissions for an environment type, SSH access changes are automatically applied and you don't need to redeploy. 
+To apply SSH access changes after you add a remove a user from a project or environment type,
+[trigger a redeploy](../development/troubleshoot.md#force-a-redeploy). 
 
 ### Remove a user from a project
 
@@ -216,9 +219,8 @@ title=In the Console
 
 {{< /codetabs >}}
 
-Once you remove a user, they can no longer access the project.
-
-After you remove a user from a project or environment type, SSH access changes are automatically applied and you don't need to redeploy. 
+To apply SSH access changes after changing a user's permissions for an environment type,
+[trigger a redeploy](../development/troubleshoot.md#force-a-redeploy).
 
 ## Manage organization users
 
