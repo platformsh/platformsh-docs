@@ -193,21 +193,46 @@ Development environments are often used for a limited time and then abandoned.
 To prevent unnecessary consumption of resources,
 Platform.sh automatically pauses development environments where code hasn't been pushed in 14 days.
 
-Pushing new code or redeploying a paused environment automatically resumes it.
-You can also resume it manually at any time. 
+You can also pause an environment manually at any time.
+
+Currently, you can only pause and resume environments through the [Console](../administration/web/_index.md)
+and [Platform.sh API](https://api.platform.sh/).
+In the future, you'll be able to do so in the [CLI](../administration/cli/_index.md) too.
+
+### Pause an environment
+
+To pause an environment, follow these steps:
 
 {{< codetabs >}}
+
 +++
-title=Using the CLI
+title=In the Console
++++
+
+1. Navigate to your project and click {{< icon settings >}} **Settings**.
+2. Under **Environments**, select the environment you want to pause.
+3. In the **Status** tab, click **Pause environment**.
+
+<--->
++++
+title=Using the API
 +++
 
 Run the following command:
 
 ```bash
-platform environment:resume
+platform p:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/pause -X POST -p {{< variable "PROJECT_ID" >}}
 ```
 
-<--->
+{{< /codetabs >}}
+
+### Resume a paused environment
+
+Pushing new code or redeploying a paused environment automatically resumes it.
+You can also resume it manually at any time.
+
+{{< codetabs >}}
+
 +++
 title=In the Console
 +++
@@ -216,13 +241,17 @@ title=In the Console
 2. In the Activity tab, click **Resume environment**.
 3. In the **Resume environment** window, click **Resume**. 
 
+<--->
++++
+title=Using the API
++++
+
+Run the following command:
+
+```bash
+platform p:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/resume -X POST -p {{< variable "PROJECT_ID" >}}
+```
+
 {{< /codetabs >}}
 
 The environment is redeployed and becomes available for use again.
-
-You can pause a development environment yourself from the Console at any time.
-To do so, follow these steps:
-
-1. Navigate to your project and click {{< icon settings >}} **Settings**.
-2. Under **Environments**, select the environment you want to pause.
-3. In the **Status** tab, click **Pause environment**.
