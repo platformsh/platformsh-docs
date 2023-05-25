@@ -2,6 +2,7 @@
 {{ $source := .Get "source" }}
 {{ $source_variable :=  replace $source " " "_" | lower }}
 {{ $token_variable := print $source_variable "_ACCESS_TOKEN" | upper }}
+{{ $base_url_variable := print $source_variable "_URL" | upper }}
 
 <!-- Handle GitLab's MRs -->
 {{ $pull := "pull" }}
@@ -33,6 +34,40 @@
    - The repository in the form <code>owner/repository</code>` }}
 {{ end }}
 
+<!-- Add explanations for the base-url flag for various sources -->
+{{ $baseUrlExpanation := "" }}
+{{ $baseUrlServer := "GitLab" }}
+{{ $baseUrlSource := "https://gitlab.com" }}
+{{ $baseUrlExample := "" }}
+{{ $baseUrlVariable := print `--base-url {{< variable ` $base_url_variable ` >}} ` }}
+{{ $exampleUrl := "example.com" }}
+{{ if eq $source "GitHub" }}
+  {{ $baseUrlServer = "GitHub Enterprise" }}
+  {{ $baseUrlSource = "https://github.com" }}
+  {{ $exampleUrl = "github.com" }}
+{{ end }}
+{{ if eq $source "GitLab" }}
+  {{ $baseUrlExample = "--base-url https://example.com " }}
+{{ end }}
+{{ if or ( eq $source "GitHub" ) ( eq $source "GitLab" ) }}
+{{ $baseUrlExpanation = print `- <code>` $base_url_variable `</code> is the base URL for your ` $baseUrlServer ` server if you self-host.
+  If you use <code>` $baseUrlSource `</code>, don't include the <code>base-url</code> flag.` }}
+{{ else if ( eq $source "Bitbucket server" )}}
+  {{ $baseUrlExpanation = print `- <code>` $base_url_variable `</code> is the base URL for your Bitbucket server.` }}
+  {{ $baseUrlExample = "--base-url https://example.com " }}
+{{ else if ( eq $source "Bitbucket" ) }}
+  {{ $baseUrlVariable = "" }}
+  {{ $exampleUrl = "bitbucket.org" }}
+{{ end }}
+
+<!-- GitLab uses the --server-project flag instead of the --repository flag that GitHub and Bitbucket use -->
+{{ $repoVariable := "" }}
+{{ if eq $source "GitLab" }}
+  {{ $repoVariable := print "--server-project {{< variable OWNER/REPOSITORY >}} " }}
+{{ else }}
+  {{ $repoVariable := print "--repository {{< variable OWNER/REPOSITORY >}} " }}
+{{ end }}
+
 <!-- Bitbucket has a different access pattern for each version,
      The initial settings are used for GitLab and GitHub -->
 {{ $accessFlagsVariable := print `--token {{< variable ` $token_variable ` >}}`  }}
@@ -59,19 +94,21 @@ title=Using the CLI
 Run the following command:
 
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">platform integration:add --type ` $source_variable ` \
-` $accessFlagsVariable ` --repository {{< variable "OWNER/REPOSITORY" >}} \
---project {{< variable "PLATFORM_SH_PROJECT_ID" >}}</code></pre></div>
+` $accessFlagsVariable ` \
+` $repoVariable ` \
+` $baseUrlVariable ` --project {{< variable "PLATFORM_SH_PROJECT_ID" >}}</code></pre></div>
 
 ` $accessFlagsExplanation `
 - <code>OWNER/REPOSITORY</code> is the name of the repository in ` $source `.
 - <code>PLATFORM_SH_PROJECT_ID</code> is the ID of your Platform.sh project.
+` $baseUrlExpanation `
 
-For example, if your repository is located at <code>https&colon;//platformsh/platformsh-docs</code>,
+For example, if your repository is located at <code>https&colon;//` $exampleUrl `/platformsh/platformsh-docs</code>,
 the command is similar to the following:
 
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">platform integration:add --type ` $source_variable ` \
 ` $accessFlagsExample ` --repository platformsh/platformsh-docs \
---project abcdefgh1234567</code></pre></div>
+` $baseUrlExample `--project abcdefgh1234567</code></pre></div>
 
 <--->
 +++
