@@ -20,7 +20,7 @@ If you see a message that the webhook wasn't added, add one manually.
 {{ else if eq $source "GitHub" }}
   {{ $permsLink = "https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/repository-roles-for-an-organization#permissions-for-each-role" }}
 {{ else if eq $source "GitLab" }}
-  {{ $reqdPerms := "Maintainer or Owner" }}
+  {{ $reqdPerms = "Maintainer or Owner" }}
   {{ $permsLink = "https://docs.gitlab.com/ee/user/permissions.html" }}
 {{ end }}
 
