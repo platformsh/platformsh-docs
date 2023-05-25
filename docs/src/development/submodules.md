@@ -79,6 +79,10 @@ To fix this, follow these steps:
 2. Add the [project's public key to your remote Git repository](./private-repository.md).
    This allows your Platform.sh project to pull the repository from the remote Git service.
 
+Deploy keys only grant access to a single repository which may result with issues when attempting to pull many repositories to the same server.
+
+A machine user should be created and the deploy key attached to the user which is granted access to each of the private repositories. 
+
 ## Removing submodules
 
 These steps aren't specific to Platform.sh, but kept as a reference for Git so that submodules are effectively removed before entering the build process.
