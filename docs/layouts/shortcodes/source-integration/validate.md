@@ -22,7 +22,7 @@ If you see a message that the webhook wasn't added, add one manually.
 {{ else if eq $source "GitLab" }}
   {{ $reqdPerms := "Maintainer or Owner" }}
   {{ $permsLink = "https://docs.gitlab.com/ee/user/permissions.html" }}
-{{ end }} 
+{{ end }}
 
 To configure a webhook on a {{ $source }} repository,
 you need to have {{ $reqdPerms }} [user permissions]({{ $permsLink }}). 
@@ -32,5 +32,6 @@ you need to have {{ $reqdPerms }} [user permissions]({{ $permsLink }}).
 {{ .Inner }}
 
 You can now start pushing code, creating new branches,
-and opening {{ if eq $source "GitLab" }}merge{{ else }}pull{{ end }} requests directly in your {{ $source }} repository.
+and opening {{ if eq $source "GitLab" }}merge{{ else }}pull{{ end }} requests
+directly in your {{ $source }} repository.
 Your Platform.sh environments are automatically created and updated.
