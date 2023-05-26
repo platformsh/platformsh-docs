@@ -22,6 +22,10 @@ and [backups and recoveries](./backups.md).
 You can also learn how the Platform.sh [web application firewall (WAF)](./web-application-firewall/waf.md)
 can help you protect your data.
 
+{{< note theme="warning" >}}
+
 For more information about the security, privacy,
 and compliance of the Platform.sh products and services,
 go to the Platform.sh [Trust Center](https://platform.sh/trust-center/).
+
+{{< /note >}}
