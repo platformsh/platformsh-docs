@@ -196,7 +196,7 @@ Platform.sh automatically pauses development environments where code hasn't been
 You can also pause an environment manually at any time.
 
 Currently, you can only pause and resume environments through the [Console](../administration/web/_index.md)
-and [Platform.sh API](https://api.platform.sh/).
+and the [Platform.sh API](https://api.platform.sh/).
 In the future, you'll be able to do so in the [CLI](../administration/cli/_index.md) too.
 
 ### Pause an environment
@@ -221,7 +221,7 @@ title=Using the API
 Run the following command:
 
 ```bash
-platform p:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/pause -X POST -p {{< variable "PROJECT_ID" >}}
+platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/pause -X POST -p {{< variable "PROJECT_ID" >}}
 ```
 
 {{< /codetabs >}}
@@ -249,7 +249,7 @@ title=Using the API
 Run the following command:
 
 ```bash
-platform p:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/resume -X POST -p {{< variable "PROJECT_ID" >}}
+platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/resume -X POST -p {{< variable "PROJECT_ID" >}}
 ```
 
 {{< /codetabs >}}
