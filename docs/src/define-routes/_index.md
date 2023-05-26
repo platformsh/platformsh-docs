@@ -455,7 +455,7 @@ which is a requirement for the router caching.
 ## `.htaccess` files
 
 Platform.sh uses Nginx servers, not Apache ones.
-Using `.htaccess` files with Nginx [is **not** recommended](https://www.nginx.com/resources/wiki/start/topics/examples/likeapache-htaccess/),
+You [can't use `.htaccess` files with Nginx](https://www.nginx.com/resources/wiki/start/topics/examples/likeapache-htaccess/),
 they are therefore ignored on Platform.sh.
-You can accomplish the same goals with [routes](../define-routes/_index.md),
-logic in your app, and [web server locations](../create-apps/web/_index.md).
+You can accomplish the same redirect and rewrite goals with your [routes](../define-routes/_index.md)
+and [web server locations](../create-apps/web/_index.md).
