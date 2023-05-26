@@ -3,6 +3,12 @@ title: "Security and compliance"
 weight: -50
 description: |
   Learn how Platform.sh ensures your data is handled with appropriate care and according to industry standards.
+keywords:
+- pen-test
+- penetration test
+- load test
+- vulnerability
+- Intrusion Prevention System (IPS)
 ---
 
 Platform.sh is compliant with many regulations in favor of the protection of user data,
