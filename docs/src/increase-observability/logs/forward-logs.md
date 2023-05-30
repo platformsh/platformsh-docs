@@ -180,10 +180,10 @@ You can use HTTP forwarding to forward Platform.sh logs to such third-party serv
 
 HTTP forwarding makes a `POST` HTTP request with an `application/json` body while forwarding the log messages to the endpoint.
 
-To enable HTTP forwarding, run a command similar to the following:
+To forward logs to Elasticsearch/OpenSearch using HTTP log forwarding, run the following command:
 
 ```
-platform integration:add --type httplog --url "https://{{< variable "THIRD_PARTY_SERVICE_URL" >}}/{{< variable "INDEX_NAME" >}}/_docs" --headers '{ "Authorization": "Basic <basic_auth_token>", "Content-Type":"application/json" }'
+platform integration:add --type httplog --url "https://{{< variable "ES_OS_URL" >}}/{{< variable "INDEX_NAME" >}}/_doc" --header "Authorization: Basic <basic_auth_token>" --header "Content-Type: application/json"
 ```
 
 `type` and `url` are the only properties required for all endpoints.
