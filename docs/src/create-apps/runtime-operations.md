@@ -120,7 +120,6 @@ operations:
     role: viewer
     commands:
       start: gatsby build
-      stop: null
 ```
 
 To trigger your runtime operation, run a cURL command similar to the following:
@@ -146,7 +145,6 @@ operations:
             start: next build
             # start: npx next build
             # start: npm run build
-            stop: null
 ```
 
 To trigger your runtime operation, run a cURL command similar to the following:
