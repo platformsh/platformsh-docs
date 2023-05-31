@@ -6,12 +6,12 @@ Below is the `gatsby/.platform.app.yaml` file that configures the app.
 
 In particular, notice:
 
-* `relationships`
+- `relationships`
 
   Access to another service or app container in the cluster is given through [`relationships`](/create-apps/app-reference.html#relationships).
   In this case, one has been defined to the backend {{ .Get "name" }} container using it's `name`.
 
-* `post_deploy`
+- `post_deploy`
 
   Platform.sh containers reside in separate build containers at build time,
   before their images are moved to the final app container at deploy time.
@@ -20,7 +20,10 @@ In particular, notice:
   {{ .Get "name" }} isn't available until after the deploy hook.
   So the Gatsby build is postponed until the [`post_deploy` hook](/create-apps/hooks/hooks-comparison.html#post-deploy-hook).
 
-* `mounts`
+  To run `gatsby build` on-demand, or to trigger a rebuild from the backend when content is updated,
+  define a [runtime operation](/create-apps/runtime-operations.html#build-your-app-when-using-a-static-site-generator).
+
+- `mounts`
 
   There are consequences to postponing the Gatsby build,
   as you don't generally have write access to the container this late in the pipeline.
