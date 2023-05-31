@@ -43,7 +43,7 @@ All of the graphs show labels for the following thresholds:
   Burst is considered useful for infrequent activities that cause usage spikes.
 
   On the Grid, resources are shared between customers,
-  so additional resources aren't guaranteed and burst can only be temporary.
+  so these additional resources aren't guaranteed and burst can only be temporary.
   On {{% names/dedicated-gen-3 %}}, resources are dedicated to a single customer,
   but they're shared between services.
   Therefore, burst is allowed until the dedicated resource usage is exceeded.
