@@ -8,7 +8,7 @@ sidebarTitle: "OpenSearch"
 
 {{% description %}}
 
-See the [OpenSearch documentation](https://opensearch.org/docs/1.2/) for more information.
+See the [OpenSearch documentation](https://opensearch.org/docs/latest/) for more information.
 
 To switch from Elasticsearch, follow the same procedure as for [upgrading](#upgrading).
 
@@ -21,7 +21,7 @@ To update the versions in this table, use docs/data/registry.json
 |------|-------------------------------|------------------------------ |
 |  {{< image-versions image="opensearch" status="supported" environment="grid" >}} | {{< image-versions image="opensearch" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="opensearch" status="supported" environment="dedicated-gen-2" >}} |
 
-From version 2, you only specify the major version.
+On Grid and {{% names/dedicated-gen-3 %}}, from version 2, you only specify the major version.
 The latest compatible minor version and patches are applied automatically.
 
 {{% image-versions-legacy "opensearch" %}}
@@ -54,7 +54,7 @@ To do so, include the following in your `services.yaml` configuration:
 
 ```yaml {location=".platform/services.yaml"}
 search:
-    type: opensearch:1.2
+    type: opensearch:2
     disk: 2048
     configuration:
         authentication:
@@ -85,7 +85,7 @@ To enable them, list them under the `configuration.plugins` key in your `service
 
 ```yaml {location=".platform/services.yaml"}
 search:
-    type: "opensearch:1.2"
+    type: "opensearch:2"
     disk: 1024
     configuration:
         plugins:
@@ -101,21 +101,21 @@ If there is a publicly available plugin you need that isn't listed here, [contac
 
 This is the complete list of plugins that can be enabled:
 
-| Plugin                  | Description                                                                               | 1.2 |
-|-------------------------|-------------------------------------------------------------------------------------------|-----|
-| `analysis-icu`          | Support ICU Unicode text analysis                                                         | *   |
-| `analysis-kuromoji`     | Japanese language support                                                                 | *   |
-| `analysis-nori`         | Integrates Lucene Nori analysis module into OpenSearch                                    | *   |
-| `analysis-phonetic`     | Phonetic analysis                                                                         | *   |
-| `analysis-smartcn`      | Smart Chinese Analysis Plugins                                                            | *   |
-| `analysis-stempel`      | Stempel Polish Analysis Plugin                                                            | *   |
-| `analysis-ukrainian`    | Ukrainian language support                                                                | *   |
-| `ingest-attachment`     | Extract file attachments in common formats (such as PPT, XLS, and PDF)                    | *   |
-| `mapper-annotated-text` | Adds support for text fields with markup used to inject annotation tokens into the index  | *   |
-| `mapper-murmur3`        | Murmur3 mapper plugin for computing hashes at index-time                                  | *   |
-| `mapper-size`           | Size mapper plugin, enables the `_size` meta field                                        | *   |
-| `repository-s3`         | Support for using S3 as a repository for Snapshot/Restore                                 | *   |
-| `transport-nio`         | Support for NIO transport                                                                 | *   |
+| Plugin                  | Description                                                                               | 1.2 | 2 |
+|-------------------------|-------------------------------------------------------------------------------------------|-----|---|
+| `analysis-icu`          | Support ICU Unicode text analysis                                                         | *   | * |
+| `analysis-kuromoji`     | Japanese language support                                                                 | *   | * |
+| `analysis-nori`         | Integrates Lucene Nori analysis module into OpenSearch                                    | *   | * |
+| `analysis-phonetic`     | Phonetic analysis                                                                         | *   | * |
+| `analysis-smartcn`      | Smart Chinese Analysis Plugins                                                            | *   | * |
+| `analysis-stempel`      | Stempel Polish Analysis Plugin                                                            | *   | * |
+| `analysis-ukrainian`    | Ukrainian language support                                                                | *   | * |
+| `ingest-attachment`     | Extract file attachments in common formats (such as PPT, XLS, and PDF)                    | *   | * |
+| `mapper-annotated-text` | Adds support for text fields with markup used to inject annotation tokens into the index  | *   | * |
+| `mapper-murmur3`        | Murmur3 mapper plugin for computing hashes at index-time                                  | *   | * |
+| `mapper-size`           | Size mapper plugin, enables the `_size` meta field                                        | *   | * |
+| `repository-s3`         | Support for using S3 as a repository for Snapshot/Restore                                 | *   | * |
+| `transport-nio`         | Support for NIO transport                                                                 | *   | * |
 
 ### Plugin removal
 
