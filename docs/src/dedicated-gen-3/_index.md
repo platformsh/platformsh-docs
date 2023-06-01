@@ -5,15 +5,14 @@ layout: single
 description: 
 ---
 
-{{% names/dedicated-gen-3 %}} runs the same software as on the Grid,
-but on highly available redundant virtual machines.
-Each service is replicated across three virtual machines in a failover configuration.
-If a virtual machine becomes unavailable, the other two take over so your site remains up.
+{{% names/dedicated-gen-3 %}} runs the same software as on the Grid, but on isolated hosts.
+Each service is replicated across three hosts in a failover configuration.
+If a host becomes unavailable, the other two take over so your site remains up.
 
 {{% names/dedicated-gen-3 %}} was designed to cater to the needs of organizations that build demanding apps. 
 Compared to the Grid, {{% names/dedicated-gen-3 %}} offers increased resources,
 high availability for all your services and apps,
-stricter data location and isolation requirements,
+stricter isolation requirements,
 as well as additional compliance frameworks.
 
 To set up a {{% names/dedicated-gen-3 %}} project on [any supported cloud provider](../development/regions.md#regions),
@@ -26,7 +25,7 @@ Subscribing to {{% names/dedicated-gen-3 %}} allows you to take advantage
 of [the following benefits](https://platform.sh/blog/the-ultimate-generation-of-our-dedicated-offering-is-here/):
 
 - **Tremendous performance with a high availability of 99.99% SLA.**<BR>
-  By default, a three virtual machine cluster is associated with your default (production) environment.
+  By default, a three-host cluster is associated with your default (production) environment.
   Upon request, you can have another one associated with your staging environment.
 
 - **Greater self serviceability and control over your dedicated resources.**<BR>
@@ -38,7 +37,8 @@ of [the following benefits](https://platform.sh/blog/the-ultimate-generation-of-
   you can take advantage of the [MariaDB Galera multi master cluster](https://mariadb.com/kb/en/galera-cluster/).
   You can also resize your disk yourself to share your disk space across your apps and services as you need.
 
-- **Seamless headless e-commerce with multi-app support.**
+- **Multi-app support.**<BR>
+  {{% names/dedicated-gen-3 %}} is flexible and supports modern architectures, such as headless e-commerce.
 
 - **Data synchronization from {{% names/dedicated-gen-3 %}} to Grid** through a single click from the Console.
 
@@ -56,8 +56,8 @@ You can request more storage at any time.
 
 ## Differences with the Grid
 
-Although {{% names/dedicated-gen-3 %}} adds plenty of features to your existing Grid apps,
-there are a few differences and limitations to be aware of when considering an upgrade.
+If you upgrade from the Grid to {{% names/dedicated-gen-3 %}},
+there are a few differences you need to be aware of.
 
 ### Available services
 
@@ -72,12 +72,11 @@ See the [services documentation](../../add-services/_index.md) for service-speci
 
 ### Local mounts
 
-As {{% names/dedicated-gen-3 %}} provides a redundant infrastructure,
-local mounts are local to each virtual machine.
-Since you can't know which virtual machine is going to handle a specific request,
-you also don't have any guarantee regarding which local mount is going to be used.
-Whether you want to use a local mount or in fact need to set up a [Network Storage mount](../add-services/network-storage.md)
-depends on your specific use case.
+{{% names/dedicated-gen-3 %}} provides a redundant infrastructure
+and local mounts aren't shared between the three hosts.
+
+If you need a folder to be shared between your hosts,
+set up a [network storage mount](../add-services/network-storage.md).
 
 ## Differences with {{% names/dedicated-gen-2 %}} 
 

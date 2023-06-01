@@ -40,12 +40,14 @@ You can subscribe to Blackfire in two different ways:
 Platform.sh also supports third-party observability services
 such as [New Relic](../increase-observability/integrate-observability/new-relic/_index.md)
 and [Tideways](../increase-observability/integrate-observability/tideways.md).
+You need to get your own license for them.
 These third-party services have their own associated cost,
 are language-specific, and may not be available for all languages.
 
 ## Availability incident handling procedure
 
-When automated monitoring triggers an alert or a customer files an urgent priority ticket,
+Automated monitoring is used to keep an eye on your production environment at all times.
+If automated monitoring triggers an alert, or if a customer files an urgent priority ticket,
 an on-call engineer is immediately paged so they can respond and begin to triage the issue.
 
 Cloud infrastructure issues are handled by the Platform.sh Customer Success team.

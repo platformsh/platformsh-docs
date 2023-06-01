@@ -1,18 +1,8 @@
 ---
-title: "Optional features"
+title: Multiple availability zones
 weight: 4
-description: Add optional features to your Dedicated project.
+description: You can add multiple availability zones as an option on your {{% names/dedicated-gen-3 %}} project.
 ---
-
-As a Dedicated user, you can add the following optional features to your project.
-
-## Multiple applications
-
-{{% multi-app-intro %}}
-
-For more information, see how to [configure multiple apps in a single project](../../create-apps/multi-app.md).
-
-## Multiple availability zones
 
 The default configuration for Dedicated clusters is to launch them into a single availability zone (AZ)
 for the following reasons:

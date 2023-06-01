@@ -10,32 +10,7 @@ All Dedicated projects are isolated and their data is fully encrypted.
 Should a security breach occur, Platform.sh follows a strict [security incident handling procedure](#security-incident-handling-procedure)
 to deal with the issue as promptly and efficiently as possible.
 
-## Project isolation
-
-All Dedicated clusters are single-tenant.
-The [three virtual machines](./_index.md) are exclusively used by a single customer
-and each cluster is launched into its own isolated network (VPC on AWS, equivalent on other providers).
-
-The network is behind a firewall for incoming connections.
-Only ports 22 (SSH), 80 (HTTP), 443 (HTTPS), and 2221 (SFTP) are opened to incoming traffic.
-
-{{< note >}}
-
-There are **no exceptions** for this rule, so any incoming web service requests,
-ETL jobs, or otherwise need to transact over one of these protocols.
-
-{{</note >}}
-
-Outgoing TCP traffic isn't behind a firewall.
-Outgoing UDP traffic is disallowed.
-
-Each branch is deployed as a series of containers hosted on a shared underlying virtual machine.
-Many customers generally share the same virtual machine.
-For containers to be allowed to connect to each other, the following requirement must be met:
-
-- The containers must live in the same environment.
-- You need to define an explicit `relationship` between the containers
-  in your [app configuration](../create-apps/app-reference.md#relationships).
+{{% project-isolation plan="true" %}}
 
 ## Security incident handling procedure
 
@@ -90,6 +65,9 @@ In some cases, temporary storage (such as swap) is stored on unencrypted local s
 
 ### Azure
 
-By default, data is encrypted using Microsoft Managed Keys for Azure Blobs, Tables, Files, and Queues.
+By default, data is encrypted using [Microsoft-Managed Keys](https://learn.microsoft.com/en-us/compliance/assurance/assurance-encryption)
+for Azure Blobs, Tables, Files, and Queues.
 
-[comment]: <> (What about other cloud providers? Is this section really needed/complete/valuable?)
+### GCP
+
+Data is encrypted using [default encryption at rest](https://cloud.google.com/docs/security/encryption/default-encryption?hl=en).
