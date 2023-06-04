@@ -1,29 +1,31 @@
 ---
-title: "One site or many"
+title: "From monoliths through headless to micro-services"
 weight: 2
 description: |
-  Platform.sh supports running multiple "application containers" in a single project. That can be extremely powerful in some cases, but if misused can lead to unnecessary maintenance difficulty and excessive costs.
+  Platform.sh supports running multiple application containers in a single environment.
 ---
 
 {{% description %}}
+Platform.sh supports a great variety of setups and allows you to mix and match. You can grow your application from a simple monolith (with a single application server) to more involved topologies with multiple applications separating backend from front-end, run workers next to your main application or go for a full micro-services architecture. 
 
-The way to determine what setup is appropriate for your use case is to think of your project as a collection of services, some of which you've written yourself.
-That is, put "your code" and "the database" on the same level.
-(That is essentially true from the Platform.sh perspective.)
-Does your project consist of multiple "your code" pieces, but they all are parts of the same project?
-Or are they discrete applications that conceptually exist independently of each other?
+We make it easy to build any of those and to move from one setup to another, choosing the right approach depends very much on your use-case. And what is true for your application is also true for its backing services. You can run a single database. Multiple databases inside a single instance. Multiple databases in multiple versions. This is true for relational databases but also search engines, message-queues. Any supported service.
+
+Platform.sh also supports multiple way in which you can compose your architecture. You can have a single Git repository that describes the whole thing (a mono-repo approach) or you can divide your project to multiple repositories.
+
+When you are building more involved projects on Platform.sh you may ask yourself if it is better to create one big project will multiple applications in it or have each application in its own project. This page will try to help you figure this out.
 
 ## Discrete projects
 
-If your apps are discrete systems that are only incidentally related (such as because you wrote both of them), make them separate projects.
-That provides the most flexible development workflow.
-It's cheaper, as running multiple apps in a single project requires at least a {{< partial "plans/multiapp-plan-name" >}} plan.
+If your apps are discrete systems that are only incidentally related (such as because you wrote both of them), making them separate projects is often preferred. 
+
+The main question is data not code. Even if multiple projects share 100% of the same code, but also have 100% separation of data they should be separate. Platform.sh provides the automation to deploy multiple projects from the same code base, so it does not involve more management on your part.
+
+By design, Platform.sh **does not allow** an application from one project's environment to access services in another project other through HTTP. So that is the most structuring point. 
 
 Discrete projects are appropriate if:
 
-* You want to deploy new releases of each application independently of the others.
-* The projects are for different customers/clients.
-* The projects do not need deep internal knowledge of each other's data.
+* The applications are for different customers/clients.
+* The applications do not need to directly connect to the same database.
 * Different teams are working on different applications.
 * You want to develop true-microservices, where each microservice is fully stand-alone process with its own data.
 
@@ -32,7 +34,10 @@ If you are uncertain how your needs map to projects, it probably means they shou
 ## Clustered applications
 
 A clustered application is one where your project requires multiple "app services", written by you, but are all part of the same conceptual project.
-That is, removing one of the app services would render the others broken.
+
+What we call "clustered applications" here can vary from the simple headless architecture where front and back end are separated to micro-services where you can have dozens of different applications possibly in multiple runtimes and frameworks that compose a coherent whole. That is, removing one of the app services would render the others broken.
+
+Unlike other cloud deployment options you don't need to worry about service discovery or complex "ingress controllers". It is very easy to configure the access from one service to another - and it is very easy to configure the incoming routes. You can have services that are only exposed to another service and others that are exposed to the internet.
 
 In a clustered application, you either have [multiple `.platform.app.yaml`](../create-apps/multi-app.md) files in different directories with separate code bases that deploy separately or you have a single application that spawns one or more [worker instances](../create-apps/app-reference.md#workers) that run background processes.
 (See the link for details on how to set those up.)
@@ -53,9 +58,9 @@ Clustered applications are appropriate if:
 
 * You want one user-facing application and an entirely separate admin-facing application that are both operating on the same data.
 * You want to have a user-facing application and a separate worker process (either the same code or separate) that handles background tasks.
-* You want a single conceptual application written in multiple programming languages, such as a PHP frontend with Node.js background worker.
+* You want a single conceptual application written in multiple programming languages
 
-## Multi-site applications
+## A note on "Multi-site" applications
 
 Some Content Management Systems or other applications support running multiple logical "sites" off of a single code base.
 Those usually works on Platform.sh depending on the configuration details of the application but are generally not recommended.
