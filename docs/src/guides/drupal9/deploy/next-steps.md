@@ -27,7 +27,7 @@ but in case it isn't you can add the following block to the file:
 Once that's there, you can install any module or theme with the following command:
 
 ```bash
-$ composer require drupal/devel
+composer require drupal/devel
 ```
 
 Replace `devel` with the name of the module or theme you're installing.
@@ -60,10 +60,15 @@ All updates should be done through composer to update the lock file, and then pu
 The Platform.sh CLI can generate Drush aliases for you automatically
 when you clone a project using the <code>platform get {{< variable "PROJECT_ID" >}}</code> command.
 
-To see the aliases that are created, run `platform drush-aliases` and you should get output similar to that below:
+To see the aliases that are created, run the following command:
 
 ```bash
-$ platform drush-aliases
+platform drush-aliases
+```
+
+You get output similar to the following:
+
+```bash
 Aliases for My Site (tqmd2kvitnoly):
     @my-site._local
     @my-site.main
