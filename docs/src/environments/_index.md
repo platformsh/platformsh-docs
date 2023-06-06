@@ -193,8 +193,17 @@ Development environments are often used for a limited time and then abandoned.
 To prevent unnecessary consumption of resources,
 Platform.sh automatically pauses development environments where code hasn't been pushed in 14 days.
 
-You can also pause an environment manually at any time.
+{{< note >}}
 
+If you're on a Professional (development) plan,
+all your environments are development environments that can be paused automatically.
+This includes your future production environment.<BR>
+To prevent your production environment from being paused automatically,
+[upgrade to a non-development plan](https://platform.sh/pricing/).
+
+{{< /note >}}
+
+You can also pause an environment manually at any time.
 Currently, you can only pause and resume environments through the [Console](../administration/web/_index.md)
 and the [Platform.sh API](https://api.platform.sh/).
 In the future, you'll be able to do so in the [CLI](../administration/cli/_index.md) too.
