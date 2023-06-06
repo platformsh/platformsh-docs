@@ -21,6 +21,8 @@ or [MySQL documentation](https://dev.mysql.com/doc/refman/en/) for more informat
 
 ## Supported versions
 
+{{% major-minor-versions-note configMinor="true" %}}
+
 The service types `mariadb` and `mysql` both refer to MariaDB.
 The service type `oracle-mysql` refers to MySQL as released by Oracle, Inc.
 Other than the value for their `type`,

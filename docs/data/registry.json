@@ -84,8 +84,8 @@
         "2.0"
       ],
       "supported": [
+        "7.0",
         "6.0"
-        
       ],
       "legacy": [
         "3.1",
@@ -708,7 +708,7 @@
     },
     "versions-dedicated-gen-3": {
       "deprecated": [],
-      "supported": []
+      "supported": [2]
     }
   },
   "oracle-mysql": {
