@@ -16,6 +16,7 @@
     "versions": {
       "deprecated": [],
       "supported": [
+        "113",
         "95",
         "91",
         "86",
@@ -575,6 +576,7 @@
     "premium": true,
     "versions": {
       "supported": [
+        "6.0",
         "5.0",
         "4.4",
         "4.2"
@@ -585,6 +587,7 @@
     },
     "versions-dedicated-gen-2": {
       "supported": [
+        "6.0",
         "5.0",
         "4.4",
         "4.2"
