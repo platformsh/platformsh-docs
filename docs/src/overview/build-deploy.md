@@ -85,6 +85,14 @@ but the file system is read-only.
 
 After the deploy process is over, any commands in your `post_deploy` hook are run.
 
+## Deployment philosophy
+
+Platform.sh values consistency over availability, acknowledging that it is nearly impossible to have both.
+Because the deploy hook may make database changes that are incompatible with the previous code version it's unsafe to have both old and new code running in parallel (on different servers), as that could result in data loss.
+We believe that a minute of planned downtime for authenticated users is preferable to a risk of race conditions resulting in data corruption, especially with a CDN continuing to serve anonymous traffic uninterrupted.
+
+That brief downtime applies only to the environment changes are being pushed to. As such, deployments to a staging or development branch have no impact on the production environment and cause no downtime.
+
 ## What's next
 
 * See how to [configure your app](../create-apps/_index.md) for the entire process.
