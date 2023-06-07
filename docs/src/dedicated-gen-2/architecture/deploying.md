@@ -40,11 +40,7 @@ Authenticated traffic that can't be served by the CDN still sees a brief interru
 
 ## Deployment philosophy
 
-Platform.sh values consistency over availability, acknowledging that it is nearly impossible to have both.
-Because the deploy hook may make database changes that are incompatible with the previous code version it's unsafe to have both old and new code running in parallel (on different servers), as that could result in data loss.
-We believe that a minute of planned downtime for authenticated users is preferable to a risk of race conditions resulting in data corruption, especially with a CDN continuing to serve anonymous traffic uninterrupted.
-
-That brief downtime applies only to changes pushed to the `production` branch. Deployments to staging or to a development branch have no impact on the production environment and cause no downtime.
+Platform.sh values consistency over availability, which means that deploys can cause your application to be unavailable for a short amount of time during deployments. You can find out more about Platform.sh's deployment philosophy in our [overview of the build and deploy phases](../../overview/build-deploy.md).
 
 <!--
 ## Service overview
