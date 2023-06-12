@@ -65,13 +65,64 @@ To install WordPress with Composer, complete the following steps:
    $ rm -rf wordpress
    ```
 
-   Then, at the end of your existing `.gitignore` file, add the content of Platform.sh’s template `.gitignore` file. 
-   This adds the `wordpress` subdirectory to the resulting `.gitignore` file. 
-   This way, after Composer reinstalls WordPress, the `wordpress` subdirectory is ignored in commits:
+   Then, at the end of your existing `.gitignore` file, add the following content:
 
-   ```bash
-   $ curl https://raw.githubusercontent.com/platformsh/template-builder/master/templates/wordpress-composer/files/.gitignore >> .gitignore
-   ```
+    ```bash
+    # Ignore local configuration files.
+    /.env
+    /wp-config-local.php
+
+    # Ignore Composer packages.
+    /vendor/
+
+    # Temporary and build directories.
+    /_www
+
+    # Standard WordPress files and folders:
+    /wordpress/vendor/
+    /wordpress/composer.json
+    /wordpress/index.php
+    /wordpress/license.txt
+    /wordpress/readme.html
+    /wordpress/wp-activate.php
+    /wordpress/wp-admin/
+    /wordpress/wp-blog-header.php
+    /wordpress/wp-comments-post.php
+    /wordpress/wp-config-sample.php
+    /wordpress/wp-content/index.php
+    /wordpress/wp-content/plugins/index.php
+    /wordpress/wp-content/themes/index.php
+    /wordpress/wp-cron.php
+    /wordpress/wp-includes/
+    /wordpress/wp-links-opml.php
+    /wordpress/wp-load.php
+    /wordpress/wp-login.php
+    /wordpress/wp-mail.php
+    /wordpress/wp-settings.php
+    /wordpress/wp-signup.php
+    /wordpress/wp-trackback.php
+    /wordpress/xmlrpc.php
+
+    # User uploaded and system generated files.
+    /wordpress/wp-content/cache/
+    /wordpress/wp-content/uploads/
+
+    # Ignore themes and plugins installed via Composer.
+    /wordpress/wp-content/plugins/*
+    !/wordpress/wp-content/plugins/README.md
+    /wordpress/wp-content/themes/*
+    !/wordpress/wp-content/themes/README.md
+
+    # Ignore mounts
+    wordpress/wp-content/cache
+    wordpress/wp-content/uploads
+
+    # Ignore post install command artifact locally
+    wordpress/wp-config.php
+    ```
+
+   This adds the `wordpress` subdirectory to the resulting `.gitignore` file. 
+   This way, after Composer reinstalls WordPress, the `wordpress` subdirectory is ignored in commits.
     
    Now remove WordPress from the repository:
 
