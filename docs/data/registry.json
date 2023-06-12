@@ -708,7 +708,9 @@
     },
     "versions-dedicated-gen-3": {
       "deprecated": [],
-      "supported": [2]
+      "supported": [
+        "2"
+      ]
     }
   },
   "oracle-mysql": {
