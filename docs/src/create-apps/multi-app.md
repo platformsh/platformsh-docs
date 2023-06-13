@@ -339,6 +339,6 @@ Once they're both built, `main` can now access `api` at the URL `http://api.inte
 The specific URL is always available through the [`PLATFORM_RELATIONSHIPS` variable](../development/variables/use-variables.md#use-platformsh-provided-variables):
 
 ```bash
-$ echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq `.api[0].host`
+echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq `.api[0].host`
 api.internal
 ```

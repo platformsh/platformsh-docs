@@ -7,20 +7,20 @@ or <a href="https://scoop.sh/">Scoop</a> (on Windows).</p>
 title=Installation script
 highlight=bash
 +++
-$ curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
+curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
 <--->
 +++
 title=Homebrew
 highlight=bash
 +++
-$ brew install platformsh/tap/platformsh-cli
+brew install platformsh/tap/platformsh-cli
 <--->
 +++
 title=Scoop
 highlight=bash
 +++
-$ scoop bucket add platformsh https://github.com/platformsh/homebrew-tap.git
-$ scoop install platform
+scoop bucket add platformsh https://github.com/platformsh/homebrew-tap.git
+scoop install platform
 `}}
 {{ partial "codetabs/tabs" ( dict "Inner" $Inner "Page" .Page ) }}
 

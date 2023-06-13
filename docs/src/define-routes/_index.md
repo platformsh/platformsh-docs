@@ -409,8 +409,15 @@ These are the routes as defined in the `.platform/routes.yaml` file with the [pl
 plus the default redirect from HTTP to HTTPS.
 They aren't the final generated routes.
 
+Run the following command:
+
 ```bash
-$ platform environment:routes
+platform environment:routes
+```
+
+You get output similar to:
+
+```bash
 Routes on the project Example (abcdef123456), environment main (type: production):
 +---------------------------+----------+---------------------------+
 | Route                     | Type     | To                        |
