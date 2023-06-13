@@ -25,7 +25,7 @@ There are two required steps to avoid this problem.
 First, you need to install the [Local Page Error Handler](https://extensions.typo3.org/extension/pxa_lpeh/) extension for TYPO3 with the command:
 
 ```bash
-$ composer require pixelant/pxa-lpeh
+composer require pixelant/pxa-lpeh
 ```
 
 Second, you need to add a timeout that sets an HTTP timeout of at least 3 seconds instead of the default several minutes to a new `public/typo3conf/PlatformshConfiguration.php`.
@@ -48,7 +48,7 @@ You still need to enable the `pixelant/pxa-lpeh` extension,
 which you can do by running the command:
 
 ```bash
-$ php vendor/bin/typo3 extension:activate pxa_lpeh
+php vendor/bin/typo3 extension:activate pxa_lpeh
 ```
 
 ## TYPO3 CMS's `web-dir`
@@ -60,7 +60,7 @@ You need to assign `public` to the `cms.web-dir` attribute in your `composer.jso
 and it's a good idea to `update` dependencies once you have done so:
 
 ```bash
-$ composer config extra.typo3/cms.web-dir public && composer update --no-scripts
+composer config extra.typo3/cms.web-dir public && composer update --no-scripts
 ```
 
 ## Site

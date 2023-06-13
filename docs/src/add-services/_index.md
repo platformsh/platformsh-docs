@@ -173,7 +173,7 @@ Connecting to a service using an SSH tunnel is a two-step process.
 To get the credentials for a given service, run the following command:
 
 ```bash
-$ platform relationships
+platform relationships
 ```
 
 You get output like the following:

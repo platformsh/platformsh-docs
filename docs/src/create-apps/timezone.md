@@ -1,13 +1,34 @@
 ---
-title: "App runtime timezone"
-sidebarTitle: "Runtime timezone"
+title: "Timezones"
+description: Learn more about the different timezones on Platform.sh and when you can customize them.
 ---
 
-All Platform.sh containers default to running in UTC time.
-In most cases, it's best to leave all timezones in UTC and store user data with an associated timezone instead.
-But it's possible to set different timezones for specific app runtimes.
+On Platform.sh, there are several timezones you might want to keep in mind.
+All timezones default to UTC time.
+You can customize some of them, but in most cases,
+it's best if you leave them in UTC
+and store user data with an associated timezone instead.
 
-The way to set a different timezone for a specific app depends on the given runtime:
+The different timezones on Platform.sh are the following:
+
+| Timezone             | Description                                  |Customizable  |
+|----------------------|----------------------------------------------|--------------|
+| Container timezone   | The timezone for all Platform.sh containers (UTC). |No            |
+| App runtime timezone | [Set an app runtime timezone](#set-an-app-runtime-timezone) if you want your app runtime to use a specific timezone instead of the container timezone.<BR>The app runtime timezone only affects your app itself.                | Yes         |
+| Cron timezone        | [Set a cron timezone](#set-a-cron-timezone) if you want your crons to run in a specific timezone instead of the app runtime timezone (or instead of the container timezone if no app runtime timezone is set on your project). <BR>The cron timezone only affects your cron jobs.                          | Yes         |
+| Log timezone         | The timezone for all Platform.sh logs (UTC).      | No           |
+
+{{< note >}}
+
+Each Platform.sh project also has a **project timezone** that only affects [automated backups](../environments/backup.md#use-automated-backups).
+By default, the project timezone is based on the [region](../development/regions.md) where your project is hosted.
+You can [change it from the Console](../projects/change-project-timezone.md) at any time.
+
+{{< /note >}}
+
+## Set an app runtime timezone
+
+How you can set an app runtime timezone depends on your actual app runtime:
 
 {{< codetabs >}}
 
@@ -53,6 +74,7 @@ title=Java
 
 {{< /codetabs >}}
 
-Setting the application {{< variable "TIMEZONE" >}} only affects the application itself, not system operations such as log files.
-You can set a different timezone for crons to run in the [app configuration](./app-reference.md).
-You can also set the [timezone for a project](../administration/web/configure-project.md#general), but it doesn't affect the timezone for the app runtime.
+## Set a cron timezone
+
+You can set a specific timezone for your crons so they don't run in your app runtime timezone (or container timezone if no app runtime timezone is set on your project).
+To do so, [set the `timezone` top-level property](../create-apps/app-reference.md#top-level-properties) in your app configuration.

@@ -159,7 +159,7 @@ platform variable:create --name env:foo --value bar
 You can then access that variable directly in your app container:
 
 ```bash
-$ echo $FOO
+echo $FOO
 bar
 ```
 

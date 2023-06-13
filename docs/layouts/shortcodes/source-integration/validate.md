@@ -2,7 +2,7 @@
 <!-- Bitbucket has two methods and so has an additional heading level -->
 ##{{ if eq $source "Bitbucket" }}#{{ end }} 3. Validate the integration
 
-Verify that your integration is functioning properly [using the CLI](../overview.md#validating-integrations):
+Verify that your integration is functioning properly [using the CLI](../overview.md#validate-integrations):
 
 ```bash
 platform integration:validate
@@ -20,9 +20,9 @@ If you see a message that the webhook wasn't added, add one manually.
 {{ else if eq $source "GitHub" }}
   {{ $permsLink = "https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/repository-roles-for-an-organization#permissions-for-each-role" }}
 {{ else if eq $source "GitLab" }}
-  {{ $reqdPerms := "Maintainer or Owner" }}
+  {{ $reqdPerms = "Maintainer or Owner" }}
   {{ $permsLink = "https://docs.gitlab.com/ee/user/permissions.html" }}
-{{ end }} 
+{{ end }}
 
 To configure a webhook on a {{ $source }} repository,
 you need to have {{ $reqdPerms }} [user permissions]({{ $permsLink }}). 
@@ -32,5 +32,6 @@ you need to have {{ $reqdPerms }} [user permissions]({{ $permsLink }}).
 {{ .Inner }}
 
 You can now start pushing code, creating new branches,
-and opening {{ if eq $source "GitLab" }}merge{{ else }}pull{{ end }} requests directly in your {{ $source }} repository.
+and opening {{ if eq $source "GitLab" }}merge{{ else }}pull{{ end }} requests
+directly in your {{ $source }} repository.
 Your Platform.sh environments are automatically created and updated.

@@ -51,8 +51,8 @@ platform mount:upload --mount wordpress/wp-content/uploads --source ./wordpress/
 ```
 {{ else }}
 ```bash
-$ platform mount:upload --mount src/main/resources/files/user --source ./files/user
-$ platform mount:upload --mount src/main/resources/files/public --source ./files/public
+platform mount:upload --mount src/main/resources/files/user --source ./files/user
+platform mount:upload --mount src/main/resources/files/public --source ./files/public
 ```
 {{ end }}
 

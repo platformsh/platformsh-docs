@@ -3,7 +3,7 @@ title: Delete a project
 description: See how to delete projects you no longer need.
 ---
 
-To delete a project, you must be an organization owner or have the [manage plans permission](../administration/users.md#organization-user-permissions).
+To delete a project, you must be an organization owner or have the [manage plans permission](../administration/users.md#organization-permissions).
 
 To delete a Platform.sh project, including all data, code, and active environments:
 

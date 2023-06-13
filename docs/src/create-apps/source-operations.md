@@ -56,7 +56,7 @@ The syntax is similar to the following:
 ```yaml {location=".platform.app.yaml"}
 source:
     operations:
-        {{< variable "NAME" >}}:
+        {{< variable "SOURCE_OPERATION_NAME" >}}:
             command: {{< variable "COMMAND" >}}
 ```
 
@@ -73,7 +73,7 @@ source:
                 git commit -m "Update remote file"
 ```
 
-The name in this case is `update-file`.
+The name of the source operation in this case is `update-file`.
 
 For more possibilities, see other [source operation examples](#source-operation-examples).
 
@@ -99,10 +99,10 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform source-operation:run {{< variable "OPERATION_NAME" >}}
+platform source-operation:run {{< variable "SOURCE_OPERATION_NAME" >}}
 ```
 
-Replace {{< variable "OPERATION_NAME" >}} with the name of your operation, such as `update-file` in the [example above](#define-a-source-operation).
+Replace {{< variable "SOURCE_OPERATION_NAME" >}} with the name of your operation, such as `update-file` in the [example above](#define-a-source-operation).
 
 {{< /codetabs >}}
 
