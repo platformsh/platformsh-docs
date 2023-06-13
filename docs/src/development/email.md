@@ -10,6 +10,12 @@ You can configure your Platform.sh environments to send emails via an SMTP proxy
 Emails aren't guaranteed to be deliverable and you can't white-label them.
 The SMTP proxy is intended as a zero-configuration, best-effort service.
 
+{{< note >}}
+
+All non-production environments are limited to 12,000 email credits per calendar month.
+
+{{< /note >}}
+
 ## 1. Turn on outgoing email
 
 You can turn on outgoing email for each environment.
