@@ -243,8 +243,8 @@ you can invite other users to your organization and grant them the following per
   Access invoices and vouchers.
   Users with this permission receive monthly invoices by email.
 - **Manage plans** (`plans`):
-  Add, remove, and edit plans and plan options for existing projects.
-  Plan options include the amount of storage, number of environments, and number of user licenses.
+  View and edit plans and plan options for existing projects.
+  Plan options include the amount of storage, number of environments, and number of user licenses on a project.
 - **Manage users** (`members`):
   Add, remove, and edit organization-level users and permissions, except their own.
   Users with this permission can't grant other users permissions that they themselves don't have.
