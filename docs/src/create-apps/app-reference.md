@@ -374,7 +374,7 @@ The `access` dictionary has one allowed key:
 | ----- | ----------------------------------- | ------------- | ----------- |
 | `ssh` | `admin`, `contributor`, or `viewer` | `contributor` | Defines the minimum role required to access app environments via SSH. |
 
-In the following example, only users with `admin` permissions for the given [environment type](../administration/users.md#environment-types)
+In the following example, only users with `admin` permissions for the given [environment type](../administration/users.md#environment-type-roles)
 can access the deployed environment via SSH:
 
 ```yaml {location=".platform.app.yaml"}
