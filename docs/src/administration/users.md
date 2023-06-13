@@ -15,7 +15,7 @@ see how to [troubleshoot source integrations](../integrations/source/troubleshoo
 
 ### Project roles
 
-A user can have one of the following role to control their access at the project level:
+A user can have one of the following roles to control their access at project level:
 
 | Role           | View environment | Push code | Manage user access | Change settings | Execute actions on all environments |
 |----------------|------------------|-----------|--------------------|-----------------|-------------------------------------|
@@ -34,7 +34,7 @@ An environment type (Production, Staging, and Development) groups one or more en
 - You can change an environment's type (except for the Production environment).
 - You can have multiple Staging and Development environments.
 
-An user can have one of the following role on an environment type which grants them permissions on all environments of this type:
+A user can have one of the following roles on an environment type which grants them permissions on all environments of this type:
 
 | Role        | View environment | Push code | Branch environment | SSH access | Change settings | Execute actions |
 |-------------|------------------|-----------|--------------------|------------|-----------------|-----------------|
