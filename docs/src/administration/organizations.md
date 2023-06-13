@@ -134,7 +134,7 @@ platform organization:delete --org acme
 ## Transfer project ownership
 
 You can transfer your plan ownership to a different organization at anytime.
-You have to be an organization owner or have the [manage plan permission](./users.md#organization-user-permissions).
+You have to be an organization owner or have the [manage plan permission](./users.md#organization-permissions).
 
 1. Make the new organization owner a [project admin](./users.md#)
    for the project you want to transfer.

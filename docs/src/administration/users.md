@@ -174,7 +174,7 @@ To apply SSH access changes after you add a remove a user from a project or envi
 
 ### Remove a user from a project
 
-To remove a user from a project, you need to be a [project admin](#project-user-permissions),
+To remove a user from a project, you need to be a [project admin](#project-roles),
 be an organization owner, or have the [**Manage users** permission for the organization](#organization-permissions).
 
 To remove a user, follow these steps:
@@ -245,7 +245,7 @@ Users with the **Manage users** (`members`) permission can add, edit, or remove 
 
 {{< /note >}}
 
-Users without any of these permissions can only access [projects where they're users](#project-user-permissions).
+Users without any of these permissions can only access [projects where they're users](#project-roles).
 They can't access or manage the rest of the organization.
 
 Organization owners have all permissions within their organization.
