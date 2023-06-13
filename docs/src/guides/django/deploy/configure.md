@@ -13,6 +13,7 @@ description: |
 The examples vary based on whether you use Pip, Pipenv, or Poetry to manage dependencies.
 
 {{< codetabs >}}
+
 +++
 title=Pip
 highlight=yaml
@@ -45,6 +46,7 @@ It uses the Gunicorn WSGI server and Unix sockets.
 +++
 title=Pip
 +++
+
 ```yaml {location=".platform.app.yaml"}
 web:
     upstream:
@@ -52,10 +54,12 @@ web:
     commands:
         start: "gunicorn -w 4 -b unix:$SOCKET myapp.wsgi:application"
 ```
+
 <--->
 +++
 title=Pipenv
 +++
+
 ```yaml {location=".platform.app.yaml"}
 web:
     upstream:
@@ -63,10 +67,12 @@ web:
     commands:
         start: "pipenv run gunicorn -w 4 -b unix:$SOCKET myapp.wsgi:application"
 ```
+
 <--->
 +++
 title=Poetry
 +++
+
 ```yaml {location=".platform.app.yaml"}
 web:
     upstream:
@@ -74,8 +80,8 @@ web:
     commands:
         start: "poetry run gunicorn -w 4 -b unix:$SOCKET myapp.wsgi:application"
 ```
-{{< /codetabs >}}
 
+{{< /codetabs >}}
 
 To use this server, update the command to replace the WSGI application Gunicorn calls.
 The example uses a `myapp/wsgi.py` file with a callable `application`.
@@ -85,11 +91,11 @@ For examples of how to do so, see more about [Python web servers](../../../langu
 
 {{% guides/config-service name="Django" %}}
 
+{{% /guides/config-service %}}
+
 Below is an example configuration to make [PostgreSQL](../../../add-services/postgresql.md) available for your Django application.
 
-{{< readFile file="static/files/fetch/servicesyaml/django4" highlight="yaml" location=".platform/servicesapp.yaml" >}}
-
-{{% /guides/config-service %}}
+{{< readFile file="static/files/fetch/servicesyaml/django4" highlight="yaml" location=".platform/services.yaml">}}
 
 {{% guides/config-routes template="django4" name="Django" %}}
 
