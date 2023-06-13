@@ -18,7 +18,7 @@ These data are sourced from an annual average, which we update as new informatio
 Summary of data being used in Platform.sh’s Region Picker when creating a new Project:
 |  |  |
 |- |- |
-| Source | Electricity Maps 2022 annual averages (previous to May 2023, we had used annual averages from the IEA).|
+| Source | Electricity Maps 2022 annual averages (previous to May 2023, we had used annual averages from the IEA). See our [blog post](https://platform.sh/blog/platformsh-is-now-using-annual-carbon-intensities-from-electricity-maps/) for more information.|
 | Last update of this page | 11 May 2023 |
 | Previous versions of this page | Available [here](https://github.com/platformsh/platformsh-docs/commits/main/docs/src/development/regions.md)  |
 
