@@ -44,20 +44,32 @@ The documentation and the Meilisearch search service are separate applications.
 It isn't necessary to run the Meilisearch app to build the docs locally,
 but if you don't, the search field doesn't appear in the sidebar.
 
-To run the docs alone, clone this repository and install dependencies:
+To run the docs alone, follow these steps:
+
+1. Create a directory locally where you want to store the documentation website's cache.
+
+2. Clone this repository.
+
+3. Make sure cached files are stored in the directory you created:
 
 ```bash
 cd docs
+export PLATFORM_CACHE_DIR=/path/to/where/you/want/the/cache
+```
+
+4. Install dependencies:
+
+```bash
 npm install
 ```
 
-Then download the necessary example files:
+5. Download the necessary example files:
 
 ```bash
 npm run dev
 ```
 
-Then build the site:
+6. Build the site:
 
 ```bash
 hugo serve
