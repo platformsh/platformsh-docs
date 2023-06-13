@@ -79,7 +79,7 @@ title=In the Console
 
 ### Add a user to a project
 
-To invite a user, you need to be a [project admin](#project-user-permissions).
+To invite a user, you need to be a [project admin](#project-roles).
 
 To add a user, follow these steps:
 
@@ -131,8 +131,8 @@ To apply SSH access changes after you add a user to a project,
 
 ### Manage project users
 
-To manage user permissions on a project, you need to be a [project admin](#project-user-permissions),
-be an organization owner, or have the [**Manage users** permission for the organization](#organization-user-permissions).
+To manage user permissions on a project, you need to be a [project admin](#project-roles),
+be an organization owner, or have the [**Manage users** permission for the organization](#organization-permissions).
 
 To change user permissions, follow these steps:
 
@@ -175,7 +175,7 @@ To apply SSH access changes after you add a remove a user from a project or envi
 ### Remove a user from a project
 
 To remove a user from a project, you need to be a [project admin](#project-user-permissions),
-be an organization owner, or have the [**Manage users** permission for the organization](#organization-user-permissions).
+be an organization owner, or have the [**Manage users** permission for the organization](#organization-permissions).
 
 To remove a user, follow these steps:
 
@@ -211,7 +211,7 @@ To apply SSH access changes after changing a user's permissions for an environme
 ## Manage organization access
 
 All users who are added to any project within an organization become members of that organization.
-By default, such users have no [organization permissions](#organization-user-permissions).
+By default, such users have no [organization permissions](#organization-permissions).
 You can also have organization users who aren't part of any projects.
 
 Users who are a part of an organization with the **List projects** permission can see all projects in that organization at the organization's URL,
