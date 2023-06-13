@@ -46,7 +46,7 @@ Set up a script by following these steps:
     touch sanitize.sh && chmod +x sanitize.sh
     ```
 
-3.  Make the script sanitize environments with an [environment type](../../administration/users.md#environment-types)
+3.  Make the script sanitize environments with an [environment type](../../administration/users.md#environment-type-roles)
     other than `production`.
 
     The following example runs only in non-production environments
