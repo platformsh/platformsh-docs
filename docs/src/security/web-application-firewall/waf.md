@@ -8,7 +8,9 @@ banner:
 
 Enterprise and Elite projects on Platform.sh come with a web application firewall (WAF) at no additional cost.
 This WAF monitors requests to your app and blocks suspicious ones.
-It helps protect your app from attacks such as distributed denial of service (DDoS) attacks.
+
+All traffic to Platform.sh endpoints is also filtered
+using a system that takes into account traffic patterns and abuse scores.
 
 ## CRLF injection prevention
 
