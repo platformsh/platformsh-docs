@@ -32,6 +32,14 @@ const templateBuildRepoName = "template-builder"
 const pathToTemplatesInTB = "templates"
 
 /**
+ * location where we should store our retrieved files when building the site locally
+ * @todo see if we can automatically add this directory into .git/info/exclude vs relying on it being included in the
+ * root .gitignore
+ * @type {string}
+ */
+const localFileCache = 'fetchedFilesCache'
+
+/**
  * Checks our current rate limit with GH and warns if we have exceeded
  * @returns {Promise<boolean>}
  */
