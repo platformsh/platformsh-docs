@@ -1,18 +1,4 @@
 europe:
-    eu:
-        name: Ireland (eu-legacy)
-        label: eu.platform.sh
-        provider: AWS
-        available: false
-        outbound_ips: 
-            - "54.72.94.105"
-            - "54.76.137.67"
-            - "54.76.137.94"
-        inbound_location: gw.eu.platform.sh
-        inbound_ips:
-            - "54.76.137.79"
-            - "54.76.137.151"
-            - "54.76.136.188"
     eu-2:
         name: Ireland  (eu-2)
         label: eu-2.platform.sh
@@ -122,20 +108,6 @@ europe:
             - "35.189.126.202"
             - "35.242.183.249"
 us:
-    us:
-        name: East (us-legacy)
-        label: us.platform.sh
-        provider: AWS
-        available: false
-        outbound_ips: 
-            - "54.88.149.31"
-            - "54.209.114.37"
-            - "54.210.53.51"
-        inbound_location: gw.us.platform.sh
-        inbound_ips:
-            - "54.210.49.244"
-            - "54.210.55.162"
-            - "54.88.225.116"
     us-2:
         name: East (us-2)
         label: us-2.platform.sh

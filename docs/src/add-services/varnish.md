@@ -16,8 +16,6 @@ But you can include Varnish as a service.
 |------|-------------------------------|------------------------------ |
 |  {{< image-versions image="varnish" status="supported" environment="grid" >}} | {{< image-versions image="varnish" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="varnish" status="supported" environment="dedicated-gen-2" >}} |
 
-{{% image-versions-legacy "varnish" %}}
-
 ## How it works
 
 All incoming requests go through the [standard router](../define-routes/_index.md).
