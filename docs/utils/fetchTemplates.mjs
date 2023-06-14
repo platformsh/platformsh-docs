@@ -11,7 +11,7 @@ import * as ghCommon from './common.mjs'
 const fetchConcurrency = pLimit(10);
 
 // where our cache for the template file is located
-const cachedTemplatePath = process.env.PLATFORM_CACHE_DIR
+const cachedTemplatePath = ghCommon.cacheDir()
 // the name of the cached template file
 const cachedTemplateName = "templates.yaml"
 // full path + name
