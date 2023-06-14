@@ -17,7 +17,7 @@ weight: -100
 You need to add the [Search API](https://www.drupal.org/project/search_api) and [Elasticsearch Connector](https://www.drupal.org/project/elasticsearch_connector) modules to your project. If you are using composer, the easiest way to add them is to run:
 
 ```bash
-$ composer require drupal/search_api drupal/elasticsearch_connector
+composer require drupal/search_api drupal/elasticsearch_connector
 ```
 
 And then commit the changes to `composer.json` and `composer.lock`.
