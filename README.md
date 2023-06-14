@@ -44,24 +44,31 @@ The documentation and the Meilisearch search service are separate applications.
 It isn't necessary to run the Meilisearch app to build the docs locally,
 but if you don't, the search field doesn't appear in the sidebar.
 
-To run the docs alone, clone this repository and install dependencies:
+1. To run the docs alone, clone this repository and install dependencies:
 
-```bash
-cd docs
-npm install
-```
+    ```bash
+    cd docs
+    npm install
+    ```
 
-Then download the necessary example files:
+2. (Optional) The site relies on numerous example files that it dynamically fetches from various locations. These example files are
+**not** required to run the site locally. Those sections will instead display a "**Heads up!** The file was not found"
+message. If you prefer to run the site with all example files retrieved, you will need to set a
+[GitHub token](https://github.com/settings/tokens) as `GITHUB_API_TOKEN` in your shell before proceeding to step 3. If you are using the GitHub cli
+tool, you can run the following in your shell so as not to include your token's value in your shell's history:
+    ```bash
+    export GITHUB_API_TOKEN=$(gh auth token)
+    ```
+3. Run the following to have node retrieve all the necessary example files (if applicable) and update the registry:
+    ```bash
+    npm run dev
+    ```
 
-```bash
-npm run dev
-```
+4. Then build the site:
 
-Then build the site:
-
-```bash
-hugo serve
-```
+    ```bash
+    hugo serve
+    ```
 
 ### Running locally with search
 
