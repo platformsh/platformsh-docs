@@ -178,6 +178,10 @@ const writeTemplateInfo = async () => {
 
 // copies the cached version of the templates file from build cache to where hugo expects it
 const getTemplateInfo = async () => {
+  if(!ghCommon.continueFetch()) {
+    return;
+  }
+
   try {
     // if the file doesn't exist. we need to create it and copy it into the build cache
     if (!existsSync(cachedTemplateFileFull)) {

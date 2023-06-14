@@ -222,6 +222,9 @@ async function run(){
  * @returns {Promise<void>}
  */
 async function buildAndCopy() {
+  if(!ghCommon.continueFetch()) {
+    return;
+  }
 
   if(!fs.existsSync(cachedFilesPath)) {
     fs.mkdirSync(cachedFilesPath, {recursive: true})
