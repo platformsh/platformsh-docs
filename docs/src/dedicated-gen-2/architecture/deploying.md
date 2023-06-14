@@ -40,10 +40,6 @@ Authenticated traffic that can't be served by the CDN still sees a brief interru
 
 ## Deployment philosophy
 
-Platform.sh values consistency over availability, which means that deploys can cause your application to be unavailable for a short amount of time during deployments. You can find out more about Platform.sh's deployment philosophy in our [overview of the build and deploy phases](../../overview/build-deploy.md).
-
-<!--
-## Service overview
-
-Add image here once it's updated.
--->
+Platform.sh values consistency over availability,
+which means that deployments can cause your app to be unavailable for a short amount of time.
+For more information, see the [overview of the build and deploy phases](../../overview/build-deploy.md).
