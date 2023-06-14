@@ -38,7 +38,7 @@ You get output similar to the following:
 
 ## Validate integrations
 
-Once your integration has been configured, you can check that it's working as exepected.
+Once your integration has been configured, you can check that it's working as expected.
 To do so, follow these steps:
 
 1. Run the `platform integration:validate` command.
