@@ -25,7 +25,7 @@ const dataDirectories = {
 
 const fetchConcurrency = pLimit(10);
 
-const cachedBuildPath = process.env.PLATFORM_CACHE_DIR
+const cachedBuildPath = ghCommon.cacheDir()
 const fetchedFilesPath = path.join('static','files','fetch')
 const cachedFilesPath = path.join(cachedBuildPath,fetchedFilesPath)
 const localFetchedFiles = path.join(process.cwd(),fetchedFilesPath)
@@ -222,6 +222,9 @@ async function run(){
  * @returns {Promise<void>}
  */
 async function buildAndCopy() {
+  if(!ghCommon.continueFetch()) {
+    return;
+  }
 
   if(!fs.existsSync(cachedFilesPath)) {
     fs.mkdirSync(cachedFilesPath, {recursive: true})
