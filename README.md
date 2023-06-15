@@ -32,7 +32,7 @@ If you're not sure how, you can also open an issue and we can look into it.
 
 Requires:
 
-* Hugo >= 0.111.3
+* Hugo >= 0.113.0
 * Node.js >= 16
 * Poetry
 
