@@ -440,7 +440,7 @@ title=Run a custom script
 1. Add your script in a PHP file.
 2. Specify an alternative `start` command by adapting the following:
 
-   ```yaml {location:".platform.app.yaml"}
+   ```yaml {location=".platform.app.yaml"}
    web:
         commands:
             start: /usr/bin/start-php-app {{< variable "PATH_TO_APP" >}}
@@ -458,7 +458,7 @@ title=Run a custom web server
 
 2.  Specify an alternative `start` command by adapting the following:
 
-    ```yaml {location:".platform.app.yaml"}
+    ```yaml {location=".platform.app.yaml"}
     web:
         commands:
             start: /usr/bin/start-php-app {{< variable "PATH_TO_APP" >}}
@@ -502,7 +502,7 @@ To execute runtime-specific tasks (such as clearing cache) before your app start
 
 2.  Specify an alternative `start` command by adapting the following:
 
-    ```yaml {location:".platform.app.yaml"}
+    ```yaml {location=".platform.app.yaml"}
     web:
         commands:
             start: bash {{< variable "PATH_TO_SCRIPT" >}} && /usr/bin/start-php-app {{< variable "PATH_TO_APP" >}}
