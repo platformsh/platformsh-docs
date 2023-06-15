@@ -61,7 +61,8 @@ If you’re using the GitHub CLI tool, to avoid including your token’s value i
     ```bash
     export GITHUB_API_TOKEN=$(gh auth token)
     ```
-3. Run the following to have node retrieve all the necessary example files (if applicable) and update the registry:
+3. To have Node update the registry and retrieve all the necessary example files (if applicable), run the following command:
+
     ```bash
     npm run dev
     ```
