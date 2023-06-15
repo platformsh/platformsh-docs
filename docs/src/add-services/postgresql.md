@@ -179,7 +179,9 @@ it's possible to define multiple databases as well as multiple users with differ
 To do so requires defining multiple endpoints.
 Under the `configuration` key of your service there are two additional keys:
 
-* `databases`:  This is a YAML array listing the databases that should be created. If not specified, a single database named `main` is created. **Removing a database from the list on further deployments will result in the deletion of the database**.
+* `databases`:  This is a YAML array listing the databases that should be created. If not specified, a single database named `main` is created.
+
+  Note that removing a schema from the list of `schemas` on further deployments results in **the deletion of the schema.**
 * `endpoints`: This is a nested YAML object defining different credentials. Each endpoint may have access to one or more schemas (databases), and may have different levels of permission for each. The valid permission levels are:
   * `ro`: Using this endpoint only `SELECT` queries are allowed.
   * `rw`: Using this endpoint `SELECT` queries as well as `INSERT`/`UPDATE`/`DELETE` queries are allowed.
