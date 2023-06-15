@@ -51,11 +51,13 @@ but if you don't, the search field doesn't appear in the sidebar.
     npm install
     ```
 
-2. (Optional) The site relies on numerous example files that it dynamically fetches from various locations. These example files are
-**not** required to run the site locally. Those sections will instead display a "**Heads up!** The file was not found"
-message. If you prefer to run the site with all example files retrieved, you will need to set a
-[GitHub token](https://github.com/settings/tokens) as `GITHUB_API_TOKEN` in your shell before proceeding to step 3. If you are using the GitHub cli
-tool, you can run the following in your shell so as not to include your token's value in your shell's history:
+2. (Optional) The documentation website dynamically fetches example files from various locations.
+
+You can run the site locally without retrieving those example files, keeping in mind that affected sections will display a `**Heads up!** The file was not found` message. To do so, jump to step 3.
+
+To run the site with all example files retrieved, set a [GitHub token](https://github.com/settings/tokens) as `GITHUB_API_TOKEN` in your shell.
+If you’re using the GitHub CLI tool, to avoid including your token’s value in your shell’s history, run the following command:
+
     ```bash
     export GITHUB_API_TOKEN=$(gh auth token)
     ```
