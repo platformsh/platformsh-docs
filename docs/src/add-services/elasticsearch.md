@@ -4,6 +4,7 @@ weight: -100
 description: |
   Elasticsearch is a distributed RESTful search engine built for the cloud.
 sidebarTitle: "Elasticsearch"
+premium : true
 ---
 
 {{% description %}}
@@ -22,11 +23,25 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 
 ## Supported versions
 
-Due to a licensing change, Elasticsearch versions after 7.10 aren't supported.
+{{% major-minor-versions-note configMinor="true" %}}
+
+### Enterprise edition
+
+{{< premium-features/add-on feature="Elasticsearch Enterprise" >}}
+
+| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
+|------|-------------------------------|------------------------------ |
+|  {{< image-versions image="elasticsearch-enterprise" status="supported" environment="grid" >}} | {{< image-versions image="elasticsearch-enterprise" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="elasticsearch-enterprise" status="supported" environment="dedicated-gen-2" >}} |
+
+### Legacy edition
+
+Due to a licensing change, non-Enterprise versions of Elasticsearch after 7.10 aren't supported.
+Previous versions are available in your projects (and are listed below),
+but they’re at their end of life and are no longer receiving security updates from upstream.
+
 For newer versions, use [OpenSearch](./opensearch.md) instead.
 To switch to OpenSearch, follow the same procedure as for [upgrading](#upgrading).
-
-{{% image-versions-legacy "elasticsearch" %}}
+Alternatively, you can [contact Sales](https://platform.sh/contact/) to upgrade to Elasticsearch Enterprise.
 
 {{% deprecated-versions %}}
 
@@ -40,7 +55,53 @@ To switch to OpenSearch, follow the same procedure as for [upgrading](#upgrading
 
 {{< relationship "elasticsearch" >}}
 
-## Usage example
+## Elasticsearch Enterprise usage example
+
+{{% endpoint-description type="elasticsearch-enterprise" /%}}
+
+{{< codetabs >}}
+
++++
+title=Java
+file=static/files/fetch/examples/java/elasticsearch-enterprise
+highlight=java
++++
+
+<--->
+
++++
+title=Node.js
+file=static/files/fetch/examples/nodejs/elasticsearch-enterprise
+highlight=js
++++
+
+<--->
+
++++
+title=PHP
+file=static/files/fetch/examples/php/elasticsearch-enterprise
+highlight=php
++++
+
+<--->
+
++++
+title=Python
+file=static/files/fetch/examples/python/elasticsearch-enterprise
+highlight=python
++++
+
+{{< /codetabs >}}
+
+{{< note >}}
+
+When you create an index on Elasticsearch,
+don't specify the `number_of_shards` or `number_of_replicas` settings in your Elasticsearch API call.
+These values are set automatically based on available resources.
+
+{{< /note >}}
+
+## Elasticsearch legacy usage example
 
 {{% endpoint-description type="elasticsearch" /%}}
 
@@ -94,6 +155,27 @@ No username or password is required to connect to it.
 Starting with Elasticsearch 7.2 you may optionally enable HTTP Basic authentication.
 To do so, include the following in your `services.yaml` configuration:
 
+{{< codetabs >}}
+
++++
+title=Elasticsearch Enterprise
++++
+
+```yaml {location=".platform/services.yaml"}
+search:
+    type: elasticsearch-enterprise:8.5
+    disk: 2048
+    configuration:
+        authentication:
+            enabled: true
+```
+
+<--->
+
++++
+title=Elasticsearch legacy
++++
+
 ```yaml {location=".platform/services.yaml"}
 search:
     type: elasticsearch:7.2
@@ -102,6 +184,8 @@ search:
         authentication:
             enabled: true
 ```
+
+{{< /codetabs >}}
 
 That enables mandatory HTTP Basic auth on all requests.
 The credentials are available in any relationships that point at that service,
@@ -122,8 +206,14 @@ For example:
 
 ## Plugins
 
-Elasticsearch 2.4 and later offers a number of plugins.
+Elasticsearch offers a number of plugins.
 To enable them, list them under the `configuration.plugins` key in your `services.yaml` file, like so:
+
+{{< codetabs >}}
+
++++
+title=Elasticsearch Enterprise
++++
 
 ```yaml {location=".platform/services.yaml"}
 search:
@@ -135,6 +225,24 @@ search:
             - lang-python
 ```
 
+<--->
+
++++
+title=Elasticsearch legacy
++++
+
+```yaml {location=".platform/services.yaml"}
+search:
+    type: "elasticsearch-enterprise:8.5"
+    disk: 1024
+    configuration:
+        plugins:
+            - analysis-icu
+            - lang-python
+```
+
+{{< /codetabs >}}
+
 In this example you'd have the ICU analysis plugin and Python script support plugin.
 
 If there is a publicly available plugin you need that isn't listed here, [contact support](../overview/get-support.md).
@@ -143,28 +251,28 @@ If there is a publicly available plugin you need that isn't listed here, [contac
 
 This is the complete list of official Elasticsearch plugins that can be enabled:
 
-| Plugin                  | Description                                                                               | 2.4 | 5.x | 6.x | 7.x |
-|-----------------------|-------------------------------------------------------------------------------------------|-----|-----|-----|-----|
-| `analysis-icu`          | Support ICU Unicode text analysis                                                         | *   | *   | *   | *   |
-| `analysis-nori`         | Integrates Lucene Nori analysis module into Elasticsearch                                 |     |     | *   | *   |
-| `analysis-kuromoji`     | Japanese language support                                                                 | *   | *   | *   | *   |
-| `analysis-smartcn`      | Smart Chinese Analysis Plugins                                                            | *   | *   | *   | *   |
-| `analysis-stempel`      | Stempel Polish Analysis Plugin                                                            | *   | *   | *   | *   |
-| `analysis-phonetic`     | Phonetic analysis                                                                         | *   | *   | *   | *   |
-| `analysis-ukrainian`    | Ukrainian language support                                                                |     | *   | *   | *   |
-| `cloud-aws`             | AWS Cloud plugin, allows storing indices on AWS S3                                        | *   |     |     |     |
-| `delete-by-query`       | Support for deleting documents matching a given query                                     | *   |     |     |     |
-| `discovery-multicast`   | Ability to form a cluster using TCP/IP multicast messages                                 | *   |     |     |     |
-| `ingest-attachment`     | Extract file attachments in common formats (such as PPT, XLS, and PDF)                    |     | *   | *   | *   |
-| `ingest-user-agent`     | Extracts details from the user agent string a browser sends with its web requests         |     | *   | *   |     |
-| `lang-javascript`       | JavaScript language plugin, allows the use of JavaScript in Elasticsearch scripts         |     | *   |     |     |
-| `lang-python`           | Python language plugin, allows the use of Python in Elasticsearch scripts                 | *   | *   |     |     |
-| `mapper-annotated-text` | Adds support for text fields with markup used to inject annotation tokens into the index  |     |     | *   | *   |
-| `mapper-attachments`    | Mapper attachments plugin for indexing common file types                                  | *   | *   |     |     |
-| `mapper-murmur3`        | Murmur3 mapper plugin for computing hashes at index-time                                  | *   | *   | *   | *   |
-| `mapper-size`           | Size mapper plugin, enables the `_size` meta field                                        | *   | *   | *   | *   |
-| `repository-s3`         | Support for using S3 as a repository for Snapshot/Restore                                 |     | *   | *   | *   |
-| `transport-nio`         | Support for NIO transport                                                                 |     |     |     | *   |
+| Plugin                  | Description                                                                               | 2.4 | 5.x | 6.x | 7.x | 8.5 |
+|-------------------------|-------------------------------------------------------------------------------------------|-----|-----|-----|-----|-----|
+| `analysis-icu`          | Support ICU Unicode text analysis                                                         | *   | *   | *   | *   | *   |
+| `analysis-nori`         | Integrates Lucene Nori analysis module into Elasticsearch                                 |     |     | *   | *   | *   |
+| `analysis-kuromoji`     | Japanese language support                                                                 | *   | *   | *   | *   | *   |
+| `analysis-smartcn`      | Smart Chinese Analysis Plugins                                                            | *   | *   | *   | *   | *   |
+| `analysis-stempel`      | Stempel Polish Analysis Plugin                                                            | *   | *   | *   | *   | *   |
+| `analysis-phonetic`     | Phonetic analysis                                                                         | *   | *   | *   | *   | *   |
+| `analysis-ukrainian`    | Ukrainian language support                                                                |     | *   | *   | *   | *   |
+| `cloud-aws`             | AWS Cloud plugin, allows storing indices on AWS S3                                        | *   |     |     |     |     |
+| `delete-by-query`       | Support for deleting documents matching a given query                                     | *   |     |     |     |     |
+| `discovery-multicast`   | Ability to form a cluster using TCP/IP multicast messages                                 | *   |     |     |     |     |
+| `ingest-attachment`     | Extract file attachments in common formats (such as PPT, XLS, and PDF)                    |     | *   | *   | *   | *   |
+| `ingest-user-agent`     | Extracts details from the user agent string a browser sends with its web requests         |     | *   | *   |     |     |
+| `lang-javascript`       | JavaScript language plugin, allows the use of JavaScript in Elasticsearch scripts         |     | *   |     |     |     |
+| `lang-python`           | Python language plugin, allows the use of Python in Elasticsearch scripts                 | *   | *   |     |     |     |
+| `mapper-annotated-text` | Adds support for text fields with markup used to inject annotation tokens into the index  |     |     | *   | *   | *   |
+| `mapper-attachments`    | Mapper attachments plugin for indexing common file types                                  | *   | *   |     |     |     |
+| `mapper-murmur3`        | Murmur3 mapper plugin for computing hashes at index-time                                  | *   | *   | *   | *   | *   |
+| `mapper-size`           | Size mapper plugin, enables the `_size` meta field                                        | *   | *   | *   | *   | *   |
+| `repository-s3`         | Support for using S3 as a repository for Snapshot/Restore                                 |     | *   | *   | *   | *   |
+| `transport-nio`         | Support for NIO transport                                                                 |     |     |     | *   | *   |
 
 ### Plugin removal
 
