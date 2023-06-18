@@ -1,6 +1,6 @@
 {{- $file := printf "/static/files/fetch/examples/relationships/%s" ( .Get 0 ) -}}
 {{- $contentLength := len ( readFile $file ) -}}
-{{- if eq ( len ( getenv "GITHUB_WORKFLOW" ) ) 0 }}
+{{- if ne ( len ( getenv "GITHUB_API_TOKEN" ) ) 0 }}
     {{- if ne $contentLength 0 }}
         {{- $content := readFile ( printf "/static/files/fetch/examples/relationships/%s" ( .Get 0 ) ) -}}
         {{- highlight $content "json" "" -}}
