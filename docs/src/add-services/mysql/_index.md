@@ -39,9 +39,12 @@ MySQL and MariaDB have the same behavior and the rest of this page applies to bo
 `oracle-mysql` is not yet available for {{% names/dedicated-gen-3 %}} environments.
 It also isn't available for {{% names/dedicated-gen-2 %}} environments.
 
-On {{% names/dedicated-gen-3 %}} and {{% names/dedicated-gen-2 %}} environments, MariaDB is available with Galera for replication:
+On Dedicated environments, MariaDB is available with Galera for replication.
+Supported versions are the following:
 
-{{< image-versions image="mariadb" status="supported" environment="dedicated-gen-3" >}}
+| {{% names/dedicated-gen-2 %}} | {{% names/dedicated-gen-3 %}} |
+|-------------------------------|-------------------------------|
+| {{< image-versions image="mariadb" status="supported" environment="dedicated-gen-2" >}} | {{< image-versions image="mariadb" status="supported" environment="dedicated-gen-3" >}} |
 
 Dedicated environments only support the InnoDB storage engine.
 Tables created on Dedicated environments using the MyISAM storage engine don't replicate between all hosts in the cluster.
