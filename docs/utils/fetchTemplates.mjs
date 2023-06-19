@@ -11,7 +11,7 @@ import * as ghCommon from './common.mjs'
 const fetchConcurrency = pLimit(10);
 
 // where our cache for the template file is located
-const cachedTemplatePath = process.env.PLATFORM_CACHE_DIR
+const cachedTemplatePath = ghCommon.cacheDir()
 // the name of the cached template file
 const cachedTemplateName = "templates.yaml"
 // full path + name
@@ -178,6 +178,10 @@ const writeTemplateInfo = async () => {
 
 // copies the cached version of the templates file from build cache to where hugo expects it
 const getTemplateInfo = async () => {
+  if(!ghCommon.continueFetch()) {
+    return;
+  }
+
   try {
     // if the file doesn't exist. we need to create it and copy it into the build cache
     if (!existsSync(cachedTemplateFileFull)) {
