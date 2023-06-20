@@ -25,6 +25,8 @@ Platform.sh supports two different Redis configurations:
 
 ## Supported versions
 
+{{% major-minor-versions-note configMinor="true" %}}
+
 | Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |------|-------------------------------|------------------------------ |
 | {{< image-versions image="redis" status="supported" environment="grid" >}} | {{< image-versions image="redis" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="redis" status="supported" environment="dedicated-gen-2" >}} |
@@ -55,15 +57,6 @@ To customize those cache cleanups, set up an [eviction policy](#eviction-policy)
 Make sure your app doesn't rely on ephemeral Redis for persistent storage as it can cause issues.
 For example, if a container is moved during region maintenance,
 the `deploy` and `post_deploy` hooks don't run and an app that treats the cache as permanent shows errors.
-
-To avoid such issues, trigger a cache cleanup every time your app starts.
-To do so, configure a `start` [web command](../create-apps/app-reference.md#web-commands) similar to the following:
-
-```yaml {location=".platform.app.yaml"}
-web:
-    commands:
-        start: 'redis-cli -h redis.internal flushall'
-```
 
 To prevent data from getting lost when a container is moved or shut down,
 you can use the [persistent Redis](#persistent-redis) configuration.

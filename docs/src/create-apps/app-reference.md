@@ -214,15 +214,6 @@ web:
 ```
 
 This command runs every time your app is restarted, regardless of whether or not new code is deployed.
-So it can be useful for things like clearing ephemeral cache.
-
-```yaml {location=".platform.app.yaml"}
-web:
-    commands:
-        start: 'redis-cli -h redis.internal flushall; sleep infinity'
-        # For a {{% names/dedicated-gen-2 %}} environment use:
-        # start: 'redis-cli flushall ; sleep infinity'
-```
 
 {{< note >}}
 
@@ -285,7 +276,7 @@ The following table presents possible properties for each location:
 | Name                | Type                                                 | Default   | Description |
 | ------------------- | ---------------------------------------------------- | --------- | ----------- |
 | `root`              | `string`                                             |           | The directory to serve static assets for this location relative to the [app's root directory](#root-directory). Must be an actual directory inside the root directory. |
-| `passthru`          | `boolean` or  `string`                               | `false`   | Whether to forward disallowed and missing resources from this location to the app. A string is a path with a leading `/` to the controller, such as `/index.php`. |
+| `passthru`          | `boolean` or  `string`                               | `false`   | Whether to forward disallowed and missing resources from this location to the app. A string is a path with a leading `/` to the controller, such as `/index.php`. <BR> <BR> If your app is in PHP, when setting `passthru` to `true`, you might want to set `scripts` to `false` for enhanced security. This prevents PHP scripts from being executed from the specified location. You might also want to set `allow` to `false` so that not only PHP scripts can't be executed, but their source code also can't be delivered.|
 | `index`             | Array of `string`s or `null`                         |           | Files to consider when serving a request for a directory. When set, requires access to the files through the `allow` or `rules` keys. |
 | `expires`           | `string`                                             | `-1`      | How long static assets are cached. The default means no caching. Setting it to a value enables the `Cache-Control` and `Expires` headers. Times can be suffixed with `ms` = milliseconds, `s` = seconds, `m` = minutes, `h` = hours, `d` = days, `w` = weeks, `M` = months/30d, or `y` = years/365d. |
 | `allow`             | `boolean`                                            | `true`    | Whether to allow serving files which don't match a rule. |
@@ -383,7 +374,7 @@ The `access` dictionary has one allowed key:
 | ----- | ----------------------------------- | ------------- | ----------- |
 | `ssh` | `admin`, `contributor`, or `viewer` | `contributor` | Defines the minimum role required to access app environments via SSH. |
 
-In the following example, only users with `admin` permissions for the given [environment type](../administration/users.md#environment-types)
+In the following example, only users with `admin` permissions for the given [environment type](../administration/users.md#environment-type-roles)
 can access the deployed environment via SSH:
 
 ```yaml {location=".platform.app.yaml"}
@@ -619,6 +610,29 @@ To cause them to fail on the first failed command, add `set -e` to the beginning
 If a `build` hook fails for any reason, the build is aborted and the deploy doesn't happen.
 Note that this only works for `build` hooks --
 if other hooks fail, the app is still deployed.
+
+#### Automated testing
+
+It’s preferable that you set up and run automated tests in a dedicated CI/CD tool.
+Relying on Platform.sh hooks for such tasks can prove difficult.
+
+During the `build` hook, you can halt the deployment on a test failure but the following limitations apply:
+
+- Access to services such as databases, Redis, Vault KMS, and even writable mounts is disabled.
+  So any testing that relies on it is sure to fail.
+- If you haven’t made changes to your app, an existing build image is reused and the build hook isn’t run.
+- Test results are written into your app container, so they might get exposed to a third party.
+
+During the `deploy` hook, you can access services but **you can’t halt the deployment based on a test failure**.
+Note that there are other downsides:
+
+- Your app container is read-only during the deploy hook,
+  so if your tests need to write reports and other information, you need to create a file mount for them.
+- Your app can only be deployed once the deploy hook has been completed.
+  Therefore, running automated testing via the deploy hook generates slower deployments.
+- Your environment isn’t available externally during the deploy hook.
+  Unit and integration testing might work without the environment being available,
+  but you can’t typically perform end-to-end testing until after the environment is up and available.
 
 ## Crons
 

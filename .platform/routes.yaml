@@ -243,6 +243,9 @@ https://{default}/:
       "/security/iaas_resources.html" : { "to": "https://platform.sh/trust-center/security/iaas-resources/", "code": 301 }
       "/security/pen-test.html" : { "to": "https://platform.sh/trust-center/security/penetration-testing/", "code": 301 }
 
+      # Sponsored sites application
+      "/administration/pricing/sponsored.html": { "to": "/administration/pricing#sponsored-sites", "code": 301 }
+
 "https://search.{default}/":
     type: upstream
     upstream: "search:http"

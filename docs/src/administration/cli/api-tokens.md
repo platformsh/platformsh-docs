@@ -36,7 +36,7 @@ title=Using the CLI
    ```
    This sets your machine user as a viewer on your project and a contributor on development environments, 
    with no access to other environment types.
-   Note that you can further [adjust user roles](../users.md#environment-types) depending on your needs and each environment type.
+   Note that you can further [adjust user roles](../users.md#environment-type-roles) depending on your needs and each environment type.
 
 2. In the email invitation, click **Create account**.
 3. To create a Platform.sh account for the machine user, click **Sign up** and follow the instructions.
@@ -50,7 +50,7 @@ title=In the Console
 2. In the **Project Settings** menu, click **Access**.
 3. Click **Add**.
 4. Enter your machine user's email address.
-5. For each [environment type](../users.md#environment-types), assign a role to your machine user and click **Save**.
+5. For each [environment type](../users.md#environment-type-roles), assign a role to your machine user and click **Save**.
 
 {{< /codetabs >}}
 
@@ -72,7 +72,7 @@ title=In the Console
 To check that your API token is valid, run the following command:
 
 ```bash
-$ platform auth:api-token-login
+platform auth:api-token-login
 ```
 
 When prompted, enter your API token.
@@ -195,7 +195,7 @@ In this case, to ensure all your commands work, load the CLI SSH certificate fir
 To do so, run the following command:
 
 ```bash
-$ platform ssh-cert:load --no-interaction
+platform ssh-cert:load --no-interaction
 ```
 
 

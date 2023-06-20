@@ -10,7 +10,7 @@ A Platform.sh environment contains one instance of an app (or [group of apps](..
 with all the services needed for it to run.
 
 Each project can include multiple environments,
-often divided into [environment types](../administration/users.md#environment-types).
+often divided into [environment types](../administration/users.md#environment-type-roles).
 If you have a live site, you have at least a production environment.
 You can think of other environments as copies of your live site
 where you can run tests without worrying about damaging anything in production.
@@ -43,7 +43,7 @@ These are called [inactive environments](#environment-status).
 
 ## Default environment
 
-Your default environment comes from your default branch and is a [production environment](../administration/users.md#environment-types).
+Your default environment comes from your default branch and is a [production environment](../administration/users.md#environment-type-roles).
 Your project must have a default environment,
 but you can [name it as you want](./default-environment.md).
 
