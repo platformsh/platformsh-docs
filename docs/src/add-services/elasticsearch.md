@@ -55,53 +55,7 @@ Alternatively, you can [contact Sales](https://platform.sh/contact/) to upgrade 
 
 {{< relationship "elasticsearch" >}}
 
-## Elasticsearch Enterprise usage example
-
-{{% endpoint-description type="elasticsearch-enterprise" /%}}
-
-{{< codetabs >}}
-
-+++
-title=Java
-file=static/files/fetch/examples/java/elasticsearch-enterprise
-highlight=java
-+++
-
-<--->
-
-+++
-title=Node.js
-file=static/files/fetch/examples/nodejs/elasticsearch-enterprise
-highlight=js
-+++
-
-<--->
-
-+++
-title=PHP
-file=static/files/fetch/examples/php/elasticsearch-enterprise
-highlight=php
-+++
-
-<--->
-
-+++
-title=Python
-file=static/files/fetch/examples/python/elasticsearch-enterprise
-highlight=python
-+++
-
-{{< /codetabs >}}
-
-{{< note >}}
-
-When you create an index on Elasticsearch,
-don't specify the `number_of_shards` or `number_of_replicas` settings in your Elasticsearch API call.
-These values are set automatically based on available resources.
-
-{{< /note >}}
-
-## Elasticsearch legacy usage example
+## Usage example
 
 {{% endpoint-description type="elasticsearch" /%}}
 
