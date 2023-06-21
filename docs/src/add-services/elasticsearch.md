@@ -40,7 +40,7 @@ Previous versions are available in your projects (and are listed below),
 but they’re at their end of life and are no longer receiving security updates from upstream.
 
 For newer versions, use [OpenSearch](./opensearch.md) instead.
-To switch to OpenSearch, follow the same procedure as for [upgrading](#upgrading).
+To switch to OpenSearch, follow the same procedure as for [upgrading](#upgrading).<BR>
 Alternatively, you can [contact Sales](https://platform.sh/contact/) to upgrade to Elasticsearch Enterprise.
 
 {{% deprecated-versions %}}
@@ -55,9 +55,13 @@ Alternatively, you can [contact Sales](https://platform.sh/contact/) to upgrade 
 
 {{< relationship "elasticsearch" >}}
 
+The previous example is for an Elasticsearch legacy instance.
+The relationship reference for an Elasticsearch Enterprise instance would present differences.
+For example, the service type would be `elasticsearch-enterprise`.
+
 ## Usage example
 
-{{% endpoint-description type="elasticsearch" /%}}
+{{% endpoint-description type="elasticsearch-enterprise" /%}}
 
 {{< codetabs >}}
 
@@ -92,6 +96,9 @@ highlight=python
 +++
 
 {{< /codetabs >}}
+
+The previous configuration examples are for an Elasticsearch legacy instance.
+Configuration for an Elasticsearch Enterprise instance may differ slightly.
 
 {{< note >}}
 

@@ -20,6 +20,8 @@ To define the service, use {{ if eq ($type) "mariadb" }}
   the `{{ $type }}` or `mysql` type for MariaDB or the `oracle-mysql` type for Oracle MySQL
   {{ else if eq $type "redis" }}
   the `{{ $type }}` type for ephemeral Redis
+  {{ else if eq $type "elasticsearch-enterprise" }}
+  the `{{ $type }}` type for Elasticsearch Enterprise or the `elasticsearch` type for Elasticsearch legacy
   {{ else }}
   the `{{ $type }}` type{{ end }}:
 
@@ -54,7 +56,8 @@ Back up your data before changing the service.
 <!-- Clarify the endpoint that should be used. -->
 <!-- If a link and text have been set, adds exception that directs users to the subsection that describes explicit endpoints. -->
 To define the relationship, use the {{ if eq $type "vault-kms" }}endpoint you [defined 
-in step 1](#1-configure-the-service){{ else }}`{{ $data.endpoint }}` endpoint{{ end }}
+in step 1](#1-configure-the-service)
+{{ else if eq $type "elasticsearch-enterprise"}} `elasticsearch-enterprise` endpoint for Elasticsearch Enterprise or the `elasticsearch` endpoint for Elasticsearch legacy{{ else }}`{{ $data.endpoint }}` endpoint{{ end }}
 {{ if and (gt (len ( $sectionLink )) 0) (gt (len ( $multipleText )) 0) }} (unless you have [multiple {{$multipleText}}]({{ $sectionLink }})){{ end }}:
 
 <!-- Create a dummy example `relationships` block from the registry's example naming in `.docs` -->
@@ -123,6 +126,11 @@ mounts:
 {{ end }}
 
 {{ partial "examples/config_links" ( dict "type" $type "onlyLanguage" $onlyLanguage ) }}
+
+{{ if eq ($type) "elasticsearch-enterprise" }}
+Note that the previous example is for an Elasticsearch Enterprise instance.
+For an Elasticsearch legacy instance, the type used in the service definition would be `elasticsearch`.
+{{ end }}
 
 <!-- Turn this section off for ones in Guides that continue differently-->
 {{ if not (.Get "noApp" )}}
