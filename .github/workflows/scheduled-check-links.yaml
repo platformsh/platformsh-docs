@@ -34,6 +34,22 @@ jobs:
         run: |
           pip3 install -r requirements.txt
 
+      - name: Set URL to scan
+        id: set-url
+        shell: bash
+        run: |
+          # If this is a workflow dispatch, then use what was entered.
+          # If not, then use the repository variable SCAN_URL if it is set
+          # if not, fall back to the hard-coded default
+          scanURL="https://docs.platform.sh/"
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            scanURL="${{ inputs.url }}"
+          elif [[ -n "${{ vars.SCAN_URL }}" ]]; then
+            scanURL="${{ vars.SCAN_URL }}"
+          fi
+
+          echo "scanURL=${scanURL}" >> "$GITHUB_ENV"
+
       - name: Run linkchecker
         id: run-link-checker
         continue-on-error: true
@@ -41,7 +57,7 @@ jobs:
         run: |
           echo "::notice::Scanning ${{ inputs.url }} for broken links."
           # if linkchecker exits with a non-zero then it means broken links were found.
-          scan=$(linkchecker ${{ inputs.url }} -F xml/utf_8/brokenlinks.xml --check-extern --user-agent "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" --ignore-url="^https://github.com/platformsh*" --ignore-url="console.platform.sh/projects/*" --ignore-url="cloud.orange-business.com/*" --ignore-url="developers.cloudflare.com/*" --ignore-url="discord.com/*" --ignore-url="pptr.dev/*" --ignore-url="mvnrepository.com/*" --ignore-url="https://dev.mysql.com/doc/refman/en/" --ignore-url="https://www.microsoft.com/en-us/trust-center/privacy/data-management")
+          scan=$(linkchecker ${{ env.scanURL }} -F xml/utf_8/brokenlinks.xml --check-extern --user-agent "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" --ignore-url="^https://github.com/platformsh*" --ignore-url="console.platform.sh/projects/*" --ignore-url="cloud.orange-business.com/*" --ignore-url="developers.cloudflare.com/*" --ignore-url="discord.com/*" --ignore-url="pptr.dev/*" --ignore-url="mvnrepository.com/*" --ignore-url="https://dev.mysql.com/doc/refman/en/" --ignore-url="https://www.microsoft.com/en-us/trust-center/privacy/data-management")
           result=$?
           if [[ $result -ne 0 ]]; then
             echo "::notice::Broken links detected."
