@@ -191,22 +191,19 @@ Staging
 
 Development environments are often used for a limited time and then abandoned.
 To prevent unnecessary consumption of resources,
-Platform.sh automatically pauses development environments where code hasn't been pushed in 14 days.
+Platform.sh automatically pauses development environments that haven't been redeployed in 14 days.
 
 {{< note >}}
 
-If you're on a Professional (development) plan,
+If you're on a development plan,
 all your environments are development environments that can be paused automatically.
-This includes your future production environment.<BR>
+This includes your future production environment.
 To prevent your production environment from being paused automatically,
 [upgrade to a non-development plan](https://platform.sh/pricing/).
 
 {{< /note >}}
 
 You can also pause an environment manually at any time.
-Currently, you can only pause and resume environments through the [Console](../administration/web/_index.md)
-and the [Platform.sh API](https://api.platform.sh/).
-In the future, you'll be able to do so in the [CLI](../administration/cli/_index.md) too.
 
 ### Pause an environment
 
@@ -215,23 +212,23 @@ To pause an environment, follow these steps:
 {{< codetabs >}}
 
 +++
+title=Using the CLI
++++
+
+Run the following command:
+
+```bash
+platform environment:pause --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
+```
+
+<--->
++++
 title=In the Console
 +++
 
 1. Navigate to your project and click {{< icon settings >}} **Settings**.
 2. Under **Environments**, select the environment you want to pause.
 3. In the **Status** tab, click **Pause environment**.
-
-<--->
-+++
-title=Using the API
-+++
-
-Run the following command:
-
-```bash
-platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/pause -X POST -p {{< variable "PROJECT_ID" >}}
-```
 
 {{< /codetabs >}}
 
@@ -243,23 +240,23 @@ You can also resume it manually at any time.
 {{< codetabs >}}
 
 +++
+title=Using the CLI
++++
+
+Run the following command:
+
+```bash
+platform environment:resume --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
+```
+
+<--->
++++
 title=In the Console
 +++
 
 1. Navigate to the paused environment.
 2. In the Activity tab, click **Resume environment**.
 3. In the **Resume environment** window, click **Resume**. 
-
-<--->
-+++
-title=Using the API
-+++
-
-Run the following command:
-
-```bash
-platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/resume -X POST -p {{< variable "PROJECT_ID" >}}
-```
 
 {{< /codetabs >}}
 
