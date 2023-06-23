@@ -8,6 +8,8 @@ layout: single
 
 ## Supported versions
 
+{{% major-minor-versions-note %}}
+
 ### OpenJDK versions:
 
 | Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |

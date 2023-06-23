@@ -1,13 +1,13 @@
 ---
 title: Structure
-weight: 1
+weight: 2
 description: Learn about how your Platform.sh environments are structured and which files control that structure.
 ---
 
 {{< note >}}
 
 This page describes how things work on Grid projects.
-[{{% names/dedicated-gen-3 %}}](../dedicated-gen-3/overview.md) projects are similar,
+[{{% names/dedicated-gen-3 %}}](../dedicated-gen-3/_index.md) projects are similar,
 but they run on dedicated virtual machines and each container is replicated three times.
 
 For {{% names/dedicated-gen-2 %}} projects, read about how [{{% names/dedicated-gen-2 %}} projects are structured](../dedicated-gen-2/overview/_index.md).

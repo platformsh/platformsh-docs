@@ -4,7 +4,6 @@ sidebarTitle: Get started
 weight: -130
 layout: single
 description: See how to get started deploying Django on Platform.sh.
-betaFlag: true
 ---
 
 Django is a web application framework written in Python with a built-in ORM (Object-Relational Mapper).
@@ -30,10 +29,10 @@ If you don't have code, create a new Django project from scratch.
 The following commands create a brand new Django project using [Django Admin](https://docs.djangoproject.com/en/4.1/intro/tutorial01/#creating-a-project).
 
 ```bash
-$ django-admin startproject {{< variable "PROJECT_NAME" >}}
-$ cd {{< variable "PROJECT_NAME" >}}
-$ git init
-$ git add . && git commit -m "Create basic Django app."
+django-admin startproject {{< variable "PROJECT_NAME" >}}
+cd {{< variable "PROJECT_NAME" >}}
+git init
+git add . && git commit -m "Create basic Django app."
 ```
 
 The community also provides a number of open-source starting points you can consult:

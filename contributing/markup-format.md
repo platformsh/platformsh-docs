@@ -47,16 +47,15 @@ The following table presents the available options:
 | Item                 | Type               | Description |
 | -------------------- |--------------------|-------------|
 | `title`              | string             | The title that appears as an `<h1>` element at the top of the page. |
-| `sidebarTItle`       | string             | An optional short version of the title to appear in the navigation sidebar. |
+| `sidebarTitle`       | string             | An optional short version of the title to appear in the navigation sidebar. |
 | `weight`             | integer            | Defines the order in which the page should appear in the sidebar. Higher numbers are lower. |
 | `toc`                | Boolean            | Optionally allows you to hide the table of contents on a page (by setting to `false`). |
 | `layout`             | `single` or `list` | Set to `single` on `_index.md` files to give them the same layout as other pages. |
 | `description`        | string             | Appears on `list` pages as a description of the page's content. Also overrides generic content for the `<meta name="description">` tag for SEO. Can be used in the page with the `description` shortcode. |
 | `multipleTabs`       | Boolean            | If set to true, code tabs are changed across the page. So changing the tabs in one place changes them for the entire page. Useful when code tabs are repeated often with the same title (such as comparing actions in the CLI and Console). |
-| `tier`               | list of strings    | Include to put at banner at the top indicating the feature is only available to certain plan tiers, such as only Enterprise and Elite customers. |
-| `observabilitySuite` | Boolean            | Set as `true` to put at banner at the top indicating the feature is only available as part of the Observability Suite. |
-| `betaFlag`           | Boolean            | Set as `true` to put at banner at the top indicating the feature is in beta and only available to certain projects. |
+| `banner`             | list of strings    | Include to put a banner at the top. Under `banner`, add `type: tiered-feature` to indicate that the feature is only available to Enterprise and Elite customers. Add `type: observability-suite` to indicate that the feature is only available as part of the Observability Suite. Add your own `title` and `body` to generate a custom banner. |
 | `sectionBefore`      | string             | Title of a header to add before the given page in the main navigation. |
+| `keywords`           | `single` or `list` | Improve search by providing additional, related terms. |
 
 ## Headings
 

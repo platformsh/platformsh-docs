@@ -1,6 +1,6 @@
 {{ $source := .Get "source" }}
 {{ if eq $source "Bitbucket" }}
-  {{ $source = "Bickbucket Cloud or Bitbucket Server" }}
+  {{ $source = "Bitbucket Cloud or Bitbucket Server" }}
 {{ end }}
 ## Before you begin
 

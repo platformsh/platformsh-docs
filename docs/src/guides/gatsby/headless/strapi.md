@@ -26,7 +26,7 @@ description: |
 The only additional setup required to prepare the backend is to install a package that will enable GraphQL on Strapi. In your Strapi directory, add the dependency: 
 
 ```bash
-$ yarn add strapi-plugin-graphql
+yarn add strapi-plugin-graphql
 ```
 
 ## Gatsby

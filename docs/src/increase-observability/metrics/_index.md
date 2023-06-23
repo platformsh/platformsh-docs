@@ -18,7 +18,7 @@ but are available for Grid environments (such as your development environments).
 
 ![A screenshot of what the metrics dashboard displays for {{% names/dedicated-gen-2 %}} environments](/images/metrics/all-dedicated.png "0.45")
 
-[{{% names/dedicated-gen-3 %}} environments](../../dedicated-gen-3/overview.md): each of the three hosts and their average.
+[{{% names/dedicated-gen-3 %}} environments](../../dedicated-gen-3/_index.md): each of the three hosts and their average.
 These metrics are available for all of your {{% names/dedicated-gen-3 %}} environments.
 
 ![A screenshot of what the metrics dashboard displays for {{% names/dedicated-gen-3 %}} environments](/images/metrics/all-dedicated-gen3.png "0.45")
@@ -34,14 +34,19 @@ These metrics are available for all of your Grid environments.
 
 All of the graphs show labels for the following thresholds:
 
-* Usage that crosses _80%_ results in a **warning** label.
-* Usage that crosses _90%_ results in a **critical** label.
-* On {{% names/dedicated-gen-3 %}} and Grid environments, usage that crosses _100%_ results in a **burst** label.
+- Usage that crosses _80%_ results in a **warning** label.
+- Usage that crosses _90%_ results in a **critical** label.
+- On {{% names/dedicated-gen-3 %}} and Grid environments, usage that crosses _100%_ results in a **burst** label.
 
   The burst capability is available for containerized environments
   and allows a container to get more resources than it's allocated.
-  Burst is considered useful for infrequent activities that cause usage spikes,
-  but these additional resources aren't guaranteed.
+  Burst is considered useful for infrequent activities that cause usage spikes.
+
+  On the Grid, resources are shared between customers,
+  so these additional resources aren't guaranteed and burst can only be temporary.
+  On {{% names/dedicated-gen-3 %}}, resources are dedicated to a single customer,
+  but they're shared between services.
+  Therefore, burst is allowed until the dedicated resource usage is exceeded.
 
 ### Recommendations
 

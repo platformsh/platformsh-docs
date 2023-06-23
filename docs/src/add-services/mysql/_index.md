@@ -1,6 +1,6 @@
 ---
 title: "MariaDB/MySQL (database service)"
-weight: 7
+weight: -60
 sidebarTitle: "MariaDB/MySQL"
 description: See how to configure a MariaDB/MySQL server to store your data.
 layout: single
@@ -20,6 +20,8 @@ or [MySQL documentation](https://dev.mysql.com/doc/refman/en/) for more informat
 {{% /frameworks %}}
 
 ## Supported versions
+
+{{% major-minor-versions-note configMinor="true" %}}
 
 The service types `mariadb` and `mysql` both refer to MariaDB.
 The service type `oracle-mysql` refers to MySQL as released by Oracle, Inc.
@@ -437,6 +439,11 @@ It's best to run it against an empty database.
 If not, make a backup or do a database export before importing.
 
 {{< /note >}}
+
+## Sanitizing data
+
+To ensure people who review code changes can't access personally identifiable information stored in your database,
+[sanitize your development environments](../../development/sanitize-db/mariadb.md).
 
 ## Replication
 

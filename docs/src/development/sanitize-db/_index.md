@@ -3,6 +3,9 @@ title: Sanitize databases
 description: Remove sensitive information from databases on non-production environments to control access.
 layout: list
 toc: false
+keywords:
+  - anonymize
+  - anonymization
 ---
 
 When working on a new feature on your website, you want to use a new branch.

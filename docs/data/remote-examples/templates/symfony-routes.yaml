@@ -1,0 +1,7 @@
+savePath: "/static/files/fetch/routesyaml"
+root: "https://raw.githubusercontent.com/symfonycorp"
+repoOrg: "symfonycorp"
+branch: "6.2"
+file: ".platform/routes.yaml"
+repos:
+    - platformsh-symfony-template

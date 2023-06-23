@@ -41,7 +41,7 @@ you can refer to your PHP access logs.
 Run a command similar to:
 
 ```bash
-$ platform log --lines 5000 | awk '{print $6}' | sort -n | uniq -c
+platform log --lines 5000 | awk '{print $6}' | sort -n | uniq -c
 ```
 
 This command takes into account the last 5,000 requests that reached PHP-FPM.
@@ -112,7 +112,7 @@ To check the maximum number of PHP-FPM workers available to your app,
 run the following command, where `children` refers to PHP-FPM workers:
 
 ```bash
-$ platform ssh "grep -e '^pm.max_children' /etc/php/*/fpm/php-fpm.conf"      
+platform ssh "grep -e '^pm.max_children' /etc/php/*/fpm/php-fpm.conf"      
 ```
 
 You get output similar to the following:

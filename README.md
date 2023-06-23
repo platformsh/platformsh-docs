@@ -32,8 +32,11 @@ If you're not sure how, you can also open an issue and we can look into it.
 
 Requires:
 
-* Hugo >= 0.100.2
+* Hugo >= 0.113.0
 * Node.js >= 16
+* Poetry
+
+### Steps
 
 ### Running locally without search
 
@@ -41,24 +44,34 @@ The documentation and the Meilisearch search service are separate applications.
 It isn't necessary to run the Meilisearch app to build the docs locally,
 but if you don't, the search field doesn't appear in the sidebar.
 
-To run the docs alone, clone this repository and install dependencies:
+1. To run the docs alone, clone this repository and install dependencies:
 
-```bash
-cd docs
-npm install
-```
+    ```bash
+    cd docs
+    npm install
+    ```
 
-Then download the necessary example files:
+2. (Optional) The documentation website dynamically fetches example files from various locations.
 
-```bash
-npm run dev
-```
+You can run the site locally without retrieving those example files, keeping in mind that affected sections will display a `**Heads up!** The file was not found` message. To do so, jump to step 3.
 
-Then build the site:
+To run the site with all example files retrieved, set a [GitHub token](https://github.com/settings/tokens) as `GITHUB_API_TOKEN` in your shell.
+If you’re using the GitHub CLI tool, to avoid including your token’s value in your shell’s history, run the following command:
 
-```bash
-hugo serve
-```
+    ```bash
+    export GITHUB_API_TOKEN=$(gh auth token)
+    ```
+3. To have Node update the registry and retrieve all the necessary example files (if applicable), run the following command:
+
+    ```bash
+    npm run dev
+    ```
+
+4. Then build the site:
+
+    ```bash
+    hugo serve
+    ```
 
 ### Running locally with search
 
@@ -68,65 +81,13 @@ In addition to the above requirements, search also requires:
 * [`jq`](https://stedolan.github.io/jq/)
 * [Meilisearch](https://www.meilisearch.com/) (see below for installation)
 
-If you would like to test the search server, follow these steps:
+A development script using `npm-run-all` has been defined to run both applications simultaneously.
 
-1. Install dependencies and Meilisearch:
+After cloning the repository, run the following command in your terminal:
 
-   ```bash
-   cd search
-   # Install dependencies for communicating with Meilisearch.
-   poetry install
-   # Set the same version as used for the docs
-   export MEILISEARCH_VERSION=0.30.1
-   # Set the right version for your operating system
-   # Replace the part after `meilisearch-`
-   # For macOS, use `macos-amd64`
-   # For Windows, use `windows-amd64.exe`
-   # For Linux, `linux-aarch64` is also available
-   export RELEASE_FILE=meilisearch-linux-amd64
-   # Download Meilisearch.
-   curl -OL "https://github.com/meilisearch/MeiliSearch/releases/download/v$MEILISEARCH_VERSION/$RELEASE_FILE"
-   # Make Meilisearch executable – skip for Windows, probably
-   mv "$RELEASE_FILE" "meilisearch"
-   chmod 744 "meilisearch"
-   ```
-
-2. Run Meilisearch with a master key:
-
-   ```bash
-   # Set a master key.
-   export MEILI_MASTER_KEY=test
-   # Run it.
-   ./meilisearch
-   ```
-
-3. In another terminal window, build the search interface:
-
-   ```bash
-   cd ../docs
-   npm install
-   npm run dev
-   npm run build:search
-   hugo
-   # Export master key again in this terminal.
-   export MEILI_MASTER_KEY=test
-   ./deploy.sh
-   ```
-
-4. Update the Meilisearch server:
-
-   ```bash
-   cd ../search
-   # Update the index
-   ./post_deploy.sh
-   ```
-
-5. Run the site:
-
-   ```bash
-   cd ../docs
-   hugo serve
-   ```
+```bash
+npm run develop
+```
 
 ## Cache of static assets
 

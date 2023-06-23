@@ -4,7 +4,7 @@
   {{ if index . "legacy" }}
   {{ $legacy := index . "legacy" }}
 
-The following versions aren't available in the EU-1 and US-1 regions:
+The following versions aren't available in the EU and US regions:
 
 {{ range ( index . "supported" ) }}
   {{ if ( not ( in $legacy . ) ) }}

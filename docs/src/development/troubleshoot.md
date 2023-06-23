@@ -10,7 +10,7 @@ description: See some common solutions to issues you might run into in developme
 ### Force a redeploy
 
 There are times where you might want to trigger a redeployment of your application,
-such as to update environment access for a new developer or add custom TLS certificates.
+such as to add custom TLS certificates.
 A redeploy reuses your built app and services.
 
 To trigger a redeploy, follow these steps:
@@ -169,7 +169,7 @@ Platform.sh enforces a 10&nbsp;MB limit on files with the `application/json` `Co
 To send large files, use the `multipart/form-data` header instead:
 
 ```bash
-$ curl -XPOST 'https://example.com/graphql' --header 'Content-Type: multipart/form-data' --form file=large_file.json
+curl -XPOST 'https://example.com/graphql' --header 'Content-Type: multipart/form-data' --form file=large_file.json
 ```
 
 ## Databases

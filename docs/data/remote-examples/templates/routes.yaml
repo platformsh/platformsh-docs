@@ -1,8 +1,9 @@
 savePath: "/static/files/fetch/routesyaml"
 root: "https://raw.githubusercontent.com/platformsh-templates"
+repoOrg: "platformsh-templates"
 branch: "master"
 file: ".platform/routes.yaml"
-repos: 
+repos:
     - php
     - gatsby-drupal
     - gatsby-strapi

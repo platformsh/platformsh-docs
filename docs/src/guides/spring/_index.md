@@ -1,8 +1,10 @@
 ---
 title: "Spring"
-weight: -10
+weight: -30
 description: |
-    Everything you need to get started with Spring on Platform.sh. 
+    Everything you need to get started with Spring on Platform.sh.
 ---
 
 {{% description %}}
+
+{{% guides/link-philosophy %}}

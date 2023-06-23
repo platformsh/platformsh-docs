@@ -39,6 +39,7 @@ web:
         start: php artisan octane:start --server=swoole --host=0.0.0.0 --port=$PORT
     locations:
         "/":
-            allow: false
             passthru: true
+            scripts: false
+            allow: false
 ```

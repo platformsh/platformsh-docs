@@ -1,0 +1,7 @@
+savePath: "/static/files/fetch/appyaml/symfony-demo"
+root: "https://raw.githubusercontent.com/symfonycorp"
+repoOrg: "symfonycorp"
+branch: "demo"
+file: ".platform.app.yaml"
+repos:
+    - platformsh-symfony-template

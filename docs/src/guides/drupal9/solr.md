@@ -69,7 +69,7 @@ relationships:
 You need to add the [Search API](https://www.drupal.org/project/search_api) and [Search API Solr](https://www.drupal.org/project/search_api_solr) modules to your project. If you are using Composer to manage your Drupal site (which we recommend), run:
 
 ```bash
-$ composer require drupal/search_api_solr
+composer require drupal/search_api_solr
 ```
 
 And then commit the changes to `composer.json` and `composer.lock`.

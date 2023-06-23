@@ -1,6 +1,6 @@
 ---
 title: "Solr (Search service)"
-weight: 12
+weight: 30
 sidebarTitle: "Solr"
 ---
 
@@ -18,6 +18,8 @@ Solr search with generic schemas provided, and a custom schema is also supported
 {{% /frameworks %}}
 
 ## Supported versions
+
+{{% major-minor-versions-note configMinor="true" %}}
 
 | Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |------|-------------------------------|------------------------------ |
@@ -247,7 +249,7 @@ The configuration directory is a collection of configuration data, like a data d
 Because Solr uses HTTP for both its API and admin interface it's possible to access the admin interface over an SSH tunnel.
 
 ```bash
-platform tunnel:open --relationship {{< variable "RELATIONSHIP_NAME" >}}
+platform tunnel:single --relationship {{< variable "RELATIONSHIP_NAME" >}}
 ```
 
 By default, this opens a tunnel at `127.0.0.1:30000`.

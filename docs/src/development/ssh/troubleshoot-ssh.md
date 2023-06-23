@@ -42,10 +42,14 @@ Check that your key is properly added to your SSH agent. This is an authenticati
 
 1. Run `ssh-add -l` in your terminal:
 
-    ```bash
-    $ ssh-add -l
-    2048 12:b0:13:83:7f:56:18:9b:78:ca:54:90:a7:ff:12:69 /Users/your_username/.ssh/id_rsa (RSA)
-    ```
+   ```bash
+   ssh-add -l
+   ```
+   You get output similar to the following:
+
+   ```bash
+   2048 12:b0:13:83:7f:56:18:9b:78:ca:54:90:a7:ff:12:69 /Users/your_username/.ssh/id_rsa (RSA)
+   ```
 
 1. Check that the file exists and that the file name or comment matches your private key file.
 1. If you don't see your private key file, add your private key:
@@ -120,10 +124,15 @@ title=In the Console
 If your private key and public key both look OK but you don't have any luck logging in, print debugging information.
 These lines often give clues about what's going wrong.
 
-Run the SSH command with the `-v` option, like this:
+Run the SSH command with the `-v` option, like so:
 
 ```bash
-$ ssh -v [SSH-URL]
+ssh -v [SSH-URL]
+```
+
+You get output similar to the following:
+
+```bash
 OpenSSH_6.7.8, OpenSSL 1.2.3 1 Sep 2014
 debug1: Connecting to ssh.eu.platform.sh [54.32.10.98] port 22.
 debug1: Connection established.
@@ -135,7 +144,7 @@ debug1: No more authentication methods to try.
 Permission denied (publickey).
 ```
 
-or
+Alternatively, you can run the following command:
 
 ```bash
 GIT_SSH_COMMAND="ssh -v" git clone {{< variable "REPO_URL" >}}

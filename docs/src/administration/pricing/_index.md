@@ -1,7 +1,7 @@
 ---
 title: Pricing
 weight: 3
-description: See the basics of the plans Platform.sh offers and how to adjust them. 
+description: See the basics of the plans Platform.sh offers and how to adjust them.
 layout: single
 ---
 
@@ -25,7 +25,7 @@ it comes with a [production environment](#production-environments).
 
 ### Development plans
 
-A Development plan provides all the tools you need to build your website 
+A Development plan provides all the tools you need to build your website
 before it's ready to go live.
 
 With a Development plan, you can't use [custom domain names](../../domains/steps/_index.md).
@@ -49,7 +49,7 @@ Development environments can't be mapped to [custom domain names](../../domains/
 Their resources are separate from Production environments.
 
 App containers on development environments default to a size of {{< partial "plans/default-dev-env-size" >}}.
-If you have the [manage plans permission](../users.md#organization-user-permissions),
+If you have the [manage plans permission](../users.md#organization-permissions),
 you can increase the size to match your production environment.
 To do so, follow these steps:
 
@@ -87,7 +87,7 @@ You can add the following extras:
   the fee is multiplied by 6.
   To ensure environments are available on demand, the fee applies to all environments you have added
   even if you aren't currently actively using them.
-  
+
   You can make any changes up to 100&nbsp;GB yourself.
   For storage over 100&nbsp;GB, create a [support ticket](https://console.platform.sh/-/users/~/tickets).
 
@@ -111,11 +111,11 @@ don't hesitate to [contact support](https://console.platform.sh/-/users/~/ticket
 
 For more resources along with triple redundancy on every element of the stack, use a {{% names/dedicated-gen-3 %}} plan.
 
-Learn more about [{{% names/dedicated-gen-3 %}}](../../dedicated-gen-3/overview.md).
+Learn more about [{{% names/dedicated-gen-3 %}}](../../dedicated-gen-3/_index.md).
 
 To discuss how {{% names/dedicated-gen-3 %}} could work for you, [contact Sales](https://platform.sh/contact/).
 
-## Enterprise overages 
+## Enterprise overages
 
 **The following applies to all Enterprise and Elite subscriptions.**
 
@@ -126,8 +126,8 @@ If you experience repeated overages, please reach out to your Customer Success M
 
 Plans with a Fastly CDN service or the extra Fastly Service include the following:
 
-- 1&nbsp;Tb of egress (outgoing) bandwidth on the CDN (Fastly)
-- 500 million ingress (incoming) requests on the CDN
+- 1&nbsp;TB of egress (outgoing) bandwidth on the CDN (Fastly) per month
+- 50 million ingress (incoming) requests on the CDN per month
 
 *Plans without the Fastly Service are instead charged at the following origin prices.*
 
@@ -135,9 +135,9 @@ Plans with a Fastly CDN service or the extra Fastly Service include the followin
 
 | SKU             | Description                                                                             | USD  | EUR  | AUD    | CAD    | GBP  |
 |-----------------|-----------------------------------------------------------------------------------------|------|------|--------|--------|------|
-| `BDW-1-POST`    | Additional 1&nbsp;Tb of egress bandwidth and 500 million ingress requests               | $88  | €77  | AU$128 | CA$119 | £68  |
+| `BDW-1-POST`    | Additional 1&nbsp;TB of egress bandwidth and 50 million ingress requests               | $88  | €77  | AU$128 | CA$119 | £68  |
 | `EDGE-REQ-POST` | Additional 50 million ingress requests                                                  | $66  | €62  | AU$95  | CA$88  | £54  |
-| `ORN-1-POST`    | Additional 1&nbsp;Tb of egress bandwidth and 500 million ingress requests at the origin | $209 | €167 | AU$316 | CA$284 | £189 |
+| `ORN-1-POST`    | Additional 1&nbsp;TB of egress bandwidth and 50 million ingress requests at the origin | $209 | €167 | AU$316 | CA$284 | £189 |
 
 ### DDoS surge protection
 
@@ -177,3 +177,14 @@ Agencies have access to several partner levels with many perks.
 [Learn more and join today](https://platform.sh/solutions/digital-agencies/).
 
 If you have any questions, don't hesitate to [contact Sales](https://platform.sh/contact/).
+
+## Sponsored sites
+
+Platform.sh provides sponsored hosting for Free Software projects, tech community events and organizations as part of our effort to support the Free Software community. 
+That offering can include either a project on Platform.sh, or profilable environments through Blackfire.io, depending on the needs of the project. 
+
+<div align="center">
+
+{{< get-started/next-button next="https://platform.sh/community/open-source/apply/" nextText="Apply" >}}
+
+</div>

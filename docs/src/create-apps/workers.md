@@ -32,8 +32,8 @@ allowing the container to be shut down and restarted.
 To restart a worker manually, [access the container](#access-the-worker-container) and run the following commands:
 
 ```bash
-$ sv stop app
-$ sv start app
+sv stop app
+sv start app
 ```
 
 ## Workers vs cron jobs

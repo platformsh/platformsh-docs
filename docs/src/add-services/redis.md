@@ -1,6 +1,6 @@
 ---
 title: "Redis (Object cache)"
-weight: 11
+weight: 20
 sidebarTitle: "Redis"
 ---
 
@@ -24,6 +24,8 @@ Platform.sh supports two different Redis configurations:
 {{% /frameworks %}}
 
 ## Supported versions
+
+{{% major-minor-versions-note configMinor="true" %}}
 
 | Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |------|-------------------------------|------------------------------ |
@@ -56,17 +58,8 @@ Make sure your app doesn't rely on ephemeral Redis for persistent storage as it 
 For example, if a container is moved during region maintenance,
 the `deploy` and `post_deploy` hooks don't run and an app that treats the cache as permanent shows errors.
 
-To avoid such issues, trigger a cache cleanup every time your app starts.
-To do so, configure a `start` [web command](../create-apps/app-reference.md#web-commands) similar to the following:
-
-```yaml {location=".platform.app.yaml"}
-web:
-    commands:
-        start: 'redis-cli -h redis.internal flushall'
-```
-
 To prevent data from getting lost when a container is moved or shut down,
-you can use the [persistent Redis](#persistent-redis) configuration. 
+you can use the [persistent Redis](#persistent-redis) configuration.
 Persistent Redis provides a cache with persistent storage.
 
 ### Persistent Redis
@@ -228,7 +221,7 @@ see the official [Redis documentation](https://redis.io/docs/reference/eviction/
 After you've [configured your Redis service](#usage-example),
 you can access it using the [Redis CLI](https://redis.io/docs/ui/cli/).
 
-Retrieve the hostname and port you can connect to 
+Retrieve the hostname and port you can connect to
 through the `PLATFORM_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables).
 To do so, run the `platform relationships` command.
 
@@ -239,10 +232,17 @@ To access your Redis service, run the following command:
 redis-cli -h {{< variable "HOSTNAME" >}} -p {{< variable "PORT" >}}
 ```
 
+If you have a Grid project, note that the `CONFIG GET` and `CONFIG SET` admin commands are restricted.
+To get the current configuration, run the following command:
+
+```bash
+redis-cli -h {{< variable "HOSTNAME" >}} -p {{< variable "PORT" >}} info
+```
+
 ## Use Redis as a handler for PHP sessions
 
-A PHP session allows you to store different data for each user through a unique session ID. 
-By default, PHP handles sessions using files. 
+A PHP session allows you to store different data for each user through a unique session ID.
+By default, PHP handles sessions using files.
 But you can use Redis as a session handler,
 which means Redis stores and retrieves the data saved into sessions.
 

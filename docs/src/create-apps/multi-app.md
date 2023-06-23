@@ -4,9 +4,7 @@ sidebarTitle: Multiple apps
 description: Create multiple apps within a single project, such as a CMS backend connected to a frontend to display it.
 ---
 
-You might have multiple apps that are closely related.
-For example, you might have a CMS backend for your content or other APIs and a frontend to display it all.
-In such cases, you can create multiple apps within a single project so they can share data.
+{{% multi-app-intro %}}
 
 Note that to have enough resources to support multiple apps, you need at least a [{{< partial "plans/multiapp-plan-name" >}} plan](../administration/pricing/_index.md#multiple-apps-in-a-single-project).
 
@@ -161,7 +159,7 @@ you could organize the repository like this:
 ├── main-app
 |  └── ...                  <- PHP app code
 └── .platform
-    ├── .applications.yaml  <- Unified app configuration
+    ├── applications.yaml  <- Unified app configuration
     └── routes.yaml
 ```
 
@@ -341,6 +339,6 @@ Once they're both built, `main` can now access `api` at the URL `http://api.inte
 The specific URL is always available through the [`PLATFORM_RELATIONSHIPS` variable](../development/variables/use-variables.md#use-platformsh-provided-variables):
 
 ```bash
-$ echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq `.api[0].host`
+echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq `.api[0].host`
 api.internal
 ```
