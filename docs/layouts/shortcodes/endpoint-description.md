@@ -125,12 +125,12 @@ mounts:
 {{ $headerLevel }} Example Configuration
 {{ end }}
 
-{{ partial "examples/config_links" ( dict "type" $type "onlyLanguage" $onlyLanguage ) }}
-
 {{ if eq ($type) "elasticsearch-enterprise" }}
-Note that the previous example is for an Elasticsearch Enterprise instance.
+Note that the following example is for an Elasticsearch Enterprise instance.
 For an Elasticsearch legacy instance, the type used in the service definition would be `elasticsearch`.
 {{ end }}
+
+{{ partial "examples/config_links" ( dict "type" $type "onlyLanguage" $onlyLanguage ) }}
 
 <!-- Turn this section off for ones in Guides that continue differently-->
 {{ if not (.Get "noApp" )}}
@@ -139,6 +139,6 @@ For an Elasticsearch legacy instance, the type used in the service definition wo
 <!-- Don't add use in app intro to Headless Chrome, which has different content -->
 {{ if ne ($type) "chrome-headless" }}
 To use the configured service in your app,
-add a configuration file similar to the following to your project:
+add a configuration file similar to the following to your project.
 {{ end }}
 {{ end }}

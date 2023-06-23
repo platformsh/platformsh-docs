@@ -53,15 +53,18 @@ Alternatively, you can [contact Sales](https://platform.sh/contact/) to upgrade 
 
 {{% service-values-change %}}
 
-{{< relationship "elasticsearch" >}}
-
-The previous example is for an Elasticsearch legacy instance.
+The following example is for an Elasticsearch legacy instance.
 The relationship reference for an Elasticsearch Enterprise instance would present differences.
 For example, the service type would be `elasticsearch-enterprise`.
+
+{{< relationship "elasticsearch" >}}
 
 ## Usage example
 
 {{% endpoint-description type="elasticsearch-enterprise" /%}}
+
+Note that the following configuration examples are for an Elasticsearch legacy instance.
+Configuration for an Elasticsearch Enterprise instance may differ slightly.
 
 {{< codetabs >}}
 
@@ -96,9 +99,6 @@ highlight=python
 +++
 
 {{< /codetabs >}}
-
-The previous configuration examples are for an Elasticsearch legacy instance.
-Configuration for an Elasticsearch Enterprise instance may differ slightly.
 
 {{< note >}}
 
@@ -178,7 +178,7 @@ title=Elasticsearch Enterprise
 
 ```yaml {location=".platform/services.yaml"}
 search:
-    type: "elasticsearch:7.2"
+    type: "elasticsearch-enterprise:8.5"
     disk: 1024
     configuration:
         plugins:
@@ -194,7 +194,7 @@ title=Elasticsearch legacy
 
 ```yaml {location=".platform/services.yaml"}
 search:
-    type: "elasticsearch-enterprise:8.5"
+    type: "elasticsearch:7.2"
     disk: 1024
     configuration:
         plugins:
