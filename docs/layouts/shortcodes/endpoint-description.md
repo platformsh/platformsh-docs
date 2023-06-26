@@ -57,8 +57,7 @@ Back up your data before changing the service.
 <!-- Clarify the endpoint that should be used. -->
 <!-- If a link and text have been set, adds exception that directs users to the subsection that describes explicit endpoints. -->
 To define the relationship, use the {{ if eq $type "vault-kms" }}endpoint you [defined 
-in step 1](#1-configure-the-service)
-{{ else if eq $type "elasticsearch-enterprise"}} `elasticsearch-enterprise` endpoint for Elasticsearch Enterprise or the `elasticsearch` endpoint for Elasticsearch legacy{{ else }}`{{ $data.endpoint }}` endpoint{{ end }}
+in step 1](#1-configure-the-service){{ else }}`{{ $data.endpoint }}` endpoint{{ end }}
 {{ if and (gt (len ( $sectionLink )) 0) (gt (len ( $multipleText )) 0) }} (unless you have [multiple {{$multipleText}}]({{ $sectionLink }})){{ end }}:
 
 <!-- Create a dummy example `relationships` block from the registry's example naming in `.docs` -->

@@ -37,7 +37,7 @@ The following versions are available upon subscription:
 
 | Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |------|-------------------------------|------------------------------ |
-|  {{< image-versions image="elasticsearch-enterprise" status="supported" environment="grid" >}} | {{< image-versions image="elasticsearch-enterprise" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="elasticsearch-enterprise" status="supported" environment="dedicated-gen-2" >}} |
+|  {{< image-versions image="elasticsearch" status="supported" environment="grid" >}} | {{< image-versions image="elasticsearch" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="elasticsearch" status="supported" environment="dedicated-gen-2" >}} |
 
 {{% major-minor-versions-note configMinor="true" %}}
 
@@ -55,7 +55,7 @@ The following versions are available upon subscription:
 
 {{< note >}}
 
-For a 7.17 version of Elasticsearch [or later](#supported-versions),
+For version [7.17 or later](#supported-versions),
 the service type is `elasticsearch-enterprise`.
 
 {{< /note >}}
