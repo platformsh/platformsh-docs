@@ -20,7 +20,7 @@ To let your apps talk to one another, create [relationships among them](#relatio
 Each app separately defines its relationships to [services](../add-services/_index.md).
 So apps can share services or have their own.
 
-![A diagram showing the router directing traffic form the default domain to one app with services and traffic to the API at the domain to a different app with no services](/images/config-diagrams/multiple-applications.png "0.5")
+![A diagram showing the router directing traffic form the default domain to one app with services and traffic to the API at the domain to a different app with no services](/images/config-diagrams/multiple-app.png "0.5")
 
 ## Project structure
 
@@ -48,22 +48,28 @@ The directory with the `.platform.app.yaml` file acts as the root directory for 
 For example, if you have a Drupal backend with a React frontend, you could organize the repository like this:
 
 ```txt
-├── drupal
-│   ├── .platform.app.yaml  <- Drupal app configuration
-│   └── ...                 <- Drupal app code
 ├── .platform
 │   └── routes.yaml
-└── react
-   ├── .platform.app.yaml  <- React app configuration
-   └── ...                 <- React app code
+├── admin
+│   ├── .platform.app.yaml  <- API Platform Admin app configuration
+│   └── ...                 <- API Platform Admin app code
+├── api
+│   ├── .platform.app.yaml  <- Bigfoot app configuration
+│   └── ...                 <- Bigfoot app code
+├── gatsby
+│   ├── .platform.app.yaml  <- Gatsby app configuration
+│   └── ...                 <- Gatsby app code
+└── mercure
+   ├── .platform.app.yaml  <- Mercure Rocks app configuration
+   └── ...                 <- Mercure Rocks app code
 ```
+
+The `.platform` directory is outside of all the apps and defines all routes and any services.
 
 Each `.platform.app.yaml` file defines a single app container,
 with its configuration relative to the directory with the file.
 The apps can talk to each other through relationships defined in their configuration.
 If you change the code for only one app, the build image for the other can be reused.
-
-The `.platform` directory is outside of all the apps and defines all routes and any services.
 
 ### Nested directories
 
@@ -77,12 +83,12 @@ But the Java app doesn't require updating when the Python app is updated.
 In that case, you can nest the Java app within the Python app:
 
 ```txt
+├── .platform
+│   └── routes.yaml
 ├── languagetool
 │   ├── .platform.app.yaml  <- Java app configuration
 │   └── main.java           <- Java app code
 ├── main.py                 <- Python app code
-├── .platform
-│   └── routes.yaml
 └── .platform.app.yaml      <- Python app configuration
 ```
 
@@ -101,47 +107,65 @@ In this setup, your app configuration has to be in the top repository, not in a 
 In this case, and any other case where you want the configuration to be separate from the code,
 you need to specify the code root in the configuration file.
 
-So your project repository might look like this:
+So your [project repository](https://github.com/platformsh-templates/bigfoot-multiapp/tree/multiapp-submodules-subfolders) might look like this:
 
 ```text
-├── app1
-│   ├── .platform.app.yaml  <- App 1 configuration
-│   └── app1-submodule
-|       └── ...             <- App 1 code from submodule
-├── app2
-│   ├── .platform.app.yaml  <- App 2 configuration
-│   └── app2-submodule
-|       └── ...             <- App 2 code from submodule
+├── .platform
+│   └── routes.yaml
+├── admin
+│   ├── .platform.app.yaml  <- API Platform Admin app configuration
+│   └── admin-submodule
+│       └── ...             <- API Platform Admin code from submodule
+├── api
+│   ├── .platform.app.yaml  <- Bigfoot app configuration
+│   └── api-submodule
+│       └── ...             <- Bigfoot code from submodule
+├── gatsby
+│   ├── .platform.app.yaml  <- Gatsby app configuration
+│   └── gatsby-submodule
+│       └── ...             <- Gatsby code from submodule
+└── mercure
+│   ├── .platform.app.yaml  <- Mercure Rocks app configuration
+│   └── mercure-submodule
+│       └── ...             <- Mercure Rocks code from submodule
 └── .gitmodules
-└── .platform
-    └── routes.yaml
 ```
 
-Your `.gitmodules` file would define both submodules:
+Your `.gitmodules` file would define all submodules:
 
 ```txt {location=".gitmodules"}
-[submodule "app1"]
-    path = app1/app1-submodule
-    url = https://github.com/your-org/app1
-[submodule "app2"]
-    path = app2/app2-submodule
-    url = https://github.com/your-org/app2
+[submodule "admin-submodule"]
+	path = admin/admin-submodule
+	url = https://github.com/platformsh-templates/bigfoot-multiapp-admin.git
+	branch = without-platform-app-yaml
+[submodule "api-submodule"]
+	path = api/api-submodule
+	url = https://github.com/platformsh-templates/bigfoot-multiapp-api.git
+	branch = without-platform-app-yaml
+[submodule "gatsby-submodule"]
+	path = gatsby/gatsby-submodule
+	url = https://github.com/platformsh-templates/bigfoot-multiapp-gatsby.git
+	branch = without-platform-app-yaml
+[submodule "mercure-submodule"]
+	path = mercure/mercure-submodule
+	url = https://github.com/platformsh-templates/bigfoot-multiapp-mercure.git
+	branch = without-platform-app-yaml
 ```
 
 So the app configuration files would be outside the directory of the app.
 Then in each `.platform.app.yaml` file, specify a `source.root` key to define its root directory.
 For example, for `app1`, it could include the following:
 
-```yaml {location="app1/.platform.app.yaml"}
+```yaml {location="admin/.platform.app.yaml"}
 source:
-    root: app1/app1-submodule
+    root: admin/admin-submodule
 ```
 
 The `source.root` path is relative to the repository root.
-Now the `app1` app treats the `app1/app1-submodule` directory as its root when building.
-You could do the same for `app2`.
+Now the `admin` app treats the `admin/admin-submodule` directory as its root when building.
+You could do the same for `api`, `gatsby` and `mercure` configs.
 
-If `source.root` isn't specified, it defaults to the same directory as the file itself.
+If `source.root` isn't specified, it defaults to the same directory as the `.platform.app.yaml` file itself.
 
 ### Unified app configuration
 
@@ -154,13 +178,13 @@ For example, if you have code for a Go app and code for two PHP apps,
 you could organize the repository like this:
 
 ```txt
+├── .platform
+│   ├── applications.yaml  <- Unified app configuration
+│   └── routes.yaml
 ├── api-app
 │   └── ...                 <- Go app code
-├── main-app
-|  └── ...                  <- PHP app code
-└── .platform
-    ├── applications.yaml  <- Unified app configuration
-    └── routes.yaml
+└── main-app
+    └── ...                  <- PHP app code
 ```
 
 You could then configure this into three apps as in the following configuration:
@@ -192,7 +216,7 @@ You could then configure this into three apps as in the following configuration:
                 passthru: "/index.php"
 
 -   name: admin
-    type: php:8.1
+    type: php:8.2
     source:
         root: main-app
     web:
@@ -221,7 +245,7 @@ Assume you have an app for a CMS and another app for the frontend defined as fol
 
 ```yaml {location=".platform/applications.yaml"}
 -   name: cms
-    type: php:8.1
+    type: php:8.2
     source:
         root: drupal
     ...
