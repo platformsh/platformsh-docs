@@ -23,25 +23,23 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 
 ## Supported versions
 
-{{% major-minor-versions-note configMinor="true" %}}
+Versions 7.10 and older are available in your projects for free,
+but they're at their end of life and are no longer receiving security updates from upstream.
+Due to a licensing change, newer versions of Elasticsearch aren't included in any Platform.sh plan.
 
-### Enterprise edition
+To avoid the additional cost of subscribing to a recent version of Elasticsearch,
+you can switch to one of the latest, free versions of [OpenSearch](./opensearch.md).
+To do so, follow the same procedure as for [upgrading](#upgrading).
 
-{{< premium-features/add-on feature="Elasticsearch Enterprise" >}}
+If you want to keep using Elasticsearch,
+you need to add a recent version at an additional cost [through Sales](https://platform.sh/contact/).
+The following versions are available upon subscription:
 
 | Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |------|-------------------------------|------------------------------ |
 |  {{< image-versions image="elasticsearch-enterprise" status="supported" environment="grid" >}} | {{< image-versions image="elasticsearch-enterprise" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="elasticsearch-enterprise" status="supported" environment="dedicated-gen-2" >}} |
 
-### Legacy edition
-
-Due to a licensing change, non-Enterprise versions of Elasticsearch after 7.10 aren't supported.
-Previous versions are available in your projects (and are listed below),
-but they’re at their end of life and are no longer receiving security updates from upstream.
-
-For newer versions, use [OpenSearch](./opensearch.md) instead.
-To switch to OpenSearch, follow the same procedure as for [upgrading](#upgrading).<BR>
-Alternatively, you can [contact Sales](https://platform.sh/contact/) to upgrade to Elasticsearch Enterprise.
+{{% major-minor-versions-note configMinor="true" %}}
 
 {{% deprecated-versions %}}
 
@@ -53,18 +51,20 @@ Alternatively, you can [contact Sales](https://platform.sh/contact/) to upgrade 
 
 {{% service-values-change %}}
 
-The following example is for an Elasticsearch legacy instance.
-The relationship reference for an Elasticsearch Enterprise instance would present differences.
-For example, the service type would be `elasticsearch-enterprise`.
-
 {{< relationship "elasticsearch" >}}
+
+{{< note >}}
+
+For a 7.17 version of Elasticsearch [or later](#supported-versions),
+the service type is `elasticsearch-enterprise`.
+
+{{< /note >}}
 
 ## Usage example
 
-{{% endpoint-description type="elasticsearch-enterprise" /%}}
+{{% endpoint-description type="elasticsearch" /%}}
 
-Note that the following configuration examples are for an Elasticsearch legacy instance.
-Configuration for an Elasticsearch Enterprise instance may differ slightly.
+Note that configuration for version [7.17 or later](#supported-versions) may differ slightly.
 
 {{< codetabs >}}
 
@@ -116,27 +116,6 @@ No username or password is required to connect to it.
 Starting with Elasticsearch 7.2 you may optionally enable HTTP Basic authentication.
 To do so, include the following in your `services.yaml` configuration:
 
-{{< codetabs >}}
-
-+++
-title=Elasticsearch Enterprise
-+++
-
-```yaml {location=".platform/services.yaml"}
-search:
-    type: elasticsearch-enterprise:8.5
-    disk: 2048
-    configuration:
-        authentication:
-            enabled: true
-```
-
-<--->
-
-+++
-title=Elasticsearch legacy
-+++
-
 ```yaml {location=".platform/services.yaml"}
 search:
     type: elasticsearch:7.2
@@ -146,7 +125,12 @@ search:
             enabled: true
 ```
 
-{{< /codetabs >}}
+{{< note >}}
+
+If you're using version [7.17 or later](#supported-versions),
+use the `elasticsearch-enterprise` type.
+
+{{< /note >}}
 
 That enables mandatory HTTP Basic auth on all requests.
 The credentials are available in any relationships that point at that service,
@@ -170,28 +154,6 @@ For example:
 Elasticsearch offers a number of plugins.
 To enable them, list them under the `configuration.plugins` key in your `services.yaml` file, like so:
 
-{{< codetabs >}}
-
-+++
-title=Elasticsearch Enterprise
-+++
-
-```yaml {location=".platform/services.yaml"}
-search:
-    type: "elasticsearch-enterprise:8.5"
-    disk: 1024
-    configuration:
-        plugins:
-            - analysis-icu
-            - lang-python
-```
-
-<--->
-
-+++
-title=Elasticsearch legacy
-+++
-
 ```yaml {location=".platform/services.yaml"}
 search:
     type: "elasticsearch:7.2"
@@ -202,7 +164,12 @@ search:
             - lang-python
 ```
 
-{{< /codetabs >}}
+{{< note >}}
+
+If you're using version [7.17 or later](#supported-versions),
+use the `elasticsearch-enterprise` type.
+
+{{< /note >}}
 
 In this example you'd have the ICU analysis plugin and Python script support plugin.
 

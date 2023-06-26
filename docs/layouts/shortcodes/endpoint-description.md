@@ -20,8 +20,6 @@ To define the service, use {{ if eq ($type) "mariadb" }}
   the `{{ $type }}` or `mysql` type for MariaDB or the `oracle-mysql` type for Oracle MySQL
   {{ else if eq $type "redis" }}
   the `{{ $type }}` type for ephemeral Redis
-  {{ else if eq $type "elasticsearch-enterprise" }}
-  the `{{ $type }}` type for Elasticsearch Enterprise or the `elasticsearch` type for Elasticsearch legacy
   {{ else }}
   the `{{ $type }}` type{{ end }}:
 
@@ -37,6 +35,9 @@ Alternatively, use the `redis-persistent` type for persistent Redis:
 Persistent Redis requires a disk to store data.
 {{ else if eq $type "network-storage" }}
 You can define `<SERVICE_NAME>` as you like, but it shouldn't include underscores (`_`).
+{{ else if eq $type "elasticsearch" }}
+If you're using version [7.17 or later](#supported-versions),
+use the `elasticsearch-enterprise` type instead.
 {{ end }}
 
 Note that changing the name of the service replaces it with a brand new service
@@ -125,12 +126,12 @@ mounts:
 {{ $headerLevel }} Example Configuration
 {{ end }}
 
-{{ if eq ($type) "elasticsearch-enterprise" }}
-Note that the following example is for an Elasticsearch Enterprise instance.
-For an Elasticsearch legacy instance, the type used in the service definition would be `elasticsearch`.
-{{ end }}
-
 {{ partial "examples/config_links" ( dict "type" $type "onlyLanguage" $onlyLanguage ) }}
+
+{{ if eq ($type) "elasticsearch" }}
+If you're using version [7.17 or later](#supported-versions),
+use the `elasticsearch-enterprise` type in the service definition.
+{{ end }}
 
 <!-- Turn this section off for ones in Guides that continue differently-->
 {{ if not (.Get "noApp" )}}
