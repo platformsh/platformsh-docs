@@ -124,10 +124,16 @@
         "1.7",
         "1.4"
       ],
-      "supported": []
+      "supported": [
+        "8.5",
+        "7.17"
+      ]
     },
     "versions-dedicated-gen-2": {
-      "supported": [],
+      "supported": [
+        "8.15",
+        "7.17"
+      ],
       "deprecated" : [
         "7.10",
         "7.9",
@@ -153,39 +159,6 @@
         "6.8",
         "6.5"
       ],
-      "supported": []
-    }
-  },
-    "elasticsearch-enterprise": {
-    "description": "Support for the enterprise edition of Elasticsearch",
-    "disk": true,
-    "docs": {
-      "relationship_name": "essearch",
-      "service_name": "searchelastic",
-      "url": "/add-services/elasticsearch.html"
-    },
-    "endpoint": "elasticsearch",
-    "min_disk_size": 256,
-    "name": "Elasticsearch",
-    "repo_name": "elasticsearch",
-    "runtime": false,
-    "type": "elasticsearch-enterprise",
-    "versions": {
-      "deprecated": [],
-      "supported": [
-        "8.5",
-        "7.17"
-      ]
-    },
-    "versions-dedicated-gen-2": {
-      "supported": [
-        "8.5",
-        "7.17"
-      ],
-      "deprecated" : []
-    },
-    "versions-dedicated-gen-3": {
-      "deprecated": [],
       "supported": []
     }
   },

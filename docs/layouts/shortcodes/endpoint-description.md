@@ -128,7 +128,7 @@ mounts:
 {{ partial "examples/config_links" ( dict "type" $type "onlyLanguage" $onlyLanguage ) }}
 
 {{ if eq ($type) "elasticsearch" }}
-If you're using version [7.17 or later](#supported-versions),
+If you're using version [7.17 or later](../../src/add-services/elasticsearch.md#supported-versions),
 use the `elasticsearch-enterprise` type in the service definition.
 {{ end }}
 

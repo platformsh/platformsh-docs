@@ -6,8 +6,6 @@
 <!-- The Vault service needs explicitly defined endpoints -->
 {{ if eq .type "vault-kms" }}
   {{ $endpoint = "<ENDPOINT_ID>"}}
-  {{else if eq .type "elasticsearch-enterprise"}}
-  {{ $endpoint = "elasticsearch-enterprise"}}
 {{ end }}
 {{ $l1 := "relationships:" }}
 {{ $l2 := printf "    <RELATIONSHIP_NAME>: \"<SERVICE_NAME>:%s\"" $endpoint}}
