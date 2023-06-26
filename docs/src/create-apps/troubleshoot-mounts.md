@@ -91,7 +91,7 @@ mounts:
 If you are worried about how much disk your mounts are using, check the size with the following command:
 
 ```bash
-$ platform mount:size
+platform mount:size
 ```
 
 You see the total size and what's available for each directory:

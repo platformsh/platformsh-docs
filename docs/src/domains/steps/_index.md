@@ -29,7 +29,7 @@ see how to [manage multiple subdomains](/domains/steps/subdomains.md) *before* y
 If you are on a Development plan, you can't add a domain.
 You need to upgrade your subscription to a [production plan](../../other/glossary.md#production-plan).
 
-To upgrade your plan tier, you must be an organization owner or have the [manage plans permission](../../administration/users.md#organization-user-permissions).
+To upgrade your plan tier, you must be an organization owner or have the [manage plans permission](../../administration/users.md#organization-permissions).
 
 To upgrade your plan tier:
 

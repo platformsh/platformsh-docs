@@ -59,7 +59,7 @@ you can trigger it through the Platform.sh API.
 To do so, run a cURL command similar to the following:
 
 ```bash
-platform p:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "{{< variable "RUNTIME_OPERATION_NAME" >}}", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
+platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "{{< variable "RUNTIME_OPERATION_NAME" >}}", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
 ```
 
 You can only trigger a runtime operation if you have permission to do so.
@@ -69,7 +69,7 @@ For example, to trigger the runtime operation [defined previously](#define-a-run
 you could use the following command:
 
 ```bash
-platform p:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "clear-rebuild", "service": "app"}' -p {{< variable "PROJECT_ID" >}}
+platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "clear-rebuild", "service": "app"}' -p {{< variable "PROJECT_ID" >}}
 ```
 
 ## Runtime operation examples
@@ -125,7 +125,7 @@ operations:
 To trigger your runtime operation, run a cURL command similar to the following:
 
 ```bash
-$ platform p:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "gatsby-build", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
+platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "gatsby-build", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
 ```
 
 <--->
@@ -150,7 +150,7 @@ operations:
 To trigger your runtime operation, run a cURL command similar to the following:
 
 ```bash
-$ platform p:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "next-rebuild", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
+platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "next-rebuild", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
 ```
 
 {{< /codetabs >}}
@@ -180,7 +180,7 @@ operations:
 To trigger your runtime operation, run a command similar to the following:
 
 ```bash
-$ platform p:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "pm2-ping", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
+platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "pm2-ping", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
 ```
 
 <--->
@@ -203,7 +203,7 @@ operations:
 To trigger your runtime operation, run a command similar to the following:
 
 ```bash
-$ platform p:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "pm2-reload", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
+platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "pm2-reload", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
 ```
 
 <--->
@@ -227,7 +227,7 @@ operations:
 To trigger your runtime operation, run a command similar to the following:
 
 ```bash
-$ platform p:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "pm2-restart", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
+platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "pm2-restart", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
 ```
 
 {{< /codetabs >}}
@@ -248,5 +248,5 @@ operations:
 To trigger your runtime operation, run a cURL command similar to the following:
 
 ```bash
-$ platform p:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "manual-migration", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
+platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "manual-migration", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
 ```

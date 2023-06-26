@@ -16,7 +16,7 @@
     {{ $contentLength = len ( readFile . ) }}
 {{ end }}
 
-{{- if eq ( len ( getenv "GITHUB_WORKFLOW" ) ) 0 }}
+{{- if ne ( len ( getenv "GITHUB_API_TOKEN" ) ) 0 }}
     {{- if ne $contentLength 0 }}
 
       {{ if eq $markdown "true" }}

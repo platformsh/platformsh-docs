@@ -26,7 +26,7 @@ description: |
 The only setup required to prepare the backend is to install a few additional modules that will configure the JSON API for consumption. In your Drupal directory, add the following dependencies.
 
 ```bash
-$ composer require drupal/gatsby drupal/jsonapi_extras drupal/pathauto
+composer require drupal/gatsby drupal/jsonapi_extras drupal/pathauto
 ```
 
 The [Pathauto](https://www.drupal.org/project/pathauto) module helps you assign alias paths for each piece of content on your Drupal site that can then be replicated on the frontend Gatsby site. For example, the Drupal alias `/article/some-new-article` is the same path you find that article at on Gatsby.
