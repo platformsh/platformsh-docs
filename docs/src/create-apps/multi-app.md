@@ -45,7 +45,7 @@ Each has its own [`.platform.app.yaml` file](../create-apps/_index.md),
 which defines the configuration for that app.
 The directory with the `.platform.app.yaml` file acts as the root directory for that app.
 
-For example, if you have a Drupal backend with a React frontend, you could organize the repository like this:
+For example, if you have a API Platform backend with a Symfony API, a Mercure Rocks server and a Gatsby frontend, you could organize the repository like this:
 
 ```txt
 ├── .platform
