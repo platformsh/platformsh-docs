@@ -36,7 +36,7 @@ Persistent Redis requires a disk to store data.
 {{ else if eq $type "network-storage" }}
 You can define `<SERVICE_NAME>` as you like, but it shouldn't include underscores (`_`).
 {{ else if eq $type "elasticsearch" }}
-If you're using version [7.17 or later](add-services/elasticsearch.md#supported-versions),
+If you're using a [premium version](add-services/elasticsearch.md#supported-versions),
 use the `elasticsearch-enterprise` type instead.
 {{ end }}
 
@@ -128,7 +128,7 @@ mounts:
 {{ partial "examples/config_links" ( dict "type" $type "onlyLanguage" $onlyLanguage ) }}
 
 {{ if eq ($type) "elasticsearch" }}
-If you're using version [7.17 or later](add-services/elasticsearch.md#supported-versions),
+If you're using a [premium version](add-services/elasticsearch.md#supported-versions),
 use the `elasticsearch-enterprise` type in the service definition.
 {{ end }}
 

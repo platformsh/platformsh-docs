@@ -23,17 +23,11 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 
 ## Supported versions
 
-Versions 7.10 and older are available in your projects for free,
-but they're at their end of life and are no longer receiving security updates from upstream.
-Due to a licensing change, newer versions of Elasticsearch aren't included in any Platform.sh plan.
+Elasticsearch is now a premium service.
+This means that from version 7.17 onwards, you need to add Elasticsearch to your project at an additional cost.
+To do so, contact [Sales](https://platform.sh/contact/).
 
-To avoid the additional cost of subscribing to a recent version of Elasticsearch,
-you can switch to one of the latest, free versions of [OpenSearch](./opensearch.md).
-To do so, follow the same procedure as for [upgrading](#upgrading).
-
-If you want to keep using Elasticsearch,
-you need to add a recent version at an additional cost [through Sales](https://platform.sh/contact/).
-The following versions are available upon subscription:
+The following premium versions are supported:
 
 | Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |------|-------------------------------|------------------------------ |
@@ -41,11 +35,20 @@ The following versions are available upon subscription:
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-{{% deprecated-versions %}}
+## Deprecated versions
+
+The following versions are still available in your projects for free,
+but they're at their end of life and are no longer receiving security updates from upstream.
 
 | Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |------|-------------------------------|------------------------------ |
 |  {{< image-versions image="elasticsearch" status="deprecated" environment="grid" >}} | {{< image-versions image="elasticsearch" status="deprecated" environment="dedicated-gen-3" >}} | {{< image-versions image="elasticsearch" status="deprecated" environment="dedicated-gen-2" >}} |
+
+To ensure your project remains stable in the future,
+switch to [a premium version](#supported-versions).
+
+Alternatively, you can switch to one of the latest, free versions of [OpenSearch](./opensearch.md).
+To do so, follow the same procedure as for [upgrading](#upgrading).
 
 {{% relationship-ref-intro %}}
 
@@ -53,18 +56,14 @@ The following versions are available upon subscription:
 
 {{< relationship "elasticsearch" >}}
 
-{{< note >}}
-
-For version [7.17 or later](#supported-versions),
+For [premium versions](#supported-versions),
 the service type is `elasticsearch-enterprise`.
-
-{{< /note >}}
 
 ## Usage example
 
 {{% endpoint-description type="elasticsearch" /%}}
 
-Note that configuration for version [7.17 or later](#supported-versions) may differ slightly.
+Note that configuration for [premium versions](#supported-versions) may differ slightly.
 
 {{< codetabs >}}
 
@@ -125,12 +124,8 @@ search:
             enabled: true
 ```
 
-{{< note >}}
-
-If you're using version [7.17 or later](#supported-versions),
+If you're using a [premium version](#supported-versions),
 use the `elasticsearch-enterprise` type.
-
-{{< /note >}}
 
 That enables mandatory HTTP Basic auth on all requests.
 The credentials are available in any relationships that point at that service,
@@ -164,12 +159,8 @@ search:
             - lang-python
 ```
 
-{{< note >}}
-
-If you're using version [7.17 or later](#supported-versions),
+If you're using a [premium version](#supported-versions),
 use the `elasticsearch-enterprise` type.
-
-{{< /note >}}
 
 In this example you'd have the ICU analysis plugin and Python script support plugin.
 
@@ -179,7 +170,7 @@ If there is a publicly available plugin you need that isn't listed here, [contac
 
 This is the complete list of official Elasticsearch plugins that can be enabled:
 
-| Plugin                  | Description                                                                               | 2.4 | 5.x | 6.x | 7.x | 8.5 |
+| Plugin                  | Description                                                                               | 2.4 | 5.x | 6.x | 7.x | 8.x |
 |-------------------------|-------------------------------------------------------------------------------------------|-----|-----|-----|-----|-----|
 | `analysis-icu`          | Support ICU Unicode text analysis                                                         | *   | *   | *   | *   | *   |
 | `analysis-nori`         | Integrates Lucene Nori analysis module into Elasticsearch                                 |     |     | *   | *   | *   |
