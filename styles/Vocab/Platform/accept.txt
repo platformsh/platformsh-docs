@@ -121,6 +121,7 @@ pngcrush
 Predis
 preprocessor
 [Pp]reload(?:er|ing)?
+profilable
 [Pp]rofiler
 progs
 proxied
