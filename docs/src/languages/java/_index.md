@@ -19,8 +19,6 @@ layout: single
 These versions refer to the headless packages of OpenJDK.
 To save space and reduce potential vulnerabilities, they don't contain GUI classes, which can't be used on the server.
 
-{{% image-versions-legacy "java" %}}
-
 {{% language-specification type="java" display_name="Java" %}}
 
 ## Support libraries
