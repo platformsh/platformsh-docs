@@ -435,8 +435,6 @@ firewall:
         - ips: ["0.0.0.0/0"]
 ```
 
-{{% legacy-regions featureIntro="An outbound firewall" featureShort="a firewall" level=3 %}}
-
 ### Support for rules
 
 Where outbound rules for firewalls are supported in all environments.
@@ -769,8 +767,6 @@ If there haven't been any deployments within 14 days, the status is `paused`.
 
 You can see the status in the Console
 or using the CLI by running `platform environment:info` and looking under `deployment_state`.
-
-{{% legacy-regions featureIntro="Paused crons" featureShort="paused crons" plural=true level=4 %}}
 
 #### Restarting paused crons
 
