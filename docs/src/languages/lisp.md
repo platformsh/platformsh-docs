@@ -13,8 +13,6 @@ description: Platform.sh supports building and deploying applications written in
 |----------------------------------------|------------------------------ |
 | {{< image-versions image="lisp" status="supported" environment="grid" >}} | {{< image-versions image="lisp" status="supported" environment="dedicated-gen-2" >}} |
 
-{{% image-versions-legacy "lisp" %}}
-
 {{% language-specification type="lisp" display_name="Lisp" %}}
 
 ## Assumptions
