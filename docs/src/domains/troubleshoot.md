@@ -166,11 +166,12 @@ check if an outage is ongoing with your certificate issuer (the most common one 
 and with your CDN provider if you have one.
 If not, [contact Support](../overview/get-support.md).
 
-### Check the routes
+### Check your routes configuration
 
-Certificates are generated based on the  [the routes.yaml file](https://docs.platform.sh/define-routes.html).
-During re-generation of a certificate, the renewal bot checks that all of the routes can be accessed.
-If that's not the case, the renewal fails with the following error:
+Certificates are generated based on your [routes configuration](https://docs.platform.sh/define-routes.html).
+When a certificate is renewed, the renewal bot checks that all of the defined routes can be accessed.
+If at least one of the routes defined in your `routes.yaml` file can't be accessed,
+the renewal fails and the following error is displayed:
 
 ```
 Provisioning certificates
@@ -185,10 +186,11 @@ Provisioning certificates
 E: Error: TLS Certificate provisioning failed
 ```
 
-Usually the reason for failure is that several routes have been configured in the `routes.yaml` and one of them can't be accessed.
-For example let's assume we use: `example.com` and `www.example.com`  but the `www` subdomain doesn't point to the project, causing the certificate to fail it's renewal.
- 
-Either add the missing record on the DNS or remove the `www` route from your `routes.yaml`.
+For example, if you add `example.com` and `www.example.com` to your routes configuration
+but the `www` subdomain doesn't point to your project through [a `CNAME` record](./steps/dns.md#cname-records),
+the certificate renewal fails.
+For the renewal to succeed, add the missing `CNAME` record to your DNS
+or remove `www.example.com` (and any other `www` route) from your `routes.yaml` file.
 
 ## Verify your application
 
