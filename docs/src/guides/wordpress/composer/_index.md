@@ -48,6 +48,7 @@ These commands will add the packages to your `composer.json` file, and then lock
 Typically, Composer dependencies install to a `vendor` directory in the project root, but themes and plugins need to install to `wp-content` instead. There is an `installer-paths` attribute that is added to `composer.json` to accomplish this, which is explained in more detail in the [How to Deploy WordPress on Platform.sh](/guides/wordpress/deploy/_index.md) guide (which uses Composer from the start), as well as the [How to update your WordPress site to use Composer](/guides/wordpress/composer/migrate.md) guide. 
 {{< /note >}}
 
+For more information, see the following Platform.sh community post: [How to install custom/private Wordpress plugins and themes with Composer](https://community.platform.sh/t/how-to-install-custom-private-wordpress-plugins-and-themes-with-composer/622).
 
 ### Installing WordPress core with Composer
 
