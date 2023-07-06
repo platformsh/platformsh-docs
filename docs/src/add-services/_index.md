@@ -75,8 +75,6 @@ The following table presents the keys you can define for each service:
 
 {{% disk-downsize type="service" %}}
 
-{{% legacy-regions featureIntro="Downsizing a service's persistent disk" featureShort="to downsize a disk" level=6 %}}
-
 ##### Size
 
 Resources are distributed across all containers in a project from the total available from your [plan size](../administration/pricing/_index.md).

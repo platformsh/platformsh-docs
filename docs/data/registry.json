@@ -352,7 +352,8 @@
         "2.1"
       ],
       "supported": [
-        "3.2"
+        "3.2",
+        "3.4"
       ],
       "legacy": [
         "2.6",
@@ -421,6 +422,7 @@
         "5.5"
       ],
       "supported": [
+        "10.11",
         "10.6",
         "10.5",
         "10.4",
@@ -444,6 +446,7 @@
     },
     "versions-dedicated-gen-3": {
       "supported": [
+        "10.11 Galera",
         "10.6 Galera",
         "10.5 Galera",
         "10.4 Galera",
@@ -477,6 +480,7 @@
         "5.5"
       ],
       "supported": [
+        "10.11",
         "10.6",
         "10.5",
         "10.4",
@@ -497,6 +501,7 @@
     },
     "versions-dedicated-gen-3": {
       "supported": [
+        "10.11 Galera",
         "10.6 Galera",
         "10.5 Galera",
         "10.4 Galera",
@@ -663,7 +668,7 @@
     },
     "versions-dedicated-gen-2": {
       "supported": [
-        
+
       ],
       "deprecated": [
         "14",

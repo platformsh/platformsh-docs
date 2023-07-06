@@ -104,7 +104,3 @@ You can restore backups to a different environment than they were created on usi
    ```bash
    platform backup:restore --target={{% variable "TARGET_BRANCH_NAME" %}} {{% variable "BACKUP_ID" %}}
    ```
-
-{{% legacy-regions featureIntro="Restoring backups to different environments" featureShort="to restore to different environments" %}}
-
-You can also open a [support ticket](https://console.platform.sh/-/users/~/tickets) to ask that a backup be restored to a different environment for you.
