@@ -32,7 +32,7 @@ If you're not sure how, you can also open an issue and we can look into it.
 
 Requires:
 
-* Hugo >= 0.111.3
+* Hugo >= 0.113.0
 * Node.js >= 16
 * Poetry
 
@@ -44,24 +44,34 @@ The documentation and the Meilisearch search service are separate applications.
 It isn't necessary to run the Meilisearch app to build the docs locally,
 but if you don't, the search field doesn't appear in the sidebar.
 
-To run the docs alone, clone this repository and install dependencies:
+1. To run the docs alone, clone this repository and install dependencies:
 
-```bash
-cd docs
-npm install
-```
+    ```bash
+    cd docs
+    npm install
+    ```
 
-Then download the necessary example files:
+2. (Optional) The documentation website dynamically fetches example files from various locations.
 
-```bash
-npm run dev
-```
+You can run the site locally without retrieving those example files, keeping in mind that affected sections will display a `**Heads up!** The file was not found` message. To do so, jump to step 3.
 
-Then build the site:
+To run the site with all example files retrieved, set a [GitHub token](https://github.com/settings/tokens) as `GITHUB_API_TOKEN` in your shell.
+If you’re using the GitHub CLI tool, to avoid including your token’s value in your shell’s history, run the following command:
 
-```bash
-hugo serve
-```
+    ```bash
+    export GITHUB_API_TOKEN=$(gh auth token)
+    ```
+3. To have Node update the registry and retrieve all the necessary example files (if applicable), run the following command:
+
+    ```bash
+    npm run dev
+    ```
+
+4. Then build the site:
+
+    ```bash
+    hugo serve
+    ```
 
 ### Running locally with search
 
