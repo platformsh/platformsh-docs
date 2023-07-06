@@ -24,8 +24,6 @@ To update the versions in this table, use docs/data/registry.json
 On Grid and {{% names/dedicated-gen-3 %}}, from version 2, you only specify the major version.
 The latest compatible minor version and patches are applied automatically.
 
-{{% image-versions-legacy "opensearch" %}}
-
 {{% relationship-ref-intro %}}
 
 {{% service-values-change %}}

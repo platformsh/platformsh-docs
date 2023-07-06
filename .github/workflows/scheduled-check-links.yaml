@@ -3,69 +3,91 @@ name: Regularly scheduled check links
 on:
   schedule:
     - cron: "0 2 * * 1,4"
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'Site to check for broken links'
+        required: true
+        type: string
+        default: 'https://docs.platform.sh/'
 
 jobs:
   check-links:
     name: Check links
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-go@v2
+      - uses: actions/setup-python@v4
         with:
-          stable: 'true'
+          python-version: '3.10'
 
-      - name: Get muffet
-        env:
-          MUFFET_VERSION: "2.4.8"
-        run: wget --quiet -c "https://github.com/raviqqe/muffet/releases/download/v$MUFFET_VERSION/muffet_${MUFFET_VERSION}_Linux_x86_64.tar.gz" -O - | tar -xz
-
-      - name: Check links
-        run: ./muffet --json --buffer-size=12192 --rate-limit=1 --max-connections-per-host=10 --color=always --header="Accept-Encoding:gzip, deflate" --header="User-Agent:Mozilla/5.0 (Windows NT 10.0) Gecko/20100101 Firefox/91.0" -e=console.platform.sh/projects/create-project -e=cloud.orange-business.com -e=developers.cloudflare.com -e=discord.com -e=pptr.dev -e=mvnrepository.com -e="https://github\.com.*#L\d*-L\d*" -e="https://dev.mysql.com/doc/refman/en/" -e="https://www.microsoft.com/en-us/trust-center/privacy/data-management" https://docs.platform.sh > broken_links.json
-      
-      - name: Create Markdown file of broken links
-        if: ${{ always() }}
+      - name: install linkchecker
+        id: install-linkchecker
         run: |
-          data=broken_links.json
+          pip3 install linkchecker
 
-          # Get length of broken links array
-          eval "$( jq -r '@sh "urls_length=\(.|length)"' "$data" )"
+      - name: checkout xml to markdown
+        uses: actions/checkout@v3
+        with:
+          repository: platformsh/linkchecker-xml2md
 
-          # Check if any links are broken
-          if [ -z "$urls_length" ]; then
-            ":tada: There are no broken links! :tada:" > broken_links.md
-          else
-            echo -e "The following pages had broken links to check and possibly fix:\n" > broken_links.md
+      - name: install-parser
+        run: |
+          pip3 install -r requirements.txt
 
-            # Loop through the broken URLs to create items
-            for (( i = 0; i < urls_length; ++i )); do
-              unset location
-              unset broken_links
-              unset error
-
-              # Get the location where the broken link was found
-              eval "$(
-                  jq -r --argjson i "$i" '
-                      .[$i] |
-                      @sh "location=\(.url)"' "$data"
-              )"
-              echo "- $location" >> broken_links.md
-
-              # Loop through the broken links
-              jq -r --argjson i "$i" '.[$i] ' "$data" |
-              # Get the specific broken link and its error
-              jq -r '.links[] | (.url, .error)' |
-              while IFS= read -r url ; do
-                  IFS= read -r error 
-                  # Output that as a checklist item
-                  echo "  - [ ] $error: $url" >> broken_links.md
-              done
-            done
+      - name: Set URL to scan
+        id: set-url
+        shell: bash
+        run: |
+          # If this is a workflow dispatch, then use what was entered.
+          # If not, then use the repository variable SCAN_URL if it is set
+          # if not, fall back to the hard-coded default
+          scanURL="https://docs.platform.sh/"
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            scanURL="${{ inputs.url }}"
+          elif [[ -n "${{ vars.SCAN_URL }}" ]]; then
+            scanURL="${{ vars.SCAN_URL }}"
           fi
+
+          echo "scanURL=${scanURL}" >> "$GITHUB_ENV"
+
+      - name: Run linkchecker
+        id: run-link-checker
+        continue-on-error: true
+        shell: bash
+        run: |
+          echo "::notice::Scanning ${{ inputs.url }} for broken links."
+          # if linkchecker exits with a non-zero then it means broken links were found.
+          scan=$(linkchecker ${{ env.scanURL }} -F xml/utf_8/brokenlinks.xml --check-extern --user-agent "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" --ignore-url="^https://github.com/platformsh*" --ignore-url="console.platform.sh/projects/*" --ignore-url="support.blackfire.io/*" --ignore-url="cloud.orange-business.com/*" --ignore-url="developers.cloudflare.com/*" --ignore-url="discord.com/*" --ignore-url="pptr.dev/*" --ignore-url="mvnrepository.com/*" --ignore-url="https://dev.mysql.com/doc/refman/en/" --ignore-url="https://www.microsoft.com/en-us/trust-center/privacy/data-management")
+          result=$?
+          if [[ $result -ne 0 ]]; then
+            echo "::notice::Broken links detected."
+          fi
+
+
+      - name: Convert xml to markdown
+        if: ${{ steps.run-link-checker.outcome == 'failure' }}
+        run: |
+          ./xml2md.py brokenlinks.xml > broken_links.md
+
+      - name: Report no broken links
+        if: ${{ steps.run-link-checker.outcome == 'success' }}
+        run: |
+          echo "::notice::No broken links were detected"
 
       - name: Create issue from Markdown file
         id: create-issue
-        if: ${{ always() }}
-        uses: peter-evans/create-issue-from-file@v4
+        if: ${{ steps.run-link-checker.outcome == 'failure' }}
+        uses: actions/github-script@v6
         with:
-          title: ":bug: Broken links"
-          content-filepath: broken_links.md
-          issue-number: 2213
+          script: |
+            var fs = require('fs');
+            var bodyMsg = fs.readFileSync('broken_links.md','utf8');
+            failMsg = ':bug: Broken links detected'
+
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: failMsg,
+              body: bodyMsg,
+              labels: ['broken-links'],
+            })

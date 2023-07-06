@@ -13,8 +13,6 @@ description: Platform.sh supports building and deploying applications written in
 |----------------------------------------|------------------------------ |
 | {{< image-versions image="elixir" status="supported" environment="grid" >}} | {{< image-versions image="elixir" status="supported" environment="dedicated-gen-2" >}} |
 
-{{% image-versions-legacy "elixir" %}}
-
 {{% language-specification type="elixir" display_name="Elixir" %}}
 
 ## Platform.sh variables
