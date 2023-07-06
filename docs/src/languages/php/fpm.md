@@ -19,7 +19,18 @@ The number is calculated as follows: ![The sum of container memory minus reserve
 
 Note that when the resulting number is a decimal, 
 it's rounded up to set the maximum number of workers.
-Also, the minimum number of PHP-FPM workers is 2.  
+Also, the minimum number of PHP-FPM workers is 2.
+
+{{< note >}}
+
+To ensure that Platform.sh doesn't add more workers than the CPU can handle,
+a CPU limit applies as soon as the number of set workers equals or exceeds 25.
+This limit is calculated as follows: `number of vCPU cores * 5`.
+
+For example, if you have a 2XL container with 8 CPU cores,
+you can have up to 40 workers as long as you have sufficient memory.
+
+{{< /note >}}
 
 To adjust the maximum number of PHP-FPM workers depending on your app's needs, follow the instructions on this page.
 
