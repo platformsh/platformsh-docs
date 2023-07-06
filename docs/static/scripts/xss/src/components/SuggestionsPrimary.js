@@ -9,8 +9,8 @@ import React from 'react';
 const SuggestionsPrimary = ({ hits, title }) => {
   const results = hits.map((r) => (
     <li className="mb-4 border-b border-grey-dark" key={r.relurl}>
-      <h3 className="mb-2">
-        <a className="text-skye-dark hover:underline" href={r.url} onClick={`dataLayer.push({'event': 'click_search_result', 'click_name': ${r.title}, 'link_url': ${r.url}`}>
+      <h3 className="mb-2" onClick={`dataLayer.push({'event': 'click_search_result', 'click_name': ${r.title}, 'link_url': ${r.url}`}>
+        <a className="text-skye-dark hover:underline" href={r.url}>
           <b dangerouslySetInnerHTML={{ __html: `${DOMPurify.sanitize(r.section)} | ` }} />
           <span dangerouslySetInnerHTML={{ __html: `${DOMPurify.sanitize(r.title)}` }} />
         </a>
