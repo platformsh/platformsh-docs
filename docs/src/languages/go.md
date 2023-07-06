@@ -150,9 +150,7 @@ func main() {
 }
 ```
 
-{{% config-reader %}}
-[`platformsh/config-reader` Go library](github.com/platformsh/config-reader-go/)
-{{% /config-reader %}}
+{{% config-reader %}}[Go configuration reader library](https://github.com/platformsh/config-reader-go/){{% /config-reader %}}
 
 ## Project templates
 
