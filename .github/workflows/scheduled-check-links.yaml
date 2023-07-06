@@ -57,7 +57,7 @@ jobs:
         run: |
           echo "::notice::Scanning ${{ inputs.url }} for broken links."
           # if linkchecker exits with a non-zero then it means broken links were found.
-          scan=$(linkchecker ${{ env.scanURL }} -F xml/utf_8/brokenlinks.xml --check-extern --user-agent "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" --ignore-url="^https://github.com/platformsh*" --ignore-url="console.platform.sh/projects/*" --ignore-url="cloud.orange-business.com/*" --ignore-url="developers.cloudflare.com/*" --ignore-url="discord.com/*" --ignore-url="pptr.dev/*" --ignore-url="mvnrepository.com/*" --ignore-url="https://dev.mysql.com/doc/refman/en/" --ignore-url="https://www.microsoft.com/en-us/trust-center/privacy/data-management")
+          scan=$(linkchecker ${{ env.scanURL }} -F xml/utf_8/brokenlinks.xml --check-extern --user-agent "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" --ignore-url="^https://github.com/platformsh*" --ignore-url="console.platform.sh/projects/*" --ignore-url="support.blackfire.io/*" --ignore-url="cloud.orange-business.com/*" --ignore-url="developers.cloudflare.com/*" --ignore-url="discord.com/*" --ignore-url="pptr.dev/*" --ignore-url="mvnrepository.com/*" --ignore-url="https://dev.mysql.com/doc/refman/en/" --ignore-url="https://www.microsoft.com/en-us/trust-center/privacy/data-management")
           result=$?
           if [[ $result -ne 0 ]]; then
             echo "::notice::Broken links detected."
