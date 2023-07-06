@@ -24,8 +24,6 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 |------|-------------------------------|------------------------------ |
 |  {{< image-versions image="postgresql" status="supported" environment="grid" >}} | {{< image-versions image="postgresql" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="postgresql" status="supported" environment="dedicated-gen-2" >}} |
 
-{{% image-versions-legacy "postgresql" %}}
-
 \* No High-Availability on {{% names/dedicated-gen-2 %}}.
 
 {{< note >}}

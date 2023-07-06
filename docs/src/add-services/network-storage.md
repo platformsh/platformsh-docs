@@ -27,8 +27,6 @@ If your app does this regularly, a local mount is more effective.
 |------|-------------------------------|------------------------------ |
 |  {{< image-versions image="network-storage" status="supported" environment="grid" >}} | {{< image-versions image="network-storage" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="network-storage" status="supported" environment="dedicated-gen-2" >}} |
 
-{{% image-versions-legacy "network-storage" %}}
-
 This service is the Platform.sh network storage implementation, not to a version of a third-party application.
 
 {{< note theme="warning">}}
@@ -44,10 +42,6 @@ Any change to the service version results in existing data becoming inaccessible
 | Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |------|-------------------------------|------------------------------ |
 |  {{< image-versions image="network-storage" status="deprecated" environment="grid" >}} | {{< image-versions image="network-storage" status="deprecated" environment="dedicated-gen-3" >}} | {{< image-versions image="network-storage" status="deprecated" environment="dedicated-gen-2" >}} |
-
-{{% legacy-regions featureIntro="The Network Storage service" featureShort="the service" %}}
-
-If you haven't yet migrated, you see a  `invalid service type` error when trying to add the service.
 
 ## Usage example
 

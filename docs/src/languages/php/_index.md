@@ -12,8 +12,6 @@ layout: single
 |----------------------------------------|------------------------------ |
 | {{< image-versions image="php" status="supported" environment="grid" >}} | {{< image-versions image="php" status="supported" environment="dedicated-gen-2" >}} |
 
-{{% image-versions-legacy "php" %}}
-
 Note that from PHP versions 7.1 to 8.1, the images support the Zend Thread Safe (ZTS) version of PHP.
 
 {{% language-specification type="php" display_name="PHP" %}}
@@ -440,7 +438,7 @@ title=Run a custom script
 1. Add your script in a PHP file.
 2. Specify an alternative `start` command by adapting the following:
 
-   ```yaml {location:".platform.app.yaml"}
+   ```yaml {location=".platform.app.yaml"}
    web:
         commands:
             start: /usr/bin/start-php-app {{< variable "PATH_TO_APP" >}}
@@ -458,7 +456,7 @@ title=Run a custom web server
 
 2.  Specify an alternative `start` command by adapting the following:
 
-    ```yaml {location:".platform.app.yaml"}
+    ```yaml {location=".platform.app.yaml"}
     web:
         commands:
             start: /usr/bin/start-php-app {{< variable "PATH_TO_APP" >}}
@@ -502,7 +500,7 @@ To execute runtime-specific tasks (such as clearing cache) before your app start
 
 2.  Specify an alternative `start` command by adapting the following:
 
-    ```yaml {location:".platform.app.yaml"}
+    ```yaml {location=".platform.app.yaml"}
     web:
         commands:
             start: bash {{< variable "PATH_TO_SCRIPT" >}} && /usr/bin/start-php-app {{< variable "PATH_TO_APP" >}}

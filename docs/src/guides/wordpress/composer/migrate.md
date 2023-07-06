@@ -200,8 +200,8 @@ You can then commit all your changes
 and deploy your new Composer-based WordPress site to Platform.sh:
 
 ```bash
-$ git add . && git commit -m "Composerify plugins and themes."
-$ git push platform composer
+git add . && git commit -m "Composerify plugins and themes."
+git push platform composer
 ```
 
 ## 4. Update your Composer-based WordPress site
@@ -212,8 +212,8 @@ Updating WordPress, your themes and plugins becomes a lot simpler with Composer.
 When a new version becomes available, create a new branch and launch the update:
 
 ```bash
-$ git checkout -b updates
-$ composer update
+git checkout -b updates
+composer update
 ```
 
 ### Automate your updates with a source operation

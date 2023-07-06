@@ -12,7 +12,7 @@ without needing to grant them access to each project individually.
 
 In such cases, forward your logs from Platform.sh to a third-party service.
 You can use a [service with an integration](#use-a-log-forwarding-integration)
-or any service that supports a [syslog endpoint](#forward-to-a-syslog-endpoint).
+or any service that supports a [syslog endpoint](#forward-to-a-syslog-endpoint) or [HTTP endpoint](#forward-to-an-http-endpoint).
 
 Log forwarding is available for Grid and {{% names/dedicated-gen-3 %}} projects.
 For {{% names/dedicated-gen-2 %}} projects, see how to [log remotely with `rsyslog`](../../dedicated-gen-2/architecture/options.md#remote-logging).
@@ -118,7 +118,7 @@ follow these steps:
 
 ## Forward to a syslog endpoint
 
-Syslog is a standard for message logging.
+Syslog is a standard protocol for transferring log messages.
 Many third-party services offer endpoints for ingesting syslog events.
 You can forward your Platform.sh logs to any of those endpoints.
 
@@ -171,6 +171,26 @@ follow these steps:
    and you can view your logs in the **Activity** section.
 
 {{< /codetabs >}}
+
+## Forward to an HTTP endpoint
+
+Some third-party services, such as [Elasticsearch](../../add-services/elasticsearch.md) and [OpenSearch](../../add-services/opensearch.md),
+support ingesting log messages through an HTTP endpoint.
+You can use HTTP forwarding to forward Platform.sh logs to such third-party services.
+
+HTTP forwarding makes a `POST` HTTP request with an `application/json` body while forwarding the log messages to the endpoint.
+
+As an example, to forward logs to Elasticsearch using HTTP log forwarding, run the following command:
+
+```
+platform integration:add --type httplog --url "https://{{< variable "ELASTICSEARCH_URL" >}}/{{< variable "INDEX_NAME" >}}/_doc" --header "Authorization: Basic <basic_auth_token>" --header "Content-Type: application/json"
+```
+
+`type` and `url` are the only properties required for all endpoints.
+Optionally, you can use the `headers` property to pass additional headers in the HTTP requests.
+
+Once you've [added the service](../../add-services/_index.md),
+to start forwarding logs [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
 
 ## Log levels
 

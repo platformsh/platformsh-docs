@@ -49,7 +49,7 @@ that you can deploy quickly from the button in its README,
 but using Composer you can quickly install WooCommerce yourself:
 
 ```bash
-$ composer require woocommerce/woocommerce
+composer require woocommerce/woocommerce
 ```
 
 Push those changes on a new environment and configure your store through the administration panel.

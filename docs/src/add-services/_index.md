@@ -75,8 +75,6 @@ The following table presents the keys you can define for each service:
 
 {{% disk-downsize type="service" %}}
 
-{{% legacy-regions featureIntro="Downsizing a service's persistent disk" featureShort="to downsize a disk" level=6 %}}
-
 ##### Size
 
 Resources are distributed across all containers in a project from the total available from your [plan size](../administration/pricing/_index.md).
@@ -173,7 +171,7 @@ Connecting to a service using an SSH tunnel is a two-step process.
 To get the credentials for a given service, run the following command:
 
 ```bash
-$ platform relationships
+platform relationships
 ```
 
 You get output like the following:

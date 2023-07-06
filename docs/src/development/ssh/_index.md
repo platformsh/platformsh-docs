@@ -82,10 +82,15 @@ Then you can connect either with a [direct tunnel](#use-a-direct-tunnel) or a [t
 
 ### Use a direct tunnel
 
-To open SSH tunnels for all of your services, use the Platform.sh CLI:
+To open SSH tunnels for all of your services, run the following command:
 
 ```bash
-$ platform tunnel:open
+platform tunnel:open
+```
+
+You get output similar to the following:
+
+```bash
 SSH tunnel opened to database at: http://127.0.0.1:30000
 
 Logs are written to: ~/.platformsh/tunnels.log
@@ -118,7 +123,12 @@ Consult the documentation for your application for how to enter SSH credentials.
 To get the host and username for connections, run the following command:
 
 ```bash
-$ platform ssh --pipe
+platform ssh --pipe --project {{< variable "PROJECT_ID" >}}
+```
+
+You get output similar to the following:
+
+```bash
 jyu7waly36ncj-main-7rqtwti--app@ssh.us.platform.sh
 ```
 

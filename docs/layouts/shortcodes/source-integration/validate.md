@@ -2,7 +2,7 @@
 <!-- Bitbucket has two methods and so has an additional heading level -->
 ##{{ if eq $source "Bitbucket" }}#{{ end }} 3. Validate the integration
 
-Verify that your integration is functioning properly [using the CLI](../overview.md#validating-integrations):
+Verify that your integration is functioning properly [using the CLI](../overview.md#validate-integrations):
 
 ```bash
 platform integration:validate
