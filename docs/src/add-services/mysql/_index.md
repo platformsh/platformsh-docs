@@ -259,6 +259,13 @@ If neither `schemas` nor `endpoints` is included, it's equivalent to the followi
 
 If either `schemas` or `endpoints` are defined, no default is applied and you have to specify the full configuration.
 
+{{< note >}}
+
+Removing a schema from the list of `schemas` on further deployments results in the deletion of the schema.
+
+{{</note >}}
+
+
 ### Multiple databases example
 
 The following configuration example creates a single MariaDB service named `db` with two databases, `main` and `legacy`.
@@ -347,7 +354,7 @@ ALTER TABLE table_name CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_
 
 For further details, see the [MariaDB documentation](https://mariadb.com/kb/en/character-set-and-collation-overview/).
 
-{{% databases-passwords %}} 
+{{% databases-passwords %}}
 
 ## Storage Engine
 
