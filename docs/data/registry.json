@@ -352,7 +352,8 @@
         "2.1"
       ],
       "supported": [
-        "3.2"
+        "3.2",
+        "3.4"
       ],
       "legacy": [
         "2.6",
@@ -667,7 +668,7 @@
     },
     "versions-dedicated-gen-2": {
       "supported": [
-        
+
       ],
       "deprecated": [
         "14",

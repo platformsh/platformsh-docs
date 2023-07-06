@@ -12,8 +12,6 @@ layout: single
 |----------------------------------------|------------------------------ |
 | {{< image-versions image="php" status="supported" environment="grid" >}} | {{< image-versions image="php" status="supported" environment="dedicated-gen-2" >}} |
 
-{{% image-versions-legacy "php" %}}
-
 Note that from PHP versions 7.1 to 8.1, the images support the Zend Thread Safe (ZTS) version of PHP.
 
 {{% language-specification type="php" display_name="PHP" %}}
