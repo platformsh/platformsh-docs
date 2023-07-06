@@ -154,7 +154,6 @@ func main() {
 [`platformsh/config-reader` Go library](github.com/platformsh/config-reader-go/)
 {{% /config-reader %}}
 
-
 ## Project templates
 
 {{< repolist lang="golang" displayName="Go" >}}
