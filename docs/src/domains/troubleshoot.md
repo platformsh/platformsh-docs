@@ -168,7 +168,7 @@ If not, [contact Support](../overview/get-support.md).
 
 ### Check your routes configuration
 
-Certificates are generated based on your [routes configuration](https://docs.platform.sh/define-routes.html).
+Certificates are generated based on your [routes configuration](./define-routes/_index.md).
 When a certificate is renewed, the renewal bot checks that all of the defined routes can be accessed.
 If at least one of the routes defined in your `routes.yaml` file can't be accessed,
 the renewal fails and the following error is displayed:
