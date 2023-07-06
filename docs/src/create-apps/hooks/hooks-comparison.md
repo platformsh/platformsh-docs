@@ -58,8 +58,6 @@ If other hooks fail, the deploy still happens.
 Build hooks automatically time out if they run for 1 hour.
 So if you accidentally add an unbroken loop, it gets cut off and you can continue with other activities.
 
-{{% legacy-regions featureIntro="Build hooks timing out" featureShort="this feature" level=4 %}}
-
 ## Deploy hook
 
 The `deploy` hook is run after the app container has been started but before it has started accepting requests.
@@ -100,8 +98,6 @@ Once a commit has been pushed and a new build image has been created,
 the result of both the `build` and `deploy` hooks are reused until there is a new git commit.
 Redeploys with no changes trigger only the `post_deploy` hook.
 If you need the `deploy` hook to run, [manually trigger a build](../../development/troubleshoot.md#manually-trigger-builds).
-
-{{% legacy-regions featureIntro="Deploy hook activity logs and SSH during deploy hooks" plural=true featureShort="these features" level=3 %}}
 
 ## Post-deploy hook
 

@@ -14,8 +14,6 @@ description: |
 |----------------------------------------|------------------------------ |
 | {{< image-versions image="dotnet" status="supported" environment="grid" >}} | {{< image-versions image="dotnet" status="supported" environment="dedicated-gen-2" >}} |
 
-{{% image-versions-legacy "dotnet" %}}
-
 {{% language-specification type="dotnet" display_name=".Net Core" %}}
 
 ## Building the application

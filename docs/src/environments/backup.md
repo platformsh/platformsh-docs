@@ -110,8 +110,6 @@ The time for 6-hourly backups is based on the daily backup.
 
 Automated backups are always [live](#live-backups).
 
-{{% legacy-regions featureIntro="Live automated backups" featureShort="live automated backups" level=3 plural=true %}}
-
 ## Live backups
 
 You can create backups without any downtime.
@@ -146,8 +144,6 @@ title=In the Console
 When [creating the backup](#create-a-manual-backup), select **Run live backup** in the last step.
 
 {{< /codetabs >}}
-
-{{% legacy-regions featureIntro="Live backups" featureShort="live backups" level=3 plural=true %}}
 
 ## Create a manual backup
 
