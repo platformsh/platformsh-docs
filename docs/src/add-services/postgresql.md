@@ -24,8 +24,6 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 |------|-------------------------------|------------------------------ |
 |  {{< image-versions image="postgresql" status="supported" environment="grid" >}} | {{< image-versions image="postgresql" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="postgresql" status="supported" environment="dedicated-gen-2" >}} |
 
-{{% image-versions-legacy "postgresql" %}}
-
 \* No High-Availability on {{% names/dedicated-gen-2 %}}.
 
 {{< note >}}
@@ -180,6 +178,8 @@ To do so requires defining multiple endpoints.
 Under the `configuration` key of your service there are two additional keys:
 
 * `databases`:  This is a YAML array listing the databases that should be created. If not specified, a single database named `main` is created.
+
+  Note that removing a schema from the list of `schemas` on further deployments results in **the deletion of the schema.**
 * `endpoints`: This is a nested YAML object defining different credentials. Each endpoint may have access to one or more schemas (databases), and may have different levels of permission for each. The valid permission levels are:
   * `ro`: Using this endpoint only `SELECT` queries are allowed.
   * `rw`: Using this endpoint `SELECT` queries as well as `INSERT`/`UPDATE`/`DELETE` queries are allowed.
