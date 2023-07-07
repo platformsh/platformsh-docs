@@ -1124,6 +1124,7 @@ grid:
       - ffi
       - geoip
       - gmp
+      - gnupg
       - http
       - igbinary
       - imap
