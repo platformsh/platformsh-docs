@@ -7,7 +7,12 @@ Get a list of all variables defined on a given environment in [the Console](../.
 or use the CLI:
 
 ```bash
-$ platform var
+platform var
+```
+
+You get output similar to the following:
+
+```bash
 Variables on the project Example (abcdef123456), environment main:
 +------+---------+-------+---------+
 | Name | Level   | Value | Enabled |
@@ -23,9 +28,9 @@ are available as Unix environment variables in all caps.
 Access these variables and Platform.sh-provided variables directly like this:
 
 ```bash
-$ echo $FOO
+echo $FOO
 bar
-$ echo $PLATFORM_APPLICATION_NAME
+echo $PLATFORM_APPLICATION_NAME
 Sample Project
 ```
 
@@ -33,7 +38,7 @@ Other project and environment variables are listed together in the `PLATFORM_VAR
 Access them like this:
 
 ```bash
-$ echo $PLATFORM_VARIABLES | base64 --decode
+echo $PLATFORM_VARIABLES | base64 --decode
 {"theanswer": "42"}
 ```
 
@@ -41,7 +46,7 @@ You can also get the value for a single variable within the array, such as with 
 which uses the [`jq` processor](https://stedolan.github.io/jq/):
 
 ```bash
-$ echo $PLATFORM_VARIABLES | base64 --decode | jq '.theanswer'
+echo $PLATFORM_VARIABLES | base64 --decode | jq '.theanswer'
 "42"
 ```
 
@@ -201,19 +206,19 @@ title=Shell
 +++
 
 ```bash
-$ echo $BASIC
+echo $BASIC
 a string
-$ echo $INGREDIENTS
+echo $INGREDIENTS
 ["peanut butter", "jelly"]
-$ echo $QUANTITIES
+echo $QUANTITIES
 {"cookies": "1 kg", "milk": "1 liter"}
-$ echo "$PLATFORM_VARIABLES" | base64 --decode | jq '."stuff:STEPS"'
+echo "$PLATFORM_VARIABLES" | base64 --decode | jq '."stuff:STEPS"'
 [
   "un",
   "deux",
   "trois"
 ]
-$ echo "$PLATFORM_VARIABLES" | base64 --decode | jq '."stuff:COLORS"'
+echo "$PLATFORM_VARIABLES" | base64 --decode | jq '."stuff:COLORS"'
 {
   "blue": "#0000FF",
   "green": "#00FF00",

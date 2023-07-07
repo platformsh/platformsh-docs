@@ -65,13 +65,11 @@ To install WordPress with Composer, complete the following steps:
    $ rm -rf wordpress
    ```
 
-   Then, at the end of your existing `.gitignore` file, add the content of Platform.sh’s template `.gitignore` file. 
-   This adds the `wordpress` subdirectory to the resulting `.gitignore` file. 
-   This way, after Composer reinstalls WordPress, the `wordpress` subdirectory is ignored in commits:
+   Then, at the end of your existing `.gitignore` file,
+   add the content of Platform.sh’s [template `.gitignore` file](https://github.com/platformsh-templates/wordpress-composer/blob/master/.gitignore). 
 
-   ```bash
-   $ curl https://raw.githubusercontent.com/platformsh/template-builder/master/templates/wordpress-composer/files/.gitignore >> .gitignore
-   ```
+   This adds the `wordpress` subdirectory to the resulting `.gitignore` file. 
+   This way, after Composer reinstalls WordPress, the `wordpress` subdirectory is ignored in commits.
     
    Now remove WordPress from the repository:
 
@@ -202,8 +200,8 @@ You can then commit all your changes
 and deploy your new Composer-based WordPress site to Platform.sh:
 
 ```bash
-$ git add . && git commit -m "Composerify plugins and themes."
-$ git push platform composer
+git add . && git commit -m "Composerify plugins and themes."
+git push platform composer
 ```
 
 ## 4. Update your Composer-based WordPress site
@@ -214,8 +212,8 @@ Updating WordPress, your themes and plugins becomes a lot simpler with Composer.
 When a new version becomes available, create a new branch and launch the update:
 
 ```bash
-$ git checkout -b updates
-$ composer update
+git checkout -b updates
+composer update
 ```
 
 ### Automate your updates with a source operation

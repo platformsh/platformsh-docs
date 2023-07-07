@@ -18,6 +18,9 @@ On top of internal Platform.sh tools,
 a third-party availability monitoring system is configured for every Dedicated project.
 This further guarantees that issues are spotted and addressed as quickly as possible.
 
+If you're using a CDN, [make sure it's configured](../domains/cdn/_index.md#configure-your-cdn-to-support-high-sla)
+to support automated monitoring and guarantee high SLA.
+
 ## Application performance monitoring
 
 As the official, in-house Platform.sh observability tool, [Blackfire](../../increase-observability/integrate-observability/blackfire.md) provides unparalleled monitoring, profiling, and performance testing technologies.

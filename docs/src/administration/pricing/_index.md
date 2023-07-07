@@ -49,7 +49,7 @@ Development environments can't be mapped to [custom domain names](../../domains/
 Their resources are separate from Production environments.
 
 App containers on development environments default to a size of {{< partial "plans/default-dev-env-size" >}}.
-If you have the [manage plans permission](../users.md#organization-user-permissions),
+If you have the [manage plans permission](../users.md#organization-permissions),
 you can increase the size to match your production environment.
 To do so, follow these steps:
 
@@ -177,3 +177,14 @@ Agencies have access to several partner levels with many perks.
 [Learn more and join today](https://platform.sh/solutions/digital-agencies/).
 
 If you have any questions, don't hesitate to [contact Sales](https://platform.sh/contact/).
+
+## Sponsored sites
+
+Platform.sh provides sponsored hosting for Free Software projects, tech community events and organizations as part of our effort to support the Free Software community. 
+That offering can include either a project on Platform.sh, or profilable environments through Blackfire.io, depending on the needs of the project. 
+
+<div align="center">
+
+{{< get-started/next-button next="https://platform.sh/community/open-source/apply/" nextText="Apply" >}}
+
+</div>

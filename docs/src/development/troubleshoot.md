@@ -169,7 +169,7 @@ Platform.sh enforces a 10&nbsp;MB limit on files with the `application/json` `Co
 To send large files, use the `multipart/form-data` header instead:
 
 ```bash
-$ curl -XPOST 'https://example.com/graphql' --header 'Content-Type: multipart/form-data' --form file=large_file.json
+curl -XPOST 'https://example.com/graphql' --header 'Content-Type: multipart/form-data' --form file=large_file.json
 ```
 
 ## Databases

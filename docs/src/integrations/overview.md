@@ -16,13 +16,17 @@ You can also add native integrations with performance monitoring tools. Platform
 Be aware that only a project administrator (someone with `admin` level access to the project) can add or remove integrations.
 See [User administration](/administration/users.md) for more details.
 
-## Listing active integrations
+## List active integrations
 
-With the CLI, you can list all your active integrations:
+With the CLI, you can list all your active integrations using the following command:
 
 ```bash
-$ platform integrations
+platform integrations
+```
 
+You get output similar to the following:
+
+```bash
 +---------------+-------------+-------------------------------------------------------------------------------------+
 | ID            | Type        | Summary                                                                             |
 +---------------+-------------+-------------------------------------------------------------------------------------+
@@ -32,23 +36,28 @@ $ platform integrations
 +---------------+-------------+-------------------------------------------------------------------------------------+
 ```
 
-## Validating integrations
+## Validate integrations
 
-Once your integration has been configured, you can validate that it is functioning properly with the command:
+Once your integration has been configured, you can check that it's working as expected.
+To do so, follow these steps:
 
-```bash
-$ platform integration:validate
+1. Run the `platform integration:validate` command.
+2. When prompted, select the integration you want to validate:
+   ```bash
+   Enter a number to choose an integration:
+     [0] 5aut2djgt6kdd (health.slack)
+     [1] a6535j9qp4sl8 (github)
+    > 1
+   ```
 
-Enter a number to choose an integration:
-  [0] 5aut2djgt6kdd (health.slack)
-  [1] a6535j9qp4sl8 (github)
- > 1
+   You get output similar to:
 
-Validating the integration a6535j9qp4sl8 (type: github)...
-The integration is valid.
-```
+   ```bash
+   Validating the integration a6535j9qp4sl8 (type: github)...
+   The integration is valid.
+   ```
 
-## Debugging integrations
+## Debug integrations
 
 When integrations run, they trigger "activities."  Activities are actions that happen on Platform.sh, and they get logged.
 
@@ -62,36 +71,39 @@ There are a handful of CLI commands available, all under the `integrations` sect
 
 ### List all activities
 
-The command `platform integration:activities` lists
-all updates triggered by [activities](../integrations/activity/reference.md) on a given project and integration.
+To list all the updates triggered by [activities](../integrations/activity/reference.md) on a given project and integration,
+follow these steps:
 
-For example, for the project for this site, the command `platform integration:activity:list` outputs:
+1. Run the `platform integration:activities` command.
+2. When prompted, select an integration.
 
-```bash
-$ platform integration:activities
+   ```bash
+   Enter a number to choose an integration:
+     [0] dxr45hfldrkoe (webhook)
+     [1] n2ukd4p7qofg4 (health.email)
+     [2] c4opi5tjv3yfd (github)
+   > 2
+   ```
 
-Enter a number to choose an integration:
-  [0] dxr45hfldrkoe (webhook)
-  [1] n2ukd4p7qofg4 (health.email)
-  [2] c4opi5tjv3yfd (github)
- > 2
+   You get output similar to the following:
 
-Activities on the project Platform.sh | Docs (6b2eocegfkwwg), integration c4opi5tjv3yfd (github):
-+---------------+---------------------------+-------------------------------------------------------------+----------+---------+
-| ID            | Created                   | Description                                                 | State    | Result  |
-+---------------+---------------------------+-------------------------------------------------------------+----------+---------+
-| 6456zmdtoykxa | 2020-04-14T16:38:09-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
-| wcwp34yjvydgk | 2020-04-14T16:35:22-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
-| w2bp3oa5xbfoe | 2020-04-14T16:33:13-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
-| uqqvdyxmcdmsa | 2020-04-14T16:31:45-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
-| 7x3wefhh4fwqc | 2020-04-14T16:30:36-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
-| a46aah3ga65gc | 2020-04-14T16:29:46-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
-| r7erid2jlixgi | 2020-04-14T16:24:50-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
-| ieufk3vvde5oc | 2020-04-14T16:24:49-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
-| bc7ghg36ty4ea | 2020-04-14T15:30:17-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
-| 4qojtv7a6rk2w | 2020-04-14T15:27:26-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
-+---------------+---------------------------+-------------------------------------------------------------+----------+---------+
-```
+   ```bash
+   Activities on the project Platform.sh | Docs (6b2eocegfkwwg), integration c4opi5tjv3yfd (github):
+   +---------------+---------------------------+-------------------------------------------------------------+----------+---------+
+   | ID            | Created                   | Description                                                 | State    | Result  |
+   +---------------+---------------------------+-------------------------------------------------------------+----------+---------+
+   | 6456zmdtoykxa | 2020-04-14T16:38:09-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
+   | wcwp34yjvydgk | 2020-04-14T16:35:22-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
+   | w2bp3oa5xbfoe | 2020-04-14T16:33:13-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
+   | uqqvdyxmcdmsa | 2020-04-14T16:31:45-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
+   | 7x3wefhh4fwqc | 2020-04-14T16:30:36-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
+   | a46aah3ga65gc | 2020-04-14T16:29:46-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
+   | r7erid2jlixgi | 2020-04-14T16:24:50-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
+   | ieufk3vvde5oc | 2020-04-14T16:24:49-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
+   | bc7ghg36ty4ea | 2020-04-14T15:30:17-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
+   | 4qojtv7a6rk2w | 2020-04-14T15:27:26-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
+   +---------------+---------------------------+-------------------------------------------------------------+----------+---------+
+   ```
 
 You may also specify an integration to display in the command line directly: `platform integration:activities c4opi5tjv3yfd`.
 
@@ -101,15 +113,20 @@ The State and Result fields indicate if the activity completed successfully, fai
 
 See the `--help` output of the command for more options.
 
-### Showing detailed information on an activity
+### Show detailed information on an activity
 
-You can call up more detailed information on a specific activity by its ID, using the `platform integration:activity:log` command.
-It requires both the integration ID and an activity ID from the list above.
-It also works best with the `-t` option to include timestamps.
+To show detailed information on a specific activity,
+run the following command:
 
 ```bash
-$ platform integration:activity:log c4opi5tjv3yfd 6456zmdtoykxa -t
+platform integration:activity:log {{< variable "INTEGRATION_ID" >}} {{< variable "ACTIVITY_ID" >}} -t
+```
 
+The `-t` option specifies that timestamps must be included in the display of the results.
+
+You get output similar to the following:
+
+```bash
 Integration ID: ceopz5tgj3yfc
 Activity ID: 6456zmdtoykxa
 Type: integration.github.fetch

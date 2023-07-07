@@ -31,8 +31,6 @@ Platform.sh supports two different Redis configurations:
 |------|-------------------------------|------------------------------ |
 | {{< image-versions image="redis" status="supported" environment="grid" >}} | {{< image-versions image="redis" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="redis" status="supported" environment="dedicated-gen-2" >}} |
 
-{{% image-versions-legacy "redis" %}}
-
 {{% deprecated-versions %}}
 
 | Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |

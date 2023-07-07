@@ -7,12 +7,12 @@ description: |
 
 {{% description %}}
 
-To add or modify an integration for a project, you need to be a [project admin](../administration/users.md#project-user-permissions).
+To add or modify an integration for a project, you need to be a [project admin](../administration/users.md#project-roles).
 
 ## Default low-disk email notifications
 
 When you create a new project,
-Platform.sh creates a default [low-disk email notification](#low-disk-warning) for all [project admins](../administration/users.md#project-user-permissions).
+Platform.sh creates a default [low-disk email notification](#low-disk-warning) for all [project admins](../administration/users.md#project-roles).
 
 ## Available notifications
 
@@ -104,8 +104,8 @@ Any notification will now trigger an alert in PagerDuty.
 
 ## Validate the integration
 
-You can then verify that your integration is functioning properly [using the CLI](/integrations/overview.md#validating-integrations) command
+You can then verify that your integration is functioning properly [using the CLI](/integrations/overview.md#validate-integrations) command
 
 ```bash
-$ platform integration:validate
+platform integration:validate
 ```

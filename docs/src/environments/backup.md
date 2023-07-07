@@ -68,11 +68,13 @@ Backups for Dedicated environments have a [specific frequency](../dedicated-gen-
 On Grid environments, non-Production environments can have up to 2 [manual backups](#create-a-manual-backup).
 The number of available backups for Production environments depends on your schedule.
 
-| Schedule | Manual backups | Automated backups                |
-| -------- | -------------- | -------------------------------- |
-| Basic    | 2              | 2: daily                         |
-| Advanced | 4              | 21: daily, weekly, and monthly   |
-| Premium  | 4              | 44: 6-hourly, daily, and monthly |
+| Schedule | Manual backups | Automated backups                                                      |
+|----------|----------------|------------------------------------------------------------------------|
+| Basic    | 2              | 2 daily backups (total = 2)                                            |
+| Advanced | 4              | 6 daily, 3 weekly, and 12 monthly (total = 21)                         |
+| Premium  | 4              | 3 backups for the last 24 hours, 30 daily, and 11 monthly (total = 44) |
+
+Note that [backup retention](../security/data-retention.md#grid-backups) also depends on your schedule.
 
 The schedules available to you depend on your [tier](https://platform.sh/pricing/).
 
@@ -110,8 +112,6 @@ The time for 6-hourly backups is based on the daily backup.
 
 Automated backups are always [live](#live-backups).
 
-{{% legacy-regions featureIntro="Live automated backups" featureShort="live automated backups" level=3 plural=true %}}
-
 ## Live backups
 
 You can create backups without any downtime.
@@ -146,8 +146,6 @@ title=In the Console
 When [creating the backup](#create-a-manual-backup), select **Run live backup** in the last step.
 
 {{< /codetabs >}}
-
-{{% legacy-regions featureIntro="Live backups" featureShort="live backups" level=3 plural=true %}}
 
 ## Create a manual backup
 

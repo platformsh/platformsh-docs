@@ -374,7 +374,7 @@ The `access` dictionary has one allowed key:
 | ----- | ----------------------------------- | ------------- | ----------- |
 | `ssh` | `admin`, `contributor`, or `viewer` | `contributor` | Defines the minimum role required to access app environments via SSH. |
 
-In the following example, only users with `admin` permissions for the given [environment type](../administration/users.md#environment-types)
+In the following example, only users with `admin` permissions for the given [environment type](../administration/users.md#environment-type-roles)
 can access the deployed environment via SSH:
 
 ```yaml {location=".platform.app.yaml"}
@@ -434,8 +434,6 @@ firewall:
     outbound:
         - ips: ["0.0.0.0/0"]
 ```
-
-{{% legacy-regions featureIntro="An outbound firewall" featureShort="a firewall" level=3 %}}
 
 ### Support for rules
 
@@ -553,9 +551,8 @@ dependencies:
     php: # Specify one Composer package per line.
         drush/drush: '8.0.0'
         composer/composer: '^2'
-    python: # Specify one Python 2 package per line.
-        behave: '*'
     python2: # Specify one Python 2 package per line.
+        behave: '*'
         requests: '*'
     python3: # Specify one Python 3 package per line.
         numpy: '*'
@@ -769,8 +766,6 @@ If there haven't been any deployments within 14 days, the status is `paused`.
 
 You can see the status in the Console
 or using the CLI by running `platform environment:info` and looking under `deployment_state`.
-
-{{% legacy-regions featureIntro="Paused crons" featureShort="paused crons" plural=true level=4 %}}
 
 #### Restarting paused crons
 

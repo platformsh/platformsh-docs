@@ -5,8 +5,6 @@ weight: 9
 description: Increase your knowledge of how your apps are performing by accessing their container and activity logs.
 ---
 
-{{% legacy-regions featureIntro="Deploy hook and cron activity logs" featureShort="these logs" plural=true %}}
-
 ## Activity logs
 
 Changes to your environments, such as deployments, cron jobs, and code or variable updates,

@@ -1,0 +1,20 @@
+{
+    "username": "",
+    "scheme": "http",
+    "service": "vault-kms",
+    "fragment": "",
+    "ip": "169.254.196.95",
+    "hostname": "ckmpv2fz7jtdmpkmrun7yfgut4.vault-kms.service._.eu-3.platformsh.site",
+    "port": 8200,
+    "cluster": "rjify4yjcwxaa-master-7rqtwti",
+    "host": "vault-kms.internal",
+    "rel": "sign",
+    "path": "\/",
+    "query": {
+        "is_master": true
+    },
+    "password": "b.AAAAAQJivy__IXGg2D6ooSygqE5vKBymfAy5l9xSHGAtm169IX5eoHyyoJ5oJ8Q_ZsQTgcAazUQdDFxH5WclvTaN_vPHzIyQnf9Mr94NmNeTtYm5UDcef0rC0fxRt9nzac7afoRD4n8rdT97oD9CT7on6wa8sAquhBeKLtD0vnGHao5NHY9YEu3pruZQAZRkS4L0u96oH2G6wEnhb4LCjPk_W7Rl0iGwsDLsP4AscQ",
+    "type": "vault-kms:1.6",
+    "public": false,
+    "host_mapped": false
+}
