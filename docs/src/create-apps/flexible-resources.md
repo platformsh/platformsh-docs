@@ -29,6 +29,7 @@ When the `resources` key is set, the CPU sizes come from the following table:
 
 | Size | CPU  |
 | ---- | ---- |
+| XS   | 0.25 |
 | S    | 0.5  |
 | M    | 1    |
 | L    | 2    |
