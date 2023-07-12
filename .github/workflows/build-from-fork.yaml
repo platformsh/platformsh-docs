@@ -47,7 +47,7 @@ jobs:
           echo "::notice::Checking if Platform.sh has received our new branch..."
           while (( counter < ${{ env.NUM_TRIES }} )) && [[ -z "${branchReceived}" ]]; do
             sleep ${{ env.SLEEP_TIME }}
-            echo "::notice Attempt ${counter} of ${{ env.NUM_TRIES }}"
+            echo "::notice::Attempt ${counter} of ${{ env.NUM_TRIES }}"
             branchReceived=$(platform project:curl /environments | jq --arg branch "${{ env.BRANCH_TITLE }}" -r '.[] | select(.name | contains($branch))');
             counter=$((++counter))
           done
