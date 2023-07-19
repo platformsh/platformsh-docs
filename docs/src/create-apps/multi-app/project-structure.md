@@ -18,7 +18,7 @@ The following table presents some example use cases and potential ways to organi
 | You want multiple apps from the same source code | [Unified app configuration](#unified-app-configuration) |
 | You want to control all apps in a single location | [Unified app configuration](#unified-app-configuration) |
 
-### Separate code bases in one repository
+## Separate code bases in one repository
 
 If your project consists of a discrete code base for each app,
 the most straightforward approach is to put each code base in a separate directory within your repository.
@@ -52,7 +52,7 @@ with its configuration relative to the directory with the file.
 The apps can talk to each other through relationships defined in their configuration.
 If you change the code for only one app, the build image for the other can be reused.
 
-### Nested directories
+## Nested directories
 
 When code bases are separate, changes to one app don't necessarily mean that another is rebuilt.
 You might have a situation where one app depends on another, but the second doesn't depend on the first.
@@ -77,7 +77,7 @@ The Python app's code base includes all of the files at the top level (excluding
 *and* all of the files within the `languagetool` directory.
 The Java app's code base includes only files within the `languagetool` directory.
 
-### Configuration separate from code (Git submodules)
+## Configuration separate from code (Git submodules)
 
 You can also keep your app configuration completely separate from the code.
 For example, if you have different teams working on different code with different processes,
@@ -203,7 +203,7 @@ So the app configuration files would be inside the directory of the app.
 
 {{< /codetabs >}}
 
-### Change source root of your app
+## Change source root of your app
 When your source code is not at the same level as your `.platform.app.yaml` file, you need to add a new `source.root` key in your settings to define its root directory.
 For example, for `admin` app from above, in the [Grouped config files setup](#configuration-separate-from-code-git-submodules), we could include the following:
 
@@ -217,7 +217,7 @@ Now the `admin` app treats the `admin/admin-submodule` directory as its root whe
 
 If `source.root` isn't specified, it defaults to the same directory as the `.platform.app.yaml` file itself.
 
-### Unified app configuration
+## Unified app configuration
 
 Rather than defining configuration for each app separately, you can also do it all within a single file.
 Create an `applications.yaml` file within the `.platform` directory and define each app as a key.
@@ -282,141 +282,3 @@ but they have different configurations for how they serve the files.
 To build multiple apps from the repository root, set `source.root` to `/`.
 
 This allows you to control all your apps in one place and even build multiple apps from the same source code.
-
-## Routes
-
-All of your apps are served by a single [router for the project](/define-routes/_index.md).
-Each of your apps must have a `name` that's unique within the project.
-Use the `name` to define the specific routes for that app.
-
-### Routes example
-
-Assume you have an app for a CMS and another app for the frontend defined as follows:
-
-```yaml {location=".platform/applications.yaml"}
--   name: cms
-    type: php:8.2
-    source:
-        root: drupal
-    ...
-
--   name: frontend
-    type: nodejs:16
-    source:
-        root: react
-    ...
-```
-
-You don't need to define a route for each app in the repository.
-If an app isn't specified, then it isn't accessible to the web.
-You can achieve the same thing by defining the app as  [`worker`](../app-reference.md#workers).
-
-Below are two approaches to configuring the Router container: using subdomains, and using subdirectories.
-
-#### Using subdomains per application
-
-You can define routes for your apps as follows:
-
-```yaml {location=".platform/routes.yaml"}
-"https://api.{default}/":
-    type: upstream
-    upstream: "cms:http"
-"https://{default}/":
-    type: upstream
-    upstream: "frontend:http"
-```
-
-So if your default domain is `example.com`, that means:
-
-* `https://api.example.com/` is served by your CMS app.
-* `https://example.com/` is served by your frontend app.
-
-{{< note >}}
-Be aware that using a subdomain might [double your network traffic](https://nickolinger.com/blog/2021-08-04-you-dont-need-that-cors-request/),
-so consider using a path like `https://{default}/api` instead.
-{{< /note >}}
-
-#### Using subdirectories per application
-
-Using the same example, you could also define your routes as follows:
-
-```yaml {location=".platform/routes.yaml"}
-"https://{default}/":
-    type: upstream
-    upstream: "frontend:http"
-"https://{default}/api":
-    type: upstream
-    upstream: "cms:http"
-```
-
-Then you need to configure each app `web.locations` to match these paths:
-
-```yaml {location=".platform/applications.yaml"}
--   name: cms
-    type: php:8.1
-    source:
-        root: drupal
-    ...
-    web:
-        locations:
-            "/api":
-                passthru: "/api/index.php"
-                root: "public"
-                index:
-                    - index.php
-
--   name: frontend
-    type: nodejs:16
-    source:
-        root: react
-    ...
-    web:
-        locations:
-            "/":
-                passthru: "/index.js"
-                root: "build"
-                index:
-                    - index.js
-```
-
-So if your default domain is `example.com`, that means:
-
-* `https://example.com/` is served by your frontend app.
-* `https://example.com/api` is served by your CMS app.
-
-{{< note >}}
-Please notice that for `cms` app configuration, we need to repeat the url suffix `/api` as an index in the `web.locations` and in the url of the `passhtru` settings.
-{{< /note >}}
-
-## Relationships
-
-By default, your apps can't communicate with one another.
-To enable connections, define a relationship to another app using the `http` endpoint.
-
-You can't define circular relationships.
-If `app1` has a relationship to `app2`, then `app2` can't have a relationship to `app1`.
-If you need data to go both ways, consider coordinating through a shared data store,
-like a database or [RabbitMQ server](/add-services/rabbitmq.md).
-
-Relationships between apps use HTTP, not HTTPS.
-This is still secure because they're internal and not exposed to the outside world.
-
-### Relationships example
-
-Assume you have 2 applications, `main` and `api`.
-`main` needs data from `api`.
-
-In your app configuration for `main`, define a relationship to `api`:
-
-```yaml {location="main/.platform.app.yaml"}
-relationships:
-    api: "api:http"
-```
-
-Once they're both built, `main` can now access `api` at the URL `http://api.internal`.
-The specific URL is always available through the [`PLATFORM_RELATIONSHIPS` variable](/development/variables/use-variables.md#use-platformsh-provided-variables):
-
-```bash
-echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq '.api[0].host'
-api.internal
-```
