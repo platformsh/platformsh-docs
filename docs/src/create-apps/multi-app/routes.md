@@ -2,7 +2,7 @@
 title: Routes
 sidebarTitle: Routes
 weight: 20
-description: There is many way to defined your routes between your apps, explore all of your possibilities.
+description: There is many ways to defined your routes between your apps, explore all of your possibilities.
 ---
 
 All of your apps are served by a single [router for the project](/define-routes/_index.md).

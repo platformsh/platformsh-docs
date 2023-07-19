@@ -68,7 +68,7 @@ When you run ``git push``, you can see the output of the log:
 ```
 
 {{< note >}}
-If your submodule contains an independent app, please read the [Multi-app section](/create-apps/multi-app#configuration-separate-from-code-git-submodules) of the doc.
+If your submodule contains an independent app, please read the [Multi-app section](/create-apps/multi-app/project-structure#configuration-separate-from-code-git-submodules) of the doc.
 {{< /note >}}
 
 ## Update submodules

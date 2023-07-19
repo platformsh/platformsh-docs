@@ -10,13 +10,14 @@ and what you want to accomplish.
 
 The following table presents some example use cases and potential ways to organize the project:
 
-| Use case | Structure |
-| -------- | --------- |
-| Separate basic apps that are worked on together | [Separate code in one repository](#separate-code-bases-in-one-repository) |
-| One app depends on code from another app | [Nested directories](#nested-directories) |
-| You want to keep configuration separately from the code, such as through Git submodules | [Configuration separate from code](#configuration-separate-from-code-git-submodules) |
-| You want multiple apps from the same source code | [Unified app configuration](#unified-app-configuration) |
-| You want to control all apps in a single location | [Unified app configuration](#unified-app-configuration) |
+| Use case                                                                                | Structure                                                                                                         |
+|-----------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
+| Separate basic apps that are worked on together                                         | [Separate code in one repository](#separate-code-bases-in-one-repository)                                         |
+| One app depends on code from another app                                                | [Nested directories](#nested-directories)                                                                         |
+| You want to keep configuration separately from the code, such as through Git submodules | [Configuration separate from code](#configuration-separate-from-code-git-submodules) (tab `Grouped config files`) |
+| You want to keep configuration within your Git submodules                               | [Configuration separate from code](#configuration-separate-from-code-git-submodules) (tab `Embedded config files`) |
+| You want multiple apps from the same source code                                        | [Unified app configuration](#unified-app-configuration)                                                           |
+| You want to control all apps in a single location                                       | [Unified app configuration](#unified-app-configuration)                                                           |
 
 ## Separate code bases in one repository
 
@@ -77,21 +78,64 @@ The Python app's code base includes all of the files at the top level (excluding
 *and* all of the files within the `languagetool` directory.
 The Java app's code base includes only files within the `languagetool` directory.
 
+## Split code source in multiple repositories (Git submodules)
+You can also keep your app completely separate from the top application.
+For example, if you have different teams working on different code with different processes,
+you might want each app to have its own repository.
+Then you can build them together in another repository using [Git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
+
+In this setup, your app configuration are in each of the submodule repositories.
+
+So your [project repository](https://github.com/platformsh-templates/bigfoot-multiapp/tree/submodules-root-app-yaml) might look like this:
+
+```text
+├── .platform
+│   ├── routes.yaml
+│   └── services.yaml
+├── @admin
+│   ├── .platform.app.yaml  <- API Platform Admin app configuration
+│   └── ...                 <- API Platform Admin code from submodule
+├── @api
+│   ├── .platform.app.yaml  <- Bigfoot app configuration
+│   └── ...                 <- Bigfoot code from submodule
+├── @gatsby
+│   ├── .platform.app.yaml  <- Gatsby app configuration
+│   └── ...                 <- Gatsby code from submodule
+├── @mercure
+│   ├── .platform.app.yaml  <- Mercure Rocks app configuration
+│   └── ...                 <- Mercure Rocks code from submodule
+└── .gitmodules
+```
+
+Your `.gitmodules` file would define all submodules:
+
+```txt {location=".gitmodules"}
+[submodule "admin"]
+	path = admin
+	url = https://github.com/platformsh-templates/bigfoot-multiapp-admin.git
+	branch = with-platform-app-yaml
+[submodule "api"]
+	path = api
+	url = https://github.com/platformsh-templates/bigfoot-multiapp-api.git
+	branch = with-platform-app-yaml
+[submodule "gatsby"]
+	path = gatsby
+	url = https://github.com/platformsh-templates/bigfoot-multiapp-gatsby.git
+	branch = with-platform-app-yaml
+[submodule "mercure"]
+	path = mercure
+	url = https://github.com/platformsh-templates/bigfoot-multiapp-mercure.git
+	branch = with-platform-app-yaml
+```
+
+So the app configuration files would be inside the directory of each apps.
+
 ## Configuration separate from code (Git submodules)
 
 You can also keep your app configuration completely separate from the code.
 For example, if you have different teams working on different code with different processes,
 you might want each app to have its own repository.
 Then you can build them together in another repository using [Git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
-
-You can design your source code in 2 ways:
-- Group your app config files within the top repo
-- Embed app config files into submodule repositories
-
-{{< codetabs >}}
-+++
-title=Grouped config files
-+++
 
 In this setup, your app configuration has to be in the top repository, not in a submodule.
 In this case, and any other case where you want the configuration to be separate from the code,
@@ -150,58 +194,6 @@ So you need to [change the `source.root` key](#change-source-root-of-your-app) t
 You can also use [Unified App configuration](/create-apps/multi-app.html#unified-app-configuration) in this setup
 {{< /note >}}
 
-<--->
-+++
-title=Embedded config files
-+++
-
-In this setup, your app configuration are in each of the submodule repositories.
-
-So your [project repository](https://github.com/platformsh-templates/bigfoot-multiapp/tree/submodules-root-app-yaml) might look like this:
-
-```text
-├── .platform
-│   ├── routes.yaml
-│   └── services.yaml
-├── @admin
-│   ├── .platform.app.yaml  <- API Platform Admin app configuration
-│   └── ...                 <- API Platform Admin code from submodule
-├── @api
-│   ├── .platform.app.yaml  <- Bigfoot app configuration
-│   └── ...                 <- Bigfoot code from submodule
-├── @gatsby
-│   ├── .platform.app.yaml  <- Gatsby app configuration
-│   └── ...                 <- Gatsby code from submodule
-├── @mercure
-│   ├── .platform.app.yaml  <- Mercure Rocks app configuration
-│   └── ...                 <- Mercure Rocks code from submodule
-└── .gitmodules
-```
-
-Your `.gitmodules` file would define all submodules:
-
-```txt {location=".gitmodules"}
-[submodule "admin"]
-	path = admin
-	url = https://github.com/platformsh-templates/bigfoot-multiapp-admin.git
-	branch = with-platform-app-yaml
-[submodule "api"]
-	path = api
-	url = https://github.com/platformsh-templates/bigfoot-multiapp-api.git
-	branch = with-platform-app-yaml
-[submodule "gatsby"]
-	path = gatsby
-	url = https://github.com/platformsh-templates/bigfoot-multiapp-gatsby.git
-	branch = with-platform-app-yaml
-[submodule "mercure"]
-	path = mercure
-	url = https://github.com/platformsh-templates/bigfoot-multiapp-mercure.git
-	branch = with-platform-app-yaml
-```
-
-So the app configuration files would be inside the directory of the app.
-
-{{< /codetabs >}}
 
 ## Change source root of your app
 When your source code is not at the same level as your `.platform.app.yaml` file, you need to add a new `source.root` key in your settings to define its root directory.
