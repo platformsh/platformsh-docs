@@ -1,28 +1,9 @@
 ---
-title: Multiple apps in a single project
-sidebarTitle: Multiple apps
-description: Create multiple apps within a single project, such as a CMS backend connected to a frontend to display it.
+title: Project structure
+sidebarTitle: Project structure
+weight: 10
+description: Explore possible structure of your code depending on the way you want to manage your config files
 ---
-
-{{% multi-app-intro %}}
-
-Note that to have enough resources to support multiple apps, you need at least a [{{< partial "plans/multiapp-plan-name" >}} plan](../administration/pricing/_index.md#multiple-apps-in-a-single-project).
-
-{{< note >}}
-
-This page applies to Grid and {{% names/dedicated-gen-3 %}} projects.
-To set up multiple apps in {{% names/dedicated-gen-2 %}} environments, contact your sales representative.
-
-{{< /note >}}
-
-No matter how many apps you have in one project, they're all served by a single [router for the project](#routes).
-To let your apps talk to one another, create [relationships among them](#relationships).
-Each app separately defines its relationships to [services](../add-services/_index.md).
-So apps can share services or have their own.
-
-![A diagram showing the router directing traffic form the default domain to one app with services and traffic to the API at the domain to a different app with no services](/images/config-diagrams/multiple-app.png "0.5")
-
-## Project structure
 
 How you structure a project with multiple apps depends on how your code is organized
 and what you want to accomplish.
@@ -41,7 +22,7 @@ The following table presents some example use cases and potential ways to organi
 
 If your project consists of a discrete code base for each app,
 the most straightforward approach is to put each code base in a separate directory within your repository.
-Each has its own [`.platform.app.yaml` file](../create-apps/_index.md),
+Each has its own [`.platform.app.yaml` file](/create-apps/_index.md),
 which defines the configuration for that app.
 The directory with the `.platform.app.yaml` file acts as the root directory for that app.
 
@@ -103,6 +84,15 @@ For example, if you have different teams working on different code with differen
 you might want each app to have its own repository.
 Then you can build them together in another repository using [Git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
 
+You can design your source code in 2 ways:
+- Group your app config files within the top repo
+- Embed app config files into submodule repositories
+
+{{< codetabs >}}
++++
+title=Grouped config files
++++
+
 In this setup, your app configuration has to be in the top repository, not in a submodule.
 In this case, and any other case where you want the configuration to be separate from the code,
 you need to specify the code root in the configuration file.
@@ -111,7 +101,8 @@ So your [project repository](https://github.com/platformsh-templates/bigfoot-mul
 
 ```text
 ├── .platform
-│   └── routes.yaml
+│   ├── routes.yaml
+│   └── services.yaml
 ├── admin
 │   ├── .platform.app.yaml  <- API Platform Admin app configuration
 │   └── admin-submodule
@@ -153,8 +144,68 @@ Your `.gitmodules` file would define all submodules:
 ```
 
 So the app configuration files would be outside the directory of the app.
-Then in each `.platform.app.yaml` file, specify a `source.root` key to define its root directory.
-For example, for `app1`, it could include the following:
+So you need to [change the `source.root` key](#change-source-root-of-your-app) to define it for each of your 4 apps.
+
+{{< note >}}
+You can also use [Unified App configuration](/create-apps/multi-app.html#unified-app-configuration) in this setup
+{{< /note >}}
+
+<--->
++++
+title=Embedded config files
++++
+
+In this setup, your app configuration are in each of the submodule repositories.
+
+So your [project repository](https://github.com/platformsh-templates/bigfoot-multiapp/tree/submodules-root-app-yaml) might look like this:
+
+```text
+├── .platform
+│   ├── routes.yaml
+│   └── services.yaml
+├── @admin
+│   ├── .platform.app.yaml  <- API Platform Admin app configuration
+│   └── ...                 <- API Platform Admin code from submodule
+├── @api
+│   ├── .platform.app.yaml  <- Bigfoot app configuration
+│   └── ...                 <- Bigfoot code from submodule
+├── @gatsby
+│   ├── .platform.app.yaml  <- Gatsby app configuration
+│   └── ...                 <- Gatsby code from submodule
+├── @mercure
+│   ├── .platform.app.yaml  <- Mercure Rocks app configuration
+│   └── ...                 <- Mercure Rocks code from submodule
+└── .gitmodules
+```
+
+Your `.gitmodules` file would define all submodules:
+
+```txt {location=".gitmodules"}
+[submodule "admin"]
+	path = admin
+	url = https://github.com/platformsh-templates/bigfoot-multiapp-admin.git
+	branch = with-platform-app-yaml
+[submodule "api"]
+	path = api
+	url = https://github.com/platformsh-templates/bigfoot-multiapp-api.git
+	branch = with-platform-app-yaml
+[submodule "gatsby"]
+	path = gatsby
+	url = https://github.com/platformsh-templates/bigfoot-multiapp-gatsby.git
+	branch = with-platform-app-yaml
+[submodule "mercure"]
+	path = mercure
+	url = https://github.com/platformsh-templates/bigfoot-multiapp-mercure.git
+	branch = with-platform-app-yaml
+```
+
+So the app configuration files would be inside the directory of the app.
+
+{{< /codetabs >}}
+
+### Change source root of your app
+When your source code is not at the same level as your `.platform.app.yaml` file, you need to add a new `source.root` key in your settings to define its root directory.
+For example, for `admin` app from above, in the [Grouped config files setup](#configuration-separate-from-code-git-submodules), we could include the following:
 
 ```yaml {location="admin/.platform.app.yaml"}
 source:
@@ -163,7 +214,6 @@ source:
 
 The `source.root` path is relative to the repository root.
 Now the `admin` app treats the `admin/admin-submodule` directory as its root when building.
-You could do the same for `api`, `gatsby` and `mercure` configs.
 
 If `source.root` isn't specified, it defaults to the same directory as the `.platform.app.yaml` file itself.
 
@@ -174,7 +224,7 @@ Create an `applications.yaml` file within the `.platform` directory and define e
 Since your code lives in a different directory,
 define the root directory for each app with the `source.root` for that app.
 
-For example, if you have code for a Go app and code for two PHP apps,
+For example, if you have code for a Go API app (`api`) and code for two PHP apps (`main` and `admin`),
 you could organize the repository like this:
 
 ```txt
@@ -182,9 +232,9 @@ you could organize the repository like this:
 │   ├── applications.yaml  <- Unified app configuration
 │   └── routes.yaml
 ├── api-app
-│   └── ...                 <- Go app code
+│   └── ...                 <- Go API app code
 └── main-app
-    └── ...                  <- PHP app code
+    └── ...                  <- PHP main and admin app code
 ```
 
 You could then configure this into three apps as in the following configuration:
@@ -235,7 +285,7 @@ This allows you to control all your apps in one place and even build multiple ap
 
 ## Routes
 
-All of your apps are served by a single [router for the project](../define-routes/_index.md).
+All of your apps are served by a single [router for the project](/define-routes/_index.md).
 Each of your apps must have a `name` that's unique within the project.
 Use the `name` to define the specific routes for that app.
 
@@ -259,7 +309,7 @@ Assume you have an app for a CMS and another app for the frontend defined as fol
 
 You don't need to define a route for each app in the repository.
 If an app isn't specified, then it isn't accessible to the web.
-You can achieve the same thing by defining the app as  [`worker`](./app-reference.md#workers).
+You can achieve the same thing by defining the app as  [`worker`](../app-reference.md#workers).
 
 Below are two approaches to configuring the Router container: using subdomains, and using subdirectories.
 
@@ -334,6 +384,10 @@ So if your default domain is `example.com`, that means:
 * `https://example.com/` is served by your frontend app.
 * `https://example.com/api` is served by your CMS app.
 
+{{< note >}}
+Please notice that for `cms` app configuration, we need to repeat the url suffix `/api` as an index in the `web.locations` and in the url of the `passhtru` settings.
+{{< /note >}}
+
 ## Relationships
 
 By default, your apps can't communicate with one another.
@@ -342,7 +396,7 @@ To enable connections, define a relationship to another app using the `http` end
 You can't define circular relationships.
 If `app1` has a relationship to `app2`, then `app2` can't have a relationship to `app1`.
 If you need data to go both ways, consider coordinating through a shared data store,
-like a database or [RabbitMQ server](../add-services/rabbitmq.md).
+like a database or [RabbitMQ server](/add-services/rabbitmq.md).
 
 Relationships between apps use HTTP, not HTTPS.
 This is still secure because they're internal and not exposed to the outside world.
@@ -360,7 +414,7 @@ relationships:
 ```
 
 Once they're both built, `main` can now access `api` at the URL `http://api.internal`.
-The specific URL is always available through the [`PLATFORM_RELATIONSHIPS` variable](../development/variables/use-variables.md#use-platformsh-provided-variables):
+The specific URL is always available through the [`PLATFORM_RELATIONSHIPS` variable](/development/variables/use-variables.md#use-platformsh-provided-variables):
 
 ```bash
 echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq '.api[0].host'
