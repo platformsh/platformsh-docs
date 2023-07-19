@@ -8,16 +8,20 @@ description: Explore possible structure of your code depending on the way you wa
 How you structure a project with multiple apps depends on how your code is organized
 and what you want to accomplish.
 
+Let's consider we want to define this multiple application:
+![A diagram showing the router directing traffic form the default domain to one app with services and traffic to the API at the domain to a different app with no services](/images/config-diagrams/multiple-app.png "0.5")
+
+
 The following table presents some example use cases and potential ways to organize the project:
 
-| Use case                                                                                | Structure                                                                                                         |
-|-----------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
-| Separate basic apps that are worked on together                                         | [Separate code in one repository](#separate-code-bases-in-one-repository)                                         |
-| One app depends on code from another app                                                | [Nested directories](#nested-directories)                                                                         |
-| You want to keep configuration separately from the code, such as through Git submodules | [Configuration separate from code](#configuration-separate-from-code-git-submodules) (tab `Grouped config files`) |
-| You want to keep configuration within your Git submodules                               | [Configuration separate from code](#configuration-separate-from-code-git-submodules) (tab `Embedded config files`) |
-| You want multiple apps from the same source code                                        | [Unified app configuration](#unified-app-configuration)                                                           |
-| You want to control all apps in a single location                                       | [Unified app configuration](#unified-app-configuration)                                                           |
+| Use case                                                                                | Structure                                                                                      |
+|-----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+| Separate basic apps that are worked on together                                         | [Separate code in one repository](#separate-code-bases-in-one-repository)                      |
+| One app depends on code from another app                                                | [Nested directories](#nested-directories)                                                      |
+| You want to keep configuration separately from the code, such as through Git submodules | [Configuration separate from code](#configuration-separate-from-code-git-submodules)           |
+| You want to keep configuration within your Git submodules                               | [Configuration in your submodules](#split-code-source-in-multiple-repositories-git-submodules) |
+| You want multiple apps from the same source code                                        | [Unified app configuration](#unified-app-configuration)                                        |
+| You want to control all apps in a single location                                       | [Unified app configuration](#unified-app-configuration)                                        |
 
 ## Separate code bases in one repository
 
