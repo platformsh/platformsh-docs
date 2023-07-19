@@ -16,7 +16,7 @@ It's largely based on the [Next.js for Drupal project](https://next-drupal.org/)
 
 The example commands are somewhat simplified, but you can find them all in the [GitHub repository](https://github.com/platformsh-templates/nextjs-drupal).
 
-In this case, you have [two apps](../multi-app.md) and so two [`.platform.app.yaml` configuration files](../_index.md).
+In this case, you have [two apps](../multi-app/_index.md) and so two [`.platform.app.yaml` configuration files](../_index.md).
 Each file is in the folder for that app: `api` for Drupal and `client` for Next.js.
 You run one hook for Drupal and two hooks for Next.js.
 
@@ -280,7 +280,7 @@ hooks:
         set -e
         yarn --frozen-lockfile # Install dependencies for the main app
 
-        cd platformsh-scripts/test 
+        cd platformsh-scripts/test
         yarn --frozen-lockfile # Install dependencies for the testing script
     # Next.js's build is delayed to the post_deploy hook, when Drupal is available for requests.
     post_deploy: |

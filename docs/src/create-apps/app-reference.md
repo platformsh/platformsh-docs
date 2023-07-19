@@ -8,7 +8,7 @@ description: See all of the options for controlling your apps and how they're bu
 
 For single-app projects, the configuration is all done in a `.platform.app.yaml` file,
 usually located at the root of your app folder in your Git repository.
-[Multi-app projects](./multi-app.md) can be set up in various ways.
+[Multi-app projects](./multi-app/_index.md) can be set up in various ways.
 
 See a [comprehensive example](./_index.md#comprehensive-example) of a configuration in a `.platform.app.yaml` file.
 For reference, see a [log of changes to app configuration](./upgrading.md).
@@ -45,7 +45,7 @@ To override any part of a property, you have to provide the entire property.
 
 Some of the properties you can define are relative to your app's root directory.
 The root defaults to the location of your `.platform.app.yaml` file.
-To specify another directory, for example for a [multi-app project](./multi-app.md)),
+To specify another directory, for example for a [multi-app project](./multi-app/_index.md)),
 use the [`source.root` property](#source).
 
 ## Types
@@ -861,7 +861,7 @@ The following table shows the properties that can be set in `source`:
 | Name         | Type                     | Required | Description |
 | ------------ | ------------------------ | -------- | ----------- |
 | `operations` | An operations dictionary |          |  Operations that can be applied to the source code. See [source operations](./source-operations.md) |
-| `root`       | `string`                 |          |  The path where the app code lives. Defaults to the directory of the `.platform.app.yaml` file. Useful for [multi-app setups](./multi-app.md). |
+| `root`       | `string`                 |          |  The path where the app code lives. Defaults to the directory of the `.platform.app.yaml` file. Useful for [multi-app setups](./multi-app/_index.md). |
 
 ## Additional hosts
 

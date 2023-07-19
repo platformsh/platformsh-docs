@@ -55,7 +55,7 @@ If you haven't yet migrated, you see a  `invalid service type` error when trying
 
 ## Multi-application usage
 
-If your project contains [multiple apps](../create-apps/multi-app.md), they can all use the same network mounts.
+If your project contains [multiple apps](../create-apps/multi-app/_index.md), they can all use the same network mounts.
 If the `source_path` is the same in both `.platform.app.yaml` files,
 the files are shared between the two applications even if the mount location is different.
 

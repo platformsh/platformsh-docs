@@ -7,7 +7,7 @@ weight: 4
 
 {{% multi-app-intro %}}
 
-For more information, see how to [configure multiple apps in a single project](../../create-apps/multi-app.md).
+For more information, see how to [configure multiple apps in a single project](../../create-apps/multi-app/_index.md).
 
 ## Multiple-AZ
 
