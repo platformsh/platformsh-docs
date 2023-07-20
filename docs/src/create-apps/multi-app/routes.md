@@ -1,19 +1,25 @@
 ---
-title: Routes
-sidebarTitle: Routes
+title: Define routes for your multiple apps
+sidebarTitle: Define routes
 weight: 20
-description: There is many ways to defined your routes between your apps, explore all of your possibilities.
+description: Learn about the many ways you can define routes between your apps.
+banner:
+   title: Feature availability
+   body: This page applies to Grid and {{% names/dedicated-gen-3 %}} projects. To ensure you have enough resources to support multiple apps, you need at least a [{{< partial "plans/multiapp-plan-name" >}} plan](/administration/pricing/_index.md#multiple-apps-in-a-single-project). To set up multiple apps on {{% names/dedicated-gen-2 %}} environments, [contact Sales](https://platform.sh/contact/).
 ---
 
-All of your apps are served by a single [router for the project](/define-routes/_index.md).
+When you set up a project containing multiple applications,
+all of your apps are served by a single [router for the project](/define-routes/_index.md).
 Each of your apps must have a `name` that's unique within the project.
-Use the `name` to define the specific routes for that app.
+To define specific routes for one of your apps, use this `name`.
 
-Let's consider we want to define this multiple application:
-![A diagram showing the router directing traffic form the default domain to one app with services and traffic to the API at the domain to a different app with no services](/images/config-diagrams/multiple-app.png "0.5")
+There are various ways you can define routes for your multiple apps.
+Let's take the following project as an example:
 
-## Routes example
-Assume you have an app for a CMS, two apps for frontends (one using Symfony and another using Gatsby) and another for Mercure Rocks server, defined as follows:
+![Diagram of a project containing multiple apps](/images/config-diagrams/multiple-app.png "0.5")
+
+In this project, you have a CMS app, two frontend apps (one using Symfony and another using Gatsby)
+and a Mercure Rocks server app, defined as follows:
 
 ```yaml {location=".platform/applications.yaml"}
 - name: admin
@@ -39,16 +45,19 @@ Assume you have an app for a CMS, two apps for frontends (one using Symfony and 
 ```
 
 {{< note >}}
+
 You don't need to define a route for each app in the repository.
 If an app isn't specified, then it isn't accessible to the web.
-You can achieve the same thing by defining the app as  [`worker`](../app-reference.md#workers).
+You can achieve the same thing by defining the app as a [`worker`](../app-reference.md#workers).
+
 {{< /note >}}
 
-Below are two approaches to configuring the Router container: using subdomains, and using subdirectories.
+Depending on your needs, you could configure the router container
+[using subdomains](#define-routes-using-subdomains) or using [subdirectories](#define-routes-using-subdirectories).
 
-### Using subdomains per application
+### Define routes using subdomains
 
-You can define routes for your apps as follows:
+You could define routes for your apps as follows:
 
 ```yaml {location=".platform/routes.yaml"}
 "https://mercure.{default}/":
@@ -61,28 +70,31 @@ You can define routes for your apps as follows:
 
 So if your default domain is `example.com`, that means:
 
-* `https://mercure.example.com/` is served by your Mercure Rocks app (`mercure`).
-* `https://example.com/` is served by your Symfony frontend app (`api`).
+- `https://mercure.example.com/` is served by your Mercure Rocks app (`mercure`).
+- `https://example.com/` is served by your Symfony frontend app (`api`).
 
 {{< note >}}
-Be aware that using a subdomain might [double your network traffic](https://nickolinger.com/blog/2021-08-04-you-dont-need-that-cors-request/),
+
+Using a subdomain might [double your network traffic](https://nickolinger.com/blog/2021-08-04-you-dont-need-that-cors-request/),
 so consider using a path like `https://{default}/api` instead.
+
 {{< /note >}}
 
-### Using subdirectories per application
+### Define routes using subdirectories
 
-Using the same example, you could also define your routes as follows:
+Alternatively, you could define your routes as follows:
 
 ```yaml {location=".platform/routes.yaml"}
 "https://{default}/":
     type: upstream
+
     upstream: "api:http"
 "https://{default}/admin":
     type: upstream
     upstream: "admin:http"
 ```
 
-Then you need to configure each app `web.locations` to match these paths:
+Then you would need to configure each app `web.locations` to match these paths:
 
 ```yaml {location=".platform/applications.yaml"}
 -   name: api
@@ -113,11 +125,10 @@ Then you need to configure each app `web.locations` to match these paths:
 
 So if your default domain is `example.com`, that means:
 
-* `https://example.com/` is served by your Symfony frontend app (`api`).
-* `https://example.com/admin` is served by your Admin app (`admin`).
+- `https://example.com/` is served by your Symfony frontend app (`api`).
+- `https://example.com/admin` is served by your Admin app (`admin`).
 
-{{< note >}}
-Please notice that for `admin` app configuration, we need to repeat the url suffix `/admin` as an index in the `web.locations` as in the value of the `passhtru` settings.
-{{< /note >}}
+Note that in this example, for the configuration of your `admin` app,
+you need to add the URL suffix `/admin` as both an index in the `web.locations` and a value for the `passhtru` setting.
 
-Complete example can be found [here](https://github.com/platformsh-templates/bigfoot-multiapp/tree/submodules-root-subfolders-applications)
+For a complete example, [go to this project on GitHub](https://github.com/platformsh-templates/bigfoot-multiapp/tree/submodules-root-subfolders-applications).

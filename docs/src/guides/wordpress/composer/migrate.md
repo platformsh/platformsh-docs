@@ -56,7 +56,7 @@ To install WordPress with Composer, complete the following steps:
 
 3. Clean up WordPress core.
 
-   If you've been managing WordPress and its dependencies as Git submodules, [remove the submodules](../../../development/submodules.md#removing-submodules).
+   If you've been managing WordPress and its dependencies as Git submodules, [remove the submodules](../../../development/submodules.md#remove-submodules).
 
    Otherwise, your existing installation of WordPress core is assumed to be in a subdirectory of your repository (often named `wordpress`).
    For Composer to manage WordPress, remove this subdirectory: 

@@ -1,5 +1,5 @@
 ---
-title: "Using Git submodules"
+title: "Use Git submodules"
 weight: 11
 sidebarTitle: "Git submodules"
 ---
@@ -10,15 +10,14 @@ Platform.sh allows you to use submodules in your Git repository.
 They're usually listed in a `.gitmodules` file at the root of your Git repository.
 When you push via Git, Platform.sh tries to clone them automatically.
 
-### Clone submodules
-In this example, inspiration comes from [this Bigfoot multi-app example](https://github.com/platformsh-templates/bigfoot-multiapp/tree/multiapp-subfolders-applications), using submodules:
+The following example is based on [a Bigfoot multi-app project](https://github.com/platformsh-templates/bigfoot-multiapp/tree/multiapp-subfolders-applications) which uses the following submodules:
 
-- [BigFoot app](https://github.com/platformsh-templates/bigfoot-multiapp-api/tree/without-platform-app-yaml)
-- [API Platform v3, Admin component](https://github.com/platformsh-templates/bigfoot-multiapp-admin/tree/without-platform-app-yaml)
-- [Gatsby frontend](https://github.com/platformsh-templates/bigfoot-multiapp-gatsby/tree/without-platform-app-yaml)
-- [Mercure Rocks server](https://github.com/platformsh-templates/bigfoot-multiapp-mercure/tree/without-platform-app-yaml)
+- A [BigFoot app](https://github.com/platformsh-templates/bigfoot-multiapp-api/tree/without-platform-app-yaml)
+- An [API Platform v3, Admin component](https://github.com/platformsh-templates/bigfoot-multiapp-admin/tree/without-platform-app-yaml)
+- A [Gatsby frontend](https://github.com/platformsh-templates/bigfoot-multiapp-gatsby/tree/without-platform-app-yaml)
+- A [Mercure Rocks server](https://github.com/platformsh-templates/bigfoot-multiapp-mercure/tree/without-platform-app-yaml)
 
-To import them, from your multiple application project root folder, run these commands:
+To import them, from your multiple application project's root folder, run the following commands:
 
 ```bash
 $ touch .gitmodules
@@ -31,7 +30,7 @@ $ git commit -m "Adding submodules for Bigfoot App, API Platform Admin component
 $ git push
 ```
 
-Here is an example of what your ``.gitmodules`` file should look like:
+Here is an example of what your `.gitmodules` file should look like:
 
 ```ini
 [submodule "admin"]
@@ -52,7 +51,7 @@ Here is an example of what your ``.gitmodules`` file should look like:
   branch = without-platform-app-yaml
 ```
 
-When you run ``git push``, you can see the output of the log:
+When you run `git push`, you can see the output of the logs:
 
 ```bash
   Validating submodules
@@ -68,7 +67,9 @@ When you run ``git push``, you can see the output of the log:
 ```
 
 {{< note >}}
-If your submodule contains an independent app, please read the [Multi-app section](/create-apps/multi-app/project-structure#configuration-separate-from-code-git-submodules) of the doc.
+
+If your submodule contains an independent app, see [how to configure it properly](../create-apps/multi-app/project-structure.md#keep-your-app-configurations-and-code-separate).
+
 {{< /note >}}
 
 ## Update submodules
@@ -79,7 +80,8 @@ If your submodule contains an independent app, please read the [Multi-app sectio
 title=Manual update
 +++
 
-After submodule code updates, deployment of the project does not automatically update submodules. To update them, run the following command:
+After submodule code updates, redeploying your project isn't always enough for the changes to be applied.
+To make sure your submodules are updated, run the following commands:
 
 ```bash
 $ git submodule update --remote [submodule]
@@ -90,9 +92,10 @@ $ git submodule update --remote [submodule]
 ```
 
 {{< note >}}
-You can specify which submodule needs to be updated replacing ``[submodule]`` by your submodule path.
-{{< /note >}}
 
+To specify which submodule needs to be updated, replace `[submodule]` with your submodule path.
+
+{{< /note >}}
 
 
 [//]: # ( )
@@ -128,7 +131,7 @@ You can specify which submodule needs to be updated replacing ``[submodule]`` by
 
 ## Error when validating submodules
 
-If you see the following error:
+Using an SSH URL (`git@github.com:...`) to fetch submodules triggers the following error:
 
 ```bash
 Validating submodules.
@@ -141,7 +144,8 @@ E: Error validating submodules in tree:
     - git@github.com:platformsh-templates/bigfoot-multiapp-admin.git: HangupException: The remote server unexpectedly closed the connection.
 ```
 
-Since the Platform.sh Git server can't connect to GitHub via SSH without being granted an SSH key to do so, you shouldn't use an SSH URL: ``git@github.com:...``, but you should use an HTTPS URL instead: ``https://github.com/...``.
+This is because the Platform.sh Git server can't connect to GitHub via SSH without being granted an SSH key to do so.
+To solve this issue, use an HTTPS URL (`https://github.com/...`) instead.
 
 ## Use private Git repositories
 
@@ -155,7 +159,7 @@ To fix this, follow these steps:
 
 1. Change your module declarations to use SSH for URLs.
 
-    Your existing declaration might look like this:
+   Your existing declaration might look like this:
 
     ```bash {location=".gitmodules"}
     [submodule "support/module"]
@@ -176,11 +180,16 @@ To fix this, follow these steps:
 2. Add the [project's public key to your remote Git repository](./private-repository.md).
    This allows your Platform.sh project to pull the repository from the remote Git service.
 
-## Removing submodules
+## Remove submodules
+
+{{< note >}}
 
 These steps aren't specific to Platform.sh, but kept as a reference for Git so that submodules are effectively removed before entering the build process.
 
+{{< /note >}}
+
 1. Delete information for the submodule you'd like to remove from `.gitmodules` and `.git/config`.
+
    ```bash
    $ git submodule deinit -f path_to_submodule
     ```
@@ -213,10 +222,3 @@ These steps aren't specific to Platform.sh, but kept as a reference for Git so t
     ```bash
     $ rm -rf path_to_submodule
     ```
-
-[//]: # (TODO FHK : as i change the process command, i don't know if we need to keep this credit to Mahdi Yusuf)
-[//]: # ({{< note title="Credit" theme="info" >}})
-
-[//]: # (Original can be found in a [gist by Mahdi Yusuf]&#40;https://gist.github.com/myusuf3/7f645819ded92bda6677&#41;, replicated here for internal linking.)
-
-[//]: # ({{< /note >}})
