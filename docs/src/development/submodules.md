@@ -184,8 +184,6 @@ To fix this, follow these steps:
 
 These steps aren't specific to Platform.sh, but kept as a reference for Git so that submodules are effectively removed before entering the build process.
 
-{{< /note >}}
-
 1. Delete information for the submodule you'd like to remove from `.gitmodules` and `.git/config`.
 
    ```bash
