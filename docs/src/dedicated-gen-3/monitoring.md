@@ -22,6 +22,9 @@ This report is used by the Platform.sh support team to triage the cause of the o
 These tools are internal Platform.sh tools only.
 A third-party availability monitoring system is configured for every Dedicated project.
 
+If you're using a CDN, [make sure it's configured](../domains/cdn/_index.md#configure-your-cdn-to-support-high-sla)
+to support automated monitoring and guarantee high SLA.
+
 ## Application performance monitoring
 
 Platform.sh offers application performance monitoring (APM) packaged with infrastructure monitoring in the Platform.sh Observability Suite.

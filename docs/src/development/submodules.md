@@ -182,8 +182,6 @@ To fix this, follow these steps:
 
 ## Remove submodules
 
-{{< note >}}
-
 These steps aren't specific to Platform.sh, but kept as a reference for Git so that submodules are effectively removed before entering the build process.
 
 {{< /note >}}

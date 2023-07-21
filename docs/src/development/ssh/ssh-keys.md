@@ -28,11 +28,11 @@ you might be able to [find existing keys](#1a-find-your-keys) or else you need t
 
 ### 1A. Find your keys
 
-You may have already generated SSH keys before.
-Tech Republic has a guide to [finding keys on different systems](https://www.techrepublic.com/article/how-to-view-your-ssh-keys-in-linux-macos-and-windows/).
-
 If you haven't used SSH keys before or it's been a while since you created the key,
 skip right to [generating new keys](#1b-generate-new-keys).
+
+If you have generated SSH keys before and want to find them on your system,
+follow these instructions.
 
 A public key file has a name ending in `.pub`.
 It contains seemingly random lines of characters,

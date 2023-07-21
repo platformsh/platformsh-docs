@@ -6,7 +6,7 @@ description: |
   Review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for Laravel.
 ---
 
-{{% guides/config-desc name="Laravel" platformify="laravel" %}}
+{{% guides/config-desc name="Laravel" %}}
 
 {{% guides/config-app template="laravel" /%}}
 

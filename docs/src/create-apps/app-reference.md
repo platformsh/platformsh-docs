@@ -435,8 +435,6 @@ firewall:
         - ips: ["0.0.0.0/0"]
 ```
 
-{{% legacy-regions featureIntro="An outbound firewall" featureShort="a firewall" level=3 %}}
-
 ### Support for rules
 
 Where outbound rules for firewalls are supported in all environments.
@@ -553,9 +551,8 @@ dependencies:
     php: # Specify one Composer package per line.
         drush/drush: '8.0.0'
         composer/composer: '^2'
-    python: # Specify one Python 2 package per line.
-        behave: '*'
     python2: # Specify one Python 2 package per line.
+        behave: '*'
         requests: '*'
     python3: # Specify one Python 3 package per line.
         numpy: '*'
@@ -769,8 +766,6 @@ If there haven't been any deployments within 14 days, the status is `paused`.
 
 You can see the status in the Console
 or using the CLI by running `platform environment:info` and looking under `deployment_state`.
-
-{{% legacy-regions featureIntro="Paused crons" featureShort="paused crons" plural=true level=4 %}}
 
 #### Restarting paused crons
 

@@ -16,8 +16,6 @@ description: |
 |----------------------------------------|------------------------------ |
 | {{< image-versions image="ruby" status="supported" environment="grid" >}} | {{< image-versions image="ruby" status="supported" environment="dedicated-gen-2" >}} |
 
-{{% image-versions-legacy "ruby" %}}
-
 {{% language-specification type="ruby" display_name="Ruby" %}}
 
 ## Unicorn based Rails configuration
