@@ -50,6 +50,21 @@ There are also additional options:
     you can't clone until your access has been updated.
     See how to [troubleshoot source integrations](../../integrations/source/troubleshoot.md).
 
+## Environment URL
+
+When you access an environment in the Console, you can view its URL:
+
+![Environment URL and details](/images/management-console/env-url.png "0.25")
+
+While the environment is loading in the Console, a `Waiting for URL...` message is displayed instead of the URL.
+If this message isn't updated once your [default environment](../../environments/_index.md#default-environment)'s information is loaded,
+follow these steps:
+
+1. Check that [you have defined routes](../../define-routes/_index.md) for your default environment.
+2. Check that your configuration files ([`.platform.app.yaml`](../../create-apps/app-reference.md), [`platform/routes.yaml`](../../define-routes/_index.md),
+   and [`.platform/services.yaml`](../../add-services/_index.md)) aren't broken.
+3. Check that your default environment is [active](../../environments/deactivate-environment.md#reactivate-an-environment).
+
 ## Environment settings
 
 To access the settings of an environment, click {{< icon settings >}} **Settings** within that environment.
