@@ -325,6 +325,18 @@
         "11",
         "8"
       ]
+    },
+    "versions-dedicated-gen-2": {
+      "supported": [
+        "17",
+        "11",
+        "8"
+      ],
+      "deprecated": [
+        "15",
+        "13",
+        "7"
+      ]
     }
   },
   "kafka": {
