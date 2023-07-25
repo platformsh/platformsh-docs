@@ -55,11 +55,11 @@ it's better to keep separate projects than build an architecture that may prove 
 
 A clustered application is one where your project requires multiple _app services_ that are all part of the same conceptual project.
 
-Clustered applications can range from a simple headless architecture, where frontend and backend systems are separated,
+Clustered applications can range from a straightforward headless architecture, where frontend and backend systems are separated,
 to micro-services with dozens of apps in multiple runtimes and frameworks forming a consistent whole.
 Meaning, removing one of the app services would break the others.
 
-Platform.sh allows you to easily configure access from one service to another
+Platform.sh allows you to configure access from one service to another
 without having to worry about service discovery or complex _ingress controllers_.
 [Configuring incoming routes](../define-routes/_index.md) is straightforward.
 You can have services that are only exposed to another service as well as services that are exposed to the internet.
@@ -96,7 +96,7 @@ Some Content Management Systems or other applications support running multiple l
 This approach isn't recommended on Platform.sh.
 
 This multi-site logic is often dependent on the domain name of the incoming request, which on Platform.sh varies by branch.
-Running multiple databases, as is often recommmended with this approach,
+Running multiple databases, as is often recommended with this approach,
 is supported on Platform.sh but makes the setup process for each site more difficult.
 
 Leveraging the multi-site capabilities of an app are appropriate only in the following cases:
