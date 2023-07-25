@@ -96,7 +96,7 @@ Some Content Management Systems or other applications support running multiple l
 This approach isn't a best practice on Platform.sh.
 
 This multi-site logic is often dependent on the domain name of the incoming request, which on Platform.sh varies by branch.
-Running multiple databases, as is often recommmended with this approach,
+Running multiple databases, as is often recommended with this approach,
 is supported on Platform.sh but makes the setup process for each site more difficult.
 
 Leveraging the multi-site capabilities of an app are appropriate only in the following cases:
