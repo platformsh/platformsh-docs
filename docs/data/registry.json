@@ -325,6 +325,18 @@
         "11",
         "8"
       ]
+    },
+    "versions-dedicated-gen-2": {
+      "supported": [
+        "17",
+        "11",
+        "8"
+      ],
+      "deprecated": [
+        "15",
+        "13",
+        "7"
+      ]
     }
   },
   "kafka": {
@@ -928,6 +940,7 @@
         "3.5"
       ],
       "supported": [
+        "3.12",
         "3.11",
         "3.10",
         "3.9"
@@ -953,6 +966,7 @@
     "versions-dedicated-gen-3": {
       "deprecated": [],
       "supported": [
+        "3.12",
         "3.11",
         "3.10",
         "3.9"
