@@ -6,7 +6,7 @@ layout: single
 
 Node.js is a popular asynchronous JavaScript runtime.
 Deploy scalable Node.js apps of all sizes on Platform.sh.
-You can also develop a microservice architecture mixing JavaScript and other apps with [multi-app projects](../../create-apps/multi-app.md).
+You can also develop a microservice architecture mixing JavaScript and other apps with [multi-app projects](../../create-apps/multi-app/_index.md).
 
 ## Supported versions
 
