@@ -17,6 +17,8 @@ The following example is based on [a Bigfoot multi-app project](https://github.c
 - A [Gatsby frontend](https://github.com/platformsh-templates/bigfoot-multiapp-gatsby/tree/without-platform-app-yaml)
 - A [Mercure Rocks server](https://github.com/platformsh-templates/bigfoot-multiapp-mercure/tree/without-platform-app-yaml)
 
+![Diagram of a project containing multiple apps](/images/config-diagrams/multiple-app.png "0.5")
+
 To import them, from your multiple application project's root folder, run the following commands:
 
 ```bash
