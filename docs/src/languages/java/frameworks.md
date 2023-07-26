@@ -40,7 +40,7 @@ sidebarTitle: "Frameworks"
 | [Search](https://www.payara.fish/page/payara-platform-and-paas-with-platform-sh/) | [Source](https://github.com/platformsh-examples/payara-micro/tree/master/search) |
 | [NoSQL](https://dzone.com/articles/whats-new-with-jakarta-nosql-part-i-introduction-t) | [Source](https://github.com/platformsh-examples/payara-micro/tree/master/nosql) |
 | [JPA](https://platform.sh/blog/2019/eclipse-microprofiles-gain-agility-release-faster/) | [Source](https://github.com/platformsh-examples/payara-micro/tree/master/jpa) |
-| [Hello World](https://dzone.com/articles/payara-and-paas-with-platformsh) | [Source](https://github.com/platformsh-examples/payara-micro/tree/master/hello) |
+| [Hello World](https://www.payara.fish/page/payara-platform-and-paas-with-platform-sh/) | [Source](https://github.com/platformsh-examples/payara-micro/tree/master/hello) |
 
 ## Quarkus
 
@@ -54,10 +54,7 @@ sidebarTitle: "Frameworks"
 
 | Article                                                      |                                                        Links |
 | ------------------------------------------------------------ | -----------------------------------------------------------: |
-| [Panache MongoDB](https://dzone.com/articles/deploy-quarkus-faster-in-the-cloud-with-platformsh-3) | [Source](https://github.com/platformsh-examples/quarkus/tree/master/mongo-db-panache) |
-| [Command Mode Application](https://dzone.com/articles/deploy-quarkus-faster-in-the-cloud-with-platformsh-2) | [Source](https://github.com/platformsh-examples/quarkus/tree/master/command-mode) |
 | [Hibernate Search With Elasticsearch](https://dzone.com/articles/deploy-quarkus-faster-in-the-cloud-with-platformsh-1) | [Source](https://github.com/platformsh-examples/quarkus/tree/master/elasticsearch) |
-| [PostgreSQL With Panache](https://dzone.com/articles/deploy-quarkus-faster-in-the-cloud-with-platformsh) | [Source](https://github.com/platformsh-examples/quarkus/tree/master/panache) |
 | [PostgreSQL with JPA](https://dzone.com/articles/quarkus-supersonic-subatomic-java-deploy-faster-in) | [Source](https://github.com/platformsh-examples/quarkus/tree/master/jpa) |
 | [Hello World](https://dzone.com/articles/quarkus-supersonic-subatomic-java-goes-faster-in-t) |    [Source](https://github.com/platformsh-templates/quarkus) |
 
@@ -111,7 +108,6 @@ So if you want to use Tomcat with Spring, check the [Spring section](#spring).
 
 | Article                                                     | Source                                                       |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| [Hello World](https://dzone.com/articles/micronaut-cloud)   | [Source](https://github.com/platformsh-templates/micronaut)  |
 | [JPA](https://dzone.com/articles/micronaut-cloud-jpa)       | [Source](https://github.com/platformsh-examples/micronaut/tree/master/jpa) |
 | [Micronaut Data](https://dzone.com/articles/micronaut-data) | [Source](https://github.com/platformsh-examples/micronaut/tree/master/micronaut-data) |
 | [MongoDB](https://dzone.com/articles/micronaut-mongodb)     | [Source](https://github.com/platformsh-examples/micronaut/tree/master/mongodb) |
