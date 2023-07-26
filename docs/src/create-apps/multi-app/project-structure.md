@@ -123,7 +123,9 @@ So your [project repository](https://github.com/platformsh-templates/bigfoot-mul
 └── .gitmodules
 ```
 
-Your `.gitmodules` file would define all the submodules:
+To add these submodules using Git CLI, please follow steps [here](/development/submodules.html#clone-submodules-during-deployment)
+
+Your `.gitmodules` file would define all the submodules as the following:
 
 ```txt {location=".gitmodules"}
 [submodule "admin"]
