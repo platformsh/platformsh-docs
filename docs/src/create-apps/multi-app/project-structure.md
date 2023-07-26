@@ -149,7 +149,7 @@ make sure you [change the source root](#change-the-source-root-of-your-app) for 
 
 {{< /note >}}
 
-#### Change the source root of your app
+## Change the source root of your app
 
 when using [Unified app configuration](#unified-app-configuration) or when your source code is not at the same level as your `.platform.app.yaml` file,
 add a new `source.root` key in your settings to define its root directory.
