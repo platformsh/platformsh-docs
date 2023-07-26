@@ -65,7 +65,7 @@ Redirects from `http` to `https` are generally included by default and don't nee
 
 ### Multi-app route definition
 
-The specifics of configuring the Router container for multiple applications is explored in detail in the [Multiple apps](/create-apps/multi-app/routes.md#routes) documentation.
+The specifics of configuring the Router container for multiple applications is explored in detail in the [Multiple apps](/create-apps/multi-app/routes.md) documentation.
 
 ## Trailing slashes
 
