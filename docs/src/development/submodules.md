@@ -63,7 +63,7 @@ When you run ``git push``, you can see the output of the log:
 ```
 
 {{< note >}}
-If your submodule contains an independent app, see [how to configure it properly](create-apps/multi-app/project-structure.md#separate-code-bases-in-one-repository).
+If your submodule contains an independent app, see [how to configure it properly](create-apps/multi-app/project-structure.md#project-structures-relying-on-git-submodules).
 {{< /note >}}
 
 ## Update submodules
