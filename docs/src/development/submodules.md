@@ -129,7 +129,7 @@ app:
 {{< note >}}
 Source operation needs to be defined in an app which source code **is not** in a submodule.
 
-If you're having a multiple application project, using [Git submodules for each of your apps](/create-apps/multi-app/project-structure.md#split-your-code-source-into-multiple-repositories), you need to define a new app at the top level project.
+If you're having a multiple application project, using [Git submodules for each of your apps](/create-apps/multi-app/project-structure.md#split-your-code-source-into-multiple-git-submodule-repositories), you need to define a new app at the top level project.
 This new app would not be exposed to the web (no routes) and will define this source operation by adding these lines in your ``.platform/applications.yaml``
 
 ```yaml

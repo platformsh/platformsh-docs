@@ -15,13 +15,13 @@ For example, there are various ways you could set up the following multiple apps
 
 Here are some example use cases and potential ways to organize the project:
 
-| Use case                                                                                | Structure                                                                                      |
-|-----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
-| Separate basic apps that are worked on together.                                         | [Separate code in one repository](#separate-code-bases-in-one-repository)                      |
-| One app depends on code from another app.                                                | [Nested directories](#nested-directories)                                                      |
-| You want to keep configuration separately from the code, such as through Git submodules. | [Configuration separate from code](#split-your-code-source-into-multiple-repositories)           |
-| You want multiple apps from the same source code.                                        | [Unified app configuration](#unified-app-configuration)                                        |
-| You want to control all apps in a single location.                                       | [Unified app configuration](#unified-app-configuration)                                        |
+| Use case                                                                                | Structure                                                               |
+|-----------------------------------------------------------------------------------------|-------------------------------------------------------------------------|
+| Separate basic apps that are worked on together.                                         | [Separate code in one repository](#separate-code-bases-in-one-repository) |
+| One app depends on code from another app.                                                | [Nested directories](#nested-directories)                               |
+| You want to keep configuration separately from the code, such as through Git submodules. | [Configuration separate from code](#split-your-code-source-into-multiple-git-submodule-repositories)                                   |
+| You want multiple apps from the same source code.                                        | [Unified app configuration](#unified-app-configuration)                 |
+| You want to control all apps in a single location.                                       | [Unified app configuration](#unified-app-configuration)                 |
 
 ## Separate code bases in one repository
 
@@ -100,16 +100,11 @@ languagetool:
   ...
 ```
 
-## Project structures relying on Git submodules
+## Split your code source into multiple Git submodule repositories
 
 If you have different teams working on different code with different processes,
 you might want each app to have its own repository.
 Then you can build them together in another repository using [Git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
-
-In such cases, you can either [split your code source into multiple repositories](#split-your-code-source-into-multiple-repositories)
-or keep your [app configurations and code separate](#separate-code-bases-in-one-repository).
-
-### Split your code source into multiple repositories
 
 In this setup, your apps are kept separate from the top application.
 Each app has its own [Git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) directory,
