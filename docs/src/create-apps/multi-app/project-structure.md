@@ -19,8 +19,7 @@ Here are some example use cases and potential ways to organize the project:
 |-----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
 | Separate basic apps that are worked on together.                                         | [Separate code in one repository](#separate-code-bases-in-one-repository)                      |
 | One app depends on code from another app.                                                | [Nested directories](#nested-directories)                                                      |
-| You want to keep configuration separately from the code, such as through Git submodules. | [Configuration separate from code](#keep-your-app-configurations-and-code-separate)           |
-| You want to keep configuration within your Git submodules.                               | [Configuration in your submodules](#split-your-code-source-into-multiple-repositories) |
+| You want to keep configuration separately from the code, such as through Git submodules. | [Configuration separate from code](#split-your-code-source-into-multiple-repositories)           |
 | You want multiple apps from the same source code.                                        | [Unified app configuration](#unified-app-configuration)                                        |
 | You want to control all apps in a single location.                                       | [Unified app configuration](#unified-app-configuration)                                        |
 
