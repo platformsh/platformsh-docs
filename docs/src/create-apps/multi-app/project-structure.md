@@ -85,7 +85,7 @@ The Java app's code base includes only the files within the `languagetool` direc
 In that case, your `applications.yaml` file must contain 2 entries, one for the `main` app and second one for `languagetool` app.
 
 {{< note >}}
-  `languagetool` app needs to define an additional [`source.root` setting](create-apps/app-reference.html#root-directory) as code base is not at the root directory level, but inside `languagetool/` directory.
+  `languagetool` app needs to define an additional [`source.root` setting](/create-apps/app-reference.html#root-directory) as code base is not at the root directory level, but inside `languagetool/` directory.
 {{< /note >}}
 
 ```yaml
@@ -107,7 +107,7 @@ you might want each app to have its own repository.
 Then you can build them together in another repository using [Git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
 
 In such cases, you can either [split your code source into multiple repositories](#split-your-code-source-into-multiple-repositories)
-or keep your [app configurations and code separate](#keep-your-app-configurations-and-code-separate).
+or keep your [app configurations and code separate](#separate-code-bases-in-one-repository).
 
 ### Split your code source into multiple repositories
 
@@ -148,7 +148,7 @@ Your `.gitmodules` file would define all the submodules:
 {{< note >}}
 
 In this case, and any other case where your app configuration files are kept outside of the app directory,
-make sure you [change the source root](#change-source-root-of-your-app) for each of your apps.
+make sure you [change the source root](#change-the-source-root-of-your-app) for each of your apps.
 
 {{< /note >}}
 
@@ -157,7 +157,7 @@ make sure you [change the source root](#change-source-root-of-your-app) for each
 when using [Unified app configuration](#unified-app-configuration) or when your source code is not at the same level as your `.platform.app.yaml` file,
 add a new `source.root` key in your settings to define its root directory.
 
-To change the source root of the `admin` app in the [app configuration separate from code](#keep-your-app-configurations-and-code-separate) example project, you could add the following configuration:
+To change the source root of the `admin` app in the [app configuration separate from code](#separate-code-bases-in-one-repository) example project, you could add the following configuration:
 
 ```yaml {location=".platform/applications.yaml"}
 source:
