@@ -13,8 +13,7 @@ all of your apps are served by a single [router for the project](/define-routes/
 Each of your apps must have a `name` that's unique within the project.
 To define specific routes for one of your apps, use this `name`.
 
-There are various ways you can define routes for your multiple apps.
-Let's take the following project as an example:
+There are various ways you can define routes for multiple app projects such as the following example:
 
 ![Diagram of a project containing multiple apps](/images/config-diagrams/multiple-app.png "0.5")
 
@@ -95,7 +94,7 @@ Alternatively, you could define your routes as follows:
     upstream: "admin:http"
 ```
 
-Then you would need to configure each app `web.locations` to match these paths:
+Then you would need to configure each app's `web.locations` property to match these paths:
 
 ```yaml {location=".platform/applications.yaml"}
 -   name: api

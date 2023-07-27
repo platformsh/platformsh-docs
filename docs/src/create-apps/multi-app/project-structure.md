@@ -1,7 +1,7 @@
 ---
 title: Choose a project structure
 weight: 10
-description: Explore possible code structures you can apply on your multiple application projects.
+description: Explore possible code structures you can apply to your multiple application projects.
 banner:
    title: Feature availability
    body: This page applies to Grid and {{% names/dedicated-gen-3 %}} projects. To ensure you have enough resources to support multiple apps, you need at least a [{{< partial "plans/multiapp-plan-name" >}} plan](/administration/pricing/_index.md#multiple-apps-in-a-single-project). To set up multiple apps on {{% names/dedicated-gen-2 %}} environments, [contact Sales](https://platform.sh/contact/).
@@ -19,18 +19,18 @@ Here are some example use cases and potential ways to organize the project:
 |-----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
 | Separate basic apps that are worked on together.                                         | [Unified app configuration](#unified-app-configuration)                                              |
 | One app depends on code from another app.                                                | [Nested directories](#nested-directories)                                                            |
-| You want to keep configuration separately from the code, such as through Git submodules. | [Configuration separate from code](#split-your-code-source-into-multiple-git-submodule-repositories) |
+| You want to keep configuration separate from code, such as through Git submodules. | [Configuration separate from code](#split-your-code-source-into-multiple-git-submodule-repositories) |
 | You want multiple apps from the same source code.                                        | [Unified app configuration](#unified-app-configuration)                                              |
 | You want to control all apps in a single location.                                       | [Unified app configuration](#unified-app-configuration)                                              |
 
 ## Unified app configuration
 
-Rather than defining configuration for each app separately, you can also do it all within a single file.
-Create an `applications.yaml` file within the `.platform` directory and define each app as a key.
-Since your code lives in a different directory,
-define the root directory for each app with the `source.root` for that app.
+You can configure all your apps from a single file.
+To do so, create an `applications.yaml` file within the `.platform` directory and define each app as a key.
 
-For example, if you have an API Platform backend with a Symfony API, a Mercure Rocks server and a Gatsby frontend, you could organize your repository like this:
+For example, if you have an API Platform backend with a Symfony API,
+a Mercure Rocks server, and a Gatsby frontend,
+you can organize your repository like this:
 
 ```txt
 ├── .platform
@@ -46,10 +46,31 @@ For example, if you have an API Platform backend with a Symfony API, a Mercure R
 └── mercure
     └── ...                 <- Mercure Rocks app code
 ```
-Note that the `.platform` directory is located at the root, separate from all your apps.
-It contains all needed configuration files for routing, services and behavior of each of your app.
 
-You could then configure this into four apps as in the following configuration:
+The `api` app is built from the `api-app` directory.</br>
+The `admin` app is built from the `admin` directory.</br>
+The `gatsby` app is built from the `gatsby` directory.</br>
+The `mercure` app is built from the `mercure` directory.</br>
+They all have different configurations for how they serve the files. For more details, see the [complete example file](https://github.com/platformsh-templates/bigfoot-multiapp/blob/multiapp-monolith/.platform/applications.yaml).
+
+{{< note >}}
+
+The `.platform` directory is located at the root, separate from your apps.
+It contains all the needed configuration files to set up the routing, services and behavior of each app.
+Since the code bases of your apps live in a different directory,
+you need to [change the source root of each app](#change-the-source-root-of-your-app).
+
+To build multiple apps from the repository root, set `source.root` to `/`.
+This allows you to control all your apps in one place and even build multiple apps from the same source code.
+
+{{< /note >}}
+
+To allow your apps to communicate with each other, define [relationships](./relationships.md).
+
+Note that with this setup, when you amend the code of one of your apps,
+the build image for your other apps can still be reused.
+
+Once your repository is organized, you can use a configuration similar to the following:
 
 ```yaml {location=".platform/applications.yaml"}
 api:
@@ -177,31 +198,10 @@ mercure:
     root: mercure/.config
 ```
 
-{{< note >}}
-Complete example of this ``applications.yaml`` file can be found [here](https://github.com/platformsh-templates/bigfoot-multiapp/blob/multiapp-monolith/.platform/applications.yaml)
-{{< /note >}}
-
-Each first level node in this ``applications.yaml`` file defines a single app container,
-with its configuration relative to the directory containing the app, please see how to [Change the source root of your app](#change-the-source-root-of-your-app).
-
-The `api` app is built from the `api-app` directory.</br>
-The `admin` app is built from the `admin` directory.</br>
-The `gatsby` app is built from the `gatsby` directory.</br>
-The `mercure` app is built from the `mercure` directory.</br>
-They all have different configurations for how they serve the files.
-
-The apps can communicate with each other through [relationships defined in their configuration](./relationships.md).
-
-
-To build multiple apps from the repository root, set `source.root` to `/`.
-This allows you to control all your apps in one place and even build multiple apps from the same source code.
-
-When you make changes to the code of one of your apps, the build image for your other apps can still be reused.
-
 ## Nested directories
 
 When code bases are separate, changes to one app don't necessarily mean that the other apps in the project get rebuilt.
-You might have a situation where `main` app depends on `languagetool` app, but `languagetool` doesn't depend on `main`.
+You might have a situation where app `main` depends on app `languagetool`, but `languagetool` doesn't depend on `main`.
 
 In such cases, you can nest the dependency so the parent (`main`) gets rebuilt on changes to it or its children,
 but the child (`languagetool`) is only rebuilt on changes to itself.
@@ -223,11 +223,18 @@ The Python app's code base includes all of the files at the top level (excluding
 *and* all of the files within the `languagetool` directory.
 The Java app's code base includes only the files within the `languagetool` directory.
 
-In that case, your `applications.yaml` file must contain 2 entries, one for the `main` app and second one for `languagetool` app.
+In this case, your `applications.yaml` file must contain 2 entries, one for the `main` app and second one for the `languagetool` app.
 
 {{< note >}}
-  `languagetool` app needs to define an additional [`source.root` setting](/create-apps/app-reference.html#root-directory) as code base is not at the root directory level, but inside `languagetool/` directory.
+
+The `.platform` directory is located at the root, separate from your apps.
+It contains all the needed configuration files to set up the routing, services and behavior of each app.
+Since the code base of the `languagetool` app lives in a different directory (`languagetool/`),
+you need to [change the source root](#change-the-source-root-of-your-app) of the `languagetool` app.
+
 {{< /note >}}
+
+Once your repository is organized, you can use a configuration similar to the following:
 
 ```yaml
 # .platform/applications.yaml
@@ -247,10 +254,10 @@ If you have different teams working on different code with different processes,
 you might want each app to have its own repository.
 Then you can build them together in another repository using [Git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
 
-In this setup, your apps are kept separate from the top application.
-Each app has its own [Git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) directory,
-where each app configuration remain in ``.platform/applications.yaml``.
-So your [project repository](https://github.com/platformsh-templates/bigfoot-multiapp/tree/submodules-root-app-yaml) might look like this:
+With this setup, your apps are kept separate from the top application.
+Each app has its own [Git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) containing its code base.
+All your apps are configured in a single `.platform/applications.yaml` file.
+So you could organize your [project repository](https://github.com/platformsh-templates/bigfoot-multiapp/tree/submodules-root-app-yaml) like this:
 
 ```text
 ├── .platform
@@ -264,9 +271,9 @@ So your [project repository](https://github.com/platformsh-templates/bigfoot-mul
 └── .gitmodules
 ```
 
-To add these submodules using Git CLI, please follow steps [here](/development/submodules.html#clone-submodules-during-deployment)
+[Add the submodules using the Git CLI](/development/submodules.html#clone-submodules-during-deployment).
 
-Your `.gitmodules` file would define all the submodules as the following:
+Your `.gitmodules` file would define all the submodules like this:
 
 ```txt {location=".gitmodules"}
 [submodule "admin"]
@@ -292,10 +299,14 @@ make sure you [change the source root](#change-the-source-root-of-your-app) for 
 
 ## Change the source root of your app
 
-when using [Unified app configuration](#unified-app-configuration) or when your source code is not at the same level as your `.platform.app.yaml` file,
-add a new `source.root` key in your settings to define its root directory.
+When your app's code base and configuration file aren't located at the same directory level in your project repository,
+you need to [define a root directory](../app-reference.md#root-directory) for your app.
 
-To change the source root of the `admin` app in the [Unified App configuration](#unified-app-configuration) example project, you could add the following configuration:
+To do so, add a new `source.root` property in your app configuration.
+
+For example, to change the source root of the `admin` app
+from the [unified app configuration](#unified-app-configuration) example project,
+you could add the following configuration:
 
 ```yaml {location=".platform/applications.yaml"}
 source:

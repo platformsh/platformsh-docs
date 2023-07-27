@@ -1,5 +1,5 @@
 ---
-title: "Using Git submodules"
+title: "Use Git submodules"
 weight: 11
 sidebarTitle: "Git submodules"
 ---
@@ -19,7 +19,7 @@ The following example is based on [a Bigfoot multi-app project](https://github.c
 
 ![Diagram of a project containing multiple apps](/images/config-diagrams/multiple-app.png "0.5")
 
-To import them, from your multiple application project's root folder, run the following commands:
+To import all the submodules, run the following commands from your multiple application project's root folder:
 
 ```bash
 $ touch .gitmodules
@@ -32,7 +32,7 @@ $ git commit -m "Adding submodules for Bigfoot App, API Platform Admin, Gatsby f
 $ git push
 ```
 
-Here is an example of a ``.gitmodules`` file:
+Here is an example of a `.gitmodules` file:
 
 ```ini
 [submodule "admin"]
@@ -49,7 +49,7 @@ Here is an example of a ``.gitmodules`` file:
   url = https://github.com/platformsh-templates/bigfoot-multiapp-mercure.git
 ```
 
-When you run ``git push``, you can see the output of the log:
+When you run `git push`, you can see the output of the logs:
 
 ```bash
   Validating submodules
@@ -65,7 +65,9 @@ When you run ``git push``, you can see the output of the log:
 ```
 
 {{< note >}}
-If your submodule contains an independent app, see [how to configure it properly](create-apps/multi-app/project-structure.md#split-your-code-source-into-multiple-git-submodule-repositories).
+
+If your submodule contains an independent app,
+see [how to configure it properly](create-apps/multi-app/project-structure.md#split-your-code-source-into-multiple-git-submodule-repositories).
 
 {{< /note >}}
 
@@ -73,11 +75,11 @@ If your submodule contains an independent app, see [how to configure it properly
 
 {{< codetabs >}}
 +++
-title=Manual update
+title= Manual update
 +++
 
-After submodule code updates, redeploying your project isn't always enough for the changes to be applied.
-To make sure your submodules are updated, run the following commands:
+When you amend your submodules' code, make sure your changes are applied by running the following commands
+before redeploying:
 
 ```bash
 $ git submodule update --remote [submodule]
@@ -88,106 +90,115 @@ $ git submodule update --remote [submodule]
 ```
 
 {{< note >}}
+
 To specify which submodule needs to be updated, replace `[submodule]` with your submodule path.
+
 {{< /note >}}
 
 <--->
 +++
-title=using Source Operation
+title= Automated update
 +++
 
-{{< note theme="warning" title="Warning" >}}
-To be able to use [Source Operation](create-apps/source-operations), your project needs to be an [Enterprise](https://platform.sh/pricing) one. If not, please reach out to one of our sales to upgrade your project.
+{{< note theme="warning" title="Tier availability" >}}
+
+This feature is available for **Elite** and **Enterprise** customers.
+[Compare the Platform.sh tiers](https://platform.sh/pricing/) on our pricing page,
+or [contact our Sales team](https://platform.sh/contact/) for more information.
+
 {{< /note >}}
 
-You can use [Source Operation](create-apps/source-operations) to ease updates of your submodules.
+Automate your submodule updates using a [source operation](create-apps/source-operations).
+To do so, follow these steps:
 
-To defined a source operation, add these lines of code into your `.platform/applications.yaml` (or `.platform.app.yaml`) file:
+1. Define a source operation.</br>
+   Add the following configuration to your `.platform/applications.yaml` (or `.platform.app.yaml`) file:
 
-```yaml
-app:
-  ...
-  source:
-    ######################################################################################################################
-    ##                                                                                                                  ##
-    ## This source operation is part of the Platform.sh process of updating and maintaining our collection of           ##
-    ## templates. For more information see https://docs.platform.sh/create-apps/source-operations.html and              ##
-    ## https://github.com/platformsh/source-operations                                                                  ##
-    ##                                                                                                                  ##
-    ##                  YOU CAN SAFELY DELETE THIS COMMENT AND THE LINES BENEATH IT                                     ##
-    ##                                                                                                                  ##
-    ######################################################################################################################
-    operations:
-      rebuild:
-        command: |
-          set -e
-          git submodule update --init --recursive
-          git submodule update --remote --checkout
-          git add admin api gatsby mercure
-          if ! git diff-index --quiet HEAD; then
-            git commit -m "Updating submodules admin, api, gatsby and mercure"
-          fi
-```
+   ```yaml
+   app:
+     ...
+     source:
+       ######################################################################################################################
+       ##                                                                                                                  ##
+       ## This source operation is part of the Platform.sh process of updating and maintaining our collection of           ##
+       ## templates. For more information see https://docs.platform.sh/create-apps/source-operations.html and              ##
+       ## https://github.com/platformsh/source-operations                                                                  ##
+       ##                                                                                                                  ##
+       ##                  YOU CAN SAFELY DELETE THIS COMMENT AND THE LINES BENEATH IT                                     ##
+       ##                                                                                                                  ##
+       ######################################################################################################################
+       operations:
+         rebuild:
+           command: |
+             set -e
+             git submodule update --init --recursive
+             git submodule update --remote --checkout
+             git add admin api gatsby mercure
+             if ! git diff-index --quiet HEAD; then
+               git commit -m "Updating submodules admin, api, gatsby and mercure"
+             fi
+   ```
 
-{{< note >}}
-Source operation needs to be defined in an app which source code **is not** in a submodule.
+   For multiple app projects, make sure you define your source operation
+   in the configuration of an app whose source code **is not** in a submodule.
+   
+   If you use [Git submodules for each of your apps](/create-apps/multi-app/project-structure.md#split-your-code-source-into-multiple-git-submodule-repositories), define a new app at the top level of your project repository.
+   Don't define routes so your app isn't exposed to the web.
+   To define a source operation, add the following configuration to your app configuration:
 
-If you're having a multiple application project, using [Git submodules for each of your apps](/create-apps/multi-app/project-structure.md#split-your-code-source-into-multiple-git-submodule-repositories), you need to define a new app at the top level project.
-This new app would not be exposed to the web (no routes) and will define this source operation by adding these lines in your ``.platform/applications.yaml``
+   ```yaml  {location=".platform/applications.yaml"}
+   update-submodule:
+     # The type of the application to build.
+     type: "nodejs:18"
 
-```yaml
-update-submodule:
-  # The type of the application to build.
-  type: "nodejs:18"
+     # The web key configures the web server running in front of your app.
+     # More information: https://docs.platform.sh/create-apps/app-reference.html#web
+     web:
+       # Commands are run once after deployment to start the application process.
+       # More information: https://docs.platform.sh/create-apps/app-reference.html#web-commands
+       commands:
+         # The command to launch your app. If it terminates, it’s restarted immediately.
+         # As this app will handle source operation only, no need to keep it alive (sleep)
+         start: |
+           sleep infinity
+     # Information on the app's source code and operations that can be run on it.
+     # More information: https://docs.platform.sh/create-apps/app-reference.html#source
+     source:
+       ######################################################################################################################
+       ##                                                                                                                  ##
+       ## This source operation is part of the Platform.sh process of updating and maintaining our collection of           ##
+       ## templates. For more information see https://docs.platform.sh/create-apps/source-operations.html and              ##
+       ## https://github.com/platformsh/source-operations                                                                  ##
+       ##                                                                                                                  ##
+       ##                  YOU CAN SAFELY DELETE THIS COMMENT AND THE LINES BENEATH IT                                     ##
+       ##                                                                                                                  ##
+       ######################################################################################################################
+       operations:
+         update-submodules:
+           command: |
+             set -e
+             git submodule update --init --recursive
+             git submodule update --remote --checkout
+             git add .
+             if ! git diff-index --quiet HEAD; then
+               git commit -m "Updating submodules"
+             fi
+             # "git push" is automatic at the end of this command
+   ```
 
-  # The web key configures the web server running in front of your app.
-  # More information: https://docs.platform.sh/create-apps/app-reference.html#web
-  web:
-    # Commands are run once after deployment to start the application process.
-    # More information: https://docs.platform.sh/create-apps/app-reference.html#web-commands
-    commands:
-      # The command to launch your app. If it terminates, it’s restarted immediately.
-      # As this app will handle source operation only, no need to keep it alive (sleep)
-      start: |
-        sleep infinity
-  # Information on the app's source code and operations that can be run on it.
-  # More information: https://docs.platform.sh/create-apps/app-reference.html#source
-  source:
-    ######################################################################################################################
-    ##                                                                                                                  ##
-    ## This source operation is part of the Platform.sh process of updating and maintaining our collection of           ##
-    ## templates. For more information see https://docs.platform.sh/create-apps/source-operations.html and              ##
-    ## https://github.com/platformsh/source-operations                                                                  ##
-    ##                                                                                                                  ##
-    ##                  YOU CAN SAFELY DELETE THIS COMMENT AND THE LINES BENEATH IT                                     ##
-    ##                                                                                                                  ##
-    ######################################################################################################################
-    operations:
-      update-submodules:
-        command: |
-          set -e
-          git submodule update --init --recursive
-          git submodule update --remote --checkout
-          git add .
-          if ! git diff-index --quiet HEAD; then
-            git commit -m "Updating submodules"
-          fi
-          # "git push" is automatic at the end of this command
-```
-{{< /note >}}
-
-To execute this source operation, from the console, navigate to the environment you want to run the operation, and in the top right corner, click on the More button (3 dots) and choose **Run Source Operation**.
-
-![screenshot of source operation menu](/images/management-console/source-operation-menu-open.png "0.3")
-
-Then click on the **Run** button.
-If you’ve got more than one source operation defined in your source code, you need to select which one needs to be executed.
+2. Run your source operation.</br>
+   To do so, in the Console, navigate to the environment where you want to run the source operation.</br>
+   Click {{< icon more >}} **More**.</br>
+   Select **Run Source Operation**.</br>
+   If you have several source operations defined in your source code,
+   select the source operation you want to run.</br>
+   Click **Run**.
 
 {{< /codetabs >}}
 
 ## Error when validating submodules
 
-If you see the following error:
+Using an SSH URL (`git@github.com:...`) to fetch submodules triggers the following error:
 
 ```bash
 Validating submodules.
@@ -200,7 +211,8 @@ E: Error validating submodules in tree:
     - git@github.com:platformsh-templates/bigfoot-multiapp-admin.git: HangupException: The remote server unexpectedly closed the connection.
 ```
 
-Since the Platform.sh Git server can't connect to GitHub via SSH without being granted an SSH key to do so, you shouldn't use an SSH URL: ``git@github.com:...``, but you should use an HTTPS URL instead: ``https://github.com/...``.
+This is due to the fact that the Platform.sh Git server can't connect to GitHub via SSH without being granted an SSH key to do so.
+To solve this issue, use an HTTPS URL (`https://github.com/...`) instead.
 
 ## Use private Git repositories
 
