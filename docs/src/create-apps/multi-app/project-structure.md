@@ -15,45 +15,186 @@ For example, there are various ways you could set up the following multiple apps
 
 Here are some example use cases and potential ways to organize the project:
 
-| Use case                                                                                | Structure                                                               |
-|-----------------------------------------------------------------------------------------|-------------------------------------------------------------------------|
-| Separate basic apps that are worked on together.                                         | [Separate code in one repository](#separate-code-bases-in-one-repository) |
-| One app depends on code from another app.                                                | [Nested directories](#nested-directories)                               |
-| You want to keep configuration separately from the code, such as through Git submodules. | [Configuration separate from code](#split-your-code-source-into-multiple-git-submodule-repositories)                                   |
-| You want multiple apps from the same source code.                                        | [Unified app configuration](#unified-app-configuration)                 |
-| You want to control all apps in a single location.                                       | [Unified app configuration](#unified-app-configuration)                 |
+| Use case                                                                                | Structure                                                                                            |
+|-----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
+| Separate basic apps that are worked on together.                                         | [Unified app configuration](#unified-app-configuration)                                              |
+| One app depends on code from another app.                                                | [Nested directories](#nested-directories)                                                            |
+| You want to keep configuration separately from the code, such as through Git submodules. | [Configuration separate from code](#split-your-code-source-into-multiple-git-submodule-repositories) |
+| You want multiple apps from the same source code.                                        | [Unified app configuration](#unified-app-configuration)                                              |
+| You want to control all apps in a single location.                                       | [Unified app configuration](#unified-app-configuration)                                              |
 
-## Separate code bases in one repository
+## Unified app configuration
 
-If your project consists of a separate code base for each app,
-the most straightforward approach is to put each code base in a separate directory within your repository, and use a [Unified configuration app](#unified-app-configuration).
-
-Each app is defined into `.platform/applications.yaml` configuration file.
-The directory `.platform` containing the `applications.yaml` file is at the root directory of the main app.
+Rather than defining configuration for each app separately, you can also do it all within a single file.
+Create an `applications.yaml` file within the `.platform` directory and define each app as a key.
+Since your code lives in a different directory,
+define the root directory for each app with the `source.root` for that app.
 
 For example, if you have an API Platform backend with a Symfony API, a Mercure Rocks server and a Gatsby frontend, you could organize your repository like this:
 
 ```txt
 ├── .platform
-│   ├── applications.yaml
+│   ├── applications.yaml   <- Unified app configuration
 │   ├── routes.yaml
 │   └── services.yaml
 ├── admin
 │   └── ...                 <- API Platform Admin app code
-├── api
+├── api-app
 │   └── ...                 <- Bigfoot app code
 ├── gatsby
 │   └── ...                 <- Gatsby app code
 └── mercure
     └── ...                 <- Mercure Rocks app code
 ```
-
 Note that the `.platform` directory is located at the root, separate from all your apps.
 It contains all needed configuration files for routing, services and behavior of each of your app.
 
+You could then configure this into four apps as in the following configuration:
+
+```yaml {location=".platform/applications.yaml"}
+api:
+  type: php:8.2
+
+  relationships:
+    database: "database:postgresql"
+
+  mounts:
+    "/var/cache": "shared:files/cache"
+    "/var/log": "shared:files/log"
+    "/var/sessions": "shared:files/sessions"
+
+  web:
+    locations:
+      "/":
+        root: "public"
+        passthru: '/index.php'
+        index:
+          - index.php
+        headers:
+          Access-Control-Allow-Origin: "*"
+
+  hooks:
+    build: |
+      set -x -e
+      curl -s https://get.symfony.com/cloud/configurator | bash
+      symfony-build
+
+    deploy: |
+      set -x -e
+      symfony-deploy
+
+  source:
+    root: api-app
+
+admin:
+  type: nodejs:16
+
+  mounts:
+    '/.tmp_platformsh': 'shared:files/tmp_platformsh'
+    '/build': 'shared:files/build'
+    '/.cache': 'shared:files/.cache'
+    '/node_modules/.cache': 'shared:files/node_modules/.cache'
+
+  web:
+    locations:
+      "/admin":
+        root: "build"
+        passthru: "/admin/index.html"
+        index:
+          - "index.html"
+        headers:
+          Access-Control-Allow-Origin: "*"
+
+  hooks:
+    build: |
+      set -eu
+      corepack yarn install --immutable --force
+    post_deploy: |
+      corepack yarn run build
+  source:
+    root: admin
+
+gatsby:
+  type: 'nodejs:18'
+
+  mounts:
+    '/.cache': { source: local, source_path: cache }
+    '/.config': { source: local, source_path: config }
+    '/public': { source: local, source_path: public }
+
+  web:
+    locations:
+      '/site':
+        root: 'public'
+        index: [ 'index.html' ]
+        scripts: false
+        allow: true
+
+  hooks:
+    build: |
+      set -e
+      yarn --frozen-lockfile
+    post_deploy: |
+      yarn build --prefix-paths
+  source:
+    root: gatsby
+
+mercure:
+  type: golang:1.18
+
+  mounts:
+    'database': { source: local, source_path: 'database' }
+    '/.local': { source: local, source_path: '.local' }
+    '/.config': { source: local, source_path: '.config' }
+
+  web:
+    commands:
+      start: ./mercure run --config Caddyfile.platform_sh
+
+    locations:
+      /:
+        passthru: true
+        scripts: false
+        request_buffering:
+          enabled: false
+        headers:
+          Access-Control-Allow-Origin: "*"
+
+  hooks:
+    build: |
+      # Install Mercure using cache
+      FILE="mercure_${MERCUREVERSION}_Linux_x86_64.tar.gz"
+      if [ ! -f "$PLATFORM_CACHE_DIR/$FILE" ]; then
+        URL="https://github.com/dunglas/mercure/releases/download/v${MERCUREVERSION}/$FILE"
+        wget -O "$PLATFORM_CACHE_DIR/$FILE" $URL
+      else
+        echo "Found $FILE in cache, using cache"
+      fi
+      file $PLATFORM_CACHE_DIR/$FILE
+      tar xvzf $PLATFORM_CACHE_DIR/$FILE
+
+  source:
+    root: mercure/.config
+```
+
+{{< note >}}
+Complete example of this ``applications.yaml`` file can be found [here](https://github.com/platformsh-templates/bigfoot-multiapp/blob/multiapp-monolith/.platform/applications.yaml)
+{{< /note >}}
+
 Each first level node in this ``applications.yaml`` file defines a single app container,
-with its configuration relative to the directory containing the app (``source.root`` definition).
+with its configuration relative to the directory containing the app, please see how to [Change the source root of your app](#change-the-source-root-of-your-app).
+
+The `api` app is built from the `api-app` directory.</br>
+The `admin` app is built from the `admin` directory.</br>
+The `gatsby` app is built from the `gatsby` directory.</br>
+The `mercure` app is built from the `mercure` directory.</br>
+They all have different configurations for how they serve the files.
+
 The apps can communicate with each other through [relationships defined in their configuration](./relationships.md).
+
+
+To build multiple apps from the repository root, set `source.root` to `/`.
+This allows you to control all your apps in one place and even build multiple apps from the same source code.
 
 When you make changes to the code of one of your apps, the build image for your other apps can still be reused.
 
@@ -164,70 +305,4 @@ source:
 The `source.root` path is relative to the repository root.
 In this example, the `admin` app now treats the `admin` directory as its root when building.
 
-If `source.root` isn't specified, it defaults to the same directory as the `.platform.app.yaml` file itself.
-
-## Unified app configuration
-
-Rather than defining configuration for each app separately, you can also do it all within a single file.
-Create an `applications.yaml` file within the `.platform` directory and define each app as a key.
-Since your code lives in a different directory,
-define the root directory for each app with the `source.root` for that app.
-
-For example, if you have code for a Go API app (`api`) and code for two PHP apps (`main` and `admin`),
-you could organize the repository like this:
-
-```txt
-├── .platform
-│   ├── applications.yaml  <- Unified app configuration
-│   └── routes.yaml
-├── api-app
-│   └── ...                 <- Go API app code
-└── main-app
-    └── ...                  <- PHP main and admin app code
-```
-
-You could then configure this into three apps as in the following configuration:
-
-```yaml {location=".platform/applications.yaml"}
--   name: api
-    type: golang:1.18
-    source:
-        root: api-app
-    hooks:
-        build: |
-            go build -o bin/app
-    web:
-        commands:
-            start: ./bin/app
-        locations:
-            /:
-                allow: false
-                passthru: true
-
--   name: main
-    type: php:8.1
-    source:
-        root: main-app
-    web:
-        locations:
-            "/":
-                root: "web"
-                passthru: "/index.php"
-
--   name: admin
-    type: php:8.2
-    source:
-        root: main-app
-    web:
-        locations:
-            "/":
-                root: "web"
-                passthru: "/admin.php"
-```
-
-The `api` app is built from the `api-app` directory.
-Both the `main` and `admin` apps are built from the `main-app` directory,
-but they have different configurations for how they serve the files.
-
-To build multiple apps from the repository root, set `source.root` to `/`.
-This allows you to control all your apps in one place and even build multiple apps from the same source code.
+If `source.root` isn't specified, it defaults to the same directory as the `.platform/applications.yaml` (or `.platform.app.yaml`) file itself.
