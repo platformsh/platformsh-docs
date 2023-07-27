@@ -187,12 +187,20 @@ To do so, follow these steps:
    ```
 
 2. Run your source operation.</br>
-   To do so, in the Console, navigate to the environment where you want to run the source operation.</br>
+
+   To do so, in the [Console](../administration/web/_index.md),
+   navigate to the environment where you want to run the source operation.</br>
    Click {{< icon more >}} **More**.</br>
-   Select **Run Source Operation**.</br>
-   If you have several source operations defined in your source code,
-   select the source operation you want to run.</br>
+   Click **Run Source Operation**.</br>
+   Select the operation you want to run.</br>
    Click **Run**.
+
+   Alternatively, to run your source operation from the [Platform.sh CLI](../administration/cli/_index.md),
+   run the following command:
+
+   ```bash
+   platform source-operation:run {{< variable "SOURCE_OPERATION_NAME" >}}
+   ```
 
 {{< /codetabs >}}
 
