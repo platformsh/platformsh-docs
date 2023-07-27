@@ -5,6 +5,9 @@ weight: -110
 layout: single
 description: |
     Create a Platform.sh account, download a few tools, and prepare to deploy Drupal.
+banner:
+    title: A note on version
+    body: While this guide focuses on Drupal 9, you can also refer to it when using Drupal 10 as differences in settings are minimal. Note that a Platform.sh [Drupal 10 template](https://github.com/platformsh-templates/drupal10) is available.
 ---
 
 Drupal is a flexible and extensible PHP-based CMS framework. To deploy Drupal 9 on Platform.sh, the recommended way is to use Composer, the PHP package management suite.
