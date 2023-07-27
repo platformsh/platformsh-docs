@@ -4,6 +4,9 @@ sidebarTitle: "Customize"
 weight: -90
 description: |
     Add some helpful dependencies, and modify your Drupal site to read from a Platform.sh environment.
+banner:
+    title: A note on version
+    body: While this guide focuses on Drupal 9, you can also refer to it when using Drupal 10 as differences in settings are minimal. Note that a Platform.sh [Drupal 10 template](https://github.com/platformsh-templates/drupal10) is available.
 ---
 
 Now that your code contains all of the configuration to deploy on Platform.sh,
