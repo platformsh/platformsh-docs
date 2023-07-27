@@ -4,8 +4,8 @@
     <th>Supported versions</th>
   </tr>
   {{- range $image, $info := .Site.Data.registry -}}
-    <!-- Skip persistent Redis and MySQL to avoid duplication -->
-    {{- if and (isset $info "versions-dedicated-gen-3") (ne $image "redis-persistent") (ne $image "mysql") -}}
+    <!-- Skip persistent Redis and MySQL to avoid duplication, skip Elasticsearch as no supported versions atm -->
+    {{- if and (isset $info "versions-dedicated-gen-3") (ne $image "redis-persistent") (ne $image "mysql") (ne $image "elasticsearch") -}}
       {{- $label :=  index $info "name" -}}
       {{- $versions := index ( index $info "versions-dedicated-gen-3") "supported" -}}
       {{- $docs_link := index (index $info "docs") "url" -}}

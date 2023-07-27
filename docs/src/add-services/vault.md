@@ -20,8 +20,6 @@ To store secrets such as API keys, create sensitive [environment variables](../d
 |------|-------------------------------|------------------------------ |
 |  {{< image-versions image="vault-kms" status="supported" environment="grid" >}} | {{< image-versions image="vault-kms" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="vault-kms" status="supported" environment="dedicated-gen-2" >}} |
 
-{{% image-versions-legacy "vault-kms" %}}
-
 ## Add Vault
 
 {{% endpoint-description type="vault-kms" noApp=true %}}

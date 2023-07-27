@@ -32,16 +32,17 @@ MySQL and MariaDB have the same behavior and the rest of this page applies to bo
 |---------------|-------------|--------------------|
 |  {{< image-versions image="mariadb" status="supported" >}} | {{< image-versions image="mysql" status="supported" >}} | {{< image-versions image="oracle-mysql" status="supported" >}} |
 
-{{% image-versions-legacy "mysql" %}}
-
 ### Supported versions on Dedicated environments
 
 `oracle-mysql` is not yet available for {{% names/dedicated-gen-3 %}} environments.
 It also isn't available for {{% names/dedicated-gen-2 %}} environments.
 
-On {{% names/dedicated-gen-3 %}} and {{% names/dedicated-gen-2 %}} environments, MariaDB is available with Galera for replication:
+On Dedicated environments, MariaDB is available with Galera for replication.
+Supported versions are the following:
 
-{{< image-versions image="mariadb" status="supported" environment="dedicated-gen-3" >}}
+| {{% names/dedicated-gen-2 %}} | {{% names/dedicated-gen-3 %}} |
+|-------------------------------|-------------------------------|
+| {{< image-versions image="mariadb" status="supported" environment="dedicated-gen-2" >}} | {{< image-versions image="mariadb" status="supported" environment="dedicated-gen-3" >}} |
 
 Dedicated environments only support the InnoDB storage engine.
 Tables created on Dedicated environments using the MyISAM storage engine don't replicate between all hosts in the cluster.
@@ -261,6 +262,13 @@ If neither `schemas` nor `endpoints` is included, it's equivalent to the followi
 
 If either `schemas` or `endpoints` are defined, no default is applied and you have to specify the full configuration.
 
+{{< note >}}
+
+Removing a schema from the list of `schemas` on further deployments results in the deletion of the schema.
+
+{{</note >}}
+
+
 ### Multiple databases example
 
 The following configuration example creates a single MariaDB service named `db` with two databases, `main` and `legacy`.
@@ -349,7 +357,7 @@ ALTER TABLE table_name CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_
 
 For further details, see the [MariaDB documentation](https://mariadb.com/kb/en/character-set-and-collation-overview/).
 
-{{% databases-passwords %}} 
+{{% databases-passwords %}}
 
 ## Storage Engine
 
