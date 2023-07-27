@@ -295,7 +295,7 @@ make sure you [change the source root](#change-the-source-root-of-your-app) for 
 when using [Unified app configuration](#unified-app-configuration) or when your source code is not at the same level as your `.platform.app.yaml` file,
 add a new `source.root` key in your settings to define its root directory.
 
-To change the source root of the `admin` app in the [app configuration separate from code](#separate-code-bases-in-one-repository) example project, you could add the following configuration:
+To change the source root of the `admin` app in the [Unified App configuration](#unified-app-configuration) example project, you could add the following configuration:
 
 ```yaml {location=".platform/applications.yaml"}
 source:
