@@ -1146,6 +1146,7 @@ grid:
       - shmop
       - snmp
       - sodium
+      - sourceguardian
       - ssh2
       - sybase
       - tideways
