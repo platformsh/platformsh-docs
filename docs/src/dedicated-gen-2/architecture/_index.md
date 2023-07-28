@@ -3,7 +3,7 @@ title: "{{% names/dedicated-gen-2 %}} cluster specifications"
 weight: 2
 layout: single
 sidebarTitle: "Features"
-description: "{{% names/dedicated-gen-2 %}} clusters are launched into a Triple Redundant configuration consisting of 3 virtual machines (VMs). This is an N+1 configuration that's sized to withstand the total loss of any one of the 3 members of the cluster without incurring any downtime."
+description: "{{% names/dedicated-gen-2 %}} clusters are launched into a Triple Redundant configuration consisting of 3 hosts. This is an N+1 configuration that's sized to withstand the total loss of any one of the 3 members of the cluster without incurring any downtime."
 ---
 
 {{% description %}}
