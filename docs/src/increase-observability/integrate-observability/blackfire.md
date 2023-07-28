@@ -34,6 +34,9 @@ All customers can also subscribe to Blackfire separately.
 
 If you're using a plan with the [Observability Suite](https://platform.sh/features/observability-suite/),
 the [Blackfire automated integration](#automated-integration) is enabled on your environments by default.
+Note that as an Observability Suite user, you can only access your Blackfire environments
+after you've been granted access to the related Platform.sh project.
+Therefore, to access your Blackfire environments, make sure you log in using your Platform.sh account.
 
 If you have a {{% names/dedicated-gen-3 %}} cluster or Grid environments without the Observability suite,
 you need to enable the integration yourself.

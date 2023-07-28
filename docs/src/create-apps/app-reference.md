@@ -551,9 +551,8 @@ dependencies:
     php: # Specify one Composer package per line.
         drush/drush: '8.0.0'
         composer/composer: '^2'
-    python: # Specify one Python 2 package per line.
-        behave: '*'
     python2: # Specify one Python 2 package per line.
+        behave: '*'
         requests: '*'
     python3: # Specify one Python 3 package per line.
         numpy: '*'
@@ -704,10 +703,41 @@ highlight=yaml
 +++
 
 crons:
+    # Execute a rake script every 19 minutes.  
     ruby:
         spec: '*/19 * * * *'
         commands:
             start: 'bundle exec rake some:task'
+
+<--->
+
++++
+title=Laravel
+highlight=yaml
++++
+
+crons:
+    # Run Laravel's scheduler every 5 minutes, which is as often as crons can run on Professional plans.
+    scheduler:
+        spec: '*/5 * * * *'
+        cmd: 'php artisan schedule:run'
+
+<--->
+
++++
+title=Symfony
+highlight=yaml
++++
+
+crons:
+    # Take a backup of the environment every day at 5:00 AM.
+    snapshot:
+        spec: 0 5 * * *
+        cmd: |
+            # Only run for the production environment, aka main branch
+            if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
+                croncape symfony ...
+            fi
 
 {{< /codetabs >}}
 <!-- vale on -->

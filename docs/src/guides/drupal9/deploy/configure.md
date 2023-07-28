@@ -4,6 +4,9 @@ sidebarTitle: "Configure"
 weight: -100
 description: |
     Review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for Drupal.
+banner:
+    title: A note on version
+    body: While this guide focuses on Drupal 9, you can also refer to it when using Drupal 10 as differences in settings are minimal. Note that a Platform.sh [Drupal 10 template](https://github.com/platformsh-templates/drupal10) is available.
 ---
 
 {{% guides/config-desc name="Drupal 9" %}}
