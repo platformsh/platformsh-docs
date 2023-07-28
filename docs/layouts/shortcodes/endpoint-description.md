@@ -35,6 +35,9 @@ Alternatively, use the `redis-persistent` type for persistent Redis:
 Persistent Redis requires a disk to store data.
 {{ else if eq $type "network-storage" }}
 You can define `<SERVICE_NAME>` as you like, but it shouldn't include underscores (`_`).
+{{ else if eq $type "elasticsearch" }}
+If you're using a [premium version](add-services/elasticsearch.md#supported-versions),
+use the `elasticsearch-enterprise` type instead.
 {{ end }}
 
 Note that changing the name of the service replaces it with a brand new service
@@ -124,6 +127,11 @@ mounts:
 
 {{ partial "examples/config_links" ( dict "type" $type "onlyLanguage" $onlyLanguage ) }}
 
+{{ if eq ($type) "elasticsearch" }}
+If you're using a [premium version](add-services/elasticsearch.md#supported-versions),
+use the `elasticsearch-enterprise` type in the service definition.
+{{ end }}
+
 <!-- Turn this section off for ones in Guides that continue differently-->
 {{ if not (.Get "noApp" )}}
 ### Use in app
@@ -131,6 +139,6 @@ mounts:
 <!-- Don't add use in app intro to Headless Chrome, which has different content -->
 {{ if ne ($type) "chrome-headless" }}
 To use the configured service in your app,
-add a configuration file similar to the following to your project:
+add a configuration file similar to the following to your project.
 {{ end }}
 {{ end }}
