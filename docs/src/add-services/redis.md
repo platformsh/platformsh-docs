@@ -31,8 +31,6 @@ Platform.sh supports two different Redis configurations:
 |------|-------------------------------|------------------------------ |
 | {{< image-versions image="redis" status="supported" environment="grid" >}} | {{< image-versions image="redis" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="redis" status="supported" environment="dedicated-gen-2" >}} |
 
-{{% image-versions-legacy "redis" %}}
-
 {{% deprecated-versions %}}
 
 | Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
@@ -58,15 +56,6 @@ Make sure your app doesn't rely on ephemeral Redis for persistent storage as it 
 For example, if a container is moved during region maintenance,
 the `deploy` and `post_deploy` hooks don't run and an app that treats the cache as permanent shows errors.
 
-To avoid such issues, trigger a cache cleanup every time your app starts.
-To do so, configure a `start` [web command](../create-apps/app-reference.md#web-commands) similar to the following:
-
-```yaml {location=".platform.app.yaml"}
-web:
-    commands:
-        start: 'redis-cli -h redis.internal flushall'
-```
-
 To prevent data from getting lost when a container is moved or shut down,
 you can use the [persistent Redis](#persistent-redis) configuration.
 Persistent Redis provides a cache with persistent storage.
@@ -79,7 +68,7 @@ but also means data can be lost when a container is moved or shut down.
 
 To solve this issue, configure your Redis service as persistent.
 Persistent Redis stores data on a disk,
-making it accessible even when a container becomes unavailable.
+restoring it if the container restarts.
 
 To switch from persistent to ephemeral Redis,
 set up a new service with a different name.

@@ -24,13 +24,11 @@ and your messages a safe place to live until they're received.
 |------|-------------------------------|------------------------------ |
 | {{< image-versions image="rabbitmq" status="supported" environment="grid" >}} | {{< image-versions image="rabbitmq" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="rabbitmq" status="supported" environment="dedicated-gen-2" >}} |
 
-{{% image-versions-legacy "rabbitmq" %}}
-
 {{% deprecated-versions %}}
 
 | Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |------|-------------------------------|------------------------------ |
-|  {{< image-versions image="rabbitmq" status="supported" environment="grid" >}} | {{< image-versions image="rabbitmq" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="rabbitmq" status="supported" environment="dedicated-gen-2" >}} |
+|  {{< image-versions image="rabbitmq" status="deprecated" environment="grid" >}} | {{< image-versions image="rabbitmq" status="deprecated" environment="dedicated-gen-3" >}} | {{< image-versions image="rabbitmq" status="deprecated" environment="dedicated-gen-2" >}} |
 
 ## Usage example
 
@@ -102,13 +100,20 @@ You can access this UI with an SSH tunnel.
 
 To open a tunnel, follow these steps.
 
-1.  SSH into your app container with a flag for local port forwarding:
+1.  
+   a) (On [grid environments](../other/glossary.md#grid)) SSH into your app container with a flag for local port forwarding:
 
     ```bash
     ssh $(platform ssh --pipe) -L 15672:{{< variable "RELATIONSHIP_NAME" >}}.internal:15672
     ```
 
     {{< variable "RELATIONSHIP_NAME" >}} is the [name you defined](#2-add-the-relationship).
+
+   b) (On [dedicated environments](../other/glossary.html#dedicated-gen-2)) SSH into your cluster with a flag for local port forwarding:
+
+    ```bash
+    ssh $(platform ssh --pipe) -L 15672:localhost:15672
+    ```
 
 2.  Open `http://localhost:15672` in your browser.
     Log in using the username and password from the [relationship](#relationship-reference).

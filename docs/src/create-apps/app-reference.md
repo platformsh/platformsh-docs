@@ -214,15 +214,6 @@ web:
 ```
 
 This command runs every time your app is restarted, regardless of whether or not new code is deployed.
-So it can be useful for things like clearing ephemeral cache.
-
-```yaml {location=".platform.app.yaml"}
-web:
-    commands:
-        start: 'redis-cli -h redis.internal flushall; sleep infinity'
-        # For a {{% names/dedicated-gen-2 %}} environment use:
-        # start: 'redis-cli flushall ; sleep infinity'
-```
 
 {{< note >}}
 
@@ -383,7 +374,7 @@ The `access` dictionary has one allowed key:
 | ----- | ----------------------------------- | ------------- | ----------- |
 | `ssh` | `admin`, `contributor`, or `viewer` | `contributor` | Defines the minimum role required to access app environments via SSH. |
 
-In the following example, only users with `admin` permissions for the given [environment type](../administration/users.md#environment-types)
+In the following example, only users with `admin` permissions for the given [environment type](../administration/users.md#environment-type-roles)
 can access the deployed environment via SSH:
 
 ```yaml {location=".platform.app.yaml"}
@@ -443,8 +434,6 @@ firewall:
     outbound:
         - ips: ["0.0.0.0/0"]
 ```
-
-{{% legacy-regions featureIntro="An outbound firewall" featureShort="a firewall" level=3 %}}
 
 ### Support for rules
 
@@ -562,9 +551,8 @@ dependencies:
     php: # Specify one Composer package per line.
         drush/drush: '8.0.0'
         composer/composer: '^2'
-    python: # Specify one Python 2 package per line.
-        behave: '*'
     python2: # Specify one Python 2 package per line.
+        behave: '*'
         requests: '*'
     python3: # Specify one Python 3 package per line.
         numpy: '*'
@@ -619,6 +607,29 @@ To cause them to fail on the first failed command, add `set -e` to the beginning
 If a `build` hook fails for any reason, the build is aborted and the deploy doesn't happen.
 Note that this only works for `build` hooks --
 if other hooks fail, the app is still deployed.
+
+#### Automated testing
+
+It’s preferable that you set up and run automated tests in a dedicated CI/CD tool.
+Relying on Platform.sh hooks for such tasks can prove difficult.
+
+During the `build` hook, you can halt the deployment on a test failure but the following limitations apply:
+
+- Access to services such as databases, Redis, Vault KMS, and even writable mounts is disabled.
+  So any testing that relies on it is sure to fail.
+- If you haven’t made changes to your app, an existing build image is reused and the build hook isn’t run.
+- Test results are written into your app container, so they might get exposed to a third party.
+
+During the `deploy` hook, you can access services but **you can’t halt the deployment based on a test failure**.
+Note that there are other downsides:
+
+- Your app container is read-only during the deploy hook,
+  so if your tests need to write reports and other information, you need to create a file mount for them.
+- Your app can only be deployed once the deploy hook has been completed.
+  Therefore, running automated testing via the deploy hook generates slower deployments.
+- Your environment isn’t available externally during the deploy hook.
+  Unit and integration testing might work without the environment being available,
+  but you can’t typically perform end-to-end testing until after the environment is up and available.
 
 ## Crons
 
@@ -692,10 +703,41 @@ highlight=yaml
 +++
 
 crons:
+    # Execute a rake script every 19 minutes.  
     ruby:
         spec: '*/19 * * * *'
         commands:
             start: 'bundle exec rake some:task'
+
+<--->
+
++++
+title=Laravel
+highlight=yaml
++++
+
+crons:
+    # Run Laravel's scheduler every 5 minutes, which is as often as crons can run on Professional plans.
+    scheduler:
+        spec: '*/5 * * * *'
+        cmd: 'php artisan schedule:run'
+
+<--->
+
++++
+title=Symfony
+highlight=yaml
++++
+
+crons:
+    # Take a backup of the environment every day at 5:00 AM.
+    snapshot:
+        spec: 0 5 * * *
+        cmd: |
+            # Only run for the production environment, aka main branch
+            if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
+                croncape symfony ...
+            fi
 
 {{< /codetabs >}}
 <!-- vale on -->
@@ -755,8 +797,6 @@ If there haven't been any deployments within 14 days, the status is `paused`.
 
 You can see the status in the Console
 or using the CLI by running `platform environment:info` and looking under `deployment_state`.
-
-{{% legacy-regions featureIntro="Paused crons" featureShort="paused crons" plural=true level=4 %}}
 
 #### Restarting paused crons
 

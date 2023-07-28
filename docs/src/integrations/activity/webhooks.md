@@ -29,7 +29,7 @@ See the [activity script](/integrations/activity/reference.md) reference for a d
 
 ## Validate the integration
 
-To verify your integration is functioning properly, run the following [CLI command](/integrations/overview.md#validating-integrations):
+To verify your integration is functioning properly, run the following [CLI command](/integrations/overview.md#validate-integrations):
 
 ```bash
 platform integration:validate

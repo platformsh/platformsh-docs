@@ -29,8 +29,12 @@ such as for accessing the environment using SSH.
 To get the host ID from an SSH connection, SSH into the host:
 
 ```bash
-$ ssh 3.ent-abcde3clusterID-production-qwerty8@ssh.us-4.platform.sh
+ssh 3.ent-abcde3clusterID-production-qwerty8@ssh.us-4.platform.sh
+```
 
+You get output similar to the following:
+
+```bash
  ___ _      _    __                    _
 | _ \ |__ _| |_ / _|___ _ _ _ __    __| |_
 |  _/ / _` |  _|  _/ _ \ '_| '  \ _(_-< ' \

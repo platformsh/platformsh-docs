@@ -9,28 +9,42 @@ you want to be sure those changes only improve things and don't make you lose an
 You also want to have a disaster recovery plan in place.
 Backups help you protect yourself against potential data loss.
 
-{{< note theme="warning">}}
-
-Backups include the environment's complete data but exclude code.
-To restore code to its previous state when the backup was taken,
-use Git commands such as [revert](https://git-scm.com/docs/git-revert).
-
-{{</note>}}
-
-Backups include all persistent data from all running [services](../add-services/_index.md)
-and any files stored on [mounts](../create-apps/app-reference.md#mounts).
-The snapshot is stored internally and can't be downloaded.
-
 You might want to create backups of your live environment before merging a different environment into it
 or each time you increase the storage space of your services.
 
 You also have regularly scheduled automated backups of your production environments to cover most cases.
 
-You can only create backups and restore active environments.
+Note that you can only create backups and restore active environments.
 To work with an [inactive environment](../other/glossary.md#inactive-environment),
 first activate it.
 
-To create a backup of an environment, you need an [Admin role for that environment type](../administration/users.md).
+## How backup and restore works on Platform.sh
+
+1. As an [admin user](../administration/users.md), you can do a backup of your environment. 
+   This backup includes the complete data and code of the environment.
+   All persistent data from all running [services](../add-services/_index.md)
+   and any files stored on [mounts](../create-apps/app-reference.md#mounts) are included.
+   The backup is stored internally on Platform.sh.
+   That is, the backup can be applied to environments on Platform.sh, but it can't be downloaded.
+   If you need to download backups, instead [export your mount and service data](../tutorials/exporting.md)).
+
+2. You restore your environment using the backup.
+   At this point, the data and code from the backup are restored to ensure a consistent state.
+   The latest code in your repository may have been modified such that it no longer works correctly with the old, restored data.
+
+   {{< note theme="warning" title="Warning" >}}
+
+   But Platform.sh doesn’t modify your Git repository. So by default, any further changes you make use the latest code in your repository.
+
+   {{< /note >}}
+
+3. Depending on your needs, you can do the following:
+
+   a) To use the code from the time of the backup as a baseline for future changes,
+      make sure you restore it yourself in your Git repository.
+      To do so, use Git commands such as `revert`.
+
+   b) To use your latest code instead, just redeploy your environment or push a new change.
 
 ## Backups and downtime
 
@@ -54,11 +68,13 @@ Backups for Dedicated environments have a [specific frequency](../dedicated-gen-
 On Grid environments, non-Production environments can have up to 2 [manual backups](#create-a-manual-backup).
 The number of available backups for Production environments depends on your schedule.
 
-| Schedule | Manual backups | Automated backups                |
-| -------- | -------------- | -------------------------------- |
-| Basic    | 2              | 2: daily                         |
-| Advanced | 4              | 21: daily, weekly, and monthly   |
-| Premium  | 4              | 44: 6-hourly, daily, and monthly |
+| Schedule | Manual backups | Automated backups                                                      |
+|----------|----------------|------------------------------------------------------------------------|
+| Basic    | 2              | 2 daily backups (total = 2)                                            |
+| Advanced | 4              | 6 daily, 3 weekly, and 12 monthly (total = 21)                         |
+| Premium  | 4              | 3 backups for the last 24 hours, 30 daily, and 11 monthly (total = 44) |
+
+Note that [backup retention](../security/data-retention.md#grid-backups) also depends on your schedule.
 
 The schedules available to you depend on your [tier](https://platform.sh/pricing/).
 
@@ -96,8 +112,6 @@ The time for 6-hourly backups is based on the daily backup.
 
 Automated backups are always [live](#live-backups).
 
-{{% legacy-regions featureIntro="Live automated backups" featureShort="live automated backups" level=3 plural=true %}}
-
 ## Live backups
 
 You can create backups without any downtime.
@@ -132,8 +146,6 @@ title=In the Console
 When [creating the backup](#create-a-manual-backup), select **Run live backup** in the last step.
 
 {{< /codetabs >}}
-
-{{% legacy-regions featureIntro="Live backups" featureShort="live backups" level=3 plural=true %}}
 
 ## Create a manual backup
 

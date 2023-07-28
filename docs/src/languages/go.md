@@ -13,8 +13,6 @@ description: Platform.sh supports building and deploying applications written in
 |----------------------------------------|------------------------------ |
 | {{< image-versions image="golang" status="supported" environment="grid" >}} | {{< image-versions image="golang" status="supported" environment="dedicated-gen-2" >}} |
 
-{{% image-versions-legacy "golang" %}}
-
 {{% language-specification type="golang" display_name="Go" %}}
 
 {{% deprecated-versions %}}
@@ -151,6 +149,8 @@ func main() {
 	http.ListenAndServe(":"+p.Port, nil)
 }
 ```
+
+{{% config-reader %}}[Go configuration reader library](https://github.com/platformsh/config-reader-go/){{% /config-reader %}}
 
 ## Project templates
 

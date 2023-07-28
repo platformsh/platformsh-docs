@@ -6,16 +6,14 @@ weight: 1
 ---
 
 [Lando](https://docs.lando.dev) is a third-party local development tool for which several stacks are available (LAMP, LEMP, MEAN).
-Lando supports Platform.sh PHP projects out of the box through a plugin.
-The Lando Platform.sh plugin can read your Platform.sh configuration files and produce an equivalent local environment using Docker.
-
-The Lando Platform.sh plugin is currently in beta and supports only PHP-based applications.
-Support for more languages is in progress.
-
 Lando works with most services supported by Platform.sh [except for](https://docs.lando.dev/platformsh/caveats.html#unsupported-things) Vault KMS and network storage.
 See a list of [supported services](https://docs.lando.dev/platformsh/config.html#services-yaml).
 
-A quick-start guide is included below.
+{{< note >}}
+
+{{% local-dev/lando-plugin-note %}}
+
+{{< /note >}}
 
 For a complete reference, consult the following resources:
 
@@ -24,7 +22,10 @@ For a complete reference, consult the following resources:
 
 ## Before you begin
 
-You need hardware that meets the [requirements](https://docs.lando.dev/getting-started/installation.html#hardware-requirements).
+You need :
+
+- Hardware that meets the [requirements](https://docs.lando.dev/getting-started/installation.html#hardware-requirements).
+- A PHP project.
 
 Lando doesn't automatically pull and set up environment variables that have been set in the Console.
 To use a build hook that requires environment variables, manually [add them](https://docs.lando.dev/platformsh/config.html#environment-variables).
@@ -103,6 +104,12 @@ Access your app and services by opening the according URLs in your browser.
 - To keep your Lando image up-to-date, see how to [update Lando](https://docs.lando.dev/getting-started/updating.html).
 
 ## Troubleshooting
+
+{{< note >}}
+
+{{% local-dev/lando-plugin-note %}}
+
+{{< /note >}}
 
 - Make sure that the [Platform.sh configuration files](../../overview/structure.md) are present in your local repository.
 - Check that your [services](https://docs.lando.dev/platformsh/config.html#services-yaml) are supported by Lando.

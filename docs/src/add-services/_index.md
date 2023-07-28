@@ -65,17 +65,17 @@ The following table presents the keys you can define for each service:
 | --------------- | ---------- | ----------------- | ----------- |
 | `type`          | `string`   | Yes               | One of the [available services](#available-services) in the format `type:version`. |
 | `disk`          | `integer`  | For some services | The size in [MB](../other/glossary.md#mb) of the [persistent disk](#disk) allocated to the service. Can't be set for memory-resident-only services such as `memcache` and `redis`. Limited by your plan settings. |
-| `size`          | `string`   |                   | How many CPU and memory [resources to allocate](#size) to the service. Possible values are `AUTO` (default), `S`, `M`, `L`, `XL`, `2XL`, and `4XL`. Limited by your plan settings. |
+| `size`          | `string`   |                   | How many CPU and memory [resources to allocate](#size) to the service. Possible values are `AUTO`, `S`, `M`, `L`, `XL`, `2XL`, and `4XL`. Limited by your plan settings.<BR><BR>When `AUTO` applies, available resources are automatically balanced out based on the number of containers on your plan, so that no container is oversized compared to the others. To view the actual sizes of your containers, check the **Environment Configuration** section in your deployment [activity logs](../increase-observability/logs/access-logs.md#activity-logs). |
 | `configuration` | dictionary | For some services | Some services have additional specific configuration options that can be defined here, such as specific endpoints. See the given service page for more details. |
 | `relationships` | dictionary | For some services | Some services require a relationship to your app. The content of the dictionary has the same type as the `relationships` dictionary for [app configuration](../create-apps/app-reference.md#relationships). The `endpoint_name` for apps is always `http`. |
+
+
 
 ##### Disk
 
 {{% disk-space-mb %}}
 
 {{% disk-downsize type="service" %}}
-
-{{% legacy-regions featureIntro="Downsizing a service's persistent disk" featureShort="to downsize a disk" level=6 %}}
 
 ##### Size
 
@@ -173,7 +173,7 @@ Connecting to a service using an SSH tunnel is a two-step process.
 To get the credentials for a given service, run the following command:
 
 ```bash
-$ platform relationships
+platform relationships
 ```
 
 You get output like the following:

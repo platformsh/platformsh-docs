@@ -28,20 +28,23 @@ These metrics are available for all of your Grid environments.
 
 ![A screenshot of what the metrics dashboard displays for Grid environments](/images/metrics/all-grid.png "0.45")
 
-{{% legacy-regions featureIntro="Infrastructure metrics" featureShort="infrastructure metrics" plural=true %}}
-
 ## Default thresholds
 
 All of the graphs show labels for the following thresholds:
 
-* Usage that crosses _80%_ results in a **warning** label.
-* Usage that crosses _90%_ results in a **critical** label.
-* On {{% names/dedicated-gen-3 %}} and Grid environments, usage that crosses _100%_ results in a **burst** label.
+- Usage that crosses _80%_ results in a **warning** label.
+- Usage that crosses _90%_ results in a **critical** label.
+- On {{% names/dedicated-gen-3 %}} and Grid environments, usage that crosses _100%_ results in a **burst** label.
 
   The burst capability is available for containerized environments
   and allows a container to get more resources than it's allocated.
-  Burst is considered useful for infrequent activities that cause usage spikes,
-  but these additional resources aren't guaranteed.
+  Burst is considered useful for infrequent activities that cause usage spikes.
+
+  On the Grid, resources are shared between customers,
+  so these additional resources aren't guaranteed and burst can only be temporary.
+  On {{% names/dedicated-gen-3 %}}, resources are dedicated to a single customer,
+  but they're shared between services.
+  Therefore, burst is allowed until the dedicated resource usage is exceeded.
 
 ### Recommendations
 

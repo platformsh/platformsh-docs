@@ -16,6 +16,7 @@
     "versions": {
       "deprecated": [],
       "supported": [
+        "113",
         "95",
         "91",
         "86",
@@ -32,6 +33,12 @@
         "81",
         "80",
         "73"
+      ]
+    },
+    "versions-dedicated-gen-3": {
+      "deprecated": [],
+      "supported": [
+        "95"
       ]
     }
   },
@@ -71,13 +78,14 @@
     "versions": {
       "deprecated": [
         "5.0",
+        "3.1",
         "2.2",
         "2.1",
         "2.0"
       ],
       "supported": [
-        "6.0",
-        "3.1"
+        "7.0",
+        "6.0"
       ],
       "legacy": [
         "3.1",
@@ -114,13 +122,18 @@
         "5.2",
         "2.4",
         "1.7",
-        "1.4",
-        "0.9"
+        "1.4"
       ],
-      "supported": []
+      "supported": [
+        "8.5",
+        "7.17"
+      ]
     },
     "versions-dedicated-gen-2": {
-      "supported": [],
+      "supported": [
+        "8.5",
+        "7.17"
+      ],
       "deprecated" : [
         "7.10",
         "7.9",
@@ -144,13 +157,7 @@
         "7.5",
         "7.2",
         "6.8",
-        "6.5",
-        "5.4",
-        "5.2",
-        "2.4",
-        "1.7",
-        "1.4",
-        "0.9"
+        "6.5"
       ],
       "supported": []
     }
@@ -313,16 +320,28 @@
     "type": "java",
     "versions": {
       "deprecated": [
+        "19",
+        "18",
         "14",
         "13",
         "12"
       ],
       "supported": [
-        "19",
-        "18",
         "17",
         "11",
         "8"
+      ]
+    },
+    "versions-dedicated-gen-2": {
+      "supported": [
+        "17",
+        "11",
+        "8"
+      ],
+      "deprecated": [
+        "15",
+        "13",
+        "7"
       ]
     }
   },
@@ -351,7 +370,8 @@
         "2.1"
       ],
       "supported": [
-        "3.2"
+        "3.2",
+        "3.4"
       ],
       "legacy": [
         "2.6",
@@ -420,6 +440,7 @@
         "5.5"
       ],
       "supported": [
+        "11",
         "10.11",
         "10.6",
         "10.5",
@@ -429,6 +450,9 @@
     },
     "versions-dedicated-gen-2": {
       "supported": [
+        "10.8 Galera",
+        "10.7 Galera",
+        "10.6 Galera",
         "10.5 Galera",
         "10.4 Galera",
         "10.3 Galera"
@@ -441,6 +465,7 @@
     },
     "versions-dedicated-gen-3": {
       "supported": [
+        "10.11 Galera",
         "10.6 Galera",
         "10.5 Galera",
         "10.4 Galera",
@@ -495,6 +520,7 @@
     },
     "versions-dedicated-gen-3": {
       "supported": [
+        "10.11 Galera",
         "10.6 Galera",
         "10.5 Galera",
         "10.4 Galera",
@@ -548,6 +574,7 @@
     "type": "mongodb",
     "versions": {
       "deprecated": [
+        "4.0.3",
         "3.6",
         "3.4",
         "3.2",
@@ -573,6 +600,7 @@
     "premium": true,
     "versions": {
       "supported": [
+        "6.0",
         "5.0",
         "4.4",
         "4.2"
@@ -583,6 +611,7 @@
     },
     "versions-dedicated-gen-2": {
       "supported": [
+        "6.0",
         "5.0",
         "4.4",
         "4.2"
@@ -642,6 +671,7 @@
     "type": "nodejs",
     "versions": {
       "deprecated": [
+        "14",
         "12",
         "10",
         "8",
@@ -652,17 +682,19 @@
       ],
       "supported": [
         "18",
-        "16",
-        "14"
+        "16"
       ]
     },
     "versions-dedicated-gen-2": {
       "supported": [
+
+      ],
+      "deprecated": [
         "14",
         "12",
-        "10"
-      ],
-      "deprecated": ["9.8"]
+        "10",
+        "9.8"
+      ]
     }
   },
   "opensearch": {
@@ -693,12 +725,16 @@
     "versions-dedicated-gen-2": {
       "deprecated": [],
       "supported": [
+        "2.5",
+        "2.4",
         "1.2"
       ]
     },
     "versions-dedicated-gen-3": {
       "deprecated": [],
-      "supported": []
+      "supported": [
+        "2"
+      ]
     }
   },
   "oracle-mysql": {
@@ -760,6 +796,7 @@
     "type": "php",
     "versions-dedicated-gen-2": {
       "supported": [
+        "8.2",
         "8.1",
         "8.0"
       ],
@@ -768,8 +805,7 @@
         "7.3",
         "7.2",
         "7.1",
-        "7.0",
-        "5.6"
+        "7.0"
       ]
     },
     "versions": {
@@ -876,6 +912,7 @@
     "type": "python",
     "versions": {
       "deprecated": [
+        "3.7",
         "3.6",
         "3.5",
         "2.7*"
@@ -884,8 +921,7 @@
         "3.11",
         "3.10",
         "3.9",
-        "3.8",
-        "3.7"
+        "3.8"
       ]
     }
   },
@@ -911,6 +947,7 @@
         "3.5"
       ],
       "supported": [
+        "3.12",
         "3.11",
         "3.10",
         "3.9"
@@ -924,6 +961,8 @@
     },
     "versions-dedicated-gen-2": {
       "supported": [
+        "3.11",
+        "3.10",
         "3.9"
       ],
       "deprecated": [
@@ -934,6 +973,7 @@
     "versions-dedicated-gen-3": {
       "deprecated": [],
       "supported": [
+        "3.12",
         "3.11",
         "3.10",
         "3.9"
@@ -1038,16 +1078,17 @@
     "runtime": true,
     "type": "ruby",
     "versions": {
-      "deprecated": [],
-      "supported": [
-        "3.2",
-        "3.1",
-        "3.0",
+      "deprecated": [
         "2.7",
         "2.6",
         "2.5",
         "2.4",
         "2.3"
+      ],
+      "supported": [
+        "3.2",
+        "3.1",
+        "3.0"
       ],
       "legacy": [
         "2.7",
@@ -1111,6 +1152,7 @@
         "3.6"
       ],
       "supported": [
+        "9.2",
         "9.1",
         "8.11"
       ]
@@ -1130,12 +1172,11 @@
     },
     "versions-dedicated-gen-3": {
       "supported": [
+        "9.2",
         "9.1",
         "8.11"
       ],
       "deprecated": [
-        "8.6",
-        "6.6"
       ]
     }
   },
@@ -1158,13 +1199,13 @@
     "versions": {
       "deprecated": [
         "5.2",
-        "5.1"
+        "5.1",
+        "7.1",
+        "6.0"
       ],
       "supported": [
         "7.2",
-        "7.1",
-        "6.3",
-        "6.0"
+        "6.3"
       ]
     }
   },

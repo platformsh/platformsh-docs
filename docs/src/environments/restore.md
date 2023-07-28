@@ -81,11 +81,18 @@ title=In the Console
 
 The data is restored and your backed-up environment is deployed.
 This deployment uses the built app, including variables, from when the backup was taken.
-But **code isn't restored**,
-so any future (re)deployments use the current Git repository to build the environment.
+
+{{< note theme="warning" title="Warning" >}}
+
+The code is also initially restored, but Platform.sh doesn't modify your Git repository.
+So any future (re)deployments use the current Git repository to build the environment.
 
 To restore your code to its previous state when the backup was taken,
 use Git commands such as [revert](https://git-scm.com/docs/git-revert).
+
+See [how backup and restore works on Platform.sh](../environments/backup.md#how-backup-and-restore-works-on-platformsh).
+
+{{< /note >}}
 
 ## Restore to a different environment
 
@@ -97,7 +104,3 @@ You can restore backups to a different environment than they were created on usi
    ```bash
    platform backup:restore --target={{% variable "TARGET_BRANCH_NAME" %}} {{% variable "BACKUP_ID" %}}
    ```
-
-{{% legacy-regions featureIntro="Restoring backups to different environments" featureShort="to restore to different environments" %}}
-
-You can also open a [support ticket](https://console.platform.sh/-/users/~/tickets) to ask that a backup be restored to a different environment for you.

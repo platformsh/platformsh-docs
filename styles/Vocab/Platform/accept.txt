@@ -92,6 +92,7 @@ Namecheap
 namespace
 Neve
 [Nn]ginx
+NodePing
 Nori
 npm
 nvm
@@ -121,6 +122,7 @@ pngcrush
 Predis
 preprocessor
 [Pp]reload(?:er|ing)?
+profilable
 [Pp]rofiler
 progs
 proxied
