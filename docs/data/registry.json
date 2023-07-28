@@ -124,10 +124,16 @@
         "1.7",
         "1.4"
       ],
-      "supported": []
+      "supported": [
+        "8.5",
+        "7.17"
+      ]
     },
     "versions-dedicated-gen-2": {
-      "supported": [],
+      "supported": [
+        "8.5",
+        "7.17"
+      ],
       "deprecated" : [
         "7.10",
         "7.9",
