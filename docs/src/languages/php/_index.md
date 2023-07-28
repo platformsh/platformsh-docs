@@ -259,9 +259,8 @@ markdownify=false
 +++
 
 {{< /codetabs >}}
-{{% config-reader %}}
-[`platformsh/config-reader` Composer library](https://github.com/platformsh/config-reader-php)
-{{% /config-reader %}}
+
+{{% config-reader %}}[PHP configuration reader library](https://github.com/platformsh/config-reader-php){{% /config-reader %}}
 
 ## PHP settings
 

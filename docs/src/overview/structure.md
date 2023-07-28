@@ -8,7 +8,7 @@ description: Learn about how your Platform.sh environments are structured and wh
 
 This page describes how things work on Grid projects.
 [{{% names/dedicated-gen-3 %}}](../dedicated-gen-3/_index.md) projects are similar,
-but they run on dedicated virtual machines and each container is replicated three times.
+but they run on dedicated hosts and each container is replicated three times.
 
 For {{% names/dedicated-gen-2 %}} projects, read about how [{{% names/dedicated-gen-2 %}} projects are structured](../dedicated-gen-2/overview/_index.md).
 

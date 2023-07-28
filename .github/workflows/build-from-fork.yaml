@@ -47,7 +47,7 @@ jobs:
           echo "::notice::Checking if Platform.sh has received our new branch..."
           while (( counter < ${{ env.NUM_TRIES }} )) && [[ -z "${branchReceived}" ]]; do
             sleep ${{ env.SLEEP_TIME }}
-            echo "::notice Attempt ${counter} of ${{ env.NUM_TRIES }}"
+            echo "::notice::Attempt ${counter} of ${{ env.NUM_TRIES }}"
             branchReceived=$(platform project:curl /environments | jq --arg branch "${{ env.BRANCH_TITLE }}" -r '.[] | select(.name | contains($branch))');
             counter=$((++counter))
           done
@@ -62,7 +62,7 @@ jobs:
           # If environment not active, activate it
           if ! $(platform environments --format plain --columns title,status | grep '${{ env.BRANCH_TITLE }}' | grep -q Active); then
             echo "::notice::Updating Platform.sh environment title for better tracking..."
-            # in this case we DO want to staticaly include `pr-##` since we're referring to a pull request number
+            # in this case we DO want to statically include `pr-##` since we're referring to a pull request number
             newTitle="(pr-${{ github.event.number }}) ${{ github.event.pull_request.title }}"
             platform environment:info title "${newTitle}" -e ${{ env.BRANCH_TITLE }}
             echo "::notice::Activating environment ${{ env.BRANCH_TITLE }}"
