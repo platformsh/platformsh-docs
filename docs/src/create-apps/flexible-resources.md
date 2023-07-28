@@ -17,10 +17,10 @@ The Support team can look into the details of your project.
 
 The `resources` key has the following possible options:
 
-| Name           | Type      | Default | Minimum | Description                                                               |
-| -------------- | --------- | ------- | ------- | ------------------------------------------------------------------------- |
-| `base_memory`  | `integer` | 45      | 64      | The base amount of memory in MB to be given to the container. Up to 1024. |
-| `memory_ratio` | `integer` | 70      | 128     | The amount of memory in MB that increases with CPU size. Up to 1024.      |
+| Name           | Type      | Minimum | Description                                                               |
+| -------------- | --------- | ------- | ------------------------------------------------------------------------- |
+| `base_memory`  | `integer` | 64      | The base amount of memory in MB to be given to the container. Up to 1024. |
+| `memory_ratio` | `integer` | 128     | The amount of memory in MB that increases with CPU size. Up to 1024.      |
 
 The memory allocated to the container is calculated as the base memory plus the memory ratio multiplied by the CPU:
 `memory = base_memory + (memory_ratio * CPU)`.
