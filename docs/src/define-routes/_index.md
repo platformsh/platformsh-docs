@@ -443,20 +443,33 @@ which is a requirement for the router caching.
    ```yaml {location=".platform/routes.yaml"}
    "https://{default}/ws":
        type: upstream
-       upstream: "ws-app:http"
+       upstream: "app:http"
        cache:
            enabled: false
+
+    # Below HTTP config may not be necessary for every Websocket client.
+    "https://{default}/ws":
+       type: upstream
+       upstream: "app:http"
+       cache:
+           enabled: false   
+
    ```
 
 2. [Disable request buffering](../create-apps/app-reference.md#locations) in your app configuration.
 
    ```yaml {location=".platform.app.yaml"}
    web:
-       locations:
-           '/':
-               passthru: true
-               request_buffering:
-                   enabled: false
+     commands:
+       start: /app/.linuxbrew/bin/websocketd --port=$PORT ./wsmanager.sh
+     upstream:
+       socket_family: tcp
+       protocol: http
+     locations:
+       '/':
+         passthru: true
+         request_buffering:
+           enabled: false
     ```
 
 ## `.htaccess` files

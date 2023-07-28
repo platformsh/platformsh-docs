@@ -144,7 +144,16 @@ you might encounter an error like the following:
 -bash: drush: command not found
 ```
 
-If you see this, add the command to your path with a [`.environment` file script](./variables/set-variables.md#set-variables-via-script).
+If you see this, add the command you want to run to your path
+with a [`.environment` file script](./variables/set-variables.md#set-variables-via-script).
+
+As a Linux or Unix-like operating system user (MacOS included),
+to be able to run your scripts directly and quickly get past this error
+you may need to run the `chmod +x {{< variable "YOUR_SCRIPT_FILE_NAME" >}}` command.
+
+However, regardless of which operating system you're using,
+it's best if you **don't rely on scripts having execute permissions**.
+Instead, call the app/shell/runtime directly passing your script file to that executable.
 
 ## Missing commits
 
