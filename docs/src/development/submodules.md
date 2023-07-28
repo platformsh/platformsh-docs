@@ -141,7 +141,7 @@ To do so, follow these steps:
 
    For multiple app projects, make sure you define your source operation
    in the configuration of an app whose source code **is not** in a submodule.
-   
+
    If you use [Git submodules for each of your apps](/create-apps/multi-app/project-structure.md#split-your-code-source-into-multiple-git-submodule-repositories), define a new app at the top level of your project repository.
    Don't define routes so your app isn't exposed to the web.
    To define a source operation, add the following configuration to your app configuration:
@@ -271,7 +271,7 @@ If your server needs access to multiple repositories, follow these steps:
 
 These steps aren't specific to Platform.sh, but kept as a reference for Git so that submodules are effectively removed before entering the build process.
 
-1. Delete information for the submodule you'd like to remove from `.gitmodules` and `.git/config`.
+1. In your `.gitmodules` and `.git/config` files, delete the information related to the submodule you want to remove.
 
    ```bash
    $ git submodule deinit -f path_to_submodule
