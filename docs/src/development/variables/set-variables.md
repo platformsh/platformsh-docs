@@ -61,6 +61,8 @@ To add a project variable, follow these steps:
 {{< /codetabs >}}
 
 When naming variables, be sure to take [variable prefixes](./_index.md#variable-prefixes) into account.
+In particular, to expose a variable as its own environment variable,
+[use the prefix `env:`](../../development/variables/_index.md#top-level-environment-variables).
 
 ### Variable options
 
@@ -130,6 +132,8 @@ To add a project variable, follow these steps:
 {{< /codetabs >}}
 
 When naming variables, be sure to take [variable prefixes](./_index.md#variable-prefixes) into account.
+In particular, to expose a variable as its own environment variable,
+[use the prefix `env:`](../../development/variables/_index.md#top-level-environment-variables).
 
 ### Environment variable options
 

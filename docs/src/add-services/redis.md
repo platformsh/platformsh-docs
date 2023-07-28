@@ -31,8 +31,6 @@ Platform.sh supports two different Redis configurations:
 |------|-------------------------------|------------------------------ |
 | {{< image-versions image="redis" status="supported" environment="grid" >}} | {{< image-versions image="redis" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="redis" status="supported" environment="dedicated-gen-2" >}} |
 
-{{% image-versions-legacy "redis" %}}
-
 {{% deprecated-versions %}}
 
 | Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
@@ -70,7 +68,7 @@ but also means data can be lost when a container is moved or shut down.
 
 To solve this issue, configure your Redis service as persistent.
 Persistent Redis stores data on a disk,
-making it accessible even when a container becomes unavailable.
+restoring it if the container restarts.
 
 To switch from persistent to ephemeral Redis,
 set up a new service with a different name.

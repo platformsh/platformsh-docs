@@ -28,8 +28,6 @@ These metrics are available for all of your Grid environments.
 
 ![A screenshot of what the metrics dashboard displays for Grid environments](/images/metrics/all-grid.png "0.45")
 
-{{% legacy-regions featureIntro="Infrastructure metrics" featureShort="infrastructure metrics" plural=true %}}
-
 ## Default thresholds
 
 All of the graphs show labels for the following thresholds:
