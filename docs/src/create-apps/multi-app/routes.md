@@ -17,7 +17,7 @@ There are various ways you can define routes for multiple app projects such as t
 
 ![Diagram of a project containing multiple apps](/images/config-diagrams/multiple-app.png "0.5")
 
-In this project, you have a CMS app, two frontend apps (one using Symfony and another using Gatsby)
+In this project, you have a CMS app, two frontend apps (one using Symfony and another using Gatsby),
 and a Mercure Rocks server app, defined as follows:
 
 ```yaml {location=".platform/applications.yaml"}
@@ -47,8 +47,9 @@ and a Mercure Rocks server app, defined as follows:
 
 You don't need to define a route for each app in the repository.
 If an app isn't specified, then it isn't accessible to the web.
-One good example of defining an app with no route is when you use Git submodules and want to enable
-You can achieve the same thing by defining the app as a [`worker`](../app-reference.md#workers).
+One good example of defining an app with no route is when you [use Git submodules](/create-apps/multi-app/project-structure.html#split-your-code-source-into-multiple-git-submodule-repositories) and want to [use Source operation to update your submodules](/development/submodules.html#update-submodules).
+
+You can also achieve the same thing by defining the app as a [`worker`](../app-reference.md#workers).
 
 {{< /note >}}
 
