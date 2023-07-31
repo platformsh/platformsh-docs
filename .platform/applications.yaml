@@ -9,6 +9,9 @@
         env:
             HUGOVERSION: 0.113.0
 
+    build:
+        flavor: none
+
     source:
         root: "/"
 
@@ -22,6 +25,7 @@
         build: |
             set -e
             cd docs
+            npm install
             npm run build
             ./build_docs.sh
             npm run build:assets
