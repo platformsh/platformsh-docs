@@ -119,7 +119,7 @@ To export your data from InfluxDB, follow these steps:
 From version 2.3 onwards, the structure of relationships changes.
 
 If you're using a prior 2.x version, your app might currently rely on pulling the `bucket`, `org`, `api_token`,
-or `username` values available in the [`PLATFORM_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables).
+or `user` values available in the [`PLATFORM_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables).
 
 If so, to ensure your upgrade is successful, make the following changes to your connection logic:
 
