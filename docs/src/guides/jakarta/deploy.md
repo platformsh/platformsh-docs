@@ -10,7 +10,8 @@ Java Enterprise Edition (Java EE) is an umbrella that holds specifications and A
 
 ## Services
 
-The [configuration reader library](https://github.com/platformsh/config-reader-java) for Java is used in these examples, so be sure to check out the [documentation](/languages/java/_index.md#support-libraries) for installation instructions and the latest version.
+{{% config-reader %}}[Java configuration reader library](https://github.com/platformsh/config-reader-java){{% /config-reader%}}
+Note that the Java configuration reader library is used in the following examples.
 
 ### MongoDB
 

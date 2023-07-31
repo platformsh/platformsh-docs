@@ -155,3 +155,5 @@ and setup Ecto during the deploy hook:
 deploy: |
     mix do ecto.setup
 ```
+
+{{% config-reader %}}[Elixir configuration reader library](https://github.com/platformsh/config-reader-elixir/){{% /config-reader %}}
