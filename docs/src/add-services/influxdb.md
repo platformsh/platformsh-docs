@@ -121,12 +121,13 @@ From version 2.3 onwards, the structure of relationships changes.
 If you're using a prior 2.x version, your app might currently rely on pulling the `bucket`, `org`, `api_token`,
 or `username` values available in the [`PLATFORM_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables).
 
-If so, to ensure your upgrade is successful, make the following changes to your service configuration:
+If so, to ensure your upgrade is successful, make the following changes to your connection logic:
 
 - Rename the `user` key to `username`.
 - Move the `org`, `bucket` and  `api_token` keys so they're contained in a dictionary under the `query` key.
 
-So the relationship information (available through the [`PLATFORM_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables) or by running `platform relationships`) would look similar to the following:
+If you're relying on any other attributes connecting to InfluxDB, they remain accessible as top-level keys from the [`PLATFORM_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables), aside from those addressed above:
+
 
 ```yaml
     {
