@@ -10,7 +10,7 @@
             HUGOVERSION: 0.113.0
 
     source:
-        root: .
+        root: "."
 
     relationships:
         search: "search:http"
@@ -25,8 +25,8 @@
             ./build_docs.sh
             npm run build:assets
         deploy: !include
-        type: string
-        path: deploy.sh
+            type: string
+            path: deploy.sh
 
     # The configuration of the application when it is exposed to the web.
     web:
