@@ -250,3 +250,8 @@ https://{default}/:
     type: upstream
     upstream: "search:http"
     id: "search"
+
+"https://staging.{all}/":
+    type: upstream
+    upstream: "white-label:http"
+    id: "white-label"

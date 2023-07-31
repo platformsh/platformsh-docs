@@ -1,0 +1,5 @@
+hooks:
+    build: |
+        set -e
+        ...
+        curl -fsS https://raw.githubusercontent.com/platformsh/snippets/main/src/install_swoole.sh | { bash /dev/fd/3 openswoole 4.11.0 ; } 3<&0

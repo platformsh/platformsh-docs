@@ -1,0 +1,141 @@
+# Basics
+baseURL: /
+title: Platform.sh Docs
+author: Platform.sh
+description: Platform.sh User Documentation
+
+# Themes
+theme: psh-docs
+themesdir: '../themes'
+
+uglyurls: true
+pygmentsUseClasses: true
+
+# Language settings
+languages:
+  en:
+    languageName: English
+    weight: 10
+
+disableKinds: ["taxonomy", "taxonomyTerm"]
+
+baseURL: "/"
+
+summaryLength: 3
+
+outputs:
+    home: 
+      - HTML
+      - JSON
+      - RSS
+    section:
+      - HTML
+      - RSS
+
+markup:
+    goldmark:
+        renderer:
+            unsafe: true
+
+module:
+    mounts:
+        - source: "node_modules/mermaid/dist"
+          target: "static/mermaid"
+        - source: "node_modules/asciinema-player/dist/bundle"
+          target: "static/asciinema"
+        - source: "node_modules/alpinejs/dist"
+          target: "static/alpinejs"
+        - source: "src"
+          target: "content"
+          lang: "en"
+        - source: "static"
+          target: "static"
+        
+        # Reusing (for now) all parent docs
+        - source: "../docs/data"
+          target: "data"
+
+        # - source: "../docs/snippets"
+        #   target: "snippets"
+
+        - source: "../docs/static/files"
+          target: "static/files"
+        - source: "../docs/static/images"
+          target: "static/images"
+        - source: "../docs/static/videos"
+          target: "static/videos"          
+
+        # - source: "../docs/templates"
+        #   target: "templates"
+
+        - source: "../docs/src/add-services"
+          target: "content/add-services"
+          lang: "en"
+        - source: "../docs/src/administration"
+          target: "content/administration"
+          lang: "en"
+        - source: "../docs/src/bestpractices"
+          target: "content/bestpractices"
+          lang: "en"
+        - source: "../docs/src/create-apps"
+          target: "content/create-apps"
+          lang: "en"  
+        - source: "../docs/src/dedicated-gen-2"
+          target: "content/dedicated-gen-2"
+          lang: "en"
+        - source: "../docs/src/dedicated-gen-3"
+          target: "content/dedicated-gen-3"
+          lang: "en"
+        - source: "../docs/src/define-routes"
+          target: "content/define-routes"
+          lang: "en"
+        - source: "../docs/src/development"
+          target: "content/development"
+          lang: "en"
+        - source: "../docs/src/domains"
+          target: "content/domains"
+          lang: "en"
+        - source: "../docs/src/environments"
+          target: "content/environments"
+          lang: "en"
+        - source: "../docs/src/feedback"
+          target: "content/feedback"
+          lang: "en"
+        - source: "../docs/src/get-started"
+          target: "content/get-started"
+          lang: "en"
+        - source: "../docs/src/guides"
+          target: "content/guides"
+          lang: "en"
+        - source: "../docs/src/increase-observability"
+          target: "content/increase-observability"
+          lang: "en"
+        - source: "../docs/src/integrations"
+          target: "content/integrations"
+          lang: "en"
+        - source: "../docs/src/languages"
+          target: "content/languages"
+          lang: "en"
+        - source: "../docs/src/other"
+          target: "content/other"
+          lang: "en"
+        - source: "../docs/src/overview"
+          target: "content/overview"
+          lang: "en"
+        - source: "../docs/src/projects"
+          target: "content/projects"
+          lang: "en"
+        - source: "../docs/src/security"
+          target: "content/security"
+          lang: "en"
+        - source: "../docs/src/tutorials"
+          target: "content/tutorials"
+          lang: "en"
+
+security:
+  funcs:
+    getenv:
+    - ^GITHUB_
+    - ^HUGO_HEAP_ID
+  http:
+    methods: none

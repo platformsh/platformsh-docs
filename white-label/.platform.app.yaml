@@ -1,7 +1,7 @@
 # .platform.app.yaml
 
 # The name of this application, which must be unique within a project.
-name: 'docs'
+name: 'white-label'
 
 # The type key specifies the language and version for your application.
 type: 'nodejs:16'
