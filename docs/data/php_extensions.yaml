@@ -1133,6 +1133,7 @@ grid:
       - memcached
       - msgpack
       - newrelic
+      - oauth
       - odbc
       - pdo_dblib
       - pdo_odbc
