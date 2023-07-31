@@ -21,22 +21,26 @@
         # Build hooks can modify the application files on disk but not access any services like databases.
         build: |
             set -e
+            cd docs
             npm run build
             ./build_docs.sh
             npm run build:assets
-        deploy: !include
-            type: string
-            path: deploy.sh
+        # deploy: !include
+        #     type: string
+        #     path: deploy.sh
+        deploy: |
+            cd docs
+            ./deploy.sh
 
     # The configuration of the application when it is exposed to the web.
     web:
         commands:
         # Run (404) error and feedback handler
-        start: node index.js
+            start: cd docs && node index.js
         locations:
             '/':
                 # The public directory of the application relative to its root.
-                root: 'public'
+                root: 'docs/public'
                 passthru: true
                 index: ['index.html']
                 scripts: false
@@ -49,8 +53,8 @@
     disk: 1024
 
     mounts:
-    "public/scripts/xss/dist/config":
-        source: local
-        source_path: "config"
+        "docs/public/scripts/xss/dist/config":
+            source: local
+            source_path: "docs/config"
 
     size: S
