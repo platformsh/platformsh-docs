@@ -3,7 +3,16 @@ title: "Keep your Git repository clean"
 weight: 3
 description: To avoid performance issues, keep your Git repository clean and prevent it from becoming too large.
 keywords:
-  -  
+  - Console unavailable
+  - can't access Console
+  - can't access project
+  - Git repository
+  - clean repository
+  - dirty repository
+  - performance issues
+  - latencies
+  - prune branches
+  - remove branches
 ---
 
 When a Git repository contains a high number of references and files, Git's performance can decrease.
