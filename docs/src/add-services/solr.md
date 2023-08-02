@@ -265,8 +265,8 @@ This is the complete list of plugins that are available and loaded by default:
 
 | Plugin                                                                             | Description                                            | 8.11 | 9.x |
 |------------------------------------------------------------------------------------|--------------------------------------------------------|------|-----|
-| [JTS](https://solr.apache.org/guide/8_1/spatial-search.html#jts-and-polygons-flat) | Library for creating and manipulating vector geometry. |      |*    |
-| [ICU4J](https://solr.apache.org/guide/8_3/language-analysis.html)                  | Library providing Unicode and globalization support.                                                                                                                                      |      |*    |  
+| [JTS](https://solr.apache.org/guide/8_1/spatial-search.html#jts-and-polygons-flat) | Library for creating and manipulating vector geometry. |*     |*    |
+| [ICU4J](https://solr.apache.org/guide/8_3/language-analysis.html)                  | Library providing Unicode and globalization support.                                                                                                                                      |*     |*    |  
 
 ## Upgrading
 
