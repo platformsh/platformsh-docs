@@ -1,7 +1,7 @@
 ---
 title: "Keep your Git repository clean"
 weight: 3
-description: To avoid performance issues, keep your Git repository clean and prevent it from becoming too large.
+description: To avoid performance issues, prevent your Git repository from becoming too large.
 keywords:
   - Console unavailable
   - can't access Console
@@ -89,37 +89,13 @@ and [transfer your files directly to them](https://docs.platform.sh/development/
 
 ## Troubleshoot a sizeable Git repository
 
-To check if your repository needs cleaning up, run the following command:
-
-```bash
-$ platform project:curl -p PROJECT_ID | jq '.status'
-```
-
-If you get the following output, make sure you clean your repository:
-
-```bash
-{
-  "code": "provisioned",
-  "message": "dirty"
-}
-```
-
+If you're experiencing latencies or can't access your Console anymore,
+your Git repository may have become too large and may need to be cleaned up. 
 To do so, follow these instructions:
 
 1. Remove old, unwanted files from your repository (especially large files).
    You can do it manually, or use a tool such as [BFG Repo-Cleaner](https://rtyley.github.io/bfg-repo-cleaner/).
 2. Remove stale branches from your repository and Platform.sh project.
 3. Rebase and/or squash commits to clean up your history.
-4. Run `$ platform project:curl -p PROJECT_ID | jq '.status'` again to check the state of your repository.
-   Once your repository is clean, you get the following output:
-
-   ```bash
-   {
-     "code": "provisioned",
-     "message": "ok"
-   }
-   ```
-
-After you've successfully cleaned up your repository,
-make sure you [enable the automated pruning of old branches in your project](#enable-the-automated-pruning-of-old-branches-in-your-project)
-and [upload your files through mounts](#upload-your-files-through-mounts) to avoid facing the same situation in the future.
+4. Make sure you [enable the automated pruning of old branches in your project](#enable-the-automated-pruning-of-old-branches-in-your-project)
+   and [upload your files through mounts](#upload-your-files-through-mounts) to avoid facing the same situation in the future.
