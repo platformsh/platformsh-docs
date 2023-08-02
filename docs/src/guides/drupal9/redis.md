@@ -35,7 +35,7 @@ and that data can be lost when a container is moved, shut down
 or when the service hits its memory limit.
 
 To solve this, Platform.sh recommends that you change the [service type](../../add-services/redis.md#service-types) 
-to persistent Redis (`redis-persistent`).
+to [persistent Redis](../../add-services/redis.md#persistent-redis) (`redis-persistent`).
 
 {{< /note >}}
 
