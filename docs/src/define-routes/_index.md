@@ -8,7 +8,7 @@ keywords:
 ---
 
 You might need to control how people access your web applications,
-for example when you have [multiple apps](../create-apps/multi-app.md) in one project.
+for example when you have [multiple apps](../create-apps/multi-app/_index.md) in one project.
 Or you might just want to direct requests to specific places, such as removing the `www` at the start of all requests.
 
 Control where external requests are directed by defining routes in a `.platform/routes.yaml` file in your Git repository.
@@ -65,7 +65,7 @@ Redirects from `http` to `https` are generally included by default and don't nee
 
 ### Multi-app route definition
 
-The specifics of configuring the Router container for multiple applications is explored in detail in the [Multiple apps](/create-apps/multi-app.md#routes) documentation.
+The specifics of configuring the Router container for multiple applications is explored in detail in the [Multiple apps](/create-apps/multi-app/routes.md) documentation.
 
 ## Trailing slashes
 
