@@ -58,7 +58,7 @@ The following example shows such a basic setup for Node.js:
 You might have multiple apps you want to run from a single Git repository,
 such as a RESTful web service and a front-end or a main website and a blog.
 In such cases, you configure each app separately and define the relationships among them.
-See the various ways to set up a [multi-app project](./multi-app.md).
+See the various ways to set up a [multi-app project](./multi-app/_index.md).
 
 ## Connect to services
 

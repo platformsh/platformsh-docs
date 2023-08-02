@@ -103,7 +103,7 @@ Enter a number to choose a project:
   [0] My project (xb3pfo734qxbeg)
   [1] A great project (3p5fmol45kxp6)
   [2] An even better project (rjify4y564xaa)
-> 
+>
 ```
 
 If your working directory is inside a local checkout of your project repository,
@@ -124,7 +124,7 @@ You can always specify the project and environment in two ways:
   platform environment:info
   ```
 
-In [multi-app](../../create-apps/multi-app.md) projects, this applies also to selecting the right app
+In [multi-app](../../create-apps/multi-app/_index.md) projects, this applies also to selecting the right app
 (the environment variable would be `PLATFORM_APPLICATION_NAME`).
 
 #### RootNotFoundException
