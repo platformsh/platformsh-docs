@@ -13,7 +13,7 @@ This helps with serving external data to a frontend at build time.
 Supported by Strapi's plugin ecosystem, data from Strapi (or headless) CMS can be served into a frontend application,
 with that frontend typically located on a server elsewhere.
 
-Platform.sh provides a platform for this architectural pattern through a [multi-app configuration](../../../create-apps/multi-app.md).
+Platform.sh provides a platform for this architectural pattern through a [multi-app configuration](../../../create-apps/multi-app/_index.md).
 
 Consider the following project structure:
 

@@ -102,7 +102,7 @@ That's a great start to working with Platform.sh.
 
 Now that you've mastered the basics, you can choose more advanced tasks to complete:
 
-- Manage [multiple apps in a single project](../../create-apps/multi-app.md).
+- Manage [multiple apps in a single project](../../create-apps/multi-app/_index.md).
 - See how to set up for [local development](../../development/local/_index.md).
 - Go live at a [custom domain](../../domains/steps/_index.md).
 - Increase observability by [integrating Blackfire](../../increase-observability/integrate-observability/blackfire.md)
