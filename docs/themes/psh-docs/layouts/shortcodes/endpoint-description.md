@@ -19,20 +19,22 @@
 To define the service, use {{ if eq ($type) "mariadb" }}
   the `{{ $type }}` or `mysql` type for MariaDB or the `oracle-mysql` type for Oracle MySQL
   {{ else if eq $type "redis" }}
-  the `{{ $type }}` type for ephemeral Redis
+  the `{{ $type }}` type for persistent Redis
   {{ else }}
   the `{{ $type }}` type{{ end }}:
 
 <!-- Create an example services.yaml file from data in the registry. -->
 {{ partial "examples/servicedefn" $data }}
 
-{{ if eq $type "redis" }}
-Alternatively, use the `redis-persistent` type for persistent Redis:
+{{ if eq $type "redis-persistent" }}
+Note that persistent Redis requires a disk to store data.
+For more information, refer to the [dedicated Redis page](/add-services/redis.md).
 
-  {{ $redis_data := index .Site.Data.registry "redis-persistent" }}
+If want to use ephemeral Redis instead, use the `redis` type:
+
+  {{ $redis_data := index .Site.Data.registry "redis" }}
   {{ partial "examples/servicedefn" $redis_data }}
 
-Persistent Redis requires a disk to store data.
 {{ else if eq $type "network-storage" }}
 You can define `<SERVICE_NAME>` as you like, but it shouldn't include underscores (`_`).
 {{ else if eq $type "elasticsearch" }}
