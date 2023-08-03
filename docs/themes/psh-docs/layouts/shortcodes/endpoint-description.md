@@ -27,7 +27,7 @@ To define the service, use {{ if eq ($type) "mariadb" }}
 {{ partial "examples/servicedefn" $data }}
 
 {{ if eq $type "redis-persistent" }}
-Note that persistent Redis requires a disk to store data.
+Note that persistent Redis requires `disk` to store data.
 For more information, refer to the [dedicated Redis page](/add-services/redis.md).
 
 If want to use ephemeral Redis instead, use the `redis` type:
