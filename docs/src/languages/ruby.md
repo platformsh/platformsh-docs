@@ -89,7 +89,8 @@ A complete example is included at the end of this section.
             mkdir -p "$PLATFORM_CACHE_DIR/bundle"
             bundle install
             # synchronize updated cache for next build
-            rsync -az --delete vendor/bundle/ "$PLATFORM_CACHE_DIR/bundle/"
+            [ -d "vendor/bundle" ] && \
+              rsync -az --delete vendor/bundle/ "$PLATFORM_CACHE_DIR/bundle/"
 
             # precompile assets
             echo "Precompiling assets"
@@ -242,7 +243,8 @@ hooks:
         mkdir -p "$PLATFORM_CACHE_DIR/bundle"
         bundle install
         # synchronize updated cache for next build
-        rsync -az --delete vendor/bundle/ "$PLATFORM_CACHE_DIR/bundle/"
+        [ -d "vendor/bundle" ] && \
+            rsync -az --delete vendor/bundle/ "$PLATFORM_CACHE_DIR/bundle/"
 
         # precompile assets
         echo "Precompiling assets"
