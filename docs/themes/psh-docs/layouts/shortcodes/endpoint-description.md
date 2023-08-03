@@ -77,6 +77,9 @@ You can define `<SERVICE_NAME>` and `<RELATIONSHIP_NAME>` as you like, but it's 
   {{ if eq $type "postgresql" }}
    {{ $extension_name = "pdo_pgsql" }}
   {{ end }}
+  {{ if eq $type "redis-persistent" }}
+   {{ $extension_name = "redis" }}
+  {{ end }}
 For PHP, enable the [extension](/languages/php/extensions.html) for the service:
 
 ```yaml {location=".platform.app.yaml"}
