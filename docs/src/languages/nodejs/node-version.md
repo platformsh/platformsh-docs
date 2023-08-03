@@ -189,7 +189,7 @@ To use `nvm`, follow these steps:
    To do so, run the following command:
 
    ```bash
-   rsync -av $PLATFORM_CACHE_DIR/.nvm $PLATFORM_APP_DIR/.nvm
+   rsync -av $PLATFORM_CACHE_DIR/.nvm $PLATFORM_APP_DIR
    ```
 
    {{< /note >}}
