@@ -182,6 +182,18 @@ To use `nvm`, follow these steps:
            ln -s $PLATFORM_CACHE_DIR/.nvm $NVM_DIR
    ```
 
+   {{< note >}}
+
+   Instead of using a symlink between your cache and application directories,
+   you might need to copy the content of `$PLATFORM_CACHE_DIR/.nvm` into `$PLATFORM_APP_DIR/.nvm` manually.
+   To do so, run the following command:
+
+   ```bash
+   rsync -av $PLATFORM_CACHE_DIR/.nvm $PLATFORM_APP_DIR/.nvm
+   ```
+
+   {{< /note >}}
+
 4. Use the cache directory and install based on the variables if not present:
 
    ```yaml {location=".platform.app.yaml"}
