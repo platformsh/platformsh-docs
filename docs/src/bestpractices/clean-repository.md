@@ -22,7 +22,7 @@ and [Bitbucket](https://support.atlassian.com/bitbucket-cloud/docs/reduce-reposi
 The Platform.sh API and [Console](../administration/web/_index.md) are closely tied to Git.
 When Git's performance decreases, Platform.sh API servers also become slower.
 As a user, you can then experience significant latencies.
-If you repository becomes too large, your Console may even become unresponsive,
+If your repository becomes too large, your Console may even become unresponsive,
 leaving you unable to access your project.
 
 To avoid such issues, make sure you keep your Git repository clean by following the instructions on this page.
