@@ -27,19 +27,21 @@ You need:
 You also need a `settings.platformsh.php` file from which you can [manage the configuration of the Redis service](../drupal9/deploy/customize.md#settingsphp).
 If you installed Drupal 9 with a template, this file is already present in your project.
 
-Note that, by default, Redis is an ephemeral service.
+{{< note >}}
+
+By default, Redis is an ephemeral service.
 This means that the Redis storage isn't persistent 
 and that data can be lost when a container is moved, shut down 
 or when the service hits its memory limit.
 
-To solve this, you can change the [service type](../../add-services/redis.md#service-types) 
-to persistent Redis (`redis-persistent`).
-Alternatively, you can clean the cache each time your app starts 
-via the `start` key in [your web configuration](../../create-apps/app-reference.md#web-commands).
+To solve this, Platform.sh recommends that you change the [service type](../../add-services/redis.md#service-types) 
+to [persistent Redis](../../add-services/redis.md#persistent-redis) (`redis-persistent`).
+
+{{< /note >}}
 
 ## Add a Redis service
 
-{{% endpoint-description type="redis" noApp=true onlyLanguage="php" php=true /%}}
+{{% endpoint-description type="redis-persistent" noApp=true onlyLanguage="php" php=true /%}}
 
 ### 3. Add the Drupal module
 
