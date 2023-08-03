@@ -39,6 +39,10 @@ A complete example is included at the end of this section.
     ```yaml
     variables:
         env:
+            BUNDLE_CACHE_ALL: '1'
+            BUNDLE_CLEAN: '1' # /!\ if you are working with Ruby <2.7, this doesn't work well
+            BUNDLE_DEPLOYMENT: '1'
+            BUNDLE_ERROR_ON_STDERR: '1'
             BUNDLE_WITHOUT: 'development:test'
             DEFAULT_BUNDLER_VERSION: "2.2.26" # in case none is mentioned in Gemfile.lock
             EXECJS_RUNTIME: 'Node'
@@ -47,6 +51,8 @@ A complete example is included at the end of this section.
             NVM_VERSION: v0.38.0
             RACK_ENV: 'production'
             RAILS_ENV: 'production'
+            RAILS_LOG_TO_STDOUT: '1' # log to /var/log/app.log
+            RAILS_TMP: '/tmp'
     ```
 
     The `SECRET_KEY_BASE` variable is generated automatically based on the [`PLATFORM_PROJECT_ENTROPY` variable](../development/variables/use-variables.md#use-platformsh-provided-variables).
@@ -83,7 +89,8 @@ A complete example is included at the end of this section.
             mkdir -p "$PLATFORM_CACHE_DIR/bundle"
             bundle install
             # synchronize updated cache for next build
-            rsync -az --delete vendor/bundle/ "$PLATFORM_CACHE_DIR/bundle/"
+            [ -d "vendor/bundle" ] && \
+              rsync -az --delete vendor/bundle/ "$PLATFORM_CACHE_DIR/bundle/"
 
             # precompile assets
             echo "Precompiling assets"
@@ -196,6 +203,10 @@ disk: 2048
 
 variables:
     env:
+        BUNDLE_CACHE_ALL: '1'
+        BUNDLE_CLEAN: '1' # /!\ if you are working with Ruby<2.7 this doesn't work well
+        BUNDLE_DEPLOYMENT: '1'
+        BUNDLE_ERROR_ON_STDERR: '1'
         BUNDLE_WITHOUT: 'development:test'
         DEFAULT_BUNDLER_VERSION: "2.2.26" # in case none is mentioned in Gemfile.lock
         EXECJS_RUNTIME: 'Node'
@@ -204,6 +215,8 @@ variables:
         NVM_VERSION: v0.38.0
         RACK_ENV: 'production'
         RAILS_ENV: 'production'
+        RAILS_LOG_TO_STDOUT: '1'
+        RAILS_TMP: '/tmp'
 
 hooks:
     build: |
@@ -230,7 +243,8 @@ hooks:
         mkdir -p "$PLATFORM_CACHE_DIR/bundle"
         bundle install
         # synchronize updated cache for next build
-        rsync -az --delete vendor/bundle/ "$PLATFORM_CACHE_DIR/bundle/"
+        [ -d "vendor/bundle" ] && \
+            rsync -az --delete vendor/bundle/ "$PLATFORM_CACHE_DIR/bundle/"
 
         # precompile assets
         echo "Precompiling assets"
@@ -345,7 +359,7 @@ or [one for Rails apps](https://github.com/platformsh/platformsh-rails-helper)
   and look for [discourse configurations](https://github.com/discourse/discourse_docker/blob/b259c8d38e0f42288fd279c9f9efd3cefbc2c1cb/templates/web.template.yml#L8)
 
 - New images are released on a regular basis to apply security patches.
-  To avoid issues when such updates are performed, use `ruby "~>3.1"` in your `Gemfile`. 
+  To avoid issues when such updates are performed, use `ruby "~>3.1"` in your `Gemfile`.
 
 ## Project templates
 
