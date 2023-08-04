@@ -1,0 +1,36 @@
+{{- $section := "" -}}
+<!-- Regular single pages -->
+{{- if .IsPage -}}
+  <!-- Everything in Getting started uses that section -->
+  {{- if eq .Section "get-started" -}}
+    {{- $section = "Get started" -}}
+  <!-- The other section doesn't have a title since ignored from sidebar. Give generic. -->
+  {{- else if eq .Section "other" -}}
+    {{- $section = .Site.Params.author -}}
+  <!-- We don't want registry stuff to be searchable. -->
+  {{- else if eq .Section "registry" -}}
+    {{- $section = "DELETE" -}}
+  <!-- Otherwise, title of the current section -->
+  {{- else -}}
+    {{- with .CurrentSection -}}
+      {{- $section = .Title | .RenderString -}}
+    {{- end -}}
+  {{- end -}}
+<!-- Just Platform.sh for the home page -->
+{{- else if .IsHome -}}
+  {{- $section = .Site.Params.author -}}
+<!-- List Pages, use the top level section -->
+{{- else -}}
+  <!-- This isn't a page, so let's not inlude it. -->
+  {{- if eq .Section "other" -}}
+    {{- $section = "DELETE" -}}
+  <!-- We don't want registry stuff to be searchable. -->
+  {{- else if eq .Section "registry" -}}
+    {{- $section = "DELETE" -}}
+  {{- else -}}
+    {{- with .GetPage .Section -}}
+      {{- $section = .Title | .RenderString -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $section -}}

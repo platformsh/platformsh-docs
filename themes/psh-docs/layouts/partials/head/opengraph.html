@@ -1,0 +1,31 @@
+<!-- Open Graph -->
+
+{{ if isset .Params "description" }}
+  <meta name="og:description" content="{{ .Params.description | .RenderString }}">
+{{ else if isset .Site.Params "meta" }}
+  {{ if isset .Site.Params.meta "description" }}
+    <meta name="og:description" content="{{ .Site.Params.meta.description }}">
+  {{ end }}
+{{ end }}
+
+{{ if isset .Site.Params "meta" }}
+
+  <meta property="og:type" content="article">
+
+  {{ if isset .Site.Params.meta "url" }}
+    <meta property="og:url" content="{{ .Site.Params.meta.url }}">
+  {{ end }}
+
+  <!-- Thumbnail -->
+  {{ if isset .Site.Params.meta "image" }}
+    <meta property="og:image" content="{{ .Site.Params.meta.image }}">
+  {{ end }}
+
+
+
+  <!-- Thumbnail -->
+  {{ if isset .Site.Params.meta "sitename" }}
+    <meta property="og:site_name" content="{{ .Site.Params.meta.sitename }}">
+  {{ end }}
+
+{{ end }}

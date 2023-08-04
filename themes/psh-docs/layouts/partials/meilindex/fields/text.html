@@ -1,0 +1,28 @@
+<!-- Get body text for search index -->
+{{- $text := "" -}}
+{{- range .PlainWords -}}
+  {{- if in . "\\" -}}
+  {{- else -}}
+    <!-- Unescape HTML escape codes -->
+    {{- $cs := htmlUnescape . -}}
+    <!-- Replace extra "\" characters -->
+    {{- $replaceChar := replace $cs "\"" " " -}}
+    {{- $text =  printf "%s %s" $text $replaceChar -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $finalText := "" -}}
+<!-- Use formatted body text if regular page -->
+{{- if .IsPage -}}
+  {{- $finalText = $text -}}
+<!-- Otherwise (list page) use desription -->
+{{- else -}}
+  <!-- Check if it's been set to a single layout first -->
+  {{- if isset .Params "layout" -}}
+    {{- $finalText = $text | safeHTML -}}
+  {{- else -}}
+    {{- $finalText = .Description | .RenderString | safeHTML -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $finalText -}}

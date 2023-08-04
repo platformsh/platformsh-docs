@@ -1,0 +1,75 @@
+nav, #onetrust-consent-sdk, #drift-frame-controller, #drift-frame-chat {
+    display: none;
+}
+
+h1 {
+    text-align: center;
+}
+
+h3 {
+    break-before: always !important;
+}
+
+.headline-hash {
+    display: none;
+}
+
+*,
+*::before,
+*::after {
+    text-shadow: none !important;
+    box-shadow: none !important;
+}
+
+a:not(.btn) {
+    text-decoration: underline;
+}
+
+abbr[title]::after {
+    content: " (" attr(title) ")";
+}
+
+pre {
+    white-space: pre-wrap !important;
+}
+pre,
+blockquote {
+    border: 1px solid #5F5E70;
+    page-break-inside: avoid;
+}
+
+thead {
+    display: table-header-group;
+}
+
+tr,
+img {
+    page-break-inside: avoid;
+}
+
+p,
+h2,
+h3 {
+    orphans: 3;
+    widows: 3;
+}
+
+h2,
+h3 {
+    page-break-after: avoid;
+}
+
+header {
+    display: none;
+}
+.badge {
+    border: 1px solid #000000;
+}
+
+.table {
+    border-collapse: collapse !important;
+}
+
+.table-bordered th, .table-bordered td {
+    border: 1px solid #E7E7E7 !important;
+}

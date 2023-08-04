@@ -1,0 +1,8 @@
+<!-- Handles URL for the page. If home, use the default "/" -->
+{{- $tempURL := index ( split .RelPermalink "." ) 0 -}}
+{{- $url := "/" -}}
+{{- if ne $tempURL "/index" -}}
+  {{- $url = printf "%s.html" $tempURL -}}
+{{- end -}}
+{{- $url = replace $url "/.html" "/" -}}
+{{ $url }}

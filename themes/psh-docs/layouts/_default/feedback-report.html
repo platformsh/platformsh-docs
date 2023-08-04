@@ -1,0 +1,130 @@
+{{ define "main" }}
+
+  <h1>Feedback on specific docs pages</h1>
+  <div id="feedbackTable" x-data="feedbackData()" x-init="initialize()">
+
+    <select x-model="dateFilter">
+      <option value="">All dates</option>
+      <option value="30">Past 30 days</option>
+      <option value="90">Past 90 days</option>
+      <option value="365">Past year</option>
+    </select>
+
+    <button class="py-2 px-4 border-2 border-ebony font-bold text-ebony hover:text-snow hover:bg-ebony" @click="groupByUrl()" x-show="!groupedUrls">
+      <span>Group feedback by URL</span>
+    </button>
+    <button class="py-2 px-4 border-2 border-ebony font-bold text-ebony hover:text-snow hover:bg-ebony" @click="ungroupByUrl()" x-show="groupedUrls">
+      <span>Ungroup feedback</span>
+    </button>
+
+    <table>
+      <thead>
+        <tr>
+          <th x-show="!groupedUrls">
+            Date
+            {{ partial "feedback/sort-buttons" (dict "column" "date" ) }}
+          </th>
+          <th>
+            URL
+            {{ partial "feedback/sort-buttons" (dict "column" "url" ) }}
+          </th>
+          <th>
+            Positive votes
+            {{ partial "feedback/sort-buttons" (dict "column" "positiveFeedback" ) }}
+          </th>
+          <th>
+            Negative votes
+            {{ partial "feedback/sort-buttons" (dict "column" "negativeFeedback" ) }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <template x-for="feedbackItem in feedbackItems">
+          <tr>
+            <td x-text="new Date(feedbackItem.date).toDateString()" x-show="!groupedUrls"></td>   
+            <td x-text="feedbackItem.url"></td>   
+            <td x-text="feedbackItem.positiveFeedback"></td>   
+            <td x-text="feedbackItem.negativeFeedback"></td>   
+          </tr>
+        </template>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    function feedbackData() {
+      return {
+        dateFilter: null,
+        feedbackItems: null,
+        sortColumn: null,
+        groupedUrls: false,
+        initialize() {
+          this.fetchFeedback();
+          this.$watch('dateFilter', () => {
+            this.filterDates(this.dateFilter);
+          })
+        },
+        async fetchFeedback() {
+          this.groupedUrls = false;
+          await fetch("/feedback/data")
+            .then(res => res.json())
+            .then(data => {
+              this.feedbackItems = data;
+            })
+        },
+        async filterDates(daysToInclude) {
+          if (this.groupedUrls) {
+            await this.fetchFeedback();
+            this.groupByUrl();
+          } else {
+            await this.fetchFeedback();
+          }
+
+          // Filter if there is any filter set
+          if (daysToInclude) {
+            const filteredItems = this.feedbackItems.filter(item => {
+              const today = new Date()
+              const previousDate = new Date(new Date().setDate(today.getDate() - daysToInclude))
+              return new Date(item.date) >= previousDate
+            })
+
+            this.feedbackItems = filteredItems;
+          }
+        },
+        groupByUrl() {
+          this.groupedUrls = true;
+          // Combine all feedback on a given page into one row
+          const summedFeedback = this.feedbackItems.reduce((result, item) => {
+            // Check if the accumulator already has the URL
+            const existing = result.find(x => x.url === item.url);
+
+            // If so, add the current votes to the running total
+            if (existing) {
+              existing.positiveFeedback += item.positiveFeedback;
+              existing.negativeFeedback += item.negativeFeedback;
+            } else { // Otherwise, add a new item to the list
+              result.push(item);
+            }
+            return result
+          }, [])
+          
+          this.feedbackItems = summedFeedback;
+
+        },
+        ungroupByUrl() {
+          this.groupedUrls = false;
+          this.filterDates(this.dateFilter);
+        },
+        sort(column, sortAsc) {
+          this.sortColumn = column;
+          this.feedbackItems.sort((a, b) => {
+            if(a[this.sortColumn] < b[this.sortColumn]) return sortAsc ? 1 : -1;
+            if(a[this.sortColumn] > b[this.sortColumn]) return sortAsc ? -1 : 1;
+            return 0;
+          });
+        }
+      }
+    }
+  </script>
+
+{{ end }}

@@ -1,0 +1,13 @@
+{{- if ne .Page.Section "registry" -}}
+  {{- $url := urls.Parse .Destination -}}
+  {{- $remoteSchemes := slice "http" "https" "mailto" -}}
+  {{- $isRemote := in $remoteSchemes $url.Scheme -}}
+  {{- $isFile := strings.HasSuffix .Destination "pdf" }}
+  {{- if or $isRemote $isFile -}}
+    <a href="{{ .Destination | safeURL }}" target="_blank" rel="noopener">{{ .Text | safeHTML }}</a>
+  {{- else if ( in .Destination ".html") -}}
+    <a href="{{ .Destination }}">{{ .Text | safeHTML }}</a>
+  {{- else -}}
+    <a href="{{ relref .Page .Destination }}">{{ .Text | safeHTML }}</a>
+  {{- end -}}
+{{- end -}}

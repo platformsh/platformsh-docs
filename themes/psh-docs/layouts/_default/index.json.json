@@ -1,0 +1,10 @@
+{{- $allDocuments := slice -}}
+{{- range .Site.Pages -}}
+  {{- $pageDocuments := partial "meilindex/page" . | transform.Unmarshal -}}
+  {{- range $index, $document := $pageDocuments -}}
+    {{- if not (hasPrefix $document.pageUrl "/registry") -}}
+      {{- $allDocuments = $allDocuments | append $document -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $allDocuments | jsonify -}}

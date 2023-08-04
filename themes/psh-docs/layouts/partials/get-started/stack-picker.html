@@ -1,0 +1,32 @@
+<ul class="flex flex-wrap items-center sticky top-24 bg-white pt-2 pl-0 list-none">
+  <li class="mx-4 !my-0 pr-2 border-b border-white hover:border-ebony focus:border-ebony" :class="{ '!border-ebony': stack === 'php' }">
+    <a class="!my-0 text-ebony hover:no-underline flex cursor-pointer" @click="switchStack('php'); switchFrametech('default')">
+      <div class="w-6 h-6 inline-block bg-no-repeat mr-2 bg-[url(/images/logos/php_logo.png)]"></div>
+      <span>PHP</span>
+    </a>
+  </li>
+  <li class="mx-4 !my-0 pr-2 border-b border-white hover:border-ebony focus:border-ebony" :class="{ '!border-ebony': stack === 'python' }">
+    <a class="!my-0 text-ebony hover:no-underline flex cursor-pointer" @click="switchStack('python'); switchFrametech('default')">
+      <div class="w-6 h-6 inline-block bg-no-repeat mr-2 bg-[url(/images/logos/python_logo.png)]"></div>
+      <span>Python</span>
+    </a>
+  </li>
+  <li class="mx-4 !my-0 pr-2 border-b border-white hover:border-ebony focus:border-ebony" :class="{ '!border-ebony': stack === 'nodejs' }">
+    <a class="!my-0 text-ebony hover:no-underline flex cursor-pointer" @click="switchStack('nodejs'); switchFrametech('default')">
+      <div class="w-6 h-6 inline-block bg-no-repeat mr-2 bg-[url(/images/logos/nodejs_logo.png)]"></div>
+      <span>Node.js</span>
+    </a>
+  </li>
+  <li class="mx-4 !my-0 pr-2 border-b border-white hover:border-ebony focus:border-ebony" :class="{ '!border-ebony': stack === 'golang' }">
+    <a class="!my-0 text-ebony hover:no-underline flex cursor-pointer" @click="switchStack('golang'); switchFrametech('default')">
+      <div class="w-6 h-6 inline-block bg-no-repeat mr-2 bg-[url(/images/logos/go_logo.png)]"></div>
+      <span>Go</span>
+    </a>
+  </li>
+  <li class="mx-4 !my-0 pr-2 border-b border-white hover:border-ebony focus:border-ebony" :class="{ '!border-ebony': stack === 'java' }">
+    <a class="!my-0 text-ebony hover:no-underline flex cursor-pointer" @click="switchStack('java'); switchFrametech('default')">
+      <div class="w-6 h-6 inline-block bg-no-repeat mr-2 bg-[url(/images/logos/java_logo.png)]"></div>
+      <span>Java</span>
+    </a>
+  </li>
+</ul>

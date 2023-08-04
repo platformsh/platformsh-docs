@@ -1,0 +1,38 @@
+<!-- Twitter card previews -->
+{{ if isset .Params "description" }}
+  <meta name="twitter:description" content="{{ .Params.description | .RenderString }}">
+{{ else if isset .Site.Params "meta" }}
+  {{ if isset .Site.Params.meta "description" }}
+    <meta name="twitter:description" content="{{ .Site.Params.meta.twittercard.description }}">
+  {{ end }}
+{{ end }}
+
+{{ if .Page.IsHome }}
+    <meta name="twitter:title" content="{{ .Site.Params.meta.twittercard.title }}">
+{{ else }}
+    <meta name="twitter:title" content="{{ .Title | .RenderString }}">
+{{ end }}
+
+{{ if isset .Site.Params "meta" }}
+
+  {{ if isset .Site.Params.meta "twittercard" }}
+
+    {{ if isset .Site.Params.meta.twittercard "card" }}
+      <meta name="twitter:card" content="{{ .Site.Params.meta.twittercard.card }}">
+    {{ end }}
+
+    {{ if isset .Site.Params.meta.twittercard "site" }}
+      <meta name="twitter:site" content="{{ .Site.Params.meta.twittercard.site }}">
+    {{ end }}
+
+    {{ if isset .Site.Params.meta.twittercard "creator" }}
+      <meta name="twitter:creator" content="{{ .Site.Params.meta.twittercard.creator }}">
+    {{ end }}
+
+    {{ if isset .Site.Params.meta.twittercard "image" }}
+      <meta name="twitter:image" content="{{ .Site.Params.meta.twittercard.image }}">
+    {{ end }}
+
+  {{ end }}
+
+{{ end }}

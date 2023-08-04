@@ -1,0 +1,18 @@
+{{ define "main" }}
+
+  <!-- If the page has "multipleTabs" set, set the codetab context on a page-wide basis -->
+  <div
+  {{ if $.Page.Params.multipleTabs }}
+    x-data="{
+      codetab: 'default',
+      switchCodetab(targetCodetab) { 
+        this.codetab = targetCodetab;
+      }
+    }"
+  {{ end }}>
+
+    {{ partial "page-content" ( dict "context" . ) }}
+
+  </div>
+
+{{ end }}
