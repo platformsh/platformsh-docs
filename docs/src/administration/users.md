@@ -29,7 +29,7 @@ By default, organization owners have **Project admin** access on all of the proj
 An environment type (Production, Staging, and Development) groups one or more environments together so that you can manage access for all environments of that type:
 
 - A role assigned to an environment type applies to all environments of that type.
-- Only one environment per project can be the of type: Production.
+- Only one environment per project can be of the type: Production.
   It is set automatically as the default branch and can't be overridden separately.
 - You can change an environment's type (except for the Production environment).
 - You can have multiple Staging and Development environments.

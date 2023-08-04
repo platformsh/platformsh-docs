@@ -20,11 +20,47 @@ It exposes an HTTP API for client interaction. See the [InfluxDB documentation](
 
 {{% image-versions-legacy "influxdb" %}}
 
+## Deprecated versions
+
+The following versions are still available in your projects,
+but they're at their end of life and are no longer receiving security updates from upstream.
+
+| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
+|------|-------------------------------|------------------------------ |
+|  {{< image-versions image="influxdb" status="deprecated" environment="grid" >}} | {{< image-versions image="influxdb" status="deprecated" environment="dedicated-gen-3" >}} | {{< image-versions image="influxdb" status="deprecated" environment="dedicated-gen-2" >}} |
+
+To ensure your project remains stable in the future,
+switch to a [supported version](#supported-versions).
+See more information on [how to upgrade to version 2.3 or later](#upgrade-to-version-23-or-later).
+
 {{% relationship-ref-intro %}}
 
 {{% service-values-change %}}
 
-{{< relationship "influxdb" >}}
+```yaml
+    {
+      "host": "influxdb27.internal",
+      "hostname": "3xqrvge7ohuvzhjcityyphqcja.influxdb27.service._.ca-1.platformsh.site",
+      "cluster": "jqwcjci6jmwpw-main-bvxea6i",
+      "service": "influxdb27",
+      "type": "influxdb:2.7",
+      "rel": "influxdb",
+      "scheme": "http",
+      "username": "admin",
+      "password": "84c601e8b92060c6126a6d3163227ce19e32934a45e19b7cbc0571c2fe9fd347",
+      "port": 8086,
+      "path": null,
+      "query": {
+        "org": "main",
+        "bucket": "main",
+        "api_token": "d85b1219ee8cef8f84d33216257e44d51ddd52e89ae7acbd5ab1d01d320e2f7f"
+      },
+      "fragment": null,
+      "public": false,
+      "host_mapped": false,
+      "ip": "169.254.99.35"
+    }
+```
 
 ## Usage example
 
@@ -47,7 +83,7 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
 }
 ```
 
-## Exporting data
+## Export data
 
 To export your data from InfluxDB, follow these steps:
 
@@ -75,3 +111,62 @@ To export your data from InfluxDB, follow these steps:
     ``` bash
     influx backup --host {{< variable "URL_FROM_STEP_2" >}} --token {{< variable "API_TOKEN_FROM_STEP_3" >}}
     ```
+
+## Upgrade to version 2.3 or later
+
+### From a previous 2.x version
+
+From version 2.3 onwards, the structure of relationships changes.
+
+If you're using a prior 2.x version, your app might currently rely on pulling the `bucket`, `org`, `api_token`,
+or `user` values available in the [`PLATFORM_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables).
+
+If so, to ensure your upgrade is successful, make the following changes to your connection logic:
+
+- Rename the `user` key to `username`.
+- Move the `org`, `bucket` and  `api_token` keys so they're contained in a dictionary under the `query` key.
+
+If you're relying on any other attributes connecting to InfluxDB, they remain accessible as top-level keys from the [`PLATFORM_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables), aside from those addressed above:
+
+
+```yaml
+    {
+      "host": "influxdb27.internal",
+      "hostname": "3xqrvge7ohuvzhjcityyphqcja.influxdb27.service._.ca-1.platformsh.site",
+      "cluster": "jqwcjci6jmwpw-main-bvxea6i",
+      "service": "influxdb27",
+      "type": "influxdb:2.7",
+      "rel": "influxdb",
+      "scheme": "http",
+      "username": "admin",
+      "password": "84c601e8b92060c6126a6d3163227ce19e32934a45e19b7cbc0571c2fe9fd347",
+      "port": 8086,
+      "path": null,
+      "query": {
+        "org": "main",
+        "bucket": "main",
+        "api_token": "d85b1219ee8cef8f84d33216257e44d51ddd52e89ae7acbd5ab1d01d320e2f7f"
+      },
+      "fragment": null,
+      "public": false,
+      "host_mapped": false,
+      "ip": "169.254.99.35"
+    }
+```
+
+### From a 1.x version
+
+From version 2.3 onwards, InfluxDB includes an upgrade utility that can convert databases from previous versions to version 2.3 or later.
+
+To upgrade from a 1.x version to 2.3 or later,
+change the service version in your `.platform/services.yaml` file and push your project.
+Any existing data you had in your 1.x system is automatically upgraded for you into the 2.3+ system.
+
+{{< note >}}
+
+During an upgrade from a 1.x version to a 2.3 version or later,
+a new admin password and a new admin API token are automatically generated.
+Previous credentials can't be retained.</br>
+You can retrieve your new credentials through the [`PLATFORM_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables) or by running `platform relationships`.
+
+{{< /note >}}
