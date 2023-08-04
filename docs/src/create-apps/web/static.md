@@ -13,7 +13,7 @@ including its [app configuration](https://github.com/platformsh/platformsh-docs/
 
 To learn how to serve your static site using Platform.sh,
 you can start with the required [minimal app configuration](#minimal-app-configuration) and build on it,
-or jump straight to an [example of a complete configuration](#complete-exampl-configuration).
+or jump straight to an [example of a complete configuration](#complete-example-configuration).
 
 ## Minimal app configuration
 
