@@ -13,7 +13,7 @@ including its [app configuration](https://github.com/platformsh/platformsh-docs/
 
 To learn how to serve your static site using Platform.sh,
 you can start with the required [minimal app configuration](#minimal-app-configuration) and build on it,
-or jump straight to an [example of a complete configuration](#complete-example).
+or jump straight to an [example of a complete configuration](#complete-exampl-configuration).
 
 ## Minimal app configuration
 
@@ -98,7 +98,7 @@ web:
 You can also use this place to start small programs,
 such as a [script to handle 404 errors](https://community.platform.sh/t/custom-404-page-for-a-static-website/637).
 
-## Complete configuration example
+## Complete example configuration
 
 ```yaml {location=".platform.app.yaml"}
 name: app
