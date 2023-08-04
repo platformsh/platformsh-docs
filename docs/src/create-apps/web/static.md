@@ -1,6 +1,6 @@
 ---
 title: Serve static sites
-sidebarTitle: Static site
+sidebarTitle: Static sites
 description: Serve completely static sites 
 ---
 
