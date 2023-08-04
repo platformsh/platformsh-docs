@@ -10,6 +10,8 @@ sidebarTitle: "InfluxDB"
 
 It exposes an HTTP API for client interaction. See the [InfluxDB documentation](https://docs.influxdata.com/influxdb) for more information.
 
+Small edit test.
+
 ## Supported versions
 
 {{% major-minor-versions-note configMinor="true" %}}
