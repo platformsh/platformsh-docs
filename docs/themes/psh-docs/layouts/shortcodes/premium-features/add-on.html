@@ -1,6 +1,0 @@
-{{ $feature := .Get "feature" }}
-{{ $content := print $feature ` isn't included in any Platform.sh plan.
-You need to add it separately at an additional cost.
-To add ` $feature `, [contact Sales](https://platform.sh/contact/).`}}
-    
-{{ partial "note" ( dict "context" . "Inner" $content "title" "Beta" "theme" "info" )}}

@@ -3,8 +3,8 @@ module.exports = {
   content: [
     "./layouts/**/*.html",
     "./content/**/*.{html,md}",
-    "./themes/**/layouts/**/*.html",
-    "./themes/**/content/**/*.{html,md}",
+    "../themes/**/layouts/**/*.html",
+    "../themes/**/content/**/*.{html,md}",
     "./static/scripts/xss/**/*.js"
   ],
   safelist: ['-rotate-90','bg-pink-light'],

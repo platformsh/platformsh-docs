@@ -337,23 +337,23 @@ and at runtime.
 
 | Variable name               | Build | Runtime | Description |
 | --------------------------- | ----- | ------- | ----------- |
-| `PLATFORM_APP_DIR`          | Yes   | Yes     | The absolute path to the app directory. |
-| `PLATFORM_APPLICATION`      | Yes   | Yes     | A base64-encoded JSON object that describes the app. It maps certain attributes from your [app configuration](../../create-apps/_index.md), some with more structure. See [notes](#platform_application). |
-| `PLATFORM_APPLICATION_NAME` | Yes   | Yes     | The app name as set in your [app configuration](../../create-apps/_index.md). |
-| `PLATFORM_BRANCH`           | No    | Yes     | The name of the Git branch. |
-| `PLATFORM_CACHE_DIR`        | Yes   | No      | The directory where files are cached from one build to the next. The directory is shared among all branches, so the same cache is used for all environments. |
-| `PLATFORM_DOCUMENT_ROOT`    | No    | Yes     | The absolute path to the web document root, if applicable. |
-| `PLATFORM_ENVIRONMENT`      | No    | Yes     | The name of the Platform.sh environment. |
-| `PLATFORM_ENVIRONMENT_TYPE` | No    | Yes     | The environment type of the Platform.sh environment (`development`, `staging`, or `production`). |
-| `PLATFORM_OUTPUT_DIR`       | Yes   | No      | The output directory for compiled languages at build time. Equivalent to `PLATFORM_APP_DIR` in most cases. |
-| `PLATFORM_PROJECT`          | Yes   | Yes     | The project ID. |
-| `PLATFORM_PROJECT_ENTROPY`  | Yes   | Yes     | A random, 56-character value created at project creation and then stable throughout the project's life. Can be used for Drupal hash salts, Symfony secrets, and other similar values. |
-| `PLATFORM_RELATIONSHIPS`    | No    | Yes     | A base64-encoded JSON object of relationships. The keys are the relationship name and the values are arrays of relationship endpoint definitions. The exact format is defined differently for each [service](../../add-services/_index.md). |
-| `PLATFORM_ROUTES`           | No    | Yes     | A base64-encoded JSON object that describes the routes for the environment. It maps the content of your [routes configuration](../../define-routes/_index.md). |
-| `PLATFORM_SMTP_HOST`        | No    | Yes     | The SMTP host to send email messages through. Is empty when mail is disabled for the current environment. |
-| `PLATFORM_SOURCE_DIR`       | Yes   | No      | The path to the root directory of your code repository in the context of a running [source operation](../../create-apps/source-operations.md). The directory contains a writable copy of your repository that you can commit to during the operation. |
-| `PLATFORM_TREE_ID`          | Yes   | Yes     | The ID of the tree the application was built from, essentially the SHA hash of the tree in Git. Use when you need a unique ID for each build. |
-| `PLATFORM_VARIABLES`        | Some  | Some    | A base64-encoded JSON object with all user-defined project and environment variables that don't use a [prefix](./_index.md#variable-prefixes). The keys are the variable names and the values are the variable values. Availability during builds and at runtime depends on the settings for each variable. See how to [access individual variables](#access-variables-in-a-shell). |
+| `{{< vendor/prefix >}}_APP_DIR`          | Yes   | Yes     | The absolute path to the app directory. |
+| `{{< vendor/prefix >}}_APPLICATION`      | Yes   | Yes     | A base64-encoded JSON object that describes the app. It maps certain attributes from your [app configuration](../../create-apps/_index.md), some with more structure. See [notes](#platform_application). |
+| `{{< vendor/prefix >}}_APPLICATION_NAME` | Yes   | Yes     | The app name as set in your [app configuration](../../create-apps/_index.md). |
+| `{{< vendor/prefix >}}_BRANCH`           | No    | Yes     | The name of the Git branch. |
+| `{{< vendor/prefix >}}_CACHE_DIR`        | Yes   | No      | The directory where files are cached from one build to the next. The directory is shared among all branches, so the same cache is used for all environments. |
+| `{{< vendor/prefix >}}_DOCUMENT_ROOT`    | No    | Yes     | The absolute path to the web document root, if applicable. |
+| `{{< vendor/prefix >}}_ENVIRONMENT`      | No    | Yes     | The name of the Platform.sh environment. |
+| `{{< vendor/prefix >}}_ENVIRONMENT_TYPE` | No    | Yes     | The environment type of the Platform.sh environment (`development`, `staging`, or `production`). |
+| `{{< vendor/prefix >}}_OUTPUT_DIR`       | Yes   | No      | The output directory for compiled languages at build time. Equivalent to `PLATFORM_APP_DIR` in most cases. |
+| `{{< vendor/prefix >}}_PROJECT`          | Yes   | Yes     | The project ID. |
+| `{{< vendor/prefix >}}_PROJECT_ENTROPY`  | Yes   | Yes     | A random, 56-character value created at project creation and then stable throughout the project's life. Can be used for Drupal hash salts, Symfony secrets, and other similar values. |
+| `{{< vendor/prefix >}}_RELATIONSHIPS`    | No    | Yes     | A base64-encoded JSON object of relationships. The keys are the relationship name and the values are arrays of relationship endpoint definitions. The exact format is defined differently for each [service](../../add-services/_index.md). |
+| `{{< vendor/prefix >}}_ROUTES`           | No    | Yes     | A base64-encoded JSON object that describes the routes for the environment. It maps the content of your [routes configuration](../../define-routes/_index.md). |
+| `{{< vendor/prefix >}}_SMTP_HOST`        | No    | Yes     | The SMTP host to send email messages through. Is empty when mail is disabled for the current environment. |
+| `{{< vendor/prefix >}}_SOURCE_DIR`       | Yes   | No      | The path to the root directory of your code repository in the context of a running [source operation](../../create-apps/source-operations.md). The directory contains a writable copy of your repository that you can commit to during the operation. |
+| `{{< vendor/prefix >}}_TREE_ID`          | Yes   | Yes     | The ID of the tree the application was built from, essentially the SHA hash of the tree in Git. Use when you need a unique ID for each build. |
+| `{{< vendor/prefix >}}_VARIABLES`        | Some  | Some    | A base64-encoded JSON object with all user-defined project and environment variables that don't use a [prefix](./_index.md#variable-prefixes). The keys are the variable names and the values are the variable values. Availability during builds and at runtime depends on the settings for each variable. See how to [access individual variables](#access-variables-in-a-shell). |
 | `PORT`                      | No    | Yes     | A `string` representing the port to which requests are sent if the [`web.upstream.socket_family` property](../../create-apps/app-reference.md#upstream) is unset or set to `tcp`. |
 | `SOCKET`                    | No    | Yes     | A `string` representing the path to the Unix socket file to use if the [`web.upstream.socket_family` property](../../create-apps/app-reference.md#upstream) is set to `unix`. |
 

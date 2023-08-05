@@ -5,7 +5,7 @@
 Verify that your integration is functioning properly [using the CLI](../overview.md#validate-integrations):
 
 ```bash
-platform integration:validate
+{{ `{{< vendor/cli >}} integration:validate` | .Page.RenderString }}
 ```
 
 ###{{ if eq $source "Bitbucket" }}#{{ end }} Add the webhook manually

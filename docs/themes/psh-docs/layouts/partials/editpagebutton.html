@@ -1,7 +1,0 @@
-<!-- Edit page button link -->
-<div class="mb-6">
-  {{ $editLocation := printf "%sedit/main/docs/src/%s" site.Params.repo .File.Path}}
-  <a href="{{ $editLocation }}" rel="noopener" class="print:hidden text-sm {{ partial "pink-button-styles" }}">
-    Edit page <img class="inline" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" />
-  </a>
-</div>

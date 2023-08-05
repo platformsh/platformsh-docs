@@ -6,11 +6,11 @@
 
 1.  Merge the change into production.
 
-Once the script is merged into production,
-any user can set up their local environment by running the following commands:
+    Once the script is merged into production,
+    any user can set up their local environment by running the following commands:
 
-```bash
-{{ `$ platform get {{< variable "PROJECT_ID" >}}
-$ cd {{< variable "PROJECT_NAME" >}}
-$ ./init-local.sh {{< variable "PROJECT_ID" >}} another-new-feature {{< variable "PRODUCTION_ENVIRONMENT_NAME" >}}` | .Page.RenderString }}
-```
+    ```bash
+    {{ `$ platform {{< variable "PROJECT_ID" >}}` | .Page.RenderString }}
+    {{ `$ cd {{< variable "PROJECT_NAME" >}}` | .Page.RenderString }}
+    {{ `$ ./init-local.sh {{< variable "PROJECT_ID" >}} another-new-feature {{< variable "PRODUCTION_ENVIRONMENT_NAME" >}}` | .Page.RenderString }}
+    ```

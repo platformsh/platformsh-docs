@@ -8,6 +8,13 @@ issuerepo: "https://github.com/platformsh/platformsh-docs/"
 repo: "https://github.com/platformsh/platformsh-docs/"
 editPageButton: true
 
+# Vendorization
+vendor:
+    name: Platform.sh
+    cli: platform
+    env_prefix: platform
+    config_dir: .platform
+
 # Images (kept in static/)
 logo: "images/logos/Platformsh_logo_white.svg"
 logolinksto: "https://platform.sh"

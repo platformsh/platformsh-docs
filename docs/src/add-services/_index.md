@@ -11,7 +11,7 @@ Platform.sh includes many services, so you don't have to subscribe to external c
 Because the services are included in your project, you can manage them through Git
 and they're backed up together with the rest of your project.
 
-Your project defines the services configuration in a file named `services.yaml` located in the `.platform` directory.
+Your project defines the services configuration in a file named `services.yaml` located in the `{{< vendor/configdir >}}` directory.
 If you don't need any services (such as for a static website), you don't need to include this file in your repository.
 
 Read on to see how to add services.
@@ -24,7 +24,7 @@ Adding a service is a two-step process.
 
 ### 1. Configure the service
 
-All service configuration happens in the services configuration file (`.platform/services.yaml`) in your Git repository.
+All service configuration happens in the services configuration file (`{{< vendor/configdir >}}/services.yaml`) in your Git repository.
 
 Configure your service in the following pattern:
 

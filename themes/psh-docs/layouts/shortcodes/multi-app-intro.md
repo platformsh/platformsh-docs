@@ -1,4 +1,3 @@
-You can add multiple apps within a single Dedicated project so they can share data.
-
-This can be useful if you have multiple apps that are closely related,
-such as a CMS backend for your content or other APIs and a frontend to display it all.
+You can create multiple apps within a single project so they can share data.
+This can be useful if you have several apps that are closely related,
+such as a backend-only CMS and a frontend system for content delivery and display.
