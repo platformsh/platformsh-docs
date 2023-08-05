@@ -3,6 +3,10 @@
   {{ $productionSuffix = "-mini" }}
 {{ end }}
 
+<!-- Vendor overrides -->
+<link rel="stylesheet" href="{{ printf "/css/vendor%s.css?version=%s"  $productionSuffix $.Site.Params.version }}">
+
+
 <!-- Asciinema player -->
 <link rel="stylesheet" href="{{ printf "/asciinema/asciinema-player%s.css?version=%s"  $productionSuffix $.Site.Params.version }}">
 
