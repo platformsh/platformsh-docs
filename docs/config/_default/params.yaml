@@ -10,13 +10,14 @@ editPageButton: true
 
 # Vendorization
 vendor:
-    name: Platform.sh
-    cli: platform
-    env_prefix: platform
-    config_dir: .platform
+    name: Deploy Friday
+    cli: friday
+    env_prefix: FRIDAY
+    config_dir: .friday
 
 # Images (kept in static/)
-logo: "images/logos/Platformsh_logo_white.svg"
+# logo: "images/logos/Platformsh_logo_white.svg"
+logo: "images/logo.svg"
 logolinksto: "https://platform.sh"
 logoAlt: "Platform.sh"
 favicon: "images/logos/favicon.ico"

@@ -1,8 +1,6 @@
 /* Base TailwindCSS styles */
 /* https://tailwindcss.com/docs/functions-and-directives#tailwind */
 
-@import url("/css/vendor.css");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
