@@ -56,10 +56,10 @@ For more possibilities, see other [runtime operation examples](#runtime-operatio
 
 Once you've [defined a runtime operation](#define-a-runtime-operation), 
 you can trigger it through the Platform.sh API.
-To do so, run a cURL command similar to the following:
+To do so, run the following command:
 
 ```bash
-platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "{{< variable "RUNTIME_OPERATION_NAME" >}}", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
+operation:run {{< variable "RUNTIME_OPERATION_NAME" >}} --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
 You can only trigger a runtime operation if you have permission to do so.
@@ -69,8 +69,17 @@ For example, to trigger the runtime operation [defined previously](#define-a-run
 you could use the following command:
 
 ```bash
-platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "clear-rebuild", "service": "app"}' -p {{< variable "PROJECT_ID" >}}
+operation:run clear-rebuild --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
+
+## List your runtime operations
+
+To list all the runtime operations available on an environment,
+run the following command:
+
+```bash
+operation:list --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
+````
 
 ## Runtime operation examples
 
@@ -125,7 +134,7 @@ operations:
 To trigger your runtime operation, run a cURL command similar to the following:
 
 ```bash
-platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "gatsby-build", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
+operation:run gatsby-build --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
 <--->
@@ -150,7 +159,7 @@ operations:
 To trigger your runtime operation, run a cURL command similar to the following:
 
 ```bash
-platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "next-rebuild", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
+operation:run next-build --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
 {{< /codetabs >}}
@@ -180,7 +189,7 @@ operations:
 To trigger your runtime operation, run a command similar to the following:
 
 ```bash
-platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "pm2-ping", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
+operation:run pm2-ping --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
 <--->
@@ -203,7 +212,7 @@ operations:
 To trigger your runtime operation, run a command similar to the following:
 
 ```bash
-platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "pm2-reload", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
+operation:run pm2-reload --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
 <--->
@@ -227,7 +236,7 @@ operations:
 To trigger your runtime operation, run a command similar to the following:
 
 ```bash
-platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "pm2-restart", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
+operation:run pm2-restart --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
 {{< /codetabs >}}
@@ -248,5 +257,5 @@ operations:
 To trigger your runtime operation, run a cURL command similar to the following:
 
 ```bash
-platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "manual-migration", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
+operation:run manual-migration --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
