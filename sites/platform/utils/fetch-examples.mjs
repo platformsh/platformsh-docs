@@ -14,11 +14,11 @@ import * as util from "util";
  */
 const dataDirectories = {
     "templates": {
-        dir: 'data/remote-examples/templates/',
+        dir: '../../shareddata/remote-examples/templates/',
         fetchFunc: fetchFilesTemplates,
     },
     "language-examples": {
-        dir: 'data/remote-examples/language-examples/',
+        dir: '../../shareddata/remote-examples/language-examples/',
         fetchFunc: fetchFilesExamples
     }
 }

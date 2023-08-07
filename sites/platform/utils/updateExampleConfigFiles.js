@@ -3,7 +3,7 @@ var fs = require('fs');
 const psh = require("pshregistry-parser");
 
 
-const registrySource = "data/registry.json";
+const registrySource = "../../shared/data/registry.json";
 const save_dir = "src/registry/images/"
 
 const registry = new psh.RegistryParser(registrySource, saveDir=save_dir);

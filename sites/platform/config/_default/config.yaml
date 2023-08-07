@@ -45,6 +45,12 @@ module:
           target: "static/asciinema"
         - source: "node_modules/alpinejs/dist"
           target: "static/alpinejs"
+
+        - source: "../../shared/data"
+          target: "data"
+
+
+
         - source: "src"
           target: "content"
           lang: "en"
