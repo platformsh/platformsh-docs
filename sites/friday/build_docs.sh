@@ -7,7 +7,7 @@ set -e
 npm run build:search
 
 # Copy templates index so it will be served for search to grab
-mkdir static/files/indexes && cp data/templates.yaml static/files/indexes/templates.yaml
+mkdir static/files/indexes && cp ../../shared/data/templates.yaml static/files/indexes/templates.yaml
 
 # Get Hugo
 DOWNLOAD="https://github.com/gohugoio/hugo/releases/download/v${HUGOVERSION}/hugo_${HUGOVERSION}_Linux-64bit.tar.gz"
