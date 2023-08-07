@@ -156,9 +156,6 @@ db:
   type: "mariadb:10.4"
   disk: 2048
 
-cache:
-  type: "redis:5.0"
-
 rabbitqueue:
     type: rabbitmq:3.11
     disk: 512
