@@ -57,7 +57,25 @@ If you want to experiment with a later version without committing to it use a no
 
 {{% service-values-change %}}
 
-{{< relationship "mongodb" >}}
+```yaml
+{
+    "username": "main",
+    "scheme": "mongodb",
+    "service": "mongodb36",
+    "ip": "169.254.150.147",
+    "hostname": "blbczy5frqpkt2sfkj2w3zk72q.mongodb36.service._.eu-3.platformsh.site",
+    "cluster": "rjify4yjcwxaa-master-7rqtwti",
+    "host": "mongodb.internal",
+    "rel": "mongodb",
+    "query": {
+        "is_master": true
+    },
+    "path": "main",
+    "password": null,
+    "type": "mongodb:3.6",
+    "port": 27017
+}
+```
 
 ## Usage example
 

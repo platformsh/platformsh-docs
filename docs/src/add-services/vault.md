@@ -253,7 +253,28 @@ In the JSON object that's returned, you can notice that the `ciphertext` is diff
 
 {{% service-values-change %}}
 
-{{< relationship "vault-kms" >}}
+```yaml
+{
+    "username": "",
+    "scheme": "http",
+    "service": "vault-kms",
+    "fragment": "",
+    "ip": "169.254.196.95",
+    "hostname": "ckmpv2fz7jtdmpkmrun7yfgut4.vault-kms.service._.eu-3.platformsh.site",
+    "port": 8200,
+    "cluster": "rjify4yjcwxaa-master-7rqtwti",
+    "host": "vault-kms.internal",
+    "rel": "sign",
+    "path": "\/",
+    "query": {
+        "is_master": true
+    },
+    "password": null,
+    "type": "vault-kms:1.6",
+    "public": false,
+    "host_mapped": false
+}
+```
 
 ## Policies
 

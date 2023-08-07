@@ -43,7 +43,28 @@ For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-
 
 {{% service-values-change %}}
 
-{{< relationship "postgresql" >}}
+```yaml
+{
+    "username": "main",
+    "scheme": "pgsql",
+    "service": "postgresql12",
+    "fragment": null,
+    "ip": "169.254.38.66",
+    "hostname": "zydalrxgkhif2czr3xqth3qkue.postgresql12.service._.eu-3.platformsh.site",
+    "port": 5432,
+    "cluster": "rjify4yjcwxaa-master-7rqtwti",
+    "host": "postgresql.internal",
+    "rel": "postgresql",
+    "path": "main",
+    "query": {
+        "is_master": true
+    },
+    "password": null,
+    "type": "postgresql:12",
+    "public": false,
+    "host_mapped": false
+}
+```
 
 ## Usage example
 

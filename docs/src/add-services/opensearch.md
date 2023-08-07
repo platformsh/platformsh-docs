@@ -28,7 +28,26 @@ The latest compatible minor version and patches are applied automatically.
 
 {{% service-values-change %}}
 
-{{< relationship "opensearch" >}}
+```yaml
+{
+    "username": null,
+    "scheme": "http",
+    "service": "opensearch12",
+    "fragment": null,
+    "ip": "169.254.99.100",
+    "hostname": "2e36wpnescmc5ffcddczsnhnai.opensearch12.service._.eu-3.platformsh.site",
+    "port": 9200,
+    "cluster": "rjify4yjcwxaa-master-7rqtwti",
+    "host": "opensearch.internal",
+    "rel": "opensearch",
+    "path": null,
+    "query": [],
+    "password": null,
+    "type": "opensearch:1.2",
+    "public": false,
+    "host_mapped": false
+}
+```
 
 ## Usage example
 
