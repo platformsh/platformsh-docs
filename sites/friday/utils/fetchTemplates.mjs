@@ -17,7 +17,8 @@ const cachedTemplateName = "templates.yaml"
 // full path + name
 const cachedTemplateFileFull = path.join(cachedTemplatePath,cachedTemplateName)
 // where the template file should ultimately end up before deployment
-const destinationTemplatePath = path.join(process.cwd(),"data")
+// const destinationTemplatePath = path.join(process.cwd(),"data")
+const destinationTemplatePath = path.join("../../shared","data")
 // full path + name
 const destinationTemplateFull = path.join(destinationTemplatePath,cachedTemplateName)
 
