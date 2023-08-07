@@ -149,9 +149,22 @@ The most common properties to set in a worker to override the top-level settings
 (unlike the web site which is handling many requests at once),
 while `variables` lets you instruct the application to run differently as a worker than as a web site.
 
-For example, consider this `.platform.app.yaml`:
+For example, consider the following configuration:
 
-```yaml
+```yaml {location=".platform/services.yaml"}
+db:
+  type: "mariadb:10.4"
+  disk: 2048
+
+cache:
+  type: "redis:5.0"
+
+rabbitqueue:
+    type: rabbitmq:3.11
+    disk: 512
+```
+
+```yaml {location=".platform.app.yaml"}
 name: app
 
 type: "python:3.7"
@@ -223,7 +236,7 @@ workers:
 ```
 
 There's a lot going on here, but it's all reasonably straightforward.
-This configuration takes a single Python 3.7 code base from your repository,
+The configuration in `.platform.app.yaml` takes a single Python 3.7 code base from your repository,
 downloads all dependencies in `requirements.txt`, and then installs Gunicorn.
 That artifact (your code plus the downloaded dependencies) is deployed as three separate container instances, all running Python 3.7.
 
