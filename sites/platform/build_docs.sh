@@ -39,7 +39,7 @@ else
 fi
 
 echo "Moving the hugo binary from cache into the application."
-cp "${PLATFORM_CACHE_DIR}/hugo_${HUGOVERSION}/hugo" "${PLATFORM_APP_DIR}"
+cp "${PLATFORM_CACHE_DIR}/hugo_${HUGOVERSION}/hugo" "${PLATFORM_APP_DIR}/sites/platform"
 
 # Build the Hugo site
 ./hugo
