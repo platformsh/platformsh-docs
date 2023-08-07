@@ -5,3 +5,4 @@ hugo
 bin
 tmp
 postcss.config.js
+fetchedFilesCache

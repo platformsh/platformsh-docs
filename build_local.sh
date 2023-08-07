@@ -23,7 +23,7 @@ clean_file () {
 }
 
 BUILD_DIR=$1
-cd $BUILD_DIR
+cd sites/$BUILD_DIR
 
 clean_file postcss.config.js
 clean_dir fetchedFilesCache
@@ -31,7 +31,7 @@ clean_dir node_modules
 clean_dir public
 clean_dir resources
 
-cp ../themes/psh-docs/postcss.config.js .
+cp ../../themes/psh-docs/postcss.config.js .
 npm install
 npm run build
 npm run build:search
@@ -47,6 +47,6 @@ BUILD COMPLETE
 
 Verify the resulting build by running the command
 
-python3 -m http.server 8888 -d $BUILD_DIR/public
+python3 -m http.server 8888 -d sites/$BUILD_DIR/public
 
 "

@@ -24,25 +24,25 @@
         # Build hooks can modify the application files on disk but not access any services like databases.
         build: |
             set -e
-            cd docs
-            cp ../themes/psh-docs/postcss.config.js .
+            cd sites/platform
+            cp ../../themes/psh-docs/postcss.config.js .
             npm install
             npm run build
             ./build_docs.sh
             npm run build:assets
         deploy: |
-            cd docs
+            cd sites/platform
             ./deploy.sh
 
     # The configuration of the application when it is exposed to the web.
     web:
         commands:
         # Run (404) error and feedback handler
-            start: cd docs && node index.js
+            start: cd sites/platform && node index.js
         locations:
             '/':
                 # The public directory of the application relative to its root.
-                root: 'docs/public'
+                root: 'sites/platform/public'
                 passthru: true
                 index: ['index.html']
                 scripts: false
@@ -55,8 +55,8 @@
     disk: 1024
 
     mounts:
-        "docs/public/scripts/xss/dist/config":
+        "sites/platform/public/scripts/xss/dist/config":
             source: local
-            source_path: "docs/config"
+            source_path: "sites/platform/config"
 
     size: S

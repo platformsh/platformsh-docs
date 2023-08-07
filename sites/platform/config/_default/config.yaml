@@ -6,7 +6,7 @@ description: Platform.sh User Documentation
 
 # Themes
 theme: psh-docs
-themesdir: '../themes'
+themesdir: '../../themes'
 
 uglyurls: true
 pygmentsUseClasses: true

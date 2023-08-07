@@ -1,4 +1,4 @@
-const themeDir = '../themes';
+const themeDir = '../../themes';
 
 module.exports = {
   plugins: [

@@ -131,7 +131,7 @@ const Search = ({ fullPage }) => {
           <input
             id="searchwicon"
             value={query}
-            placeholder="Search Platform.sh"
+            placeholder="What are you looking for?"
             onChange={handleInputChange}
             className={`bg-no-repeat bg-[length:15px_15px] bg-left-4 h-16 w-full pl-12 text-slate border-none focus-visible:outline-none ${fullPage ? 'bg-grey' : ''}`}
             style={{ 'background-image': 'url(/images/svg/search-solid.svg)' }}
