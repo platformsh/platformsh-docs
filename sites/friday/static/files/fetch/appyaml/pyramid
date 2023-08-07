@@ -1,0 +1,64 @@
+# Complete list of all available properties: https://docs.platform.sh/create-apps/app-reference.html
+
+# A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated
+# with the app.
+name: app
+
+# The runtime the application uses.
+# Complete list of available runtimes: https://docs.platform.sh/create-apps/app-reference.html#types
+type: "python:3.9"
+
+# The relationships of the application with services or other applications.
+# The left-hand side is the name of the relationship as it will be exposed
+# to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
+# side is in the form `<service name>:<endpoint name>`.
+# More information: https://docs.platform.sh/create-apps/app-reference.html#relationships
+relationships:
+  database: "db:mysql"
+  redis: "cache:redis"
+
+# The size of the persistent disk of the application (in MB). Minimum value is 128.
+disk: 1024
+
+# The web key configures the web server running in front of your app.
+# More information: https://docs.platform.sh/create-apps/app-reference.html#web
+web:
+  # Commands are run once after deployment to start the application process.
+  # More information: https://docs.platform.sh/create-apps/app-reference.html#web-commands
+  commands:
+    # The command to launch your app. If it terminates, it’s restarted immediately.
+    start: python app.py
+
+# Installs global dependencies as part of the build process. They’re independent of your app’s dependencies and
+# are available in the PATH during the build process and in the runtime environment. They’re installed before
+# the build hook runs using a package manager for the language.
+# More information: https://docs.platform.sh/create-apps/app-reference.html#dependencies
+dependencies:
+  python:
+    pipenv: "2018.10.13"
+
+# Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
+# More information: https://docs.platform.sh/create-apps/app-reference.html#hooks
+hooks:
+  # The build hook is run after any build flavor.
+  # More information: https://docs.platform.sh/create-apps/hooks/hooks-comparison.html#build-hook
+  build: |
+    pipenv install --system --deploy
+
+# Information on the app's source code and operations that can be run on it.
+# More information: https://docs.platform.sh/create-apps/app-reference.html#source
+source:
+  ######################################################################################################################
+  ##                                                                                                                  ##
+  ## This source operation is part of the Platform.sh process of updating and maintaining our collection of           ##
+  ## templates. For more information see https://docs.platform.sh/create-apps/source-operations.html and              ##
+  ## https://github.com/platformsh/source-operations                                                                  ##
+  ##                                                                                                                  ##
+  ##                  YOU CAN SAFELY DELETE THIS COMMENT AND THE LINES BENEATH IT                                     ##
+  ##                                                                                                                  ##
+  ######################################################################################################################
+  operations:
+    auto-update:
+      command: |
+        curl -fsS https://raw.githubusercontent.com/platformsh/source-operations/main/setup.sh | { bash /dev/fd/3 sop-autoupdate; } 3<&0
+

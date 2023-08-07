@@ -31,7 +31,7 @@ Configure your app to use PHP on Platform.sh.
 Choose a [supported version](#supported-versions)
 and add it to your [app configuration](../../create-apps/_index.md):
 
-{{< readFile file="src/registry/images/examples/full/php.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
+{{< readFile file="registry/images/examples/full/php.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 ### 2. Serve your app
 

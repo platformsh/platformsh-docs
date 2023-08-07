@@ -1,0 +1,45 @@
+# .platform.app.yaml
+
+# The name of this application, which must be unique within a project.
+name: 'gatsby'
+
+# The type key specifies the language and version for your application.
+type: 'nodejs:14'
+
+# Restrict Yarn memory use when running during post deploy hook.
+variables:
+    env:
+        NODE_OPTIONS: --max_old_space_size=1536
+
+# The hooks that will be triggered when the package is deployed.
+hooks:
+    # Post deploy hook builds Gatsby frontend now that backend content is available.
+    post_deploy: |
+        npm run build
+
+relationships:
+    wordpress: "wordpress:http"
+
+# The size of the persistent disk of the application (in MB).
+disk: 1280
+
+# The configuration of the application when it is exposed to the web.
+web:
+    locations:
+        '/':
+            # The public directory of the application relative to its root.
+            root: 'public'
+            index: ['index.html']
+            scripts: false
+            allow: true
+
+mounts:
+  '/.cache':
+      source: local
+      source_path: cache
+  '/.config':
+      source: local
+      source_path: config
+  'public':
+      source: local
+      source_path: public

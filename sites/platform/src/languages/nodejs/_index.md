@@ -36,7 +36,7 @@ To use JavaScript with Node.js on Platform.sh, configure your [app configuration
 Choose a version from the [list of supported versions](#supported-versions)
 and add it to your app configuration:
 
-{{< readFile file="src/registry/images/examples/full/nodejs.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
+{{< readFile file="registry/images/examples/full/nodejs.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 ### 2. Specify any global dependencies
 

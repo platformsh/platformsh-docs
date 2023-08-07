@@ -48,11 +48,10 @@ module:
 
         - source: "../../shared/data"
           target: "data"
-
-
-
+          
         - source: "src"
           target: "content"
+          
           lang: "en"
         - source: "static"
           target: "static"

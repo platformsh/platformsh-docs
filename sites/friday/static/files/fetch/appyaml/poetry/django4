@@ -1,0 +1,119 @@
+#########################
+# Django4 using Poetry
+##########################
+# Container configuration.
+
+# Complete list of all available properties: https://docs.platform.sh/create-apps/app-reference.html
+
+# A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated
+# with the app.
+name: 'app'
+
+# The runtime the application uses.
+# Complete list of available runtimes: https://docs.platform.sh/create-apps/app-reference.html#types
+type: 'python:3.10'
+
+# The relationships of the application with services or other applications.
+# The left-hand side is the name of the relationship as it will be exposed
+# to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
+# side is in the form `<service name>:<endpoint name>`.
+# More information: https://docs.platform.sh/create-apps/app-reference.html#relationships
+relationships:
+  database: "db:postgresql"
+
+# The size of the persistent disk of the application (in MB). Minimum value is 128.
+disk: 512
+
+# Mounts define directories that are writable after the build is complete. If set as a local source, disk property is required.
+# More information: https://docs.platform.sh/create-apps/app-reference.html#mounts
+mounts:
+  'logs':
+    source: local
+    source_path: logs
+
+# The web key configures the web server running in front of your app.
+# More information: https://docs.platform.sh/create-apps/app-reference.html#web
+web:
+  # Commands are run once after deployment to start the application process.
+  # More information: https://docs.platform.sh/create-apps/app-reference.html#web-commands
+  commands:
+    # The command to launch your app. If it terminates, it’s restarted immediately.
+    start: "poetry run gunicorn -w 4 -b unix:$SOCKET myapp.wsgi:application"
+
+  # More information: https://docs.platform.sh/configuration/app-containers.html#upstream
+  upstream:
+    # Whether your app should speak to the webserver via TCP or Unix socket. Defaults to tcp
+    # More information: https://docs.platform.sh/create-apps/app-reference.html#where-to-listen
+    socket_family: unix
+
+      # Each key in locations is a path on your site with a leading /.
+    # More information: https://docs.platform.sh/create-apps/app-reference.html#locations
+  locations:
+    "/":
+      # Whether to forward disallowed and missing resources from this location to the app. A string is a path
+      # with a leading / to the controller, such as /index.php.
+      passthru: true
+    "/static":
+      # The directory to serve static assets for this location relative to the app’s root directory. Must be an
+      # actual directory inside the root directory.
+      root: "static"
+      # The number of seconds whitelisted (static) content should be cached.
+      expires: 1h
+      # Whether to allow serving files which don’t match a rule.
+      allow: true
+
+# Variables to control the environment. More information: https://docs.platform.sh/create-apps/app-reference.html#variables
+variables:
+  env:
+    POETRY_VIRTUALENVS_IN_PROJECT: true
+    POETRY_VIRTUALENVS_CREATE: false
+
+# Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
+# More information: https://docs.platform.sh/create-apps/app-reference.html#hooks
+hooks:
+  # The build hook is run after any build flavor.
+  # More information: https://docs.platform.sh/create-apps/hooks/hooks-comparison.html#build-hook
+  build: |
+    set -eu
+
+    # Download the latest version of pip
+    python3.10 -m pip install --upgrade pip
+
+    # Install and configure Poetry
+    #   NOTE: There is a matching export PATH=... in `.environment`, which allows the use of Poetry
+    #     in the deploy hook, start command, and during SSH sessions. Make sure to include in your
+    #     own projects.
+    export PIP_USER=false
+    curl -sSL https://install.python-poetry.org | python3 - --version $POETRY_VERSION
+    export PATH="/app/.local/bin:$PATH"
+    export PIP_USER=true
+
+    # Install dependencies
+    poetry install
+
+    # Collect static assets
+    poetry run python manage.py collectstatic
+
+  # The deploy hook is run after the app container has been started, but before it has started accepting requests.
+  # More information: https://docs.platform.sh/create-apps/hooks/hooks-comparison.html#deploy-hook
+  deploy: poetry run python manage.py migrate
+
+# Information on the app's source code and operations that can be run on it.
+# More information: https://docs.platform.sh/create-apps/app-reference.html#source
+source:
+  # The path where the app code lives. Defaults to the directory of the .platform.app.yaml file. Useful for multi-app setups.
+  root:
+
+  ######################################################################################################################
+  ##                                                                                                                  ##
+  ## This source operation is part of the Platform.sh process of updating and maintaining our collection of           ##
+  ## templates. For more information see https://docs.platform.sh/create-apps/source-operations.html and              ##
+  ## https://github.com/platformsh/source-operations                                                                  ##
+  ##                                                                                                                  ##
+  ##                  YOU CAN SAFELY DELETE THIS COMMENT AND THE LINES BENEATH IT                                     ##
+  ##                                                                                                                  ##
+  ######################################################################################################################
+  operations:
+    auto-update:
+      command: |
+        curl -fsS https://raw.githubusercontent.com/platformsh/source-operations/main/setup.sh | { bash /dev/fd/3 sop-autoupdate; } 3<&0

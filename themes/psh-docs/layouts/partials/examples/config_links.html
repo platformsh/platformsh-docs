@@ -41,7 +41,7 @@
 <a href="/add-services.html">Service definition</a>
 
 ```yaml {location=".platform/services.yaml"}
-{{ readFile (printf "src/registry/images/examples/full/%s.services.yaml" .type) | safeHTML }}
+{{ readFile (printf "/registry/images/examples/full/%s.services.yaml" .type) | safeHTML }}
 ```
 
 <!-- Exclude Varnish because it would create a circular relationship -->
@@ -50,7 +50,7 @@
 <a href="/create-apps/app-reference.html">App configuration</a>
 
 ```yaml {location=".platform.app.yaml"}
-{{ printf "%s%s%s" (readFile (printf "src/registry/images/examples/full/%s.app.yaml" .type)) $l1 $l2 | safeHTML }}
+{{ printf "%s%s%s" (readFile (printf "registry/images/examples/full/%s.app.yaml" .type)) $l1 $l2 | safeHTML }}
 ```
 
 <!-- Example for MySQL to go with MariaDB -->
@@ -60,13 +60,13 @@
   <a href="/add-services.html">Service definition</a>
 
   ```yaml {location=".platform/services.yaml"}
-  {{ readFile "src/registry/images/examples/full/oracle-mysql.services.yaml" | safeHTML }}
+  {{ readFile "registry/images/examples/full/oracle-mysql.services.yaml" | safeHTML }}
   ```
 
   <a href="/create-apps/app-reference.html">App configuration</a>
 
   ```yaml {location=".platform.app.yaml"}
-  {{ readFile "src/registry/images/examples/full/oracle-mysql.app.yaml" | safeHTML }}
+  {{ readFile "registry/images/examples/full/oracle-mysql.app.yaml" | safeHTML }}
   ```
 {{ end }}
 
@@ -77,13 +77,13 @@
   <a href="/add-services.html">Service definition</a>
 
   ```yaml {location=".platform/services.yaml"}
-  {{ readFile "src/registry/images/examples/full/redis-persistent.services.yaml" | safeHTML  }}
+  {{ readFile "registry/images/examples/full/redis-persistent.services.yaml" | safeHTML  }}
   ```
 
   <a href="/create-apps/app-reference.html">App configuration</a>
 
   ```yaml {location=".platform.app.yaml"}
-  {{ printf "%s%s%s" (readFile (printf "src/registry/images/examples/full/%s.app.yaml" "redis-persistent")) $l1 $l2 | safeHTML  }}
+  {{ printf "%s%s%s" (readFile (printf "registry/images/examples/full/%s.app.yaml" "redis-persistent")) $l1 $l2 | safeHTML  }}
   ```
 {{ end }}
 

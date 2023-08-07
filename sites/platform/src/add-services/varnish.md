@@ -131,7 +131,7 @@ Also disable the router cache as Varnish now provides caching.
 
 To forward all incoming requests to Varnish rather than your app, you could have the following:
 
-{{< readFile file="src/registry/images/examples/full/varnish.routes.yaml" highlight="yaml" location=".platform/routes.yaml" >}}
+{{< readFile file="registry/images/examples/full/varnish.routes.yaml" highlight="yaml" location=".platform/routes.yaml" >}}
 
 Varnish forwards requests to your app based on the specified VCL template.
 

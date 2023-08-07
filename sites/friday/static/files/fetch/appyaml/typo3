@@ -1,0 +1,221 @@
+# This file describes an application. You can have multiple applications
+# in the same project.
+#
+# See https://docs.platform.sh/configuration/app.html
+
+# The name of this app. Must be unique within a project.
+name: app
+
+# The runtime the application uses.
+type: php:7.4
+
+dependencies:
+    php:
+        composer/composer: '^2'
+
+runtime:
+    # Enable the redis extension so TYPO3 can communicate with the Redis cache.
+    extensions:
+        - redis
+
+# Composer build tasks run prior to build hook, which runs
+# composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader
+# if composer.json is detected.
+build:
+    flavor: composer
+
+# The relationships of the application with services or other applications.
+# The left-hand side is the name of the relationship as it will be exposed
+# to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
+# side is in the form `<service name>:<endpoint name>`.
+#
+# NOTE: Be sure to update database and Redis configuration in `public/typo3conf/PlatformshConfiguration.php`
+# if you rename the relationships here.
+relationships:
+    # MariaDB/MySQL will then be accessible to the app from 'database' relationship.
+    # The service name `db` must match the top-level attribute in `.platform/services.yaml`.
+    database: 'db:mysql'
+
+    # Redis will then be accessible to the app from 'rediscache' relationship.
+    # The service name `cache` must match the top-level attribute in `.platform/services.yaml`.
+    rediscache: 'cache:redis'
+
+# The configuration of app when it is exposed to the web.
+web:
+    # How the application container responds to incoming requests.
+    locations:
+        # All requests not otherwise specified follow these rules.
+        '/':
+            # The folder from which to serve static assets, for this location.
+            # This is a filesystem path, relative to the application root.
+            root: 'public'
+
+            # Redirect any incoming request to TYPO3's front controller.
+            passthru: '/index.php'
+
+            # File to consider first when serving requests for a directory.
+            index:
+                - 'index.php'
+
+            # Deny access to all static files, except those specifically allowed below.
+            allow: false
+
+            # Rules for specific URI patterns.
+            rules:
+                # Allow access to common static files.
+                '\.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$':
+                    allow: true
+                '^/robots\.txt$':
+                    allow: true
+                '^/sitemap\.xml$':
+                    allow: true
+
+        # Default Storage location where TYPO3 expects media resources to be located.
+        # Writable at runtime with the mount `public/fileadmin`.
+        '/fileadmin':
+            root: 'public/fileadmin'
+            # Do not execute PHP scripts from the writeable mount.
+            scripts: false
+            allow: true
+            passthru: '/index.php'
+
+        # Directory for temporary files that should be publicly available (e.g. generated images).
+        # Writable at runtime with the mount `publi/typo3temp`.
+        '/typo3temp/assets':
+            root: 'public/typo3temp/assets'
+            # Do not execute PHP scripts from the writeable mount.
+            scripts: false
+            allow: true
+            passthru: '/index.php'
+
+        # Local TYPO3 installation settings.
+        '/typo3conf/LocalConfiguration.php':
+            allow: false
+
+        # Additional TYPO3 installation settings.
+        '/typo3conf/AdditionalConfiguration.php':
+            allow: false
+
+# The size of the persistent disk of the application (in MB).
+disk: 2048
+
+# The 'mounts' describe writable, persistent filesystem mounts in the application.
+mounts:
+    # Directory for temporary files. It contains subdirectories (see below) for
+    # temporary files of extensions and TYPO3 components.
+    "public/typo3temp":
+        source: local
+        source_path: "typo3temp"
+    # Default Storage location where TYPO3 expects media resources to be located.
+    "public/fileadmin":
+        source: local
+        source_path: "fileadmin"
+    # Contains system files, like caches, logs, sessions
+    "var":
+        source: local
+        source_path: "var"
+
+# The hooks that will be performed when the package is deployed.
+hooks:
+    # The build hook runs after Composer to finish preparing up your code.
+    # No services are available but the disk is writeable.
+    build: |
+        # Exit hook immediately if a command exits with a non-zero status.
+        set -e
+
+        # Start the installation with no interaction or extension setup, using `SetupConfiguration.yaml`.
+        if [ ! -f var/platformsh.installed ]; then
+            php vendor/bin/typo3cms install:setup --install-steps-config=src/SetupConfiguration.yaml --no-interaction --skip-extension-setup
+        fi;
+
+        # Generates the `PackageStates.php` file from the `composer.json` configuration
+        php vendor/bin/typo3cms install:generatepackagestates
+
+        # Enable the install tool for 60mins after deployment.
+        touch public/typo3conf/ENABLE_INSTALL_TOOL
+
+        # Keep the checked-in LocalConfiguration available, but make the actual file writable later-on
+        # by creating a symlink which will be accesible below.
+        if [ -f public/typo3conf/LocalConfiguration.php ]; then
+            mv public/typo3conf/LocalConfiguration.php public/typo3conf/LocalConfiguration.FromSource.php
+            ln -sf ../../var/LocalConfiguration.php public/typo3conf/LocalConfiguration.php
+        fi;
+
+        # Clean up the FIRST_INSTALL file, that was created.
+        if [ -f public/FIRST_INSTALL ]; then
+            rm public/FIRST_INSTALL
+        fi;
+
+        # initial activation of Introduction package will fail if it is unable to write to this images directory.
+        # if it exists, we'll move its contents out to a temp space, remove the original, and symlink to a writable mount
+        if [ -d public/typo3conf/ext/introduction/Initialisation/Files/images/ ]; then
+            if [ ! -d imagestemp ]; then
+                # create our temp images directory
+                mkdir -p imagestemp
+                # copy the image files out of the real location into our temp space
+                cp -r public/typo3conf/ext/introduction/Initialisation/Files/images/. imagestemp/
+            fi
+
+            #now create the symlink for the images
+            #remove the original directory
+            rm -rf public/typo3conf/ext/introduction/Initialisation/Files/images/
+            # now create a symlink
+            ln -sf "$PLATFORM_APP_DIR/var/images" public/typo3conf/ext/introduction/Initialisation/Files/images
+        fi
+
+    # The deploy hook runs after your application has been deployed and started.
+    # Code cannot be modified at this point but the database is available.
+    # The site is not accepting requests while this script runs so keep it
+    # fast.
+    deploy: |
+        # Exit hook immediately if a command exits with a non-zero status.
+        set -e
+
+        # if the images location existed in the build hook, it was converted to a symlink. we now to need to make sure
+        # the target of the symlink exists, and then rsync any new files to the writable location
+        if [ -L public/typo3conf/ext/introduction/Initialisation/Files/images ]; then
+            #make sure our images directory exists in var mount
+            if [ ! -d var/images ]; then
+                mkdir -p var/images
+                echo "This directory is symlinked to public/typo3conf/ext/introduction/Initialisation/Files/images/. Do not delete." >> var/images/readme.txt
+            fi
+
+            #rsync any new files from imagestemp into var/images
+            rsync -a --ignore-existing imagestemp/ var/images
+        fi
+
+        # Set TYPO3 site defaults on first deploy.
+        if [ ! -f var/platformsh.installed ]; then
+            # Copy the created LocalConfiguration into the writable location.
+            cp public/typo3conf/LocalConfiguration.FromSource.php var/LocalConfiguration.php
+
+            # On first install, create an inital admin user with a default password.
+            # *CHANGE THIS VALUE IMMEDIATELY AFTER INSTALLATION*
+            php vendor/bin/typo3cms install:setup \
+                --install-steps-config=src/SetupDatabase.yaml \
+                --site-setup-type=no \
+                --site-name="TYPO3 on Platform.sh" \
+                --admin-user-name=admin \
+                --admin-password=password \
+                --skip-extension-setup \
+                --no-interaction
+
+            # Sets up all extensions that are marked as active in the system.
+            php vendor/bin/typo3cms extension:setupactive || true
+
+            # Create file that indicates first deploy and installation has been completed.
+            touch var/platformsh.installed
+        fi;
+
+crons:
+     # Run TYPO3's Scheduler tasks every 5 minutes.
+    typo3:
+        spec: "*/5 * * * *"
+        commands:
+            start: "vendor/bin/typo3 scheduler:run"
+
+source:
+  operations:
+    auto-update:
+      command: |
+        curl -fsS https://raw.githubusercontent.com/platformsh/source-operations/main/setup.sh | { bash /dev/fd/3 sop-autoupdate; } 3<&0

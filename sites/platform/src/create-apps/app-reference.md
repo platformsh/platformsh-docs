@@ -57,13 +57,13 @@ Security and other patches are taken care of for you automatically.
 
 Available languages and their supported versions:
 
-{{< readFile file="src/registry/images/tables/runtimes_supported.md" markdownify="true">}}
+{{< readFile file="registry/images/tables/runtimes_supported.md" markdownify="true">}}
 
 ### Example configuration
 
 These are used in the format `runtime:version`:
 
-{{< readFile file="src/registry/images/examples/full/php.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
+{{< readFile file="registry/images/examples/full/php.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 ## Sizes
 

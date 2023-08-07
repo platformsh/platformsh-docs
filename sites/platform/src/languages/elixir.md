@@ -48,7 +48,7 @@ You can change it.
 
 Include in your build hook the steps to retrieve a local Hex and `rebar`, and then run `mix do deps.get, deps.compile, compile` on your application to build a binary.
 
-{{< readFile file="src/registry/images/examples/full/elixir.hooks.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
+{{< readFile file="registry/images/examples/full/elixir.hooks.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 {{< note >}}
 
@@ -124,7 +124,7 @@ The services configuration is available in the environment variable `PLATFORM_RE
 
 Given a relationship defined in `.platform.app.yaml`:
 
-{{< readFile file="src/registry/images/examples/full/postgresql.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
+{{< readFile file="registry/images/examples/full/postgresql.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 Assuming you have in `mix.exs` the Poison library to parse JSON:
 

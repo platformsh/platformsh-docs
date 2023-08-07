@@ -4,7 +4,9 @@
 {{ end }}
 
 <!-- Vendor overrides -->
-<link rel="stylesheet" href="{{ printf "/css/vendor%s.css?version=%s" $productionSuffix $.Site.Params.version }}">
+{{ if eq .Site.Params.theme.use_vendor true }}
+    <link rel="stylesheet" href="{{ printf "/css/vendor%s.css?version=%s" $productionSuffix $.Site.Params.version }}">
+{{ end }}
 
 
 <!-- Asciinema player -->

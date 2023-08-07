@@ -39,7 +39,7 @@ disk: 1024
 
 This results in three key–value pairs.
 
-{{< readFile file="static/images/yaml/basic.svg" >}}
+![config key-values](/images/yaml/basic.svg)
 
 You might notice you can define strings either with or without quotes, which can be single `'` or double `"`.
 Quotes let you escape characters (if double) and make sure the value is parsed as a string when you want it.
@@ -78,7 +78,7 @@ web:
 This creates a `web` dictionary that has two dictionaries within it: `commands` and `locations`,
 each with their own mappings.
 
-{{< readFile file="static/images/yaml/mapping.svg" >}}
+![web mappings](/images/yaml/mapping.svg)
 
 ### Sequences (arrays/lists)
 
@@ -108,7 +108,7 @@ web:
 
 In either case, you get a list of values within `index`.
 
-{{< readFile file="static/images/yaml/sequence.svg" >}}
+![web index sequence](/images/yaml/sequence.svg)
 
 ## Define multi-line strings
 
@@ -128,7 +128,7 @@ hooks:
 And the resulting value preserves the line break.
 This lets you do things like enter small shell scripts within a YAML file.
 
-{{< readFile file="static/images/yaml/multi-line.svg" >}}
+![multi-line strings](/images/yaml/multi-line.svg)
 
 ## Reuse content
 

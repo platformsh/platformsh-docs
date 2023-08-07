@@ -1,0 +1,186 @@
+# This file describes an application.
+
+# The name of this app. Must be unique within a project.
+name: akeneo
+
+# The language and version to use to run the application.
+type: php:8.0
+
+dependencies:
+    php:
+        composer/composer: '^2'
+
+# Enable non-default extensions required by Akeneo
+runtime:
+    extensions:
+        - apcu
+        - imagick
+        - memcached
+        - intl
+        # - amqp
+        - redis
+        - sodium
+
+variables:
+    env:
+        APP_ENV: 'prod'
+        APP_DEBUG: 0
+        APP_DEFAULT_LOCALE: 'en_US'
+        APP_PRODUCT_AND_PRODUCT_MODEL_INDEX_NAME: 'akeneo_pim_product_and_product_model'
+        AKENEO_STARTER: minimal
+        # AKENEO_STARTER: icecat_demo_dev
+        # Update these for your desired Node version.
+        NODE_VERSION: v14.19.0
+    php:
+        apc.enable_cli: 1
+
+build:
+    flavor: none
+
+hooks:
+    # We run the build hook before your application has been packaged.
+    build: |
+        set -e
+
+        # Install composer dependencies.
+        composer install
+
+        # Install n to use newer version of node.
+        export N_PREFIX=$HOME/.n
+        export PATH=$N_PREFIX/bin:$PATH
+        curl -fsS https://raw.githubusercontent.com/platformsh/snippets/main/src/install_node.sh | { bash /dev/fd/3 -v $NODE_VERSION -y; } 3<&0
+
+        echo "Installing Node dependencies."
+        PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1 corepack yarn install
+        PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1 corepack yarn packages:build
+
+        echo "Installing assets."
+        php bin/console pim:installer:assets --symlink --clean -vvv
+        corepack yarn run less
+        corepack yarn update-extensions
+
+        echo "Running webpack."
+        corepack yarn run webpack
+
+    # We run the deploy hook after your application has been deployed and started.
+    deploy: |
+        set -e
+
+        echo "Warming cache"
+        rm -rf var/cache/*
+        php bin/console cache:warmup
+
+        STARTER_TRACKING=installer/$AKENEO_STARTER.installed
+        CATALOG_PATH=vendor/akeneo/pim-community-dev/src/Akeneo/Platform/Bundle/InstallerBundle/Resources/fixtures
+
+        # run installer if no lockfile exists
+        if [ ! -f $STARTER_TRACKING ]; then
+
+            # Clear previous tracking files in case trying multiple.
+            rm -rf installer/*
+
+            # minimal catalog + fixtures.
+            if [ "$AKENEO_STARTER" = minimal ]; then
+                echo "Running the installer: $AKENEO_STARTER catalog + fixtures."
+                php bin/console pim:installer:db --env=$APP_ENV --catalog=$CATALOG_PATH/$AKENEO_STARTER
+                # Create the admin user (admin/admin). Change immediately.
+                php bin/console pim:user:create -n --admin admin admin admin@example.com Admin Istrator $APP_DEFAULT_LOCALE
+                php bin/console cache:clear
+                touch $STARTER_TRACKING
+
+            # icecat_demo_dev catalog + fixtures.
+            elif [ "$AKENEO_STARTER" = icecat_demo_dev ]; then
+                echo "Running the installer: $AKENEO_STARTER catalog + fixtures."
+                php bin/console pim:installer:db --env=$APP_ENV --catalog=$CATALOG_PATH/$AKENEO_STARTER
+                # Note: no admin user is created, since `icecat_demo_dev` creates on automatically (admin/admin). Change immediately.
+                php bin/console cache:clear
+                touch $STARTER_TRACKING
+
+            else
+                echo "No profile given. Skipping installation."
+            fi
+        else
+            echo "Akeneo already installed. Skipping."
+        fi
+
+# The relationships of the application with services or other applications.
+# The left-hand side is the name of the relationship as it will be exposed
+# to the application in the environment variable. The right-hand
+# side is in the form `<service name>:<endpoint name>`.
+relationships:
+    database: "db:mysql"
+    essearch: "search:elasticsearch"
+
+# The configuration of app when it is exposed to the web.
+web:
+    locations:
+        "/":
+            root: 'public'
+            passthru: '/index.php'
+
+# The size of the persistent disk of the application (in MB).
+disk: 2048
+
+# The mounts that will be performed when the package is deployed.
+mounts:
+    "var":
+        source: local
+        source_path: "var"
+    # Used to control the Platform.sh install process. Do not delete the file inside it.
+    "installer":
+        source: local
+        source_path: "installer"
+    "web":
+        source: local
+        source_path: "web"
+    "config/secrets":
+        source: local
+        source_path: "config/secrets"
+    # For media files
+    "public/media":
+        source: local
+        source_path: "public/media"
+    # For local generated files
+    "var/file_storage":
+        source: local
+        source_path: "var/file_storage"
+    # Sharing job files
+    "var/file_storage/jobs":
+        source: service
+        service: jobs
+        source_path: "var/file_storage/jobs"
+
+crons:
+    refresh:
+        spec: '30 1 * * *'
+        commands:
+            start: 'php bin/console pim:versioning:refresh'
+    purge_versioning:
+        spec: '30 2 * * *'
+        commands:
+            start: 'php bin/console pim:versioning:purge –more-than-days 90'
+    update_data:
+        spec: '1 * * * *'
+        commands:
+            start: 'php bin/console akeneo:connectivity-audit:update-data'
+    purge_jobs:
+        spec: '20 0 1 * *'
+        commands:
+            start: 'php bin/console akeneo:batch:purge-job-execution'
+    aggregate:
+        spec: '30 4 * * *'
+        commands:
+            start: 'php bin/console pim:volume:aggregate'
+
+workers:
+    queue:
+        disk: 512
+        commands:
+            start: |
+                php /app/bin/console akeneo:batch:job-queue-consumer-daemon
+
+source:
+  operations:
+    auto-update:
+      command: |
+        curl -fsS https://raw.githubusercontent.com/platformsh/source-operations/main/setup.sh | { bash /dev/fd/3 sop-autoupdate; } 3<&0

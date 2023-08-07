@@ -250,3 +250,12 @@ https://{default}/:
     type: upstream
     upstream: "search:http"
     id: "search"
+
+https://friday.{default}/:
+  type: upstream
+  upstream: friday:http
+  id: friday
+  cache:
+    enabled: true
+  ssi:
+    enabled: false

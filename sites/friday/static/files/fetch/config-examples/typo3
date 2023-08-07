@@ -1,0 +1,76 @@
+# TYPO3 Site Handling configuration YAML.
+# 
+# See https://docs.typo3.org/m/typo3/reference-coreapi/9.5/en-us/ApiOverview/SiteHandling/Basics.html.
+rootPageId: 1
+
+# The base domain used to run the TYPO3 site. Here, the environment variable `PLATFORM_ROUTES_MAIN` set in 
+# `public/typo3/conf/PlatformshConfiguration.php` is used. 
+base: '%env(PLATFORM_ROUTES_MAIN)%'
+
+# Site's available languages configuration.
+# 
+# See https://docs.typo3.org/m/typo3/reference-coreapi/9.5/en-us/ApiOverview/SiteHandling/AddLanguages.html#sitehandling-addinglanguages
+languages:
+    -
+        languageId: '0'
+        title: English
+        navigationTitle: English
+        base: '/'
+        locale: en_US.UTF8
+        iso-639-1: en
+        hreflang: en-US
+        direction: ltr
+        typo3Language: default
+        flag: us
+        enabled: true
+    -
+        languageId: '2'
+        title: German
+        navigationTitle: Deutsch
+        base: '/de/'
+        locale: de_DE.UTF8
+        iso-639-1: de
+        hreflang: de-DE
+        direction: ltr
+        typo3Language: de
+        flag: de
+        fallbackType: fallback
+        fallbacks: '0'
+        enabled: true
+    -
+        languageId: '1'
+        title: Dansk
+        navigationTitle: Dansk
+        base: '/da/'
+        locale: da_DK.UTF-8
+        iso-639-1: da
+        hreflang: da-DK
+        direction: ltr
+        typo3Language: default
+        flag: dk
+        fallbackType: fallback
+        fallbacks: '0'
+        enabled: true
+
+# Configuration for how to handle error codes for the TYPO3 site.
+# 
+# See https://docs.typo3.org/m/typo3/reference-coreapi/9.5/en-us/ApiOverview/SiteHandling/Basics.html.
+errorHandling:
+    -
+        errorCode: '404'
+        errorHandler: Page
+        errorContentSource: 't3://page?uid=5'
+
+# Environment-specific `base` configuration.
+# 
+# See https://docs.typo3.org/m/typo3/reference-coreapi/9.5/en-us/ApiOverview/SiteHandling/BaseVariants.html.
+baseVariants: {  }
+
+# Adding static routes for the TYPO3 site. 
+# 
+# See https://docs.typo3.org/m/typo3/reference-coreapi/9.5/en-us/ApiOverview/SiteHandling/StaticRoutes.html#sitehandling-staticroutes.
+routes:
+    -
+        route: robots.txt
+        type: staticText
+        content: "User-agent: *\r\nDisallow: /typo3/"
