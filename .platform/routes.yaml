@@ -1,6 +1,7 @@
 https://{default}/:
   type: upstream
   upstream: docs:http
+  id: platformsh
   primary: true
   cache:
     enabled: true
@@ -251,11 +252,11 @@ https://{default}/:
     upstream: "search:http"
     id: "search"
 
-# https://friday.{default}/:
-#   type: upstream
-#   upstream: friday:http
-#   id: friday
-#   cache:
-#     enabled: true
-#   ssi:
-#     enabled: false
+https://friday.{default}/:
+  type: upstream
+  upstream: friday:http
+  id: friday
+  cache:
+    enabled: true
+  ssi:
+    enabled: false
