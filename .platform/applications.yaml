@@ -121,6 +121,6 @@
     mounts:
         "sites/friday/public/scripts/xss/dist/config":
             source: local
-            source_path: "sites/fridayconfig"
+            source_path: "sites/friday/config"
 
     size: S

@@ -3,6 +3,10 @@ import yaml
 import hashlib
 from platformshconfig import Config
 
+import sys
+
+docs_index = sys.argv[1]
+
 config = Config()
 
 # Handle documentation/templates index source locations on Platform.sh and locally. 
