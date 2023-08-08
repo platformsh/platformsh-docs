@@ -38,6 +38,7 @@ markup:
             unsafe: true
 
 module:
+    _merge: deep
     mounts:
         - source: "node_modules/mermaid/dist"
           target: "static/mermaid"
@@ -51,8 +52,14 @@ module:
 
         - source: "../platform/src"
           target: "content"
+          excludeFiles: 
+              - "registry/*"
+              - "_index.md"
           lang: "en"
-        
+
+          
+        - source: "src"
+          target: "content"
           
         # - source: "../platform/src/add-services"
         #   target: "content/add-services"
