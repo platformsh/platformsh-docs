@@ -13,10 +13,12 @@
 {{ partial "editpagebutton.html" .context }}
 
 <!-- Page title -->
+{{ if ne .context.Params.showTitle false }}
 <h1 class="font-black text-2xl mb-8 xl:text-4xl">{{ .context.Title | .context.RenderString }}</h1>
+{{ end }}
 
 <div class="grid md:grid-cols-80-20 md:gap-4 print:block">
-
+  
   <div class="print:hidden max-w-[92vw] md:max-w-none md:order-2 md:top-24 md:sticky md:max-h-fullv md:overflow-y-auto border-t border-stone">
     <!-- Table of contents -->
     {{ if and (ne .context.Params.toc false) (ne .context.TableOfContents "<nav id=\"TableOfContents\"></nav>") }}
@@ -27,9 +29,11 @@
     {{ end }}
 
     <!-- Feedback form for wide screens -->
+    {{ if ne .context.Params.feedback false }}
     <div class="print:hidden hidden md:block">
       {{ partial "feedback/form" }}
     </div>
+    {{ end }}
   </div>
 
   <div class="prose xl:prose-lg max-w-[96vw] md:max-w-none prose-code:!mb-0 prose-h2:text-xl prose-h3:text-xl prose-h4:text-lg">

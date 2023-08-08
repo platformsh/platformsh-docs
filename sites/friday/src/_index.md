@@ -1,6 +1,12 @@
 ---
 title: Introduction
+showTitle: false
+feedback: false
 ---
+
+{{< home >}}
+
+## What is Deploy Friday?
 
 {{< vendor/name >}} is a second-generation Platform-as-a-Service built especially for continuous deployment.
 It allows you to host web applications on the cloud while making your development and testing workflows more productive.
@@ -16,7 +22,7 @@ and features recommended optimizations for several **Featured Frameworks**.
 
 Finally, you can also get tips for setting up your own **Development** workflow and **Administering** your Platform.sh account.
 
-## Git Driven Infrastructure
+### Git Driven Infrastructure
 
 As a Platform as a Service, or PaaS, Platform.sh automatically manages everything your application needs to run.
 That means you can, and should, view your infrastructure needs as part of your application and address them under version control.

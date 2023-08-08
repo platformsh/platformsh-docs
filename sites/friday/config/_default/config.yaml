@@ -55,6 +55,7 @@ module:
           excludeFiles: 
               - "registry/*"
               - "_index.md"
+              - "get-started/*"
           lang: "en"
 
         - source: "../platform/static/images"
