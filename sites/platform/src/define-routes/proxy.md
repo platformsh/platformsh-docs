@@ -2,11 +2,18 @@
 title: Proxy routes
 description: Pass requests to a location outside your Platform.sh project using proxy routes.
 ---
+
+{{< note theme="warning" title="Warning">}}
+
+Only use this feature to address edge cases where you need to proxy to another, outside project.</br>
+**Do not use this for internal routing.**</br>
+To expose your app to the outside world, see [how to define routes](../define-routes/_index.md).
+
+{{< /note >}}
 ​
-Sometimes you want your app to pass requests on to another location,
-such as a different Platform.sh project.
-Basic redirects only work within the same project, so use proxy routes for routes elsewhere.
-​
+Sometimes you want your app to pass requests on to a different Platform.sh project.
+Basic redirects only work within the same project, so use proxy routes for routes elsewhere.​
+
 You can define an external proxy on your Platform.sh project by defining a route like the following:
 
 ```yaml {location=".platform/routes.yaml"}
