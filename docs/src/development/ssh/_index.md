@@ -50,8 +50,9 @@ To access an app in a given environment via the CLI, run the following command:
 platform ssh --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}} --app {{< variable "APPLICATION_NAME" >}}
 ```
 
-Replace each of <code>{{< variable "PROJECT_ID" >}}</code>, <code>{{< variable "ENVIRONMENT_NAME" >}}</code>, and <code>{{< variable "APPLICATION_NAME" >}}</code>
-with the values you want to access.
+Replace each of <code>{{< variable "PROJECT_ID" >}}</code>, <code>{{< variable "ENVIRONMENT_NAME" >}}</code>, and <code>{{< variable "APPLICATION_NAME" >}}</code> with the values you want to access.
+To find these values in the Console,
+navigate to the environment you want to access and click **SSH** in the top right-hand corner.
 
 Alternatively, just run `platform ssh` and select the values from each list presented to you.
 
@@ -77,15 +78,20 @@ except for any [mounts you've defined](../../create-apps/app-reference.md#mounts
 
 ## Connect to services
 
-To connect to a service, you need the [service credentials](../../add-services/_index.md#1-obtain-service-credentials).
+To connect to a service, you need the [service credentials](../../add-services/_index.md#connect-to-a-service).
 Then you can connect either with a [direct tunnel](#use-a-direct-tunnel) or a [tunnel in your app](#use-an-app-tunnel).
 
 ### Use a direct tunnel
 
-To open SSH tunnels for all of your services, use the Platform.sh CLI:
+To open SSH tunnels for all of your services, run the following command:
 
 ```bash
-$ platform tunnel:open
+platform tunnel:open
+```
+
+You get output similar to the following:
+
+```bash
 SSH tunnel opened to database at: http://127.0.0.1:30000
 
 Logs are written to: ~/.platformsh/tunnels.log
@@ -99,7 +105,7 @@ Save encoded tunnel details to the PLATFORM_RELATIONSHIPS variable using:
 ```
 
 Use the returned host (in this case `http://127.0.0.1:30000`) for your connection
-and fill in the details with the rest of your [service credentials](../../add-services/_index.md#1-obtain-service-credentials).
+and fill in the details with the rest of your [service credentials](../../add-services/_index.md#connect-to-a-service).
 
 The `tunnel:open` command connects all relationships defined in your [app configuration](../../create-apps/_index.md).
 
@@ -115,18 +121,44 @@ Consult the documentation for your application for how to enter SSH credentials.
 
 #### Get SSH connection details
 
-To get the host and username for connections, run the following command:
+To get the host and username for connections, follow these steps:
+
+{{< codetabs >}}
+
++++
+title=Using the CLI
++++
+
+Run the following command:
 
 ```bash
-$ platform ssh --pipe
+platform ssh --pipe --project {{< variable "PROJECT_ID" >}}
+```
+
+You get output similar to the following:
+
+```bash
 jyu7waly36ncj-main-7rqtwti--app@ssh.us.platform.sh
 ```
+
+<--->
+
++++
+title=In the Console
++++
+
+1. Navigate to the environment you want to connect to.
+2. Click **SSH** in the top right-hand corner.
+3. You get output similar to the following:</br>
+   `jyu7waly36ncj-main-7rqtwti--app@ssh.us.platform.sh`
+
+{{< /codetabs >}}
 
 The host is everything after the `@` and the username is what's before it.
 In this case, the host is `ssh.us.platform.sh` and the username is `jyu7waly36ncj-main-7rqtwti--app`.
 The host is the same for the entire project, while the username varies by environment.
 
-To connect to a service, fill in the details with the rest of your [service credentials](../../add-services/_index.md#1-obtain-service-credentials).
+To connect to a service, fill in the details with the rest of your [service credentials](../../add-services/_index.md#connect-to-a-service).
 
 ## Alternative authentication methods
 

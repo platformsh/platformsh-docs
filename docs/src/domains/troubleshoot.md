@@ -166,6 +166,32 @@ check if an outage is ongoing with your certificate issuer (the most common one 
 and with your CDN provider if you have one.
 If not, [contact Support](../overview/get-support.md).
 
+### Check your routes configuration
+
+Certificates are generated based on your [routes configuration](../define-routes/_index.md).
+When a certificate is renewed, the renewal bot checks that all of the defined routes can be accessed.
+If at least one of the routes defined in your `routes.yaml` file can't be accessed,
+the renewal fails and the following error is displayed:
+
+```
+Provisioning certificates
+  Validating 2 new domains
+  W: Failed to verify the challenge at the gateway for the domain 'www.example.com'
+  E: Error validating domain www.example.com: Couldn't complete challenge [HTTP01: There was a problem with a DNS query during identifier validation]
+  Unable to validate domains www.example.com, will retry in the background.
+  (Next refresh will be at 2023-07-04 17:43:10.259891+00:00.)
+  Certificates
+  - certificate 61bc4c8: expiring on 2023-09-02 01:11:12+00:00, covering sdgs.un.org
+
+E: Error: TLS Certificate provisioning failed
+```
+
+For example, if you add `example.com` and `www.example.com` to your routes configuration
+but the `www` subdomain doesn't point to your project through [a `CNAME` record](./steps/dns.md#cname-records),
+the certificate renewal fails.
+For the renewal to succeed, add the missing `CNAME` record to your DNS
+or remove `www.example.com` (and any other `www` route) from your `routes.yaml` file.
+
 ## Verify your application
 
 Check your app's logs and look for anomalies.

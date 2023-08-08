@@ -19,13 +19,7 @@ layout: single
 These versions refer to the headless packages of OpenJDK.
 To save space and reduce potential vulnerabilities, they don't contain GUI classes, which can't be used on the server.
 
-{{% image-versions-legacy "java" %}}
-
 {{% language-specification type="java" display_name="Java" %}}
-
-## Support libraries
-
-While it's possible to read the environment directly from your application, it's generally easier and more robust to use the [`platformsh/config-reader`](https://github.com/platformsh/config-reader-java) which handles decoding of service credential information for you.
 
 ## Support build automation
 
@@ -145,9 +139,7 @@ highlight=java
 
 {{< /codetabs >}}
 
-{{% config-reader %}}
-[configuration reader library](https://github.com/platformsh/config-reader-java)
-{{% /config-reader%}}
+{{% config-reader %}}[Java configuration reader library](https://github.com/platformsh/config-reader-java){{% /config-reader%}}
 
 If your Java framework allows, you can instead overwrite configuration following the [twelve-factor app](https://12factor.net/config).
 That removes the need for an additional dependency.

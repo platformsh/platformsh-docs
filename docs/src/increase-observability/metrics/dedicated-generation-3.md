@@ -4,7 +4,7 @@ sidebarTitle: "{{% names/dedicated-gen-3 %}} metrics"
 description: "Understand how to read metrics for {{% names/dedicated-gen-3 %}} environments."
 ---
 
-{{% names/dedicated-gen-3 %}} environments consist of various containers running across dedicated virtual machines:
+{{% names/dedicated-gen-3 %}} environments consist of various containers running across dedicated hosts:
 
 * App containers: one or more [app containers](../../create-apps/_index.md)
 * Service containers: zero or more [service containers](../../add-services/_index.md)

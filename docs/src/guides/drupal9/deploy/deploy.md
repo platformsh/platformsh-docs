@@ -4,6 +4,9 @@ sidebarTitle: "Deploy"
 weight: -80
 description: |
     Now that your site is ready, push it to Platform.sh and import your data.
+banner:
+    title: A note on version
+    body: While this guide focuses on Drupal 9, you can also refer to it when using Drupal 10 as differences in settings are minimal. Note that a Platform.sh [Drupal 10 template](https://github.com/platformsh-templates/drupal10) is available.
 ---
 
 ## Deployment

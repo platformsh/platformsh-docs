@@ -17,11 +17,11 @@ The default branches are slightly different, as noted in the [default limits](..
 
 ## The {{% names/dedicated-gen-2 %}} cluster
 
-The {{% names/dedicated-gen-2 %}} cluster is a three-Virtual Machine redundant configuration provisioned by Platform.sh for each customer.
-Every service is replicated across all three virtual machines in a failover configuration (as opposed to sharding),
-allowing a site to remain up even if one of the virtual machines is lost entirely.
+The {{% names/dedicated-gen-2 %}} cluster is a three-host redundant configuration provisioned by Platform.sh for each customer.
+Every service is replicated across all three hosts in a failover configuration (as opposed to sharding),
+allowing a site to remain up even if one of the hosts is lost entirely.
 
 The build process for your application is identical for both the Development Environment and the {{% names/dedicated-gen-2 %}} cluster.
-However, because the virtual machines are provisioned by Platform.sh, not as a container,
+However, because the hosts are provisioned by Platform.sh, not as a container,
 service configuration must be done by Platform.sh's Customer Success team.
 By and large the same flexibility is available but only via filing a support ticket.

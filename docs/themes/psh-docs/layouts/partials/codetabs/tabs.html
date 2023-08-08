@@ -38,7 +38,7 @@
 {{ if not $.Page.Params.multipleTabs }}
   x-data="{
     codetab: 'default',
-    switchCodetab(targetCodetab) { 
+    switchCodetab(targetCodetab) {
       this.codetab = targetCodetab;
     }
   }"
@@ -98,7 +98,7 @@
               {{ if ne (.Get "highlight") nil }}
                 {{ if ne (.Get "file") nil }}
 
-                {{- if eq ( len ( getenv "GITHUB_WORKFLOW" ) ) 0 }}
+                {{- if ne ( len ( getenv "GITHUB_API_TOKEN" ) ) 0 }}
                     {{ $content := readFile ( .Get "file" ) | default "" }}
                     {{- $contentLength := len $content -}}
                     {{- if ne $contentLength 0 }}
@@ -109,7 +109,7 @@
                 {{- else -}}
                     {{ partial "file-not-found" ( .Get "file" ) }}
                 {{- end -}}
-                
+
                 {{ else }}
                   {{ highlight $content ( .Get "highlight") "style=abap" | chomp }}
                 {{ end }}

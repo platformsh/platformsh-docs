@@ -144,7 +144,16 @@ you might encounter an error like the following:
 -bash: drush: command not found
 ```
 
-If you see this, add the command to your path with a [`.environment` file script](./variables/set-variables.md#set-variables-via-script).
+If you see this, add the command you want to run to your path
+with a [`.environment` file script](./variables/set-variables.md#set-variables-via-script).
+
+As a Linux or Unix-like operating system user (MacOS included),
+to be able to run your scripts directly and quickly get past this error
+you may need to run the `chmod +x {{< variable "YOUR_SCRIPT_FILE_NAME" >}}` command.
+
+However, regardless of which operating system you're using,
+it's best if you **don't rely on scripts having execute permissions**.
+Instead, call the app/shell/runtime directly passing your script file to that executable.
 
 ## Missing commits
 
@@ -169,7 +178,7 @@ Platform.sh enforces a 10&nbsp;MB limit on files with the `application/json` `Co
 To send large files, use the `multipart/form-data` header instead:
 
 ```bash
-$ curl -XPOST 'https://example.com/graphql' --header 'Content-Type: multipart/form-data' --form file=large_file.json
+curl -XPOST 'https://example.com/graphql' --header 'Content-Type: multipart/form-data' --form file=large_file.json
 ```
 
 ## Databases
@@ -180,7 +189,7 @@ For MySQL specific errors, see how to [troubleshoot MySQL](../add-services/mysql
 
 If you try to use a user to create a database, you get an error saying `permission denied to create database`.
 The database is created for you
-and can be found in the `path` key of the `$PLATFORM_RELATIONSHIPS` [environment variable](./variables/use-variables.md#use-platformsh-provided-variables).
+and can be found in the `path` key of the `PLATFORM_RELATIONSHIPS` [environment variable](./variables/use-variables.md#use-platformsh-provided-variables).
 
 ## Storage
 

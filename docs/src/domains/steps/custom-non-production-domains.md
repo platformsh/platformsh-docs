@@ -1,14 +1,15 @@
 ---
 title: Set up a custom domain on your non-production environments
-sidebarTitle: (Beta) Non-production environments
+sidebarTitle: Non-production environments
 weight: 3
 description: Learn how to set up custom domains on your staging and development environments
 banner: 
-    type: beta
+    type: tiered-feature
 ---
 
 When a custom domain is [set up on your production environment](../steps/_index.md),
 it can't be used for the other, non-production environments in your project.
+
 Therefore, by default and for each non-production environment,
 Platform.sh automatically replaces the custom production domain 
 with an automatically generated URL.
@@ -64,8 +65,7 @@ You need:
   For more information, [contact Support](https://console.platform.sh/-/users/~/tickets/open).   
 - A production environment with at least one custom domain already set up
 - At least one non-production (staging or development) environment
-- If you use the [Platform.sh CLI](../../administration/cli/_index.md),
-  you need version 4.3.0 or later
+- Optional: The [Platform.sh CLI](../../administration/cli/_index.md) (v4.8.0+)
 
 To prevent abuse, by default you can add custom domains to up to 5 environments per project only.
 This limit doesn't include the production environment,
@@ -121,33 +121,32 @@ title=Using the CLI
 title=In the Console
 +++
 
-1. Get the target for your non-production environment. To do so, open the environment in the Console
-   and click **URLs**.<BR>
-   Copy the URL to your site excluding `https://`.
+1.  Get the target for your non-production environment.</br>
+    To do so, navigate to your non-production environment and click **{{< icon settings >}} Settings**.</br>
+    Select the **Domains** tab.</br>
+    In the **Configure your domain** section, copy the content of the **CNAME record** field.</br>
+    Save it for later use at step 7.
 
-   For example, if the automatically generated URL is `https://dev-abcd123.abcdefgh1234567.eu.platformsh.site`,
-   the target is `dev-abcd123.abcdefgh1234567.eu.platformsh.site`.
+2.  Click **Add domain**.
 
-2. [Configure your DNS provider](../steps/_index.md#3-configure-your-dns-provider).
-   In particular, make sure your DNS record points to the target of your non-production environment.
+3.  Enter a name for your custom non-production domain.
 
-   {{< note >}}
-   
-   Using the target of your production environment to configure your DNS provider is technically possible,
-   but Platform.sh recommends using the target of your non-production environment as a best practice.
+4.  If you have multiple production domains,
+    select the one you want to attach your custom non-production domain to.
 
-   {{< /note >}}
+5.  Click **Add**.
 
-3. Go back to your non-production environment in the Console and click {{< icon settings >}} **Settings**.
+6.  Click **Okay**.
 
-4. In the **Domains** tab, click **Add domain**.
+7.  [Configure your DNS provider](../steps/_index.md#3-configure-your-dns-provider).</br>
+    In particular, make sure your DNS record points to the target of your non-production environment.
 
-5. Enter a name for your custom non-production domain.
+{{< note >}}
 
-6. If you have multiple production domains,
-   select the one you want to attach your custom non-production domain to.
+Using the target of your production environment to configure your DNS provider is technically possible,
+but Platform.sh recommends using the target of your non-production environment as a best practice.
 
-7. Click **Add**.
+{{< /note >}}
 
 {{< /codetabs >}}
 
@@ -181,10 +180,24 @@ platform domain:add mydev.com --environment Dev --attach mysite.com
 title=In the Console
 +++
 
-1. Open the `Dev` environment in the Console and click {{< icon settings >}} **Settings**.
-2. In the **Domains** tab, enter `mydev.com` as a name for your custom non-production domain.
-3. Attach `mydev.com` to the `mysite.com` custom production domain.
-4. Click **Add**.
+1.  Get the target for `Dev`.</br>
+    To do so, navigate to `Dev` and click **{{< icon settings >}} Settings**.</br>
+    Select the **Domains** tab.</br>
+    In the **Configure your domain** section, copy the content of the **CNAME record** field.</br>
+    Save it for later use at step 7.
+
+2.  Click **Add domain**.
+
+3.  Enter `mydev.com` as a name for your custom non-production domain.
+
+4.  Select `mysite.com` as the production custom domain you want to attach `mydev.com` to.
+
+5.  Click **Add**.</br>
+
+6.  Click **Okay**.
+
+7.  [Configure your DNS provider](../steps/_index.md#3-configure-your-dns-provider).</br>
+    In particular, make sure your DNS record points to `Dev`'s target.
 
 {{< /codetabs >}}
 
@@ -195,27 +208,76 @@ the `mydev.com` custom domain is removed too.
 
 ## List the custom domains of a non-production environment
 
-To list all the custom domains added to a non-production environment,
-run a command similar to the following:
+{{< codetabs >}}
++++
+title=Using the CLI
++++
+
+Run a command similar to the following:
 
 ```bash
 platform domain:list --environment {{< variable "STAGING_ENVIRONMENT_ID" >}}
 ```
 
+<--->
++++
+title=In the Console
++++
+
+1. Navigate to your non-production environment and click **{{< icon settings >}} Settings**.
+2. Select the **Domains** tab.</br>
+   All the custom domains for your non-production environment are displayed.
+
+{{< /codetabs >}}
+
 ## Get a specific custom non-production domain
 
-To retrieve a specific custom domain added to a non-production environment,
-run a command similar to the following:
+{{< codetabs >}}
++++
+title=Using the CLI
++++
+
+Run a command similar to the following:
 
 ```bash
 platform domain:get staging.example.com --environment {{< variable "STAGING_ENVIRONMENT_ID" >}}
 ```
 
+<--->
++++
+title=In the Console
++++
+
+1. Navigate to your non-production environment and click **{{< icon settings >}} Settings**.</br>
+2. Select the **Domains** tab.</br>
+   All the custom domains for the selected environment are displayed.
+3. Click **{{< icon "more" >}} More** on a specific custom non-production domain to see which actions you can perform on it.
+
+{{< /codetabs >}}
+
 ## Remove a custom domain from a non-production environment
 
-To remove a custom domain from a non-production environment,
-run a command similar to the following:
+{{< codetabs >}}
++++
+title=Using the CLI
++++
+
+Run a command similar to the following:
 
 ```bash
 platform domain:delete staging.example.com --environment {{< variable "STAGING_ENVIRONMENT_ID" >}}
 ```
+
+<--->
++++
+title=In the Console
++++
+
+1. Navigate to your non-production environment and click **{{< icon settings >}} Settings**.
+2. Select the **Domains** tab.</br>
+   All the custom domains for the selected environment are displayed.
+3. Click **{{< icon "more" >}} More** on the custom non-production domain you want to delete.
+4. Click **Delete**.
+5. Click **Yes, delete**.
+
+{{< /codetabs >}}

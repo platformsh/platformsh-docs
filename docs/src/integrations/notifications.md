@@ -104,8 +104,8 @@ Any notification will now trigger an alert in PagerDuty.
 
 ## Validate the integration
 
-You can then verify that your integration is functioning properly [using the CLI](/integrations/overview.md#validating-integrations) command
+You can then verify that your integration is functioning properly [using the CLI](/integrations/overview.md#validate-integrations) command
 
 ```bash
-$ platform integration:validate
+platform integration:validate
 ```

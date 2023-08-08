@@ -8,7 +8,7 @@ keywords:
 ---
 
 You might need to control how people access your web applications,
-for example when you have [multiple apps](../create-apps/multi-app.md) in one project.
+for example when you have [multiple apps](../create-apps/multi-app/_index.md) in one project.
 Or you might just want to direct requests to specific places, such as removing the `www` at the start of all requests.
 
 Control where external requests are directed by defining routes in a `.platform/routes.yaml` file in your Git repository.
@@ -65,7 +65,7 @@ Redirects from `http` to `https` are generally included by default and don't nee
 
 ### Multi-app route definition
 
-The specifics of configuring the Router container for multiple applications is explored in detail in the [Multiple apps](/create-apps/multi-app.md#routes) documentation.
+The specifics of configuring the Router container for multiple applications is explored in detail in the [Multiple apps](/create-apps/multi-app/routes.md) documentation.
 
 ## Trailing slashes
 
@@ -409,8 +409,15 @@ These are the routes as defined in the `.platform/routes.yaml` file with the [pl
 plus the default redirect from HTTP to HTTPS.
 They aren't the final generated routes.
 
+Run the following command:
+
 ```bash
-$ platform environment:routes
+platform environment:routes
+```
+
+You get output similar to:
+
+```bash
 Routes on the project Example (abcdef123456), environment main (type: production):
 +---------------------------+----------+---------------------------+
 | Route                     | Type     | To                        |
@@ -436,20 +443,33 @@ which is a requirement for the router caching.
    ```yaml {location=".platform/routes.yaml"}
    "https://{default}/ws":
        type: upstream
-       upstream: "ws-app:http"
+       upstream: "app:http"
        cache:
            enabled: false
+
+    # Below HTTP config may not be necessary for every Websocket client.
+    "https://{default}/ws":
+       type: upstream
+       upstream: "app:http"
+       cache:
+           enabled: false   
+
    ```
 
 2. [Disable request buffering](../create-apps/app-reference.md#locations) in your app configuration.
 
    ```yaml {location=".platform.app.yaml"}
    web:
-       locations:
-           '/':
-               passthru: true
-               request_buffering:
-                   enabled: false
+     commands:
+       start: /app/.linuxbrew/bin/websocketd --port=$PORT ./wsmanager.sh
+     upstream:
+       socket_family: tcp
+       protocol: http
+     locations:
+       '/':
+         passthru: true
+         request_buffering:
+           enabled: false
     ```
 
 ## `.htaccess` files

@@ -15,11 +15,11 @@ If you are an Enterprise or Elite customer and have a Grid or {{% names/dedicate
 
 You need:
 
-* A project that's ready to go live
-* A domain with access to its settings with the registrar
-* A registrar that allows `CNAME` records or [one of the alternatives](./dns.md) on [apex domains](../../other/glossary.md#apex-domain)
-* Optional: The [CLI](../../administration/cli/_index.md) installed locally
-* If you are on a development plan, you need to [upgrade your tier to a production plan](#1-change-your-plan-to-a-production-plan).
+- A project that's ready to go live
+- A domain with access to its settings with the registrar
+- A registrar that allows `CNAME` records or [one of the alternatives](./dns.md) on [apex domains](../../other/glossary.md#apex-domain)
+- Optional: The [CLI](../../administration/cli/_index.md) installed locally
+- If you are on a development plan, you need to [upgrade your tier to a production plan](#1-change-your-plan-to-a-production-plan).
 
 If you are planning to use several subdomains of the same domain on different projects,
 see how to [manage multiple subdomains](/domains/steps/subdomains.md) *before* you add your domain to Platform.sh.
@@ -86,11 +86,9 @@ platform environment:info edge_hostname
 title=In the Console
 +++
 
-1. In the Console, open your Production environment.
-2. Click **URLs** and copy the URL to your site excluding `https://`.
-
-  For example, if the automatically generated URL is `https://main-abcd123.abcdefgh1234567.eu.platformsh.site`,
-  the target is `main-abcd123.abcdefgh1234567.eu.platformsh.site`.
+1. Navigate to your production environment and click **{{< icon settings >}} Settings**.
+2. Select the **Domains** tab.
+3. In the **Configure your domain** section, copy the content of the **CNAME record** field.
 
 {{< /codetabs >}}
 

@@ -6,7 +6,7 @@ layout: single
 
 Node.js is a popular asynchronous JavaScript runtime.
 Deploy scalable Node.js apps of all sizes on Platform.sh.
-You can also develop a microservice architecture mixing JavaScript and other apps with [multi-app projects](../../create-apps/multi-app.md).
+You can also develop a microservice architecture mixing JavaScript and other apps with [multi-app projects](../../create-apps/multi-app/_index.md).
 
 ## Supported versions
 
@@ -15,8 +15,6 @@ You can also develop a microservice architecture mixing JavaScript and other app
 | Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
 |----------------------------------------|------------------------------ |
 | {{< image-versions image="nodejs" status="supported" environment="grid" >}} | {{< image-versions image="nodejs" status="supported" environment="dedicated-gen-2" >}} |
-
-{{% image-versions-legacy "nodejs" %}}
 
 {{% language-specification type="nodejs" display_name="Node.js" %}}
 
@@ -276,10 +274,7 @@ highlight=js
 
 {{< /codetabs >}}
 
-
-{{% config-reader %}}
-[`platformsh-config` package](https://github.com/platformsh/config-reader-nodejs)
-{{% /config-reader%}}
+{{% config-reader %}}[Node.js configuration reader library](https://github.com/platformsh/config-reader-nodejs){{% /config-reader%}}
 
 ## Project templates
 

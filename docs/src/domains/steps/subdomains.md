@@ -19,16 +19,15 @@ You need to add a DNS record to make it clear you explicitly allow multiple proj
 
 ## Enable subdomains across multiple projects
 
-To ensure multiple projects can use subdomains of the same domain,
-add a specific `TXT` DNS record for your domain.
+To ensure multiple projects can use subdomains of the same apex domain,
+add a specific `TXT` DNS record for your apex domain.
 
 The `TXT` record should look like the following:
 
 ```text
-_public-suffix-root.{{<variable "YOUR_DOMAIN" >}} TXT "public-suffix-root={{<variable "YOUR_DOMAIN" >}}"
+_public-suffix-root.{{<variable "YOUR_APEX_DOMAIN" >}} TXT "public-suffix-root={{<variable "YOUR_APEX_DOMAIN" >}}"
 ```
 
-Replace {{<variable "YOUR_DOMAIN" >}} with your actual domain name.
 This adds your domain to the [Platform.sh implementation of the Public Suffix List](#why-this-is-necessary).
 
 After you add your subdomains, you can remove the record to reinstate [subdomain hijacking protection](#subdomain-hijacking-protection).

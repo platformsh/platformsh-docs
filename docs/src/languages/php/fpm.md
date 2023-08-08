@@ -19,7 +19,18 @@ The number is calculated as follows: ![The sum of container memory minus reserve
 
 Note that when the resulting number is a decimal, 
 it's rounded up to set the maximum number of workers.
-Also, the minimum number of PHP-FPM workers is 2.  
+Also, the minimum number of PHP-FPM workers is 2.
+
+{{< note >}}
+
+To ensure that Platform.sh doesn't add more workers than the CPU can handle,
+a CPU limit applies as soon as the number of set workers equals or exceeds 25.
+This limit is calculated as follows: `number of vCPU cores * 5`.
+
+For example, if you have a 2XL container with 8 CPU cores,
+you can have up to 40 workers as long as you have sufficient memory.
+
+{{< /note >}}
 
 To adjust the maximum number of PHP-FPM workers depending on your app's needs, follow the instructions on this page.
 
@@ -41,7 +52,7 @@ you can refer to your PHP access logs.
 Run a command similar to:
 
 ```bash
-$ platform log --lines 5000 | awk '{print $6}' | sort -n | uniq -c
+platform log --lines 5000 | awk '{print $6}' | sort -n | uniq -c
 ```
 
 This command takes into account the last 5,000 requests that reached PHP-FPM.
@@ -112,7 +123,7 @@ To check the maximum number of PHP-FPM workers available to your app,
 run the following command, where `children` refers to PHP-FPM workers:
 
 ```bash
-$ platform ssh "grep -e '^pm.max_children' /etc/php/*/fpm/php-fpm.conf"      
+platform ssh "grep -e '^pm.max_children' /etc/php/*/fpm/php-fpm.conf"      
 ```
 
 You get output similar to the following:

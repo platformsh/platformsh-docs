@@ -26,7 +26,7 @@ you may want to view a list of all the mounts inside your app.
 To do so, run the following command:
 
 ```bash
-$ platform mounts
+platform mounts
 ```
 
 The output is similar to the following:
@@ -53,7 +53,7 @@ For example, to upload the files contained in the local `private` directory to t
 run the following command: 
 
 ```bash
-$ platform mount:upload --mount private --source ./private
+platform mount:upload --mount private --source ./private
 ```
 
 You get the following output:
@@ -78,7 +78,7 @@ For example, to download a file from the `private` mount to your local `private`
 run the following command:
 
 ```bash
-$ platform mount:download --mount private --target ./private
+platform mount:download --mount private --target ./private
 ```
 
 You get the following output:

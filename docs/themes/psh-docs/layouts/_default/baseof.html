@@ -3,8 +3,8 @@
 
   <!-- Head -->
   {{ partial "head/head" . }}
-
-  <body class="bg-white">
+  {{ $currentPage := printf "https://docs.platform.sh%s" ( .Page.RelPermalink ) }}
+  <body class="bg-white" onload="dataLayer.push({'event': 'datalayer_ready', 'page_category1': '{{ .Section }}', 'page_category2': '{{ .Title }}', 'link_url': '{{ $currentPage }}'});">
 
     <!-- Header -->
     {{ partial "header/header" . }}
@@ -38,6 +38,7 @@
 
       <!-- Main content block -->
       <main class="md:col-span-8 xl:max-w-[120ch] xl:text-lg px-4 md:px-8 pt-4 pb-12 print:border-none print:max-w-full xl:print:max-w-full print:text-sm xl:print:text-sm">
+                
         {{- block "main" . }}{{- end }}
       </main>
 

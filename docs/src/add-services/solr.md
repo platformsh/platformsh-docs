@@ -25,8 +25,6 @@ Solr search with generic schemas provided, and a custom schema is also supported
 |------|-------------------------------|------------------------------ |
 |  {{< image-versions image="solr" status="supported" environment="grid" >}} | {{< image-versions image="solr" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="solr" status="supported" environment="dedicated-gen-2" >}} |
 
-{{% image-versions-legacy "solr" %}}
-
 {{% deprecated-versions %}}
 
 | Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
@@ -260,6 +258,15 @@ but you can browse the existing indexes and manipulate the stored data.
 
 For {{% names/dedicated-gen-2 %}} use `ssh -L 8888:localhost:8983 {{< variable "USER" >}}@{{< variable "CLUSTER_NAME" >}}.ent.platform.sh` to open a tunnel instead,
 after which the Solr server administrative interface is available at `http://localhost:8888/solr/`.
+
+## Available plugins
+
+This is the complete list of plugins that are available and loaded by default:
+
+| Plugin                                                                             | Description                                            | 8.11 | 9.x |
+|------------------------------------------------------------------------------------|--------------------------------------------------------|------|-----|
+| [JTS](https://solr.apache.org/guide/8_1/spatial-search.html#jts-and-polygons-flat) | Library for creating and manipulating vector geometry. |*     |*    |
+| [ICU4J](https://solr.apache.org/guide/8_3/language-analysis.html)                  | Library providing Unicode and globalization support.                                                                                                                                      |*     |*    |  
 
 ## Upgrading
 

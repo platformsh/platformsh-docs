@@ -1124,6 +1124,7 @@ grid:
       - ffi
       - geoip
       - gmp
+      - gnupg
       - http
       - igbinary
       - imap
@@ -1132,6 +1133,7 @@ grid:
       - memcached
       - msgpack
       - newrelic
+      - oauth
       - odbc
       - pdo_dblib
       - pdo_odbc
@@ -1145,6 +1147,7 @@ grid:
       - shmop
       - snmp
       - sodium
+      - sourceguardian
       - ssh2
       - sybase
       - tideways

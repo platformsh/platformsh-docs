@@ -48,7 +48,12 @@ platform list
 To get more information on a specific command, preface it with `help`:
 
 ```bash
-$ platform help get
+platform help get
+```
+
+You get output similar to the following:
+
+```bash
 Command: project:get
 Aliases: get
 Description: Clone a project locally
@@ -85,13 +90,20 @@ Examples:
 When you are in an empty directory or a directory not associated with a specific Platform.sh project,
 if you run a command that requires a specific project and environment, you are prompted to select them.
 
+For example, if you run the following command:
+
 ```bash
-$ platform environment:info
+platform environment:info
+```
+
+You get the following output:
+
+```bash
 Enter a number to choose a project:
   [0] My project (xb3pfo734qxbeg)
   [1] A great project (3p5fmol45kxp6)
   [2] An even better project (rjify4y564xaa)
-> 
+>
 ```
 
 If your working directory is inside a local checkout of your project repository,
@@ -102,7 +114,7 @@ You can always specify the project and environment in two ways:
 * As arguments for the command:
 
   ```bash
-  $ platform environment:info --project=my-project --environment=staging
+  platform environment:info --project=my-project --environment=staging
   ```
 * With environment variables:
 
@@ -112,7 +124,7 @@ You can always specify the project and environment in two ways:
   platform environment:info
   ```
 
-In [multi-app](../../create-apps/multi-app.md) projects, this applies also to selecting the right app
+In [multi-app](../../create-apps/multi-app/_index.md) projects, this applies also to selecting the right app
 (the environment variable would be `PLATFORM_APPLICATION_NAME`).
 
 #### RootNotFoundException
@@ -231,7 +243,7 @@ To update to the latest version, use the same tool as for [installation](#1-inst
 title=Homebrew
 highlight=bash
 +++
-$ brew upgrade platformsh-cli
+brew upgrade platformsh-cli
 <--->
 +++
 title=Scoop

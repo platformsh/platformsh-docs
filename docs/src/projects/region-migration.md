@@ -15,21 +15,7 @@ You can also change the project's region after it's created.
   You may want your site close to your users for improved performance.
 - You may want to move to a region with a lower [environmental impact](../development/regions.md#environmental-impact).
 - Some regions are running older versions of the Platform.sh orchestration system that offers fewer features.
-  In particular, the `us` and `eu` regions don't currently offer the following features:
-
-  - [Timeouts in build hooks](../create-apps/hooks/hooks-comparison.md#timeout)
-  - [Outbound firewalls](../create-apps/app-reference.md#firewall)
-  - [Network Storage service](../add-services/network-storage.md)
-  - [Deploy hook activity logs and SSH during deploy hooks](../create-apps/hooks/hooks-comparison.md#deploy-hook)
-  - [Cron activity logs](../increase-observability/logs/access-logs.md)
-  - [Live backups](../environments/backup.md#live-backups)
-  - [Infrastructure metrics](../increase-observability/metrics/_index.md)
-  - [Paused crons](../create-apps/app-reference.md#paused-crons)
-  - [Static content during deployments](https://platform.sh/blog/2022/upcoming-improvements-deployment-caching-crons)
-
-  These regions are updated in the future.
-  If you are on one of those regions and desire these features now,
-  migrate to one of the newer regions.
+  If you are on one of those legacy regions, you can migrate to one of the newer regions.
 
 ## 1. Plan the migration
 
@@ -114,7 +100,7 @@ Just rebuild the data in the new project.
 To download data from persistent services such as databases,
 see how to export and then import data for each service:
 
-- [InfluxDB](../add-services/influxdb.md#exporting-data)
+- [InfluxDB](../add-services/influxdb.md#export-data)
 - [MongoDB](../add-services/mongodb.md#exporting-data)
 - [MariaDB/MySQL](../add-services/mysql/_index.md#exporting-data)
 - [PostgreSQL](../add-services/postgresql.md#exporting-data)

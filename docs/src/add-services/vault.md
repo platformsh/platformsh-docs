@@ -20,8 +20,6 @@ To store secrets such as API keys, create sensitive [environment variables](../d
 |------|-------------------------------|------------------------------ |
 |  {{< image-versions image="vault-kms" status="supported" environment="grid" >}} | {{< image-versions image="vault-kms" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="vault-kms" status="supported" environment="dedicated-gen-2" >}} |
 
-{{% image-versions-legacy "vault-kms" %}}
-
 ## Add Vault
 
 {{% endpoint-description type="vault-kms" noApp=true %}}
@@ -46,7 +44,7 @@ You can create multiple endpoints, such as to have key management separate from 
 
 ## Use Vault KMS
 
-To connect your app to the Vault KMS, use a token that's defined in the `$PLATFORM_RELATIONSHIPS` environment variable.
+To connect your app to the Vault KMS, use a token that's defined in the `PLATFORM_RELATIONSHIPS` environment variable.
 With this token for authentication,
 you can use any of the policies you [defined in your `.platform/services.yaml` file](#1-configure-the-service).
 
@@ -57,7 +55,7 @@ Adapt the examples for your app's language.
 
 ### Get the token
 
-To make any calls to the Vault KMS, you need your token. Get it from the `$PLATFORM_RELATIONSHIPS` environment variable:
+To make any calls to the Vault KMS, you need your token. Get it from the `PLATFORM_RELATIONSHIPS` environment variable:
 
 ```bash
 echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "SERVICE_NAME" >}}[0].password"
@@ -77,7 +75,7 @@ A given token is valid for one year from its creation.
 
 ### Get the right URL
 
-The `$PLATFORM_RELATIONSHIPS` environment variable also contains the information you need to construct a URL for contacting the Vault KMS: the `host` and `port`.
+The `PLATFORM_RELATIONSHIPS` environment variable also contains the information you need to construct a URL for contacting the Vault KMS: the `host` and `port`.
 
 Assign it to a variable as follows:
 

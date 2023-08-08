@@ -1,14 +1,20 @@
 ---
-title: "Options"
+title: "Optional features"
 weight: 4
+description: Add optional features to your {{% names/dedicated-gen-2 %}} project.
 ---
 
-You can enable the following features on your Dedicated Generation 2 projects,
-as well as [multiple applications](../../dedicated-gen-3/options.md#multiple-applications)
-and [multiple availability zones](../../dedicated-gen-3/options.md#multiple-applications).
+You can enable the following features on your {{% names/dedicated-gen-2 %}} projects,
+as well as [multiple availability zones](../../dedicated-gen-3/multiple-az.md).
 
 To enable an optional feature or get more information on potential fees,
 [contact Sales](https://platform.sh/contact/).
+
+## Multiple applications
+
+{{% multi-app-intro %}}
+
+For more information, see how to [configure multiple apps in a single project](../../create-apps/multi-app/_index.md).
 
 ## Staging environments
 

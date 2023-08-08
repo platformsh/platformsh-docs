@@ -61,6 +61,8 @@ To add a project variable, follow these steps:
 {{< /codetabs >}}
 
 When naming variables, be sure to take [variable prefixes](./_index.md#variable-prefixes) into account.
+In particular, to expose a variable as its own environment variable,
+[use the prefix `env:`](../../development/variables/_index.md#top-level-environment-variables).
 
 ### Variable options
 
@@ -130,6 +132,8 @@ To add a project variable, follow these steps:
 {{< /codetabs >}}
 
 When naming variables, be sure to take [variable prefixes](./_index.md#variable-prefixes) into account.
+In particular, to expose a variable as its own environment variable,
+[use the prefix `env:`](../../development/variables/_index.md#top-level-environment-variables).
 
 ### Environment variable options
 
@@ -250,7 +254,7 @@ export APP_DATABASE_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -
 export APP_DATABASE_USER=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].username")
 ```
 
-This sets environment variables with names your app needs and the values from `$PLATFORM_RELATIONSHIPS`.
+This sets environment variables with names your app needs and the values from `PLATFORM_RELATIONSHIPS`.
 
 ## Use `.env` files
 

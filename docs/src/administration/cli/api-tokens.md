@@ -72,7 +72,7 @@ title=In the Console
 To check that your API token is valid, run the following command:
 
 ```bash
-$ platform auth:api-token-login
+platform auth:api-token-login
 ```
 
 When prompted, enter your API token.
@@ -195,7 +195,7 @@ In this case, to ensure all your commands work, load the CLI SSH certificate fir
 To do so, run the following command:
 
 ```bash
-$ platform ssh-cert:load --no-interaction
+platform ssh-cert:load --no-interaction
 ```
 
 

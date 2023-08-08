@@ -19,22 +19,27 @@
 To define the service, use {{ if eq ($type) "mariadb" }}
   the `{{ $type }}` or `mysql` type for MariaDB or the `oracle-mysql` type for Oracle MySQL
   {{ else if eq $type "redis" }}
-  the `{{ $type }}` type for ephemeral Redis
+  the `{{ $type }}` type for persistent Redis
   {{ else }}
   the `{{ $type }}` type{{ end }}:
 
 <!-- Create an example services.yaml file from data in the registry. -->
 {{ partial "examples/servicedefn" $data }}
 
-{{ if eq $type "redis" }}
-Alternatively, use the `redis-persistent` type for persistent Redis:
+{{ if eq $type "redis-persistent" }}
+Note that persistent Redis requires `disk` to store data.
+For more information, refer to the [dedicated Redis page](/add-services/redis.md).
 
-  {{ $redis_data := index .Site.Data.registry "redis-persistent" }}
+If want to use ephemeral Redis instead, use the `redis` type:
+
+  {{ $redis_data := index .Site.Data.registry "redis" }}
   {{ partial "examples/servicedefn" $redis_data }}
 
-Persistent Redis requires a disk to store data.
 {{ else if eq $type "network-storage" }}
 You can define `<SERVICE_NAME>` as you like, but it shouldn't include underscores (`_`).
+{{ else if eq $type "elasticsearch" }}
+If you're using a [premium version](add-services/elasticsearch.md#supported-versions),
+use the `elasticsearch-enterprise` type instead.
 {{ end }}
 
 Note that changing the name of the service replaces it with a brand new service
@@ -71,6 +76,9 @@ You can define `<SERVICE_NAME>` and `<RELATIONSHIP_NAME>` as you like, but it's 
   {{ end }}
   {{ if eq $type "postgresql" }}
    {{ $extension_name = "pdo_pgsql" }}
+  {{ end }}
+  {{ if eq $type "redis-persistent" }}
+   {{ $extension_name = "redis" }}
   {{ end }}
 For PHP, enable the [extension](/languages/php/extensions.html) for the service:
 
@@ -124,6 +132,11 @@ mounts:
 
 {{ partial "examples/config_links" ( dict "type" $type "onlyLanguage" $onlyLanguage ) }}
 
+{{ if eq ($type) "elasticsearch" }}
+If you're using a [premium version](add-services/elasticsearch.md#supported-versions),
+use the `elasticsearch-enterprise` type in the service definition.
+{{ end }}
+
 <!-- Turn this section off for ones in Guides that continue differently-->
 {{ if not (.Get "noApp" )}}
 ### Use in app
@@ -131,6 +144,6 @@ mounts:
 <!-- Don't add use in app intro to Headless Chrome, which has different content -->
 {{ if ne ($type) "chrome-headless" }}
 To use the configured service in your app,
-add a configuration file similar to the following to your project:
+add a configuration file similar to the following to your project.
 {{ end }}
 {{ end }}

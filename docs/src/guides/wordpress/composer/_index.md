@@ -33,13 +33,13 @@ Through Composer you can add and update dependencies to your project, and then l
 Through Composer, themes and modules are then treated the same as any other PHP dependency. You can, for example, add the [Neve](https://wordpress.org/themes/neve/) theme to your project by using `composer require`
 
 ```bash
-$ composer require wpackagist-theme/neve
+composer require wpackagist-theme/neve
 ```
 
 or add the [cache-control](https://wordpress.org/plugins/cache-control-by-cacholong/) plugin:
 
 ```bash
-$ composer require wpackagist-plugin/cache-control
+composer require wpackagist-plugin/cache-control
 ```
 
 These commands will add the packages to your `composer.json` file, and then lock the exact version to `composer.lock`. Just push those updates to your project on Platform.sh, and enable them through the administration panel as you would normally. 
@@ -48,14 +48,15 @@ These commands will add the packages to your `composer.json` file, and then lock
 Typically, Composer dependencies install to a `vendor` directory in the project root, but themes and plugins need to install to `wp-content` instead. There is an `installer-paths` attribute that is added to `composer.json` to accomplish this, which is explained in more detail in the [How to Deploy WordPress on Platform.sh](/guides/wordpress/deploy/_index.md) guide (which uses Composer from the start), as well as the [How to update your WordPress site to use Composer](/guides/wordpress/composer/migrate.md) guide. 
 {{< /note >}}
 
+For more information, see the following Platform.sh community post: [How to install custom/private WordPress plugins and themes with Composer](https://community.platform.sh/t/how-to-install-custom-private-wordpress-plugins-and-themes-with-composer/622).
 
 ### Installing WordPress core with Composer
 
 In the same way, using Composer makes it unnecessary for you to commit all of WordPress to your repository, since you can add it as a dependency. There are several ways to do this (i.e. [Bedrock](https://github.com/platformsh-templates/wordpress-bedrock)) depending on how many assumptions you want to be made for your configuration and project structure. The simplest one uses the [John Bloch Composer fork](https://github.com/johnpbloch/wordpress) to add an installer to your builds for WordPress:
 
 ```bash
-$ composer require johnpbloch/wordpress-core-installer
-$ composer require johnpbloch/wordpress-core
+composer require johnpbloch/wordpress-core-installer
+composer require johnpbloch/wordpress-core
 ```
 
 ### Updates
@@ -63,7 +64,7 @@ $ composer require johnpbloch/wordpress-core
 Now that WordPress core, your themes and your plugins have been added as dependencies with Composer, updates become easier. 
 
 ```bash
-$ composer update
+composer update
 ```
 
 This command will update everything in your project locally, after which you can push to Platform.sh on a new environment. After you are satisfied with the changes merge into your production site. 

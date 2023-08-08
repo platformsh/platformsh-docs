@@ -8,7 +8,7 @@ description: See all of the options for controlling your apps and how they're bu
 
 For single-app projects, the configuration is all done in a `.platform.app.yaml` file,
 usually located at the root of your app folder in your Git repository.
-[Multi-app projects](./multi-app.md) can be set up in various ways.
+[Multi-app projects](./multi-app/_index.md) can be set up in various ways.
 
 See a [comprehensive example](./_index.md#comprehensive-example) of a configuration in a `.platform.app.yaml` file.
 For reference, see a [log of changes to app configuration](./upgrading.md).
@@ -45,7 +45,7 @@ To override any part of a property, you have to provide the entire property.
 
 Some of the properties you can define are relative to your app's root directory.
 The root defaults to the location of your `.platform.app.yaml` file.
-To specify another directory, for example for a [multi-app project](./multi-app.md)),
+To specify another directory, for example for a [multi-app project](./multi-app/_index.md)),
 use the [`source.root` property](#source).
 
 ## Types
@@ -435,8 +435,6 @@ firewall:
         - ips: ["0.0.0.0/0"]
 ```
 
-{{% legacy-regions featureIntro="An outbound firewall" featureShort="a firewall" level=3 %}}
-
 ### Support for rules
 
 Where outbound rules for firewalls are supported in all environments.
@@ -553,9 +551,8 @@ dependencies:
     php: # Specify one Composer package per line.
         drush/drush: '8.0.0'
         composer/composer: '^2'
-    python: # Specify one Python 2 package per line.
-        behave: '*'
     python2: # Specify one Python 2 package per line.
+        behave: '*'
         requests: '*'
     python3: # Specify one Python 3 package per line.
         numpy: '*'
@@ -706,10 +703,41 @@ highlight=yaml
 +++
 
 crons:
+    # Execute a rake script every 19 minutes.  
     ruby:
         spec: '*/19 * * * *'
         commands:
             start: 'bundle exec rake some:task'
+
+<--->
+
++++
+title=Laravel
+highlight=yaml
++++
+
+crons:
+    # Run Laravel's scheduler every 5 minutes, which is as often as crons can run on Professional plans.
+    scheduler:
+        spec: '*/5 * * * *'
+        cmd: 'php artisan schedule:run'
+
+<--->
+
++++
+title=Symfony
+highlight=yaml
++++
+
+crons:
+    # Take a backup of the environment every day at 5:00 AM.
+    snapshot:
+        spec: 0 5 * * *
+        cmd: |
+            # Only run for the production environment, aka main branch
+            if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
+                croncape symfony ...
+            fi
 
 {{< /codetabs >}}
 <!-- vale on -->
@@ -769,8 +797,6 @@ If there haven't been any deployments within 14 days, the status is `paused`.
 
 You can see the status in the Console
 or using the CLI by running `platform environment:info` and looking under `deployment_state`.
-
-{{% legacy-regions featureIntro="Paused crons" featureShort="paused crons" plural=true level=4 %}}
 
 #### Restarting paused crons
 
@@ -861,7 +887,7 @@ The following table shows the properties that can be set in `source`:
 | Name         | Type                     | Required | Description |
 | ------------ | ------------------------ | -------- | ----------- |
 | `operations` | An operations dictionary |          |  Operations that can be applied to the source code. See [source operations](./source-operations.md) |
-| `root`       | `string`                 |          |  The path where the app code lives. Defaults to the directory of the `.platform.app.yaml` file. Useful for [multi-app setups](./multi-app.md). |
+| `root`       | `string`                 |          |  The path where the app code lives. Defaults to the directory of the `.platform.app.yaml` file. Useful for [multi-app setups](./multi-app/_index.md). |
 
 ## Additional hosts
 

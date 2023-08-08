@@ -177,3 +177,14 @@ Agencies have access to several partner levels with many perks.
 [Learn more and join today](https://platform.sh/solutions/digital-agencies/).
 
 If you have any questions, don't hesitate to [contact Sales](https://platform.sh/contact/).
+
+## Sponsored sites
+
+Platform.sh provides sponsored hosting for Free Software projects, tech community events and organizations as part of our effort to support the Free Software community. 
+That offering can include either a project on Platform.sh, or profilable environments through Blackfire.io, depending on the needs of the project. 
+
+<div align="center">
+
+{{< get-started/next-button next="https://platform.sh/community/open-source/apply/" nextText="Apply" >}}
+
+</div>

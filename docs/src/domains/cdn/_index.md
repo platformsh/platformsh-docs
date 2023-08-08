@@ -62,6 +62,19 @@ To disable it, change your cache configuration for the routes behind a CDN to th
        enabled: false
 ```
 
+## Configure your CDN to support high SLA
+
+{{< premium-features/tiered "Enterprise and Elite" >}}
+
+If your plan includes high SLA, configure your CDN so that Platform.sh can perform automated monitoring using NodePing.
+To do so, [add all NodePing IP addresses](https://nodeping.com/faq.html#ip-addresses) to your CDN's allowlist.
+
+If you want Platform.sh to limit checks to one or more of the following regions, [contact Support](../../overview/get-support.md):
+
+- North America
+- Europe
+- East Asia / Oceania
+
 ## Prevent direct access to your Platform.sh server
 
 When you use a CDN, you might want to prevent direct access to your Platform.sh server for security purposes.

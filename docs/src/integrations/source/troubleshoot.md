@@ -12,7 +12,7 @@ they can't clone the project locally.
 That user might try to clone the repository using the CLI with the following command:
 
 ```bash
-$ platform get <projectID>
+platform get {{< variable "PROJECT_ID" >}}
 ```
 
 In this case, the user gets an error similar to the following:
