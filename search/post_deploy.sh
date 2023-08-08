@@ -2,7 +2,8 @@
 
 cleanup(){
     echo "* CLEANING UP OLD DOCS INDEX"
-    rm -f output/docs.json
+    rm -f output/platform_docs.json
+    rm -f output/friday_docs.json
 }
 
 getDocsData() {
@@ -16,7 +17,7 @@ getDocsData() {
 
     # Get the updated index for docs
     curl -s "${PLATFORM_DOCS_URL}index.json" >> data/platform_index.json
-    curl -s "${FRIDAY_DOCS_UR}index.json" >> data/friday_index.json
+    curl -s "${FRIDAY_DOCS_URL}index.json" >> data/friday_index.json
 
     # Delete templates index in the mount if it exists
     rm -f data/platform_templates.yaml
@@ -24,7 +25,9 @@ getDocsData() {
 
     # Get the updated index for templates
     curl -s "${PLATFORM_DOCS_URL}files/indexes/templates.yaml" >> data/platform_templates.yaml
-    curl -s "${FRIDAY_DOCS_URL}files/indexes/templates.yaml" >> data/friday_templates.yaml
+
+    # @todo: For now, reuse the same index. To be removed entirely.
+    cp data/platform_templates.yaml data/friday_templates.yaml
 }
 
 update_index(){
@@ -42,14 +45,15 @@ set -e
 
 cleanup 
 
-POETRY_LOCATION=/app/.local/bin/poetry
+poetry=/app/.local/bin/poetry
 
-if [ -z ${PLATFORM_APP_DIR+x} ]; then 
-    echo "Using local poetry."
+# if [ -z ${PLATFORM_APP_DIR+x} ]; then 
+#     echo "Using local poetry."
 
-    POETRY_LOCATION=poetry
-else 
-    getDocsData
-fi
+#     POETRY_LOCATION=poetry
+# else 
+#     getDocsData
+# fi
 
+getDocsData
 update_index
