@@ -11,15 +11,15 @@ config = Config()
 
 # Handle documentation/templates index source locations on Platform.sh and locally. 
 if config.is_valid_platform():
-    template_data = "data/templates.yaml"
-    docs_data = "data/index.json"
+    template_data = "data/{0}_templates.yaml".format(docs_index)
+    docs_data = "data/{0}_index.json".format(docs_index)
 else:
     template_data = "../docs/data/templates.yaml"
-    docs_data = "../docs/public/index.json"
+    docs_data = "../sites/{0}/public/index.json".format(docs_index)
 
 # Save the modified indexes to scrapy's output location so they can all be added together. 
-final_templates_location = "output/templates.json"
-final_docs_location = "output/docs.json"
+final_templates_location = "output/{0}_templates.json".format(docs_index)
+final_docs_location = "output/{0}_docs.json".format(docs_index)
 
 with open(template_data, 'r') as stream:
     # The Templates index was originally written to create our accordians within the docs. Building the search app it was a good 

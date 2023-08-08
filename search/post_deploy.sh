@@ -34,7 +34,8 @@ update_index(){
     $POETRY_LOCATION run python createPrimaryIndex.py friday
 
     # Update indexes
-    $POETRY_LOCATION run python main.py
+    $POETRY_LOCATION run python main.py platform
+    $POETRY_LOCATION run python main.py friday
 }
 
 set -e

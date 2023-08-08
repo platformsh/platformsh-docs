@@ -2,7 +2,9 @@
 
 cleanup(){
     echo "* CLEANING UP OLD DOCS INDEX"
-    rm -f output/docs.json
+    rm -f output/platform_index.json
+    rm -f output/friday_index.json
+
 }
 
 scrape(){
@@ -23,7 +25,8 @@ scrape(){
 update_index(){
     echo "* UPDATING INDEX"
     # Update indexes
-    poetry run python main.py
+    poetry run python main.py platform
+    poetry run python main.py friday
 }
 
 scrape

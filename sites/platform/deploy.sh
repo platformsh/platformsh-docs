@@ -4,7 +4,7 @@
 MEILI_CONFIG_DEST=public/scripts/xss/dist/config/config.json
 
 # The index won't be built until the post_deploy hook, so we hardcode it here.
-MEILI_INDEX="docs"
+MEILI_INDEX="platform_docs"
 
 createSearchConfig() {
     # Use the shared PLATFORM_PROJECT_ENTROPY var as MEILI_MASTER_KEY to retrieve the public key for our autocomplete app.
