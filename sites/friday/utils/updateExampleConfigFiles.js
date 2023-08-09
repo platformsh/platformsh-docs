@@ -4,7 +4,7 @@ const psh = require("pshregistry-parser");
 
 
 const registrySource = "../../shared/data/registry.json";
-const save_dir = "content/registry/images/"
+const save_dir = "src/registry/images/"
 
 const registry = new psh.RegistryParser(registrySource, saveDir=save_dir);
 
