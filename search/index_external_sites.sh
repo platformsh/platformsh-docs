@@ -24,10 +24,13 @@ scrape(){
 
 update_index(){
     echo "* UPDATING INDEX"
+    POETRY_LOCATION=/app/.local/bin/poetry
     # Update indexes
-    poetry run python main.py platform
-    poetry run python main.py friday
+    $POETRY_LOCATION run python createPrimaryIndex.py platform
+    $POETRY_LOCATION run python createPrimaryIndex.py friday
+    $POETRY_LOCATION run python main.py platform
+    $POETRY_LOCATION run python main.py friday
 }
 
-scrape
+# scrape
 update_index
