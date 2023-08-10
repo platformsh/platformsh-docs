@@ -32,11 +32,12 @@ This adds your domain to the [Platform.sh implementation of the Public Suffix Li
 
 After you add your subdomains, remove the `TXT` record to reinstate [subdomain hijacking protection](#subdomain-hijacking-protection).
 This ensures no other users can possibly add a subdomain of your domain to their project.
+
 Even if you don’t remove the record, your DNS records should prevent others from using a subdomain
 as long as you don’t use wildcards records pointing at Platform.sh.
 
-However, removing the `TXT` record also lifts restrictions on the apex domain.
-For example, you can only add the apex domain to another project after you remove the `TXT` record.
+However, if you don't remove the `TXT` record, restrictions apply on the apex domain.
+For example, you can't add the apex domain to another project until you remove the `TXT` record.
 
 ## Bypass locked domains
 
