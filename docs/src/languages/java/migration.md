@@ -90,7 +90,7 @@ You have the option to use several languages in microservices. If you're using J
 * [Gradle Multi-project](https://guides.gradle.org/creating-multi-project-builds/)
 * [Git submodules](/development/submodules.md)
 
-[Platform.sh supports multiple applications](../../create-apps/multi-app.md) and there are two options:
+[Platform.sh supports multiple applications](../../create-apps/multi-app/_index.md) and there are two options:
 
 * One application YAML file to each application
 * Aggregate all applications in a single file with an `applications.yaml` file

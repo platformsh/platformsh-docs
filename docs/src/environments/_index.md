@@ -6,7 +6,7 @@ sidebarTitle: Manage environments
 description: Learn what environments on Platform.sh are and how to take advantage of them.
 ---
 
-A Platform.sh environment contains one instance of an app (or [group of apps](../create-apps/multi-app.md))
+A Platform.sh environment contains one instance of an app (or [group of apps](../create-apps/multi-app/_index.md))
 with all the services needed for it to run.
 
 Each project can include multiple environments,
@@ -106,8 +106,8 @@ You can use child environments for development, staging, and testing.
 
 ### Workflows
 
-Since you can customize your [environment hierarchy](#hierarchy), you can create your own workflows. 
-You can decide which structure best fits your needs. 
+Since you can customize your [environment hierarchy](#hierarchy), you can create your own workflows.
+You can decide which structure best fits your needs.
 
 #### Possible approaches
 

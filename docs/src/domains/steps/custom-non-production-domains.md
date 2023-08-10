@@ -64,7 +64,7 @@ You need:
   For more information, contact [Support](https://console.platform.sh/-/users/~/tickets/open).   
 - A production environment with at least one custom domain already set up
 - At least one non-production (staging or development) environment
-- The [Platform.sh CLI](../../administration/cli/_index.md) (v4.3.0+) <BR>
+- The [Platform.sh CLI](../../administration/cli/_index.md) (v4.8.0+) <BR>
   In the current Beta version, you can only add and manage non-production custom domains
   through the [Platform.sh CLI](../../administration/cli/_index.md).
   In future versions, you'll be able to do so in the [Platform.sh Console](../../administration/web/_index.md) too.
@@ -129,7 +129,7 @@ title=In the Console
 3. Run a command similar to the following:
 
    ```bash
-   platform domain:add staging.example.com --environment {{< variable "STAGING_ENVIRONMENT_ID" >}} --replace {{< variable "PRODUCTION_CUSTOM_DOMAIN_TO_REPLACE" >}}
+   platform domain:add staging.example.com --environment {{< variable "STAGING_ENVIRONMENT_ID" >}} --attach {{< variable "PRODUCTION_CUSTOM_DOMAIN_TO_ATTACH" >}}
    ```
 
    {{< note title="Example" >}}
@@ -140,7 +140,7 @@ title=In the Console
    To do so, run the following command:
 
    ```bash
-   platform domain:add mydev.com --environment Dev --replace mysite.com
+   platform domain:add mydev.com --environment Dev --attach mysite.com
    ```
 
    {{< /note >}}

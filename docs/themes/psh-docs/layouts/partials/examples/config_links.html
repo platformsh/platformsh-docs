@@ -7,6 +7,9 @@
   {{ if eq .type "mongodb-enterprise" }}
     {{ $extension_name = "mongodb" }}
   {{ end }}
+  {{ if eq (.type) "redis-persistent" }}
+   {{ $extension_name = "redis" }}
+  {{ end }}
   {{ if eq (.type) "postgresql" }}
    {{ $extension_name = "pdo_pgsql" }}
   {{ end }}

@@ -1,7 +1,7 @@
 ---
 title: Serve static sites
-sidebarTitle: Static site
-description: Serve completely static sites like in this example.
+sidebarTitle: Static sites
+description: Serve completely static sites 
 ---
 
 Static site generators are a popular way to create fast sites.
@@ -11,46 +11,47 @@ As an example, this documentation is built using a tool called Hugo and served b
 You can see the [entire repository on GitHub](https://github.com/platformsh/platformsh-docs),
 including its [app configuration](https://github.com/platformsh/platformsh-docs/blob/main/docs/.platform.app.yaml).
 
-The following example goes through setting up Platform.sh for a basic static site [web server](../app-reference.md#web).
+To learn how to serve your static site using Platform.sh,
+you can start with the required [minimal app configuration](#minimal-app-configuration) and build on it,
+or jump straight to an [example of a complete configuration](#complete-example-configuration).
 
-## Define the location of the static files
+## Minimal app configuration
 
-Most of the time, your static site generator outputs built static files to a specific directory.
-It might default to something like `build` or `public`, though you can usually set it as you like.
-
-Start by defining this location as the root for your static site.
-
-```yaml {location=".platform.app.yaml"}
-web:
-    locations:
-        '/':
-            root: 'public'
-```
-
-This means the `public` directory is treated as the root of your website.
-So a request to `https://example.com/example.png` looks for `/public/example.png` in your code.
-
-## Define the starting place
-
-You want to define where requests to the root domain are sent.
-Do this by defining the index page for your site.
+To successfully serve a static site using Platform.sh,
+you need to set up a minimal app configuration similar to the following:
 
 ```yaml {location=".platform.app.yaml"}
-web:
+app:
+  # The type of the application to build.
+  type: "nodejs:18"
+
+  # The web key configures the web server running in front of your app.
+  web:
     locations:
-        '/':
-            ...
-            index: ['index.html']
+      /: 
+        # Static site generators usually output built static files to a specific directory.
+        # Define this directory (must be an actual directory inside the root directory of your app)
+        # as the root for your static site.
+        root: "public"
+        # Files to consider when serving a request for a directory.
+        index:
+          - index.html
 ```
 
-This defines what file is served when any directory is requested.
-So a request for `https://example.com/example/` looks for `https://example.com/example/index.html`.
+See more information on the required minimal settings:
+- [Top-level properties](../app-reference.md#top-level-properties).
+- [`web` property](../app-reference.md#web).
+- [`locations` properties](../app-reference.md#locations).
 
-## Allow static but not dynamic files
+## Add more features
 
-For static sites, you want only scripts that are run client side (JavaScript)
-and not scripts on the server (PHP, Python, and so on).
-So prevent server-side scripts but still enable files that don't match a specific rule.
+### Allow static files but not dynamic files on PHP containers
+
+If you have a PHP container,
+you might want to enable client-side scripts but disable server-side scripts.
+
+To enable static files that don't match any rule while disabling server-side scripts on a PHP container,
+use the following configuration:
 
 ```yaml {location=".platform.app.yaml"}
 web:
@@ -61,13 +62,15 @@ web:
             allow: true
 ```
 
-## Create cache rules
+See more information on [`locations` properties](../app-reference.md#locations).
 
-You want to create sensible rules for caching requests for your static files.
-For example, you may be publishing new content regularly but not updating images or site files much.
+### Create cache rules
 
-In that case, you might want to cache the text files for a day
-but all image files for a longer time for better performance.
+You can create sensible cache rules to improve performance.
+For example, if you publish new content regularly without updating images or site files much,
+you might want to cache text files for a day but all image files for longer.
+
+To do so, use a configuration similar to the following:
 
 ```yaml {location=".platform.app.yaml"}
 web:
@@ -80,10 +83,11 @@ web:
                     expires: 4w
 ```
 
-## Conserve the server
+### Conserve the server
 
 Because your site is completely static, it doesn't need the server to be running.
-Set a background process that blocks the server and conserves resources:
+To set a background process that blocks the server and conserves resources,
+use the following configuration:
 
 ```yaml {location=".platform.app.yaml"}
 web:
@@ -94,7 +98,7 @@ web:
 You can also use this place to start small programs,
 such as a [script to handle 404 errors](https://community.platform.sh/t/custom-404-page-for-a-static-website/637).
 
-## Complete example
+## Complete example configuration
 
 ```yaml {location=".platform.app.yaml"}
 name: app

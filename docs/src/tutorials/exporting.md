@@ -75,7 +75,7 @@ For services designed to hold persistent data, see each service's page for instr
 - [MySQL](../add-services/mysql/_index.md#exporting-data)
 - [PostgreSQL](../add-services/postgresql.md#exporting-data)
 - [MongoDB](../add-services/mongodb.md#exporting-data)
-- [InfluxDB](../add-services/influxdb.md#exporting-data)
+- [InfluxDB](../add-services/influxdb.md#export-data)
 
 ## 4. Get environment variables
 

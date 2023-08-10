@@ -14,7 +14,7 @@ To enable an optional feature or get more information on potential fees,
 
 {{% multi-app-intro %}}
 
-For more information, see how to [configure multiple apps in a single project](../../create-apps/multi-app.md).
+For more information, see how to [configure multiple apps in a single project](../../create-apps/multi-app/_index.md).
 
 ## Staging environments
 
