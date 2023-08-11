@@ -1,0 +1,6 @@
+<svg viewBox="0 0 250 40" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+    <defs>
+        <style bx:fonts="Overpass">@import url(https://fonts.googleapis.com/css2?family=Overpass%3Aital%2Cwght%400%2C100%3B0%2C200%3B0%2C300%3B0%2C400%3B0%2C500%3B0%2C600%3B0%2C700%3B0%2C800%3B0%2C900%3B1%2C100%3B1%2C200%3B1%2C300%3B1%2C400%3B1%2C500%3B1%2C600%3B1%2C700%3B1%2C800%3B1%2C900&amp;display=swap);</style>
+    </defs>
+    <text style="fill: #FFFFFF; font-family: Overpass; font-size: 31px; font-weight: 700; letter-spacing: 1.6px; white-space: pre;" x="19.167" y="30.091">deploy friday</text>
+</svg>
