@@ -1,8 +1,12 @@
 ---
-title: Multiple availability zones
+title: Optional features
 weight: 4
-description: You can add multiple availability zones as an option on your {{% names/dedicated-gen-3 %}} project.
+description: Optional features are available on your {{% names/dedicated-gen-3 %}} project.
 ---
+
+{{% description %}}
+
+## Multiple availability zones
 
 The default configuration for Dedicated clusters is to launch them into a single availability zone (AZ)
 for the following reasons:
@@ -24,3 +28,12 @@ Platform.sh is responsible for meeting the 99.99% uptime SLA no matter what,
 so multiple-AZ deployments should only be considered in cases where they're truly appropriate.
 
 Multi-AZ deployments are available only on select AWS regions.
+
+## SFTP accounts
+
+In addition to SSH accounts, SFTP accounts can be created with a custom user/password that are restricted to certain directories. 
+These directories must be one of the writeable [mounts](../../create-apps/app-reference.md#mounts)
+(or rather, there’s no point assigning them to the read-only code directory).
+
+There is no cost for this configuration, and it can be requested at any time via a [support ticket](https://console.platform.sh/-/users/~/tickets). 
+SSH public key based authentication is also supported on the SFTP account.
