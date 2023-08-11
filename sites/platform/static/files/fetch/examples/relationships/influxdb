@@ -1,0 +1,11 @@
+{
+    "service": "influxdb18",
+    "ip": "169.254.244.110",
+    "hostname": "duqbjfn7t4dwr2fi2o7bsvqafy.influxdb18.service._.eu-3.platformsh.site",
+    "cluster": "rjify4yjcwxaa-master-7rqtwti",
+    "host": "influxdb.internal",
+    "rel": "influxdb",
+    "scheme": "http",
+    "type": "influxdb:1.8",
+    "port": 8086
+}

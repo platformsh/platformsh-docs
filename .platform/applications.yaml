@@ -1,0 +1,126 @@
+- # The name of this application, which must be unique within a project.
+    name: 'docs'
+
+    # The type key specifies the language and version for your application.
+    type: 'nodejs:16'
+
+    # Specify the Hugo version as an env variable.
+    variables:
+        env:
+            HUGOVERSION: 0.116.0
+            SITE_DIR: 'sites/platform'
+
+    build:
+        flavor: none
+
+    source:
+        root: "/"
+
+    relationships:
+        search: "search:http"
+        database: "db:mysql"
+
+    # The hooks that will be triggered when the package is deployed.
+    hooks:
+        # Build hooks can modify the application files on disk but not access any services like databases.
+        build: |
+            set -e
+            cd $SITE_DIR
+            cp ../../themes/psh-docs/postcss.config.js .
+            npm install
+            npm run build
+            ./build_docs.sh
+            npm run build:assets
+        deploy: |
+            cd $SITE_DIR
+            ./deploy.sh
+
+    # The configuration of the application when it is exposed to the web.
+    web:
+        commands:
+        # Run (404) error and feedback handler
+            start: cd $SITE_DIR && node index.js
+        locations:
+            '/':
+                # The public directory of the application relative to its root.
+                root: 'sites/platform/public'
+                passthru: true
+                index: ['index.html']
+                scripts: false
+                allow: true
+                expires: 24h
+                rules:
+                    \.(css|js|gif|jpe?g|png|ttf|eot|woff2?|otf|cast|mp4|json|yaml|ico|svg?|cast|mp4|json|yaml|svg?|ttf)$:
+                        expires: 4w
+
+    disk: 1024
+
+    mounts:
+        "sites/platform/public/scripts/xss/dist/config":
+            source: local
+            source_path: "sites/platform/config"
+
+    size: S
+
+- # The name of this application, which must be unique within a project.
+    name: 'friday'
+
+    # The type key specifies the language and version for your application.
+    type: 'nodejs:16'
+
+    # Specify the Hugo version as an env variable.
+    variables:
+        env:
+            HUGOVERSION: 0.116.0
+            SITE_DIR: 'sites/friday'
+
+    build:
+        flavor: none
+
+    source:
+        root: "/"
+
+    relationships:
+        search: "search:http"
+        database: "db:mysql"
+
+    # The hooks that will be triggered when the package is deployed.
+    hooks:
+        # Build hooks can modify the application files on disk but not access any services like databases.
+        build: |
+            cd $SITE_DIR
+            cp ../../themes/psh-docs/postcss.config.js .
+            npm install
+            npm run build
+            ./build_docs.sh
+            npm run build:assets
+        deploy: |
+            cd $SITE_DIR
+            ./deploy.sh
+
+    # The configuration of the application when it is exposed to the web.
+    web:
+        commands:
+        # Run (404) error and feedback handler
+            start: cd $SITE_DIR && node index.js
+        locations:
+            '/':
+                # The public directory of the application relative to its root.
+                root: 'sites/friday/public'
+                passthru: true
+                index: ['index.html']
+                scripts: false
+                allow: true
+                expires: 24h
+                rules:
+                    \.(css|js|gif|jpe?g|png|ttf|eot|woff2?|otf|cast|mp4|json|yaml|ico|svg?|cast|mp4|json|yaml|svg?|ttf)$:
+                        expires: 4w
+
+    disk: 1024
+
+    mounts:
+        "sites/friday/public/scripts/xss/dist/config":
+            source: local
+            source_path: "sites/friday/config"
+
+    size: S

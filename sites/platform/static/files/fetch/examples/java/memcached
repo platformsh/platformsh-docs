@@ -1,0 +1,40 @@
+package sh.platform.languages.sample;
+
+import net.spy.memcached.MemcachedClient;
+import sh.platform.config.Config;
+
+import java.util.function.Supplier;
+
+import sh.platform.config.Memcached;
+
+public class MemcachedSample implements Supplier<String> {
+
+    @Override
+    public String get() {
+        StringBuilder logger = new StringBuilder();
+
+        // Create a new config object to ease reading the Platform.sh environment variables.
+        // You can alternatively use getenv() yourself.
+        Config config = new Config();
+
+        // Get the credentials to connect to the Memcached service.
+        Memcached memcached = config.getCredential("memcached", Memcached::new);
+
+        final MemcachedClient client = memcached.get();
+
+        String key = "cloud";
+        String value = "platformsh";
+
+        // Set a value.
+        client.set(key, 0, value);
+
+        // Read it back.
+        Object test = client.get(key);
+
+        logger.append("<p>");
+        logger.append(String.format("Found value <code>%s</code> for key <code>%s</code>.", test, key));
+        logger.append("</p>");
+
+        return logger.toString();
+    }
+}
