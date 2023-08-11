@@ -30,10 +30,14 @@ _public-suffix-root.{{<variable "YOUR_APEX_DOMAIN" >}} TXT "public-suffix-root={
 
 This adds your domain to the [Platform.sh implementation of the Public Suffix List](#why-this-is-necessary).
 
-After you add your subdomains, you can remove the record to reinstate [subdomain hijacking protection](#subdomain-hijacking-protection).
+After you add your subdomains, remove the `TXT` record to reinstate [subdomain hijacking protection](#subdomain-hijacking-protection).
 This ensures no other users can possibly add a subdomain of your domain to their project.
-Even if you don't remove the record, your DNS records should prevent others from using a subdomain
-as long as you don't use wildcards records pointing at Platform.sh.
+
+Even if you don’t remove the record, your DNS records should prevent others from using a subdomain
+as long as you don’t use wildcards records pointing at Platform.sh.
+
+However, if you don't remove the `TXT` record, restrictions apply on the apex domain.
+For example, you can't add the apex domain to another project until you remove the `TXT` record.
 
 ## Bypass locked domains
 
