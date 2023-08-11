@@ -1,32 +1,36 @@
 ---
 title: "Platform.sh"
 description: |
-  Migrate your project from Platform.sh to Upsun has an easy path. Let's dig into it!
+  Migrate your project from Platform.sh to {{< vendor/name >}} has an easy path. Let's dig into it!
 ---
 
-Starting from an existing Platform.sh project, adapting your project Yaml configuration to host it on Upsun is really easy to do.
+Starting from an existing Platform.sh project, adapting your project Yaml configuration to host it on {{< vendor/name >}} is really easy to do.
 This is the few steps to perform a successful migration.
 
 ## Create a Git branch
-To avoid mixing existing Platform.sh source code and your new Upsun source code, we need to create a new Git branch.
+
+To avoid mixing existing Platform.sh source code and your new {{< vendor/name >}} source code, we need to create a new Git branch.
 
 From the root of your Platform.sh project, execute the following:
 
 ```shell
-$ git checkout -b upsun-main
+git checkout -b {{< vendor/cli >}}-main
 ```
 
-## Create a new Upsun project
-To create a new Upsun project, use the CLI and follow the prompt:
+## Create a new {{< vendor/name >}} project
+
+To create a new {{< vendor/name >}} project, use the CLI and follow the prompt:
+
 ```
-$ upsun project:create --default-branch=upsun-main
+{{< vendor/cli >}} project:create --default-branch={{< vendor/cli >}}-main
 ```
 
-At the end of this process, your new project is created and your local source code is now linked with your new Upsun project.
+At the end of this process, your new project is created and your local source code is now linked with your new {{< vendor/name >}} project.
 
 ## General changes
-The main technical difference between Platform.sh and Upsun remains in the Yaml configuration.
-There are a lot of improvements in the Upsun Yaml config files.
+
+The main technical difference between Platform.sh and {{< vendor/name >}} remains in the Yaml configuration.
+There are a lot of improvements in the {{< vendor/name >}} Yaml config files.
 
 This is the main rules (non-exhaustive list) that you have to keep in mind:
 - All of the Yaml configuration files are now located in the `.platform/` folder only, no more `.platform.app.yaml` files at the root of your application source code
@@ -46,18 +50,18 @@ This is the main rules (non-exhaustive list) that you have to keep in mind:
     ```
     This will help debugging long config files having a lot of applications (multi-app) as the app name key will be part of the XPath, and so, it will ease developer journey finding where they are modifying settings:
 - Yaml keys inside an app do not change, except a removal of keys to manage container resources: `size`, `disk` and `resources`
-- As resource configuration is not possible anymore in the Yaml configuration., it needs to be done using Upsun API or using the Console.
+- As resource configuration is not possible anymore in the Yaml configuration., it needs to be done using {{< vendor/name >}} API or using the Console.
 
 ## Change your Yaml structure
-There are 2 ways to adapt your actual configuration from Platform.sh to Upsun:
+There are 2 ways to adapt your actual configuration from Platform.sh to {{< vendor/name >}}:
 - [Manually](#manually) : **13 steps**
-- [Using upsun ify command](#using-upsun-ify-command): **1 step**
+- [Using `{{< vendor/cli >}}` ify command](#using-{{< vendor/cli >}}-ify-command): **1 step**
 
 ### Manually
-To migrate an existing Yaml configuration to Upsun Yaml format, you need to:
-1. Create a new `.upsun/` folder.
-1. Create one Yaml file per application in your `.upsun/` folder, or one file that will contain all of your `applications`/`services`/`routes` configuration.
-   </br>We will use a `.upsun/config.yaml` file here.
+To migrate an existing Yaml configuration to {{< vendor/name >}} Yaml format, you need to:
+1. Create a new `{{< vendor/configdir >}}/` folder.
+1. Create one Yaml file per application in your `{{< vendor/configdir >}}/` folder, or one file that will contain all of your `applications`/`services`/`routes` configuration.
+   </br>We will use a `{{< vendor/configdir >}}/config.yaml` file here.
 1. At the root of your new Yaml file, create an `applications:` first level Yaml key.
 1. Name your application key below the `applications:` key, example:
    ```yaml
@@ -67,17 +71,17 @@ To migrate an existing Yaml configuration to Upsun Yaml format, you need to:
    ```
 1. Copy/paste content of your existing `app` configuration from the `.platform.app.yaml` (or `.platform/applications.yaml`) file below your `app:` key
 1. Remove the `name:` setting from the pasted source code, as it is not needed anymore.
-1. At the root of your `.upsun/config.yaml` file, create a `services:` first level Yaml key.
+1. At the root of your `{{< vendor/configdir >}}/config.yaml` file, create a `services:` first level Yaml key.
 1. Copy the entire `.platform/services.yaml` file and paste it below `services:` first level key and indent the existing services definition below.
-1. At the root of your `.upsun/config.yaml`  file, create a `routes:` first level Yaml key.
+1. At the root of your `{{< vendor/configdir >}}/config.yaml`  file, create a `routes:` first level Yaml key.
 1. Copy the entire `.platform/routes.yaml` file and paste it below `routes:` first level key and indent the existing services definition below.
 1. Remove the 3 Platform.sh Yaml configuration files (`.platform.app.yaml` or `.platform/applications.yaml`, `.platform/services.yaml` and `.platform/routes.yaml`) from your source code.
 1. Commit your files in Git
-1. Deploy your source code using command `upsun push`
+1. Deploy your source code using command `{{< vendor/cli >}} push`
 
-You should end up with this `.upsun/config.yaml` file like:
+You should end up with this `{{< vendor/configdir >}}/config.yaml` file like:
 ```yaml
-# .upsun/config.yaml
+# {{< vendor/configdir >}}/config.yaml
 applications:
   # Complete list of all available properties: https://docs.platform.sh/create-apps/app-reference.html
   # A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated
@@ -121,13 +125,13 @@ routes:
     to: "https://{default}/"
 ```
 
-### Using upsun ify command
-Our Uspun CLI comes with a useful command to adapt your source code to be easily hosted on Upsun: `upsun ify`
+### Using `{{< vendor/cli >}} ify` command
+Our {{< vendor/name >}} CLI comes with a useful command to adapt your source code to be easily hosted on {{< vendor/name >}}: `{{< vendor/cli >}} ify`
 
-This command will automatically detect your local stack and generate the minimum Yaml configuration files required to deploy it on Upsun: `.upsun/config.yaml`.
+This command will automatically detect your local stack and generate the minimum Yaml configuration files required to deploy it on {{< vendor/name >}}: `{{< vendor/configdir >}}/config.yaml`.
 ```
-$ upsun ify
-You are reconfiguring the project at /dev/Upsun/nextjs.
+$ {{< vendor/cli >}} ify
+You are reconfiguring the project at /dev/{{< vendor/cli >}}/nextjs.
 Welcome to Platform.sh!
 Let's get started with a few questions.
 
@@ -160,7 +164,7 @@ You have not selected any service, would you like to proceed anyway? [Yes]
 │                                                   │
 │   We have created the following files for your:   │
 │     - .environment                                │
-│     - .upsun/config.yaml                          │
+│     - {{< vendor/configdir >}}/config.yaml                         │
 │                                                   │
 │   We're jumping for joy! ⍢                        │
 └───────────────────────────────────────────────────┘
@@ -171,16 +175,16 @@ You have not selected any service, would you like to proceed anyway? [Yes]
   ( . .)
   o (_(")(")
 
-You can now deploy your application to Upsun!
+You can now deploy your application to {{< vendor/name >}}!
 To do so, commit your files and deploy your application using the
-Upsun CLI:
+{{< vendor/name >}} CLI:
   $ git add .
-  $ git commit -m 'Add Upsun configuration files'
-  $ upsun project:set-remote
-  $ upsun push
+  $ git commit -m 'Add {{< vendor/name >}} configuration files'
+  $ {{< vendor/cli >}} project:set-remote
+  $ {{< vendor/cli >}} push
 ```
 {{< note >}}
-as this command generate the minimum configuration to install the detected stack, you would probably need to compare your previous Yaml section from your `.platform.app.yaml` (or `.platform/applications.yaml`) file to your new `.upsun/config.yaml` file and report possible missing settings, like your additional command lines in your `build`/`deploy` hooks section.
+as this command generate the minimum configuration to install the detected stack, you would probably need to compare your previous Yaml section from your `.platform.app.yaml` (or `.platform/applications.yaml`) file to your new `{{< vendor/configdir >}}/config.yaml` file and report possible missing settings, like your additional command lines in your `build`/`deploy` hooks section.
 </br>When it’s done, commit and push your changes.
 {{< /note >}}
 
@@ -212,14 +216,14 @@ database:
 ```
 
 {{< note >}}
-These settings, size, disk and resources are no longer available in the Upsun Yaml config files (or not taken in account anymore).
+These settings, size, disk and resources are no longer available in the {{< vendor/name >}} Yaml config files (or not taken in account anymore).
 {{< /note >}}
 
 ### Using the API
 #### Change app resources
 To change your `app` application resources, use the following command line:
 ```
-$ upsun e:curl /deployments/next -X PATCH -d \
+$ {{< vendor/cli >}} e:curl /deployments/next -X PATCH -d \
   '{
     "webapps": {
     "app": {
@@ -237,7 +241,7 @@ Don’t forget to remove from your `.platform/config.yaml` file corresponding Ya
 #### Change database service resources
 To change database service resources, use the following command line:
 ```shell
-$ upsun e:curl /deployments/next -X PATCH -d \
+$ {{< vendor/cli >}} e:curl /deployments/next -X PATCH -d \
   '{
     "services": {
     "database": {
@@ -260,12 +264,12 @@ TODO
 ### Using Console (TODO)
 TODO
 
-## Deploy your Upsun project
-After adding to Git your changes, use the following command to deploy your Upsun project:
+## Deploy your {{< vendor/name >}} project
+After adding to Git your changes, use the following command to deploy your {{< vendor/name >}} project:
 ```shell
-upsun deploy
+{{< vendor/cli >}} deploy
 ```
 
-Et voilà, you successfully migrate your Platform.sh project to Upsun.
+Et voilà, you successfully migrate your Platform.sh project to {{< vendor/name >}}.
 Congrats!
 
