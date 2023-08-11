@@ -1,0 +1,7 @@
+savePath: "/static/files/fetch/appyaml/poetry"
+root: "https://raw.githubusercontent.com/platformsh-templates"
+repoOrg: "platformsh-templates"
+branch: "master"
+file: ".platform/poetry.app.yaml"
+repos:
+    - django4

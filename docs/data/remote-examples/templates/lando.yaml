@@ -1,7 +1,0 @@
-savePath: "/static/files/fetch/lando"
-root: "https://raw.githubusercontent.com/platformsh-templates"
-branch: "master"
-file: ".lando.upstream.yml"
-repos: 
-    - wordpress-composer
-    - wordpress-vanilla

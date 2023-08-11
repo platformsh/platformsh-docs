@@ -3,16 +3,19 @@ name: Build from fork
 on:
   pull_request_target:
     branches: [main]
-    types: [labeled,unlabeled]
+    types: [labeled,unlabeled,synchronize]
 
 env:
   PLATFORMSH_CLI_NO_INTERACTION: 1
   PLATFORM_PROJECT: 652soceglkw4u
   PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
+  SLEEP_TIME: 5
+  NUM_TRIES: 30
+  BRANCH_TITLE: ${{ vars.BFF_PREFIX }}-${{ github.event.number }}
 
 jobs:
   build:
-    if: ${{ github.event.label.name == 'build-fork' }}
+    if: github.event.label.name == 'build-fork' || contains(github.event.pull_request.labels.*.name, 'build-fork')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -28,20 +31,40 @@ jobs:
       - env:
           PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         run: |
-          BRANCH_TITLE=pr-${{ github.event.number }}
-
           # Get most recent changes
           git checkout ${{ github.event.pull_request.head.sha }}
 
           # Put most recent changes on the branch
-          echo "Switching to branch"
-          git switch -C $BRANCH_TITLE
+          echo "Switching to branch ${{ env.BRANCH_TITLE }}"
+          git switch -C ${{ env.BRANCH_TITLE }}
 
           echo "Pushing most recent changes"
-          git push --force origin $BRANCH_TITLE
+          git push --force origin ${{ env.BRANCH_TITLE }}
+
+          # has platform.sh received our new branch?
+          counter=0
+          branchReceived=""
+          echo "::notice::Checking if Platform.sh has received our new branch..."
+          while (( counter < ${{ env.NUM_TRIES }} )) && [[ -z "${branchReceived}" ]]; do
+            sleep ${{ env.SLEEP_TIME }}
+            echo "::notice::Attempt ${counter} of ${{ env.NUM_TRIES }}"
+            branchReceived=$(platform project:curl /environments | jq --arg branch "${{ env.BRANCH_TITLE }}" -r '.[] | select(.name | contains($branch))');
+            counter=$((++counter))
+          done
+
+          if [[ -z "${branchReceived}" ]]; then
+            echo "::warning::It appears that Platform.sh did not receive our branch ${{ env.BRANCH_TITLE }}. Please look at the logs and try again."
+            exit 24;
+          else
+            echo "::notice::Branch ${{ env.BRANCH_TITLE }} was successfully pushed to Platform.sh. Continuing..."
+          fi
 
           # If environment not active, activate it
-          if ! $(platform env --format plain --columns title,status | grep $BRANCH_TITLE | grep -q Active); then
-            echo "Activating environment"
-            platform environment:activate -e $BRANCH_TITLE
+          if ! $(platform environments --format plain --columns title,status | grep '${{ env.BRANCH_TITLE }}' | grep -q Active); then
+            echo "::notice::Updating Platform.sh environment title for better tracking..."
+            # in this case we DO want to statically include `pr-##` since we're referring to a pull request number
+            newTitle="(pr-${{ github.event.number }}) ${{ github.event.pull_request.title }}"
+            platform environment:info title "${newTitle}" -e ${{ env.BRANCH_TITLE }}
+            echo "::notice::Activating environment ${{ env.BRANCH_TITLE }}"
+            platform environment:activate -e ${{ env.BRANCH_TITLE }}
           fi

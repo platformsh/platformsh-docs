@@ -1,0 +1,7 @@
+savePath: "/static/files/fetch/multiappyaml"
+root: "https://raw.githubusercontent.com/platformsh-templates"
+repoOrg: "platformsh-templates"
+branch: "master"
+file: "client/.platform.app.yaml"
+repos:
+  - gatsby-drupal

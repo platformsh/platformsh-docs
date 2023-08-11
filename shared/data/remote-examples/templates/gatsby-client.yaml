@@ -1,0 +1,7 @@
+savePath: "/static/files/fetch/gatsby"
+root: "https://raw.githubusercontent.com/platformsh-templates"
+repoOrg: "platformsh-templates"
+branch: "master"
+file: "client/gatsby-config.js"
+repos:
+    - gatsby-drupal

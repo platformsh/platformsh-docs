@@ -1,0 +1,7 @@
+savePath: "/static/files/fetch/appyaml/pipenv"
+root: "https://raw.githubusercontent.com/platformsh-templates"
+repoOrg: "platformsh-templates"
+branch: "master"
+file: ".platform/pipenv.app.yaml"
+repos:
+    - django4

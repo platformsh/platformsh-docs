@@ -7,7 +7,7 @@ license = "Attribution-ShareAlike 4.0 International"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-cryptography = "^39.0.1"
+cryptography = "^41.0.3"
 Scrapy = "^2.8.0"
 meilisearch = "^0.24.0"
 platformshconfig = "^2.3.1"

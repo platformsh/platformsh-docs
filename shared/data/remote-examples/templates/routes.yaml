@@ -1,0 +1,21 @@
+savePath: "/static/files/fetch/routesyaml"
+root: "https://raw.githubusercontent.com/platformsh-templates"
+repoOrg: "platformsh-templates"
+branch: "master"
+file: ".platform/routes.yaml"
+repos:
+    - php
+    - gatsby-drupal
+    - gatsby-strapi
+    - gatsby-wordpress
+    - quarkus
+    - spring-mvc-maven-mongodb
+    - micronaut
+    - gatsby
+    - drupal9
+    - wordpress-vanilla
+    - wordpress-composer
+    - typo3
+    - strapi4
+    - laravel
+    - django4

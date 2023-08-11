@@ -1,0 +1,54 @@
+name: Linting
+on:
+  pull_request_target:
+    branches: [main]
+    types: [labeled,opened,reopened,synchronize]
+
+jobs:
+  lint-markdown:
+    name: Lint markdown
+    if: >-
+      (
+        github.event.pull_request.head.repo.id == 21975579 ||
+        contains(github.event.pull_request.labels.*.name, 'build-fork')
+      ) &&
+      contains(github.event.pull_request.labels.*.name, vars.LBL_MRKDWNPROSE)
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+        cache: 'npm'
+        cache-dependency-path: sites/platform/package-lock.json
+
+    - name: Run lint markdown
+      run: |
+        cd sites/platform
+        npm ci
+        npm run lint:markdown
+
+  lint-prose:
+    name: Lint Prose
+    if: >-
+      (
+        github.event.pull_request.head.repo.id == 21975579 ||
+        contains(github.event.pull_request.labels.*.name, 'build-fork')
+      ) &&
+      contains(github.event.pull_request.labels.*.name, vars.LBL_MRKDWNPROSE)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Vale
+        uses: errata-ai/vale-action@reviewdog
+        with:
+          fail_on_error: true
+          reporter: github-check
+          files: sites/platform/src
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

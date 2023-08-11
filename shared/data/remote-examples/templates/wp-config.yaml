@@ -1,0 +1,7 @@
+savePath: "/static/files/fetch/config-examples"
+root: "https://raw.githubusercontent.com/platformsh-templates"
+repoOrg: "platformsh-templates"
+branch: "master"
+file: "wp-config.php"
+repos:
+    - wordpress-composer

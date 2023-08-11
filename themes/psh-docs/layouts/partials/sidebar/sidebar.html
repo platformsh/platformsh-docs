@@ -1,0 +1,27 @@
+<!-- Sidebar -->
+
+<nav class="print:hidden md:col-span-2 pt-2 pl-2 md:pb-28 max-h-fullv overflow-y-scroll top-24 md:sticky h-[calc(100vh - 6rem)]"
+  x-data="{ showSidebar: false }"
+>
+
+  <!-- Sidebar toggle (small screens) -->
+  <button class="md:hidden hover:bg-skye-light my-4" @click="showSidebar = ! showSidebar" aria-controls="sidebar-nav" aria-expanded="false" aria-label="Toggle navigation">
+    <svg width="30" height="24" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h30v2H0z" class="fill-slate"></path>
+      <path d="M0 10h30v2H0z" class="fill-slate"></path>
+      <path d="M0 20h30v2H0z" class="fill-slate"></path>
+    </svg>
+  </button>
+
+  <!-- Sidebar Nav -->
+  <h2 class="sr-only">Site navigation</h2>
+  <div class="md:block" :class="showSidebar ? '' : 'hidden'" id="sidebar-nav">
+
+    <!-- Sidebar navigation entries -->
+    {{ partial "sidebar/nav" . }}
+
+  </div>
+  <!-- End Sidebar Nav -->
+
+</nav>
+<!-- End Sidebar -->

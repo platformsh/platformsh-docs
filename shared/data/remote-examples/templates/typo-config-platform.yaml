@@ -1,0 +1,7 @@
+savePath: "/static/files/fetch/config-examples-platform"
+root: "https://raw.githubusercontent.com/platformsh-templates"
+repoOrg: "platformsh-templates"
+branch: "master"
+file: "public/typo3conf/PlatformshConfiguration.php"
+repos:
+    - typo3

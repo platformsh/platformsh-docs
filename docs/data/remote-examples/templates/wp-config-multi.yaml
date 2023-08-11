@@ -1,6 +1,0 @@
-savePath: "/static/files/fetch/config-examples"
-root: "https://raw.githubusercontent.com/platformsh-templates"
-branch: "master"
-file: "wordpress/wp-config.php"
-repos: 
-    - wordpress-vanilla
