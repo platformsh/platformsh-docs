@@ -1,0 +1,65 @@
+package sh.platform.languages.sample;
+
+import sh.platform.config.Config;
+import sh.platform.config.MySQL;
+
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.function.Supplier;
+
+public class MySQLSample implements Supplier<String> {
+
+    @Override
+    public String get() {
+        StringBuilder logger = new StringBuilder();
+
+        // Create a new config object to ease reading the Platform.sh environment variables.
+        // You can alternatively use getenv() yourself.
+        Config config = new Config();
+
+        // The 'database' relationship is generally the name of primary SQL database of an application.
+        // That's not required, but much of our default automation code assumes it.
+        MySQL database = config.getCredential("database", MySQL::new);
+        DataSource dataSource = database.get();
+
+        // Connect to the database
+        try (Connection connection = dataSource.getConnection()) {
+
+            // Creating a table.
+            String sql = "CREATE TABLE IF NOT EXISTS People (" +
+                    " id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY," +
+                    "name VARCHAR(30) NOT NULL," +
+                    "city VARCHAR(30) NOT NULL)";
+
+            final Statement statement = connection.createStatement();
+            statement.execute(sql);
+
+            // Insert data.
+            sql = "INSERT INTO People (name, city) VALUES" +
+                    "('Neil Armstrong', 'Moon')," +
+                    "('Buzz Aldrin', 'Glen Ridge')," +
+                    "('Sally Ride', 'La Jolla')";
+
+            statement.execute(sql);
+
+            // Show table.
+            sql = "SELECT * FROM People";
+            final ResultSet resultSet = statement.executeQuery(sql);
+            logger.append("<table><thead><tr><th>Name</th><th>City</th></tr></thhead><tbody>");
+            while (resultSet.next()) {
+                String name = resultSet.getString("name");
+                String city = resultSet.getString("city");
+                logger.append(String.format("<tr><td>%s</td><td>%s</td></tr>", name, city));
+                logger.append('\n');
+            }
+            logger.append("</tbody></table>");
+            statement.execute("DROP TABLE People");
+            return logger.toString();
+        } catch (SQLException exp) {
+            throw new RuntimeException("An error when execute MySQL", exp);
+        }
+    }
+}

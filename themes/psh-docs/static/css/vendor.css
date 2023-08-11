@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+.bg-primary-darker {
+    /* background-color: rgb(38,28,102, 1.0) !important; */
+    background-color: #4D38CC !important;
+    /* background-color: rgb(19,14,51, 1.0) !important; */
+}
+
+.bg-skye {
+    background-color: white !important;
+    color: black !important;
+    border-radius: 40px !important;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+/* .bg-skye-light {
+    background-color: black !important;
+    color: white!important;
+    border-radius: 40px !important;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+} */
+
+.bg-skye:hover {
+    background-color: black !important;
+    color: white !important;
+}
+
+.bg-grey {
+    background-color: #FFFFFF !important;
+}
+
+body {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 18px;
+    line-height: 32px;
+    font-weight: 400;
+    color: #191C1E
+  }
+
+.prose :where(a):not(:where([class~="not-prose"] *)) {
+    color: #6046FF !important;
+    text-decoration: underline !important;
+    font-weight: 400 !important;
+}
+
+.prose :where(a):not(:where([class~="not-prose"] *)):hover {
+    color: #4D38CC !important;
+}
+
+.text-skye-dark,
+.\[\&_a\]\:text-skye-dark a {
+    color: #6046FF !important;
+}
+
+/* .prose :where(code):not(:where([class~="not-prose"] *)) {
+    background-color: rgb(39, 40, 34) !important;
+    color: rgb(255, 255, 255) !important;
+    font-size: 0.95rem !important;
+    padding: 0.187rem 0.625rem !important;
+    border-radius: 0.187rem !important;
+} */
+
+*, ::after, ::before {
+    border-color: #FFFFFF !important;
+}
+
+h4.font-semibold {
+    font-weight: 400;
+}
