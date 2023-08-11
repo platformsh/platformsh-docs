@@ -1,0 +1,81 @@
+# Basics
+baseURL: /
+title: Deploy Friday Docs
+author: Deploy Friday
+description: Deploy Friday User Documentation
+
+# Themes
+theme: psh-docs
+themesdir: '../../themes'
+
+uglyurls: true
+pygmentsUseClasses: true
+
+# Language settings
+languages:
+  en:
+    languageName: English
+    weight: 10
+
+disableKinds: ["taxonomy", "taxonomyTerm"]
+
+baseURL: "https://docs.deploy-friday.net"
+
+summaryLength: 3
+
+outputs:
+    home: 
+      - HTML
+      - JSON
+      - RSS
+    section:
+      - HTML
+      - RSS
+
+markup:
+    goldmark:
+        renderer:
+            unsafe: true
+
+module:
+    _merge: deep
+    mounts:
+        - source: "node_modules/mermaid/dist"
+          target: "static/mermaid"
+        - source: "node_modules/asciinema-player/dist/bundle"
+          target: "static/asciinema"
+        - source: "node_modules/alpinejs/dist"
+          target: "static/alpinejs"
+
+        - source: "../../shared/data"
+          target: "data"
+
+        - source: "../platform/src"
+          target: "content"
+          excludeFiles: 
+              - "registry/*"
+              - "_index.md"
+              - "get-started/*"
+          lang: "en"
+
+        - source: "../platform/static/images"
+          target: "static/images"
+        - source: "../platform/static/videos"
+          target: "static/videos"
+        - source: "static/scripts"
+          target: "static/scripts"
+        - source: "static/files"
+          target: "static/files"
+          
+        - source: "src"
+          target: "content"
+        
+
+
+security:
+  funcs:
+    getenv:
+    - ^GITHUB_
+    - ^HUGO_HEAP_ID
+  http:
+    methods: none
