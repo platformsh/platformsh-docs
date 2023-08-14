@@ -116,7 +116,7 @@ To export your data from InfluxDB, follow these steps:
 
 ### From a previous 2.x version
 
-From version 2.3 onwards, the structure of relationships changes.
+From version 2.3 onward, the structure of relationships changes.
 
 If you're using a prior 2.x version, your app might currently rely on pulling the `bucket`, `org`, `api_token`,
 or `user` values available in the [`PLATFORM_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-provided-variables).
@@ -156,7 +156,7 @@ If you're relying on any other attributes connecting to InfluxDB, they remain ac
 
 ### From a 1.x version
 
-From version 2.3 onwards, InfluxDB includes an upgrade utility that can convert databases from previous versions to version 2.3 or later.
+From version 2.3 onward, InfluxDB includes an upgrade utility that can convert databases from previous versions to version 2.3 or later.
 
 To upgrade from a 1.x version to 2.3 or later,
 change the service version in your `.platform/services.yaml` file and push your project.

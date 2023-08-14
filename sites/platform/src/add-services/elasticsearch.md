@@ -24,7 +24,7 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 ## Supported versions
 
 Elasticsearch is now a premium service.
-This means that from version 7.11 onwards, you need to add Elasticsearch to your project at an additional cost.
+This means that from version 7.11 onward, you need to add Elasticsearch to your project at an additional cost.
 To do so, contact {{< vendor/url "sales" "Sales" >}}.
 
 The following premium versions are supported:
