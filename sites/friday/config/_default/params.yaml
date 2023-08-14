@@ -64,17 +64,17 @@ navSections:
 
 # Metadata
 meta:
-  sitename: "Platform.sh User Documentation"
-  description: Platform.sh is a second-generation Platform-as-a-Service built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive.
-  image: "https://docs.platform.sh/images/logos/docs_social_2021.jpg"
-  url: "https://docs.platform.sh"
+  sitename: "Deploy Friday User Documentation"
+  description: Deploy Friday is a second-generation Platform-as-a-Service built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive.
+  image: "https://docs.deployfriday.net/images/logos/docs_social_2021.jpg"
+  url: "https://docs.deployfriday.net"
   twittercard:
     card: "summary_large_image"
-    site: "@platformsh"
-    title: "Platform.sh User Documentation"
-    description: "Platform.sh is a second-generation Platform-as-a-Service built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive."
-    creator: "@platformsh"
-    image: "https://docs.platform.sh/images/logos/docs_social_2021.jpg"
+    site: "@deployfriday"
+    title: "Deploy Friday User Documentation"
+    description: "Deploy Friday is a second-generation Platform-as-a-Service built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive."
+    creator: "@deployfriday"
+    image: "https://docs.deployfriday.net/images/logos/docs_social_2021.jpg"
   keywords:
     - PaaS
     - cloud hosting
