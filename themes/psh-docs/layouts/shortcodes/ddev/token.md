@@ -1,4 +1,4 @@
-To connect DDEV with your Platform.sh account, use a Platform.sh API token.
+To connect DDEV with your {{ .Site.Params.vendor.name }}  account, use a {{ .Site.Params.vendor.name }}  API token.
 
 First [create an API token](/administration/cli/api-tokens.md#2-create-a-platformsh-api-token) in the Console.
 

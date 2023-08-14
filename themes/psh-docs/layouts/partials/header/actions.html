@@ -1,6 +1,6 @@
-<!-- Links to log in or start a trial with Platform.sh -->
+<!-- Links to log in or start a trial -->
 <div class="hidden md:flex basis-1/6 items-center justify-around">
-  {{ $currentPage := printf "https://docs.platform.sh%s" ( .Page.RelPermalink ) }}
+  {{ $currentPage := printf "%s%s" ( .Site.BaseURL ) ( .Page.RelPermalink ) }}
   {{ with .Site.Params.headerActions }}
     {{ with .headerActionSecondary }}
       <a class="font-semibold text-sm xl:text-base px-4 py-2 rounded hidden lg:inline xl:px-8 hover:bg-skye-light focus:bg-skye-light hover:text-slate focus:text-slate" 
