@@ -4,14 +4,14 @@ weight: -10
 description: Initialize your project
 ---
 
-The basic unit for organizing work within Platform.sh is a project.
+The basic unit for organizing work within {{< vendor/name >}} is a project.
 Each project represents one Git repository, a centralized place to store code and work history.
-For now, Platform.sh represents the source of truth for your repository.
+For now, {{< vendor/name >}} represents the source of truth for your repository.
 You can later set up an integration with GitHub, Bitbucket, or GitLab.
 
-To deploy your app, you need to connect its repository to a project in Platform.sh.
+To deploy your app, you need to connect its repository to a project in {{< vendor/name >}}.
 
-First, create a Platform.sh project by running the following command:
+First, create a {{< vendor/name >}} project by running the following command:
 
 ```bash
 platform project:create
@@ -32,7 +32,7 @@ Then go through each of the steps to create the project:
 6. Choose a default branch.
    This defaults to `main`, but you can always [change it later](../../environments/default-environment.md).
 
-A Git repository is automatically initialized and Platform.sh is set as a remote.
+A Git repository is automatically initialized and {{< vendor/name >}} is set as a remote.
 
 Now your project is initialized and ready for you to make changes.
 

@@ -160,7 +160,7 @@ To make the new value accessible to those environments, [trigger a redeploy](../
 
 ### Example environment variable
 
-Environment variables are a good place to store values that apply only on Platform.sh and not on your local development environment.
+Environment variables are a good place to store values that apply only on {{< vendor/name >}} and not on your local development environment.
 This includes API credentials for third-party services, mode settings, and which server (development vs. production) to use.
 
 One example would be to define a Node.js application's build on a production branch (`NODE_ENV=production`),
@@ -242,8 +242,8 @@ To solve the issue, remove the printed output from your `.environment` file.
 
 ## Map variables
 
-If your app needs different names for environment variable than those set by Platform.sh, which is common for database connections,
-map the Platform.sh's variable names to those required by the application.
+If your app needs different names for environment variable than those set by {{< vendor/name >}}, which is common for database connections,
+map the {{< vendor/name >}}'s variable names to those required by the application.
 Do this in the app with the help of the [Config Reader library](./use-variables.md#access-variables-in-your-app) or via a shell script.
 
 For example, the following [`.environment` script](#set-variables-via-script) exports variables that are visible to the application.

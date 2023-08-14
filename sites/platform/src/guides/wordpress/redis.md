@@ -6,7 +6,7 @@ description: |
     Configure Redis for your WordPress site.
 ---
 
-There are a number of Redis plugins for WordPress, only some of which are compatible with Platform.sh.
+There are a number of Redis plugins for WordPress, only some of which are compatible with {{< vendor/name >}}.
 We've tested and recommend [WP Redis](https://wordpress.org/plugins/wp-redis/)
 and [Redis Object Cache](https://wordpress.org/plugins/redis-cache/),
 both of which require a minimal amount of configuration.

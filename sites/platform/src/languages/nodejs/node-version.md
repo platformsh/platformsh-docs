@@ -1,14 +1,14 @@
 ---
 title: "Manage Node.js versions"
 weight: 1
-description: See how to manage different Node.js versions in your Platform.sh containers."
+description: See how to manage different Node.js versions in your {{< vendor/name >}} containers."
 ---
 
-Each Platform.sh container image includes a specific language in a specific version.
+Each {{< vendor/name >}}container image includes a specific language in a specific version.
 A set of dependencies is also provided based on that language version.
 This ensures that your application container is as small and efficient as possible.
 
-Therefore, by default, when you use a Platform.sh container image,
+Therefore, by default, when you use a {{< vendor/name >}} container image,
 you use the Node.js version that's included in that image, if any.
 
 If you want to use a different Node.js version, use a version manager to install it yourself.

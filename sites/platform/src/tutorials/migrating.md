@@ -1,11 +1,11 @@
 ---
-title: Migrating to Platform.sh
-description: See how to migrate your app to Platform.sh so it's ready to be deployed.
+title: Migrating to {{< vendor/name >}}
+description: See how to migrate your app to {{< vendor/name >}} so it's ready to be deployed.
 keywords:
   - "set remote"
 ---
 
-If you already have an app running somewhere else, you want to migrate it to Platform.sh and deploy it.
+If you already have an app running somewhere else, you want to migrate it to {{< vendor/name >}} and deploy it.
 To do so, follow these steps.
 
 ## Before you begin
@@ -14,8 +14,8 @@ You need:
 
 - An app that works and is ready to be built
 - Code in Git
-- A Platform.sh account -- if you don't already have one, [start a trial](https://auth.api.platform.sh/register?trial_type=general)
-- Optional: the [Platform.sh CLI](../administration/cli/_index.md)
+- A {{< vendor/name >}} account -- if you don't already have one, [start a trial](https://auth.api.platform.sh/register?trial_type=general)
+- Optional: the [{{< vendor/name >}} CLI](../administration/cli/_index.md)
 
 ## 1. Export from previous system
 
@@ -23,7 +23,7 @@ Start by exporting everything you might need from your current app.
 This includes data in databases, files on a file system,
 and for some apps, such as Drupal, configuration that you need to export from the system into files.
 
-## 2. Create a Platform.sh project
+## 2. Create a project
 
 {{< codetabs >}}
 +++
@@ -52,7 +52,7 @@ which you can then upgrade.
 
 {{< /codetabs >}}
 
-## 3. Add Platform.sh configuration
+## 3. Add configuration
 
 The exact configuration you want depends on your app.
 You likely want to configure three areas:
@@ -68,9 +68,9 @@ When you've added your configuration, make sure to commit it to Git.
 
 ## 4. Push your code
 
-The way to push your code to Platform.sh depends on
+The way to push your code to {{< vendor/name >}} depends on
 whether you're hosting your code with a third-party service using a [source integration](../integrations/source/_index.md).
-If you aren't, your repository is hosted in Platform.sh
+If you aren't, your repository is hosted in {{< vendor/name >}}
 and you can use the CLI or just Git itself.
 
 {{< codetabs >}}
@@ -84,13 +84,13 @@ title=Using the CLI
    platform projects
    ```
 
-2. Add Platform.sh as a remote repository by running the following command:
+2. Add {{< vendor/name >}} as a remote repository by running the following command:
 
    ```bash
    platform project:set-remote {{< variable "PROJECT_ID" >}}
    ```
 
-3. Push to the Platform.sh repository by running the following command:
+3. Push to the {{< vendor/name >}} repository by running the following command:
 
    ```bash
    git push -u platform {{< variable "DEFAULT_BRANCH_NAME" >}}
@@ -131,13 +131,13 @@ title=Using Git
    abcdefgh1234567@git.eu.platform.sh:abcdefgh1234567.git
    ```
 
-5.  Add Platform.sh as a remote repository by running the following command:
+5.  Add {{< vendor/name >}} as a remote repository by running the following command:
 
    ```bash
    git remote add platform {{< variable "REPOSITORY_LOCATION" >}}
    ```
 
-6.  Push to the Platform.sh repository by running the following command:
+6.  Push to the {{< vendor/name >}} repository by running the following command:
 
    ```bash
    git push -u platform {{< variable "DEFAULT_BRANCH_NAME" >}}

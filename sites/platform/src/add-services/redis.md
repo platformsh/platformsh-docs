@@ -6,7 +6,7 @@ sidebarTitle: "Redis"
 
 [Redis](https://redis.io/documentation) is a multi-model database that allows you to store data in memory
 for high-performance data retrieval and key-value storage.
-Platform.sh supports two different Redis configurations:
+{{< vendor/name >}} supports two different Redis configurations:
 
 - [Ephemeral](#ephemeral-redis): to set up a non-persistent cache for your application
 - [Persistent](#persistent-redis): to set up fast persistent storage for your application

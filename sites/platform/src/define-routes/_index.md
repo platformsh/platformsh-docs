@@ -235,7 +235,7 @@ Requests to your default domain are served by `app1`.
 
 ## Wildcard routes
 
-Platform.sh supports wildcard routes, so you can map multiple subdomains to the same application.
+{{< vendor/name >}} supports wildcard routes, so you can map multiple subdomains to the same application.
 Both `redirect` and `upstream` routes support wildcard routes.
 Prefix a route with an asterisk (`*`), for example `*.{default}`.
 If you have configured `example.com` as your default domain,
@@ -340,7 +340,7 @@ You can use this `id` to look up the domain of the route in every environment.
 
 You might want to add extra information to routes to identify them in your app.
 Route `attributes` are arbitrary key-value pairs attached to a route.
-This metadata has no impact on Platform.sh, but is available in the `PLATFORM_ROUTES` environment variable.
+This metadata has no impact on {{< vendor/name >}}, but is available in the `PLATFORM_ROUTES` environment variable.
 
 So you can define a route like this:
 
@@ -404,7 +404,7 @@ You can configure each route separately with the following properties:
 
 ## CLI access
 
-The [Platform.sh CLI](../administration/cli/_index.md) can show you the routes you have configured for an environment.
+The [{{< vendor/name >}} CLI](../administration/cli/_index.md) can show you the routes you have configured for an environment.
 These are the routes as defined in the `.platform/routes.yaml` file with the [placeholders](#route-placeholders)
 plus the default redirect from HTTP to HTTPS.
 They aren't the final generated routes.
@@ -474,8 +474,8 @@ which is a requirement for the router caching.
 
 ## `.htaccess` files
 
-Platform.sh uses Nginx servers, not Apache ones.
+{{< vendor/name >}} uses Nginx servers, not Apache ones.
 You [can't use `.htaccess` files with Nginx](https://www.nginx.com/resources/wiki/start/topics/examples/likeapache-htaccess/),
-they are therefore ignored on Platform.sh.
+they are therefore ignored on {{< vendor/name >}}.
 You can accomplish the same redirect and rewrite goals with your [routes](../define-routes/_index.md)
 and [web server locations](../create-apps/web/_index.md).

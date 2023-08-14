@@ -1,6 +1,6 @@
 ---
 title: "Elixir"
-description: Platform.sh supports building and deploying applications written in Elixir. There is no default flavor for the build phase, but you can define it explicitly in your build hook. Platform.sh Elixir images support both committed dependencies and download-on-demand. The underlying Erlang version is 22.0.7.
+description: "{{< vendor/name >}} supports building and deploying applications written in Elixir. There is no default flavor for the build phase, but you can define it explicitly in your build hook. {{< vendor/name >}} Elixir images support both committed dependencies and download-on-demand. The underlying Erlang version is 22.0.7."
 ---
 
 {{% description %}}
@@ -15,9 +15,9 @@ description: Platform.sh supports building and deploying applications written in
 
 {{% language-specification type="elixir" display_name="Elixir" %}}
 
-## Platform.sh variables
+## Built-in variables
 
-Platform.sh exposes relationships and other configuration as [environment variables](../development/variables/_index.md).
+{{< vendor/name >}} exposes relationships and other configuration as [environment variables](../development/variables/_index.md).
 Most notably, it allows a program to determine at runtime what HTTP port it should listen on
 and what the credentials are to access [other services](../add-services/_index.md).
 
@@ -89,7 +89,7 @@ Note that there is still an Nginx proxy server sitting in front of your applicat
 
 ## Dependencies
 
-The recommended way to handle Elixir dependencies on Platform.sh is using Hex.
+The recommended way to handle Elixir dependencies on {{< vendor/name >}} is using Hex.
 You can commit a `mix.exs` file in your repository and the system downloads the dependencies in your `deps` section using the build hook above.
 
 ```elixir

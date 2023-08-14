@@ -1,7 +1,7 @@
 ---
 title: Integrate with Bitbucket
 sidebarTitle: Bitbucket
-description: See how to manage your Platform.sh environments directly from your Bitbucket repository.
+description: See how to manage your {{< vendor/name >}} environments directly from your Bitbucket repository.
 ---
 
 {{% source-integration/intro source="Bitbucket" %}}
@@ -15,7 +15,7 @@ or a self-hosted [Bitbucket Server](https://confluence.atlassian.com/bitbucketse
 
 ### 1. Create an OAuth consumer
 
-To integrate your Platform.sh project with an existing Bitbucket Cloud repository,
+To integrate your {{< vendor/name >}} project with an existing Bitbucket Cloud repository,
 [create an OAuth consumer](https://support.atlassian.com/bitbucket-cloud/docs/use-oauth-on-bitbucket-cloud/):
 
 ![A screenshot of how to setup the Bitbucket OAuth consumer](/images/integrations/bitbucket/bitbucket-oauth-consumer.svg "0.35")
@@ -42,7 +42,7 @@ Copy the **Key** and **Secret** for your consumer.
 
 ### 1. Generate a token
 
-To integrate your Platform.sh project with a repository on a Bitbucket Server instance,
+To integrate your {{< vendor/name >}} project with a repository on a Bitbucket Server instance,
 you first need to create an access token associated with your account.
 
 [Generate a token](https://confluence.atlassian.com/display/BitbucketServer/HTTP+access+tokens).

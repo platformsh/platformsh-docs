@@ -56,7 +56,7 @@ To rerun the `build` and `deploy` hooks, [manually trigger a build](#manually-tr
 ### Manually trigger builds
 
 To increase performance and keep applications the same across environments,
-Platform.sh reuses built applications if its code and build time configuration (variables and such) remain the same.
+{{< vendor/name >}} reuses built applications if its code and build time configuration (variables and such) remain the same.
 
 There may be times where you want to force your application to be built again without changing its code,
 for example to test an issue in a build hook or when external dependencies change.
@@ -130,7 +130,7 @@ Typical causes and potential solutions include:
 ## Site outage
 
 If you can't access some part of your project, whether it's the live site, development environment, or Console,
-check the [Platform.sh status page](https://status.platform.sh/).
+check the [{{< vendor/name >}} status page](https://status.platform.sh/).
 There you can see planned maintenance and subscribe to updates for any potential outages.
 
 If the status is operational, [contact support](../overview/get-support.md).
@@ -157,7 +157,7 @@ Instead, call the app/shell/runtime directly passing your script file to that ex
 
 ## Missing commits
 
-If you push code to Platform.sh without the full Git history, sometimes commits are missing.
+If you push code to {{< vendor/name >}} without the full Git history, sometimes commits are missing.
 This can happen if you're pushing code from an external CI/CD pipeline, such as a GitHub action.
 Such pipelines often do only shallow clones by default.
 
@@ -174,7 +174,7 @@ or using the [`GIT_DEPTH` variable](https://docs.gitlab.com/ee/ci/large_reposito
 
 When trying to upload a large JSON file to your API, you might see a 400 response code (`Malformed request`).
 
-Platform.sh enforces a 10&nbsp;MB limit on files with the `application/json` `Content-Type` header.
+{{< vendor/name >}} enforces a 10&nbsp;MB limit on files with the `application/json` `Content-Type` header.
 To send large files, use the `multipart/form-data` header instead:
 
 ```bash

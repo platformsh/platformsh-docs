@@ -68,7 +68,7 @@ For now, focus on getting notified about activities.
 ## Get activity notifications
 
 Webhooks enable you to monitor events as they happen.
-Platform.sh sends information about activities in your project to the URL you specify.
+{{< vendor/name >}} sends information about activities in your project to the URL you specify.
 
 Say you want to get a notification any time your `main` environment gets new code or is redeployed.
 To see such a notification in action, follow these steps:
@@ -97,8 +97,8 @@ You can also run the redeploy command for the `dev` environment and verify that 
 
 ## What's next
 
-Your Platform.sh project is now up and running and you can keep track of it!
-That's a great start to working with Platform.sh.
+Your {{< vendor/name >}} project is now up and running and you can keep track of it!
+That's a great start to working with {{< vendor/name >}}.
 
 Now that you've mastered the basics, you can choose more advanced tasks to complete:
 
@@ -109,4 +109,4 @@ Now that you've mastered the basics, you can choose more advanced tasks to compl
 - To maintain code in a third-party repository, integrate with [Bitbucket, GitHub, or GitLab](../../integrations/source/_index.md).
 - Read more on [health notifications](../../integrations/notifications.md).
 - See a reference on [all options available for activity notifications](../../integrations/activity/reference.md) or
-  use an [activity script](../../integrations/activity/_index.md) to manage activity responses in Platform.sh.
+  use an [activity script](../../integrations/activity/_index.md) to manage activity responses in {{< vendor/name >}}.

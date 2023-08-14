@@ -1,7 +1,7 @@
 ---
 title: Structure
 weight: 2
-description: Learn about how your Platform.sh environments are structured and which files control that structure.
+description: "Learn about how your {{< vendor/name >}} environments are structured and which files control that structure."
 ---
 
 {{< note >}}
@@ -14,7 +14,7 @@ For {{% names/dedicated-gen-2 %}} projects, read about how [{{% names/dedicated-
 
 {{< /note >}}
 
-Each environment you deploy on Platform.sh is built as a set of containers.
+Each environment you deploy on {{< vendor/name >}} is built as a set of containers.
 Each container is an isolated instance with specific resources.
 
 Each environment has 2 to 4 types of containers:

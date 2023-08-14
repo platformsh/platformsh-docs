@@ -1,9 +1,9 @@
 ---
-title: "Configure Django for Platform.sh"
+title: "Configure Django for {{< vendor/name >}}"
 sidebarTitle: "Configure"
 weight: -100
 description: |
-    Review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for Django.
+    Review the basics of what makes up a {{< vendor/name >}} project, including its three principle configuration files and how to define them for Django.
 ---
 
 {{% guides/config-desc name="Django" %}}
