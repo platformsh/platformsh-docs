@@ -34,7 +34,7 @@ so visit the [Git submodules](/development/submodules.md) documentation for more
 
 ## `.environment`
 
-{{< vendor/name >}} provides multiple *environments* for your projects, that can be customized (with different values for staging and development), but that inherit features from the production environment. One clear case where this can be useful is environment variables. Each environment on {{< vendor/name >}} comes with a set of [pre-defined variables](../../../development/variables/use-variables.md#use-platformsh-provided-variables) that provide information about the branch you are working on, the application's configuration, and the credentials to connect to each service defined in `services.yaml`. 
+{{< vendor/name >}} provides multiple *environments* for your projects, that can be customized (with different values for staging and development), but that inherit features from the production environment. One clear case where this can be useful is environment variables. Each environment on {{< vendor/name >}} comes with a set of [pre-defined variables](../../../development/variables/use-variables.md#use-provided-variables) that provide information about the branch you are working on, the application's configuration, and the credentials to connect to each service defined in `services.yaml`. 
 
 Service credentials reside in a base64 encoded JSON object variable called `PLATFORM_RELATIONSHIPS`,
 which you can use to define your database connection to the MariaDB container.

@@ -36,7 +36,7 @@ Follow the [Lando installation instructions](https://docs.lando.dev/getting-star
 
 ## 2. Create an access token
 
-To authorize Lando to communicate with {{< vendor/name >}}, create an [API token](../../administration/cli/api-tokens.md#2-create-a-platformsh-api-token).
+To authorize Lando to communicate with {{< vendor/name >}}, create an [API token](../../administration/cli/api-tokens.md#2-create-an-api-token).
 Copy the value.
 
 ## 3. Initialize Lando

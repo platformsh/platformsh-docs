@@ -60,7 +60,7 @@ If you don't find an existing key, [generate new keys](#1b-generate-new-keys).
 
 ### 1B. Generate new keys
 
-If you're logged in using the [{{< vendor/name >}} CLI](./_index.md#1-authenticate-with-the-platformsh-cli),
+If you're logged in using the [{{< vendor/name >}} CLI](./_index.md#1-authenticate-with-the-cli),
 generate a key and have it added to your {{< vendor/name >}} account automatically.
 
 1. In a terminal, run `platform ssh-key:add`.
@@ -82,7 +82,7 @@ Then you need to [add it to your {{< vendor/name >}} account](#2-add-an-ssh-key-
 
 Once you have the location of your public key, add it to your {{< vendor/name >}} account.
 
-If you're logged in using the [{{< vendor/name >}} CLI](./_index.md#1-authenticate-with-the-platformsh-cli),
+If you're logged in using the [{{< vendor/name >}} CLI](./_index.md#1-authenticate-with-the-cli),
 in a terminal run the following command (replacing `{{< variable "PATH_TO_YOUR_KEY" >}}` with the location of your public key):
 
 ```bash

@@ -173,7 +173,7 @@ title=In the Console
 
 You can also automate the process of creating manual backups through [cron jobs](../create-apps/app-reference.md#crons).
 The cron job uses the CLI command to back up the environment.
-It requires you to [set up the CLI on the environment with an API token](../administration/cli/api-tokens.md#authenticate-in-a-platformsh-environment).
+It requires you to [set up the CLI on the environment with an API token](../administration/cli/api-tokens.md#authenticate-in-an-environment).
 
 Although this process is automated,
 backups created in this way count as manual for the [backup schedule](#backup-schedule).

@@ -112,7 +112,7 @@ Typical causes and potential solutions include:
 
 - Your app is listening at the wrong place.
   - Check your app's [upstream properties](../create-apps/app-reference.md#upstream).
-  - If your app listening at a port, make sure it's using the [`PORT` environment variable](./variables/use-variables.md#use-platformsh-provided-variables).
+  - If your app listening at a port, make sure it's using the [`PORT` environment variable](./variables/use-variables.md#use-provided-variables).
 - Your `.platform.app.yaml` configuration has an error and a process isn't starting
   or requests can't be forwarded to it correctly.
   - Check your `web.commands.start` entry or your `passthru` configuration.
@@ -189,7 +189,7 @@ For MySQL specific errors, see how to [troubleshoot MySQL](../add-services/mysql
 
 If you try to use a user to create a database, you get an error saying `permission denied to create database`.
 The database is created for you
-and can be found in the `path` key of the `PLATFORM_RELATIONSHIPS` [environment variable](./variables/use-variables.md#use-platformsh-provided-variables).
+and can be found in the `path` key of the `PLATFORM_RELATIONSHIPS` [environment variable](./variables/use-variables.md#use-provided-variables).
 
 ## Storage
 

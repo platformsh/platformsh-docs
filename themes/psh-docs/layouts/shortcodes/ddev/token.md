@@ -1,6 +1,6 @@
 To connect DDEV with your {{ .Site.Params.vendor.name }}  account, use a {{ .Site.Params.vendor.name }}  API token.
 
-First [create an API token](/administration/cli/api-tokens.md#2-create-a-platformsh-api-token) in the Console.
+First [create an API token](/administration/cli/api-tokens.md#2-create-an-api-token) in the Console.
 
 Then add the token to your DDEV configuration.
 You can do so globally (easiest for most people):

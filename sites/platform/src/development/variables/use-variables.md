@@ -322,7 +322,7 @@ console.log(stuffColors);
 
 {{< /codetabs >}}
 
-## Use built-in variables
+## Use provided variables
 
 {{< vendor/name >}} also provides a series of variables to inform your app about its runtime configuration.
 They're mostly prefixed with `PLATFORM_` to differentiate them from user-provided values.

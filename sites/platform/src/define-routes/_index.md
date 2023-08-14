@@ -83,7 +83,7 @@ So you might define routes for 2 apps named `app` and `api` as follows:
 ```
 
 Both of these routes would be resolved with trailing slashes.
-So if you check your [`PLATFORM_ROUTES` variable](../development/variables/use-variables.md#use-platformsh-provided-variables),
+So if you check your [`PLATFORM_ROUTES` variable](../development/variables/use-variables.md#use-provided-variables),
 you see the following resolved routes (assuming `example.com` is your default domain):
 
 ```json

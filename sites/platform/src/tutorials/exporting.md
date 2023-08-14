@@ -86,7 +86,7 @@ Environment variables can have different prefixes:
 - Variables beginning with `env:` are exposed [as Unix environment variables](../development/variables/_index.md#top-level-environment-variables).
 - Variables beginning with `php:` are interpreted [as `php.ini` directives](../development/variables/_index.md#php-specific-variables).
 
-All other variables are [part of `$PLATFORM_VARIABLES`](../development/variables/use-variables.md#use-platformsh-provided-variables).
+All other variables are [part of `$PLATFORM_VARIABLES`](../development/variables/use-variables.md#use-provided-variables).
 
 To back up your environment variables:
 

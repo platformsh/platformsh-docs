@@ -259,8 +259,8 @@ Where to listen depends on your setting for `web.upstream.socket_family` (defaul
 
 | `socket_family` | Where to listen |
 | --------------- | --------------- |
-| `tcp`           | The port specified by the [`PORT` environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables) |
-| `unix`          | The Unix socket file specified by the [`SOCKET` environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables) |
+| `tcp`           | The port specified by the [`PORT` environment variable](../development/variables/use-variables.md#use-provided-variables) |
+| `unix`          | The Unix socket file specified by the [`SOCKET` environment variable](../development/variables/use-variables.md#use-provided-variables) |
 
 If your application isn't listening at the same place that the runtime is sending requests,
 you see `502 Bad Gateway` errors when you try to connect to your website.
@@ -392,7 +392,7 @@ All variables set in your app configuration must have a prefix.
 Some [prefixes have specific meanings](../development/variables/_index.md#variable-prefixes).
 
 Variables with the prefix `env` are available as a separate environment variable.
-All other variables are available in the [`$PLATFORM_VARIABLES` environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables).
+All other variables are available in the [`$PLATFORM_VARIABLES` environment variable](../development/variables/use-variables.md#use-provided-variables).
 
 The following example sets two variables:
 

@@ -23,7 +23,7 @@ The following table defines what types of variables are available to you:
 | [Application](./set-variables.md#set-variables-in-your-app) | Application | Application | 4          | Yes   | Yes      | Non-secret values that are the same across all environments |
 | [Project](./set-variables.md#create-project-variables)               | User        | Project     | 3          | Yes   | Yes      | Secret values that are the same across all environments, such as database credentials |
 | [Environment](./set-variables.md#create-environment-specific-variables)       | User        | Environment | 2          | Some  | Yes      | Values that vary by environment, such as which database to connect to or which payment API keys to use |
-| [{{< vendor/name >}}](./use-variables.md#use-platformsh-provided-variables)  | Pre-defined | Environment | 1          | Some  | Yes      | For information about your {{< vendor/name >}} project |
+| [{{< vendor/name >}}](./use-variables.md#use-provided-variables)  | Pre-defined | Environment | 1          | Some  | Yes      | For information about your {{< vendor/name >}} project |
 
 If there are conflicts between variables with the same name, variables [take precedence](#overrides) from 1 down.
 So {{< vendor/name >}}-provided values (1) override environment variables (2), which override project variables (3),
@@ -51,7 +51,7 @@ Other configurations should vary between environment types.
 For example:
 
 - Service configuration for databases and such.
-  This information be read from the {{< vendor/name >}}-provided [`PLATFORM_RELATIONSHIPS` variable](./use-variables.md#use-platformsh-provided-variables).
+  This information be read from the {{< vendor/name >}}-provided [`PLATFORM_RELATIONSHIPS` variable](./use-variables.md#use-provided-variables).
   It varies by environment automatically.
 - Mode toggles such as enabling `debug` mode, disabling certain caches, and displaying more verbose errors.
   This information might vary by environment type and should be set on the [environment level](./set-variables.md#create-environment-specific-variables).

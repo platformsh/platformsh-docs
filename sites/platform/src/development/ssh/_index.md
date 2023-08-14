@@ -24,7 +24,7 @@ All secured through SSH.
 
 To connect to an app securely with SSH, follow two steps.
 
-### 1. Authenticate with the {{< vendor/name >}} CLI
+### 1. Authenticate with the CLI
 
 To authenticate with the CLI:
 
@@ -164,7 +164,7 @@ To connect to a service, fill in the details with the rest of your [service cred
 
 There are three basic ways to authenticate with {{< vendor/name >}}:
 
-* [Through the CLI](#1-authenticate-with-the-platformsh-cli)
+* [Through the CLI](#1-authenticate-with-the-cli)
   * The fastest and easiest method.
   * Supports multifactor authentication.
   * Automatically generates new certificates to keep your connection safe.

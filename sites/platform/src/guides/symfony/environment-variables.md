@@ -5,7 +5,7 @@ description: |
     Learn about the environment variables added by the Symfony integration.
 ---
 
-By default, {{< vendor/name >}} exposes some [environment variables](/development/variables/use-variables#use-platformsh-provided-variables).
+By default, {{< vendor/name >}} exposes some [environment variables](/development/variables/use-variables#use-provided-variables).
 If you're using the [Symfony integration](./integration),
 more [infrastructure environment variables](#symfony-environment-variables) related to Symfony are defined.
 
@@ -22,7 +22,7 @@ and [service](https://github.com/symfony-cli/symfony-cli/blob/main/envs/envs.go#
 
 ## Symfony environment variables
 
-{{< vendor/name >}} exposes [environment variables](/development/variables/use-variables#use-platformsh-provided-variables)
+{{< vendor/name >}} exposes [environment variables](/development/variables/use-variables#use-provided-variables)
 about the app and its infrastructure.
 
 The Symfony integration exposes more environment variables:

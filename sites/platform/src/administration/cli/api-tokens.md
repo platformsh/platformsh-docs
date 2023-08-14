@@ -55,7 +55,7 @@ title=In the Console
 {{< /codetabs >}}
 
 
-## 2. Create a {{< vendor/name >}} API token
+## 2. Create an API token
 
 1. Log in to the Console as your machine user.
 2. Open the user menu (your name or profile picture).
@@ -86,7 +86,7 @@ You are logged in.
 For security reasons, rotate your API tokens regularly.
 When an API token is compromised, revoke it immediately.
 
-## 3. Authenticate the {{< vendor/name >}} CLI using your API token
+## 3. Authenticate the CLI using your API token
 
 After you create your API token, you can use it to do the following:
 
@@ -108,7 +108,7 @@ For more information, see your CI system's official documentation.
 To run SSH-based commands that aren't specific to the {{< vendor/name >}} CLI,
 see how to [load the proper SSH certificate](#use-the-cli-ssh-certificate-for-non-cli-commands).
 
-### Authenticate in a {{< vendor/name >}} environment
+### Authenticate in an environment
 
 You can run automated tasks on an app container using the {{< vendor/name >}} CLI.
 To do so, set your API token as a [top-level environment variable](../../development/variables/_index.md#top-level-environment-variables).

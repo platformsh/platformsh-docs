@@ -15,7 +15,7 @@ tier:
 You need:
 
 - The [{{< vendor/name >}} CLI](../administration/cli/_index.md)
-- An [API token](../administration/cli/api-tokens.md#2-create-a-platformsh-api-token)
+- An [API token](../administration/cli/api-tokens.md#2-create-an-api-token)
 
 ## 1. Define a source operation to update your dependencies
 
@@ -134,7 +134,7 @@ Note that it’s best not to run source operations on your production environmen
 but rather on a dedicated environment where you can test changes.
 
 Make sure you have the [{{< vendor/name >}} CLI](../administration/cli/_index.md) installed
-and [an API token](../administration/cli/api-tokens.md#2-create-a-platformsh-api-token)
+and [an API token](../administration/cli/api-tokens.md#2-create-an-api-token)
 so you can run a cron job in your app container.
 
 1. Set your API token as a top-level environment variable:
