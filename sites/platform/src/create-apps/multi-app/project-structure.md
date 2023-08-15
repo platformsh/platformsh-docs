@@ -26,7 +26,7 @@ Here are some example use cases and potential ways to organize the project:
 ## Unified app configuration
 
 You can configure all your apps from a single file.
-To do so, create an `applications.yaml` file within the `.platform` directory and define each app as a key.
+To do so, create a `{{< vendor/configfile "apps" >}}` and define each app as a key.
 
 For example, if you have an API Platform backend with a Symfony API,
 a Mercure Rocks server, and a Gatsby frontend,
@@ -72,7 +72,7 @@ the build image for your other apps can still be reused.
 
 Once your repository is organized, you can use a configuration similar to the following:
 
-```yaml {location=".platform/applications.yaml"}
+```yaml {configFile="apps"}
 api:
   type: php:8.2
 
@@ -223,7 +223,7 @@ The Python app's code base includes all of the files at the top level (excluding
 *and* all of the files within the `languagetool` directory.
 The Java app's code base includes only the files within the `languagetool` directory.
 
-In this case, your `applications.yaml` file must contain 2 entries, one for the `main` app and second one for the `languagetool` app.
+In this case, your `{{< vendor/configfile "apps" >}}` file must contain 2 entries, one for the `main` app and second one for the `languagetool` app.
 
 {{< note >}}
 
@@ -236,11 +236,11 @@ you need to [change the source root](#change-the-source-root-of-your-app) of the
 
 Once your repository is organized, you can use a configuration similar to the following:
 
-```yaml
-# .platform/applications.yaml
+```yaml {configFile="apps"}
 main:
   type: 'python:3.11'
   ...
+  
 languagetool:
   type: 'java:17'
   source:
@@ -256,7 +256,7 @@ Then you can build them together in another repository using [Git submodules](ht
 
 With this setup, your apps are kept separate from the top application.
 Each app has its own [Git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) containing its code base.
-All your apps are configured in a single `.platform/applications.yaml` file.
+All your apps are configured in a single `{{< vendor/configfile "apps" >}}` file.
 So you could organize your [project repository](https://github.com/platformsh-templates/bigfoot-multiapp/tree/submodules-root-app-yaml) like this:
 
 ```text
@@ -308,7 +308,7 @@ For example, to change the source root of the `admin` app
 from the [unified app configuration](#unified-app-configuration) example project,
 you could add the following configuration:
 
-```yaml {location=".platform/applications.yaml"}
+```yaml {configFile="apps"}
 source:
     root: admin
 ```
@@ -316,4 +316,4 @@ source:
 The `source.root` path is relative to the repository root.
 In this example, the `admin` app now treats the `admin` directory as its root when building.
 
-If `source.root` isn't specified, it defaults to the same directory as the `.platform/applications.yaml` (or `.platform.app.yaml`) file itself.
+If `source.root` isn't specified, it defaults to the same directory as the `{{< vendor/configfile "apps" >}}` (or `.platform.app.yaml`) file itself.

@@ -20,7 +20,7 @@ There are various ways you can define routes for multiple app projects such as t
 In this project, you have a CMS app, two frontend apps (one using Symfony and another using Gatsby),
 and a Mercure Rocks server app, defined as follows:
 
-```yaml {location=".platform/applications.yaml"}
+```yaml {configFile="apps"}
 - name: admin
   type: nodejs:16
   source:
@@ -97,7 +97,7 @@ Alternatively, you could define your routes as follows:
 
 Then you would need to configure each app's `web.locations` property to match these paths:
 
-```yaml {location=".platform/applications.yaml"}
+```yaml {configFile="apps"}
 -   name: api
     type: php:8.2
     source:

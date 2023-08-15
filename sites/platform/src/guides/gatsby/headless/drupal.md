@@ -67,7 +67,7 @@ For detailed instructions, see the template's [post-installation instructions](h
 
 With Gatsby now deployed and pulling content from a backend Drupal application, there are a few things you may wish to change about your project going forward.
 
-### `applications.yaml`
+### Shared application configuration
 
 {{% guides/gatsby/headless-applicationsyaml name="Drupal" %}}
 
