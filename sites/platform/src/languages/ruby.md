@@ -291,7 +291,7 @@ web:
 This example assumes there is a MySQL instance.
 To configure it, [create a service](../add-services/_index.md) such as the following:
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 database:
     type: mysql:10.4
     disk: 2048

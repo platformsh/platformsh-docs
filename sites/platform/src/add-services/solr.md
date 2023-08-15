@@ -202,7 +202,7 @@ Note that not all core.properties features make sense to specify in the `core_pr
 
 If you don't specify any configuration, the following default is used:
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 searchsolr:
     type: solr:9.1
     configuration:
@@ -222,7 +222,7 @@ You are strongly recommended to define your own configuration with a custom core
 
 If you don't specify any configuration, the following default is used:
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 searchsolr:
     type: solr:8.4
     configuration:

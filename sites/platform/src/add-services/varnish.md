@@ -100,7 +100,7 @@ your VCL templates needs logic to determine where each request is forwarded.
 
 For example, you might have the following configuration for two apps:
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 varnish:
     type: varnish:6.0
     relationships:

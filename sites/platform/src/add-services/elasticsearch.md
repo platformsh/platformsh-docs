@@ -115,7 +115,7 @@ No username or password is required to connect to it.
 Starting with Elasticsearch 7.2 you may optionally enable HTTP Basic authentication.
 To do so, include the following in your `services.yaml` configuration:
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 search:
     type: elasticsearch:7.2
     disk: 2048
@@ -149,7 +149,7 @@ For example:
 Elasticsearch offers a number of plugins.
 To enable them, list them under the `configuration.plugins` key in your `services.yaml` file, like so:
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 search:
     type: "elasticsearch:7.2"
     disk: 1024

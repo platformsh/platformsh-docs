@@ -26,7 +26,7 @@ Add a database service (or choose [another service](../../add-services/_index.md
    (If you need a different database service, you can choose from the [available services](../../add-services/_index.md#available-services).
    Then change the `type` to fit your choice.)
 
-   ```yaml {location=".platform/services.yaml"}
+   ```yaml {configFile="services"}
    db:
        type: mariadb:10.5
        disk: 1024

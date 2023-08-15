@@ -23,7 +23,7 @@ Edit your `{{< vendor/configfile "services" >}}` file and add the following [end
 - `website` with `admin` access to the `main` database
 - `reporting` with read-only `ro` access to the `main` database
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 maindb:
     type: mariadb:10.5
     disk: 2048

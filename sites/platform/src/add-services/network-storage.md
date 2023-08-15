@@ -97,7 +97,7 @@ while `service` mounts refer to the same file system.
 
 For example, you can define a network storage service:
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 files:
     type: network-storage:2.0
     disk: 2048

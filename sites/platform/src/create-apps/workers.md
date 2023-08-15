@@ -151,7 +151,7 @@ while `variables` lets you instruct the application to run differently as a work
 
 For example, consider the following configuration:
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 db:
   type: "mariadb:10.4"
   disk: 2048

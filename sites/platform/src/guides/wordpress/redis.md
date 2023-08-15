@@ -17,7 +17,7 @@ both of which require a minimal amount of configuration.
 
 To create a Redis service, add the following to your [services configuration](../../add-services/_index.md):
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 rediscache:
     type: redis:6.0
 ```

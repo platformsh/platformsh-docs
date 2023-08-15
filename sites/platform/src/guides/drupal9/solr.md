@@ -43,7 +43,7 @@ Configure the Solr server to have a single core (`maincore`) with the default co
 (This default isn't suitable for production, but enables connections.)
 And define a single endpoint (`main`) that connects to this core.
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 searchsolr:
     type: solr:8.6
     disk: 1024
@@ -191,7 +191,7 @@ Its default value doesn't work, and it isn't required for Solr to operate.
 Finally, move that directory to `.platform/`, and update the `maincore.conf_dir` to point to it.
 The `services.yaml` entry should now look approximately like this:
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 searchsolr:
     type: solr:8.6
     disk: 1024

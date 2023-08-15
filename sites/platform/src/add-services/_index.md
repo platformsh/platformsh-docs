@@ -36,7 +36,7 @@ Configure your service in the following pattern:
 
 An example service configuration for two databases might look like this:
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 database1:
     type: mariadb:10.5
     disk: 2048
