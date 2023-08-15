@@ -28,7 +28,7 @@ All service configuration happens in the `{{< vendor/configfile "services" >}}` 
 
 Configure your service in the following pattern:
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 {{<variable "SERVICE_NAME" >}}:
     type: {{<variable "SERVICE_TYPE" >}}:{{<variable "VERSION" >}}
     # Other options...

@@ -1,7 +1,14 @@
 {{ $lang  := .Attributes.lang  | default .Type }}
 {{ $location := .Attributes.location | default "" }}
+{{ $configFile := .Attributes.configfile | default ""}}
+
+{{ $configFiles := .Page.Site.Params.vendor.files }}
+
 {{ with $location }}
 <div class="bg-stone px-4 pt-2 rounded-t-lg inline-block text-base pb-1">{{ . }}</div>
+{{ end }}
+{{ with $configFile }}
+<div class="bg-stone px-4 pt-2 rounded-t-lg inline-block text-base pb-1">{{ index $configFiles . }}</div>
 {{ end }}
 {{ if transform.CanHighlight $lang }}
 {{ $content := .Inner | safeHTML }}
