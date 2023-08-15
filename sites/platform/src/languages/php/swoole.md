@@ -16,7 +16,7 @@ Swoole requires PHP 7.3+.
 The Swoole installation script is compatible up to PHP 8.0.
 {{< /note >}}
 
-Check the documentation related to [Laravel Octane on Platform.sh](../../guides/laravel/deploy/octane.md).
+Check the documentation related to [Laravel Octane on {{< vendor/name >}}](../../guides/laravel/deploy/octane.md).
 
 {{% swoole %}}
 

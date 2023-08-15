@@ -1,6 +1,6 @@
 ---
 title: "PHP"
-description: Deploy PHP apps on Platform.sh.
+description: Deploy PHP apps on {{< vendor/name >}}.
 layout: single
 ---
 
@@ -24,7 +24,7 @@ Note that from PHP versions 7.1 to 8.1, the images support the Zend Thread Safe 
 
 ## Usage example
 
-Configure your app to use PHP on Platform.sh.
+Configure your app to use PHP on {{< vendor/name >}}.
 
 ### 1. Specify the version
 
@@ -375,7 +375,7 @@ memory_limit=-1
 ### Disable functions for security
 
 A common recommendation for securing PHP installations is disabling built-in functions frequently used in remote attacks.
-By default, Platform.sh doesn't disable any functions.
+By default, {{< vendor/name >}} doesn't disable any functions.
 
 If you're sure a function isn't needed in your app, you can disable it.
 

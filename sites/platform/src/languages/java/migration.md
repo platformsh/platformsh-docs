@@ -1,15 +1,15 @@
 ---
-title: "Moving a Java application to Platform.sh"
+title: "Moving a Java application to {{< vendor/name >}}"
 weight: 2
-sidebarTitle: "Moving to Platform.sh"
+sidebarTitle: "Moving to {{< vendor/name >}}"
 ---
 
-It is common to have a Java application that you want to migrate to Platform.sh.
-Platform.sh supports several styles of Java application, such as monolith, microservices, stateful, and stateless.
+It is common to have a Java application that you want to migrate to {{< vendor/name >}}.
+{{< vendor/name >}} supports several styles of Java application, such as monolith, microservices, stateful, and stateless.
 
 ## Minimum Requirement
 
-To run a Java application at Platform.sh you need:
+To run a Java application at {{< vendor/name >}} you need:
 
 * [A supported Java version](/languages/java/_index.md#supported-versions)
 * [A build management tool](/languages/java/_index.md#support-build-automation)
@@ -21,7 +21,7 @@ To run a Java application at Platform.sh you need:
   * [GitHub](/integrations/source/github.md)
   * [BitBucket](/integrations/source/bitbucket.md)
   * [GitLab](/integrations/source/gitlab.md)
-  * The default Git repository provided by Platform.sh
+  * The default Git repository provided by {{< vendor/name >}}
 
 {{< note >}}
 A container application can't be bigger than **8 GB** of memory.
@@ -30,7 +30,7 @@ For more details, see [tuning](./tuning.md).
 
 ## Monolith/Single Application
 
-To start a Java application, you need to understand the [Platform.sh structure](../../overview/structure.md).
+To start a Java application, you need to understand the [{{< vendor/name >}} structure](../../overview/structure.md).
 At minimum, you need to configure your [application](../../create-apps/_index.md).
 You can also have two [YAML files](../../overview/yaml/_index.md)  if you need:
 
@@ -90,7 +90,7 @@ You have the option to use several languages in microservices. If you're using J
 * [Gradle Multi-project](https://guides.gradle.org/creating-multi-project-builds/)
 * [Git submodules](/development/submodules.md)
 
-[Platform.sh supports multiple applications](../../create-apps/multi-app/_index.md) and there are two options:
+[{{< vendor/name >}} supports multiple applications](../../create-apps/multi-app/_index.md) and there are two options:
 
 * One application YAML file to each application
 * Aggregate all applications in a single file with an `applications.yaml` file
@@ -108,9 +108,9 @@ As a single application, in the multi-app, you have the option to set load balan
 
 {{< /note >}}
 
-## Access to services included at Platform.sh
+## Access to managed services
 
-[Platform.sh has services managed by Platform.sh itself such as database, cache and search engine](/add-services/_index.md). However, you can use a database or any services such as a transition process, just be aware of the [firewall](../../create-apps/app-reference.md#firewall).
+[{{< vendor/name >}} has services managed by {{< vendor/name >}} itself such as database, cache and search engine](/add-services/_index.md). However, you can use a database or any services such as a transition process, just be aware of the [firewall](../../create-apps/app-reference.md#firewall).
 
 When applications need to access a service, it is important to include the [Relationships key](../../create-apps/app-reference.md#relationships), because. by default an application may not talk to any other container within a project it includes others projects as a microservices architecture.
 
@@ -123,10 +123,10 @@ The most common mechanisms are listed below.
 If you are using a framework that follows the [Twelve-Factor App](https://12factor.net/) methodology, particularly the [third point](https://12factor.net/config), you can configure the application directly from environment variables.
 Examples of such frameworks include Spring, Eclipse MicroProfile Config, Quarkus, and Micronauts.
 
-The services information is available in the [**PLATFORM_RELATIONSHIPS** environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables).
+The services information is available in the [**PLATFORM_RELATIONSHIPS** environment variable](../../development/variables/use-variables.md#use-provided-variables).
 This variable is a base64-encoded JSON object with keys of the relationship name and values of arrays of relationship endpoint definitions.
 
-Platform.sh supports the [`jq` tool](https://stedolan.github.io/jq/), which allows to extract information from this JSON.
+{{< vendor/name >}} supports the [`jq` tool](https://stedolan.github.io/jq/), which allows to extract information from this JSON.
 
 ```shell
 export DB_HOST=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].host"`
@@ -173,7 +173,7 @@ web:
 ### Using Java Config Reader
 
 If your framework doesn't support configuration via environment variables, use the [Config Reader](../../development/variables/use-variables.md#access-variables-in-your-app).
-This library provides a streamlined way to interact with a Platform.sh environment. It offers utility methods to access routes and relationships more cleanly than reading the raw environment variables yourself. [See the maven dependency](https://mvnrepository.com/artifact/sh.platform/config).
+This library provides a streamlined way to interact with a {{< vendor/name >}} environment. It offers utility methods to access routes and relationships more cleanly than reading the raw environment variables yourself. [See the maven dependency](https://mvnrepository.com/artifact/sh.platform/config).
 
 ```java
 import Config;

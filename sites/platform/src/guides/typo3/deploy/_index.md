@@ -1,13 +1,13 @@
 ---
-title: Deploy TYPO3 on Platform.sh
+title: Deploy TYPO3 on {{< vendor/name >}}
 sidebarTitle: "Get started"
 weight: -110
 layout: single
 description: |
-    Create a Platform.sh account, download a few tools, and prepare to deploy TYPO3.
+    Create a {{< vendor/name >}} account, download a few tools, and prepare to deploy TYPO3.
 ---
 
-TYPO3 is an Open Source Enterprise PHP-based CMS framework. The recommended way to deploy TYPO3 on Platform.sh is by using Composer, the PHP package management suite. 
+TYPO3 is an Open Source Enterprise PHP-based CMS framework. The recommended way to deploy TYPO3 on {{< vendor/name >}} is by using Composer, the PHP package management suite. 
 
 This guide assumes you are using the well-supported Composer flavor of TYPO3.
 

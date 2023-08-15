@@ -1,7 +1,7 @@
 ---
 title: "MariaDB/MySQL External Replication"
 sidebarTitle: "MariaDB/MySQL Replication"
-description: In rare cases, it may be useful to maintain a replica instance of your MySQL/MariaDB database outside of Platform.sh.
+description: In rare cases, it may be useful to maintain a replica instance of your MySQL/MariaDB database outside of {{< vendor/name >}}.
 ---
 
 {{% description %}}
@@ -9,7 +9,7 @@ description: In rare cases, it may be useful to maintain a replica instance of y
 Normally an automated backup is better for short-term usage and a `mysqldump` for longer term storage, but in some cases the data set is large enough that `mysqldump` is prohibitive.
 In that case, you can enable external replication using an extra permission.
 
-Note that this guide covers the Platform.sh side; you need to set up and maintain your own replica instance.
+Note that this guide covers the {{< vendor/name >}} side; you need to set up and maintain your own replica instance.
 Consult the MySQL or MariaDB documentation for steps to do so.
 
 ## Create a replication user
@@ -121,7 +121,7 @@ And reload the replica instance for the changes to take an effect.
 ### Set up SSH tunneling
 
 You need to set up an SSH tunnel from the replica server to the primary, tunneled through the application.
-To do so using the Platform.sh CLI, run the following
+To do so using the {{< vendor/name >}} CLI, run the following
 (replacing `{{< variable "BRANCH_NAME" >}}` with the name of your production branch):
 
 ```bash
@@ -136,7 +136,7 @@ The SSH connection is interrupted every time the environment redeploys. For repl
 
 ### Starting the Replica
 
-Once the data has been imported, you are ready to start replicating. Begin by running a `CHANGE MASTER TO`, making sure that `MASTER_LOG_FILE` matches the file and `MASTER_LOG_POS` the position returned by the earlier `SHOW MASTER STATUS` on the Platform.sh database. For example:
+Once the data has been imported, you are ready to start replicating. Begin by running a `CHANGE MASTER TO`, making sure that `MASTER_LOG_FILE` matches the file and `MASTER_LOG_POS` the position returned by the earlier `SHOW MASTER STATUS` on the {{< vendor/name >}} database. For example:
 
 ```sql
 mysql> CHANGE MASTER TO

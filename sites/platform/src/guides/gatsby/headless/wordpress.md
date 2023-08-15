@@ -1,5 +1,5 @@
 ---
-title: "How to deploy Gatsby with WordPress on Platform.sh"
+title: "How to deploy Gatsby with WordPress on {{< vendor/name >}}"
 sidebarTitle: "WordPress"
 description: |
     WordPress's built-in content API can quickly become a content source for Gatsby with `gatsby-source-wordpress`.
@@ -8,7 +8,7 @@ description: |
 
 {{< guides/gatsby/headless-intro template="gatsby-wordpress" name="WordPress" >}}
 
-## Shared Platform.sh configuration
+## Shared configuration
 
 {{% guides/gatsby/headless-project name="WordPress" %}}
 

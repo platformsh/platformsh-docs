@@ -9,6 +9,7 @@ async
 Asyncio
 auditable
 autoload(?:er|ing)?
+[Aa]utoscaling
 Blackfire
 blockquote
 Bootsnap
@@ -75,6 +76,7 @@ Mailchimp
 [Mm]ebibyte
 Meilisearch
 Memcache
+Mercure
 Mezmo
 middleware
 Miniconda

@@ -2,7 +2,7 @@
 {{ $isSymfony := .Get "Symfony" }}
 ## Migrate your data
 
-If you are moving an existing site to Platform.sh, then in addition to code you also need to migrate your data.
+If you are moving an existing site to {{ .Site.Params.vendor.name }}, then in addition to code you also need to migrate your data.
 That means your database and your files.
 
 ### Import the database
@@ -15,7 +15,7 @@ such as using the
 
 {{ .Inner | .Page.RenderString }}
 
-Next, import the database into your Platform.sh site by running the following command:
+Next, import the database into your {{ .Site.Params.vendor.name }} site by running the following command:
 
 {{ if $isSymfony }}
 ```bash
@@ -60,7 +60,7 @@ platform mount:upload --mount src/main/resources/files/public --source ./files/p
 This uses an SSH tunnel and rsync to upload your files as efficiently as possible.
 Note that rsync is picky about its trailing slashes, so be sure to include those.
 
-You've now added your files and database to your Platform.sh environment.
+You've now added your files and database to your {{ .Site.Params.vendor.name }} environment.
 When you make a new branch environment off of it,
 all of your data is fully cloned to that new environment
 so you can test with your complete dataset without impacting production.

@@ -82,4 +82,4 @@ The best approach is to wrap your connection logic in code that detects a "serve
 and tries to re-establish the connection.
 
 Alternatively, if your worker is idle for too long it can self-terminate.
-Platform.sh automatically restarts the worker process and the new process can establish a new database connection.
+{{< vendor/name >}} automatically restarts the worker process and the new process can establish a new database connection.

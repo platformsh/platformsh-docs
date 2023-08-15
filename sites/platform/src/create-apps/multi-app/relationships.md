@@ -33,7 +33,7 @@ app1:
 ```
 
 Once they're both built, `app1` can access `app2` at the following URL: `http://api.internal`.
-The specific URL is always available through the [`PLATFORM_RELATIONSHIPS` variable](/development/variables/use-variables.md#use-platformsh-provided-variables):
+The specific URL is always available through the [`PLATFORM_RELATIONSHIPS` variable](/development/variables/use-variables.md#use-provided-variables):
 
 ```bash
 $ echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq '.api[0].host'

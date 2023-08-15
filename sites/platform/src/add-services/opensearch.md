@@ -138,7 +138,7 @@ There are two ways to do so.
 In your `services.yaml` file, change the version *and* name of your OpenSearch service.
 Then update the name in the `.platform.app.yaml` relationships block.
 
-When you push that to Platform.sh, the old service is deleted and a new one with the new name is created with no data.
+When you push that to {{< vendor/name >}}, the old service is deleted and a new one with the new name is created with no data.
 You can then have your application reindex data as appropriate.
 
 This approach has the downsides of temporarily having an empty OpenSearch instance,

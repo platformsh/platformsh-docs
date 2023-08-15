@@ -1,7 +1,7 @@
 ---
 title: Integrate with GitLab
 sidebarTitle: GitLab
-description: See how to manage your Platform.sh environments directly from your GitLab repository.
+description: See how to manage your {{< vendor/name >}} environments directly from your GitLab repository.
 ---
 
 {{% source-integration/intro source="GitLab" %}}
@@ -9,7 +9,7 @@ description: See how to manage your Platform.sh environments directly from your 
 
 ## 1. Generate a token
 
-To integrate your Platform.sh project with an existing GitLab repository,
+To integrate your {{< vendor/name >}} project with an existing GitLab repository,
 generate a [project access token](https://docs.gitlab.com/ee/user/project/settings/project_access_tokens.html#create-a-project-access-token).
 Ensure the token has the following scopes:
 

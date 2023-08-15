@@ -10,7 +10,7 @@ description: |
 
 ## Remove Varnish configuration
 
-In Ibexa DXP, Varnish is enabled by default when deploying on Platform.sh.
+In Ibexa DXP, Varnish is enabled by default when deploying on {{< vendor/name >}}
 To use Fastly, Varnish must be disabled:
 
  - Remove environment variable `TRUSTED_PROXIES: "REMOTE_ADDR"` in [`.platform.app.yaml`](https://github.com/ezsystems/ezplatform/blob/master/.platform.app.yaml)
@@ -30,9 +30,9 @@ To use Fastly, Varnish must be disabled:
 Ibexa DXP's documentation includes instructions on how to [configure Ibexa DXP for Fastly](https://doc.ibexa.co/en/latest/infrastructure_and_maintenance/cache/http_cache/reverse_proxy/#using-varnish-or-fastly).
 Follow the steps there to prepare Ibexa DXP for Fastly.
 
-## Set credentials on Platform.sh
+## Set credentials
 
-The best way to provide the Fastly credentials and configuration to Ibexa DXP on Platform.sh is via environment variables.
+The best way to provide the Fastly credentials and configuration to Ibexa DXP on {{< vendor/name >}} is via environment variables.
 That way private credentials are never stored in Git.
 
 Using the CLI, run the following commands to set the configuration on your production environment
@@ -64,7 +64,7 @@ They handle varying cache by user context hash _(permissions)_
 as well as several other needs by Ibexa DXP and it's underlying HttpCache system.
 
 
-## Configure Fastly and Platform.sh
+## Configure Fastly
 
-See the alternate [Go-live process for Fastly](/domains/cdn/_index.md#client-authenticated-tls) on Platform.sh.
+See the alternate [Go-live process for Fastly](/domains/cdn/_index.md#client-authenticated-tls) on {{< vendor/name >}}.
 This process is the same for any application.

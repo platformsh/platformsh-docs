@@ -1,10 +1,10 @@
 ---
-title: Deploy Laravel on Platform.sh
+title: Deploy Laravel on {{< vendor/name >}}
 sidebarTitle: Get started
 weight: -110
 layout: single
 description: |
-  Create a Platform.sh account, download a few tools, and prepare to deploy Laravel.
+  Create a {{< vendor/name >}} account, download a few tools, and prepare to deploy Laravel.
 ---
 
 [Laravel](https://laravel.com) is an open-source PHP Framework.

@@ -1,12 +1,12 @@
 ---
-title: "Customize WordPress for Platform.sh"
+title: "Customize WordPress for {{< vendor/name >}}"
 sidebarTitle: "Customize"
 weight: -90
 description: |
-    Add some helpful dependencies, and modify your WordPress site to read from a Platform.sh environment.
+    Add some helpful dependencies, and modify your WordPress site to read from a {{< vendor/name >}} environment.
 ---
 
-Now that your code contains all of the configuration to deploy on Platform.sh, it’s time to make your WordPress site itself ready to run on a Platform.sh environment. 
+Now that your code contains all of the configuration to deploy on {{< vendor/name >}}, it’s time to make your WordPress site itself ready to run on a {{< vendor/name >}} environment. 
 
 ## Install the Config Reader
 
@@ -18,7 +18,7 @@ With the Configuration Reader library installed, add or update a `wp-config.php`
 
 - Retrieve connection credentials for MariaDB through the `database` relationship to configure the WordPress database. This will set up the database automatically and avoid you having to set the connection yourself during the installer. 
 - Use the project's [routes](../../../define-routes/_index.md) to set `WP_HOME` and `WP_SITEURL` settings. 
-- Set all of WordPress's security and authentication keys to the Platform.sh-provided `PLATFORM_PROJECT_ENTROPY` - a hashed variable specific to your repository consistent across environments. 
+- Set all of WordPress's security and authentication keys to the {{< vendor/name >}}-provided `PLATFORM_PROJECT_ENTROPY` - a hashed variable specific to your repository consistent across environments. 
 
 Many other WordPress settings are pre-defined in this file for you, so consult the inline comments for more information.
 
@@ -26,7 +26,7 @@ Many other WordPress settings are pre-defined in this file for you, so consult t
 
 ## Setting up Composer
 
-Through this guide you will set up your WordPress repository to install everything during it's build using Composer. That includes themes, plugins, and even WordPress Core itself. Any new plugins you want to use or migrate from your existing application can be committed as dependencies using Composer, but there are a few changes we need to make to the `composer.json` file to prepare it for the final Platform.sh environment.
+Through this guide you will set up your WordPress repository to install everything during it's build using Composer. That includes themes, plugins, and even WordPress Core itself. Any new plugins you want to use or migrate from your existing application can be committed as dependencies using Composer, but there are a few changes we need to make to the `composer.json` file to prepare it for the final {{< vendor/name >}} environment.
 
 First, the John Bloch script has a default `wordpress` installation directory, so the `composer.json` file needs to know that all new themes and plugins have a destination within that subdirectory.
 

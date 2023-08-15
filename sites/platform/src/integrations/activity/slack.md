@@ -27,7 +27,7 @@ For formatting more complex messages, see the [Slack messaging documentation](ht
  * Sends a color-coded formatted message to Slack.
  *
  * To control what events trigger it, use the --events switch in
- * the Platform.sh CLI.
+ * the {{< vendor/name >}} CLI.
  *
  * @param {string} title
  *   The title of the message block to send.

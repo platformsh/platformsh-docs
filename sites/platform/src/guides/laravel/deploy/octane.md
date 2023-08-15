@@ -21,7 +21,7 @@ Require Laravel Octane using Composer.
 composer require laravel/octane
 ```
 
-Then make sure to clear the cache on all relevant Platform.sh environments.
+Then make sure to clear the cache on all relevant {{< vendor/name >}} environments.
 
 ``` bash
 php artisan optimize:clear

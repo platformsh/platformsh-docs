@@ -5,7 +5,7 @@ description: Learn how to troubleshoot access rights for integrated repositories
 toc: false
 ---
 
-If you [add a user](/administration/users.md#add-a-user-to-a-project) to a Platform.sh project,
+If you [add a user](/administration/users.md#add-a-user-to-a-project) to a {{< vendor/name >}} project,
 but you haven’t added them to the remote repository on GitHub, GitLab, or Bitbucket,
 they can't clone the project locally.
 

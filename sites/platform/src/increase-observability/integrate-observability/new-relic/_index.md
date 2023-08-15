@@ -3,7 +3,7 @@ title: "New Relic"
 weight: 2
 sectionBefore: Third-party observability tools
 description: |
-  Platform.sh supports [New Relic application performance monitoring](https://newrelic.com/products/application-monitoring).
+  {{< vendor/name >}} supports [New Relic application performance monitoring](https://newrelic.com/products/application-monitoring).
 layout: single
 ---
 
