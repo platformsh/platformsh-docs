@@ -50,7 +50,7 @@ Any change to the service version results in existing data becoming inaccessible
 ## Multi-application usage
 
 If your project contains [multiple apps](../create-apps/multi-app/_index.md), they can all use the same network mounts.
-If the `source_path` is the same in both `.platform.app.yaml` files,
+If the `source_path` is the same in both `{{< vendor/configfile "app" >}}` files,
 the files are shared between the two applications even if the mount location is different.
 
 It's also possible to have one app mount a `source_path` that's a subdirectory of another application's mount.
@@ -106,7 +106,7 @@ files:
 You can then use this service to  define a `network_dir` network mount and a `local_dir` local mount,
 to be used by a web instance and a `queue` worker instance:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 mounts:
     # Define a network storage mount that's available to both instances together
     'network_dir':
@@ -150,7 +150,7 @@ Both the web instance and the `queue` worker have two mount points:
 The most common use case for `network-storage` is to allow a CMS-driven site to use a worker that has access to the same file mounts as the web-serving application.
 For that case, all that's needed is to set the necessary file mounts as `service` mounts.
 
-For example, the following `.platform.app.yaml` file (fragment) keeps Drupal files directories shared between web and worker instances while keeping the Drush backup directory web-only (as it has no need to be shared).
+For example, the following `{{< vendor/configfile "app" >}}` file (fragment) keeps Drupal files directories shared between web and worker instances while keeping the Drush backup directory web-only (as it has no need to be shared).
 (This assumes a service named `files` has already been defined in `{{< vendor/configfile "services" >}}`.)
 
 
@@ -287,5 +287,5 @@ The following approximate steps do so with a minimum of service interruption.
    If you don't, the files remain on disk but inaccessible, just eating up disk space needlessly.
 
    Once that's done you can remove the `old-uploads` mount and push again to finish the process
-   You are also free to reduce the `disk` size in the `.platform.app.yaml` file if desired,
+   You are also free to reduce the `disk` size in the `{{< vendor/configfile "app" >}}` file if desired,
    but make sure to leave enough for any remaining local mounts.

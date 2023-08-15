@@ -214,7 +214,7 @@ There are two ways to do so.
 ### Destructive
 
 In your `{{< vendor/configfile "services" >}}` file, change the version *and* name of your Elasticsearch service.
-Then update the name in the `.platform.app.yaml` relationships block.
+Then update the name in the `{{< vendor/configfile "app" >}}` relationships block.
 
 When you push that to {{< vendor/name >}}, the old service is deleted and a new one with the new name is created with no data.
 You can then have your application reindex data as appropriate.
@@ -226,7 +226,7 @@ Depending on the size of your data that could take a while.
 ### Transitional
 
 With a transitional approach, you temporarily have two Elasticsearch services.
-Add a second Elasticsearch service with the new version a new name and give it a new relationship in `.platform.app.yaml`.
+Add a second Elasticsearch service with the new version a new name and give it a new relationship in `{{< vendor/configfile "app" >}}`.
 You can optionally run in that configuration for a while to allow your application to populate indexes in the new service as well.
 
 Once you're ready to switch over, remove the old Elasticsearch service and relationship.

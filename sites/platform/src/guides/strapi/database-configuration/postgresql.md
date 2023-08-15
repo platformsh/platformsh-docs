@@ -23,7 +23,7 @@ To configure a PostgreSQL database for Strapi on {{< vendor/name >}}, follow the
             disk: 512
    ```
 
-1. In your `.platform.app.yaml` file, replace the relationship name to match the PostgreSQL database you added:
+1. In your `{{< vendor/configfile "app" >}}` file, replace the relationship name to match the PostgreSQL database you added:
 
    ```yaml
    relationships:

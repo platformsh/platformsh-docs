@@ -39,9 +39,7 @@ You can also have two [YAML files](../../overview/yaml/_index.md)  if you need:
 
 ### Application
 
-```yaml
-# .platform.app.yaml
-
+```yaml {configFile="app"}
 name: app
 type: "java:<version>" [1]
 disk: 1024

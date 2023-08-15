@@ -218,7 +218,7 @@ This example creates a single PostgreSQL service named `dbpostgres`. The server 
 
 If a given endpoint has access to multiple databases you should also specify which is listed by default in the relationships array. If one isn't specified, the `path` property of the relationship is `null`. While that may be acceptable for an application that knows the name of the database it's connecting to, automated tools like the {{< vendor/name >}} CLI can't access the database on that relationship. For that reason, defining the `default_database` property is always recommended.
 
-Once these endpoints are defined, you need to expose them to your application as a relationship. Continuing with the above example, your `relationships` in `.platform.app.yaml` might look like:
+Once these endpoints are defined, you need to expose them to your application as a relationship. Continuing with the above example, your `relationships` in `{{< vendor/configfile "app" >}}` might look like:
 
 ```yaml
 relationships:
@@ -358,7 +358,7 @@ For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-
 
 ### Could not find driver
 
-If you see this error: `Fatal error: Uncaught exception 'PDOException' with message 'could not find driver'`, this means you are missing the `pdo_pgsql` PHP extension. You need to enable it in your `.platform.app.yaml` (see above).
+If you see this error: `Fatal error: Uncaught exception 'PDOException' with message 'could not find driver'`, this means you are missing the `pdo_pgsql` PHP extension. You need to enable it in your `{{< vendor/configfile "app" >}}` (see above).
 
 ## Upgrading
 

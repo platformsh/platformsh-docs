@@ -22,7 +22,7 @@ It also makes defining WordPress as a submodule possible if you choose to do so.
 Place all code for WordPress core into a subdirectory called `wordpress`, including your `wp-config.php` file.
 
 {{< note >}}
-You can name the WordPress core subdirectory whatever you would like - the most common being `wp`, `web`, and `wordpress`. `wordpress` has been chosen for {{< vendor/name >}} templates and guides because it is often the default install location for [composer-flavored versions of WordPress](/guides/wordpress/deploy/_index.md), and naming it `wordpress` now in your project will make [migrating to use Composer](/guides/wordpress/composer/migrate.md) later on straightforward. If naming the directory something other than `wordpress`, make sure to update the `web.locations["/"].root` attribute to match in your `.platform.app.yaml file`, as well as any other `root` attribute there.
+You can name the WordPress core subdirectory whatever you would like - the most common being `wp`, `web`, and `wordpress`. `wordpress` has been chosen for {{< vendor/name >}} templates and guides because it is often the default install location for [composer-flavored versions of WordPress](/guides/wordpress/deploy/_index.md), and naming it `wordpress` now in your project will make [migrating to use Composer](/guides/wordpress/composer/migrate.md) later on straightforward. If naming the directory something other than `wordpress`, make sure to update the `web.locations["/"].root` attribute to match in your `{{< vendor/configfile "app" >}}` file, as well as any other `root` attribute there.
 {{< /note >}}
 
 ### Core, themes, and plugins can also be submodules
@@ -85,7 +85,7 @@ Up to this point, this guide should give you the following project structure:
 │   ├── ...
 │   ├── wp-cli.yml
 │   └── wp-config.php
-└── .platform.app.yaml
+└── {{< vendor/configfile "app" >}}
 ```
 
 {{< guide-buttons next="Deploy WordPress" >}}

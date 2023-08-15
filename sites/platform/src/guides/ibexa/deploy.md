@@ -19,12 +19,12 @@ By default, Ibexa DXP is configured to use a single Redis instance for both the 
 You may optionally choose to use a separate Redis instance for session storage in case you have a lot of authenticated traffic (and thus there would be many session records).
 
 To do so, uncomment the `redissession` entry in the `{{< vendor/configfile "services" >}}` file
-and the corresponding relationship in the `.platform.app.yaml` file.
+and the corresponding relationship in the `{{< vendor/configfile "app" >}}` file.
 The bridge code that is provided with eZ Platform 1.13 and later automatically detects the additional Redis service and use it for session storage.
 
 On a {{% names/dedicated-gen-2 %}} instance, we strongly recommend using two separate Redis instances for Cache and Sessions.
 The service and relationship names that ship with the default {{< vendor/name >}} configuration in Ibexa DXP should be used as-is.
-To ensure the development environment works like Production, uncomment the `redissession` entry in the `{{< vendor/configfile "services" >}}` file and the corresponding relationship in the `.platform.app.yaml` file.
+To ensure the development environment works like Production, uncomment the `redissession` entry in the `{{< vendor/configfile "services" >}}` file and the corresponding relationship in the `{{< vendor/configfile "app" >}}` file.
 The bridge code that's provided with eZ Platform 1.13 and later
 automatically detects the additional Redis service and uses it for session storage.
 
@@ -38,7 +38,7 @@ If you have an existing Ibexa DXP project that was upgraded from a previous vers
 
 In particular, see:
 
-* The [`.platform.app.yaml`](https://github.com/ezsystems/ezplatform/blob/master/.platform.app.yaml) file,
+* The [`{{< vendor/configfile "app" >}}`](https://github.com/ezsystems/ezplatform/blob/master/.platform.app.yaml) file,
   which automatically builds Ibexa DXP in development mode or production mode depending on your defined project-level variables.
 * The [.platform](https://github.com/ezsystems/ezplatform/tree/master/.platform) directory.
 
@@ -88,7 +88,7 @@ Now, you have a working Ibexa DXP application with many services including Varni
 
 ### Integration
 
-To generate the key files for {{< vendor/name >}} (`.platform.app.yaml` and `.platform`) run:
+To generate the key files for {{< vendor/name >}} (`{{< vendor/configfile "app" >}}` and `.platform`) run:
 
 ```bash
 ~/ez platformsh:setup
@@ -106,7 +106,7 @@ Actions needed are:
 * Generate the Solr configuration thanks to the script provided by Ibexa.
 * Put the result in the `.platform` at the root of your project.
 * Add the service in the `{{< vendor/configfile "services" >}}`.
-* Add the relationship in the `.platform.app.yaml`.
+* Add the relationship in the `{{< vendor/configfile "app" >}}`.
 
 #### Environment variables (optional)
 

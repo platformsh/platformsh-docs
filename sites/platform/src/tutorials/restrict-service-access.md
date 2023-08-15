@@ -42,9 +42,9 @@ maindb:
 
 ## 2. Grant your app access to the new endpoints
 
-Edit your `.platform.app.yaml` file and add new relationships to your new endpoints:
+Edit your `{{< vendor/configfile "app" >}}` file and add new relationships to your new endpoints:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 relationships:
     database: maindb:website
     reports: maindb:reporting
@@ -52,13 +52,13 @@ relationships:
 
 ## 3. Create a worker with access to the read-only endpoint
 
-Edit your `.platform.app.yaml` file to add a new worker which:
+Edit your `{{< vendor/configfile "app" >}}` file to add a new worker which:
 
 - Does nothing (`sleep infinity`) 
 - Can access the read-only `reporting` endpoint
 - Allows SSH access to `viewer`
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 workers:
     data_access:
         size: S

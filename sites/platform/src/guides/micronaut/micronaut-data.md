@@ -23,7 +23,7 @@ In your [service configuration](../../add-services/_index.md), include a SQL dat
 
 To access the new service, set a `relationship` in your [app configuration](../../create-apps/app-reference.md#relationships).
 
-{{< readFile file="registry/images/examples/full/postgresql.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
+{{< readFile file="registry/images/examples/full/postgresql.app.yaml" highlight="yaml" configFile="app" >}}
 
 ## 3. Export connection credentials to the environment
 

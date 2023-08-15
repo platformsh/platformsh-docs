@@ -303,7 +303,7 @@ db:
 
 Expose these endpoints to your app as relationships in your [app configuration](../../create-apps/_index.md):
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 relationships:
     database: "db:admin"
     reports: "db:reporter"

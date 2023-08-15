@@ -38,7 +38,7 @@ title=PHP
 
 Add the following to your app configuration:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 variables:
     php:
         "date.timezone": "Europe/Paris"

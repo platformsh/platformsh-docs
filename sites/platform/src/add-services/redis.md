@@ -190,7 +190,7 @@ When [ephemeral Redis](#ephemeral-redis) reaches its memory limit,
 it triggers a cache cleanup.
 To customize those cache cleanups, set up an eviction policy such as the following:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 web:
     cache:
         type: redis:5.0
@@ -248,7 +248,7 @@ To set up Redis as your session handler, add a configuration similar to the foll
 
 {{< readFile file="registry/images/examples/full/redis-persistent.services.yaml" highlight="yaml" configFile="services" >}}
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 relationships:
     sessionstorage: "data:redis"
 

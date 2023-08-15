@@ -574,7 +574,7 @@ The following example shows a shortened excerpt of the `deployment` property:
             }
           },
           ...
-          "application_config_file": ".platform.app.yaml",
+          "application_config_file": "{{< vendor/configfile "app" >}}",
           "project_config_dir": ".platform",
           ...
           "development_service_size": "S",
@@ -735,7 +735,7 @@ The following example shows the full activity response to a Git push:
           "product_code": "platformsh",
           "variables_prefix": "PLATFORM_",
           "bot_email": "bot@platform.sh",
-          "application_config_file": ".platform.app.yaml",
+          "application_config_file": "{{< vendor/configfile "app" >}}",
           "project_config_dir": ".platform",
           "use_drupal_defaults": false,
           "use_legacy_subdomains": false,

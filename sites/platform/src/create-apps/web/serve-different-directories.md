@@ -14,7 +14,7 @@ Your entire Git repository might look like the following:
 .platform/
   routes.yaml
   services.yaml
-.platform.app.yaml
+{{< vendor/configfile "app" >}}
 application/
   [app-code-files]
 docs-src/

@@ -38,7 +38,7 @@ When the `resources` key is set, the CPU sizes come from the following table:
 
 So you might have the `resources` set as follows:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 resources: 
     base_memory: 128
     memory_ratio: 180

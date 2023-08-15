@@ -159,7 +159,7 @@ See [Underscore's documentation](https://underscorejs.org/) for available functi
 ### `activity`
 
 Every activity script has a global variable `activity` that contains detailed information about the activity,
-including embedded, JSON-ified versions of the routes configuration and relevant `.platform.app.yaml` files.
+including embedded, JSON-ified versions of the routes configuration and relevant `{{< vendor/configfile "app" >}}` files.
 The `activity` variable is the same as the [webhook payload](/integrations/activity/webhooks.md).
 See the documentation there for details and a complete example.
 

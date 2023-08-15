@@ -46,9 +46,9 @@ Commit this change to the Git repository.
 
 The SimpleSAML library's `www` directory needs to be publicly accessible.
 That can be done by mapping it directly to a path in the Application configuration.
-Add the following block to the `web.locations` section of `.platform.app.yaml`:
+Add the following block to the `web.locations` section of `{{< vendor/configfile "app" >}}`:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
  web:
     locations:
         '/simplesaml':
@@ -75,15 +75,15 @@ This directory holds your IdP definitions.
 Consult the SimpleSAMLphp documentation and see the examples in `vendor/simplesamlphp/simplesamlphp/metadata-templates`.
 
 Next, you need to tell SimpleSAMLphp where to find that directory using an environment variable.
-The simplest way to set that is to add the following block to your `.platform.app.yaml` file:
+The simplest way to set that is to add the following block to your `{{< vendor/configfile "app" >}}` file:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 variables:
     env:
         SIMPLESAMLPHP_CONFIG_DIR: /app/simplesamlphp/config
 ```
 
-Commit the whole `simplesamplphp` directory and `.platform.app.yaml` to Git.
+Commit the whole `simplesamplphp` directory and `{{< vendor/configfile "app" >}}` to Git.
 
 ## Configure SimpleSAML to use the database
 

@@ -132,7 +132,7 @@ The above definition defines a single Solr 8.0 server. That server has 2 cores d
 
 It then defines two endpoints: `main` is connected to the `mainindex` core while `extra` is connected to the `extraindex` core. Two endpoints may be connected to the same core but at this time there would be no reason to do so. Additional options may be defined in the future.
 
-Each endpoint is then available in the relationships definition in `.platform.app.yaml`. For example, to allow an application to talk to both of the cores defined above its `.platform.app.yaml` file should contain the following:
+Each endpoint is then available in the relationships definition in `{{< vendor/configfile "app" >}}`. For example, to allow an application to talk to both of the cores defined above its `{{< vendor/configfile "app" >}}` file should contain the following:
 
 ```yaml
 relationships:
@@ -276,7 +276,7 @@ There are two ways of doing that.
 
 ### Destructive
 
-In your `{{< vendor/configfile "services" >}}` file, change the version of your Solr service *and* its name. Then update the name in the `.platform.app.yaml` relationships block.
+In your `{{< vendor/configfile "services" >}}` file, change the version of your Solr service *and* its name. Then update the name in the `{{< vendor/configfile "app" >}}` relationships block.
 
 When you push that to {{< vendor/name >}}, the old service is deleted and a new one with the name is created, with no data. You can then have your application re-index data as appropriate.
 
@@ -284,7 +284,7 @@ This approach has the downside of temporarily having an empty Solr instance, whi
 
 ### Transitional
 
-For a transitional approach you temporarily have two Solr services. Add a second Solr service with the new version a new name and give it a new relationship in `.platform.app.yaml`. You can optionally run in that configuration for a while to allow your application to populate indexes in the new service as well.
+For a transitional approach you temporarily have two Solr services. Add a second Solr service with the new version a new name and give it a new relationship in `{{< vendor/configfile "app" >}}`. You can optionally run in that configuration for a while to allow your application to populate indexes in the new service as well.
 
 Once you're ready to cut over, remove the old Solr service and relationship. You may optionally have the new Solr service use the old relationship name if that's easier for your application to handle. Your application is now using the new Solr service.
 

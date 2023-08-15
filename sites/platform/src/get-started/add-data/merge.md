@@ -37,7 +37,7 @@ Add a database service (or choose [another service](../../add-services/_index.md
 
 3. Add a relationship between the database and your app in your app configuration:
 
-   ```yaml {location=".platform.app.yaml"}
+   ```yaml {configFile="app"}
    relationships:
        database: "db:mysql"
    ```

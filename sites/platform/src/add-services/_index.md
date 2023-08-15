@@ -94,14 +94,14 @@ This is done in your [app configuration for relationships](../create-apps/app-re
 
 The relationship follows this pattern:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 relationships:
     {{< variable "RELATIONSHIP_NAME" >}}: "{{< variable "SERVICE_NAME" >}}:{{< variable "ENDPOINT" >}}"
 ```
 
 An example relationship to connect to the databases given in the [example in step 1](#1-configure-the-service):
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 relationships:
     mysql_database: "database1:mysql"
     postgresql_database: "database2:postgresql"

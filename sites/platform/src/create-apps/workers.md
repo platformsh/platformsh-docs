@@ -81,7 +81,7 @@ Any top-level definitions for [`size`](./app-reference.md#sizes), [`relationship
 [`access`](./app-reference.md#access), [`disk`](./app-reference.md), [`mount`](./app-reference.md#mounts), and [`variables`](./app-reference.md#variables)
 are inherited by every worker, unless overridden explicitly.
 
-That means, for example, that the following two `.platform.app.yaml` definitions produce identical workers.
+That means, for example, that the following two `{{< vendor/configfile "app" >}}` definitions produce identical workers.
 
 ```yaml
 name: app
@@ -161,7 +161,7 @@ rabbitqueue:
     disk: 512
 ```
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 name: app
 
 type: "python:3.7"
@@ -233,7 +233,7 @@ workers:
 ```
 
 There's a lot going on here, but it's all reasonably straightforward.
-The configuration in `.platform.app.yaml` takes a single Python 3.7 code base from your repository,
+The configuration in `.{{< vendor/configfile "app" >}}` takes a single Python 3.7 code base from your repository,
 downloads all dependencies in `requirements.txt`, and then installs Gunicorn.
 That artifact (your code plus the downloaded dependencies) is deployed as three separate container instances, all running Python 3.7.
 

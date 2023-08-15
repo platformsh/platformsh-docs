@@ -19,10 +19,10 @@ These days, an increasingly common pattern is to decouple content resources from
 │   └── services.yaml
 ├── drupal
 │   ├── <application code>
-│   └── .platform.app.yaml
+│   └── {{< vendor/configfile "app" >}}
 ├── gatsby
 │   ├── <application code>
-│   └── .platform.app.yaml
+│   └── {{< vendor/configfile "app" >}}
 ├── CHANGELOG.md
 ├── LICENSE.md
 └── README.md

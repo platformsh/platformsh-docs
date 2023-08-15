@@ -47,7 +47,7 @@ It uses the Gunicorn WSGI server and Unix sockets.
 title=Pip
 +++
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 web:
     upstream:
         socket_family: unix
@@ -60,7 +60,7 @@ web:
 title=Pipenv
 +++
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 web:
     upstream:
         socket_family: unix
@@ -73,7 +73,7 @@ web:
 title=Poetry
 +++
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 web:
     upstream:
         socket_family: unix

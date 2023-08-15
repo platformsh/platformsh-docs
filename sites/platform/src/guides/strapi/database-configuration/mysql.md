@@ -27,7 +27,7 @@ To configure a MySQL database for Strapi on {{< vendor/name >}}, follow these st
 
    **_Note that the minimum disk size for MySQL/Oracle MySQL is 256MB._**
 
-3. In your `.platform.app.yaml` file, replace the relationship name to match the MySQL database you added:
+3. In your `{{< vendor/configfile "app" >}}` file, replace the relationship name to match the MySQL database you added:
 
    ```yaml
    relationships:

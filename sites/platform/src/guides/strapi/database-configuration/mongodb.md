@@ -26,7 +26,7 @@ To use MongoDB with a Strapi v3 application on {{< vendor/name >}}, follow these
 
   **_Note that the minimum disk size for MongoDB is 512MB._**
 
-1. In your `.platform.app.yaml` file, replace the relationship name to match the MongoDB database you added:
+1. In your `{{< vendor/configfile "app" >}}` file, replace the relationship name to match the MongoDB database you added:
 
    ```yaml
    relationships:

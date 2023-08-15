@@ -178,7 +178,7 @@ platform variable:create --level environment --prefix php --name memory_limit --
 To use variables across environments, set them in your [app configuration](../../create-apps/_index.md).
 For example, to change the PHP memory limit for all environments, use the following configuration:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 variables:
     php:
         memory_limit: "256M"

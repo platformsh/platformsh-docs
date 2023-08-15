@@ -30,7 +30,7 @@ Next open a connection to the new Redis service.
 In the `relationships` section of your [app configuration](../../create-apps/_index.md),
 add the following:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 relationships:
     redis: "rediscache:redis"
 ```
@@ -85,7 +85,7 @@ adjusting the paths based on where your plugins are located:
 title=WP Redis
 +++
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 hooks:
     build: |
         ...
@@ -100,7 +100,7 @@ hooks:
 title=Redis Object Cache
 +++
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 hooks:
     build: |
         ...
@@ -113,7 +113,7 @@ hooks:
 
 It should now look something like:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 hooks:
     build: |
         set -e

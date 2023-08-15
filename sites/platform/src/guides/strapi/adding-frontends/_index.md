@@ -24,10 +24,10 @@ Consider the following project structure:
 │   └── services.yaml
 ├── strapi
 │   ├── <application code>
-│   └── .platform.app.yaml
+│   └── {{< vendor/configfile "app" >}}
 ├── gatsby
 │   ├── <application code>
-│   └── .platform.app.yaml
+│   └── {{< vendor/configfile "app" >}}
 └── README.md
 ```
 

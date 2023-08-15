@@ -59,7 +59,7 @@ searchsolr:
 
 Use the `main` endpoint to define the relationship.
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 relationships:
     solrsearch: "searchsolr:main"
 ```
@@ -109,7 +109,7 @@ $platformsh->registerFormatter('drupal-solr', function($solr) {
  ];
 });
 
-// Update these values to the relationship name (from .platform.app.yaml)
+// Update these values to the relationship name (from {{< vendor/configfile "app" >}})
 // and the machine name of the server from your Drupal configuration.
 $relationship_name = 'solrsearch';
 $solr_server_name = 'default_solr_server';

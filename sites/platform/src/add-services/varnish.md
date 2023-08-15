@@ -248,7 +248,7 @@ You can't use it from an app fronted by Varnish because of the restriction with 
 To access the stats, create a **separate app** with a relationship *to* Varnish, but not *from* it.
 Define an [app configuration](../create-apps/app-reference.md) similar to the following:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 name: stats-app
 type: "php:8.1"
 

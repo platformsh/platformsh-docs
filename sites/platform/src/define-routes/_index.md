@@ -458,7 +458,7 @@ which is a requirement for the router caching.
 
 2. [Disable request buffering](../create-apps/app-reference.md#locations) in your app configuration.
 
-   ```yaml {location=".platform.app.yaml"}
+   ```yaml {configFile="app"}
    web:
      commands:
        start: /app/.linuxbrew/bin/websocketd --port=$PORT ./wsmanager.sh
