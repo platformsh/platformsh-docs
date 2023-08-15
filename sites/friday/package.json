@@ -1,7 +1,7 @@
 {
-  "name": "platformsh-docs",
+  "name": "platformsh-docs-whitelabel",
   "version": "1.0.0",
-  "description": "This repository holds the public user documentation for white-labelled [Platform.sh](https://platform.sh/).",
+  "description": "This repository holds the public user documentation for white-labeled [Platform.sh](https://platform.sh/).",
   "license": "CC-BY-NC-SA-4.0",
   "repository": {
     "type": "git",
