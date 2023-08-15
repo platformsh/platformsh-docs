@@ -95,7 +95,7 @@ For examples of how to do so, see more about [Python web servers](../../../langu
 
 Below is an example configuration to make [PostgreSQL](../../../add-services/postgresql.md) available for your Django application.
 
-{{< readFile file="static/files/fetch/servicesyaml/django4" highlight="yaml" location=".platform/services.yaml">}}
+{{< readFile file="static/files/fetch/servicesyaml/django4" highlight="yaml" configFile="services">}}
 
 {{% guides/config-routes template="django4" name="Django" %}}
 

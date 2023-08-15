@@ -17,7 +17,7 @@ This guide only covers the *addition* of a service configuration to an existing 
 
 In your [service configuration](../../add-services/_index.md), include Persistent Redis with a [valid supported version](../../add-services/redis.md#persistent-redis):
 
-{{< readFile file="registry/images/examples/full/redis-persistent.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
+{{< readFile file="registry/images/examples/full/redis-persistent.services.yaml" highlight="yaml" configFile="services" >}}
 
 ## 2. Add the Redis relationship
 
