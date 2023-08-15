@@ -15,7 +15,7 @@ To configure a PostgreSQL database for Strapi on {{< vendor/name >}}, follow the
    and [pg](https://www.npmjs.com/package/pg) in your Strapi project.
    Pg comes installed with a fresh Strapi installation.
 
-1. In your `services.yaml` file, add the following:
+1. In your `{{< vendor/configfile "services" >}}` file, add the following:
 
    ```yaml
    	postgres:
@@ -106,5 +106,5 @@ To configure a PostgreSQL database for Strapi on {{< vendor/name >}}, follow the
    ```
 
 This setting deploys your Strapi application with a PostgreSQL database.
-If you don't specify a PostgreSQL service in your `services.yaml` file or the Strapi application is run on a local machine
+If you don't specify a PostgreSQL service in your `{{< vendor/configfile "services" >}}` file or the Strapi application is run on a local machine
 the default SQLite database is used.

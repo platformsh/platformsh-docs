@@ -189,7 +189,7 @@ Its default value doesn't work, and it isn't required for Solr to operate.
 (The server already knows its installation directory.)
 
 Finally, move that directory to `.platform/`, and update the `maincore.conf_dir` to point to it.
-The `services.yaml` entry should now look approximately like this:
+The `{{< vendor/configfile "services" >}}` entry should now look approximately like this:
 
 ```yaml {configFile="services"}
 searchsolr:
@@ -204,7 +204,7 @@ searchsolr:
                 core: maincore
 ```
 
-Add the new directory and updated `services.yaml` to Git, commit, and push.
+Add the new directory and updated `{{< vendor/configfile "services" >}}` to Git, commit, and push.
 
 {{< note >}}
 If you change your Solr configuration in Drupal, say to change the Solr field configuration, you may need to regenerate your configuration.

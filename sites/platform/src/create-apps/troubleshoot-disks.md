@@ -10,7 +10,7 @@ Professional plans come with a default amount of storage that you can [change wi
 The storage is allocated among your services and applications using the `disk` parameter in their configuration files.
 
 You might accidentally set the sum of all `disk` parameters in the files to exceed your plans storage limit.
-For example, by setting `disk: 4096` for a MySQL service in `services.yaml`
+For example, by setting `disk: 4096` for a MySQL service in `{{< vendor/configfile "services" >}}`
 and `disk: 4096` in `.platform.app.yaml` for a plan with a 5&nbsp;GB storage limit.
 
 In such cases, you get an error like the following:

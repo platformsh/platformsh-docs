@@ -17,7 +17,7 @@ To configure a MySQL database for Strapi on {{< vendor/name >}}, follow these st
    yarn add mysql
    ```
 
-2. Replace the PostgreSQL configuration in your `services.yaml` file with the following:
+2. Replace the PostgreSQL configuration in your `{{< vendor/configfile "services" >}}` file with the following:
 
    ```yaml
    mysql:
@@ -114,5 +114,5 @@ To configure a MySQL database for Strapi on {{< vendor/name >}}, follow these st
    ```
 
 This setting deploys your Strapi application with a MySQL database.
-If you don't specify a MySQL service in your `services.yaml` file or the Strapi application is run on a local machine
+If you don't specify a MySQL service in your `{{< vendor/configfile "services" >}}` file or the Strapi application is run on a local machine
 the default SQLite database is used.

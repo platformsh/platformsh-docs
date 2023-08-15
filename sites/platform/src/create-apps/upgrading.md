@@ -34,7 +34,7 @@ title: "Upgrading"
 ## Changes in version 2017.11 (2017-11-09)
 
 * The `!archive` tag in YAML files is now deprecated in favor of the more generic [`!include`](../overview/yaml/_index.md).
-For example, the following `services.yaml` snippet:
+For example, the following `{{< vendor/configfile "services" >}}` snippet:
 
     ```yaml
     mysearch:

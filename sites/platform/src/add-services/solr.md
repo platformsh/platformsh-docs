@@ -276,7 +276,7 @@ There are two ways of doing that.
 
 ### Destructive
 
-In your `services.yaml` file, change the version of your Solr service *and* its name. Then update the name in the `.platform.app.yaml` relationships block.
+In your `{{< vendor/configfile "services" >}}` file, change the version of your Solr service *and* its name. Then update the name in the `.platform.app.yaml` relationships block.
 
 When you push that to {{< vendor/name >}}, the old service is deleted and a new one with the name is created, with no data. You can then have your application re-index data as appropriate.
 

@@ -143,7 +143,7 @@ Both the web instance and the `queue` worker have two mount points:
   and they *each* take 1024 MB of space.
 * The `network_dir` mount on each points to the same network storage space on the `files` service.
   They can both read and write to it simultaneously.
-  The amount of space it has available depends on the `disk` key specified in `services.yaml`.
+  The amount of space it has available depends on the `disk` key specified in `{{< vendor/configfile "services" >}}`.
 
 ## How do I give my workers access to my main application's files?
 
@@ -151,7 +151,7 @@ The most common use case for `network-storage` is to allow a CMS-driven site to 
 For that case, all that's needed is to set the necessary file mounts as `service` mounts.
 
 For example, the following `.platform.app.yaml` file (fragment) keeps Drupal files directories shared between web and worker instances while keeping the Drush backup directory web-only (as it has no need to be shared).
-(This assumes a service named `files` has already been defined in `services.yaml`.)
+(This assumes a service named `files` has already been defined in `{{< vendor/configfile "services" >}}`.)
 
 
 ```yaml

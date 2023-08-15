@@ -125,5 +125,5 @@ mysearch:
 ```
 
 The `!archive` tag means that the value for `conf_dir` isn't the string `solr/conf` but the entire `solr/conf` directory.
-This directory is in the `.platform` directory, since that's where the `services.yaml` file is.
+This directory is in the `.platform` directory, since that's where the `{{< vendor/configfile "services" >}}` file is.
 The `solr/conf` directory is then copied into the {{< vendor/name >}} management system to use with the service.

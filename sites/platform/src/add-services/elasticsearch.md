@@ -113,7 +113,7 @@ By default, Elasticsearch has no authentication.
 No username or password is required to connect to it.
 
 Starting with Elasticsearch 7.2 you may optionally enable HTTP Basic authentication.
-To do so, include the following in your `services.yaml` configuration:
+To do so, include the following in your `{{< vendor/configfile "services" >}}` configuration:
 
 ```yaml {configFile="services"}
 search:
@@ -135,7 +135,7 @@ in the `username` and `password` properties.
 This functionality is generally not required if Elasticsearch isn't exposed on its own public HTTP route.
 However, certain applications may require it, or it allows you to safely expose Elasticsearch directly to the web.
 To do so, add a route to `routes.yaml` that has `search:elasticsearch` as its upstream
-(where `search` is whatever you named the service in `services.yaml`).
+(where `search` is whatever you named the service in `{{< vendor/configfile "services" >}}`).
 For example:
 
 ```yaml {location=".platform/routes.yaml"}
@@ -147,7 +147,7 @@ For example:
 ## Plugins
 
 Elasticsearch offers a number of plugins.
-To enable them, list them under the `configuration.plugins` key in your `services.yaml` file, like so:
+To enable them, list them under the `configuration.plugins` key in your `{{< vendor/configfile "services" >}}` file, like so:
 
 ```yaml {configFile="services"}
 search:
@@ -195,7 +195,7 @@ This is the complete list of official Elasticsearch plugins that can be enabled:
 
 ### Plugin removal
 
-Removing plugins previously added in your `services.yaml` file doesn't automatically uninstall them from your Elasticsearch instances.
+Removing plugins previously added in your `{{< vendor/configfile "services" >}}` file doesn't automatically uninstall them from your Elasticsearch instances.
 This is deliberate, as removing a plugin may result in data loss or corruption of existing data that relied on that plugin.
 Removing a plugin usually requires reindexing.
 
@@ -213,7 +213,7 @@ There are two ways to do so.
 
 ### Destructive
 
-In your `services.yaml` file, change the version *and* name of your Elasticsearch service.
+In your `{{< vendor/configfile "services" >}}` file, change the version *and* name of your Elasticsearch service.
 Then update the name in the `.platform.app.yaml` relationships block.
 
 When you push that to {{< vendor/name >}}, the old service is deleted and a new one with the new name is created with no data.

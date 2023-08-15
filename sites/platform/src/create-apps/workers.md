@@ -139,7 +139,7 @@ workers:
 ```
 
 In both cases, there are two worker instances named `queue` and `mail`.
-Both have access to a MySQL/MariaDB service defined in `services.yaml` named `mysqldb` through the `database` relationship.
+Both have access to a MySQL/MariaDB service defined in `{{< vendor/configfile "services" >}}` named `mysqldb` through the `database` relationship.
 Both also have their own separate, independent local disk mount at `/app/test` with 256 MB of allowed space.
 
 ## Customizing a worker
@@ -242,7 +242,7 @@ The `web` instance starts a Gunicorn process to serve a web application.
 * It runs the Gunicorn process to serve web requests, defined by the `project/wsgi.py` file which contains an `application` definition.
 * It has an environment variable named `TYPE` with value `web`.
 * It has a writable mount at `/app/uploads` with a maximum space of 2048 MB.
-* It has access to both a MySQL database and a RabbitMQ server, both of which are defined in `services.yaml`.
+* It has access to both a MySQL database and a RabbitMQ server, both of which are defined in `{{< vendor/configfile "services" >}}`.
 * {{< vendor/name >}} automatically allocates resources to it as available on the plan, once all fixed-size containers are allocated.
 
 The `queue` instance is a worker that isn't web-accessible.
@@ -251,7 +251,7 @@ The `queue` instance is a worker that isn't web-accessible.
 * It has an environment variable named `TYPE` with value `worker`.
 * It has a writable mount at `/app/scratch` with a maximum space of 512 MB.
 * It has access to both a MySQL database and a RabbitMQ server,
-  both of which are defined in `services.yaml` (because it doesn't specify otherwise).
+  both of which are defined in `{{< vendor/configfile "services" >}}` (because it doesn't specify otherwise).
 * It has "Medium" levels of CPU and RAM allocated to it, always.
 
 The `mail` instance is a worker that isn't web-accessible.
