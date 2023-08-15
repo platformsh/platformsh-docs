@@ -21,7 +21,7 @@ Each environment has 2 to 4 types of containers:
 
 * One [*router*](#router) (configured in a `.platform/routes.yaml` file)
 * One or more [*app* containers](#apps) (configured in `.platform.app.yaml` files)
-* Zero or more [*service* containers](#services) (configured in a `.platform/services.yaml` file)
+* Zero or more [*service* containers](#services) (configured in a `{{< vendor/configfile "services" >}}` file)
 * Zero or more [*worker* containers](#workers) (configured in the files for apps)
 
 If you have two app containers, two services (a database and a search engine), and a worker,
@@ -73,7 +73,7 @@ You don't need any service containers, but you can add them as you like.
 Service containers run predefined code for specific purposes, such as a database or search service.
 You don't need to add their code yourself, just set up how your apps communicate with them.
 
-Service containers are configured by the `.platform/services.yaml` file.
+Service containers are configured by the `{{< vendor/configfile "services" >}}` file.
 
 Read more about how to [add services](../add-services/_index.md).
 

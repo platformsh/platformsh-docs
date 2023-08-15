@@ -18,13 +18,13 @@ Appropriate {{< vendor/name >}} configuration files are included in the Ibexa DX
 By default, Ibexa DXP is configured to use a single Redis instance for both the application cache and session storage.
 You may optionally choose to use a separate Redis instance for session storage in case you have a lot of authenticated traffic (and thus there would be many session records).
 
-To do so, uncomment the `redissession` entry in the `.platform/services.yaml` file
+To do so, uncomment the `redissession` entry in the `{{< vendor/configfile "services" >}}` file
 and the corresponding relationship in the `.platform.app.yaml` file.
 The bridge code that is provided with eZ Platform 1.13 and later automatically detects the additional Redis service and use it for session storage.
 
 On a {{% names/dedicated-gen-2 %}} instance, we strongly recommend using two separate Redis instances for Cache and Sessions.
 The service and relationship names that ship with the default {{< vendor/name >}} configuration in Ibexa DXP should be used as-is.
-To ensure the development environment works like Production, uncomment the `redissession` entry in the `.platform/services.yaml` file and the corresponding relationship in the `.platform.app.yaml` file.
+To ensure the development environment works like Production, uncomment the `redissession` entry in the `{{< vendor/configfile "services" >}}` file and the corresponding relationship in the `.platform.app.yaml` file.
 The bridge code that's provided with eZ Platform 1.13 and later
 automatically detects the additional Redis service and uses it for session storage.
 
@@ -105,7 +105,7 @@ Actions needed are:
 
 * Generate the Solr configuration thanks to the script provided by Ibexa.
 * Put the result in the `.platform` at the root of your project.
-* Add the service in the `.platform/services.yaml`.
+* Add the service in the `{{< vendor/configfile "services" >}}`.
 * Add the relationship in the `.platform.app.yaml`.
 
 #### Environment variables (optional)

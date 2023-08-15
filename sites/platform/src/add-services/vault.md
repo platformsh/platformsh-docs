@@ -46,7 +46,7 @@ You can create multiple endpoints, such as to have key management separate from 
 
 To connect your app to the Vault KMS, use a token that's defined in the `PLATFORM_RELATIONSHIPS` environment variable.
 With this token for authentication,
-you can use any of the policies you [defined in your `.platform/services.yaml` file](#1-configure-the-service).
+you can use any of the policies you [defined in your `{{< vendor/configfile "services" >}}` file](#1-configure-the-service).
 
 {{% service-values-change %}}
 
@@ -87,7 +87,7 @@ VAULT_URL=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".{{< variabl
 
 ### Manage your keys
 
-Your key names are [defined in your `.platform/services.yaml` file](#1-configure-the-service). You can manage them if you've set an [admin policy](#policies) for them.
+Your key names are [defined in your `{{< vendor/configfile "services" >}}` file](#1-configure-the-service). You can manage them if you've set an [admin policy](#policies) for them.
 
 To get information on a key, such as its expiration date, run the following command:
 
@@ -97,7 +97,7 @@ curl \
   http://"$VAULT_URL"/v1/transit/keys/"$KEY_NAME" | jq .
 ```
 
-`$KEY_NAME` is the name in your `.platform/services.yaml` file.
+`$KEY_NAME` is the name in your `{{< vendor/configfile "services" >}}` file.
 
 To rotate the version of your key, run the following command:
 

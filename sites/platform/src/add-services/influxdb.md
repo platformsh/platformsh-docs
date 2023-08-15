@@ -159,7 +159,7 @@ If you're relying on any other attributes connecting to InfluxDB, they remain ac
 From version 2.3 onward, InfluxDB includes an upgrade utility that can convert databases from previous versions to version 2.3 or later.
 
 To upgrade from a 1.x version to 2.3 or later,
-change the service version in your `.platform/services.yaml` file and push your project.
+change the service version in your `{{< vendor/configfile "services" >}}` file and push your project.
 Any existing data you had in your 1.x system is automatically upgraded for you into the 2.3+ system.
 
 {{< note >}}

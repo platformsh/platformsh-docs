@@ -87,7 +87,7 @@ highlight=python
 
 For Solr 4, {{< vendor/name >}} supports only a single core per server called `collection1`.
 
-You must provide your own Solr configuration via a `core_config` key in your ``.platform/services.yaml``:
+You must provide your own Solr configuration via a `core_config` key in your `{{< vendor/configfile "services" >}}`:
 
 ```yaml
 searchsolr:
@@ -97,7 +97,7 @@ searchsolr:
         core_config: !archive "{{< variable "DIRECTORY" >}}"
 ```
 
-The `directory` parameter points to a directory in the Git repository, in or below the `.platform/` folder. This directory needs to contain everything that Solr needs to start a core. At the minimum, `solrconfig.xml` and `schema.xml`. For example, place them in `.platform/solr/conf/` such that the `schema.xml` file is located at `.platform/solr/conf/schema.xml`. You can then reference that path like this -
+The `directory` parameter points to a directory in the Git repository, in or below the `{{< vendor/configdir >}}/` folder. This directory needs to contain everything that Solr needs to start a core. At the minimum, `solrconfig.xml` and `schema.xml`. For example, place them in `{{< vendor/configdir >}}/solr/conf/` such that the `schema.xml` file is located at `{{< vendor/configdir >}}/solr/conf/schema.xml`. You can then reference that path like this -
 
 ```yaml
 searchsolr:

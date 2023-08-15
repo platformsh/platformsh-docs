@@ -7,15 +7,15 @@ description: |
 
 {{< guides/gatsby/headless-intro template="gatsby-strapi" name="Strapi" >}}
 
-## Shared {{< vendor/name >}} configuration
+## Shared configuration
 
 {{% guides/gatsby/headless-project name="Strapi" %}}
 
-### `.platform/services.yaml`
+### Service configuration
 
 {{% guides/gatsby/headless-services template="gatsby-strapi" name="Strapi" %}}
 
-### `.platform/routes.yaml`
+### Routes configuration
 
 {{% guides/gatsby/headless-routes template="gatsby-strapi" name="Strapi" %}}
 

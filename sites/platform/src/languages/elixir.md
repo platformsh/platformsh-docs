@@ -104,7 +104,7 @@ You can commit a `mix.exs` file in your repository and the system downloads the 
 
 {{% guides/config-reader-info lang="elixir" %}}
 
-If you are building a Phoenix app for example, it would suffice to add a database to `.platform/services.yaml` and a relationship in `.platform.app.yaml`. Put the lib in your `deps` and, assuming you renamed the `prod.secret.exs` to `releases.exs` per the [Phoenix guide](https://hexdocs.pm/phoenix/releases.html), change:
+If you are building a Phoenix app for example, it would suffice to add a database to `{{< vendor/configfile "services" >}}` and a relationship in `.platform.app.yaml`. Put the lib in your `deps` and, assuming you renamed the `prod.secret.exs` to `releases.exs` per the [Phoenix guide](https://hexdocs.pm/phoenix/releases.html), change:
 
 ```elixir
 System.get_env("DATABASE_URL")

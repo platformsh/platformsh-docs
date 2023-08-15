@@ -11,11 +11,11 @@ description: |
 
 {{% guides/gatsby/headless-project name="Drupal" %}}
 
-### `.platform/services.yaml`
+### Service configurations
 
 {{% guides/gatsby/headless-services template="gatsby-drupal" name="Drupal" %}}
 
-### `.platform/routes.yaml`
+### Routes configuration
 
 {{% guides/gatsby/headless-routes template="gatsby-drupal" name="Drupal" %}}
 

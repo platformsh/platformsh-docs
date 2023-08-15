@@ -125,13 +125,13 @@ web:
 As of July 2016, we no longer create default configuration files if one isn't provided.
 The defaults we used to provide were tailored specifically for Drupal 7, which is now a legacy-support version with the release of Drupal 8 and not especially useful for non-Drupal or non-PHP sites.
 They also defaulted to software versions that are no longer current and recommended.
-Instead, you must provide your own `.platform.app.yaml`, `.platform/routes.yaml`, and `.platform/services.yaml` files.
+Instead, you must provide your own `.platform.app.yaml`, `.platform/routes.yaml`, and `{{< vendor/configfile "services" >}}` files.
 
 Additionally, a version for a language or service should always be specified as well. That allows you to control when you upgrade from one version to another without relying on a network default.
 
 The previous default files, for reference, are:
 
-### `.platform.app.yaml`
+### Application
 
 ```yaml
 name: php
@@ -158,7 +158,7 @@ crons:
         cmd: "cd public ; drush core-cron"
 ```
 
-### `.platform/routes.yaml`
+### Routes
 
 ```yaml
  "http://{default}/":
@@ -174,7 +174,7 @@ crons:
      to: "http://{default}/"
 ```
 
-### `.platform/services.yaml`
+### Services
 
 ```yaml
  mysql:
@@ -283,12 +283,12 @@ repository](https://github.com/platformsh-templates/drupal7/blob/master/.platfor
 on GitHub.
 
 Configuration items for PHP that previously was part of
-`.platform/services.yaml` are now moved into `.platform.app.yaml`, which
+`{{< vendor/configfile "services" >}}` are now moved into `.platform.app.yaml`, which
 gains the following top-level items:
 
 -   `name`: should be `"php"`
 -   `relationships`, `access` and `disk`: should be the same as the
-    `relationships` key of PHP in `.platform/services.yaml`
+    `relationships` key of PHP in `{{< vendor/configfile "services" >}}`
 
 Note that there is now a sane default for `access` (SSH access to PHP is
 granted to all users that have role "collaborator" and above on the

@@ -74,7 +74,7 @@ To run your Strapi v4 app locally with all of its services, follow these steps:
        db_relationship
      ][0];
      // Option 1. PostgreSQL.
-     // The PostgreSQL configuration assumes the following in your .platform/services.yaml file:
+     // The PostgreSQL configuration assumes the following in your {{< vendor/configfile "services" >}} file:
      //
      // dbpostgres:
      //    type: postgresql:12
@@ -111,7 +111,7 @@ To run your Strapi v4 app locally with all of its services, follow these steps:
          },
        };
        // Option 2. Oracle MySQL.
-       // The Oracle MySQL configuration assumes the following in your .platform/services.yaml file:
+       // The Oracle MySQL configuration assumes the following in your {{< vendor/configfile "services" >}} file:
        //
        // dbmysql:
        //    type: oracle-mysql:8.0

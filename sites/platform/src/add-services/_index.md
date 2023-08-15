@@ -11,8 +11,8 @@ keywords:
 Because the services are included in your project, you can manage them through Git
 and they're backed up together with the rest of your project.
 
-Your project defines the services configuration in a file named `services.yaml` located in the `{{< vendor/configdir >}}` directory.
-If you don't need any services (such as for a static website), you don't need to include this file in your repository.
+Your project defines the services configuration in a file named `{{< vendor/configfile "services" >}}`.
+If you don't need any services (such as for a static website), you don't need to include this configuration.
 
 Read on to see how to add services.
 
@@ -24,7 +24,7 @@ Adding a service is a two-step process.
 
 ### 1. Configure the service
 
-All service configuration happens in the services configuration file (`{{< vendor/configdir >}}/services.yaml`) in your Git repository.
+All service configuration happens in the `{{< vendor/configfile "services" >}}` file in your Git repository.
 
 Configure your service in the following pattern:
 
@@ -53,7 +53,7 @@ You can give it any name you want with lowercase alphanumeric characters, hyphen
 
 Changing the service name is interpreted as creating an entirely new service.
 This **removes all data in that service**.
-Always back up your data before changing existing services in your `.platform/services.yaml` file.
+Always back up your data before changing existing services in your `{{< vendor/configfile "services" >}}` file.
 
 {{< /note >}}
 

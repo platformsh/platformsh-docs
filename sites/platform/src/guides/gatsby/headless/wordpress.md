@@ -12,11 +12,11 @@ description: |
 
 {{% guides/gatsby/headless-project name="WordPress" %}}
 
-### `.platform/services.yaml`
+### Service configuration
 
 {{% guides/gatsby/headless-services template="gatsby-wordpress" name="WordPress" %}}
 
-### `.platform/routes.yaml`
+### Routes configuration
 
 {{% guides/gatsby/headless-routes template="gatsby-wordpress" name="WordPress" %}}
 

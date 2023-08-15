@@ -17,7 +17,7 @@ Add a database service (or choose [another service](../../add-services/_index.md
 1. Create a services configuration file.
 
    ```bash
-   touch .platform/services.yaml
+   touch {{< vendor/configfile "services" >}}
    ```
 
    This file holds the configuration for all services your app needs.

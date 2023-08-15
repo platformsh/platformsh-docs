@@ -27,6 +27,7 @@ vendor:
     files:
         routes: .friday/config.yaml
         services: .friday/config.yaml
+        app: .friday/config.yaml
         apps: .friday/config.yaml
 
 # Images (kept in static/)

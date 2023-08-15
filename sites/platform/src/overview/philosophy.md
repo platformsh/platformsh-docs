@@ -42,7 +42,7 @@ all configured by files stored alongside your code:
 
 - One or more [*apps*](../create-apps/_index.md), configured via `.platform.app.yaml` files, holding the code of your project.
 
-- Some optional [*services*](../add-services/_index.md), configured in `.platform/services.yaml`,
+- Some optional [*services*](../add-services/_index.md), configured in `{{< vendor/configfile "services" >}}`,
   like MySQL/MariaDB, Elasticsearch, Redis, or RabbitMQ.
   They come as optimized pre-built images.
 

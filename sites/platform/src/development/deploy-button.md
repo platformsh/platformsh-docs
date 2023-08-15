@@ -20,7 +20,7 @@ The Deploy on {{< vendor/name >}} button works with any Git repository that's de
 It needs [app configuration](../create-apps/_index.md)
 and [`.platform/routes.yaml` file](../define-routes/_index.md).
 If you are using any [services](../add-services/_index.md),
-you also need a [`.platform/services.yaml` file](../add-services/_index.md),
+you also need a [`{{< vendor/configfile "services" >}}` file](../add-services/_index.md),
 
 The repository must be available at a publicly accessible Git URL.
 That may be hosted with GitHub, GitLab, Bitbucket, your own custom Git hosting,

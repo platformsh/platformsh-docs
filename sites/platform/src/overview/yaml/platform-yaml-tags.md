@@ -116,7 +116,7 @@ Use the `!archive` tag for a reference to an entire directory specified relative
 For example, you might want to define a configuration directory for your [Solr service](../../add-services/solr.md).
 You might do so as follows:
 
-```yaml {location=".platform/services.yaml"}
+```yaml {location="{{< vendor/configfile "services" >}}"}
 mysearch:
     type: solr:8.0
     disk: 1024
