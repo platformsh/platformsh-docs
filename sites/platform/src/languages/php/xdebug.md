@@ -49,7 +49,7 @@ If you have enabled the [router cache](../../define-routes/cache.md),
 you need to explicitly add the Xdebug cookie (`XDEBUG_SESSION`) to the cookie allowlist.
 Depending on the cookies already listed, the result should look similar to the following:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 "https://{default}/":
     # ...
     cache:

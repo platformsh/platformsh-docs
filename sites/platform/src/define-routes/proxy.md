@@ -16,7 +16,7 @@ Basic redirects only work within the same project, so use proxy routes for route
 
 You can define an external proxy on your {{< vendor/name >}} project by defining a route like the following:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 https://{default}/foo:
     type: proxy
     to: https://www.example.com
@@ -26,7 +26,7 @@ This route passes requests for `https://{default}/foo/index.html` to `https://ww
 ​
 You can also define a proxy route to an URL composed of an IP address and a port:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 https://{default}/foo:
     type: proxy
     to: https://192.0.2.0:8000
@@ -39,7 +39,7 @@ In the basic example above, the route preserves the URL path, `/foo`, in the req
 If you want to proxy a route to `https://www.example.com` without the URL path `/foo`,
 add a trailing slash `/` to the `to` definition.
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 https://{default}/foo:
     type: proxy
     to: https://www.example.com/
@@ -51,7 +51,7 @@ So requests for `https://{default}/foo/index.html` are forwarded to `https://www
 To override the URL path entirely, define a route that contains its own path.
 For example:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 https://{default}/foo:
     type: proxy
     to: https://www.example.com/bar
@@ -72,7 +72,7 @@ Use proxy routes so a single project can access different projects using the sam
 In the following example, a single project specifies proxy routes to three apps with the same `default` base URL.
 Each app handles a different language.
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 https://{default}/en:
     type: proxy
     to: https://en.example.com/

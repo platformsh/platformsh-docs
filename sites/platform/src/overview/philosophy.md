@@ -36,7 +36,7 @@ Any other branch can be deployed as a staging or development cluster.
 There are three types of containers within your cluster,
 all configured by files stored alongside your code:
 
-- The [*router*](../define-routes/_index.md), configured in `.platform/routes.yaml`,
+- The [*router*](../define-routes/_index.md), configured in `{{< vendor/configfile "routes" >}}`,
   is a single Nginx process responsible for mapping incoming requests to an app container,
   and to optionally provide HTTP caching.
 

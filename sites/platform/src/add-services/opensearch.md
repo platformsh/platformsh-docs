@@ -66,11 +66,11 @@ in the `username` and `password` properties.
 
 This functionality is generally not required if OpenSearch isn't exposed on its own public HTTP route.
 However, certain applications may require it, or it allows you to safely expose OpenSearch directly to the web.
-To do so, add a route to `routes.yaml` that has `search:opensearch` as its upstream
+To do so, add a route to `{{< vendor/configfile "routes" >}}` that has `search:opensearch` as its upstream
 (where `search` is whatever you named the service in `{{< vendor/configfile "services" >}}`).
 For example:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 "https://os.{default}":
     type: upstream
     upstream: search:opensearch

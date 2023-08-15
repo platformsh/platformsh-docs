@@ -125,7 +125,7 @@ web:
 As of July 2016, we no longer create default configuration files if one isn't provided.
 The defaults we used to provide were tailored specifically for Drupal 7, which is now a legacy-support version with the release of Drupal 8 and not especially useful for non-Drupal or non-PHP sites.
 They also defaulted to software versions that are no longer current and recommended.
-Instead, you must provide your own `.platform.app.yaml`, `.platform/routes.yaml`, and `{{< vendor/configfile "services" >}}` files.
+Instead, you must provide your own `.platform.app.yaml`, `{{< vendor/configfile "routes" >}}`, and `{{< vendor/configfile "services" >}}` files.
 
 Additionally, a version for a language or service should always be specified as well. That allows you to control when you upgrade from one version to another without relying on a network default.
 

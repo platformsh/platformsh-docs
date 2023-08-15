@@ -175,7 +175,7 @@ A complete example is included at the end of this section.
     You can define other read/write mounts (your application code itself being deployed to a read-only file system).
     Note that the file system is persistent and when you backup your cluster these mounts are also backed up.
 
-7. Then, setup the routes to your application in `.platform/routes.yaml`.
+7. Then, setup the routes to your application in `{{< vendor/configfile "routes" >}}`.
 
     ```yaml
     "https://{default}/":

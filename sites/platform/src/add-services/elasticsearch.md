@@ -134,11 +134,11 @@ in the `username` and `password` properties.
 
 This functionality is generally not required if Elasticsearch isn't exposed on its own public HTTP route.
 However, certain applications may require it, or it allows you to safely expose Elasticsearch directly to the web.
-To do so, add a route to `routes.yaml` that has `search:elasticsearch` as its upstream
+To do so, add a route to `{{< vendor/configfile "routes" >}}` that has `search:elasticsearch` as its upstream
 (where `search` is whatever you named the service in `{{< vendor/configfile "services" >}}`).
 For example:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 "https://es.{default}":
     type: upstream
     upstream: search:elasticsearch

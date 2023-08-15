@@ -15,7 +15,7 @@ To use Fastly, Varnish must be disabled:
 
  - Remove environment variable `TRUSTED_PROXIES: "REMOTE_ADDR"` in [`.platform.app.yaml`](https://github.com/ezsystems/ezplatform/blob/master/.platform.app.yaml)
  - Remove the Varnish service in [`{{< vendor/configfile "services" >}}`](https://github.com/ezsystems/ezplatform/blob/master/.platform/services.yaml)
- - In [.platform/routes.yaml](https://github.com/ezsystems/ezplatform/blob/master/.platform/routes.yaml),
+ - In [`{{< vendor/configfile "routes" >}}`](https://github.com/ezsystems/ezplatform/blob/master/.platform/routes.yaml),
    change routes to use `app` instead of the `varnish` service you removed in previous step:
 
 ```diff

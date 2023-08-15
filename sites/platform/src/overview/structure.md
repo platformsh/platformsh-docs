@@ -19,7 +19,7 @@ Each container is an isolated instance with specific resources.
 
 Each environment has 2 to 4 types of containers:
 
-* One [*router*](#router) (configured in a `.platform/routes.yaml` file)
+* One [*router*](#router) (configured in a `{{< vendor/configfile "routes" >}}` file)
 * One or more [*app* containers](#apps) (configured in `.platform.app.yaml` files)
 * Zero or more [*service* containers](#services) (configured in a `{{< vendor/configfile "services" >}}` file)
 * Zero or more [*worker* containers](#workers) (configured in the files for apps)
@@ -48,7 +48,7 @@ Each environment always has exactly one router.
 This router maps incoming requests to the appropriate app container
 and provides basic caching of responses, unless configured otherwise.
 
-The router is configured in a `.platform/routes.yaml` file.
+The router is configured in a `{{< vendor/configfile "routes" >}}` file.
 If you don't include configuration, a single [default route is deployed](../define-routes/_index.md#default-route-definition).
 
 Read more about how to [define routes](../define-routes/_index.md).

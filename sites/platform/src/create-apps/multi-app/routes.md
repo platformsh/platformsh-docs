@@ -60,7 +60,7 @@ Depending on your needs, you could configure the router container
 
 You could define routes for your apps as follows:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 "https://mercure.{default}/":
     type: upstream
     upstream: "mercure:http"
@@ -85,7 +85,7 @@ so consider using a path like `https://{default}/api` instead.
 
 Alternatively, you could define your routes as follows:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 "https://{default}/":
     type: upstream
 

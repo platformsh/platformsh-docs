@@ -7,7 +7,7 @@ description: |
 
 {{% description %}}
 
-The cache can be controlled using the `cache` key in your `.platform/routes.yaml` file.
+The cache can be controlled using the `cache` key in your `{{< vendor/configfile "routes" >}}` file.
 
 If a request is can be cached, {{< vendor/name >}} builds a cache key from several request properties and stores the response associated with this key. When a request comes with the same cache key, the cached response is reused.
 
@@ -29,7 +29,7 @@ The HTTP cache is enabled by default, however you may wish to override this beha
 
 To configure the HTTP cache, add a `cache` key to your route. You may like to start with the defaults:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 https://{default}/:
     type: upstream
     upstream: app:http
@@ -46,7 +46,7 @@ In this example, requests are cached based on the URI, the `Accept` header, `Acc
 Any response that lacks a `Cache-Control` header is cached for 60 seconds.
 The presence of any cookie in the request disables caching of that response.
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 https://{default}/:
     type: upstream
     upstream: app:http
@@ -67,7 +67,7 @@ There are two parameters that let you control this key: `headers` and `cookies`.
 
 The default value for these keys are the following:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 https://{default}/:
    ...
     cache:
@@ -116,7 +116,7 @@ Adds specific header fields to the cache key, enabling caching of separate respo
 
 For example, if the `headers` key is the following, {{< vendor/name >}} caches a different response for each value of the `Accept` HTTP request header only:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 https://{default}/:
    ...
     cache:
@@ -138,7 +138,7 @@ The cache is only applied to `GET` and `HEAD` requests. Some headers trigger spe
 Header field | Cache behavior
 -------------|----------------
 `Cache-Control`|Responses with the `Cache-Control` header set to `Private`, `No-Cache`, or `No-Store` aren't cached. All other values override `default_ttl`.
-`Vary`|A list of header fields to be taken into account when constructing the cache key. Multiple header fields can be listed, separated by commas. The Cache key is the union of the values of the Header fields listed in Vary header, and whatever is listed in the `routes.yaml` file.
+`Vary`|A list of header fields to be taken into account when constructing the cache key. Multiple header fields can be listed, separated by commas. The Cache key is the union of the values of the Header fields listed in Vary header, and whatever is listed in the `{{< vendor/configfile "routes" >}}` file.
 `Set-Cookie`|Not cached
 `Accept-Encoding`, `Connection`, `Proxy-Authorization`, `TE`, `Upgrade`|Not allowed, and throws an error
 `Cookie`|Not allowed, and throws an error. Use the `cookies` value, instead.
@@ -156,7 +156,7 @@ This is done by sending the following header: `X-Platform-Cache: BYPASS`.
 For example, for the cache key to depend on the value of the `foo` cookie in the request.
 Other cookies are ignored.
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 https://{default}/:
    ...
     cache:
@@ -177,7 +177,7 @@ A cookie value may also be a regular expression.
 An entry that begins and ends with a `/` is interpreted as a PCRE regular expression to match the cookie name.
 For example:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 https://{default}/:
    ...
     cache:
@@ -220,7 +220,7 @@ If in doubt, disable the cache using `cache: false`.
 
 If you need fine-grained caching, you can set up caching rules for several routes separately:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 https://{default}/:
     type: upstream
     upstream: app:http
@@ -260,7 +260,7 @@ Regular expressions in routes are **not** supported.
 Some applications use cookies to invalidate cache responses, but expect other cookies to be ignored.
 This is a case of allowing only a subset of cookies to invalidate the cache.
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 https://{default}/:
    ...
     cache:

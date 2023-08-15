@@ -50,7 +50,7 @@ So the duration of the redeployment depends on what needs to be upgraded.
 
 To enable HTTPS, add a routing configuration similar to the following:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 "https://{default}/":
     type: upstream
     upstream: "app:http"
@@ -77,7 +77,7 @@ Although you can still use TLS 1.2, TLS 1.3 is faster and more secure.
 To instruct your web server to automatically reject TLS 1.2 connections,
 enforce TLS 1.3 using the `min_version` setting:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 tls:
     min_version: TLSv1.3
 ```
@@ -89,7 +89,7 @@ Note that TLS versions older than 1.2 are deprecated and are rejected by default
 [HSTS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) forces clients to always communicate with your site over HTTPS.
 To enable HSTS, use `strict_transport_security` in a configuration similar to the following:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 tls:
     strict_transport_security:
         enabled: true
@@ -117,7 +117,7 @@ This allows you to restrict access to trusted users.
 
 To do so, enable client-authenticated TLS by adding the following configuration:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 tls:
     client_authentication: "require"
 ```
@@ -127,7 +127,7 @@ But you can instruct your web server to only accept TLS certificates issued by s
 
 To do so, add a configuration similar to the following:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 tls:
     client_authentication: "require"
     client_certificate_authorities:
@@ -142,7 +142,7 @@ tls:
 In this case, the certificate files are resolved relative to the `.platform` directory.
 Alternatively, you can specify the certificates inline in the file:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 tls:
     client_authentication: "require"
     client_certificate_authorities:

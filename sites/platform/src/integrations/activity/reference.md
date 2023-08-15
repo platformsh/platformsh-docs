@@ -126,9 +126,9 @@ The following table presents the possible activities:
 | `environment.merge` | An environment was merged through the CLI, Console, or API. A basic Git merge doesn't trigger this activity. |
 | `environment.redeploy` | An environment was redeployed. |
 | `environment.delete` | An environment's code was deleted through Git. |
-| `environment.route.create` | A new route has been created through the API. Edits made using Git to the `routes.yaml` file don't trigger this activity. |
-| `environment.route.delete` | A route has been deleted through the API. Edits made using Git to the `routes.yaml` file don't trigger this activity. |
-| `environment.route.update` | A route has been modified through the API. Edits made using Git to the `routes.yaml` file don't trigger this activity. |
+| `environment.route.create` | A new route has been created through the API. Edits made using Git to the `{{< vendor/configfile "routes" >}}` file don't trigger this activity. |
+| `environment.route.delete` | A route has been deleted through the API. Edits made using Git to the `{{< vendor/configfile "routes" >}}` file don't trigger this activity. |
+| `environment.route.update` | A route has been modified through the API. Edits made using Git to the `{{< vendor/configfile "routes" >}}` file don't trigger this activity. |
 | `environment.variable.create` | A new variable has been created. The value is visible only if the variable is not [set as sensitive](../../development/variables/set-variables.md#variable-options). |
 | `environment.variable.delete` | A variable has been deleted. |
 | `environment.variable.update` | A variable has been modified. |
