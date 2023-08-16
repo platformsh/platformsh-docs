@@ -2,6 +2,8 @@
 title: "Platform.sh"
 description: |
   Migrate your project from Platform.sh to {{< vendor/name >}} has an easy path. Let's dig into it!
+test: vendor/name
+
 ---
 
 Starting from an existing Platform.sh project, adapting your project Yaml configuration to host it on {{< vendor/name >}} is really easy to do.
@@ -17,7 +19,8 @@ From the root of your Platform.sh project, execute the following:
 git checkout -b {{< vendor/cli >}}-main
 ```
 
-## Create a new {{< vendor/name >}} project
+
+## Create a new project
 
 To create a new {{< vendor/name >}} project, use the CLI and follow the prompt:
 
@@ -125,7 +128,7 @@ routes:
     to: "https://{default}/"
 ```
 
-### Using `{{< vendor/cli >}} ify` command
+### Using CLI command
 Our {{< vendor/name >}} CLI comes with a useful command to adapt your source code to be easily hosted on {{< vendor/name >}}: `{{< vendor/cli >}} ify`
 
 This command will automatically detect your local stack and generate the minimum Yaml configuration files required to deploy it on {{< vendor/name >}}: `{{< vendor/configdir >}}/config.yaml`.
@@ -253,7 +256,7 @@ $ {{< vendor/cli >}} e:curl /deployments/next -X PATCH -d \
 ```
 
 {{< note >}}
-Don’t forget to remove from your .platform/services.yaml file corresponding Yaml key that are not needed anymore: `disk`
+Don’t forget to remove from your `.platform/services.yaml` file corresponding Yaml key that are not needed anymore: `disk`
 {{< /note >}}
 
 [//]: # (TODO change it to doc page link)
@@ -264,7 +267,7 @@ TODO
 ### Using Console (TODO)
 TODO
 
-## Deploy your {{< vendor/name >}} project
+## Deploy your project
 After adding to Git your changes, use the following command to deploy your {{< vendor/name >}} project:
 ```shell
 {{< vendor/cli >}} deploy
