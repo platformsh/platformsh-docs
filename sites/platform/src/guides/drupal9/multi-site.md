@@ -3,20 +3,20 @@ title: "Multiple Drupal sites in a single Project"
 sidebarTitle: "Multi-site"
 toc: false
 description: |
-    Platform.sh supports running [multiple applications](/bestpractices/oneormany.md) in the same project, and these can be two or more Drupal sites.
+    {{< vendor/name >}} supports running [multiple applications](/bestpractices/oneormany.md) in the same project, and these can be two or more Drupal sites.
 weight: -80
 banner:
     title: A note on version
-    body: While this guide focuses on Drupal 9, you can also refer to it when using Drupal 10 as differences in settings are minimal. Note that a Platform.sh [Drupal 10 template](https://github.com/platformsh-templates/drupal10) is available.
+    body: While this guide focuses on Drupal 9, you can also refer to it when using Drupal 10 as differences in settings are minimal. Note that a {{< vendor/name >}} [Drupal 10 template](https://github.com/platformsh-templates/drupal10) is available.
 ---
 
 {{% description %}}
 
 But they would be separate Drupal instances: they have their assets separate and live their lives apart, and it would be much better for them not to share the same database (though they could).
 
-## Multisite Drupal and Platform.sh
+## Multisite Drupal
 
-Platform.sh actively discourages running Drupal in "multisite" mode. Doing so eliminates many of the advantages Platform.sh offers, such as isolation and safe testing.
+{{< vendor/name >}} actively discourages running Drupal in "multisite" mode. Doing so eliminates many of the advantages {{< vendor/name >}} offers, such as isolation and safe testing.
 Additionally, because of the dynamic nature of the domain names that are created for the different environments, the multisite configuration would be complex and fragile.
 
 We recommend running separate projects for separate Drupal sites, or using one of the various "single instance" options available such as [Domain Access](https://www.drupal.org/project/domain), [Organic Groups](https://www.drupal.org/project/og), or [Workbench Access](https://www.drupal.org/project/workbench_access).

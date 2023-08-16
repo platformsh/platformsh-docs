@@ -6,7 +6,7 @@ sidebarTitle: "Redis"
 
 [Redis](https://redis.io/documentation) is a multi-model database that allows you to store data in memory
 for high-performance data retrieval and key-value storage.
-Platform.sh supports two different Redis configurations:
+{{< vendor/name >}} supports two different Redis configurations:
 
 - [Ephemeral](#ephemeral-redis): to set up a non-persistent cache for your application
 - [Persistent](#persistent-redis): to set up fast persistent storage for your application
@@ -220,7 +220,7 @@ After you've [configured your Redis service](#usage-example),
 you can access it using the [Redis CLI](https://redis.io/docs/ui/cli/).
 
 Retrieve the hostname and port you can connect to
-through the `PLATFORM_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables).
+through the `PLATFORM_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables).
 To do so, run the `platform relationships` command.
 
 After you've retrieved the hostname and port, [open an SSH session](../development/ssh/_index.md).

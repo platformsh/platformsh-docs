@@ -64,5 +64,5 @@ You can customize your deployments to include a script that sanitizes the data w
     symfony merge sanitize-non-prod
     ```
 
-Once the script is merged into production, every non-production environment created on Platform.sh
+Once the script is merged into production, every non-production environment created on {{ .Site.Params.vendor.name }}
 and all local environments contain sanitized data free of your users' personally identifiable information (PII).

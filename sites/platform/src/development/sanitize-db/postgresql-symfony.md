@@ -275,7 +275,7 @@ Set up a script by following these steps:
     ```
 
 {{< note >}}
-You can find the organization identifier for a specific project, within the Platform.sh console, by clicking on your name, and then on “Settings”, in the top right corner.
+You can find the organization identifier for a specific project, within the {{< vendor/name >}} console, by clicking on your name, and then on “Settings”, in the top right corner.
 {{< /note >}}
 
 

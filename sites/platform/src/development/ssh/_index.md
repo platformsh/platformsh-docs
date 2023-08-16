@@ -1,7 +1,7 @@
 ---
 title: Connect securely with SSH
 weight: 12
-description: Keep your project and apps safe by connecting with SSH when you're interacting with your deployed environments or using the Platform.sh CLI.
+description: Keep your project and apps safe by connecting with SSH when you're interacting with your deployed environments or using the {{< vendor/name >}} CLI.
 layout: single
 keywords: 
 - 2fa
@@ -24,13 +24,13 @@ All secured through SSH.
 
 To connect to an app securely with SSH, follow two steps.
 
-### 1. Authenticate with the Platform.sh CLI
+### 1. Authenticate with the CLI
 
 To authenticate with the CLI:
 
-1. Install the [Platform.sh CLI](/administration/cli/_index.md).
+1. Install the [{{< vendor/name >}} CLI](/administration/cli/_index.md).
 2. Run `platform login`.
-3. In the open browser window, log in with your Platform.sh account credentials.
+3. In the open browser window, log in with your {{< vendor/name >}} account credentials.
    (This webpage is encrypted with HTTPS [HTTP over TLS], making it secure.)
 4. Authorize the CLI to use your account.
 
@@ -162,9 +162,9 @@ To connect to a service, fill in the details with the rest of your [service cred
 
 ## Alternative authentication methods
 
-There are three basic ways to authenticate with Platform.sh:
+There are three basic ways to authenticate with {{< vendor/name >}}:
 
-* [Through the CLI](#1-authenticate-with-the-platformsh-cli)
+* [Through the CLI](#1-authenticate-with-the-cli)
   * The fastest and easiest method.
   * Supports multifactor authentication.
   * Automatically generates new certificates to keep your connection safe.

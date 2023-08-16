@@ -2,3 +2,5 @@ configuation
 MongDB
 postgreSQL
 strapi
+
+Platform.sh

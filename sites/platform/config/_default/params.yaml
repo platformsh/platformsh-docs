@@ -13,7 +13,18 @@ vendor:
     name: Platform.sh
     cli: platform
     env_prefix: PLATFORM
+    urls:
+        main: https://platform.sh/
+        docs: https://docs.platform.sh/
+        support: https://support.platform.sh/
+        sales: https://platform.sh/contact
+        console: https://console.platform.sh/
+        api: https://api.platform.sh/
     config_dir: .platform
+    files:
+        routes: .platform/routes.yaml
+        services: .platform/services.yaml
+        apps: .platform.app.yaml
 
 # Images (kept in static/)
 logo: "images/logos/Platformsh_logo_white.svg"

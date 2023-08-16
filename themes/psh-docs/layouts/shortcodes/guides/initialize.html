@@ -3,7 +3,7 @@
 {{ if $isSymfony }}
   {{ $cliCommand = "symfony" }}
 {{ end }}
-<p>You can start with a basic code base or push a pre-existing project to Platform.sh.</p>
+<p>You can start with a basic code base or push a pre-existing project to {{ .Site.Params.vendor.name }}.</p>
 
 <ol>
     <li>
@@ -25,12 +25,12 @@
         <p>If your code isn't in a Git repository, initialize it by running <code>git init</code>.</p>
         {{ .Inner | .Page.RenderString }}</li>
     <li>
-        <p>Connect your Platform.sh project with Git.
-        You can use Platform.sh as your Git repository or connect to a third-party provider:
+        <p>Connect your {{ .Site.Params.vendor.name }} project with Git.
+        You can use {{ .Site.Params.vendor.name }} as your Git repository or connect to a third-party provider:
         GitHub, GitLab, or BitBucket.
         </p>
 
-{{ $titleName := "Platform.sh" }}
+{{ $titleName := .Site.Params.vendor.name }}
 {{ if $isSymfony }}
     {{ $titleName = "the Symfony CLI" }}
 {{ end }}
@@ -39,7 +39,7 @@
 title=Using ` $titleName `
 +++
 
-Add a Git remote for the Platform.sh project you just created
+Add a Git remote for the {{ .Site.Params.vendor.name }} project you just created
 by running the following command from your repository:
 
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">` $cliCommand ` project:set-remote {{< variable "PROJECT_ID" >}}</code></pre></div>
@@ -52,7 +52,7 @@ title=Using a third-party provider
 +++
 
 When you choose to use a third-party Git hosting service
-the Platform.sh Git repository becomes a read-only mirror of the third-party repository.
+the {{ .Site.Params.vendor.name }} Git repository becomes a read-only mirror of the third-party repository.
 All your changes take place in the third-party repository.
 
 Add an integration to your existing third party repository.
@@ -65,11 +65,11 @@ The process varies a bit for each supported service, so check the specific pages
 
 Accept the default options or modify to fit your needs.
 
-All of your existing branches are automatically synchronized to Platform.sh.
+All of your existing branches are automatically synchronized to {{ .Site.Params.vendor.name }}.
 You get a deploy failure message because you haven't provided configuration files yet.
 You add them in the next step.
 
-If you're integrating a repository to Platform.sh that contains a number of open pull requests,
+If you're integrating a repository to {{ .Site.Params.vendor.name }} that contains a number of open pull requests,
 don't use the default integration options.
 Projects are limited to three\* development environments (active and deployed branches or pull requests)
 and you would need to deactivate them individually to test this guide's migration changes.
@@ -88,4 +88,4 @@ Add additional **Environments**, view a cost estimate, and confirm your changes.
 </li>
 </ol>
 
-<p>Now you have a local Git repository, a Platform.sh project, and a way to push code to that project. Next you can configure your project to work with Platform.sh.</p>
+<p>Now you have a local Git repository, a {{ .Site.Params.vendor.name }} project, and a way to push code to that project. Next you can configure your project to work with {{ .Site.Params.vendor.name }}.</p>

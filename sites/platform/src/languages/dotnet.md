@@ -1,7 +1,7 @@
 ---
 title: "C#/.NET Core"
 description: |
-  Platform.sh supports deploying .NET applications by allowing developers to define a build process and pass its variables to the .NET Core build environment.
+  {{< vendor/name >}} supports deploying .NET applications by allowing developers to define a build process and pass its variables to the .NET Core build environment.
 ---
 
 {{% description %}}
@@ -31,7 +31,7 @@ hooks:
 where `PLATFORM_OUTPUT_DIR` is the output directory for compiled languages available at build time.
 
 Typically, .NET Core builds start a collection of build servers, which are helpful for repeated builds.
-On Platform.sh, however, if this process isn't disabled,
+On {{< vendor/name >}}, however, if this process isn't disabled,
 the build process doesn't finish until the idle timeout is reached.
 
 As a result, you should include `-p` toggles that disable the Razor compiler for dynamic CSHTML pages (`UseRazorBuildServer`)

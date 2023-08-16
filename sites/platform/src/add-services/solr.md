@@ -85,7 +85,7 @@ highlight=python
 
 ## Solr 4
 
-For Solr 4, Platform.sh supports only a single core per server called `collection1`.
+For Solr 4, {{< vendor/name >}} supports only a single core per server called `collection1`.
 
 You must provide your own Solr configuration via a `core_config` key in your ``.platform/services.yaml``:
 
@@ -109,7 +109,7 @@ searchsolr:
 
 ## Solr 6 and later
 
-For Solr 6 and later Platform.sh supports multiple cores via different endpoints. Cores and endpoints are defined separately, with endpoints referencing cores. Each core may have its own configuration or share a configuration. It is best illustrated with an example.
+For Solr 6 and later {{< vendor/name >}} supports multiple cores via different endpoints. Cores and endpoints are defined separately, with endpoints referencing cores. Each core may have its own configuration or share a configuration. It is best illustrated with an example.
 
 ```yaml
 searchsolr:
@@ -278,7 +278,7 @@ There are two ways of doing that.
 
 In your `services.yaml` file, change the version of your Solr service *and* its name. Then update the name in the `.platform.app.yaml` relationships block.
 
-When you push that to Platform.sh, the old service is deleted and a new one with the name is created, with no data. You can then have your application re-index data as appropriate.
+When you push that to {{< vendor/name >}}, the old service is deleted and a new one with the name is created, with no data. You can then have your application re-index data as appropriate.
 
 This approach has the downside of temporarily having an empty Solr instance, which your application may or may not handle gracefully, and needing to rebuild your index afterward. Depending on the size of your data that could take a while.
 

@@ -2,7 +2,7 @@
 title: Manage Python versions in non-Python containers
 sidebarTitle: Python in non-Python containers
 weight: 0
-description: See how to manage different Python versions in your Platform.sh containers.
+description: See how to manage different Python versions in your {{< vendor/name >}} containers.
 ---
 
 You may need to use a specific version of Python that isn't available in an app container for a different language.

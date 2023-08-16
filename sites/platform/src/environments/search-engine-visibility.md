@@ -37,7 +37,7 @@ title=In the Console
 
 {{< /codetabs >}}
 
-Platform.sh can't guarantee that indexers follow the instructions.
+{{< vendor/name >}} can't guarantee that indexers follow the instructions.
 If you're concerned about access, set up [HTTP access control](./http-access-control.md).
 
 ## How it's done
@@ -62,4 +62,4 @@ Your app can serve this as a static file from its disk or as a dynamic response 
 Control either with the [`location` section of your app configuration](../create-apps/app-reference.md#locations).
 
 If your `robots.txt` file includes instructions to ignore a page,
-search engine indexers may ignore it even if you have configured Platform.sh to not send the header.
+search engine indexers may ignore it even if you have configured {{< vendor/name >}} to not send the header.

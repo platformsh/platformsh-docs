@@ -1,13 +1,13 @@
 ---
-title: "Customize TYPO3 for Platform.sh"
+title: "Customize TYPO3 for {{< vendor/name >}}"
 sidebarTitle: "Customize"
 weight: -90
 description: |
-    Add some helpful dependencies, and modify your TYPO3 site to read from a Platform.sh environment.
+    Add some helpful dependencies, and modify your TYPO3 site to read from a {{< vendor/name >}} environment.
 ---
 
-Now that your code contains all of the configuration to deploy on Platform.sh,
-it’s time to make your TYPO3 site itself ready to run on a Platform.sh environment.
+Now that your code contains all of the configuration to deploy on {{< vendor/name >}},
+it’s time to make your TYPO3 site itself ready to run on a {{< vendor/name >}} environment.
 There are a number of additional steps that are either required or recommended,
 depending on how well you want to optimize your site.
 
@@ -53,7 +53,7 @@ php vendor/bin/typo3 extension:activate pxa_lpeh
 
 ## TYPO3 CMS's `web-dir`
 
-Platform.sh recommends serving TYPO3 from its default subdirectory `public`.
+{{< vendor/name >}} recommends serving TYPO3 from its default subdirectory `public`.
 `public` can be seen already throughout your `.platform.app.yaml` file in `web.locations.root`, `mounts`
 and within your `build` and `deploy` hooks.
 You need to assign `public` to the `cms.web-dir` attribute in your `composer.json` file,
@@ -73,13 +73,13 @@ You can also add the definition to your existing `baseVariant` attribute for pro
 
 You define this environment variable in the next section,
 but its purpose is to retrieve the root domain
-(since you haven't yet registered a domain name on the Platform.sh project,
+(since you haven't yet registered a domain name on the {{< vendor/name >}} project,
 this is a hashed placeholder domain generated from the environment)
 from the environment variable `PLATFORM_ROUTES`.
 
 {{< note >}}
 
-The above `base` configuration only includes the production case (running on Platform.sh)
+The above `base` configuration only includes the production case (running on {{< vendor/name >}})
 or at least exporting a `PLATFORM_ROUTES_MAIN` environment variable to match during local development.
 Alternatively, you can place the above definition within a `baseVariant` definition for the production environment
 alongside another development environment `condition` for local.
@@ -98,11 +98,11 @@ baseVariants:
 
 ## Environment
 
-Finally, you can start using the Platform.sh Configuration Reader library
+Finally, you can start using the {{< vendor/name >}} Configuration Reader library
 to starting reading from the environment from within your application.
 In a `public/typo3conf/PlatformshConfiguration.php` file, you can use the library to:
 
-- Verify the deployment is occurring on a Platform.sh project (`if (!$platformConfig->isValidPlatform())`)
+- Verify the deployment is occurring on a {{< vendor/name >}} project (`if (!$platformConfig->isValidPlatform())`)
 - Verify that it's not running during build,
   when services aren't yet available (`if ($platformConfig->inBuild())`)
 - Set the `PLATFORM_ROUTES_MAIN` environment variable used in `config/sites/main/config.yaml`)
@@ -114,7 +114,7 @@ In a `public/typo3conf/PlatformshConfiguration.php` file, you can use the librar
 
 {{< readFile file="static/files/fetch/config-examples-platform/typo3" highlight="php" >}}
 
-Then include the `require_once()` function within your `public/typo3conf/AdditionalConfiguration.php` file to load the Platform.sh-specific configuration into the site if present.
+Then include the `require_once()` function within your `public/typo3conf/AdditionalConfiguration.php` file to load the {{< vendor/name >}}-specific configuration into the site if present.
 
 ```php
 <?php
@@ -122,14 +122,14 @@ Then include the `require_once()` function within your `public/typo3conf/Additio
 /**
  * Additional configuration file.
  *
- * Place configuration here you want to be shared by Platform.sh environments and local development.
+ * Place configuration here you want to be shared by {{< vendor/name >}} environments and local development.
  *
- * Platform.sh-specific configuration should be added to PlatformshConfiguration.php.
+ * {{< vendor/name >}}-specific configuration should be added to PlatformshConfiguration.php.
  * Environment-specific configuration should be added to LocalConfiguration.php as normal.
  */
 
-// Include the Platform.sh-specific configuration.
-// This file will no-op on its own if not on Platform.sh.
+// Include the {{< vendor/name >}}-specific configuration.
+// This file will no-op on its own if not on {{< vendor/name >}}.
 $platformshFile = __DIR__ . '/PlatformshConfiguration.php';
 if (file_exists($platformshFile)) {
     require_once($platformshFile);

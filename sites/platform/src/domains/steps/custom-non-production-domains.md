@@ -10,7 +10,7 @@ banner:
 When a custom domain is [set up on your production environment](../steps/_index.md),
 it can't be used for the other, non-production environments in your project.
 Therefore, by default and for each non-production environment,
-Platform.sh automatically replaces the custom production domain 
+{{< vendor/name >}} automatically replaces the custom production domain 
 with an automatically generated URL.
 
 If you don't want to use these default URLs,
@@ -39,7 +39,7 @@ and still access your production environment through `example.com`.
 If you have multiple custom domains on your production environment,
 when you create a custom non-production domain,
 you don't need to update your [routes configuration](../../define-routes/_index.md) either.
-Platform.sh automatically figures out the routing of your non-production environment
+{{< vendor/name >}} automatically figures out the routing of your non-production environment
 based on the following elements:
 
 - The custom production domains in your existing [routes configuration](../../define-routes/_index.md)
@@ -64,10 +64,10 @@ You need:
   For more information, contact [Support](https://console.platform.sh/-/users/~/tickets/open).   
 - A production environment with at least one custom domain already set up
 - At least one non-production (staging or development) environment
-- The [Platform.sh CLI](../../administration/cli/_index.md) (v4.8.0+) <BR>
+- The [{{< vendor/name >}} CLI](../../administration/cli/_index.md) (v4.8.0+) <BR>
   In the current Beta version, you can only add and manage non-production custom domains
-  through the [Platform.sh CLI](../../administration/cli/_index.md).
-  In future versions, you'll be able to do so in the [Platform.sh Console](../../administration/web/_index.md) too.
+  through the [{{< vendor/name >}} CLI](../../administration/cli/_index.md).
+  In future versions, you'll be able to do so in the [{{< vendor/name >}} Console](../../administration/web/_index.md) too.
 
 To prevent abuse, by default you can add custom domains to up to 5 environments per project only.
 This limit doesn't include the production environment,
@@ -122,7 +122,7 @@ title=In the Console
    {{< note >}}
 
    Using the target of your production environment to configure your DNS provider is technically possible,
-   but Platform.sh recommends using the target of your non-production environment as a best practice.
+   but {{< vendor/name >}} recommends using the target of your non-production environment as a best practice.
 
    {{< /note >}}
 

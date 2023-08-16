@@ -34,4 +34,4 @@ you need to have {{ $reqdPerms }} [user permissions]({{ $permsLink }}).
 You can now start pushing code, creating new branches,
 and opening {{ if eq $source "GitLab" }}merge{{ else }}pull{{ end }} requests
 directly in your {{ $source }} repository.
-Your Platform.sh environments are automatically created and updated.
+Your {{ .Site.Params.vendor.name }} environments are automatically created and updated.

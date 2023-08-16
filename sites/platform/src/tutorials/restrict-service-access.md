@@ -5,7 +5,7 @@ description: Learn how to restrict access to a service using a worker and additi
 weight: 2
 ---
 
-Platform.sh allows you to restrict access to a service. 
+{{< vendor/name >}} allows you to restrict access to a service. 
 
 In this tutorial, learn how to grant your Data team `read-only` access to your production database.
 
