@@ -1,5 +1,5 @@
 {{ $markdown := "false" }}
-{{ $configFiles := .Site.Params.vendor.files }}
+{{ $configFiles := .Site.Params.vendor.config.files }}
 {{ with .Get "markdownify" }}
   {{ $markdown = . }}
 {{ end }}

@@ -16,6 +16,18 @@ vendor:
     name: Deploy Friday
     cli: friday
     env_prefix: FRIDAY
+    config:
+        version: 2
+        dir: .friday
+        files:
+            routes: .friday/config.yaml
+            services: .friday/config.yaml
+            app: .friday/config.yaml
+            apps: .friday/config.yaml
+        prefix: 
+            apps: applications 
+            services: services 
+            routes: routes
     urls:
         main: https://deployfriday.net/
         docs: https://docs.deployfriday.net/
@@ -23,12 +35,6 @@ vendor:
         sales: https://deployfriday.net/contact
         console: https://console.deployfriday.net/
         api: https://api.deployfriday.net/
-    config_dir: .friday
-    files:
-        routes: .friday/config.yaml
-        services: .friday/config.yaml
-        app: .friday/config.yaml
-        apps: .friday/config.yaml
 
 # Images (kept in static/)
 logo: "images/logo.svg"

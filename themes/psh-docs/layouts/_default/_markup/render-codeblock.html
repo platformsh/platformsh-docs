@@ -2,7 +2,7 @@
 {{ $location := .Attributes.location | default "" }}
 {{ $configFile := .Attributes.configfile | default ""}}
 
-{{ $configFiles := .Page.Site.Params.vendor.files }}
+{{ $configFiles := .Page.Site.Params.vendor.config.files }}
 
 {{ with $location }}
 <div class="bg-stone px-4 pt-2 rounded-t-lg inline-block text-base pb-1">{{ . }}</div>
