@@ -40,7 +40,7 @@
 {{ end }}
 <a href="/add-services.html">Service definition</a>
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 {{ readFile (printf "/registry/images/examples/full/%s.services.yaml" .type) | safeHTML }}
 ```
 
@@ -59,7 +59,7 @@
 
   <a href="/add-services.html">Service definition</a>
 
-  ```yaml {location=".platform/services.yaml"}
+  ```yaml {configFile="services"}
   {{ readFile "registry/images/examples/full/oracle-mysql.services.yaml" | safeHTML }}
   ```
 
@@ -76,7 +76,7 @@
 
   <a href="/add-services.html">Service definition</a>
 
-  ```yaml {location=".platform/services.yaml"}
+  ```yaml {configFile="services"}
   {{ readFile "registry/images/examples/full/redis-persistent.services.yaml" | safeHTML  }}
   ```
 
@@ -91,7 +91,7 @@
 {{ if eq .type "vault-kms" }}
   <h4>Example configuration with multiple endpoints</h4>
   
-  ```yaml {location=".platform/services.yaml"}
+  ```yaml {configFile="services"}
   {{ readFile "data/local-examples/vault-multiple-endpoints/services.yaml" | safeHTML }}
   ```
 

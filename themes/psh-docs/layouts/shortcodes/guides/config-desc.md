@@ -11,7 +11,7 @@ You can configure these containers in three ways, each corresponding to a [YAML 
 
 - **Configure apps** in a `.platform.app.yaml` file.
   This controls the configuration of the container where your app lives.
-- **Add services** in a `.platform/services.yaml` file.
+- **Add services** in a `{{ partial "vendor/configfile" (dict "context" . "config" "services") }}` file.
   This controls what additional services are created to support your app,
   such as databases or search servers.
   Each environment has its own independent copy of each service.
@@ -25,7 +25,7 @@ Start by creating empty versions of each of these files in your repository:
 
 ```bash
 # Create empty {{ .Site.Params.vendor.name }}  configuration files
-touch .platform.app.yaml && mkdir -p .platform && touch {{ partial "vendor/configfile" (dict "context" . "config" "routes") }}{{ if not (.Get "noService") }} && touch .platform/services.yaml{{ end }}
+touch .platform.app.yaml && mkdir -p .platform && touch {{ partial "vendor/configfile" (dict "context" . "config" "routes") }}{{ if not (.Get "noService") }} && touch {{ partial "vendor/configfile" (dict "context" . "config" "services") }}{{ end }}
 ```
 
 {{ if isset .Params "platformify" }}
