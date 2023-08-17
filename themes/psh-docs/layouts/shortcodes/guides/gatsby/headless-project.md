@@ -2,7 +2,7 @@ Your local clone of the template has the following project structure:
 
 ```bash
 ├── .platform
-│   ├── routes.yaml
+│   ├── {{ partial "vendor/configfile" (dict "context" . "config" "routes") }}
 │   └── services.yaml
 ├── {{ anchorize (.Get "name" )}}
 │   ├── # App code

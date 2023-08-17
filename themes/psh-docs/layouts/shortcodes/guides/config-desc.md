@@ -16,7 +16,7 @@ You can configure these containers in three ways, each corresponding to a [YAML 
   such as databases or search servers.
   Each environment has its own independent copy of each service.
   If you're not using any services, you don't need this file.
-- **Define routes** in a `.platform/routes.yaml` file.
+- **Define routes** in a `{{ partial "vendor/configfile" (dict "context" . "config" "routes") }}` file.
   This controls how incoming requests are routed to your app or apps.
   It also controls the built-in HTTP cache.
   If you're only using the single default route, you don't need this file.
@@ -25,7 +25,7 @@ Start by creating empty versions of each of these files in your repository:
 
 ```bash
 # Create empty {{ .Site.Params.vendor.name }}  configuration files
-touch .platform.app.yaml && mkdir -p .platform && touch .platform/routes.yaml{{ if not (.Get "noService") }} && touch .platform/services.yaml{{ end }}
+touch .platform.app.yaml && mkdir -p .platform && touch {{ partial "vendor/configfile" (dict "context" . "config" "routes") }}{{ if not (.Get "noService") }} && touch .platform/services.yaml{{ end }}
 ```
 
 {{ if isset .Params "platformify" }}
