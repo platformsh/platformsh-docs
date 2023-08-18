@@ -24,6 +24,22 @@ To update the versions in this table, use docs/data/registry.json
 On Grid and {{% names/dedicated-gen-3 %}}, from version 2, you only specify the major version.
 The latest compatible minor version and patches are applied automatically.
 
+On Grid, version 1 represents a rolling release - the latest minor version available from the upstream.
+Today, that version is `1.3.x`.
+
+## Deprecated versions
+
+The following versions are still available in your projects,
+but they're at their end of life and are no longer receiving security updates from upstream,
+or are no longer the recommended way to configure the service on {{< vendor/name >}}.
+
+| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
+|------|-------------------------------|------------------------------ |
+|  {{< image-versions image="opensearch" status="deprecated" environment="grid" >}} | {{< image-versions image="opensearch" status="deprecated" environment="dedicated-gen-3" >}} | {{< image-versions image="opensearch" status="deprecated" environment="dedicated-gen-2" >}} |
+
+To ensure your project remains stable in the future,
+switch to [a supported version](#supported-versions).
+
 {{% relationship-ref-intro %}}
 
 {{% service-values-change %}}
