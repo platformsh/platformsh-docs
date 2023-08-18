@@ -1,47 +1,77 @@
 ---
 title: Introduction
+showTitle: false
+editPage: false
+feedback: false
 ---
 
-{{< vendor/name >}} is a second-generation Platform-as-a-Service built especially for continuous deployment.
-It allows you to host web applications on the cloud while making your development and testing workflows more productive.
+<!-- ![welcome-img](/images/git-hub-welcome.png) -->
 
-If you're new to {{< vendor/name >}}, we recommend starting with the **Big Picture**, in particular [Structure](/overview/structure.md), and [Build & Deploy](/overview/build-deploy.md) will get you started on the right track to best use {{< vendor/name >}}.
+{{< home >}}
 
-The main requirement of {{< vendor/name >}} is that you use Git to manage your application code.
-Your project's configuration is driven almost entirely by a small number of YAML files in your Git repository.
-The **Configuration** section covers those in more detail and can serve as both a tutorial and a quick reference.
+## Getting started
 
-{{< vendor/name >}} is built on Debian, supports many different programming **Languages** and environments,
-and features recommended optimizations for several **Featured Frameworks**.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices, arcu et laoreet fermentum, dolor massa pellentesque odio, id maximus magna dolor ac nunc. Cras turpis neque, vehicula vel purus vel, ultrices mattis dolor.
 
-Finally, you can also get tips for setting up your own **Development** workflow and **Administering** your {{< vendor/name >}} account.
+## Community and getting help
 
-## Git Driven Infrastructure
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices, arcu et laoreet fermentum, dolor massa pellentesque odio, id maximus magna dolor ac nunc. Cras turpis neque, vehicula vel purus vel, ultrices mattis dolor.
 
-As a Platform as a Service, or PaaS, {{< vendor/name >}} automatically manages everything your application needs to run.
-That means you can, and should, view your infrastructure needs as part of your application and address them under version control.
+## Learning resources
 
-### Infrastructure as code
+<table class="tg">
+    <thead>
+        <tr>
+        <th class="tg-0lax">Configuration</th>
+        <th class="tg-0lax">Topics</th>
+        <th class="tg-0lax">Join the community</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <td class="tg-0lax">
+            <ul class="resource-list">
+                <li><a href="/create-apps.html">Applications</a></li>
+                <li><a href="/define-routes.html">Routes</a></li>
+                <li><a href="/add-services.html">Services</a></li>
+                <li><a href="/integrations.html">Integrations</a></li>
+            </ul>
+        </td>
+        <td class="tg-0lax">
+            <ul class="resource-list">
+                <li><a href="/administration.html">Administration</a></li>
+                <li><a href="/development/local/ddev.html">Local development</a></li>
+                <li><a href="/increase-observability.html">Observability & performance</a></li>
+                <li><a href="/security.html">Security & compliance</a></li>
+            </ul>
+        </td>
+        <td class="tg-0lax">
+            <ul class="resource-list">
+                <li><a href="#">Slack</a></li>
+                <li><a href="#">Community forum</a></li>
+                <li><a href="#">GitHub</a></li>
+                <li><a href="/overview/get-support.html">Get support</a></li>
+            </ul>
+        </td>
+        </tr>
+    </tbody>
+</table>
 
-{{< vendor/name >}} covers not only all of your hosting needs but also most of your DevOps needs. It is a single tool that covers the application life-cycle from development to production and scaling.
+## How this site is organized
 
-You only need to write your code, including a few YAML files that specify your desired infrastructure, commit it to Git, and push.
-You don't need to set up anything manually. The web server is already set up and configured, as is any database, search engine, or cache that you specify.
+We believe there are different [types]() of documentation, and this site is roughly split into different categories of content based on where you are working with {{< vendor/name >}}
 
-Every branch you push can be made a fully independent environment&mdash;complete with your application code, a copy of your database, a copy of your search index, a copy of your user files, everything.
-Its automatically generated URL can be sent to stakeholders or automated CI systems.
-It really is "what would my site look like if I merged this to production?" every time.
+- [**Get started**](#):
 
-You can use these concepts to replicate a traditional development/staging/production workflow or even to give every feature its own effective staging environment before merging to production (empowering you to use git-flow like methodologies even better). You could also have an intermediary integration branch for several other branches.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices, arcu et laoreet fermentum, dolor massa pellentesque odio, id maximus magna dolor ac nunc. Cras turpis neque, vehicula vel purus vel, ultrices mattis dolor. Proin laoreet mollis sem, a pellentesque tellus malesuada sit amet. In blandit lobortis libero ac semper. 
+- [**Learn**](#): 
 
-{{< vendor/name >}} respects the structure of branches. It's entirely up to you.
+    Integer id metus in sapien suscipit facilisis in et lacus. Integer consectetur fermentum justo eget porttitor. Donec efficitur lacus ut dapibus suscipit. Nunc venenatis risus vitae porttitor tincidunt. Nullam eget augue luctus, venenatis eros sed, maximus lectus. Aliquam efficitur diam elit, at vehicula turpis maximus sed.
 
-### Full stack management
+- [**Frameworks**](#):
 
-Managing your full stack on {{< vendor/name >}} gives you the following unique features:
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices, arcu et laoreet fermentum, dolor massa pellentesque odio, id maximus magna dolor ac nunc. Cras turpis neque, vehicula vel purus vel, ultrices mattis dolor. Proin laoreet mollis sem, a pellentesque tellus malesuada sit amet. In blandit lobortis libero ac semper. 
 
-1. **Unified Environment:** All of your services (MySQL, ElasticSearch, MongoDB, etc.) are managed inside the cluster and included in the price, with no external single-points-of-failure. When you back up an environment, you get a fully consistent snapshot of your whole application.
-2. **Multi-Services & Multi-App:** You can deploy multiple applications (for example, in a microservice-based architecture), using multiple data backends (MySQL, PostgreSQL, Redis, etc.) written in multiple frameworks (Drupal + NodeJS + Flask, for example) in multiple languages, all in the same cluster.
-3. **Full Cluster Cloning Technology:** The full production cluster can be cloned in under a minute&mdash;including all of its data&mdash;to create on-the-fly, ephemeral development environments that are a byte-level copy of production.
-4. **Fail-Proof Deployments:** Every time you test a new feature, you also test the deployment process.
-5. **Continuous Deployment from the Start:** Everything is build-oriented, with a consistent, repeatable build process, simplifying the process of keeping your application up-to-date and secure.
+- [**Reference**](#): 
+
+    Integer id metus in sapien suscipit facilisis in et lacus. Integer consectetur fermentum justo eget porttitor. Donec efficitur lacus ut dapibus suscipit. Nunc venenatis risus vitae porttitor tincidunt. Nullam eget augue luctus, venenatis eros sed, maximus lectus. Aliquam efficitur diam elit, at vehicula turpis maximus sed.

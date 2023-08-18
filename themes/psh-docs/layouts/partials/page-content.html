@@ -10,7 +10,9 @@
 <!-- If the feature is in beta -->
 {{ partial "beta-flag/banner.html" .context }}
 
-{{ partial "editpagebutton.html" .context }}
+{{ if ne .context.Params.editPage false }}
+  {{ partial "editpagebutton.html" .context }}
+{{ end }}
 
 <!-- Page title -->
 {{ if ne .context.Params.showTitle false }}

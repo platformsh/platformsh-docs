@@ -1,0 +1,166 @@
+<div class="home-hero" style="text-align: center; padding: 4rem 2rem 4rem 2rem;">
+
+    <h3>Welcome to the</h3>
+    <h1>{{ .Site.Title }}</h1>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum mauris id tincidunt gravida. Suspendisse sagittis euismod mi. Aliquam erat volutpat. Donec venenatis quam non nisi molestie malesuada.</p>
+    <p>Nam egestas eros vitae orci cursus tincidunt. Duis vel sodales nulla. </p>
+    
+    <div style="margin-top: 3rem;">
+        <a class="start-cta font-semibold text-sm xl:text-base px-4 py-2 bg-skye rounded text-white hover:bg-skye-dark focus:bg-skye-dark"
+        href="/get-started.html" rel="noopener">Get started</a>
+        <a class="info-cta font-semibold text-sm xl:text-base px-4 py-2 bg-skye rounded text-white hover:bg-skye-dark focus:bg-skye-dark"
+        href="/learn/overview.html" rel="noopener">What is {{ .Site.Params.vendor.name }}?</a>
+    </div>
+
+
+</div>
+<!-- 
+<div class="home-resources">
+    <h2>Join our community and navigate developer resources</h2>
+    <table class="tg">
+        <thead>
+          <tr>
+            <th class="tg-0lax">Configuration</th>
+            <th class="tg-0lax">Topics</th>
+            <th class="tg-0lax">Join the community</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tg-0lax">
+                <ul class="resource-list">
+                    <li><a href="/create-apps.html">Applications</a></li>
+                    <li><a href="/define-routes.html">Routes</a></li>
+                    <li><a href="/add-services.html">Services</a></li>
+                    <li><a href="/integrations.html">Integrations</a></li>
+                </ul>
+            </td>
+            <td class="tg-0lax">
+                <ul class="resource-list">
+                    <li><a href="/administration.html">Administration</a></li>
+                    <li><a href="/development/local/ddev.html">Local development</a></li>
+                    <li><a href="/increase-observability.html">Observability & performance</a></li>
+                    <li><a href="/security.html">Security & compliance</a></li>
+                </ul>
+            </td>
+            <td class="tg-0lax">
+                <ul class="resource-list">
+                    <li><a href="#">Slack</a></li>
+                    <li><a href="#">Community forum</a></li>
+                    <li><a href="#">GitHub</a></li>
+                    <li><a href="/overview/get-support.html">Get support</a></li>
+                </ul>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+    <table class="tg">
+        <thead>
+          <tr>
+            <th class="tg-0lax">Frameworks</th>
+            <th class="tg-0lax">Languages</th>
+            <th class="tg-0lax">Managed services</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tg-0lax">
+                <ul class="resource-list">
+                    <li><a href="/create-apps.html">Django</a></li>
+                    <li><a href="/define-routes.html">Drupal</a></li>
+                    <li><a href="/add-services.html">Gatsby</a></li>
+                    <li><a href="/integrations.html">Next.js</a></li>
+                    <li><a href="/add-services.html">Strapi</a></li>
+                    <li><a href="/integrations.html">Symfony</a></li>
+                    <li><a href="/add-services.html">WordPress</a></li>
+                    <li><a href="/integrations.html"><strong>See all frameworks...</strong></a></li>
+                </ul>
+            </td>
+            <td class="tg-0lax">
+                <ul class="resource-list">
+                    <li><a href="/create-apps.html">Elixir</a></li>
+                    <li><a href="/define-routes.html">Go</a></li>
+                    <li><a href="/add-services.html">Node.js/Javascript</a></li>
+                    <li><a href="/integrations.html">PHP</a></li>
+                    <li><a href="/add-services.html">Python</a></li>
+                    <li><a href="/integrations.html">Ruby</a></li>
+                    <li><a href="/integrations.html"><strong>See all languages...</strong></a></li>
+                </ul>
+            </td>
+            <td class="tg-0lax">
+                <ul class="resource-list">
+                    <li><a href="/create-apps.html">Elasticsearch</a></li>
+                    <li><a href="/define-routes.html">Headless Chrome</a></li>
+                    <li><a href="/add-services.html">InfluxDB</a></li>
+                    <li><a href="/add-services.html">MariaDB/MySQL</a></li>
+                    <li><a href="/integrations.html">MongoDB</a></li>
+                    <li><a href="/integrations.html">PostgreSQL</a></li>
+                    <li><a href="/integrations.html">Redis</a></li>
+                    <li><a href="/integrations.html"><strong>See all managed services...</strong></a></li>
+                </ul>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+</div> -->
+
+
+<style>
+    .home-resources {
+        text-align: center; 
+        padding: 1rem 2rem; 
+        border: 2px solid #191C1E;
+        border-color: #191C1E !important;
+    }
+    
+    .tg-0lax {
+        text-align: center;
+        background-color: white !important;
+    }
+
+    .resource-list {
+        list-style: none;
+        padding-left: 0rem !important;
+    }
+
+    .start-cta {
+        /* color: white !important; */
+        color: #191C1E !important;
+        text-decoration: none !important;
+        font-size: 16px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.48px !important;
+        /* background: #6046FF !important; */
+        background: #FFBDBB!important;
+        padding: 10px 16px !important;
+        margin-right: 1rem;
+        border-radius: 0px !important;
+        /* border-radius: 80px !important; */
+    }
+    .start-cta:hover {
+        /* background: #4D38CC !important; */
+        background: #FF9F9F !important;
+        color: #191C1E !important;
+        /* color: white !important; */
+    }
+
+    .info-cta {
+        color: #191C1E !important;
+        text-decoration: none !important;
+        font-size: 16px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.48px !important;
+        background: white !important;
+        padding: 10px 16px !important;
+        /* border-radius: 80px !important; */
+        border-radius: 0px !important;
+        border: 2px solid #191C1E;
+        border-color: #191C1E !important;
+    }
+    .info-cta:hover {
+        background: #191C1E !important;
+        color: white !important;
+    }
+
+</style>
