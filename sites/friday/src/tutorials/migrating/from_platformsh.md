@@ -20,7 +20,7 @@ git checkout -b {{< vendor/cli >}}-main
 ```
 
 
-## Create a new project
+## Create a new {{% vendor/name %}} project
 
 To create a new {{< vendor/name >}} project, use the CLI and follow the prompt:
 
@@ -128,7 +128,7 @@ routes:
     to: "https://{default}/"
 ```
 
-### Using CLI command
+### Using {{% vendor/cli %}} ify command
 Our {{< vendor/name >}} CLI comes with a useful command to adapt your source code to be easily hosted on {{< vendor/name >}}: `{{< vendor/cli >}} ify`
 
 This command will automatically detect your local stack and generate the minimum Yaml configuration files required to deploy it on {{< vendor/name >}}: `{{< vendor/configdir >}}/config.yaml`.
@@ -267,7 +267,7 @@ TODO
 ### Using Console (TODO)
 TODO
 
-## Deploy your project
+## Deploy your {{% vendor/name %}} project
 After adding to Git your changes, use the following command to deploy your {{< vendor/name >}} project:
 ```shell
 {{< vendor/cli >}} deploy
