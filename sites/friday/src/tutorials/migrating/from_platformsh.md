@@ -1,39 +1,39 @@
 ---
 title: "Platform.sh"
 description: |
-  Migrate your project from Platform.sh to {{< vendor/name >}} has an easy path. Let's dig into it!
+  Migrate your project from Platform.sh to {{% vendor/name %}} has an easy path. Let's dig into it!
 test: vendor/name
 
 ---
 
-Starting from an existing Platform.sh project, adapting your project Yaml configuration to host it on {{< vendor/name >}} is really easy to do.
+Starting from an existing Platform.sh project, adapting your project Yaml configuration to host it on {{% vendor/name %}} is really easy to do.
 This is the few steps to perform a successful migration.
 
 ## Create a Git branch
 
-To avoid mixing existing Platform.sh source code and your new {{< vendor/name >}} source code, we need to create a new Git branch.
+To avoid mixing existing Platform.sh source code and your new {{% vendor/name %}} source code, we need to create a new Git branch.
 
 From the root of your Platform.sh project, execute the following:
 
 ```shell
-git checkout -b {{< vendor/cli >}}-main
+git checkout -b {{% vendor/cli %}}-main
 ```
 
 
 ## Create a new {{% vendor/name %}} project
 
-To create a new {{< vendor/name >}} project, use the CLI and follow the prompt:
+To create a new {{% vendor/name %}} project, use the CLI and follow the prompt:
 
 ```
-{{< vendor/cli >}} project:create --default-branch={{< vendor/cli >}}-main
+{{% vendor/cli %}} project:create --default-branch={{% vendor/cli %}}-main
 ```
 
-At the end of this process, your new project is created and your local source code is now linked with your new {{< vendor/name >}} project.
+At the end of this process, your new project is created and your local source code is now linked with your new {{% vendor/name %}} project.
 
 ## General changes
 
-The main technical difference between Platform.sh and {{< vendor/name >}} remains in the Yaml configuration.
-There are a lot of improvements in the {{< vendor/name >}} Yaml config files.
+The main technical difference between Platform.sh and {{% vendor/name %}} remains in the Yaml configuration.
+There are a lot of improvements in the {{% vendor/name %}} Yaml config files.
 
 This is the main rules (non-exhaustive list) that you have to keep in mind:
 - All of the Yaml configuration files are now located in the `.platform/` folder only, no more `.platform.app.yaml` files at the root of your application source code
@@ -53,15 +53,15 @@ This is the main rules (non-exhaustive list) that you have to keep in mind:
     ```
     This will help debugging long config files having a lot of applications (multi-app) as the app name key will be part of the XPath, and so, it will ease developer journey finding where they are modifying settings:
 - Yaml keys inside an app do not change, except a removal of keys to manage container resources: `size`, `disk` and `resources`
-- As resource configuration is not possible anymore in the Yaml configuration., it needs to be done using {{< vendor/name >}} API or using the Console.
+- As resource configuration is not possible anymore in the Yaml configuration., it needs to be done using {{% vendor/name %}} API or using the Console.
 
 ## Change your Yaml structure
-There are 2 ways to adapt your actual configuration from Platform.sh to {{< vendor/name >}}:
+There are 2 ways to adapt your actual configuration from Platform.sh to {{% vendor/name %}}:
 - [Manually](#manually) : **13 steps**
-- [Using `{{< vendor/cli >}}` ify command](#using-{{< vendor/cli >}}-ify-command): **1 step**
+- [Using `{{% vendor/cli %}}` ify command](#using-{{% vendor/cli %}}-ify-command): **1 step**
 
 ### Manually
-To migrate an existing Yaml configuration to {{< vendor/name >}} Yaml format, you need to:
+To migrate an existing Yaml configuration to {{% vendor/name %}} Yaml format, you need to:
 1. Create a new `{{< vendor/configdir >}}/` folder.
 1. Create one Yaml file per application in your `{{< vendor/configdir >}}/` folder, or one file that will contain all of your `applications`/`services`/`routes` configuration.
    </br>We will use a `{{< vendor/configdir >}}/config.yaml` file here.
@@ -80,7 +80,7 @@ To migrate an existing Yaml configuration to {{< vendor/name >}} Yaml format, yo
 1. Copy the entire `.platform/routes.yaml` file and paste it below `routes:` first level key and indent the existing services definition below.
 1. Remove the 3 Platform.sh Yaml configuration files (`.platform.app.yaml` or `.platform/applications.yaml`, `.platform/services.yaml` and `.platform/routes.yaml`) from your source code.
 1. Commit your files in Git
-1. Deploy your source code using command `{{< vendor/cli >}} push`
+1. Deploy your source code using command `{{% vendor/cli %}} push`
 
 You should end up with this `{{< vendor/configdir >}}/config.yaml` file like:
 ```yaml
@@ -129,12 +129,12 @@ routes:
 ```
 
 ### Using {{% vendor/cli %}} ify command
-Our {{< vendor/name >}} CLI comes with a useful command to adapt your source code to be easily hosted on {{< vendor/name >}}: `{{< vendor/cli >}} ify`
+Our {{% vendor/name %}} CLI comes with a useful command to adapt your source code to be easily hosted on {{% vendor/name %}}: `{{% vendor/cli %}} ify`
 
-This command will automatically detect your local stack and generate the minimum Yaml configuration files required to deploy it on {{< vendor/name >}}: `{{< vendor/configdir >}}/config.yaml`.
+This command will automatically detect your local stack and generate the minimum Yaml configuration files required to deploy it on {{% vendor/name %}}: `{{< vendor/configdir >}}/config.yaml`.
 ```
-$ {{< vendor/cli >}} ify
-You are reconfiguring the project at /dev/{{< vendor/cli >}}/nextjs.
+$ {{% vendor/cli %}} ify
+You are reconfiguring the project at /dev/{{% vendor/cli %}}/nextjs.
 Welcome to Platform.sh!
 Let's get started with a few questions.
 
@@ -178,13 +178,13 @@ You have not selected any service, would you like to proceed anyway? [Yes]
   ( . .)
   o (_(")(")
 
-You can now deploy your application to {{< vendor/name >}}!
+You can now deploy your application to {{% vendor/name %}}!
 To do so, commit your files and deploy your application using the
-{{< vendor/name >}} CLI:
+{{% vendor/name %}} CLI:
   $ git add .
-  $ git commit -m 'Add {{< vendor/name >}} configuration files'
-  $ {{< vendor/cli >}} project:set-remote
-  $ {{< vendor/cli >}} push
+  $ git commit -m 'Add {{% vendor/name %}} configuration files'
+  $ {{% vendor/cli %}} project:set-remote
+  $ {{% vendor/cli %}} push
 ```
 {{< note >}}
 as this command generate the minimum configuration to install the detected stack, you would probably need to compare your previous Yaml section from your `.platform.app.yaml` (or `.platform/applications.yaml`) file to your new `{{< vendor/configdir >}}/config.yaml` file and report possible missing settings, like your additional command lines in your `build`/`deploy` hooks section.
@@ -219,14 +219,14 @@ database:
 ```
 
 {{< note >}}
-These settings, size, disk and resources are no longer available in the {{< vendor/name >}} Yaml config files (or not taken in account anymore).
+These settings, size, disk and resources are no longer available in the {{% vendor/name %}} Yaml config files (or not taken in account anymore).
 {{< /note >}}
 
 ### Using the API
 #### Change app resources
 To change your `app` application resources, use the following command line:
 ```
-$ {{< vendor/cli >}} e:curl /deployments/next -X PATCH -d \
+$ {{% vendor/cli %}} e:curl /deployments/next -X PATCH -d \
   '{
     "webapps": {
     "app": {
@@ -244,7 +244,7 @@ Don’t forget to remove from your `.platform/config.yaml` file corresponding Ya
 #### Change database service resources
 To change database service resources, use the following command line:
 ```shell
-$ {{< vendor/cli >}} e:curl /deployments/next -X PATCH -d \
+$ {{% vendor/cli %}} e:curl /deployments/next -X PATCH -d \
   '{
     "services": {
     "database": {
@@ -268,11 +268,11 @@ TODO
 TODO
 
 ## Deploy your {{% vendor/name %}} project
-After adding to Git your changes, use the following command to deploy your {{< vendor/name >}} project:
+After adding to Git your changes, use the following command to deploy your {{% vendor/name %}} project:
 ```shell
-{{< vendor/cli >}} deploy
+{{% vendor/cli %}} deploy
 ```
 
-Et voilà, you successfully migrate your Platform.sh project to {{< vendor/name >}}.
+Et voilà, you successfully migrate your Platform.sh project to {{% vendor/name %}}.
 Congrats!
 

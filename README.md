@@ -96,3 +96,107 @@ static assets on the site such as CSS and JavaScript files have a long cache per
 If you are making a change to such files, bust the cache so users aren't served out-of-date files.
 
 To clear the cache, update the `version` in [`docs/config/_default/params.yaml`](./docs/config/_default/params.yaml).
+
+
+## Whitelabel management
+
+### Adding a new Whitelabel doc
+To add a new whitelabel doc, using its own logo, styles and wording, you need to add a new whitelabel folder in the ``sites/`` directory containing the same structure as for `friday`
+```shell
+sites
+├── whitelabel_name
+│   ├── config
+│   │   └── _defaults
+│   │       ├── config.yaml <- whitelabel configuration
+│   │       └── params.yaml <- settings for vendorization and other features
+│   ├── layouts     <- Layout of the whitelabel website
+│   ├── src         <- pages
+│   ├── static      <- static files
+│   ├── utils       <- Hugo scripts
+│   └── ...         <- index.js and other Hugo files
+└── platform <- main doc pages
+```
+
+Note: ``sites/platform`` is the main docs.
+</br>Each whitelabel site inherit from `platform`.
+
+### Placeholders
+We introduce placeholders for Vendor and CLI name, as we need it for Platform.sh and Upsun.
+These placeholders are define in `sites/friday/config/_default/params.yaml` file as the following:
+```yaml
+# Vendorization
+vendor:
+    name: Deploy Friday
+    cli: friday
+    env_prefix: FRIDAY
+    config_dir: .friday
+```
+
+Each of them can be used in any templates (HTML or MarkDown) using shortcodes:
+
+```shell
+{{% vendor/name %}}
+{{% vendor/cli %}}
+...
+```
+
+### using settings placeholder in title
+If you need to use settings placeholder for one of the Yaml settings in title, you need to use notation ``{{% my.settings %}}``.
+Otherwise, if you use `{{< my.settings >}}`, reference to the shortcode will be displayed in the table of content of the page, like `HAHAHUGOSHORTCODEs3HBHB`.
+
+### Whitelabel file structure
+In ``src`` directory, you need to add files that change from the main docs (`sites/platform/src/` directory).
+
+#### Override an existing doc page from the main doc
+In your whitelabel `src` directory, adding a file with the same name and file structure as in `sites/platform/src` directory will result as an override of the page.
+By default, vendorization is done in the main doc, so depending on defined settings in ``sites/whitelabel_name/config/_default/params.yaml` file`, pages will be automatically transform.
+
+#### Remove a page from the whitelabel doc
+To remove an existing pages from the whitelabel doc, you need to add an exclude setting in ``sites/whitelabel_name/config/_default/config.yaml`` as follows:
+
+```yaml
+module:
+    _merge: deep
+    mounts:
+        - source: "../platform/src"
+          target: "content"
+          excludeFiles:
+              - "registry/*"
+              - "_index.md"
+              - "get-started/*"
+```
+
+#### Change menu structure
+If you need to change the menu structure of your whitelabel docs,
+like change an existing page to a nested section,
+you need to exclude the main file from the content definition in your `sites/whitelabel_name/config/_default/config.yaml` and create the nested section in your ``sites/whitelabel/src`` directory.
+
+Note: ``excludeFiles`` path are defined from the ``src`` whitelabel root directory.
+
+Example: we need to change the "migrating" tutorial to a nested section, having sub-pages for each of the hosting source where you come from.
+it will result in this file structure:
+```shell
+sites
+├── friday
+│   └── src
+│       └── tutorials
+│           └── migrating
+│               ├── _index.md
+│               └── from_platformsh.md
+└── platform
+    └── src
+        └── tutorials
+            └── migrating.md
+```
+and corresponding settings in ``sites/whitelabel_name/config/_default/config.yaml``:
+```yaml
+module:
+    _merge: deep
+    mounts:
+        - source: "../platform/src"
+          target: "content"
+          excludeFiles:
+              - "tutorials/migrating.md"
+              - ...
+```
+You will then have a nested section in your whitelabel menu with sub-pages for migrating from as many hosting source as needed.
