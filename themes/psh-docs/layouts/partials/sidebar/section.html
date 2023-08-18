@@ -18,7 +18,7 @@
     {{ else }}
       <!-- Create a list for each section in there -->
       {{ range .Pages }}
-        {{ partial "sidebar/list" ( dict "Context" . "CurrentPage" $currentPage ) }}
+        {{ partial "sidebar/list" ( dict "Context" . "CurrentPage" $currentPage "sections" $sectionKeys ) }}
       {{ end }}
     {{ end }}
 
@@ -28,7 +28,7 @@
   <!-- List everything else -->
   {{ else }}
 
-    {{ partial "sidebar/list" ( dict "Context" . "CurrentPage" $currentPage ) }}
+    {{ partial "sidebar/list" ( dict "Context" . "CurrentPage" $currentPage "sections" $sectionKeys ) }}
     
   {{ end }}
 {{ end }}

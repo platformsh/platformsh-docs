@@ -1,4 +1,5 @@
 <!-- SECTION HEADING -->
+{{ $sectionKeys := .sections }}
 {{ $sectionId := printf "section-%s-sidebar-id" .Context.Title | urlize }}
 <!-- Get rid of dots like in Platform.sh -->
 {{ $sectionId = replace $sectionId "." "" }}
@@ -6,14 +7,14 @@
 {{ $isCurrentSection := false }}
 {{ $currentSection := .Context.Section }}
 <!-- For Stacks and Get started, get the next level down for the section-->
-{{ if or ( eq $currentSection "guides" ) ( eq $currentSection "get-started" ) }}
+{{ if in $sectionKeys $currentSection }}
   {{ $pageName := index ( split .Context.RelPermalink "/" ) 2 }}
   {{ $currentSection = replace $pageName ".html" "" }}
 {{ end }}
 {{ $currentPage := .CurrentPage }}
 {{ with $currentPage.File }}
   <!-- If on home page or in the current section -->
-  {{ if or (and ($currentPage.IsHome) ( eq $currentSection "overview" )) ( hasPrefix . $currentSection ) ( hasPrefix ( replace . "get-started/" "") $currentSection ) ( hasPrefix ( replace . "guides/" "") $currentSection ) }}
+  {{ if or (and ($currentPage.IsHome) ( eq $currentSection "overview" )) ( hasPrefix . $currentSection ) ( hasPrefix ( replace . "get-started/" "") $currentSection ) ( hasPrefix ( replace . "guides/" "") $currentSection ) ( hasPrefix ( replace . "learn/" "") $currentSection ) }}
     {{ $isCurrentSection = true }}
   {{ end }}
 {{ end }}
