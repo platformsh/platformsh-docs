@@ -61,13 +61,13 @@ Meaning, removing one of the app services would break the others.
 
 {{< vendor/name >}} allows you to configure access from one service to another
 without having to worry about service discovery or complex _ingress controllers_.
-[Configuring incoming routes](../define-routes/_index.md) is straightforward.
+[Configuring incoming routes](/define-routes/_index.md) is straightforward.
 You can have services that are only exposed to another service as well as services that are exposed to the internet.
 
 In a clustered application, you can have one of the following configurations:
 
-- Multiple [`.platform.app.yaml` files](../create-apps/multi-app/_index.md) in different directories, with separate code bases that deploy separately
-- A single app that spawns one or more [worker instances](../create-apps/app-reference.md#workers) that run background processes
+- Multiple [`.platform.app.yaml` files](/create-apps/multi-app/_index.md) in different directories, with separate code bases that deploy separately
+- A single app that spawns one or more [worker instances](/create-apps/app-reference.md#workers) that run background processes
 
 {{< note >}}
 
@@ -76,11 +76,11 @@ Note that a clustered application requires at least a [{{< partial "plans/multia
 {{< /note >}}
 
 With a clustered application, you often don't need multiple service instances.
-The [MySQL, MariaDB](../add-services/mysql/_index.md),
-and [Solr](../add-services/solr.md) services support defining multiple databases on a single service,
+The [MySQL, MariaDB](/add-services/mysql/_index.md),
+and [Solr](/add-services/solr.md) services support defining multiple databases on a single service,
 which is significantly more efficient than defining multiple services.
-[Redis](../add-services/redis.md), [Memcached](../add-services/memcached.md),
-[Elasticsearch](../add-services/elasticsearch.md), and [RabbitMQ](../add-services/rabbitmq.md)
+[Redis](/add-services/redis.md), [Memcached](/add-services/memcached.md),
+[Elasticsearch](/add-services/elasticsearch.md), and [RabbitMQ](/add-services/rabbitmq.md)
 natively support multiple bins (also called _queues_ or _indexes_) defined by the client application as part of the request.
 Therefore, they don't need additional configuration on {{< vendor/name >}}.
 

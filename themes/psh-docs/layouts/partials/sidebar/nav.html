@@ -1,12 +1,20 @@
-{{ $sections := .Site.Params.navSections}}
+{{ $sections := .Site.Params.navSections }}
+
+{{ $sectionKeys := slice }}
+{{ range $k, $v := $sections }}
+    {{ if ne $k "home" }}
+        {{ $sectionKeys = append $k $sectionKeys }}
+    {{ end }}
+{{ end }}
+
 {{ $currentSection := .Section }}
 {{ $currentContext := . }}
 
 <!-- Loop through navigation sections -->
-{{ range $sections}}
+{{ range sort $sections "weight" }}
   {{ $inCurrentSection := false }}
   <!-- For sections with a single named directory, check if the current directory matches that name -->
-  {{ if or (eq .section "guides" ) (eq .section "get-started" ) }}
+  {{ if in $sectionKeys .section }}
     {{ if eq .section $currentSection }}
       {{ $inCurrentSection = true }}
     {{ else }}
@@ -14,7 +22,7 @@
     {{ end }}
   <!-- Otherwise, check that the current directory isn't one of those named sections -->
   {{ else }}
-    {{ if and (ne $currentSection "guides" ) (ne $currentSection "get-started" )}}
+    {{ if not (in $sectionKeys $currentSection)}}
       {{ $inCurrentSection = true }}
     {{ end }}
   {{ end }}
@@ -25,7 +33,7 @@
       </button>
     </h3>
     <div x-show="expanded" id="section-{{ .section }}">
-      {{ partial "sidebar/section" ( dict "context" $currentContext "currentSection" .section "Active" $inCurrentSection ) }}
+      {{ partial "sidebar/section" ( dict "context" $currentContext "currentSection" .section "Active" $inCurrentSection "sections" $sectionKeys ) }}
     </div>
   </div>
 {{ end }}

@@ -116,7 +116,7 @@ To address the issue, you can:
   This can be customized with the `runtime.sizing_hints.request_memory` key in your `.platform.app.yaml` file.
   For more details, consult [PHP-FPM sizing](./fpm.md).
 - Add a [CDN](../../domains/cdn/_index.md).
-- Set up [HTTP caching](../../bestpractices/http-caching.md).
+- Set up [HTTP caching](/learn/bestpractices/http-caching.md).
 - Follow the global [performance tuning recommendations](./tuning.md).
 - Remove stale plugins and extensions when using a CMS.
 - Upgrade the container size to get more resources.

@@ -57,18 +57,22 @@ _404:
 
 # Sections in the navigation sidebar
 navSections:
-  home:
-    title: Guides and reference
-    section: home
-    weight: -120
   get-started:
     title: Get started
     section: get-started
+    weight: -120
+  learn:
+    title: Learn
+    section: learn
     weight: -110
   guides:
-    title: Stacks
+    title: Frameworks
     section: guides
     weight: -100
+  home:
+    title: Reference
+    section: home
+    weight: -90
 
 # Metadata
 meta:

@@ -26,7 +26,7 @@ first activate it.
    and any files stored on [mounts](../create-apps/app-reference.md#mounts) are included.
    The backup is stored internally on {{< vendor/name >}}.
    That is, the backup can be applied to environments on {{< vendor/name >}}, but it can't be downloaded.
-   If you need to download backups, instead [export your mount and service data](../tutorials/exporting.md)).
+   If you need to download backups, instead [export your mount and service data](/learn/tutorials/exporting.md)).
 
 2. You restore your environment using the backup.
    At this point, the data and code from the backup are restored to ensure a consistent state.
