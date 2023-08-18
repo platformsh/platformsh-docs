@@ -1,5 +1,5 @@
 {{ $name := .Get "name" }}
-## Define routes in `{{ partial "vendor/configfile" (dict "context" . "config" "routes") }}`
+## Define routes
 
 All HTTP requests sent to your app are controlled through the routing and caching you define in a `{{ partial "vendor/configfile" (dict "context" . "config" "routes") }}` file.
 
