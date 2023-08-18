@@ -24,7 +24,7 @@ cache:
 
 This is assumed to have the following relationship definitions:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 relationships:
    database: "database:postgresql"
    rediscache: "cache:redis"

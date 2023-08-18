@@ -49,7 +49,7 @@
 
 <a href="/create-apps/app-reference.html">App configuration</a>
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 {{ printf "%s%s%s" (readFile (printf "registry/images/examples/full/%s.app.yaml" .type)) $l1 $l2 | safeHTML }}
 ```
 
@@ -65,7 +65,7 @@
 
   <a href="/create-apps/app-reference.html">App configuration</a>
 
-  ```yaml {location=".platform.app.yaml"}
+  ```yaml {configFile="app"}
   {{ readFile "registry/images/examples/full/oracle-mysql.app.yaml" | safeHTML }}
   ```
 {{ end }}
@@ -82,7 +82,7 @@
 
   <a href="/create-apps/app-reference.html">App configuration</a>
 
-  ```yaml {location=".platform.app.yaml"}
+  ```yaml {configFile="app"}
   {{ printf "%s%s%s" (readFile (printf "registry/images/examples/full/%s.app.yaml" "redis-persistent")) $l1 $l2 | safeHTML  }}
   ```
 {{ end }}
@@ -95,7 +95,7 @@
   {{ readFile "data/local-examples/vault-multiple-endpoints/services.yaml" | safeHTML }}
   ```
 
-  ```yaml {location=".platform.app.yaml"}
+  ```yaml {configFile="app"}
   {{ readFile "data/local-examples/vault-multiple-endpoints/platform.app.yaml" | safeHTML }}
   ```
 {{ end }}

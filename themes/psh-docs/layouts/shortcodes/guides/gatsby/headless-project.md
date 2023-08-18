@@ -6,10 +6,10 @@ Your local clone of the template has the following project structure:
 │   └── {{ partial "vendor/configfile" (dict "context" . "config" "services") }}
 ├── {{ anchorize (.Get "name" )}}
 │   ├── # App code
-│   └── .platform.app.yaml
+│   └── {{ partial "vendor/configfile" (dict "context" . "config" "services") }}
 ├── gatsby
 │   ├── # App code
-│   └── .platform.app.yaml
+│   └── {{ partial "vendor/configfile" (dict "context" . "config" "services") }}
 └── README.md
 ```
 
@@ -19,4 +19,4 @@ When deploying a single app project [such as Gatsby](/guides/gatsby/deploy.html)
 the repository needs three configuration files that describe its infrastructure, described below in detail.
 For [multi-app projects](/create-apps/multi-app/_index.md),
 two of those files remain in the project root and are shared between Gatsby and {{ .Get "name" }}.
-Each app keeps its own app configuration file (`.platform.app.yaml`) in its subdirectory.
+Each app keeps its own app configuration file (`{{ partial "vendor/configfile" (dict "context" . "config" "services") }}`) in its subdirectory.
