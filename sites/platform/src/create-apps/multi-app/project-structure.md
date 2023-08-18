@@ -34,9 +34,9 @@ you can organize your repository like this:
 
 ```txt
 ├── .platform
-│   ├── applications.yaml   <- Unified app configuration
-│   ├── routes.yaml
-│   └── services.yaml
+│   ├── {{ partial "vendor/configfile" (dict "context" . "config" "apps") }}   <- Unified app configuration
+│   ├── {{ partial "vendor/configfile" (dict "context" . "config" "routes") }}
+│   └── {{ partial "vendor/configfile" (dict "context" . "config" "services") }}
 ├── admin
 │   └── ...                 <- API Platform Admin app code
 ├── api-app
@@ -212,8 +212,8 @@ In that case, you can nest the Java app within the Python app:
 
 ```txt
 ├── .platform
-│   ├── applications.yaml
-│   └── routes.yaml
+│   ├── {{ partial "vendor/configfile" (dict "context" . "config" "apps") }}
+│   └── {{ partial "vendor/configfile" (dict "context" . "config" "routes") }}
 ├── languagetool
 │   └── main.java           <- Java app code
 └── main.py                 <- Python app code
@@ -261,9 +261,9 @@ So you could organize your [project repository](https://github.com/platformsh-te
 
 ```text
 ├── .platform
-│   ├── applications.yaml
-│   ├── routes.yaml
-│   └── services.yaml
+│   ├── {{ partial "vendor/configfile" (dict "context" . "config" "apps") }}
+│   ├── {{ partial "vendor/configfile" (dict "context" . "config" "routes") }}
+│   └── {{ partial "vendor/configfile" (dict "context" . "config" "services") }}
 ├── @admin      <-- API Platform Admin submodule
 ├── @api        <-- Bigfoot submodule
 ├── @gatsby     <-- Gatsby submodule
