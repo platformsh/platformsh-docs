@@ -139,7 +139,7 @@ tls:
             path: root-ca2.crt
 ```
 
-In this case, the certificate files are resolved relative to the `.platform` directory.
+In this case, the certificate files are resolved relative to the `{{< vendor/configdir >}}` directory.
 Alternatively, you can specify the certificates inline in the file:
 
 ```yaml {configFile="routes"}

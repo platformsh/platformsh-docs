@@ -33,10 +33,10 @@ a Mercure Rocks server, and a Gatsby frontend,
 you can organize your repository like this:
 
 ```txt
-├── .platform
-│   ├── {{ partial "vendor/configfile" (dict "context" . "config" "apps") }}   <- Unified app configuration
-│   ├── {{ partial "vendor/configfile" (dict "context" . "config" "routes") }}
-│   └── {{ partial "vendor/configfile" (dict "context" . "config" "services") }}
+├── {{% vendor/configdir %}}
+│   ├── {{% vendor/configfile "apps" "strip" %}}   <- Unified app configuration
+│   ├── {{% vendor/configfile "routes" "strip" %}}
+│   └── {{% vendor/configfile "services" "strip" %}}
 ├── admin
 │   └── ...                 <- API Platform Admin app code
 ├── api-app
@@ -55,7 +55,7 @@ They all have different configurations for how they serve the files. For more de
 
 {{< note >}}
 
-The `.platform` directory is located at the root, separate from your apps.
+The `{{% vendor/configdir %}}` directory is located at the root, separate from your apps.
 It contains all the needed configuration files to set up the routing, services and behavior of each app.
 Since the code bases of your apps live in a different directory,
 you need to [change the source root of each app](#change-the-source-root-of-your-app).
@@ -211,15 +211,15 @@ But the Java app (`languagetool`) doesn't require updating when the Python app (
 In that case, you can nest the Java app within the Python app:
 
 ```txt
-├── .platform
-│   ├── {{ partial "vendor/configfile" (dict "context" . "config" "apps") }}
-│   └── {{ partial "vendor/configfile" (dict "context" . "config" "routes") }}
+├── {{% vendor/configdir %}}
+│   ├── {{% vendor/configfile "apps" %}}
+│   └── {{% vendor/configfile "routes" %}}
 ├── languagetool
 │   └── main.java           <- Java app code
 └── main.py                 <- Python app code
 ```
 
-The Python app's code base includes all of the files at the top level (excluding the `.platform` directory)
+The Python app's code base includes all of the files at the top level (excluding the `{{% vendor/configdir %}}` directory)
 *and* all of the files within the `languagetool` directory.
 The Java app's code base includes only the files within the `languagetool` directory.
 
@@ -227,7 +227,7 @@ In this case, your `{{< vendor/configfile "apps" >}}` file must contain 2 entrie
 
 {{< note >}}
 
-The `.platform` directory is located at the root, separate from your apps.
+The `{{% vendor/configdir %}}` directory is located at the root, separate from your apps.
 It contains all the needed configuration files to set up the routing, services and behavior of each app.
 Since the code base of the `languagetool` app lives in a different directory (`languagetool/`),
 you need to [change the source root](#change-the-source-root-of-your-app) of the `languagetool` app.
@@ -260,10 +260,10 @@ All your apps are configured in a single `{{< vendor/configfile "apps" >}}` file
 So you could organize your [project repository](https://github.com/platformsh-templates/bigfoot-multiapp/tree/submodules-root-app-yaml) like this:
 
 ```text
-├── .platform
-│   ├── {{ partial "vendor/configfile" (dict "context" . "config" "apps") }}
-│   ├── {{ partial "vendor/configfile" (dict "context" . "config" "routes") }}
-│   └── {{ partial "vendor/configfile" (dict "context" . "config" "services") }}
+├── {{% vendor/configdir %}}
+│   ├── {{% vendor/configfile "apps" "strip" %}}
+│   ├── {{% vendor/configfile "routes" "strip" %}}
+│   └── {{% vendor/configfile "services" "strip" %}}
 ├── @admin      <-- API Platform Admin submodule
 ├── @api        <-- Bigfoot submodule
 ├── @gatsby     <-- Gatsby submodule

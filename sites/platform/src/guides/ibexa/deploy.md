@@ -40,7 +40,7 @@ In particular, see:
 
 * The [`{{< vendor/configfile "app" >}}`](https://github.com/ezsystems/ezplatform/blob/master/.platform.app.yaml) file,
   which automatically builds Ibexa DXP in development mode or production mode depending on your defined project-level variables.
-* The [.platform](https://github.com/ezsystems/ezplatform/tree/master/.platform) directory.
+* The [{{< vendor/configfile "app" >}}](https://github.com/ezsystems/ezplatform/tree/master/.platform) directory.
 
 ## Local Development with eZ Platform 2.x and later
 
@@ -88,7 +88,7 @@ Now, you have a working Ibexa DXP application with many services including Varni
 
 ### Integration
 
-To generate the key files for {{< vendor/name >}} (`{{< vendor/configfile "app" >}}` and `.platform`) run:
+To generate the key files for {{< vendor/name >}} (`{{< vendor/configfile "app" >}}` and `{{< vendor/configdir >}}`) run:
 
 ```bash
 ~/ez platformsh:setup
@@ -104,7 +104,7 @@ You have to set it up manually following the [current documentation](https://git
 Actions needed are:
 
 * Generate the Solr configuration thanks to the script provided by Ibexa.
-* Put the result in the `.platform` at the root of your project.
+* Put the result in the `{{< vendor/configdir >}}` at the root of your project.
 * Add the service in the `{{< vendor/configfile "services" >}}`.
 * Add the relationship in the `{{< vendor/configfile "app" >}}`.
 

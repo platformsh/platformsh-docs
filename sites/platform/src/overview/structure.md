@@ -34,9 +34,9 @@ If you have only one app container, your repository might look like this:
 ```text
 project
 ├── .git
-├── .platform
-│   ├── routes.yaml
-│   └── services.yaml
+├── {{< vendor/configdir >}}
+│   ├── {{< vendor/configfile "routes" "strip" >}}
+│   └── {{< vendor/configfile "services" "strip" >}}
 ├── {{< vendor/configfile "app" >}}
 └── <YOUR_APP_FILES>
 ```

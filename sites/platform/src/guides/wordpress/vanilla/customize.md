@@ -75,9 +75,9 @@ Up to this point, this guide should give you the following project structure:
 
 ```txt
 .
-├── .platform
-│   ├── services.yaml
-│   └── routes.yaml
+├── {{< vendor/configdir >}}
+│   ├── {{< vendor/configfile "services" "strip" >}}
+│   └── {{< vendor/configfile "routes" "strip" >}}
 ├── wordpress
 │   ├── wp-admin
 │   ├── wp-content

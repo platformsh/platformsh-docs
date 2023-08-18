@@ -1,1 +1,6 @@
-{{ index .context.Site.Params.vendor.config.files .config }}
+{{- $filename:= index .context.Site.Params.vendor.config.files .config -}}
+{{- if .strip -}}
+    {{- $fileSlice := split $filename "/" -}}
+    {{- $filename = index $fileSlice 1 -}}
+{{- end -}}
+{{- $filename -}}

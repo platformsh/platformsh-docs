@@ -15,7 +15,7 @@ vendor:
     env_prefix: PLATFORM
     config:
         version: 1
-        dir: .platform
+        dir: .upsun
         files:
             routes: .platform/routes.yaml
             services: .platform/services.yaml

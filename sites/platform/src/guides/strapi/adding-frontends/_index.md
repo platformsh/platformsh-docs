@@ -19,9 +19,9 @@ Consider the following project structure:
 
 ```bash
 
-├── .platform
-│   ├── routes.yaml
-│   └── services.yaml
+├── {{< vendor/configdir >}}
+│   ├── {{< vendor/configfile "routes" "strip" >}}
+│   └── {{< vendor/configfile "services" "strip" >}}
 ├── strapi
 │   ├── <application code>
 │   └── {{< vendor/configfile "app" >}}

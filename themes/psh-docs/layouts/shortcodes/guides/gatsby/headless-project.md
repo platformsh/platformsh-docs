@@ -2,14 +2,14 @@ Your local clone of the template has the following project structure:
 
 ```bash
 ├── .platform
-│   ├── {{ partial "vendor/configfile" (dict "context" . "config" "routes") }}
-│   └── {{ partial "vendor/configfile" (dict "context" . "config" "services") }}
+│   ├── {{ partial "vendor/configfile" (dict "context" . "config" "routes" "strip" true ) }}
+│   └── {{ partial "vendor/configfile" (dict "context" . "config" "services" "strip" true) }}
 ├── {{ anchorize (.Get "name" )}}
 │   ├── # App code
-│   └── {{ partial "vendor/configfile" (dict "context" . "config" "services") }}
+│   └── {{ partial "vendor/configfile" (dict "context" . "config" "app") }}
 ├── gatsby
 │   ├── # App code
-│   └── {{ partial "vendor/configfile" (dict "context" . "config" "services") }}
+│   └── {{ partial "vendor/configfile" (dict "context" . "config" "app") }}
 └── README.md
 ```
 
