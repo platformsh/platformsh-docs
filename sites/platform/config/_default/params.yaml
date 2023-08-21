@@ -28,7 +28,7 @@ vendor:
 
 # Images (kept in static/)
 logo: "images/logos/Platformsh_logo_white.svg"
-logolinksto: "https://platform.sh"
+logolinksto: "/"
 logoAlt: "Platform.sh"
 favicon: "images/logos/favicon.ico"
 
