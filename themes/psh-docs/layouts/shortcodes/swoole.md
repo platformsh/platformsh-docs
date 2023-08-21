@@ -8,6 +8,6 @@ You need to pass 2 parameters:
 * Which Swoole project to use: `openswoole` or `swoole`
 * Which version to install
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 {{  readFile "snippets/swoole.yaml"  | safeHTML }}
 ```

@@ -82,7 +82,7 @@ You can define `<SERVICE_NAME>` and `<RELATIONSHIP_NAME>` as you like, but it's 
   {{ end }}
 For PHP, enable the [extension](/languages/php/extensions.html) for the service:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 runtime:
     extensions:
         - {{ $extension_name }}
@@ -93,7 +93,7 @@ runtime:
 {{ if ( .Get "python" ) }}
 For Python, include the proper dependency:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 dependencies:
     python:
         python-{{$type}}: '*'
@@ -109,7 +109,7 @@ If you split the service into multiple endpoints, define multiple relationships.
 {{ else }}
 Add the service to your app configuration:
 
-```yaml {location=app.platform.yaml}
+```yaml {configFile="app"}
 mounts:
     '<TARGET_PATH>':
         source: service

@@ -12,7 +12,7 @@ Use this to vary those hooks based on the environment.
 
 Check the `PLATFORM_ENVIRONMENT_TYPE` variable to see if it's in a production environment:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 hooks:
     deploy: |
         if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then

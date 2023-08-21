@@ -37,14 +37,14 @@ The `relationships` block defines the connection between Varnish and your app.
 You can define <code>{{< variable "RELATIONSHIP_NAME" >}}</code> as you like.
 <code>{{< variable "APP_NAME" >}}</code> should match your app's `name` in the [app configuration](../create-apps/app-reference.md).
 
-The `configuration` block must reference a VCL file inside the `.platform` directory.
-The `path` defines the file relative to the `.platform` directory.
+The `configuration` block must reference a VCL file inside the `{{< vendor/configdir >}}` directory.
+The `path` defines the file relative to the `{{< vendor/configdir >}}` directory.
 
 {{% /endpoint-description %}}
 
 ### 2. Create a VCL template
 
-To tell Varnish how to handle traffic, in the `.platform` directory
+To tell Varnish how to handle traffic, in the `{{< vendor/configdir >}}` directory
 add a [Varnish Configuration Language (VCL) template](https://www.varnish-software.com/developers/tutorials/example-vcl-template/).
 
 This template is supplemented by automatic additions from {{< vendor/name >}}.
@@ -78,7 +78,7 @@ You can see any compilation errors with the [stats endpoint](#stats-endpoint).
 
 To serve one app, your VCL template needs at least the following function:
 
-```bash {location=".platform/config.vcl"}
+```bash {location="config.vcl" dir="true" }
 sub vcl_recv {
     set req.backend_hint = {{< variable "RELATIONSHIP_NAME" >}}.backend();
 }
@@ -87,7 +87,7 @@ sub vcl_recv {
 Where `{{< variable "RELATIONSHIP_NAME" >}}` is the name of the relationship you defined in [Step 1](#1-configure-the-service).
 With the [example configuration](#example-configuration), that would be the following:
 
-```bash {location=".platform/config.vcl"}
+```bash {location="config.vcl" dir="true"}
 sub vcl_recv {
     set req.backend_hint = application.backend();
 }
@@ -100,7 +100,7 @@ your VCL templates needs logic to determine where each request is forwarded.
 
 For example, you might have the following configuration for two apps:
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 varnish:
     type: varnish:6.0
     relationships:
@@ -114,7 +114,7 @@ varnish:
 
 You could then define that all requests to `/blog/` go to the `blog` app and all other requests to the other app:
 
-```bash {location=".platform/config.vcl"}
+```bash {location="config.vcl" dir="true"}
 sub vcl_recv {
     if (req.url ~ "^/blog/") {
         set req.backend_hint = blog.backend();
@@ -131,7 +131,7 @@ Also disable the router cache as Varnish now provides caching.
 
 To forward all incoming requests to Varnish rather than your app, you could have the following:
 
-{{< readFile file="registry/images/examples/full/varnish.routes.yaml" highlight="yaml" location=".platform/routes.yaml" >}}
+{{< readFile file="registry/images/examples/full/varnish.routes.yaml" highlight="yaml" configFile="routes" >}}
 
 Varnish forwards requests to your app based on the specified VCL template.
 
@@ -150,7 +150,7 @@ You can include the following optional modules in your VCL templates to add addi
 
 To use them, add an import to your template such as the following:
 
-```bash {location=".platform/config.vcl"}
+```bash {location="config.vcl" dir="true"}
 import xkey;
 ```
 
@@ -171,7 +171,7 @@ If they do, you want to block them from any more requests for 2 minutes.
 To do so, [import the `vsthrottle` module](#include-modules)
 and add logic similar to the following to your VCL template:
 
-```bash {location=".platform/config.vcl"}
+```bash {location="config.vcl" dir="true"}
 import vsthrottle;
 
 sub vcl_recv {
@@ -197,7 +197,7 @@ The following example shows how to set up purging.
 
 1. Add an access control list to your VCL template:
 
-   ```bash {location=".platform/config.vcl"}
+   ```bash {location="config.vcl" dir="true"}
    acl purge {
        "localhost";
        "192.0.2.0"/24;
@@ -212,7 +212,7 @@ The following example shows how to set up purging.
 
 2. Add purge handling:
 
-   ```bash {location=".platform/config.vcl"}
+   ```bash {location="config.vcl" dir="true"}
    sub vcl_recv {
        if (req.method == "PURGE") {
            # The {{< vendor/name >}} router provides the real client IP as X-Client-IP
@@ -248,7 +248,7 @@ You can't use it from an app fronted by Varnish because of the restriction with 
 To access the stats, create a **separate app** with a relationship *to* Varnish, but not *from* it.
 Define an [app configuration](../create-apps/app-reference.md) similar to the following:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 name: stats-app
 type: "php:8.1"
 

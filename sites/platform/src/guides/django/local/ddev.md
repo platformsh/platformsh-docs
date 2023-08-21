@@ -68,7 +68,7 @@ sectionBefore: Integrated environments
 7.  Update the DDEV `post-start` hooks.
 
     The generated configuration contains a `hooks.post-start` attribute that contains Django's `hooks.build` and `hooks.deploy`.
-    Add another item to the end of that array with the start command defined in `.platform.app.yaml`:
+    Add another item to the end of that array with the start command defined in `{{< vendor/configfile "app" >}}`:
 
     {{< codetabs >}}
 +++

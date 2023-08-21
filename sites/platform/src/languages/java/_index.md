@@ -37,7 +37,7 @@ If the version you need differs from the version on your container, you can inst
 
 Add something like the following to your [app configuration](../../create-apps/_index.md):
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 variables:
     env:
         MAVEN_VERSION: {{< variable "DESIRED_VERSION_NUMBER" "3.8.6" >}}
