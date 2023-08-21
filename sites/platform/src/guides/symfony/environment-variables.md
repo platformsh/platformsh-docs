@@ -116,7 +116,7 @@ But some are defined based on Symfony conventions, such as [`MAILER_DSN`](#email
 {{< note theme="warning" >}}
 
 Environment variables aren't exposed when the build hook script is running
-as services aren't available during the [build process](../../overview/build-deploy.md#the-build).
+as services aren't available during the [build process](/learn/overview/build-deploy.md#the-build).
 
 {{< /note >}}
 

@@ -14,7 +14,7 @@
 {{ $currentPage := .CurrentPage }}
 {{ with $currentPage.File }}
   <!-- If on home page or in the current section - @todo not clear to me how to make this part dynamic yet.-->
-  {{ if or (and ($currentPage.IsHome) ( eq $currentSection "overview" )) ( hasPrefix . $currentSection ) ( hasPrefix ( replace . "get-started/" "") $currentSection ) ( hasPrefix ( replace . "guides/" "") $currentSection ) ( hasPrefix ( replace . "learn/" "") $currentSection ) }}
+  {{ if or ( hasPrefix . $currentSection ) ( hasPrefix ( replace . "get-started/" "") $currentSection ) ( hasPrefix ( replace . "guides/" "") $currentSection ) ( hasPrefix ( replace . "learn/" "") $currentSection ) }}
     {{ $isCurrentSection = true }}
   {{ end }}
 {{ end }}
@@ -65,16 +65,6 @@
   </div>
   <ul x-show="topExpanded" class="pl-12" aria-labelledby="nav-expand-{{ $sectionId }}" id="{{ $sectionId }}">
 
-  <!-- Add the homepage as the first entry of the first section -->
-  {{ if eq "overview" $currentSection }}
-    <li>
-      <div class="py-2 pl-4">
-        <a href="/" class="hover:text-skye-dark focus:text-skye-dark{{ if $currentPage.IsHome }} text-skye-dark{{ end }}">
-            {{ .Context.Site.Home.Title }}
-        </a>
-      </div>
-    </li>
-  {{ end }}
 
   <!-- Loop through pages in the section -->
   {{ range .Context.Pages }}

@@ -69,7 +69,7 @@ To disable it, change your cache configuration for the routes behind a CDN to th
 If your plan includes high SLA, configure your CDN so that {{< vendor/name >}} can perform automated monitoring using NodePing.
 To do so, [add all NodePing IP addresses](https://nodeping.com/faq.html#ip-addresses) to your CDN's allowlist.
 
-If you want {{< vendor/name >}} to limit checks to one or more of the following regions, [contact Support](../../overview/get-support.md):
+If you want {{< vendor/name >}} to limit checks to one or more of the following regions, [contact Support](/learn/overview/get-support.md):
 
 - North America
 - Europe

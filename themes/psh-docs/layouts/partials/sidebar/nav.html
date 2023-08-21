@@ -1,9 +1,9 @@
 {{ $sections := .Site.Params.navSections }}
-
+{{ $isHome := .Page.IsHome }}
 {{ $sectionKeys := slice }}
 {{ range $k, $v := $sections }}
     {{ if ne $k "home" }}
-        {{ $sectionKeys = append $k $sectionKeys }}
+      {{ $sectionKeys = append $k $sectionKeys }}
     {{ end }}
 {{ end }}
 
@@ -25,6 +25,9 @@
     {{ if not (in $sectionKeys $currentSection)}}
       {{ $inCurrentSection = true }}
     {{ end }}
+  {{ end }}
+  {{ if $isHome }}
+    {{ $inCurrentSection = false }}
   {{ end }}
   <div x-data="{ expanded: {{ $inCurrentSection }} }">
     <h3 class="font-semibold">

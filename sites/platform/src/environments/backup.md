@@ -98,7 +98,7 @@ To upgrade to the higher schedule, follow these steps:
 5. Select the target schedule.
 6. Click **Save**.
 
-To downgrade to the lower schedule, [contact support](../overview/get-support.md).
+To downgrade to the lower schedule, [contact support](/learn/overview/get-support.md).
 
 ## Use automated backups
 

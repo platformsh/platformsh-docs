@@ -110,4 +110,4 @@ Feel free to open an issue or pull request for any of the repos below, or let us
 
 ### Support
 
-If you're experiencing issues with your projects, don't hesitate to open a [support ticket](/overview/get-support).
+If you're experiencing issues with your projects, don't hesitate to open a [support ticket](/learn/overview/get-support).

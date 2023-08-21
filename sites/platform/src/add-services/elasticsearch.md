@@ -164,7 +164,7 @@ use the `elasticsearch-enterprise` type.
 
 In this example you'd have the ICU analysis plugin and Python script support plugin.
 
-If there is a publicly available plugin you need that isn't listed here, [contact support](../overview/get-support.md).
+If there is a publicly available plugin you need that isn't listed here, [contact support](/learn/overview/get-support.md).
 
 ### Available plugins
 

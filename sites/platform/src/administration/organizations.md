@@ -104,7 +104,7 @@ platform organization:info --org acme
 As an organization owner, you can delete your own organization.
 
 Note that if your organization owns projects or owes remaining invoices, you can not delete it yourself.
-To have it deleted, [contact support](../overview/get-support.md).
+To have it deleted, [contact support](/learn/overview/get-support.md).
 
 {{< codetabs >}}
 

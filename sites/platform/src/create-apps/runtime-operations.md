@@ -76,7 +76,7 @@ platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployment
 
 ### Build your app when using a static site generator
 
-During every {{< vendor/name >}} deployment, a standard [`build` step](../overview/build-deploy.md#the-build) is run.
+During every {{< vendor/name >}} deployment, a standard [`build` step](/learn/overview/build-deploy.md#the-build) is run.
 When you use a static site generator like [Gatsby](../guides/gatsby/_index.md)
 or [Next.js](../guides/nextjs/_index.md) with [a headless backend](../guides/gatsby/headless/_index.md),
 you need to run a second `build` step to get your app ready for production.
@@ -92,7 +92,7 @@ when the filesystem is read-only.
 You can use a runtime operation to trigger the second `build` step
 after the initial deployment of your app or after a redeployment.
 You can also trigger it when you need to fetch content from your backend
-but want to avoid going through the whole {{< vendor/name >}} [build and deploy processes](../overview/build-deploy.md) again.
+but want to avoid going through the whole {{< vendor/name >}} [build and deploy processes](/learn/overview/build-deploy.md) again.
 
 {{< note >}}
 

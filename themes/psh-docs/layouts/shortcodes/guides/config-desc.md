@@ -7,7 +7,7 @@ Each environment can then be activated.
 giving you a fully isolated running site for each active environment.
 
 Once an environment is activated, your app is deployed through a cluster of containers.
-You can configure these containers in three ways, each corresponding to a [YAML file]({{ relref . "/overview/yaml/_index.md" }}):
+You can configure these containers in three ways, each corresponding to a [YAML file](/learn/overview/yaml):
 
 - **Configure apps** in a `.platform.app.yaml` file.
   This controls the configuration of the container where your app lives.

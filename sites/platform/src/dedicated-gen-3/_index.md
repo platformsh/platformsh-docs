@@ -31,7 +31,7 @@ of [the following benefits](https://platform.sh/blog/the-ultimate-generation-of-
 - **Greater self serviceability and control over your dedicated resources.**<BR>
   You don't need to submit a support ticket to add, configure,
   or remove your [apps](../create-apps/_index.md), [services](../add-services/_index.md) and [routes](../define-routes/_index.md).
-  Just amend your [`.yaml` files](../overview/yaml/_index.md) and push your changes.
+  Just amend your [`.yaml` files](/learn/overview/yaml/_index.md) and push your changes.
 
   As a {{% names/dedicated-gen-3 %}} user,
   you can take advantage of the [MariaDB Galera multi master cluster](https://mariadb.com/kb/en/galera-cluster/).

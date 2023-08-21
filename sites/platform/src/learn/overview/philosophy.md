@@ -63,7 +63,7 @@ you need a `post-deploy` hook to successfully build and deploy your app.
 
 ### How your app is built
 
-During the [build step](/overview/build-deploy.md#build-steps),
+During the [build step](/learn/overview/build-deploy.md#build-steps),
 dependencies specified in `.platform.app.yaml` are installed on application containers.
 
 You can also customize the build step by providing a [`build` hook](/create-apps/hooks/hooks-comparison.md#build-hook) composed of one or more shell commands
@@ -80,7 +80,7 @@ That filesystem is the final build artifact.
 
 ### How your app is deployed
 
-Before starting the [deployment](/learn/overview/build-deploy.md#deploy-steps) of your app,
+Before starting the [deployment](./build-deploy.md#deploy-steps) of your app,
 {{< vendor/name >}} pauses all incoming requests and holds them to avoid downtime.
 
 Then, the current containers are stopped and the new ones are started.

@@ -4,7 +4,7 @@ description: Add custom scripts at different stages in the build and deploy proc
 layout: single
 ---
 
-As your app goes through the [build and deploy process](../../overview/build-deploy.md),
+As your app goes through the [build and deploy process](/learn/overview/build-deploy.md),
 you might want to run custom commands.
 These might include compiling the app, setting the configuration for services based on variables, and rebuilding search indexes.
 Do these tasks using one of [three hooks](./hooks-comparison.md).

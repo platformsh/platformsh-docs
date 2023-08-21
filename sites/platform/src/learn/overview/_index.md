@@ -7,7 +7,7 @@ description: "If you're new to {{< vendor/name >}}, we recommend starting with S
 {{< vendor/name >}} is a second-generation Platform-as-a-Service built especially for continuous deployment.
 It allows you to host web applications on the cloud while making your development and testing workflows more productive.
 
-If you're new to {{< vendor/name >}}, we recommend starting with the **Big Picture**, in particular [Structure](/overview/structure.md), and [Build & Deploy](/overview/build-deploy.md) will get you started on the right track to best use {{< vendor/name >}}.
+If you're new to {{< vendor/name >}}, we recommend starting with the **Big Picture**, in particular [Structure](/learn/overview/structure.md), and [Build & Deploy](/learn/overview/build-deploy.md) will get you started on the right track to best use {{< vendor/name >}}.
 
 The main requirement of {{< vendor/name >}} is that you use Git to manage your application code.
 Your project's configuration is driven almost entirely by a small number of YAML files in your Git repository.
