@@ -39,7 +39,7 @@ After going through the **Get started** section, you may be interested in some m
 
 - [**Best practices**](/learn/bestpractices/_index.md)
 
-    {{< vendor/name >}} makes deploying applications and managing infrastructure simple.
+    {{< vendor/name >}} makes deploying and managing infrastructure no different than working with Git.
     As your work becomes more experimental, however, you may be interested in optimizing your workflows, and addressing common constraints of the platform. 
     The [**Best practices**](/learn/bestpractices/_index.md) documentation contains a number of articles that address advanced use cases for caching, microservices, and more.
     
@@ -102,7 +102,7 @@ Looking for a way to contribute?
 
 ### How to contribute
 
-Feel free to open an issue or pull request for any of the repos below, or let us know on [Slack](https://chat.platform.sh) if you find a problem we can help with:
+Feel free to open an issue or pull request for any of the repositories below, or let us know on [Slack](https://chat.platform.sh) if you find a problem we can help with:
 
 {{< home/links-github >}}
 
