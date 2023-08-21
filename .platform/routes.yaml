@@ -247,6 +247,11 @@ https://{default}/:
       # Sponsored sites application
       "/administration/pricing/sponsored.html": { "to": "/administration/pricing#sponsored-sites", "code": 301 }
 
+      # Overview, tutorials, and best-practices redirects (Aug 2023)
+      "/bestpractices(.*)":  { "to": "/learn/bestpractices$1", "code": 301, "regexp": true }
+      "/tutorials(.*)":  { "to": "/learn/tutorials$1", "code": 301, "regexp": true }
+      "/overview(.*)":  { "to": "/learn/overview$1", "code": 301, "regexp": true }
+
 "https://search.{default}/":
     type: upstream
     upstream: "search:http"
