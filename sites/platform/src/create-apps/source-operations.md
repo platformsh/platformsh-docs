@@ -53,7 +53,7 @@ A source operation requires two things:
 
 The syntax is similar to the following:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 source:
     operations:
         {{< variable "SOURCE_OPERATION_NAME" >}}:
@@ -62,7 +62,7 @@ source:
 
 For example, to update a file from a remote location, you could define an operation like this:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 source:
     operations:
         update-file:
@@ -122,7 +122,7 @@ and interpreted the same way as any other variable set in your project.
 For example, you might want to have a `FILE` variable available with the value `example.txt`
 to pass to a source operation similar to the following:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 source:
     operations:
         update-file:
@@ -232,7 +232,7 @@ Make sure you carefully check your [user access on this project](../administrati
 
 2.  Add a build hook to your app configuration to install the CLI as part of the build process:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 hooks:
     build: |
         set -e
@@ -246,7 +246,7 @@ hooks:
 3.  Then, to configure a cron job to automatically run a source operation once a day,
     use a configuration similar to the following:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 crons:
     update:
         # Run the code below every day at midnight.
@@ -281,7 +281,7 @@ The following source operation syncronizes your branch with an upstream Git repo
 
 2. In your app configuration, define a source operation to fetch from that upstream repository:
 
-   ```yaml {location=".platform.app.yaml"}
+   ```yaml {configFile="app"}
    source:
        operations:
            upstream-update:
@@ -306,7 +306,7 @@ The following source operation reverts the last commit pushed to the Git reposit
 This can be useful if you didn't properly test the changes of another operation
 and you need to quickly revert to the previous state.
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 source:
     operations:
         revert:
@@ -321,7 +321,7 @@ the operation reverts to the last commit pushed to that branch.
 
 The following source operation uses Composer to update Drupal Core:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 source:
     operations:
         update-drupal-core:
@@ -343,7 +343,7 @@ The following source operation downloads a Drupal extension.
 You can define the Drupal extension by setting an `EXTENSION` variable
 or [overriding it](#use-variables-in-your-source-operations) when running the source operation.
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 source:
     operations:
         download-drupal-extension:
@@ -364,7 +364,7 @@ you need to enable the new extension via the Drupal management interface or usin
 
 The following source operation updates all Git submodules recursively:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 source:
     operations:
         rebuild:

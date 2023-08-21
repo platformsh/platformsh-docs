@@ -11,7 +11,7 @@ You might need to control how people access your web applications,
 for example when you have [multiple apps](../create-apps/multi-app/_index.md) in one project.
 Or you might just want to direct requests to specific places, such as removing the `www` at the start of all requests.
 
-Control where external requests are directed by defining routes in a `.platform/routes.yaml` file in your Git repository.
+Control where external requests are directed by defining routes in a `{{< vendor/configfile "routes" >}}` file in your Git repository.
 If you have a single route served by a single app, you don't need to include the file.
 Your project then includes a [default route](#default-route-definition).
 
@@ -27,7 +27,7 @@ If you don't include a file defining routes, a single default route is deployed.
 If you have one app to direct traffic to and its name is `app`,
 this is equivalent to the following:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 "https://{default}/":
   type: upstream
   upstream: app:http
@@ -45,7 +45,7 @@ And say you want to redirect requests from `https://www.example.com` to `https:/
 
 Define your routes like this:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 "https://{default}/":
     type: upstream
     upstream: "app:http"
@@ -72,7 +72,7 @@ The specifics of configuring the Router container for multiple applications is e
 All defined routes have at least a slash in the path.
 So you might define routes for 2 apps named `app` and `api` as follows:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 
 "https://{default}":
     type: upstream
@@ -123,11 +123,11 @@ These domains can be top-level domains (`example.com`) or subdomains (`app.examp
 
 `{default}` represents your default custom domain.
 If you have set your default domain to `example.com`,
-`example.com` and `{default}` in your `.platform/routes.yaml` file have the same result for your Production environment.
+`example.com` and `{default}` in your `{{< vendor/configfile "routes" >}}` file have the same result for your Production environment.
 
 You can use the `{default}` placeholder:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 "https://{default}/blog":
     type: upstream
     upstream: "app:http"
@@ -135,7 +135,7 @@ You can use the `{default}` placeholder:
 
 And you can use an absolute URL:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 "https://example.com/blog":
     type: upstream
     upstream: "app:http"
@@ -164,7 +164,7 @@ Before April 7, 2022, URLs in non-Production environments differed depending on 
 
 If you used the `{default}` placeholder:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 "https://{default}/blog":
     type: upstream
     upstream: "app:http"
@@ -178,7 +178,7 @@ https://feature-t6dnbai-abcdef1234567.us-2.platformsh.site/blog
 
 If you used an absolute URL:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 "https://example.com/blog":
     type: upstream
     upstream: "app:http"
@@ -200,7 +200,7 @@ To define rules for all of them, use `{all}` in your template.
 Say you have both `example.com` and `example.net` as domains in a project.
 You can then define the following routes:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 "https://{all}/":
     type: upstream
     upstream: "app:http"
@@ -222,7 +222,7 @@ and the first route is using `{default}` and the second is using `{all}`,
 the route using `{default}` takes precedence.
 Say you have two apps named `app1` and `app2` and define two routes like this:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 "https://{default}/":
     type: upstream
     upstream: "app1:http"
@@ -277,7 +277,7 @@ Say you have two apps, `app1` and `app2`, that you want to serve at two subdomai
 
 You can define your routes like this:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 "https://site1.{default}/":
     type: upstream
     upstream: 'app1:http'
@@ -344,7 +344,7 @@ This metadata has no impact on {{< vendor/name >}}, but is available in the `PLA
 
 So you can define a route like this:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 "http://{default}/":
     type: upstream
     upstream: "app:http"
@@ -370,13 +370,13 @@ The attributes appear in the routes data like so:
 ## Route limits
 
 The maximum size of the routes document is 128&nbsp;KB, which should fit around 300 different routes.
-If your `routes.yaml` file would result in too large of a route information value, it's rejected.
+If your `{{< vendor/configfile "routes" >}}` file would result in too large of a route information value, it's rejected.
 
-The full list of generated route information is often much larger than what's specified in the `routes.yaml` file.
+The full list of generated route information is often much larger than what's specified in the `{{< vendor/configfile "routes" >}}` file.
 For example, by default all HTTPS routes (and all uses of `{all}`) are duplicated to create HTTP redirect routes.
 As a general rule, you should keep to your defined routes under 100.
 
-If your `routes.yaml` file is rejected for being too big, do one of the following:
+If your `{{< vendor/configfile "routes" >}}` file is rejected for being too big, do one of the following:
 
 * Move redirect routes to the application.
 * Collapse the route definitions into a [regular expression-based redirect](./redirects.md#partial-redirects).
@@ -405,7 +405,7 @@ You can configure each route separately with the following properties:
 ## CLI access
 
 The [{{< vendor/name >}} CLI](../administration/cli/_index.md) can show you the routes you have configured for an environment.
-These are the routes as defined in the `.platform/routes.yaml` file with the [placeholders](#route-placeholders)
+These are the routes as defined in the `{{< vendor/configfile "routes" >}}` file with the [placeholders](#route-placeholders)
 plus the default redirect from HTTP to HTTPS.
 They aren't the final generated routes.
 
@@ -440,7 +440,7 @@ which is a requirement for the router caching.
 
 1. Define a route that serves WebSocket:
 
-   ```yaml {location=".platform/routes.yaml"}
+   ```yaml {configFile="routes"}
    "https://{default}/ws":
        type: upstream
        upstream: "app:http"
@@ -458,7 +458,7 @@ which is a requirement for the router caching.
 
 2. [Disable request buffering](../create-apps/app-reference.md#locations) in your app configuration.
 
-   ```yaml {location=".platform.app.yaml"}
+   ```yaml {configFile="app"}
    web:
      commands:
        start: /app/.linuxbrew/bin/websocketd --port=$PORT ./wsmanager.sh

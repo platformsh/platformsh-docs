@@ -19,15 +19,15 @@ Consider the following project structure:
 
 ```bash
 
-├── .platform
-│   ├── routes.yaml
-│   └── services.yaml
+├── {{< vendor/configdir >}}
+│   ├── {{< vendor/configfile "routes" "strip" >}}
+│   └── {{< vendor/configfile "services" "strip" >}}
 ├── strapi
 │   ├── <application code>
-│   └── .platform.app.yaml
+│   └── {{< vendor/configfile "app" >}}
 ├── gatsby
 │   ├── <application code>
-│   └── .platform.app.yaml
+│   └── {{< vendor/configfile "app" >}}
 └── README.md
 ```
 

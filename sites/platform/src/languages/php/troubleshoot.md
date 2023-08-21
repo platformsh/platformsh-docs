@@ -113,7 +113,7 @@ or the requests are taking too long to be processed (such as with calls to exter
 To address the issue, you can:
 
 - Lower the memory consumption of each request so that the amount of PHP workers gets automatically raised.
-  This can be customized with the `runtime.sizing_hints.request_memory` key in your `.platform.app.yaml` file.
+  This can be customized with the `runtime.sizing_hints.request_memory` key in your `{{< vendor/configfile "app" >}}` file.
   For more details, consult [PHP-FPM sizing](./fpm.md).
 - Add a [CDN](../../domains/cdn/_index.md).
 - Set up [HTTP caching](/learn/bestpractices/http-caching.md).

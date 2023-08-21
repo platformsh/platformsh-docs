@@ -22,10 +22,10 @@ The decoupled pattern can work differently on {{< vendor/name >}} due to support
 │   └── services.yaml
 ├── drupal
 │   ├── <application code>
-│   └── .platform.app.yaml
+│   └── {{< vendor/configfile "app" >}}
 ├── gatsby
 │   ├── <application code>
-│   └── .platform.app.yaml
+│   └── {{< vendor/configfile "app" >}}
 └── README.md
 ```
 

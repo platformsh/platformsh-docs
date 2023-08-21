@@ -11,14 +11,14 @@ For example, in Git you might have a folder for your app and another folder that
 Your entire Git repository might look like the following:
 
 ```text
-.platform/
-  routes.yaml
-  services.yaml
-.platform.app.yaml
+{{% vendor/configdir %}}
+    {{< vendor/configfile "routes" "strip" >}}
+    {{< vendor/configfile "services" "strip" >}}
+    {{< vendor/configfile "apps" "strip" >}}
 application/
-  [app-code-files]
+    [app-code-files]
 docs-src/
-  [docs-code-files]
+    [docs-code-files]
 ```
 
 And your build process might build the documentation with an output folder such as `docs-public`.
@@ -27,7 +27,7 @@ If so, you can serve all requests by your app code except for those that start w
 which you serve with your generated docs.
 Use a [`web` configuration](../app-reference.md#web) similar to the following:
 
-```yaml
+```yaml {configfile="apps"}
 web:
     locations:
         '/':

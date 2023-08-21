@@ -26,7 +26,7 @@ You have two apps, `app1` and `app2`, and `app1` needs data from `app2`.
 
 In your app configuration for `app1`, define a relationship to `app2`:
 
-```yaml {location=".platform/applications.yaml"}
+```yaml {configFile="apps"}
 app1:
   relationships:
     api: "app2:http"
