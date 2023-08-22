@@ -10,6 +10,6 @@
 {{ $l1 := "relationships:" }}
 {{ $l2 := printf "    <RELATIONSHIP_NAME>: \"<SERVICE_NAME>:%s\"" $endpoint}}
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 {{ printf "%s\n%s" $l1 $l2 | safeHTML }}
 ```

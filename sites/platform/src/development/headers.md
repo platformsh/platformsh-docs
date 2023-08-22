@@ -15,7 +15,7 @@ sidebarTitle: "Headers"
 * `X-Forwarded-Proto`: The protocol forwarded to the application, for example: `http`, `https`.
 * `X-Client-IP`: The remote IP address of the request.
 * `X-Client-SSL`: Set "on" only if the client is using SSL connection, otherwise the header isn't added.
-* `X-Original-Route`: The route in `{{< vendor/configfile "routes" >}}` which is used currently, for example: `https://{default}/`.
+* `X-Original-Route`: The route in `.platform/routes.yaml` which is used currently, for example: `https://{default}/`.
 
 
 ## Response headers

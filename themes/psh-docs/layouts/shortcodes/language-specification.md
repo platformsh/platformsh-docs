@@ -3,12 +3,12 @@
 
 To use {{ .Get "display_name" }}, specify `{{ $type }}` as your [app's `type`](/create-apps/app-reference.html#types):
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 {{  printf "type: '%s:<VERSION_NUMBER>'" $type  | safeHTML }}
 ```
 
 For example:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 {{  readFile (printf "src/registry/images/examples/full/%s.app.yaml" $type )  | safeHTML }}
 ```

@@ -19,7 +19,7 @@ The Symfony integration is automatically enabled when:
 If you already have a {{< vendor/name >}} configuration without the Symfony
 integration, enable it by adding the following configuration:
 
-   ```yaml {configFile="app"}
+   ```yaml {location=".platform.app.yaml"}
     hooks:
         build: |
             set -x -e
@@ -63,7 +63,7 @@ The `hooks` section defines the scripts that {{< vendor/name >}} runs at specifi
 
 Here's the default `hooks` section optimized for Symfony projects:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 hooks:
     build: |
         set -x -e
@@ -93,7 +93,7 @@ see the [{{< vendor/name >}} philosophy](../../overview/philosophy.md).
 {{< note title="Tip">}}
 
 During the `deploy` or `post_deploy` hooks, you can execute actions for a specific environment type only.
-To do so, in your `{{< vendor/configfile "app" >}}`file,
+To do so, in your `.platform.app.yaml`file,
 use the `PLATFORM_ENVIRONMENT_TYPE` [environment variable](../../development/variables/_index.md)) in a condition:
 
 ```yaml
@@ -123,7 +123,7 @@ Use it as the main build script in your `build` hook.
 
 To override the flags used by Composer, use the `$COMPOSER_FLAGS` environment variable:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 hooks:
     build: |
         set -x -e
@@ -172,7 +172,7 @@ The script is written specifically for {{< vendor/name >}} to ensure fast and re
 To ensure your app can be built properly, run ``php-ext-install`` after the [configurator](#tools)
 but before [symfony-build](#symfony-build):
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 hooks:
     build: |
         set -x -e
@@ -187,7 +187,7 @@ hooks:
 When installing [PECL](https://pecl.php.net/) PHP extensions, you can configure
 them directly as *variables* instead:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 variables:
     php-ext:
         redis: 5.3.2
@@ -205,7 +205,7 @@ Changing the source of downloads or the version invalidates this cache.
 If you need to use the Node installation setup by [symfony-build](#symfony-build),
 use the following configuration:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 hooks:
     build: |
         set -x -e
@@ -225,7 +225,7 @@ hooks:
 If you want to use two different Node versions,
 use the following configuration instead:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 hooks:
     build: |
         set -x -e

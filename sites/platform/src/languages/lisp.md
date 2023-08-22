@@ -23,7 +23,7 @@ description: "{{< vendor/name >}} supports building and deploying applications w
 
 {{< vendor/name >}} will then run `(asdf:make :example)` on your system to build a binary.
 
-If you don't want these assumptions, you can disable this behavior by specifying in your `{{< vendor/configfile "app" >}}`:
+If you don't want these assumptions, you can disable this behavior by specifying in your `.platform.app.yaml`:
 
 ```yaml
 build:
@@ -72,7 +72,7 @@ Assuming `example.lisp` and `example.asd` are present in your repository, the ap
 You can then start it from the `web.commands.start` directive.
 Note that the start command _must_ run in the foreground. Should the program terminate for any reason it's automatically restarted. In the example below the app sleeps for a very, very long time. You could also choose to join the thread of your web server, or use other methods to make sure the program doesn't terminate.
 
-The following basic `{{< vendor/configfile "app" >}}` file is sufficient to run most Lisp applications.
+The following basic `.platform.app.yaml` file is sufficient to run most Lisp applications.
 
 ```yaml
 name: app
@@ -110,7 +110,7 @@ The following is an example of accessing a PostgreSQL instance:
       (s-base64:decode-base64-bytes in)))))
 ```
 
-Given a relationship defined in `{{< vendor/configfile "app" >}}`:
+Given a relationship defined in `.platform.app.yaml`:
 
 ```yaml
 relationships:

@@ -329,7 +329,7 @@ They're mostly prefixed with `PLATFORM_` to differentiate them from user-provide
 You can't set or update them directly.
 
 The most important of these variables is the relationship information in `PLATFORM_RELATIONSHIPS`,
-which tells the app how to connect to databases and other services defined in `{{< vendor/configfile "services" >}}`.
+which tells the app how to connect to databases and other services defined in `services.yaml`.
 
 The following table presents all available variables
 and whether they're available at build time (during [build hooks](../../administration/../create-apps/hooks/hooks-comparison.md#build-hook))

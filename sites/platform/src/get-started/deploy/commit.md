@@ -9,7 +9,7 @@ Once you have your project initialized, it's time to add the basics to get it de
 In your repository, create a file to hold your app configuration:
 
 ```bash
-touch {{< vendor/configfile "app" >}}
+touch .platform.app.yaml
 ```
 
 This file holds all the configuration for the container where your app lives.

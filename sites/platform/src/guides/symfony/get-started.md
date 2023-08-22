@@ -45,12 +45,12 @@ To do so, follow these steps:
    symfony project:init
    ```
 
-   This generates the following set of configuration files: `{{< vendor/configfile "app" >}}`, `{{< vendor/configfile "services" >}}`, `{{< vendor/configfile "routes" >}}`, and `php.ini`.
+   This generates the following set of configuration files: `.platform.app.yaml`, `.platform/services.yaml`, `.platform/routes.yaml`, and `php.ini`.
 
 2. Commit these new files to your repository:
 
    ```bash
-   git add {{< vendor/configfile "app" >}} {{< vendor/configfile "services" >}} {{< vendor/configfile "routes" >}} php.ini
+   git add .platform.app.yaml .platform/services.yaml .platform/routes.yaml php.ini
    git commit -m "Add {{< vendor/name >}} configuration"
    ```
 

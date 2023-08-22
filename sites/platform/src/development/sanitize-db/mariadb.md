@@ -25,7 +25,7 @@ To sanitize your database and get rid of sensitive, live information, use the `d
 Add your script to sanitize the database to [a `deploy` hook](../../create-apps/hooks/hooks-comparison.md#deploy-hook)
 for non-production environments:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 hooks:
     deploy: |
         cd /app/public
@@ -43,7 +43,7 @@ These are described in the [Drush documentation](https://www.drush.org/latest/co
 To sanitize only on the initial deploy and not all future deploys,
 use [Drush state](https://www.drush.org/latest/commands/state_set/) as in the following example:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 hooks:
     deploy: |
         cd /app/public

@@ -25,7 +25,7 @@ To ease the installation of a customer version of PhpRedis, use a [PhpRedis inst
 Invoke this script from your build hook, specifying a version.
 Any tagged version of the library is acceptable:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 hooks:
     build: |
         set -e
@@ -49,7 +49,7 @@ To ease the installation of a customer version of Relay, use the [Relay install 
 Invoke this script from your build hook, specifying a version.
 Any tagged version of the library is acceptable:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 hooks:
     build: |
         set -e

@@ -30,7 +30,7 @@ php artisan optimize:clear
 Override the default web server with a [custom start command](../../../languages/php/_index.md#alternate-start-commands).
 Octane should listen on a TCP socket.
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     upstream:
         socket_family: tcp

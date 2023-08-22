@@ -54,7 +54,7 @@ php vendor/bin/typo3 extension:activate pxa_lpeh
 ## TYPO3 CMS's `web-dir`
 
 {{< vendor/name >}} recommends serving TYPO3 from its default subdirectory `public`.
-`public` can be seen already throughout your `{{< vendor/configfile "app" >}}` file in `web.locations.root`, `mounts`
+`public` can be seen already throughout your `.platform.app.yaml` file in `web.locations.root`, `mounts`
 and within your `build` and `deploy` hooks.
 You need to assign `public` to the `cms.web-dir` attribute in your `composer.json` file,
 and it's a good idea to `update` dependencies once you have done so:

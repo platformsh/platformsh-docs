@@ -35,7 +35,7 @@ If the program terminates for any reason it is automatically restarted.
 The following basic [app configuration](../../create-apps/_index.md) is sufficient to run most Rust apps.
 See the [complete example](#complete-example) below for more details.
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 
 # The app's name, which must be unique within the project.
 name: 'app'
@@ -121,7 +121,7 @@ Follow these steps:
 
 3. Add the following [app configuration](../../create-apps/_index.md):
 
-   ```yaml {configFile="app"}
+   ```yaml {location=".platform.app.yaml"}
 
    # The app's name, which must be unique within the project.
    name: 'app'

@@ -39,7 +39,9 @@ You can also have two [YAML files](../../overview/yaml/_index.md)  if you need:
 
 ### Application
 
-```yaml {configFile="app"}
+```yaml
+# .platform.app.yaml
+
 name: app
 type: "java:<version>" [1]
 disk: 1024
@@ -63,7 +65,7 @@ Be aware that after the build, it creates a read-only system. You have the [moun
 
 ### Route
 
-```yaml {configFile="routes"}
+```yaml {location=".platform/routes.yaml"}
 "https://{default}/":
     type: upstream
     upstream: [1]
@@ -91,14 +93,14 @@ You have the option to use several languages in microservices. If you're using J
 [{{< vendor/name >}} supports multiple applications](../../create-apps/multi-app/_index.md) and there are two options:
 
 * One application YAML file to each application
-* Aggregate all applications in a single file with an `{{< vendor/configfile "apps" >}}` file
+* Aggregate all applications in a single file with an `applications.yaml` file
 
 | Article                                                      | Content                                                      |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [Microservices in the cloud, part two](https://platform.sh/blog/2019/microservices-in-the-cloud-part-two/) | [Source](https://github.com/EventosJEspanol/latin-america-micro-profile) |
 | [Microservices in the cloud, part one](https://platform.sh/blog/2019/microservices-in-the-cloud-part-one/) | [Source](https://github.com/EventosJEspanol/latin-america-micro-profile) |
 | [Multiple Applications](https://community.platform.sh/t/multiple-applications-tomcat/468) | [Source](https://github.com/platformsh-examples/tomcat-multi-app) |
-| [Configure multi-applications with `{{< vendor/configfile "apps" >}}`](https://community.platform.sh/t/how-to-configure-multi-applications-with-applications-yaml/552) | [Source](https://github.com/platformsh-examples/tomcat-multi-app-applications) |
+| [Configure multi-applications with applications.yaml](https://community.platform.sh/t/how-to-configure-multi-applications-with-applications-yaml/552) | [Source](https://github.com/platformsh-examples/tomcat-multi-app-applications) |
 
 {{< note >}}
 

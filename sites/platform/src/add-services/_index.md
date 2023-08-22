@@ -11,8 +11,8 @@ keywords:
 Because the services are included in your project, you can manage them through Git
 and they're backed up together with the rest of your project.
 
-Your project defines the services configuration in a file named `{{< vendor/configfile "services" >}}`.
-If you don't need any services (such as for a static website), you don't need to include this configuration.
+Your project defines the services configuration in a file named `services.yaml` located in the `{{< vendor/configdir >}}` directory.
+If you don't need any services (such as for a static website), you don't need to include this file in your repository.
 
 Read on to see how to add services.
 
@@ -24,11 +24,11 @@ Adding a service is a two-step process.
 
 ### 1. Configure the service
 
-All service configuration happens in the `{{< vendor/configfile "services" >}}` file in your Git repository.
+All service configuration happens in the services configuration file (`{{< vendor/configdir >}}/services.yaml`) in your Git repository.
 
 Configure your service in the following pattern:
 
-```yaml {configFile="services"}
+```yaml {location=".platform/services.yaml"}
 {{<variable "SERVICE_NAME" >}}:
     type: {{<variable "SERVICE_TYPE" >}}:{{<variable "VERSION" >}}
     # Other options...
@@ -36,7 +36,7 @@ Configure your service in the following pattern:
 
 An example service configuration for two databases might look like this:
 
-```yaml {configFile="services"}
+```yaml {location=".platform/services.yaml"}
 database1:
     type: mariadb:10.5
     disk: 2048
@@ -53,7 +53,7 @@ You can give it any name you want with lowercase alphanumeric characters, hyphen
 
 Changing the service name is interpreted as creating an entirely new service.
 This **removes all data in that service**.
-Always back up your data before changing existing services in your `{{< vendor/configfile "services" >}}` file.
+Always back up your data before changing existing services in your `.platform/services.yaml` file.
 
 {{< /note >}}
 
@@ -94,14 +94,14 @@ This is done in your [app configuration for relationships](../create-apps/app-re
 
 The relationship follows this pattern:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 relationships:
     {{< variable "RELATIONSHIP_NAME" >}}: "{{< variable "SERVICE_NAME" >}}:{{< variable "ENDPOINT" >}}"
 ```
 
 An example relationship to connect to the databases given in the [example in step 1](#1-configure-the-service):
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 relationships:
     mysql_database: "database1:mysql"
     postgresql_database: "database2:postgresql"

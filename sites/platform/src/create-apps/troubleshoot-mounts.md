@@ -45,7 +45,7 @@ Do so by managing their [location](./app-reference.md#locations)
 
 This example defines two mounts, one named `private` and one `upload`:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 mounts:
     'private':
         source: local
@@ -58,7 +58,7 @@ mounts:
 With only this definition, their behavior is the same.
 To make `uploads` accessible, define a location with different rules as in the following example:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     locations:
         '/':

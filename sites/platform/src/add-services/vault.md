@@ -46,7 +46,7 @@ You can create multiple endpoints, such as to have key management separate from 
 
 To connect your app to the Vault KMS, use a token that's defined in the `PLATFORM_RELATIONSHIPS` environment variable.
 With this token for authentication,
-you can use any of the policies you [defined in your `{{< vendor/configfile "services" >}}` file](#1-configure-the-service).
+you can use any of the policies you [defined in your `.platform/services.yaml` file](#1-configure-the-service).
 
 {{% service-values-change %}}
 
@@ -61,7 +61,7 @@ To make any calls to the Vault KMS, you need your token. Get it from the `PLATFO
 echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "SERVICE_NAME" >}}[0].password"
 ```
 
-`{{< variable "SERVICE_NAME" >}}` is the name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-add-the-relationship).
+`{{< variable "SERVICE_NAME" >}}` is the name you [defined in your `.platform.app.yaml` file](#2-add-the-relationship).
 
 The `-r` flag returns the string itself, not wrapped in quotes.
 
@@ -83,11 +83,11 @@ Assign it to a variable as follows:
 VAULT_URL=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "SERVICE_NAME" >}}[0].host"):$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "SERVICE_NAME" >}}[0].port")
 ```
 
-`{{< variable "SERVICE_NAME" >}}` is the name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-add-the-relationship).
+`{{< variable "SERVICE_NAME" >}}` is the name you [defined in your `.platform.app.yaml` file](#2-add-the-relationship).
 
 ### Manage your keys
 
-Your key names are [defined in your `{{< vendor/configfile "services" >}}` file](#1-configure-the-service). You can manage them if you've set an [admin policy](#policies) for them.
+Your key names are [defined in your `.platform/services.yaml` file](#1-configure-the-service). You can manage them if you've set an [admin policy](#policies) for them.
 
 To get information on a key, such as its expiration date, run the following command:
 
@@ -97,7 +97,7 @@ curl \
   http://"$VAULT_URL"/v1/transit/keys/"$KEY_NAME" | jq .
 ```
 
-`$KEY_NAME` is the name in your `{{< vendor/configfile "services" >}}` file.
+`$KEY_NAME` is the name in your `.platform/services.yaml` file.
 
 To rotate the version of your key, run the following command:
 

@@ -17,7 +17,7 @@ both of which require a minimal amount of configuration.
 
 To create a Redis service, add the following to your [services configuration](../../add-services/_index.md):
 
-```yaml {configFile="services"}
+```yaml {location=".platform/services.yaml"}
 rediscache:
     type: redis:6.0
 ```
@@ -30,7 +30,7 @@ Next open a connection to the new Redis service.
 In the `relationships` section of your [app configuration](../../create-apps/_index.md),
 add the following:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 relationships:
     redis: "rediscache:redis"
 ```
@@ -85,7 +85,7 @@ adjusting the paths based on where your plugins are located:
 title=WP Redis
 +++
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 hooks:
     build: |
         ...
@@ -100,7 +100,7 @@ hooks:
 title=Redis Object Cache
 +++
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 hooks:
     build: |
         ...
@@ -113,7 +113,7 @@ hooks:
 
 It should now look something like:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 hooks:
     build: |
         set -e

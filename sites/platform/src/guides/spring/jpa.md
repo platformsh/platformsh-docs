@@ -17,13 +17,13 @@ This guide only covers the *addition* of a service configuration to an existing 
 
 In your [service configuration](../../add-services/_index.md), include a SQL database service with a [valid supported version](../../add-services/_index.md) to find a valid version. For PostgreSQL that would look like:
 
-{{< readFile file="registry/images/examples/full/postgresql.services.yaml" highlight="yaml" configFile="services" >}}
+{{< readFile file="registry/images/examples/full/postgresql.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
 
 ## 2. Grant access to the service through a relationship
 
 To access the new service, set a `relationship` in your [app configuration](../../create-apps/app-reference.md#relationships).
 
-{{< readFile file="registry/images/examples/full/postgresql.app.yaml" highlight="yaml" configFile="app" >}}
+{{< readFile file="registry/images/examples/full/postgresql.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 ## 3. Export connection credentials to the environment
 

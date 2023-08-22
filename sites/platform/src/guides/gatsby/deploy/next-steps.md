@@ -14,15 +14,15 @@ These days, an increasingly common pattern is to decouple content resources from
 
 ```bash
 .
-├── {{< vendor/configdir >}}
-│   ├── {{< vendor/configfile "routes" "strip" >}}
-│   └── {{< vendor/configfile "services" "strip" >}}
+├── .platform
+│   ├── routes.yaml
+│   └── services.yaml
 ├── drupal
 │   ├── <application code>
-│   └── {{< vendor/configfile "app" >}}
+│   └── .platform.app.yaml
 ├── gatsby
 │   ├── <application code>
-│   └── {{< vendor/configfile "app" >}}
+│   └── .platform.app.yaml
 ├── CHANGELOG.md
 ├── LICENSE.md
 └── README.md

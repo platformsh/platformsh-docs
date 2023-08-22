@@ -16,7 +16,7 @@ See also [PHP extensions on {{% names/dedicated-gen-2 %}} plans](../../dedicated
 
 You can define the PHP extensions you want to enable or disable:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 runtime:
     extensions:
         - raphf
@@ -72,7 +72,7 @@ but it takes slightly more work:
    For example, if the extension is named `spiffy.so` and is in your [app root](../../create-apps/app-reference.md#root-directory),
    your configuration looks like the following:
 
-   ```yaml {configFile="app"}
+   ```yaml {location=".platform.app.yaml"}
    variables:
        php:
            extension: /app/spiffy.so

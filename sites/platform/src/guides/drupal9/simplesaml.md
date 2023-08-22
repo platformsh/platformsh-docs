@@ -28,10 +28,10 @@ Once that's run, commit both `composer.json` and `composer.lock` to your reposit
 ## Include SimpleSAML cookies in the cache key
 
 The SimpleSAML client uses additional cookies besides the Drupal session cookie that need to be allowed for the cache.
-To do so, modify your `{{< vendor/configfile "routes" >}}` file for the route that points to your Drupal site and add two additional cookies to the `cache.cookies` line.
+To do so, modify your `routes.yaml` file for the route that points to your Drupal site and add two additional cookies to the `cache.cookies` line.
 It should end up looking approximately like this:
 
-```yaml {configFile="routes"}
+```yaml {location=".platform/routes.yaml"}
 "https://{default}/":
     type: upstream
     upstream: "app:http"
@@ -46,9 +46,9 @@ Commit this change to the Git repository.
 
 The SimpleSAML library's `www` directory needs to be publicly accessible.
 That can be done by mapping it directly to a path in the Application configuration.
-Add the following block to the `web.locations` section of `{{< vendor/configfile "app" >}}`:
+Add the following block to the `web.locations` section of `.platform.app.yaml`:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
  web:
     locations:
         '/simplesaml':
@@ -75,15 +75,15 @@ This directory holds your IdP definitions.
 Consult the SimpleSAMLphp documentation and see the examples in `vendor/simplesamlphp/simplesamlphp/metadata-templates`.
 
 Next, you need to tell SimpleSAMLphp where to find that directory using an environment variable.
-The simplest way to set that is to add the following block to your `{{< vendor/configfile "app" >}}` file:
+The simplest way to set that is to add the following block to your `.platform.app.yaml` file:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 variables:
     env:
         SIMPLESAMLPHP_CONFIG_DIR: /app/simplesamlphp/config
 ```
 
-Commit the whole `simplesamplphp` directory and `{{< vendor/configfile "app" >}}` to Git.
+Commit the whole `simplesamplphp` directory and `.platform.app.yaml` to Git.
 
 ## Configure SimpleSAML to use the database
 

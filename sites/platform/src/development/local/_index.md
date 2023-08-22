@@ -50,7 +50,7 @@ If you don't have your app code on your computer, download a copy.
     Or pull from your [integrated Git repository](../../integrations/source/_index.md).
 
 You can now access your code from the project directory on your computer.
-The CLI created a `{{< vendor/configfile "apps" >}}/local` directory that's excluded from Git. 
+The CLI created a `.platform/local` directory that's excluded from Git. 
 It contains builds and local metadata about your project.
 
 You can now make changes to your project without pushing to {{< vendor/name >}} each time to test them. 
@@ -86,7 +86,7 @@ To build your site locally:
     platform build
     ```
 
-    Your app is built in the `{{< vendor/configfile "apps" >}}/local/builds` directory.
+    Your app is built in the `.platform/local/builds` directory.
     Unless you specify otherwise with the `--destination` flag,
     a symbolic link from your build is created as the `_www` directory at your project root.
 

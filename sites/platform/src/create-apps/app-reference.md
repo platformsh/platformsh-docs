@@ -6,11 +6,11 @@ description: See all of the options for controlling your apps and how they're bu
 
 {{% description %}}
 
-For single-app projects, the configuration is all done in a `{{< vendor/configfile "app" >}}` file,
+For single-app projects, the configuration is all done in a `.platform.app.yaml` file,
 usually located at the root of your app folder in your Git repository.
 [Multi-app projects](./multi-app/_index.md) can be set up in various ways.
 
-See a [comprehensive example](./_index.md#comprehensive-example) of a configuration in a `{{< vendor/configfile "app" >}}` file.
+See a [comprehensive example](./_index.md#comprehensive-example) of a configuration in a `.platform.app.yaml` file.
 For reference, see a [log of changes to app configuration](./upgrading.md).
 
 ## Top-level properties
@@ -44,7 +44,7 @@ To override any part of a property, you have to provide the entire property.
 ## Root directory
 
 Some of the properties you can define are relative to your app's root directory.
-The root defaults to the location of your `{{< vendor/configfile "app" >}}` file.
+The root defaults to the location of your `.platform.app.yaml` file.
 To specify another directory, for example for a [multi-app project](./multi-app/_index.md)),
 use the [`source.root` property](#source).
 
@@ -63,7 +63,7 @@ Available languages and their supported versions:
 
 These are used in the format `runtime:version`:
 
-{{< readFile file="registry/images/examples/full/php.app.yaml" highlight="yaml" configFile="app" >}}
+{{< readFile file="registry/images/examples/full/php.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 ## Sizes
 
@@ -117,7 +117,7 @@ you can define additional explicit endpoints for multiple databases and cores in
 The following example shows a single MySQL service named `mysqldb` offering two databases,
 a Redis cache service named `rediscache`, and an Elasticsearch service named `searchserver`.
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 relationships:
     database: 'mysqldb:db1'
     database2: 'mysqldb:db2'
@@ -151,7 +151,7 @@ You need to either increase your plan's storage or decrease the `disk` values yo
 Mounts define directories that are writable after the build is complete.
 They aren't available during the build.
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 mounts:
     '{{< variable "DIRECTORY" >}}':
         source: {{< variable "SOURCE_LOCATION" >}}
@@ -170,7 +170,7 @@ See how to [troubleshoot the warning](./troubleshoot-mounts.md#overlapping-folde
 
 Basic example:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 mounts:
     'web/uploads':
         source: local
@@ -183,7 +183,7 @@ Files can be all public, all private, or with different rules for different path
 Note that when you back up an environment,
 the mounts on that environment are backed up too.
 
-Also, mounted directories aren't deleted when they're removed from `{{< vendor/configfile "app" >}}`.
+Also, mounted directories aren't deleted when they're removed from `.platform.app.yaml`.
 The files still exist on disk until manually removed.
 
 ## Web
@@ -207,7 +207,7 @@ See some [examples of how to configure what's served](./web/_index.md).
 
 Example:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     commands:
         start: 'uwsgi --ini conf/server.ini'
@@ -246,7 +246,7 @@ For all other containers, the default for `protocol` is `http`.
 
 The following example is the default on non-PHP containers:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     upstream:
         socket_family: tcp
@@ -298,7 +298,7 @@ except `root`, `index` and `request_buffering`.
 In the following example, the `allow` key disallows requests for static files anywhere in the site.
 This is overridden by a rule that explicitly allows common image file formats.
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     locations:
         '/':
@@ -325,7 +325,7 @@ The following table shows the keys in the `request_buffering` dictionary:
 
 The default configuration would look like this:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     locations:
         '/':
@@ -355,7 +355,7 @@ Each worker can differ from the `web` instance in all properties _except_ for:
 
 A worker named `queue` that was small and had a different start command could look like this:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 workers:
     queue:
         size: S
@@ -377,7 +377,7 @@ The `access` dictionary has one allowed key:
 In the following example, only users with `admin` permissions for the given [environment type](../administration/users.md#environment-type-roles)
 can access the deployed environment via SSH:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 access:
     ssh: admin
 ```
@@ -400,7 +400,7 @@ The following example sets two variables:
 - A variable named `d8config:system.site:name` with the value `My site rocks`
   that's available in the `$PLATFORM_VARIABLES` environment variable
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 variables:
     env:
         AUTHOR: 'Juan'
@@ -429,7 +429,7 @@ Each rule has the following properties where at least one is required and `ips` 
 
 The default settings would look like this:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 firewall:
     outbound:
         - ips: ["0.0.0.0/0"]
@@ -448,7 +448,7 @@ In such cases, a given outbound request is allowed if it matches _any_ of the de
 So in the following example requests to any IP on port 80 are allowed
 and requests to 1.2.3.4 on either port 80 or 443 are allowed:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 firewall:
     outbound:
         - ips: ["1.2.3.4/32"]
@@ -473,7 +473,7 @@ This means that you allow potentially hundreds or thousands of other servers als
 
 An example rule filtering by domain:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 firewall:
   outbound:
     - protocol: tcp
@@ -521,7 +521,7 @@ See what the build flavor is for your language:
 In all languages, you can also specify a flavor of `none` to take no action at all
 (which is the default for any language other than PHP and Node.js).
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 build:
     flavor: none
 ```
@@ -546,7 +546,7 @@ The format for package names and version constraints are defined by the specific
 
 An example of dependencies in multiple languages:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 dependencies:
     php: # Specify one Composer package per line.
         drush/drush: '8.0.0'
@@ -658,7 +658,7 @@ Note that you can [cancel pending or running crons](../environments/cancel-activ
 | `start`            | `string`  | Yes      | The command that's run. It's run in [Dash](https://en.wikipedia.org/wiki/Almquist_shell). |
 | `stop`             | `string`  | No       | The command that's issued to give the cron command a chance to shutdown gracefully, such as to finish an active item in a list of tasks. Issued when a cron task is interrupted by a user through the CLI or Console. If not specified, a `SIGTERM` signal is sent to the process. |
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 crons:
     mycommand:
         spec: 'H * * * *'
@@ -748,7 +748,7 @@ If you want to set up customized cron schedules depending on the environment typ
 define conditional crons.
 To do so, use a configuration similar to the following:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 crons:
     update:
        spec: '0 0 * * *'
@@ -848,7 +848,7 @@ You can also set your [app's runtime timezone](../create-apps/timezone.md).
 
 You can enable [PHP extensions](../languages/php/extensions.md) just with a list of extensions:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 runtime:
   extensions:
     - geoip
@@ -857,7 +857,7 @@ runtime:
 
 Alternatively, if you need to include configuration options, use a dictionary for that extension:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 runtime:
   extensions:
     - geoip
@@ -887,7 +887,7 @@ The following table shows the properties that can be set in `source`:
 | Name         | Type                     | Required | Description |
 | ------------ | ------------------------ | -------- | ----------- |
 | `operations` | An operations dictionary |          |  Operations that can be applied to the source code. See [source operations](./source-operations.md) |
-| `root`       | `string`                 |          |  The path where the app code lives. Defaults to the directory of the `{{< vendor/configfile "app" >}}` file. Useful for [multi-app setups](./multi-app/_index.md). |
+| `root`       | `string`                 |          |  The path where the app code lives. Defaults to the directory of the `.platform.app.yaml` file. Useful for [multi-app setups](./multi-app/_index.md). |
 
 ## Additional hosts
 
@@ -898,7 +898,7 @@ Then when your app tries to access the hostname, it's sent to the proper IP addr
 
 So in the following example, if your app tries to access `api.example.com`, it's sent to `192.0.2.23`.
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 additional_hosts:
     api.example.com: "192.0.2.23"
     web.example.com: "203.0.113.42"

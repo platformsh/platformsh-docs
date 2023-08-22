@@ -1,2 +1,0 @@
-{{- $supported := index .Site.Data.registry ( .Get 0 ) "versions" "supported" -}}
-{{- index ( sort $supported "value" "desc" ) 0 -}}

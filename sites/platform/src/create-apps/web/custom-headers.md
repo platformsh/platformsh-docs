@@ -16,7 +16,7 @@ And you want to serve both MP3 and MP4 files with the correct content types to a
 
 Start by defining a header for files in general:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     locations:
         "/":
@@ -31,7 +31,7 @@ Now your files can only be embedded within your site.
 
 Now set up an exception for MP3 files using a [rule](../app-reference.md#rules):
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     locations:
         "/":
@@ -48,7 +48,7 @@ MP3 files don't get the `X-Frame-Options` header set before.
 
 Now set a rule for MP4 files.
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     locations:
         "/":
@@ -75,7 +75,7 @@ So now you have three header configurations:
 To allow cross origin requests, add a `Access-Control-Allow-Origin` header to responses.
 You can do so for specific origins or for all origins with a wildcard.
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     locations:
         "/":

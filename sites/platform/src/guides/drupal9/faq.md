@@ -6,7 +6,7 @@ weight: -40
 
 ## How can I import configuration on production?
 
-If you don't want to do so manually, include the following lines in your deploy hook in `{{< vendor/configfile "app" >}}`:
+If you don't want to do so manually, include the following lines in your deploy hook in `.platformsh.app.yaml`:
 
 ```yaml
 drush -y updatedb

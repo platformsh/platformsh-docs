@@ -20,7 +20,7 @@ There are various ways you can define routes for multiple app projects such as t
 In this project, you have a CMS app, two frontend apps (one using Symfony and another using Gatsby),
 and a Mercure Rocks server app, defined as follows:
 
-```yaml {configFile="apps"}
+```yaml {location=".platform/applications.yaml"}
 - name: admin
   type: nodejs:16
   source:
@@ -60,7 +60,7 @@ Depending on your needs, you could configure the router container
 
 You could define routes for your apps as follows:
 
-```yaml {configFile="routes"}
+```yaml {location=".platform/routes.yaml"}
 "https://mercure.{default}/":
     type: upstream
     upstream: "mercure:http"
@@ -85,7 +85,7 @@ so consider using a path like `https://{default}/api` instead.
 
 Alternatively, you could define your routes as follows:
 
-```yaml {configFile="routes"}
+```yaml {location=".platform/routes.yaml"}
 "https://{default}/":
     type: upstream
 
@@ -97,7 +97,7 @@ Alternatively, you could define your routes as follows:
 
 Then you would need to configure each app's `web.locations` property to match these paths:
 
-```yaml {configFile="apps"}
+```yaml {location=".platform/applications.yaml"}
 -   name: api
     type: php:8.2
     source:

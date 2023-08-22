@@ -12,11 +12,11 @@ description: |
 
 {{% guides/gatsby/headless-project name="WordPress" %}}
 
-### Service configuration
+### `.platform/services.yaml`
 
 {{% guides/gatsby/headless-services template="gatsby-wordpress" name="WordPress" %}}
 
-### Routes configuration
+### `.platform/routes.yaml`
 
 {{% guides/gatsby/headless-routes template="gatsby-wordpress" name="WordPress" %}}
 
@@ -61,7 +61,7 @@ WordPress comes with an initial "Hello world" article, and it isn't necessary to
 
 With Gatsby now deployed and pulling content from a backend WordPress application, there are a few things you may wish to change about your project going forward.
 
-### Shared application configuration
+### `applications.yaml`
 
 {{% guides/gatsby/headless-applicationsyaml name="WordPress" %}}
 

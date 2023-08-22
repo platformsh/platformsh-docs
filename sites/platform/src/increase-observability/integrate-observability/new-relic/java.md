@@ -31,7 +31,7 @@ Repeat these two steps for every environment you want to monitor, making sure yo
 To set up New Relic in the Java project, we have two ways:
 
 - Using the Maven project
-- Download the code through `{{< vendor/configfile "app" >}}`.
+- Download the code through `.platform.app.yaml`.
 
 ### Using Maven
 
@@ -102,7 +102,7 @@ web:
 
 ### Manual Configuration
 
-To use this installation it is only required that you modify `{{< vendor/configfile "app" >}}`, which will download and set the New Relic Java agent for you.
+To use this installation it is only required that you modify `.platform.app.yaml`, which will download and set the New Relic Java agent for you.
 
 ```yaml
 name: app

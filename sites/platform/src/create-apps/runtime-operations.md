@@ -19,7 +19,7 @@ You can use runtime operations if you have Grid or {{% names/dedicated-gen-3 %}}
 
 To define a runtime operation, add a configuration similar to the following:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 operations:
   {{< variable "RUNTIME_OPERATION_NAME" >}}:
     role: {{< variable "USER_ROLE" >}}
@@ -40,7 +40,7 @@ by default all users with the `contributor` role can trigger it.
 For example, to allow admin users to clear the cache of a Drupal site,
 you could define an operation like the following:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 operations:
   clear-rebuild:
     role: admin
@@ -114,7 +114,7 @@ title=Gatsby
 To run the [Gatsby build](https://www.gatsbyjs.com/docs/conceptual/overview-of-the-gatsby-build-process/#understanding-gatsby-build-build-time) step,
 define a runtime operation similar to the following:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 operations:
   gatsby-build:
     role: viewer
@@ -136,7 +136,7 @@ title=Next.js
 To run the [Next.js build](https://nextjs.org/docs/deployment#nextjs-build-api) step,
 define a runtime operation similar to the following:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 operations:
     next-build:
         role: admin
@@ -166,7 +166,7 @@ title=Ping your app
 
 To ping your Node.js app, define a runtime operation similar to the following:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 operations:
     pm2-ping:
         role: admin 
@@ -190,7 +190,7 @@ title=Reload your app
 
 To reload your Node.js app, define a runtime operation similar to the following:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 operations:
     pm2-reload:
         role: admin 
@@ -213,7 +213,7 @@ title=Restart your app
 
 To restart your Node.js app, define a runtime operation similar to the following:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 operations:
     pm2-restart:
         role: admin 
@@ -237,7 +237,7 @@ platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployment
 On a Django project, you can [define custom `django-admin` commands](https://docs.djangoproject.com/en/4.2/howto/custom-management-commands/), for example to run a one-off management command (`manual migration` in the example above) outside of the Django ORM migration framework.
 To do so, define a runtime operation similar to the following:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 operations:
   manual-migration:
     role: admin

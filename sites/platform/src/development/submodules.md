@@ -112,7 +112,7 @@ Automate your submodule updates using a [source operation](create-apps/source-op
 To do so, follow these steps:
 
 1. Define a source operation.</br>
-   Add the following configuration to your `{{< vendor/configfile "apps" >}}` (or `{{< vendor/configfile "app" >}}`) file:
+   Add the following configuration to your `.platform/applications.yaml` (or `.platform.app.yaml`) file:
 
    ```yaml
    app:
@@ -137,7 +137,7 @@ To do so, follow these steps:
    Don't define routes so your app isn't exposed to the web.
    To define a source operation, add the following configuration to your app configuration:
 
-   ```yaml  {configFile="apps"}
+   ```yaml  {location=".platform/applications.yaml"}
    update-submodule:
      # The type of the application to build.
      type: "nodejs:18"

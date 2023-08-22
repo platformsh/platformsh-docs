@@ -21,7 +21,7 @@ The Gunicorn server is broadly compatible with various web frameworks, light on 
 +++
 title=Pip (TCP)
 +++
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     commands:
         start: "gunicorn -w 4 -b localhost:$PORT myapp.wsgi:application"
@@ -37,7 +37,7 @@ web:
 +++
 title=Pip (Unix)
 +++
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     upstream:
         socket_family: unix
@@ -55,7 +55,7 @@ web:
 +++
 title=Pipenv (TCP)
 +++
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     commands:
         start: "pipenv run gunicorn -w 4 -b localhost:$PORT myapp.wsgi:application"
@@ -71,7 +71,7 @@ web:
 +++
 title=Pipenv (Unix)
 +++
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     upstream:
         socket_family: unix
@@ -89,7 +89,7 @@ web:
 +++
 title=Poetry (TCP)
 +++
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     commands:
         start: "poetry run gunicorn -w 4 -b localhost:$PORT myapp.wsgi:application"   
@@ -105,7 +105,7 @@ web:
 +++
 title=Poetry (Unix)
 +++
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     upstream:
         socket_family: unix
@@ -133,7 +133,7 @@ or [Tornado](https://www.tornadoweb.org/).
 For example, to add a Uvicorn worker class to the pip example for Unix,
 adjust the start command to the following:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     upstream:
         socket_family: unix
@@ -152,7 +152,7 @@ developed to power Django Channels.
 +++
 title=Pip (TCP)
 +++
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     commands:
         start: "daphne -p $PORT myapp.asgi:application"
@@ -168,7 +168,7 @@ web:
 +++
 title=Pip (Unix)
 +++
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     commands:
         start: "daphne -u $SOCKET myapp.asgi:application"
@@ -184,7 +184,7 @@ web:
 +++
 title=Pipenv (TCP)
 +++
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     commands:
         start: "pipenv run daphne -p $PORT myapp.asgi:application"
@@ -200,7 +200,7 @@ web:
 +++
 title=Pipenv (Unix)
 +++
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     commands:
         start: "pipenv run daphne -u $SOCKET myapp.asgi:application"
@@ -216,7 +216,7 @@ web:
 +++
 title=Poetry (TCP)
 +++
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     commands:
         start: "poetry run daphne -p $PORT myapp.asgi:application"
@@ -232,7 +232,7 @@ web:
 +++
 title=Poetry (Unix)
 +++
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     commands:
         start: "poetry run -u $SOCKET myapp.asgi:application"
@@ -256,7 +256,7 @@ web:
 +++
 title=Pip (TCP)
 +++
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     commands:
         start: "uvicorn myapp.asgi:application --port $PORT --workers 4"
@@ -272,7 +272,7 @@ web:
 +++
 title=Pip (Unix)
 +++
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     upstream:
         socket_family: unix
@@ -290,7 +290,7 @@ web:
 +++
 title=Pipenv (TCP)
 +++
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     commands:
         start: "pipenv run uvicorn myapp.asgi:application --port $PORT --workers 4"
@@ -306,7 +306,7 @@ web:
 +++
 title=Pipenv (Unix)
 +++
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     upstream:
         socket_family: unix
@@ -324,7 +324,7 @@ web:
 +++
 title=Poetry (TCP)
 +++
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     commands:
         start: "poetry run uvicorn myapp.asgi:application --port $PORT --workers 4"
@@ -340,7 +340,7 @@ web:
 +++
 title=Poetry (Unix)
 +++
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     upstream:
         socket_family: unix
@@ -374,7 +374,7 @@ See how to [set variables](../../development/variables/set-variables.md).
 +++
 title=Pip (TCP)
 +++
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     commands:
         start: "hypercorn myapp.asgi:application -b localhost:$PORT -w 4"
@@ -390,7 +390,7 @@ web:
 +++
 title=Pip (Unix)
 +++
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     upstream:
         socket_family: unix
@@ -408,7 +408,7 @@ web:
 +++
 title=Pipenv (TCP)
 +++
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     commands:
         start: "pipenv run hypercorn myapp.asgi:application -b localhost:$PORT -w 4"
@@ -424,7 +424,7 @@ web:
 +++
 title=Pipenv (Unix)
 +++
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     upstream:
         socket_family: unix
@@ -442,7 +442,7 @@ web:
 +++
 title=Poetry (TCP)
 +++
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     commands:
         start: "poetry run hypercorn myapp.asgi:application -b localhost:$PORT -w 4"
@@ -458,7 +458,7 @@ web:
 +++
 title=Poetry (Unix)
 +++
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     upstream:
         socket_family: unix
@@ -485,7 +485,7 @@ such as Asyncio, Uvloop, or Trio.
 For example, to add a Asyncio worker class to the pip example for Unix,
 adjust the start command to the following:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     upstream:
         socket_family: unix

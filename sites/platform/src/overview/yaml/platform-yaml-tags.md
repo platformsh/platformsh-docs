@@ -26,7 +26,7 @@ Use `string` to include an external file inline in the YAML file as if entered a
 
 For example, if you have a build hook like the following:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 hooks:
     build: |
         set -e
@@ -42,7 +42,7 @@ cp a.txt b.txt
 
 And replace the hook with an include tag for an identical result:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 hooks:
     build: !include
         type: string
@@ -59,7 +59,7 @@ The file is base64 encoded.
 For example, you could include a `favicon.ico` file in the same folder as your app configuration.
 Then you can include it as follows:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 properties:
     favicon: !include
         type: binary
@@ -84,19 +84,19 @@ variables:
 
 Then the following three configurations are exactly equivalent:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 workers:
     queue1: !include "worker.yaml"
 ```
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 workers:
     queue1: !include
         type: yaml
         path: 'worker.yaml'
 ```
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 workers:
     queue1: 
         size: S
@@ -116,7 +116,7 @@ Use the `!archive` tag for a reference to an entire directory specified relative
 For example, you might want to define a configuration directory for your [Solr service](../../add-services/solr.md).
 You might do so as follows:
 
-```yaml {configFile="services"}
+```yaml {location=".platform/services.yaml"}
 mysearch:
     type: solr:8.0
     disk: 1024
@@ -125,5 +125,5 @@ mysearch:
 ```
 
 The `!archive` tag means that the value for `conf_dir` isn't the string `solr/conf` but the entire `solr/conf` directory.
-This directory is in the `{{< vendor/configdir >}}` directory, since that's where the `{{< vendor/configfile "services" >}}` file is.
+This directory is in the `.platform` directory, since that's where the `services.yaml` file is.
 The `solr/conf` directory is then copied into the {{< vendor/name >}} management system to use with the service.

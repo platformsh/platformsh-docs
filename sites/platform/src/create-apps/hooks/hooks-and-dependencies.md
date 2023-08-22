@@ -20,7 +20,7 @@ You also need a script to compile the files, such as the following:
 
 Set your app configuration to have Sass available globally and use it:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 # Ensure sass is available globally
 dependencies:
     nodejs:

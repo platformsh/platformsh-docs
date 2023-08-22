@@ -23,12 +23,12 @@ description: |
 This example uses Unicorn to run a Ruby application.
 You could use any Ruby application server such as Puma or Thin.
 
-Configure the `{{< vendor/configfile "app" >}}` file with a few key settings as listed below.
+Configure the `.platform.app.yaml` file with a few key settings as listed below.
 A complete example is included at the end of this section.
 
 1. Specify the language of your application (available versions are listed above):
 
-    {{< readFile file="/registry/images/examples/full/ruby.app.yaml" highlight="yaml" configFile="app" >}}
+    {{< readFile file="/registry/images/examples/full/ruby.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 2. Setup environment variables.
 
@@ -175,7 +175,7 @@ A complete example is included at the end of this section.
     You can define other read/write mounts (your application code itself being deployed to a read-only file system).
     Note that the file system is persistent and when you backup your cluster these mounts are also backed up.
 
-7. Then, setup the routes to your application in `{{< vendor/configfile "routes" >}}`.
+7. Then, setup the routes to your application in `.platform/routes.yaml`.
 
     ```yaml
     "https://{default}/":
@@ -186,7 +186,7 @@ A complete example is included at the end of this section.
 
 ### Complete app configuration
 
-Here is a complete `{{< vendor/configfile "app" >}}` file:
+Here is a complete `.platform.app.yaml` file:
 
 ```yaml
 name: 'app'
@@ -291,7 +291,7 @@ web:
 This example assumes there is a MySQL instance.
 To configure it, [create a service](../add-services/_index.md) such as the following:
 
-```yaml {configFile="services"}
+```yaml {location=".platform/services.yaml"}
 database:
     type: mysql:10.4
     disk: 2048
@@ -301,7 +301,7 @@ database:
 
 Once you have a service, link to it in your [app configuration](../create-apps/_index.md):
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 relationships:
     database: "database:mysql"
 ```
@@ -379,5 +379,5 @@ You may encounter an error like the following during a build:
 
 To resolve this error:
 
-1. Run `bundle install` with the same `ruby` and `bundler` versions defined in your `{{< vendor/configfile "app" >}}` file.
+1. Run `bundle install` with the same `ruby` and `bundler` versions defined in your `.platform.app.yaml` file.
 2. Push the `Gemfile.lock` to your repository.

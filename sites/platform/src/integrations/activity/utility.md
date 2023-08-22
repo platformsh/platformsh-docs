@@ -48,7 +48,7 @@ function getUpstreamRoutes(appName) {
 /**
  * Returns the primary route.
  *
- * The primary route is the one marked primary in `{{< vendor/configfile "routes" >}}`, or else
+ * The primary route is the one marked primary in `routes.yaml`, or else
  * the first non-redirect route in that file if none are marked.
  *
  * @return {object}
@@ -72,7 +72,7 @@ function getPrimaryRoute() {
 /**
  * Returns the route definition that has the specified id.
  *
- * Note: If no route ID was specified in {{< vendor/configfile "routes" >}} then it will not be possible
+ * Note: If no route ID was specified in routes.yaml then it will not be possible
  * to look up a route by ID.
  *
  * @param {string} id

@@ -152,7 +152,7 @@ You can configure your MySQL service in the [services configuration](../_index.m
 
 Example configuration:
 
-```yaml {configFile="services"}
+```yaml {location=".platform/services.yaml"}
 db:
     type: mariadb:10.5
     disk: 2048
@@ -228,7 +228,7 @@ Possible permissions:
 You can also specify `schemas` for [multiple databases](#multiple-databases).
 If neither `schemas` nor `endpoints` is included, it's equivalent to the following default:
 
-```yaml {configFile="services"}
+```yaml {location=".platform/services.yaml"}
     configuration:
         schemas:
             - main
@@ -249,7 +249,7 @@ To do so, define multiple `schemas` in your [service configuration](#configurati
 You can also specify multiple `endpoints` for [permissions](#define-permissions).
 If neither `schemas` nor `endpoints` is included, it's equivalent to the following default:
 
-```yaml {configFile="services"}
+```yaml {location=".platform/services.yaml"}
     configuration:
         schemas:
             - main
@@ -278,7 +278,7 @@ Access to the database is defined through three endpoints:
 * `reporter` has SELECT query access to `main` but no access to `legacy`.
 * `importer` has SELECT/INSERT/UPDATE/DELETE (but not DDL) access to `legacy` but no access to `main`.
 
-```yaml {configFile="services"}
+```yaml {location=".platform/services.yaml"}
 db:
     type: mariadb:10.5
     disk: 2048
@@ -303,7 +303,7 @@ db:
 
 Expose these endpoints to your app as relationships in your [app configuration](../../create-apps/_index.md):
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 relationships:
     database: "db:admin"
     reports: "db:reporter"
@@ -336,7 +336,7 @@ It offers the following properties:
 
 An example of setting these properties:
 
-```yaml {configFile="services"}
+```yaml {location=".platform/services.yaml"}
 db:
     type: mariadb:10.5
     disk: 2048

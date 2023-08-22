@@ -25,7 +25,7 @@ Check the documentation related to [Laravel Octane on {{< vendor/name >}}](../..
 Override the default web server with a [custom start command](./_index.md#alternate-start-commands).
 Octane should listen on a TCP socket.
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     upstream:
         socket_family: tcp

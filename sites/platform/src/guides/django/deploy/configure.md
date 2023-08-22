@@ -47,7 +47,7 @@ It uses the Gunicorn WSGI server and Unix sockets.
 title=Pip
 +++
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     upstream:
         socket_family: unix
@@ -60,7 +60,7 @@ web:
 title=Pipenv
 +++
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     upstream:
         socket_family: unix
@@ -73,7 +73,7 @@ web:
 title=Poetry
 +++
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     upstream:
         socket_family: unix
@@ -95,7 +95,7 @@ For examples of how to do so, see more about [Python web servers](../../../langu
 
 Below is an example configuration to make [PostgreSQL](../../../add-services/postgresql.md) available for your Django application.
 
-{{< readFile file="static/files/fetch/servicesyaml/django4" highlight="yaml" configFile="services">}}
+{{< readFile file="static/files/fetch/servicesyaml/django4" highlight="yaml" location=".platform/services.yaml">}}
 
 {{% guides/config-routes template="django4" name="Django" %}}
 
