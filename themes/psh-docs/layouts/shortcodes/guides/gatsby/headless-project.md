@@ -19,4 +19,4 @@ When deploying a single app project [such as Gatsby](/guides/gatsby/deploy.html)
 the repository needs three configuration files that describe its infrastructure, described below in detail.
 For [multi-app projects](/create-apps/multi-app/_index.md),
 two of those files remain in the project root and are shared between Gatsby and {{ .Get "name" }}.
-Each app keeps its own app configuration file (`{{ partial "vendor/configfile" (dict "context" . "config" "services") }}`) in its subdirectory.
+Each app keeps its own app configuration file (`{{ partial "vendor/configfile" (dict "context" . "config" "app") }}`) in its subdirectory.
