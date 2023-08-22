@@ -59,7 +59,7 @@ For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-
     "query": {
         "is_master": true
     },
-    "password": null,
+    "password": "ChangeMe",
     "type": "postgresql:12",
     "public": false,
     "host_mapped": false

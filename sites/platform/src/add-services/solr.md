@@ -49,7 +49,7 @@ Solr search with generic schemas provided, and a custom schema is also supported
     "rel": "solr",
     "path": "solr\/maincore",
     "query": [],
-    "password": null,
+    "password": "ChangeMe",
     "type": "solr:8.6",
     "public": false,
     "host_mapped": false

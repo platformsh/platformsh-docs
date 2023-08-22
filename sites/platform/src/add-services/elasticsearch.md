@@ -68,7 +68,7 @@ To do so, follow the same procedure as for [upgrading](#upgrading).
     "rel": "elasticsearch",
     "path": null,
     "query": [],
-    "password": null,
+    "password": "ChangeMe",
     "type": "elasticsearch:7.7",
     "public": false,
     "host_mapped": false

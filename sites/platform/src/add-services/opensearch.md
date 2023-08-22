@@ -58,7 +58,7 @@ switch to [a supported version](#supported-versions).
     "rel": "opensearch",
     "path": null,
     "query": [],
-    "password": null,
+    "password": "ChangeMe",
     "type": "opensearch:1.2",
     "public": false,
     "host_mapped": false

@@ -47,7 +47,7 @@ See more information on [how to upgrade to version 2.3 or later](#upgrade-to-ver
       "rel": "influxdb",
       "scheme": "http",
       "username": "admin",
-      "password": null,
+      "password": "ChangeMe",
       "port": 8086,
       "path": null,
       "query": {
@@ -139,7 +139,7 @@ If you're relying on any other attributes connecting to InfluxDB, they remain ac
       "rel": "influxdb",
       "scheme": "http",
       "username": "admin",
-      "password": null,
+      "password": "ChangeMe",
       "port": 8086,
       "path": null,
       "query": {

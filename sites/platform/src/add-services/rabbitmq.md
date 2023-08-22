@@ -158,7 +158,7 @@ rabbitmq:
     "rel": "rabbitmq",
     "path": null,
     "query": [],
-    "password": null,
+    "password": "ChangeMe",
     "type": "rabbitmq:3.8",
     "public": false,
     "host_mapped": false

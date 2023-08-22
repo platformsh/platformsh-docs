@@ -269,7 +269,7 @@ In the JSON object that's returned, you can notice that the `ciphertext` is diff
     "query": {
         "is_master": true
     },
-    "password": null,
+    "password": "ChangeMe",
     "type": "vault-kms:1.6",
     "public": false,
     "host_mapped": false
