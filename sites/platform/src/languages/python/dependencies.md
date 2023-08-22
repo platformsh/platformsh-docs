@@ -39,7 +39,7 @@ To do so, modify your [app configuration](../../create-apps/_index.md), as in th
 +++
 title=Latest version
 +++
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 name: 'app'
 type: 'python:3.11'
 hooks:
@@ -55,7 +55,7 @@ hooks:
 +++
 title=Specific version
 +++
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 name: 'app'
 type: 'python:3.11'
 variables:
@@ -94,7 +94,7 @@ Because Pipenv depends on pip, you might want to also specify the pip version.
 +++
 title=Latest version
 +++
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 name: 'app'
 type: 'python:3.11'
 dependencies:
@@ -114,7 +114,7 @@ hooks:
 +++
 title=Specific version
 +++
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 name: 'app'
 type: 'python:3.11'
 variables:
@@ -153,7 +153,7 @@ To set up Poetry on {{< vendor/name >}}, follow these steps:
 
     Set the variables as follows:
 
-    ```yaml {location=".platform.app.yaml"}
+    ```yaml {configFile="app"}
     variables:
         env:
             POETRY_VIRTUALENVS_IN_PROJECT: true
@@ -168,7 +168,7 @@ To set up Poetry on {{< vendor/name >}}, follow these steps:
 +++
 title=Latest version
 +++
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 name: 'app'
 type: 'python:3.11'
 
@@ -199,7 +199,7 @@ hooks:
 +++
 title=Specific version
 +++
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 name: 'app'
 type: 'python:3.11'
 

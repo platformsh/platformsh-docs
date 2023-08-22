@@ -33,7 +33,7 @@ Xdebug runs as a second PHP-FPM process used only for debugging requests, leavin
 
 To enable Xdebug, add the following to your [app configuration](../../create-apps/app-reference.md):
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 runtime:
     xdebug:
         idekey: {{< variable "YOUR_KEY" >}}
@@ -49,7 +49,7 @@ If you have enabled the [router cache](../../define-routes/cache.md),
 you need to explicitly add the Xdebug cookie (`XDEBUG_SESSION`) to the cookie allowlist.
 Depending on the cookies already listed, the result should look similar to the following:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 "https://{default}/":
     # ...
     cache:

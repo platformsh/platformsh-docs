@@ -16,7 +16,7 @@ To use MongoDB with a Strapi v3 application on {{< vendor/name >}}, follow these
    yarn add strapi-connector-mongoose
    ```
 
-1. Replace the PostgreSQL configuration in your `services.yaml` file with the following:
+1. Replace the PostgreSQL configuration in your `{{< vendor/configfile "services" >}}` file with the following:
 
    ```yaml
    mongodb:
@@ -26,7 +26,7 @@ To use MongoDB with a Strapi v3 application on {{< vendor/name >}}, follow these
 
   **_Note that the minimum disk size for MongoDB is 512MB._**
 
-1. In your `.platform.app.yaml` file, replace the relationship name to match the MongoDB database you added:
+1. In your `{{< vendor/configfile "app" >}}` file, replace the relationship name to match the MongoDB database you added:
 
    ```yaml
    relationships:

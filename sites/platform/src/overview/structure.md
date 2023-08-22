@@ -19,9 +19,9 @@ Each container is an isolated instance with specific resources.
 
 Each environment has 2 to 4 types of containers:
 
-* One [*router*](#router) (configured in a `.platform/routes.yaml` file)
-* One or more [*app* containers](#apps) (configured in `.platform.app.yaml` files)
-* Zero or more [*service* containers](#services) (configured in a `.platform/services.yaml` file)
+* One [*router*](#router) (configured in a `{{< vendor/configfile "routes" >}}` file)
+* One or more [*app* containers](#apps) (configured in `{{< vendor/configfile "app" >}}` files)
+* Zero or more [*service* containers](#services) (configured in a `{{< vendor/configfile "services" >}}` file)
 * Zero or more [*worker* containers](#workers) (configured in the files for apps)
 
 If you have two app containers, two services (a database and a search engine), and a worker,
@@ -34,10 +34,10 @@ If you have only one app container, your repository might look like this:
 ```text
 project
 ├── .git
-├── .platform
-│   ├── routes.yaml
-│   └── services.yaml
-├── .platform.app.yaml
+├── {{< vendor/configdir >}}
+│   ├── {{< vendor/configfile "routes" "strip" >}}
+│   └── {{< vendor/configfile "services" "strip" >}}
+├── {{< vendor/configfile "app" >}}
 └── <YOUR_APP_FILES>
 ```
 
@@ -48,7 +48,7 @@ Each environment always has exactly one router.
 This router maps incoming requests to the appropriate app container
 and provides basic caching of responses, unless configured otherwise.
 
-The router is configured in a `.platform/routes.yaml` file.
+The router is configured in a `{{< vendor/configfile "routes" >}}` file.
 If you don't include configuration, a single [default route is deployed](../define-routes/_index.md#default-route-definition).
 
 Read more about how to [define routes](../define-routes/_index.md).
@@ -61,7 +61,7 @@ App containers run the code you provide via your Git repository.
 They handle requests from the outside world and can communicate with other containers within the environment.
 Each app container is built from a specific language image with a given version for the language.
 
-To configure your apps, you usually create one `.platform.app.yaml` file for each app container.
+To configure your apps, you usually create one `{{< vendor/configfile "app" >}}` file for each app container.
 A basic app generally has only one such file placed in the repository root.
 
 Read more about how to [configure apps](../create-apps/_index.md).
@@ -73,7 +73,7 @@ You don't need any service containers, but you can add them as you like.
 Service containers run predefined code for specific purposes, such as a database or search service.
 You don't need to add their code yourself, just set up how your apps communicate with them.
 
-Service containers are configured by the `.platform/services.yaml` file.
+Service containers are configured by the `{{< vendor/configfile "services" >}}` file.
 
 Read more about how to [add services](../add-services/_index.md).
 

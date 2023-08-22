@@ -27,7 +27,7 @@ dbmongo:
 
 In your [app configuration](../../create-apps/app-reference.md), use the service name `dbmongo` to grant the application access to MongoDB via a relationship:
 
-{{< readFile file="registry/images/examples/full/mongodb.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
+{{< readFile file="registry/images/examples/full/mongodb.app.yaml" highlight="yaml" configFile="app" >}}
 
 ## 3. Export connection credentials to the environment
 
