@@ -51,7 +51,7 @@ Assumptions:
     You can create a script to automate the sanitization process to be run automatically on each new deployment.
     Once you have a working script, add your script to sanitize the database to [a `deploy` hook](../../create-apps/hooks/hooks-comparison.md#deploy-hook):
 
-    ```yaml {configFile="app"}
+    ```yaml {location=".platform.app.yaml"}
     hooks:
         deploy: |
             cd /app/public
@@ -67,7 +67,7 @@ Assumptions:
     on sanitization create a file on a [mount](/create-apps/app-reference.md#mounts).
     Then add a check for the file as in the following example:
 
-    ```yaml {configFile="app"}
+    ```yaml {location=".platform.app.yaml"}
     hooks:
         deploy: |
             cd /app/public

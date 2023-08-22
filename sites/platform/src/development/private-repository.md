@@ -35,7 +35,7 @@ This means you can access the private repository through links like:
 <code>git@{{% variable "GIT_PROVIDER" %}}:{{% variable "PATH_OR_USERNAME" %}}/{{% variable "REPOSITORY" %}}.git</code>.
 For example, you can clone a repository in your [`build` hook](../create-apps/hooks/_index.md):
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 hooks:
     build: |
         set -e

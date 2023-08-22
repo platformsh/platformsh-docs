@@ -107,7 +107,7 @@ if you estimate your [optimal request memory](#1-estimate-the-optimal-request-me
 and your reserved memory to be 80 MB, 
 you can use:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 runtime:
     sizing_hints:
         request_memory: 110

@@ -23,7 +23,7 @@ This allows you to preview exactly what your site would look like if you merged 
 
 On {{< vendor/name >}}, a **project** is linked to a Git repository and is composed of one or more **apps**.
 An app is a directory in your Git repository with a specific {{< vendor/name >}} configuration
-and dedicated HTTP endpoints (via the `{{< vendor/configfile "app" >}}` file).
+and dedicated HTTP endpoints (via the `.platform.app.yaml` file).
 
 Projects are deployed in **environments**.
 An environment is a standalone copy of your live app which can be used for testing,
@@ -36,13 +36,13 @@ Any other branch can be deployed as a staging or development cluster.
 There are three types of containers within your cluster,
 all configured by files stored alongside your code:
 
-- The [*router*](../define-routes/_index.md), configured in `{{< vendor/configfile "routes" >}}`,
+- The [*router*](../define-routes/_index.md), configured in `.platform/routes.yaml`,
   is a single Nginx process responsible for mapping incoming requests to an app container,
   and to optionally provide HTTP caching.
 
-- One or more [*apps*](../create-apps/_index.md), configured via `{{< vendor/configfile "app" >}}` files, holding the code of your project.
+- One or more [*apps*](../create-apps/_index.md), configured via `.platform.app.yaml` files, holding the code of your project.
 
-- Some optional [*services*](../add-services/_index.md), configured in `{{< vendor/configfile "services" >}}`,
+- Some optional [*services*](../add-services/_index.md), configured in `.platform/services.yaml`,
   like MySQL/MariaDB, Elasticsearch, Redis, or RabbitMQ.
   They come as optimized pre-built images.
 
@@ -64,7 +64,7 @@ you need a `post-deploy` hook to successfully build and deploy your app.
 ### How your app is built
 
 During the [build step](../overview/build-deploy.md#build-steps),
-dependencies specified in `{{< vendor/configfile "app" >}}` are installed on application containers.
+dependencies specified in `.platform.app.yaml` are installed on application containers.
 
 You can also customize the build step by providing a [`build` hook](../create-apps/hooks/hooks-comparison.md#build-hook) composed of one or more shell commands
 that help create your production codebase.

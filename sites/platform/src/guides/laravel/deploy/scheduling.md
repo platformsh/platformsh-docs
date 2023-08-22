@@ -10,7 +10,7 @@ Laravel offers a very convenient and flexible way of scheduling tasks. A large s
 Once the scheduled tasks are defined, they need to be effectively executed at the right time and pace.
 The recommended way is a cron configuration entry running the `artisan schedule:run` command.
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 crons:
     # Run Laravel's scheduler every 5 minutes, which is as often as crons can run on Professional plans.
     scheduler:
@@ -25,7 +25,7 @@ This [blog post](https://platform.sh/blog/of-cicadas-and-cron-jobs/) may help yo
 You could also [configure a worker](../../../create-apps/workers.md) that relies on `artisan schedule:work`.
 To invoke the scheduler every minute, run [the following command](https://laravel.com/docs/scheduling#running-the-scheduler-locally):
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 workers:
    queue:
        size: S

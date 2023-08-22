@@ -32,14 +32,14 @@ Once you have it configured, add the following configuration to get it running o
 
 1.  Specify one of the [supported versions](#supported-versions):
 
-    {{< readFile file="/registry/images/examples/full/python.app.yaml" highlight="yaml" configFile="app" >}}
+    {{< readFile file="/registry/images/examples/full/python.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 2.  Install the requirements for your app.
     {{% pipenv %}}
 
 3.  Define the command to start your web server:
 
-    ```yaml {configFile="app"}
+    ```yaml {location=".platform.app.yaml"}
     web:
         # Start your app with the configuration you define
         # You can replace the file location with your location
@@ -57,11 +57,11 @@ Follow these steps to get your server started.
 
 1.  Specify one of the [supported versions](#supported-versions):
 
-    {{< readFile file="/registry/images/examples/full/python.app.yaml" highlight="yaml" configFile="app" >}}
+    {{< readFile file="/registry/images/examples/full/python.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 2.  Define the conditions for your web server:
 
-    ```yaml {configFile="app"}
+    ```yaml {location=".platform.app.yaml"}
     web:
         upstream:
             # Send requests to the app server through a unix socket
@@ -119,7 +119,7 @@ see how to [manage dependencies](./dependencies.md).
 To add global dependencies (packages available as commands),
 add them to the `dependencies` in your [app configuration](../../create-apps/app-reference.md#dependencies):
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 dependencies:
     python3:
         {{< variable "PACKAGE_NAME" >}}: {{< variable "PACKAGE_VERSION" >}}

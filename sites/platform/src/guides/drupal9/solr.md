@@ -43,7 +43,7 @@ Configure the Solr server to have a single core (`maincore`) with the default co
 (This default isn't suitable for production, but enables connections.)
 And define a single endpoint (`main`) that connects to this core.
 
-```yaml {configFile="services"}
+```yaml {location=".platform/services.yaml"}
 searchsolr:
     type: solr:8.6
     disk: 1024
@@ -59,7 +59,7 @@ searchsolr:
 
 Use the `main` endpoint to define the relationship.
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 relationships:
     solrsearch: "searchsolr:main"
 ```
@@ -109,7 +109,7 @@ $platformsh->registerFormatter('drupal-solr', function($solr) {
  ];
 });
 
-// Update these values to the relationship name (from {{< vendor/configfile "app" >}})
+// Update these values to the relationship name (from .platform.app.yaml)
 // and the machine name of the server from your Drupal configuration.
 $relationship_name = 'solrsearch';
 $solr_server_name = 'default_solr_server';
@@ -189,9 +189,9 @@ Its default value doesn't work, and it isn't required for Solr to operate.
 (The server already knows its installation directory.)
 
 Finally, move that directory to `.platform/`, and update the `maincore.conf_dir` to point to it.
-The `{{< vendor/configfile "services" >}}` entry should now look approximately like this:
+The `services.yaml` entry should now look approximately like this:
 
-```yaml {configFile="services"}
+```yaml {location=".platform/services.yaml"}
 searchsolr:
     type: solr:8.6
     disk: 1024
@@ -204,7 +204,7 @@ searchsolr:
                 core: maincore
 ```
 
-Add the new directory and updated `{{< vendor/configfile "services" >}}` to Git, commit, and push.
+Add the new directory and updated `services.yaml` to Git, commit, and push.
 
 {{< note >}}
 If you change your Solr configuration in Drupal, say to change the Solr field configuration, you may need to regenerate your configuration.

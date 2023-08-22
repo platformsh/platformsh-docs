@@ -130,7 +130,7 @@ You can configure additional [virtual hosts](https://www.rabbitmq.com/vhosts.htm
 which can be useful for separating resources, such as exchanges, queues, and bindings, into their own namespaces.
 To create virtual hosts, add them to your configuration as in the following example:
 
-```yaml {configFile="services"}
+```yaml {location=".platform/services.yaml"}
 rabbitmq:
     type: rabbitmq:3.11
     disk: 512

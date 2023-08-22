@@ -1,7 +1,7 @@
 {{ $name := .Get "name" }}
-## Define routes
+## Define routes in `.platform/routes.yaml`
 
-All HTTP requests sent to your app are controlled through the routing and caching you define in a `{{ partial "vendor/configfile" (dict "context" . "config" "routes") }}` file.
+All HTTP requests sent to your app are controlled through the routing and caching you define in a `routes.yaml` file.
 
 The two most important options are the main route and its caching rules.
 A route can have a placeholder of `{default}`,
@@ -20,10 +20,10 @@ You can also set up routes as [HTTP redirects]({{ relref . "/define-routes/redir
 In the following example, all requests to `www.{default}` are redirected to the equivalent URL without `www`.
 HTTP requests are automatically redirected to HTTPS.
 
-If you don't include a `{{ partial "vendor/configfile" (dict "context" . "config" "routes") }}` file, a single default route is used.
+If you don't include a `routes.yaml` file, a single default route is used.
 This is equivalent to the following:
 
-```yaml {configFile="routes"}
+``` {location=".platform/routes.yaml"}
 https://{default}/:
   type: upstream
   upstream: <APP_NAME>:http
@@ -33,6 +33,6 @@ Where `<APP_NAME>` is the `name` you've defined in your [app configuration](#con
 
 The following example presents a complete definition of a main route for a {{ $name }} app:
 
-```bash {configFile="routes"}
+```bash {location=".platform/routes.yaml"}
 {{ readFile ( printf "static/files/fetch/routesyaml/%s" (.Get "template" ) ) }}
 ```

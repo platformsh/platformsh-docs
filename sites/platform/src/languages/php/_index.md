@@ -31,7 +31,7 @@ Configure your app to use PHP on {{< vendor/name >}}.
 Choose a [supported version](#supported-versions)
 and add it to your [app configuration](../../create-apps/_index.md):
 
-{{< readFile file="registry/images/examples/full/php.app.yaml" highlight="yaml" configFile="app" >}}
+{{< readFile file="registry/images/examples/full/php.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 ### 2. Serve your app
 
@@ -62,7 +62,7 @@ Adjust the `locations` block to fit your needs.
 In the following example, all requests made to your site's root (`/`) are sent to the `public` directory
 and nonexistent files are handled by `app.php`:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     locations:
         '/':
@@ -77,7 +77,7 @@ To have more control, you can define rules to specify which files you want to al
 
 A complete basic app configuration looks like the following:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 name: 'app'
 
 type: 'php:8.2'
@@ -102,7 +102,7 @@ composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimi
 
 To use Composer 2.x on your project, either use PHP 8.2+ or, in your app configuration, add the following [dependency](../../create-apps/app-reference.md#dependencies):
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 dependencies:
     php:
         composer/composer: '^2'
@@ -124,7 +124,7 @@ or interact with Composer itself through [its environment variables](https://get
 You can remove the default build flavor and run your own commands for complete control over your build.
 Set the build flavor to `none` and add the commands you need to your `build` hook, as in the following example:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 build:
     flavor: none
 
@@ -149,7 +149,7 @@ To install from an alternative repository:
 
 1. Set an explicit `require` block:
 
-   ```yaml {configFile="app"}
+   ```yaml {location=".platform.app.yaml"}
    dependencies:
        php:
            require:
@@ -159,7 +159,7 @@ To install from an alternative repository:
    This is equivalent to `composer require platform/client 2.x-dev`.
 2. Add the repository to use:
 
-   ```yaml {configFile="app"}
+   ```yaml {location=".platform.app.yaml"}
            repositories:
                - type: vcs
                    url: "git@github.com:platformsh/platformsh-client-php.git"
@@ -170,7 +170,7 @@ That installs `platformsh/client` from the specified repository URL as a global 
 For example, to install Composer 2 and the `platform/client 2.x-dev` library from a custom repository,
 use the following:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 dependencies:
     php:
         composer/composer: '^2'
@@ -381,7 +381,7 @@ If you're sure a function isn't needed in your app, you can disable it.
 
 For example, to disable `pcntl_exec` and `pcntl_fork`, add the following to your [app configuration](../../create-apps/_index.md):
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 variables:
     php:
         disable_functions: "pcntl_exec,pcntl_fork"
@@ -437,7 +437,7 @@ title=Run a custom script
 1. Add your script in a PHP file.
 2. Specify an alternative `start` command by adapting the following:
 
-   ```yaml {configFile="app"}
+   ```yaml {location=".platform.app.yaml"}
    web:
         commands:
             start: /usr/bin/start-php-app {{< variable "PATH_TO_APP" >}}
@@ -455,7 +455,7 @@ title=Run a custom web server
 
 2.  Specify an alternative `start` command by adapting the following:
 
-    ```yaml {configFile="app"}
+    ```yaml {location=".platform.app.yaml"}
     web:
         commands:
             start: /usr/bin/start-php-app {{< variable "PATH_TO_APP" >}}
@@ -465,7 +465,7 @@ title=Run a custom web server
 
 3.  Configure the container to listen on a TCP socket:
 
-    ```yaml {configFile="app"}
+    ```yaml {location=".platform.app.yaml"}
     web:
         upstream:
             socket_family: tcp
@@ -479,7 +479,7 @@ title=Run a custom web server
 
 4.  Optional: Override redirects to let the custom web server handle them:
 
-    ```yaml {configFile="app"}
+    ```yaml {location=".platform.app.yaml"}
     locations:
         "/":
             passthru: true
@@ -499,7 +499,7 @@ To execute runtime-specific tasks (such as clearing cache) before your app start
 
 2.  Specify an alternative `start` command by adapting the following:
 
-    ```yaml {configFile="app"}
+    ```yaml {location=".platform.app.yaml"}
     web:
         commands:
             start: bash {{< variable "PATH_TO_SCRIPT" >}} && /usr/bin/start-php-app {{< variable "PATH_TO_APP" >}}
@@ -530,7 +530,7 @@ To leverage FFIs, follow these steps:
 
 2.  Enable the FFI extension:
 
-    ```yaml {configFile="app"}
+    ```yaml {location=".platform.app.yaml"}
     runtime:
        extensions:
             - ffi
@@ -542,7 +542,7 @@ To leverage FFIs, follow these steps:
 4.  If you are running FFIs from the command line,
     enable the preloader by adding the following configuration:
 
-    ```yaml {configFile="app"}
+    ```yaml {location=".platform.app.yaml"}
     variables:
         php:
             opcache.enable_cli: true

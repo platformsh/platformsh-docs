@@ -20,7 +20,7 @@ You need:
 ## 1. Define a source operation to update your dependencies
 
 To facilitate updating your dependencies in your project,
-define a source operation in your `{{< vendor/configfile "app" >}}` file
+define a source operation in your `.platform.app.yaml` file
 depending on your dependency manager:
 
 <!--vale off -->
@@ -177,7 +177,7 @@ Make sure you carefully check your [user access on this project](../administrati
 
 2. Add a build hook to your app configuration to install the CLI as part of the build process:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 hooks:
     build: |
         set -e
@@ -191,7 +191,7 @@ hooks:
 3. Then, to configure a cron job to automatically update your dependencies once a day,
    use a configuration similar to the following:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 crons:
     update:
         # Run the code below every day at midnight.

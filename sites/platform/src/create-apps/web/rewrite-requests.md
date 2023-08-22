@@ -12,7 +12,7 @@ In such a case, you might want requests to `/shoes/great-shoe/` to be served
 as if they were requests to `/?category=shoes&product=great-shoe`.
 If so, add a [rule](../app-reference.md#rules) similar to the following:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     locations:
         '/':
@@ -25,7 +25,7 @@ web:
 Or you might organize your images by file type, but don't want to expose the organization externally.
 You could rewrite requests to do that behind the scenes:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 web:
     locations:
         '/':

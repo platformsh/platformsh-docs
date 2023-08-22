@@ -28,7 +28,7 @@ Repeat these two steps for every environment you want to monitor, making sure yo
 
 ## Enable the New Relic extension
 
-Enable the New Relic extension in your `{{< vendor/configfile "app" >}}` as follows:
+Enable the New Relic extension in your `.platform.app.yaml` as follows:
 
 ```yaml
 runtime:
@@ -39,7 +39,7 @@ runtime:
 Push the changes to your {{< vendor/name >}} environment to enable New Relic as follows:
 
 ```bash
-git add {{< vendor/configfile "app" >}}
+git add .platform.app.yaml
 git commit -m "Enable New Relic."
 git push
 ```

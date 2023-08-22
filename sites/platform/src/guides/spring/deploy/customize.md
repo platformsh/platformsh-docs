@@ -30,13 +30,13 @@ compile group: 'sh.platform', name: 'config', version: '2.2.2'
 
 ## `.environment`
 
-The `{{< vendor/configfile "app" >}}` file in the [previous step](./configure.md#configure-apps-in-platformappyaml)
+The `.platform.app.yaml` file in the [previous step](./configure.md#configure-apps-in-platformappyaml)
 has been pulled directly from the [Spring template](https://github.com/platformsh-templates/spring-mvc-maven-mongodb/blob/master/.platform.app.yaml).
 It is sufficient to deploy Spring on its own, but since [Spring Config](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config.typesafe-configuration-properties.relaxed-binding.environment-variables)
 makes it possible to overwrite configurations without impacting the application itself,
 you might elect to rely more heavily on environment variables in its place.
 
-Consider this simplified `{{< vendor/configfile "app" >}}` file:
+Consider this simplified `.platform.app.yaml` file:
 
 ```yaml
 name: app

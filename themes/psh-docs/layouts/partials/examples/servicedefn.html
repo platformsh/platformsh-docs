@@ -21,6 +21,6 @@
   {{ $l5 = printf "\n    configuration:\n        %s" . }}
 {{ end }}
 
-```yaml {configFile="services"}
+```yaml {location=".platform/services.yaml"}
 {{ printf "%s\n%s%s%s%s" $l1 $l2 $l3 $l4 $l5 | safeHTML }}
 ```

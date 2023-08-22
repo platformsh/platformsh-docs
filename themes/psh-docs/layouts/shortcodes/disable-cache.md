@@ -6,7 +6,7 @@ avoid using {{ .Get "CDN" }} with [HTTP caching](/define-routes/cache.md).
 For routes where {{ .Get "CDN" }} is used, 
 disable HTTP caching using the following configuration:
 
-```yaml {configFile="routes"}
+```yaml {location=".platform/routes.yaml"}
 https://{default}/:
     type: upstream
     ...

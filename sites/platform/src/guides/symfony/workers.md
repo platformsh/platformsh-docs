@@ -11,7 +11,7 @@ You can implement workers in Symfony smoothly thanks to the [Messenger component
 
 To deploy a worker, add an entry under the ``workers`` section [in your app configuration](../../create-apps/_index.md):
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 workers:
     mails:
         commands:

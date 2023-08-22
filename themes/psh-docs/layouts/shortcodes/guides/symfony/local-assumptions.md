@@ -10,7 +10,7 @@ that has production data in a [PostgreSQL database]({{ $postgresqlGuide }}) and 
 
 It's assumed that your project has the following service definitions:
 
-```yaml {configFile="services"}
+```yaml {location=".platform/services.yaml"}
 database:
    type: postgresql:14
    disk: 1024
@@ -24,7 +24,7 @@ cache:
 
 This is assumed to have the following relationship definitions:
 
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 relationships:
    database: "database:postgresql"
    rediscache: "cache:redis"

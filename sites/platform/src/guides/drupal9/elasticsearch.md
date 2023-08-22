@@ -51,7 +51,7 @@ if (!$platformsh->inRuntime()) {
 ```php
 <?php
 
-// Update these values to the relationship name (from {{< vendor/configfile "app" >}})
+// Update these values to the relationship name (from .platform.app.yaml)
 // and the machine name of the server from your Drupal configuration.
 $relationship_name = 'essearch';
 $es_cluster_name = 'YOUR_CLUSTER_HERE';

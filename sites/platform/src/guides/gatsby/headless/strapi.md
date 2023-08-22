@@ -11,11 +11,11 @@ description: |
 
 {{% guides/gatsby/headless-project name="Strapi" %}}
 
-### Service configuration
+### `.platform/services.yaml`
 
 {{% guides/gatsby/headless-services template="gatsby-strapi" name="Strapi" %}}
 
-### Routes configuration
+### `.platform/routes.yaml`
 
 {{% guides/gatsby/headless-routes template="gatsby-strapi" name="Strapi" %}}
 
@@ -71,7 +71,7 @@ After you have deployed, you need to set up Strapi's Admin Panel and some initia
 
 With Gatsby now deployed and pulling content from a backend Strapi application, there are a few things you may wish to change about your project going forward.
 
-### Shared application configuration
+### `applications.yaml`
 
 {{% guides/gatsby/headless-applicationsyaml name="Strapi" %}}
 
