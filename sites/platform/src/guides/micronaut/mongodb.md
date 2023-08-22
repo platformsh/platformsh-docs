@@ -1,5 +1,5 @@
 ---
-title: "How to Deploy Micronaut on Platform.sh with MongoDB"
+title: "How to Deploy Micronaut on {{< vendor/name >}} with MongoDB"
 sidebarTitle: "MongoDB"
 weight: -110
 layout: single
@@ -7,10 +7,10 @@ description: |
     Configure a Micronaut application with MongoDB.
 ---
 
-To activate MongoDB and then have it accessed by the Micronaut application already in Platform.sh, it is necessary to modify two files. 
+To activate MongoDB and then have it accessed by the Micronaut application already in {{< vendor/name >}}, it is necessary to modify two files. 
 
 {{< note >}}
-This guide only covers the *addition* of a MongoDB service configuration to an existing Micronaut project already configured to deploy on Platform.sh. Please see the [deployment guide](/guides/micronaut/deploy/_index.md) for more detailed instructions for setting up app containers and initial projects. 
+This guide only covers the *addition* of a MongoDB service configuration to an existing Micronaut project already configured to deploy on {{< vendor/name >}}. Please see the [deployment guide](/guides/micronaut/deploy/_index.md) for more detailed instructions for setting up app containers and initial projects. 
 {{< /note >}}
 
 ## 1. Add the MongoDB service
@@ -31,7 +31,7 @@ In your [app configuration](../../create-apps/app-reference.md), use the service
 
 ## 3. Export connection credentials to the environment
 
-Connection credentials for services are exposed to the application container through the `PLATFORM_RELATIONSHIPS` environment variable from the deploy hook onward. Since this variable is a base64 encoded JSON object of all of your project's services, you'll likely want a clean way to extract the information specific to the database into it's own environment variables that can be used by Micronaut. On Platform.sh, custom environment variables can be defined programmatically in a `.environment` file using `jq` to do just that:
+Connection credentials for services are exposed to the application container through the `PLATFORM_RELATIONSHIPS` environment variable from the deploy hook onward. Since this variable is a base64 encoded JSON object of all of your project's services, you'll likely want a clean way to extract the information specific to the database into it's own environment variables that can be used by Micronaut. On {{< vendor/name >}}, custom environment variables can be defined programmatically in a `.environment` file using `jq` to do just that:
 
 ```text
 export MONGO_PORT=`echo $PLATFORM_RELATIONSHIPS|base64 -d|json_pp|jq -r ".mongodb[0].port"`

@@ -7,7 +7,7 @@ keywords:
   - "services.yaml"
 ---
 
-Platform.sh includes many services, so you don't have to subscribe to external cache or search engine services.
+{{< vendor/name >}} includes many services, so you don't have to subscribe to external cache or search engine services.
 Because the services are included in your project, you can manage them through Git
 and they're backed up together with the rest of your project.
 
@@ -81,7 +81,7 @@ The following table presents the keys you can define for each service:
 
 Resources are distributed across all containers in a project from the total available from your [plan size](../administration/pricing/_index.md).
 
-By default, Platform.sh allocates CPU and memory resources to each container automatically.
+By default, {{< vendor/name >}} allocates CPU and memory resources to each container automatically.
 Some services are optimized for high CPU load, some for high memory load.
 If your plan is sufficiently large for bigger containers, you can increase the size of your service container.
 
@@ -150,7 +150,7 @@ You can connect through your app or by opening an SSH tunnel to access the servi
 title=In an app
 +++
 
-When connecting to a service from an app, you may want to use one of the Platform.sh [configuration readers](https://github.com/platformsh/?q=config+reader).
+When connecting to a service from an app, you may want to use one of the {{< vendor/name >}} [configuration readers](https://github.com/platformsh/?q=config+reader).
 These tools make it easier to get credentials inside your app.
 
 Alternatively, once a service is running and exposed as a relationship,

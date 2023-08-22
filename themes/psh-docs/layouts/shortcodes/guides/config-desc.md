@@ -1,5 +1,5 @@
 {{ $name := .Get "name" }}
-You now have a *project* running on Platform.sh.
+You now have a *project* running on {{ .Site.Params.vendor.name }} .
 In many ways, a project is just a collection of tools around a Git repository.
 Just like a Git repository, a project has branches, called *environments*.
 Each environment can then be activated.
@@ -24,7 +24,7 @@ You can configure these containers in three ways, each corresponding to a [YAML 
 Start by creating empty versions of each of these files in your repository:
 
 ```bash
-# Create empty Platform.sh configuration files
+# Create empty {{ .Site.Params.vendor.name }}  configuration files
 touch .platform.app.yaml && mkdir -p .platform && touch .platform/routes.yaml{{ if not (.Get "noService") }} && touch .platform/services.yaml{{ end }}
 ```
 
@@ -47,7 +47,7 @@ dependencies.
 
 ```bash
 symfony project:init
-git add . && git commit -m "Add Platform.sh configuration files"
+git add . && git commit -m "Add {{ .Site.Params.vendor.name }} configuration files"
 ```
 
 {{ end }}

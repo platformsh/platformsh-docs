@@ -8,7 +8,7 @@ Transferring data to and from [a {{% names/dedicated-gen-2 %}} cluster](../other
 
 ## Back up your files
 
-Platform.sh automatically creates backups of the Staging and Production environments of a {{% names/dedicated-gen-2 %}}  cluster every six hours.
+{{< vendor/name >}} automatically creates backups of the Staging and Production environments of a {{% names/dedicated-gen-2 %}}  cluster every six hours.
 These are only useful to fully restore an environment and are managed by the support team.
 
 You can make a manual local backup yourself by downloading data from your environment to your local system by running the following command:

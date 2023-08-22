@@ -714,11 +714,13 @@
     "runtime": false,
     "type": "opensearch",
     "versions": {
-      "deprecated": [],
-      "supported": [
-        "2",
+      "deprecated": [
         "1.2",
         "1.1"
+      ],
+      "supported": [
+        "2",
+        "1"
       ],
       "legacy": [
         "1.1"

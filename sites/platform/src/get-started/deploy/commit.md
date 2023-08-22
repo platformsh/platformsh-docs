@@ -1,7 +1,7 @@
 ---
 title: Git commit
 weight: -9
-description: Start getting your project into Platform.sh.
+description: Start getting your project into {{< vendor/name >}}.
 ---
 
 Once you have your project initialized, it's time to add the basics to get it deployed.
@@ -27,7 +27,7 @@ Commit your changes (to save your changes):
 
 ```bash
 git add .
-git commit -m "Add Platform.sh files"
+git commit -m "Add {{< vendor/name >}} files"
 ```
 
 Push your changes (to share your changes with everyone with access to your project/repository):

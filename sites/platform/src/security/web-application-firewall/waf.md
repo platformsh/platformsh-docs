@@ -1,15 +1,15 @@
 ---
-title: Platform.sh WAF
+title: "{{< vendor/name >}} WAF"
 description: Learn how the WAF included in Enterprise and Elite plans can help protect your site from distributed denial of service (DDoS) attacks.
 weight: 1
 banner: 
     type: tiered-feature
 ---
 
-Enterprise and Elite projects on Platform.sh come with a web application firewall (WAF) at no additional cost.
+Enterprise and Elite projects on {{< vendor/name >}} come with a web application firewall (WAF) at no additional cost.
 This WAF monitors requests to your app and blocks suspicious ones.
 
-All traffic to Platform.sh endpoints is also filtered
+All traffic to {{< vendor/name >}} endpoints is also filtered
 using a system that takes into account traffic patterns and abuse scores.
 
 ## CRLF injection prevention
@@ -80,7 +80,7 @@ the WAF implements additional rules to enforce the HTTP protocol.
 
 [RFC 3986](https://www.rfc-editor.org/rfc/rfc3986) defines the generic syntax for URIs.
 When the WAF detects a URI with incorrect syntax, the incoming connection is terminated.
-The request is then reconstructed on the internal Platform.sh network,
+The request is then reconstructed on the internal {{< vendor/name >}} network,
 enforcing the valid format in transit.
 
 ### File upload limit
@@ -123,12 +123,12 @@ This rule helps protect apps from [request smuggling](#request-smuggling).
 
 The WAF detects and blocks requests featuring both headers
 and forces requests to use [chunked transfer encoding](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Transfer-Encoding)
-only on the internal Platform.sh network.
+only on the internal {{< vendor/name >}} network.
 
 #### Missing or empty `host` headers
 
 As [routes are mapped](../../define-routes/_index.md) based on host names,
-the Platform.sh WAF blocks requests with an empty or absent `host` header.
+the {{< vendor/name >}} WAF blocks requests with an empty or absent `host` header.
 
 #### Other restricted HTTP headers
 
@@ -140,5 +140,5 @@ Slowloris DDoS attacks use partial HTTP requests to open connections between a s
 These connections are then kept open for as long as possible to overwhelm the web server.
 
 While Apache web servers are vulnerable to Slowloris attacks, Nginx servers aren't.
-Since Platform.sh router services use Nginx processes,
+Since {{< vendor/name >}} router services use Nginx processes,
 your projects are protected against such attacks.

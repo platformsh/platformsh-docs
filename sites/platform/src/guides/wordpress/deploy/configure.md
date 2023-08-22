@@ -1,9 +1,9 @@
 ---
-title: "Configure WordPress for Platform.sh"
+title: "Configure WordPress for {{< vendor/name >}}"
 sidebarTitle: "Configure"
 weight: -100
 description: |
-    Review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for WordPress.
+    Review the basics of what makes up a {{< vendor/name >}} project, including its three principle configuration files and how to define them for WordPress.
 ---
 
 {{% guides/config-desc name="WordPress" %}}

@@ -1,5 +1,5 @@
 ---
-title: "How to deploy Strapi with a Gatsby frontend on Platform.sh"
+title: "How to deploy Strapi with a Gatsby frontend on {{< vendor/name >}}"
 sidebarTitle: "Gatsby"
 description: |
   You can build out an API from scratch with Strapi and then connect its data to a frontend Gatsby app with `gatsby-source-strapi`.
@@ -7,7 +7,7 @@ description: |
 
 {{< guides/gatsby/headless-intro template="gatsby-strapi" name="Strapi" >}}
 
-## Shared Platform.sh configuration
+## Shared {{< vendor/name >}} configuration
 
 {{% guides/gatsby/headless-project name="Strapi" %}}
 

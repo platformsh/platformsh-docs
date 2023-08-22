@@ -92,7 +92,7 @@ These differences aren't present with [{{% names/dedicated-gen-3 %}} projects](.
 Older versions of languages and services eventually reach the end of their lives.
 This means they stop getting security and other updates and may have security vulnerabilities.
 
-When that happens, the versions in Platform.sh are deprecated.
+When that happens, the versions in {{< vendor/name >}} are deprecated.
 This means you can still use them in your project, but they aren't fully secure.
 It's also possible they'll stop working at some point.
 
@@ -106,7 +106,7 @@ Drush is a command-line shell and scripting interface for Drupal.
 
 Drush site aliases allow you to define short names
 that let you run Drush commands on specific local or remote Drupal installations.
-The Platform.sh CLI configures Drush aliases for you on your local environment
+The {{< vendor/name >}} CLI configures Drush aliases for you on your local environment
 (via `platform get` or `platform drush-aliases`).
 You can also configure them manually.
 
@@ -164,7 +164,7 @@ When you merge an environment, three things happen:
 
 A Platform as a Service is an end-to-end hosting solution
 that includes workflow tools, APIs, and other functionality above and beyond basic hosting.
-The best example is Platform.sh (although we're a little biased).
+The best example is {{< vendor/name >}}(although we're a little biased).
 
 ## Production plan
 

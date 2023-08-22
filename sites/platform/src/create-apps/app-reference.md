@@ -1,7 +1,7 @@
 ---
 title: "App reference"
 weight: 4
-description: See all of the options for controlling your apps and how they're built and deployed on Platform.sh.
+description: See all of the options for controlling your apps and how they're built and deployed on {{< vendor/name >}}.
 ---
 
 {{% description %}}
@@ -220,7 +220,7 @@ This command runs every time your app is restarted, regardless of whether or not
 Never "background" a start process using `&`.
 That's interpreted as the command terminating and the supervisor process starts a second copy,
 creating an infinite loop until the container crashes.
-Just run it as normal and allow the Platform.sh supervisor to manage it.
+Just run it as normal and allow the {{< vendor/name >}} supervisor to manage it.
 
 {{< /note >}}
 
@@ -259,8 +259,8 @@ Where to listen depends on your setting for `web.upstream.socket_family` (defaul
 
 | `socket_family` | Where to listen |
 | --------------- | --------------- |
-| `tcp`           | The port specified by the [`PORT` environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables) |
-| `unix`          | The Unix socket file specified by the [`SOCKET` environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables) |
+| `tcp`           | The port specified by the [`PORT` environment variable](../development/variables/use-variables.md#use-provided-variables) |
+| `unix`          | The Unix socket file specified by the [`SOCKET` environment variable](../development/variables/use-variables.md#use-provided-variables) |
 
 If your application isn't listening at the same place that the runtime is sending requests,
 you see `502 Bad Gateway` errors when you try to connect to your website.
@@ -384,7 +384,7 @@ access:
 
 ## Variables
 
-Platform.sh provides a number of ways to set [variables](../development/variables/_index.md).
+{{< vendor/name >}} provides a number of ways to set [variables](../development/variables/_index.md).
 Variables set in your app configuration have the lowest precedence,
 meaning they're overridden by any conflicting values provided elsewhere.
 
@@ -392,7 +392,7 @@ All variables set in your app configuration must have a prefix.
 Some [prefixes have specific meanings](../development/variables/_index.md#variable-prefixes).
 
 Variables with the prefix `env` are available as a separate environment variable.
-All other variables are available in the [`$PLATFORM_VARIABLES` environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables).
+All other variables are available in the [`$PLATFORM_VARIABLES` environment variable](../development/variables/use-variables.md#use-provided-variables).
 
 The following example sets two variables:
 
@@ -611,7 +611,7 @@ if other hooks fail, the app is still deployed.
 #### Automated testing
 
 It’s preferable that you set up and run automated tests in a dedicated CI/CD tool.
-Relying on Platform.sh hooks for such tasks can prove difficult.
+Relying on {{< vendor/name >}} hooks for such tasks can prove difficult.
 
 During the `build` hook, you can halt the deployment on a test failure but the following limitations apply:
 

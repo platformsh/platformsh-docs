@@ -12,9 +12,9 @@ Available workarounds depend on your DNS provider.
  
 ## `CNAME` records
  
-Each site on Platform.sh is made up of a set of containers.
+Each site on {{< vendor/name >}} is made up of a set of containers.
 To map incoming requests to the appropriate container,
-Platform.sh runs routers in [each region](../../development/regions.md).
+{{< vendor/name >}} runs routers in [each region](../../development/regions.md).
 A router's IP address can change in two cases:
 - During an upgrade or maintenance operation, routers can be taken offline while changes are applied.
 - During a region upscale or downscale, routers can be added or removed.

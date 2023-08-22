@@ -7,17 +7,17 @@ description: Serve completely static sites
 Static site generators are a popular way to create fast sites.
 Because there's no need to wait for responses from servers, the sites may load faster.
 
-As an example, this documentation is built using a tool called Hugo and served by Platform.sh as a static site.
+As an example, this documentation is built using a tool called Hugo and served by {{< vendor/name >}} as a static site.
 You can see the [entire repository on GitHub](https://github.com/platformsh/platformsh-docs),
 including its [app configuration](https://github.com/platformsh/platformsh-docs/blob/main/docs/.platform.app.yaml).
 
-To learn how to serve your static site using Platform.sh,
+To learn how to serve your static site using {{< vendor/name >}},
 you can start with the required [minimal app configuration](#minimal-app-configuration) and build on it,
 or jump straight to an [example of a complete configuration](#complete-example-configuration).
 
 ## Minimal app configuration
 
-To successfully serve a static site using Platform.sh,
+To successfully serve a static site using {{< vendor/name >}},
 you need to set up a minimal app configuration similar to the following:
 
 ```yaml {location=".platform.app.yaml"}

@@ -24,8 +24,8 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 ## Supported versions
 
 Elasticsearch is now a premium service.
-This means that from version 7.11 onwards, you need to add Elasticsearch to your project at an additional cost.
-To do so, contact [Sales](https://platform.sh/contact/).
+This means that from version 7.11 onward, you need to add Elasticsearch to your project at an additional cost.
+To do so, contact {{< vendor/url "sales" "Sales" >}}.
 
 The following premium versions are supported:
 
@@ -216,7 +216,7 @@ There are two ways to do so.
 In your `services.yaml` file, change the version *and* name of your Elasticsearch service.
 Then update the name in the `.platform.app.yaml` relationships block.
 
-When you push that to Platform.sh, the old service is deleted and a new one with the new name is created with no data.
+When you push that to {{< vendor/name >}}, the old service is deleted and a new one with the new name is created with no data.
 You can then have your application reindex data as appropriate.
 
 This approach has the downsides of temporarily having an empty Elasticsearch instance,

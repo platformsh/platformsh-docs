@@ -7,7 +7,7 @@ banner:
         To share your feedback so we can improve it, add a comment to the [Rust feature card](https://next.platform.sh/c/221-rust).
 ---
 
-Platform.sh supports building and deploying applications written in Rust.
+{{< vendor/name >}} supports building and deploying applications written in Rust.
 
 ## Supported versions
 
@@ -19,7 +19,7 @@ Platform.sh supports building and deploying applications written in Rust.
 
 ## Dependencies
 
-The recommended way to handle Rust dependencies on Platform.sh is using Cargo.
+The recommended way to handle Rust dependencies on {{< vendor/name >}} is using Cargo.
 Commit a `Cargo.toml` and a `Cargo.lock` file in your repository
 so the system automatically downloads dependencies using Cargo.
 
@@ -66,9 +66,9 @@ web:
 
 Note that there is still an Nginx proxy server sitting in front of your application. If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Rust app unconditionally, as in the example above.
 
-## Platform.sh variables
+## Built-in variables
 
-Platform.sh exposes relationships and other configuration as [environment variables](../development/variables/_index.md).
+{{< vendor/name >}} exposes relationships and other configuration as [environment variables](../development/variables/_index.md).
 
 To get the `PORT` environment variable (the port on which your app is supposed to listen),
 use the following snippet:
@@ -92,7 +92,7 @@ use the following snippet:
 
 ## Complete example
 
-Here is a basic hello world app to illustrate how you can use Rust with Platform.sh. 
+Here is a basic hello world app to illustrate how you can use Rust with {{< vendor/name >}}. 
 It builds from a `hello.rs` file to serve a static `index.html`.
 Follow these steps:
 

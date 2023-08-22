@@ -4,7 +4,7 @@
 {{ end }}
 ## Next steps
 
-You can now use your local environment to develop changes for review on Platform.sh environments.
+You can now use your local environment to develop changes for review on {{ .Site.Params.vendor.name }} environments.
 The following examples show how you can take advantage of that.
 
 ### Onboard collaborators
@@ -15,7 +15,7 @@ You can merge this change into production.
 
 1.  Create a new environment called `local-config`.
 
-1.  To set up a local environment for a new Platform.sh environment, create an executable script.
+1.  To set up a local environment for a new {{ .Site.Params.vendor.name }} environment, create an executable script.
 
     ```bash
     touch init-local.sh && chmod +x init-local.sh

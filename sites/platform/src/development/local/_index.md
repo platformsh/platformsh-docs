@@ -9,14 +9,14 @@ layout: single
 To make changes to your app's code and test them without affecting your production environment, 
 set up a local development environment on your computer.
 
-For the most effective testing, you want your local environment to match your Platform.sh environments.
+For the most effective testing, you want your local environment to match your {{< vendor/name >}} environments.
 The best way to do this is to use a cross-platform tool based on Docker.
-This ensures the changes you make locally appear as they would on your Platform.sh environments.
+This ensures the changes you make locally appear as they would on your {{< vendor/name >}} environments.
 It also means you don't have to worry about configuring your machine with
 the various dependencies, certificates, and connections your app needs to run.
 
-The **recommended tool** for local development with Platform.sh is **[DDEV](./ddev.md)**.
-The integration with DDEV is maintained by Platform.sh to ensure it works smoothly.
+The **recommended tool** for local development with {{< vendor/name >}} is **[DDEV](./ddev.md)**.
+The integration with DDEV is maintained by {{< vendor/name >}} to ensure it works smoothly.
 Other Docker-based tools are also supported, such as [Docksal](./docksal.md) and [Lando](./lando.md).
 
 If you choose to use a Docker-based tool, follow the steps on its page.
@@ -27,13 +27,13 @@ Otherwise, follow these steps to run your app on your computer.
 
 You need to have:
 
-- A Platform.sh account:
+- A {{< vendor/name >}} account:
   new users can sign up for a [free trial account](https://auth.api.platform.sh/register)
 - A working project,
   either started from a [template](../../development/templates.md) 
-  or with your own code pushed to Platform.sh
+  or with your own code pushed to {{< vendor/name >}}
 - [Git](https://git-scm.com/downloads)
-- The [Platform.sh CLI](../../administration/cli/_index.md)
+- The [{{< vendor/name >}} CLI](../../administration/cli/_index.md)
 
 ## 1. Get your code
 
@@ -53,8 +53,8 @@ You can now access your code from the project directory on your computer.
 The CLI created a `.platform/local` directory that's excluded from Git. 
 It contains builds and local metadata about your project.
 
-You can now make changes to your project without pushing to Platform.sh each time to test them. 
-Instead, you can locally build your application using the Platform.sh CLI.
+You can now make changes to your project without pushing to {{< vendor/name >}} each time to test them. 
+Instead, you can locally build your application using the {{< vendor/name >}} CLI.
 
 Note that if your app contains services, you need to open an SSH tunnel to connect to them.
 For more information, see how to [connect services](../../add-services#2-connect-the-service).
@@ -64,7 +64,7 @@ For more information, see how to [connect services](../../add-services#2-connect
 If your app requires services to run, you have two options for developing locally:
 
 - [Tethered local development](./tethered.md) involves running your app on a local web server
-  but keeping all other services on Platform.sh and connecting to them over an SSH tunnel.
+  but keeping all other services on {{< vendor/name >}} and connecting to them over an SSH tunnel.
 - [Untethered local development](./untethered.md) involves running your entire site locally,
   including all services.
 

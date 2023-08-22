@@ -3,7 +3,7 @@ message: "Try to use meaningful text for links."
 link: "https://github.com/platformsh/platformsh-docs/blob/main/contributing/content-style.md#use-meaningful-link-text"
 level: warning
 nonword: true
-scope: link
+scope: raw
 tokens:
   - \b(?<!t)here\b
   - click here

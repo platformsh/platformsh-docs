@@ -4,7 +4,7 @@
 {{ end }}
 ## Next steps
 
-You can now use your local environment to develop changes for review on Platform.sh environments.
+You can now use your local environment to develop changes for review on {{ .Site.Params.vendor.name }} environments.
 The following examples show how you can take advantage of that.
 
 ### Onboard collaborators
@@ -18,7 +18,7 @@ You can merge this change into production.
     symfony branch local-config
     ```
 
-2.  Create an executable script to set up a local environment for a new Platform.sh environment.
+2.  Create an executable script to set up a local environment for a new {{ .Site.Params.vendor.name }} environment.
 
     ```bash
     touch init-local.sh && chmod +x init-local.sh

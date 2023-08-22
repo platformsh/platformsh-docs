@@ -11,7 +11,7 @@ When a custom domain is [set up on your production environment](../steps/_index.
 it can't be used for the other, non-production environments in your project.
 
 Therefore, by default and for each non-production environment,
-Platform.sh automatically replaces the custom production domain 
+{{< vendor/name >}} automatically replaces the custom production domain 
 with an automatically generated URL.
 
 If you don't want to use these default URLs,
@@ -40,7 +40,7 @@ and still access your production environment through `example.com`.
 If you have multiple custom domains on your production environment,
 when you create a custom non-production domain,
 you don't need to update your [routes configuration](../../define-routes/_index.md) either.
-Platform.sh automatically figures out the routing of your non-production environment
+{{< vendor/name >}} automatically figures out the routing of your non-production environment
 based on the following elements:
 
 - The custom production domains in your existing [routes configuration](../../define-routes/_index.md)
@@ -106,7 +106,7 @@ title=Using the CLI
    {{< note >}}
 
    Using the target of your production environment to configure your DNS provider is technically possible,
-   but Platform.sh recommends using the target of your non-production environment as a best practice.
+   but {{< vendor/name >}} recommends using the target of your non-production environment as a best practice.
 
    {{< /note >}}
 

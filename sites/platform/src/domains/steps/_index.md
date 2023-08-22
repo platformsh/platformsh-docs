@@ -22,7 +22,7 @@ You need:
 - If you are on a development plan, you need to [upgrade your tier to a production plan](#1-change-your-plan-to-a-production-plan).
 
 If you are planning to use several subdomains of the same domain on different projects,
-see how to [manage multiple subdomains](/domains/steps/subdomains.md) *before* you add your domain to Platform.sh.
+see how to [manage multiple subdomains](/domains/steps/subdomains.md) *before* you add your domain to {{< vendor/name >}}.
 
 ## 1. Change your plan to a production plan
 
@@ -66,7 +66,7 @@ You can find [more information on plan tiers](https://platform.sh/pricing).
 You want to point your DNS record to the automatically generated URL.
 Your domain needs to point to that target for your site to go live.
 
-For Dedicated plans, get the target for your project from your Platform.sh contact.
+For Dedicated plans, get the target for your project from your {{< vendor/name >}} contact.
 
 {{< codetabs >}}
 
@@ -143,9 +143,9 @@ To configure your CDN and your domain name to point to your project:
    The address or `CNAME` record to use varies by CDN provider.
    Refer to the official documentation of your DNS provider and CDN provider.
 5. Check that redirects and subdomains are set correctly for the [TLS certificate ownership verification](../troubleshoot.md#ownership-verification).
-6. [Disable the router cache](../cdn/_index.md#disable-the-platformsh-router-cache).
+6. [Disable the router cache](../cdn/_index.md#disable-the-router-cache).
 7. Optional: For increased security and to prevent the CDN from being bypassed,
-   you can force all traffic to [go through the CDN](../cdn/_index.md#prevent-direct-access-to-your-platformsh-server).
+   you can force all traffic to [go through the CDN](../cdn/_index.md#prevent-direct-access-to-your-server).
 8. Optional: If you have multiple domains you want to be served by the same app, add a `CNAME` record for each of them.
    That includes the `www` subdomain if you are using it in your [routes configuration](../../define-routes/_index.md).
 
@@ -155,7 +155,7 @@ See how you can further [configure your CDN](../cdn/_index.md).
 
 {{< /codetabs >}}
 
-## 4. Set your domain in Platform.sh
+## 4. Set your domain
 
 Add a single domain to your project:
 

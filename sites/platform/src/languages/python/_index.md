@@ -1,10 +1,10 @@
 ---
 title: "Python"
-description: Get started creating Python apps on Platform.sh.
+description: Get started creating Python apps on {{< vendor/name >}}.
 ---
 
 Python is a general purpose scripting language often used in web development.
-You can deploy Python apps on Platform.sh using a server or a project such as [uWSGI](https://uwsgi-docs.readthedocs.io/en/latest/).
+You can deploy Python apps on {{< vendor/name >}} using a server or a project such as [uWSGI](https://uwsgi-docs.readthedocs.io/en/latest/).
 
 ## Supported versions
 
@@ -28,7 +28,7 @@ You are strongly recommended to upgrade to a supported version.
 ### Run your own server
 
 You can define any server to handle requests.
-Once you have it configured, add the following configuration to get it running on Platform.sh:
+Once you have it configured, add the following configuration to get it running on {{< vendor/name >}}:
 
 1.  Specify one of the [supported versions](#supported-versions):
 
@@ -107,7 +107,7 @@ Follow these steps to get your server started.
     def application(env, start_response):
 
         start_response('200 OK', [('Content-Type', 'text/html')])
-        return [b"Hello world from Platform.sh"]
+        return [b"Hello world from {{< vendor/name >}}"]
     ```
 
 ## Package management
@@ -228,7 +228,7 @@ see how to [sanitize databases](../../development/sanitize-db/_index.md).
 
 ## Frameworks
 
-All major Python web frameworks can be deployed on Platform.sh.
+All major Python web frameworks can be deployed on {{< vendor/name >}}.
 See dedicated guides for deploying and working with them:
 
 - [Django](../../guides/django/_index.md)
