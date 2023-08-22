@@ -233,7 +233,7 @@ workers:
 ```
 
 There's a lot going on here, but it's all reasonably straightforward.
-The configuration in `.{{< vendor/configfile "app" >}}` takes a single Python 3.7 code base from your repository,
+The configuration in `{{< vendor/configfile "app" >}}` takes a single Python 3.7 code base from your repository,
 downloads all dependencies in `requirements.txt`, and then installs Gunicorn.
 That artifact (your code plus the downloaded dependencies) is deployed as three separate container instances, all running Python 3.7.
 
