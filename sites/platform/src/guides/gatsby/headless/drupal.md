@@ -11,7 +11,7 @@ description: |
 
 {{% guides/gatsby/headless-project name="Drupal" %}}
 
-### Service configurations
+### Service configuration
 
 {{% guides/gatsby/headless-services template="gatsby-drupal" name="Drupal" %}}
 
