@@ -182,5 +182,6 @@ They don't affect the automated backups taken as part of the schedule.
 ## Physical storage location
 
 Backups are stored as binary large objects separate from your environments.
-This storage is replicated over multiple data centers in different locations.
+This storage is replicated over multiple data centers in different locations
+[within the region your project is hosted in](https://platform.sh/trust-center/security/data-security/).
 This means that in the rare event a data center becomes unavailable, your backups are still available.
