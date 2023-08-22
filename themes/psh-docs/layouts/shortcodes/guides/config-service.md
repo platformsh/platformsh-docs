@@ -1,7 +1,7 @@
 {{ $name := .Get "name" }}
-## Add services in `.platform/services.yaml`
+## Add services in `{{ partial "vendor/configfile" (dict "context" . "config" "services") }}`
 
-You can add the managed services you need for you app to run in the  `services.yaml` file.
+You can add the managed services you need for you app to run in the  `{{ partial "vendor/configfile" (dict "context" . "config" "services") }}` file.
 You pick the major version of the service and security and minor updates are applied automatically,
 so you always get the newest version when you deploy.
 You should always try any upgrades on a development branch before pushing to production.
@@ -9,7 +9,7 @@ You should always try any upgrades on a development branch before pushing to pro
 {{ .Inner | .Page.RenderString }}
 
 {{ if .Get "noService" }}
-{{ $name }} doesn't require services to deploy, so you don't need a `services.yaml` file for now.{{ end }}
+{{ $name }} doesn't require services to deploy, so you don't need a `{{ partial "vendor/configfile" (dict "context" . "config" "services") }}` file for now.{{ end }}
 You can [add other services](/add-services/_index.md) if desired,
 such as [Solr](/add-services/solr.md) or [Elasticsearch](/add-services/elasticsearch.md).
 You need to configure {{ $name }} to use those services once they're enabled.

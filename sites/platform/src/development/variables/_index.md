@@ -23,10 +23,10 @@ The following table defines what types of variables are available to you:
 | [Application](./set-variables.md#set-variables-in-your-app) | Application | Application | 4          | Yes   | Yes      | Non-secret values that are the same across all environments |
 | [Project](./set-variables.md#create-project-variables)               | User        | Project     | 3          | Yes   | Yes      | Secret values that are the same across all environments, such as database credentials |
 | [Environment](./set-variables.md#create-environment-specific-variables)       | User        | Environment | 2          | Some  | Yes      | Values that vary by environment, such as which database to connect to or which payment API keys to use |
-| [Platform.sh](./use-variables.md#use-platformsh-provided-variables)  | Pre-defined | Environment | 1          | Some  | Yes      | For information about your Platform.sh project |
+| [{{< vendor/name >}}](./use-variables.md#use-provided-variables)  | Pre-defined | Environment | 1          | Some  | Yes      | For information about your {{< vendor/name >}} project |
 
 If there are conflicts between variables with the same name, variables [take precedence](#overrides) from 1 down.
-So Platform.sh-provided values (1) override environment variables (2), which override project variables (3),
+So {{< vendor/name >}}-provided values (1) override environment variables (2), which override project variables (3),
 which override application-provided variables (4).
 
 All of the variables can also be [overridden via a script](./set-variables.md#set-variables-via-script).
@@ -51,7 +51,7 @@ Other configurations should vary between environment types.
 For example:
 
 - Service configuration for databases and such.
-  This information be read from the Platform.sh-provided [`PLATFORM_RELATIONSHIPS` variable](./use-variables.md#use-platformsh-provided-variables).
+  This information be read from the {{< vendor/name >}}-provided [`PLATFORM_RELATIONSHIPS` variable](./use-variables.md#use-provided-variables).
   It varies by environment automatically.
 - Mode toggles such as enabling `debug` mode, disabling certain caches, and displaying more verbose errors.
   This information might vary by environment type and should be set on the [environment level](./set-variables.md#create-environment-specific-variables).
@@ -141,7 +141,7 @@ and as **Overridden** when there is a conflict and the parent environment's valu
 ## Variable prefixes
 
 Certain variable name prefixes have special meanings.
-Some are defined by Platform.sh and apply automatically.
+Some are defined by {{< vendor/name >}} and apply automatically.
 Others are just available as a convention for your application code to follow.
 
 ### Top-level environment variables
@@ -178,7 +178,7 @@ platform variable:create --level environment --prefix php --name memory_limit --
 To use variables across environments, set them in your [app configuration](../../create-apps/_index.md).
 For example, to change the PHP memory limit for all environments, use the following configuration:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 variables:
     php:
         memory_limit: "256M"
@@ -213,7 +213,7 @@ platform variable:create --name "drupalsettings:system.site:name" --value "{{< v
 The same logic applies for other configuration options,
 such as the global `$config` array, which uses the variable prefix `drupalconfig`.
 
-You need to name your Platform.sh variables to match the ones used in your script.
-Make sure that the Platform.sh variables start with a string present in your `switch` statement.
+You need to name your {{< vendor/name >}} variables to match the ones used in your script.
+Make sure that the {{< vendor/name >}} variables start with a string present in your `switch` statement.
 
 You can apply similar logic for [other frameworks and languages](../../development/variables/use-variables.md#access-variables-in-your-app).

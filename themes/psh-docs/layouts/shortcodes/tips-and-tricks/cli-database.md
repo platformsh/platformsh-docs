@@ -1,5 +1,5 @@
 {{ $cliCommand := "platform " }}
-{{ $cliName := "Platform.sh CLI" }}
+{{ $cliName := ".Site.Params.vendor.name CLI" }}
 {{ if eq ( .Get "framework" ) "Symfony" }}
   {{ $cliCommand = "symfony cloud:" }}
   {{ $cliName = "Symfony CLI" }}

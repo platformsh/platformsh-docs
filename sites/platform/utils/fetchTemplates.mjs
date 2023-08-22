@@ -109,7 +109,10 @@ const getTemplatesFullInfo = async (templateInfo) => {
     repo: ghCommon.templateBuildRepoName,
     path: `${ghCommon.pathToTemplatesInTB}/${templateInfo.name}/.platform.template.yaml`,
     headers: ghCommon.ghHeaders,
-  })
+  }).catch(err => {
+    console.log(`Unable to retrieve information for ${templateInfo.name}. Response: `, err.status)
+    return {}
+  });
 
   if(200 === templateData.status) {
     let templateContentDecoded = ghCommon.decodeBase64Contents(templateData.data.content)

@@ -2,7 +2,7 @@
 title: Manage Python versions in non-Python containers
 sidebarTitle: Python in non-Python containers
 weight: 0
-description: See how to manage different Python versions in your Platform.sh containers.
+description: See how to manage different Python versions in your {{< vendor/name >}} containers.
 ---
 
 You may need to use a specific version of Python that isn't available in an app container for a different language.
@@ -13,7 +13,7 @@ to install the specific version you want to use.
 
 1.  Add your target Python version as a [variable](../../development/variables/_index.md):
 
-    ```yaml {location=".platform.app.yaml"}
+    ```yaml {configFile="app"}
         variables:
             env:
                 # Update for your desired Python version.
@@ -22,7 +22,7 @@ to install the specific version you want to use.
 
 2.  Add Pyenv in a [`build` hook](../../create-apps/hooks/hooks-comparison.md#build-hook):
 
-    ```yaml {location=".platform.app.yaml"}
+    ```yaml {configFile="app"}
     hooks:
         build: |
             # Exit the hook on any failure
@@ -60,7 +60,7 @@ If you want this Python version to be available in the runtime environment, foll
 
 1.  Copy Pyenv to your runtime environment at the end of your build hook:
 
-    ```yaml {location=".platform.app.yaml"}
+    ```yaml {configFile="app"}
     hooks:
         build: |
             ...

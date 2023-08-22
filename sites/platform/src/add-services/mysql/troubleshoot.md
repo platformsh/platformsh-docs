@@ -57,7 +57,7 @@ Errors such as `PDO Exception 'MySQL server has gone away'` are usually the resu
 Get an estimate of current disk usage using the CLI command `platform db:size`.
 Just keep in mind it's an estimate and not exact.
 
-Allocated more space to the service in [.platform/services.yaml](../_index.md).
+Allocated more space to the service in [`{{< vendor/configfile "services" >}}`](../_index.md).
 As table space can grow rapidly,
 it's usually advisable to make your database mount size twice the size reported by the `db:size` command.
 
@@ -82,4 +82,4 @@ The best approach is to wrap your connection logic in code that detects a "serve
 and tries to re-establish the connection.
 
 Alternatively, if your worker is idle for too long it can self-terminate.
-Platform.sh automatically restarts the worker process and the new process can establish a new database connection.
+{{< vendor/name >}} automatically restarts the worker process and the new process can establish a new database connection.

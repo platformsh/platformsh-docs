@@ -3,10 +3,10 @@ title: "Blackfire"
 sidebarTitle: Blackfire
 weight: 1
 sectionBefore: In-house observability tool 
-description: Blackfire is the official Platform.sh observability service for monitoring and profiling your PHP and Python apps.
+description: Blackfire is the official {{< vendor/name >}} observability service for monitoring and profiling your PHP and Python apps.
 ---
 
-As the **official Platform.sh observability service**, 
+As the **official {{< vendor/name >}} observability service**, 
 [Blackfire](https://www.blackfire.io/) helps you improve the performance of your apps at each stage of their lifecycle.
 With Blackfire's unique Application Performance Monitoring (APM) and Profiling features,
 you can achieve the following goals:
@@ -17,7 +17,7 @@ you can achieve the following goals:
 
 {{< youtube bS4dzuzkir0 >}}
 
-Blackfire is installed natively on Platform.sh and [works integrally with the Platform.sh workflow](https://www.youtube.com/watch?v=Bq-LFjgD6L0).
+Blackfire is installed natively on {{< vendor/name >}} and [works integrally with the {{< vendor/name >}} workflow](https://www.youtube.com/watch?v=Bq-LFjgD6L0).
 This results in an effortless setup process and smooth user experience.
 
 {{< note >}}
@@ -35,18 +35,18 @@ All customers can also subscribe to Blackfire separately.
 If you're using a plan with the [Observability Suite](https://platform.sh/features/observability-suite/),
 the [Blackfire automated integration](#automated-integration) is enabled on your environments by default.
 Note that as an Observability Suite user, you can only access your Blackfire environments
-after you've been granted access to the related Platform.sh project.
-Therefore, to access your Blackfire environments, make sure you log in using your Platform.sh account.
+after you've been granted access to the related {{< vendor/name >}} project.
+Therefore, to access your Blackfire environments, make sure you log in using your {{< vendor/name >}} account.
 
 If you have a {{% names/dedicated-gen-3 %}} cluster or Grid environments without the Observability suite,
 you need to enable the integration yourself.
 To do so, follow these steps:
 
-1. Create a [Blackfire account](https://blackfire.io/signup?target=/login), preferably using your Platform.sh login.
+1. Create a [Blackfire account](https://blackfire.io/signup?target=/login), preferably using your {{< vendor/name >}} login.
 2. In your Blackfire account, create an organization.
    If you subscribed to Blackfire independently, your organization is automatically activated.
-   If you subscribed to Blackfire through Platform.sh,
-   [ask **Platform.sh** Support](https://console.platform.sh/-/users/~/tickets/open) to activate your organization.
+   If you subscribed to Blackfire through {{< vendor/name >}},
+   [ask **{{< vendor/name >}}** Support](https://console.platform.sh/-/users/~/tickets/open) to activate your organization.
 3. In your organization, create an environment.
 4. In your environment, click **Settings/Environment Credentials**.
 5. Retrieve your Blackfire server ID and server token.
@@ -62,11 +62,11 @@ to let Blackfire profile the code running on your servers.
 
 To install Blackfire on your {{% names/dedicated-gen-2 %}} environments:
 
-1. Create a [Blackfire account](https://blackfire.io/signup?target=/login), preferably using your Platform.sh login.
+1. Create a [Blackfire account](https://blackfire.io/signup?target=/login), preferably using your {{< vendor/name >}} login.
 2. In your Blackfire account, create an organization.
    If you subscribed to Blackfire independently, your organization is automatically activated.
-   If you subscribed to Blackfire through Platform.sh,
-   [ask **Platform.sh** Support](https://console.platform.sh/-/users/~/tickets/open) to activate your organization.
+   If you subscribed to Blackfire through {{< vendor/name >}},
+   [ask **{{< vendor/name >}}** Support](https://console.platform.sh/-/users/~/tickets/open) to activate your organization.
 3. In your organization, create an environment.
 4. In your environment, click **Settings/Environment Credentials**.
 5. Retrieve your Blackfire server ID and server token.
@@ -90,12 +90,12 @@ On this Blackfire environment, you have access to [all the features provided by 
 This includes monitoring, profiling, alerting, and build-related features.
 
 When a Blackfire environment is created based on a Grid environment,
-user access settings are replicated from the Platform.sh Console to Blackfire.
+user access settings are replicated from the {{< vendor/name >}} Console to Blackfire.
 This includes all [access levels](https://blackfire.io/docs/up-and-running/access-management).
  
 To access the Blackfire environment, each project user needs a Blackfire account.
 When a project user doesn't already have a Blackfire account, 
-a new one is automatically created using the user's Platform.sh credentials.
+a new one is automatically created using the user's {{< vendor/name >}} credentials.
  
 You might have Blackfire variables already set on your project.
 In this case, the existing variables override the settings of the automated integration.
@@ -160,7 +160,7 @@ see the [Blackfire documentation](https://blackfire.io/docs/profiling-cookbooks/
 
 ## Test the performance of each new deployment
 
-Blackfire's native integration with Platform.sh enables you to test your app's performance
+Blackfire's native integration with {{< vendor/name >}} enables you to test your app's performance
 every time you deploy a branch in production, staging, or development.
 Follow these steps:
 
@@ -186,7 +186,7 @@ allow the `__blackfire` cookie to go through the cache.
 
 To do so, add [a configuration](../../define-routes/cache.md#allowing-only-specific-cookies) similar to the following:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 cache:
     enabled: true
     cookies: ["/SESS.*/", "__blackfire"]

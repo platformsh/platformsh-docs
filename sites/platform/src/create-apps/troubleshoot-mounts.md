@@ -45,7 +45,7 @@ Do so by managing their [location](./app-reference.md#locations)
 
 This example defines two mounts, one named `private` and one `upload`:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 mounts:
     'private':
         source: local
@@ -58,7 +58,7 @@ mounts:
 With only this definition, their behavior is the same.
 To make `uploads` accessible, define a location with different rules as in the following example:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 web:
     locations:
         '/':
@@ -75,7 +75,7 @@ web:
 
 ## Mounts starting with a dot ignored
 
-Platform.sh ignores YAML keys that start with a dot.
+{{< vendor/name >}} ignores YAML keys that start with a dot.
 This causes a mount like `.myhiddenfolder` to be ignored.
 To mount a directory starting with a dot, put a `/` at the start of its definition:
 

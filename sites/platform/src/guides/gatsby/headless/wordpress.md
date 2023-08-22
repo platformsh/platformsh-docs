@@ -1,5 +1,5 @@
 ---
-title: "How to deploy Gatsby with WordPress on Platform.sh"
+title: "How to deploy Gatsby with WordPress on {{< vendor/name >}}"
 sidebarTitle: "WordPress"
 description: |
     WordPress's built-in content API can quickly become a content source for Gatsby with `gatsby-source-wordpress`.
@@ -8,15 +8,15 @@ description: |
 
 {{< guides/gatsby/headless-intro template="gatsby-wordpress" name="WordPress" >}}
 
-## Shared Platform.sh configuration
+## Shared configuration
 
 {{% guides/gatsby/headless-project name="WordPress" %}}
 
-### `.platform/services.yaml`
+### Service configuration
 
 {{% guides/gatsby/headless-services template="gatsby-wordpress" name="WordPress" %}}
 
-### `.platform/routes.yaml`
+### Routes configuration
 
 {{% guides/gatsby/headless-routes template="gatsby-wordpress" name="WordPress" %}}
 
@@ -61,7 +61,7 @@ WordPress comes with an initial "Hello world" article, and it isn't necessary to
 
 With Gatsby now deployed and pulling content from a backend WordPress application, there are a few things you may wish to change about your project going forward.
 
-### `applications.yaml`
+### Shared application configuration
 
 {{% guides/gatsby/headless-applicationsyaml name="WordPress" %}}
 

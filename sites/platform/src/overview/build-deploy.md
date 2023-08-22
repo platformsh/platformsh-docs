@@ -1,7 +1,7 @@
 ---
 title: Build and deploy
 weight: 3
-description: See how applications get built and deployed with Platform.sh.
+description: "See how applications get built and deployed with {{< vendor/name >}}."
 ---
 
 Each time you push a change to your app through Git or activate an [environment](../environments/_index.md),
@@ -38,7 +38,7 @@ Once the app has gone through all of the build steps, it can connect to services
 ### Build steps
 
 1. **Validate configuration**:
-   The configuration is checked by validating the `.platform` directory and scanning the repository for any app configurations to validate individually.
+   The configuration is checked by validating the `{{< vendor/configdir >}}` directory and scanning the repository for any app configurations to validate individually.
 1. **Pull container images**:
    Any container images that have been built before and that don't have any changes are pulled to be reused.
 1. **Install dependencies**:
@@ -87,12 +87,12 @@ After the deploy process is over, any commands in your `post_deploy` hook are ru
 
 ## Deployment philosophy
 
-Platform.sh values consistency over availability, acknowledging that it's nearly impossible to have both.
+{{< vendor/name >}} values consistency over availability, acknowledging that it's nearly impossible to have both.
 During a deployment, the [deploy hook](../create-apps/hooks/hooks-comparison.md#deploy-hook) may make database changes
 that are incompatible with the previous code version.
 Having both old and new code running in parallel on different servers could therefore result in data loss.
 
-Platform.sh believes that a minute of planned downtime for authenticated users is preferable to a risk of race conditions
+{{< vendor/name >}} believes that a minute of planned downtime for authenticated users is preferable to a risk of race conditions
 resulting in data corruption, especially with a CDN continuing to serve anonymous traffic uninterrupted.
 
 That brief downtime applies only to the environment changes are being pushed to.

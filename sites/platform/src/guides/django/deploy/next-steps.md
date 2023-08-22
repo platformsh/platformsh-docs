@@ -8,7 +8,7 @@ description: |
 
 ## Local development
 
-Once Django has been deployed on Platform.sh, you need to set up a local development environment to begin making revisions.
+Once Django has been deployed on {{< vendor/name >}}, you need to set up a local development environment to begin making revisions.
 For more information, consult the [Django local development guides](../local/_index.md).
 
 ## Package management

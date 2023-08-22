@@ -16,10 +16,10 @@
   {{ $templateUrl = print `https://raw.githubusercontent.com/symfonycorp/platformsh-symfony-template-metadata/main/` ( .Get "template" ) `.yaml` }}
 {{ end }}
 
-To get {{ $name }} running on Platform.sh, you have two potential starting places:
+To get {{ $name }} running on {{ .Site.Params.vendor.name }}, you have two potential starting places:
 
 -   You already have a {{ $site }} site you are trying to deploy.
-    Go through this guide to make the recommended changes to your repository to prepare it for Platform.sh.
+    Go through this guide to make the recommended changes to your repository to prepare it for {{ .Site.Params.vendor.name }}.
 
 -   You have no code at this point.
 
@@ -35,7 +35,7 @@ To get {{ $name }} running on Platform.sh, you have two potential starting place
 
         <p class="flex justify-center not-prose">
           <a href='https://console.platform.sh/org/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/{{ $repo }}/.platform.template.yaml&_utm_campaign=cta_deploy_marketplace_template&utm_source=public_documentation&_utm_medium=organic'>
-            <img src="https://platform.sh/images/deploy/lg-blue.svg" alt="Deploy on Platform.sh" width="180px" />
+            <img src="https://platform.sh/images/deploy/lg-blue.svg" alt="Deploy on {{ .Site.Params.vendor.name }}" width="180px" />
           </a>
         </p>
 

@@ -1,11 +1,11 @@
 ---
 title: "Extensions"
 weight: 1
-description: See what PHP extensions are available with each PHP version on Platform.sh.
+description: See what PHP extensions are available with each PHP version on {{< vendor/name >}}.
 ---
 
 PHP has a number of [extensions](https://pecl.php.net/) developed by members of the community.
-Some of them are available for Platform.sh containers.
+Some of them are available for {{< vendor/name >}} containers.
 
 {{< note >}}
 
@@ -16,7 +16,7 @@ See also [PHP extensions on {{% names/dedicated-gen-2 %}} plans](../../dedicated
 
 You can define the PHP extensions you want to enable or disable:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 runtime:
     extensions:
         - raphf
@@ -72,7 +72,7 @@ but it takes slightly more work:
    For example, if the extension is named `spiffy.so` and is in your [app root](../../create-apps/app-reference.md#root-directory),
    your configuration looks like the following:
 
-   ```yaml {location=".platform.app.yaml"}
+   ```yaml {configFile="app"}
    variables:
        php:
            extension: /app/spiffy.so

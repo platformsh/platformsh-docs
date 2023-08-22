@@ -1,16 +1,16 @@
 ---
-title: "Customize Drupal 9 for Platform.sh"
+title: "Customize Drupal 9 for {{< vendor/name >}}"
 sidebarTitle: "Customize"
 weight: -90
 description: |
-    Add some helpful dependencies, and modify your Drupal site to read from a Platform.sh environment.
+    Add some helpful dependencies, and modify your Drupal site to read from a {{< vendor/name >}} environment.
 banner:
     title: A note on version
-    body: While this guide focuses on Drupal 9, you can also refer to it when using Drupal 10 as differences in settings are minimal. Note that a Platform.sh [Drupal 10 template](https://github.com/platformsh-templates/drupal10) is available.
+    body: While this guide focuses on Drupal 9, you can also refer to it when using Drupal 10 as differences in settings are minimal. Note that a {{< vendor/name >}} [Drupal 10 template](https://github.com/platformsh-templates/drupal10) is available.
 ---
 
-Now that your code contains all of the configuration to deploy on Platform.sh,
-it's time to make your Drupal site itself ready to run on a Platform.sh environment.
+Now that your code contains all of the configuration to deploy on {{< vendor/name >}},
+it's time to make your Drupal site itself ready to run on a {{< vendor/name >}} environment.
 There are a number of additional steps that are either required or recommended, depending on how well you want to optimize your site.
 
 ## Install the Config Reader
@@ -30,7 +30,7 @@ It contains configuration that's specific to your local development environment,
 such as a local development database.
 
 The `settings.platformsh.php` file contains glue code that configures Drupal
-based on the information available in Platform.sh's environment variables.
+based on the information available in {{< vendor/name >}}'s environment variables.
 That includes the database credentials, Redis caching, and file system paths.
 
 The file itself is a bit long, but reasonably self-explanatory.
@@ -42,7 +42,7 @@ you would add configuration for those services to the `settings.platformsh.php` 
 
 ## `.environment`
 
-Platform.sh runs `source .environment` in the [app root](../../../create-apps/app-reference.md#root-directory)
+{{< vendor/name >}} runs `source .environment` in the [app root](../../../create-apps/app-reference.md#root-directory)
 when a project starts, before cron commands are run, and when you log into an environment over SSH.
 That gives you a place to do extra environment variable setup before the app runs,
 including modifying the system `$PATH` and other shell level customizations.
@@ -69,7 +69,7 @@ Drush requires a YAML file that declares what its URL is.
 That value varies depending on the branch you're on, so it can't be included in a static file.
 Instead, the `drush` directory includes a [short script](https://github.com/platformsh-templates/drupal9/blob/master/drush/platformsh_generate_drush_yml.php)
 that generates that file on each deploy, writing it to `.drush/drush.yml`.
-That allows Drush to run successfully on Platform.sh, such as to run cron tasks.
+That allows Drush to run successfully on {{< vendor/name >}}, such as to run cron tasks.
 
 The script contents aren't especially interesting.
 For the most part, you can download it from the template,

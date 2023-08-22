@@ -3,12 +3,12 @@
 {{ if eq $source "GitLab" }}
   {{ $pull = "merge" }}
 {{ end }}
-If you have code in a {{ $source }} repository, you might want to connect it to a Platform.sh project.
+If you have code in a {{ $source }} repository, you might want to connect it to a {{ .Site.Params.vendor.name }} project.
 This means you can keep your {{ $source }} workflows
 and treat the {{ $source }} repository as the source of truth for your code.
 
-Your Platform.sh project becomes a mirror of your {{ $source }} repository.
-This means you shouldn't push code directly to Platform.sh.
+Your {{ .Site.Params.vendor.name }} project becomes a mirror of your {{ $source }} repository.
+This means you shouldn't push code directly to {{ .Site.Params.vendor.name }}.
 Any changes you push directly get overwritten by the integration when changes happen in the {{ $source }} repository.
 
 When you set up an integration with {{ $source }},

@@ -88,7 +88,7 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
 To export your data from InfluxDB, follow these steps:
 
 1. Install and set up the [`influx` CLI](https://docs.influxdata.com/influxdb/cloud/tools/influx-cli/).
-2. Connect to your InfluxDB service with the [Platform.sh CLI](../administration/cli/_index.md):
+2. Connect to your InfluxDB service with the [{{< vendor/name >}} CLI](../administration/cli/_index.md):
 
    ```bash
    platform tunnel:single
@@ -116,17 +116,17 @@ To export your data from InfluxDB, follow these steps:
 
 ### From a previous 2.x version
 
-From version 2.3 onwards, the structure of relationships changes.
+From version 2.3 onward, the structure of relationships changes.
 
 If you're using a prior 2.x version, your app might currently rely on pulling the `bucket`, `org`, `api_token`,
-or `user` values available in the [`PLATFORM_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables).
+or `user` values available in the [`PLATFORM_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-provided-variables).
 
 If so, to ensure your upgrade is successful, make the following changes to your connection logic:
 
 - Rename the `user` key to `username`.
 - Move the `org`, `bucket` and  `api_token` keys so they're contained in a dictionary under the `query` key.
 
-If you're relying on any other attributes connecting to InfluxDB, they remain accessible as top-level keys from the [`PLATFORM_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables), aside from those addressed above:
+If you're relying on any other attributes connecting to InfluxDB, they remain accessible as top-level keys from the [`PLATFORM_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-provided-variables), aside from those addressed above:
 
 
 ```yaml
@@ -156,10 +156,10 @@ If you're relying on any other attributes connecting to InfluxDB, they remain ac
 
 ### From a 1.x version
 
-From version 2.3 onwards, InfluxDB includes an upgrade utility that can convert databases from previous versions to version 2.3 or later.
+From version 2.3 onward, InfluxDB includes an upgrade utility that can convert databases from previous versions to version 2.3 or later.
 
 To upgrade from a 1.x version to 2.3 or later,
-change the service version in your `.platform/services.yaml` file and push your project.
+change the service version in your `{{< vendor/configfile "services" >}}` file and push your project.
 Any existing data you had in your 1.x system is automatically upgraded for you into the 2.3+ system.
 
 {{< note >}}
@@ -167,6 +167,6 @@ Any existing data you had in your 1.x system is automatically upgraded for you i
 During an upgrade from a 1.x version to a 2.3 version or later,
 a new admin password and a new admin API token are automatically generated.
 Previous credentials can't be retained.</br>
-You can retrieve your new credentials through the [`PLATFORM_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables) or by running `platform relationships`.
+You can retrieve your new credentials through the [`PLATFORM_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-provided-variables) or by running `platform relationships`.
 
 {{< /note >}}

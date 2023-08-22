@@ -6,7 +6,7 @@ description: See how to configure a MariaDB/MySQL server to store your data.
 layout: single
 ---
 
-Platform.sh supports both MariaDB and Oracle MySQL to manage your relational databases.
+{{< vendor/name >}} supports both MariaDB and Oracle MySQL to manage your relational databases.
 Their infrastructure setup is nearly identical, though they differ in some features.
 See the [MariaDB documentation](https://mariadb.org/learn/)
 or [MySQL documentation](https://dev.mysql.com/doc/refman/en/) for more information.
@@ -152,7 +152,7 @@ You can configure your MySQL service in the [services configuration](../_index.m
 
 Example configuration:
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 db:
     type: mariadb:10.5
     disk: 2048
@@ -228,7 +228,7 @@ Possible permissions:
 You can also specify `schemas` for [multiple databases](#multiple-databases).
 If neither `schemas` nor `endpoints` is included, it's equivalent to the following default:
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
     configuration:
         schemas:
             - main
@@ -249,7 +249,7 @@ To do so, define multiple `schemas` in your [service configuration](#configurati
 You can also specify multiple `endpoints` for [permissions](#define-permissions).
 If neither `schemas` nor `endpoints` is included, it's equivalent to the following default:
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
     configuration:
         schemas:
             - main
@@ -278,7 +278,7 @@ Access to the database is defined through three endpoints:
 * `reporter` has SELECT query access to `main` but no access to `legacy`.
 * `importer` has SELECT/INSERT/UPDATE/DELETE (but not DDL) access to `legacy` but no access to `main`.
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 db:
     type: mariadb:10.5
     disk: 2048
@@ -303,7 +303,7 @@ db:
 
 Expose these endpoints to your app as relationships in your [app configuration](../../create-apps/_index.md):
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 relationships:
     database: "db:admin"
     reports: "db:reporter"
@@ -328,10 +328,15 @@ It offers the following properties:
 | `default_collation`                   | `string`  | `utf8mb4_unicode_ci` after February 2020 and `latin1` before | The default collation. Affects any tables created after it's set.                                                                                                                     |
 | `optimizer_switch`                    | `string`  |                                                              | A place to set various server optimization variables. See the [MariaDB documentation](https://mariadb.com/kb/en/optimizer-switch/).                                                   |
 | `optimizer_use_condition_selectivity` | `integer` | `4` in version 10.4.1+ and `1` before that                   | Which statistics are used by the optimizer. From `1` to `5`. See the [MariaDB documentation](https://mariadb.com/kb/en/server-system-variables/#optimizer_use_condition_selectivity). |
+| `innodb_adaptive_hash_index`          | `integer` | `0` in version 10.5+ and `1` before that                     | Enable/Disable InnoDB Hash Index. See the [MariaDB documentation](https://mariadb.com/kb/en/innodb-system-variables/#innodb_adaptive_hash_index).                                     |
+| `max_heap_table_size`                 | `integer` | `32`                                                         | The maximum size for user-created MEMORY tables in MB. Can be from `1` to `4096`.                                                                                                     |
+| `table_definition_cache`              | `integer` | `400`                                                        | The number of table definitions that can be cached. See the [MariaDB documentation](https://mariadb.com/kb/en/server-system-variables/#table_definition_cache).                       |
+| `table_open_cache`                    | `integer` | `400`                                                        | The maximum number of open tables cached in one table cache instance. See the [MariaDB documentation](https://mariadb.com/kb/en/server-system-variables/#table_open_cache).           |
+| `wsrep_sync_wait`                     | `integer` | `0` (Disabled)                                               | Ensure execution of statements in fully synced nodes. See the [MariaDB documentation](https://mariadb.com/kb/en/galera-cluster-system-variables/#wsrep_sync_wait).                    |
 
 An example of setting these properties:
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 db:
     type: mariadb:10.5
     disk: 2048
@@ -389,7 +394,7 @@ To change the timezone for a given connection, run `SET time_zone = {{< variable
 
 ## Exporting data
 
-To download all data from your SQL database, use the Platform.sh CLI.
+To download all data from your SQL database, use the {{< vendor/name >}} CLI.
 If you have a single SQL database, the following command exports all data to a local file:
 
 ```bash
@@ -429,7 +434,7 @@ To load data into a database, pipe an SQL dump through the `platform sql` comman
 platform sql < my_database_backup.sql
 ```
 
-That runs the database backup against the SQL database on Platform.sh.
+That runs the database backup against the SQL database on {{< vendor/name >}}.
 That works for any SQL file, so the usual caveats about importing an SQL dump apply
 (for example, it's best to run against an empty database).
 

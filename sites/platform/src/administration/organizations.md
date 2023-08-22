@@ -1,10 +1,10 @@
 ---
 title: Organizations
 weight: -1
-description: See how to manage multiple Platform.sh projects at once through organizations.
+description: See how to manage multiple {{< vendor/name >}} projects at once through organizations.
 ---
 
-Organizations allow you to manage your Platform.sh projects, users, and billing.
+Organizations allow you to manage your {{< vendor/name >}} projects, users, and billing.
 You can group multiple projects in one organization and manage them together.
 
 To manage users within your organization, see how to [manage organization users](./users.md#manage-organization-users).

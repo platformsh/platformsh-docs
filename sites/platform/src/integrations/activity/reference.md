@@ -126,9 +126,9 @@ The following table presents the possible activities:
 | `environment.merge` | An environment was merged through the CLI, Console, or API. A basic Git merge doesn't trigger this activity. |
 | `environment.redeploy` | An environment was redeployed. |
 | `environment.delete` | An environment's code was deleted through Git. |
-| `environment.route.create` | A new route has been created through the API. Edits made using Git to the `routes.yaml` file don't trigger this activity. |
-| `environment.route.delete` | A route has been deleted through the API. Edits made using Git to the `routes.yaml` file don't trigger this activity. |
-| `environment.route.update` | A route has been modified through the API. Edits made using Git to the `routes.yaml` file don't trigger this activity. |
+| `environment.route.create` | A new route has been created through the API. Edits made using Git to the `{{< vendor/configfile "routes" >}}` file don't trigger this activity. |
+| `environment.route.delete` | A route has been deleted through the API. Edits made using Git to the `{{< vendor/configfile "routes" >}}` file don't trigger this activity. |
+| `environment.route.update` | A route has been modified through the API. Edits made using Git to the `{{< vendor/configfile "routes" >}}` file don't trigger this activity. |
 | `environment.variable.create` | A new variable has been created. The value is visible only if the variable is not [set as sensitive](../../development/variables/set-variables.md#variable-options). |
 | `environment.variable.delete` | A variable has been deleted. |
 | `environment.variable.update` | A variable has been modified. |
@@ -218,7 +218,7 @@ Its content varies based on the activity type.
 
 #### `user` payload
 
-Contains information about the Platform.sh user that triggered the activity.
+Contains information about the {{< vendor/name >}} user that triggered the activity.
 
 | Name | Description |
 |------|-------------|
@@ -381,7 +381,7 @@ The following example shows the full activity response to a cron job:
       "id": "admin",
       "created_at": "2022-12-13T16:06:08.066085+00:00",
       "updated_at": null,
-      "display_name": "Platform.sh Bot"
+      "display_name": "{{< vendor/name >}} Bot"
     },
     "project": {
       "id": "abcdefgh1234567",
@@ -460,8 +460,8 @@ The following example shows the full activity response to a cron job:
     },
     "cron": "saybye"
   },
-  "description": "<user data-id=\"admin\">Platform.sh Bot</user> ran cron <strong>saybye</strong>",
-  "text": "Platform.sh Bot ran cron **saybye**",
+  "description": "<user data-id=\"admin\">{{< vendor/name >}} Bot</user> ran cron <strong>saybye</strong>",
+  "text": "{{< vendor/name >}} Bot ran cron **saybye**",
   "expires_at": "2023-01-12T16:06:08.081293+00:00"
 }
 ```
@@ -574,7 +574,7 @@ The following example shows a shortened excerpt of the `deployment` property:
             }
           },
           ...
-          "application_config_file": ".platform.app.yaml",
+          "application_config_file": "{{< vendor/configfile "app" >}}",
           "project_config_dir": ".platform",
           ...
           "development_service_size": "S",
@@ -731,11 +731,11 @@ The following example shows the full activity response to a Git push:
               }
             }
           },
-          "product_name": "Platform.sh",
+          "product_name": "{{< vendor/name >}}",
           "product_code": "platformsh",
           "variables_prefix": "PLATFORM_",
           "bot_email": "bot@platform.sh",
-          "application_config_file": ".platform.app.yaml",
+          "application_config_file": "{{< vendor/configfile "app" >}}",
           "project_config_dir": ".platform",
           "use_drupal_defaults": false,
           "use_legacy_subdomains": false,

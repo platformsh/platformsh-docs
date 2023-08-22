@@ -31,7 +31,7 @@ Repeat these two steps for every environment you want to monitor, making sure yo
 The File System being read-only, New Relic isn't able to create its log file.
 To allow New Relic to output logs, add a writable directory to put the log file in.
 
-At the end of the `build` hook in your `.platform.app.yaml`, create a `newrelic` directory in your application root:
+At the end of the `build` hook in your `{{< vendor/configfile "app" >}}`, create a `newrelic` directory in your application root:
 
 ```yaml
 hooks:

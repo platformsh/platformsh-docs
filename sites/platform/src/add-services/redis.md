@@ -6,7 +6,7 @@ sidebarTitle: "Redis"
 
 [Redis](https://redis.io/documentation) is a multi-model database that allows you to store data in memory
 for high-performance data retrieval and key-value storage.
-Platform.sh supports two different Redis configurations:
+{{< vendor/name >}} supports two different Redis configurations:
 
 - [Ephemeral](#ephemeral-redis): to set up a non-persistent cache for your application
 - [Persistent](#persistent-redis): to set up fast persistent storage for your application
@@ -209,7 +209,7 @@ When [ephemeral Redis](#ephemeral-redis) reaches its memory limit,
 it triggers a cache cleanup.
 To customize those cache cleanups, set up an eviction policy such as the following:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 web:
     cache:
         type: redis:5.0
@@ -239,7 +239,7 @@ After you've [configured your Redis service](#usage-example),
 you can access it using the [Redis CLI](https://redis.io/docs/ui/cli/).
 
 Retrieve the hostname and port you can connect to
-through the `PLATFORM_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables).
+through the `PLATFORM_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables).
 To do so, run the `platform relationships` command.
 
 After you've retrieved the hostname and port, [open an SSH session](../development/ssh/_index.md).
@@ -265,9 +265,9 @@ which means Redis stores and retrieves the data saved into sessions.
 
 To set up Redis as your session handler, add a configuration similar to the following:
 
-{{< readFile file="registry/images/examples/full/redis-persistent.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
+{{< readFile file="registry/images/examples/full/redis-persistent.services.yaml" highlight="yaml" configFile="services" >}}
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 relationships:
     sessionstorage: "data:redis"
 

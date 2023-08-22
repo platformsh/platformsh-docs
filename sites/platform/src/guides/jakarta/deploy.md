@@ -1,5 +1,5 @@
 ---
-title: Deploy Jakarta on Platform.sh
+title: Deploy Jakarta on {{< vendor/name >}}
 sidebarTitle: Get started
 weight: 5
 ---

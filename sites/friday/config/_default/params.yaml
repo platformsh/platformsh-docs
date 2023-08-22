@@ -16,7 +16,25 @@ vendor:
     name: Deploy Friday
     cli: friday
     env_prefix: FRIDAY
-    config_dir: .friday
+    config:
+        version: 2
+        dir: .friday
+        files:
+            routes: .friday/config.yaml
+            services: .friday/config.yaml
+            app: .friday/config.yaml
+            apps: .friday/config.yaml
+        prefix: 
+            apps: applications 
+            services: services 
+            routes: routes
+    urls:
+        main: https://deployfriday.net/
+        docs: https://docs.deployfriday.net/
+        support: https://support.deployfriday.net/
+        sales: https://deployfriday.net/contact
+        console: https://console.deployfriday.net/
+        api: https://api.deployfriday.net/
 
 # Images (kept in static/)
 logo: "images/logo.svg"
@@ -64,17 +82,17 @@ navSections:
 
 # Metadata
 meta:
-  sitename: "Platform.sh User Documentation"
-  description: Platform.sh is a second-generation Platform-as-a-Service built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive.
-  image: "https://docs.platform.sh/images/logos/docs_social_2021.jpg"
-  url: "https://docs.platform.sh"
+  sitename: "Deploy Friday User Documentation"
+  description: Deploy Friday is a second-generation Platform-as-a-Service built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive.
+  image: "https://docs.deployfriday.net/images/logos/docs_social_2021.jpg"
+  url: "https://docs.deployfriday.net"
   twittercard:
     card: "summary_large_image"
-    site: "@platformsh"
-    title: "Platform.sh User Documentation"
-    description: "Platform.sh is a second-generation Platform-as-a-Service built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive."
-    creator: "@platformsh"
-    image: "https://docs.platform.sh/images/logos/docs_social_2021.jpg"
+    site: "@deployfriday"
+    title: "Deploy Friday User Documentation"
+    description: "Deploy Friday is a second-generation Platform-as-a-Service built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive."
+    creator: "@deployfriday"
+    image: "https://docs.deployfriday.net/images/logos/docs_social_2021.jpg"
   keywords:
     - PaaS
     - cloud hosting
