@@ -78,7 +78,7 @@ Set up a script by following these steps:
 
 4.  Update the deploy hook to run your script on each deploy.
 
-    ```yaml {location=".platform.app.yaml"}
+    ```yaml {configFile="app"}
     hooks:
         build: ...
         deploy: |
@@ -89,7 +89,7 @@ Set up a script by following these steps:
 5.  Commit your changes by running the following command:
 
     ```bash
-    git add .environment sanitize.sh .platform.app.yaml && git commit -m "Add sanitization."
+    git add .environment sanitize.sh {{< vendor/configfile "app" >}}&& git commit -m "Add sanitization."
     ```
 
     Push the changes to `staging` and verify that environment's database was sanitized.

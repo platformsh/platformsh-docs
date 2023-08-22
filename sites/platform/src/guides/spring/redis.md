@@ -18,13 +18,13 @@ This guide only covers the *addition* of a service configuration to an existing 
 In your [service configuration](../../add-services/_index.md),
 include persistent Redis with a [valid supported version](../../add-services/redis.md#persistent-redis):
 
-{{< readFile file="registry/images/examples/full/redis-persistent.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
+{{< readFile file="registry/images/examples/full/redis-persistent.services.yaml" highlight="yaml" configFile="services" >}}
 
 ## 2. Add the Redis relationship
 
 In your [app configuration](../../create-apps/app-reference.md), use the service name `searchelastic` to grant the application access to Elasticsearch via a relationship:
 
-{{< readFile file="registry/images/examples/full/redis-persistent.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
+{{< readFile file="registry/images/examples/full/redis-persistent.app.yaml" highlight="yaml" configFile="app" >}}
 
 ## 3. Export connection credentials to the environment
 

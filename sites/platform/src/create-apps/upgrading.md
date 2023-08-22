@@ -34,7 +34,7 @@ title: "Upgrading"
 ## Changes in version 2017.11 (2017-11-09)
 
 * The `!archive` tag in YAML files is now deprecated in favor of the more generic [`!include`](../overview/yaml/_index.md).
-For example, the following `services.yaml` snippet:
+For example, the following `{{< vendor/configfile "services" >}}` snippet:
 
     ```yaml
     mysearch:
@@ -56,7 +56,7 @@ For example, the following `services.yaml` snippet:
                 path: "myconfdir"
     ```
 
-* The syntax for the `mounts` key in `.platform.app.yaml` has changed.
+* The syntax for the `mounts` key in `{{< vendor/configfile "app" >}}` has changed.
 Rather than a parsed string, the value of each mount is a [multi-key definition](./app-reference.md#mounts).
 That is, the following example:
 
@@ -125,13 +125,13 @@ web:
 As of July 2016, we no longer create default configuration files if one isn't provided.
 The defaults we used to provide were tailored specifically for Drupal 7, which is now a legacy-support version with the release of Drupal 8 and not especially useful for non-Drupal or non-PHP sites.
 They also defaulted to software versions that are no longer current and recommended.
-Instead, you must provide your own `.platform.app.yaml`, `.platform/routes.yaml`, and `.platform/services.yaml` files.
+Instead, you must provide your own `{{< vendor/configfile "app" >}}`, `{{< vendor/configfile "routes" >}}`, and `{{< vendor/configfile "services" >}}` files.
 
 Additionally, a version for a language or service should always be specified as well. That allows you to control when you upgrade from one version to another without relying on a network default.
 
 The previous default files, for reference, are:
 
-### `.platform.app.yaml`
+### Application
 
 ```yaml
 name: php
@@ -158,7 +158,7 @@ crons:
         cmd: "cd public ; drush core-cron"
 ```
 
-### `.platform/routes.yaml`
+### Routes
 
 ```yaml
  "http://{default}/":
@@ -174,7 +174,7 @@ crons:
      to: "http://{default}/"
 ```
 
-### `.platform/services.yaml`
+### Services
 
 ```yaml
  mysql:
@@ -191,7 +191,7 @@ crons:
 
 ## Changes in version 2016.3
 
-As we are aiming to always provide you more control and flexibility on how to deploy your applications, the `.platform.app.yaml` format has been greatly improved. It is now way more flexible, and also much more explicit to describe what you want to do.
+As we are aiming to always provide you more control and flexibility on how to deploy your applications, the `{{< vendor/configfile "app" >}}` format has been greatly improved. It is now way more flexible, and also much more explicit to describe what you want to do.
 
 The `web` key is now a set of `locations` where you can define very precisely the behavior of each URL prefix.
 
@@ -252,7 +252,7 @@ expires: 3d                   # Converted to [locations][/][expires]
 
 ## Changes in version 2015.7
 
-The `.platform.app.yaml` configuration file now allows for a much clearer syntax, which you can (and should) start using now.
+The `{{< vendor/configfile "app" >}}` configuration file now allows for a much clearer syntax, which you can (and should) start using now.
 
 The old format had a single string to identify the `toolstack` you use:
 
@@ -283,17 +283,17 @@ repository](https://github.com/platformsh-templates/drupal7/blob/master/.platfor
 on GitHub.
 
 Configuration items for PHP that previously was part of
-`.platform/services.yaml` are now moved into `.platform.app.yaml`, which
+`{{< vendor/configfile "services" >}}` are now moved into `{{< vendor/configfile "app" >}}`, which
 gains the following top-level items:
 
 -   `name`: should be `"php"`
 -   `relationships`, `access` and `disk`: should be the same as the
-    `relationships` key of PHP in `.platform/services.yaml`
+    `relationships` key of PHP in `{{< vendor/configfile "services" >}}`
 
 Note that there is now a sane default for `access` (SSH access to PHP is
 granted to all users that have role "collaborator" and above on the
 environment) so most customers can now just omit this key in
-`.platform.app.yaml`.
+`{{< vendor/configfile "app" >}}`.
 
 In addition, version 1.7.0 now has consistency checks for configuration
 files and rejects `git push` operations that contain configuration

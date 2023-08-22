@@ -87,9 +87,9 @@ highlight=python
 
 For Solr 4, {{< vendor/name >}} supports only a single core per server called `collection1`.
 
-You must provide your own Solr configuration via a `core_config` key in your ``.platform/services.yaml``:
+You must provide your own Solr configuration via a `core_config` key in your `{{< vendor/configfile "services" >}}`:
 
-```yaml
+```yaml {configFile="services"}
 searchsolr:
     type: solr:4.10
     disk: 1024
@@ -97,9 +97,9 @@ searchsolr:
         core_config: !archive "{{< variable "DIRECTORY" >}}"
 ```
 
-The `directory` parameter points to a directory in the Git repository, in or below the `.platform/` folder. This directory needs to contain everything that Solr needs to start a core. At the minimum, `solrconfig.xml` and `schema.xml`. For example, place them in `.platform/solr/conf/` such that the `schema.xml` file is located at `.platform/solr/conf/schema.xml`. You can then reference that path like this -
+The `directory` parameter points to a directory in the Git repository, in or below the `{{< vendor/configdir >}}/` folder. This directory needs to contain everything that Solr needs to start a core. At the minimum, `solrconfig.xml` and `schema.xml`. For example, place them in `{{< vendor/configdir >}}/solr/conf/` such that the `schema.xml` file is located at `{{< vendor/configdir >}}/solr/conf/schema.xml`. You can then reference that path like this -
 
-```yaml
+```yaml {configFile="services"}
 searchsolr:
     type: solr:4.10
     disk: 1024
@@ -111,7 +111,7 @@ searchsolr:
 
 For Solr 6 and later {{< vendor/name >}} supports multiple cores via different endpoints. Cores and endpoints are defined separately, with endpoints referencing cores. Each core may have its own configuration or share a configuration. It is best illustrated with an example.
 
-```yaml
+```yaml {configFile="services"}
 searchsolr:
     type: solr:8.4
     disk: 1024
@@ -128,13 +128,13 @@ searchsolr:
                 core: extraindex
 ```
 
-The above definition defines a single Solr 8.0 server. That server has 2 cores defined: `mainindex` &mdash; the configuration for which is in the `.platform/core1-conf` directory &mdash; and `extraindex` &mdash; the configuration for which is in the `.platform/core2-conf` directory.
+The above definition defines a single Solr 8.0 server. That server has 2 cores defined: `mainindex` &mdash; the configuration for which is in the `{{< vendor/configdir >}}/core1-conf` directory &mdash; and `extraindex` &mdash; the configuration for which is in the `{{< vendor/configdir >}}/core2-conf` directory.
 
 It then defines two endpoints: `main` is connected to the `mainindex` core while `extra` is connected to the `extraindex` core. Two endpoints may be connected to the same core but at this time there would be no reason to do so. Additional options may be defined in the future.
 
-Each endpoint is then available in the relationships definition in `.platform.app.yaml`. For example, to allow an application to talk to both of the cores defined above its `.platform.app.yaml` file should contain the following:
+Each endpoint is then available in the relationships definition in `{{< vendor/configfile "app" >}}`. For example, to allow an application to talk to both of the cores defined above its `{{< vendor/configfile "app" >}}` file should contain the following:
 
-```yaml
+```yaml {configFile="app"}
 relationships:
     solrsearch1: 'searchsolr:main'
     solrsearch2: 'searchsolr:extra'
@@ -169,7 +169,7 @@ The relationships array would then look something like the following:
 
 For even more customizability, it's also possible to define Solr configsets. For example, the following snippet would define one configset, which would be used by all cores. Specific details can then be overridden by individual cores using `core_properties`, which is equivalent to the Solr `core.properties` file.
 
-```yaml
+```yaml {configFile="services"}
 searchsolr:
     type: solr:8.4
     disk: 1024
@@ -192,7 +192,7 @@ searchsolr:
                 core: arabic_index
 ```
 
-In this example, `.platform/configsets/solr8` contains the configuration definition for multiple cores. There are then two cores created: `english_index` uses the defined configset, but specifically the `.platform/configsets/solr8/english/schema.xml` file, while `arabic_index` is identical except for using the `.platform/configsets/solr8/arabic/schema.xml` file. Each of those cores is then exposed as its own endpoint.
+In this example, `{{< vendor/configdir >}}/configsets/solr8` contains the configuration definition for multiple cores. There are then two cores created: `english_index` uses the defined configset, but specifically the `{{< vendor/configdir >}}/configsets/solr8/english/schema.xml` file, while `arabic_index` is identical except for using the `{{< vendor/configdir >}}/configsets/solr8/arabic/schema.xml` file. Each of those cores is then exposed as its own endpoint.
 
 Note that not all core.properties features make sense to specify in the `core_properties`. Some keys, such as `name` and `dataDir`, aren't supported, and may result in a solrconfig that fails to work as intended, or at all.
 
@@ -202,7 +202,7 @@ Note that not all core.properties features make sense to specify in the `core_pr
 
 If you don't specify any configuration, the following default is used:
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 searchsolr:
     type: solr:9.1
     configuration:
@@ -222,7 +222,7 @@ You are strongly recommended to define your own configuration with a custom core
 
 If you don't specify any configuration, the following default is used:
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 searchsolr:
     type: solr:8.4
     configuration:
@@ -276,7 +276,7 @@ There are two ways of doing that.
 
 ### Destructive
 
-In your `services.yaml` file, change the version of your Solr service *and* its name. Then update the name in the `.platform.app.yaml` relationships block.
+In your `{{< vendor/configfile "services" >}}` file, change the version of your Solr service *and* its name. Then update the name in the `{{< vendor/configfile "app" >}}` relationships block.
 
 When you push that to {{< vendor/name >}}, the old service is deleted and a new one with the name is created, with no data. You can then have your application re-index data as appropriate.
 
@@ -284,7 +284,7 @@ This approach has the downside of temporarily having an empty Solr instance, whi
 
 ### Transitional
 
-For a transitional approach you temporarily have two Solr services. Add a second Solr service with the new version a new name and give it a new relationship in `.platform.app.yaml`. You can optionally run in that configuration for a while to allow your application to populate indexes in the new service as well.
+For a transitional approach you temporarily have two Solr services. Add a second Solr service with the new version a new name and give it a new relationship in `{{< vendor/configfile "app" >}}`. You can optionally run in that configuration for a while to allow your application to populate indexes in the new service as well.
 
 Once you're ready to cut over, remove the old Solr service and relationship. You may optionally have the new Solr service use the old relationship name if that's easier for your application to handle. Your application is now using the new Solr service.
 

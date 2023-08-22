@@ -11,7 +11,7 @@ The following example shows how for such an app you might start defining [your w
 
 Start by defining your document root (where all your publicly visible pages are).
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 web:
     locations:
         '/':
@@ -22,7 +22,7 @@ web:
 
 Define where all requests that don't match a file in the document root are sent.
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 web:
     locations:
         '/':
@@ -37,7 +37,7 @@ In this case, `/index.php` acts as a front controller and handles dynamic reques
 Because it handles dynamic requests, you want to ensure that scripts are enabled
 and responses aren't cached.
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 web:
     locations:
         '/':
@@ -53,7 +53,7 @@ web:
 You might want to define specific rules for the location.
 For example, you might want to allow all kinds of files except mp4 files.
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 web:
     locations:
         '/':
@@ -72,7 +72,7 @@ You might want to set specific rules for specific locations.
 For example, you might have files in your `/public/images` directory that are served at `/images`.
 You could define a specific cache time for them and limit them to only static image files.
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 web:
     locations:
         '/':
@@ -95,7 +95,7 @@ web:
 
 ## Complete example
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 web:
     locations:
         '/':

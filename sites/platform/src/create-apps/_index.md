@@ -29,7 +29,7 @@ To create a very basic app, you need a few things:
 
 The following example shows such a basic setup for Node.js:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 # The app's name, which must be unique within the project.
 {{< code-link destination="/create-apps/app-reference.html#top-level-properties" text="name" >}}: 'app'
 
@@ -113,7 +113,7 @@ This approach supports any file type and offers some CPU optimization, especiall
 
 The following example shows a setup for a PHP app with comments to explain the settings.
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 # The app's name, which must be unique within the project.
 {{< code-link destination="/create-apps/app-reference.html#top-level-properties" text="name" >}}: 'app'
 

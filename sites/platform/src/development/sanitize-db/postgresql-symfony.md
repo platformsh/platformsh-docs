@@ -92,7 +92,7 @@ Set up a script by following these steps:
 
 2.  Update the deploy hook to run your Symfony Command on each deploy.
 
-    ```yaml {location=".platform.app.yaml"}
+    ```yaml {configFile="app"}
     hooks:
         build: ...
         deploy: |
@@ -104,7 +104,7 @@ Set up a script by following these steps:
 
     To sanitize only on the initial deploy and not all future deploys, on sanitization create a file on a mount. Then add a check for the file as in the following example:
 
-    ```yaml {location=".platform.app.yaml"}
+    ```yaml {configFile="app"}
     hooks:
         build: ...
         deploy: |
@@ -118,7 +118,7 @@ Set up a script by following these steps:
 3.  Commit your changes by running the following command:
 
     ```bash
-    git add src/Command/SanitizeDataCommand.php .platform.app.yaml && git commit -m "Add sanitization."
+    git add src/Command/SanitizeDataCommand.php {{< vendor/configfile "app" >}} && git commit -m "Add sanitization."
     ```
 
     Push the changes to `staging` and verify that environment's database was sanitized.

@@ -150,7 +150,7 @@ title=In the Console
 
 Then add a build hook to your app configuration to install the CLI as part of the build process.
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 hooks:
     build: |
         set -e

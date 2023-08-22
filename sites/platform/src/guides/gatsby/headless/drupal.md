@@ -11,11 +11,11 @@ description: |
 
 {{% guides/gatsby/headless-project name="Drupal" %}}
 
-### `.platform/services.yaml`
+### Service configuration
 
 {{% guides/gatsby/headless-services template="gatsby-drupal" name="Drupal" %}}
 
-### `.platform/routes.yaml`
+### Routes configuration
 
 {{% guides/gatsby/headless-routes template="gatsby-drupal" name="Drupal" %}}
 
@@ -67,7 +67,7 @@ For detailed instructions, see the template's [post-installation instructions](h
 
 With Gatsby now deployed and pulling content from a backend Drupal application, there are a few things you may wish to change about your project going forward.
 
-### `applications.yaml`
+### Shared application configuration
 
 {{% guides/gatsby/headless-applicationsyaml name="Drupal" %}}
 
@@ -81,6 +81,6 @@ With Gatsby now deployed and pulling content from a backend Drupal application, 
 
 ### Live preview and incremental builds
 
-If you replicate the `web.commands.start` block in Gatsby's `.platform.app.yaml` file above, you can enable incremental builds on your projects. Once you save an update to a piece of Drupal content on a non-production branch, Drupal places a request to a dedicated `/__refresh` endpoint on Gatsby. Since Gatsby is running a development server on this non-production environment, this call causes Gatsby to retrieve content from Drupal once again, resulting in a near instantly updated article on the frontend.
+If you replicate the `web.commands.start` block in Gatsby's `{{< vendor/configfile "app" >}}` file above, you can enable incremental builds on your projects. Once you save an update to a piece of Drupal content on a non-production branch, Drupal places a request to a dedicated `/__refresh` endpoint on Gatsby. Since Gatsby is running a development server on this non-production environment, this call causes Gatsby to retrieve content from Drupal once again, resulting in a near instantly updated article on the frontend.
 
 To see how to enable this feature, consult the [template's README](https://github.com/platformsh-templates/gatsby-drupal#user-content-enabling-gatsby-live-preview-manual-configuration).

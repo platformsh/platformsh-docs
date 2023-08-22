@@ -36,13 +36,13 @@ To use JavaScript with Node.js on {{< vendor/name >}}, configure your [app confi
 Choose a version from the [list of supported versions](#supported-versions)
 and add it to your app configuration:
 
-{{< readFile file="registry/images/examples/full/nodejs.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
+{{< readFile file="registry/images/examples/full/nodejs.app.yaml" highlight="yaml" configFile="app" >}}
 
 ### 2. Specify any global dependencies
 
 Add the following to your app configuration:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 dependencies:
     nodejs:
         sharp: "*"
@@ -54,7 +54,7 @@ These are now available as commands, the same as installing with `npm install -g
 
 Include any commands needed to build and setup your app in the `hooks`, as in the following example:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 hooks:
     build: |
         npm run setup-assets
@@ -65,7 +65,7 @@ hooks:
 
 Specify a command to start serving your app (it must be a process running in the foreground):
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 web:
     commands:
         start: node index.js
@@ -96,7 +96,7 @@ server.listen(config.port);
 
 A complete basic app configuration looks like the following:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 name: node-app
 
 type: nodejs:18
@@ -134,7 +134,7 @@ To switch to Yarn to manage dependencies, follow these steps:
 
 1. Turn off the default use of npm:
 
-   ```yaml {location=".platform.app.yaml"}
+   ```yaml {configFile="app"}
    build:
        flavor: none
    ```
@@ -158,7 +158,7 @@ title=Yarn 3.x and Node.js 16+
 
 3. Use Corepack to run Yarn in your build hook:
 
-   ```yaml {location=".platform.app.yaml"}
+   ```yaml {configFile="app"}
    hooks:
        build: |
            corepack yarn install
@@ -172,7 +172,7 @@ title=Yarn 3.x and Node.js 14
 
 3. Enable Corepack (which is opt-in):
 
-   ```yaml {location=".platform.app.yaml"}
+   ```yaml {configFile="app"}
    dependencies:
        nodejs:
            corepack: "*"
@@ -180,7 +180,7 @@ title=Yarn 3.x and Node.js 14
 
 4. Use Corepack to run Yarn in your build hook:
 
-   ```yaml {location=".platform.app.yaml"}
+   ```yaml {configFile="app"}
    hooks:
        build: |
            corepack yarn install
@@ -194,7 +194,7 @@ title=Yarn < 3
 
 3. Add Yarn as a global dependency:
 
-   ```yaml {location=".platform.app.yaml"}
+   ```yaml {configFile="app"}
    dependencies:
        nodejs:
            yarn: "1.22.19"
@@ -202,7 +202,7 @@ title=Yarn < 3
 
 4. Install dependencies in the `build` hook:
 
-   ```yaml {location=".platform.app.yaml"}
+   ```yaml {configFile="app"}
    hooks:
        build: |
            yarn --frozen-lockfile

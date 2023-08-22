@@ -74,13 +74,13 @@ To run your Strapi v4 app locally with all of its services, follow these steps:
        db_relationship
      ][0];
      // Option 1. PostgreSQL.
-     // The PostgreSQL configuration assumes the following in your .platform/services.yaml file:
+     // The PostgreSQL configuration assumes the following in your {{< vendor/configfile "services" >}} file:
      //
      // dbpostgres:
      //    type: postgresql:12
      //    disk: 256
      //
-     // And a relationship defined in your .platform.app.yaml file as follows:
+     // And a relationship defined in your {{< vendor/configfile "app" >}} file as follows:
      //
      // relationships:
      //    postgresdatabase: "dbpostgres:postgresql"
@@ -111,13 +111,13 @@ To run your Strapi v4 app locally with all of its services, follow these steps:
          },
        };
        // Option 2. Oracle MySQL.
-       // The Oracle MySQL configuration assumes the following in your .platform/services.yaml file:
+       // The Oracle MySQL configuration assumes the following in your {{< vendor/configfile "services" >}} file:
        //
        // dbmysql:
        //    type: oracle-mysql:8.0
        //    disk: 256
        //
-       // And a relationship defined in your .platform.app.yaml file as follows:
+       // And a relationship defined in your {{< vendor/configfile "app" >}}file as follows:
        //
        // relationships:
        //    database: "dbmysql:mysql"
@@ -145,7 +145,7 @@ To run your Strapi v4 app locally with all of its services, follow these steps:
 
    See the comments for explanations of individual sections.
 
-   If you have defined the relationship to your service differently (in `.platform.app.yaml`)
+   If you have defined the relationship to your service differently (in `{{< vendor/configfile "app" >}}`)
    or are using a different service, use that name in place of `postgresdatabase`.
 
 4. Open a SSH tunnel to the environment's database:
@@ -154,7 +154,7 @@ To run your Strapi v4 app locally with all of its services, follow these steps:
    platform tunnel:open -A <APP_NAME> -e updates
    ```
 
-   Replace `<APP_NAME>` with your app's `name` in your `.platform.app.yaml` file.
+   Replace `<APP_NAME>` with your app's `name` in your `{{< vendor/configfile "app" >}}` file.
 
    If you get the error `The pcntl PHP extension is required` error, use this command instead:
 
