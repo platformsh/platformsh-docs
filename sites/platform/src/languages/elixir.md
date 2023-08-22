@@ -37,7 +37,7 @@ Remember `config/prod.exs` is evaluated at **build time** and has no access to r
 
 If you are using Hex to manage your dependencies, you need to specify the `MIX_ENV` environment variable:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 variables:
     env:
         MIX_ENV: 'prod'
@@ -48,7 +48,7 @@ You can change it.
 
 Include in your build hook the steps to retrieve a local Hex and `rebar`, and then run `mix do deps.get, deps.compile, compile` on your application to build a binary.
 
-{{< readFile file="registry/images/examples/full/elixir.hooks.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
+{{< readFile file="registry/images/examples/full/elixir.hooks.app.yaml" highlight="yaml" configFile="app" >}}
 
 {{< note >}}
 
@@ -61,7 +61,7 @@ you can then start it from the `web.commands.start` directive.
 
 The following basic app configuration is sufficient to run most Elixir applications.
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 name: app
 
 type: elixir:1.13
@@ -104,7 +104,7 @@ You can commit a `mix.exs` file in your repository and the system downloads the 
 
 {{% guides/config-reader-info lang="elixir" %}}
 
-If you are building a Phoenix app for example, it would suffice to add a database to `.platform/services.yaml` and a relationship in `.platform.app.yaml`. Put the lib in your `deps` and, assuming you renamed the `prod.secret.exs` to `releases.exs` per the [Phoenix guide](https://hexdocs.pm/phoenix/releases.html), change:
+If you are building a Phoenix app for example, it would suffice to add a database to `{{< vendor/configfile "services" >}}` and a relationship in `{{< vendor/configfile "app" >}}`. Put the lib in your `deps` and, assuming you renamed the `prod.secret.exs` to `releases.exs` per the [Phoenix guide](https://hexdocs.pm/phoenix/releases.html), change:
 
 ```elixir
 System.get_env("DATABASE_URL")
@@ -122,9 +122,9 @@ See [Config Reader Documentation](../development/variables/use-variables.md#acce
 
 The services configuration is available in the environment variable `PLATFORM_RELATIONSHIPS`.
 
-Given a relationship defined in `.platform.app.yaml`:
+Given a relationship defined in `{{< vendor/configfile "app" >}}`:
 
-{{< readFile file="registry/images/examples/full/postgresql.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
+{{< readFile file="registry/images/examples/full/postgresql.app.yaml" highlight="yaml" configFile="app" >}}
 
 Assuming you have in `mix.exs` the Poison library to parse JSON:
 

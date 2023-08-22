@@ -53,7 +53,7 @@ see your CDN provider's official documentation.
 When you use a CDN, the {{< vendor/name >}} router [HTTP caching](../../define-routes/cache.md) becomes redundant.
 To disable it, change your cache configuration for the routes behind a CDN to the following:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 "https://{default}/":
    type: upstream
    upstream: "app:http"
@@ -127,7 +127,7 @@ To enable client-authenticated TLS, follow these steps:
 
 4.  Change your routing configuration for the routes behind a CDN to the following:
 
-    ```yaml {location=".platform/routes.yaml"}
+    ```yaml {configFile="routes"}
     https://{default}:
         tls:
             client_authentication: "require"

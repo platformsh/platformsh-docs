@@ -27,7 +27,7 @@ The recommended way to handle Go dependencies on {{< vendor/name >}} is using Go
 
 Assuming your `go.mod` and `go.sum` files are present in your repository, your application can be built with the command `go build`, to produce a working executable. You can then start it from the `web.commands.start` directive. Note that the start command _must_ run in the foreground. If the program terminates for any reason it is automatically restarted.
 
-The following basic `.platform.app.yaml` file is sufficient to run most Go applications.
+The following basic `{{< vendor/configfile "app" >}}` file is sufficient to run most Go applications.
 
 ```yaml
 name: app

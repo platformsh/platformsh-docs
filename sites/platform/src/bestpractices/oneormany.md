@@ -66,7 +66,7 @@ You can have services that are only exposed to another service as well as servic
 
 In a clustered application, you can have one of the following configurations:
 
-- Multiple [`.platform.app.yaml` files](../create-apps/multi-app/_index.md) in different directories, with separate code bases that deploy separately
+- Multiple [`{{< vendor/configfile "app" >}}` files](../create-apps/multi-app/_index.md) in different directories, with separate code bases that deploy separately
 - A single app that spawns one or more [worker instances](../create-apps/app-reference.md#workers) that run background processes
 
 {{< note >}}

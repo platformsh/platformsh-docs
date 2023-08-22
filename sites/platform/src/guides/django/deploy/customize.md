@@ -87,7 +87,7 @@ a PostgreSQL database.
 
 ```py {location="settings.py"}
 # This variable must always match the primary database relationship name,
-#   configured in .platform.app.yaml.
+#   configured in {{< vendor/configfile "app" >}}.
 PLATFORMSH_DB_RELATIONSHIP="database"
 
 # Import some {{< vendor/name >}} settings from the environment.

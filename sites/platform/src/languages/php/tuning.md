@@ -50,7 +50,7 @@ you need to clear the OPcache explicitly on deployment (which can be done by res
 
 To enable preloading, add a variable that specifies a preload script:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 variables:
     php:
         opcache.preload: '{{< variable "PRELOAD_SCRIPT" >}}'
@@ -105,7 +105,7 @@ To determine the maximum number of files to cache, follow these steps:
 
 An example configuration:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 variables:
     php:
         'opcache.max_accelerated_files': 22000
@@ -148,7 +148,7 @@ To determine the total amount of memory to use, follow these steps:
 
    An example configuration:
 
-   ```yaml {location=".platform.app.yaml"}
+   ```yaml {configFile="app"}
    variables:
        php:
            'opcache.memory_consumption': 96
@@ -175,7 +175,7 @@ you can disable that check and get a small performance improvement.
 
 Timestamp validation can be disabled by adding the following variable to your [app configuration](../../create-apps/_index.md):
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 variables:
     php:
         'opcache.validate_timestamps': 0
