@@ -35,7 +35,26 @@ Solr search with generic schemas provided, and a custom schema is also supported
 
 {{% service-values-change %}}
 
-{{< relationship "solr" >}}
+```yaml
+{
+    "username": null,
+    "scheme": "solr",
+    "service": "solr86",
+    "fragment": null,
+    "ip": "169.254.68.119",
+    "hostname": "csjsvtdhmjrdre2uaoeim22xjy.solr86.service._.eu-3.platformsh.site",
+    "port": 8080,
+    "cluster": "rjify4yjcwxaa-master-7rqtwti",
+    "host": "solr.internal",
+    "rel": "solr",
+    "path": "solr\/maincore",
+    "query": [],
+    "password": "ChangeMe",
+    "type": "solr:8.6",
+    "public": false,
+    "host_mapped": false
+}
+```
 
 ## Usage example
 

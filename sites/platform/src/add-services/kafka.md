@@ -22,7 +22,19 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 
 {{% service-values-change %}}
 
-{{< relationship "kafka" >}}
+```yaml
+{
+    "service": "kafka25",
+    "ip": "169.254.27.10",
+    "hostname": "t7lv3t3ttyh3vyrzgqguj5upwy.kafka25.service._.eu-3.platformsh.site",
+    "cluster": "rjify4yjcwxaa-master-7rqtwti",
+    "host": "kafka.internal",
+    "rel": "kafka",
+    "scheme": "kafka",
+    "type": "kafka:2.5",
+    "port": 9092
+}
+```
 
 ## Usage example
 
