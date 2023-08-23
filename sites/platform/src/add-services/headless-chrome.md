@@ -23,7 +23,19 @@ Puppeteer can be used to generate PDFs and screenshots of web pages, automate fo
 
 {{% service-values-change %}}
 
-{{< relationship "headlesschrome" >}}
+```yaml
+{
+    "service": "headlesschrome",
+    "ip": "169.254.91.5",
+    "hostname": "gvbo7vktgmou2mplnzt4b54hgi.headlesschrome.service._.eu-3.platformsh.site",
+    "cluster": "rjify4yjcwxaa-master-7rqtwti",
+    "host": "headlesschrome.internal",
+    "rel": "http",
+    "scheme": "http",
+    "type": "chrome-headless:73",
+    "port": 9222
+}
+```
 
 ## Requirements
 

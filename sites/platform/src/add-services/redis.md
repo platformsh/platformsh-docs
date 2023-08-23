@@ -180,7 +180,26 @@ const value = await client.get('x'); // returns 42
 
 {{% service-values-change %}}
 
-{{< relationship "redis" >}}
+```yaml
+{
+    "username": null,
+    "scheme": "redis",
+    "service": "redis6",
+    "fragment": null,
+    "ip": "169.254.22.75",
+    "hostname": "7mnenhdiz7ecraovljrba6pmiy.redis6.service._.eu-3.platformsh.site",
+    "port": 6379,
+    "cluster": "rjify4yjcwxaa-master-7rqtwti",
+    "host": "redis.internal",
+    "rel": "redis",
+    "path": null,
+    "query": [],
+    "password": null,
+    "type": "redis:6.0",
+    "public": false,
+    "host_mapped": false
+}
+```
 
 The format of the relationship is identical whether your Redis service is [ephemeral](#ephemeral-redis) or [persistent](#persistent-redis).
 
