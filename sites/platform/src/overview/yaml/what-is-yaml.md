@@ -31,7 +31,7 @@ The most straightforward data structure involves defining key–value pairs wher
 
 So you could have a basic configuration for an app:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 name: app
 type: "golang:1.18"
 disk: 1024
@@ -61,7 +61,7 @@ In contrast, when you define mappings, the order doesn't matter.
 
 So you could expand the configuration from before to add another mapping:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 name: app
 type: "golang:1.18"
 disk: 1024
@@ -84,7 +84,7 @@ each with their own mappings.
 
 In addition to maps defining further key–value pairs, you can also use sequences to include lists of information.
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 web:
     locations:
         '/':
@@ -97,7 +97,7 @@ web:
 
 You can also define sequences using a flow syntax:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 web:
     locations:
         '/':
@@ -118,7 +118,7 @@ The new lines need to have at least the same indentation as the first
 
 So you could add a multi-line string to a `build` key in the `hooks` map:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 hooks:
     build: |
         set -e
@@ -141,7 +141,7 @@ Then refer to the anchor using `*<NAME>`.
 
 The following example shows 4 different workers:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 workers:
     queue1: &runner
         size: S

@@ -28,7 +28,7 @@ platform variable:create --visible-build false php:tideways.api_key --value '<yo
 
 ### 3. Enable the Tideways extension
 
-Enable the Tideways extension in your `.platform.app.yaml` as follows:
+Enable the Tideways extension in your `{{< vendor/configfile "app" >}}` as follows:
 
 ```yaml
 runtime:
@@ -41,7 +41,7 @@ Enabling the extension also activates the Tideways background process.
 Push the changes to your {{< vendor/name >}} environment to enable Tideways as follows:
 
 ```bash
-git add .platform.app.yaml
+git add {{< vendor/configfile "app" >}}
 git commit -m "Enable Tideways."
 git push
 ```

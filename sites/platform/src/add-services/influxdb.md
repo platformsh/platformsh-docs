@@ -47,7 +47,7 @@ See more information on [how to upgrade to version 2.3 or later](#upgrade-to-ver
       "rel": "influxdb",
       "scheme": "http",
       "username": "admin",
-      "password": "84c601e8b92060c6126a6d3163227ce19e32934a45e19b7cbc0571c2fe9fd347",
+      "password": "ChangeMe",
       "port": 8086,
       "path": null,
       "query": {
@@ -139,7 +139,7 @@ If you're relying on any other attributes connecting to InfluxDB, they remain ac
       "rel": "influxdb",
       "scheme": "http",
       "username": "admin",
-      "password": "84c601e8b92060c6126a6d3163227ce19e32934a45e19b7cbc0571c2fe9fd347",
+      "password": "ChangeMe",
       "port": 8086,
       "path": null,
       "query": {
@@ -159,7 +159,7 @@ If you're relying on any other attributes connecting to InfluxDB, they remain ac
 From version 2.3 onward, InfluxDB includes an upgrade utility that can convert databases from previous versions to version 2.3 or later.
 
 To upgrade from a 1.x version to 2.3 or later,
-change the service version in your `.platform/services.yaml` file and push your project.
+change the service version in your `{{< vendor/configfile "services" >}}` file and push your project.
 Any existing data you had in your 1.x system is automatically upgraded for you into the 2.3+ system.
 
 {{< note >}}

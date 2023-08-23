@@ -1,4 +1,5 @@
 {{ $markdown := "false" }}
+{{ $configFiles := .Site.Params.vendor.config.files }}
 {{ with .Get "markdownify" }}
   {{ $markdown = . }}
 {{ end }}
@@ -9,6 +10,9 @@
 {{ $location := "false" }}
 {{ with .Get "location" }}
   {{ $location = . }}
+{{ end }}
+{{ with .Get "configFile" }}
+  {{ $location = index $configFiles . }}
 {{ end }}
 
 {{ $contentLength := 0 }}
