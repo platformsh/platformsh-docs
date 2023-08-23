@@ -5,50 +5,48 @@ editPage: false
 feedback: false
 ---
 
-<!-- ![welcome-img](/images/git-hub-welcome.png) -->
-
 {{< home >}}
 
 ## How the docs are organized
 
 There are different [kinds](https://documentation.divio.com/) of documentation.
-Some docs are useful when you are just starting out, 
+Some docs are useful when you're just starting out, 
 while others go into detail that's relevant only after you've deployed many projects on {{< vendor/name >}}.
 
-This site is roughly split into four categories of content based on where you are in your journey working with {{< vendor/name >}}, described below.
+This site is roughly split into categories based on where you are in your journey working with {{< vendor/name >}}, described below.
 
 ### Get started
 
-If you've come to this site with only a little familiarity with {{< vendor/name >}} and how it works, _but_ you're also looking to quickly start working with the platform, the **Get started** section is the right place to begin. 
+If you're still unfamiliar with {{< vendor/name >}} and how it works, _but_ you're also looking to quickly start working with the platform, the **Get started** section is the right place to begin.
 
-You'll learn the basics of how {{< vendor/name >}} leveraged Git to produce reusable build images, identical environments in staging and development to production (including production data), as well as the basics of monitoring and troubleshooting your environments. 
+Learn the basics of how {{< vendor/name >}} leverages Git to produce reusable build images, identical-to-production environments in staging and development (including production data), as well as the basics of monitoring and troubleshooting your environments. 
 
-Ready to get started? [Let's go!](/get-started/introduction.md)
+Ready to get started? [Let's go!](/get-started/)
 
 ### Learn
 
-After going through the **Get started** section, you may be interested in some more information about how exactly {{< vendor/name >}} works, and why it works the way that it does. The **[Learn](/learn/_index.md)** section of the documentation it a collection of tutorials and conceptual guides that try to help you understand that much more about {{< vendor/name >}}.
+After going through the **Get started** section, you may want to know more about how {{< vendor/name >}} works and the logic behind it. The **[Learn](/learn/_index.md)** section is a collection of tutorials and conceptual guides to help you understand the ins and outs of {{< vendor/name >}}.
 
 - [**What is {{% vendor/name %}}?**](/learn/overview/_index.md)
 
-    This guide focuses on answering one question - what is the problem {{< vendor/name >}} is trying to solve?
-    Here you'll learn more about {{< vendor/name >}}'s how configuration, build and deploy pipelines, and the structure of environments play into the broader philosophy behind reliably deploying applications.
+    With this guide, find out which problem {{< vendor/name >}} is trying to solve.
+    Learn how {{< vendor/name >}}'s configuration, build and deploy pipelines, and the structure of environments play into the broader philosophy behind reliably deploying applications.
 
 - [**Tutorials**](/learn/tutorials/_index.md)
 
-    After you've familiarized yourself with {{< vendor/name >}}, it's basic rules and philosophy, you may be curious about how you can replicate common workflows in other tools on our platform. 
-    From scheduling dependency updates and backups, the [**Tutorials**](/learn/tutorials/_index.md) will give you all the information you need.
+    Once you're familiar with {{< vendor/name >}}, its basic rules and philosophy, you may be curious about how you can replicate common workflows in other tools on our platform. 
+    From scheduling dependency updates and backups to exporting data, the [**Tutorials**](/learn/tutorials/_index.md) provides all the information you need.
 
 - [**Best practices**](/learn/bestpractices/_index.md)
 
     {{< vendor/name >}} makes deploying and managing infrastructure no different than working with Git.
     As your work becomes more experimental, however, you may be interested in optimizing your workflows, and addressing common constraints of the platform. 
-    The [**Best practices**](/learn/bestpractices/_index.md) documentation contains a number of articles that address advanced use cases for caching, microservices, and more.
+    The [**Best practices**](/learn/bestpractices/_index.md) documentation contains articles that address advanced use cases for caching, microservices, and more.
     
 ### Frameworks
 
-Once you've familiarized yourself with the basic rules of {{< vendor/name >}}, you'll likely want to deploy some of your own custom code in a chosen framework. 
-The **Frameworks** section of the documentation contains a collection of framework-specific how-to guides - from best practices, configuration, local development, and more.
+Now that you understand the basic rules of {{< vendor/name >}}, you're likely ready to deploy your own custom code in a chosen framework. 
+The **Frameworks** section is a collection of framework-specific how-to guides - from best practices to configuration, local development, and more.
 
 | Language              | Frameworks |
 | :----------------     | :------  |
@@ -59,8 +57,8 @@ The **Frameworks** section of the documentation contains a collection of framewo
 
 ### Reference 
 
-The largest section of the documentation, and the content you'll likely spend the most time, is **Reference documentation**. 
-It's here that details of configuration, environment variables, activities, and more topics you'll use in your day-to-day work can be found.
+The **Reference documentation** section is the largest and most comprehensive. 
+It includes details of configuration, environment variables, activities, and much more material you can use in your day-to-day work.
 
 {{< home/table "services" >}}
 {{< home/table "languages" >}}
@@ -69,8 +67,7 @@ It's here that details of configuration, environment variables, activities, and 
 
 ### More docs, found elsewhere
 
-There are other forms of documentation that don't fit neatly into the categories above, but are nonetheless helpful resources for working with {{< vendor/name >}}. 
-Some of the bigger ones are listed below:
+The following resources are also helpful for working with {{< vendor/name >}}:
 
 | Source            | Links |
 | :---------------- | :------ |
@@ -80,7 +77,7 @@ Some of the bigger ones are listed below:
 | [YouTube](https://www.youtube.com/@Platformsh)          |   {{< home/links-youtube >}}    |
 | [GitHub](https://github.com/platformsh)    |  {{< home/links-github >}} |
 
-Stay informed of all the latest {{< vendor/name >}} news by joining our newsletter.
+To stay informed of all the latest {{< vendor/name >}} news, join our newsletter.
 
 <div style="margin-top: 3rem; text-align: center;">
     <a class="start-cta font-semibold text-sm xl:text-base px-4 py-2 bg-skye rounded text-white hover:bg-skye-dark focus:bg-skye-dark"
@@ -88,7 +85,7 @@ Stay informed of all the latest {{< vendor/name >}} news by joining our newslett
 </div>
 
 
-## Getting help & contributing
+## Connect with us
 
 ### Join the community
 
@@ -102,12 +99,11 @@ Looking for a way to contribute?
     href="https://chat.platform.sh" rel="noopener">Join us on Slack</a>
 </div>
 
-### How to contribute
-
+### Contribute
 Feel free to open an issue or pull request for any of the repositories below, or let us know on [Slack](https://chat.platform.sh) if you find a problem we can help with:
 
 {{< home/links-github >}}
 
-### Support
+### Get support
 
 If you're experiencing issues with your projects, don't hesitate to open a [support ticket](/learn/overview/get-support).

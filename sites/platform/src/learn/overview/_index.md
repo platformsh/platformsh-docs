@@ -1,7 +1,7 @@
 ---
 title: "What is {{< vendor/name >}}?"
 weight: -220
-description: "If you're new to {{< vendor/name >}}, we recommend starting with Structure and Build & Deploy, which will get you started on the right track to use {{< vendor/name >}} most effectively."
+description: "Find out which problem {{< vendor/name >}} is trying to solve."
 ---
 
 {{< vendor/name >}} is a second-generation Platform-as-a-Service built especially for continuous deployment.

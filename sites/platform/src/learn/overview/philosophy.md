@@ -63,13 +63,8 @@ you need a `post-deploy` hook to successfully build and deploy your app.
 
 ### How your app is built
 
-<<<<<<< HEAD:sites/platform/src/learn/overview/philosophy.md
 During the [build step](/learn/overview/build-deploy.md#build-steps),
-dependencies specified in `.platform.app.yaml` are installed on application containers.
-=======
-During the [build step](../overview/build-deploy.md#build-steps),
 dependencies specified in `{{< vendor/configfile "app" >}}` are installed on application containers.
->>>>>>> main:sites/platform/src/overview/philosophy.md
 
 You can also customize the build step by providing a [`build` hook](/create-apps/hooks/hooks-comparison.md#build-hook) composed of one or more shell commands
 that help create your production codebase.
