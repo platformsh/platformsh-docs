@@ -83,7 +83,12 @@ navSections:
     section: home
     weight: -90
 
-
+nonDocsSections:
+  apidocs:
+    title: API Documentation
+    link: https://api.platform.sh/docs
+    weight: -80
+    
 # Metadata
 meta:
   sitename: "Deploy Friday User Documentation"

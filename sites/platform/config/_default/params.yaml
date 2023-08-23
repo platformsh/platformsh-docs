@@ -81,6 +81,16 @@ navSections:
     section: home
     weight: -90
 
+nonDocsSections:
+  apidocs:
+    title: API Documentation
+    link: https://api.platform.sh/docs
+    weight: -80
+  # community:
+  #   title: Community Forum
+  #   link: https://community.platform.sh
+  #   weight: -70
+
 # Metadata
 meta:
   sitename: "Platform.sh User Documentation"

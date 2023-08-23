@@ -40,3 +40,18 @@
     </div>
   </div>
 {{ end }}
+
+<!-- External: Additional sidebar sections, not associated with pages in docs site -->
+{{ if isset .Site.Params "nondocssections" }}
+  {{ range sort .Site.Params.nonDocsSections "weight" }}
+
+      <div x-data="{ expanded: false }">
+        <h3 class="font-semibold">
+          <button class="bg-no-repeat bg-right-2 w-[95%] py-4 pl-2 pr-6 my-2 text-left bg-grey" :style="expanded ? 'background-image: url(/images/icons/minus.svg);' : 'background-image: url(/images/icons/add.svg);'" @click="location.href = '{{ .link }}'" aria-expanded="false" aria-label="Toggle section">
+            {{ .title }}
+          </button>
+        </h3>
+      </div>
+
+  {{ end }}
+{{ end }}
