@@ -26,6 +26,34 @@ To define the service, use {{ if eq ($type) "mariadb" }}
 <!-- Create an example services.yaml file from data in the registry. -->
 {{ partial "examples/servicedefn" $data }}
 
+{{ if eq .Site.Params.vendor.config.version 1 }}
+
+```yaml {configFile="services"}
+<SERVICE_NAME>:
+    type: {{ $type }}:<VERSION>
+    disk: 256
+    {{- if $data.disk -}}
+      {{- if $data.min_disk_size -}}
+
+    disk: {{- $data.min_disk_size -}}
+      {{- else -}}
+      
+    disk: 256
+      {{- end -}}
+  {{- end -}}
+```
+
+{{ else }}
+
+```yaml {configFile="services"}
+{{ .Site.Params.vendor.config.prefix.services }}:
+    <SERVICE_NAME>:
+        type: {{ $type }}:<VERSION>
+        disk: 256
+```
+
+{{ end }}
+
 {{ if eq $type "redis-persistent" }}
 Note that persistent Redis requires `disk` to store data.
 For more information, refer to the [dedicated Redis page](/add-services/redis.md).
