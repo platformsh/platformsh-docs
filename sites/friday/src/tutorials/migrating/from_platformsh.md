@@ -1,137 +1,97 @@
 ---
-title: "Platform.sh"
-description: |
-  Migrate your project from Platform.sh to {{% vendor/name %}} has an easy path. Let's dig into it!
-test: vendor/name
-
+title: "Migrate your site from Platform.sh to {{% vendor/name %}}"
+sidebarTitle: From Platform.sh
+description: Migrate your project from Platform.sh to {{% vendor/name %}} .
 ---
 
-Starting from an existing Platform.sh project, adapting your project Yaml configuration to host it on {{% vendor/name %}} is really easy to do.
-This is the few steps to perform a successful migration.
+Starting from an existing Platform.sh project, follow these steps to amend your project YAML configuration
+and host your project on {{% vendor/name %}}.
 
-## Create a Git branch
+## Before you begin
 
-To avoid mixing existing Platform.sh source code and your new {{% vendor/name %}} source code, we need to create a new Git branch.
+You need:
 
-From the root of your Platform.sh project, execute the following:
+- A {{% vendor/name %}} account
+- An existing Platform.sh project
+- Recommended: The {{% vendor/name %}} CLI
 
-```shell
+## 1. Create a Git branch
+
+To avoid mixing existing Platform.sh source code and your new {{% vendor/name %}} source code,
+create a new Git branch.
+From the root of your Platform.sh project, run the following command:
+
+```bash
 git checkout -b {{% vendor/cli %}}-main
 ```
 
+## 2. Create a new {{% vendor/name %}} project
 
-## Create a new {{% vendor/name %}} project
+To create a new {{% vendor/name %}} project, use the {{% vendor/name %}} CLI and run the following command:
 
-To create a new {{% vendor/name %}} project, use the CLI and follow the prompt:
-
-```
+```bash
 {{% vendor/cli %}} project:create --default-branch={{% vendor/cli %}}-main
 ```
 
-At the end of this process, your new project is created and your local source code is now linked with your new {{% vendor/name %}} project.
+Follow the prompts.</br>
+Your new project is created and your local source code is now linked to your new {{% vendor/name %}} project.
 
-## General changes
+## 3. Set up your {{% vendor/name %}} YAML configuration
 
-The main technical difference between Platform.sh and {{% vendor/name %}} remains in the Yaml configuration.
-There are a lot of improvements in the {{% vendor/name %}} Yaml config files.
+### What you need to know
 
-This is the main rules (non-exhaustive list) that you have to keep in mind:
-- All of the Yaml configuration files are now located in the `.platform/` folder only, no more `.platform.app.yaml` files at the root of your application source code
-- All existing yaml files located at the root of the `.platform/` folder are taken into account, whether you define multiple applications in the same Yaml file or separate them in dedicated Yaml files.
-- By default, first level Yaml keys always start by:
-  - `applications`: contains what was previously defined in your .platform.app.yaml file.
-  - `services`: contains what was previously defined in your .platform/services.yaml file.
-  - `routes`: contains what was previously defined in your .platform/routes.yaml file.
-    </br>We switch the app list from array to hash map.
-    </br>This means that the name property of your app is now a Yaml key, containing all the other keys.
+The {{% vendor/name %}} YAML configuration presents the following main differences from Platform.sh:
+
+- All of the YAML configuration files (to configure your apps, services and routes)
+  are now located in the `.platform/` directory.
+
+- All the YAML files in the `.platform/` directory are taken into account during the build.</br>
+  You can configure [multiple apps](/create-apps/multi-app/) in a single YAML file or set up one YAML file per application.
+  Just make sure you place all relevant files at the root of `.platform/`.
+
+- The YAML structure now uses the following first-level keys:
+
+  | First-level YAML key | Description |
+  |---|---|
+  | `applications` | Contains what was previously defined in your `.platform.app.yaml` file. |
+  | `services` | Contains what was previously defined in your `.platform/services.yaml` file. |
+  | `routes` | Contains what was previously defined in your `.platform/routes.yaml` file. |
+
+  To configure your apps, you need to use a hash map instead of an array.</br>
+  The [`name` property](/create-apps/app-reference#top-level-properties) of your app is now a YAML key containing all the other keys:
+
     ```yaml
     applications:
-      app:
+      app1:
         # ...
-      admin:
+      app2:
         # ...
     ```
-    This will help debugging long config files having a lot of applications (multi-app) as the app name key will be part of the XPath, and so, it will ease developer journey finding where they are modifying settings:
-- Yaml keys inside an app do not change, except a removal of keys to manage container resources: `size`, `disk` and `resources`
-- As resource configuration is not possible anymore in the Yaml configuration., it needs to be done using {{% vendor/name %}} API or using the Console.
 
-## Change your Yaml structure
-There are 2 ways to adapt your actual configuration from Platform.sh to {{% vendor/name %}}:
-- [Manually](#manually) : **13 steps**
-- [Using `{{% vendor/cli %}}` ify command](#using-{{% vendor/cli %}}-ify-command): **1 step**
+  This makes debugging long configuration files with multiple apps easier.
+  The app name key is now part of the XPath, which helps you quickly spot any settings you need to modify.
 
-### Manually
-To migrate an existing Yaml configuration to {{% vendor/name %}} Yaml format, you need to:
-1. Create a new `{{< vendor/configdir >}}/` folder.
-1. Create one Yaml file per application in your `{{< vendor/configdir >}}/` folder, or one file that will contain all of your `applications`/`services`/`routes` configuration.
-   </br>We will use a `{{< vendor/configdir >}}/config.yaml` file here.
-1. At the root of your new Yaml file, create an `applications:` first level Yaml key.
-1. Name your application key below the `applications:` key, example:
-   ```yaml
-   # .platform/app.yaml
-   applications:
-     app:
-   ```
-1. Copy/paste content of your existing `app` configuration from the `.platform.app.yaml` (or `.platform/applications.yaml`) file below your `app:` key
-1. Remove the `name:` setting from the pasted source code, as it is not needed anymore.
-1. At the root of your `{{< vendor/configdir >}}/config.yaml` file, create a `services:` first level Yaml key.
-1. Copy the entire `.platform/services.yaml` file and paste it below `services:` first level key and indent the existing services definition below.
-1. At the root of your `{{< vendor/configdir >}}/config.yaml`  file, create a `routes:` first level Yaml key.
-1. Copy the entire `.platform/routes.yaml` file and paste it below `routes:` first level key and indent the existing services definition below.
-1. Remove the 3 Platform.sh Yaml configuration files (`.platform.app.yaml` or `.platform/applications.yaml`, `.platform/services.yaml` and `.platform/routes.yaml`) from your source code.
-1. Commit your files in Git
-1. Deploy your source code using command `{{% vendor/cli %}} push`
+- As {{% vendor/name %}} allows you to [manage container resources](#4-define-your-app-and-service-resources) from its Console, CLI or API,
+  the `size`, `disk` and `resources` keys have been deprecated.
+  All the other YAML keys used to configure your apps on Platform.sh remain the same.
 
-You should end up with this `{{< vendor/configdir >}}/config.yaml` file like:
-```yaml
-# {{< vendor/configdir >}}/config.yaml
-applications:
-  # Complete list of all available properties: https://docs.platform.sh/create-apps/app-reference.html
-  # A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated
-  # with the app.
-  app:
-    # The runtime the application uses.
-    # Complete list of available runtimes: https://docs.platform.sh/create-apps/app-reference.html#types
-    type: nodejs:18
-    # The relationships of the application with services or other applications.
-    # The left-hand side is the name of the relationship as it will be exposed
-    # to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
-    # side is in the form `<service name>:<endpoint name>`.
-    # More information: https://docs.platform.sh/create-apps/app-reference.html#relationships
-    relationships:
-      database:
-        service: "db"
-        endpoint: "mysql"
-    # The size of the persistent disk of the application (in MB). Minimum value is 128.
-    # disk: 512
-    # The web key configures the web server running in front of your app.
-    # More information: https://docs.platform.sh/create-apps/app-reference.html#web
-    web:
-      # Commands are run once after deployment to start the application process.
-      # More information: https://docs.platform.sh/create-apps/app-reference.html#web-commands
-      commands:
-        # The command to launch your app. If it terminates, it's restarted immediately.
-        start: "node index.js"
+### Amend your existing YAML configuration
 
-services:
-  db:
-    type: mariadb:10.4
+To set up your {{% vendor/name %}} YAML configuration, follow these steps.
 
-routes:
-  "https://{default}/":
-    type: upstream
-    upstream: "app:http"
-  # A basic redirect definition
-  # More information: https://docs.platform.sh/define-routes.html#basic-redirect-definition
-  "https://www.{default}/":
-    type: redirect
-    to: "https://{default}/"
-```
+{{< codetabs >}}
 
-### Using {{% vendor/cli %}} ify command
-Our {{% vendor/name %}} CLI comes with a useful command to adapt your source code to be easily hosted on {{% vendor/name %}}: `{{% vendor/cli %}} ify`
++++
+title= Automated setup
++++
 
-This command will automatically detect your local stack and generate the minimum Yaml configuration files required to deploy it on {{% vendor/name %}}: `{{< vendor/configdir >}}/config.yaml`.
+You can automatically adjust your Platform.sh source code
+so it can be hosted on {{% vendor/name %}}.
+To do so, use the {{% vendor/name %}} CLI and run the `{{% vendor/cli %}} ify` command.
+
+{{% vendor/name %}} automatically detects your local stack
+and generates the minimum YAML configuration file (`{{< vendor/configdir >}}/config.yaml`) required to deploy your project:
+
 ```
 $ {{% vendor/cli %}} ify
 You are reconfiguring the project at /dev/{{% vendor/cli %}}/nextjs.
@@ -186,93 +146,220 @@ To do so, commit your files and deploy your application using the
   $ {{% vendor/cli %}} project:set-remote
   $ {{% vendor/cli %}} push
 ```
+
 {{< note >}}
-as this command generate the minimum configuration to install the detected stack, you would probably need to compare your previous Yaml section from your `.platform.app.yaml` (or `.platform/applications.yaml`) file to your new `{{< vendor/configdir >}}/config.yaml` file and report possible missing settings, like your additional command lines in your `build`/`deploy` hooks section.
-</br>When it’s done, commit and push your changes.
+
+This command generates the **minimum** configuration to install the detected stack.
+
+Compare your old Platform.sh YAML configuration files to your new `{{< vendor/configdir >}}/config.yaml` file, and add any missing settings.
+For example, you might need to add extra command lines in your `build`/`deploy` hooks section manually.
+
+After you've amended your `{{< vendor/configdir >}}/config.yaml` file, commit and push your changes.
+
 {{< /note >}}
 
-## Defined app and services resources
-Within Platform.sh Yaml configuration files, it is possible to define resources of your app and services by using such settings.
-Example for your applications:
-```yaml
-# .platform.app.yaml
-name: app
-type: nodejs:16
-# How many resources to devote to the app. Defaults to AUTO in production environments.
-# More information: https://docs.platform.sh/create-apps/app-reference.html#sizes
-size: L
-# Fine-tune allocated resources
-# https://docs.platform.sh/create-apps/flexible-resources.html#performance-profiles
-resources:
-  base_memory: 1024
-  memory_ratio: 1024
-# The size of the persistent disk of the application (in MB). Minimum value is 128
-disk: 1024
+<--->
+
++++
+title=Manual setup
++++
+
+1. Create a `{{< vendor/configdir >}}/` folder and add your configuration files to it.
+
+  {{< note >}}
+  
+  You can add one YAML file per application, or a single file that contains all of your `applications`, `services`, and `routes` configuration.
+  The present tutorial uses a single `{{< vendor/configdir >}}/config.yaml` file.
+
+  {{< /note >}}
+
+2. Configure your apps.</br></br>
+   To do so, add the `applications:` first-level key to your configuration file.</br>
+   Below the `applications:` key, add a unique name key for your app.
+
+   ```yaml {location="{{< vendor/configdir >}}/config.yaml"}
+   applications:
+     app:
+   ```
+  
+   Copy the content of your `.platform.app.yaml` (or `.platform/applications.yaml`) file,
+   and paste it below your `app:` key.
+
+  {{< note >}}
+  
+  Remove the following deprecated keys from your `app` configuration:
+  - `name:`
+  - `size`, `disk` and `resources` (as you can now [manage container resources](#4-define-your-app-and-service-resources) from the {{% vendor/name %}} Console, CLI or API)
+
+  {{< /note >}}
+
+3. Configure your services.</br></br>
+   To do so, add the `services:` first-level key to your configuration file.</br>
+   Copy the content of your `.platform/services.yaml` file and paste it below the `services:` first-level key.
+
+   ```yaml {location="{{< vendor/configdir >}}/config.yaml"}
+   applications:
+     app:
+       # ...
+
+     services:
+       # ...
+   ```
+
+  {{< note >}}
+  
+  Remove the deprecated `size`, `disk` and `resources` from your `services` configuration.
+  You can now [manage container resources](#4-define-your-app-and-service-resources) from the {{% vendor/name %}} Console, CLI or API.
+
+  {{< /note >}}
+
+5. Configure your routes.</br></br>
+   To do so, add the `routes:` first-level key.</br>
+   Copy the content of your `.platform/routes.yaml` file and paste it below `routes:` first-level key.
+
+   ```yaml {location="{{< vendor/configdir >}}/config.yaml"}
+   applications:
+     app:
+       # ...
+   
+     services:
+       # ...
+  
+     routes:
+       # ...
+   ```
+
+6. Remove the three Platform.sh YAML configuration files (`.platform.app.yaml` or `.platform/applications.yaml`, `.platform/services.yaml` and `.platform/routes.yaml`) 
+   from your source code.
+
+7. Commit your files in Git.
+
+8. To deploy your source code, run the `{{% vendor/cli %}} push` command.
+
+Your resulting YAML configuration should be similar to the following example:
+
+```yaml {location="{{< vendor/configdir >}}/config.yaml"}
+applications:
+  # Complete list of all available properties: https://docs.platform.sh/create-apps/app-reference.html
+  # A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated
+  # with the app.
+  app:
+    # The runtime the application uses.
+    # Complete list of available runtimes: https://docs.platform.sh/create-apps/app-reference.html#types
+    type: nodejs:18
+    # The relationships of the application with services or other applications.
+    # The left-hand side is the name of the relationship as it will be exposed
+    # to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
+    # side is in the form `<service name>:<endpoint name>`.
+    # More information: https://docs.platform.sh/create-apps/app-reference.html#relationships
+    relationships:
+      database:
+        service: "db"
+        endpoint: "mysql"
+    # The size of the persistent disk of the application (in MB). Minimum value is 128.
+    # disk: 512
+    # The web key configures the web server running in front of your app.
+    # More information: https://docs.platform.sh/create-apps/app-reference.html#web
+    web:
+      # Commands are run once after deployment to start the application process.
+      # More information: https://docs.platform.sh/create-apps/app-reference.html#web-commands
+      commands:
+        # The command to launch your app. If it terminates, it's restarted immediately.
+        start: "node index.js"
+
+services:
+  db:
+    type: mariadb:10.4
+
+routes:
+  "https://{default}/":
+    type: upstream
+    upstream: "app:http"
+  # A basic redirect definition
+  # More information: https://docs.platform.sh/define-routes.html#basic-redirect-definition
+  "https://www.{default}/":
+    type: redirect
+    to: "https://{default}/"
 ```
 
-Example for your services:
-```yaml
-# .platform/services.yaml
-database:
-  type: postgresql:15
-  disk: 1024
-```
+{{< /codetabs >}}
+
+## 4. Define your app and service resources
+
+Now that the `size`, `disk` and `resources` keys are deprecated,
+use the {{% vendor/name %}} Console, CLI or API to define your app and service resources.
+
+{{< codetabs >}}
+
++++
+title=Using the Console
++++
+
+TODO
+
+<--->
+
++++
+title=Using the CLI
++++
+
+TODO
+
+<--->
+
++++
+title=Using the API
++++
+
+1. Define your app resources.</br>
+   To do so, run a command similar to the following:
+
+   ```bash
+   $ {{% vendor/cli %}} e:curl /deployments/next -X PATCH -d \
+     '{
+       "webapps": {
+       "app": {
+         "resources": {"profile_size": "2"},
+         "disk": "1024"
+       }
+     }
+   }'
+   ```
+
+2. Define your database service resources. </br>
+   To do so, run a command similar to the following:
+
+   ```bash
+   $ {{% vendor/cli %}} e:curl /deployments/next -X PATCH -d \
+     '{
+       "services": {
+       "database": {
+         "disk": "1024",
+         "resources": {"profile_size": "1"}
+       }
+     }
+   }'
+   ```
 
 {{< note >}}
-These settings, size, disk and resources are no longer available in the {{% vendor/name %}} Yaml config files (or not taken in account anymore).
-{{< /note >}}
 
-### Using the API
-#### Change app resources
-To change your `app` application resources, use the following command line:
-```
-$ {{% vendor/cli %}} e:curl /deployments/next -X PATCH -d \
-  '{
-    "webapps": {
-    "app": {
-      "resources": {"profile_size": "2"},
-      "disk": "1024"
-    }
-  }
-}'
-```
+Make sure you remove the deprecated `size`, `disk` and `resources` keys from your {{% vendor/name %}} YAML configuration.
 
-{{< note >}}
-Don’t forget to remove from your `.platform/config.yaml` file corresponding Yaml key that are not needed anymore: `size`, `disk` and `resources`
-{{< /note >}}
-
-#### Change database service resources
-To change database service resources, use the following command line:
-```shell
-$ {{% vendor/cli %}} e:curl /deployments/next -X PATCH -d \
-  '{
-    "services": {
-    "database": {
-      "disk": "1024",
-      "resources": {"profile_size": "1"}
-    }
-  }
-}'
-```
-
-{{< note >}}
-Don’t forget to remove from your `.platform/services.yaml` file corresponding Yaml key that are not needed anymore: `disk`
 {{< /note >}}
 
 [//]: # (TODO change it to doc page link)
-List of profile_size can be founded [here](https://docs.google.com/presentation/d/1PxDJm9c3OCjZxlI2keGy6V7BlAZJGfyueQ1D117YCns/edit?pli=1#slide=id.g20fc593a519_0_32)
+List of profile_size can be found [here](https://docs.google.com/presentation/d/1PxDJm9c3OCjZxlI2keGy6V7BlAZJGfyueQ1D117YCns/edit?pli=1#slide=id.g20fc593a519_0_32)
 
-### Using CLI (TODO)
-TODO
-### Using Console (TODO)
-TODO
+{{< /codetabs >}}
 
-## Deploy your {{% vendor/name %}} project
-After adding to Git your changes, use the following command to deploy your {{% vendor/name %}} project:
-```shell
+## 5. Deploy your {{% vendor/name %}} project
+
+Once you're ready to deploy your {{% vendor/name %}} project,
+run the following command:
+
+```bash
 {{% vendor/cli %}} deploy
 ```
 
-Et voilà, you successfully migrate your Platform.sh project to {{% vendor/name %}}.
+Your Platform.sh project has now been migrated to {{% vendor/name %}}.</br>
 Congrats!
-

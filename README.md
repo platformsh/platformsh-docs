@@ -19,7 +19,7 @@ The build script is rerun on every deploy to produce a fresh static site instanc
 The cross-site search in the documentation is built as a separate Platform.sh app
 from the files in the `search` directory using [Meilisearch](https://www.meilisearch.com/).
 
-## Contributing
+## Contribute
 
 Our documentation is public because we want your help in improving and maintaining it.
 See our [contribution guidelines](CONTRIBUTING.md) for how to make changes.
@@ -28,7 +28,7 @@ All documentation is released under a [Creative Commons Attribution](LICENSE.md)
 If you spot a problem, open a pull request to fix it!
 If you're not sure how, you can also open an issue and we can look into it.
 
-## Running locally
+## Run locally
 
 Requires:
 
@@ -38,7 +38,7 @@ Requires:
 
 ### Steps
 
-### Running locally without search
+### Run locally without search
 
 The documentation and the Meilisearch search service are separate applications.
 It isn't necessary to run the Meilisearch app to build the docs locally,
@@ -73,7 +73,7 @@ If you’re using the GitHub CLI tool, to avoid including your token’s value i
     hugo serve
     ```
 
-### Running locally with search
+### Run locally with search
 
 In addition to the above requirements, search also requires:
 
@@ -97,19 +97,22 @@ If you are making a change to such files, bust the cache so users aren't served 
 
 To clear the cache, update the `version` in [`docs/config/_default/params.yaml`](./docs/config/_default/params.yaml).
 
+## Manage white label documentation
 
-## Whitelabel management
+### Add a white label documentation
 
-### Adding a new Whitelabel doc
-To add a new whitelabel doc, using its own logo, styles and wording, you need to add a new whitelabel folder in the ``sites/`` directory containing the same structure as for `friday`
-```shell
+To add a white label documentation using its own logo, styles, and wording,
+add a new white label folder in the `sites/` directory.
+Make sure this white label folder mirrors the structure of the existing `friday` directory.
+
+```bash
 sites
 ├── whitelabel_name
 │   ├── config
 │   │   └── _defaults
-│   │       ├── config.yaml <- whitelabel configuration
+│   │       ├── config.yaml <- white label configuration
 │   │       └── params.yaml <- settings for vendorization and other features
-│   ├── layouts     <- Layout of the whitelabel website
+│   ├── layouts     <- Layout of the white label website
 │   ├── src         <- pages
 │   ├── static      <- static files
 │   ├── utils       <- Hugo scripts
@@ -117,12 +120,16 @@ sites
 └── platform <- main doc pages
 ```
 
-Note: ``sites/platform`` is the main docs.
-</br>Each whitelabel site inherit from `platform`.
+Note: `sites/platform` is the main documentation site. Each white label site inherits data from `platform`.
 
-### Placeholders
-We introduce placeholders for Vendor and CLI name, as we need it for Platform.sh and Upsun.
-These placeholders are define in `sites/friday/config/_default/params.yaml` file as the following:
+### Configure settings placeholders
+
+When you add a white label documentation, you want the vendor and CLI names to be easily substituted.
+
+For example, if you add a white label documentation for a product called MyGreatProduct,
+you want every instance of `Platform.sh` and `Platform.sh CLI` to be automatically substituted by `MyGreatProduct` and `MyGreatProduct CLI` respectively.
+To achieve that result, use the settings placeholders defined in the `sites/friday/config/_default/params.yaml` file:
+
 ```yaml
 # Vendorization
 vendor:
@@ -134,25 +141,38 @@ vendor:
 
 Each of them can be used in any templates (HTML or MarkDown) using shortcodes:
 
-```shell
+```bash
 {{% vendor/name %}}
 {{% vendor/cli %}}
 ...
 ```
 
-### using settings placeholder in title
-If you need to use settings placeholder for one of the Yaml settings in title, you need to use notation ``{{% my.settings %}}``.
-Otherwise, if you use `{{< my.settings >}}`, reference to the shortcode will be displayed in the table of content of the page, like `HAHAHUGOSHORTCODEs3HBHB`.
+### Use a settings placeholder in a heading
 
-### Whitelabel file structure
-In ``src`` directory, you need to add files that change from the main docs (`sites/platform/src/` directory).
+If you need to use a [settings placeholder](#settings-placeholders) in a heading, use the `{{% my.settings %}}` syntax.
 
-#### Override an existing doc page from the main doc
-In your whitelabel `src` directory, adding a file with the same name and file structure as in `sites/platform/src` directory will result as an override of the page.
-By default, vendorization is done in the main doc, so depending on defined settings in ``sites/whitelabel_name/config/_default/params.yaml` file`, pages will be automatically transform.
+If you use the `{{< my.settings >}}` syntax, the desired value isn't displayed in the on-page navigation menu.
+Instead, the placeholder is replaced by an unwanted reference to the shortcode, similar to `HAHAHUGOSHORTCODEs3HBHB`.
 
-#### Remove a page from the whitelabel doc
-To remove an existing pages from the whitelabel doc, you need to add an exclude setting in ``sites/whitelabel_name/config/_default/config.yaml`` as follows:
+### White label file structure
+
+In the `src` directory, add all the files that differ from the main documentation site (`sites/platform/src/` directory).
+
+#### Override a page from the main documentation site
+
+It's best if you keep the exact same file structure in your white label `src` directory as in the `sites/platform/src` directory.
+As long as you do, when you add a new file to your white label `src` directory
+that bears the same name as an existing file in `sites/platform/src`,
+the new file overrides the existing one.
+
+By default, vendorization is performed on the main documentation site.
+Therefore, vendor-specific values are automatically displayed on the white label documentation
+[based on the settings defined in the `sites/whitelabel_name/config/_default/params.yaml` file](#settings-placeholders).
+
+#### Remove a page from your white label documentation
+
+To remove an existing page from your white label documentation,
+add an `exclude` setting in the `sites/whitelabel_name/config/_default/config.yaml` file:
 
 ```yaml
 module:
@@ -166,16 +186,25 @@ module:
               - "get-started/*"
 ```
 
-#### Change menu structure
-If you need to change the menu structure of your whitelabel docs,
-like change an existing page to a nested section,
-you need to exclude the main file from the content definition in your `sites/whitelabel_name/config/_default/config.yaml` and create the nested section in your ``sites/whitelabel/src`` directory.
+#### Change the structure of the navigation sidebar
 
-Note: ``excludeFiles`` path are defined from the ``src`` whitelabel root directory.
+You might need to change the structure of the main navigation sidebar in your white label documentation.
 
-Example: we need to change the "migrating" tutorial to a nested section, having sub-pages for each of the hosting source where you come from.
-it will result in this file structure:
-```shell
+For example, instead of having one migration tutorial (single `migrating.md` file) under the **Tutorials** section,
+you might want to create a nested migration section containing a few sub-pages,
+one for each hosting source users could migrate from.
+
+In this case, you need to follow these steps:
+
+1. Exclude the migration tutorial (`migrating.md` file) from the content definition
+   in your `sites/whitelabel_name/config/_default/config.yaml` file.
+2. Create the nested section in your `sites/whitelabel/src` directory.
+
+Note: `excludeFiles` paths are defined from the `src` white label root directory.
+
+To do so, you could implement the following file structure:
+
+```bash
 sites
 ├── friday
 │   └── src
@@ -188,7 +217,9 @@ sites
         └── tutorials
             └── migrating.md
 ```
-and corresponding settings in ``sites/whitelabel_name/config/_default/config.yaml``:
+
+And the corresponding settings in the `sites/whitelabel_name/config/_default/config.yaml` file:
+
 ```yaml
 module:
     _merge: deep
@@ -199,4 +230,3 @@ module:
               - "tutorials/migrating.md"
               - ...
 ```
-You will then have a nested section in your whitelabel menu with sub-pages for migrating from as many hosting source as needed.
