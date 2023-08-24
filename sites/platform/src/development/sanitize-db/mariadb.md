@@ -53,7 +53,7 @@ hooks:
             drush -y sql:sanitize
             drush state:set --input-format=string mymodule.sanitized yes
         fi
-        
+```
 
 {{< /codetabs >}}
 
