@@ -1,0 +1,2 @@
+{{- $supported := index .data "versions" "supported" -}}
+{{- index ( sort $supported "value" "desc" ) 0 -}}

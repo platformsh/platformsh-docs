@@ -13,17 +13,17 @@ theme:
 
 # Vendorization
 vendor:
-    name: Deploy Friday
+    name: Upsun
     cli: friday
     env_prefix: FRIDAY
     config:
         version: 2
-        dir: .friday
+        dir: .upsun
         files:
-            routes: .friday/config.yaml
-            services: .friday/config.yaml
-            app: .friday/config.yaml
-            apps: .friday/config.yaml
+            routes: .upsun/config.yaml
+            services: .upsun/config.yaml
+            app: .upsun/config.yaml
+            apps: .upsun/config.yaml
         prefix: 
             apps: applications 
             services: services 

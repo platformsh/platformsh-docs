@@ -1,16 +1,40 @@
-{{- $name := .context.Get "name" | default "app" -}}
+{{- $name := .context.Get "name" | default "" -}}
+{{- if ( .name ) -}}
+    {{- $name = .name -}}
+{{- end -}}
 {{- $root := .context.Get "root" | default "/" -}}
+{{- if ( .root ) -}}
+    {{- $root = .root -}}
+{{- end -}}
 {{- $globKey := .context.Get "globKey" | default "true" -}}
+{{- if ( .globKey ) -}}
+    {{- $globKey = .globKey -}}
+{{- end -}}
 {{- $configType := .context.Get "config" | default "app" -}}
+{{- if ( .config ) -}}
+    {{- $configType = .config -}}
+{{- end -}}
 {{- $subDir := .context.Get "subDir" | default "" -}}
+{{- if ( .subDir ) -}}
+    {{- $subDir = .subDir -}}
+{{- end -}}
 {{- $subDom := .context.Get "subDom" | default "" -}}
+{{- if ( .subDom ) -}}
+    {{- $subDom = .subDom -}}
+{{- end -}}
 {{- if gt ( len $subDom) 0 -}}
     {{- $subDom = printf "%s." (.context.Get "subDom") }}
 {{- end -}}
 {{- $placeholder := .context.Get "placeholder" | default "false" }}
+{{- if ( .placeholder ) -}}
+    {{- $placeholder = .placeholder -}}
+{{- end -}}
 
 
 {{- $configFile := .context.Get "configFile" | default "" -}}
+{{- if ( .configFile ) -}}
+    {{- $confiFile = .configFile -}}
+{{- end -}}
 
 {{- $configFiles := .context.Page.Site.Params.vendor.files -}}
 
@@ -28,11 +52,13 @@
             {{- $applicationsKey = printf "%s:\n" .context.Site.Params.vendor.config.prefix.apps -}}
         {{- end -}}
 
-        {{- if eq $placeholder "true" -}}
+        {{- if and (eq $placeholder "true") (not .Inner) -}}
             {{- $prepend = printf "# %s#    %s" $applicationsKey "..." -}}
         {{- else -}}
             {{- $prepend = printf "%s    %s\n    %s:" $applicationsKey $appNameComment $name -}}
-            {{- $prepend = printf "%s\n        %s\n        source:\n            root: \"%s\"" $prepend $rootComment $root -}}
+            {{- if ne $root "false" -}}
+                {{- $prepend = printf "%s\n        %s\n        source:\n            root: \"%s\"" $prepend $rootComment $root -}}
+            {{- end -}}
 
             {{- range split (trim .Inner "\n") "\n" -}}
                 {{- $content = printf "%s\n        %s" $content . -}}
@@ -42,7 +68,6 @@
     {{- else -}}
 
         {{- if eq $placeholder "false" -}}
-            {{- $prepend = printf "%s\nname: %s" $appNameComment $name -}}
             {{- $content = .Inner -}}
         {{- end -}}
 
@@ -61,7 +86,7 @@
             {{- $applicationsKey = printf "%s:\n" .context.Site.Params.vendor.config.prefix.apps -}}
         {{- end -}}
 
-        {{- if eq $placeholder "true" -}}
+        {{- if and (eq $placeholder "true") (not .Inner) -}}
             {{- $prepend = printf "# %s#    %s" $applicationsKey "..." -}}
         {{- else -}}
             {{- $prepend = printf "%s    %s\n    %s:" $applicationsKey $appNameComment $name -}}
@@ -97,7 +122,7 @@
         {{- end -}}
 
 
-        {{- if eq $placeholder "true" -}}
+        {{- if and (eq $placeholder "true") (not .Inner) -}}
             {{- $prepend = printf "# %s#    %s" $servicesKey "..." -}}
         {{- else -}}
             {{- $prepend = printf "%s    %s\n    %s:" $servicesKey $servNameComment $name -}}
@@ -126,7 +151,7 @@
             {{- $routesKey = printf "%s:\n" .context.Site.Params.vendor.config.prefix.routes -}}
         {{- end -}}
 
-        {{- if eq $placeholder "true" -}}
+        {{- if and (eq $placeholder "true") (not .Inner) -}}
             {{- $prepend = printf "# %s#    %s" $routesKey "..." -}}
         {{- else -}}
             {{- $prepend = printf "%s" $routesKey -}}
