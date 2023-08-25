@@ -7,6 +7,8 @@ banner:
     type: tiered-feature
 ---
 
+{{< partial "progressive-rollout/body.md" >}}
+
 When a custom domain is [set up on your production environment](../steps/_index.md),
 it can't be used for the other, non-production environments in your project.
 
