@@ -1,6 +1,6 @@
 europe:
-     eu:
-        name: Ireland  (eu)
+    eu:
+        name: Ireland (eu)
         label: eu.platform.sh
         provider: AWS
         available: true
@@ -14,7 +14,7 @@ europe:
             - "54.76.136.188"
             - "54.76.137.151"
     eu-2:
-        name: Ireland  (eu-2)
+        name: Ireland (eu-2)
         label: eu-2.platform.sh
         provider: AWS
         available: false
