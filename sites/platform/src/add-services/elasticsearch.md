@@ -135,12 +135,13 @@ Starting with Elasticsearch 7.2 you may optionally enable HTTP Basic authenticat
 To do so, include the following in your `{{< vendor/configfile "services" >}}` configuration:
 
 ```yaml {configFile="services"}
-search:
-    type: elasticsearch:7.2
+{{% snippet name="search" config="service" %}}
+    type: elasticsearch:{{% latest "elasticsearch" %}}
     disk: 2048
     configuration:
         authentication:
             enabled: true
+{{% /snippet %}}
 ```
 
 If you're using a [premium version](#supported-versions),
@@ -154,13 +155,18 @@ in the `username` and `password` properties.
 This functionality is generally not required if Elasticsearch isn't exposed on its own public HTTP route.
 However, certain applications may require it, or it allows you to safely expose Elasticsearch directly to the web.
 To do so, add a route to `{{< vendor/configfile "routes" >}}` that has `search:elasticsearch` as its upstream
-(where `search` is whatever you named the service in `{{< vendor/configfile "services" >}}`).
+(where `search` is whatever you named the service).
 For example:
 
 ```yaml {configFile="routes"}
-"https://es.{default}":
-    type: upstream
-    upstream: search:elasticsearch
+{{% snippet name="search:elasticsearch" config="route" subDom="es" /%}}
+{{% snippet name="search" config="service" placeholder="true" %}}
+    type: elasticsearch:{{% latest "elasticsearch" %}}
+    disk: 2048
+    configuration:
+        authentication:
+            enabled: true
+{{% /snippet %}}
 ```
 
 ## Plugins
@@ -169,13 +175,14 @@ Elasticsearch offers a number of plugins.
 To enable them, list them under the `configuration.plugins` key in your `{{< vendor/configfile "services" >}}` file, like so:
 
 ```yaml {configFile="services"}
-search:
-    type: "elasticsearch:7.2"
+{{% snippet name="search" config="service" %}}
+    type: elasticsearch:{{% latest "elasticsearch" %}}
     disk: 1024
     configuration:
         plugins:
             - analysis-icu
             - lang-python
+{{% /snippet %}}
 ```
 
 If you're using a [premium version](#supported-versions),
@@ -233,7 +240,7 @@ There are two ways to do so.
 ### Destructive
 
 In your `{{< vendor/configfile "services" >}}` file, change the version *and* name of your Elasticsearch service.
-Then update the name in the `{{< vendor/configfile "app" >}}` relationships block.
+Be sure to also update the reference to the now changed service name in it's corresponding application's `relationship` block.
 
 When you push that to {{< vendor/name >}}, the old service is deleted and a new one with the new name is created with no data.
 You can then have your application reindex data as appropriate.
@@ -245,7 +252,7 @@ Depending on the size of your data that could take a while.
 ### Transitional
 
 With a transitional approach, you temporarily have two Elasticsearch services.
-Add a second Elasticsearch service with the new version a new name and give it a new relationship in `{{< vendor/configfile "app" >}}`.
+Add a second Elasticsearch service with the new version, a new name, and give it a new relationship in `{{< vendor/configfile "app" >}}`.
 You can optionally run in that configuration for a while to allow your application to populate indexes in the new service as well.
 
 Once you're ready to switch over, remove the old Elasticsearch service and relationship.

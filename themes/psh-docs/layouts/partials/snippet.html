@@ -156,7 +156,7 @@
         {{- else -}}
             {{- $prepend = printf "%s" $routesKey -}}
             {{- $prepend = printf "%s    \"https://www.%s{default}/%s\":\n        type: redirect\n        to: \"https://%s{default}/%s\"\n" $prepend $subDom $subDir $subDom $subDir }}
-            {{- $prepend = printf "%s    \"https://%s{default}/%s\":\n        type: upstream\n        upstream: \"%s:http\"" $prepend $subDom $subDir $name }}
+            {{- $prepend = printf "%s    \"https://%s{default}/%s\":\n        type: upstream\n        upstream: \"%s\"" $prepend $subDom $subDir $name }}
             {{- range split (trim .Inner "\n") "\n" -}}
                 {{- $content = printf "%s\n        %s" $content . -}}
             {{- end -}}
@@ -166,7 +166,7 @@
 
         {{- if eq $placeholder "false" -}}
             {{- $prepend = printf "\"https://www.%s{default}/%s\":\n    type: redirect\n    to: \"https://%s{default}/%s\"\n" $subDom $subDir $subDom $subDir }}
-            {{- $prepend = printf "%s\"https://%s{default}/%s\":\n    type: upstream\n    upstream: \"%s:http\"" $prepend $subDom $subDir $name }}
+            {{- $prepend = printf "%s\"https://%s{default}/%s\":\n    type: upstream\n    upstream: \"%s\"" $prepend $subDom $subDir $name }}
             {{- range split (trim .Inner "\n") "\n" -}}
                 {{- $content = printf "%s\n    %s" $content . -}}
             {{- end -}}
