@@ -86,12 +86,13 @@ You may optionally enable HTTP Basic authentication.
 To do so, include the following in your `{{< vendor/configfile "services" >}}` configuration:
 
 ```yaml {configFile="services"}
-search:
-    type: opensearch:2
+{{% snippet name="search" config="service" %}}
+    type: opensearch:{{% latest "opensearch" %}}
     disk: 2048
     configuration:
         authentication:
             enabled: true
+{{% /snippet %}}
 ```
 
 That enables mandatory HTTP Basic auth on all requests.
@@ -102,13 +103,18 @@ in the `username` and `password` properties.
 This functionality is generally not required if OpenSearch isn't exposed on its own public HTTP route.
 However, certain applications may require it, or it allows you to safely expose OpenSearch directly to the web.
 To do so, add a route to `{{< vendor/configfile "routes" >}}` that has `search:opensearch` as its upstream
-(where `search` is whatever you named the service in `{{< vendor/configfile "services" >}}`).
+(where `search` is whatever you named the service).
 For example:
 
 ```yaml {configFile="routes"}
-"https://os.{default}":
-    type: upstream
-    upstream: search:opensearch
+{{% snippet name="search:opensearch" config="route" subDom="os" /%}}
+{{% snippet name="search" config="service" placeholder="true" %}}
+    type: opensearch:{{% latest "opensearch" %}}
+    disk: 2048
+    configuration:
+        authentication:
+            enabled: true
+{{% /snippet %}}
 ```
 
 ## Plugins
@@ -117,13 +123,14 @@ OpenSearch offers a number of plugins.
 To enable them, list them under the `configuration.plugins` key in your `{{< vendor/configfile "services" >}}` file, like so:
 
 ```yaml {configFile="services"}
-search:
-    type: "opensearch:2"
+{{% snippet name="search" config="service" %}}
+    type: "opensearch:{{% latest "opensearch" %}}"
     disk: 1024
     configuration:
         plugins:
             - analysis-icu
-            - mapper-size
+            - lang-python
+{{% /snippet %}}
 ```
 
 In this example you'd have the ICU analysis plugin and the size mapper plugin.
@@ -170,8 +177,8 @@ There are two ways to do so.
 
 ### Destructive
 
-In your `{{< vendor/configfile "services" >}}` file, change the version *and* name of your OpenSearch service.
-Then update the name in the `{{< vendor/configfile "app" >}}` relationships block.
+In your `{{< vendor/configfile "services" >}}` file, change the version *and* name of your Elasticsearch service.
+Be sure to also update the reference to the now changed service name in it's corresponding application's `relationship` block.
 
 When you push that to {{< vendor/name >}}, the old service is deleted and a new one with the new name is created with no data.
 You can then have your application reindex data as appropriate.
