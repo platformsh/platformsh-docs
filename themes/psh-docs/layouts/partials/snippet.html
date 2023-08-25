@@ -1,4 +1,4 @@
-{{- $name := .context.Get "name" | default "" -}}
+{{- $name := .context.Get "name" | default "myapp" -}}
 {{- if ( .name ) -}}
     {{- $name = .name -}}
 {{- end -}}
@@ -55,6 +55,9 @@
         {{- if and (eq $placeholder "true") (not .Inner) -}}
             {{- $prepend = printf "# %s#    %s" $applicationsKey "..." -}}
         {{- else -}}
+            {{- if eq $name "false" -}}
+                {{- $name = "myapp" -}}
+            {{- end -}}
             {{- $prepend = printf "%s    %s\n    %s:" $applicationsKey $appNameComment $name -}}
             {{- if ne $root "false" -}}
                 {{- $prepend = printf "%s\n        %s\n        source:\n            root: \"%s\"" $prepend $rootComment $root -}}
@@ -66,7 +69,9 @@
         {{- end -}}
 
     {{- else -}}
-
+        {{- if ne $name "false" -}}
+            {{- $prepend = printf "%s\nname: %s" $appNameComment $name -}}
+        {{- end -}}
         {{- if eq $placeholder "false" -}}
             {{- $content = .Inner -}}
         {{- end -}}
