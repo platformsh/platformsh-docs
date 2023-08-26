@@ -131,13 +131,14 @@ which can be useful for separating resources, such as exchanges, queues, and bin
 To create virtual hosts, add them to your configuration as in the following example:
 
 ```yaml {configFile="services"}
-rabbitmq:
-    type: rabbitmq:3.11
+{{% snippet name="rabbitmq" config="service" %}}
+    type: "rabbitmq:{{% latest "rabbitmq" %}}"
     disk: 512
     configuration:
         vhosts:
             - host1
             - host2
+{{% /snippet %}}
 ```
 
 {{% relationship-ref-intro %}}
