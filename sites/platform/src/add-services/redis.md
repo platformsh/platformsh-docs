@@ -209,12 +209,12 @@ When [ephemeral Redis](#ephemeral-redis) reaches its memory limit,
 it triggers a cache cleanup.
 To customize those cache cleanups, set up an eviction policy such as the following:
 
-```yaml {configFile="app"}
-web:
-    cache:
-        type: redis:5.0
-        configuration:
-            maxmemory_policy: allkeys-lfu
+```yaml {configFile="services"}
+{{% snippet name="cache" config="service" %}}
+    type: "redis:{{% latest "redis" %}}"
+    configuration:
+        maxmemory_policy: allkeys-lfu
+{{% /snippet %}}
 ```
 
 The following table presents the possible values:
@@ -265,9 +265,17 @@ which means Redis stores and retrieves the data saved into sessions.
 
 To set up Redis as your session handler, add a configuration similar to the following:
 
-{{< readFile file="registry/images/examples/full/redis-persistent.services.yaml" highlight="yaml" configFile="services" >}}
+```yaml {configFile="services" v2Hide="true"}
+{{% snippet name="data" config="service" %}}
+    type: "redis-persistent:{{% latest "redis" %}}"
+    disk: 256
+{{% /snippet %}}
+```
 
 ```yaml {configFile="app"}
+{{% snippet name="myapp" config="app" root="false" %}}
+type: "php:{{% latest "php" %}}"
+
 relationships:
     sessionstorage: "data:redis"
 
@@ -275,4 +283,16 @@ variables:
     php:
         session.save_handler: redis
         session.save_path: "tcp://{{< variable "HOSTNAME" >}}:{{< variable "PORT" >}}"
+
+web:
+    locations:
+        '/':
+            root: 'web'
+            passthru: '/index.php'
+{{% /snippet %}}
+
+{{% snippet name="data" config="service" placeholder="true" %}}
+    type: "redis-persistent:{{% latest "redis" %}}"
+    disk: 256
+{{% /snippet %}}
 ```
