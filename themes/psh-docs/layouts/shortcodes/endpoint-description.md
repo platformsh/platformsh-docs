@@ -224,7 +224,7 @@ Notice the `relationship` (`{{ $varnishRelName }}`) defined for the service `{{ 
     {{ $appInner = printf "%s        service: files\n        source_path: files" $appInner }}
 
 {{ else if eq $type "varnish" }}
-    {{ $appInner = "..." }}
+    {{ $appInner = "\n..." }}
 
 {{ else if eq $type "vault-kms" }}
     {{ $appInner = "relationships:\n    vault_service: \"vault-kms:manage_keys\"" }}
