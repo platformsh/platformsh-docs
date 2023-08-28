@@ -1,15 +1,12 @@
 <!-- Markdown processes 2 versions, rendering only if key matches current version -->
 <!-- Key 1: Version 1 -->
 <!-- Key 2: Version 2 -->
-{{ $page := .Page }}
+{{- $page := .Page -}}
 {{- $version := .Site.Params.vendor.config.version -}}
-{{ $splitVersionChar := "<--->" }}
-{{ range $k, $v := split .Inner $splitVersionChar }}
-    {{$current := add $k 1}}
-    {{ if eq $current $version }}
-
-{{ $v | $page.RenderString }}
-
-    {{ end }}
-
-{{ end }}
+{{- $splitVersionChar := "<--->" -}}
+{{- range $k, $v := split .Inner $splitVersionChar -}}
+    {{- $current := add $k 1 -}}
+    {{- if eq $current $version -}}
+{{- $v | $page.RenderString -}}
+    {{- end -}}
+{{- end -}}

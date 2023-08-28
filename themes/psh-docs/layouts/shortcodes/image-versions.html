@@ -18,19 +18,19 @@
 {{ if (index .Site.Data.registry $image $environment) }}
   {{ if isset (index .Site.Data.registry $image $environment) $status }}
     {{ if gt ( len ( index .Site.Data.registry $image $environment $status ) ) 0 }}
-      <ul>
-      {{ range index .Site.Data.registry $image $environment $status }}
-        <li>{{ . }}</li>
-      {{ end }}
-      </ul>
+<ul>
+{{ range index .Site.Data.registry $image $environment $status }}
+  <li>{{ . }}</li>
+{{ end }}
+</ul>
     {{ else if ne $status "deprecated" }}
-      {{ $notYet }}
+{{ $notYet }}
     {{ end }}
   {{ end }}
 {{ else }}
   {{ if and (eq $envParam "dedicated") (eq $status "supported") }}
-    {{ $notYet }}
+{{ $notYet }}
   {{ else }}
-    None available
+None available
   {{ end }}
 {{ end }}

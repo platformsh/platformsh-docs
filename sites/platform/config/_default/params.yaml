@@ -32,6 +32,8 @@ vendor:
         sales: https://platform.sh/contact
         console: https://console.platform.sh/
         api: https://api.platform.sh/
+        host: platform.sh 
+        hostname: platformsh.site 
 
 # Images (kept in static/)
 logo: "images/logos/Platformsh_logo_white.svg"

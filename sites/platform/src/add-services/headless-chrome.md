@@ -7,7 +7,7 @@ description: |
 
 {{% description %}}
 
-You can interact with the `headless-chrome` service container using Puppeteer, a Node.js library that provides an API to control Chrome over the DevTools Protocol.
+You can interact with the `chrome-headless` service container using Puppeteer, a Node.js library that provides an API to control Chrome over the DevTools Protocol.
 
 Puppeteer can be used to generate PDFs and screenshots of web pages, automate form submission, and test your project's UI. You can find out more information about using Puppeteer on [GitHub](https://github.com/GoogleChrome/puppeteer) or in their [documentation](https://pptr.dev/).
 
@@ -15,9 +15,32 @@ Puppeteer can be used to generate PDFs and screenshots of web pages, automate fo
 
 {{% major-minor-versions-note %}}
 
-| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|------|-------------------------------|------------------------------ |
-|  {{< image-versions image="chrome-headless" status="supported" environment="grid" >}} | {{< image-versions image="chrome-headless" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="chrome-headless" status="supported" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="chrome-headless" status="supported" environment="grid" >}}</td>
+            <td>{{< image-versions image="chrome-headless" status="supported" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="chrome-headless" status="supported" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="chrome-headless" status="supported" environment="grid" >}}
+
+{{% /version/specific %}}
 
 {{% relationship-ref-intro %}}
 
@@ -27,12 +50,12 @@ Puppeteer can be used to generate PDFs and screenshots of web pages, automate fo
 {
     "service": "headlesschrome",
     "ip": "169.254.91.5",
-    "hostname": "gvbo7vktgmou2mplnzt4b54hgi.headlesschrome.service._.eu-3.platformsh.site",
+    "hostname": "gvbo7vktgmou2mplnzt4b54hgi.headlesschrome.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "headlesschrome.internal",
     "rel": "http",
     "scheme": "http",
-    "type": "chrome-headless:73",
+    "type": "chrome-headless:{{< latest "chrome-headless" >}}",
     "port": 9222
 }
 ```
@@ -41,10 +64,6 @@ Puppeteer can be used to generate PDFs and screenshots of web pages, automate fo
 
 Puppeteer requires at least Node.js version 6.4.0, while using the async and await examples below requires Node 7.6.0 or greater.
 
-Using the [Config Reader](../development/variables/use-variables.md#access-variables-in-your-app) library requires Node.js 10 or later.
-
-### Other languages
-
 If your app container uses a language other than Node.js, upgrade the Node.js version before using Puppeteer.
 See how to [manage your Node.js version](../languages/nodejs/node-version.md).
 
@@ -52,15 +71,44 @@ See how to [manage your Node.js version](../languages/nodejs/node-version.md).
 
 {{% endpoint-description type="chrome-headless" /%}}
 
-After configuration, include Puppeteer as a dependency:
+After configuration, include [Puppeteer](https://www.npmjs.com/package/puppeteer) as a dependency:
 
-```json {location="package.json"}
-{
-  "dependencies": {
-    "puppeteer": "^13.0.1"
-  }
-}
+{{< codetabs >}}
+
++++
+title=NPM
++++
+
+```bash
+npm install puppeteer
 ```
+
+<--->
+
++++
+title=PNPM
++++
+
+```bash
+pnpm add puppeteer
+```
+
+<--->
+
++++
+title=Yarn
++++
+
+```bash
+yarn add puppeteer
+```
+
+<--->
+
+{{< /codetabs >}}
+
+{{% version/specific %}}
+<!-- API Version 1 -->
 
 Using the [Node.js Config Reader library](../development/variables/use-variables.md#access-variables-in-your-app), you can retrieve formatted credentials for connecting to headless Chrome with Puppeteer:
 
@@ -91,9 +139,56 @@ exports.getBrowser = async function (url) {
 };
 ```
 
+<--->
+<!-- API Version 2 -->
+
+Configuration for a project looks similar to the following:
+
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="myapp" >}}
+type: "nodejs:{{% latest "nodejs" %}}"
+
+# Other options...
+
+# Relationships enable an app container's access to a service.
+relationships:
+    chromeheadlessbrowser: "headlessbrowser:http"
+{{< /snippet >}}
+{{< snippet name="headlessbrowser" config="service" placeholder="true" >}}
+    type: chrome-headless:{{% latest "chrome-headless" %}}
+{{< /snippet >}}
+```
+
+{{< v2connect2app serviceName="headlessbrowser" relationship="chromeheadlessbrowser" var="CHROME_BASEURL">}}
+
+```bash {location="myapp/.environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for individual credentials.
+export CHROME_IP=$(echo $RELATIONSHIPS_JSON | jq -r ".chromeheadlessbrowser[0].ip")
+export CHROME_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".chromeheadlessbrowser[0].port")
+
+# Combine into a single base URL to be used within app.
+export CHROME_BASEURL="http://${CHROME_IP}:${CHROME_PORT}"
+```
+
+{{< /v2connect2app >}}
+
+{{% /version/specific %}}
+
 Puppeteer allows your application to [create screenshots](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pagescreenshotoptions), [emulate a mobile device](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pageemulateoptions), [generate PDFs](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pagepdfoptions), and much more.
+
+{{% version/specific %}}
+<!-- API Version 1 -->
 
 You can find some useful examples of using headless Chrome and Puppeteer on {{< vendor/name >}} on the Community Portal:
 
 * [How to take screenshots using Puppeteer and Headless Chrome](https://community.platform.sh/t/how-to-take-screenshots-using-puppeteer-and-headless-chrome/305)
 * [How to generate PDFs using Puppeteer and Headless Chrome](https://community.platform.sh/t/how-to-generate-pdfs-using-puppeteer-and-headless-chrome/306)
+
+
+<--->
+<!-- API Version 2 -->
+
+{{% /version/specific %}}

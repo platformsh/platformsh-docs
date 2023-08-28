@@ -11,6 +11,9 @@ premium : true
 
 See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html) for more information.
 
+{{% version/specific %}}
+<!-- API Version 1 -->
+
 {{% frameworks %}}
 
 - [Drupal](../guides/drupal9/elasticsearch.md)
@@ -21,6 +24,11 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 
 {{% /frameworks %}}
 
+<--->
+<!-- API Version 2 -->
+
+{{% /version/specific %}}
+
 ## Supported versions
 
 Elasticsearch is now a premium service.
@@ -29,9 +37,32 @@ To do so, contact {{< vendor/url "sales" "Sales" >}}.
 
 The following premium versions are supported:
 
-| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|------|-------------------------------|------------------------------ |
-|  {{< image-versions image="elasticsearch" status="supported" environment="grid" >}} | {{< image-versions image="elasticsearch" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="elasticsearch" status="supported" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="elasticsearch" status="supported" environment="grid" >}}</td>
+            <td>{{< image-versions image="elasticsearch" status="supported" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="elasticsearch" status="supported" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="elasticsearch" status="supported" environment="grid" >}}
+
+{{% /version/specific %}}
 
 {{% major-minor-versions-note configMinor="true" %}}
 
@@ -40,9 +71,32 @@ The following premium versions are supported:
 The following versions are still available in your projects for free,
 but they're at their end of life and are no longer receiving security updates from upstream.
 
-| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|------|-------------------------------|------------------------------ |
-|  {{< image-versions image="elasticsearch" status="deprecated" environment="grid" >}} | {{< image-versions image="elasticsearch" status="deprecated" environment="dedicated-gen-3" >}} | {{< image-versions image="elasticsearch" status="deprecated" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="elasticsearch" status="deprecated" environment="grid" >}}</td>
+            <td>{{< image-versions image="elasticsearch" status="deprecated" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="elasticsearch" status="deprecated" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="elasticsearch" status="deprecated" environment="grid" >}}
+
+{{% /version/specific %}}
 
 To ensure your project remains stable in the future,
 switch to [a premium version](#supported-versions).
@@ -61,7 +115,7 @@ To do so, follow the same procedure as for [upgrading](#upgrading).
     "service": "elasticsearch77",
     "fragment": null,
     "ip": "169.254.169.232",
-    "hostname": "jmgjydr275pkj5v7prdj2asgxm.elasticsearch77.service._.eu-3.platformsh.site",
+    "hostname": "jmgjydr275pkj5v7prdj2asgxm.elasticsearch77.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "port": 9200,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "elasticsearch.internal",
@@ -69,7 +123,7 @@ To do so, follow the same procedure as for [upgrading](#upgrading).
     "path": null,
     "query": [],
     "password": "ChangeMe",
-    "type": "elasticsearch:7.7",
+    "type": "elasticsearch:{{< latest "elasticsearch" >}}",
     "public": false,
     "host_mapped": false
 }
@@ -84,7 +138,8 @@ the service type is `elasticsearch-enterprise`.
 
 Note that configuration for [premium versions](#supported-versions) may differ slightly.
 
-{{< codetabs >}}
+<!-- Version 1: Codetabs using config reader + examples.docs.platform.sh -->
+{{< codetabs v2hide="true" >}}
 
 +++
 title=Java
@@ -117,6 +172,45 @@ highlight=python
 +++
 
 {{< /codetabs >}}
+
+<!-- Version 2: .environment shortcode + context -->
+{{% version/only "2" %}}
+
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="myapp" >}}
+
+# Other options...
+
+# Relationships enable an app container's access to a service.
+relationships:
+    essearch: "searchelastic:elasticsearch"
+{{< /snippet >}}
+{{< snippet name="searchelastic" config="service" placeholder="true" >}}
+    type: elasticsearch:{{% latest "elasticsearch" %}}
+    disk: 256
+{{< /snippet >}}
+```
+
+{{< v2connect2app serviceName="searchelastic" relationship="essearch" var="ELASTIC_HOSTS">}}
+
+```bash {location="myapp/.environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for individual credentials.
+export ELASTIC_SCHEME=$(echo $RELATIONSHIPS_JSON | jq -r ".essearch[0].scheme")
+export ELASTIC_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".essearch[0].host")
+export ELASTIC_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".essearch[0].port")
+
+# Surface more common Elasticsearch connection string variables for use in app.
+export ELASTIC_USERNAME=$(echo $RELATIONSHIPS_JSON | jq -r ".essearch[0].username")
+export ELASTIC_PASSWORD=$(echo $RELATIONSHIPS_JSON  | jq -r ".essearch[0].password")
+export ELASTIC_HOSTS=[\"$ELASTIC_SCHEME://$ELASTIC_HOST:$ELASTIC_PORT\"]
+```
+
+{{< /v2connect2app >}}
+
+{{% /version/only %}}
 
 {{< note >}}
 

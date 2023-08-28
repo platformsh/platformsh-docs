@@ -11,10 +11,15 @@ keywords:
 Because the services are included in your project, you can manage them through Git
 and they're backed up together with the rest of your project.
 
+{{% version/specific %}}
+<!-- API Version 1 -->
 Your project defines the services configuration in a file named `{{< vendor/configfile "services" >}}`.
-If you don't need any services (such as for a static website), you don't need to include this configuration.
+<--->
+<!-- API Version 2 -->
+Your project defines the services configuration from a top-level key called `services`, which is placed in a unified configuration file like `{{< vendor/configfile "services" >}}`
+{{% /version/specific %}}
 
-Read on to see how to add services.
+If you don't need any services (such as for a static website), you don't need to include this configuration. Read on to see how to add services.
 
 {{% version/only "1" %}}
 ![Services](/images/management-console/relationships.png "0.50")
@@ -187,14 +192,11 @@ You can connect through your app or by opening an SSH tunnel to access the servi
 title=In an app
 +++
 
-When connecting to a service from an app, you may want to use one of the {{< vendor/name >}} [configuration readers](https://github.com/platformsh/?q=config+reader).
-These tools make it easier to get credentials inside your app.
-
-Alternatively, once a service is running and exposed as a relationship,
-its credentials (such as the host, username, and password) are available through the `PLATFORM_RELATIONSHIPS` environment variable.
+Once a service is running and exposed as a relationship,
+its credentials (such as the host, username, and password) are available through the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable.
 The available information is documented on each service's page along with sample code for how to connect to it from your app.
 
-The keys in the `PLATFORM_RELATIONSHIPS` variable are fixed, but the values may change on deployment or restart.
+The keys in the `{{< vendor/prefix >}}_RELATIONSHIPS` variable are fixed, but the values may change on deployment or restart.
 So **use the environment variable** rather than hard coding the values.
 
 <--->
@@ -210,12 +212,12 @@ Connecting to a service using an SSH tunnel is a two-step process.
 To get the credentials for a given service, run the following command:
 
 ```bash
-platform relationships
+{{< vendor/cli >}} relationships
 ```
 
 You get output like the following:
 
-```bash
+```yaml
 database:
     -
         username: user
@@ -223,7 +225,7 @@ database:
         service: database
         fragment: null
         ip: 198.51.100.37
-        hostname: abcdefghijklm1234567890123.database.service._.eu.platformsh.site
+        hostname: abcdefghijklm1234567890123.database.service._.eu.{{< vendor/urlraw "hostname" >}}
         public: false
         cluster: abcdefgh1234567-main-abcd123
         host: database.internal
@@ -249,7 +251,7 @@ The `url` property shows a full database connection that can be used from your a
 Open a single [SSH tunnel](../development/ssh/_index.md#connect-to-services) by running the following CLI command:
 
 ```bash
-platform tunnel:single --relationship {{< variable "RELATIONSHIP_NAME" >}}
+{{< vendor/cli >}} tunnel:single --relationship {{< variable "RELATIONSHIP_NAME" >}}
 ```
 
 By default, this opens a tunnel at `127.0.0.1:30000`.

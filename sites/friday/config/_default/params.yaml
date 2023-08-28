@@ -35,6 +35,8 @@ vendor:
         sales: https://deployfriday.net/contact
         console: https://console.deployfriday.net/
         api: https://api.deployfriday.net/
+        host: deployfriday.net
+        hostname: deployfridayapp.com
 
 # Images (kept in static/)
 logo: "images/logo.svg"
