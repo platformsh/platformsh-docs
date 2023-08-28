@@ -81,7 +81,7 @@ In each case, you need the login credentials that you can obtain from the [relat
 ### Via SSH
 
 To connect directly to your RabbitMQ service in an environment,
-open an SSH tunnel with the [Platform.sh CLI](../administration/cli/_index.md).
+open an SSH tunnel with the [{{< vendor/name >}} CLI](../administration/cli/_index.md).
 
 To open an SSH tunnel to your service with port forwarding,
 run the following command:
@@ -130,7 +130,7 @@ You can configure additional [virtual hosts](https://www.rabbitmq.com/vhosts.htm
 which can be useful for separating resources, such as exchanges, queues, and bindings, into their own namespaces.
 To create virtual hosts, add them to your configuration as in the following example:
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 rabbitmq:
     type: rabbitmq:3.11
     disk: 512
@@ -144,4 +144,23 @@ rabbitmq:
 
 {{% service-values-change %}}
 
-{{< relationship "rabbitmq" >}}
+```yaml
+{
+    "username": "guest",
+    "scheme": "amqp",
+    "service": "rabbitmq38",
+    "fragment": null,
+    "ip": "169.254.57.5",
+    "hostname": "iwrccysk3gpam2zdlwdr5fgs2y.rabbitmq38.service._.eu-3.platformsh.site",
+    "port": 5672,
+    "cluster": "rjify4yjcwxaa-master-7rqtwti",
+    "host": "rabbitmq.internal",
+    "rel": "rabbitmq",
+    "path": null,
+    "query": [],
+    "password": "ChangeMe",
+    "type": "rabbitmq:3.8",
+    "public": false,
+    "host_mapped": false
+}
+```

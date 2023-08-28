@@ -4,7 +4,7 @@ Now connect the database to your app.
 
 <div x-show="stack === 'php' || stack === 'nodejs' || stack === 'python'">
 
-First, add the Platform.sh Config Reader library to make the connection easier.
+First, add the {{ .Site.Params.vendor.name }}  Config Reader library to make the connection easier.
 
 <div x-show="stack === 'php'">
 

@@ -1,6 +1,6 @@
 ---
 title: Proxy routes
-description: Pass requests to a location outside your Platform.sh project using proxy routes.
+description: Pass requests to a location outside your {{< vendor/name >}} project using proxy routes.
 ---
 
 {{< note theme="warning" title="Warning">}}
@@ -11,12 +11,12 @@ To expose your app to the outside world, see [how to define routes](../define-ro
 
 {{< /note >}}
 ​
-Sometimes you want your app to pass requests on to a different Platform.sh project.
+Sometimes you want your app to pass requests on to a different {{< vendor/name >}} project.
 Basic redirects only work within the same project, so use proxy routes for routes elsewhere.​
 
-You can define an external proxy on your Platform.sh project by defining a route like the following:
+You can define an external proxy on your {{< vendor/name >}} project by defining a route like the following:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 https://{default}/foo:
     type: proxy
     to: https://www.example.com
@@ -26,7 +26,7 @@ This route passes requests for `https://{default}/foo/index.html` to `https://ww
 ​
 You can also define a proxy route to an URL composed of an IP address and a port:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 https://{default}/foo:
     type: proxy
     to: https://192.0.2.0:8000
@@ -39,7 +39,7 @@ In the basic example above, the route preserves the URL path, `/foo`, in the req
 If you want to proxy a route to `https://www.example.com` without the URL path `/foo`,
 add a trailing slash `/` to the `to` definition.
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 https://{default}/foo:
     type: proxy
     to: https://www.example.com/
@@ -51,7 +51,7 @@ So requests for `https://{default}/foo/index.html` are forwarded to `https://www
 To override the URL path entirely, define a route that contains its own path.
 For example:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 https://{default}/foo:
     type: proxy
     to: https://www.example.com/bar
@@ -61,18 +61,18 @@ This route passes requests for `https://{default}/foo/index.html` to `https://ww
 
 ## Multiple apps with the same base URL
 
-You can use proxy routes to map a single domain to multiple Platform.sh projects with their own subdomain/domain names.
+You can use proxy routes to map a single domain to multiple {{< vendor/name >}} projects with their own subdomain/domain names.
 You might have a need to access multiple projects, each hosting specific applications for different languages.
 You want to serve them all at the same base URL with different paths
 (`https://example.com/en`, `https://example.com/fr`, and so on).
 
-Because domains can't be reused at Platform.sh, you can't just set the same domain for all projects.
+Because domains can't be reused at {{< vendor/name >}}, you can't just set the same domain for all projects.
 Use proxy routes so a single project can access different projects using the same base URL.
 
 In the following example, a single project specifies proxy routes to three apps with the same `default` base URL.
 Each app handles a different language.
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 https://{default}/en:
     type: proxy
     to: https://en.example.com/

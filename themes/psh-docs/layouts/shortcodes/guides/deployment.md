@@ -3,9 +3,9 @@
 {{ if $isSymfony }}
   {{ $cliCommand = "symfony cloud:" }}
 {{ end }}
-Now you have your configuration for deployment and your app set up to run on Platform.sh.
+Now you have your configuration for deployment and your app set up to run on {{ .Site.Params.vendor.name }}.
 Make sure all your code is committed to Git
-and run `{{ if $isSymfony }}symfony cloud:deploy{{ else }}git push{{ end }}` to your Platform.sh environment.
+and run `{{ if $isSymfony }}symfony cloud:deploy{{ else }}git push{{ end }}` to your {{ .Site.Params.vendor.name }} environment.
 
 Your code is built, producing a read-only image that's deployed to a running cluster of containers.
 If you aren't using a source integration, the log of the process is returned in your terminal.

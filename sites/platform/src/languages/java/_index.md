@@ -1,6 +1,6 @@
 ---
 title: "Java"
-description: Java is a general-purpose programming language, and one of the most popular in the world today. Platform.sh supports Java runtimes that can be used with build management tools such as Gradle, Maven, and Ant.
+description: Java is a general-purpose programming language, and one of the most popular in the world today. {{< vendor/name >}} supports Java runtimes that can be used with build management tools such as Gradle, Maven, and Ant.
 layout: single
 ---
 
@@ -23,7 +23,7 @@ To save space and reduce potential vulnerabilities, they don't contain GUI class
 
 ## Support build automation
 
-Platform.sh supports the most common project management tools in the Java ecosystem, including:
+{{< vendor/name >}} supports the most common project management tools in the Java ecosystem, including:
 
 * [Gradle](https://gradle.org/)
 * [Maven](https://maven.apache.org/)
@@ -37,7 +37,7 @@ If the version you need differs from the version on your container, you can inst
 
 Add something like the following to your [app configuration](../../create-apps/_index.md):
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 variables:
     env:
         MAVEN_VERSION: {{< variable "DESIRED_VERSION_NUMBER" "3.8.6" >}}
@@ -53,7 +53,7 @@ hooks:
 
 ## Other JVM languages
 
-It’s worth remembering that the JVM by its specification [doesn't read Java code](https://docs.oracle.com/javase/specs/jvms/se8/html/index.html), but bytecode. So within the JVM, it’s possible to [run several languages](https://en.wikipedia.org/wiki/List_of_JVM_languages). Platform.sh supports several of them, such as Kotlin, Groovy, and Scala, so long as that language works with any build automation that Platform.sh supports.
+It’s worth remembering that the JVM by its specification [doesn't read Java code](https://docs.oracle.com/javase/specs/jvms/se8/html/index.html), but bytecode. So within the JVM, it’s possible to [run several languages](https://en.wikipedia.org/wiki/List_of_JVM_languages). {{< vendor/name >}}supports several of them, such as Kotlin, Groovy, and Scala, so long as that language works with any build automation that {{< vendor/name >}} supports.
 
 | Article                                                      | Link                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |

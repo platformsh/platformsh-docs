@@ -11,7 +11,7 @@ You can implement workers in Symfony smoothly thanks to the [Messenger component
 
 To deploy a worker, add an entry under the ``workers`` section [in your app configuration](../../create-apps/_index.md):
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 workers:
     mails:
         commands:
@@ -19,9 +19,9 @@ workers:
 ```
 
 Note that the `symfony` binary is available when you use the [Symfony
-integration](./integration) in your Platform.sh app configuration.
+integration](./integration) in your {{< vendor/name >}} app configuration.
 
-On Platform.sh, worker containers run the exact same code as the web container.
+On {{< vendor/name >}}, worker containers run the exact same code as the web container.
 The container image is built only once and deployed multiple times in its own container alongside the web container. 
 The *build* hook and dependencies might not vary but,
 as these containers are independent, they can be customized the same way using common properties.

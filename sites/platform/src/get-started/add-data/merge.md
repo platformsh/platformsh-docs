@@ -9,7 +9,7 @@ Next, add a service to your development environment.
 
 ## Add a service
 
-Platform.sh includes many services such as databases, cache, and search engines.
+{{< vendor/name >}} includes many services such as databases, cache, and search engines.
 These are included in your project, so you can manage them with Git and back them up with your project.
 
 Add a database service (or choose [another service](../../add-services/_index.md)) by following these steps:
@@ -17,7 +17,7 @@ Add a database service (or choose [another service](../../add-services/_index.md
 1. Create a services configuration file.
 
    ```bash
-   touch .platform/services.yaml
+   touch {{< vendor/configfile "services" >}}
    ```
 
    This file holds the configuration for all services your app needs.
@@ -26,7 +26,7 @@ Add a database service (or choose [another service](../../add-services/_index.md
    (If you need a different database service, you can choose from the [available services](../../add-services/_index.md#available-services).
    Then change the `type` to fit your choice.)
 
-   ```yaml {location=".platform/services.yaml"}
+   ```yaml {configFile="services"}
    db:
        type: mariadb:10.5
        disk: 1024
@@ -37,7 +37,7 @@ Add a database service (or choose [another service](../../add-services/_index.md
 
 3. Add a relationship between the database and your app in your app configuration:
 
-   ```yaml {location=".platform.app.yaml"}
+   ```yaml {configFile="app"}
    relationships:
        database: "db:mysql"
    ```

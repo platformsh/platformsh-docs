@@ -8,7 +8,7 @@ banner:
           To upgrade your plan or request a trial, [contact Sales](https://platform.sh/contact/).
 ---
 
-On Platform.sh, you can run automated code updates through a feature called **source operations**.
+On {{< vendor/name >}}, you can run automated code updates through a feature called **source operations**.
 Defined in your [app configuration](./_index.md), source operations let you specify commands
 that can commit changes to your project's repository when called.
 
@@ -16,7 +16,7 @@ For example, you can set up a source operation to [automatically update your app
 [update a site from an upstream repository](#update-a-site-from-an-upstream-repository-or-template),
 or [revert to the last commit](#revert-to-the-last-commit) pushed to your Git repository.
 
-To run your source operations, you can use the [Platform.sh CLI](../administration/cli/_index.md) or the [Console](https://console.platform.sh).
+To run your source operations, you can use the [{{< vendor/name >}} CLI](../administration/cli/_index.md) or the [Console](https://console.platform.sh).
 If you want to run your source operations and update your code automatically,
 you can also define [cron jobs](./app-reference.md#crons).
 
@@ -53,7 +53,7 @@ A source operation requires two things:
 
 The syntax is similar to the following:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 source:
     operations:
         {{< variable "SOURCE_OPERATION_NAME" >}}:
@@ -62,7 +62,7 @@ source:
 
 For example, to update a file from a remote location, you could define an operation like this:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 source:
     operations:
         update-file:
@@ -122,7 +122,7 @@ and interpreted the same way as any other variable set in your project.
 For example, you might want to have a `FILE` variable available with the value `example.txt`
 to pass to a source operation similar to the following:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 source:
     operations:
         update-file:
@@ -169,7 +169,7 @@ platform source-operation:run update-file --variable env:FILE="example.txt"
 
 If your project is using a [source integration](../integrations/source/_index.md),
 any new commits resulting from a source operation are first pushed to your external Git repository.
-Then the source integration pushes those commits to Platform.sh and redeploys the environment.
+Then the source integration pushes those commits to {{< vendor/name >}} and redeploys the environment.
 
 When using a source integration,
 you can't run source operations on environments created from pull or merge requests created on the external repository.
@@ -188,8 +188,8 @@ You can use cron to automatically run your source operations.
 Note that it’s best not to run source operations on your production environment,
 but rather on a dedicated environment where you can test changes.
 
-Make sure you have the [Platform.sh CLI](../administration/cli/_index.md) installed
-and [an API token](../administration/cli/api-tokens.md#2-create-a-platformsh-api-token)
+Make sure you have the [{{< vendor/name >}} CLI](../administration/cli/_index.md) installed
+and [an API token](../administration/cli/api-tokens.md#2-create-an-api-token)
 so you can run a cron job in your app container.
 
 1.  Set your API token as a top-level environment variable:
@@ -232,21 +232,21 @@ Make sure you carefully check your [user access on this project](../administrati
 
 2.  Add a build hook to your app configuration to install the CLI as part of the build process:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 hooks:
     build: |
         set -e
-        echo "Installing Platform.sh CLI"
+        echo "Installing {{< vendor/name >}} CLI"
         curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
 
-        echo "Testing Platform.sh CLI"
+        echo "Testing {{< vendor/name >}} CLI"
         platform
 ```
 
 3.  Then, to configure a cron job to automatically run a source operation once a day,
     use a configuration similar to the following:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 crons:
     update:
         # Run the code below every day at midnight.
@@ -281,7 +281,7 @@ The following source operation syncronizes your branch with an upstream Git repo
 
 2. In your app configuration, define a source operation to fetch from that upstream repository:
 
-   ```yaml {location=".platform.app.yaml"}
+   ```yaml {configFile="app"}
    source:
        operations:
            upstream-update:
@@ -306,7 +306,7 @@ The following source operation reverts the last commit pushed to the Git reposit
 This can be useful if you didn't properly test the changes of another operation
 and you need to quickly revert to the previous state.
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 source:
     operations:
         revert:
@@ -321,7 +321,7 @@ the operation reverts to the last commit pushed to that branch.
 
 The following source operation uses Composer to update Drupal Core:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 source:
     operations:
         update-drupal-core:
@@ -343,7 +343,7 @@ The following source operation downloads a Drupal extension.
 You can define the Drupal extension by setting an `EXTENSION` variable
 or [overriding it](#use-variables-in-your-source-operations) when running the source operation.
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 source:
     operations:
         download-drupal-extension:
@@ -364,7 +364,7 @@ you need to enable the new extension via the Drupal management interface or usin
 
 The following source operation updates all Git submodules recursively:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 source:
     operations:
         rebuild:

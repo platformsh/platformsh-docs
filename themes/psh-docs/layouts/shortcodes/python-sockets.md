@@ -1,5 +1,5 @@
 {{ $server := .Get "server" }}
-To deploy with {{ $server }} on Platform.sh,
+To deploy with {{ $server }} on {{ .Site.Params.vendor.name }} ,
 use one of the following examples to update your [app configuration](../../create-apps/_index.md).
 
 The examples vary based on both your package manager (Pip, Pipenv, or Poetry)

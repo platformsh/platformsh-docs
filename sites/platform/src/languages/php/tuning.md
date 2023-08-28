@@ -4,7 +4,7 @@ weight: 3
 ---
 
 Once your app is up and running it still needs to be kept fast.
-Platform.sh offers a wide degree of flexibility in how PHP behaves,
+{{< vendor/name >}} offers a wide degree of flexibility in how PHP behaves,
 but that does mean you may need to take a few steps to ensure your site is running optimally.
 
 The following recommendations are guidelines only.
@@ -50,7 +50,7 @@ you need to clear the OPcache explicitly on deployment (which can be done by res
 
 To enable preloading, add a variable that specifies a preload script:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 variables:
     php:
         opcache.preload: '{{< variable "PRELOAD_SCRIPT" >}}'
@@ -105,7 +105,7 @@ To determine the maximum number of files to cache, follow these steps:
 
 An example configuration:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 variables:
     php:
         'opcache.max_accelerated_files': 22000
@@ -148,7 +148,7 @@ To determine the total amount of memory to use, follow these steps:
 
    An example configuration:
 
-   ```yaml {location=".platform.app.yaml"}
+   ```yaml {configFile="app"}
    variables:
        php:
            'opcache.memory_consumption': 96
@@ -175,7 +175,7 @@ you can disable that check and get a small performance improvement.
 
 Timestamp validation can be disabled by adding the following variable to your [app configuration](../../create-apps/_index.md):
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 variables:
     php:
         'opcache.validate_timestamps': 0
@@ -199,7 +199,7 @@ To force a restart of PHP-FPM:
 To optimize your app, consider using a [profiler](../../increase-observability/integrate-observability/_index.md).
 A profiler helps determine what slow spots can be found and addressed and helps improve performance.
 
-The web agency [Pixelant](https://www.pixelant.net/) has released a [log analyzer tool for Platform.sh](https://github.com/pixelant/platformsh-analytics)
+The web agency [Pixelant](https://www.pixelant.net/) has released a [log analyzer tool for {{< vendor/name >}}](https://github.com/pixelant/platformsh-analytics)
 that offers visualization of access logs to determine how much memory requests are using on average.
 It also offers additional insights into the operation of your site and can suggest places to further optimize your configuration or when it's time to increase your plan size.
-Note that this tool is maintained by a third party, not by Platform.sh.
+Note that this tool is maintained by a third party, not by {{< vendor/name >}}.

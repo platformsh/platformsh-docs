@@ -2,12 +2,12 @@
 title: "Activity scripts"
 weight: -5
 description: |
-  Platform.sh supports custom scripts that can fire in response to any activity. These scripts allow you to take arbitrary actions in response to actions in your project, such as when it deploys, when a new branch is created, etc.
+  {{< vendor/name >}} supports custom scripts that can fire in response to any activity. These scripts allow you to take arbitrary actions in response to actions in your project, such as when it deploys, when a new branch is created, etc.
 ---
 
 {{% description %}}
 
-Check out examples from other users on the Platform.sh [Community site](https://community.platform.sh/c/activity-scripts/10).
+Check out examples from other users on the {{< vendor/name >}}[Community site](https://community.platform.sh/c/activity-scripts/10).
 
 ## Installing
 
@@ -15,7 +15,7 @@ Activity scripts are configured as integrations.
 That means they're at the *project level*, not at the level of an individual environment.
 While you can store the scripts in your Git repository for access, they have no effect there.
 
-To install a new activity script, use the [Platform.sh CLI](/administration/cli/_index.md).
+To install a new activity script, use the [{{< vendor/name >}} CLI](/administration/cli/_index.md).
 
 ```bash
 platform integration:add --type script --file ./my_script.js
@@ -159,7 +159,7 @@ See [Underscore's documentation](https://underscorejs.org/) for available functi
 ### `activity`
 
 Every activity script has a global variable `activity` that contains detailed information about the activity,
-including embedded, JSON-ified versions of the routes configuration and relevant `.platform.app.yaml` files.
+including embedded, JSON-ified versions of the routes configuration and relevant `{{< vendor/configfile "app" >}}` files.
 The `activity` variable is the same as the [webhook payload](/integrations/activity/webhooks.md).
 See the documentation there for details and a complete example.
 

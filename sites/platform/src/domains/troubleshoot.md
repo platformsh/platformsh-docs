@@ -113,9 +113,9 @@ To pass this verification, there are requirements you need to meet.
 title=Without a CDN
 +++
 
-Platform.sh checks that all the routes you defined are pointing to your project.
+{{< vendor/name >}} checks that all the routes you defined are pointing to your project.
 For the challenge to complete,
-domains and subdomains must point directly to your Platform.sh project.
+domains and subdomains must point directly to your {{< vendor/name >}} project.
 
 Otherwise, you get an error similar to:
 
@@ -170,7 +170,7 @@ If not, [contact Support](../overview/get-support.md).
 
 Certificates are generated based on your [routes configuration](../define-routes/_index.md).
 When a certificate is renewed, the renewal bot checks that all of the defined routes can be accessed.
-If at least one of the routes defined in your `routes.yaml` file can't be accessed,
+If at least one of the routes defined in your `{{< vendor/configfile "routes" >}}` file can't be accessed,
 the renewal fails and the following error is displayed:
 
 ```
@@ -190,7 +190,7 @@ For example, if you add `example.com` and `www.example.com` to your routes confi
 but the `www` subdomain doesn't point to your project through [a `CNAME` record](./steps/dns.md#cname-records),
 the certificate renewal fails.
 For the renewal to succeed, add the missing `CNAME` record to your DNS
-or remove `www.example.com` (and any other `www` route) from your `routes.yaml` file.
+or remove `www.example.com` (and any other `www` route) from your `{{< vendor/configfile "routes" >}}` file.
 
 ## Verify your application
 
@@ -199,7 +199,7 @@ On the command line type `platform logs app` and `platform logs error`.
 
 ## Use ASCII for the domain
 
-Platform.sh expects an ASCII representation of your domain.
+{{< vendor/name >}} expects an ASCII representation of your domain.
 To use an internationalized domain name (IDN), convert it to ASCII.
 Use a tool such as the [conversion tool provided by Verisign](https://www.verisign.com/en_US/channel-resources/domain-registry-products/idn/idn-conversion-tool/index.xhtml).
 

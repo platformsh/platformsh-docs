@@ -2,7 +2,7 @@
 title: "Headless Chrome"
 weight: -90
 description: |
-  Headless Chrome is a headless browser that can be configured on projects like any other service on Platform.sh.
+  Headless Chrome is a headless browser that can be configured on projects like any other service on {{< vendor/name >}}.
 ---
 
 {{% description %}}
@@ -23,7 +23,19 @@ Puppeteer can be used to generate PDFs and screenshots of web pages, automate fo
 
 {{% service-values-change %}}
 
-{{< relationship "headlesschrome" >}}
+```yaml
+{
+    "service": "headlesschrome",
+    "ip": "169.254.91.5",
+    "hostname": "gvbo7vktgmou2mplnzt4b54hgi.headlesschrome.service._.eu-3.platformsh.site",
+    "cluster": "rjify4yjcwxaa-master-7rqtwti",
+    "host": "headlesschrome.internal",
+    "rel": "http",
+    "scheme": "http",
+    "type": "chrome-headless:73",
+    "port": 9222
+}
+```
 
 ## Requirements
 
@@ -81,7 +93,7 @@ exports.getBrowser = async function (url) {
 
 Puppeteer allows your application to [create screenshots](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pagescreenshotoptions), [emulate a mobile device](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pageemulateoptions), [generate PDFs](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pagepdfoptions), and much more.
 
-You can find some useful examples of using headless Chrome and Puppeteer on Platform.sh on the Community Portal:
+You can find some useful examples of using headless Chrome and Puppeteer on {{< vendor/name >}} on the Community Portal:
 
 * [How to take screenshots using Puppeteer and Headless Chrome](https://community.platform.sh/t/how-to-take-screenshots-using-puppeteer-and-headless-chrome/305)
 * [How to generate PDFs using Puppeteer and Headless Chrome](https://community.platform.sh/t/how-to-generate-pdfs-using-puppeteer-and-headless-chrome/306)

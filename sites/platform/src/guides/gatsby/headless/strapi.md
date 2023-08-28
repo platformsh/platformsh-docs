@@ -1,5 +1,5 @@
 ---
-title: "How to deploy Gatsby with Strapi on Platform.sh"
+title: "How to deploy Gatsby with Strapi on {{< vendor/name >}}"
 sidebarTitle: "Strapi"
 description: |
     You can build out an API from scratch with Strapi, and then connect its data to a frontend Gatsby app with `gatsby-source-strapi`.
@@ -7,15 +7,15 @@ description: |
 
 {{< guides/gatsby/headless-intro template="gatsby-strapi" name="Strapi" >}}
 
-## Shared Platform.sh configuration
+## Shared configuration
 
 {{% guides/gatsby/headless-project name="Strapi" %}}
 
-### `.platform/services.yaml`
+### Service configuration
 
 {{% guides/gatsby/headless-services template="gatsby-strapi" name="Strapi" %}}
 
-### `.platform/routes.yaml`
+### Routes configuration
 
 {{% guides/gatsby/headless-routes template="gatsby-strapi" name="Strapi" %}}
 
@@ -71,7 +71,7 @@ After you have deployed, you need to set up Strapi's Admin Panel and some initia
 
 With Gatsby now deployed and pulling content from a backend Strapi application, there are a few things you may wish to change about your project going forward.
 
-### `applications.yaml`
+### Shared application configuration
 
 {{% guides/gatsby/headless-applicationsyaml name="Strapi" %}}
 

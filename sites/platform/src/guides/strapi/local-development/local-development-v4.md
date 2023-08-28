@@ -6,14 +6,14 @@ description: How to develop a Strapi v4 app locally.
 
 To run your Strapi v4 app locally with all of its services, follow these steps:
 
-1. Download your deployed code by running the following command using the Platform.sh CLI:
+1. Download your deployed code by running the following command using the {{< vendor/name >}} CLI:
 
    ```bash
    platform get {{< variable "PROJECT_ID" >}}
    ```
 
 2. Create a new branch.
-   Whenever you develop Platform.sh, you should develop in an isolated environment.
+   Whenever you develop {{< vendor/name >}}, you should develop in an isolated environment.
    This way you aren't opening SSH tunnels to your production environment.
    By creating a branch from your default environment,
    you create a new environment with copies of all production code and data.
@@ -33,14 +33,14 @@ To run your Strapi v4 app locally with all of its services, follow these steps:
    const path = require("path");
    let connection;
    let db_relationship = "postgresdatabase";
-   // Helper function for decoding Platform.sh base64-encoded JSON variables.
+   // Helper function for decoding {{< vendor/name >}} base64-encoded JSON variables.
    function decode(value) {
      return JSON.parse(Buffer.from(value, "base64"));
    }
    if (!process.env.PLATFORM_RELATIONSHIPS) {
      if (process.env.PLATFORM_PROJECT) {
        console.log(
-         "In Platform.sh build hook. Using default SQLite configuration until services are available."
+         "In {{< vendor/name >}} build hook. Using default SQLite configuration until services are available."
        );
      } else {
        console.log(
@@ -64,7 +64,7 @@ To run your Strapi v4 app locally with all of its services, follow these steps:
    } else {
      if (process.env.PLATFORM_PROJECT) {
        console.log(
-         "In Platform.sh deploy hook. Using defined service configuration."
+         "In {{< vendor/name >}} deploy hook. Using defined service configuration."
        );
      } else {
        console.log("Using tunnel for local development.");
@@ -74,13 +74,13 @@ To run your Strapi v4 app locally with all of its services, follow these steps:
        db_relationship
      ][0];
      // Option 1. PostgreSQL.
-     // The PostgreSQL configuration assumes the following in your .platform/services.yaml file:
+     // The PostgreSQL configuration assumes the following in your {{< vendor/configfile "services" >}} file:
      //
      // dbpostgres:
      //    type: postgresql:12
      //    disk: 256
      //
-     // And a relationship defined in your .platform.app.yaml file as follows:
+     // And a relationship defined in your {{< vendor/configfile "app" >}} file as follows:
      //
      // relationships:
      //    postgresdatabase: "dbpostgres:postgresql"
@@ -111,13 +111,13 @@ To run your Strapi v4 app locally with all of its services, follow these steps:
          },
        };
        // Option 2. Oracle MySQL.
-       // The Oracle MySQL configuration assumes the following in your .platform/services.yaml file:
+       // The Oracle MySQL configuration assumes the following in your {{< vendor/configfile "services" >}} file:
        //
        // dbmysql:
        //    type: oracle-mysql:8.0
        //    disk: 256
        //
-       // And a relationship defined in your .platform.app.yaml file as follows:
+       // And a relationship defined in your {{< vendor/configfile "app" >}}file as follows:
        //
        // relationships:
        //    database: "dbmysql:mysql"
@@ -145,7 +145,7 @@ To run your Strapi v4 app locally with all of its services, follow these steps:
 
    See the comments for explanations of individual sections.
 
-   If you have defined the relationship to your service differently (in `.platform.app.yaml`)
+   If you have defined the relationship to your service differently (in `{{< vendor/configfile "app" >}}`)
    or are using a different service, use that name in place of `postgresdatabase`.
 
 4. Open a SSH tunnel to the environment's database:
@@ -154,7 +154,7 @@ To run your Strapi v4 app locally with all of its services, follow these steps:
    platform tunnel:open -A <APP_NAME> -e updates
    ```
 
-   Replace `<APP_NAME>` with your app's `name` in your `.platform.app.yaml` file.
+   Replace `<APP_NAME>` with your app's `name` in your `{{< vendor/configfile "app" >}}` file.
 
    If you get the error `The pcntl PHP extension is required` error, use this command instead:
 

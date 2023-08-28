@@ -13,7 +13,7 @@ In particular, notice:
 
 - `post_deploy`
 
-  Platform.sh containers reside in separate build containers at build time,
+  {{ .Site.Params.vendor.name }} containers reside in separate build containers at build time,
   before their images are moved to the final app container at deploy time.
   These build containers are isolated and so Gatsby can't access {{ .Get "name" }} during the build hook,
   where you would normally run the [`gatsby build` command](https://github.com/platformsh-templates/gatsby/blob/master/.platform.app.yaml#L21).
@@ -31,7 +31,7 @@ In particular, notice:
 
 {{ .Inner | .Page.RenderString }}
 
-This is facilitated by Platform.sh's [Config Reader library](https://github.com/platformsh/config-reader-nodejs).
+This is facilitated by {{ .Site.Params.vendor.name }}'s [Config Reader library](https://github.com/platformsh/config-reader-nodejs).
 So be sure to install this to the Gatsby dependencies first when replicating.
 When used, Gatsby pulls the information to communicate with the {{ .Get "name" }} container *on the current branch*.
 

@@ -1,9 +1,9 @@
 ---
-title: "Configure Strapi for Platform.sh"
+title: "Configure Strapi for {{< vendor/name >}}"
 sidebarTitle: "Configure"
 weight: -100
 description: |
-  Review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for Strapi.
+  Review the basics of what makes up a {{< vendor/name >}} project, including its three principle configuration files and how to define them for Strapi.
 ---
 
 {{% guides/config-desc name="Strapi" %}}
@@ -16,15 +16,15 @@ If you would rather use npm to manage your dependencies, you can:
 1. Delete `yarn` from the build hook.
 2. Replace `yarn build` in the build hook with `npm run build`.
 3. Delete the `build.flavor` block.
-   When this is set to `none`, Platform.sh to rely solely on the build hook to define the build process.
+   When this is set to `none`, {{< vendor/name >}} to rely solely on the build hook to define the build process.
    By default, Node.js containers run `npm install` prior to the build hook,
    so this block can be removed entirely from the configuration.
 4. Delete the `dependencies` block, which includes yarn.
 
 The relationships block is responsible for providing access to the data sources (services) that the Strapi application needs.
 
-Since Platform.sh is read-only during build, mainly for security purposes, certain folders need to be mounted.
-Platform.sh allows you to mount directories that need write access during the deploy phase with the `mounts` key.
+Since {{< vendor/name >}} is read-only during build, mainly for security purposes, certain folders need to be mounted.
+{{< vendor/name >}} allows you to mount directories that need write access during the deploy phase with the `mounts` key.
 In this case, the following folders are mounted for Strapi.
 
 - `.cache` file
@@ -49,7 +49,7 @@ To use another service, replace `postgresql:12` in the example below with the na
 # The services of the project.
 
 # Each service listed is deployed
-# to power your Platform.sh project.
+# to power your {{< vendor/name >}} project.
 
 db:
   type: postgresql:12

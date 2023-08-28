@@ -1,7 +1,7 @@
 ---
 title: "Ruby"
 description: |
-  Platform.sh supports deploying any Ruby application. Your application can use any Ruby application server such as Unicorn or Puma and deploying a Rails or a Sinatra app is very straight forward.
+  {{< vendor/name >}} supports deploying any Ruby application. Your application can use any Ruby application server such as Unicorn or Puma and deploying a Rails or a Sinatra app is very straight forward.
 ---
 
 {{% description %}}
@@ -23,18 +23,18 @@ description: |
 This example uses Unicorn to run a Ruby application.
 You could use any Ruby application server such as Puma or Thin.
 
-Configure the `.platform.app.yaml` file with a few key settings as listed below.
+Configure the `{{< vendor/configfile "app" >}}` file with a few key settings as listed below.
 A complete example is included at the end of this section.
 
 1. Specify the language of your application (available versions are listed above):
 
-    {{< readFile file="/registry/images/examples/full/ruby.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
+    {{< readFile file="/registry/images/examples/full/ruby.app.yaml" highlight="yaml" configFile="app" >}}
 
 2. Setup environment variables.
 
    Rails runs by default on a development environment.
    You can change the Rails/Bundler via those environment variables,
-   some of which are defaults on Platform.sh.
+   some of which are defaults on {{< vendor/name >}}.
 
     ```yaml
     variables:
@@ -55,7 +55,7 @@ A complete example is included at the end of this section.
             RAILS_TMP: '/tmp'
     ```
 
-    The `SECRET_KEY_BASE` variable is generated automatically based on the [`PLATFORM_PROJECT_ENTROPY` variable](../development/variables/use-variables.md#use-platformsh-provided-variables).
+    The `SECRET_KEY_BASE` variable is generated automatically based on the [`PLATFORM_PROJECT_ENTROPY` variable](../development/variables/use-variables.md#use-provided-variables).
     You can change it.
 
 3. Build your application with the build hook.
@@ -81,7 +81,7 @@ A complete example is included at the end of this section.
             gem install --no-document bundler -v $BUNDLER_VERSION
 
             echo "Installing gems"
-            # We copy the bundle directory to the Platform.sh cache directory for
+            # We copy the bundle directory to the {{< vendor/name >}} cache directory for
             # safe keeping, then restore from there on the next build. That allows
             # bundler to skip downloading code it doesn't need to.
             [ -d "$PLATFORM_CACHE_DIR/bundle" ] && \
@@ -94,7 +94,7 @@ A complete example is included at the end of this section.
 
             # precompile assets
             echo "Precompiling assets"
-            # We copy the webpacker directory to the Platform.sh cache directory for
+            # We copy the webpacker directory to the {{< vendor/name >}} cache directory for
             # safe keeping, then restore from there on the next build. That allows
             # bundler to skip downloading code it doesn't need to.
             mkdir -p "$PLATFORM_CACHE_DIR/webpacker"
@@ -175,7 +175,7 @@ A complete example is included at the end of this section.
     You can define other read/write mounts (your application code itself being deployed to a read-only file system).
     Note that the file system is persistent and when you backup your cluster these mounts are also backed up.
 
-7. Then, setup the routes to your application in `.platform/routes.yaml`.
+7. Then, setup the routes to your application in `{{< vendor/configfile "routes" >}}`.
 
     ```yaml
     "https://{default}/":
@@ -186,7 +186,7 @@ A complete example is included at the end of this section.
 
 ### Complete app configuration
 
-Here is a complete `.platform.app.yaml` file:
+Here is a complete `{{< vendor/configfile "app" >}}` file:
 
 ```yaml
 name: 'app'
@@ -235,7 +235,7 @@ hooks:
         gem install --no-document bundler -v $BUNDLER_VERSION
 
         echo "Installing gems"
-        # We copy the bundle directory to the Platform.sh cache directory for
+        # We copy the bundle directory to the {{< vendor/name >}} cache directory for
         # safe keeping, then restore from there on the next build. That allows
         # bundler to skip downloading code it doesn't need to.
         [ -d "$PLATFORM_CACHE_DIR/bundle" ] && \
@@ -248,7 +248,7 @@ hooks:
 
         # precompile assets
         echo "Precompiling assets"
-        # We copy the webpacker directory to the Platform.sh cache directory for
+        # We copy the webpacker directory to the {{< vendor/name >}} cache directory for
         # safe keeping, then restore from there on the next build. That allows
         # bundler to skip downloading code it doesn't need to.
         mkdir -p "$PLATFORM_CACHE_DIR/webpacker"
@@ -291,7 +291,7 @@ web:
 This example assumes there is a MySQL instance.
 To configure it, [create a service](../add-services/_index.md) such as the following:
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 database:
     type: mysql:10.4
     disk: 2048
@@ -301,7 +301,7 @@ database:
 
 Once you have a service, link to it in your [app configuration](../create-apps/_index.md):
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 relationships:
     database: "database:mysql"
 ```
@@ -379,5 +379,5 @@ You may encounter an error like the following during a build:
 
 To resolve this error:
 
-1. Run `bundle install` with the same `ruby` and `bundler` versions defined in your `.platform.app.yaml` file.
+1. Run `bundle install` with the same `ruby` and `bundler` versions defined in your `{{< vendor/configfile "app" >}}` file.
 2. Push the `Gemfile.lock` to your repository.

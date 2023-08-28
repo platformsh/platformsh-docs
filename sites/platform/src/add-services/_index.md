@@ -7,12 +7,12 @@ keywords:
   - "services.yaml"
 ---
 
-Platform.sh includes many services, so you don't have to subscribe to external cache or search engine services.
+{{< vendor/name >}} includes many services, so you don't have to subscribe to external cache or search engine services.
 Because the services are included in your project, you can manage them through Git
 and they're backed up together with the rest of your project.
 
-Your project defines the services configuration in a file named `services.yaml` located in the `{{< vendor/configdir >}}` directory.
-If you don't need any services (such as for a static website), you don't need to include this file in your repository.
+Your project defines the services configuration in a file named `{{< vendor/configfile "services" >}}`.
+If you don't need any services (such as for a static website), you don't need to include this configuration.
 
 Read on to see how to add services.
 
@@ -24,11 +24,11 @@ Adding a service is a two-step process.
 
 ### 1. Configure the service
 
-All service configuration happens in the services configuration file (`{{< vendor/configdir >}}/services.yaml`) in your Git repository.
+All service configuration happens in the `{{< vendor/configfile "services" >}}` file in your Git repository.
 
 Configure your service in the following pattern:
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 {{<variable "SERVICE_NAME" >}}:
     type: {{<variable "SERVICE_TYPE" >}}:{{<variable "VERSION" >}}
     # Other options...
@@ -36,7 +36,7 @@ Configure your service in the following pattern:
 
 An example service configuration for two databases might look like this:
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 database1:
     type: mariadb:10.5
     disk: 2048
@@ -53,7 +53,7 @@ You can give it any name you want with lowercase alphanumeric characters, hyphen
 
 Changing the service name is interpreted as creating an entirely new service.
 This **removes all data in that service**.
-Always back up your data before changing existing services in your `.platform/services.yaml` file.
+Always back up your data before changing existing services in your `{{< vendor/configfile "services" >}}` file.
 
 {{< /note >}}
 
@@ -81,7 +81,7 @@ The following table presents the keys you can define for each service:
 
 Resources are distributed across all containers in a project from the total available from your [plan size](../administration/pricing/_index.md).
 
-By default, Platform.sh allocates CPU and memory resources to each container automatically.
+By default, {{< vendor/name >}} allocates CPU and memory resources to each container automatically.
 Some services are optimized for high CPU load, some for high memory load.
 If your plan is sufficiently large for bigger containers, you can increase the size of your service container.
 
@@ -94,14 +94,14 @@ This is done in your [app configuration for relationships](../create-apps/app-re
 
 The relationship follows this pattern:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 relationships:
     {{< variable "RELATIONSHIP_NAME" >}}: "{{< variable "SERVICE_NAME" >}}:{{< variable "ENDPOINT" >}}"
 ```
 
 An example relationship to connect to the databases given in the [example in step 1](#1-configure-the-service):
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 relationships:
     mysql_database: "database1:mysql"
     postgresql_database: "database2:postgresql"
@@ -150,7 +150,7 @@ You can connect through your app or by opening an SSH tunnel to access the servi
 title=In an app
 +++
 
-When connecting to a service from an app, you may want to use one of the Platform.sh [configuration readers](https://github.com/platformsh/?q=config+reader).
+When connecting to a service from an app, you may want to use one of the {{< vendor/name >}} [configuration readers](https://github.com/platformsh/?q=config+reader).
 These tools make it easier to get credentials inside your app.
 
 Alternatively, once a service is running and exposed as a relationship,
