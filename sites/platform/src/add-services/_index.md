@@ -16,7 +16,9 @@ If you don't need any services (such as for a static website), you don't need to
 
 Read on to see how to add services.
 
+{{% version/only "1" %}}
 ![Services](/images/management-console/relationships.png "0.50")
+{{% /version/only %}}
 
 ## Add a service
 
@@ -29,24 +31,35 @@ All service configuration happens in the `{{< vendor/configfile "services" >}}` 
 Configure your service in the following pattern:
 
 ```yaml {configFile="services"}
-{{<variable "SERVICE_NAME" >}}:
+{{% snippet name="SERVICE_NAME" config="service" %}}
     type: {{<variable "SERVICE_TYPE" >}}:{{<variable "VERSION" >}}
     # Other options...
+{{% /snippet %}}
 ```
 
 An example service configuration for two databases might look like this:
 
 ```yaml {configFile="services"}
-database1:
-    type: mariadb:10.5
+{{% snippet name="database1" config="service" %}}
+    type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
-database2:
-    type: postgresql:13
+{{% /snippet %}}
+{{% snippet name="database2" config="service" globKey="false" %}}
+    type: postgresql:{{% latest "postgresql" %}}
     disk: 1024
+{{% /snippet %}}
 ```
 
+{{% version/specific %}}
+<!-- API Version 1 -->
 This YAML file is a dictionary defining all of the services you want to use.
-The top-level key is a custom service name, which you use to identify the service in step 2.
+The top-level key is a custom service name ({{<variable "SERVICE_NAME" >}}; in the example, `database1` and `database2`), which you use to identify the service in step 2.
+<--->
+<!-- API Version 2 -->
+This YAML file contains a dictionary defining all of the services you want to use.
+The top-level key `services` defines an object of all of the services to be provisioned for the project. 
+Below that, next are custom service names ({{<variable "SERVICE_NAME" >}}; in the example, `database1` and `database2`), which you use to identify services in step 2.
+{{% /version/specific %}}
 You can give it any name you want with lowercase alphanumeric characters, hyphens, and underscores.
 
 {{< note >}}
@@ -95,16 +108,40 @@ This is done in your [app configuration for relationships](../create-apps/app-re
 The relationship follows this pattern:
 
 ```yaml {configFile="app"}
+{{% snippet name="<APP_NAME>" config="app" root="false"%}}
+
+# Other options...
+
+# Relationships enable an app container's to a service.
 relationships:
     {{< variable "RELATIONSHIP_NAME" >}}: "{{< variable "SERVICE_NAME" >}}:{{< variable "ENDPOINT" >}}"
+{{% /snippet %}}
+{{% snippet name="SERVICE_NAME" config="service" placeholder="true"%}}
+    type: {{<variable "SERVICE_TYPE" >}}:{{<variable "VERSION" >}}
+    # Other options...
+{{% /snippet %}}
 ```
 
 An example relationship to connect to the databases given in the [example in step 1](#1-configure-the-service):
 
 ```yaml {configFile="app"}
+{{% snippet name="<APP_NAME>" config="app" root="false"%}}
+
+# Other options...
+
+# Relationships enable an app container's to a service.
 relationships:
     mysql_database: "database1:mysql"
     postgresql_database: "database2:postgresql"
+{{% /snippet %}}
+{{% snippet name="database1" config="service" placeholder="true" %}}
+    type: mariadb:{{% latest "mariadb" %}}
+    disk: 2048
+{{% /snippet %}}
+{{% snippet name="database2" config="service" globKey="false" placeholder="true" %}}
+    type: postgresql:{{% latest "postgresql" %}}
+    disk: 1024
+{{% /snippet %}}
 ```
 
 As with the service name, you can give the relationship any name you want
@@ -220,6 +257,6 @@ You can specify the port for the connection using the `--port` flag.
 
 You can then connect to this service in a separate terminal or locally running app.
 With the example above, you connect to a URL like the following:
-`mysql://user:@127.0.0.1:30000/main'`
+`mysql://user:@127.0.0.1:30000/main`
 
 {{< /codetabs >}}
