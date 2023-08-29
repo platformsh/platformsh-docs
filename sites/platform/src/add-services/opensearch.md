@@ -14,18 +14,44 @@ To switch from Elasticsearch, follow the same procedure as for [upgrading](#upgr
 
 ## Supported versions
 
+{{% version/specific %}}
+<!-- API Version 1 -->
 <!--
 To update the versions in this table, use docs/data/registry.json
 -->
-| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|------|-------------------------------|------------------------------ |
-|  {{< image-versions image="opensearch" status="supported" environment="grid" >}} | {{< image-versions image="opensearch" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="opensearch" status="supported" environment="dedicated-gen-2" >}} |
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="opensearch" status="supported" environment="grid" >}}</td>
+            <td>{{< image-versions image="opensearch" status="supported" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="opensearch" status="supported" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
 
 On Grid and {{% names/dedicated-gen-3 %}}, from version 2, you only specify the major version.
+The latest compatible minor version and patches are applied automatically. On Grid, version 1 represents a rolling release - the latest minor version available from the upstream.
+
+<--->
+<!-- API Version 2 -->
+
+In the list below, notice that there you only specify the major version.
+Each version represents a rolling release of the latest minor version available from the upstream.
 The latest compatible minor version and patches are applied automatically.
 
-On Grid, version 1 represents a rolling release - the latest minor version available from the upstream.
-Today, that version is `1.3.x`.
+{{< image-versions image="opensearch" status="supported" environment="grid" >}}
+
+{{% /version/specific %}}
+
+You can see the latest minor and patch versions of OpenSearch available from the [`2.x`](https://opensearch.org/lines/2x.html) and [`1.x`](https://opensearch.org/lines/1x.html) release lines.
 
 ## Deprecated versions
 
@@ -33,9 +59,32 @@ The following versions are still available in your projects,
 but they're at their end of life and are no longer receiving security updates from upstream,
 or are no longer the recommended way to configure the service on {{< vendor/name >}}.
 
-| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|------|-------------------------------|------------------------------ |
-|  {{< image-versions image="opensearch" status="deprecated" environment="grid" >}} | {{< image-versions image="opensearch" status="deprecated" environment="dedicated-gen-3" >}} | {{< image-versions image="opensearch" status="deprecated" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="opensearch" status="deprecated" environment="grid" >}}</td>
+            <td>{{< image-versions image="opensearch" status="deprecated" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="opensearch" status="deprecated" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="opensearch" status="deprecated" environment="grid" >}}
+
+{{% /version/specific %}}
 
 To ensure your project remains stable in the future,
 switch to [a supported version](#supported-versions).
@@ -51,7 +100,7 @@ switch to [a supported version](#supported-versions).
     "service": "opensearch12",
     "fragment": null,
     "ip": "169.254.99.100",
-    "hostname": "2e36wpnescmc5ffcddczsnhnai.opensearch12.service._.eu-3.platformsh.site",
+    "hostname": "2e36wpnescmc5ffcddczsnhnai.opensearch12.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "port": 9200,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "opensearch.internal",
@@ -59,7 +108,7 @@ switch to [a supported version](#supported-versions).
     "path": null,
     "query": [],
     "password": "ChangeMe",
-    "type": "opensearch:1.2",
+    "type": "opensearch:{{% latest "opensearch" %}}",
     "public": false,
     "host_mapped": false
 }
@@ -68,6 +117,46 @@ switch to [a supported version](#supported-versions).
 ## Usage example
 
 {{% endpoint-description type="opensearch" noApp=true /%}}
+
+### Use in app
+
+To use the configured service in your app, add a configuration file similar to the following to your project.
+
+<!-- Version 1 & 2: .environment shortcode + context -->
+
+```yaml {configFile="app"}
+{{% snippet name="myapp" config="app" root="myapp" %}}
+
+# Other options...
+
+# Relationships enable an app container's access to a service.
+relationships:
+    searchopen: "searchopen:opensearch"
+{{% /snippet %}}
+{{% snippet name="searchopen" config="service" placeholder="true" %}}
+    type: opensearch:{{% latest "opensearch" %}}
+    disk: 256
+{{% /snippet %}}
+```
+
+{{% v2connect2app serviceName="searchopen" relationship="searchopen" var="OPENSEARCH_HOSTS" %}}
+
+```bash {location="myapp/.environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for individual credentials.
+export OS_SCHEME=$(echo $RELATIONSHIPS_JSON | jq -r ".searchopen[0].scheme")
+export OS_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".searchopen[0].host")
+export OS_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".searchopen[0].port")
+
+# Surface more common OpenSearch connection string variables for use in app.
+export OPENSEARCH_USERNAME=$(echo $RELATIONSHIPS_JSON | jq -r ".searchopen[0].username")
+export OPENSEARCH_PASSWORD=$(echo $RELATIONSHIPS_JSON  | jq -r ".searchopen[0].password")
+export OPENSEARCH_HOSTS=[\"$OS_SCHEME://$OS_HOST:$OS_PORT\"]
+```
+
+{{% /v2connect2app %}}
 
 {{< note >}}
 
@@ -141,7 +230,7 @@ If there is a publicly available plugin you need that isn't listed here, [contac
 
 This is the complete list of plugins that can be enabled:
 
-| Plugin                  | Description                                                                               | 1.2 | 2 |
+| Plugin                  | Description                                                                               | 1   | 2 |
 |-------------------------|-------------------------------------------------------------------------------------------|-----|---|
 | `analysis-icu`          | Support ICU Unicode text analysis                                                         | *   | * |
 | `analysis-kuromoji`     | Japanese language support                                                                 | *   | * |
