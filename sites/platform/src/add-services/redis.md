@@ -11,6 +11,9 @@ for high-performance data retrieval and key-value storage.
 - [Ephemeral](#ephemeral-redis): to set up a non-persistent cache for your application
 - [Persistent](#persistent-redis): to set up fast persistent storage for your application
 
+{{% version/specific %}}
+<!-- API Version 1 -->
+
 {{% frameworks %}}
 
 - [Drupal](../guides/drupal9/redis.md)
@@ -23,19 +26,70 @@ for high-performance data retrieval and key-value storage.
 
 {{% /frameworks %}}
 
+<--->
+<!-- API Version 2 -->
+
+{{% /version/specific %}}
+
 ## Supported versions
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|------|-------------------------------|------------------------------ |
-| {{< image-versions image="redis" status="supported" environment="grid" >}} | {{< image-versions image="redis" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="redis" status="supported" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="redis" status="supported" environment="grid" >}}</td>
+            <td>{{< image-versions image="redis" status="supported" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="redis" status="supported" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="redis" status="supported" environment="grid" >}}
+
+{{% /version/specific %}}
 
 {{% deprecated-versions %}}
 
-| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|------|-------------------------------|------------------------------ |
-| {{< image-versions image="redis" status="deprecated" environment="grid" >}} | {{< image-versions image="redis" status="deprecated" environment="dedicated-gen-3" >}} | {{< image-versions image="redis" status="deprecated" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="redis" status="deprecated" environment="grid" >}}</td>
+            <td>{{< image-versions image="redis" status="deprecated" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="redis" status="deprecated" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="redis" status="deprecated" environment="grid" >}}
+
+{{% /version/specific %}}
 
 Note that versions 3.0 and higher support up to 64 different databases per instance of the service,
 while Redis 2.8 only supports a single database.
@@ -77,7 +131,7 @@ set up a new service with a different name.
 
 {{% endpoint-description type="redis" php=true /%}}
 
-{{< codetabs >}}
+{{< codetabs v2hide="true" >}}
 
 +++
 title=Java
@@ -111,6 +165,44 @@ highlight=python
 
 {{< /codetabs >}}
 
+<!-- Version 2: .environment shortcode + context -->
+{{% version/only "2" %}}
+
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="myapp" >}}
+
+# Other options...
+
+# Relationships enable an app container's access to a service.
+relationships:
+    rediscache: "cacheredis:redis"
+{{< /snippet >}}
+{{< snippet name="cacheredis" config="service" placeholder="true" >}}
+    type: redis:{{% latest "redis" %}}
+    disk: 256
+{{< /snippet >}}
+```
+
+{{< v2connect2app serviceName="cacheredis" relationship="rediscache" var="REDIS_URL">}}
+
+```bash {location="myapp/.environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for individual credentials.
+export CACHE_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].host')"
+export CACHE_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].port')"
+export CACHE_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].password')"
+export CACHE_SCHEME="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].scheme')"
+
+# Surface a Redis connection string for use in app.
+export REDIS_URL="${CACHE_SCHEME}://${CACHE_PASSWORD}@${CACHE_HOST}:${CACHE_PORT}"
+```
+
+{{< /v2connect2app >}}
+
+{{% /version/only %}}
+
 ## Multiple databases
 
 Redis 3.0 and above support up to 64 databases.
@@ -130,11 +222,14 @@ Use the Redis [`select` command](https://redis.io/commands/select):
 
 ```php
 <?php
+$redis = new Redis();
+$redis->connect(getenv('CACHE_HOST'), getenv('CACHE_PORT'));
+
 $redis->select(0);       // switch to DB 0
-$redis->set('x', '42'); // write 42 to x
-$redis->move('x', 1);  // move to DB 1
-$redis->select(1);    // switch to DB 1
-$redis->get('x');    // returns 42
+$redis->set('x', '42');  // write 42 to x
+$redis->move('x', 1);    // move to DB 1
+$redis->select(1);       // switch to DB 1
+$redis->get('x');        // returns 42
 ```
 
 <--->
@@ -147,15 +242,11 @@ To manage [thread safety](https://github.com/redis/redis-py/blob/master/docs/adv
 the Python library suggests using separate client instances for each database:
 
 ```python
+import os
 from redis import Redis
-from platformshconfig import Config
 
-# Get the credentials to connect to the Redis service.
-config = Config()
-credentials = config.credentials('redis')
-
-database0 = Redis(host='xxxxxx.cache.amazonaws.com', port=6379, db=0)
-database1 = Redis(host='xxxxxx.cache.amazonaws.com', port=6379, db=0)
+database0 = Redis(host=os.getenv('CACHE_HOST'), port=os.getenv('CACHE_PORT'), db=0)
+database1 = Redis(host=os.getenv('CACHE_HOST'), port=os.getenv('CACHE_PORT'), db=1)
 ```
 
 <--->
@@ -167,11 +258,15 @@ title=Node.js
 Use the Redis [`select` command](https://redis.io/commands/select):
 
 ```javascript
+const redis = require('redis');
+
+const client = redis.createClient(process.env.CACHE_PORT, process.env.CACHE_HOST);
+
 await client.SELECT(0);                  // switch to DB 0
-await client.set('x', '42');            // write 42 to x
-await client.MOVE('x', 1);             // move to DB 1
-await client.SELECT(1);               // switch to DB 1
-const value = await client.get('x'); // returns 42
+await client.set('x', '42');             // write 42 to x
+await client.MOVE('x', 1);               // move to DB 1
+await client.SELECT(1);                  // switch to DB 1
+const value = await client.get('x');     // returns 42
 ```
 
 {{< /codetabs >}}
@@ -187,7 +282,7 @@ const value = await client.get('x'); // returns 42
     "service": "redis6",
     "fragment": null,
     "ip": "169.254.22.75",
-    "hostname": "7mnenhdiz7ecraovljrba6pmiy.redis6.service._.eu-3.platformsh.site",
+    "hostname": "7mnenhdiz7ecraovljrba6pmiy.redis6.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "port": 6379,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "redis.internal",
@@ -195,7 +290,7 @@ const value = await client.get('x'); // returns 42
     "path": null,
     "query": [],
     "password": null,
-    "type": "redis:6.0",
+    "type": "redis:{{% latest "redis" %}}",
     "public": false,
     "host_mapped": false
 }
@@ -239,8 +334,8 @@ After you've [configured your Redis service](#usage-example),
 you can access it using the [Redis CLI](https://redis.io/docs/ui/cli/).
 
 Retrieve the hostname and port you can connect to
-through the `PLATFORM_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables).
-To do so, run the `platform relationships` command.
+through the `{{< vendor/prefix >}}_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables).
+To do so, run the `{{< vendor/cli >}} relationships` command.
 
 After you've retrieved the hostname and port, [open an SSH session](../development/ssh/_index.md).
 To access your Redis service, run the following command:
