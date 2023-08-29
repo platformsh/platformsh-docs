@@ -8,6 +8,9 @@ Apache Solr is a scalable and fault-tolerant search index.
 
 Solr search with generic schemas provided, and a custom schema is also supported. See the [Solr documentation](https://lucene.apache.org/solr/6_3_0/index.html) for more information.
 
+{{% version/specific %}}
+<!-- API Version 1 -->
+
 {{% frameworks %}}
 
 - [Drupal](../guides/drupal9/solr.md)
@@ -17,19 +20,70 @@ Solr search with generic schemas provided, and a custom schema is also supported
 
 {{% /frameworks %}}
 
+<--->
+<!-- API Version 2 -->
+
+{{% /version/specific %}}
+
 ## Supported versions
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|------|-------------------------------|------------------------------ |
-|  {{< image-versions image="solr" status="supported" environment="grid" >}} | {{< image-versions image="solr" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="solr" status="supported" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="solr" status="supported" environment="grid" >}}</td>
+            <td>{{< image-versions image="solr" status="supported" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="solr" status="supported" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="solr" status="supported" environment="grid" >}}
+
+{{% /version/specific %}}
 
 {{% deprecated-versions %}}
 
-| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|------|-------------------------------|------------------------------ |
-|  {{< image-versions image="solr" status="deprecated" environment="grid" >}} | {{< image-versions image="solr" status="deprecated" environment="dedicated-gen-3" >}} | {{< image-versions image="solr" status="deprecated" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="solr" status="deprecated" environment="grid" >}}</td>
+            <td>{{< image-versions image="solr" status="deprecated" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="solr" status="deprecated" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="solr" status="deprecated" environment="grid" >}}
+
+{{% /version/specific %}}
 
 {{% relationship-ref-intro %}}
 
@@ -42,7 +96,7 @@ Solr search with generic schemas provided, and a custom schema is also supported
     "service": "solr86",
     "fragment": null,
     "ip": "169.254.68.119",
-    "hostname": "csjsvtdhmjrdre2uaoeim22xjy.solr86.service._.eu-3.platformsh.site",
+    "hostname": "csjsvtdhmjrdre2uaoeim22xjy.solr86.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "port": 8080,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "solr.internal",
@@ -50,7 +104,7 @@ Solr search with generic schemas provided, and a custom schema is also supported
     "path": "solr\/maincore",
     "query": [],
     "password": "ChangeMe",
-    "type": "solr:8.6",
+    "type": "solr:{{% latest "solr" %}}",
     "public": false,
     "host_mapped": false
 }
@@ -60,7 +114,7 @@ Solr search with generic schemas provided, and a custom schema is also supported
 
 {{% endpoint-description type="solr" sectionLink="#solr-6-and-later" multipleText="cores" /%}}
 
-{{< codetabs >}}
+{{< codetabs v2hide="true" >}}
 
 +++
 title=Go
@@ -101,6 +155,43 @@ highlight=python
 +++
 
 {{< /codetabs >}}
+
+<!-- Version 2: .environment shortcode + context -->
+{{% version/only "2" %}}
+
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="myapp" >}}
+
+# Other options...
+
+# Relationships enable an app container's access to a service.
+relationships:
+    solrsearch: "searchsolr:solr"
+{{< /snippet >}}
+{{< snippet name="searchsolr" config="service" placeholder="true" >}}
+    type: solr:{{% latest "solr" %}}
+    disk: 256
+{{< /snippet >}}
+```
+
+{{< v2connect2app serviceName="searchelastic" relationship="solrsearch" var="SOLR_URL">}}
+
+```bash {location="myapp/.environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for individual credentials.
+export SOLR_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".solrsearch[0].host")
+export SOLR_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".solrsearch[0].port")
+export SOLR_PATH=$(echo $RELATIONSHIPS_JSON | jq -r ".solrsearch[0].path")
+
+# Surface more common Solr connection string variables for use in app.
+export SOLR_URL="http://${CACHE_HOST}:${CACHE_PORT}/${CACHE_PATH}"
+```
+
+{{< /v2connect2app >}}
+
+{{% /version/only %}}
 
 ## Solr 4
 
@@ -308,7 +399,7 @@ The configuration directory is a collection of configuration data, like a data d
 Because Solr uses HTTP for both its API and admin interface it's possible to access the admin interface over an SSH tunnel.
 
 ```bash
-platform tunnel:single --relationship {{< variable "RELATIONSHIP_NAME" >}}
+{{< vendor/cli >}} tunnel:single --relationship {{< variable "RELATIONSHIP_NAME" >}}
 ```
 
 By default, this opens a tunnel at `127.0.0.1:30000`.
@@ -317,7 +408,7 @@ You can now open `http://localhost:30000/solr/` in a browser to access the Solr 
 Note that you can't create indexes or users this way,
 but you can browse the existing indexes and manipulate the stored data.
 
-For {{% names/dedicated-gen-2 %}} use `ssh -L 8888:localhost:8983 {{< variable "USER" >}}@{{< variable "CLUSTER_NAME" >}}.ent.platform.sh` to open a tunnel instead,
+For {{% names/dedicated-gen-2 %}} use `ssh -L 8888:localhost:8983 {{< variable "USER" >}}@{{< variable "CLUSTER_NAME" >}}.ent.{{< vendor/urlraw "host" >}}` to open a tunnel instead,
 after which the Solr server administrative interface is available at `http://localhost:8888/solr/`.
 
 ## Available plugins
