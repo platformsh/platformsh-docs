@@ -10,31 +10,86 @@ that supports multiple messaging protocols, such as the Advanced Message Queuing
 It gives your apps a common platform to send and receive messages
 and your messages a safe place to live until they're received.
 
+{{% version/specific %}}
+<!-- API Version 1 -->
+
 {{% frameworks %}}
 
 - [Spring](../guides/spring/rabbitmq.md)
 
 {{% /frameworks %}}
 
+<--->
+<!-- API Version 2 -->
+
+{{% /version/specific %}}
+
 ## Supported versions
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|------|-------------------------------|------------------------------ |
-| {{< image-versions image="rabbitmq" status="supported" environment="grid" >}} | {{< image-versions image="rabbitmq" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="rabbitmq" status="supported" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="rabbitmq" status="supported" environment="grid" >}}</td>
+            <td>{{< image-versions image="rabbitmq" status="supported" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="rabbitmq" status="supported" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="rabbitmq" status="supported" environment="grid" >}}
+
+{{% /version/specific %}}
 
 {{% deprecated-versions %}}
 
-| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|------|-------------------------------|------------------------------ |
-|  {{< image-versions image="rabbitmq" status="deprecated" environment="grid" >}} | {{< image-versions image="rabbitmq" status="deprecated" environment="dedicated-gen-3" >}} | {{< image-versions image="rabbitmq" status="deprecated" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="rabbitmq" status="deprecated" environment="grid" >}}</td>
+            <td>{{< image-versions image="rabbitmq" status="deprecated" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="rabbitmq" status="deprecated" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="rabbitmq" status="deprecated" environment="grid" >}}
+
+{{% /version/specific %}}
 
 ## Usage example
 
 {{% endpoint-description type="rabbitmq" /%}}
 
-{{< codetabs >}}
+<!-- Version 1: Codetabs using config reader + examples.docs.platform.sh -->
+{{< codetabs v2hide="true" >}}
 
 +++
 title=Go
@@ -68,6 +123,45 @@ highlight=python
 
 {{< /codetabs >}}
 
+<!-- Version 2: .environment shortcode + context -->
+{{% version/only "2" %}}
+
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="myapp" >}}
+
+# Other options...
+
+# Relationships enable an app container's access to a service.
+relationships:
+    rabbitmqqueue: "queuerabbit:rabbitmq"
+{{< /snippet >}}
+{{< snippet name="queuerabbit" config="service" placeholder="true" >}}
+    type: rabbitmq:{{% latest "rabbitmq" %}}
+    disk: 256
+{{< /snippet >}}
+```
+
+{{< v2connect2app serviceName="queuerabbit" relationship="rabbitmqqueue" var="AMQP_URL">}}
+
+```bash {location="myapp/.environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for individual credentials.
+export QUEUE_SCHEME=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].scheme")
+export QUEUE_USERNAME=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].username")
+export QUEUE_PASSWORD=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].password")
+export QUEUE_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].host")
+export QUEUE_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].port")
+
+# Set a single RabbitMQ connection string variable for AMQP.
+export AMQP_URL="${QUEUE_SCHEME}://${QUEUE_USERNAME}:${QUEUE_PASSWORD}@${QUEUE_HOST}:${QUEUE_PORT}/"
+```
+
+{{< /v2connect2app >}}
+
+{{% /version/only %}}
+
 ## Connect to RabbitMQ
 
 When debugging, you may want to connect directly to your RabbitMQ service.
@@ -87,7 +181,7 @@ To open an SSH tunnel to your service with port forwarding,
 run the following command:
 
 ```bash
-platform tunnel:single --gateway-ports
+{{< vendor/cli >}} tunnel:single --gateway-ports
 ```
 
 Then configure a RabbitMQ client to connect to this tunnel using the credentials from the [relationship](#relationship-reference).
@@ -104,7 +198,7 @@ To open a tunnel, follow these steps.
    a) (On [grid environments](../other/glossary.md#grid)) SSH into your app container with a flag for local port forwarding:
 
     ```bash
-    ssh $(platform ssh --pipe) -L 15672:{{< variable "RELATIONSHIP_NAME" >}}.internal:15672
+    ssh $({{< vendor/cli >}} ssh --pipe) -L 15672:{{< variable "RELATIONSHIP_NAME" >}}.internal:15672
     ```
 
     {{< variable "RELATIONSHIP_NAME" >}} is the [name you defined](#2-add-the-relationship).
@@ -112,7 +206,7 @@ To open a tunnel, follow these steps.
    b) (On [dedicated environments](../other/glossary.html#dedicated-gen-2)) SSH into your cluster with a flag for local port forwarding:
 
     ```bash
-    ssh $(platform ssh --pipe) -L 15672:localhost:15672
+    ssh $({{< vendor/cli >}} ssh --pipe) -L 15672:localhost:15672
     ```
 
 2.  Open `http://localhost:15672` in your browser.
@@ -152,7 +246,7 @@ To create virtual hosts, add them to your configuration as in the following exam
     "service": "rabbitmq38",
     "fragment": null,
     "ip": "169.254.57.5",
-    "hostname": "iwrccysk3gpam2zdlwdr5fgs2y.rabbitmq38.service._.eu-3.platformsh.site",
+    "hostname": "iwrccysk3gpam2zdlwdr5fgs2y.rabbitmq38.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "port": 5672,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "rabbitmq.internal",
@@ -160,7 +254,7 @@ To create virtual hosts, add them to your configuration as in the following exam
     "path": null,
     "query": [],
     "password": "ChangeMe",
-    "type": "rabbitmq:3.8",
+    "type": "rabbitmq:{{% latest "rabbitmq" %}}",
     "public": false,
     "host_mapped": false
 }
