@@ -8,23 +8,54 @@ PostgreSQL is a high-performance, standards-compliant relational SQL database.
 
 See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.html) for more information.
 
+{{% version/specific %}}
+<!-- API Version 1 -->
+
 {{% frameworks %}}
 
-- [Hibernate](../guides/hibernate/deploy.md#mysql)
-- [Jakarta EE](../guides/jakarta/deploy.md#mysql)
-- [Spring](../guides/spring/mysql.md)
+- [Hibernate](../guides/hibernate/deploy.md#postgresql)
+- [Jakarta EE](../guides/jakarta/deploy.md#postgresql)
+- [Spring](../guides/spring/postgresql.md)
 
 {{% /frameworks %}}
+
+<--->
+<!-- API Version 2 -->
+
+{{% /version/specific %}}
 
 ## Supported versions
 
 {{% major-minor-versions-note %}}
 
-| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|------|-------------------------------|------------------------------ |
-|  {{< image-versions image="postgresql" status="supported" environment="grid" >}} | {{< image-versions image="postgresql" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="postgresql" status="supported" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="postgresql" status="supported" environment="grid" >}}</td>
+            <td>{{< image-versions image="postgresql" status="supported" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="postgresql" status="supported" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
 
 \* No High-Availability on {{% names/dedicated-gen-2 %}}.
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="postgresql" status="supported" environment="grid" >}}
+
+{{% /version/specific %}}
 
 {{< note >}}
 
@@ -35,9 +66,32 @@ For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-
 
 {{% deprecated-versions %}}
 
-| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|------|-------------------------------|------------------------------ |
-|  {{< image-versions image="postgresql" status="deprecated" environment="grid" >}} | {{< image-versions image="postgresql" status="deprecated" environment="dedicated-gen-3" >}} | {{< image-versions image="postgresql" status="deprecated" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="postgresql" status="deprecated" environment="grid" >}}</td>
+            <td>{{< image-versions image="postgresql" status="deprecated" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="postgresql" status="deprecated" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="postgresql" status="deprecated" environment="grid" >}}
+
+{{% /version/specific %}}
 
 {{% relationship-ref-intro %}}
 
@@ -50,7 +104,7 @@ For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-
     "service": "postgresql12",
     "fragment": null,
     "ip": "169.254.38.66",
-    "hostname": "zydalrxgkhif2czr3xqth3qkue.postgresql12.service._.eu-3.platformsh.site",
+    "hostname": "zydalrxgkhif2czr3xqth3qkue.postgresql12.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "port": 5432,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "postgresql.internal",
@@ -60,7 +114,7 @@ For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-
         "is_master": true
     },
     "password": "ChangeMe",
-    "type": "postgresql:12",
+    "type": "postgresql:{{% latest "postgresql" %}}",
     "public": false,
     "host_mapped": false
 }
@@ -70,7 +124,8 @@ For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-
 
 {{% endpoint-description type="postgresql" php=true /%}}
 
-{{< codetabs >}}
+<!-- Version 1: Codetabs using config reader + examples.docs.platform.sh -->
+{{< codetabs v2hide="true" >}}
 
 +++
 title=Go
@@ -112,9 +167,49 @@ highlight=python
 
 {{< /codetabs >}}
 
+<!-- Version 2: .environment shortcode + context -->
+{{% version/only "2" %}}
+
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="myapp" >}}
+
+# Other options...
+
+# Relationships enable an app container's access to a service.
+relationships:
+    postgresdatabase: "dbpostgres:postgresql"
+{{< /snippet >}}
+{{< snippet name="dbpostgres" config="service" placeholder="true" >}}
+    type: postgresql:{{% latest "postgresql" %}}
+    disk: 256
+{{< /snippet >}}
+```
+
+{{< v2connect2app serviceName="dbpostgres" relationship="postgresdatabase" var="DATABASE_URL">}}
+
+```bash {location="myapp/.environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for individual credentials.
+export DB_CONNECTION=="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresdatabase[0].scheme')"
+export DB_USERNAME="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresdatabase[0].username')"
+export DB_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresdatabase[0].password')"
+export DB_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresdatabase[0].host')"
+export DB_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresdatabase[0].port')"
+export DB_DATABASE="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresdatabase[0].path')"
+
+# Surface connection string variable for use in app.
+export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"
+```
+
+{{< /v2connect2app >}}
+
+{{% /version/only %}}
+
 ## Access the service directly
 
-Access the service using the Platform CLI by running `platform sql`.
+Access the service using the {{< vendor/name >}} CLI by running `{{< vendor/cli >}} sql`.
 
 You can also access it from your app container via [SSH](../development/ssh/_index.md).
 From your [relationship data](#relationship-reference), you need: `username`, `host`, and `port`.
@@ -134,28 +229,28 @@ psql -U main -h postgresql.internal -p 5432
 
 ## Exporting data
 
-The easiest way to download all data in a PostgreSQL instance is with the Platform CLI. If you have a single SQL database, the following command exports all data using the `pg_dump` command to a local file:
+The easiest way to download all data in a PostgreSQL instance is with the {{< vendor/name >}} CLI. If you have a single SQL database, the following command exports all data using the `pg_dump` command to a local file:
 
 ```bash
-platform db:dump
+{{< vendor/cli >}} db:dump
 ```
 
 If you have multiple SQL databases it prompts you which one to export. You can also specify one by relationship name explicitly:
 
 ```bash
-platform db:dump --relationship database
+{{< vendor/cli >}} db:dump --relationship database
 ```
 
 By default the file is uncompressed. If you want to compress it, use the `--gzip` (`-z`) option:
 
 ```bash
-platform db:dump --gzip
+{{< vendor/cli >}} db:dump --gzip
 ```
 
 You can use the `--stdout` option to pipe the result to another command. For example, if you want to create a bzip2-compressed file, you can run:
 
 ```bash
-platform db:dump --stdout | bzip2 > dump.sql.bz2
+{{< vendor/cli >}} db:dump --stdout | bzip2 > dump.sql.bz2
 ```
 
 ## Importing data
@@ -166,10 +261,10 @@ Make sure that the imported file contains objects with cleared ownership and `IF
 pg_dump --no-owner --clean --if-exists
 ```
 
-The easiest way to load data into a database is to pipe an SQL dump through the `platform sql` command, like so:
+The easiest way to load data into a database is to pipe an SQL dump through the `{{< vendor/cli >}} sql` command, like so:
 
 ```bash
-platform sql < my_database_backup.sql
+{{< vendor/cli >}} sql < my_database_backup.sql
 ```
 
 That runs the database backup against the SQL database on {{< vendor/name >}}.
@@ -178,7 +273,7 @@ That works for any SQL file, so the usual caveats about importing an SQL dump ap
 As with exporting, you can also specify a specific environment to use and a specific database relationship to use, if there are multiple.
 
 ```bash
-platform sql --relationship database -e {{< variable "BRANCH_NAME" >}} < my_database_backup.sql
+{{< vendor/cli >}} sql --relationship database -e {{< variable "BRANCH_NAME" >}} < my_database_backup.sql
 ```
 
 {{< note >}}
@@ -274,7 +369,7 @@ relationships:
 {{% /snippet %}}
 ```
 
-Each database is accessible to your application through the `database`, `reports`, and `imports` relationships. They'll be available in the `PLATFORM_RELATIONSHIPS` environment variable and all have the same structure documented above, but with different credentials. You can use those to connect to the appropriate database with the specified restrictions using whatever the SQL access tools are for your language and application.
+Each database is accessible to your application through the `database`, `reports`, and `imports` relationships. They'll be available in the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable and all have the same structure documented above, but with different credentials. You can use those to connect to the appropriate database with the specified restrictions using whatever the SQL access tools are for your language and application.
 
 A service configuration without the `configuration` block defined is equivalent to the following default values:
 
