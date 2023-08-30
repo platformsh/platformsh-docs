@@ -103,7 +103,9 @@ To clear the cache, update the `version` in [`docs/config/_default/params.yaml`]
 
 To add a white label documentation using its own logo, styles, and wording,
 add a new white label folder in the `sites/` directory.
-Make sure this white label folder mirrors the structure of the existing `friday` directory.
+
+Add all the files that differ from the main documentation site (`sites/platform/src/` directory) to that white label folder.
+Make sure you keep the same file structure as in the existing `sites/platform/src/` directory.
 
 ```bash
 sites
@@ -120,11 +122,41 @@ sites
 └── platform <- main doc pages
 ```
 
-Note: `sites/platform` is the main documentation site. Each white label site inherits data from `platform`.
+`sites/platform/src/` is the main documentation site and, by default, each white label site inherits data from it.
+To ensure that the changes you make to files in your white label folder are taken into account,
+you need to exclude the original page(s) or section located in `sites/platform/src/` from the build.
+
+For example, if you make changes to the `sites/whitelabeldoc/src/overview.md` file,
+add the following configuration in your `sites/whitelabel_name/config/_default/config.yaml` file:
+
+```yaml
+module:
+    _merge: deep
+    mounts:
+        - source: "../platform/src"
+          target: "content"
+          excludeFiles:
+              - "overview.md"
+```
+
+Similarly, if you makes changes to all the pages in the `create-apps` section,
+add the following configuration in your `sites/whitelabel_name/config/_default/config.yaml` file:
+
+```yaml
+module:
+    _merge: deep
+    mounts:
+        - source: "../platform/src"
+          target: "content"
+          excludeFiles:
+              - "create-apps/*"
+```
+
+You can exclude as many files as you want.
 
 ### Configure settings placeholders
 
-When you add a white label documentation, you want the vendor and CLI names to be easily substituted.
+When you add a white label documentation, you want vendor-specific values, such as the vendor and CLI names, to be easily substituted.
 
 For example, if you add a white label documentation for a product called MyGreatProduct,
 you want every instance of `Platform.sh` and `Platform.sh CLI` to be automatically substituted by `MyGreatProduct` and `MyGreatProduct CLI` respectively.
@@ -153,38 +185,6 @@ If you need to use a [settings placeholder](#settings-placeholders) in a heading
 
 If you use the `{{< my.settings >}}` syntax, the desired value isn't displayed in the on-page navigation menu.
 Instead, the placeholder is replaced by an unwanted reference to the shortcode, similar to `HAHAHUGOSHORTCODEs3HBHB`.
-
-### White label file structure
-
-In the `src` directory, add all the files that differ from the main documentation site (`sites/platform/src/` directory).
-
-#### Override a page from the main documentation site
-
-It's best if you keep the exact same file structure in your white label `src` directory as in the `sites/platform/src` directory.
-As long as you do, when you add a new file to your white label `src` directory
-that bears the same name as an existing file in `sites/platform/src`,
-the new file overrides the existing one.
-
-By default, vendorization is performed on the main documentation site.
-Therefore, vendor-specific values are automatically displayed on the white label documentation
-[based on the settings defined in the `sites/whitelabel_name/config/_default/params.yaml` file](#settings-placeholders).
-
-#### Remove a page from your white label documentation
-
-To remove an existing page from your white label documentation,
-add an `exclude` setting in the `sites/whitelabel_name/config/_default/config.yaml` file:
-
-```yaml
-module:
-    _merge: deep
-    mounts:
-        - source: "../platform/src"
-          target: "content"
-          excludeFiles:
-              - "registry/*"
-              - "_index.md"
-              - "get-started/*"
-```
 
 #### Change the structure of the navigation sidebar
 
