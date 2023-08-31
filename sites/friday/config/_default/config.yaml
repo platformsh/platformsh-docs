@@ -59,7 +59,8 @@ module:
               - "add-services/*"
               - "bestpractices/http-caching.md"
               - "create-apps/multi-app/*"
-              - "create-apps/app-reference.md*"
+              - "create-apps/app-reference.md"
+              - "create-apps/source-operations.md"
               - "development/variables/use-variables.md"
               - "development/email.md"
               - "development/submodules.md"
@@ -83,6 +84,7 @@ module:
               - "languages/ruby.md"
               - "languages/rust.md"
               - "overview/structure.md"
+              - "tutorials/dependency-updates.md"
           lang: "en"
 
         - source: "../platform/static/images"
