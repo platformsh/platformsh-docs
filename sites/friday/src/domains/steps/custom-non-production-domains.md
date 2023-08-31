@@ -66,10 +66,6 @@ You need to rebuild the affected non-production environments for the deletion to
 
  {{< /note >}}
 
-If you downgrade from an Elite or Enterprise plan to a Professional plan,
-all of the custom domains set on non-production environments are automatically removed.
-Downgrading your plan doesn't affect custom domains set on your production environments.
-
 ## Add a custom domain to a non-production environment
 
 To add a custom domain to a non-production environment, follow these steps:
