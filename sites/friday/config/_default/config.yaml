@@ -83,6 +83,7 @@ module:
               - "languages/lisp.md"
               - "languages/ruby.md"
               - "languages/rust.md"
+              - "other/glossary.md"
               - "overview/structure.md"
               - "tutorials/dependency-updates.md"
           lang: "en"
