@@ -2,11 +2,11 @@
 <!-- Key 1: Version 1; the first Inner prior to the dividing character -->
 <!-- Key 2: Version 2; the second Inner after the dividing character -->
 <!-- For example, -->
-<!-- {{< vendor/specific >}} -->
+<!-- vendor/specific -->
 <!-- platform variable:get  -->
-<!-- \<---\>  -->
+<!-- (divider: see $splitVersionChar below)  -->
 <!-- friday variable:get -->
-<!-- {{< /vendor/specific}} -->
+<!-- /vendor/specific -->
 {{- $page := .Page -}}
 {{- $version := .Site.Params.vendor.config.version -}}
 {{- $splitVersionChar := "<--->" -}}
