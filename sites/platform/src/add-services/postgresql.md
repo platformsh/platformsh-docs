@@ -349,7 +349,7 @@ extensions not listed here.
 * `pgrouting` - pgRouting Extension (requires 9.6 or higher)
 * `pgrowlocks` - show row-level locking information
 * `pgstattuple` - show tuple-level statistics
-* `pgvector` - Open-source vector similarity search for PostgreSQL 11+
+* `pgvector` - Open-source vector similarity search for Postgres 11+
 * `plpgsql` - PL/pgSQL procedural language
 * `postgis` - PostGIS geometry, geography, and raster spatial types and functions
 * `postgis_sfcgal` - PostGIS SFCGAL functions
