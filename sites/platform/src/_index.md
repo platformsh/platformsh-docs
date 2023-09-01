@@ -35,7 +35,7 @@ After going through the **Get started** section, you may want to know more about
 - [**Tutorials**](/learn/tutorials/_index.md)
 
     Once you're familiar with {{< vendor/name >}}, its basic rules and philosophy, you may be curious about how you can replicate common workflows in other tools on our platform. 
-    From scheduling dependency updates and backups to exporting data, the [**Tutorials**](/learn/tutorials/_index.md) provides all the information you need.
+    From scheduling dependency updates and backups to exporting data, the [**Tutorials**](/learn/tutorials/_index.md) provide all the information you need.
 
 - [**Best practices**](/learn/bestpractices/_index.md)
 
@@ -64,6 +64,10 @@ It includes details of configuration, environment variables, activities, and muc
 {{< home/table "languages" >}}
 {{< home/table "configuration" >}}
 {{< home/table "topics" >}}
+
+### API documentation
+
+Find out more about {{< vendor/name >}}'s GIT implementation and REST API, and how you can leverage them to manage every aspect of your projects, through {{< vendor/name >}}'s [API documentation](https://api.platform.sh/docs/).
 
 ### More docs, found elsewhere
 
