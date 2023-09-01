@@ -1,3 +1,4 @@
+{{ $pageContext := .Page }}
 {{ $navType := "*" }}
 {{ with .Get "type" }}
   {{ $navType = . }}
@@ -15,7 +16,7 @@
 
   <!-- Next button -->
   <a href="{{ .Page.PrevInSection.Permalink }}" type="button" class="{{ partial "pink-button-styles" }}">
-    {{ with .Get "next" }}{{ . }}{{ end }}
+    {{ with .Get "next" }}{{ . | $pageContext.RenderString }}{{ end }}
     <img class="inline" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" />
   </a>
 
@@ -40,7 +41,7 @@
         {{ end }}
       {{ end }}
       <a href="{{ $firstPageInSection.Permalink }}" type="button" class="{{ partial "pink-button-styles" }}">
-        {{ with .Get "next" }}{{ . }}{{ end }}
+        {{ with .Get "next" }}{{ . | $pageContext.RenderString }}{{ end }}
         <img class="inline" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" />
       </a>
   {{ end }}
