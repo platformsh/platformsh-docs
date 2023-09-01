@@ -121,6 +121,7 @@ Pipenv
 Pixelant
 plaintext
 pngcrush
+Postgres
 Predis
 preprocessor
 [Pp]reload(?:er|ing)?
