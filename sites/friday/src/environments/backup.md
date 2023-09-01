@@ -90,7 +90,7 @@ title=Using the CLI
 Use the `--live` flag:
 
 ```bash
-platform backup:create --live
+{{< vendor/cli >}} backup:create --live
 ```
 
 <--->
@@ -111,7 +111,7 @@ You can create a manual backup using the [CLI](../administration/cli/_index.md) 
 title=Using the CLI
 highlight=bash
 +++
-platform backup:create
+{{< vendor/cli >}} backup:create
 <--->
 +++
 title=In the Console
@@ -138,5 +138,5 @@ They don't affect the automated backups taken as part of the schedule.
 
 Backups are stored as binary large objects separate from your environments.
 This storage is replicated over multiple data centers in different locations
-[within the region your project is hosted in](https://platform.sh/trust-center/security/data-security/).
+within the region your project is hosted in.
 This means that in the rare event a data center becomes unavailable, your backups are still available.
