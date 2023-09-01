@@ -1,13 +1,13 @@
 ---
 title: Runtime operations
-description: Set up runtime operations to run one-off commands on your project through the {{< vendor/name >}} API.
+description: Set up runtime operations to run one-off commands on your project through the {{< vendor/name >}} CLI.
 weight: 6
 ---
 
 Runtime operations allow you to trigger one-off commands or scripts on your project.
 Similar to [crons](../create-apps/app-reference.md#crons), they run in the app container but not on a specific schedule.
 You can [define runtime operations](#define-a-runtime-operation) in your [app configuration](../create-apps/app-reference.md)
-and [trigger them](#run-a-runtime-operation) at any time through the {{< vendor/name >}} API using a cURL command.
+and [trigger them](#run-a-runtime-operation) at any time through the {{< vendor/name >}} CLI.
 
 For example, if you have a static website,
 you may want to set up a runtime operation to occasionally fetch content from a backend system
@@ -55,22 +55,31 @@ For more possibilities, see other [runtime operation examples](#runtime-operatio
 ## Run a runtime operation
 
 Once you've [defined a runtime operation](#define-a-runtime-operation), 
-you can trigger it through the {{< vendor/name >}} API.
-To do so, run a cURL command similar to the following:
+you can trigger it through the {{< vendor/name >}} CLI.
+To do so, run the following command:
 
 ```bash
-platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "{{< variable "RUNTIME_OPERATION_NAME" >}}", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
+platform operation:run {{< variable "RUNTIME_OPERATION_NAME" >}} --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
 You can only trigger a runtime operation if you have permission to do so.
 Permissions are granted through the `role` option specified in the [runtime operation configuration](#define-a-runtime-operation).
 
 For example, to trigger the runtime operation [defined previously](#define-a-runtime-operation),
-you could use the following command:
+you could run the following command:
 
 ```bash
-platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "clear-rebuild", "service": "app"}' -p {{< variable "PROJECT_ID" >}}
+platform operation:run clear-rebuild --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
+
+## List your runtime operations
+
+To list all the runtime operations available on an environment,
+run the following command:
+
+```bash
+platform operation:list --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
+````
 
 ## Runtime operation examples
 
@@ -122,10 +131,10 @@ operations:
       start: gatsby build
 ```
 
-To trigger your runtime operation, run a cURL command similar to the following:
+To trigger your runtime operation, run a command similar to the following:
 
 ```bash
-platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "gatsby-build", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
+platform operation:run gatsby-build --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
 <--->
@@ -147,10 +156,10 @@ operations:
             # start: npm run build
 ```
 
-To trigger your runtime operation, run a cURL command similar to the following:
+To trigger your runtime operation, run a command similar to the following:
 
 ```bash
-platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "next-rebuild", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
+platform operation:run next-build --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
 {{< /codetabs >}}
@@ -180,7 +189,7 @@ operations:
 To trigger your runtime operation, run a command similar to the following:
 
 ```bash
-platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "pm2-ping", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
+platform operation:run pm2-ping --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
 <--->
@@ -203,7 +212,7 @@ operations:
 To trigger your runtime operation, run a command similar to the following:
 
 ```bash
-platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "pm2-reload", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
+platform operation:run pm2-reload --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
 <--->
@@ -227,7 +236,7 @@ operations:
 To trigger your runtime operation, run a command similar to the following:
 
 ```bash
-platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "pm2-restart", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
+platform operation:run pm2-restart --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
 {{< /codetabs >}}
@@ -245,8 +254,8 @@ operations:
       start: python manage.py manual_migration
 ```
 
-To trigger your runtime operation, run a cURL command similar to the following:
+To trigger your runtime operation, run a command similar to the following:
 
 ```bash
-platform project:curl /environments/{{< variable "ENVIRONMENT_ID" >}}/deployments/current/operations -X POST -d '{"operation": "manual-migration", "service": "{{< variable "CONTAINER_NAME" >}}"}' -p {{< variable "PROJECT_ID" >}}
+platform operation:run manual-migration --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```

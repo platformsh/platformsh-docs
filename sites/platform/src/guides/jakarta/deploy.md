@@ -15,7 +15,7 @@ Note that the Java configuration reader library is used in the following example
 
 ### MongoDB
 
-You can use [Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](https://www.jnosql.org/) to use [MongoDB](../../add-services/mongodb.md) with your application by first determining the MongoDB client programmatically.
+You can use [Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](https://projects.eclipse.org/projects/technology.jnosql) to use [MongoDB](../../add-services/mongodb.md) with your application by first determining the MongoDB client programmatically.
 
 ```java
 import com.mongodb.MongoClient;
@@ -59,7 +59,7 @@ class DocumentManagerProducer {
 
 ### Apache Solr
 
-You can use [Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](https://www.jnosql.org/) to use [Solr](../../add-services/solr.md) with your application by first determining the Solr client programmatically.
+You can use [Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](https://projects.eclipse.org/projects/technology.jnosql) to use [Solr](../../add-services/solr.md) with your application by first determining the Solr client programmatically.
 
 ```java
 import jakarta.nosql.document.DocumentCollectionManager;
@@ -102,7 +102,7 @@ class DocumentManagerProducer {
 
 ### Elasticsearch
 
-You can use [Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](https://www.jnosql.org/) to use [Elasticsearch](../../add-services/elasticsearch.md) with your application by first determining the Elasticsearch client programmatically.
+You can use [Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](https://projects.eclipse.org/projects/technology.jnosql) to use [Elasticsearch](../../add-services/elasticsearch.md) with your application by first determining the Elasticsearch client programmatically.
 
 ```java
 import jakarta.nosql.document.DocumentCollectionManager;
@@ -144,7 +144,7 @@ class DocumentManagerProducer {
 
 ### Redis
 
-You can use [Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](https://www.jnosql.org/) to use [Redis](../../add-services/redis.md) with your application by first determining the Redis client programmatically.
+You can use [Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](https://projects.eclipse.org/projects/technology.jnosql) to use [Redis](../../add-services/redis.md) with your application by first determining the Redis client programmatically.
 
 ```java
 import jakarta.nosql.keyvalue.BucketManager;

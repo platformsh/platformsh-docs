@@ -39,7 +39,7 @@
 title=Using ` $titleName `
 +++
 
-Add a Git remote for the {{ .Site.Params.vendor.name }} project you just created
+Add a Git remote for the ` .Site.Params.vendor.name ` project you just created
 by running the following command from your repository:
 
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">` $cliCommand ` project:set-remote {{< variable "PROJECT_ID" >}}</code></pre></div>
@@ -52,7 +52,7 @@ title=Using a third-party provider
 +++
 
 When you choose to use a third-party Git hosting service
-the {{ .Site.Params.vendor.name }} Git repository becomes a read-only mirror of the third-party repository.
+the ` .Site.Params.vendor.name ` Git repository becomes a read-only mirror of the third-party repository.
 All your changes take place in the third-party repository.
 
 Add an integration to your existing third party repository.
@@ -65,11 +65,11 @@ The process varies a bit for each supported service, so check the specific pages
 
 Accept the default options or modify to fit your needs.
 
-All of your existing branches are automatically synchronized to {{ .Site.Params.vendor.name }}.
+All of your existing branches are automatically synchronized to ` .Site.Params.vendor.name `.
 You get a deploy failure message because you haven't provided configuration files yet.
 You add them in the next step.
 
-If you're integrating a repository to {{ .Site.Params.vendor.name }} that contains a number of open pull requests,
+If you're integrating a repository to ` .Site.Params.vendor.name ` that contains a number of open pull requests,
 don't use the default integration options.
 Projects are limited to three\* development environments (active and deployed branches or pull requests)
 and you would need to deactivate them individually to test this guide's migration changes.

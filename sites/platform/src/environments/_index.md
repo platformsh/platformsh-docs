@@ -189,6 +189,8 @@ Staging
 
 ## Paused environments
 
+{{< partial "progressive-rollout/body.md" >}}
+
 Development environments are often used for a limited time and then abandoned.
 To prevent unnecessary consumption of resources,
 {{< vendor/name >}} automatically pauses development environments that haven't been redeployed in 14 days.
