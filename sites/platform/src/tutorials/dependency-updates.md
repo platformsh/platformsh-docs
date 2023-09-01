@@ -1,5 +1,5 @@
 ---
-title: Automatically update your application dependencies
+title: Automated code updates
 sidebarTitle: Update application dependencies
 description: Learn how to automate your dependency updates through a source operation.
 weight: 1
