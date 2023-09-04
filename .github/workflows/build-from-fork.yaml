@@ -64,7 +64,8 @@ jobs:
             echo "::notice::Updating Platform.sh environment title for better tracking..."
             # in this case we DO want to statically include `pr-##` since we're referring to a pull request number
             newTitle="(pr-${{ github.event.number }}) ${{ github.event.pull_request.title }}"
-            platform environment:info title "${{ newTitle }}" -e "${{ env.BRANCH_TITLE }}"
+            echo "${{ env.BRANCH_TITLE }}"
+            platform environment:info title "${newTitle|tr -d '"'}" -e "${{ env.BRANCH_TITLE }}"
             echo "::notice::Activating environment ${{ env.BRANCH_TITLE }}"
             platform environment:activate -e ${{ env.BRANCH_TITLE }}
           fi
