@@ -1,8 +1,8 @@
 ---
-title: Set up a custom domain on your non-production environments
-sidebarTitle: Non-production environments
+title: Set up a custom domain on your preview environments
+sidebarTitle: Preview environments
 weight: 3
-description: Learn how to set up custom domains on your staging and development environments
+description: Learn how to set up custom domains on your preview environments
 banner: 
     type: tiered-feature
 ---
@@ -10,20 +10,20 @@ banner:
 {{< partial "progressive-rollout/body.md" >}}
 
 When a custom domain is [set up on your production environment](../steps/_index.md),
-it can't be used for the other, non-production environments in your project.
+it can't be used for the preview environments in your project.
 
-Therefore, by default and for each non-production environment,
+Therefore, by default and for each preview environment,
 {{< vendor/name >}} automatically replaces the custom production domain
 with an automatically generated URL.
 
 If you don't want to use these default URLs,
-you can add a custom domain to each of your non-production environments
+you can add a custom domain to each of your preview environments
 (`staging` or `development` environment types).
 
 To do so, you don't need to modify your [routes configuration](../../define-routes/_index.md).
-You just need to attach each new custom non-production domain to the custom production domain it replaces.
+You just need to attach each new custom preview domain to the custom production domain it replaces.
 If you have multiple custom production domains,
-you need to select which one you are replacing when you add a custom non-production domain.
+you need to select which one you are replacing when you add a custom preview domain.
 
 {{< note title="Example" >}}
 
@@ -40,13 +40,13 @@ and still access your production environment through `example.com`.
 {{< /note >}}
 
 If you have multiple custom domains on your production environment,
-when you create a custom non-production domain,
+when you create a custom preview domain,
 you don't need to update your [routes configuration](../../define-routes/_index.md) either.
-{{< vendor/name >}} automatically figures out the routing of your non-production environment
+{{< vendor/name >}} automatically figures out the routing of your preview environment
 based on the following elements:
 
 - The custom production domains in your existing [routes configuration](../../define-routes/_index.md)
-- The custom non-production domains attached to each of those custom production domains
+- The custom preview domains attached to each of those custom production domains
 
 ## Before you start
 
@@ -63,13 +63,13 @@ You need:
   {{< /note >}}
 
   If you use a [Managed Fastly](../cdn/managed-fastly.md) CDN,
-  it needs to be configured to operate with custom non-production domains.
+  it needs to be configured to operate with custom preview domains.
   For more information, [contact Support](https://console.platform.sh/-/users/~/tickets/open).   
 - A production environment with at least one custom domain already set up
-- At least one non-production (staging or development) environment
+- At least one preview (staging or development) environment
 - Optional: The [{{< vendor/name >}} CLI](../../administration/cli/_index.md) (v4.8.0+)
 
-To prevent abuse, by default you can add custom domains to up to 5 environments per project only.
+To prevent abuse, by default you can add custom domains to up to 5 preview environments per project only.
 This limit doesn't include the production environment,
 and you can increase it without charge.
 To do so, [contact Support](../../overview/get-support.md).
@@ -77,25 +77,25 @@ To do so, [contact Support](../../overview/get-support.md).
 {{< note >}}
 
 If you delete a custom production domain,
-all of the attached custom non-production domains are deleted too.
-You need to rebuild the affected non-production environments for the deletion to be complete.
+all of the attached custom preview domains are deleted too.
+You need to rebuild the affected preview environments for the deletion to be complete.
 
  {{< /note >}}
 
 If you downgrade from an Elite or Enterprise plan to a Professional plan,
-all of the custom domains set on non-production environments are automatically removed.
+all of the custom domains set on preview environments are automatically removed.
 Downgrading your plan doesn't affect custom domains set on your production environments.
 
-## Add a custom domain to a non-production environment
+## Add a custom domain to a preview environment
 
-To add a custom domain to a non-production environment, follow these steps:
+To add a custom domain to a preview environment, follow these steps:
 
 {{< codetabs >}}
 +++
 title=Using the CLI
 +++
 
-1. To get the target for your non-production environment,
+1. To get the target for your preview environment,
    run the following command:
 
    ```bash
@@ -103,12 +103,12 @@ title=Using the CLI
    ```
 
 2. [Configure your DNS provider](../steps/_index.md#3-configure-your-dns-provider).
-   In particular, make sure your DNS record points to the target of your non-production environment.
+   In particular, make sure your DNS record points to the target of your preview environment.
 
    {{< note >}}
 
    Using the target of your production environment to configure your DNS provider is technically possible,
-   but {{< vendor/name >}} recommends using the target of your non-production environment as a best practice.
+   but {{< vendor/name >}} recommends using the target of your preview environment as a best practice.
 
    {{< /note >}}
 
@@ -123,30 +123,30 @@ title=Using the CLI
 title=In the Console
 +++
 
-1.  Get the target for your non-production environment.</br>
-    To do so, navigate to your non-production environment and click **{{< icon settings >}} Settings**.</br>
+1.  Get the target for your preview environment.</br>
+    To do so, navigate to your preview environment and click **{{< icon settings >}} Settings**.</br>
     Select the **Domains** tab.</br>
     In the **Configure your domain** section, copy the content of the **CNAME record** field.</br>
     Save it for later use at step 7.
 
 2.  Click **Add domain**.
 
-3.  Enter a name for your custom non-production domain.
+3.  Enter a name for your custom preview domain.
 
 4.  If you have multiple production domains,
-    select the one you want to attach your custom non-production domain to.
+    select the one you want to attach your custom preview domain to.
 
 5.  Click **Add**.
 
 6.  Click **Okay**.
 
 7.  [Configure your DNS provider](../steps/_index.md#3-configure-your-dns-provider).</br>
-    In particular, make sure your DNS record points to the target of your non-production environment.
+    In particular, make sure your DNS record points to the target of your preview environment.
 
 {{< note >}}
 
 Using the target of your production environment to configure your DNS provider is technically possible,
-but {{< vendor/name >}} recommends using the target of your non-production environment as a best practice.
+but {{< vendor/name >}} recommends using the target of your preview environment as a best practice.
 
 {{< /note >}}
 
@@ -154,7 +154,7 @@ but {{< vendor/name >}} recommends using the target of your non-production envir
 
 {{< note >}}
 
-You can’t update a custom non-production domain.
+You can’t update a custom preview domain.
 You can only delete it and create a new one as a replacement.
 
 {{< /note >}}
@@ -162,7 +162,7 @@ You can only delete it and create a new one as a replacement.
 ### Example
 
 You've added the `mysite.com` custom domain to your production environment.
-You now want to add the `mydev.com` custom domain to a development environment called `Dev`.
+You now want to add the `mydev.com` custom domain to a preview environment called `Dev`.
 
 To do so, follow these steps:
 
@@ -190,7 +190,7 @@ title=In the Console
 
 2.  Click **Add domain**.
 
-3.  Enter `mydev.com` as a name for your custom non-production domain.
+3.  Enter `mydev.com` as a name for your custom preview domain.
 
 4.  Select `mysite.com` as the production custom domain you want to attach `mydev.com` to.
 
@@ -208,7 +208,7 @@ for you to add the `mydev.com` custom domain successfully.
 If the `Dev` environment is later removed,
 the `mydev.com` custom domain is removed too.
 
-## List the custom domains of a non-production environment
+## List the custom domains of a preview environment
 
 {{< codetabs >}}
 +++
@@ -226,13 +226,13 @@ platform domain:list --environment {{< variable "STAGING_ENVIRONMENT_ID" >}}
 title=In the Console
 +++
 
-1. Navigate to your non-production environment and click **{{< icon settings >}} Settings**.
+1. Navigate to your preview environment and click **{{< icon settings >}} Settings**.
 2. Select the **Domains** tab.</br>
-   All the custom domains for your non-production environment are displayed.
+   All the custom domains for your preview environment are displayed.
 
 {{< /codetabs >}}
 
-## Get a specific custom non-production domain
+## Get a specific custom preview domain
 
 {{< codetabs >}}
 +++
@@ -250,14 +250,14 @@ platform domain:get staging.example.com --environment {{< variable "STAGING_ENVI
 title=In the Console
 +++
 
-1. Navigate to your non-production environment and click **{{< icon settings >}} Settings**.</br>
+1. Navigate to your preview environment and click **{{< icon settings >}} Settings**.</br>
 2. Select the **Domains** tab.</br>
    All the custom domains for the selected environment are displayed.
-3. Click **{{< icon "more" >}} More** on a specific custom non-production domain to see which actions you can perform on it.
+3. Click **{{< icon "more" >}} More** on a specific custom preview domain to see which actions you can perform on it.
 
 {{< /codetabs >}}
 
-## Remove a custom domain from a non-production environment
+## Remove a custom domain from a preview environment
 
 {{< codetabs >}}
 +++
@@ -275,10 +275,10 @@ platform domain:delete staging.example.com --environment {{< variable "STAGING_E
 title=In the Console
 +++
 
-1. Navigate to your non-production environment and click **{{< icon settings >}} Settings**.
+1. Navigate to your preview environment and click **{{< icon settings >}} Settings**.
 2. Select the **Domains** tab.</br>
    All the custom domains for the selected environment are displayed.
-3. Click **{{< icon "more" >}} More** on the custom non-production domain you want to delete.
+3. Click **{{< icon "more" >}} More** on the custom preview domain you want to delete.
 4. Click **Delete**.
 5. Click **Yes, delete**.
 
