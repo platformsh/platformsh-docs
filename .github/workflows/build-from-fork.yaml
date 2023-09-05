@@ -30,6 +30,8 @@ jobs:
       # Create an environment and activate it
       - env:
           PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+          # @see activate_environment:Set environment title:env in manage-environment.yaml
+          PR_TITLE: ${{ github.event.pull_request.title }}
         run: |
           # Get most recent changes
           git checkout ${{ github.event.pull_request.head.sha }}
@@ -63,8 +65,7 @@ jobs:
           if ! $(platform environments --format plain --columns title,status | grep '${{ env.BRANCH_TITLE }}' | grep -q Active); then
             echo "::notice::Updating Platform.sh environment title for better tracking..."
             # in this case we DO want to statically include `pr-##` since we're referring to a pull request number
-            prTitle=${{ github.event.pull_request.title }}
-            newTitle="(pr-${{ github.event.number }}) $(echo prTitle | gawk '{ gsub(/"/,"\\\"") } 1')"
+            newTitle="(pr-${{ github.event.number }}) ${PR_TITLE}"
             platform environment:info title "${newTitle}" -e ${{ env.BRANCH_TITLE }}
             echo "::notice::Activating environment ${{ env.BRANCH_TITLE }}"
             platform environment:activate -e ${{ env.BRANCH_TITLE }}
