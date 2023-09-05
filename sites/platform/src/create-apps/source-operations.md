@@ -6,6 +6,8 @@ banner:
     title: Availability
     body: All of the examples on this page can be run on Enterprise or Elite projects only.
           To upgrade your plan or request a trial, [contact Sales](https://platform.sh/contact/).
+keywords:
+  - "Automated code updates"
 ---
 
 On {{< vendor/name >}}, you can run automated code updates through a feature called **source operations**.
