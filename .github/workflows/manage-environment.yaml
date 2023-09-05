@@ -33,8 +33,8 @@ jobs:
       - name: Set environment title
         run: |
           # @todo - this is the same as the last step in build-from-fork:jobs:build. See if we can combine the two
-          prTitle=${{ github.event.pull_request.title }}
-          newTitle="(pr-${{ github.event.number }}) $(echo prTitle | gawk '{ gsub(/"/,"\\\"") } 1')"
+          prTitle=$(echo ${{ github.event.pull_request.title }} | gawk '{ gsub(/"/,"\\\"") } 1')
+          newTitle="(pr-${{ github.event.number }}) $prTitle "
           currentTitle=$(platform environment:info -e ${{ github.event.pull_request.head.ref }} title)
           if [[ "${currentTitle}" != "${newTitle}" ]]; then
             echo "::notice::Setting environment's title"

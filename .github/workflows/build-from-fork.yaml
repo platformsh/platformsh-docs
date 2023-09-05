@@ -59,7 +59,6 @@ jobs:
             echo "::notice::Branch ${{ env.BRANCH_TITLE }} was successfully pushed to Platform.sh. Continuing..."
           fi
 
-
           # If environment not active, activate it
           if ! $(platform environments --format plain --columns title,status | grep '${{ env.BRANCH_TITLE }}' | grep -q Active); then
             echo "::notice::Updating Platform.sh environment title for better tracking..."
