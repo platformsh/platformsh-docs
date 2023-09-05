@@ -1,6 +1,8 @@
 ---
-title: Automated code updates
-sidebarTitle: Update application dependencies
+title: Automate your code updates
+keywords:
+  - "Automated code updates"
+  - "source operations"
 description: Learn how to automate your dependency updates through a source operation.
 weight: 1
 tier:
