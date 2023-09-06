@@ -87,7 +87,7 @@ To open an SSH tunnel to your service with port forwarding,
 run the following command:
 
 ```bash
-platform tunnel:single --gateway-ports
+{{% vendor/cli %}} tunnel:single --gateway-ports
 ```
 
 Then configure a RabbitMQ client to connect to this tunnel using the credentials from the [relationship](#relationship-reference).

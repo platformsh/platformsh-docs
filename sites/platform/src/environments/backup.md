@@ -135,7 +135,7 @@ title=Using the CLI
 Use the `--live` flag:
 
 ```bash
-platform backup:create --live
+{{% vendor/cli %}} backup:create --live
 ```
 
 <--->
@@ -156,7 +156,7 @@ You can create a manual backup using the [CLI](../administration/cli/_index.md) 
 title=Using the CLI
 highlight=bash
 +++
-platform backup:create
+{{% vendor/cli %}} backup:create
 <--->
 +++
 title=In the Console

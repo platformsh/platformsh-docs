@@ -7,7 +7,7 @@ Get a list of all variables defined on a given environment in [the Console](../.
 or use the CLI:
 
 ```bash
-platform var
+{{% vendor/cli %}} var
 ```
 
 You get output similar to the following:

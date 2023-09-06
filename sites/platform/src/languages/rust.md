@@ -58,8 +58,6 @@ web:
   locations:
         /:
             # Route all requests to the Rust app, unconditionally.
-            # If you want some files served directly by the web server without hitting Rust, see
-            # https://docs.platform.sh/create-apps/app-reference.html
             allow: false
             passthru: true
 ```

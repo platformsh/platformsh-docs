@@ -150,7 +150,7 @@ title=From the CLI
 Run the following command:
 
 ```bash
-platform variable:create --environment main --level environment --prefix 'env' --name PLATFORMSH_CLI_TOKEN --sensitive true --value 'YOUR_PLATFORMSH_CLI_TOKEN' --inheritable false --visible-build true --json false --enabled true --visible-runtime true
+{{% vendor/cli %}} variable:create --environment main --level environment --prefix 'env' --name PLATFORMSH_CLI_TOKEN --sensitive true --value 'YOUR_PLATFORMSH_CLI_TOKEN' --inheritable false --visible-build true --json false --enabled true --visible-runtime true
 ```
 
 <--->
@@ -187,7 +187,7 @@ hooks:
         curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
 
         echo "Testing {{< vendor/name >}} CLI"
-        platform
+        {{% vendor/cli %}}
 ```
 
 3. Then, to configure a cron job to automatically update your dependencies once a day,
@@ -201,8 +201,8 @@ crons:
         commands:
             start: |
                 set -e
-                platform sync -e development code data --no-wait --yes
-                platform source-operation:run update --no-wait --yes
+                {{% vendor/cli %}} sync -e development code data --no-wait --yes
+                {{% vendor/cli %}} source-operation:run update --no-wait --yes
 ```
 
 The example above synchronizes the `development` environment with its parent
@@ -276,7 +276,7 @@ To do so, follow these steps:
 4.  Run the following [{{< vendor/name >}} CLI](../administration/cli/_index.md) command:
 
     ```bash
-    platform integration:add --type script --file ./my_script.js --events=environment.source-operation
+    {{% vendor/cli %}} integration:add --type script --file ./my_script.js --events=environment.source-operation
     ```
     Optional: to only get notifications about specific environments,
     add the following flag to the command: `--environments=your_environment_name`.
@@ -299,7 +299,7 @@ To configure the integration between your webhook and your source operation,
 run the following [{{< vendor/name >}} CLI](../administration/cli/_index.md) command:
 
 ```bash
-platform integration:add --type=webhook --url=URL_TO_RECEIVE_JSON --events=environment.source-operation
+{{% vendor/cli %}} integration:add --type=webhook --url=URL_TO_RECEIVE_JSON --events=environment.source-operation
 ```
 
 Optional: to only get notifications about specific environments,

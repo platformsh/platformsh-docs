@@ -52,7 +52,7 @@ you can refer to your PHP access logs.
 Run a command similar to:
 
 ```bash
-platform log --lines 5000 | awk '{print $6}' | sort -n | uniq -c
+{{% vendor/cli %}} log --lines 5000 | awk '{print $6}' | sort -n | uniq -c
 ```
 
 This command takes into account the last 5,000 requests that reached PHP-FPM.

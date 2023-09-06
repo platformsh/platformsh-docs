@@ -101,7 +101,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform source-operation:run {{< variable "SOURCE_OPERATION_NAME" >}}
+{{% vendor/cli %}}  source-operation:run {{< variable "SOURCE_OPERATION_NAME" >}}
 ```
 
 Replace {{< variable "SOURCE_OPERATION_NAME" >}} with the name of your operation, such as `update-file` in the [example above](#define-a-source-operation).
@@ -162,7 +162,7 @@ title=Using the CLI
 +++
 
 ```bash
-platform source-operation:run update-file --variable env:FILE="example.txt"
+{{% vendor/cli %}} source-operation:run update-file --variable env:FILE="example.txt"
 ```
 
 {{< /codetabs >}}
@@ -205,7 +205,7 @@ title=From the CLI
 Run the following command:
 
 ```bash
-platform variable:create --environment main --level environment --prefix 'env' --name PLATFORMSH_CLI_TOKEN --sensitive true --value 'YOUR_PLATFORMSH_CLI_TOKEN' --inheritable false --visible-build true --json false --enabled true --visible-runtime true
+{{% vendor/cli %}} variable:create --environment main --level environment --prefix 'env' --name PLATFORMSH_CLI_TOKEN --sensitive true --value 'YOUR_PLATFORMSH_CLI_TOKEN' --inheritable false --visible-build true --json false --enabled true --visible-runtime true
 ```
 
 <--->

@@ -90,7 +90,7 @@ the cache becomes less effective because it starts [thrashing](https://en.wikipe
 To determine the maximum number of files to cache, follow these steps:
 
 1. Connect to the container via SSH using the [CLI](../../development/ssh/_index.md)
-   by running `platform ssh`.
+   by running `{{% vendor/cli %}} ssh`.
 2. Determine roughly how many `.php` files your app has by running this command from [your app root](../../create-apps/app-reference.md#root-directory):
 
    ```bash
@@ -122,7 +122,7 @@ Determining the optimal limit to memory consumption requires executing code via 
 To determine the total amount of memory to use, follow these steps:
 
 1. Connect to the container via SSH using the [CLI](../../development/ssh/_index.md)
-   by running `platform ssh`.
+   by running `{{% vendor/cli %}} ssh`.
 2. Change to the `/tmp` directory (or any other non-web-accessible writable directory) with `cd /tmp`.
 3. Download CacheTool with `curl -sLO https://github.com/gordalina/cachetool/releases/latest/download/cachetool.phar`.
 4. Make CacheTool executable with `chmod +x cachetool.phar`.
@@ -191,7 +191,7 @@ Doing so would prevent updates to the generated code from being loaded.
 
 To force a restart of PHP-FPM:
 
-1. Connect to your app container via SSH using the [CLI](../../development/ssh/_index.md) by running `platform ssh`.
+1. Connect to your app container via SSH using the [CLI](../../development/ssh/_index.md) by running `{{% vendor/cli %}} ssh`.
 2. Run `pkill -f -u "$(whoami)" php-fpm`.
 
 ## Optimize your code

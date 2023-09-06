@@ -85,7 +85,7 @@ Variables on the project Example (abcdef123456), environment main:
 And the following variables defined for the `feature-x` environment, a child environment of `main`:
 
 ```sh
-$ platform var -e feature-x
+$ {{% vendor/cli %}} var -e feature-x
 Variables on the project Example (abcdef123456), environment feature-x:
 +----------------+-------------+--------+---------+
 | Name           | Level       | Value  | Enabled |
@@ -153,7 +153,7 @@ For example, the variable `env:foo` creates an environment variable called `FOO`
 (Note the automatic upper-casing.)
 
 ```bash
-platform variable:create --name env:foo --value bar
+{{% vendor/cli %}} variable:create --name env:foo --value bar
 ```
 
 You can then access that variable directly in your app container:
@@ -172,7 +172,7 @@ Using variables, you can use the same files for all your environments and overri
 You can set the PHP memory limit to 256 MB on a specific environment by running the following [CLI command](../../administration/cli/_index.md):
 
 ```bash
-platform variable:create --level environment --prefix php --name memory_limit --value 256M --environment {{< variable "ENVIRONMENT_NAME" >}}
+{{% vendor/cli %}} variable:create --level environment --prefix php --name memory_limit --value 256M --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
 To use variables across environments, set them in your [app configuration](../../create-apps/_index.md).
@@ -207,7 +207,7 @@ Setting the `drupalsettings:system.site:name` variable overrides the `name` prop
 You can do this by running the following [CLI command](../../administration/cli/_index.md):
 
 ``` bash
-platform variable:create --name "drupalsettings:system.site:name" --value "{{< variable "SITE_NAME" >}}"
+{{% vendor/cli %}} variable:create --name "drupalsettings:system.site:name" --value "{{< variable "SITE_NAME" >}}"
 ```
 
 The same logic applies for other configuration options,

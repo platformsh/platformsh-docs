@@ -30,13 +30,13 @@ title=Using the CLI
 1. List all your projects by running the following command:
 
    ```bash
-   platform projects
+   {{% vendor/cli %}} projects
    ```
 
 2. Retrieve the project you want to back up by running the following command:
 
    ```bash
-   platform get {{< variable "PROJECT_ID" >}}
+   {{% vendor/cli %}} get {{< variable "PROJECT_ID" >}}
    ```
 
 <--->
@@ -99,13 +99,13 @@ title=Using the CLI
 1. Get the variable's values by running the following command:
 
    ```bash
-   platform ssh -- 'echo $PLATFORM_VARIABLES | base64 -d | jq'
+   {{% vendor/cli %}} ssh -- 'echo $PLATFORM_VARIABLES | base64 -d | jq'
    ```
 
    Note that you can also get all the environment variable values by running the following command:
 
    ```bash
-   platform ssh -- env
+   {{% vendor/cli %}} ssh -- env
    ```
 
 2. Store the data somewhere secure on your computer.

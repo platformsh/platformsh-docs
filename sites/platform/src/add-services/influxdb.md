@@ -91,7 +91,7 @@ To export your data from InfluxDB, follow these steps:
 2. Connect to your InfluxDB service with the [{{< vendor/name >}} CLI](../administration/cli/_index.md):
 
    ```bash
-   platform tunnel:single
+   {{% vendor/cli %}} tunnel:single
    ```
 
    This opens an SSH tunnel to your InfluxDB service on your current environment and produces output like the following:
@@ -103,7 +103,7 @@ To export your data from InfluxDB, follow these steps:
 3. Get the username, password and token from the [relationship](#relationship-reference) by running the following command:
 
    ```bash
-   platform relationships -P {{<variable "RELATIONSHIP_NAME" >}}
+   {{% vendor/cli %}} relationships -P {{<variable "RELATIONSHIP_NAME" >}}
    ```
 
 4. Adapt and run [InfluxDB's CLI export command](https://docs.influxdata.com/influxdb/v2.3/reference/cli/influx/backup/).

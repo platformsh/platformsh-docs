@@ -49,7 +49,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform environment:deactivate {{< variable "ENVIRONMENT_NAME" >}}
+{{% vendor/cli %}} environment:deactivate {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
 {{< /codetabs >}}
@@ -89,7 +89,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform environment:activate {{< variable "ENVIRONMENT_NAME" >}}
+{{% vendor/cli %}} environment:activate {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
 {{< /codetabs >}}
