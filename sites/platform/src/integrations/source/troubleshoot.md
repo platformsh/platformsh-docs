@@ -3,6 +3,9 @@ title: Resolve access issues with source integrations
 sidebarTitle: Resolve access
 description: Learn how to troubleshoot access rights for integrated repositories.
 toc: false
+keywords:
+- "source integration"
+- "source integrations"
 ---
 
 If you [add a user](/administration/users.md#add-a-user-to-a-project) to a {{< vendor/name >}} project,

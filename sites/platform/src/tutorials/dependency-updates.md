@@ -1,11 +1,15 @@
 ---
-title: Automatically update your application dependencies
-sidebarTitle: Update application dependencies
+title: Automate your code updates
 description: Learn how to automate your dependency updates through a source operation.
 weight: 1
 tier:
   - Elite
   - Enterprise
+keywords:
+  - "automated code updates"
+  - "automated code update"
+  - "source operations"
+  - "source operation"
 ---
 
 {{< vendor/name >}} allows you to update your dependencies through [source operations](../create-apps/source-operations.md).
