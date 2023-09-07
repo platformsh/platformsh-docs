@@ -6,6 +6,7 @@ author: Deploy Friday
 title: User documentation
 issuerepo: "https://github.com/platformsh/platformsh-docs/"
 repo: "https://github.com/platformsh/platformsh-docs/"
+folder: "sites/friday"
 editPageButton: true
 
 theme:

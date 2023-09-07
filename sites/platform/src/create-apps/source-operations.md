@@ -3,9 +3,12 @@ title: Source operations
 description: Run automated code updates via source operations.
 weight: 5
 banner: 
-    title: Availability
-    body: All of the examples on this page can be run on Enterprise or Elite projects only.
-          To upgrade your plan or request a trial, [contact Sales](https://platform.sh/contact/).
+    type: tiered-feature
+keywords:
+  - "automated code updates"
+  - "automated code update"
+  - "source operations"
+  - "source operation"
 ---
 
 On {{< vendor/name >}}, you can run automated code updates through a feature called **source operations**.
@@ -262,6 +265,8 @@ The example above synchronizes the `development` environment with its parent
 and then runs the `update-file` source operation defined [previously](#define-a-source-operation).
 
 ## Source operation examples
+
+{{< premium-features/tiered "Enterprise and Elite" >}}
 
 ### Update your application dependencies
 

@@ -6,6 +6,7 @@ author: Platform.sh
 title: User documentation
 issuerepo: "https://github.com/platformsh/platformsh-docs/"
 repo: "https://github.com/platformsh/platformsh-docs/"
+folder: "sites/platform"
 editPageButton: true
 
 # Vendorization

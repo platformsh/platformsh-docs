@@ -2,6 +2,9 @@
 title: Integrate with GitHub
 sidebarTitle: GitHub
 description: See how to manage your {{< vendor/name >}} environments directly from your GitHub repository.
+keywords:
+- "source integration"
+- "source integrations"
 ---
 
 {{% source-integration/intro source="GitHub" %}}
