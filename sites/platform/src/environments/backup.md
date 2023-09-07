@@ -63,6 +63,10 @@ For information on how long backups are retained, see the [data retention policy
 
 ## Backup schedule
 
+<!-- Backups scheduling including in pricing differs from version 1 & version 2 -->
+{{< version/specific >}}
+
+<!-- Version 1 (Platform.sh) -->
 Backups for Dedicated environments have a [specific frequency](../dedicated-gen-2/overview/backups.md).
 
 On Grid environments, non-Production environments can have up to 2 [manual backups](#create-a-manual-backup).
@@ -112,6 +116,18 @@ The time for 6-hourly backups is based on the daily backup.
 
 Automated backups are always [live](#live-backups).
 
+<--->
+
+<!-- Version 2 (Usage-based white label) -->
+Your environments are automatically backed up once a day at around 4:00 based on your [project timezone](../projects/change-project-timezone.md).
+Each of those automated backup is retained for 2 days.
+Automated backups are always [live](#live-backups).
+
+On top of your daily backups, you can configure up to 2 [manual backups](#create-a-manual-backup).
+Manual backups are retained until you delete them or replace them with another backup.
+
+{{< /version/specific >}}
+
 ## Live backups
 
 You can create backups without any downtime.
@@ -122,10 +138,20 @@ They may make restorations less reliable.
 To avoid such issues, schedule [manual backups](#create-a-manual-backup) during non-peak hours,
 when the short amount of downtime is least noticed.
 
+<!-- Live backup differences between API version 1/2 -->
+{{< version/specific >}}
+
+<!-- Version 1 (Platform.sh) -->
 Automated backups are always live, including those taken on [{{% names/dedicated-gen-3 %}}](../dedicated-gen-3/_index.md)
 and [{{% names/dedicated-gen-2 %}}](../dedicated-gen-2/overview/_index.md) environments.
 
 You can create a manual live backup on a Grid project:
+<--->
+
+<!-- Version 2 (Usage-based white label) -->
+To create a manual live backup:
+
+{{< /version/specific >}}
 
 {{< codetabs >}}
 +++
@@ -135,7 +161,7 @@ title=Using the CLI
 Use the `--live` flag:
 
 ```bash
-platform backup:create --live
+{{< vendor/cli >}} backup:create --live
 ```
 
 <--->
@@ -156,7 +182,7 @@ You can create a manual backup using the [CLI](../administration/cli/_index.md) 
 title=Using the CLI
 highlight=bash
 +++
-platform backup:create
+{{< vendor/cli >}} backup:create
 <--->
 +++
 title=In the Console
@@ -181,7 +207,20 @@ They don't affect the automated backups taken as part of the schedule.
 
 ## Physical storage location
 
+<!-- Physical storage differences between API version 1/2 -->
+{{< version/specific >}}
+
+<!-- Version 1 (Platform.sh) -->
 Backups are stored as binary large objects separate from your environments.
 This storage is replicated over multiple data centers in different locations
 [within the region your project is hosted in](https://platform.sh/trust-center/security/data-security/).
 This means that in the rare event a data center becomes unavailable, your backups are still available.
+<--->
+
+<!-- Version 2 (Usage-based white label) -->
+Backups are stored as binary large objects separate from your environments.
+This storage is replicated over multiple data centers in different locations
+within the region your project is hosted in.
+This means that in the rare event a data center becomes unavailable, your backups are still available.
+
+{{< /version/specific >}}

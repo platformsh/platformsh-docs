@@ -56,7 +56,6 @@ module:
               - "registry/*"
               - "_index.md"
               - "get-started/*"
-              - "environments/backup.md"
               - "security/backups.md"
               - "security/data-retention.md"
           lang: "en"

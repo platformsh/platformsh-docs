@@ -63,12 +63,70 @@ For information on how long backups are retained, see the [data retention policy
 
 ## Backup schedule
 
+<!-- Backups scheduling including in pricing differs from version 1 & version 2 -->
+{{< version/specific >}}
+
+<!-- Version 1 (Platform.sh) -->
+Backups for Dedicated environments have a [specific frequency](../dedicated-gen-2/overview/backups.md).
+
+On Grid environments, non-Production environments can have up to 2 [manual backups](#create-a-manual-backup).
+The number of available backups for Production environments depends on your schedule.
+
+| Schedule | Manual backups | Automated backups                                                      |
+|----------|----------------|------------------------------------------------------------------------|
+| Basic    | 2              | 2 daily backups (total = 2)                                            |
+| Advanced | 4              | 6 daily, 3 weekly, and 12 monthly (total = 21)                         |
+| Premium  | 4              | 3 backups for the last 24 hours, 30 daily, and 11 monthly (total = 44) |
+
+Note that [backup retention](../security/data-retention.md#grid-backups) also depends on your schedule.
+
+The schedules available to you depend on your [tier](https://platform.sh/pricing/).
+
+| Tier             | Default schedule | Possible upgrade |
+| ---------------- | ---------------- | ---------------- |
+| Professional     | Basic            | Advanced         |
+| Enterprise/Elite | Advanced         | Premium          |
+
+An upgrade comes at an additional cost.
+The exact cost depends on the size of your storage.
+
+### Change your backup schedule
+
+To upgrade to the higher schedule, follow these steps:
+
+1. In the [Console](https://console.platform.sh/), navigate to the project where you want to change the schedule.
+2. Click **{{< icon settings >}} Settings**.
+3. Click **Edit plan**.
+4. For **Backups**, click the name of your current schedule.
+   If clicking has no effect, you are already on the highest available schedule.
+5. Select the target schedule.
+6. Click **Save**.
+
+To downgrade to the lower schedule, [contact support](../overview/get-support.md).
+
+## Use automated backups
+
+For Dedicated environments, see more about [backups of Dedicated environments](../dedicated-gen-2/overview/backups.md).
+
+For Grid environments, automated backups are taken for Production environments at least once every day.
+The exact number of backups depends on your [backup schedule](#backup-schedule).
+
+Daily backups are taken at around 4:00 every day based on the [project timezone](../projects/change-project-timezone.md).
+The time for 6-hourly backups is based on the daily backup.
+
+Automated backups are always [live](#live-backups).
+
+<--->
+
+<!-- Version 2 (Usage-based white label) -->
 Your environments are automatically backed up once a day at around 4:00 based on your [project timezone](../projects/change-project-timezone.md).
 Each of those automated backup is retained for 2 days.
 Automated backups are always [live](#live-backups).
 
 On top of your daily backups, you can configure up to 2 [manual backups](#create-a-manual-backup).
 Manual backups are retained until you delete them or replace them with another backup.
+
+{{< /version/specific >}}
 
 ## Live backups
 
@@ -80,7 +138,20 @@ They may make restorations less reliable.
 To avoid such issues, schedule [manual backups](#create-a-manual-backup) during non-peak hours,
 when the short amount of downtime is least noticed.
 
+<!-- Live backup differences between API version 1/2 -->
+{{< version/specific >}}
+
+<!-- Version 1 (Platform.sh) -->
+Automated backups are always live, including those taken on [{{% names/dedicated-gen-3 %}}](../dedicated-gen-3/_index.md)
+and [{{% names/dedicated-gen-2 %}}](../dedicated-gen-2/overview/_index.md) environments.
+
+You can create a manual live backup on a Grid project:
+<--->
+
+<!-- Version 2 (Usage-based white label) -->
 To create a manual live backup:
+
+{{< /version/specific >}}
 
 {{< codetabs >}}
 +++
@@ -136,7 +207,20 @@ They don't affect the automated backups taken as part of the schedule.
 
 ## Physical storage location
 
+<!-- Physical storage differences between API version 1/2 -->
+{{< version/specific >}}
+
+<!-- Version 1 (Platform.sh) -->
+Backups are stored as binary large objects separate from your environments.
+This storage is replicated over multiple data centers in different locations
+[within the region your project is hosted in](https://platform.sh/trust-center/security/data-security/).
+This means that in the rare event a data center becomes unavailable, your backups are still available.
+<--->
+
+<!-- Version 2 (Usage-based white label) -->
 Backups are stored as binary large objects separate from your environments.
 This storage is replicated over multiple data centers in different locations
 within the region your project is hosted in.
 This means that in the rare event a data center becomes unavailable, your backups are still available.
+
+{{< /version/specific >}}
