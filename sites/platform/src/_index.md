@@ -69,17 +69,14 @@ It includes details of configuration, environment variables, activities, and muc
 
 Find out more about {{< vendor/name >}}'s GIT implementation and REST API, and how you can leverage them to manage every aspect of your projects, through {{< vendor/name >}}'s [API documentation](https://api.platform.sh/docs/).
 
+{{< version/specific >}}
+
+<!-- For now, most of these links are only relevant to Platform.sh -->
 ### More docs, found elsewhere
 
-The following resources are also helpful for working with {{< vendor/name >}}:
+There are many resources available outside of the documentation that will help you work with {{< vendor/name >}}, including demos, talks, and podcasts. 
 
-| Source            | Links |
-| :---------------- | :------ |
-| [{{< vendor/name >}} Blog](https://platform.sh/blog)       |   {{< home/links-blog >}}   |
-| [Blackfire.io resources](https://platform.sh/blog)       |   {{< home/links-blackfire >}}   |
-| [DDEV resources](https://platform.sh/blog)       |   {{< home/links-ddev >}}   |
-| [YouTube](https://www.youtube.com/@Platformsh)          |   {{< home/links-youtube >}}    |
-| [GitHub](https://github.com/platformsh)    |  {{< home/links-github >}} |
+[Check them out here](/learn/resources.md).
 
 To stay informed of all the latest {{< vendor/name >}} news, join our newsletter.
 
@@ -87,6 +84,12 @@ To stay informed of all the latest {{< vendor/name >}} news, join our newsletter
     <a class="start-cta font-semibold text-sm xl:text-base px-4 py-2 bg-skye rounded text-white hover:bg-skye-dark focus:bg-skye-dark"
     href="https://platform.sh/preferences/" rel="noopener">Sign up for the newsletter</a>
 </div>
+
+<--->
+
+<!-- TBD: white-label version when available -->
+
+{{< /version/specific >}}
 
 
 ## Connect with us
