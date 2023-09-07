@@ -167,6 +167,6 @@ Any existing data you had in your 1.x system is automatically upgraded for you i
 During an upgrade from a 1.x version to a 2.3 version or later,
 a new admin password and a new admin API token are automatically generated.
 Previous credentials can't be retained.</br>
-You can retrieve your new credentials through the [`PLATFORM_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-provided-variables) or by running `platform relationships`.
+You can retrieve your new credentials through the [`PLATFORM_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-provided-variables) or by running `{{% vendor/cli %}} relationships`.
 
 {{< /note >}}

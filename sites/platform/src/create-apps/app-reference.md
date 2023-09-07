@@ -755,8 +755,8 @@ crons:
         commands:
             start: |
                 if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-                   platform backup:create --yes --no-wait
-                   platform source-operation:run update --no-wait --yes
+                   {{% vendor/cli %}} backup:create --yes --no-wait
+                   {{% vendor/cli %}} source-operation:run update --no-wait --yes
                 fi
 ```
 
@@ -796,7 +796,7 @@ Such environments with deployments within 14 days have crons with the status `ru
 If there haven't been any deployments within 14 days, the status is `paused`.
 
 You can see the status in the Console
-or using the CLI by running `platform environment:info` and looking under `deployment_state`.
+or using the CLI by running `{{% vendor/cli %}} environment:info` and looking under `deployment_state`.
 
 #### Restarting paused crons
 
@@ -824,7 +824,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform redeploy
+{{% vendor/cli %}} redeploy
 ```
 
 {{< /codetabs >}}

@@ -242,7 +242,7 @@ hooks:
         curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
 
         echo "Testing {{< vendor/name >}} CLI"
-        platform
+        {{% vendor/cli %}}
 ```
 
 3.  Then, to configure a cron job to automatically run a source operation once a day,
@@ -256,8 +256,8 @@ crons:
         commands:
             start: |
                 set -e
-                platform sync -e development code data --no-wait --yes
-                platform source-operation:run update-file --no-wait --yes
+                {{% vendor/cli %}} sync -e development code data --no-wait --yes
+                {{% vendor/cli %}} source-operation:run update-file --no-wait --yes
 ```
 
 The example above synchronizes the `development` environment with its parent

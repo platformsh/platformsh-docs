@@ -70,7 +70,7 @@ For an example of how the different levels work,
 suppose you have the following inheritable variables defined for the `main` environment:
 
 ```sh
-$ platform var -e main
+$ {{% vendor/cli %}} var -e main
 Variables on the project Example (abcdef123456), environment main:
 +----------------+-------------+--------+---------+
 | Name           | Level       | Value  | Enabled |

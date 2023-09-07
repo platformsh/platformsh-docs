@@ -123,7 +123,7 @@ To check the maximum number of PHP-FPM workers available to your app,
 run the following command, where `children` refers to PHP-FPM workers:
 
 ```bash
-platform ssh "grep -e '^pm.max_children' /etc/php/*/fpm/php-fpm.conf"      
+{{% vendor/cli %}} ssh "grep -e '^pm.max_children' /etc/php/*/fpm/php-fpm.conf"      
 ```
 
 You get output similar to the following:

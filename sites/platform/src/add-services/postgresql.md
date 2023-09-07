@@ -114,7 +114,7 @@ highlight=python
 
 ## Access the service directly
 
-Access the service using the Platform CLI by running `platform sql`.
+Access the service using the Platform CLI by running `{{% vendor/cli %}} sql`.
 
 You can also access it from your app container via [SSH](../development/ssh/_index.md).
 From your [relationship data](#relationship-reference), you need: `username`, `host`, and `port`.
@@ -166,7 +166,7 @@ Make sure that the imported file contains objects with cleared ownership and `IF
 pg_dump --no-owner --clean --if-exists
 ```
 
-The easiest way to load data into a database is to pipe an SQL dump through the `platform sql` command, like so:
+The easiest way to load data into a database is to pipe an SQL dump through the `{{% vendor/cli %}} sql` command, like so:
 
 ```bash
 {{% vendor/cli %}} sql < my_database_backup.sql

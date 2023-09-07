@@ -182,7 +182,7 @@ db:
 
 ## Access the service directly
 
-You can access the service using the Platform CLI by running `platform sql`.
+You can access the service using the Platform CLI by running `{{% vendor/cli %}} sql`.
 
 You can also access it from you app container via [SSH](../../development/ssh/_index.md).
 From your [relationship data](#relationship-reference), you need: `host`, `port`, `user`, `path`.
@@ -428,7 +428,7 @@ For example, to create a bzip2-compressed file, run:
 
 ## Importing data
 
-To load data into a database, pipe an SQL dump through the `platform sql` command, like so:
+To load data into a database, pipe an SQL dump through the `{{% vendor/cli %}} sql` command, like so:
 
 ```bash
 {{% vendor/cli %}} sql < my_database_backup.sql

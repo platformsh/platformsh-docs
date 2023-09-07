@@ -39,7 +39,7 @@ To solve this issue:
 
 ### Check your database disk space
 
-To get approximate disk usage for a database, run the command `platform db:size`.
+To get approximate disk usage for a database, run the command `{{% vendor/cli %}} db:size`.
 This returns an estimate such as the following:
 
 ```text

@@ -104,7 +104,7 @@ To open a tunnel, follow these steps.
    a) (On [grid environments](../other/glossary.md#grid)) SSH into your app container with a flag for local port forwarding:
 
     ```bash
-    ssh $(platform ssh --pipe) -L 15672:{{< variable "RELATIONSHIP_NAME" >}}.internal:15672
+    ssh $({{% vendor/cli %}} ssh --pipe) -L 15672:{{< variable "RELATIONSHIP_NAME" >}}.internal:15672
     ```
 
     {{< variable "RELATIONSHIP_NAME" >}} is the [name you defined](#2-add-the-relationship).
@@ -112,7 +112,7 @@ To open a tunnel, follow these steps.
    b) (On [dedicated environments](../other/glossary.html#dedicated-gen-2)) SSH into your cluster with a flag for local port forwarding:
 
     ```bash
-    ssh $(platform ssh --pipe) -L 15672:localhost:15672
+    ssh $({{% vendor/cli %}} ssh --pipe) -L 15672:localhost:15672
     ```
 
 2.  Open `http://localhost:15672` in your browser.

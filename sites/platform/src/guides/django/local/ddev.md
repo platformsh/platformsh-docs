@@ -23,7 +23,7 @@ sectionBefore: Integrated environments
 1.  Create a new environment off of production.
 
     ```bash
-    platform branch new-feature main
+    {{% vendor/cli %}} branch new-feature main
     ```
 
     If you're using a [source integration](../../../integrations/source/_index.md),
@@ -180,7 +180,7 @@ hooks:
     and then run the following command to retrieve data from the current {{< vendor/name >}} environment:
 
     ```bash
-    ddev pull platform
+    ddev pull {{% vendor/cli %}}
     ```
 
 14. Restart DDEV
