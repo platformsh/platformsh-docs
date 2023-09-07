@@ -2,6 +2,9 @@
 title: Integrate with Bitbucket
 sidebarTitle: Bitbucket
 description: See how to manage your {{< vendor/name >}} environments directly from your Bitbucket repository.
+keywords:
+- "source integration"
+- "source integrations"
 ---
 
 {{% source-integration/intro source="Bitbucket" %}}
