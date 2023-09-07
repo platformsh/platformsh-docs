@@ -8,7 +8,7 @@ description: |
 
 ## Account information
 
-Information relating to customer accounts (login information, billing information, etc.) is retained for as long as the account is active with{{< vendor/name >}}.
+Information relating to customer accounts (login information, billing information, etc.) is retained for as long as the account is active with {{< vendor/name >}}.
 
 Customers may request that their account be deleted and all related data be purged by filing a support ticket.
 
@@ -26,6 +26,10 @@ See how to [access logs](../increase-observability/logs/access-logs.md).
 
 When an environment is deleted, its application logs are deleted as well.
 
+<!-- Version-specific content -->
+{{< version/specific >}}
+
+<!-- Version 1 (Platform.sh) -->
 ## Grid Backups
 
 [Automated backups](../environments/backup.md#use-automated-backups) are retained for a specific amount of time
@@ -92,6 +96,17 @@ Backups for {{% names/dedicated-gen-2 %}} environments are retained based on whe
 | Weeks 12--22 | One backup per month |
 
 See more about [backups of {{% names/dedicated-gen-2 %}} environments](../dedicated-gen-2/overview/backups.md).
+
+<--->
+
+<!-- Version 2 (usage-based white label) -->
+## Backups
+
+[Automated backups](../environments/backup.md#use-automated-backups) are retained for 2 days.
+
+[Manual backups](../environments/backup.md#create-a-manual-backup) are retained until you delete them or replace them with another backup.
+
+{{< /version/specific>}}
 
 ## Tombstone backups
 

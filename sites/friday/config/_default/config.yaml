@@ -56,7 +56,6 @@ module:
               - "registry/*"
               - "_index.md"
               - "get-started/*"
-              - "security/data-retention.md"
           lang: "en"
 
         - source: "../platform/static/images"
