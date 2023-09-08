@@ -19,7 +19,7 @@ When a Git repository contains a high number of references and files, the perfor
 This is why most Git providers have repository size limits in place (for more information, see the [GitHub](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github), [GitLab](https://docs.gitlab.com/ee/user/gitlab_com/index.html#account-and-limit-settings)
 and [Bitbucket](https://support.atlassian.com/bitbucket-cloud/docs/reduce-repository-size/) documentation).
 
-The {{< vendor/name >}} API and [Console](../administration/web/_index.md) are closely tied to Git.
+The {{< vendor/name >}} API and [Console](/administration/web/_index.md) are closely tied to Git.
 When the performance of Git decreases, {{< vendor/name >}} API servers also become slower.
 As a user, you can then experience significant latencies.
 If your repository becomes too large, your Console may even become unresponsive,
@@ -35,7 +35,7 @@ see how you can [troubleshoot a sizeable Git repository](#troubleshoot-a-sizeabl
 To keep your repository size to a minimum,
 make sure that branches that don't exist anymore in your repository have also been deleted from {{< vendor/name >}}.
 
-To automate this process, when setting up a [source integration](../integrations/_index.md),
+To automate this process, when setting up a [source integration](/integrations/_index.md),
 enable the `prune-branches` option.
 
 If you already have a source integration set up and want to enable the `prune-branches` option,

@@ -113,7 +113,7 @@ This can help simplify more complex files.
 
 Use the `!archive` tag for a reference to an entire directory specified relative to where the YAML file is.
 
-For example, you might want to define a configuration directory for your [Solr service](../../add-services/solr.md).
+For example, you might want to define a configuration directory for your [Solr service](/add-services/solr.md).
 You might do so as follows:
 
 ```yaml {configFile="services"}

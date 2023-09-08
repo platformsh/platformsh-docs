@@ -54,7 +54,6 @@ module:
           target: "content"
           excludeFiles: 
               - "registry/*"
-              - "_index.md"
               - "get-started/*"
           lang: "en"
 

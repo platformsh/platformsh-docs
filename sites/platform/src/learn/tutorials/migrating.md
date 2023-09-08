@@ -15,7 +15,7 @@ You need:
 - An app that works and is ready to be built
 - Code in Git
 - A {{< vendor/name >}} account -- if you don't already have one, [start a trial](https://auth.api.platform.sh/register?trial_type=general)
-- Optional: the [{{< vendor/name >}} CLI](../administration/cli/_index.md)
+- Optional: the [{{< vendor/name >}} CLI](/administration/cli/_index.md)
 
 ## 1. Export from previous system
 
@@ -36,7 +36,7 @@ Run the following command:
 {{% vendor/cli %}} project:create
 ```
 
-When prompted, fill in details like the project name, [region](../development/regions.md), and [plan](../administration/pricing/_index.md).
+When prompted, fill in details like the project name, [region](/development/regions.md), and [plan](/administration/pricing/_index.md).
 
 <--->
 
@@ -46,8 +46,8 @@ title=In the Console
 
 [Create a new project from scratch]({{% create-project-link scratch=true %}}).
 
-In the form, fill in details like the project name and [region](../development/regions.md).
-The project is automatically created with a [Development plan](../administration/pricing/_index.md),
+In the form, fill in details like the project name and [region](/development/regions.md).
+The project is automatically created with a [Development plan](/administration/pricing/_index.md),
 which you can then upgrade.
 
 {{< /codetabs >}}
@@ -57,11 +57,11 @@ which you can then upgrade.
 The exact configuration you want depends on your app.
 You likely want to configure three areas:
 
-- [The app itself](../create-apps/_index.md) -- this is the only required configuration
-- [Services](../add-services/_index.md)
-- [Routes](../define-routes/_index.md)
+- [The app itself](/create-apps/_index.md) -- this is the only required configuration
+- [Services](/add-services/_index.md)
+- [Routes](/define-routes/_index.md)
 
-You can also take guidance from the [project templates](../development/templates.md),
+You can also take guidance from the [project templates](/development/templates.md),
 which are starting points for various technology stacks with working configuration examples.
 
 When you've added your configuration, make sure to commit it to Git.
@@ -69,7 +69,7 @@ When you've added your configuration, make sure to commit it to Git.
 ## 4. Push your code
 
 The way to push your code to {{< vendor/name >}} depends on
-whether you're hosting your code with a third-party service using a [source integration](../integrations/source/_index.md).
+whether you're hosting your code with a third-party service using a [source integration](/integrations/source/_index.md).
 If you aren't, your repository is hosted in {{< vendor/name >}}
 and you can use the CLI or just Git itself.
 
@@ -106,9 +106,9 @@ title=Using a source integration
 
 Set up the integration for your selected service:
 
-- [Bitbucket](../integrations/source/bitbucket.md)
-- [GitHub](../integrations/source/github.md)
-- [GitLab](../integrations/source/gitlab.md)
+- [Bitbucket](/integrations/source/bitbucket.md)
+- [GitHub](/integrations/source/github.md)
+- [GitLab](/integrations/source/gitlab.md)
 
 Then push code to that service as you do normally.
 Pushing to a branch creates an environment from that branch.
@@ -121,7 +121,7 @@ You have to monitor those in your project activities.
 title=Using Git
 +++
 
-1.  Add an [SSH key](../development/ssh/ssh-keys.md).
+1.  Add an [SSH key](/development/ssh/ssh-keys.md).
 2.  In the [Console], open your project and click **Code {{< icon chevron >}}**.
 3.  Click **Git**.
 4.  From the displayed command, copy the location of your repository.
@@ -159,12 +159,12 @@ For SQL databases, for example, you can use a version of this command:
 {{% vendor/cli %}} sql < {{< variable "BACKUP_FILE_NAME" >}}
 ```
 
-For any potential more details, see the [specific service](../add-services/_index.md).
+For any potential more details, see the [specific service](/add-services/_index.md).
 
 ## 6. Import files
 
 Your app may include content files, meaning files that aren't intended to be part of your codebase so aren't in Git.
-You can upload such files to [mounts you created](../create-apps/app-reference.md#mounts).
+You can upload such files to [mounts you created](/create-apps/app-reference.md#mounts).
 Upload to each mount separately.
 
 Suppose for instance you have the following file mounts defined:
@@ -187,18 +187,18 @@ Upload to each of directories above by running the following commands:
 ```
 
 You can adjust these commands for your own case.
-Or upload to your mounts using a different [SSH method](../development/file-transfer.md#transfer-files-using-an-ssh-client).
+Or upload to your mounts using a different [SSH method](/development/file-transfer.md#transfer-files-using-an-ssh-client).
 
 ## Optional: Add variables
 
-If your app requires environment variables to build properly, [add them to your environment](../development/variables/set-variables.md).
+If your app requires environment variables to build properly, [add them to your environment](/development/variables/set-variables.md).
 
 ## What's next
 
 Now that your app is ready to be deployed, you can do more:
 
 - Upgrade from a Development plan.
-- [Add a domain](../domains/steps/_index.md).
-- Set up for [local development](../development/local/_index.md).
-- Configure [health notifications](../integrations/notifications.md).
-- For monitoring and profiling, [integrate Blackfire](../increase-observability/integrate-observability/blackfire.md).
+- [Add a domain](/domains/steps/_index.md).
+- Set up for [local development](/development/local/_index.md).
+- Configure [health notifications](/integrations/notifications.md).
+- For monitoring and profiling, [integrate Blackfire](/increase-observability/integrate-observability/blackfire.md).

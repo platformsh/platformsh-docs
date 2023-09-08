@@ -349,7 +349,6 @@ extensions not listed here.
 * `pgrouting` - pgRouting Extension (requires 9.6 or higher)
 * `pgrowlocks` - show row-level locking information
 * `pgstattuple` - show tuple-level statistics
-* `pgvector` - Open-source vector similarity search for PostgreSQL 11+
 * `plpgsql` - PL/pgSQL procedural language
 * `postgis` - PostGIS geometry, geography, and raster spatial types and functions
 * `postgis_sfcgal` - PostGIS SFCGAL functions
@@ -367,6 +366,7 @@ extensions not listed here.
 * `tsm_system_time` - TABLESAMPLE method which accepts time in milliseconds as a limit (requires 9.6 or higher)
 * `unaccent` - text search dictionary that removes accents
 * `uuid-ossp` - generate universally unique identifiers (UUIDs)
+* `vector` - Open-source [vector](https://github.com/pgvector/pgvector) similarity search for PostgreSQL 11+
 * `xml2` - XPath querying and XSLT
 
 {{< note >}}

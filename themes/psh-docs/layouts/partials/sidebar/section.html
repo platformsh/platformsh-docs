@@ -1,4 +1,5 @@
 {{ $currentSection := .currentSection }}
+{{ $sectionKeys := .sections }}
 {{ $currentPage := .Page}}
 {{ $rootSections := .Site.Sections }}
 {{ $home := .Site.Home}}
@@ -12,22 +13,22 @@
   {{ if .Params.sidebarIgnore }}
 
   <!--Handle Stacks and Get started separately -->
-  {{ else if (or (eq $currentSection "guides" ) (eq $currentSection "get-started" )) }}
+  {{ else if ( in $sectionKeys $currentSection) }}
     {{ if ne $currentSection .Section }}
     {{ else }}
       <!-- Create a list for each section in there -->
       {{ range .Pages }}
-        {{ partial "sidebar/list" ( dict "Context" . "CurrentPage" $currentPage ) }}
+        {{ partial "sidebar/list" ( dict "Context" . "CurrentPage" $currentPage "sections" $sectionKeys ) }}
       {{ end }}
     {{ end }}
 
   <!-- Don't include items from Stacks and Get started elsewhere -->
-  {{ else if and (eq $currentSection "home" ) (or (eq .Section "guides" ) (eq .Section "get-started" ) ) }}
+  {{ else if and (eq $currentSection "home" ) (in $sectionKeys .Section) }}
 
   <!-- List everything else -->
   {{ else }}
 
-    {{ partial "sidebar/list" ( dict "Context" . "CurrentPage" $currentPage ) }}
+    {{ partial "sidebar/list" ( dict "Context" . "CurrentPage" $currentPage "sections" $sectionKeys ) }}
     
   {{ end }}
 {{ end }}

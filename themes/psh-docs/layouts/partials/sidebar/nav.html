@@ -1,12 +1,20 @@
-{{ $sections := .Site.Params.navSections}}
+{{ $sections := .Site.Params.navSections }}
+{{ $isHome := .Page.IsHome }}
+{{ $sectionKeys := slice }}
+{{ range $k, $v := $sections }}
+    {{ if ne $k "home" }}
+      {{ $sectionKeys = append $k $sectionKeys }}
+    {{ end }}
+{{ end }}
+
 {{ $currentSection := .Section }}
 {{ $currentContext := . }}
 
 <!-- Loop through navigation sections -->
-{{ range $sections}}
+{{ range sort $sections "weight" }}
   {{ $inCurrentSection := false }}
   <!-- For sections with a single named directory, check if the current directory matches that name -->
-  {{ if or (eq .section "guides" ) (eq .section "get-started" ) }}
+  {{ if in $sectionKeys .section }}
     {{ if eq .section $currentSection }}
       {{ $inCurrentSection = true }}
     {{ else }}
@@ -14,9 +22,12 @@
     {{ end }}
   <!-- Otherwise, check that the current directory isn't one of those named sections -->
   {{ else }}
-    {{ if and (ne $currentSection "guides" ) (ne $currentSection "get-started" )}}
+    {{ if not (in $sectionKeys $currentSection)}}
       {{ $inCurrentSection = true }}
     {{ end }}
+  {{ end }}
+  {{ if $isHome }}
+    {{ $inCurrentSection = false }}
   {{ end }}
   <div x-data="{ expanded: {{ $inCurrentSection }} }">
     <h3 class="font-semibold">
@@ -25,7 +36,22 @@
       </button>
     </h3>
     <div x-show="expanded" id="section-{{ .section }}">
-      {{ partial "sidebar/section" ( dict "context" $currentContext "currentSection" .section "Active" $inCurrentSection ) }}
+      {{ partial "sidebar/section" ( dict "context" $currentContext "currentSection" .section "Active" $inCurrentSection "sections" $sectionKeys ) }}
     </div>
   </div>
+{{ end }}
+
+<!-- External: Additional sidebar sections, not associated with pages in docs site -->
+{{ if isset .Site.Params "nondocssections" }}
+  {{ range sort .Site.Params.nonDocsSections "weight" }}
+
+      <div x-data="{ expanded: false }">
+        <h3 class="font-semibold">
+          <button class="bg-no-repeat bg-right-2 w-[95%] py-4 pl-2 pr-6 my-2 text-left bg-grey" :style="expanded ? 'background-image: url(/images/icons/minus.svg);' : 'background-image: url(/images/icons/external_link.svg);'" @click="location.href = '{{ .link }}'" aria-expanded="false" aria-label="Toggle section">
+            {{ .title }}
+          </button>
+        </h3>
+      </div>
+
+  {{ end }}
 {{ end }}
