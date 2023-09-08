@@ -204,23 +204,30 @@ hooks:
     {{< codetabs >}}
 +++
 title=Pip
-highlight=bash
-file=snippets/guides/django/ddev/local-pip.sh
 +++
+
+```bash {location="init-local.sh"}
+{{< snippets/guides/django/ddev/local-pip >}}
+```
+
 <--->
 +++
 title=Pipenv
-highlight=bash
-file=snippets/guides/django/ddev/local-pipenv.sh
 +++
-Pipenv example
+
+```bash {location="init-local.sh"}
+{{< snippets/guides/django/ddev/local-pipenv >}}
+```
+
 <--->
 +++
 title=Poetry
-highlight=bash
-file=snippets/guides/django/ddev/local-poetry.sh
 +++
-Poetry example
+
+```bash {location="init-local.sh"}
+{{< snippets/guides/django/ddev/local-poetry >}}
+```
+
     {{< /codetabs >}}
 
 {{% local-dev/next-steps-end %}}

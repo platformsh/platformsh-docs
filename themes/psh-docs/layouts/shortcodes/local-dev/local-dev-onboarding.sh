@@ -9,7 +9,7 @@ PARENT=$2
 # Open a tunnel to the current environment
 {{ `{{< vendor/cli >}}` | .Page.RenderString }} tunnel:open --no-interaction
 
-# Mock Platform.sh environment variables
+# Mock {{ `{{< vendor/name >}}` | .Page.RenderString }} environment variables
 export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"
 # Add any other variables you need
 
