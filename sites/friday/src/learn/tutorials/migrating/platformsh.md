@@ -10,11 +10,160 @@ and host your project on {{% vendor/name %}}.
 
 ## Before you begin
 
+### Requirements
+
 You need:
 
 - A {{% vendor/name %}} account
 - An existing Platform.sh project
 - Recommended: The {{% vendor/name %}} CLI
+
+### What you need to know
+
+There are two major differences between {{% vendor/name %}} and Platform.sh relevant to migrating a site: container and resources configuration.
+
+1. Application, service, and route configuration
+
+    - All of the YAML configuration files (to configure your apps, services and routes)
+      are now located in the `{{% vendor/configdir %}}` directory.
+
+    - All the YAML files in the `{{% vendor/configdir %}}` directory are globbed into a singular configuration on push.
+      You can configure [multiple apps](/create-apps/multi-app/) in a single YAML file or set up one YAML file per application.
+      Just make sure you place all relevant files at the root of `{{% vendor/configdir %}}`.
+
+    - The YAML structure now uses the following first-level keys:
+
+      | First-level YAML key | Description |
+      |---|---|
+      | `applications` | Contains what was previously defined in your `.platform.app.yaml` file. |
+      | `services` | Contains what was previously defined in your `.platform/services.yaml` file. |
+      | `routes` | Contains what was previously defined in your `.platform/routes.yaml` file. |
+
+    - To configure your apps, you need to use a hash map instead of an array.
+      In the example below, all first-level keys are included in a single `{{% vendor/configdir %}}/config.yaml`.
+      Notice that the [`name` property](/create-apps/app-reference#top-level-properties) of each application is now a YAML key at the next level, instead of being defined using `name` as was the case on Platform.sh:
+
+        ```yaml {location="config.yaml" dir="true"}
+        # A top level key containing all application containers.
+        applications:
+            frontend:
+                # Location of the 'frontend' source code; "/" by default, as explained below.
+                source:
+                    root: "frontend"
+
+                # Additional app configuration, not including size, disk, or resources previously on Platform.sh.
+
+            backend:
+                # Location of the 'frontend' source code; "/" by default, as explained below.
+                source:
+                    root: "backend"
+                
+                # Additional app configuration, not including size, disk, or resources previously on Platform.sh.
+        
+        # A top level key containing all managed services containers.
+        services:
+            db:
+                type: "mariadb:{{% latest "mariadb" %}}"
+
+            cache:
+                type: "redis:{{% latest "redis" %}}"
+
+        # A top level key containing all routes configuration.
+        routes:
+            "https://{default}/":
+                type: upstream
+                upstream: frontend:http
+            "https://{default}/api":
+                type: upstream
+                upstream: backend:http
+        ```
+
+      This makes debugging long configuration files with multiple apps easier.
+      The app name key is now part of the XPath, which helps you quickly spot any settings you need to modify.
+
+    - As {{% vendor/name %}} allows you to [manage container resources](#4-define-your-app-and-service-resources) from its Console, CLI or API,
+      the `size`, `disk` and `resources` keys have been deprecated.
+      All the other YAML keys used to configure your apps on Platform.sh remain the same.
+
+    - `applications.APP_NAME.source.root` is not required. However, if a value is not included in your configuration, {{% vendor/name %}} will assume the source code for `APP_NAME` is at the project root `"/"`.
+      That is, by default, each app will have the below assumption unless specified otherwise by your configuration:
+
+      ```yaml {location="config.yaml" dir="true"}
+      # A top level key containing all application containers.
+      applications:
+          frontend:
+              source:
+                  root: "/"
+      ```
+
+    - The example shown above includes `applications`, `services`, and `routes` configuration in a single `{{% vendor/configdir %}}/config.yaml` file, with all containers under their proper top-level keys. 
+      While it is possible to split configuration into separate files (into `{{% vendor/configdir %}}/applications.yaml`, `{{% vendor/configdir %}}/services.yaml`, and `{{% vendor/configdir %}}/routes.yaml` files, for example), those top-level keys are still required in _each_ file where configuration is added to that container "group".
+
+      A better example that illustrates this is if you wanted to split configuration for the `frontend` and `backend` application containers into separate file, along with their specific `services` and `routes` configuration. 
+      Both files shown below _must_ contain top-level keys within them.
+
+      {{< codetabs >}}
++++
+title= Frontend
++++
+
+```yaml {location="frontend.yaml" dir="true"}
+# A top level key containing all application containers.
+applications:
+    frontend:
+        # Location of the 'frontend' source code; "/" by default, as explained below.
+        source:
+            root: "frontend"
+
+        # Additional app configuration, not including size, disk, or resources previously on Platform.sh.
+
+# A top level key containing all managed services containers.
+services:
+    cache:
+        type: "redis:{{% latest "redis" %}}"
+
+# A top level key containing all routes configuration.
+routes:
+    "https://{default}/":
+        type: upstream
+        upstream: frontend:http
+```
+
+      <--->
++++
+title= Backend
++++
+
+```yaml {location="backend.yaml" dir="true"}
+# A top level key containing all application containers.
+applications:
+    backend:
+        # Location of the 'frontend' source code; "/" by default, as explained below.
+        source:
+            root: "backend"
+        
+        # Additional app configuration, not including size, disk, or resources previously on Platform.sh.
+
+# A top level key containing all managed services containers.
+services:
+    db:
+        type: "mariadb:{{% latest "mariadb" %}}"
+
+# A top level key containing all routes configuration.
+routes:
+    "https://{default}/api":
+        type: upstream
+        upstream: backend:http
+```
+
+      {{< /codetabs >}}
+
+2. Resource configuration
+
+    Resources on {{% vendor/name %}} aren't managed as a combination of "plan" and committed configuration such as `size`, `disk`, and `resources` like they were on Platform.sh.
+    Instead, resources must be defined with a `PATCH` to your project configuration using the management console, CLI, or API.
+    In the steps below be sure to remove `size`, `disk`, and `resources` keys from your configuration, as they do not have meaning on {{% vendor/name %}} and will result in an error.
+
 
 ## 1. Create a Git branch
 
@@ -26,7 +175,7 @@ From the root of your Platform.sh project, run the following command:
 git checkout -b {{% vendor/cli %}}-main
 ```
 
-## 2. Create a new {{% vendor/name %}} project
+## 2. Create a new project
 
 To create a new {{% vendor/name %}} project, use the {{% vendor/name %}} CLI and run the following command:
 
@@ -38,46 +187,7 @@ Follow the prompts.
 
 Your new project is created and your local source code is now linked to your new {{% vendor/name %}} project.
 
-## 3. Set up your {{% vendor/name %}} YAML configuration
-
-### What you need to know
-
-The {{% vendor/name %}} YAML configuration presents the following main differences from Platform.sh:
-
-- All of the YAML configuration files (to configure your apps, services and routes)
-  are now located in the `.platform/` directory.
-
-- All the YAML files in the `.platform/` directory are taken into account during the build.</br>
-  You can configure [multiple apps](/create-apps/multi-app/) in a single YAML file or set up one YAML file per application.
-  Just make sure you place all relevant files at the root of `.platform/`.
-
-- The YAML structure now uses the following first-level keys:
-
-  | First-level YAML key | Description |
-  |---|---|
-  | `applications` | Contains what was previously defined in your `.platform.app.yaml` file. |
-  | `services` | Contains what was previously defined in your `.platform/services.yaml` file. |
-  | `routes` | Contains what was previously defined in your `.platform/routes.yaml` file. |
-
-  To configure your apps, you need to use a hash map instead of an array.</br>
-  The [`name` property](/create-apps/app-reference#top-level-properties) of your app is now a YAML key containing all the other keys:
-
-    ```yaml
-    applications:
-      app1:
-        # ...
-      app2:
-        # ...
-    ```
-
-  This makes debugging long configuration files with multiple apps easier.
-  The app name key is now part of the XPath, which helps you quickly spot any settings you need to modify.
-
-- As {{% vendor/name %}} allows you to [manage container resources](#4-define-your-app-and-service-resources) from its Console, CLI or API,
-  the `size`, `disk` and `resources` keys have been deprecated.
-  All the other YAML keys used to configure your apps on Platform.sh remain the same.
-
-### Amend your existing YAML configuration
+## 3. Update YAML
 
 To set up your {{% vendor/name %}} YAML configuration, follow these steps.
 
@@ -94,59 +204,8 @@ To do so, use the {{% vendor/name %}} CLI and run the `{{% vendor/cli %}} ify` c
 {{% vendor/name %}} automatically detects your local stack
 and generates the minimum YAML configuration file (`{{< vendor/configdir >}}/config.yaml`) required to deploy your project:
 
-```
-$ {{% vendor/cli %}} ify
-You are reconfiguring the project at /dev/{{% vendor/cli %}}/nextjs.
-Welcome to Platform.sh!
-Let's get started with a few questions.
-
-We need to know a bit more about your project. This will only take a minute!
-
-✓ Detected stack: Next.js
-✓ Detected runtime: JavaScript/Node.js
-✓ Detected dependency managers: Yarn
-Tell us your project name: [nextjs]
-
-                       (\_/)
-We're almost done...  =(^.^)=
-
-Last but not least, unless you're creating a static website, your project uses services. Let's define them:
-
-Which services are you using?
-Use arrows to move, space to select, type to filter
-  [x]  MariaDB
-  [ ]  MySQL
-  [ ]  PostgreSQL
-> [x]  Redis
-  [ ]  Redis Persistent
-  [ ]  Memcached
-  [ ]  OpenSearch
-
-You have not selected any service, would you like to proceed anyway? [Yes]
-
-┌───────────────────────────────────────────────────┐
-│   CONGRATULATIONS!                                │
-│                                                   │
-│   We have created the following files for your:   │
-│     - .environment                                │
-│     - {{< vendor/configdir >}}/config.yaml                         │
-│                                                   │
-│   We're jumping for joy! ⍢                        │
-└───────────────────────────────────────────────────┘
-         │ /
-         │/
-         │
-  (\ /)
-  ( . .)
-  o (_(")(")
-
-You can now deploy your application to {{% vendor/name %}}!
-To do so, commit your files and deploy your application using the
-{{% vendor/name %}} CLI:
-  $ git add .
-  $ git commit -m 'Add {{% vendor/name %}} configuration files'
-  $ {{% vendor/cli %}} project:set-remote
-  $ {{% vendor/cli %}} push
+```bash
+{{% vendor/cli %}} ify
 ```
 
 {{< note >}}
@@ -286,7 +345,7 @@ routes:
 
 {{< /codetabs >}}
 
-## 4. Define your app and service resources
+## 4. Define resources
 
 Now that the `size`, `disk` and `resources` keys are deprecated,
 use the {{% vendor/name %}} Console, CLI or API to define your app and service resources.
@@ -354,7 +413,7 @@ List of profile_size can be found [here](https://docs.google.com/presentation/d/
 
 {{< /codetabs >}}
 
-## 5. Deploy your {{% vendor/name %}} project
+## 5. Deploy
 
 Once you're ready to deploy your {{% vendor/name %}} project,
 run the following command:

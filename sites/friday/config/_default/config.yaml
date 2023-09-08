@@ -55,7 +55,6 @@ module:
           excludeFiles: 
               - "registry/*"
               - "get-started/*"
-              - "tutorials/migrating.md"
           lang: "en"
 
         - source: "../platform/static/images"
