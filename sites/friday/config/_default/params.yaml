@@ -17,6 +17,12 @@ vendor:
     name: Deploy Friday
     cli: friday
     env_prefix: FRIDAY
+    recruit:
+        active: true
+        link: https://upsun.com/register/
+        cta: Sign up for early access
+        title: Upsun Beta access
+        description: "Platform.sh will soon open up early access to test and provide feedback for our newest offering - Upsun.<br/><br/>You can register for the beta by clicking here and completing the form.<br/><br/>"
     config:
         version: 2
         dir: .friday
