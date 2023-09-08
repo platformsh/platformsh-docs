@@ -164,7 +164,7 @@ Environment variables are a good place to store values that apply only on {{< ve
 This includes API credentials for third-party services, mode settings, and which server (development vs. production) to use.
 
 One example would be to define a Node.js application's build on a production branch (`NODE_ENV=production`),
-but use development mode (`NODE_ENV=development`) for each of your development environments.
+but use development mode (`NODE_ENV=development`) for each of your preview environments.
 Assuming you have a `main` environment for production and a `staging` environment with more child environments for development,
 run the following commands:
 

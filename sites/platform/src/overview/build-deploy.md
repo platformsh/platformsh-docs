@@ -28,9 +28,9 @@ So each container is tied to a specific Git commit.
 If there are no new changes for a given container, the existing container can be reused.
 This saves you the time the build step would take.
 
-This means the build is independent of the given environment and development environments are perfect copies of production.
+This means the build is independent of the given environment and preview environments are perfect copies of production.
 If you use environment variables to set up different build configuration options for different environments,
-your build step isn't reused and your development environments may differ from production.
+your build step isn't reused and your preview environments may differ from production.
 
 You can't connect to services (like databases) during the build step.
 Once the app has gone through all of the build steps, it can connect to services in the deploy process.

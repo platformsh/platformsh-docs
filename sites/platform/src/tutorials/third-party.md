@@ -101,7 +101,7 @@ Framework  | Credit
 - Script to **sync a Drupal site** from Production to Local https://github.com/pjcdawkins/platformsh-sync
 - Matt Pope's [{{< vendor/name >}} automated mysql and files backup script](https://bitbucket.org/snippets/kaypro4/gnB4E)
 
-### Development environments
+### Preview environments
 
 - [**Beetbox**](https://beetbox.readthedocs.io/en/stable/), a pre-provisioned L*MP stack for Drupal and other frameworks, with {{< vendor/name >}} CLI integration
 - A **Docker** image with the {{< vendor/name >}} CLI on it https://github.com/maxc0d3r/docker-platformshcli
