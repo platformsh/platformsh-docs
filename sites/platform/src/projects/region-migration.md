@@ -90,7 +90,7 @@ Then upload them to your new project:
 ```
 
 See more options on [how to export files](/learn/tutorials/exporting.md)
-and [how to import files](/learn/tutorials/migrating.md#6-import-files).
+and [how to import files](/learn/tutorials/migrating).
 
 ## 5. Copy data from services
 

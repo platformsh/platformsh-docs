@@ -128,6 +128,6 @@ Use the CLI to retrieve these values.
 
 ## What's next
 
-- Migrate data from elsewhere [into {{< vendor/name >}}](./migrating.md).
+- Migrate data from elsewhere [into {{< vendor/name >}}](./migrating).
 - Migrate to [another region](/projects/region-migration.md).
 - To use data from an environment locally, export your data and set up your [local development environment](/development/local/_index.md).

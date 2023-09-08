@@ -1,7 +1,8 @@
 ---
 title: "Migrate your site from Platform.sh to {{% vendor/name %}}"
 sidebarTitle: From Platform.sh
-description: Migrate your project from Platform.sh to {{% vendor/name %}} .
+weight: -150
+description: "{{% vendor/name %}} is built on Platform.sh, and only requires a few additional considerations to migrate."
 ---
 
 Starting from an existing Platform.sh project, follow these steps to amend your project YAML configuration
@@ -33,7 +34,8 @@ To create a new {{% vendor/name %}} project, use the {{% vendor/name %}} CLI and
 {{% vendor/cli %}} project:create --default-branch={{% vendor/cli %}}-main
 ```
 
-Follow the prompts.</br>
+Follow the prompts.
+
 Your new project is created and your local source code is now linked to your new {{% vendor/name %}} project.
 
 ## 3. Set up your {{% vendor/name %}} YAML configuration

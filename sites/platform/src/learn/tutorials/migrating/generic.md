@@ -1,6 +1,7 @@
 ---
-title: Migrating to {{< vendor/name >}}
-description: See how to migrate your app to {{< vendor/name >}} so it's ready to be deployed.
+title: Overview
+description: For most cases, this generic guide contains all the information you will need to migrate to {{< vendor/name >}}.
+weight: -200
 keywords:
   - "set remote"
 ---
