@@ -23,7 +23,7 @@
 
 <div role="tabpanel" x-show="frametech === 'default'" :aria-hidden="frametech === 'default'" class="{{ partial "codetabs/tab-styles" }} {{ partial "codetabs/tab-children-styles" }}">
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 # The name of the app. Must be unique within a project.
 name: app
 
@@ -53,7 +53,7 @@ web:
 
 <div role="tabpanel" x-show="frametech === 'socket'" :aria-hidden="frametech === 'socket'" class="{{ partial "codetabs/tab-styles" }} {{ partial "codetabs/tab-children-styles" }}">
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 # The name of the app. Must be unique within a project.
 name: app
 
@@ -126,7 +126,7 @@ web:
 
 <div role="tabpanel" x-show="frametech === 'default'" :aria-hidden="frametech === 'default'" class="{{ partial "codetabs/tab-styles" }} {{ partial "codetabs/tab-children-styles" }}">
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 # The name of the app. Must be unique within a project.
 name: app
 
@@ -148,7 +148,7 @@ You may need to adapt the start command to fit your app.
 
 <div role="tabpanel" x-show="frametech === 'pipenv'" :aria-hidden="frametech === 'pipenv'" class="{{ partial "codetabs/tab-styles" }} {{ partial "codetabs/tab-children-styles" }}">
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 # The name of the app. Must be unique within a project.
 name: app
 
@@ -185,7 +185,7 @@ web:
 
 <div role="tabpanel" x-show="frametech === 'poetry'" :aria-hidden="frametech === 'poetry'" class="{{ partial "codetabs/tab-styles" }} {{ partial "codetabs/tab-children-styles" }}">
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 # The name of the app. Must be unique within a project.
 name: app
 
@@ -257,7 +257,7 @@ web:
 
 <div role="tabpanel" x-show="frametech === 'default'" :aria-hidden="frametech === 'default'" class="{{ partial "codetabs/tab-styles" }} {{ partial "codetabs/tab-children-styles" }}">
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 # The name of the app. Must be unique within a project.
 name: app
 
@@ -276,7 +276,7 @@ web:
 
 <div role="tabpanel" x-show="frametech === 'yarn3'" :aria-hidden="frametech === 'yarn3'" class="{{ partial "codetabs/tab-styles" }} {{ partial "codetabs/tab-children-styles" }}">
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 # The name of the app. Must be unique within a project.
 name: app
 
@@ -300,7 +300,7 @@ web:
 
 <div role="tabpanel" x-show="frametech === 'yarnOld'" :aria-hidden="frametech === 'yarnOld'" class="{{ partial "codetabs/tab-styles" }} {{ partial "codetabs/tab-children-styles" }}">
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 # The name of the app. Must be unique within a project.
 name: app
 
@@ -333,7 +333,7 @@ You may need to adapt the start command to fit your app.
 
 <div x-show="stack === 'golang'">
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 # The name of the app. Must be unique within a project.
 name: app
 
@@ -378,7 +378,7 @@ You may need to adapt the start command to fit your app.
 
 <div role="tabpanel" x-show="frametech === 'default'" :aria-hidden="frametech === 'default'" class="{{ partial "codetabs/tab-styles" }} {{ partial "codetabs/tab-children-styles" }}">
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 # The name of the app. Must be unique within a project.
 name: app
 
@@ -397,7 +397,7 @@ web:
 
 <div role="tabpanel" x-show="frametech === 'gradle'" :aria-hidden="frametech === 'gradle'" class="{{ partial "codetabs/tab-styles" }} {{ partial "codetabs/tab-children-styles" }}">
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 # The name of the app. Must be unique within a project.
 name: app
 

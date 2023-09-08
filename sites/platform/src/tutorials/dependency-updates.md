@@ -1,26 +1,30 @@
 ---
-title: Automatically update your application dependencies
-sidebarTitle: Update application dependencies
+title: Automate your code updates
 description: Learn how to automate your dependency updates through a source operation.
 weight: 1
 tier:
   - Elite
   - Enterprise
+keywords:
+  - "automated code updates"
+  - "automated code update"
+  - "source operations"
+  - "source operation"
 ---
 
-Platform.sh allows you to update your dependencies through [source operations](../create-apps/source-operations.md).
+{{< vendor/name >}} allows you to update your dependencies through [source operations](../create-apps/source-operations.md).
 
 ## Before you start
 
 You need:
 
-- The [Platform.sh CLI](../administration/cli/_index.md)
-- An [API token](../administration/cli/api-tokens.md#2-create-a-platformsh-api-token)
+- The [{{< vendor/name >}} CLI](../administration/cli/_index.md)
+- An [API token](../administration/cli/api-tokens.md#2-create-an-api-token)
 
 ## 1. Define a source operation to update your dependencies
 
 To facilitate updating your dependencies in your project,
-define a source operation in your `.platform.app.yaml` file
+define a source operation in your `{{< vendor/configfile "app" >}}` file
 depending on your dependency manager:
 
 <!--vale off -->
@@ -133,8 +137,8 @@ you can automate it using a cron job.
 Note that it’s best not to run source operations on your production environment,
 but rather on a dedicated environment where you can test changes.
 
-Make sure you have the [Platform.sh CLI](../administration/cli/_index.md) installed
-and [an API token](../administration/cli/api-tokens.md#2-create-a-platformsh-api-token)
+Make sure you have the [{{< vendor/name >}} CLI](../administration/cli/_index.md) installed
+and [an API token](../administration/cli/api-tokens.md#2-create-an-api-token)
 so you can run a cron job in your app container.
 
 1. Set your API token as a top-level environment variable:
@@ -177,21 +181,21 @@ Make sure you carefully check your [user access on this project](../administrati
 
 2. Add a build hook to your app configuration to install the CLI as part of the build process:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 hooks:
     build: |
         set -e
-        echo "Installing Platform.sh CLI"
+        echo "Installing {{< vendor/name >}} CLI"
         curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
 
-        echo "Testing Platform.sh CLI"
+        echo "Testing {{< vendor/name >}} CLI"
         platform
 ```
 
 3. Then, to configure a cron job to automatically update your dependencies once a day,
    use a configuration similar to the following:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 crons:
     update:
         # Run the code below every day at midnight.
@@ -235,7 +239,7 @@ To do so, follow these steps:
      * Sends a color-coded formatted message to Slack.
      *
      * To control what events trigger it, use the --events switch in
-     * the Platform.sh CLI.
+     * the {{< vendor/name >}} CLI.
      *
      * Replace SLACK_URL in the following script with your Slack webhook URL.
      * Get one here: https://api.slack.com/messaging/webhooks 
@@ -271,7 +275,7 @@ To do so, follow these steps:
     sendSlackMessage(activity.text, activity.log);
     ```
 
-4.  Run the following [Platform.sh CLI](../administration/cli/_index.md) command:
+4.  Run the following [{{< vendor/name >}} CLI](../administration/cli/_index.md) command:
 
     ```bash
     platform integration:add --type script --file ./my_script.js --events=environment.source-operation
@@ -294,7 +298,7 @@ This script receives the same payload as an activity script and responds to the 
 but can be hosted on your own server and in your own language.
 
 To configure the integration between your webhook and your source operation,
-run the following [Platform.sh CLI](../administration/cli/_index.md) command:
+run the following [{{< vendor/name >}} CLI](../administration/cli/_index.md) command:
 
 ```bash
 platform integration:add --type=webhook --url=URL_TO_RECEIVE_JSON --events=environment.source-operation

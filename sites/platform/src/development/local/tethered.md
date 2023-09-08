@@ -5,7 +5,7 @@ weight: 2
 ---
 
 To test changes locally, you can connect your locally running web server
-to service containers on an active Platform.sh environment.
+to service containers on an active {{< vendor/name >}} environment.
 This method requires less configuration than tools such as [DDEV](./ddev.md),
 but may not perform well enough for everyday use.
 Because it replies on a local web server, it's also less consistent across your team.
@@ -17,9 +17,9 @@ Because it replies on a local web server, it's also less consistent across your 
 {{% tethered-dev/steps-start %}}
 
 1.  Run your application locally.
-    Make sure it's set up to read configuration from Platform.sh environment variables.
+    Make sure it's set up to read configuration from {{< vendor/name >}} environment variables.
 
-    If you app relies on other Platform.sh environment configuration, such as routes or secret variables,
+    If you app relies on other {{< vendor/name >}} environment configuration, such as routes or secret variables,
     make sure to mock those variables as well.
 
     Your options for running the app depend on the language and configuration.

@@ -44,7 +44,7 @@
         "https://github.com/platformsh/platformsh-docs/issues/new?template=improvements.yml&where_on_docs_platform_sh_should_be_changed=" +
         currentUrl +
         "&title=%F0%9F%90%9B%20Issue%20on%20the%20page%20" +
-        document.title.replace(" · Platform.sh Documentation", ""),
+        document.title.replace({{ printf " · %s Documentation" .Site.Params.vendor.name }}, ""),
       handleClick(event) {
         const title = event.target.getAttribute("title");
 

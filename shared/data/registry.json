@@ -204,6 +204,7 @@
         "1.9"
       ],
       "supported": [
+        "1.15",
         "1.14",
         "1.13",
         "1.12"
@@ -683,6 +684,7 @@
         "0.12"
       ],
       "supported": [
+        "20",
         "18",
         "16"
       ]
@@ -714,11 +716,13 @@
     "runtime": false,
     "type": "opensearch",
     "versions": {
-      "deprecated": [],
-      "supported": [
-        "2",
+      "deprecated": [
         "1.2",
         "1.1"
+      ],
+      "supported": [
+        "2",
+        "1"
       ],
       "legacy": [
         "1.1"
@@ -728,7 +732,6 @@
       "deprecated": [],
       "supported": [
         "2.5",
-        "2.4",
         "1.2"
       ]
     },

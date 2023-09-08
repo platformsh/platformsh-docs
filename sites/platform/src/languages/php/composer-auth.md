@@ -12,9 +12,9 @@ follow the instructions on this page.
 ## Before you begin
 
 You need:
-- A Platform.sh project using [PHP](../php/_index.md) and Composer
+- A {{< vendor/name >}} project using [PHP](../php/_index.md) and Composer
 - Credentials to access a private third-party Composer repository
-- The [Platform.sh CLI](../../administration/cli/_index.md)
+- The [{{< vendor/name >}} CLI](../../administration/cli/_index.md)
 
 ## 1. Declare a private Composer repository
 

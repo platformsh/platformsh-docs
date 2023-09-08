@@ -39,10 +39,10 @@ There are also additional options:
 * **URLs** to access the deployed environment from the web.
 * **SSH** to access your project using SSH.
 * **Code**
-  * **CLI** for the command to get your project set up locally with the [Platform.sh CLI](../cli/_index.md).
+  * **CLI** for the command to get your project set up locally with the [{{< vendor/name >}}CLI](../cli/_index.md).
   * **Git** for the command to clone the codebase via Git.
   
-    If you're using Platform.sh as your primary remote repository, the command clones from the project.
+    If you're using {{< vendor/name >}} as your primary remote repository, the command clones from the project.
     If you have set up an [external integration](../../integrations/source/_index.md),
     the command clones directly from the integrated remote repository.
 
@@ -61,8 +61,7 @@ If this message isn't updated once your [default environment](../../environments
 follow these steps:
 
 1. Check that [you have defined routes](../../define-routes/_index.md) for your default environment.
-2. Check that your configuration files ([`.platform.app.yaml`](../../create-apps/app-reference.md), [`platform/routes.yaml`](../../define-routes/_index.md),
-   and [`.platform/services.yaml`](../../add-services/_index.md)) aren't broken.
+2. Verify that your [application](../../create-apps/app-reference.md), [services](../../add-services/_index.md), and [routes](../../define-routes/_index.md) configurations are correct.
 3. Check that your default environment is [active](../../environments/deactivate-environment.md#reactivate-an-environment).
 
 ## Environment settings
@@ -107,7 +106,7 @@ Under **HTTP access control**, you can [control access to your environment using
 
 Under **Variables**, you can define [environment variables](../../development/variables/_index.md):
 
-![Configure Platform.sh environment variables](/images/management-console/settings-variables-environment.png "0.6")
+![Configure {{< vendor/name >}} environment variables](/images/management-console/settings-variables-environment.png "0.6")
 
 ## Service information
 

@@ -5,7 +5,7 @@ description: |
 weight: -60
 banner:
     title: A note on versions
-    body: This page focuses on a Drupal 9 and SimpleSAML 1.19.x combination. Documentation for later SimpleSAML versions (2.0.x) has been delayed due to compatibility issues. If, as a Platform.sh user, you have successfully set up Drupal 9 or 10 with a SimpleSAML 2.0.x version, [we want to hear about it!](https://community.platform.sh/)
+    body: This page focuses on a Drupal 9 and SimpleSAML 1.19.x combination. Documentation for later SimpleSAML versions (2.0.x) has been delayed due to compatibility issues. If, as a {{< vendor/name >}} user, you have successfully set up Drupal 9 or 10 with a SimpleSAML 2.0.x version, [we want to hear about it!](https://community.platform.sh/)
 ---
 
 SimpleSAMLphp is a library for authenticating a PHP-based application against a SAML server, such as Shibboleth.
@@ -28,10 +28,10 @@ Once that's run, commit both `composer.json` and `composer.lock` to your reposit
 ## Include SimpleSAML cookies in the cache key
 
 The SimpleSAML client uses additional cookies besides the Drupal session cookie that need to be allowed for the cache.
-To do so, modify your `routes.yaml` file for the route that points to your Drupal site and add two additional cookies to the `cache.cookies` line.
+To do so, modify your `{{< vendor/configfile "routes" >}}` file for the route that points to your Drupal site and add two additional cookies to the `cache.cookies` line.
 It should end up looking approximately like this:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 "https://{default}/":
     type: upstream
     upstream: "app:http"
@@ -46,9 +46,9 @@ Commit this change to the Git repository.
 
 The SimpleSAML library's `www` directory needs to be publicly accessible.
 That can be done by mapping it directly to a path in the Application configuration.
-Add the following block to the `web.locations` section of `.platform.app.yaml`:
+Add the following block to the `web.locations` section of `{{< vendor/configfile "app" >}}`:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
  web:
     locations:
         '/simplesaml':
@@ -75,20 +75,20 @@ This directory holds your IdP definitions.
 Consult the SimpleSAMLphp documentation and see the examples in `vendor/simplesamlphp/simplesamlphp/metadata-templates`.
 
 Next, you need to tell SimpleSAMLphp where to find that directory using an environment variable.
-The simplest way to set that is to add the following block to your `.platform.app.yaml` file:
+The simplest way to set that is to add the following block to your `{{< vendor/configfile "app" >}}` file:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 variables:
     env:
         SIMPLESAMLPHP_CONFIG_DIR: /app/simplesamlphp/config
 ```
 
-Commit the whole `simplesamplphp` directory and `.platform.app.yaml` to Git.
+Commit the whole `simplesamplphp` directory and `{{< vendor/configfile "app" >}}` to Git.
 
 ## Configure SimpleSAML to use the database
 
 SimpleSAMLphp is able to store its data either on disk or in the Drupal database.
-Platform.sh strongly recommends using the database.
+{{< vendor/name >}} strongly recommends using the database.
 
 Open the file `simplesamlphp/config/config.php` that you created earlier.
 It contains a number of configuration properties that you can adjust as needed.
@@ -104,7 +104,7 @@ In the interest of simplicity we recommend pasting the following code snippet at
 ```php {location="simplesamlphp/config/config.php"}
 <?php
 
-// Set SimpleSAML to log using error_log(), which on Platform.sh will
+// Set SimpleSAML to log using error_log(), which on {{< vendor/name >}}will
 // be mapped to the /var/log/app.log file.
 $config['logging.handler'] = 'errorlog';
 
@@ -138,7 +138,7 @@ if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
   }
 }
 
-// Set the salt value from the Platform.sh entropy value, provided for this purpose.
+// Set the salt value from the {{< vendor/name >}} entropy value, provided for this purpose.
 if (isset($_ENV['PLATFORM_PROJECT_ENTROPY'])) {
   $config['secretsalt'] = $_ENV['PLATFORM_PROJECT_ENTROPY'];
 }

@@ -31,9 +31,16 @@ jobs:
         uses: ./.github/actions/set-up-cli
 
       - name: Set environment title
+        env:
+          # Github does not escape PR titles before swapping the token with the value. This means that in a shell context
+          # if a PR title includes a single or double quote, it will break the shell command. If you try to enclose
+          # the value with quotes before assigning it to a variable, it will also break. The only way around it is to
+          # assign it as an environmental variable for the step which will force GitHub to escape it properly for the
+          # shell, and *then* you can use it
+          PR_TITLE: ${{ github.event.pull_request.title }}
         run: |
           # @todo - this is the same as the last step in build-from-fork:jobs:build. See if we can combine the two
-          newTitle="(pr-${{ github.event.number }}) ${{ github.event.pull_request.title }}"
+          newTitle="(pr-${{ github.event.number }}) ${PR_TITLE}"
           currentTitle=$(platform environment:info -e ${{ github.event.pull_request.head.ref }} title)
           if [[ "${currentTitle}" != "${newTitle}" ]]; then
             echo "::notice::Setting environment's title"

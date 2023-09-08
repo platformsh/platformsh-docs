@@ -16,7 +16,7 @@ It's largely based on the [Next.js for Drupal project](https://next-drupal.org/)
 
 The example commands are somewhat simplified, but you can find them all in the [GitHub repository](https://github.com/platformsh-templates/nextjs-drupal).
 
-In this case, you have [two apps](../multi-app/_index.md) and so two [`.platform.app.yaml` configuration files](../_index.md).
+In this case, you have [two apps](../multi-app/_index.md) and so two [`{{< vendor/configfile "app" >}}` configuration files](../_index.md).
 Each file is in the folder for that app: `api` for Drupal and `client` for Next.js.
 You run one hook for Drupal and two hooks for Next.js.
 
@@ -35,7 +35,7 @@ Create your `build` hook to install them all:
 
 1. Create a `build` hook in your [app configuration](../app-reference.md):
 
-   ```yaml {location="client/.platform.app.yaml"}
+   ```yaml {configfile="app" dir="client" }
    hooks:
        build: |
            set -e
@@ -53,7 +53,7 @@ Create your `build` hook to install them all:
      If other hooks fail, the deploy still happens.
 2. Install your top-level dependencies inside this `build` hook:
 
-   ```yaml {location="client/.platform.app.yaml"}
+   ```yaml {configfile="app" dir="client"}
    hooks:
        build: |
            set -e
@@ -69,7 +69,7 @@ Create your `build` hook to install them all:
    In this case, the app root is `client`.
    To run commands from a different directory, you need to change directories (relative to the app root):
 
-   ```yaml {location="client/.platform.app.yaml"}
+   ```yaml {configfile="app" dir="client"}
    hooks:
        build: |
            set -e
@@ -80,7 +80,7 @@ Create your `build` hook to install them all:
 
 5. Install the dependencies for the testing script:
 
-   ```yaml {location="client/.platform.app.yaml"}
+   ```yaml {configfile="app" dir="client"}
    hooks:
        build: |
            set -e
@@ -98,7 +98,7 @@ The template uses [Drush](https://www.drush.org/latest/) to handle routine tasks
 For its configuration, Drush needs the URL of the site.
 That means the configuration can't be done in the `build` hook.
 During the `build` hook, the site isn't yet deployed and so there is no URL to use in the configuration.
-(The [`PLATFORM_ROUTES` variable](../../development/variables/use-variables.md#use-platformsh-provided-variables) isn't available.)
+(The [`PLATFORM_ROUTES` variable](../../development/variables/use-variables.md#use-provided-variables) isn't available.)
 
 Add the configuration during the `deploy` hook.
 This way you can access the URL before the site accepts requests (unlike in the `post_deploy` hook).
@@ -119,7 +119,7 @@ All of this configuration and preparation can be handled in a bash script.
    Unlike in the `build` hook, in the `deploy` hook the system is generally read-only.
    So create a mount where you can write the Drush configuration:
 
-   ```yaml {location="api/.platform.app.yaml"}
+   ```yaml {configfile="app" dir="api"}
    mounts:
         /.drush:
             source: local
@@ -128,7 +128,7 @@ All of this configuration and preparation can be handled in a bash script.
 
 4. Add a `deploy` hook that runs the preparation script:
 
-   ```yaml {location="api/.platform.app.yaml"}
+   ```yaml {configfile="app" dir="api"}
    hooks:
        deploy: !include
            type: string
@@ -156,7 +156,7 @@ So you don't have to rebuild Drupal but you still get fresh content.
 1. Set a relationship for Next.js with Drupal.
    This allows the Next.js app to make requests and receive data from the Drupal app.
 
-   ```yaml {location="client/.platform.app.yaml"}
+   ```yaml {configfile="app" dir="client"}
    relationships:
        api: 'api:http'
    ```
@@ -165,7 +165,7 @@ So you don't have to rebuild Drupal but you still get fresh content.
    Like the [`deploy` hook](#configure-drush-and-drupal), the `post_deploy` hook has a read-only file system.
    Create mounts for your Next.js files:
 
-   ```yaml {location="client/.platform.app.yaml"}
+   ```yaml {configfile="app" dir="client"}
    mounts:
        /.cache:
            source: local
@@ -184,7 +184,7 @@ So you don't have to rebuild Drupal but you still get fresh content.
 
 3. Add a `post_deploy` hook that first tests the connection between the apps:
 
-   ```yaml {location="client/.platform.app.yaml"}
+   ```yaml {configfile="app" dir="client"}
    hooks:
        post_deploy: |
            . deploy/platformsh.environment
@@ -195,7 +195,7 @@ So you don't have to rebuild Drupal but you still get fresh content.
 
 4. Then build the Next.js site:
 
-   ```yaml {location="client/.platform.app.yaml"}
+   ```yaml {configfile="app" dir="client"}
    hooks:
        post_deploy: |
            . deploy/platformsh.environment
@@ -215,7 +215,7 @@ The following shows only the parts necessary for the hooks.
 
 ### Drupal
 
-```yaml {location="api/.platform.app.yaml"}
+```yaml {configfile="app" dir="api"}
 # The name of this app. Must be unique within the project.
 name: 'drupal'
 
@@ -256,7 +256,7 @@ mounts:
 
 ### Next.js
 
-```yaml {location="client/.platform.app.yaml"}
+```yaml {configfile="app" dir="client"}
 # The name of this app, which must be unique within the project.
 name: 'nextjs'
 

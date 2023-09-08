@@ -3,7 +3,7 @@ title: DDEV
 weight: -110
 layout: single
 description: |
-    Set up an environment with Platform.sh's recommended local development tool, DDEV.
+    Set up an environment with {{< vendor/name >}}'s recommended local development tool, DDEV.
 sectionBefore: Integrated environments
 ---
 
@@ -51,7 +51,7 @@ sectionBefore: Integrated environments
 
 6.  Update the DDEV PHP version.
 
-    Python support in DDEV and the Platform.sh integration is in active development.
+    Python support in DDEV and the {{< vendor/name >}} integration is in active development.
     At this time, the only officially supported runtime is PHP.
     With a few changes, the generated configuration can be modified to run local Django environments.
 
@@ -68,7 +68,7 @@ sectionBefore: Integrated environments
 7.  Update the DDEV `post-start` hooks.
 
     The generated configuration contains a `hooks.post-start` attribute that contains Django's `hooks.build` and `hooks.deploy`.
-    Add another item to the end of that array with the start command defined in `.platform.app.yaml`:
+    Add another item to the end of that array with the start command defined in `{{< vendor/configfile "app" >}}`:
 
     {{< codetabs >}}
 +++
@@ -78,7 +78,7 @@ title=Pip
 hooks:
     post-start:
         ...
-        # Platform.sh start command
+        # {{< vendor/name >}} start command
         - exec: python manage.py runserver 0.0.0.0:8000
 ```
 <--->
@@ -89,7 +89,7 @@ title=Pipenv
 hooks:
     post-start:
         ...
-        # Platform.sh start command
+        # {{< vendor/name >}} start command
         - exec: pipenv run python manage.py runserver 0.0.0.0:8000
 ```
 <--->
@@ -100,7 +100,7 @@ title=Poetry
 hooks:
     post-start:
         ...
-        # Platform.sh start command
+        # {{< vendor/name >}} start command
         - exec: poetry run python manage.py runserver 0.0.0.0:8000
 ```
     {{< /codetabs >}}
@@ -177,7 +177,7 @@ hooks:
 13. Pull data from the environment.
 
     Exit the currently running process (`CTRL+C`)
-    and then run the following command to retrieve data from the current Platform.sh environment:
+    and then run the following command to retrieve data from the current {{< vendor/name >}} environment:
 
     ```bash
     ddev pull platform
@@ -189,7 +189,7 @@ hooks:
     ddev restart
     ```
 
-    You now have a local development environment that's in sync with the `new-feature` environment on Platform.sh.
+    You now have a local development environment that's in sync with the `new-feature` environment on {{< vendor/name >}}.
 
 15. When you finish your work, shut down DDEV.
 

@@ -4,12 +4,12 @@ sidebarTitle: Custom Redis
 weight: 7
 ---
 
-[Redis](../../add-services/redis.md) is a popular structured key-value service, supported by Platform.sh.
+[Redis](../../add-services/redis.md) is a popular structured key-value service, supported by {{< vendor/name >}}.
 It's frequently used for caching.
 
 ## Install PhpRedis
 
-The [PhpRedis](https://github.com/phpredis/phpredis) extension is available on Platform.sh's PHP container images.
+The [PhpRedis](https://github.com/phpredis/phpredis) extension is available on {{< vendor/name >}}'s PHP container images.
 The extension has been known to break its API between versions when removing deprecated functionality.
 The version available on each application image is the latest available at the time that PHP version was built,
 which if your app is sensitive to PhpRedis versions may not be ideal.
@@ -25,7 +25,7 @@ To ease the installation of a customer version of PhpRedis, use a [PhpRedis inst
 Invoke this script from your build hook, specifying a version.
 Any tagged version of the library is acceptable:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 hooks:
     build: |
         set -e
@@ -49,7 +49,7 @@ To ease the installation of a customer version of Relay, use the [Relay install 
 Invoke this script from your build hook, specifying a version.
 Any tagged version of the library is acceptable:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 hooks:
     build: |
         set -e

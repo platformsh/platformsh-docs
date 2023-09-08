@@ -109,7 +109,7 @@ Run the following command:
 {{ end }}
 
 {{ $CLIc := print `
-- <code>PLATFORM_SH_PROJECT_ID</code> is the ID of your Platform.sh project.
+- <code>PLATFORM_SH_PROJECT_ID</code> is the ID of your ` .Site.Params.vendor.name ` project.
 - <code>OWNER/REPOSITORY</code> is the name of the repository in ` $source `.
 ` $accessFlagsExplanation `
 ` $baseUrlExpanation `
@@ -185,7 +185,7 @@ title=In the Console
 | CLI flag | Default | Description |
 | -------- | ------- | ----------- |
 | <code>fetch-branches</code> | <code>true</code> | Whether to track all branches and create inactive environments from them. |
-| <code>prune-branches</code> | <code>true</code> | Whether to delete branches from Platform.sh that don't exist in the ` $source ` repository. Automatically disabled when fetching branches is disabled. |
+| <code>prune-branches</code> | <code>true</code> | Whether to delete branches from ` .Site.Params.vendor.name ` that don't exist in the ` $source ` repository. Automatically disabled when fetching branches is disabled. |
 | <code>build-` $pull `-requests</code> | <code>true</code> | Whether to track all ` $pull ` requests and create active environments from them, which builds the ` $pull ` request. | ` $draftOption `
 ` $cloneOption $extraOption }}
 {{ $OptionsTable | markdownify }}

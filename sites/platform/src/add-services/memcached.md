@@ -10,7 +10,7 @@ sidebarTitle: "Memcached"
 
 See the [Memcached documentation](https://memcached.org) for more information.
 
-Both Memcached and Redis can be used for application caching. As a general rule, Memcached is simpler and thus more widely supported while Redis is more robust. Platform.sh recommends using Redis if possible but Memcached is fully supported if an application favors that cache service.
+Both Memcached and Redis can be used for application caching. As a general rule, Memcached is simpler and thus more widely supported while Redis is more robust. {{< vendor/name >}} recommends using Redis if possible but Memcached is fully supported if an application favors that cache service.
 
 {{% frameworks %}}
 
@@ -30,7 +30,19 @@ Both Memcached and Redis can be used for application caching. As a general rule,
 
 {{% service-values-change %}}
 
-{{< relationship "memcached" >}}
+```yaml
+{
+    "service": "memcached16",
+    "ip": "169.254.228.111",
+    "hostname": "3sdm72jgaxge2b6aunxdlzxyea.memcached16.service._.eu-3.platformsh.site",
+    "cluster": "rjify4yjcwxaa-master-7rqtwti",
+    "host": "memcached.internal",
+    "rel": "memcached",
+    "scheme": "memcached",
+    "type": "memcached:1.6",
+    "port": 11211
+}
+```
 
 ## Usage example
 

@@ -110,7 +110,7 @@ title=Using SSH directly
    If you're on a {{% names/dedicated-gen-2 %}} cluster, run
 
    ``` bash
-   /var/log/platform/{{% variable "APP_NAME" %}}/
+   cd /var/log/platform/{{% variable "APP_NAME" %}}/
    ```
 
 3. Read the desired log, such as by running `tail access.log`.

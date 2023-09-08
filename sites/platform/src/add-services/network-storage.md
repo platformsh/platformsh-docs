@@ -3,7 +3,7 @@ title: "Network Storage"
 weight: -30
 ---
 
-Platform.sh supports internal "storage as a service" to provide a file store that can be shared between different application containers.
+{{< vendor/name >}} supports internal "storage as a service" to provide a file store that can be shared between different application containers.
 
 The network storage service enables a new kind of [mount](../create-apps/app-reference.md#mounts)
 that refers to a shared service rather than to a local directory.
@@ -27,7 +27,7 @@ If your app does this regularly, a local mount is more effective.
 |------|-------------------------------|------------------------------ |
 |  {{< image-versions image="network-storage" status="supported" environment="grid" >}} | {{< image-versions image="network-storage" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="network-storage" status="supported" environment="dedicated-gen-2" >}} |
 
-This service is the Platform.sh network storage implementation, not to a version of a third-party application.
+This service is the {{< vendor/name >}} network storage implementation, not to a version of a third-party application.
 
 {{< note theme="warning">}}
 
@@ -50,7 +50,7 @@ Any change to the service version results in existing data becoming inaccessible
 ## Multi-application usage
 
 If your project contains [multiple apps](../create-apps/multi-app/_index.md), they can all use the same network mounts.
-If the `source_path` is the same in both `.platform.app.yaml` files,
+If the `source_path` is the same in both `{{< vendor/configfile "app" >}}` files,
 the files are shared between the two applications even if the mount location is different.
 
 It's also possible to have one app mount a `source_path` that's a subdirectory of another application's mount.
@@ -97,7 +97,7 @@ while `service` mounts refer to the same file system.
 
 For example, you can define a network storage service:
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 files:
     type: network-storage:2.0
     disk: 2048
@@ -106,7 +106,7 @@ files:
 You can then use this service to  define a `network_dir` network mount and a `local_dir` local mount,
 to be used by a web instance and a `queue` worker instance:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 mounts:
     # Define a network storage mount that's available to both instances together
     'network_dir':
@@ -143,15 +143,15 @@ Both the web instance and the `queue` worker have two mount points:
   and they *each* take 1024 MB of space.
 * The `network_dir` mount on each points to the same network storage space on the `files` service.
   They can both read and write to it simultaneously.
-  The amount of space it has available depends on the `disk` key specified in `services.yaml`.
+  The amount of space it has available depends on the `disk` key specified in `{{< vendor/configfile "services" >}}`.
 
 ## How do I give my workers access to my main application's files?
 
 The most common use case for `network-storage` is to allow a CMS-driven site to use a worker that has access to the same file mounts as the web-serving application.
 For that case, all that's needed is to set the necessary file mounts as `service` mounts.
 
-For example, the following `.platform.app.yaml` file (fragment) keeps Drupal files directories shared between web and worker instances while keeping the Drush backup directory web-only (as it has no need to be shared).
-(This assumes a service named `files` has already been defined in `services.yaml`.)
+For example, the following `{{< vendor/configfile "app" >}}` file (fragment) keeps Drupal files directories shared between web and worker instances while keeping the Drush backup directory web-only (as it has no need to be shared).
+(This assumes a service named `files` has already been defined in `{{< vendor/configfile "services" >}}`.)
 
 
 ```yaml
@@ -287,5 +287,5 @@ The following approximate steps do so with a minimum of service interruption.
    If you don't, the files remain on disk but inaccessible, just eating up disk space needlessly.
 
    Once that's done you can remove the `old-uploads` mount and push again to finish the process
-   You are also free to reduce the `disk` size in the `.platform.app.yaml` file if desired,
+   You are also free to reduce the `disk` size in the `{{< vendor/configfile "app" >}}` file if desired,
    but make sure to leave enough for any remaining local mounts.

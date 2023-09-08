@@ -8,7 +8,7 @@ description: |
 Cron jobs allow you to run scheduled tasks at specified times or intervals.
 To set up a cron job, add a configuration similar to the following:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 crons:
     snapshot:
         spec: 0 5 * * *
@@ -19,7 +19,7 @@ crons:
 To run a command in a cron hook for specific environment types,
 use the `PLATFORM_ENVIRONMENT_TYPE` environment variable:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 crons:
     snapshot:
         spec: 0 5 * * *
@@ -46,7 +46,7 @@ symfony var:create -y --level=project --name=env:MAILTO --value=sysadmin@example
 To ensure better reliability, `croncape` sends the emails using:
 
 - `project-id@cron.noreply.platformsh.site` as the sender address (`project-id+branch@cron.noreply.platformsh.site` for non-main environments)
-- the provided [Platform.sh SMTP service](./environment-variables#emails), even if you define your own `MAILER_*` environment variables
+- the provided [{{< vendor/name >}}SMTP service](./environment-variables#emails), even if you define your own `MAILER_*` environment variables
 
 To use a custom SMTP and/or custom sender address, follow these steps:
 

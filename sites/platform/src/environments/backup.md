@@ -18,14 +18,14 @@ Note that you can only create backups and restore active environments.
 To work with an [inactive environment](../other/glossary.md#inactive-environment),
 first activate it.
 
-## How backup and restore works on Platform.sh
+## How backup and restore works
 
 1. As an [admin user](../administration/users.md), you can do a backup of your environment. 
    This backup includes the complete data and code of the environment.
    All persistent data from all running [services](../add-services/_index.md)
    and any files stored on [mounts](../create-apps/app-reference.md#mounts) are included.
-   The backup is stored internally on Platform.sh.
-   That is, the backup can be applied to environments on Platform.sh, but it can't be downloaded.
+   The backup is stored internally on {{< vendor/name >}}.
+   That is, the backup can be applied to environments on {{< vendor/name >}}, but it can't be downloaded.
    If you need to download backups, instead [export your mount and service data](../tutorials/exporting.md)).
 
 2. You restore your environment using the backup.
@@ -34,7 +34,7 @@ first activate it.
 
    {{< note theme="warning" title="Warning" >}}
 
-   But Platform.sh doesn’t modify your Git repository. So by default, any further changes you make use the latest code in your repository.
+   But {{< vendor/name >}} doesn’t modify your Git repository. So by default, any further changes you make use the latest code in your repository.
 
    {{< /note >}}
 
@@ -173,7 +173,7 @@ title=In the Console
 
 You can also automate the process of creating manual backups through [cron jobs](../create-apps/app-reference.md#crons).
 The cron job uses the CLI command to back up the environment.
-It requires you to [set up the CLI on the environment with an API token](../administration/cli/api-tokens.md#authenticate-in-a-platformsh-environment).
+It requires you to [set up the CLI on the environment with an API token](../administration/cli/api-tokens.md#authenticate-in-an-environment).
 
 Although this process is automated,
 backups created in this way count as manual for the [backup schedule](#backup-schedule).
@@ -182,5 +182,6 @@ They don't affect the automated backups taken as part of the schedule.
 ## Physical storage location
 
 Backups are stored as binary large objects separate from your environments.
-This storage is replicated over multiple data centers in different locations.
+This storage is replicated over multiple data centers in different locations
+[within the region your project is hosted in](https://platform.sh/trust-center/security/data-security/).
 This means that in the rare event a data center becomes unavailable, your backups are still available.

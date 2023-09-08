@@ -1,6 +1,6 @@
 ---
 title: "Go"
-description: Platform.sh supports building and deploying applications written in Go using Go modules. They're compiled during the Build hook phase, and support both committed dependencies and download-on-demand.
+description: "{{< vendor/name >}} supports building and deploying applications written in Go using Go modules. They're compiled during the Build hook phase, and support both committed dependencies and download-on-demand."
 ---
 
 {{% description %}}
@@ -21,13 +21,13 @@ description: Platform.sh supports building and deploying applications written in
 
 ## Go modules
 
-The recommended way to handle Go dependencies on Platform.sh is using Go module support in Go 1.11 and later. That allows the build process to use `go build` directly without any extra steps, and you can specify an output executable file of your choice. (See the examples below.)
+The recommended way to handle Go dependencies on {{< vendor/name >}} is using Go module support in Go 1.11 and later. That allows the build process to use `go build` directly without any extra steps, and you can specify an output executable file of your choice. (See the examples below.)
 
 ## Building and running the application
 
 Assuming your `go.mod` and `go.sum` files are present in your repository, your application can be built with the command `go build`, to produce a working executable. You can then start it from the `web.commands.start` directive. Note that the start command _must_ run in the foreground. If the program terminates for any reason it is automatically restarted.
 
-The following basic `.platform.app.yaml` file is sufficient to run most Go applications.
+The following basic `{{< vendor/configfile "app" >}}` file is sufficient to run most Go applications.
 
 ```yaml
 name: app
@@ -139,7 +139,7 @@ func main() {
 	p, err := psh.NewPlatformInfo()
 
 	if err != nil {
-		panic("Not in a Platform.sh Environment.")
+		panic("Not in a {{< vendor/name >}} Environment.")
 	}
 
 	http.HandleFunc("/bar", func(w http.ResponseWriter, r *http.Request) {

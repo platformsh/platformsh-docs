@@ -1,14 +1,14 @@
 ---
 title: "Manage Node.js versions"
 weight: 1
-description: See how to manage different Node.js versions in your Platform.sh containers."
+description: See how to manage different Node.js versions in your {{< vendor/name >}} containers."
 ---
 
-Each Platform.sh container image includes a specific language in a specific version.
+Each {{< vendor/name >}}container image includes a specific language in a specific version.
 A set of dependencies is also provided based on that language version.
 This ensures that your application container is as small and efficient as possible.
 
-Therefore, by default, when you use a Platform.sh container image,
+Therefore, by default, when you use a {{< vendor/name >}} container image,
 you use the Node.js version that's included in that image, if any.
 
 If you want to use a different Node.js version, use a version manager to install it yourself.
@@ -72,7 +72,7 @@ This property accepts either an exact version or a range:
 
 2. Add it as a dependency:
 
-   ```yaml {location=".platform.app.yaml"}
+   ```yaml {configFile="app"}
    dependencies:
        nodejs:
            n: "*"
@@ -81,7 +81,7 @@ This property accepts either an exact version or a range:
    Adding it as a dependency ensures it's cached for future builds.
 3. Set the location of the `n` files using the `N_PREFIX` environment variable:
 
-   ```yaml {location=".platform.app.yaml"}
+   ```yaml {configFile="app"}
    variables:
        env:
            N_PREFIX: /app/.global
@@ -89,7 +89,7 @@ This property accepts either an exact version or a range:
 
 4. Install the specified version of Node.js in a [`build` hook](../../create-apps/hooks/hooks-comparison.md#build-hook):
 
-   ```yaml {location=".platform.app.yaml"}
+   ```yaml {configFile="app"}
    hooks:
        build: |
            # Exit the hook on any failure
@@ -107,7 +107,7 @@ You can verify this by running `node -v`.
 
 Your final app configuration should look something like this:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 name: app
 type: 'python:3.9'
 
@@ -146,7 +146,7 @@ To use `nvm`, follow these steps:
 1. Define which `nvm` version to use using an [environment variable](../../development/variables/_index.md).
    Add it to your [app configuration](../../create-apps/_index.md):
 
-   ```yaml {location=".platform.app.yaml"}
+   ```yaml {configFile="app"}
    variables:
        env:
            # Update for your desired NVM version.
@@ -156,7 +156,7 @@ To use `nvm`, follow these steps:
 2. Define your desired Node.js version using an environment variable.
    For your base version, set it in your app configuration:
 
-   ```yaml {location=".platform.app.yaml"}
+   ```yaml {configFile="app"}
    variables:
        env:
            # Update these for your desired NVM and Node versions.
@@ -168,7 +168,7 @@ To use `nvm`, follow these steps:
 
 3. Add a `.nvm` directory to your cache in your [build hook](../../create-apps/hooks/_index.md):
 
-   ```yaml {location=".platform.app.yaml"}
+   ```yaml {configFile="app"}
    hooks:
        build: |
            set -e
@@ -196,7 +196,7 @@ To use `nvm`, follow these steps:
 
 4. Use the cache directory and install based on the variables if not present:
 
-   ```yaml {location=".platform.app.yaml"}
+   ```yaml {configFile="app"}
    hooks:
        build: |
            ...

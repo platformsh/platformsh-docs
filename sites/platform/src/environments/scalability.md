@@ -34,7 +34,7 @@ If these spikes are causing application errors,
 your site is automatically scaled up to the next largest size to handle the traffic.
 
 The process is initiated and run automatically and a support ticket is opened.
-The upscaling process is then monitored by the Platform.sh team.
+The upscaling process is then monitored by the {{< vendor/name >}} team.
 The team determines whether the upscaling is working as intended and is necessary
 or can be avoided by, for example, blocking a malicious bot.
 
@@ -53,10 +53,10 @@ There are two classes of measurement that trigger an autoscaling event:
 {{< premium-features/tiered "Enterprise and Elite" >}}
 
 If your plan includes managed scaling,
-Platform.sh proactively monitors your apps to make sure they don't have errors from overuse.
+{{< vendor/name >}} proactively monitors your apps to make sure they don't have errors from overuse.
 If the monitoring determines a load is causing issues for your site,
 a support ticket is opened.
-The Platform.sh team determines whether upscaling is necessary
+The {{< vendor/name >}} team determines whether upscaling is necessary
 or can be avoided by, for example, blocking a malicious bot.
 
 If upscaling is necessary, it's handled for you and you're kept up to date in the support ticket.

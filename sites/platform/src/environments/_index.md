@@ -1,12 +1,12 @@
 ---
-title: "Manage Platform.sh environments"
+title: "Manage {{< vendor/name >}} environments"
 weight: -75
 layout: single
 sidebarTitle: Manage environments
-description: Learn what environments on Platform.sh are and how to take advantage of them.
+description: Learn what environments on {{< vendor/name >}} are and how to take advantage of them.
 ---
 
-A Platform.sh environment contains one instance of an app (or [group of apps](../create-apps/multi-app/_index.md))
+A {{< vendor/name >}} environment contains one instance of an app (or [group of apps](../create-apps/multi-app/_index.md))
 with all the services needed for it to run.
 
 Each project can include multiple environments,
@@ -33,7 +33,7 @@ When you branch an environment, you might want to create exact replicas of it.
 In this case, each new environment inherits all of the data and services from its parent environment.
 This includes databases, network storage, queues, and routing configurations.
 
-You can create Platform.sh environments on demand.
+You can create {{< vendor/name >}} environments on demand.
 Each environment is tied to a Git branch.
 If you use a source integration,
 you can even have environments created automatically for your pull requests and branches.
@@ -90,7 +90,7 @@ You can [change an environment's status](./deactivate-environment.md) at any tim
 
 ![Environment hierarchy](/images/management-console/environments.png "0.5")
 
-In Platform.sh, your environments are organized in a hierarchy featuring parent and child environments.
+In {{< vendor/name >}}, your environments are organized in a hierarchy featuring parent and child environments.
 
 When you [branch](../other/glossary.md#branch) an environment,
 the parent of the new environment is the environment it was created from.
@@ -189,9 +189,11 @@ Staging
 
 ## Paused environments
 
+{{< partial "progressive-rollout/body.md" >}}
+
 Development environments are often used for a limited time and then abandoned.
 To prevent unnecessary consumption of resources,
-Platform.sh automatically pauses development environments that haven't been redeployed in 14 days.
+{{< vendor/name >}} automatically pauses development environments that haven't been redeployed in 14 days.
 
 {{< note >}}
 

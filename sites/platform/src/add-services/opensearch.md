@@ -24,11 +24,46 @@ To update the versions in this table, use docs/data/registry.json
 On Grid and {{% names/dedicated-gen-3 %}}, from version 2, you only specify the major version.
 The latest compatible minor version and patches are applied automatically.
 
+On Grid, version 1 represents a rolling release - the latest minor version available from the upstream.
+Today, that version is `1.3.x`.
+
+## Deprecated versions
+
+The following versions are still available in your projects,
+but they're at their end of life and are no longer receiving security updates from upstream,
+or are no longer the recommended way to configure the service on {{< vendor/name >}}.
+
+| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
+|------|-------------------------------|------------------------------ |
+|  {{< image-versions image="opensearch" status="deprecated" environment="grid" >}} | {{< image-versions image="opensearch" status="deprecated" environment="dedicated-gen-3" >}} | {{< image-versions image="opensearch" status="deprecated" environment="dedicated-gen-2" >}} |
+
+To ensure your project remains stable in the future,
+switch to [a supported version](#supported-versions).
+
 {{% relationship-ref-intro %}}
 
 {{% service-values-change %}}
 
-{{< relationship "opensearch" >}}
+```yaml
+{
+    "username": null,
+    "scheme": "http",
+    "service": "opensearch12",
+    "fragment": null,
+    "ip": "169.254.99.100",
+    "hostname": "2e36wpnescmc5ffcddczsnhnai.opensearch12.service._.eu-3.platformsh.site",
+    "port": 9200,
+    "cluster": "rjify4yjcwxaa-master-7rqtwti",
+    "host": "opensearch.internal",
+    "rel": "opensearch",
+    "path": null,
+    "query": [],
+    "password": "ChangeMe",
+    "type": "opensearch:1.2",
+    "public": false,
+    "host_mapped": false
+}
+```
 
 ## Usage example
 
@@ -48,9 +83,9 @@ By default, OpenSearch has no authentication.
 No username or password is required to connect to it.
 
 You may optionally enable HTTP Basic authentication.
-To do so, include the following in your `services.yaml` configuration:
+To do so, include the following in your `{{< vendor/configfile "services" >}}` configuration:
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 search:
     type: opensearch:2
     disk: 2048
@@ -66,11 +101,11 @@ in the `username` and `password` properties.
 
 This functionality is generally not required if OpenSearch isn't exposed on its own public HTTP route.
 However, certain applications may require it, or it allows you to safely expose OpenSearch directly to the web.
-To do so, add a route to `routes.yaml` that has `search:opensearch` as its upstream
-(where `search` is whatever you named the service in `services.yaml`).
+To do so, add a route to `{{< vendor/configfile "routes" >}}` that has `search:opensearch` as its upstream
+(where `search` is whatever you named the service in `{{< vendor/configfile "services" >}}`).
 For example:
 
-```yaml {location=".platform/routes.yaml"}
+```yaml {configFile="routes"}
 "https://os.{default}":
     type: upstream
     upstream: search:opensearch
@@ -79,9 +114,9 @@ For example:
 ## Plugins
 
 OpenSearch offers a number of plugins.
-To enable them, list them under the `configuration.plugins` key in your `services.yaml` file, like so:
+To enable them, list them under the `configuration.plugins` key in your `{{< vendor/configfile "services" >}}` file, like so:
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 search:
     type: "opensearch:2"
     disk: 1024
@@ -117,7 +152,7 @@ This is the complete list of plugins that can be enabled:
 
 ### Plugin removal
 
-Removing plugins previously added in your `services.yaml` file doesn't automatically uninstall them from your OpenSearch instances.
+Removing plugins previously added in your `{{< vendor/configfile "services" >}}` file doesn't automatically uninstall them from your OpenSearch instances.
 This is deliberate, as removing a plugin may result in data loss or corruption of existing data that relied on that plugin.
 Removing a plugin usually requires reindexing.
 
@@ -135,10 +170,10 @@ There are two ways to do so.
 
 ### Destructive
 
-In your `services.yaml` file, change the version *and* name of your OpenSearch service.
-Then update the name in the `.platform.app.yaml` relationships block.
+In your `{{< vendor/configfile "services" >}}` file, change the version *and* name of your OpenSearch service.
+Then update the name in the `{{< vendor/configfile "app" >}}` relationships block.
 
-When you push that to Platform.sh, the old service is deleted and a new one with the new name is created with no data.
+When you push that to {{< vendor/name >}}, the old service is deleted and a new one with the new name is created with no data.
 You can then have your application reindex data as appropriate.
 
 This approach has the downsides of temporarily having an empty OpenSearch instance,
@@ -148,7 +183,7 @@ Depending on the size of your data that could take a while.
 ### Transitional
 
 With a transitional approach, you temporarily have two OpenSearch services.
-Add a second OpenSearch service with the new version a new name and give it a new relationship in `.platform.app.yaml`.
+Add a second OpenSearch service with the new version a new name and give it a new relationship in `{{< vendor/configfile "app" >}}`.
 You can optionally run in that configuration for a while to allow your application to populate indexes in the new service as well.
 
 Once you're ready to switch over, remove the old OpenSearch service and relationship.

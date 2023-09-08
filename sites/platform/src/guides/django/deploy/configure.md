@@ -1,9 +1,9 @@
 ---
-title: "Configure Django for Platform.sh"
+title: "Configure Django for {{< vendor/name >}}"
 sidebarTitle: "Configure"
 weight: -100
 description: |
-    Review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for Django.
+    Review the basics of what makes up a {{< vendor/name >}} project, including its three principle configuration files and how to define them for Django.
 ---
 
 {{% guides/config-desc name="Django" %}}
@@ -47,7 +47,7 @@ It uses the Gunicorn WSGI server and Unix sockets.
 title=Pip
 +++
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 web:
     upstream:
         socket_family: unix
@@ -60,7 +60,7 @@ web:
 title=Pipenv
 +++
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 web:
     upstream:
         socket_family: unix
@@ -73,7 +73,7 @@ web:
 title=Poetry
 +++
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 web:
     upstream:
         socket_family: unix
@@ -95,7 +95,7 @@ For examples of how to do so, see more about [Python web servers](../../../langu
 
 Below is an example configuration to make [PostgreSQL](../../../add-services/postgresql.md) available for your Django application.
 
-{{< readFile file="static/files/fetch/servicesyaml/django4" highlight="yaml" location=".platform/services.yaml">}}
+{{< readFile file="static/files/fetch/servicesyaml/django4" highlight="yaml" configFile="services">}}
 
 {{% guides/config-routes template="django4" name="Django" %}}
 

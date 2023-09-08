@@ -11,4 +11,4 @@ Your app is built and served at the returned URL, but it doesn't yet have all th
 
 You could [define more complicated routes](/define-routes.html),
 but the default is enough for basic apps.
-Now branch your environment to see how data works in Platform.sh and then add services.
+Now branch your environment to see how data works in {{ .Site.Params.vendor.name }}  and then add services.

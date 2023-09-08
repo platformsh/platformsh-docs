@@ -4,7 +4,7 @@ sidebarTitle: Change regions
 description: See how to change the region your project is in and why you might want to do so.
 ---
 
-To host your project data, Platform.sh offers several [regions](../development/regions.md).
+To host your project data, {{< vendor/name >}} offers several [regions](../development/regions.md).
 You specify a region when you create a project.
 
 You can also change the project's region after it's created.
@@ -14,7 +14,7 @@ You can also change the project's region after it's created.
 - Different data centers are located in different geographic areas.
   You may want your site close to your users for improved performance.
 - You may want to move to a region with a lower [environmental impact](../development/regions.md#environmental-impact).
-- Some regions are running older versions of the Platform.sh orchestration system that offers fewer features.
+- Some regions are running older versions of the {{< vendor/name >}} orchestration system that offers fewer features.
   If you are on one of those legacy regions, you can migrate to one of the newer regions.
 
 ## 1. Plan the migration
@@ -140,10 +140,10 @@ Once the new project is running and the DNS has fully propagated, delete the old
 
 ## Alternative process
 
-Although not directly supported by Platform.sh,
+Although not directly supported by {{< vendor/name >}},
 an agency named [Contextual Code](https://www.contextualcode.com/) has built a bash migration script.
 This script automates most common configurations.
 If your site is a typical single app with a single SQL database,
 the script should take care of most of the process for you.
 
-See more at the [Platform.sh Project Migration repository](https://gitlab.com/contextualcode/platformsh-migration).
+See more at the [{{< vendor/name >}} Project Migration repository](https://gitlab.com/contextualcode/platformsh-migration).

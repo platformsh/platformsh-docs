@@ -2,7 +2,7 @@
 title: Configure apps
 weight: -210
 description: |
-  Control your apps and how they're built and deployed on Platform.sh with YAML configuration.
+  Control your apps and how they're built and deployed on {{< vendor/name >}} with YAML configuration.
 layout: single
 keywords:
   - ".platform.app.yaml"
@@ -29,7 +29,7 @@ To create a very basic app, you need a few things:
 
 The following example shows such a basic setup for Node.js:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 # The app's name, which must be unique within the project.
 {{< code-link destination="/create-apps/app-reference.html#top-level-properties" text="name" >}}: 'app'
 
@@ -62,7 +62,7 @@ See the various ways to set up a [multi-app project](./multi-app/_index.md).
 
 ## Connect to services
 
-If you want to use one of the [databases or other services Platform.sh provides](../add-services/_index.md),
+If you want to use one of the [databases or other services {{< vendor/name >}} provides](../add-services/_index.md),
 set it up by following these steps:
 
 1. Configure the service based on the documentation for that service.
@@ -95,11 +95,11 @@ doing so when the response includes any user-specific information, including a s
 opens up an attack vector over SSL/TLS connections.
 For that reason, you generally shouldn't compress generated responses.
 
-Requests for static files that are served directly by Platform.sh are compressed automatically
+Requests for static files that are served directly by {{< vendor/name >}} are compressed automatically
 using either gzip or Brotli compression if:
 
 * The request headers for the file support gzip or Brotli compression.
-* The file is served directly from disk by Platform.sh and not passed through your application.
+* The file is served directly from disk by {{< vendor/name >}} and not passed through your application.
 * The file would be served with a cache expiration time in the future.
 * The file type is one of: HTML, JavaScript, JSON, PDF, PostScript, SVG, CSS, CSV, plain text, or XML.
 
@@ -113,7 +113,7 @@ This approach supports any file type and offers some CPU optimization, especiall
 
 The following example shows a setup for a PHP app with comments to explain the settings.
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 # The app's name, which must be unique within the project.
 {{< code-link destination="/create-apps/app-reference.html#top-level-properties" text="name" >}}: 'app'
 

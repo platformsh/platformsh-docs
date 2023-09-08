@@ -3,7 +3,7 @@ title: "Exporting data"
 description: See how to export your code, files and service data.
 ---
 
-As a Platform.sh user, your code and data belong to you.
+As a {{< vendor/name >}} user, your code and data belong to you.
 At any time, you can download your site's data for local development, to back up your data, or to change provider.
 
 ## Before you begin
@@ -11,9 +11,9 @@ At any time, you can download your site's data for local development, to back up
 You need:
 
 - [Git](https://git-scm.com/downloads)
-- A Platform.sh account
+- A {{< vendor/name >}} account
 - Code in your project
-- Optional: the [Platform.sh CLI](../administration/cli/_index.md)
+- Optional: the [{{< vendor/name >}} CLI](../administration/cli/_index.md)
 
 ## 1. Download your app's code
 
@@ -86,7 +86,7 @@ Environment variables can have different prefixes:
 - Variables beginning with `env:` are exposed [as Unix environment variables](../development/variables/_index.md#top-level-environment-variables).
 - Variables beginning with `php:` are interpreted [as `php.ini` directives](../development/variables/_index.md#php-specific-variables).
 
-All other variables are [part of `$PLATFORM_VARIABLES`](../development/variables/use-variables.md#use-platformsh-provided-variables).
+All other variables are [part of `$PLATFORM_VARIABLES`](../development/variables/use-variables.md#use-provided-variables).
 
 To back up your environment variables:
 
@@ -128,6 +128,6 @@ Use the CLI to retrieve these values.
 
 ## What's next
 
-- Migrate data from elsewhere [into Platform.sh](/migrating.html).
+- Migrate data from elsewhere [into {{< vendor/name >}}](./migrating.md).
 - Migrate to [another region](../projects/region-migration.md).
 - To use data from an environment locally, export your data and set up your [local development environment](../development/local/_index.md).
