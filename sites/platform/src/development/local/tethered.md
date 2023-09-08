@@ -66,6 +66,8 @@ mysql --host=127.0.0.1 --port={{ variable "PORT" }} --user='{{ variable "USERNAM
 
     Fill it with something similar to the following example, depending on your app and configuration:
 
-    {{< readFile file="snippets/local-dev-onboarding.sh" highlight="bash" location="init-local.sh">}}
+    ```bash {location="init-local.sh"}
+    {{% local-dev/local-dev-onboarding %}}
+    ```
 
 {{% local-dev/next-steps-end %}}
