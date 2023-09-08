@@ -1,5 +1,5 @@
 {{ $isSymfony := eq ( .Get "name" ) "Symfony" }}
-{{ $cliCommand := "platform" }}
+{{ $cliCommand := `{{< vendor/cli >}}` | .Page.RenderString }}
 {{ if $isSymfony }}
   {{ $cliCommand = "symfony" }}
 {{ end }}

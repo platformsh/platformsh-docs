@@ -3,7 +3,7 @@
 {{ if eq $db "MySQL" }}
   {{ $pageLink = "mysql/_index.md" }}
 {{ end }}
-{{ $cliCommand := "platform" }}
+{{ $cliCommand := `{{< vendor/cli >}}` | .Page.RenderString }}
 {{ if eq ( .Get "framework" ) "Symfony" }}
   {{ $cliCommand = "symfony" }}
 {{ end }}
