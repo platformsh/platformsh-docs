@@ -12,7 +12,7 @@ The SMTP proxy is intended as a zero-configuration, best-effort service.
 
 {{< note >}}
 
-All non-production environments are limited to 12,000 email credits per calendar month.
+All preview environments are limited to 12,000 email credits per calendar month.
 
 {{< /note >}}
 
@@ -46,7 +46,7 @@ title=Using the CLI
 To turn on outgoing email, run the following command:
 
 ```bash
-platform environment:info --environment {{< variable "ENVIRONMENT_NAME" >}} enable_smtp true
+{{% vendor/cli %}} environment:info --environment {{< variable "ENVIRONMENT_NAME" >}} enable_smtp true
 ```
 
 To turn off outgoing email, replace `true` with `false`.
@@ -89,7 +89,7 @@ v=spf1 include:u17504801.wl.sendgrid.net -all
 
 ## 4. Test the email service
 
-To test the email service, use the [CLI](../administration/cli/_index.md) to connect to your app by running `platform ssh`.
+To test the email service, use the [CLI](../administration/cli/_index.md) to connect to your app by running `{{% vendor/cli %}} ssh`.
 Run the following command:
 
 ```bash

@@ -65,7 +65,7 @@ For information on how long backups are retained, see the [data retention policy
 
 Backups for Dedicated environments have a [specific frequency](../dedicated-gen-2/overview/backups.md).
 
-On Grid environments, non-Production environments can have up to 2 [manual backups](#create-a-manual-backup).
+On Grid environments, preview environments can have up to 2 [manual backups](#create-a-manual-backup).
 The number of available backups for Production environments depends on your schedule.
 
 | Schedule | Manual backups | Automated backups                                                      |
@@ -135,7 +135,7 @@ title=Using the CLI
 Use the `--live` flag:
 
 ```bash
-platform backup:create --live
+{{% vendor/cli %}} backup:create --live
 ```
 
 <--->
@@ -156,7 +156,7 @@ You can create a manual backup using the [CLI](../administration/cli/_index.md) 
 title=Using the CLI
 highlight=bash
 +++
-platform backup:create
+{{% vendor/cli %}} backup:create
 <--->
 +++
 title=In the Console

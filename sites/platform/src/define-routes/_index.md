@@ -143,9 +143,9 @@ And you can use an absolute URL:
 
 In both cases, the URLs for your Production environment are the same.
 
-#### URLs in non-Production environments
+#### URLs in preview environments
 
-URLs in non-Production environments follow a different pattern.
+URLs in preview environments follow a different pattern.
 
 No matter how you have set your default domain (even if you don't have one),
 using either the absolute URL or the `{default}` placeholder results in the same URL.
@@ -160,7 +160,7 @@ Note that the `example.com` prefix isn't part of the generated URL.
 
 {{< note title="Previous behavior" >}}
 
-Before April 7, 2022, URLs in non-Production environments differed depending on whether or not you used the `{default}` placeholder.
+Before April 7, 2022, URLs in preview environments differed depending on whether or not you used the `{default}` placeholder.
 
 If you used the `{default}` placeholder:
 
@@ -241,7 +241,7 @@ Prefix a route with an asterisk (`*`), for example `*.{default}`.
 If you have configured `example.com` as your default domain,
 HTTP requests to `www.example.com`, `blog.example.com`, and `us.example.com` are all routed to the same endpoint.
 
-It also works on development environments.
+It also works on preview environments.
 If you have a `feature` branch, it's `{default}` domain looks something like:
 `feature-def123-vmwklxcpbi6zq.us.platform.sh` (depending on the project's region).
 So requests to `blog.feature-def123-vmwklxcpbi6zq.us.platform.sh` and `us.feature-def123-vmwklxcpbi6zq.eu.platform.sh`
@@ -291,7 +291,7 @@ You can define your routes like this:
 To see the generated routes on your `feature` environment, run:
 
 ```bash
-platform ssh -e feature 'echo $PLATFORM_ROUTES | base64 --decode | jq .'
+{{% vendor/cli %}} ssh -e feature 'echo $PLATFORM_ROUTES | base64 --decode | jq .'
 ```
 
 The result is something like this:
@@ -412,7 +412,7 @@ They aren't the final generated routes.
 Run the following command:
 
 ```bash
-platform environment:routes
+{{% vendor/cli %}} environment:routes
 ```
 
 You get output similar to:
@@ -428,7 +428,7 @@ Routes on the project Example (abcdef123456), environment main (type: production
 | http://app.{default}/api  | redirect | https://app.{default}/api |
 +-----------------------+----------+-------------------------------+
 
-To view a single route, run: platform route:get <route>
+To view a single route, run: {{% vendor/cli %}} route:get <route>
 ```
 
 Viewing a single route gives you more detailed info, such as its cache and SSI settings.

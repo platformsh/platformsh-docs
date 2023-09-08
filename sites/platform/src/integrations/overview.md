@@ -21,7 +21,7 @@ See [User administration](/administration/users.md) for more details.
 With the CLI, you can list all your active integrations using the following command:
 
 ```bash
-platform integrations
+{{% vendor/cli %}} integrations
 ```
 
 You get output similar to the following:
@@ -41,7 +41,7 @@ You get output similar to the following:
 Once your integration has been configured, you can check that it's working as expected.
 To do so, follow these steps:
 
-1. Run the `platform integration:validate` command.
+1. Run the `{{% vendor/cli %}} integration:validate` command.
 2. When prompted, select the integration you want to validate:
    ```bash
    Enter a number to choose an integration:
@@ -74,7 +74,7 @@ There are a handful of CLI commands available, all under the `integrations` sect
 To list all the updates triggered by [activities](../integrations/activity/reference.md) on a given project and integration,
 follow these steps:
 
-1. Run the `platform integration:activities` command.
+1. Run the `{{% vendor/cli %}} integration:activities` command.
 2. When prompted, select an integration.
 
    ```bash
@@ -105,7 +105,7 @@ follow these steps:
    +---------------+---------------------------+-------------------------------------------------------------+----------+---------+
    ```
 
-You may also specify an integration to display in the command line directly: `platform integration:activities c4opi5tjv3yfd`.
+You may also specify an integration to display in the command line directly: `{{% vendor/cli %}} integration:activities c4opi5tjv3yfd`.
 
 The ID is an internal identifier for the activity event.
 The Description field is an arbitrary string of text produced by the integration code.
@@ -119,7 +119,7 @@ To show detailed information on a specific activity,
 run the following command:
 
 ```bash
-platform integration:activity:log {{< variable "INTEGRATION_ID" >}} {{< variable "ACTIVITY_ID" >}} -t
+{{% vendor/cli %}} integration:activity:log {{< variable "INTEGRATION_ID" >}} {{< variable "ACTIVITY_ID" >}} -t
 ```
 
 The `-t` option specifies that timestamps must be included in the display of the results.

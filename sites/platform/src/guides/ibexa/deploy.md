@@ -146,8 +146,8 @@ To help you with that, {{< vendor/name >}} provides a CLI that you can [install]
 #### Database and storage synchronization
 
 ```bash
-platform db:dump --gzip -f ezplatform.sql.gz -d data/ -y
-platform mount:download -m ezplatform/web/var --target=ezplatform/web/var/ -y
+{{% vendor/cli %}} db:dump --gzip -f ezplatform.sql.gz -d data/ -y
+{{% vendor/cli %}} mount:download -m ezplatform/web/var --target=ezplatform/web/var/ -y
 ~/ez/importdata
 ```
 

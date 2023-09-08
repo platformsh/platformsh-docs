@@ -32,7 +32,7 @@ An environment type (Production, Staging, and Development) groups one or more en
 - Only one environment per project can be of the type: Production.
   It is set automatically as the default branch and can't be overridden separately.
 - You can change an environment's type (except for the Production environment).
-- You can have multiple Staging and Development environments.
+- You can have multiple Staging and Development environments (also called [preview environments](../other/glossary.md#preview-environment)).
 
 A user can have one of the following roles on an environment type which grants them permissions on all environments of this type:
 
@@ -60,7 +60,7 @@ Run a command similar to the following,
 using the email address of the user whose permissions you want to view:
 
 ```bash
-platform organization:user:projects --org {{< variable "ORGANIZATION_NAME" >}} {{< variable "EMAIL_ADDRESS" >}}
+{{% vendor/cli %}} organization:user:projects --org {{< variable "ORGANIZATION_NAME" >}} {{< variable "EMAIL_ADDRESS" >}}
 ```
 
 <--->
@@ -91,14 +91,14 @@ title=Using the CLI
 To add a user, run the following command:
 
 ```bash
-platform user:add {{< variable "EMAIL_ADDRESS" >}} -r {{< variable "PERMISSIONS_TO_GRANT" >}}
+{{% vendor/cli %}} user:add {{< variable "EMAIL_ADDRESS" >}} -r {{< variable "PERMISSIONS_TO_GRANT" >}}
 ```
 
 For example, if you want to add `user1@example.com` to the project as a project admin,
 run the following command:
 
 ```bash
-platform user:add user1@example.com -r admin
+{{% vendor/cli %}} user:add user1@example.com -r admin
 ```
 
 If you want to add `user2@example.com` to the project as a contributor for Development environments
@@ -106,7 +106,7 @@ and a viewer for Staging environments,
 run the following command:
 
 ```bash
-platform user:add user2@example.com -r development:contributor -r staging:viewer
+{{% vendor/cli %}} user:add user2@example.com -r development:contributor -r staging:viewer
 ```
 
 <--->
@@ -144,7 +144,7 @@ title=Using the CLI
 To update an existing user's permissions, run the following command:
 
 ```bash
-platform user:update {{< variable "EMAIL_ADDRESS" >}} -r {{< variable "PERMISSIONS_TO_GRANT" >}}
+{{% vendor/cli %}} user:update {{< variable "EMAIL_ADDRESS" >}} -r {{< variable "PERMISSIONS_TO_GRANT" >}}
 ```
 
 If you want `user1@example.com` to be a viewer for Production environments
@@ -152,7 +152,7 @@ and a contributor for Development environments,
 run the following command:
 
 ```bash
-platform user:update user1@example.com -r production:viewer,development:contributor
+{{% vendor/cli %}} user:update user1@example.com -r production:viewer,development:contributor
 ```
 
 <--->
@@ -187,7 +187,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform user:delete user1@example.com
+{{% vendor/cli %}} user:delete user1@example.com
 ```
 
 <--->
@@ -263,14 +263,14 @@ title=Using the CLI
 To invite a user to your organization, run the following command:
 
 ```bash
-platform organization:user:add {{< variable "EMAIL_ADDRESS" >}} --org {{< variable "ORGANIZATION_NAME" >}} --permission {{< variable "PERMISSIONS" >}}
+{{% vendor/cli %}} organization:user:add {{< variable "EMAIL_ADDRESS" >}} --org {{< variable "ORGANIZATION_NAME" >}} --permission {{< variable "PERMISSIONS" >}}
 ```
 
 For example, to invite `alice@example.com` to the `acme` organization
 with the **Manage billing** and **Create projects** permissions, run the following command:
 
 ```bash
-platform organization:user:add alice@example.com --org acme --permission billing,projects:create
+{{% vendor/cli %}} organization:user:add alice@example.com --org acme --permission billing,projects:create
 ```
 
 <--->
@@ -300,14 +300,14 @@ title=Using the CLI
 To update permissions for a user in your organization, run the following command:
 
 ```bash
-platform organization:user:update {{< variable "EMAIL_ADDRESS" >}} --org {{< variable "ORGANIZATION_NAME" >}} --permission {{< variable "PERMISSIONS" >}}
+{{% vendor/cli %}} organization:user:update {{< variable "EMAIL_ADDRESS" >}} --org {{< variable "ORGANIZATION_NAME" >}} --permission {{< variable "PERMISSIONS" >}}
 ```
 
 For example, to update the permissions for `alice@example.com` in your `acme` organization
 so that she has only the **Manage billing** permission, run the following command:
 
 ```bash
-platform organization:user:update alice@example.com --org acme --permission billing
+{{% vendor/cli %}} organization:user:update alice@example.com --org acme --permission billing
 ```
 
 <--->
@@ -342,13 +342,13 @@ title=Using the CLI
 To update remove a user from your organization, run the following command:
 
 ```bash
-platform organization:user:delete {{< variable "EMAIL_ADDRESS" >}} --org {{< variable "ORGANIZATION_NAME" >}}
+{{% vendor/cli %}} organization:user:delete {{< variable "EMAIL_ADDRESS" >}} --org {{< variable "ORGANIZATION_NAME" >}}
 ```
 
 For example, to remove `alice@example.com` from your `acme` organization, run the following command:
 
 ```bash
-platform organization:user:delete alice@example.com --org acme
+{{% vendor/cli %}} organization:user:delete alice@example.com --org acme
 ```
 
 <--->

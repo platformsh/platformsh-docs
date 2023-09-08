@@ -17,7 +17,7 @@ Like with any other application container,
 Use the `--worker` switch in the {{< vendor/name >}} CLI, like so:
 
 ```bash
-platform ssh --worker=queue
+{{% vendor/cli %}} ssh --worker=queue
 ```
 
 ## Stopping a worker

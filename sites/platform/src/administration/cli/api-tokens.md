@@ -32,7 +32,7 @@ title=Using the CLI
 
 1. Run the following command using your machine user's email address.
    ```bash
-   platform user:add  {{< variable "EMAIL_ADDRESS" >}} --role viewer --role development:contributor
+   {{% vendor/cli %}} user:add  {{< variable "EMAIL_ADDRESS" >}} --role viewer --role development:contributor
    ```
    This sets your machine user as a viewer on your project and a contributor on development environments, 
    with no access to other environment types.
@@ -72,7 +72,7 @@ title=In the Console
 To check that your API token is valid, run the following command:
 
 ```bash
-platform auth:api-token-login
+{{% vendor/cli %}} auth:api-token-login
 ```
 
 When prompted, enter your API token.
@@ -129,7 +129,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform variable:create -e {{< variable "ENVIRONMENT_NAME" >}} --level environment --prefix 'env' --name PLATFORMSH_CLI_TOKEN --sensitive true --value '{{< variable "API_TOKEN" >}}' --inheritable false --visible-build true --no-interaction
+{{% vendor/cli %}} variable:create -e {{< variable "ENVIRONMENT_NAME" >}} --level environment --prefix 'env' --name PLATFORMSH_CLI_TOKEN --sensitive true --value '{{< variable "API_TOKEN" >}}' --inheritable false --visible-build true --no-interaction
 ```
 
 <--->
@@ -158,7 +158,7 @@ hooks:
         curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
 
         echo "Testing {{< vendor/name >}} CLI"
-        platform
+        {{% vendor/cli %}}
 ```
 
 You can now call the CLI from within the shell on the app container or in a cron job.
@@ -177,8 +177,8 @@ crons:
         commands:
             start: |
                 if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-                   platform backup:create --yes --no-wait
-                   platform source-operation:run update --no-wait --yes
+                   {{% vendor/cli %}} backup:create --yes --no-wait
+                   {{% vendor/cli %}} source-operation:run update --no-wait --yes
                 fi
 ```
 
@@ -195,7 +195,5 @@ In this case, to ensure all your commands work, load the CLI SSH certificate fir
 To do so, run the following command:
 
 ```bash
-platform ssh-cert:load --no-interaction
+{{% vendor/cli %}} ssh-cert:load --no-interaction
 ```
-
-

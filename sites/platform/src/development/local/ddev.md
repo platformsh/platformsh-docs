@@ -46,7 +46,7 @@ so the correct files are added.
 To get your environment data (files, database), run the following command:
 
 ```bash
-ddev pull platform
+ddev pull {{% vendor/cli %}}
 ```
 
 To skip pulling files, add `--skip-files` to the command.

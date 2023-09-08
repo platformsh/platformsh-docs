@@ -41,7 +41,7 @@ To connect Docksal with your {{< vendor/name >}} account, use a {{< vendor/name 
    fin config set --global SECRET_PLATFORMSH_CLI_TOKEN="{{< variable "API_TOKEN" >}}"
    ```
 
-Now you can run `fin platform {{< variable "COMMAND" >}}` from your computer without needing to install the {{< vendor/name >}} CLI.
+Now you can run `fin {{% vendor/cli %}} {{< variable "COMMAND" >}}` from your computer without needing to install the {{< vendor/name >}} CLI.
 
 ## 4. Get your project
 
@@ -190,7 +190,7 @@ Use it for a docker-compose definition for your [custom configurations](https://
 To download your data from {{< vendor/name >}} and load it into your Docksal database container, run the following commands:
 
 ```bash
-fin platform db:dump --gzip -f /tmp/database.sql.gz
+fin {{% vendor/cli %}} db:dump --gzip -f /tmp/database.sql.gz
 fin exec 'zcat < /tmp/database.sql.gz | mysql -u user -p user -h db default'
 ```
 

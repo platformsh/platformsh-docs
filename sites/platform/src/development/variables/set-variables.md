@@ -37,7 +37,7 @@ title=Using the CLI
 To add a project variable, run the following command:
 
 ```bash
-platform variable:create --level project --name {{< variable "VARIABLE_NAME" >}} --value {{< variable "VARIABLE_VALUE" >}}
+{{% vendor/cli %}} variable:create --level project --name {{< variable "VARIABLE_NAME" >}} --value {{< variable "VARIABLE_VALUE" >}}
 ```
 
 To specify other options, use the [flags for variable options](#variable-options).
@@ -79,14 +79,14 @@ So if you want the `foo` variable to be visible at build time but hidden during 
 you can set it by running the following command:
 
 ```bash
-platform variable:create --level project --name foo --value bar --visible-build true --visible-runtime false
+{{% vendor/cli %}} variable:create --level project --name foo --value bar --visible-build true --visible-runtime false
 ```
 
 You can also change the variable options after you create them (except for sensitive values, which can't be set to non-sensitive).
 For example, to make the `foo` variable visible at runtime and hidden during the build, run the following command:
 
 ```bash
-platform variable:update foo --visible-build false --visible-runtime true
+{{% vendor/cli %}} variable:update foo --visible-build false --visible-runtime true
 ```
 
 Note that for changes to project variables to have effect,
@@ -106,7 +106,7 @@ title=Using the CLI
 To create a variable for the current environment, run the following command:
 
 ```bash
-platform variable:create --level environment --name {{< variable "VARIABLE_NAME" >}} --value {{< variable "VARIABLE_VALUE" >}}
+{{% vendor/cli %}} variable:create --level environment --name {{< variable "VARIABLE_NAME" >}} --value {{< variable "VARIABLE_VALUE" >}}
 ```
 
 To specify the environment for the variable, use the `-e` flag to specify its name.
@@ -149,7 +149,7 @@ For example, to set a PayPal secret value for only the `main` branch and have it
 run the following command:
 
 ```bash
-platform variable:create -e main --name paypal_id --inheritable false --sensitive true
+{{% vendor/cli %}} variable:create -e main --name paypal_id --inheritable false --sensitive true
 ```
 
 Other environments don't inherit it and get either a project variable of the same name if it exists or no value at all.
@@ -164,13 +164,13 @@ Environment variables are a good place to store values that apply only on {{< ve
 This includes API credentials for third-party services, mode settings, and which server (development vs. production) to use.
 
 One example would be to define a Node.js application's build on a production branch (`NODE_ENV=production`),
-but use development mode (`NODE_ENV=development`) for each of your development environments.
+but use development mode (`NODE_ENV=development`) for each of your preview environments.
 Assuming you have a `main` environment for production and a `staging` environment with more child environments for development,
 run the following commands:
 
 ```bash
-platform variable:create -l environment -e main --prefix env: --name NODE_ENV --value production --visible-build true --inheritable false
-platform variable:create -l environment -e staging --prefix env: --name NODE_ENV --value development --visible-build true --inheritable true
+{{% vendor/cli %}} variable:create -l environment -e main --prefix env: --name NODE_ENV --value production --visible-build true --inheritable false
+{{% vendor/cli %}} variable:create -l environment -e staging --prefix env: --name NODE_ENV --value development --visible-build true --inheritable true
 ```
 
 Now `NODE_ENV` is `production` on the default branch but `development` on `staging` and each of its child environments.
@@ -225,7 +225,7 @@ While sanity checks like this are useful during troubleshooting, you shouldn't i
 Because the `.environment` file is run at the start of an SSH session, the message is printed at the start of the session.
 
 Even when your SSH command executes successfully, you might later attempt to download data from one of your mounts,
-such as by using the CLI command `platform mount:download`.
+such as by using the CLI command `{{% vendor/cli %}} mount:download`.
 When you do, you see this error:
 
 ```bash

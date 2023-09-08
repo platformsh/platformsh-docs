@@ -46,7 +46,7 @@ title=Without a source integration
 2. In the new clone, add a remote for the project:
 
    ```bash
-   platform project:set-remote
+   {{% vendor/cli %}} project:set-remote
    ```
 
    Select your newly created blank project.
@@ -54,13 +54,13 @@ title=Without a source integration
 3. Push the code for your production branch:
 
    ```bash
-   platform push --target {{% variable "PRODUCTION_BRANCH_NAME" %}}
+   {{% vendor/cli %}} push --target {{% variable "PRODUCTION_BRANCH_NAME" %}}
    ```
 
 4. (Optional) Checkout other branches and then push their code:
 
    ```bash
-   platform push --activate --target {{% variable "BRANCH_NAME" %}} --parent {{% variable "PRODUCTION_BRANCH_NAME" %}}
+   {{% vendor/cli %}} push --activate --target {{% variable "BRANCH_NAME" %}} --parent {{% variable "PRODUCTION_BRANCH_NAME" %}}
    ```
 
 <--->
@@ -80,13 +80,13 @@ Your new project then mirrors the configured repository automatically.
 If you have files in a mount, first download them:
 
 ```bash
-platform mount:download
+{{% vendor/cli %}} mount:download
 ```
 
 Then upload them to your new project:
 
 ```bash
-platform mount:upload
+{{% vendor/cli %}} mount:upload
 ```
 
 See more options on [how to export files](/learn/tutorials/exporting.md)
@@ -110,7 +110,7 @@ see how to export and then import data for each service:
 Make sure anything else connected to your old project is moved to your new project:
 
 - If you have project or environment variables defined on your old project, add them to your new project.
-  Get a list of all variables set outside of code by running `platform variables`.
+  Get a list of all variables set outside of code by running `{{% vendor/cli %}} variables`.
 - Add any users to your new project that you want to continue to have access.
 - Add any existing [integrations](../integrations/_index.md).
 

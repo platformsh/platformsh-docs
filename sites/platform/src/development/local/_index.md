@@ -39,12 +39,12 @@ You need to have:
 
 If you don't have your app code on your computer, download a copy.
 
-1.  Get your project ID by running `platform projects`.
+1.  Get your project ID by running `{{% vendor/cli %}} projects`.
 
 2.  Get the code by running the following command:
 
     ```bash
-    platform get {{< variable "PROJECT_ID" >}} {{< variable "TARGET_DIRECTORY_NAME" >}}
+    {{% vendor/cli %}} get {{< variable "PROJECT_ID" >}} {{< variable "TARGET_DIRECTORY_NAME" >}}
     ```
 
     Or pull from your [integrated Git repository](../../integrations/source/_index.md).
@@ -83,7 +83,7 @@ To build your site locally:
 2.  Run the following command:
 
     ```bash
-    platform build
+    {{% vendor/cli %}} build
     ```
 
     Your app is built in the `{{< vendor/configfile "apps" >}}/local/builds` directory.

@@ -35,13 +35,13 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform environment:info -e <CHILD_ENVIRONMENT_NAME> parent <PARENT_ENVIRONMENT_NAME>
+{{% vendor/cli %}} environment:info -e <CHILD_ENVIRONMENT_NAME> parent <PARENT_ENVIRONMENT_NAME>
 ```
 
 So if you have the environment `new-feature` and want to change its parent to `main`, run the following:
 
 ```bash
-platform environment:info -e new-feature parent main
+{{% vendor/cli %}} environment:info -e new-feature parent main
 ```
 
 {{< /codetabs >}}

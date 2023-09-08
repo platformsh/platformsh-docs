@@ -85,7 +85,7 @@ By default, {{< vendor/name >}} allocates CPU and memory resources to each conta
 Some services are optimized for high CPU load, some for high memory load.
 If your plan is sufficiently large for bigger containers, you can increase the size of your service container.
 
-Note that service containers in development environments are always set to size `S`.
+Note that service containers in preview environments are always set to size `S`.
 
 ### 2. Connect the service
 
@@ -173,7 +173,7 @@ Connecting to a service using an SSH tunnel is a two-step process.
 To get the credentials for a given service, run the following command:
 
 ```bash
-platform relationships
+{{% vendor/cli %}} relationships
 ```
 
 You get output like the following:
@@ -212,7 +212,7 @@ The `url` property shows a full database connection that can be used from your a
 Open a single [SSH tunnel](../development/ssh/_index.md#connect-to-services) by running the following CLI command:
 
 ```bash
-platform tunnel:single --relationship {{< variable "RELATIONSHIP_NAME" >}}
+{{% vendor/cli %}} tunnel:single --relationship {{< variable "RELATIONSHIP_NAME" >}}
 ```
 
 By default, this opens a tunnel at `127.0.0.1:30000`.

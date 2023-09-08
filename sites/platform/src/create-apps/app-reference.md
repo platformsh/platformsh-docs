@@ -69,7 +69,7 @@ These are used in the format `runtime:version`:
 
 Resources are distributed across all containers in an environment from the total available from your [plan size](../administration/pricing/_index.md).
 So if you have more than just a single app, it doesn't get all of the resources available.
-Each environment has its own resources and there are different [sizing rules for non-production environments](#sizes-in-non-production-environments).
+Each environment has its own resources and there are different [sizing rules for preview environments](#sizes-in-preview-environments).
 
 By default, resource sizes (CPU and memory) are chosen automatically for an app
 based on the plan size and the number of other containers in the cluster.
@@ -88,12 +88,12 @@ To do so, set `size` to one of the following values:
 
 The total resources allocated across all apps and services can't exceed what's in your plan.
 
-### Sizes in non-production environments
+### Sizes in preview environments
 
-Containers in development environments don't follow the `size` specification.
+Containers in preview environments don't follow the `size` specification.
 Application containers are set based on the plan's setting for **Environments application size**.
 The default is **{{< partial "plans/default-dev-env-size" >}}**, but you can increase it by editing your plan.
-(Service containers in development environments are always set to {{< partial "plans/default-dev-env-size" >}} size.)
+(Service containers in preview environments are always set to {{< partial "plans/default-dev-env-size" >}} size.)
 
 ## Relationships
 
@@ -755,8 +755,8 @@ crons:
         commands:
             start: |
                 if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-                   platform backup:create --yes --no-wait
-                   platform source-operation:run update --no-wait --yes
+                   {{% vendor/cli %}} backup:create --yes --no-wait
+                   {{% vendor/cli %}} source-operation:run update --no-wait --yes
                 fi
 ```
 
@@ -782,7 +782,7 @@ To run cron jobs in a timezone other than UTC, set the [timezone property](#top-
 
 ### Paused crons
 
-Development environments are often used for a limited time and then abandoned.
+[Preview environments](../other/glossary.md#preview-environment) ([development type](../other/glossary.md#environment-type)) are often used for a limited time and then abandoned.
 While it's useful for environments under active development to have scheduled tasks,
 unused environments don't need to run cron jobs.
 To minimize unnecessary resource use,
@@ -790,17 +790,17 @@ crons on environments with no deployments are paused.
 
 This affects all environments that aren't live environments.
 This means all environments on Development plans
-and all non-Production environments on higher plans.
+and all preview environments on higher plans.
 
 Such environments with deployments within 14 days have crons with the status `running`.
 If there haven't been any deployments within 14 days, the status is `paused`.
 
 You can see the status in the Console
-or using the CLI by running `platform environment:info` and looking under `deployment_state`.
+or using the CLI by running `{{% vendor/cli %}} environment:info` and looking under `deployment_state`.
 
 #### Restarting paused crons
 
-If the crons on your development environment are paused but you're still using them,
+If the crons on your preview environment are paused but you're still using them,
 you can push changes to the environment or redeploy it.
 
 To restart crons without changing anything:
@@ -824,7 +824,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform redeploy
+{{% vendor/cli %}} redeploy
 ```
 
 {{< /codetabs >}}
