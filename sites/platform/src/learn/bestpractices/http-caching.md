@@ -13,7 +13,7 @@ Mixing them together most likely results in stale cache that can't be cleared.
 
 ## The {{< vendor/name >}} router cache
 
-Every project includes a router instance that includes [optional HTTP caching](../define-routes/cache.md).
+Every project includes a router instance that includes [optional HTTP caching](/define-routes/cache.md).
 It's reasonably configurable and obeys HTTP cache directives, but doesn't support push-based clearing.
 
 If you're uncertain what caching tool to use, start with this one.
@@ -22,24 +22,24 @@ It's enough for most uses.
 ## A Content Delivery Network (CDN)
 
 {{< vendor/name >}} is compatible with most commercial CDNs.
-If you have a Dedicated instance, it comes with the [Fastly CDN](../domains/cdn/fastly.md).
+If you have a Dedicated instance, it comes with the [Fastly CDN](/domains/cdn/fastly.md).
 
 CDNs generally offer the best performance as they're the only option that includes multiple geographic locations.
 But they do tend to be the most expensive option.
 
-See more on setting up [Fastly](../domains/cdn/fastly.md) and [Cloudflare](../domains/cdn/cloudflare.md).
+See more on setting up [Fastly](/domains/cdn/fastly.md) and [Cloudflare](/domains/cdn/cloudflare.md).
 The methods for other CDNs are similar.
 
 ## Varnish
 
-{{< vendor/name >}} offers a [Varnish service](../add-services/varnish.md) that you can insert between the router and your app.
+{{< vendor/name >}} offers a [Varnish service](/add-services/varnish.md) that you can insert between the router and your app.
 
 It has roughly the same performance as the router cache.
 Varnish is more configurable, but it requires you to be comfortable with Varnish Configuration Language (VCL).
 {{< vendor/name >}} doesn't help with VCL configuration and a misconfiguration may be difficult to debug.
 
-Varnish supports [clearing cache with a push](../add-services/varnish.md#clear-cache-with-a-push),
-but access control is complicated by the inability to have [circular relationships](../add-services/varnish.md#circular-relationships).
+Varnish supports [clearing cache with a push](/add-services/varnish.md#clear-cache-with-a-push),
+but access control is complicated by the inability to have [circular relationships](/add-services/varnish.md#circular-relationships).
 
 Generally speaking, you should use Varnish only if your application requires push-based clearing or relies on Varnish-specific business logic.
 
@@ -64,5 +64,5 @@ including mundane cookies like analytics.
 
 
 The solution is to set which cookies should impact the cache and limit them to session cookies.
-For the router cache, see [cookies in HTTP caching](../define-routes/cache.md#cookies).
+For the router cache, see [cookies in HTTP caching](/define-routes/cache.md#cookies).
 For other cache systems, consult their documentation.

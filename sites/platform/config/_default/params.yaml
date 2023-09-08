@@ -36,7 +36,7 @@ vendor:
 
 # Images (kept in static/)
 logo: "images/logos/Platformsh_logo_white.svg"
-logolinksto: "https://platform.sh"
+logolinksto: "/"
 logoAlt: "Platform.sh"
 favicon: "images/logos/favicon.ico"
 
@@ -65,18 +65,32 @@ _404:
 
 # Sections in the navigation sidebar
 navSections:
-  home:
-    title: Guides and reference
-    section: home
-    weight: -120
   get-started:
     title: Get started
     section: get-started
+    weight: -120
+  learn:
+    title: Learn
+    section: learn
     weight: -110
   guides:
-    title: Stacks
+    title: Frameworks
     section: guides
     weight: -100
+  home:
+    title: Reference
+    section: home
+    weight: -90
+
+nonDocsSections:
+  apidocs:
+    title: API Documentation
+    link: https://api.platform.sh/docs
+    weight: -80
+  # community:
+  #   title: Community Forum
+  #   link: https://community.platform.sh
+  #   weight: -70
 
 # Metadata
 meta:

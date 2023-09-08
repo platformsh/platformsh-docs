@@ -18,7 +18,7 @@ You need:
 
 ## 1. Add a read-only endpoint to your database service
 
-Edit your `{{< vendor/configfile "services" >}}` file and add the following [endpoints](../add-services/mysql/_index.md#define-permissions):
+Edit your `{{< vendor/configfile "services" >}}` file and add the following [endpoints](/add-services/mysql/_index.md#define-permissions):
 
 - `website` with `admin` access to the `main` database
 - `reporting` with read-only `ro` access to the `main` database

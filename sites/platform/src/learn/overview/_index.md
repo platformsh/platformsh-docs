@@ -1,9 +1,10 @@
 ---
-title: Introduction
-showTitle: false
-feedback: false
+title: "What is {{< vendor/name >}}?"
+weight: -220
+description: "Find out which problem {{< vendor/name >}} is trying to solve."
 ---
 
+<<<<<<< HEAD:sites/friday/src/_index.md
 {{< home >}}
 
 ## What is {{% vendor/name %}}?
@@ -13,6 +14,12 @@ It allows you to host web applications on the cloud while making your developmen
 
 If you're new to {{% vendor/name %}}, we recommend starting with the **Big Picture**, in particular [Structure](/overview/structure.md), and [Build & Deploy](/overview/build-deploy.md) will get you started on the right track to best use
 {{% vendor/name %}}.
+=======
+{{< vendor/name >}} is a second-generation Platform-as-a-Service built especially for continuous deployment.
+It allows you to host web applications on the cloud while making your development and testing workflows more productive.
+
+If you're new to {{< vendor/name >}}, we recommend starting with the **Big Picture**, in particular [Structure](/learn/overview/structure.md), and [Build & Deploy](/learn/overview/build-deploy.md) will get you started on the right track to best use {{< vendor/name >}}.
+>>>>>>> main:sites/platform/src/learn/overview/_index.md
 
 The main requirement of {{% vendor/name %}} is that you use Git to manage your application code.
 Your project's configuration is driven almost entirely by a small number of YAML files in your Git repository.
@@ -23,6 +30,7 @@ and features recommended optimizations for several **Featured Frameworks**.
 
 Finally, you can also get tips for setting up your own **Development** workflow and **Administering** your {{% vendor/name %}} account.
 
+<<<<<<< HEAD:sites/friday/src/_index.md
 ### `app` file
 
 ```yaml {configFile="app"}
@@ -131,6 +139,9 @@ web:
 ```
 
 ### Git Driven Infrastructure
+=======
+## Git Driven Infrastructure
+>>>>>>> main:sites/platform/src/learn/overview/_index.md
 
 As a Platform as a Service, or PaaS, {{% vendor/name %}} automatically manages everything your application needs to run.
 That means you can, and should, view your infrastructure needs as part of your application and address them under version control.

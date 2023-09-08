@@ -3,7 +3,7 @@ title: "Multiple Drupal sites in a single Project"
 sidebarTitle: "Multi-site"
 toc: false
 description: |
-    {{< vendor/name >}} supports running [multiple applications](/bestpractices/oneormany.md) in the same project, and these can be two or more Drupal sites.
+    {{< vendor/name >}} supports running [multiple applications](/learn/bestpractices/oneormany.md) in the same project, and these can be two or more Drupal sites.
 weight: -80
 banner:
     title: A note on version
