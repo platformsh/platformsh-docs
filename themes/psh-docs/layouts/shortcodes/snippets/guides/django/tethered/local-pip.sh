@@ -4,13 +4,13 @@ ENVIRONMENT=$1
 PARENT=$2
 
 # Create the new environment
-platform branch $ENVIRONMENT $PARENT
+{{ `{{< vendor/cli >}}` | .Page.RenderString }} branch $ENVIRONMENT $PARENT
 
 # Open a tunnel to the current environment
-platform tunnel:open --no-interaction
+{{ `{{< vendor/cli >}}` | .Page.RenderString }} tunnel:open --no-interaction
 
-# Mock Platform.sh environment variables
-export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"
+# Mock {{ `{{< vendor/name >}}` | .Page.RenderString }} environment variables
+export PLATFORM_RELATIONSHIPS="$({{ `{{< vendor/cli >}}` | .Page.RenderString }} tunnel:info --encode)"
 export PLATFORM_APPLICATION_NAME=django && export PLATFORM_ENVIRONMENT=new-feature
 
 # Install dependencies

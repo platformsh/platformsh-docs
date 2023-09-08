@@ -34,7 +34,7 @@ With open tunnels to all your services, you can also connect to the running serv
 To get information on all running services, run the following command:
 
 ```bash
-platform tunnels
+{{% vendor/cli %}} tunnels
 ```
 
 You get a response similar to the following:
@@ -52,7 +52,7 @@ You can use the port information to connect directly to a service.
 If you need more detailed information, such as a path or password, run the following command:
 
 ```bash
-platform tunnel:info
+{{% vendor/cli %}} tunnel:info
 ```
 
 You can use the information returned to connect to the remote database as if it were local.
@@ -66,6 +66,8 @@ mysql --host=127.0.0.1 --port={{ variable "PORT" }} --user='{{ variable "USERNAM
 
     Fill it with something similar to the following example, depending on your app and configuration:
 
-    {{< readFile file="snippets/local-dev-onboarding.sh" highlight="bash" location="init-local.sh">}}
+    ```bash {location="init-local.sh"}
+    {{% local-dev/local-dev-onboarding %}}
+    ```
 
 {{% local-dev/next-steps-end %}}

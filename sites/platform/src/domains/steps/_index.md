@@ -42,7 +42,7 @@ title=Using the CLI
 Run the following [CLI command](../../administration/cli/_index.md):
 
 ```bash
-platform subscription:info plan standard
+{{% vendor/cli %}} subscription:info plan standard
 ```
 
 <--->
@@ -77,7 +77,7 @@ title=Using the CLI
 Get the target by running the following [CLI command](../../administration/cli/_index.md):
 
 ```bash
-platform environment:info edge_hostname
+{{% vendor/cli %}} environment:info edge_hostname
 ```
 
 <--->
@@ -168,7 +168,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform domain:add {{<variable "YOUR_DOMAIN" >}}
+{{% vendor/cli %}} domain:add {{<variable "YOUR_DOMAIN" >}}
 ```
 
 <--->

@@ -42,13 +42,13 @@ title=Using the CLI
 1. Run the following command:
 
    ```bash
-   platform domain:add {{<variable "YOUR_DOMAIN" >}} --cert {{<variable "PATH_TO_CERTIFICATE_FILE" >}} --key {{<variable "PATH_TO_PRIVATE_KEY_FILE" >}}
+   {{% vendor/cli %}} domain:add {{<variable "YOUR_DOMAIN" >}} --cert {{<variable "PATH_TO_CERTIFICATE_FILE" >}} --key {{<variable "PATH_TO_PRIVATE_KEY_FILE" >}}
    ```
 
    For example:
 
    ```bash
-   platform domain:add secure.example.com --cert /etc/TLS/private/secure-example-com.crt --key /etc/TLS/private/secure-example-com.key
+   {{% vendor/cli %}} domain:add secure.example.com --cert /etc/TLS/private/secure-example-com.crt --key /etc/TLS/private/secure-example-com.key
    ```
 
    You can optionally include intermediate SSL certificates by adding <code>&hyphen;&hyphen;chain {{<variable "PATH_TO_FILE" >}}</code> for each one.
@@ -56,7 +56,7 @@ title=Using the CLI
 2. Redeploy your production environment with the following command:
 
    ```bash
-   platform environment:redeploy
+   {{% vendor/cli %}} environment:redeploy
    ```
 
 <--->

@@ -51,13 +51,13 @@ title=Using the CLI
    To do so, run the following command: 
 
    ```bash
-   platform integration:update --project {{< variable "PROJECT_ID" >}} {{< variable "SOURCE_INTEGRATION_ID" >}} --fetch-branches true
+   {{% vendor/cli %}} integration:update --project {{< variable "PROJECT_ID" >}} {{< variable "SOURCE_INTEGRATION_ID" >}} --fetch-branches true
    ```
 
 2. Then, to enable the `prune-branches` option, run the following command:
 
    ```bash
-   platform integration:update --project {{< variable "PROJECT_ID" >}} {{< variable "SOURCE_INTEGRATION_ID" >}} --prune-branches true
+   {{% vendor/cli %}} integration:update --project {{< variable "PROJECT_ID" >}} {{< variable "SOURCE_INTEGRATION_ID" >}} --prune-branches true
    ```
 <--->
 

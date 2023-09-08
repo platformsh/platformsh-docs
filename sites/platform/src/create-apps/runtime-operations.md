@@ -59,7 +59,7 @@ you can trigger it through the {{< vendor/name >}} CLI.
 To do so, run the following command:
 
 ```bash
-platform operation:run {{< variable "RUNTIME_OPERATION_NAME" >}} --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
+{{% vendor/cli %}} operation:run {{< variable "RUNTIME_OPERATION_NAME" >}} --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
 You can only trigger a runtime operation if you have permission to do so.
@@ -69,7 +69,7 @@ For example, to trigger the runtime operation [defined previously](#define-a-run
 you could run the following command:
 
 ```bash
-platform operation:run clear-rebuild --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
+{{% vendor/cli %}} operation:run clear-rebuild --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
 ## List your runtime operations
@@ -78,7 +78,7 @@ To list all the runtime operations available on an environment,
 run the following command:
 
 ```bash
-platform operation:list --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
+{{% vendor/cli %}} operation:list --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ````
 
 ## Runtime operation examples
@@ -134,7 +134,7 @@ operations:
 To trigger your runtime operation, run a command similar to the following:
 
 ```bash
-platform operation:run gatsby-build --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
+{{% vendor/cli %}} operation:run gatsby-build --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
 <--->
@@ -159,7 +159,7 @@ operations:
 To trigger your runtime operation, run a command similar to the following:
 
 ```bash
-platform operation:run next-build --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
+{{% vendor/cli %}} operation:run next-build --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
 {{< /codetabs >}}
@@ -189,7 +189,7 @@ operations:
 To trigger your runtime operation, run a command similar to the following:
 
 ```bash
-platform operation:run pm2-ping --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
+{{% vendor/cli %}} operation:run pm2-ping --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
 <--->
@@ -212,7 +212,7 @@ operations:
 To trigger your runtime operation, run a command similar to the following:
 
 ```bash
-platform operation:run pm2-reload --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
+{{% vendor/cli %}} operation:run pm2-reload --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
 <--->
@@ -236,7 +236,7 @@ operations:
 To trigger your runtime operation, run a command similar to the following:
 
 ```bash
-platform operation:run pm2-restart --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
+{{% vendor/cli %}} operation:run pm2-restart --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
 {{< /codetabs >}}
@@ -257,5 +257,5 @@ operations:
 To trigger your runtime operation, run a command similar to the following:
 
 ```bash
-platform operation:run manual-migration --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
+{{% vendor/cli %}} operation:run manual-migration --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```

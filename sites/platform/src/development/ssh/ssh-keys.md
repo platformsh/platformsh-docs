@@ -63,7 +63,7 @@ If you don't find an existing key, [generate new keys](#1b-generate-new-keys).
 If you're logged in using the [{{< vendor/name >}} CLI](./_index.md#1-authenticate-with-the-cli),
 generate a key and have it added to your {{< vendor/name >}} account automatically.
 
-1. In a terminal, run `platform ssh-key:add`.
+1. In a terminal, run `{{% vendor/cli %}} ssh-key:add`.
 1. If necessary, log in to a browser.
 1. Press `Y` and `enter` to create a new SSH key.
 1. Copy the location of the generated key.
@@ -86,7 +86,7 @@ If you're logged in using the [{{< vendor/name >}} CLI](./_index.md#1-authentica
 in a terminal run the following command (replacing `{{< variable "PATH_TO_YOUR_KEY" >}}` with the location of your public key):
 
 ```bash
-platform ssh-key:add '{{< variable "PATH_TO_YOUR_KEY" >}}'
+{{% vendor/cli %}} ssh-key:add '{{< variable "PATH_TO_YOUR_KEY" >}}'
 ```
 
 You can also add it in the Console,

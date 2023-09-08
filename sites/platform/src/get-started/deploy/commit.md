@@ -33,7 +33,7 @@ git commit -m "Add {{< vendor/name >}} files"
 Push your changes (to share your changes with everyone with access to your project/repository):
 
 ```bash
-platform push
+{{% vendor/cli %}} push
 ```
 
 {{% get-started/service-needed %}}

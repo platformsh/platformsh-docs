@@ -103,7 +103,7 @@ To use `A` records, follow these steps:
 1.  To get the IP addresses of your project's production environment, run the following command:
 
     ```bash
-    dig +short $(platform environment:info edge_hostname)
+    dig +short $({{% vendor/cli %}} environment:info edge_hostname)
     ```
      
 2.  Follow the instructions on [how to set up a custom domain](./_index.md).

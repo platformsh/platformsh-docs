@@ -33,7 +33,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform project:create
+{{% vendor/cli %}} project:create
 ```
 
 When prompted, fill in details like the project name, [region](/development/regions.md), and [plan](/administration/pricing/_index.md).
@@ -81,19 +81,19 @@ title=Using the CLI
 1. Get your project ID by running the following command:
 
    ```bash
-   platform projects
+   {{% vendor/cli %}} projects
    ```
 
 2. Add {{< vendor/name >}} as a remote repository by running the following command:
 
    ```bash
-   platform project:set-remote {{< variable "PROJECT_ID" >}}
+   {{% vendor/cli %}} project:set-remote {{< variable "PROJECT_ID" >}}
    ```
 
 3. Push to the {{< vendor/name >}} repository by running the following command:
 
    ```bash
-   git push -u platform {{< variable "DEFAULT_BRANCH_NAME" >}}
+   git push -u {{% vendor/cli %}} {{< variable "DEFAULT_BRANCH_NAME" >}}
    ```
 
 When you try to push, any detected errors in your configuration are reported and block the push.
@@ -134,13 +134,13 @@ title=Using Git
 5.  Add {{< vendor/name >}} as a remote repository by running the following command:
 
    ```bash
-   git remote add platform {{< variable "REPOSITORY_LOCATION" >}}
+   git remote add {{% vendor/cli %}} {{< variable "REPOSITORY_LOCATION" >}}
    ```
 
 6.  Push to the {{< vendor/name >}} repository by running the following command:
 
    ```bash
-   git push -u platform {{< variable "DEFAULT_BRANCH_NAME" >}}
+   git push -u {{% vendor/cli %}} {{< variable "DEFAULT_BRANCH_NAME" >}}
    ```
 
 When you try to push, any detected errors in your configuration are reported and block the push.
@@ -156,7 +156,7 @@ The exact process may depend on the service you use.
 For SQL databases, for example, you can use a version of this command:
 
 ```bash
-platform sql < {{< variable "BACKUP_FILE_NAME" >}}
+{{% vendor/cli %}} sql < {{< variable "BACKUP_FILE_NAME" >}}
 ```
 
 For any potential more details, see the [specific service](/add-services/_index.md).
@@ -182,8 +182,8 @@ mounts:
 Upload to each of directories above by running the following commands:
 
 ```bash
-platform mount:upload --mount web/uploads --source ./uploads
-platform mount:upload --mount private --source ./private
+{{% vendor/cli %}} mount:upload --mount web/uploads --source ./uploads
+{{% vendor/cli %}} mount:upload --mount private --source ./private
 ```
 
 You can adjust these commands for your own case.

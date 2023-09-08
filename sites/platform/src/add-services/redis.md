@@ -240,7 +240,7 @@ you can access it using the [Redis CLI](https://redis.io/docs/ui/cli/).
 
 Retrieve the hostname and port you can connect to
 through the `PLATFORM_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables).
-To do so, run the `platform relationships` command.
+To do so, run the `{{% vendor/cli %}} relationships` command.
 
 After you've retrieved the hostname and port, [open an SSH session](../development/ssh/_index.md).
 To access your Redis service, run the following command:

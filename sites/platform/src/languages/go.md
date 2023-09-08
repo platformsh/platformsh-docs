@@ -51,15 +51,15 @@ web:
     locations:
         /:
             # Route all requests to the Go app, unconditionally.
-            # If you want some files served directly by the web server without hitting Go, see
-            # https://docs.platform.../create-apps/app-reference.html
             allow: false
             passthru: true
 
 disk: 1024
 ```
 
-Note that there is still an Nginx proxy server sitting in front of your application. If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Go application unconditionally, as in the example above.
+Note that there is still an Nginx proxy server sitting in front of your application.
+If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily)
+or you may route all requests to the Go application unconditionally, as in the example above.
 
 ## Accessing services
 

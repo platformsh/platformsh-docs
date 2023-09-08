@@ -32,7 +32,7 @@ title=Using the CLI
 1. Get a list of activities by running
 
    ``` bash
-   platform activity:list -e {{% variable "ENVIRONMENT_NAME" %}}
+   {{% vendor/cli %}} activity:list -e {{% variable "ENVIRONMENT_NAME" %}}
    ```
 
    Pass the `--start` flag to get activities from a specific date in the past.
@@ -40,7 +40,7 @@ title=Using the CLI
 2. To see details about the activity's state and timing, run
 
    ``` bash
-   platform activity:get {{% variable "ACTIVITY_ID" %}}
+   {{% vendor/cli %}} activity:get {{% variable "ACTIVITY_ID" %}}
    ```
 
    Where {{% variable "ACTIVITY_ID" %}} comes from the list in step 1.
@@ -48,7 +48,7 @@ title=Using the CLI
 3. Get a log of any given activity by running
 
    ``` bash
-   platform activity:log {{% variable "ACTIVITY_ID" %}}
+   {{% vendor/cli %}} activity:log {{% variable "ACTIVITY_ID" %}}
    ```
 
 {{< /codetabs >}}
@@ -83,11 +83,11 @@ To access the logs of various types of events:
 title=Using the CLI
 +++
 
-Use the `platform log` command and specify the type of log you want.
+Use the `{{% vendor/cli %}} log` command and specify the type of log you want.
 For example, to get the access log, run:
 
 ```bash
-platform log -e {{% variable "ENVIRONMENT_NAME" %}} access
+{{% vendor/cli %}} log -e {{% variable "ENVIRONMENT_NAME" %}} access
 ```
 
 To get other logs, just replace `access` with the [type of log](#types-of-container-logs).
@@ -102,7 +102,7 @@ title=Using SSH directly
 1. Access the container by running 
 
    ``` bash
-   platform ssh -e {{% variable "ENVIRONMENT_NAME" %}}
+   {{% vendor/cli %}} ssh -e {{% variable "ENVIRONMENT_NAME" %}}
    ```
 
 2. Change to the right directory by running `cd /var/log`.
@@ -110,7 +110,7 @@ title=Using SSH directly
    If you're on a {{% names/dedicated-gen-2 %}} cluster, run
 
    ``` bash
-   cd /var/log/platform/{{% variable "APP_NAME" %}}/
+   cd /var/log/{{% vendor/cli %}}/{{% variable "APP_NAME" %}}/
    ```
 
 3. Read the desired log, such as by running `tail access.log`.
@@ -131,7 +131,7 @@ See an example of [uploading logs to Amazon S3](https://gitlab.com/contextualcod
 | `deploy`      | No             | The output of the [`deploy` hook](../../create-apps/hooks/hooks-comparison.md#deploy-hook). Only exists after a `deploy` hook has run. |
 | `dns`         | Yes            | All DNS queries made by processes in the container (such as the app and cron jobs). |
 | `error`       | Yes            | nginx-level errors that occur once nginx has fully started such as HTTP errors for missing directories and excluded file types. |
-| `nginx/error` | No             | All nginx startup log messages. Only useful when debugging possible nginx configuration errors. Not currently available using the `platform log` command. |
+| `nginx/error` | No             | All nginx startup log messages. Only useful when debugging possible nginx configuration errors. Not currently available using the `{{% vendor/cli %}} log` command. |
 | `php.access`  | No             | A record of all requests to the PHP service. See [PHP access record format](#php-access-record-format). |
 | `post_deploy` | No             | The output of the [`post_deploy` hook](../../create-apps/hooks/hooks-comparison.md#post-deploy-hook). Only exists after a `post_deploy` hook has run. |
 
@@ -141,7 +141,7 @@ The formatting of `php.access.log` is determined by the PHP settings.
 To determine the format, run the following:
 
 ```bash
-platform ssh cat -n /etc/php/{{< variable "PHP_VERSION" >}}-zts/fpm/php-fpm.conf | grep "access.format"
+{{% vendor/cli %}} ssh cat -n /etc/php/{{< variable "PHP_VERSION" >}}-zts/fpm/php-fpm.conf | grep "access.format"
 ```
 
 You get a response such as the following:

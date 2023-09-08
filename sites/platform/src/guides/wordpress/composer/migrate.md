@@ -201,7 +201,7 @@ and deploy your new Composer-based WordPress site to {{< vendor/name >}}:
 
 ```bash
 git add . && git commit -m "Composerify plugins and themes."
-git push platform composer
+git push {{% vendor/cli %}} composer
 ```
 
 ## 4. Update your Composer-based WordPress site

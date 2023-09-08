@@ -102,7 +102,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform source-operation:run {{< variable "SOURCE_OPERATION_NAME" >}}
+{{% vendor/cli %}}  source-operation:run {{< variable "SOURCE_OPERATION_NAME" >}}
 ```
 
 Replace {{< variable "SOURCE_OPERATION_NAME" >}} with the name of your operation, such as `update-file` in the [example above](#define-a-source-operation).
@@ -163,7 +163,7 @@ title=Using the CLI
 +++
 
 ```bash
-platform source-operation:run update-file --variable env:FILE="example.txt"
+{{% vendor/cli %}} source-operation:run update-file --variable env:FILE="example.txt"
 ```
 
 {{< /codetabs >}}
@@ -206,7 +206,7 @@ title=From the CLI
 Run the following command:
 
 ```bash
-platform variable:create --environment main --level environment --prefix 'env' --name PLATFORMSH_CLI_TOKEN --sensitive true --value 'YOUR_PLATFORMSH_CLI_TOKEN' --inheritable false --visible-build true --json false --enabled true --visible-runtime true
+{{% vendor/cli %}} variable:create --environment main --level environment --prefix 'env' --name PLATFORMSH_CLI_TOKEN --sensitive true --value 'YOUR_PLATFORMSH_CLI_TOKEN' --inheritable false --visible-build true --json false --enabled true --visible-runtime true
 ```
 
 <--->
@@ -243,7 +243,7 @@ hooks:
         curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
 
         echo "Testing {{< vendor/name >}} CLI"
-        platform
+        {{% vendor/cli %}}
 ```
 
 3.  Then, to configure a cron job to automatically run a source operation once a day,
@@ -257,8 +257,8 @@ crons:
         commands:
             start: |
                 set -e
-                platform sync -e development code data --no-wait --yes
-                platform source-operation:run update-file --no-wait --yes
+                {{% vendor/cli %}} sync -e development code data --no-wait --yes
+                {{% vendor/cli %}} source-operation:run update-file --no-wait --yes
 ```
 
 The example above synchronizes the `development` environment with its parent

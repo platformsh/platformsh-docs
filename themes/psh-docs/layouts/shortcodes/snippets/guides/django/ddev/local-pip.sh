@@ -5,7 +5,7 @@ ENVIRONMENT=$2
 PARENT=$3
 
 # Create the new environment
-platform branch $ENVIRONMENT $PARENT
+{{ `{{< vendor/cli >}}` | .Page.RenderString }} branch $ENVIRONMENT $PARENT
 
 # Configure DDEV
 ddev config --auto
@@ -17,7 +17,7 @@ ddev get drud/ddev-platformsh
 
 # Update .ddev/config.platformsh.yaml
 #   1. hooks.post-start
-printf "  # Platform.sh start command\n  - exec: |\n      python manage.py runserver 0.0.0.0:8000" >> .ddev/config.platformsh.yaml
+printf "  # {{ `{{< vendor/name >}}` | .Page.RenderString }} start command\n  - exec: |\n      python manage.py runserver 0.0.0.0:8000" >> .ddev/config.platformsh.yaml
 #   2. php_version
 grep -v "php_version" .ddev/config.platformsh.yaml > tmpfile && mv tmpfile .ddev/config.platformsh.yaml
 printf "\nphp_version: 8.0" >> .ddev/config.platformsh.yaml
@@ -42,5 +42,5 @@ RUN apt-get install -y python3.10 python3-pip
 " > .ddev/web-build/Dockerfile.python
 
 ddev start
-ddev pull platform -y
+ddev pull {{ `{{< vendor/cli >}}` | .Page.RenderString }} -y
 ddev restart

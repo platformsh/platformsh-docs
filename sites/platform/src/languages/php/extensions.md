@@ -56,7 +56,7 @@ Some built-in modules are always on:
 To see a complete list of the compiled PHP extensions, run the following [CLI command](../../administration/cli/_index.md):
 
 ```bash
-platform ssh "php -m"
+{{% vendor/cli %}} ssh "php -m"
 ```
 
 ## Custom PHP extensions

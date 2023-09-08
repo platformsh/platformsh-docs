@@ -1,5 +1,5 @@
-{{ $cliCommand := "platform " }}
-{{ $cliName := ".Site.Params.vendor.name CLI" }}
+{{ $cliCommand := `{{< vendor/cli >}}` | .Page.RenderString }}
+{{ $cliName := "{{ .Site.Params.vendor.name }} CLI" }}
 {{ if eq ( .Get "framework" ) "Symfony" }}
   {{ $cliCommand = "symfony cloud:" }}
   {{ $cliName = "Symfony CLI" }}
@@ -10,17 +10,17 @@ You might find the following commands useful when using the {{ $cliName }}.
 -   Open the web administration console:
 
     ```bash
-    {{ $cliCommand }}web
+    {{ $cliCommand }} web
     ```
 
 -   Open the URL of the current environment:
 
     ```bash
-    {{ $cliCommand }}url
+    {{ $cliCommand }} url
     ```
 
 -   Open an SSH connection to your environment:
 
     ```bash
-    {{ $cliCommand }}ssh
+    {{ $cliCommand }} ssh
     ```
