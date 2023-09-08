@@ -5,7 +5,7 @@ keywords:
   - basic authentication
 ---
 
-When developing your site, you might want to hide your development environments from outside viewers.
+When developing your site, you might want to hide your preview environments from outside viewers.
 Or you may find you have performance issues from [excessive bot access](https://community.platform.sh/t/diagnosing-and-resolving-issues-with-excessive-bot-access/792).
 You can control access either with a username and password or by allowing/denying specific IP addresses or networks.
 This setting applies to the entire environment.

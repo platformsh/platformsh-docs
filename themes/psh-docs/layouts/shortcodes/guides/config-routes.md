@@ -5,7 +5,7 @@ All HTTP requests sent to your app are controlled through the routing and cachin
 
 The two most important options are the main route and its caching rules.
 A route can have a placeholder of `{default}`,
-which is replaced by your domain name in production and environment-specific names for your development environments.
+which is replaced by your domain name in production and environment-specific names for your preview environments.
 The main route has an `upstream`, which is the name of the app container to forward requests to.
 
 You can enable [HTTP cache]({{ relref . "/define-routes/cache.md" }}).
