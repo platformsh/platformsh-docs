@@ -155,7 +155,7 @@ and export the data directly using MongoDB's tools.
 First, open an SSH tunnel with the {{< vendor/name >}} CLI:
 
 ```bash
-platform tunnel:open
+{{% vendor/cli %}} tunnel:open
 ```
 
 That opens an SSH tunnel to all services on your current environment and produce output like the following:

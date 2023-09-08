@@ -78,7 +78,7 @@ you can also open it and view its information panel.
 title=Using the CLI
 +++
 
-To check the status of all your environments, from your project directory run the `platform environments` command.
+To check the status of all your environments, from your project directory run the `{{% vendor/cli %}} environments` command.
 
 {{< /codetabs >}}
 
@@ -220,7 +220,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform environment:pause --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
+{{% vendor/cli %}} environment:pause --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
 <--->
@@ -248,7 +248,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform environment:resume --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
+{{% vendor/cli %}} environment:resume --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
 <--->

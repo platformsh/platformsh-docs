@@ -33,13 +33,13 @@ title=Using the CLI
 To change the name (URL) and label of the `acme` organization, run:
 
 ```bash
-platform organization:info --org acme label "Acme Corp" name acme-corp
+{{% vendor/cli %}} organization:info --org acme label "Acme Corp" name acme-corp
 ```
 
 To verify the changes, run:
 
 ```bash
-platform organization:info --org acme-corp
+{{% vendor/cli %}} organization:info --org acme-corp
 ```
 
 {{< /codetabs >}}
@@ -88,13 +88,13 @@ title=Using the CLI
 To create an organization with the label `Acme` and the name (URL) `acme`, run:
 
 ```bash
-platform organization:create --label "Acme" --name acme --country "United States"
+{{% vendor/cli %}} organization:create --label "Acme" --name acme --country "United States"
 ```
 
 To verify the changes, run:
 
 ```bash
-platform organization:info --org acme
+{{% vendor/cli %}} organization:info --org acme
 ```
 
 {{< /codetabs >}}
@@ -104,7 +104,7 @@ platform organization:info --org acme
 As an organization owner, you can delete your own organization.
 
 Note that if your organization owns projects or owes remaining invoices, you can not delete it yourself.
-To have it deleted, [contact support](../overview/get-support.md).
+To have it deleted, [contact support](/learn/overview/get-support.md).
 
 {{< codetabs >}}
 
@@ -126,7 +126,7 @@ title=Using the CLI
 To delete the organization `acme`, run:
 
 ```bash
-platform organization:delete --org acme
+{{% vendor/cli %}} organization:delete --org acme
 ```
 
 {{< /codetabs >}}

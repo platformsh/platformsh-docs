@@ -7,7 +7,7 @@ Get a list of all variables defined on a given environment in [the Console](../.
 or use the CLI:
 
 ```bash
-platform var
+{{% vendor/cli %}} var
 ```
 
 You get output similar to the following:
@@ -415,7 +415,7 @@ Attributes that are **not** available in `PLATFORM_APPLICATION` during builds:
 
 These attributes aren't visible during build because they aren't included as a part of the configuration component of the build slug.
 So modifying these values in your [app configuration](../../create-apps/_index.md) doesn't trigger an app rebuild, only a redeploy.
-For more information, read about [how builds work](../../overview/build-deploy.md#the-build).
+For more information, read about [how builds work](/learn/overview/build-deploy.md#the-build).
 
 ## Use variables in static files
 

@@ -23,7 +23,7 @@ Sign up at [Tideways](https://app.tideways.io/register/) and get your license ke
 Add your Tideways license key as a project level variable:
 
 ```bash
-platform variable:create --visible-build false php:tideways.api_key --value '<your-license-key>'
+{{% vendor/cli %}} variable:create --visible-build false php:tideways.api_key --value '<your-license-key>'
 ```
 
 ### 3. Enable the Tideways extension
@@ -57,5 +57,5 @@ this hook for your application in Tideways "Application Settings" screen under t
 "Exports & Integrations". Here is an example:
 
 ```bash
-platform integration:add --type=webhook --url="https://app.tideways.io/api/events/external/1234/abcdefghijklmnopqrstuvwxyz1234567890"
+{{% vendor/cli %}} integration:add --type=webhook --url="https://app.tideways.io/api/events/external/1234/abcdefghijklmnopqrstuvwxyz1234567890"
 ```

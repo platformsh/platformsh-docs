@@ -100,7 +100,7 @@ Access your app and services by opening the according URLs in your browser.
 ## What's next
 
 - [Import data and download files](https://docs.lando.dev/platformsh/sync.html) from your remote {{< vendor/name >}} site.
-- If you make changes in the {{< vendor/name >}} [configuration files](../../overview/structure.md) during development, run `lando rebuild` for these to be taken into account in Lando.
+- If you make changes in the {{< vendor/name >}} [configuration files](/learn/overview/structure.md) during development, run `lando rebuild` for these to be taken into account in Lando.
 - To keep your Lando image up-to-date, see how to [update Lando](https://docs.lando.dev/getting-started/updating.html).
 
 ## Troubleshooting
@@ -111,7 +111,7 @@ Access your app and services by opening the according URLs in your browser.
 
 {{< /note >}}
 
-- Make sure that the [{{< vendor/name >}} configuration files](../../overview/structure.md) are present in your local repository.
+- Make sure that the [{{< vendor/name >}} configuration files](/learn/overview/structure.md) are present in your local repository.
 - Check that your [services](https://docs.lando.dev/platformsh/config.html#services-yaml) are supported by Lando.
 - Check [caveats and known issues](https://docs.lando.dev/platformsh/caveats.html).
 - Carefully check the output of the Lando commands you run to spot warnings and errors.

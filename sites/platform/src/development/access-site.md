@@ -29,7 +29,7 @@ title=Using the CLI
 1. Run the following command:
 
    ```bash
-   platform url
+   {{% vendor/cli %}} url
    ```
 
 2. Select the URL to open in a browser.
