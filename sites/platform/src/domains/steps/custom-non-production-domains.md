@@ -72,7 +72,7 @@ You need:
 To prevent abuse, by default you can add custom domains to up to 5 environments per project only.
 This limit doesn't include the production environment,
 and you can increase it without charge.
-To do so, [contact Support](../../overview/get-support.md).
+To do so, [contact Support](/learn/overview/get-support.md).
 
 {{< note >}}
 

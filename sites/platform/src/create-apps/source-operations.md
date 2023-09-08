@@ -15,7 +15,7 @@ On {{< vendor/name >}}, you can run automated code updates through a feature cal
 Defined in your [app configuration](./_index.md), source operations let you specify commands
 that can commit changes to your project's repository when called.
 
-For example, you can set up a source operation to [automatically update your application dependencies](../tutorials/dependency-updates.md),
+For example, you can set up a source operation to [automatically update your application dependencies](/learn/tutorials/dependency-updates.md),
 [update a site from an upstream repository](#update-a-site-from-an-upstream-repository-or-template),
 or [revert to the last commit](#revert-to-the-last-commit) pushed to your Git repository.
 
@@ -270,7 +270,7 @@ and then runs the `update-file` source operation defined [previously](#define-a-
 
 ### Update your application dependencies
 
-You can set up a source operation and a cron job to [automate your dependency updates](../tutorials/dependency-updates.md).
+You can set up a source operation and a cron job to [automate your dependency updates](/learn/tutorials/dependency-updates.md).
 
 ### Update a site from an upstream repository or template
 

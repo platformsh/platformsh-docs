@@ -4,7 +4,7 @@ weight: 3
 description: "See how applications get built and deployed with {{< vendor/name >}}."
 ---
 
-Each time you push a change to your app through Git or activate an [environment](../environments/_index.md),
+Each time you push a change to your app through Git or activate an [environment](/environments/_index.md),
 your app goes through a process to be built and deployed.
 If your app is redeployed with no changes to its codebase, the output of the previous build and deploy process is reused.
 
@@ -52,7 +52,7 @@ Once the app has gone through all of the build steps, it can connect to services
    It could be compiling Sass files, running a bundler, rearranging files on disk, or compiling.
    The committed build hook runs in the build container.
    During this time, commands have write access to the file system, but there aren't connections to other containers (services and other apps).
-   Note that you can [cancel deployments stuck on the build hook](../environments/cancel-activity.md).
+   Note that you can [cancel deployments stuck on the build hook](/environments/cancel-activity.md).
 1. **Freeze app container**:
    The file system is frozen and produces a read-only container image, which is the final build artifact.
 
@@ -88,7 +88,7 @@ After the deploy process is over, any commands in your `post_deploy` hook are ru
 ## Deployment philosophy
 
 {{< vendor/name >}} values consistency over availability, acknowledging that it's nearly impossible to have both.
-During a deployment, the [deploy hook](../create-apps/hooks/hooks-comparison.md#deploy-hook) may make database changes
+During a deployment, the [deploy hook](/create-apps/hooks/hooks-comparison.md#deploy-hook) may make database changes
 that are incompatible with the previous code version.
 Having both old and new code running in parallel on different servers could therefore result in data loss.
 
@@ -100,5 +100,5 @@ Deployments to a staging or development branch have no impact on the production 
 
 ## What's next
 
-* See how to [configure your app](../create-apps/_index.md) for the entire process.
-* Learn more about [using build and deploy hooks](../create-apps/hooks/_index.md).
+* See how to [configure your app](/create-apps/_index.md) for the entire process.
+* Learn more about [using build and deploy hooks](/create-apps/hooks/_index.md).

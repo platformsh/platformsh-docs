@@ -88,7 +88,7 @@ To have your hooks fail on the first failed command, start your scripts with `se
 For more information, see [Hooks](../../../create-apps/hooks/hooks-comparison).
 
 To gain a better understanding of how hooks relate to each other when building and deploying an app,
-see the [{{< vendor/name >}} philosophy](../../overview/philosophy.md).
+see the [{{< vendor/name >}} philosophy](/learn/overview/philosophy.md).
 
 {{< note title="Tip">}}
 

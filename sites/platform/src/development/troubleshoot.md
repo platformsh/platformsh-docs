@@ -133,7 +133,7 @@ If you can't access some part of your project, whether it's the live site, devel
 check the [{{< vendor/name >}} status page](https://status.platform.sh/).
 There you can see planned maintenance and subscribe to updates for any potential outages.
 
-If the status is operational, [contact support](../overview/get-support.md).
+If the status is operational, [contact support](/learn/overview/get-support.md).
 
 ## Command not found
 

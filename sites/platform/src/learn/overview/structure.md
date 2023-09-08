@@ -7,10 +7,10 @@ description: "Learn about how your {{< vendor/name >}} environments are structur
 {{< note >}}
 
 This page describes how things work on Grid projects.
-[{{% names/dedicated-gen-3 %}}](../dedicated-gen-3/_index.md) projects are similar,
+[{{% names/dedicated-gen-3 %}}](/dedicated-gen-3/_index.md) projects are similar,
 but they run on dedicated hosts and each container is replicated three times.
 
-For {{% names/dedicated-gen-2 %}} projects, read about how [{{% names/dedicated-gen-2 %}} projects are structured](../dedicated-gen-2/overview/_index.md).
+For {{% names/dedicated-gen-2 %}} projects, read about how [{{% names/dedicated-gen-2 %}} projects are structured](/dedicated-gen-2/overview/_index.md).
 
 {{< /note >}}
 
@@ -49,9 +49,9 @@ This router maps incoming requests to the appropriate app container
 and provides basic caching of responses, unless configured otherwise.
 
 The router is configured in a `{{< vendor/configfile "routes" >}}` file.
-If you don't include configuration, a single [default route is deployed](../define-routes/_index.md#default-route-definition).
+If you don't include configuration, a single [default route is deployed](/define-routes/_index.md#default-route-definition).
 
-Read more about how to [define routes](../define-routes/_index.md).
+Read more about how to [define routes](/define-routes/_index.md).
 
 ## Apps
 
@@ -64,7 +64,7 @@ Each app container is built from a specific language image with a given version 
 To configure your apps, you usually create one `{{< vendor/configfile "app" >}}` file for each app container.
 A basic app generally has only one such file placed in the repository root.
 
-Read more about how to [configure apps](../create-apps/_index.md).
+Read more about how to [configure apps](/create-apps/_index.md).
 
 ## Services
 
@@ -75,7 +75,7 @@ You don't need to add their code yourself, just set up how your apps communicate
 
 Service containers are configured by the `{{< vendor/configfile "services" >}}` file.
 
-Read more about how to [add services](../add-services/_index.md).
+Read more about how to [add services](/add-services/_index.md).
 
 ## Workers
 
@@ -85,4 +85,4 @@ Worker containers are copies of an app containers
 that have no access to the outside world and can have a different start command.
 They're useful for continually running background processes.
 
-Read more about how to [work with workers](../create-apps/workers.md).
+Read more about how to [work with workers](/create-apps/workers.md).
