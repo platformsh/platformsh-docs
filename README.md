@@ -19,7 +19,7 @@ The build script is rerun on every deploy to produce a fresh static site instanc
 The cross-site search in the documentation is built as a separate Platform.sh app
 from the files in the `search` directory using [Meilisearch](https://www.meilisearch.com/).
 
-## Contribute
+## Contributing
 
 Our documentation is public because we want your help in improving and maintaining it.
 See our [contribution guidelines](CONTRIBUTING.md) for how to make changes.
@@ -28,7 +28,7 @@ All documentation is released under a [Creative Commons Attribution](LICENSE.md)
 If you spot a problem, open a pull request to fix it!
 If you're not sure how, you can also open an issue and we can look into it.
 
-## Run locally
+## Running locally
 
 Requires:
 
@@ -38,7 +38,7 @@ Requires:
 
 ### Steps
 
-### Run locally without search
+### Running locally without search
 
 The documentation and the Meilisearch search service are separate applications.
 It isn't necessary to run the Meilisearch app to build the docs locally,
@@ -73,7 +73,7 @@ If you’re using the GitHub CLI tool, to avoid including your token’s value i
     hugo serve
     ```
 
-### Run locally with search
+### Running locally with search
 
 In addition to the above requirements, search also requires:
 
@@ -97,9 +97,9 @@ If you are making a change to such files, bust the cache so users aren't served 
 
 To clear the cache, update the `version` in [`docs/config/_default/params.yaml`](./docs/config/_default/params.yaml).
 
-## Manage white label documentation
+## Managing white label documentation
 
-### Add a white label documentation
+### Adding a white label documentation
 
 To add a white label documentation using its own logo, styles, and wording,
 add a new white label folder in the `sites/` directory.
@@ -154,7 +154,7 @@ module:
 
 You can exclude as many files as you want.
 
-### Configure settings placeholders
+### Configuring settings placeholders
 
 When you add a white label documentation, you want vendor-specific values, such as the vendor and CLI names, to be easily substituted.
 
@@ -179,14 +179,14 @@ Each of them can be used in any templates (HTML or MarkDown) using shortcodes:
 ...
 ```
 
-### Use a settings placeholder in a heading
+### Using a settings placeholder in a heading
 
 If you need to use a [settings placeholder](#settings-placeholders) in a heading, use the `{{% my.settings %}}` syntax.
 
 If you use the `{{< my.settings >}}` syntax, the desired value isn't displayed in the on-page navigation menu.
 Instead, the placeholder is replaced by an unwanted reference to the shortcode, similar to `HAHAHUGOSHORTCODEs3HBHB`.
 
-#### Change the structure of the navigation sidebar
+#### Changing the structure of the navigation sidebar
 
 You might need to change the structure of the main navigation sidebar in your white label documentation.
 
