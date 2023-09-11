@@ -252,6 +252,9 @@ https://{default}/:
       "^/tutorials/(.*)":  { "to": "/learn/tutorials$1", "code": 301, "regexp": true }
       "^/overview/(.*)":  { "to": "/learn/overview$1", "code": 301, "regexp": true }
 
+      # YAML redirect after Learn section was created (September 2023)
+      "/overview/yaml/what-is-yaml.html" : { "to": "/learn/overview/yaml/what-is-yaml.html", "code": 301 }
+
 "https://search.{default}/":
     type: upstream
     upstream: "search:http"
