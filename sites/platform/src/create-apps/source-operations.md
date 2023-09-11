@@ -303,7 +303,7 @@ The following source operation syncronizes your branch with an upstream Git repo
    If there’s a conflict merging from the upstream repository,
    the source operation fails and doesn't update from the upstream repository.
 
-Run the `upstream-update` operation on a preview environment rather than directly on Production.
+Run the `upstream-update` operation on a Development environment rather than directly on Production.
 
 ### Revert to the last commit
 

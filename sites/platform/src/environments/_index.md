@@ -158,7 +158,7 @@ Example Agile workflow:
 
 ### Naming conventions
 
-You can organize and work with your preview environments in many different ways.
+You can organize and work with your development environments in many different ways.
 It can help to introduce a convention for how you name and structure your environments.
 
 For each environment, choose a name that represents what the environment is for.
@@ -191,14 +191,14 @@ Staging
 
 {{< partial "progressive-rollout/body.md" >}}
 
-[Preview environments](../other/glossary.md#preview-environment) ([development type](../other/glossary.md#environment-type)) are often used for a limited time and then abandoned.
+Development environments are often used for a limited time and then abandoned.
 To prevent unnecessary consumption of resources,
-{{< vendor/name >}} automatically pauses preview environments that haven't been redeployed in 14 days.
+{{< vendor/name >}} automatically pauses development environments that haven't been redeployed in 14 days.
 
 {{< note >}}
 
 If you're on a development plan,
-all your environments are preview environments that can be paused automatically.
+all your environments are development environments that can be paused automatically.
 This includes your future production environment.
 To prevent your production environment from being paused automatically,
 [upgrade to a non-development plan](https://platform.sh/pricing/).

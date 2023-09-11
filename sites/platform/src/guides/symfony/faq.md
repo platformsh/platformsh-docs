@@ -66,7 +66,7 @@ symfony logs all
   [access] 78.247.136.119 - - [14/Aug/2020:10:52:27 +0000] "GET / HTTP/1.1" 500 843 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36"
 ```
 
-If the error occurs on a preview environment,
+If the error occurs on a non-production environment,
 or on the main environment of a non-production project,
 you can also enable Symfony's dev/debug mode to inspect the cause of the error:
 

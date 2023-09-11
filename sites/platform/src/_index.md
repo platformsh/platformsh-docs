@@ -39,6 +39,7 @@ After going through the **Get started** section, you may want to know more about
 
 - [**Best practices**](/learn/bestpractices/_index.md)
 
+<<<<<<< HEAD
     {{< vendor/name >}} makes deploying and managing infrastructure no different than working with Git.
     As your work becomes more experimental, however, you may be interested in optimizing your workflows, and addressing common constraints of the platform. 
     The [**Best practices**](/learn/bestpractices/_index.md) documentation contains articles that address advanced use cases for caching, microservices, and more.
@@ -114,3 +115,10 @@ Feel free to open an issue or pull request for any of the repositories below, or
 ### Get support
 
 If you're experiencing issues with your projects, don't hesitate to open a [support ticket](/learn/overview/get-support).
+=======
+1. **Unified Environment:** All of your services (MySQL, ElasticSearch, MongoDB, etc.) are managed inside the cluster and included in the price, with no external single-points-of-failure. When you back up an environment, you get a fully consistent snapshot of your whole application.
+2. **Multi-Services & Multi-App:** You can deploy multiple applications (for example, in a microservice-based architecture), using multiple data backends (MySQL, PostgreSQL, Redis, etc.) written in multiple frameworks (Drupal + NodeJS + Flask, for example) in multiple languages, all in the same cluster.
+3. **Full Cluster Cloning Technology:** The full production cluster can be cloned in under a minute&mdash;including all of its data&mdash;to create on-the-fly, ephemeral development environments that are a byte-level copy of production.
+4. **Fail-Proof Deployments:** Every time you test a new feature, you also test the deployment process.
+5. **Continuous Deployment from the Start:** Everything is build-oriented, with a consistent, repeatable build process, simplifying the process of keeping your application up-to-date and secure.
+>>>>>>> parent of e685d7b0c (Preview environments update)
