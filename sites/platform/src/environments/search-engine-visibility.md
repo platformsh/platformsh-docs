@@ -4,10 +4,10 @@ sidebarTitle: Set search engine visibility
 description: Learn how to change.a given environment's visbility to search engines.
 ---
 
-When you have preview environments,
+When you have development environments,
 you don't want search engines indexing them and diluting the SEO of your production site.
 
-Search engine indexers are told to ignore all preview environments.
+Search engine indexers are told to ignore all development environments.
 When you're ready to go live, give your production environment a [custom domain](../domains/steps/_index.md)
 and then set it to be visible to search engines.
 

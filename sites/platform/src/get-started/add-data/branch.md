@@ -7,9 +7,9 @@ description: Create a separate environment for development and see how it works.
 The next step in building out your app is adding a service.
 For comfortable development and testing, start with a separate branch for development.
 
-## Create a preview environment
+## Create a development environment
 
-To develop without affecting production, you need a separate [preview environment](../../other/glossary.md#preview-environment).
+To develop without affecting production, you need a separate environment.
 Create one in a terminal:
 
 ```bash
@@ -58,7 +58,7 @@ You get a message saying the variable wasn't found.
 Differences such as this allow you to have different builds in different environments.
 This is useful for things such as connecting to different databases in development and production.
 
-Now you have a preview environment and know how it works.
+Now you have a development environment and know how it works.
 Next, add a service in that environment and then merge it.
 
 {{< get-started/next-button next="/get-started/add-data/merge.html" nextText="I'm ready to merge" >}}

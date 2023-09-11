@@ -223,7 +223,7 @@ markdownify=false
 ## Sanitizing data
 
 By default, data is inherited automatically by each child environment from its parent.
-If you need to sanitize data in preview environments for compliance,
+If you need to sanitize data in non-production environments for compliance,
 see how to [sanitize databases](../../development/sanitize-db/_index.md).
 
 ## Frameworks

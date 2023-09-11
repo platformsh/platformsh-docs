@@ -28,11 +28,11 @@ about the app and its infrastructure.
 The Symfony integration exposes more environment variables:
 
 - `APP_ENV` is set to `prod` by default. 
-  You can manually override this value for a preview environment
+  You can manually override this value for a development environment
   by setting the `SYMFONY_ENV` environment variable to `dev`, and remove it when done.
 
 - `APP_DEBUG` is set to `0` by default.
-  You can manually override this value for a preview environment
+  You can manually override this value for a development environment
   by setting the `SYMFONY_DEBUG` environment variable to `1`, and remove it when done.
 
 - `APP_SECRET` is set to the value of `PLATFORM_PROJECT_ENTROPY`, which is a random and unique value for all {{< vendor/name >}} projects.
@@ -60,7 +60,7 @@ The Symfony integration exposes more environment variables:
   If you need to clear the build cache directory, run the `symfony cloud:project:clear-build-cache` command.
 
 - `SYMFONY_PROJECT_DEFAULT_ROUTE_URL` (only defined at **runtime**): The default endpoint serving your project.
-  Use this variable to avoid hard-coding domains that can be used to reach preview environments.
+  Use this variable to avoid hard-coding domains that can be used to reach non-production environments.
   Parts of the URL are also exposed as their own variables using the following syntax:
   `SYMFONY_PROJECT_DEFAULT_ROUTE_` followed by the name of the part (`SCHEME`, `DOMAIN`, `PORT`, and `PATH`).
 
