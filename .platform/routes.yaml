@@ -260,7 +260,7 @@ https://{default}/:
     upstream: "search:http"
     id: "search"
 
-https://docs.deployfriday.net/:
+https://docs.upsun.com/:
   type: upstream
   upstream: friday:http
   id: friday

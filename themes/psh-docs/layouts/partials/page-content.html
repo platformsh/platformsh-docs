@@ -48,7 +48,7 @@
       <div><br/></div>
       {{ end }}
       
-      <div class="bg-skye-light border-stone border-t-0 px-6 pt-1 pb-4 mb-8 md:mb-0 text-sm [&_a]:text-skye-dark hover:[&_a]:underline focus:[&_a]:underline [&_ul_ul]:pl-4">
+      <div class="recruit-banner bg-skye-light border-stone border-t-0 px-6 pt-1 pb-4 mb-8 md:mb-0 text-sm [&_a]:text-skye-dark hover:[&_a]:underline focus:[&_a]:underline [&_ul_ul]:pl-4">
         {{ $recruitment := .context.Site.Params.vendor.recruit }}
         <h3 class="pt-4 pb-2 font-light text-base text-slate">{{ index $recruitment "title" }}</h3>
         <p>{{ index $recruitment "description" | safeHTML }}</p>
