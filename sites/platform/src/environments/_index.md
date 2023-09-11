@@ -193,7 +193,7 @@ Staging
 
 Development environments are often used for a limited time and then abandoned.
 To prevent unnecessary consumption of resources,
-{{< vendor/name >}} automatically pauses development environments that haven't been redeployed in 14 days.
+{{< vendor/name >}} automatically pauses development and staging environments that haven't been redeployed in 14 days.
 
 {{< note >}}
 
