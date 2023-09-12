@@ -14,7 +14,7 @@ The information under **Metrics** shows usage metrics for:
 each of the three hosts in your [N+1 configuration](../../dedicated-gen-2/architecture/_index.md)
 and their average for the Production environment.
 Metrics aren't available for other {{% names/dedicated-gen-2 %}} environments (such as a staging environment),
-but are available for Grid environments (such as your development environments).
+but are available for Grid environments (such as your preview environments).
 
 ![A screenshot of what the metrics dashboard displays for {{% names/dedicated-gen-2 %}} environments](/images/metrics/all-dedicated.png "0.45")
 
