@@ -42,7 +42,7 @@ or add the [cache-control](https://wordpress.org/plugins/cache-control-by-cachol
 composer require wpackagist-plugin/cache-control
 ```
 
-These commands will add the packages to your `composer.json` file, and then lock the exact version to `composer.lock`. Just push those updates to your project on {{< vendor/name >}}h, and enable them through the administration panel as you would normally. 
+These commands will add the packages to your `composer.json` file, and then lock the exact version to `composer.lock`. Just push those updates to your project on {{< vendor/name >}}, and enable them through the administration panel as you would normally. 
 
 {{< note >}}
 Typically, Composer dependencies install to a `vendor` directory in the project root, but themes and plugins need to install to `wp-content` instead. There is an `installer-paths` attribute that is added to `composer.json` to accomplish this, which is explained in more detail in the [How to Deploy WordPress on {{< vendor/name >}}](/guides/wordpress/deploy/_index.md) guide (which uses Composer from the start), as well as the [How to update your WordPress site to use Composer](/guides/wordpress/composer/migrate.md) guide. 
