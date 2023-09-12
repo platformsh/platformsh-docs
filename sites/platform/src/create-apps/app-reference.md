@@ -782,7 +782,7 @@ To run cron jobs in a timezone other than UTC, set the [timezone property](#top-
 
 ### Paused crons
 
-[Preview environments](../other/glossary.md#preview-environment) ([development type](../other/glossary.md#environment-type)) are often used for a limited time and then abandoned.
+[Preview environments](../other/glossary.md#preview-environment) are often used for a limited time and then abandoned.
 While it's useful for environments under active development to have scheduled tasks,
 unused environments don't need to run cron jobs.
 To minimize unnecessary resource use,
