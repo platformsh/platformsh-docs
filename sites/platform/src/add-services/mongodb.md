@@ -43,7 +43,7 @@ and are no longer receiving security updates from upstream.
 
 Downgrades of MongoDB aren't supported.
 MongoDB updates its own data files to a new version automatically but can't downgrade them.
-If you want to experiment with a later version without committing to it use, a preview environment.
+If you want to experiment with a later version without committing to it use a non-production environment.
 
 {{< /note >}}
 
@@ -155,7 +155,7 @@ and export the data directly using MongoDB's tools.
 First, open an SSH tunnel with the {{< vendor/name >}} CLI:
 
 ```bash
-platform tunnel:open
+{{% vendor/cli %}} tunnel:open
 ```
 
 That opens an SSH tunnel to all services on your current environment and produce output like the following:

@@ -10,7 +10,7 @@ layout: single
 ## Setup
 
 ```bash
-platform integration:add --type=webhook --url={{<variable "URL_TO_RECEIVE_JSON" >}}
+{{% vendor/cli %}} integration:add --type=webhook --url={{<variable "URL_TO_RECEIVE_JSON" >}}
 ```
 
 The webhook URL receives a POST message for every activity that's triggered.
@@ -32,5 +32,5 @@ See the [activity script](/integrations/activity/reference.md) reference for a d
 To verify your integration is functioning properly, run the following [CLI command](/integrations/overview.md#validate-integrations):
 
 ```bash
-platform integration:validate
+{{% vendor/cli %}} integration:validate
 ```

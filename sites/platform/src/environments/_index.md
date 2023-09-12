@@ -78,7 +78,7 @@ you can also open it and view its information panel.
 title=Using the CLI
 +++
 
-To check the status of all your environments, from your project directory run the `platform environments` command.
+To check the status of all your environments, from your project directory run the `{{% vendor/cli %}} environments` command.
 
 {{< /codetabs >}}
 
@@ -158,7 +158,7 @@ Example Agile workflow:
 
 ### Naming conventions
 
-You can organize and work with your preview environments in many different ways.
+You can organize and work with your development environments in many different ways.
 It can help to introduce a convention for how you name and structure your environments.
 
 For each environment, choose a name that represents what the environment is for.
@@ -191,14 +191,20 @@ Staging
 
 {{< partial "progressive-rollout/body.md" >}}
 
+<<<<<<< HEAD
 [Preview environments](../other/glossary.md#preview-environment) are often used for a limited time and then abandoned.
 To prevent unnecessary consumption of resources,
 {{< vendor/name >}} automatically pauses preview environments ([of both development and staging types](../other/glossary.md#environment-type)) that haven't been redeployed in 14 days.
+=======
+Development environments are often used for a limited time and then abandoned.
+To prevent unnecessary consumption of resources,
+{{< vendor/name >}} automatically pauses development and staging environments that haven't been redeployed in 14 days.
+>>>>>>> main
 
 {{< note >}}
 
 If you're on a development plan,
-all your environments are preview environments that can be paused automatically.
+all your environments are development environments that can be paused automatically.
 This includes your future production environment.
 To prevent your production environment from being paused automatically,
 [upgrade to a non-development plan](https://platform.sh/pricing/).
@@ -220,7 +226,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform environment:pause --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
+{{% vendor/cli %}} environment:pause --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
 <--->
@@ -248,7 +254,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform environment:resume --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
+{{% vendor/cli %}} environment:resume --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
 <--->

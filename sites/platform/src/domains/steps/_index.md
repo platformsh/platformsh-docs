@@ -8,7 +8,7 @@ layout: single
 Once your project is ready for production, replace the automatically generated domain with your own custom domain.
 
 Note that adding a domain disables the automatically generated URL for your Production environment only.
-If you are an Enterprise or Elite customer and have a Grid or {{% names/dedicated-gen-3 %}} project, you can [customize the URLs for your preview environments](/domains/steps/custom-domains-preview-environments).
+If you are an Enterprise or Elite customer and have a Grid or {{% names/dedicated-gen-3 %}} project, you can [customize the URLs for your non-production environments](/domains/steps/custom-non-production-domains).
 {{% names/dedicated-gen-2 %}} customers can also customize the domain for their Staging environment.
 
 ## Before you begin
@@ -42,7 +42,7 @@ title=Using the CLI
 Run the following [CLI command](../../administration/cli/_index.md):
 
 ```bash
-platform subscription:info plan standard
+{{% vendor/cli %}} subscription:info plan standard
 ```
 
 <--->
@@ -77,7 +77,7 @@ title=Using the CLI
 Get the target by running the following [CLI command](../../administration/cli/_index.md):
 
 ```bash
-platform environment:info edge_hostname
+{{% vendor/cli %}} environment:info edge_hostname
 ```
 
 <--->
@@ -168,7 +168,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform domain:add {{<variable "YOUR_DOMAIN" >}}
+{{% vendor/cli %}} domain:add {{<variable "YOUR_DOMAIN" >}}
 ```
 
 <--->

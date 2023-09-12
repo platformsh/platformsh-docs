@@ -66,7 +66,7 @@ when you clone a project using the <code>platform get {{< variable "PROJECT_ID" 
 To see the aliases that are created, run the following command:
 
 ```bash
-platform drush-aliases
+{{% vendor/cli %}} drush-aliases
 ```
 
 You get output similar to the following:
@@ -84,7 +84,7 @@ Aliases for My Site (tqmd2kvitnoly):
 To recreate existing aliases or to create a new alias after pushing a new branch via git, run:
 
 ```bash
-platform drush-aliases -r
+{{% vendor/cli %}} drush-aliases -r
 ```
 
 {{< guide-buttons type="last" >}}

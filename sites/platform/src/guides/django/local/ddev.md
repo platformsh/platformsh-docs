@@ -23,7 +23,7 @@ sectionBefore: Integrated environments
 1.  Create a new environment off of production.
 
     ```bash
-    platform branch new-feature main
+    {{% vendor/cli %}} branch new-feature main
     ```
 
     If you're using a [source integration](../../../integrations/source/_index.md),
@@ -180,7 +180,7 @@ hooks:
     and then run the following command to retrieve data from the current {{< vendor/name >}} environment:
 
     ```bash
-    ddev pull platform
+    ddev pull {{% vendor/cli %}}
     ```
 
 14. Restart DDEV
@@ -204,23 +204,30 @@ hooks:
     {{< codetabs >}}
 +++
 title=Pip
-highlight=bash
-file=snippets/guides/django/ddev/local-pip.sh
 +++
+
+```bash {location="init-local.sh"}
+{{< snippets/guides/django/ddev/local-pip >}}
+```
+
 <--->
 +++
 title=Pipenv
-highlight=bash
-file=snippets/guides/django/ddev/local-pipenv.sh
 +++
-Pipenv example
+
+```bash {location="init-local.sh"}
+{{< snippets/guides/django/ddev/local-pipenv >}}
+```
+
 <--->
 +++
 title=Poetry
-highlight=bash
-file=snippets/guides/django/ddev/local-poetry.sh
 +++
-Poetry example
+
+```bash {location="init-local.sh"}
+{{< snippets/guides/django/ddev/local-poetry >}}
+```
+
     {{< /codetabs >}}
 
 {{% local-dev/next-steps-end %}}

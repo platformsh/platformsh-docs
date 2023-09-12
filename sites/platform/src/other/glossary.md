@@ -57,15 +57,15 @@ title=Using the CLI
 Run:
 
 ```bash
-platform branch <NEW_BRANCH_NAME> <PARENT_BRANCH_NAME>
+{{% vendor/cli %}} branch <NEW_BRANCH_NAME> <PARENT_BRANCH_NAME>
 ```
 
 To define the environment type for the branch, include `--type <ENVIRONMENT_TYPE>`.
 
-For example, to create the branch `develop` as a [preview environment](#preview-environment) ([development type](#environment-type)) from the branch `main`, run:
+For example, to create the branch `develop` as a Development environment from the branch `main`, run:
 
 ```bash
-platform branch develop main --type development
+{{% vendor/cli %}} branch develop main --type development
 ```
 
 {{< /codetabs >}}
@@ -107,7 +107,7 @@ Drush is a command-line shell and scripting interface for Drupal.
 Drush site aliases allow you to define short names
 that let you run Drush commands on specific local or remote Drupal installations.
 The {{< vendor/name >}} CLI configures Drush aliases for you on your local environment
-(via `platform get` or `platform drush-aliases`).
+(via `{{% vendor/cli %}} get` or `{{% vendor/cli %}} drush-aliases`).
 You can also configure them manually.
 
 ## Environment
@@ -116,20 +116,6 @@ An [environment](../environments/_index.md) is a standalone copy of your site,
 complete with code, data, and running services.
 Your production environment comes from the [default branch](../environments/_index.md#default-environment)
 and you can set up any other branch as a testing environment.
-
-## Environment type
-
-{{< vendor/name >}} offers three environment types:
-
-- Your **production environment** is your live site.
-- A **development environment** is an isolated environment where you can safely develop new features without affecting production.
-- A **staging environment** has a similar configuration to your production environment (but usually with less resources for cost optimization).
-  It is useful to perform user acceptance testing in a production-like setting.
-
-The phrase "[preview environment](#preview-environment)" can apply to both a development or staging environment,
-as it simply describes a non-production environment.
-
-Find out more about [user roles on each environment type](../administration/users.md#environment-type-roles).
 
 ## Grid
 
@@ -179,13 +165,6 @@ When you merge an environment, three things happen:
 A Platform as a Service is an end-to-end hosting solution
 that includes workflow tools, APIs, and other functionality above and beyond basic hosting.
 The best example is {{< vendor/name >}}(although we're a little biased).
-
-## Preview environment
-
-A preview environment is a non-production environment you can use to develop and/or test changes without affecting production.</br>
-A preview environment can either be a development environment or a staging environment.
-Staging environments have an identical software configuration to your production hardware but reduced hardware specs.
-They are useful to perform user acceptance testing. 
 
 ## Production plan
 

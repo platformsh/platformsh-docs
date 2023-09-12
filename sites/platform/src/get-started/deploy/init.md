@@ -14,7 +14,7 @@ To deploy your app, you need to connect its repository to a project in {{< vendo
 First, create a {{< vendor/name >}} project by running the following command:
 
 ```bash
-platform project:create
+{{% vendor/cli %}} project:create
 ```
 
 Then go through each of the steps to create the project:

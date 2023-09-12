@@ -26,7 +26,7 @@ first activate it.
    and any files stored on [mounts](../create-apps/app-reference.md#mounts) are included.
    The backup is stored internally on {{< vendor/name >}}.
    That is, the backup can be applied to environments on {{< vendor/name >}}, but it can't be downloaded.
-   If you need to download backups, instead [export your mount and service data](../tutorials/exporting.md)).
+   If you need to download backups, instead [export your mount and service data](/learn/tutorials/exporting.md)).
 
 2. You restore your environment using the backup.
    At this point, the data and code from the backup are restored to ensure a consistent state.
@@ -65,7 +65,7 @@ For information on how long backups are retained, see the [data retention policy
 
 Backups for Dedicated environments have a [specific frequency](../dedicated-gen-2/overview/backups.md).
 
-On Grid environments, preview environments can have up to 2 [manual backups](#create-a-manual-backup).
+On Grid environments, non-Production environments can have up to 2 [manual backups](#create-a-manual-backup).
 The number of available backups for Production environments depends on your schedule.
 
 | Schedule | Manual backups | Automated backups                                                      |
@@ -98,7 +98,7 @@ To upgrade to the higher schedule, follow these steps:
 5. Select the target schedule.
 6. Click **Save**.
 
-To downgrade to the lower schedule, [contact support](../overview/get-support.md).
+To downgrade to the lower schedule, [contact support](/learn/overview/get-support.md).
 
 ## Use automated backups
 
@@ -135,7 +135,7 @@ title=Using the CLI
 Use the `--live` flag:
 
 ```bash
-platform backup:create --live
+{{% vendor/cli %}} backup:create --live
 ```
 
 <--->
@@ -156,7 +156,7 @@ You can create a manual backup using the [CLI](../administration/cli/_index.md) 
 title=Using the CLI
 highlight=bash
 +++
-platform backup:create
+{{% vendor/cli %}} backup:create
 <--->
 +++
 title=In the Console

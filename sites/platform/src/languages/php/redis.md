@@ -59,7 +59,7 @@ hooks:
 
 ## Change extension or version
 
-To change the Redis extension or the version you are using, update the build hook and clear the build cache: `platform project:clear-build-cache`.
+To change the Redis extension or the version you are using, update the build hook and clear the build cache: `{{% vendor/cli %}} project:clear-build-cache`.
 
 The new version is *not* be used until you clear the build cache.
 
