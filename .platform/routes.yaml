@@ -268,3 +268,7 @@ https://docs.upsun.com/:
     enabled: true
   ssi:
     enabled: false
+
+"https://docs.deployfriday.net/":
+    type: redirect
+    to: "https://docs.upsun.com/"
