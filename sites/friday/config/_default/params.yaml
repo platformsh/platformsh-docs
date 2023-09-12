@@ -104,10 +104,10 @@ meta:
   url: "https://docs.upsun.com"
   twittercard:
     card: "summary_large_image"
-    site: "@platformsh"
+    site: "@upsuncom"
     title: "Upsun User Documentation"
     description: "Upsun is a second-generation Platform-as-a-Service built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive."
-    creator: "@platformsh"
+    creator: "@upsuncom"
     image: "https://docs.upsun.com/images/logos/docs_social_2021.jpg"
   keywords:
     - PaaS
