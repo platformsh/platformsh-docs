@@ -9,7 +9,7 @@ This section details the recovery point objective (RPO) and recovery time object
 
 ## Preview environments
 
-For non-Production environments, users can manage their own manual backup and restore functions.
+For preview environments, users can manage their own manual backup and restore functions.
 See how to [back up](../environments/backup.md#create-a-manual-backup) and [restore](../environments/restore.md).
 
 **RPO**: User defined.
