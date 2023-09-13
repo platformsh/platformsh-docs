@@ -10,7 +10,9 @@
 <!-- If the feature is in beta -->
 {{ partial "beta-flag/banner.html" .context }}
 
-{{ partial "editpagebutton.html" .context }}
+{{ if ne .context.Params.editPage false }}
+  {{ partial "editpagebutton.html" .context }}
+{{ end }}
 
 <!-- Page title -->
 {{ if ne .context.Params.showTitle false }}
@@ -23,6 +25,11 @@
     <!-- Table of contents -->
     {{ if and (ne .context.Params.toc false) (ne .context.TableOfContents "<nav id=\"TableOfContents\"></nav>") }}
       <div class="border border-stone border-t-0 px-6 pt-1 pb-4 mb-8 md:mb-0 text-sm [&_a]:text-skye-dark hover:[&_a]:underline focus:[&_a]:underline [&_ul_ul]:pl-4">
+        
+        {{ if not .context.Page.IsHome }}
+        <h3 class="pt-4 pb-2 font-light text-base text-slate"><a href="/">Back to home</a></h3>
+        {{ end }}
+
         <h3 class="pt-4 pb-2 font-light text-base text-slate">On this page</h3>
         {{ .context.TableOfContents }}
       </div>
@@ -34,6 +41,22 @@
       {{ partial "feedback/form" }}
     </div>
     {{ end }}
+
+    <!-- Sign up -->
+    {{ if .context.Site.Params.vendor.recruit.active }}
+      {{ if .context.Page.IsHome }}
+      <div><br/></div>
+      {{ end }}
+      
+      <div class="recruit-banner bg-skye-light border-stone border-t-0 px-6 pt-1 pb-4 mb-8 md:mb-0 text-sm [&_a]:text-skye-dark hover:[&_a]:underline focus:[&_a]:underline [&_ul_ul]:pl-4">
+        {{ $recruitment := .context.Site.Params.vendor.recruit }}
+        <h3 class="pt-4 pb-2 font-light text-base text-slate">{{ index $recruitment "title" }}</h3>
+        <p>{{ index $recruitment "description" | safeHTML }}</p>
+        <p><a href="{{ index $recruitment "link" }}">{{ index $recruitment "cta" }}</a></p>
+
+      </div>
+    {{ end }}
+
   </div>
 
   <div class="prose xl:prose-lg max-w-[96vw] md:max-w-none prose-code:!mb-0 prose-h2:text-xl prose-h3:text-xl prose-h4:text-lg">

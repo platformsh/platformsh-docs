@@ -8,7 +8,7 @@ PostgreSQL is a high-performance, standards-compliant relational SQL database.
 
 See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.html) for more information.
 
-{{% frameworks %}}
+{{% frameworks version="1" %}}
 
 - [Hibernate](../guides/hibernate/deploy.md#mysql)
 - [Jakarta EE](../guides/jakarta/deploy.md#mysql)
@@ -114,7 +114,7 @@ highlight=python
 
 ## Access the service directly
 
-Access the service using the Platform CLI by running `platform sql`.
+Access the service using the Platform CLI by running `{{% vendor/cli %}} sql`.
 
 You can also access it from your app container via [SSH](../development/ssh/_index.md).
 From your [relationship data](#relationship-reference), you need: `username`, `host`, and `port`.
@@ -137,25 +137,25 @@ psql -U main -h postgresql.internal -p 5432
 The easiest way to download all data in a PostgreSQL instance is with the Platform CLI. If you have a single SQL database, the following command exports all data using the `pg_dump` command to a local file:
 
 ```bash
-platform db:dump
+{{% vendor/cli %}} db:dump
 ```
 
 If you have multiple SQL databases it prompts you which one to export. You can also specify one by relationship name explicitly:
 
 ```bash
-platform db:dump --relationship database
+{{% vendor/cli %}} db:dump --relationship database
 ```
 
 By default the file is uncompressed. If you want to compress it, use the `--gzip` (`-z`) option:
 
 ```bash
-platform db:dump --gzip
+{{% vendor/cli %}} db:dump --gzip
 ```
 
 You can use the `--stdout` option to pipe the result to another command. For example, if you want to create a bzip2-compressed file, you can run:
 
 ```bash
-platform db:dump --stdout | bzip2 > dump.sql.bz2
+{{% vendor/cli %}} db:dump --stdout | bzip2 > dump.sql.bz2
 ```
 
 ## Importing data
@@ -166,10 +166,10 @@ Make sure that the imported file contains objects with cleared ownership and `IF
 pg_dump --no-owner --clean --if-exists
 ```
 
-The easiest way to load data into a database is to pipe an SQL dump through the `platform sql` command, like so:
+The easiest way to load data into a database is to pipe an SQL dump through the `{{% vendor/cli %}} sql` command, like so:
 
 ```bash
-platform sql < my_database_backup.sql
+{{% vendor/cli %}} sql < my_database_backup.sql
 ```
 
 That runs the database backup against the SQL database on {{< vendor/name >}}.
@@ -178,7 +178,7 @@ That works for any SQL file, so the usual caveats about importing an SQL dump ap
 As with exporting, you can also specify a specific environment to use and a specific database relationship to use, if there are multiple.
 
 ```bash
-platform sql --relationship database -e {{< variable "BRANCH_NAME" >}} < my_database_backup.sql
+{{% vendor/cli %}} sql --relationship database -e {{< variable "BRANCH_NAME" >}} < my_database_backup.sql
 ```
 
 {{< note >}}
@@ -349,7 +349,6 @@ extensions not listed here.
 * `pgrouting` - pgRouting Extension (requires 9.6 or higher)
 * `pgrowlocks` - show row-level locking information
 * `pgstattuple` - show tuple-level statistics
-* `pgvector` - Open-source vector similarity search for PostgreSQL 11+
 * `plpgsql` - PL/pgSQL procedural language
 * `postgis` - PostGIS geometry, geography, and raster spatial types and functions
 * `postgis_sfcgal` - PostGIS SFCGAL functions
@@ -367,6 +366,7 @@ extensions not listed here.
 * `tsm_system_time` - TABLESAMPLE method which accepts time in milliseconds as a limit (requires 9.6 or higher)
 * `unaccent` - text search dictionary that removes accents
 * `uuid-ossp` - generate universally unique identifiers (UUIDs)
+* `vector` - Open-source [vector](https://github.com/pgvector/pgvector) similarity search for PostgreSQL 11+
 * `xml2` - XPath querying and XSLT
 
 {{< note >}}

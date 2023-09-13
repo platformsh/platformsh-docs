@@ -11,7 +11,7 @@ premium : true
 
 See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html) for more information.
 
-{{% frameworks %}}
+{{% frameworks version="1" %}}
 
 - [Drupal](../guides/drupal9/elasticsearch.md)
 - [Jakarta EE](../guides/jakarta/deploy.md#elasticsearch)
@@ -23,9 +23,9 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 
 ## Supported versions
 
-Elasticsearch is now a premium service.
-This means that from version 7.11 onward, you need to add Elasticsearch to your project at an additional cost.
-To do so, contact {{< vendor/url "sales" "Sales" >}}.
+From version 7.11 onward:
+
+{{< premium-features/add-on feature="Elasticsearch" >}}
 
 The following premium versions are supported:
 
@@ -183,7 +183,7 @@ use the `elasticsearch-enterprise` type.
 
 In this example you'd have the ICU analysis plugin and Python script support plugin.
 
-If there is a publicly available plugin you need that isn't listed here, [contact support](../overview/get-support.md).
+If there is a publicly available plugin you need that isn't listed here, [contact support](/learn/overview/get-support.md).
 
 ### Available plugins
 

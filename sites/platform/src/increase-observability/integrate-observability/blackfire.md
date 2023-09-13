@@ -52,11 +52,20 @@ To do so, follow these steps:
 5. Retrieve your Blackfire server ID and server token.
 6. Follow [the instructions from the Blackfire documentation](https://blackfire.io/docs/integrations/paas/platformsh).
 
+{{< version/specific >}}
+<!-- Version 1, where managed Fastly is available -->
 If you're using the [Managed Fastly CDN](../../domains/cdn/managed-fastly.md),
 it's already configured to operate with Blackfire. 
 If you're using a different [Content Delivery Network (CDN)](../../domains/cdn/_index.md), 
 make sure you [configure it](https://blackfire.io/docs/integrations/proxies/index)
 to let Blackfire profile the code running on your servers.
+
+<--->
+<!-- Version 2, where managed Fastly isn't available -->
+If you're using a [Content Delivery Network (CDN)](../../domains/cdn/_index.md), 
+make sure you [configure it](https://blackfire.io/docs/integrations/proxies/index)
+to let Blackfire profile the code running on your servers.
+{{< /version/specific >}}
 
 ### On {{% names/dedicated-gen-2 %}} infrastructure
 
@@ -72,11 +81,21 @@ To install Blackfire on your {{% names/dedicated-gen-2 %}} environments:
 5. Retrieve your Blackfire server ID and server token.
 6. Send those credentials to [Support](https://console.platform.sh/-/users/~/tickets/open) so they complete the installation.
 
+{{< version/specific >}}
+<!-- Version 1, where managed Fastly is available -->
 If you're using the [Managed Fastly CDN](../../domains/cdn/managed-fastly.md),
 it's already configured to operate with Blackfire. 
 If you're using a different [Content Delivery Network (CDN)](../../domains/cdn/_index.md), 
 make sure you [configure it](https://blackfire.io/docs/integrations/proxies/index)
 to let Blackfire profile the code running on your servers.
+
+<--->
+<!-- Version 2, where managed Fastly isn't available -->
+If you're using a [Content Delivery Network (CDN)](../../domains/cdn/_index.md), 
+make sure you [configure it](https://blackfire.io/docs/integrations/proxies/index)
+to let Blackfire profile the code running on your servers.
+
+{{< /version/specific >}}
 
 ### Automated integration
 
@@ -120,7 +139,7 @@ If you want to monitor a Python app, you need to activate Blackfire Monitoring y
 To do so, create the following [environment variable](../../development/variables/set-variables.md#create-environment-specific-variables):
 
 ```bash
-platform variable:create --level environment --prefix env: --name BLACKFIRE_APM_ENABLED --value 1
+{{% vendor/cli %}} variable:create --level environment --prefix env: --name BLACKFIRE_APM_ENABLED --value 1
 ```
 
 If you later need to deactivate Blackfire Monitoring, change the value of the variable to `0`.
@@ -206,7 +225,7 @@ follow these steps:
 To retrieve startup errors, run the following command:
 
 ```bash
-platform ssh -- php -d display_startup_errors=on --ri blackfire 
+{{% vendor/cli %}} ssh -- php -d display_startup_errors=on --ri blackfire 
 ```
 
 ### 2. Retrieve your Blackfire logs
@@ -216,13 +235,13 @@ To retrieve your Blackfire logs, follow these steps:
 1.  On the environment where you're facing issues, create the following [variable](../../development/variables/set-variables.md):
 
     ```bash
-    platform variable:create php:blackfire.log_file --value /tmp/blackfire.log
+    {{% vendor/cli %}} variable:create php:blackfire.log_file --value /tmp/blackfire.log
     ```
 
 2.  To set the verbosity of the logs to level 4 (debug level), create the following variable:
 
     ```bash
-    platform variable:create php:blackfire.log_level --value 4
+    {{% vendor/cli %}} variable:create php:blackfire.log_level --value 4
     ```
 
 3.  Start a profile or build.
@@ -230,13 +249,13 @@ To retrieve your Blackfire logs, follow these steps:
 4.  To display the logs, run the following command:
 
     ```bash
-    platform ssh -- cat /tmp/blackfire.log > blackfire.log
+    {{% vendor/cli %}} ssh -- cat /tmp/blackfire.log > blackfire.log
     ```
 
 After you've retrieved the logs, you can disable them.
 To do so, run the following commands:
 
 ```bash
-platform variable:delete php:blackfire.log_file
-platform variable:delete php:blackfire.log_level
+{{% vendor/cli %}} variable:delete php:blackfire.log_file
+{{% vendor/cli %}} variable:delete php:blackfire.log_level
 ```

@@ -11,7 +11,7 @@ Subscribe to New Relic to [get your license key](https://docs.newrelic.com/docs/
 Add your New Relic license key as an environment level variable:
 
 ```bash
-platform variable:create --level environment --environment {{< variable "ENVIRONMENT_NAME" >}} --visible-build false --inheritable false env:NEW_RELIC_LICENSE_KEY --value {{< variable "NEW_RELIC_LICENSE_KEY" >}}
+{{% vendor/cli %}} variable:create --level environment --environment {{< variable "ENVIRONMENT_NAME" >}} --visible-build false --inheritable false env:NEW_RELIC_LICENSE_KEY --value {{< variable "NEW_RELIC_LICENSE_KEY" >}}
 ```
 
 ## Give your application a name
@@ -19,7 +19,7 @@ platform variable:create --level environment --environment {{< variable "ENVIRON
 Add a new environment level variable to give your application a recognizable name:
 
 ```bash
-platform variable:create --level environment --environment {{< variable "ENVIRONMENT_NAME" >}} --visible-build false --inheritable false env:NEW_RELIC_APP_NAME --value {{< variable "APP_NAME" >}}
+{{% vendor/cli %}} variable:create --level environment --environment {{< variable "ENVIRONMENT_NAME" >}} --visible-build false --inheritable false env:NEW_RELIC_APP_NAME --value {{< variable "APP_NAME" >}}
 ```
 
 {{< note >}}

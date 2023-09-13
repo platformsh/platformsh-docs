@@ -57,7 +57,7 @@ title=Using the CLI
 Run:
 
 ```bash
-platform branch <NEW_BRANCH_NAME> <PARENT_BRANCH_NAME>
+{{% vendor/cli %}} branch <NEW_BRANCH_NAME> <PARENT_BRANCH_NAME>
 ```
 
 To define the environment type for the branch, include `--type <ENVIRONMENT_TYPE>`.
@@ -65,7 +65,7 @@ To define the environment type for the branch, include `--type <ENVIRONMENT_TYPE
 For example, to create the branch `develop` as a Development environment from the branch `main`, run:
 
 ```bash
-platform branch develop main --type development
+{{% vendor/cli %}} branch develop main --type development
 ```
 
 {{< /codetabs >}}
@@ -79,6 +79,8 @@ That may include a database container, an Elasticsearch container,
 a container for your application, and more.
 They're always deployed together as a single unit.
 
+{{< version/only "1" >}}
+
 ## {{% names/dedicated-gen-2 %}}
 
 [{{% names/dedicated-gen-2 %}} environments](../dedicated-gen-2/overview/_index.md) are managed host clusters with triple redundancy.
@@ -86,6 +88,8 @@ Their dedicated architecture makes them differ from [Grid environments](#grid).
 See a [list of differences](../dedicated-gen-2/overview/grid.md).
 
 These differences aren't present with [{{% names/dedicated-gen-3 %}} projects](../dedicated-gen-3/_index.md).
+
+{{< /version/only >}}
 
 ## Deprecated versions
 
@@ -107,7 +111,7 @@ Drush is a command-line shell and scripting interface for Drupal.
 Drush site aliases allow you to define short names
 that let you run Drush commands on specific local or remote Drupal installations.
 The {{< vendor/name >}} CLI configures Drush aliases for you on your local environment
-(via `platform get` or `platform drush-aliases`).
+(via `{{% vendor/cli %}} get` or `{{% vendor/cli %}} drush-aliases`).
 You can also configure them manually.
 
 ## Environment

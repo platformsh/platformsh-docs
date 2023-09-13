@@ -2,6 +2,9 @@
 title: Integrate with GitLab
 sidebarTitle: GitLab
 description: See how to manage your {{< vendor/name >}} environments directly from your GitLab repository.
+keywords:
+- "source integration"
+- "source integrations"
 ---
 
 {{% source-integration/intro source="GitLab" %}}

@@ -62,9 +62,17 @@ You need:
 
   {{< /note >}}
 
+  {{< version/specific >}}
+
   If you use a [Managed Fastly](../cdn/managed-fastly.md) CDN,
   it needs to be configured to operate with custom non-production domains.
-  For more information, [contact Support](https://console.platform.sh/-/users/~/tickets/open).   
+  For more information, [contact Support](https://console.platform.sh/-/users/~/tickets/open). 
+
+  <--->
+
+  <!-- Version 2, managed Fastly not included for now -->
+  {{< /version/specific >}}
+
 - A production environment with at least one custom domain already set up
 - At least one non-production (staging or development) environment
 - Optional: The [{{< vendor/name >}} CLI](../../administration/cli/_index.md) (v4.8.0+)
@@ -72,7 +80,7 @@ You need:
 To prevent abuse, by default you can add custom domains to up to 5 environments per project only.
 This limit doesn't include the production environment,
 and you can increase it without charge.
-To do so, [contact Support](../../overview/get-support.md).
+To do so, [contact Support](/learn/overview/get-support.md).
 
 {{< note >}}
 
@@ -99,7 +107,7 @@ title=Using the CLI
    run the following command:
 
    ```bash
-   platform environment:info edge_hostname --environment {{< variable "ENVIRONMENT_NAME" >}}
+   {{% vendor/cli %}} environment:info edge_hostname --environment {{< variable "ENVIRONMENT_NAME" >}}
    ```
 
 2. [Configure your DNS provider](../steps/_index.md#3-configure-your-dns-provider).
@@ -115,7 +123,7 @@ title=Using the CLI
 3. Run a command similar to the following:
 
    ```bash
-   platform domain:add staging.example.com --environment {{< variable "STAGING_ENVIRONMENT_ID" >}} --attach {{< variable "PRODUCTION_CUSTOM_DOMAIN_TO_ATTACH" >}}
+   {{% vendor/cli %}} domain:add staging.example.com --environment {{< variable "STAGING_ENVIRONMENT_ID" >}} --attach {{< variable "PRODUCTION_CUSTOM_DOMAIN_TO_ATTACH" >}}
    ```
 
 <--->
@@ -174,7 +182,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform domain:add mydev.com --environment Dev --attach mysite.com
+{{% vendor/cli %}} domain:add mydev.com --environment Dev --attach mysite.com
 ```
 
 <--->
@@ -218,7 +226,7 @@ title=Using the CLI
 Run a command similar to the following:
 
 ```bash
-platform domain:list --environment {{< variable "STAGING_ENVIRONMENT_ID" >}}
+{{% vendor/cli %}} domain:list --environment {{< variable "STAGING_ENVIRONMENT_ID" >}}
 ```
 
 <--->
@@ -242,7 +250,7 @@ title=Using the CLI
 Run a command similar to the following:
 
 ```bash
-platform domain:get staging.example.com --environment {{< variable "STAGING_ENVIRONMENT_ID" >}}
+{{% vendor/cli %}} domain:get staging.example.com --environment {{< variable "STAGING_ENVIRONMENT_ID" >}}
 ```
 
 <--->
@@ -267,7 +275,7 @@ title=Using the CLI
 Run a command similar to the following:
 
 ```bash
-platform domain:delete staging.example.com --environment {{< variable "STAGING_ENVIRONMENT_ID" >}}
+{{% vendor/cli %}} domain:delete staging.example.com --environment {{< variable "STAGING_ENVIRONMENT_ID" >}}
 ```
 
 <--->

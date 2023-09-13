@@ -21,7 +21,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform backups
+{{% vendor/cli %}} backups
 ```
 
 You get a response similar to the following:
@@ -63,7 +63,7 @@ title=Using the CLI
 1. Run the following command:
    
    ```bash
-   platform backup:restore {{< variable "BACKUP_ID" >}}
+   {{% vendor/cli %}} backup:restore {{< variable "BACKUP_ID" >}}
    ```
 
 2. Press `enter` to agree with the consequences and continue.
@@ -102,5 +102,5 @@ You can restore backups to a different environment than they were created on usi
 2. Run the following command:
 
    ```bash
-   platform backup:restore --target={{% variable "TARGET_BRANCH_NAME" %}} {{% variable "BACKUP_ID" %}}
+   {{% vendor/cli %}} backup:restore --target={{% variable "TARGET_BRANCH_NAME" %}} {{% variable "BACKUP_ID" %}}
    ```

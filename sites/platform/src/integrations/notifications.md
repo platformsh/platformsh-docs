@@ -34,10 +34,10 @@ Health notifications can be set up via the [{{< vendor/name >}} CLI](/administra
 
 A notification can trigger an email to be sent, from an address of your choosing to one or more addresses of your choosing.
 
-You can view an email notification by running `platform integration:get`.
+You can view an email notification by running `{{% vendor/cli %}} integration:get`.
 
 ```bash
-platform integration:get
+{{% vendor/cli %}} integration:get
 +--------------+---------------+
 | Property     | Value         |
 +--------------+---------------+
@@ -52,7 +52,7 @@ platform integration:get
 To edit the `recipients` that receive the default email notification, use the `integration:update` command.
 
 ```bash
-platform integration:update abcdefghijklm --recipients you@example.com
+{{% vendor/cli %}} integration:update abcdefghijklm --recipients you@example.com
 ```
 
 The `recipients` field may be any valid email address, or one of the following special values.
@@ -63,7 +63,7 @@ The `recipients` field may be any valid email address, or one of the following s
 To add a new email notification, register a `health.email` integration as follows:
 
 ```bash
-platform integration:add --type health.email --recipients them@example.com --recipients others@example.com
+{{% vendor/cli %}} integration:add --type health.email --recipients them@example.com --recipients others@example.com
 ```
 
 You must specify one or more `recipients`, each as its own switch.
@@ -81,7 +81,7 @@ Note the API token is the "Bot User OAuth Access Token" provided by Slack.
 Then register that Slack bot with {{< vendor/name >}} using a `health.slack` integration:
 
 ```bash
-platform integration:add --type health.slack --token YOUR_API_TOKEN --channel '#channelname'
+{{% vendor/cli %}} integration:add --type health.slack --token YOUR_API_TOKEN --channel '#channelname'
 ```
 
 That will trigger the corresponding bot to post a notification to the `#channelname` channel in your Slack group.
@@ -96,7 +96,7 @@ Now register a `health.pagerduty` integration as follows:
 
 
 ```bash
-platform integration:add --type health.pagerduty --routing-key YOUR_ROUTING_KEY
+{{% vendor/cli %}} integration:add --type health.pagerduty --routing-key YOUR_ROUTING_KEY
 ```
 
 Any notification will now trigger an alert in PagerDuty.
@@ -107,5 +107,5 @@ Any notification will now trigger an alert in PagerDuty.
 You can then verify that your integration is functioning properly [using the CLI](/integrations/overview.md#validate-integrations) command
 
 ```bash
-platform integration:validate
+{{% vendor/cli %}} integration:validate
 ```

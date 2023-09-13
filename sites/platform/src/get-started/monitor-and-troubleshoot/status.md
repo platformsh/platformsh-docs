@@ -18,7 +18,7 @@ This notification is automatically sent to all project admins.
 See this notification by running this command:
 
 ```bash
-platform integration:list
+{{% vendor/cli %}} integration:list
 ```
 
 You see a table similar to the following example:
@@ -34,13 +34,13 @@ You see a table similar to the following example:
 Assuming you want to keep admins notified, you can add another recipient with a command like the following:
 
 ```bash
-platform integration:update <INTEGRATION_ID> --recipients '#admins' --recipients <ADDITIONAL_EMAIL_ADDRESS>
+{{% vendor/cli %}} integration:update <INTEGRATION_ID> --recipients '#admins' --recipients <ADDITIONAL_EMAIL_ADDRESS>
 ```
 
 So to add `jane@example.com` to the above integration, you'd run the following:
 
 ```bash
-platform integration:update abcdefg123456 --recipients '#admins' --recipients jane@example.com
+{{% vendor/cli %}} integration:update abcdefg123456 --recipients '#admins' --recipients jane@example.com
 ```
 
 And get the following in response:
@@ -79,7 +79,7 @@ To see such a notification in action, follow these steps:
 3. In a terminal, run the following command:
 
    ```bash
-   platform integration:add --type=webhook --url <WEBHOOK_URL> --events 'environment.push,environment.redeploy' --environments 'main' --excluded-environments '' --states complete --shared-key=null
+   {{% vendor/cli %}} integration:add --type=webhook --url <WEBHOOK_URL> --events 'environment.push,environment.redeploy' --environments 'main' --excluded-environments '' --states complete --shared-key=null
    ```
 
    The last three flags are all the default options.
@@ -87,7 +87,7 @@ To see such a notification in action, follow these steps:
 4. Redeploy your main environment by running this command:
 
    ```bash
-   platform environment:redeploy --environment main
+   {{% vendor/cli %}} environment:redeploy --environment main
    ```
 
 5. After the activity has finished, see the JSON payload at the `webhook.site` page.

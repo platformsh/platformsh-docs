@@ -11,6 +11,9 @@
   {{ else if gt ( len $title ) 60 }}
     {{ $title = truncate 60 "" $title }}
   {{ end }}
+  {{ if .Page.IsHome }}
+    {{ $title = .Site.Title }}
+  {{ end }}
   <title>{{ $title }}</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

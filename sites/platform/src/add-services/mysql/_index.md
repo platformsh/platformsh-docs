@@ -11,7 +11,7 @@ Their infrastructure setup is nearly identical, though they differ in some featu
 See the [MariaDB documentation](https://mariadb.org/learn/)
 or [MySQL documentation](https://dev.mysql.com/doc/refman/en/) for more information.
 
-{{% frameworks %}}
+{{% frameworks version="1" %}}
 
 - [Hibernate](../../guides/hibernate/deploy.md#mysql)
 - [Jakarta EE](../../guides/jakarta/deploy.md#mysql)
@@ -130,7 +130,7 @@ There may be cases where you want to configure a database connection manually.
 To get the URL to connect to the database, run the following command:
 
 ```bash
-platform relationships
+{{% vendor/cli %}} relationships
 ```
 
 The result is the complete [information for all relationships](#relationship-reference) with an additional `url` property.
@@ -182,7 +182,7 @@ db:
 
 ## Access the service directly
 
-You can access the service using the Platform CLI by running `platform sql`.
+You can access the service using the Platform CLI by running `{{% vendor/cli %}} sql`.
 
 You can also access it from you app container via [SSH](../../development/ssh/_index.md).
 From your [relationship data](#relationship-reference), you need: `host`, `port`, `user`, `path`.
@@ -398,14 +398,14 @@ To download all data from your SQL database, use the {{< vendor/name >}} CLI.
 If you have a single SQL database, the following command exports all data to a local file:
 
 ```bash
-platform db:dump
+{{% vendor/cli %}} db:dump
 ```
 
 If you have multiple SQL databases, you are prompted for which one to export.
 You can also specify a database by its relationship name:
 
 ```bash
-platform db:dump --relationship {{< variable "RELATIONSHIP_NAME" >}}
+{{% vendor/cli %}} db:dump --relationship {{< variable "RELATIONSHIP_NAME" >}}
 ```
 
 ### Compression
@@ -414,7 +414,7 @@ By default, the file is uncompressed.
 To compress it, use the `--gzip` (`-z`) option:
 
 ```bash
-platform db:dump --gzip
+{{% vendor/cli %}} db:dump --gzip
 ```
 
 ### Using the output in bash
@@ -423,15 +423,15 @@ To pipe the result to another command, use the `--stdout` option.
 For example, to create a bzip2-compressed file, run:
 
 ```bash
-platform db:dump --stdout | bzip2 > dump.sql.bz2
+{{% vendor/cli %}} db:dump --stdout | bzip2 > dump.sql.bz2
 ```
 
 ## Importing data
 
-To load data into a database, pipe an SQL dump through the `platform sql` command, like so:
+To load data into a database, pipe an SQL dump through the `{{% vendor/cli %}} sql` command, like so:
 
 ```bash
-platform sql < my_database_backup.sql
+{{% vendor/cli %}} sql < my_database_backup.sql
 ```
 
 That runs the database backup against the SQL database on {{< vendor/name >}}.
@@ -441,7 +441,7 @@ That works for any SQL file, so the usual caveats about importing an SQL dump ap
 As with exporting, you can specify a specific environment and a specific database relationship to use:
 
 ```bash
-platform sql --relationship {{< variable "RELATIONSHIP_NAME" >}} -e {{< variable "BRANCH_NAME" >}} < my_database_backup.sql
+{{% vendor/cli %}} sql --relationship {{< variable "RELATIONSHIP_NAME" >}} -e {{< variable "BRANCH_NAME" >}} < my_database_backup.sql
 ```
 
 {{< note >}}

@@ -1,8 +1,8 @@
 # Basics
 baseURL: /
-title: Deploy Friday Docs
-author: Deploy Friday
-description: Deploy Friday User Documentation
+title: Upsun documentation
+author: Upsun
+description: Upsun User Documentation
 
 # Themes
 theme: psh-docs
@@ -19,7 +19,7 @@ languages:
 
 disableKinds: ["taxonomy", "taxonomyTerm"]
 
-baseURL: "https://docs.deploy-friday.net"
+baseURL: "https://docs.upsun.com"
 
 summaryLength: 3
 
@@ -54,38 +54,50 @@ module:
           target: "content"
           excludeFiles: 
               - "registry/*"
-              - "_index.md"
               - "get-started/*"
-              - "add-services/*"
-              - "bestpractices/http-caching.md"
-              - "create-apps/multi-app/*"
-              - "create-apps/app-reference.md"
-              - "create-apps/source-operations.md"
-              - "development/variables/use-variables.md"
-              - "development/email.md"
-              - "development/submodules.md"
-              - "domains/cdn/_index.md"
-              - "domains/cdn/fastly.md"
-              - "domains/steps/_index.md"
-              - "domains/steps/custom-non-production-domains.md"
-              - "increase-observability/integrate-observability/new-relic/_index.md"
-              - "increase-observability/integrate-observability/blackfire.md"
-              - "increase-observability/logs/*"
-              - "languages/java/_index.md"
-              - "languages/nodejs/_index.md"
-              - "languages/php/_index.md"
-              - "languages/php/extensions.md"
-              - "languages/php/xdebug.md"
-              - "languages/python/_index.md"
-              - "languages/dotnet.md"
-              - "languages/elixir.md"
-              - "languages/go.md"
-              - "languages/lisp.md"
-              - "languages/ruby.md"
-              - "languages/rust.md"
-              - "other/glossary.md"
-              - "overview/structure.md"
-              - "tutorials/dependency-updates.md"
+#               - "add-services/*"
+#               - "bestpractices/http-caching.md"
+#               - "create-apps/multi-app/*"
+#               - "create-apps/app-reference.md"
+#               - "create-apps/source-operations.md"
+#               - "development/variables/use-variables.md"
+#               - "development/email.md"
+#               - "development/submodules.md"
+#               - "domains/cdn/_index.md"
+#               - "domains/cdn/fastly.md"
+#               - "domains/steps/_index.md"
+#               - "domains/steps/custom-non-production-domains.md"
+#               - "increase-observability/integrate-observability/new-relic/_index.md"
+#               - "increase-observability/integrate-observability/blackfire.md"
+#               - "increase-observability/logs/*"
+#               - "languages/java/_index.md"
+#               - "languages/nodejs/_index.md"
+#               - "languages/php/_index.md"
+#               - "languages/php/extensions.md"
+#               - "languages/php/xdebug.md"
+#               - "languages/python/_index.md"
+#               - "languages/dotnet.md"
+#               - "languages/elixir.md"
+#               - "languages/go.md"
+#               - "languages/lisp.md"
+#               - "languages/ruby.md"
+#               - "languages/rust.md"
+#               - "other/glossary.md"
+#               - "overview/structure.md"
+#               - "tutorials/dependency-updates.md"
+              - "development/transfer-dedicated.md"
+              - "administration/sso.md"
+              - "increase-observability/logs/forward-logs.md"
+              - "increase-observability/logs/forward-fastly-logs.md"
+              - "increase-observability/metrics/dedicated.md"
+              - "increase-observability/metrics/dedicated-generation-3.md"
+              - "domains/cdn/managed-fastly.md"
+              - "domains/security/web-application-firewall/fastly.md"
+              - "dedicated-gen-2/*"
+              - "dedicated-gen-3/*"
+              - "guides/*"
+              - "languages/java/frameworks.md"
+              - "learn/resources.md"
           lang: "en"
 
         - source: "../platform/static/images"
@@ -99,6 +111,8 @@ module:
           
         - source: "src"
           target: "content"
+        - source: "static/images"
+          target: "static/images"
         
 
 

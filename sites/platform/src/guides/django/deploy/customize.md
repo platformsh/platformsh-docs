@@ -22,7 +22,7 @@ you can replace retrieving and decoding environment variables with this library.
 Most configuration for Django, such as service credentials, is done in a `settings.py` file.
 You can see an example of a [complete settings file in the Django template](https://github.com/platformsh-templates/django4/blob/master/myapp/settings.py).
 
-The example file configures app settings and credentials for connecting to a PostgreSQL database. 
+The example file configures app settings and credentials for connecting to a PostgreSQL database.
 The environment variables defined there enable Django apps to remain independent of their environment.
 
 The example file itself contains a lot of settings,
@@ -34,7 +34,7 @@ the most important of which are highlighted here to show where you could modify 
 It's where you define `localhost` and also your site's primary domain.
 
 On {{< vendor/name >}}, every branch or pull request you create can become an active environment:
-a deployed site where you can test changes. 
+a deployed site where you can test changes.
 The environment is given a URL that ends with `.platform.site`.
 To allow your site to serve these environment, add this suffix to `ALLOWED_HOSTS`.
 
@@ -48,7 +48,7 @@ ALLOWED_HOSTS = [
 
 ### Decoding variables
 
-{{< vendor/name >}} environment variables, which contain information on deployed environments, are often obscured. 
+{{< vendor/name >}} environment variables, which contain information on deployed environments, are often obscured.
 For example, `PLATFORM_RELATIONSHIPS`, which contains credentials to connect to services, is a base64-encoded JSON object.
 
 The example Django configuration file has a `decode` helper function to help with these variables.
@@ -56,7 +56,7 @@ Alternatively, you can use the [{{< vendor/name >}} Config Reader](#optional-set
 
 ```py {location="settings.py"}
 #################################################################################
-# {{< vendor/name >}}h-specific configuration
+# {{< vendor/name >}}-specific configuration
 
 # Helper function for decoding base64-encoded JSON variables.
 def decode(variable):
@@ -141,7 +141,7 @@ when a project starts, before cron commands are run, and when you log into an en
 So you can use the `.environment` file to make further changes to environment variables before the app runs,
 including modifying the system `$PATH` and other shell level customizations.
 
-Django projects like this example using Pip or Pipenv don't need a `.environment` file to run. 
+Django projects like this example using Pip or Pipenv don't need a `.environment` file to run.
 Using Poetry requires additional configuration to ensure that Poetry can be called during the deploy phase and SSH sessions.
 
 ```text {location=".environment"}
@@ -152,6 +152,6 @@ fi
 ```
 
 If you have other environment variables your app depends on that aren't sensitive and so can be committed to Git,
-you can include them in the `.environment` file 
+you can include them in the `.environment` file
 
 {{< guide-buttons next="Deploy Django" >}}

@@ -201,7 +201,7 @@ and deploy your new Composer-based WordPress site to {{< vendor/name >}}:
 
 ```bash
 git add . && git commit -m "Composerify plugins and themes."
-git push platform composer
+git push {{% vendor/cli %}} composer
 ```
 
 ## 4. Update your Composer-based WordPress site
@@ -221,4 +221,4 @@ composer update
 {{< premium-features/tiered "Elite and Enterprise" >}}
 
 [Source operations](../../../create-apps/source-operations.md) allow you to automate the maintenance of your Composer-based WordPress site. 
-For instance, you can [update all the dependencies in your project with a single command](../../../tutorials/dependency-updates.md).
+For instance, you can [update all the dependencies in your project with a single command](/learn/tutorials/dependency-updates.md).

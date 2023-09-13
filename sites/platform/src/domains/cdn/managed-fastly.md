@@ -39,11 +39,11 @@ Use an environment with access limited to {{< vendor/name >}} support and truste
 [Transfer](../../development/file-transfer.md) each certificate, its unencrypted private key, 
 and the intermediate certificate to the mount.
 To notify {{< vendor/name >}} that a certificate is to be added to your CDN configuration,
-[create a support ticket](../../overview/get-support.md#create-a-support-ticket).
+[create a support ticket](/learn/overview/get-support.md#create-a-support-ticket).
 
 If you need an Extended Validation TLS certificate,
 you can get it from any TLS provider.
-To add it to your CDN configuration, [create a support ticket](../../overview/get-support.md#create-a-support-ticket).
+To add it to your CDN configuration, [create a support ticket](/learn/overview/get-support.md#create-a-support-ticket).
 
 Note that when you add your own third-party TLS certificates,
 you are responsible for renewing them in due time.
