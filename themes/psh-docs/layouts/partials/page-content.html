@@ -1,5 +1,7 @@
 <!-- Page banners -->
+{{ if ( eq (string .context.Site.Params.vendor.config.version) "1" ) }}
 {{ partial "banners/banner.html" .context }}
+{{ end }}
 
 <!-- Tier-gated features -->
 {{ if eq (string .Site.Params.vendor.config.version) "1"}}

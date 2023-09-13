@@ -100,7 +100,7 @@ To specify which submodule needs to be updated, replace `[submodule]` with your 
 title= Automated update
 +++
 
-{{< note theme="warning" title="Tier availability" >}}
+{{< note theme="warning" title="Tier availability" version="1" >}}
 
 This feature is available for **Elite** and **Enterprise** customers.
 [Compare the {{< vendor/name >}} tiers](https://platform.sh/pricing/) on our pricing page,
