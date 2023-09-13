@@ -1,8 +1,8 @@
 # Basics
 baseURL: /
-title: Deploy Friday Docs
-author: Deploy Friday
-description: Deploy Friday User Documentation
+title: Upsun documentation
+author: Upsun
+description: Upsun User Documentation
 
 # Themes
 theme: psh-docs
@@ -19,7 +19,7 @@ languages:
 
 disableKinds: ["taxonomy", "taxonomyTerm"]
 
-baseURL: "https://docs.deploy-friday.net"
+baseURL: "https://docs.upsun.com"
 
 summaryLength: 3
 
@@ -55,6 +55,7 @@ module:
           excludeFiles: 
               - "registry/*"
               - "get-started/*"
+              - "learn/resources.md"
           lang: "en"
 
         - source: "../platform/static/images"
@@ -68,6 +69,8 @@ module:
           
         - source: "src"
           target: "content"
+        - source: "static/images"
+          target: "static/images"
         
 
 
