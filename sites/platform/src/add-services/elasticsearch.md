@@ -11,7 +11,7 @@ premium : true
 
 See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html) for more information.
 
-{{% frameworks %}}
+{{% frameworks version="1" %}}
 
 - [Drupal](../guides/drupal9/elasticsearch.md)
 - [Jakarta EE](../guides/jakarta/deploy.md#elasticsearch)

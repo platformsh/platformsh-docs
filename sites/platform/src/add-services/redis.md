@@ -11,7 +11,7 @@ for high-performance data retrieval and key-value storage.
 - [Ephemeral](#ephemeral-redis): to set up a non-persistent cache for your application
 - [Persistent](#persistent-redis): to set up fast persistent storage for your application
 
-{{% frameworks %}}
+{{% frameworks version="1" %}}
 
 - [Drupal](../guides/drupal9/redis.md)
 - [Ibexa DXP](../guides/ibexa/deploy.md#cache-and-sessions)

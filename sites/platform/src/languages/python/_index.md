@@ -231,10 +231,17 @@ see how to [sanitize databases](../../development/sanitize-db/_index.md).
 All major Python web frameworks can be deployed on {{< vendor/name >}}.
 See dedicated guides for deploying and working with them:
 
+{{< version/specific >}}
 - [Django](../../guides/django/_index.md)
-<!-- - [FastAPI](/guides/fastapi) -->
-<!-- - [Flask](/guides/flask) -->
+<--->
+- [Django](/get-started/django/_index.md)
+{{< /version/specific >}}
 
+{{< version/specific >}}
 ## Project templates
 
 {{< repolist lang="python" displayName="Python" >}}
+
+<--->
+
+{{< /version/specific >}}

@@ -65,7 +65,8 @@ module:
               - "domains/security/web-application-firewall/fastly.md"
               - "dedicated-gen-2/*"
               - "dedicated-gen-3/*"
-              # - "guides/*"
+              - "guides/*"
+              - "languages/java/frameworks.md"
           lang: "en"
 
         - source: "../platform/static/images"
