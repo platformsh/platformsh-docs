@@ -121,11 +121,16 @@ complete with code, data, and running services.
 Your production environment comes from the [default branch](../environments/_index.md#default-environment)
 and you can set up any other branch as a testing environment.
 
+{{% version/specific %}}
 ## Grid
 
 Grid environments are standard for Professional plans.
 They run on shared infrastructure.
 This architecture makes them different from [{{% names/dedicated-gen-2 %}} environments](#dedicated-gen-2).
+
+<--->
+
+{{% /version/specific %}}
 
 ## Inactive environment
 

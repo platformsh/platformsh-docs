@@ -2,7 +2,9 @@
 {{ partial "banners/banner.html" .context }}
 
 <!-- Tier-gated features -->
+{{ if eq (string .Site.Params.vendor.config.version) "1"}}
 {{ partial "tiered-features/banner.html" .context }}
+{{ end }}
 
 <!-- If the feature is part of the Observability Suite -->
 {{ partial "observability-suite/banner.html" .context }}
