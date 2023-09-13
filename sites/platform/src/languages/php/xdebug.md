@@ -79,7 +79,7 @@ To use an alternate port, use the `--port` flag.
 
 To close the tunnel and terminate the debug connection, press <kbd>Ctrl</kbd> + <kbd>C</kbd>.
 
-{{< note title="On {{% names/dedicated-gen-3 %}}" >}}
+{{< note title="On {{% names/dedicated-gen-3 %}}" version="1" >}}
 
 Note that because you have several virtual machines running but your tunnel is connected to only one of them,
 your requests don't always reach the same host.
