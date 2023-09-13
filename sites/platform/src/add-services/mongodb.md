@@ -6,7 +6,7 @@ sidebarTitle: "MongoDB"
 premium: true
 ---
 
-{{% frameworks %}}
+{{% frameworks version="1" %}}
 
 - [Jakarta EE](../guides/jakarta/deploy.md#mongodb)
 - [Micronaut](../guides/micronaut/mongodb.md)

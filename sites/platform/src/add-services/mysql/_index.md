@@ -11,7 +11,7 @@ Their infrastructure setup is nearly identical, though they differ in some featu
 See the [MariaDB documentation](https://mariadb.org/learn/)
 or [MySQL documentation](https://dev.mysql.com/doc/refman/en/) for more information.
 
-{{% frameworks %}}
+{{% frameworks version="1" %}}
 
 - [Hibernate](../../guides/hibernate/deploy.md#mysql)
 - [Jakarta EE](../../guides/jakarta/deploy.md#mysql)

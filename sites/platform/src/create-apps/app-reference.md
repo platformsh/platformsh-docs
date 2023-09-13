@@ -762,6 +762,8 @@ crons:
 
 ### Cron job timing
 
+{{< version/specific >}}
+<!-- Version 1 -->
 Minimum time between cron jobs being triggered:
 
 | Plan                | Time      |
@@ -769,13 +771,18 @@ Minimum time between cron jobs being triggered:
 | Professional        | 5 minutes |
 | Elite or Enterprise | 1 minute  |
 
+<--->
+<!-- Version 2 -->
+The minimum time between cron jobs being triggered is 5 minutes.
+{{< /version/specific >}}
+
 For each app container, only one cron job can run at a time.
 If a new job is triggered while another is running, the new job is paused until the other completes.
 
 To minimize conflicts, a random offset is applied to all triggers.
 The offset is a random number of seconds up to 20 minutes or the cron frequency, whichever is smaller.
 
-Crons are also paused while activities such as [backups](../dedicated-gen-2/overview/backups.md) are running.
+Crons are also paused while activities such as backups are running.
 The crons are queued to run after the other activity finishes.
 
 To run cron jobs in a timezone other than UTC, set the [timezone property](#top-level-properties).

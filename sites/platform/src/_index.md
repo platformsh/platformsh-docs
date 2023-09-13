@@ -48,12 +48,24 @@ After going through the **Get started** section, you may want to know more about
 Now that you understand the basic rules of {{< vendor/name >}}, you're likely ready to deploy your own custom code in a chosen framework. 
 The **Frameworks** section is a collection of framework-specific how-to guides - from best practices to configuration, local development, and more.
 
+{{< version/specific >}}
+
 | Language              | Frameworks |
 | :----------------     | :------  |
 | [Python](/languages/python/_index.md)                |   [Django](/guides/django/_index.md)  |
 | [PHP](/languages/php/_index.md)                      |   [Drupal](/guides/drupal9/_index.md)<br/>[Ibexa](/guides/ibexa/_index.md)<br/>[Laravel](/guides/laravel/_index.md)<br/>[Symfony](/guides/symfony/_index.md)<br/>[TYPO3](/guides/typo3/_index.md)<br/>[WordPress](/guides/wordpress/_index.md)   |
 | [Javascript/Node.js](/languages/nodejs/_index.md)     |  [Gatsby](/guides/gatsby/_index.md)<br/>[Next.js](/guides/nextjs/_index.md)<br/>[Strapi](/guides/strapi/_index.md)  |
 | [Java](/languages/java/_index.md)                  |  [Hibernate](/guides/hibernate/_index.md)<br/>[Jakarta](/guides/jakarta/_index.md)<br/>[Micronaut](/guides/micronaut/_index.md)<br/>[Quarkus](/guides/quarkus/_index.md)<br/>[Spring](/guides/spring/_index.md)  |
+
+<--->
+
+| Language              | Frameworks |
+| :----------------     | :------  |
+| [Python](/languages/python/_index.md)                |   [Django](/get-started/django/_index.md)<br/>[Flask](/get-started/flask/_index.md)  |
+| [PHP](/languages/php/_index.md)                      |   [Laravel](/get-started/laravel/_index.md)   |
+| [Javascript/Node.js](/languages/nodejs/_index.md)     |  [Express](/get-started/express/_index.md)<br/>[Next.js](/get-started/nextjs/_index.md)<br/>[Strapi](/get-started/strapi/_index.md)  |
+
+{{< /version/specific >}}
 
 ### Reference 
 

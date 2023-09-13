@@ -79,6 +79,8 @@ That may include a database container, an Elasticsearch container,
 a container for your application, and more.
 They're always deployed together as a single unit.
 
+{{< version/only "1" >}}
+
 ## {{% names/dedicated-gen-2 %}}
 
 [{{% names/dedicated-gen-2 %}} environments](../dedicated-gen-2/overview/_index.md) are managed host clusters with triple redundancy.
@@ -86,6 +88,8 @@ Their dedicated architecture makes them differ from [Grid environments](#grid).
 See a [list of differences](../dedicated-gen-2/overview/grid.md).
 
 These differences aren't present with [{{% names/dedicated-gen-3 %}} projects](../dedicated-gen-3/_index.md).
+
+{{< /version/only >}}
 
 ## Deprecated versions
 

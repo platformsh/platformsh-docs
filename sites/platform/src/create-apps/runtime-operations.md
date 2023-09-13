@@ -79,16 +79,26 @@ run the following command:
 
 ```bash
 {{% vendor/cli %}} operation:list --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
-````
+```
 
 ## Runtime operation examples
 
 ### Build your app when using a static site generator
 
+{{< version/specific >}}
 During every {{< vendor/name >}} deployment, a standard [`build` step](/learn/overview/build-deploy.md#the-build) is run.
 When you use a static site generator like [Gatsby](../guides/gatsby/_index.md)
 or [Next.js](../guides/nextjs/_index.md) with [a headless backend](../guides/gatsby/headless/_index.md),
 you need to run a second `build` step to get your app ready for production.
+
+<--->
+
+During every {{< vendor/name >}} deployment, a standard [`build` step](/learn/overview/build-deploy.md#the-build) is run.
+When you use a static site generator like Gatsby
+or Next.js with a headless backend
+you need to run a second `build` step to get your app ready for production.
+
+{{< /version/specific >}}
 
 This is because, as its framework is being built,
 your frontend needs to pull content-related data from your backend’s API
