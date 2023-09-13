@@ -52,11 +52,20 @@ To do so, follow these steps:
 5. Retrieve your Blackfire server ID and server token.
 6. Follow [the instructions from the Blackfire documentation](https://blackfire.io/docs/integrations/paas/platformsh).
 
+{{< version/specific >}}
+<!-- Version 1, where managed Fastly is available -->
 If you're using the [Managed Fastly CDN](../../domains/cdn/managed-fastly.md),
 it's already configured to operate with Blackfire. 
 If you're using a different [Content Delivery Network (CDN)](../../domains/cdn/_index.md), 
 make sure you [configure it](https://blackfire.io/docs/integrations/proxies/index)
 to let Blackfire profile the code running on your servers.
+
+<--->
+<!-- Version 2, where managed Fastly isn't available -->
+If you're using a [Content Delivery Network (CDN)](../../domains/cdn/_index.md), 
+make sure you [configure it](https://blackfire.io/docs/integrations/proxies/index)
+to let Blackfire profile the code running on your servers.
+{{< /version/specific >}}
 
 ### On {{% names/dedicated-gen-2 %}} infrastructure
 
@@ -72,11 +81,21 @@ To install Blackfire on your {{% names/dedicated-gen-2 %}} environments:
 5. Retrieve your Blackfire server ID and server token.
 6. Send those credentials to [Support](https://console.platform.sh/-/users/~/tickets/open) so they complete the installation.
 
+{{< version/specific >}}
+<!-- Version 1, where managed Fastly is available -->
 If you're using the [Managed Fastly CDN](../../domains/cdn/managed-fastly.md),
 it's already configured to operate with Blackfire. 
 If you're using a different [Content Delivery Network (CDN)](../../domains/cdn/_index.md), 
 make sure you [configure it](https://blackfire.io/docs/integrations/proxies/index)
 to let Blackfire profile the code running on your servers.
+
+<--->
+<!-- Version 2, where managed Fastly isn't available -->
+If you're using a [Content Delivery Network (CDN)](../../domains/cdn/_index.md), 
+make sure you [configure it](https://blackfire.io/docs/integrations/proxies/index)
+to let Blackfire profile the code running on your servers.
+
+{{< /version/specific >}}
 
 ### Automated integration
 

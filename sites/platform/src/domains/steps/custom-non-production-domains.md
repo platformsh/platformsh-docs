@@ -62,9 +62,17 @@ You need:
 
   {{< /note >}}
 
+  {{< version/specific >}}
+
   If you use a [Managed Fastly](../cdn/managed-fastly.md) CDN,
   it needs to be configured to operate with custom non-production domains.
-  For more information, [contact Support](https://console.platform.sh/-/users/~/tickets/open).   
+  For more information, [contact Support](https://console.platform.sh/-/users/~/tickets/open). 
+
+  <--->
+
+  <!-- Version 2, managed Fastly not included for now -->
+  {{< /version/specific >}}
+
 - A production environment with at least one custom domain already set up
 - At least one non-production (staging or development) environment
 - Optional: The [{{< vendor/name >}} CLI](../../administration/cli/_index.md) (v4.8.0+)

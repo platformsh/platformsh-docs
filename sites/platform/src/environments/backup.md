@@ -63,7 +63,11 @@ For information on how long backups are retained, see the [data retention policy
 
 ## Backup schedule
 
+{{< version/specific >}}
 Backups for Dedicated environments have a [specific frequency](../dedicated-gen-2/overview/backups.md).
+<--->
+
+{{< /version/specific >}}
 
 On Grid environments, non-Production environments can have up to 2 [manual backups](#create-a-manual-backup).
 The number of available backups for Production environments depends on your schedule.
@@ -102,7 +106,11 @@ To downgrade to the lower schedule, [contact support](/learn/overview/get-suppor
 
 ## Use automated backups
 
+{{< version/specific >}}
 For Dedicated environments, see more about [backups of Dedicated environments](../dedicated-gen-2/overview/backups.md).
+<--->
+
+{{< /version/specific >}}
 
 For Grid environments, automated backups are taken for Production environments at least once every day.
 The exact number of backups depends on your [backup schedule](#backup-schedule).
@@ -122,8 +130,12 @@ They may make restorations less reliable.
 To avoid such issues, schedule [manual backups](#create-a-manual-backup) during non-peak hours,
 when the short amount of downtime is least noticed.
 
+{{< version/specific >}}
 Automated backups are always live, including those taken on [{{% names/dedicated-gen-3 %}}](../dedicated-gen-3/_index.md)
 and [{{% names/dedicated-gen-2 %}}](../dedicated-gen-2/overview/_index.md) environments.
+<--->
+
+{{< /version/specific >}}
 
 You can create a manual live backup on a Grid project:
 
