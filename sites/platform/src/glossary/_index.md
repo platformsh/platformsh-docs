@@ -1,6 +1,6 @@
 ---
 title: "Glossary"
-weight: -40
+weight: -15
 ---
 
 ## Active environment
