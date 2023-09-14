@@ -191,7 +191,7 @@ To do so, complete the following steps:
    Each dependency is now installed.
 
 
-## 3. Deploy to {{< vendor/name >}}
+## 3. Deploy to {{% vendor/name %}}
 
 Switching to a Composer-based installation doesn't require any modifications to the {{< vendor/name >}} configuration files 
 created when [you deployed your vanilla version](../vanilla/_index.md). 
