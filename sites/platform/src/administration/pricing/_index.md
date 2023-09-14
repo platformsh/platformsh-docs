@@ -40,17 +40,15 @@ choose [another plan](../pricing/_index.md) to go live.
 Production environments are the live environments available to your users.
 Each Production plan has one Production environment that can be mapped to a [custom domain name](../../domains/steps/_index.md).
 
-The Production environment has more resources than the project's preview environments.
+The Production environment has more resources than the project's development environments.
 See the main [pricing page](https://platform.sh/pricing) for the resources available per plan for Production environments.
 
-### Preview environments
+### Development environments
 
-Preview environments can't use the same custom domain as a production environment.
-Instead, you can set up specific [custom domains for each of your preview environments](../../domains/steps/custom-domains-preview-environments.md).
+Development environments can't be mapped to [custom domain names](../../domains/steps/_index.md).
+Their resources are separate from Production environments.
 
-Preview environments use resources that are separate from production environments.
-
-App containers on preview environments default to a size of {{< partial "plans/default-dev-env-size" >}}.
+App containers on development environments default to a size of {{< partial "plans/default-dev-env-size" >}}.
 If you have the [manage plans permission](../users.md#organization-permissions),
 you can increase the size to match your production environment.
 To do so, follow these steps:
@@ -83,9 +81,9 @@ you're billed around 1/3 of the current price for a full month.
 You can add the following extras:
 
 * Users -- for an additional fee per user, except at certain [agency levels](#agencies).
-* Environments -- extra preview environments can be added in multiples of 3.
+* Environments -- extra staging/development environments can be added in multiples of 3.
 * Storage -- extra storage can be added for a fee per 5&nbsp;GB per environment.
-  So if you have added 3 additional environments for a total of 6 preview environments,
+  So if you have added 3 additional environments for a total of 6 development environments,
   the fee is multiplied by 6.
   To ensure environments are available on demand, the fee applies to all environments you have added
   even if you aren't currently actively using them.
@@ -109,6 +107,8 @@ with a MySQL service and a Redis service.
 If you aren't sure whether a specific setup would fit into a plan,
 don't hesitate to [contact support](https://console.platform.sh/-/users/~/tickets).
 
+{{< version/only "1" >}}
+
 ## {{% names/dedicated-gen-3 %}}
 
 For more resources along with triple redundancy on every element of the stack, use a {{% names/dedicated-gen-3 %}} plan.
@@ -116,6 +116,8 @@ For more resources along with triple redundancy on every element of the stack, u
 Learn more about [{{% names/dedicated-gen-3 %}}](../../dedicated-gen-3/_index.md).
 
 To discuss how {{% names/dedicated-gen-3 %}} could work for you, [contact Sales](https://platform.sh/contact/).
+
+{{< /version/only >}}
 
 ## Enterprise overages
 

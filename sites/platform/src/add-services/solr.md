@@ -8,7 +8,7 @@ Apache Solr is a scalable and fault-tolerant search index.
 
 Solr search with generic schemas provided, and a custom schema is also supported. See the [Solr documentation](https://lucene.apache.org/solr/6_3_0/index.html) for more information."
 
-{{% frameworks %}}
+{{% frameworks version="1" %}}
 
 - [Drupal](../guides/drupal9/solr.md)
 - [Ibexa DXP](../guides/ibexa/deploy.md#solr-specificity)
@@ -21,15 +21,61 @@ Solr search with generic schemas provided, and a custom schema is also supported
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|------|-------------------------------|------------------------------ |
-|  {{< image-versions image="solr" status="supported" environment="grid" >}} | {{< image-versions image="solr" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="solr" status="supported" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="solr" status="supported" environment="grid" >}}</td>
+            <td>{{< image-versions image="solr" status="supported" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="solr" status="supported" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="solr" status="supported" environment="grid" >}}
+
+{{% /version/specific %}}
 
 {{% deprecated-versions %}}
 
-| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|------|-------------------------------|------------------------------ |
-|  {{< image-versions image="solr" status="deprecated" environment="grid" >}} | {{< image-versions image="solr" status="deprecated" environment="dedicated-gen-3" >}} | {{< image-versions image="solr" status="deprecated" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="solr" status="deprecated" environment="grid" >}}</td>
+            <td>{{< image-versions image="solr" status="deprecated" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="solr" status="deprecated" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="solr" status="deprecated" environment="grid" >}}
+
+{{% /version/specific %}}
 
 {{% relationship-ref-intro %}}
 
@@ -275,8 +321,10 @@ You can now open `http://localhost:30000/solr/` in a browser to access the Solr 
 Note that you can't create indexes or users this way,
 but you can browse the existing indexes and manipulate the stored data.
 
-For {{% names/dedicated-gen-2 %}} use `ssh -L 8888:localhost:8983 {{< variable "USER" >}}@{{< variable "CLUSTER_NAME" >}}.ent.platform.sh` to open a tunnel instead,
+{{% version/only "1" %}}
+For {{% names/dedicated-gen-2 %}} use `ssh -L 8888:localhost:8983 USER@CLUSTER_NAME.ent.platform.sh` to open a tunnel instead,
 after which the Solr server administrative interface is available at `http://localhost:8888/solr/`.
+{{% /version/only %}}
 
 ## Available plugins
 

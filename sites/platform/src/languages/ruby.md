@@ -12,9 +12,33 @@ description: |
 
 ### Ruby MRI
 
-| Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|----------------------------------------|------------------------------ |
-| {{< image-versions image="ruby" status="supported" environment="grid" >}} | {{< image-versions image="ruby" status="supported" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="ruby" status="supported" environment="grid" >}}</td>
+            <td>{{< image-versions image="ruby" status="supported" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="ruby" status="supported" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="ruby" status="supported" environment="grid" >}}
+
+{{% /version/specific %}}
+
 
 {{% language-specification type="ruby" display_name="Ruby" %}}
 
@@ -32,7 +56,7 @@ A complete example is included at the end of this section.
 
 2. Setup environment variables.
 
-   Rails runs by default on a preview environment.
+   Rails runs by default on a development environment.
    You can change the Rails/Bundler via those environment variables,
    some of which are defaults on {{< vendor/name >}}.
 

@@ -10,9 +10,15 @@ You can [use a CDN](./_index.md) to deliver your site's content to users more qu
 To set up a Fastly CDN with your own Fastly subscription,
 follow the instructions on this page.
 
+{{< version/specific >}}
+<!-- Version 1 -->
 If you are using a Fastly CDN provided by {{< vendor/name >}}, 
 for example as part of a Dedicated project,  
 see guidance about [Fastly CDNs managed by {{< vendor/name >}}](./managed-fastly.md).  
+<--->
+<!-- Version 2 -->
+
+{{< /version/specific >}}
 
 ## Before you begin
 

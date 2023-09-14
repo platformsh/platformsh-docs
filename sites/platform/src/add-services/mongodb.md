@@ -6,7 +6,7 @@ sidebarTitle: "MongoDB"
 premium: true
 ---
 
-{{% frameworks %}}
+{{% frameworks version="1" %}}
 
 - [Jakarta EE](../guides/jakarta/deploy.md#mongodb)
 - [Micronaut](../guides/micronaut/mongodb.md)
@@ -23,15 +23,61 @@ premium: true
 
 {{< premium-features/add-on feature="MongoDB Enterprise" >}}
 
-| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|------|-------------------------------|------------------------------ |
-|  {{< image-versions image="mongodb-enterprise" status="supported" environment="grid" >}} | {{< image-versions image="mongodb-enterprise" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="mongodb-enterprise" status="supported" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="mongodb-enterprise" status="supported" environment="grid" >}}</td>
+            <td>{{< image-versions image="mongodb-enterprise" status="supported" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="mongodb-enterprise" status="supported" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="mongodb-enterprise" status="supported" environment="grid" >}}
+
+{{% /version/specific %}}
 
 {{% deprecated-versions %}}
 
-| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|------|-------------------------------|------------------------------ |
-|  {{< image-versions image="mongodb-enterprise" status="deprecated" environment="grid" >}} | {{< image-versions image="mongodb-enterprise" status="deprecated" environment="dedicated-gen-3" >}} | {{< image-versions image="mongodb-enterprise" status="deprecated" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="mongodb-enterprise" status="deprecated" environment="grid" >}}</td>
+            <td>{{< image-versions image="mongodb-enterprise" status="deprecated" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="mongodb-enterprise" status="deprecated" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="mongodb-enterprise" status="deprecated" environment="grid" >}}
+
+{{% /version/specific %}}
 
 ### Legacy edition
 
@@ -43,15 +89,13 @@ and are no longer receiving security updates from upstream.
 
 Downgrades of MongoDB aren't supported.
 MongoDB updates its own data files to a new version automatically but can't downgrade them.
-If you want to experiment with a later version without committing to it use, a preview environment.
+If you want to experiment with a later version without committing to it use a non-production environment.
 
 {{< /note >}}
 
 {{% deprecated-versions %}}
 
-| **Grid** |
-|----------------------------------|
-|  {{< image-versions image="mongodb" status="deprecated" environment="grid" >}} |
+{{< image-versions image="mongodb" status="deprecated" environment="grid" >}}
 
 {{% relationship-ref-intro %}}
 

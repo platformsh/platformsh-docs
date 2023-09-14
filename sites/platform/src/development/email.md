@@ -12,7 +12,7 @@ The SMTP proxy is intended as a zero-configuration, best-effort service.
 
 {{< note >}}
 
-All preview environments are limited to 12,000 email credits per calendar month.
+All non-production environments are limited to 12,000 email credits per calendar month.
 
 {{< /note >}}
 

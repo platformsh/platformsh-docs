@@ -17,5 +17,5 @@ Click the URL to see your site.
 If your environment wasn't active and so wasn't deployed, activate it by running the following command:
 
 ```bash
-{{ $cliCommand }}environment:activate
+{{ $cliCommand }} environment:activate
 ```

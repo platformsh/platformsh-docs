@@ -129,7 +129,7 @@ Typical causes and potential solutions include:
 
 ## Site outage
 
-If you can't access some part of your project, whether it's the live site, a preview environment, or the Console,
+If you can't access some part of your project, whether it's the live site, development environment, or Console,
 check the [{{< vendor/name >}} status page](https://status.platform.sh/).
 There you can see planned maintenance and subscribe to updates for any potential outages.
 

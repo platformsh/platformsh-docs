@@ -69,7 +69,7 @@ These are used in the format `runtime:version`:
 
 Resources are distributed across all containers in an environment from the total available from your [plan size](../administration/pricing/_index.md).
 So if you have more than just a single app, it doesn't get all of the resources available.
-Each environment has its own resources and there are different [sizing rules for preview environments](#sizes-in-preview-environments).
+Each environment has its own resources and there are different [sizing rules for non-production environments](#sizes-in-non-production-environments).
 
 By default, resource sizes (CPU and memory) are chosen automatically for an app
 based on the plan size and the number of other containers in the cluster.
@@ -88,12 +88,12 @@ To do so, set `size` to one of the following values:
 
 The total resources allocated across all apps and services can't exceed what's in your plan.
 
-### Sizes in preview environments
+### Sizes in non-production environments
 
-Containers in preview environments don't follow the `size` specification.
+Containers in development environments don't follow the `size` specification.
 Application containers are set based on the plan's setting for **Environments application size**.
 The default is **{{< partial "plans/default-dev-env-size" >}}**, but you can increase it by editing your plan.
-(Service containers in preview environments are always set to {{< partial "plans/default-dev-env-size" >}} size.)
+(Service containers in development environments are always set to {{< partial "plans/default-dev-env-size" >}} size.)
 
 ## Relationships
 
@@ -437,8 +437,12 @@ firewall:
 
 ### Support for rules
 
+{{% version/specific %}}
 Where outbound rules for firewalls are supported in all environments.
 For {{% names/dedicated-gen-2 %}} projects, contact support for configuration.
+<--->
+Where outbound rules for firewalls are supported in all environments.
+{{% /version/specific %}}
 
 ### Multiple rules
 
@@ -642,12 +646,25 @@ See how to [get cron logs](../increase-observability/logs/access-logs.md#contain
 
 The following table shows the properties for each job:
 
+{{% version/specific %}}
+
 | Name               | Type                                         | Required | Description |
 | ------------------ | -------------------------------------------- | -------- | ----------- |
 | `spec`             | `string`                                     | Yes      | The [cron specification](https://en.wikipedia.org/wiki/Cron#Cron_expression). To prevent competition for resources that might hurt performance, on **Grid or {{% names/dedicated-gen-3 %}}** projects use `H` in definitions to indicate an unspecified but invariant time. For example, instead of using `0 * * * *` to indicate the cron job runs at the start of every hour, you can use `H * * * *` to indicate it runs every hour, but not necessarily at the start. This prevents multiple cron jobs from trying to start at the same time. **The `H` syntax isn't available on {{% names/dedicated-gen-2 %}} projects.**|
 | `commands`         | A [cron commands dictionary](#cron-commands) | Yes      | A definition of what commands to run when starting and stopping the cron job. |
 | `shutdown_timeout` | `integer`                                    | No       | When a cron is canceled, this represents the number of seconds after which a `SIGKILL` signal is sent to the process to force terminate it. The default is `10` seconds. |
 | `timeout`          | `integer`                                    | No       | The maximum amount of time a cron can run before it's terminated. Defaults to the maximum allowed value of `86400` seconds (24 hours).
+
+<--->
+
+| Name               | Type                                         | Required | Description |
+| ------------------ | -------------------------------------------- | -------- | ----------- |
+| `spec`             | `string`                                     | Yes      | The [cron specification](https://en.wikipedia.org/wiki/Cron#Cron_expression). To prevent competition for resources that might hurt performance, use `H` in definitions to indicate an unspecified but invariant time. For example, instead of using `0 * * * *` to indicate the cron job runs at the start of every hour, you can use `H * * * *` to indicate it runs every hour, but not necessarily at the start. This prevents multiple cron jobs from trying to start at the same time. |
+| `commands`         | A [cron commands dictionary](#cron-commands) | Yes      | A definition of what commands to run when starting and stopping the cron job. |
+| `shutdown_timeout` | `integer`                                    | No       | When a cron is canceled, this represents the number of seconds after which a `SIGKILL` signal is sent to the process to force terminate it. The default is `10` seconds. |
+| `timeout`          | `integer`                                    | No       | The maximum amount of time a cron can run before it's terminated. Defaults to the maximum allowed value of `86400` seconds (24 hours).
+
+{{% /version/specific %}}
 
 Note that you can [cancel pending or running crons](../environments/cancel-activity.md).
 
@@ -669,8 +686,13 @@ crons:
 ```
 
 In this example configuration, the [cron specification](#crons) uses the `H` syntax.
+
+{{% version/specific %}}
 Note that this syntax is only supported on Grid and {{% names/dedicated-gen-3 %}} projects.
 On {{% names/dedicated-gen-2 %}} projects, use the [standard cron syntax](https://en.wikipedia.org/wiki/Cron#Cron_expression).
+<--->
+
+{{% /version/specific %}}
 
 ### Example cron jobs
 
@@ -762,6 +784,8 @@ crons:
 
 ### Cron job timing
 
+{{< version/specific >}}
+<!-- Version 1 -->
 Minimum time between cron jobs being triggered:
 
 | Plan                | Time      |
@@ -769,20 +793,25 @@ Minimum time between cron jobs being triggered:
 | Professional        | 5 minutes |
 | Elite or Enterprise | 1 minute  |
 
+<--->
+<!-- Version 2 -->
+The minimum time between cron jobs being triggered is 5 minutes.
+{{< /version/specific >}}
+
 For each app container, only one cron job can run at a time.
 If a new job is triggered while another is running, the new job is paused until the other completes.
 
 To minimize conflicts, a random offset is applied to all triggers.
 The offset is a random number of seconds up to 20 minutes or the cron frequency, whichever is smaller.
 
-Crons are also paused while activities such as [backups](../dedicated-gen-2/overview/backups.md) are running.
+Crons are also paused while activities such as [backups](/environments/backup) are running.
 The crons are queued to run after the other activity finishes.
 
 To run cron jobs in a timezone other than UTC, set the [timezone property](#top-level-properties).
 
 ### Paused crons
 
-[Preview environments](../other/glossary.md#preview-environment) ([development type](../other/glossary.md#environment-type)) are often used for a limited time and then abandoned.
+Development environments are often used for a limited time and then abandoned.
 While it's useful for environments under active development to have scheduled tasks,
 unused environments don't need to run cron jobs.
 To minimize unnecessary resource use,
@@ -790,7 +819,7 @@ crons on environments with no deployments are paused.
 
 This affects all environments that aren't live environments.
 This means all environments on Development plans
-and all preview environments on higher plans.
+and all non-Production environments on higher plans.
 
 Such environments with deployments within 14 days have crons with the status `running`.
 If there haven't been any deployments within 14 days, the status is `paused`.
@@ -800,7 +829,7 @@ or using the CLI by running `{{% vendor/cli %}} environment:info` and looking un
 
 #### Restarting paused crons
 
-If the crons on your preview environment are paused but you're still using them,
+If the crons on your development environment are paused but you're still using them,
 you can push changes to the environment or redeploy it.
 
 To restart crons without changing anything:
