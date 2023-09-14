@@ -22,9 +22,9 @@ vendor:
             services: .platform/services.yaml
             app: .platform.app.yaml
             apps: .platform/applications.yaml
-        prefix: 
-            apps: applications 
-            services: services 
+        prefix:
+            apps: applications
+            services: services
             routes: routes
     urls:
         main: https://platform.sh/
@@ -33,6 +33,7 @@ vendor:
         sales: https://platform.sh/contact
         console: https://console.platform.sh/
         api: https://api.platform.sh/
+        register: https://auth.api.platform.sh/register
 
 # Images (kept in static/)
 logo: "images/logos/Platformsh_logo_white.svg"

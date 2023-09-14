@@ -36,6 +36,7 @@ vendor:
         sales: https://deployfriday.net/contact
         console: https://console.deployfriday.net/
         api: https://api.deployfriday.net/
+        register: https://auth.api.deployfriday.sh/register
 
 # Images (kept in static/)
 logo: "images/logo.svg"
