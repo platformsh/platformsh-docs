@@ -68,7 +68,7 @@ For a full list of available options, consult the [Xdebug documentation](https:/
 To open an SSH tunnel to the server from a local checkout of your app, run the following [CLI command](../../administration/cli/_index.md) :
 
 ```bash
-platform environment:xdebug
+{{% vendor/cli %}} environment:xdebug
 ```
 
 That SSH tunnel allows your IDE and the server to communicate debug information securely.
@@ -79,7 +79,7 @@ To use an alternate port, use the `--port` flag.
 
 To close the tunnel and terminate the debug connection, press <kbd>Ctrl</kbd> + <kbd>C</kbd>.
 
-{{< note title="On {{% names/dedicated-gen-3 %}}" >}}
+{{< note title="On {{% names/dedicated-gen-3 %}}" version="1" >}}
 
 Note that because you have several virtual machines running but your tunnel is connected to only one of them,
 your requests don't always reach the same host.
@@ -109,7 +109,7 @@ The common steps for setup usually include:
     In the majority of cases you can just define [your app root](../../create-apps/app-reference.md#root-directory)
     to map to `app`.
 5. Listening for connections.
-6. Starting debugging. While in listen mode, start the `platform xdebug` tunnel.
+6. Starting debugging. While in listen mode, start the `{{% vendor/cli %}} xdebug` tunnel.
     Use the Xdebug helper plugin for your browser to enable debugging.
     Set a break point in your app, then load a page in your browser.
     The request should pause at the break point and allow you to examine the running app.

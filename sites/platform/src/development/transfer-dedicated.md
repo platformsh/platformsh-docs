@@ -14,7 +14,7 @@ These are only useful to fully restore an environment and are managed by the sup
 You can make a manual local backup yourself by downloading data from your environment to your local system by running the following command:
 
 ```bash
-platform scp -r remote:{{< variable "DIRECTORY_TO_SYNCHRONIZE" >}} {{< variable "LOCAL_DIRECTORY" >}}
+{{% vendor/cli %}} scp -r remote:{{< variable "DIRECTORY_TO_SYNCHRONIZE" >}} {{< variable "LOCAL_DIRECTORY" >}}
 ```
 
 This command copies all files from the `{{< variable "DIRECTORY_TO_SYNCHRONIZE" >}}` in the environment you want to back up
@@ -26,7 +26,7 @@ Before running the command, make sure that you don't overwrite local data (or do
 To back up your database, adapt and run the following command on your local computer:
 
 ```bash
-platform db:dump --gzip 
+{{% vendor/cli %}} db:dump --gzip 
 ```
 
 For more backup options and examples, see how to [export data from an SQL database](../add-services/mysql/_index.md#exporting-data).
@@ -46,13 +46,13 @@ Be aware that synchronizing files is a destructive operation that overwrites dat
 1. To download data from your Development environment to your local system, adapt the following command:
 
    ```bash
-   platform scp --environment {{< variable "DEVELOPMENT_ENVIRONMENT" >}} -r remote:{{< variable "DIRECTORY_TO_SYNCHRONIZE" >}} {{< variable "LOCAL_DIRECTORY" >}}
+   {{% vendor/cli %}} scp --environment {{< variable "DEVELOPMENT_ENVIRONMENT" >}} -r remote:{{< variable "DIRECTORY_TO_SYNCHRONIZE" >}} {{< variable "LOCAL_DIRECTORY" >}}
    ```
 
 2. To copy the local directory to the remote Staging/Production mount, adapt the following command:
 
    ```bash
-   platform scp --environment {{< variable "TARGET_ENVIRONMENT" >}} -r {{< variable "LOCAL_DIRECTORY" >}} remote:{{< variable "DIRECTORY_TO_SYNCHRONIZE" >}}
+   {{% vendor/cli %}} scp --environment {{< variable "TARGET_ENVIRONMENT" >}} -r {{< variable "LOCAL_DIRECTORY" >}} remote:{{< variable "DIRECTORY_TO_SYNCHRONIZE" >}}
    ```
 
 ## Synchronize a database from Development to Staging/Production
@@ -72,7 +72,7 @@ To synchronize your database:
 1. Export the Development database to your local computer:
 
    ```bash
-   platform db:dump --environment {{< variable "DEVELOPMENT_ENVIRONMENT" >}} --file=dump.sql
+   {{% vendor/cli %}} db:dump --environment {{< variable "DEVELOPMENT_ENVIRONMENT" >}} --file=dump.sql
    ```
 
    For more backup options and examples, see how to [export data from an SQL database](../add-services/mysql/_index.md#exporting-data).
@@ -80,7 +80,7 @@ To synchronize your database:
 2. Import the Development database dump file into the remote Staging/Production database:
 
    ```bash
-   platform sql --environment {{< variable "TARGET_ENVIRONMENT" >}} < dump.sql
+   {{% vendor/cli %}} sql --environment {{< variable "TARGET_ENVIRONMENT" >}} < dump.sql
    ```
 
 

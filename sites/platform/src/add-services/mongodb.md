@@ -8,10 +8,7 @@ premium: true
 
 {{< description >}}
 
-{{% version/specific %}}
-<!-- API Version 1 -->
-
-{{% frameworks %}}
+{{% frameworks version="1" %}}
 
 - [Jakarta EE](../guides/jakarta/deploy.md#mongodb)
 - [Micronaut](../guides/micronaut/mongodb.md)
@@ -19,11 +16,6 @@ premium: true
 - [Spring](../guides/spring/mongodb.md)
 
 {{% /frameworks %}}
-
-<--->
-<!-- API Version 2 -->
-
-{{% /version/specific %}}
 
 ## Supported versions
 
@@ -249,7 +241,7 @@ and export the data directly using MongoDB's tools.
 First, open an SSH tunnel with the {{< vendor/name >}} CLI:
 
 ```bash
-{{< vendor/cli >}} tunnel:open
+{{% vendor/cli %}} tunnel:open
 ```
 
 That opens an SSH tunnel to all services on your current environment and produce output like the following:

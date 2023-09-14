@@ -21,7 +21,7 @@ When caching is on...
 You should _not_ use the {{< vendor/name >}} HTTP cache if you're using Varnish or an external CDN
 such as [Fastly](../domains/cdn/fastly.md) or [Cloudflare](../domains/cdn/cloudflare.md).
 Mixing cache services together most likely results in caches that are stale and can't be cleared.
-For more details, see [best practices on HTTP caching](../bestpractices/http-caching.md).
+For more details, see [best practices on HTTP caching](/learn/bestpractices/http-caching.md).
 
 ## Basic usage
 

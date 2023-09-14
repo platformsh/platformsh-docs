@@ -42,4 +42,4 @@ Authenticated traffic that can't be served by the CDN still sees a brief interru
 
 {{< vendor/name >}} values consistency over availability,
 which means that deployments can cause your app to be unavailable for a short amount of time.
-For more information, see the [overview of the build and deploy phases](../../overview/build-deploy.md).
+For more information, see the [overview of the build and deploy phases](/learn/overview/build-deploy.md).

@@ -11,21 +11,13 @@ Their infrastructure setup is nearly identical, though they differ in some featu
 See the [MariaDB documentation](https://mariadb.org/learn/)
 or [MySQL documentation](https://dev.mysql.com/doc/refman/en/) for more information.
 
-{{% version/specific %}}
-<!-- API Version 1 -->
-
-{{% frameworks %}}
+{{% frameworks version="1" %}}
 
 - [Hibernate](../../guides/hibernate/deploy.md#mysql)
 - [Jakarta EE](../../guides/jakarta/deploy.md#mysql)
 - [Spring](../../guides/spring/mysql.md)
 
 {{% /frameworks %}}
-
-<--->
-<!-- API Version 2 -->
-
-{{% /version/specific %}}
 
 ## Supported versions
 
@@ -186,7 +178,7 @@ There may be cases where you want to configure a database connection manually.
 To get the URL to connect to the database, run the following command:
 
 ```bash
-{{< vendor/cli >}} relationships
+{{% vendor/cli %}} relationships
 ```
 
 The result is the complete [information for all relationships](#relationship-reference) with an additional `url` property.
@@ -481,13 +473,20 @@ For further details, see the [MariaDB documentation](https://mariadb.com/kb/en/c
 
 ## Storage Engine
 
+{{% version/specific %}}
 It's best to use the InnoDB storage engine wherever possible.
 MyISAM is only properly supported in non-Dedicated environments.
 In Dedicated environments, there is no replication of MyISAM tables.
 
 If MyISAM tables have been inadvertently created or imported in a Dedicated environment
-(if you see `ENGINE=MyISAM` in the response to `SHOW CREATE TABLE {{< variable "EXISTING_TABLE" >}}`),
+(if you see `ENGINE=MyISAM` in the response to `SHOW CREATE TABLE EXISTING_TABLE`),
 convert them to use the InnoDB storage engine as follows:
+<--->
+It's best to use the InnoDB storage engine wherever possible instead of MyISAM.
+If MyISAM tables have been inadvertently created or imported in your environments
+(if you see `ENGINE=MyISAM` in the response to `SHOW CREATE TABLE EXISTING_TABLE`),
+convert them to use the InnoDB storage engine as follows:
+{{% /version/specific %}}
 
 1. Rename the existing table.
 
@@ -513,14 +512,14 @@ To download all data from your SQL database, use the {{< vendor/name >}} CLI.
 If you have a single SQL database, the following command exports all data to a local file:
 
 ```bash
-{{< vendor/cli >}} db:dump
+{{% vendor/cli %}} db:dump
 ```
 
 If you have multiple SQL databases, you are prompted for which one to export.
 You can also specify a database by its relationship name:
 
 ```bash
-{{< vendor/cli >}} db:dump --relationship {{< variable "RELATIONSHIP_NAME" >}}
+{{% vendor/cli %}} db:dump --relationship {{< variable "RELATIONSHIP_NAME" >}}
 ```
 
 ### Compression
@@ -529,7 +528,7 @@ By default, the file is uncompressed.
 To compress it, use the `--gzip` (`-z`) option:
 
 ```bash
-{{< vendor/cli >}} db:dump --gzip
+{{% vendor/cli %}} db:dump --gzip
 ```
 
 ### Using the output in bash
@@ -538,15 +537,15 @@ To pipe the result to another command, use the `--stdout` option.
 For example, to create a bzip2-compressed file, run:
 
 ```bash
-{{< vendor/cli >}} db:dump --stdout | bzip2 > dump.sql.bz2
+{{% vendor/cli %}} db:dump --stdout | bzip2 > dump.sql.bz2
 ```
 
 ## Importing data
 
-To load data into a database, pipe an SQL dump through the `{{< vendor/cli >}} sql` command, like so:
+To load data into a database, pipe an SQL dump through the `{{% vendor/cli %}} sql` command, like so:
 
 ```bash
-{{< vendor/cli >}} sql < my_database_backup.sql
+{{% vendor/cli %}} sql < my_database_backup.sql
 ```
 
 That runs the database backup against the SQL database on {{< vendor/name >}}.
@@ -556,7 +555,7 @@ That works for any SQL file, so the usual caveats about importing an SQL dump ap
 As with exporting, you can specify a specific environment and a specific database relationship to use:
 
 ```bash
-{{< vendor/cli >}} sql --relationship {{< variable "RELATIONSHIP_NAME" >}} -e {{< variable "BRANCH_NAME" >}} < my_database_backup.sql
+{{% vendor/cli %}} sql --relationship {{< variable "RELATIONSHIP_NAME" >}} -e {{< variable "BRANCH_NAME" >}} < my_database_backup.sql
 ```
 
 {{< note >}}
@@ -575,8 +574,12 @@ To ensure people who review code changes can't access personally identifiable in
 
 ## Replication
 
+{{% version/specific %}}
 In non-Dedicated environments, there is no on-site primary/replica supports.
 In Dedicated environments, it's provided automatically as part of the default configuration.
+<--->
+There is no on-site primary/replica support in your environments.
+{{% /version/specific %}}
 
 In rare cases (such as for certain backup purposes),
 you can also enable [remote replication](./mysql-replication.md) to your own replica data.

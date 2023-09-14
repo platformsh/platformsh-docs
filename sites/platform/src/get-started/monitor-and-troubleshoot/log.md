@@ -13,7 +13,7 @@ All events that change your environments are logged as activities.
 See a list of all activities by running the following command:
 
 ```bash
-platform activities
+{{% vendor/cli %}} activities
 ```
 
 You get a table with all activities that have run or are running.
@@ -23,7 +23,7 @@ To see all the details of that activity, copy its `ID` from the table.
 Then use the ID in place of `<ID>` in the following command:
 
 ```bash
-platform activity:get <ID>
+{{% vendor/cli %}} activity:get <ID>
 ```
 
 This returns the build log from the merge activity.
@@ -37,20 +37,20 @@ Different types of logs are available, such as error logs and any logs your app 
 To see the access log, a list of all attempts to access your website, run the following command:
 
 ```bash
-platform log access
+{{% vendor/cli %}} log access
 ```
 
 If you visited your site to test it, you see your visit here.
 Otherwise, get its URL by running this command:
 
 ```bash
-platform environment:url
+{{% vendor/cli %}} environment:url
 ```
 
-Open the website in a browser and then run `platform log access` again.
+Open the website in a browser and then run `{{% vendor/cli %}} log access` again.
 You now see your visit.
 
-For an interactive prompt with all available logs, run `platform log`.
+For an interactive prompt with all available logs, run `{{% vendor/cli %}} log`.
 
 ## Monitor metrics
 
@@ -63,14 +63,14 @@ which is a web interface that offers similar options for interacting with your p
 Open the Console by running this command:
 
 ```bash
-platform web
+{{% vendor/cli %}} web
 ```
 
 This opens your project in the current environment.
 You can change environments using the `--environment` flag.
 
 You see information about your project as well as a list of activities,
-which should be the same as what you saw by running `platform activities`.
+which should be the same as what you saw by running `{{% vendor/cli %}} activities`.
 
 ![An overview of what you see when you open the Console](/images/management-console/env-overview.png)
 

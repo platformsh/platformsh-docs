@@ -100,7 +100,7 @@ To specify which submodule needs to be updated, replace `[submodule]` with your 
 title= Automated update
 +++
 
-{{< note theme="warning" title="Tier availability" >}}
+{{< note theme="warning" title="Tier availability" version="1" >}}
 
 This feature is available for **Elite** and **Enterprise** customers.
 [Compare the {{< vendor/name >}} tiers](https://platform.sh/pricing/) on our pricing page,
@@ -135,7 +135,7 @@ To do so, follow these steps:
 
    If you use [Git submodules for each of your apps](/create-apps/multi-app/project-structure.md#split-your-code-source-into-multiple-git-submodule-repositories), define a new app at the top level of your project repository.
    Don't define routes so your app isn't exposed to the web.
-   To define a source operation, add the following configuration to your app configuration:
+   To define a source operation, add the following configuration to your [app configuration](/create-apps/app-reference):
 
    ```yaml  {configFile="apps"}
    update-submodule:
@@ -143,17 +143,14 @@ To do so, follow these steps:
      type: "nodejs:18"
 
      # The web key configures the web server running in front of your app.
-     # More information: https://docs.platform.sh/create-apps/app-reference.html#web
      web:
        # Commands are run once after deployment to start the application process.
-       # More information: https://docs.platform.sh/create-apps/app-reference.html#web-commands
        commands:
          # The command to launch your app. If it terminates, it’s restarted immediately.
          # As this app will handle source operation only, no need to keep it alive (sleep)
          start: |
            sleep infinity
      # Information on the app's source code and operations that can be run on it.
-     # More information: https://docs.platform.sh/create-apps/app-reference.html#source
      source:
        operations:
          update-submodules:
@@ -181,7 +178,7 @@ To do so, follow these steps:
    run the following command:
 
    ```bash
-   platform source-operation:run {{< variable "SOURCE_OPERATION_NAME" >}}
+   {{% vendor/cli %}} source-operation:run {{< variable "SOURCE_OPERATION_NAME" >}}
    ```
 
 {{< /codetabs >}}

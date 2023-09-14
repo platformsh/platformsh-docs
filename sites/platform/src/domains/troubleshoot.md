@@ -164,7 +164,7 @@ For example, a conflicting AAAA (IPv6) DNS record can result in a `[HTTP01: The 
 If the certificate generation issue persists,
 check if an outage is ongoing with your certificate issuer (the most common one is [Let's Encrypt](https://letsencrypt.status.io/))
 and with your CDN provider if you have one.
-If not, [contact Support](../overview/get-support.md).
+If not, [contact Support](/learn/overview/get-support.md).
 
 ### Check your routes configuration
 
@@ -195,7 +195,7 @@ or remove `www.example.com` (and any other `www` route) from your `{{< vendor/co
 ## Verify your application
 
 Check your app's logs and look for anomalies.
-On the command line type `platform logs app` and `platform logs error`.
+On the command line type `{{% vendor/cli %}} logs app` and `{{% vendor/cli %}} logs error`.
 
 ## Use ASCII for the domain
 
@@ -207,4 +207,4 @@ Use a tool such as the [conversion tool provided by Verisign](https://www.verisi
 
 {{% troubleshoot %}}
 
-If your website is still not working as expected, [contact support](../overview/get-support.md).
+If your website is still not working as expected, [contact support](/learn/overview/get-support.md).

@@ -10,19 +10,11 @@ that supports multiple messaging protocols, such as the Advanced Message Queuing
 It gives your apps a common platform to send and receive messages
 and your messages a safe place to live until they're received.
 
-{{% version/specific %}}
-<!-- API Version 1 -->
-
-{{% frameworks %}}
+{{% frameworks version="1" %}}
 
 - [Spring](../guides/spring/rabbitmq.md)
 
 {{% /frameworks %}}
-
-<--->
-<!-- API Version 2 -->
-
-{{% /version/specific %}}
 
 ## Supported versions
 
@@ -181,7 +173,7 @@ To open an SSH tunnel to your service with port forwarding,
 run the following command:
 
 ```bash
-{{< vendor/cli >}} tunnel:single --gateway-ports
+{{% vendor/cli %}} tunnel:single --gateway-ports
 ```
 
 Then configure a RabbitMQ client to connect to this tunnel using the credentials from the [relationship](#relationship-reference).
@@ -194,11 +186,13 @@ You can access this UI with an SSH tunnel.
 
 To open a tunnel, follow these steps.
 
+{{% version/specific %}}
+
 1.  
    a) (On [grid environments](../other/glossary.md#grid)) SSH into your app container with a flag for local port forwarding:
 
     ```bash
-    ssh $({{< vendor/cli >}} ssh --pipe) -L 15672:{{< variable "RELATIONSHIP_NAME" >}}.internal:15672
+    ssh $({{% vendor/cli %}} ssh --pipe) -L 15672:{{< variable "RELATIONSHIP_NAME" >}}.internal:15672
     ```
 
     {{< variable "RELATIONSHIP_NAME" >}} is the [name you defined](#2-add-the-relationship).
@@ -206,8 +200,20 @@ To open a tunnel, follow these steps.
    b) (On [dedicated environments](../other/glossary.html#dedicated-gen-2)) SSH into your cluster with a flag for local port forwarding:
 
     ```bash
-    ssh $({{< vendor/cli >}} ssh --pipe) -L 15672:localhost:15672
+    ssh $({{% vendor/cli %}} ssh --pipe) -L 15672:localhost:15672
     ```
+
+<--->
+
+1.  SSH into your app container with a flag for local port forwarding:
+2.  
+    ```bash
+    ssh $({{% vendor/cli %}} ssh --pipe) -L 15672:{{< variable "RELATIONSHIP_NAME" >}}.internal:15672
+    ```
+    
+    {{< variable "RELATIONSHIP_NAME" >}} is the [name you defined](#2-add-the-relationship).
+
+{{% /version/specific %}}
 
 2.  Open `http://localhost:15672` in your browser.
     Log in using the username and password from the [relationship](#relationship-reference).

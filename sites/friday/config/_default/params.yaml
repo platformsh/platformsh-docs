@@ -6,6 +6,7 @@ author: Deploy Friday
 title: User documentation
 issuerepo: "https://github.com/platformsh/platformsh-docs/"
 repo: "https://github.com/platformsh/platformsh-docs/"
+folder: "sites/friday"
 editPageButton: true
 
 theme:
@@ -13,53 +14,59 @@ theme:
 
 # Vendorization
 vendor:
-    name: Deploy Friday
-    cli: friday
-    env_prefix: FRIDAY
+    name: Upsun
+    cli: upsun
+    env_prefix: PLATFORM
+    recruit:
+        active: true
+        link: https://upsun.com/register/
+        cta: Sign up for early access
+        title: Upsun Beta access
+        description: "Platform.sh will soon open up early access to test and provide feedback for our newest offering - <a href=\"https://upsun.com/blog/upsun-origin-story/\">Upsun</a>.<br/><br/>You can register for the beta by clicking here and completing the form.<br/><br/>"
     config:
         version: 2
-        dir: .friday
+        dir: .upsun
         files:
-            routes: .friday/config.yaml
-            services: .friday/config.yaml
-            app: .friday/config.yaml
-            apps: .friday/config.yaml
+            routes: .upsun/config.yaml
+            services: .upsun/config.yaml
+            app: .upsun/config.yaml
+            apps: .upsun/config.yaml
         prefix: 
             apps: applications 
             services: services 
             routes: routes
     urls:
-        main: https://deployfriday.net/
-        docs: https://docs.deployfriday.net/
-        support: https://support.deployfriday.net/
-        sales: https://deployfriday.net/contact
-        console: https://console.deployfriday.net/
-        api: https://api.deployfriday.net/
-        host: deployfriday.net
-        hostname: deployfridayapp.com
+        main: https://upsun.com
+        docs: https://docs.upsun.com
+        support: https://support.upsun.com
+        sales: https://upsun.com/contact
+        console: https://console.upsun.com/
+        api: https://proxy.upsun.com/
+        host: upsun.com
+        hostname: upsunapp.com
 
 # Images (kept in static/)
 logo: "images/logo.svg"
-logolinksto: "https://deployfriday.net"
-logoAlt: "Deploy Friday"
-favicon: "images/logos/favicon.ico"
+logolinksto: "https://upsun.com"
+logoAlt: "Upsun"
+favicon: "images/favicon-32x32.png"
 
 gtm: "GTM-KRPJGT4"
 
 # Actions in main header
 headerActions:
   headerActionPrimary:
-    destination: https://auth.api.platform.sh/register
-    linkText: Free trial
+    destination: https://upsun.com/register/
+    linkText: Sign up for early access
   headerActionSecondary:
-    destination: https://console.platform.sh/
+    destination: https://console.upsun.com/
     linkText: Log in
 
 # Search
 rank: 1
 site: docs
 # Don't include trailing slash. It's just easier that way.
-rooturl: "https://docs.deployfriday.net"
+rooturl: "https://docs.upsun.com"
 
 # 404
 _404:
@@ -67,34 +74,39 @@ _404:
   image: "/images/404/404-8.png"
   issues: "https://github.com/platformsh/platformsh-docs/issues/new"
 
-# Sections in the navigation sidebar
 navSections:
-  home:
-    title: Guides and reference
-    section: home
-    weight: -120
   get-started:
     title: Get started
     section: get-started
+    weight: -120
+  learn:
+    title: Learn
+    section: learn
     weight: -110
-  guides:
-    title: Stacks
-    section: guides
-    weight: -100
+  home:
+    title: Reference
+    section: home
+    weight: -90
 
+nonDocsSections:
+  apidocs:
+    title: API Documentation
+    link: https://proxy.upsun.com/docs
+    weight: -80
+    
 # Metadata
 meta:
-  sitename: "Deploy Friday User Documentation"
-  description: Deploy Friday is a second-generation Platform-as-a-Service built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive.
-  image: "https://docs.deployfriday.net/images/logos/docs_social_2021.jpg"
-  url: "https://docs.deployfriday.net"
+  sitename: "Upsun User Documentation"
+  description: Upsun is a second-generation Platform-as-a-Service built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive.
+  image: "https://docs.upsun.com/images/logos/docs_social_2021.jpg"
+  url: "https://docs.upsun.com"
   twittercard:
     card: "summary_large_image"
-    site: "@deployfriday"
-    title: "Deploy Friday User Documentation"
-    description: "Deploy Friday is a second-generation Platform-as-a-Service built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive."
-    creator: "@deployfriday"
-    image: "https://docs.deployfriday.net/images/logos/docs_social_2021.jpg"
+    site: "@upsuncom"
+    title: "Upsun User Documentation"
+    description: "Upsun is a second-generation Platform-as-a-Service built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive."
+    creator: "@upsuncom"
+    image: "https://docs.upsun.com/images/logos/docs_social_2021.jpg"
   keywords:
     - PaaS
     - cloud hosting

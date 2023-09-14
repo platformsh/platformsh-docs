@@ -16,7 +16,7 @@ This guide provides instructions for deploying, and working with, Symfony on {{<
 {{< note >}}
 
 The Symfony CLI wraps the [{{< vendor/name >}} CLI](/administration/cli/_index.md) with added features related to Symfony.
-So when using Symfony, you can replace `platform <command>` by `symfony cloud:<command>` in all of your commands.
+So when using Symfony, you can replace `{{% vendor/cli %}} <command>` by `symfony cloud:<command>` in all of your commands.
 
 {{< /note >}}
 

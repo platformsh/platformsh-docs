@@ -60,7 +60,7 @@ relationships:
 Open the MySQL CLI to the `replication` relationship, either by accessing the credentials while on the app container or using the following command.
 
 ```bash
-{{< vendor/cli >}} sql -r replication
+{{% vendor/cli %}} sql -r replication
 ```
 
 Now you need to prevent any changes to the data while you view the binary log position. You'll use this to tell the replica at exactly which point it should start replicating from. On the primary server, flush and lock all tables by running `FLUSH TABLES WITH READ LOCK`. Keep this session running - exiting it releases the lock. Get the current position in the binary log by running `SHOW MASTER STATUS`:
@@ -132,7 +132,7 @@ To do so using the {{< vendor/name >}} CLI, run the following
 (replacing `{{< variable "BRANCH_NAME" >}}` with the name of your production branch):
 
 ```bash
-{{< vendor/cli >}} tunnel:open --project {{< variable "PROJECT_ID" >}} --environment {{< variable "BRANCH_NAME" >}}
+{{% vendor/cli %}} tunnel:open --project {{< variable "PROJECT_ID" >}} --environment {{< variable "BRANCH_NAME" >}}
 ```
 
 This opens local SSH tunnels to all services accessible from the application. In practice, you may be better served by setting up the tunnel manually using SSH. Consult the SSH documentation for the best way to do so.
@@ -156,7 +156,7 @@ mysql> CHANGE MASTER TO
   MASTER_CONNECT_RETRY=10;
 ```
 
-Where `{{< variable "HOST" >}}` varies depending on the SSH tunneling configuration you have, and the `{{< variable "REPLICATOR_PASSWORD" >}}` can be obtained by running `{{< vendor/cli >}} relationships`.
+Where `{{< variable "HOST" >}}` varies depending on the SSH tunneling configuration you have, and the `{{< variable "REPLICATOR_PASSWORD" >}}` can be obtained by running `{{% vendor/cli %}} relationships`.
 
 Now start the replica with the `START SLAVE` command:
 

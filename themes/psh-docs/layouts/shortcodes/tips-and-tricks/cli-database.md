@@ -1,4 +1,4 @@
-{{ $cliCommand := "platform " }}
+{{ $cliCommand := `{{< vendor/cli >}}` | .Page.RenderString }}
 {{ $cliName := ".Site.Params.vendor.name CLI" }}
 {{ if eq ( .Get "framework" ) "Symfony" }}
   {{ $cliCommand = "symfony cloud:" }}
@@ -10,17 +10,17 @@ You might find the following commands useful when using a database with your Sym
 -   Create a local dump of the remote database:
 
     ```bash
-    {{ $cliCommand }}db:dump --relationship database
+    {{ $cliCommand }} db:dump --relationship database
     ```
 
 -   Run an SQL query on the remote database:
 
     ```bash
-    {{ $cliCommand }}sql 'SHOW TABLES'
+    {{ $cliCommand }} sql 'SHOW TABLES'
     ```
 
 -   Import a local SQL file into a remote database:
 
     ```bash
-    {{ $cliCommand }}sql < my_database_backup.sql
+    {{ $cliCommand }} sql < my_database_backup.sql
     ```

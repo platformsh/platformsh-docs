@@ -12,19 +12,11 @@ See the [Memcached documentation](https://memcached.org) for more information.
 
 Both Memcached and Redis can be used for application caching. As a general rule, Memcached is simpler and thus more widely supported while Redis is more robust. {{< vendor/name >}} recommends using Redis if possible but Memcached is fully supported if an application favors that cache service.
 
-{{% version/specific %}}
-<!-- API Version 1 -->
-
-{{% frameworks %}}
+{{% frameworks version="1" %}}
 
 - [Drupal](../guides/drupal9/memcached.md)
 
 {{% /frameworks %}}
-
-<--->
-<!-- API Version 2 -->
-
-{{% /version/specific %}}
 
 ## Supported versions
 

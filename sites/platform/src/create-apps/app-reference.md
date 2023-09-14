@@ -437,8 +437,12 @@ firewall:
 
 ### Support for rules
 
+{{% version/specific %}}
 Where outbound rules for firewalls are supported in all environments.
 For {{% names/dedicated-gen-2 %}} projects, contact support for configuration.
+<--->
+Where outbound rules for firewalls are supported in all environments.
+{{% /version/specific %}}
 
 ### Multiple rules
 
@@ -642,12 +646,25 @@ See how to [get cron logs](../increase-observability/logs/access-logs.md#contain
 
 The following table shows the properties for each job:
 
+{{% version/specific %}}
+
 | Name               | Type                                         | Required | Description |
 | ------------------ | -------------------------------------------- | -------- | ----------- |
 | `spec`             | `string`                                     | Yes      | The [cron specification](https://en.wikipedia.org/wiki/Cron#Cron_expression). To prevent competition for resources that might hurt performance, on **Grid or {{% names/dedicated-gen-3 %}}** projects use `H` in definitions to indicate an unspecified but invariant time. For example, instead of using `0 * * * *` to indicate the cron job runs at the start of every hour, you can use `H * * * *` to indicate it runs every hour, but not necessarily at the start. This prevents multiple cron jobs from trying to start at the same time. **The `H` syntax isn't available on {{% names/dedicated-gen-2 %}} projects.**|
 | `commands`         | A [cron commands dictionary](#cron-commands) | Yes      | A definition of what commands to run when starting and stopping the cron job. |
 | `shutdown_timeout` | `integer`                                    | No       | When a cron is canceled, this represents the number of seconds after which a `SIGKILL` signal is sent to the process to force terminate it. The default is `10` seconds. |
 | `timeout`          | `integer`                                    | No       | The maximum amount of time a cron can run before it's terminated. Defaults to the maximum allowed value of `86400` seconds (24 hours).
+
+<--->
+
+| Name               | Type                                         | Required | Description |
+| ------------------ | -------------------------------------------- | -------- | ----------- |
+| `spec`             | `string`                                     | Yes      | The [cron specification](https://en.wikipedia.org/wiki/Cron#Cron_expression). To prevent competition for resources that might hurt performance, use `H` in definitions to indicate an unspecified but invariant time. For example, instead of using `0 * * * *` to indicate the cron job runs at the start of every hour, you can use `H * * * *` to indicate it runs every hour, but not necessarily at the start. This prevents multiple cron jobs from trying to start at the same time. |
+| `commands`         | A [cron commands dictionary](#cron-commands) | Yes      | A definition of what commands to run when starting and stopping the cron job. |
+| `shutdown_timeout` | `integer`                                    | No       | When a cron is canceled, this represents the number of seconds after which a `SIGKILL` signal is sent to the process to force terminate it. The default is `10` seconds. |
+| `timeout`          | `integer`                                    | No       | The maximum amount of time a cron can run before it's terminated. Defaults to the maximum allowed value of `86400` seconds (24 hours).
+
+{{% /version/specific %}}
 
 Note that you can [cancel pending or running crons](../environments/cancel-activity.md).
 
@@ -669,8 +686,13 @@ crons:
 ```
 
 In this example configuration, the [cron specification](#crons) uses the `H` syntax.
+
+{{% version/specific %}}
 Note that this syntax is only supported on Grid and {{% names/dedicated-gen-3 %}} projects.
 On {{% names/dedicated-gen-2 %}} projects, use the [standard cron syntax](https://en.wikipedia.org/wiki/Cron#Cron_expression).
+<--->
+
+{{% /version/specific %}}
 
 ### Example cron jobs
 
@@ -755,13 +777,15 @@ crons:
         commands:
             start: |
                 if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-                   platform backup:create --yes --no-wait
-                   platform source-operation:run update --no-wait --yes
+                   {{% vendor/cli %}} backup:create --yes --no-wait
+                   {{% vendor/cli %}} source-operation:run update --no-wait --yes
                 fi
 ```
 
 ### Cron job timing
 
+{{< version/specific >}}
+<!-- Version 1 -->
 Minimum time between cron jobs being triggered:
 
 | Plan                | Time      |
@@ -769,13 +793,18 @@ Minimum time between cron jobs being triggered:
 | Professional        | 5 minutes |
 | Elite or Enterprise | 1 minute  |
 
+<--->
+<!-- Version 2 -->
+The minimum time between cron jobs being triggered is 5 minutes.
+{{< /version/specific >}}
+
 For each app container, only one cron job can run at a time.
 If a new job is triggered while another is running, the new job is paused until the other completes.
 
 To minimize conflicts, a random offset is applied to all triggers.
 The offset is a random number of seconds up to 20 minutes or the cron frequency, whichever is smaller.
 
-Crons are also paused while activities such as [backups](../dedicated-gen-2/overview/backups.md) are running.
+Crons are also paused while activities such as [backups](/environments/backup) are running.
 The crons are queued to run after the other activity finishes.
 
 To run cron jobs in a timezone other than UTC, set the [timezone property](#top-level-properties).
@@ -796,7 +825,7 @@ Such environments with deployments within 14 days have crons with the status `ru
 If there haven't been any deployments within 14 days, the status is `paused`.
 
 You can see the status in the Console
-or using the CLI by running `platform environment:info` and looking under `deployment_state`.
+or using the CLI by running `{{% vendor/cli %}} environment:info` and looking under `deployment_state`.
 
 #### Restarting paused crons
 
@@ -824,7 +853,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform redeploy
+{{% vendor/cli %}} redeploy
 ```
 
 {{< /codetabs >}}

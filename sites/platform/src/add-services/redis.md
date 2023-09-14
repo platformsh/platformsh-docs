@@ -11,10 +11,7 @@ for high-performance data retrieval and key-value storage.
 - [Ephemeral](#ephemeral-redis): to set up a non-persistent cache for your application
 - [Persistent](#persistent-redis): to set up fast persistent storage for your application
 
-{{% version/specific %}}
-<!-- API Version 1 -->
-
-{{% frameworks %}}
+{{% frameworks version="1" %}}
 
 - [Drupal](../guides/drupal9/redis.md)
 - [Ibexa DXP](../guides/ibexa/deploy.md#cache-and-sessions)
@@ -25,11 +22,6 @@ for high-performance data retrieval and key-value storage.
 - [WordPress](../guides/wordpress/redis.md)
 
 {{% /frameworks %}}
-
-<--->
-<!-- API Version 2 -->
-
-{{% /version/specific %}}
 
 ## Supported versions
 
@@ -344,8 +336,12 @@ To access your Redis service, run the following command:
 redis-cli -h {{< variable "HOSTNAME" >}} -p {{< variable "PORT" >}}
 ```
 
+{{% version/specific %}}
 If you have a Grid project, note that the `CONFIG GET` and `CONFIG SET` admin commands are restricted.
 To get the current configuration, run the following command:
+<--->
+Note that the `CONFIG GET` and `CONFIG SET` admin commands might be restricted on your project.
+{{% /version/specific %}}
 
 ```bash
 redis-cli -h {{< variable "HOSTNAME" >}} -p {{< variable "PORT" >}} info

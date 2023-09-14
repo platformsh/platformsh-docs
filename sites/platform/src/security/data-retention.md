@@ -79,6 +79,8 @@ The following diagram shows how the cycle works for the entire Premium schedule:
 
 ![Each 6-hourly backup is retained for 1 day. The first 6-hourly backup is the daily backup. Daily backups are retained for 30 days. The first daily backup is the monthly backup. Monthly backups are retained for 1 year.](/images/backup-cycles/premium-retention.png "0.6")
 
+{{< version/only "1" >}}
+
 ## {{% names/dedicated-gen-2 %}} backups
 
 Backups for {{% names/dedicated-gen-2 %}} environments are retained based on when they were taken.
@@ -92,6 +94,8 @@ Backups for {{% names/dedicated-gen-2 %}} environments are retained based on whe
 | Weeks 12--22 | One backup per month |
 
 See more about [backups of {{% names/dedicated-gen-2 %}} environments](../dedicated-gen-2/overview/backups.md).
+
+{{< /version/only>}}
 
 ## Tombstone backups
 

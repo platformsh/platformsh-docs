@@ -122,17 +122,29 @@ poetry run python manage.py runserver
 +++
 title=Pip
 +++
-{{< readFile file="snippets/guides/django/tethered/local-pip.sh" highlight="yaml" location="init-local.sh" >}}
+
+```bash {location="init-local.sh"}
+{{< snippets/guides/django/tethered/local-pip >}}
+```
+
 <--->
 +++
 title=Pipenv
 +++
-{{< readFile file="snippets/guides/django/tethered/local-pipenv.sh" highlight="yaml" location="init-local.sh" >}}
+
+```bash {location="init-local.sh"}
+{{< snippets/guides/django/tethered/local-pipenv >}}
+```
+
 <--->
 +++
 title=Poetry
 +++
-{{< readFile file="snippets/guides/django/tethered/local-poetry.sh" highlight="yaml" location="init-local.sh" >}}
+
+```bash {location="init-local.sh"}
+{{< snippets/guides/django/tethered/local-poetry >}}
+```
+
     {{< /codetabs >}}
 
 {{% local-dev/next-steps-end %}}

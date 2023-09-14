@@ -224,7 +224,7 @@ To enable them, list them under the `configuration.plugins` key in your `{{< ven
 
 In this example you'd have the ICU analysis plugin and the size mapper plugin.
 
-If there is a publicly available plugin you need that isn't listed here, [contact support](../overview/get-support.md).
+If there is a publicly available plugin you need that isn't listed here, [contact support](/learn/overview/get-support.md).
 
 ### Available plugins
 

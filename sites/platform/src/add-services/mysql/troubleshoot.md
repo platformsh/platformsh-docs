@@ -54,7 +54,7 @@ SELECT
 ### Disk space issues
 
 Errors such as `PDO Exception 'MySQL server has gone away'` are usually the result of exhausting your available disk space.
-Get an estimate of current disk usage using the CLI command `{{< vendor/cli >}} db:size`.
+Get an estimate of current disk usage using the CLI command `{{% vendor/cli %}} db:size`.
 Just keep in mind it's an estimate and not exact.
 
 Allocated more space to the service in [`{{< vendor/configfile "services" >}}`](../_index.md).

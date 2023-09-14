@@ -21,7 +21,7 @@ title=Using the CLI
 To not restrict indexers on your production environment, run the following command:
 
 ```bash
-platform environment:info --environment {{< variable "PRODUCTION_ENVIRONMENT_NAME" >}} restrict_robots false
+{{% vendor/cli %}} environment:info --environment {{< variable "PRODUCTION_ENVIRONMENT_NAME" >}} restrict_robots false
 ```
 
 <--->
@@ -53,7 +53,7 @@ That tells search engine indexers to not index these sites and not traverse link
 This helps keep non-Production sites out of search engine indexes.
 
 You can choose whether to keep it on for production sites with custom domains.
-It's automatically on for all `platform.site` domains.
+It's automatically on for all `{{% vendor/cli %}}.site` domains.
 
 ## Alternative method
 

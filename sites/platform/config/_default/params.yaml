@@ -6,6 +6,7 @@ author: Platform.sh
 title: User documentation
 issuerepo: "https://github.com/platformsh/platformsh-docs/"
 repo: "https://github.com/platformsh/platformsh-docs/"
+folder: "sites/platform"
 editPageButton: true
 
 # Vendorization
@@ -13,6 +14,12 @@ vendor:
     name: Platform.sh
     cli: platform
     env_prefix: PLATFORM
+    recruit:
+        active: true
+        link: https://upsun.com/register/
+        cta: Sign up for early access
+        title: Upsun Beta access
+        description: "Platform.sh will soon open up early access to test and provide feedback for our newest offering - <a href=\"https://upsun.com/blog/upsun-origin-story/\">Upsun</a>.<br/><br/>You can register for the beta by clicking here and completing the form.<br/><br/>"
     config:
         version: 1
         dir: .platform
@@ -37,7 +44,7 @@ vendor:
 
 # Images (kept in static/)
 logo: "images/logos/Platformsh_logo_white.svg"
-logolinksto: "https://platform.sh"
+logolinksto: "/"
 logoAlt: "Platform.sh"
 favicon: "images/logos/favicon.ico"
 
@@ -66,18 +73,32 @@ _404:
 
 # Sections in the navigation sidebar
 navSections:
-  home:
-    title: Guides and reference
-    section: home
-    weight: -120
   get-started:
     title: Get started
     section: get-started
+    weight: -120
+  learn:
+    title: Learn
+    section: learn
     weight: -110
   guides:
-    title: Stacks
+    title: Frameworks
     section: guides
     weight: -100
+  home:
+    title: Reference
+    section: home
+    weight: -90
+
+nonDocsSections:
+  apidocs:
+    title: API Documentation
+    link: https://api.platform.sh/docs
+    weight: -80
+  # community:
+  #   title: Community Forum
+  #   link: https://community.platform.sh
+  #   weight: -70
 
 # Metadata
 meta:
