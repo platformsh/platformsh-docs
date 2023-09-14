@@ -126,9 +126,6 @@ To use the configured service in your app, add a configuration file similar to t
 
 ```yaml {configFile="app"}
 {{% snippet name="myapp" config="app" root="myapp" %}}
-
-# Other options...
-
 # Relationships enable an app container's access to a service.
 relationships:
     searchopen: "searchopen:opensearch"

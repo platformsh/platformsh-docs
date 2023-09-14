@@ -164,9 +164,6 @@ highlight=python
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="myapp" >}}
-
-# Other options...
-
 # Relationships enable an app container's access to a service.
 relationships:
     postgresdatabase: "dbpostgres:postgresql"

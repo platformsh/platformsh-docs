@@ -238,11 +238,15 @@ Notice the `relationship` (`{{ $varnishRelName }}`) defined for the service `{{ 
 
 {{ end }}
 
+{{ if and (eq $type "varnish") (eq .Site.Params.vendor.config.version 1) }}
+  <!-- Varnish + API version 2 -->
+{{ else }}
 ```yaml {configFile="app"}
 {{ partial "snippet" (dict "context" . "name" $appName "config" "app" "root" "false" "Inner" $appInner ) }}
 
 {{ partial "snippet" (dict "context" . "name" $serviceName "config" "service" "placeholder" "true" "Inner" $serviceInner ) }}
 ```
+{{ end }}
 
 {{ if and (eq $type "varnish") (eq .Site.Params.vendor.config.version 2) }}
 Notice the `relationship` (`{{ $varnishRelName }}`) defined for the service `{{ $serviceName }}` granting access to the application container `{{ $appName }}`. 
@@ -296,6 +300,66 @@ Notice the `relationship` (`{{ $varnishRelName }}`) defined for the service `{{ 
 {{ if eq ($type) "elasticsearch" }}
 If you're using a [premium version](add-services/elasticsearch.md#supported-versions),
 use the `elasticsearch-enterprise` type in the service definition.
+{{ end }}
+
+{{ if eq $type "redis" }}
+### Persistent example
+
+{{ $serviceName := "data" }}
+{{ $serviceInner := "\n    type: redis-persistent:7.0\n    disk: 256" }}
+
+{{ if eq .Site.Params.vendor.config.version 1 }}
+#### [Service definition](/add-services)
+```yaml {configFile="services"}
+{{ partial "snippet" (dict "context" . "name" $serviceName "config" "service" "Inner" $serviceInner ) }}
+```
+{{ end }}
+
+{{$appInner := "relationships:\n    redisdata: \"data:redis\"" }}
+
+{{ if eq .Site.Params.vendor.config.version 2 }}
+#### [App](/create-apps) and [Service configuration](/add-services)
+{{ else }}
+
+#### [App configuration](/create-apps)
+{{ end }}
+
+```yaml {configFile="app"}
+{{ partial "snippet" (dict "context" . "name" $appName "config" "app" "root" "false" "Inner" $appInner ) }}
+
+{{ partial "snippet" (dict "context" . "name" $serviceName "config" "service" "placeholder" "true" "Inner" $serviceInner ) }}
+```
+
+{{ end }}
+
+{{ if eq $type "mariadb" }}
+### OracleMySQL example
+
+{{ $serviceName := "dbmysql" }}
+{{ $serviceInner := "\n    type: oracle-mysql:8.0\n    disk: 256" }}
+
+{{ if eq .Site.Params.vendor.config.version 1 }}
+#### [Service definition](/add-services)
+```yaml {configFile="services"}
+{{ partial "snippet" (dict "context" . "name" $serviceName "config" "service" "Inner" $serviceInner ) }}
+```
+{{ end }}
+
+{{$appInner := "relationships:\n    mysqldatabase: \"dbmysql:mysql\"" }}
+
+{{ if eq .Site.Params.vendor.config.version 2 }}
+#### [App](/create-apps) and [Service configuration](/add-services)
+{{ else }}
+
+#### [App configuration](/create-apps)
+{{ end }}
+
+```yaml {configFile="app"}
+{{ partial "snippet" (dict "context" . "name" $appName "config" "app" "root" "false" "Inner" $appInner ) }}
+
+{{ partial "snippet" (dict "context" . "name" $serviceName "config" "service" "placeholder" "true" "Inner" $serviceInner ) }}
+```
+
 {{ end }}
 
 <!-- Turn this section off for ones in Guides that continue differently-->

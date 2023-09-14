@@ -43,9 +43,20 @@ It also isn't available for {{% names/dedicated-gen-2 %}} environments.
 On Dedicated environments, MariaDB is available with Galera for replication.
 Supported versions are the following:
 
-| {{% names/dedicated-gen-2 %}} | {{% names/dedicated-gen-3 %}} |
-|-------------------------------|-------------------------------|
-| {{< image-versions image="mariadb" status="supported" environment="dedicated-gen-2" >}} | {{< image-versions image="mariadb" status="supported" environment="dedicated-gen-3" >}} |
+<table>
+    <thead>
+        <tr>
+            <th>{{% names/dedicated-gen-2 %}}</th>
+            <th>{{% names/dedicated-gen-3 %}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="mariadb" status="supported" environment="dedicated-gen-2" >}}</td>
+            <td>{{< image-versions image="mariadb" status="supported" environment="dedicated-gen-3" >}}</thd>
+        </tr>
+    </tbody>
+</table>
 
 Dedicated environments only support the InnoDB storage engine.
 Tables created on Dedicated environments using the MyISAM storage engine don't replicate between all hosts in the cluster.
