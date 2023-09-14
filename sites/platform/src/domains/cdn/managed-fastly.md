@@ -26,7 +26,7 @@ see how to [configure your DNS provider](../steps/_index.md#3-configure-your-dns
 
 ### Transport Layer Security (TLS) certificates
 
-By default, Enterprise and Elite plans include two [TLS certificates](../../other/glossary.md#transport-layer-security-tls),
+By default, Enterprise and Elite plans include two [TLS certificates](/glossary.md#transport-layer-security-tls),
 an apex and a wildcard one.
 This allows for encryption of all traffic between your users and your app.
 

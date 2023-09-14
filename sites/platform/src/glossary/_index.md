@@ -1,7 +1,6 @@
 ---
 title: "Glossary"
-weight: 1
-sidebarIgnore: true
+weight: -40
 ---
 
 ## Active environment

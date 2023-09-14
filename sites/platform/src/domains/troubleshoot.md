@@ -151,7 +151,7 @@ A common issuer is [Let's Encrypt](https://letsencrypt.org/docs/challenge-types/
 
 {{< /codetabs >}}
 
-Make sure that the [apex domain](../other/glossary.md#apex-domain) and its `www` subdomain are both pointing where needed.
+Make sure that the [apex domain](/glossary.md#apex-domain) and its `www` subdomain are both pointing where needed.
 Note that it can take up to 72 hours for DNS changes to be effective.
 For more information, see how to [set up a custom domain](../domains/steps/_index.md).
 

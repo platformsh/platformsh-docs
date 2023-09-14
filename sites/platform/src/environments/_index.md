@@ -26,7 +26,7 @@ You can create new environments in one of two ways:
 
 -   Push a local branch through Git or a [source integration](../integrations/source/_index.md).
 
--   [Branch](../other/glossary.md#branch) existing environments using the [CLI](/administration/cli/_index.md)
+-   [Branch](/glossary.md#branch) existing environments using the [CLI](/administration/cli/_index.md)
     or the [Console](../administration/web/_index.md).
 
 When you branch an environment, you might want to create exact replicas of it.
@@ -54,10 +54,10 @@ You might want to give it a [custom domain name](../domains/steps/_index.md).
 
 Your environments can have one of two statuses:
 
--   [Active](../other/glossary.md#active-environment):
+-   [Active](/glossary.md#active-environment):
     A deployed environment with services and data.
 
--   [Inactive](../other/glossary.md#inactive-environment):
+-   [Inactive](/glossary.md#inactive-environment):
     An environment that isn't deployed and has no services or data, only code.
 
 You can see the status of your environments in the [Console](../administration/web/_index.md) or the [CLI](/administration/cli/_index.md).
@@ -92,7 +92,7 @@ You can [change an environment's status](./deactivate-environment.md) at any tim
 
 In {{< vendor/name >}}, your environments are organized in a hierarchy featuring parent and child environments.
 
-When you [branch](../other/glossary.md#branch) an environment,
+When you [branch](/glossary.md#branch) an environment,
 the parent of the new environment is the environment it was created from.
 You can [change the environment's parent](./change-parent.md) after it's been created.
 
@@ -100,8 +100,8 @@ When you push a branch through Git or a [source integration](../integrations/sou
 the parent environment of the new environment is your [default environment](#default-environment).
 Alternatively, you can [change the environment's parent](./change-parent.md) after it's been created.
 
-Each child environment can [sync](../other/glossary.md#sync) code and/or data down from its parent
-and [merge](../other/glossary.md#merge) code up to its parent.
+Each child environment can [sync](/glossary.md#sync) code and/or data down from its parent
+and [merge](/glossary.md#merge) code up to its parent.
 You can use child environments for development, staging, and testing.
 
 ### Workflows
@@ -127,7 +127,7 @@ You may want to take one of the following approaches when creating your workflow
 
 Example Agile workflow:
 
-1.  An admin [branches](../other/glossary.md#branch) the Live (default) environment to create a Sprint environment.
+1.  An admin [branches](/glossary.md#branch) the Live (default) environment to create a Sprint environment.
 
 2.  The admin gives each developer permission to branch the Sprint environment to create new feature environments.
 
@@ -135,11 +135,11 @@ Example Agile workflow:
 
 3.  Feature 1 is developed and work is reviewed by accessing the deployed Feature 1 environment.
 
-4.  When the review is done, Feature 1 is [merged](../other/glossary.md#merge) into the Sprint environment.
+4.  When the review is done, Feature 1 is [merged](/glossary.md#merge) into the Sprint environment.
 
     ![Feature 1 is merged into the Sprint 1 environment](/images/workflow/merge-feature.svg "0.25")
 
-5.  The remaining features [sync](../other/glossary.md#sync) with the Sprint environment.
+5.  The remaining features [sync](/glossary.md#sync) with the Sprint environment.
     This ensures their working environment is up-to-date with the latest code.
 
     ![Features from the Sprint 1 environment are synced with the Feature 2 environment](/images/workflow/sync.svg "0.25")

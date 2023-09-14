@@ -15,7 +15,7 @@ or each time you increase the storage space of your services.
 You also have regularly scheduled automated backups of your production environments to cover most cases.
 
 Note that you can only create backups and restore active environments.
-To work with an [inactive environment](../other/glossary.md#inactive-environment),
+To work with an [inactive environment](/glossary.md#inactive-environment),
 first activate it.
 
 ## How backup and restore works
