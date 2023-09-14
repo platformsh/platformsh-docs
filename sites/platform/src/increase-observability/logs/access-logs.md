@@ -106,12 +106,14 @@ title=Using SSH directly
    ```
 
 2. Change to the right directory by running `cd /var/log`.
-
+   {{< version/specific >}}
    If you're on a {{% names/dedicated-gen-2 %}} cluster, run
 
    ``` bash
    cd /var/log/{{% vendor/cli %}}/{{% variable "APP_NAME" %}}/
    ```
+   <--->
+   {{< /version/specific >}}
 
 3. Read the desired log, such as by running `tail access.log`.
 

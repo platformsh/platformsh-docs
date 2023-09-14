@@ -20,6 +20,7 @@ you can achieve the following goals:
 Blackfire is installed natively on {{< vendor/name >}} and [works integrally with the {{< vendor/name >}} workflow](https://www.youtube.com/watch?v=Bq-LFjgD6L0).
 This results in an effortless setup process and smooth user experience.
 
+{{% version/specific %}}
 {{< note >}}
 
 Blackfire.io can be bundled with Enterprise and Elite subscriptions as part of the Observability Suite.
@@ -52,20 +53,11 @@ To do so, follow these steps:
 5. Retrieve your Blackfire server ID and server token.
 6. Follow [the instructions from the Blackfire documentation](https://blackfire.io/docs/integrations/paas/platformsh).
 
-{{< version/specific >}}
-<!-- Version 1, where managed Fastly is available -->
 If you're using the [Managed Fastly CDN](../../domains/cdn/managed-fastly.md),
 it's already configured to operate with Blackfire. 
 If you're using a different [Content Delivery Network (CDN)](../../domains/cdn/_index.md), 
 make sure you [configure it](https://blackfire.io/docs/integrations/proxies/index)
 to let Blackfire profile the code running on your servers.
-
-<--->
-<!-- Version 2, where managed Fastly isn't available -->
-If you're using a [Content Delivery Network (CDN)](../../domains/cdn/_index.md), 
-make sure you [configure it](https://blackfire.io/docs/integrations/proxies/index)
-to let Blackfire profile the code running on your servers.
-{{< /version/specific >}}
 
 ### On {{% names/dedicated-gen-2 %}} infrastructure
 
@@ -81,8 +73,6 @@ To install Blackfire on your {{% names/dedicated-gen-2 %}} environments:
 5. Retrieve your Blackfire server ID and server token.
 6. Send those credentials to [Support](https://console.platform.sh/-/users/~/tickets/open) so they complete the installation.
 
-{{< version/specific >}}
-<!-- Version 1, where managed Fastly is available -->
 If you're using the [Managed Fastly CDN](../../domains/cdn/managed-fastly.md),
 it's already configured to operate with Blackfire. 
 If you're using a different [Content Delivery Network (CDN)](../../domains/cdn/_index.md), 
@@ -90,35 +80,62 @@ make sure you [configure it](https://blackfire.io/docs/integrations/proxies/inde
 to let Blackfire profile the code running on your servers.
 
 <--->
-<!-- Version 2, where managed Fastly isn't available -->
+## Get started with Blackfire
+You can only access your Blackfire environments after you've been granted access to the related {{< vendor/name >}} project.
+Therefore, to access your Blackfire environments, make sure you log in using your {{< vendor/name >}} account.
+
+To access a Blackfire environment, each project user needs a Blackfire account.
+When a project user doesn't already have a Blackfire account, 
+a new one is automatically created using the user's {{< vendor/name >}} credentials.
+
+{{< note >}}
 If you're using a [Content Delivery Network (CDN)](../../domains/cdn/_index.md), 
 make sure you [configure it](https://blackfire.io/docs/integrations/proxies/index)
 to let Blackfire profile the code running on your servers.
-
-{{< /version/specific >}}
+{{< /note >}}
+{{% /version/specific %}}
 
 ### Automated integration
 
+{{% version/specific %}}
 {{< partial "observability-suite/body.md" >}}
 
 The Blackfire automated integration is available for Grid and {{% names/dedicated-gen-3 %}} environments.
+
+<--->
+The Blackfire automated integration is enabled on your environments by default.
+
+{{% /version/specific %}}
 
 When you create a new environment,
 it automatically triggers the creation of a Blackfire environment with the same settings.
 On this Blackfire environment, you have access to [all the features provided by Blackfire](https://www.blackfire.io/features/).
 This includes monitoring, profiling, alerting, and build-related features.
 
+{{% version/specific %}}
 When a Blackfire environment is created based on a Grid environment,
 user access settings are replicated from the {{< vendor/name >}} Console to Blackfire.
+
+<--->
+Note that Blackfire monitoring is enabled by default on your production environment.
+On other environment types, you need to [enable it](#blackfire-monitoring).
+User access settings are replicated from the {{< vendor/name >}} Console to Blackfire.
+
+{{% /version/specific %}}
+
 This includes all [access levels](https://blackfire.io/docs/up-and-running/access-management).
- 
+
+{{% version/specific %}} 
 To access the Blackfire environment, each project user needs a Blackfire account.
 When a project user doesn't already have a Blackfire account, 
 a new one is automatically created using the user's {{< vendor/name >}} credentials.
+<--->
+{{% /version/specific %}}
  
 You might have Blackfire variables already set on your project.
 In this case, the existing variables override the settings of the automated integration.
 
+{{% version/specific %}}
 Note that to trigger the synchronization of changes to users and their access levels,
 you need to redeploy the environment.
 
@@ -130,6 +147,12 @@ to start monitoring your environment follow these steps:
 1. For Python apps, you need to [activate Blackfire Monitoring](#1-activate-blackfire-monitoring) first.
 2. For both Python and PHP apps, you need to [enable Blackfire Monitoring on the required environments](#2-enable-blackfire-monitoring-on-your-environments).
 
+<--->
+
+{{% /version/specific %}}
+
+
+{{% version/specific %}}
 ### 1. Activate Blackfire Monitoring
 
 If you want to monitor a PHP app, Blackfire Monitoring is available by default on your environments.
@@ -144,12 +167,28 @@ To do so, create the following [environment variable](../../development/variable
 
 If you later need to deactivate Blackfire Monitoring, change the value of the variable to `0`.
 
+<--->
+
+{{< note >}}
+To trigger the synchronization of changes to users and their access levels,
+you need to redeploy the environment.
+{{< /note >}}
+
+{{% /version/specific %}}
+
+{{% version/specific %}}
 ### 2. Enable Blackfire Monitoring on your environments
 
 To enable Blackfire Monitoring on your environments, follow these steps:
 
+<--->
+### Blackfire monitoring
+Blackfire monitoring is enabled by default on your production environment. 
+To enable Blackfire monitoring on your development or staging environments, follow these steps:
+{{% /version/specific %}}
+
 1.  Go to your [organizations list](https://blackfire.io/my/organizations) 
-    and select the organization where you want to enable Blackfire Monitoring.
+    and select the organization where you want to enable Blackfire monitoring.
 
 2.  Click **Organization Monitoring Usage**.
 
@@ -160,7 +199,7 @@ To enable Blackfire Monitoring on your environments, follow these steps:
 
     ![A screenshot of what's seen in Monitoring Activation](/images/integrations/blackfire/blackfire-monitoring-activation.png "0.40")
 
-For more information on Blackfire Monitoring features,
+For more information on Blackfire monitoring features,
 see the [Blackfire documentation](https://blackfire.io/docs/monitoring-cookbooks/index).
 
 ## Blackfire Profiling

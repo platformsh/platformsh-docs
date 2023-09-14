@@ -32,6 +32,9 @@ MySQL and MariaDB have the same behavior and the rest of this page applies to bo
 |---------------|-------------|--------------------|
 |  {{< image-versions image="mariadb" status="supported" >}} | {{< image-versions image="mysql" status="supported" >}} | {{< image-versions image="oracle-mysql" status="supported" >}} |
 
+{{% version/specific %}}
+<!-- API Version 1 -->
+
 ### Supported versions on Dedicated environments
 
 `oracle-mysql` is not yet available for {{% names/dedicated-gen-3 %}} environments.
@@ -47,6 +50,11 @@ Supported versions are the following:
 Dedicated environments only support the InnoDB storage engine.
 Tables created on Dedicated environments using the MyISAM storage engine don't replicate between all hosts in the cluster.
 See how to [convert tables to the InnoDB engine](#storage-engine).
+
+<--->
+<!-- API Version 2 -->
+
+{{% /version/specific %}}
 
 {{% deprecated-versions %}}
 
@@ -366,13 +374,20 @@ For further details, see the [MariaDB documentation](https://mariadb.com/kb/en/c
 
 ## Storage Engine
 
+{{% version/specific %}}
 It's best to use the InnoDB storage engine wherever possible.
 MyISAM is only properly supported in non-Dedicated environments.
 In Dedicated environments, there is no replication of MyISAM tables.
 
 If MyISAM tables have been inadvertently created or imported in a Dedicated environment
-(if you see `ENGINE=MyISAM` in the response to `SHOW CREATE TABLE {{< variable "EXISTING_TABLE" >}}`),
+(if you see `ENGINE=MyISAM` in the response to `SHOW CREATE TABLE EXISTING_TABLE`),
 convert them to use the InnoDB storage engine as follows:
+<--->
+It's best to use the InnoDB storage engine wherever possible instead of MyISAM.
+If MyISAM tables have been inadvertently created or imported in your environments
+(if you see `ENGINE=MyISAM` in the response to `SHOW CREATE TABLE EXISTING_TABLE`),
+convert them to use the InnoDB storage engine as follows:
+{{% /version/specific %}}
 
 1. Rename the existing table.
 
@@ -460,8 +475,12 @@ To ensure people who review code changes can't access personally identifiable in
 
 ## Replication
 
+{{% version/specific %}}
 In non-Dedicated environments, there is no on-site primary/replica supports.
 In Dedicated environments, it's provided automatically as part of the default configuration.
+<--->
+There is no on-site primary/replica support in your environments.
+{{% /version/specific %}}
 
 In rare cases (such as for certain backup purposes),
 you can also enable [remote replication](./mysql-replication.md) to your own replica data.

@@ -1,8 +1,14 @@
 <!-- Page banners -->
+{{ if and ( eq (string .context.Site.Params.vendor.config.version) "1" ) ( eq (string .context.Page.Params.banner.type) "tiered-feature" )}}
 {{ partial "banners/banner.html" .context }}
+{{ else if ( ne (string .context.Page.Params.banner.type) "tiered-feature" )}}
+{{ partial "banners/banner.html" .context }}
+{{ end }}
 
 <!-- Tier-gated features -->
+{{ if eq (string .Site.Params.vendor.config.version) "1"}}
 {{ partial "tiered-features/banner.html" .context }}
+{{ end }}
 
 <!-- If the feature is part of the Observability Suite -->
 {{ partial "observability-suite/banner.html" .context }}

@@ -7,7 +7,10 @@ banner:
     type: tiered-feature
 ---
 
+{{% version/specific %}}
 {{< partial "progressive-rollout/body.md" >}}
+<--->
+{{% /version/specific %}}
 
 When a custom domain is [set up on your production environment](../steps/_index.md),
 it can't be used for the other, non-production environments in your project.
@@ -52,6 +55,7 @@ based on the following elements:
 
 You need:
 
+{{% version/specific %}}
 - A Grid or {{% names/dedicated-gen-3 %}} project on which you have **admin rights** <BR> 
 
   {{< note theme="warning" >}}
@@ -62,17 +66,12 @@ You need:
 
   {{< /note >}}
 
-  {{< version/specific >}}
-
   If you use a [Managed Fastly](../cdn/managed-fastly.md) CDN,
   it needs to be configured to operate with custom non-production domains.
   For more information, [contact Support](https://console.platform.sh/-/users/~/tickets/open). 
-
-  <--->
-
-  <!-- Version 2, managed Fastly not included for now -->
-  {{< /version/specific >}}
-
+<--->
+- A {{< vendor/name >}} project on which you have **admin rights** 
+{{% /version/specific %}}
 - A production environment with at least one custom domain already set up
 - At least one non-production (staging or development) environment
 - Optional: The [{{< vendor/name >}} CLI](../../administration/cli/_index.md) (v4.8.0+)

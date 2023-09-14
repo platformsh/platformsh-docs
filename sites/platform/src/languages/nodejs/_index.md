@@ -12,9 +12,30 @@ You can also develop a microservice architecture mixing JavaScript and other app
 
 {{% major-minor-versions-note %}}
 
-| Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|----------------------------------------|------------------------------ |
-| {{< image-versions image="nodejs" status="supported" environment="grid" >}} | {{< image-versions image="nodejs" status="supported" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid and {{% names/dedicated-gen-3 %}}</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="nodejs" status="supported" environment="grid" >}}</td>
+            <td>{{< image-versions image="nodejs" status="supported" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="nodejs" status="supported" environment="grid" >}}
+
+{{% /version/specific %}}
 
 {{% language-specification type="nodejs" display_name="Node.js" %}}
 
@@ -22,9 +43,30 @@ To use a specific version in a container with a different language, [use a versi
 
 {{% deprecated-versions %}}
 
-| Grid | {{% names/dedicated-gen-2 %}} |
-| ---- | ----------------------------- |
-| {{< image-versions image="nodejs" status="deprecated" environment="grid" >}} | {{< image-versions image="nodejs" status="deprecated" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="nodejs" status="deprecated" environment="grid" >}}</td>
+            <td>{{< image-versions image="nodejs" status="deprecated" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="nodejs" status="deprecated" environment="grid" >}}
+
+{{% /version/specific %}}
 
 ## Usage example
 
