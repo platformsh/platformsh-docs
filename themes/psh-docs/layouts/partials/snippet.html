@@ -73,9 +73,6 @@
         {{- end -}}
 
     {{- else -}}
-        {{- if ne $name "false" -}}
-            {{- $prepend = printf "%s\nname: %s" $appNameComment $name -}}
-        {{- end -}}
         {{- if eq $placeholder "false" -}}
             {{- $content = .Inner -}}
         {{- end -}}

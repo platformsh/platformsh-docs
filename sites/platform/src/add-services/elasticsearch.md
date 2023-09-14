@@ -242,10 +242,11 @@ This functionality is generally not required if Elasticsearch isn't exposed on i
 However, certain applications may require it, or it allows you to safely expose Elasticsearch directly to the web.
 To do so, add a route to `{{< vendor/configfile "routes" >}}` that has `search:elasticsearch` as its upstream
 (where `search` is whatever you named the service).
+
 For example:
 
 ```yaml {configFile="routes"}
-{{% snippet name="search:elasticsearch" config="route" subDom="es" /%}}
+{{% snippet name="search:elasticsearch" config="route" subDom="es" redirect="false" /%}}
 {{% snippet name="search" config="service" placeholder="true" %}}
     type: elasticsearch:{{% latest "elasticsearch" %}}
     disk: 2048

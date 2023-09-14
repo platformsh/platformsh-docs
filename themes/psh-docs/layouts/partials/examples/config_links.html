@@ -39,7 +39,7 @@
   <h3>Ephemeral Redis example configuration</h3>
 {{ end }}
 <a href="/add-services.html">Service definition</a>
-
+config_links
 ```yaml {configFile="services"}
 {{ readFile (printf "/registry/images/examples/full/%s.services.yaml" .type) | safeHTML }}
 ```

@@ -114,9 +114,6 @@ See more information on [how to upgrade to version 2.3 or later](#upgrade-to-ver
 
 ```yaml {configFile="app"}
 {{% snippet name="myapp" config="app" root="myapp" %}}
-
-# Other options...
-
 # Relationships enable an app container's access to a service.
 relationships:
     influxtimedb: "timedb:influxdb"

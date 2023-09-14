@@ -204,7 +204,6 @@ Add the service to your app configuration:
 
 {{ if eq .Site.Params.vendor.config.version 1 }}
 #### [Service definition](/add-services)
-
 ```yaml {configFile="services"}
 {{ partial "snippet" (dict "context" . "name" $serviceName "config" "service" "Inner" $serviceInner ) }}
 ```
@@ -273,7 +272,6 @@ Notice the `relationship` (`{{ $varnishRelName }}`) defined for the service `{{ 
 
 {{ if eq .Site.Params.vendor.config.version 1 }}
 #### [Service definition](/add-services)
-
 ```yaml {configFile="services"}
 {{ partial "snippet" (dict "context" . "name" $serviceName "config" "service" "Inner" $serviceInner ) }}
 ```
@@ -282,6 +280,7 @@ Notice the `relationship` (`{{ $varnishRelName }}`) defined for the service `{{ 
 {{ if eq .Site.Params.vendor.config.version 2 }}
 #### [App](/create-apps) and [Service configuration](/add-services)
 {{ else }}
+
 #### [App configuration](/create-apps)
 {{ end }}
 
@@ -292,7 +291,7 @@ Notice the `relationship` (`{{ $varnishRelName }}`) defined for the service `{{ 
 ```
 {{ end }}
 
-{{ partial "examples/config_links" ( dict "type" $type "onlyLanguage" $onlyLanguage ) }}
+<!-- {{ partial "examples/config_links" ( dict "type" $type "onlyLanguage" $onlyLanguage ) }} -->
 
 {{ if eq ($type) "elasticsearch" }}
 If you're using a [premium version](add-services/elasticsearch.md#supported-versions),
