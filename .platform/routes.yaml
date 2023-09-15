@@ -268,6 +268,21 @@ https://docs.upsun.com/:
     enabled: true
   ssi:
     enabled: false
+  redirects:
+    paths:
+      ##################################
+      ## Landmark in-console linking. ##
+      ##################################
+      # Configuring container-sizes and custom profiles.
+      # Resource configuration not found.
+      "/anchors/resources/configuration": { "to": "", "code": 301, "prefix": false }
+      # Reducing the size of container could negatively impact your site's performance.
+      "/anchors/scaling/down": { "to": "", "code": 301, "prefix": false }
+      # Organization administration: permissions & teams. 
+      "/anchors/organizations/admin": { "to": "", "code": 301, "prefix": false }
+      # Green discount on carbon-efficient regions.
+      "/anchors/resources/green": { "to": "", "code": 301, "prefix": false }
+
 
 "https://docs.deployfriday.net/":
     type: redirect
