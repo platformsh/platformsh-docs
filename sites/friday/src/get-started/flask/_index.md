@@ -1,34 +1,34 @@
 ---
 title: Flask
-description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum mauris id tincidunt gravida. Suspendisse sagittis euismod mi. Aliquam erat volutpat.
+description: This guide provides instructions for deploying, and working with Flask on Upsun.
 ---
 
 # Guide to deploying a Flask app on Upsun
 
 If you're more of a just-give-me-the-steps type of person, you can jump straight to the
-[TL;DR step-by-step](#tl%3Bdr-step-by-step) included at the end of this guide.
+[TL;DR step-by-step](#tldr-step-by-step) included at the end of this guide.
 
-This guide provides instructions for deploying, and working with Flask on Upsun.If you are unfamiliar with Flask,
-it is a lightweight and popular web framework for building web applications using Python. It is often referred
-to as a "micro" framework because it provides the essential components for building web applications but leaves
-many decisions and extensions up to the developer.
+This guide provides instructions for deploying, and working with [Flask](https://flask.palletsprojects.com/) on Upsun.
+If you are unfamiliar with Flask, it is a lightweight and popular web framework for building web applications using
+Python. It is often referred to as a "micro" framework because it provides the essential components for building web
+applications but leaves many decisions and extensions up to the developer.
 
 ## Setting up the application and repository
 For the purposes of this guide, we'll start by generating a
-[Flask package project](https://github.com/cookiecutter-flask/cookiecutter-flask) from Cookiecutter. From
-there we'll walk through the steps needed to deploy the project on Upsun. With all things in tech, there are
-many ways to accomplish the same goal; the correct way will depend on your specific needs and goals, and the
-makeup of your project. The following guide is simply one way to accomplish deploying a flask application on
-Upsun.
+[Flask package project](https://github.com/cookiecutter-flask/cookiecutter-flask) from
+[Cookiecutter](https://github.com/cookiecutter/cookiecutter). From there we'll walk through the steps needed to deploy
+the project on Upsun. With all things in tech, there are many ways to accomplish the same goal; the correct way will
+depend on your specific needs and goals, and the makeup of your project. The following guide is simply one way to
+accomplish deploying a flask application on Upsun.
 
-From a terminal/command line prompt, first install cookiecutter:
+From a terminal/command line prompt, first install Cookiecutter:
 ```shell
-$ pip3 install cookiecutter`
+$ pip3 install cookiecutter
 ```
 
 
 Next we need to generate the Flask template from cookiecutter. If this is your first time generating a Flask
-template, you will need to point to the full github repository address:
+Cookiecutter template, you will need to point to the full GitHub repository address:
 ```shell
 $ cookiecutter https://github.com/cookiecutter-flask/cookiecutter-flask.git
 ```
@@ -52,11 +52,10 @@ Cookiecutter will next ask you a series of 10 questions.
 [10/10] use_heroku (): N
 ```
 
-Answer each one, paying attention to what you use for the app_name question as we will need it later. Once
+Answer each one, paying attention to what you use for the `app_name` question as we will need it later. Once
 cookiecutter has generated the template, cd into the directory it just created; it will be the same name you
-gave for the app_name question. For the purposes of this guide, I named it my_flask_cookie and will refer to
+gave for the `app_name` question. For the purposes of this guide, I named mine `my_flask_cookie` and will refer to
 it throughout the remainder of the guide.
-
 
 We need to initiate the contents of this directory as a git repository so before doing anything else, initialize
 the repository:
@@ -64,8 +63,7 @@ the repository:
 $ git init .
 ```
 
-
-By default, git will still use master as the name for the initial branch. If you wish to change the default
+By default, git will still use `master` as the name for the initial branch. If you wish to change the default
 branch name, you can do so with the `git branch -m` command. I'll rename mine to `main`:
 ```shell
 $ git branch -m main
@@ -73,9 +71,11 @@ $ git branch -m main
 
 ## Upsun configuration files
 Now that we have the repository initialized, and our template generated, we're ready to prepare it for use on
-Upsun. Before attempting the next command, make sure you have the Upsun CLI tool installed and working, and
-have authenticated the cli tool with your Upsun account. We're now ready to have the Upsun cli tool generate
-the configuration files we'll need to deploy on Upsun.
+Upsun. Before attempting the next command, make sure you have the
+[Upsun CLI tool installed](https://docs.platform.sh/administration/cli.html) and working, and
+have [authenticated the cli tool](https://docs.platform.sh/administration/cli.html#2-authenticate) with your Upsun
+account. We're now ready to have the Upsun cli tool generate the configuration files we'll need to deploy on Upsun.
+
 ```shell
 $ upsun project:init
 ```
@@ -104,7 +104,7 @@ Use arrows to move up and down, type to filter
   Ruby
 ```
 
-Scroll down and select Python. It should then automatically detect your dependency manager.
+Scroll down and select `Python`. It should then automatically detect your dependency manager.
 
 ```shell
 What language is your project using? We support the following: [Python]
@@ -113,7 +113,7 @@ What language is your project using? We support the following: [Python]
 ```
 
 It will then ask for the name of your application. From there it should prompt you for services your project
-needs. Select each one and then hit Enter. For this demonstration, I only need PostgreSQL
+needs. Select each one and then hit Enter. For this demonstration, I only need `PostgreSQL`
 
 ```shell
 
@@ -161,7 +161,7 @@ To do so, commit your files and deploy your application using the Upsun CLI:
   $ upsun push
 ```
 
-Last, we need to add all of our generated files, from both cookiecutter and the Upsun CLI tool to our git
+Last, we need to add all of our generated files, from both Cookiecutter and the Upsun CLI tool to our git
 repository:
 ```shell
 $ git add .
@@ -254,9 +254,10 @@ when it builds the application image. In the `config.yaml` find the line that st
 # Hooks allow you to customize your code/environment
 ```
 
-Beneath that line will be a section for `build:`. The build hook allows us to make changes to the application
-before it is finalized and deployed. You should notice that when the cli tool generated the configuration
-file for us, it automatically added `pip install -r requirements.txt` for us! This same section is where
+Beneath that line will be a section for `build:`. The
+[build hook](https://docs.platform.sh/create-apps/hooks/hooks-comparison.html#build-hook) allows us to make changes to
+the application before it is finalized and deployed. You should notice that when the cli tool generated the
+configuration file for us, it automatically added `pip install -r requirements.txt` for us! This same section is where
 we'll also instruct Upsun to install our npm packages. But before that, I usually like to upgrade pip before
 I run `pip install` so I'm going to add a new line above that and add in `pip install --upgrade pip`. Then
 I'll add another line after the initial `pip install` and add `npm install`:
@@ -271,7 +272,8 @@ I'll add another line after the initial `pip install` and add `npm install`:
         npm install
 ```
 
-We also need to inform Upsun what should occur when our application is deployed. The `deploy` hook is
+We also need to inform Upsun what should occur when our application is deployed. The
+[deploy hook](https://docs.platform.sh/create-apps/hooks/hooks-comparison.html#deploy-hook) is
 similar to the build hook but runs after the application image has been built. At this stage the
 application image is read-only, <!-- might not be true -->but our writable disk space has been mounted and
 is now accessible<!-- /end might not be true -->. Find the `deploy:` yaml key, add a new line after
@@ -337,13 +339,13 @@ into your `.env` file. Upsun generates all of this type of data and exposes it t
 environmental variables in the deployed image. Since the information is dynamic, and changes from
 environment to environment, we don't want to commit those static values in a `.env` file. Instead, Upsun
 supports a `.environment` file that is sourced in the application image, as well as your shell when you
-ssh into the image. For a list of all the variables that Upsun generates, please refer to the
+ssh into the application. For a list of all the variables that Upsun generates, please refer to the
 [documentation on provided environmental variables](https://docs.platform.sh/development/variables/use-variables.html#use-provided-variables).
 
 Open the `.environment` file that the cli tool generated earlier. Notice it has already created some
 environmental variables for you that point back to those variables that Upsun will generate. We'll
 need to add a few more for our Flask application so flask has what it needs to be able to function properly.
-To start, we need to update the DATABASE_URL variable. Change the line from:
+To start, we need to update the `DATABASE_URL` variable. Change the line from:
 
 ```shell
 export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"
@@ -363,7 +365,7 @@ Now we need to add the remainder of the variables that are defined in `.env`. We
 * `GUNICORN_WORKERS`
 
 Upsun provides us information about what type of environment the application is running in via an
-environmental variable named `PLATFORM_ENVIRONMENT_TYPE` whose values can be `production`, `development`
+environmental variable named `PLATFORM_ENVIRONMENT_TYPE` whose values can be `production`, `development`,
 and `staging`. Inside the .environment file, add the following line:
 
 ```shell
@@ -439,10 +441,10 @@ process, report back the URLs associated with our project.
 ## Setting up the Database
 
 You may have noticed that we haven't done anything in regards to a database. This application uses
-Flask-migrate and since this is a brand-new application, we'll need to set up the initial migrations, and
-commit them so we can then have them applied to our Upsun db. However, because the migrate command needs
-access to the database, we'll need to set up a temporary local environment and give it a way to access the
-database service.
+[Flask-migrate](https://flask-migrate.readthedocs.io/en/latest/) and since this is a brand-new application, we'll
+need to set up the initial migrations, and commit them so we can then have them applied to our Upsun db. However,
+because the migrate command needs access to the database, we'll need to set up a temporary local environment and give
+it a way to access the database service.
 
 Let's first set up a virtual environment to run our project inside of:
 ```shell
@@ -466,9 +468,9 @@ $ upsun tunnel:open -y
 This opens an ssh tunnel to all the services for the application, and we can now use it to allow our local
 instance to communicate with them as if they too were local. To do that though, we'll need to configure
 some environmental variables similarly to how we did previously for Upsun. If you reopen the
-`config.yaml` file, you'll notice at the top that we make use of an environment variable named
+`.environment` file, you'll notice at the top that we make use of an environment variable named
 `$PLATFORM_RELATIONSHIPS` in order to retrieve information about services and their credentials. `upsun tunnel`
-provides us a method to generate that same data locally.
+provides us a method to generate that same data locally:
 
 ```shell
 $ export PLATFORM_RELATIONSHIPS="$(upsun tunnel:info --encode)"
@@ -479,7 +481,7 @@ This string contains our services, their definitions, locations, and most import
 Because we have this environmental variable set locally, we can reuse our `.environment` file for upsun to
 recreate many of the other environmental variables we need to run locally.
 
-However, we have a few that aren't set via `PLATFORM_RELATIONSHIPS` that we still need to set up.
+However, we have a few that aren't set via `PLATFORM_RELATIONSHIPS` that we still need to set up:
 
 ```shell
 $ export PLATFORM_ENVIRONMENT_TYPE=production
@@ -630,7 +632,7 @@ various services to your project. But for now, go forth and Deploy (even on Frid
    11. Python version
    12. Node version
    13. heroku
-14. Cd into directory (should be what you answered for 3iii)
+14. Cd into directory (should be what you answered for 3.5)
 15. T: `git init .`
 16. T: `git branch -m main`
 17. T: `upsun project:init`
@@ -643,33 +645,28 @@ various services to your project. But for now, go forth and Deploy (even on Frid
     1. Choose your org
     25. Give it a title
     26. Choose a region
-    27. Enter the branch name from #7
+    27. Enter the branch name from #6
     28. Set the project as the remote (for now)
     29. Select Y to "continue"
-30. Open ./.upsun/config.yaml
+30. Open `./.upsun/config.yaml`
     1. Find the section describing "Variables"
-    32. Uncomment "# variables" and the next line "env:"
-    33. On the next line, add FLASK_APP: autoapp.py
-    34. Find the section describing "mounts"
-    35. Uncomment "# mounts:"
+    32. Uncomment `# variables` and the next line `env:`
+    33. On the next line, add `FLASK_APP: autoapp.py`
+    34. Find the section describing `mounts`
+    35. Uncomment `# mounts:`
     36. On the next line add
         ```yaml
-        "<name-of-your-app-from-3v-above>/static":
+        "<name-of-your-app-from-3.5-above>/static":
           source: local
           source_path: static_build
         ```
-    37. Find the section describing "disk"
-    41. Uncomment "#disk: 512"
-    42. Change value to something that is appropriate for your app, and is below the amount you have allocated for your project. Size is in mb
     43. Find the section for `hooks:build`
-    44. On the line before pip install, add the following:
-    45. pip install --upgrade pip
-    46. On the line below pip install, add the following
+    44. On the line before `pip install`, add the following:
         ```yaml
         pip install --upgrade pip
         npm install
         ```
-    48. Scroll down to the deploy section
+    48. Scroll down to the `deploy` section
     49. On the line after `set -eux`, add
         ```yaml
         npm run build
@@ -682,7 +679,7 @@ various services to your project. But for now, go forth and Deploy (even on Frid
 54. T: `git add .upsun.app.yaml`
 55. T: `git commit -m "adds FLASK_APP env var, adds mount for static builds, build commands, npm run build on deploy, web start command"`
 56. Open `.environment` file
-    57. Change `DATATABASE_URL` to: `postgresql://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}`
+    1. Change `DATATABASE_URL` to: `postgresql://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}`
     58. Add the following lines to .environment:
         ```shell
            export SECRET_KEY="${PLATFORM_PROJECT_ENTROPY}"
@@ -696,7 +693,7 @@ various services to your project. But for now, go forth and Deploy (even on Frid
 66. T: `git add .enviornment`
 67. T: `git commit -m "adds needed flask env vars"`
 68. T: `upsun e:push`
-    69. Answer Y
+    1. Answer Y
 70. `PUSH WILL FAIL: add steps to add resources/disk`
 71. T: `python3 -m venv env`
 72. T: `source venv/bin/activate`
@@ -711,7 +708,7 @@ various services to your project. But for now, go forth and Deploy (even on Frid
 81. T: `flask db init`
 82. T: `flask db migrate`
 83. Open `config.yaml`
-    84. Find the section for `hooks:deploy`
+    1. Find the section for `hooks:deploy`
     85. On a new line after `npm run build`, add `flask db upgrade`
 86. T: `git add migrations/*`
 87. T: `git commit -m "adds migrations"`
