@@ -5,8 +5,8 @@ description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer di
 
 # Guide to deploying a Flask app on Upsun
 
-If you're more of a just-give-me-the-steps type of person, you can jump straight to the [TL;DR step-by-step]()
-included at the end of this guide.
+If you're more of a just-give-me-the-steps type of person, you can jump straight to the
+[TL;DR step-by-step](#tl%3Bdr-step-by-step) included at the end of this guide.
 
 This guide provides instructions for deploying, and working with Flask on Upsun.If you are unfamiliar with Flask,
 it is a lightweight and popular web framework for building web applications using Python. It is often referred
@@ -614,7 +614,7 @@ various services to your project. But for now, go forth and Deploy (even on Frid
 
 
 
-TL;DR Step-by-Step
+## TL;DR Step-by-Step
 `T:` - run the line in a terminal/command prompt
 
 1. T: `pip3 install cookiecutter`
