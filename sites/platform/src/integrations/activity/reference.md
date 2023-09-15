@@ -290,7 +290,7 @@ Those queues include the following types of activities:
 
 Production activities are prioritized across all queues.
 When an activity for the production environment is triggered, it's placed at the top of the queue.
-This makes it unlikely that activities on non-production environments block activities for the production environment for long,
+This makes it unlikely that activities on preview environments block activities for the production environment for long,
 though there may be a temporary wait.
 
 ## Examples

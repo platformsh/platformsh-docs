@@ -82,7 +82,7 @@ Under **Status**, you can check whether or not your environment is [active](../.
 
 ![Environment status](/images/management-console/env-status.png "0.5")
 
-For non-Production environments, you can [change their status](../../environments/deactivate-environment.md).
+For preview environments, you can [change their status](../../environments/deactivate-environment.md).
 
 ### Outgoing emails
 
