@@ -191,9 +191,9 @@ Staging
 
 {{< partial "progressive-rollout/body.md" >}}
 
-[Preview environments](../other/glossary.md#preview-environment) are often used for a limited time and then abandoned.
+[Preview environments](/glossary.md#preview-environment) are often used for a limited time and then abandoned.
 To prevent unnecessary consumption of resources,
-{{< vendor/name >}} automatically pauses preview environments ([of both development and staging types](../other/glossary.md#environment-type)) that haven't been redeployed in 14 days.
+{{< vendor/name >}} automatically pauses preview environments ([of both development and staging types](/glossary.md#environment-type)) that haven't been redeployed in 14 days.
 
 {{< note >}}
 
