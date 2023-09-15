@@ -1,7 +1,7 @@
 ---
 title: "Sanitizing databases: PostgreSQL and Symfony"
 sidebarTitle: PostgreSQL and Symfony
-description: Sanitize PostgreSQL data in non-production environments for Symfony apps.
+description: Sanitize PostgreSQL data in preview environments for Symfony apps.
 layout: list
 ---
 
@@ -122,7 +122,7 @@ Set up a script by following these steps:
     ```
 
     Push the changes to `staging` and verify that environment's database was sanitized.
-    Once merged to production, all data from future non-production environments are sanitized on environment creation.
+    Once merged to production, all data from future preview environments are sanitized on environment creation.
 
 <--->
 +++
@@ -146,7 +146,7 @@ Set up a script by following these steps:
 3.  Make the script sanitize environments with an [environment type](../../administration/users.md#environment-type-roles)
     other than `production`.
 
-    The following example runs only in non-production environments
+    The following example runs only in preview environments
     and sanitizes data using the Symfony Command from previous tab, already pushed to all of your environments.
 
     ```bash {location="sanitize_fleet.sh"}
@@ -286,7 +286,7 @@ You can find the organization identifier for a specific project, within the {{< 
     ```
 
     Push the changes to `staging` and verify that environment's database was sanitized.
-    Once merged to production, all data from future non-production environments are sanitized on environment creation.
+    Once merged to production, all data from future preview environments are sanitized on environment creation.
 
 {{< /codetabs >}}
 
