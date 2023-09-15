@@ -5,7 +5,7 @@ description: Add a service and see how data works between branches.
 ---
 
 You have a separate environment with separate data.
-Next, add a service to your development environment.
+Next, add a service to your preview environment.
 
 ## Add a service
 
@@ -138,7 +138,7 @@ To see how the data in parent environments can be inherited, follow these steps:
    {{% vendor/cli %}} sync data --environment dev
    ```
 
-4. Check the data in the development environment
+4. Check the data in the preview environment
 
    ```bash
    {{% vendor/cli %}} sql --environment dev 'SELECT * FROM parent_data'
@@ -146,7 +146,7 @@ To see how the data in parent environments can be inherited, follow these steps:
 
    You see the same table as in step 2.
 
-So you can test your changes with confidence in your development environments, knowing they work in production.
+So you can test your changes with confidence in your preview environments, knowing they work in production.
 But you don't have to worry about your tests affecting your production data.
 
 ## What's next

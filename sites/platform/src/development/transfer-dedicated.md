@@ -4,7 +4,7 @@ weight: 13
 sidebarTitle: "Sync to {{% names/dedicated-gen-2 %}}"
 ---
 
-Transferring data to and from [a {{% names/dedicated-gen-2 %}} cluster](../other/glossary.md#dedicated-gen-2) slightly differs from the process on the Grid.
+Transferring data to and from [a {{% names/dedicated-gen-2 %}} cluster](/glossary.md#dedicated-gen-2) slightly differs from the process on the Grid.
 
 ## Back up your files
 

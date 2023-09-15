@@ -12,7 +12,7 @@ There are several places to check to try to solve such issues.
 
 ## Check your environment
 
-If your environment is [inactive](../../other/glossary.md#inactive-environment) or the deployment has failed,
+If your environment is [inactive](/glossary.md#inactive-environment) or the deployment has failed,
 you can't log in to it.
 To make sure the environment is active and the deployment has succeeded,
 check it using `{{% vendor/cli %}} environment:list` or in the [Console](https://console.platform.sh/) .

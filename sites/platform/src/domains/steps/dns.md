@@ -34,7 +34,7 @@ When a router's IP address changes,
 the DNS record is automatically and immediately updated.
 This prevents downtime without intervention from you.
  
-Note that `CNAME` records can't point to [apex domains](../../other/glossary.md#apex-domain).
+Note that `CNAME` records can't point to [apex domains](/glossary.md#apex-domain).
 Check with your DNS provider if they offer [workarounds](#workarounds-for-apex-domains).
  
 ## Workarounds for apex domains

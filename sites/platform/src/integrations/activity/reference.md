@@ -21,7 +21,7 @@ The response differs depending on the activity and doesn't always include all fi
 
 ### Example response
 
-The following is a shortened example of a response for an [environment sync activity](../../other/glossary.md#sync).
+The following is a shortened example of a response for an [environment sync activity](/glossary.md#sync).
 You can also see [complete examples of responses](#examples).
 
 ``` json
@@ -119,9 +119,9 @@ The following table presents the possible activities:
 | `environment.restore` | A user restored a [backup](../../environments/backup.md). |
 | `environment.push` | A user pushed code to a branch, either existing or new. |
 | `environment.branch` | A new branch has been created via the CLI, Console, or API. A branch created via Git shows up as `environment.push`. |
-| `environment.activate` | The environment has been made [active](../../other/glossary.md#active-environment). |
+| `environment.activate` | The environment has been made [active](/glossary.md#active-environment). |
 | `environment.initialize` | The default branch of the project has just been initialized with its first commit. |
-| `environment.deactivate` | An environment has been made [inactive](../../other/glossary.md#inactive-environment). |
+| `environment.deactivate` | An environment has been made [inactive](/glossary.md#inactive-environment). |
 | `environment.synchronize` | An environment has had its data and/or code replaced with the data and/or code from its parent environment. |
 | `environment.merge` | An environment was merged through the CLI, Console, or API. A basic Git merge doesn't trigger this activity. |
 | `environment.redeploy` | An environment was redeployed. |
@@ -290,7 +290,7 @@ Those queues include the following types of activities:
 
 Production activities are prioritized across all queues.
 When an activity for the production environment is triggered, it's placed at the top of the queue.
-This makes it unlikely that activities on non-production environments block activities for the production environment for long,
+This makes it unlikely that activities on preview environments block activities for the production environment for long,
 though there may be a temporary wait.
 
 ## Examples

@@ -160,7 +160,7 @@ Note that the `example.com` prefix isn't part of the generated URL.
 
 {{< note title="Previous behavior" >}}
 
-Before April 7, 2022, URLs in non-Production environments differed depending on whether or not you used the `{default}` placeholder.
+Before April 7, 2022, URLs in preview environments differed depending on whether or not you used the `{default}` placeholder.
 
 If you used the `{default}` placeholder:
 
@@ -241,7 +241,7 @@ Prefix a route with an asterisk (`*`), for example `*.{default}`.
 If you have configured `example.com` as your default domain,
 HTTP requests to `www.example.com`, `blog.example.com`, and `us.example.com` are all routed to the same endpoint.
 
-It also works on development environments.
+It also works on preview environments.
 If you have a `feature` branch, it's `{default}` domain looks something like:
 `feature-def123-vmwklxcpbi6zq.us.platform.sh` (depending on the project's region).
 So requests to `blog.feature-def123-vmwklxcpbi6zq.us.platform.sh` and `us.feature-def123-vmwklxcpbi6zq.eu.platform.sh`

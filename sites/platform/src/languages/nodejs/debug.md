@@ -9,7 +9,7 @@ Follow the steps below to debug a specific app.
 
 You can choose to debug in an environment deployed to {{% vendor/name %}}
 or with your app running locally but connected to deployed services.
-In either case, make sure to debug in a non-production environment.
+In either case, make sure to debug in a preview environment.
 
 {{% troubleshoot %}}
 

@@ -235,7 +235,7 @@ Taking a backup or a database export before doing so is strongly recommended.
 ## Sanitizing data
 
 To ensure people who review code changes can't access personally identifiable information stored in your database,
-[sanitize your development environments](../development/sanitize-db/postgresql.md).
+[sanitize your preview environments](../development/sanitize-db/postgresql.md).
 
 ## Multiple databases
 
