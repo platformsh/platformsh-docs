@@ -142,7 +142,7 @@ It will then generate a series of configuration files for you:
 │                                                   │
 │   We have created the following files for your:   │
 │     - .environment                                │
-│     - .upsun/config.yaml                          │
+│     - {{< vendor/configfile "app" >}}                         │
 │                                                   │
 │   We’re jumping for joy! ⍢                        │
 └───────────────────────────────────────────────────┘
@@ -191,7 +191,7 @@ $ {{< vendor/cli >}} web
 Now that we have our {{< vendor/name >}} project created, our local project generated and associated with the {{< vendor/name >}} project,
 the only thing left to do is add configurations that are specific to the application. To start, we need to
 add an environment variable for `FLASK_APP` for all environments that points to our `autoapp.py` file. Open
-the file `config.yaml` inside of the `.upsun` directory that the cli tool generated and locate the commented
+the file `{{< vendor/configfile "app" >}}` that the cli tool generated and locate the commented
 line that starts with
 
 ```yaml
@@ -215,7 +215,7 @@ as well as the extra space. If you don't remove the extra space, you will end up
 <!-- This might not work {{< vendor/name >}}, might need to be moved lower -->
 Next we're going to need some writable disk space to hold the static assets that npm builds and
 flask-static-digest generates. This directory exists under our application package name as
-`./<application-name>/static`. In `config.yaml`, find the line that starts with:
+`./<application-name>/static`. In `{{< vendor/configfile "app" >}}`, find the line that starts with:
 
 ```yaml
 # Mounts define directories that are writable
@@ -233,7 +233,7 @@ the mounted disk (the source) where the mount should point. For further informat
 [documentation on mounts](https://docs.platform.sh/create-apps/app-reference.html#mounts).
 
 Because we've selected a local mount, we also need to define how much disk space we want to allocate to
-it. In the `config.yaml` file, just a few lines above where we located the section for mounts, find
+it. In the `{{< vendor/configfile "app" >}}` file, just a few lines above where we located the section for mounts, find
 the line that starts with:
 
 ```yaml
@@ -243,12 +243,12 @@ the line that starts with:
 We'll need to uncomment the next line and set an integer value of the number of megabytes we want to
 allocate. Please note that new projects start with 5GB of disk space that is allocated across the entire
 project. <!-- this also might no longer be true -->Some of that disk space has already been allocated to our
-PostgreSQL service (see the services section in the `config.yaml` file), so be sure not to set this value
+PostgreSQL service (see the services section in the `{{< vendor/configfile "app" >}}` file), so be sure not to set this value
 higher than your available disk space. <!-- /end might also not work -->
 <!-- /end might not work section -->
 
 Since this project uses npm in addition to Python, we're going to want {{< vendor/name >}} to also run an `npm install`
-when it builds the application image. In the `config.yaml` find the line that starts with:
+when it builds the application image. In the `{{< vendor/configfile "app" >}}` find the line that starts with:
 
 ```yaml
 # Hooks allow you to customize your code/environment
@@ -285,7 +285,7 @@ is now accessible<!-- /end might not be true -->. Find the `deploy:` yaml key, a
         npm run build
 ```
 
-Next we need to configure how {{< vendor/name >}} will handle requests to this application image. In the `config.yaml`
+Next we need to configure how {{< vendor/name >}} will handle requests to this application image. In the `{{< vendor/configfile "app" >}}`
 file locate the line that starts with:
 
 ```yaml
@@ -321,14 +321,14 @@ to `tcp`:
 We've now added all the configuration {{< vendor/name >}} needs to be able to build and deploy our application! Let's
 go ahead and commit these changes:
 ```shell
-$ git add .upsun/config.yaml
+$ git add {{< vendor/configfile "app" >}}
 $ git commit -m "adds FLASK_APP env var, adds mount for static builds, build commands, npm run build on deploy, web start command"
 ```
 
 ### Note
 By default, the `{{< vendor/cli >}} project:init` command will set the language runtime to the latest possible version. If
 your project requires an older version, you will need to change it before pushing your code to {{< vendor/name >}}. To change
-the runtime version, locate the `type` key near the top of the `config.yaml` file, and change it the desired
+the runtime version, locate the `type` key near the top of the `{{< vendor/configfile "app" >}}` file, and change it the desired
 version. A [complete list of supported versions of Python](https://docs.upsun.com/languages/python.html#supported-versions)
 is available in the documentation. Do not forget to add and commit your changes to git before pushing your code.
 
@@ -356,7 +356,7 @@ export DATABASE_URL="postgresql://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_
 ```
 
 Now we need to add the remainder of the variables that are defined in `.env`. We already took care of
-`FLASK_APP` in the `config.yaml` file, and updated `DATABASE_URL` so that leaves:
+`FLASK_APP` in the `{{< vendor/configfile "app" >}}` file, and updated `DATABASE_URL` so that leaves:
 * `FLASK_ENV`
 * `FLASK_DEBUG`
 * `LOG_LEVEL`
@@ -518,7 +518,7 @@ $ git commit -m "adds migrations"
 ```
 
 We now need to instruct {{< vendor/name >}} to run the Flask-migrate upgrade command when deploying so we know any
-migration changes are automatically applied. Re-open the `config.yaml` and find the `deploy` hook where we
+migration changes are automatically applied. Re-open the `{{< vendor/configfile "app" >}}` and find the `deploy` hook where we
 added `npm run build`. On the next line, add `flask db upgrade`.
 
 ```yaml
@@ -531,7 +531,7 @@ added `npm run build`. On the next line, add `flask db upgrade`.
 Commit the changes:
 
 ```shell
-$ git add config.yaml
+$ git add {{< vendor/configfile "app" >}}
 $ git commit -m "adds flask db upgrade to deploy hook"
 ```
 
@@ -586,7 +586,7 @@ scale well. {{< vendor/name >}} [supports several different web servers](https:/
 web server you choose will depend on your application and specific requirements. Let's look at how we can
 switch our project to use [gunicorn](https://gunicorn.org/) + PORT.
 
-Reopen the `config.yaml` file. Locate the `web:commands:start` section where in the previous section we
+Reopen the `{{< vendor/configfile "app" >}}` file. Locate the `web:commands:start` section where in the previous section we
 added `flask run -p $PORT`. We now want to change it to `gunicorn -w 4 'autoapp:app'`
 
 ```yaml
@@ -601,7 +601,7 @@ added `flask run -p $PORT`. We now want to change it to `gunicorn -w 4 'autoapp:
 Commit the changes and push them up to your environment:
 
 ```shell
-$ git add ./.upsun/config.yaml
+$ git add {{< vendor/configfile "app" >}}
 $ git commit -m "changes project to use gunicorn"
 $ {{< vendor/cli >}} e:push -y
 ```
@@ -648,7 +648,7 @@ various services to your project. But for now, go forth and Deploy (even on Frid
     27. Enter the branch name from #6
     28. Set the project as the remote (for now)
     29. Select Y to "continue"
-30. Open `./.upsun/config.yaml`
+30. Open `{{< vendor/configfile "app" >}}`
     1. Find the section describing "Variables"
     32. Uncomment `# variables` and the next line `env:`
     33. On the next line, add `FLASK_APP: autoapp.py`
@@ -676,7 +676,7 @@ various services to your project. But for now, go forth and Deploy (even on Frid
         start: flask run -p $PORT
         ```
     53. Below this find the section for `upstream:socket_family` and either comment out both lines, or change `unix` to `tcp`
-54. T: `git add ./.upsun/config.yaml`
+54. T: `git add {{< vendor/configfile "app" >}}`
 55. T: `git commit -m "adds FLASK_APP env var, adds mount for static builds, build commands, npm run build on deploy, web start command"`
 56. Open `.environment` file
     1. Change `DATATABASE_URL` to: `postgresql://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}`
@@ -707,12 +707,12 @@ various services to your project. But for now, go forth and Deploy (even on Frid
 80. T: `source ./.environment`
 81. T: `flask db init`
 82. T: `flask db migrate`
-83. Open `config.yaml`
+83. Open `{{< vendor/configfile "app" >}}`
     1. Find the section for `hooks:deploy`
     85. On a new line after `npm run build`, add `flask db upgrade`
 86. T: `git add migrations/*`
 87. T: `git commit -m "adds migrations"`
-88. T: `git add config.yaml`
+88. T: `git add {{< vendor/configfile "app" >}}`
 89. T: `git commit -m "adds flask db upgrade to deploy hook"`
 90. T: `{{< vendor/cli >}} environment:push`
 
