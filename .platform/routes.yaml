@@ -275,13 +275,16 @@ https://docs.upsun.com/:
       ##################################
       # Configuring container-sizes and custom profiles.
       # Resource configuration not found.
-      "/anchors/resources/configuration": { "to": "", "code": 301, "prefix": false }
+      "/anchors/resources/configuration": { "to": "/administration/pricing.html", "code": 301, "prefix": false }
+      # "/anchors/resources/configuration": { "to": "/manage-resources.html", "code": 301, "prefix": false }
       # Reducing the size of container could negatively impact your site's performance.
-      "/anchors/scaling/down": { "to": "", "code": 301, "prefix": false }
+      "/anchors/scaling/down": { "to": "/administration/pricing.html", "code": 301, "prefix": false }
+      # "/anchors/scaling/down": { "to": "/manage-resources.html", "code": 301, "prefix": false }
       # Organization administration: permissions & teams. 
-      "/anchors/organizations/admin": { "to": "", "code": 301, "prefix": false }
+      "/anchors/organizations/admin": { "to": "/administration/organizations.html", "code": 301, "prefix": false }
       # Green discount on carbon-efficient regions.
-      "/anchors/resources/green": { "to": "", "code": 301, "prefix": false }
+      "/anchors/resources/green": { "to": "/administration/pricing.html", "code": 301, "prefix": false }
+      # "/anchors/resources/green": { "to": "/manage-resources.html", "code": 301, "prefix": false }
 
 
 "https://docs.deployfriday.net/":
