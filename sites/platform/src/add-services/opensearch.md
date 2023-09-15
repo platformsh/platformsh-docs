@@ -14,18 +14,45 @@ To switch from Elasticsearch, follow the same procedure as for [upgrading](#upgr
 
 ## Supported versions
 
+{{% version/specific %}}
+<!-- API Version 1 -->
 <!--
 To update the versions in this table, use docs/data/registry.json
 -->
-| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|------|-------------------------------|------------------------------ |
-|  {{< image-versions image="opensearch" status="supported" environment="grid" >}} | {{< image-versions image="opensearch" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="opensearch" status="supported" environment="dedicated-gen-2" >}} |
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="opensearch" status="supported" environment="grid" >}}</td>
+            <td>{{< image-versions image="opensearch" status="supported" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="opensearch" status="supported" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
 
 On Grid and {{% names/dedicated-gen-3 %}}, from version 2, you only specify the major version.
+The latest compatible minor version and patches are applied automatically. On Grid, version 1 represents a rolling release - the latest minor version available from the upstream.
+
+<--->
+<!-- API Version 2 -->
+
+In the list below, notice that there you only specify the major version.
+Each version represents a rolling release of the latest minor version available from the upstream.
 The latest compatible minor version and patches are applied automatically.
 
-On Grid, version 1 represents a rolling release - the latest minor version available from the upstream.
-Today, that version is `1.3.x`.
+{{< image-versions image="opensearch" status="supported" environment="grid" >}}
+
+{{% /version/specific %}}
+
+You can see the latest minor and patch versions of OpenSearch available from the [`2.x`](https://opensearch.org/lines/2x.html) and [`1.x`](https://opensearch.org/lines/1x.html) release lines.
+
 
 ## Deprecated versions
 
@@ -33,9 +60,32 @@ The following versions are still available in your projects,
 but they're at their end of life and are no longer receiving security updates from upstream,
 or are no longer the recommended way to configure the service on {{< vendor/name >}}.
 
-| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|------|-------------------------------|------------------------------ |
-|  {{< image-versions image="opensearch" status="deprecated" environment="grid" >}} | {{< image-versions image="opensearch" status="deprecated" environment="dedicated-gen-3" >}} | {{< image-versions image="opensearch" status="deprecated" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="opensearch" status="deprecated" environment="grid" >}}</td>
+            <td>{{< image-versions image="opensearch" status="deprecated" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="opensearch" status="deprecated" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="opensearch" status="deprecated" environment="grid" >}}
+
+{{% /version/specific %}}
 
 To ensure your project remains stable in the future,
 switch to [a supported version](#supported-versions).

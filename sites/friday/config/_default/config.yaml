@@ -55,6 +55,18 @@ module:
           excludeFiles: 
               - "registry/*"
               - "get-started/*"
+              - "development/transfer-dedicated.md"
+              - "administration/sso.md"
+              - "increase-observability/logs/forward-logs.md"
+              - "increase-observability/logs/forward-fastly-logs.md"
+              - "increase-observability/metrics/dedicated.md"
+              - "increase-observability/metrics/dedicated-generation-3.md"
+              - "domains/cdn/managed-fastly.md"
+              - "domains/security/web-application-firewall/fastly.md"
+              - "dedicated-gen-2/*"
+              - "dedicated-gen-3/*"
+              - "guides/*"
+              - "languages/java/frameworks.md"
               - "learn/resources.md"
           lang: "en"
 

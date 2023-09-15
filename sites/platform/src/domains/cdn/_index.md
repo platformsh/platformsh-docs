@@ -12,10 +12,19 @@ These edge servers behave like local caches to nearby users.
 Bringing content closer to users helps enhance your site's perceived performance
 and so can improve user engagement and retention.
 
+{{< version/specific >}}
+<!-- Version 1 -->
 Fastly is the recommended CDN for {{< vendor/name >}} projects.
 By default, Dedicated projects include a [Fastly CDN managed by {{< vendor/name >}}](./managed-fastly.md).
 Self-service Grid plans don't include a CDN by default, but you can set up one at any time,
 such as [Fastly](./fastly.md) or [Cloudflare](./cloudflare.md).
+
+<--->
+<!-- Version 2 -->
+Fastly is the recommended CDN for {{< vendor/name >}} projects.
+Self-service projects don't include a CDN by default, but you can set up one at any time,
+such as [Fastly](./fastly.md) or [Cloudflare](./cloudflare.md).
+{{< /version/specific >}}
 
 ## DNS records
 
@@ -62,6 +71,7 @@ To disable it, change your cache configuration for the routes behind a CDN to th
        enabled: false
 ```
 
+{{< version/only "1" >}}
 ## Configure your CDN to support high SLA
 
 {{< premium-features/tiered "Enterprise and Elite" >}}
@@ -74,6 +84,8 @@ If you want {{< vendor/name >}} to limit checks to one or more of the following 
 - North America
 - Europe
 - East Asia / Oceania
+
+{{< /version/only >}}
 
 ## Prevent direct access to your server
 

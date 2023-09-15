@@ -81,10 +81,6 @@ navSections:
     title: Learn
     section: learn
     weight: -110
-  guides:
-    title: Frameworks
-    section: guides
-    weight: -100
   home:
     title: Reference
     section: home

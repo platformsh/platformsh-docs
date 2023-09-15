@@ -6,10 +6,14 @@ layout: single
 ---
 
 Once your project is ready for production, replace the automatically generated domain with your own custom domain.
-
 Note that adding a domain disables the automatically generated URL for your Production environment only.
-If you are an Enterprise or Elite customer and have a Grid or {{% names/dedicated-gen-3 %}} project, you can [customize the URLs for your non-production environments](/domains/steps/custom-domains-preview-environments).
+
+{{% version/specific %}}
+If you are an Enterprise or Elite customer and have a Grid or {{% names/dedicated-gen-3 %}} project, you can [customize the URLs for your non-production environments](/domains/steps/custom-non-production-domains).
 {{% names/dedicated-gen-2 %}} customers can also customize the domain for their Staging environment.
+<--->
+You can also [customize the URLs for your preview environments](/domains/steps/custom-domains-preview-environments).
+{{% /version/specific %}}
 
 ## Before you begin
 

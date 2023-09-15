@@ -4,7 +4,7 @@ weight: 2
 description: "Learn about how your {{< vendor/name >}} environments are structured and which files control that structure."
 ---
 
-{{< note >}}
+{{< note version="1" >}}
 
 This page describes how things work on Grid projects.
 [{{% names/dedicated-gen-3 %}}](/dedicated-gen-3/_index.md) projects are similar,

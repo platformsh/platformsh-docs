@@ -7,7 +7,10 @@ banner:
     type: tiered-feature
 ---
 
+{{% version/specific %}}
 {{< partial "progressive-rollout/body.md" >}}
+<--->
+{{% /version/specific %}}
 
 [Preview environments](../../other/glossary.md#preview-environment) in your project can't use the custom domain [set up on your production environment](../steps/_index.md).<br/>
 By default and for each preview environment,
@@ -51,6 +54,7 @@ based on the following elements:
 
 You need:
 
+{{% version/specific %}}
 - A Grid or {{% names/dedicated-gen-3 %}} project on which you have **admin rights** <BR> 
 
   {{< note theme="warning" >}}
