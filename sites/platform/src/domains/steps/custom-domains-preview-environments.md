@@ -67,7 +67,8 @@ You need:
 
   If you use a [Managed Fastly](../cdn/managed-fastly.md) CDN,
   it needs to be configured to operate with custom domains for preview environments.
-  For more information, [contact Support](https://console.platform.sh/-/users/~/tickets/open).   
+  For more information, [contact Support](https://console.platform.sh/-/users/~/tickets/open).
+{{% /version/specific %}}
 - A production environment with at least one custom domain already set up
 - At least one preview (staging or development) environment
 - Optional: The [{{< vendor/name >}} CLI](../../administration/cli/_index.md) (v4.8.0+)
