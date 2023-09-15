@@ -5,7 +5,7 @@ description: |
     Learn about the environment variables added by the Symfony integration.
 ---
 
-By default, {{< vendor/name >}} exposes some [environment variables](/development/variables/use-variables#use-provided-variables).
+By default, {{% vendor/name %}} exposes some [environment variables](/development/variables/use-variables#use-provided-variables).
 If you're using the [Symfony integration](./integration),
 more [infrastructure environment variables](#symfony-environment-variables) related to Symfony are defined.
 
@@ -22,7 +22,7 @@ and [service](https://github.com/symfony-cli/symfony-cli/blob/main/envs/envs.go#
 
 ## Symfony environment variables
 
-{{< vendor/name >}} exposes [environment variables](/development/variables/use-variables#use-provided-variables)
+{{% vendor/name %}} exposes [environment variables](/development/variables/use-variables#use-provided-variables)
 about the app and its infrastructure.
 
 The Symfony integration exposes more environment variables:
@@ -35,7 +35,7 @@ The Symfony integration exposes more environment variables:
   You can manually override this value for a development environment
   by setting the `SYMFONY_DEBUG` environment variable to `1`, and remove it when done.
 
-- `APP_SECRET` is set to the value of `PLATFORM_PROJECT_ENTROPY`, which is a random and unique value for all {{< vendor/name >}} projects.
+- `APP_SECRET` is set to the value of `PLATFORM_PROJECT_ENTROPY`, which is a random and unique value for all {{% vendor/name %}} projects.
   It overrides the value configured in the `.env` file of your app.
 
 - `MAILFROM` is set to a random value.

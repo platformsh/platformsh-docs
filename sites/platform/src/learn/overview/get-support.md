@@ -3,7 +3,7 @@ title: " Get support"
 weight: 4
 toc: false
 description: |
-  Find out how to get help if you're experiencing issues with {{< vendor/name >}}.
+  Find out how to get help if you're experiencing issues with {{% vendor/name %}}.
 ---
 
 {{% description %}}
@@ -11,7 +11,7 @@ description: |
 ## Create a support ticket
 
 If you're experiencing issues related to
-the proper functioning of the {{< vendor/name >}} infrastructure, application container software, or build processes;
+the proper functioning of the {{% vendor/name %}} infrastructure, application container software, or build processes;
 have found possible bugs; or have general questions,
 open a support ticket:
 
@@ -34,15 +34,15 @@ join other customers and engineers in the [public Slack channel](https://chat.pl
 
 ## Community
 
-The [{{< vendor/name >}} Community site](https://community.platform.sh/) has how-to guides with suggestions
-on how to get the most out of {{< vendor/name >}}.
+The [{{% vendor/name %}} Community site](https://community.platform.sh/) has how-to guides with suggestions
+on how to get the most out of {{% vendor/name %}}.
 
 ## Contact Sales
 
-If you have questions about pricing or need help figuring out if {{< vendor/name >}} is the right solution for your team,
+If you have questions about pricing or need help figuring out if {{% vendor/name %}} is the right solution for your team,
 get in touch with [Sales](https://platform.sh/contact/).
 
 ## Delete your account
 
-To permanently delete your {{< vendor/name >}} account,
+To permanently delete your {{% vendor/name %}} account,
 [contact Support](https://console.platform.sh/-/users/~/tickets/open).

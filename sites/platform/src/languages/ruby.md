@@ -1,7 +1,7 @@
 ---
 title: "Ruby"
 description: |
-  {{< vendor/name >}} supports deploying any Ruby application. Your application can use any Ruby application server such as Unicorn or Puma and deploying a Rails or a Sinatra app is very straight forward.
+  {{% vendor/name %}} supports deploying any Ruby application. Your application can use any Ruby application server such as Unicorn or Puma and deploying a Rails or a Sinatra app is very straight forward.
 ---
 
 {{% description %}}
@@ -58,7 +58,7 @@ A complete example is included at the end of this section.
 
    Rails runs by default on a development environment.
    You can change the Rails/Bundler via those environment variables,
-   some of which are defaults on {{< vendor/name >}}.
+   some of which are defaults on {{% vendor/name %}}.
 
     ```yaml
     variables:
@@ -105,7 +105,7 @@ A complete example is included at the end of this section.
             gem install --no-document bundler -v $BUNDLER_VERSION
 
             echo "Installing gems"
-            # We copy the bundle directory to the {{< vendor/name >}} cache directory for
+            # We copy the bundle directory to the {{% vendor/name %}} cache directory for
             # safe keeping, then restore from there on the next build. That allows
             # bundler to skip downloading code it doesn't need to.
             [ -d "$PLATFORM_CACHE_DIR/bundle" ] && \
@@ -118,7 +118,7 @@ A complete example is included at the end of this section.
 
             # precompile assets
             echo "Precompiling assets"
-            # We copy the webpacker directory to the {{< vendor/name >}} cache directory for
+            # We copy the webpacker directory to the {{% vendor/name %}} cache directory for
             # safe keeping, then restore from there on the next build. That allows
             # bundler to skip downloading code it doesn't need to.
             mkdir -p "$PLATFORM_CACHE_DIR/webpacker"
@@ -259,7 +259,7 @@ hooks:
         gem install --no-document bundler -v $BUNDLER_VERSION
 
         echo "Installing gems"
-        # We copy the bundle directory to the {{< vendor/name >}} cache directory for
+        # We copy the bundle directory to the {{% vendor/name %}} cache directory for
         # safe keeping, then restore from there on the next build. That allows
         # bundler to skip downloading code it doesn't need to.
         [ -d "$PLATFORM_CACHE_DIR/bundle" ] && \
@@ -272,7 +272,7 @@ hooks:
 
         # precompile assets
         echo "Precompiling assets"
-        # We copy the webpacker directory to the {{< vendor/name >}} cache directory for
+        # We copy the webpacker directory to the {{% vendor/name %}} cache directory for
         # safe keeping, then restore from there on the next build. That allows
         # bundler to skip downloading code it doesn't need to.
         mkdir -p "$PLATFORM_CACHE_DIR/webpacker"

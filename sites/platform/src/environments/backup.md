@@ -24,8 +24,8 @@ first activate it.
    This backup includes the complete data and code of the environment.
    All persistent data from all running [services](../add-services/_index.md)
    and any files stored on [mounts](../create-apps/app-reference.md#mounts) are included.
-   The backup is stored internally on {{< vendor/name >}}.
-   That is, the backup can be applied to environments on {{< vendor/name >}}, but it can't be downloaded.
+   The backup is stored internally on {{% vendor/name %}}.
+   That is, the backup can be applied to environments on {{% vendor/name %}}, but it can't be downloaded.
    If you need to download backups, instead [export your mount and service data](/learn/tutorials/exporting.md)).
 
 2. You restore your environment using the backup.
@@ -34,7 +34,7 @@ first activate it.
 
    {{< note theme="warning" title="Warning" >}}
 
-   But {{< vendor/name >}} doesn’t modify your Git repository. So by default, any further changes you make use the latest code in your repository.
+   But {{% vendor/name %}} doesn’t modify your Git repository. So by default, any further changes you make use the latest code in your repository.
 
    {{< /note >}}
 

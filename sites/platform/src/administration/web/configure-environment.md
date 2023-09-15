@@ -39,10 +39,10 @@ There are also additional options:
 * **URLs** to access the deployed environment from the web.
 * **SSH** to access your project using SSH.
 * **Code**
-  * **CLI** for the command to get your project set up locally with the [{{< vendor/name >}}CLI](../cli/_index.md).
+  * **CLI** for the command to get your project set up locally with the [{{% vendor/name %}}CLI](../cli/_index.md).
   * **Git** for the command to clone the codebase via Git.
   
-    If you're using {{< vendor/name >}} as your primary remote repository, the command clones from the project.
+    If you're using {{% vendor/name %}} as your primary remote repository, the command clones from the project.
     If you have set up an [external integration](../../integrations/source/_index.md),
     the command clones directly from the integrated remote repository.
 
@@ -106,7 +106,7 @@ Under **HTTP access control**, you can [control access to your environment using
 
 Under **Variables**, you can define [environment variables](../../development/variables/_index.md):
 
-![Configure {{< vendor/name >}} environment variables](/images/management-console/settings-variables-environment.png "0.6")
+![Configure {{% vendor/name %}} environment variables](/images/management-console/settings-variables-environment.png "0.6")
 
 ## Service information
 

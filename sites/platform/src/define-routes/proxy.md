@@ -1,6 +1,6 @@
 ---
 title: Proxy routes
-description: Pass requests to a location outside your {{< vendor/name >}} project using proxy routes.
+description: Pass requests to a location outside your {{% vendor/name %}} project using proxy routes.
 ---
 
 {{< note theme="warning" title="Warning">}}
@@ -11,10 +11,10 @@ To expose your app to the outside world, see [how to define routes](../define-ro
 
 {{< /note >}}
 ​
-Sometimes you want your app to pass requests on to a different {{< vendor/name >}} project.
+Sometimes you want your app to pass requests on to a different {{% vendor/name %}} project.
 Basic redirects only work within the same project, so use proxy routes for routes elsewhere.​
 
-You can define an external proxy on your {{< vendor/name >}} project by defining a route like the following:
+You can define an external proxy on your {{% vendor/name %}} project by defining a route like the following:
 
 ```yaml {configFile="routes"}
 https://{default}/foo:
@@ -61,12 +61,12 @@ This route passes requests for `https://{default}/foo/index.html` to `https://ww
 
 ## Multiple apps with the same base URL
 
-You can use proxy routes to map a single domain to multiple {{< vendor/name >}} projects with their own subdomain/domain names.
+You can use proxy routes to map a single domain to multiple {{% vendor/name %}} projects with their own subdomain/domain names.
 You might have a need to access multiple projects, each hosting specific applications for different languages.
 You want to serve them all at the same base URL with different paths
 (`https://example.com/en`, `https://example.com/fr`, and so on).
 
-Because domains can't be reused at {{< vendor/name >}}, you can't just set the same domain for all projects.
+Because domains can't be reused at {{% vendor/name %}}, you can't just set the same domain for all projects.
 Use proxy routes so a single project can access different projects using the same base URL.
 
 In the following example, a single project specifies proxy routes to three apps with the same `default` base URL.

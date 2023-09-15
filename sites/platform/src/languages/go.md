@@ -1,6 +1,6 @@
 ---
 title: "Go"
-description: "{{< vendor/name >}} supports building and deploying applications written in Go using Go modules. They're compiled during the Build hook phase, and support both committed dependencies and download-on-demand."
+description: "{{% vendor/name %}} supports building and deploying applications written in Go using Go modules. They're compiled during the Build hook phase, and support both committed dependencies and download-on-demand."
 ---
 
 {{% description %}}
@@ -44,7 +44,7 @@ description: "{{< vendor/name >}} supports building and deploying applications w
 
 ## Go modules
 
-The recommended way to handle Go dependencies on {{< vendor/name >}} is using Go module support in Go 1.11 and later. That allows the build process to use `go build` directly without any extra steps, and you can specify an output executable file of your choice. (See the examples below.)
+The recommended way to handle Go dependencies on {{% vendor/name %}} is using Go module support in Go 1.11 and later. That allows the build process to use `go build` directly without any extra steps, and you can specify an output executable file of your choice. (See the examples below.)
 
 ## Building and running the application
 
@@ -162,7 +162,7 @@ func main() {
 	p, err := psh.NewPlatformInfo()
 
 	if err != nil {
-		panic("Not in a {{< vendor/name >}} Environment.")
+		panic("Not in a {{% vendor/name %}} Environment.")
 	}
 
 	http.HandleFunc("/bar", func(w http.ResponseWriter, r *http.Request) {

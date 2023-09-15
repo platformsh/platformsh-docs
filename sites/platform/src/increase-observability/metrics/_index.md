@@ -4,7 +4,7 @@ weight: 5
 description: See all of the live infrastructure metrics available to give you an overview of resource usage.
 ---
 
-{{< vendor/name >}} projects are accompanied by live infrastructure metrics that provide an overview of resource usage for environments.
+{{% vendor/name %}} projects are accompanied by live infrastructure metrics that provide an overview of resource usage for environments.
 
 Within the Console, metrics can be found for an environment under **Metrics**.
 
@@ -32,7 +32,7 @@ These metrics are available for all of your Grid environments.
 
 <--->
 <!-- Version 2 -->
-{{< vendor/name >}} environments: your service, app, and worker containers.
+{{% vendor/name %}} environments: your service, app, and worker containers.
 These metrics are available for all of your environments.
 
 ![A screenshot of what the metrics dashboard displays for environments](/images/metrics/all-grid.png "0.45")

@@ -26,7 +26,7 @@ You need:
 - If you are on a development plan, you need to [upgrade your tier to a production plan](#1-change-your-plan-to-a-production-plan).
 
 If you are planning to use several subdomains of the same domain on different projects,
-see how to [manage multiple subdomains](/domains/steps/subdomains.md) *before* you add your domain to {{< vendor/name >}}.
+see how to [manage multiple subdomains](/domains/steps/subdomains.md) *before* you add your domain to {{% vendor/name %}}.
 
 ## 1. Change your plan to a production plan
 
@@ -70,7 +70,7 @@ You can find [more information on plan tiers](https://platform.sh/pricing).
 You want to point your DNS record to the automatically generated URL.
 Your domain needs to point to that target for your site to go live.
 
-For Dedicated plans, get the target for your project from your {{< vendor/name >}} contact.
+For Dedicated plans, get the target for your project from your {{% vendor/name %}} contact.
 
 {{< codetabs >}}
 

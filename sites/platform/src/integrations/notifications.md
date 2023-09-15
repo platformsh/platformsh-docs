@@ -2,7 +2,7 @@
 title: "Health notifications"
 weight: -1
 description: |
-  {{< vendor/name >}} can notify you when various events happen on your project, in any environment. At this time the only notification provided is a low disk space warning, but others may be added in the future.
+  {{% vendor/name %}} can notify you when various events happen on your project, in any environment. At this time the only notification provided is a low disk space warning, but others may be added in the future.
 ---
 
 {{% description %}}
@@ -12,13 +12,13 @@ To add or modify an integration for a project, you need to be a [project admin](
 ## Default low-disk email notifications
 
 When you create a new project,
-{{< vendor/name >}} creates a default [low-disk email notification](#low-disk-warning) for all [project admins](../administration/users.md#project-roles).
+{{% vendor/name %}} creates a default [low-disk email notification](#low-disk-warning) for all [project admins](../administration/users.md#project-roles).
 
 ## Available notifications
 
 ### Low-disk warning
 
-{{< vendor/name >}} monitors disk space usage on all applications and services in your cluster.
+{{% vendor/name %}} monitors disk space usage on all applications and services in your cluster.
 
 * When available disk space drops below 20% or 4&nbsp;GB, whichever is smaller, a warning notification is generated.
 * When available disk space drops below 10% or 2&nbsp;GB, whichever is smaller, a critical notification is generated.
@@ -28,7 +28,7 @@ Notifications are generated every 5 minutes, so there may be a brief delay betwe
 
 ## Configuring notifications
 
-Health notifications can be set up via the [{{< vendor/name >}} CLI](/administration/cli/_index.md), through a number of different channels.
+Health notifications can be set up via the [{{% vendor/name %}} CLI](/administration/cli/_index.md), through a number of different channels.
 
 ### Email notifications
 
@@ -68,7 +68,7 @@ To add a new email notification, register a `health.email` integration as follow
 
 You must specify one or more `recipients`, each as its own switch.
 
-The default `from-address` points to the "{{< vendor/name >}} Bot".
+The default `from-address` points to the "{{% vendor/name %}} Bot".
 
 You can also configure a custom `--from-address`. The `--from-address` is whatever address you want the email to appear to be from. It is completely fine to use the same email address for both `from-address` and `recipients`. Note that depending on the configuration of the recipient mail server (including SPF and DKIM DNS entries) when using a custom `from-address`, the email can be marked as spam or lost.
 
@@ -78,7 +78,7 @@ A notification can trigger a message to be sent to a Slack bot.
 First, create a new custom "[bot user](https://api.slack.com/bot-users)" for your Slack group and configure the channels you wish it to live in.
 Note the API token is the "Bot User OAuth Access Token" provided by Slack.
 
-Then register that Slack bot with {{< vendor/name >}} using a `health.slack` integration:
+Then register that Slack bot with {{% vendor/name %}} using a `health.slack` integration:
 
 ```bash
 {{% vendor/cli %}} integration:add --type health.slack --token YOUR_API_TOKEN --channel '#channelname'

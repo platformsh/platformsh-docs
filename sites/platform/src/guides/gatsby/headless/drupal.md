@@ -1,5 +1,5 @@
 ---
-title: "How to deploy Gatsby with Drupal (Decoupled Drupal) on {{< vendor/name >}}"
+title: "How to deploy Gatsby with Drupal (Decoupled Drupal) on {{% vendor/name %}}"
 sidebarTitle: "Drupal"
 description: |
     Drupal's JSON API module can be used as a data source for Gatsby via `gatsby-source-drupal`.

@@ -2,15 +2,15 @@
 title: "Managed Fastly CDN"
 sidebarTitle: "Managed Fastly CDN"
 weight: 2
-description: Bring your content closer to users with a Fastly CDN fully managed by {{< vendor/name >}}.
+description: Bring your content closer to users with a Fastly CDN fully managed by {{% vendor/name %}}.
 banner: 
     type: tiered-feature
 ---
 
 Instead of starting your own Fastly subscription and [managing your CDN yourself](./fastly.md),
-you can take advantage of a Fastly CDN provided by {{< vendor/name >}}.
+you can take advantage of a Fastly CDN provided by {{% vendor/name %}}.
 For example, Dedicated projects include a managed Fastly CDN by default.
-These CDNs are exclusively set up and managed by {{< vendor/name >}}.
+These CDNs are exclusively set up and managed by {{% vendor/name %}}.
 
 To modify any settings for a managed Fastly CDN,
 [open a support ticket](https://console.platform.sh/-/users/~/tickets/open).
@@ -20,7 +20,7 @@ To add a managed Fastly CDN to your project,
 ### Domain control validation
 
 When you request for a new domain to be added to your Fastly service,
-{{< vendor/name >}} support provides you with a [`CNAME` record](../../domains/steps/dns.md) for [domain control validation](../troubleshoot.md#ownership-verification).
+{{% vendor/name %}} support provides you with a [`CNAME` record](../../domains/steps/dns.md) for [domain control validation](../troubleshoot.md#ownership-verification).
 To add this `CNAME` record to your domain settings,
 see how to [configure your DNS provider](../steps/_index.md#3-configure-your-dns-provider).
 
@@ -30,15 +30,15 @@ By default, Enterprise and Elite plans include two [TLS certificates](../../othe
 an apex and a wildcard one.
 This allows for encryption of all traffic between your users and your app.
 
-If you use a Fastly CDN provided by {{< vendor/name >}},
+If you use a Fastly CDN provided by {{% vendor/name %}},
 you can provide your own third-party TLS certificates for an additional fee.
 
 To do so, if you don't have one, 
 set up a [mount](../../create-apps/app-reference.md#mounts) that isn't accessible to the web.
-Use an environment with access limited to {{< vendor/name >}} support and trusted users.
+Use an environment with access limited to {{% vendor/name %}} support and trusted users.
 [Transfer](../../development/file-transfer.md) each certificate, its unencrypted private key, 
 and the intermediate certificate to the mount.
-To notify {{< vendor/name >}} that a certificate is to be added to your CDN configuration,
+To notify {{% vendor/name %}} that a certificate is to be added to your CDN configuration,
 [create a support ticket](/learn/overview/get-support.md#create-a-support-ticket).
 
 If you need an Extended Validation TLS certificate,

@@ -134,7 +134,7 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
 To export your data from InfluxDB, follow these steps:
 
 1. Install and set up the [`influx` CLI](https://docs.influxdata.com/influxdb/cloud/tools/influx-cli/).
-2. Connect to your InfluxDB service with the [{{< vendor/name >}} CLI](../administration/cli/_index.md):
+2. Connect to your InfluxDB service with the [{{% vendor/name %}} CLI](../administration/cli/_index.md):
 
    ```bash
    {{% vendor/cli %}} tunnel:single

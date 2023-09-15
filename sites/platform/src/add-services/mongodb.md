@@ -196,7 +196,7 @@ mongo mongodb.internal
 The most straightforward way to export data from a MongoDB database is to open an SSH tunnel to it
 and export the data directly using MongoDB's tools.
 
-First, open an SSH tunnel with the {{< vendor/name >}} CLI:
+First, open an SSH tunnel with the {{% vendor/name %}} CLI:
 
 ```bash
 {{% vendor/cli %}} tunnel:open

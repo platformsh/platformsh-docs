@@ -38,13 +38,13 @@ $ composer require wpackagist-theme/neve
 ```
 
 This updates your `composer.json` and `composer.lock` files.
-Once you push the change to {{< vendor/name >}}, the package is downloaded during the WordPress build.
+Once you push the change to {{% vendor/name %}}, the package is downloaded during the WordPress build.
 All that's left is to sign in to the administration dashboard on your deployed site
 and enable plugins and themes from the Plugins and Appearance settings, respectively. 
 
 ## Set up a WooCommerce site
 
-{{< vendor/name >}} maintains a [WooCommerce template](https://github.com/platformsh-templates/wordpress-woocommerce)
+{{% vendor/name %}} maintains a [WooCommerce template](https://github.com/platformsh-templates/wordpress-woocommerce)
 that you can deploy quickly from the button in its README,
 but using Composer you can quickly install WooCommerce yourself:
 
@@ -85,14 +85,14 @@ you can use them in your project by defining local `repositories` for them in yo
 In the snippet above, other packages can still be downloaded from WPPackagist,
 but now two custom `path` repositories have been defined from `/custom/[themes|plugins]` locally.
 Adding packages from these sources then only requires `composer require author/custom_plugin`
-to ensure that the plugin at `/custom/plugin/author/custom_plugin` is installed by {{< vendor/name >}} when WordPress is built. 
+to ensure that the plugin at `/custom/plugin/author/custom_plugin` is installed by {{% vendor/name %}} when WordPress is built. 
 
 ## Updating WordPress, plugins, and themes
 
 Your WordPress site is fully managed by Composer,
 which means so are updates to WordPress core itself.
 Run `composer update` periodically to get new versions of WordPress core, as well as any plugins or themes your have installed.
-Commit the resulting changes to your `composer.lock` file and push again to {{< vendor/name >}}. 
+Commit the resulting changes to your `composer.lock` file and push again to {{% vendor/name %}}. 
 
 The [Composer documentation](https://getcomposer.org/doc/) has more information on options to update individual modules or perform other tasks.
 

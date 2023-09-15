@@ -1,14 +1,14 @@
 ---
-title: "Configure MongoDB for Strapi on {{< vendor/name >}}"
+title: "Configure MongoDB for Strapi on {{% vendor/name %}}"
 sidebarTitle: "MongoDB"
 weight: -70
 description: |
-  Configure your strapi application to use a MongoDB database on {{< vendor/name >}} (v3 only).
+  Configure your strapi application to use a MongoDB database on {{% vendor/name %}} (v3 only).
 ---
 
 Strapi can also be configured to use MongoDB as its default database,
 although due to compatibility issues this database type is only available in Strapi v3 and [not supported in Strapi v4](https://forum.strapi.io/t/mongodb-compatibility-delayed-on-v4/4549).
-To use MongoDB with a Strapi v3 application on {{< vendor/name >}}, follow these steps.
+To use MongoDB with a Strapi v3 application on {{% vendor/name %}}, follow these steps.
 
 1. Install the [Strapi mongoose connector](https://yarnpkg.com/package/strapi-connector-mongoose)
 
@@ -50,11 +50,11 @@ To use MongoDB with a Strapi v3 application on {{< vendor/name >}}, follow these
    };
 
    if (config.isValidPlatform() && !config.inBuild()) {
-     // {{< vendor/name >}} database configuration.
+     // {{% vendor/name %}} database configuration.
      const credentials = config.credentials(dbRelationshipMongo);
 
      console.log(
-       `Using {{< vendor/name >}} configuration with relationship ${dbRelationshipMongo}.`
+       `Using {{% vendor/name %}} configuration with relationship ${dbRelationshipMongo}.`
      );
 
      settings = {
@@ -74,12 +74,12 @@ To use MongoDB with a Strapi v3 application on {{< vendor/name >}}, follow these
      if (config.isValidPlatform()) {
        // Build hook configuration message.
        console.log(
-         "Using default configuration during {{< vendor/name >}} build hook until relationships are available."
+         "Using default configuration during {{% vendor/name %}} build hook until relationships are available."
        );
      } else {
        // Strapi default local configuration.
        console.log(
-         "Not in a {{< vendor/name >}} Environment. Using default local sqlite configuration."
+         "Not in a {{% vendor/name %}} Environment. Using default local sqlite configuration."
        );
      }
    }
@@ -96,4 +96,4 @@ To use MongoDB with a Strapi v3 application on {{< vendor/name >}}, follow these
    };
    ```
 
-This configuration instructs {{< vendor/name >}} to deploy your Strapi v3 app with a MongoDB database.
+This configuration instructs {{% vendor/name %}} to deploy your Strapi v3 app with a MongoDB database.

@@ -1,15 +1,15 @@
 ---
-title: "Configure MySQL for Strapi on {{< vendor/name >}}"
+title: "Configure MySQL for Strapi on {{% vendor/name %}}"
 sidebarTitle: "MySQL"
 weight: -80
 description: |
-  Configure your Strapi application to use a MySQL database on {{< vendor/name >}}.
+  Configure your Strapi application to use a MySQL database on {{% vendor/name %}}.
 ---
 
 Strapi can be configured to use MySQL as its default database.
 You can choose MySQL when installing your app by selecting custom and MySQL when asked for the installation type.
 Or you can just configure your existing Strapi application to use MySQL.
-To configure a MySQL database for Strapi on {{< vendor/name >}}, follow these steps.
+To configure a MySQL database for Strapi on {{% vendor/name %}}, follow these steps.
 
 1. Install the Node.js [MySQL driver](https://yarnpkg.com/package/mysql)
 
@@ -59,11 +59,11 @@ To configure a MySQL database for Strapi on {{< vendor/name >}}, follow these st
    };
 
    if (config.isValidPlatform() && !config.inBuild()) {
-     // {{< vendor/name >}} database configuration.
+     // {{% vendor/name %}} database configuration.
      try {
        const credentials = config.credentials(dbRelationship);
        console.log(
-         `Using {{< vendor/name >}} configuration with relationship ${dbRelationship}.`
+         `Using {{% vendor/name %}} configuration with relationship ${dbRelationship}.`
        );
 
        pool = {
@@ -99,13 +99,13 @@ To configure a MySQL database for Strapi on {{< vendor/name >}}, follow these st
      if (config.isValidPlatform()) {
        // Build hook configuration message.
        console.log(
-         "Using default configuration during {{< vendor/name >}} build hook until relationships are available."
+         "Using default configuration during {{% vendor/name %}} build hook until relationships are available."
        );
      } else {
        // Strapi default local configuration.
 
        console.log(
-         "Not in a {{< vendor/name >}} Environment. Using default local sqlite configuration."
+         "Not in a {{% vendor/name %}} Environment. Using default local sqlite configuration."
        );
      }
    }

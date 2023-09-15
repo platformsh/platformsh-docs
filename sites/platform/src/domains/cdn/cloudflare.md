@@ -11,7 +11,7 @@ You can [use a CDN](./_index.md) to deliver your site's content to users more qu
 
 You need:
 
-- An up-and-running {{< vendor/name >}} project
+- An up-and-running {{% vendor/name %}} project
 - A [Cloudflare](https://www.cloudflare.com/) CDN subscription
 
 {{% disable-cache CDN="Cloudflare" %}}
@@ -42,10 +42,10 @@ and can't be downgraded to HTTP.
 
 To do so, [enable full strict SSL/TLS encryption](https://developers.cloudflare.com/ssl/origin-configuration/ssl-modes/full-strict/).
 Any communication between a client and Cloudflare
-or between Cloudflare and your {{< vendor/name >}} server is then encrypted through HTTPS.
-In addition, Cloudflare checks that your {{< vendor/name >}} server's [TLS certificate](../../other/glossary.md#transport-layer-security-tls) 
+or between Cloudflare and your {{% vendor/name %}} server is then encrypted through HTTPS.
+In addition, Cloudflare checks that your {{% vendor/name %}} server's [TLS certificate](../../other/glossary.md#transport-layer-security-tls) 
 was issued by a trusted certificate authority.
-This confirms the client is truly communicating with your {{< vendor/name >}} server.
+This confirms the client is truly communicating with your {{% vendor/name %}} server.
 
 For enhanced security, make sure your HTTPS connections can't be downgraded to HTTP.
 To do so, in your Cloudflare account,

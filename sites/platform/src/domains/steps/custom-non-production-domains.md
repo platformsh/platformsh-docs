@@ -16,7 +16,7 @@ When a custom domain is [set up on your production environment](../steps/_index.
 it can't be used for the other, non-production environments in your project.
 
 Therefore, by default and for each non-production environment,
-{{< vendor/name >}} automatically replaces the custom production domain
+{{% vendor/name %}} automatically replaces the custom production domain
 with an automatically generated URL.
 
 If you don't want to use these default URLs,
@@ -45,7 +45,7 @@ and still access your production environment through `example.com`.
 If you have multiple custom domains on your production environment,
 when you create a custom non-production domain,
 you don't need to update your [routes configuration](../../define-routes/_index.md) either.
-{{< vendor/name >}} automatically figures out the routing of your non-production environment
+{{% vendor/name %}} automatically figures out the routing of your non-production environment
 based on the following elements:
 
 - The custom production domains in your existing [routes configuration](../../define-routes/_index.md)
@@ -70,11 +70,11 @@ You need:
   it needs to be configured to operate with custom non-production domains.
   For more information, [contact Support](https://console.platform.sh/-/users/~/tickets/open). 
 <--->
-- A {{< vendor/name >}} project on which you have **admin rights** 
+- A {{% vendor/name %}} project on which you have **admin rights** 
 {{% /version/specific %}}
 - A production environment with at least one custom domain already set up
 - At least one non-production (staging or development) environment
-- Optional: The [{{< vendor/name >}} CLI](../../administration/cli/_index.md) (v4.8.0+)
+- Optional: The [{{% vendor/name %}} CLI](../../administration/cli/_index.md) (v4.8.0+)
 
 To prevent abuse, by default you can add custom domains to up to 5 environments per project only.
 This limit doesn't include the production environment,
@@ -115,7 +115,7 @@ title=Using the CLI
    {{< note >}}
 
    Using the target of your production environment to configure your DNS provider is technically possible,
-   but {{< vendor/name >}} recommends using the target of your non-production environment as a best practice.
+   but {{% vendor/name %}} recommends using the target of your non-production environment as a best practice.
 
    {{< /note >}}
 
@@ -153,7 +153,7 @@ title=In the Console
 {{< note >}}
 
 Using the target of your production environment to configure your DNS provider is technically possible,
-but {{< vendor/name >}} recommends using the target of your non-production environment as a best practice.
+but {{% vendor/name %}} recommends using the target of your non-production environment as a best practice.
 
 {{< /note >}}
 

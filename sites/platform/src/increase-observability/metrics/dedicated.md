@@ -36,7 +36,7 @@ You get output similar to the following:
 
 ```bash
 
- Welcome to {{< vendor/name >}}.
+ Welcome to {{% vendor/name %}}.
 
  This is environment production-qwerty8 of project abcde3clusterID.
 

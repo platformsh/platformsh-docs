@@ -10,7 +10,7 @@ sidebarTitle: "Memcached"
 
 See the [Memcached documentation](https://memcached.org) for more information.
 
-Both Memcached and Redis can be used for application caching. As a general rule, Memcached is simpler and thus more widely supported while Redis is more robust. {{< vendor/name >}} recommends using Redis if possible but Memcached is fully supported if an application favors that cache service.
+Both Memcached and Redis can be used for application caching. As a general rule, Memcached is simpler and thus more widely supported while Redis is more robust. {{% vendor/name %}} recommends using Redis if possible but Memcached is fully supported if an application favors that cache service.
 
 {{% frameworks version="1" %}}
 

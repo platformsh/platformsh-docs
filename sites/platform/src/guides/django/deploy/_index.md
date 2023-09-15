@@ -1,14 +1,14 @@
 ---
-title: Deploy Django on {{< vendor/name >}}
+title: Deploy Django on {{% vendor/name %}}
 sidebarTitle: Get started
 weight: -130
 layout: single
-description: See how to get started deploying Django on {{< vendor/name >}}.
+description: See how to get started deploying Django on {{% vendor/name %}}.
 ---
 
 Django is a web application framework written in Python with a built-in ORM (Object-Relational Mapper).
 
-This guide provides instructions for deploying, and working with, Django on {{< vendor/name >}}. 
+This guide provides instructions for deploying, and working with, Django on {{% vendor/name %}}. 
 It includes examples for working with Django on all of the major package managers: pip, Pipenv, and Poetry. 
 
 {{% guides/starting-point name="Django" templateRepo="django4" initExample=true %}}
