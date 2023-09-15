@@ -347,7 +347,12 @@ routes:
 
 ## 4. Define resources
 
-Now that the `size`, `disk` and `resources` keys are deprecated,
+{{< note title="TODO" >}}
+
+Change it to the dedicated page here https://docs.upsun.com.manage-resources-z2qlfya-652soceglkw4u.eu-3.platformsh.site/manage-resources.html
+{{< /note >}}
+
+Now that the `size`, `disk` and `resources` keys are deprecated in Yaml configuration files,
 use the {{% vendor/name %}} Console, CLI or API to define your app and service resources.
 
 {{< codetabs >}}
@@ -364,7 +369,14 @@ TODO
 title=Using the CLI
 +++
 
-TODO
+To define resources to your application, please use the following commands:
+```shell
+{{% vendor/cli %}} resources:set --size app:0.1 --disk app:512 --count app:1
+```
+
+{{< note >}}
+For more details on how to manipulate ``resources:set`` command, please see [Resources managment] manage-resources.html (TODO)
+{{< /note >}}
 
 <--->
 
@@ -421,6 +433,14 @@ run the following command:
 ```bash
 {{% vendor/cli %}} deploy
 ```
+
+{{< note title="Warning" >}}
+
+First deployment should fail if you yet didn't allocate resources to your application.
+
+To allocate resources to your application, please see [Resources Allocation doc page](#4-define-resources)
+
+{{< /note >}}
 
 Your Platform.sh project has now been migrated to {{% vendor/name %}}.</br>
 Congrats!
