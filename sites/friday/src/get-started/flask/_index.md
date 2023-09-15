@@ -200,7 +200,7 @@ line that starts with
 
 We need to uncomment the next two lines underneath this line, and add our environmental variable to the list:
 
-```yaml
+```yaml {configFile="app"}
     # Variables to control the environment.
     variables:
       env:
@@ -217,14 +217,14 @@ Next we're going to need some writable disk space to hold the static assets that
 flask-static-digest generates. This directory exists under our application package name as
 `./<application-name>/static`. In `{{< vendor/configfile "app" >}}`, find the line that starts with:
 
-```yaml
+```yaml {configFile="app"}
 # Mounts define directories that are writable
 ```
 
 We'll need to uncomment the line `# mounts:` and then add an entry describing where we want a writable
 mount added:
 
-```yaml
+```yaml {configFile="app"}
 add section for mounts
 ```
 
@@ -236,7 +236,7 @@ Because we've selected a local mount, we also need to define how much disk space
 it. In the `{{< vendor/configfile "app" >}}` file, just a few lines above where we located the section for mounts, find
 the line that starts with:
 
-```yaml
+```yaml {configFile="app"}
 # The size of the persistent disk of the application
 ```
 
@@ -250,7 +250,7 @@ higher than your available disk space. <!-- /end might also not work -->
 Since this project uses npm in addition to Python, we're going to want {{< vendor/name >}} to also run an `npm install`
 when it builds the application image. In the `{{< vendor/configfile "app" >}}` find the line that starts with:
 
-```yaml
+```yaml {configFile="app"}
 # Hooks allow you to customize your code/environment
 ```
 
@@ -262,7 +262,7 @@ we'll also instruct {{< vendor/name >}} to install our npm packages. But before 
 I run `pip install` so I'm going to add a new line above that and add in `pip install --upgrade pip`. Then
 I'll add another line after the initial `pip install` and add `npm install`:
 
-```yaml
+```yaml {configFile="app"}
     # Hooks allow you to customize your code/environment
     hooks:
       build: |
@@ -279,7 +279,7 @@ application image is read-only, <!-- might not be true -->but our writable disk 
 is now accessible<!-- /end might not be true -->. Find the `deploy:` yaml key, add a new line after
 `set -eux` and add `npm run build`:
 
-```yaml
+```yaml {configFile="app"}
       deploy: |
         set -eux
         npm run build
@@ -288,7 +288,7 @@ is now accessible<!-- /end might not be true -->. Find the `deploy:` yaml key, a
 Next we need to configure how {{< vendor/name >}} will handle requests to this application image. In the `{{< vendor/configfile "app" >}}`
 file locate the line that starts with:
 
-```yaml
+```yaml {configFile="app"}
 # The web key configures the web server running in front of your app.
 ```
 
@@ -297,7 +297,7 @@ will be a yaml property of `start:` Once again, the cli tool already added some 
 since it doesn't know the specifics of what needs to be used, has simply left instructions. For now, we
 only need the basic Flask server, so we'll replace the current contents with `flask run -p $PORT`.
 
-```yaml
+```yaml {configFile="app"}
     # The web key configures the web server running in front of your app.
     web:
       # Commands are run once after deployment to start the application process.
@@ -310,7 +310,7 @@ only need the basic Flask server, so we'll replace the current contents with `fl
 Since we're using the flask server (for now), we also need to change the `socket_family` from `unix`
 to `tcp`:
 
-```yaml
+```yaml {configFile="app"}
         start: "flask run -p $PORT"
       # You can listen to a UNIX socket (unix) or a TCP port (tcp, default).
       upstream:
@@ -521,7 +521,7 @@ We now need to instruct {{< vendor/name >}} to run the Flask-migrate upgrade com
 migration changes are automatically applied. Re-open the `{{< vendor/configfile "app" >}}` and find the `deploy` hook where we
 added `npm run build`. On the next line, add `flask db upgrade`.
 
-```yaml
+```yaml {configFile="app"}
       deploy: |
         set -eux
         npm run build
@@ -589,7 +589,7 @@ switch our project to use [gunicorn](https://gunicorn.org/) + PORT.
 Reopen the `{{< vendor/configfile "app" >}}` file. Locate the `web:commands:start` section where in the previous section we
 added `flask run -p $PORT`. We now want to change it to `gunicorn -w 4 'autoapp:app'`
 
-```yaml
+```yaml {configFile="app"}
     web:
       # Commands are run once after deployment to start the application process.
       commands:
@@ -655,14 +655,14 @@ various services to your project. But for now, go forth and Deploy (even on Frid
     34. Find the section describing `mounts`
     35. Uncomment `# mounts:`
     36. On the next line add
-        ```yaml
+        ```yaml {configFile="app"}
         "<name-of-your-app-from-3.5-above>/static":
           source: local
           source_path: static_build
         ```
     43. Find the section for `hooks:build`
     44. On the line before `pip install`, add the following:
-        ```yaml
+        ```yaml {configFile="app"}
         pip install --upgrade pip
         npm install
         ```
@@ -672,7 +672,7 @@ various services to your project. But for now, go forth and Deploy (even on Frid
         npm run build
         ```
     51. Find the section `web:commands:start` and change it to
-        ```yaml
+        ```yaml {configFile="app"}
         start: flask run -p $PORT
         ```
     53. Below this find the section for `upstream:socket_family` and either comment out both lines, or change `unix` to `tcp`
