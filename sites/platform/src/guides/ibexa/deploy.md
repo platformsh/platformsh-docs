@@ -123,7 +123,7 @@ engine:
         - PLATFORM_RELATIONSHIPS=A_BASE64_ENCODED_VALUE
 ```
 
-### Local development with {{< vendor/name >}}
+### Local development with {{% vendor/name %}}
 
 Thanks to eZ Launchpad, you can work 100% locally: [untethered](../../development/local/untethered.md).
 You have the whole project working offline on machine.
