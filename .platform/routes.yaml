@@ -271,7 +271,13 @@ https://docs.upsun.com/:
     enabled: true
   ssi:
     enabled: false
+  redirects:
+    paths:
+      "/anchors/resources/configuration.html": { "to": "/administration/pricing.html", "code": 301, "prefix": false }
+      "/anchors/scaling/down.html": { "to": "/administration/pricing.html", "code": 301, "prefix": false }
+      "/anchors/organizations/admin.html": { "to": "/administration/organizations.html", "code": 301, "prefix": false }
+      "/anchors/resources/green.html": { "to": "/administration/pricing.html", "code": 301, "prefix": false }
 
-"https://docs.deployfriday.net/":
-    type: redirect
-    to: "https://docs.upsun.com/"
+# "https://docs.deployfriday.net/":
+#     type: redirect
+#     to: "https://docs.upsun.com/"
