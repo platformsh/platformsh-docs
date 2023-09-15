@@ -12,14 +12,14 @@ banner:
 <--->
 {{% /version/specific %}}
 
-[Preview environments](../../other/glossary.md#preview-environment) in your project can't use the custom domain [set up on your production environment](../steps/_index.md).<br/>
+[Preview environments](/glossary.md#preview-environment) in your project can't use the custom domain [set up on your production environment](../steps/_index.md).<br/>
 By default and for each preview environment,
 {{< vendor/name >}} automatically replaces the custom production domain
 with an automatically generated URL.
 
 If you don't want to use these default URLs,
 you can add a custom domain to each of your preview environments
-(`staging` or `development` [environment types](../../other/glossary.md#environment-type)).
+(`staging` or `development` [environment types](/glossary.md#environment-type)).
 
 To do so, no need to modify your [routes configuration](../../define-routes/_index.md).
 When you add a new custom domain for a preview environment,

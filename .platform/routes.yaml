@@ -148,8 +148,7 @@ https://{default}/:
       "/development/logs.html":  { "to": "/increase-observability/logs/access-logs.html", "code": 301 }
       "/languages/nodejs/nvm.html":  { "to": "/languages/nodejs/node-version.html", "code": 301 }
       "/guides/general/composer-auth.htmll":  { "to": "/languages/php/composer-auth.html", "code": 301 }
-      "/GLOSSARY.html":  { "to": "/other/glossary.html", "code": 301 }
-      "/glossary.html":  { "to": "/other/glossary.html", "code": 301 }
+      "/GLOSSARY.html":  { "to": "/glossary.html", "code": 301 }
       "/configuration/yaml.html":  { "to": "/overview/yaml.html", "code": 301 }
       "/administration/web/delete.html":  { "to": "/projects/delete-project.html", "code": 301 }
       "/guides/general/region-migration.html":  { "to": "/projects/region-migration.html", "code": 301 }
@@ -254,6 +253,10 @@ https://{default}/:
 
       # YAML redirect after Learn section was created (September 2023)
       "/overview/yaml/what-is-yaml.html" : { "to": "/learn/overview/yaml/what-is-yaml.html", "code": 301 }
+
+      # Splitting 'other' section into proper top-level items within Reference.
+      "/other/glossary.html" : { "to": "/glossary.html", "code": 301 }
+      "/changelog.html" : { "to": "https://next.platform.sh/", "code": 301 }
 
 "https://search.{default}/":
     type: upstream
