@@ -85,7 +85,7 @@ By default, {{< vendor/name >}} allocates CPU and memory resources to each conta
 Some services are optimized for high CPU load, some for high memory load.
 If your plan is sufficiently large for bigger containers, you can increase the size of your service container.
 
-Note that service containers in development environments are always set to size `S`.
+Note that service containers in preview environments are always set to size `S`.
 
 ### 2. Connect the service
 
