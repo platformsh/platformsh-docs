@@ -207,10 +207,11 @@ We need to uncomment the next two lines underneath this line, and add our enviro
         FLASK_APP: autoapp.py
 ```
 
-### WARNING:
+{{< note >}}
 When uncommenting this section, or any others in a yaml file make sure you remove both the comment marker `#`
 as well as the extra space. If you don't remove the extra space, you will end up with a
 `Invalid block mapping key indent` error when the configuration file is validated.
+{{< /note >}}
 
 <!-- This might not work {{< vendor/name >}}, might need to be moved lower -->
 Next we're going to need some writable disk space to hold the static assets that npm builds and
@@ -325,12 +326,13 @@ $ git add {{< vendor/configfile "app" >}}
 $ git commit -m "adds FLASK_APP env var, adds mount for static builds, build commands, npm run build on deploy, web start command"
 ```
 
-### Note
+{{< note >}}
 By default, the `{{< vendor/cli >}} project:init` command will set the language runtime to the latest possible version. If
 your project requires an older version, you will need to change it before pushing your code to {{< vendor/name >}}. To change
 the runtime version, locate the `type` key near the top of the `{{< vendor/configfile "app" >}}` file, and change it the desired
 version. A [complete list of supported versions of Python](https://docs.upsun.com/languages/python.html#supported-versions)
 is available in the documentation. Do not forget to add and commit your changes to git before pushing your code.
+{{< /note >}}
 
 ## Preparing the application for {{< vendor/name >}}
 While we've finished telling {{< vendor/name >}} what it needs to do in order to build and deploy our application,
