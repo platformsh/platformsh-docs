@@ -137,7 +137,7 @@ If the status is operational, [contact support](/learn/overview/get-support.md).
 
 ## Command not found
 
-When you've added a command line tool (such as [Drush](../other/glossary.md#drush)),
+When you've added a command line tool (such as [Drush](/glossary.md#drush)),
 you might encounter an error like the following:
 
 ```bash
