@@ -258,6 +258,9 @@ https://{default}/:
       "/other/glossary.html" : { "to": "/glossary.html", "code": 301 }
       "/changelog.html" : { "to": "https://next.platform.sh/", "code": 301 }
 
+      # Change of URL for the custom domains on preview environments page
+      "/domains/steps/custom-non-production-domains.html" : { "to": "/domains/steps/custom-domains-preview-environments.html", "code": 301 }
+
 "https://search.{default}/":
     type: upstream
     upstream: "search:http"
