@@ -143,9 +143,9 @@ And you can use an absolute URL:
 
 In both cases, the URLs for your Production environment are the same.
 
-#### URLs in preview environments
+#### URLs in non-Production environments
 
-URLs in preview environments follow a different pattern.
+URLs in non-Production environments follow a different pattern.
 
 No matter how you have set your default domain (even if you don't have one),
 using either the absolute URL or the `{default}` placeholder results in the same URL.

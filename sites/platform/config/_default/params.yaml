@@ -14,6 +14,12 @@ vendor:
     name: Platform.sh
     cli: platform
     env_prefix: PLATFORM
+    recruit:
+        active: true
+        link: https://upsun.com/register/
+        cta: Sign up for early access
+        title: Upsun Beta access
+        description: "Platform.sh will soon open up early access to test and provide feedback for our newest offering - <a href=\"https://upsun.com/blog/upsun-origin-story/\">Upsun</a>.<br/><br/>You can register for the beta by clicking here and completing the form.<br/><br/>"
     config:
         version: 1
         dir: .platform

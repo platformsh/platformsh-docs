@@ -1,14 +1,19 @@
 <!-- Links to log in or start a trial -->
+
+{{ if eq ( index .Site.Params.theme "use_vendor") true }}
+<div class="hidden md:flex basis-3/12 items-center justify-around">
+{{ else }}
 <div class="hidden md:flex basis-1/6 items-center justify-around">
+{{ end }}
   {{ $currentPage := printf "%s%s" ( .Site.BaseURL ) ( .Page.RelPermalink ) }}
   {{ with .Site.Params.headerActions }}
     {{ with .headerActionSecondary }}
-      <a class="font-semibold text-sm xl:text-base px-4 py-2 rounded hidden lg:inline xl:px-8 hover:bg-skye-light focus:bg-skye-light hover:text-slate focus:text-slate" 
+      <a class="font-semibold secondary-action text-sm xl:text-base px-4 py-2 rounded hidden lg:inline xl:px-8 hover:bg-skye-light focus:bg-skye-light hover:text-slate focus:text-slate" 
       onclick="dataLayer.push({'event': 'click_login', 'click_name': 'Login', 'link_url': '{{ $currentPage }}'});"
       href="{{ .destination }}" rel="noopener">{{ .linkText }}</a>
     {{ end }}
     {{ with .headerActionPrimary }}
-      <a class="font-semibold text-sm xl:text-base px-4 py-2 bg-skye rounded text-white hover:bg-skye-dark focus:bg-skye-dark" 
+      <a class="font-semibold primary-action text-sm xl:text-base px-4 py-2 bg-skye rounded text-white hover:bg-skye-dark focus:bg-skye-dark" 
       onclick="dataLayer.push({'event': 'click_free_trial', 'click_name': 'Free trial', 'link_url': '{{ $currentPage }}'});"
       href="{{ .destination }}" rel="noopener">{{ .linkText }}</a>
     {{ end }}

@@ -148,8 +148,7 @@ https://{default}/:
       "/development/logs.html":  { "to": "/increase-observability/logs/access-logs.html", "code": 301 }
       "/languages/nodejs/nvm.html":  { "to": "/languages/nodejs/node-version.html", "code": 301 }
       "/guides/general/composer-auth.htmll":  { "to": "/languages/php/composer-auth.html", "code": 301 }
-      "/GLOSSARY.html":  { "to": "/other/glossary.html", "code": 301 }
-      "/glossary.html":  { "to": "/other/glossary.html", "code": 301 }
+      "/GLOSSARY.html":  { "to": "/glossary.html", "code": 301 }
       "/configuration/yaml.html":  { "to": "/overview/yaml.html", "code": 301 }
       "/administration/web/delete.html":  { "to": "/projects/delete-project.html", "code": 301 }
       "/guides/general/region-migration.html":  { "to": "/projects/region-migration.html", "code": 301 }
@@ -252,12 +251,22 @@ https://{default}/:
       "^/tutorials/(.*)":  { "to": "/learn/tutorials$1", "code": 301, "regexp": true }
       "^/overview/(.*)":  { "to": "/learn/overview$1", "code": 301, "regexp": true }
 
+      # YAML redirect after Learn section was created (September 2023)
+      "/overview/yaml/what-is-yaml.html" : { "to": "/learn/overview/yaml/what-is-yaml.html", "code": 301 }
+
+      # Splitting 'other' section into proper top-level items within Reference.
+      "/other/glossary.html" : { "to": "/glossary.html", "code": 301 }
+      "/changelog.html" : { "to": "https://next.platform.sh/", "code": 301 }
+
+      # Change of URL for the custom domains on preview environments page
+      "/domains/steps/custom-non-production-domains.html" : { "to": "/domains/steps/custom-domains-preview-environments.html", "code": 301 }
+
 "https://search.{default}/":
     type: upstream
     upstream: "search:http"
     id: "search"
 
-https://docs.deployfriday.net/:
+https://docs.upsun.com/:
   type: upstream
   upstream: friday:http
   id: friday
@@ -265,3 +274,13 @@ https://docs.deployfriday.net/:
     enabled: true
   ssi:
     enabled: false
+  redirects:
+    paths:
+      "/anchors/resources/configuration.html": { "to": "/administration/pricing.html", "code": 301, "prefix": false }
+      "/anchors/scaling/down.html": { "to": "/administration/pricing.html", "code": 301, "prefix": false }
+      "/anchors/organizations/admin.html": { "to": "/administration/organizations.html", "code": 301, "prefix": false }
+      "/anchors/resources/green.html": { "to": "/administration/pricing.html", "code": 301, "prefix": false }
+
+# "https://docs.deployfriday.net/":
+#     type: redirect
+#     to: "https://docs.upsun.com/"

@@ -28,7 +28,7 @@ See how to configure [Python web servers](../../../languages/python/server.md).
 
 ## Sanitize data
 
-By default, each [preview environment](../../../other/glossary.md#preview-environment) ([development type](../../../other/glossary.md#environment-type)) automatically inherits all data from its parent environment.
+By default, each preview environment automatically inherits all data from its parent environment.
 So a developer working on a small feature has access to production data,
 including personally identifiable information (PII).
 This workflow isn't always desirable or even acceptable based on your compliance requirements.

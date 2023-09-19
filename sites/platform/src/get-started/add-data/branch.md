@@ -9,7 +9,7 @@ For comfortable development and testing, start with a separate branch for develo
 
 ## Create a preview environment
 
-To develop without affecting production, you need a separate [preview environment](../../other/glossary.md#preview-environment).
+To develop without affecting production, you need a separate environment.
 Create one in a terminal:
 
 ```bash

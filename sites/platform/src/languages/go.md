@@ -9,9 +9,32 @@ description: "{{< vendor/name >}} supports building and deploying applications w
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-| Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|----------------------------------------|------------------------------ |
-| {{< image-versions image="golang" status="supported" environment="grid" >}} | {{< image-versions image="golang" status="supported" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="golang" status="supported" environment="grid" >}}</td>
+            <td>{{< image-versions image="golang" status="supported" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="golang" status="supported" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="golang" status="supported" environment="grid" >}}
+
+{{% /version/specific %}}
 
 {{% language-specification type="golang" display_name="Go" %}}
 

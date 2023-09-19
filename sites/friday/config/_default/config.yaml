@@ -1,8 +1,8 @@
 # Basics
 baseURL: /
-title: Deploy Friday Docs
-author: Deploy Friday
-description: Deploy Friday User Documentation
+title: Upsun documentation
+author: Upsun
+description: Upsun User Documentation
 
 # Themes
 theme: psh-docs
@@ -19,7 +19,7 @@ languages:
 
 disableKinds: ["taxonomy", "taxonomyTerm"]
 
-baseURL: "https://docs.deploy-friday.net"
+baseURL: "https://docs.upsun.com"
 
 summaryLength: 3
 
@@ -55,6 +55,19 @@ module:
           excludeFiles: 
               - "registry/*"
               - "get-started/*"
+              - "development/transfer-dedicated.md"
+              - "administration/sso.md"
+              - "increase-observability/logs/forward-logs.md"
+              - "increase-observability/logs/forward-fastly-logs.md"
+              - "increase-observability/metrics/dedicated.md"
+              - "increase-observability/metrics/dedicated-generation-3.md"
+              - "domains/cdn/managed-fastly.md"
+              - "domains/security/web-application-firewall/fastly.md"
+              - "dedicated-gen-2/*"
+              - "dedicated-gen-3/*"
+              - "guides/*"
+              - "languages/java/frameworks.md"
+              - "learn/resources.md"
           lang: "en"
 
         - source: "../platform/static/images"
@@ -68,6 +81,8 @@ module:
           
         - source: "src"
           target: "content"
+        - source: "static/images"
+          target: "static/images"
         
 
 

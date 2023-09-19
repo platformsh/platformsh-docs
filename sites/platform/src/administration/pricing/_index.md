@@ -40,7 +40,7 @@ choose [another plan](../pricing/_index.md) to go live.
 Production environments are the live environments available to your users.
 Each Production plan has one Production environment that can be mapped to a [custom domain name](../../domains/steps/_index.md).
 
-The Production environment has more resources than the project's preview environments.
+The production environment has more resources than the project's preview environments.
 See the main [pricing page](https://platform.sh/pricing) for the resources available per plan for Production environments.
 
 ### Preview environments
@@ -109,6 +109,8 @@ with a MySQL service and a Redis service.
 If you aren't sure whether a specific setup would fit into a plan,
 don't hesitate to [contact support](https://console.platform.sh/-/users/~/tickets).
 
+{{< version/only "1" >}}
+
 ## {{% names/dedicated-gen-3 %}}
 
 For more resources along with triple redundancy on every element of the stack, use a {{% names/dedicated-gen-3 %}} plan.
@@ -116,6 +118,8 @@ For more resources along with triple redundancy on every element of the stack, u
 Learn more about [{{% names/dedicated-gen-3 %}}](../../dedicated-gen-3/_index.md).
 
 To discuss how {{% names/dedicated-gen-3 %}} could work for you, [contact Sales](https://platform.sh/contact/).
+
+{{< /version/only >}}
 
 ## Enterprise overages
 
