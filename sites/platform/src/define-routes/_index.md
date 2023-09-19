@@ -11,11 +11,20 @@ You might need to control how people access your web applications,
 for example when you have [multiple apps](../create-apps/multi-app/_index.md) in one project.
 Or you might just want to direct requests to specific places, such as removing the `www` at the start of all requests.
 
+{{< version/specific >}}
+<!-- Platform.sh configuration-->
 Control where external requests are directed by defining routes in a `{{< vendor/configfile "routes" >}}` file in your Git repository.
-If you have a single route served by a single app, you don't need to include the file.
+<--->
+<!-- Upsun configuration -->
+Your project defines the routes configuration from a top-level key called `routes`,
+which is placed in a unified configuration file like `{{< vendor/configfile "routes" >}}`.
+{{< /version/specific >}}
+If you have a single route served by a single app, you don't even need to configure routes in your `{{< vendor/configfile "routes" >}}`.
 Your project then includes a [default route](#default-route-definition).
 
+{{% version/only "1" %}}
 ![Routes](/images/config-diagrams/routes-basic.png "0.5")
+{{% /version/only %}}
 
 ## Examples
 
@@ -27,11 +36,25 @@ If you don't include a file defining routes, a single default route is deployed.
 If you have one app to direct traffic to and its name is `app`,
 this is equivalent to the following:
 
+{{< version/specific >}}
+<!-- Platform.sh configuration-->
+
 ```yaml {configFile="routes"}
 "https://{default}/":
-  type: upstream
-  upstream: app:http
+    type: upstream
+    upstream: app:http
 ```
+
+<--->
+<!-- Upsun configuration -->
+
+```yaml {configFile="routes"}
+routes:
+    "https://{default}/":
+        type: upstream
+        upstream: app:http
+```
+{{< /version/specific >}}
 
 All traffic to your domain (say, `https://example.com`) is sent to your app.
 This also includes redirecting requests from `http` to `https`.
@@ -45,14 +68,33 @@ And say you want to redirect requests from `https://www.example.com` to `https:/
 
 Define your routes like this:
 
+{{< version/specific >}}
+<!-- Platform.sh configuration-->
+
 ```yaml {configFile="routes"}
 "https://{default}/":
     type: upstream
     upstream: "app:http"
+
 "https://www.{default}/":
     type: redirect
     to: "https://{default}/"
 ```
+
+<--->
+<!-- Upsun configuration -->
+
+```yaml {configFile="routes"}
+routes:
+    "https://{default}/":
+        type: upstream
+        upstream: "app:http"
+
+    "https://www.{default}/":
+        type: redirect
+        to: "https://{default}/"
+```
+{{< /version/specific >}}
 
 This affects your [default domain](#default).
 
@@ -61,7 +103,9 @@ and one that redirects to the first (the one with the `redirect`).
 
 Redirects from `http` to `https` are generally included by default and don't need to be listed.
 
+{{% version/only "1" %}}
 ![The name of the app in your app configuration determines the value for the redirect.](/images/config-diagrams/routes-configs.png "0.5")
+{{% /version/only %}}
 
 ### Multi-app route definition
 
@@ -72,15 +116,31 @@ The specifics of configuring the Router container for multiple applications is e
 All defined routes have at least a slash in the path.
 So you might define routes for 2 apps named `app` and `api` as follows:
 
+{{< version/specific >}}
+<!-- Platform.sh configuration-->
 ```yaml {configFile="routes"}
-
 "https://{default}":
     type: upstream
     upstream: "app:http"
+
 "https://subdomain.example.com":
     type: upstream
     upstream: "api:http"
 ```
+<--->
+<!-- Upsun configuration-->
+
+```yaml {configFile="routes"}
+routes:
+    "https://{default}":
+        type: upstream
+        upstream: "app:http"
+
+    "https://subdomain.example.com":
+        type: upstream
+        upstream: "api:http"
+```
+{{< /version/specific >}}
 
 Both of these routes would be resolved with trailing slashes.
 So if you check your [`PLATFORM_ROUTES` variable](../development/variables/use-variables.md#use-provided-variables),
@@ -126,26 +186,46 @@ If you have set your default domain to `example.com`,
 `example.com` and `{default}` in your `{{< vendor/configfile "routes" >}}` file have the same result for your Production environment.
 
 You can use the `{default}` placeholder:
-
+{{< version/specific >}}
+<!-- Platform.sh configuration-->
 ```yaml {configFile="routes"}
 "https://{default}/blog":
     type: upstream
     upstream: "app:http"
 ```
+<--->
+<!-- Upsun configuration-->
+```yaml {configFile="routes"}
+routes:
+    "https://{default}/blog":
+        type: upstream
+        upstream: "app:http"
+```
+{{< /version/specific >}}
 
 And you can use an absolute URL:
-
+{{< version/specific >}}
+<!-- Platform.sh configuration-->
 ```yaml {configFile="routes"}
 "https://example.com/blog":
     type: upstream
     upstream: "app:http"
 ```
+<--->
+<!-- Upsun configuration-->
+```yaml {configFile="routes"}
+routes:
+    "https://example.com/blog":
+        type: upstream
+        upstream: "app:http"
+```
+{{< /version/specific >}}
 
 In both cases, the URLs for your Production environment are the same.
 
-#### URLs in non-Production environments
+#### URLs in preview environments
 
-URLs in non-Production environments follow a different pattern.
+URLs in [preview environments](../glossary/_index.md#preview-environment) (development and staging types) follow a different pattern.
 
 No matter how you have set your default domain (even if you don't have one),
 using either the absolute URL or the `{default}` placeholder results in the same URL.
@@ -153,11 +233,12 @@ using either the absolute URL or the `{default}` placeholder results in the same
 In any case, you get the same URL for a `feature` environment:
 
 ```txt
-https://feature-t6dnbai-abcdef1234567.us-2.platformsh.site/blog
+https://feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/blog
 ```
 
 Note that the `example.com` prefix isn't part of the generated URL.
 
+{{% version/only "1" %}}
 {{< note title="Previous behavior" >}}
 
 Before April 7, 2022, URLs in preview environments differed depending on whether or not you used the `{default}` placeholder.
@@ -173,7 +254,7 @@ If you used the `{default}` placeholder:
 The generated URL for the `feature` environment was:
 
 ```txt
-https://feature-t6dnbai-abcdef1234567.us-2.platformsh.site/blog
+https://feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/blog
 ```
 
 If you used an absolute URL:
@@ -187,10 +268,11 @@ If you used an absolute URL:
 The generated URL for the `feature` environment was:
 
 ```txt
-https://example.com.feature-t6dnbai-abcdef1234567.us-2.platformsh.site/blog
+https://example.com.feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/blog
 ```
 
 {{< /note >}}
+{{% /version/only %}}
 
 ### `{all}`
 
@@ -199,15 +281,30 @@ To define rules for all of them, use `{all}` in your template.
 
 Say you have both `example.com` and `example.net` as domains in a project.
 You can then define the following routes:
-
+{{< version/specific >}}
+<!-- Platform.sh configuration-->
 ```yaml {configFile="routes"}
 "https://{all}/":
     type: upstream
     upstream: "app:http"
+
 "https://www.{all}/":
     type: redirect
     to: "https://{all}/"
 ```
+<--->
+<!-- Upsun configuration-->
+```yaml {configFile="routes"}
+routes:
+    "https://{all}/":
+        type: upstream
+        upstream: "app:http"
+
+    "https://www.{all}/":
+        type: redirect
+        to: "https://{all}/"
+```
+{{< /version/specific >}}
 
 The first route means you're serving the same content at multiple domains:
 your app runs at both `https://example.com` and `https://example.net`.
@@ -222,14 +319,30 @@ and the first route is using `{default}` and the second is using `{all}`,
 the route using `{default}` takes precedence.
 Say you have two apps named `app1` and `app2` and define two routes like this:
 
+{{< version/specific >}}
+<!-- Platform.sh configuration-->
 ```yaml {configFile="routes"}
 "https://{default}/":
     type: upstream
     upstream: "app1:http"
+
 "https://{all}/":
     type: upstream
     upstream: "app2:http"
 ```
+<--->
+<!-- Upsun configuration-->
+```yaml {configFile="routes"}
+routes:
+    "https://{default}/":
+        type: upstream
+        upstream: "app1:http"
+        
+    "https://{all}/":
+        type: upstream
+        upstream: "app2:http"
+```
+{{< /version/specific >}}
 
 Requests to your default domain are served by `app1`.
 
@@ -243,14 +356,15 @@ HTTP requests to `www.example.com`, `blog.example.com`, and `us.example.com` are
 
 It also works on preview environments.
 If you have a `feature` branch, it's `{default}` domain looks something like:
-`feature-def123-vmwklxcpbi6zq.us.platform.sh` (depending on the project's region).
-So requests to `blog.feature-def123-vmwklxcpbi6zq.us.platform.sh` and `us.feature-def123-vmwklxcpbi6zq.eu.platform.sh`
+`feature-def123-vmwklxcpbi6zq.us.{{< vendor/urlraw "host" >}}` (depending on the project's region).
+So requests to `blog.feature-def123-vmwklxcpbi6zq.us.{{< vendor/urlraw "host" >}}` and `us.feature-def123-vmwklxcpbi6zq.eu.{{< vendor/urlraw "host" >}}`
 are both routed to the same endpoint.
 
 Let's Encrypt wildcard certificates aren't supported (they would need DNS validation).
 So if you want to use a wildcard route and protect it with HTTPS,
 you need to provide a [custom TLS certificate](../domains/steps/tls.md).
 
+{{% version/only "1" %}}
 {{< note >}}
 
 In projects created before November 2017, the `.` in subdomains was replaced with a triple hyphen (`---`).
@@ -260,6 +374,7 @@ To switch to dotted-domains, [contact support](/learn/overview/get-support.md).
 Doing so may change the domain name that your production domain name should `CNAME` to.
 
 {{< /note >}}
+{{% /version/only %}}
 
 ## Route identifiers
 
@@ -276,7 +391,8 @@ This identifier is the same across all environments.
 Say you have two apps, `app1` and `app2`, that you want to serve at two subdomains, `site1` and `site2`.
 
 You can define your routes like this:
-
+{{< version/specific >}}
+<!-- Platform.sh configuration-->
 ```yaml {configFile="routes"}
 "https://site1.{default}/":
     type: upstream
@@ -287,7 +403,20 @@ You can define your routes like this:
     id: 'the-second'
     upstream: 'app2:http'
 ```
+<--->
+<!-- Upsun configuration-->
+```yaml {configFile="routes"}
+routes:
+    "https://site1.{default}/":
+        type: upstream
+        upstream: 'app1:http'
 
+    "https://site2.{default}/":
+        type: upstream
+        id: 'the-second'
+        upstream: 'app2:http'
+```
+{{< /version/specific >}}
 To see the generated routes on your `feature` environment, run:
 
 ```bash
@@ -298,7 +427,7 @@ The result is something like this:
 
 ```json
 {
-    "https://site1.feature-t6dnbai-abcdef1234567.us-2.platformsh.site/": {
+    "https://site1.feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/": {
         "primary": true,
         "id": null,
         "attributes": {},
@@ -306,7 +435,7 @@ The result is something like this:
         "upstream": "app1",
         "original_url": "https://site1.{default}/"
     },
-    "https://site2.feature-t6dnbai-abcdef1234567.us-2.platformsh.site/": {
+    "https://site2.feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/": {
         "primary": null,
         "id": "the-second",
         "attributes": {},
@@ -314,16 +443,16 @@ The result is something like this:
         "upstream": "app2",
         "original_url": "https://site2.{default}/"
     },
-    "http://site1.feature-t6dnbai-abcdef1234567.us-2.platformsh.site/": {
-        "to": "https://site1.feature-t6dnbai-abcdef1234567.us-2.platformsh.site/",
+    "http://site1.feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/": {
+        "to": "https://site1.feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/",
         "original_url": "http://site1.{default}/",
         "type": "redirect",
         "primary": null,
         "id": null,
         "attributes": {}
     },
-    "http://site2.feature-t6dnbai-abcdef1234567.us-2.platformsh.site/": {
-        "to": "https://site2.feature-t6dnbai-abcdef1234567.us-2.platformsh.site/",
+    "http://site2.feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/": {
+        "to": "https://site2.feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/",
         "original_url": "http://site2.{default}/",
         "type": "redirect",
         "primary": null,
@@ -343,7 +472,8 @@ Route `attributes` are arbitrary key-value pairs attached to a route.
 This metadata has no impact on {{< vendor/name >}}, but is available in the `PLATFORM_ROUTES` environment variable.
 
 So you can define a route like this:
-
+{{< version/specific >}}
+<!-- Platform.sh configuration-->
 ```yaml {configFile="routes"}
 "http://{default}/":
     type: upstream
@@ -351,11 +481,22 @@ So you can define a route like this:
     attributes:
         "foo": "bar"
 ```
+<--->
+<!-- Upsun configuration-->
+```yaml {configFile="routes"}
+routes:
+    "http://{default}/":
+        type: upstream
+        upstream: "app:http"
+        attributes:
+            "foo": "bar"
+```
+{{< /version/specific >}}
 
 The attributes appear in the routes data like so:
 
 ```json
-"https://feature-t6dnbai-abcdef1234567.us-2.platformsh.site/": {
+"https://feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/": {
     "primary": true,
     "id": null,
     "attributes": {
@@ -439,38 +580,56 @@ To use the WebSocket protocol on a route, `cache` must be disabled because WebSo
 which is a requirement for the router caching.
 
 1. Define a route that serves WebSocket:
-
-   ```yaml {configFile="routes"}
-   "https://{default}/ws":
-       type: upstream
-       upstream: "app:http"
-       cache:
-           enabled: false
+{{< version/specific >}}
+<!-- Platform.sh configuration-->
+```yaml {configFile="routes"}
+    "https://{default}/ws":
+        type: upstream
+        upstream: "app:http"
+        cache:
+            enabled: false
 
     # Below HTTP config may not be necessary for every Websocket client.
     "https://{default}/ws":
-       type: upstream
-       upstream: "app:http"
-       cache:
-           enabled: false   
-
+        type: upstream
+        upstream: "app:http"
+        cache:
+            enabled: false
    ```
+<--->
+<!-- Upsun configuration-->
+```yaml {configFile="routes"}
+routes:
+    "https://{default}/ws":
+        type: upstream
+        upstream: "app:http"
+        cache:
+            enabled: false
+
+    # Below HTTP config may not be necessary for every Websocket client.
+    "https://{default}/ws":
+        type: upstream
+        upstream: "app:http"
+        cache:
+            enabled: false   
+   ```
+{{< /version/specific >}}
 
 2. [Disable request buffering](../create-apps/app-reference.md#locations) in your app configuration.
 
-   ```yaml {configFile="app"}
-   web:
-     commands:
-       start: /app/.linuxbrew/bin/websocketd --port=$PORT ./wsmanager.sh
-     upstream:
-       socket_family: tcp
-       protocol: http
-     locations:
-       '/':
-         passthru: true
-         request_buffering:
-           enabled: false
-    ```
+```yaml {configFile="app"}
+web:
+    commands:
+        start: /app/.linuxbrew/bin/websocketd --port=$PORT ./wsmanager.sh
+    upstream:
+        socket_family: tcp
+        protocol: http
+    locations:
+        '/':
+            passthru: true
+            request_buffering:
+                enabled: false
+```
 
 ## `.htaccess` files
 
