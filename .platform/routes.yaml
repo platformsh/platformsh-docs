@@ -276,10 +276,83 @@ https://docs.upsun.com/:
     enabled: false
   redirects:
     paths:
+      # Console tooltips 
       "/anchors/resources/configuration.html": { "to": "/administration/pricing.html", "code": 301, "prefix": false }
       "/anchors/scaling/down.html": { "to": "/administration/pricing.html", "code": 301, "prefix": false }
       "/anchors/organizations/admin.html": { "to": "/administration/organizations.html", "code": 301, "prefix": false }
       "/anchors/resources/green.html": { "to": "/administration/pricing.html", "code": 301, "prefix": false }
+      # Console docs links
+      "/anchors/observability/logs/forward-logs.html": { "to": "/increase-observability/logs/access-logs.html", "code": 301, "prefix": false }
+      "/anchors/routes.html": { "to": "/define-routes.html", "code": 301, "prefix": false }
+      "/anchors/admin/users/teams.html": { "to": "/administration/users.html", "code": 301, "prefix": false }
+      "/anchors/access.html": { "to": "/administration/web/configure-project.html#access", "code": 301, "prefix": false }
+      "/anchors/admin/backups.html": { "to": "/environments/backup.html#backup-schedule", "code": 301, "prefix": false }
+      "/anchors/environments/paused.html": { "to": "/environments.html#paused-environments", "code": 301, "prefix": false }
+      "/anchors/environments/active.html": { "to": "/environments.html#environment-status", "code": 301, "prefix": false }
+
+
+  # "links.documentation.backups_schedule": "https://docs.platform.sh/security/data-retention.html#grid-backups",
+  # "links.documentation.container_configuration": "https://docs.platform.sh/configuration/app-containers.html",
+  # "links.documentation.CLI_API_token": "https://docs.platform.sh/development/cli/api-tokens.html",
+  # "links.documentation.availability_incident_handling_procedure": "https://docs.platform.sh/dedicated/overview/monitoring.html#availability-incident-handling-procedure",
+  # "links.documentation.getting_started_CLI": "https://docs.platform.sh/gettingstarted/cli.html",
+  # "links.documentation.CLI": "https://docs.platform.sh/development/cli.html#cli-command-line-interface",
+  # "links.documentation.app.variables": "https://docs.platform.sh/configuration/app/variables.html#variables",
+  # "links.documentation.add_ssh_keys":"https://docs.platform.sh/development/ssh/ssh-keys.html#add-ssh-keys",
+  # "links.documentation.create_new_project": "https://docs.platform.sh/gettingstarted/own-code/create-project.html#create-a-new-project",
+  # "links.documentation.deploy_key": "https://docs.platform.sh/administration/web/configure-project.html#deploy-key",
+  # "links.documentation.dedicated_cluster": "https://docs.platform.sh/dedicated/overview.html",
+  # "links.documentation.dns": "https://docs.platform.sh/golive/steps/dns.html",
+  # "links.documentation.download_code": "https://docs.platform.sh/gettingstarted/local-development/download-code.html",
+  # "links.documentation.domain": "https://docs.platform.sh/domains/steps.html",
+  # "links.documentation.subdomain": "https://docs.platform.sh/domains/steps/subdomains.html",
+  # "links.documentation.own_code_project_configuration": "https://docs.platform.sh/gettingstarted/own-code/project-configuration.html",
+  # "links.documentation.getting_started": "https://docs.platform.sh/gettingstarted.html",
+  # "links.documentation.inactive_environment": "https://docs.platform.sh/GLOSSARY.html#inactive-environment",
+  # "links.documentation.paused_crons": "https://docs.platform.sh/configuration/app/cron.html#paused-crons",
+  # "links.documentation.going_live": "https://docs.platform.sh/environments/search-engine-visibility.html",
+  # "links.documentation.mysql_import_data": "https://docs.platform.sh/configuration/services/mysql.html#importing-data",
+  # "links.documentation.postgres_import_data": "https://docs.platform.sh/configuration/services/postgresql.html#importing-data",
+  # "links.documentation.integrations": "https://docs.platform.sh/integrations/overview.html",
+  # "links.documentation.migrating_tutorial": "https://docs.platform.sh/tutorials/migrating.html",
+  # "links.documentation.set_domain": "https://docs.platform.sh/gettingstarted/next-steps/going-live/set-domain.html",
+  # "links.documentation.pricing": "https://docs.platform.sh/overview/pricing.html",
+  # "links.documentation.routes": "https://docs.platform.sh/configuration/routes.html",
+  # "links.documentation.routes_SSI": "https://docs.platform.sh/configuration/routes/ssi.html",
+  # "links.documentation.services": "https://docs.platform.sh/configuration/services.html",
+  # "links.documentation.SSH_keys": "https://docs.platform.sh/development/ssh/ssh-keys.html",
+  # "links.documentation.variables": "https://docs.platform.sh/development/variables.html",
+  # "links.documentation.variables.run_and_build_time": "https://docs.platform.sh/development/variables.html?#variables-available-during-builds-and-at-runtime",
+  # "links.documentation.yaml_configuration": "https://docs.platform.sh/configuration/yaml.html",
+  # "links.documentation.app.storage_mounts": "https://docs.platform.sh/configuration/app/storage.html#mounts",
+  # "links.documentation.app": "https://docs.platform.sh/configuration/app.html",
+  # "links.documentation.backups": "https://docs.platform.sh/security/backups.html",
+  # "links.documentation.users": "https://docs.platform.sh/administration/users.html",
+  # "links.documentation.WCAG": "https://platform.sh/wcag/",
+  # "links.documentation.metric": "https://docs.platform.sh/increase-observability/metrics.html",
+  # "links.documentation.metrics": "https://docs.platform.sh/increase-observability/metrics.html",
+  # "links.documentation.metrics.grid": "https://docs.platform.sh/increase-observability/metrics/grid.html",
+  # "links.documentation.metrics.dedicated": "https://docs.platform.sh/increase-observability/metrics/dedicated.html",
+  # "links.documentation.metrics.dedication": "https://docs.platform.sh/increase-observability/metrics/dedicated-generation-3.html",
+  # "links.documentation.integrations.activity": "https://docs.platform.sh/integrations/activity.html",
+  # "links.documentation.integrations.activity_scripts": "https://docs.platform.sh/integrations/activity.html#configuring-scripts",
+  # "links.documentation.integrations.source": "https://docs.platform.sh/integrations/source.html",
+  # "links.documentation.app.timezone": "https://docs.platform.sh/configuration/app/timezone.html",
+  # "links.documentation.organizations": "https://docs.platform.sh/administration/organizations.html#manage-organizations-with-the-cli",
+  # "links.documentation.redeploy": "https://docs.platform.sh/development/troubleshoot.html#force-a-redeploy",
+  # "links.documentation.SSH": "https://docs.platform.sh/development/ssh.html#authenticate-with-ssh-keys",
+  # "links.documentation.workers": "https://docs.platform.sh/configuration/app/workers.html",
+  # "links.documentation.source_operations": "https://docs.platform.sh/configuration/app/source-operations.html",
+  # "links.documentation.runtime_operations": "https://docs.platform.sh/create-apps/runtime-operations.html",
+  # "links.documentation.live_backups": "https://docs.platform.sh/administration/backup-and-restore.html#live-backups",
+  # "links.documentation.automated_updates": "https://docs.platform.sh/create-apps/source-operations.html",
+  # "links.documentation.trustcenter": "https://platform.sh/trust-center/",
+  # "links.documentation.configure_project.certificates": "https://docs.platform.sh/administration/web/configure-project.html#certificates",
+  # "links.documentation.environments.default_environment": "https://docs.platform.sh/environments/default-environment.html",
+  # "links.documentation.organizations.manage-your-organization-users": "https://docs.platform.sh/administration/organizations.",
+  # "links.documentation.flexible_resources": "https://docs.platform.sh/create-apps/flexible-resources.html",
+  # "links.documentation.environments.cancel_activity": "https://docs.platform.sh/environments/cancel-activity.html",
+  # "links.documentation.administration.servers": "https://docs.platform.sh/administration/servers.html",
 
 # "https://docs.deployfriday.net/":
 #     type: redirect
