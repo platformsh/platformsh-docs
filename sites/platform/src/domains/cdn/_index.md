@@ -85,7 +85,7 @@ routes:
 ```
 {{< /version/specific >}}
 
-{{< version/only "1" >}}
+{{< version/specific >}}
 ## Configure your CDN to support high SLA
 
 {{< premium-features/tiered "Enterprise and Elite" >}}
@@ -99,7 +99,9 @@ If you want {{< vendor/name >}} to limit checks to one or more of the following 
 - Europe
 - East Asia / Oceania
 
-{{< /version/only >}}
+<--->
+
+{{< /version/specific >}}
 
 ## Prevent direct access to your server
 
