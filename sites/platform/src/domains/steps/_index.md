@@ -9,10 +9,10 @@ Once your project is ready for production, replace the automatically generated d
 Note that adding a domain disables the automatically generated URL for your Production environment only.
 
 {{% version/specific %}}
-If you are an Enterprise or Elite customer and have a Grid or {{% names/dedicated-gen-3 %}} project, you can [customize the URLs for your non-production environments](/domains/steps/custom-non-production-domains).
+If you are an Enterprise or Elite customer and have a Grid or {{% names/dedicated-gen-3 %}} project, you can [customize the URLs for your non-production environments](/domains/steps/custom-domains-preview-environments).
 {{% names/dedicated-gen-2 %}} customers can also customize the domain for their Staging environment.
 <--->
-You can also [customize the URLs for your non-production environments](/domains/steps/custom-non-production-domains).
+You can also [customize the URLs for your preview environments](/domains/steps/custom-domains-preview-environments).
 {{% /version/specific %}}
 
 ## Before you begin
@@ -21,7 +21,7 @@ You need:
 
 - A project that's ready to go live
 - A domain with access to its settings with the registrar
-- A registrar that allows `CNAME` records or [one of the alternatives](./dns.md) on [apex domains](../../other/glossary.md#apex-domain)
+- A registrar that allows `CNAME` records or [one of the alternatives](./dns.md) on [apex domains](/glossary.md#apex-domain)
 - Optional: The [CLI](../../administration/cli/_index.md) installed locally
 - If you are on a development plan, you need to [upgrade your tier to a production plan](#1-change-your-plan-to-a-production-plan).
 
@@ -31,7 +31,7 @@ see how to [manage multiple subdomains](/domains/steps/subdomains.md) *before* y
 ## 1. Change your plan to a production plan
 
 If you are on a Development plan, you can't add a domain.
-You need to upgrade your subscription to a [production plan](../../other/glossary.md#production-plan).
+You need to upgrade your subscription to a [production plan](/glossary.md#production-plan).
 
 To upgrade your plan tier, you must be an organization owner or have the [manage plans permission](../../administration/users.md#organization-permissions).
 

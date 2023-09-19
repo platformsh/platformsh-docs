@@ -129,7 +129,7 @@ Typical causes and potential solutions include:
 
 ## Site outage
 
-If you can't access some part of your project, whether it's the live site, development environment, or Console,
+If you can't access some part of your project, whether it's the live site, preview environment, or Console,
 check the [{{< vendor/name >}} status page](https://status.platform.sh/).
 There you can see planned maintenance and subscribe to updates for any potential outages.
 
@@ -137,7 +137,7 @@ If the status is operational, [contact support](/learn/overview/get-support.md).
 
 ## Command not found
 
-When you've added a command line tool (such as [Drush](../other/glossary.md#drush)),
+When you've added a command line tool (such as [Drush](/glossary.md#drush)),
 you might encounter an error like the following:
 
 ```bash

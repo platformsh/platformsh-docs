@@ -56,7 +56,7 @@ A complete example is included at the end of this section.
 
 2. Setup environment variables.
 
-   Rails runs by default on a development environment.
+   Rails runs by default on a preview environment.
    You can change the Rails/Bundler via those environment variables,
    some of which are defaults on {{< vendor/name >}}.
 
