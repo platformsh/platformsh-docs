@@ -2,25 +2,43 @@
     Note: this will only replace the endpoint and service type for demonstration purposes.
     To use this partial, pass the image data as the context (Ex: partial "examples/servicedefn" $data)
 -->
-{{ $l1 := "<SERVICE_NAME>:" }}
-{{ $l2 := printf "    type: %s:<VERSION>" .type }}
-{{ $l3 := ""}}
-{{ if .disk }}
-  {{ if .min_disk_size }}
-    {{ $l3 = printf "\n    disk: %s" ( string .min_disk_size ) }}
-  {{ else }}
-    {{ $l3 = "\n    disk: 256"}}
-  {{ end }}
-{{ end }}
-{{ $l4 := "" }}
-{{ with .service_relationships }}
-  {{ $l4 = "\n    relationships:\n        <RELATIONSHIP_NAME>: '<APP_NAME>:http'" }}
-{{ end }}
-{{ $l5 := "" }}
-{{ with .configuration }}
-  {{ $l5 = printf "\n    configuration:\n        %s" . }}
-{{ end }}
+{{- $apiIndent := "" -}}
+{{- $versionPrefix := "" -}}
+{{- $l1 := "" -}}
+{{- $version := "<VERSION>" -}}
+{{- if ( .latest ) -}}
+  {{- $version = partial "examples/latest" (dict "data" .data ) -}}
+{{- end -}}
+{{- $appName := "<APP_NAME>" -}}
+{{- if .appName -}}
+    {{- $appName = .appName -}}
+{{- end -}}
+{{- $relName := "<RELATIONSHIP_NAME>" -}}
+{{- if .relName -}}
+  {{- $relName = .relName -}}
+{{- end -}}
 
-```yaml {configFile="services"}
+{{- $l2 := printf "%s    type: %s:%s" $apiIndent (index .data "type") $version -}}
+{{- $l3 := "" -}}
+{{- if (index .data "disk") -}}
+  {{- if (index .data "min_disk_size") -}}
+    {{- $l3 = printf "\n%s    disk: %s" $apiIndent ( string (index .data "min_disk_size")) -}}
+  {{- else -}}
+    {{- $l3 = printf "\n%s    disk: 256" $apiIndent -}}
+  {{- end -}}
+{{- end -}}
+{{- $l4 := "" -}}
+{{- with (index .data "service_relationships") -}}
+  {{- $l4 = printf "\n%s    relationships:\n%s        %s: '%s:http'" $apiIndent $apiIndent $relName $appName }}
+{{- end -}}
+{{- $l5 := "" }} 
+
+{{- with (index .data "configuration") -}}
+  
+  {{- range split . "\n" -}}
+      {{- $l5 = printf "%s\n%s%s" $l5 $apiIndent . -}}
+  {{- end -}}
+  
+{{- end -}}
+
 {{ printf "%s\n%s%s%s%s" $l1 $l2 $l3 $l4 $l5 | safeHTML }}
-```

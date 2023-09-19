@@ -53,7 +53,6 @@ The latest compatible minor version and patches are applied automatically.
 
 You can see the latest minor and patch versions of OpenSearch available from the [`2.x`](https://opensearch.org/lines/2x.html) and [`1.x`](https://opensearch.org/lines/1x.html) release lines.
 
-
 ## Deprecated versions
 
 The following versions are still available in your projects,
@@ -101,7 +100,7 @@ switch to [a supported version](#supported-versions).
     "service": "opensearch12",
     "fragment": null,
     "ip": "169.254.99.100",
-    "hostname": "2e36wpnescmc5ffcddczsnhnai.opensearch12.service._.eu-3.platformsh.site",
+    "hostname": "2e36wpnescmc5ffcddczsnhnai.opensearch12.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "port": 9200,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "opensearch.internal",
@@ -109,7 +108,7 @@ switch to [a supported version](#supported-versions).
     "path": null,
     "query": [],
     "password": "ChangeMe",
-    "type": "opensearch:1.2",
+    "type": "opensearch:{{% latest "opensearch" %}}",
     "public": false,
     "host_mapped": false
 }
@@ -118,6 +117,43 @@ switch to [a supported version](#supported-versions).
 ## Usage example
 
 {{% endpoint-description type="opensearch" noApp=true /%}}
+
+### Use in app
+
+To use the configured service in your app, add a configuration file similar to the following to your project.
+
+<!-- Version 1 & 2: .environment shortcode + context -->
+
+```yaml {configFile="app"}
+{{% snippet name="myapp" config="app" root="myapp" %}}
+# Relationships enable an app container's access to a service.
+relationships:
+    searchopen: "searchopen:opensearch"
+{{% /snippet %}}
+{{% snippet name="searchopen" config="service" placeholder="true" %}}
+    type: opensearch:{{% latest "opensearch" %}}
+    disk: 256
+{{% /snippet %}}
+```
+
+{{% v2connect2app serviceName="searchopen" relationship="searchopen" var="OPENSEARCH_HOSTS" %}}
+
+```bash {location="myapp/.environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for individual credentials.
+export OS_SCHEME=$(echo $RELATIONSHIPS_JSON | jq -r ".searchopen[0].scheme")
+export OS_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".searchopen[0].host")
+export OS_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".searchopen[0].port")
+
+# Surface more common OpenSearch connection string variables for use in app.
+export OPENSEARCH_USERNAME=$(echo $RELATIONSHIPS_JSON | jq -r ".searchopen[0].username")
+export OPENSEARCH_PASSWORD=$(echo $RELATIONSHIPS_JSON  | jq -r ".searchopen[0].password")
+export OPENSEARCH_HOSTS=[\"$OS_SCHEME://$OS_HOST:$OS_PORT\"]
+```
+
+{{% /v2connect2app %}}
 
 {{< note >}}
 
@@ -136,12 +172,13 @@ You may optionally enable HTTP Basic authentication.
 To do so, include the following in your `{{< vendor/configfile "services" >}}` configuration:
 
 ```yaml {configFile="services"}
-search:
-    type: opensearch:2
+{{% snippet name="search" config="service" %}}
+    type: opensearch:{{% latest "opensearch" %}}
     disk: 2048
     configuration:
         authentication:
             enabled: true
+{{% /snippet %}}
 ```
 
 That enables mandatory HTTP Basic auth on all requests.
@@ -152,13 +189,18 @@ in the `username` and `password` properties.
 This functionality is generally not required if OpenSearch isn't exposed on its own public HTTP route.
 However, certain applications may require it, or it allows you to safely expose OpenSearch directly to the web.
 To do so, add a route to `{{< vendor/configfile "routes" >}}` that has `search:opensearch` as its upstream
-(where `search` is whatever you named the service in `{{< vendor/configfile "services" >}}`).
+(where `search` is whatever you named the service).
 For example:
 
 ```yaml {configFile="routes"}
-"https://os.{default}":
-    type: upstream
-    upstream: search:opensearch
+{{% snippet name="search:opensearch" config="route" subDom="os" /%}}
+{{% snippet name="search" config="service" placeholder="true" %}}
+    type: opensearch:{{% latest "opensearch" %}}
+    disk: 2048
+    configuration:
+        authentication:
+            enabled: true
+{{% /snippet %}}
 ```
 
 ## Plugins
@@ -167,13 +209,14 @@ OpenSearch offers a number of plugins.
 To enable them, list them under the `configuration.plugins` key in your `{{< vendor/configfile "services" >}}` file, like so:
 
 ```yaml {configFile="services"}
-search:
-    type: "opensearch:2"
+{{% snippet name="search" config="service" %}}
+    type: "opensearch:{{% latest "opensearch" %}}"
     disk: 1024
     configuration:
         plugins:
             - analysis-icu
-            - mapper-size
+            - lang-python
+{{% /snippet %}}
 ```
 
 In this example you'd have the ICU analysis plugin and the size mapper plugin.
@@ -184,7 +227,7 @@ If there is a publicly available plugin you need that isn't listed here, [contac
 
 This is the complete list of plugins that can be enabled:
 
-| Plugin                  | Description                                                                               | 1.2 | 2 |
+| Plugin                  | Description                                                                               | 1   | 2 |
 |-------------------------|-------------------------------------------------------------------------------------------|-----|---|
 | `analysis-icu`          | Support ICU Unicode text analysis                                                         | *   | * |
 | `analysis-kuromoji`     | Japanese language support                                                                 | *   | * |
@@ -220,8 +263,8 @@ There are two ways to do so.
 
 ### Destructive
 
-In your `{{< vendor/configfile "services" >}}` file, change the version *and* name of your OpenSearch service.
-Then update the name in the `{{< vendor/configfile "app" >}}` relationships block.
+In your `{{< vendor/configfile "services" >}}` file, change the version *and* name of your Opensearch service.
+Be sure to also update the reference to the now changed service name in it's corresponding application's `relationship` block.
 
 When you push that to {{< vendor/name >}}, the old service is deleted and a new one with the new name is created with no data.
 You can then have your application reindex data as appropriate.

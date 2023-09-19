@@ -573,11 +573,12 @@ opensearch:
   runtime: false
   type: opensearch
   versions:
-    deprecated: []
-    supported:
-      - '2'
+    deprecated:
       - '1.2'
       - '1.1'
+    supported:
+      - '2'
+      - '1'
     legacy:
       - '1.1'
   versions-dedicated-gen-2:
@@ -950,10 +951,10 @@ varnish:
     url: /add-services/varnish.html
   endpoint: http+stats
   min_disk_size: null
-  configuration: |-
-    vcl: !include
-                type: string
-                path: config.vcl
+  configuration: |2-
+        vcl: !include
+            type: string
+            path: config.vcl
   service_relationships: 'application: ''app:http'''
   name: Varnish
   runtime: false
@@ -976,12 +977,12 @@ vault-kms:
     url: /add-services/vault.html
   endpoint: manage_keys
   min_disk_size: 512
-  configuration: |-
-    endpoints:
-                <ENDPOINT_ID>:
-                    - policy: <POLICY>
-                      key: "<KEY_NAME>"
-                      type: <ENDPOINT_TYPE>
+  configuration: |2-
+        endpoints:
+            <ENDPOINT_ID>:
+                - policy: <POLICY>
+                  key: <KEY_NAME>
+                  type: <ENDPOINT_TYPE>
   name: Vault KMS
   repo_name: vault-kms
   runtime: false

@@ -35,7 +35,7 @@ To properly configure your Fastly CDN,
 see the Fastly official documentation on [how to get started](https://docs.fastly.com/en/guides/getting-started#_basics).
 Then set up a [custom domain](../steps/_index.md).
 To get the [DNS challenge to succeed](../troubleshoot.md#ownership-verification),
-have your CDN point to your [project's target URL](../../domains/steps/_index.md#2-get-the-target-for-your-project).
+have your CDN point to your [project's target URL](../../domains/steps/_index.md#1-get-the-target-for-your-project).
 
 ## 3. Handle apex domains
 
