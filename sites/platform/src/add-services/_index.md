@@ -16,7 +16,7 @@ and they're backed up together with the rest of your project.
 Your project defines the services configuration in a file named `{{< vendor/configfile "services" >}}`.
 <--->
 <!-- API Version 2 -->
-Your project defines the services configuration from a top-level key called `services`, which is placed in a unified configuration file like `{{< vendor/configfile "services" >}}`
+Your project defines the services configuration from a top-level key called `services`, which is placed in a unified configuration file like `{{< vendor/configfile "services" >}}`.
 {{% /version/specific %}}
 
 If you don't need any services (such as for a static website), you don't need to include this configuration. Read on to see how to add services.
@@ -63,7 +63,7 @@ The top-level key is a custom service name ({{<variable "SERVICE_NAME" >}}; in t
 <!-- API Version 2 -->
 This YAML file contains a dictionary defining all of the services you want to use.
 The top-level key `services` defines an object of all of the services to be provisioned for the project. 
-Below that, next are custom service names ({{<variable "SERVICE_NAME" >}}; in the example, `database1` and `database2`), which you use to identify services in step 2.
+Below that, come custom service names ({{<variable "SERVICE_NAME" >}}; in the example, `database1` and `database2`), which you use to identify services in step 2.
 {{% /version/specific %}}
 You can give it any name you want with lowercase alphanumeric characters, hyphens, and underscores.
 
@@ -117,7 +117,7 @@ The relationship follows this pattern:
 
 # Other options...
 
-# Relationships enable an app container's to a service.
+# Relationships enable an app container's access to a service.
 relationships:
     {{< variable "RELATIONSHIP_NAME" >}}: "{{< variable "SERVICE_NAME" >}}:{{< variable "ENDPOINT" >}}"
 {{% /snippet %}}
