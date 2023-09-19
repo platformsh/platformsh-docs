@@ -289,15 +289,16 @@ https://docs.upsun.com/:
       "/anchors/admin/backups.html": { "to": "/environments/backup.html#backup-schedule", "code": 301, "prefix": false }
       "/anchors/environments/paused.html": { "to": "/environments.html#paused-environments", "code": 301, "prefix": false }
       "/anchors/environments/active.html": { "to": "/environments.html#environment-status", "code": 301, "prefix": false }
+      "/anchors/backups/schedule.html": { "to": "/security/data-retention.html#grid-backups", "code": 301, "prefix": false }
+      "/anchors/config/apps.html": { "to": "/create-apps/app-reference.html", "code": 301, "prefix": false }
+      "/anchors/cli/tokens.html": { "to": "/development/cli/api-tokens.html", "code": 301, "prefix": false }
+      # Dedicated not relevant on Upsun at MVP
+      # "/anchors/dedicated/incident-handling.html": { "to": "/dedicated/overview/monitoring.html#availability-incident-handling-procedure", "code": 301, "prefix": false }
+      "/anchors/cli.html": { "to": "/administration/cli.html", "code": 301, "prefix": false }
+      # Repeated again for the below.
+      # "links.documentation.CLI": "https://docs.platform.sh/development/cli.html#cli-command-line-interface",
+      "/anchors/variables/app.html": { "to": "/administration/cli.html", "code": 301, "prefix": false }
 
-
-  # "links.documentation.backups_schedule": "https://docs.platform.sh/security/data-retention.html#grid-backups",
-  # "links.documentation.container_configuration": "https://docs.platform.sh/configuration/app-containers.html",
-  # "links.documentation.CLI_API_token": "https://docs.platform.sh/development/cli/api-tokens.html",
-  # "links.documentation.availability_incident_handling_procedure": "https://docs.platform.sh/dedicated/overview/monitoring.html#availability-incident-handling-procedure",
-  # "links.documentation.getting_started_CLI": "https://docs.platform.sh/gettingstarted/cli.html",
-  # "links.documentation.CLI": "https://docs.platform.sh/development/cli.html#cli-command-line-interface",
-  # "links.documentation.app.variables": "https://docs.platform.sh/configuration/app/variables.html#variables",
   # "links.documentation.add_ssh_keys":"https://docs.platform.sh/development/ssh/ssh-keys.html#add-ssh-keys",
   # "links.documentation.create_new_project": "https://docs.platform.sh/gettingstarted/own-code/create-project.html#create-a-new-project",
   # "links.documentation.deploy_key": "https://docs.platform.sh/administration/web/configure-project.html#deploy-key",
@@ -308,6 +309,7 @@ https://docs.upsun.com/:
   # "links.documentation.subdomain": "https://docs.platform.sh/domains/steps/subdomains.html",
   # "links.documentation.own_code_project_configuration": "https://docs.platform.sh/gettingstarted/own-code/project-configuration.html",
   # "links.documentation.getting_started": "https://docs.platform.sh/gettingstarted.html",
+
   # "links.documentation.inactive_environment": "https://docs.platform.sh/GLOSSARY.html#inactive-environment",
   # "links.documentation.paused_crons": "https://docs.platform.sh/configuration/app/cron.html#paused-crons",
   # "links.documentation.going_live": "https://docs.platform.sh/environments/search-engine-visibility.html",
@@ -319,6 +321,7 @@ https://docs.upsun.com/:
   # "links.documentation.pricing": "https://docs.platform.sh/overview/pricing.html",
   # "links.documentation.routes": "https://docs.platform.sh/configuration/routes.html",
   # "links.documentation.routes_SSI": "https://docs.platform.sh/configuration/routes/ssi.html",
+
   # "links.documentation.services": "https://docs.platform.sh/configuration/services.html",
   # "links.documentation.SSH_keys": "https://docs.platform.sh/development/ssh/ssh-keys.html",
   # "links.documentation.variables": "https://docs.platform.sh/development/variables.html",
@@ -330,6 +333,7 @@ https://docs.upsun.com/:
   # "links.documentation.users": "https://docs.platform.sh/administration/users.html",
   # "links.documentation.WCAG": "https://platform.sh/wcag/",
   # "links.documentation.metric": "https://docs.platform.sh/increase-observability/metrics.html",
+
   # "links.documentation.metrics": "https://docs.platform.sh/increase-observability/metrics.html",
   # "links.documentation.metrics.grid": "https://docs.platform.sh/increase-observability/metrics/grid.html",
   # "links.documentation.metrics.dedicated": "https://docs.platform.sh/increase-observability/metrics/dedicated.html",
@@ -341,6 +345,7 @@ https://docs.upsun.com/:
   # "links.documentation.organizations": "https://docs.platform.sh/administration/organizations.html#manage-organizations-with-the-cli",
   # "links.documentation.redeploy": "https://docs.platform.sh/development/troubleshoot.html#force-a-redeploy",
   # "links.documentation.SSH": "https://docs.platform.sh/development/ssh.html#authenticate-with-ssh-keys",
+
   # "links.documentation.workers": "https://docs.platform.sh/configuration/app/workers.html",
   # "links.documentation.source_operations": "https://docs.platform.sh/configuration/app/source-operations.html",
   # "links.documentation.runtime_operations": "https://docs.platform.sh/create-apps/runtime-operations.html",
