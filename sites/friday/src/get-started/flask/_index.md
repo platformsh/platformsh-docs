@@ -8,18 +8,18 @@ description: This guide provides instructions for deploying, and working with Fl
 If you're more of a just-give-me-the-steps type of person, you can jump straight to the
 [TL;DR step-by-step](#tldr-step-by-step) included at the end of this guide.
 
-This guide provides instructions for deploying, and working with [Flask](https://flask.palletsprojects.com/) on {{% vendor/name %}}.
-If you are unfamiliar with Flask, it is a lightweight and popular web framework for building web applications using
-Python. It is often referred to as a "micro" framework because it provides the essential components for building web
-applications but leaves many decisions and extensions up to the developer.
+This guide provides instructions for deploying, and working with [Flask](https://flask.palletsprojects.com/) on
+{{% vendor/name %}}. If you are unfamiliar with Flask, it is a lightweight and popular web framework for building web
+applications using Python. It is often referred to as a "micro" framework because it provides the essential components
+for building web applications but leaves many decisions and extensions up to the developer.
 
 ## Setting up the application and repository
 For the purposes of this guide, we'll start by generating a
 [Flask package project](https://github.com/cookiecutter-flask/cookiecutter-flask) from
 [Cookiecutter](https://github.com/cookiecutter/cookiecutter). From there we'll walk through the steps needed to deploy
-the project on {{% vendor/name %}}. With all things in tech, there are many ways to accomplish the same goal; the correct way will
-depend on your specific needs and goals, and the makeup of your project. The following guide is simply one way to
-accomplish deploying a flask application on {{% vendor/name %}}.
+the project on {{% vendor/name %}}. With all things in tech, there are many ways to accomplish the same goal; the
+correct way will depend on your specific needs and goals, and the makeup of your project. The following guide is simply
+one way to accomplish deploying a flask application on {{% vendor/name %}}.
 
 From a terminal/command line prompt, first install Cookiecutter:
 ```shell
@@ -72,9 +72,10 @@ $ git branch -m main
 ## {{% vendor/name %}} configuration files
 Now that we have the repository initialized, and our template generated, we're ready to prepare it for use on
 {{% vendor/name %}}. Before attempting the next command, make sure you have the
-[{{% vendor/name %}} CLI tool installed](https://docs.platform.sh/administration/cli.html) and working, and
-have [authenticated the cli tool](https://docs.platform.sh/administration/cli.html#2-authenticate) with your {{% vendor/name %}}
-account. We're now ready to have the {{% vendor/name %}} cli tool generate the configuration files we'll need to deploy on {{% vendor/name %}}.
+[{{% vendor/name %}} CLI tool installed](/administration/cli/_index.md) and working, and
+have [authenticated the cli tool](/administration/cli/_index.md#2-authenticate) with your {{% vendor/name %}}
+account. We're now ready to have the {{% vendor/name %}} cli tool generate the configuration files we'll need to deploy
+on {{% vendor/name %}}.
 
 ```shell
 $ {{% vendor/cli %}} project:init
@@ -175,9 +176,9 @@ $ {{% vendor/cli %}} project:create
 The CLI tool will now walk you through the creation of a project asking you for your organization, the project's
 title, the region where you want the application housed, and the branch name (use the same one we set
 earlier). For now, allow the cli tool to set {{% vendor/name %}} as your repository's remote, and then select `Y` to
-allow the tool to create the project. The {{% vendor/name %}} bot will begin the generation of your {{% vendor/name %}} project and once
-done, will report back the details of your project including the project's ID, and URL to where you can
-manage the project from the {{% vendor/name %}} web console. Don't worry if you forget any of this information: you can
+allow the tool to create the project. The {{% vendor/name %}} bot will begin the generation of your {{% vendor/name %}}
+project and once done, will report back the details of your project including the project's ID, and URL to where you can
+manage the project from the {{% vendor/name %}} web console. Don't worry if you forget any of this information; you can
 retrieve it later with:
 ```shell
 $ {{% vendor/cli %}} project:info
@@ -188,11 +189,11 @@ And you can launch the web console for your project at any time by doing
 $ {{% vendor/cli %}} web
 ```
 
-Now that we have our {{% vendor/name %}} project created, our local project generated and associated with the {{% vendor/name %}} project,
-the only thing left to do is add configurations that are specific to the application. To start, we need to
-add an environment variable for `FLASK_APP` for all environments that points to our `autoapp.py` file. Open
-the file `{{< vendor/configfile "app" >}}` that the cli tool generated and locate the commented
-line that starts with
+Now that we have our {{% vendor/name %}} project created, our local project generated and associated with the
+{{% vendor/name %}} project, the only thing left to do is add configurations that are specific to the application. To
+start, we need to add an environment variable for `FLASK_APP` for all environments that points to our `autoapp.py` file.
+Open the file `{{< vendor/configfile "app" >}}` that the cli tool generated and locate the commented line that starts
+with:
 
 ```yaml
 # Variables to control the environment.
@@ -221,11 +222,11 @@ when it builds the application image. In the `{{< vendor/configfile "app" >}}` f
 ```
 
 Beneath that line will be a section for `build:`. The
-[build hook](https://docs.platform.sh/create-apps/hooks/hooks-comparison.html#build-hook) allows us to make changes to
+[build hook](/create-apps/hooks/hooks-comparison/_index.md#build-hook) allows us to make changes to
 the application before it is finalized and deployed. You should notice that when the cli tool generated the
 configuration file for us, it automatically added `pip install -r requirements.txt` for us! This same section is where
-we'll also instruct {{% vendor/name %}} to install our npm packages. But before that, I usually like to upgrade pip before
-I run `pip install` so I'm going to add a new line above that and add in `pip install --upgrade pip`. Then
+we'll also instruct {{% vendor/name %}} to install our npm packages. But before that, I usually like to upgrade pip
+before I run `pip install` so I'm going to add a new line above that and add in `pip install --upgrade pip`. Then
 I'll add another line after the initial `pip install` and add `npm install`:
 
 ```yaml {configFile="app"}
@@ -239,7 +240,7 @@ I'll add another line after the initial `pip install` and add `npm install`:
 ```
 
 We also need to inform {{% vendor/name %}} what should occur when our application is deployed. The
-[deploy hook](https://docs.platform.sh/create-apps/hooks/hooks-comparison.html#deploy-hook) is
+[deploy hook](/create-apps/hooks/hooks-comparison/_index.md#deploy-hook) is
 similar to the build hook but runs after the application image has been built. At this stage the
 application image is read-only, <!-- might not be true -->but our writable disk space has been mounted and
 is now accessible<!-- /end might not be true -->. Find the `deploy:` yaml key, add a new line after
@@ -251,8 +252,8 @@ is now accessible<!-- /end might not be true -->. Find the `deploy:` yaml key, a
         npm run build
 ```
 
-Next we need to configure how {{% vendor/name %}} will handle requests to this application image. In the `{{< vendor/configfile "app" >}}`
-file locate the line that starts with:
+Next we need to configure how {{% vendor/name %}} will handle requests to this application image. In the
+`{{< vendor/configfile "app" >}}` file locate the line that starts with:
 
 ```yaml {configFile="app"}
 # The web key configures the web server running in front of your app.
@@ -292,11 +293,12 @@ $ git commit -m "adds FLASK_APP env var, adds mount for static builds, build com
 ```
 
 {{< note >}}
-By default, the `{{% vendor/cli %}} project:init` command will set the language runtime to the latest possible version. If
-your project requires an older version, you will need to change it before pushing your code to {{% vendor/name %}}. To change
-the runtime version, locate the `type` key near the top of the `{{< vendor/configfile "app" >}}` file, and change it the desired
-version. A [complete list of supported versions of Python](https://docs.upsun.com/languages/python.html#supported-versions)
-is available in the documentation. Do not forget to add and commit your changes to git before pushing your code.
+By default, the `{{% vendor/cli %}} project:init` command will set the language runtime to the latest possible version.
+If your project requires an older version, you will need to change it before pushing your code to {{% vendor/name %}}.
+To change the runtime version, locate the `type` key near the top of the `{{< vendor/configfile "app" >}}` file, and
+change it the desired version. A
+[complete list of supported versions of Python](/languages/python/_index.md#supported-versions) is available in the
+documentation. Do not forget to add and commit your changes to git before pushing your code.
 {{< /note >}}
 
 ## Preparing the application for {{% vendor/name %}}
@@ -307,7 +309,7 @@ environmental variables in the deployed image. Since the information is dynamic,
 environment to environment, we don't want to commit those static values in a `.env` file. Instead, {{% vendor/name %}}
 supports a `.environment` file that is sourced in the application image, as well as your shell when you
 ssh into the application. For a list of all the variables that {{% vendor/name %}} generates, please refer to the
-[documentation on provided environmental variables](https://docs.platform.sh/development/variables/use-variables.html#use-provided-variables).
+[documentation on provided environmental variables](/development/variables/use-variables/_index.md#use-provided-variables).
 
 Open the `.environment` file that the cli tool generated earlier. Notice it has already created some
 environmental variables for you that point back to those variables that {{% vendor/name %}} will generate. We'll
@@ -366,8 +368,8 @@ export SEND_FILE_MAX_AGE_DEFAULT=$( [ "${PLATFORM_ENVIRONMENT_TYPE}" = "producti
 
 The next environmental variable we need to set is `SECRET_KEY`. It is used for securely signing the session
 cookie and can be used for any other security related needs by extensions or your application. It should
-be a long random string. Again, {{% vendor/name %}} provides us with something for exactly this purpose as an environmental
-variable: `PLATFORM_PROJECT_ENTROPY`.  Inside the `.environment` file, add the following line:
+be a long random string. Again, {{% vendor/name %}} provides us with something for exactly this purpose as an
+environmental variable: `PLATFORM_PROJECT_ENTROPY`.  Inside the `.environment` file, add the following line:
 
 ```shell
 export SECRET_KEY="${PLATFORM_PROJECT_ENTROPY}"
@@ -489,7 +491,7 @@ mount added:
 
 `source` indicates if this is a local storage mount or a service. `source_path` is the subdirectory within
 the mounted disk (the source) where the mount should point. For further information, please see the
-[documentation on mounts](https://docs.platform.sh/create-apps/app-reference.html#mounts).
+[documentation on mounts](/create-apps/app-reference/_index.md#mounts).
 
 Because we've now defined a mount, we'll need to inform {{% vendor/name %}} that we want to add persistent disk to our
 application container. In your terminal, let's define 1024MB of disk for our application container, where the format for
@@ -506,9 +508,9 @@ project.
 
 You may have noticed that we haven't done anything in regards to a database. This application uses
 [Flask-migrate](https://flask-migrate.readthedocs.io/en/latest/) and since this is a brand-new application, we'll
-need to set up the initial migrations, and commit them so we can then have them applied to our {{% vendor/name %}} db. However,
-because the migrate command needs access to the database, we'll need to set up a temporary local environment and give
-it a way to access the database service.
+need to set up the initial migrations, and commit them so we can then have them applied to our {{% vendor/name %}} db.
+However, because the migrate command needs access to the database, we'll need to set up a temporary local environment
+and give it a way to access the database service.
 
 Let's first set up a virtual environment to run our project inside of:
 ```shell
@@ -522,8 +524,9 @@ $ pip install -r requirements.txt
 ```
 
 Next, we're going to need to set up this local instance so it can communicate with our database service.
-When we did the push to {{% vendor/name %}} previously, it created and deployed our database service. The {{% vendor/name %}} CLI tool
-gives us a method to communicate to our application's services: [upsun tunnel](https://docs.platform.sh/development/ssh.html#use-a-direct-tunnel)
+When we did the push to {{% vendor/name %}} previously, it created and deployed our database service. The
+{{% vendor/name %}} CLI tool gives us a method to communicate to our application's services:
+[{{% vendor/cli %}} tunnel](/development/ssh/_index.md#use-a-direct-tunnel)
 
 ```shell
 $ {{% vendor/cli %}} tunnel:open -y
@@ -582,8 +585,8 @@ $ git commit -m "adds migrations"
 ```
 
 We now need to instruct {{% vendor/name %}} to run the Flask-migrate upgrade command when deploying so we know any
-migration changes are automatically applied. Re-open the `{{< vendor/configfile "app" >}}` and find the `deploy` hook where we
-added `npm run build`. On the next line, add `flask db upgrade`.
+migration changes are automatically applied. Re-open the `{{< vendor/configfile "app" >}}` and find the `deploy` hook
+where we added `npm run build`. On the next line, add `flask db upgrade`.
 
 ```yaml {configFile="app"}
       deploy: |
@@ -605,8 +608,8 @@ And finally, push everything up to our {{% vendor/name %}} environment!
 $ {{% vendor/cli %}} environment:push -y
 ```
 
-Congrats! You've now successfully deployed your Flask application to {{% vendor/name %}}! Take a moment to visit your site
-and test it out!
+Congrats! You've now successfully deployed your Flask application to {{% vendor/name %}}! Take a moment to visit your
+site and test it out!
 
 ## Local Development
 Now that we have our flask application working on {{% vendor/name %}} we'll need a local environment to be able to make
@@ -649,12 +652,12 @@ that creates copies of your database to run locally as well.
 
 ## Switching from the Flask server to an alternative Web Server
 While lightweight and easy to use, Flask’s built-in server is not suitable for production as it doesn’t
-scale well. {{% vendor/name %}} [supports several different web servers](https://docs.platform.sh/languages/python/server.html) for Python that you can use instead. The specific
-web server you choose will depend on your application and specific requirements. Let's look at how we can
-switch our project to use [gunicorn](https://gunicorn.org/) + PORT.
+scale well. {{% vendor/name %}} [supports several different web servers](/languages/python/server/_index.md) for Python
+that you can use instead. The specific web server you choose will depend on your application and specific requirements.
+Let's look at how we can switch our project to use [gunicorn](https://gunicorn.org/) + PORT.
 
-Reopen the `{{< vendor/configfile "app" >}}` file. Locate the `web:commands:start` section where in the previous section we
-added `flask run -p $PORT`. We now want to change it to `gunicorn -w 4 'autoapp:app'`
+Reopen the `{{< vendor/configfile "app" >}}` file. Locate the `web:commands:start` section where in the previous section
+we added `flask run -p $PORT`. We now want to change it to `gunicorn -w 4 'autoapp:app'`
 
 ```yaml {configFile="app"}
     web:
@@ -677,10 +680,6 @@ $ {{% vendor/cli %}} e:push -y
 Now that you have your Flask application up and running on {{% vendor/name %}}, we'll explore the different options you
 have for a more robust local development environment, adding a source control integration, and adding
 various services to your project. But for now, go forth and Deploy (even on Fridays)!
-
-
-
-
 
 
 ## TL;DR Step-by-Step
