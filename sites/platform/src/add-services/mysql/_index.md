@@ -327,26 +327,6 @@ Possible permissions:
 | Admin       | `admin`       | In addition to read-write permissions, can also create, drop, and alter tables; create views; and create and alter routines. |
 | Replication | `replication` | For [replicating databases](./mysql-replication.md). In addition to read-only permissions, can also lock tables. |
 
-You can also specify `schemas` for [multiple databases](#multiple-databases).
-If neither `schemas` nor `endpoints` is included, it's equivalent to the following default:
-
-```yaml {configFile="services"}
-{{% snippet name="db" config="service" %}}
-    type: mariadb:{{% latest "mariadb" %}}
-    disk: 2048
-    configuration:
-        schemas:
-            - main
-        endpoints:
-            mysql:
-                default_schema: main
-                privileges:
-                    main: admin
-{{% /snippet %}}
-```
-
-If either `schemas` or `endpoints` are defined, no default is applied and you have to specify the full configuration.
-
 ## Multiple databases
 
 With version `10.0` or later, you can define multiple databases.
