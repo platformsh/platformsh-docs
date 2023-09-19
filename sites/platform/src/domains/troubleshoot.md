@@ -19,8 +19,8 @@ host www.{{< variable "YOUR_DOMAIN" >}}
 If your domain is `example.com`, the response should be something like the following:
 
 ```text
-www.example.com is an alias for main-abcd123.abcdefgh1234567.eu.platformsh.site.
-main-abcd123.abcdefgh1234567.eu.platformsh.site has address 192.0.2.1
+www.example.com is an alias for main-abcd123.abcdefgh1234567.eu.{{< vendor/urlraw "hostname" >}}
+main-abcd123.abcdefgh1234567.eu.{{< vendor/urlraw "hostname" >}} has address 192.0.2.1
 ```
 
 If it isn't, try the following steps:

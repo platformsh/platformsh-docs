@@ -62,6 +62,8 @@ see your CDN provider's official documentation.
 When you use a CDN, the {{< vendor/name >}} router [HTTP caching](../../define-routes/cache.md) becomes redundant.
 To disable it, change your cache configuration for the routes behind a CDN to the following:
 
+{{< version/specific >}}
+<!-- Platform.sh -->
 ```yaml {configFile="routes"}
 "https://{default}/":
    type: upstream
@@ -70,6 +72,18 @@ To disable it, change your cache configuration for the routes behind a CDN to th
        # Disable the HTTP cache on this route. It's handled by the CDN instead.
        enabled: false
 ```
+<--->
+<!-- Upsun -->
+```yaml {configFile="routes"}
+routes:
+  "https://{default}/":
+     type: upstream
+     upstream: "app:http"
+     cache:
+         # Disable the HTTP cache on this route. It's handled by the CDN instead.
+         enabled: false
+```
+{{< /version/specific >}}
 
 {{< version/only "1" >}}
 ## Configure your CDN to support high SLA
@@ -148,7 +162,6 @@ To enable client-authenticated TLS, follow these steps:
                   type: string
                   path: cdn.crt
     ```
-
 The procedure can vary depending on your CDN.
 Contact your CDN provider for specific assistance.
 

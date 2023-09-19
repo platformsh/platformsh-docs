@@ -23,12 +23,16 @@ You need:
 - A domain with access to its settings with the registrar
 - A registrar that allows `CNAME` records or [one of the alternatives](./dns.md) on [apex domains](/glossary.md#apex-domain)
 - Optional: The [CLI](../../administration/cli/_index.md) installed locally
+<!-- There are no development plans on Upsun -->
+{{< version/only "1" >}}
 - If you are on a development plan, you need to [upgrade your tier to a production plan](#1-change-your-plan-to-a-production-plan).
+{{< /version/only >}}
 
 If you are planning to use several subdomains of the same domain on different projects,
 see how to [manage multiple subdomains](/domains/steps/subdomains.md) *before* you add your domain to {{< vendor/name >}}.
 
-## 1. Change your plan to a production plan
+{{< version/only "1" >}}
+## Optional: Change your plan to a production plan
 
 If you are on a Development plan, you can't add a domain.
 You need to upgrade your subscription to a [production plan](/glossary.md#production-plan).
@@ -36,8 +40,8 @@ You need to upgrade your subscription to a [production plan](/glossary.md#produc
 To upgrade your plan tier, you must be an organization owner or have the [manage plans permission](../../administration/users.md#organization-permissions).
 
 To upgrade your plan tier:
-
-{{< codetabs >}}
+{{< /version/only >}}
+{{< codetabs v2hide="true" >}}
 
 +++
 title=Using the CLI
@@ -62,15 +66,20 @@ title=In the Console
 5. Click **Save**.
 
 {{< /codetabs >}}
-
+{{< version/only "1" >}}
 You can find [more information on plan tiers](https://platform.sh/pricing).
+{{< /version/only >}}
 
-## 2. Get the target for your project
+## 1. Get the target for your project
 
 You want to point your DNS record to the automatically generated URL.
 Your domain needs to point to that target for your site to go live.
 
+{{< version/only "1" >}}
+
 For Dedicated plans, get the target for your project from your {{< vendor/name >}} contact.
+
+{{< /version/only >}}
 
 {{< codetabs >}}
 
@@ -96,7 +105,7 @@ title=In the Console
 
 {{< /codetabs >}}
 
-## 3. Configure your DNS provider
+## 2. Configure your DNS provider
 
 Your DNS provider (usually your registrar) is where you manage your domain.
 Most registrars offer similar functionalities regarding DNS configuration but use different terminology or configuration.
@@ -126,8 +135,8 @@ To configure your domain name to point to your project:
 
 If your domain is `example.com` and you are using the `www` subdomain, you have records like the following:
 
-* `example.com` is a `CNAME`/`ANAME`/`ALIAS` record pointing to `main-abcd123.abcdefgh1234567.eu.platformsh.site`.
-* `www.example.com` is a `CNAME` record pointing to `main-abcd123.abcdefgh1234567.eu.platformsh.site`.
+* `example.com` is a `CNAME`/`ANAME`/`ALIAS` record pointing to `main-abcd123.abcdefgh1234567.eu.{{< vendor/urlraw "hostname" >}}`.
+* `www.example.com` is a `CNAME` record pointing to `main-abcd123.abcdefgh1234567.eu.{{< vendor/urlraw "hostname" >}}`.
 
 Both `example.com` and `www.example.com` point to the same target.
 Redirects are handled by the [router you configure](../../define-routes/_index.md).
@@ -159,7 +168,7 @@ See how you can further [configure your CDN](../cdn/_index.md).
 
 {{< /codetabs >}}
 
-## 4. Set your domain
+## 3. Set your domain
 
 Add a single domain to your project:
 
