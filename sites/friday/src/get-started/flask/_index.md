@@ -752,16 +752,23 @@ various services to your project. But for now, go forth and Deploy (even on Frid
 66. T: `git add .enviornment`
 67. T: `git commit -m "adds needed flask env vars"`
 68. T: `{{% vendor/cli %}} e:push`
-    1. Answer Y
-70. `PREPLACE ME WITH NEW RESOURCES STEP`
-    1. Find the section describing `mounts`
-    35. Uncomment `# mounts:`
-    36. On the next line add
+    1. Answer Y <-- push will fail, and is _expected_
+70. T: `upsun resources:set`
+    1. Set application to profile size `1`
+    2. Set number of application instances to `1`
+    3. Set postgresql profile size to `1`
+    4. Set persistent disk for postgresql to `2048`
+    5. Select `Y` to confirm choices
+1. Find the section describing `mounts`
+35. Uncomment `# mounts:`
+36. On the next line add
       ```yaml {configFile="app"}
       "<name-of-your-app-from-3.5-above>/static":
         source: local
         source_path: static_build
       ```
+37. T: `upsun resources:set --disk=<name-of-your-app-from-3.5-above>:1024`
+38. Select `Y` to confirm changes to your application resources
 71. T: `python3 -m venv env`
 72. T: `source venv/bin/activate`
 73. T: `pip install --upgrade pip`
