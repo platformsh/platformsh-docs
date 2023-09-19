@@ -23,7 +23,7 @@ open a support ticket:
 Or use these shortcuts to [access all support tickets](https://console.platform.sh/-/users/~/tickets)
 or [open a new ticket](https://console.platform.sh/-/users/~/tickets/open).
 
-Once you submit a ticket, you see it in a list of all tickets created within your organization.
+Once you submit a ticket, you see it in a list of all tickets created, for all projects you have access to, within your organization.
 Note that once you submit the ticket, you can't modify or delete the submission.
 If you have any additional information, you can select the submitted ticket and write a message.
 
