@@ -42,6 +42,8 @@ vendor:
         sales: https://upsun.com/contact
         console: https://console.upsun.com/
         api: https://proxy.upsun.com/
+        host: upsun.com
+        hostname: upsunapp.com
 
 # Images (kept in static/)
 logo: "images/logo.svg"
