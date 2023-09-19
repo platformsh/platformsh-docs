@@ -67,7 +67,7 @@ You can create multiple endpoints, such as to have key management separate from 
 
 ## Use Vault KMS
 
-To connect your app to the Vault KMS, use a token that's defined in the `PLATFORM_RELATIONSHIPS` environment variable.
+To connect your app to the Vault KMS, use a token that's defined in the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable.
 With this token for authentication,
 you can use any of the policies you [defined in your `{{< vendor/configfile "services" >}}` file](#1-configure-the-service).
 
@@ -78,10 +78,10 @@ Adapt the examples for your app's language.
 
 ### Get the token
 
-To make any calls to the Vault KMS, you need your token. Get it from the `PLATFORM_RELATIONSHIPS` environment variable:
+To make any calls to the Vault KMS, you need your token. Get it from the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable:
 
 ```bash
-echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "SERVICE_NAME" >}}[0].password"
+echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "SERVICE_NAME" >}}[0].password"
 ```
 
 `{{< variable "SERVICE_NAME" >}}` is the name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-add-the-relationship).
@@ -91,19 +91,19 @@ The `-r` flag returns the string itself, not wrapped in quotes.
 You can also store this as a variable:
 
 ```bash
-VAULT_TOKEN=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "SERVICE_NAME" >}}[0].password")
+VAULT_TOKEN=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "SERVICE_NAME" >}}[0].password")
 ```
 
 A given token is valid for one year from its creation.
 
 ### Get the right URL
 
-The `PLATFORM_RELATIONSHIPS` environment variable also contains the information you need to construct a URL for contacting the Vault KMS: the `host` and `port`.
+The `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable also contains the information you need to construct a URL for contacting the Vault KMS: the `host` and `port`.
 
 Assign it to a variable as follows:
 
 ```bash
-VAULT_URL=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "SERVICE_NAME" >}}[0].host"):$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "SERVICE_NAME" >}}[0].port")
+VAULT_URL=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "SERVICE_NAME" >}}[0].host"):$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "SERVICE_NAME" >}}[0].port")
 ```
 
 `{{< variable "SERVICE_NAME" >}}` is the name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-add-the-relationship).
@@ -283,7 +283,7 @@ In the JSON object that's returned, you can notice that the `ciphertext` is diff
     "service": "vault-kms",
     "fragment": "",
     "ip": "169.254.196.95",
-    "hostname": "ckmpv2fz7jtdmpkmrun7yfgut4.vault-kms.service._.eu-3.platformsh.site",
+    "hostname": "ckmpv2fz7jtdmpkmrun7yfgut4.vault-kms.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "port": 8200,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "vault-kms.internal",
@@ -293,7 +293,7 @@ In the JSON object that's returned, you can notice that the `ciphertext` is diff
         "is_master": true
     },
     "password": "ChangeMe",
-    "type": "vault-kms:1.6",
+    "type": "vault-kms:{{% latest "vault-kms" %}}",
     "public": false,
     "host_mapped": false
 }
