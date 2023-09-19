@@ -79,7 +79,7 @@ in step 1](#1-configure-the-service){{ else }}`{{ $data.endpoint }}` endpoint{{ 
 
 <!-- Adds a note about naming conventions between relationship and service names. Keep em unique. -->
 You can define `<SERVICE_NAME>` and `<RELATIONSHIP_NAME>` as you like, but it's best if they're distinct.
-With this definition, the application container {{ if eq .Site.Params.vendor.config.version 2 }}(`<APP_NAME>`){{ end }}
+With this definition, the application container {{ if eq .Site.Params.vendor.config.version 2 }}(`<APP_NAME>`) {{ end }}
 {{- if ne (.Get "noApp" ) true -}}
 now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>`.
 {{- else -}}
