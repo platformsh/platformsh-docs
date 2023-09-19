@@ -87,16 +87,4 @@
   ```
 {{ end }}
 
-<!-- Extra examples for Vault with multiple endpoints -->
-{{ if eq .type "vault-kms" }}
-  <h4>Example configuration with multiple endpoints</h4>
-  
-  ```yaml {configFile="services"}
-  {{ readFile "data/local-examples/vault-multiple-endpoints/services.yaml" | safeHTML }}
-  ```
-
-  ```yaml {configFile="app"}
-  {{ readFile "data/local-examples/vault-multiple-endpoints/platform.app.yaml" | safeHTML }}
-  ```
-{{ end }}
 {{ end }} <!-- end check for Varnish -->

@@ -1,0 +1,5 @@
+{{- $supported := index .data "versions" "supported" -}}
+{{- if eq (index .data "type") "mongodb" -}}
+{{- $supported = index .data "versions" "deprecated" -}}
+{{- end -}}
+{{- index ( sort $supported "value" "desc" ) 0 -}}
