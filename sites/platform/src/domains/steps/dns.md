@@ -28,7 +28,7 @@ or until the router is back from maintenance.
  
 To prevent downtime, create `CNAME` records through your DNS provider.
 `CNAME` records map a domain to another.
-Set up your `CNAME` records to point at your project's [target URL](../../domains/steps/_index.md#2-get-the-target-for-your-project).
+Set up your `CNAME` records to point at your project's [target URL](../../domains/steps/_index.md#1-get-the-target-for-your-project).
 The DNS record for this target URL automatically resolves to the IP addresses of the routers in your project's region.
 When a router's IP address changes,
 the DNS record is automatically and immediately updated.

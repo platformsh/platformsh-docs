@@ -106,7 +106,7 @@ title=Using the CLI
    {{% vendor/cli %}} environment:info edge_hostname --environment {{< variable "ENVIRONMENT_NAME" >}}
    ```
 
-2. [Configure your DNS provider](../steps/_index.md#3-configure-your-dns-provider).
+2. [Configure your DNS provider](../steps/_index.md#2-configure-your-dns-provider).
    In particular, make sure your DNS record points to the target of your preview environment.
 
    {{< note >}}
@@ -143,7 +143,7 @@ title=In the Console
 
 6.  Click **Okay**.
 
-7.  [Configure your DNS provider](../steps/_index.md#3-configure-your-dns-provider).</br>
+7.  [Configure your DNS provider](../steps/_index.md#2-configure-your-dns-provider).</br>
     In particular, make sure your DNS record points to the target of your preview environment.
 
 {{< note >}}
@@ -201,7 +201,7 @@ title=In the Console
 
 6.  Click **Okay**.
 
-7.  [Configure your DNS provider](../steps/_index.md#3-configure-your-dns-provider).</br>
+7.  [Configure your DNS provider](../steps/_index.md#2-configure-your-dns-provider).</br>
     In particular, make sure your DNS record points to `Dev`'s target.
 
 {{< /codetabs >}}

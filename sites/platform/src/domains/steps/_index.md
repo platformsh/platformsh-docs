@@ -25,8 +25,8 @@ You need:
 - Optional: The [CLI](../../administration/cli/_index.md) installed locally
 <!-- There are no development plans on Upsun -->
 {{< version/only "1" >}}
-- If you are on a development plan, you need to [upgrade your tier to a production plan](#1-change-your-plan-to-a-production-plan).
-{{< /version/only >}}
+- If you are on a development plan, you need to [upgrade your tier to a production plan](#optional-change-your-plan-to-a-production-plan).
+{{< /version/only >}}hu
 
 If you are planning to use several subdomains of the same domain on different projects,
 see how to [manage multiple subdomains](/domains/steps/subdomains.md) *before* you add your domain to {{< vendor/name >}}.
@@ -126,7 +126,7 @@ To configure your domain name to point to your project:
 1. Consult your provider's documentation to find out how to add or edit DNS records.
 2. Open your registrar's domain management system.
 3. Set the TTL on your domain to the lowest possible value to minimize transition time.
-4. Add a `CNAME` record pointing from your domain to the [target](#2-get-the-target-for-your-project).
+4. Add a `CNAME` record pointing from your domain to the [target](#1-get-the-target-for-your-project).
    Not all registrars allow these kinds of records.
    If yours doesn't, see the [alternatives](./dns.md#workarounds-for-apex-domains).
 5. Optional: If you have multiple domains you want to be served by the same app, add a `CNAME` record for each of them.
@@ -150,7 +150,7 @@ title=Using a CDN
 To configure your CDN and your domain name to point to your project:
 
 1. Open your CDN's management system.
-2. Point the CDN at your [target](#2-get-the-target-for-your-project).
+2. Point the CDN at your [target](#1-get-the-target-for-your-project).
 3. Open your registrar’s domain management system.
 4. Open your registrar's domain management system and configure your DNS zone settings to point at your CDN.
    The address or `CNAME` record to use varies by CDN provider.
