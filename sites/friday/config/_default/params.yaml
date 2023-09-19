@@ -49,7 +49,7 @@ vendor:
 logo: "images/logo.svg"
 logolinksto: "https://upsun.com"
 logoAlt: "Upsun"
-favicon: "images/favicon-32x32.png"
+favicon: "images/favicon.ico"
 
 gtm: "GTM-KRPJGT4"
 
