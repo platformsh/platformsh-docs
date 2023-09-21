@@ -333,21 +333,19 @@ https://docs.upsun.com/:
       # No equivalent yet for Upsun.
       "/anchors/wcag.html": { "to": "https://platform.sh/wcag/", "code": 301, "prefix": false }
       "/anchors/observability/metrics.html": { "to": "/increase-observability/metrics.html", "code": 301, "prefix": false }
-
-
-
-
-  # "links.documentation.metrics": "https://docs.platform.sh/increase-observability/metrics.html",
-  # "links.documentation.metrics.grid": "https://docs.platform.sh/increase-observability/metrics/grid.html",
-  # "links.documentation.metrics.dedicated": "https://docs.platform.sh/increase-observability/metrics/dedicated.html",
-  # "links.documentation.metrics.dedication": "https://docs.platform.sh/increase-observability/metrics/dedicated-generation-3.html",
-  # "links.documentation.integrations.activity": "https://docs.platform.sh/integrations/activity.html",
-  # "links.documentation.integrations.activity_scripts": "https://docs.platform.sh/integrations/activity.html#configuring-scripts",
-  # "links.documentation.integrations.source": "https://docs.platform.sh/integrations/source.html",
-  # "links.documentation.app.timezone": "https://docs.platform.sh/configuration/app/timezone.html",
-  # "links.documentation.organizations": "https://docs.platform.sh/administration/organizations.html#manage-organizations-with-the-cli",
-  # "links.documentation.redeploy": "https://docs.platform.sh/development/troubleshoot.html#force-a-redeploy",
-  # "links.documentation.SSH": "https://docs.platform.sh/development/ssh.html#authenticate-with-ssh-keys",
+      # Repeated again for the following
+      # "links.documentation.metrics": "https://docs.platform.sh/increase-observability/metrics.html",
+      "/anchors/observability/metrics/grid.html": { "to": "/increase-observability/metrics/grid.html", "code": 301, "prefix": false }
+      # Not relevant for Upsun.
+      "/anchors/observability/metrics/dedicated.html": { "to": "https://docs.platform.sh/increase-observability/metrics/dedicated.html", "code": 301, "prefix": false }
+      "/anchors/observability/metrics/dedicated-gen-3.html": { "to": "https://docs.platform.sh/increase-observability/metrics/dedicated-generation-3.html", "code": 301, "prefix": false }
+      "/anchors/integrations/activities.html": { "to": "/integrations/activity.html", "code": 301, "prefix": false }
+      "/anchors/integrations/activity-scripts.html": { "to": "/integrations/activity.html#configuring-scripts", "code": 301, "prefix": false }
+      "/anchors/integrations/source.html": { "to": "/integrations/source.html", "code": 301, "prefix": false }
+      "/anchors/apps/timezone.html": { "to": "/configuration/app/timezone.html", "code": 301, "prefix": false }
+      "/anchors/organizations.html": { "to": "/administration/organizations.html", "code": 301, "prefix": false }
+      "/anchors/redeploy.html": { "to": "/development/troubleshoot.html#force-a-redeploy", "code": 301, "prefix": false }
+      "/anchors/ssh/authenticate.html": { "to": "/development/ssh.html#authenticate-with-ssh-keys", "code": 301, "prefix": false }
 
   # "links.documentation.workers": "https://docs.platform.sh/configuration/app/workers.html",
   # "links.documentation.source_operations": "https://docs.platform.sh/configuration/app/source-operations.html",
