@@ -207,6 +207,9 @@ To prevent your production environment from being paused automatically,
 
 You can also pause an environment manually at any time.
 
+If you don't want your environments to automatically be paused after 14 days,
+[contact Support](/overview/get-support.html).
+
 ### Pause an environment
 
 To pause an environment, follow these steps:
