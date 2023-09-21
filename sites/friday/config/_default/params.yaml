@@ -16,6 +16,7 @@ theme:
 vendor:
     name: Upsun
     cli: upsun
+    altname: upsun
     env_prefix: PLATFORM
     recruit:
         active: true

@@ -336,7 +336,7 @@ The following example shows the full activity response to a cron job:
   "id": "ypalrypnezbye",
   "_links": {
     "self": {
-      "href": "https://eu-3.platform.sh/api/projects/abcdefgh1234567/activities/ypalrypnezbye"
+      "href": "https://eu-3.{{< vendor/urlraw "host" >}}/api/projects/abcdefgh1234567/activities/ypalrypnezbye"
     },
     "log": {
       "href": "/api/projects/abcdefgh1234567/activities/ypalrypnezbye/log"
@@ -391,7 +391,7 @@ The following example shows the full activity response to a cron job:
       "title": "php-test",
       "description": "",
       "owner": "c9926428-44dc-4b10-be03-a26dd43b44c1",
-      "namespace": "platformsh",
+      "namespace": "{{< vendor/alt-name >}}",
       "organization": "01FF4NBNVMMDWP1NVK0G4EGJW0",
       "default_branch": "main",
       "status": {
@@ -399,19 +399,19 @@ The following example shows the full activity response to a cron job:
         "message": "ok"
       },
       "timezone": "Europe/Dublin",
-      "region": "eu-3.platform.sh",
+      "region": "eu-3.{{< vendor/urlraw "host" >}}",
       "repository": {
-        "url": "abcdefgh1234567@git.eu-3.platform.sh:abcdefgh1234567.git",
-        "client_ssh_key": "ssh-rsa aaaaaaabbbbbbbcccccccddddddd abcdefgh1234567@platformsh"
+        "url": "abcdefgh1234567@git.eu-3.{{< vendor/urlraw "host" >}}:abcdefgh1234567.git",
+        "client_ssh_key": "ssh-rsa aaaaaaabbbbbbbcccccccddddddd abcdefgh1234567@{{< vendor/alt-name >}}"
       },
       "default_domain": null,
       "subscription": {
-        "license_uri": "https://accounts.platform.sh/api/v1/licenses/2291467",
+        "license_uri": "https://accounts.{{< vendor/urlraw "host" >}}/api/v1/licenses/2291467",
         "plan": "development",
         "environments": 3,
         "storage": 5120,
         "included_users": 1,
-        "subscription_management_uri": "https://console.platform.sh/-/users/abcd12345/billing/plan/12345678",
+        "subscription_management_uri": "https://console.{{< vendor/urlraw "host" >}}-/users/abcd12345/billing/plan/12345678",
         "restricted": false,
         "suspended": false,
         "user_licenses": 1
@@ -434,7 +434,7 @@ The following example shows the full activity response to a cron job:
       "status": "active",
       "enable_smtp": true,
       "restrict_robots": true,
-      "edge_hostname": "main-abcd123-abcdefgh1234567.eu-3.platformsh.site",
+      "edge_hostname": "main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}",
       "deployment_state": {
         "last_deployment_successful": true,
         "last_deployment_at": "2022-11-29T16:16:37.085609+00:00",
@@ -511,7 +511,7 @@ The `environment` property contains the settings for the environment that was pu
       "status": "active",
       "enable_smtp": true,
       "restrict_robots": true,
-      "edge_hostname": "main-abcd123-abcdefgh1234567.eu-3.platformsh.site",
+      "edge_hostname": "main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}",
       "deployment_state": {
         "last_deployment_successful": true,
         "last_deployment_at": "2022-11-29T16:16:37.085609+00:00",
@@ -575,7 +575,7 @@ The following example shows a shortened excerpt of the `deployment` property:
           },
           ...
           "application_config_file": "{{< vendor/configfile "app" >}}",
-          "project_config_dir": ".platform",
+          "project_config_dir": "{{< vendor/configdir >}}",
           ...
           "development_service_size": "S",
           "development_application_size": "S",
@@ -614,7 +614,7 @@ The following example shows the full activity response to a Git push:
   "id": "a1kz6ffxui7em",
   "_links": {
     "self": {
-      "href": "https://eu-3.platform.sh/api/projects/abcdefgh1234567/activities/a1kz6ffxui7em"
+      "href": "https://eu-3.{{< vendor/urlraw "host" >}}/api/projects/abcdefgh1234567/activities/a1kz6ffxui7em"
     },
     "log": {
       "href": "/api/projects/abcdefgh1234567/activities/a1kz6ffxui7em/log"
@@ -646,7 +646,7 @@ The following example shows the full activity response to a Git push:
     "deploy": 49.954,
     "execute": 51.516
   },
-  "log": "Found 1 new commit\n\nBuilding application 'app' (runtime type: php:8.0, tree: 9851a01)\n  Reusing existing build for this tree ID\n\nProvisioning certificates\n  Certificates\n  - certificate 5093946: expiring on 2023-02-23 11:09:20+00:00, covering {,www}.main-abcd123-abcdefgh1234567.eu-3.platformsh.site\n\n\nRedeploying environment main\n  Preparing deployment\n  Closing service app\n  Opening application app and its relationships\n  Executing deploy hook for application app\n    hello world\n\n  Opening environment\n  Environment configuration\n    app (type: php:8.0, size: S, disk: 2048)\n\n  Environment routes\n    http://main-abcd123-abcdefgh1234567.eu-3.platformsh.site/ redirects to https://main-abcd123-abcdefgh1234567.eu-3.platformsh.site/\n    http://www.main-abcd123-abcdefgh1234567.eu-3.platformsh.site/ redirects to https://www.main-abcd123-abcdefgh1234567.eu-3.platformsh.site/\n    https://main-abcd123-abcdefgh1234567.eu-3.platformsh.site/ is served by application `app`\n    https://www.main-abcd123-abcdefgh1234567.eu-3.platformsh.site/ redirects to https://main-abcd123-abcdefgh1234567.eu-3.platformsh.site/\n",
+  "log": "Found 1 new commit\n\nBuilding application 'app' (runtime type: php:8.0, tree: 9851a01)\n  Reusing existing build for this tree ID\n\nProvisioning certificates\n  Certificates\n  - certificate 5093946: expiring on 2023-02-23 11:09:20+00:00, covering {,www}.main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}\n\n\nRedeploying environment main\n  Preparing deployment\n  Closing service app\n  Opening application app and its relationships\n  Executing deploy hook for application app\n    hello world\n\n  Opening environment\n  Environment configuration\n    app (type: php:8.0, size: S, disk: 2048)\n\n  Environment routes\n    http://main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/ redirects to https://main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/\n    http://www.main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/ redirects to https://www.main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/\n    https://main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/ is served by application `app`\n    https://www.main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/ redirects to https://main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/\n",
   "payload": {
     "user": {
       "id": "c9926428-44dc-4b10-be03-a26dd43b44c1",
@@ -671,7 +671,7 @@ The following example shows the full activity response to a Git push:
       "status": "active",
       "enable_smtp": true,
       "restrict_robots": true,
-      "edge_hostname": "main-abcd123-abcdefgh1234567.eu-3.platformsh.site",
+      "edge_hostname": "main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}",
       "deployment_state": {
         "last_deployment_successful": true,
         "last_deployment_at": "2022-11-29T16:16:37.085609+00:00",
@@ -732,11 +732,11 @@ The following example shows the full activity response to a Git push:
             }
           },
           "product_name": "{{< vendor/name >}}",
-          "product_code": "platformsh",
+          "product_code": "{{< vendor/alt-name >}}",
           "variables_prefix": "PLATFORM_",
-          "bot_email": "bot@platform.sh",
+          "bot_email": "bot@{{< vendor/urlraw "host" >}}",
           "application_config_file": "{{< vendor/configfile "app" >}}",
-          "project_config_dir": ".platform",
+          "project_config_dir": "{{< vendor/configdir >}}",
           "use_drupal_defaults": false,
           "use_legacy_subdomains": false,
           "development_service_size": "S",
@@ -786,7 +786,7 @@ The following example shows the full activity response to a Git push:
           "enable_cache_grace_period": true,
           "enable_zero_downtime_deployments": false,
           "enable_admin_agent": true,
-          "certifier_url": "https://ssh.api.platform.sh",
+          "certifier_url": "{{< vendor/urlraw "api" >}}",
           "centralized_permissions": false,
           "glue_server_max_request_size": 10
         }
@@ -822,22 +822,22 @@ The following example shows the full activity response to a Git push:
         }
       ],
       "subscription": {
-        "license_uri": "https://accounts.platform.sh/api/v1/licenses/12345678",
+        "license_uri": "https://accounts.{{< vendor/urlraw "host" >}}/api/v1/licenses/12345678",
         "plan": "development",
         "environments": 3,
         "storage": 5120,
         "included_users": 1,
-        "subscription_management_uri": "https://console.platform.sh/-/users/abcd12345/billing/plan/12345678",
+        "subscription_management_uri": "{{< vendor/urlraw "console" >}}/-/users/abcd12345/billing/plan/12345678",
         "restricted": false,
         "suspended": false,
         "user_licenses": 1
       },
       "services": {},
       "routes": {
-        "https://main-abcd123-abcdefgh1234567.eu-3.platformsh.site/": {
+        "https://main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/": {
           "primary": true,
           "id": null,
-          "production_url": "https://main-abcd123-abcdefgh1234567.eu-3.platformsh.site/",
+          "production_url": "https://main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/",
           "attributes": {},
           "type": "upstream",
           "tls": {
@@ -872,10 +872,10 @@ The following example shows the full activity response to a Git push:
             "paths": {}
           }
         },
-        "https://www.main-abcd123-abcdefgh1234567.eu-3.platformsh.site/": {
+        "https://www.main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/": {
           "primary": false,
           "id": null,
-          "production_url": "https://www.main-abcd123-abcdefgh1234567.eu-3.platformsh.site/",
+          "production_url": "https://www.main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/",
           "attributes": {},
           "type": "redirect",
           "tls": {
@@ -890,16 +890,16 @@ The following example shows the full activity response to a Git push:
           },
           "original_url": "https://www.{default}/",
           "restrict_robots": true,
-          "to": "https://main-abcd123-abcdefgh1234567.eu-3.platformsh.site/",
+          "to": "https://main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/",
           "redirects": {
             "expires": "-1s",
             "paths": {}
           }
         },
-        "http://main-abcd123-abcdefgh1234567.eu-3.platformsh.site/": {
+        "http://main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/": {
           "primary": false,
           "id": null,
-          "production_url": "http://main-abcd123-abcdefgh1234567.eu-3.platformsh.site/",
+          "production_url": "http://main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/",
           "attributes": {},
           "type": "redirect",
           "tls": {
@@ -914,16 +914,16 @@ The following example shows the full activity response to a Git push:
           },
           "original_url": "http://{default}/",
           "restrict_robots": true,
-          "to": "https://main-abcd123-abcdefgh1234567.eu-3.platformsh.site/",
+          "to": "https://main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/",
           "redirects": {
             "expires": "-1s",
             "paths": {}
           }
         },
-        "http://www.main-abcd123-abcdefgh1234567.eu-3.platformsh.site/": {
+        "http://www.main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/": {
           "primary": false,
           "id": null,
-          "production_url": "http://www.main-abcd123-abcdefgh1234567.eu-3.platformsh.site/",
+          "production_url": "http://www.main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/",
           "attributes": {},
           "type": "redirect",
           "tls": {
@@ -938,7 +938,7 @@ The following example shows the full activity response to a Git push:
           },
           "original_url": "http://www.{default}/",
           "restrict_robots": true,
-          "to": "https://www.main-abcd123-abcdefgh1234567.eu-3.platformsh.site/",
+          "to": "https://www.main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/",
           "redirects": {
             "expires": "-1s",
             "paths": {}
