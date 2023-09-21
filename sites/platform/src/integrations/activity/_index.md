@@ -9,7 +9,7 @@ layout: single
 {{% description %}}
 
 {{< version/specific >}}
-Check out examples from other users on the {{% vendor/name %}}[Community site](https://community.platform.sh/c/activity-scripts/10).
+Check out examples from other users on the {{% vendor/name %}} [Community site](https://community.platform.sh/c/activity-scripts/10).
 <--->
 {{< /version/specific >}}
 
