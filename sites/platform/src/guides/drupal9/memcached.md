@@ -6,7 +6,7 @@ description: |
 weight: -90
 ---
 
-{{< vendor/name >}} recommends using Redis for caching with Drupal over Memcached,
+{{% vendor/name %}} recommends using Redis for caching with Drupal over Memcached,
 as Redis offers better performance when dealing with larger values as Drupal tends to produce.
 But Memcached is also available if desired and is fully supported.
 

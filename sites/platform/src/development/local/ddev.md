@@ -10,7 +10,7 @@ keywords:
 
 {{% ddev/definition %}}
 
-This guide assumes you have a project already running with {{< vendor/name >}} and you have the code on your computer.
+This guide assumes you have a project already running with {{% vendor/name %}} and you have the code on your computer.
 If you're starting from scratch, first [create a project from a PHP template]({{% create-project-link template=true %}}).
 
 ## Before you begin
@@ -60,7 +60,7 @@ Now your project is ready to run:
 ddev start
 ```
 
-This runs all your hooks and builds your project like on {{< vendor/name >}}.
+This runs all your hooks and builds your project like on {{% vendor/name %}}.
 
 The command returns the project URL `http://{{< variable "PROJECT_NAME" >}}.ddev.site/`
 as well as a specific port on `http://127.0.0.1`.

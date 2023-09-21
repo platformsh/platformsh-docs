@@ -2,7 +2,7 @@
 title: "Headless Chrome"
 weight: -90
 description: |
-  Headless Chrome is a headless browser that can be configured on projects like any other service on {{< vendor/name >}}.
+  Headless Chrome is a headless browser that can be configured on projects like any other service on {{% vendor/name %}}.
 ---
 
 {{% description %}}

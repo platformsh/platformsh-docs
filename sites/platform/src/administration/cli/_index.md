@@ -2,7 +2,7 @@
 title: Command line interface (CLI)
 weight: -10
 description: |
-  See how to use and manage your {{< vendor/name >}} projects directly from your terminal. Anything you can do within the Console can be done with the CLI.
+  See how to use and manage your {{% vendor/name %}} projects directly from your terminal. Anything you can do within the Console can be done with the CLI.
 layout: single
 keywords:
   - CLI
@@ -12,7 +12,7 @@ keywords:
 
 {{% description %}}
 
-The CLI uses the git interface and the [{{< vendor/name >}} REST API](https://api.platform.sh/docs/) to accomplish tasks.
+The CLI uses the git interface and the [{{% vendor/name %}} REST API](https://api.platform.sh/docs/) to accomplish tasks.
 Its source code is hosted on [GitHub](https://github.com/platformsh/cli).
 
 ## 1. Install
@@ -36,7 +36,7 @@ If you experience authentication issues or want to force a login, run the comman
 ## 3. Use
 
 Now you can run actions on your projects such as branching and merging.
-You can also simulate a local build of your codebase as if you were pushing a change to {{< vendor/name >}},
+You can also simulate a local build of your codebase as if you were pushing a change to {{% vendor/name %}},
 including your services and data.
 
 Get a list of all available commands with:
@@ -87,7 +87,7 @@ Examples:
 
 ### Select the right project and environment
 
-When you are in an empty directory or a directory not associated with a specific {{< vendor/name >}} project,
+When you are in an empty directory or a directory not associated with a specific {{% vendor/name %}} project,
 if you run a command that requires a specific project and environment, you are prompted to select them.
 
 For example, if you run the following command:
@@ -210,7 +210,7 @@ eval $({{% vendor/cli %}} completion)
 
 ### Run commands on your container
 
-You can use the {{< vendor/name >}} CLI to run commands on your container.
+You can use the {{% vendor/name %}} CLI to run commands on your container.
 You can use any command you've added in [dependencies](../../create-apps/app-reference.md#dependencies)
 or a [hook](../../create-apps/app-reference.md#hooks).
 

@@ -16,7 +16,7 @@ stricter isolation requirements,
 as well as additional compliance frameworks.
 
 To set up a {{% names/dedicated-gen-3 %}} project on [any supported cloud provider](../development/regions.md#regions),
-[contact {{< vendor/name >}}](https://platform.sh/contact).
+[contact {{% vendor/name %}}](https://platform.sh/contact).
 Note that existing Grid and {{% names/dedicated-gen-2 %}} projects can't be migrated to {{% names/dedicated-gen-3 %}} at this time.
 
 ## Highlights
@@ -44,7 +44,7 @@ of [the following benefits](https://platform.sh/blog/the-ultimate-generation-of-
 
 - **Better compliance.**<BR>
   Your apps and configurations are fully independent from the machines they run on.
-  This allows {{< vendor/name >}} to perform non-disruptive system upgrades to ensure you're always secure and compliant.
+  This allows {{% vendor/name %}} to perform non-disruptive system upgrades to ensure you're always secure and compliant.
 
 ## Storage
 
@@ -84,7 +84,7 @@ Just like {{% names/dedicated-gen-3 %}},
 [{{% names/dedicated-gen-2 %}}](../../dedicated-gen-2/overview/_index.md) ensures increased uptime
 and availability for your apps and services.
 But as a {{% names/dedicated-gen-2 %}} user,
-you have to go through the {{< vendor/name >}} Customer Success team to make configuration or application topology changes.
+you have to go through the {{% vendor/name %}} Customer Success team to make configuration or application topology changes.
 
 {{% names/dedicated-gen-3 %}} gives you both the high availability of {{% names/dedicated-gen-2 %}}
 and the self-service flexibility and features of Grid projects.

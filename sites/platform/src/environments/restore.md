@@ -84,13 +84,13 @@ This deployment uses the built app, including variables, from when the backup wa
 
 {{< note theme="warning" title="Warning" >}}
 
-The code is also initially restored, but {{< vendor/name >}} doesn't modify your Git repository.
+The code is also initially restored, but {{% vendor/name %}} doesn't modify your Git repository.
 So any future (re)deployments use the current Git repository to build the environment.
 
 To restore your code to its previous state when the backup was taken,
 use Git commands such as [revert](https://git-scm.com/docs/git-revert).
 
-See [how backup and restore works on {{< vendor/name >}}](../environments/backup.md#how-backup-and-restore-works).
+See [how backup and restore works on {{% vendor/name %}}](../environments/backup.md#how-backup-and-restore-works).
 
 {{< /note >}}
 

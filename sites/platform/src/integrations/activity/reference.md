@@ -218,7 +218,7 @@ Its content varies based on the activity type.
 
 #### `user` payload
 
-Contains information about the {{< vendor/name >}} user that triggered the activity.
+Contains information about the {{% vendor/name %}} user that triggered the activity.
 
 | Name | Description |
 |------|-------------|
@@ -381,7 +381,7 @@ The following example shows the full activity response to a cron job:
       "id": "admin",
       "created_at": "2022-12-13T16:06:08.066085+00:00",
       "updated_at": null,
-      "display_name": "{{< vendor/name >}} Bot"
+      "display_name": "{{% vendor/name %}} Bot"
     },
     "project": {
       "id": "abcdefgh1234567",
@@ -460,8 +460,8 @@ The following example shows the full activity response to a cron job:
     },
     "cron": "saybye"
   },
-  "description": "<user data-id=\"admin\">{{< vendor/name >}} Bot</user> ran cron <strong>saybye</strong>",
-  "text": "{{< vendor/name >}} Bot ran cron **saybye**",
+  "description": "<user data-id=\"admin\">{{% vendor/name %}} Bot</user> ran cron <strong>saybye</strong>",
+  "text": "{{% vendor/name %}} Bot ran cron **saybye**",
   "expires_at": "2023-01-12T16:06:08.081293+00:00"
 }
 ```

@@ -14,14 +14,14 @@ and so can improve user engagement and retention.
 
 {{< version/specific >}}
 <!-- Version 1 -->
-Fastly is the recommended CDN for {{< vendor/name >}} projects.
-By default, Dedicated projects include a [Fastly CDN managed by {{< vendor/name >}}](./managed-fastly.md).
+Fastly is the recommended CDN for {{% vendor/name %}} projects.
+By default, Dedicated projects include a [Fastly CDN managed by {{% vendor/name %}}](./managed-fastly.md).
 Self-service Grid plans don't include a CDN by default, but you can set up one at any time,
 such as [Fastly](./fastly.md) or [Cloudflare](./cloudflare.md).
 
 <--->
 <!-- Version 2 -->
-Fastly is the recommended CDN for {{< vendor/name >}} projects.
+Fastly is the recommended CDN for {{% vendor/name %}} projects.
 Self-service projects don't include a CDN by default, but you can set up one at any time,
 such as [Fastly](./fastly.md) or [Cloudflare](./cloudflare.md).
 {{< /version/specific >}}
@@ -45,10 +45,10 @@ it can use the `Host` header to identify which domain to access to handle the re
 When a request is made from a client to fetch a resource on a CDN edge server,
 the `Host` header value is rewritten to point to the CDN.
 If the requested resource isn't cached on the edge server,
-the edge server makes a request to the {{< vendor/name >}} server to pull and cache the resource.
+the edge server makes a request to the {{% vendor/name %}} server to pull and cache the resource.
 
 For this process to be successful,
-set an `X-Forwarded-Host` header to forward the original `Host` header value to the {{< vendor/name >}} server.
+set an `X-Forwarded-Host` header to forward the original `Host` header value to the {{% vendor/name %}} server.
 Use your root domain as the value of your `X-Forwarded-Host` header,
 for example: `example.com`.
 
@@ -59,7 +59,7 @@ see your CDN provider's official documentation.
 
 ## Disable the router cache
 
-When you use a CDN, the {{< vendor/name >}} router [HTTP caching](../../define-routes/cache.md) becomes redundant.
+When you use a CDN, the {{% vendor/name %}} router [HTTP caching](../../define-routes/cache.md) becomes redundant.
 To disable it, change your cache configuration for the routes behind a CDN to the following:
 
 {{< version/specific >}}
@@ -90,10 +90,10 @@ routes:
 
 {{< premium-features/tiered "Enterprise and Elite" >}}
 
-If your plan includes high SLA, configure your CDN so that {{< vendor/name >}} can perform automated monitoring using NodePing.
+If your plan includes high SLA, configure your CDN so that {{% vendor/name %}} can perform automated monitoring using NodePing.
 To do so, [add all NodePing IP addresses](https://nodeping.com/faq.html#ip-addresses) to your CDN's allowlist.
 
-If you want {{< vendor/name >}} to limit checks to one or more of the following regions, [contact Support](/learn/overview/get-support.md):
+If you want {{% vendor/name %}} to limit checks to one or more of the following regions, [contact Support](/learn/overview/get-support.md):
 
 - North America
 - Europe
@@ -105,7 +105,7 @@ If you want {{< vendor/name >}} to limit checks to one or more of the following 
 
 ## Prevent direct access to your server
 
-When you use a CDN, you might want to prevent direct access to your {{< vendor/name >}} server for security purposes.
+When you use a CDN, you might want to prevent direct access to your {{% vendor/name %}} server for security purposes.
 
 ### HTTP basic authentication
 
@@ -186,7 +186,7 @@ The procedure can vary depending on your CDN.
 Contact your CDN provider for specific assistance.
 
 Note that client-authenticated TLS is a mutual authentication process.
-It allows your CDN to check that it's communicating with your {{< vendor/name >}} server
+It allows your CDN to check that it's communicating with your {{% vendor/name %}} server
 and vice versa.
 So in addition to the CA certificate supplied by your CDN provider,
 you need to [create your own TLS certificate](../../define-routes/https.md).

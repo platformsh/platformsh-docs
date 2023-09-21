@@ -77,7 +77,7 @@ And then commit the changes to `composer.json` and `composer.lock`.
 ### 4. Add auto-configuration code to `settings.platformsh.php`
 
 The configuration can be managed from `settings.platformsh.php` by adding the following code snippet.
-It will override the environment-specific parts of the configuration object with the correct values to connect to the {{< vendor/name >}} Solr instance.
+It will override the environment-specific parts of the configuration object with the correct values to connect to the {{% vendor/name %}} Solr instance.
 
 {{< note >}}
 If you don't already have the [Config Reader library](../../development/variables/use-variables.md#access-variables-in-your-app) installed and referenced at the top of the file, you need to install it with `composer require platformsh/config-reader` and then add the following code before the block below:

@@ -14,7 +14,7 @@ banner:
 
 [Preview environments](/glossary.md#preview-environment) in your project can't use the custom domain [set up on your production environment](../steps/_index.md).<br/>
 By default and for each preview environment,
-{{< vendor/name >}} automatically replaces the custom production domain
+{{% vendor/name %}} automatically replaces the custom production domain
 with an automatically generated URL.
 
 If you don't want to use these default URLs,
@@ -44,7 +44,7 @@ and still access your production environment through `example.com`.
 If you have multiple custom domains on your production environment,
 when you set up a custom domain on a preview environment,
 you don't need to update your [routes configuration](../../define-routes/_index.md) either.
-{{< vendor/name >}} automatically figures out the routing of your preview environment
+{{% vendor/name %}} automatically figures out the routing of your preview environment
 based on the following elements:
 
 - The custom production domains in your existing [routes configuration](../../define-routes/_index.md)
@@ -71,7 +71,7 @@ You need:
 {{% /version/specific %}}
 - A production environment with at least one custom domain already set up
 - At least one preview (staging or development) environment
-- Optional: The [{{< vendor/name >}} CLI](../../administration/cli/_index.md) (v4.8.0+)
+- Optional: The [{{% vendor/name %}} CLI](../../administration/cli/_index.md) (v4.8.0+)
 
 To prevent abuse, by default you can add custom domains to up to 5 preview environments per project only.
 This limit doesn't include the production environment,
@@ -112,7 +112,7 @@ title=Using the CLI
    {{< note >}}
 
    Using the target of your production environment to configure your DNS provider is technically possible,
-   but {{< vendor/name >}} recommends using the target of your preview environment as a best practice.
+   but {{% vendor/name %}} recommends using the target of your preview environment as a best practice.
 
    {{< /note >}}
 
@@ -149,7 +149,7 @@ title=In the Console
 {{< note >}}
 
 Using the target of your production environment to configure your DNS provider is technically possible,
-but {{< vendor/name >}} recommends using the target of your preview environment as a best practice.
+but {{% vendor/name %}} recommends using the target of your preview environment as a best practice.
 
 {{< /note >}}
 
