@@ -16,8 +16,8 @@ except if you are using the Doctrine ORM and the database engine version is not
 set in your configuration.
 
 The version information can be set in your `.env` file or in the
-`doctrine.yaml` configuration file. The only important information there are
-the database engine and the version, everything else will be ignored.
+`doctrine.yaml` configuration file. The only important pieces of information there are
+the database engine and the version; everything else will be ignored.
 
 Note that the environment variables are available in the deploy hook.
 
