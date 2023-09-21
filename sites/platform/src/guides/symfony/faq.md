@@ -8,7 +8,7 @@ description: |
 ## Why is `DATABASE_URL` not defined during the build hook?
 
 During the build hook, services are not available to avoid breaking the
-application that is still live. That why the Symfony integration does not
+application that is still live. That is why the Symfony integration does not
 expose environment variables during the build hook.
 
 The `cache:clear` command does not need to connect to the database by default,
