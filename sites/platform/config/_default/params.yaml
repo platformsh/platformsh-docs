@@ -13,6 +13,7 @@ editPageButton: true
 vendor:
     name: Platform.sh
     cli: platform
+    altname: platformsh
     env_prefix: PLATFORM
     recruit:
         active: true

@@ -8,7 +8,10 @@ layout: single
 
 {{% description %}}
 
-Check out examples from other users on the {{% vendor/name %}}[Community site](https://community.platform.sh/c/activity-scripts/10).
+{{< version/specific >}}
+Check out examples from other users on the {{% vendor/name %}} [Community site](https://community.platform.sh/c/activity-scripts/10).
+<--->
+{{< /version/specific >}}
 
 ## Installing
 
@@ -180,10 +183,10 @@ An example of this object is below:
   "description": "",
   "id": "kpyhl5f8nuzef",
   "owner": "...",
-  "region": "eu-3.platform.sh",
+  "region": "eu-3.{{< vendor/urlraw "host" >}}",
   "repository": {
     "client_ssh_key": "ssh-rsa ...",
-    "url": "kqyhl5f5nuzky@git.eu-3.platform.sh:kqyhl5f5nuzky.git"
+    "url": "kqyhl5f5nuzky@git.eu-3.{{< vendor/urlraw "host" >}}:kqyhl5f5nuzky.git"
   },
   "status": {
     "code": "provisioned",
