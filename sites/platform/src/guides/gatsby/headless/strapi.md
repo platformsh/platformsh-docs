@@ -1,5 +1,5 @@
 ---
-title: "How to deploy Gatsby with Strapi on {{< vendor/name >}}"
+title: "How to deploy Gatsby with Strapi on {{% vendor/name %}}"
 sidebarTitle: "Strapi"
 description: |
     You can build out an API from scratch with Strapi, and then connect its data to a frontend Gatsby app with `gatsby-source-strapi`.

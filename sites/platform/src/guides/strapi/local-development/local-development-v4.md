@@ -6,14 +6,14 @@ description: How to develop a Strapi v4 app locally.
 
 To run your Strapi v4 app locally with all of its services, follow these steps:
 
-1. Download your deployed code by running the following command using the {{< vendor/name >}} CLI:
+1. Download your deployed code by running the following command using the {{% vendor/name %}} CLI:
 
    ```bash
    {{% vendor/cli %}} get {{< variable "PROJECT_ID" >}}
    ```
 
 2. Create a new branch.
-   Whenever you develop {{< vendor/name >}}, you should develop in an isolated environment.
+   Whenever you develop {{% vendor/name %}}, you should develop in an isolated environment.
    This way you aren't opening SSH tunnels to your production environment.
    By creating a branch from your default environment,
    you create a new environment with copies of all production code and data.
@@ -33,14 +33,14 @@ To run your Strapi v4 app locally with all of its services, follow these steps:
    const path = require("path");
    let connection;
    let db_relationship = "postgresdatabase";
-   // Helper function for decoding {{< vendor/name >}} base64-encoded JSON variables.
+   // Helper function for decoding {{% vendor/name %}} base64-encoded JSON variables.
    function decode(value) {
      return JSON.parse(Buffer.from(value, "base64"));
    }
    if (!process.env.PLATFORM_RELATIONSHIPS) {
      if (process.env.PLATFORM_PROJECT) {
        console.log(
-         "In {{< vendor/name >}} build hook. Using default SQLite configuration until services are available."
+         "In {{% vendor/name %}} build hook. Using default SQLite configuration until services are available."
        );
      } else {
        console.log(
@@ -64,7 +64,7 @@ To run your Strapi v4 app locally with all of its services, follow these steps:
    } else {
      if (process.env.PLATFORM_PROJECT) {
        console.log(
-         "In {{< vendor/name >}} deploy hook. Using defined service configuration."
+         "In {{% vendor/name %}} deploy hook. Using defined service configuration."
        );
      } else {
        console.log("Using tunnel for local development.");

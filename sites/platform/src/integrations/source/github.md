@@ -1,7 +1,7 @@
 ---
 title: Integrate with GitHub
 sidebarTitle: GitHub
-description: See how to manage your {{< vendor/name >}} environments directly from your GitHub repository.
+description: See how to manage your {{% vendor/name %}} environments directly from your GitHub repository.
 keywords:
 - "source integration"
 - "source integrations"
@@ -12,7 +12,7 @@ keywords:
 
 ## 1. Generate a token
 
-To integrate your {{< vendor/name >}} project with an existing GitHub repository,
+To integrate your {{% vendor/name %}} project with an existing GitHub repository,
 you need to [generate a new token](https://github.com/settings/tokens/new).
 You can generate a classic personal access token,
 or a [fine-grained personal access token](https://github.blog/changelog/2022-10-18-introducing-fine-grained-personal-access-tokens/)

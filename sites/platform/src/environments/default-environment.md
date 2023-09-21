@@ -30,7 +30,7 @@ To change the default branch, you need to be an [admin for the project](../admin
 
 The following steps depend of whether your project has a [source integration](../integrations/source/_index.md).
 
-If it doesn't, {{< vendor/name >}} is your primary remote repository for the project.
+If it doesn't, {{% vendor/name %}} is your primary remote repository for the project.
 If it does, GitHub, GitLab, or BitBucket hosts your primary remote repository for the project.
 
 ## 1. Create a `main` environment
@@ -63,7 +63,7 @@ git checkout -b main
 git push origin main
 ```
 
-Source integrations include all branches, but don't activate the corresponding environments in {{< vendor/name >}}.
+Source integrations include all branches, but don't activate the corresponding environments in {{% vendor/name %}}.
 Activate the `main` environment by running the following command:
 
 ```bash
@@ -109,13 +109,13 @@ For each environment, update its parent to `main`:
 title=With a source integration
 +++
 
-To preserve your data on {{< vendor/name >}},
+To preserve your data on {{% vendor/name %}},
 it's best to switch your work in progress to be based off of `main`.
 
 Close any open pull/merge requests and resubmit them against `main`.
 If you want to continue working on branches after switching the default branch,
 rebase them by running `git rebase --onto main <BRANCH_NAME>`.
-Once you resubmit a request, it appears under the `main` environment on {{< vendor/name >}}.
+Once you resubmit a request, it appears under the `main` environment on {{% vendor/name %}}.
 
 {{< /codetabs >}}
 
@@ -146,7 +146,7 @@ Once `old` has been deactivated, set the project's default branch to `main`:
 title=With a source integration
 +++
 
-Once `old` has been deactivated, set the project's default branch in {{< vendor/name >}} to `main`:
+Once `old` has been deactivated, set the project's default branch in {{% vendor/name %}} to `main`:
 
 ```bash
 {{% vendor/cli %}} project:info default_branch main
@@ -163,7 +163,7 @@ Follow the instructions to change the default branch to `main` for your provider
 ## 7. Update DNS records
 
 Whether or not you're using a CDN,
-if your site is live you have probably added a {{< vendor/name >}} address somewhere when configuring a [custom domain](../domains/steps/_index.md).
+if your site is live you have probably added a {{% vendor/name %}} address somewhere when configuring a [custom domain](../domains/steps/_index.md).
 If you have a CDN, it's with the CDN provider.
 If you don't have a CDN, it's probably a `CNAME` record.
 

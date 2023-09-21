@@ -29,7 +29,7 @@ You need:
 {{< /version/only >}}hu
 
 If you are planning to use several subdomains of the same domain on different projects,
-see how to [manage multiple subdomains](/domains/steps/subdomains.md) *before* you add your domain to {{< vendor/name >}}.
+see how to [manage multiple subdomains](/domains/steps/subdomains.md) *before* you add your domain to {{% vendor/name %}}.
 
 {{< version/only "1" >}}
 ## Optional: Change your plan to a production plan
@@ -77,7 +77,7 @@ Your domain needs to point to that target for your site to go live.
 
 {{< version/only "1" >}}
 
-For Dedicated plans, get the target for your project from your {{< vendor/name >}} contact.
+For Dedicated plans, get the target for your project from your {{% vendor/name %}} contact.
 
 {{< /version/only >}}
 

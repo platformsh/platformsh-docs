@@ -25,7 +25,7 @@ commit a `requirements.txt` file with all of the dependencies needed for your ap
 Then install the packages in your [`build` hook](../../create-apps/hooks/_index.md),
 such as by running the following command: `pip install -r requirements.txt`.
 
-The following sections present ideas to keep in mind to ensure repeatable deployments on {{< vendor/name >}}.
+The following sections present ideas to keep in mind to ensure repeatable deployments on {{% vendor/name %}}.
 
 ### pip version
 
@@ -77,7 +77,7 @@ hooks:
 You can write `requirements.txt` files in various ways.
 You can specify anything from the latest major to a specific patch version in a [requirement specifier](https://pip.pypa.io/en/stable/reference/requirement-specifiers/).
 Use `pip freeze` before committing your requirements to pin specific package versions.
-This ensures repeatable builds on {{< vendor/name >}} with the same packages.
+This ensures repeatable builds on {{% vendor/name %}} with the same packages.
 
 ## Pipenv
 
@@ -142,7 +142,7 @@ It allows you to declare the libraries your project depends on and manages them 
 Poetry offers a lock file to ensure repeatable installs and can build your project for distribution.
 It also creates and manages virtual environments to keep project work isolated from the rest of your system.
 
-To set up Poetry on {{< vendor/name >}}, follow these steps:
+To set up Poetry on {{% vendor/name %}}, follow these steps:
 
 1.  Configure your virtual environment by setting two variables in your [app configuration](../../create-apps/_index.md).
 
@@ -250,5 +250,5 @@ hooks:
 Some frameworks and tools recommend using Anaconda or Miniconda to manage packages in Python. 
 The following Community resources can help get you started with them:
 
-- [Running and installing Anaconda/Miniconda on {{< vendor/name >}}](https://community.platform.sh/t/how-to-run-an-anaconda-miniconda-python-stack-on-platform-sh/230)
-- [Running R Shiny using Miniconda on {{< vendor/name >}}](https://community.platform.sh/t/how-to-run-r-shiny-on-platform-sh/231)
+- [Running and installing Anaconda/Miniconda on {{% vendor/name %}}](https://community.platform.sh/t/how-to-run-an-anaconda-miniconda-python-stack-on-platform-sh/230)
+- [Running R Shiny using Miniconda on {{% vendor/name %}}](https://community.platform.sh/t/how-to-run-r-shiny-on-platform-sh/231)
