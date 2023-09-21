@@ -2,11 +2,11 @@
 title: Local development
 weight: -80
 description: |
-    Sync {{< vendor/name >}} with your local environments to start contributing.
+    Sync {{% vendor/name %}} with your local environments to start contributing.
 ---
 
 When you develop a Symfony project, a significant amount of work takes place
-locally rather than on an active {{< vendor/name >}} environment. You want to ensure
+locally rather than on an active {{% vendor/name %}} environment. You want to ensure
 that the process of local development is as close as possible to a deployed
 environment.
 
@@ -14,7 +14,7 @@ You can achieve this through various approaches. For example, you can use
 Symfony Server with tethered data
 
 To do so, when testing changes locally, you can connect your locally running
-Symfony Server to service containers on an active {{< vendor/name >}} environment.
+Symfony Server to service containers on an active {{% vendor/name %}} environment.
 
 This methodology has several advantages:
 
@@ -74,7 +74,7 @@ This starts the Symfony Server and opens the app in your local browser.
         export PLATFORM_RELATIONSHIPS="$(symfony tunnel:info --encode)"
     ```
 
-3.  To expose {{< vendor/name >}} services to your Symfony app, run the following
+3.  To expose {{% vendor/name %}} services to your Symfony app, run the following
     command:
 
     ```bash
@@ -82,9 +82,9 @@ This starts the Symfony Server and opens the app in your local browser.
     ```
 
     This automatically configures your local Symfony app to use all your
-    remote {{< vendor/name >}} services (remote database, remote Redis component, etc.).
+    remote {{% vendor/name %}} services (remote database, remote Redis component, etc.).
 
-    To check that you're now using remote data and components from {{< vendor/name >}},
+    To check that you're now using remote data and components from {{% vendor/name %}},
     reload your local app within your browser.
 
 4.  When you've finished your work,

@@ -1,5 +1,5 @@
 ---
-title: Deploy Hibernate ORM on {{< vendor/name >}}
+title: Deploy Hibernate ORM on {{% vendor/name %}}
 sidebarTitle: Get started
 weight: 4
 ---

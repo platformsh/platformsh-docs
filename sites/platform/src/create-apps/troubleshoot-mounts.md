@@ -75,7 +75,7 @@ web:
 
 ## Mounts starting with a dot ignored
 
-{{< vendor/name >}} ignores YAML keys that start with a dot.
+{{% vendor/name %}} ignores YAML keys that start with a dot.
 This causes a mount like `.myhiddenfolder` to be ignored.
 To mount a directory starting with a dot, put a `/` at the start of its definition:
 

@@ -4,7 +4,7 @@ weight: -90
 description: See how to start your apps as you wish with ASGI and WSGI servers.
 ---
 
-The Python ecosystem offers a number of web servers that can be used to deploy to {{< vendor/name >}}.
+The Python ecosystem offers a number of web servers that can be used to deploy to {{% vendor/name %}}.
 The following examples deploy a Django project named `myapp`.
 They assume a `myapp/wsgi.py` or `myapp/asgi.py` file  with a callable `application`.
 Adjust the examples to fit your framework and app.

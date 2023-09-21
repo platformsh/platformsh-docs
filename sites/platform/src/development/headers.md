@@ -2,7 +2,7 @@
 title: "HTTP Headers"
 weight: 8
 description: |
-  {{< vendor/name >}} adds a number of HTTP headers to both inbound and outbound messages. We don't modify or block existing headers on either request or response.
+  {{% vendor/name %}} adds a number of HTTP headers to both inbound and outbound messages. We don't modify or block existing headers on either request or response.
 sidebarTitle: "Headers"
 ---
 
@@ -10,7 +10,7 @@ sidebarTitle: "Headers"
 
 ## Request headers
 
-{{< vendor/name >}} adds the following HTTP headers in the router to give the application information about the connection. These are stable and may be examined by the application as necessary.
+{{% vendor/name %}} adds the following HTTP headers in the router to give the application information about the connection. These are stable and may be examined by the application as necessary.
 
 * `X-Forwarded-Proto`: The protocol forwarded to the application, for example: `http`, `https`.
 * `X-Client-IP`: The remote IP address of the request.
@@ -20,7 +20,7 @@ sidebarTitle: "Headers"
 
 ## Response headers
 
-{{< vendor/name >}} adds a number of response headers automatically to assist in debugging connections. These headers should be treated as a semi-private API. Do not code against them, but they may be inspected to help determine how {{< vendor/name >}} handled the request to aid in debugging.
+{{% vendor/name %}} adds a number of response headers automatically to assist in debugging connections. These headers should be treated as a semi-private API. Do not code against them, but they may be inspected to help determine how {{% vendor/name %}} handled the request to aid in debugging.
 
 * `X-Platform-Cache`: Either `HIT` or `MISS` to indicate if the router in your cluster served the response from its own cache or if the request was passed through to the application.
 * `X-Platform-Cluster`: The ID of the cluster that received the request. The cluster name is formed from the project ID and environment ID.
