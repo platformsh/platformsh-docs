@@ -2,14 +2,14 @@
 title: HTTP cache
 weight: 2
 description: |
-  {{< vendor/name >}} supports HTTP caching at the server level. Caching is enabled by default, but is only applied to `GET` and `HEAD` requests.
+  {{% vendor/name %}} supports HTTP caching at the server level. Caching is enabled by default, but is only applied to `GET` and `HEAD` requests.
 ---
 
 {{% description %}}
 
 The cache can be controlled using the `cache` key in your `{{< vendor/configfile "routes" >}}` file.
 
-If a request can be cached, {{< vendor/name >}} builds a cache key from several request properties and stores the response associated with this key.
+If a request can be cached, {{% vendor/name %}} builds a cache key from several request properties and stores the response associated with this key.
 When a request comes with the same cache key, the cached response is reused.
 
 When caching is on...
@@ -19,7 +19,7 @@ When caching is on...
 * cookies bypass the cache;
 * responses with the `Cache-Control` header set to `Private`, `No-Cache`, or `No-Store` aren't cached.
 
-You should _not_ use the {{< vendor/name >}} HTTP cache if you're using [Varnish](../add-services/varnish.md) or an external CDN
+You should _not_ use the {{% vendor/name %}} HTTP cache if you're using [Varnish](../add-services/varnish.md) or an external CDN
 such as [Fastly](../domains/cdn/fastly.md) or [Cloudflare](../domains/cdn/cloudflare.md).
 Mixing cache services together most likely results in caches that are stale and can't be cleared.
 For more details, see [best practices on HTTP caching](/learn/bestpractices/http-caching.md).
@@ -94,7 +94,7 @@ routes:
 
 ### The cache key
 
-If a request can be cached, {{< vendor/name >}} builds a cache key from several request properties and stores the response associated with this key. When a request comes with the same cache key, the cached response is reused.
+If a request can be cached, {{% vendor/name %}} builds a cache key from several request properties and stores the response associated with this key. When a request comes with the same cache key, the cached response is reused.
 
 There are two parameters that let you control this key: `headers` and `cookies`.
 
@@ -161,7 +161,7 @@ Turns the cache on or off for a route.
 
 Adds specific header fields to the cache key, enabling caching of separate responses for those headers.
 
-For example, if the `headers` key is the following, {{< vendor/name >}} caches a different response for each value of the `Accept` HTTP request header only:
+For example, if the `headers` key is the following, {{% vendor/name %}} caches a different response for each value of the `Accept` HTTP request header only:
 
 {{< version/specific >}}
 <!-- Platform.sh configuration-->
@@ -296,7 +296,7 @@ All static assets have a Cache-Control header with a max age defaulting to 0 (wh
 
 ## Debugging
 
-{{< vendor/name >}} adds an `X-Platform-Cache` header to each request which show whether your request is a cache `HIT`, `MISS` or `BYPASS`. This can be useful when trying to determine whether it's your application, the HTTP cache, or another proxy or CDN which isn't behaving as expected.
+{{% vendor/name %}} adds an `X-Platform-Cache` header to each request which show whether your request is a cache `HIT`, `MISS` or `BYPASS`. This can be useful when trying to determine whether it's your application, the HTTP cache, or another proxy or CDN which isn't behaving as expected.
 
 If in doubt, disable the cache using `cache: false`.
 

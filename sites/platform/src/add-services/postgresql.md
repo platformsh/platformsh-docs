@@ -256,7 +256,7 @@ The easiest way to load data into a database is to pipe an SQL dump through the 
 {{% vendor/cli %}} sql < my_database_backup.sql
 ```
 
-That runs the database backup against the SQL database on {{< vendor/name >}}.
+That runs the database backup against the SQL database on {{% vendor/name %}}.
 That works for any SQL file, so the usual caveats about importing an SQL dump apply
 (for example, it's best to run against an empty database).
 As with exporting, you can also specify a specific environment to use and a specific database relationship to use, if there are multiple.
@@ -322,7 +322,7 @@ This example creates a single PostgreSQL service named `dbpostgres`. The server 
 * `reporter`: has `SELECT` query access to the `main` database, but no access to `legacy`.
 * `importer`: has `SELECT`/`INSERT`/`UPDATE`/`DELETE` access (but not DDL access) to the `legacy` database. It doesn't have access to `main`.
 
-If a given endpoint has access to multiple databases you should also specify which is listed by default in the relationships array. If one isn't specified, the `path` property of the relationship is `null`. While that may be acceptable for an application that knows the name of the database it's connecting to, automated tools like the {{< vendor/name >}} CLI can't access the database on that relationship. For that reason, defining the `default_database` property is always recommended.
+If a given endpoint has access to multiple databases you should also specify which is listed by default in the relationships array. If one isn't specified, the `path` property of the relationship is `null`. While that may be acceptable for an application that knows the name of the database it's connecting to, automated tools like the {{% vendor/name %}} CLI can't access the database on that relationship. For that reason, defining the `default_database` property is always recommended.
 
 Once these endpoints are defined, you need to expose them to your application as a relationship. Continuing with the above example, your `relationships` in `{{< vendor/configfile "app" >}}` might look like:
 
@@ -417,7 +417,7 @@ To change the timezone for the current session, run `SET TIME ZONE {{< variable 
 
 ## Extensions
 
-{{< vendor/name >}} supports a number of PostgreSQL extensions. To enable them, list them under the `configuration.extensions` key in your `{{< vendor/configfile "services" >}}` file, like so:
+{{% vendor/name %}} supports a number of PostgreSQL extensions. To enable them, list them under the `configuration.extensions` key in your `{{< vendor/configfile "services" >}}` file, like so:
 
 ```yaml {configFile="services"}
 {{% snippet name="dbpostgres" config="service" %}}

@@ -4,18 +4,18 @@ weight: 2
 sidebarTitle: "Custom TLS certificates"
 ---
 
-{{< vendor/name >}} automatically provides standard Transport Layer Security (TLS) certificates for all sites and environments.
+{{% vendor/name %}} automatically provides standard Transport Layer Security (TLS) certificates for all sites and environments.
 These certificates are issued at no charge by [Let's Encrypt](https://letsencrypt.org/) and cover most needs.
 To use them, you need to [specify HTTPS routes](../../define-routes/https.md#enable-https). 
 Note that some [limitations](../../define-routes/https.md#lets-encrypt-limitations) apply.
 
-{{< vendor/name >}} allows you to use third-party TLS certificates free of charge.
+{{% vendor/name %}} allows you to use third-party TLS certificates free of charge.
 
 You can use many kinds of custom certificates, including domain-validated, extended validation, high-assurance, or wildcard certificates.
 Consult your TLS issuer for pricing and instructions on how to generate a TLS certificate.
 
 Seven days before a third-party custom certificate is due to expire,
-{{< vendor/name >}} replaces it with a new default Let’s Encrypt certificate.
+{{% vendor/name %}} replaces it with a new default Let’s Encrypt certificate.
 This helps prevent downtime.
 To avoid switching to a default certificate,
 make sure you replace your custom certificate with an updated one

@@ -1,9 +1,9 @@
 ---
-title: "Configure SQLite for Strapi on {{< vendor/name >}}"
+title: "Configure SQLite for Strapi on {{% vendor/name %}}"
 sidebarTitle: "SQLite"
 weight: -100
 description: |
-  Configure your Strapi application to use a SQLite database on {{< vendor/name >}}.
+  Configure your Strapi application to use a SQLite database on {{% vendor/name %}}.
 ---
 
 Strapi uses SQLite database by default when it's run on a local machine.
@@ -48,10 +48,10 @@ Since Strapi uses SQLite by default, you don't need much configuration, just fol
    };
  
    if (config.isValidPlatform() && !config.inBuild()) {
-   // {{< vendor/name >}} database configuration.
+   // {{% vendor/name %}} database configuration.
    try {
    const credentials = config.credentials(dbRelationship);
-   console.log(`Using {{< vendor/name >}} configuration with relationship ${dbRelationship}.`);
+   console.log(`Using {{% vendor/name %}} configuration with relationship ${dbRelationship}.`);
 
        pool = {
          min: 0,
@@ -87,10 +87,10 @@ Since Strapi uses SQLite by default, you don't need much configuration, just fol
    } else {
    if (config.isValidPlatform()) {
    // Build hook configuration message.
-   console.log('Using default configuration during {{< vendor/name >}} build hook until relationships are available.');
+   console.log('Using default configuration during {{% vendor/name %}} build hook until relationships are available.');
    } else {
    // Strapi default local configuration.
-   console.log('Not in a {{< vendor/name >}} Environment. Using default local sqlite configuration.');
+   console.log('Not in a {{% vendor/name %}} Environment. Using default local sqlite configuration.');
     }
    }
 

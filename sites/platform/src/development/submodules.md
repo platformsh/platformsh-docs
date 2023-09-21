@@ -6,9 +6,9 @@ sidebarTitle: "Git submodules"
 
 ## Clone submodules during deployment
 
-{{< vendor/name >}} allows you to use submodules in your Git repository.
+{{% vendor/name %}} allows you to use submodules in your Git repository.
 They're usually listed in a `.gitmodules` file at the root of your Git repository.
-When you push via Git, {{< vendor/name >}} tries to clone them automatically.
+When you push via Git, {{% vendor/name %}} tries to clone them automatically.
 
 The following example is based on [a Bigfoot multi-app project](https://github.com/platformsh-templates/bigfoot-multiapp/tree/multiapp-subfolders-applications) which uses the following submodules:
 
@@ -103,7 +103,7 @@ title= Automated update
 {{< note theme="warning" title="Tier availability" version="1" >}}
 
 This feature is available for **Elite** and **Enterprise** customers.
-[Compare the {{< vendor/name >}} tiers](https://platform.sh/pricing/) on our pricing page,
+[Compare the {{% vendor/name %}} tiers](https://platform.sh/pricing/) on our pricing page,
 or [contact our Sales team](https://platform.sh/contact/) for more information.
 
 {{< /note >}}
@@ -174,7 +174,7 @@ To do so, follow these steps:
    Select the operation you want to run.</br>
    Click **Run**.
 
-   Alternatively, to run your source operation from the [{{< vendor/name >}} CLI](../administration/cli/_index.md),
+   Alternatively, to run your source operation from the [{{% vendor/name %}} CLI](../administration/cli/_index.md),
    run the following command:
 
    ```bash
@@ -198,7 +198,7 @@ E: Error validating submodules in tree:
     - git@github.com:platformsh-templates/bigfoot-multiapp-admin.git: HangupException: The remote server unexpectedly closed the connection.
 ```
 
-This is due to the fact that the {{< vendor/name >}} Git server can't connect to GitHub via SSH without being granted an SSH key to do so.
+This is due to the fact that the {{% vendor/name %}} Git server can't connect to GitHub via SSH without being granted an SSH key to do so.
 To solve this issue, use an HTTPS URL (`https://github.com/...`) instead.
 
 ## Use private Git repositories
@@ -232,7 +232,7 @@ To fix this, follow these steps:
     ```
 
 2. Add the [project's public key to your remote Git repository](./private-repository.md).
-   This allows your {{< vendor/name >}} project to pull the repository from the remote Git service.
+   This allows your {{% vendor/name %}} project to pull the repository from the remote Git service.
 
 {{< note >}}
 
@@ -248,7 +248,7 @@ If your server needs access to multiple repositories, follow these steps:
 
 ## Removing submodules
 
-These steps aren't specific to {{< vendor/name >}}, but kept as a reference for Git so that submodules are effectively removed before entering the build process.
+These steps aren't specific to {{% vendor/name %}}, but kept as a reference for Git so that submodules are effectively removed before entering the build process.
 
 1. In your `.gitmodules` and `.git/config` files, delete the information related to the submodule you want to remove.
 

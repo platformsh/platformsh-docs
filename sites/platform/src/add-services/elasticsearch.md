@@ -329,7 +329,7 @@ There are two ways to do so.
 In your `{{< vendor/configfile "services" >}}` file, change the version *and* name of your Elasticsearch service.
 Be sure to also update the reference to the now changed service name in it's corresponding application's `relationship` block.
 
-When you push that to {{< vendor/name >}}, the old service is deleted and a new one with the new name is created with no data.
+When you push that to {{% vendor/name %}}, the old service is deleted and a new one with the new name is created with no data.
 You can then have your application reindex data as appropriate.
 
 This approach has the downsides of temporarily having an empty Elasticsearch instance,

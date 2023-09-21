@@ -30,10 +30,10 @@ let options = {
 };
 
 if (config.isValidPlatform() && !config.inBuild()) {
-  // {{< vendor/name >}} database configuration.
+  // {{% vendor/name %}} database configuration.
   const credentials = config.credentials(dbRelationship);
   console.log(
-    `Using {{< vendor/name >}} configuration with relationship ${dbRelationship}.`
+    `Using {{% vendor/name %}} configuration with relationship ${dbRelationship}.`
   );
 
   settings = {
@@ -63,12 +63,12 @@ if (config.isValidPlatform() && !config.inBuild()) {
   if (config.isValidPlatform()) {
     // Build hook configuration message.
     console.log(
-      "Using default configuration during {{< vendor/name >}} build hook until relationships are available."
+      "Using default configuration during {{% vendor/name %}} build hook until relationships are available."
     );
   } else {
     // Strapi default local configuration.
     console.log(
-      "Not in a {{< vendor/name >}} Environment. Using default local sqlite configuration."
+      "Not in a {{% vendor/name %}} Environment. Using default local sqlite configuration."
     );
   }
 }
