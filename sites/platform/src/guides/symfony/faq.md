@@ -5,6 +5,22 @@ description: |
     Troubleshoot issue you might encounter using [Symfony](https://www.symfony.com/), a [PHP](/development/templates.md#php) framework on {{< vendor/name >}}.
 ---
 
+## Why is `DATABASE_URL` not defined during the build hook?
+
+During the build hook, services are not available to avoid breaking the
+application that is still live. That is why the Symfony integration does not
+expose environment variables during the build hook.
+
+The `cache:clear` command does not need to connect to the database by default,
+except if you are using the Doctrine ORM and the database engine version is not
+set in your configuration.
+
+The version information can be set in your `.env` file or in the
+`doctrine.yaml` configuration file. The only important pieces of information there are
+the database engine and the version; everything else will be ignored.
+
+Note that the environment variables are available in the deploy hook.
+
 ## How can I access my application logs?
 
 To display the application log file (`app` file), run the following command:
