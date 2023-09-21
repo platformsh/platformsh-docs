@@ -6,7 +6,7 @@ sidebarTitle: "Solr"
 
 Apache Solr is a scalable and fault-tolerant search index.
 
-Solr search with generic schemas provided, and a custom schema is also supported. See the [Solr documentation](https://lucene.apache.org/solr/6_3_0/index.html) for more information."
+Solr search with generic schemas provided, and a custom schema is also supported. See the [Solr documentation](https://lucene.apache.org/solr/6_3_0/index.html) for more information.
 
 {{% frameworks version="1" %}}
 
@@ -88,7 +88,7 @@ Solr search with generic schemas provided, and a custom schema is also supported
     "service": "solr86",
     "fragment": null,
     "ip": "169.254.68.119",
-    "hostname": "csjsvtdhmjrdre2uaoeim22xjy.solr86.service._.eu-3.platformsh.site",
+    "hostname": "csjsvtdhmjrdre2uaoeim22xjy.solr86.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "port": 8080,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "solr.internal",
@@ -96,7 +96,7 @@ Solr search with generic schemas provided, and a custom schema is also supported
     "path": "solr\/maincore",
     "query": [],
     "password": "ChangeMe",
-    "type": "solr:8.6",
+    "type": "solr:{{% latest "solr" %}}",
     "public": false,
     "host_mapped": false
 }
@@ -106,7 +106,7 @@ Solr search with generic schemas provided, and a custom schema is also supported
 
 {{% endpoint-description type="solr" sectionLink="#solr-6-and-later" multipleText="cores" /%}}
 
-{{< codetabs >}}
+{{< codetabs v2hide="true" >}}
 
 +++
 title=Go
@@ -148,6 +148,40 @@ highlight=python
 
 {{< /codetabs >}}
 
+<!-- Version 2: .environment shortcode + context -->
+{{% version/only "2" %}}
+
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="myapp" >}}
+# Relationships enable an app container's access to a service.
+relationships:
+    solrsearch: "searchsolr:solr"
+{{< /snippet >}}
+{{< snippet name="searchsolr" config="service" placeholder="true" >}}
+    type: solr:{{% latest "solr" %}}
+    disk: 256
+{{< /snippet >}}
+```
+
+{{< v2connect2app serviceName="searchelastic" relationship="solrsearch" var="SOLR_URL">}}
+
+```bash {location="myapp/.environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for individual credentials.
+export SOLR_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".solrsearch[0].host")
+export SOLR_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".solrsearch[0].port")
+export SOLR_PATH=$(echo $RELATIONSHIPS_JSON | jq -r ".solrsearch[0].path")
+
+# Surface more common Solr connection string variables for use in app.
+export SOLR_URL="http://${CACHE_HOST}:${CACHE_PORT}/${CACHE_PATH}"
+```
+
+{{< /v2connect2app >}}
+
+{{% /version/only %}}
+
 ## Solr 4
 
 For Solr 4, {{% vendor/name %}} supports only a single core per server called `collection1`.
@@ -155,21 +189,25 @@ For Solr 4, {{% vendor/name %}} supports only a single core per server called `c
 You must provide your own Solr configuration via a `core_config` key in your `{{< vendor/configfile "services" >}}`:
 
 ```yaml {configFile="services"}
-searchsolr:
-    type: solr:4.10
+{{% snippet name="searchsolr" config="service" %}}
+    type: "solr:4.10"
     disk: 1024
     configuration:
         core_config: !archive "{{< variable "DIRECTORY" >}}"
+{{% /snippet %}}
 ```
 
-The `directory` parameter points to a directory in the Git repository, in or below the `{{< vendor/configdir >}}/` folder. This directory needs to contain everything that Solr needs to start a core. At the minimum, `solrconfig.xml` and `schema.xml`. For example, place them in `{{< vendor/configdir >}}/solr/conf/` such that the `schema.xml` file is located at `{{< vendor/configdir >}}/solr/conf/schema.xml`. You can then reference that path like this -
+{{< variable "DIRECTORY" >}} points to a directory in the Git repository, in or below the `{{< vendor/configdir >}}/` folder. This directory needs to contain everything that Solr needs to start a core. At the minimum, `solrconfig.xml` and `schema.xml`. 
+
+For example, place them in `{{< vendor/configdir >}}/solr/conf/` such that the `schema.xml` file is located at `{{< vendor/configdir >}}/solr/conf/schema.xml`. You can then reference that path like this -
 
 ```yaml {configFile="services"}
-searchsolr:
-    type: solr:4.10
+{{% snippet name="searchsolr" config="service" %}}
+    type: "solr:4.10"
     disk: 1024
     configuration:
         core_config: !archive "solr/conf/"
+{{% /snippet %}}
 ```
 
 ## Solr 6 and later
@@ -177,8 +215,8 @@ searchsolr:
 For Solr 6 and later {{% vendor/name %}} supports multiple cores via different endpoints. Cores and endpoints are defined separately, with endpoints referencing cores. Each core may have its own configuration or share a configuration. It is best illustrated with an example.
 
 ```yaml {configFile="services"}
-searchsolr:
-    type: solr:8.4
+{{% snippet name="searchsolr" config="service" %}}
+    type: solr:{{% latest "solr" %}}
     disk: 1024
     configuration:
         cores:
@@ -191,27 +229,51 @@ searchsolr:
                 core: mainindex
             extra:
                 core: extraindex
+{{% /snippet %}}
 ```
 
-The above definition defines a single Solr 8.0 server. That server has 2 cores defined: `mainindex` &mdash; the configuration for which is in the `{{< vendor/configdir >}}/core1-conf` directory &mdash; and `extraindex` &mdash; the configuration for which is in the `{{< vendor/configdir >}}/core2-conf` directory.
+The above definition defines a single Solr {{% latest "solr" %}} server. That server has 2 cores defined: 
+
+- `mainindex` &mdash; the configuration for which is in the `{{< vendor/configdir >}}/core1-conf` directory
+- `extraindex` &mdash; the configuration for which is in the `{{< vendor/configdir >}}/core2-conf` directory.
 
 It then defines two endpoints: `main` is connected to the `mainindex` core while `extra` is connected to the `extraindex` core. Two endpoints may be connected to the same core but at this time there would be no reason to do so. Additional options may be defined in the future.
 
-Each endpoint is then available in the relationships definition in `{{< vendor/configfile "app" >}}`. For example, to allow an application to talk to both of the cores defined above its `{{< vendor/configfile "app" >}}` file should contain the following:
+Each endpoint is then available in the relationships definition in `{{< vendor/configfile "app" >}}`. For example, to allow an application to talk to both of the cores defined above its configuration should contain the following:
 
 ```yaml {configFile="app"}
+{{% snippet name="myapp" config="app" root="false" %}}
+type: "php:{{% latest "php" %}}"
+
 relationships:
     solrsearch1: 'searchsolr:main'
     solrsearch2: 'searchsolr:extra'
+{{% /snippet %}}
+
+{{% snippet name="searchsolr" config="service" placeholder="true"%}}
+    type: solr:{{% latest "solr" %}}
+    disk: 1024
+    configuration:
+        cores:
+            mainindex:
+                conf_dir: !archive "core1-conf"
+            extraindex:
+                conf_dir: !archive "core2-conf"
+        endpoints:
+            main:
+                core: mainindex
+            extra:
+                core: extraindex
+{{% /snippet %}}
 ```
 
-That is, the application's environment would include a `solr1` relationship that connects to the `main` endpoint, which is the `mainindex` core, and a `solr2` relationship that connects to the `extra` endpoint, which is the `extraindex` core.
+That is, the application's environment would include a `solrsearch1` relationship that connects to the `main` endpoint, which is the `mainindex` core, and a `solrsearch2` relationship that connects to the `extra` endpoint, which is the `extraindex` core.
 
 The relationships array would then look something like the following:
 
 ```json
 {
-    "solr1": [
+    "solrsearch1": [
         {
             "path": "solr/mainindex",
             "host": "248.0.65.197",
@@ -219,7 +281,7 @@ The relationships array would then look something like the following:
             "port": 8080
         }
     ],
-    "solr2": [
+    "solrsearch2": [
         {
             "path": "solr/extraindex",
             "host": "248.0.65.197",
@@ -235,7 +297,7 @@ The relationships array would then look something like the following:
 For even more customizability, it's also possible to define Solr configsets. For example, the following snippet would define one configset, which would be used by all cores. Specific details can then be overridden by individual cores using `core_properties`, which is equivalent to the Solr `core.properties` file.
 
 ```yaml {configFile="services"}
-searchsolr:
+{{% snippet name="searchsolr" config="service" %}}
     type: solr:8.4
     disk: 1024
     configuration:
@@ -255,11 +317,17 @@ searchsolr:
                 core: english_index
             arabic:
                 core: arabic_index
+{{% /snippet %}}
 ```
 
-In this example, `{{< vendor/configdir >}}/configsets/solr8` contains the configuration definition for multiple cores. There are then two cores created: `english_index` uses the defined configset, but specifically the `{{< vendor/configdir >}}/configsets/solr8/english/schema.xml` file, while `arabic_index` is identical except for using the `{{< vendor/configdir >}}/configsets/solr8/arabic/schema.xml` file. Each of those cores is then exposed as its own endpoint.
+In this example, `{{< vendor/configdir >}}/configsets/solr8` contains the configuration definition for multiple cores. There are then two cores created: 
 
-Note that not all core.properties features make sense to specify in the `core_properties`. Some keys, such as `name` and `dataDir`, aren't supported, and may result in a solrconfig that fails to work as intended, or at all.
+- `english_index` uses the defined configset, but specifically the `{{< vendor/configdir >}}/configsets/solr8/english/schema.xml` file
+- `arabic_index` is identical except for using the `{{< vendor/configdir >}}/configsets/solr8/arabic/schema.xml` file. 
+
+Each of those cores is then exposed as its own endpoint.
+
+Note that not all core properties features make sense to specify in the `core_properties`. Some keys, such as `name` and `dataDir`, aren't supported, and may result in a `solrconfig` that fails to work as intended, or at all.
 
 ### Default configuration
 
@@ -268,8 +336,8 @@ Note that not all core.properties features make sense to specify in the `core_pr
 If you don't specify any configuration, the following default is used:
 
 ```yaml {configFile="services"}
-searchsolr:
-    type: solr:9.1
+{{% snippet name="searchsolr" config="service" %}}
+    type: solr:{{% latest "solr" %}}
     configuration:
         cores:
             collection1:
@@ -277,6 +345,7 @@ searchsolr:
         endpoints:
             solr:
                 core: collection1
+{{% /snippet %}}
 ```
 
 The example configuration directory is equivalent to the [Solr example configuration set](https://github.com/apache/solr/tree/main/solr/server/solr/configsets/sample_techproducts_configs/conf).
@@ -288,7 +357,7 @@ You are strongly recommended to define your own configuration with a custom core
 If you don't specify any configuration, the following default is used:
 
 ```yaml {configFile="services"}
-searchsolr:
+{{% snippet name="searchsolr" config="service" %}}
     type: solr:8.4
     configuration:
         cores:
@@ -296,6 +365,7 @@ searchsolr:
         endpoints:
             solr:
                 core: collection1
+{{% /snippet %}}
 ```
 
 The default configuration is based on an older version of the Drupal 8 Search API Solr module that is no longer in use.
@@ -303,7 +373,13 @@ You are strongly recommended to define your own configuration with a custom core
 
 ### Limitations
 
-The recommended maximum size for configuration directories (zipped) is 2MB. These need to be monitored to ensure they don't grow beyond that. If the zipped configuration directories grow beyond this, performance declines and deploys become longer. The directory archives are compressed and string encoded. You could use this bash pipeline `echo $(($(tar czf - . | base64 | wc -c )/(1024*1024))) Megabytes` inside the directory to get an idea of the archive size.
+The recommended maximum size for configuration directories (zipped) is 2MB. These need to be monitored to ensure they don't grow beyond that. If the zipped configuration directories grow beyond this, performance declines and deploys become longer. The directory archives are compressed and string encoded. You could use this bash pipeline 
+
+```bash
+echo $(($(tar czf - . | base64 | wc -c )/(1024*1024))) Megabytes
+```
+
+inside the directory to get an idea of the archive size.
 
 The configuration directory is a collection of configuration data, like a data dictionary, e.g. small collections of key/value sets. The best way to keep the size small is to restrict the directory context to plain configurations. Including binary data like plugin `.jar` files inflates the archive size, and isn't recommended.
 
@@ -343,7 +419,8 @@ There are two ways of doing that.
 
 ### Destructive
 
-In your `{{< vendor/configfile "services" >}}` file, change the version of your Solr service *and* its name. Then update the name in the `{{< vendor/configfile "app" >}}` relationships block.
+In your `{{< vendor/configfile "services" >}}` file, change the version of your Solr service *and* its name. 
+Be sure to also update the reference to the now changed service name in it's corresponding application's `relationship` block.
 
 When you push that to {{% vendor/name %}}, the old service is deleted and a new one with the name is created, with no data. You can then have your application re-index data as appropriate.
 

@@ -3,8 +3,6 @@ title: Set up a custom domain on a preview environment
 sidebarTitle: Preview environments
 weight: 3
 description: Learn how to set up custom domains on your preview environments
-banner: 
-    type: tiered-feature
 ---
 
 {{% version/specific %}}
@@ -14,7 +12,7 @@ banner:
 
 [Preview environments](/glossary.md#preview-environment) in your project can't use the custom domain [set up on your production environment](../steps/_index.md).<br/>
 By default and for each preview environment,
-{{% vendor/name %}} automatically replaces the custom production domain
+{{< vendor/name >}} automatically replaces the custom production domain
 with an automatically generated URL.
 
 If you don't want to use these default URLs,
@@ -44,7 +42,7 @@ and still access your production environment through `example.com`.
 If you have multiple custom domains on your production environment,
 when you set up a custom domain on a preview environment,
 you don't need to update your [routes configuration](../../define-routes/_index.md) either.
-{{% vendor/name %}} automatically figures out the routing of your preview environment
+{{< vendor/name >}} automatically figures out the routing of your preview environment
 based on the following elements:
 
 - The custom production domains in your existing [routes configuration](../../define-routes/_index.md)
@@ -71,7 +69,7 @@ You need:
 {{% /version/specific %}}
 - A production environment with at least one custom domain already set up
 - At least one preview (staging or development) environment
-- Optional: The [{{% vendor/name %}} CLI](../../administration/cli/_index.md) (v4.8.0+)
+- Optional: The [{{< vendor/name >}} CLI](../../administration/cli/_index.md) (v4.8.0+)
 
 To prevent abuse, by default you can add custom domains to up to 5 preview environments per project only.
 This limit doesn't include the production environment,
@@ -79,16 +77,16 @@ and you can increase it without charge.
 To do so, [contact Support](/learn/overview/get-support.md).
 
 {{< note >}}
-
 If you delete a custom production domain,
 all of the attached custom domains for preview environments are deleted too.
 You need to rebuild the affected preview environments for the deletion to be complete.
+{{< /note >}}
 
- {{< /note >}}
-
+{{% version/specific %}}
 If you downgrade from an Elite or Enterprise plan to a Professional plan,
 all of the custom domains set up on preview environments are automatically removed.
 Downgrading your plan doesn't affect custom domains set up on your production environments.
+{{% /version/specific %}}
 
 ## Add a custom domain to a preview environment
 
@@ -106,13 +104,13 @@ title=Using the CLI
    {{% vendor/cli %}} environment:info edge_hostname --environment {{< variable "ENVIRONMENT_NAME" >}}
    ```
 
-2. [Configure your DNS provider](../steps/_index.md#2-configure-your-dns-provider).
+2. [Configure your DNS provider](../steps/_index.md#3-configure-your-dns-provider).
    In particular, make sure your DNS record points to the target of your preview environment.
 
    {{< note >}}
 
    Using the target of your production environment to configure your DNS provider is technically possible,
-   but {{% vendor/name %}} recommends using the target of your preview environment as a best practice.
+   but {{< vendor/name >}} recommends using the target of your preview environment as a best practice.
 
    {{< /note >}}
 
@@ -143,13 +141,13 @@ title=In the Console
 
 6.  Click **Okay**.
 
-7.  [Configure your DNS provider](../steps/_index.md#2-configure-your-dns-provider).</br>
+7.  [Configure your DNS provider](../steps/_index.md#3-configure-your-dns-provider).</br>
     In particular, make sure your DNS record points to the target of your preview environment.
 
 {{< note >}}
 
 Using the target of your production environment to configure your DNS provider is technically possible,
-but {{% vendor/name %}} recommends using the target of your preview environment as a best practice.
+but {{< vendor/name >}} recommends using the target of your preview environment as a best practice.
 
 {{< /note >}}
 
@@ -201,7 +199,7 @@ title=In the Console
 
 6.  Click **Okay**.
 
-7.  [Configure your DNS provider](../steps/_index.md#2-configure-your-dns-provider).</br>
+7.  [Configure your DNS provider](../steps/_index.md#3-configure-your-dns-provider).</br>
     In particular, make sure your DNS record points to `Dev`'s target.
 
 {{< /codetabs >}}

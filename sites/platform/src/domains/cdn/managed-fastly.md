@@ -22,7 +22,7 @@ To add a managed Fastly CDN to your project,
 When you request for a new domain to be added to your Fastly service,
 {{% vendor/name %}} support provides you with a [`CNAME` record](../../domains/steps/dns.md) for [domain control validation](../troubleshoot.md#ownership-verification).
 To add this `CNAME` record to your domain settings,
-see how to [configure your DNS provider](../steps/_index.md#3-configure-your-dns-provider).
+see how to [configure your DNS provider](../steps/_index.md#2-configure-your-dns-provider).
 
 ### Transport Layer Security (TLS) certificates
 

@@ -258,6 +258,9 @@ https://{default}/:
       "/other/glossary.html" : { "to": "/glossary.html", "code": 301 }
       "/changelog.html" : { "to": "https://next.platform.sh/", "code": 301 }
 
+      # Change of URL for the custom domains on preview environments page
+      "/domains/steps/custom-non-production-domains.html" : { "to": "/domains/steps/custom-domains-preview-environments.html", "code": 301 }
+
 "https://search.{default}/":
     type: upstream
     upstream: "search:http"
@@ -271,7 +274,13 @@ https://docs.upsun.com/:
     enabled: true
   ssi:
     enabled: false
+  redirects:
+    paths:
+      "/anchors/resources/configuration.html": { "to": "/administration/pricing.html", "code": 301, "prefix": false }
+      "/anchors/scaling/down.html": { "to": "/administration/pricing.html", "code": 301, "prefix": false }
+      "/anchors/organizations/admin.html": { "to": "/administration/organizations.html", "code": 301, "prefix": false }
+      "/anchors/resources/green.html": { "to": "/administration/pricing.html", "code": 301, "prefix": false }
 
-"https://docs.deployfriday.net/":
-    type: redirect
-    to: "https://docs.upsun.com/"
+# "https://docs.deployfriday.net/":
+#     type: redirect
+#     to: "https://docs.upsun.com/"
