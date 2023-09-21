@@ -346,19 +346,19 @@ https://docs.upsun.com/:
       "/anchors/organizations.html": { "to": "/administration/organizations.html", "code": 301, "prefix": false }
       "/anchors/redeploy.html": { "to": "/development/troubleshoot.html#force-a-redeploy", "code": 301, "prefix": false }
       "/anchors/ssh/authenticate.html": { "to": "/development/ssh.html#authenticate-with-ssh-keys", "code": 301, "prefix": false }
-
-  # "links.documentation.workers": "https://docs.platform.sh/configuration/app/workers.html",
-  # "links.documentation.source_operations": "https://docs.platform.sh/configuration/app/source-operations.html",
-  # "links.documentation.runtime_operations": "https://docs.platform.sh/create-apps/runtime-operations.html",
-  # "links.documentation.live_backups": "https://docs.platform.sh/administration/backup-and-restore.html#live-backups",
-  # "links.documentation.automated_updates": "https://docs.platform.sh/create-apps/source-operations.html",
-  # "links.documentation.trustcenter": "https://platform.sh/trust-center/",
-  # "links.documentation.configure_project.certificates": "https://docs.platform.sh/administration/web/configure-project.html#certificates",
-  # "links.documentation.environments.default_environment": "https://docs.platform.sh/environments/default-environment.html",
-  # "links.documentation.organizations.manage-your-organization-users": "https://docs.platform.sh/administration/organizations.",
-  # "links.documentation.flexible_resources": "https://docs.platform.sh/create-apps/flexible-resources.html",
-  # "links.documentation.environments.cancel_activity": "https://docs.platform.sh/environments/cancel-activity.html",
-  # "links.documentation.administration.servers": "https://docs.platform.sh/administration/servers.html",
+      "/anchors/apps/workers.html": { "to": "/create-apps/workers.html", "code": 301, "prefix": false }
+      "/anchors/apps/source-ops.html": { "to": "/create-apps/source-operations.html", "code": 301, "prefix": false }
+      "/anchors/apps/runtime-ops.html": { "to": "/create-apps/runtime-operations.html", "code": 301, "prefix": false }
+      "/anchors/live-backups.html": { "to": "/administration/backup-and-restore.html#live-backups", "code": 301, "prefix": false }
+      "/anchors/automated-backups.html": { "to": "/learn/tutorials/dependency-updates.html", "code": 301, "prefix": false }
+      # Still a Platform.sh-specific link.
+      "/anchors/trust-center.html": { "to": "https://platform.sh/trust-center/", "code": 301, "prefix": false }
+      "/anchors/certificates.html": { "to": "/administration/web/configure-project.html#certificates", "code": 301, "prefix": false }
+      "/anchors/environments/default.html": { "to": "/environments/default-environment.html", "code": 301, "prefix": false }
+      "/anchors/admin/users/org.html": { "to": "/administration/organizations.html", "code": 301, "prefix": false }
+      "/anchors/resources/flexible.html": { "to": "/create-apps/flexible-resources.html", "code": 301, "prefix": false }
+      "/anchors/environments/cancel-activity.html": { "to": "/environments/cancel-activity.html", "code": 301, "prefix": false }
+      "/anchors/admin/servers.html": { "to": "/administration/servers.html", "code": 301, "prefix": false }
 
 # "https://docs.deployfriday.net/":
 #     type: redirect
