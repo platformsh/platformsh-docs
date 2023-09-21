@@ -1,0 +1,113 @@
+---
+title: Continuous profiling for NodeJS
+description: Configure the NodeJS continuous profiler.
+weight: 15
+---
+
+## Introduction
+
+Continuous profiling is a performance optimization technique where web applications
+are monitored and profiled in real-time. Lightweight and scalable, it's tailored
+for holistic application oversight.
+
+Continuous profiling collects performance data continuously, enabling developers to
+gain deep insights into their application's behavior, identify bottlenecks, and
+optimize code for better performance and resource utilization. This proactive
+approach allows for quicker identification and resolution of performance issues,
+ensuring the smooth running of software in live environments.
+
+## Continuous profiling on {{< vendor/name >}}
+
+{{< vendor/name >}} Continuous Profiler is powered by [Blackfire](../../../increase-observability/application-metrics/blackfire.md).
+It is available directly from the Console under the `Profiling` tab of your environments.
+
+## Prerequisites
+
+{{< vendor/name >}} Continuous Profiler requires `Node.js >= 16.0.0`.
+
+## Installation
+
+Get the [Blackfire Continuous Profiler NodeJS library](https://github.com/blackfireio/node-continuous-profiling/):
+
+```shell
+npm install @blackfireio/node-tracing
+```
+
+```js
+const Blackfire = require('@blackfireio/node-tracing');
+```
+
+## NodeJS continuous profiler API
+
+The NodeJS continuous profiler API has two functions:
+
+```js
+function start(config) {}
+function stop() {}
+```
+
+### `function start(config) {}`
+
+The `start` function starts the continuous profiler probe.
+It collects profiling information in the background and periodically uploads it to the Blackfire Agent until the `stop` function is called.
+
+```js
+const Blackfire = require('@blackfireio/node-tracing');
+Blackfire.start({
+   appName: 'my-app'
+   // socket to the Blackfire agent.
+   // agentSocket: 'unix:///var/run/blackfire/agent.sock'
+});
+// your application...
+// If needed, you can stop profiling before cpuDuration
+// Blackfire.stop();
+```
+
+The `start` function accepts an object as parameter with the following keys:
+
+- `appName`: name of the application
+
+- `durationMillis`: time in milliseconds for which to collect profile (default: 45_000)
+
+- `cpuProfileRate`: average sampling frequency in Hz. (default: 100)
+
+- `labels`: Labels to add to the profile. (default: {})
+
+- `uploadTimeoutMillis`: Timeout in milliseconds for the upload request (default: 10000)
+
+### `function stop() {}`
+
+Stops the continuous profiling probe.
+
+## A simple example application
+
+1. Install dependencies
+
+```shell
+npm install express @blackfireio/node-tracing
+```
+
+2. Create `index.js` with the following code
+
+```js
+const Blackfire = require('@blackfireio/node-tracing');
+const express = require('express')
+const crypto = require("crypto");
+const app = express()
+const port = 3000
+
+app.get('/', (req, res) => {
+   const salt = crypto.randomBytes(128).toString("base64");
+   const hash = crypto.pbkdf2Sync("this is my password", salt, 10000, 512, "sha512");
+
+   res.send('Hello World!');
+})
+
+
+app.listen(port, () => {
+   console.log(`Example app listening on port ${port}`)
+   Blackfire.start({appName: 'blackfire-example'});
+})
+```
+
+3. Run NodeJs server. (`node index.js`)

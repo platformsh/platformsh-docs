@@ -1,5 +1,5 @@
 ---
-title: Monitor metrics
+title: Infrastructure metrics
 weight: 5
 description: See all of the live infrastructure metrics available to give you an overview of resource usage.
 ---
@@ -68,7 +68,11 @@ For {{% names/dedicated-gen-2 %}} environments, the thresholds are set for each 
 If the resources are high and hovering close to the 100% threshold,
 you might want to consider:
 
+{{% version/specific %}}
 * [Optimizing your code](../integrate-observability/_index.md) (if possible)
+<--->
+* [Optimizing your code](../application-metrics/_index.md) (if possible)
+{{% /version/specific %}}
 * [Increasing your plan](../../administration/pricing/_index.md)
 
 #### {{% names/dedicated-gen-3 %}} environments
@@ -81,7 +85,11 @@ Burst allows your container to use additional resources when they aren't needed 
 
 If you have a container in a prolonged burst state, you might want to consider:
 
+{{% version/specific %}}
 * [Optimizing your code](../integrate-observability/_index.md)
+<--->
+* [Optimizing your code](../application-metrics/_index.md)
+{{% /version/specific %}}
 * Changing your [app size](../../create-apps/app-reference.md#sizes)
   or [service size](../../add-services/_index.md#size)
 * [Increasing your plan](../../administration/pricing/_index.md)
@@ -96,7 +104,11 @@ For Grid environments, the thresholds are set for each container.
 If the resources are high and hovering close to the 100% threshold,
 you might want to consider:
 
+{{% version/specific %}}
 * [Optimizing your code](../integrate-observability/_index.md) (if possible)
+<--->
+* [Optimizing your code](../application-metrics/_index.md) (if possible)
+{{% /version/specific %}}
 * Changing your [app size](../../create-apps/app-reference.md#sizes)
   or [service size](../../add-services/_index.md#size)
 * [Increasing your plan](../../administration/pricing/_index.md)

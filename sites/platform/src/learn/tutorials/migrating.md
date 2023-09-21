@@ -201,4 +201,8 @@ Now that your app is ready to be deployed, you can do more:
 - [Add a domain](/domains/steps/_index.md).
 - Set up for [local development](/development/local/_index.md).
 - Configure [health notifications](/integrations/notifications.md).
+{{% version/specific %}}
 - For monitoring and profiling, [integrate Blackfire](/increase-observability/integrate-observability/blackfire.md).
+<--->
+- For monitoring and profiling, [integrate Blackfire](/increase-observability/application-metrics/blackfire.md).
+{{% /version/specific %}}
