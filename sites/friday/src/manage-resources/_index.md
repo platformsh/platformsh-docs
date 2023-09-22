@@ -21,7 +21,7 @@ than to your development environments.
 This flexibility in resource allocation allows you to optimize performance and costs.
 
 If your app shows signs of struggling with high load, or if you're expecting a traffic spike,
-you can also add instances to your application and/or worker containers.
+you can also add instances to your application and worker containers.
 Such horizontal scaling allows your app to keep running smoothly,
 and shields your users from performance issues and downtime.
 
@@ -46,7 +46,13 @@ make sure you use `{{% vendor/cli %}} push` instead of `git push`.
 title= Using the CLI
 +++
 
-Run the `resources:set` command, and follow the prompts to set resources for each of your apps and services.
+Run the `{{% vendor/cli %}} resources:set` command, and follow the prompts to set resources for each of your apps and services.
+
+{{< note title= "Tip" >}}
+
+For further guidance on how to set resources using the CLI, run the `{{% vendor/cli %}} resources:set --help` command.
+
+{{< /note >}}
 
 <--->
 
@@ -59,43 +65,48 @@ title= From the Console
    ![Apps and services tree](/images/flexible-resources/apps-services-tree.png "0.2")
    A window pops up.
 3. Click **Configure**.
-4. Configure resources on the current environment:
-   ![Configure your resources on the current environment window](/images/flexible-resources/configure-flexible-resources.png "0.5")
-   The values available in this window depend on the [container profile](#1-configure-your-container-profiles) of each instance.
+4. Select values in the dropdown menus depending on your needs:
+   ![Configure your resources on the current environment window](/images/flexible-resources/configure-flexible-resources.png)
+   Note that the values available in the **CPU & RAM** menus depend on the [container profile](#1-configure-your-container-profiles) of each instance.
    - For each app and service displayed, select a CPU & RAM combination and enter the amount of disk/storage you want to allocate to each container.
-   - For each of your apps and/or workers, select the number of instances you want to deploy.
+   - For each of your apps and workers, select the number of instances you want to deploy.
 5. Click **Save**.</br>
    You environment is redeployed.
 
 {{< /codetabs >}}
 
-{{< note title="Tip" >}}
+## Keep an eye on your costs
 
-You can keep an eye on your costs in the {{% vendor/name %}} Console:
+To keep an eye on your costs in the {{% vendor/name %}} Console after you've set or updated resources on your project,
+follow these steps:
 
-- To view a monthly estimate of how much each of your projects is expected to cost,
-navigate to your organization and open the **Overview** tab.
+1. Navigate to your organization.
+2. Open the user menu (your name or profile picture).
+3. Click **Billing**.</br>
+   A monthly estimate of how much each project is expected to cost is displayed.
+4. To view the costs related to a specific project, click **{{< icon more >}} More** next to the project.
+5. Select **Project Billing**.</br>
+   A monthly estimate of all the expected costs related to resource allocation on your project is displayed.
 
-- To view a monthly estimate detailing the resources allocated to each instance in a project and the related costs,
-navigate to your project and open the **Overview** tab.
+{{< note >}}
 
-Note that this estimate reflects the expected costs **for a full month** based on the way resources are allocated **at the time of viewing**.
+This estimate reflects the expected costs **for a full month** based on the way resources are allocated **at the time of viewing**.
 It doesn't take into account the history of changes you may have made throughout the current month.</br>
 Therefore, if you make changes to resource allocation some time during the month, your monthly invoice will differ from this estimate.
 
 {{< /note >}}
 
-## Advanced: container profiles
+## Advanced: Container profiles
 
 By default, {{% vendor/name %}} allocates a container profile to each app and service depending on the range of resources it's expected to need.
 
 Each container profile gives you access to a specific list of CPU and RAM combinations.
 Using the {{% vendor/name %}} CLI or Console, you can then pick a CPU and RAM combination for each of your apps and services.
 
-There are four container profiles available: `high_cpu`, `balanced`, `high_memory`, and `higher_memory`.
+There are four container profiles available: `HIGH_CPU`, `BALANCED`, `HIGH_MEMORY`, and `HIGHER_MEMORY`.
 The following table displays the different CPU and RAM combinations each container profile provides:
 
-| CPU  | `high_cpu`   | `balanced` | `high_memory` | `higher_memory` |
+| CPU  | `HIGH_CPU`   | `BALANCED` | `HIGH_MEMORY` | `HIGHER_MEMORY` |
 | ---- | ------------ | ---------- | ------------- | --------------- |
 | 0.1  | 64           | 352        | 448           | 864             |
 | 0.25 | 128          | 640        | 832           | 1472            |
@@ -107,14 +118,23 @@ The following table displays the different CPU and RAM combinations each contain
 | 8    | 2240         | 7296       | 11200         | 17408           |
 | 10   | 2688         | 8448       | 13184         | 20544           |
 
-You can check which container profile is set for an app or service in your `{{% vendor/configfile "app" %}}` file.
+### Check a container's profile
+
+You can check which container profile is set for an app or service in your project from the Console.
+To do so, navigate to your environment and select the app or service in the tree on the left-hand side:
+![Apps and services tree](/images/flexible-resources/check-container-profile.png "0.25")
+
+To find out which container profile {{% vendor/name %}} applies by default to a container when first deploying your project,
+refer to the appropriate [language](/languages/_index.md) or [service](add-services/_index.md) page.
+
+### Adjust a container profile
 
 In most cases, it's best not to adjust container profiles.
-As a best practice, {{% vendor/name %}} recommends adjusting the profile of a container **only if the CPU/RAM ratio doesn’t match how the container scales**, taking into account both production and preview (staging and development) environments.
+As a best practice, {{% vendor/name %}} recommends adjusting the profile of a container **only if the CPU/RAM ratio doesn’t match how the container scales**,
+taking into account both production and preview (staging and development) environments.
 
-{{< note theme="warning" title="Warning" >}}
+To adjust a container profile, amend the value of the `container_profile` key in your configuration:
 
-Do not change the profile of a container to bump the memory of a single environment.
-Changing a container profile updates the resources of **all** your environments, which is likely to be more expensive than just increasing the size of a single environment.
-
-{{< /note >}}
+```yaml {configFile="app"}
+container_profile: HIGH_MEMORY
+```
