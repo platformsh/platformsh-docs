@@ -63,12 +63,9 @@ For information on how long backups are retained, see the [data retention policy
 
 ## Backup schedule
 
-{{< version/specific >}}
+{{< version/only "1" >}}
 <!-- Platform.sh -->
 Backups for Dedicated environments have a [specific frequency](../dedicated-gen-2/overview/backups.md).
-<--->
-
-{{< /version/specific >}}
 
 On Grid environments, preview environments can have up to 2 [manual backups](#create-a-manual-backup).
 The number of available backups for Production environments depends on your schedule.
@@ -104,14 +101,14 @@ To upgrade to the higher schedule, follow these steps:
 6. Click **Save**.
 
 To downgrade to the lower schedule, [contact support](/learn/overview/get-support.md).
+{{< /version/only >}}
 
 ## Use automated backups
 
 {{< version/specific >}}
-For Dedicated environments, see more about [backups of Dedicated environments](../dedicated-gen-2/overview/backups.md).
-<--->
+<!-- Platform.sh -->
 
-{{< /version/specific >}}
+For Dedicated environments, see more about [backups of Dedicated environments](../dedicated-gen-2/overview/backups.md).
 
 For Grid environments, automated backups are taken for Production environments at least once every day.
 The exact number of backups depends on your [backup schedule](#backup-schedule).
