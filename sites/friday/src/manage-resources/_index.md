@@ -118,14 +118,41 @@ The following table displays the different CPU and RAM combinations each contain
 | 8    | 2240         | 7296       | 11200         | 17408           |
 | 10   | 2688         | 8448       | 13184         | 20544           |
 
-### Check a container's profile
-
 You can check which container profile is set for an app or service in your project from the Console.
 To do so, navigate to your environment and select the app or service in the tree on the left-hand side:
 ![Apps and services tree](/images/flexible-resources/check-container-profile.png "0.25")
 
-To find out which container profile {{% vendor/name %}} applies by default to a container when first deploying your project,
-refer to the appropriate [language](/languages/_index.md) or [service](add-services/_index.md) page.
+### Default container profiles
+
+The following table shows the default container profiles {{% vendor/name %}} applies when first deploying your project.
+
+| Container               | Default profile  |
+|-------------------------|------------------|
+| .NET                    | HIGH_CPU         |  
+| Elasticsearch           | HIGH_MEMORY      |
+| Elasticsearch Premium   | HIGH_MEMORY      |
+| Galera cluster          | HIGH_MEMORY      |
+| Go                      | HIGH_CPU         |  
+| Java                    | HIGH_MEMORY      |
+| MariaDB                 | HIGH_MEMORY      |
+| Memcached               | BALANCED         |
+| MongoDB                 | HIGH_MEMORY      |
+| MongoDB Premium         | HIGH_MEMORY      |
+| MySQL                   | HIGH_MEMORY      |
+| Network Storage         | HIGH_MEMORY      |
+| NodeJS                  | HIGH_CPU         |  
+| OpenSearch              | HIGH_MEMORY      |
+| Oracle Java             | HIGH_CPU         |  
+| Oracle MySQL            | HIGH_MEMORY      |
+| PHP                     | HIGH_CPU         | 
+| PostgreSQL              | HIGH_MEMORY      |
+| Python                  | HIGH_CPU         | 
+| Rabbitmq                | HIGH_MEMORY      |
+| Redis ephemeral         | BALANCED         |
+| Redis persistent        | BALANCED         |
+| Ruby                    | HIGH_CPU         | 
+| Solr                    | HIGH_MEMORY      |
+| Varnish                 | HIGH_MEMORY      |
 
 ### Adjust a container profile
 
