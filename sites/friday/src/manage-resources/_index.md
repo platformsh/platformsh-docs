@@ -13,7 +13,7 @@ keywords:
 ---
 
 {{% vendor/name %}} allows you to configure project resources and adjust them at any time.
-On each of your environments, you can define which amount of CPU, RAM,
+On each of your environments, you can define how much CPU, RAM,
 and disk storage you want to allocate to each app and service.
 
 For example, you might want to allocate more resources to your production and staging environments
@@ -67,7 +67,7 @@ title= From the Console
 3. Click **Configure**.
 4. Select values in the dropdown menus depending on your needs:
    ![Configure your resources on the current environment window](/images/flexible-resources/configure-flexible-resources.png)
-   Note that the values available in the **CPU & RAM** menus depend on the [container profile](#1-configure-your-container-profiles) of each instance.
+   Note that the values available in the **CPU & RAM** menus depend on the [container profile](#advanced-container-profiles) of each instance.
    - For each app and service displayed, select a CPU & RAM combination and enter the amount of disk/storage you want to allocate to each container.
    - For each of your apps and workers, select the number of instances you want to deploy.
 5. Click **Save**.</br>
@@ -163,5 +163,6 @@ taking into account both production and preview (staging and development) enviro
 To adjust a container profile, amend the value of the `container_profile` key in your configuration:
 
 ```yaml {configFile="app"}
-container_profile: HIGH_MEMORY
-```
+applications:
+    {{< variable "APP_NAME" >}}:
+        container_profile: HIGH_MEMORY
