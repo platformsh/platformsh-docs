@@ -9,6 +9,7 @@ description: |
 ---
 
 {{< version/specific >}}
+<!-- Platform.sh -->
 
 The frequency of backups varies based on the [backup schedule](../environments/backup.md#backup-schedule).
 Retention is governed by the [data retention policy](./data-retention.md).
@@ -50,8 +51,9 @@ Dedicated environments are backed up every 6 hours.
 Recovery time depends on the size of the data being recovered.
 
 <--->
+<!-- Upsun -->
 
-{{< vendor/name >}} projects follow a standard backup policy that defines how many backups you can take advantage of.
+The following standard backup policy is applied to your projects and defines how many backups you can take advantage of.
 
 **Production environments:**
 - 1 automated backup per day, with a [2-day retention](/security/data-retention.md) (2 days worth of backups are retained at any given point).

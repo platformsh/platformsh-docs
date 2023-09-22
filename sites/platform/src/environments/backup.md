@@ -63,10 +63,8 @@ For information on how long backups are retained, see the [data retention policy
 
 ## Backup schedule
 
-<!-- Backups scheduling including in pricing differs from version 1 & version 2 -->
 {{< version/specific >}}
-
-<!-- Version 1 (Platform.sh) -->
+<!-- Platform.sh -->
 Backups for Dedicated environments have a [specific frequency](../dedicated-gen-2/overview/backups.md).
 
 On Grid environments, non-Production environments can have up to 2 [manual backups](#create-a-manual-backup).
@@ -117,12 +115,9 @@ The time for 6-hourly backups is based on the daily backup.
 Automated backups are always [live](#live-backups).
 
 <--->
-
-<!-- Version 2 (Usage-based white label) -->
-
+<!-- Upsun -->
 For information on the backup schedule applied to your project,
 see the [{{< vendor/name >}} backup policy](/security/backups.md).
-
 {{< /version/specific >}}
 
 ## Live backups
@@ -135,19 +130,16 @@ They may make restorations less reliable.
 To avoid such issues, schedule [manual backups](#create-a-manual-backup) during non-peak hours,
 when the short amount of downtime is least noticed.
 
-<!-- Live backup differences between API version 1/2 -->
 {{< version/specific >}}
-
-<!-- Version 1 (Platform.sh) -->
+<!-- Platform.sh -->
 Automated backups are always live, including those taken on [{{% names/dedicated-gen-3 %}}](../dedicated-gen-3/_index.md)
 and [{{% names/dedicated-gen-2 %}}](../dedicated-gen-2/overview/_index.md) environments.
 
 You can create a manual live backup on a Grid project:
+
 <--->
-
-<!-- Version 2 (Usage-based white label) -->
+<!-- Upsun -->
 To create a manual live backup:
-
 {{< /version/specific >}}
 
 {{< codetabs >}}
@@ -204,20 +196,17 @@ They don't affect the automated backups taken as part of the schedule.
 
 ## Physical storage location
 
-<!-- Physical storage differences between API version 1/2 -->
 {{< version/specific >}}
-
-<!-- Version 1 (Platform.sh) -->
+<!-- Platform.sh -->
 Backups are stored as binary large objects separate from your environments.
 This storage is replicated over multiple data centers in different locations
 [within the region your project is hosted in](https://platform.sh/trust-center/security/data-security/).
 This means that in the rare event a data center becomes unavailable, your backups are still available.
-<--->
 
-<!-- Version 2 (Usage-based white label) -->
+<--->
+<!-- Upsun -->
 Backups are stored as binary large objects separate from your environments.
 This storage is replicated over multiple data centers in different locations
 within the region your project is hosted in.
 This means that in the rare event a data center becomes unavailable, your backups are still available.
-
 {{< /version/specific >}}
