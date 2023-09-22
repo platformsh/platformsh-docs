@@ -54,12 +54,12 @@
     <h4 class="pr-2 font-semibold">
       <a href="{{ .Context.RelPermalink }}" destination="{{ .Context.RelPermalink }}" {{ $getStartedAttribute | safeHTMLAttr }} class="hover:text-skye-dark focus:text-skye-dark{{ if $isCurrentSection }} text-skye-dark{{ end }}">
         {{ $itemTitle }}
-      </a>
+      </a> 
       
     </h4>
 
     <!-- Add button for expanding if has children-->
-    {{ if eq .Context.Kind "section" }}
+    {{ if and ( eq .Context.Kind "section" ) ( gt ( len .Context.Pages ) 0  ) }}
       {{ partial "sidebar/expand-button" (dict "itemID" $sectionId "isCurrentSection" $isCurrentSection "expandLevel" "topExpanded" )}}
     {{ end }}
   </div>

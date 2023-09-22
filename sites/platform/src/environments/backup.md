@@ -15,7 +15,7 @@ or each time you increase the storage space of your services.
 You also have regularly scheduled automated backups of your production environments to cover most cases.
 
 Note that you can only create backups and restore active environments.
-To work with an [inactive environment](../other/glossary.md#inactive-environment),
+To work with an [inactive environment](/glossary.md#inactive-environment),
 first activate it.
 
 ## How backup and restore works
@@ -24,8 +24,8 @@ first activate it.
    This backup includes the complete data and code of the environment.
    All persistent data from all running [services](../add-services/_index.md)
    and any files stored on [mounts](../create-apps/app-reference.md#mounts) are included.
-   The backup is stored internally on {{< vendor/name >}}.
-   That is, the backup can be applied to environments on {{< vendor/name >}}, but it can't be downloaded.
+   The backup is stored internally on {{% vendor/name %}}.
+   That is, the backup can be applied to environments on {{% vendor/name %}}, but it can't be downloaded.
    If you need to download backups, instead [export your mount and service data](/learn/tutorials/exporting.md)).
 
 2. You restore your environment using the backup.
@@ -34,7 +34,7 @@ first activate it.
 
    {{< note theme="warning" title="Warning" >}}
 
-   But {{< vendor/name >}} doesn’t modify your Git repository. So by default, any further changes you make use the latest code in your repository.
+   But {{% vendor/name %}} doesn’t modify your Git repository. So by default, any further changes you make use the latest code in your repository.
 
    {{< /note >}}
 
@@ -69,7 +69,7 @@ Backups for Dedicated environments have a [specific frequency](../dedicated-gen-
 
 {{< /version/specific >}}
 
-On Grid environments, non-Production environments can have up to 2 [manual backups](#create-a-manual-backup).
+On Grid environments, preview environments can have up to 2 [manual backups](#create-a-manual-backup).
 The number of available backups for Production environments depends on your schedule.
 
 | Schedule | Manual backups | Automated backups                                                      |

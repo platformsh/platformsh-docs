@@ -1,16 +1,16 @@
 ---
-title: Deploy Drupal 9 on {{< vendor/name >}}
+title: Deploy Drupal 9 on {{% vendor/name %}}
 sidebarTitle: Get started
 weight: -110
 layout: single
 description: |
-    Create a {{< vendor/name >}} account, download a few tools, and prepare to deploy Drupal.
+    Create a {{% vendor/name %}} account, download a few tools, and prepare to deploy Drupal.
 banner:
     title: A note on version
-    body: While this guide focuses on Drupal 9, you can also refer to it when using Drupal 10 as differences in settings are minimal. Note that a {{< vendor/name >}} [Drupal 10 template](https://github.com/platformsh-templates/drupal10) is available.
+    body: While this guide focuses on Drupal 9, you can also refer to it when using Drupal 10 as differences in settings are minimal. Note that a {{% vendor/name %}} [Drupal 10 template](https://github.com/platformsh-templates/drupal10) is available.
 ---
 
-Drupal is a flexible and extensible PHP-based CMS framework. To deploy Drupal 9 on {{< vendor/name >}}, the recommended way is to use Composer, the PHP package management suite.
+Drupal is a flexible and extensible PHP-based CMS framework. To deploy Drupal 9 on {{% vendor/name %}}, the recommended way is to use Composer, the PHP package management suite.
 
 This guide assumes you are using the well-supported Composer flavor of Drupal 9.
 

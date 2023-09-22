@@ -16,13 +16,13 @@ WARNING: [pool web] server reached max_children setting (2), consider raising it
 ```
 
 This means some requests have to wait until another finishes.
-{{< vendor/name >}} sets the number of workers based on the available memory of your container
+{{% vendor/name %}} sets the number of workers based on the available memory of your container
 and the estimated average memory size of each process.
 
 You have two ways to increase the number of workers:
 
 - Adjust the [worker sizing hints](./fpm.md) for your project.
-- Upgrade your {{< vendor/name >}} plan to get more computing resources.
+- Upgrade your {{% vendor/name %}} plan to get more computing resources.
 
 ## Execution timeout
 
@@ -56,7 +56,7 @@ Otherwise, you may check if the following options are applicable:
 
 - Find the most visited pages and see if they can be cached and/or put behind a CDN.
   Refer to [how caching works](../../define-routes/cache.md).
-- Upgrade your {{< vendor/name >}} plan to get more computing resources.
+- Upgrade your {{% vendor/name %}} plan to get more computing resources.
 
 ## Troubleshoot a crashed PHP process
 
@@ -85,7 +85,7 @@ To solve this issue, try the following approaches:
 
 - Check if the memory usage of your app is as expected and try to optimize it.
 - Use [sizing hints](./fpm.md) to reduce the amount of PHP workers, which reduces the memory footprint.
-- Upgrade your {{< vendor/name >}} plan to get more computing resources.
+- Upgrade your {{% vendor/name %}} plan to get more computing resources.
 
 ## Restart PHP processes stuck during a build or deployment
 

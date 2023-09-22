@@ -7,7 +7,7 @@ description: "Understand how to read metrics for {{% names/dedicated-gen-2 %}} e
 For {{% names/dedicated-gen-2 %}} environments, infrastructure metrics report CPU, RAM, and disk space per host and mount point.
 The graphs differ when the environment has multiple clusters.
 
-Metrics are available for Production environments and [Grid environments](./grid.md) (such as your development environments).
+Metrics are available for Production environments and [Grid environments](./grid.md) (such as your preview environments).
 They aren't available for other {{% names/dedicated-gen-2 %}} environments (such as a staging environment).
 
 By default, the graphs include all hosts and an average over the hosts.
@@ -36,7 +36,7 @@ You get output similar to the following:
 
 ```bash
 
- Welcome to {{< vendor/name >}}.
+ Welcome to {{% vendor/name %}}.
 
  This is environment production-qwerty8 of project abcde3clusterID.
 

@@ -40,7 +40,7 @@ See how to [set up your domain](../../domains/steps/_index.md).
 ## Deploy Key
 
 The **Deploy Key** section shows you the public SSH key you can add to your private repositories.
-Adding it lets {{< vendor/name >}} access the repositories during the build process.
+Adding it lets {{% vendor/name %}} access the repositories during the build process.
 This is useful if you want to reuse some code components across multiple projects and manage those components as dependencies of your project.
 
 ![Project deploy key](/images/management-console/settings-deploy-key.png "0.7")

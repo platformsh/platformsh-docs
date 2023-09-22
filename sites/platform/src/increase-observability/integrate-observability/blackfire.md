@@ -3,10 +3,10 @@ title: "Blackfire"
 sidebarTitle: Blackfire
 weight: 1
 sectionBefore: In-house observability tool 
-description: Blackfire is the official {{< vendor/name >}} observability service for monitoring and profiling your PHP and Python apps.
+description: Blackfire is the official {{% vendor/name %}} observability service for monitoring and profiling your PHP and Python apps.
 ---
 
-As the **official {{< vendor/name >}} observability service**, 
+As the **official {{% vendor/name %}} observability service**, 
 [Blackfire](https://www.blackfire.io/) helps you improve the performance of your apps at each stage of their lifecycle.
 With Blackfire's unique Application Performance Monitoring (APM) and Profiling features,
 you can achieve the following goals:
@@ -17,7 +17,7 @@ you can achieve the following goals:
 
 {{< youtube bS4dzuzkir0 >}}
 
-Blackfire is installed natively on {{< vendor/name >}} and [works integrally with the {{< vendor/name >}} workflow](https://www.youtube.com/watch?v=Bq-LFjgD6L0).
+Blackfire is installed natively on {{% vendor/name %}} and [works integrally with the {{% vendor/name %}} workflow](https://www.youtube.com/watch?v=Bq-LFjgD6L0).
 This results in an effortless setup process and smooth user experience.
 
 {{% version/specific %}}
@@ -36,18 +36,18 @@ All customers can also subscribe to Blackfire separately.
 If you're using a plan with the [Observability Suite](https://platform.sh/features/observability-suite/),
 the [Blackfire automated integration](#automated-integration) is enabled on your environments by default.
 Note that as an Observability Suite user, you can only access your Blackfire environments
-after you've been granted access to the related {{< vendor/name >}} project.
-Therefore, to access your Blackfire environments, make sure you log in using your {{< vendor/name >}} account.
+after you've been granted access to the related {{% vendor/name %}} project.
+Therefore, to access your Blackfire environments, make sure you log in using your {{% vendor/name %}} account.
 
 If you have a {{% names/dedicated-gen-3 %}} cluster or Grid environments without the Observability suite,
 you need to enable the integration yourself.
 To do so, follow these steps:
 
-1. Create a [Blackfire account](https://blackfire.io/signup?target=/login), preferably using your {{< vendor/name >}} login.
+1. Create a [Blackfire account](https://blackfire.io/signup?target=/login), preferably using your {{% vendor/name %}} login.
 2. In your Blackfire account, create an organization.
    If you subscribed to Blackfire independently, your organization is automatically activated.
-   If you subscribed to Blackfire through {{< vendor/name >}},
-   [ask **{{< vendor/name >}}** Support](https://console.platform.sh/-/users/~/tickets/open) to activate your organization.
+   If you subscribed to Blackfire through {{% vendor/name %}},
+   [ask **{{% vendor/name %}}** Support](https://console.platform.sh/-/users/~/tickets/open) to activate your organization.
 3. In your organization, create an environment.
 4. In your environment, click **Settings/Environment Credentials**.
 5. Retrieve your Blackfire server ID and server token.
@@ -63,11 +63,11 @@ to let Blackfire profile the code running on your servers.
 
 To install Blackfire on your {{% names/dedicated-gen-2 %}} environments:
 
-1. Create a [Blackfire account](https://blackfire.io/signup?target=/login), preferably using your {{< vendor/name >}} login.
+1. Create a [Blackfire account](https://blackfire.io/signup?target=/login), preferably using your {{% vendor/name %}} login.
 2. In your Blackfire account, create an organization.
    If you subscribed to Blackfire independently, your organization is automatically activated.
-   If you subscribed to Blackfire through {{< vendor/name >}},
-   [ask **{{< vendor/name >}}** Support](https://console.platform.sh/-/users/~/tickets/open) to activate your organization.
+   If you subscribed to Blackfire through {{% vendor/name %}},
+   [ask **{{% vendor/name %}}** Support](https://console.platform.sh/-/users/~/tickets/open) to activate your organization.
 3. In your organization, create an environment.
 4. In your environment, click **Settings/Environment Credentials**.
 5. Retrieve your Blackfire server ID and server token.
@@ -81,12 +81,12 @@ to let Blackfire profile the code running on your servers.
 
 <--->
 ## Get started with Blackfire
-You can only access your Blackfire environments after you've been granted access to the related {{< vendor/name >}} project.
-Therefore, to access your Blackfire environments, make sure you log in using your {{< vendor/name >}} account.
+You can only access your Blackfire environments after you've been granted access to the related {{% vendor/name %}} project.
+Therefore, to access your Blackfire environments, make sure you log in using your {{% vendor/name %}} account.
 
 To access a Blackfire environment, each project user needs a Blackfire account.
 When a project user doesn't already have a Blackfire account, 
-a new one is automatically created using the user's {{< vendor/name >}} credentials.
+a new one is automatically created using the user's {{% vendor/name %}} credentials.
 
 {{< note >}}
 If you're using a [Content Delivery Network (CDN)](../../domains/cdn/_index.md), 
@@ -114,12 +114,12 @@ This includes monitoring, profiling, alerting, and build-related features.
 
 {{% version/specific %}}
 When a Blackfire environment is created based on a Grid environment,
-user access settings are replicated from the {{< vendor/name >}} Console to Blackfire.
+user access settings are replicated from the {{% vendor/name %}} Console to Blackfire.
 
 <--->
 Note that Blackfire monitoring is enabled by default on your production environment.
 On other environment types, you need to [enable it](#blackfire-monitoring).
-User access settings are replicated from the {{< vendor/name >}} Console to Blackfire.
+User access settings are replicated from the {{% vendor/name %}} Console to Blackfire.
 
 {{% /version/specific %}}
 
@@ -128,7 +128,7 @@ This includes all [access levels](https://blackfire.io/docs/up-and-running/acces
 {{% version/specific %}} 
 To access the Blackfire environment, each project user needs a Blackfire account.
 When a project user doesn't already have a Blackfire account, 
-a new one is automatically created using the user's {{< vendor/name >}} credentials.
+a new one is automatically created using the user's {{% vendor/name %}} credentials.
 <--->
 {{% /version/specific %}}
  
@@ -218,7 +218,7 @@ see the [Blackfire documentation](https://blackfire.io/docs/profiling-cookbooks/
 
 ## Test the performance of each new deployment
 
-Blackfire's native integration with {{< vendor/name >}} enables you to test your app's performance
+Blackfire's native integration with {{% vendor/name %}} enables you to test your app's performance
 every time you deploy a branch in production, staging, or development.
 Follow these steps:
 

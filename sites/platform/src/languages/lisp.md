@@ -1,6 +1,6 @@
 ---
 title: "Lisp"
-description: "{{< vendor/name >}} supports building and deploying applications written in Lisp using Common Lisp (the SBCL version) with ASDF and Quick Lisp support. They're compiled during the Build phase, and support both committed dependencies and download-on-demand."
+description: "{{% vendor/name %}} supports building and deploying applications written in Lisp using Common Lisp (the SBCL version) with ASDF and Quick Lisp support. They're compiled during the Build phase, and support both committed dependencies and download-on-demand."
 ---
 
 {{% description %}}
@@ -38,11 +38,11 @@ description: "{{< vendor/name >}} supports building and deploying applications w
 
 ## Assumptions
 
-{{< vendor/name >}} is making assumptions about your application to provide a more streamlined experience. These assumptions are the following:
+{{% vendor/name %}} is making assumptions about your application to provide a more streamlined experience. These assumptions are the following:
 
 - Your `.asd` file is named like your system name. For example `example.asd` has `(defsystem example ...)`.
 
-{{< vendor/name >}} will then run `(asdf:make :example)` on your system to build a binary.
+{{% vendor/name %}} will then run `(asdf:make :example)` on your system to build a binary.
 
 If you don't want these assumptions, you can disable this behavior by specifying in your `{{< vendor/configfile "app" >}}`:
 
@@ -53,7 +53,7 @@ build:
 
 ## Dependencies
 
-The recommended way to handle Lisp dependencies on {{< vendor/name >}} is using ASDF. Commit a `.asd` file in your repository and the system will automatically download the dependencies using QuickLisp.
+The recommended way to handle Lisp dependencies on {{% vendor/name %}} is using ASDF. Commit a `.asd` file in your repository and the system will automatically download the dependencies using QuickLisp.
 
 ## QuickLisp options
 
@@ -80,7 +80,7 @@ runtime:
 
 ## Built-in variables
 
-{{< vendor/name >}} exposes relationships and other configuration as [environment variables](../development/variables/_index.md).
+{{% vendor/name %}} exposes relationships and other configuration as [environment variables](../development/variables/_index.md).
 To get the `PORT` environment variable (the port on which your web application is supposed to listen):
 
 ```lisp
@@ -168,7 +168,7 @@ Then in your program you could access the PostgreSQL instance as follows:
 ## Example
 
 The following is a basic example of a Hunchentoot-based web app
-(you can find the corresponding `.asd` and {{< vendor/name >}} `.yaml` files in the [template](#project-templates)):
+(you can find the corresponding `.asd` and {{% vendor/name %}} `.yaml` files in the [template](#project-templates)):
 
 ```lisp
 (defpackage #:example
@@ -189,7 +189,7 @@ The following is a basic example of a Hunchentoot-based web app
 ```
 
 Notice how it gets the `PORT` from the environment and how it sleeps at the end,
-as `(start acceptor)` immediately yields and {{< vendor/name >}} requires apps to run in the foreground.
+as `(start acceptor)` immediately yields and {{% vendor/name %}} requires apps to run in the foreground.
 
 ## Project templates
 

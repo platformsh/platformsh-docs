@@ -36,7 +36,7 @@ runtime:
         - newrelic
 ```
 
-Push the changes to your {{< vendor/name >}} environment to enable New Relic as follows:
+Push the changes to your {{% vendor/name %}} environment to enable New Relic as follows:
 
 ```bash
 git add {{< vendor/configfile "app" >}}

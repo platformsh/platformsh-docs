@@ -24,7 +24,12 @@ To define the service, use {{ if eq ($type) "mariadb" }}
   the `{{ $type }}` type{{ end }}:
 
 <!-- Create an example services.yaml file from data in the registry. -->
-{{ partial "examples/servicedefn" $data }}
+{{ $serviceInner := partial "examples/servicedefn" (dict "context" . "data" $data ) }}
+
+<!-- Create a dummy example `relationships` block from the registry's example naming in `.docs` -->
+```yaml {configFile="services"}
+{{ partial "snippet" (dict "context" . "name" "<SERVICE_NAME>" "config" "service" "Inner" $serviceInner ) }}
+```
 
 {{ if eq $type "redis-persistent" }}
 Note that persistent Redis requires `disk` to store data.
@@ -33,7 +38,7 @@ For more information, refer to the [dedicated Redis page](/add-services/redis.md
 If want to use ephemeral Redis instead, use the `redis` type:
 
   {{ $redis_data := index .Site.Data.registry "redis" }}
-  {{ partial "examples/servicedefn" $redis_data }}
+  {{ partial "examples/servicedefn" (dict "context" . "data" $redis_data ) }}
 
 {{ else if eq $type "network-storage" }}
 You can define `<SERVICE_NAME>` as you like, but it shouldn't include underscores (`_`).
@@ -63,10 +68,23 @@ in step 1](#1-configure-the-service){{ else }}`{{ $data.endpoint }}` endpoint{{ 
 {{ if and (gt (len ( $sectionLink )) 0) (gt (len ( $multipleText )) 0) }} (unless you have [multiple {{$multipleText}}]({{ $sectionLink }})){{ end }}:
 
 <!-- Create a dummy example `relationships` block from the registry's example naming in `.docs` -->
-{{ partial "examples/relationship" $data }}
+{{ $serviceInner := partial "examples/servicedefn" (dict "context" . "data" $data ) }}
+{{ $relationshipInner := partial "examples/relationship" (dict "context" . "data" $data ) }}
+
+```yaml {configFile="app"}
+{{ partial "snippet" (dict "context" . "name" "<APP_NAME>" "config" "app" "root" "false" "Inner" $relationshipInner ) }}
+
+{{ partial "snippet" (dict "context" . "name" "<SERVICE_NAME>" "config" "service" "placeholder" "true" "Inner" $serviceInner ) }}
+```
 
 <!-- Adds a note about naming conventions between relationship and service names. Keep em unique. -->
 You can define `<SERVICE_NAME>` and `<RELATIONSHIP_NAME>` as you like, but it's best if they're distinct.
+With this definition, the application container {{ if eq .Site.Params.vendor.config.version 2 }}(`<APP_NAME>`) {{ end }}
+{{- if ne (.Get "noApp" ) true -}}
+now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>`.
+{{- else -}}
+now has access to the service via the relationship `<RELATIONSHIP_NAME>`.
+{{- end -}}
 
 <!-- For services with a PHP extension -->
 {{ if ( .Get "php" ) }}
@@ -82,10 +100,18 @@ You can define `<SERVICE_NAME>` and `<RELATIONSHIP_NAME>` as you like, but it's 
   {{ end }}
 For PHP, enable the [extension](/languages/php/extensions.html) for the service:
 
+{{ $extensionsComment := "# PHP extensions." }}
+{{ $inner := printf "\n%s\nruntime:\n    extensions:\n        - %s" $extensionsComment $extension_name }}
+
+{{ if eq .Site.Params.vendor.config.version 2 }}
+    {{ $relationshipInner := partial "examples/relationship" (dict "context" . "data" $data ) }}
+    {{ $inner = printf "%s%s" $inner $relationshipInner }}
+{{ end }}
+
 ```yaml {configFile="app"}
-runtime:
-    extensions:
-        - {{ $extension_name }}
+{{ partial "snippet" (dict "context" . "name" "<APP_NAME>" "config" "app" "root" "false" "Inner" $inner ) }}
+
+{{ partial "snippet" (dict "context" . "name" "<SERVICE_NAME>" "config" "service" "placeholder" "true" "Inner" $serviceInner ) }}
 ```
 {{ end }}
 
@@ -93,11 +119,20 @@ runtime:
 {{ if ( .Get "python" ) }}
 For Python, include the proper dependency:
 
+{{ $extensionsComment := "# Build dependencies per runtime." }}
+{{ $inner := printf "\n%s\ndependencies:\n    python:\n        python-%s: '*'" $extensionsComment $type }}
+
+{{ if eq .Site.Params.vendor.config.version 2 }}
+    {{ $relationshipInner := partial "examples/relationship" (dict "context" . "data" $data ) }}
+    {{ $inner = printf "%s%s" $inner $relationshipInner }}
+{{ end }}
+
 ```yaml {configFile="app"}
-dependencies:
-    python:
-        python-{{$type}}: '*'
+{{ partial "snippet" (dict "context" . "name" "<APP_NAME>" "config" "app" "root" "false" "Inner" $inner ) }}
+
+{{ partial "snippet" (dict "context" . "name" "<SERVICE_NAME>" "config" "service" "placeholder" "true" "Inner" $serviceInner ) }}
 ```
+
 {{ end }}
 
 <!-- Add explanation for the Vault service -->
@@ -109,12 +144,13 @@ If you split the service into multiple endpoints, define multiple relationships.
 {{ else }}
 Add the service to your app configuration:
 
+{{$inner := "\nmounts:\n    '<TARGET_PATH>':\n        source: service\n" }}
+{{ $inner = printf "%s        service: <SERVICE_NAME>\n        source_path: <SOURCE_PATH>" $inner }}
+
 ```yaml {configFile="app"}
-mounts:
-    '<TARGET_PATH>':
-        source: service
-        service: <SERVICE_NAME>
-        source_path: <SOURCE_PATH>
+{{ partial "snippet" (dict "context" . "name" "<APP_NAME>" "config" "app" "root" "false" "Inner" $inner ) }}
+
+{{ partial "snippet" (dict "context" . "name" "<SERVICE_NAME>" "config" "service" "placeholder" "true" "Inner" $serviceInner ) }}
 ```
 
 * `<TARGET_PATH>` is where you want your service to be, the path on your app container that has a writable mount.
@@ -130,11 +166,200 @@ mounts:
 {{ $headerLevel }} Example Configuration
 {{ end }}
 
-{{ partial "examples/config_links" ( dict "type" $type "onlyLanguage" $onlyLanguage ) }}
+{{ if eq $type "mariadb" }}
+### MariaDB example
+<!-- Same for Redis -->
+{{ else if eq $type "redis" }}
+### Ephemeral example
+{{ end }}
+
+{{ $appName := "myapp" }}
+{{ $varnishRelName := "application" }}
+
+<!-- Create an example services.yaml file from data in the registry. -->
+{{ if eq $type "redis-persistent" }}
+    {{ $data = index .Site.Data.registry "redis" }}
+{{ end }}
+
+{{ $serviceName := index $data "docs" "service_name" }}
+{{ $serviceInner := "" }}
+{{ if eq $type "varnish" }}
+  {{ $serviceInner = partial "examples/servicedefn" (dict "context" . "data" $data "latest" "true" "relName" "application" "appName" $appName ) }}
+{{ else if eq $type "vault-kms" }}
+  {{ $latest := partial "examples/latest" (dict "data" $data )}}
+  {{ $serviceInner = printf "\n    type: vault-kms:%s\n    disk: 512" $latest }}
+  {{ $serviceInner = printf "%s\n    configuration:\n        endpoints:\n            manage_keys:" $serviceInner }}
+  {{ $serviceInner = printf "%s\n                - policy: admin" $serviceInner }}
+  {{ $serviceInner = printf "%s\n                  key: vault-sign" $serviceInner }}
+  {{ $serviceInner = printf "%s\n                  type: sign" $serviceInner }}
+  {{ $serviceInner = printf "%s\n                - policy: sign" $serviceInner }}
+  {{ $serviceInner = printf "%s\n                  key: vault-sign" $serviceInner }}
+  {{ $serviceInner = printf "%s\n                  type: sign" $serviceInner }}
+  {{ $serviceInner = printf "%s\n                - policy: verify" $serviceInner }}
+  {{ $serviceInner = printf "%s\n                  key: vault-sign" $serviceInner }}
+  {{ $serviceInner = printf "%s\n                  type: sign" $serviceInner }}
+{{ else }}
+  {{ $serviceInner = partial "examples/servicedefn" (dict "context" . "data" $data "latest" "true" ) }}
+{{ end }}
+
+{{ if eq .Site.Params.vendor.config.version 1 }}
+#### [Service definition](/add-services)
+```yaml {configFile="services"}
+{{ partial "snippet" (dict "context" . "name" $serviceName "config" "service" "Inner" $serviceInner ) }}
+```
+{{ end }}
+
+{{ if and (eq $type "varnish") (eq .Site.Params.vendor.config.version 1) }}
+Notice the `relationship` (`{{ $varnishRelName }}`) defined for the service `{{ $serviceName }}` granting access to the application container `{{ $appName }}`. 
+{{ end }}
+
+{{ if eq .Site.Params.vendor.config.version 2 }}
+#### [App](/create-apps) and [Service configuration](/add-services)
+{{ else if ne $type "varnish" }}
+#### [App configuration](/create-apps)
+{{ end }}
+
+{{ $appInner := "" }}
+
+{{ if eq $type "network-storage" }}
+
+    {{ $appInner = "\nmounts:\n    'my/files':\n        source: service\n" }}
+    {{ $appInner = printf "%s        service: files\n        source_path: files" $appInner }}
+
+{{ else if eq $type "varnish" }}
+    {{ $appInner = "\n..." }}
+
+{{ else if eq $type "vault-kms" }}
+    {{ $appInner = "\nrelationships:\n    vault_service: \"vault-kms:manage_keys\"" }}
+{{ else }}
+
+    {{ $relationshipName := index $data "docs" "relationship_name" }}
+    {{ $appInner = partial "examples/relationship" (dict "context" . "data" $data "servName" $serviceName "relName" $relationshipName) }}
+
+{{ end }}
+
+{{ if and (eq $type "varnish") (eq .Site.Params.vendor.config.version 1) }}
+  <!-- Varnish + API version 2 -->
+{{ else }}
+```yaml {configFile="app"}
+{{ partial "snippet" (dict "context" . "name" $appName "config" "app" "root" "false" "Inner" $appInner ) }}
+
+{{ partial "snippet" (dict "context" . "name" $serviceName "config" "service" "placeholder" "true" "Inner" $serviceInner ) }}
+```
+{{ end }}
+
+{{ if and (eq $type "varnish") (eq .Site.Params.vendor.config.version 2) }}
+Notice the `relationship` (`{{ $varnishRelName }}`) defined for the service `{{ $serviceName }}` granting access to the application container `{{ $appName }}`. 
+{{ end }}
+
+
+{{ if eq $type "vault-kms" }}
+
+### Multiple endpoints example
+
+{{ $serviceInner := "" }}
+{{ $latest := partial "examples/latest" (dict "data" $data )}}
+{{ $serviceInner = printf "\n    type: vault-kms:%s\n    disk: 512" $latest }}
+{{ $serviceInner = printf "%s\n    configuration:\n        endpoints:\n            management:" $serviceInner }}
+{{ $serviceInner = printf "%s\n                - policy: admin" $serviceInner }}
+{{ $serviceInner = printf "%s\n                  key: admin-key" $serviceInner }}
+{{ $serviceInner = printf "%s\n                  type: sign" $serviceInner }}
+{{ $serviceInner = printf "%s\n            sign_and_verify:" $serviceInner }}
+{{ $serviceInner = printf "%s\n                - policy: sign" $serviceInner }}
+{{ $serviceInner = printf "%s\n                  key: signing-key" $serviceInner }}
+{{ $serviceInner = printf "%s\n                  type: sign" $serviceInner }}
+{{ $serviceInner = printf "%s\n                - policy: verify" $serviceInner }}
+{{ $serviceInner = printf "%s\n                  key: signing-key" $serviceInner }}
+{{ $serviceInner = printf "%s\n                  type: sign" $serviceInner }}
+
+{{ $appInner = "\nrelationships:\n    vault_manage: \"vault-kms:management\"\n    vault_sign: \"vault-kms:sign_and_verify\"" }}
+
+{{ if eq .Site.Params.vendor.config.version 1 }}
+#### [Service definition](/add-services)
+```yaml {configFile="services"}
+{{ partial "snippet" (dict "context" . "name" $serviceName "config" "service" "Inner" $serviceInner ) }}
+```
+{{ end }}
+
+{{ if eq .Site.Params.vendor.config.version 2 }}
+#### [App](/create-apps) and [Service configuration](/add-services)
+{{ else }}
+
+#### [App configuration](/create-apps)
+{{ end }}
+
+```yaml {configFile="app"}
+{{ partial "snippet" (dict "context" . "name" $appName "config" "app" "root" "false" "Inner" $appInner ) }}
+
+{{ partial "snippet" (dict "context" . "name" $serviceName "config" "service" "placeholder" "true" "Inner" $serviceInner ) }}
+```
+{{ end }}
+
+<!-- {{ partial "examples/config_links" ( dict "type" $type "onlyLanguage" $onlyLanguage ) }} -->
 
 {{ if eq ($type) "elasticsearch" }}
 If you're using a [premium version](add-services/elasticsearch.md#supported-versions),
 use the `elasticsearch-enterprise` type in the service definition.
+{{ end }}
+
+{{ if eq $type "redis" }}
+### Persistent example
+
+{{ $serviceName := "data" }}
+{{ $serviceInner := "\n    type: redis-persistent:7.0\n    disk: 256" }}
+
+{{ if eq .Site.Params.vendor.config.version 1 }}
+#### [Service definition](/add-services)
+```yaml {configFile="services"}
+{{ partial "snippet" (dict "context" . "name" $serviceName "config" "service" "Inner" $serviceInner ) }}
+```
+{{ end }}
+
+{{$appInner := "relationships:\n    redisdata: \"data:redis\"" }}
+
+{{ if eq .Site.Params.vendor.config.version 2 }}
+#### [App](/create-apps) and [Service configuration](/add-services)
+{{ else }}
+
+#### [App configuration](/create-apps)
+{{ end }}
+
+```yaml {configFile="app"}
+{{ partial "snippet" (dict "context" . "name" $appName "config" "app" "root" "false" "Inner" $appInner ) }}
+
+{{ partial "snippet" (dict "context" . "name" $serviceName "config" "service" "placeholder" "true" "Inner" $serviceInner ) }}
+```
+
+{{ end }}
+
+{{ if eq $type "mariadb" }}
+### OracleMySQL example
+
+{{ $serviceName := "dbmysql" }}
+{{ $serviceInner := "\n    type: oracle-mysql:8.0\n    disk: 256" }}
+
+{{ if eq .Site.Params.vendor.config.version 1 }}
+#### [Service definition](/add-services)
+```yaml {configFile="services"}
+{{ partial "snippet" (dict "context" . "name" $serviceName "config" "service" "Inner" $serviceInner ) }}
+```
+{{ end }}
+
+{{$appInner := "relationships:\n    mysqldatabase: \"dbmysql:mysql\"" }}
+
+{{ if eq .Site.Params.vendor.config.version 2 }}
+#### [App](/create-apps) and [Service configuration](/add-services)
+{{ else }}
+
+#### [App configuration](/create-apps)
+{{ end }}
+
+```yaml {configFile="app"}
+{{ partial "snippet" (dict "context" . "name" $appName "config" "app" "root" "false" "Inner" $appInner ) }}
+
+{{ partial "snippet" (dict "context" . "name" $serviceName "config" "service" "placeholder" "true" "Inner" $serviceInner ) }}
+```
+
 {{ end }}
 
 <!-- Turn this section off for ones in Guides that continue differently-->

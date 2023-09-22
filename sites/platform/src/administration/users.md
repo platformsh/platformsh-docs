@@ -5,7 +5,7 @@ sidebarTitle: Users
 description: Manage user access and permissions across all your projects and organizations.
 ---
 
-{{< vendor/name >}} offers very granular and flexible user permissions across projects and organizations. 
+{{% vendor/name %}} offers very granular and flexible user permissions across projects and organizations. 
 When a user is added to a project, they are automatically added to your organization.
 
 ## Manage project access
@@ -32,7 +32,7 @@ An environment type (Production, Staging, and Development) groups one or more en
 - Only one environment per project can be of the type: Production.
   It is set automatically as the default branch and can't be overridden separately.
 - You can change an environment's type (except for the Production environment).
-- You can have multiple Staging and Development environments.
+- You can have multiple preview (staging and development) environments.
 
 A user can have one of the following roles on an environment type which grants them permissions on all environments of this type:
 

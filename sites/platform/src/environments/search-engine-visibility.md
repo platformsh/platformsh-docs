@@ -4,10 +4,10 @@ sidebarTitle: Set search engine visibility
 description: Learn how to change.a given environment's visbility to search engines.
 ---
 
-When you have development environments,
+When you have preview environments,
 you don't want search engines indexing them and diluting the SEO of your production site.
 
-Search engine indexers are told to ignore all development environments.
+Search engine indexers are told to ignore all preview environments.
 When you're ready to go live, give your production environment a [custom domain](../domains/steps/_index.md)
 and then set it to be visible to search engines.
 
@@ -37,7 +37,7 @@ title=In the Console
 
 {{< /codetabs >}}
 
-{{< vendor/name >}} can't guarantee that indexers follow the instructions.
+{{% vendor/name %}} can't guarantee that indexers follow the instructions.
 If you're concerned about access, set up [HTTP access control](./http-access-control.md).
 
 ## How it's done
@@ -62,4 +62,4 @@ Your app can serve this as a static file from its disk or as a dynamic response 
 Control either with the [`location` section of your app configuration](../create-apps/app-reference.md#locations).
 
 If your `robots.txt` file includes instructions to ignore a page,
-search engine indexers may ignore it even if you have configured {{< vendor/name >}} to not send the header.
+search engine indexers may ignore it even if you have configured {{% vendor/name %}} to not send the header.

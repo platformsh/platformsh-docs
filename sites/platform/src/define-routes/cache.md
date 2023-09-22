@@ -2,14 +2,15 @@
 title: HTTP cache
 weight: 2
 description: |
-  {{< vendor/name >}} supports HTTP caching at the server level. Caching is enabled by default, but is only applied to `GET` and `HEAD` requests.
+  {{% vendor/name %}} supports HTTP caching at the server level. Caching is enabled by default, but is only applied to `GET` and `HEAD` requests.
 ---
 
 {{% description %}}
 
 The cache can be controlled using the `cache` key in your `{{< vendor/configfile "routes" >}}` file.
 
-If a request is can be cached, {{< vendor/name >}} builds a cache key from several request properties and stores the response associated with this key. When a request comes with the same cache key, the cached response is reused.
+If a request can be cached, {{% vendor/name %}} builds a cache key from several request properties and stores the response associated with this key.
+When a request comes with the same cache key, the cached response is reused.
 
 When caching is on...
 
@@ -18,7 +19,7 @@ When caching is on...
 * cookies bypass the cache;
 * responses with the `Cache-Control` header set to `Private`, `No-Cache`, or `No-Store` aren't cached.
 
-You should _not_ use the {{< vendor/name >}} HTTP cache if you're using Varnish or an external CDN
+You should _not_ use the {{% vendor/name %}} HTTP cache if you're using [Varnish](../add-services/varnish.md) or an external CDN
 such as [Fastly](../domains/cdn/fastly.md) or [Cloudflare](../domains/cdn/cloudflare.md).
 Mixing cache services together most likely results in caches that are stale and can't be cleared.
 For more details, see [best practices on HTTP caching](/learn/bestpractices/http-caching.md).
@@ -29,6 +30,8 @@ The HTTP cache is enabled by default, however you may wish to override this beha
 
 To configure the HTTP cache, add a `cache` key to your route. You may like to start with the defaults:
 
+{{< version/specific >}}
+<!-- Platform.sh configuration-->
 ```yaml {configFile="routes"}
 https://{default}/:
     type: upstream
@@ -39,6 +42,20 @@ https://{default}/:
         cookies: ['*']
         headers: ['Accept', 'Accept-Language']
 ```
+<--->
+<!-- Upsun configuration-->
+```yaml {configFile="routes"}
+routes:
+    https://{default}/:
+        type: upstream
+        upstream: app:http
+        cache:
+            enabled: true
+            default_ttl: 0
+            cookies: ['*']
+            headers: ['Accept', 'Accept-Language']
+```
+{{< /version/specific >}}
 
 ## Example
 
@@ -46,6 +63,8 @@ In this example, requests are cached based on the URI, the `Accept` header, `Acc
 Any response that lacks a `Cache-Control` header is cached for 60 seconds.
 The presence of any cookie in the request disables caching of that response.
 
+{{< version/specific >}}
+<!-- Platform.sh configuration-->
 ```yaml {configFile="routes"}
 https://{default}/:
     type: upstream
@@ -56,25 +75,53 @@ https://{default}/:
         cookies: ['*']
         default_ttl: 60
 ```
+<--->
+<!-- Upsun configuration-->
+```yaml {configFile="routes"}
+routes:
+    https://{default}/:
+        type: upstream
+        upstream: app:http
+        cache:
+            enabled: true
+            headers: ['Accept', 'Accept-Language', 'X-Language-Locale']
+            cookies: ['*']
+            default_ttl: 60
+```
+{{< /version/specific >}}
 
 ## How it works
 
 ### The cache key
 
-If a request can be cached, {{< vendor/name >}} builds a cache key from several request properties and stores the response associated with this key. When a request comes with the same cache key, the cached response is reused.
+If a request can be cached, {{% vendor/name %}} builds a cache key from several request properties and stores the response associated with this key. When a request comes with the same cache key, the cached response is reused.
 
 There are two parameters that let you control this key: `headers` and `cookies`.
 
 The default value for these keys are the following:
 
+{{< version/specific >}}
+<!-- Platform.sh configuration-->
 ```yaml {configFile="routes"}
 https://{default}/:
-   ...
-    cache:
-        enabled: true
-        cookies: ['*']
-        headers: ['Accept', 'Accept-Language']
+    # ...
+        cache:
+            enabled: true
+            cookies: ['*']
+            headers: ['Accept', 'Accept-Language']
 ```
+<--->
+<!-- Upsun configuration-->
+```yaml {configFile="routes"}
+routes:
+    https://{default}/:
+        # ...
+            cache:
+                enabled: true
+                cookies: ['*']
+                headers: ['Accept', 'Accept-Language']
+```
+{{< /version/specific >}}
 
 ### Duration
 
@@ -114,15 +161,28 @@ Turns the cache on or off for a route.
 
 Adds specific header fields to the cache key, enabling caching of separate responses for those headers.
 
-For example, if the `headers` key is the following, {{< vendor/name >}} caches a different response for each value of the `Accept` HTTP request header only:
+For example, if the `headers` key is the following, {{% vendor/name %}} caches a different response for each value of the `Accept` HTTP request header only:
 
+{{< version/specific >}}
+<!-- Platform.sh configuration-->
 ```yaml {configFile="routes"}
 https://{default}/:
-   ...
-    cache:
-        enabled: true
-        headers: ["Accept"]
+    # ...
+        cache:
+            enabled: true
+            headers: ["Accept"]
 ```
+<--->
+<!-- Upsun configuration-->
+```yaml {configFile="routes"}
+routes:
+    https://{default}/:
+        # ...
+            cache:
+                enabled: true
+                headers: ["Accept"]
+```
+{{< /version/specific >}}
 
 {{< note title="none">}}
 **Type:** List
@@ -156,13 +216,26 @@ This is done by sending the following header: `X-Platform-Cache: BYPASS`.
 For example, for the cache key to depend on the value of the `foo` cookie in the request.
 Other cookies are ignored.
 
+{{< version/specific >}}
+<!-- Platform.sh configuration-->
 ```yaml {configFile="routes"}
 https://{default}/:
-   ...
-    cache:
-        enabled: true
-        cookies: ["foo"]
+    # ...
+        cache:
+            enabled: true
+            cookies: ["foo"]
 ```
+<--->
+<!-- Upsun configuration-->
+```yaml {configFile="routes"}
+routes:
+    https://{default}/:
+        # ...
+            cache:
+                enabled: true
+                cookies: ["foo"]
+```
+{{< /version/specific >}}
 
 {{< note title="none">}}
 **Type:** List
@@ -177,13 +250,26 @@ A cookie value may also be a regular expression.
 An entry that begins and ends with a `/` is interpreted as a PCRE regular expression to match the cookie name.
 For example:
 
+{{< version/specific >}}
+<!-- Platform.sh configuration-->
 ```yaml {configFile="routes"}
 https://{default}/:
-   ...
-    cache:
-        enabled: true
-        cookies: ['/^SS?ESS/']
+    # ...
+        cache:
+            enabled: true
+            cookies: ['/^SS?ESS/']
 ```
+<--->
+<!-- Upsun configuration-->
+```yaml {configFile="routes"}
+routes:
+    https://{default}/:
+        # ...
+            cache:
+                enabled: true
+                cookies: ['/^SS?ESS/']
+```
+{{< /version/specific >}}
 
 Causes all cookies beginning with `SESS` or `SSESS` to be part of the cache key, as a single value.
 Other cookies are ignored for caching.
@@ -210,7 +296,7 @@ All static assets have a Cache-Control header with a max age defaulting to 0 (wh
 
 ## Debugging
 
-{{< vendor/name >}} adds an `X-Platform-Cache` header to each request which show whether your request is a cache `HIT`, `MISS` or `BYPASS`. This can be useful when trying to determine whether it's your application, the HTTP cache, or another proxy or CDN which isn't behaving as expected.
+{{% vendor/name %}} adds an `X-Platform-Cache` header to each request which show whether your request is a cache `HIT`, `MISS` or `BYPASS`. This can be useful when trying to determine whether it's your application, the HTTP cache, or another proxy or CDN which isn't behaving as expected.
 
 If in doubt, disable the cache using `cache: false`.
 
@@ -220,6 +306,8 @@ If in doubt, disable the cache using `cache: false`.
 
 If you need fine-grained caching, you can set up caching rules for several routes separately:
 
+{{< version/specific >}}
+<!-- Platform.sh configuration-->
 ```yaml {configFile="routes"}
 https://{default}/:
     type: upstream
@@ -239,6 +327,29 @@ https://{default}/foo/bar/:
     cache:
         enabled: true
 ```
+<--->
+<!-- Upsun configuration-->
+```yaml {configFile="routes"}
+routes:
+    https://{default}/:
+        type: upstream
+        upstream: app:http
+        cache:
+            enabled: true
+
+    https://{default}/foo/:
+        type: upstream
+        upstream: app:http
+        cache:
+            enabled: false
+
+  https://{default}/foo/bar/:
+      type: upstream
+      upstream: app:http
+      cache:
+          enabled: true
+```
+{{< /version/specific >}}
 
 With this configuration, the following routes are cached:
 
@@ -260,13 +371,26 @@ Regular expressions in routes are **not** supported.
 Some applications use cookies to invalidate cache responses, but expect other cookies to be ignored.
 This is a case of allowing only a subset of cookies to invalidate the cache.
 
+{{< version/specific >}}
+<!-- Platform.sh configuration-->
 ```yaml {configFile="routes"}
 https://{default}/:
-   ...
+# ...
     cache:
         enabled: true
         cookies: ["MYCOOKIE"]
 ```
+<--->
+<!-- Upsun configuration-->
+```yaml {configFile="routes"}
+routes:
+    https://{default}/:
+    # ...
+        cache:
+            enabled: true
+            cookies: ["MYCOOKIE"]
+```
+{{< /version/specific >}}
 
 ### Cache HTTP and HTTPS separately using the `Vary` header
 

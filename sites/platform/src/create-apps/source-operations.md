@@ -11,7 +11,7 @@ keywords:
   - "source operation"
 ---
 
-On {{< vendor/name >}}, you can run automated code updates through a feature called **source operations**.
+On {{% vendor/name %}}, you can run automated code updates through a feature called **source operations**.
 Defined in your [app configuration](./_index.md), source operations let you specify commands
 that can commit changes to your project's repository when called.
 
@@ -19,7 +19,7 @@ For example, you can set up a source operation to [automatically update your app
 [update a site from an upstream repository](#update-a-site-from-an-upstream-repository-or-template),
 or [revert to the last commit](#revert-to-the-last-commit) pushed to your Git repository.
 
-To run your source operations, you can use the [{{< vendor/name >}} CLI](../administration/cli/_index.md) or the [Console](https://console.platform.sh).
+To run your source operations, you can use the [{{% vendor/name %}} CLI](../administration/cli/_index.md) or the [Console](https://console.platform.sh).
 If you want to run your source operations and update your code automatically,
 you can also define [cron jobs](./app-reference.md#crons).
 
@@ -172,7 +172,7 @@ title=Using the CLI
 
 If your project is using a [source integration](../integrations/source/_index.md),
 any new commits resulting from a source operation are first pushed to your external Git repository.
-Then the source integration pushes those commits to {{< vendor/name >}} and redeploys the environment.
+Then the source integration pushes those commits to {{% vendor/name %}} and redeploys the environment.
 
 When using a source integration,
 you can't run source operations on environments created from pull or merge requests created on the external repository.
@@ -191,7 +191,7 @@ You can use cron to automatically run your source operations.
 Note that it’s best not to run source operations on your production environment,
 but rather on a dedicated environment where you can test changes.
 
-Make sure you have the [{{< vendor/name >}} CLI](../administration/cli/_index.md) installed
+Make sure you have the [{{% vendor/name %}} CLI](../administration/cli/_index.md) installed
 and [an API token](../administration/cli/api-tokens.md#2-create-an-api-token)
 so you can run a cron job in your app container.
 
@@ -239,10 +239,10 @@ Make sure you carefully check your [user access on this project](../administrati
 hooks:
     build: |
         set -e
-        echo "Installing {{< vendor/name >}} CLI"
+        echo "Installing {{% vendor/name %}} CLI"
         curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
 
-        echo "Testing {{< vendor/name >}} CLI"
+        echo "Testing {{% vendor/name %}} CLI"
         {{% vendor/cli %}}
 ```
 
@@ -303,7 +303,7 @@ The following source operation syncronizes your branch with an upstream Git repo
    If there’s a conflict merging from the upstream repository,
    the source operation fails and doesn't update from the upstream repository.
 
-Run the `upstream-update` operation on a Development environment rather than directly on Production.
+Run the `upstream-update` operation on a preview environment rather than directly on Production.
 
 ### Revert to the last commit
 

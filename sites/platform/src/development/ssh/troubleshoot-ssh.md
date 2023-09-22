@@ -12,7 +12,7 @@ There are several places to check to try to solve such issues.
 
 ## Check your environment
 
-If your environment is [inactive](../../other/glossary.md#inactive-environment) or the deployment has failed,
+If your environment is [inactive](/glossary.md#inactive-environment) or the deployment has failed,
 you can't log in to it.
 To make sure the environment is active and the deployment has succeeded,
 check it using `{{% vendor/cli %}} environment:list` or in the [Console](https://console.platform.sh/) .
@@ -28,7 +28,7 @@ git push origin main
 
 ## Check your public key
 
-Make sure your public key has been uploaded to your user account. Check it in the [{{< vendor/name >}} Console](https://console.platform.sh/).
+Make sure your public key has been uploaded to your user account. Check it in the [{{% vendor/name %}} Console](https://console.platform.sh/).
 
 ## SSH key can not be duplicated
 
@@ -60,7 +60,7 @@ Check that your key is properly added to your SSH agent. This is an authenticati
 
 ## Specify your identity file
 
-If your identity (SSH key) associated with {{< vendor/name >}} isn't in a default file name
+If your identity (SSH key) associated with {{% vendor/name %}} isn't in a default file name
 (as may be explained in your SSH software manual, for example),
 you may have to append a specification like the one below so that the SSH software finds the correct key.
 
@@ -70,7 +70,7 @@ IdentityFile ~/.ssh/id_platformsh
 ```
 
 Be aware that, above, `platform.sh` stands for a hostname.
-Each different hostname you connect to {{< vendor/name >}} at may have to be specified in the host line, separated by spaces.
+Each different hostname you connect to {{% vendor/name %}} at may have to be specified in the host line, separated by spaces.
 
 ## Check your git integrations
 

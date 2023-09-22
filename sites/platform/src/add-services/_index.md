@@ -7,16 +7,23 @@ keywords:
   - "services.yaml"
 ---
 
-{{< vendor/name >}} includes many services, so you don't have to subscribe to external cache or search engine services.
+{{% vendor/name %}} includes many services, so you don't have to subscribe to external cache or search engine services.
 Because the services are included in your project, you can manage them through Git
 and they're backed up together with the rest of your project.
 
+{{% version/specific %}}
+<!-- API Version 1 -->
 Your project defines the services configuration in a file named `{{< vendor/configfile "services" >}}`.
-If you don't need any services (such as for a static website), you don't need to include this configuration.
+<--->
+<!-- API Version 2 -->
+Your project defines the services configuration from a top-level key called `services`, which is placed in a unified configuration file like `{{< vendor/configfile "services" >}}`.
+{{% /version/specific %}}
 
-Read on to see how to add services.
+If you don't need any services (such as for a static website), you don't need to include this configuration. Read on to see how to add services.
 
+{{% version/only "1" %}}
 ![Services](/images/management-console/relationships.png "0.50")
+{{% /version/only %}}
 
 ## Add a service
 
@@ -29,24 +36,35 @@ All service configuration happens in the `{{< vendor/configfile "services" >}}` 
 Configure your service in the following pattern:
 
 ```yaml {configFile="services"}
-{{<variable "SERVICE_NAME" >}}:
+{{% snippet name="SERVICE_NAME" config="service" %}}
     type: {{<variable "SERVICE_TYPE" >}}:{{<variable "VERSION" >}}
     # Other options...
+{{% /snippet %}}
 ```
 
 An example service configuration for two databases might look like this:
 
 ```yaml {configFile="services"}
-database1:
-    type: mariadb:10.5
+{{% snippet name="database1" config="service" %}}
+    type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
-database2:
-    type: postgresql:13
+{{% /snippet %}}
+{{% snippet name="database2" config="service" globKey="false" %}}
+    type: postgresql:{{% latest "postgresql" %}}
     disk: 1024
+{{% /snippet %}}
 ```
 
+{{% version/specific %}}
+<!-- API Version 1 -->
 This YAML file is a dictionary defining all of the services you want to use.
-The top-level key is a custom service name, which you use to identify the service in step 2.
+The top-level key is a custom service name ({{<variable "SERVICE_NAME" >}}; in the example, `database1` and `database2`), which you use to identify the service in step 2.
+<--->
+<!-- API Version 2 -->
+This YAML file contains a dictionary defining all of the services you want to use.
+The top-level key `services` defines an object of all of the services to be provisioned for the project. 
+Below that, come custom service names ({{<variable "SERVICE_NAME" >}}; in the example, `database1` and `database2`), which you use to identify services in step 2.
+{{% /version/specific %}}
 You can give it any name you want with lowercase alphanumeric characters, hyphens, and underscores.
 
 {{< note >}}
@@ -64,7 +82,7 @@ The following table presents the keys you can define for each service:
 | Name            | Type       | Required          | Description |
 | --------------- | ---------- | ----------------- | ----------- |
 | `type`          | `string`   | Yes               | One of the [available services](#available-services) in the format `type:version`. |
-| `disk`          | `integer`  | For some services | The size in [MB](../other/glossary.md#mb) of the [persistent disk](#disk) allocated to the service. Can't be set for memory-resident-only services such as `memcache` and `redis`. Limited by your plan settings. |
+| `disk`          | `integer`  | For some services | The size in [MB](/glossary.md#mb) of the [persistent disk](#disk) allocated to the service. Can't be set for memory-resident-only services such as `memcache` and `redis`. Limited by your plan settings. |
 | `size`          | `string`   |                   | How many CPU and memory [resources to allocate](#size) to the service. Possible values are `AUTO`, `S`, `M`, `L`, `XL`, `2XL`, and `4XL`. Limited by your plan settings.<BR><BR>When `AUTO` applies, available resources are automatically balanced out based on the number of containers on your plan, so that no container is oversized compared to the others. To view the actual sizes of your containers, check the **Environment Configuration** section in your deployment [activity logs](../increase-observability/logs/access-logs.md#activity-logs). |
 | `configuration` | dictionary | For some services | Some services have additional specific configuration options that can be defined here, such as specific endpoints. See the given service page for more details. |
 | `relationships` | dictionary | For some services | Some services require a relationship to your app. The content of the dictionary has the same type as the `relationships` dictionary for [app configuration](../create-apps/app-reference.md#relationships). The `endpoint_name` for apps is always `http`. |
@@ -81,11 +99,11 @@ The following table presents the keys you can define for each service:
 
 Resources are distributed across all containers in a project from the total available from your [plan size](../administration/pricing/_index.md).
 
-By default, {{< vendor/name >}} allocates CPU and memory resources to each container automatically.
+By default, {{% vendor/name %}} allocates CPU and memory resources to each container automatically.
 Some services are optimized for high CPU load, some for high memory load.
 If your plan is sufficiently large for bigger containers, you can increase the size of your service container.
 
-Note that service containers in development environments are always set to size `S`.
+Note that service containers in preview environments are always set to size `S`.
 
 ### 2. Connect the service
 
@@ -95,16 +113,40 @@ This is done in your [app configuration for relationships](../create-apps/app-re
 The relationship follows this pattern:
 
 ```yaml {configFile="app"}
+{{% snippet name="<APP_NAME>" config="app" root="false"%}}
+
+# Other options...
+
+# Relationships enable an app container's access to a service.
 relationships:
     {{< variable "RELATIONSHIP_NAME" >}}: "{{< variable "SERVICE_NAME" >}}:{{< variable "ENDPOINT" >}}"
+{{% /snippet %}}
+{{% snippet name="SERVICE_NAME" config="service" placeholder="true"%}}
+    type: {{<variable "SERVICE_TYPE" >}}:{{<variable "VERSION" >}}
+    # Other options...
+{{% /snippet %}}
 ```
 
 An example relationship to connect to the databases given in the [example in step 1](#1-configure-the-service):
 
 ```yaml {configFile="app"}
+{{% snippet name="<APP_NAME>" config="app" root="false"%}}
+
+# Other options...
+
+# Relationships enable an app container's to a service.
 relationships:
     mysql_database: "database1:mysql"
     postgresql_database: "database2:postgresql"
+{{% /snippet %}}
+{{% snippet name="database1" config="service" placeholder="true" %}}
+    type: mariadb:{{% latest "mariadb" %}}
+    disk: 2048
+{{% /snippet %}}
+{{% snippet name="database2" config="service" globKey="false" placeholder="true" %}}
+    type: postgresql:{{% latest "postgresql" %}}
+    disk: 1024
+{{% /snippet %}}
 ```
 
 As with the service name, you can give the relationship any name you want
@@ -150,14 +192,11 @@ You can connect through your app or by opening an SSH tunnel to access the servi
 title=In an app
 +++
 
-When connecting to a service from an app, you may want to use one of the {{< vendor/name >}} [configuration readers](https://github.com/platformsh/?q=config+reader).
-These tools make it easier to get credentials inside your app.
-
-Alternatively, once a service is running and exposed as a relationship,
-its credentials (such as the host, username, and password) are available through the `PLATFORM_RELATIONSHIPS` environment variable.
+Once a service is running and exposed as a relationship,
+its credentials (such as the host, username, and password) are available through the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable.
 The available information is documented on each service's page along with sample code for how to connect to it from your app.
 
-The keys in the `PLATFORM_RELATIONSHIPS` variable are fixed, but the values may change on deployment or restart.
+The keys in the `{{< vendor/prefix >}}_RELATIONSHIPS` variable are fixed, but the values may change on deployment or restart.
 So **use the environment variable** rather than hard coding the values.
 
 <--->
@@ -178,7 +217,7 @@ To get the credentials for a given service, run the following command:
 
 You get output like the following:
 
-```bash
+```yaml
 database:
     -
         username: user
@@ -186,7 +225,7 @@ database:
         service: database
         fragment: null
         ip: 198.51.100.37
-        hostname: abcdefghijklm1234567890123.database.service._.eu.platformsh.site
+        hostname: abcdefghijklm1234567890123.database.service._.eu.{{< vendor/urlraw "hostname" >}}
         public: false
         cluster: abcdefgh1234567-main-abcd123
         host: database.internal
@@ -220,6 +259,6 @@ You can specify the port for the connection using the `--port` flag.
 
 You can then connect to this service in a separate terminal or locally running app.
 With the example above, you connect to a URL like the following:
-`mysql://user:@127.0.0.1:30000/main'`
+`mysql://user:@127.0.0.1:30000/main`
 
 {{< /codetabs >}}

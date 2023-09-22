@@ -25,7 +25,7 @@ Start by creating empty versions of each of these files in your repository:
 
 ```bash
 # Create empty {{ .Site.Params.vendor.name }}  configuration files
-touch {{ partial "vendor/configfile" (dict "context" . "config" "services") }} && mkdir -p .platform && touch {{ partial "vendor/configfile" (dict "context" . "config" "routes") }}{{ if not (.Get "noService") }} && touch {{ partial "vendor/configfile" (dict "context" . "config" "services") }}{{ end }}
+mkdir -p .platform && touch {{ partial "vendor/configfile" (dict "context" . "config" "services") }} && touch {{ partial "vendor/configfile" (dict "context" . "config" "routes") }}{{ if not (.Get "noService") }} && touch {{ partial "vendor/configfile" (dict "context" . "config" "services") }}{{ end }}
 ```
 
 {{ if isset .Params "platformify" }}
