@@ -4,7 +4,7 @@ description: |
     {{< version/specific >}}
     See backup policies and the recovery point objective (RPO) and recovery time objective (RTO) for various schedules.
     <--->
-    See the recovery point objective (RPO) and recovery time objective (RTO) applied to your backups.
+    Learn which backup policy applies to your {{< vendor/name >}} projects.
     {{< /version/specific >}}
 ---
 
@@ -51,12 +51,27 @@ Recovery time depends on the size of the data being recovered.
 
 <--->
 
-The [frequency of backups](../environments/backup.md#backup-schedule) is the same for all your environments.
-They are automatically backed up once a day.
+{{< vendor/name >}} projects follow a standard backup policy that defines how many backups you can take advantage of.
 
-The recovery point objective is therefore 24 hours,
-while the recovery time objective depends on the size of the data being recovered.
+**Production environments:**
+- 1 automated backup per day, with a [2-day retention](/security/data-retention.md) (2 days worth of backups are retained at any given point).
+  Automated backups are always [live](/environments/backup.md#live-backups).
+- 2 manual backups maximum at any given point (the third manual backup replaces the oldest manual backup).
 
-Retention is governed by the [data retention policy](./data-retention.md).
+**Preview environments (development and staging):**
+- No automated backups.
+- 2 manual backups maximum at any given point (the third manual backup replaces the oldest manual backup).
+
+Note that the number of backups is limited per [environment **type**](/other/glossary.md#preview-environments) and not per project.
+Therefore, a {{< vendor/name >}} project can have up to 6 backups at once (2 automated backups and 2 manual backups of the production environment,
+plus 2 manual backups of any preview environments).
+
+{{< note >}}
+
+This policy applies during the closed beta phase of {{< vendor/name >}},
+during which backups are provided free of charge.
+In the future, you'll be able to customize your backup policy depending on your needs and budget.
+
+{{< /note >}}
 
 {{< /version/specific >}}

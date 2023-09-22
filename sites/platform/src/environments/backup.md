@@ -119,12 +119,9 @@ Automated backups are always [live](#live-backups).
 <--->
 
 <!-- Version 2 (Usage-based white label) -->
-Your environments are automatically backed up once a day at around 4:00 based on your [project timezone](../projects/change-project-timezone.md).
-Each of those automated backup is retained for 2 days.
-Automated backups are always [live](#live-backups).
 
-On top of your daily backups, you can configure up to 2 [manual backups](#create-a-manual-backup).
-Manual backups are retained until you delete them or replace them with another backup.
+For information on the backup schedule applied to your project,
+see the [{{< vendor/name >}} backup policy](/security/backups.md).
 
 {{< /version/specific >}}
 
