@@ -92,8 +92,8 @@ title=Using the CLI
 
 Run the following command:
 
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">platform integration:add \
-  --project {{< variable "PLATFORM_SH_PROJECT_ID" >}} \
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">{{< vendor/cli >}} integration:add \
+  --project {{< variable "PROJECT_ID" >}} \
   --type ` $source_variable ` \
   ` $repoVariable `\
   ` $accessFlagsVariable ` `}}
@@ -109,18 +109,18 @@ Run the following command:
 {{ end }}
 
 {{ $CLIc := print `
-- <code>PLATFORM_SH_PROJECT_ID</code> is the ID of your ` .Site.Params.vendor.name ` project.
+- <code>PROJECT_ID</code> is the ID of your ` .Site.Params.vendor.name ` project.
 - <code>OWNER/REPOSITORY</code> is the name of the repository in ` $source `.
 ` $accessFlagsExplanation `
 ` $baseUrlExpanation `
 
-For example, if your repository is located at <code>https&colon;//` $exampleUrl `/platformsh/platformsh-docs</code>,
+For example, if your repository is located at <code>https&colon;//` $exampleUrl `/{{< vendor/alt-name >}}/{{< vendor/alt-name >}}-docs</code>,
 the command is similar to the following:
 
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">platform integration:add \
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">{{< vendor/cli >}} integration:add \
   --project abcdefgh1234567 \
   --type ` $source_variable ` \
-  --repository platformsh/platformsh-docs \
+  --repository {{< vendor/alt-name >}}/{{< vendor/alt-name >}}-docs \
   ` $accessFlagsExample ` ` }}
 
 {{ $CLId := print `
@@ -190,5 +190,5 @@ title=In the Console
 ` $cloneOption $extraOption }}
 {{ $OptionsTable | markdownify }}
 
-<p>To <a href="/bestpractices/clean-repository.html"> keep your repository clean </a> and avoid performance issues,
+<p>To <a href="/learn/bestpractices/clean-repository.html"> keep your repository clean </a> and avoid performance issues,
   make sure you enable both the <code>fetch-branches</code> and <code>prune-branches</code> options.</p>

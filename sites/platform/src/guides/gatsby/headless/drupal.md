@@ -1,5 +1,5 @@
 ---
-title: "How to deploy Gatsby with Drupal (Decoupled Drupal) on {{< vendor/name >}}"
+title: "How to deploy Gatsby with Drupal (Decoupled Drupal) on {{% vendor/name %}}"
 sidebarTitle: "Drupal"
 description: |
     Drupal's JSON API module can be used as a data source for Gatsby via `gatsby-source-drupal`.
@@ -81,6 +81,6 @@ With Gatsby now deployed and pulling content from a backend Drupal application, 
 
 ### Live preview and incremental builds
 
-If you replicate the `web.commands.start` block in Gatsby's `{{< vendor/configfile "app" >}}` file above, you can enable incremental builds on your projects. Once you save an update to a piece of Drupal content on a non-production branch, Drupal places a request to a dedicated `/__refresh` endpoint on Gatsby. Since Gatsby is running a development server on this non-production environment, this call causes Gatsby to retrieve content from Drupal once again, resulting in a near instantly updated article on the frontend.
+If you replicate the `web.commands.start` block in Gatsby's `{{< vendor/configfile "app" >}}` file above, you can enable incremental builds on your projects. Once you save an update to a piece of Drupal content on a preview branch, Drupal places a request to a dedicated `/__refresh` endpoint on Gatsby. Since Gatsby is running a development server on this non-production environment, this call causes Gatsby to retrieve content from Drupal once again, resulting in a near instantly updated article on the frontend.
 
 To see how to enable this feature, consult the [template's README](https://github.com/platformsh-templates/gatsby-drupal#user-content-enabling-gatsby-live-preview-manual-configuration).

@@ -6,7 +6,7 @@ toc: false
 ---
 
 All environments default to having another environment as their parent.
-If you [branched](../other/glossary.md#branch) the environment from another,
+If you [branched](/glossary.md#branch) the environment from another,
 its parent starts as the environment it was created from.
 If you pushed a branch through Git or a [source integration](../integrations/source/_index.md),
 the parent defaults to the default environment.
@@ -35,13 +35,13 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform environment:info -e <CHILD_ENVIRONMENT_NAME> parent <PARENT_ENVIRONMENT_NAME>
+{{% vendor/cli %}} environment:info -e <CHILD_ENVIRONMENT_NAME> parent <PARENT_ENVIRONMENT_NAME>
 ```
 
 So if you have the environment `new-feature` and want to change its parent to `main`, run the following:
 
 ```bash
-platform environment:info -e new-feature parent main
+{{% vendor/cli %}} environment:info -e new-feature parent main
 ```
 
 {{< /codetabs >}}

@@ -75,7 +75,7 @@ web:
 
 ## Mounts starting with a dot ignored
 
-{{< vendor/name >}} ignores YAML keys that start with a dot.
+{{% vendor/name %}} ignores YAML keys that start with a dot.
 This causes a mount like `.myhiddenfolder` to be ignored.
 To mount a directory starting with a dot, put a `/` at the start of its definition:
 
@@ -91,7 +91,7 @@ mounts:
 If you are worried about how much disk your mounts are using, check the size with the following command:
 
 ```bash
-platform mount:size
+{{% vendor/cli %}} mount:size
 ```
 
 You see the total size and what's available for each directory:

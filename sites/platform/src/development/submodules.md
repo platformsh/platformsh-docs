@@ -6,9 +6,9 @@ sidebarTitle: "Git submodules"
 
 ## Clone submodules during deployment
 
-{{< vendor/name >}} allows you to use submodules in your Git repository.
+{{% vendor/name %}} allows you to use submodules in your Git repository.
 They're usually listed in a `.gitmodules` file at the root of your Git repository.
-When you push via Git, {{< vendor/name >}} tries to clone them automatically.
+When you push via Git, {{% vendor/name %}} tries to clone them automatically.
 
 The following example is based on [a Bigfoot multi-app project](https://github.com/platformsh-templates/bigfoot-multiapp/tree/multiapp-subfolders-applications) which uses the following submodules:
 
@@ -100,10 +100,10 @@ To specify which submodule needs to be updated, replace `[submodule]` with your 
 title= Automated update
 +++
 
-{{< note theme="warning" title="Tier availability" >}}
+{{< note theme="warning" title="Tier availability" version="1" >}}
 
 This feature is available for **Elite** and **Enterprise** customers.
-[Compare the {{< vendor/name >}} tiers](https://platform.sh/pricing/) on our pricing page,
+[Compare the {{% vendor/name %}} tiers](https://platform.sh/pricing/) on our pricing page,
 or [contact our Sales team](https://platform.sh/contact/) for more information.
 
 {{< /note >}}
@@ -135,7 +135,7 @@ To do so, follow these steps:
 
    If you use [Git submodules for each of your apps](/create-apps/multi-app/project-structure.md#split-your-code-source-into-multiple-git-submodule-repositories), define a new app at the top level of your project repository.
    Don't define routes so your app isn't exposed to the web.
-   To define a source operation, add the following configuration to your app configuration:
+   To define a source operation, add the following configuration to your [app configuration](/create-apps/app-reference):
 
    ```yaml  {configFile="apps"}
    update-submodule:
@@ -143,17 +143,14 @@ To do so, follow these steps:
      type: "nodejs:18"
 
      # The web key configures the web server running in front of your app.
-     # More information: https://docs.platform.sh/create-apps/app-reference.html#web
      web:
        # Commands are run once after deployment to start the application process.
-       # More information: https://docs.platform.sh/create-apps/app-reference.html#web-commands
        commands:
          # The command to launch your app. If it terminates, it’s restarted immediately.
          # As this app will handle source operation only, no need to keep it alive (sleep)
          start: |
            sleep infinity
      # Information on the app's source code and operations that can be run on it.
-     # More information: https://docs.platform.sh/create-apps/app-reference.html#source
      source:
        operations:
          update-submodules:
@@ -177,11 +174,11 @@ To do so, follow these steps:
    Select the operation you want to run.</br>
    Click **Run**.
 
-   Alternatively, to run your source operation from the [{{< vendor/name >}} CLI](../administration/cli/_index.md),
+   Alternatively, to run your source operation from the [{{% vendor/name %}} CLI](../administration/cli/_index.md),
    run the following command:
 
    ```bash
-   platform source-operation:run {{< variable "SOURCE_OPERATION_NAME" >}}
+   {{% vendor/cli %}} source-operation:run {{< variable "SOURCE_OPERATION_NAME" >}}
    ```
 
 {{< /codetabs >}}
@@ -201,7 +198,7 @@ E: Error validating submodules in tree:
     - git@github.com:platformsh-templates/bigfoot-multiapp-admin.git: HangupException: The remote server unexpectedly closed the connection.
 ```
 
-This is due to the fact that the {{< vendor/name >}} Git server can't connect to GitHub via SSH without being granted an SSH key to do so.
+This is due to the fact that the {{% vendor/name %}} Git server can't connect to GitHub via SSH without being granted an SSH key to do so.
 To solve this issue, use an HTTPS URL (`https://github.com/...`) instead.
 
 ## Use private Git repositories
@@ -235,7 +232,7 @@ To fix this, follow these steps:
     ```
 
 2. Add the [project's public key to your remote Git repository](./private-repository.md).
-   This allows your {{< vendor/name >}} project to pull the repository from the remote Git service.
+   This allows your {{% vendor/name %}} project to pull the repository from the remote Git service.
 
 {{< note >}}
 
@@ -251,7 +248,7 @@ If your server needs access to multiple repositories, follow these steps:
 
 ## Removing submodules
 
-These steps aren't specific to {{< vendor/name >}}, but kept as a reference for Git so that submodules are effectively removed before entering the build process.
+These steps aren't specific to {{% vendor/name %}}, but kept as a reference for Git so that submodules are effectively removed before entering the build process.
 
 1. In your `.gitmodules` and `.git/config` files, delete the information related to the submodule you want to remove.
 

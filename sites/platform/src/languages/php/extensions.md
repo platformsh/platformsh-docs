@@ -1,13 +1,13 @@
 ---
 title: "Extensions"
 weight: 1
-description: See what PHP extensions are available with each PHP version on {{< vendor/name >}}.
+description: See what PHP extensions are available with each PHP version on {{% vendor/name %}}.
 ---
 
 PHP has a number of [extensions](https://pecl.php.net/) developed by members of the community.
-Some of them are available for {{< vendor/name >}} containers.
+Some of them are available for {{% vendor/name %}} containers.
 
-{{< note >}}
+{{< note version="1" >}}
 
 The information on this page applies to Grid and {{% names/dedicated-gen-3 %}} plans.
 See also [PHP extensions on {{% names/dedicated-gen-2 %}} plans](../../dedicated-gen-2/overview/grid.md#extensions).
@@ -56,7 +56,7 @@ Some built-in modules are always on:
 To see a complete list of the compiled PHP extensions, run the following [CLI command](../../administration/cli/_index.md):
 
 ```bash
-platform ssh "php -m"
+{{% vendor/cli %}} ssh "php -m"
 ```
 
 ## Custom PHP extensions

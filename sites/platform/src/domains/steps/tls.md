@@ -4,25 +4,25 @@ weight: 2
 sidebarTitle: "Custom TLS certificates"
 ---
 
-{{< vendor/name >}} automatically provides standard Transport Layer Security (TLS) certificates for all sites and environments.
+{{% vendor/name %}} automatically provides standard Transport Layer Security (TLS) certificates for all sites and environments.
 These certificates are issued at no charge by [Let's Encrypt](https://letsencrypt.org/) and cover most needs.
 To use them, you need to [specify HTTPS routes](../../define-routes/https.md#enable-https). 
 Note that some [limitations](../../define-routes/https.md#lets-encrypt-limitations) apply.
 
-{{< vendor/name >}} allows you to use third-party TLS certificates free of charge.
+{{% vendor/name %}} allows you to use third-party TLS certificates free of charge.
 
 You can use many kinds of custom certificates, including domain-validated, extended validation, high-assurance, or wildcard certificates.
 Consult your TLS issuer for pricing and instructions on how to generate a TLS certificate.
 
 Seven days before a third-party custom certificate is due to expire,
-{{< vendor/name >}} replaces it with a new default Let’s Encrypt certificate.
+{{% vendor/name %}} replaces it with a new default Let’s Encrypt certificate.
 This helps prevent downtime.
 To avoid switching to a default certificate,
 make sure you replace your custom certificate with an updated one
 more than seven days before its expiration date.
 
-Note that custom certificates aren't necessary for development environments.
-Wildcard certificates that cover all `*.platform.sh` domains, including development environments, are automatically provided.
+Note that custom certificates aren't necessary for preview environments.
+Wildcard certificates that cover all `*.platform.sh` domains, including preview environments, are automatically provided.
 
 ### Add a custom certificate
 
@@ -42,13 +42,13 @@ title=Using the CLI
 1. Run the following command:
 
    ```bash
-   platform domain:add {{<variable "YOUR_DOMAIN" >}} --cert {{<variable "PATH_TO_CERTIFICATE_FILE" >}} --key {{<variable "PATH_TO_PRIVATE_KEY_FILE" >}}
+   {{% vendor/cli %}} domain:add {{<variable "YOUR_DOMAIN" >}} --cert {{<variable "PATH_TO_CERTIFICATE_FILE" >}} --key {{<variable "PATH_TO_PRIVATE_KEY_FILE" >}}
    ```
 
    For example:
 
    ```bash
-   platform domain:add secure.example.com --cert /etc/TLS/private/secure-example-com.crt --key /etc/TLS/private/secure-example-com.key
+   {{% vendor/cli %}} domain:add secure.example.com --cert /etc/TLS/private/secure-example-com.crt --key /etc/TLS/private/secure-example-com.key
    ```
 
    You can optionally include intermediate SSL certificates by adding <code>&hyphen;&hyphen;chain {{<variable "PATH_TO_FILE" >}}</code> for each one.
@@ -56,7 +56,7 @@ title=Using the CLI
 2. Redeploy your production environment with the following command:
 
    ```bash
-   platform environment:redeploy
+   {{% vendor/cli %}} environment:redeploy
    ```
 
 <--->

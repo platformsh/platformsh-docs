@@ -1,6 +1,6 @@
 ---
 title: "Java"
-description: Java is a general-purpose programming language, and one of the most popular in the world today. {{< vendor/name >}} supports Java runtimes that can be used with build management tools such as Gradle, Maven, and Ant.
+description: Java is a general-purpose programming language, and one of the most popular in the world today. {{% vendor/name %}} supports Java runtimes that can be used with build management tools such as Gradle, Maven, and Ant.
 layout: single
 ---
 
@@ -12,9 +12,30 @@ layout: single
 
 ### OpenJDK versions:
 
-| Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|----------------------------------------|------------------------------ |
-| {{< image-versions image="java" status="supported" environment="grid" >}} | {{< image-versions image="java" status="supported" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid and {{% names/dedicated-gen-3 %}}</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="java" status="supported" environment="grid" >}}</td>
+            <td>{{< image-versions image="java" status="supported" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="java" status="supported" environment="grid" >}}
+
+{{% /version/specific %}}
 
 These versions refer to the headless packages of OpenJDK.
 To save space and reduce potential vulnerabilities, they don't contain GUI classes, which can't be used on the server.
@@ -23,7 +44,7 @@ To save space and reduce potential vulnerabilities, they don't contain GUI class
 
 ## Support build automation
 
-{{< vendor/name >}} supports the most common project management tools in the Java ecosystem, including:
+{{% vendor/name %}} supports the most common project management tools in the Java ecosystem, including:
 
 * [Gradle](https://gradle.org/)
 * [Maven](https://maven.apache.org/)
@@ -53,7 +74,7 @@ hooks:
 
 ## Other JVM languages
 
-It’s worth remembering that the JVM by its specification [doesn't read Java code](https://docs.oracle.com/javase/specs/jvms/se8/html/index.html), but bytecode. So within the JVM, it’s possible to [run several languages](https://en.wikipedia.org/wiki/List_of_JVM_languages). {{< vendor/name >}}supports several of them, such as Kotlin, Groovy, and Scala, so long as that language works with any build automation that {{< vendor/name >}} supports.
+It’s worth remembering that the JVM by its specification [doesn't read Java code](https://docs.oracle.com/javase/specs/jvms/se8/html/index.html), but bytecode. So within the JVM, it’s possible to [run several languages](https://en.wikipedia.org/wiki/List_of_JVM_languages). {{% vendor/name %}} supports several of them, such as Kotlin, Groovy, and Scala, so long as that language works with any build automation that {{% vendor/name %}} supports.
 
 | Article                                                      | Link                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |

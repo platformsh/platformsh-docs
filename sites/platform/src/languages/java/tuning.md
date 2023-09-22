@@ -4,7 +4,7 @@ weight: 2
 sidebarTitle: "Tuning"
 ---
 
-There are a number of settings that can be adjusted for each application to optimize its performance on {{< vendor/name >}}.
+There are a number of settings that can be adjusted for each application to optimize its performance on {{% vendor/name %}}.
 
 ## Memory limits
 
@@ -15,7 +15,7 @@ To extract the container-scaled value on the command line, use `$(jq .info.limit
 
 You should also set the `ExitOnOutOfMemoryError`.
 When you enable this option, the JVM exits on the first occurrence of an out-of-memory error.
-{{< vendor/name >}} will restart the application automatically.
+{{% vendor/name %}} will restart the application automatically.
 
 These are the recommended parameters for running a Java application. Thus, the command to use to start a Java application is:
 
@@ -27,7 +27,7 @@ java -jar -Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemory
 
 When migrating the application to a cloud environment, it is often essential to analyze the Garbage Collector's log and behavior. For this, there are two options:
 
-* Placing the log into the {{< vendor/name >}} `/var/log/app.log` file (which captures `STDOUT`).
+* Placing the log into the {{% vendor/name %}} `/var/log/app.log` file (which captures `STDOUT`).
 * Creating a log file specifically for the GC.
 
 To use the `STDOUT` log, you can add the parameter `-XX: + PrintGCDetails`, E.g.:
@@ -78,7 +78,7 @@ java -jar -Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemory
 
 Ideally, all applications should run the latest LTS release of the JVM at least.
 That is currently Java 11.
-Java 11 has a number of performance improvements, particularly on container-based environments such as {{< vendor/name >}}.
+Java 11 has a number of performance improvements, particularly on container-based environments such as {{% vendor/name %}}.
 
 However, in many cases, this isn't possible.
 If you are still running on Java 8 there are two additional considerations.
@@ -96,5 +96,5 @@ java -jar -Xmx$(jq .info.limits.memory /run/config.json)m -XX:+UseG1GC -XX:+UseS
 
 ## References
 
-* [How to Migrate my Java application to {{< vendor/name >}}](https://community.platform.sh/t/how-to-migrate-my-java-application-to-platfrom-sh/529)
+* [How to Migrate my Java application to {{% vendor/name %}}](https://community.platform.sh/t/how-to-migrate-my-java-application-to-platfrom-sh/529)
 * [Introduction to Garbage Collection Tuning](https://docs.oracle.com/en/java/javase/14/gctuning/introduction-garbage-collection-tuning.html#GUID-326EB4CF-8C8C-4267-8355-21AB04F0D304)

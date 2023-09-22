@@ -1,7 +1,7 @@
 ---
 title: Connect securely with SSH
 weight: 12
-description: Keep your project and apps safe by connecting with SSH when you're interacting with your deployed environments or using the {{< vendor/name >}} CLI.
+description: Keep your project and apps safe by connecting with SSH when you're interacting with your deployed environments or using the {{% vendor/name %}} CLI.
 layout: single
 keywords: 
 - 2fa
@@ -28,9 +28,9 @@ To connect to an app securely with SSH, follow two steps.
 
 To authenticate with the CLI:
 
-1. Install the [{{< vendor/name >}} CLI](/administration/cli/_index.md).
-2. Run `platform login`.
-3. In the open browser window, log in with your {{< vendor/name >}} account credentials.
+1. Install the [{{% vendor/name %}} CLI](/administration/cli/_index.md).
+2. Run `{{% vendor/cli %}} login`.
+3. In the open browser window, log in with your {{% vendor/name %}} account credentials.
    (This webpage is encrypted with HTTPS [HTTP over TLS], making it secure.)
 4. Authorize the CLI to use your account.
 
@@ -47,14 +47,14 @@ You are now ready to run CLI commands and connect to an environment.
 To access an app in a given environment via the CLI, run the following command:
 
 ```bash
-platform ssh --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}} --app {{< variable "APPLICATION_NAME" >}}
+{{% vendor/cli %}} ssh --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}} --app {{< variable "APPLICATION_NAME" >}}
 ```
 
 Replace each of <code>{{< variable "PROJECT_ID" >}}</code>, <code>{{< variable "ENVIRONMENT_NAME" >}}</code>, and <code>{{< variable "APPLICATION_NAME" >}}</code> with the values you want to access.
 To find these values in the Console,
 navigate to the environment you want to access and click **SSH** in the top right-hand corner.
 
-Alternatively, just run `platform ssh` and select the values from each list presented to you.
+Alternatively, just run `{{% vendor/cli %}} ssh` and select the values from each list presented to you.
 
 Once you've connected, you get a response like this:
 
@@ -86,7 +86,7 @@ Then you can connect either with a [direct tunnel](#use-a-direct-tunnel) or a [t
 To open SSH tunnels for all of your services, run the following command:
 
 ```bash
-platform tunnel:open
+{{% vendor/cli %}} tunnel:open
 ```
 
 You get output similar to the following:
@@ -94,11 +94,11 @@ You get output similar to the following:
 ```bash
 SSH tunnel opened to database at: http://127.0.0.1:30000
 
-Logs are written to: ~/.platformsh/tunnels.log
+Logs are written to: ~/.{{% vendor/cli %}}/tunnels.log
 
-List tunnels with: platform tunnels
-View tunnel details with: platform tunnel:info
-Close tunnels with: platform tunnel:close
+List tunnels with: {{% vendor/cli %}} tunnels
+View tunnel details with: {{% vendor/cli %}} tunnel:info
+Close tunnels with: {{% vendor/cli %}} tunnel:close
 
 Save encoded tunnel details to the PLATFORM_RELATIONSHIPS variable using:
   export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"
@@ -132,7 +132,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform ssh --pipe --project {{< variable "PROJECT_ID" >}}
+{{% vendor/cli %}} ssh --pipe --project {{< variable "PROJECT_ID" >}}
 ```
 
 You get output similar to the following:
@@ -162,7 +162,7 @@ To connect to a service, fill in the details with the rest of your [service cred
 
 ## Alternative authentication methods
 
-There are three basic ways to authenticate with {{< vendor/name >}}:
+There are three basic ways to authenticate with {{% vendor/name %}}:
 
 * [Through the CLI](#1-authenticate-with-the-cli)
   * The fastest and easiest method.

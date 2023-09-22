@@ -4,7 +4,7 @@ weight: 40
 ---
 
 Varnish is a popular HTTP proxy server, often used for caching.
-You usually don't need it with {{< vendor/name >}} as the standard router includes HTTP cache
+You usually don't need it with {{% vendor/name %}} as the standard router includes HTTP cache
 and a CDN would cover more advanced uses.
 But you can include Varnish as a service.
 
@@ -12,9 +12,32 @@ But you can include Varnish as a service.
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|------|-------------------------------|------------------------------ |
-|  {{< image-versions image="varnish" status="supported" environment="grid" >}} | {{< image-versions image="varnish" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="varnish" status="supported" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="varnish" status="supported" environment="grid" >}}</td>
+            <td>{{< image-versions image="varnish" status="supported" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="varnish" status="supported" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="varnish" status="supported" environment="grid" >}}
+
+{{% /version/specific %}}
 
 ## How it works
 
@@ -47,7 +70,7 @@ The `path` defines the file relative to the `{{< vendor/configdir >}}` directory
 To tell Varnish how to handle traffic, in the `{{< vendor/configdir >}}` directory
 add a [Varnish Configuration Language (VCL) template](https://www.varnish-software.com/developers/tutorials/example-vcl-template/).
 
-This template is supplemented by automatic additions from {{< vendor/name >}}.
+This template is supplemented by automatic additions from {{% vendor/name %}}.
 So you MUST NOT include certain features that you might elsewhere:
 
 - A `vcl_init()` function:
@@ -68,7 +91,7 @@ The logic varies based on whether you have one or more apps.
 {{< note >}}
 
 Misconfigured VCL files can result in incorrect and confusing behavior that's hard to debug.
-{{< vendor/name >}} doesn't help with VCL configuration options beyond the basic connection logic documented here.
+{{% vendor/name %}} doesn't help with VCL configuration options beyond the basic connection logic documented here.
 
 You can see any compilation errors with the [stats endpoint](#stats-endpoint).
 
@@ -101,8 +124,8 @@ your VCL templates needs logic to determine where each request is forwarded.
 For example, you might have the following configuration for two apps:
 
 ```yaml {configFile="services"}
-varnish:
-    type: varnish:6.0
+{{% snippet name="varnish" config="service" %}}
+    type: varnish:{{% latest "varnish" %}}
     relationships:
         blog: 'blog:http'
         main: 'app:http'
@@ -110,6 +133,16 @@ varnish:
         vcl: !include
             type: string
             path: config.vcl
+{{% /snippet %}}
+{{% snippet name="blog" config="apps" placeholder="true" root="backends/blog" %}}
+# The type of the application to build.
+type: "php:{{% latest "php" %}}"
+{{% /snippet %}}
+
+{{% snippet name="app" config="apps" globKey="false" placeholder="true" root="backends/main" %}}
+# The type of the application to build.
+type: "nodejs:{{% latest "nodejs" %}}"
+{{% /snippet %}}
 ```
 
 You could then define that all requests to `/blog/` go to the `blog` app and all other requests to the other app:
@@ -131,7 +164,12 @@ Also disable the router cache as Varnish now provides caching.
 
 To forward all incoming requests to Varnish rather than your app, you could have the following:
 
-{{< readFile file="registry/images/examples/full/varnish.routes.yaml" highlight="yaml" configFile="routes" >}}
+```yaml {configFile="routes"}
+{{% snippet name="varnish:http" config="route" redirect="false" %}}
+    cache:
+        enabled: false
+{{% /snippet %}}
+```
 
 Varnish forwards requests to your app based on the specified VCL template.
 
@@ -156,7 +194,7 @@ import xkey;
 
 ## Circular relationships
 
-At this time, {{< vendor/name >}} doesn't support circular relationships between services and apps.
+At this time, {{% vendor/name %}} doesn't support circular relationships between services and apps.
 That means you can't add a relationship from an app fronted by Varnish to the Varnish service.
 If you do so, then one of the relationships is skipped and the connection doesn't work.
 
@@ -175,7 +213,7 @@ and add logic similar to the following to your VCL template:
 import vsthrottle;
 
 sub vcl_recv {
-  # The {{< vendor/name >}} router provides the real client IP as X-Client-IP
+  # The {{% vendor/name %}} router provides the real client IP as X-Client-IP
   # This replaces client.identity in other implementations
   if (vsthrottle.is_denied(req.http.X-Client-IP, 20, 10s, 120s)) {
     # Client has exceeded 20 requests in 10 seconds.
@@ -215,7 +253,7 @@ The following example shows how to set up purging.
    ```bash {location="config.vcl" dir="true"}
    sub vcl_recv {
        if (req.method == "PURGE") {
-           # The {{< vendor/name >}} router provides the real client IP as X-Client-IP
+           # The {{% vendor/name %}} router provides the real client IP as X-Client-IP
            # Use std.ip to convert the string to an IP for comparison
            if (!std.ip(req.http.X-Client-IP, "0.0.0.0") ~ purge) {
                # Deny all purge requests not from the allowed IPs
@@ -245,19 +283,49 @@ The Varnish service also offers an `http+stats` endpoint,
 which provides access to some Varnish analysis and debugging tools.
 
 You can't use it from an app fronted by Varnish because of the restriction with [circular relationships](#circular-relationships).
-To access the stats, create a **separate app** with a relationship *to* Varnish, but not *from* it.
-Define an [app configuration](../create-apps/app-reference.md) similar to the following:
+To access the stats, create a **separate app** (`stats-app`) with a relationship *to* Varnish, but not *from* it.
+Define [app configuration](../create-apps/app-reference.md) similar to the following:
 
-```yaml {configFile="app"}
-name: stats-app
-type: "php:8.1"
-
-build:
-    flavor: none
-
+```yaml {configFile="apps"}
+{{% snippet name="stats-app" config="apps" root="stats" %}}
+# The type of the application to build.
+type: "python:{{% latest "python" %}}"
+# Unique relationship _to_ Varnish from 'stats-app', where no relationship
+#   is defined _from_ Varnish to the same app, to avoid circular relationships.
 relationships:
     varnishstats: "varnish:http+stats"
+{{% /snippet %}}
+{{% snippet name="main-app" config="apps" globKey="false" root="backends/main" %}}
+# The type of the application to build.
+type: "nodejs:{{% latest "nodejs" %}}"
+{{% /snippet %}}
+{{% snippet name="varnish" config="service" placeholder="true" %}}
+    type: varnish:{{% latest "varnish" %}}
+    # Unique relationship _from_ Varnish _to_ 'main-app', where no relationship
+    #   is defined _to_ Varnish to the same app, to avoid circular relationships.
+    relationships:
+        main: 'main-app:http'
+    configuration:
+        vcl: !include
+            type: string
+            path: config.vcl
+{{% /snippet %}}
 ```
+
+```yaml {configFile="services" v2Hide="true"}
+{{% snippet name="varnish" config="service" %}}
+    type: varnish:{{% latest "varnish" %}}
+    # Unique relationship _from_ Varnish _to_ 'main-app', where no relationship
+    #   is defined _to_ Varnish to the same app, to avoid circular relationships.
+    relationships:
+        main: 'app:http'
+    configuration:
+        vcl: !include
+            type: string
+            path: config.vcl
+{{% /snippet %}}
+```
+
 
 You choose any valid name and type.
 When the app is deployed, the app can access the Varnish service over HTTP to get diagnostic information.
@@ -270,7 +338,7 @@ The following paths are available:
 
 To access the Varnish stats endpoint from the command line:
 
-1. Connect to your stats app [using SSH](../development/ssh/_index.md): `platform ssh --app stats-app`
+1. Connect to your stats app [using SSH](../development/ssh/_index.md): `{{% vendor/cli %}} ssh --app stats-app`
    (replace `stats-app` with the name you gave the app).
-2. Display the [relationships array](../create-apps/app-reference.md#relationships) with `echo $PLATFORM_RELATIONSHIPS | base64 -d | jq .`,
+2. Display the [relationships array](../create-apps/app-reference.md#relationships) with `echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 -d | jq .`,
 3. Query Varnish with `curl {{< variable "HOST" >}}:{{<variable "PORT" >}}/stats`, replacing `{{< variable "HOST" >}}` and `{{< variable "PATH" >}}` with the values from Step 2.

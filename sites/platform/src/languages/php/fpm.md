@@ -8,7 +8,7 @@ PHP-FPM helps improve your app's performance
 by maintaining pools of workers that can process PHP requests.
 This is particularly useful when your app needs to handle a high number of simultaneous requests. 
 
-By default, {{< vendor/name >}} automatically sets a maximum number of PHP-FPM workers for your app. 
+By default, {{% vendor/name %}} automatically sets a maximum number of PHP-FPM workers for your app. 
 This number is calculated based on three parameters:
 - The container memory: the amount of memory you can allot for PHP processing 
   depending on [app size](../../create-apps/app-reference.md#sizes).
@@ -23,7 +23,7 @@ Also, the minimum number of PHP-FPM workers is 2.
 
 {{< note >}}
 
-To ensure that {{< vendor/name >}} doesn't add more workers than the CPU can handle,
+To ensure that {{% vendor/name %}} doesn't add more workers than the CPU can handle,
 a CPU limit applies as soon as the number of set workers equals or exceeds 25.
 This limit is calculated as follows: `number of vCPU cores * 5`.
 
@@ -39,7 +39,7 @@ To adjust the maximum number of PHP-FPM workers depending on your app's needs, f
 You need:
 
 - An up-and-running web app in PHP, complete with [PHP-FPM](https://www.php.net/manual/en/install.fpm.php)
-- The [{{< vendor/name >}} CLI](../../administration/cli/_index.md)
+- The [{{% vendor/name %}} CLI](../../administration/cli/_index.md)
 
 Note that the memory settings mentioned on this page are different from the [`memory_limit` PHP setting](./_index.md). 
 The `memory_limit` setting is the maximum amount of memory a single PHP process can use 
@@ -52,7 +52,7 @@ you can refer to your PHP access logs.
 Run a command similar to:
 
 ```bash
-platform log --lines 5000 | awk '{print $6}' | sort -n | uniq -c
+{{% vendor/cli %}} log --lines 5000 | awk '{print $6}' | sort -n | uniq -c
 ```
 
 This command takes into account the last 5,000 requests that reached PHP-FPM.
@@ -82,14 +82,14 @@ Setting a lower request memory presents a risk of allowing more concurrent reque
 This can result in memory swapping and latencies.
 
 For further help in estimating the optimal request memory for your app,
-use the [log analyzer tool for {{< vendor/name >}}](https://github.com/pixelant/platformsh-analytics) 
+use the [log analyzer tool for {{% vendor/name %}}](https://github.com/pixelant/platformsh-analytics) 
 by [Pixelant](https://www.pixelant.net/).
 This tool offers a better visualization of access logs.
 It also provides additional insights into the operation of your app. 
 These can help you further optimize your configuration 
 and provide guidance on when to increase your plan size.
 Note that this tool is maintained by a third party, 
-not by {{< vendor/name >}}.
+not by {{% vendor/name %}}.
 
 ## 2. Adjust the maximum number of PHP-FPM workers
 
@@ -123,7 +123,7 @@ To check the maximum number of PHP-FPM workers available to your app,
 run the following command, where `children` refers to PHP-FPM workers:
 
 ```bash
-platform ssh "grep -e '^pm.max_children' /etc/php/*/fpm/php-fpm.conf"      
+{{% vendor/cli %}} ssh "grep -e '^pm.max_children' /etc/php/*/fpm/php-fpm.conf"      
 ```
 
 You get output similar to the following:

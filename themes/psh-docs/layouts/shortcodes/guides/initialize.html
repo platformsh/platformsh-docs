@@ -1,5 +1,5 @@
 {{ $isSymfony := eq ( .Get "name" ) "Symfony" }}
-{{ $cliCommand := "platform" }}
+{{ $cliCommand := `{{< vendor/cli >}}` | .Page.RenderString }}
 {{ if $isSymfony }}
   {{ $cliCommand = "symfony" }}
 {{ end }}
@@ -71,7 +71,7 @@ You add them in the next step.
 
 If you're integrating a repository to ` .Site.Params.vendor.name ` that contains a number of open pull requests,
 don't use the default integration options.
-Projects are limited to three\* development environments (active and deployed branches or pull requests)
+Projects are limited to three\* preview environments (active and deployed branches or pull requests)
 and you would need to deactivate them individually to test this guide's migration changes.
 Instead, each service integration should be made with the following flag:
 
@@ -80,7 +80,7 @@ Instead, each service integration should be made with the following flag:
 
 You can then go through this guide and activate the environment when you're ready to deploy
 
-\* You can purchase additional development environments at any time in the Console.
+\* You can purchase additional preview environments at any time in the Console.
 Open your project and select **Edit plan**.
 Add additional **Environments**, view a cost estimate, and confirm your changes.
 ` }}

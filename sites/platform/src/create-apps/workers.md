@@ -12,12 +12,12 @@ Note that to have enough resources to support a worker and a service, you need a
 ## Access the worker container
 
 Like with any other application container,
-{{< vendor/name >}} allows you to connect to the worker instance through SSH to inspect logs and interact with it.
+{{% vendor/name %}} allows you to connect to the worker instance through SSH to inspect logs and interact with it.
 
-Use the `--worker` switch in the {{< vendor/name >}} CLI, like so:
+Use the `--worker` switch in the {{% vendor/name %}} CLI, like so:
 
 ```bash
-platform ssh --worker=queue
+{{% vendor/cli %}} ssh --worker=queue
 ```
 
 ## Stopping a worker
@@ -243,7 +243,7 @@ The `web` instance starts a Gunicorn process to serve a web application.
 * It has an environment variable named `TYPE` with value `web`.
 * It has a writable mount at `/app/uploads` with a maximum space of 2048 MB.
 * It has access to both a MySQL database and a RabbitMQ server, both of which are defined in `{{< vendor/configfile "services" >}}`.
-* {{< vendor/name >}} automatically allocates resources to it as available on the plan, once all fixed-size containers are allocated.
+* {{% vendor/name %}} automatically allocates resources to it as available on the plan, once all fixed-size containers are allocated.
 
 The `queue` instance is a worker that isn't web-accessible.
 

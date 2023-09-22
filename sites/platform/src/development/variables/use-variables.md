@@ -7,7 +7,7 @@ Get a list of all variables defined on a given environment in [the Console](../.
 or use the CLI:
 
 ```bash
-platform var
+{{% vendor/cli %}} var
 ```
 
 You get output similar to the following:
@@ -25,7 +25,7 @@ Variables on the project Example (abcdef123456), environment main:
 
 Project and environment variables with the [prefix](./_index.md#top-level-environment-variables) `env:`
 are available as Unix environment variables in all caps.
-Access these variables and {{< vendor/name >}}-provided variables directly like this:
+Access these variables and {{% vendor/name %}}-provided variables directly like this:
 
 ```bash
 echo $FOO
@@ -55,7 +55,7 @@ Variables available during builds can be accessed in `build` hooks and those ava
 
 ## Access variables in your app
 
-To access environment variables in your app, you can use the {{< vendor/name >}} Config Reader for the given language:
+To access environment variables in your app, you can use the {{% vendor/name %}} Config Reader for the given language:
 
 * [PHP](https://github.com/platformsh/config-reader-php)
 * [Python](https://github.com/platformsh/config-reader-python)
@@ -324,7 +324,7 @@ console.log(stuffColors);
 
 ## Use provided variables
 
-{{< vendor/name >}} also provides a series of variables to inform your app about its runtime configuration.
+{{% vendor/name %}} also provides a series of variables to inform your app about its runtime configuration.
 They're mostly prefixed with `PLATFORM_` to differentiate them from user-provided values.
 You can't set or update them directly.
 
@@ -343,8 +343,8 @@ and at runtime.
 | `{{< vendor/prefix >}}_BRANCH`           | No    | Yes     | The name of the Git branch. |
 | `{{< vendor/prefix >}}_CACHE_DIR`        | Yes   | No      | The directory where files are cached from one build to the next. The directory is shared among all branches, so the same cache is used for all environments. |
 | `{{< vendor/prefix >}}_DOCUMENT_ROOT`    | No    | Yes     | The absolute path to the web document root, if applicable. |
-| `{{< vendor/prefix >}}_ENVIRONMENT`      | No    | Yes     | The name of the {{< vendor/name >}} environment. |
-| `{{< vendor/prefix >}}_ENVIRONMENT_TYPE` | No    | Yes     | The environment type of the {{< vendor/name >}} environment (`development`, `staging`, or `production`). |
+| `{{< vendor/prefix >}}_ENVIRONMENT`      | No    | Yes     | The name of the {{% vendor/name %}} environment. |
+| `{{< vendor/prefix >}}_ENVIRONMENT_TYPE` | No    | Yes     | The environment type of the {{% vendor/name %}} environment (`development`, `staging`, or `production`). |
 | `{{< vendor/prefix >}}_OUTPUT_DIR`       | Yes   | No      | The output directory for compiled languages at build time. Equivalent to `PLATFORM_APP_DIR` in most cases. |
 | `{{< vendor/prefix >}}_PROJECT`          | Yes   | Yes     | The project ID. |
 | `{{< vendor/prefix >}}_PROJECT_ENTROPY`  | Yes   | Yes     | A random, 56-character value created at project creation and then stable throughout the project's life. Can be used for Drupal hash salts, Symfony secrets, and other similar values. |
@@ -357,6 +357,8 @@ and at runtime.
 | `PORT`                      | No    | Yes     | A `string` representing the port to which requests are sent if the [`web.upstream.socket_family` property](../../create-apps/app-reference.md#upstream) is unset or set to `tcp`. |
 | `SOCKET`                    | No    | Yes     | A `string` representing the path to the Unix socket file to use if the [`web.upstream.socket_family` property](../../create-apps/app-reference.md#upstream) is set to `unix`. |
 
+{{< version/specific >}}
+<!-- These two sections are Platform.sh-specific -->
 ### Variables on {{% names/dedicated-gen-2 %}} environments
 
 [{{% names/dedicated-gen-2 %}} instances](../../dedicated-gen-2/overview/_index.md) also have the following variables available:
@@ -366,7 +368,7 @@ and at runtime.
 | `PLATFORM_CLUSTER` | No    | Yes     | The cluster ID. In older {{% names/dedicated-gen-2 %}} instances, this is used to get the project ID. When several projects are linked, this provides the main project/cluster they're linked to, while `PLATFORM_PROJECT` offers the specific project ID. |
 | `PLATFORM_MODE`    | No    | Yes     | `enterprise` in all {{% names/dedicated-gen-2 %}} production and staging environments. Note that an Enterprise support plan doesn't always imply a {{% names/dedicated-gen-2 %}} environment, but a {{% names/dedicated-gen-2 %}} environment always implies an Enterprise support plan. |
 
-{{< note >}}
+{{< note version="1" >}}
 
 The `PLATFORM_CLUSTER` environment variable isn't yet available on [{{% names/dedicated-gen-3 %}}](../../dedicated-gen-3/_index.md).
 If your application depends on whether it's running on a {{% names/dedicated-gen-3 %}} host, use `PLATFORM_MODE`.
@@ -390,13 +392,18 @@ else
 fi
 ```
 
+<--->
+<!-- Removed from version 2 -->
+
+{{< /version/specific >}}
+
 ### `PLATFORM_APPLICATION`
 
 The `PLATFORM_APPLICATION` variable is available both at build time and in the runtime environment.
 But the specific attributes it contains differ in each case.
 
 Each environment's build is associated with a configuration ID that identifies it uniquely so builds can be reused.
-The ID is a product of your app code and some of its [configuration for {{< vendor/name >}}](../../create-apps/_index.md).
+The ID is a product of your app code and some of its [configuration for {{% vendor/name %}}](../../create-apps/_index.md).
 Not every attribute your app configuration is relevant to the build.
 Only those attributes that are relevant to builds are accessible at build time from `PLATFORM_APPLICATION`.
 
@@ -415,7 +422,7 @@ Attributes that are **not** available in `PLATFORM_APPLICATION` during builds:
 
 These attributes aren't visible during build because they aren't included as a part of the configuration component of the build slug.
 So modifying these values in your [app configuration](../../create-apps/_index.md) doesn't trigger an app rebuild, only a redeploy.
-For more information, read about [how builds work](../../overview/build-deploy.md#the-build).
+For more information, read about [how builds work](/learn/overview/build-deploy.md#the-build).
 
 ## Use variables in static files
 
@@ -425,7 +432,7 @@ and don't support reading from environment variables.
 To populate these files with variables you set yourself,
 make sure the variables are set to be [visible at build time](./set-variables.md#variable-options).
 
-The files can't be populated with {{< vendor/name >}}-provided variables not available at build time (such as `PLATFORM_RELATIONSHIPS`).
+The files can't be populated with {{% vendor/name %}}-provided variables not available at build time (such as `PLATFORM_RELATIONSHIPS`).
 You also can't write to them in a `deploy` hook as the file system is read only.
 
 One workaround is to create a symbolic link to a writable location and then write to it in a [`deploy` hook](../../create-apps/hooks/hooks-comparison.md#deploy-hook).

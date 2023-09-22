@@ -19,9 +19,9 @@ Deploys of other branches don't trigger rebuilds of the {{% names/dedicated-gen-
 
 ## Deployment process
 
-When deploying to the {{% names/dedicated-gen-2 %}} cluster the process is slightly different than when working with {{< vendor/name >}} on the Grid.
+When deploying to the {{% names/dedicated-gen-2 %}} cluster the process is slightly different than when working with {{% vendor/name %}} on the Grid.
 
-* The new application image is built in the exact same fashion as for {{< vendor/name >}} Professional.
+* The new application image is built in the exact same fashion as for {{% vendor/name %}} Professional.
 * Any active background tasks on the cluster, including cron tasks, are terminated.
 * The cluster (production or staging) is closed, meaning it doesn't accept new requests.
 Incoming requests receive an HTTP 500 error.
@@ -40,6 +40,6 @@ Authenticated traffic that can't be served by the CDN still sees a brief interru
 
 ## Deployment philosophy
 
-{{< vendor/name >}} values consistency over availability,
+{{% vendor/name %}} values consistency over availability,
 which means that deployments can cause your app to be unavailable for a short amount of time.
-For more information, see the [overview of the build and deploy phases](../../overview/build-deploy.md).
+For more information, see the [overview of the build and deploy phases](/learn/overview/build-deploy.md).

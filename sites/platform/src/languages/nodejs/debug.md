@@ -7,9 +7,9 @@ Effectively debugging web apps takes effort,
 especially when an HTTP request goes through multiple layers before reaching your web app.
 Follow the steps below to debug a specific app.
 
-You can choose to debug in an environment deployed to {{< vendor/name >}}
+You can choose to debug in an environment deployed to {{% vendor/name %}}
 or with your app running locally but connected to deployed services.
-In either case, make sure to debug in a non-production environment.
+In either case, make sure to debug in a preview environment.
 
 {{% troubleshoot %}}
 
@@ -18,7 +18,7 @@ In either case, make sure to debug in a non-production environment.
 Start by creating a new environment completely isolated from production but with the same data for debugging:
 
 ```bash
-platform branch debug-branch
+{{% vendor/cli %}} branch debug-branch
 ```
 
 ## 2. Get access
@@ -32,7 +32,7 @@ title=Remote
 Access your app container via [SSH](../../development/ssh/_index.md):
 
 ```bash
-platform ssh
+{{% vendor/cli %}} ssh
 ```
 
 <--->
@@ -44,13 +44,13 @@ title=Local
 To access deployed apps and services, open tunnels to everything your app has relationships with:
 
 ```bash
-platform tunnel:open
+{{% vendor/cli %}} tunnel:open
 ```
 
 In the same terminal, set the relevant environment variables:
 
 ```bash
-export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"
+export PLATFORM_RELATIONSHIPS="$({{% vendor/cli %}} tunnel:info --encode)"
 export PORT=8888
 ```
 
@@ -102,7 +102,7 @@ Listening on port 8888
 In another terminal, create an SSH tunnel that forwards to the 9229 port:
 
 ```bash
-ssh -N -L 9229:localhost:9229 $(platform ssh --pipe)
+ssh -N -L 9229:localhost:9229 $({{% vendor/cli %}} ssh --pipe)
 ```
 
 ## 5. Connect the debugger

@@ -4,12 +4,12 @@ sidebarTitle: Custom Redis
 weight: 7
 ---
 
-[Redis](../../add-services/redis.md) is a popular structured key-value service, supported by {{< vendor/name >}}.
+[Redis](../../add-services/redis.md) is a popular structured key-value service, supported by {{% vendor/name %}}.
 It's frequently used for caching.
 
 ## Install PhpRedis
 
-The [PhpRedis](https://github.com/phpredis/phpredis) extension is available on {{< vendor/name >}}'s PHP container images.
+The [PhpRedis](https://github.com/phpredis/phpredis) extension is available on {{% vendor/name %}}'s PHP container images.
 The extension has been known to break its API between versions when removing deprecated functionality.
 The version available on each application image is the latest available at the time that PHP version was built,
 which if your app is sensitive to PhpRedis versions may not be ideal.
@@ -59,7 +59,7 @@ hooks:
 
 ## Change extension or version
 
-To change the Redis extension or the version you are using, update the build hook and clear the build cache: `platform project:clear-build-cache`.
+To change the Redis extension or the version you are using, update the build hook and clear the build cache: `{{% vendor/cli %}} project:clear-build-cache`.
 
 The new version is *not* be used until you clear the build cache.
 

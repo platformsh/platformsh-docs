@@ -15,7 +15,7 @@ or each time you increase the storage space of your services.
 You also have regularly scheduled automated backups of your production environments to cover most cases.
 
 Note that you can only create backups and restore active environments.
-To work with an [inactive environment](../other/glossary.md#inactive-environment),
+To work with an [inactive environment](/glossary.md#inactive-environment),
 first activate it.
 
 ## How backup and restore works
@@ -24,9 +24,9 @@ first activate it.
    This backup includes the complete data and code of the environment.
    All persistent data from all running [services](../add-services/_index.md)
    and any files stored on [mounts](../create-apps/app-reference.md#mounts) are included.
-   The backup is stored internally on {{< vendor/name >}}.
-   That is, the backup can be applied to environments on {{< vendor/name >}}, but it can't be downloaded.
-   If you need to download backups, instead [export your mount and service data](../tutorials/exporting.md)).
+   The backup is stored internally on {{% vendor/name %}}.
+   That is, the backup can be applied to environments on {{% vendor/name %}}, but it can't be downloaded.
+   If you need to download backups, instead [export your mount and service data](/learn/tutorials/exporting.md)).
 
 2. You restore your environment using the backup.
    At this point, the data and code from the backup are restored to ensure a consistent state.
@@ -34,7 +34,7 @@ first activate it.
 
    {{< note theme="warning" title="Warning" >}}
 
-   But {{< vendor/name >}} doesn’t modify your Git repository. So by default, any further changes you make use the latest code in your repository.
+   But {{% vendor/name %}} doesn’t modify your Git repository. So by default, any further changes you make use the latest code in your repository.
 
    {{< /note >}}
 
@@ -66,8 +66,11 @@ For information on how long backups are retained, see the [data retention policy
 {{< version/specific >}}
 <!-- Platform.sh -->
 Backups for Dedicated environments have a [specific frequency](../dedicated-gen-2/overview/backups.md).
+<--->
 
-On Grid environments, non-Production environments can have up to 2 [manual backups](#create-a-manual-backup).
+{{< /version/specific >}}
+
+On Grid environments, preview environments can have up to 2 [manual backups](#create-a-manual-backup).
 The number of available backups for Production environments depends on your schedule.
 
 | Schedule | Manual backups | Automated backups                                                      |
@@ -100,11 +103,15 @@ To upgrade to the higher schedule, follow these steps:
 5. Select the target schedule.
 6. Click **Save**.
 
-To downgrade to the lower schedule, [contact support](../overview/get-support.md).
+To downgrade to the lower schedule, [contact support](/learn/overview/get-support.md).
 
 ## Use automated backups
 
+{{< version/specific >}}
 For Dedicated environments, see more about [backups of Dedicated environments](../dedicated-gen-2/overview/backups.md).
+<--->
+
+{{< /version/specific >}}
 
 For Grid environments, automated backups are taken for Production environments at least once every day.
 The exact number of backups depends on your [backup schedule](#backup-schedule).
@@ -135,6 +142,13 @@ when the short amount of downtime is least noticed.
 Automated backups are always live, including those taken on [{{% names/dedicated-gen-3 %}}](../dedicated-gen-3/_index.md)
 and [{{% names/dedicated-gen-2 %}}](../dedicated-gen-2/overview/_index.md) environments.
 
+<--->
+<!-- Upsun -->
+Automated backups are always live.
+{{< /version/specific >}}
+
+{{< version/specific >}}
+<!-- Platform.sh -->
 You can create a manual live backup on a Grid project:
 
 <--->
@@ -150,7 +164,7 @@ title=Using the CLI
 Use the `--live` flag:
 
 ```bash
-{{< vendor/cli >}} backup:create --live
+{{% vendor/cli %}} backup:create --live
 ```
 
 <--->
@@ -171,7 +185,7 @@ You can create a manual backup using the [CLI](../administration/cli/_index.md) 
 title=Using the CLI
 highlight=bash
 +++
-{{< vendor/cli >}} backup:create
+{{% vendor/cli %}} backup:create
 <--->
 +++
 title=In the Console

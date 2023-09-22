@@ -11,15 +11,15 @@ keywords:
   - "source operation"
 ---
 
-On {{< vendor/name >}}, you can run automated code updates through a feature called **source operations**.
+On {{% vendor/name %}}, you can run automated code updates through a feature called **source operations**.
 Defined in your [app configuration](./_index.md), source operations let you specify commands
 that can commit changes to your project's repository when called.
 
-For example, you can set up a source operation to [automatically update your application dependencies](../tutorials/dependency-updates.md),
+For example, you can set up a source operation to [automatically update your application dependencies](/learn/tutorials/dependency-updates.md),
 [update a site from an upstream repository](#update-a-site-from-an-upstream-repository-or-template),
 or [revert to the last commit](#revert-to-the-last-commit) pushed to your Git repository.
 
-To run your source operations, you can use the [{{< vendor/name >}} CLI](../administration/cli/_index.md) or the [Console](https://console.platform.sh).
+To run your source operations, you can use the [{{% vendor/name %}} CLI](../administration/cli/_index.md) or the [Console](https://console.platform.sh).
 If you want to run your source operations and update your code automatically,
 you can also define [cron jobs](./app-reference.md#crons).
 
@@ -102,7 +102,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform source-operation:run {{< variable "SOURCE_OPERATION_NAME" >}}
+{{% vendor/cli %}}  source-operation:run {{< variable "SOURCE_OPERATION_NAME" >}}
 ```
 
 Replace {{< variable "SOURCE_OPERATION_NAME" >}} with the name of your operation, such as `update-file` in the [example above](#define-a-source-operation).
@@ -163,7 +163,7 @@ title=Using the CLI
 +++
 
 ```bash
-platform source-operation:run update-file --variable env:FILE="example.txt"
+{{% vendor/cli %}} source-operation:run update-file --variable env:FILE="example.txt"
 ```
 
 {{< /codetabs >}}
@@ -172,7 +172,7 @@ platform source-operation:run update-file --variable env:FILE="example.txt"
 
 If your project is using a [source integration](../integrations/source/_index.md),
 any new commits resulting from a source operation are first pushed to your external Git repository.
-Then the source integration pushes those commits to {{< vendor/name >}} and redeploys the environment.
+Then the source integration pushes those commits to {{% vendor/name %}} and redeploys the environment.
 
 When using a source integration,
 you can't run source operations on environments created from pull or merge requests created on the external repository.
@@ -191,7 +191,7 @@ You can use cron to automatically run your source operations.
 Note that it’s best not to run source operations on your production environment,
 but rather on a dedicated environment where you can test changes.
 
-Make sure you have the [{{< vendor/name >}} CLI](../administration/cli/_index.md) installed
+Make sure you have the [{{% vendor/name %}} CLI](../administration/cli/_index.md) installed
 and [an API token](../administration/cli/api-tokens.md#2-create-an-api-token)
 so you can run a cron job in your app container.
 
@@ -206,7 +206,7 @@ title=From the CLI
 Run the following command:
 
 ```bash
-platform variable:create --environment main --level environment --prefix 'env' --name PLATFORMSH_CLI_TOKEN --sensitive true --value 'YOUR_PLATFORMSH_CLI_TOKEN' --inheritable false --visible-build true --json false --enabled true --visible-runtime true
+{{% vendor/cli %}} variable:create --environment main --level environment --prefix 'env' --name PLATFORMSH_CLI_TOKEN --sensitive true --value 'YOUR_PLATFORMSH_CLI_TOKEN' --inheritable false --visible-build true --json false --enabled true --visible-runtime true
 ```
 
 <--->
@@ -239,11 +239,11 @@ Make sure you carefully check your [user access on this project](../administrati
 hooks:
     build: |
         set -e
-        echo "Installing {{< vendor/name >}} CLI"
+        echo "Installing {{% vendor/name %}} CLI"
         curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
 
-        echo "Testing {{< vendor/name >}} CLI"
-        platform
+        echo "Testing {{% vendor/name %}} CLI"
+        {{% vendor/cli %}}
 ```
 
 3.  Then, to configure a cron job to automatically run a source operation once a day,
@@ -257,8 +257,8 @@ crons:
         commands:
             start: |
                 set -e
-                platform sync -e development code data --no-wait --yes
-                platform source-operation:run update-file --no-wait --yes
+                {{% vendor/cli %}} sync -e development code data --no-wait --yes
+                {{% vendor/cli %}} source-operation:run update-file --no-wait --yes
 ```
 
 The example above synchronizes the `development` environment with its parent
@@ -270,7 +270,7 @@ and then runs the `update-file` source operation defined [previously](#define-a-
 
 ### Update your application dependencies
 
-You can set up a source operation and a cron job to [automate your dependency updates](../tutorials/dependency-updates.md).
+You can set up a source operation and a cron job to [automate your dependency updates](/learn/tutorials/dependency-updates.md).
 
 ### Update a site from an upstream repository or template
 
@@ -303,7 +303,7 @@ The following source operation syncronizes your branch with an upstream Git repo
    If there’s a conflict merging from the upstream repository,
    the source operation fails and doesn't update from the upstream repository.
 
-Run the `upstream-update` operation on a Development environment rather than directly on Production.
+Run the `upstream-update` operation on a preview environment rather than directly on Production.
 
 ### Revert to the last commit
 

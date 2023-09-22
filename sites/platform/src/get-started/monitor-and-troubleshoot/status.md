@@ -18,7 +18,7 @@ This notification is automatically sent to all project admins.
 See this notification by running this command:
 
 ```bash
-platform integration:list
+{{% vendor/cli %}} integration:list
 ```
 
 You see a table similar to the following example:
@@ -34,13 +34,13 @@ You see a table similar to the following example:
 Assuming you want to keep admins notified, you can add another recipient with a command like the following:
 
 ```bash
-platform integration:update <INTEGRATION_ID> --recipients '#admins' --recipients <ADDITIONAL_EMAIL_ADDRESS>
+{{% vendor/cli %}} integration:update <INTEGRATION_ID> --recipients '#admins' --recipients <ADDITIONAL_EMAIL_ADDRESS>
 ```
 
 So to add `jane@example.com` to the above integration, you'd run the following:
 
 ```bash
-platform integration:update abcdefg123456 --recipients '#admins' --recipients jane@example.com
+{{% vendor/cli %}} integration:update abcdefg123456 --recipients '#admins' --recipients jane@example.com
 ```
 
 And get the following in response:
@@ -68,7 +68,7 @@ For now, focus on getting notified about activities.
 ## Get activity notifications
 
 Webhooks enable you to monitor events as they happen.
-{{< vendor/name >}} sends information about activities in your project to the URL you specify.
+{{% vendor/name %}} sends information about activities in your project to the URL you specify.
 
 Say you want to get a notification any time your `main` environment gets new code or is redeployed.
 To see such a notification in action, follow these steps:
@@ -79,7 +79,7 @@ To see such a notification in action, follow these steps:
 3. In a terminal, run the following command:
 
    ```bash
-   platform integration:add --type=webhook --url <WEBHOOK_URL> --events 'environment.push,environment.redeploy' --environments 'main' --excluded-environments '' --states complete --shared-key=null
+   {{% vendor/cli %}} integration:add --type=webhook --url <WEBHOOK_URL> --events 'environment.push,environment.redeploy' --environments 'main' --excluded-environments '' --states complete --shared-key=null
    ```
 
    The last three flags are all the default options.
@@ -87,7 +87,7 @@ To see such a notification in action, follow these steps:
 4. Redeploy your main environment by running this command:
 
    ```bash
-   platform environment:redeploy --environment main
+   {{% vendor/cli %}} environment:redeploy --environment main
    ```
 
 5. After the activity has finished, see the JSON payload at the `webhook.site` page.
@@ -97,8 +97,8 @@ You can also run the redeploy command for the `dev` environment and verify that 
 
 ## What's next
 
-Your {{< vendor/name >}} project is now up and running and you can keep track of it!
-That's a great start to working with {{< vendor/name >}}.
+Your {{% vendor/name %}} project is now up and running and you can keep track of it!
+That's a great start to working with {{% vendor/name %}}.
 
 Now that you've mastered the basics, you can choose more advanced tasks to complete:
 
@@ -109,4 +109,4 @@ Now that you've mastered the basics, you can choose more advanced tasks to compl
 - To maintain code in a third-party repository, integrate with [Bitbucket, GitHub, or GitLab](../../integrations/source/_index.md).
 - Read more on [health notifications](../../integrations/notifications.md).
 - See a reference on [all options available for activity notifications](../../integrations/activity/reference.md) or
-  use an [activity script](../../integrations/activity/_index.md) to manage activity responses in {{< vendor/name >}}.
+  use an [activity script](../../integrations/activity/_index.md) to manage activity responses in {{% vendor/name %}}.

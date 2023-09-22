@@ -1,20 +1,20 @@
 ---
 title: Data retention
 description: |
-  {{< vendor/name >}} logs and stores various types of data as a normal part of its business. This information is only retained as needed to perform relevant business functions. Retention periods vary depending on the type of data stored. If a legal obligation, law enforcement request, or ongoing business need so requires, data may be retained after the original purpose for which it was collected ceases to exist.
+  {{% vendor/name %}} logs and stores various types of data as a normal part of its business. This information is only retained as needed to perform relevant business functions. Retention periods vary depending on the type of data stored. If a legal obligation, law enforcement request, or ongoing business need so requires, data may be retained after the original purpose for which it was collected ceases to exist.
 ---
 
 {{% description %}}
 
 ## Account information
 
-Information relating to customer accounts (login information, billing information, etc.) is retained for as long as the account is active with {{< vendor/name >}}.
+Information relating to customer accounts (login information, billing information, etc.) is retained for as long as the account is active with {{% vendor/name %}}.
 
 Customers may request that their account be deleted and all related data be purged by filing a support ticket.
 
 ## System logs
 
-System level access and security logs are maintained by {{< vendor/name >}} for diagnostic purposes.
+System level access and security logs are maintained by {{% vendor/name %}} for diagnostic purposes.
 These logs aren't customer-accessible.
 These logs are retained for at least 6 months and at most 2 years depending upon legal and standards compliance required for each system.
 
@@ -81,6 +81,8 @@ The following diagram shows how the cycle works for the entire Premium schedule:
 
 ![Each 6-hourly backup is retained for 1 day. The first 6-hourly backup is the daily backup. Daily backups are retained for 30 days. The first daily backup is the monthly backup. Monthly backups are retained for 1 year.](/images/backup-cycles/premium-retention.png "0.6")
 
+{{< version/only "1" >}}
+
 ## {{% names/dedicated-gen-2 %}} backups
 
 Backups for {{% names/dedicated-gen-2 %}} environments are retained based on when they were taken.
@@ -105,17 +107,16 @@ See more about [backups of {{% names/dedicated-gen-2 %}} environments](../dedica
 [Manual backups](../environments/backup.md#create-a-manual-backup) are retained until you delete them or replace them with another backup.</br>
 As {{< vendor/name >}} provides a maximum of [2 manual backups per environment type](/security/backups.md),
 the third manual backup automatically replaces the oldest backup.
-
 {{< /version/specific>}}
 
 ## Tombstone backups
 
-When a project is deleted, {{< vendor/name >}} takes a final backup of active environments, as well as the Git repository holding user code.
-This final backup is to allow {{< vendor/name >}} to recover a recently deleted project in case of accident.
+When a project is deleted, {{% vendor/name %}} takes a final backup of active environments, as well as the Git repository holding user code.
+This final backup is to allow {{% vendor/name %}} to recover a recently deleted project in case of accident.
 
 These "tombstone" backups are retained for between 7 days and 6 months depending upon legal and standards compliance required for each system.
 
 ## Analytics
 
-{{< vendor/name >}} uses Google Analytics on various web pages, and so Google Analytics stores collected data for a period of time.
+{{% vendor/name %}} uses Google Analytics on various web pages, and so Google Analytics stores collected data for a period of time.
 We have configured our Google Analytics account to store data for 14 months from the time you last accessed our site, which is the minimum Google allows.

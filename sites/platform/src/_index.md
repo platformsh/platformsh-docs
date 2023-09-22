@@ -1,47 +1,128 @@
 ---
 title: Introduction
+showTitle: false
+editPage: false
+feedback: false
 ---
 
-{{< vendor/name >}} is a second-generation Platform-as-a-Service built especially for continuous deployment.
-It allows you to host web applications on the cloud while making your development and testing workflows more productive.
+{{< home >}}
 
-If you're new to {{< vendor/name >}}, we recommend starting with the **Big Picture**, in particular [Structure](/overview/structure.md), and [Build & Deploy](/overview/build-deploy.md) will get you started on the right track to best use {{< vendor/name >}}.
+## How the docs are organized
 
-The main requirement of {{< vendor/name >}} is that you use Git to manage your application code.
-Your project's configuration is driven almost entirely by a small number of YAML files in your Git repository.
-The **Configuration** section covers those in more detail and can serve as both a tutorial and a quick reference.
+There are different [kinds](https://documentation.divio.com/) of documentation.
+Some docs are useful when you're just starting out, 
+while others go into detail that's relevant only after you've deployed many projects on {{% vendor/name %}}.
 
-{{< vendor/name >}} is built on Debian, supports many different programming **Languages** and environments,
-and features recommended optimizations for several **Featured Frameworks**.
+This site is roughly split into categories based on where you are in your journey working with {{% vendor/name %}}, described below.
 
-Finally, you can also get tips for setting up your own **Development** workflow and **Administering** your {{< vendor/name >}} account.
+### Get started
 
-## Git Driven Infrastructure
+If you're still unfamiliar with {{% vendor/name %}} and how it works, _but_ you're also looking to quickly start working with the platform, the **Get started** section is the right place to begin.
 
-As a Platform as a Service, or PaaS, {{< vendor/name >}} automatically manages everything your application needs to run.
-That means you can, and should, view your infrastructure needs as part of your application and address them under version control.
+Learn the basics of how {{% vendor/name %}} leverages Git to produce reusable build images, identical-to-production environments in staging and development (including production data), as well as the basics of monitoring and troubleshooting your environments. 
 
-### Infrastructure as code
+Ready to get started? [Let's go!](/get-started/)
 
-{{< vendor/name >}} covers not only all of your hosting needs but also most of your DevOps needs. It is a single tool that covers the application life-cycle from development to production and scaling.
+### Learn
 
-You only need to write your code, including a few YAML files that specify your desired infrastructure, commit it to Git, and push.
-You don't need to set up anything manually. The web server is already set up and configured, as is any database, search engine, or cache that you specify.
+After going through the **Get started** section, you may want to know more about how {{% vendor/name %}} works and the logic behind it. The **[Learn](/learn/_index.md)** section is a collection of tutorials and conceptual guides to help you understand the ins and outs of {{% vendor/name %}}.
 
-Every branch you push can be made a fully independent environment&mdash;complete with your application code, a copy of your database, a copy of your search index, a copy of your user files, everything.
-Its automatically generated URL can be sent to stakeholders or automated CI systems.
-It really is "what would my site look like if I merged this to production?" every time.
+- [**What is {{% vendor/name %}}?**](/learn/overview/_index.md)
 
-You can use these concepts to replicate a traditional development/staging/production workflow or even to give every feature its own effective staging environment before merging to production (empowering you to use git-flow like methodologies even better). You could also have an intermediary integration branch for several other branches.
+    With this guide, find out which problem {{% vendor/name %}} is trying to solve.
+    Learn how {{% vendor/name %}}'s configuration, build and deploy pipelines, and the structure of environments play into the broader philosophy behind reliably deploying applications.
 
-{{< vendor/name >}} respects the structure of branches. It's entirely up to you.
+- [**Tutorials**](/learn/tutorials/_index.md)
 
-### Full stack management
+    Once you're familiar with {{% vendor/name %}}, its basic rules and philosophy, you may be curious about how you can replicate common workflows in other tools on our platform. 
+    From scheduling dependency updates and backups to exporting data, the [**Tutorials**](/learn/tutorials/_index.md) provide all the information you need.
 
-Managing your full stack on {{< vendor/name >}} gives you the following unique features:
+- [**Best practices**](/learn/bestpractices/_index.md)
 
-1. **Unified Environment:** All of your services (MySQL, ElasticSearch, MongoDB, etc.) are managed inside the cluster and included in the price, with no external single-points-of-failure. When you back up an environment, you get a fully consistent snapshot of your whole application.
-2. **Multi-Services & Multi-App:** You can deploy multiple applications (for example, in a microservice-based architecture), using multiple data backends (MySQL, PostgreSQL, Redis, etc.) written in multiple frameworks (Drupal + NodeJS + Flask, for example) in multiple languages, all in the same cluster.
-3. **Full Cluster Cloning Technology:** The full production cluster can be cloned in under a minute&mdash;including all of its data&mdash;to create on-the-fly, ephemeral development environments that are a byte-level copy of production.
-4. **Fail-Proof Deployments:** Every time you test a new feature, you also test the deployment process.
-5. **Continuous Deployment from the Start:** Everything is build-oriented, with a consistent, repeatable build process, simplifying the process of keeping your application up-to-date and secure.
+    {{% vendor/name %}} makes deploying and managing infrastructure no different than working with Git.
+    As your work becomes more experimental, however, you may be interested in optimizing your workflows, and addressing common constraints of the platform. 
+    The [**Best practices**](/learn/bestpractices/_index.md) documentation contains articles that address advanced use cases for caching, microservices, and more.
+    
+### Frameworks
+
+Now that you understand the basic rules of {{% vendor/name %}}, you're likely ready to deploy your own custom code in a chosen framework. 
+The **Frameworks** section is a collection of framework-specific how-to guides - from best practices to configuration, local development, and more.
+
+{{< version/specific >}}
+
+| Language              | Frameworks |
+| :----------------     | :------  |
+| [Python](/languages/python/_index.md)                |   [Django](/guides/django/_index.md)  |
+| [PHP](/languages/php/_index.md)                      |   [Drupal](/guides/drupal9/_index.md)<br/>[Ibexa](/guides/ibexa/_index.md)<br/>[Laravel](/guides/laravel/_index.md)<br/>[Symfony](/guides/symfony/_index.md)<br/>[TYPO3](/guides/typo3/_index.md)<br/>[WordPress](/guides/wordpress/_index.md)   |
+| [Javascript/Node.js](/languages/nodejs/_index.md)     |  [Gatsby](/guides/gatsby/_index.md)<br/>[Next.js](/guides/nextjs/_index.md)<br/>[Strapi](/guides/strapi/_index.md)  |
+| [Java](/languages/java/_index.md)                  |  [Hibernate](/guides/hibernate/_index.md)<br/>[Jakarta](/guides/jakarta/_index.md)<br/>[Micronaut](/guides/micronaut/_index.md)<br/>[Quarkus](/guides/quarkus/_index.md)<br/>[Spring](/guides/spring/_index.md)  |
+
+<--->
+
+| Language              | Frameworks |
+| :----------------     | :------  |
+| [Python](/languages/python/_index.md)                |   [Django](/get-started/django/_index.md)<br/>[Flask](/get-started/flask/_index.md)  |
+| [PHP](/languages/php/_index.md)                      |   [Laravel](/get-started/laravel/_index.md)   |
+| [Javascript/Node.js](/languages/nodejs/_index.md)     |  [Express](/get-started/express/_index.md)<br/>[Next.js](/get-started/nextjs/_index.md)<br/>[Strapi](/get-started/strapi/_index.md)  |
+
+{{< /version/specific >}}
+
+### Reference 
+
+The **Reference documentation** section is the largest and most comprehensive. 
+It includes details of configuration, environment variables, activities, and much more material you can use in your day-to-day work.
+
+{{< home/table "services" >}}
+{{< home/table "languages" >}}
+{{< home/table "configuration" >}}
+{{< home/table "topics" >}}
+
+### API documentation
+
+Find out more about {{% vendor/name %}}'s GIT implementation and REST API, and how you can leverage them to manage every aspect of your projects, through {{% vendor/name %}}'s [API documentation](https://api.platform.sh/docs/).
+
+{{< version/specific >}}
+
+<!-- For now, most of these links are only relevant to Platform.sh -->
+### More docs, found elsewhere
+
+There are many resources available outside of the documentation that will help you work with {{% vendor/name %}}, including demos, talks, and podcasts. 
+
+[Check them out here](/learn/resources.md).
+
+To stay informed of all the latest {{% vendor/name %}} news, join our newsletter.
+
+<div style="margin-top: 3rem; text-align: center;">
+    <a class="start-cta font-semibold text-sm xl:text-base px-4 py-2 bg-skye rounded text-white hover:bg-skye-dark focus:bg-skye-dark"
+    href="https://platform.sh/preferences/" rel="noopener">Sign up for the newsletter</a>
+</div>
+
+<--->
+
+<!-- TBD: white-label version when available -->
+
+{{< /version/specific >}}
+
+
+## Connect with us
+
+### Join the community
+
+The {{% vendor/name %}} community meets on both a [Community forum](https://community.platform.sh) and [Slack](https://chat.platform.sh) for questions and discussion. 
+
+Have an experiment you'd like to share? 
+Looking for a way to contribute?
+
+<div style="margin-top: 3rem; text-align: center;">
+    <a class="start-cta font-semibold text-sm xl:text-base px-4 py-2 bg-skye rounded text-white hover:bg-skye-dark focus:bg-skye-dark"
+    href="https://chat.platform.sh" rel="noopener">Join us on Slack</a>
+</div>
+
+### Contribute
+Feel free to open an issue or pull request for any of the repositories below, or let us know on [Slack](https://chat.platform.sh) if you find a problem we can help with:
+
+{{< home/links-github >}}
+
+### Get support
+
+If you're experiencing issues with your projects, don't hesitate to open a [support ticket](/learn/overview/get-support).

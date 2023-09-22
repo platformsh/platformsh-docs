@@ -12,14 +12,14 @@ There are several places to check to try to solve such issues.
 
 ## Check your environment
 
-If your environment is [inactive](../../other/glossary.md#inactive-environment) or the deployment has failed,
+If your environment is [inactive](/glossary.md#inactive-environment) or the deployment has failed,
 you can't log in to it.
 To make sure the environment is active and the deployment has succeeded,
-check it using `platform environment:list` or in the [Console](https://console.platform.sh/) .
+check it using `{{% vendor/cli %}} environment:list` or in the [Console](https://console.platform.sh/) .
 
 ## Redeploy your environment
 
-If you have just added your SSH key or made changes to [access rules](/administration/users.md), you need to redeploy your environment before you can access it using SSH keys. You can do this in the [Console](https://console.platform.sh/), by running `platform redeploy`, or by pushing an empty git commit:
+If you have just added your SSH key or made changes to [access rules](/administration/users.md), you need to redeploy your environment before you can access it using SSH keys. You can do this in the [Console](https://console.platform.sh/), by running `{{% vendor/cli %}} redeploy`, or by pushing an empty git commit:
 
 ```bash
 git commit --allow-empty -m 'chore: force redeploy'
@@ -28,7 +28,7 @@ git push origin main
 
 ## Check your public key
 
-Make sure your public key has been uploaded to your user account. Check it in the [{{< vendor/name >}} Console](https://console.platform.sh/).
+Make sure your public key has been uploaded to your user account. Check it in the [{{% vendor/name %}} Console](https://console.platform.sh/).
 
 ## SSH key can not be duplicated
 
@@ -60,7 +60,7 @@ Check that your key is properly added to your SSH agent. This is an authenticati
 
 ## Specify your identity file
 
-If your identity (SSH key) associated with {{< vendor/name >}} isn't in a default file name
+If your identity (SSH key) associated with {{% vendor/name %}} isn't in a default file name
 (as may be explained in your SSH software manual, for example),
 you may have to append a specification like the one below so that the SSH software finds the correct key.
 
@@ -70,7 +70,7 @@ IdentityFile ~/.ssh/id_platformsh
 ```
 
 Be aware that, above, `platform.sh` stands for a hostname.
-Each different hostname you connect to {{< vendor/name >}} at may have to be specified in the host line, separated by spaces.
+Each different hostname you connect to {{% vendor/name %}} at may have to be specified in the host line, separated by spaces.
 
 ## Check your git integrations
 
@@ -88,7 +88,7 @@ Hello <NAME> (UUID: <USER_ID>), you successfully authenticated, but could not co
 <ENVIRONMENT_ID>@ssh.<REGION>.platform.sh: Permission denied (publickey)
 ```
 
-If you are using just `ssh` and not `platform ssh`, you may see only the second half of the error:
+If you are using just `ssh` and not `{{% vendor/cli %}} ssh`, you may see only the second half of the error:
 
 ```bash
 <ENVIRONMENT_ID>@ssh.<REGION>.platform.sh: Permission denied (publickey)
@@ -101,7 +101,7 @@ To resolve this:
 title=Using the CLI
 +++
 
-Log in using the browser by running `platform login`.
+Log in using the browser by running `{{% vendor/cli %}} login`.
 
 <--->
 
@@ -115,7 +115,7 @@ title=In the Console
 4. Click **Set up application**.
 5. Follow the instructions for the chosen authentication app.
 6. Click **Verify & save**.
-7. Refresh your SSH credentials by running `platform login -f` in the CLI.
+7. Refresh your SSH credentials by running `{{% vendor/cli %}} login -f` in the CLI.
 
 {{< /codetabs >}}
 

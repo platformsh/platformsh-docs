@@ -1,4 +1,5 @@
 <!-- SECTION HEADING -->
+{{ $sectionKeys := .sections }}
 {{ $sectionId := printf "section-%s-sidebar-id" .Context.Title | urlize }}
 <!-- Get rid of dots like in Platform.sh -->
 {{ $sectionId = replace $sectionId "." "" }}
@@ -6,14 +7,14 @@
 {{ $isCurrentSection := false }}
 {{ $currentSection := .Context.Section }}
 <!-- For Stacks and Get started, get the next level down for the section-->
-{{ if or ( eq $currentSection "guides" ) ( eq $currentSection "get-started" ) }}
+{{ if in $sectionKeys $currentSection }}
   {{ $pageName := index ( split .Context.RelPermalink "/" ) 2 }}
   {{ $currentSection = replace $pageName ".html" "" }}
 {{ end }}
 {{ $currentPage := .CurrentPage }}
 {{ with $currentPage.File }}
-  <!-- If on home page or in the current section -->
-  {{ if or (and ($currentPage.IsHome) ( eq $currentSection "overview" )) ( hasPrefix . $currentSection ) ( hasPrefix ( replace . "get-started/" "") $currentSection ) ( hasPrefix ( replace . "guides/" "") $currentSection ) }}
+  <!-- If on home page or in the current section - @todo not clear to me how to make this part dynamic yet.-->
+  {{ if or ( hasPrefix . $currentSection ) ( hasPrefix ( replace . "get-started/" "") $currentSection ) ( hasPrefix ( replace . "guides/" "") $currentSection ) ( hasPrefix ( replace . "learn/" "") $currentSection ) }}
     {{ $isCurrentSection = true }}
   {{ end }}
 {{ end }}
@@ -53,27 +54,17 @@
     <h4 class="pr-2 font-semibold">
       <a href="{{ .Context.RelPermalink }}" destination="{{ .Context.RelPermalink }}" {{ $getStartedAttribute | safeHTMLAttr }} class="hover:text-skye-dark focus:text-skye-dark{{ if $isCurrentSection }} text-skye-dark{{ end }}">
         {{ $itemTitle }}
-      </a>
+      </a> 
       
     </h4>
 
     <!-- Add button for expanding if has children-->
-    {{ if eq .Context.Kind "section" }}
+    {{ if and ( eq .Context.Kind "section" ) ( gt ( len .Context.Pages ) 0  ) }}
       {{ partial "sidebar/expand-button" (dict "itemID" $sectionId "isCurrentSection" $isCurrentSection "expandLevel" "topExpanded" )}}
     {{ end }}
   </div>
   <ul x-show="topExpanded" class="pl-12" aria-labelledby="nav-expand-{{ $sectionId }}" id="{{ $sectionId }}">
 
-  <!-- Add the homepage as the first entry of the first section -->
-  {{ if eq "overview" $currentSection }}
-    <li>
-      <div class="py-2 pl-4">
-        <a href="/" class="hover:text-skye-dark focus:text-skye-dark{{ if $currentPage.IsHome }} text-skye-dark{{ end }}">
-            {{ .Context.Site.Home.Title }}
-        </a>
-      </div>
-    </li>
-  {{ end }}
 
   <!-- Loop through pages in the section -->
   {{ range .Context.Pages }}

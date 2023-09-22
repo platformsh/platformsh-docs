@@ -21,7 +21,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform backups
+{{% vendor/cli %}} backups
 ```
 
 You get a response similar to the following:
@@ -63,7 +63,7 @@ title=Using the CLI
 1. Run the following command:
    
    ```bash
-   platform backup:restore {{< variable "BACKUP_ID" >}}
+   {{% vendor/cli %}} backup:restore {{< variable "BACKUP_ID" >}}
    ```
 
 2. Press `enter` to agree with the consequences and continue.
@@ -84,13 +84,13 @@ This deployment uses the built app, including variables, from when the backup wa
 
 {{< note theme="warning" title="Warning" >}}
 
-The code is also initially restored, but {{< vendor/name >}} doesn't modify your Git repository.
+The code is also initially restored, but {{% vendor/name %}} doesn't modify your Git repository.
 So any future (re)deployments use the current Git repository to build the environment.
 
 To restore your code to its previous state when the backup was taken,
 use Git commands such as [revert](https://git-scm.com/docs/git-revert).
 
-See [how backup and restore works on {{< vendor/name >}}](../environments/backup.md#how-backup-and-restore-works).
+See [how backup and restore works on {{% vendor/name %}}](../environments/backup.md#how-backup-and-restore-works).
 
 {{< /note >}}
 
@@ -102,5 +102,5 @@ You can restore backups to a different environment than they were created on usi
 2. Run the following command:
 
    ```bash
-   platform backup:restore --target={{% variable "TARGET_BRANCH_NAME" %}} {{% variable "BACKUP_ID" %}}
+   {{% vendor/cli %}} backup:restore --target={{% variable "TARGET_BRANCH_NAME" %}} {{% variable "BACKUP_ID" %}}
    ```

@@ -1,6 +1,6 @@
 ---
-title: Forward {{< vendor/name >}} and Blackfire logs
-description: Send your {{< vendor/name >}} and Blackfire logs to a third-party service for further analysis.
+title: Forward {{% vendor/name %}} and Blackfire logs
+description: Send your {{% vendor/name %}} and Blackfire logs to a third-party service for further analysis.
 weight: 10
 banner: 
     type: observability-suite
@@ -10,7 +10,7 @@ You might use a service to analyze logs from various parts of your fleet.
 You might want to consolidate all your logs in one place that everyone has access to
 without needing to grant them access to each project individually.
 
-In such cases, forward your logs from {{< vendor/name >}} and Blackfire to a third-party service.
+In such cases, forward your logs from {{% vendor/name %}} and Blackfire to a third-party service.
 You can use a [service with an integration](#use-a-log-forwarding-integration)
 or any service that supports a [syslog endpoint](#forward-to-a-syslog-endpoint) or [HTTP endpoint](#forward-to-an-http-endpoint).
 
@@ -41,7 +41,7 @@ Integrations exist for the following third-party services to enable log forwardi
 
 #### Using the CLI 
 
-To enable log forwarding for a specific project using the [{{< vendor/name >}} CLI](../../administration/cli/_index.md),
+To enable log forwarding for a specific project using the [{{% vendor/name %}} CLI](../../administration/cli/_index.md),
 follow the steps for your selected service.
 
 {{< codetabs >}}
@@ -58,7 +58,7 @@ title=New Relic
 3. Create the integration with the following command:
 
    ```bash
-   platform integration:add --type newrelic --url {{< variable "API_ENDPOINT" >}} --license-key {{% variable "LICENSE_KEY" %}}
+   {{% vendor/cli %}} integration:add --type newrelic --url {{< variable "API_ENDPOINT" >}} --license-key {{% variable "LICENSE_KEY" %}}
    ```
 
 View your logs in the **Logs** dashboard.
@@ -75,7 +75,7 @@ title=Splunk
 4. Create the integration with the following command:
 
    ```bash
-   platform integration:add --type splunk --url https://http-inputs.{{< variable "HOST" >}}.splunkcloud.com/services/collector/event --index {{< variable "INDEX" >}} --token {{< variable "TOKEN" >}}
+   {{% vendor/cli %}} integration:add --type splunk --url https://http-inputs.{{< variable "HOST" >}}.splunkcloud.com/services/collector/event --index {{< variable "INDEX" >}} --token {{< variable "TOKEN" >}}
    ```
 
 View your logs in the **Apps->Search & Reporting** dashboard.
@@ -91,7 +91,7 @@ title=Sumo Logic
 2. Create the integration with the following command:
 
    ```bash
-   platform integration:add --type sumologic --url {{< variable "COLLECTOR_URL" >}} --category {{< variable "SOURCE_CATEGORY" >}}
+   {{% vendor/cli %}} integration:add --type sumologic --url {{< variable "COLLECTOR_URL" >}} --category {{< variable "SOURCE_CATEGORY" >}}
    ```
 
 View your logs in the **Log Search** tab.
@@ -120,7 +120,7 @@ follow these steps:
 
 Syslog is a standard protocol for transferring log messages.
 Many third-party services offer endpoints for ingesting syslog events.
-You can forward your {{< vendor/name >}} and Blackfire logs to any of those endpoints.
+You can forward your {{% vendor/name %}} and Blackfire logs to any of those endpoints.
 
 {{< codetabs >}}
 +++
@@ -131,7 +131,7 @@ To enable log forwarding to a syslog endpoint,
 run a command similar to the following:
 
 ```bash
-platform integration:add --type syslog --syslog-host {{< variable "INGESTION_HOST" >}} --syslog-port {{< variable "INGESTION_HOST_PORT" >}}
+{{% vendor/cli %}} integration:add --type syslog --syslog-host {{< variable "INGESTION_HOST" >}} --syslog-port {{< variable "INGESTION_HOST_PORT" >}}
 ```
 
 `type`, `syslog-host`, and `syslog-port` are the only properties required for all endpoints.
@@ -156,7 +156,7 @@ To start forwarding logs, once you've added the service [trigger a redeploy](../
 title=In the Console
 +++
 
-To enable log forwarding to a syslog endpoint for a specific project using the [{{< vendor/name >}} CLI](../../administration/cli/_index.md),
+To enable log forwarding to a syslog endpoint for a specific project using the [{{% vendor/name %}} CLI](../../administration/cli/_index.md),
 follow these steps:
 
 1. Navigate to your project.
@@ -176,14 +176,14 @@ follow these steps:
 
 Some third-party services, such as [Elasticsearch](../../add-services/elasticsearch.md) and [OpenSearch](../../add-services/opensearch.md),
 support ingesting log messages through an HTTP endpoint.
-You can use HTTP forwarding to forward {{< vendor/name >}}and Blackfire logs to such third-party services.
+You can use HTTP forwarding to forward {{% vendor/name %}}and Blackfire logs to such third-party services.
 
 HTTP forwarding makes a `POST` HTTP request with an `application/json` body while forwarding the log messages to the endpoint.
 
 As an example, to forward logs to Elasticsearch using HTTP log forwarding, run the following command:
 
 ```
-platform integration:add --type httplog --url "https://{{< variable "ELASTICSEARCH_URL" >}}/{{< variable "INDEX_NAME" >}}/_doc" --header "Authorization: Basic <basic_auth_token>" --header "Content-Type: application/json"
+{{% vendor/cli %}} integration:add --type httplog --url "https://{{< variable "ELASTICSEARCH_URL" >}}/{{< variable "INDEX_NAME" >}}/_doc" --header "Authorization: Basic <basic_auth_token>" --header "Content-Type: application/json"
 ```
 
 `type` and `url` are the only properties required for all endpoints.

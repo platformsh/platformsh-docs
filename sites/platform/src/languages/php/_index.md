@@ -1,6 +1,6 @@
 ---
 title: "PHP"
-description: Deploy PHP apps on {{< vendor/name >}}.
+description: Deploy PHP apps on {{% vendor/name %}}.
 layout: single
 ---
 
@@ -8,9 +8,30 @@ layout: single
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-| Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|----------------------------------------|------------------------------ |
-| {{< image-versions image="php" status="supported" environment="grid" >}} | {{< image-versions image="php" status="supported" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid and {{% names/dedicated-gen-3 %}}</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="php" status="supported" environment="grid" >}}</td>
+            <td>{{< image-versions image="php" status="supported" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="php" status="supported" environment="grid" >}}
+
+{{% /version/specific %}}
 
 Note that from PHP versions 7.1 to 8.1, the images support the Zend Thread Safe (ZTS) version of PHP.
 
@@ -18,13 +39,34 @@ Note that from PHP versions 7.1 to 8.1, the images support the Zend Thread Safe 
 
 {{% deprecated-versions %}}
 
-| Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|----------------------------------------|------------------------------ |
-| {{< image-versions image="php" status="deprecated" environment="grid" >}} | {{< image-versions image="php" status="deprecated" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid and {{% names/dedicated-gen-3 %}}</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="php" status="deprecated" environment="grid" >}}</td>
+            <td>{{< image-versions image="php" status="deprecated" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="php" status="deprecated" environment="grid" >}}
+
+{{% /version/specific %}}
 
 ## Usage example
 
-Configure your app to use PHP on {{< vendor/name >}}.
+Configure your app to use PHP on {{% vendor/name %}}.
 
 ### 1. Specify the version
 
@@ -286,14 +328,14 @@ Some commonly used settings are:
 To retrieve the default PHP values, run the following [CLI command](../../administration/cli/_index.md):
 
 ```bash
-platform ssh "php --info"
+{{% vendor/cli %}} ssh "php --info"
 ```
 
 To get specific default values, use grep.
 For example, to get the value for `opcache.memory_consumption`, run the following command:
 
 ```bash
-platform ssh "php --info" | grep opcache.memory_consumption
+{{% vendor/cli %}} ssh "php --info" | grep opcache.memory_consumption
 ```
 
 ### Retrieve the settings
@@ -303,7 +345,7 @@ To see the settings used on your environment:
 1.  Find the PHP configuration files with the following [CLI command](../../administration/cli/_index.md):
 
     ```bash
-    platform ssh "php --ini"
+    {{% vendor/cli %}} ssh "php --ini"
     ```
 
     The output is something like the following:
@@ -318,12 +360,14 @@ To see the settings used on your environment:
 2.  Display the configuration file by adapting the following command with the output from step 1:
 
     ```bash
-    platform ssh "cat {{< variable "LOADED_CONFIGURATION_FILE_PATH" >}}"
+    {{% vendor/cli %}} ssh "cat {{< variable "LOADED_CONFIGURATION_FILE_PATH" >}}"
     ```
 
 ### Customize PHP settings
 
+{{< version/only "1" >}}
 For {{% names/dedicated-gen-2 %}}, see the [configuration options](../../dedicated-gen-2/overview/grid.md#configuration-options).
+{{< /version/only >}}
 
 You can customize PHP values for your app in two ways.
 The recommended method is to use variables.
@@ -339,7 +383,7 @@ Set variables to override PHP settings for a given environment using the [CLI](.
 For example, to set the PHP memory limit to 256 MB on a specific environment, run the following CLI command:
 
 ```bash
-platform variable:create --level environment --prefix php --name memory_limit --value 256M --environment {{< variable "ENVIRONMENT_NAME" >}} --no-interaction
+{{% vendor/cli %}} variable:create --level environment --prefix php --name memory_limit --value 256M --environment {{< variable "ENVIRONMENT_NAME" >}} --no-interaction
 ```
 
 For more information, see how to use [PHP-specific variables](../../development/variables/_index.md#php-specific-variables).
@@ -375,7 +419,7 @@ memory_limit=-1
 ### Disable functions for security
 
 A common recommendation for securing PHP installations is disabling built-in functions frequently used in remote attacks.
-By default, {{< vendor/name >}} doesn't disable any functions.
+By default, {{% vendor/name %}} doesn't disable any functions.
 
 If you're sure a function isn't needed in your app, you can disable it.
 

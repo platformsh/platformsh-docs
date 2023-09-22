@@ -1,6 +1,6 @@
 ---
 title: "Elixir"
-description: "{{< vendor/name >}} supports building and deploying applications written in Elixir. There is no default flavor for the build phase, but you can define it explicitly in your build hook. {{< vendor/name >}} Elixir images support both committed dependencies and download-on-demand. The underlying Erlang version is 22.0.7."
+description: "{{% vendor/name %}} supports building and deploying applications written in Elixir. There is no default flavor for the build phase, but you can define it explicitly in your build hook. {{% vendor/name %}} Elixir images support both committed dependencies and download-on-demand. The underlying Erlang version is 22.0.7."
 ---
 
 {{% description %}}
@@ -9,15 +9,36 @@ description: "{{< vendor/name >}} supports building and deploying applications w
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-| Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|----------------------------------------|------------------------------ |
-| {{< image-versions image="elixir" status="supported" environment="grid" >}} | {{< image-versions image="elixir" status="supported" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid and {{% names/dedicated-gen-3 %}}</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="elixir" status="supported" environment="grid" >}}</td>
+            <td>{{< image-versions image="elixir" status="supported" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="elixir" status="supported" environment="grid" >}}
+
+{{% /version/specific %}}
 
 {{% language-specification type="elixir" display_name="Elixir" %}}
 
 ## Built-in variables
 
-{{< vendor/name >}} exposes relationships and other configuration as [environment variables](../development/variables/_index.md).
+{{% vendor/name %}} exposes relationships and other configuration as [environment variables](../development/variables/_index.md).
 Most notably, it allows a program to determine at runtime what HTTP port it should listen on
 and what the credentials are to access [other services](../add-services/_index.md).
 
@@ -89,7 +110,7 @@ Note that there is still an Nginx proxy server sitting in front of your applicat
 
 ## Dependencies
 
-The recommended way to handle Elixir dependencies on {{< vendor/name >}} is using Hex.
+The recommended way to handle Elixir dependencies on {{% vendor/name %}} is using Hex.
 You can commit a `mix.exs` file in your repository and the system downloads the dependencies in your `deps` section using the build hook above.
 
 ```elixir

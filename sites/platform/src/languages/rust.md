@@ -7,19 +7,42 @@ banner:
         To share your feedback so we can improve it, add a comment to the [Rust feature card](https://next.platform.sh/c/221-rust).
 ---
 
-{{< vendor/name >}} supports building and deploying applications written in Rust.
+{{% vendor/name %}} supports building and deploying applications written in Rust.
 
 ## Supported versions
 
 {{% major-minor-versions-note %}}
 
-| Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|----------------------------------------|------------------------------ |
-| {{< image-versions image="rust" status="supported" environment="grid" >}} | {{< image-versions image="rust" status="supported" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="rust" status="supported" environment="grid" >}}</td>
+            <td>{{< image-versions image="rust" status="supported" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="rust" status="supported" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="rust" status="supported" environment="grid" >}}
+
+{{% /version/specific %}}
 
 ## Dependencies
 
-The recommended way to handle Rust dependencies on {{< vendor/name >}} is using Cargo.
+The recommended way to handle Rust dependencies on {{% vendor/name %}} is using Cargo.
 Commit a `Cargo.toml` and a `Cargo.lock` file in your repository
 so the system automatically downloads dependencies using Cargo.
 
@@ -58,8 +81,6 @@ web:
   locations:
         /:
             # Route all requests to the Rust app, unconditionally.
-            # If you want some files served directly by the web server without hitting Rust, see
-            # https://docs.platform.sh/create-apps/app-reference.html
             allow: false
             passthru: true
 ```
@@ -68,7 +89,7 @@ Note that there is still an Nginx proxy server sitting in front of your applicat
 
 ## Built-in variables
 
-{{< vendor/name >}} exposes relationships and other configuration as [environment variables](../development/variables/_index.md).
+{{% vendor/name %}} exposes relationships and other configuration as [environment variables](../development/variables/_index.md).
 
 To get the `PORT` environment variable (the port on which your app is supposed to listen),
 use the following snippet:
@@ -92,7 +113,7 @@ use the following snippet:
 
 ## Complete example
 
-Here is a basic hello world app to illustrate how you can use Rust with {{< vendor/name >}}. 
+Here is a basic hello world app to illustrate how you can use Rust with {{% vendor/name %}}. 
 It builds from a `hello.rs` file to serve a static `index.html`.
 Follow these steps:
 

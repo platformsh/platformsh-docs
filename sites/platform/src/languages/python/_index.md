@@ -1,18 +1,39 @@
 ---
 title: "Python"
-description: Get started creating Python apps on {{< vendor/name >}}.
+description: Get started creating Python apps on {{% vendor/name %}}.
 ---
 
 Python is a general purpose scripting language often used in web development.
-You can deploy Python apps on {{< vendor/name >}} using a server or a project such as [uWSGI](https://uwsgi-docs.readthedocs.io/en/latest/).
+You can deploy Python apps on {{% vendor/name %}} using a server or a project such as [uWSGI](https://uwsgi-docs.readthedocs.io/en/latest/).
 
 ## Supported versions
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-| Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|----------------------------------------|------------------------------ |
-| {{< image-versions image="python" status="supported" environment="grid" >}} | {{< image-versions image="python" status="supported" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid and {{% names/dedicated-gen-3 %}}</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="python" status="supported" environment="grid" >}}</td>
+            <td>{{< image-versions image="python" status="supported" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="python" status="supported" environment="grid" >}}
+
+{{% /version/specific %}}
 
 {{% language-specification type="python" display_name="Python" %}}
 
@@ -28,7 +49,7 @@ You are strongly recommended to upgrade to a supported version.
 ### Run your own server
 
 You can define any server to handle requests.
-Once you have it configured, add the following configuration to get it running on {{< vendor/name >}}:
+Once you have it configured, add the following configuration to get it running on {{% vendor/name %}}:
 
 1.  Specify one of the [supported versions](#supported-versions):
 
@@ -107,7 +128,7 @@ Follow these steps to get your server started.
     def application(env, start_response):
 
         start_response('200 OK', [('Content-Type', 'text/html')])
-        return [b"Hello world from {{< vendor/name >}}"]
+        return [b"Hello world from {{% vendor/name %}}"]
     ```
 
 ## Package management
@@ -223,18 +244,25 @@ markdownify=false
 ## Sanitizing data
 
 By default, data is inherited automatically by each child environment from its parent.
-If you need to sanitize data in non-production environments for compliance,
+If you need to sanitize data in preview environments for compliance,
 see how to [sanitize databases](../../development/sanitize-db/_index.md).
 
 ## Frameworks
 
-All major Python web frameworks can be deployed on {{< vendor/name >}}.
+All major Python web frameworks can be deployed on {{% vendor/name %}}.
 See dedicated guides for deploying and working with them:
 
+{{< version/specific >}}
 - [Django](../../guides/django/_index.md)
-<!-- - [FastAPI](/guides/fastapi) -->
-<!-- - [Flask](/guides/flask) -->
+<--->
+- [Django](/get-started/django/_index.md)
+{{< /version/specific >}}
 
+{{< version/specific >}}
 ## Project templates
 
 {{< repolist lang="python" displayName="Python" >}}
+
+<--->
+
+{{< /version/specific >}}

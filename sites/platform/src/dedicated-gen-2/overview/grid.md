@@ -14,7 +14,7 @@ These differences should be gone with [{{% names/dedicated-gen-3 %}}](../../dedi
 ## Syncing data between environments
 
 Because of the differences between {{% names/dedicated-gen-2 %}} and Grid environments,
-basic [syncs](../../other/glossary.md#sync) and [merges](../../other/glossary.md#merge)
+basic [syncs](/glossary.md#sync) and [merges](/glossary.md#merge)
 aren't available between Development environments and Production/Staging environments.
 So you don't see working buttons with those options in the Console.
 

@@ -10,7 +10,7 @@ description: |
 
 ## Remove Varnish configuration
 
-In Ibexa DXP, Varnish is enabled by default when deploying on {{< vendor/name >}}
+In Ibexa DXP, Varnish is enabled by default when deploying on {{% vendor/name %}}
 To use Fastly, Varnish must be disabled:
 
  - Remove environment variable `TRUSTED_PROXIES: "REMOTE_ADDR"` in [`{{< vendor/configfile "app" >}}](https://github.com/ezsystems/ezplatform/blob/master/.platform.app.yaml)
@@ -32,7 +32,7 @@ Follow the steps there to prepare Ibexa DXP for Fastly.
 
 ## Set credentials
 
-The best way to provide the Fastly credentials and configuration to Ibexa DXP on {{< vendor/name >}} is via environment variables.
+The best way to provide the Fastly credentials and configuration to Ibexa DXP on {{% vendor/name %}} is via environment variables.
 That way private credentials are never stored in Git.
 
 Using the CLI, run the following commands to set the configuration on your production environment
@@ -40,9 +40,9 @@ Using the CLI, run the following commands to set the configuration on your produ
 (Note that they inherit to all other environments by default unless overridden.)
 
 ```bash
-platform variable:create -e main --level environment env:HTTPCACHE_PURGE_TYPE --value 'fastly'
-platform variable:create -e main --level environment env:FASTLY_SERVICE_ID --value 'YOUR_ID_HERE'
-platform variable:create -e main --level environment env:FASTLY_KEY --value 'YOUR_ID_HERE'
+{{% vendor/cli %}} variable:create -e main --level environment env:HTTPCACHE_PURGE_TYPE --value 'fastly'
+{{% vendor/cli %}} variable:create -e main --level environment env:FASTLY_SERVICE_ID --value 'YOUR_ID_HERE'
+{{% vendor/cli %}} variable:create -e main --level environment env:FASTLY_KEY --value 'YOUR_ID_HERE'
 ```
 
 Replacing `YOUR_ID_HERE` with the Fastly Service ID and Key obtained from Fastly.
@@ -50,9 +50,9 @@ Replacing `YOUR_ID_HERE` with the Fastly Service ID and Key obtained from Fastly
 Note: On a {{% names/dedicated-gen-2 %}} cluster, set those values on the `production` branch:
 
 ```bash
-platform variable:set -e production env:HTTPCACHE_PURGE_TYPE fastly
-platform variable:set -e production env:FASTLY_SERVICE_ID YOUR_ID_HERE
-platform variable:set -e production env:FASTLY_KEY YOUR_ID_HERE
+{{% vendor/cli %}} variable:set -e production env:HTTPCACHE_PURGE_TYPE fastly
+{{% vendor/cli %}} variable:set -e production env:FASTLY_SERVICE_ID YOUR_ID_HERE
+{{% vendor/cli %}} variable:set -e production env:FASTLY_KEY YOUR_ID_HERE
 ```
 
 ## Setup the correct VCL files
@@ -66,5 +66,5 @@ as well as several other needs by Ibexa DXP and it's underlying HttpCache system
 
 ## Configure Fastly
 
-See the alternate [Go-live process for Fastly](/domains/cdn/_index.md#client-authenticated-tls) on {{< vendor/name >}}.
+See the alternate [Go-live process for Fastly](/domains/cdn/_index.md#client-authenticated-tls) on {{% vendor/name %}}.
 This process is the same for any application.

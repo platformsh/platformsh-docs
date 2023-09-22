@@ -7,7 +7,7 @@ Each environment can then be activated.
 giving you a fully isolated running site for each active environment.
 
 Once an environment is activated, your app is deployed through a cluster of containers.
-You can configure these containers in three ways, each corresponding to a [YAML file]({{ relref . "/overview/yaml/_index.md" }}):
+You can configure these containers in three ways, each corresponding to a [YAML file](/learn/overview/yaml):
 
 - **Configure apps** in a `{{ partial "vendor/configfile" (dict "context" . "config" "services") }}` file.
   This controls the configuration of the container where your app lives.
@@ -25,7 +25,7 @@ Start by creating empty versions of each of these files in your repository:
 
 ```bash
 # Create empty {{ .Site.Params.vendor.name }}  configuration files
-touch {{ partial "vendor/configfile" (dict "context" . "config" "services") }} && mkdir -p .platform && touch {{ partial "vendor/configfile" (dict "context" . "config" "routes") }}{{ if not (.Get "noService") }} && touch {{ partial "vendor/configfile" (dict "context" . "config" "services") }}{{ end }}
+mkdir -p .platform && touch {{ partial "vendor/configfile" (dict "context" . "config" "services") }} && touch {{ partial "vendor/configfile" (dict "context" . "config" "routes") }}{{ if not (.Get "noService") }} && touch {{ partial "vendor/configfile" (dict "context" . "config" "services") }}{{ end }}
 ```
 
 {{ if isset .Params "platformify" }}

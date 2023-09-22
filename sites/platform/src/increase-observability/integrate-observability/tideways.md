@@ -1,13 +1,13 @@
 ---
 title: "Tideways"
 description: |
-  {{< vendor/name >}} supports [Tideways APM](https://tideways.com/) for PHP. This functionality is only available on PHP 7.0 and later.
+  {{% vendor/name %}} supports [Tideways APM](https://tideways.com/) for PHP. This functionality is only available on PHP 7.0 and later.
 ---
 
 {{% description %}}
 
 {{< note >}}
-The upstream now maintains two versions for Tideways, and both plugins are available on {{< vendor/name >}}:
+The upstream now maintains two versions for Tideways, and both plugins are available on {{% vendor/name %}}:
 * [Tideways_XHProf](https://github.com/tideways/php-xhprof-extension): The open source version and so no licensing is required (On the downside, less integration services are available). You can use it in combination with [XHProf UI](https://github.com/phacility/xhprof).
 * [tideways](https://tideways.com): The bundle proprietary full version of the product and plugins, which the rest of the guide is mostly aimed to cover.
 {{< /note >}}
@@ -23,7 +23,7 @@ Sign up at [Tideways](https://app.tideways.io/register/) and get your license ke
 Add your Tideways license key as a project level variable:
 
 ```bash
-platform variable:create --visible-build false php:tideways.api_key --value '<your-license-key>'
+{{% vendor/cli %}} variable:create --visible-build false php:tideways.api_key --value '<your-license-key>'
 ```
 
 ### 3. Enable the Tideways extension
@@ -38,7 +38,7 @@ runtime:
 
 Enabling the extension also activates the Tideways background process.
 
-Push the changes to your {{< vendor/name >}} environment to enable Tideways as follows:
+Push the changes to your {{% vendor/name %}} environment to enable Tideways as follows:
 
 ```bash
 git add {{< vendor/configfile "app" >}}
@@ -51,11 +51,11 @@ Give it a few hours to a day to get a decent set of data before checking your Ti
 
 ## Deployment Integration
 
-Tideways integrates with {{< vendor/name >}} deployment hooks and provides performance comparisons
-before and after deployments were released. You can find the {{< vendor/name >}} CLI command to register
+Tideways integrates with {{% vendor/name %}} deployment hooks and provides performance comparisons
+before and after deployments were released. You can find the {{% vendor/name %}} CLI command to register
 this hook for your application in Tideways "Application Settings" screen under the section
 "Exports & Integrations". Here is an example:
 
 ```bash
-platform integration:add --type=webhook --url="https://app.tideways.io/api/events/external/1234/abcdefghijklmnopqrstuvwxyz1234567890"
+{{% vendor/cli %}} integration:add --type=webhook --url="https://app.tideways.io/api/events/external/1234/abcdefghijklmnopqrstuvwxyz1234567890"
 ```

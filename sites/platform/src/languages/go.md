@@ -1,6 +1,6 @@
 ---
 title: "Go"
-description: "{{< vendor/name >}} supports building and deploying applications written in Go using Go modules. They're compiled during the Build hook phase, and support both committed dependencies and download-on-demand."
+description: "{{% vendor/name %}} supports building and deploying applications written in Go using Go modules. They're compiled during the Build hook phase, and support both committed dependencies and download-on-demand."
 ---
 
 {{% description %}}
@@ -9,9 +9,32 @@ description: "{{< vendor/name >}} supports building and deploying applications w
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-| Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|----------------------------------------|------------------------------ |
-| {{< image-versions image="golang" status="supported" environment="grid" >}} | {{< image-versions image="golang" status="supported" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="golang" status="supported" environment="grid" >}}</td>
+            <td>{{< image-versions image="golang" status="supported" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="golang" status="supported" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="golang" status="supported" environment="grid" >}}
+
+{{% /version/specific %}}
 
 {{% language-specification type="golang" display_name="Go" %}}
 
@@ -21,7 +44,7 @@ description: "{{< vendor/name >}} supports building and deploying applications w
 
 ## Go modules
 
-The recommended way to handle Go dependencies on {{< vendor/name >}} is using Go module support in Go 1.11 and later. That allows the build process to use `go build` directly without any extra steps, and you can specify an output executable file of your choice. (See the examples below.)
+The recommended way to handle Go dependencies on {{% vendor/name %}} is using Go module support in Go 1.11 and later. That allows the build process to use `go build` directly without any extra steps, and you can specify an output executable file of your choice. (See the examples below.)
 
 ## Building and running the application
 
@@ -51,15 +74,15 @@ web:
     locations:
         /:
             # Route all requests to the Go app, unconditionally.
-            # If you want some files served directly by the web server without hitting Go, see
-            # https://docs.platform.../create-apps/app-reference.html
             allow: false
             passthru: true
 
 disk: 1024
 ```
 
-Note that there is still an Nginx proxy server sitting in front of your application. If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Go application unconditionally, as in the example above.
+Note that there is still an Nginx proxy server sitting in front of your application.
+If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily)
+or you may route all requests to the Go application unconditionally, as in the example above.
 
 ## Accessing services
 
@@ -139,7 +162,7 @@ func main() {
 	p, err := psh.NewPlatformInfo()
 
 	if err != nil {
-		panic("Not in a {{< vendor/name >}} Environment.")
+		panic("Not in a {{% vendor/name %}} Environment.")
 	}
 
 	http.HandleFunc("/bar", func(w http.ResponseWriter, r *http.Request) {

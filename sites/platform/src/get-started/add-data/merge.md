@@ -5,11 +5,11 @@ description: Add a service and see how data works between branches.
 ---
 
 You have a separate environment with separate data.
-Next, add a service to your development environment.
+Next, add a service to your preview environment.
 
 ## Add a service
 
-{{< vendor/name >}} includes many services such as databases, cache, and search engines.
+{{% vendor/name %}} includes many services such as databases, cache, and search engines.
 These are included in your project, so you can manage them with Git and back them up with your project.
 
 Add a database service (or choose [another service](../../add-services/_index.md)) by following these steps:
@@ -51,7 +51,7 @@ Add a database service (or choose [another service](../../add-services/_index.md
    ```bash
    git add .
    git commit -m "Add database and connect to app"
-   platform push
+   {{% vendor/cli %}} push
    ```
 
 Now you have a database you can connect to your app.
@@ -68,7 +68,7 @@ You added the database to the `dev` environment.
 To have a database in your production environment, merge your changes.
 
 ```bash
-platform merge dev
+{{% vendor/cli %}} merge dev
 ```
 
 Now your production branch has its own database.
@@ -89,13 +89,13 @@ To see how the data in child environments is separate, follow these steps:
 1. Add a table to your `dev` database:
 
    ```bash
-   platform sql --environment dev 'CREATE TABLE child_data (a int); INSERT INTO child_data(a) VALUES (1), (2), (3);'
+   {{% vendor/cli %}} sql --environment dev 'CREATE TABLE child_data (a int); INSERT INTO child_data(a) VALUES (1), (2), (3);'
    ```
 
 2. See the data in the `dev` database:
 
    ```bash
-   platform sql --environment dev 'SELECT * FROM child_data'
+   {{% vendor/cli %}} sql --environment dev 'SELECT * FROM child_data'
    ```
 
    You get a table with a single column and 3 numbers.
@@ -103,13 +103,13 @@ To see how the data in child environments is separate, follow these steps:
 3. Merge the environment:
 
    ```bash
-   platform merge
+   {{% vendor/cli %}} merge
    ```
 
 4. Check the data in the production environment:
 
    ```bash
-   platform sql --environment main 'SELECT * FROM child_data'
+   {{% vendor/cli %}} sql --environment main 'SELECT * FROM child_data'
    ```
 
 You get an error message that the table doesn't exist.
@@ -121,13 +121,13 @@ To see how the data in parent environments can be inherited, follow these steps:
 1. Add a table to your production database:
 
    ```bash
-   platform sql --environment main 'CREATE TABLE parent_data (a int); INSERT INTO parent_data(a) VALUES (1), (2), (3);'
+   {{% vendor/cli %}} sql --environment main 'CREATE TABLE parent_data (a int); INSERT INTO parent_data(a) VALUES (1), (2), (3);'
    ```
 
 2. See the data in the production database:
 
    ```bash
-   platform sql --environment main 'SELECT * FROM parent_data'
+   {{% vendor/cli %}} sql --environment main 'SELECT * FROM parent_data'
    ```
 
    You get a table with a single column and 3 numbers.
@@ -135,18 +135,18 @@ To see how the data in parent environments can be inherited, follow these steps:
 3. Sync the data from your `dev` environment (this means copy the data from production):
 
    ```bash
-   platform sync data --environment dev
+   {{% vendor/cli %}} sync data --environment dev
    ```
 
-4. Check the data in the development environment
+4. Check the data in the preview environment
 
    ```bash
-   platform sql --environment dev 'SELECT * FROM parent_data'
+   {{% vendor/cli %}} sql --environment dev 'SELECT * FROM parent_data'
    ```
 
    You see the same table as in step 2.
 
-So you can test your changes with confidence in your development environments, knowing they work in production.
+So you can test your changes with confidence in your preview environments, knowing they work in production.
 But you don't have to worry about your tests affecting your production data.
 
 ## What's next

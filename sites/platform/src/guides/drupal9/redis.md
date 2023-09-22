@@ -13,14 +13,14 @@ or the [official Redis documentation](https://redis.io/docs/).
 Follow the instructions on this page to do one of the following:
 
 - Add and configure Redis for Drupal 9.x if you have deployed Drupal manually.
-- Fine-tune your existing configuration if you have deployed Drupal 9 using a [{{< vendor/name >}} template](../../development/templates.md).
+- Fine-tune your existing configuration if you have deployed Drupal 9 using a [{{% vendor/name %}} template](../../development/templates.md).
 
 ## Before you begin
 
 You need:
 
-- A [Drupal 9 version deployed on {{< vendor/name >}}](../drupal9/deploy/_index.md)
-- The [{{< vendor/name >}} CLI](../../administration/cli/)
+- A [Drupal 9 version deployed on {{% vendor/name %}}](../drupal9/deploy/_index.md)
+- The [{{% vendor/name %}} CLI](../../administration/cli/)
 - [Composer](https://getcomposer.org/)
 - The [Config Reader library](../../guides/drupal9/deploy/customize.md#install-the-config-reader)
 
@@ -34,7 +34,7 @@ This means that the Redis storage isn't persistent
 and that data can be lost when a container is moved, shut down 
 or when the service hits its memory limit.
 
-To solve this, {{< vendor/name >}} recommends that you change the [service type](../../add-services/redis.md#service-types) 
+To solve this, {{% vendor/name %}} recommends that you change the [service type](../../add-services/redis.md#service-types) 
 to [persistent Redis](../../add-services/redis.md#persistent-redis) (`redis-persistent`).
 
 {{< /note >}}
@@ -141,7 +141,7 @@ To configure your Redis service, follow these steps:
 To verify that Redis is running, run the following command:
 
 ```bash
-platform ssh 'echo $PLATFORM_RELATIONSHIPS | base64 --decode | json_pp'
+{{% vendor/cli %}} ssh 'echo $PLATFORM_RELATIONSHIPS | base64 --decode | json_pp'
 ```
 
 In the output, retrieve the value of the `host` property for your Redis relationship.
@@ -149,7 +149,7 @@ In the output, retrieve the value of the `host` property for your Redis relation
 Then, run the following command:
 
 ```bash
-platform ssh -- redis-cli -h {{< variable "HOST" >}} info
+{{% vendor/cli %}} ssh -- redis-cli -h {{< variable "HOST" >}} info
 ```
 
 The output produces information and statistics about Redis,

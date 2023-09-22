@@ -2,17 +2,17 @@
 title: Send email
 weight: 9
 sidebarTitle: Email
-description: Send email from your {{< vendor/name >}} environments.
+description: Send email from your {{% vendor/name %}} environments.
 ---
 
-You can configure your {{< vendor/name >}} environments to send emails via an SMTP proxy.
+You can configure your {{% vendor/name %}} environments to send emails via an SMTP proxy.
 
 Emails aren't guaranteed to be deliverable and you can't white-label them.
 The SMTP proxy is intended as a zero-configuration, best-effort service.
 
 {{< note >}}
 
-All non-production environments are limited to 12,000 email credits per calendar month.
+All preview environments are limited to 12,000 email credits per calendar month.
 
 {{< /note >}}
 
@@ -46,7 +46,7 @@ title=Using the CLI
 To turn on outgoing email, run the following command:
 
 ```bash
-platform environment:info --environment {{< variable "ENVIRONMENT_NAME" >}} enable_smtp true
+{{% vendor/cli %}} environment:info --environment {{< variable "ENVIRONMENT_NAME" >}} enable_smtp true
 ```
 
 To turn off outgoing email, replace `true` with `false`.
@@ -89,7 +89,7 @@ v=spf1 include:u17504801.wl.sendgrid.net -all
 
 ## 4. Test the email service
 
-To test the email service, use the [CLI](../administration/cli/_index.md) to connect to your app by running `platform ssh`.
+To test the email service, use the [CLI](../administration/cli/_index.md) to connect to your app by running `{{% vendor/cli %}} ssh`.
 Run the following command:
 
 ```bash
@@ -117,7 +117,7 @@ When outgoing emails are on, `PLATFORM_SMTP_HOST` is the address of the SMTP hos
 When outgoing emails are off, the variable is empty.
 
 When using `PLATFORM_SMTP_HOST`, send email through port 25 (often the default).
-Your emails are proxied through the {{< vendor/name >}} SMTP host and encrypted over port 465
+Your emails are proxied through the {{% vendor/name %}} SMTP host and encrypted over port 465
 before being sent to the outside world.
 
 The precise way to send email depends on the language and framework you use.

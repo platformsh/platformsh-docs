@@ -3,7 +3,7 @@ title: DDEV
 weight: -110
 layout: single
 description: |
-    Set up an environment with {{< vendor/name >}}'s recommended local development tool, DDEV.
+    Set up an environment with {{% vendor/name %}}'s recommended local development tool, DDEV.
 sectionBefore: Integrated environments
 ---
 
@@ -23,7 +23,7 @@ sectionBefore: Integrated environments
 1.  Create a new environment off of production.
 
     ```bash
-    platform branch new-feature main
+    {{% vendor/cli %}} branch new-feature main
     ```
 
     If you're using a [source integration](../../../integrations/source/_index.md),
@@ -51,7 +51,7 @@ sectionBefore: Integrated environments
 
 6.  Update the DDEV PHP version.
 
-    Python support in DDEV and the {{< vendor/name >}} integration is in active development.
+    Python support in DDEV and the {{% vendor/name %}} integration is in active development.
     At this time, the only officially supported runtime is PHP.
     With a few changes, the generated configuration can be modified to run local Django environments.
 
@@ -78,7 +78,7 @@ title=Pip
 hooks:
     post-start:
         ...
-        # {{< vendor/name >}} start command
+        # {{% vendor/name %}} start command
         - exec: python manage.py runserver 0.0.0.0:8000
 ```
 <--->
@@ -89,7 +89,7 @@ title=Pipenv
 hooks:
     post-start:
         ...
-        # {{< vendor/name >}} start command
+        # {{% vendor/name %}} start command
         - exec: pipenv run python manage.py runserver 0.0.0.0:8000
 ```
 <--->
@@ -100,7 +100,7 @@ title=Poetry
 hooks:
     post-start:
         ...
-        # {{< vendor/name >}} start command
+        # {{% vendor/name %}} start command
         - exec: poetry run python manage.py runserver 0.0.0.0:8000
 ```
     {{< /codetabs >}}
@@ -177,10 +177,10 @@ hooks:
 13. Pull data from the environment.
 
     Exit the currently running process (`CTRL+C`)
-    and then run the following command to retrieve data from the current {{< vendor/name >}} environment:
+    and then run the following command to retrieve data from the current {{% vendor/name %}} environment:
 
     ```bash
-    ddev pull platform
+    ddev pull {{% vendor/cli %}}
     ```
 
 14. Restart DDEV
@@ -189,7 +189,7 @@ hooks:
     ddev restart
     ```
 
-    You now have a local development environment that's in sync with the `new-feature` environment on {{< vendor/name >}}.
+    You now have a local development environment that's in sync with the `new-feature` environment on {{% vendor/name %}}.
 
 15. When you finish your work, shut down DDEV.
 
@@ -204,23 +204,30 @@ hooks:
     {{< codetabs >}}
 +++
 title=Pip
-highlight=bash
-file=snippets/guides/django/ddev/local-pip.sh
 +++
+
+```bash {location="init-local.sh"}
+{{< snippets/guides/django/ddev/local-pip >}}
+```
+
 <--->
 +++
 title=Pipenv
-highlight=bash
-file=snippets/guides/django/ddev/local-pipenv.sh
 +++
-Pipenv example
+
+```bash {location="init-local.sh"}
+{{< snippets/guides/django/ddev/local-pipenv >}}
+```
+
 <--->
 +++
 title=Poetry
-highlight=bash
-file=snippets/guides/django/ddev/local-poetry.sh
 +++
-Poetry example
+
+```bash {location="init-local.sh"}
+{{< snippets/guides/django/ddev/local-poetry >}}
+```
+
     {{< /codetabs >}}
 
 {{% local-dev/next-steps-end %}}

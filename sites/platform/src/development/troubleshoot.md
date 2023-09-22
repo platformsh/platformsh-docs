@@ -35,7 +35,7 @@ title=Using the CLI
 Run the following command:
 
 ```sh
-platform redeploy
+{{% vendor/cli %}} redeploy
 ```
 
 {{< /codetabs >}}
@@ -56,7 +56,7 @@ To rerun the `build` and `deploy` hooks, [manually trigger a build](#manually-tr
 ### Manually trigger builds
 
 To increase performance and keep applications the same across environments,
-{{< vendor/name >}} reuses built applications if its code and build time configuration (variables and such) remain the same.
+{{% vendor/name %}} reuses built applications if its code and build time configuration (variables and such) remain the same.
 
 There may be times where you want to force your application to be built again without changing its code,
 for example to test an issue in a build hook or when external dependencies change.
@@ -67,14 +67,14 @@ Assuming you want to do this for your `main` environment,
 first create a `REBUILD_DATE` environment variable:
 
 ```bash
-platform variable:create --environment main --level environment --prefix env --name REBUILD_DATE --value "$(date)" --visible-build true
+{{% vendor/cli %}} variable:create --environment main --level environment --prefix env --name REBUILD_DATE --value "$(date)" --visible-build true
 ```
 
 This triggers a build right away to propagate the variable.
 To force a rebuild at any time, update the variable with a new value:
 
 ```bash
-platform variable:update --environment main --value "$(date)" "env:REBUILD_DATE"
+{{% vendor/cli %}} variable:update --environment main --value "$(date)" "env:REBUILD_DATE"
 ```
 
 This forces your application to be built even if no code has changed.
@@ -89,7 +89,7 @@ while that service is experiencing issues.
 To clear the build cache, run the following command:
 
 ```sh
-platform project:clear-build-cache
+{{% vendor/cli %}} project:clear-build-cache
 ```
 
 The next build for each environment is likely to take longer as the cache rebuilds.
@@ -130,14 +130,14 @@ Typical causes and potential solutions include:
 ## Site outage
 
 If you can't access some part of your project, whether it's the live site, development environment, or Console,
-check the [{{< vendor/name >}} status page](https://status.platform.sh/).
+check the [{{% vendor/name %}} status page](https://status.platform.sh/).
 There you can see planned maintenance and subscribe to updates for any potential outages.
 
-If the status is operational, [contact support](../overview/get-support.md).
+If the status is operational, [contact support](/learn/overview/get-support.md).
 
 ## Command not found
 
-When you've added a command line tool (such as [Drush](../other/glossary.md#drush)),
+When you've added a command line tool (such as [Drush](/glossary.md#drush)),
 you might encounter an error like the following:
 
 ```bash
@@ -157,7 +157,7 @@ Instead, call the app/shell/runtime directly passing your script file to that ex
 
 ## Missing commits
 
-If you push code to {{< vendor/name >}} without the full Git history, sometimes commits are missing.
+If you push code to {{% vendor/name %}} without the full Git history, sometimes commits are missing.
 This can happen if you're pushing code from an external CI/CD pipeline, such as a GitHub action.
 Such pipelines often do only shallow clones by default.
 
@@ -174,7 +174,7 @@ or using the [`GIT_DEPTH` variable](https://docs.gitlab.com/ee/ci/large_reposito
 
 When trying to upload a large JSON file to your API, you might see a 400 response code (`Malformed request`).
 
-{{< vendor/name >}} enforces a 10&nbsp;MB limit on files with the `application/json` `Content-Type` header.
+{{% vendor/name %}} enforces a 10&nbsp;MB limit on files with the `application/json` `Content-Type` header.
 To send large files, use the `multipart/form-data` header instead:
 
 ```bash

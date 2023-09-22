@@ -3,7 +3,7 @@ title: "Upgrade your WordPress site to use Composer"
 sidebarTitle: Upgrade to use Composer
 weight: 2
 description: |
-    Learn how to use WordPress with Composer on {{< vendor/name >}}.
+    Learn how to use WordPress with Composer on {{% vendor/name %}}.
 ---
 
 Composer helps you declare, manage, and install all the dependencies needed to run your project.
@@ -17,8 +17,8 @@ You also don't need to manage any of these elements as Git submodules.
 To update your WordPress site to use Composer, check that:
 
 - You already have a [vanilla version of WordPress installed locally](../vanilla/_index.md).
-- Your project has been set up for deployment on {{< vendor/name >}}.
-  If you don't have {{< vendor/name >}} configuration files in your repository,
+- Your project has been set up for deployment on {{% vendor/name %}}.
+  If you don't have {{% vendor/name %}} configuration files in your repository,
   [deploy WordPress without Composer](../vanilla/_index.md) before upgrading to a Composer-based site.
 - You have [downloaded and installed Composer](https://getcomposer.org/download/).
 
@@ -28,7 +28,7 @@ To install WordPress with Composer, complete the following steps:
 
 1. Switch to a new Git branch.
     
-   To safely make changes to your repository and {{< vendor/name >}} environment, run the following command:
+   To safely make changes to your repository and {{% vendor/name %}} environment, run the following command:
 
    ```bash
    $ git checkout -b composer
@@ -66,7 +66,7 @@ To install WordPress with Composer, complete the following steps:
    ```
 
    Then, at the end of your existing `.gitignore` file,
-   add the content of {{< vendor/name >}}’s [template `.gitignore` file](https://github.com/platformsh-templates/wordpress-composer/blob/master/.gitignore). 
+   add the content of {{% vendor/name %}}’s [template `.gitignore` file](https://github.com/platformsh-templates/wordpress-composer/blob/master/.gitignore). 
 
    This adds the `wordpress` subdirectory to the resulting `.gitignore` file. 
    This way, after Composer reinstalls WordPress, the `wordpress` subdirectory is ignored in commits.
@@ -191,17 +191,17 @@ To do so, complete the following steps:
    Each dependency is now installed.
 
 
-## 3. Deploy to {{< vendor/name >}}
+## 3. Deploy to {{% vendor/name %}}
 
-Switching to a Composer-based installation doesn't require any modifications to the {{< vendor/name >}} configuration files 
+Switching to a Composer-based installation doesn't require any modifications to the {{% vendor/name %}} configuration files 
 created when [you deployed your vanilla version](../vanilla/_index.md). 
 Make sure that your project contains those three files. 
 You can then commit all your changes 
-and deploy your new Composer-based WordPress site to {{< vendor/name >}}:
+and deploy your new Composer-based WordPress site to {{% vendor/name %}}:
 
 ```bash
 git add . && git commit -m "Composerify plugins and themes."
-git push platform composer
+git push {{% vendor/cli %}} composer
 ```
 
 ## 4. Update your Composer-based WordPress site
@@ -221,4 +221,4 @@ composer update
 {{< premium-features/tiered "Elite and Enterprise" >}}
 
 [Source operations](../../../create-apps/source-operations.md) allow you to automate the maintenance of your Composer-based WordPress site. 
-For instance, you can [update all the dependencies in your project with a single command](../../../tutorials/dependency-updates.md).
+For instance, you can [update all the dependencies in your project with a single command](/learn/tutorials/dependency-updates.md).

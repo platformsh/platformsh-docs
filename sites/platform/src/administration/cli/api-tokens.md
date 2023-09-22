@@ -4,13 +4,13 @@ sidebarTitle: "API tokens"
 weight: 1
 ---
 
-You need to set up an API token to authenticate the {{< vendor/name >}} CLI for any of the following tasks:
+You need to set up an API token to authenticate the {{% vendor/name %}} CLI for any of the following tasks:
 - Running automated tasks on a CI system
 - Running automated tasks directly on app container, for example in a cron job
 
 ## Before you begin
 
-You might need the [{{< vendor/name >}} CLI](../cli/_index.md) to perform certain tasks.
+You might need the [{{% vendor/name %}} CLI](../cli/_index.md) to perform certain tasks.
 For example, you need the CLI to do the following:
 - [Check the validity of an API token](#optional-check-the-validity-of-your-api-token). 
 - [Load the CLI SSH certificate for non-CLI commands](#use-the-cli-ssh-certificate-for-non-cli-commands).
@@ -19,7 +19,7 @@ For example, you need the CLI to do the following:
 ## 1. Create a machine user
 
 To safely run automated tasks, first create machine users.
-Each machine user has its own {{< vendor/name >}} account associated with a unique email address.
+Each machine user has its own {{% vendor/name %}} account associated with a unique email address.
 You can grant them restrictive [access permissions](../users.md) to handle specific automated tasks.
 For security purposes, create a machine user for each type of task you want to automate.
 
@@ -32,14 +32,14 @@ title=Using the CLI
 
 1. Run the following command using your machine user's email address.
    ```bash
-   platform user:add  {{< variable "EMAIL_ADDRESS" >}} --role viewer --role development:contributor
+   {{% vendor/cli %}} user:add  {{< variable "EMAIL_ADDRESS" >}} --role viewer --role development:contributor
    ```
    This sets your machine user as a viewer on your project and a contributor on development environments, 
    with no access to other environment types.
    Note that you can further [adjust user roles](../users.md#environment-type-roles) depending on your needs and each environment type.
 
 2. In the email invitation, click **Create account**.
-3. To create a {{< vendor/name >}} account for the machine user, click **Sign up** and follow the instructions.
+3. To create a {{% vendor/name %}} account for the machine user, click **Sign up** and follow the instructions.
 
 <--->
 +++
@@ -72,7 +72,7 @@ title=In the Console
 To check that your API token is valid, run the following command:
 
 ```bash
-platform auth:api-token-login
+{{% vendor/cli %}} auth:api-token-login
 ```
 
 When prompted, enter your API token.
@@ -90,8 +90,8 @@ When an API token is compromised, revoke it immediately.
 
 After you create your API token, you can use it to do the following:
 
--  Allow a CI system to run automated tasks using the {{< vendor/name >}} CLI.
--  Run automated tasks on an app container using the {{< vendor/name >}} CLI, 
+-  Allow a CI system to run automated tasks using the {{% vendor/name %}} CLI.
+-  Run automated tasks on an app container using the {{% vendor/name %}} CLI, 
    for example in a cron job. 
 
 Note that when running CLI commands in these cases,
@@ -101,16 +101,16 @@ use the `--no-wait` flag.
 
 ### Authenticate in a CI system
 
-You can allow your CI system to run automated tasks using the {{< vendor/name >}} CLI.
+You can allow your CI system to run automated tasks using the {{% vendor/name %}} CLI.
 To do so, create an environment variable named `PLATFORMSH_CLI_TOKEN` with your API token as its value. 
 For more information, see your CI system's official documentation.
 
-To run SSH-based commands that aren't specific to the {{< vendor/name >}} CLI,
+To run SSH-based commands that aren't specific to the {{% vendor/name %}} CLI,
 see how to [load the proper SSH certificate](#use-the-cli-ssh-certificate-for-non-cli-commands).
 
 ### Authenticate in an environment
 
-You can run automated tasks on an app container using the {{< vendor/name >}} CLI.
+You can run automated tasks on an app container using the {{% vendor/name %}} CLI.
 To do so, set your API token as a [top-level environment variable](../../development/variables/_index.md#top-level-environment-variables).
 
 {{< note theme="warning" >}}
@@ -129,7 +129,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform variable:create -e {{< variable "ENVIRONMENT_NAME" >}} --level environment --prefix 'env' --name PLATFORMSH_CLI_TOKEN --sensitive true --value '{{< variable "API_TOKEN" >}}' --inheritable false --visible-build true --no-interaction
+{{% vendor/cli %}} variable:create -e {{< variable "ENVIRONMENT_NAME" >}} --level environment --prefix 'env' --name PLATFORMSH_CLI_TOKEN --sensitive true --value '{{< variable "API_TOKEN" >}}' --inheritable false --visible-build true --no-interaction
 ```
 
 <--->
@@ -154,16 +154,16 @@ Then add a build hook to your app configuration to install the CLI as part of th
 hooks:
     build: |
         set -e
-        echo "Installing {{< vendor/name >}} CLI"
+        echo "Installing {{% vendor/name %}} CLI"
         curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
 
-        echo "Testing {{< vendor/name >}} CLI"
-        platform
+        echo "Testing {{% vendor/name %}} CLI"
+        {{% vendor/cli %}}
 ```
 
 You can now call the CLI from within the shell on the app container or in a cron job.
 
-To run SSH-based commands that aren't specific to the {{< vendor/name >}} CLI,
+To run SSH-based commands that aren't specific to the {{% vendor/name %}} CLI,
 see how to [load the proper SSH certificate](#use-the-cli-ssh-certificate-for-non-cli-commands).
 
 You can set up a cron job on a specific type of environment.
@@ -177,8 +177,8 @@ crons:
         commands:
             start: |
                 if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-                   platform backup:create --yes --no-wait
-                   platform source-operation:run update --no-wait --yes
+                   {{% vendor/cli %}} backup:create --yes --no-wait
+                   {{% vendor/cli %}} source-operation:run update --no-wait --yes
                 fi
 ```
 
@@ -195,7 +195,5 @@ In this case, to ensure all your commands work, load the CLI SSH certificate fir
 To do so, run the following command:
 
 ```bash
-platform ssh-cert:load --no-interaction
+{{% vendor/cli %}} ssh-cert:load --no-interaction
 ```
-
-
