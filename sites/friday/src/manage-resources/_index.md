@@ -21,7 +21,7 @@ than to your development environments.
 This flexibility in resource allocation allows you to optimize performance and costs.
 
 If your app shows signs of struggling with high load, or if you're expecting a traffic spike,
-you can also add instances to your application container.
+you can also add instances to your application and/or worker containers.
 Such horizontal scaling allows your app to keep running smoothly,
 and shields your users from performance issues and downtime.
 
@@ -46,7 +46,7 @@ make sure you use `{{% vendor/cli %}} push` instead of `git push`.
 title= Using the CLI
 +++
 
-Run the `resources: set` command, and follow the prompts to set resources for each of your apps and services.
+Run the `resources:set` command, and follow the prompts to set resources for each of your apps and services.
 
 <--->
 
@@ -57,11 +57,13 @@ title= From the Console
 1. Navigate to your environment.
 2. Select an app or service in the tree on the left-hand side:
    ![Apps and services tree](/images/flexible-resources/apps-services-tree.png "0.2")
-   A window pops up for you to configure resources on the current environment:
+   A window pops up.
+3. Click **Configure**.
+4. Configure resources on the current environment:
    ![Configure your resources on the current environment window](/images/flexible-resources/configure-flexible-resources.png "0.5")
    The values available in this window depend on the [container profile](#1-configure-your-container-profiles) of each instance.
-3. For each app and service displayed, select a CPU & RAM combination and enter the amount of disk/storage you want to allocate to each container.
-4. For each of your apps, select the number of instances you want to deploy.
+   - For each app and service displayed, select a CPU & RAM combination and enter the amount of disk/storage you want to allocate to each container.
+   - For each of your apps and/or workers, select the number of instances you want to deploy.
 5. Click **Save**.</br>
    You environment is redeployed.
 
