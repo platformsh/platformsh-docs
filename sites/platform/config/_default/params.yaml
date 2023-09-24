@@ -39,6 +39,7 @@ vendor:
         support: https://support.platform.sh/
         sales: https://platform.sh/contact
         console: https://console.platform.sh/
+        register: https://auth.api.upsun.com/register
         api: https://api.platform.sh/
         host: platform.sh 
         hostname: platformsh.site 

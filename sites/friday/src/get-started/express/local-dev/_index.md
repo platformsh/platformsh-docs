@@ -1,8 +1,5 @@
 ---
-title: Getting started with Express on {{% vendor/name %}}
-sidebarTitle: Express
+title: Local development
+weight: -60
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum mauris id tincidunt gravida. Suspendisse sagittis euismod mi. Aliquam erat volutpat.
-layout: single
 ---
-
-{{% guides/steps desc="true" %}}

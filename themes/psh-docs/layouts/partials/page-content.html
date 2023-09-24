@@ -23,6 +23,9 @@
 <!-- Page title -->
 {{ if ne .context.Params.showTitle false }}
 <h1 class="font-black text-2xl mb-8 xl:text-4xl">{{ .context.Title | .context.RenderString }}</h1>
+{{ if .context.Params.subtitle }}
+<h2 class="font-black mb-8 text-xl xl:text-xl">{{ .context.Params.subtitle | .context.RenderString }}</h2>
+{{ end }}
 {{ end }}
 
 <div class="grid md:grid-cols-80-20 md:gap-4 print:block">

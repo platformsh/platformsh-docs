@@ -40,6 +40,7 @@ vendor:
         main: https://upsun.com
         docs: https://docs.upsun.com
         support: https://support.upsun.com
+        register: https://auth.api.upsun.com/register
         sales: https://upsun.com/contact
         console: https://console.upsun.com/
         api: https://proxy.upsun.com/

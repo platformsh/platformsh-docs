@@ -1,0 +1,65 @@
+<!-- Parameters -->
+<!-- If not passed, unordered list -->
+{{ $sequence := .Get "ordered" }}
+<!-- If passed, pages listed will be beneath the given 'root' bundle -->
+{{ $root := .Get "root" }}
+<!-- If true, description is shown -->
+{{ $desc := .Get "desc" }}
+<!-- List type -->
+{{ if eq $sequence "true" }}
+<ol class="step-box steps">
+{{ else}}
+<ul class="step-box">
+{{ end }}
+<!-- Range of pages: either the current or passed page bundle -->
+{{ $currentPage := .Page }}
+{{ $rootPage := .Page }}
+{{ if $root }}
+    {{ $rootPage = .Site.GetPage $root }}
+{{ end }}
+<!-- Loop -->
+{{ range $rootPage.Pages.ByWeight }}
+<li>
+    <!-- Do not link if item is the current page -->
+    {{ if eq . $currentPage }}
+<div>
+    <strong>{{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle | .RenderString }}{{ else }}{{ .Title | .RenderString }}{{ end }}</strong>
+</div>
+    <!-- Otherwise, provide a link to the step -->
+    {{ else }}
+<div>
+    <a href="{{ .RelPermalink }}">{{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle | .RenderString }}{{ else }}{{ .Title | .RenderString }}{{ end }}</a>
+</div>
+    {{ end }}
+    <!-- Description of page -->
+    {{ if eq $desc "true"}}
+<div>
+    {{ .Params.description | .RenderString }}
+</div>
+    {{ end }}
+</li>
+{{ end }}
+<!-- End list type -->
+{{ if eq $sequence "true" }}
+</ol>
+{{ else}}
+</ul>
+{{ end }}
+
+
+<style>
+    .step-box {
+        border: 1px solid #6046FF !important;
+        margin: 2rem auto !important;
+    }
+    .step-box > li {
+        margin: 0rem 1rem;
+    }
+    .steps {
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 400;
+        max-width: 75% !important;
+        font-family: "Instrument Sans", sans-serif;
+    }
+</style>
