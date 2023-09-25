@@ -1,7 +1,7 @@
 ---
 title: "Laravel Bridge"
 sidebarTitle: "Laravel Bridge"
-weight: -100
+weight: -150
 description: Connect your Laravel-based app to {{< vendor/name >}} with Laravel Bridge.
 ---
 
@@ -59,8 +59,10 @@ php artisan optimize:clear
 
 Laravel provides reasonable defaults for many environment variables already
 and this library doesn't override those.
-Customize them by setting a {{< vendor/name >}} variable named `env:ENV_NAME`.
+Customize them by setting a {{< vendor/name >}} environment variable named `env:ENV_NAME`.
 (Note the `env:` prefix.)
+
+[Learn more about defining and using environment variables for your {{< vendor/name >}} projects](/development/variables/set-variables.html).
 
 The variables you are most likely to want to override are:
 

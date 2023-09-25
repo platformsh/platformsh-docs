@@ -1,16 +1,18 @@
 ---
 title: "Configure Laravel for {{< vendor/name >}}"
 sidebarTitle: "Configure"
-weight: -100
+weight: -200
 description: |
-  Review the basics of what makes up a {{< vendor/name >}} project, including its three principle configuration files and how to define them for Laravel.
+  Review the basics of what makes up a {{< vendor/name >}} project, including its YAML configuration file and how to define it for Laravel.
 ---
 
 
 You now have a *project* running on {{< vendor/name >}}.
+
 In many ways, a project is just a collection of tools around a Git repository.
 Just like a Git repository, a project has branches, called *environments*.
 Each environment can then be activated.
+
 *Active* environments are built and deployed,
 giving you a fully isolated running site for each active environment.
 
@@ -23,18 +25,24 @@ The recommanded way is to use {{< vendor/name >}} CLI that has a
 `{{< vendor/cli >}} project:init` command. This command has a cool 
 `{{< vendor/cli >}} ify` shortcut. Let's {{< vendor/cli >}}ify our Laravel application!
 
-The `upsun ify` command automatically detects the framework, the runtime, and
+The `{{< vendor/cli >}} project:init` command automatically detects the framework, the runtime, and
 the dependency managers used by your application.
+
+![Routes](/images/guides/laravel-ify.png "0.5")
 
 You will be invited to give your project a name and select the different services you intend to use.
 
-The `upsun ify` command provide a list of services the configuration of which will
+The `{{< vendor/cli >}} project:init` command provide a list of services the configuration of which will
 be bootstraped for you: `MariaDB`, `MySQL`, `PostgreSQL`, `Redis`, `Redis Persistent`,
 `Memcached`, `OpenSearch`, `Solr`, `Varnish`, `Kafka`, `VaultKMS`, `RabbitMQ`,
 `InfluxDB`, `Chrome Headless`, `Network Storage`, `Oracle MySQL`.
 
+Use arrows to move the selector, space to select a service and type to filter the list.
+
+![Routes](/images/guides/resources-cli-picker.gif "0.5")
+
 You could add as many services to your application as you wish. Depending on your
-application complexity, the `upsun ify` command might not generate the whole
+application complexity, the `{{< vendor/cli >}} project:init` command might not generate the whole
 configuration files for you but will get your started with 80% to 90% of it ready.
 
 ## Manual configuration
