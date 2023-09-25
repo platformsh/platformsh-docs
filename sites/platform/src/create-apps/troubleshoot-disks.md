@@ -4,6 +4,7 @@ title: "Troubleshoot disks"
 
 {{% troubleshoot %}}
 
+{{% version/only "1" %}}
 ## Exceeding plan storage limit
 
 Professional plans come with a default amount of storage that you can [change with your plan](../administration/pricing/_index.md).
@@ -25,6 +26,8 @@ To fix the error, do one of the following:
   Note the [limits to downsizing disks](./app-reference.md#downsize-a-disk).
 * Increase your plan's storage limits.
   This can only be done by people with the [manage plans permission](../administration/users.md#organization-permissions).
+
+{{% /version/only %}}
 
 ## Low disk space
 
@@ -58,12 +61,19 @@ But if you notice that the usage percentage is high, you may need to increase th
 If you find that your application or service is running out of disk space,
 you can increase the available storage.
 
+{{% version/specific %}}
 To increase the space available for applications and services,
 use the `disk` keys in your `{{< vendor/configfile "app" >}}` and `{{< vendor/configfile "services" >}}` files.
 The sum of all `disk` keys can't exceed the available storage in your plan.
 
 If you need more storage to fit the sum of all `disk` keys, increase your plan's storage limits.
 This can only be done by people with the [manage plans permission](../administration/users.md#organization-permissions).
+<--->
+To increase the space available for applications and services,
+use the `{{% vendor/cli %}} resources:set` command.
+<!-- @todo: resources link -->
+See the [resources configuration](#) documentation for more details.
+{{% /version/specific %}}
 
 ## No space left on device
 

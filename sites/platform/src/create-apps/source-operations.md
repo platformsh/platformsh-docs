@@ -56,15 +56,30 @@ A source operation requires two things:
 
 The syntax is similar to the following:
 
+{{% version/specific %}}
 ```yaml {configFile="app"}
 source:
     operations:
         {{< variable "SOURCE_OPERATION_NAME" >}}:
             command: {{< variable "COMMAND" >}}
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    myapp:
+        source:
+            root: "/"
+            type: nodejs:{{% latest "nodejs" %}}
+            source:
+                operations:
+                    {{< variable "SOURCE_OPERATION_NAME" >}}:
+                        command: {{< variable "COMMAND" >}}
+```
+{{% /version/specific %}}
 
 For example, to update a file from a remote location, you could define an operation like this:
 
+{{% version/specific %}}
 ```yaml {configFile="app"}
 source:
     operations:
@@ -75,6 +90,22 @@ source:
                 git add myfile.txt
                 git commit -m "Update remote file"
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    myapp:
+        type: nodejs:{{% latest "nodejs" %}}
+        source:
+            root: "/"
+            operations:
+                update-file:
+                    command: |
+                        set -e
+                        curl -O https://example.com/myfile.txt
+                        git add myfile.txt
+                        git commit -m "Update remote file"
+```
+{{% /version/specific %}}
 
 The name of the source operation in this case is `update-file`.
 
@@ -102,7 +133,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-{{% vendor/cli %}}  source-operation:run {{< variable "SOURCE_OPERATION_NAME" >}}
+{{% vendor/cli %}} source-operation:run {{< variable "SOURCE_OPERATION_NAME" >}}
 ```
 
 Replace {{< variable "SOURCE_OPERATION_NAME" >}} with the name of your operation, such as `update-file` in the [example above](#define-a-source-operation).
@@ -125,6 +156,7 @@ and interpreted the same way as any other variable set in your project.
 For example, you might want to have a `FILE` variable available with the value `example.txt`
 to pass to a source operation similar to the following:
 
+{{% version/specific %}}
 ```yaml {configFile="app"}
 source:
     operations:
@@ -135,6 +167,22 @@ source:
                 git add $FILE
                 git commit -m "Update remote file"
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    myapp:
+        type: nodejs:{{% latest "nodejs" %}}
+        source:
+            root: "/"
+            operations:
+                update-file:
+                    command: |
+                        set -e
+                        curl -O https://example.com/$FILE
+                        git add $FILE
+                        git commit -m "Update remote file"
+```
+{{% /version/specific %}}
 
 Follow these steps to run the source operation:
 
@@ -249,6 +297,7 @@ hooks:
 3.  Then, to configure a cron job to automatically run a source operation once a day,
     use a configuration similar to the following:
 
+{{% version/specific %}}
 ```yaml {configFile="app"}
 crons:
     update:
@@ -260,6 +309,31 @@ crons:
                 {{% vendor/cli %}} sync -e development code data --no-wait --yes
                 {{% vendor/cli %}} source-operation:run update-file --no-wait --yes
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    myapp:
+        type: nodejs:{{% latest "nodejs" %}}
+        source:
+            root: "/"
+            operations:
+                update-file:
+                    command: |
+                        set -e
+                        curl -O https://example.com/$FILE
+                        git add $FILE
+                        git commit -m "Update remote file"
+            crons:
+                update:
+                    # Run the code below every day at midnight.
+                    spec: '0 0 * * *'
+                    commands:
+                        start: |
+                            set -e
+                            {{% vendor/cli %}} sync -e development code data --no-wait --yes
+                            {{% vendor/cli %}} source-operation:run update-file --no-wait --yes
+```
+{{% /version/specific %}}
 
 The example above synchronizes the `development` environment with its parent
 and then runs the `update-file` source operation defined [previously](#define-a-source-operation).
@@ -286,16 +360,34 @@ The following source operation syncronizes your branch with an upstream Git repo
 
 2. In your app configuration, define a source operation to fetch from that upstream repository:
 
-   ```yaml {configFile="app"}
-   source:
-       operations:
-           upstream-update:
-               command: |
-                   set -e
-                   git remote add upstream $UPSTREAM_REMOTE
-                   git fetch --all
-                   git merge upstream/main
-   ```
+   {{% version/specific %}}
+```yaml {configFile="app"}
+source:
+    operations:
+        upstream-update:
+            command: |
+                set -e
+                git remote add upstream $UPSTREAM_REMOTE
+                git fetch --all
+                git merge upstream/main
+```
+    <--->
+```yaml {configFile="app"}
+applications:
+    myapp:
+        type: nodejs:{{% latest "nodejs" %}}
+        source:
+            root: "/"
+            operations:
+                upstream-update:
+                    command: |
+                        set -e
+                        git remote add upstream $UPSTREAM_REMOTE
+                        git fetch --all
+                        git merge upstream/main
+```
+    {{% /version/specific %}}
+
 
 3. Now every time you run the `upstream-update` operation on a given branch,
    the branch fetches all changes from the upstream git repository
@@ -311,6 +403,7 @@ The following source operation reverts the last commit pushed to the Git reposit
 This can be useful if you didn't properly test the changes of another operation
 and you need to quickly revert to the previous state.
 
+{{% version/specific %}}
 ```yaml {configFile="app"}
 source:
     operations:
@@ -318,6 +411,20 @@ source:
             command: |                
                 git reset --hard HEAD~
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    myapp:
+        type: nodejs:{{% latest "nodejs" %}}
+        source:
+            root: "/"
+            operations:
+                revert:
+                    command: |                
+                        git reset --hard HEAD~
+```
+{{% /version/specific %}}
+
 
 Now every time you run the `revert` operation on a given branch,
 the operation reverts to the last commit pushed to that branch.
@@ -326,6 +433,7 @@ the operation reverts to the last commit pushed to that branch.
 
 The following source operation uses Composer to update Drupal Core:
 
+{{% version/specific %}}
 ```yaml {configFile="app"}
 source:
     operations:
@@ -336,6 +444,22 @@ source:
                 git add composer.lock
                 git commit -m "Automated Drupal Core update."
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    myapp:
+        type: php:{{% latest "php" %}}
+        source:
+            root: "/"
+            operations:
+                update-drupal-core:
+                    command: |
+                        set -e
+                        composer update drupal/core --with-dependencies
+                        git add composer.lock
+                        git commit -m "Automated Drupal Core update."
+```
+{{% /version/specific %}}
 
 `--with-dependencies` is used to also update Drupal Core dependencies.
 Read more on how to [update Drupal Core via Composer on Drupal.org](https://www.drupal.org/docs/updating-drupal/updating-drupal-core-via-composer).
@@ -348,6 +472,7 @@ The following source operation downloads a Drupal extension.
 You can define the Drupal extension by setting an `EXTENSION` variable
 or [overriding it](#use-variables-in-your-source-operations) when running the source operation.
 
+{{% version/specific %}}
 ```yaml {configFile="app"}
 source:
     operations:
@@ -358,6 +483,22 @@ source:
                 git add composer.json
                 git commit -am "Automated install of: $EXTENSION via Composer."
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    myapp:
+        type: php:{{% latest "php" %}}
+        source:
+            root: "/"
+            operations:
+                download-drupal-extension:
+                    command: |
+                        set -e
+                        composer require $EXTENSION
+                        git add composer.json
+                        git commit -am "Automated install of: $EXTENSION via Composer."
+```
+{{% /version/specific %}}
 
 Now every time you run the `download-drupal-extension` operation, it downloads the defined extension.
 
@@ -369,6 +510,7 @@ you need to enable the new extension via the Drupal management interface or usin
 
 The following source operation updates all Git submodules recursively:
 
+{{% version/specific %}}
 ```yaml {configFile="app"}
 source:
     operations:
@@ -382,5 +524,24 @@ source:
                 git add uppler .sha
                 git commit -m "Updating submodule to commit '$SHA'"
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    myapp:
+        type: php:{{% latest "php" %}}
+        source:
+            root: "/"
+            operations:
+                rebuild:
+                    command: |
+                        set -e
+                        git submodule update --init --recursive
+                        git submodule update --remote --checkout
+                        SHA=$(git submodule | awk -F' ' '{print $1}' | sed -s 's/+//g')
+                        echo -n "$SHA" > .sha
+                        git add uppler .sha
+                        git commit -m "Updating submodule to commit '$SHA'"
+```
+{{% /version/specific %}}
 
 Now every time you run the `rebuild` operation, it updates the Git submodules.

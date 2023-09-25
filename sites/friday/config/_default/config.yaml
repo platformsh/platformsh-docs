@@ -69,6 +69,8 @@ module:
               - "guides/*"
               - "languages/java/frameworks.md"
               - "learn/resources.md"
+              - "create-apps/upgrading.md"
+              - "create-apps/flexible-resources.md"
           lang: "en"
 
         - source: "../platform/static/images"

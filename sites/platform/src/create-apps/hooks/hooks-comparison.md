@@ -39,7 +39,14 @@ During the `build` hook, there are three writeable directories:
   and together they offer about 8GB of free space.
 
 The only constraint on what can be downloaded during a `build` hook is the disk space available for builds.
+
+{{% version/specific %}}
 This is _not_ the `disk` specified in your [app configuration](../app-reference.md#top-level-properties).
+<--->
+<!-- @todo: resources link -->
+This is _not_ the `disk` specified by your [resources configuration](#).
+{{% /version/specific %}}
+
 If you exceed this limit, you receive a `No space left on device` error.
 See how to [troubleshoot this error](../troubleshoot-disks.md#no-space-left-on-device).
 
