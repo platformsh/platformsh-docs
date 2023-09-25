@@ -113,9 +113,9 @@ To pass this verification, there are requirements you need to meet.
 title=Without a CDN
 +++
 
-{{< vendor/name >}} checks that all the routes you defined are pointing to your project.
+{{% vendor/name %}} checks that all the routes you defined are pointing to your project.
 For the challenge to complete,
-domains and subdomains must point directly to your {{< vendor/name >}} project.
+domains and subdomains must point directly to your {{% vendor/name %}} project.
 
 Otherwise, you get an error similar to:
 
@@ -199,7 +199,7 @@ On the command line type `{{% vendor/cli %}} logs app` and `{{% vendor/cli %}} l
 
 ## Use ASCII for the domain
 
-{{< vendor/name >}} expects an ASCII representation of your domain.
+{{% vendor/name %}} expects an ASCII representation of your domain.
 To use an internationalized domain name (IDN), convert it to ASCII.
 Use a tool such as the [conversion tool provided by Verisign](https://www.verisign.com/en_US/channel-resources/domain-registry-products/idn/idn-conversion-tool/index.xhtml).
 

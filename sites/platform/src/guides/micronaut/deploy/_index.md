@@ -1,10 +1,10 @@
 ---
-title: Deploy Micronaut on {{< vendor/name >}}
+title: Deploy Micronaut on {{% vendor/name %}}
 sidebarTitle: Get started
 weight: -110
 layout: single
 description: |
-    Create a {{< vendor/name >}} account, download a few tools, and prepare to deploy Micronaut.
+    Create a {{% vendor/name %}} account, download a few tools, and prepare to deploy Micronaut.
 ---
 
 [Micronaut](https://micronaut.io/) is an open-source, JVM-based framework for building full-stack, modular, testable microservice and serverless applications.

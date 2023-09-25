@@ -25,7 +25,7 @@ Variables on the project Example (abcdef123456), environment main:
 
 Project and environment variables with the [prefix](./_index.md#top-level-environment-variables) `env:`
 are available as Unix environment variables in all caps.
-Access these variables and {{< vendor/name >}}-provided variables directly like this:
+Access these variables and {{% vendor/name %}}-provided variables directly like this:
 
 ```bash
 echo $FOO
@@ -330,7 +330,7 @@ console.log(stuffColors);
 
 ## Use provided variables
 
-{{< vendor/name >}} also provides a series of variables to inform your app about its runtime configuration.
+{{% vendor/name %}} also provides a series of variables to inform your app about its runtime configuration.
 They're mostly prefixed with `PLATFORM_` to differentiate them from user-provided values.
 You can't set or update them directly.
 
@@ -349,8 +349,8 @@ and at runtime.
 | `{{< vendor/prefix >}}_BRANCH`           | No    | Yes     | The name of the Git branch. |
 | `{{< vendor/prefix >}}_CACHE_DIR`        | Yes   | No      | The directory where files are cached from one build to the next. The directory is shared among all branches, so the same cache is used for all environments. |
 | `{{< vendor/prefix >}}_DOCUMENT_ROOT`    | No    | Yes     | The absolute path to the web document root, if applicable. |
-| `{{< vendor/prefix >}}_ENVIRONMENT`      | No    | Yes     | The name of the {{< vendor/name >}} environment. |
-| `{{< vendor/prefix >}}_ENVIRONMENT_TYPE` | No    | Yes     | The environment type of the {{< vendor/name >}} environment (`development`, `staging`, or `production`). |
+| `{{< vendor/prefix >}}_ENVIRONMENT`      | No    | Yes     | The name of the {{% vendor/name %}} environment. |
+| `{{< vendor/prefix >}}_ENVIRONMENT_TYPE` | No    | Yes     | The environment type of the {{% vendor/name %}} environment (`development`, `staging`, or `production`). |
 | `{{< vendor/prefix >}}_OUTPUT_DIR`       | Yes   | No      | The output directory for compiled languages at build time. Equivalent to `PLATFORM_APP_DIR` in most cases. |
 | `{{< vendor/prefix >}}_PROJECT`          | Yes   | Yes     | The project ID. |
 | `{{< vendor/prefix >}}_PROJECT_ENTROPY`  | Yes   | Yes     | A random, 56-character value created at project creation and then stable throughout the project's life. Can be used for Drupal hash salts, Symfony secrets, and other similar values. |
@@ -409,8 +409,13 @@ The `PLATFORM_APPLICATION` variable is available both at build time and in the r
 But the specific attributes it contains differ in each case.
 
 Each environment's build is associated with a configuration ID that identifies it uniquely so builds can be reused.
+<<<<<<< HEAD
 The ID is a product of your app code and some of its [configuration for {{< vendor/name >}}](../../create-apps/_index.md).
 Not every attribute inyour app configuration is relevant to the build.
+=======
+The ID is a product of your app code and some of its [configuration for {{% vendor/name %}}](../../create-apps/_index.md).
+Not every attribute your app configuration is relevant to the build.
+>>>>>>> origin/main
 Only those attributes that are relevant to builds are accessible at build time from `PLATFORM_APPLICATION`.
 
 Attributes that are **not** available in `PLATFORM_APPLICATION` during builds:
@@ -435,7 +440,7 @@ and don't support reading from environment variables.
 To populate these files with variables you set yourself,
 make sure the variables are set to be [visible at build time](./set-variables.md#variable-options).
 
-The files can't be populated with {{< vendor/name >}}-provided variables not available at build time (such as `PLATFORM_RELATIONSHIPS`).
+The files can't be populated with {{% vendor/name %}}-provided variables not available at build time (such as `PLATFORM_RELATIONSHIPS`).
 You also can't write to them in a `deploy` hook as the file system is read only.
 
 One workaround is to create a symbolic link to a writable location and then write to it in a [`deploy` hook](../../create-apps/hooks/hooks-comparison.md#deploy-hook).

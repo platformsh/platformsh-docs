@@ -57,7 +57,7 @@ You can see the latest minor and patch versions of OpenSearch available from the
 
 The following versions are still available in your projects,
 but they're at their end of life and are no longer receiving security updates from upstream,
-or are no longer the recommended way to configure the service on {{< vendor/name >}}.
+or are no longer the recommended way to configure the service on {{% vendor/name %}}.
 
 {{% version/specific %}}
 <!-- API Version 1 -->
@@ -266,7 +266,7 @@ There are two ways to do so.
 In your `{{< vendor/configfile "services" >}}` file, change the version *and* name of your Opensearch service.
 Be sure to also update the reference to the now changed service name in it's corresponding application's `relationship` block.
 
-When you push that to {{< vendor/name >}}, the old service is deleted and a new one with the new name is created with no data.
+When you push that to {{% vendor/name %}}, the old service is deleted and a new one with the new name is created with no data.
 You can then have your application reindex data as appropriate.
 
 This approach has the downsides of temporarily having an empty OpenSearch instance,

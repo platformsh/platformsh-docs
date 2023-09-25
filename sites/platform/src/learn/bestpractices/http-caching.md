@@ -2,16 +2,16 @@
 title: "HTTP caching"
 weight: 1
 toc: false
-description: See your options for HTTP caching with {{< vendor/name >}}. 
+description: See your options for HTTP caching with {{% vendor/name %}}. 
 ---
 
-You can configure HTTP caching for your site on {{< vendor/name >}} in several ways.
+You can configure HTTP caching for your site on {{% vendor/name %}} in several ways.
 Which one you should use depends on your specific use case.
 
 You should use only one of these at a time and disable any others.
 Mixing them together most likely results in stale cache that can't be cleared.
 
-## The {{< vendor/name >}} router cache
+## The {{% vendor/name %}} router cache
 
 Every project includes a router instance that includes [optional HTTP caching](/define-routes/cache.md).
 It's reasonably configurable and obeys HTTP cache directives, but doesn't support push-based clearing.
@@ -22,10 +22,10 @@ It's enough for most uses.
 ## A Content Delivery Network (CDN)
 
 {{% version/specific %}}
-{{< vendor/name >}} is compatible with most commercial CDNs.
+{{% vendor/name %}} is compatible with most commercial CDNs.
 If you have a Dedicated instance, it comes with the [Fastly CDN](/domains/cdn/fastly.md).
 <--->
-{{< vendor/name >}} is compatible with most commercial CDNs.
+{{% vendor/name %}} is compatible with most commercial CDNs.
 {{% /version/specific %}}
 
 CDNs generally offer the best performance as they're the only option that includes multiple geographic locations.
@@ -36,11 +36,11 @@ The methods for other CDNs are similar.
 
 ## Varnish
 
-{{< vendor/name >}} offers a [Varnish service](/add-services/varnish.md) that you can insert between the router and your app.
+{{% vendor/name %}} offers a [Varnish service](/add-services/varnish.md) that you can insert between the router and your app.
 
 It has roughly the same performance as the router cache.
 Varnish is more configurable, but it requires you to be comfortable with Varnish Configuration Language (VCL).
-{{< vendor/name >}} doesn't help with VCL configuration and a misconfiguration may be difficult to debug.
+{{% vendor/name %}} doesn't help with VCL configuration and a misconfiguration may be difficult to debug.
 
 Varnish supports [clearing cache with a push](/add-services/varnish.md#clear-cache-with-a-push),
 but access control is complicated by the inability to have [circular relationships](/add-services/varnish.md#circular-relationships).

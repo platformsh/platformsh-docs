@@ -160,7 +160,7 @@ To make the new value accessible to those environments, [trigger a redeploy](../
 
 ### Example environment variable
 
-Environment variables are a good place to store values that apply only on {{< vendor/name >}} and not on your local development environment.
+Environment variables are a good place to store values that apply only on {{% vendor/name %}} and not on your local development environment.
 This includes API credentials for third-party services, mode settings, and which server (development vs. production) to use.
 
 One example would be to define a Node.js application's build on a production branch (`NODE_ENV=production`),

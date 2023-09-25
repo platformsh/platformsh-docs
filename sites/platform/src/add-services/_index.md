@@ -7,7 +7,7 @@ keywords:
   - "services.yaml"
 ---
 
-{{< vendor/name >}} includes many services, so you don't have to subscribe to external cache or search engine services.
+{{% vendor/name %}} includes many services, so you don't have to subscribe to external cache or search engine services.
 Because the services are included in your project, you can manage them through Git
 and they're backed up together with the rest of your project.
 
@@ -99,7 +99,7 @@ The following table presents the keys you can define for each service:
 
 Resources are distributed across all containers in a project from the total available from your [plan size](../administration/pricing/_index.md).
 
-By default, {{< vendor/name >}} allocates CPU and memory resources to each container automatically.
+By default, {{% vendor/name %}} allocates CPU and memory resources to each container automatically.
 Some services are optimized for high CPU load, some for high memory load.
 If your plan is sufficiently large for bigger containers, you can increase the size of your service container.
 
@@ -193,7 +193,7 @@ title=In an app
 +++
 
 Once a service is running and exposed as a relationship,
-its credentials (such as the host, username, and password) are available through the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable.
+its credentials (such as the host, username, and password) are available through the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable.
 The available information is documented on each service's page along with sample code for how to connect to it from your app.
 
 The keys in the `{{< vendor/prefix >}}_RELATIONSHIPS` variable are fixed, but the values may change on deployment or restart.

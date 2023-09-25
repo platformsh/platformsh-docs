@@ -4,17 +4,32 @@ title: "External Integrations"
 weight: -10
 layout: single
 description: |
-  {{< vendor/name >}} can be integrated with external services.
+  {{% vendor/name %}} can be integrated with external services.
 ---
 
 {{% description %}}
 
-{{< vendor/name >}} supports native integrations with multiple services, first and foremost Git hosting services such as GitHub, GitLab, or Bitbucket.
-You can continue to use those tools for your development workflow, and have {{< vendor/name >}} environments created automatically for your pull requests and branches.
+{{% vendor/name %}} supports native integrations with multiple services, first and foremost Git hosting services such as GitHub, GitLab, or Bitbucket.
+You can continue to use those tools for your development workflow, and have {{% vendor/name %}} environments created automatically for your pull requests and branches.
 
-You can also add native integrations with performance monitoring tools. {{< vendor/name >}} recommends [Blackfire](../increase-observability/integrate-observability//blackfire.md), which is part of the standard {{< vendor/name >}} Observability Suite.
-Be aware that only a project administrator (someone with `admin` level access to the project) can add or remove integrations.
+{{% version/specific %}}
+<!-- Platform.sh -->
+You can also add native integrations with performance monitoring tools.
+{{% vendor/name %}} recommends [Blackfire](../increase-observability/integrate-observability//blackfire.md),
+which is part of the standard {{% vendor/name %}} Observability Suite.
+Note that only a project administrator (someone with `admin` level access to the project) can add or remove integrations.
+
 See [User administration](/administration/users.md) for more details.
+
+<--->
+<!-- Upsun -->
+You can also add native integrations with performance monitoring tools. 
+[Blackfire](../increase-observability/integrate-observability//blackfire.md), the official Upsun observability service,
+is available on your {{% vendor/name %}} project by default through an [automated integration](../increase-observability/integrate-observability/blackfire.md#automated-integration).
+
+Note that only a project administrator (someone with `admin` level access to the project) can add or remove integrations with other tools.
+See [User administration](/administration/users.md) for more details.
+{{% /version/specific %}}
 
 ## List active integrations
 
@@ -59,7 +74,7 @@ To do so, follow these steps:
 
 ## Debug integrations
 
-When integrations run, they trigger "activities."  Activities are actions that happen on {{< vendor/name >}}, and they get logged.
+When integrations run, they trigger "activities."  Activities are actions that happen on {{% vendor/name %}}, and they get logged.
 
 Usually these are triggered nearly instantaneously on the webhook endpoint.
 These activities may be delayed due to the external services having latency.
@@ -88,7 +103,7 @@ follow these steps:
    You get output similar to the following:
 
    ```bash
-   Activities on the project {{< vendor/name >}} | Docs (6b2eocegfkwwg), integration c4opi5tjv3yfd (github):
+   Activities on the project {{% vendor/name %}} | Docs (6b2eocegfkwwg), integration c4opi5tjv3yfd (github):
    +---------------+---------------------------+-------------------------------------------------------------+----------+---------+
    | ID            | Created                   | Description                                                 | State    | Result  |
    +---------------+---------------------------+-------------------------------------------------------------+----------+---------+

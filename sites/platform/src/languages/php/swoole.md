@@ -17,7 +17,7 @@ The Swoole installation script is compatible up to PHP 8.0.
 {{< /note >}}
 
 {{% version/specific %}}
-Check the documentation related to [Laravel Octane on {{< vendor/name >}}](../../guides/laravel/deploy/octane.md).
+Check the documentation related to [Laravel Octane on {{% vendor/name %}}](../../guides/laravel/deploy/octane.md).
 <--->
 <!-- To be added once Laravel guide for Upsun is live -->
 {{% /version/specific %}}

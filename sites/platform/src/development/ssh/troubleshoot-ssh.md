@@ -28,7 +28,7 @@ git push origin main
 
 ## Check your public key
 
-Make sure your public key has been uploaded to your user account. Check it in the [{{< vendor/name >}} Console](https://console.platform.sh/).
+Make sure your public key has been uploaded to your user account. Check it in the [{{% vendor/name %}} Console](https://console.platform.sh/).
 
 ## SSH key can not be duplicated
 
@@ -60,7 +60,7 @@ Check that your key is properly added to your SSH agent. This is an authenticati
 
 ## Specify your identity file
 
-If your identity (SSH key) associated with {{< vendor/name >}} isn't in a default file name
+If your identity (SSH key) associated with {{% vendor/name %}} isn't in a default file name
 (as may be explained in your SSH software manual, for example),
 you may have to append a specification like the one below so that the SSH software finds the correct key.
 

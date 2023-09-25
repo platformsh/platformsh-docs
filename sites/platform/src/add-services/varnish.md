@@ -4,7 +4,7 @@ weight: 40
 ---
 
 Varnish is a popular HTTP proxy server, often used for caching.
-You usually don't need it with {{< vendor/name >}} as the standard router includes HTTP cache
+You usually don't need it with {{% vendor/name %}} as the standard router includes HTTP cache
 and a CDN would cover more advanced uses.
 But you can include Varnish as a service.
 
@@ -70,7 +70,7 @@ The `path` defines the file relative to the `{{< vendor/configdir >}}` directory
 To tell Varnish how to handle traffic, in the `{{< vendor/configdir >}}` directory
 add a [Varnish Configuration Language (VCL) template](https://www.varnish-software.com/developers/tutorials/example-vcl-template/).
 
-This template is supplemented by automatic additions from {{< vendor/name >}}.
+This template is supplemented by automatic additions from {{% vendor/name %}}.
 So you MUST NOT include certain features that you might elsewhere:
 
 - A `vcl_init()` function:
@@ -91,7 +91,7 @@ The logic varies based on whether you have one or more apps.
 {{< note >}}
 
 Misconfigured VCL files can result in incorrect and confusing behavior that's hard to debug.
-{{< vendor/name >}} doesn't help with VCL configuration options beyond the basic connection logic documented here.
+{{% vendor/name %}} doesn't help with VCL configuration options beyond the basic connection logic documented here.
 
 You can see any compilation errors with the [stats endpoint](#stats-endpoint).
 
@@ -194,7 +194,7 @@ import xkey;
 
 ## Circular relationships
 
-At this time, {{< vendor/name >}} doesn't support circular relationships between services and apps.
+At this time, {{% vendor/name %}} doesn't support circular relationships between services and apps.
 That means you can't add a relationship from an app fronted by Varnish to the Varnish service.
 If you do so, then one of the relationships is skipped and the connection doesn't work.
 
@@ -213,7 +213,7 @@ and add logic similar to the following to your VCL template:
 import vsthrottle;
 
 sub vcl_recv {
-  # The {{< vendor/name >}} router provides the real client IP as X-Client-IP
+  # The {{% vendor/name %}} router provides the real client IP as X-Client-IP
   # This replaces client.identity in other implementations
   if (vsthrottle.is_denied(req.http.X-Client-IP, 20, 10s, 120s)) {
     # Client has exceeded 20 requests in 10 seconds.
@@ -253,7 +253,7 @@ The following example shows how to set up purging.
    ```bash {location="config.vcl" dir="true"}
    sub vcl_recv {
        if (req.method == "PURGE") {
-           # The {{< vendor/name >}} router provides the real client IP as X-Client-IP
+           # The {{% vendor/name %}} router provides the real client IP as X-Client-IP
            # Use std.ip to convert the string to an IP for comparison
            if (!std.ip(req.http.X-Client-IP, "0.0.0.0") ~ purge) {
                # Deny all purge requests not from the allowed IPs

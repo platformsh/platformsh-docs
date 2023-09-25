@@ -2,13 +2,16 @@
 title: "Activity scripts"
 weight: -5
 description: |
-  {{< vendor/name >}} supports custom scripts that can fire in response to any activity. These scripts allow you to take arbitrary actions in response to actions in your project, such as when it deploys, when a new branch is created, etc.
+  {{% vendor/name %}} supports custom scripts that can fire in response to any activity. These scripts allow you to take arbitrary actions in response to actions in your project, such as when it deploys, when a new branch is created, etc.
 layout: single
 ---
 
 {{% description %}}
 
-Check out examples from other users on the {{< vendor/name >}}[Community site](https://community.platform.sh/c/activity-scripts/10).
+{{< version/specific >}}
+Check out examples from other users on the {{% vendor/name %}} [Community site](https://community.platform.sh/c/activity-scripts/10).
+<--->
+{{< /version/specific >}}
 
 ## Installing
 
@@ -16,7 +19,7 @@ Activity scripts are configured as integrations.
 That means they're at the *project level*, not at the level of an individual environment.
 While you can store the scripts in your Git repository for access, they have no effect there.
 
-To install a new activity script, use the [{{< vendor/name >}} CLI](/administration/cli/_index.md).
+To install a new activity script, use the [{{% vendor/name %}} CLI](/administration/cli/_index.md).
 
 ```bash
 {{% vendor/cli %}} integration:add --type script --file ./my_script.js
@@ -180,10 +183,10 @@ An example of this object is below:
   "description": "",
   "id": "kpyhl5f8nuzef",
   "owner": "...",
-  "region": "eu-3.platform.sh",
+  "region": "eu-3.{{< vendor/urlraw "host" >}}",
   "repository": {
     "client_ssh_key": "ssh-rsa ...",
-    "url": "kqyhl5f5nuzky@git.eu-3.platform.sh:kqyhl5f5nuzky.git"
+    "url": "kqyhl5f5nuzky@git.eu-3.{{< vendor/urlraw "host" >}}:kqyhl5f5nuzky.git"
   },
   "status": {
     "code": "provisioned",

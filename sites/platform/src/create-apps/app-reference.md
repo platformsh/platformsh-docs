@@ -1,7 +1,7 @@
 ---
 title: "App reference"
 weight: 4
-description: See all of the options for controlling your apps and how they're built and deployed on {{< vendor/name >}}.
+description: See all of the options for controlling your apps and how they're built and deployed on {{% vendor/name %}}.
 ---
 
 {{% description %}}
@@ -220,7 +220,7 @@ This command runs every time your app is restarted, regardless of whether or not
 Never "background" a start process using `&`.
 That's interpreted as the command terminating and the supervisor process starts a second copy,
 creating an infinite loop until the container crashes.
-Just run it as normal and allow the {{< vendor/name >}} supervisor to manage it.
+Just run it as normal and allow the {{% vendor/name %}} supervisor to manage it.
 
 {{< /note >}}
 
@@ -384,7 +384,7 @@ access:
 
 ## Variables
 
-{{< vendor/name >}} provides a number of ways to set [variables](../development/variables/_index.md).
+{{% vendor/name %}} provides a number of ways to set [variables](../development/variables/_index.md).
 Variables set in your app configuration have the lowest precedence,
 meaning they're overridden by any conflicting values provided elsewhere.
 
@@ -615,7 +615,7 @@ if other hooks fail, the app is still deployed.
 #### Automated testing
 
 It’s preferable that you set up and run automated tests in a dedicated CI/CD tool.
-Relying on {{< vendor/name >}} hooks for such tasks can prove difficult.
+Relying on {{% vendor/name %}} hooks for such tasks can prove difficult.
 
 During the `build` hook, you can halt the deployment on a test failure but the following limitations apply:
 

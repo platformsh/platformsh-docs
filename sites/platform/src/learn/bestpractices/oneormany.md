@@ -5,7 +5,7 @@ weight: 2
 description: Choose the best app topology depending on your needs.
 ---
 
-With {{< vendor/name >}}, you can run multiple application containers in a single environment.
+With {{% vendor/name %}}, you can run multiple application containers in a single environment.
 This gives you access to a large variety of setups and allows you to seamlessly upgrade your app
 from a monolith with a single application server to a more elaborate and effective topology.
 
@@ -14,7 +14,7 @@ You can set up multiple apps to achieve the following:
 - Run workers alongside your main app
 - Or even go for a full microservices architecture
 
-{{< vendor/name >}} makes implementing such setups and switching from one to the other pain-free.
+{{% vendor/name %}} makes implementing such setups and switching from one to the other pain-free.
 
 The same flexibility applies to any supported services, from relational databases to search engines and message queues.
 Depending on your specific use case, you can run a single database,
@@ -22,7 +22,7 @@ multiple databases inside a single instance, or multiple databases in multiple v
 It's up to you!
 
 Whether you embrace a mono-repo approach with a single Git repository describing your entire setup,
-or divide your project into multiple repositories, {{< vendor/name >}} allows you to build the best architecture for your needs.
+or divide your project into multiple repositories, {{% vendor/name %}} allows you to build the best architecture for your needs.
 
 But while the possibilities are endless, making the right choice between creating one big project with multiple apps
 or keeping each app in its own project can be a tough formula to crack.
@@ -32,12 +32,12 @@ So read on for guidance!
 
 If you have multiple apps sharing the same code but each of them has its own data,
 keep your apps in separate projects.
-{{< vendor/name >}} provides the automation to deploy multiple projects from the same code base,
+{{% vendor/name %}} provides the automation to deploy multiple projects from the same code base,
 which makes their maintenance effortless.
 
 {{< note >}}
 
-By design, {{< vendor/name >}} doesn't allow your app to access services in another project through HTTP.
+By design, {{% vendor/name %}} doesn't allow your app to access services in another project through HTTP.
 
 {{< /note >}}
 
@@ -59,7 +59,7 @@ Clustered applications can range from a straightforward headless architecture, w
 to micro-services with dozens of apps in multiple runtimes and frameworks forming a consistent whole.
 Meaning, removing one of the app services would break the others.
 
-{{< vendor/name >}} allows you to configure access from one service to another
+{{% vendor/name %}} allows you to configure access from one service to another
 without having to worry about service discovery or complex _ingress controllers_.
 [Configuring incoming routes](/define-routes/_index.md) is straightforward.
 You can have services that are only exposed to another service as well as services that are exposed to the internet.
@@ -82,7 +82,7 @@ which is significantly more efficient than defining multiple services.
 [Redis](/add-services/redis.md), [Memcached](/add-services/memcached.md),
 [Elasticsearch](/add-services/elasticsearch.md), and [RabbitMQ](/add-services/rabbitmq.md)
 natively support multiple bins (also called _queues_ or _indexes_) defined by the client application as part of the request.
-Therefore, they don't need additional configuration on {{< vendor/name >}}.
+Therefore, they don't need additional configuration on {{% vendor/name %}}.
 
 Clustered applications are appropriate in the following cases:
 
@@ -93,11 +93,11 @@ Clustered applications are appropriate in the following cases:
 ## A note on "multi-site" applications
 
 Some Content Management Systems or other applications support running multiple logical "sites" off of a single code base.
-This approach isn't recommended on {{< vendor/name >}}.
+This approach isn't recommended on {{% vendor/name %}}.
 
-This multi-site logic is often dependent on the domain name of the incoming request, which on {{< vendor/name >}} varies by branch.
+This multi-site logic is often dependent on the domain name of the incoming request, which on {{% vendor/name %}} varies by branch.
 Running multiple databases, as is often recommended with this approach,
-is supported on {{< vendor/name >}} but makes the setup process for each site more difficult.
+is supported on {{% vendor/name %}} but makes the setup process for each site more difficult.
 
 Leveraging the multi-site capabilities of an app are appropriate only in the following cases:
 

@@ -5,7 +5,7 @@ description: See what's happening inside your app.
 ---
 
 Once your app is up and running, you want to monitor it to make sure it stays that way.
-Take advantage of the observability of apps running on {{< vendor/name >}} to see everything that's happening.
+Take advantage of the observability of apps running on {{% vendor/name %}} to see everything that's happening.
 
 ## Check activities
 
@@ -57,7 +57,7 @@ For an interactive prompt with all available logs, run `{{% vendor/cli %}} log`.
 In addition to keeping track of events, you might want to see how your infrastructure responds to these events.
 For that, your project offers infrastructure metrics where you can see your CPU, RAM, and disk usage.
 
-These metrics are available in the {{< vendor/name >}} Console,
+These metrics are available in the {{% vendor/name %}} Console,
 which is a web interface that offers similar options for interacting with your project as the CLI.
 
 Open the Console by running this command:

@@ -1,5 +1,5 @@
 ---
-title: "How to deploy Gatsby with WordPress on {{< vendor/name >}}"
+title: "How to deploy Gatsby with WordPress on {{% vendor/name %}}"
 sidebarTitle: "WordPress"
 description: |
     WordPress's built-in content API can quickly become a content source for Gatsby with `gatsby-source-wordpress`.

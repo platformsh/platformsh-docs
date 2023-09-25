@@ -9,7 +9,7 @@ Next, add a service to your preview environment.
 
 ## Add a service
 
-{{< vendor/name >}} includes many services such as databases, cache, and search engines.
+{{% vendor/name %}} includes many services such as databases, cache, and search engines.
 These are included in your project, so you can manage them with Git and back them up with your project.
 
 Add a database service (or choose [another service](../../add-services/_index.md)) by following these steps:

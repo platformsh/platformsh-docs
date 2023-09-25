@@ -12,9 +12,9 @@ follow the instructions on this page.
 
 {{< version/specific >}}
 <!-- Version 1 -->
-If you are using a Fastly CDN provided by {{< vendor/name >}}, 
+If you are using a Fastly CDN provided by {{% vendor/name %}}, 
 for example as part of a Dedicated project,  
-see guidance about [Fastly CDNs managed by {{< vendor/name >}}](./managed-fastly.md).  
+see guidance about [Fastly CDNs managed by {{% vendor/name %}}](./managed-fastly.md).  
 <--->
 <!-- Version 2 -->
 
@@ -24,7 +24,7 @@ see guidance about [Fastly CDNs managed by {{< vendor/name >}}](./managed-fastly
 
 You need:
 
-- An up-and-running {{< vendor/name >}} project
+- An up-and-running {{% vendor/name %}} project
 - A [Fastly](https://www.fastly.com/) CDN subscription
 
 {{% disable-cache CDN="Fastly" %}}

@@ -2,10 +2,10 @@
 title: Pull code from a private Git repository
 weight: 10
 sidebarTitle: Private repositories
-description: See how to pull code from a private Git repository into your {{< vendor/name >}} build process.
+description: See how to pull code from a private Git repository into your {{% vendor/name %}} build process.
 ---
 
-To complete its build, your {{< vendor/name >}} project may need to access pieces of code stored in private Git repositories.
+To complete its build, your {{% vendor/name %}} project may need to access pieces of code stored in private Git repositories.
 Examples include themes, libraries, and modules.
 Configure these repositories to grant access to your project.
 
@@ -29,7 +29,7 @@ add the project's public SSH key to your Git repository's deploy keys.
 
 If you're only pulling code, the key doesn't need write permissions.
 
-Now your {{< vendor/name >}} project can access your private repository via SSH, including to add dependencies.
+Now your {{% vendor/name %}} project can access your private repository via SSH, including to add dependencies.
 
 This means you can access the private repository through links like:
 <code>git@{{% variable "GIT_PROVIDER" %}}:{{% variable "PATH_OR_USERNAME" %}}/{{% variable "REPOSITORY" %}}.git</code>.
