@@ -35,9 +35,6 @@ And I don't know if we don't need to use only the {{% vendor/name %}} Git repo a
 - Your project source code will be **hosted on a {{% vendor/name %}} Git repository**
 - Your project source code will be **hosted on your own GitHub repository**
 
-[//]: # (- Your project source code will be **hosted on your own Gitlab repository**)
-[//]: # (- Your project source code will be **hosted on your own Bitbucket repository**)
-
 {{< codetabs >}}
 +++
 title={{% vendor/name %}} repository
@@ -54,41 +51,15 @@ Enabling you, as a developer, to use a normal Git workflow (`git add . && git co
 {{< note >}}
 Please make sure you that you have already completed the following steps before adding [Github integration](integrations/source/github.md):
 
-1. Create a Git repository in your own organization following the relevant [Github repository creation guide](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository):
-2. Add a [Github integration](integrations/source/github.md)
-3. Add a Git remote to your local project, from the root of your Express directory, by inputting the following:
-    ```
-    $ git remote add origin <urlOfYourOwnGitHubRepo>
-    $ git add . && git commit -m "init express"
-    $ git push origin
-    ```
+   1. Create a Git repository in your own organization following the relevant [Github repository creation guide](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository).
+   2. Create a [Github integration](integrations/source/github.md).
+   3. Add a Git remote to your local project, from the root of your Express directory, by inputting the following:
+       ```
+       $ git remote add origin <urlOfYourOwnGitHubRepo>
+       $ git add . && git commit -m "init express"
+       $ git push origin
+       ```
 {{< /note >}}
-
-[//]: # (<--->)
-
-[//]: # (+++)
-
-[//]: # (title=Gitlab repository)
-
-[//]: # (+++)
-
-[//]: # ([//]: # &#40;TODO this will not be part of the MVP, cf. https://platformsh.slack.com/archives/C05DSRYLK2P/p1691062519908969&#41;)
-[//]: # (*Pros*: For the rest of this tutorial, you will use the normal Git Flow to push your source code to your Git repository and Github Integration hook will automatically deploy your corresponding Upsun environment with latest code updates.)
-
-[//]: # (*Cons*: ??)
-
-[//]: # (<--->)
-
-[//]: # (+++)
-
-[//]: # (title=Bitbucket repository)
-
-[//]: # (+++)
-
-[//]: # ([//]: # &#40;TODO this will not be part of the MVP, cf. https://platformsh.slack.com/archives/C05DSRYLK2P/p1691062519908969&#41;)
-[//]: # (*Pros*: For the rest of this tutorial, you will use the normal Git Flow to push your source code to your Git repository and Github Integration hook will automatically deploy your corresponding Upsun environment with latest code updates.)
-
-[//]: # (*Cons*: ??)
 
 {{< /codetabs >}}
 
@@ -105,51 +76,13 @@ At the end of either using the {{% vendor/name %}} CLI or the Console section, p
 +++
 title=using the CLI
 +++
-To create a new project with the Upsun CLI, use the following command:
+To create a new project with the Upsun CLI, use the following command and follow the prompt:
 ```shell
-$ upsun project:create --plan flexible
-Selected organization: ACME Inc. on Upsun (acme-inc-on-upsun) (by default)
-Creating a project under the organization ACME Inc. on Upsun (acme-inc-on-upsun)
-
-* Project title (--title)
-Default: Untitled Project
-> My First Upsun Project
-
-* Region (--region)
-The region where the project will be hosted
-  [org.recreation.plat.farm] org.recreation.plat.farm
-> org.recreation.plat.farm
-
-Default branch (--default-branch)
-The default Git branch name for the project (the production environment)
-Default: main
->
-
-The estimated monthly cost of this project is: 26,45 €
-
-Are you sure you want to continue? [Y/n] y
-Your Upsun project has been requested (subscription ID: 12345678)
-
-The Upsun Bot is activating your project
-
-      ▄     ▄
-      ▄█▄▄▄█▄
-    ▄██▄███▄██▄
-    █ █▀▀▀▀▀█ █
-       ▀▀ ▀▀
-
-The project is now ready!
-xy52zopcxxd7u
-
-  Region: org.recreation.plat.farm
-  Project ID: xy52zopcxxd5rf
-  Project title: My First Upsun Project
-  URL: https://console.upsun.com/01h14dh7t32qd3nn1mcrd3x82e/xy52zopcxxd5rf
-  Git URL: xy52zopcxxd5rf@git.org.recreation.plat.farm:xy52zopcxxd7u.git
+$ upsun project:create
 ```
 
 {{< note >}}
-When creating a new project using the {{% vendor/name %}} CLI, your local source code will automatically be linked to your newly created {{% vendor/name %}} project.
+When creating a new project using the {{% vendor/name %}} CLI, your local source code will be automatically linked to your newly created {{% vendor/name %}} project.
 {{< /note >}}
 
 <--->
@@ -201,42 +134,22 @@ These Yaml configuration files are located into a .{{% vendor/cli %}}/ folder at
 An additional `.environment` file is located at the root of your source code, this file will override `.env` environment variables with {{% vendor/name %}} specific ones.
 {{< /note >}}
 
-To pre-generate these Yaml files, please use the following command from the root of your Express project:
+To pre-generate these Yaml files, please use the following command from the root of your Express project and follow the prompt:
 ```shell
-$ upsun ify
+$ {{% vendor/cli %}} ify
+$ git init
 $ git add . && git commit -m "Upsun config.yaml file"
-$ git push
 ```
 
-Command {{% vendor/cli %}}ify will automatically detect that you’re using an Express stack and generate the corresponding `config.yaml` Yaml files, like so:
+Command `{{% vendor/cli %}} ify` will automatically detect that you’re using an Express stack and generate the corresponding `config.yaml` Yaml files, like so:
 ```yaml
 # .upsun/config.yaml
 applications:
-  # Complete list of all available properties: {{% vendor/url_doc %}}/create-apps/app-reference.html
-  # A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated
-  # with the app.
   app:
-    # The runtime the application uses.
-    # Complete list of available runtimes: {{% vendor/url_doc %}}/create-apps/app-reference.html#types
-    type: nodejs:18
-    # The relationships of the application with services or other applications.
-    # The left-hand side is the name of the relationship as it will be exposed
-    # to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
-    # side is in the form `<service name>:<endpoint name>`.
-    # More information: {{% vendor/url_doc %}}/create-apps/app-reference.html#relationships
-    relationships:
-      database: "db:mysql"
-    # The size of the persistent disk of the application (in MB). Minimum value is 128.
-    # disk: 512
-    # The web key configures the web server running in front of your app.
-    # More information: {{% vendor/url_doc %}}/create-apps/app-reference.html#web
-    web:
-      # Commands are run once after deployment to start the application process.
-      # More information: {{% vendor/url_doc %}}/create-apps/app-reference.html#web-commands
-      commands:
-        # The command to launch your app. If it terminates, it's restarted immediately.
-        start: "node index.js"
-
+    # ...
+services:
+#  db:
+#    type: postgresql:14
 routes:
   "https://{default}/":
     type: upstream
@@ -269,7 +182,6 @@ If you host your Express source code on an {{% vendor/name %}} Git repository, y
 To do so, use the {{% vendor/name %}} CLI to set remote project:
 ```shell
 $ upsun project:set-remote <projectId>
-$ upsun deploy
 ```
 
 This command will add a new remote called `{{% vendor/cli %}}` to your local Git repo as you can see below:
@@ -320,7 +232,7 @@ title=Using {{% vendor/name %}} Git repository
 When using the {{% vendor/name %}} Git repository as your main repository, you can push your code using the normal Git flow to push your source code changes to your `{{% vendor/cli %}}` remote repository, or by using {{% vendor/name %}} CLI command as seen below:
 ```shell
 $ git add . && git commit -m "my new change"
-$ git push friday || upsun deploy
+$ {{% vendor/cli %}} deploy
 ```
 
 <--->
@@ -331,7 +243,7 @@ title=Using third-party Git repository
 When using an external Git repository (Github, Gitlab, or Bitbucket) to store your source code and having the Git integration feature enabled, on each code updates, you will need to use the normal Git flow to push your code to your external repository using well known Git command seen below:
 ```shell
 $ git add . && git commit -m "my new change"
-$ git push
+$ git push {{% vendor/cli %}}
 ```
 
 Your Github/Gitlab/Bibucket integration process will then automatically create a new environment if you’re pushing a new Git branch and deploy changes to your corresponding environment.
@@ -343,7 +255,7 @@ Your Github/Gitlab/Bibucket integration process will then automatically create a
 
 First deployment should fail if you don't allocate resources to your application.
 
-To allocate resources to your application, please see [Resources Allocation doc page](/learn/resources)
+To allocate resources to your application, please see [Resources Allocation doc page](#TODO)
 
 {{< /note >}}
 
