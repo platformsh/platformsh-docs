@@ -38,6 +38,38 @@ description: "{{% vendor/name %}} supports building and deploying applications w
 
 {{% language-specification type="golang" display_name="Go" %}}
 
+{{% version/specific %}}
+
+```yaml {configFile="app"}
+type: 'golang:<VERSION_NUMBER>'
+```
+
+For example:
+
+```yaml {configFile="app"}
+type: 'golang:{{% latest "golang" %}}'
+```
+
+<--->
+
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    <APP_NAME>:
+        type: 'golang:<VERSION_NUMBER>'
+```
+
+For example:
+
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'golang:{{% latest "golang" %}}'
+```
+
+{{% /version/specific %}}
+
 {{% deprecated-versions %}}
 
 {{< image-versions image="golang" status="deprecated" >}}
@@ -52,7 +84,9 @@ Assuming your `go.mod` and `go.sum` files are present in your repository, your a
 
 The following basic `{{< vendor/configfile "app" >}}` file is sufficient to run most Go applications.
 
-```yaml
+{{% version/specific %}}
+
+```yaml {configFile="app"}
 name: app
 
 type: golang:1.14
@@ -80,6 +114,38 @@ web:
 disk: 1024
 ```
 
+<--->
+
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'golang:{{% latest "golang" %}}'
+
+        hooks:
+            build: |
+                # Modify this line if you want to build differently or 
+                # use an alternate name for your executable.
+                go build -o bin/app
+
+        web:
+            upstream:
+                socket_family: tcp
+                protocol: http
+
+            commands:
+                # If you change the build output in the build hook above, update this line as well.
+                start: ./bin/app
+
+            locations:
+                /:
+                    # Route all requests to the Go app, unconditionally.
+                    allow: false
+                    passthru: true
+```
+
+{{% /version/specific %}}
+
 Note that there is still an Nginx proxy server sitting in front of your application.
 If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily)
 or you may route all requests to the Go application unconditionally, as in the example above.
@@ -88,7 +154,7 @@ or you may route all requests to the Go application unconditionally, as in the e
 
 To access various [services](../add-services/_index.md) with Go, see the following examples. The individual service pages have more information on configuring each service.
 
-{{< codetabs >}}
+{{< codetabs v2hide="true" >}}
 
 +++
 title=Memcached
@@ -144,6 +210,10 @@ markdownify=false
 
 {{< /codetabs >}}
 
+{{% access-services version="2" %}}
+
+{{% version/only "1" %}}
+
 {{% guides/config-reader-info lang="go" %}}
 
 You can also use the library to read other environment variables.
@@ -173,8 +243,10 @@ func main() {
 }
 ```
 
-{{% config-reader %}}[Go configuration reader library](https://github.com/platformsh/config-reader-go/){{% /config-reader %}}
+{{% config-reader %}} [Go configuration reader library](https://github.com/platformsh/config-reader-go/){{% /config-reader %}}
 
 ## Project templates
 
-{{< repolist lang="golang" displayName="Go" >}}
+{{% /version/only %}}
+
+{{% repolist lang="golang" displayName="Go" %}}
