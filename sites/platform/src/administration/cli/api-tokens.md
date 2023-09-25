@@ -63,7 +63,6 @@ title=In the Console
 4. Go to the **API tokens** tab and click **Create API token**.
 5. Enter a name for your API token and click **Create API token**.
 6. To copy the API token to your clipboard, click **{{< icon copy >}} Copy**.
-   ![Copying the API token after it's created](/images/management-console/copy-api-token.png "0.6")
    Note that after you close the **API tokens** tab, you can't display the API token again.
 7. Store the API token somewhere secure on your computer.
 
@@ -101,6 +100,7 @@ use the `--no-wait` flag.
 
 ### Authenticate in a CI system
 
+<!-- @todo: CLI_TOKEN variable for Upsun -->
 You can allow your CI system to run automated tasks using the {{% vendor/name %}} CLI.
 To do so, create an environment variable named `PLATFORMSH_CLI_TOKEN` with your API token as its value. 
 For more information, see your CI system's official documentation.
@@ -127,9 +127,18 @@ title=Using the CLI
 +++
 
 Run the following command:
-
+<!-- @todo: CLI_TOKEN variable for Upsun -->
 ```bash
-{{% vendor/cli %}} variable:create -e {{< variable "ENVIRONMENT_NAME" >}} --level environment --prefix 'env' --name PLATFORMSH_CLI_TOKEN --sensitive true --value '{{< variable "API_TOKEN" >}}' --inheritable false --visible-build true --no-interaction
+{{% vendor/cli %}} variable:create \
+   -e {{< variable "ENVIRONMENT_NAME" >}} \
+   --level environment \
+   --prefix 'env' \
+   --name PLATFORMSH_CLI_TOKEN \
+   --sensitive true \
+   --value '{{< variable "API_TOKEN" >}}' \
+   --inheritable false \
+   --visible-build true \
+   --no-interaction
 ```
 
 <--->
@@ -150,6 +159,7 @@ title=In the Console
 
 Then add a build hook to your app configuration to install the CLI as part of the build process.
 
+<!-- @todo: CLI installation path for CI -->
 ```yaml {configFile="app"}
 hooks:
     build: |

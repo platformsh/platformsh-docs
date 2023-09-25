@@ -8,7 +8,7 @@ description: |
 
 {{% description %}}
 
-![Overview of projects in the Console](/images/management-console/all-projects.png "0.5")
+![Overview of projects in the Console](/images/management-console/all-projects-revised.png "0.5")
 
 This Console offers you ways to manage projects and environments other than the [command line interface (CLI))](../cli/_index.md).
 
