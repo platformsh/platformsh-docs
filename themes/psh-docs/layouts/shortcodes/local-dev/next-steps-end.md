@@ -1,7 +1,7 @@
 1.  To commit and push the revisions, run the following command:
 
     ```bash
-    git add . && git commit -m "Add local configuration" && git push platform local-config
+    git add . && git commit -m "Add local configuration" && git push {{ `{{< vendor/cli >}}` | .Page.RenderString }} local-config
     ```
 
 1.  Merge the change into production.

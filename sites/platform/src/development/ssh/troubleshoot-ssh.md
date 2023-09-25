@@ -66,10 +66,10 @@ you may have to append a specification like the one below so that the SSH softwa
 
 ```bash
 Host platform.sh
-IdentityFile ~/.ssh/id_platformsh
+IdentityFile ~/.ssh/id_{{% vendor/alt-name %}}
 ```
 
-Be aware that, above, `platform.sh` stands for a hostname.
+Be aware that, above, `{{% vendor/alt-name %}}` stands for a hostname.
 Each different hostname you connect to {{< vendor/name >}} at may have to be specified in the host line, separated by spaces.
 
 ## Check your git integrations
@@ -83,15 +83,15 @@ If your organization has [multifactor authentication set up](./_index.md#multifa
 you may get an error like the following when trying to log into your environment with SSH keys:
 
 ```bash
-Hello <NAME> (UUID: <USER_ID>), you successfully authenticated, but could not connect to service <ENVIRONMENT_ID>--app
+Hello {{< variable "NAME" >}} (UUID: {{< variable "USER_ID" >}}), you successfully authenticated, but could not connect to service {{< variable "USER_ID" >}} --app
 (reason: access requires MFA)
-<ENVIRONMENT_ID>@ssh.<REGION>.platform.sh: Permission denied (publickey)
+{{< variable "ENVIRONMENT_ID" >}}@ssh.{{< variable "REGION" >}}.{{< vendor/urlraw "host" >}}: Permission denied (publickey)
 ```
 
 If you are using just `ssh` and not `{{% vendor/cli %}} ssh`, you may see only the second half of the error:
 
 ```bash
-<ENVIRONMENT_ID>@ssh.<REGION>.platform.sh: Permission denied (publickey)
+{{< variable "ENVIRONMENT_ID" >}}@ssh.{{< variable "REGION" >}}.{{< vendor/urlraw "host" >}}: Permission denied (publickey)
 ```
 
 To resolve this:
@@ -134,7 +134,7 @@ You get output similar to the following:
 
 ```bash
 OpenSSH_6.7.8, OpenSSL 1.2.3 1 Sep 2014
-debug1: Connecting to ssh.eu.platform.sh [54.32.10.98] port 22.
+debug1: Connecting to ssh.eu.{{< vendor/urlraw "host" >}} [54.32.10.98] port 22.
 debug1: Connection established.
 debug1: identity file /Users/your_username/.ssh/id_rsa type 1
 ...(many more lines of this light reading)...

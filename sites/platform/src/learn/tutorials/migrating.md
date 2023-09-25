@@ -14,7 +14,14 @@ You need:
 
 - An app that works and is ready to be built
 - Code in Git
+{{% version/specific %}}
+<!-- Platform.sh -->
 - A {{< vendor/name >}} account -- if you don't already have one, [start a trial](https://auth.api.platform.sh/register?trial_type=general)
+
+<--->
+<!-- Upsun -->
+- A {{< vendor/name >}} account -- if you don't already have one, [register](https://upsun.com/register/).
+{{% /version/specific %}}
 - Optional: the [{{< vendor/name >}} CLI](/administration/cli/_index.md)
 
 ## 1. Export from previous system
@@ -61,8 +68,11 @@ You likely want to configure three areas:
 - [Services](/add-services/_index.md)
 - [Routes](/define-routes/_index.md)
 
+{{% version/only "1" %}}
+<!-- Platform.sh -->
 You can also take guidance from the [project templates](/development/templates.md),
 which are starting points for various technology stacks with working configuration examples.
+{{% /version/only %}}
 
 When you've added your configuration, make sure to commit it to Git.
 

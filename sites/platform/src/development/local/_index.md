@@ -17,21 +17,32 @@ the various dependencies, certificates, and connections your app needs to run.
 
 The **recommended tool** for local development with {{< vendor/name >}} is **[DDEV](./ddev.md)**.
 The integration with DDEV is maintained by {{< vendor/name >}} to ensure it works smoothly.
-Other Docker-based tools are also supported, such as [Docksal](./docksal.md) and [Lando](./lando.md).
 
+{{% version/specific %}}
+<!-- Platform.sh -->
+Other Docker-based tools are also supported, such as [Docksal](./docksal.md) and [Lando](./lando.md).
 If you choose to use a Docker-based tool, follow the steps on its page.
 
+<--->
+<!-- Upsun -->
+If you choose to use DDEV, follow the steps [on its page](./ddev.md).
+{{% /version/specific %}}
 Otherwise, follow these steps to run your app on your computer.
 
 ## Before you begin
 
 You need to have:
-
+{{% version/specific %}}
+<!-- Platform.sh -->
 - A {{< vendor/name >}} account:
   new users can sign up for a [free trial account](https://auth.api.platform.sh/register)
-- A working project,
-  either started from a [template](../../development/templates.md) 
-  or with your own code pushed to {{< vendor/name >}}
+
+<--->
+<!-- Upsun -->
+- A {{< vendor/name >}} account:
+  new users can [register here](https://upsun.com/register/)
+{{% /version/specific %}}
+- A working project
 - [Git](https://git-scm.com/downloads)
 - The [{{< vendor/name >}} CLI](../../administration/cli/_index.md)
 

@@ -55,6 +55,8 @@ Variables available during builds can be accessed in `build` hooks and those ava
 
 ## Access variables in your app
 
+{{% version/specific %}}
+<!-- Platform.sh -->
 To access environment variables in your app, you can use the {{< vendor/name >}} Config Reader for the given language:
 
 * [PHP](https://github.com/platformsh/config-reader-php)
@@ -65,13 +67,17 @@ To access environment variables in your app, you can use the {{< vendor/name >}}
 * [Ruby](https://github.com/platformsh/platformsh-ruby-helper)
 * [Elixir](https://github.com/platformsh/config-reader-elixir)
 
-Alternative, use a built-in method for the given language.
-  
+Alternatively, use a built-in method for the given language.
+<--->
+<!-- Upsun -->
+To access environment variables in your app, use a built-in method for the given language.
+
 * PHP: The [`getenv()` function](https://www.php.net/manual/en/function.getenv.php)
 * Python: The [`os.environ` object](https://docs.python.org/3/library/os.html#os.environ)
 * Node.js: The [`process.env` object](https://nodejs.org/api/process.html#process_process_env)
 * Ruby: The [`ENV` accessor](https://ruby-doc.org/current/ENV.html)
 * Java: The [`System.getenv()` method](https://docs.oracle.com/javase/8/docs/api/java/lang/System.html#getenv-java.lang.String-)
+{{% /version/specific %}}
 
 {{< codetabs >}}
 
@@ -190,7 +196,7 @@ variables:
             "milk": "1 liter"
             "cookies": "1 kg"
     stuff:
-        STEPS: ['un', 'deux', 'trois']
+        STEPS: ['one', 'two', 'three']
         COLORS:
             red: '#FF0000'
             green: '#00FF00'
@@ -214,9 +220,9 @@ echo $QUANTITIES
 {"cookies": "1 kg", "milk": "1 liter"}
 echo "$PLATFORM_VARIABLES" | base64 --decode | jq '."stuff:STEPS"'
 [
-  "un",
-  "deux",
-  "trois"
+  "one",
+  "two",
+  "three"
 ]
 echo "$PLATFORM_VARIABLES" | base64 --decode | jq '."stuff:COLORS"'
 {
@@ -248,11 +254,11 @@ print_r($variables['stuff:STEPS']);
 /*
 array(3) {
   [0]=>
-  string(2) "un"
+  string(2) "one"
   [1]=>
-  string(4) "deux"
+  string(4) "two"
   [2]=>
-  string(5) "trois"
+  string(5) "three"
 }
 */
 
@@ -291,7 +297,7 @@ print os.getenv('QUANTITIES')
 variables = json.loads(base64.b64decode(os.getenv('PLATFORM_VARIABLES')).decode('utf-8'))
 
 print variables['stuff:STEPS']
-# [u'un', u'deux', u'trois']
+# [u'one', u'two', u'three']
 print variables['stuff:COLORS']
 # {u'blue': u'#0000FF', u'green': u'#00FF00', u'red': u'#FF0000'}
 ```
@@ -315,7 +321,7 @@ console.log(INGREDIENTS);
 console.log(QUANTITIES);
 // {"cookies": "1 kg", "milk": "1 liter"}
 console.log(stuffSteps);
-// [ 'un', 'deux', 'trois' ]
+// [ 'one', 'two', 'three' ]
 console.log(stuffColors);
 // { blue: '#0000FF', green: '#00FF00', red: '#FF0000' }
 ```
@@ -404,21 +410,18 @@ But the specific attributes it contains differ in each case.
 
 Each environment's build is associated with a configuration ID that identifies it uniquely so builds can be reused.
 The ID is a product of your app code and some of its [configuration for {{< vendor/name >}}](../../create-apps/_index.md).
-Not every attribute your app configuration is relevant to the build.
+Not every attribute inyour app configuration is relevant to the build.
 Only those attributes that are relevant to builds are accessible at build time from `PLATFORM_APPLICATION`.
 
 Attributes that are **not** available in `PLATFORM_APPLICATION` during builds:
 
-* Everything under `resources`
-* `size`
-* `disk`
-* Everything under `access`
-* Everything under `relationship`
-* Everything under `firewall`
-* `hooks.deploy` and `hooks.post_deploy`
-* Everything under `crons`
-* Everything under  `web`, except `web.mounts`
-* Everything under `workers`, except `workers.mounts`
+- Everything under `access`
+- Everything under `relationship`
+- Everything under `firewall`
+- `hooks.deploy` and `hooks.post_deploy`
+- Everything under `crons`
+- Everything under  `web`, except `web.mounts`
+- Everything under `workers`, except `workers.mounts`
 
 These attributes aren't visible during build because they aren't included as a part of the configuration component of the build slug.
 So modifying these values in your [app configuration](../../create-apps/_index.md) doesn't trigger an app rebuild, only a redeploy.

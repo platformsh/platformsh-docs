@@ -3,6 +3,7 @@ title: Variables overview
 weight: 5
 description: |
   Variables give you control over your project's build process and runtime environment. You can set them in your code to make changes across your project or independent of the code for environment-specific settings.
+layout: single
 keywords:
   - environment variables
 ---
@@ -190,6 +191,7 @@ For specific frameworks, you can implement logic to override global configuratio
 So you can use the same codebase and settings for all your environments,
 but still adapt the behavior to each environment.
 
+{{% version/only "1" %}}
 #### Implementation example
 
 The [Drupal 9 template](https://github.com/platformsh-templates/drupal9/) shows an example of
@@ -217,3 +219,4 @@ You need to name your {{< vendor/name >}} variables to match the ones used in yo
 Make sure that the {{< vendor/name >}} variables start with a string present in your `switch` statement.
 
 You can apply similar logic for [other frameworks and languages](../../development/variables/use-variables.md#access-variables-in-your-app).
+{{% /version/only %}}
