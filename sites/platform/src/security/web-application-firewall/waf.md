@@ -33,10 +33,11 @@ to determine where one request ends and the next one begins.
 The [HTTP protocol](https://tools.ietf.org/html/rfc2616) provides two different headers
 to specify where an HTTP request ends: `Content-Length` and `Transfer-Encoding`.
 
-When the frontend and backend servers don’t agree on which header
-they should interpret as the end of a request, attackers can smuggle requests.
-If a malicious request is mistakenly parsed along with a legitimate request,
-the attacker can bypass the app’s security methods and access sensitive information.
+When the frontend and backend servers don’t agree on which header they should interpret as the end of a request,
+attackers can smuggle requests. If a malicious request is injected, the backend server may misinterpret the boundaries
+of the individual requests within the concatenated request, thereby processing a request differently from what was
+intended. This can lead to various security risks such as data leakage, privilege escalation, and even remote code
+execution.
 
 The WAF detects and blocks requests that contain [both the `Content-Length` and `Transfer-Encoding` headers](#content-length-and-transfer-encoding-headers-together).
 It also detects and blocks requests that include **both** of the following features of an attempt to inject a malicious request:
