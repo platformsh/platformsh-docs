@@ -126,45 +126,22 @@ To do so, follow these steps:
 1. Define a source operation.</br>
    Add the following configuration to your `{{< vendor/configfile "apps" >}}` (or `{{< vendor/configfile "app" >}}`) file:
 
-   {{% version/specific %}}
-   <!-- Platform.sh -->
-
-   ```yaml {configFile="app"}
-   app:
-     ...
-     source:
-       operations:
-         rebuild:
-           command: |
-             set -e
-             git submodule update --init --recursive
-             git submodule update --remote --checkout
-             git add admin api gatsby mercure
-             if ! git diff-index --quiet HEAD; then
-               git commit -m "Updating submodules admin, api, gatsby and mercure"
-             fi
-   ```
-  
-   <--->
-   <!-- Upsun -->
-   ```yaml {configFile="app"}
-   applications:
-       {{< variable "APP_NAME" >}}:
-       ...
-       source:
-           operations:
-                rebuild:
-                    command: |
-                        set -e
-                        git submodule update --init --recursive
-                        git submodule update --remote --checkout
-                        git add admin api gatsby mercure
-                        if ! git diff-index --quiet HEAD; then
-                            git commit -m "Updating submodules admin, api, gatsby and mercure"
-                        fi
-   ```
-   {{% /version/specific %}}
-
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="false" >}}
+source:
+    operations:
+        rebuild:
+            command: |
+                set -e
+                git submodule update --init --recursive
+                git submodule update --remote --checkout
+                git add admin api gatsby mercure
+                if ! git diff-index --quiet HEAD; then
+                    git commit -m "Updating submodules admin, api, gatsby and mercure"
+                fi
+{{< /snippet >}}
+```
+   
    For multiple app projects, make sure you define your source operation
    in the configuration of an app whose source code **is not** in a submodule.
 
@@ -172,67 +149,33 @@ To do so, follow these steps:
    Don't define routes so your app isn't exposed to the web.
    To define a source operation, add the following configuration to your [app configuration](/create-apps/app-reference):
 
-   {{% version/specific %}}
-   <!-- Platform.sh -->
-   ```yaml  {configFile="apps"}
-   update-submodule:
-     # The type of the application to build.
-     type: "nodejs:18"
+```yaml {configFile="app"}
+{{< snippet name="update-submodule" config="app" root="false" >}}
+# The type of the application to build.
+type: 'nodejs:{{% latest "nodejs" %}}'
 
-     # The web key configures the web server running in front of your app.
-     web:
-       # Commands are run once after deployment to start the application process.
-       commands:
-         # The command to launch your app. If it terminates, it’s restarted immediately.
-         # As this app will handle source operation only, no need to keep it alive (sleep)
-         start: |
-           sleep infinity
-     # Information on the app's source code and operations that can be run on it.
-     source:
-       operations:
-         update-submodules:
-           command: |
-             set -e
-             git submodule update --init --recursive
-             git submodule update --remote --checkout
-             git add .
-             if ! git diff-index --quiet HEAD; then
-               git commit -m "Updating submodules"
-             fi
-             # "git push" is automatic at the end of this command
-   ```
-   <--->
-   <!-- Upsun -->
-   ```yaml  {configFile="app"}
-   applications:
-       {{< variable "APP_NAME" >}}:
-           update-submodule:
-               # The type of the application to build.
-               type: "nodejs:18"
-
-               # The web key configures the web server running in front of your app.
-               web:
-                   # Commands are run once after deployment to start the application process.
-                   commands:
-                       # The command to launch your app. If it terminates, it’s restarted immediately.
-                       # As this app will handle source operation only, no need to keep it alive (sleep)
-                       start: |
-                           sleep infinity
-               # Information on the app's source code and operations that can be run on it.
-               source:
-                   operations:
-                       update-submodules:
-                           command: |
-                               set -e
-                               git submodule update --init --recursive
-                               git submodule update --remote --checkout
-                               git add .
-                               if ! git diff-index --quiet HEAD; then
-                                   git commit -m "Updating submodules"
-                               fi
-                               # "git push" is automatic at the end of this command
-   ```
-   {{% /version/specific %}}
+# The web key configures the web server running in front of your app.
+web:
+  # Commands are run once after deployment to start the application process.
+    commands:
+        # The command to launch your app. If it terminates, it’s restarted immediately.
+        # As this app will handle source operation only, no need to keep it alive (sleep)
+        start: |
+            sleep infinity
+source:
+    operations:
+        update-submodules:
+            command: |
+                set -e
+                git submodule update --init --recursive
+                git submodule update --remote --checkout
+                git add .
+                if ! git diff-index --quiet HEAD; then
+                  git commit -m "Updating submodules"
+                fi
+                # "git push" is automatic at the end of this command
+{{< /snippet >}}
+```
 
 2. Run your source operation.</br>
 
