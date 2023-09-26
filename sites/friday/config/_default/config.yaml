@@ -73,6 +73,7 @@ module:
               - "guides/*"
               - "languages/java/frameworks.md"
               - "learn/resources.md"
+              - "environments/scalability.md"
           lang: "en"
 
         - source: "../platform/static/images"
