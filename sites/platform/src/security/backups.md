@@ -57,7 +57,7 @@ The following standard backup policy is applied to your projects and defines how
 - No automated backups.
 - 2 manual backups maximum at any given point (the third manual backup replaces the oldest manual backup).
 
-Note that the number of backups is limited per [environment **type**](/glossary/_index.md#preview-environments) and not per project.
+Note that the number of backups is limited per [environment **type**](/glossary/_index.md#preview-environment) and not per project.
 Therefore, a {{< vendor/name >}} project can have up to 6 backups at once (2 automated backups and 2 manual backups of the production environment,
 plus 2 manual backups of any preview environments).
 
