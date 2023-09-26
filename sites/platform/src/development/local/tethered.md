@@ -1,6 +1,7 @@
 ---
 title: Tethered local development
 sidebarTitle: Tethered
+sectionBefore: Supported environments
 weight: 2
 ---
 

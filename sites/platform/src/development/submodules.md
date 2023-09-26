@@ -124,7 +124,7 @@ Automate your submodule updates using a [source operation](create-apps/source-op
 To do so, follow these steps:
 
 1. Define a source operation.</br>
-   Add the following configuration to your `{{< vendor/configfile "apps" >}}` (or `{{< vendor/configfile "app" >}}`) file:
+   Add the following configuration to your `{{< vendor/configfile "app" >}}` file:
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="false" >}}
