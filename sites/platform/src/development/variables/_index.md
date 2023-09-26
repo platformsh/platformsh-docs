@@ -71,7 +71,7 @@ For an example of how the different levels work,
 suppose you have the following inheritable variables defined for the `main` environment:
 
 ```sh
-$ {{% vendor/cli %}} var -e main
+{{% vendor/cli %}} var -e main
 Variables on the project Example (abcdef123456), environment main:
 +----------------+-------------+--------+---------+
 | Name           | Level       | Value  | Enabled |
@@ -86,7 +86,7 @@ Variables on the project Example (abcdef123456), environment main:
 And the following variables defined for the `feature-x` environment, a child environment of `main`:
 
 ```sh
-$ {{% vendor/cli %}} var -e feature-x
+{{% vendor/cli %}} var -e feature-x
 Variables on the project Example (abcdef123456), environment feature-x:
 +----------------+-------------+--------+---------+
 | Name           | Level       | Value  | Enabled |
@@ -180,9 +180,11 @@ To use variables across environments, set them in your [app configuration](../..
 For example, to change the PHP memory limit for all environments, use the following configuration:
 
 ```yaml {configFile="app"}
-variables:
-    php:
-        memory_limit: "256M"
+applications:
+    {{< variable "APP_NAME" >}}:
+        variables:
+            php:
+                memory_limit: "256M"
 ```
 
 ### Framework-specific variables

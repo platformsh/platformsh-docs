@@ -185,7 +185,9 @@ public class App {
 Variables can have nested structures.
 The following example shows nested structures in an [app configuration](../../create-apps/app-reference.md#variables):
 
-```yaml
+{{% version/specific %}}
+<!-- Platform.sh -->
+```yaml {configFile="app"}
 variables:
     env:
         BASIC: "a string"
@@ -202,6 +204,28 @@ variables:
             green: '#00FF00'
             blue: '#0000FF'
 ```
+<--->
+<!-- Upsun -->
+```yaml {configFile="app"}
+applications:
+    {{< variable "APP_NAME" >}}:
+        variables:
+            env:
+                BASIC: "a string"
+                INGREDIENTS:
+                    - 'peanut butter'
+                    - 'jelly'
+                QUANTITIES:
+                    "milk": "1 liter"
+                    "cookies": "1 kg"
+            stuff:
+                STEPS: ['one', 'two', 'three']
+                COLORS:
+                     red: '#FF0000'
+                     green: '#00FF00'
+                     blue: '#0000FF'
+```
+{{% /version/specific %}}
 
 You can access these nested variables as follows:
 
@@ -409,13 +433,8 @@ The `PLATFORM_APPLICATION` variable is available both at build time and in the r
 But the specific attributes it contains differ in each case.
 
 Each environment's build is associated with a configuration ID that identifies it uniquely so builds can be reused.
-<<<<<<< HEAD
-The ID is a product of your app code and some of its [configuration for {{< vendor/name >}}](../../create-apps/_index.md).
-Not every attribute inyour app configuration is relevant to the build.
-=======
 The ID is a product of your app code and some of its [configuration for {{% vendor/name %}}](../../create-apps/_index.md).
 Not every attribute your app configuration is relevant to the build.
->>>>>>> origin/main
 Only those attributes that are relevant to builds are accessible at build time from `PLATFORM_APPLICATION`.
 
 Attributes that are **not** available in `PLATFORM_APPLICATION` during builds:
@@ -447,15 +466,27 @@ One workaround is to create a symbolic link to a writable location and then writ
 The following example shows the process, though you have to modify it to fit your needs.
 
 1. Create a mount that isn't accessible to the web in your [app configuration](../../create-apps/_index.md):
-
-   ```yaml
+   {{% version/specific %}}
+   <!-- Platform.sh -->
+   ```yaml {configFile="app"}
    mounts:
        /config:
            source: local
            source_path: config
    ```
+   <--->
+   <!-- Upsun -->
+   ```yaml {configFile="app"}
+   applications:
+    {{< variable "APP_NAME" >}}  
+       mounts:
+           /config:
+               source: local
+               source_path: config
+   ```
+   {{% /version/specific %}}
 
-1. Create a symbolic link from the config file the application wants to a location in that mount:
+2. Create a symbolic link from the config file the application wants to a location in that mount:
 
    ```bash
    # From the application root...
@@ -464,8 +495,8 @@ The following example shows the process, though you have to modify it to fit you
    ```
 
    This example assumes the app wants a `db.yaml` file in its root for configuration.
-1. Commit the symbolic link and an empty `config` directory to Git.
-1. Configure a script to read from environment variables and write to `config/db.yaml`.
+3. Commit the symbolic link and an empty `config` directory to Git.
+4. Configure a script to read from environment variables and write to `config/db.yaml`.
    Create a file with a shell script similar to this:
 
    ```bash {location="export-config.sh"}
@@ -481,13 +512,24 @@ The following example shows the process, though you have to modify it to fit you
    printf "user: %s\n" $(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].username") >> config/db.yaml
    ```
 
-1. Call the script from the `deploy` hook your [app configuration](../../create-apps/_index.md):
-
-   ```yaml
+5. Call the script from the `deploy` hook your [app configuration](../../create-apps/_index.md):
+   {{% version/specific %}}
+   <!-- Platform.sh -->
+   ```yaml {configFile="app"}
    hooks:
        deploy: |
            bash export-config.sh
    ```
+   <--->
+   <!-- Upsun -->
+ ```yaml {configFile="app"}
+   applications:
+    {{< variable "APP_NAME" >}}  
+       hooks:
+           deploy: |
+               bash export-config.sh
+   ```
+  {{% /version/specific %}}
 
 Now, when your app starts and attempts to parse `db.yaml`, the symbolic link redirects it to `config/db.yaml`.
 Your script writes to that file on each deploy with updated information.

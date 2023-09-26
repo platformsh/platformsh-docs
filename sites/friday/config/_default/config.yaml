@@ -65,7 +65,6 @@ module:
               - "development/local/docksal.md"
               - "development/local/lando.md"
               - "development/deploy-button.md"
-              - "development/sanitize-db/mariadb.md"
               - "domains/cdn/managed-fastly.md"
               - "domains/security/web-application-firewall/fastly.md"
               - "domains/steps/custom-domains-preview-environments.md"
