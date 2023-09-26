@@ -3,6 +3,7 @@ title: Variables overview
 weight: 5
 description: |
   Variables give you control over your project's build process and runtime environment. You can set them in your code to make changes across your project or independent of the code for environment-specific settings.
+layout: single
 keywords:
   - environment variables
 ---
@@ -70,7 +71,7 @@ For an example of how the different levels work,
 suppose you have the following inheritable variables defined for the `main` environment:
 
 ```sh
-$ {{% vendor/cli %}} var -e main
+{{% vendor/cli %}} var -e main
 Variables on the project Example (abcdef123456), environment main:
 +----------------+-------------+--------+---------+
 | Name           | Level       | Value  | Enabled |
@@ -85,7 +86,7 @@ Variables on the project Example (abcdef123456), environment main:
 And the following variables defined for the `feature-x` environment, a child environment of `main`:
 
 ```sh
-$ {{% vendor/cli %}} var -e feature-x
+{{% vendor/cli %}} var -e feature-x
 Variables on the project Example (abcdef123456), environment feature-x:
 +----------------+-------------+--------+---------+
 | Name           | Level       | Value  | Enabled |
@@ -179,9 +180,11 @@ To use variables across environments, set them in your [app configuration](../..
 For example, to change the PHP memory limit for all environments, use the following configuration:
 
 ```yaml {configFile="app"}
-variables:
-    php:
-        memory_limit: "256M"
+applications:
+    {{< variable "APP_NAME" >}}:
+        variables:
+            php:
+                memory_limit: "256M"
 ```
 
 ### Framework-specific variables
@@ -190,6 +193,7 @@ For specific frameworks, you can implement logic to override global configuratio
 So you can use the same codebase and settings for all your environments,
 but still adapt the behavior to each environment.
 
+{{% version/only "1" %}}
 #### Implementation example
 
 The [Drupal 9 template](https://github.com/platformsh-templates/drupal9/) shows an example of
@@ -217,3 +221,4 @@ You need to name your {{% vendor/name %}} variables to match the ones used in yo
 Make sure that the {{% vendor/name %}} variables start with a string present in your `switch` statement.
 
 You can apply similar logic for [other frameworks and languages](../../development/variables/use-variables.md#access-variables-in-your-app).
+{{% /version/only %}}

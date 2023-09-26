@@ -1,6 +1,7 @@
 ---
 title: Tethered local development
 sidebarTitle: Tethered
+sectionBefore: Supported environments
 weight: 2
 ---
 
@@ -23,7 +24,7 @@ Because it replies on a local web server, it's also less consistent across your 
     make sure to mock those variables as well.
 
     Your options for running the app depend on the language and configuration.
-    You can use the serve for your language, install a copy of Nginx,
+    You can use the server for your language, install a copy of Nginx,
     or use a virtual machine or Docker image.
 
 {{% tethered-dev/steps-end %}}
@@ -59,7 +60,7 @@ You can use the information returned to connect to the remote database as if it 
 For example, the following command would connect to a MySQL database running through a tethered connection:
 
 ```bash
-mysql --host=127.0.0.1 --port={{ variable "PORT" }} --user='{{ variable "USERNAME" }}' --password='{{ variable "PASSWORD" }}' --database='{{ variable "PATH" }}'
+mysql --host=127.0.0.1 --port={{< variable "PORT" >}} --user={{< variable "USERNAME" >}} --password={{< variable "PASSWORD" >}} --database={{< variable "PATH" >}}
 ```
 
 {{% local-dev/next-steps-start %}}
