@@ -20,7 +20,7 @@ first activate it.
 
 ## How backup and restore works
 
-1. As an [admin user](../administration/users.md), you can do a backup of your environment. 
+1. As an [admin user](../administration/users.md), you can do a backup of your environment.
    This backup includes the complete data and code of the environment.
    All persistent data from all running [services](../add-services/_index.md)
    and any files stored on [mounts](../create-apps/app-reference.md#mounts) are included.
@@ -34,7 +34,7 @@ first activate it.
 
    {{< note theme="warning" title="Warning" >}}
 
-   But {{% vendor/name %}} doesn’t modify your Git repository. So by default, any further changes you make use the latest code in your repository.
+   {{% vendor/name %}} does not modify your Git repository. Any further changes you make use the latest code in your repository.
 
    {{< /note >}}
 
