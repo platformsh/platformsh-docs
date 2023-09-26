@@ -124,7 +124,6 @@ If the resources are high and hovering close to the 100% threshold,
 you might want to consider:
 
 * [Optimizing your code](../integrate-observability/_index.md) (if possible)
-* [Optimizing your code](../application-metrics/_index.md) (if possible)
 * Changing your [app size](../../create-apps/app-reference.md#sizes)
   or [service size](../../add-services/_index.md#size)
 * [Increasing your plan](../../administration/pricing/_index.md)
