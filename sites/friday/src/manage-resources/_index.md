@@ -9,11 +9,12 @@ keywords:
   - "RAM"
   - "disk storage"
   - "horizontal scaling"
+  - "vertical scaling"
   - "scaling"
 ---
 
 {{% vendor/name %}} allows you to configure project resources and adjust them at any time.
-On each of your environments, you can define how much CPU, RAM,
+On each of your environments, you can perform vertical scaling by defining how much CPU, RAM,
 and disk storage you want to allocate to each app and service.
 
 For example, you might want to allocate more resources to your production and staging environments
@@ -33,12 +34,27 @@ you get notified that you need to configure resources for your project.
 This is because {{% vendor/name %}} doesn't know the exact amount of resources your project needs to run smoothly.
 Therefore, your app can only be successfully deployed once you've [configured those resources](#configure-individual-container-resources) through the {{% vendor/name %}} Console or [CLI](/administration/cli/_index.md).
 
+For the same reasons, when you add an app or service to your project after it's initially deployed,
+you also get prompted to configure adequate resources for each instance.
+
 For better guidance on how to configure resources when you first deploy a project,
 make sure you use `{{% vendor/cli %}} push` instead of `git push`.
 
 {{< /note >}}
 
-## Configure individual container resources
+## Vertical and horizontal scaling
+
+Perform vertical scaling by defining how much CPU, RAM, and disk storage you want on each individual container.
+For apps and workers, you can also perform horizontal scaling by defining how many instances you want to deploy.
+
+{{< note >}}
+
+When you perform horizontal scaling without any other change, no downtime is involved.
+However, vertical scaling always entails a short downtime, as any deployment does.
+
+{{< /note >}}
+
+To configure those resources, follow these steps:
 
 {{< codetabs >}}
 
@@ -53,6 +69,8 @@ Run the `{{% vendor/cli %}} resources:set` command, and follow the prompts to se
 For further guidance on how to set resources using the CLI, run the `{{% vendor/cli %}} resources:set --help` command.
 
 {{< /note >}}
+
+After you've set resources, your environment is redeployed.
 
 <--->
 
@@ -75,10 +93,18 @@ title= From the Console
 
 {{< /codetabs >}}
 
+## Environment sync
+
+When you [sync an environment](/glossary.md#sync),
+the source environment's disk size is automatically allocated to the target environment.
+This is to ensure that there's enough disk space on the target environment for the synchronization to succeed.
+
 ## Keep an eye on your costs
 
-To keep an eye on your costs in the {{% vendor/name %}} Console after you've set or updated resources on your project,
-follow these steps:
+If you have the [**Manage Billing** permission](/administration/users.md#organization-permissions) on your organization,
+you can keep an eye on your costs.</br>
+To do so, after you've set or updated resources on your project,
+follow these steps in the {{% vendor/name %}} Console:
 
 1. Navigate to your organization.
 2. Open the user menu (your name or profile picture).
@@ -166,3 +192,9 @@ To adjust a container profile, amend the value of the `container_profile` key in
 applications:
     {{< variable "APP_NAME" >}}:
         container_profile: HIGH_MEMORY
+
+services:
+    {{< variable "SERVICE_NAME" >}}:
+        type: {{< variable "SERVICE_TYPE" >}}:{{< variable "VERSION" >}}
+        container_profile: HIGHER_MEMORY
+```
