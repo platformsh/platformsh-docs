@@ -32,7 +32,8 @@ When you first deploy your project on {{% vendor/name %}},
 you get notified that you need to configure resources for your project.
 
 This is because {{% vendor/name %}} doesn't know the exact amount of resources your project needs to run smoothly.
-Therefore, your app can only be successfully deployed once you've [configured those resources](#configure-individual-container-resources) through the {{% vendor/name %}} Console or [CLI](/administration/cli/_index.md).
+Therefore, your app can only be successfully deployed once you've configured those resources
+through the {{% vendor/name %}} Console or [CLI](/administration/cli/_index.md).
 
 For the same reasons, when you add an app or service to your project after it's initially deployed,
 you also get prompted to configure adequate resources for each instance.
@@ -42,19 +43,10 @@ make sure you use `{{% vendor/cli %}} push` instead of `git push`.
 
 {{< /note >}}
 
-## Vertical and horizontal scaling
+## Vertical scaling
 
-Perform vertical scaling by defining how much CPU, RAM, and disk storage you want on each individual container.
-For apps and workers, you can also perform horizontal scaling by defining how many instances you want to deploy.
-
-{{< note >}}
-
-When you perform horizontal scaling without any other change, no downtime is involved.
-However, vertical scaling always entails a short downtime, as any deployment does.
-
-{{< /note >}}
-
-To configure those resources, follow these steps:
+You can define how much CPU, RAM, and disk storage you want to allocate to each individual container.
+To do so, follow these steps:
 
 {{< codetabs >}}
 
@@ -70,7 +62,8 @@ For further guidance on how to set resources using the CLI, run the `{{% vendor/
 
 {{< /note >}}
 
-After you've set resources, your environment is redeployed.
+After you've set resources, your environment is redeployed,
+which causes a short downtime.
 
 <--->
 
@@ -83,17 +76,89 @@ title= From the Console
    ![Apps and services tree](/images/flexible-resources/apps-services-tree.png "0.2")
    A window pops up.
 3. Click **Configure**.
-4. Select values in the dropdown menus depending on your needs:
+4. For each app and service, select a CPU & RAM combination, and enter the amount of disk/storage you want to allocate.
    ![Configure your resources on the current environment window](/images/flexible-resources/configure-flexible-resources.png)
-   Note that the values available in the **CPU & RAM** menus depend on the [container profile](#advanced-container-profiles) of each instance.
-   - For each app and service displayed, select a CPU & RAM combination and enter the amount of disk/storage you want to allocate to each container.
-   - For each of your apps and workers, select the number of instances you want to deploy.
+   Note that the values available depend on the [container profile](#advanced-container-profiles) of each instance.
 5. Click **Save**.</br>
-   You environment is redeployed.
+   You environment is redeployed, which causes a short downtime.
 
 {{< /codetabs >}}
 
-## Environment sync
+## Horizontal scaling
+
+For apps and workers, you can also define how many instances you want to deploy.
+To do so, follow these steps:
+
+{{< codetabs >}}
+
++++
+title= Using the CLI
++++
+
+To define how may instances of an app or worker you want to deploy,
+you can use the {{% vendor/name %}} CLI's interactive prompts,
+or run a single command manually.
+
+- **Interactive prompts:**
+
+  Run the `{{% vendor/cli %}} resources:set` command, and follow the prompts to set resources for each of your apps and services.
+
+  For further guidance on how to set resources using the CLI, run the `{{% vendor/cli %}} resources:set --help` command.
+
+- **Manual command:**
+
+  Run a command similar to the following:
+
+  ```bash
+  {{% vendor/cli %}} resources:set --count backend:3
+  ```
+
+  To set the same instance count for all your apps using a wildcard, run a command similar to the following:
+
+  ```bash
+  {{% vendor/cli %}} resources:set --count '*:3'
+  ```
+
+  For further guidance on how to set resources using the CLI, run the `{{% vendor/cli %}} resources:set --help` command.
+
+  After you've set the number of instances for your apps and workers, your environment is redeployed.
+  If you've made no other changes, this redeployment causes no downtime.
+
+<--->
+
++++
+title= From the Console
++++
+
+1. Navigate to your environment.
+2. Select an app or service in the tree on the left-hand side:
+   ![Apps and services tree](/images/flexible-resources/apps-services-tree.png "0.2")
+   A window pops up.
+3. Click **Configure**.
+4. For each of your apps and workers, select the number of instances you want to deploy.
+   ![Configure your resources on the current environment window](/images/flexible-resources/configure-flexible-resources.png)
+5. Click **Save**.</br>
+   Your environment is redeployed.
+   If you've only made changes to the number of instances for your apps and workers,
+   this redeployment causes no downtime.
+
+{{< /codetabs >}}
+
+## Actions on environments
+
+### Environment creation
+
+When you [branch an environment](/glossary.md#branch) to create a new child environment,
+the child environment inherits all the resources from its parent.
+
+### Environment merge
+
+When you [merge](/glossary.md#merge) a child environment into a parent environment,
+any app or service on the child environment is merged into the parent.
+For the merge and deployment to be complete,
+you need to allocate resources to each of these newly added instances.
+
+### Environment sync
 
 When you [sync an environment](/glossary.md#sync),
 the source environment's disk size is automatically allocated to the target environment.
@@ -110,14 +175,15 @@ follow these steps in the {{% vendor/name %}} Console:
 2. Open the user menu (your name or profile picture).
 3. Click **Billing**.</br>
    A monthly estimate of how much each project is expected to cost is displayed.
-4. To view the costs related to a specific project, click **{{< icon more >}} More** next to the project.
-5. Select **Project Billing**.</br>
-   A monthly estimate of all the expected costs related to resource allocation on your project is displayed.
+4. You can also view the costs related to a every project **you've been added to**.</br>
+   To do so, click **{{< icon more >}} More** next to the project,
+   and select **Project Billing**.</br>
+   A monthly estimate of all the expected costs related to resource allocation on the project is displayed.
 
 {{< note >}}
 
-This estimate reflects the expected costs **for a full month** based on the way resources are allocated **at the time of viewing**.
-It doesn't take into account the history of changes you may have made throughout the current month.</br>
+These estimates reflect the expected costs **for a full month** based on the way resources are allocated **at the time of viewing**.
+They don't take into account the history of changes you may have made throughout the current month.</br>
 Therefore, if you make changes to resource allocation some time during the month, your monthly invoice will differ from this estimate.
 
 {{< /note >}}
