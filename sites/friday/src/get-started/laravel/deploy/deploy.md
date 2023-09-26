@@ -55,7 +55,7 @@ amount of resources by running this interactive command:
 This command iterates over your apps and services, asking you to choose a profile
 size, and eventually a disk size for each of the containers.
 
-Check the [resources section](/resources.html) of the documentation to know more
+Check the [resources section](/manage-resources.html) of the documentation to know more
 about resources allocation and how to scale your Laravel apps.
 
 {{% guides/data-migration /%}}

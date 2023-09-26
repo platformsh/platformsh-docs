@@ -303,7 +303,59 @@ routes:
 
 ```
 
+## Configure writable cache directories
 
-Now that you have Laravel configured, connect it with Laravel Bridge.
+Laravel requires specific cache folders to be writtable. [Mounts](/create-apps/app-reference.html#mounts)
+define directories that are writable after the build is complete.
+
+Let's ensure the `bootstrap/cache` and `storage` directories are writtable
+checking the `mounts` definition of your `{{< vendor/configfile "app" >}}` file:
+
+```yaml
+mounts:
+    ...
+
+    "bootstrap/cache":
+      source: "local"
+      source_path: "cache"
+
+    "storage":
+      source: "local"
+      source_path: "storage"
+```
+
+Laravel specific cache folder should be created, if missing, while the application
+is being deployed. [Multiple hooks](/create-apps/app-reference.html#hooks) run
+as part of the process of building and deploying your app. These are places where
+you can run custom scripts such as this `deploy` hook ensuring cache are correctly
+set up and warmed:
+
+```yaml
+deploy: |
+    set -eux
+
+    # ensure the cache directories are available
+    mkdir -p storage/framework/cache/data
+    mkdir -p storage/framework/views
+    mkdir -p storage/framework/sessions
+
+    # clear all caches and dumped files
+    php artisan optimize:clear
+
+    # run all available migrations
+    php artisan migrate --force
+```
+
+
+## Commit and bridge with {{< vendor/name >}}
+
+Now that you have Laravel configured, let's commit all you configuration files:
+
+```bash
+git add .
+git commit -m "Add {{< vendor/name >}} configuration files"
+```
+
+The following step is to connect it with Laravel Bridge:
 
 {{< guide-buttons next="Connect to {{< vendor/name >}}" >}}
