@@ -1,12 +1,15 @@
 ---
 title: "{{% vendor/name %}} WAF"
-description: Learn how the WAF included in Enterprise and Elite plans can help protect your site from distributed denial of service (DDoS) attacks.
+description: Learn how the WAF can help protect your site from distributed denial of service (DDoS) attacks.
 weight: 1
-banner: 
+banner:
     type: tiered-feature
 ---
 
+{{% version/specific %}}
 Enterprise and Elite projects on {{% vendor/name %}} come with a web application firewall (WAF) at no additional cost.
+{{% /version/specific %}}
+
 This WAF monitors requests to your app and blocks suspicious ones.
 
 All traffic to {{% vendor/name %}} endpoints is also filtered
@@ -32,7 +35,7 @@ to specify where an HTTP request ends: `Content-Length` and `Transfer-Encoding`.
 
 When the frontend and backend servers don’t agree on which header
 they should interpret as the end of a request, attackers can smuggle requests.
-If a malicious request is mistakenly included in a legitimate request,
+If a malicious request is mistakenly parsed along with a legitimate request,
 the attacker can bypass the app’s security methods and access sensitive information.
 
 The WAF detects and blocks requests that contain [both the `Content-Length` and `Transfer-Encoding` headers](#content-length-and-transfer-encoding-headers-together).
