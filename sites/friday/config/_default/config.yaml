@@ -24,7 +24,7 @@ baseURL: "https://docs.upsun.com"
 summaryLength: 3
 
 outputs:
-    home: 
+    home:
       - HTML
       - JSON
       - RSS
@@ -52,7 +52,7 @@ module:
 
         - source: "../platform/src"
           target: "content"
-          excludeFiles: 
+          excludeFiles:
               - "registry/*"
               - "get-started/*"
               - "development/transfer-dedicated.md"
@@ -70,6 +70,7 @@ module:
               - "languages/java/frameworks.md"
               - "learn/resources.md"
               - "environments/scalability.md"
+              - "security/web-application-firewall/fastly-waf.md"
           lang: "en"
 
         - source: "../platform/static/images"
@@ -80,12 +81,12 @@ module:
           target: "static/scripts"
         - source: "static/files"
           target: "static/files"
-          
+
         - source: "src"
           target: "content"
         - source: "static/images"
           target: "static/images"
-        
+
 
 
 security:
