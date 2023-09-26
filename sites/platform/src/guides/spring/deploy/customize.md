@@ -1,12 +1,12 @@
 ---
-title: "Customize Spring for {{< vendor/name >}}"
+title: "Customize Spring for {{% vendor/name %}}"
 sidebarTitle: "Customize"
 weight: -90
 description: |
-    Add some helpful dependencies, and modify your Spring site to read from a {{< vendor/name >}} environment.
+    Add some helpful dependencies, and modify your Spring site to read from a {{% vendor/name %}} environment.
 ---
 
-Now that your code contains all of the configuration to deploy on {{< vendor/name >}}, it's time to make your Spring site itself ready to run on a {{< vendor/name >}} environment. There are a number of additional steps that are either required or recommended, depending on how well you want to optimize your site.
+Now that your code contains all of the configuration to deploy on {{% vendor/name %}}, it's time to make your Spring site itself ready to run on a {{% vendor/name %}} environment. There are a number of additional steps that are either required or recommended, depending on how well you want to optimize your site.
 
 ## Install the Config Reader
 
@@ -49,9 +49,9 @@ web:
         start: java -jar $JAVA_OPTS target/file.jar --server.port=$PORT
 ```
 
-On {{< vendor/name >}}, we can set the environment variable `JAVA_OPTS` by committing a `.environment` file to the repository's root. {{< vendor/name >}} runs `source .environment` in the application root when a project starts, and when logging into the environment over SSH.
+On {{% vendor/name %}}, we can set the environment variable `JAVA_OPTS` by committing a `.environment` file to the repository's root. {{% vendor/name %}} runs `source .environment` in the application root when a project starts, and when logging into the environment over SSH.
 That gives you a place to do extra environment variable setup prior to the application running, including modifying the system `$PATH` and other shell level customizations.
-It allows us to define `JAVA_OPTS` when running on {{< vendor/name >}}, but otherwise not be used during local development testing. 
+It allows us to define `JAVA_OPTS` when running on {{% vendor/name %}}, but otherwise not be used during local development testing. 
 
 ```shell
 # .environment

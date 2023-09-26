@@ -1,13 +1,13 @@
 ---
 title: Runtime operations
-description: Set up runtime operations to run one-off commands on your project through the {{< vendor/name >}} CLI.
+description: Set up runtime operations to run one-off commands on your project through the {{% vendor/name %}} CLI.
 weight: 6
 ---
 
 Runtime operations allow you to trigger one-off commands or scripts on your project.
 Similar to [crons](../create-apps/app-reference.md#crons), they run in the app container but not on a specific schedule.
 You can [define runtime operations](#define-a-runtime-operation) in your [app configuration](../create-apps/app-reference.md)
-and [trigger them](#run-a-runtime-operation) at any time through the {{< vendor/name >}} CLI.
+and [trigger them](#run-a-runtime-operation) at any time through the {{% vendor/name %}} CLI.
 
 For example, if you have a static website,
 you may want to set up a runtime operation to occasionally fetch content from a backend system
@@ -55,7 +55,7 @@ For more possibilities, see other [runtime operation examples](#runtime-operatio
 ## Run a runtime operation
 
 Once you've [defined a runtime operation](#define-a-runtime-operation), 
-you can trigger it through the {{< vendor/name >}} CLI.
+you can trigger it through the {{% vendor/name %}} CLI.
 To do so, run the following command:
 
 ```bash
@@ -86,14 +86,14 @@ run the following command:
 ### Build your app when using a static site generator
 
 {{< version/specific >}}
-During every {{< vendor/name >}} deployment, a standard [`build` step](/learn/overview/build-deploy.md#the-build) is run.
+During every {{% vendor/name %}} deployment, a standard [`build` step](/learn/overview/build-deploy.md#the-build) is run.
 When you use a static site generator like [Gatsby](../guides/gatsby/_index.md)
 or [Next.js](../guides/nextjs/_index.md) with [a headless backend](../guides/gatsby/headless/_index.md),
 you need to run a second `build` step to get your app ready for production.
 
 <--->
 
-During every {{< vendor/name >}} deployment, a standard [`build` step](/learn/overview/build-deploy.md#the-build) is run.
+During every {{% vendor/name %}} deployment, a standard [`build` step](/learn/overview/build-deploy.md#the-build) is run.
 When you use a static site generator like Gatsby
 or Next.js with a headless backend
 you need to run a second `build` step to get your app ready for production.
@@ -103,7 +103,7 @@ you need to run a second `build` step to get your app ready for production.
 This is because, as its framework is being built,
 your frontend needs to pull content-related data from your backend’s API
 (to generate all the static HTML pages your site is to serve).
-To accomplish this on {{< vendor/name >}}, where each app goes through a build-deploy pipeline in parallel,
+To accomplish this on {{% vendor/name %}}, where each app goes through a build-deploy pipeline in parallel,
 your frontend’s build must be delayed _until after_ your backend has fully deployed.
 It's often delayed up until the [`post_deploy` hook](../create-apps/hooks/hooks-comparison.md#post-deploy-hook) stage,
 when the filesystem is read-only.
@@ -111,7 +111,7 @@ when the filesystem is read-only.
 You can use a runtime operation to trigger the second `build` step
 after the initial deployment of your app or after a redeployment.
 You can also trigger it when you need to fetch content from your backend
-but want to avoid going through the whole {{< vendor/name >}} [build and deploy processes](/learn/overview/build-deploy.md) again.
+but want to avoid going through the whole {{% vendor/name %}} [build and deploy processes](/learn/overview/build-deploy.md) again.
 
 {{< note >}}
 
@@ -119,7 +119,7 @@ The following examples assume that the frontend and backend containers are inclu
 This isn’t necessary for the commands to run successfully.<BR>
 What _is_ necessary is that the build destination for your frontend **is  writable at runtime**
 (meaning, you must [define a mount](../create-apps/app-reference.md#mounts) for it).
-If you don’t want to include a build within a mount (especially if your data source **isn’t** on {{< vendor/name >}}),
+If you don’t want to include a build within a mount (especially if your data source **isn’t** on {{% vendor/name %}}),
 you can use [source operations](../create-apps/source-operations.md) to achieve a similar effect,
 but through generating a new commit.
 

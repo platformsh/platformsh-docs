@@ -1,11 +1,11 @@
 ---
 title: Pricing
 weight: 3
-description: See the basics of the plans {{< vendor/name >}} offers and how to adjust them.
+description: See the basics of the plans {{% vendor/name %}} offers and how to adjust them.
 layout: single
 ---
 
-{{< vendor/name >}} offers a variety of plans to fit your needs, including a free trial.
+{{% vendor/name %}} offers a variety of plans to fit your needs, including a free trial.
 
 Full pricing information is available at https://platform.sh/pricing/.
 The resources listed there are for [production environments](#production-environments).
@@ -186,8 +186,8 @@ If you have any questions, don't hesitate to [contact Sales](https://platform.sh
 
 ## Sponsored sites
 
-{{< vendor/name >}} provides sponsored hosting for Free Software projects, tech community events and organizations as part of our effort to support the Free Software community. 
-That offering can include either a project on {{< vendor/name >}}, or profilable environments through Blackfire.io, depending on the needs of the project. 
+{{% vendor/name %}} provides sponsored hosting for Free Software projects, tech community events and organizations as part of our effort to support the Free Software community. 
+That offering can include either a project on {{% vendor/name %}}, or profilable environments through Blackfire.io, depending on the needs of the project. 
 
 <div align="center">
 

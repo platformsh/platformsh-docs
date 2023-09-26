@@ -6,7 +6,7 @@ description: |
     Upgrading, adding modules, and further development of your site.
 banner:
     title: A note on version
-    body: While this guide focuses on Drupal 9, you can also refer to it when using Drupal 10 as differences in settings are minimal. Note that a {{< vendor/name >}} [Drupal 10 template](https://github.com/platformsh-templates/drupal10) is available.
+    body: While this guide focuses on Drupal 9, you can also refer to it when using Drupal 10 as differences in settings are minimal. Note that a {{% vendor/name %}} [Drupal 10 template](https://github.com/platformsh-templates/drupal10) is available.
 ---
 
 ## Adding modules and themes
@@ -60,7 +60,7 @@ All updates should be done through composer to update the lock file, and then pu
 
 [Drush site aliases](https://www.drush.org/latest/site-aliases/) help you manage your development websites.
 
-The {{< vendor/name >}} CLI can generate Drush aliases for you automatically
+The {{% vendor/name %}} CLI can generate Drush aliases for you automatically
 when you clone a project using the <code>platform get {{< variable "PROJECT_ID" >}}</code> command.
 
 To see the aliases that are created, run the following command:

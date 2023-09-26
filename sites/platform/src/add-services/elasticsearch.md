@@ -107,7 +107,7 @@ To do so, follow the same procedure as for [upgrading](#upgrading).
     "service": "elasticsearch77",
     "fragment": null,
     "ip": "169.254.169.232",
-    "hostname": "jmgjydr275pkj5v7prdj2asgxm.elasticsearch77.service._.eu-3.platformsh.site",
+    "hostname": "jmgjydr275pkj5v7prdj2asgxm.elasticsearch77.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "port": 9200,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "elasticsearch.internal",
@@ -115,7 +115,7 @@ To do so, follow the same procedure as for [upgrading](#upgrading).
     "path": null,
     "query": [],
     "password": "ChangeMe",
-    "type": "elasticsearch:7.7",
+    "type": "elasticsearch:{{< latest "elasticsearch" >}}",
     "public": false,
     "host_mapped": false
 }
@@ -130,7 +130,8 @@ the service type is `elasticsearch-enterprise`.
 
 Note that configuration for [premium versions](#supported-versions) may differ slightly.
 
-{{< codetabs >}}
+<!-- Version 1: Codetabs using config reader + examples.docs.platform.sh -->
+{{< codetabs v2hide="true" >}}
 
 +++
 title=Java
@@ -164,6 +165,45 @@ highlight=python
 
 {{< /codetabs >}}
 
+<!-- Version 2: .environment shortcode + context -->
+{{% version/only "2" %}}
+
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="myapp" >}}
+
+# Other options...
+
+# Relationships enable an app container's access to a service.
+relationships:
+    essearch: "searchelastic:elasticsearch"
+{{< /snippet >}}
+{{< snippet name="searchelastic" config="service" placeholder="true" >}}
+    type: elasticsearch:{{% latest "elasticsearch" %}}
+    disk: 256
+{{< /snippet >}}
+```
+
+{{< v2connect2app serviceName="searchelastic" relationship="essearch" var="ELASTIC_HOSTS">}}
+
+```bash {location="myapp/.environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for individual credentials.
+export ELASTIC_SCHEME=$(echo $RELATIONSHIPS_JSON | jq -r ".essearch[0].scheme")
+export ELASTIC_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".essearch[0].host")
+export ELASTIC_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".essearch[0].port")
+
+# Surface more common Elasticsearch connection string variables for use in app.
+export ELASTIC_USERNAME=$(echo $RELATIONSHIPS_JSON | jq -r ".essearch[0].username")
+export ELASTIC_PASSWORD=$(echo $RELATIONSHIPS_JSON  | jq -r ".essearch[0].password")
+export ELASTIC_HOSTS=[\"$ELASTIC_SCHEME://$ELASTIC_HOST:$ELASTIC_PORT\"]
+```
+
+{{< /v2connect2app >}}
+
+{{% /version/only %}}
+
 {{< note >}}
 
 When you create an index on Elasticsearch,
@@ -181,12 +221,13 @@ Starting with Elasticsearch 7.2 you may optionally enable HTTP Basic authenticat
 To do so, include the following in your `{{< vendor/configfile "services" >}}` configuration:
 
 ```yaml {configFile="services"}
-search:
-    type: elasticsearch:7.2
+{{% snippet name="search" config="service" %}}
+    type: elasticsearch:{{% latest "elasticsearch" %}}
     disk: 2048
     configuration:
         authentication:
             enabled: true
+{{% /snippet %}}
 ```
 
 If you're using a [premium version](#supported-versions),
@@ -200,13 +241,19 @@ in the `username` and `password` properties.
 This functionality is generally not required if Elasticsearch isn't exposed on its own public HTTP route.
 However, certain applications may require it, or it allows you to safely expose Elasticsearch directly to the web.
 To do so, add a route to `{{< vendor/configfile "routes" >}}` that has `search:elasticsearch` as its upstream
-(where `search` is whatever you named the service in `{{< vendor/configfile "services" >}}`).
+(where `search` is whatever you named the service).
+
 For example:
 
 ```yaml {configFile="routes"}
-"https://es.{default}":
-    type: upstream
-    upstream: search:elasticsearch
+{{% snippet name="search:elasticsearch" config="route" subDom="es" redirect="false" /%}}
+{{% snippet name="search" config="service" placeholder="true" %}}
+    type: elasticsearch:{{% latest "elasticsearch" %}}
+    disk: 2048
+    configuration:
+        authentication:
+            enabled: true
+{{% /snippet %}}
 ```
 
 ## Plugins
@@ -215,13 +262,14 @@ Elasticsearch offers a number of plugins.
 To enable them, list them under the `configuration.plugins` key in your `{{< vendor/configfile "services" >}}` file, like so:
 
 ```yaml {configFile="services"}
-search:
-    type: "elasticsearch:7.2"
+{{% snippet name="search" config="service" %}}
+    type: elasticsearch:{{% latest "elasticsearch" %}}
     disk: 1024
     configuration:
         plugins:
             - analysis-icu
             - lang-python
+{{% /snippet %}}
 ```
 
 If you're using a [premium version](#supported-versions),
@@ -279,9 +327,9 @@ There are two ways to do so.
 ### Destructive
 
 In your `{{< vendor/configfile "services" >}}` file, change the version *and* name of your Elasticsearch service.
-Then update the name in the `{{< vendor/configfile "app" >}}` relationships block.
+Be sure to also update the reference to the now changed service name in it's corresponding application's `relationship` block.
 
-When you push that to {{< vendor/name >}}, the old service is deleted and a new one with the new name is created with no data.
+When you push that to {{% vendor/name %}}, the old service is deleted and a new one with the new name is created with no data.
 You can then have your application reindex data as appropriate.
 
 This approach has the downsides of temporarily having an empty Elasticsearch instance,
@@ -291,7 +339,7 @@ Depending on the size of your data that could take a while.
 ### Transitional
 
 With a transitional approach, you temporarily have two Elasticsearch services.
-Add a second Elasticsearch service with the new version a new name and give it a new relationship in `{{< vendor/configfile "app" >}}`.
+Add a second Elasticsearch service with the new version, a new name, and give it a new relationship in `{{< vendor/configfile "app" >}}`.
 You can optionally run in that configuration for a while to allow your application to populate indexes in the new service as well.
 
 Once you're ready to switch over, remove the old Elasticsearch service and relationship.

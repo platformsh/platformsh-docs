@@ -4,7 +4,7 @@ weight: 3
 ---
 
 Once your app is up and running it still needs to be kept fast.
-{{< vendor/name >}} offers a wide degree of flexibility in how PHP behaves,
+{{% vendor/name %}} offers a wide degree of flexibility in how PHP behaves,
 but that does mean you may need to take a few steps to ensure your site is running optimally.
 
 The following recommendations are guidelines only.
@@ -203,7 +203,7 @@ To optimize your app, consider using a [profiler](../../increase-observability/a
 {{% /version/specific %}}
 A profiler helps determine what slow spots can be found and addressed and helps improve performance.
 
-The web agency [Pixelant](https://www.pixelant.net/) has released a [log analyzer tool for {{< vendor/name >}}](https://github.com/pixelant/platformsh-analytics)
+The web agency [Pixelant](https://www.pixelant.net/) has released a [log analyzer tool for {{% vendor/name %}}](https://github.com/pixelant/platformsh-analytics)
 that offers visualization of access logs to determine how much memory requests are using on average.
 It also offers additional insights into the operation of your site and can suggest places to further optimize your configuration or when it's time to increase your plan size.
-Note that this tool is maintained by a third party, not by {{< vendor/name >}}.
+Note that this tool is maintained by a third party, not by {{% vendor/name %}}.

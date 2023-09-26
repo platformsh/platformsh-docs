@@ -64,11 +64,13 @@ module:
               - "increase-observability/metrics/dedicated-generation-3.md"
               - "domains/cdn/managed-fastly.md"
               - "domains/security/web-application-firewall/fastly.md"
+              - "domains/steps/custom-domains-preview-environments.md"
               - "dedicated-gen-2/*"
               - "dedicated-gen-3/*"
               - "guides/*"
               - "languages/java/frameworks.md"
               - "learn/resources.md"
+              - "environments/scalability.md"
           lang: "en"
 
         - source: "../platform/static/images"
