@@ -561,7 +561,7 @@ If not, make a backup or do a database export before importing.
 ## Sanitizing data
 
 To ensure people who review code changes can't access personally identifiable information stored in your database,
-[sanitize your preview environments](../../development/sanitize-db/mariadb.md).
+[sanitize your preview environments](../../development/sanitize-db/_index.md).
 
 ## Replication
 
