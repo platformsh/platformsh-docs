@@ -7,7 +7,7 @@ banner:
    title: Note
    body: Your main source of information about the security, privacy,
          and compliance of the {{% vendor/name %}} products and services,
-         is now the {{% vendor/name %}} [Trust Center](https://platform.sh/trust-center/).
+         is now the Platform.sh [Trust Center](https://platform.sh/trust-center/).
 keywords:
 - pen-test
 - penetration test

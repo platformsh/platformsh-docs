@@ -6,7 +6,7 @@ weight: -15
 ## Active environment
 
 An environment that's deployed.
-See how to [deactivate an environment](../environments/deactivate-environment.md).
+See how to [activate an environment](../environments/deactivate-environment.md#reactivate-an-environment).
 
 ## Apex domain
 
@@ -151,7 +151,7 @@ An environment that isn't deployed.
 It has no data of its own and no running services.
 If you reactivate it, it copies data from its parent.
 
-See how to [reactivate an environment](../environments/deactivate-environment.md#reactivate-an-environment).
+See how to [deactivate an environment](../environments/deactivate-environment.md).
 
 ## Live environment
 

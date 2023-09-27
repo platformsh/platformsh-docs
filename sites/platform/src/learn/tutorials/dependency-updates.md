@@ -32,9 +32,10 @@ depending on your dependency manager:
 
 +++
 title=Composer
-highlight=yaml
 +++
 
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 source:
     operations:
         update:
@@ -44,13 +45,16 @@ source:
                 git add composer.lock
                 git add -A
                 git diff-index --quiet HEAD || git commit --allow-empty -m "Update Composer dependencies"
+{{< /snippet >}}
+```
 
 <--->
 +++
 title=npm
-highlight=yaml
 +++
 
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 source:
     operations:
         update:
@@ -60,13 +64,16 @@ source:
                 git add package.json package-lock.json 
                 git add -A
                 git diff-index --quiet HEAD || git commit --allow-empty -m "Update npm dependencies"
+{{< /snippet >}}
+```
 
 <--->
 +++
 title=Yarn
-highlight=yaml
 +++
 
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 source:
     operations:
         update:
@@ -76,13 +83,16 @@ source:
                 git add yarn.lock
                 git add -A
                 git diff-index --quiet HEAD || git commit --allow-empty -m "Update yarn dependencies"
+{{< /snippet >}}
+```
 
 <--->
 +++
 title=Go
-highlight=yaml
 +++
 
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 source:
     operations:
         update:
@@ -93,13 +103,16 @@ source:
                 git add go.mod go.sum
                 git add -A
                 git diff-index --quiet HEAD || git commit --allow-empty -m "Update Go dependencies"
+{{< /snippet >}}
+```
 
 <--->
 +++
 title=Pipenv
-highlight=yaml
 +++
 
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 source:
     operations:
         update:
@@ -109,13 +122,16 @@ source:
                 git add Pipfile Pipfile.lock
                 git add -A
                 git diff-index --quiet HEAD || git commit --allow-empty -m "Update Python dependencies"
+{{< /snippet >}}
+```
 
 <--->
 +++
 title=Bundler
-highlight=yaml
 +++
 
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 source:
     operations:
         update:
@@ -125,6 +141,8 @@ source:
                 git add Gemfile Gemfile.lock
                 git add -A
                 git diff-index --quiet HEAD || git commit --allow-empty -m "Update Ruby dependencies"
+{{< /snippet >}}
+```
 
 {{< /codetabs >}}
 <!--vale on -->
@@ -181,6 +199,7 @@ Make sure you carefully check your [user access on this project](/administration
 
 2. Add a build hook to your app configuration to install the CLI as part of the build process:
 
+{{% version/specific %}}
 ```yaml {configFile="app"}
 hooks:
     build: |
@@ -191,10 +210,25 @@ hooks:
         echo "Testing {{% vendor/name %}} CLI"
         {{% vendor/cli %}}
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    myapp:
+        hooks:
+            build: |
+                set -e
+                echo "Installing {{% vendor/name %}} CLI"
+                curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
+
+                echo "Testing {{% vendor/name %}} CLI"
+                {{% vendor/cli %}}
+```
+{{% /version/specific %}}
 
 3. Then, to configure a cron job to automatically update your dependencies once a day,
    use a configuration similar to the following:
 
+{{% version/specific %}}
 ```yaml {configFile="app"}
 crons:
     update:
@@ -206,6 +240,22 @@ crons:
                 {{% vendor/cli %}} sync -e development code data --no-wait --yes
                 {{% vendor/cli %}} source-operation:run update --no-wait --yes
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    myapp:
+        # ...
+        crons:
+            update:
+                # Run the code below every day at midnight.
+                spec: '0 0 * * *'
+                commands:
+                    start: |
+                        set -e
+                        {{% vendor/cli %}} sync -e development code data --no-wait --yes
+                        {{% vendor/cli %}} source-operation:run update --no-wait --yes
+```
+{{% /version/specific %}}
 
 The example above synchronizes the `development` environment with its parent
 and then runs the `update` source operation defined [previously](#1-define-a-source-operation-to-update-your-dependencies).
