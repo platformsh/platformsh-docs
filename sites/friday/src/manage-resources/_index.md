@@ -13,37 +13,32 @@ keywords:
   - "scaling"
 ---
 
-{{% vendor/name %}} allows you to configure project resources and adjust them at any time.
-On each of your environments, you can perform vertical scaling by defining how much CPU, RAM,
-and disk storage you want to allocate to each app and service.
+{{% vendor/name %}} allows you to configure resources (CPU, RAM, disk) independantly per environment for each of your applications and services, and to add instances for each of your applications depending on your needs.
 
-For example, you might want to allocate more resources to your production and staging environments
+For example, you can scale vertically and allocate more resources to your production and staging environments
 than to your development environments.
-This flexibility in resource allocation allows you to optimize performance and costs.
+This flexibility allows you to optimize performances and costs.
 
-If your app shows signs of struggling with high load, or if you're expecting a traffic spike,
-you can also add instances to your application and worker containers.
-Such horizontal scaling allows your app to keep running smoothly,
-and shields your users from performance issues and downtime.
+You can even scale horizontally if your applications are struggling with high load, or if you're expecting a traffic spike,
+by adding more instances for your applications and workers.
 
 {{< note >}}
 
-When you first deploy your project on {{% vendor/name %}},
-you get notified that you need to configure resources for your project.
+After the first deployment on your {{% vendor/name %}} project, and whenever you add a new application or service,
+you get notified that you need to configure the resources on your environment: `The push completed but resources must be configured before deployment can succeed.`
 
 This is because {{% vendor/name %}} doesn't know the exact amount of resources your project needs to run smoothly.
-Therefore, your app can only be successfully deployed once you've configured those resources
-through the {{% vendor/name %}} Console or [CLI](/administration/cli/_index.md).
+Therefore, your app can only be successfully deployed after you've configured those resources
+through the {{% vendor/name %}} Console or CLI.
 
-For the same reasons, when you add an app or service to your project after it's initially deployed,
-you also need to configure adequate resources for each instance.
-
-For better guidance on how to configure resources when you first deploy a project,
+For better guidance on how to configure resources,
 use `{{% vendor/cli %}} push` instead of `git push`.
 
 {{< /note >}}
 
-## Vertical scaling
+## Configure resources
+
+### Vertical scaling
 
 You can define how much CPU, RAM, and disk storage you want to allocate to each individual container.
 To do so, follow these steps:
@@ -84,7 +79,7 @@ title= From the Console
 
 {{< /codetabs >}}
 
-## Horizontal scaling
+### Horizontal scaling
 
 For apps and workers, you can also define how many instances you want to deploy.
 To do so, follow these steps:
