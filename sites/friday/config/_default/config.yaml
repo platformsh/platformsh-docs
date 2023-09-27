@@ -74,7 +74,7 @@ module:
               - "languages/java/frameworks.md"
               - "learn/resources.md"
               - "environments/scalability.md"
-              - "security/web-application-firewall/fastly-waf.md"
+              - "security/web-application-firewall/*"
           lang: "en"
 
         - source: "../platform/static/images"
