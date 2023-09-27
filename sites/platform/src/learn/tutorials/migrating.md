@@ -12,17 +12,17 @@ To do so, follow these steps.
 
 You need:
 
+{{% version/specific %}}
 - An app that works and is ready to be built
 - Code in Git
-{{% version/specific %}}
-<!-- Platform.sh -->
 - A {{< vendor/name >}} account -- if you don't already have one, [start a trial](https://auth.api.platform.sh/register?trial_type=general)
-
+- The [{{< vendor/name >}} CLI](/administration/cli/_index.md) installed locally
 <--->
-<!-- Upsun -->
+- An app that works and is ready to be built
+- Code in Git
 - A {{< vendor/name >}} account -- if you don't already have one, [register](https://upsun.com/register/).
+- The [{{< vendor/name >}} CLI](/administration/cli/_index.md) installed locally
 {{% /version/specific %}}
-- Optional: the [{{< vendor/name >}} CLI](/administration/cli/_index.md)
 
 ## 1. Export from previous system
 
@@ -32,7 +32,8 @@ and for some apps, such as Drupal, configuration that you need to export from th
 
 ## 2. Create a project
 
-{{< codetabs >}}
+<!-- Platform.sh -->
+{{< codetabs v2hide="true" >}}
 
 +++
 title=Using the CLI
@@ -57,6 +58,44 @@ title=In the Console
 In the form, fill in details like the project name and [region](/development/regions.md).
 The project is automatically created with a [Development plan](/administration/pricing/_index.md),
 which you can then upgrade.
+
+{{< /codetabs >}}
+
+<!-- Upsun -->
+{{< codetabs v1hide="true" >}}
+
++++
+title=Using the CLI
++++
+
+If you do not already have an organization created on {{% vendor/name %}}, create one: 
+
+```bash
+{{% vendor/cli %}} org:create
+```
+
+Then run the following command to create a project:
+
+```bash
+{{% vendor/cli %}} project:create
+```
+
+When prompted, fill in details like the project name, [region](/development/regions.md), and the name of your organization.
+
+<--->
+
++++
+title=In the Console
++++
+
+[Create a new project from scratch](https://console.upsun.com/projects/create-project/).
+
+If you do not already have an organization created to put the project, you'll first be instructed to create one.
+
+Once you have done so, select that organization from the dropdown, and select **Create from scratch**.
+
+In the form, fill in details like the project name and [region](/development/regions.md).
+You'll be able to define resources for the project after your first push.
 
 {{< /codetabs >}}
 
@@ -104,7 +143,7 @@ title=Using the CLI
 3. Push to the {{% vendor/name %}} repository by running the following command:
 
    ```bash
-   git push -u {{% vendor/cli %}} {{< variable "DEFAULT_BRANCH_NAME" >}}
+   {{% vendor/cli %}} push
    ```
 
 When you try to push, any detected errors in your configuration are reported and block the push.
@@ -159,7 +198,28 @@ After any errors are fixed, a push creates a new environment.
 
 {{< /codetabs >}}
 
-## 5. Import data
+{{% version/ifelse "" "## 5. Define resources" %}}
+
+{{% version/only "2" %}}
+
+Once you push your code to {{% vendor/name %}}, either directly or through an integration, the deployment itself is not yet complete.
+
+{{% vendor/name %}} has only just now understood the _types_ of containers you want (like a Python app container, and a Redis and MariaDB service containers) by validating that push. 
+How much resources those containers get is still left for you to define.
+
+You can do so quickly with the following CLI command:
+
+```bash
+upsun resources:set
+```
+
+<!-- @todo: resources link -->
+Follow the prompts to set CPU, RAM, disk, and number of instances for each container,
+and read [the manage resources](#) documentation for more information.
+
+{{% /version/only %}}
+
+## {{% version/ifelse "5" "6" %}}. Import data
 
 Once you have an environment, you can import the data you backed up in step 1.
 The exact process may depend on the service you use.
@@ -172,7 +232,7 @@ For SQL databases, for example, you can use a version of this command:
 
 For any potential more details, see the [specific service](/add-services/_index.md).
 
-## 6. Import files
+## {{% version/ifelse "6" "7" %}}. Import files
 
 Your app may include content files, meaning files that aren't intended to be part of your codebase so aren't in Git.
 You can upload such files to [mounts you created](/create-apps/app-reference.md#mounts).
