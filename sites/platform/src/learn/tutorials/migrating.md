@@ -213,9 +213,8 @@ You can do so quickly with the following CLI command:
 upsun resources:set
 ```
 
-<!-- @todo: resources link -->
 Follow the prompts to set CPU, RAM, disk, and number of instances for each container,
-and read [the manage resources](#) documentation for more information.
+and read [the manage resources](/manage-resources.md) documentation for more information.
 
 {{% /version/only %}}
 
