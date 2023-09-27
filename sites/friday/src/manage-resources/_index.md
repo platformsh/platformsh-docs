@@ -95,7 +95,7 @@ To do so, follow these steps:
 title= Using the CLI
 +++
 
-To define how may instances of an app or worker you want to deploy,
+To define how many instances of an app or worker you want to deploy,
 you can use the {{% vendor/name %}} CLI's interactive prompts,
 or run commands manually.
 
