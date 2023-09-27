@@ -206,7 +206,7 @@ title=From the CLI
 Run the following command:
 
 ```bash
-{{% vendor/cli %}} variable:create --environment main --level environment --prefix 'env' --name PLATFORMSH_CLI_TOKEN --sensitive true --value 'YOUR_PLATFORMSH_CLI_TOKEN' --inheritable false --visible-build true --json false --enabled true --visible-runtime true
+{{% vendor/cli %}} variable:create --environment main --level environment --prefix 'env' --name {{% vendor/prefix_cli %}}_CLI_TOKEN --sensitive true --value 'YOUR_{{% vendor/prefix_cli %}}_CLI_TOKEN' --inheritable false --visible-build true --json false --enabled true --visible-runtime true
 ```
 
 <--->
@@ -218,7 +218,7 @@ title=From the Console
 2. Click {{< icon settings >}} **Settings**.
 3. Click **Variables**.
 4. Click **+ Add variable**.
-5. In the **Variable name** field, enter `env:PLATFORMSH_CLI_TOKEN`.
+5. In the **Variable name** field, enter `env:{{% vendor/prefix_cli %}}_CLI_TOKEN`.
 6. In the **Value** field, enter your API token.
 7. Make sure the **Available at runtime** and **Sensitive variable** options are selected.
 8. Click **Add variable**.

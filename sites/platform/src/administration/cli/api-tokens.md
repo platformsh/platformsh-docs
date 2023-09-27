@@ -102,7 +102,7 @@ use the `--no-wait` flag.
 
 <!-- @todo: CLI_TOKEN variable for Upsun -->
 You can allow your CI system to run automated tasks using the {{% vendor/name %}} CLI.
-To do so, create an environment variable named `PLATFORMSH_CLI_TOKEN` with your API token as its value. 
+To do so, create an environment variable named `{{% vendor/prefix_cli %}}_CLI_TOKEN` with your API token as its value. 
 For more information, see your CI system's official documentation.
 
 To run SSH-based commands that aren't specific to the {{% vendor/name %}} CLI,
@@ -133,7 +133,7 @@ Run the following command:
    -e {{< variable "ENVIRONMENT_NAME" >}} \
    --level environment \
    --prefix 'env' \
-   --name PLATFORMSH_CLI_TOKEN \
+   --name {{% vendor/prefix_cli %}}_CLI_TOKEN \
    --sensitive true \
    --value '{{< variable "API_TOKEN" >}}' \
    --inheritable false \
@@ -150,7 +150,7 @@ title=In the Console
 2. Click {{< icon settings >}} **Settings**.
 3. Click **Variables**.
 4. Click **+ Add variable**.
-5. In the **Variable name** field, enter `env:PLATFORMSH_CLI_TOKEN`.
+5. In the **Variable name** field, enter `env:{{% vendor/prefix_cli %}}_CLI_TOKEN`.
 6. In the **Value** field, enter your API token.
 7. Make sure the **Available at runtime** and **Sensitive variable** options are selected.
 8. Click **Add variable**.
@@ -194,11 +194,11 @@ crons:
 
 ## Use the CLI SSH certificate for non-CLI commands
 
-When you set a `PLATFORMSH_CLI_TOKEN` environment variable,
+When you set a `{{% vendor/prefix_cli %}}_CLI_TOKEN` environment variable,
 the CLI authentication isn't complete until your run a CLI command 
 or load the CLI SSH certificate.
 
-For example, after setting a `PLATFORMSH_CLI_TOKEN` environment variable,
+For example, after setting a `{{% vendor/prefix_cli %}}_CLI_TOKEN` environment variable,
 you might need to run `ssh`, `git`, `rsync`, or `scp` commands before you run any CLI commands.
 
 In this case, to ensure all your commands work, load the CLI SSH certificate first.

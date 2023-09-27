@@ -38,7 +38,7 @@ To connect Docksal with your {{% vendor/name %}} account, use a {{% vendor/name 
 2. Add the token to your Docksal configuration by running this command:
 
    ```bash
-   fin config set --global SECRET_PLATFORMSH_CLI_TOKEN="{{< variable "API_TOKEN" >}}"
+   fin config set --global SECRET_{{% vendor/prefix_cli %}}_CLI_TOKEN="{{< variable "API_TOKEN" >}}"
    ```
 
 Now you can run `fin {{% vendor/cli %}} {{< variable "COMMAND" >}}` from your computer without needing to install the {{% vendor/name %}} CLI.
