@@ -13,19 +13,24 @@ keywords:
   - "scaling"
 ---
 
-{{% vendor/name %}} allows you to configure resources (CPU, RAM, disk) independantly per environment for each of your applications and services, and to add instances for each of your applications depending on your needs.
+{{% vendor/name %}} allows you to configure resources (CPU, RAM, disk) per environment for each of your applications and services.
+You can also add instances for each of your applications depending on your needs.
 
 For example, you can scale vertically and allocate more resources to your production and staging environments
 than to your development environments.
-This flexibility allows you to optimize performances and costs.
+This flexibility allows you to optimize performance and costs.
 
 You can even scale horizontally if your applications are struggling with high load, or if you're expecting a traffic spike,
 by adding more instances for your applications and workers.
 
 {{< note >}}
 
-After the first deployment on your {{% vendor/name %}} project, and whenever you add a new application or service,
-you get notified that you need to configure the resources on your environment: `The push completed but resources must be configured before deployment can succeed.`
+When you first deploy your {{% vendor/name %}} project, and whenever you add a new application or service,
+you get notified that you need to configure the resources on your environment:
+
+```bash
+The push completed but resources must be configured before deployment can succeed.
+```
 
 This is because {{% vendor/name %}} doesn't know the exact amount of resources your project needs to run smoothly.
 Therefore, your app can only be successfully deployed after you've configured those resources
