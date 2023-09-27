@@ -70,23 +70,22 @@ web:
 # Top-level key, which contains configurations for all app containers.
 applications:
     # The app's name, which must be unique within the project.
-    name: 'app'
+    myapp:
+        # The language and version for your app.
+        type: 'nodejs:{{% latest "nodejs" %}}'
 
-    # The language and version for your app.
-    type: 'nodejs:{{% latest "nodejs" %}}'
-
-    # The app's configuration when it's exposed to the web.
-    web:
-        locations:
-            '/':
-                # The public directory relative to the app root.
-                root: 'public'
-                # Forward resources to the app.
-                passthru: true
-                # What files to use when serving a directory.
-                index: ["index.html"]
-                # Allow files even without specified rules.
-                allow: true
+        # The app's configuration when it's exposed to the web.
+        web:
+            locations:
+                '/':
+                    # The public directory relative to the app root.
+                    root: 'public'
+                    # Forward resources to the app.
+                    passthru: true
+                    # What files to use when serving a directory.
+                    index: ["index.html"]
+                    # Allow files even without specified rules.
+                    allow: true
 ```
 
 {{< /version/specific >}}
@@ -213,54 +212,53 @@ web:
 ```yaml {configFile="app"}
 applications:
     # The app's name, which must be unique within the project.
-    name: 'app'
+    myapp:
+        # The language and version for your app.
+        type: 'php:{{% latest "php" %}}'
 
-    # The language and version for your app.
-    type: 'php:{{% latest "php" %}}'
+        # Global dependencies to be added and cached and then available as commands.
+        dependencies:
+            php:
+                composer/composer: '^2'
 
-    # Global dependencies to be added and cached and then available as commands.
-    dependencies:
-        php:
-            composer/composer: '^2'
+        # The app's relationships (connections) with services or other applications.
+        # The key is the relationship name that can be viewed in the app.
+        # The value is specific to how the service is configured.
+        relationships:
+            database: 'mysqldb:mysql'
 
-    # The app's relationships (connections) with services or other applications.
-    # The key is the relationship name that can be viewed in the app.
-    # The value is specific to how the service is configured.
-    relationships:
-        database: 'mysqldb:mysql'
+        # Scripts that are run as part of the build and deploy process.
+        hooks:
+            # Build hooks can modify app files on disk but not access any services like databases.
+            build: ./build.sh
+            # Deploy hooks can access services but the file system is now read-only.
+            deploy: ./deploy.sh
+            # Post deploy hooks run when the app is accepting outside requests.
+            post_deploy: ./post_deploy.sh
 
-    # Scripts that are run as part of the build and deploy process.
-    hooks:
-        # Build hooks can modify app files on disk but not access any services like databases.
-        build: ./build.sh
-        # Deploy hooks can access services but the file system is now read-only.
-        deploy: ./deploy.sh
-        # Post deploy hooks run when the app is accepting outside requests.
-        post_deploy: ./post_deploy.sh
+        # Define writable, persistent filesystem mounts.
+        # The key is the directory path relative to the application root.
+        # In this case, `web-files` is just a unique name for the mount.
+        mounts:
+            'web/files':
+                source: local
+                source_path: 'web-files'
 
-    # Define writable, persistent filesystem mounts.
-    # The key is the directory path relative to the application root.
-    # In this case, `web-files` is just a unique name for the mount.
-    mounts:
-        'web/files':
-            source: local
-            source_path: 'web-files'
-
-    # The app's configuration when it's exposed to the web.
-    web:
-        locations:
-            '/':
-                # The app's public directory relative to its root.
-                root: 'public'
-                # A front controller to determine how to handle requests.
-                passthru: '/app.php'
-            # Allow uploaded files to be served, but don't run scripts.
-            # Missing files get sent to the front controller.
-            '/files':
-                root: 'web/files'
-                scripts: false
-                allow: true
-                passthru: '/app.php'
+        # The app's configuration when it's exposed to the web.
+        web:
+            locations:
+                '/':
+                    # The app's public directory relative to its root.
+                    root: 'public'
+                    # A front controller to determine how to handle requests.
+                    passthru: '/app.php'
+                # Allow uploaded files to be served, but don't run scripts.
+                # Missing files get sent to the front controller.
+                '/files':
+                    root: 'web/files'
+                    scripts: false
+                    allow: true
+                    passthru: '/app.php'
 
 services:
     mysqldb:
