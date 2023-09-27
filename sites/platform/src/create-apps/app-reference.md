@@ -339,9 +339,17 @@ The files still exist on disk until manually removed.
 
 {{% note title="Advanced: On mounts and instances" theme="info" version="2"%}}
 Even though the configuration is slightly different for `local` and `service` (Network Storage) mounts,
-in reality all {{% vendor/name %}} mounts are [Network Storage](/add-services/network-storage.md) mounts.
-For single instance applications, this fact does not change behavior, but it _does_ enable mount data to be shared
-between multiple instances of the same application container when you scale.
+in reality **all** {{% vendor/name %}} mounts are [Network Storage](/add-services/network-storage.md) mounts.
+
+With this in mind, there are some consequences to be aware of.
+First, because mounts defined for a single application are actually Network Storage services, 
+data within those mounts can be shared across _instances_ of that application container.
+Enabling horizontal scaling is the primary reason for making mounts NS services.
+It also means that workers share the Network Storage instance of their parent app container.
+
+However, this _does_ mean that local mounts in one application cannot be shared with another using the `local` mount configuration.
+Even with identical names, they do not point to the same service. 
+If you would like data in a mount to be shared between applications, you must explicitly define a [Network Storage](/add-services/network-storage) service.
 {{% /note %}}
 
 ## Web
