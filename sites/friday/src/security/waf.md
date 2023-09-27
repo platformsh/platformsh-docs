@@ -1,14 +1,9 @@
 ---
 title: "{{% vendor/name %}} WAF"
 description: Learn how the WAF can help protect your site from distributed denial of service (DDoS) attacks.
-weight: 1
-banner:
-    type: tiered-feature
 ---
 
-Enterprise and Elite projects on {{% vendor/name %}} come with a web application firewall (WAF) at no additional cost.
-This WAF monitors requests to your app and blocks suspicious ones.
-
+The {{% vendor/name %}} WAF monitors requests to your app and blocks suspicious ones.
 All traffic to {{% vendor/name %}} endpoints is also filtered
 using a system that takes into account traffic patterns and abuse scores.
 
