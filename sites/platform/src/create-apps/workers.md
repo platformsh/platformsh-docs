@@ -88,8 +88,7 @@ Any top-level definitions for [`relationships`](./app-reference.md#relationships
 [`access`](./app-reference.md#access), [`mount`](./app-reference.md#mounts), and [`variables`](./app-reference.md#variables)
 are inherited by every worker, unless overridden explicitly.
 
-<!-- @todo: resources link & verify this inheritance for workers -->
-Likewise [resources defined for the application container](#) are inherited by every worker, unless overridden explicitly.
+Likewise [resources defined for the application container](/manage-resources.md) are inherited by every worker, unless overridden explicitly.
 {{% /version/specific %}}
 
 That means, for example, that the following two `{{< vendor/configfile "app" >}}` definitions produce identical workers.
@@ -230,10 +229,9 @@ The most common properties to set in a worker to override the top-level settings
 (unlike the web site which is handling many requests at once),
 while `variables` lets you instruct the application to run differently as a worker than as a web site.
 <--->
-<!-- @todo: resources link -->
 The most common properties to set in a worker to override the top-level settings are `variables` and its resources.
 `variables` lets you instruct the application to run differently as a worker than as a web site,
-whereas you can allocate [fewer worker-specific resources](#) for a container that is running only a single background process
+whereas you can allocate [fewer worker-specific resources](/manage-resources.md) for a container that is running only a single background process
 (unlike the web site which is handling many requests at once).
 {{% /version/specific %}}
 
