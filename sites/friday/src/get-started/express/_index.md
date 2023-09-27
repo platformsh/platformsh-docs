@@ -156,23 +156,17 @@ $ git add . && git commit -m "Init project"
 Command `{{% vendor/cli %}} ify` will automatically detect that you’re using an Express stack and generate the corresponding `config.yaml` Yaml files, like so:
 ```yaml
 # .upsun/config.yaml
-# Complete list of all available properties: {{% vendor/url_doc %}}/create-apps/app-reference.html
-applications:
+{{< code-link destination="/create-apps/app-reference.html" text="applications" title="Complete list of all available properties" >}}:
   app:
-    # Application source code directory
-    {{< code-link destination="/create-apps/app-reference.html#source" text="source" >}}:
+    {{< code-link destination="/create-apps/app-reference.html#source" text="source" title="Application source code directory. Click for more information" >}}:
       root: "/"
-    # The runtime the application uses.
-    {{< code-link destination="/create-apps/app-reference.html#types" text="type" alt="Complete list of available runtimes" >}}: "nodejs:18"
-    # The web key configures the web server running in front of your app.
-      {{< code-link destination="/create-apps/app-reference.html#types" text="web" title="" >}}:
-      # Commands are run once after deployment to start the application process.
-      commands:
-        start: "node index.js"
-
-    build:
+    {{< code-link destination="/create-apps/app-reference.html#types" text="type" title="The runtime the application uses. Click to see the complete list of available runtimes." >}}: "nodejs:18"
+    {{< code-link destination="/create-apps/app-reference.html#types" text="web" title="The web key configures the web server running in front of your app. Click for more information." >}}:
+      {{< code-link destination="/create-apps/app-reference.html#web-commands" text="commands" title="Commands are run once after deployment to start the application process. Click for more information." >}}:
+        {{< code-link destination="/languages/nodejs.html#4-start-your-app" text="start" title="The command to launch your app. If it terminates, it’s restarted immediately. You can use the $PORT or the $SOCKET environment variable depending on the socket family of your upstream. Click for more information." >}}: "node index.js"
+    {{< code-link destination="/create-apps/app-reference.html#build" text="build" title="Specifies a default set of build tasks to run. Flavors are language-specific. Click for more information" >}}:
       flavor: none
-    dependencies:
+    {{< code-link destination="/create-apps/app-reference.html#web-commands" text="dependencies" title="Installs global dependencies as part of the build process. They’re independent of your app’s dependencies and are available in the PATH during the build process and in the runtime environment. They’re installed before the build hook runs using a package manager for the language. Click for more information." >}}:
       nodejs:
         sharp: "*"
 #services:
@@ -199,33 +193,6 @@ You can jump to the next section.
 There are slightly different ways to link your local project to your {{% vendor/name %}} project based on the Git flow you chose for you project as discussed earlier in this guide.
 
 {{< codetabs >}}
-+++
-title={{% vendor/name %}} repository
-+++
-If you host your Express source code on an {{% vendor/name %}} Git repository, you need to let the {{% vendor/name %}} CLI know which linked project you want to deploy to.
-
-To do so, use the {{% vendor/name %}} CLI to set remote project:
-```shell
-$ {{% vendor/cli %}} project:set-remote <projectId>
-```
-
-This command will add a new remote called `{{% vendor/cli %}}` to your local Git repo as you can see below:
-```shell
-$ git remote
-origin
-{{% vendor/cli %}}
-```
-
-It will also create a new `.{{% vendor/cli %}}/local/project.yaml` file that will contain the given `<projectId>`, to store this info for the {{% vendor/name %}} CLI interaction.
-
-{{< note >}}
-If you don’t remember your `<projectId>` from the previous steps, you can get it back using this command line and select the one you created:
-```shell
-$ upsun project:list
-```
-{{< /note >}}
-
-<--->
 +++
 title=GitHub repository
 +++
@@ -373,17 +340,12 @@ To make changes to your project, follow these steps:
    and remove the feature branch:
 
    ```bash
-   git checkout main
-   git merge feat-a
-   {{% vendor/cli %}} environment:delete feat-a
-   git branch -d feat-a
-   {{% vendor/cli %}} deploy
+   {{% vendor/cli %}} merge
+     Are you sure you want to merge feat-a into its parent, main? [Y/n] y
    ```
 
    {{< note >}}
-
    Deploying to production was fast because the image built for the `feat-a` environment was reused.
-
    {{< /note >}}
 
    For a long running branch, to keep the code up-to-date with the main branch, use `git merge main` or `git rebase main`.
