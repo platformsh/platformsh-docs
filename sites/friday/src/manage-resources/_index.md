@@ -36,10 +36,10 @@ Therefore, your app can only be successfully deployed once you've configured tho
 through the {{% vendor/name %}} Console or [CLI](/administration/cli/_index.md).
 
 For the same reasons, when you add an app or service to your project after it's initially deployed,
-you also get prompted to configure adequate resources for each instance.
+you also need to configure adequate resources for each instance.
 
 For better guidance on how to configure resources when you first deploy a project,
-make sure you use `{{% vendor/cli %}} push` instead of `git push`.
+use `{{% vendor/cli %}} push` instead of `git push`.
 
 {{< /note >}}
 
@@ -78,7 +78,7 @@ title= From the Console
 3. Click **Configure**.
 4. For each app and service, select a CPU & RAM combination, and enter the amount of disk/storage you want to allocate.
    ![Configure your resources on the current environment window](/images/flexible-resources/configure-flexible-resources.png)
-   Note that the values available depend on the [container profile](#advanced-container-profiles) of each instance.
+   Note that the values available in the **CPU & RAM** menus depend on the [container profile](#advanced-container-profiles) of each instance.
 5. Click **Save**.</br>
    You environment is redeployed, which causes a short downtime.
 
@@ -97,7 +97,7 @@ title= Using the CLI
 
 To define how may instances of an app or worker you want to deploy,
 you can use the {{% vendor/name %}} CLI's interactive prompts,
-or run a single command manually.
+or run commands manually.
 
 - **Interactive prompts:**
 
@@ -105,15 +105,28 @@ or run a single command manually.
 
   For further guidance on how to set resources using the CLI, run the `{{% vendor/cli %}} resources:set --help` command.
 
-- **Manual command:**
+- **Manual commands:**
 
-  Run a command similar to the following:
+  To scale an app or worker, run the following command:
 
   ```bash
-  {{% vendor/cli %}} resources:set --count backend:3
+  {{% vendor/cli %}} resources:set --count {{< variable "APP_NAME" >}}:{{< variable "NUMBER_OF_INSTANCES" >}}
+  ```
+  
+  For example, to scale your `myapp` app to 3 instances, run the following command:
+
+  ```bash
+  {{% vendor/cli %}} resources:set --count myapp:3
   ```
 
-  To set the same instance count for all your apps using a wildcard, run a command similar to the following:
+  You can also set the same instance count for all your apps using a wildcard.
+  To do so, run the following command:
+  
+  ```bash
+  {{% vendor/cli %}} resources:set --count '*:{{< variable "NUMBER_OF_INSTANCES" >}}'
+  ```
+
+  For example, to scale all your apps to 3 instances, run the following command:
 
   ```bash
   {{% vendor/cli %}} resources:set --count '*:3'
@@ -164,7 +177,7 @@ When you [sync an environment](/glossary.md#sync),
 the source environment's disk size is automatically allocated to the target environment.
 This is to ensure that there's enough disk space on the target environment for the synchronization to succeed.
 
-## Keep an eye on your costs
+## Resource billing
 
 If you have the [**Manage Billing** permission](/administration/users.md#organization-permissions) on your organization,
 you can keep an eye on your costs.</br>
@@ -175,7 +188,7 @@ follow these steps in the {{% vendor/name %}} Console:
 2. Open the user menu (your name or profile picture).
 3. Click **Billing**.</br>
    A monthly estimate of how much each project is expected to cost is displayed.
-4. You can also view the costs related to a every project **you've been added to**.</br>
+4. You can also view the costs related to every project you've been added to.</br>
    To do so, click **{{< icon more >}} More** next to the project,
    and select **Project Billing**.</br>
    A monthly estimate of all the expected costs related to resource allocation on the project is displayed.
@@ -184,7 +197,7 @@ follow these steps in the {{% vendor/name %}} Console:
 
 These estimates reflect the expected costs **for a full month** based on the way resources are allocated **at the time of viewing**.
 They don't take into account the history of changes you may have made throughout the current month.</br>
-Therefore, if you make changes to resource allocation some time during the month, your monthly invoice will differ from this estimate.
+Therefore, if you make changes to resource allocation during the month, your monthly invoice will differ from these estimates.
 
 {{< /note >}}
 
