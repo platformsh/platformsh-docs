@@ -337,20 +337,53 @@ the mounts on that environment are backed up too.
 Also, mounted directories aren't deleted when they're removed from `{{< vendor/configfile "app" >}}`.
 The files still exist on disk until manually removed.
 
-{{% note title="Advanced: On mounts and instances" theme="info" version="2"%}}
+{{% version/only "2" %}}
+
+### Mounts, instances, and Network Storage
+
 Even though the configuration is slightly different for `local` and `service` (Network Storage) mounts,
 in reality **all** {{% vendor/name %}} mounts are [Network Storage](/add-services/network-storage.md) mounts.
 
-With this in mind, there are some consequences to be aware of.
-First, because mounts defined for a single application are actually Network Storage services, 
+With this in mind, there are some consequences to be aware of:
+
+1. Since mounts defined for a single application are actually Network Storage services, 
 data within those mounts can be shared across _instances_ of that application container.
 Enabling horizontal scaling is the primary reason for making mounts NS services.
-It also means that workers share the Network Storage instance of their parent app container.
-
-However, this _does_ mean that local mounts in one application cannot be shared with another using the `local` mount configuration.
+1. Workers share the Network Storage instance of their parent app container.
+1. If your application requires at-runtime writable data to be instance-specific -- that is, _not_ shared between instances as described in the previous two points -- you are better off 
+1. Local mounts in one application can't be shared with another using the `local` mount configuration.
 Even with identical names, they do not point to the same service. 
-If you would like data in a mount to be shared between applications, you must explicitly define a [Network Storage](/add-services/network-storage) service.
+1. If you would like data in a mount to be shared between applications, you must explicitly define and use a [Network Storage](/add-services/network-storage) service.
+
+{{% note title="Truly local mounts" %}}
+Given the caveats above, `mounts` do not provide a way where data is isolated to a single instance of a single application out-of-the-box. 
+If your project _does_ required isolated, instance-specific data, you can leverage the [`/tmp` directory](/create-apps/hooks/hooks-comparison.md#build-hook), the [`pre_start`](#web-commands) web command, and symlinks to acheive it.
+
+For example, data can be written to `my_local_mount` in _each_ instance of a Python container with the following:
+
+```yaml
+applications:
+    myapp:
+        source:
+            root: "/"
+        type: 'python:{{% latest "python" %}}'
+        hooks:
+            build: |
+                set -eux
+                …
+                ln -s /tmp/my_local_mount my_local_mount
+        web:
+            commands:
+                pre_start: |
+                    [ -d /tmp/my_local_mount ] || mkdir /tmp/my_local_mount
+```
+
+Remember that the `/tmp` has a [maximum allocation of 4 GB](/create-apps/troubleshoot-disks.md#no-space-left-on-device). 
+If your project requires more disk, [contact Support](/learn/overview/get-support.md).
+
 {{% /note %}}
+
+{{% /version/only %}}
 
 ## Web
 
@@ -367,9 +400,17 @@ See some [examples of how to configure what's served](./web/_index.md).
 
 ### Web commands
 
+{{% version/specific %}}
 | Name    | Type     | Required                      | Description |
 | ------- | -------- | ----------------------------- | ----------- |
 | `start` | `string` | See [note](#required-command) | The command to launch your app. If it terminates, it's restarted immediately. |
+
+<--->
+| Name    | Type     | Required                      | Description |
+| ------- | -------- | ----------------------------- | ----------- |
+| `pre_start` | `string` |   | Command run just prior to `start`, which can be useful when you need to run _per-instance_ actions. See [Mounts, instances, and Network Storage](#mounts-instances-and-network-storage) for an example. |
+| `start` | `string` | See [note](#required-command) | The command to launch your app. If it terminates, it's restarted immediately. |
+{{% /version/specific %}}
 
 Example:
 
@@ -402,6 +443,11 @@ creating an infinite loop until the container crashes.
 Just run it as normal and allow the {{% vendor/name %}} supervisor to manage it.
 
 {{< /note >}}
+
+{{% version/specific %}}
+<--->
+For an example and common use case of the `pre_start` command, see [Mounts, instances, and Network Storage](#mounts-instances-and-network-storage).
+{{% /version/specific %}}
 
 #### Required command
 
