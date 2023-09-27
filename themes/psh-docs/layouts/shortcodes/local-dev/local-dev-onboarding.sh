@@ -10,7 +10,7 @@ PARENT=$2
 {{ `{{< vendor/cli >}}` | .Page.RenderString }} tunnel:open --no-interaction
 
 # Mock {{ `{{< vendor/name >}}` | .Page.RenderString }} environment variables
-export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"
+export PLATFORM_RELATIONSHIPS="$({{ `{{< vendor/cli >}}` | .Page.RenderString }} tunnel:info --encode)"
 # Add any other variables you need
 
 # If necessary, install dependencies here

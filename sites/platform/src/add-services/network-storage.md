@@ -3,7 +3,7 @@ title: "Network Storage"
 weight: -30
 ---
 
-{{< vendor/name >}} supports internal "storage as a service" to provide a file store that can be shared between different application containers.
+{{% vendor/name %}} supports internal "storage as a service" to provide a file store that can be shared between different application containers.
 
 The network storage service enables a new kind of [mount](../create-apps/app-reference.md#mounts)
 that refers to a shared service rather than to a local directory.
@@ -50,7 +50,7 @@ If your app does this regularly, a local mount is more effective.
 
 {{% /version/specific %}}
 
-This service is the {{< vendor/name >}} network storage implementation, not to a version of a third-party application.
+This service is the {{% vendor/name %}} network storage implementation, not to a version of a third-party application.
 
 {{< note theme="warning">}}
 
@@ -96,25 +96,24 @@ Any change to the service version results in existing data becoming inaccessible
 ## Multi-application usage
 
 If your project contains [multiple apps](../create-apps/multi-app/_index.md), they can all use the same network mounts.
-If the `source_path` is the same in both `{{< vendor/configfile "app" >}}` files,
+If the `source_path` is the same for both apps,
 the files are shared between the two applications even if the mount location is different.
 
 It's also possible to have one app mount a `source_path` that's a subdirectory of another application's mount.
 For example:
 
-`app1`:
-
-```yaml
+```yaml {configFile="apps"}
+{{% snippet name="app1" config="apps" %}}
+...
 mounts:
     'web/uploads':
         source: service
         service: files
         source_path: uploads
-```
+{{% /snippet %}}
 
-`app2`:
-
-```yaml
+{{% snippet name="app2" config="apps" globKey="false" %}}
+...
 mounts:
     'process':
         source: service
@@ -124,6 +123,7 @@ mounts:
         source: service
         service: files
         source_path: uploads/done
+{{% /snippet %}}
 ```
 
 In this example, `app1` has access to the entire `uploads` directory by writing to `web/uploads`.
@@ -144,15 +144,32 @@ while `service` mounts refer to the same file system.
 For example, you can define a network storage service:
 
 ```yaml {configFile="services"}
-files:
-    type: network-storage:2.0
+{{% snippet name="files" config="service" %}}
+    type: network-storage:{{% latest "network-storage" %}}
     disk: 2048
+{{% /snippet %}}
 ```
 
 You can then use this service to  define a `network_dir` network mount and a `local_dir` local mount,
 to be used by a web instance and a `queue` worker instance:
 
 ```yaml {configFile="app"}
+{{% snippet name="my-app" config="app" %}}
+
+# The type of the application to build.
+type: "nodejs:{{% latest "nodejs" %}}"
+
+# Define a web instance
+web:
+    locations:
+        "/":
+            root: "public"
+            passthru: true
+            index: ['index.html']
+
+# Define how much space is available to local mounts
+disk: 512
+
 mounts:
     # Define a network storage mount that's available to both instances together
     'network_dir':
@@ -165,22 +182,17 @@ mounts:
         source: local
         source_path: my_stuff
 
-# Define how much space is available to local mounts
-disk: 512
-
-# Define a web instance
-web:
-    locations:
-        "/":
-            root: "public"
-            passthru: true
-            index: ['index.html']
-
 # Define a worker instance from the same code but with a different start
 workers:
     queue:
         commands:
             start: ./start.sh
+{{% /snippet %}}
+
+{{% snippet name="files" config="service" placeholder="true" %}}
+    type: network-storage:{{% latest "network-storage" %}}
+    disk: 2048
+{{% /snippet %}}
 ```
 
 Both the web instance and the `queue` worker have two mount points:
@@ -189,7 +201,7 @@ Both the web instance and the `queue` worker have two mount points:
   and they *each* take 1024 MB of space.
 * The `network_dir` mount on each points to the same network storage space on the `files` service.
   They can both read and write to it simultaneously.
-  The amount of space it has available depends on the `disk` key specified in `{{< vendor/configfile "services" >}}`.
+  The amount of space it has available depends on the `disk` key specified for the service configuration (in this case, 2048 MB).
 
 ## How do I give my workers access to my main application's files?
 
@@ -197,23 +209,16 @@ The most common use case for `network-storage` is to allow a CMS-driven site to 
 For that case, all that's needed is to set the necessary file mounts as `service` mounts.
 
 For example, the following `{{< vendor/configfile "app" >}}` file (fragment) keeps Drupal files directories shared between web and worker instances while keeping the Drush backup directory web-only (as it has no need to be shared).
-(This assumes a service named `files` has already been defined in `{{< vendor/configfile "services" >}}`.)
+(This assumes a Network Storage service named `files` has also been defined in `{{< vendor/configfile "services" >}}`.)
 
+```yaml {configFile="app"}
+{{% snippet name="my-app" config="app" %}}
 
-```yaml
-name: 'app'
-type: 'php:8.1'
+# The type of the application to build.
+type: "php:{{% latest "php" %}}"
 
 relationships:
-    database: 'db:mysql'
-
-hooks:
-  # ...
-
-web:
-    locations:
-        '/':
-            # ...
+    database: "db:mysql"
 
 disk: 1024
 
@@ -261,6 +266,15 @@ workers:
         commands:
             start: |
                 cd web && drush queue-run myqueue
+{{% /snippet %}}
+{{% snippet name="db" config="service" placeholder="true" %}}
+    type: mariadb:{{% latest "mariadb" %}}
+    disk: 1024
+{{% /snippet %}}
+{{% snippet name="files" config="service" placeholder="true" globKey="false" %}}
+    type: network-storage:{{% latest "network-storage" %}}
+    disk: 1024
+{{% /snippet %}}
 ```
 
 ## How can I migrate a local storage to a network storage?
@@ -270,11 +284,13 @@ However, the process is fundamentally "just" moving files around on disk, so it'
 
 Suppose you have this mount configuration:
 
-```yaml
+```yaml {configFile="app"}
+{{% snippet name="false" config="app" root="false" %}}
 mounts:
     web/uploads:
         source: local
         source_path: uploads
+{{% /snippet %}}
 ```
 
 And want to move that to a network storage mount.
@@ -284,17 +300,40 @@ The following approximate steps do so with a minimum of service interruption.
    that has at least enough space for your existing files with some buffer.
    You may need to increase your plan's disk size to accommodate it.
 
-2. Add a new mount to the network storage service on a non-public directory:
+```yaml {configFile="services"}
+{{% snippet name="files" config="service" %}}
+    type: network-storage:{{% latest "network-storage" %}}
+    disk: 1024
+{{% /snippet %}}
 
-   ```yaml
-   mounts:
-       new-uploads:
-           source: service
-           service: files
-           source_path: uploads
-   ```
+{{% snippet name="false" config="app" root="false" placeholder="true" %}}
+mounts:
+    web/uploads:
+        source: local
+        source_path: uploads
+{{% /snippet %}}
+```
 
-    (Remember the `source_path` can be the same since they're on different storage services.)
+2. Add a new mount (`new-uploads`) to the network storage service on a non-public directory.
+(Remember the `source_path` can be the same since they're on different storage services.)
+
+```yaml {configFile="app"}
+{{% snippet name="false" config="app" root="false" %}}
+mounts:
+    web/uploads:
+        source: local
+        source_path: uploads
+    new-uploads:
+        source: service
+        service: files
+        source_path: uploads
+{{% /snippet %}}
+
+{{% snippet name="files" config="service" placeholder="true" %}}
+    type: network-storage:{{% latest "network-storage" %}}
+    disk: 1024
+{{% /snippet %}}
+```
 
 3. Deploy these changes.
    Then use `rsync` to copy all files from the local mount to the network mount.
@@ -305,21 +344,26 @@ The following approximate steps do so with a minimum of service interruption.
     ```
 
 4. Reverse the mounts.
-   Point the `web/uploads` directory to the network mount instead:
+   Point the `web/uploads` directory to the network mount instead.
+   Commit and push the change, testing to make sure the network files are accessible.
 
-   ```yaml
-   mounts:
-       web/uploads:
-           source: service
-           service: files
-           source_path: uploads
-       old-uploads:
-           source: local
-           source_path: uploads
-   ```
+```yaml {configFile="app"}
+{{% snippet name="false" config="app" root="false" %}}
+mounts:
+    old-uploads:
+        source: local
+        source_path: uploads
+    web/uploads:
+        source: service
+        service: files
+        source_path: uploads
+{{% /snippet %}}
 
-    Commit and push that.
-    Test to make sure the network files are accessible.
+{{% snippet name="files" config="service" placeholder="true" %}}
+    type: network-storage:{{% latest "network-storage" %}}
+    disk: 1024
+{{% /snippet %}}
+```
 
 5. Cleanup.
    First, run another rsync just to make sure any files uploaded during the transition aren't lost.

@@ -170,14 +170,14 @@ Set up a script by following these steps:
     # Utility functions.
 
     # list_org_projects: Print list of projects operation will be applied to before starting.
-    #   $1: Organization, as it appears in console.platform.sh.
+    #   $1: Organization, as it appears in console.{{< vendor/urlraw "host" >}}.
     list_org_projects () {
        symfony project:list -o $1 --columns="ID, Title"
     }
 
     # get_org_projects: Retrieve an array of project IDs for a given organization.
     #   Note: Makes array variable PROJECTS available to subsequent scripts.
-    #   $1: Organization, as it appears in console.platform.sh.
+    #   $1: Organization, as it appears in console.{{< vendor/urlraw "host" >}}.
     get_org_projects () {
       PROJECTS_LIST=$(symfony project:list -o $1 --pipe)
       PROJECTS=($PROJECTS_LIST)
@@ -185,14 +185,14 @@ Set up a script by following these steps:
 
     # get_project_envs: Retrieve an array of envs IDs for a project.
     #   Note: Makes array variable ENVS available to subsequent scripts.
-    #   $1: ProjectId, as it appears in console.platform.sh.
+    #   $1: ProjectId, as it appears in console.{{< vendor/urlraw "host" >}}.
     get_project_envs () {
       ENV_LIST=$(symfony environment:list -p $1 --pipe)
       ENVS=($ENV_LIST)
     }
 
     # list_project_envs: Print list of envs operation will be applied to before starting.
-    #   $1: ProjectId, as it appears in console.platform.sh.
+    #   $1: ProjectId, as it appears in console.{{< vendor/urlraw "host" >}}.
     list_project_envs () {
       symfony environment:list -p $1
     }
@@ -275,7 +275,7 @@ Set up a script by following these steps:
     ```
 
 {{< note >}}
-You can find the organization identifier for a specific project, within the {{< vendor/name >}} console, by clicking on your name, and then on “Settings”, in the top right corner.
+You can find the organization identifier for a specific project, within the {{% vendor/name %}} console, by clicking on your name, and then on “Settings”, in the top right corner.
 {{< /note >}}
 
 

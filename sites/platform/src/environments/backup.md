@@ -20,12 +20,12 @@ first activate it.
 
 ## How backup and restore works
 
-1. As an [admin user](../administration/users.md), you can do a backup of your environment. 
+1. As an [admin user](../administration/users.md), you can do a backup of your environment.
    This backup includes the complete data and code of the environment.
    All persistent data from all running [services](../add-services/_index.md)
    and any files stored on [mounts](../create-apps/app-reference.md#mounts) are included.
-   The backup is stored internally on {{< vendor/name >}}.
-   That is, the backup can be applied to environments on {{< vendor/name >}}, but it can't be downloaded.
+   The backup is stored internally on {{% vendor/name %}}.
+   That is, the backup can be applied to environments on {{% vendor/name %}}, but it can't be downloaded.
    If you need to download backups, instead [export your mount and service data](/learn/tutorials/exporting.md)).
 
 2. You restore your environment using the backup.
@@ -34,7 +34,7 @@ first activate it.
 
    {{< note theme="warning" title="Warning" >}}
 
-   But {{< vendor/name >}} doesn’t modify your Git repository. So by default, any further changes you make use the latest code in your repository.
+   {{% vendor/name %}} does not modify your Git repository. Any further changes you make use the latest code in your repository.
 
    {{< /note >}}
 
@@ -61,13 +61,10 @@ For consistent backups, create the backups during non-peak hours for your site.
 
 For information on how long backups are retained, see the [data retention policy](../security/data-retention.md).
 
+{{% version/only "1" %}}
 ## Backup schedule
 
-{{< version/specific >}}
 Backups for Dedicated environments have a [specific frequency](../dedicated-gen-2/overview/backups.md).
-<--->
-
-{{< /version/specific >}}
 
 On Grid environments, preview environments can have up to 2 [manual backups](#create-a-manual-backup).
 The number of available backups for Production environments depends on your schedule.
@@ -103,20 +100,28 @@ To upgrade to the higher schedule, follow these steps:
 6. Click **Save**.
 
 To downgrade to the lower schedule, [contact support](/learn/overview/get-support.md).
+{{% /version/only %}}
 
 ## Use automated backups
 
-{{< version/specific >}}
+{{% version/specific %}}
+<!-- Platform.sh -->
 For Dedicated environments, see more about [backups of Dedicated environments](../dedicated-gen-2/overview/backups.md).
-<--->
-
-{{< /version/specific >}}
 
 For Grid environments, automated backups are taken for Production environments at least once every day.
 The exact number of backups depends on your [backup schedule](#backup-schedule).
 
 Daily backups are taken at around 4:00 every day based on the [project timezone](../projects/change-project-timezone.md).
 The time for 6-hourly backups is based on the daily backup.
+
+<--->
+<!-- Upsun -->
+{{< vendor/name >}} provides 1 automated backup a day for your production environment,
+with a [2-day retention](/security/data-retention.md) (2 days worth of backups are retained at any given point).
+
+For more information on the backups {{< vendor/name >}} provides,
+see the [{{< vendor/name >}} backup policy](/security/backups.md).
+{{< /version/specific >}}
 
 Automated backups are always [live](#live-backups).
 
@@ -130,12 +135,11 @@ They may make restorations less reliable.
 To avoid such issues, schedule [manual backups](#create-a-manual-backup) during non-peak hours,
 when the short amount of downtime is least noticed.
 
-{{< version/specific >}}
+{{% version/only "1" %}}
+<!-- Platform.sh -->
 Automated backups are always live, including those taken on [{{% names/dedicated-gen-3 %}}](../dedicated-gen-3/_index.md)
 and [{{% names/dedicated-gen-2 %}}](../dedicated-gen-2/overview/_index.md) environments.
-<--->
-
-{{< /version/specific >}}
+{{% /version/only %}}
 
 You can create a manual live backup on a Grid project:
 
@@ -160,6 +164,12 @@ When [creating the backup](#create-a-manual-backup), select **Run live backup** 
 {{< /codetabs >}}
 
 ## Create a manual backup
+
+{{% version/only "2" %}}
+{{< vendor/name >}} provides up to 2 manual backups of your production environment,
+plus 2 manual backups you can use for your [preview environments](/glossary/_index.md).
+For more information, see the [{{< vendor/name >}} backup policy](/security/backups.md).
+{{% /version/only %}}
 
 You can create a manual backup using the [CLI](../administration/cli/_index.md) or in the [Console](../administration/web/_index.md).
 

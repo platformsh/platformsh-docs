@@ -19,9 +19,9 @@ workers:
 ```
 
 Note that the `symfony` binary is available when you use the [Symfony
-integration](./integration) in your {{< vendor/name >}} app configuration.
+integration](./integration) in your {{% vendor/name %}} app configuration.
 
-On {{< vendor/name >}}, worker containers run the exact same code as the web container.
+On {{% vendor/name %}}, worker containers run the exact same code as the web container.
 The container image is built only once and deployed multiple times in its own container alongside the web container. 
 The *build* hook and dependencies might not vary but,
 as these containers are independent, they can be customized the same way using common properties.

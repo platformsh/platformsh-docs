@@ -7,7 +7,7 @@ Effectively debugging web apps takes effort,
 especially when an HTTP request goes through multiple layers before reaching your web app.
 Follow the steps below to debug a specific app.
 
-You can choose to debug in an environment deployed to {{< vendor/name >}}
+You can choose to debug in an environment deployed to {{% vendor/name %}}
 or with your app running locally but connected to deployed services.
 In either case, make sure to debug in a preview environment.
 

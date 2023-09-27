@@ -9,7 +9,7 @@ description: |
 
 {{% template-intro %}}
 
-You can click the **Deploy on {{< vendor/name >}}** button to launch a new project using a template, or you can visit and clone the repository and push to an empty project you have created using the CLI or in the Console.
+You can click the **Deploy on {{% vendor/name %}}** button to launch a new project using a template, or you can visit and clone the repository and push to an empty project you have created using the CLI or in the Console.
 
 ## C#/.NET Core
 
