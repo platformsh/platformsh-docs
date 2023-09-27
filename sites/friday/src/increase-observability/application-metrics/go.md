@@ -49,40 +49,37 @@ it to the Blackfire Agent periodically.
 
 ```go
 profiler.Start(
-       WithAppName("my-app"),
-       WithCPUDuration(3 * time.Second),
-       WithCPUProfileRate(1000),
-       WithProfileTypes(CPUProfile),
-       WithLabels({
+       profiler.WithCPUDuration(3 * time.Second),
+       profiler.WithCPUProfileRate(1000),
+       profiler.WithProfileTypes(profiler.CPUProfile, profiler.HeapProfile, profiler.GoroutineProfile),
+       profiler.WithLabels({
             "key1": "value1",
             "key2": "value2",
        }),
-       WithUploadTimeout(5 * time.Second),
+       profiler.WithUploadTimeout(5 * time.Second),
 )
 defer profiler.Stop()
 ```
 
 The `Start` function accepts to following options:
 
-- `WithAppName`: Sets the application name. Can also be set via the environment variable `BLACKFIRE_CONPROF_APP_NAME`.
-
-- `WithCPUDuration`: Specifies the length at which to collect CPU profiles.
+- `WithCPUDuration`: specifies the length at which to collect CPU profiles.
 The default is 45 seconds. Can also be set via the environment variable `BLACKFIRE_CONPROF_CPU_DURATION`.
 
-- `WithCPUProfileRate`: Sets the CPU profiling rate to Hz samples per second.
+- `WithCPUProfileRate`: sets the CPU profiling rate to Hz samples per second.
 The default is defined by the Go runtime as 100 Hz. Can also be set via the environment
 variable `BLACKFIRE_CONPROF_CPU_PROFILERATE`.
 
-- `WithProfileTypes`: WithProfileTypes sets the profiler types. Multiple profile types can be set.
-The default is `CPUProfile`.
+- `WithProfileTypes`: sets the profiler types. Multiple profile types can be set (`profiler.CPUProfile`, `profiler.HeapProfile`, `profiler.GoroutineProfile`)
+The default is `Profiler.CPUProfile`.
 
-- `WithLabels`: Sets custom labels specific to the profile payload that is sent.
+- `WithLabels`: sets custom labels specific to the profile payload that is sent.
 
-- `WithUploadTimeout`: Sets the upload timeout of the message that is sent to the Blackfire Agent. 
+- `WithUploadTimeout`: sets the upload timeout of the message that is sent to the Blackfire Agent.
 The default is 10 seconds. Can also be set via the environment variable `BLACKFIRE_CONPROF_UPLOAD_TIMEOUT`.
 
 Note:
-If the same parameter is set by both an environment variable and a `Start` call, the explicit 
+If the same parameter is set by both an environment variable and a `Start` call, the explicit
 parameter in the `Start` call takes precedence.
 
 There is also some additional configuration that can be done using environment variables:
@@ -104,7 +101,7 @@ Stops the continuous profiling probe.
 go get github.com/blackfireio/go-continuous-profiling-experimental
 ```
 
-2. Save the following code as `main.go` and run as following: 
+2. Save the following code as `main.go` and run as following:
 
 ```
 go run main.go

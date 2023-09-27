@@ -4,12 +4,12 @@ weight: 5
 description: A full access to Blackfire is bundled with your PHP and Python {{< vendor/name >}} projects.
 ---
 
-A full access to [Blackfire](https://www.blackfire.io/) is bundled with your PHP and
-Python {{< vendor/name >}} projects. Blackfire the **official {{< vendor/name >}}
-observability service** that helps you improve the performance of your apps at
-each stage of their lifecycle.
+A full access to [Blackfire](https://www.blackfire.io/) is bundled with all your PHP and
+Python {{< vendor/name >}} projects.
 
-With Blackfire's unique Application Performance Monitoring (APM), Profiling, 
+Blackfire the **official {{< vendor/name >}} observability service** that helps you
+improve the performance of your apps at each stage of their lifecycle.
+With Blackfire's unique Application Performance Monitoring (APM), Profiling,
 Alerting, and Testing features, you can achieve the following goals:
 
 - Avoid performance bottlenecks by proactively identifying issues in your code
@@ -25,11 +25,11 @@ You can only access your Blackfire environments after you've been granted access
 Therefore, to access your Blackfire environments, make sure you log in using your {{< vendor/name >}} account.
 
 To access a Blackfire environment, each project user needs a Blackfire account.
-When a project user doesn't already have a Blackfire account, 
+When a project user doesn't already have a Blackfire account,
 a new one is automatically created using the user's {{< vendor/name >}} credentials.
 
 {{< note >}}
-If you're using a [Content Delivery Network (CDN)](../../domains/cdn/_index.md), 
+If you're using a [Content Delivery Network (CDN)](../../domains/cdn/_index.md),
 make sure you [configure it](https://blackfire.io/docs/integrations/proxies/index)
 to let Blackfire profile the code running on your servers.
 {{< /note >}}
@@ -58,10 +58,10 @@ you need to redeploy the environment.
 {{< /note >}}
 
 ### Blackfire monitoring
-Blackfire monitoring is enabled by default on your production environment. 
+Blackfire monitoring is enabled by default on your production environment.
 To enable Blackfire monitoring on your development or staging environments, follow these steps:
 
-1.  Go to your [organizations list](https://blackfire.io/my/organizations) 
+1.  Go to your [organizations list](https://blackfire.io/my/organizations)
     and select the organization where you want to enable Blackfire monitoring.
 
 2.  Click **Organization Monitoring Usage**.
@@ -84,8 +84,11 @@ This helps you find the root cause of performance bottlenecks.
 
 Blackfire lets you profile your application anywhere it's deployed,
 including on your local development machines.
-Using a browser extension or CLI command, 
+Using a browser extension or CLI command,
 you can profile HTTP requests, CLI scripts, Consumers, and Daemons.
+
+While HTTP requests can be profiled out-of-the-box, CLI profiling requires a
+[specific configuration](https://blackfire.io/docs/integrations/paas/upsun#cli-profiling).
 
 For more information on Blackfire profiling features,
 see the [Blackfire documentation](https://blackfire.io/docs/profiling-cookbooks/index).
@@ -96,19 +99,20 @@ Blackfire's native integration with {{< vendor/name >}} enables you to test your
 every time you deploy a branch in production, staging, or development.
 Follow these steps:
 
-1.  Set up the [Blackfire Builds integration](https://blackfire.io/docs/integrations/paas/platformsh#builds-level-production).
+1.  Set up the [Blackfire Builds integration](https://blackfire.io/docs/integrations/paas/upsun#builds).
 
 2.  Optional: set up an [integration with your Git provider](https://blackfire.io/docs/integrations/git/index)
     and get commit status updates from build reports.
 
-3.  To test business-critical use cases, [write scenarios](https://blackfire.io/docs/builds-cookbooks/scenarios).
+3.  Recommended: test business-critical use cases, with Blackfire [synthetic monitoring](https://blackfire.io/docs/builds-cookbooks/scenarios).
 
 ## Troubleshooting
 
 ### Bypass your reverse proxy, load balancer or CDN
 
-To use [Blackfire profiling](#blackfire-profiling),
-you need to bypass any reverse proxy, load balancer or [CDN](../../domains/cdn/_index.md) that sits in front of your app.
+To use [Blackfire profiling](#blackfire-profiling), you need to bypass any reverse
+proxy, load balancer or [CDN](../../domains/cdn/_index.md) that sits in front of your app.
+
 See [how to configure a bypass](https://blackfire.io/docs/reference-guide/reverse-proxies#documentation).
 
 ### Configure your HTTP cache
@@ -116,7 +120,8 @@ See [how to configure a bypass](https://blackfire.io/docs/reference-guide/revers
 To take advantage of Blackfire features while using the HTTP cache with cookies,
 allow the `__blackfire` cookie to go through the cache.
 
-To do so, add [a configuration](../../define-routes/cache.md#allowing-only-specific-cookies) similar to the following:
+To do so, add [a configuration](../../define-routes/cache.md#allowing-only-specific-cookies)
+similar to the following:
 
 ```yaml {configFile="routes"}
 cache:
@@ -126,8 +131,8 @@ cache:
 
 ## Get support
 
-If you're experiencing issues with Blackfire and [troubleshooting](#troubleshooting) information doesn't help,
-follow these steps:
+If you're experiencing issues with Blackfire and [troubleshooting](#troubleshooting)
+information doesn't help, follow these steps:
 
 1. Retrieve [startup errors](#1-retrieve-startup-errors).
 2. Retrieve your [Blackfire logs](#2-retrieve-your-blackfire-logs).
@@ -138,14 +143,14 @@ follow these steps:
 To retrieve startup errors, run the following command:
 
 ```bash
-{{% vendor/cli %}} ssh -- php -d display_startup_errors=on --ri blackfire 
+{{% vendor/cli %}} ssh -- php -d display_startup_errors=on --ri blackfire
 ```
 
 ### 2. Retrieve your Blackfire logs
 
 To retrieve your Blackfire logs, follow these steps:
 
-1.  On the environment where you're facing issues, create the following [variable](../../development/variables/set-variables.md):
+1.  On the environment where you're facing issues, create the following[variable](../../development/variables/set-variables.md):
 
     ```bash
     {{% vendor/cli %}} variable:create php:blackfire.log_file --value /tmp/blackfire.log

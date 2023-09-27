@@ -55,8 +55,6 @@ It collects profiling information in the background and periodically uploads it 
 const Blackfire = require('@blackfireio/node-tracing');
 Blackfire.start({
    appName: 'my-app'
-   // socket to the Blackfire agent.
-   // agentSocket: 'unix:///var/run/blackfire/agent.sock'
 });
 // your application...
 // If needed, you can stop profiling before cpuDuration
