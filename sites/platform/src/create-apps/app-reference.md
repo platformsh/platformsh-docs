@@ -188,7 +188,7 @@ The default is **{{< partial "plans/default-dev-env-size" >}}**, but you can inc
 Resources for application containers are not committed to YAML files, but instead managed over the API using either the Console or the `{{% vendor/cli %}} resources:set` command. 
 
 <!-- @todo: resources page link -->
-See the [managing resources](#) documentation for more details.
+For more information, see how to [manage resources](#).
 
 {{< /version/specific>}}
 
@@ -261,7 +261,7 @@ You need to either increase your plan's storage or decrease the `disk` values yo
 Disk for application containers are not committed to YAML files, but instead managed over the API using either the Console or the `{{% vendor/cli %}} resources:set` command. 
 
 <!-- @todo: resources page link -->
-See the [managing resources](#) documentation for more details.
+For more information, see how to [manage resources](#).
 
 {{% /version/specific %}}
 
@@ -607,7 +607,7 @@ applications:
 
 Workers require resource definition using `{{% vendor/cli %}} resources:set`, same as application containers.
 <!-- @todo: resources page link -->
-See the [managing resources](#) documentation for more details.
+For more information, see how to [manage resources](#).
 {{% /version/specific %}}
 
 ## Access

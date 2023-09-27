@@ -234,7 +234,7 @@ This project doesn't support source operations.
 
 ## Automated source operations using a cron job
 
-You can use cron to automatically run your source operations.
+You can use a cron to automatically run your source operations.
 
 Note that it’s best not to run source operations on your production environment,
 but rather on a dedicated environment where you can test changes.

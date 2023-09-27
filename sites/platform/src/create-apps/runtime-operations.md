@@ -13,7 +13,9 @@ For example, if you have a static website,
 you may want to set up a runtime operation to occasionally fetch content from a backend system
 without having to rebuild your whole app.
 
+{{% version/only "1" %}}
 You can use runtime operations if you have Grid or {{% names/dedicated-gen-3 %}} environments.
+{{% /version/only %}}
 
 ## Define a runtime operation
 

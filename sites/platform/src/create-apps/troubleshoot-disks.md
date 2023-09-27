@@ -72,7 +72,7 @@ This can only be done by people with the [manage plans permission](../administra
 To increase the space available for applications and services,
 use the `{{% vendor/cli %}} resources:set` command.
 <!-- @todo: resources link -->
-See the [resources configuration](#) documentation for more details.
+For more information, see how to [manage resources](#).
 {{% /version/specific %}}
 
 ## No space left on device

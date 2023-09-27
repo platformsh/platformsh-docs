@@ -7,7 +7,9 @@ Workers are instances of your code that aren't open to connections from other ap
 They're good for handling background tasks.
 See how to [configure a worker](./app-reference.md#workers) for your app.
 
+{{% version/only "1" %}}
 Note that to have enough resources to support a worker and a service, you need at least a [{{< partial "plans/multiapp-plan-name" >}} plan](../administration/pricing/_index.md#multiple-apps-in-a-single-project).
+{{% /version/only %}}
 
 ## Access the worker container
 
