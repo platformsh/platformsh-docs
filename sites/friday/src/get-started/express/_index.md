@@ -24,44 +24,22 @@ Anything included in these guides applies to not only to [Express](https://expre
 ## Create your Express app
 First thing’s first, if you don’t have a local Express project, you need to create a new Express project locally following their [installation guide](https://expressjs.com/en/starter/installing.html).
 
-## Choose your Git Flow
-{{< note title="TODO">}}
-TODO: check if it's needed in the project creation path
-And I don't know if we don't need to use only the {{% vendor/name %}} Git repo and let the user use a [third-party Git repo](#use-a-third-party-git-provider) at the end (as it is done in the [Symfony guide](/guides/symfony/get-started.html).
-{{< /note >}}
+## Add a Hello World route
+You need to create your first Express page.
+To do so, please create, at the root of your project, a new ``index.js`` file that will contain a basic Hello world script:
+```javascript
+const express = require('express')
+const app = express()
+var port = (process.env.PORT || '3000');
 
-{{% vendor/name %}} projects can be used as a classic Git repository where you will be able to push your source code in different ways using either Git CLI or {{% vendor/name %}} CLI. You can choose which way—or Git flow—you would like to use for your project from the following options:
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
 
-- Your project source code will be **hosted on a {{% vendor/name %}} Git repository**
-- Your project source code will be **hosted on your own GitHub repository**
-
-{{< codetabs >}}
-+++
-title={{% vendor/name %}} repository
-+++
-For the rest of this guide, you will use the normal Git Flow to commit your source code changes to Git history and use {{% vendor/name %}} CLI to deploy your [{{% vendor/name %}} environment](/environments.html) with latest code updates.
-
-<--->
-+++
-title=GitHub repository
-+++
-{{% vendor/name %}} provides a feature called [Github integration](integrations/source/github.md) that allows your {{% vendor/name %}} project to be fully integrated with your Github repository.
-Enabling you, as a developer, to use a normal Git workflow (`git add . && git commit -m "message" && git push`) to deploy your environment—with no need to connect to the {{% vendor/name %}} console.
-
-{{< note >}}
-Please make sure you that you have already completed the following steps before adding [Github integration](integrations/source/github.md):
-
-   1. Create a Git repository in your own organization following the relevant [Github repository creation guide](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository).
-   2. Create a [Github integration](integrations/source/github.md).
-   3. Add a Git remote to your local project, from the root of your Express directory, by inputting the following:
-       ```
-       $ git remote add origin <urlOfYourOwnGitHubRepo>
-       $ git add . && git commit -m "init express"
-       $ git push origin
-       ```
-{{< /note >}}
-
-{{< /codetabs >}}
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
+```
 
 ## Create a new project
 The next step is to create a project on {{% vendor/name %}}.
@@ -120,6 +98,40 @@ $ upsun project:list
 
 {{< /codetabs >}}
 
+## Choose your Git Flow
+{{% vendor/name %}} projects can be used as a classic Git repository where you will be able to push your source code in different ways using either Git CLI or {{% vendor/name %}} CLI. You can choose which way—or Git flow—you would like to use for your project from the following options:
+
+- Your project source code will be **hosted on a {{% vendor/name %}} Git repository**
+- Your project source code will be **hosted on your own GitHub repository**
+
+{{< codetabs >}}
++++
+title={{% vendor/name %}} Git repository
++++
+For the rest of this guide, you will use the normal Git Flow (`git add . && git commit -m "message" && git push`) to commit your source code changes to Git history and use {{% vendor/name %}} CLI to deploy your [{{% vendor/name %}} environment](/environments.html) with latest code updates.
+
+<--->
++++
+title=GitHub repository
++++
+{{% vendor/name %}} provides a feature called [Github integration](integrations/source/github.md) that allows your {{% vendor/name %}} project to be fully integrated with your Github repository.
+Enabling you, as a developer, to use a normal Git workflow (`git add . && git commit -m "message" && git push`) to deploy your environment—with no need to connect to the {{% vendor/name %}} console.
+
+{{< note >}}
+Please make sure you that you have already completed the following steps before adding [Github integration](integrations/source/github.md):
+
+1. Create a Git repository in your own organization following the relevant [Github repository creation guide](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository).
+2. Create a [Github integration](integrations/source/github.md).
+3. Add a Git remote to your local project, from the root of your Express directory, by inputting the following:
+    ```
+    $ git remote add origin <urlOfYourOwnGitHubRepo>
+    $ git add . && git commit -m "init express"
+    $ git push origin
+    ```
+{{< /note >}}
+
+{{< /codetabs >}}
+
 ## Configure your project
 To be able to host your Express application on {{% vendor/name %}}, some Yaml configuration files are needed at the root of your project to manage the way your application will behave.
 These Yaml configuration files are located into a .{{% vendor/cli %}}/ folder at the root of your source code, the architecture of which will look like this:
@@ -138,16 +150,32 @@ To pre-generate these Yaml files, please use the following command from the root
 ```shell
 $ {{% vendor/cli %}} ify
 $ git init
-$ git add . && git commit -m "Upsun config.yaml file"
+$ git add . && git commit -m "Init project"
 ```
 
 Command `{{% vendor/cli %}} ify` will automatically detect that you’re using an Express stack and generate the corresponding `config.yaml` Yaml files, like so:
 ```yaml
 # .upsun/config.yaml
+# Complete list of all available properties: {{% vendor/url_doc %}}/create-apps/app-reference.html
 applications:
   app:
-    # ...
-services:
+    # Application source code directory
+    {{< code-link destination="/create-apps/app-reference.html#source" text="source" >}}:
+      root: "/"
+    # The runtime the application uses.
+    {{< code-link destination="/create-apps/app-reference.html#types" text="type" alt="Complete list of available runtimes" >}}: "nodejs:18"
+    # The web key configures the web server running in front of your app.
+      {{< code-link destination="/create-apps/app-reference.html#types" text="web" title="" >}}:
+      # Commands are run once after deployment to start the application process.
+      commands:
+        start: "node index.js"
+
+    build:
+      flavor: none
+    dependencies:
+      nodejs:
+        sharp: "*"
+#services:
 #  db:
 #    type: postgresql:14
 routes:
@@ -161,17 +189,14 @@ routes:
     to: "https://{default}/"
 ```
 
-## TODO Link your local project and {{% vendor/name %}} project
+## Set project remote
 
-{{< note title="TODO">}}
-TODO: this part is maybe not needed anymore if we only talk in this getting start guide of using the {{% vendor/name %}} Git repo
+{{< note >}}
+If you used the {{% vendor/name %}} CLI command `{{% vendor/cli %}} project:create` to create your project, your local source code already contains a ``.{{% vendor/cli %}}/local/project.yaml`` file that contains your `projectId`.
+You can jump to the next section.
 {{< /note >}}
 
 There are slightly different ways to link your local project to your {{% vendor/name %}} project based on the Git flow you chose for you project as discussed earlier in this guide.
-
-{{< note >}}
-If you use the {{% vendor/name %}} CLI to create your project, your local source code should already contain an `id` in your ``.{{% vendor/cli %}}/local/project.yaml`` file.
-{{< /note >}}
 
 {{< codetabs >}}
 +++
@@ -181,7 +206,7 @@ If you host your Express source code on an {{% vendor/name %}} Git repository, y
 
 To do so, use the {{% vendor/name %}} CLI to set remote project:
 ```shell
-$ upsun project:set-remote <projectId>
+$ {{% vendor/cli %}} project:set-remote <projectId>
 ```
 
 This command will add a new remote called `{{% vendor/cli %}}` to your local Git repo as you can see below:
@@ -229,10 +254,9 @@ Depending on the Git Flow you choose at the beginning of this tutorial, there ar
 title=Using {{% vendor/name %}} Git repository
 +++
 
-When using the {{% vendor/name %}} Git repository as your main repository, you can push your code using the normal Git flow to push your source code changes to your `{{% vendor/cli %}}` remote repository, or by using {{% vendor/name %}} CLI command as seen below:
+When using the {{% vendor/name %}} Git repository as your main repository, you can push your code using the normal Git Flow (`git add . && git commit -m "message" && git push`) to push your source code changes to your `{{% vendor/cli %}}` remote repository, or by using {{% vendor/name %}} CLI command as seen below:
 ```shell
-$ git add . && git commit -m "my new change"
-$ {{% vendor/cli %}} deploy
+$ {{% vendor/cli %}} push
 ```
 
 <--->
@@ -240,25 +264,58 @@ $ {{% vendor/cli %}} deploy
 title=Using third-party Git repository
 +++
 
-When using an external Git repository (Github, Gitlab, or Bitbucket) to store your source code and having the Git integration feature enabled, on each code updates, you will need to use the normal Git flow to push your code to your external repository using well known Git command seen below:
+When using an external Git repository (Github, Gitlab, or Bitbucket) to store your source code and having the Git integration feature enabled, on each code updates, you will need to use the normal Git Flow (`git add . && git commit -m "message" && git push`) to push your code to your external repository using well known Git command seen below:
 ```shell
 $ git add . && git commit -m "my new change"
-$ git push {{% vendor/cli %}}
+$ git push origin
 ```
 
 Your Github/Gitlab/Bibucket integration process will then automatically create a new environment if you’re pushing a new Git branch and deploy changes to your corresponding environment.
 
 {{< /codetabs >}}
 
-{{< note >}}
-**TODO**
 
-First deployment should fail if you don't allocate resources to your application.
+{{% vendor/name %}} will now read your configuration files, and begin building your application image. **Your first push
+will fail**; don't worry, this is expected. At this point {{% vendor/cli %}} is not aware of the resources
+our application needs. We need to tell it what kind of CPU, Memory, and disk to assign to the various containers. Back
+in your terminal, run:
 
-To allocate resources to your application, please see [Resources Allocation doc page](#TODO)
+```shell
+$ {{% vendor/cli %}} resources:set
+```
 
-{{< /note >}}
+This will launch an interactive prompt to walk you through setting up your application's resources:
+```shell
+$ {{% vendor/cli %}} resources:set
+Resource configuration for the project app (123456azerty), environment main (type: production):
++-----------------------+---------+---------+-------------+-----------+-----------+
+| App or service        | Size    | CPU     | Memory (MB) | Disk (MB) | Instances |
++-----------------------+---------+---------+-------------+-----------+-----------+
+| app                   | not set | not set | not set     | N/A       | 1         |
++-----------------------+---------+---------+-------------+-----------+-----------+
+```
+The first question is what profile size you want applied to your application image. For now let's select `1`:
+```shell
+App: app
+Choose a profile size:
+  [0.1 ] CPU 0.1, memory 64 MB
+  [0.25] CPU 0.25, memory 128 MB
+  [0.5 ] CPU 0.5, memory 224 MB
+  [1   ] CPU 1, memory 384 MB
+  [2   ] CPU 2, memory 704 MB
+  [4   ] CPU 4, memory 1216 MB
+  [6   ] CPU 6, memory 1728 MB
+  [8   ] CPU 8, memory 2240 MB
+  [10  ] CPU 10, memory 2688 MB
+ > 1
+```
+Next it will ask how many instances of our application container we need deployed. For now let's go with `1`:
+```shell
+Enter the number of instances (default: 1): 1
+```
 
+Last it will ask us to confirm our choices. Select `Y` and the {{% vendor/name %}} will take your selections, grab the
+previous built images from early, apply our resource selections to them and deploy our full application!
 
 ## Make changes to your project
 
