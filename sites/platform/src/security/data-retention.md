@@ -8,7 +8,7 @@ description: |
 
 ## Account information
 
-Information relating to customer accounts (login information, billing information, etc.) is retained for as long as the account is active with{{% vendor/name %}}.
+Information relating to customer accounts (login information, billing information, etc.) is retained for as long as the account is active with {{% vendor/name %}}.
 
 Customers may request that their account be deleted and all related data be purged by filing a support ticket.
 
@@ -26,6 +26,8 @@ See how to [access logs](../increase-observability/logs/access-logs.md).
 
 When an environment is deleted, its application logs are deleted as well.
 
+{{% version/specific %}}
+<!-- Platform.sh -->
 ## Grid Backups
 
 [Automated backups](../environments/backup.md#use-automated-backups) are retained for a specific amount of time
@@ -79,8 +81,6 @@ The following diagram shows how the cycle works for the entire Premium schedule:
 
 ![Each 6-hourly backup is retained for 1 day. The first 6-hourly backup is the daily backup. Daily backups are retained for 30 days. The first daily backup is the monthly backup. Monthly backups are retained for 1 year.](/images/backup-cycles/premium-retention.png "0.6")
 
-{{< version/only "1" >}}
-
 ## {{% names/dedicated-gen-2 %}} backups
 
 Backups for {{% names/dedicated-gen-2 %}} environments are retained based on when they were taken.
@@ -95,7 +95,17 @@ Backups for {{% names/dedicated-gen-2 %}} environments are retained based on whe
 
 See more about [backups of {{% names/dedicated-gen-2 %}} environments](../dedicated-gen-2/overview/backups.md).
 
-{{< /version/only>}}
+<--->
+<!-- Upsun -->
+## Backups
+
+[Automated backups](../environments/backup.md#use-automated-backups) are retained for 2 days
+(meaning, 2 days worth of backups are retained at any given point).
+
+[Manual backups](../environments/backup.md#create-a-manual-backup) are retained until you delete them or replace them with another backup.</br>
+As {{< vendor/name >}} provides a maximum of [2 manual backups per environment type](/security/backups.md),
+the third manual backup automatically replaces the oldest backup.
+{{% /version/specific %}}
 
 ## Tombstone backups
 

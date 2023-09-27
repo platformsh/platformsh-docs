@@ -89,8 +89,14 @@ in a terminal run the following command (replacing `{{< variable "PATH_TO_YOUR_K
 {{% vendor/cli %}} ssh-key:add '{{< variable "PATH_TO_YOUR_KEY" >}}'
 ```
 
+{{% version/specific %}}
+<!-- Platform.sh -->
 You can also add it in the Console,
 similar to this [video](https://docs.platform.sh/videos/management-console/add-ssh-mc.mp4).
+<--->
+<!-- Upsun -->
+You can also add it in the Console.
+{{% /version/specific %}}
 
 Now you are ready to use the key to [connect to an environment](./_index.md#2-connect-to-an-app-with-ssh).
 
@@ -103,7 +109,7 @@ To connect to a server using SSH keys, find the details in the Console:
 1. In the **Environment** dropdown, select the environment you want to access.
 1. Click the **SSH** dropdown.
 1. Copy the ssh command for where you want access.
-   (Example: `ssh abcdefghi5k-main-7rqtwti--app@ssh.us-2.platform.sh`)
+   (Example: `ssh abcdefghi5k-main-7rqtwti--app@ssh.us-2.{{< vendor/urlraw "host" >}}`)
 1. Enter the command into a terminal.
 
 Note that if you have just added your SSH key,
@@ -115,9 +121,9 @@ It may be helpful to set your SSH client to always forward keys to {{% vendor/na
 To do so, include a block in your local `~/.ssh/config` file like so:
 
 ```text
-Host *.us.platform.sh
+Host *.us.{{< vendor/urlraw "host" >}}
        ForwardAgent yes
-Host *.eu.platform.sh
+Host *.eu.{{< vendor/urlraw "host" >}}
        ForwardAgent yes
 ```
 

@@ -953,9 +953,10 @@ varnish:
   endpoint: http+stats
   min_disk_size: null
   configuration: |2-
-        vcl: !include
-            type: string
-            path: config.vcl
+        configuration:
+            vcl: !include
+                type: string
+                path: config.vcl
   service_relationships: 'application: ''app:http'''
   name: Varnish
   runtime: false
@@ -979,11 +980,12 @@ vault-kms:
   endpoint: manage_keys
   min_disk_size: 512
   configuration: |2-
-        endpoints:
-            <ENDPOINT_ID>:
-                - policy: <POLICY>
-                  key: <KEY_NAME>
-                  type: <ENDPOINT_TYPE>
+        configuration:
+            endpoints:
+                <ENDPOINT_ID>:
+                    - policy: <POLICY>
+                      key: <KEY_NAME>
+                      type: <ENDPOINT_TYPE>
   name: Vault KMS
   repo_name: vault-kms
   runtime: false
