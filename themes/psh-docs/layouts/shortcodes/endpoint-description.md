@@ -19,7 +19,7 @@
 To define the service, use {{ if eq ($type) "mariadb" }}
   the `{{ $type }}` or `mysql` type for MariaDB or the `oracle-mysql` type for Oracle MySQL
   {{ else if eq $type "redis" }}
-  the `{{ $type }}` type for persistent Redis
+  the `{{ $type }}` type for ephemeral Redis
   {{ else }}
   the `{{ $type }}` type{{ end }}:
 
