@@ -5,7 +5,7 @@ description: |
 weight: -60
 banner:
     title: A note on versions
-    body: This page focuses on a Drupal 9 and SimpleSAML 1.19.x combination. Documentation for later SimpleSAML versions (2.0.x) has been delayed due to compatibility issues. If, as a {{< vendor/name >}} user, you have successfully set up Drupal 9 or 10 with a SimpleSAML 2.0.x version, [we want to hear about it!](https://community.platform.sh/)
+    body: This page focuses on a Drupal 9 and SimpleSAML 1.19.x combination. Documentation for later SimpleSAML versions (2.0.x) has been delayed due to compatibility issues. If, as a {{% vendor/name %}} user, you have successfully set up Drupal 9 or 10 with a SimpleSAML 2.0.x version, [we want to hear about it!](https://community.platform.sh/)
 ---
 
 SimpleSAMLphp is a library for authenticating a PHP-based application against a SAML server, such as Shibboleth.
@@ -88,7 +88,7 @@ Commit the whole `simplesamplphp` directory and `{{< vendor/configfile "app" >}}
 ## Configure SimpleSAML to use the database
 
 SimpleSAMLphp is able to store its data either on disk or in the Drupal database.
-{{< vendor/name >}} strongly recommends using the database.
+{{% vendor/name %}} strongly recommends using the database.
 
 Open the file `simplesamlphp/config/config.php` that you created earlier.
 It contains a number of configuration properties that you can adjust as needed.
@@ -104,7 +104,7 @@ In the interest of simplicity we recommend pasting the following code snippet at
 ```php {location="simplesamlphp/config/config.php"}
 <?php
 
-// Set SimpleSAML to log using error_log(), which on {{< vendor/name >}}will
+// Set SimpleSAML to log using error_log(), which on {{% vendor/name %}}will
 // be mapped to the /var/log/app.log file.
 $config['logging.handler'] = 'errorlog';
 
@@ -138,7 +138,7 @@ if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
   }
 }
 
-// Set the salt value from the {{< vendor/name >}} entropy value, provided for this purpose.
+// Set the salt value from the {{% vendor/name %}} entropy value, provided for this purpose.
 if (isset($_ENV['PLATFORM_PROJECT_ENTROPY'])) {
   $config['secretsalt'] = $_ENV['PLATFORM_PROJECT_ENTROPY'];
 }

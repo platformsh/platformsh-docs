@@ -16,7 +16,9 @@ theme:
 vendor:
     name: Upsun
     cli: upsun
+    altname: upsun
     env_prefix: PLATFORM
+    cli_prefix: UPSUN
     recruit:
         active: true
         link: https://upsun.com/register/

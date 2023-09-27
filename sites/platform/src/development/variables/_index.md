@@ -3,6 +3,7 @@ title: Variables overview
 weight: 5
 description: |
   Variables give you control over your project's build process and runtime environment. You can set them in your code to make changes across your project or independent of the code for environment-specific settings.
+layout: single
 keywords:
   - environment variables
 ---
@@ -23,10 +24,10 @@ The following table defines what types of variables are available to you:
 | [Application](./set-variables.md#set-variables-in-your-app) | Application | Application | 4          | Yes   | Yes      | Non-secret values that are the same across all environments |
 | [Project](./set-variables.md#create-project-variables)               | User        | Project     | 3          | Yes   | Yes      | Secret values that are the same across all environments, such as database credentials |
 | [Environment](./set-variables.md#create-environment-specific-variables)       | User        | Environment | 2          | Some  | Yes      | Values that vary by environment, such as which database to connect to or which payment API keys to use |
-| [{{< vendor/name >}}](./use-variables.md#use-provided-variables)  | Pre-defined | Environment | 1          | Some  | Yes      | For information about your {{< vendor/name >}} project |
+| [{{% vendor/name %}}](./use-variables.md#use-provided-variables)  | Pre-defined | Environment | 1          | Some  | Yes      | For information about your {{% vendor/name %}} project |
 
 If there are conflicts between variables with the same name, variables [take precedence](#overrides) from 1 down.
-So {{< vendor/name >}}-provided values (1) override environment variables (2), which override project variables (3),
+So {{% vendor/name %}}-provided values (1) override environment variables (2), which override project variables (3),
 which override application-provided variables (4).
 
 All of the variables can also be [overridden via a script](./set-variables.md#set-variables-via-script).
@@ -51,7 +52,7 @@ Other configurations should vary between environment types.
 For example:
 
 - Service configuration for databases and such.
-  This information be read from the {{< vendor/name >}}-provided [`PLATFORM_RELATIONSHIPS` variable](./use-variables.md#use-provided-variables).
+  This information be read from the {{% vendor/name %}}-provided [`PLATFORM_RELATIONSHIPS` variable](./use-variables.md#use-provided-variables).
   It varies by environment automatically.
 - Mode toggles such as enabling `debug` mode, disabling certain caches, and displaying more verbose errors.
   This information might vary by environment type and should be set on the [environment level](./set-variables.md#create-environment-specific-variables).
@@ -70,7 +71,7 @@ For an example of how the different levels work,
 suppose you have the following inheritable variables defined for the `main` environment:
 
 ```sh
-$ {{% vendor/cli %}} var -e main
+{{% vendor/cli %}} var -e main
 Variables on the project Example (abcdef123456), environment main:
 +----------------+-------------+--------+---------+
 | Name           | Level       | Value  | Enabled |
@@ -85,7 +86,7 @@ Variables on the project Example (abcdef123456), environment main:
 And the following variables defined for the `feature-x` environment, a child environment of `main`:
 
 ```sh
-$ {{% vendor/cli %}} var -e feature-x
+{{% vendor/cli %}} var -e feature-x
 Variables on the project Example (abcdef123456), environment feature-x:
 +----------------+-------------+--------+---------+
 | Name           | Level       | Value  | Enabled |
@@ -141,7 +142,7 @@ and as **Overridden** when there is a conflict and the parent environment's valu
 ## Variable prefixes
 
 Certain variable name prefixes have special meanings.
-Some are defined by {{< vendor/name >}} and apply automatically.
+Some are defined by {{% vendor/name %}} and apply automatically.
 Others are just available as a convention for your application code to follow.
 
 ### Top-level environment variables
@@ -179,9 +180,11 @@ To use variables across environments, set them in your [app configuration](../..
 For example, to change the PHP memory limit for all environments, use the following configuration:
 
 ```yaml {configFile="app"}
-variables:
-    php:
-        memory_limit: "256M"
+applications:
+    {{< variable "APP_NAME" >}}:
+        variables:
+            php:
+                memory_limit: "256M"
 ```
 
 ### Framework-specific variables
@@ -190,6 +193,7 @@ For specific frameworks, you can implement logic to override global configuratio
 So you can use the same codebase and settings for all your environments,
 but still adapt the behavior to each environment.
 
+{{% version/only "1" %}}
 #### Implementation example
 
 The [Drupal 9 template](https://github.com/platformsh-templates/drupal9/) shows an example of
@@ -213,7 +217,8 @@ You can do this by running the following [CLI command](../../administration/cli/
 The same logic applies for other configuration options,
 such as the global `$config` array, which uses the variable prefix `drupalconfig`.
 
-You need to name your {{< vendor/name >}} variables to match the ones used in your script.
-Make sure that the {{< vendor/name >}} variables start with a string present in your `switch` statement.
+You need to name your {{% vendor/name %}} variables to match the ones used in your script.
+Make sure that the {{% vendor/name %}} variables start with a string present in your `switch` statement.
 
 You can apply similar logic for [other frameworks and languages](../../development/variables/use-variables.md#access-variables-in-your-app).
+{{% /version/only %}}

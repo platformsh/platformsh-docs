@@ -6,10 +6,12 @@ sidebarTitle: "Git submodules"
 
 ## Clone submodules during deployment
 
-{{< vendor/name >}} allows you to use submodules in your Git repository.
+{{% vendor/name %}} allows you to use submodules in your Git repository.
 They're usually listed in a `.gitmodules` file at the root of your Git repository.
-When you push via Git, {{< vendor/name >}} tries to clone them automatically.
+When you push via Git, {{% vendor/name %}} tries to clone them automatically.
 
+{{% version/specific %}}
+<!-- Platform.sh -->
 The following example is based on [a Bigfoot multi-app project](https://github.com/platformsh-templates/bigfoot-multiapp/tree/multiapp-subfolders-applications) which uses the following submodules:
 
 - A [BigFoot app](https://github.com/platformsh-templates/bigfoot-multiapp-api/tree/without-platform-app-yaml)
@@ -18,18 +20,28 @@ The following example is based on [a Bigfoot multi-app project](https://github.c
 - A [Mercure Rocks server](https://github.com/platformsh-templates/bigfoot-multiapp-mercure/tree/without-platform-app-yaml)
 
 ![Diagram of a project containing multiple apps](/images/config-diagrams/multiple-app.png "0.5")
+<--->
+<!-- Upsun -->
+Say you have a multi-app project that includes the following submodules:
+
+- A BigFoot app
+- An API Platform v3, Admin component
+- A Gatsby frontend
+- A Mercure Rocks server
+
+{{% /version/specific %}}
 
 To import all the submodules, run the following commands from your multiple application project's root folder:
 
 ```bash
-$ touch .gitmodules
-$ git submodule add --name admin https://github.com/platformsh-templates/bigfoot-multiapp-admin.git admin
-$ git submodule add --name api https://github.com/platformsh-templates/bigfoot-multiapp-api.git api
-$ git submodule add --name gatsby https://github.com/platformsh-templates/bigfoot-multiapp-gatsby.git gatsby
-$ git submodule add --name mercure https://github.com/platformsh-templates/bigfoot-multiapp-mercure.git mercure
-$ git add .
-$ git commit -m "Adding submodules for Bigfoot App, API Platform Admin, Gatsby frontend and Mercure Rocks server"
-$ git push
+touch .gitmodules
+git submodule add --name admin https://github.com/platformsh-templates/bigfoot-multiapp-admin.git admin
+git submodule add --name api https://github.com/platformsh-templates/bigfoot-multiapp-api.git api
+git submodule add --name gatsby https://github.com/platformsh-templates/bigfoot-multiapp-gatsby.git gatsby
+git submodule add --name mercure https://github.com/platformsh-templates/bigfoot-multiapp-mercure.git mercure
+git add .
+git commit -m "Adding submodules for Bigfoot App, API Platform Admin, Gatsby frontend and Mercure Rocks server"
+git push
 ```
 
 Here is an example of a `.gitmodules` file:
@@ -82,11 +94,11 @@ When you amend your submodules' code, make sure your changes are applied by runn
 before redeploying:
 
 ```bash
-$ git submodule update --remote [submodule]
-  Submodule path 'admin': checked out 'a020894cf94de6e79748890c942206bc7af752af'
-  Submodule path 'api': checked out 'dce6617cc2db159c1a871112909e9ea4121135ec'
-  Submodule path 'gatsby': checked out '012ab16b05f474278ad0f9916e1cb94fc9df5ba4'
-  Submodule path 'mercure': checked out '94ccae5055983004aa8ab2c17b1daabd0c0a4927'
+git submodule update --remote [submodule]
+Submodule path 'admin': checked out 'a020894cf94de6e79748890c942206bc7af752af'
+Submodule path 'api': checked out 'dce6617cc2db159c1a871112909e9ea4121135ec'
+Submodule path 'gatsby': checked out '012ab16b05f474278ad0f9916e1cb94fc9df5ba4'
+Submodule path 'mercure': checked out '94ccae5055983004aa8ab2c17b1daabd0c0a4927'
 ```
 
 {{< note >}}
@@ -103,7 +115,7 @@ title= Automated update
 {{< note theme="warning" title="Tier availability" version="1" >}}
 
 This feature is available for **Elite** and **Enterprise** customers.
-[Compare the {{< vendor/name >}} tiers](https://platform.sh/pricing/) on our pricing page,
+[Compare the {{% vendor/name %}} tiers](https://platform.sh/pricing/) on our pricing page,
 or [contact our Sales team](https://platform.sh/contact/) for more information.
 
 {{< /note >}}
@@ -112,24 +124,24 @@ Automate your submodule updates using a [source operation](create-apps/source-op
 To do so, follow these steps:
 
 1. Define a source operation.</br>
-   Add the following configuration to your `{{< vendor/configfile "apps" >}}` (or `{{< vendor/configfile "app" >}}`) file:
+   Add the following configuration to your `{{< vendor/configfile "app" >}}` file:
 
-   ```yaml
-   app:
-     ...
-     source:
-       operations:
-         rebuild:
-           command: |
-             set -e
-             git submodule update --init --recursive
-             git submodule update --remote --checkout
-             git add admin api gatsby mercure
-             if ! git diff-index --quiet HEAD; then
-               git commit -m "Updating submodules admin, api, gatsby and mercure"
-             fi
-   ```
-
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="false" >}}
+source:
+    operations:
+        rebuild:
+            command: |
+                set -e
+                git submodule update --init --recursive
+                git submodule update --remote --checkout
+                git add admin api gatsby mercure
+                if ! git diff-index --quiet HEAD; then
+                    git commit -m "Updating submodules admin, api, gatsby and mercure"
+                fi
+{{< /snippet >}}
+```
+   
    For multiple app projects, make sure you define your source operation
    in the configuration of an app whose source code **is not** in a submodule.
 
@@ -137,33 +149,33 @@ To do so, follow these steps:
    Don't define routes so your app isn't exposed to the web.
    To define a source operation, add the following configuration to your [app configuration](/create-apps/app-reference):
 
-   ```yaml  {configFile="apps"}
-   update-submodule:
-     # The type of the application to build.
-     type: "nodejs:18"
+```yaml {configFile="app"}
+{{< snippet name="update-submodule" config="app" root="false" >}}
+# The type of the application to build.
+type: 'nodejs:{{% latest "nodejs" %}}'
 
-     # The web key configures the web server running in front of your app.
-     web:
-       # Commands are run once after deployment to start the application process.
-       commands:
-         # The command to launch your app. If it terminates, it’s restarted immediately.
-         # As this app will handle source operation only, no need to keep it alive (sleep)
-         start: |
-           sleep infinity
-     # Information on the app's source code and operations that can be run on it.
-     source:
-       operations:
-         update-submodules:
-           command: |
-             set -e
-             git submodule update --init --recursive
-             git submodule update --remote --checkout
-             git add .
-             if ! git diff-index --quiet HEAD; then
-               git commit -m "Updating submodules"
-             fi
-             # "git push" is automatic at the end of this command
-   ```
+# The web key configures the web server running in front of your app.
+web:
+  # Commands are run once after deployment to start the application process.
+    commands:
+        # The command to launch your app. If it terminates, it’s restarted immediately.
+        # As this app will handle source operation only, no need to keep it alive (sleep)
+        start: |
+            sleep infinity
+source:
+    operations:
+        update-submodules:
+            command: |
+                set -e
+                git submodule update --init --recursive
+                git submodule update --remote --checkout
+                git add .
+                if ! git diff-index --quiet HEAD; then
+                  git commit -m "Updating submodules"
+                fi
+                # "git push" is automatic at the end of this command
+{{< /snippet >}}
+```
 
 2. Run your source operation.</br>
 
@@ -174,7 +186,7 @@ To do so, follow these steps:
    Select the operation you want to run.</br>
    Click **Run**.
 
-   Alternatively, to run your source operation from the [{{< vendor/name >}} CLI](../administration/cli/_index.md),
+   Alternatively, to run your source operation from the [{{% vendor/name %}} CLI](../administration/cli/_index.md),
    run the following command:
 
    ```bash
@@ -198,7 +210,7 @@ E: Error validating submodules in tree:
     - git@github.com:platformsh-templates/bigfoot-multiapp-admin.git: HangupException: The remote server unexpectedly closed the connection.
 ```
 
-This is due to the fact that the {{< vendor/name >}} Git server can't connect to GitHub via SSH without being granted an SSH key to do so.
+This is due to the fact that the {{% vendor/name %}} Git server can't connect to GitHub via SSH without being granted an SSH key to do so.
 To solve this issue, use an HTTPS URL (`https://github.com/...`) instead.
 
 ## Use private Git repositories
@@ -232,7 +244,7 @@ To fix this, follow these steps:
     ```
 
 2. Add the [project's public key to your remote Git repository](./private-repository.md).
-   This allows your {{< vendor/name >}} project to pull the repository from the remote Git service.
+   This allows your {{% vendor/name %}} project to pull the repository from the remote Git service.
 
 {{< note >}}
 
@@ -248,39 +260,39 @@ If your server needs access to multiple repositories, follow these steps:
 
 ## Removing submodules
 
-These steps aren't specific to {{< vendor/name >}}, but kept as a reference for Git so that submodules are effectively removed before entering the build process.
+These steps aren't specific to {{% vendor/name %}}, but kept as a reference for Git so that submodules are effectively removed before entering the build process.
 
 1. In your `.gitmodules` and `.git/config` files, delete the information related to the submodule you want to remove.
 
    ```bash
-   $ git submodule deinit -f path_to_submodule
-    ```
+   git submodule deinit -f path_to_submodule
+   ```
 
 2. Stage changes to `.gitmodules`:
 
     ```bash
-    $ git add .gitmodules
+    git add .gitmodules
     ```
 3. Remove the submodule from the repository (without trailing slash):
 
     ```bash
-    $ git rm --cached path_to_submodule
+    git rm --cached path_to_submodule
     ```
 
 4. Remove the submodule files in `.git` from the repository  (without trailing slash):
 
     ```bash
-    $ rm -rf .git/modules/path_to_submodule
+    rm -rf .git/modules/path_to_submodule
     ```
 
 5. Commit the changes:
 
     ```bash
-    $ git commit -m "Removed submodule."
+    git commit -m "Removed submodule."
     ```
 
 6. Remove the submodule code locally, now no longer tracked:
 
     ```bash
-    $ rm -rf path_to_submodule
+    rm -rf path_to_submodule
     ```

@@ -11,7 +11,15 @@ keywords:
 {{% ddev/definition %}}
 
 This guide assumes you have a project already running with {{< vendor/name >}} and you have the code on your computer.
+
+{{% version/specific %}}
+<!-- Platform.sh -->
 If you're starting from scratch, first [create a project from a PHP template]({{% create-project-link template=true %}}).
+
+<--->
+<!-- Upsun -->
+If you're starting from scratch, first [create a project](/get-started/).
+{{% /version/specific %}}
 
 ## Before you begin
 
@@ -28,10 +36,16 @@ Get basic configuration set up for your project by running the following command
 ```bash
 ddev config
 ```
-
+{{% version/specific %}}
+<!-- Platform.sh -->
 If you started with a Drupal template, your repository already had DDEV configuration files.
 Otherwise, you have to answer a couple of questions about what your repository is
 so the correct files are added.
+
+<--->
+<!-- Upsun -->
+Follow the prompts to add the correct DDEV configuration files to your repository.
+{{% /version/specific %}}
 
 ## 3. Add an API token
 
@@ -60,7 +74,7 @@ Now your project is ready to run:
 ddev start
 ```
 
-This runs all your hooks and builds your project like on {{< vendor/name >}}.
+This runs all your hooks and builds your project like on {{% vendor/name %}}.
 
 The command returns the project URL `http://{{< variable "PROJECT_NAME" >}}.ddev.site/`
 as well as a specific port on `http://127.0.0.1`.

@@ -6,7 +6,7 @@ description: See how to configure a MariaDB/MySQL server to store your data.
 layout: single
 ---
 
-{{< vendor/name >}} supports both MariaDB and Oracle MySQL to manage your relational databases.
+{{% vendor/name %}} supports both MariaDB and Oracle MySQL to manage your relational databases.
 Their infrastructure setup is nearly identical, though they differ in some features.
 See the [MariaDB documentation](https://mariadb.org/learn/)
 or [MySQL documentation](https://dev.mysql.com/doc/refman/en/) for more information.
@@ -499,7 +499,7 @@ To change the timezone for a given connection, run `SET time_zone = {{< variable
 
 ## Exporting data
 
-To download all data from your SQL database, use the {{< vendor/name >}} CLI.
+To download all data from your SQL database, use the {{% vendor/name %}} CLI.
 If you have a single SQL database, the following command exports all data to a local file:
 
 ```bash
@@ -539,7 +539,7 @@ To load data into a database, pipe an SQL dump through the `{{% vendor/cli %}} s
 {{% vendor/cli %}} sql < my_database_backup.sql
 ```
 
-That runs the database backup against the SQL database on {{< vendor/name >}}.
+That runs the database backup against the SQL database on {{% vendor/name %}}.
 That works for any SQL file, so the usual caveats about importing an SQL dump apply
 (for example, it's best to run against an empty database).
 
@@ -561,7 +561,7 @@ If not, make a backup or do a database export before importing.
 ## Sanitizing data
 
 To ensure people who review code changes can't access personally identifiable information stored in your database,
-[sanitize your preview environments](../../development/sanitize-db/mariadb.md).
+[sanitize your preview environments](../../development/sanitize-db/_index.md).
 
 ## Replication
 

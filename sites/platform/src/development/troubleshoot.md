@@ -56,7 +56,7 @@ To rerun the `build` and `deploy` hooks, [manually trigger a build](#manually-tr
 ### Manually trigger builds
 
 To increase performance and keep applications the same across environments,
-{{< vendor/name >}} reuses built applications if its code and build time configuration (variables and such) remain the same.
+{{% vendor/name %}} reuses built applications if its code and build time configuration (variables and such) remain the same.
 
 There may be times where you want to force your application to be built again without changing its code,
 for example to test an issue in a build hook or when external dependencies change.
@@ -118,7 +118,9 @@ Typical causes and potential solutions include:
   - Check your `web.commands.start` entry or your `passthru` configuration.
 - The amount of traffic coming to your site exceeds the processing power of your application.
   - You may want to [check if bots are overwhelming your site](https://community.platform.sh/t/diagnosing-and-resolving-issues-with-excessive-bot-access/792).
+  {{% version/only "1" %}}
   - Alternatively, you may need to [increase your plan size](../administration/pricing/_index.md).
+  {{% /version/only %}}
 - Certain code paths in your application are too slow and timing out.
   - Check your code is running smoothly.
   - Consider adding an [observability solution](../increase-observability/integrate-observability/_index.md) to get a better view of your application.
@@ -129,8 +131,8 @@ Typical causes and potential solutions include:
 
 ## Site outage
 
-If you can't access some part of your project, whether it's the live site, preview environment, or Console,
-check the [{{< vendor/name >}} status page](https://status.platform.sh/).
+If you can't access some part of your project, whether it's the live site, development environment, or Console,
+check the [{{% vendor/name %}} status page](https://status.platform.sh/).
 There you can see planned maintenance and subscribe to updates for any potential outages.
 
 If the status is operational, [contact support](/learn/overview/get-support.md).
@@ -157,7 +159,7 @@ Instead, call the app/shell/runtime directly passing your script file to that ex
 
 ## Missing commits
 
-If you push code to {{< vendor/name >}} without the full Git history, sometimes commits are missing.
+If you push code to {{% vendor/name %}} without the full Git history, sometimes commits are missing.
 This can happen if you're pushing code from an external CI/CD pipeline, such as a GitHub action.
 Such pipelines often do only shallow clones by default.
 
@@ -174,7 +176,7 @@ or using the [`GIT_DEPTH` variable](https://docs.gitlab.com/ee/ci/large_reposito
 
 When trying to upload a large JSON file to your API, you might see a 400 response code (`Malformed request`).
 
-{{< vendor/name >}} enforces a 10&nbsp;MB limit on files with the `application/json` `Content-Type` header.
+{{% vendor/name %}} enforces a 10&nbsp;MB limit on files with the `application/json` `Content-Type` header.
 To send large files, use the `multipart/form-data` header instead:
 
 ```bash
@@ -206,9 +208,9 @@ Or [declare mounts](../create-apps/app-reference.md#mounts),
 which are writable even during and after deploy.
 They can be used for your data: file uploads, logs, and temporary files.
 
-### Git push fails due to lack of disk space
+### {{% vendor/name %}} push fails due to lack of disk space
 
-You might see the following message when attempting to run `git push`:
+You might see the following message when attempting to run `{{% vendor/cli %}} push`:
 `There isn't enough free space to complete the push`
 
 This usually indicates that large files are present in the repository (where they shouldn't be).

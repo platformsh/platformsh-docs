@@ -167,6 +167,7 @@ elixir:
       - '1.10'
       - '1.9'
     supported:
+      - '1.15'
       - '1.14'
       - '1.13'
       - '1.12'
@@ -550,6 +551,7 @@ nodejs:
       - '4.7'
       - '0.12'
     supported:
+      - '20'
       - '18'
       - '16'
   versions-dedicated-gen-2:
@@ -585,7 +587,6 @@ opensearch:
     deprecated: []
     supported:
       - '2.5'
-      - '2.4'
       - '1.2'
   versions-dedicated-gen-3:
     deprecated: []
@@ -952,9 +953,10 @@ varnish:
   endpoint: http+stats
   min_disk_size: null
   configuration: |2-
-        vcl: !include
-            type: string
-            path: config.vcl
+        configuration:
+            vcl: !include
+                type: string
+                path: config.vcl
   service_relationships: 'application: ''app:http'''
   name: Varnish
   runtime: false
@@ -978,11 +980,12 @@ vault-kms:
   endpoint: manage_keys
   min_disk_size: 512
   configuration: |2-
-        endpoints:
-            <ENDPOINT_ID>:
-                - policy: <POLICY>
-                  key: <KEY_NAME>
-                  type: <ENDPOINT_TYPE>
+        configuration:
+            endpoints:
+                <ENDPOINT_ID>:
+                    - policy: <POLICY>
+                      key: <KEY_NAME>
+                      type: <ENDPOINT_TYPE>
   name: Vault KMS
   repo_name: vault-kms
   runtime: false
