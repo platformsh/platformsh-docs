@@ -14,7 +14,7 @@ You need:
 
 - An app that works and is ready to be built
 - Code in Git
-- A {{% vendor/name %}} account -- if you don't already have one, [start a trial](https://auth.api.platform.sh/register?trial_type=general)
+- A {{% vendor/name %}} account
 - Optional: the [{{% vendor/name %}} CLI](/administration/cli/_index.md)
 
 ## 1. Export from previous system
@@ -26,6 +26,7 @@ and for some apps, such as Drupal, configuration that you need to export from th
 ## 2. Create a project
 
 {{< codetabs >}}
+
 +++
 title=Using the CLI
 +++
@@ -122,13 +123,13 @@ title=Using Git
 +++
 
 1.  Add an [SSH key](/development/ssh/ssh-keys.md).
-2.  In the [Console], open your project and click **Code {{< icon chevron >}}**.
+2.  In the Console, open your project and click **Code {{< icon chevron >}}**.
 3.  Click **Git**.
 4.  From the displayed command, copy the location of your repository.
    It should have a format similar to the following:
 
    ```text
-   abcdefgh1234567@git.eu.platform.sh:abcdefgh1234567.git
+   abcdefgh1234567@git.eu.{{< vendor/urlraw "host" >}}:abcdefgh1234567.git
    ```
 
 5.  Add {{% vendor/name %}} as a remote repository by running the following command:
@@ -169,7 +170,9 @@ Upload to each mount separately.
 
 Suppose for instance you have the following file mounts defined:
 
-```yaml
+{{% version/specific %}}
+<!-- Platform.sh -->
+```yaml {configFile="app"}
 mounts:
     'web/uploads':
         source: local
@@ -178,6 +181,20 @@ mounts:
         source: local
         source_path: private
 ```
+<--->
+<!-- Upsun -->
+```yaml {configFile="app"}
+applications:
+    myapp:
+        mounts:
+            'web/uploads':
+                source: local
+                source_path: uploads
+            'private':
+                source: local
+                source_path: private
+```
+{{% /version/specific %}}
 
 Upload to each of directories above by running the following commands:
 
@@ -196,8 +213,10 @@ If your app requires environment variables to build properly, [add them to your 
 ## What's next
 
 Now that your app is ready to be deployed, you can do more:
-
+{{% version/only "1"%}}
+<!-- Platform.sh -->
 - Upgrade from a Development plan.
+{{% /version/only %}}
 - [Add a domain](/domains/steps/_index.md).
 - Set up for [local development](/development/local/_index.md).
 - Configure [health notifications](/integrations/notifications.md).

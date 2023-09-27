@@ -35,6 +35,8 @@ title=Composer
 highlight=yaml
 +++
 
+{{< snippet name="myapp" config="app" root="myapp" >}}
+
 source:
     operations:
         update:
@@ -45,11 +47,15 @@ source:
                 git add -A
                 git diff-index --quiet HEAD || git commit --allow-empty -m "Update Composer dependencies"
 
+{{< /snippet >}}
+
 <--->
 +++
 title=npm
 highlight=yaml
 +++
+
+{{< snippet name="myapp" config="app" root="myapp" >}}
 
 source:
     operations:
@@ -61,11 +67,15 @@ source:
                 git add -A
                 git diff-index --quiet HEAD || git commit --allow-empty -m "Update npm dependencies"
 
+{{< /snippet >}}
+
 <--->
 +++
 title=Yarn
 highlight=yaml
 +++
+
+{{< snippet name="myapp" config="app" root="myapp" >}}
 
 source:
     operations:
@@ -77,11 +87,15 @@ source:
                 git add -A
                 git diff-index --quiet HEAD || git commit --allow-empty -m "Update yarn dependencies"
 
+{{< /snippet >}}
+
 <--->
 +++
 title=Go
 highlight=yaml
 +++
+
+{{< snippet name="myapp" config="app" root="myapp" >}}
 
 source:
     operations:
@@ -94,11 +108,15 @@ source:
                 git add -A
                 git diff-index --quiet HEAD || git commit --allow-empty -m "Update Go dependencies"
 
+{{< /snippet >}}
+
 <--->
 +++
 title=Pipenv
 highlight=yaml
 +++
+
+{{< snippet name="myapp" config="app" root="myapp" >}}
 
 source:
     operations:
@@ -110,11 +128,15 @@ source:
                 git add -A
                 git diff-index --quiet HEAD || git commit --allow-empty -m "Update Python dependencies"
 
+{{< /snippet >}}
+
 <--->
 +++
 title=Bundler
 highlight=yaml
 +++
+
+{{< snippet name="myapp" config="app" root="myapp" >}}
 
 source:
     operations:
@@ -125,6 +147,8 @@ source:
                 git add Gemfile Gemfile.lock
                 git add -A
                 git diff-index --quiet HEAD || git commit --allow-empty -m "Update Ruby dependencies"
+
+{{< /snippet >}}
 
 {{< /codetabs >}}
 <!--vale on -->
@@ -152,7 +176,7 @@ title=From the CLI
 Run the following command:
 
 ```bash
-{{% vendor/cli %}} variable:create --environment main --level environment --prefix 'env' --name PLATFORMSH_CLI_TOKEN --sensitive true --value 'YOUR_PLATFORMSH_CLI_TOKEN' --inheritable false --visible-build true --json false --enabled true --visible-runtime true
+{{% vendor/cli %}} variable:create --environment main --level environment --prefix 'env' --name {{< vendor/prefix_cli >}}_CLI_TOKEN --sensitive true --value 'YOUR_{{< vendor/prefix_cli >}}_CLI_TOKEN' --inheritable false --visible-build true --json false --enabled true --visible-runtime true
 ```
 
 <--->
@@ -164,7 +188,7 @@ title=From the Console
 2. Click {{< icon settings >}} **Settings**.
 3. Click **Variables**.
 4. Click **+ Add variable**.
-5. In the **Variable name** field, enter `env:PLATFORMSH_CLI_TOKEN`.
+5. In the **Variable name** field, enter `env:{{< vendor/prefix_cli >}}_CLI_TOKEN`.
 6. In the **Value** field, enter your API token.
 7. Make sure the **Available at runtime** and **Sensitive variable** options are selected.
 8. Click **Add variable**.

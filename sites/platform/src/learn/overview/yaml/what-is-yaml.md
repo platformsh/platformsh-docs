@@ -29,6 +29,8 @@ YAML represents data through three primitive data structures:
 
 The most straightforward data structure involves defining key–value pairs where the values are strings or integers.
 
+{{% version/specific %}}
+<!-- Platform.sh -->
 So you could have a basic configuration for an app:
 
 ```yaml {configFile="app"}
@@ -37,11 +39,47 @@ type: "golang:1.18"
 disk: 1024
 ```
 
-This results in three key–value pairs.
+This results in three key–value pairs:
 
-![config key-values](/images/yaml/basic.svg)
+| Key                 | Value               |
+| ------------------- |-------------------- |
+| name                | app                 |
+| type                | golang:1.18         |
+| disk                | 1024                |
 
-You might notice you can define strings either with or without quotes, which can be single `'` or double `"`.
+You can define strings either with or without quotes, which can be single `'` or double `"`.
+Quotes let you escape characters (if double) and make sure the value is parsed as a string when you want it.
+
+For example, you might be representing version numbers and want to parse them as strings.
+If you use `version: 1.10`, it's parsed as an integer and so is treated the same as `1.1`.
+If you use `version: "1.10"`, it's parsed as a string and isn't treated as the same as `1.1`.
+
+<--->
+<!-- Upsun -->
+
+So you could have a basic configuration for an app:
+
+```yaml
+applications:
+    myapp:
+        type: "golang:1.18"
+        source:
+            root: /app
+        hooks:
+            build: ./build.sh
+```
+
+You can spot three key–value pairs:
+
+| Key                 | Value               |
+| ------------------- |-------------------- |
+| `type`              | "golang:1.18"       |
+| `root`              | root: /app          |
+| `build `            | ./build.sh          |
+
+{{%/version/specific %}}
+
+You can define strings either with or without quotes, which can be single `'` or double `"`.
 Quotes let you escape characters (if double) and make sure the value is parsed as a string when you want it.
 
 For example, you might be representing version numbers and want to parse them as strings.
@@ -61,6 +99,8 @@ In contrast, when you define mappings, the order doesn't matter.
 
 So you could expand the configuration from before to add another mapping:
 
+{{% version/specific %}}
+<!-- Platform.sh -->
 ```yaml {configFile="app"}
 name: app
 type: "golang:1.18"
@@ -75,10 +115,29 @@ web:
             allow: false
 ```
 
-This creates a `web` dictionary that has two dictionaries within it: `commands` and `locations`,
-each with their own mappings.
+<--->
+<!-- Upsun -->
 
-![web mappings](/images/yaml/mapping.svg)
+```yaml {configFile="app"}
+applications:
+    myapp:
+        type: "golang:1.18"
+
+        web:
+            commands:
+                start: ./bin/app
+            locations:
+                '/':
+                    passthru: true
+                    allow: false
+```
+{{% /version/specific %}}
+
+This creates a `web` dictionary that has two dictionaries within it: `commands` and `locations`,
+each with their own mappings:
+
+- `web` → `commands` → `start: ./bin/app`
+- `web` → `locations` → `'/'` → `passthru: true` and `allow: false`
 
 ### Sequences (arrays/lists)
 
@@ -106,9 +165,9 @@ web:
             allow: false
 ```
 
-In either case, you get a list of values within `index`.
+In either case, you get a list of values within `index`:
 
-![web index sequence](/images/yaml/sequence.svg)
+`web` → `locations` → `'/'` → `index` → `index.html` and `index.htm`
 
 ## Define multi-line strings
 
@@ -128,7 +187,7 @@ hooks:
 And the resulting value preserves the line break.
 This lets you do things like enter small shell scripts within a YAML file.
 
-![multi-line strings](/images/yaml/multi-line.svg)
+`hooks` → `build` → `set -e` and `cp a.txt b.txt`
 
 ## Reuse content
 
@@ -158,7 +217,7 @@ workers:
 
 - `queue1` and `queue2` are identical with the same `size` and `commands` properties.
 - `queue3` is the same as `queue1` except that it has a different value for `size`.
-- `queue4` is the same as `queue1` except that it has the `disk` property in addition to the same `size` and `commands` properties.
+- `queue4` is the same as `queue1` except that it has the `disk` property.
 
 Note that you need to place an alias with `<<:` at the same level as the other keys within that value.
 
