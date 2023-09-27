@@ -143,6 +143,7 @@ each with their own mappings:
 
 In addition to maps defining further key–value pairs, you can also use sequences to include lists of information.
 
+{{% version/specific %}}
 ```yaml {configFile="app"}
 web:
     locations:
@@ -153,9 +154,24 @@ web:
             passthru: true
             allow: false
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    myapp:
+        web:
+            locations:
+                '/':
+                    index:
+                        - index.html
+                        - index.htm
+                    passthru: true
+                    allow: false
+```
+{{% /version/specific %}}
 
 You can also define sequences using a flow syntax:
 
+{{% version/specific %}}
 ```yaml {configFile="app"}
 web:
     locations:
@@ -164,6 +180,18 @@ web:
             passthru: true
             allow: false
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    myapp:
+        web:
+            locations:
+                '/':
+                    index: [index.html, index.htm]
+                    passthru: true
+                    allow: false
+```
+{{% /version/specific %}}
 
 In either case, you get a list of values within `index`:
 
@@ -177,12 +205,23 @@ The new lines need to have at least the same indentation as the first
 
 So you could add a multi-line string to a `build` key in the `hooks` map:
 
+{{% version/specific %}}
 ```yaml {configFile="app"}
 hooks:
     build: |
         set -e
         cp a.txt b.txt
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    myapp:
+        hooks:
+            build: |
+                set -e
+                cp a.txt b.txt
+```
+{{% /version/specific %}}
 
 And the resulting value preserves the line break.
 This lets you do things like enter small shell scripts within a YAML file.
@@ -200,6 +239,7 @@ Then refer to the anchor using `*<NAME>`.
 
 The following example shows 4 different workers:
 
+{{% version/specific %}}
 ```yaml {configFile="app"}
 workers:
     queue1: &runner
@@ -218,6 +258,24 @@ workers:
 - `queue1` and `queue2` are identical with the same `size` and `commands` properties.
 - `queue3` is the same as `queue1` except that it has a different value for `size`.
 - `queue4` is the same as `queue1` except that it has the `disk` property.
+
+<--->
+```yaml {configFile="app"}
+applications:
+    myapp:
+        ...
+        workers:
+            queue1: &runner
+                commands:
+                    start: python queue-worker.py
+            queue2: *runner
+            queue3: 
+                <<: *runner
+```
+
+All of the workers above are identical to each other.
+
+{{% /version/specific %}}
 
 Note that you need to place an alias with `<<:` at the same level as the other keys within that value.
 

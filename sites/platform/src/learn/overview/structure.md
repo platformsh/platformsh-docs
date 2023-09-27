@@ -62,8 +62,8 @@ project
 project
 ├── .git
 ├── {{< vendor/configdir >}}
-    ├── {{< vendor/configfile "app" >}}
-    └── <YOUR_APP_FILES>
+│   └── {{< vendor/configfile "app" "strip" >}}
+└── <YOUR_APP_FILES>
 ```
 {{% /version/specific %}}
 
