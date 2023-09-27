@@ -17,9 +17,8 @@ This number is calculated based on three parameters:
 - The request memory: the amount of memory an average PHP request is expected to require.
 - The reserved memory: the amount of memory you need to reserve for tasks that aren't related to requests.
 <--->
-<!-- @todo: resources link -->
 - The container memory: the amount of memory you can allot for PHP processing 
-  depending on [your defined application resources](#).
+  depending on [your defined application resources](/manage-resources.md).
 - The request memory: the amount of memory an average PHP request is expected to require.
 - The reserved memory: the amount of memory you need to reserve for tasks that aren't related to requests.
 {{% /version/specific %}}

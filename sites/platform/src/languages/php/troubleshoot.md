@@ -27,9 +27,8 @@ You have two ways to increase the number of workers:
 <--->
 You have two ways to increase the number of workers:
 
-<!-- @todo: resources link -->
 - Adjust the [worker sizing hints](./fpm.md) for your project.
-- Add [additional resources](#) with the `{{% vendor/cli %}} resources:set` command
+- Add [additional resources](/manage-resources.md) with the `{{% vendor/cli %}} resources:set` command
 {{% /version/specific %}}
 
 ## Execution timeout
@@ -69,10 +68,9 @@ Otherwise, you may check if the following options are applicable:
 <--->
 Otherwise, you may check if the following options are applicable:
 
-<!-- @todo: resources link -->
 - Find the most visited pages and see if they can be cached and/or put behind a CDN.
   Refer to [how caching works](../../define-routes/cache.md).
-- Add [additional resources](#) with the `{{% vendor/cli %}} resources:set` command
+- Add [additional resources](/manage-resources.md) with the `{{% vendor/cli %}} resources:set` command
 {{% /version/specific %}}
 
 ## Troubleshoot a crashed PHP process
@@ -110,7 +108,7 @@ To solve this issue, try the following approaches:
 <!-- @todo: resources link -->
 - Check if the memory usage of your app is as expected and try to optimize it.
 - Use [sizing hints](./fpm.md) to reduce the amount of PHP workers, which reduces the memory footprint.
-- Add [additional resources](#) with the `{{% vendor/cli %}} resources:set` command
+- Add [additional resources](/manage-resources.md) with the `{{% vendor/cli %}} resources:set` command
 {{% /version/specific %}}
 
 ## Restart PHP processes stuck during a build or deployment
@@ -148,7 +146,6 @@ To address the issue, you can:
 - Remove stale plugins and extensions when using a CMS.
 - Upgrade the container size to get more resources.
 <--->
-<!-- @todo: resources link -->
 - Lower the memory consumption of each request so that the amount of PHP workers gets automatically raised.
   This can be customized with the `runtime.sizing_hints.request_memory` key in your `{{< vendor/configfile "app" >}}` file.
   For more details, consult [PHP-FPM sizing](./fpm.md).
@@ -156,5 +153,5 @@ To address the issue, you can:
 - Set up [HTTP caching](/learn/bestpractices/http-caching.md).
 - Follow the global [performance tuning recommendations](./tuning.md).
 - Remove stale plugins and extensions when using a CMS.
-- Add [additional resources](#) with the `{{% vendor/cli %}} resources:set` command
+- Add [additional resources](/manage-resources.md) with the `{{% vendor/cli %}} resources:set` command
 {{% /version/specific %}}
