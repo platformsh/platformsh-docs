@@ -31,16 +31,15 @@ Note that resources are spread across all containers within the project.
 So the resources you see for a given container don't equal the total resources for the project.
 
 This reference project has a single app, two services (MySQL and Redis), and two workers.
-The appropriate resources have been [allocated automatically](../../create-apps/app-reference.md#sizes) for each container
-based on the number and type of containers for this plan size.
-The graphs show the current average usage in relation to the [resources allocated to each container](/manage-resources.md).
+The appropriate resources have been [manually allocated](/manage-resources.md) for each container.
+The graphs show the current average usage in relation to the resources allocated to each container.
 
-Once you've read the metrics, see **recommendations for action**.
+
 
 ### App container
 
 Metrics graphs for the app container show CPU, RAM, and disk allocation and usage.
-The persistent disk has been configured in the [project resources](/manage-resources.html).
+The persistent disk has been configured in the [project resources](/manage-resources.md).
 
 ![All of the metrics for the app container](/images/metrics/app-container.png)
 
@@ -52,7 +51,7 @@ So you don't see all of your project's allocated RAM in the graphs.
 #### MySQL
 
 Metrics graphs for the MySQL service container show CPU and disk allocation and usage.
-The persistent disk has been configured in the [project resources](/manage-resources.html).
+The persistent disk has been configured in the [project resources](/manage-resources.md).
 
 ![All of the metrics for the MySQL container](/images/metrics/mysql-container.png)
 
@@ -66,11 +65,11 @@ No persistent disk has been configured for Redis.
 ### Worker containers
 
 Metrics graphs for the App-Horizon worker container show CPU, RAM, and disk allocation and usage.
-The persistent disk has been configured in the [project resources](/manage-resources.html).
+The persistent disk has been configured in the [project resources](/manage-resources.md).
 
 ![All of the metrics for the App-Horizon worker container](/images/metrics/horizon-worker-container.png)
 
 Metrics graphs for the App-Schedule worker container show CPU, RAM, and disk allocation and usage.
-The persistent disk has been configured in the [project resources](/manage-resources.html).
+The persistent disk has been configured in the [project resources](/manage-resources.md).
 
 ![All of the metrics for the App-Horizon worker container](/images/metrics/schedule-worker-container.png)

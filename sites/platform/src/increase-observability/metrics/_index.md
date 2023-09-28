@@ -117,7 +117,7 @@ If you have multiple containers in a burst state, review your configuration or p
 
 {{% version/specific %}}
 #### Grid environments
-  
+
 For Grid environments, the thresholds are set for each container.
 If the resources are high and hovering close to the 100% threshold,
 you might want to consider:
@@ -126,11 +126,16 @@ you might want to consider:
 * Changing your [app size](../../create-apps/app-reference.md#sizes)
   or [service size](../../add-services/_index.md#size)
 * [Increasing your plan](../../administration/pricing/_index.md)
-<--->
-{{% /version/specific %}}
 
 Review your configuration or plan size if your containers are in a prolonged burst
 state, because burst isn't guaranteed for long periods.
+
+<--->
+[Review your configuration](/manage-resources.md) if your containers are in a prolonged burst
+state, because burst isn't guaranteed for long periods.
+{{% /version/specific %}}
+
+
 If the burst threshold is triggered for short, infrequent activities,
 it might not be an issue as long as the site is functioning properly.
 Burst allows your container to use additional resources when they aren't required on the container's host.

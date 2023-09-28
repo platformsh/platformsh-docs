@@ -58,7 +58,6 @@ you should consider a [continuous observability solution](../../increase-observa
 to monitor your app and help you improve the performance issue.
 
 A full access to [Blackfire](../../increase-observability/application-metrics/blackfire.md) is bundled with your PHP and Python {{< vendor/name >}} projects.
-[Continuous Profiling](../../increase-observability/application-metrics/_index.md) is available for your NodeJS and Go {{< vendor/name >}} projects
 
 {{% /version/specific %}}
 
