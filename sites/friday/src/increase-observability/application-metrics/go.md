@@ -3,9 +3,6 @@ title: Continuous profiling for Go
 description: Configure the Go continuous profiler.
 weight: 10
 ---
-
-## Introduction
-
 Continuous profiling is a performance optimization technique where web applications
 are monitored and profiled in real-time. Lightweight and scalable, it's tailored
 for holistic application oversight.
@@ -16,7 +13,7 @@ optimize code for better performance and resource utilization. This proactive
 approach allows for quicker identification and resolution of performance issues,
 ensuring the smooth running of software in live environments.
 
-## Continuous profiling on {{< vendor/name >}}
+## Continuous profiling on {{% vendor/name %}}
 
 {{< vendor/name >}} Continuous Profiler is powered by [Blackfire](../../../increase-observability/application-metrics/blackfire.md).
 It is available directly from Console under the `Profiling` tab of your environments.
@@ -70,7 +67,7 @@ The default is 45 seconds. Can also be set via the environment variable `BLACKFI
 The default is defined by the Go runtime as 100 Hz. Can also be set via the environment
 variable `BLACKFIRE_CONPROF_CPU_PROFILERATE`.
 
-- `WithProfileTypes`: sets the profiler types. Multiple profile types can be set (`profiler.CPUProfile`, `profiler.HeapProfile`, `profiler.GoroutineProfile`)
+- `WithProfileTypes`: sets the profiler types. Multiple profile types can be set (`profiler.CPUProfile`, `profiler.HeapProfile`, `profiler.GoroutineProfile`).
 The default is `Profiler.CPUProfile`.
 
 - `WithLabels`: sets custom labels specific to the profile payload that is sent.
@@ -101,7 +98,7 @@ Stops the continuous profiling probe.
 go get github.com/blackfireio/go-continuous-profiling-experimental
 ```
 
-2. Save the following code as `main.go` and run as following:
+2. Save the following code as `main.go` and run as follows:
 
 ```
 go run main.go

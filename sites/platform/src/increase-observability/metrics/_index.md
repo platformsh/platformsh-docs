@@ -86,8 +86,7 @@ close to the 100% threshold, you might want to consider:
 * [Increasing your plan](../../administration/pricing/_index.md)
 <--->
 * [Optimizing your code](../application-metrics/_index.md) (if possible)
-* [Changing your app size or service size](/manage-resources.html)
-* [Increasing your plan](../../administration/pricing/_index.md)
+* [Changing your app size or service size](/manage-resources.md)
 {{% /version/specific %}}
 
 {{% version/specific %}}

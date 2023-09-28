@@ -124,7 +124,7 @@ Typical causes and potential solutions include:
   {{% version/specific %}}
   - Consider adding an [observability solution](../increase-observability/integrate-observability/_index.md) to get a better view of your application.
   <--->
-  - Consider using the [observability solution](../increase-observability/application-metrics/_index.md) included in your plan to get a better view of your application.
+  - Consider using the [observability solution](../increase-observability/application-metrics/_index.md) included in your project to get a better view of your application.
   {{% /version/specific %}}
 - A PHP process is crashing because of a segmentation fault.
   - See [how to deal with crashed processes](../languages/php/troubleshoot.md#troubleshoot-a-crashed-php-process).

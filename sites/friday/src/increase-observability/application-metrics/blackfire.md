@@ -7,7 +7,7 @@ description: A full access to Blackfire is bundled with your PHP and Python {{< 
 A full access to [Blackfire](https://www.blackfire.io/) is bundled with all your PHP and
 Python {{< vendor/name >}} projects.
 
-Blackfire the **official {{< vendor/name >}} observability service** that helps you
+Blackfire is the **official {{< vendor/name >}} observability service** that helps you
 improve the performance of your apps at each stage of their lifecycle.
 With Blackfire's unique Application Performance Monitoring (APM), Profiling,
 Alerting, and Testing features, you can achieve the following goals:
@@ -21,6 +21,7 @@ Blackfire is installed natively on {{< vendor/name >}} and [works integrally wit
 This results in an effortless setup process and smooth user experience.
 
 ## Get started with Blackfire
+
 You can only access your Blackfire environments after you've been granted access to the related {{< vendor/name >}} project.
 Therefore, to access your Blackfire environments, make sure you log in using your {{< vendor/name >}} account.
 
@@ -58,6 +59,7 @@ you need to redeploy the environment.
 {{< /note >}}
 
 ### Blackfire monitoring
+
 Blackfire monitoring is enabled by default on your production environment.
 To enable Blackfire monitoring on your development or staging environments, follow these steps:
 
@@ -150,7 +152,7 @@ To retrieve startup errors, run the following command:
 
 To retrieve your Blackfire logs, follow these steps:
 
-1.  On the environment where you're facing issues, create the following[variable](../../development/variables/set-variables.md):
+1.  On the environment where you're facing issues, create the following [variable](../../development/variables/set-variables.md):
 
     ```bash
     {{% vendor/cli %}} variable:create php:blackfire.log_file --value /tmp/blackfire.log

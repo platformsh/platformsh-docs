@@ -3,9 +3,6 @@ title: Continuous profiling for NodeJS
 description: Configure the NodeJS continuous profiler.
 weight: 15
 ---
-
-## Introduction
-
 Continuous profiling is a performance optimization technique where web applications
 are monitored and profiled in real-time. Lightweight and scalable, it's tailored
 for holistic application oversight.
@@ -16,7 +13,7 @@ optimize code for better performance and resource utilization. This proactive
 approach allows for quicker identification and resolution of performance issues,
 ensuring the smooth running of software in live environments.
 
-## Continuous profiling on {{< vendor/name >}}
+## Continuous profiling on {{% vendor/name %}}
 
 {{< vendor/name >}} Continuous Profiler is powered by [Blackfire](../../../increase-observability/application-metrics/blackfire.md).
 It is available directly from the Console under the `Profiling` tab of your environments.

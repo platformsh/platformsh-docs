@@ -33,7 +33,7 @@ So the resources you see for a given container don't equal the total resources f
 This reference project has a single app, two services (MySQL and Redis), and two workers.
 The appropriate resources have been [allocated automatically](../../create-apps/app-reference.md#sizes) for each container
 based on the number and type of containers for this plan size.
-The graphs show the current average usage in relation to the allocated resources.
+The graphs show the current average usage in relation to the [resources allocated to each container](/manage-resources.md).
 
 Once you've read the metrics, see **recommendations for action**.
 
