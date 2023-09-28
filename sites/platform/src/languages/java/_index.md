@@ -42,6 +42,38 @@ To save space and reduce potential vulnerabilities, they don't contain GUI class
 
 {{% language-specification type="java" display_name="Java" %}}
 
+{{% version/specific %}}
+
+```yaml {configFile="app"}
+type: 'java:<VERSION_NUMBER>'
+```
+
+For example:
+
+```yaml {configFile="app"}
+type: 'java:{{% latest "java" %}}'
+```
+
+<--->
+
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    <APP_NAME>:
+        type: 'java:<VERSION_NUMBER>'
+```
+
+For example:
+
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'java:{{% latest "java" %}}'
+```
+
+{{% /version/specific %}}
+
 ## Support build automation
 
 {{% vendor/name %}} supports the most common project management tools in the Java ecosystem, including:
@@ -58,6 +90,7 @@ If the version you need differs from the version on your container, you can inst
 
 Add something like the following to your [app configuration](../../create-apps/_index.md):
 
+{{% version/specific %}}
 ```yaml {configFile="app"}
 variables:
     env:
@@ -65,12 +98,32 @@ variables:
 
 hooks:
     build: |
-      curl -sfLO "https://dlcdn.apache.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz"
-      tar -zxf apache-maven-$MAVEN_VERSION-bin.tar.gz
-      export PATH="$PWD/apache-maven-$MAVEN_VERSION/bin:$PATH"
-      mvn --version
-      mvn clean package
+        curl -sfLO "https://dlcdn.apache.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz"
+        tar -zxf apache-maven-$MAVEN_VERSION-bin.tar.gz
+        export PATH="$PWD/apache-maven-$MAVEN_VERSION/bin:$PATH"
+        mvn --version
+        mvn clean package
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'java:{{% latest "java" %}}'
+
+        variables:
+            env:
+                MAVEN_VERSION: {{< variable "DESIRED_VERSION_NUMBER" "3.8.6" >}}
+
+        hooks:
+            build: |
+                curl -sfLO "https://dlcdn.apache.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz"
+                tar -zxf apache-maven-$MAVEN_VERSION-bin.tar.gz
+                export PATH="$PWD/apache-maven-$MAVEN_VERSION/bin:$PATH"
+                mvn --version
+                mvn clean package
+```
+{{% /version/specific %}}
 
 ## Other JVM languages
 
@@ -82,11 +135,17 @@ It’s worth remembering that the JVM by its specification [doesn't read Java co
 | [Scala and Spring](https://dzone.com/articles/spring-scala-cloud-psh) | [Source](https://github.com/platformsh-examples/scala)       |
 | [Groovy and Spring](https://dzone.com/articles/spring-groovy-cloud-psh) | [Source](https://github.com/platformsh-examples/groovy)      |
 
+{{< note version="2" >}}
+While the table above shows examples for Platform.sh rather than for {{% vendor/name %}}, the same rules apply with only slight changes in configuration.
+{{< /note >}}
+
 ## Accessing services
 
+{{% version/only "1" %}}
 To access various [services](../../add-services/_index.md) with Java, see the following examples. The individual service pages have more information on configuring each service.
+{{% /version/only %}}
 
-{{< codetabs >}}
+{{< codetabs v2hide="true" >}}
 
 +++
 title=Elasticsearch
@@ -160,11 +219,17 @@ highlight=java
 
 {{< /codetabs >}}
 
+{{% access-services version="2" %}}
+
+{{% version/only "1" %}}
+
 {{% config-reader %}}[Java configuration reader library](https://github.com/platformsh/config-reader-java){{% /config-reader%}}
 
 If your Java framework allows, you can instead overwrite configuration following the [twelve-factor app](https://12factor.net/config).
 That removes the need for an additional dependency.
 
 ## Project templates
+
+{{% /version/only %}}
 
 {{< repolist lang="java" displayName="Java" >}}
