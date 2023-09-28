@@ -33,6 +33,21 @@ $ npm init
 $ npm install express
 ```
 
+## Init your Git repo
+We need to initialize the local Git repository and commit local files, using the following command:
+```
+$ git init
+$ git add package.json package-lock.json
+$ git commit -m "Init Express application"
+```
+
+We should also ignore adding ``node_modules`` folder to the Git repository. Use the following commands to do so:
+
+```shell
+$ echo "/node_modules" >> .gitignore
+$ git add .gitignore && git commit -m "adding node_modules folder in .gitignore file"
+```
+
 ## Add a Hello World route
 Please create your first Express page.
 To do so, please create, at the root of your project, a new ``index.js`` file that will contain a basic Hello world script:
@@ -49,18 +64,10 @@ app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
 ```
-
-## Init your Git repo
-We need to initialize the local Git repository, using the following command:
-```
-$ git init
-```
-
-We should also ignore adding ``node_modules`` folder to the Git repository. Please use the following commands to do so:
-
+Then please commit your file using the following commands:
 ```shell
-$ echo "/node_modules" >> .gitignore
-$ git add .gitignore && git commit -m "adding node_modules folder in .gitignore file"
+$ git add index.js
+$ git commit -m "adding index.js"
 ```
 
 ## Create a new project
@@ -70,7 +77,6 @@ To do this, you can either use the {{% vendor/name %}} CLI or the {{% vendor/nam
 {{< note title="Remember" >}}
 At the end of either using the {{% vendor/name %}} CLI or the Console section, please copy your new **projectId**, we’ll use it in the next section: link your local project to your {{% vendor/name %}} project.
 {{< /note >}}
-
 
 {{< codetabs >}}
 +++
@@ -255,6 +261,13 @@ Please add any services that you want to use with your Express application.</br>
 Otherwise, it will be part of the next step on how to [add a database](/get-started/express/add-database.md).
 {{< /note >}}
 
+Then commit your new files, using the following command:
+
+```shell
+$ git add .environment .{{% vendor/cli %}}/config.yaml
+$ git commit -m "{{% vendor/name %}} config files"
+```
+
 ## Set project remote
 
 {{< note >}}
@@ -332,14 +345,12 @@ title=Using third-party Git repository
 
 When using an external Git repository (Github, Gitlab, or Bitbucket) to store your source code and having the Git integration feature enabled, on each code updates, you will need to use the normal Git workflow (`git add . && git commit -m "message" && git push`) to push your code to your external repository using well known Git command seen below:
 ```shell
-$ git add . && git commit -m "my new change"
 $ git push origin
 ```
 
 Your Github/Gitlab/Bibucket integration process will then automatically create a new environment if you’re pushing a new Git branch and deploy changes to your corresponding environment.
 
 {{< /codetabs >}}
-
 
 {{% vendor/name %}} will now read your configuration files, and begin building your application image. **Your first push
 will fail**; don't worry, this is expected. At this point {{% vendor/cli %}} is not aware of the resources
@@ -427,7 +438,8 @@ To make changes to your project, follow these steps:
 3. Commit your changes:
 
    ```bash
-   $ git commit -a -m "Update Hello world"
+   $ git add index.js
+   $ git commit -m "Update Hello world"
    ```
 
 4. Deploy your changes to the `feat-a` environment:
