@@ -1,9 +1,9 @@
 ---
 title: Setting up the Database
+sidebarTitle: "Handle migrations"
 description: Steps required for preparing Database migrations.
+weight: -50
 ---
-
-## Setting up the Database
 
 You may have noticed that we haven't done anything with regard to a database. This application uses
 [Flask-migrate](https://flask-migrate.readthedocs.io/en/latest/) and since this is a brand-new application, we'll
@@ -109,6 +109,3 @@ $ {{% vendor/cli %}} environment:push -y
 
 Congrats! You've now successfully deployed your Flask application to {{% vendor/name %}}! Take a moment to visit your
 site and test it out!
-
-{{< guide-buttons previous="Deploy Resources" type="previous" >}}
-{{< guide-buttons next="Local Development" type="next" >}}

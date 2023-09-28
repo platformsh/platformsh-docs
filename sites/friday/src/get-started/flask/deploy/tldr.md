@@ -1,5 +1,7 @@
 ---
 title: Guide to deploying a Flask app on {{% vendor/name %}} TL;DR
+sidebarTitle: Fast-track guide
+sectionBefore: Bonus
 description: The TL;DR - Step-by-Step version for deploying, and working with Flask on {{% vendor/name %}}.
 ---
 ## TL;DR Step-by-Step

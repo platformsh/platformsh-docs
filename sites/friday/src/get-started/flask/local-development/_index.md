@@ -3,7 +3,6 @@ title: Local Development
 description: Steps for connecting a local development instance of Flask {{% vendor/name %}} infrastructure.
 ---
 
-## Local Development
 Now that we have our flask application working on {{% vendor/name %}} we'll need a local environment to be able to make
 quick changes. Luckily flask already has a development server we can take advantage of! And we can utilize
 everything we set up previously with the flask development server.
@@ -41,6 +40,3 @@ connected to your production database so any changes you make locally in the int
 user) are being added to production. In the next guide will discuss setting up a local development environment
 that creates copies of your database to run locally as well.
 {{< /note >}}
-
-{{< guide-buttons previous="Database Migrations" type="previous" >}}
-{{< guide-buttons next="Changing Web Servers" type="next" >}}

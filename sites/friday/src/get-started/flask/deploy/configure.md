@@ -1,6 +1,8 @@
 ---
-title: Configure Infrastructure for a Flask app on {{% vendor/name %}}
+title: Configure infrastructure for a Flask app on {{% vendor/name %}}
+sidebarTitle: Configure your infrastructure
 description: This guide provides instructions for deploying, and working with Flask on {{% vendor/name %}}.
+weight: -200
 ---
 
 ## {{% vendor/name %}} configuration files
@@ -236,5 +238,4 @@ change it the desired version. A
 documentation. Do not forget to add and commit your changes to git before pushing your code.
 {{< /note >}}
 
-{{< guide-buttons previous="Setup Flask" type="previous" >}}
-{{< guide-buttons next="Prepare Flask" type="next" >}}
+{{< guide-buttons next="Environment variables" >}}

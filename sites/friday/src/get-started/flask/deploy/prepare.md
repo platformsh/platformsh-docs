@@ -1,9 +1,9 @@
 ---
 title: Prepare the Flask application for {{% vendor/name %}}
+sidebarTitle: "Environment variables"
 description: Steps required for setting up a Flask app and repository to deploy on {{% vendor/name %}} infrastructure.
+weight: -150
 ---
-
-# Preparing the Flask application for {{% vendor/name %}}
 
 While we've finished telling {{% vendor/name %}} what it needs to do in order to build and deploy our application,
 our application still needs to know some things about {{% vendor/name %}}. This type of information typically goes
@@ -95,5 +95,4 @@ $ git commit -m "adds needed flask environmental variables"
 
 Now we're prepared to push our application to {{% vendor/name %}}.
 
-{{< guide-buttons previous="Configure Infrastructure" type="previous" >}}
-{{< guide-buttons next="Deploy Resources" type="next" >}}
+{{< guide-buttons next="Deploy resources" >}}

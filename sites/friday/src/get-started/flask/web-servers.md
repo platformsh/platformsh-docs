@@ -1,10 +1,9 @@
 ---
 title: Switching from the Flask server to an alternative Web Server
+sidebarTitle: Change web server
 description: Steps for changing the web server on {{% vendor/name %}}.
 ---
 
-
-# Switching from the Flask server to an alternative Web Server
 While lightweight and easy to use, Flask’s built-in server is not suitable for production as it doesn’t
 scale well. {{% vendor/name %}} [supports several different web servers](/languages/python/server/_index.md) for Python
 that you can use instead. The specific web server you choose will depend on your application and specific requirements.

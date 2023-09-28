@@ -1,8 +1,10 @@
 ---
 title: Setting up a Flask app and repository
+sidebarTitle: Setup your app and repo
 description: Steps required for setting up a Flask app and repository to deploy on {{% vendor/name %}} infrastructure.
+weight: -250
 ---
-# Setting up the application and repository
+
 For the purposes of this guide, we'll start by generating a
 [Flask package project](https://github.com/cookiecutter-flask/cookiecutter-flask) from
 [Cookiecutter](https://github.com/cookiecutter/cookiecutter). From there we'll walk through the steps needed to deploy
@@ -57,5 +59,5 @@ branch name, you can do so with the `git branch -m` command. I'll rename mine to
 ```shell
 $ git branch -m main
 ```
-{{< guide-buttons previous="Introduction" type="previous" >}}
-{{< guide-buttons next="Configure Infrastructure" type="next" >}}
+
+{{< guide-buttons next="Configure your infrastructure" >}}

@@ -1,9 +1,9 @@
 ---
 title: Deploy the Flask application on {{% vendor/name %}}
+sidebarTitle: "Deploy resources"
+weight: -100
 description: Steps required for deploying a configured Flask application to {{% vendor/name %}}.
 ---
-
-# Deploy the Flask application on {{% vendor/name %}}
 
 Our application is now ready for us to push the changes to {{% vendor/name %}} and activate our initial environment:
 
@@ -119,5 +119,4 @@ It will ask us to confirm your update. Select `Y` and the {{% vendor/name %}} wi
 application, redeploy all our containers, and at the end of the process, report back the URLs associated with our
 project.
 
-{{< guide-buttons previous="Prepare Flask" type="previous" >}}
-{{< guide-buttons next="Database Migrations" type="next" >}}
+{{< guide-buttons next="Handle migrations" >}}
