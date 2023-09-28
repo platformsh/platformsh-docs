@@ -17,7 +17,14 @@ Xdebug is automatically disabled.
 
 ## Before you begin
 
+{{% version/specific %}}
+<!-- Platform.sh -->
 The following table shows the PHP versions where Xdebug is available on Grid environments:
+<--->
+<!-- Upsun -->
+The following table shows the PHP versions where Xdebug is available:
+{{% /version/specific %}}
+
 
 {{< php-extensions/single extension="xdebug" >}}
 

@@ -32,7 +32,7 @@ For more details, see [tuning](./tuning.md).
 
 To start a Java application, you need to understand the [{{% vendor/name %}} structure](/learn/overview/structure.md).
 You will need to configure your [application](../../create-apps/_index.md), [routes](../../define-routes/_index.md),
-and [services](../../add-services/_index.md)
+and [services](../../add-services/_index.md).
 
 ### Application
 
@@ -115,7 +115,7 @@ A stateless application can be scaled horizontally to multiple application insta
 
 {{< note version="2" >}}
 Application instances have a limited amount of memory at build time, which has a maximum of 8 GB.
-At runtime that limit depends on the resources you have defined for your application container using `{{% vendor/cli %}} resources:set`.
+At runtime that limit depends on [the resources you have defined for your application container](/manage-resources.md) using `{{% vendor/cli %}} resources:set`.
 A stateless application can be scaled horizontally to multiple application instances with `{{% vendor/cli %}} resources:set` or by using Varnish in a [load balancer](https://community.platform.sh/t/how-to-configure-load-balancer-in-a-single-application/553) configuration.
 {{< /note >}}
 
@@ -141,12 +141,12 @@ You have the option to use several languages in microservices. If you're using J
 
 {{< note version="1" >}}
 
-As a single application, in the multi-app, you have the option to set load balancer to some or [all applications in the project cluster](https://community.platform.sh/t/how-to-configure-load-balancer-in-a-multiple-applications/554).
+You can load balance to some or [all applications in the project cluster](https://community.platform.sh/t/how-to-configure-load-balancer-in-a-multiple-applications/554).
 
 {{< /note >}}
 
 {{< note version="2" >}}
-As a single application, in the multi-app, you have the option to set load balancer to some or [all applications in the project cluster](https://community.platform.sh/t/how-to-configure-load-balancer-in-a-multiple-applications/554).
+You can load balance to some or [all applications in the project cluster](https://community.platform.sh/t/how-to-configure-load-balancer-in-a-multiple-applications/554).
 
 While the table above shows examples for Platform.sh rather than for {{% vendor/name %}}, the same rules apply with only slight changes in configuration.
 
