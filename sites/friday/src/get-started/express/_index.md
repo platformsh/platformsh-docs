@@ -56,6 +56,13 @@ We need to initialize the local Git repository, using the following command:
 $ git init
 ```
 
+We should also ignore adding ``node_modules`` folder to the Git repository. Please use the following commands to do so:
+
+```shell
+$ echo "/node_modules" >> .gitignore
+$ git add .gitignore && git commit -m "adding node_modules folder in .gitignore file"
+```
+
 ## Create a new project
 The next step is to create a project on {{% vendor/name %}}.
 To do this, you can either use the {{% vendor/name %}} CLI or the {{% vendor/name %}} console—details on how to do this can be found below.
@@ -310,7 +317,7 @@ Resource configuration for the project app (123456azerty), environment main (typ
 | app                   | not set | not set | not set     | N/A       | 1         |
 +-----------------------+---------+---------+-------------+-----------+-----------+
 ```
-The first question is what profile size you want applied to your application image. For now let's select `1`:
+The first question is what profile size you want applied to your application image. For now let's select the minimum `0.1`:
 ```shell
 App: app
 Choose a profile size:
@@ -323,7 +330,7 @@ Choose a profile size:
   [6   ] CPU 6, memory 1728 MB
   [8   ] CPU 8, memory 2240 MB
   [10  ] CPU 10, memory 2688 MB
- > 1
+ > 0.1
 ```
 Next it will ask how many instances of our application container we need deployed. For now let's go with `1`:
 ```shell
@@ -332,6 +339,15 @@ Enter the number of instances (default: 1): 1
 
 Last it will ask us to confirm our choices. Select `Y` and the {{% vendor/name %}} will take your selections, grab the
 previous built images from early, apply our resource selections to them and deploy our full application!
+
+Note that each environment has its own domain name.
+To open the url of your new environment, run the following command:
+
+   ```bash
+   $ {{% vendor/cli %}} environment:url --primary
+   ```
+
+Et voilà, your Express application is live!
 
 ## Make changes to your project
 
