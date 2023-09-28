@@ -178,11 +178,53 @@ An additional `.environment` file is located at the root of your source code, th
 
 To pre-generate these Yaml files, please use the following command from the root of your Express project and follow the prompt:
 ```shell
-$ {{% vendor/cli %}} ify
+$ {{% vendor/cli %}} project:init
+Welcome to {{% vendor/name %}}!
+Let's get started with a few questions.
+
+We need to know a bit more about your project. This will only take a minute!
+
+✓ Detected stack: Express
+✓ Detected runtime: JavaScript/Node.js
+✓ Detected dependency managers: Npm
+Tell us your project name: [app]
+
+                       (\_/)
+We’re almost done...  =(^.^)=
+
+Last but not least, unless you’re creating a static website, your project uses services. Let’s define them:
+
+Select all the services you are using: []
+
+You have not selected any service, would you like to proceed anyway? [Yes]
+
+┌───────────────────────────────────────────────────┐
+│   CONGRATULATIONS!                                │
+│                                                   │
+│   We have created the following files for your:   │
+│     - .environment                                │
+│     - .{{% vendor/cli %}}/config.yaml                          │
+│                                                   │
+│   We’re jumping for joy! ⍢                        │
+└───────────────────────────────────────────────────┘
+         │ /
+         │/
+         │
+  (\ /)
+  ( . .)
+  o (_(“)(“)
+
+You can now deploy your application to {{% vendor/name %}}!
+To do so, commit your files and deploy your application using the {{% vendor/name %}} CLI:
+  $ git add .
+  $ git commit -m 'Add {{% vendor/name %}} configuration files'
+  $ {{% vendor/cli %}} push
 $ git add . && git commit -m "Init project"
 ```
 
-Command `{{% vendor/cli %}} ify` will automatically detect that you’re using an Express stack and generate the corresponding `config.yaml` Yaml files, like so:
+
+
+Command `{{% vendor/cli %}} project:init` (shortcut `{{% vendor/cli %}} ify`) will automatically detect that you’re using an Express stack, ask if you want to add any services (don't choose any, it will be done later in the [Add a database](/get-started/express/add-database.md) doc page) and generate the corresponding `config.yaml` Yaml files, like so:
 ```yaml
 # .upsun/config.yaml
 {{< code-link destination="/create-apps/app-reference.html" text="applications" title="Complete list of all available properties" >}}:
