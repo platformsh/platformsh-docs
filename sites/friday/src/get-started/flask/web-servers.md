@@ -26,7 +26,7 @@ Commit the changes and push them up to your environment:
 ```shell
 $ git add {{< vendor/configfile "app" >}}
 $ git commit -m "changes project to use gunicorn"
-$ {{% vendor/cli %}} e:push -y
+$ {{% vendor/cli %}} environment:push -y
 ```
 
 ## Conclusion
