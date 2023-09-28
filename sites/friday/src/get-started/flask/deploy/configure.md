@@ -151,6 +151,22 @@ as well as the extra space. If you don't remove the extra space, you will end up
 `Invalid block mapping key indent` error when the configuration file is validated.
 {{< /note >}}
 
+Next we're going to need some writable disk space to hold the static assets that npm builds and
+flask-static-digest generates. This directory exists under our application package name as
+`./<application-name>/static`. In `{{< vendor/configfile "app" >}}`, find the line that starts with
+`# Mounts define directories that are writable `.
+We'll need to uncomment the line `# mounts:` and then add an entry describing where we want a writable mount added:
+
+```yaml {configFile="app"}
+    mounts:
+      "my_flask_cookie/static":
+        source: local
+        source_path: static_assets
+```
+`source` indicates if this is a local storage mount or a service. `source_path` is the subdirectory within the mounted
+disk (the source) where the mount should point. For further information, please see the
+[documentation on mounts](/create-apps/app-reference.md#mounts).
+
 Since this project uses npm in addition to Python, we're going to want {{% vendor/name %}} to also run an `npm install`
 when it builds the application image. In the `{{< vendor/configfile "app" >}}` find the line that starts with:
 
