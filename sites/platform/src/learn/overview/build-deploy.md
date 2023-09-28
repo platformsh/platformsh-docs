@@ -13,10 +13,7 @@ The deploy process makes those containers live, replacing any previous versions,
 
 ![The steps in the build and deploy process](/images/workflow/build-pipeline.svg "0.50")
 
-## Glossary
-
-Hooks
-: Hooks are points in the build and deploy process where you can inject a custom script.
+Hooks are points in the build and deploy process where you can inject a custom script.
 
 ## The build
 
@@ -37,23 +34,30 @@ Once the app has gone through all of the build steps, it can connect to services
 
 ### Build steps
 
+{{% version/specific %}}
+<!-- Platform.sh -->
 1. **Validate configuration**:
    The configuration is checked by validating the `{{< vendor/configdir >}}` directory and scanning the repository for any app configurations to validate individually.
-1. **Pull container images**:
+<--->
+<!-- Upsun -->
+1. **Validate configuration**:
+   The configuration is checked by validating the `{{< vendor/configdir >}}` directory and scanning the repository for any app configuration to validate.
+{{% /version/specific %}}
+2. **Pull container images**:
    Any container images that have been built before and that don't have any changes are pulled to be reused.
-1. **Install dependencies**:
+3. **Install dependencies**:
    If you have specified additional global dependencies, they're downloaded during this step.
    This is useful for commands you may need in the build hook.
-1. **Run build flavor commands**:
+4. **Run build flavor commands**:
    For some languages (NodeJS, PHP), a series of standard commands are run based on the build flavor.
-   You can change the flavor or skip the commands by specifying it in your app configuration file.
-1. **Run build hook**:
+   You can change the flavor or skip the commands by specifying it in your `{{< vendor/configfile "app" >}}` file.
+5. **Run build hook**:
    The `build` hook comprises one or more shell commands that you write to finish creating your production code base.
    It could be compiling Sass files, running a bundler, rearranging files on disk, or compiling.
    The committed build hook runs in the build container.
    During this time, commands have write access to the file system, but there aren't connections to other containers (services and other apps).
    Note that you can [cancel deployments stuck on the build hook](/environments/cancel-activity.md).
-1. **Freeze app container**:
+6. **Freeze app container**:
    The file system is frozen and produces a read-only container image, which is the final build artifact.
 
 ## The deploy
