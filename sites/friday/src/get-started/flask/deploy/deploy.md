@@ -56,6 +56,13 @@ Next it will ask how many instances of our application container we need deploye
 Enter the number of instances (default: 1): 1
 ```
 
+Since we have defined a mount in `{{< vendor/configfile "app" >}}`, the CLI will next ask us how much disk space we
+want to reserve for the mount. For the purposes of this demo, I'll select `1024`MB:
+
+```shell
+Enter a disk size in MB: 1024
+```
+
 Now that we've defined the resources for our application container, the CLI will proceed through the same process for
 each service we added previously. In this case, we just have our PostgreSQL service. Let's choose a profile size of `1`
 for it as well:
