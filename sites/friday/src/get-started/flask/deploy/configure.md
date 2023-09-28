@@ -153,15 +153,22 @@ as well as the extra space. If you don't remove the extra space, you will end up
 
 Next we're going to need some writable disk space to hold the static assets that npm builds and
 flask-static-digest generates. This directory exists under our application package name as
-`./<application-name>/static`. In `{{< vendor/configfile "app" >}}`, find the line that starts with
-`# Mounts define directories that are writable `.
-We'll need to uncomment the line `# mounts:` and then add an entry describing where we want a writable mount added:
+`./<application-name>/static`. In
+`{{< vendor/configfile "app" >}}`, find the line that starts with:
 
 ```yaml {configFile="app"}
+# Mounts define directories that are writable after the build is complete
+```
+
+We'll need to uncomment the line `# mounts:` and then add an entry describing where we want a writable
+mount added:
+
+```yaml {configFile="app"}
+    # Mounts define directories that are writable after the build is complete.
     mounts:
-      "my_flask_cookie/static":
-        source: local
-        source_path: static_assets
+      "my_flask_cookies/static": # Represents the path in the app.
+        source: "local" # "local" sources are unique to the app, while "service" sources can be shared among apps.
+        source_path: "static_assets" # The subdirectory within the mounted disk (the source) where the mount should point.
 ```
 `source` indicates if this is a local storage mount or a service. `source_path` is the subdirectory within the mounted
 disk (the source) where the mount should point. For further information, please see the

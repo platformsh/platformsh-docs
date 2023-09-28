@@ -90,40 +90,4 @@ Enter a disk size in MB: 2048
 Last it will ask us to confirm our choices. Select `Y` and the {{% vendor/name %}} will take your selections, grab the
 previous built images from early, apply our resource selections to them and deploy our full application!
 
-However, you'll notice that NPM reported errors near the end of the deploy process when it tried to create static assets.
-This is because application containers are read-only by default, and NPM needs a place to write its files. We'll need
-to define some some writable disk space to hold the static assets that npm builds and flask-static-digest generates.
-This directory exists under our application package name as `./<application-name>/static`. In
-`{{< vendor/configfile "app" >}}`, find the line that starts with:
-
-```yaml {configFile="app"}
-# Mounts define directories that are writable after the build is complete
-```
-
-We'll need to uncomment the line `# mounts:` and then add an entry describing where we want a writable
-mount added:
-
-```yaml {configFile="app"}
-    # Mounts define directories that are writable after the build is complete.
-    mounts:
-      "my_flask_cookies/static": # Represents the path in the app.
-        source: "local" # "local" sources are unique to the app, while "service" sources can be shared among apps.
-        source_path: "static_assets" # The subdirectory within the mounted disk (the source) where the mount should point.
-```
-
-`source` indicates if this is a local storage mount or a service. `source_path` is the subdirectory within
-the mounted disk (the source) where the mount should point. For further information, please see the
-[documentation on mounts](/create-apps/app-reference/_index.md#mounts).
-
-Because we've now defined a mount, we'll need to inform {{% vendor/name %}} that we want to add persistent disk to our
-application container. In your terminal, let's define 1024MB of disk for our application container, where the format for
-disk is `--disk=<app-container-name><disk-in-mb>`:
-
-```shell
-$ {{% vendor/cli %}} resources:set --disk=my_flask_cookie_upsun:1024
-```
-It will ask us to confirm your update. Select `Y` and the {{% vendor/name %}} will apply the new mount to your
-application, redeploy all our containers, and at the end of the process, report back the URLs associated with our
-project.
-
 {{< guide-buttons next="Handle migrations" >}}
