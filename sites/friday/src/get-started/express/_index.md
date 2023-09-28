@@ -16,7 +16,7 @@ Anything included in these guides applies to not only to [Express](https://expre
 {{% guides/link-philosophy %}}
 
 {{< note >}}
-**Have you seen the Upsun demo tutorial?** It’s the perfect place to start in terms of figuring out how {{< vendor/name >}} work and gain a better understanding of what we provide.
+**Have you seen the {{% vendor/name %}} demo tutorial?** It’s the perfect place to start in terms of figuring out how {{< vendor/name >}} work and gain a better understanding of what we provide.
 {{< /note >}}
 
 {{% guides/requirements name="Express" %}}
@@ -76,7 +76,7 @@ At the end of either using the {{% vendor/name %}} CLI or the Console section, p
 +++
 title=using the CLI
 +++
-To create a new project with the Upsun CLI, use the following command and follow the prompt:
+To create a new project with the {{% vendor/name %}} CLI, use the following command and follow the prompt:
 ```shell
 $ {{% vendor/cli %}} project:create
 ```
@@ -107,7 +107,7 @@ After creating a project with the console, you need to let the {{% vendor/name %
 
 To do so, use the {{% vendor/name %}} CLI to set remote project:
 ```shell
-$ upsun project:set-remote <projectId>
+$ {{% vendor/cli %}} project:set-remote <projectId>
 ```
 
 This command will add a new remote called `{{% vendor/cli %}}` to your local Git repo as you can see below:
@@ -122,7 +122,7 @@ It will also create a new `.{{% vendor/cli %}}/local/project.yaml` file that wil
 {{< note >}}
 If you don’t remember your `<projectId>` from the previous steps, you can get it back using this command line and select the one you created:
 ```shell
-$ upsun project:list
+$ {{% vendor/cli %}} project:list
 ```
 {{< /note >}}
 
@@ -227,7 +227,7 @@ $ git add . && git commit -m "Init project"
 
 Command `{{% vendor/cli %}} project:init` (shortcut `{{% vendor/cli %}} ify`) will automatically detect that you’re using an Express stack, ask if you want to add any services (don't choose any, it will be done later in the [Add a database](/get-started/express/add-database.md) doc page) and generate the corresponding `config.yaml` Yaml files, like so:
 ```yaml
-# .upsun/config.yaml
+# .{{% vendor/cli %}}/config.yaml
 {{< code-link destination="/create-apps/app-reference.html" text="applications" title="Complete list of all available properties" >}}:
   app:
     {{< code-link destination="/create-apps/app-reference.html#source" text="source" title="Application source code directory. Click for more information" >}}:
@@ -287,7 +287,7 @@ It will also create a new `.{{% vendor/cli %}}/local/project.yaml` file that wil
 {{< note >}}
 If you don’t remember your `<projectId>` from the previous steps, you can get it back using this command line and select the one you created:
 ```shell
-$ upsun project:list
+$ {{% vendor/cli %}} project:list
 ```
 {{< /note >}}
 
