@@ -1,5 +1,6 @@
 ---
 title: Continuous profiling for Go
+sidebarTitle: "Continuous profiling (Go)"
 description: Configure the Go continuous profiler.
 weight: 10
 ---
@@ -20,13 +21,13 @@ It is available directly from Console under the `Profiling` tab of your environm
 
 ## Prerequisites
 
-{{< vendor/name >}} Continuous Profiler requires `Go >=1.18`.
+{{< vendor/name >}} Continuous Profiler requires [`Go >=1.18`](/languages/go.md).
 
 ## Installation
 
 Get the [Blackfire Continuous Profiler Go library](https://github.com/blackfireio/go-continuous-profiling-experimental):
 
-```
+```bash
 go get github.com/blackfireio/go-continuous-profiling-experimental
 ```
 
@@ -58,7 +59,7 @@ profiler.Start(
 defer profiler.Stop()
 ```
 
-The `Start` function accepts to following options:
+The `Start` function accepts the following options:
 
 - `WithCPUDuration`: specifies the length at which to collect CPU profiles.
 The default is 45 seconds. Can also be set via the environment variable `BLACKFIRE_CONPROF_CPU_DURATION`.
@@ -75,9 +76,10 @@ The default is `Profiler.CPUProfile`.
 - `WithUploadTimeout`: sets the upload timeout of the message that is sent to the Blackfire Agent.
 The default is 10 seconds. Can also be set via the environment variable `BLACKFIRE_CONPROF_UPLOAD_TIMEOUT`.
 
-Note:
+{{% note theme="info" title="Note:" %}}
 If the same parameter is set by both an environment variable and a `Start` call, the explicit
 parameter in the `Start` call takes precedence.
+{{% /note %}}
 
 There is also some additional configuration that can be done using environment variables:
 
@@ -92,15 +94,15 @@ Stops the continuous profiling probe.
 
 ## A simple example application
 
-1. Get the continuous profiler from the internal repository.
+1. Get the Blackfire Continuous Profiler Go library
 
-```
+```bash
 go get github.com/blackfireio/go-continuous-profiling-experimental
 ```
 
 2. Save the following code as `main.go` and run as follows:
 
-```
+```bash
 go run main.go
 ```
 

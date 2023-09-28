@@ -1,5 +1,6 @@
 ---
-title: Continuous profiling for NodeJS
+title: Continuous profiling for Node.js
+sidebarTitle: "Continuous Profiling (Node.js)"
 description: Configure the NodeJS continuous profiler.
 weight: 15
 ---
@@ -20,7 +21,7 @@ It is available directly from the Console under the `Profiling` tab of your envi
 
 ## Prerequisites
 
-{{< vendor/name >}} Continuous Profiler requires `Node.js >= 16.0.0`.
+{{< vendor/name >}} Continuous Profiler requires [`Node.js >= 16.0.0`](/languages/nodejs/_index.md).
 
 ## Installation
 
@@ -58,7 +59,7 @@ Blackfire.start({
 // Blackfire.stop();
 ```
 
-The `start` function accepts an object as parameter with the following keys:
+The `start` function accepts an object as a parameter with the following keys:
 
 - `appName`: name of the application
 
@@ -76,7 +77,7 @@ Stops the continuous profiling probe.
 
 ## A simple example application
 
-1. Install dependencies
+1. Get the Continuous Profiler NodeJS library
 
 ```shell
 npm install express @blackfireio/node-tracing
@@ -105,4 +106,7 @@ app.listen(port, () => {
 })
 ```
 
-3. Run NodeJs server. (`node index.js`)
+3. Run the Node.js server
+
+```bash
+node index.js

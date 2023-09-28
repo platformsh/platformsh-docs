@@ -27,8 +27,10 @@ The graphs switch to an overview of the average resource utilization for the sel
 This example should give you an idea of how the metrics appear.
 Environment metrics show resource usage for each app, service, and worker container.
 
+{{% version/only "1"%}}
 Note that resources are spread across all containers within the project.
 So the resources you see for a given container don't equal the total resources for the project.
+{{% /version/only %}}
 
 This reference project has a single app, two services (MySQL and Redis), and two workers.
 The appropriate resources have been [manually allocated](/manage-resources.md) for each container.

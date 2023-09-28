@@ -157,7 +157,7 @@ In the primary three views, averages are shown over larger intervals.
 | :-------------------------------------------------------------------- | :-------------------------------------------- | :--------------------------- |
 | The last 15 minutes (*15m*)                                           | 1 minute                                      | 10:00, 10:01, 10:02          |
 | The last hour (*1hr*)                                                 | 1 minute                                      | 10:00, 10:01, 10:02          |
-| The last 8 hours (*8hr*)                                              | 10 minutes                                    | 10:00, 10:20, 10:40, 11:00   |
+| The last 8 hours (*8hr*)                                              | 10 minutes                                    | 10:00, 10:10, 10:20, 11:00   |
 {{% /version/specific %}}
 To zoom in on smaller intervals, select specific ranges in a graph.
 

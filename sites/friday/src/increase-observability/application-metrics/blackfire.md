@@ -4,7 +4,7 @@ weight: 5
 description: A full access to Blackfire is bundled with your PHP and Python {{< vendor/name >}} projects.
 ---
 
-A full access to [Blackfire](https://www.blackfire.io/) is bundled with all your PHP and
+Full access to [Blackfire](https://www.blackfire.io/) is bundled with all your PHP and
 Python {{< vendor/name >}} projects.
 
 Blackfire is the **official {{< vendor/name >}} observability service** that helps you
@@ -46,9 +46,7 @@ This includes monitoring, profiling, alerting, and build-related features.
 
 Note that Blackfire monitoring is enabled by default on your production environment.
 On other environment types, you need to [enable it](#blackfire-monitoring).
-User access settings are replicated from the {{< vendor/name >}} Console to Blackfire.
-
-This includes all [access levels](https://blackfire.io/docs/up-and-running/access-management).
+User access settings are replicated from the {{< vendor/name >}} Console to Blackfire -- this includes all [access levels](https://blackfire.io/docs/up-and-running/access-management).
  
 You might have Blackfire variables already set on your project.
 In this case, the existing variables override the settings of the automated integration.

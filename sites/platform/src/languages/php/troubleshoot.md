@@ -57,7 +57,7 @@ If you see that the processing time of certain requests is slow (such as taking 
 you should consider a [continuous observability solution](../../increase-observability/application-metrics/_index.md)
 to monitor your app and help you improve the performance issue.
 
-A full access to [Blackfire](../../increase-observability/application-metrics/blackfire.md) is bundled with your PHP and Python {{< vendor/name >}} projects.
+Full access to [Blackfire.io](../../increase-observability/application-metrics/blackfire.md) is bundled with your PHP and Python {{< vendor/name >}} projects.
 
 {{% /version/specific %}}
 
