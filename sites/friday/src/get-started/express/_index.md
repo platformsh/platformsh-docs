@@ -16,7 +16,7 @@ Anything included in these guides applies to not only to [Express](https://expre
 {{% guides/link-philosophy %}}
 
 {{< note >}}
-**Have you seen the {{% vendor/name %}} demo tutorial?** It’s the perfect place to start in terms of figuring out how {{< vendor/name >}} work and gain a better understanding of what we provide.
+**Have you seen the [{{% vendor/name %}} demo tutorial](https://github.com/platformsh/demo-project)?** It’s the perfect place to start in terms of figuring out how {{< vendor/name >}} work and gain a better understanding of what we provide.
 {{< /note >}}
 
 {{% guides/requirements name="Express" %}}
@@ -219,9 +219,7 @@ To do so, commit your files and deploy your application using the {{% vendor/nam
 $ git add . && git commit -m "Init project"
 ```
 
-
-
-Command `{{% vendor/cli %}} project:init` (shortcut `{{% vendor/cli %}} ify`) will automatically detect that you’re using an Express stack, ask if you want to add any services (don't choose any, it will be done later in the [Add a database](/get-started/express/add-database.md) doc page) and generate the corresponding `config.yaml` Yaml files, like so:
+Command `{{% vendor/cli %}} project:init` (shortcut `{{% vendor/cli %}} ify`) will automatically detect that you’re using an Express stack, ask if you want to add any services and generate the corresponding `config.yaml` Yaml files, like so:
 ```yaml
 # .{{% vendor/cli %}}/config.yaml
 {{< code-link destination="/create-apps/app-reference.html" text="applications" title="Complete list of all available properties" >}}:
@@ -250,6 +248,12 @@ routes:
     type: redirect
     to: "https://{default}/"
 ```
+
+{{< note >}}
+In this first step guide, we didn't add any services yet. </br>
+Please add any services that you want to use with your Express application.</br>
+Otherwise, it will be part of the next step on how to [add a database](/get-started/express/add-database.md).
+{{< /note >}}
 
 ## Set project remote
 
