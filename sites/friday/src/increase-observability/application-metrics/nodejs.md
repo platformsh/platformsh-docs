@@ -16,7 +16,7 @@ ensuring the smooth running of software in live environments.
 
 ## Continuous profiling on {{% vendor/name %}}
 
-{{< vendor/name >}} Continuous Profiler is powered by [Blackfire](../../../increase-observability/application-metrics/blackfire.md).
+{{< vendor/name >}} Continuous Profiling is powered by [Blackfire](../../../increase-observability/application-metrics/blackfire.md).
 It is available directly from the Console under the `Profiling` tab of your environments.
 
 ## Prerequisites
