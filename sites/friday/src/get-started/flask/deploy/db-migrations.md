@@ -7,9 +7,9 @@ weight: -50
 
 You may have noticed that we haven't done anything with regard to a database. This application uses
 [Flask-migrate](https://flask-migrate.readthedocs.io/en/latest/) and since this is a brand-new application, we'll
-need to set up the initial migrations, and commit them so we can then have them applied to our {{% vendor/name %}} db.
-However, because the migrate command needs access to the database, we'll need to set up a temporary local environment
-and give it a way to access the database service.
+need to set up the initial migrations, and commit them so we can then have them applied to our {{% vendor/name %}}
+database. However, because the migrate command needs access to the database, we'll need to set up a temporary local
+environment and give it a way to access the database service.
 
 Let's first set up a virtual environment to run our project inside of:
 ```shell
