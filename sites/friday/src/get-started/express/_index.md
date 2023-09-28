@@ -97,11 +97,7 @@ If not, please refer to [Set project remote](#set-project-remote) section.
 +++
 title=using the Console
 +++
-{{< note title="TODO">}}
-TODO: can’t create yet {{% vendor/name %}} project using the actual console :(
-
-TODO: add all steps to create a project using the console
-{{< /note >}}
+To create a new project using {{% vendor/name %}} Console, please follow [this tutorial](/learn/tutorials/migrating.html#2-create-a-project).
 
 After creating a project with the console, you need to let the {{% vendor/name %}} CLI know which linked project you want to deploy to.
 
@@ -278,8 +274,8 @@ $ {{% vendor/cli %}} project:set-remote <projectId>
 This command will add a new remote called `{{% vendor/cli %}}` to your local Git repo as you can see below:
 ```shell
 $ git remote
-origin
 {{% vendor/cli %}}
+...
 ```
 
 It will also create a new `.{{% vendor/cli %}}/local/project.yaml` file that will contain the given `<projectId>`, to store this info for the {{% vendor/name %}} CLI interaction.
