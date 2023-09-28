@@ -27,8 +27,8 @@ First thing’s first, if you don’t have a local Express project, you need to 
 Please refer to all the steps of the official Express installation guide for further details, but to sum it up, this is the 4 steps to create an Express app locally:
 
 ```shell
-$ mkdir express
-$ cd express
+$ mkdir my-express-app
+$ cd my-express-app
 $ npm init
 $ npm install express
 ```
@@ -166,6 +166,7 @@ Please make sure you that you have already completed the following steps before 
 To be able to host your Express application on {{% vendor/name %}}, some Yaml configuration files are needed at the root of your project to manage the way your application will behave.
 These Yaml configuration files are located into a .{{% vendor/cli %}}/ folder at the root of your source code, the architecture of which will look like this:
 ```
+my-express-app
 ├── .{{% vendor/cli %}}
 │   └── config.yaml
 ├── .environment
