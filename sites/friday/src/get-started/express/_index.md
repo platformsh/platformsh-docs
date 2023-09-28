@@ -21,11 +21,20 @@ Anything included in these guides applies to not only to [Express](https://expre
 
 {{% guides/requirements name="Express" %}}
 
-## Create your Express app
+## Create your local Express app
 First thing’s first, if you don’t have a local Express project, you need to create a new Express project locally following their [installation guide](https://expressjs.com/en/starter/installing.html).
 
+Please refer to all the steps of the official Express installation guide for further details, but to sum it up, this is the 4 steps to create an Express app locally:
+
+```shell
+$ mkdir express
+$ cd express
+$ npm init
+$ npm install express
+```
+
 ## Add a Hello World route
-You need to create your first Express page.
+Please create your first Express page.
 To do so, please create, at the root of your project, a new ``index.js`` file that will contain a basic Hello world script:
 ```javascript
 const express = require('express')
@@ -39,6 +48,12 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+```
+
+## Init your Git repo
+We need to initialize the local Git repository, using the following command:
+```
+$ git init
 ```
 
 ## Create a new project
@@ -56,11 +71,19 @@ title=using the CLI
 +++
 To create a new project with the Upsun CLI, use the following command and follow the prompt:
 ```shell
-$ upsun project:create
+$ {{% vendor/cli %}} project:create
 ```
 
 {{< note >}}
-When creating a new project using the {{% vendor/name %}} CLI, your local source code will be automatically linked to your newly created {{% vendor/name %}} project.
+When creating a new project using the {{% vendor/name %}} CLI command ``project:create``, it will ask a question if you want to set the local remote to your new project. Please say Yes (y) to it.
+Your local source code will be automatically linked to your newly created {{% vendor/name %}} project by creating a `.{{% vendor/cli %}}/local/project.yaml` file that will contain the corresponding `<projectId>` and set a Git remote to `{{% vendor/cli %}}`.
+
+```shell
+$ git remote
+{{% vendor/cli %}}
+```
+
+If not, please refer to [Set project remote](#set-project-remote) section.
 {{< /note >}}
 
 <--->
@@ -149,7 +172,6 @@ An additional `.environment` file is located at the root of your source code, th
 To pre-generate these Yaml files, please use the following command from the root of your Express project and follow the prompt:
 ```shell
 $ {{% vendor/cli %}} ify
-$ git init
 $ git add . && git commit -m "Init project"
 ```
 
@@ -186,13 +208,40 @@ routes:
 ## Set project remote
 
 {{< note >}}
-If you used the {{% vendor/name %}} CLI command `{{% vendor/cli %}} project:create` to create your project, your local source code already contains a ``.{{% vendor/cli %}}/local/project.yaml`` file that contains your `projectId`.
+If you used the {{% vendor/name %}} CLI command `{{% vendor/cli %}} project:create` to create your project and your local Git repo was already initialized, your local source code should already contain a ``.{{% vendor/cli %}}/local/project.yaml`` file that contains your `projectId` and you already have a Git remote repository set to `{{% vendor/cli %}}`.
 You can jump to the next section.
 {{< /note >}}
 
 There are slightly different ways to link your local project to your {{% vendor/name %}} project based on the Git flow you chose for you project as discussed earlier in this guide.
 
 {{< codetabs >}}
++++
+title={{% vendor/name %}} Git repository
++++
+If you host your Express source code on an {{% vendor/name %}} Git repository, and you miss to answer `y` (yes) to the question `Set the new project <projectName> as the remote for this repository? [Y/n]` during the ``project:create`` command, you need to let the {{% vendor/name %}} CLI know which linked project you want to deploy to.
+
+To do so, use the {{% vendor/name %}} CLI to set remote project:
+```shell
+$ {{% vendor/cli %}} project:set-remote <projectId>
+```
+
+This command will add a new remote called `{{% vendor/cli %}}` to your local Git repo as you can see below:
+```shell
+$ git remote
+origin
+{{% vendor/cli %}}
+```
+
+It will also create a new `.{{% vendor/cli %}}/local/project.yaml` file that will contain the given `<projectId>`, to store this info for the {{% vendor/name %}} CLI interaction.
+
+{{< note >}}
+If you don’t remember your `<projectId>` from the previous steps, you can get it back using this command line and select the one you created:
+```shell
+$ upsun project:list
+```
+{{< /note >}}
+
+<--->
 +++
 title=GitHub repository
 +++
@@ -319,20 +368,20 @@ To make changes to your project, follow these steps:
 3. Commit your changes:
 
    ```bash
-   git commit -a -m "Update Hello world"
+   $ git commit -a -m "Update Hello world"
    ```
 
 4. Deploy your changes to the `feat-a` environment:
 
    ```bash
-   {{% vendor/cli %}} deploy
+   $ {{% vendor/cli %}} push
    ```
 
    Note that each environment has its own domain name.
    To open the url of your new environment, run the following command:
 
    ```bash
-   {{% vendor/cli %}} environment:url --primary
+   $ {{% vendor/cli %}} environment:url --primary
    ```
 
 5. Iterate by changing the code, committing, and deploying.
@@ -340,8 +389,12 @@ To make changes to your project, follow these steps:
    and remove the feature branch:
 
    ```bash
-   {{% vendor/cli %}} merge
+   $ {{% vendor/cli %}} merge
      Are you sure you want to merge feat-a into its parent, main? [Y/n] y
+   $ {{% vendor/cli %}} checkout main
+   $ git pull {{% vendor/cli %}} main
+   $ {{% vendor/cli %}} environment:delete feat-a
+   $ git fetch --prune
    ```
 
    {{< note >}}
