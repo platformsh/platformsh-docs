@@ -2,6 +2,10 @@
 title: Local Development
 description: Steps for connecting a local development instance of Flask {{% vendor/name %}} infrastructure.
 ---
+{{< note theme="warning" >}}
+Please note that the instructions on this page assume you have followed the [Deploying Laravel on Upsun](/get-started/flask/deploy/_index.md) guide. You may
+to adjust the steps for your specific Flask implementation.
+{{< /note >}}
 
 Now that we have our flask application working on {{% vendor/name %}} we'll need a local environment to be able to make
 quick changes. Luckily flask already has a development server we can take advantage of! And we can utilize
