@@ -118,7 +118,9 @@ Typical causes and potential solutions include:
   - Check your `web.commands.start` entry or your `passthru` configuration.
 - The amount of traffic coming to your site exceeds the processing power of your application.
   - You may want to [check if bots are overwhelming your site](https://community.platform.sh/t/diagnosing-and-resolving-issues-with-excessive-bot-access/792).
+  {{% version/only "1" %}}
   - Alternatively, you may need to [increase your plan size](../administration/pricing/_index.md).
+  {{% /version/only %}}
 - Certain code paths in your application are too slow and timing out.
   - Check your code is running smoothly.
   {{% version/specific %}}
@@ -210,9 +212,9 @@ Or [declare mounts](../create-apps/app-reference.md#mounts),
 which are writable even during and after deploy.
 They can be used for your data: file uploads, logs, and temporary files.
 
-### Git push fails due to lack of disk space
+### {{% vendor/name %}} push fails due to lack of disk space
 
-You might see the following message when attempting to run `git push`:
+You might see the following message when attempting to run `{{% vendor/cli %}} push`:
 `There isn't enough free space to complete the push`
 
 This usually indicates that large files are present in the repository (where they shouldn't be).

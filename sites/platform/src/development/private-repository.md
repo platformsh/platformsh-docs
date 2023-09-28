@@ -35,12 +35,25 @@ This means you can access the private repository through links like:
 <code>git@{{% variable "GIT_PROVIDER" %}}:{{% variable "PATH_OR_USERNAME" %}}/{{% variable "REPOSITORY" %}}.git</code>.
 For example, you can clone a repository in your [`build` hook](../create-apps/hooks/_index.md):
 
+{{% version/specific %}}
+<!-- Platform.sh -->
 ```yaml {configFile="app"}
 hooks:
     build: |
         set -e
         git clone git@bitbucket.org:username/module.git
 ```
+<--->
+<!-- Upsun -->
+```yaml {configFile="app"}
+applications:
+    {{< variable "APP_NAME" >}}:
+        hooks:
+            build: |
+                set -e
+                git clone git@bitbucket.org:username/module.git
+```
+{{% /version/specific %}}
 
 You can also use [private repositories as submodules](./submodules.md#use-private-git-repositories).
 

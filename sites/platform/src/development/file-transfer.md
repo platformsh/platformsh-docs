@@ -32,7 +32,7 @@ To do so, run the following command:
 The output is similar to the following:
 
 ```bash
-Mounts on abcdefgh1234567-main-abcd123--app@ssh.eu.platform.sh:
+Mounts on abcdefgh1234567-main-abcd123--app@ssh.eu.{{< vendor/urlraw "host" >}}:
 +-------------------------+----------------------+
 | Mount path              | Definition           |
 +-------------------------+----------------------+

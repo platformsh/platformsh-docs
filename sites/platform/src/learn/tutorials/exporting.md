@@ -45,13 +45,13 @@ title=Using the CLI
 title=Using Git
 +++
 
-1. In the [Console](https://console.platform.sh/), open your project and click **Code {{< icon chevron >}}**.
+1. In the [Console](https://console.{{< vendor/urlraw "host" >}}/), open your project and click **Code {{< icon chevron >}}**.
 2. Click **Git**.
 3. To copy the command, click **{{< icon copy >}} Copy**.
    The command is similar to the following:
 
    ```text
-   git clone abcdefgh1234567@git.eu.platform.sh:abcdefgh1234567.git project-name
+   git clone abcdefgh1234567@git.eu.{{< vendor/urlraw "host" >}}:abcdefgh1234567.git project-name
    ```
 
 {{< /codetabs >}}
@@ -116,7 +116,7 @@ title=Using the CLI
 title=In the Console
 +++
 
-1. In the [Console](https://console.platform.sh/), open your project and click **{{< icon settings >}}**.
+1. In the [Console](https://console.{{< vendor/urlraw "host" >}}/), open your project and click **{{< icon settings >}}**.
 2. Click **Project Settings {{< icon chevron >}}**.
 3. Click **Variables** and access your variable's values and settings.
 4. Store the data somewhere secure on your computer.
