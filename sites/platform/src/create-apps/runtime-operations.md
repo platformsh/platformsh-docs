@@ -13,12 +13,15 @@ For example, if you have a static website,
 you may want to set up a runtime operation to occasionally fetch content from a backend system
 without having to rebuild your whole app.
 
+{{% version/only "1" %}}
 You can use runtime operations if you have Grid or {{% names/dedicated-gen-3 %}} environments.
+{{% /version/only %}}
 
 ## Define a runtime operation
 
 To define a runtime operation, add a configuration similar to the following:
 
+{{% version/specific %}}
 ```yaml {configFile="app"}
 operations:
   {{< variable "RUNTIME_OPERATION_NAME" >}}:
@@ -26,6 +29,19 @@ operations:
     commands:
       start: {{< variable "COMMAND" >}}
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    myapp:
+        source:
+            root: "/"
+        operations:
+            {{< variable "RUNTIME_OPERATION_NAME" >}}:
+                role: {{< variable "USER_ROLE" >}}
+                commands:
+                    start: {{< variable "COMMAND" >}}
+```
+{{% /version/specific %}}
 
 When you define a runtime operation,
 you can specify which users can trigger it according to their user `role`:
@@ -40,13 +56,27 @@ by default all users with the `contributor` role can trigger it.
 For example, to allow admin users to clear the cache of a Drupal site,
 you could define an operation like the following:
 
+{{% version/specific %}}
 ```yaml {configFile="app"}
 operations:
-  clear-rebuild:
-    role: admin
-    commands:
-      start: drush cache:rebuild
+    clear-rebuild:
+        role: admin
+        commands:
+            start: drush cache:rebuild
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    myapp:
+        source:
+            root: "/"
+        operations:
+            clear-rebuild:
+                role: admin
+                commands:
+                    start: drush cache:rebuild
+```
+{{% /version/specific %}}
 
 The name of the runtime operation in this case is `clear-rebuild`.
 
@@ -134,11 +164,14 @@ To run the [Gatsby build](https://www.gatsbyjs.com/docs/conceptual/overview-of-t
 define a runtime operation similar to the following:
 
 ```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="myapp" >}}
+
 operations:
-  gatsby-build:
-    role: viewer
-    commands:
-      start: gatsby build
+    gatsby-build:
+        role: viewer
+        commands:
+            start: gatsby build
+{{< /snippet >}}
 ```
 
 To trigger your runtime operation, run a command similar to the following:
@@ -156,6 +189,8 @@ To run the [Next.js build](https://nextjs.org/docs/deployment#nextjs-build-api) 
 define a runtime operation similar to the following:
 
 ```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="myapp" >}}
+
 operations:
     next-build:
         role: admin
@@ -164,6 +199,7 @@ operations:
             start: next build
             # start: npx next build
             # start: npm run build
+{{< /snippet >}}
 ```
 
 To trigger your runtime operation, run a command similar to the following:
@@ -186,6 +222,8 @@ title=Ping your app
 To ping your Node.js app, define a runtime operation similar to the following:
 
 ```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="myapp" >}}
+
 operations:
     pm2-ping:
         role: admin 
@@ -194,6 +232,7 @@ operations:
                 # Assuming pm2 start npm --no-daemon --watch --name $APP -- start -- -p $PORT
                 APP=$(cat package.json | jq -r '.name')
                 pm2 ping $APP
+{{< /snippet >}}
 ``` 
 
 To trigger your runtime operation, run a command similar to the following:
@@ -210,6 +249,8 @@ title=Reload your app
 To reload your Node.js app, define a runtime operation similar to the following:
 
 ```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="myapp" >}}
+
 operations:
     pm2-reload:
         role: admin 
@@ -218,6 +259,7 @@ operations:
                 # Assuming pm2 start npm --no-daemon --watch --name $APP -- start -- -p $PORT
                 APP=$(cat package.json | jq -r '.name')
                 pm2 reload $APP
+{{< /snippet >}}
 ``` 
 To trigger your runtime operation, run a command similar to the following:
 
@@ -233,6 +275,8 @@ title=Restart your app
 To restart your Node.js app, define a runtime operation similar to the following:
 
 ```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="myapp" >}}
+
 operations:
     pm2-restart:
         role: admin 
@@ -241,6 +285,7 @@ operations:
                 # Assuming pm2 start npm --no-daemon --watch --name $APP -- start -- -p $PORT
                 APP=$(cat package.json | jq -r '.name')
                 pm2 restart $APP 
+{{< /snippet >}}
 ``` 
 
 To trigger your runtime operation, run a command similar to the following:
@@ -256,13 +301,32 @@ To trigger your runtime operation, run a command similar to the following:
 On a Django project, you can [define custom `django-admin` commands](https://docs.djangoproject.com/en/4.2/howto/custom-management-commands/), for example to run a one-off management command (`manual migration` in the example above) outside of the Django ORM migration framework.
 To do so, define a runtime operation similar to the following:
 
+{{% version/specific %}}
 ```yaml {configFile="app"}
+name: app
+
+type: python:{{% latest "python" %}}
+
 operations:
-  manual-migration:
-    role: admin
-    commands:
-      start: python manage.py manual_migration
+    manual-migration:
+        role: admin 
+        commands: 
+            start: python manage.py manual_migration
 ```
+<--->
+```yaml {configFile="app"}
+applications: 
+    myapp: 
+        source:
+            root: "/"
+        type: python:{{% latest "python" %}}
+        operations:
+            manual-migration:
+                role: admin 
+                commands: 
+                    start: python manage.py manual_migration
+```
+{{% /version/specific %}}
 
 To trigger your runtime operation, run a command similar to the following:
 
