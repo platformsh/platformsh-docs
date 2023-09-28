@@ -128,8 +128,8 @@ $ upsun project:list
 
 {{< /codetabs >}}
 
-## Choose your Git Flow
-{{% vendor/name %}} projects can be used as a classic Git repository where you will be able to push your source code in different ways using either Git CLI or {{% vendor/name %}} CLI. You can choose which way—or Git flow—you would like to use for your project from the following options:
+## Choose your Git workflow
+{{% vendor/name %}} projects can be used as a classic Git repository where you will be able to push your source code in different ways using either Git CLI or {{% vendor/name %}} CLI. You can choose which way—or Git workflow—you would like to use for your project from the following options:
 
 - Your project source code will be **hosted on a {{% vendor/name %}} Git repository**
 - Your project source code will be **hosted on your own GitHub repository**
@@ -138,7 +138,7 @@ $ upsun project:list
 +++
 title={{% vendor/name %}} Git repository
 +++
-For the rest of this guide, you will use the normal Git Flow (`git add . && git commit -m "message" && git push`) to commit your source code changes to Git history and use {{% vendor/name %}} CLI to deploy your [{{% vendor/name %}} environment](/environments.html) with latest code updates.
+For the rest of this guide, you will use the normal Git workflow (`git add . && git commit -m "message" && git push`) to commit your source code changes to Git history and use {{% vendor/name %}} CLI to deploy your [{{% vendor/name %}} environment](/environments.html) with latest code updates.
 
 <--->
 +++
@@ -219,7 +219,7 @@ If you used the {{% vendor/name %}} CLI command `{{% vendor/cli %}} project:crea
 You can jump to the next section.
 {{< /note >}}
 
-There are slightly different ways to link your local project to your {{% vendor/name %}} project based on the Git flow you chose for you project as discussed earlier in this guide.
+There are slightly different ways to link your local project to your {{% vendor/name %}} project based on the Git workflow you chose for you project as discussed earlier in this guide.
 
 {{< codetabs >}}
 +++
@@ -269,7 +269,7 @@ title=Bitbucket repository
 ## Deploy
 And just like that, it’s time to deploy!
 
-Depending on the Git Flow you choose at the beginning of this tutorial, there are two ways to deploy your source code changes.
+Depending on the Git workflow you choose at the beginning of this tutorial, there are two ways to deploy your source code changes.
 
 {{< codetabs >}}
 
@@ -277,7 +277,7 @@ Depending on the Git Flow you choose at the beginning of this tutorial, there ar
 title=Using {{% vendor/name %}} Git repository
 +++
 
-When using the {{% vendor/name %}} Git repository as your main repository, you can push your code using the normal Git Flow (`git add . && git commit -m "message" && git push`) to push your source code changes to your `{{% vendor/cli %}}` remote repository, or by using {{% vendor/name %}} CLI command as seen below:
+When using the {{% vendor/name %}} Git repository as your main repository, you can push your code using the normal Git workflow (`git add . && git commit -m "message" && git push`) to push your source code changes to your `{{% vendor/cli %}}` remote repository, or by using {{% vendor/name %}} CLI command as seen below:
 ```shell
 $ {{% vendor/cli %}} push
 ```
@@ -287,7 +287,7 @@ $ {{% vendor/cli %}} push
 title=Using third-party Git repository
 +++
 
-When using an external Git repository (Github, Gitlab, or Bitbucket) to store your source code and having the Git integration feature enabled, on each code updates, you will need to use the normal Git Flow (`git add . && git commit -m "message" && git push`) to push your code to your external repository using well known Git command seen below:
+When using an external Git repository (Github, Gitlab, or Bitbucket) to store your source code and having the Git integration feature enabled, on each code updates, you will need to use the normal Git workflow (`git add . && git commit -m "message" && git push`) to push your code to your external repository using well known Git command seen below:
 ```shell
 $ git add . && git commit -m "my new change"
 $ git push origin
