@@ -211,7 +211,3 @@ You can get your project relationships information using the following command:
       host_mapped: false
       url: 'mysql://user:@mariadb.internal:3306/main'
 ```
-
-
-
-
