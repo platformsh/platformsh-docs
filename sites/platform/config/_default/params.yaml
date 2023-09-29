@@ -15,7 +15,7 @@ vendor:
     cli: platform
     altname: platformsh
     env_prefix: PLATFORM
-    cli_prefix: PLATFORM
+    cli_prefix: PLATFORMSH
     recruit:
         active: true
         link: https://upsun.com/register/

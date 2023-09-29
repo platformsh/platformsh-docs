@@ -57,6 +57,7 @@ module:
               - "get-started/*"
               - "development/transfer-dedicated.md"
               - "administration/sso.md"
+              - "administration/pricing/*"
               - "increase-observability/logs/forward-logs.md"
               - "increase-observability/logs/forward-fastly-logs.md"
               - "increase-observability/integrate-observability/*"
