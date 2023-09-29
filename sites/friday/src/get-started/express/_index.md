@@ -1,8 +1,7 @@
 ---
 title: Getting started with Express on {{% vendor/name %}}
 sidebarTitle: Express
-description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum mauris id tincidunt gravida. Suspendisse sagittis euismod mi. Aliquam erat volutpat.
-layout: single
+sidebarIgnore: true
+description: |
+    [Express](https://expressjs.com/) is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
 ---
-
-{{% guides/steps desc="true" %}}

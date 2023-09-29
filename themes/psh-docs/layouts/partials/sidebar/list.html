@@ -39,7 +39,7 @@
     {{ end }}
 
 <!-- Handle all other directories -->
-{{ else }}
+{{ else if not ( .Context.Params.sidebarIgnore ) }}
 <div class="text-sm" x-data="{ topExpanded: {{ $isCurrentSection }} }">
   {{ .Page }}
   {{ $itemTitle := .Context.Title | .Context.Page.RenderString }}

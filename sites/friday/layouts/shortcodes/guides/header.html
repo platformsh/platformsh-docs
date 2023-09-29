@@ -1,0 +1,9 @@
+{{ $height := "200" }}
+{{ if .Get 1 }}
+{{ $height = .Get 1}}
+{{ end }}
+<div style="background-color: #191C1E; display: flex; justify-content: center; align-items: center; margin-bottom: 2rem;">
+<img src = "/images/gs-frameworks/{{ .Get 0 }}.svg" style="height:{{ $height }}px;" alt="{{ .Get 0 }} logo"/>
+</div>
+
+<h1 style="font-size: 2rem; margin: 3rem 0;">{{ .Page.Title | .Page.RenderString }}</h1>

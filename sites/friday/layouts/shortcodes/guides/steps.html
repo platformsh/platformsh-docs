@@ -5,8 +5,17 @@
 {{ $root := .Get "root" }}
 <!-- If true, description is shown -->
 {{ $desc := .Get "desc" }}
+<!-- Step box title -->
+{{ $title := .Get "title" }}
+<!-- Skip the first page entry -->
+{{ $skipFirst := .Get "skipFirst" }}
 <!-- List type -->
+<div class="step-container{{ if eq $sequence "true" }} step-container-ol{{ else }} step-container-ul{{ end }}">
+{{ if $title }}
+<h3>{{ $title }}</h3>
+{{ end }}
 {{ if eq $sequence "true" }}
+<h5>Steps:</h5>
 <ol class="step-box steps">
 {{ else}}
 <ul class="step-box">
@@ -18,7 +27,11 @@
     {{ $rootPage = .Site.GetPage $root }}
 {{ end }}
 <!-- Loop -->
+{{ $first := 1 }}
 {{ range $rootPage.Pages.ByWeight }}
+{{ if and (eq $first 1) (eq $skipFirst "true")}}
+{{ $first = 0 }}
+{{ else }}
 <li>
     <!-- Do not link if item is the current page -->
     {{ if eq . $currentPage }}
@@ -39,27 +52,52 @@
     {{ end }}
 </li>
 {{ end }}
+{{ end }}
 <!-- End list type -->
 {{ if eq $sequence "true" }}
 </ol>
 {{ else}}
 </ul>
 {{ end }}
+</div>
 
 
 <style>
-    .step-box {
+    .step-container {
         border: 1px solid #6046FF !important;
         margin: 2rem auto !important;
+        padding: 1rem;
     }
+
+    .step-container > h3,
+    .step-container > h5 {
+        margin-top: 1rem !important;
+        margin-left: 1.5rem;
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 500;
+    }
+
     .step-box > li {
-        margin: 0rem 1rem;
+        margin: 1rem;
     }
+
+    ul.step-box {
+        list-style: none !important;
+        padding-inline-start: 0;
+        margin-block-start: 0 !important;
+    }
+
     .steps {
         font-size: 14px;
         line-height: 20px;
         font-weight: 400;
-        max-width: 75% !important;
         font-family: "Instrument Sans", sans-serif;
+    }
+
+    .step-container-ol {
+        max-width: 75% !important;
+    }
+    .step-container-ul {
+        max-width: 90% !important;
     }
 </style>

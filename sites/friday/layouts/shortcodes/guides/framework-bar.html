@@ -1,0 +1,41 @@
+{{ $framework := .Get 0 }}
+{{ $rootPage := .Site.GetPage ( printf "/get-started/%s/_index.md" $framework) }}
+{{ $startBundle := .Site.GetPage ( printf "/get-started/%s/deploy/_index.md" $framework) }}
+{{ $title := $rootPage.Params.sidebarTitle }}
+{{ $link := printf "/get-started/%s/deploy.html" $framework }}
+{{ $buttonText := printf "Get started with %s" $title }}
+<div class="framework-container">
+    <div class="framework-icon">
+        <img src = "/images/gs-frameworks/{{ $framework }}.svg" style="height:100px;" alt="{{ $framework }} logo"/>
+    </div>
+    <div class="framework-details">
+        <h3>{{ $rootPage.Params.sidebarTitle }}</h3>
+        <p>{{ $rootPage.Params.description | $rootPage.RenderString }}</p>
+{{ printf `{{< guides/buttons next="/get-started/%s/deploy.html" text="%s">}}</guides>` $framework $buttonText | .Page.RenderString }}
+    </div>
+</div>
+
+<style>
+    .framework-container {
+        display: grid; 
+        grid-template-columns: 25% 1fr; 
+        grid-template-rows: 1fr; 
+        gap: 0px 0px; 
+        grid-template-areas: "framework-icon" "framework-desc";
+        border: 1px solid #191C1E !important;
+        margin: 1rem;
+    }
+
+    .framework-icon {
+        grid-area: "framework-icon";
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+        background-color: #191C1E;
+    }
+
+    .framework-details {
+        grid-area: "framework-desc";
+        padding: 1rem 2rem;
+    }
+</style>

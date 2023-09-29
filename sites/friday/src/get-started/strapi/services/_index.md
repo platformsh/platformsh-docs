@@ -1,6 +1,5 @@
 ---
-title: Getting started with Flask on {{% vendor/name %}}
-sidebarTitle: Flask
-sidebarIgnore: true
+title: Add services
+weight: -80
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum mauris id tincidunt gravida. Suspendisse sagittis euismod mi. Aliquam erat volutpat.
 ---
