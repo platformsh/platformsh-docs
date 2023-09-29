@@ -14,7 +14,7 @@ supports a `.environment` file that is sourced in the application image, as well
 ssh into the application. For a list of all the variables that {{% vendor/name %}} generates, please refer to the
 [documentation on provided environmental variables](/development/variables/use-variables/_index.md#use-provided-variables).
 
-Open the `.environment` file that the CLI tool generated earlier. Notice it has already created some
+Open the `.environment` file that the {{% vendor/name %}} CLI generated earlier. Notice it has already created some
 environmental variables for you that point back to those variables that {{% vendor/name %}} will generate. We'll
 need to add a few more for our Flask application so flask has what it needs to be able to function properly.
 To start, we need to update the `DATABASE_URL` variable. Change the line from:

@@ -26,7 +26,7 @@ pip install -r requirements.txt
 
 Next, we're going to need to set up this local instance so it can communicate with our database service.
 When we did the push to {{% vendor/name %}} previously, it created and deployed our database service. The
-{{% vendor/name %}} CLI tool gives us a method to communicate to our application's services:
+{{% vendor/name %}} CLI gives us a method to communicate to our application's services:
 [{{% vendor/cli %}} tunnel](/development/ssh/_index.md#use-a-direct-tunnel)
 
 ```shell
