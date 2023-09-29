@@ -3,6 +3,11 @@ title: Switching from the Flask server to an alternative Web Server
 sidebarTitle: Change web server
 description: Steps for changing the web server on {{% vendor/name %}}.
 ---
+{{< note theme="warning" >}}
+Please note that the instructions on this page assume you have followed the
+[Deploying Flask on Upsun](/get-started/flask/deploy/_index.md) guide. You may need to adjust the steps for your
+specific Flask implementation.
+{{< /note >}}
 
 While lightweight and easy to use, Flask’s built-in server is not suitable for production as it doesn’t
 scale well.

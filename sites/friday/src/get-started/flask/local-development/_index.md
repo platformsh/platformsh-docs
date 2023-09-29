@@ -4,7 +4,7 @@ description: Steps for connecting a local development instance of Flask {{% vend
 ---
 {{< note theme="warning" >}}
 Please note that the instructions on this page assume you have followed the
-[Deploying Laravel on Upsun](/get-started/flask/deploy/_index.md) guide. You may need to adjust the steps for your
+[Deploying Flask on Upsun](/get-started/flask/deploy/_index.md) guide. You may need to adjust the steps for your
 specific Flask implementation.
 {{< /note >}}
 
