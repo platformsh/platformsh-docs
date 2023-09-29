@@ -16,26 +16,28 @@ When we pushed our changes to {{% vendor/name %}} in the last section, it caused
 which closed our tunnel, so first we'll need to reopen it:
 
 ```shell
-$ {{% vendor/cli %}} tunnel:open -y
+{{% vendor/cli %}} tunnel:open -y
 ```
 
 You can verify the tunnel is open and working again by running the following command:
 
 ```shell
-$ {{% vendor/cli %}} tunnel:info
+{{% vendor/cli %}} tunnel:info
 ```
 
 Next we'll do the same steps we added to our build hook:
 
 ```shell
-$ npm install
-$ npm run build
+npm install
+```
+```shell
+npm run build
 ```
 
 Now we can run npm start which will run start up webpack watch and start up our flask dev server:
 
 ```shell
-$ npm run start
+npm run start
 ```
 
 You can now view http://127.0.0.1:5000 in your browser to see your local instance.

@@ -14,19 +14,19 @@ one way to accomplish deploying a flask application on {{% vendor/name %}}.
 
 From a terminal/command line prompt, first install Cookiecutter:
 ```shell
-$ pip3 install cookiecutter
+pip3 install cookiecutter
 ```
 
 
 Next we need to generate the Flask template from cookiecutter. If this is your first time generating a Flask
 Cookiecutter template, you will need to point to the full GitHub repository address:
 ```shell
-$ cookiecutter https://github.com/cookiecutter-flask/cookiecutter-flask.git
+cookiecutter https://github.com/cookiecutter-flask/cookiecutter-flask.git
 ```
 
 Otherwise, you can just indicate the specific template you want to generate:
 ```shell
-$ cookiecutter cookiecutter-flask
+cookiecutter cookiecutter-flask
 ```
 
 Cookiecutter will next ask you a series of 10 questions.
@@ -51,13 +51,13 @@ it throughout the remainder of the guide.
 We need to initiate the contents of this directory as a git repository so before doing anything else, initialize
 the repository:
 ```shell
-$ git init .
+git init .
 ```
 
 By default, git will still use `master` as the name for the initial branch. If you wish to change the default
 branch name, you can do so with the `git branch -m` command. I'll rename mine to `main`:
 ```shell
-$ git branch -m main
+git branch -m main
 ```
 
 {{< guide-buttons next="Configure your infrastructure" >}}

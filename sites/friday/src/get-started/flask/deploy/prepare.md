@@ -89,8 +89,7 @@ Since we've made changes to our `.environment` file, we'll need to commit those 
 the repository to {{% vendor/name %}}:
 
 ```shell
-$ git add .environment
-$ git commit -m "adds needed flask environmental variables"
+git add .environment && git commit -m "adds needed flask environmental variables"
 ```
 
 Now we're prepared to push our application to {{% vendor/name %}}.

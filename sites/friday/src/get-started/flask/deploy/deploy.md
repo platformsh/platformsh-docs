@@ -8,7 +8,7 @@ description: Steps required for deploying a configured Flask application to {{% 
 Our application is now ready for us to push the changes to {{% vendor/name %}} and activate our initial environment:
 
 ```shell
-$ {{% vendor/cli %}} environment:push
+{{% vendor/cli %}} environment:push
 ```
 
 Answer `Y` to the question "Are you sure you want to push to the main (type: production) branch?"
@@ -19,7 +19,7 @@ our application needs. We need to tell it what kind of CPU, Memory, and disk to 
 in your terminal, run:
 
 ```shell
-$ {{% vendor/cli %}} resources:set
+{{% vendor/cli %}} resources:set
 ```
 
 This will launch an interactive prompt to walk you through setting up your application's resources:

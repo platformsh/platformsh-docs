@@ -14,7 +14,7 @@ account. We're now ready to have the {{% vendor/name %}} cli tool generate the c
 on {{% vendor/name %}}.
 
 ```shell
-$ {{% vendor/cli %}} project:init
+{{% vendor/cli %}} project:init
 ```
 
 This command is also available as `{{% vendor/cli %}} ify`
@@ -22,7 +22,7 @@ This command is also available as `{{% vendor/cli %}} ify`
 The {{% vendor/name %}} cli tool will now ask you a series of questions to determine your project's requirements:
 
 ```shell
-$ {{% vendor/cli %}} project:init
+❯ {{% vendor/cli %}} project:init
 Welcome to {{% vendor/name %}}!
 Let's get started with a few questions.
 
@@ -101,13 +101,12 @@ To do so, commit your files and deploy your application using the {{% vendor/nam
 Last, we need to add all of our generated files, from both Cookiecutter and the {{% vendor/name %}} CLI tool to our git
 repository:
 ```shell
-$ git add .
-$ git commit -m "initial commit"
+git add . && git commit -m "initial commit"
 ```
 
 Before we can deploy our application, we'll need to create a new project on {{% vendor/name %}}. From the command line:
 ```shell
-$ {{% vendor/cli %}} project:create
+{{% vendor/cli %}} project:create
 ```
 The CLI tool will now walk you through the creation of a project asking you for your organization, the project's
 title, the region where you want the application housed, and the branch name (use the same one we set
@@ -117,12 +116,12 @@ project and once done, will report back the details of your project including th
 manage the project from the {{% vendor/name %}} web console. Don't worry if you forget any of this information; you can
 retrieve it later with:
 ```shell
-$ {{% vendor/cli %}} project:info
+{{% vendor/cli %}} project:info
 ```
 
 And you can launch the web console for your project at any time by doing
 ```shell
-$ {{% vendor/cli %}} web
+{{% vendor/cli %}} web
 ```
 
 
@@ -248,8 +247,10 @@ to `tcp`:
 We've now added all the configuration {{% vendor/name %}} needs to be able to build and deploy our application! Let's
 go ahead and commit these changes:
 ```shell
-$ git add {{< vendor/configfile "app" >}}
-$ git commit -m "adds FLASK_APP env var, adds mount for static builds, build commands, npm run build on deploy, web start command"
+git add {{< vendor/configfile "app" >}}
+```
+```shell
+git commit -m "adds FLASK_APP env var, adds mount for static builds, build commands, npm run build on deploy, web start command"
 ```
 
 {{< note >}}

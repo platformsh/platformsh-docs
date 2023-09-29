@@ -27,11 +27,14 @@ we added `flask run -p $PORT`. We now want to change it to `gunicorn -w 4 'autoa
 Commit the changes and push them up to your environment:
 
 ```shell
-$ git add {{< vendor/configfile "app" >}}
-$ git commit -m "changes project to use gunicorn"
-$ {{% vendor/cli %}} environment:push -y
+git add {{< vendor/configfile "app" >}}
 ```
-
+```shell
+git commit -m "changes project to use gunicorn"
+```
+```shell
+{{% vendor/cli %}} environment:push -y
+```
 ## Conclusion
 Now that you have your Flask application up and running on {{% vendor/name %}}, we'll explore the different options you
 have for a more robust local development environment, adding a source control integration, and adding
