@@ -164,7 +164,7 @@ The code is only merged between environments remotely.
 
 ### Customize the CLI
 
-You can customize how the CLI operates and what it returns with a configuration file (`~/.platformsh/config.yaml`)
+You can customize how the CLI operates and what it returns with a configuration file (`~/{{% vendor/configdir %}}/config.yaml`)
 or environment variables.
 For details, see the [customization instructions on GitHub](https://github.com/platformsh/legacy-cli#user-content-customization).
 
@@ -172,14 +172,14 @@ For details, see the [customization instructions on GitHub](https://github.com/p
 
 You might want to use the CLI in a script to automate repetitive tasks such as synchronizing your files locally.
 In such cases, you want to customize the CLI to bypass any confirmation questions.
-You can set the answer to every question as `yes` using the `PLATFORMSH_CLI_NO_INTERACTION` environment variable.
+You can set the answer to every question as `yes` using the `{{% vendor/prefix_cli %}}_CLI_NO_INTERACTION` environment variable.
 
 For instance, to locally sync every mount point for your app named `app`, you could use this command:
 
 ```bash
 export PLATFORM_PROJECT=my-project;
 export PLATFORM_BRANCH=main;
-export PLATFORMSH_CLI_NO_INTERACTION=1;
+export {{% vendor/prefix_cli %}}_CLI_NO_INTERACTION=1;
 {{% vendor/cli %}} mount:download --all --app app --target local-backup
 ```
 
@@ -243,7 +243,7 @@ To update to the latest version, use the same tool as for [installation](#1-inst
 title=Homebrew
 highlight=bash
 +++
-brew upgrade platformsh-cli
+brew upgrade {{% vendor/cli %}}-cli
 <--->
 +++
 title=Scoop
