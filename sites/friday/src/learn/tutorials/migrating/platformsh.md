@@ -347,83 +347,8 @@ routes:
 
 ## 4. Define resources
 
-{{< note title="TODO" >}}
-
-Change it to the dedicated page here https://docs.upsun.com.manage-resources-z2qlfya-652soceglkw4u.eu-3.platformsh.site/manage-resources.html
-{{< /note >}}
-
-Now that the `size`, `disk` and `resources` keys are deprecated in Yaml configuration files,
-use the {{% vendor/name %}} Console, CLI or API to define your app and service resources.
-
-{{< codetabs >}}
-
-+++
-title=Using the Console
-+++
-
-TODO
-
-<--->
-
-+++
-title=Using the CLI
-+++
-
-To define resources to your application, please use the following commands:
-```shell
-{{% vendor/cli %}} resources:set --size app:0.1 --disk app:512 --count app:1
-```
-
-{{< note >}}
-For more details on how to manipulate ``resources:set`` command, please see [Resources managment] manage-resources.html (TODO)
-{{< /note >}}
-
-<--->
-
-+++
-title=Using the API
-+++
-
-1. Define your app resources.</br>
-   To do so, run a command similar to the following:
-
-   ```bash
-   $ {{% vendor/cli %}} e:curl /deployments/next -X PATCH -d \
-     '{
-       "webapps": {
-       "app": {
-         "resources": {"profile_size": "2"},
-         "disk": "1024"
-       }
-     }
-   }'
-   ```
-
-2. Define your database service resources. </br>
-   To do so, run a command similar to the following:
-
-   ```bash
-   $ {{% vendor/cli %}} e:curl /deployments/next -X PATCH -d \
-     '{
-       "services": {
-       "database": {
-         "disk": "1024",
-         "resources": {"profile_size": "1"}
-       }
-     }
-   }'
-   ```
-
-{{< note >}}
-
-Make sure you remove the deprecated `size`, `disk` and `resources` keys from your {{% vendor/name %}} YAML configuration.
-
-{{< /note >}}
-
-[//]: # (TODO change it to doc page link)
-List of profile_size can be found [here](https://docs.google.com/presentation/d/1PxDJm9c3OCjZxlI2keGy6V7BlAZJGfyueQ1D117YCns/edit?pli=1#slide=id.g20fc593a519_0_32)
-
-{{< /codetabs >}}
+Make sure you configure resources (CPU, RAM, disk) per environment for each of your applications and services.
+For more information, see how to [manage resources](/manage-resources.md).
 
 ## 5. Deploy
 
@@ -438,7 +363,7 @@ run the following command:
 
 First deployment should fail if you yet didn't allocate resources to your application.
 
-To allocate resources to your application, please see [Resources Allocation doc page](#4-define-resources)
+For more information on how you can do so, see how to [manage resources](/manage-resources.md).
 
 {{< /note >}}
 
