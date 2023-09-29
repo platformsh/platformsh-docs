@@ -236,7 +236,6 @@ If the activity has the result `success`, the build has completed successfully a
 If the result is still `running`, the build is stuck.
 
 In most regions, stuck builds terminate after one hour.
-To have the build killed in [legacy regions](./regions.md#legacy-regions), create a [support ticket](https://console.platform.sh/-/users/~/tickets/open).
 
 When a deployment is blocked, you should try the following:
 
