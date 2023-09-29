@@ -145,7 +145,7 @@ We need to uncomment the next two lines underneath this line, and add our enviro
 ```
 
 {{< note >}}
-When uncommenting this section, or any others in a yaml file make sure you remove both the comment marker `#`
+When uncommenting this section, or any others in a YAML file make sure you remove both the comment marker `#`
 as well as the extra space. If you don't remove the extra space, you will end up with a
 `Invalid block mapping key indent` error when the configuration file is validated.
 {{< /note >}}
@@ -202,7 +202,7 @@ We also need to inform {{% vendor/name %}} what should occur when our applicatio
 [deploy hook](/create-apps/hooks/hooks-comparison/_index.md#deploy-hook) is
 similar to the build hook but runs after the application image has been built. At this stage the
 application image is read-only, <!-- might not be true -->but our writable disk space has been mounted and
-is now accessible<!-- /end might not be true -->. Find the `deploy:` yaml key, add a new line after
+is now accessible<!-- /end might not be true -->. Find the `deploy:` YAML key, add a new line after
 `set -eux` and add `npm run build`:
 
 ```yaml {configFile="app"}
@@ -218,8 +218,8 @@ Next we need to configure how {{% vendor/name %}} will handle requests to this a
 # The web key configures the web server running in front of your app.
 ```
 
-Beneath that line there should be a yaml property of `web`. A few lines beneath that line
-will be a yaml property of `start:` Once again, the {{% vendor/name %}} CLI already added some information here, but
+Beneath that line there should be a YAML property of `web`. A few lines beneath that line
+will be a YAML property of `start:` Once again, the {{% vendor/name %}} CLI already added some information here, but
 since it doesn't know the specifics of what needs to be used, has simply left instructions. For now, we
 only need the basic Flask server, so we'll replace the current contents with `flask run -p $PORT`.
 
