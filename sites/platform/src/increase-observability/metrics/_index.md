@@ -6,12 +6,12 @@ description: See all of the live infrastructure metrics available to give you an
 
 {{% vendor/name %}} projects are accompanied by live infrastructure metrics that provide an overview of resource usage for environments.
 
+{{< version/specific >}}
+<!-- Platform.sh, version 1 -->
 Within the Console, metrics can be found for an environment under **Metrics**.
 
 The information under **Metrics** shows usage metrics for:
 
-{{< version/specific >}}
-<!-- Platform.sh, version 1 -->
 [{{% names/dedicated-gen-2 %}} environments](../../dedicated-gen-2/overview/_index.md):
 each of the three hosts in your [N+1 configuration](../../dedicated-gen-2/architecture/_index.md)
 and their average for the Production environment.
@@ -32,10 +32,12 @@ These metrics are available for all of your Grid environments.
 
 <--->
 <!-- Version 2 -->
+Within the Console, metrics can be found for an environment under **Resources**.
+
+The information under **Resources** shows usage metrics for:
+
 {{% vendor/name %}} environments: your service, app, and worker containers.
 These metrics are available for all of your environments.
-
-![A screenshot of what the metrics dashboard displays for environments](/images/metrics/all-grid.png "0.45")
 {{< /version/specific >}}
 
 ## Default thresholds
@@ -142,26 +144,34 @@ Burst allows your container to use additional resources when they aren't require
 
 ## Time intervals
 
+{{% version/specific %}}
 Measurements are taken for each metric every 1 minute.
 You can select a time frame over which to see these measurements for the entire **Metrics** view.
 In the primary three views, averages are shown over larger intervals.
 
-{{% version/specific %}}
 | View                                                                  | Time between measurements                     | Example                      |
 | :-------------------------------------------------------------------- | :-------------------------------------------- | :--------------------------- |
 | The last 15 minutes (*15m*)                                           | 1 minute                                      | 10:00, 10:01, 10:02          |
 | The last hour (*1hr*)                                                 | 1 minute                                      | 10:00, 10:01, 10:02          |
 | The last 24 hours (*24hr*) for Dedicated and 8 hours (*8hr*) for Grid | 20 minutes for Dedicated, 10 minutes for Grid | 10:00, 10:20, 10:40, 11:00   |
+
+To zoom in on smaller intervals, select specific ranges in a graph.
+
+{{< video src="videos/metrics/metrics-zoom.mp4" >}}
+
 <--->
+Measurements are taken for each metric every 1 minute.
+You can select a time frame over which to see these measurements for the entire **Resources** view.
+In the primary three views, averages are shown over larger intervals.
+
 | View                                                                  | Time between measurements                     | Example                      |
 | :-------------------------------------------------------------------- | :-------------------------------------------- | :--------------------------- |
 | The last 15 minutes (*15m*)                                           | 1 minute                                      | 10:00, 10:01, 10:02          |
 | The last hour (*1hr*)                                                 | 1 minute                                      | 10:00, 10:01, 10:02          |
 | The last 8 hours (*8hr*)                                              | 10 minutes                                    | 10:00, 10:10, 10:20, 11:00   |
-{{% /version/specific %}}
-To zoom in on smaller intervals, select specific ranges in a graph.
 
-{{< video src="videos/metrics/metrics-zoom.mp4" >}}
+To zoom in on smaller intervals, select specific ranges in a graph.
+{{% /version/specific %}}
 
 The interval between measurements then changes based on the range you choose.
 

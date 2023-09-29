@@ -17,10 +17,13 @@ These metrics are available for all of your environments.
 App containers are shown first, with the app name and an image corresponding to the app type.
 Service containers follow next with the same pattern and worker containers are shown last.
 
-You can collapse the graphs by clicking **Hide metrics**.
+You can collapse the graphs by clicking the 3-dot menu on the right hand side, then **Hide resources**.
 The graphs switch to an overview of the average resource utilization for the selected container.
 
 ![How service container metrics look when minimized](/images/metrics/service-container-minimized.png "0.65")
+
+The same menu provides a convenient **Configure resource** CTA allowing you to swiftly
+adjust to resources allocation for that container based on the observability metrics.
 
 ## Example of how to read metrics
 
