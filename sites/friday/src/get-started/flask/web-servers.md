@@ -44,7 +44,7 @@ git commit -m "changes project to use gunicorn"
 ```
 ## Conclusion
 Now that you have your Flask application up and running on {{% vendor/name %}}, we'll explore the different options you
-have for a more robust local development environment, adding a source control integration, and adding
-various services to your project. But for now, go forth and Deploy (even on Fridays)!
+have for a more robust local development environment, [adding a source control integration](/integrations/_index.md),
+and [adding various services](/add-services.md) to your project. But for now, go forth and Deploy (even on Fridays)!
 
 {{< guide-buttons previous="Local Development" type="previous" >}}
