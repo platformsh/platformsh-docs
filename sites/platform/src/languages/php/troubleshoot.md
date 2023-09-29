@@ -55,9 +55,18 @@ which can provide an indication of what code paths to investigate.
 grep $(date +%Y-%m-%dT%H --date='-1 hours') /var/log/php.access.log | sort -k 4 -r -n | head -20
 ```
 
+{{% version/specific %}}
 If you see that the processing time of certain requests is slow (such as taking longer than 1000&nbsp;ms),
 you should consider a continuous observability solution like [Blackfire](../../increase-observability/integrate-observability/blackfire.md)
 to monitor your app and help you improve the performance issue.
+<--->
+If you see that the processing time of certain requests is slow (such as taking longer than 1000&nbsp;ms),
+you should consider a [continuous observability solution](../../increase-observability/application-metrics/_index.md)
+to monitor your app and help you improve the performance issue.
+
+Full access to [Blackfire.io](../../increase-observability/application-metrics/blackfire.md) is bundled with your PHP and Python {{< vendor/name >}} projects.
+
+{{% /version/specific %}}
 
 {{% version/specific %}}
 Otherwise, you may check if the following options are applicable:
