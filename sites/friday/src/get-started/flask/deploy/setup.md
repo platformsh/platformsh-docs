@@ -1,5 +1,5 @@
 ---
-title: Setting up a Flask app and repository
+title: Set up your Flask app and repository
 sidebarTitle: Setup your app and repo
 description: Steps required for setting up a Flask app and repository to deploy on {{% vendor/name %}} infrastructure.
 weight: -250
