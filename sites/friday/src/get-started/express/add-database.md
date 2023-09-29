@@ -11,15 +11,15 @@ description: |
 And as these services are included in your project, you can manage them through Git and they’re backed up along with the rest of your project.
 Your project source code defines the services configuration in the main `.{{% vendor/cli %}}/config.yaml` file and this is where you can add new services.
 
-As an example on how to do so, to add a [MariaDB database engine](/add-services/mysql.html) into your Express project, complete the following 4 steps:
+As an example on how to do so, to add a [MariaDB database engine](/add-services/mysql.html) into your Express project, complete the following 5 steps:
 
-## Create a new branch for testing
+## 1. Create a new branch for testing
 Create a new branch using the following command:
 ```bash {location="Terminal"}
 $ {{% vendor/cli %}} environment:branch add-mysql-database
 ```
 
-## Add a MariaDB service
+## 2. Add a MariaDB service
 Configure the MariaDB service by adding this Yaml definition at the end of your `.{{% vendor/cli %}}/config.yaml` file:
 
 ```yaml {location=".{{% vendor/cli %}}/config.yaml"}
@@ -63,7 +63,7 @@ our new service needs. We need to tell it what kind of CPU, Memory, and disk to 
 Please complete [Configure resources for your service](#configure-resources-for-your-service) step
 {{< /note >}}
 
-## Configure resources for your service
+## 3. Configure resources for your service
 First time you push a new service to your project, it will fail, and you will need to allocate resources to it.
  Back in your terminal, run:
 
@@ -77,7 +77,7 @@ Resource configuration for the project My Express App 0926 (12345azerty), enviro
 | mariadb          | 0.5  | 0.5 | 1408        | 512       | 1         |
 ```
 
-## Configure your Express to use database
+## 4. Configure your Express application to use this new database
 First, you need a NodeJs module named ``mysql2``. Install it by running the following command:
 ```bash {location="Terminal"}
 $ npm install mysql2
@@ -169,7 +169,7 @@ $ {{% vendor/cli %}} push
 $ {{% vendor/cli %}} environment:url --primary
 ```
 
-## Merge to production
+## 5. Merge to production
 When satisfied with your changes, merge them to the main branch, and remove the feature branch:
 
 ```bash {location="Terminal"}
