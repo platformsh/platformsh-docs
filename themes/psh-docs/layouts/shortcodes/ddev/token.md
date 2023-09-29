@@ -6,11 +6,11 @@ Then add the token to your DDEV configuration.
 You can do so globally (easiest for most people):
 
 ```bash
-ddev config global --web-environment-add=PLATFORMSH_CLI_TOKEN={{ `{{< variable "API_TOKEN" >}}` | .Page.RenderString }}
+ddev config global --web-environment-add=`{{- .Site.Params.vendor.cli_prefix -}}`_CLI_TOKEN={{ `{{< variable "API_TOKEN" >}}` | .Page.RenderString }}
 ```
 
 You can also add the token only to the project:
 
 ```bash
-ddev config --web-environment-add=PLATFORMSH_CLI_TOKEN={{ `{{< variable "API_TOKEN" >}}` | .Page.RenderString }}
+ddev config --web-environment-add=`{{- .Site.Params.vendor.cli_prefix -}}`_CLI_TOKEN={{ `{{< variable "API_TOKEN" >}}` | .Page.RenderString }}
 ```
