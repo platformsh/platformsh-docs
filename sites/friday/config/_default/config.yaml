@@ -60,6 +60,8 @@ module:
               - "administration/pricing/*"
               - "increase-observability/logs/forward-logs.md"
               - "increase-observability/logs/forward-fastly-logs.md"
+              - "increase-observability/integrate-observability/*"
+              - "increase-observability/metrics/grid.md"
               - "increase-observability/metrics/dedicated.md"
               - "increase-observability/metrics/dedicated-generation-3.md"
               - "development/templates.md"
