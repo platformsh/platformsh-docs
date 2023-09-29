@@ -8,8 +8,10 @@ layout: single
 
 {{< note title="Tip" >}}
 
+To get your Flask project up and running as quickly as possible, experiment with the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project/demo) before following this guide.
+
 If you're more of a just-give-me-the-steps type of person, you can jump straight to the
-[fast-track](/get-started/flask/deploy/tldr.md) section of this guide.
+[fast-track](/get-started/flask/deploy/tldr.md) section.
 
 {{< /note >}}
 
