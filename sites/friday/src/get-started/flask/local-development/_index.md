@@ -34,16 +34,16 @@ npm install
 npm run build
 ```
 
-Now we can run npm start which will run start up webpack watch and start up our Flask dev server:
+Now we can run `npm start` which will run start up webpack watch and start up our Flask dev server:
 
 ```shell
 npm run start
 ```
 
-You can now view http://127.0.0.1:5000 in your browser to see your local instance.
+You can now view `http://127.0.0.1:5000` in your browser to see your local instance.
 {{< note >}}
 Please note that you are
 connected to your production database so any changes you make locally in the interface (like adding a new
-user) are being added to production. In the next guide will discuss setting up a local development environment
+user) are being added to production. In a later guide will discuss setting up a local development environment
 that creates copies of your database to run locally as well.
 {{< /note >}}

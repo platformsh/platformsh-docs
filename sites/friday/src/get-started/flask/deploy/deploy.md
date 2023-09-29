@@ -15,7 +15,7 @@ Answer `Y` to the question "Are you sure you want to push to the main (type: pro
 
 {{% vendor/name %}} will now read your configuration files, and begin building your application image. **Your first push
 will fail**; don't worry, this is expected. At this point {{% vendor/cli %}} is not aware of the resources
-our application needs. We need to tell it what kind of CPU, Memory, and disk to assign to the various containers. Back
+our application needs. We need to define how much CPU, memory, and disk to assign to the various containers. Back
 in your terminal, run:
 
 ```shell
@@ -87,7 +87,7 @@ project starts with 5GB of data that is shared across all services. Let's go ahe
 ```shell
 Enter a disk size in MB: 2048
 ```
-Last it will ask us to confirm our choices. Select `Y` and the {{% vendor/name %}} will take your selections, grab the
+Last, it will ask us to confirm our choices. Select `Y` and the {{% vendor/name %}} will take your selections, grab the
 previous built images from early, apply our resource selections to them and deploy our full application!
 
 {{< guide-buttons next="Handle migrations" >}}

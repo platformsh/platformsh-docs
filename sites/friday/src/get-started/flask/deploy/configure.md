@@ -125,7 +125,7 @@ information; you can retrieve it later with:
 {{% vendor/cli %}} project:info
 ```
 
-And you can launch the web console for your project at any time by doing
+And you can launch the web console for your project at any time by doing:
 ```shell
 {{% vendor/cli %}} web
 ```

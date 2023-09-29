@@ -18,7 +18,7 @@ pip3 install cookiecutter
 ```
 
 
-Next we need to generate the Flask template from cookiecutter. If this is your first time generating a Flask
+Next we need to generate the Flask template from Cookiecutter. If this is your first time generating a Flask
 Cookiecutter template, you will need to point to the full GitHub repository address:
 ```shell
 cookiecutter https://github.com/cookiecutter-flask/cookiecutter-flask.git
@@ -44,7 +44,7 @@ Cookiecutter will next ask you a series of 10 questions.
 ```
 
 Answer each one, paying attention to what you use for the `app_name` question as we will need it later. Once
-cookiecutter has generated the template, cd into the directory it just created; it will be the same name you
+Cookiecutter has generated the template, cd into the directory it just created; it will be the same name you
 gave for the `app_name` question. For the purposes of this guide, I named mine `my_flask_cookie` and will refer to
 it throughout the remainder of the guide.
 

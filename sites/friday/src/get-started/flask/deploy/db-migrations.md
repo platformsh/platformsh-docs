@@ -8,7 +8,9 @@ weight: -50
 You may have noticed that we haven't done anything with regard to a database. This application uses
 [Flask-migrate](https://flask-migrate.readthedocs.io/en/latest/) and since this is a brand-new application, we'll
 need to set up the initial migrations, and commit them so we can then have them applied to our {{% vendor/name %}}
-database. However, because the migrate command needs access to the database, we'll need to set up a temporary local
+database.
+
+However, because the migrate command needs access to the database, we'll need to set up a temporary local
 environment and give it a way to access the database service.
 
 Let's first set up a virtual environment to run our project inside of:
@@ -27,18 +29,20 @@ pip install -r requirements.txt
 Next, we're going to need to set up this local instance so it can communicate with our database service.
 When we did the push to {{% vendor/name %}} previously, it created and deployed our database service. The
 {{% vendor/name %}} CLI gives us a method to communicate to our application's services:
-[{{% vendor/cli %}} tunnel](/development/ssh/_index.md#use-a-direct-tunnel)
+[{{% vendor/cli %}} tunnel](/development/ssh/_index.md#use-a-direct-tunnel).
 
 ```shell
 {{% vendor/cli %}} tunnel:open -y
 ```
 
-This opens an ssh tunnel to all the services for the application, and we can now use it to allow our local
-instance to communicate with them as if they too were local. To do that though, we'll need to configure
+This opens an SSH tunnel to all the services for the application, and we can now use it to allow our local
+instance to communicate with them as if they too were local.
+
+To do that though, we'll need to configure
 some environmental variables similarly to how we did previously for {{% vendor/name %}}. If you reopen the
 `.environment` file, you'll notice at the top that we make use of an environment variable named
-`$PLATFORM_RELATIONSHIPS` in order to retrieve information about services and their credentials. `{{% vendor/cli %}} tunnel`
-provides us a method to generate that same data locally:
+`$PLATFORM_RELATIONSHIPS` in order to retrieve information about services and their credentials.
+`{{% vendor/cli %}} tunnel` provides us a method to generate that same data locally:
 
 ```shell
 export PLATFORM_RELATIONSHIPS="$({{% vendor/cli %}} tunnel:info --encode)"
