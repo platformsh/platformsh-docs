@@ -22,13 +22,6 @@ Note that only a project administrator (someone with `admin` level access to the
 See [User administration](/administration/users.md) for more details.
 
 <--->
-<!-- Upsun -->
-You can also add native integrations with performance monitoring tools. 
-[Blackfire](../increase-observability/integrate-observability//blackfire.md), the official Upsun observability service,
-is available on your {{% vendor/name %}} project by default through an [automated integration](../increase-observability/integrate-observability/blackfire.md#automated-integration).
-
-Note that only a project administrator (someone with `admin` level access to the project) can add or remove integrations with other tools.
-See [User administration](/administration/users.md) for more details.
 {{% /version/specific %}}
 
 ## List active integrations
