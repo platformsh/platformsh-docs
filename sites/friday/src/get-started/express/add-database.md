@@ -32,7 +32,7 @@ Connect the service to your application ``app`` by adding a relationships settin
 ```yaml {location=".{{% vendor/cli %}}/config.yaml"}
 applications:
   app:
-    type: nodejs:18
+    type: nodejs:20
     {{< code-link destination="/create-apps/app-reference.html#relationships" text="relationships" title="The relationships of the application with services or other applications. The left-hand side is the name of the relationship as it will be exposed to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand side is in the form `<service name>:<endpoint name>`. Click for more information." >}}:
       mariadb: "mariadb:mysql"
 ```
@@ -196,7 +196,7 @@ $ {{% vendor/cli %}} relationships
       scheme: mysql
       service: mariadb
       fragment: null
-      ip: 198.10.123.45
+      ip: 198.12.123.45
       hostname: abcdefghijklm1234567890123.mariadb.service._.<region>.{{< vendor/urlraw "hostname" >}}
       public: false
       cluster: abcdefgh1234567-add-mysql-database-abcd123
