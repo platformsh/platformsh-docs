@@ -46,7 +46,7 @@ symfony var:create -y --level=project --name=env:MAILTO --value=sysadmin@example
 To ensure better reliability, `croncape` sends the emails using:
 
 - `project-id@cron.noreply.platformsh.site` as the sender address (`project-id+branch@cron.noreply.platformsh.site` for non-main environments)
-- the provided [{{< vendor/name >}}SMTP service](./environment-variables#emails), even if you define your own `MAILER_*` environment variables
+- the provided [{{% vendor/name %}}SMTP service](./environment-variables#emails), even if you define your own `MAILER_*` environment variables
 
 To use a custom SMTP and/or custom sender address, follow these steps:
 

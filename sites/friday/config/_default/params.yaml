@@ -16,7 +16,9 @@ theme:
 vendor:
     name: Upsun
     cli: upsun
+    altname: upsun
     env_prefix: PLATFORM
+    cli_prefix: UPSUN
     recruit:
         active: true
         link: https://upsun.com/register/
@@ -42,12 +44,14 @@ vendor:
         sales: https://upsun.com/contact
         console: https://console.upsun.com/
         api: https://proxy.upsun.com/
+        host: upsun.com
+        hostname: upsunapp.com
 
 # Images (kept in static/)
 logo: "images/logo.svg"
 logolinksto: "https://upsun.com"
 logoAlt: "Upsun"
-favicon: "images/favicon-32x32.png"
+favicon: "images/favicon.ico"
 
 gtm: "GTM-KRPJGT4"
 

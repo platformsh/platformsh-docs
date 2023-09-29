@@ -1,16 +1,15 @@
 ---
 title: Use Docksal for local development
 sidebarTitle: Docksal
-weight: 1
-sectionBefore: Supported environments
+weight: 3
 ---
 
-[Docksal](https://docksal.io) is a Docker-based local development tool that plays nicely with {{< vendor/name >}}.
+[Docksal](https://docksal.io) is a Docker-based local development tool that plays nicely with {{% vendor/name %}}.
 It allows you to have fully containerized environments to run everything locally
-without having to install tools (such as the {{< vendor/name >}} CLI) on your machine.
-It's maintained by a community of developers and is a viable option for most {{< vendor/name >}} projects.
+without having to install tools (such as the {{% vendor/name %}} CLI) on your machine.
+It's maintained by a community of developers and is a viable option for most {{% vendor/name %}} projects.
 
-This guide assumes you have a project already running within {{< vendor/name >}}.
+This guide assumes you have a project already running within {{% vendor/name %}}.
 If you're starting from scratch, first [create a project from a template]({{% create-project-link template=true %}}).
 
 ## Before you begin
@@ -32,7 +31,7 @@ See all [restrictions on the projects directory](https://docs.docksal.io/getting
 
 ## 3. Add an API token
 
-To connect Docksal with your {{< vendor/name >}} account, use a {{< vendor/name >}} API token.
+To connect Docksal with your {{% vendor/name %}} account, use a {{% vendor/name %}} API token.
 
 1. [Create an API token](../../administration/cli/api-tokens.md#2-create-an-api-token) in the Console.
 2. Add the token to your Docksal configuration by running this command:
@@ -41,7 +40,7 @@ To connect Docksal with your {{< vendor/name >}} account, use a {{< vendor/name 
    fin config set --global SECRET_PLATFORMSH_CLI_TOKEN="{{< variable "API_TOKEN" >}}"
    ```
 
-Now you can run `fin {{% vendor/cli %}} {{< variable "COMMAND" >}}` from your computer without needing to install the {{< vendor/name >}} CLI.
+Now you can run `fin {{% vendor/cli %}} {{< variable "COMMAND" >}}` from your computer without needing to install the {{% vendor/name %}} CLI.
 
 ## 4. Get your project
 
@@ -53,13 +52,13 @@ fin pull init --hosting-platform='platformsh' --hosting-site={{< variable "PROJE
 
 This creates a directory with the specified name with all your files and code.
 It also adds a `.docksal` directory with all necessary Docksal configuration.
-These files are ignored by {{< vendor/name >}}.
+These files are ignored by {{% vendor/name %}}.
 
 ## 5. Add commands
 
 Docksal doesn't automatically copy over any commands you have in your [build flavor](../../create-apps/app-reference.md#build)
 and [hooks](../../create-apps/hooks/_index.md).
-To get your project running like on {{< vendor/name >}}, you have to add the commands to Docksal.
+To get your project running like on {{% vendor/name %}}, you have to add the commands to Docksal.
 
 The `.docksal/commands` directory should already have one command (`init`) such as the following:
 
@@ -187,7 +186,7 @@ Use it for a docker-compose definition for your [custom configurations](https://
 
 ### Import MySQL data into Docksal
 
-To download your data from {{< vendor/name >}} and load it into your Docksal database container, run the following commands:
+To download your data from {{% vendor/name %}} and load it into your Docksal database container, run the following commands:
 
 ```bash
 fin {{% vendor/cli %}} db:dump --gzip -f /tmp/database.sql.gz

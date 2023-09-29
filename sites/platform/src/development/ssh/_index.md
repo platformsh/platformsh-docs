@@ -1,7 +1,7 @@
 ---
 title: Connect securely with SSH
 weight: 12
-description: Keep your project and apps safe by connecting with SSH when you're interacting with your deployed environments or using the {{< vendor/name >}} CLI.
+description: Keep your project and apps safe by connecting with SSH when you're interacting with your deployed environments or using the {{% vendor/name %}} CLI.
 layout: single
 keywords: 
 - 2fa
@@ -28,10 +28,10 @@ To connect to an app securely with SSH, follow two steps.
 
 To authenticate with the CLI:
 
-1. Install the [{{< vendor/name >}} CLI](/administration/cli/_index.md).
+1. Install the [{{% vendor/name %}} CLI](/administration/cli/_index.md).
 2. Run `{{% vendor/cli %}} login`.
-3. In the open browser window, log in with your {{< vendor/name >}} account credentials.
-   (This webpage is encrypted with HTTPS [HTTP over TLS], making it secure.)
+3. In the open browser window, log in with your {{% vendor/name %}} account credentials.
+   (This webpage is encrypted with [HTTPS](/define-routes/https.md), making it secure.)
 4. Authorize the CLI to use your account.
 
 A certificate gets stored in your local SSH configuration.
@@ -56,21 +56,7 @@ navigate to the environment you want to access and click **SSH** in the top righ
 
 Alternatively, just run `{{% vendor/cli %}} ssh` and select the values from each list presented to you.
 
-Once you've connected, you get a response like this:
-
-```bash
-   ___ _      _    __
-  | _ \ |__ _| |_ / _|___ _ _ _ __
-  |  _/ / _` |  _|  _/ _ \ '_| '  \
-  |_| |_\__,_|\__|_| \___/_| |_|_|_|
-
- Welcome to Platform.
-
- This is environment main
- of project wk5fqz6qoo123.
-
-web@wk5fqz6qoo123-main--php:~$
-```
+Once you've connected, you get a welcome message detailing which environment you're connected to.
 
 Now you can interact with the environment as you want.
 Note that your app's file system is read-only,
@@ -138,7 +124,7 @@ Run the following command:
 You get output similar to the following:
 
 ```bash
-jyu7waly36ncj-main-7rqtwti--app@ssh.us.platform.sh
+jyu7waly36ncj-main-7rqtwti--app@ssh.us.{{< vendor/urlraw "host" >}}
 ```
 
 <--->
@@ -150,19 +136,19 @@ title=In the Console
 1. Navigate to the environment you want to connect to.
 2. Click **SSH** in the top right-hand corner.
 3. You get output similar to the following:</br>
-   `jyu7waly36ncj-main-7rqtwti--app@ssh.us.platform.sh`
+   `jyu7waly36ncj-main-7rqtwti--app@ssh.us.{{< vendor/urlraw "host" >}}`
 
 {{< /codetabs >}}
 
 The host is everything after the `@` and the username is what's before it.
-In this case, the host is `ssh.us.platform.sh` and the username is `jyu7waly36ncj-main-7rqtwti--app`.
+In this case, the host is `ssh.us.{{< vendor/urlraw "host" >}}` and the username is `jyu7waly36ncj-main-7rqtwti--app`.
 The host is the same for the entire project, while the username varies by environment.
 
 To connect to a service, fill in the details with the rest of your [service credentials](../../add-services/_index.md#connect-to-a-service).
 
 ## Alternative authentication methods
 
-There are three basic ways to authenticate with {{< vendor/name >}}:
+There are three basic ways to authenticate with {{% vendor/name %}}:
 
 * [Through the CLI](#1-authenticate-with-the-cli)
   * The fastest and easiest method.
@@ -178,6 +164,8 @@ There are three basic ways to authenticate with {{< vendor/name >}}:
   * Good for letting automation tools use the CLI.
   * Requires you to regularly change the tokens to maintain security.
 
+{{% version/only "1" %}}
+<!-- Platform.sh -->
 ## Multifactor authentication (MFA) over SSH
 
 {{< premium-features/tiered "Enterprise and Elite" >}}
@@ -188,3 +176,4 @@ to run Git commands or to SSH in an environment.
 To enable this feature, open a support ticket and request for MFA over SSH to be enforced within your organization.
 
 If you have trouble accessing an environment with MFA enabled, see how to [add a second factor](./troubleshoot-ssh.md#add-a-second-authentication-factor).
+{{% /version/only %}}

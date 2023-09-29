@@ -1,10 +1,11 @@
 ---
 title: "Python"
-description: Get started creating Python apps on {{< vendor/name >}}.
+description: Get started creating Python apps on {{% vendor/name %}}.
+layout: single
 ---
 
 Python is a general purpose scripting language often used in web development.
-You can deploy Python apps on {{< vendor/name >}} using a server or a project such as [uWSGI](https://uwsgi-docs.readthedocs.io/en/latest/).
+You can deploy Python apps on {{% vendor/name %}} using a server or a project such as [uWSGI](https://uwsgi-docs.readthedocs.io/en/latest/).
 
 ## Supported versions
 
@@ -37,6 +38,38 @@ You can deploy Python apps on {{< vendor/name >}} using a server or a project su
 
 {{% language-specification type="python" display_name="Python" %}}
 
+{{% version/specific %}}
+
+```yaml {configFile="app"}
+type: 'python:<VERSION_NUMBER>'
+```
+
+For example:
+
+```yaml {configFile="app"}
+type: 'python:{{% latest "python" %}}'
+```
+
+<--->
+
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    <APP_NAME>:
+        type: 'python:<VERSION_NUMBER>'
+```
+
+For example:
+
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'python:{{% latest "python" %}}'
+```
+
+{{% /version/specific %}}
+
 {{% deprecated-versions %}}
 
 {{< image-versions image="python" status="deprecated" >}}
@@ -49,24 +82,75 @@ You are strongly recommended to upgrade to a supported version.
 ### Run your own server
 
 You can define any server to handle requests.
-Once you have it configured, add the following configuration to get it running on {{< vendor/name >}}:
+Once you have it configured, add the following configuration to get it running on {{% vendor/name %}}:
 
 1.  Specify one of the [supported versions](#supported-versions):
 
-    {{< readFile file="/registry/images/examples/full/python.app.yaml" highlight="yaml" configFile="app" >}}
+    {{% version/specific %}}
+```yaml {configFile="app"}
+type: 'python:{{% latest "python" %}}'
+```
+    <--->
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'python:{{% latest "python" %}}'
+```
+    {{% /version/specific %}}
 
 2.  Install the requirements for your app.
-    {{% pipenv %}}
+
+    {{% version/specific %}}
+```yaml {configFile="app"}
+dependencies:
+    python3:
+        pipenv: "2022.12.19"
+
+hooks:
+    build: |
+        set -eu
+        pipenv install --system --deploy
+```
+    <--->
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'python:{{% latest "python" %}}'
+        dependencies:
+            python3:
+                pipenv: "2022.12.19"
+        hooks:
+            build: |
+                set -eu
+                pipenv install --system --deploy       
+```
+    {{% /version/specific %}}
 
 3.  Define the command to start your web server:
 
-    ```yaml {configFile="app"}
+    {{% version/specific %}}
+```yaml {configFile="app"}
     web:
         # Start your app with the configuration you define
         # You can replace the file location with your location
         commands:
             start: python server.py
-    ```
+```
+    <--->
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'python:{{% latest "python" %}}'
+        web:
+            # Start your app with the configuration you define
+            # You can replace the file location with your location
+            commands:
+                start: python server.py      
+```
+    {{% /version/specific %}}
 
 You can choose from many web servers such as Daphne, Gunicorn, Hypercorn, and Uvicorn.
 See more about [running Python web servers](./server.md).
@@ -78,11 +162,23 @@ Follow these steps to get your server started.
 
 1.  Specify one of the [supported versions](#supported-versions):
 
-    {{< readFile file="/registry/images/examples/full/python.app.yaml" highlight="yaml" configFile="app" >}}
+    {{% version/specific %}}
+```yaml {configFile="app"}
+type: 'python:{{% latest "python" %}}'
+```
+    <--->
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'python:{{% latest "python" %}}'
+```
+    {{% /version/specific %}}
 
 2.  Define the conditions for your web server:
 
-    ```yaml {configFile="app"}
+    {{% version/specific %}}
+```yaml {configFile="app"}
     web:
         upstream:
             # Send requests to the app server through a unix socket
@@ -100,7 +196,32 @@ Follow these steps to get your server started.
                 root: "public"
                 passthru: true
                 expires: 1h
-    ```
+```
+    <--->
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'python:{{% latest "python" %}}'
+        web:
+            upstream:
+                # Send requests to the app server through a unix socket
+                # Its location is defined in the SOCKET environment variable
+                socket_family: "unix"
+
+            # Start your app with the configuration you define
+            # You can replace the file location with your location
+            commands:
+                start: "uwsgi --ini conf/uwsgi.ini"
+
+            locations:
+                # The folder from which to serve static assets
+                "/":
+                    root: "public"
+                    passthru: true
+                    expires: 1h
+```
+    {{% /version/specific %}}
 
 3.  Create configuration for uWSGI such as the following:
 
@@ -118,7 +239,33 @@ Follow these steps to get your server started.
     Replace `app.py` with whatever your file is.
 
 4.  Install the requirements for your app.
-    {{% pipenv %}}
+
+    {{% version/specific %}}
+```yaml {configFile="app"}
+dependencies:
+    python3:
+        pipenv: "2022.12.19"
+
+hooks:
+    build: |
+        set -eu
+        pipenv install --system --deploy
+```
+    <--->
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'python:{{% latest "python" %}}'
+        dependencies:
+            python3:
+                pipenv: "2022.12.19"
+        hooks:
+            build: |
+                set -eu
+                pipenv install --system --deploy       
+```
+    {{% /version/specific %}}
 
 5.  Define the entry point in your app:
 
@@ -128,7 +275,7 @@ Follow these steps to get your server started.
     def application(env, start_response):
 
         start_response('200 OK', [('Content-Type', 'text/html')])
-        return [b"Hello world from {{< vendor/name >}}"]
+        return [b"Hello world from {{% vendor/name %}}"]
     ```
 
 ## Package management
@@ -140,20 +287,59 @@ see how to [manage dependencies](./dependencies.md).
 To add global dependencies (packages available as commands),
 add them to the `dependencies` in your [app configuration](../../create-apps/app-reference.md#dependencies):
 
+{{% version/specific %}}
 ```yaml {configFile="app"}
 dependencies:
     python3:
         {{< variable "PACKAGE_NAME" >}}: {{< variable "PACKAGE_VERSION" >}}
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'python:{{% latest "python" %}}'
+        dependencies:
+            python3:
+                {{< variable "PACKAGE_NAME" >}}: {{< variable "PACKAGE_VERSION" >}}
+```
+{{% /version/specific %}}
 
-{{% pipenv %}}
+For example, to use `pipenv` to manage requirements and a virtual environment, add the following:
+
+{{% version/specific %}}
+```yaml {configFile="app"}
+dependencies:
+    python3:
+        pipenv: "2022.12.19"
+
+hooks:
+    build: |
+        set -eu
+        pipenv install --system --deploy
+```
+<--->
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'python:{{% latest "python" %}}'
+        dependencies:
+            python3:
+                pipenv: "2022.12.19"
+        hooks:
+            build: |
+                set -eu
+                pipenv install --system --deploy       
+```
+{{% /version/specific %}}
 
 ## Connect to services
 
 The following examples show how to access various [services](../../add-services/_index.md) with Python.
 For more information on configuring a given service, see the page for that service.
 
-{{< codetabs >}}
+{{< codetabs v2hide="true" >}}
 
 +++
 title=Elasticsearch
@@ -236,20 +422,23 @@ markdownify=false
 
 {{< /codetabs >}}
 
-
+{{% version/only "1" %}}
 {{% config-reader %}}
 [`platformshconfig` library](https://github.com/platformsh/config-reader-python)
 {{% /config-reader%}}
+{{% /version/only %}}
+
+{{% access-services version="2" %}}
 
 ## Sanitizing data
 
 By default, data is inherited automatically by each child environment from its parent.
-If you need to sanitize data in non-production environments for compliance,
+If you need to sanitize data in preview environments for compliance,
 see how to [sanitize databases](../../development/sanitize-db/_index.md).
 
 ## Frameworks
 
-All major Python web frameworks can be deployed on {{< vendor/name >}}.
+All major Python web frameworks can be deployed on {{% vendor/name %}}.
 See dedicated guides for deploying and working with them:
 
 {{< version/specific >}}

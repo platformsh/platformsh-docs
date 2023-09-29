@@ -1,7 +1,7 @@
 ---
 title: "Sanitizing databases: PostgreSQL and Django"
 sidebarTitle: PostgreSQL and Django
-description: Sanitize PostgreSQL data in non-production environments for Django apps.
+description: Sanitize PostgreSQL data in preview environments for Django apps.
 layout: list
 ---
 
@@ -49,7 +49,7 @@ Set up a script by following these steps:
 3.  Make the script sanitize environments with an [environment type](../../administration/users.md#environment-type-roles)
     other than `production`.
 
-    The following example runs only in non-production environments
+    The following example runs only in preview environments
     and sanitizes the `display_name` and `email` columns of the `users` table.
     Adjust the details to fit your data.
 
@@ -93,7 +93,7 @@ Set up a script by following these steps:
     ```
 
     Push the changes to `staging` and verify that environment's database was sanitized.
-    Once merged to production, all data from future non-production environments are sanitized on environment creation.
+    Once merged to production, all data from future preview environments are sanitized on environment creation.
 
 {{< /codetabs >}}
 

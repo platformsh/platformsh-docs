@@ -2,17 +2,17 @@
 title: Send email
 weight: 9
 sidebarTitle: Email
-description: Send email from your {{< vendor/name >}} environments.
+description: Send email from your {{% vendor/name %}} environments.
 ---
 
-You can configure your {{< vendor/name >}} environments to send emails via an SMTP proxy.
+You can configure your {{% vendor/name %}} environments to send emails via an SMTP proxy.
 
 Emails aren't guaranteed to be deliverable and you can't white-label them.
 The SMTP proxy is intended as a zero-configuration, best-effort service.
 
 {{< note >}}
 
-All non-production environments are limited to 12,000 email credits per calendar month.
+All preview environments are limited to 12,000 email credits per calendar month.
 
 {{< /note >}}
 
@@ -66,10 +66,16 @@ v=spf1 include:sendgrid.net -all
 
 ## 3. (Optional) Validate your email
 
+{{% version/specific %}}
+<!-- Platform.sh -->
 {{< premium-features/tiered "Enterprise and Elite" >}}
 
 If you're on an Enterprise or Elite plan,
 you can request for DomainKeys Identified Mail (DKIM) to be enabled on your domain.
+<--->
+<!-- Upsun -->
+You can request for DomainKeys Identified Mail (DKIM) to be enabled on your domain.
+{{% /version/specific %}}
 
 DKIM improves your delivery rate as an email sender.
 Learn more about [how DKIM works](https://docs.sendgrid.com/glossary/dkim).
@@ -117,7 +123,7 @@ When outgoing emails are on, `PLATFORM_SMTP_HOST` is the address of the SMTP hos
 When outgoing emails are off, the variable is empty.
 
 When using `PLATFORM_SMTP_HOST`, send email through port 25 (often the default).
-Your emails are proxied through the {{< vendor/name >}} SMTP host and encrypted over port 465
+Your emails are proxied through the {{% vendor/name %}} SMTP host and encrypted over port 465
 before being sent to the outside world.
 
 The precise way to send email depends on the language and framework you use.

@@ -8,7 +8,7 @@ description: |
 
 ## Local development
 
-Once Django has been deployed on {{< vendor/name >}}, you need to set up a local development environment to begin making revisions.
+Once Django has been deployed on {{% vendor/name %}}, you need to set up a local development environment to begin making revisions.
 For more information, consult the [Django local development guides](../local/_index.md).
 
 ## Package management
@@ -28,7 +28,7 @@ See how to configure [Python web servers](../../../languages/python/server.md).
 
 ## Sanitize data
 
-By default, each development environment automatically inherits all data from its parent environment.
+By default, each preview environment automatically inherits all data from its parent environment.
 So a developer working on a small feature has access to production data,
 including personally identifiable information (PII).
 This workflow isn't always desirable or even acceptable based on your compliance requirements.

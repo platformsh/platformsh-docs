@@ -5,7 +5,7 @@ description: |
     Learn about the environment variables added by the Symfony integration.
 ---
 
-By default, {{< vendor/name >}} exposes some [environment variables](/development/variables/use-variables#use-provided-variables).
+By default, {{% vendor/name %}} exposes some [environment variables](/development/variables/use-variables#use-provided-variables).
 If you're using the [Symfony integration](./integration),
 more [infrastructure environment variables](#symfony-environment-variables) related to Symfony are defined.
 
@@ -22,20 +22,20 @@ and [service](https://github.com/symfony-cli/symfony-cli/blob/main/envs/envs.go#
 
 ## Symfony environment variables
 
-{{< vendor/name >}} exposes [environment variables](/development/variables/use-variables#use-provided-variables)
+{{% vendor/name %}} exposes [environment variables](/development/variables/use-variables#use-provided-variables)
 about the app and its infrastructure.
 
 The Symfony integration exposes more environment variables:
 
 - `APP_ENV` is set to `prod` by default. 
-  You can manually override this value for a development environment
+  You can manually override this value for a preview environment
   by setting the `SYMFONY_ENV` environment variable to `dev`, and remove it when done.
 
 - `APP_DEBUG` is set to `0` by default.
-  You can manually override this value for a development environment
+  You can manually override this value for a preview environment
   by setting the `SYMFONY_DEBUG` environment variable to `1`, and remove it when done.
 
-- `APP_SECRET` is set to the value of `PLATFORM_PROJECT_ENTROPY`, which is a random and unique value for all {{< vendor/name >}} projects.
+- `APP_SECRET` is set to the value of `PLATFORM_PROJECT_ENTROPY`, which is a random and unique value for all {{% vendor/name %}} projects.
   It overrides the value configured in the `.env` file of your app.
 
 - `MAILFROM` is set to a random value.
@@ -60,7 +60,7 @@ The Symfony integration exposes more environment variables:
   If you need to clear the build cache directory, run the `symfony cloud:project:clear-build-cache` command.
 
 - `SYMFONY_PROJECT_DEFAULT_ROUTE_URL` (only defined at **runtime**): The default endpoint serving your project.
-  Use this variable to avoid hard-coding domains that can be used to reach non-production environments.
+  Use this variable to avoid hard-coding domains that can be used to reach preview environments.
   Parts of the URL are also exposed as their own variables using the following syntax:
   `SYMFONY_PROJECT_DEFAULT_ROUTE_` followed by the name of the part (`SCHEME`, `DOMAIN`, `PORT`, and `PATH`).
 

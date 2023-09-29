@@ -49,12 +49,12 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 {
     "service": "kafka25",
     "ip": "169.254.27.10",
-    "hostname": "t7lv3t3ttyh3vyrzgqguj5upwy.kafka25.service._.eu-3.platformsh.site",
+    "hostname": "t7lv3t3ttyh3vyrzgqguj5upwy.kafka25.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "kafka.internal",
     "rel": "kafka",
     "scheme": "kafka",
-    "type": "kafka:2.5",
+    "type": "kafka:{{< latest "kafka" >}}",
     "port": 9092
 }
 ```
@@ -63,7 +63,7 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 
 {{% endpoint-description type="kafka" /%}}
 
-{{< codetabs >}}
+{{< codetabs v2hide="true" >}}
 
 +++
 title=Java
@@ -100,5 +100,36 @@ end
 
 {{< /codetabs >}}
 
+{{% version/only "2" %}}
+
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="myapp" >}}
+# Relationships enable an app container's access to a service.
+relationships:
+    kafkaqueue: "queuekafka:kafka"
+{{< /snippet >}}
+{{< snippet name="queuekafka" config="service" placeholder="true" >}}
+    type: kafka:{{% latest "kafka" %}}
+    disk: 512
+{{< /snippet >}}
+```
+
+{{< v2connect2app serviceName="queuekafka" relationship="kafkaqueue" var="KAFKA_URL">}}
+
+```bash {location="myapp/.environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for individual credentials.
+export KAFKA_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".kafkaqueue[0].host")
+export KAFKA_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".kafkaqueue[0].port")
+
+# Combine into a single connection string to be used within app.
+export KAFKA_URL="${KAFKA_HOST}:${KAFKA_PORT}"
+```
+
+{{< /v2connect2app >}}
+
+{{% /version/only %}}
 
 (The specific way to inject configuration into your application varies. Consult your application or framework's documentation.)

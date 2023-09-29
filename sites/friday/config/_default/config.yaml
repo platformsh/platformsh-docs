@@ -24,7 +24,7 @@ baseURL: "https://docs.upsun.com"
 summaryLength: 3
 
 outputs:
-    home: 
+    home:
       - HTML
       - JSON
       - RSS
@@ -52,7 +52,7 @@ module:
 
         - source: "../platform/src"
           target: "content"
-          excludeFiles: 
+          excludeFiles:
               - "registry/*"
               - "get-started/*"
               - "development/transfer-dedicated.md"
@@ -61,13 +61,22 @@ module:
               - "increase-observability/logs/forward-fastly-logs.md"
               - "increase-observability/metrics/dedicated.md"
               - "increase-observability/metrics/dedicated-generation-3.md"
+              - "development/templates.md"
+              - "development/local/docksal.md"
+              - "development/local/lando.md"
+              - "development/deploy-button.md"
               - "domains/cdn/managed-fastly.md"
               - "domains/security/web-application-firewall/fastly.md"
+              - "domains/steps/custom-domains-preview-environments.md"
               - "dedicated-gen-2/*"
               - "dedicated-gen-3/*"
               - "guides/*"
               - "languages/java/frameworks.md"
               - "learn/resources.md"
+              - "create-apps/upgrading.md"
+              - "create-apps/flexible-resources.md"
+              - "environments/scalability.md"
+              - "security/web-application-firewall/*"
           lang: "en"
 
         - source: "../platform/static/images"
@@ -78,12 +87,12 @@ module:
           target: "static/scripts"
         - source: "static/files"
           target: "static/files"
-          
+
         - source: "src"
           target: "content"
         - source: "static/images"
           target: "static/images"
-        
+
 
 
 security:

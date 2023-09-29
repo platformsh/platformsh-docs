@@ -8,12 +8,20 @@ PHP-FPM helps improve your app's performance
 by maintaining pools of workers that can process PHP requests.
 This is particularly useful when your app needs to handle a high number of simultaneous requests. 
 
-By default, {{< vendor/name >}} automatically sets a maximum number of PHP-FPM workers for your app. 
+By default, {{% vendor/name %}} automatically sets a maximum number of PHP-FPM workers for your app. 
 This number is calculated based on three parameters:
+
+{{% version/specific %}}
 - The container memory: the amount of memory you can allot for PHP processing 
   depending on [app size](../../create-apps/app-reference.md#sizes).
 - The request memory: the amount of memory an average PHP request is expected to require.
-- The reserved memory: the amount of memory you need to reserve for tasks that aren't related to requests. 
+- The reserved memory: the amount of memory you need to reserve for tasks that aren't related to requests.
+<--->
+- The container memory: the amount of memory you can allot for PHP processing 
+  depending on [your defined application resources](/manage-resources.md).
+- The request memory: the amount of memory an average PHP request is expected to require.
+- The reserved memory: the amount of memory you need to reserve for tasks that aren't related to requests.
+{{% /version/specific %}}
 
 The number is calculated as follows: ![The sum of container memory minus reserved memory divided by request memory](/images/php/PHP-FPM-Workers-Calculation.png "0.2")
 
@@ -21,9 +29,9 @@ Note that when the resulting number is a decimal,
 it's rounded up to set the maximum number of workers.
 Also, the minimum number of PHP-FPM workers is 2.
 
-{{< note >}}
+{{< note version="1" >}}
 
-To ensure that {{< vendor/name >}} doesn't add more workers than the CPU can handle,
+To ensure that {{% vendor/name %}} doesn't add more workers than the CPU can handle,
 a CPU limit applies as soon as the number of set workers equals or exceeds 25.
 This limit is calculated as follows: `number of vCPU cores * 5`.
 
@@ -39,7 +47,7 @@ To adjust the maximum number of PHP-FPM workers depending on your app's needs, f
 You need:
 
 - An up-and-running web app in PHP, complete with [PHP-FPM](https://www.php.net/manual/en/install.fpm.php)
-- The [{{< vendor/name >}} CLI](../../administration/cli/_index.md)
+- The [{{% vendor/name %}} CLI](../../administration/cli/_index.md)
 
 Note that the memory settings mentioned on this page are different from the [`memory_limit` PHP setting](./_index.md). 
 The `memory_limit` setting is the maximum amount of memory a single PHP process can use 
@@ -81,15 +89,20 @@ and [set your request memory](#2-adjust-the-maximum-number-of-php-fpm-workers) t
 Setting a lower request memory presents a risk of allowing more concurrent requests. 
 This can result in memory swapping and latencies.
 
+{{% version/only "1" %}}
+
+<!-- @todo: upsun equivalent -->
 For further help in estimating the optimal request memory for your app,
-use the [log analyzer tool for {{< vendor/name >}}](https://github.com/pixelant/platformsh-analytics) 
+use the [log analyzer tool for {{% vendor/name %}}](https://github.com/pixelant/platformsh-analytics) 
 by [Pixelant](https://www.pixelant.net/).
 This tool offers a better visualization of access logs.
 It also provides additional insights into the operation of your app. 
 These can help you further optimize your configuration 
 and provide guidance on when to increase your plan size.
 Note that this tool is maintained by a third party, 
-not by {{< vendor/name >}}.
+not by {{% vendor/name %}}.
+
+{{% /version/only %}}
 
 ## 2. Adjust the maximum number of PHP-FPM workers
 
@@ -107,12 +120,24 @@ if you estimate your [optimal request memory](#1-estimate-the-optimal-request-me
 and your reserved memory to be 80 MB, 
 you can use:
 
+{{% version/specific %}}
 ```yaml {configFile="app"}
 runtime:
     sizing_hints:
         request_memory: 110
         reserved_memory: 80
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    app:
+        type: 'php:{{% latest "php" %}}'
+        runtime:
+            sizing_hints:
+                request_memory: 110
+                reserved_memory: 80
+```
+{{% /version/specific %}}
 
 Note that the minimum value for the `request_memory` key is 10 MB
 and the minimum value for the `reserved_memory` key is 70 MB.

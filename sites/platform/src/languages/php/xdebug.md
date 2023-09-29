@@ -7,7 +7,7 @@ sidebarTitle: "Xdebug"
 [Xdebug](https://xdebug.org/) is a real-time debugger extension for PHP.
 While usually used for local development, it can also be helpful for debugging aberrant behavior on the server.
 
-As configured on {{< vendor/name >}}, it avoids any runtime overhead for non-debug requests, even in production, and only allows connections via SSH tunnels to avoid any security issues.
+As configured on {{% vendor/name %}}, it avoids any runtime overhead for non-debug requests, even in production, and only allows connections via SSH tunnels to avoid any security issues.
 
 Note that Xdebug runs only on your app containers.
 So you can't use it for [worker containers](../../create-apps/workers.md).
@@ -17,13 +17,20 @@ Xdebug is automatically disabled.
 
 ## Before you begin
 
+{{% version/specific %}}
+<!-- Platform.sh -->
 The following table shows the PHP versions where Xdebug is available on Grid environments:
+<--->
+<!-- Upsun -->
+The following table shows the PHP versions where Xdebug is available:
+{{% /version/specific %}}
+
 
 {{< php-extensions/single extension="xdebug" >}}
 
 You also need:
 
-- The {{< vendor/name >}} [CLI](../../administration/cli/_index.md)
+- The {{% vendor/name %}} [CLI](../../administration/cli/_index.md)
 - A Xdebug-compatible IDE installed on your machine.
     For setup instructions, consult your IDE's Xdebug documentation, such as that for [PHPStorm](https://www.jetbrains.com/help/phpstorm/configuring-xdebug.html).
 
@@ -33,15 +40,26 @@ Xdebug runs as a second PHP-FPM process used only for debugging requests, leavin
 
 To enable Xdebug, add the following to your [app configuration](../../create-apps/app-reference.md):
 
+{{% version/specific %}}
 ```yaml {configFile="app"}
 runtime:
     xdebug:
         idekey: {{< variable "YOUR_KEY" >}}
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    app:
+        type: 'php:{{% latest "php" %}}'
+        runtime:
+            xdebug:
+                idekey: {{< variable "YOUR_KEY" >}}
+```
+{{% /version/specific %}}
 
 {{< variable "YOUR_KEY" >}} can be any arbitrary alphanumeric string.
 
-When that key is defined, {{< vendor/name >}} starts a second PHP-FPM process on the container that's identically configured but also has Xdebug enabled.
+When that key is defined, {{% vendor/name %}} starts a second PHP-FPM process on the container that's identically configured but also has Xdebug enabled.
 Only incoming requests that have an Xdebug cookie or query parameter set are forwarded to the debug PHP-FPM process.
 All other requests are directed to the normal PHP-FPM process and thus have no performance impact.
 
@@ -49,6 +67,7 @@ If you have enabled the [router cache](../../define-routes/cache.md),
 you need to explicitly add the Xdebug cookie (`XDEBUG_SESSION`) to the cookie allowlist.
 Depending on the cookies already listed, the result should look similar to the following:
 
+{{% version/specific %}}
 ```yaml {configFile="routes"}
 "https://{default}/":
     # ...
@@ -56,6 +75,23 @@ Depending on the cookies already listed, the result should look similar to the f
         enabled: true
         cookies: ['/^SS?ESS/', 'XDEBUG_SESSION']
 ```
+<--->
+```yaml {configFile="routes"}
+applications:
+    app:
+        type: 'php:{{% latest "php" %}}'
+        runtime:
+            xdebug:
+                idekey: {{< variable "YOUR_KEY" >}}
+
+routes:
+    "https://{default}/":
+        # ...
+        cache:
+            enabled: true
+            cookies: ['/^SS?ESS/', 'XDEBUG_SESSION']
+```
+{{% /version/specific %}}
 
 Xdebug has several configuration options available.
 They can be set the same way as any other [PHP setting](./_index.md#php-settings).
@@ -101,8 +137,8 @@ The common steps for setup usually include:
 
 1. Configuring the Xdebug debug port and making sure it's set to the expected value (`9003` as default or the value you chose with `--port` when opening the tunnel).
 2. Making sure that external connections are allowed.
-3. Adding a new server for your {{< vendor/name >}} environment.
-    The Host should be the hostname of the environment on {{< vendor/name >}} you are debugging.
+3. Adding a new server for your {{% vendor/name %}} environment.
+    The Host should be the hostname of the environment on {{% vendor/name %}} you are debugging.
     The Port should always be `443` and the Debugger set to `Xdebug`.
 4. Ensuring path mappings is enabled.
     This lets you define what remote paths on the server correspond to what path on your local machine.
@@ -114,6 +150,9 @@ The common steps for setup usually include:
     Set a break point in your app, then load a page in your browser.
     The request should pause at the break point and allow you to examine the running app.
 
+{{% version/only "1" %}}
 ## What's next
 
 Learn more about how to [set up Xdebug on Dedicated server clusters](https://community.platform.sh/t/set-up-xdebug-on-dedicated-pro-server-clusters/403).
+
+{{% /version/only %}}

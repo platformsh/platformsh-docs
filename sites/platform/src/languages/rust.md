@@ -7,7 +7,7 @@ banner:
         To share your feedback so we can improve it, add a comment to the [Rust feature card](https://next.platform.sh/c/221-rust).
 ---
 
-{{< vendor/name >}} supports building and deploying applications written in Rust.
+{{% vendor/name %}} supports building and deploying applications written in Rust.
 
 ## Supported versions
 
@@ -42,7 +42,7 @@ banner:
 
 ## Dependencies
 
-The recommended way to handle Rust dependencies on {{< vendor/name >}} is using Cargo.
+The recommended way to handle Rust dependencies on {{% vendor/name %}} is using Cargo.
 Commit a `Cargo.toml` and a `Cargo.lock` file in your repository
 so the system automatically downloads dependencies using Cargo.
 
@@ -58,6 +58,7 @@ If the program terminates for any reason it is automatically restarted.
 The following basic [app configuration](../../create-apps/_index.md) is sufficient to run most Rust apps.
 See the [complete example](#complete-example) below for more details.
 
+{{% version/specific %}}
 ```yaml {configFile="app"}
 
 # The app's name, which must be unique within the project.
@@ -84,12 +85,37 @@ web:
             allow: false
             passthru: true
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+
+        # The language and version for your app.
+        type: 'rust:1'
+
+        hooks:
+            build:
+                cargo build
+
+        web:
+            commands:
+                # Customize the start command with your own target.
+                start: './target/debug/hello'
+        
+        locations:
+            /:
+                # Route all requests to the Rust app, unconditionally.
+                allow: false
+                passthru: true
+```
+{{% /version/specific %}}
 
 Note that there is still an Nginx proxy server sitting in front of your application. If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Rust app unconditionally, as in the example above.
 
 ## Built-in variables
 
-{{< vendor/name >}} exposes relationships and other configuration as [environment variables](../development/variables/_index.md).
+{{% vendor/name %}} exposes relationships and other configuration as [environment variables](../development/variables/_index.md).
 
 To get the `PORT` environment variable (the port on which your app is supposed to listen),
 use the following snippet:
@@ -103,17 +129,17 @@ For example, to decode the `PLATFORM_RELATIONSHIPS` environment variable,
 use the following snippet: 
 
 ```rust
-    use base64::{Engine as _, engine::{general_purpose}};
-    use serde_json::Value;
+use base64::{Engine as _, engine::{general_purpose}};
+use serde_json::Value;
 
-    let bytes = general_purpose::STANDARD.decode(env::var("PLATFORM_RELATIONSHIPS").unwrap_or(String::new())).unwrap();
-    let psh_config: Value = serde_json::from_slice(&bytes).unwrap();
-    println!("{}", psh_config["database"]);
+let bytes = general_purpose::STANDARD.decode(env::var("PLATFORM_RELATIONSHIPS").unwrap_or(String::new())).unwrap();
+let psh_config: Value = serde_json::from_slice(&bytes).unwrap();
+println!("{}", psh_config["database"]);
 ```
 
 ## Complete example
 
-Here is a basic hello world app to illustrate how you can use Rust with {{< vendor/name >}}. 
+Here is a basic hello world app to illustrate how you can use Rust with {{% vendor/name %}}. 
 It builds from a `hello.rs` file to serve a static `index.html`.
 Follow these steps:
 
@@ -142,25 +168,58 @@ Follow these steps:
 
 3. Add the following [app configuration](../../create-apps/_index.md):
 
-   ```yaml {configFile="app"}
+{{% version/specific %}}
+```yaml {configFile="app"}
 
-   # The app's name, which must be unique within the project.
-   name: 'app'
+# The app's name, which must be unique within the project.
+name: 'app'
 
-   # The language and version for your app.
-   type: 'rust:1'
+# The language and version for your app.
+type: 'rust:1'
 
-   # The size of the app's persistent disk (in MB).
-   disk: 2048
+# The size of the app's persistent disk (in MB).
+disk: 2048
 
-   hooks:
-     build:
-       cargo build
+hooks:
+  build:
+    cargo build
 
-   web:
-     commands:
-         start: './target/debug/hello'
-   ```
+web:
+  commands:
+      # Customize the start command with your own target.
+      start: './target/debug/hello'
+  
+  locations:
+        /:
+            # Route all requests to the Rust app, unconditionally.
+            allow: false
+            passthru: true
+```
+<--->
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+
+        # The language and version for your app.
+        type: 'rust:1'
+
+        hooks:
+            build:
+                cargo build
+
+        web:
+            commands:
+                # Customize the start command with your own target.
+                start: './target/debug/hello'
+        
+        locations:
+            /:
+                # Route all requests to the Rust app, unconditionally.
+                allow: false
+                passthru: true
+```
+{{% /version/specific %}}
 
 4. To generate a `Cargo.lock` file,
    run the following command:

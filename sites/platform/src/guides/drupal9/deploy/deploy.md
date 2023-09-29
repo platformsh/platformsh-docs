@@ -3,10 +3,10 @@ title: "Deploy Drupal 9"
 sidebarTitle: "Deploy"
 weight: -80
 description: |
-    Now that your site is ready, push it to {{< vendor/name >}} and import your data.
+    Now that your site is ready, push it to {{% vendor/name %}} and import your data.
 banner:
     title: A note on version
-    body: While this guide focuses on Drupal 9, you can also refer to it when using Drupal 10 as differences in settings are minimal. Note that a {{< vendor/name >}} [Drupal 10 template](https://github.com/platformsh-templates/drupal10) is available.
+    body: While this guide focuses on Drupal 9, you can also refer to it when using Drupal 10 as differences in settings are minimal. Note that a {{% vendor/name %}} [Drupal 10 template](https://github.com/platformsh-templates/drupal10) is available.
 ---
 
 ## Deployment
@@ -28,7 +28,7 @@ Drupal has a number of database tables that are useless when migrating
 and you're better off excluding their data.
 
 * If you're using a database cache backend then you can and should exclude all `cache_*` table data.
-  On {{< vendor/name >}} we recommend using Redis anyway,
+  On {{% vendor/name %}} we recommend using Redis anyway,
   and the template described on the previous pages uses Redis automatically.
 * The `sessions` table's data can also be excluded.
 

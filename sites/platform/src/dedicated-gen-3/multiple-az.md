@@ -20,7 +20,7 @@ If you prefer the peace of mind of hosting across multiple AZs,
 you can request a different configuration.
 But note that multiple-AZ configurations don't improve the contractual 99.99% uptime SLA
 (nor does the standard, single-AZ configuration decrease the 99.99% uptime SLA).
-{{< vendor/name >}} is responsible for meeting the 99.99% uptime SLA no matter what,
+{{% vendor/name %}} is responsible for meeting the 99.99% uptime SLA no matter what,
 so multiple-AZ deployments should only be considered in cases where they're truly appropriate.
 
 Multi-AZ deployments are available only on select AWS regions.

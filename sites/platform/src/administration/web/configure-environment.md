@@ -27,9 +27,9 @@ You can filter activities by type (such as merge, sync, or redeploy).
 
 Each environment offers ways to keep environments up to date with one another:
 
-* [{{< icon branch >}} **Branch**](../../other/glossary.md#branch) to create a new child environment.
-* [{{< icon merge >}} **Merge**](../../other/glossary.md#merge) to copy the current environment into its parent.
-* [{{< icon sync >}} **Sync**](../../other/glossary.md#sync)
+* [{{< icon branch >}} **Branch**](/glossary.md#branch) to create a new child environment.
+* [{{< icon merge >}} **Merge**](/glossary.md#merge) to copy the current environment into its parent.
+* [{{< icon sync >}} **Sync**](/glossary.md#sync)
   to copy changes from its parent environment into the current environment.
 
 There are also additional options:
@@ -39,10 +39,10 @@ There are also additional options:
 * **URLs** to access the deployed environment from the web.
 * **SSH** to access your project using SSH.
 * **Code**
-  * **CLI** for the command to get your project set up locally with the [{{< vendor/name >}}CLI](../cli/_index.md).
+  * **CLI** for the command to get your project set up locally with the [{{% vendor/name %}}CLI](../cli/_index.md).
   * **Git** for the command to clone the codebase via Git.
   
-    If you're using {{< vendor/name >}} as your primary remote repository, the command clones from the project.
+    If you're using {{% vendor/name %}} as your primary remote repository, the command clones from the project.
     If you have set up an [external integration](../../integrations/source/_index.md),
     the command clones directly from the integrated remote repository.
 
@@ -78,11 +78,11 @@ Under **Environment name**, you can edit the name and type of your environment a
 
 ### Status
 
-Under **Status**, you can check whether or not your environment is [active](../../other/glossary.md#active-environment).
+Under **Status**, you can check whether or not your environment is [active](/glossary.md#active-environment).
 
 ![Environment status](/images/management-console/env-status.png "0.5")
 
-For non-Production environments, you can [change their status](../../environments/deactivate-environment.md).
+For preview environments, you can [change their status](../../environments/deactivate-environment.md).
 
 ### Outgoing emails
 
@@ -106,7 +106,7 @@ Under **HTTP access control**, you can [control access to your environment using
 
 Under **Variables**, you can define [environment variables](../../development/variables/_index.md):
 
-![Configure {{< vendor/name >}} environment variables](/images/management-console/settings-variables-environment.png "0.6")
+![Configure {{% vendor/name %}} environment variables](/images/management-console/settings-variables-environment.png "0.6")
 
 ## Service information
 

@@ -13,7 +13,9 @@ editPageButton: true
 vendor:
     name: Platform.sh
     cli: platform
+    altname: platformsh
     env_prefix: PLATFORM
+    cli_prefix: PLATFORM
     recruit:
         active: true
         link: https://upsun.com/register/
@@ -39,6 +41,8 @@ vendor:
         sales: https://platform.sh/contact
         console: https://console.platform.sh/
         api: https://api.platform.sh/
+        host: platform.sh 
+        hostname: platformsh.site 
 
 # Images (kept in static/)
 logo: "images/logos/Platformsh_logo_white.svg"

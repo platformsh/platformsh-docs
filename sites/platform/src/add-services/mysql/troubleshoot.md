@@ -10,7 +10,7 @@ sidebarTitle: Troubleshoot
 If a process running in your application acquired a lock from MySQL for a long period of time,
 you receive MySQL error messages like this:
 
-```text
+```sql
 SQLSTATE[HY000]: General error: 1205 Lock wait timeout exceeded;
 ```
 
@@ -24,7 +24,7 @@ This is typically caused by one of the following:
 If you're using [MariaDB 10+](./_index.md), use the SQL query `SHOW FULL PROCESSLIST \G` to list DB queries waiting for locks.
 To determine where to debug, find output like the following:
 
-```text
+```sql
 < skipped >
 Command: Query
 Time: ...
@@ -43,7 +43,7 @@ There is a single MySQL user, so you can not use "DEFINER" Access Control mechan
 
 When creating a `VIEW`, you may need to explicitly set the `SECURITY` parameter to `INVOKER`:
 
-```text
+```sql
 CREATE OR REPLACE SQL SECURITY INVOKER
 VIEW `view_name` AS
 SELECT
@@ -82,4 +82,4 @@ The best approach is to wrap your connection logic in code that detects a "serve
 and tries to re-establish the connection.
 
 Alternatively, if your worker is idle for too long it can self-terminate.
-{{< vendor/name >}} automatically restarts the worker process and the new process can establish a new database connection.
+{{% vendor/name %}} automatically restarts the worker process and the new process can establish a new database connection.
