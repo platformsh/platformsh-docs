@@ -27,11 +27,13 @@ composer require laravel/octane
 Then make sure to clear the cache on all relevant {{< vendor/name >}} environments.
 
 ``` bash
+{{< vendor/cli >}} ssh
 php artisan optimize:clear
 ```
 
 Override the default web server with a [custom start command](../../../languages/php/_index.md#alternate-start-commands).
-Octane should listen on a TCP socket.
+Octane should listen on a TCP socket. To do so, update your the configuration of your
+Laravel container in the `applications` top-level key of your `{{< vendor/configfile "app" >}}` file.
 
 ```yaml {configFile="app"}
 web:

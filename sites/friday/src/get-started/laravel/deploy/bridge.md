@@ -17,9 +17,12 @@ To retrieve the library, use Composer:
 
 ``` bash
 composer require platformsh/laravel-bridge
+```
+
 Make sure to clear the cache on relevant {{< vendor/name >}} environments afterwards.
 
 ``` bash
+{{< vendor/cli >}} ssh
 php artisan optimize:clear
 ```
 
@@ -66,6 +69,9 @@ The variables you are most likely to want to override are:
 * `env:APP_NAME`: The human-friendly name of the app.
 * `env:APP_ENV`: Whether the app is in `production` or `development` mode.
 * `env:APP_DEBUG`: Set `true` to enable verbose error messages.
+
+Note the `PLATFORM_ENVIRONMENT_TYPE` variable is automatically generated and
+[contains the type of your environment](/create-apps/hooks/vary-hooks-by-environment.md).
 
 Now that your Laravel app is connected to {{< vendor/name >}}, deploy it to see it in action.
 

@@ -38,6 +38,9 @@ If your environment wasn't active and so wasn't deployed, activate it by running
 {{< vendor/cli >}} environment:activate
 ```
 
+If you are pushing your project for the first time, the deployment might not be a
+success as you have to define the resource allocation for your containers.
+
 
 ## Set the resources for your Laravel
 

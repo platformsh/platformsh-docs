@@ -26,5 +26,6 @@ For advanced cases, the Blackfire PHP SDK provides the following integrations wi
 - [Laravel Artisan](https://blackfire.io/docs/php/integrations/laravel/artisan)
 - [Laravel Horizon and other queue services](https://blackfire.io/docs/php/integrations/laravel/horizon)
 - [Laravel Tests](https://blackfire.io/docs/php/integrations/laravel/tests)
+- [Laravel Octane](https://blackfire.io/docs/php/integrations/laravel/octane)
 
 {{< guide-buttons type="last" >}}

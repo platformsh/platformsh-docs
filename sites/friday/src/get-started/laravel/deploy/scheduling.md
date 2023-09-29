@@ -13,6 +13,9 @@ Once the scheduled tasks are defined, they need to be effectively executed at th
 right time and pace. The recommended way is a cron configuration entry running
 the `artisan schedule:run` command.
 
+Update the configuration of your Laravel container in the `applications` top-level
+key of your `{{< vendor/configfile "app" >}}` file.
+
 ```yaml {configFile="app"}
 crons:
     # Run Laravel's scheduler every 5 minutes, which is as often as crons can run on Upsun

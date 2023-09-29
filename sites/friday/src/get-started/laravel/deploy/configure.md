@@ -7,7 +7,7 @@ description: |
 ---
 
 
-You now have a *project* running on {{< vendor/name >}}.
+You now have a *project* created on {{< vendor/name >}}.
 
 In many ways, a project is just a collection of tools around a Git repository.
 Just like a Git repository, a project has branches, called *environments*.
@@ -32,48 +32,17 @@ the dependency managers used by your application.
 
 You will be invited to give your project a name and select the different services you intend to use.
 
-The `{{< vendor/cli >}} project:init` command provide a list of services whose configuration will
-be bootstraped for you: `MariaDB`, `MySQL`, `PostgreSQL`, `Redis`, `Redis Persistent`,
-`Memcached`, `OpenSearch`, `Solr`, `Varnish`, `Kafka`, `VaultKMS`, `RabbitMQ`,
-`InfluxDB`, `Chrome Headless`, `Network Storage`, `Oracle MySQL`.
-
-Use arrows to move the selector, space to select a service and type to filter the list.
+The `{{< vendor/cli >}} project:init` command provide a [list of services](add-services.md)
+whose configuration will be bootstraped for you. Use arrows to move the selector,
+space to select a service and type to filter the list.
 
 ![Routes](/images/guides/resources-cli-picker.gif "0.5")
+
+In this exemple, MySQL and Redis were selected.
 
 You could add as many services to your application as you wish. Depending on your
 application complexity, the `{{< vendor/cli >}} project:init` command might not generate the whole
 configuration files for you, but will get your started with 80% to 90% of it ready.
-
-## Manual configuration
-
-Your whole project is configured in a `{{< vendor/configfile "app" >}}` file.
-
-- **Configure apps** in the `applications` top-level key.
-  This controls the configuration of the container where your app lives.
-- **Add services** in the `services` top-level key.
-  This controls what additional services are created to support your app,
-  such as databases or search servers.
-  Each environment has its own independent copy of each service.
-  If you're not using any services, you don't need this file.
-- **Define routes** in the `route` top-level key.
-  This controls how incoming requests are routed to your app or apps.
-  It also controls the built-in HTTP cache.
-  If you're only using the single default route, you don't need this file.
-
-Start by creating an empty version of that file in your repository:
-
-```bash
-# Create an empty {{< vendor/name >}} configuration file:
-mkdir -p {{< vendor/configdir >}} && touch {{< vendor/configfile "app" >}}
-```
-
-Now that you've added that file to your project,
-configure each section for Laravel in the following sections.
-
-Each section covers basic configuration options and presents a complete example
-with comments on why Laravel requires those values.
-
 ## Configure apps
 
 Your app configuration in the `applications` top-level key of the `{{< vendor/configfile "app" >}}` file
@@ -106,7 +75,7 @@ applications:
     relationships:
       mysql: "mysql:mysql"
       redis: "redis:redis"
-      
+
 
     # Mounts define directories that are writable after the build is complete.
     # More information: https://docs.upsun.com/create-apps/app-reference.html#mounts
@@ -114,16 +83,16 @@ applications:
       "/.config":
         source: "local"
         source_path: "config"
-        
+
       "bootstrap/cache":
         source: "local"
         source_path: "cache"
-        
+
       "storage":
         source: "local"
         source_path: "storage"
-        
-      
+
+
 
     # The web key configures the web server running in front of your app.
     # More information: https://docs.upsun.com/create-apps/app-reference.html#web
@@ -148,8 +117,8 @@ applications:
         "/":
           passthru: "/index.php"
           root: "app/public"
-          
-        
+
+
 
     # Alternate copies of the application to run as background processes.
     # More information: https://docs.upsun.com/create-apps/app-reference.html#workers
@@ -184,7 +153,7 @@ applications:
     dependencies:
       php:
         composer/composer: "^2"
-    
+
 
     # Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
     # More information: https://docs.upsun.com/create-apps/app-reference.html#hooks
@@ -194,14 +163,14 @@ applications:
       build: |
         set -eux
         composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader --no-dev
-        
+
       # The deploy hook is run after the app container has been started, but before it has started accepting requests.
       # More information: https://docs.upsun.com/create-apps/hooks/hooks-comparison.html#deploy-hook
       deploy: |
         set -eux
         php artisan optimize:clear
         php artisan migrate --force
-        
+
 
       # The post_deploy hook is run after the app container has been started and after it has started accepting requests.
       # More information: https://docs.upsun.com/create-apps/hooks/hooks-comparison.html#deploy-hook
@@ -269,11 +238,11 @@ Generally, you want the user session cookie, which is included in the example fo
 You may need to add other cookies depending on what additional modules you have installed.
 
 You can also set up routes as [HTTP redirects](/define-routes/redirects.md).
-In the following example, all requests to `www.{default}` are redirected to the equivalent URL without `www`.
-HTTP requests are automatically redirected to HTTPS.
+In the following example, all requests to `www.{default}` are redirected to the
+equivalent URL without `www`. HTTP requests are automatically redirected to HTTPS.
 
-If you don't include a `{{< vendor/configfile "routes" >}}` file, a single default route is used.
-This is equivalent to the following:
+If you don't define a routes top-level key in the {{< vendor/configfile "routes" >}}
+file, a single default route is used. This is equivalent to the following:
 
 ```yaml {configFile="app"}
 routes:

@@ -21,27 +21,37 @@ To get your Laravel project up and running as quickly as possible, experiment wi
 
 You can start with a basic code base or push a pre-existing project to {{< vendor/name >}}.
 
-1. Create your first {{< vendor/name >}} project by running the following command:
+1. Get your code ready locally.
+
+If your code lives in a remote repository, clone it to your computer.
+
+If your code isn't in a Git repository, initialize it by running `git init`.
+
+{{< note >}}
+
+We recommend you initialize a Git repository **before** creating an
+{{< vendor/name >}} project as this one will then yout main environment track
+your main branch. Otherwise, the main environment might track a `main` branch
+while your default branch may be `master` and therefore handled as a secondary
+environment.
+
+{{< /note >}}
+
+2. Create your first {{< vendor/name >}} project by running the following command:
 
 ```bash
 {{< vendor/cli >}} project:create
 ```
 
 Then choose the region you want to deploy to, such as the one closest to your site visitors.
-You can also select more resources for your project through additional flags,
-but a Development plan should be enough for you to get started.
+You will explicitely configure the [resource allocation](/manage-resources.md)
+for your project at a later step.
 
 Copy the ID of the project you've created.
 
-2. Get your code ready locally.
-
-If your code lives in a remote repository, clone it to your computer.
-
-If your code isn't in a Git repository, initialize it by running `git init`.
-
 3. Connect your {{< vendor/name >}} project with Git.
-You can use {{< vendor/name >}} as your Git repository or connect to a third-party provider:
-GitHub, GitLab, or BitBucket.
+You can use {{< vendor/name >}} as your Git repository or connect to a
+[third-party provider](##using-a-third-party-provider): GitHub, GitLab, or BitBucket.
 
 ### Using {{< vendor/name >}}
 
