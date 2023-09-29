@@ -17,7 +17,9 @@ that you can use instead. The specific web server you choose will depend on your
 
 Let's look at how we can switch our project to use [gunicorn](https://gunicorn.org/) + PORT.
 
-Reopen the `{{< vendor/configfile "app" >}}` file. Locate the `web:commands:start` section where in the previous section
+Reopen the `{{< vendor/configfile "app" >}}` file.
+
+Locate the `web:commands:start` section where in the previous section
 we added `flask run -p $PORT`. We now want to change it to `gunicorn -w 4 'autoapp:app'`
 
 ```yaml {configFile="app"}
