@@ -23,7 +23,7 @@ The graphs switch to an overview of the average resource utilization for the sel
 ![How service container metrics look when minimized](/images/metrics/service-container-minimized.png "0.65")
 
 The same menu provides a convenient **Configure resource** CTA allowing you to swiftly
-adjust to resources allocation for that container based on the observability metrics.
+adjust resources allocation for that container based on the observability metrics.
 
 ## Example of how to read metrics
 

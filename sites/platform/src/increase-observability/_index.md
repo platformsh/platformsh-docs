@@ -10,7 +10,7 @@ Observability is key to the success of your {{< vendor/name >}} projects by empo
 
 - **Optimized performance**: monitor how your applications perform in real-time and identify bottlenecks or inefficiencies
 
-- **Resource efficiency**: Better understand your application's resource utilization and make informed decision to correctly scale them.
+- **Resource efficiency**: Better understand your application's resource utilization and make informed decisions to correctly scale them.
 
 - **Rapid troubleshooting**: swiftly pinpoint issues in your projects by identifying their root causes.
 
