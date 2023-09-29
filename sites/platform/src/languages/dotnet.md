@@ -1,7 +1,7 @@
 ---
 title: "C#/.NET Core"
 description: |
-  {{< vendor/name >}} supports deploying .NET applications by allowing developers to define a build process and pass its variables to the .NET Core build environment.
+  {{% vendor/name %}} supports deploying .NET applications by allowing developers to define a build process and pass its variables to the .NET Core build environment.
 ---
 
 {{% description %}}
@@ -37,22 +37,70 @@ description: |
 
 {{% language-specification type="dotnet" display_name=".Net Core" %}}
 
+{{% version/specific %}}
+
+```yaml {configFile="app"}
+type: 'dotnet:<VERSION_NUMBER>'
+```
+
+For example:
+
+```yaml {configFile="app"}
+type: 'dotnet:{{% latest "dotnet" %}}'
+```
+
+<--->
+
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    <APP_NAME>:
+        type: 'dotnet:<VERSION_NUMBER>'
+```
+
+For example:
+
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'dotnet:{{% latest "dotnet" %}}'
+```
+
+{{% /version/specific %}}
+
 ## Building the application
 
 To build basic applications in .NET containers, it's enough to use the [`dotnet publish` command](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-publish)
 with the default [framework-dependent deployment](https://docs.microsoft.com/en-us/dotnet/core/deploying/#publish-framework-dependent):
 
-```yaml
+{{% version/specific %}}
+```yaml {configFile="app"}
 hooks:
     build: |
         set -xe
-        dotnet publish --output "$PLATFORM_OUTPUT_DIR" -p:UseRazorBuildServer=false -p:UseSharedCompilation=false
+        dotnet publish --output "$PLATFORM_OUTPUT_DIR" \
+            -p:UseRazorBuildServer=false \
+            -p:UseSharedCompilation=false
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    app:
+        type: 'dotnet:{{% latest "dotnet" %}}'
+        hooks:
+            build: |
+                set -xe
+                dotnet publish --output "$PLATFORM_OUTPUT_DIR" \
+                    -p:UseRazorBuildServer=false \
+                    -p:UseSharedCompilation=false
+```
+{{% /version/specific %}}
 
 where `PLATFORM_OUTPUT_DIR` is the output directory for compiled languages available at build time.
 
 Typically, .NET Core builds start a collection of build servers, which are helpful for repeated builds.
-On {{< vendor/name >}}, however, if this process isn't disabled,
+On {{% vendor/name %}}, however, if this process isn't disabled,
 the build process doesn't finish until the idle timeout is reached.
 
 As a result, you should include `-p` toggles that disable the Razor compiler for dynamic CSHTML pages (`UseRazorBuildServer`)
@@ -84,7 +132,8 @@ To force HTTPS-only, refer to the [routes documentation](../define-routes/https.
 The following example configures an environment to serve the static content folders commonly found in [ASP.NET MVC](https://dotnet.microsoft.com/apps/aspnet/mvc) templates using Nginx,
 while routing other traffic to the .NET application.
 
-```yaml
+{{% version/specific %}}
+```yaml {configFile="app"}
 web:
     locations:
         "/":
@@ -96,14 +145,34 @@ web:
                 \.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$:
                     allow: true
                     expires: 300s
-
     commands:
         start: "dotnet WebApplication1.dll"
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    app:
+        type: 'dotnet:{{% latest "dotnet" %}}'
+        web:
+            locations:
+                "/":
+                    root: "wwwroot"
+                    allow: true
+                    passthru: true
+                    rules:
+                        # Serve these common asset types with customs cache headers.
+                        \.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$:
+                            allow: true
+                            expires: 300s
+            commands:
+                start: "dotnet WebApplication1.dll"
+```
+{{% /version/specific %}}
 
 You can also route all requests to the application unconditionally:
 
-```yaml
+{{% version/specific %}}
+```yaml {configFile="app"}
 web:
     locations:
         "/":
@@ -113,7 +182,24 @@ web:
     commands:
         start: "dotnet WebApplication1.dll"
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    app:
+        type: 'dotnet:{{% latest "dotnet" %}}'
+        web:
+            locations:
+                "/":
+                    allow: false
+                    passthru: true
 
+            commands:
+                start: "dotnet WebApplication1.dll"
+```
+{{% /version/specific %}}
+
+{{% version/only "1" %}}
 ## Project templates
+{{% /version/only %}}
 
 {{< repolist lang="dotnet" displayName=".NET Core" >}}

@@ -93,7 +93,7 @@ title=Using the CLI
 Run the following command:
 
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">{{< vendor/cli >}} integration:add \
-  --project {{< variable "PLATFORM_SH_PROJECT_ID" >}} \
+  --project {{< variable "PROJECT_ID" >}} \
   --type ` $source_variable ` \
   ` $repoVariable `\
   ` $accessFlagsVariable ` `}}
@@ -109,18 +109,18 @@ Run the following command:
 {{ end }}
 
 {{ $CLIc := print `
-- <code>PLATFORM_SH_PROJECT_ID</code> is the ID of your ` .Site.Params.vendor.name ` project.
+- <code>PROJECT_ID</code> is the ID of your ` .Site.Params.vendor.name ` project.
 - <code>OWNER/REPOSITORY</code> is the name of the repository in ` $source `.
 ` $accessFlagsExplanation `
 ` $baseUrlExpanation `
 
-For example, if your repository is located at <code>https&colon;//` $exampleUrl `/platformsh/platformsh-docs</code>,
+For example, if your repository is located at <code>https&colon;//` $exampleUrl `/{{< vendor/alt-name >}}/{{< vendor/alt-name >}}-docs</code>,
 the command is similar to the following:
 
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">{{< vendor/cli >}} integration:add \
   --project abcdefgh1234567 \
   --type ` $source_variable ` \
-  --repository platformsh/platformsh-docs \
+  --repository {{< vendor/alt-name >}}/{{< vendor/alt-name >}}-docs \
   ` $accessFlagsExample ` ` }}
 
 {{ $CLId := print `

@@ -1,13 +1,13 @@
 ---
-title: "{{< vendor/name >}} YAML tags"
+title: "{{% vendor/name %}} YAML tags"
 weight: 0
-description: "A description of custom YAML tags available for {{< vendor/name >}} files."
+description: "A description of custom YAML tags available for {{% vendor/name %}} files."
 ---
 
 In addition to the [basic functions you should be familiar with](./what-is-yaml.md), YAML allows for special tags.
-{{< vendor/name >}} accepts certain custom tags to facilitate working with configuration files.
+{{% vendor/name %}} accepts certain custom tags to facilitate working with configuration files.
 
-These tags work with {{< vendor/name >}} configuration files, but may not elsewhere.
+These tags work with {{% vendor/name %}} configuration files, but may not elsewhere.
 
 ## Include
 
@@ -126,4 +126,4 @@ mysearch:
 
 The `!archive` tag means that the value for `conf_dir` isn't the string `solr/conf` but the entire `solr/conf` directory.
 This directory is in the `{{< vendor/configdir >}}` directory, since that's where the `{{< vendor/configfile "services" >}}` file is.
-The `solr/conf` directory is then copied into the {{< vendor/name >}} management system to use with the service.
+The `solr/conf` directory is then copied into the {{% vendor/name %}} management system to use with the service.

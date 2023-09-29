@@ -3,7 +3,7 @@ title: "Exporting data"
 description: See how to export your code, files and service data.
 ---
 
-As a {{< vendor/name >}} user, your code and data belong to you.
+As a {{% vendor/name %}} user, your code and data belong to you.
 At any time, you can download your site's data for local development, to back up your data, or to change provider.
 
 ## Before you begin
@@ -11,9 +11,9 @@ At any time, you can download your site's data for local development, to back up
 You need:
 
 - [Git](https://git-scm.com/downloads)
-- A {{< vendor/name >}} account
+- A {{% vendor/name %}} account
 - Code in your project
-- Optional: the [{{< vendor/name >}} CLI](/administration/cli/_index.md)
+- Optional: the [{{% vendor/name %}} CLI](/administration/cli/_index.md)
 
 ## 1. Download your app's code
 
@@ -45,13 +45,13 @@ title=Using the CLI
 title=Using Git
 +++
 
-1. In the [Console](https://console.platform.sh/), open your project and click **Code {{< icon chevron >}}**.
+1. In the [Console](https://console.{{< vendor/urlraw "host" >}}/), open your project and click **Code {{< icon chevron >}}**.
 2. Click **Git**.
 3. To copy the command, click **{{< icon copy >}} Copy**.
    The command is similar to the following:
 
    ```text
-   git clone abcdefgh1234567@git.eu.platform.sh:abcdefgh1234567.git project-name
+   git clone abcdefgh1234567@git.eu.{{< vendor/urlraw "host" >}}:abcdefgh1234567.git project-name
    ```
 
 {{< /codetabs >}}
@@ -116,7 +116,7 @@ title=Using the CLI
 title=In the Console
 +++
 
-1. In the [Console](https://console.platform.sh/), open your project and click **{{< icon settings >}}**.
+1. In the [Console](https://console.{{< vendor/urlraw "host" >}}/), open your project and click **{{< icon settings >}}**.
 2. Click **Project Settings {{< icon chevron >}}**.
 3. Click **Variables** and access your variable's values and settings.
 4. Store the data somewhere secure on your computer.
@@ -128,6 +128,6 @@ Use the CLI to retrieve these values.
 
 ## What's next
 
-- Migrate data from elsewhere [into {{< vendor/name >}}](./migrating).
+- Migrate data from elsewhere [into {{% vendor/name %}}](./migrating/_index.md).
 - Migrate to [another region](/projects/region-migration.md).
 - To use data from an environment locally, export your data and set up your [local development environment](/development/local/_index.md).

@@ -86,7 +86,7 @@ See more information on [how to upgrade to version 2.3 or later](#upgrade-to-ver
 ```yaml
     {
       "host": "influxdb27.internal",
-      "hostname": "3xqrvge7ohuvzhjcityyphqcja.influxdb27.service._.ca-1.platformsh.site",
+      "hostname": "3xqrvge7ohuvzhjcityyphqcja.influxdb27.service._.ca-1.{{< vendor/urlraw "hostname" >}}",
       "cluster": "jqwcjci6jmwpw-main-bvxea6i",
       "service": "influxdb27",
       "type": "influxdb:2.7",
@@ -112,29 +112,40 @@ See more information on [how to upgrade to version 2.3 or later](#upgrade-to-ver
 
 {{% endpoint-description type="influxdb" /%}}
 
-```php
-<?php
-// This assumes a fictional application with an array named $settings.
-if (getenv('PLATFORM_RELATIONSHIPS')) {
-	$relationships = json_decode(base64_decode($relationships), TRUE);
-
-	// For a relationship named 'influxtimedb' referring to one endpoint.
-	if (!empty($relationships['influxtimedb'])) {
-		foreach ($relationships['influxtimedb'] as $endpoint) {
-			$settings['influxdb_host'] = $endpoint['host'];
-			$settings['influxdb_port'] = $endpoint['port'];
-			break;
-		}
-	}
-}
+```yaml {configFile="app"}
+{{% snippet name="myapp" config="app" root="myapp" %}}
+# Relationships enable an app container's access to a service.
+relationships:
+    influxtimedb: "timedb:influxdb"
+{{% /snippet %}}
+{{% snippet name="timedb" config="service" placeholder="true" %}}
+    type: influxdb:{{% latest "influxdb" %}}
+    disk: 256
+{{% /snippet %}}
 ```
+
+{{% v2connect2app serviceName="timedb" relationship="influxtimedb" var="INFLUX_HOST"%}}
+
+```bash {location="myapp/.environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for common InfluxDB credentials.
+export INFLUX_USER=$(echo $RELATIONSHIPS_JSON | jq -r ".influxtimedb[0].username")
+export INFLUX_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".influxtimedb[0].host")
+export INFLUX_ORG=$(echo $RELATIONSHIPS_JSON | jq -r ".influxtimedb[0].query.org")
+export INFLUX_TOKEN=$(echo $RELATIONSHIPS_JSON | jq -r ".influxtimedb[0].query.api_token")
+export INFLUX_BUCKET=$(echo $RELATIONSHIPS_JSON | jq -r ".influxtimedb[0].query.bucket")
+```
+
+{{< /v2connect2app >}}
 
 ## Export data
 
 To export your data from InfluxDB, follow these steps:
 
 1. Install and set up the [`influx` CLI](https://docs.influxdata.com/influxdb/cloud/tools/influx-cli/).
-2. Connect to your InfluxDB service with the [{{< vendor/name >}} CLI](../administration/cli/_index.md):
+2. Connect to your InfluxDB service with the [{{% vendor/name %}} CLI](../administration/cli/_index.md):
 
    ```bash
    {{% vendor/cli %}} tunnel:single
@@ -165,23 +176,22 @@ To export your data from InfluxDB, follow these steps:
 From version 2.3 onward, the structure of relationships changes.
 
 If you're using a prior 2.x version, your app might currently rely on pulling the `bucket`, `org`, `api_token`,
-or `user` values available in the [`PLATFORM_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-provided-variables).
+or `user` values available in the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-provided-variables).
 
 If so, to ensure your upgrade is successful, make the following changes to your connection logic:
 
 - Rename the `user` key to `username`.
 - Move the `org`, `bucket` and  `api_token` keys so they're contained in a dictionary under the `query` key.
 
-If you're relying on any other attributes connecting to InfluxDB, they remain accessible as top-level keys from the [`PLATFORM_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-provided-variables), aside from those addressed above:
-
+If you're relying on any other attributes connecting to InfluxDB, they remain accessible as top-level keys from the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-provided-variables), aside from those addressed above:
 
 ```yaml
     {
       "host": "influxdb27.internal",
-      "hostname": "3xqrvge7ohuvzhjcityyphqcja.influxdb27.service._.ca-1.platformsh.site",
+      "hostname": "3xqrvge7ohuvzhjcityyphqcja.influxdb27.service._.ca-1.{{< vendor/urlraw "hostname" >}}",
       "cluster": "jqwcjci6jmwpw-main-bvxea6i",
       "service": "influxdb27",
-      "type": "influxdb:2.7",
+      "type": "influxdb:{{< latest "influxdb" >}}",
       "rel": "influxdb",
       "scheme": "http",
       "username": "admin",
@@ -212,7 +222,8 @@ Any existing data you had in your 1.x system is automatically upgraded for you i
 
 During an upgrade from a 1.x version to a 2.3 version or later,
 a new admin password and a new admin API token are automatically generated.
-Previous credentials can't be retained.</br>
-You can retrieve your new credentials through the [`PLATFORM_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-provided-variables) or by running `{{% vendor/cli %}} relationships`.
+Previous credentials can't be retained.
+
+You can retrieve your new credentials through the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-provided-variables) or by running `{{< vendor/cli >}} relationships`.
 
 {{< /note >}}

@@ -1,14 +1,14 @@
 ---
 title: Philosophy
 weight: 1
-description: Gain insight into the philosophy of {{< vendor/name >}}.
+description: Gain insight into the philosophy of {{% vendor/name %}}.
 ---
 
-{{< vendor/name >}} aims at reducing configuration and making developers more productive.
+{{% vendor/name %}} aims at reducing configuration and making developers more productive.
 It abstracts your project infrastructure and manages it for you,
 so you never have to configure services like a web server, a MySQL database, or a Redis cache from scratch again.
 
-{{< vendor/name >}} is built on one main idea &mdash; your server infrastructure is part of your app,
+{{% vendor/name %}} is built on one main idea &mdash; your server infrastructure is part of your app,
 so it should be version controlled along with your app.
 
 Every branch you push to your Git repository can come with bug fixes,
@@ -21,24 +21,26 @@ This allows you to preview exactly what your site would look like if you merged 
 
 ## The basics
 
-On {{< vendor/name >}}, a **project** is linked to a Git repository and is composed of one or more **apps**.
-An app is a directory in your Git repository with a specific {{< vendor/name >}} configuration
+On {{% vendor/name %}}, a **project** is linked to a Git repository and is composed of one or more **apps**.
+An app is a directory in your Git repository with a specific {{% vendor/name %}} configuration
 and dedicated HTTP endpoints (via the `{{< vendor/configfile "app" >}}` file).
 
 Projects are deployed in **environments**.
 An environment is a standalone copy of your live app which can be used for testing,
 Q&A, implementing new features, fixing bugs, and so on.
 
-Every project you deploy on {{< vendor/name >}} is built as a *virtual cluster* containing a series of containers.
+Every project you deploy on {{% vendor/name %}} is built as a *virtual cluster* containing a series of containers.
 The main branch of your Git repository is always deployed as a production cluster.
 Any other branch can be deployed as a staging or development cluster.
 
+{{% version/specific %}}
+<!-- Platform.sh -->
 There are three types of containers within your cluster,
 all configured by files stored alongside your code:
 
 - The [*router*](/define-routes/_index.md), configured in `{{< vendor/configfile "routes" >}}`,
   is a single Nginx process responsible for mapping incoming requests to an app container,
-  and to optionally provide HTTP caching.
+  and for optionally providing HTTP caching.
 
 - One or more [*apps*](/create-apps/_index.md), configured via `{{< vendor/configfile "app" >}}` files, holding the code of your project.
 
@@ -46,9 +48,23 @@ all configured by files stored alongside your code:
   like MySQL/MariaDB, Elasticsearch, Redis, or RabbitMQ.
   They come as optimized pre-built images.
 
+<--->
+<!-- Upsun -->
+There are three types of containers within your cluster,
+all usually configured from a single `{{< vendor/configfile "app" >}}` file stored alongside your code:
+
+- The [*router*](/define-routes/_index.md) is a single Nginx process responsible for mapping incoming requests to an app container,
+  and for optionally providing HTTP caching.
+
+- One or more [*apps*](/create-apps/_index.md) holding the code of your project.
+
+- Some optional [*services*](/add-services/_index.md) like MySQL/MariaDB, Elasticsearch, Redis, or RabbitMQ.
+  They come as optimized pre-built images.
+{{% /version/specific %}}
+
 ## The workflow
 
-Every time you deploy a branch to {{< vendor/name >}}, the code is *built* and then *deployed* on a new cluster.
+Every time you deploy a branch to {{% vendor/name %}}, the code is *built* and then *deployed* on a new cluster.
 
 The [**build** process](/learn/overview/build-deploy.md#build-steps) looks through the configuration files in your repository
 and assembles the necessary containers.
@@ -89,17 +105,27 @@ That filesystem is the final build artifact.
 ### How your app is deployed
 
 Before starting the [deployment](./build-deploy.md#deploy-steps) of your app,
-{{< vendor/name >}} pauses all incoming requests and holds them to avoid downtime.
+{{% vendor/name %}} pauses all incoming requests and holds them to avoid downtime.
 
+{{% version/specific %}}
+<!-- Platform.sh -->
 Then, the current containers are stopped and the new ones are started.
-{{< vendor/name >}} then opens networking connections between the various containers,
+{{% vendor/name %}} then opens networking connections between the various containers,
 as specified in the configuration files.
 The connection information for each service is available from the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md).
+
+<--->
+<!-- Upsun -->
+Then, the current containers are stopped and the new ones are started.
+{{% vendor/name %}} then opens networking connections between the various containers,
+as specified in `{{< vendor/configfile "app" >}}`.
+The connection information for each service is available from the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md).
+{{% /version/specific %}}
 
 Similar to the build step, you can define a [deploy hook](/create-apps/hooks/hooks-comparison.md#deploy-hook) to prepare your app.
 Your app has complete access to all services, but the filesystem where your code lives is now read-only.
 
-Finally, {{< vendor/name >}} opens the floodgates and lets incoming requests through your newly deployed app.
+Finally, {{% vendor/name %}} opens the floodgates and lets incoming requests through your newly deployed app.
 
 ### Add a post-deploy hook
 
@@ -114,10 +140,10 @@ During a redeploy, the `post-deploy` hook is the only hook that is run.
 
 ## Get support
 
-If you're facing an issue with {{< vendor/name >}},
-submit a [Support ticket](https://console.platform.sh/-/users/~/tickets/open).
+If you're facing an issue with {{% vendor/name %}},
+submit a [Support ticket](https://console.{{< vendor/urlraw "host" >}}/-/users/~/tickets/open).
 
 ## What's next?
 
-To get a feeling of what working with {{< vendor/name >}} entails,
-see the [Get Started](/get-started/_index.md) tutorial.
+To get a feeling of what working with {{% vendor/name %}} entails,
+see the [Get Started](/get-started/_index.md) framework guides.

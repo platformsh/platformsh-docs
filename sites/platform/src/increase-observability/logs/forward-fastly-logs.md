@@ -13,7 +13,7 @@ and therefore improve your site's overall performance.
 To enable log forwarding on your Fastly CDN,
 follow these directions:
 
-- If you've subscribed to [Fastly through {{< vendor/name >}}](../../domains/cdn/managed-fastly.md),
+- If you've subscribed to [Fastly through {{% vendor/name %}}](../../domains/cdn/managed-fastly.md),
   [contact Support](https://console.platform.sh/-/users/~/tickets/open).
 
 - If you've subscribed to Fastly independently,

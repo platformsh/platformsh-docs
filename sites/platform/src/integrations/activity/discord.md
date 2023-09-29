@@ -27,7 +27,7 @@ For more on the message format, see the [Discord webhook API reference](https://
  * Sends a message to Discord.
  *
  * To control what events trigger it, use the --events switch in
- * the {{< vendor/name >}} CLI.
+ * the {{% vendor/name %}} CLI.
  *
  * @param {string} title
  *   The title of the message block to send.

@@ -1,11 +1,11 @@
 ---
 title: "JavaScript/Node.js"
-description: Get started creating JavaScript apps with Node.js on {{< vendor/name >}}.
+description: Get started creating JavaScript apps with Node.js on {{% vendor/name %}}.
 layout: single
 ---
 
 Node.js is a popular asynchronous JavaScript runtime.
-Deploy scalable Node.js apps of all sizes on {{< vendor/name >}}.
+Deploy scalable Node.js apps of all sizes on {{% vendor/name %}}.
 You can also develop a microservice architecture mixing JavaScript and other apps with [multi-app projects](../../create-apps/multi-app/_index.md).
 
 ## Supported versions
@@ -39,6 +39,38 @@ You can also develop a microservice architecture mixing JavaScript and other app
 
 {{% language-specification type="nodejs" display_name="Node.js" %}}
 
+{{% version/specific %}}
+
+```yaml {configFile="app"}
+type: 'nodejs:<VERSION_NUMBER>'
+```
+
+For example:
+
+```yaml {configFile="app"}
+type: 'nodejs:{{% latest "nodejs" %}}'
+```
+
+<--->
+
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    <APP_NAME>:
+        type: 'nodejs:<VERSION_NUMBER>'
+```
+
+For example:
+
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'nodejs:{{% latest "nodejs" %}}'
+```
+
+{{% /version/specific %}}
+
 To use a specific version in a container with a different language, [use a version manager](node-version.md).
 
 {{% deprecated-versions %}}
@@ -70,7 +102,7 @@ To use a specific version in a container with a different language, [use a versi
 
 ## Usage example
 
-To use JavaScript with Node.js on {{< vendor/name >}}, configure your [app configuration](../../create-apps/_index.md)
+To use JavaScript with Node.js on {{% vendor/name %}}, configure your [app configuration](../../create-apps/_index.md)
 (a complete example is included at the end).
 
 ### 1. Specify the version
@@ -78,17 +110,50 @@ To use JavaScript with Node.js on {{< vendor/name >}}, configure your [app confi
 Choose a version from the [list of supported versions](#supported-versions)
 and add it to your app configuration:
 
-{{< readFile file="registry/images/examples/full/nodejs.app.yaml" highlight="yaml" configFile="app" >}}
+{{% version/specific %}}
+
+```yaml {configFile="app"}
+type: 'nodejs:{{% latest "nodejs" %}}'
+```
+
+<--->
+
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'nodejs:{{% latest "nodejs" %}}'
+```
+
+{{% /version/specific %}}
 
 ### 2. Specify any global dependencies
 
 Add the following to your app configuration:
 
+
+{{% version/specific %}}
+
 ```yaml {configFile="app"}
+type: 'nodejs:{{% latest "nodejs" %}}'
 dependencies:
     nodejs:
         sharp: "*"
 ```
+
+<--->
+
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'nodejs:{{% latest "nodejs" %}}'
+        dependencies:
+            nodejs:
+                sharp: "*"
+```
+
+{{% /version/specific %}}
 
 These are now available as commands, the same as installing with `npm install -g`.
 
@@ -96,25 +161,81 @@ These are now available as commands, the same as installing with `npm install -g
 
 Include any commands needed to build and setup your app in the `hooks`, as in the following example:
 
+{{% version/specific %}}
+
 ```yaml {configFile="app"}
+type: 'nodejs:{{% latest "nodejs" %}}'
+dependencies:
+    nodejs:
+        sharp: "*"
 hooks:
     build: |
         npm run setup-assets
         npm run build
 ```
 
+<--->
+
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'nodejs:{{% latest "nodejs" %}}'
+        dependencies:
+            nodejs:
+                sharp: "*"
+        hooks:
+            build: |
+                npm run setup-assets
+                npm run build
+```
+
+{{% /version/specific %}}
+
 ### 4. Start your app
 
 Specify a command to start serving your app (it must be a process running in the foreground):
 
+{{% version/specific %}}
+
 ```yaml {configFile="app"}
+type: 'nodejs:{{% latest "nodejs" %}}'
+dependencies:
+    nodejs:
+        sharp: "*"
+hooks:
+    build: |
+        npm run setup-assets
+        npm run build
 web:
     commands:
         start: node index.js
 ```
 
+<--->
+
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'nodejs:{{% latest "nodejs" %}}'
+        dependencies:
+            nodejs:
+                sharp: "*"
+        hooks:
+            build: |
+                npm run setup-assets
+                npm run build
+        web:
+            commands:
+                start: node index.js
+```
+
+{{% /version/specific %}}
+
 ### 5. Listen on the right port
 
+{{% version/specific %}}
 Make sure your Node.js application is configured to listen over the port given by the environment.
 The following example uses the [`platformsh-config` helper](#configuration-reader):
 
@@ -122,7 +243,7 @@ The following example uses the [`platformsh-config` helper](#configuration-reade
 // Load the http module to create an http server.
 const http = require('http');
 
-// Load the {{< vendor/name >}} configuration
+// Load the {{% vendor/name %}} configuration
 const config = require('platformsh-config').config();
 
 const server = http.createServer(function (request, response) {
@@ -130,18 +251,39 @@ const server = http.createServer(function (request, response) {
     response.end("Hello world!");
 });
 
-// Listen on the port from the {{< vendor/name >}} configuration
+// Listen on the port from the {{% vendor/name %}} configuration
 server.listen(config.port);
 ```
+<--->
+Make sure your Node.js application is configured to listen over the port given by the environment.
+
+```js
+// Load the http module to create an http server.
+const http = require('http');
+const PORT = process.env.PORT || 8888;
+
+const server = http.createServer(function (request, response) {
+    response.writeHead(200, {"Content-Type": "application/json"});
+    response.end("Hello world!");
+});
+
+// Listen on the port from the {{% vendor/name %}} configuration
+server.listen(PORT, () => {
+  console.log(`Server is listening on port: ${PORT}`);
+});
+```
+{{% /version/specific %}}
 
 ### Complete example
 
 A complete basic app configuration looks like the following:
 
+{{% version/specific %}}
+
 ```yaml {configFile="app"}
 name: node-app
 
-type: nodejs:18
+type: 'nodejs:{{% latest "nodejs" %}}'
 
 disk: 512
 
@@ -159,9 +301,30 @@ web:
         start: "node index.js"
 ```
 
+<--->
+
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    'node-app':
+        type: 'nodejs:{{% latest "nodejs" %}}'
+        dependencies:
+            nodejs:
+                sharp: "*"
+        hooks:
+            build: |
+                npm run setup-assets
+                npm run build
+        web:
+            commands:
+                start: "node index.js"
+```
+
+{{% /version/specific %}}
+
 ## Dependencies
 
-By default, {{< vendor/name >}} assumes you're using npm as a package manager.
+By default, {{% vendor/name %}} assumes you're using npm as a package manager.
 If your code has a `package.json`, the following command is run as part of the default [build flavor](../../create-apps/app-reference.md#build):
 
 ```bash
@@ -176,10 +339,25 @@ To switch to Yarn to manage dependencies, follow these steps:
 
 1. Turn off the default use of npm:
 
-   ```yaml {configFile="app"}
+{{% version/specific %}}
+
+```yaml {configFile="app"}
    build:
        flavor: none
-   ```
+```
+
+<--->
+
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'nodejs:{{% latest "nodejs" %}}'
+        build:
+            flavor: none
+```
+
+{{% /version/specific %}}
 
 2. Specify the version of Yarn you want:
 
@@ -200,11 +378,14 @@ title=Yarn 3.x and Node.js 16+
 
 3. Use Corepack to run Yarn in your build hook:
 
-   ```yaml {configFile="app"}
-   hooks:
-       build: |
-           corepack yarn install
-   ```
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="/" >}}
+type: 'nodejs:{{% latest "nodejs" %}}'
+hooks:
+    build: |
+        corepack yarn install
+{{< /snippet >}}
+```
 
 <--->
 
@@ -214,19 +395,25 @@ title=Yarn 3.x and Node.js 14
 
 3. Enable Corepack (which is opt-in):
 
-   ```yaml {configFile="app"}
-   dependencies:
-       nodejs:
-           corepack: "*"
-   ```
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="/" >}}
+type: 'nodejs:{{% latest "nodejs" %}}'
+dependencies:
+    nodejs:
+        corepack: "*"
+{{< /snippet >}}
+```
 
 4. Use Corepack to run Yarn in your build hook:
 
-   ```yaml {configFile="app"}
-   hooks:
-       build: |
-           corepack yarn install
-   ```
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="/" >}}
+type: 'nodejs:{{% latest "nodejs" %}}'
+hooks:
+    build: |
+        corepack yarn install
+{{< /snippet >}}
+```
 
 <--->
 
@@ -236,29 +423,36 @@ title=Yarn < 3
 
 3. Add Yarn as a global dependency:
 
-   ```yaml {configFile="app"}
-   dependencies:
-       nodejs:
-           yarn: "1.22.19"
-   ```
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="/" >}}
+type: 'nodejs:{{% latest "nodejs" %}}'
+dependencies:
+    nodejs:
+        yarn: "1.22.19"
+{{< /snippet >}}
+```
 
 4. Install dependencies in the `build` hook:
 
-   ```yaml {configFile="app"}
-   hooks:
-       build: |
-           yarn --frozen-lockfile
-   ```
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="/" >}}
+type: 'nodejs:{{% latest "nodejs" %}}'
+hooks:
+    build: |
+        yarn --frozen-lockfile
+{{< /snippet >}}
+```
 
 {{< /codetabs >}}
 
-
 ## Connecting to services
 
+{{% version/only "1" %}}
 The following examples show how to use Node.js to access various [services](../../add-services/_index.md).
 To configure a given service, see the page dedicated to that service.
+{{% /version/only %}}
 
-{{< codetabs >}}
+{{< codetabs v2hide="true" >}}
 
 +++
 title=Elasticsearch
@@ -316,8 +510,13 @@ highlight=js
 
 {{< /codetabs >}}
 
+{{% access-services version="2" %}}
+
+{{% version/only "1" %}}
 {{% config-reader %}}[Node.js configuration reader library](https://github.com/platformsh/config-reader-nodejs){{% /config-reader%}}
 
 ## Project templates
+
+{{% /version/only %}}
 
 {{< repolist lang="nodejs" displayName="Node.js" >}}

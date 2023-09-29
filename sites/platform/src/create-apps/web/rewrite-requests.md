@@ -12,6 +12,7 @@ In such a case, you might want requests to `/shoes/great-shoe/` to be served
 as if they were requests to `/?category=shoes&product=great-shoe`.
 If so, add a [rule](../app-reference.md#rules) similar to the following:
 
+{{% version/specific %}}
 ```yaml {configFile="app"}
 web:
     locations:
@@ -21,10 +22,26 @@ web:
                 '^/(?<category>[^/]+)/(?<product>[^/]+)/$':
                     passthru: '/?category=$category&product=$product'
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    myapp:
+        source:
+            root: "/"
+        web:
+            locations:
+                '/':
+                    ...
+                    rules:
+                        '^/(?<category>[^/]+)/(?<product>[^/]+)/$':
+                            passthru: '/?category=$category&product=$product'
+```
+{{% /version/specific %}}
 
 Or you might organize your images by file type, but don't want to expose the organization externally.
 You could rewrite requests to do that behind the scenes:
 
+{{% version/specific %}}
 ```yaml {configFile="app"}
 web:
     locations:
@@ -34,6 +51,21 @@ web:
               '^/img/(?<name>.*)\.(?<type>.*)$':
                   passthru: '/$type/$name.$type'
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    myapp:
+        source:
+            root: "/"
+        web:
+            locations:
+                '/':
+                    ...
+                    rules:
+                    '^/img/(?<name>.*)\.(?<type>.*)$':
+                        passthru: '/$type/$name.$type'
+```
+{{% /version/specific %}}
 
 Now a request to `/img/image.png` returns the file found at `/png/image.png`.
 
