@@ -110,10 +110,16 @@ Before we can deploy our application, we'll need to create a new project on {{% 
 ```
 The {{% vendor/name %}} CLI will now walk you through the creation of a project asking you for your organization,
 the project's title, the region where you want the application housed, and the branch name (use the same one we set
-earlier). For now, allow the {{% vendor/name %}} CLI to set {{% vendor/name %}} as your repository's remote, and then
-select `Y` to allow the tool to create the project. The {{% vendor/name %}} bot will begin the generation of your
+earlier).
+
+For now, allow the {{% vendor/name %}} CLI to set {{% vendor/name %}} as your repository's remote, and then
+select `Y` to allow the tool to create the project.
+
+The {{% vendor/name %}} bot will begin the generation of your
 {{% vendor/name %}} project and once done, will report back the details of your project including the project's ID, and
-URL to where you can manage the project from the {{% vendor/name %}} web console. Don't worry if you forget any of this
+URL to where you can manage the project from the {{% vendor/name %}} web console.
+
+Don't worry if you forget any of this
 information; you can retrieve it later with:
 ```shell
 {{% vendor/cli %}} project:info
@@ -126,10 +132,11 @@ And you can launch the web console for your project at any time by doing
 
 
 Now that we have our {{% vendor/name %}} project created, our local project generated and associated with the
-{{% vendor/name %}} project, the only thing left to do is add configurations that are specific to the application. To
-start, we need to add an environment variable for `FLASK_APP` for all environments that points to our `autoapp.py` file.
-Open the file `{{< vendor/configfile "app" >}}` that the {{% vendor/name %}} CLI generated and locate the commented line that starts
-with:
+{{% vendor/name %}} project, the only thing left to do is add configurations that are specific to the application.
+
+To start, we need to add an environment variable for `FLASK_APP` for all environments that points to our `autoapp.py`
+file. Open the file `{{< vendor/configfile "app" >}}` that the {{% vendor/name %}} CLI generated and locate the
+commented line that starts with:
 
 ```yaml
 # Variables to control the environment.
