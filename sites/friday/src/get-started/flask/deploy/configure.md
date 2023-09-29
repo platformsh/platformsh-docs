@@ -10,7 +10,7 @@ Now that we have the repository initialized, and our template generated, we're r
 {{% vendor/name %}}. Before attempting the next command, make sure you have the
 [{{% vendor/name %}} CLI tool installed](/administration/cli/_index.md) and working, and
 have [authenticated the cli tool](/administration/cli/_index.md#2-authenticate) with your {{% vendor/name %}}
-account. We're now ready to have the {{% vendor/name %}} cli tool generate the configuration files we'll need to deploy
+account. We're now ready to have the {{% vendor/name %}} CLI tool generate the configuration files we'll need to deploy
 on {{% vendor/name %}}.
 
 ```shell
@@ -19,7 +19,7 @@ on {{% vendor/name %}}.
 
 This command is also available as `{{% vendor/cli %}} ify`
 
-The {{% vendor/name %}} cli tool will now ask you a series of questions to determine your project's requirements:
+The {{% vendor/name %}} CLI tool will now ask you a series of questions to determine your project's requirements:
 
 ```shell
 ❯ {{% vendor/cli %}} project:init
@@ -110,7 +110,7 @@ Before we can deploy our application, we'll need to create a new project on {{% 
 ```
 The CLI tool will now walk you through the creation of a project asking you for your organization, the project's
 title, the region where you want the application housed, and the branch name (use the same one we set
-earlier). For now, allow the cli tool to set {{% vendor/name %}} as your repository's remote, and then select `Y` to
+earlier). For now, allow the CLI tool to set {{% vendor/name %}} as your repository's remote, and then select `Y` to
 allow the tool to create the project. The {{% vendor/name %}} bot will begin the generation of your {{% vendor/name %}}
 project and once done, will report back the details of your project including the project's ID, and URL to where you can
 manage the project from the {{% vendor/name %}} web console. Don't worry if you forget any of this information; you can
@@ -128,7 +128,7 @@ And you can launch the web console for your project at any time by doing
 Now that we have our {{% vendor/name %}} project created, our local project generated and associated with the
 {{% vendor/name %}} project, the only thing left to do is add configurations that are specific to the application. To
 start, we need to add an environment variable for `FLASK_APP` for all environments that points to our `autoapp.py` file.
-Open the file `{{< vendor/configfile "app" >}}` that the cli tool generated and locate the commented line that starts
+Open the file `{{< vendor/configfile "app" >}}` that the CLI tool generated and locate the commented line that starts
 with:
 
 ```yaml
@@ -182,7 +182,7 @@ when it builds the application image. In the `{{< vendor/configfile "app" >}}` f
 
 Beneath that line will be a section for `build:`. The
 [build hook](/create-apps/hooks/hooks-comparison/_index.md#build-hook) allows us to make changes to
-the application before it is finalized and deployed. You should notice that when the cli tool generated the
+the application before it is finalized and deployed. You should notice that when the CLI tool generated the
 configuration file for us, it automatically added `pip install -r requirements.txt` for us! This same section is where
 we'll also instruct {{% vendor/name %}} to install our npm packages. But before that, I usually like to upgrade pip
 before I run `pip install` so I'm going to add a new line above that and add in `pip install --upgrade pip`. Then
@@ -219,7 +219,7 @@ Next we need to configure how {{% vendor/name %}} will handle requests to this a
 ```
 
 Beneath that line there should be a yaml property of `web`. A few lines beneath that line
-will be a yaml property of `start:` Once again, the cli tool already added some information here, but
+will be a yaml property of `start:` Once again, the CLI tool already added some information here, but
 since it doesn't know the specifics of what needs to be used, has simply left instructions. For now, we
 only need the basic Flask server, so we'll replace the current contents with `flask run -p $PORT`.
 
