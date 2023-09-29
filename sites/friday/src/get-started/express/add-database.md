@@ -62,17 +62,18 @@ Please complete [Configure resources for your service](#configure-resources-for-
 {{< /note >}}
 
 ## 3. Configure resources for your service
-First time you push a new service to your project, it will fail, and you will need to allocate resources to it.
- Back in your terminal, run:
+When you push a new service to your project for the first time, the deployment will fail, and you will need to allocate resources to the service container.
+
+Back in your terminal, run:
 
 ```shell
 {{% vendor/cli %}} resource:set --size mariadb:0.5 --disk mariadb:512
-Resource configuration for the project My Express App 0926 (12345azerty), environment feat-database (type: development):
-+------------------+------+-----+-------------+-----------+-----------+
-| App or service   | Size | CPU | Memory (MB) | Disk (MB) | Instances |
-+------------------+------+-----+-------------+-----------+-----------+
-| app              | 0.1  | 0.1 | 384         | N/A       | 1         |
-| mariadb          | 0.5  | 0.5 | 1408        | 512       | 1         |
+  Resource configuration for the project My Express App 0926 (12345azerty), environment feat-database (type: development):
+  +------------------+------+-----+-------------+-----------+-----------+
+  | App or service   | Size | CPU | Memory (MB) | Disk (MB) | Instances |
+  +------------------+------+-----+-------------+-----------+-----------+
+  | app              | 0.1  | 0.1 | 384         | N/A       | 1         |
+  | mariadb          | 0.5  | 0.5 | 1408        | 512       | 1         |
 ```
 
 ## 4. Configure your Express application to use this new database
@@ -184,6 +185,7 @@ Deploying to production was fast because the image built for the `add-mysql-data
 {{< /note >}}
 
 ## Tip&Tricks
+
 You can get your project relationships information using the following command:
 ```bash {location="Terminal"}
 {{% vendor/cli %}} relationships
