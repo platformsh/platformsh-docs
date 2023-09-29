@@ -9,6 +9,12 @@ description: |
 
 [Laravel](https://laravel.com) is an open-source PHP Framework.
 
+{{< note title=”tip” >}}
+
+To get your Laravel project up and running as quickly as possible, experiment with the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project/demo) before following this guide.
+
+{{< /note >}}
+
 {{% guides/requirements %}}
 
 ## Initialize a project
@@ -83,7 +89,7 @@ Instead, each service integration should be made with the following flag:
 {{< vendor/cli >}} integration:add --type=<service> ... --build-pull-requests=false
 ```
 
-You can then go through this guide and activate the environment when you're ready to deploy
+You can then go through this guide and activate the environment when you're ready to deploy.
 
 Now you have a local Git repository, a {{< vendor/name >}} project,
 and a way to push code to that project. Next you can configure your project to

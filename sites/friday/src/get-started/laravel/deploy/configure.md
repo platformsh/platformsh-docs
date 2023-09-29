@@ -21,9 +21,9 @@ You can configure these containers via a [YAML file](/learn/overview/yaml).
 
 ## Recommended: use the CLI configurator
 
-The recommanded way is to use {{< vendor/name >}} CLI that has a
+The recommended way is to use the {{< vendor/name >}} CLI that has a
 `{{< vendor/cli >}} project:init` command. This command has a cool 
-`{{< vendor/cli >}} ify` shortcut. Let's {{< vendor/cli >}}ify our Laravel application!
+`{{< vendor/cli >}} ify` shortcut. Let's {{< vendor/cli >}}ify your Laravel application!
 
 The `{{< vendor/cli >}} project:init` command automatically detects the framework, the runtime, and
 the dependency managers used by your application.
@@ -32,7 +32,7 @@ the dependency managers used by your application.
 
 You will be invited to give your project a name and select the different services you intend to use.
 
-The `{{< vendor/cli >}} project:init` command provide a list of services the configuration of which will
+The `{{< vendor/cli >}} project:init` command provide a list of services whose configuration will
 be bootstraped for you: `MariaDB`, `MySQL`, `PostgreSQL`, `Redis`, `Redis Persistent`,
 `Memcached`, `OpenSearch`, `Solr`, `Varnish`, `Kafka`, `VaultKMS`, `RabbitMQ`,
 `InfluxDB`, `Chrome Headless`, `Network Storage`, `Oracle MySQL`.
@@ -43,7 +43,7 @@ Use arrows to move the selector, space to select a service and type to filter th
 
 You could add as many services to your application as you wish. Depending on your
 application complexity, the `{{< vendor/cli >}} project:init` command might not generate the whole
-configuration files for you but will get your started with 80% to 90% of it ready.
+configuration files for you, but will get your started with 80% to 90% of it ready.
 
 ## Manual configuration
 
@@ -276,10 +276,10 @@ If you don't include a `{{< vendor/configfile "routes" >}}` file, a single defau
 This is equivalent to the following:
 
 ```yaml {configFile="app"}
-https://{default}/:
-  type: upstream
-  upstream: <APP_NAME>:http
-```
+routes:
+  https://{default}/:
+    type: upstream
+    upstream: <APP_NAME>:http
 
 Where `<APP_NAME>` is the `name` you've defined in your [app configuration](#configure-apps-in-platformappyaml).
 
@@ -305,11 +305,11 @@ routes:
 
 ## Configure writable cache directories
 
-Laravel requires specific cache folders to be writtable. [Mounts](/create-apps/app-reference.html#mounts)
+Laravel requires specific cache folders to be writable. [Mounts](/create-apps/app-reference.html#mounts)
 define directories that are writable after the build is complete.
 
-Let's ensure the `bootstrap/cache` and `storage` directories are writtable
-checking the `mounts` definition of your `{{< vendor/configfile "app" >}}` file:
+Let's ensure the `bootstrap/cache` and `storage` directories are writable
+by checking the `mounts` definition of your `{{< vendor/configfile "app" >}}` file:
 
 ```yaml
 mounts:
@@ -324,10 +324,10 @@ mounts:
       source_path: "storage"
 ```
 
-Laravel specific cache folder should be created, if missing, while the application
+A Laravel specific cache folder should be created, if missing, while the application
 is being deployed. [Multiple hooks](/create-apps/app-reference.html#hooks) run
 as part of the process of building and deploying your app. These are places where
-you can run custom scripts such as this `deploy` hook ensuring cache are correctly
+you can run custom scripts, such as this `deploy` hook that ensures caches are correctly
 set up and warmed:
 
 ```yaml
@@ -356,6 +356,6 @@ git add .
 git commit -m "Add {{< vendor/name >}} configuration files"
 ```
 
-The following step is to connect it with Laravel Bridge:
+The following step is to connect it with Laravel Bridge.
 
 {{< guide-buttons next="Connect to {{< vendor/name >}}" >}}

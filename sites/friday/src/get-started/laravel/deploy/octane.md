@@ -18,7 +18,7 @@ Laravel Octane requires PHP 8.0+.
 
 ## Use
 
-Require Laravel Octane using Composer.
+To retrieve Laravel Octane, use Composer.
 
 ``` bash
 composer require laravel/octane

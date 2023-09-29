@@ -22,7 +22,7 @@ crons:
 ```
 
 The [minimum time between cron jobs](../../../create-apps/app-reference.md#cron-job-timing)
-being triggered depends on your plan. Task scheduling may then be contradicted
+being triggered is 5 minutes. Task scheduling may then be contradicted
 by the cron minimum frequency. Schedules outside the specified cron frequency are
 ignored and the related tasks aren't triggered.
 
@@ -31,8 +31,8 @@ understand the stakes and harmonize the frequencies so all your scheduled tasks
 can be effectively triggered.
 
 You could also [configure a worker](../../../create-apps/workers.md) that relies
-on `artisan schedule:work`. To invoke the scheduler every minute, run
-[the following command](https://laravel.com/docs/scheduling#running-the-scheduler-locally):
+on `artisan schedule:work`. To invoke the scheduler every minute, add
+[the following command](https://laravel.com/docs/scheduling#running-the-scheduler-locally) to your app configuration:
 
 ```yaml {configFile="app"}
 workers:

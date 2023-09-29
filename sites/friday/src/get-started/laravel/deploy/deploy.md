@@ -14,7 +14,7 @@ git commit -m 'Add Upsun configuration files'
 ```
 
 As a final check, let's ensure your repository is correctly connected to your
-{{< vendor/name >}} project. If you haven't already ran it, run this interactive command:
+{{< vendor/name >}} project. If you haven't already run it, run this interactive command:
 ```bash
 {{< vendor/cli >}} project:set-remote
 ```
@@ -41,11 +41,11 @@ If your environment wasn't active and so wasn't deployed, activate it by running
 
 ## Set the resources for your Laravel
 
-The configuration of Laravel application is almost done. You now successfully
+The configuration of your Laravel application is almost done. You now successfully
 defined the specificities of your application and the services you intend to use.
 This translates in a series of specific containers.
 
-You now have to ensure that each of those containers benefit from the optimal
+You now have to ensure that each of those containers benefits from the optimal
 amount of resources by running this interactive command:
 
 ```bash
@@ -62,4 +62,4 @@ about resources allocation and how to scale your Laravel apps.
 
 Go forth and deploy (even on Friday)!
 
-{{< guide-buttons next="Workers, cron jobs, and task scheduling" >}}
+{{< guide-buttons next="Scheduling tasks" >}}
