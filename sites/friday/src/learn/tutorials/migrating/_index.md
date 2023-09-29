@@ -1,5 +1,5 @@
 ---
-title: "Migrate your site"
+title: "Migrate your site to {{% vendor/name %}} "
 weight: -91
 description: How to migrate from another hosting solution to {{% vendor/name %}}.
 ---
