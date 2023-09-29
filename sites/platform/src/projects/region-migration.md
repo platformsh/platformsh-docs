@@ -90,7 +90,7 @@ Then upload them to your new project:
 ```
 
 See more options on [how to export files](/learn/tutorials/exporting.md)
-and [how to import files](/learn/tutorials/migrating).
+and [how to import files](/learn/tutorials/migrating/from-psh.html#7-import-files).
 
 ## 5. Copy data from services
 
