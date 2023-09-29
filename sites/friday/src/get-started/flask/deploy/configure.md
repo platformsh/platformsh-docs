@@ -98,7 +98,7 @@ To do so, commit your files and deploy your application using the {{% vendor/nam
   $ {{% vendor/cli %}} push
 ```
 
-Last, we need to add all of our generated files, from both Cookiecutter and the {{% vendor/name %}} CLI to our git
+Last, we need to add all of our generated files, from both Cookiecutter and the {{% vendor/name %}} CLI to our Git
 repository:
 ```shell
 git add . && git commit -m "initial commit"
@@ -268,7 +268,7 @@ If your project requires an older version, you will need to change it before pus
 To change the runtime version, locate the `type` key near the top of the `{{< vendor/configfile "app" >}}` file, and
 change it the desired version. A
 [complete list of supported versions of Python](/languages/python/_index.md#supported-versions) is available in the
-documentation. Do not forget to add and commit your changes to git before pushing your code.
+documentation. Do not forget to add and commit your changes to Git before pushing your code.
 {{< /note >}}
 
 {{< guide-buttons next="Environment variables" >}}

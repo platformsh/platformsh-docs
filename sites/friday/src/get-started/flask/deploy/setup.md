@@ -48,13 +48,13 @@ cookiecutter has generated the template, cd into the directory it just created; 
 gave for the `app_name` question. For the purposes of this guide, I named mine `my_flask_cookie` and will refer to
 it throughout the remainder of the guide.
 
-We need to initiate the contents of this directory as a git repository so before doing anything else, initialize
+We need to initiate the contents of this directory as a Git repository so before doing anything else, initialize
 the repository:
 ```shell
 git init .
 ```
 
-By default, git will still use `master` as the name for the initial branch. If you wish to change the default
+By default, Git will still use `master` as the name for the initial branch. If you wish to change the default
 branch name, you can do so with the `git branch -m` command. I'll rename mine to `main`:
 ```shell
 git branch -m main
