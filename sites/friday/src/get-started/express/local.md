@@ -36,7 +36,7 @@ services:
 
 And launch corresponding Docker container:
 ```bash {location="Terminal"}
-$ docker-compose up -d
+docker-compose up -d
 ```
 
 ## Adapt your Express application to use local Docker container
@@ -58,7 +58,7 @@ function openConnection() {
 ## Launch local Express application
 To run your Express application locally, use the following:
 ```bash {location="Terminal"}
-$ node index.js
+node index.js
 ```
 
 And then open your favorite browser with <a href="http://localhost:3000" target="_blank">http://localhost:3000</a>

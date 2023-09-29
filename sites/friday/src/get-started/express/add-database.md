@@ -16,7 +16,7 @@ As an example on how to do so, to add a [MariaDB database engine](/add-services/
 ## 1. Create a new branch for testing
 Create a new branch using the following command:
 ```bash {location="Terminal"}
-$ {{% vendor/cli %}} environment:branch add-mysql-database
+{{% vendor/cli %}} environment:branch add-mysql-database
 ```
 
 ## 2. Add a MariaDB service
@@ -49,8 +49,8 @@ export DB_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.mariadb[0].password')"
 
 Commit your change:
 ```bash {location="Terminal"}
-$ git add  .environment .{{% vendor/cli %}}/config.yaml && git commit -m "adding MariaDb database service"
-$ {{% vendor/cli %}} push
+git add  .environment .{{% vendor/cli %}}/config.yaml && git commit -m "adding MariaDb database service"
+{{% vendor/cli %}} push
 ```
 
 {{< note >}}
@@ -66,7 +66,7 @@ First time you push a new service to your project, it will fail, and you will ne
  Back in your terminal, run:
 
 ```shell
-$ {{% vendor/cli %}} resource:set --size mariadb:0.5 --disk mariadb:512
+{{% vendor/cli %}} resource:set --size mariadb:0.5 --disk mariadb:512
 Resource configuration for the project My Express App 0926 (12345azerty), environment feat-database (type: development):
 +------------------+------+-----+-------------+-----------+-----------+
 | App or service   | Size | CPU | Memory (MB) | Disk (MB) | Instances |
@@ -78,7 +78,7 @@ Resource configuration for the project My Express App 0926 (12345azerty), enviro
 ## 4. Configure your Express application to use this new database
 First, you need a NodeJs module named ``mysql2``. Install it by running the following command:
 ```bash {location="Terminal"}
-$ npm install mysql2
+npm install mysql2
 ```
 
 Then modify your index.js with the following :
@@ -162,21 +162,21 @@ app.listen(port, function() {
 
 Commit your changes and deploy your changes:
 ```bash {location="Terminal"}
-$ git add package.json package-lock.json index.js && git commit -m "adding MariaDb database service"
-$ {{% vendor/cli %}} push
-$ {{% vendor/cli %}} environment:url --primary
+git add package.json package-lock.json index.js && git commit -m "adding MariaDb database service"
+{{% vendor/cli %}} push
+{{% vendor/cli %}} environment:url --primary
 ```
 
 ## 5. Merge to production
 When satisfied with your changes, merge them to the main branch, and remove the feature branch:
 
 ```bash {location="Terminal"}
-$ {{% vendor/cli %}} merge
+{{% vendor/cli %}} merge
  Are you sure you want to merge add-mysql-database into its parent, main? [Y/n] y
-$ {{% vendor/cli %}} checkout main
-$ git pull {{% vendor/cli %}} main
-$ {{% vendor/cli %}} environment:delete add-mysql-database
-$ git fetch --prune
+{{% vendor/cli %}} checkout main
+git pull {{% vendor/cli %}} main
+{{% vendor/cli %}} environment:delete add-mysql-database
+git fetch --prune
 ```
 
 {{< note >}}
@@ -186,7 +186,7 @@ Deploying to production was fast because the image built for the `add-mysql-data
 ## Tip&Tricks
 You can get your project relationships information using the following command:
 ```bash {location="Terminal"}
-$ {{% vendor/cli %}} relationships
+{{% vendor/cli %}} relationships
   ...
   mariadb:
     -

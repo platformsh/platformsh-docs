@@ -5,7 +5,7 @@ description:   Welcome to our quick-start guide on hosting [Express](https://exp
 
 {{% description %}}
 
-Anything included in these guides applies to not only to [Express](https://expressjs.com/), but also to [NextJS](https://nextjs.org/) and [Strapi](https://strapi.io/).
+Anything included in these guides applies not only to [Express](https://expressjs.com/), but also to [NextJS](https://nextjs.org/) and [Strapi](https://strapi.io/).
 
 [//]: # (If you already have an Express project ready to deploy, jump directly to {{< vendor/cli >}}ify section.)
 
@@ -15,37 +15,37 @@ Anything included in these guides applies to not only to [Express](https://expre
 
 {{% guides/link-philosophy %}}
 
-{{< note >}}
-**Have you seen the [{{% vendor/name %}} demo tutorial](https://github.com/platformsh/demo-project)?** It’s the perfect place to start in terms of figuring out how {{< vendor/name >}} work and gain a better understanding of what we provide.
+{{< note title=”tip” >}}
+To get your Express project up and running as quickly as possible, experiment with the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project/demo) before following this guide.
 {{< /note >}}
 
 {{% guides/requirements name="Express" %}}
 
 ## Create your local Express app
-First thing’s first, if you don’t have a local Express project, you need to create a new Express project locally following their [installation guide](https://expressjs.com/en/starter/installing.html).
+First things first, if you don’t have a local Express project, you need to create a new Express project locally by following the official Express [installation guide](https://expressjs.com/en/starter/installing.html).
 
 Please refer to all the steps of the official Express installation guide for further details, but to sum it up, this is the 4 steps to create an Express app locally:
 
 ```bash {location="Terminal"}
-$ mkdir my-express-app
-$ cd my-express-app
-$ npm init
-$ npm install express
+mkdir my-express-app
+cd my-express-app
+npm init
+npm install express
 ```
 
 ## Init your Git repo
 We need to initialize the local Git repository and commit local files, using the following command:
 ```bash {location="Terminal"}
-$ git init
-$ git add package.json package-lock.json
-$ git commit -m "Init Express application"
+git init
+git add package.json package-lock.json
+git commit -m "Init Express application"
 ```
 
 We should also ignore adding ``node_modules`` folder to the Git repository. Use the following commands to do so:
 
 ```bash {location="Terminal"}
-$ echo "/node_modules" >> .gitignore
-$ git add .gitignore && git commit -m "adding node_modules folder in .gitignore file"
+echo "/node_modules" >> .gitignore
+git add .gitignore && git commit -m "adding node_modules folder in .gitignore file"
 ```
 
 ## Add a Hello World route
@@ -66,8 +66,8 @@ app.listen(port, () => {
 ```
 Then please commit your file using the following commands:
 ```bash {location="Terminal"}
-$ git add index.js
-$ git commit -m "adding index.js"
+git add index.js
+git commit -m "adding index.js"
 ```
 
 ## Create a new project
@@ -84,7 +84,7 @@ title=using the CLI
 +++
 To create a new project with the {{% vendor/name %}} CLI, use the following command and follow the prompt:
 ```bash {location="Terminal"}
-$ {{% vendor/cli %}} project:create
+{{% vendor/cli %}} project:create
 ```
 
 {{< note >}}
@@ -92,7 +92,7 @@ When creating a new project using the {{% vendor/name %}} CLI command ``project:
 Your local source code will be automatically linked to your newly created {{% vendor/name %}} project by creating a `.{{% vendor/cli %}}/local/project.yaml` file that will contain the corresponding `<projectId>` and set a Git remote to `{{% vendor/cli %}}`.
 
 ```bash {location="Terminal"}
-$ git remote
+git remote
 {{% vendor/cli %}}
 ```
 
@@ -109,12 +109,12 @@ After creating a project with the console, you need to let the {{% vendor/name %
 
 To do so, use the {{% vendor/name %}} CLI to set remote project:
 ```bash {location="Terminal"}
-$ {{% vendor/cli %}} project:set-remote <projectId>
+{{% vendor/cli %}} project:set-remote <projectId>
 ```
 
 This command will add a new remote called `{{% vendor/cli %}}` to your local Git repo as you can see below:
 ```bash {location="Terminal"}
-$ git remote
+git remote
 origin
 {{% vendor/cli %}}
 ```
@@ -124,7 +124,7 @@ It will also create a new `.{{% vendor/cli %}}/local/project.yaml` file that wil
 {{< note >}}
 If you don’t remember your `<projectId>` from the previous steps, you can get it back using this command line and select the one you created:
 ```bash {location="Terminal"}
-$ {{% vendor/cli %}} project:list
+{{% vendor/cli %}} project:list
 ```
 {{< /note >}}
 
@@ -156,9 +156,9 @@ Please make sure you that you have already completed the following steps before 
 2. Create a [Github integration](integrations/source/github.md).
 3. Add a Git remote to your local project, from the root of your Express directory, by inputting the following:
     ```bash {location="Terminal"}
-    $ git remote add origin <urlOfYourOwnGitHubRepo>
-    $ git add . && git commit -m "init express"
-    $ git push origin
+    git remote add origin <urlOfYourOwnGitHubRepo>
+    git add . && git commit -m "init express"
+    git push origin
     ```
 {{< /note >}}
 
@@ -181,7 +181,7 @@ An additional `.environment` file is located at the root of your source code, th
 
 To pre-generate these Yaml files, please use the following command from the root of your Express project and follow the prompt:
 ```bash {location="Terminal"}
-$ {{% vendor/cli %}} project:init
+{{% vendor/cli %}} project:init
 Welcome to {{% vendor/name %}}!
 Let's get started with a few questions.
 
@@ -263,8 +263,8 @@ Otherwise, it will be part of the next step on how to [add a database](/get-star
 Then commit your new files, using the following command:
 
 ```bash {location="Terminal"}
-$ git add .environment .{{% vendor/cli %}}/config.yaml
-$ git commit -m "{{% vendor/name %}} config files"
+git add .environment .{{% vendor/cli %}}/config.yaml
+git commit -m "{{% vendor/name %}} config files"
 ```
 
 ## Set project remote
@@ -284,12 +284,12 @@ If you host your Express source code on an {{% vendor/name %}} Git repository, a
 
 To do so, use the {{% vendor/name %}} CLI to set remote project:
 ```bash {location="Terminal"}
-$ {{% vendor/cli %}} project:set-remote <projectId>
+{{% vendor/cli %}} project:set-remote <projectId>
 ```
 
 This command will add a new remote called `{{% vendor/cli %}}` to your local Git repo as you can see below:
 ```bash {location="Terminal"}
-$ git remote
+git remote
 {{% vendor/cli %}}
 ...
 ```
@@ -299,7 +299,7 @@ It will also create a new `.{{% vendor/cli %}}/local/project.yaml` file that wil
 {{< note >}}
 If you don’t remember your `<projectId>` from the previous steps, you can get it back using this command line and select the one you created:
 ```bash {location="Terminal"}
-$ {{% vendor/cli %}} project:list
+{{% vendor/cli %}} project:list
 ```
 {{< /note >}}
 
@@ -334,7 +334,7 @@ title=Using {{% vendor/name %}} Git repository
 
 When using the {{% vendor/name %}} Git repository as your main repository, you can push your code using the normal Git workflow (`git add . && git commit -m "message" && git push`) to push your source code changes to your `{{% vendor/cli %}}` remote repository, or by using {{% vendor/name %}} CLI command as seen below:
 ```bash {location="Terminal"}
-$ {{% vendor/cli %}} push
+{{% vendor/cli %}} push
 ```
 
 <--->
@@ -344,7 +344,7 @@ title=Using third-party Git repository
 
 When using an external Git repository (Github, Gitlab, or Bitbucket) to store your source code and having the Git integration feature enabled, on each code updates, you will need to use the normal Git workflow (`git add . && git commit -m "message" && git push`) to push your code to your external repository using well known Git command seen below:
 ```bash {location="Terminal"}
-$ git push origin
+git push origin
 ```
 
 Your Github/Gitlab/Bibucket integration process will then automatically create a new environment if you’re pushing a new Git branch and deploy changes to your corresponding environment.
@@ -357,12 +357,12 @@ our application needs. We need to tell it what kind of CPU, Memory, and disk to 
 in your terminal, run:
 
 ```bash {location="Terminal"}
-$ {{% vendor/cli %}} resources:set
+{{% vendor/cli %}} resources:set
 ```
 
 This will launch an interactive prompt to walk you through setting up your application's resources:
 ```bash {location="Terminal"}
-$ {{% vendor/cli %}} resources:set
+{{% vendor/cli %}} resources:set
 Resource configuration for the project app (123456azerty), environment main (type: production):
 +-----------------------+---------+---------+-------------+-----------+-----------+
 | App or service        | Size    | CPU     | Memory (MB) | Disk (MB) | Instances |
@@ -397,7 +397,7 @@ Note that each environment has its own domain name.
 To open the url of your new environment, run the following command:
 
    ```bash {location="Terminal"}
-   $ {{% vendor/cli %}} environment:url --primary
+   {{% vendor/cli %}} environment:url --primary
    ```
 
 Et voilà, your Express application is live!
@@ -415,7 +415,7 @@ To make changes to your project, follow these steps:
 1. Create a new environment (a Git branch) to make changes without impacting production:
 
    ```bash {location="Terminal"}
-   $ {{% vendor/cli %}} branch feat-a
+   {{% vendor/cli %}} branch feat-a
    ```
 
    This command creates a new local `feat-a` Git branch based on the main Git branch
@@ -437,21 +437,21 @@ To make changes to your project, follow these steps:
 3. Commit your changes:
 
    ```bash {location="Terminal"}
-   $ git add index.js
-   $ git commit -m "Update Hello world"
+   git add index.js
+   git commit -m "Update Hello world"
    ```
 
 4. Deploy your changes to the `feat-a` environment:
 
    ```bash {location="Terminal"}
-   $ {{% vendor/cli %}} push
+   {{% vendor/cli %}} push
    ```
 
    Note that each environment has its own domain name.
    To open the url of your new environment, run the following command:
 
    ```bash {location="Terminal"}
-   $ {{% vendor/cli %}} environment:url --primary
+   {{% vendor/cli %}} environment:url --primary
    ```
 
 5. Iterate by changing the code, committing, and deploying.
@@ -459,12 +459,12 @@ To make changes to your project, follow these steps:
    and remove the feature branch:
 
    ```bash {location="Terminal"}
-   $ {{% vendor/cli %}} merge
+   {{% vendor/cli %}} merge
      Are you sure you want to merge feat-a into its parent, main? [Y/n] y
-   $ {{% vendor/cli %}} checkout main
-   $ git pull {{% vendor/cli %}} main
-   $ {{% vendor/cli %}} environment:delete feat-a
-   $ git fetch --prune
+   {{% vendor/cli %}} checkout main
+   git pull {{% vendor/cli %}} main
+   {{% vendor/cli %}} environment:delete feat-a
+   git fetch --prune
    ```
 
    {{< note >}}
