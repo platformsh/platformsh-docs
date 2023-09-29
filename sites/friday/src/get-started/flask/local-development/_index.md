@@ -8,9 +8,9 @@ Please note that the instructions on this page assume you have followed the
 specific Flask implementation.
 {{< /note >}}
 
-Now that we have our flask application working on {{% vendor/name %}} we'll need a local environment to be able to make
-quick changes. Luckily flask already has a development server we can take advantage of! And we can utilize
-everything we set up previously with the flask development server.
+Now that we have our Flask application working on {{% vendor/name %}} we'll need a local environment to be able to make
+quick changes. Luckily Flask already has a development server we can take advantage of! And we can utilize
+everything we set up previously with the Flask development server.
 
 When we pushed our changes to {{% vendor/name %}} in the last section, it caused our database service to be redeployed
 which closed our tunnel, so first we'll need to reopen it:
@@ -34,7 +34,7 @@ npm install
 npm run build
 ```
 
-Now we can run npm start which will run start up webpack watch and start up our flask dev server:
+Now we can run npm start which will run start up webpack watch and start up our Flask dev server:
 
 ```shell
 npm run start

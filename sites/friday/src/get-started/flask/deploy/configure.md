@@ -187,13 +187,15 @@ when it builds the application image. In the `{{< vendor/configfile "app" >}}` f
 # Hooks allow you to customize your code/environment
 ```
 
-Beneath that line will be a section for `build:`. The
-[build hook](/create-apps/hooks/hooks-comparison/_index.md#build-hook) allows us to make changes to
-the application before it is finalized and deployed. You should notice that when the {{% vendor/name %}} CLI generated
+Beneath that line will be a section for `build:`.
+
+The [build hook](/create-apps/hooks/hooks-comparison/_index.md#build-hook) allows us to make changes to the application
+before it is finalized and deployed. You should notice that when the {{% vendor/name %}} CLI generated
 the configuration file for us, it automatically added `pip install -r requirements.txt` for us! This same section is
-where we'll also instruct {{% vendor/name %}} to install our npm packages. But before that, I usually like to upgrade
-pip before I run `pip install` so I'm going to add a new line above that and add in `pip install --upgrade pip`. Then
-I'll add another line after the initial `pip install` and add `npm install`:
+where we'll also instruct {{% vendor/name %}} to install our npm packages.
+
+But before that, I usually like to upgrade pip before I run `pip install` so I'm going to add a new line above that and
+add in `pip install --upgrade pip`. Then I'll add another line after the initial `pip install` and add `npm install`:
 
 ```yaml {configFile="app"}
     # Hooks allow you to customize your code/environment
@@ -240,7 +242,7 @@ only need the basic Flask server, so we'll replace the current contents with `fl
         start: "flask run -p $PORT"
 ```
 
-Since we're using the flask server (for now), we also need to change the `socket_family` from `unix`
+Since we're using the Flask server (for now), we also need to change the `socket_family` from `unix`
 to `tcp`:
 
 ```yaml {configFile="app"}

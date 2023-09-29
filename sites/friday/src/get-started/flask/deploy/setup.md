@@ -10,7 +10,7 @@ For the purposes of this guide, we'll start by generating a
 [Cookiecutter](https://github.com/cookiecutter/cookiecutter). From there we'll walk through the steps needed to deploy
 the project on {{% vendor/name %}}. With all things in tech, there are many ways to accomplish the same goal; the
 correct way will depend on your specific needs and goals, and the makeup of your project. The following guide is simply
-one way to accomplish deploying a flask application on {{% vendor/name %}}.
+one way to accomplish deploying a Flask application on {{% vendor/name %}}.
 
 From a terminal/command line prompt, first install Cookiecutter:
 ```shell

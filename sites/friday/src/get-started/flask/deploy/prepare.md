@@ -16,7 +16,7 @@ ssh into the application. For a list of all the variables that {{% vendor/name %
 
 Open the `.environment` file that the {{% vendor/name %}} CLI generated earlier. Notice it has already created some
 environmental variables for you that point back to those variables that {{% vendor/name %}} will generate. We'll
-need to add a few more for our Flask application so flask has what it needs to be able to function properly.
+need to add a few more for our Flask application so Flask has what it needs to be able to function properly.
 To start, we need to update the `DATABASE_URL` variable. Change the line from:
 
 ```shell
