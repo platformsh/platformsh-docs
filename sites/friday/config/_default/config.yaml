@@ -76,6 +76,7 @@ module:
               - "guides/*"
               - "languages/java/frameworks.md"
               - "learn/resources.md"
+              - "learn/tutorials/migrating.md"
               - "create-apps/upgrading.md"
               - "create-apps/flexible-resources.md"
               - "environments/scalability.md"
