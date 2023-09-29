@@ -14,7 +14,7 @@ This Console offers you ways to manage projects and environments other than the 
 
 ## Project list
 
-{{% version/specific %
+{{% version/specific %}}
 The [main Console page](https://console.platform.sh) gives you an overview of all your projects.
 You can narrow the list down by searching for specific projects or choosing a specific organization from the menu.
 <--->
