@@ -50,7 +50,7 @@ What language is your project using? We support the following: [Python]
 ```
 
 It will then ask for the name of your application. From there it should prompt you for services your project
-needs. Select each one and then hit Enter. For this demonstration, I only need `PostgreSQL`
+needs. Select each one and then hit **Enter**. For this demonstration, I only need `PostgreSQL`
 
 ```shell
 
