@@ -17,7 +17,7 @@ on {{% vendor/name %}}.
 {{% vendor/cli %}} project:init
 ```
 
-This command is also available as `{{% vendor/cli %}} ify`
+This command is also available as `{{% vendor/cli %}} ify`.
 
 The {{% vendor/name %}} CLI tool will now ask you a series of questions to determine your project's requirements:
 
