@@ -35,7 +35,7 @@ $ npm install express
 
 ## Init your Git repo
 We need to initialize the local Git repository and commit local files, using the following command:
-```
+```bash {location="Terminal"}
 $ git init
 $ git add package.json package-lock.json
 $ git commit -m "Init Express application"
@@ -415,7 +415,7 @@ To make changes to your project, follow these steps:
 1. Create a new environment (a Git branch) to make changes without impacting production:
 
    ```bash {location="Terminal"}
-   {{% vendor/cli %}} branch feat-a
+   $ {{% vendor/cli %}} branch feat-a
    ```
 
    This command creates a new local `feat-a` Git branch based on the main Git branch
@@ -426,7 +426,7 @@ To make changes to your project, follow these steps:
 
    For example, edit the `./index.js` file and make the following changes:
 
-   ```html {location="index.js"}
+   ```javascript {location="index.js"}
    app.get('/', async function(req, res){
      // Make the output.
      const outputString = `Hello, World! - A simple Express web framework template for {{% vendor/name %}}`
