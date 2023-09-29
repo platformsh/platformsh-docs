@@ -5,7 +5,9 @@ description: Steps for changing the web server on {{% vendor/name %}}.
 ---
 
 While lightweight and easy to use, Flask’s built-in server is not suitable for production as it doesn’t
-scale well. {{% vendor/name %}} [supports several different web servers](/languages/python/server/_index.md) for Python
+scale well.
+
+{{% vendor/name %}} [supports several different web servers](/languages/python/server/_index.md) for Python
 that you can use instead. The specific web server you choose will depend on your application and specific requirements.
 Let's look at how we can switch our project to use [gunicorn](https://gunicorn.org/) + PORT.
 
