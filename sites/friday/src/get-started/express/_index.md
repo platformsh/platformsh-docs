@@ -26,7 +26,7 @@ First thing’s first, if you don’t have a local Express project, you need to 
 
 Please refer to all the steps of the official Express installation guide for further details, but to sum it up, this is the 4 steps to create an Express app locally:
 
-```shell
+```bash {location="Terminal"}
 $ mkdir my-express-app
 $ cd my-express-app
 $ npm init
@@ -43,7 +43,7 @@ $ git commit -m "Init Express application"
 
 We should also ignore adding ``node_modules`` folder to the Git repository. Use the following commands to do so:
 
-```shell
+```bash {location="Terminal"}
 $ echo "/node_modules" >> .gitignore
 $ git add .gitignore && git commit -m "adding node_modules folder in .gitignore file"
 ```
@@ -51,7 +51,7 @@ $ git add .gitignore && git commit -m "adding node_modules folder in .gitignore 
 ## Add a Hello World route
 Please create your first Express page.
 To do so, please create, at the root of your project, a new ``index.js`` file that will contain a basic Hello world script:
-```javascript
+```javascript {location="index.js"}
 const express = require('express')
 const app = express()
 var port = (process.env.PORT || '3000');
@@ -65,7 +65,7 @@ app.listen(port, () => {
 })
 ```
 Then please commit your file using the following commands:
-```shell
+```bash {location="Terminal"}
 $ git add index.js
 $ git commit -m "adding index.js"
 ```
@@ -83,7 +83,7 @@ At the end of either using the {{% vendor/name %}} CLI or the Console section, p
 title=using the CLI
 +++
 To create a new project with the {{% vendor/name %}} CLI, use the following command and follow the prompt:
-```shell
+```bash {location="Terminal"}
 $ {{% vendor/cli %}} project:create
 ```
 
@@ -91,7 +91,7 @@ $ {{% vendor/cli %}} project:create
 When creating a new project using the {{% vendor/name %}} CLI command ``project:create``, it will ask a question if you want to set the local remote to your new project. Please say Yes (y) to it.
 Your local source code will be automatically linked to your newly created {{% vendor/name %}} project by creating a `.{{% vendor/cli %}}/local/project.yaml` file that will contain the corresponding `<projectId>` and set a Git remote to `{{% vendor/cli %}}`.
 
-```shell
+```bash {location="Terminal"}
 $ git remote
 {{% vendor/cli %}}
 ```
@@ -108,12 +108,12 @@ To create a new project using {{% vendor/name %}} Console, please follow [this t
 After creating a project with the console, you need to let the {{% vendor/name %}} CLI know which linked project you want to deploy to.
 
 To do so, use the {{% vendor/name %}} CLI to set remote project:
-```shell
+```bash {location="Terminal"}
 $ {{% vendor/cli %}} project:set-remote <projectId>
 ```
 
 This command will add a new remote called `{{% vendor/cli %}}` to your local Git repo as you can see below:
-```shell
+```bash {location="Terminal"}
 $ git remote
 origin
 {{% vendor/cli %}}
@@ -123,7 +123,7 @@ It will also create a new `.{{% vendor/cli %}}/local/project.yaml` file that wil
 
 {{< note >}}
 If you don’t remember your `<projectId>` from the previous steps, you can get it back using this command line and select the one you created:
-```shell
+```bash {location="Terminal"}
 $ {{% vendor/cli %}} project:list
 ```
 {{< /note >}}
@@ -155,7 +155,7 @@ Please make sure you that you have already completed the following steps before 
 1. Create a Git repository in your own organization following the relevant [Github repository creation guide](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository).
 2. Create a [Github integration](integrations/source/github.md).
 3. Add a Git remote to your local project, from the root of your Express directory, by inputting the following:
-    ```
+    ```bash {location="Terminal"}
     $ git remote add origin <urlOfYourOwnGitHubRepo>
     $ git add . && git commit -m "init express"
     $ git push origin
@@ -180,7 +180,7 @@ An additional `.environment` file is located at the root of your source code, th
 {{< /note >}}
 
 To pre-generate these Yaml files, please use the following command from the root of your Express project and follow the prompt:
-```shell
+```bash {location="Terminal"}
 $ {{% vendor/cli %}} project:init
 Welcome to {{% vendor/name %}}!
 Let's get started with a few questions.
@@ -226,8 +226,7 @@ $ git add . && git commit -m "Init project"
 ```
 
 Command `{{% vendor/cli %}} project:init` (shortcut `{{% vendor/cli %}} ify`) will automatically detect that you’re using an Express stack, ask if you want to add any services and generate the corresponding `config.yaml` Yaml files, like so:
-```yaml
-# .{{% vendor/cli %}}/config.yaml
+```yaml {location=".{{% vendor/cli %}}/config.yaml"}
 {{< code-link destination="/create-apps/app-reference.html" text="applications" title="Complete list of all available properties" >}}:
   app:
     {{< code-link destination="/create-apps/app-reference.html#source" text="source" title="Application source code directory. Click for more information" >}}:
@@ -263,7 +262,7 @@ Otherwise, it will be part of the next step on how to [add a database](/get-star
 
 Then commit your new files, using the following command:
 
-```shell
+```bash {location="Terminal"}
 $ git add .environment .{{% vendor/cli %}}/config.yaml
 $ git commit -m "{{% vendor/name %}} config files"
 ```
@@ -284,12 +283,12 @@ title={{% vendor/name %}} Git repository
 If you host your Express source code on an {{% vendor/name %}} Git repository, and you miss to answer `y` (yes) to the question `Set the new project <projectName> as the remote for this repository? [Y/n]` during the ``project:create`` command, you need to let the {{% vendor/name %}} CLI know which linked project you want to deploy to.
 
 To do so, use the {{% vendor/name %}} CLI to set remote project:
-```shell
+```bash {location="Terminal"}
 $ {{% vendor/cli %}} project:set-remote <projectId>
 ```
 
 This command will add a new remote called `{{% vendor/cli %}}` to your local Git repo as you can see below:
-```shell
+```bash {location="Terminal"}
 $ git remote
 {{% vendor/cli %}}
 ...
@@ -299,7 +298,7 @@ It will also create a new `.{{% vendor/cli %}}/local/project.yaml` file that wil
 
 {{< note >}}
 If you don’t remember your `<projectId>` from the previous steps, you can get it back using this command line and select the one you created:
-```shell
+```bash {location="Terminal"}
 $ {{% vendor/cli %}} project:list
 ```
 {{< /note >}}
@@ -334,7 +333,7 @@ title=Using {{% vendor/name %}} Git repository
 +++
 
 When using the {{% vendor/name %}} Git repository as your main repository, you can push your code using the normal Git workflow (`git add . && git commit -m "message" && git push`) to push your source code changes to your `{{% vendor/cli %}}` remote repository, or by using {{% vendor/name %}} CLI command as seen below:
-```shell
+```bash {location="Terminal"}
 $ {{% vendor/cli %}} push
 ```
 
@@ -344,7 +343,7 @@ title=Using third-party Git repository
 +++
 
 When using an external Git repository (Github, Gitlab, or Bitbucket) to store your source code and having the Git integration feature enabled, on each code updates, you will need to use the normal Git workflow (`git add . && git commit -m "message" && git push`) to push your code to your external repository using well known Git command seen below:
-```shell
+```bash {location="Terminal"}
 $ git push origin
 ```
 
@@ -357,12 +356,12 @@ will fail**; don't worry, this is expected. At this point {{% vendor/cli %}} is 
 our application needs. We need to tell it what kind of CPU, Memory, and disk to assign to the various containers. Back
 in your terminal, run:
 
-```shell
+```bash {location="Terminal"}
 $ {{% vendor/cli %}} resources:set
 ```
 
 This will launch an interactive prompt to walk you through setting up your application's resources:
-```shell
+```bash {location="Terminal"}
 $ {{% vendor/cli %}} resources:set
 Resource configuration for the project app (123456azerty), environment main (type: production):
 +-----------------------+---------+---------+-------------+-----------+-----------+
@@ -372,7 +371,7 @@ Resource configuration for the project app (123456azerty), environment main (typ
 +-----------------------+---------+---------+-------------+-----------+-----------+
 ```
 The first question is what profile size you want applied to your application image. For now let's select the minimum `0.1`:
-```shell
+```bash {location="Terminal"}
 App: app
 Choose a profile size:
   [0.1 ] CPU 0.1, memory 64 MB
@@ -387,7 +386,7 @@ Choose a profile size:
  > 0.1
 ```
 Next it will ask how many instances of our application container we need deployed. For now let's go with `1`:
-```shell
+```bash {location="Terminal"}
 Enter the number of instances (default: 1): 1
 ```
 
@@ -397,7 +396,7 @@ previous built images from early, apply our resource selections to them and depl
 Note that each environment has its own domain name.
 To open the url of your new environment, run the following command:
 
-   ```bash
+   ```bash {location="Terminal"}
    $ {{% vendor/cli %}} environment:url --primary
    ```
 
@@ -415,7 +414,7 @@ To make changes to your project, follow these steps:
 
 1. Create a new environment (a Git branch) to make changes without impacting production:
 
-   ```bash
+   ```bash {location="Terminal"}
    {{% vendor/cli %}} branch feat-a
    ```
 
@@ -437,29 +436,29 @@ To make changes to your project, follow these steps:
 
 3. Commit your changes:
 
-   ```bash
+   ```bash {location="Terminal"}
    $ git add index.js
    $ git commit -m "Update Hello world"
    ```
 
 4. Deploy your changes to the `feat-a` environment:
 
-   ```bash
+   ```bash {location="Terminal"}
    $ {{% vendor/cli %}} push
    ```
 
    Note that each environment has its own domain name.
    To open the url of your new environment, run the following command:
 
-   ```bash
+   ```bash {location="Terminal"}
    $ {{% vendor/cli %}} environment:url --primary
    ```
 
 5. Iterate by changing the code, committing, and deploying.
-   When satisfied with your changes, merge them to the main branch, deploy,
+   When satisfied with your changes, merge them to the main branch,
    and remove the feature branch:
 
-   ```bash
+   ```bash {location="Terminal"}
    $ {{% vendor/cli %}} merge
      Are you sure you want to merge feat-a into its parent, main? [Y/n] y
    $ {{% vendor/cli %}} checkout main
