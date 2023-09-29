@@ -1,5 +1,5 @@
 ---
-title: Guide to Deploying Laravel on {{% vendor/name %}}
+title: Guide to Deploying Flask on {{% vendor/name %}}
 sidebarTitle: Deploy
 weight: -110
 description: This guide provides instructions for deploying, and working with Flask on {{% vendor/name %}}.
