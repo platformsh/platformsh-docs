@@ -243,7 +243,7 @@ you can invite other users to your organization and grant them the following per
 
 Users with the **Manage users** (`members`) permission can add, edit, or remove _any_ user's permissions except their own.
 
-Users with the **Manage billing** (`billing`) permission automatically are granted **List projects** (`projects:list`) permissions. 
+Users with the **Manage billing** (`billing`) permission automatically are granted **List projects** (`projects:list`) permission. 
 That is, they are able to see all organization projects once given billing rights.
 
 {{< /note >}}
