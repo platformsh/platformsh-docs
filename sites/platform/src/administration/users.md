@@ -224,6 +224,8 @@ For more information on project access control, see how to [manage project users
 As an organization owner or an organization user with the **Manage users** permission,
 you can invite other users to your organization and grant them the following permissions:
 
+{{% version/specific %}}
+
 - **Manage billing** (`billing`):
   Add, remove, and edit billing information.
   Access invoices and vouchers.
@@ -238,6 +240,24 @@ you can invite other users to your organization and grant them the following per
   Create new projects within the organization.
 - **List projects** (`projects:list`):
   See all projects in an organization, even those the user can't access.
+
+<--->
+
+- **Manage billing** (`billing`):
+  Add, remove, and edit billing information.
+  Access invoices and vouchers.
+  Users with this permission receive monthly invoices by email.
+- **Manage plans** (`plans`):
+  Allows access to update settings of existing projects.
+- **Manage users** (`members`):
+  Add, remove, and edit organization-level users and permissions, except their own.
+  Users with this permission can't grant other users permissions that they themselves don't have.
+- **Create projects** (`projects:create`):
+  Create new projects within the organization.
+- **List projects** (`projects:list`):
+  See all projects in an organization, even those the user can't access.
+
+{{% /version/specific %}}
 
 {{< note theme="info" >}}
 
