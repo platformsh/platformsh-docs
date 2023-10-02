@@ -168,6 +168,12 @@ applications:
       # More information: https://docs.upsun.com/create-apps/hooks/hooks-comparison.html#deploy-hook
       deploy: |
         set -eux
+
+        # ensure the cache directories are available
+        mkdir -p storage/framework/cache/data
+        mkdir -p storage/framework/views
+        mkdir -p storage/framework/sessions
+
         php artisan optimize:clear
         php artisan migrate --force
 
