@@ -30,7 +30,7 @@ If your code isn't in a Git repository, initialize it by running `git init`.
 {{< note >}}
 
 We recommend you initialize a Git repository **before** creating an
-{{< vendor/name >}} project as this one will then yout main environment track
+{{< vendor/name >}} project as this one will then your main environment track
 your main branch. Otherwise, the main environment might track a `main` branch
 while your default branch may be `master` and therefore handled as a secondary
 environment.
