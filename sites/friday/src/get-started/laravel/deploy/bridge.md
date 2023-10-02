@@ -19,11 +19,6 @@ To retrieve the library, use Composer:
 composer require platformsh/laravel-bridge
 ```
 
-``` bash
-{{< vendor/cli >}} ssh
-php artisan optimize:clear
-```
-
 ## What is mapped
 
 * If a {{< vendor/name >}} relationship named `database` is defined,

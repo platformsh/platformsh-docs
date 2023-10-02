@@ -249,6 +249,7 @@ routes:
   https://{default}/:
     type: upstream
     upstream: <APP_NAME>:http
+```
 
 Where `<APP_NAME>` is the `name` you've defined in your [app configuration](#configure-apps-in-platformappyaml).
 
