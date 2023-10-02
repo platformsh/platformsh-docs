@@ -61,8 +61,8 @@ To run your Express application locally, use the following:
 node index.js
 ```
 
-And then open your favorite browser with <a href="http://localhost:3000" target="_blank">http://localhost:3000</a>
+And then open your favorite browser with <a href="http://localhost:3000" target="_blank">http://localhost:3000</a>.
 
 {{< note >}}
-You might want your colleague to be able to do the same, so feel free to commit your changes on your favorite Git repository.
+You might want your colleague to be able to do the same, so feel free to commit your changes on your favorite Git repository to share them with your team.
 {{< /note >}}

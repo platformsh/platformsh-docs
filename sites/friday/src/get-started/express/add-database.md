@@ -39,6 +39,8 @@ applications:
 
 Add into your ``.environment`` file the following lines:
 ```shell {location=".environment"}
+export RELATIONSHIPS_JSON="$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)"
+
 # Set database environment variables
 export DB_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.mariadb[0].host')"
 export DB_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.mariadb[0].port')"
@@ -46,6 +48,10 @@ export DB_DATABASE="$(echo $RELATIONSHIPS_JSON | jq -r '.mariadb[0].path')"
 export DB_USERNAME="$(echo $RELATIONSHIPS_JSON | jq -r '.mariadb[0].username')"
 export DB_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.mariadb[0].password')"
 ```
+
+{{< note >}}
+This additional `.environment` file is located at the root of your source code. During deployment of your {{% vendor/name %}} project, this file will override existing `.env` environment variables with {{% vendor/name %}} specific ones.
+{{< /note >}}
 
 Commit your change:
 ```bash {location="Terminal"}
