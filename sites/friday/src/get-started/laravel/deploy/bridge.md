@@ -19,8 +19,6 @@ To retrieve the library, use Composer:
 composer require platformsh/laravel-bridge
 ```
 
-Make sure to clear the cache on relevant {{< vendor/name >}} environments afterwards.
-
 ``` bash
 {{< vendor/cli >}} ssh
 php artisan optimize:clear

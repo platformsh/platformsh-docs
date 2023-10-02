@@ -316,7 +316,7 @@ deploy: |
 ```
 
 
-## Commit and bridge with {{< vendor/name >}}
+## Commit and bridge with {{% vendor/name %}}
 
 Now that you have Laravel configured, let's commit all you configuration files:
 

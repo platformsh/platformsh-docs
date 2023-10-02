@@ -53,7 +53,7 @@ Copy the ID of the project you've created.
 You can use {{< vendor/name >}} as your Git repository or connect to a
 [third-party provider](##using-a-third-party-provider): GitHub, GitLab, or BitBucket.
 
-### Using {{< vendor/name >}}
+### Using {{% vendor/name %}}
 
 The `{{< vendor/cli >}} project:create` interactive command asked
 ```bash
