@@ -1,26 +1,47 @@
 ---
-title: Set up the repository
+title: Set up the project
 subtitle: Deploying {{% param "framework" %}} to {{% vendor/name %}}
-toc: false
 weight: -18
 description: With the tools installed, its time to prepare your {{% param "framework" %}} repository. 
 framework: Django
 ---
 
-{{% guides/deploy/start-options %}}
-
 <!-- {{% guides/steps ordered="true" root="/get-started/express/deploy" %}} -->
 
-## Generate a repository
+<!-- Starting options -->
+{{% guides/deploy/code/start-options %}}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis interdum leo in velit dignissim, ac pretium elit vestibulum. Mauris vitae enim nunc. Pellentesque ligula nulla, eleifend nec ante a, bibendum dictum ligula. Cras placerat scelerisque urna, vitae condimentum velit varius eu. Praesent ultrices imperdiet urna, sit amet faucibus lacus pretium sit amet. Duis vulputate eros quis molestie mattis. Aenean tincidunt lorem nec eros sollicitudin, sed mattis turpis mattis. Sed et nisl lorem. Aliquam at ligula nisl. Ut non placerat magna, eget facilisis tortor. Nullam vitae nisi iaculis, consectetur est ut, pulvinar nulla. Curabitur tempor ac risus eu tincidunt. In condimentum urna vel arcu tincidunt condimentum.
+<!-- 1. Generate from scratch -->
+{{% guides/deploy/code/generate-project "upsun_django" %}}
 
-Etiam eget leo ultricies, egestas sem non, consectetur felis. Nullam at lacus lectus. Nam aliquet hendrerit leo a consectetur. Mauris commodo augue vel massa bibendum, id tincidunt massa accumsan. Praesent pharetra nunc nec augue pretium vehicula. Nunc est lorem, ornare a dui et, elementum gravida libero. Integer posuere leo non tellus feugiat aliquet.
+For Django, you can use [Cookiecutter](https://www.cookiecutter.io/) to build a project template to deploy on {{% vendor/name %}}.
 
-## Connect a repository
+1. Install Cookiecutter 
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis interdum leo in velit dignissim, ac pretium elit vestibulum. Mauris vitae enim nunc. Pellentesque ligula nulla, eleifend nec ante a, bibendum dictum ligula. Cras placerat scelerisque urna, vitae condimentum velit varius eu. Praesent ultrices imperdiet urna, sit amet faucibus lacus pretium sit amet. Duis vulputate eros quis molestie mattis. Aenean tincidunt lorem nec eros sollicitudin, sed mattis turpis mattis. Sed et nisl lorem. Aliquam at ligula nisl. Ut non placerat magna, eget facilisis tortor. Nullam vitae nisi iaculis, consectetur est ut, pulvinar nulla. Curabitur tempor ac risus eu tincidunt. In condimentum urna vel arcu tincidunt condimentum.
+    ```bash
+    pip3 install cookiecutter
+    ```
 
-Etiam eget leo ultricies, egestas sem non, consectetur felis. Nullam at lacus lectus. Nam aliquet hendrerit leo a consectetur. Mauris commodo augue vel massa bibendum, id tincidunt massa accumsan. Praesent pharetra nunc nec augue pretium vehicula. Nunc est lorem, ornare a dui et, elementum gravida libero. Integer posuere leo non tellus feugiat aliquet.
+1. Then generate the Django project template using Cookiecutter. If this is your first time generating a Django Cookiecutter template, you'll need to point to the full GitHub repository address:
 
-{{% guides/buttons next="/get-started/express/deploy/configure" %}}
+    ```bash
+    cookiecutter https://github.com/cookiecutter/cookiecutter-django --default-config --no-input
+    ```
+
+    Otherwise, you can just indicate the specific template you want to generate:
+
+    ```bash
+    cookiecutter cookiecutter-django --default-config --no-input -o upsun_django
+    ```
+
+    Then enter the created project:
+
+    ```bash
+    cd upsun_django
+    ```
+
+{{% /guides/deploy/code/generate-project %}}
+
+<!-- 2. Migrate from GitHub -->
+
+{{% guides/deploy/code/migrate-code "django" %}}

@@ -10,12 +10,12 @@ and configuring infrastructure and resources to deploy {{ $framework }} on {{ .S
 In the end, you will have 
 
 - The {{ .Site.Params.vendor.name }} CLI installed and authenticated locally
-- A {{ $framework }} repository locally, either your own or a skeleton provided by {{ .Site.Params.vendor.name }}
+- A {{ $framework }} repository locally, either your own or a skeleton provided by {{ .Site.Params.vendor.name }} and {{ $framework }} community tools
 - An organization created on {{ .Site.Params.vendor.name }}, containing one project associated with the repository
-- A remote repository on GitHub matching your local copy, and integrated with the {{ .Site.Params.vendor.name }} project
+- A remote repository matching your local copy, integrated with the {{ .Site.Params.vendor.name }} project
 - {{ .Site.Params.vendor.name }} configuration added to the repo, and resources defined for a successful deployment
 - Migrated data to production if you are bringing your own project
 
-To get started, click the button below.
+To get started, click the button below to fulfill any requirements.
 
 {{ printf `{{< guides/buttons next="/get-started/%s/deploy/requirements" >}}` $frameworkPath | .Page.RenderString }}

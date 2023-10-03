@@ -13,7 +13,7 @@ To start the demo project:
     Choose the **Demo project** option by selecting **Explore {{ .Site.Params.vendor.name }}**.
     You can select the organization you created in the previous step from the top dropdown.
 
-    ![Apps and services tree](/images/create-project-choices.png "1.0")
+    <!-- ![Apps and services tree](/images/create-project-choices.png "1.0") -->
 
 Once you've completed the demo, you'll have:
 

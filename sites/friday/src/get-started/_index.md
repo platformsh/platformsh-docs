@@ -15,8 +15,10 @@ There are two ways to get started with {{% vendor/name %}}:
 1. [Explore with a demo project](#explore-features-with-a-demo-project) 
 1. [Choose a framework and migrate code to {{% vendor/name %}}](#migrate-code)
 
+{{< note theme="info" >}}
 It's recommended that you first work through the demo project to better understand {{% vendor/name %}},
 then move on to migrating applications.
+{{< /note >}}
 
 {{% guides/demo %}}
 
@@ -35,4 +37,4 @@ Select one of the Frameworks below to get started.
 {{% guides/framework-bar "flask" %}}
 {{% guides/framework-bar "laravel" %}}
 {{% guides/framework-bar "nextjs" %}} -->
-{{% guides/framework-bar "strapi" %}}
+<!-- {{% guides/framework-bar "strapi" %}} -->

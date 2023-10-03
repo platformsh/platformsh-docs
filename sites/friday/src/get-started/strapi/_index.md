@@ -3,7 +3,7 @@ title: Getting started with Strapi on {{% vendor/name %}}
 sidebarTitle: Strapi
 description: |
     [Strapi](https://strapi.io/) is an open-source headless CMS written in Javascript.
-
+sidebarIgnore: true
 layout: single
 ---
 
