@@ -61,8 +61,6 @@ size, and eventually a disk size for each of the containers.
 Check the [resources section](/manage-resources.html) of the documentation to know more
 about resources allocation and how to scale your Laravel apps.
 
-{{% guides/data-migration /%}}
-
 Go forth and deploy (even on Friday)!
 
-{{< guide-buttons next="Scheduling tasks" >}}
+{{< guide-buttons next="Migrate your data" >}}
