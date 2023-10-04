@@ -231,7 +231,7 @@ Command `{{% vendor/cli %}} project:init` (shortcut `{{% vendor/cli %}} ify`) wi
   app:
     {{< code-link destination="/create-apps/app-reference.html#source" text="source" title="Application source code directory. Click for more information" >}}:
       root: "/"
-    {{< code-link destination="/create-apps/app-reference.html#types" text="type" title="The runtime the application uses. Click to see the complete list of available runtimes." >}}: "nodejs:20"
+    {{< code-link destination="/create-apps/app-reference.html#types" text="type" title="The runtime the application uses. Click to see the complete list of available runtimes." >}}: "nodejs:18"
     {{< code-link destination="/create-apps/app-reference.html#types" text="web" title="The web key configures the web server running in front of your app. Click for more information." >}}:
       {{< code-link destination="/create-apps/app-reference.html#web-commands" text="commands" title="Commands are run once after deployment to start the application process. Click for more information." >}}:
         {{< code-link destination="/languages/nodejs.html#4-start-your-app" text="start" title="The command to launch your app. If it terminates, it’s restarted immediately. You can use the $PORT or the $SOCKET environment variable depending on the socket family of your upstream. Click for more information." >}}: "node index.js"
@@ -242,7 +242,7 @@ Command `{{% vendor/cli %}} project:init` (shortcut `{{% vendor/cli %}} ify`) wi
         sharp: "*"
 #services:
 #  db:
-#    type: postgresql:14
+#    type: postgresql:15
 routes:
   "https://{default}/":
     type: upstream

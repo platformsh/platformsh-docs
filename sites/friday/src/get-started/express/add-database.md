@@ -11,7 +11,7 @@ description: |
 And as these services are included in your project, you can manage them through Git and they’re backed up along with the rest of your project.
 Your project source code defines the services configuration in the main `.{{% vendor/cli %}}/config.yaml` file and this is where you can add new services.
 
-As an example on how to do so, to add a [MariaDB database engine](/add-services/mysql.html) into your Express project, complete the following 5 steps:
+As an example on how to do so, to add a [MariaDB database engine](/add-services/mysql.html) into your Express project, complete the following 6 steps:
 
 ## 1. Create a new branch for testing
 Create a new branch using the following command:
@@ -32,7 +32,7 @@ Connect the service to your application ``app`` by adding a relationships settin
 ```yaml {location=".{{% vendor/cli %}}/config.yaml"}
 applications:
   app:
-    type: nodejs:20
+    type: nodejs:18
     {{< code-link destination="/create-apps/app-reference.html#relationships" text="relationships" title="The relationships of the application with services or other applications. The left-hand side is the name of the relationship as it will be exposed to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand side is in the form `<service name>:<endpoint name>`. Click for more information." >}}:
       mariadb: "mariadb:mysql"
 ```
@@ -64,7 +64,7 @@ git add  .environment .{{% vendor/cli %}}/config.yaml && git commit -m "adding M
 will fail**; don't worry, this is expected. At this point {{% vendor/cli %}} is not aware of the resources
 our new service needs. We need to tell it what kind of CPU, Memory, and disk to assign to the service container.
 
-Please complete [Configure resources for your service](#configure-resources-for-your-service) step
+Please complete [Configure resources for your service](#3-configure-resources-for-your-service) step
 {{< /note >}}
 
 ## 3. Configure resources for your service
@@ -80,6 +80,15 @@ Back in your terminal, run:
   +------------------+------+-----+-------------+-----------+-----------+
   | app              | 0.1  | 0.1 | 384         | N/A       | 1         |
   | mariadb          | 0.5  | 0.5 | 1408        | 512       | 1         |
+  +------------------+------+-----+-------------+-----------+-----------+
+
+Summary of changes:
+  Service: mariadb
+    CPU: 0.5
+    Memory: 1408 MB
+    Disk: 512 MB
+
+Are you sure you want to continue? [Y/n] y
 ```
 
 ## 4. Configure your Express application to use this new database
@@ -180,6 +189,20 @@ When satisfied with your changes, merge them to the main branch, and remove the 
 ```bash {location="Terminal"}
 {{% vendor/cli %}} merge
  Are you sure you want to merge add-mysql-database into its parent, main? [Y/n] y
+```
+
+{{< note >}}
+{{% vendor/name %}} will now read your configuration files, and begin building your application image. **Your push
+will fail**; don't worry, this is expected. At this point {{% vendor/cli %}} is not aware of the resources
+our new service needs. We need to tell it what kind of CPU, Memory, and disk to assign to the service container.
+
+Please complete again [Configure resources for your service](#3-configure-resources-for-your-service) step
+{{< /note >}}
+
+
+## 6. Remove the feature branch
+Then, you need to remove the feature branch
+```bash {location="Terminal"}
 {{% vendor/cli %}} checkout main
 git pull {{% vendor/cli %}} main
 {{% vendor/cli %}} environment:delete add-mysql-database
@@ -187,7 +210,7 @@ git fetch --prune
 ```
 
 {{< note >}}
-Deploying to production was fast because the image built for the `add-mysql-database` environment was reused.
+During ``environment:delete`` CLI command, it will ask question regarding deactivation and deletion of your `add-mysql-database` environment. Please say `yes` (`y`) to all of them.
 {{< /note >}}
 
 ## Tip&Tricks
