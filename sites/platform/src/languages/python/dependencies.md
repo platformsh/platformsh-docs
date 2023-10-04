@@ -40,24 +40,25 @@ To do so, modify your [app configuration](../../create-apps/_index.md), as in th
 title=Latest version
 +++
 ```yaml {configFile="app"}
-name: 'app'
-type: 'python:3.11'
+{{< snippet name="myapp" config="app" root="myapp" >}}
+type: 'python:{{% latest "python" %}}'
 hooks:
     build: |
         # Fail the build if any errors occur
         set -eu
         # Download the latest version of pip
-        python3.11 -m pip install --upgrade pip
+        python{{% latest "python" %}} -m pip install --upgrade pip
         # Install dependencies
         pip install -r requirements.txt
+{{< /snippet >}}
 ```
 <--->
 +++
 title=Specific version
 +++
 ```yaml {configFile="app"}
-name: 'app'
-type: 'python:3.11'
+{{< snippet name="myapp" config="app" root="myapp" >}}
+type: 'python:{{% latest "python" %}}'
 variables:
     env:
         PIP_VERSION: '22.3.1'
@@ -66,9 +67,10 @@ hooks:
         # Fail the build if any errors occur
         set -eu
         # Download a specific version of pip
-        python3.11 -m pip install pip==$PIP_VERSION
+        python{{% latest "python" %}} -m pip install pip==$PIP_VERSION
         # Install dependencies
         pip install -r requirements.txt
+{{< /snippet >}}
 ```
 {{< /codetabs >}}
 
@@ -95,8 +97,8 @@ Because Pipenv depends on pip, you might want to also specify the pip version.
 title=Latest version
 +++
 ```yaml {configFile="app"}
-name: 'app'
-type: 'python:3.11'
+{{< snippet name="myapp" config="app" root="myapp" >}}
+type: 'python:{{% latest "python" %}}'
 dependencies:
     python3:
         pipenv: '*'
@@ -105,18 +107,19 @@ hooks:
         # Fail the build if any errors occur
         set -eu
         # Download the latest version of pip
-        python3.11 -m pip install --upgrade pip
+        python{{% latest "python" %}} -m pip install --upgrade pip
         # Install dependencies
         # Include `--deploy` to fail the build if `Pipfile.lock` isn't up to date
         pipenv install --deploy
+{{< /snippet >}}
 ```
 <--->
 +++
 title=Specific version
 +++
 ```yaml {configFile="app"}
-name: 'app'
-type: 'python:3.11'
+{{< snippet name="myapp" config="app" root="myapp" >}}
+type: 'python:{{% latest "python" %}}'
 variables:
     env:
         PIP_VERSION: '22.3.1'
@@ -128,10 +131,11 @@ hooks:
         # Fail the build if any errors occur
         set -eu
         # Download a specific version of pip
-        python3.11 -m pip install pip==$PIP_VERSION
+        python{{% latest "python" %}} -m pip install pip==$PIP_VERSION
         # Install dependencies
         # Include `--deploy` to fail the build if `Pipfile.lock` isn't up to date
         pipenv install --deploy
+{{< /snippet >}}
 ```
 {{< /codetabs >}}
 
@@ -153,13 +157,25 @@ To set up Poetry on {{% vendor/name %}}, follow these steps:
 
     Set the variables as follows:
 
-    ```yaml {configFile="app"}
-    variables:
-        env:
-            POETRY_VIRTUALENVS_IN_PROJECT: true
-            POETRY_VIRTUALENVS_CREATE: true
-    ```
-
+{{% version/specific %}}
+```yaml {configFile="app"}
+variables:
+    env:
+        POETRY_VIRTUALENVS_IN_PROJECT: true
+        POETRY_VIRTUALENVS_CREATE: true
+```
+<--->
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'python:{{% latest "python" %}}'
+        variables:
+            env:
+                POETRY_VIRTUALENVS_IN_PROJECT: true
+                POETRY_VIRTUALENVS_CREATE: true
+```
+{{% /version/specific %}}
 
 2.  Install Poetry.
     You can specify the latest or a specific version of Poetry in your deployments to ensure repeatable builds.
@@ -169,9 +185,8 @@ To set up Poetry on {{% vendor/name %}}, follow these steps:
 title=Latest version
 +++
 ```yaml {configFile="app"}
-name: 'app'
-type: 'python:3.11'
-
+{{< snippet name="myapp" config="app" root="myapp" >}}
+type: 'python:{{% latest "python" %}}'
 variables:
     env:
         POETRY_VIRTUALENVS_IN_PROJECT: true
@@ -183,7 +198,7 @@ hooks:
         set -eu
 
         # Download the latest version of pip
-        python3.11 -m pip install --upgrade pip
+        python{{% latest "python" %}} -m pip install --upgrade pip
 
         # Install and configure Poetry
         export PIP_USER=false
@@ -194,15 +209,15 @@ hooks:
 
         # Install dependencies
         poetry install
+{{< /snippet >}}
 ```
 <--->
 +++
 title=Specific version
 +++
 ```yaml {configFile="app"}
-name: 'app'
-type: 'python:3.11'
-
+{{< snippet name="myapp" config="app" root="myapp" >}}
+type: 'python:{{% latest "python" %}}'
 variables:
     env:
         POETRY_VERSION: '1.4.0'
@@ -228,6 +243,7 @@ hooks:
 
         # Install dependencies
         poetry install
+{{< /snippet >}}
 ```
     {{< /codetabs >}}
 
@@ -245,6 +261,7 @@ hooks:
     fi
     ```
 
+{{% version/only "1" %}}
 ## Anaconda
 
 Some frameworks and tools recommend using Anaconda or Miniconda to manage packages in Python. 
@@ -252,3 +269,4 @@ The following Community resources can help get you started with them:
 
 - [Running and installing Anaconda/Miniconda on {{% vendor/name %}}](https://community.platform.sh/t/how-to-run-an-anaconda-miniconda-python-stack-on-platform-sh/230)
 - [Running R Shiny using Miniconda on {{% vendor/name %}}](https://community.platform.sh/t/how-to-run-r-shiny-on-platform-sh/231)
+{{% /version/only %}}

@@ -42,7 +42,7 @@ After going through the **Get started** section, you may want to know more about
     {{% vendor/name %}} makes deploying and managing infrastructure no different than working with Git.
     As your work becomes more experimental, however, you may be interested in optimizing your workflows, and addressing common constraints of the platform. 
     The [**Best practices**](/learn/bestpractices/_index.md) documentation contains articles that address advanced use cases for caching, microservices, and more.
-    
+
 ### Frameworks
 
 Now that you understand the basic rules of {{% vendor/name %}}, you're likely ready to deploy your own custom code in a chosen framework. 
@@ -67,7 +67,7 @@ The **Frameworks** section is a collection of framework-specific how-to guides -
 
 {{< /version/specific >}}
 
-### Reference 
+### Reference
 
 The **Reference documentation** section is the largest and most comprehensive. 
 It includes details of configuration, environment variables, activities, and much more material you can use in your day-to-day work.
@@ -106,11 +106,12 @@ To stay informed of all the latest {{% vendor/name %}} news, join our newsletter
 
 ## Connect with us
 
+{{< version/specific >}}
 ### Join the community
 
-The {{% vendor/name %}} community meets on both a [Community forum](https://community.platform.sh) and [Slack](https://chat.platform.sh) for questions and discussion. 
+The {{% vendor/name %}} community meets on both a [Community forum](https://community.platform.sh) and [Slack](https://chat.platform.sh) for questions and discussion.
 
-Have an experiment you'd like to share? 
+Have an experiment you'd like to share?
 Looking for a way to contribute?
 
 <div style="margin-top: 3rem; text-align: center;">
@@ -122,6 +123,9 @@ Looking for a way to contribute?
 Feel free to open an issue or pull request for any of the repositories below, or let us know on [Slack](https://chat.platform.sh) if you find a problem we can help with:
 
 {{< home/links-github >}}
+
+<--->
+{{</version/specific >}}
 
 ### Get support
 
