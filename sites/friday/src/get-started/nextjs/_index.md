@@ -246,7 +246,8 @@ Command `{{% vendor/cli %}} project:init` (shortcut `{{% vendor/cli %}} ify`) wi
 {{< note >}}
 In this first step guide, we don't add any services yet. </br>
 Please add any services that you want to use with your Next.js application.</br>
-Otherwise, it will be part of the next step on how to [add a database](/get-started/nextjs/add-database.md).
+
+[//]: # (Otherwise, it will be part of the next step on how to [add a database]&#40;/get-started/nextjs/add-database.md&#41;.)
 {{< /note >}}
 
 Then commit your new files, using the following command:
