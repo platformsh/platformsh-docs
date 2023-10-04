@@ -62,7 +62,7 @@
             {{ $codetabCodename = "default" }}
           {{ end }}
 
-          <li class="{{ partial "codetabs/tab-control-tab-styles" }}">
+          <li class="tab-item {{ partial "codetabs/tab-control-tab-styles" }}">
             <a class="{{ partial "codetabs/tab-control-link-styles" }}" :class="{ '{{ partial "codetabs/tab-control-link-active-styles" }}': codetab === '{{ $codetabCodename }}' }" role="tab" :aria-selected="codetab === '{{ $codetabCodename }}'" @click="switchCodetab('{{ $codetabCodename }}')">
               {{ $title | markdownify }}
             </a>
@@ -75,8 +75,14 @@
 
     </ul>
 
+    <style>
+      .tab-item {
+          cursor: pointer;
+      }
+    </style>
+
     <!-- Tab content -->
-    <div class="{{ partial "codetabs/tab-styles" }}">
+    <div class="{{ partial "codetabs/tab-styles" }}" style="border-color: rgb(231 231 231 / var(--tw-border-opacity)) !important;">
 
       {{ range $tabKeys }}
 

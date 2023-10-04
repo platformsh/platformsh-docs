@@ -1,4 +1,9 @@
 ---
-title: Flask
-description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum mauris id tincidunt gravida. Suspendisse sagittis euismod mi. Aliquam erat volutpat.
+title: "Flask"
+description: |
+  Everything you need to get started with [Flask](https://flask.palletsprojects.com/en/2.3.x/) on {{% vendor/name %}}.
 ---
+
+{{% description %}}
+
+{{% guides/link-philosophy %}}
