@@ -213,7 +213,7 @@ if you are in one of the following situations:
 - You are using the default environment of your Development plan to build an app/demo
   and sharing the URL with users for feedback
 - Business testing your development branch doesn’t have permission to resume it
-- You are using staging is to run integration or penetration tests
+- You are using staging to run integration or penetration tests
 
 ### Pause an environment
 
