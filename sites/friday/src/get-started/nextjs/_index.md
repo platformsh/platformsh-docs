@@ -214,6 +214,13 @@ To do so, commit your files and deploy your application using the {{% vendor/nam
   $ {{% vendor/cli %}}  push
 ```
 
+{{< note >}}
+In this first step guide, we don't add any services yet. </br>
+Please add any services that you want to use with your Next.js application.</br>
+
+[//]: # (Otherwise, it will be part of the next step on how to [add a database]&#40;/get-started/nextjs/add-database.md&#41;.)
+{{< /note >}}
+
 Command `{{% vendor/cli %}} project:init` (shortcut `{{% vendor/cli %}} ify`) will automatically detect that you’re using a Next.js stack, ask if you want to add any services and generate the corresponding `config.yaml` Yaml files, like so:
 ```yaml {location=".{{% vendor/cli %}}/config.yaml"}
 {{< code-link destination="/create-apps/app-reference.html" text="applications" title="Complete list of all available properties" >}}:
@@ -242,13 +249,6 @@ Command `{{% vendor/cli %}} project:init` (shortcut `{{% vendor/cli %}} ify`) wi
     type: redirect
     to: "https://{default}/"
 ```
-
-{{< note >}}
-In this first step guide, we don't add any services yet. </br>
-Please add any services that you want to use with your Next.js application.</br>
-
-[//]: # (Otherwise, it will be part of the next step on how to [add a database]&#40;/get-started/nextjs/add-database.md&#41;.)
-{{< /note >}}
 
 Then commit your new files, using the following command:
 
