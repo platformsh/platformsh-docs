@@ -153,7 +153,7 @@ If you don’t remember your `<projectId>` from the previous steps, you can get 
 +++
 title={{% vendor/name %}} Git repository
 +++
-For the rest of this guide, you will use the normal Git workflow (`git add . && git commit -m "message" && git push`) to commit your source code changes to Git history and use {{% vendor/name %}} CLI to deploy your [{{% vendor/name %}} environment](/environments.html) with latest code updates.
+For the rest of this guide, you will use the normal Git workflow (`git add . && git commit -m "message" && git push`) to commit your source code changes to Git history, and use {{% vendor/name %}} CLI to deploy your [{{% vendor/name %}} environment](/environments.html) with latest code updates.
 
 <--->
 +++
@@ -163,7 +163,7 @@ title=GitHub repository
 Enabling you, as a developer, to use a normal Git workflow (`git add . && git commit -m "message" && git push`) to deploy your environment—with no need to connect to the {{% vendor/name %}} console.
 
 {{< note >}}
-Please make sure you that you have already completed the following steps before adding [Github integration](integrations/source/github.md):
+Please make sure you that you have already completed the following steps before adding a [Github integration](integrations/source/github.md):
 
 1. Create a Git repository in your own organization following the relevant [Github repository creation guide](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository).
 2. Create a [Github integration](integrations/source/github.md).
@@ -179,8 +179,8 @@ Please make sure you that you have already completed the following steps before 
 
 ## Configure your project
 
-To be able to host your Express application on {{% vendor/name %}}, some Yaml configuration files are needed at the root of your project to manage the way your application will behave.
-These Yaml configuration files are located into a .{{% vendor/cli %}}/ folder at the root of your source code, the architecture of which will look like this:
+To be able to host your Express application on {{% vendor/name %}}, some YAML configuration files are needed at the root of your project to manage the way your application will behave.
+These YAML configuration files are located into a `.{{% vendor/cli %}}/` folder at the root of your source code, the architecture of which will look like this:
 ```
 my-express-app
 ├── .{{% vendor/cli %}}
@@ -193,7 +193,7 @@ my-express-app
 An additional `.environment` file is located at the root of your source code, this file will override `.env` environment variables with {{% vendor/name %}} specific ones.
 {{< /note >}}
 
-To pre-generate these Yaml files, please use the following command from the root of your Express project and follow the prompt:
+To pre-generate these YAML files, please use the following command from the root of your Express project and follow the prompts:
 ```bash {location="Terminal"}
 {{% vendor/cli %}} project:init
 Welcome to {{% vendor/name %}}!
@@ -239,7 +239,7 @@ To do so, commit your files and deploy your application using the {{% vendor/nam
   $ git add . && git commit -m "Init project"
 ```
 
-Command `{{% vendor/cli %}} project:init` (shortcut `{{% vendor/cli %}} ify`) will automatically detect that you’re using an Express stack, ask if you want to add any services and generate the corresponding `config.yaml` Yaml files, like so:
+The `{{% vendor/cli %}} project:init` command (shortcut `{{% vendor/cli %}} ify`) will automatically detect that you’re using an Express stack, ask if you want to add any services, and generate the corresponding `config.yaml` YAML files, like so:
 ```yaml {location=".{{% vendor/cli %}}/config.yaml"}
 {{< code-link destination="/create-apps/app-reference.html" text="applications" title="Complete list of all available properties" >}}:
   app:
@@ -269,9 +269,7 @@ routes:
 ```
 
 {{< note >}}
-In this first step guide, we didn't add any services yet. </br>
-Please add any services that you want to use with your Express application.</br>
-Otherwise, it will be part of the next step on how to [add a database](/get-started/express/add-database.md).
+In the current guide, services are added to your project at a [later stage](/get-started/express/add-database.md).
 {{< /note >}}
 
 Then commit your new files, using the following command:
@@ -284,8 +282,8 @@ git commit -m "{{% vendor/name %}} config files"
 ## Set project remote
 
 {{< note >}}
-If you used the {{% vendor/name %}} CLI command `{{% vendor/cli %}} project:create` to create your project and your local Git repo was already initialized, your local source code should already contain a ``.{{% vendor/cli %}}/local/project.yaml`` file that contains your `projectId` and you already have a Git remote repository set to `{{% vendor/cli %}}`.
-You can jump to the next section.
+If you used the {{% vendor/name %}} CLI command `{{% vendor/cli %}} project:create` to create your project and your local Git repo has already been initialized, your local source code should already contain a ``.{{% vendor/cli %}}/local/project.yaml`` file. This file contains your `projectId`, and you already have a Git remote repository set to `{{% vendor/cli %}}`.
+You can jump to [deploying your project](#deploy).
 {{< /note >}}
 
 There are slightly different ways to link your local project to your {{% vendor/name %}} project based on the Git workflow you chose for you project as discussed earlier in this guide.
@@ -294,7 +292,7 @@ There are slightly different ways to link your local project to your {{% vendor/
 +++
 title={{% vendor/name %}} Git repository
 +++
-If you host your Express source code on an {{% vendor/name %}} Git repository, and you miss to answer `y` (yes) to the question `Set the new project <projectName> as the remote for this repository? [Y/n]` during the ``project:create`` command, you need to let the {{% vendor/name %}} CLI know which linked project you want to deploy to.
+If you host your Express source code on an {{% vendor/name %}} Git repository, and you failed to answer `y` (yes) to the question `Set the new project <projectName> as the remote for this repository? [Y/n]` during the ``project:create`` command, you need to let the {{% vendor/name %}} CLI know which linked project you want to deploy to.
 
 To do so, use the {{% vendor/name %}} CLI to set remote project:
 ```bash {location="Terminal"}
@@ -347,7 +345,7 @@ Depending on the Git workflow you choose at the beginning of this tutorial, ther
 title=Using {{% vendor/name %}} Git repository
 +++
 
-When using the {{% vendor/name %}} Git repository as your main repository, you can push your code using the normal Git workflow (`git add . && git commit -m "message" && git push`) to push your source code changes to your `{{% vendor/cli %}}` remote repository, or by using {{% vendor/name %}} CLI command as seen below:
+When using the {{% vendor/name %}} Git repository as your main repository, you can push your code using the normal Git workflow (`git add . && git commit -m "message" && git push`) to push your source code changes to your `{{% vendor/cli %}}` remote repository. Alternatively, you can use the following  {{% vendor/name %}} CLI command:
 ```bash {location="Terminal"}
 {{% vendor/cli %}} push
 ```
@@ -357,19 +355,17 @@ When using the {{% vendor/name %}} Git repository as your main repository, you c
 title=Using third-party Git repository
 +++
 
-When using an external Git repository (Github, Gitlab, or Bitbucket) to store your source code and having the Git integration feature enabled, on each code updates, you will need to use the normal Git workflow (`git add . && git commit -m "message" && git push`) to push your code to your external repository using well known Git command seen below:
+When using an external Git repository (Github, Gitlab, or Bitbucket) to store your source code and having the Git integration feature enabled, on each code updates, you will need to use the normal Git workflow (`git add . && git commit -m "message" && git push`) to push your code to your external repository. To do so, run the following command:
 ```bash {location="Terminal"}
 git push origin
 ```
 
-Your Github/Gitlab/Bibucket integration process will then automatically create a new environment if you’re pushing a new Git branch and deploy changes to your corresponding environment.
-
+Your Github/Gitlab/Bibucket integration process will then automatically create a new environment if you’re pushing a new Git branch, and deploy changes to your corresponding environment.
 {{< /codetabs >}}
 
 {{% vendor/name %}} will now read your configuration files, and begin building your application image. **Your first push
 will fail**; don't worry, this is expected. At this point {{% vendor/cli %}} is not aware of the resources
-our application needs. We need to tell it what kind of CPU, Memory, and disk to assign to the various containers. Back
-in your terminal, run:
+your application needs. You need to define how much CPU, memory, and disk to assign to the various containers. Back in your terminal, run:
 
 ```bash {location="Terminal"}
 {{% vendor/cli %}} resources:set
