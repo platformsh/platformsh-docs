@@ -82,11 +82,6 @@ git commit -m "adding index.js"
 The next step is to create a project on {{% vendor/name %}}.
 To do this, you can either use the {{% vendor/name %}} CLI or the {{% vendor/name %}} Console.
 
-
-
-
-
-
 {{< codetabs >}}
 +++
 title=Using the CLI
@@ -113,7 +108,14 @@ If not, please refer to [Set project remote](#set-project-remote) section.
 title=Using the Console
 +++
 
-To create a new project using {{% vendor/name %}} Console, please follow [this tutorial](/learn/tutorials/migrating.html#2-create-a-project).
+[Create a new project from scratch]({{% vendor/urlraw "console" %}}/projects/create-project/).
+
+If you do not already have an organization created to put the project, you'll first be instructed to create one.
+
+Once you have done so, select that organization from the dropdown, and select **Create from scratch**.
+
+In the form, fill in details like the project name and [region](/development/regions.md).
+You'll be able to define resources for the project after your first push.
 
 After creating a project with the console, you need to let the {{% vendor/name %}} CLI know which linked project you want to deploy to.
 
