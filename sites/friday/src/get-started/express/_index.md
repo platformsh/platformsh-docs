@@ -22,6 +22,7 @@ To get your Express project up and running as quickly as possible, experiment wi
 {{% guides/requirements name="Express" %}}
 
 ## Create your local Express app
+
 First things first, if you don’t have a local Express project, you need to create a new Express project locally by following the official Express [installation guide](https://expressjs.com/en/starter/installing.html).
 
 Please refer to all the steps of the official Express installation guide for further details, but to sum it up, this is the 4 steps to create an Express app locally:
@@ -34,7 +35,9 @@ npm install express
 ```
 
 ## Init your Git repo
+
 We need to initialize the local Git repository and commit local files, using the following command:
+
 ```bash {location="Terminal"}
 git init
 git add package.json package-lock.json
@@ -51,7 +54,8 @@ git add .gitignore && git commit -m "adding node_modules folder in .gitignore fi
 ## Add a Hello World route
 
 Please create your first Express page.
-To do so, please create, at the root of your project, a new ``index.js`` file that will contain a basic Hello world script:
+To do so, create a new `index.js` file at the root of your project. It will contain a basic Hello world script:
+
 ```javascript {location="index.js"}
 const express = require('express')
 const app = express()
@@ -65,7 +69,9 @@ app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
 ```
+
 Then please commit your file using the following commands:
+
 ```bash {location="Terminal"}
 git add index.js
 git commit -m "adding index.js"
