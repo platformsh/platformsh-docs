@@ -80,15 +80,16 @@ git commit -m "adding index.js"
 ## Create a new project
 
 The next step is to create a project on {{% vendor/name %}}.
-To do this, you can either use the {{% vendor/name %}} CLI or the {{% vendor/name %}} console—details on how to do this can be found below.
+To do this, you can either use the {{% vendor/name %}} CLI or the {{% vendor/name %}} Console.
 
-{{< note title="Remember" >}}
-At the end of either using the {{% vendor/name %}} CLI or the Console section, please copy your new **projectId**, we’ll use it in the next section: link your local project to your {{% vendor/name %}} project.
-{{< /note >}}
+
+
+
+
 
 {{< codetabs >}}
 +++
-title=using the CLI
+title=Using the CLI
 +++
 To create a new project with the {{% vendor/name %}} CLI, use the following command and follow the prompt:
 ```bash {location="Terminal"}
@@ -96,7 +97,7 @@ To create a new project with the {{% vendor/name %}} CLI, use the following comm
 ```
 
 {{< note >}}
-When creating a new project using the {{% vendor/name %}} CLI command ``project:create``, it will ask a question if you want to set the local remote to your new project. Please say Yes (y) to it.
+When creating a new project using the {{% vendor/name %}} CLI command `project:create`, you will be asked if you want to set the local remote to your new project. Enter **Yes (y)**.
 Your local source code will be automatically linked to your newly created {{% vendor/name %}} project by creating a `.{{% vendor/cli %}}/local/project.yaml` file that will contain the corresponding `<projectId>` and set a Git remote to `{{% vendor/cli %}}`.
 
 ```bash {location="Terminal"}
@@ -109,8 +110,9 @@ If not, please refer to [Set project remote](#set-project-remote) section.
 
 <--->
 +++
-title=using the Console
+title=Using the Console
 +++
+
 To create a new project using {{% vendor/name %}} Console, please follow [this tutorial](/learn/tutorials/migrating.html#2-create-a-project).
 
 After creating a project with the console, you need to let the {{% vendor/name %}} CLI know which linked project you want to deploy to.
