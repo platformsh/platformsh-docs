@@ -14,12 +14,14 @@ Your project source code defines the services configuration in the main `.{{% ve
 As an example on how to do so, to add a [MariaDB database engine](/add-services/mysql.html) into your Express project, complete the following 6 steps:
 
 ## 1. Create a new branch for testing
+
 Create a new branch using the following command:
 ```bash {location="Terminal"}
 {{% vendor/cli %}} environment:branch add-mysql-database
 ```
 
 ## 2. Add a MariaDB service
+
 Configure the MariaDB service by adding this Yaml definition at the end of your `.{{% vendor/cli %}}/config.yaml` file:
 
 ```yaml {location=".{{% vendor/cli %}}/config.yaml"}
@@ -68,6 +70,7 @@ Please complete [Configure resources for your service](#3-configure-resources-fo
 {{< /note >}}
 
 ## 3. Configure resources for your service
+
 When you push a new service to your project for the first time, the deployment will fail, and you will need to allocate resources to the service container.
 
 Back in your terminal, run:
@@ -92,6 +95,7 @@ Are you sure you want to continue? [Y/n] y
 ```
 
 ## 4. Configure your Express application to use this new database
+
 First, you need a NodeJs module named ``mysql2``. Install it by running the following command:
 ```bash {location="Terminal"}
 npm install mysql2
@@ -184,6 +188,7 @@ git add package.json package-lock.json index.js && git commit -m "adding MariaDb
 ```
 
 ## 5. Merge to production
+
 When satisfied with your changes, merge them to the main branch, and remove the feature branch:
 
 ```bash {location="Terminal"}
@@ -201,6 +206,7 @@ Please complete again [Configure resources for your service](#3-configure-resour
 
 
 ## 6. Remove the feature branch
+
 Then, you need to remove the feature branch
 ```bash {location="Terminal"}
 {{% vendor/cli %}} checkout main

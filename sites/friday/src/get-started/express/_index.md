@@ -49,6 +49,7 @@ git add .gitignore && git commit -m "adding node_modules folder in .gitignore fi
 ```
 
 ## Add a Hello World route
+
 Please create your first Express page.
 To do so, please create, at the root of your project, a new ``index.js`` file that will contain a basic Hello world script:
 ```javascript {location="index.js"}
@@ -71,6 +72,7 @@ git commit -m "adding index.js"
 ```
 
 ## Create a new project
+
 The next step is to create a project on {{% vendor/name %}}.
 To do this, you can either use the {{% vendor/name %}} CLI or the {{% vendor/name %}} console—details on how to do this can be found below.
 
@@ -131,6 +133,7 @@ If you don’t remember your `<projectId>` from the previous steps, you can get 
 {{< /codetabs >}}
 
 ## Choose your Git workflow
+
 {{% vendor/name %}} projects can be used as a classic Git repository where you will be able to push your source code in different ways using either Git CLI or {{% vendor/name %}} CLI. You can choose which way—or Git workflow—you would like to use for your project from the following options:
 
 - Your project source code will be **hosted on a {{% vendor/name %}} Git repository**
@@ -165,6 +168,7 @@ Please make sure you that you have already completed the following steps before 
 {{< /codetabs >}}
 
 ## Configure your project
+
 To be able to host your Express application on {{% vendor/name %}}, some Yaml configuration files are needed at the root of your project to manage the way your application will behave.
 These Yaml configuration files are located into a .{{% vendor/cli %}}/ folder at the root of your source code, the architecture of which will look like this:
 ```
@@ -222,7 +226,7 @@ To do so, commit your files and deploy your application using the {{% vendor/nam
   $ git add .
   $ git commit -m 'Add {{% vendor/name %}} configuration files'
   $ {{% vendor/cli %}} push
-$ git add . && git commit -m "Init project"
+  $ git add . && git commit -m "Init project"
 ```
 
 Command `{{% vendor/cli %}} project:init` (shortcut `{{% vendor/cli %}} ify`) will automatically detect that you’re using an Express stack, ask if you want to add any services and generate the corresponding `config.yaml` Yaml files, like so:
@@ -322,6 +326,7 @@ title=Bitbucket repository
 {{< /codetabs >}}
 
 ## Deploy
+
 And just like that, it’s time to deploy!
 
 Depending on the Git workflow you choose at the beginning of this tutorial, there are two ways to deploy your source code changes.
