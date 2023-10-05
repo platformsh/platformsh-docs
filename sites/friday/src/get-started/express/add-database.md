@@ -7,7 +7,7 @@ description: |
 
 {{% description %}}
 
-{{% vendor/name %}} projects already include a [variety of services](/add-services.html#available-services) so you don’t have to subscribe to an external cache or search-engine services.
+{{% vendor/name %}} projects already include a [variety of services](/add-services.html#available-services), so you don’t have to subscribe to an external cache or search-engine services.
 And as these services are included in your project, you can manage them through Git and they’re backed up along with the rest of your project.
 Your project source code defines the services configuration in the main `.{{% vendor/cli %}}/config.yaml` file and this is where you can add new services.
 
