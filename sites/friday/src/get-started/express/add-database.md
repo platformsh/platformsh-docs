@@ -64,7 +64,7 @@ git add  .environment .{{% vendor/cli %}}/config.yaml && git commit -m "adding M
 {{< note >}}
 {{% vendor/name %}} will now read your configuration files, and begin building your application image. **Your push
 will fail**; don't worry, this is expected. At this point {{% vendor/cli %}} is not aware of the resources
-our new service needs. We need to tell it what kind of CPU, Memory, and disk to assign to the service container.
+our new service needs. You need to define how much CPU, memory, and disk to assign to the service container.
 
 Please complete [Configure resources for your service](#3-configure-resources-for-your-service) step
 {{< /note >}}
