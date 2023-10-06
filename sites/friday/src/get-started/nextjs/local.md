@@ -2,7 +2,7 @@
 title: "Local development"
 weight: -120
 description: |
-  Once Your Next.js application has been deployed on {{% vendor/name %}}, you might want to start develop your application locally.
+  Once Your Next.js application has been deployed on {{% vendor/name %}}, you might want to start developing your application locally.
 ---
 
 {{% description %}}
@@ -14,7 +14,7 @@ description: |
 
 ## Launch your local Next.js application
 
-To run your Express application locally, use the following:
+To run your Express application locally, use the following command:
 ```bash {location="Terminal"}
 npm run dev
 ```
