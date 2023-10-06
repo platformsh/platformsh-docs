@@ -33,9 +33,9 @@ vendor:
             services: .upsun/config.yaml
             app: .upsun/config.yaml
             apps: .upsun/config.yaml
-        prefix: 
-            apps: applications 
-            services: services 
+        prefix:
+            apps: applications
+            services: services
             routes: routes
     urls:
         main: https://upsun.com
@@ -46,6 +46,7 @@ vendor:
         api: https://proxy.upsun.com/
         host: upsun.com
         hostname: upsunapp.com
+        register: https://auth.upsun.com/register
 
 # Images (kept in static/)
 logo: "images/logo.svg"
@@ -95,7 +96,7 @@ nonDocsSections:
     title: API Documentation
     link: https://proxy.upsun.com/docs
     weight: -80
-    
+
 # Metadata
 meta:
   sitename: "Upsun User Documentation"
