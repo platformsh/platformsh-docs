@@ -2,7 +2,7 @@
 title: "Local development"
 weight: -120
 description: |
-  Once Your Strapi application has been deployed on {{% vendor/name %}}, you might want to start develop your application locally.
+  Once your Strapi application has been deployed on {{% vendor/name %}}, you might want to start developing your application locally.
 ---
 
 {{% description %}}
@@ -13,9 +13,9 @@ description: |
 * Install [node CLI](https://nodejs.org/en/download/package-manager) (version >= 18.x)
 * Install [Docker Compose](https://docs.docker.com/compose/install/) locally
 
-## Create a MariaDb Docker container
+## Create a MariaDB Docker container
 
-At the root of your project, create a ``docker-composer.yaml`` file with the following:
+At the root of your project, create a ``docker-composer.yaml`` file with the following configuration:
 
 ```bash {location="docker-compose.yaml"}
 version: '3.9'
@@ -33,21 +33,21 @@ services:
       - POSTGRES_DB=strapi
 ```
 
-And launch corresponding Docker container:
+And launch the corresponding Docker container:
 ```bash {location="Terminal"}
 docker-compose up -d
 ```
 
-## Launch local Strapi application
+## Launch your local Strapi application
 
-To run your Strapi application locally, use the following:
+To run your Strapi application locally, use the following command:
 ```bash {location="Terminal"}
 npm run develop
 ```
 
-And then it should open your admin panel using your favorite browser.
+And then it should open your **Admin** panel using your favorite browser.
 
-You can start develop amazing feature!
+You can start developing amazing features!
 
 {{< note >}}
 You might want your colleague to be able to do the same, so feel free to commit your changes on your favorite Git repository to share them with your team.
