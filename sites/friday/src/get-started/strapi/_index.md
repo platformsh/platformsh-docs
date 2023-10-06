@@ -448,6 +448,7 @@ Choose a profile size:
 [10  ] CPU 10, memory 13184 MB
 > 1
 ```
+
 And finally, it will ask how many disk space of our service container we need deployed. For now let's go with `512`:
 ```bash {location="Terminal"}
 Enter a disk size in MB: 512
@@ -485,7 +486,6 @@ Et voilà, your Strapi application is live!
 
 ## Make changes to your project
 
---------
 Now that your project is deployed, you can start making changes to it.
 For example, you might want to fix a bug or add a new feature.
 
