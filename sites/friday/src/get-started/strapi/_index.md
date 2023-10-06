@@ -170,6 +170,12 @@ An additional `.environment` file is located at the root of your source code, th
 {{< /note >}}
 
 To pre-generate these YAML files, please use the following command from the root of your Strapi application and follow the prompts:
+
+{{< note >}}
+As Strapi application needs a `PostgreSQL` database engine, so please select `PostgreSQL` service (using your arrow up&down and your space bar to select).</br>
+If you didn't do it the first time, you can re-do the command, and it will override previously generated config files.
+{{< /note >}}
+
 ```bash {location="Terminal"}
 {{% vendor/cli %}} project:init
 Welcome to {{% vendor/name %}}!
@@ -212,11 +218,6 @@ To do so, commit your files and deploy your application using the {{% vendor/nam
   $ {{% vendor/cli %}} push
   $ git add . && git commit -m "Init project"
 ```
-
-{{< note >}}
-As Strapi application needs a PostgreSQL database engine, please select `PostgreSQL` service (using your arrow up&down and your space bar to select).</br>
-If you didn't do it the first time, you can re-do the command, and it will override previously generated config files.
-{{< /note >}}
 
 Command `{{% vendor/cli %}} project:init` (shortcut `{{% vendor/cli %}} ify`) will automatically detect that you’re using an Strapi stack, ask if you want to add any services and generate the corresponding `config.yaml` Yaml files, like so:
 ```yaml {location=".{{% vendor/cli %}}/config.yaml"}
@@ -289,11 +290,14 @@ export API_TOKEN_SALT="$PLATFORM_PROJECT_ENTROPY"
 export APP_KEYS="toBeModified1,toBeModified2"
 ```
 
-{{< note title="TODO" >}}
-this step should not happen as it should be changed in the upsun ify directly and values of "DATABASE_" should be equal to the automatic env var values for PostgreSQL "POSTGRESQL_"
+[//]: # ({{< note title="TODO" >}})
 
-FLO: i will create an issue on CLI repo for that
-{{< /note >}}
+[//]: # (this step should not happen as it should be changed in the upsun ify directly and values of "DATABASE_" should be equal to the automatic env var values for PostgreSQL "POSTGRESQL_")
+
+[//]: # ()
+[//]: # (FLO: i will create an issue on CLI repo for that)
+
+[//]: # ({{< /note >}})
 
 ## Set project remote
 
@@ -401,7 +405,7 @@ Resource configuration for the project app (123456azerty), environment main (typ
 ```
 
 We will first configure your ``app`` application and then your `postgresql` service.
-The first question is what profile size you want applied to your application image. For now let's select the minimum `0.1`:
+The first question is what profile size you want applied to your application image. For now let's select the minimum `0.25`:
 ```bash {location="Terminal"}
 App: app
 Choose a profile size:
@@ -414,7 +418,7 @@ Choose a profile size:
   [6   ] CPU 6, memory 1728 MB
   [8   ] CPU 8, memory 2240 MB
   [10  ] CPU 10, memory 2688 MB
- > 0.1
+ > 0.25
 ```
 Next it will ask how many instances of our application container we need deployed. For now let's go with `1`:
 ```bash {location="Terminal"}
@@ -454,8 +458,8 @@ previous built images from early, apply our resource selections to them and depl
 ```javascript
 Summary of changes:
   App: app
-    CPU: 0.1
-    Memory: 64 MB
+    CPU: 0.25
+    Memory: 128 MB
   Service: postgresql
     CPU: 0.1
     Memory: 448 MB
@@ -469,84 +473,140 @@ Then it will automatically redeploy your ``main`` environment with allocated res
 Note that each environment has its own domain name.
 To open the url of your new environment, run the following command:
 
-   ```bash {location="Terminal"}
-   {{% vendor/cli %}} environment:url --primary
-   ```
+```bash {location="Terminal"}
+{{% vendor/cli %}} environment:url --primary
+```
+
+{{< note >}}
+If you want to access Admin panel, add ``/admin`` to your frontend url.
+{{< /note >}}
 
 Et voilà, your Strapi application is live!
 
-## Make changes to your project
+[//]: # (## Make changes to your project)
 
---------
-Now that your project is deployed, you can start making changes to it.
-For example, you might want to fix a bug or add a new feature.
+[//]: # ()
+[//]: # (--------)
 
-In your project, the `main` branch always represents the production environment.
-Other branches are for developing new features, fixing bugs, or updating the infrastructure.
+[//]: # (Now that your project is deployed, you can start making changes to it.)
 
-To make changes to your project, follow these steps:
+[//]: # (For example, you might want to fix a bug or add a new feature.)
 
-1. Create a new environment (a Git branch) to make changes without impacting production:
+[//]: # ()
+[//]: # (In your project, the `main` branch always represents the production environment.)
 
-   ```bash {location="Terminal"}
-   {{% vendor/cli %}} branch feat-a
-   ```
+[//]: # (Other branches are for developing new features, fixing bugs, or updating the infrastructure.)
 
-   This command creates a new local `feat-a` Git branch based on the main Git branch
-   and activates a related environment on {{< vendor/name >}}.
-   The new environment inherits the data (service data and assets) of its parent environment (the production environment here).
+[//]: # ()
+[//]: # (To make changes to your project, follow these steps:)
 
-2. Make changes to your project.
+[//]: # ()
+[//]: # (1. Create a new environment &#40;a Git branch&#41; to make changes without impacting production:)
 
-   For example, edit the `./index.js` file and make the following changes:
+[//]: # ()
+[//]: # (   ```bash {location="Terminal"})
 
-   ```javascript {location="index.js"}
-   app.get('/', async function(req, res){
-     // Make the output.
-     const outputString = `Hello, World! - A simple Express web framework template for {{% vendor/name %}}`
-     res.send(outputString);
-   });
-   ```
+[//]: # (   {{% vendor/cli %}} branch feat-a)
 
-3. Commit your changes:
+[//]: # (   ```)
 
-   ```bash {location="Terminal"}
-   git add index.js
-   git commit -m "Update Hello world"
-   ```
+[//]: # ()
+[//]: # (   This command creates a new local `feat-a` Git branch based on the main Git branch)
 
-4. Deploy your changes to the `feat-a` environment:
+[//]: # (   and activates a related environment on {{< vendor/name >}}.)
 
-   ```bash {location="Terminal"}
-   {{% vendor/cli %}} push
-   ```
+[//]: # (   The new environment inherits the data &#40;service data and assets&#41; of its parent environment &#40;the production environment here&#41;.)
 
-   Note that each environment has its own domain name.
-   To open the url of your new environment, run the following command:
+[//]: # ()
+[//]: # (2. Make changes to your project.)
 
-   ```bash {location="Terminal"}
-   {{% vendor/cli %}} environment:url --primary
-   ```
+[//]: # ()
+[//]: # (   For example, edit the `./index.js` file and make the following changes:)
 
-5. Iterate by changing the code, committing, and deploying.
-   When satisfied with your changes, merge them to the main branch,
-   and remove the feature branch:
+[//]: # ()
+[//]: # (   ```javascript {location="index.js"})
 
-   ```bash {location="Terminal"}
-   {{% vendor/cli %}} merge
-     Are you sure you want to merge feat-a into its parent, main? [Y/n] y
-   {{% vendor/cli %}} checkout main
-   git pull {{% vendor/cli %}} main
-   {{% vendor/cli %}} environment:delete feat-a
-   git fetch --prune
-   ```
+[//]: # (   app.get&#40;'/', async function&#40;req, res&#41;{)
 
-   {{< note >}}
-   Deploying to production was fast because the image built for the `feat-a` environment was reused.
-   {{< /note >}}
+[//]: # (     // Make the output.)
 
-   For a long running branch, to keep the code up-to-date with the main branch, use `git merge main` or `git rebase main`.
-   You can also keep the data in sync with the production environment by using `{{% vendor/cli %}} env:sync`.
+[//]: # (     const outputString = `Hello, World! - A simple Express web framework template for {{% vendor/name %}}`)
+
+[//]: # (     res.send&#40;outputString&#41;;)
+
+[//]: # (   }&#41;;)
+
+[//]: # (   ```)
+
+[//]: # ()
+[//]: # (3. Commit your changes:)
+
+[//]: # ()
+[//]: # (   ```bash {location="Terminal"})
+
+[//]: # (   git add index.js)
+
+[//]: # (   git commit -m "Update Hello world")
+
+[//]: # (   ```)
+
+[//]: # ()
+[//]: # (4. Deploy your changes to the `feat-a` environment:)
+
+[//]: # ()
+[//]: # (   ```bash {location="Terminal"})
+
+[//]: # (   {{% vendor/cli %}} push)
+
+[//]: # (   ```)
+
+[//]: # ()
+[//]: # (   Note that each environment has its own domain name.)
+
+[//]: # (   To open the url of your new environment, run the following command:)
+
+[//]: # ()
+[//]: # (   ```bash {location="Terminal"})
+
+[//]: # (   {{% vendor/cli %}} environment:url --primary)
+
+[//]: # (   ```)
+
+[//]: # ()
+[//]: # (5. Iterate by changing the code, committing, and deploying.)
+
+[//]: # (   When satisfied with your changes, merge them to the main branch,)
+
+[//]: # (   and remove the feature branch:)
+
+[//]: # ()
+[//]: # (   ```bash {location="Terminal"})
+
+[//]: # (   {{% vendor/cli %}} merge)
+
+[//]: # (     Are you sure you want to merge feat-a into its parent, main? [Y/n] y)
+
+[//]: # (   {{% vendor/cli %}} checkout main)
+
+[//]: # (   git pull {{% vendor/cli %}} main)
+
+[//]: # (   {{% vendor/cli %}} environment:delete feat-a)
+
+[//]: # (   git fetch --prune)
+
+[//]: # (   ```)
+
+[//]: # ()
+[//]: # (   {{< note >}})
+
+[//]: # (   Deploying to production was fast because the image built for the `feat-a` environment was reused.)
+
+[//]: # (   {{< /note >}})
+
+[//]: # ()
+[//]: # (   For a long running branch, to keep the code up-to-date with the main branch, use `git merge main` or `git rebase main`.)
+
+[//]: # (   You can also keep the data in sync with the production environment by using `{{% vendor/cli %}} env:sync`.)
 
 ## Use a third-party Git provider
 
