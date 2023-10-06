@@ -1,4 +1,6 @@
 ---
 title: Django
-description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum mauris id tincidunt gravida. Suspendisse sagittis euismod mi. Aliquam erat volutpat.
+description: Learn how to deploy your Django app on {{% vendor/name %}}
 ---
+
+Coming soon!
