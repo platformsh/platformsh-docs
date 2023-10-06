@@ -1,12 +1,12 @@
 ---
-title: "Continous observability with Blackfire"
+title: "Continuous observability with Blackfire"
 sidebarTitle: "Blackfire"
 weight: -90
 description: Set up a continuous observability strategy for your Laravel app with Blackfire.
 ---
 
-[Blackfire.io](../../../increase-observability/integrate-observability/blackfire.md)
-continous observability solution is included with your {{< vendor/name >}}
+[Blackfire.io](../../../increase-observability/application-metrics/blackfire.md)
+continuous observability solution is included with your {{< vendor/name >}}
 subscription and activated out of the box on your PHP and Python applications.
 
 [Blackfire Monitoring](https://blackfire.io/docs/monitoring-cookbooks/index) is
