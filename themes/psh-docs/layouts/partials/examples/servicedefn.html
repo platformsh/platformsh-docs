@@ -2,12 +2,13 @@
     Note: this will only replace the endpoint and service type for demonstration purposes.
     To use this partial, pass the image data as the context (Ex: partial "examples/servicedefn" $data)
 -->
+{{ $docVersion := .docVersion }}
 {{- $apiIndent := "" -}}
 {{- $versionPrefix := "" -}}
 {{- $l1 := "" -}}
-{{- $version := "<VERSION>" -}}
+{{- $serviceVersion := "<VERSION>" -}}
 {{- if ( .latest ) -}}
-  {{- $version = partial "examples/latest" (dict "data" .data ) -}}
+  {{- $serviceVersion = partial "examples/latest" (dict "data" .data ) -}}
 {{- end -}}
 {{- $appName := "<APP_NAME>" -}}
 {{- if .appName -}}
@@ -18,27 +19,29 @@
   {{- $relName = .relName -}}
 {{- end -}}
 
-{{- $l2 := printf "%s    type: %s:%s" $apiIndent (index .data "type") $version -}}
+{{- $l2 := printf "%s    type: %s:%s" $apiIndent (index .data "type") $serviceVersion -}}
 {{- $l3 := "" -}}
 {{- if (index .data "disk") -}}
-  {{- if (index .data "min_disk_size") -}}
-    {{- $l3 = printf "\n%s    disk: %s" $apiIndent ( string (index .data "min_disk_size")) -}}
-  {{- else -}}
-    {{- $l3 = printf "\n%s    disk: 256" $apiIndent -}}
+  {{- if eq $docVersion 1 -}}
+    {{- if (index .data "min_disk_size") -}}
+      {{- $l3 = printf "\n%s    disk: %s" $apiIndent ( string (index .data "min_disk_size")) -}}
+    {{- else -}}
+      {{- $l3 = printf "\n%s    disk: 256" $apiIndent -}}
+    {{- end -}}
   {{- end -}}
 {{- end -}}
 {{- $l4 := "" -}}
 {{- with (index .data "service_relationships") -}}
   {{- $l4 = printf "\n%s    relationships:\n%s        %s: '%s:http'" $apiIndent $apiIndent $relName $appName }}
 {{- end -}}
-{{- $l5 := "" }} 
+{{- $l5 := "" }}
 
 {{- with (index .data "configuration") -}}
-  
+
   {{- range split . "\n" -}}
       {{- $l5 = printf "%s\n%s%s" $l5 $apiIndent . -}}
   {{- end -}}
-  
+
 {{- end -}}
 
 {{ printf "%s\n%s%s%s%s" $l1 $l2 $l3 $l4 $l5 | safeHTML }}
