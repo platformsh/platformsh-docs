@@ -30,7 +30,7 @@ Configure the MariaDB service by adding this Yaml definition at the end of your 
     type: mariadb:10.6
 ```
 
-Connect the service to your application ``app`` by adding a relationships settings into your ``app`` definition, within your .{{% vendor/cli %}}/config.yaml file:
+Connect the service to your application ``app`` by adding a relationships setting into your `app` definition:
 ```yaml {location=".{{% vendor/cli %}}/config.yaml"}
 applications:
   app:
