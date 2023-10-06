@@ -483,130 +483,70 @@ If you want to access Admin panel, add ``/admin`` to your frontend url.
 
 Et voilà, your Strapi application is live!
 
-[//]: # (## Make changes to your project)
+## Make changes to your project
 
-[//]: # ()
-[//]: # (--------)
+--------
+Now that your project is deployed, you can start making changes to it.
+For example, you might want to fix a bug or add a new feature.
 
-[//]: # (Now that your project is deployed, you can start making changes to it.)
+In your project, the `main` branch always represents the production environment.
+Other branches are for developing new features, fixing bugs, or updating the infrastructure.
 
-[//]: # (For example, you might want to fix a bug or add a new feature.)
+To make changes to your project, follow these steps:
 
-[//]: # ()
-[//]: # (In your project, the `main` branch always represents the production environment.)
+1. Create a new environment (a Git branch) to make changes without impacting production:
 
-[//]: # (Other branches are for developing new features, fixing bugs, or updating the infrastructure.)
+   ```bash {location="Terminal"}
+   {{% vendor/cli %}} branch feat-a
+   ```
 
-[//]: # ()
-[//]: # (To make changes to your project, follow these steps:)
+   This command creates a new local `feat-a` Git branch based on the main Git branch
+   and activates a related environment on {{< vendor/name >}}.
+   The new environment inherits the data (service data and assets) of its parent environment (the production environment here).
 
-[//]: # ()
-[//]: # (1. Create a new environment &#40;a Git branch&#41; to make changes without impacting production:)
+2. Make changes to your project.
 
-[//]: # ()
-[//]: # (   ```bash {location="Terminal"})
+   For example, you can customize Admin panel, following the official [Admin panel customization guide](https://docs.strapi.io/dev-docs/admin-panel-customization)
 
-[//]: # (   {{% vendor/cli %}} branch feat-a)
+3. Commit your changes:
 
-[//]: # (   ```)
+   ```bash {location="Terminal"}
+   git add .
+   git commit -m "Customize Admin panel"
+   ```
 
-[//]: # ()
-[//]: # (   This command creates a new local `feat-a` Git branch based on the main Git branch)
+4. Deploy your changes to the `feat-a` environment:
 
-[//]: # (   and activates a related environment on {{< vendor/name >}}.)
+   ```bash {location="Terminal"}
+   {{% vendor/cli %}} push
+   ```
 
-[//]: # (   The new environment inherits the data &#40;service data and assets&#41; of its parent environment &#40;the production environment here&#41;.)
+   Note that each environment has its own domain name.
+   To open the url of your new environment, run the following command:
 
-[//]: # ()
-[//]: # (2. Make changes to your project.)
+   ```bash {location="Terminal"}
+   {{% vendor/cli %}} environment:url --primary
+   ```
 
-[//]: # ()
-[//]: # (   For example, edit the `./index.js` file and make the following changes:)
+5. Iterate by changing the code, committing, and deploying.
+   When satisfied with your changes, merge them to the main branch,
+   and remove the feature branch:
 
-[//]: # ()
-[//]: # (   ```javascript {location="index.js"})
+   ```bash {location="Terminal"}
+   {{% vendor/cli %}} merge
+     Are you sure you want to merge feat-a into its parent, main? [Y/n] y
+   {{% vendor/cli %}} checkout main
+   git pull {{% vendor/cli %}} main
+   {{% vendor/cli %}} environment:delete feat-a
+   git fetch --prune
+   ```
 
-[//]: # (   app.get&#40;'/', async function&#40;req, res&#41;{)
+   {{< note >}}
+   Deploying to production was fast because the image built for the `feat-a` environment was reused.
+   {{< /note >}}
 
-[//]: # (     // Make the output.)
-
-[//]: # (     const outputString = `Hello, World! - A simple Express web framework template for {{% vendor/name %}}`)
-
-[//]: # (     res.send&#40;outputString&#41;;)
-
-[//]: # (   }&#41;;)
-
-[//]: # (   ```)
-
-[//]: # ()
-[//]: # (3. Commit your changes:)
-
-[//]: # ()
-[//]: # (   ```bash {location="Terminal"})
-
-[//]: # (   git add index.js)
-
-[//]: # (   git commit -m "Update Hello world")
-
-[//]: # (   ```)
-
-[//]: # ()
-[//]: # (4. Deploy your changes to the `feat-a` environment:)
-
-[//]: # ()
-[//]: # (   ```bash {location="Terminal"})
-
-[//]: # (   {{% vendor/cli %}} push)
-
-[//]: # (   ```)
-
-[//]: # ()
-[//]: # (   Note that each environment has its own domain name.)
-
-[//]: # (   To open the url of your new environment, run the following command:)
-
-[//]: # ()
-[//]: # (   ```bash {location="Terminal"})
-
-[//]: # (   {{% vendor/cli %}} environment:url --primary)
-
-[//]: # (   ```)
-
-[//]: # ()
-[//]: # (5. Iterate by changing the code, committing, and deploying.)
-
-[//]: # (   When satisfied with your changes, merge them to the main branch,)
-
-[//]: # (   and remove the feature branch:)
-
-[//]: # ()
-[//]: # (   ```bash {location="Terminal"})
-
-[//]: # (   {{% vendor/cli %}} merge)
-
-[//]: # (     Are you sure you want to merge feat-a into its parent, main? [Y/n] y)
-
-[//]: # (   {{% vendor/cli %}} checkout main)
-
-[//]: # (   git pull {{% vendor/cli %}} main)
-
-[//]: # (   {{% vendor/cli %}} environment:delete feat-a)
-
-[//]: # (   git fetch --prune)
-
-[//]: # (   ```)
-
-[//]: # ()
-[//]: # (   {{< note >}})
-
-[//]: # (   Deploying to production was fast because the image built for the `feat-a` environment was reused.)
-
-[//]: # (   {{< /note >}})
-
-[//]: # ()
-[//]: # (   For a long running branch, to keep the code up-to-date with the main branch, use `git merge main` or `git rebase main`.)
-
-[//]: # (   You can also keep the data in sync with the production environment by using `{{% vendor/cli %}} env:sync`.)
+   For a long running branch, to keep the code up-to-date with the main branch, use `git merge main` or `git rebase main`.
+   You can also keep the data in sync with the production environment by using `{{% vendor/cli %}} env:sync`.
 
 ## Use a third-party Git provider
 
