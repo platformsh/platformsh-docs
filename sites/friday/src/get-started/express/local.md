@@ -14,6 +14,7 @@ description: |
 * Install [Docker Composer](https://docs.docker.com/compose/install/) locally
 
 ## Create a MariaDb Docker container
+
 At the root of your project, create a ``docker-composer.yaml`` file with the following:
 
 ```bash {location="docker-compose.yaml"}
@@ -40,6 +41,7 @@ docker-compose up -d
 ```
 
 ## Adapt your Express application to use local Docker container
+
 For your Express application to use the local Docker container, adapt your ``index.js`` file, function `openConnection()` with the following :
 ```javascript
 ...
@@ -56,6 +58,7 @@ function openConnection() {
 ```
 
 ## Launch local Express application
+
 To run your Express application locally, use the following:
 ```bash {location="Terminal"}
 node index.js
