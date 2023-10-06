@@ -236,7 +236,6 @@ To do so, commit your files and deploy your application using the {{% vendor/nam
   $ git add .
   $ git commit -m 'Add {{% vendor/name %}} configuration files'
   $ {{% vendor/cli %}} push
-  $ git add . && git commit -m "Init project"
 ```
 
 The `{{% vendor/cli %}} project:init` command (shortcut `{{% vendor/cli %}} ify`) will automatically detect that you’re using an Express stack, ask if you want to add any services, and generate the corresponding `config.yaml` YAML files, like so:
@@ -254,7 +253,7 @@ The `{{% vendor/cli %}} project:init` command (shortcut `{{% vendor/cli %}} ify`
     {{< code-link destination="/create-apps/app-reference.html#web-commands" text="dependencies" title="Installs global dependencies as part of the build process. They’re independent of your app’s dependencies and are available in the PATH during the build process and in the runtime environment. They’re installed before the build hook runs using a package manager for the language. Click for more information." >}}:
       nodejs:
         sharp: "*"
-#services:
+#{{< code-link destination="/add-services.html#available-services" text="services" title="Click to get Full list of available services." >}}:
 #  db:
 #    type: postgresql:15
 routes:
