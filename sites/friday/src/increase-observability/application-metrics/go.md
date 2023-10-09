@@ -97,7 +97,7 @@ Stops the continuous profiling probe.
 1. Get the Blackfire Continuous Profiler Go library
 
 ```bash
-go get github.com/blackfireio/go-continuous-profiling-experimental
+go get github.com/blackfireio/go-continuous-profiling
 ```
 
 2. Save the following code as `main.go` and run as follows:
@@ -115,7 +115,7 @@ import (
 	"io"
 	"time"
 
-	profiler "github.com/blackfireio/go-continuous-profiling-experimental"
+	profiler "github.com/blackfireio/go-continuous-profiling"
 )
 
 func doSomethingCpuIntensive() {
