@@ -25,10 +25,10 @@ It is available directly from Console under the `Profiling` tab of your environm
 
 ## Installation
 
-Get the [Blackfire Continuous Profiler Go library](https://github.com/blackfireio/go-continuous-profiling-experimental):
+Get the [Blackfire Continuous Profiler Go library](https://github.com/blackfireio/go-continuous-profiling):
 
 ```bash
-go get github.com/blackfireio/go-continuous-profiling-experimental
+go get github.com/blackfireio/go-continuous-profiling
 ```
 
 ## Go continuous profiler API
