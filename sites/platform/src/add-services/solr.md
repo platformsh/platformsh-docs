@@ -159,7 +159,6 @@ relationships:
 {{< /snippet >}}
 {{< snippet name="searchsolr" config="service" placeholder="true" >}}
     type: solr:{{% latest "solr" %}}
-    disk: 256
 {{< /snippet >}}
 ```
 
@@ -188,34 +187,69 @@ For Solr 4, {{% vendor/name %}} supports only a single core per server called `c
 
 You must provide your own Solr configuration via a `core_config` key in your `{{< vendor/configfile "services" >}}`:
 
+{{< version/specific >}}
+<!-- Version 1 -->
+
 ```yaml {configFile="services"}
-{{% snippet name="searchsolr" config="service" %}}
+{{< snippet name="searchsolr" config="service" >}}
     type: "solr:4.10"
     disk: 1024
     configuration:
         core_config: !archive "{{< variable "DIRECTORY" >}}"
-{{% /snippet %}}
+{{< /snippet >}}
 ```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="services"}
+{{< snippet name="searchsolr" config="service" >}}
+    type: "solr:4.10"
+    configuration:
+        core_config: !archive "{{< variable "DIRECTORY" >}}"
+{{< /snippet >}}
+```
+
+{{< /version/specific >}}
 
 {{< variable "DIRECTORY" >}} points to a directory in the Git repository, in or below the `{{< vendor/configdir >}}/` folder. This directory needs to contain everything that Solr needs to start a core. At the minimum, `solrconfig.xml` and `schema.xml`. 
 
 For example, place them in `{{< vendor/configdir >}}/solr/conf/` such that the `schema.xml` file is located at `{{< vendor/configdir >}}/solr/conf/schema.xml`. You can then reference that path like this -
 
+{{< version/specific >}}
+<!-- Version 1 -->
+
 ```yaml {configFile="services"}
-{{% snippet name="searchsolr" config="service" %}}
+{{< snippet name="searchsolr" config="service" >}}
     type: "solr:4.10"
     disk: 1024
     configuration:
         core_config: !archive "solr/conf/"
-{{% /snippet %}}
+{{< /snippet >}}
 ```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="services"}
+{{< snippet name="searchsolr" config="service" >}}
+    type: "solr:4.10"
+    configuration:
+        core_config: !archive "solr/conf/"
+{{< /snippet >}}
+```
+
+{{< /version/specific >}}
 
 ## Solr 6 and later
 
 For Solr 6 and later {{% vendor/name %}} supports multiple cores via different endpoints. Cores and endpoints are defined separately, with endpoints referencing cores. Each core may have its own configuration or share a configuration. It is best illustrated with an example.
 
+{{< version/specific >}}
+<!-- Version 1 -->
+
 ```yaml {configFile="services"}
-{{% snippet name="searchsolr" config="service" %}}
+{{< snippet name="searchsolr" config="service" >}}
     type: solr:{{% latest "solr" %}}
     disk: 1024
     configuration:
@@ -229,8 +263,30 @@ For Solr 6 and later {{% vendor/name %}} supports multiple cores via different e
                 core: mainindex
             extra:
                 core: extraindex
-{{% /snippet %}}
+{{< /snippet >}}
 ```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="services"}
+{{< snippet name="searchsolr" config="service" >}}
+    type: solr:{{% latest "solr" %}}
+    configuration:
+        cores:
+            mainindex:
+                conf_dir: !archive "core1-conf"
+            extraindex:
+                conf_dir: !archive "core2-conf"
+        endpoints:
+            main:
+                core: mainindex
+            extra:
+                core: extraindex
+{{< /snippet >}}
+```
+
+{{< /version/specific >}}
 
 The above definition defines a single Solr {{% latest "solr" %}} server. That server has 2 cores defined: 
 
@@ -241,16 +297,19 @@ It then defines two endpoints: `main` is connected to the `mainindex` core while
 
 Each endpoint is then available in the relationships definition in `{{< vendor/configfile "app" >}}`. For example, to allow an application to talk to both of the cores defined above its configuration should contain the following:
 
+{{< version/specific >}}
+<!-- Version 1 -->
+
 ```yaml {configFile="app"}
-{{% snippet name="myapp" config="app" root="false" %}}
+{{< snippet name="myapp" config="app" root="false" >}}
 type: "php:{{% latest "php" %}}"
 
 relationships:
     solrsearch1: 'searchsolr:main'
     solrsearch2: 'searchsolr:extra'
-{{% /snippet %}}
+{{< /snippet >}}
 
-{{% snippet name="searchsolr" config="service" placeholder="true"%}}
+{{< snippet name="searchsolr" config="service" placeholder="true">}}
     type: solr:{{% latest "solr" %}}
     disk: 1024
     configuration:
@@ -264,8 +323,38 @@ relationships:
                 core: mainindex
             extra:
                 core: extraindex
-{{% /snippet %}}
+{{< /snippet >}}
 ```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="false" >}}
+type: "php:{{% latest "php" %}}"
+
+relationships:
+    solrsearch1: 'searchsolr:main'
+    solrsearch2: 'searchsolr:extra'
+{{< /snippet >}}
+
+{{< snippet name="searchsolr" config="service" placeholder="true">}}
+    type: solr:{{% latest "solr" %}}
+    configuration:
+        cores:
+            mainindex:
+                conf_dir: !archive "core1-conf"
+            extraindex:
+                conf_dir: !archive "core2-conf"
+        endpoints:
+            main:
+                core: mainindex
+            extra:
+                core: extraindex
+{{< /snippet >}}
+```
+
+{{< /version/specific >}}
 
 That is, the application's environment would include a `solrsearch1` relationship that connects to the `main` endpoint, which is the `mainindex` core, and a `solrsearch2` relationship that connects to the `extra` endpoint, which is the `extraindex` core.
 
@@ -296,8 +385,11 @@ The relationships array would then look something like the following:
 
 For even more customizability, it's also possible to define Solr configsets. For example, the following snippet would define one configset, which would be used by all cores. Specific details can then be overridden by individual cores using `core_properties`, which is equivalent to the Solr `core.properties` file.
 
+{{< version/specific >}}
+<!-- Version 1 -->
+
 ```yaml {configFile="services"}
-{{% snippet name="searchsolr" config="service" %}}
+{{< snippet name="searchsolr" config="service" >}}
     type: solr:8.4
     disk: 1024
     configuration:
@@ -317,8 +409,36 @@ For even more customizability, it's also possible to define Solr configsets. For
                 core: english_index
             arabic:
                 core: arabic_index
-{{% /snippet %}}
+{{< /snippet >}}
 ```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="services"}
+{{< snippet name="searchsolr" config="service" >}}
+    type: solr:8.4
+    configuration:
+        configsets:
+            mainconfig: !archive "configsets/solr8"
+        cores:
+            english_index:
+                core_properties: |
+                    configSet=mainconfig
+                    schema=english/schema.xml
+            arabic_index:
+                core_properties: |
+                    configSet=mainconfig
+                    schema=arabic/schema.xml
+        endpoints:
+            english:
+                core: english_index
+            arabic:
+                core: arabic_index
+{{< /snippet >}}
+```
+
+{{< /version/specific >}}
 
 In this example, `{{< vendor/configdir >}}/configsets/solr8` contains the configuration definition for multiple cores. There are then two cores created: 
 
