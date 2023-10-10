@@ -110,7 +110,6 @@ relationships:
 {{< /snippet >}}
 {{< snippet name="queuekafka" config="service" placeholder="true" >}}
     type: kafka:{{% latest "kafka" %}}
-    disk: 512
 {{< /snippet >}}
 ```
 
