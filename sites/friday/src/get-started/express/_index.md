@@ -185,12 +185,12 @@ These YAML configuration files are located into a `.{{% vendor/cli %}}/` folder 
 my-express-app
 ├── .{{% vendor/cli %}}
 │   └── config.yaml
-├── .environment
+├── [.environment]
 └── <project sources>
 ```
 
 {{< note >}}
-An additional `.environment` file is located at the root of your source code, this file will override `.env` environment variables with {{% vendor/name %}} specific ones.
+{{% get-started/environment-note %}}
 {{< /note >}}
 
 To pre-generate these YAML files, please use the following command from the root of your Express project and follow the prompts:
