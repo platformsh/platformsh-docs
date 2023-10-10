@@ -127,7 +127,6 @@ relationships:
 {{< /snippet >}}
 {{< snippet name="cachemc" config="service" placeholder="true" >}}
     type: memcached:{{% latest "memcached" %}}
-    disk: 256
 {{< /snippet >}}
 ```
 

@@ -189,7 +189,6 @@ relationships:
 {{< /snippet >}}
 {{< snippet name="dbmongo" config="service" placeholder="true" >}}
     type: mongodb-enterprise:{{% latest "mongodb-enterprise" %}}
-    disk: 256
 {{< /snippet >}}
 ```
 
