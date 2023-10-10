@@ -52,7 +52,7 @@ export DB_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.mariadb[0].password')"
 ```
 
 {{< note >}}
-This additional `.environment` file is located at the root of your source code. During deployment of your {{% vendor/name %}} project, this file will override existing `.env` environment variables with {{% vendor/name %}} specific ones.
+This additional `.environment` file is located at the root of your source code. This file contains {{% vendor/name %}} specific environment variables that will be use during deployment of your project.
 {{< /note >}}
 
 Commit your change:
