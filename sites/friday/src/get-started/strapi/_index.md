@@ -308,7 +308,7 @@ This file contains your `projectId`, and you already have a Git remote repositor
 You can jump to [deploying your project](#deploy).
 {{< /note >}}
 
-There are slightly different ways to link your local project to your {{% vendor/name %}} project based on the Git workflow you chose for you project, as discussed earlier in this guide.
+There are slightly different ways to link your local project to your {{% vendor/name %}} project based on the Git workflow you chose for your project, as discussed earlier in this guide.
 
 {{< codetabs >}}
 +++
