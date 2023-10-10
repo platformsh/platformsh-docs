@@ -88,7 +88,7 @@ When prompted, fill in details like the project name, [region](/development/regi
 title=In the Console
 +++
 
-[Create a new project from scratch](https://console.upsun.com/projects/create-project/).
+[Create a new project from scratch]({{% create-project-link scratch=true %}}).
 
 If you do not already have an organization created to put the project, you'll first be instructed to create one.
 
