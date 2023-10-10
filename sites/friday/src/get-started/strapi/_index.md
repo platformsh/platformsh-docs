@@ -84,7 +84,7 @@ If not, please refer to the [Set project remote](#set-a-project-remote) section.
 title=Using the Console
 +++
 
-[Create a new project from scratch]({{% vendor/urlraw "console" %}}projects/create-project/).
+[Create a new project from scratch]({{% create-project-link scratch=true %}}).
 
 If you do not already have an organization created to put the project in, you'll first be instructed to create one.
 
