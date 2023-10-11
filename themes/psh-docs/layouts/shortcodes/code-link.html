@@ -1,1 +1,7 @@
-<a href="{{ .Get "destination" }}" class="after:content-['↗']">{{ .Get "text" }}</a>
+{{- $destination := .Get "destination" -}}
+{{- $title := .Get "title" -}}
+{{ if not $title }}
+  {{- $title = "Click for more information" -}}
+{{ end }}
+{{- $text := .Get "text" -}}
+{{- printf "<a href =\"%s\" title=\"%s\" class=\"after:content-['↗']\">%s</a>" $destination $title $text | chomp | safeHTML -}}
