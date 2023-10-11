@@ -227,16 +227,34 @@ You can configure additional [virtual hosts](https://www.rabbitmq.com/vhosts.htm
 which can be useful for separating resources, such as exchanges, queues, and bindings, into their own namespaces.
 To create virtual hosts, add them to your configuration as in the following example:
 
+{{< version/specific >}}
+<!-- Version 1 -->
+
 ```yaml {configFile="services"}
-{{% snippet name="rabbitmq" config="service" %}}
+{{< snippet name="rabbitmq" config="service" >}}
     type: "rabbitmq:{{% latest "rabbitmq" %}}"
     disk: 512
     configuration:
         vhosts:
             - host1
             - host2
-{{% /snippet %}}
+{{< /snippet >}}
 ```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="services"}
+{{< snippet name="rabbitmq" config="service" >}}
+    type: "rabbitmq:{{% latest "rabbitmq" %}}"
+    configuration:
+        vhosts:
+            - host1
+            - host2
+{{< /snippet >}}
+```
+
+{{< /version/specific >}}
 
 {{% relationship-ref-intro %}}
 

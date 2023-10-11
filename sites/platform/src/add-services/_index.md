@@ -44,16 +44,33 @@ Configure your service in the following pattern:
 
 An example service configuration for two databases might look like this:
 
+{{< version/specific >}}
+<!-- Version 1 -->
+
 ```yaml {configFile="services"}
-{{% snippet name="database1" config="service" %}}
+{{< snippet name="database1" config="service" >}}
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
-{{% /snippet %}}
-{{% snippet name="database2" config="service" globKey="false" %}}
+{{< /snippet >}}
+{{< snippet name="database2" config="service" globKey="false" >}}
     type: postgresql:{{% latest "postgresql" %}}
     disk: 1024
-{{% /snippet %}}
+{{< /snippet >}}
 ```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="services"}
+{{< snippet name="database1" config="service" >}}
+    type: mariadb:{{% latest "mariadb" %}}
+{{< /snippet >}}
+{{< snippet name="database2" config="service" globKey="false" >}}
+    type: postgresql:{{% latest "postgresql" %}}
+{{< /snippet >}}
+```
+
+{{< /version/specific >}}
 
 {{% version/specific %}}
 <!-- API Version 1 -->
@@ -79,6 +96,10 @@ Always back up your data before changing existing services in your `{{< vendor/c
 
 The following table presents the keys you can define for each service:
 
+{{% version/specific %}}
+
+<!-- Version 1 -->
+
 | Name            | Type       | Required          | Description |
 | --------------- | ---------- | ----------------- | ----------- |
 | `type`          | `string`   | Yes               | One of the [available services](#available-services) in the format `type:version`. |
@@ -87,7 +108,19 @@ The following table presents the keys you can define for each service:
 | `configuration` | dictionary | For some services | Some services have additional specific configuration options that can be defined here, such as specific endpoints. See the given service page for more details. |
 | `relationships` | dictionary | For some services | Some services require a relationship to your app. The content of the dictionary has the same type as the `relationships` dictionary for [app configuration](../create-apps/app-reference.md#relationships). The `endpoint_name` for apps is always `http`. |
 
+<--->
+<!-- Version 2 -->
 
+| Name            | Type       | Required          | Description |
+| --------------- | ---------- | ----------------- | ----------- |
+| `type`          | `string`   | Yes               | One of the [available services](#available-services) in the format `type:version`. |
+| `configuration` | dictionary | For some services | Some services have additional specific configuration options that can be defined here, such as specific endpoints. See the given service page for more details. |
+| `relationships` | dictionary | For some services | Some services require a relationship to your app. The content of the dictionary has the same type as the `relationships` dictionary for [app configuration](../create-apps/app-reference.md#relationships). The `endpoint_name` for apps is always `http`. |
+
+{{% /version/specific %}}
+
+{{% version/specific %}}
+<!-- Version 1 -->
 
 ##### Disk
 
@@ -104,6 +137,20 @@ Some services are optimized for high CPU load, some for high memory load.
 If your plan is sufficiently large for bigger containers, you can increase the size of your service container.
 
 Note that service containers in preview environments are always set to size `S`.
+
+<--->
+<!-- Version 2 -->
+
+##### Resources (CPU, RAM, disk)
+
+{{% vendor/name %}} allows you to configure resources (CPU, RAM, and disk) per environment for each of your services.
+For more information, see how to [manage resources](/manage-resources.md).
+
+{{% disk-space-mb %}}
+
+{{% disk-downsize type="service" %}}
+
+{{% /version/specific %}}
 
 ### 2. Connect the service
 
@@ -129,8 +176,11 @@ relationships:
 
 An example relationship to connect to the databases given in the [example in step 1](#1-configure-the-service):
 
+{{% version/specific %}}
+<!-- Version 1 -->
+
 ```yaml {configFile="app"}
-{{% snippet name="<APP_NAME>" config="app" root="false"%}}
+{{< snippet name="<APP_NAME>" config="app" root="false">}}
 
 # Other options...
 
@@ -138,16 +188,39 @@ An example relationship to connect to the databases given in the [example in ste
 relationships:
     mysql_database: "database1:mysql"
     postgresql_database: "database2:postgresql"
-{{% /snippet %}}
-{{% snippet name="database1" config="service" placeholder="true" %}}
+{{< /snippet >}}
+{{< snippet name="database1" config="service" placeholder="true" >}}
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
-{{% /snippet %}}
-{{% snippet name="database2" config="service" globKey="false" placeholder="true" %}}
+{{< /snippet >}}
+{{< snippet name="database2" config="service" globKey="false" placeholder="true" >}}
     type: postgresql:{{% latest "postgresql" %}}
     disk: 1024
-{{% /snippet %}}
+{{< /snippet >}}
 ```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="app"}
+{{< snippet name="<APP_NAME>" config="app" root="false">}}
+
+# Other options...
+
+# Relationships enable an app container's to a service.
+relationships:
+    mysql_database: "database1:mysql"
+    postgresql_database: "database2:postgresql"
+{{< /snippet >}}
+{{< snippet name="database1" config="service" placeholder="true" >}}
+    type: mariadb:{{% latest "mariadb" %}}
+{{< /snippet >}}
+{{< snippet name="database2" config="service" globKey="false" placeholder="true" >}}
+    type: postgresql:{{% latest "postgresql" %}}
+{{< /snippet >}}
+```
+
+{{% /version/specific %}}
 
 As with the service name, you can give the relationship any name you want
 with lowercase alphanumeric characters, hyphens, and underscores.

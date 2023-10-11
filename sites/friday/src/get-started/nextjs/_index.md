@@ -93,7 +93,7 @@ If not, please refer to [Set project remote](#set-project-remote) section.
 title=Using the Console
 +++
 
-[Create a new project from scratch]({{% vendor/urlraw "console" %}}/projects/create-project/).
+[Create a new project from scratch]({{% create-project-link scratch=true %}}).
 
 If you do not already have an organization created to put the project in, you'll first be instructed to create one.
 
@@ -171,12 +171,12 @@ These YAML configuration files are located into a `.{{% vendor/cli %}}/` folder 
 my-nextjs-app
 ├── .{{% vendor/cli %}}
 │   └── config.yaml
-├── .environment
+├── [.environment]
 └── <project sources>
 ```
 
 {{< note >}}
-An additional `.environment` file is located at the root of your source code, this file will override `.env` environment variables with {{% vendor/name %}} specific ones.
+{{% get-started/environment-note %}}
 {{< /note >}}
 
 To pre-generate these YAML files, please use the following command from the root of your Next.js project and follow the prompts:
@@ -291,7 +291,7 @@ If you used the {{% vendor/name %}} CLI command `{{% vendor/cli %}} project:crea
 You can jump to [deploying your project](#deploy).
 {{< /note >}}
 
-There are slightly different ways to link your local project to your {{% vendor/name %}} project based on the Git workflow you chose for you project, as discussed earlier in this guide.
+There are slightly different ways to link your local project to your {{% vendor/name %}} project based on the Git workflow you chose for your project, as discussed earlier in this guide.
 
 {{< codetabs >}}
 +++
