@@ -19,7 +19,7 @@ To get your Next.js project up and running as quickly as possible, experiment wi
 
 First things first, if you don’t have a local Next.js project, you need to create a new Next.js project locally by following the official Next.js [installation guide](https://nextjs.org/docs/getting-started/installation).
 
-Please refer to all the steps of the official Next.js installation guide for further details, but to sum it up, here are the 4 steps to create a Next.js app locally:
+Please refer to all the steps of the official Next.js installation guide for further details, but to sum it up, here are the 3 steps to create a Next.js app locally:
 
 ```bash {location="Terminal"}
 mkdir my-nextjs-app
@@ -55,7 +55,10 @@ export default function Page() {
 }
 ```
 
-Then please commit your file using the following commands:
+## Commit your files in your Git repository
+
+We need to commit local files, using the following command:
+
 ```bash {location="Terminal"}
 git add pages/index.tsx
 git commit -m "adding pages/index.tsx first page"
@@ -66,11 +69,15 @@ git commit -m "adding pages/index.tsx first page"
 The next step is to create a project on {{% vendor/name %}}.
 To do this, you can either use the {{% vendor/name %}} CLI or the {{% vendor/name %}} Console.
 
+{{< note title="Remember" >}}
+After creating your {{% vendor/name %}} project, please copy your new **projectId** for later use.
+{{< /note >}}
+
 {{< codetabs >}}
 +++
 title=Using the CLI
 +++
-To create a new project with the {{% vendor/name %}} CLI, use the following command and follow the prompt:
+To create a new project with the {{% vendor/name %}} CLI, use the following command and follow the prompts:
 ```bash {location="Terminal"}
 {{% vendor/cli %}} project:create
 ```
@@ -85,7 +92,7 @@ git remote
 {{% vendor/cli %}}
 ```
 
-If not, please refer to [Set project remote](#set-project-remote) section.
+If not, please refer to the [Set project remote](#set-a-project-remote) section.
 {{< /note >}}
 
 <--->
@@ -129,7 +136,7 @@ If you don’t remember your `<projectId>` from the previous steps, you can get 
 
 ## Choose your Git workflow
 
-{{% vendor/name %}} projects can be used as a classic Git repository where you will be able to push your source code in different ways, using either the Git CLI or the {{% vendor/name %}} CLI. You can choose which way—or Git workflow— you would like to use for your project from the following options:
+{{% vendor/name %}} projects can be used as a classic Git repository, where you will be able to push your source code in different ways, using either the Git CLI or the {{% vendor/name %}} CLI. You can choose which way—or Git workflow— you would like to use for your project from the following options:
 
 - Your project source code will be **hosted on a {{% vendor/name %}} Git repository**
 - Your project source code will be **hosted on your own GitHub repository**
@@ -138,7 +145,7 @@ If you don’t remember your `<projectId>` from the previous steps, you can get 
 +++
 title={{% vendor/name %}} Git repository
 +++
-For the rest of this guide, you will use the normal Git workflow (`git add . && git commit -m "message" && git push`) to commit your source code changes to Git history, and use the {{% vendor/name %}} CLI to deploy your [{{% vendor/name %}} environment](/environments.html) with the latest code updates.
+For the rest of this guide, you will use the normal Git workflow (`git add . && git commit -m "message" && git push {{% vendor/cli %}}`) to commit your source code changes to Git history, and use the {{% vendor/name %}} CLI to deploy your [{{% vendor/name %}} environment](/environments.html) with the latest code updates.
 
 <--->
 +++
@@ -242,9 +249,9 @@ The `{{% vendor/cli %}} project:init` command (shortcut `{{% vendor/cli %}} ify`
     {{< code-link destination="/create-apps/app-reference.html#web-commands" text="dependencies" title="Installs global dependencies as part of the build process. They’re independent of your app’s dependencies and are available in the PATH during the build process and in the runtime environment. They’re installed before the build hook runs using a package manager for the language. Click for more information." >}}:
       nodejs:
         sharp: "*"
-#{{< code-link destination="/add-services.html#available-services" text="services" title="Click to get Full list of available services." >}}:
-#  db:
-#    type: postgresql:14
+#{{< code-link destination="/add-services.html#available-services" text="services" title="Click to see the complete list of all available services" >}}:
+  #  db:
+#    type: postgresql:15
 {{< code-link destination="/define-routes.html" text="routes" title="Each route describes how an incoming URL is going to be processed. Click for more information" >}}:
   "https://{default}/":
     type: upstream
@@ -287,7 +294,8 @@ git commit -m "build Next.js app during build hook"
 ## Set your project remote
 
 {{< note >}}
-If you used the {{% vendor/name %}} CLI command `{{% vendor/cli %}} project:create` to create your project and your local Git repo has already been initialized, your local source code should already contain a ``.{{% vendor/cli %}}/local/project.yaml`` file. This file contains your `projectId`, and you already have a Git remote repository set to `{{% vendor/cli %}}`.
+If you used the {{% vendor/name %}} CLI command `{{% vendor/cli %}} project:create` to create your project and your local Git repo has already been initialized, your local source code should already contain a ``.{{% vendor/cli %}}/local/project.yaml`` file.
+This file contains your `projectId`, and you already have a Git remote repository set to `{{% vendor/cli %}}`.
 You can jump to [deploying your project](#deploy).
 {{< /note >}}
 
@@ -297,7 +305,7 @@ There are slightly different ways to link your local project to your {{% vendor/
 +++
 title={{% vendor/name %}} Git repository
 +++
-If you host your Next.js source code on an {{% vendor/name %}} Git repository, and you failed to answer `y` (yes) to the question `Set the new project <projectName> as the remote for this repository?` at the ``project:create`` step, you need to let the {{% vendor/name %}} CLI know which linked project you want to deploy to.
+If you host your Next.js source code on an {{% vendor/name %}} Git repository, and you failed to answer `y` (yes) to the question `Set the new project <projectName> as the remote for this repository? [Y/n]` during the ``project:create`` command, you need to let the {{% vendor/name %}} CLI know which linked project you want to deploy to.
 
 To do so, use the {{% vendor/name %}} CLI to set a remote project:
 ```bash {location="Terminal"}
@@ -342,7 +350,7 @@ title=Bitbucket repository
 
 And just like that, it’s time to deploy!
 
-Depending on the Git workflow you chose at the beginning of this tutorial, there are two ways to deploy your source code changes.
+Depending on the Git workflow you choose at the beginning of this tutorial, there are two ways to deploy your source code changes.
 
 {{< codetabs >}}
 
@@ -350,7 +358,7 @@ Depending on the Git workflow you chose at the beginning of this tutorial, there
 title=Using {{% vendor/name %}} Git repository
 +++
 
-When using the {{% vendor/name %}} Git repository as your main repository, you can push your code using the normal Git workflow (`git add . && git commit -m "message" && git push`). This pushes your source code changes to your `{{% vendor/cli %}}` remote repository. Alternatively, you can use the following  {{% vendor/name %}} CLI command:
+When using the {{% vendor/name %}} Git repository as your main repository, you can push your code using the normal Git workflow (`git add . && git commit -m "message" && git push`). This pushes your source code changes to your `{{% vendor/cli %}}` remote repository. Alternatively, you can use the following {{% vendor/name %}} CLI command:
 ```bash {location="Terminal"}
 {{% vendor/cli %}} push
 ```
@@ -369,7 +377,7 @@ Your GitHub/GitLab/Bibucket integration process will then automatically create a
 {{< /codetabs >}}
 
 {{% vendor/name %}} will now read your configuration files, and begin building your application image. **Your first push
-will fail**; don't worry, this is expected. At this point {{% vendor/cli %}} is not aware of the resources
+will fail**; don't worry, this is expected. At this point {{% vendor/name %}} is not aware of the resources
 your application needs. You need to define how much CPU, memory, and disk to assign to the various containers. Back in your terminal, run:
 
 ```bash {location="Terminal"}
@@ -411,7 +419,7 @@ Next it will ask what is the necessary disk size for our application container. 
 Enter a disk size in MB: 512
 ```
 
-Last it will ask us to confirm our choices. Select `Y` and {{% vendor/name %}} will take your selections, grab the
+Last, it will ask us to confirm our choices. Select `Y` and {{% vendor/name %}} will take your selections, grab the
 previous built images from earlier, apply your resource selections to them and deploy your full application!
 
 Note that each environment has its own domain name.
@@ -475,7 +483,7 @@ To make changes to your project, follow these steps:
    ```
 
    Note that each environment has its own domain name.
-   To open the url of your new environment, run the following command:
+   To open the URL of your new environment, run the following command:
 
    ```bash {location="Terminal"}
    {{% vendor/cli %}} environment:url --primary
@@ -512,6 +520,5 @@ Add an integration to your existing third-party repository:
 - [BitBucket](/integrations/source/bitbucket.md)
 - [GitHub](/integrations/source/github.md)
 - [GitLab](/integrations/source/gitlab.md)
-
 
 ## Next steps
