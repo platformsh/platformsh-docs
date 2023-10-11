@@ -221,7 +221,6 @@ The following table displays the different CPU and RAM combinations each contain
 | 4    | 1216         | 4800       | 6720          | 10496           |
 | 6    | 1728         | 6080       | 9024          | 14080           |
 | 8    | 2240         | 7296       | 11200         | 17408           |
-| 10   | 2688         | 8448       | 13184         | 20544           |
 
 You can check which container profile is set for an app or service in your project from the Console.
 To do so, navigate to your environment and select the app or service in the tree on the left-hand side:
