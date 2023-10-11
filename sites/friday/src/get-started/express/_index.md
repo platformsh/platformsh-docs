@@ -7,15 +7,9 @@ description:   Welcome to our quick-start guide on hosting [Express](https://exp
 
 Anything included in these guides applies not only to [Express](https://expressjs.com/), but also to [NextJS](https://nextjs.org/) and [Strapi](https://strapi.io/).
 
-[//]: # (If you already have an Express project ready to deploy, jump directly to {{< vendor/cli >}}ify section.)
-
-[//]: # (These CLI command let you [configure your app]&#40;../../create-apps/_index.md&#41;,)
-
-[//]: # ([add services]&#40;../../add-services/_index.md&#41;, and [define routes]&#40;../../define-routes/_index.md&#41;.)
-
 {{% guides/link-philosophy %}}
 
-{{< note title=”tip” >}}
+{{< note title=”Tip” >}}
 To get your Express project up and running as quickly as possible, experiment with the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project/demo) before following this guide.
 {{< /note >}}
 
@@ -25,7 +19,7 @@ To get your Express project up and running as quickly as possible, experiment wi
 
 First things first, if you don’t have a local Express project, you need to create a new Express project locally by following the official Express [installation guide](https://expressjs.com/en/starter/installing.html).
 
-Please refer to all the steps of the official Express installation guide for further details, but to sum it up, this is the 4 steps to create an Express app locally:
+Please refer to all the steps of the official Express installation guide for further details, but to sum it up, here are the 4 steps to create an Express app locally:
 
 ```bash {location="Terminal"}
 mkdir my-express-app
@@ -34,7 +28,7 @@ npm init
 npm install express
 ```
 
-## Init your Git repo
+## Initialize your Git repository
 
 We need to initialize the local Git repository and commit local files, using the following command:
 
@@ -93,6 +87,7 @@ To create a new project with the {{% vendor/name %}} CLI, use the following comm
 
 {{< note >}}
 When creating a new project using the {{% vendor/name %}} CLI command `project:create`, you will be asked if you want to set the local remote to your new project. Enter **Yes (y)**.
+
 Your local source code will be automatically linked to your newly created {{% vendor/name %}} project by creating a `.{{% vendor/cli %}}/local/project.yaml` file that will contain the corresponding `<projectId>` and set a Git remote to `{{% vendor/cli %}}`.
 
 ```bash {location="Terminal"}
@@ -110,16 +105,16 @@ title=Using the Console
 
 [Create a new project from scratch]({{% create-project-link scratch=true %}}).
 
-If you do not already have an organization created to put the project, you'll first be instructed to create one.
+If you do not already have an organization created to put the project in, you'll first be instructed to create one.
 
 Once you have done so, select that organization from the dropdown, and select **Create from scratch**.
 
 In the form, fill in details like the project name and [region](/development/regions.md).
 You'll be able to define resources for the project after your first push.
 
-After creating a project with the console, you need to let the {{% vendor/name %}} CLI know which linked project you want to deploy to.
+After creating a project with the Console, you need to let the {{% vendor/name %}} CLI know which linked project you want to deploy to.
 
-To do so, use the {{% vendor/name %}} CLI to set remote project:
+To do so, use the {{% vendor/name %}} CLI to set a remote project:
 ```bash {location="Terminal"}
 {{% vendor/cli %}} project:set-remote <projectId>
 ```
@@ -131,7 +126,7 @@ origin
 {{% vendor/cli %}}
 ```
 
-It will also create a new `.{{% vendor/cli %}}/local/project.yaml` file that will contain the given `<projectId>`, to store this info for the {{% vendor/name %}} CLI interaction.
+It will also create a new `.{{% vendor/cli %}}/local/project.yaml` file that will contain the given `<projectId>`, to store this information for the {{% vendor/name %}} CLI interaction.
 
 {{< note >}}
 If you don’t remember your `<projectId>` from the previous steps, you can get it back using this command line and select the one you created:
@@ -144,7 +139,7 @@ If you don’t remember your `<projectId>` from the previous steps, you can get 
 
 ## Choose your Git workflow
 
-{{% vendor/name %}} projects can be used as a classic Git repository where you will be able to push your source code in different ways using either Git CLI or {{% vendor/name %}} CLI. You can choose which way—or Git workflow—you would like to use for your project from the following options:
+{{% vendor/name %}} projects can be used as a classic Git repository where you will be able to push your source code in different ways, using either the Git CLI or the {{% vendor/name %}} CLI. You can choose which way—or Git workflow— you would like to use for your project from the following options:
 
 - Your project source code will be **hosted on a {{% vendor/name %}} Git repository**
 - Your project source code will be **hosted on your own GitHub repository**
@@ -153,14 +148,14 @@ If you don’t remember your `<projectId>` from the previous steps, you can get 
 +++
 title={{% vendor/name %}} Git repository
 +++
-For the rest of this guide, you will use the normal Git workflow (`git add . && git commit -m "message" && git push`) to commit your source code changes to Git history, and use {{% vendor/name %}} CLI to deploy your [{{% vendor/name %}} environment](/environments.html) with latest code updates.
+For the rest of this guide, you will use the normal Git workflow (`git add . && git commit -m "message" && git push {{% vendor/cli %}}`) to commit your source code changes to Git history, and use the {{% vendor/name %}} CLI to deploy your [{{% vendor/name %}} environment](/environments.html) with the latest code updates.
 
 <--->
 +++
 title=GitHub repository
 +++
 {{% vendor/name %}} provides a feature called [Github integration](integrations/source/github.md) that allows your {{% vendor/name %}} project to be fully integrated with your Github repository.
-Enabling you, as a developer, to use a normal Git workflow (`git add . && git commit -m "message" && git push`) to deploy your environment—with no need to connect to the {{% vendor/name %}} console.
+This enables you, as a developer, to use a normal Git workflow (`git add . && git commit -m "message" && git push`) to deploy your environment—with no need to connect to the {{% vendor/name %}} Console.
 
 {{< note >}}
 Please make sure you that you have already completed the following steps before adding a [Github integration](integrations/source/github.md):
@@ -168,6 +163,7 @@ Please make sure you that you have already completed the following steps before 
 1. Create a Git repository in your own organization following the relevant [Github repository creation guide](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository).
 2. Create a [Github integration](integrations/source/github.md).
 3. Add a Git remote to your local project, from the root of your Express directory, by inputting the following:
+
     ```bash {location="Terminal"}
     git remote add origin <urlOfYourOwnGitHubRepo>
     git add . && git commit -m "init express"
@@ -255,8 +251,8 @@ The `{{% vendor/cli %}} project:init` command (shortcut `{{% vendor/cli %}} ify`
         sharp: "*"
 #{{< code-link destination="/add-services.html#available-services" text="services" title="Click to get Full list of available services." >}}:
 #  db:
-#    type: postgresql:15
-routes:
+#    type: postgresql:14
+{{< code-link destination="/define-routes.html" text="routes" title="Each route describes how an incoming URL is going to be processed. Click for more information" >}}:
   "https://{default}/":
     type: upstream
     upstream: "app:http"
@@ -278,14 +274,14 @@ git add .environment .{{% vendor/cli %}}/config.yaml
 git commit -m "{{% vendor/name %}} config files"
 ```
 
-## Set project remote
+## Set your project remote
 
 {{< note >}}
 If you used the {{% vendor/name %}} CLI command `{{% vendor/cli %}} project:create` to create your project and your local Git repo has already been initialized, your local source code should already contain a ``.{{% vendor/cli %}}/local/project.yaml`` file. This file contains your `projectId`, and you already have a Git remote repository set to `{{% vendor/cli %}}`.
 You can jump to [deploying your project](#deploy).
 {{< /note >}}
 
-There are slightly different ways to link your local project to your {{% vendor/name %}} project based on the Git workflow you chose for your project as discussed earlier in this guide.
+There are slightly different ways to link your local project to your {{% vendor/name %}} project based on the Git workflow you chose for your project, as discussed earlier in this guide.
 
 {{< codetabs >}}
 +++
@@ -293,7 +289,7 @@ title={{% vendor/name %}} Git repository
 +++
 If you host your Express source code on an {{% vendor/name %}} Git repository, and you failed to answer `y` (yes) to the question `Set the new project <projectName> as the remote for this repository? [Y/n]` during the ``project:create`` command, you need to let the {{% vendor/name %}} CLI know which linked project you want to deploy to.
 
-To do so, use the {{% vendor/name %}} CLI to set remote project:
+To do so, use the {{% vendor/name %}} CLI to set a remote project:
 ```bash {location="Terminal"}
 {{% vendor/cli %}} project:set-remote <projectId>
 ```
@@ -305,7 +301,7 @@ git remote
 ...
 ```
 
-It will also create a new `.{{% vendor/cli %}}/local/project.yaml` file that will contain the given `<projectId>`, to store this info for the {{% vendor/name %}} CLI interaction.
+It will also create a new `.{{% vendor/cli %}}/local/project.yaml` file that will contain the given `<projectId>`, to store this information for the {{% vendor/name %}} CLI interaction.
 
 {{< note >}}
 If you don’t remember your `<projectId>` from the previous steps, you can get it back using this command line and select the one you created:
@@ -344,7 +340,7 @@ Depending on the Git workflow you choose at the beginning of this tutorial, ther
 title=Using {{% vendor/name %}} Git repository
 +++
 
-When using the {{% vendor/name %}} Git repository as your main repository, you can push your code using the normal Git workflow (`git add . && git commit -m "message" && git push`) to push your source code changes to your `{{% vendor/cli %}}` remote repository. Alternatively, you can use the following  {{% vendor/name %}} CLI command:
+When using the {{% vendor/name %}} Git repository as your main repository, you can push your code using the normal Git workflow (`git add . && git commit -m "message" && git push {{% vendor/cli %}}`). This pushes your source code changes to your `{{% vendor/cli %}}` remote repository. Alternatively, you can use the following {{% vendor/name %}} CLI command:
 ```bash {location="Terminal"}
 {{% vendor/cli %}} push
 ```
@@ -354,12 +350,12 @@ When using the {{% vendor/name %}} Git repository as your main repository, you c
 title=Using third-party Git repository
 +++
 
-When using an external Git repository (Github, Gitlab, or Bitbucket) to store your source code and having the Git integration feature enabled, on each code updates, you will need to use the normal Git workflow (`git add . && git commit -m "message" && git push`) to push your code to your external repository. To do so, run the following command:
+When using an external Git repository (GitHub, GitLab, or Bitbucket) to store your source code and having the Git integration feature enabled, on each code updates, you will need to use the normal Git workflow (`git add . && git commit -m "message" && git push`) to push your code to your external repository. To do so, run the following command:
 ```bash {location="Terminal"}
 git push origin
 ```
 
-Your Github/Gitlab/Bibucket integration process will then automatically create a new environment if you’re pushing a new Git branch, and deploy changes to your corresponding environment.
+Your GitHub/GitLab/Bibucket integration process will then automatically create a new environment if you’re pushing a new Git branch, and deploy changes to your corresponding environment.
 {{< /codetabs >}}
 
 {{% vendor/name %}} will now read your configuration files, and begin building your application image. **Your first push
@@ -400,15 +396,23 @@ Next it will ask how many instances of our application container we need deploye
 Enter the number of instances (default: 1): 1
 ```
 
-Last it will ask us to confirm our choices. Select `Y` and the {{% vendor/name %}} will take your selections, grab the
-previous built images from early, apply our resource selections to them and deploy our full application!
+Last it will ask us to confirm our choices. Select `Y` and {{% vendor/name %}} will take your selections, grab the
+previous built images from earlier, apply your resource selections to them and deploy your full application!
 
 Note that each environment has its own domain name.
-To open the url of your new environment, run the following command:
+To open the URL of your new environment, run the following command:
 
    ```bash {location="Terminal"}
    {{% vendor/cli %}} environment:url --primary
    ```
+
+{{< note >}}
+Resource allocation is only done on the first deploy of a project. </br>
+For next deployments, just use:
+```shell {location="Terminal"}
+{{% vendor/cli %}} push
+```
+{{< /note >}}
 
 Et voilà, your Express application is live!
 

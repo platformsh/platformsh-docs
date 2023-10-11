@@ -7,15 +7,9 @@ description:   Welcome to our quick-start guide on hosting [Strapi](https://stra
 
 Anything included in these guides applies not only to [Strapi](https://strapi.io/), but also to [Next.js](https://nextjs.org/) and [Express](https://expressjs.com/).
 
-[//]: # (If you already have an Express project ready to deploy, jump directly to {{< vendor/cli >}}ify section.)
-
-[//]: # (These CLI command let you [configure your app]&#40;../../create-apps/_index.md&#41;,)
-
-[//]: # ([add services]&#40;../../add-services/_index.md&#41;, and [define routes]&#40;../../define-routes/_index.md&#41;.)
-
 {{% guides/link-philosophy %}}
 
-{{< note title="Tip" >}}
+{{< note title=”Tip” >}}
 To get your Strapi project up and running as quickly as possible, experiment with the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project/demo) before following this guide.
 {{< /note >}}
 
@@ -25,7 +19,7 @@ To get your Strapi project up and running as quickly as possible, experiment wit
 
 First things first, if you don’t have a local Strapi project, you need to create a new Strapi project locally by following the official Strapi [installation guide](https://docs.strapi.io/dev-docs/installation).
 
-Please refer to all the steps of the official Strapi installation guide for further details, but to sum it up, here are the 4 steps to create a Strapi app locally:
+Please refer to all the steps of the official Strapi installation guide for further details, but to sum it up, here are the 2 steps to create a Strapi app locally:
 
 ```bash {location="Terminal"}
 npx create-strapi-app@latest my-strapi-project --quickstart --no-run
@@ -44,6 +38,7 @@ Feel free to remove them if you want to customize the installation process and/o
 
 When your Strapi app was created, your local Git repository was initialized.
 We need to commit local files, using the following command:
+
 ```bash {location="Terminal"}
 git add .
 git commit -m "Init Strapi application"
@@ -69,7 +64,8 @@ To create a new project with the {{% vendor/name %}} CLI, use the following comm
 
 {{< note >}}
 When creating a new project using the {{% vendor/name %}} CLI command `project:create`, you will be asked if you want to set the local remote to your new project. Enter **Yes (y)**.
-Your local source code will be automatically linked to your newly created {{% vendor/name %}} project by creating a `.{{% vendor/cli %}}/local/project.yaml` file, that will contain the corresponding `<projectId>` and set a Git remote to `{{% vendor/cli %}}`.
+
+Your local source code will be automatically linked to your newly created {{% vendor/name %}} project by creating a `.{{% vendor/cli %}}/local/project.yaml` file that will contain the corresponding `<projectId>` and set a Git remote to `{{% vendor/cli %}}`.
 
 ```bash {location="Terminal"}
 git remote
@@ -120,7 +116,7 @@ If you don’t remember your `<projectId>` from the previous steps, you can get 
 
 ## Choose your Git workflow
 
-{{% vendor/name %}} projects can be used as a classic Git repository, where you will be able to push your source code in different ways, using either Git CLI or {{% vendor/name %}} CLI. You can choose which way—or Git workflow— you would like to use for your project from the following options:
+{{% vendor/name %}} projects can be used as a classic Git repository, where you will be able to push your source code in different ways, using either the Git CLI or the {{% vendor/name %}} CLI. You can choose which way—or Git workflow— you would like to use for your project from the following options:
 
 - Your project source code will be **hosted on a {{% vendor/name %}} Git repository**
 - Your project source code will be **hosted on your own GitHub repository**
@@ -129,7 +125,7 @@ If you don’t remember your `<projectId>` from the previous steps, you can get 
 +++
 title={{% vendor/name %}} Git repository
 +++
-For the rest of this guide, you will use the normal Git workflow (`git add . && git commit -m "message" && git push`) to commit your source code changes to Git history, and use {{% vendor/name %}} CLI to deploy your [{{% vendor/name %}} environment](/environments.html) with latest code updates.
+For the rest of this guide, you will use the normal Git workflow (`git add . && git commit -m "message" && git push {{% vendor/cli %}}`) to commit your source code changes to Git history, and use the {{% vendor/name %}} CLI to deploy your [{{% vendor/name %}} environment](/environments.html) with the latest code updates.
 
 <--->
 +++
@@ -157,7 +153,7 @@ Please make sure you that you have already completed the following steps before 
 ## Configure your project
 
 To be able to host your Express application on {{% vendor/name %}}, some YAML configuration files are needed at the root of your project to manage the way your application will behave.
-These YAML configuration files are located inside a `.{{% vendor/cli %}}/` folder at the root of your source code, the architecture of which will look like this:
+These YAML configuration files are located into a `.{{% vendor/cli %}}/` folder at the root of your source code, the architecture of which will look like this:
 ```
 my-strapi-project
 ├── .{{% vendor/cli %}}
@@ -217,10 +213,9 @@ To do so, commit your files and deploy your application using the {{% vendor/nam
   $ git add .
   $ git commit -m 'Add {{% vendor/name %}} configuration files'
   $ {{% vendor/cli %}} push
-  $ git add . && git commit -m "Init project"
 ```
+The `{{% vendor/cli %}} project:init` command (shortcut `{{% vendor/cli %}} ify`) will automatically detect that you’re using a Strapi stack, ask if you want to add any services and generate the corresponding `config.yaml` YAML files, like so:
 
-The command `{{% vendor/cli %}} project:init` (shortcut `{{% vendor/cli %}} ify`) will automatically detect that you’re using a Strapi stack, ask if you want to add any services, and generate the corresponding `config.yaml` Yaml files, like so:
 ```yaml {location=".{{% vendor/cli %}}/config.yaml"}
 {{< code-link destination="/create-apps/app-reference.html" text="applications" title="Complete list of all available properties" >}}:
   app:
@@ -314,7 +309,7 @@ There are slightly different ways to link your local project to your {{% vendor/
 +++
 title={{% vendor/name %}} Git repository
 +++
-If you host your Strapi source code on an {{% vendor/name %}} Git repository, and you failed to answer `y` (yes) to the question `Set the new project <projectName> as the remote for this repository?` during the ``project:create`` command, you need to let the {{% vendor/name %}} CLI know which linked project you want to deploy to.
+If you host your Strapi source code on an {{% vendor/name %}} Git repository, and you failed to answer `y` (yes) to the question `Set the new project <projectName> as the remote for this repository? [Y/n]` during the ``project:create`` command, you need to let the {{% vendor/name %}} CLI know which linked project you want to deploy to.
 
 To do so, use the {{% vendor/name %}} CLI to set a remote project:
 ```bash {location="Terminal"}
@@ -328,7 +323,7 @@ git remote
 ...
 ```
 
-It will also create a new `.{{% vendor/cli %}}/local/project.yaml` file that will contain the given `<projectId>`, to store this info for the {{% vendor/name %}} CLI interaction.
+It will also create a new `.{{% vendor/cli %}}/local/project.yaml` file that will contain the given `<projectId>`, to store this information for the {{% vendor/name %}} CLI interaction.
 
 {{< note >}}
 If you don’t remember your `<projectId>` from the previous steps, you can get it back using this command line and select the one you created:
@@ -359,7 +354,7 @@ title=Bitbucket repository
 
 And just like that, it’s time to deploy!
 
-Depending on the Git workflow you chose at the beginning of this tutorial, there are two ways to deploy your source code changes.
+Depending on the Git workflow you choose at the beginning of this tutorial, there are two ways to deploy your source code changes.
 
 {{< codetabs >}}
 
@@ -367,7 +362,7 @@ Depending on the Git workflow you chose at the beginning of this tutorial, there
 title=Using {{% vendor/name %}} Git repository
 +++
 
-When using the {{% vendor/name %}} Git repository as your main repository, you can push your code using the normal Git workflow (`git add . && git commit -m "message" && git push`). This pushes your source code changes to your `{{% vendor/cli %}}` remote repository. Alternatively, you can use the following  {{% vendor/name %}} CLI command:
+When using the {{% vendor/name %}} Git repository as your main repository, you can push your code using the normal Git workflow (`git add . && git commit -m "message" && git push`). This pushes your source code changes to your `{{% vendor/cli %}}` remote repository. Alternatively, you can use the following {{% vendor/name %}} CLI command:
 ```bash {location="Terminal"}
 {{% vendor/cli %}} push
 ```
@@ -382,7 +377,7 @@ When using an external Git repository (GitHub, GitLab, or Bitbucket) to store yo
 git push origin
 ```
 
-Your GitHub/GitLab/Bitbucket integration process will then automatically create a new environment if you’re pushing a new Git branch, and deploy changes to your corresponding environment.
+Your GitHub/GitLab/Bibucket integration process will then automatically create a new environment if you’re pushing a new Git branch, and deploy changes to your corresponding environment.
 {{< /codetabs >}}
 
 {{% vendor/name %}} will now read your configuration files, and begin building your application image. **Your first push
@@ -455,8 +450,8 @@ And finally, it will ask how much disk space of our service container we need de
 Enter a disk size in MB: 512
 ```
 
-Last, it will ask us to confirm our choices. Select `Y` and the {{% vendor/name %}} will take your selections, grab the
-previous built images from earlier, apply our resource selections to them and deploy our full application!
+Last, it will ask us to confirm our choices. Select `Y` and {{% vendor/name %}} will take your selections, grab the
+previous built images from earlier, apply your resource selections to them and deploy your full application!
 ```javascript
 Summary of changes:
   App: app
@@ -480,7 +475,7 @@ To open the URL of your new environment, run the following command:
 ```
 
 {{< note >}}
-If you want to access the **Admin** panel, add `/admin` to your frontend URL.
+If you want to access the **Admin** panel, add `/admin` to your opened frontend URL.
 {{< /note >}}
 
 Et voilà, your Strapi application is live!
