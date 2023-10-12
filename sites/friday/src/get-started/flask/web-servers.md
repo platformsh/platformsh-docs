@@ -1,50 +1,56 @@
 ---
-title: Switching from the Flask server to an alternative Web Server
+title: Switch from the Flask server to another web server
 sidebarTitle: Change web server
 description: Steps for changing the web server on {{% vendor/name %}}.
 ---
-{{< note theme="warning" >}}
-Please note that the instructions on this page assume you have followed the
-[Deploying Flask on Upsun](/get-started/flask/deploy/_index.md) guide. You may need to adjust the steps for your
-specific Flask implementation.
+
+{{< note >}}
+The instructions on this page assume you've followed the [Deploy Flask on {{% vendor/name %}}](/get-started/flask/deploy/_index.md) guide.
+You may need to adjust the steps for your specific Flask implementation.
 {{< /note >}}
 
 While lightweight and easy to use, Flask’s built-in server is not suitable for production as it doesn’t
-scale well.
-
+scale well.</br>
 {{% vendor/name %}} [supports several different web servers](/languages/python/server/_index.md) for Python
-that you can use instead. The specific web server you choose will depend on your application and specific requirements.
+that you can use instead.
+Choose your server depending on your app and specific requirements.
 
-Let's look at how we can switch our project to use [gunicorn](https://gunicorn.org/) + PORT.
+The following instructions allow you to switch to [Gunicorn](https://gunicorn.org/).
+If you choose another web server, you may need to take different steps.
 
-Reopen the `{{< vendor/configfile "app" >}}` file.
+To switch to Gunicorn web server, follow these steps:
 
-Locate the `web:commands:start` section where in the previous section
-we added `flask run -p $PORT`. We now want to change it to `gunicorn -w 4 'autoapp:app'`
+1. Open your `{{< vendor/configfile "app" >}}` file, and locate the section dedicated to the web server:
 
-```yaml {configFile="app"}
-    web:
-      # Commands are run once after deployment to start the application process.
-      commands:
-        # The command to launch your app. If it terminates, it’s restarted immediately.
-        # You can use the $PORT or the $SOCKET environment variable depending on the socket family of your upstream
-        start: "gunicorn -w 4 'autoapp:app'"
-```
+   ```yaml {configFile="app"}
+   web:
+     commands:
+       start: "flask run -p $PORT"
+     upstream:
+       socket_family: tcp
+   ```
 
-Commit the changes and push them up to your environment:
+   Change the `start` command:
 
-```shell
-git add {{< vendor/configfile "app" >}}
-```
-```shell
-git commit -m "changes project to use gunicorn"
-```
-```shell
-{{% vendor/cli %}} environment:push -y
-```
-## Conclusion
-Now that you have your Flask application up and running on {{% vendor/name %}}, we'll explore the different options you
-have for a more robust local development environment, [adding a source control integration](/integrations/_index.md),
-and [adding various services](/add-services.md) to your project. But for now, go forth and Deploy (even on Fridays)!
+   ```yaml {configFile="app"}
+   web:
+     # Commands are run once after deployment to start the application process.
+     commands:
+       # The command to launch your app. If it terminates, it’s restarted immediately.
+       # You can use the $PORT or the $SOCKET environment variable depending on the socket family of your upstream
+       start: "gunicorn -w 4 'autoapp:app'"
+   ```
 
-{{< guide-buttons previous="Local Development" type="previous" >}}
+2. Commit your changes and push them to your environment. To do so, run the following commands:
+
+   ```bash {location="Terminal"}
+   git add {{< vendor/configfile "app" >}}
+   git commit -m "Changes project to use Gunicorn"
+   {{% vendor/cli %}} environment:push -y
+   ```
+
+## Next steps
+
+- Set up a more robust [local development environment](/development/local/_index.md)
+- [Add a source control integration](/integrations/_index.md)
+- [Add various services](/add-services.md) to your project

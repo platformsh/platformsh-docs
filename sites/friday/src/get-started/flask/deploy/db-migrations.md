@@ -1,119 +1,120 @@
 ---
-title: Setting up the Database
+title: Set up a database migration
 sidebarTitle: "Handle migrations"
-description: Steps required for preparing Database migrations.
+description: Go through the steps required to prepare database migrations.
 weight: -50
 ---
 
-You may have noticed that we haven't done anything with regard to a database. This application uses
-[Flask-migrate](https://flask-migrate.readthedocs.io/en/latest/) and since this is a brand-new application, we'll
-need to set up the initial migrations, and commit them so we can then have them applied to our {{% vendor/name %}}
-database.
+If your project includes a database, you need to set up an initial migrations for it.
 
-However, because the migrate command needs access to the database, we'll need to set up a temporary local
-environment and give it a way to access the database service.
+To do so, {{% vendor/name %}} recommends using [Flask-Migrate](https://flask-migrate.readthedocs.io/en/latest/).
+If you've generated your Flask app using Cookiecutter,
+your app uses Flask-Migrate by default to handle database migrations.
 
-Let's first set up a virtual environment to run our project inside of:
-```shell
-python3 -m venv env && source venv/bin/activate
+Otherwise, to install Flask-Migrate, run the following command:
+
+```bash {location="Terminal"}
+pip install Flask-Migrate
 ```
 
-Just like in our build hook, let's update pip and install our requirements:
-```shell
-pip install –upgrade pip
-```
-```shell
-pip install -r requirements.txt
-```
+After you've installed Flask-Migrate, you need to set up a temporary local environment and allow it to access your database,
+so you can run the `migrate` command successfully.
 
-Next, we're going to need to set up this local instance so it can communicate with our database service.
-When we did the push to {{% vendor/name %}} previously, it created and deployed our database service. The
-{{% vendor/name %}} CLI gives us a method to communicate to our application's services:
-[{{% vendor/cli %}} tunnel](/development/ssh/_index.md#use-a-direct-tunnel).
+Follow these steps:
+   
+1. To set up a local environment where your project can run, run the following command:
 
-```shell
-{{% vendor/cli %}} tunnel:open -y
-```
+   ```bash {location="Terminal"}
+   python3 -m venv env && source venv/bin/activate
+   ```
 
-This opens an SSH tunnel to all the services for the application, and we can now use it to allow our local
-instance to communicate with them as if they too were local.
+2. To upgrade `pip` and install your requirements, run the following commands:
 
-To do that though, we'll need to configure
-some environmental variables similarly to how we did previously for {{% vendor/name %}}. If you reopen the
-`.environment` file, you'll notice at the top that we make use of an environment variable named
-`$PLATFORM_RELATIONSHIPS` in order to retrieve information about services and their credentials.
-`{{% vendor/cli %}} tunnel` provides us a method to generate that same data locally:
+   ```bash {location="Terminal"}
+   pip install –upgrade pip
+   pip install -r requirements.txt
+   ```
 
-```shell
-export PLATFORM_RELATIONSHIPS="$({{% vendor/cli %}} tunnel:info --encode)"
-```
+4. Your database was automatically created and deployed when you first pushed your changes to {{% vendor/name %}}.
+   To allow your virtual environment to communicate with your database, run the following command:
 
-If you now try `echo $PLATFORM_RELATIONSHIPS` you'll see it has been set to a fairly large base64 encoded value.
-This string contains our services, their definitions, locations, and most importantly, their credentials.
-Because we have this environmental variable set locally, we can reuse our `.environment` file for {{% vendor/name %}} to
-recreate many of the other environmental variables we need to run locally.
+   ```bash {location="Terminal"}
+   platform tunnel:open -y
+   ```
 
-However, we have a few that aren't set via `PLATFORM_RELATIONSHIPS` that we still need to set up:
+   An SSH tunnel to all the services for your app is open.
 
-```shell
-export PLATFORM_ENVIRONMENT_TYPE=production
-```
-```shell
-export PORT=8888
-```
-```shell
-export PLATFORM_PROJECT_ENTROPY=$(openssl rand -base64 32)
-```
+5. To successfully establish communication between your local environment and your services,
+   you need to set more environment variables.</br>
+   To do so, add the following line to your `{{% vendor/configfile "app" %}}` file:
 
-And last, source our `.environment` file to finish setting up all the environmental variables in our current
-shell:
+   ```yaml {configFile="app"}
+   export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"
+   ```
+  
+   The {{% vendor/name %}} [$PLATFORM_RELATIONSHIPS variable](/development/variables/use-variables.md#use-provided-variables)
+   allows you to retrieve information about services and their credentials,
+   while `platform tunnel` generates that same data locally. 
 
-```shell
-source ./.environment
-```
+6. To set other required variables, add the following lines:
 
-We now have everything we need for Flask-Migrate to be able to connect to the database and generate our
-migration files. First we need to have Flask-Migrate initiate the migrations directory and prepare for the
-migrate command:
+   ```yaml {configFile="app"}
+   export PLATFORM_ENVIRONMENT_TYPE=production
+   export PORT=8888
+   export PLATFORM_PROJECT_ENTROPY=$(openssl rand -base64 32)
+   ```
 
-```shell
-flask db init
-```
+7. To complete the setup of all the required environmental variables in your current shell,
+   run the following command:
 
-Now we can have Flask-migrate generate our migrations:
+   ```bash {location="Terminal"}
+   source ./.environment
+   ```
 
-```shell
-flask db migrate
-```
+8. To instruct Flask-migrate to initiate the migration directory,
+   prepare for the `migrate` command, and generate your migrations,
+   run the following commands:
 
-And now commit our generated migrations:
+   ```bash {location="Terminal"}
+   flask db init 
+   flask db migrate
+   ```
 
-```shell
-git add migrations/* && git commit -m "adds migrations"
-```
+9. To commit your migrations, run the following commands:
 
-We now need to instruct {{% vendor/name %}} to run the Flask-migrate upgrade command when deploying so we know any
-migration changes are automatically applied. Re-open the `{{< vendor/configfile "app" >}}` and find the `deploy` hook
-where we added `npm run build`. On the next line, add `flask db upgrade`.
+   ```bash {location="Terminal"}
+   git add migrations/*
+   git commit -m "Adds migrations"
+   ```
 
-```yaml {configFile="app"}
-      deploy: |
+10. If you want future migration changes to be automatically applied,
+    instruct {{% vendor/name %}} to run the Flask-migrate `upgrade` command whenever your app is deployed.</br>
+    To do so, customize your [deploy hook](/create-apps/hooks/hooks-comparison.html#deploy-hook) again.
+    Locate the section dedicated to it:
+
+    ```yaml {configFile="app"}
+    # The deploy hook is run after the app container has been started, but before it has started accepting requests.
+    # More information: https://docs.upsun.com/create-apps/hooks/hooks-comparison.html#deploy-hook
+    deploy: |
         set -eux
         npm run build
-        flask db upgrade
-```
+    ```
+    
+    Add `flask db upgrade`:
 
-Commit the changes:
+    ```yaml {configFile="services"}
+    deploy: |
+        set -eux
+        npm run build
+        flask db upgrade        
+    ```
 
-```shell
-git add {{< vendor/configfile "app" >}} && git commit -m "adds flask db upgrade to deploy hook"
-```
+11. To commit and push your changes, run the following commands:
 
-And finally, push everything up to our {{% vendor/name %}} environment!
+    ```bash {location="Terminal"}
+    git add .platform.app.yaml
+    git commit -m "Adds flask db upgrade to deploy hook"
+    platform environment:push -y
+    ```
 
-```shell
-{{% vendor/cli %}} environment:push -y
-```
-
-Congrats! You've now successfully deployed your Flask application to {{% vendor/name %}}! Take a moment to visit your
-site and test it out!
+    Your Flask app is now fully deployed on {{% vendor/name %}}.
