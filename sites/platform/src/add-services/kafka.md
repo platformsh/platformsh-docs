@@ -5,7 +5,9 @@ description: |
   Apache Kafka is an open-source stream-processing software platform.
 sidebarTitle: "Kafka"
 ---
-test
+<!-- vale off -->
+<!-- vale Vale.Spelling = NO -->
+<!-- Spelling off because of "kafka" -->
 
 {{% description %}}
 
@@ -86,9 +88,6 @@ highlight=python
 title=Ruby
 highlight=ruby
 +++
-<!-- vale off -->
-<!-- vale Vale.Spelling = NO -->
-<!-- Spelling off because of "kafka" -->
 
 ## With the ruby-kafka gem
 
@@ -102,8 +101,6 @@ kafka.each_message(topic: "greetings") do |message|
   puts message.offset, message.key, message.value
 end
 
-<!-- vale Vale.Spelling = YES -->
-<!-- vale on -->
 {{< /codetabs >}}
 
 {{% version/only "2" %}}
@@ -138,3 +135,5 @@ export KAFKA_URL="${KAFKA_HOST}:${KAFKA_PORT}"
 {{% /version/only %}}
 
 (The specific way to inject configuration into your application varies. Consult your application or framework's documentation.)
+<!-- vale Vale.Spelling = YES -->
+<!-- vale on -->
