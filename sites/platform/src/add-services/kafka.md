@@ -62,7 +62,9 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 ## Usage example
 
 {{% endpoint-description type="kafka" /%}}
-
+<!-- vale off -->
+<!-- vale Vale.Spelling = NO -->
+<!-- Spelling off because of "kafka" -->
 {{< codetabs v2hide="true" >}}
 
 +++
@@ -89,10 +91,6 @@ highlight=ruby
 ## With the ruby-kafka gem
 
 # Producer
-<!-- vale off -->
-<!-- vale Vale.Spelling = NO -->
-<!-- Spelling off because of the 'require "kafka"' -->
-
 require "kafka"
 kafka = Kafka.new(["kafka.internal:9092"], client_id: "my-application")
 kafka.deliver_message("Hello, World!", topic: "greetings")
@@ -102,9 +100,9 @@ kafka.each_message(topic: "greetings") do |message|
   puts message.offset, message.key, message.value
 end
 
+{{< /codetabs >}}
 <!-- vale Vale.Spelling = YES -->
 <!-- vale on -->
-{{< /codetabs >}}
 
 {{% version/only "2" %}}
 
