@@ -63,7 +63,6 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 
 {{% endpoint-description type="kafka" /%}}
 
-<!-- vale off -->
 {{< codetabs v2hide="true" >}}
 
 +++
@@ -84,9 +83,9 @@ highlight=python
 
 +++
 title=Ruby
-highlight=ruby
-+++
 
++++
+```ruby
 ## With the ruby-kafka gem
 
 # Producer
@@ -98,9 +97,9 @@ kafka.deliver_message("Hello, World!", topic: "greetings")
 kafka.each_message(topic: "greetings") do |message|
   puts message.offset, message.key, message.value
 end
+```
 
 {{< /codetabs >}}
-<!-- vale on -->
 
 {{% version/only "2" %}}
 
