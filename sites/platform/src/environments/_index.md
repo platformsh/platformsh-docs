@@ -4,6 +4,9 @@ weight: -75
 layout: single
 sidebarTitle: Manage environments
 description: Learn what environments on {{% vendor/name %}} are and how to take advantage of them.
+keywords:
+  - Git push options
+  - git push options
 ---
 
 A {{% vendor/name %}} environment contains one instance of an app (or [group of apps](../create-apps/multi-app/_index.md))
@@ -271,3 +274,23 @@ title=In the Console
 {{< /codetabs >}}
 
 The environment is redeployed and becomes available for use again.
+
+## Trigger actions on `push`
+
+You can push changes to your environment and trigger the following actions at the same time:
+
+| Action                                     | Command                                                                                                                 |
+| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
+| Activate the environment                   | `git push origin HEAD:<BRANCH_NAME> -o "environment.status=active"`                                    |
+| Set a title for the environment            | `git push origin HEAD:<BRANCH_NAME> -o "environment.title=<ENVIRONMENT_TITLE>"`       |
+| Set the parent environment                 | `git push origin HEAD:<BRANCH_NAME> -o "environment.parent=<PARENT_ENVIRONMENT_NAME>"` |         
+| Clone the data from the parent environment | `git push origin HEAD:<BRANCH_NAME> -o "environment.clone_parent_on_create=True"` |
+| Disable the cloning of the data from the parent environment | `git push origin HEAD:<BRANCH_NAME> -o "environment.clone_parent_on_create=False"` |
+
+The following example shows how, through a single `push`,
+you can activate your environment, set a title for it,
+set a parent environment for it, and clone the data from its parent into it.
+
+```bash {location="Terminal"}
+git push origin HEAD:my-branch -o "environment.status=active" -o "environment.title=my-environment-title" -o "environment.parent=my-parent-environment" -o "environment.clone_parent_on_create=True"
+```
