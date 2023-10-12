@@ -92,6 +92,7 @@ highlight=ruby
 <!-- vale off -->
 <!-- vale Vale.Spelling = NO -->
 <!-- Spelling off because of the 'require "kafka"' -->
+
 require "kafka"
 kafka = Kafka.new(["kafka.internal:9092"], client_id: "my-application")
 kafka.deliver_message("Hello, World!", topic: "greetings")
