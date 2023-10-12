@@ -29,7 +29,7 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
         <tr>
             <td>{{< image-versions image="kafka" status="supported" environment="grid" >}}</td>
             <td>{{< image-versions image="kafka" status="supported" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="kafka" status="supported" environment="dedicated-gen-2" >}}</thd>
+            <td>{{< image-versions image="kafka" status="supported" environment="dedicated-gen-2" >}}</td>
         </tr>
     </tbody>
 </table>
