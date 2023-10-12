@@ -30,7 +30,7 @@ The following table presents all properties available at the top level of the YA
 ## Primary application properties
 
 All application configuration takes place in a `{{< vendor/configfile "app" >}}` file, with each application configured under a unique key beneath the top-level `applications` key.
-For example, it is possible to deploy two application containers - one Javascript and the other Python - for the frontend and backend components of a deployed site. 
+For example, it is possible to deploy two application containers - one JavaScript and the other Python - for the frontend and backend components of a deployed site. 
 
 In this case, the unified `{{< vendor/configfile "app" >}}` file would look like:
 
