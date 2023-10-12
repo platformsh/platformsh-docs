@@ -26,7 +26,7 @@ You need:
 <!-- There are no development plans on Upsun -->
 {{< version/only "1" >}}
 - If you are on a development plan, you need to [upgrade your tier to a production plan](#optional-change-your-plan-to-a-production-plan).
-{{< /version/only >}}hu
+{{< /version/only >}}
 
 If you are planning to use several subdomains of the same domain on different projects,
 see how to [manage multiple subdomains](/domains/steps/subdomains.md) *before* you add your domain to {{% vendor/name %}}.
