@@ -1,3 +1,4 @@
+<!-- vale off -->
 package sh.platform.languages.sample;
 
 import org.apache.kafka.clients.consumer.Consumer;
@@ -74,3 +75,4 @@ public class KafkaSample implements Supplier<String> {
         }
     }
 }
+<!-- vale off -->
