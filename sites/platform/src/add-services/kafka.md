@@ -61,7 +61,8 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 
 ## Usage example
 
-{{% endpoint-description type="kafka" /%}}
+{{% endpoint-description type="Kafka" /%}}
+
 {{< codetabs v2hide="true" >}}
 
 +++
