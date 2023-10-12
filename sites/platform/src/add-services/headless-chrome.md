@@ -76,7 +76,7 @@ After configuration, include [Puppeteer](https://www.npmjs.com/package/puppeteer
 {{< codetabs >}}
 
 +++
-title=NPM
+title=npm
 +++
 
 ```bash
@@ -86,7 +86,7 @@ npm install puppeteer
 <--->
 
 +++
-title=PNPM
+title=pnpm
 +++
 
 ```bash

@@ -84,8 +84,8 @@ highlight=python
 +++
 title=Ruby
 highlight=ruby
-markdownify=false
 +++
+
 ## With the ruby-kafka gem
 
 # Producer
