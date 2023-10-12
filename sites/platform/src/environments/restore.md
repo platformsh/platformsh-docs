@@ -99,13 +99,16 @@ See [how backup and restore works on {{% vendor/name %}}](../environments/backup
 You can restore backups to a different environment than they were created on using the CLI:
 
 1. Switch to the branch where the backup was created.
-2. Run the following command:
+2. To restore your backup to an existing environment, run the following command: 
 
    ```bash
    {{% vendor/cli %}} backup:restore --target={{% variable "TARGET_BRANCH_NAME" %}} {{% variable "BACKUP_ID" %}}
    ```
-
-   If the target branch (`--target`) doesn't exist yet, use the `--branch-from` option to specify the parent of the new environment:
+   
+   If your target environment doesn't exist yet, you can create it by [branching an existing environment](/glossary.md#branch).
+   The new target environment will be an exact copy of the existing (parent) environment.
+   
+   To do so, use the `--branch-from` option to specify the parent of your new target environment:
 
    ```bash
    {{% vendor/cli %}} backup:restore --branch-from={{% variable "ORIGIN_BRANCH_NAME" %}} {{% variable "BACKUP_ID" %}}
