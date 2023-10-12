@@ -130,7 +130,7 @@ and you can set up any other branch as a testing environment.
   It is useful to perform user acceptance testing in a production-like setting.
 
 The phrase "[preview environment](#preview-environment)" can apply to both a development or staging environment,
-as it simply describes a non-production environment.
+as it merely describes a non-production environment.
 
 Find out more about [user roles on each environment type](../administration/users.md#environment-type-roles).
 

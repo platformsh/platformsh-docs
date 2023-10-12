@@ -1,63 +1,67 @@
 ---
-title: Set up your Flask app and repository
-sidebarTitle: Setup your app and repo
-description: Steps required for setting up a Flask app and repository to deploy on {{% vendor/name %}} infrastructure.
+title: Set up your app and repository
+sidebarTitle: Set up your app and repo
+description: Steps required for setting up a Flask app and Git repository to deploy on {{% vendor/name %}} infrastructure.
 weight: -250
 ---
 
-For the purposes of this guide, we'll start by generating a
-[Flask package project](https://github.com/cookiecutter-flask/cookiecutter-flask) from
-[Cookiecutter](https://github.com/cookiecutter/cookiecutter). From there we'll walk through the steps needed to deploy
-the project on {{% vendor/name %}}. With all things in tech, there are many ways to accomplish the same goal; the
-correct way will depend on your specific needs and goals, and the makeup of your project. The following guide is simply
-one way to accomplish deploying a Flask application on {{% vendor/name %}}.
+You can start with an existing Flask app, or generate a new app using [Cookiecutter](https://github.com/cookiecutter/cookiecutter).
 
-From a terminal/command line prompt, first install Cookiecutter:
-```shell
-pip3 install cookiecutter
-```
+{{< note >}}
 
+If you already have a Flask app, jump straight to [initializing your Git repository](#2-initialize-your-git-repository).
 
-Next we need to generate the Flask template from Cookiecutter. If this is your first time generating a Flask
-Cookiecutter template, you will need to point to the full GitHub repository address:
-```shell
-cookiecutter https://github.com/cookiecutter-flask/cookiecutter-flask.git
-```
+{{< /note >}}
 
-Otherwise, you can just indicate the specific template you want to generate:
-```shell
-cookiecutter cookiecutter-flask
-```
+## Optional: Generate a Flask project with Cookiecutter
 
-Cookiecutter will next ask you a series of 10 questions.
-```shell
-[1/10] full_name (): Paul Gilzow
-[2/10] email (): paul.gilzow@platform.sh
-[3/10] github_username (): gilzow
-[4/10] project_name (): my_flask_project
-[5/10] app_name (): my_flask_cookie
-[6/10] project_short_description (): A demonstration project
-[7/10] use_pipenv (): n
-[8/10] python_version (): 3.11
-[9/10] node_version (): 18
-[10/10] use_heroku (): N
-```
+1. To generate a Flask project with [Cookiecutter](https://github.com/cookiecutter/cookiecutter), run the following command:
 
-Answer each one, paying attention to what you use for the `app_name` question as we will need it later. Once
-Cookiecutter has generated the template, cd into the directory it just created; it will be the same name you
-gave for the `app_name` question. For the purposes of this guide, I named mine `my_flask_cookie` and will refer to
-it throughout the remainder of the guide.
+   ```bash {location="Terminal"}
+   cookiecutter https://github.com/cookiecutter-flask/cookiecutter-flask.git
+   ```
 
-We need to initiate the contents of this directory as a Git repository so before doing anything else, initialize
-the repository:
-```shell
-git init .
-```
+   Alternatively, if you've already generated a Flask project with Cookiecutter before, indicate the specific template you want to use: 
+   
+   ```bash {location="Terminal"}
+   cookiecutter cookiecutter-flask
+   ```
 
-By default, Git will still use `master` as the name for the initial branch. If you wish to change the default
-branch name, you can do so with the `git branch -m` command. I'll rename mine to `main`:
-```shell
-git branch -m main
-```
+2. To configure your Flask project, follow the prompts and enter responses similar to the following:
+
+   ```bash
+   [1/10] full_name (): John Doe
+   [2/10] email (): john.doe@upsun.com
+   [3/10] github_username (): jdoe
+   [4/10] project_name (): my_flask_project
+   [5/10] app_name (): my_flask_app
+   [6/10] project_short_description (): A demonstration project
+   [7/10] use_pipenv (): n
+   [8/10] python_version (): 3.11
+   [9/10] node_version (): 18
+   [10/10] use_heroku (): N
+   ```
+
+   Keep note of your `app_name` for later use.</br>
+   After you've gone through all the prompts, your Flask project is generated.
+
+## Initialize your Git repository
+
+1. Navigate to your Flask project directory.</br>
+   If you’ve generated your Flask project with Cookiecutter,
+   run the following command, using the `app_name` [defined previously](#1-optional-generate-a-flask-project-with-cookiecutter):
+
+   ```bash {location="Terminal"}
+   cd {{< variable "app_name" >}}
+   ```
+
+2. To initialize the contents of the directory as a Git repository, run the following command:
+
+   ```bash {location="Terminal"}
+   git init
+   ```
+
+   By default, Git uses `master` as the name for the initial branch.</br>
+   To change the default branch name, run `git branch -m {{< variable "NEW_BRANCH_NAME" >}}`.</br>
 
 {{< guide-buttons next="Configure your infrastructure" >}}
