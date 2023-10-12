@@ -104,3 +104,13 @@ You can restore backups to a different environment than they were created on usi
    ```bash
    {{% vendor/cli %}} backup:restore --target={{% variable "TARGET_BRANCH_NAME" %}} {{% variable "BACKUP_ID" %}}
    ```
+
+## Restore from a different environment
+
+You can restore backups from a different environment using the CLI.
+
+If the `--target` does not yet exist, the `--branch-from` option specifies the parent of the new environment.
+
+   ```bash
+   {{% vendor/cli %}} backup:restore --branch-from={{% variable "ORIGIN_BRANCH_NAME" %}} {{% variable "BACKUP_ID" %}}
+   ```
