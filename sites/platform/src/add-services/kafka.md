@@ -63,6 +63,7 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 
 {{% endpoint-description type="kafka" /%}}
 
+<!-- vale off -->
 {{< codetabs v2hide="true" >}}
 
 +++
@@ -99,6 +100,7 @@ kafka.each_message(topic: "greetings") do |message|
 end
 
 {{< /codetabs >}}
+<!-- vale on -->
 
 {{% version/only "2" %}}
 
