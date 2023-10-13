@@ -261,6 +261,9 @@ https://{default}/:
       # Change of URL for the custom domains on preview environments page
       "/domains/steps/custom-non-production-domains.html" : { "to": "/domains/steps/custom-domains-preview-environments.html", "code": 301 }
 
+      # Change of URL for the getting started guides
+      "^/get-started/(django|drupal9|gatsby|hibernate|ibexa|jakarta|laravel|micronaut|nextjs|quarkus|spring|strapi|symfony|typo3|wordpress)(/?.*)" : { "to": "/guides/$1$2", "code": 301 }
+
 "https://search.{default}/":
     type: upstream
     upstream: "search:http"
