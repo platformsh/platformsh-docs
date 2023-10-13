@@ -383,4 +383,3 @@ To use the configured service in your app,
 add a configuration file similar to the following to your project.
 {{ end }}
 {{ end }}
-<!-- vale Vale.Spelling = YES -->
