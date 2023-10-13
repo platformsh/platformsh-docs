@@ -29,7 +29,6 @@ To define the service, use {{ if eq ($type) "mariadb" }}
 
 <!-- Create a dummy example `relationships` block from the registry's example naming in `.docs` -->
 ```yaml {configFile="services"}
-{{ partial "snippet" (dict "context" . "name" "<SERVICE_NAME>" "config" "service" "Inner" $serviceInner ) }}
 ```
 
 {{ if eq $type "redis-persistent" }}
