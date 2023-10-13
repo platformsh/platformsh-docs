@@ -89,7 +89,6 @@ highlight=ruby
 ## With the ruby-kafka gem
 
 # Producer
-
 require "kafka"
 kafka = Kafka.new(["kafka.internal:9092"], client_id: "my-application")
 kafka.deliver_message("Hello, World!", topic: "greetings")

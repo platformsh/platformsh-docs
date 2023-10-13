@@ -1,4 +1,3 @@
-<!-- vale Vale.Spelling = NO -->
 <!-- Name the parameters -->
 {{ $type := .Get "type" }}
 {{ $onlyLanguage := .Get "onlyLanguage" }}
