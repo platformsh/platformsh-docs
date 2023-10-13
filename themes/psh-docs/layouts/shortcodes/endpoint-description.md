@@ -1,4 +1,4 @@
-<!-- vale off -->
+<!-- vale Vale.Spelling = NO -->
 <!-- Name the parameters -->
 {{ $type := .Get "type" }}
 {{ $onlyLanguage := .Get "onlyLanguage" }}
@@ -384,4 +384,4 @@ To use the configured service in your app,
 add a configuration file similar to the following to your project.
 {{ end }}
 {{ end }}
-<!-- vale on -->
+<!-- vale Vale.Spelling = YES -->
