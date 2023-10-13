@@ -22,7 +22,7 @@ To define the service, use {{ if eq ($type) "mariadb" }}
   {{ else if eq $type "redis" }}
   the `{{ $type }}` type for ephemeral Redis
   {{ else }}
-  the `{{ $type }}` type{{ end }}:
+  the  type{{ end }}:
 
 <!-- Create an example services.yaml file from data in the registry. -->
 {{ $serviceInner := partial "examples/servicedefn" (dict "context" . "data" $data "docVersion" $docVersion) }}
@@ -73,6 +73,7 @@ in step 1](#1-configure-the-service){{ else }}`{{ $data.endpoint }}` endpoint{{ 
 {{ $relationshipInner := partial "examples/relationship" (dict "context" . "data" $data ) }}
 
 ```yaml {configFile="app"}
+{{ partial "snippet" (dict "context" . "name" "<APP_NAME>" "config" "app" "root" "false" "Inner" $relationshipInner ) }}
 
 {{ partial "snippet" (dict "context" . "name" "<SERVICE_NAME>" "config" "service" "placeholder" "true" "Inner" $serviceInner ) }}
 ```
