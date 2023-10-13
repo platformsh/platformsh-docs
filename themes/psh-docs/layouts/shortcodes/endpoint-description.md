@@ -1,3 +1,4 @@
+<!-- vale off -->
 <!-- Name the parameters -->
 {{ $type := .Get "type" }}
 {{ $onlyLanguage := .Get "onlyLanguage" }}
@@ -304,6 +305,7 @@ Notice the `relationship` (`{{ $varnishRelName }}`) defined for the service `{{ 
 ```
 {{ end }}
 
+<!-- {{ partial "examples/config_links" ( dict "type" $type "onlyLanguage" $onlyLanguage ) }} -->
 
 {{ if eq ($type) "elasticsearch" }}
 If you're using a [premium version](add-services/elasticsearch.md#supported-versions),
@@ -382,3 +384,4 @@ To use the configured service in your app,
 add a configuration file similar to the following to your project.
 {{ end }}
 {{ end }}
+<!-- vale on -->
