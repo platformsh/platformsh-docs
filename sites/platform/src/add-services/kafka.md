@@ -58,3 +58,48 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
     "port": 9092
 }
 ```
+
+## Usage example
+
+
+{{< codetabs v2hide="true" >}}
+
++++
+title=Java
+file=static/files/fetch/examples/java/kafka
+highlight=java
++++
+
+<--->
+
++++
+title=Python
+file=static/files/fetch/examples/python/kafka
+highlight=python
++++
+
+<--->
+
++++
+title=Ruby
+highlight=ruby
++++
+
+## With the ruby-kafka gem
+
+# Producer
+
+require "kafka"
+kafka = Kafka.new(["kafka.internal:9092"], client_id: "my-application")
+kafka.deliver_message("Hello, World!", topic: "greetings")
+
+# Consumer
+kafka.each_message(topic: "greetings") do |message|
+  puts message.offset, message.key, message.value
+end
+
+{{< /codetabs >}}
+
+
+
+(The specific way to inject configuration into your application varies. Consult your application or framework's documentation.)
