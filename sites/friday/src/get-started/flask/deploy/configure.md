@@ -1,274 +1,212 @@
 ---
-title: Configure infrastructure for a Flask app on {{% vendor/name %}}
-sidebarTitle: Configure your infrastructure
-description: This guide provides instructions for deploying, and working with Flask on {{% vendor/name %}}.
+title: Configure your infrastructure
+description: Configure infrastructure for your Flask app on {{% vendor/name %}}
 weight: -200
 ---
 
-## {{% vendor/name %}} configuration files
-Now that we have the repository initialized, and our template generated, we're ready to prepare it for use on
-{{% vendor/name %}}. Before attempting the next command, make sure you have the
-[{{% vendor/name %}} CLI installed](/administration/cli/_index.md) and working, and
-have [authenticated the cli tool](/administration/cli/_index.md#2-authenticate) with your {{% vendor/name %}}
-account. We're now ready to have the {{% vendor/name %}} CLI generate the configuration files we'll need to deploy
-on {{% vendor/name %}}.
+To prepare your Flask project for use on {{% vendor/name %}},
+you need to generate {{% vendor/name %}} configuration files,
+as well as create and configure a {{% vendor/name %}} project.
 
-```shell
-{{% vendor/cli %}} project:init
-```
+To do so, make sure you have the [{{% vendor/name %}} CLI](/administration/cli/_index.md) installed
+and [authenticated with your {{% vendor/name %}} account](/administration/cli/_index.md#2-authenticate).
 
-This command is also available as `{{% vendor/cli %}} ify`.
+## Generate your {{% vendor/name %}} configuration files
 
-The {{% vendor/name %}} CLI will now ask you a series of questions to determine your project's requirements:
+1. To generate the configuration files needed to deploy your app on {{% vendor/name %}},
+   run the following command:
 
-```shell
-❯ {{% vendor/cli %}} project:init
-Welcome to {{% vendor/name %}}!
-Let's get started with a few questions.
+   ```bash {location="Terminal"}
+   {{% vendor/cli %}} project:init
+   ```
 
-We need to know a bit more about your project. This will only take a minute!
+   This command is also available as `{{% vendor/cli %}} ify`.
 
-What language is your project using? We support the following:
-Use arrows to move up and down, type to filter
-  C#/.Net Core
-  Elixir
-  Go
-  Java
-  Lisp
-  JavaScript/Node.js
-  PHP
-> Python
-  Ruby
-```
+2. Follow the prompts to determine your project requirements:
+   
+   - Select Python as the language for your project.</br>
+     {{% vendor/name %}} then automatically detects your dependency manager.
 
-Scroll down and select `Python`. It should then automatically detect your dependency manager.
+   - Enter the name of your app.
 
-```shell
-What language is your project using? We support the following: [Python]
+   - Select the services you need.
 
-✓ Detected dependency managers: Pip
-```
+   - Hit **Enter**.</br>
+   
+   Your {{% vendor/name %}} configuration files are generated.
 
-It will then ask for the name of your application. From there it should prompt you for services your project
-needs. Select each one and then hit **Enter**. For this demonstration, I only need `PostgreSQL`
+3. Add all the generated files to your Git repository.
+   To do so, run the following commands:
 
-```shell
+   ```bash {location="Terminal"}
+   git add .
+   git commit -m "Initial commit"
+   ```
 
-                       (\_/)
-We’re almost done...  =(^.^)=
+## Create your {{% vendor/name %}} project
 
-Last but not least, unless you’re creating a static website, your project uses services. Let’s define them:
+To deploy your Flask project on {{% vendor/name %}},
+you need to create and configure a {{% vendor/name %}} project first.
 
-Select all the services you are using:
-Use arrows to move, space to select, type to filter
-  [ ]  MariaDB
-  [ ]  MySQL
-> [x]  PostgreSQL
-  [ ]  Redis
-  [ ]  Redis Persistent
-  [ ]  Memcached
-  [ ]  OpenSearch
-```
+1. To create your {{% vendor/name %}} project,
+   run the following command:
 
-It will then generate a series of configuration files for you:
+   ```bash {location="Terminal"}
+   {{% vendor/cli %}} project:create
+   ```
 
-```shell
+2. To configure your {{% vendor/name %}} project, follow the prompts:
+   
+   - Create or select your organization.
 
-┌───────────────────────────────────────────────────┐
-│   CONGRATULATIONS!                                │
-│                                                   │
-│   We have created the following files for your:   │
-│     - .environment                                │
-│     - {{< vendor/configfile "app" >}}                         │
-│                                                   │
-│   We’re jumping for joy! ⍢                        │
-└───────────────────────────────────────────────────┘
-         │ /
-         │/
-         │
-  (\ /)
-  ( . .)
-  o (_(“)(“)
+   - Name your project.
 
-You can now deploy your application to {{% vendor/name %}}!
-To do so, commit your files and deploy your application using the {{% vendor/name %}} CLI:
-  $ git add .
-  $ git commit -m 'Add {{% vendor/name %}} configuration files'
-  $ {{% vendor/cli %}} project:set-remote
-  $ {{% vendor/cli %}} push
-```
+   - Select the region where you want your project to be hosted.
 
-Last, we need to add all of our generated files, from both Cookiecutter and the {{% vendor/name %}} CLI to our Git
-repository:
-```shell
-git add . && git commit -m "initial commit"
-```
+   - Specify the branch name.</br>
+     Use the same branch name as [defined previously](/get-started/flask/deploy/setup.md#initialize-your-repository).
 
-Before we can deploy our application, we'll need to create a new project on {{% vendor/name %}}. From the command line:
-```shell
-{{% vendor/cli %}} project:create
-```
-The {{% vendor/name %}} CLI will now walk you through the creation of a project asking you for your organization,
-the project's title, the region where you want the application housed, and the branch name (use the same one we set
-earlier).
+   - Set {{% vendor/name %}} as your repository remote.
 
-For now, allow the {{% vendor/name %}} CLI to set {{% vendor/name %}} as your repository's remote, and then
-select `Y` to allow the tool to create the project.
+   Your {{% vendor/name %}} project is created.
 
-The {{% vendor/name %}} bot will begin the generation of your
-{{% vendor/name %}} project and once done, will report back the details of your project including the project's ID, and
-URL to where you can manage the project from the {{% vendor/name %}} web console.
+## Configure your {{% vendor/name %}} project
 
-Don't worry if you forget any of this
-information; you can retrieve it later with:
-```shell
-{{% vendor/cli %}} project:info
-```
+To complete the deployment of your Flask app on {{% vendor/name %}},
+you need to add app-specific configurations to your {{% vendor/name %}} project.</br>
+To do so, make the following changes to the `{{% vendor/configfile "app" %}}` file automatically generated by the {{% vendor/name %}} CLI:
 
-And you can launch the web console for your project at any time by doing:
-```shell
-{{% vendor/cli %}} web
-```
+1. Specify how your app must be loaded.</br>
+   To do so, add a `FLASK_APP` variable for all your environments and point it to your `autoapp.py` file.
+   Locate the section dedicated to environment variables:
 
+   ```yaml {configFile="app"}
+   # Variables to control the environment. More information: https://docs.upsun.com/create-apps/app-reference.html#variables
+   # variables:
+   #   env:
+   #     # Add environment variables here that are static.
+   #     PYTHONUNBUFFERED: "1"
+   ```
 
-Now that we have our {{% vendor/name %}} project created, our local project generated and associated with the
-{{% vendor/name %}} project, the only thing left to do is add configurations that are specific to the application.
+   Uncomment the `variables:`and `env:` lines, and add your environment variable:
 
-To start, we need to add an environment variable for `FLASK_APP` for all environments that points to our `autoapp.py`
-file. Open the file `{{< vendor/configfile "app" >}}` that the {{% vendor/name %}} CLI generated and locate the
-commented line that starts with:
+   ```yaml {configFile="app"}
+   variables:
+     env:
+       FLASK_APP: autoapp.py
+   ```
 
-```yaml
-# Variables to control the environment.
-```
+   {{< note >}}
+   When you uncomment a section in a YAML file, remove **both** the comment marker `#` and the extra space.
+   Failure to do so results in an `Invalid block mapping key indent` error when the configuration file is validated.
+   {{< /note >}}
 
-We need to uncomment the next two lines underneath this line, and add our environmental variable to the list:
+2. Configure some writable disk space to hold the static assets that `flask-static-digest` generates and `npm` builds.</br>
+   To do so, define the `./APP_NAME/static` directory as [a mount](/create-apps/app-reference.md#mounts).
+   Locate the section dedicated to mounts:
 
-```yaml {configFile="app"}
-    # Variables to control the environment.
-    variables:
-      env:
-        FLASK_APP: autoapp.py
-```
+   ```yaml {configFile="app"}
+   # Mounts define directories that are writable after the build is complete.
+   # More information: https://docs.upsun.com/create-apps/app-reference.html#mounts
+   # mounts:
+   #   "/.cache": # Represents the path in the app.
+   #     source: "local" # "local" sources are unique to the app, while "service" sources can be shared among apps.
+   #     source_path: "cache" # The subdirectory within the mounted disk (the source) where the mount should point.
+   ```
 
-{{< note >}}
-When uncommenting this section, or any others in a YAML file make sure you remove both the comment marker `#`
-as well as the extra space. If you don't remove the extra space, you will end up with a
-`Invalid block mapping key indent` error when the configuration file is validated.
-{{< /note >}}
+   Uncomment the `# mounts:` line, and add an entry describing where you want to add a writable mount:
 
-Next we're going to need some writable disk space to hold the static assets that npm builds and
-flask-static-digest generates. This directory exists under our application package name as
-`./<application-name>/static`. In
-`{{< vendor/configfile "app" >}}`, find the line that starts with:
+   ```yaml {configFile="app"}
+   mounts:
+       "app_name/static":
+           source: "local"
+           source_path: "static_assets"
+   ```
+   
+3. Instruct {{% vendor/name %}} to automatically run `npm install` when building the application container.</br>
+   To do so, customize your [build hook](/create-apps/hooks/hooks-comparison.html#build-hook).
+   Locate the section dedicated to it:
 
-```yaml {configFile="app"}
-# Mounts define directories that are writable after the build is complete
-```
+   ```yaml {configFile="app"}
+   # Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
+   # More information: https://docs.upsun.com/create-apps/app-reference.html#hooks
+   hooks:
+     # The build hook is run after any build flavor.
+     # More information: https://docs.upsun.com/create-apps/hooks/hooks-comparison.html#build-hook
+     build: |
+         set -eux
+         pip install -r requirements.txt
+    ```
 
-We'll need to uncomment the line `# mounts:` and then add an entry describing where we want a writable
-mount added:
+   The  {{% vendor/name %}} CLI automatically added `pip install -r requirements.txt` to your build hook configuration.</br>
+   If you want `pip` to be upgraded first, add  `pip install --upgrade pip` to the above line.</br>
+   Then, add `npm install`:
 
-```yaml {configFile="app"}
-    # Mounts define directories that are writable after the build is complete.
-    mounts:
-      "my_flask_cookies/static": # Represents the path in the app.
-        source: "local" # "local" sources are unique to the app, while "service" sources can be shared among apps.
-        source_path: "static_assets" # The subdirectory within the mounted disk (the source) where the mount should point.
-```
-`source` indicates if this is a local storage mount or a service. `source_path` is the subdirectory within the mounted
-disk (the source) where the mount should point. For further information, please see the
-[documentation on mounts](/create-apps/app-reference.md#mounts).
+   ```yaml {configFile="app"}
+   hooks:
+       build: |
+           set -eux
+           pip install --upgrade pip
+           pip install -r requirements.txt
+           npm install
+    ```
+4. Instruct {{% vendor/name %}} to automatically run `npm run build` when building the application container.</br>
+   To do so, customize your [deploy hook](/create-apps/hooks/hooks-comparison.html#deploy-hook).
+   Locate the section dedicated to it:
 
-Since this project uses npm in addition to Python, we're going to want {{% vendor/name %}} to also run an `npm install`
-when it builds the application image. In the `{{< vendor/configfile "app" >}}` find the line that starts with:
-
-```yaml {configFile="app"}
-# Hooks allow you to customize your code/environment
-```
-
-Beneath that line will be a section for `build:`.
-
-The [build hook](/create-apps/hooks/hooks-comparison/_index.md#build-hook) allows us to make changes to the application
-before it is finalized and deployed. You should notice that when the {{% vendor/name %}} CLI generated
-the configuration file for us, it automatically added `pip install -r requirements.txt` for us! This same section is
-where we'll also instruct {{% vendor/name %}} to install our npm packages.
-
-But before that, I usually like to upgrade pip before I run `pip install` so I'm going to add a new line above that and
-add in `pip install --upgrade pip`. Then I'll add another line after the initial `pip install` and add `npm install`:
-
-```yaml {configFile="app"}
-    # Hooks allow you to customize your code/environment
-    hooks:
-      build: |
+   ```yaml {configFile="app"}
+   # The deploy hook is run after the app container has been started, but before it has started accepting requests.
+   # More information: https://docs.upsun.com/create-apps/hooks/hooks-comparison.html#deploy-hook
+   deploy: |
         set -eux
-        pip install --upgrade pip
-        pip install -r requirements.txt
-        npm install
-```
+        # echo 'Put your deploy command here'
+   ```
 
-We also need to inform {{% vendor/name %}} what should occur when our application is deployed. The
-[deploy hook](/create-apps/hooks/hooks-comparison/_index.md#deploy-hook) is
-similar to the build hook but runs after the application image has been built. At this stage the
-application image is read-only, <!-- might not be true -->but our writable disk space has been mounted and
-is now accessible<!-- /end might not be true -->. Find the `deploy:` YAML key, add a new line after
-`set -eux` and add `npm run build`:
+   Add `npm run build`:
 
-```yaml {configFile="app"}
-      deploy: |
+   ```yaml {configFile="app"}
+   deploy: |
         set -eux
         npm run build
-```
+   ```
 
-Next we need to configure how {{% vendor/name %}} will handle requests to this application image. In the
-`{{< vendor/configfile "app" >}}` file locate the line that starts with:
+5. [Configure the web server](https://docs.platform.sh/create-apps.html#configure-whats-served) running in front of your app
+   to define how your app handles dynamic requests.
+   To do so, locate the section dedicated to the web server:
 
-```yaml {configFile="app"}
-# The web key configures the web server running in front of your app.
-```
+   ```yaml {configFile="app"}
+   # The web key configures the web server running in front of your app.
+   # More information: https://docs.upsun.com/create-apps/app-reference.html#web
+   web:
+     # Commands are run once after deployment to start the application process.
+     # More information: https://docs.upsun.com/create-apps/app-reference.html#web-commands
+   ```
 
-Beneath that line there should be a YAML property of `web`. A few lines beneath that line
-will be a YAML property of `start:` Once again, the {{% vendor/name %}} CLI already added some information here, but
-since it doesn't know the specifics of what needs to be used, has simply left instructions. For now, we
-only need the basic Flask server, so we'll replace the current contents with `flask run -p $PORT`.
+   To add a basic Flask server, replace the default information added by the {{% vendor/name %}} CLI with `flask run -p $PORT`.</br>
+   Also, change the `socket_family` value from `unix` to `tcp`:
 
-```yaml {configFile="app"}
-    # The web key configures the web server running in front of your app.
-    web:
-      # Commands are run once after deployment to start the application process.
-      commands:
-        # The command to launch your app. If it terminates, it’s restarted immediately.
-        # You can use the $PORT or the $SOCKET environment variable depending on the socket family of your upstream
-        start: "flask run -p $PORT"
-```
+   ```yaml {configFile="app"}
+   web:
+     commands:
+       start: "flask run -p $PORT"
+     upstream:
+       socket_family: tcp
+   ```
 
-Since we're using the Flask server (for now), we also need to change the `socket_family` from `unix`
-to `tcp`:
+6. To commit your changes, run the following commands:
+   ```bash {location="Terminal"}
+   git add {{% vendor/configfile "app" %}}
+   git commit -m "Adds FLASK_APP env var, adds mount for static builds, build commands, npm run build on deploy, web start command"
+   ```
 
-```yaml {configFile="app"}
-        start: "flask run -p $PORT"
-      # You can listen to a UNIX socket (unix) or a TCP port (tcp, default).
-      upstream:
-        # Whether your app should speak to the webserver via TCP or Unix socket. Defaults to tcp
-        socket_family: tcp
-```
+   {{< note >}}
+   By default, the `{{% vendor/cli %}} project:init` command sets the language runtime to the latest possible version.
 
-We've now added all the configuration {{% vendor/name %}} needs to be able to build and deploy our application! Let's
-go ahead and commit these changes:
-```shell
-git add {{< vendor/configfile "app" >}}
-```
-```shell
-git commit -m "adds FLASK_APP env var, adds mount for static builds, build commands, npm run build on deploy, web start command"
-```
+   If your project requires an older version, before pushing your code to {{% vendor/name %}},
+   open your `{{< vendor/configfile "app" >}}` file and change the value of the `type` key (near the top of the file) to the desired version.
+   See the [complete list of supported Python versions](/languages/python/_index.md#supported-versions).
 
-{{< note >}}
-By default, the `{{% vendor/cli %}} project:init` command will set the language runtime to the latest possible version.
-If your project requires an older version, you will need to change it before pushing your code to {{% vendor/name %}}.
-To change the runtime version, locate the `type` key near the top of the `{{< vendor/configfile "app" >}}` file, and
-change it the desired version. A
-[complete list of supported versions of Python](/languages/python/_index.md#supported-versions) is available in the
-documentation. Do not forget to add and commit your changes to Git before pushing your code.
-{{< /note >}}
+   Make sure you add and commit your changes to Git before pushing your code.
+   {{< /note >}}
 
 {{< guide-buttons next="Environment variables" >}}

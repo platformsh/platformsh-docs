@@ -1,114 +1,147 @@
 ---
-title: Guide to deploying a Flask app on {{% vendor/name %}} TL;DR
+title: Fast-track guide to deploying a Flask app on {{% vendor/name %}}
 sidebarTitle: Fast-track guide
 sectionBefore: Bonus
-description: The TL;DR - Step-by-Step version for deploying, and working with Flask on {{% vendor/name %}}.
+description: The fast-track, step-by-step guide for deploying, and working with Flask on {{% vendor/name %}}.
 ---
-## TL;DR Step-by-Step
-`T:` - run the line in a terminal/command prompt
+
+Here are all the steps required to successfully generate a Flask app with Cookiecutter,
+and deploy it on {{% vendor/name %}}.
+
+`T:` Run the line in a terminal/command prompt
 
 1. T: `pip3 install cookiecutter`
 2. T: `cookiecutter https://github.com/cookiecutter-flask/cookiecutter-flask.git`
-3. Answer questions
-  1. Name
-  5. Email
-  6. Github_username
-  7. Project name
-  8. App name
-  9. Description
-  10. Pipenv
-  11. Python version
-  12. Node version
-  13. heroku
-14. Cd into directory (should be what you answered for 3.5)
-15. T: `git init .`
-16. T: `git branch -m main`
-17. T: `{{% vendor/cli %}} project:init`
-  1. Select Python
-  19. Select Postgres
-20. T: `git add .`
-21. T: `git commit -m "init commit"`
-22. T: `{{% vendor/cli %}} p:create`
-23. Answer questions
-  1. Choose your org
-  25. Give it a title
-  26. Choose a region
-  27. Enter the branch name from #6
-  28. Set the project as the remote (for now)
-  29. Select Y to "continue"
-30. Open `{{< vendor/configfile "app" >}}`
-  1. Find the section describing "Variables"
-  32. Uncomment `# variables` and the next line `env:`
-  33. On the next line, add `FLASK_APP: autoapp.py`
-  43. Find the section for `hooks:build`
-  44. On the line before `pip install`, add the following:
-      ```yaml {configFile="app"}
-      pip install --upgrade pip
-      npm install
-      ```
-  48. Scroll down to the `deploy` section
-  49. On the line after `set -eux`, add
-      ```yaml
-      npm run build
-      ```
-  51. Find the section `web:commands:start` and change it to
-      ```yaml {configFile="app"}
-      start: flask run -p $PORT
-      ```
-  53. Below this find the section for `upstream:socket_family` and either comment out both lines, or change `unix` to `tcp`
-54. T: `git add {{< vendor/configfile "app" >}}`
-55. T: `git commit -m "adds FLASK_APP env var, adds mount for static builds, build commands, npm run build on deploy, web start command"`
-56. Open `.environment` file
-  1. Change `DATATABASE_URL` to: `postgresql://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}`
-  58. Add the following lines to .environment:
-      ```shell
-         export SECRET_KEY="${PLATFORM_PROJECT_ENTROPY}"
-         export FLASK_DEBUG=$( [ "${PLATFORM_ENVIRONMENT_TYPE}" = "production" ] && echo 0 || echo 1)
-         export FLASK_ENV="${PLATFORM_ENVIRONMENT_TYPE}"
-         export GUNICORN_WORKERS=1
-         export LOG_LEVEL=$( [ "${PLATFORM_ENVIRONMENT_TYPE}" = "production" ] && echo "info" || echo "debug")
-         # In production, set to a higher number, like 31556926
-         export SEND_FILE_MAX_AGE_DEFAULT=$( [ "${PLATFORM_ENVIRONMENT_TYPE}" = "production" ] && echo 31556926 || echo 0)
-      ```
-66. T: `git add .enviornment`
-67. T: `git commit -m "adds needed flask env vars"`
-68. T: `{{% vendor/cli %}} e:push`
-  1. Answer Y <-- push will fail, and is _expected_
-70. T: `upsun resources:set`
-  1. Set application to profile size `1`
-  2. Set number of application instances to `1`
-  3. Set postgresql profile size to `1`
-  4. Set persistent disk for postgresql to `2048`
-  5. Select `Y` to confirm choices
-1. Find the section describing `mounts`
-35. Uncomment `# mounts:`
-36. On the next line add
-      ```yaml {configFile="app"}
-      "<name-of-your-app-from-3.5-above>/static":
-        source: local
-        source_path: static_build
-      ```
-37. T: `upsun resources:set --disk=<name-of-your-app-from-3.5-above>:1024`
-38. Select `Y` to confirm changes to your application resources
-71. T: `python3 -m venv env`
-72. T: `source venv/bin/activate`
-73. T: `pip install --upgrade pip`
-74. T: `pip install -r requirements.txt`
-75. T: `{{% vendor/cli %}} tunnel:open -y`
-76. T: `export PLATFORM_RELATIONSHIPS="$({{% vendor/cli %}} tunnel:info --encode)"`
-77. T: `export PORT=8888`
-78. T: `export PLATFORM_PROJECT_ENTROPY=$(openssl rand -base64 32)`
-79. T: `export PLATFORM_ENVIRONMENT_TYPE=production`
-80. T: `source ./.environment`
-81. T: `flask db init`
-82. T: `flask db migrate`
-83. Open `{{< vendor/configfile "app" >}}`
-  1. Find the section for `hooks:deploy`
-  85. On a new line after `npm run build`, add `flask db upgrade`
-86. T: `git add migrations/*`
-87. T: `git commit -m "adds migrations"`
-88. T: `git add {{< vendor/configfile "app" >}}`
-89. T: `git commit -m "adds flask db upgrade to deploy hook"`
-90. T: `{{% vendor/cli %}} environment:push`
+3. Follow the prompts to submit the following information:
+   - Name
+   - Email
+   - GitHub username
+   - Project name
+   - App name
+   - Description
+   - Pipenv
+   - Python version
+   - Node version
+   - Heroku
+4. `cd` into project directory (`app_name` defined at step 3)
+5. T: `git init .`
+6. T: `git branch -m main`
+7. T: `{{% vendor/cli %}} project:init`
+8. Follow the prompts:
+   - Select Python
+   - Select your services
+9. T: `git add .`
+10. T: `git commit -m "Init commit"`
+11. T: `{{% vendor/cli %}} p:create`
+12. Follow the prompts:
+    - Create or select your organization
+    - Name your project
+    - Choose a region
+    - Enter the branch name defined at step 6
+    - Set the project as the remote (for now)
+    - Select `Y` to continue
+13. Open `{{< vendor/configfile "app" >}}`
+14. Find the section describing `variables`
+15. Uncomment `# variables` and the `env:` line
+16. Add the following configuration:
 
-The above steps do not include setting up a local development environment, or switching to gunicorn as a web server.
+    ```yaml {configFile="app"}
+    variables:
+      env:
+        FLASK_APP: autoapp.py
+    ```
+17. Find the section for `mounts`
+18. Add the following configuration:
+
+    ```yaml {configFile="app"}
+    mounts:
+      "app_name/static":
+        source: "local"
+        source_path: "static_assets"
+    ```
+19. Find the section for `hooks:build`
+20. Add the following configuration:
+
+    ```yaml {configFile="app"}
+    hooks:
+      build: |
+        set -eux
+        pip install --upgrade pip
+        pip install -r requirements.txt
+        npm install  
+    ```
+21. Find the section for `hooks:deploy`
+22. Add the following configuration:
+    ```yaml {configFile="app"}
+       deploy:
+         set -eux
+         npm run build 
+    ```
+23. Find the section for `web:commands:start`
+24. Add the following configuration:
+    ```yaml {configFile="app"}
+    web:
+      commands:
+        start: "flask run -p $PORT"
+      upstream:
+        socket_family: tcp
+    ```
+25. T: `git add {{< vendor/configfile "app" >}}`
+26. T: `git commit -m "Adds FLASK_APP env var, adds mount for static builds, build commands, npm run build on deploy, web start command"`
+27. Open your `.environment` file
+28. Change `DATATABASE_URL` to: `your_service_type://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}`
+29. Add the following lines to `.environment`:
+    ```bash {location=".environment"}
+        export SECRET_KEY="${PLATFORM_PROJECT_ENTROPY}"
+        export FLASK_DEBUG=$( [ "${PLATFORM_ENVIRONMENT_TYPE}" = "production" ] && echo 0 || echo 1)
+        export FLASK_ENV="${PLATFORM_ENVIRONMENT_TYPE}"
+        export GUNICORN_WORKERS=1
+        export LOG_LEVEL=$( [ "${PLATFORM_ENVIRONMENT_TYPE}" = "production" ] && echo "info" || echo "debug")
+        # In production, set to a higher number, like 31556926
+        export SEND_FILE_MAX_AGE_DEFAULT=$( [ "${PLATFORM_ENVIRONMENT_TYPE}" = "production" ] && echo 31556926 || echo 0)
+    ```
+30. T: `git add .environment`
+31. T: `git commit -m "Adds needed flask env vars"`
+32. T: `{{% vendor/cli %}} e:push`
+33. Enter `Y`.<br/>
+    **Expected failure on first push because you need to set resources.**
+34. T: `upsun resources:set`
+35. Follow the prompts:
+    - Define a CPU/RAM combination for your application container
+    - Define a number of instances for your application
+    - Define a CPU/RAM combination for each of your service containers
+    - Define persistent disk storage for each of your databases
+    - Enter `Y` to confirm
+36. T: `python3 -m venv env`
+37. T: `source venv/bin/activate`
+38. T: `pip install --upgrade pip`
+39. T: `pip install -r requirements.txt`
+40. T: `{{% vendor/cli %}} tunnel:open -y`
+41. Open `{{< vendor/configfile "app" >}}`
+42. Add the following variables:
+    ```yaml {configFile="app"}
+    export PLATFORM_RELATIONSHIPS="$({{% vendor/cli %}} tunnel:info --encode)"
+    export PORT=8888
+    export PLATFORM_PROJECT_ENTROPY=$(openssl rand -base64 32)
+    export PLATFORM_ENVIRONMENT_TYPE=production
+    ```
+43. T: `source ./.environment`
+44. T: `flask db init`
+45. T: `flask db migrate`
+46. Open `{{< vendor/configfile "app" >}}`
+47. Find the section for `hooks:deploy`
+48. Add the following configuration:
+    ```yaml {configFile="app"}
+    deploy: |
+    set -eux
+    npm run build
+    flask db upgrade   
+    ```
+49. T: `git add migrations/*`
+50. T: `git commit -m "Adds migrations"`
+51. T: `git add {{< vendor/configfile "app" >}}`
+52. T: `git commit -m "Adds flask db upgrade to deploy hook"`
+53. T: `{{% vendor/cli %}} environment:push`
+
+The above steps do not include [setting up a local development environment](/get-started/flask/local-development/_index.md),
+or [switching to Gunicorn as a web server](/get-started/flask/web-servers.md).
