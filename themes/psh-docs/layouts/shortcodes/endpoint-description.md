@@ -210,6 +210,7 @@ Add the service to your app configuration:
 {{ if eq $docVersion 1 }}
 #### [Service definition](/add-services)
 ```yaml {configFile="services"}
+{{ partial "snippet" (dict "context" . "name" $serviceName "config" "service" "Inner" $serviceInner ) }}
 ```
 {{ end }}
 
@@ -303,7 +304,6 @@ Notice the `relationship` (`{{ $varnishRelName }}`) defined for the service `{{ 
 ```
 {{ end }}
 
-<!-- {{ partial "examples/config_links" ( dict "type" $type "onlyLanguage" $onlyLanguage ) }} -->
 
 {{ if eq ($type) "elasticsearch" }}
 If you're using a [premium version](add-services/elasticsearch.md#supported-versions),
