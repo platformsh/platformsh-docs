@@ -147,7 +147,7 @@ Others are just available as a convention for your application code to follow.
 
 ### Top-level environment variables
 
-By default, project and environment variables are only added to the `$PLATFORM_VARIABLES` environment variable.
+By default, project and environment variables are only added to the `PLATFORM_VARIABLES` environment variable.
 You can also expose a variable as its own environment variable by giving it the prefix `env:`.
 
 For example, the variable `env:foo` creates an environment variable called `FOO`.
@@ -163,6 +163,8 @@ You can then access that variable directly in your app container:
 echo $FOO
 bar
 ```
+
+Note that environment variables with the `env:` prefix aren't added to the `PLATFORM_VARIABLES` environment variable.
 
 ### PHP-specific variables
 
