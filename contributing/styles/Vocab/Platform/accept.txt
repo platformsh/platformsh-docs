@@ -63,6 +63,8 @@ IPs?
 JVM
 imagetragick
 jpegoptim
+Kafka
+kafka
 Lando
 Laravel
 Loggly
