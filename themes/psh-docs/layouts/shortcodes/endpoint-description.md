@@ -29,6 +29,7 @@ To define the service, use {{ if eq ($type) "mariadb" }}
 
 <!-- Create a dummy example `relationships` block from the registry's example naming in `.docs` -->
 ```yaml {configFile="services"}
+{{ partial "snippet" (dict "context" . "name" "<SERVICE_NAME>" "config" "service" "Inner" $serviceInner ) }}
 ```
 
 {{ if eq $type "redis-persistent" }}
@@ -74,7 +75,6 @@ in step 1](#1-configure-the-service){{ else }}`{{ $data.endpoint }}` endpoint{{ 
 ```yaml {configFile="app"}
 {{ partial "snippet" (dict "context" . "name" "<APP_NAME>" "config" "app" "root" "false" "Inner" $relationshipInner ) }}
 
-{{ partial "snippet" (dict "context" . "name" "<SERVICE_NAME>" "config" "service" "placeholder" "true" "Inner" $serviceInner ) }}
 ```
 
 <!-- Adds a note about naming conventions between relationship and service names. Keep em unique. -->
