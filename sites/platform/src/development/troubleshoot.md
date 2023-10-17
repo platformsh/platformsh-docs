@@ -239,7 +239,7 @@ To determine if your environment is being stuck in the build or the deployment, 
 If the activity has the result `success`, the build has completed successfully and the system is trying to deploy.
 If the result is still `running`, the build is stuck.
 
-In most regions, stuck builds terminate after one hour.
+In most regions, stuck builds terminate after one hour. 
 
 When a deployment is blocked, you should try the following:
 
