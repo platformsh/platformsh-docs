@@ -1,6 +1,5 @@
 ---
 title: Set environment variables
-sidebarTitle: "Environment variables"
 description: Set environment variables required to successfully deploy your Flask app on {{% vendor/name %}} infrastructure.
 weight: -150
 ---
