@@ -156,7 +156,6 @@ relationships:
 {{< /snippet >}}
 {{< snippet name="db" config="service" placeholder="true" >}}
     type: mariadb:{{% latest "mariadb" %}}
-    disk: 256
 {{< /snippet >}}
 ```
 
@@ -211,8 +210,11 @@ You can configure your MySQL service in the [services configuration](../_index.m
 
 Example configuration:
 
+{{< version/specific >}}
+<!-- Version 1 -->
+
 ```yaml {configFile="services"}
-{{% snippet name="db" config="service" %}}
+{{< snippet name="db" config="service" >}}
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
     configuration:
@@ -225,8 +227,29 @@ Example configuration:
                     main: admin
         properties:
             max_allowed_packet: 64
-{{% /snippet %}}
+{{< /snippet >}}
 ```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="services"}
+{{< snippet name="db" config="service" >}}
+    type: mariadb:{{% latest "mariadb" %}}
+    configuration:
+        schemas:
+            - main
+        endpoints:
+            mysql:
+                default_schema: main
+                privileges:
+                    main: admin
+        properties:
+            max_allowed_packet: 64
+{{< /snippet >}}
+```
+
+{{< /version/specific >}}
 
 {{% relationship-ref-intro %}}
 
@@ -335,8 +358,11 @@ To do so, define multiple `schemas` in your [service configuration](#configurati
 You can also specify multiple `endpoints` for [permissions](#define-permissions).
 If neither `schemas` nor `endpoints` is included, it's equivalent to the following default:
 
+{{< version/specific >}}
+<!-- Version 1 -->
+
 ```yaml {configFile="services"}
-{{% snippet name="db" config="service" %}}
+{{< snippet name="db" config="service" >}}
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
     configuration:
@@ -347,8 +373,27 @@ If neither `schemas` nor `endpoints` is included, it's equivalent to the followi
                 default_schema: main
                 privileges:
                     main: admin
-{{% /snippet %}}
+{{< /snippet >}}
 ```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="services"}
+{{< snippet name="db" config="service" >}}
+    type: mariadb:{{% latest "mariadb" %}}
+    configuration:
+        schemas:
+            - main
+        endpoints:
+            mysql:
+                default_schema: main
+                privileges:
+                    main: admin
+{{< /snippet >}}
+```
+
+{{< /version/specific >}}
 
 If either `schemas` or `endpoints` are defined, no default is applied and you have to specify the full configuration.
 
@@ -368,8 +413,11 @@ Access to the database is defined through three endpoints:
 * `reporter` has SELECT query access to `main` but no access to `legacy`.
 * `importer` has SELECT/INSERT/UPDATE/DELETE (but not DDL) access to `legacy` but no access to `main`.
 
+{{< version/specific >}}
+<!-- Version 1 -->
+
 ```yaml {configFile="services"}
-{{% snippet name="db" config="service" %}}
+{{< snippet name="db" config="service" >}}
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
     configuration:
@@ -389,8 +437,36 @@ Access to the database is defined through three endpoints:
                 default_schema: legacy
                 privileges:
                     legacy: rw
-{{% /snippet %}}
+{{< /snippet >}}
 ```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="services"}
+{{< snippet name="db" config="service" >}}
+    type: mariadb:{{% latest "mariadb" %}}
+    configuration:
+        schemas:
+            - main
+            - legacy
+        endpoints:
+            admin:
+                default_schema: main
+                privileges:
+                    main: admin
+                    legacy: admin
+            reporter:
+                privileges:
+                    main: ro
+            importer:
+                default_schema: legacy
+                privileges:
+                    legacy: rw
+{{< /snippet >}}
+```
+
+{{< /version/specific >}}
 
 Expose these endpoints to your app as relationships in your [app configuration](../../create-apps/_index.md):
 
@@ -433,8 +509,11 @@ It offers the following properties:
 
 An example of setting these properties:
 
+{{< version/specific >}}
+<!-- Version 1 -->
+
 ```yaml {configFile="services"}
-{{% snippet name="db" config="service" %}}
+{{< snippet name="db" config="service" >}}
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
     configuration:
@@ -442,8 +521,24 @@ An example of setting these properties:
             max_allowed_packet: 64
             default_charset: utf8mb4
             default_collation: utf8mb4_unicode_ci
-{{% /snippet %}}
+{{< /snippet >}}
 ```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="services"}
+{{< snippet name="db" config="service" >}}
+    type: mariadb:{{% latest "mariadb" %}}
+    configuration:
+        properties:
+            max_allowed_packet: 64
+            default_charset: utf8mb4
+            default_collation: utf8mb4_unicode_ci
+{{< /snippet >}}
+```
+
+{{< /version/specific >}}
 
 You can also change a table's character set and collation through `ALTER TABLE` commands:
 

@@ -136,7 +136,7 @@ It’s worth remembering that the JVM by its specification [doesn't read Java co
 | [Groovy and Spring](https://dzone.com/articles/spring-groovy-cloud-psh) | [Source](https://github.com/platformsh-examples/groovy)      |
 
 {{< note version="2" >}}
-While the table above shows examples for Platform.sh rather than for {{% vendor/name %}}, the same rules apply with only slight changes in configuration.
+While the table above shows examples for {{% vendor/psh_ref %}} rather than for {{% vendor/name %}}, the same rules apply with only slight changes in configuration.
 {{< /note >}}
 
 ## Accessing services

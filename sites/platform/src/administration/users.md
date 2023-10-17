@@ -44,7 +44,7 @@ A user can have one of the following roles on an environment type which grants t
 
 To customize which roles can use SSH, set [`access` in your app configuration](../create-apps/app-reference.md#access).
 
-#### View a user's permissions across all of the projects in your organization
+### View a user's permissions across all of the projects in your organization
 
 For each user, you can view a summary of their roles and permissions
 across all projects in your organization.
@@ -215,7 +215,7 @@ By default, such users have no [organization permissions](#organization-permissi
 You can also have organization users who aren't part of any projects.
 
 Users who are a part of an organization with the **List projects** permission can see all projects in that organization at the organization's URL,
-which takes the form `https://console.platform.sh/{{< variable "ORGANIZATION_NAME" >}}`.
+which takes the form `https://console.{{% vendor/urlraw "host" %}}/{{< variable "ORGANIZATION_NAME" >}}`.
 They can only access projects they've been explicitly invited to.
 For more information on project access control, see how to [manage project users](#manage-project-users).
 
@@ -223,6 +223,8 @@ For more information on project access control, see how to [manage project users
 
 As an organization owner or an organization user with the **Manage users** permission,
 you can invite other users to your organization and grant them the following permissions:
+
+{{% version/specific %}}
 
 - **Manage billing** (`billing`):
   Add, remove, and edit billing information.
@@ -239,9 +241,30 @@ you can invite other users to your organization and grant them the following per
 - **List projects** (`projects:list`):
   See all projects in an organization, even those the user can't access.
 
-{{< note theme="warning" >}}
+<--->
+
+- **Manage billing** (`billing`):
+  Add, remove, and edit billing information.
+  Access invoices and vouchers.
+  Users with this permission receive monthly invoices by email.
+- **Manage plans** (`plans`):
+  Access to update settings of existing projects in an organization.
+- **Manage users** (`members`):
+  Add, remove, and edit organization-level users and permissions, except their own.
+  Users with this permission can't grant other users permissions that they themselves don't have.
+- **Create projects** (`projects:create`):
+  Create new projects within the organization.
+- **List projects** (`projects:list`):
+  See all projects in an organization, even those the user can't access.
+
+{{% /version/specific %}}
+
+{{< note theme="info" >}}
 
 Users with the **Manage users** (`members`) permission can add, edit, or remove _any_ user's permissions except their own.
+
+Users with the **Manage billing** (`billing`) permission automatically are granted **List projects** (`projects:list`) permission. 
+That is, they are able to see all organization projects once given billing rights.
 
 {{< /note >}}
 

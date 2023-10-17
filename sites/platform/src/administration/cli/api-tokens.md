@@ -63,7 +63,6 @@ title=In the Console
 4. Go to the **API tokens** tab and click **Create API token**.
 5. Enter a name for your API token and click **Create API token**.
 6. To copy the API token to your clipboard, click **{{< icon copy >}} Copy**.
-   ![Copying the API token after it's created](/images/management-console/copy-api-token.png "0.6")
    Note that after you close the **API tokens** tab, you can't display the API token again.
 7. Store the API token somewhere secure on your computer.
 
@@ -101,8 +100,9 @@ use the `--no-wait` flag.
 
 ### Authenticate in a CI system
 
+<!-- @todo: CLI_TOKEN variable for Upsun -->
 You can allow your CI system to run automated tasks using the {{% vendor/name %}} CLI.
-To do so, create an environment variable named `PLATFORMSH_CLI_TOKEN` with your API token as its value. 
+To do so, create an environment variable named `{{% vendor/prefix_cli %}}_CLI_TOKEN` with your API token as its value. 
 For more information, see your CI system's official documentation.
 
 To run SSH-based commands that aren't specific to the {{% vendor/name %}} CLI,
@@ -127,9 +127,18 @@ title=Using the CLI
 +++
 
 Run the following command:
-
+<!-- @todo: CLI_TOKEN variable for Upsun -->
 ```bash
-{{% vendor/cli %}} variable:create -e {{< variable "ENVIRONMENT_NAME" >}} --level environment --prefix 'env' --name PLATFORMSH_CLI_TOKEN --sensitive true --value '{{< variable "API_TOKEN" >}}' --inheritable false --visible-build true --no-interaction
+{{% vendor/cli %}} variable:create \
+   -e {{< variable "ENVIRONMENT_NAME" >}} \
+   --level environment \
+   --prefix 'env' \
+   --name {{% vendor/prefix_cli %}}_CLI_TOKEN \
+   --sensitive true \
+   --value '{{< variable "API_TOKEN" >}}' \
+   --inheritable false \
+   --visible-build true \
+   --no-interaction
 ```
 
 <--->
@@ -141,7 +150,7 @@ title=In the Console
 2. Click {{< icon settings >}} **Settings**.
 3. Click **Variables**.
 4. Click **+ Add variable**.
-5. In the **Variable name** field, enter `env:PLATFORMSH_CLI_TOKEN`.
+5. In the **Variable name** field, enter `env:{{% vendor/prefix_cli %}}_CLI_TOKEN`.
 6. In the **Value** field, enter your API token.
 7. Make sure the **Available at runtime** and **Sensitive variable** options are selected.
 8. Click **Add variable**.
@@ -150,6 +159,7 @@ title=In the Console
 
 Then add a build hook to your app configuration to install the CLI as part of the build process.
 
+<!-- @todo: CLI installation path for CI -->
 ```yaml {configFile="app"}
 hooks:
     build: |
@@ -184,11 +194,11 @@ crons:
 
 ## Use the CLI SSH certificate for non-CLI commands
 
-When you set a `PLATFORMSH_CLI_TOKEN` environment variable,
+When you set a `{{% vendor/prefix_cli %}}_CLI_TOKEN` environment variable,
 the CLI authentication isn't complete until your run a CLI command 
 or load the CLI SSH certificate.
 
-For example, after setting a `PLATFORMSH_CLI_TOKEN` environment variable,
+For example, after setting a `{{% vendor/prefix_cli %}}_CLI_TOKEN` environment variable,
 you might need to run `ssh`, `git`, `rsync`, or `scp` commands before you run any CLI commands.
 
 In this case, to ensure all your commands work, load the CLI SSH certificate first.

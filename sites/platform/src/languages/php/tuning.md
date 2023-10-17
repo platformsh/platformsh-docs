@@ -240,7 +240,11 @@ To force a restart of PHP-FPM:
 
 ## Optimize your code
 
+{{% version/specific %}}
 To optimize your app, consider using a [profiler](../../increase-observability/integrate-observability/_index.md).
+<--->
+To optimize your app, consider using a [profiler](../../increase-observability/application-metrics/_index.md).
+{{% /version/specific %}}
 A profiler helps determine what slow spots can be found and addressed and helps improve performance.
 
 {{% version/only "1" %}}

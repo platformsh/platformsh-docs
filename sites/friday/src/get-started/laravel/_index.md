@@ -1,4 +1,9 @@
 ---
-title: Laravel
-description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum mauris id tincidunt gravida. Suspendisse sagittis euismod mi. Aliquam erat volutpat.
+title: "Laravel"
+description: |
+  Everything you need to get started with [Laravel](https://laravel.com/) on {{< vendor/name >}}.
 ---
+
+{{% description %}}
+
+{{% guides/link-philosophy %}}

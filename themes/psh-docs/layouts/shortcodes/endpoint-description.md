@@ -4,6 +4,7 @@
 {{ $sectionLink := .Get "sectionLink" }} <!-- The section of the page with more detail. -->
 {{ $multipleText := .Get "multipleText" }} <!-- What the explicit endpoints define (what is multiple). -->
 {{ $headerLevel := "###" }}
+{{ $docVersion := .Site.Params.vendor.config.version }}
 {{ if in $type "mongodb" }}
   {{ $headerLevel = "####" }}
 {{ end }}
@@ -24,7 +25,7 @@ To define the service, use {{ if eq ($type) "mariadb" }}
   the `{{ $type }}` type{{ end }}:
 
 <!-- Create an example services.yaml file from data in the registry. -->
-{{ $serviceInner := partial "examples/servicedefn" (dict "context" . "data" $data ) }}
+{{ $serviceInner := partial "examples/servicedefn" (dict "context" . "data" $data "docVersion" $docVersion) }}
 
 <!-- Create a dummy example `relationships` block from the registry's example naming in `.docs` -->
 ```yaml {configFile="services"}
@@ -32,13 +33,13 @@ To define the service, use {{ if eq ($type) "mariadb" }}
 ```
 
 {{ if eq $type "redis-persistent" }}
-Note that persistent Redis requires `disk` to store data.
+Note that persistent Redis requires disk space to store data.
 For more information, refer to the [dedicated Redis page](/add-services/redis.md).
 
 If want to use ephemeral Redis instead, use the `redis` type:
 
   {{ $redis_data := index .Site.Data.registry "redis" }}
-  {{ partial "examples/servicedefn" (dict "context" . "data" $redis_data ) }}
+  {{ partial "examples/servicedefn" (dict "context" . "data" $redis_data "docVersion" $docVersion ) }}
 
 {{ else if eq $type "network-storage" }}
 You can define `<SERVICE_NAME>` as you like, but it shouldn't include underscores (`_`).
@@ -63,12 +64,12 @@ Back up your data before changing the service.
 {{ if ne $type "network-storage" }}
 <!-- Clarify the endpoint that should be used. -->
 <!-- If a link and text have been set, adds exception that directs users to the subsection that describes explicit endpoints. -->
-To define the relationship, use the {{ if eq $type "vault-kms" }}endpoint you [defined 
+To define the relationship, use the {{ if eq $type "vault-kms" }}endpoint you [defined
 in step 1](#1-configure-the-service){{ else }}`{{ $data.endpoint }}` endpoint{{ end }}
 {{ if and (gt (len ( $sectionLink )) 0) (gt (len ( $multipleText )) 0) }} (unless you have [multiple {{$multipleText}}]({{ $sectionLink }})){{ end }}:
 
 <!-- Create a dummy example `relationships` block from the registry's example naming in `.docs` -->
-{{ $serviceInner := partial "examples/servicedefn" (dict "context" . "data" $data ) }}
+{{ $serviceInner := partial "examples/servicedefn" (dict "context" . "data" $data "docVersion" $docVersion ) }}
 {{ $relationshipInner := partial "examples/relationship" (dict "context" . "data" $data ) }}
 
 ```yaml {configFile="app"}
@@ -79,7 +80,7 @@ in step 1](#1-configure-the-service){{ else }}`{{ $data.endpoint }}` endpoint{{ 
 
 <!-- Adds a note about naming conventions between relationship and service names. Keep em unique. -->
 You can define `<SERVICE_NAME>` and `<RELATIONSHIP_NAME>` as you like, but it's best if they're distinct.
-With this definition, the application container {{ if eq .Site.Params.vendor.config.version 2 }}(`<APP_NAME>`) {{ end }}
+With this definition, the application container {{ if eq $docVersion 2 }}(`<APP_NAME>`) {{ end }}
 {{- if ne (.Get "noApp" ) true -}}
 now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>`.
 {{- else -}}
@@ -103,7 +104,7 @@ For PHP, enable the [extension](/languages/php/extensions.html) for the service:
 {{ $extensionsComment := "# PHP extensions." }}
 {{ $inner := printf "\n%s\nruntime:\n    extensions:\n        - %s" $extensionsComment $extension_name }}
 
-{{ if eq .Site.Params.vendor.config.version 2 }}
+{{ if eq $docVersion 2 }}
     {{ $relationshipInner := partial "examples/relationship" (dict "context" . "data" $data ) }}
     {{ $inner = printf "%s%s" $inner $relationshipInner }}
 {{ end }}
@@ -122,7 +123,7 @@ For Python, include the proper dependency:
 {{ $extensionsComment := "# Build dependencies per runtime." }}
 {{ $inner := printf "\n%s\ndependencies:\n    python:\n        python-%s: '*'" $extensionsComment $type }}
 
-{{ if eq .Site.Params.vendor.config.version 2 }}
+{{ if eq $docVersion 2 }}
     {{ $relationshipInner := partial "examples/relationship" (dict "context" . "data" $data ) }}
     {{ $inner = printf "%s%s" $inner $relationshipInner }}
 {{ end }}
@@ -184,10 +185,14 @@ Add the service to your app configuration:
 {{ $serviceName := index $data "docs" "service_name" }}
 {{ $serviceInner := "" }}
 {{ if eq $type "varnish" }}
-  {{ $serviceInner = partial "examples/servicedefn" (dict "context" . "data" $data "latest" "true" "relName" "application" "appName" $appName ) }}
+  {{ $serviceInner = partial "examples/servicedefn" (dict "context" . "data" $data "latest" "true" "relName" "application" "appName" $appName "docVersion" $docVersion ) }}
 {{ else if eq $type "vault-kms" }}
   {{ $latest := partial "examples/latest" (dict "data" $data )}}
-  {{ $serviceInner = printf "\n    type: vault-kms:%s\n    disk: 512" $latest }}
+  {{ if eq $docVersion 2 }}
+    {{ $serviceInner = printf "\n    type: vault-kms:%s" $latest }}
+  {{ else }}
+    {{ $serviceInner = printf "\n    type: vault-kms:%s\n    disk: 512" $latest }}
+  {{ end }}
   {{ $serviceInner = printf "%s\n    configuration:\n        endpoints:\n            manage_keys:" $serviceInner }}
   {{ $serviceInner = printf "%s\n                - policy: admin" $serviceInner }}
   {{ $serviceInner = printf "%s\n                  key: vault-sign" $serviceInner }}
@@ -199,21 +204,21 @@ Add the service to your app configuration:
   {{ $serviceInner = printf "%s\n                  key: vault-sign" $serviceInner }}
   {{ $serviceInner = printf "%s\n                  type: sign" $serviceInner }}
 {{ else }}
-  {{ $serviceInner = partial "examples/servicedefn" (dict "context" . "data" $data "latest" "true" ) }}
+  {{ $serviceInner = partial "examples/servicedefn" (dict "context" . "data" $data "latest" "true" "docVersion" $docVersion ) }}
 {{ end }}
 
-{{ if eq .Site.Params.vendor.config.version 1 }}
+{{ if eq $docVersion 1 }}
 #### [Service definition](/add-services)
 ```yaml {configFile="services"}
 {{ partial "snippet" (dict "context" . "name" $serviceName "config" "service" "Inner" $serviceInner ) }}
 ```
 {{ end }}
 
-{{ if and (eq $type "varnish") (eq .Site.Params.vendor.config.version 1) }}
-Notice the `relationship` (`{{ $varnishRelName }}`) defined for the service `{{ $serviceName }}` granting access to the application container `{{ $appName }}`. 
+{{ if and (eq $type "varnish") (eq $docVersion 1) }}
+Notice the `relationship` (`{{ $varnishRelName }}`) defined for the service `{{ $serviceName }}` granting access to the application container `{{ $appName }}`.
 {{ end }}
 
-{{ if eq .Site.Params.vendor.config.version 2 }}
+{{ if eq $docVersion 2 }}
 #### [App](/create-apps) and [Service configuration](/add-services)
 {{ else if ne $type "varnish" }}
 #### [App configuration](/create-apps)
@@ -238,7 +243,7 @@ Notice the `relationship` (`{{ $varnishRelName }}`) defined for the service `{{ 
 
 {{ end }}
 
-{{ if and (eq $type "varnish") (eq .Site.Params.vendor.config.version 1) }}
+{{ if and (eq $type "varnish") (eq $docVersion 1) }}
   <!-- Varnish + API version 2 -->
 {{ else }}
 ```yaml {configFile="app"}
@@ -248,8 +253,8 @@ Notice the `relationship` (`{{ $varnishRelName }}`) defined for the service `{{ 
 ```
 {{ end }}
 
-{{ if and (eq $type "varnish") (eq .Site.Params.vendor.config.version 2) }}
-Notice the `relationship` (`{{ $varnishRelName }}`) defined for the service `{{ $serviceName }}` granting access to the application container `{{ $appName }}`. 
+{{ if and (eq $type "varnish") (eq $docVersion 2) }}
+Notice the `relationship` (`{{ $varnishRelName }}`) defined for the service `{{ $serviceName }}` granting access to the application container `{{ $appName }}`.
 {{ end }}
 
 
@@ -259,7 +264,11 @@ Notice the `relationship` (`{{ $varnishRelName }}`) defined for the service `{{ 
 
 {{ $serviceInner := "" }}
 {{ $latest := partial "examples/latest" (dict "data" $data )}}
-{{ $serviceInner = printf "\n    type: vault-kms:%s\n    disk: 512" $latest }}
+{{ if eq $docVersion 2 }}
+  {{ $serviceInner = printf "\n    type: vault-kms:%s" $latest }}
+{{ else }}
+  {{ $serviceInner = printf "\n    type: vault-kms:%s\n    disk: 512" $latest }}
+{{ end }}
 {{ $serviceInner = printf "%s\n    configuration:\n        endpoints:\n            management:" $serviceInner }}
 {{ $serviceInner = printf "%s\n                - policy: admin" $serviceInner }}
 {{ $serviceInner = printf "%s\n                  key: admin-key" $serviceInner }}
@@ -274,14 +283,14 @@ Notice the `relationship` (`{{ $varnishRelName }}`) defined for the service `{{ 
 
 {{ $appInner = "\nrelationships:\n    vault_manage: \"vault-kms:management\"\n    vault_sign: \"vault-kms:sign_and_verify\"" }}
 
-{{ if eq .Site.Params.vendor.config.version 1 }}
+{{ if eq $docVersion 1 }}
 #### [Service definition](/add-services)
 ```yaml {configFile="services"}
 {{ partial "snippet" (dict "context" . "name" $serviceName "config" "service" "Inner" $serviceInner ) }}
 ```
 {{ end }}
 
-{{ if eq .Site.Params.vendor.config.version 2 }}
+{{ if eq $docVersion 2 }}
 #### [App](/create-apps) and [Service configuration](/add-services)
 {{ else }}
 
@@ -302,13 +311,14 @@ If you're using a [premium version](add-services/elasticsearch.md#supported-vers
 use the `elasticsearch-enterprise` type in the service definition.
 {{ end }}
 
+[//]: # (@todo update the example)
 {{ if eq $type "redis" }}
 ### Persistent example
 
 {{ $serviceName := "data" }}
 {{ $serviceInner := "\n    type: redis-persistent:7.0\n    disk: 256" }}
 
-{{ if eq .Site.Params.vendor.config.version 1 }}
+{{ if eq $docVersion 1 }}
 #### [Service definition](/add-services)
 ```yaml {configFile="services"}
 {{ partial "snippet" (dict "context" . "name" $serviceName "config" "service" "Inner" $serviceInner ) }}
@@ -317,7 +327,7 @@ use the `elasticsearch-enterprise` type in the service definition.
 
 {{$appInner := "relationships:\n    redisdata: \"data:redis\"" }}
 
-{{ if eq .Site.Params.vendor.config.version 2 }}
+{{ if eq $docVersion 2 }}
 #### [App](/create-apps) and [Service configuration](/add-services)
 {{ else }}
 
@@ -336,9 +346,10 @@ use the `elasticsearch-enterprise` type in the service definition.
 ### OracleMySQL example
 
 {{ $serviceName := "dbmysql" }}
-{{ $serviceInner := "\n    type: oracle-mysql:8.0\n    disk: 256" }}
+{{ $serviceInner := "\n    type: oracle-mysql:8.0" }}
 
-{{ if eq .Site.Params.vendor.config.version 1 }}
+{{ if eq $docVersion 1 }}
+{{ $serviceInner := "\n    type: oracle-mysql:8.0\n    disk: 256" }}
 #### [Service definition](/add-services)
 ```yaml {configFile="services"}
 {{ partial "snippet" (dict "context" . "name" $serviceName "config" "service" "Inner" $serviceInner ) }}
@@ -347,7 +358,7 @@ use the `elasticsearch-enterprise` type in the service definition.
 
 {{$appInner := "relationships:\n    mysqldatabase: \"dbmysql:mysql\"" }}
 
-{{ if eq .Site.Params.vendor.config.version 2 }}
+{{ if eq $docVersion 2 }}
 #### [App](/create-apps) and [Service configuration](/add-services)
 {{ else }}
 

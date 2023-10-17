@@ -122,19 +122,36 @@ switch to [a supported version](#supported-versions).
 
 To use the configured service in your app, add a configuration file similar to the following to your project.
 
-<!-- Version 1 & 2: .environment shortcode + context -->
+{{< version/specific >}}
+<!-- Version 1: .environment shortcode + context -->
 
 ```yaml {configFile="app"}
-{{% snippet name="myapp" config="app" root="myapp" %}}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 # Relationships enable an app container's access to a service.
 relationships:
     searchopen: "searchopen:opensearch"
-{{% /snippet %}}
-{{% snippet name="searchopen" config="service" placeholder="true" %}}
+{{< /snippet >}}
+{{< snippet name="searchopen" config="service" placeholder="true" >}}
     type: opensearch:{{% latest "opensearch" %}}
     disk: 256
-{{% /snippet %}}
+{{< /snippet >}}
 ```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="myapp" >}}
+# Relationships enable an app container's access to a service.
+relationships:
+    searchopen: "searchopen:opensearch"
+{{< /snippet >}}
+{{< snippet name="searchopen" config="service" placeholder="true" >}}
+    type: opensearch:{{% latest "opensearch" %}}
+{{< /snippet >}}
+```
+
+{{< /version/specific >}}
 
 {{% v2connect2app serviceName="searchopen" relationship="searchopen" var="OPENSEARCH_HOSTS" %}}
 
@@ -171,15 +188,32 @@ No username or password is required to connect to it.
 You may optionally enable HTTP Basic authentication.
 To do so, include the following in your `{{< vendor/configfile "services" >}}` configuration:
 
+{{< version/specific >}}
+<!-- Version 1 -->
+
 ```yaml {configFile="services"}
-{{% snippet name="search" config="service" %}}
+{{< snippet name="search" config="service" >}}
     type: opensearch:{{% latest "opensearch" %}}
     disk: 2048
     configuration:
         authentication:
             enabled: true
-{{% /snippet %}}
+{{< /snippet >}}
 ```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="services"}
+{{< snippet name="search" config="service" >}}
+    type: opensearch:{{% latest "opensearch" %}}
+    configuration:
+        authentication:
+            enabled: true
+{{< /snippet >}}
+```
+
+{{< /version/specific >}}
 
 That enables mandatory HTTP Basic auth on all requests.
 The credentials are available in any relationships that point at that service,
@@ -192,32 +226,68 @@ To do so, add a route to `{{< vendor/configfile "routes" >}}` that has `search:o
 (where `search` is whatever you named the service).
 For example:
 
+{{< version/specific >}}
+<!-- Version 1 -->
+
 ```yaml {configFile="routes"}
-{{% snippet name="search:opensearch" config="route" subDom="os" /%}}
-{{% snippet name="search" config="service" placeholder="true" %}}
+{{< snippet name="search:opensearch" config="route" subDom="os" />}}
+{{< snippet name="search" config="service" placeholder="true" >}}
     type: opensearch:{{% latest "opensearch" %}}
     disk: 2048
     configuration:
         authentication:
             enabled: true
-{{% /snippet %}}
+{{< /snippet >}}
 ```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="routes"}
+{{< snippet name="search:opensearch" config="route" subDom="os" />}}
+{{< snippet name="search" config="service" placeholder="true" >}}
+    type: opensearch:{{% latest "opensearch" %}}
+    configuration:
+        authentication:
+            enabled: true
+{{< /snippet >}}
+```
+
+{{< /version/specific >}}
 
 ## Plugins
 
 OpenSearch offers a number of plugins.
 To enable them, list them under the `configuration.plugins` key in your `{{< vendor/configfile "services" >}}` file, like so:
 
+{{< version/specific >}}
+<!-- Version 1 -->
+
 ```yaml {configFile="services"}
-{{% snippet name="search" config="service" %}}
+{{< snippet name="search" config="service" >}}
     type: "opensearch:{{% latest "opensearch" %}}"
     disk: 1024
     configuration:
         plugins:
             - analysis-icu
             - lang-python
-{{% /snippet %}}
+{{< /snippet >}}
 ```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="services"}
+{{< snippet name="search" config="service" >}}
+    type: "opensearch:{{% latest "opensearch" %}}"
+    configuration:
+        plugins:
+            - analysis-icu
+            - lang-python
+{{< /snippet >}}
+```
+
+{{< /version/specific >}}
 
 In this example you'd have the ICU analysis plugin and the size mapper plugin.
 
@@ -263,7 +333,7 @@ There are two ways to do so.
 
 ### Destructive
 
-In your `{{< vendor/configfile "services" >}}` file, change the version *and* name of your Opensearch service.
+In your `{{< vendor/configfile "services" >}}` file, change the version *and* name of your OpenSearch service.
 Be sure to also update the reference to the now changed service name in it's corresponding application's `relationship` block.
 
 When you push that to {{% vendor/name %}}, the old service is deleted and a new one with the new name is created with no data.
