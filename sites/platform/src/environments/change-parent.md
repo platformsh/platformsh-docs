@@ -50,7 +50,7 @@ You can also set a parent for your environment when pushing changes to it.
 To do so, run the following command:
 
 ```bash
-git push origin HEAD:{{< variable "BRANCH_NAME" >}} -o "environment.status=active"
+git push origin HEAD:{{< variable "BRANCH_NAME" >}} -o "environment.parent={{< variable "PARENT_ENVIRONMENT_NAME" >}}"
 ```
 
 Learn more about how to [trigger actions on `push`](/environments/_index.md#trigger-actions-on-push).

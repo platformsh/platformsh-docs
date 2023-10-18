@@ -383,7 +383,7 @@ all placeholders (`{default}` and `{all}`) are replaced with appropriate domain 
 and any additional routes (such as redirecting HTTP to HTTPS) are created.
 This means the final generated routes differ by environment and so shouldn't be hard coded in your app.
 These routes are available in the `PLATFORM_ROUTES` environment variable as a base64-encoded JSON object.
-They are also available in your `/run/config.json` file so you can maintain a high number of routes more easily.
+They are also available within an application container from the `/run/config.json` file so you can maintain a high number of routes more easily.
 
 To locate routes in a standardized fashion in any environment,
 you may specify an `id` for on each route.
