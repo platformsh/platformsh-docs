@@ -267,8 +267,20 @@ For further references, see the [official `mongodump` documentation](https://doc
 
 ## Upgrading
 
-To upgrade to 3.6 from a version earlier than 3.4, you must successively upgrade major releases until you have upgraded to 3.4.
-For example, if you are running a 3.0 image, you must upgrade first to 3.2 and then upgrade to 3.4 before you can upgrade to 3.6.
+To upgrade to 6.0 from a version earlier than 5.0, you must successively upgrade major releases until you have upgraded to 5.0.
+For example, if you are running a 4.2 image, you must upgrade first to 4.4 and then upgrade to 5.0 before you can upgrade to 6.0.
 
 For more details on upgrading and how to handle potential application backward compatibility issues,
 see the [MongoDB release notes](https://docs.mongodb.com/manual/release-notes).
+
+{{< note theme="warning" >}}
+
+Make sure you first test your migration on a separate branch.
+{{< /note >}}
+
+{{< note theme="warning" >}}
+
+Be sure to take a backup of your production environment **before** you merge this change.
+{{< /note >}}
+
+Downgrading isn't supported. If you want, for whatever reason, to downgrade you should create a mongodump, remove the service, recreate the service, and import your dump.
