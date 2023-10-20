@@ -149,6 +149,62 @@ There is also an `--exclude-environments` switch to excluded environments by nam
 As a general rule, it's better to have an activity script only execute on the specific events and branches you're interested in
 rather than firing on all activities and then filtering out undesired use cases in the script itself.
 
+## Activity script variables
+
+Some activities don't have access to [project and environment variables](/development/variables/_index.md#variable-types).
+In this case, to avoid hardcoding sensitive variables (such as API tokens) and therefore prevent security breaches,
+add a variable to your activity script.
+
+You can add activity script variables through the {{% vendor/name %}} CLI.
+Activity script variables are only visible in the activity script itself,
+inside the `variables` variable.
+
+### Add an activity script variable
+
+To add a variable to your activity script at the integration level,
+use the following `POST` request:
+
+```
+POST /api/projects/{{< variable "PROJECT_ID" >}}/integrations/{{< variable "INTEGRATION_ID" >}}/variables
+```
+
+You get a payload similar to the following:
+
+```
+{
+  "name": "string",
+  "attributes": {
+    "property1": "string",
+    "property2": "string"
+  },
+  "value": "string",
+  "is_json": true,
+  "is_sensitive": true,
+  "is_enabled": true
+}
+```
+
+### Delete or patch an activity script variable
+
+To delete an activity script variable,
+use the following `DELETE` request:
+
+```
+DELETE /api/projects/{{< variable "PROJECT_ID" >}}/integrations/{{< variable "INTEGRATION_ID" >}}/variables
+```
+
+You can also patch your activity script variable.
+To do so, send the same request using the `PATCH` method instead of the `DELETE` one.
+
+### List an activity script variable
+
+To list all your activity script variables at the integration level,
+use the following `GET` request:
+
+```
+GET /api/projects/{{< variable "PROJECT_ID" >}}/integrations/{{< variable "INTEGRATION_ID" >}}/variables
+```
+
 ## Available APIs
 
 Activity scripts can be written in ES2021 and don't support installing additional packages.
