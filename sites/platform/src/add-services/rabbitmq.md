@@ -10,8 +10,6 @@ that supports multiple messaging protocols, such as the Advanced Message Queuing
 It gives your apps a common platform to send and receive messages
 and your messages a safe place to live until they're received.
 
-When upgrading RabbitMQ, skipping major versions (e.g. 3.7 -> 3.11) [is not supported](https://www.rabbitmq.com/upgrade.html#rabbitmq-version-upgradability). Make sure to upgrade sequentially (3.7 -> 3.8 -> 3.9 -> 3.10 -> 3.11).
-
 {{% frameworks version="1" %}}
 
 - [Spring](../guides/spring/rabbitmq.md)
@@ -282,3 +280,8 @@ To create virtual hosts, add them to your configuration as in the following exam
     "host_mapped": false
 }
 ```
+
+## Upgrading
+
+When upgrading RabbitMQ, skipping major versions (e.g. 3.7 -> 3.11) [is not supported](https://www.rabbitmq.com/upgrade.html#rabbitmq-version-upgradability).
+Make sure you upgrade sequentially (3.7 -> 3.8 -> 3.9 -> 3.10 -> 3.11).
