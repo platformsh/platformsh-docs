@@ -223,7 +223,7 @@ highlight=java
 
 {{% version/only "1" %}}
 
-{{% config-reader %}} [Java configuration reader library](https://github.com/platformsh/config-reader-java){{% /config-reader%}}
+{{% config-reader %}}[ Java configuration reader library](https://github.com/platformsh/config-reader-java){{% /config-reader%}}
 
 If your Java framework allows, you can instead overwrite configuration following the [twelve-factor app](https://12factor.net/config).
 That removes the need for an additional dependency.
