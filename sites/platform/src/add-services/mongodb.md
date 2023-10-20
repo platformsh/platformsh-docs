@@ -276,11 +276,8 @@ see the [MongoDB release notes](https://docs.mongodb.com/manual/release-notes).
 {{< note theme="warning" >}}
 
 Make sure you first test your migration on a separate branch.
-{{< /note >}}
 
-{{< note theme="warning" >}}
-
-Be sure to take a backup of your production environment **before** you merge this change.
+Also, be sure to take a backup of your production environment **before** you merge this change.
 {{< /note >}}
 
 Downgrading isn't supported. If you want, for whatever reason, to downgrade you should create a mongodump, remove the service, recreate the service, and import your dump.
