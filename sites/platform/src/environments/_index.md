@@ -275,7 +275,7 @@ title=In the Console
 
 The environment is redeployed and becomes available for use again.
 
-## Trigger actions on `push`
+## Push options
 
 Git provides push options to pass a string to the server (see [the official Git documentation](https://git-scm.com/docs/git-push#Documentation/git-push.txt--oltoptiongt)).
 
@@ -284,16 +284,25 @@ which allows you to push changes to your environment and trigger the following a
 
 | Action                                     | Command                                                                                                                 |
 | ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
-| Activate the environment                   | `git push -o "environment.status=active"`                                    |
-| Set a title for the environment            | `git push -o "environment.title=<ENVIRONMENT_TITLE>"`       |
-| Set the parent environment                 | `git push -o "environment.parent=<PARENT_ENVIRONMENT_NAME>"` |         
-| Clone the data from the parent environment | `git push -o "environment.clone_parent_on_create=True"` |
-| Disable the cloning of the data from the parent environment | `git push -o "environment.clone_parent_on_create=False"` |
+| Activate the environment                   | `git push platform -o "environment.status=active"`                                    |
+| Set a title for the environment            | `git push platform -o "environment.title=<ENVIRONMENT_TITLE>"`       |
+| Set the parent environment                 | `git push platform -o "environment.parent=<PARENT_ENVIRONMENT_NAME>"` |         
+| Clone the data from the parent environment | `git push platform -o "environment.clone_parent_on_create=True"` |
+| Disable the cloning of the data from the parent environment | `git push platform -o "environment.clone_parent_on_create=False"` |
+
+If your remote location isn't named `platform`,
+make sure you adjust the commands accordingly.
+
+{{< note >}}
+
+You can't use push options if you have a [source integration](/integrations/source/_index.md) set up.
+
+{{< /note >}}
 
 The following example shows how, through a single `push`,
 you can activate your environment, set a title for it,
 set a parent environment for it, and clone the data from its parent into it.
 
 ```bash {location="Terminal"}
-git push -o "environment.status=active" -o "environment.title=my-environment-title" -o "environment.parent=my-parent-environment" -o "environment.clone_parent_on_create=True"
+git push platform -o "environment.status=active" -o "environment.title=my-environment-title" -o "environment.parent=my-parent-environment" -o "environment.clone_parent_on_create=True"
 ```
