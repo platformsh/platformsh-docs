@@ -1,26 +1,23 @@
 ---
-title: Deploy Drupal 9 on {{% vendor/name %}}
+title: Deploy Drupal on {{% vendor/name %}}
 sidebarTitle: Get started
 weight: -110
 layout: single
 description: |
     Create a {{% vendor/name %}} account, download a few tools, and prepare to deploy Drupal.
-banner:
-    title: A note on version
-    body: While this guide focuses on Drupal 9, you can also refer to it when using Drupal 10 as differences in settings are minimal. Note that a {{% vendor/name %}} [Drupal 10 template](https://github.com/platformsh-templates/drupal10) is available.
 ---
 
-Drupal is a flexible and extensible PHP-based CMS framework. To deploy Drupal 9 on {{% vendor/name %}}, the recommended way is to use Composer, the PHP package management suite.
+Drupal is a flexible and extensible PHP-based CMS framework. To deploy Drupal on {{% vendor/name %}}, the recommended way is to use Composer, the PHP package management suite.
 
-This guide assumes you are using the well-supported Composer flavor of Drupal 9.
+This guide assumes you are using the well-supported Composer flavor of Drupal.
 
-{{% guides/starting-point name="Drupal 9" templateRepo="drupal9" composerLink="https://github.com/drupal/recommended-project/tree/9.0.x" initExample=true %}}
+{{% guides/starting-point name="Drupal" templateRepo="drupal" composerLink="https://github.com/drupal/recommended-project/" initExample=true %}}
 
 {{% guides/requirements %}}
 
 ## Initialize a project
 
-{{< guides/initialize name="Drupal 9" template="drupal9" >}}
+{{< guides/initialize name="Drupal" template="drupal" >}}
 
 If you don't have code, create a new Drupal project from scratch.
 The following commands create a brand new Drupal project using Composer.
