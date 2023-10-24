@@ -323,7 +323,6 @@
     "type": "java",
     "versions": {
       "deprecated": [
-        "20",
         "14",
         "13",
         "12"
