@@ -22,7 +22,7 @@ You need:
 - A [Drupal version deployed on {{% vendor/name %}}](../drupal/deploy/_index.md)
 - The [{{% vendor/name %}} CLI](../../administration/cli/)
 - [Composer](https://getcomposer.org/)
-- The [Config Reader library](../../guides/drupal9/deploy/customize.md#install-the-config-reader)
+- The [Config Reader library](../../guides/drupal/deploy/customize.md#install-the-config-reader)
 
 You also need a `settings.platformsh.php` file from which you can [manage the configuration of the Redis service](../drupal/deploy/customize.md#settingsphp).
 If you installed Drupal with a template, this file is already present in your project.
