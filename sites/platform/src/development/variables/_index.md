@@ -200,7 +200,7 @@ but still adapt the behavior to each environment.
 
 The [Drupal template](https://github.com/platformsh-templates/drupal10/) shows an example of
 overriding Drupal configuration using environment variables.
-These variables are parsed in the [`settings.platformsh.php` script](https://github.com/platformsh-templates/drupal9/blob/8d5d23cdcb91ffa3f96727adf9d3dba74dfc01db/web/sites/default/settings.platformsh.php#L125-L162).
+These variables are parsed in the [`settings.platformsh.php` script](https://github.com/platformsh-templates/drupal10/blob/386ea35b034b5d78da8060925940e793bea479d9/web/sites/default/settings.platformsh.php#L126-L164).
 
 For example, the site name is overridden by a variable named `drupalsettings:system.site:name`.
 Variables for the override are composed of three distinct parts each separated by colons:

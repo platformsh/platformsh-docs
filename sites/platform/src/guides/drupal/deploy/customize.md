@@ -19,7 +19,7 @@ There are a number of additional steps that are either required or recommended, 
 `settings.php` is the main Drupal environment-configuration file.
 In a stock Drupal installation it contains the database credentials, various other settings, and an enormous amount of comments.
 
-In the Drupal 9 template, the [`settings.php`](https://github.com/platformsh-templates/drupal9/blob/master/web/sites/default/settings.php) file
+In the Drupal template, the [`settings.php`](https://github.com/platformsh-templates/drupal10/blob/master/web/sites/default/settings.php) file
 is mostly replaced with a stub that contains only the most basic configuration
 and then includes a `settings.platformsh.php` and `settings.local.php` file, if they exist.
 The latter is a common Drupal pattern, and the `settings.local.php` file should never be committed to Git.
@@ -32,7 +32,7 @@ That includes the database credentials, Redis caching, and file system paths.
 
 The file itself is a bit long, but reasonably self-explanatory.
 
-{{< readFile file="static/files/fetch/config-examples/drupal9" highlight="php" >}}
+{{< readFile file="static/files/fetch/config-examples/drupal10" highlight="php" >}}
 
 If you add additional services to your application, such as Solr, Elasticsearch, or RabbitMQ,
 you would add configuration for those services to the `settings.platformsh.php` file as well.
