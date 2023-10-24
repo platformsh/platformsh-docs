@@ -49,16 +49,16 @@ https://{default}/:
       "/frameworks/drupal8.html": { "to": "/guides/drupal/deploy.html", "code": 301, "prefix": false }
       "/frameworks/drupal8/developing-with-drupal.html": { "to": "/guides/drupal/deploy.html", "code": 301, "prefix": false }
       "/frameworks/drupal8/drush.html": { "to": "/guides/drupal/deploy/next-steps.html#use-drush-aliases", "code": 301, "prefix": false }
-      "/frameworks/drupal8/elasticsearch.html": { "to": "/guides/drupal/deploy/elasticsearch.html", "code": 301, "prefix": false }
-      "/frameworks/drupal8/faq.html": { "to": "/guides/drupal/deploy/faq.html", "code": 301, "prefix": false }
+      "/frameworks/drupal8/elasticsearch.html": { "to": "/guides/drupal/elasticsearch.html", "code": 301, "prefix": false }
+      "/frameworks/drupal8/faq.html": { "to": "/guides/drupal/faq.html", "code": 301, "prefix": false }
       "/frameworks/drupal8/lando.html": { "to": "/development/local/lando.html", "code": 301, "prefix": false }
-      "/frameworks/drupal8/memcached.html": { "to": "/guides/drupal/deploy/memcached.html", "code": 301, "prefix": false }
-      "/frameworks/drupal8/multi-site.html": { "to": "/guides/drupal/deploy/multi-site.html", "code": 301, "prefix": false }
-      "/frameworks/drupal8/redis.html": { "to": "/guides/drupal/deploy/redis.html", "code": 301, "prefix": false }
-      "/frameworks/drupal8/simplesaml.html": { "to": "/guides/drupal/deploy/simplesaml.html", "code": 301, "prefix": false }
-      "/frameworks/drupal8/solr.html": { "to": "/guides/drupal/deploy/solr.html", "code": 301, "prefix": false }
+      "/frameworks/drupal8/memcached.html": { "to": "/guides/drupal/memcached.html", "code": 301, "prefix": false }
+      "/frameworks/drupal8/multi-site.html": { "to": "/guides/drupal/multi-site.html", "code": 301, "prefix": false }
+      "/frameworks/drupal8/redis.html": { "to": "/guides/drupal/redis.html", "code": 301, "prefix": false }
+      "/frameworks/drupal8/simplesaml.html": { "to": "/guides/drupal/simplesaml.html", "code": 301, "prefix": false }
+      "/frameworks/drupal8/solr.html": { "to": "/guides/drupal/solr.html", "code": 301, "prefix": false }
 
-      # chore/3546
+      # chore/3546 & PR 3548
       "^/guides/drupal9/(.*)$": { "to": "/guides/drupal/$1", "regexp": true }
 
       # PR 1562
