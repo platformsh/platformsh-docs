@@ -323,11 +323,13 @@
     "type": "java",
     "versions": {
       "deprecated": [
+        "20",
         "14",
         "13",
         "12"
       ],
       "supported": [
+        "21",
         "19",
         "18",
         "17",
