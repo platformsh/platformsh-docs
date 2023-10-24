@@ -4,4 +4,4 @@ repoOrg: "platformsh-templates"
 branch: "master"
 file: "web/sites/default/settings.platformsh.php"
 repos:
-    - drupal9
+    - drupal10
