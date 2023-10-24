@@ -5,9 +5,6 @@ toc: false
 description: |
     {{% vendor/name %}} supports running [multiple applications](/learn/bestpractices/oneormany.md) in the same project, and these can be two or more Drupal sites.
 weight: -80
-banner:
-    title: A note on version
-    body: While this guide focuses on Drupal 9, you can also refer to it when using Drupal 10 as differences in settings are minimal. Note that a {{% vendor/name %}} [Drupal 10 template](https://github.com/platformsh-templates/drupal10) is available.
 ---
 
 {{% description %}}

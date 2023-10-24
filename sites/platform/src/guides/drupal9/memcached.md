@@ -1,5 +1,5 @@
 ---
-title: "Using Memcached with Drupal 9.x"
+title: "Using Memcached with Drupal"
 sidebarTitle: "Memcached"
 description: |
     Configure Memcached instead of Redis for Drupal caching.
