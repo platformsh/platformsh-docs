@@ -1,12 +1,9 @@
 ---
-title: "Deploy Drupal 9"
+title: "Deploy Drupal"
 sidebarTitle: "Deploy"
 weight: -80
 description: |
     Now that your site is ready, push it to {{% vendor/name %}} and import your data.
-banner:
-    title: A note on version
-    body: While this guide focuses on Drupal 9, you can also refer to it when using Drupal 10 as differences in settings are minimal. Note that a {{% vendor/name %}} [Drupal 10 template](https://github.com/platformsh-templates/drupal10) is available.
 ---
 
 ## Deployment
@@ -20,7 +17,7 @@ Run through it as normal, but note that you will not be asked for the database c
 The `settings.platformsh.php` file added earlier automatically provides the database credentials
 and the installer is smart enough to not ask for them again.
 
-Once the installer is complete you are presented with your new site. 
+Once the installer is complete you are presented with your new site.
 
 {{% guides/data-migration %}}
 
