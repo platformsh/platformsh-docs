@@ -102,4 +102,4 @@ To do so, run the following command:
 git push -o "environment.status=active"
 ```
 
-Learn more about how to [trigger actions on `push`](/environments/_index.md#trigger-actions-on-push).
+Learn more about how to [trigger actions on `push`](/environments/_index.md#push-options).
