@@ -1,5 +1,5 @@
 ---
-title: "Using Solr with Drupal 9.x"
+title: "Using Solr with Drupal"
 sidebarTitle: "Solr"
 description: |
     Add a Solr server to your site and connect it to Drupal.

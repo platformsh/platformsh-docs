@@ -4,7 +4,7 @@ repoOrg: "platformsh-templates"
 branch: "master"
 file: ".platform/services.yaml"
 repos:
-    - drupal9
+    - drupal10
     - typo3
     - wordpress-composer
     - wordpress-vanilla
