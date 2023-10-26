@@ -1,5 +1,5 @@
 {{ $name := .Get "name" }}
-You now have a *project* running on {{ .Site.Params.vendor.name }} .
+You now have a *project* running on {{ .Site.Params.vendor.name }}.
 In many ways, a project is just a collection of tools around a Git repository.
 Just like a Git repository, a project has branches, called *environments*.
 Each environment can then be activated.
