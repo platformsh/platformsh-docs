@@ -66,7 +66,7 @@ v=spf1 include:sendgrid.net -all
 
 Having several, conflicting `TXT` records isn't supported due to [rfc4408 section 3.1.2](https://datatracker.ietf.org/doc/html/rfc4408#section-3.1.2).
 
-If you already have an SPF record, please add sendgrid into your existing record.
+If you already have an SPF record, please add SendGrid into your existing record.
 
 ## 3. (Optional) Validate your email
 
