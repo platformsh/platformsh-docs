@@ -93,3 +93,13 @@ Run the following command:
 ```
 
 {{< /codetabs >}}
+
+If you're not using a [source integration](/integrations/source/_index.md),
+you can also activate an environment when pushing changes to it.
+To do so, run the following command:
+
+```bash
+git push -o "environment.status=active"
+```
+
+Learn more about how to [trigger actions on `push`](/environments/_index.md#push-options).

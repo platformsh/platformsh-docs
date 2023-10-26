@@ -399,26 +399,37 @@ See some [examples of how to configure what's served](./web/_index.md).
 ### Web commands
 
 {{% version/specific %}}
+<!-- Version 1 -->
+
 | Name    | Type     | Required                      | Description |
 | ------- | -------- | ----------------------------- | ----------- |
+| `pre_start` | `string` |   | Command run just prior to `start`, which can be useful when you need to run _per-instance_ actions. |
 | `start` | `string` | See [note](#required-command) | The command to launch your app. If it terminates, it's restarted immediately. |
 
 <--->
+<!-- Version 2 -->
+
 | Name    | Type     | Required                      | Description |
 | ------- | -------- | ----------------------------- | ----------- |
 | `pre_start` | `string` |   | Command run just prior to `start`, which can be useful when you need to run _per-instance_ actions. See [Mounts, instances, and Network Storage](#mounts-instances-and-network-storage) for an example. |
 | `start` | `string` | See [note](#required-command) | The command to launch your app. If it terminates, it's restarted immediately. |
+
 {{% /version/specific %}}
 
 Example:
 
 {{% version/specific %}}
+<!-- Version 1 -->
+
 ```yaml {configFile="app"}
 web:
     commands:
         start: 'uwsgi --ini conf/server.ini'
 ```
+
 <--->
+<!-- Version 2 -->
+
 ```yaml {configFile="app"}
 applications:
     myapp:

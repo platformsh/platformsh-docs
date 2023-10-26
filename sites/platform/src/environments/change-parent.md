@@ -45,3 +45,13 @@ So if you have the environment `new-feature` and want to change its parent to `m
 ```
 
 {{< /codetabs >}}
+
+If you're not using a [source integration](/integrations/source/_index.md),
+you can also set a parent for your environment when pushing changes to it.
+To do so, run the following command:
+
+```bash
+git push -o "environment.parent={{< variable "PARENT_ENVIRONMENT_NAME" >}}"
+```
+
+Learn more about how to [trigger actions on `push`](/environments/_index.md#push-options).
