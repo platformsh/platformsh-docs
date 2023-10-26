@@ -1,5 +1,5 @@
 ---
-title: "Using Elasticsearch with Drupal 9.x"
+title: "Using Elasticsearch with Drupal"
 sidebarTitle: "Elasticsearch"
 description: |
     Add an Elasticsearch server to your site and connect it to Drupal.

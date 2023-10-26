@@ -192,11 +192,11 @@ Staging
 
 ## Paused environments
 
-{{< partial "progressive-rollout/body.md" >}}
-
 [Preview environments](/glossary.md#preview-environment) are often used for a limited time and then abandoned.
 To prevent unnecessary consumption of resources,
 {{% vendor/name %}} automatically pauses preview environments ([of both development and staging types](/glossary.md#environment-type)) that haven't been redeployed in 14 days.
+
+{{% version/specific %}}
 
 {{< note >}}
 
@@ -217,6 +217,12 @@ if you are in one of the following situations:
   and sharing the URL with users for feedback
 - Business staff testing your development branch don't have permission to resume it
 - You are using your staging environment to run integration or penetration tests
+
+<--->
+
+You can also pause an environment manually at any time.
+
+{{% /version/specific %}}
 
 ### Pause an environment
 
@@ -269,7 +275,7 @@ title=In the Console
 
 1. Navigate to the paused environment.
 2. In the Activity tab, click **Resume environment**.
-3. In the **Resume environment** window, click **Resume**. 
+3. In the **Resume environment** window, click **Resume**.
 
 {{< /codetabs >}}
 
