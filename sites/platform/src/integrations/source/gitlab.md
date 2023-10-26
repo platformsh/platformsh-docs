@@ -19,7 +19,7 @@ Ensure the token has the following scopes:
 - `api` to access your API
 - `read_repository` to read the repository
 
-For the integration to work, your GitLab user needs push access to the repository.
+For the integration to work, your GitLab user needs push access to the repository and to configure a webhook on a GitLab repository, you need to have Maintainer or Owner user permissions.
 
 Copy the token.
 
