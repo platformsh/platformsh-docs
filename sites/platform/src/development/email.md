@@ -58,11 +58,15 @@ Changing the setting rebuilds the environment.
 ## 2. Recommended: Improve deliverability
 
 Improve deliverability of your email with [Sender Policy Framework (SPF)](https://docs.sendgrid.com/ui/account-and-settings/spf-records).
-Add the following `TXT` record to your domain's DNS records:
+If you don't have an SPF record, add the following `TXT` record to your domain's DNS records:
 
 ```txt
 v=spf1 include:sendgrid.net -all
 ```
+
+Having several, conflicting `TXT` records isn't supported due to [rfc4408 section 3.1.2](https://datatracker.ietf.org/doc/html/rfc4408#section-3.1.2).
+
+If you already have an SPF record, please add SendGrid into your existing record.
 
 ## 3. (Optional) Validate your email
 
