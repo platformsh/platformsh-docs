@@ -1,5 +1,5 @@
 ---
-title: Express
+title: (REMOVE) Express
 description:   Welcome to our quick-start guide on hosting [Express](https://expressjs.com/) on {{< vendor/name >}} where we will demonstrate just how simple it is to host your [Express](https://expressjs.com/) projects on our PaaS. Follow the steps detailed below and you’ll have everything set up in no time.
 ---
 

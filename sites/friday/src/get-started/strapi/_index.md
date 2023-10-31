@@ -1,5 +1,5 @@
 ---
-title: Strapi
+title: (REMOVE) Strapi
 description:   Welcome to our quick-start guide on hosting [Strapi](https://strapi.io/) on {{< vendor/name >}}, where we will demonstrate just how simple it is to host your [Strapi](https://strapi.io/) projects on our PaaS. Follow the steps detailed below and you’ll have everything set up in no time.
 ---
 

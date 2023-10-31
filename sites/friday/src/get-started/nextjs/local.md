@@ -1,5 +1,5 @@
 ---
-title: "Local development"
+title: "(REMOVE) Local development"
 weight: -120
 description: |
   Once Your Next.js application has been deployed on {{% vendor/name %}}, you might want to start developing your application locally.

@@ -1,5 +1,5 @@
 ---
-title: Next.js
+title: (REMOVE) Next.js
 description:   Welcome to our quick-start guide on hosting [Next.js](https://nextjs.org/) on {{< vendor/name >}}, where we will demonstrate just how simple it is to host your [Next.js](https://nextjs.org/) projects on our PaaS. Follow the steps detailed below and you’ll have everything set up in no time.
 ---
 
