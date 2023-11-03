@@ -28,7 +28,7 @@ To pre-generate these YAML files, please use the following command from the root
 The `{{% vendor/cli %}} project:init` command (shortcut `{{% vendor/cli %}} ify`) will automatically detect which stack that you’re using, ask if you want to add any services, and generate the corresponding `config.yaml` YAML files, like so:
 ```yaml {location=".{{% vendor/cli %}}/config.yaml"}
 {{< code-link destination="/create-apps/app-reference.html" text="applications" title="Complete list of all available properties" >}}:
-  app:
+  <APP_NAME>:
     {{< code-link destination="/create-apps/app-reference.html#source" text="source" title="Application source code directory. Click for more information" >}}:
       root: "/"
     {{< code-link destination="/create-apps/app-reference.html#types" text="type" title="The runtime the application uses. Click to see the complete list of available runtimes." >}}: "<runtime>:<version>"
@@ -54,9 +54,9 @@ The `{{% vendor/cli %}} project:init` command (shortcut `{{% vendor/cli %}} ify`
     to: "https://{default}/"
 ```
 
-[//]: # ({{< note >}})
-[//]: # (In the current guide, services are added to your project at a [later stage]&#40;/get-started/express/add-database.md&#41;.)
-[//]: # ({{< /note >}})
+{{< note >}}
+When running ``{{% vendor/cli %}} project:init`` command, default application name `<APP_NAME>` is set to the current local folder name. Please change it accordingly
+{{< /note >}}
 
 Then commit your new files, using the following command:
 

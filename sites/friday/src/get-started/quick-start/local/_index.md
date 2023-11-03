@@ -2,7 +2,7 @@
 title: Local development
 weight: 70
 description: |
-    Sync {{% vendor/name %}} with your local environments to start contributing.
+    All you need to know about working locally with an {{% vendor/name %}} project.
 ---
 
 A significant amount of work developing your app takes place locally rather than on an active {{% vendor/name %}} environment.

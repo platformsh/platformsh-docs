@@ -2,7 +2,7 @@
 title: Tethered
 weight: -80
 description: |
-    Sync {{% vendor/name %}} with your local environments to start contributing.
+  Sync your local {{% vendor/name %}} with your remote environment to start contributing.
 ---
 
 When you develop a project, a significant amount of work takes place

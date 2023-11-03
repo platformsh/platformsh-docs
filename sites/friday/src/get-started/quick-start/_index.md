@@ -24,7 +24,7 @@ To get your project up and running as quickly as possible, experiment with the [
 
 First things first, if you don’t have a local project, you need one. So please create your project locally by following the official guide of your choice.
 
-Example:
+Examples:
 - [Express installation guide](https://expressjs.com/en/starter/installing.html)
 - [Next.js installation guide](https://nextjs.org/docs/getting-started/installation)
 - [Strapi installation guide](https://docs.strapi.io/dev-docs/installation)

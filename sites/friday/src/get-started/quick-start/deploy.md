@@ -1,7 +1,7 @@
 ---
 title: Deploy
 weight: 30
-description:   Welcome to our quick-start guide on hosting any stacks on {{< vendor/name >}} where we will demonstrate just how simple it is to host your projects on our PaaS. Follow the steps detailed below and you’ll have everything set up in no time.
+description:  It's time to deploy, find all useful info there.
 ---
 
 ## Deploy

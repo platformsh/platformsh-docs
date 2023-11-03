@@ -1,7 +1,7 @@
 ---
 title: Create a new project
 weight: 10
-description: Configure your project
+description: All you need to know about creating a new project with {{% vendor/name %}}
 ---
 
 To create a new project on {{% vendor/name %}}, you can either use the {{% vendor/name %}} CLI or the {{% vendor/name %}} Console.
@@ -16,8 +16,9 @@ To create a new project with the {{% vendor/name %}} CLI, use the following comm
 ```
 
 {{< note >}}
-When creating a new project using the {{% vendor/name %}} CLI command `project:create`, you will be asked if you want to set the local remote to your new project. Enter **Yes (y)**.
+When creating a new project using the {{% vendor/name %}} CLI command `project:create`, default production branch is set to ``main``, please change it if your default branch is not the same (ex: `master`)
 
+Then, you will be asked if you want to set the local remote to your new project. Enter **Yes (y)**.
 Your local source code will be automatically linked to your newly created {{% vendor/name %}} project by creating a `.{{% vendor/cli %}}/local/project.yaml` file that will contain the corresponding `<projectId>` and set a Git remote to `{{% vendor/cli %}}`.
 
 ```bash {location="Terminal"}

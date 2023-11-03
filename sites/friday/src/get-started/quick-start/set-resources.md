@@ -1,7 +1,7 @@
 ---
 title: Set resources
 weight: 40
-description:   Welcome to our quick-start guide on hosting any stacks on {{< vendor/name >}} where we will demonstrate just how simple it is to host your projects on our PaaS. Follow the steps detailed below and you’ll have everything set up in no time.
+description: Flexible resources on {{% vendor/name %}} are easy to use. Find all you need to know about resources allocation there.
 ---
 
 To define allocated resources to your services and apps, you need to define how much CPU, memory, and disk to assign to the various containers.
