@@ -67,3 +67,5 @@ To make changes to your project, follow these steps:
 
    For a long running branch, to keep the code up-to-date with the main branch, use `git merge main` or `git rebase main`.
    You can also keep the data in sync with the parent environment by using `{{% vendor/cli %}} env:sync`.
+
+{{< guide-buttons type="*" >}}

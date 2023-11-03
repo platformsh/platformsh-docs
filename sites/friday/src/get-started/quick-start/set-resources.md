@@ -63,3 +63,5 @@ To open the URL of your new environment, run the following command:
 ```bash {location="Terminal"}
 {{% vendor/cli %}} environment:url --primary
 ```
+
+{{< guide-buttons type="*" >}}

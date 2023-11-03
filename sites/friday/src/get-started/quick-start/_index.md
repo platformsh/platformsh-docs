@@ -11,6 +11,7 @@ If you're trying to host a Django, a Laravel, nor a Flask stack, please follow c
 - [Django Getting started guide](../django/_index.md)
 - [Laravel Getting started guide](../laravel/_index.md)
 - [Flask Getting started guide](../flask/_index.md)
+- or your other favorite stack guide?
 
 {{% guides/link-philosophy %}}
 
@@ -40,16 +41,29 @@ git add .
 git commit -m "Init my application"
 ```
 
-{{< note title="Tips" >}}
-
-Depending on your stack, you should also ignore adding ``node_modules`` folder (or any other unwanted folders in your Git repository) to the Git repository by using the following commands to do so:
-
+[//]: # (TODO see how to make this codetabs looks like a note section with multiple tabs)
+{{< codetabs >}}
++++
+title=Tips for Node.js
++++
+If you're running a Node.js stack, you should also ignore adding ``node_modules`` folder (and any other unwanted folders in your Git repository) to the Git repository by using the following commands:
 ```bash {location="Terminal"}
 echo "/node_modules" >> .gitignore
 git add .gitignore && git commit -m "adding node_modules folder in .gitignore file"
 ```
-{{< /note >}}
 
+<--->
++++
+title=Tips for PHP
++++
+If you're running a PHP stack with composer as dependency manager, you should also ignore adding ``vendor`` folder (and any other unwanted folders in your Git repository) to the Git repository by using the following commands:
+```bash {location="Terminal"}
+echo "/vendor" >> .gitignore
+git add .gitignore && git commit -m "adding vendor folder in .gitignore file"
+```
+{{< /codetabs >}}
+
+[//]: # (TODO rework this part as GH integration could not be part of the quickstart guide)
 ## Choose your Git workflow
 
 {{% vendor/name %}} projects can be used as a classic Git repository where you will be able to push your source code in different ways, using either the Git CLI or the {{% vendor/name %}} CLI. You can choose which way—or Git workflow— you would like to use for your project from the following options:

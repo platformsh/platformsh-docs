@@ -49,12 +49,6 @@ header {
     --tw-gradient-from: #BFB5FF !important;
 }
 
-.hover\:bg-pink:hover {
-    --tw-bg-opacity: 1;
-    background: #4D38CC !important;
-    color: white !important;
-}
-
 .recruit-banner {
     background-color: #CCF6FB !important;
 }
@@ -98,6 +92,12 @@ body {
 
 .prose :where(a):not(:where([class~="not-prose"] *)):hover {
     color: #4D38CC !important;
+}
+
+.hover\:bg-pink:hover {
+  --tw-bg-opacity: 1;
+  background: #4D38CC !important;
+  color: white !important;
 }
 
 .text-skye-dark,

@@ -42,9 +42,10 @@ By default, {{% vendor/name %}} will use the default resource allocation for eac
 
 Et voilà, your application is live!
 
-
 [//]: # (**Your first push)
 
 [//]: # (will fail**; don't worry, this is expected. At this point {{% vendor/cli %}} is not aware of the resources)
 
 [//]: # (your application needs. You need to define how much CPU, memory, and disk to assign to the various containers. Back in your terminal, run:)
+
+{{< guide-buttons type="*" >}}

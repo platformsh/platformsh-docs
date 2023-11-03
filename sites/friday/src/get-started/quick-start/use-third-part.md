@@ -16,3 +16,5 @@ Add an integration to your existing third-party repository:
 - [GitHub](/integrations/source/github.md)
 
 [//]: # (- [GitLab]&#40;/integrations/source/gitlab.md&#41;)
+
+{{< guide-buttons next="Local Development" nextLink="/get-started/quick-start/local/_index.md" type="*" >}}

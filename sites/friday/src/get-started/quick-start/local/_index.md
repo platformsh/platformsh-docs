@@ -17,3 +17,5 @@ Each of these examples:
 
 [//]: # (If you're already using Docker Compose,)
 [//]: # (consult the Community guide on [using Docker Compose with Django and {{% vendor/name %}}]&#40;https://community.platform.sh/t/using-docker-compose-with-django/1205&#41;.)
+
+[//]: # ({{< guide-buttons previous="Local Development" previousLink="/get-started/quick-start/use-third-part.md" type="*" >}})

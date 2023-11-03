@@ -1,24 +1,67 @@
+<!--
+usage:
+guide-buttons type="*"  = display navigation bar with prev and next page title
+guide-buttons previous="Previous name" next="Next name" type="*" = if you want to override button names
+-->
 {{ $pageContext := .Page }}
 {{ $navType := "*" }}
 {{ with .Get "type" }}
   {{ $navType = . }}
 {{ end }}
 
+{{ $next := "" }}
+{{ with .Get "next" }}
+  {{ $next = . | $pageContext.RenderString }}
+{{ end }}
+
+{{ $nextLink := "" }}
+{{ with .Get "nextLink" }}
+  {{ $nextLink = . | $pageContext.RenderString }}
+{{ end }}
+
+{{ $previous := "" }}
+{{ with .Get "previous" }}
+  {{ $previous = . | $pageContext.RenderString }}
+{{ end }}
+
+{{ $prevLink := "" }}
+{{ with .Get "previousLink" }}
+  {{ $prevLink = . | $pageContext.RenderString }}
+{{ end }}
+
 <div class="text-center">
 
 <!-- If exists both a next and previous page (two buttons) -->
 {{ if eq $navType "*" }}
-  <!-- Back button -->
-  <a href="{{ if .Page.NextInSection }}{{ .Page.NextInSection.Permalink }}{{ else }}{{ .Page.CurrentSection.Permalink }}{{ end }}" type="button" class="p-2 text-ebony hover:no-underline font-mono">
-    <img class="inline rotate-180" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" />
-    Back
-  </a>
 
-  <!-- Next button -->
-  <a href="{{ .Page.PrevInSection.Permalink }}" type="button" class="{{ partial "pink-button-styles" }}">
-    {{ with .Get "next" }}{{ . | $pageContext.RenderString }}{{ end }}
-    <img class="inline" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" />
+  {{ if $prevLink }}
+  <!-- Back button -->
+  <a href="{{ ref . $prevLink }}" type="button" class="p-2 text-ebony hover:no-underline font-mono">
+    <img class="inline rotate-180" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" />
+    {{ if $previous }}{{ $previous }}{{ else }}{{ .Page.NextInSection.LinkTitle }}{{ end }}
   </a>
+  {{ else if or (.Page.NextInSection) ($previous) }}
+    <!-- Back button -->
+    <a href="{{ if .Page.NextInSection }}{{ .Page.NextInSection.Permalink }}{{ else }}{{ .Page.CurrentSection.Permalink }}{{ end }}" type="button" class="p-2 text-ebony hover:no-underline font-mono">
+      <img class="inline rotate-180" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" />
+      {{ if $previous }}{{ $previous }}{{ else }}{{ .Page.NextInSection.LinkTitle }}{{ end }}
+    </a>
+  {{ end }}
+
+  {{ if $nextLink }}
+    <!-- Next button -->
+    <a href="{{ ref . $nextLink }}" type="button" class="{{ partial "pink-button-styles" }}">
+      {{ if $next }}{{ $next }}{{ else }}{{ .Page.PrevInSection.LinkTitle }}{{ end }}
+    <img class="inline" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" />
+    </a>
+
+  {{ else if .Page.PrevInSection }}
+    <!-- Next button -->
+    <a href="{{ if .Page.PrevInSection }}{{ .Page.PrevInSection.Permalink }}{{ else }}{{ .Page.CurrentSection.Permalink }}{{ end }}" type="button" class="{{ partial "pink-button-styles" }}">
+      {{ if $next }}{{ $next }}{{ else }}{{ .Page.PrevInSection.LinkTitle }}{{ end }}
+      <img class="inline" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" />
+    </a>
+  {{ end }}
 
 <!-- Single button -->
 {{ else }}
