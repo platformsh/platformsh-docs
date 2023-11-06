@@ -15,14 +15,51 @@ Other branches are for developing new features, fixing bugs, or updating the inf
 To make changes to your project, follow these steps:
 
 1. Create a new environment (a Git branch) to make changes without impacting production:
-
+{{< codetabs >}}
++++
+title={{% vendor/name %}} Git repository
++++
    ```bash {location="Terminal"}
    {{% vendor/cli %}} branch feat-a
    ```
-
-   This command creates a new local `feat-a` Git branch based on the main Git branch
+   This command creates a new local `feat-a` Git branch based on the `main` Git branch
    and activates a related environment on {{< vendor/name >}}.
    The new environment inherits the data (service data and assets) of its parent environment (the production environment here).
+
+   {{< note title="Warnings" >}}
+   **First**, you will be charged by [activated environments](/environments/deactivate-environment.md#reactivate-an-environment).
+   So, if you would like to create an inactive environment, waiting for you to be ready to test, you could use the following command:
+   ```bash {location="Terminal"}
+   git branch checkout -b feat-a && git push -u upsun feat-a
+   ```
+
+   **Secondly**, if you have set up an integration and have enabled `prune_branches` (true by default), then `upsun branch` command will fail at the end of the deployment because the integration will sync with the source and delete the new branch since it doesn’t exist with the canonical source.
+   At the end, you will see:
+   ```bash
+   fatal: couldn't find remote ref feat-a
+   ```
+   {{< /note >}}
+<--->
++++
+title=Using third party provider
++++
+   {{% vendor/name %}} provides a feature called [source integration](integrations/source.html) that allows your {{% vendor/name %}} project to be fully integrated with your external repository.
+   This enables you, as a developer, to use a normal Git workflow (`git add . && git commit -m "message" && git push`) to deploy your environment—with no need to connect to the {{% vendor/name %}} Console.
+
+   Assuming you already activate source integration feature on your project, you need to use the following to create a new branch:
+   ```bash {location="Terminal"}
+   git checkout -b feat-a && git push -u origin feat-a
+   ```
+   This command creates a new local `feat-a` Git branch based on the `main` Git branch
+   and create related environment on {{< vendor/name >}}.
+   The new environment is inactive by default, and when you would activate it, it will inherit the data (service data and assets) of its parent environment (the production environment here).
+
+   {{< note >}}
+   When your local feature is ready, please see how to [activate your environment](/environments/deactivate-environment.md#reactivate-an-environment)
+   {{< /note >}}
+
+{{< /codetabs >}}
+
 
 2. Make changes to your project.
 
