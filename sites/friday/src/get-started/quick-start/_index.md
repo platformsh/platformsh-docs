@@ -6,7 +6,7 @@ description:   Welcome to our quick-start guide on hosting any stacks on {{< ven
 
 {{% description %}}
 
-If you're trying to host a Django, a Laravel, nor a Flask stack, please follow corresponding guide:
+If you're trying to host a Django, a Laravel, or a Flask stack, please follow corresponding guide:
 
 - [Django Getting started guide](../django/_index.md)
 - [Laravel Getting started guide](../laravel/_index.md)
