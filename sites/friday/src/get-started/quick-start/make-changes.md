@@ -9,7 +9,7 @@ description: How to work on a daily basis with an {{% vendor/name %}} project?
 Now that your project is deployed, you can start making changes to it.
 For example, you might want to fix a bug or add a new feature.
 
-In your project, the `main` branch always represents the production environment.
+In your project, the `main` branch (or `master` if you change it during project creation) always represents the production environment.
 Other branches are for developing new features, fixing bugs, or updating the infrastructure.
 
 To make changes to your project, follow these steps:
