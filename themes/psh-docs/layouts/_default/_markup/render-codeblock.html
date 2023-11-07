@@ -1,7 +1,32 @@
 {{ $lang  := .Attributes.lang  | default .Type }}
 {{ $location := .Attributes.location | default "" }}
+{{ $configFile := .Attributes.configfile | default ""}}
+{{ $prefixdir := .Attributes.dir | default "" }}
+
+{{ $v2Hide := .Attributes.v2hide | default "false" }}
+
+{{ if or ( eq $v2Hide "false" ) (and (eq .Page.Site.Params.vendor.config.version 1) (eq $v2Hide "true")) }}
+
+{{ $configFiles := .Page.Site.Params.vendor.config.files }}
+{{ $configDir := .Page.Site.Params.vendor.config.dir }}
+
 {{ with $location }}
-<div class="bg-stone px-4 pt-2 rounded-t-lg inline-block text-base pb-1">{{ . }}</div>
+    {{ $fullFile := . }}
+    {{ $prefixLen := len $prefixdir }}
+    {{ if eq $prefixdir "true" }}
+        {{ $fullFile = delimit ( slice $configDir . ) "/" }}
+    {{ else if gt $prefixLen 0 }}
+        {{ $fullFile = delimit ( slice $prefixdir . ) "/" }}
+    {{ end }}
+<div class="bg-stone px-4 pt-2 rounded-t-lg inline-block text-base pb-1">{{ $fullFile }}</div>
+{{ end }}
+{{ with $configFile }}
+    {{ $fullFile := index $configFiles . }}
+    {{ $prefixLen := len $prefixdir }}
+    {{ if gt $prefixLen 0 }}
+        {{ $fullFile = delimit ( slice $prefixdir (index $configFiles .) ) "/" }}
+    {{ end }}
+<div class="bg-stone px-4 pt-2 rounded-t-lg inline-block text-base pb-1">{{ $fullFile }}</div>
 {{ end }}
 {{ if transform.CanHighlight $lang }}
 {{ $content := .Inner | safeHTML }}
@@ -19,4 +44,6 @@
 {{ $content | safeHTML }}
 {{ else }}
 <pre><code>{{ .Inner }}</code></pre>
+{{ end }}
+
 {{ end }}

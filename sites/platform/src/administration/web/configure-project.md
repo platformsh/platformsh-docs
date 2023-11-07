@@ -14,13 +14,27 @@ The settings are divided into several sections.
 
 The **General** section shows you the project's region and allows you to update the project name and [timezone](../../projects/change-project-timezone.md).
 
-![configure project](/images/management-console/settings-general.png "0.7")
+{{% version/specific %}}
+![configure project](/images/management-console/settings-general.png "0.5")
+<--->
+![configure project](/images/console/settings-general.png "1.0")
+{{% /version/specific %}}
 
 ## Access
 
+{{% version/specific %}}
 The **Access** section allows you to [manage user access to the project](../users.md).
 
 ![Project configure icon](/images/management-console/settings-project-access.png "0.7")
+<--->
+The **Access** section allows you to [manage user access to the project](../users.md).
+
+<!-- @todo: for the release of teams -->
+<!-- The **Access** section allows you to [manage user access](../users.md),
+and [teams access](../teams.md) to a project. -->
+
+![Project configure icon](/images/console/settings-access-users.png "0.7")
+{{% /version/specific %}}
 
 ## Certificates
 
@@ -40,7 +54,7 @@ See how to [set up your domain](../../domains/steps/_index.md).
 ## Deploy Key
 
 The **Deploy Key** section shows you the public SSH key you can add to your private repositories.
-Adding it lets Platform.sh access the repositories during the build process.
+Adding it lets {{% vendor/name %}} access the repositories during the build process.
 This is useful if you want to reuse some code components across multiple projects and manage those components as dependencies of your project.
 
 ![Project deploy key](/images/management-console/settings-deploy-key.png "0.7")

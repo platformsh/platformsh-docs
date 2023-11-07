@@ -42,7 +42,7 @@ It's often a compliance requirement to ensure that only a minimal subset of deve
 have access to production data during their work.
 By default, your production data is automatically cloned into _every_ child environment.
 
-You can customize your deployments to include a script that sanitizes the data within every non-production environment.
+You can customize your deployments to include a script that sanitizes the data within every preview environment.
 
 1.  Create a new environment called `sanitize-non-prod`.
     ```bash
@@ -50,7 +50,7 @@ You can customize your deployments to include a script that sanitizes the data w
     ```
 
 2.  Follow the example on how to [sanitize PostgreSQL with Symfony](../../../development/sanitize-db/postgresql-symfony.md).
-    This adds a sanitization script to your deploy hook that runs on all non-production environments.
+    This adds a sanitization script to your deploy hook that runs on all preview environments.
 
 3.  Commit and push the revisions by running the following command:
 
@@ -64,5 +64,5 @@ You can customize your deployments to include a script that sanitizes the data w
     symfony merge sanitize-non-prod
     ```
 
-Once the script is merged into production, every non-production environment created on Platform.sh
+Once the script is merged into production, every preview environment created on {{ .Site.Params.vendor.name }}
 and all local environments contain sanitized data free of your users' personally identifiable information (PII).

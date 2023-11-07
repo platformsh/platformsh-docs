@@ -5,7 +5,7 @@ description: See how to delete projects you no longer need.
 
 To delete a project, you must be an organization owner or have the [manage plans permission](../administration/users.md#organization-permissions).
 
-To delete a Platform.sh project, including all data, code, and active environments:
+To delete a {{% vendor/name %}} project, including all data, code, and active environments:
 
 {{< codetabs >}}
 
@@ -27,7 +27,7 @@ title=Using the CLI
 1. Run the following command:
 
    ```bash
-   platform project:delete --project {{< variable "PROJECT_ID" >}}
+   {{% vendor/cli %}} project:delete --project {{< variable "PROJECT_ID" >}}
    ```
 
 2. Read the consequences to deletion and enter `y`.

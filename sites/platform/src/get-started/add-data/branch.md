@@ -7,13 +7,13 @@ description: Create a separate environment for development and see how it works.
 The next step in building out your app is adding a service.
 For comfortable development and testing, start with a separate branch for development.
 
-## Create a development environment
+## Create a preview environment
 
 To develop without affecting production, you need a separate environment.
 Create one in a terminal:
 
 ```bash
-platform branch dev main
+{{% vendor/cli %}} branch dev main
 ```
 
 This creates a separate environment with its own data.
@@ -30,7 +30,7 @@ To make your `dev` environment different, change the environment by adding a var
 Add a variable available in the build:
 
 ```bash
-platform variable:create example --visible-build true --environment dev --value "This is a variable"
+{{% vendor/cli %}} variable:create example --visible-build true --environment dev --value "This is a variable"
 ```
 
 This `example` variable is visible in the build and so its creation triggers a new build of your app.
@@ -42,7 +42,7 @@ To see the difference in the environments, read the variable in each environment
 Read the variable from your `dev` environment:
 
 ```bash
-platform variable:get --environment dev example
+{{% vendor/cli %}} variable:get --environment dev example
 ```
 
 This returns a table with information on the variable including its creation date and value.
@@ -50,7 +50,7 @@ This returns a table with information on the variable including its creation dat
 Read the variable from your `main` environment:
 
 ```bash
-platform variable:get --environment main example
+{{% vendor/cli %}} variable:get --environment main example
 ```
 
 You get a message saying the variable wasn't found.
@@ -58,7 +58,7 @@ You get a message saying the variable wasn't found.
 Differences such as this allow you to have different builds in different environments.
 This is useful for things such as connecting to different databases in development and production.
 
-Now you have a development environment and know how it works.
+Now you have a preview environment and know how it works.
 Next, add a service in that environment and then merge it.
 
 {{< get-started/next-button next="/get-started/add-data/merge.html" nextText="I'm ready to merge" >}}

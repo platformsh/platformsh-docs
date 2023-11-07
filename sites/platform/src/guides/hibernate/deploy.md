@@ -1,5 +1,5 @@
 ---
-title: Deploy Hibernate ORM on Platform.sh
+title: Deploy Hibernate ORM on {{% vendor/name %}}
 sidebarTitle: Get started
 weight: 4
 ---

@@ -21,7 +21,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform backups
+{{% vendor/cli %}} backups
 ```
 
 You get a response similar to the following:
@@ -63,7 +63,7 @@ title=Using the CLI
 1. Run the following command:
    
    ```bash
-   platform backup:restore {{< variable "BACKUP_ID" >}}
+   {{% vendor/cli %}} backup:restore {{< variable "BACKUP_ID" >}}
    ```
 
 2. Press `enter` to agree with the consequences and continue.
@@ -84,13 +84,13 @@ This deployment uses the built app, including variables, from when the backup wa
 
 {{< note theme="warning" title="Warning" >}}
 
-The code is also initially restored, but Platform.sh doesn't modify your Git repository.
+The code is also initially restored, but {{% vendor/name %}} doesn't modify your Git repository.
 So any future (re)deployments use the current Git repository to build the environment.
 
 To restore your code to its previous state when the backup was taken,
 use Git commands such as [revert](https://git-scm.com/docs/git-revert).
 
-See [how backup and restore works on Platform.sh](../environments/backup.md#how-backup-and-restore-works-on-platformsh).
+See [how backup and restore works on {{% vendor/name %}}](../environments/backup.md#how-backup-and-restore-works).
 
 {{< /note >}}
 
@@ -99,8 +99,17 @@ See [how backup and restore works on Platform.sh](../environments/backup.md#how-
 You can restore backups to a different environment than they were created on using the CLI:
 
 1. Switch to the branch where the backup was created.
-2. Run the following command:
+2. To restore your backup to an existing environment, run the following command: 
 
    ```bash
-   platform backup:restore --target={{% variable "TARGET_BRANCH_NAME" %}} {{% variable "BACKUP_ID" %}}
+   {{% vendor/cli %}} backup:restore --target={{% variable "TARGET_ENVIRONMENT_NAME" %}} {{% variable "BACKUP_ID" %}}
+   ```
+   
+   If your target environment doesn't exist yet, you can create it by [branching an existing environment](/glossary.md#branch).
+   The new target environment will be an exact copy of the existing (parent) environment.
+   
+   To do so, use the `--branch-from` option to specify the parent of your new target environment:
+
+   ```bash
+   {{% vendor/cli %}} backup:restore --target={{% variable "TARGET_ENVIRONMENT_NAME" %}} --branch-from={{% variable "PARENT_ENVIRONMENT_NAME" %}} {{% variable "BACKUP_ID" %}}
    ```

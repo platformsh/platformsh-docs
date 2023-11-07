@@ -19,8 +19,8 @@ host www.{{< variable "YOUR_DOMAIN" >}}
 If your domain is `example.com`, the response should be something like the following:
 
 ```text
-www.example.com is an alias for main-abcd123.abcdefgh1234567.eu.platformsh.site.
-main-abcd123.abcdefgh1234567.eu.platformsh.site has address 192.0.2.1
+www.example.com is an alias for main-abcd123.abcdefgh1234567.eu.{{< vendor/urlraw "hostname" >}}
+main-abcd123.abcdefgh1234567.eu.{{< vendor/urlraw "hostname" >}} has address 192.0.2.1
 ```
 
 If it isn't, try the following steps:
@@ -113,9 +113,9 @@ To pass this verification, there are requirements you need to meet.
 title=Without a CDN
 +++
 
-Platform.sh checks that all the routes you defined are pointing to your project.
+{{% vendor/name %}} checks that all the routes you defined are pointing to your project.
 For the challenge to complete,
-domains and subdomains must point directly to your Platform.sh project.
+domains and subdomains must point directly to your {{% vendor/name %}} project.
 
 Otherwise, you get an error similar to:
 
@@ -151,7 +151,7 @@ A common issuer is [Let's Encrypt](https://letsencrypt.org/docs/challenge-types/
 
 {{< /codetabs >}}
 
-Make sure that the [apex domain](../other/glossary.md#apex-domain) and its `www` subdomain are both pointing where needed.
+Make sure that the [apex domain](/glossary.md#apex-domain) and its `www` subdomain are both pointing where needed.
 Note that it can take up to 72 hours for DNS changes to be effective.
 For more information, see how to [set up a custom domain](../domains/steps/_index.md).
 
@@ -164,13 +164,13 @@ For example, a conflicting AAAA (IPv6) DNS record can result in a `[HTTP01: The 
 If the certificate generation issue persists,
 check if an outage is ongoing with your certificate issuer (the most common one is [Let's Encrypt](https://letsencrypt.status.io/))
 and with your CDN provider if you have one.
-If not, [contact Support](../overview/get-support.md).
+If not, [contact Support](/learn/overview/get-support.md).
 
 ### Check your routes configuration
 
 Certificates are generated based on your [routes configuration](../define-routes/_index.md).
 When a certificate is renewed, the renewal bot checks that all of the defined routes can be accessed.
-If at least one of the routes defined in your `routes.yaml` file can't be accessed,
+If at least one of the routes defined in your `{{< vendor/configfile "routes" >}}` file can't be accessed,
 the renewal fails and the following error is displayed:
 
 ```
@@ -190,16 +190,16 @@ For example, if you add `example.com` and `www.example.com` to your routes confi
 but the `www` subdomain doesn't point to your project through [a `CNAME` record](./steps/dns.md#cname-records),
 the certificate renewal fails.
 For the renewal to succeed, add the missing `CNAME` record to your DNS
-or remove `www.example.com` (and any other `www` route) from your `routes.yaml` file.
+or remove `www.example.com` (and any other `www` route) from your `{{< vendor/configfile "routes" >}}` file.
 
 ## Verify your application
 
 Check your app's logs and look for anomalies.
-On the command line type `platform logs app` and `platform logs error`.
+On the command line type `{{% vendor/cli %}} logs app` and `{{% vendor/cli %}} logs error`.
 
 ## Use ASCII for the domain
 
-Platform.sh expects an ASCII representation of your domain.
+{{% vendor/name %}} expects an ASCII representation of your domain.
 To use an internationalized domain name (IDN), convert it to ASCII.
 Use a tool such as the [conversion tool provided by Verisign](https://www.verisign.com/en_US/channel-resources/domain-registry-products/idn/idn-conversion-tool/index.xhtml).
 
@@ -207,4 +207,4 @@ Use a tool such as the [conversion tool provided by Verisign](https://www.verisi
 
 {{% troubleshoot %}}
 
-If your website is still not working as expected, [contact support](../overview/get-support.md).
+If your website is still not working as expected, [contact support](/learn/overview/get-support.md).

@@ -40,7 +40,7 @@
 {{ end }}
 <a href="/add-services.html">Service definition</a>
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 {{ readFile (printf "/registry/images/examples/full/%s.services.yaml" .type) | safeHTML }}
 ```
 
@@ -49,7 +49,7 @@
 
 <a href="/create-apps/app-reference.html">App configuration</a>
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 {{ printf "%s%s%s" (readFile (printf "registry/images/examples/full/%s.app.yaml" .type)) $l1 $l2 | safeHTML }}
 ```
 
@@ -59,13 +59,13 @@
 
   <a href="/add-services.html">Service definition</a>
 
-  ```yaml {location=".platform/services.yaml"}
+  ```yaml {configFile="services"}
   {{ readFile "registry/images/examples/full/oracle-mysql.services.yaml" | safeHTML }}
   ```
 
   <a href="/create-apps/app-reference.html">App configuration</a>
 
-  ```yaml {location=".platform.app.yaml"}
+  ```yaml {configFile="app"}
   {{ readFile "registry/images/examples/full/oracle-mysql.app.yaml" | safeHTML }}
   ```
 {{ end }}
@@ -76,27 +76,15 @@
 
   <a href="/add-services.html">Service definition</a>
 
-  ```yaml {location=".platform/services.yaml"}
+  ```yaml {configFile="services"}
   {{ readFile "registry/images/examples/full/redis-persistent.services.yaml" | safeHTML  }}
   ```
 
   <a href="/create-apps/app-reference.html">App configuration</a>
 
-  ```yaml {location=".platform.app.yaml"}
+  ```yaml {configFile="app"}
   {{ printf "%s%s%s" (readFile (printf "registry/images/examples/full/%s.app.yaml" "redis-persistent")) $l1 $l2 | safeHTML  }}
   ```
 {{ end }}
 
-<!-- Extra examples for Vault with multiple endpoints -->
-{{ if eq .type "vault-kms" }}
-  <h4>Example configuration with multiple endpoints</h4>
-  
-  ```yaml {location=".platform/services.yaml"}
-  {{ readFile "data/local-examples/vault-multiple-endpoints/services.yaml" | safeHTML }}
-  ```
-
-  ```yaml {location=".platform.app.yaml"}
-  {{ readFile "data/local-examples/vault-multiple-endpoints/platform.app.yaml" | safeHTML }}
-  ```
-{{ end }}
 {{ end }} <!-- end check for Varnish -->

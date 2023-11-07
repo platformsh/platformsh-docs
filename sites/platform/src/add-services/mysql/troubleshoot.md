@@ -10,7 +10,7 @@ sidebarTitle: Troubleshoot
 If a process running in your application acquired a lock from MySQL for a long period of time,
 you receive MySQL error messages like this:
 
-```text
+```sql
 SQLSTATE[HY000]: General error: 1205 Lock wait timeout exceeded;
 ```
 
@@ -24,7 +24,7 @@ This is typically caused by one of the following:
 If you're using [MariaDB 10+](./_index.md), use the SQL query `SHOW FULL PROCESSLIST \G` to list DB queries waiting for locks.
 To determine where to debug, find output like the following:
 
-```text
+```sql
 < skipped >
 Command: Query
 Time: ...
@@ -43,7 +43,7 @@ There is a single MySQL user, so you can not use "DEFINER" Access Control mechan
 
 When creating a `VIEW`, you may need to explicitly set the `SECURITY` parameter to `INVOKER`:
 
-```text
+```sql
 CREATE OR REPLACE SQL SECURITY INVOKER
 VIEW `view_name` AS
 SELECT
@@ -54,12 +54,26 @@ SELECT
 ### Disk space issues
 
 Errors such as `PDO Exception 'MySQL server has gone away'` are usually the result of exhausting your available disk space.
-Get an estimate of current disk usage using the CLI command `platform db:size`.
+Get an estimate of current disk usage using the CLI command `{{% vendor/cli %}} db:size`.
 Just keep in mind it's an estimate and not exact.
 
-Allocated more space to the service in [.platform/services.yaml](../_index.md).
+{{< version/specific >}}
+<!-- Version 1 -->
+
+Allocate more space to the service in [`{{< vendor/configfile "services" >}}`](../_index.md).
 As table space can grow rapidly,
 it's usually advisable to make your database mount size twice the size reported by the `db:size` command.
+
+<--->
+<!-- Version 2 -->
+
+Allocate more space to the service by running the `upsun resources:set` command.
+For more information, see how to [manage resources](/manage-resources.md).
+
+As table space can grow rapidly,
+it's usually advisable to make your database mount size twice the size reported by the `db:size` command.
+
+{{< /version/specific >}}
 
 You may want to add a [low-disk warning](../../integrations/notifications.md#low-disk-warning)
 to learn about low disk space before it becomes an issue.
@@ -82,4 +96,4 @@ The best approach is to wrap your connection logic in code that detects a "serve
 and tries to re-establish the connection.
 
 Alternatively, if your worker is idle for too long it can self-terminate.
-Platform.sh automatically restarts the worker process and the new process can establish a new database connection.
+{{% vendor/name %}} automatically restarts the worker process and the new process can establish a new database connection.

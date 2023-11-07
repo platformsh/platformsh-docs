@@ -1,7 +1,7 @@
 ---
 title: "Sanitizing databases: MariaDB and Drupal"
 sidebarTitle: MariaDB and Drupal
-description: Sanitize MariaDB data in non-production environments directly or by using Drush.
+description: Sanitize MariaDB data in preview environments directly or by using Drush.
 layout: list
 ---
 
@@ -23,9 +23,9 @@ title=With Drupal and Drush
 
 To sanitize your database and get rid of sensitive, live information, use the `drush sql:sanitize` command.
 Add your script to sanitize the database to [a `deploy` hook](../../create-apps/hooks/hooks-comparison.md#deploy-hook)
-for non-production environments:
+for preview environments:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 hooks:
     deploy: |
         cd /app/public
@@ -43,7 +43,7 @@ These are described in the [Drush documentation](https://www.drush.org/latest/co
 To sanitize only on the initial deploy and not all future deploys,
 use [Drush state](https://www.drush.org/latest/commands/state_set/) as in the following example:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 hooks:
     deploy: |
         cd /app/public
@@ -53,7 +53,7 @@ hooks:
             drush -y sql:sanitize
             drush state:set --input-format=string mymodule.sanitized yes
         fi
-        
+```
 
 {{< /codetabs >}}
 

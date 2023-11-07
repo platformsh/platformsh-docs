@@ -2,10 +2,10 @@
 title: "Symfony Integration"
 weight: -130
 description: |
-    Learn how to use the Symfony integration for a better Platform.sh experience.
+    Learn how to use the Symfony integration for a better {{% vendor/name %}} experience.
 ---
 
-Symfony has a special integration with Platform.sh that makes it easier to use Platform.sh for Symfony projects.
+Symfony has a special integration with {{% vendor/name %}} that makes it easier to use {{% vendor/name %}} for Symfony projects.
 
 **When using the Symfony integration, you are contributing financially to the Symfony project.**
 
@@ -14,12 +14,12 @@ The Symfony integration is automatically enabled when:
 - You run the `symfony new` command with the `--cloud` option;
 
 - You run `symfony project:init` on an existing project to automatically
-  generate the Platform.sh configuration.
+  generate the {{% vendor/name %}} configuration.
 
-If you already have a Platform.sh configuration without the Symfony
+If you already have a {{% vendor/name %}} configuration without the Symfony
 integration, enable it by adding the following configuration:
 
-   ```yaml {location=".platform.app.yaml"}
+   ```yaml {configFile="app"}
     hooks:
         build: |
             set -x -e
@@ -45,7 +45,7 @@ services](./environment-variables#service-environment-variables).
 
 ## Tools
 
-The **configurator** (`curl -fs https://get.symfony.com/cloud/configurator | bash`) is a script specially crafted for Platform.sh.
+The **configurator** (`curl -fs https://get.symfony.com/cloud/configurator | bash`) is a script specially crafted for {{% vendor/name %}}.
 It ensures that projects are always using the latest version of the following tools:
 
 - [croncape](./crons#use-croncape) for cron feedback
@@ -54,7 +54,7 @@ It ensures that projects are always using the latest version of the following to
 
 ## Hooks
 
-The `hooks` section defines the scripts that Platform.sh runs at specific times of an application lifecycle:
+The `hooks` section defines the scripts that {{% vendor/name %}} runs at specific times of an application lifecycle:
 
 - The [build hook](../../create-apps/hooks/hooks-comparison.md#build-hook) is run during the build process
 - The [deploy hook](../../create-apps/hooks/hooks-comparison.md#deploy-hook) is run during the deployment process
@@ -63,7 +63,7 @@ The `hooks` section defines the scripts that Platform.sh runs at specific times 
 
 Here's the default `hooks` section optimized for Symfony projects:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 hooks:
     build: |
         set -x -e
@@ -88,12 +88,12 @@ To have your hooks fail on the first failed command, start your scripts with `se
 For more information, see [Hooks](../../../create-apps/hooks/hooks-comparison).
 
 To gain a better understanding of how hooks relate to each other when building and deploying an app,
-see the [Platform.sh philosophy](../../overview/philosophy.md).
+see the [{{% vendor/name %}} philosophy](/learn/overview/philosophy.md).
 
 {{< note title="Tip">}}
 
 During the `deploy` or `post_deploy` hooks, you can execute actions for a specific environment type only.
-To do so, in your `.platform.app.yaml`file,
+To do so, in your `{{< vendor/configfile "app" >}}`file,
 use the `PLATFORM_ENVIRONMENT_TYPE` [environment variable](../../development/variables/_index.md)) in a condition:
 
 ```yaml
@@ -108,7 +108,7 @@ hooks:
 
 ### symfony-build
 
-**symfony-build** is the script that builds a Symfony app in an optimized way for Platform.sh.
+**symfony-build** is the script that builds a Symfony app in an optimized way for {{% vendor/name %}}.
 Use it as the main build script in your `build` hook.
 
 **symfony-build** performs the following actions:
@@ -123,7 +123,7 @@ Use it as the main build script in your `build` hook.
 
 To override the flags used by Composer, use the `$COMPOSER_FLAGS` environment variable:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 hooks:
     build: |
         set -x -e
@@ -159,9 +159,9 @@ It only works if you're using the [`symfony-build` script](#symfony-build) in yo
 ### php-ext-install
 
 You can use the **php-ext-install** script to compile and install PHP extensions
-not provided out of the box by Platform.sh,
+not provided out of the box by {{% vendor/name %}},
 or when you need a specific version of an extension.
-The script is written specifically for Platform.sh to ensure fast and reliable setup during the build step.
+The script is written specifically for {{% vendor/name %}} to ensure fast and reliable setup during the build step.
 
 **php-ext-install** currently supports three ways of fetching sources:
 
@@ -172,7 +172,7 @@ The script is written specifically for Platform.sh to ensure fast and reliable s
 To ensure your app can be built properly, run ``php-ext-install`` after the [configurator](#tools)
 but before [symfony-build](#symfony-build):
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 hooks:
     build: |
         set -x -e
@@ -187,7 +187,7 @@ hooks:
 When installing [PECL](https://pecl.php.net/) PHP extensions, you can configure
 them directly as *variables* instead:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 variables:
     php-ext:
         redis: 5.3.2
@@ -205,7 +205,7 @@ Changing the source of downloads or the version invalidates this cache.
 If you need to use the Node installation setup by [symfony-build](#symfony-build),
 use the following configuration:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 hooks:
     build: |
         set -x -e
@@ -225,7 +225,7 @@ hooks:
 If you want to use two different Node versions,
 use the following configuration instead:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 hooks:
     build: |
         set -x -e

@@ -4,10 +4,10 @@ sidebarTitle: Set search engine visibility
 description: Learn how to change.a given environment's visbility to search engines.
 ---
 
-When you have development environments,
+When you have preview environments,
 you don't want search engines indexing them and diluting the SEO of your production site.
 
-Search engine indexers are told to ignore all development environments.
+Search engine indexers are told to ignore all preview environments.
 When you're ready to go live, give your production environment a [custom domain](../domains/steps/_index.md)
 and then set it to be visible to search engines.
 
@@ -21,7 +21,7 @@ title=Using the CLI
 To not restrict indexers on your production environment, run the following command:
 
 ```bash
-platform environment:info --environment {{< variable "PRODUCTION_ENVIRONMENT_NAME" >}} restrict_robots false
+{{% vendor/cli %}} environment:info --environment {{< variable "PRODUCTION_ENVIRONMENT_NAME" >}} restrict_robots false
 ```
 
 <--->
@@ -37,7 +37,7 @@ title=In the Console
 
 {{< /codetabs >}}
 
-Platform.sh can't guarantee that indexers follow the instructions.
+{{% vendor/name %}} can't guarantee that indexers follow the instructions.
 If you're concerned about access, set up [HTTP access control](./http-access-control.md).
 
 ## How it's done
@@ -53,7 +53,7 @@ That tells search engine indexers to not index these sites and not traverse link
 This helps keep non-Production sites out of search engine indexes.
 
 You can choose whether to keep it on for production sites with custom domains.
-It's automatically on for all `platform.site` domains.
+It's automatically on for all `{{% vendor/cli %}}.site` domains.
 
 ## Alternative method
 
@@ -62,4 +62,4 @@ Your app can serve this as a static file from its disk or as a dynamic response 
 Control either with the [`location` section of your app configuration](../create-apps/app-reference.md#locations).
 
 If your `robots.txt` file includes instructions to ignore a page,
-search engine indexers may ignore it even if you have configured Platform.sh to not send the header.
+search engine indexers may ignore it even if you have configured {{% vendor/name %}} to not send the header.

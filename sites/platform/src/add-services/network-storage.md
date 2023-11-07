@@ -3,7 +3,7 @@ title: "Network Storage"
 weight: -30
 ---
 
-Platform.sh supports internal "storage as a service" to provide a file store that can be shared between different application containers.
+{{% vendor/name %}} supports internal "storage as a service" to provide a file store that can be shared between different application containers.
 
 The network storage service enables a new kind of [mount](../create-apps/app-reference.md#mounts)
 that refers to a shared service rather than to a local directory.
@@ -23,11 +23,34 @@ If your app does this regularly, a local mount is more effective.
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|------|-------------------------------|------------------------------ |
-|  {{< image-versions image="network-storage" status="supported" environment="grid" >}} | {{< image-versions image="network-storage" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="network-storage" status="supported" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
 
-This service is the Platform.sh network storage implementation, not to a version of a third-party application.
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="network-storage" status="supported" environment="grid" >}}</td>
+            <td>{{< image-versions image="network-storage" status="supported" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="network-storage" status="supported" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="network-storage" status="supported" environment="grid" >}}
+
+{{% /version/specific %}}
+
+This service is the {{% vendor/name %}} network storage implementation, not to a version of a third-party application.
 
 {{< note theme="warning">}}
 
@@ -39,9 +62,32 @@ Any change to the service version results in existing data becoming inaccessible
 
 {{% deprecated-versions %}}
 
-| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|------|-------------------------------|------------------------------ |
-|  {{< image-versions image="network-storage" status="deprecated" environment="grid" >}} | {{< image-versions image="network-storage" status="deprecated" environment="dedicated-gen-3" >}} | {{< image-versions image="network-storage" status="deprecated" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="network-storage" status="deprecated" environment="grid" >}}</td>
+            <td>{{< image-versions image="network-storage" status="deprecated" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="network-storage" status="deprecated" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="network-storage" status="deprecated" environment="grid" >}}
+
+{{% /version/specific %}}
 
 ## Usage example
 
@@ -50,25 +96,24 @@ Any change to the service version results in existing data becoming inaccessible
 ## Multi-application usage
 
 If your project contains [multiple apps](../create-apps/multi-app/_index.md), they can all use the same network mounts.
-If the `source_path` is the same in both `.platform.app.yaml` files,
+If the `source_path` is the same for both apps,
 the files are shared between the two applications even if the mount location is different.
 
 It's also possible to have one app mount a `source_path` that's a subdirectory of another application's mount.
 For example:
 
-`app1`:
-
-```yaml
+```yaml {configFile="apps"}
+{{% snippet name="app1" config="apps" %}}
+...
 mounts:
     'web/uploads':
         source: service
         service: files
         source_path: uploads
-```
+{{% /snippet %}}
 
-`app2`:
-
-```yaml
+{{% snippet name="app2" config="apps" globKey="false" %}}
+...
 mounts:
     'process':
         source: service
@@ -78,6 +123,7 @@ mounts:
         source: service
         service: files
         source_path: uploads/done
+{{% /snippet %}}
 ```
 
 In this example, `app1` has access to the entire `uploads` directory by writing to `web/uploads`.
@@ -97,16 +143,50 @@ while `service` mounts refer to the same file system.
 
 For example, you can define a network storage service:
 
-```yaml {location=".platform/services.yaml"}
-files:
-    type: network-storage:2.0
+{{< version/specific >}}
+<!-- Version 1 -->
+
+```yaml {configFile="services"}
+{{< snippet name="files" config="service" >}}
+    type: network-storage:{{% latest "network-storage" %}}
     disk: 2048
+{{< /snippet >}}
 ```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="services"}
+{{< snippet name="files" config="service" >}}
+    type: network-storage:{{% latest "network-storage" %}}
+{{< /snippet >}}
+```
+
+{{< /version/specific >}}
 
 You can then use this service to  define a `network_dir` network mount and a `local_dir` local mount,
 to be used by a web instance and a `queue` worker instance:
 
-```yaml {location=".platform.app.yaml"}
+{{< version/specific >}}
+<!-- Version 1 -->
+
+```yaml {configFile="app"}
+{{< snippet name="my-app" config="app" >}}
+
+# The type of the application to build.
+type: "nodejs:{{% latest "nodejs" %}}"
+
+# Define a web instance
+web:
+    locations:
+        "/":
+            root: "public"
+            passthru: true
+            index: ['index.html']
+
+# Define how much space is available to local mounts
+disk: 512
+
 mounts:
     # Define a network storage mount that's available to both instances together
     'network_dir':
@@ -119,8 +199,27 @@ mounts:
         source: local
         source_path: my_stuff
 
-# Define how much space is available to local mounts
-disk: 512
+# Define a worker instance from the same code but with a different start
+workers:
+    queue:
+        commands:
+            start: ./start.sh
+{{< /snippet >}}
+
+{{< snippet name="files" config="service" placeholder="true" >}}
+    type: network-storage:{{% latest "network-storage" %}}
+    disk: 2048
+{{< /snippet >}}
+```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="app"}
+{{< snippet name="my-app" config="app" >}}
+
+# The type of the application to build.
+type: "nodejs:{{% latest "nodejs" %}}"
 
 # Define a web instance
 web:
@@ -130,44 +229,75 @@ web:
             passthru: true
             index: ['index.html']
 
+mounts:
+    # Define a network storage mount that's available to both instances together
+    'network_dir':
+        source: service
+        service: files
+        source_path: our_stuff
+
+    # Define a local mount that's available to each instance separately
+    'local_dir':
+        source: local
+        source_path: my_stuff
+
 # Define a worker instance from the same code but with a different start
 workers:
     queue:
         commands:
             start: ./start.sh
+{{< /snippet >}}
+
+{{< snippet name="files" config="service" placeholder="true" >}}
+    type: network-storage:{{% latest "network-storage" %}}
+{{< /snippet >}}
 ```
+
+{{% /version/specific %}}
+
+{{< version/specific >}}
+<!-- Version 1 -->
+Both the web instance and the `queue` worker have two mount points:
+
+- The `local_dir` mount on each is independent and not connected to each other at all
+  and they *each* take 1024 MB of space.
+- The `network_dir` mount on each points to the same network storage space on the `files` service.
+  They can both read and write to it simultaneously.
+  The amount of space it has available depends on the `disk` key specified for the service configuration (in this case, 2048 MB).
+
+<--->
+<!-- Version 2 -->
 
 Both the web instance and the `queue` worker have two mount points:
 
-* The `local_dir` mount on each is independent and not connected to each other at all
+- The `local_dir` mount on each is independent and not connected to each other at all
   and they *each* take 1024 MB of space.
-* The `network_dir` mount on each points to the same network storage space on the `files` service.
+- The `network_dir` mount on each points to the same network storage space on the `files` service.
   They can both read and write to it simultaneously.
-  The amount of space it has available depends on the `disk` key specified in `services.yaml`.
+  The amount of space it has available depends on the amount of disk space you have allocated
+  to the service container. For more information, see how to [manage resources](/manage-resources.md).
+
+{{% /version/specific %}}
 
 ## How do I give my workers access to my main application's files?
 
 The most common use case for `network-storage` is to allow a CMS-driven site to use a worker that has access to the same file mounts as the web-serving application.
 For that case, all that's needed is to set the necessary file mounts as `service` mounts.
 
-For example, the following `.platform.app.yaml` file (fragment) keeps Drupal files directories shared between web and worker instances while keeping the Drush backup directory web-only (as it has no need to be shared).
-(This assumes a service named `files` has already been defined in `services.yaml`.)
+For example, the following `{{< vendor/configfile "app" >}}` file (fragment) keeps Drupal files directories shared between web and worker instances while keeping the Drush backup directory web-only (as it has no need to be shared).
+(This assumes a Network Storage service named `files` has also been defined in `{{< vendor/configfile "services" >}}`.)
 
+{{< version/specific >}}
+<!-- Version 1 -->
 
-```yaml
-name: 'app'
-type: 'php:8.1'
+```yaml {configFile="app"}
+{{< snippet name="my-app" config="app" >}}
+
+# The type of the application to build.
+type: "php:{{% latest "php" %}}"
 
 relationships:
-    database: 'db:mysql'
-
-hooks:
-  # ...
-
-web:
-    locations:
-        '/':
-            # ...
+    database: "db:mysql"
 
 disk: 1024
 
@@ -215,7 +345,83 @@ workers:
         commands:
             start: |
                 cd web && drush queue-run myqueue
+{{< /snippet >}}
+{{< snippet name="db" config="service" placeholder="true" >}}
+    type: mariadb:{{% latest "mariadb" %}}
+    disk: 1024
+{{< /snippet >}}
+{{< snippet name="files" config="service" placeholder="true" globKey="false" >}}
+    type: network-storage:{{% latest "network-storage" %}}
+    disk: 1024
+{{< /snippet >}}
 ```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="app"}
+{{< snippet name="my-app" config="app" >}}
+
+# The type of the application to build.
+type: "php:{{% latest "php" %}}"
+
+relationships:
+    database: "db:mysql"
+
+mounts:
+    # The public and private files directories are
+    # network mounts shared by web and workers.
+    'web/sites/default/files':
+        source: service
+        service: files
+        source_path: files
+    'private':
+        source: service
+        service: files
+        source_path: private
+    # The backup, temp, and cache directories for
+    # Drupal's CLI tools don't need to be shared.
+    # It wouldn't hurt anything to make them network
+    # shares, however.
+    '/.drush':
+        source: local
+        source_path: drush
+    'tmp':
+        source: local
+        source_path: tmp
+    'drush-backups':
+        source: local
+        source_path: drush-backups
+    '/.console':
+        source: local
+        source_path: console
+
+# Crons run on the web container, so they have the
+# same mounts as the web container.
+crons:
+    drupal:
+        spec: '*/20 * * * *'
+        commands:
+            start: 'cd web ; drush core-cron'
+
+# The worker defined here also has the same 6 mounts;
+# 2 of them are shared with the web container,
+# the other 4 are local to the worker.
+workers:
+    queue:
+        commands:
+            start: |
+                cd web && drush queue-run myqueue
+{{< /snippet >}}
+{{< snippet name="db" config="service" placeholder="true" >}}
+    type: mariadb:{{% latest "mariadb" %}}
+{{< /snippet >}}
+{{< snippet name="files" config="service" placeholder="true" globKey="false" >}}
+    type: network-storage:{{% latest "network-storage" %}}
+{{< /snippet >}}
+```
+
+{{% /version/specific %}}
 
 ## How can I migrate a local storage to a network storage?
 
@@ -224,11 +430,13 @@ However, the process is fundamentally "just" moving files around on disk, so it'
 
 Suppose you have this mount configuration:
 
-```yaml
+```yaml {configFile="app"}
+{{% snippet name="false" config="app" root="false" %}}
 mounts:
     web/uploads:
         source: local
         source_path: uploads
+{{% /snippet %}}
 ```
 
 And want to move that to a network storage mount.
@@ -236,19 +444,87 @@ The following approximate steps do so with a minimum of service interruption.
 
 1. Add a new `network-storage` service, named `files`,
    that has at least enough space for your existing files with some buffer.
-   You may need to increase your plan's disk size to accommodate it.
 
-2. Add a new mount to the network storage service on a non-public directory:
+{{< version/specific >}}
+<!-- Version 1 -->
 
-   ```yaml
-   mounts:
-       new-uploads:
-           source: service
-           service: files
-           source_path: uploads
-   ```
+```yaml {configFile="services"}
+{{< snippet name="files" config="service" >}}
+    type: network-storage:{{% latest "network-storage" %}}
+    disk: 1024
+{{< /snippet >}}
 
-    (Remember the `source_path` can be the same since they're on different storage services.)
+{{< snippet name="false" config="app" root="false" placeholder="true" >}}
+mounts:
+    web/uploads:
+        source: local
+        source_path: uploads
+{{< /snippet >}}
+```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="services"}
+{{< snippet name="files" config="service" >}}
+    type: network-storage:{{% latest "network-storage" %}}
+{{< /snippet >}}
+
+{{< snippet name="false" config="app" root="false" placeholder="true" >}}
+mounts:
+    web/uploads:
+        source: local
+        source_path: uploads
+{{< /snippet >}}
+```
+
+{{< /version/specific >}}
+
+2. Add a new mount (`new-uploads`) to the network storage service on a non-public directory.
+(Remember the `source_path` can be the same since they're on different storage services.)
+
+{{< version/specific >}}
+<!-- Version 1 -->
+
+```yaml {configFile="app"}
+{{< snippet name="false" config="app" root="false" >}}
+mounts:
+    web/uploads:
+        source: local
+        source_path: uploads
+    new-uploads:
+        source: service
+        service: files
+        source_path: uploads
+{{< /snippet >}}
+
+{{< snippet name="files" config="service" placeholder="true" >}}
+    type: network-storage:{{% latest "network-storage" %}}
+    disk: 1024
+{{< /snippet >}}
+```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="app"}
+{{< snippet name="false" config="app" root="false" >}}
+mounts:
+    web/uploads:
+        source: local
+        source_path: uploads
+    new-uploads:
+        source: service
+        service: files
+        source_path: uploads
+{{< /snippet >}}
+
+{{< snippet name="files" config="service" placeholder="true" >}}
+    type: network-storage:{{% latest "network-storage" %}}
+{{< /snippet >}}
+```
+
+{{< /version/specific >}}
 
 3. Deploy these changes.
    Then use `rsync` to copy all files from the local mount to the network mount.
@@ -259,21 +535,51 @@ The following approximate steps do so with a minimum of service interruption.
     ```
 
 4. Reverse the mounts.
-   Point the `web/uploads` directory to the network mount instead:
+   Point the `web/uploads` directory to the network mount instead.
+   Commit and push the change, testing to make sure the network files are accessible.
 
-   ```yaml
-   mounts:
-       web/uploads:
-           source: service
-           service: files
-           source_path: uploads
-       old-uploads:
-           source: local
-           source_path: uploads
-   ```
+{{< version/specific >}}
+<!-- Version 1 -->
 
-    Commit and push that.
-    Test to make sure the network files are accessible.
+```yaml {configFile="app"}
+{{< snippet name="false" config="app" root="false" >}}
+mounts:
+    old-uploads:
+        source: local
+        source_path: uploads
+    web/uploads:
+        source: service
+        service: files
+        source_path: uploads
+{{< /snippet >}}
+
+{{< snippet name="files" config="service" placeholder="true" >}}
+    type: network-storage:{{% latest "network-storage" %}}
+    disk: 1024
+{{< /snippet >}}
+```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="app"}
+{{< snippet name="false" config="app" root="false" >}}
+mounts:
+    old-uploads:
+        source: local
+        source_path: uploads
+    web/uploads:
+        source: service
+        service: files
+        source_path: uploads
+{{< /snippet >}}
+
+{{< snippet name="files" config="service" placeholder="true" >}}
+    type: network-storage:{{% latest "network-storage" %}}
+{{< /snippet >}}
+```
+
+{{< /version/specific >}}
 
 5. Cleanup.
    First, run another rsync just to make sure any files uploaded during the transition aren't lost.
@@ -286,6 +592,19 @@ The following approximate steps do so with a minimum of service interruption.
    Once you're confident all the files are accounted for, delete the entire contents of `old-uploads`.
    If you don't, the files remain on disk but inaccessible, just eating up disk space needlessly.
 
+   {{< version/specific >}}
+   <!-- Version 1 -->
+
    Once that's done you can remove the `old-uploads` mount and push again to finish the process
-   You are also free to reduce the `disk` size in the `.platform.app.yaml` file if desired,
+   You are also free to reduce the `disk` size in the `{{< vendor/configfile "app" >}}` file if desired,
    but make sure to leave enough for any remaining local mounts.
+
+   <--->
+   <!-- Version 2 -->
+
+   Once that's done you can remove the `old-uploads` mount and push again to finish the process
+   You are also free to reduce the amount of disk space allocated to your app if desired,
+   but make sure to leave enough for any remaining local mounts.
+   For more information, see how to [manage resources](/manage-resources.md).
+
+   {{< /version/specific >}}

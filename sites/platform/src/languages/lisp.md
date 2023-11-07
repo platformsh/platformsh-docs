@@ -1,6 +1,6 @@
 ---
 title: "Lisp"
-description: Platform.sh supports building and deploying applications written in Lisp using Common Lisp (the SBCL version) with ASDF and Quick Lisp support. They're compiled during the Build phase, and support both committed dependencies and download-on-demand.
+description: "{{% vendor/name %}} supports building and deploying applications written in Lisp using Common Lisp (the SBCL version) with ASDF and Quick Lisp support. They're compiled during the Build phase, and support both committed dependencies and download-on-demand."
 ---
 
 {{% description %}}
@@ -9,36 +9,105 @@ description: Platform.sh supports building and deploying applications written in
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-| Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|----------------------------------------|------------------------------ |
-| {{< image-versions image="lisp" status="supported" environment="grid" >}} | {{< image-versions image="lisp" status="supported" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid and {{% names/dedicated-gen-3 %}}</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="lisp" status="supported" environment="grid" >}}</td>
+            <td>{{< image-versions image="lisp" status="supported" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="ruby" status="supported" environment="grid" >}}
+
+{{% /version/specific %}}
 
 {{% language-specification type="lisp" display_name="Lisp" %}}
 
+{{% version/specific %}}
+
+```yaml {configFile="app"}
+type: 'lisp:<VERSION_NUMBER>'
+```
+
+For example:
+
+```yaml {configFile="app"}
+type: 'lisp:{{% latest "lisp" %}}'
+```
+
+<--->
+
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    <APP_NAME>:
+        type: 'lisp:<VERSION_NUMBER>'
+```
+
+For example:
+
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'lisp:{{% latest "lisp" %}}'
+```
+
+{{% /version/specific %}}
+
 ## Assumptions
 
-Platform.sh is making assumptions about your application to provide a more streamlined experience. These assumptions are the following:
+{{% vendor/name %}} is making assumptions about your application to provide a more streamlined experience. These assumptions are the following:
 
 - Your `.asd` file is named like your system name. For example `example.asd` has `(defsystem example ...)`.
 
-Platform.sh will then run `(asdf:make :example)` on your system to build a binary.
+{{% vendor/name %}} will then run `(asdf:make :example)` on your system to build a binary.
 
-If you don't want these assumptions, you can disable this behavior by specifying in your `.platform.app.yaml`:
+If you don't want these assumptions, you can disable this behavior by specifying in your `{{< vendor/configfile "app" >}}`:
 
-```yaml
+{{% version/specific %}}
+
+```yaml {configFile="app"}
 build:
     flavor: none
 ```
 
+<--->
+
+```yaml {configFile="app"}
+applications:
+    app:
+        type: 'lisp:{{% latest "lisp" %}}'
+        build:
+            flavor: none
+```
+
+{{% /version/specific %}}
+
 ## Dependencies
 
-The recommended way to handle Lisp dependencies on Platform.sh is using ASDF. Commit a `.asd` file in your repository and the system will automatically download the dependencies using QuickLisp.
+The recommended way to handle Lisp dependencies on {{% vendor/name %}} is using ASDF. Commit a `.asd` file in your repository and the system will automatically download the dependencies using QuickLisp.
 
 ## QuickLisp options
 
 If you wish to change the distributions that QuickLisp is using, you can specify those as follows, specifying a distribution name, its URL and, an optional version:
 
-```yaml
+{{% version/specific %}}
+
+```yaml {configFile="app"}
 runtime:
     quicklisp:
         {{< variable "DISTRIBUTION_NAME" >}}:
@@ -48,7 +117,7 @@ runtime:
 
 For example:
 
-```yaml
+```yaml {configFile="app"}
 runtime:
     quicklisp:
         quicklisp:
@@ -56,10 +125,40 @@ runtime:
             version: '2019-07-11'
 ```
 
+<--->
 
-## Platform.sh variables
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    <APP_NAME>:
+        type: 'lisp:<VERSION_NUMBER>'
+        runtime:
+            quicklisp:
+                {{< variable "DISTRIBUTION_NAME" >}}:
+                    url: "..."
+                    version: "..."
+```
 
-Platform.sh exposes relationships and other configuration as [environment variables](../development/variables/_index.md).
+For example:
+
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'lisp:{{% latest "lisp" %}}'
+        runtime:
+            quicklisp:
+                quicklisp:
+                    url: 'http://beta.quicklisp.org/dist/quicklisp.txt'
+                    version: '2019-07-11'
+```
+
+{{% /version/specific %}}
+
+
+## Built-in variables
+
+{{% vendor/name %}} exposes relationships and other configuration as [environment variables](../development/variables/_index.md).
 To get the `PORT` environment variable (the port on which your web application is supposed to listen):
 
 ```lisp
@@ -72,9 +171,11 @@ Assuming `example.lisp` and `example.asd` are present in your repository, the ap
 You can then start it from the `web.commands.start` directive.
 Note that the start command _must_ run in the foreground. Should the program terminate for any reason it's automatically restarted. In the example below the app sleeps for a very, very long time. You could also choose to join the thread of your web server, or use other methods to make sure the program doesn't terminate.
 
-The following basic `.platform.app.yaml` file is sufficient to run most Lisp applications.
+The following basic `{{< vendor/configfile "app" >}}` file is sufficient to run most Lisp applications.
 
-```yaml
+{{% version/specific %}}
+
+```yaml {configFile="app"}
 name: app
 type: lisp:1.5
 web:
@@ -86,6 +187,23 @@ web:
             passthru: true
 disk: 512
 ```
+
+<--->
+
+```yaml {configFile="app"}
+applications:
+    app:
+        type: 'lisp:{{% latest "lisp" %}}'
+        web:
+            commands:
+                start: ./example
+            locations:
+                /:
+                    allow: false
+                    passthru: true
+```
+
+{{% /version/specific %}}
 
 Note that a proxy server is still in front of your app.
 If desired, certain paths may be served directly by the router without hitting your app (for static files, primarily) or you may route all requests to the Lisp application unconditionally, as in the example above.
@@ -110,12 +228,26 @@ The following is an example of accessing a PostgreSQL instance:
       (s-base64:decode-base64-bytes in)))))
 ```
 
-Given a relationship defined in `.platform.app.yaml`:
+Given a relationship defined in `{{< vendor/configfile "app" >}}`:
 
-```yaml
+{{% version/specific %}}
+
+```yaml {configFile="app"}
 relationships:
     pg: postgresql:postgresql
 ```
+
+<--->
+
+```yaml {configFile="app"}
+applications:
+    app:
+        type: 'lisp:{{% latest "lisp" %}}'
+        relationships:
+            pg: postgresql:postgresql
+```
+
+{{% /version/specific %}}
 
 The following would access that relationship, and provide your Lisp program the credentials to connect to a PostgreSQL instance. Add this to your `.asd` file:
 
@@ -147,7 +279,7 @@ Then in your program you could access the PostgreSQL instance as follows:
 ## Example
 
 The following is a basic example of a Hunchentoot-based web app
-(you can find the corresponding `.asd` and Platform.sh `.yaml` files in the [template](#project-templates)):
+(you can find the corresponding `.asd` and {{% vendor/name %}} `.yaml` files in the [template](#project-templates)):
 
 ```lisp
 (defpackage #:example
@@ -168,8 +300,12 @@ The following is a basic example of a Hunchentoot-based web app
 ```
 
 Notice how it gets the `PORT` from the environment and how it sleeps at the end,
-as `(start acceptor)` immediately yields and Platform.sh requires apps to run in the foreground.
+as `(start acceptor)` immediately yields and {{% vendor/name %}} requires apps to run in the foreground.
 
+
+{{% version/only "1" %}}
 ## Project templates
+{{% /version/only %}}
 
 {{< repolist lang="lisp" displayName="Lisp" >}}
+

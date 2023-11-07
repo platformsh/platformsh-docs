@@ -4,24 +4,32 @@ title: "External Integrations"
 weight: -10
 layout: single
 description: |
-  Platform.sh can be integrated with external services.
+  {{% vendor/name %}} can be integrated with external services.
 ---
 
 {{% description %}}
 
-Platform.sh supports native integrations with multiple services, first and foremost Git hosting services such as GitHub, GitLab, or Bitbucket.
-You can continue to use those tools for your development workflow, and have Platform.sh environments created automatically for your pull requests and branches.
+{{% vendor/name %}} supports native integrations with multiple services, first and foremost Git hosting services such as GitHub, GitLab, or Bitbucket.
+You can continue to use those tools for your development workflow, and have {{% vendor/name %}} environments created automatically for your pull requests and branches.
 
-You can also add native integrations with performance monitoring tools. Platform.sh recommends [Blackfire](../increase-observability/integrate-observability//blackfire.md), which is part of the standard Platform.sh Observability Suite.
-Be aware that only a project administrator (someone with `admin` level access to the project) can add or remove integrations.
+{{% version/specific %}}
+<!-- Platform.sh -->
+You can also add native integrations with performance monitoring tools.
+{{% vendor/name %}} recommends [Blackfire](../increase-observability/integrate-observability//blackfire.md),
+which is part of the standard {{% vendor/name %}} Observability Suite.
+Note that only a project administrator (someone with `admin` level access to the project) can add or remove integrations.
+
 See [User administration](/administration/users.md) for more details.
+
+<--->
+{{% /version/specific %}}
 
 ## List active integrations
 
 With the CLI, you can list all your active integrations using the following command:
 
 ```bash
-platform integrations
+{{% vendor/cli %}} integrations
 ```
 
 You get output similar to the following:
@@ -41,7 +49,7 @@ You get output similar to the following:
 Once your integration has been configured, you can check that it's working as expected.
 To do so, follow these steps:
 
-1. Run the `platform integration:validate` command.
+1. Run the `{{% vendor/cli %}} integration:validate` command.
 2. When prompted, select the integration you want to validate:
    ```bash
    Enter a number to choose an integration:
@@ -59,7 +67,7 @@ To do so, follow these steps:
 
 ## Debug integrations
 
-When integrations run, they trigger "activities."  Activities are actions that happen on Platform.sh, and they get logged.
+When integrations run, they trigger "activities."  Activities are actions that happen on {{% vendor/name %}}, and they get logged.
 
 Usually these are triggered nearly instantaneously on the webhook endpoint.
 These activities may be delayed due to the external services having latency.
@@ -74,7 +82,7 @@ There are a handful of CLI commands available, all under the `integrations` sect
 To list all the updates triggered by [activities](../integrations/activity/reference.md) on a given project and integration,
 follow these steps:
 
-1. Run the `platform integration:activities` command.
+1. Run the `{{% vendor/cli %}} integration:activities` command.
 2. When prompted, select an integration.
 
    ```bash
@@ -88,7 +96,7 @@ follow these steps:
    You get output similar to the following:
 
    ```bash
-   Activities on the project Platform.sh | Docs (6b2eocegfkwwg), integration c4opi5tjv3yfd (github):
+   Activities on the project {{% vendor/name %}} | Docs (6b2eocegfkwwg), integration c4opi5tjv3yfd (github):
    +---------------+---------------------------+-------------------------------------------------------------+----------+---------+
    | ID            | Created                   | Description                                                 | State    | Result  |
    +---------------+---------------------------+-------------------------------------------------------------+----------+---------+
@@ -105,7 +113,7 @@ follow these steps:
    +---------------+---------------------------+-------------------------------------------------------------+----------+---------+
    ```
 
-You may also specify an integration to display in the command line directly: `platform integration:activities c4opi5tjv3yfd`.
+You may also specify an integration to display in the command line directly: `{{% vendor/cli %}} integration:activities c4opi5tjv3yfd`.
 
 The ID is an internal identifier for the activity event.
 The Description field is an arbitrary string of text produced by the integration code.
@@ -119,7 +127,7 @@ To show detailed information on a specific activity,
 run the following command:
 
 ```bash
-platform integration:activity:log {{< variable "INTEGRATION_ID" >}} {{< variable "ACTIVITY_ID" >}} -t
+{{% vendor/cli %}} integration:activity:log {{< variable "INTEGRATION_ID" >}} {{< variable "ACTIVITY_ID" >}} -t
 ```
 
 The `-t` option specifies that timestamps must be included in the display of the results.

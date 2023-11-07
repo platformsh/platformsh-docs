@@ -4,7 +4,7 @@ sidebarTitle: Change regions
 description: See how to change the region your project is in and why you might want to do so.
 ---
 
-To host your project data, Platform.sh offers several [regions](../development/regions.md).
+To host your project data, {{% vendor/name %}} offers several [regions](../development/regions.md).
 You specify a region when you create a project.
 
 You can also change the project's region after it's created.
@@ -14,7 +14,7 @@ You can also change the project's region after it's created.
 - Different data centers are located in different geographic areas.
   You may want your site close to your users for improved performance.
 - You may want to move to a region with a lower [environmental impact](../development/regions.md#environmental-impact).
-- Some regions are running older versions of the Platform.sh orchestration system that offers fewer features.
+- Some regions are running older versions of the {{% vendor/name %}} orchestration system that offers fewer features.
   If you are on one of those legacy regions, you can migrate to one of the newer regions.
 
 ## 1. Plan the migration
@@ -46,7 +46,7 @@ title=Without a source integration
 2. In the new clone, add a remote for the project:
 
    ```bash
-   platform project:set-remote
+   {{% vendor/cli %}} project:set-remote
    ```
 
    Select your newly created blank project.
@@ -54,13 +54,13 @@ title=Without a source integration
 3. Push the code for your production branch:
 
    ```bash
-   platform push --target {{% variable "PRODUCTION_BRANCH_NAME" %}}
+   {{% vendor/cli %}} push --target {{% variable "PRODUCTION_BRANCH_NAME" %}}
    ```
 
 4. (Optional) Checkout other branches and then push their code:
 
    ```bash
-   platform push --activate --target {{% variable "BRANCH_NAME" %}} --parent {{% variable "PRODUCTION_BRANCH_NAME" %}}
+   {{% vendor/cli %}} push --activate --target {{% variable "BRANCH_NAME" %}} --parent {{% variable "PRODUCTION_BRANCH_NAME" %}}
    ```
 
 <--->
@@ -80,17 +80,24 @@ Your new project then mirrors the configured repository automatically.
 If you have files in a mount, first download them:
 
 ```bash
-platform mount:download
+{{% vendor/cli %}} mount:download
 ```
 
 Then upload them to your new project:
 
 ```bash
-platform mount:upload
+{{% vendor/cli %}} mount:upload
 ```
 
-See more options on [how to export files](../tutorials/exporting.md)
-and [how to import files](../tutorials/migrating.md#6-import-files).
+{{% version/specific %}}
+<!-- Platform.sh -->
+See more options on [how to export files](/learn/tutorials/exporting.md)
+and [how to import files](/learn/tutorials/migrating.md#5-import-data).
+<--->
+<!-- Version 2 -->
+See more options on [how to export files](/learn/tutorials/exporting.md)
+and [how to import files](/learn/tutorials/migrating/from-psh.md#5-import-data).
+{{% /version/specific %}}
 
 ## 5. Copy data from services
 
@@ -110,7 +117,7 @@ see how to export and then import data for each service:
 Make sure anything else connected to your old project is moved to your new project:
 
 - If you have project or environment variables defined on your old project, add them to your new project.
-  Get a list of all variables set outside of code by running `platform variables`.
+  Get a list of all variables set outside of code by running `{{% vendor/cli %}} variables`.
 - Add any users to your new project that you want to continue to have access.
 - Add any existing [integrations](../integrations/_index.md).
 
@@ -140,10 +147,10 @@ Once the new project is running and the DNS has fully propagated, delete the old
 
 ## Alternative process
 
-Although not directly supported by Platform.sh,
+Although not directly supported by {{% vendor/name %}},
 an agency named [Contextual Code](https://www.contextualcode.com/) has built a bash migration script.
 This script automates most common configurations.
 If your site is a typical single app with a single SQL database,
 the script should take care of most of the process for you.
 
-See more at the [Platform.sh Project Migration repository](https://gitlab.com/contextualcode/platformsh-migration).
+See more at the [{{% vendor/name %}} Project Migration repository](https://gitlab.com/contextualcode/platformsh-migration).

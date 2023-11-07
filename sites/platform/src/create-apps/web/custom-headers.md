@@ -16,7 +16,8 @@ And you want to serve both MP3 and MP4 files with the correct content types to a
 
 Start by defining a header for files in general:
 
-```yaml {location=".platform.app.yaml"}
+{{% version/specific %}}
+```yaml {configFile="app"}
 web:
     locations:
         "/":
@@ -25,13 +26,31 @@ web:
             headers:
                 X-Frame-Options: SAMEORIGIN
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    app:
+        # The type of the application to build.
+        type: "nodejs:{{% latest "nodejs" %}}"
+        source:
+            root: "/"
+        web:
+            locations:
+                "/":
+                    ...
+                    # Apply rules to all static files (dynamic files get rules from your app)
+                    headers:
+                        X-Frame-Options: SAMEORIGIN
+```
+{{% /version/specific %}}
 
 This sets the `X-Frame-Options` header to `SAMEORIGIN` for all static files.
 Now your files can only be embedded within your site.
 
 Now set up an exception for MP3 files using a [rule](../app-reference.md#rules):
 
-```yaml {location=".platform.app.yaml"}
+{{% version/specific %}}
+```yaml {configFile="app"}
 web:
     locations:
         "/":
@@ -41,6 +60,24 @@ web:
                     headers:
                       Content-Type: audio/mpeg
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    app:
+        # The type of the application to build.
+        type: "nodejs:{{% latest "nodejs" %}}"
+        source:
+            root: "/"
+        web:
+            locations:
+                "/":
+                    ...
+                    rules:
+                        \.mp3$:
+                            headers:
+                            Content-Type: audio/mpeg
+```
+{{% /version/specific %}}
 
 This rule sets an explicit content type for files that end in `.mp3`.
 Because specific rules override the general heading configuration,
@@ -48,7 +85,8 @@ MP3 files don't get the `X-Frame-Options` header set before.
 
 Now set a rule for MP4 files.
 
-```yaml {location=".platform.app.yaml"}
+{{% version/specific %}}
+```yaml {configFile="app"}
 web:
     locations:
         "/":
@@ -59,6 +97,25 @@ web:
                         X-Frame-Options: SAMEORIGIN
                         Content-Type: video/mp4
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    app:
+        # The type of the application to build.
+        type: "nodejs:{{% latest "nodejs" %}}"
+        source:
+            root: "/"
+        web:
+            locations:
+                "/":
+                    ...
+                    rules:
+                        \.mp4$:
+                            headers:
+                                X-Frame-Options: SAMEORIGIN
+                                Content-Type: video/mp4
+```
+{{% /version/specific %}}
 
 This rule sets an explicit content type for files that end in `.mp4`.
 It repeats the rule for `X-Frame-Options`
@@ -75,7 +132,8 @@ So now you have three header configurations:
 To allow cross origin requests, add a `Access-Control-Allow-Origin` header to responses.
 You can do so for specific origins or for all origins with a wildcard.
 
-```yaml {location=".platform.app.yaml"}
+{{% version/specific %}}
+```yaml {configFile="app"}
 web:
     locations:
         "/":
@@ -84,6 +142,23 @@ web:
             headers:
                 Access-Control-Allow-Origin: "*"
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    app:
+        # The type of the application to build.
+        type: "nodejs:{{% latest "nodejs" %}}"
+        source:
+            root: "/"
+        web:
+            locations:
+                "/":
+                    ...
+                    # Apply rules to all static files (dynamic files get rules from your app)
+                    headers:
+                        Access-Control-Allow-Origin: "*"
+```
+{{% /version/specific %}}
 
 If you use the wildcard value, the headers are modified for each request in the following ways:
 
@@ -102,4 +177,4 @@ in your [routes configuration](../../define-routes/_index.md).
 Note that once HSTS is enabled, configuration capabilities depend
 on the [HSTS properties](https://docs.platform.sh/define-routes/https.html#enable-http-strict-transport-security-hsts)
 set in your routes configuration.
-For example, the `max-age` value is set to `31536000` by Platform.sh and can't be customized.
+For example, the `max-age` value is set to `31536000` by {{% vendor/name %}} and can't be customized.

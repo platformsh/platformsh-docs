@@ -30,7 +30,7 @@ To change the default branch, you need to be an [admin for the project](../admin
 
 The following steps depend of whether your project has a [source integration](../integrations/source/_index.md).
 
-If it doesn't, Platform.sh is your primary remote repository for the project.
+If it doesn't, {{% vendor/name %}} is your primary remote repository for the project.
 If it does, GitHub, GitLab, or BitBucket hosts your primary remote repository for the project.
 
 ## 1. Create a `main` environment
@@ -43,7 +43,7 @@ title=Without a source integration
 In your local copy of your repository, create a new environment from `old` called `main`:
 
 ```bash
-platform environment:branch main old
+{{% vendor/cli %}} environment:branch main old
 ```
 
 <--->
@@ -63,11 +63,11 @@ git checkout -b main
 git push origin main
 ```
 
-Source integrations include all branches, but don't activate the corresponding environments in Platform.sh.
+Source integrations include all branches, but don't activate the corresponding environments in {{% vendor/name %}}.
 Activate the `main` environment by running the following command:
 
 ```bash
-platform environment:activate main
+{{% vendor/cli %}} environment:activate main
 ```
 
 {{< /codetabs >}}
@@ -88,7 +88,7 @@ To have `main` be your default, it needs to not be a child of `old`.
 Use the following command to remove its parent and make it a top-level branch:
 
 ```bash
-platform environment:info -e main parent -
+{{% vendor/cli %}} environment:info -e main parent -
 ```
 
 ## 4. Make `main` the parent for other environments
@@ -101,7 +101,7 @@ You probably have other environments that are children of `old`.
 For each environment, update its parent to `main`:
 
 ```bash
-platform environment:info -e <ENVIRONMENT_NAME> parent main
+{{% vendor/cli %}} environment:info -e <ENVIRONMENT_NAME> parent main
 ```
 
 <--->
@@ -109,13 +109,13 @@ platform environment:info -e <ENVIRONMENT_NAME> parent main
 title=With a source integration
 +++
 
-To preserve your data on Platform.sh,
+To preserve your data on {{% vendor/name %}},
 it's best to switch your work in progress to be based off of `main`.
 
 Close any open pull/merge requests and resubmit them against `main`.
 If you want to continue working on branches after switching the default branch,
 rebase them by running `git rebase --onto main <BRANCH_NAME>`.
-Once you resubmit a request, it appears under the `main` environment on Platform.sh.
+Once you resubmit a request, it appears under the `main` environment on {{% vendor/name %}}.
 
 {{< /codetabs >}}
 
@@ -125,7 +125,7 @@ To change your default branch, you first need to deactivate the existing default
 Deactivate the `old` environment without deleting it by running the following CLI command:
 
 ```bash
-platform environment:delete --no-delete-branch old
+{{% vendor/cli %}} environment:delete --no-delete-branch old
 ```
 
 ## 6. Set `main` as the default branch
@@ -138,7 +138,7 @@ title=Without a source integration
 Once `old` has been deactivated, set the project's default branch to `main`:
 
 ```bash
-platform project:info default_branch main
+{{% vendor/cli %}} project:info default_branch main
 ```
 
 <--->
@@ -146,10 +146,10 @@ platform project:info default_branch main
 title=With a source integration
 +++
 
-Once `old` has been deactivated, set the project's default branch in Platform.sh to `main`:
+Once `old` has been deactivated, set the project's default branch in {{% vendor/name %}} to `main`:
 
 ```bash
-platform project:info default_branch main
+{{% vendor/cli %}} project:info default_branch main
 ```
 
 Follow the instructions to change the default branch to `main` for your provider:
@@ -163,7 +163,7 @@ Follow the instructions to change the default branch to `main` for your provider
 ## 7. Update DNS records
 
 Whether or not you're using a CDN,
-if your site is live you have probably added a Platform.sh address somewhere when configuring a [custom domain](../domains/steps/_index.md).
+if your site is live you have probably added a {{% vendor/name %}} address somewhere when configuring a [custom domain](../domains/steps/_index.md).
 If you have a CDN, it's with the CDN provider.
 If you don't have a CDN, it's probably a `CNAME` record.
 
@@ -173,7 +173,7 @@ Update the setting to use the new environment name.
 Verify that the new URL is correct by comparing it to the result from this command:
 
 ```bash
-platform environment:info edge_hostname
+{{% vendor/cli %}} environment:info edge_hostname
 ```
 
 ## 8. Optional: Delete the `old` environment
@@ -181,5 +181,5 @@ platform environment:info edge_hostname
 If you no longer want the `old` environment, such as to stop accidental use, delete it completely:
 
 ```bash
-platform environment:delete --delete-branch old
+{{% vendor/cli %}} environment:delete --delete-branch old
 ```

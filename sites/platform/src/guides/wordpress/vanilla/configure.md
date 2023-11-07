@@ -1,16 +1,16 @@
 ---
-title: "Configure WordPress for Platform.sh"
+title: "Configure WordPress for {{% vendor/name %}}"
 sidebarTitle: "Configure"
 weight: -100
 description: |
-    Review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for WordPress.
+    Review the basics of what makes up a {{% vendor/name %}} project, including its three principle configuration files and how to define them for WordPress.
 ---
 
 {{% guides/config-desc name="WordPress" %}}
 
 {{% guides/config-app template="wordpress-vanilla" %}}
 
-There are a few things to notice in this file specific to running non-Composer variants of WordPress on Platform.sh. Defined in the `dependencies` block, all of the packages needed to run the WordPress CLI in both the application container and via SSH are installed in the first stages of the build process using Composer. Also, the `web.locations` block will expose `wordpress/index.php` under the primary route. 
+There are a few things to notice in this file specific to running non-Composer variants of WordPress on {{% vendor/name %}}. Defined in the `dependencies` block, all of the packages needed to run the WordPress CLI in both the application container and via SSH are installed in the first stages of the build process using Composer. Also, the `web.locations` block will expose `wordpress/index.php` under the primary route. 
 
 {{< /guides/config-app >}}
 

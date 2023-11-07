@@ -1,30 +1,30 @@
 ---
-title: Deploy Ibexa DXP on Platform.sh
+title: Deploy Ibexa DXP on {{% vendor/name %}}
 sidebarTitle: Get started
 weight: -10
-description: Learn how to use Ibexa DXP on Platform.sh.
+description: Learn how to use Ibexa DXP on {{% vendor/name %}}.
 ---
 
-Ibexa DXP is a Composer-based PHP CMS, and as such fits well with the Platform.sh model.
+Ibexa DXP is a Composer-based PHP CMS, and as such fits well with the {{% vendor/name %}} model.
 As a Symfony-based application its setup is very similar to Symfony.
 
-Ibexa DXP has come pre-configured for use with Platform.sh since its predecessor, eZ Platform 1.13.
+Ibexa DXP has come pre-configured for use with {{% vendor/name %}} since its predecessor, eZ Platform 1.13.
 Version 2.5 and later is recommended.
 Those are the only versions that are supported.
-Appropriate Platform.sh configuration files are included in the Ibexa DXP application itself, but may be modified to suit your particular site, if needed.
+Appropriate {{% vendor/name %}} configuration files are included in the Ibexa DXP application itself, but may be modified to suit your particular site, if needed.
 
 ## Cache and sessions
 
 By default, Ibexa DXP is configured to use a single Redis instance for both the application cache and session storage.
 You may optionally choose to use a separate Redis instance for session storage in case you have a lot of authenticated traffic (and thus there would be many session records).
 
-To do so, uncomment the `redissession` entry in the `.platform/services.yaml` file
-and the corresponding relationship in the `.platform.app.yaml` file.
+To do so, uncomment the `redissession` entry in the `{{< vendor/configfile "services" >}}` file
+and the corresponding relationship in the `{{< vendor/configfile "app" >}}` file.
 The bridge code that is provided with eZ Platform 1.13 and later automatically detects the additional Redis service and use it for session storage.
 
 On a {{% names/dedicated-gen-2 %}} instance, we strongly recommend using two separate Redis instances for Cache and Sessions.
-The service and relationship names that ship with the default Platform.sh configuration in Ibexa DXP should be used as-is.
-To ensure the development environment works like Production, uncomment the `redissession` entry in the `.platform/services.yaml` file and the corresponding relationship in the `.platform.app.yaml` file.
+The service and relationship names that ship with the default {{% vendor/name %}} configuration in Ibexa DXP should be used as-is.
+To ensure the development environment works like Production, uncomment the `redissession` entry in the `{{< vendor/configfile "services" >}}` file and the corresponding relationship in the `{{< vendor/configfile "app" >}}` file.
 The bridge code that's provided with eZ Platform 1.13 and later
 automatically detects the additional Redis service and uses it for session storage.
 
@@ -38,16 +38,16 @@ If you have an existing Ibexa DXP project that was upgraded from a previous vers
 
 In particular, see:
 
-* The [`.platform.app.yaml`](https://github.com/ezsystems/ezplatform/blob/master/.platform.app.yaml) file,
+* The [`{{< vendor/configfile "app" >}}`](https://github.com/ezsystems/ezplatform/blob/master/.platform.app.yaml) file,
   which automatically builds Ibexa DXP in development mode or production mode depending on your defined project-level variables.
-* The [.platform](https://github.com/ezsystems/ezplatform/tree/master/.platform) directory.
+* The [{{< vendor/configfile "app" >}}](https://github.com/ezsystems/ezplatform/tree/master/.platform) directory.
 
 ## Local Development with eZ Platform 2.x and later
 
 For local development on top of a Docker stack,
 the eZ community provides a tool called [eZ Launchpad](https://ezsystems.github.io/launchpad/)
 It improves developer experience and reduces complexity for common actions by simplifying your interactions with Docker containers.
-eZ Launchpad is ready to work with Platform.sh.
+eZ Launchpad is ready to work with {{% vendor/name %}}.
 
 It serves as a wrapper that allows you to run console commands from within the container without logging into it explicitly.
 For example to run `bin/console` `cache:clear` inside the PHP container do:
@@ -86,9 +86,9 @@ Find more details on the [eZ Launchpad documentation](https://ezsystems.github.i
 
 Now, you have a working Ibexa DXP application with many services including Varnish, Solr, Redis, and more.
 
-### Platform.sh integration
+### Integration
 
-To generate the key files for Platform.sh (`.platform.app.yaml` and `.platform`) run:
+To generate the key files for {{% vendor/name %}} (`{{< vendor/configfile "app" >}}` and `{{< vendor/configdir >}}`) run:
 
 ```bash
 ~/ez platformsh:setup
@@ -98,20 +98,20 @@ eZ Launchpad generates the files for you and you are then totally free to fine t
 
 #### Solr specificity
 
-Solr is fully functional with eZ Launchpad but it isn't enabled by default on Platform.sh.
+Solr is fully functional with eZ Launchpad but it isn't enabled by default on {{% vendor/name %}}.
 You have to set it up manually following the [current documentation](https://github.com/ezsystems/ezplatform/blob/master/.platform/services.yaml#L37).
 
 Actions needed are:
 
 * Generate the Solr configuration thanks to the script provided by Ibexa.
-* Put the result in the `.platform` at the root of your project.
-* Add the service in the `.platform/services.yaml`.
-* Add the relationship in the `.platform.app.yaml`.
+* Put the result in the `{{< vendor/configdir >}}` at the root of your project.
+* Add the service in the `{{< vendor/configfile "services" >}}`.
+* Add the relationship in the `{{< vendor/configfile "app" >}}`.
 
 #### Environment variables (optional)
 
 eZ Launchpad allows you to define environment variables in the `provisioning/dev/docker-compose.yml` file.
-You may use that to set [variables](../../development/variables/_index.md) to match Platform.sh environments so that you can keep your environment behavior in sync.
+You may use that to set [variables](../../development/variables/_index.md) to match {{% vendor/name %}} environments so that you can keep your environment behavior in sync.
 
 Such variables have to be set in the `engine` container.
 
@@ -123,31 +123,31 @@ engine:
         - PLATFORM_RELATIONSHIPS=A_BASE64_ENCODED_VALUE
 ```
 
-### Local development with Platform.sh
+### Local development with {{% vendor/name %}}
 
 Thanks to eZ Launchpad, you can work 100% locally: [untethered](../../development/local/untethered.md).
 You have the whole project working offline on machine.
 
 {{< note >}}
 
-Platform.sh also provides smooth [tethered SSH tunnels](../../development/local/tethered.md).
+{{% vendor/name %}} also provides smooth [tethered SSH tunnels](../../development/local/tethered.md).
 
 {{< /note >}}
 
-Local services are provided by the Docker stack but there are minimum day-to-day tasks that you might need with Platform.sh.
+Local services are provided by the Docker stack but there are minimum day-to-day tasks that you might need with {{% vendor/name %}}.
 
 The main ones are:
 
 * **Downstream database synchronization**: Getting it from the remote to the local.
 * **Downstream file storage synchronization**: Getting it from the remote to the local.
 
-To help you with that, Platform.sh provides a CLI that you can [install](../../administration/cli/_index.md).
+To help you with that, {{% vendor/name %}} provides a CLI that you can [install](../../administration/cli/_index.md).
 
 #### Database and storage synchronization
 
 ```bash
-platform db:dump --gzip -f ezplatform.sql.gz -d data/ -y
-platform mount:download -m ezplatform/web/var --target=ezplatform/web/var/ -y
+{{% vendor/cli %}} db:dump --gzip -f ezplatform.sql.gz -d data/ -y
+{{% vendor/cli %}} mount:download -m ezplatform/web/var --target=ezplatform/web/var/ -y
 ~/ez/importdata
 ```
 

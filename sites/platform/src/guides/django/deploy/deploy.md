@@ -3,7 +3,7 @@ title: "Deploy Django"
 sidebarTitle: "Deploy"
 weight: -80
 description: |
-    Now that your site is ready, push it to Platform.sh and import your data.
+    Now that your site is ready, push it to {{% vendor/name %}} and import your data.
 ---
 
 {{% guides/deployment %}}

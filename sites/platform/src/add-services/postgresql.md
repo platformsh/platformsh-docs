@@ -8,11 +8,11 @@ PostgreSQL is a high-performance, standards-compliant relational SQL database.
 
 See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.html) for more information.
 
-{{% frameworks %}}
+{{% frameworks version="1" %}}
 
-- [Hibernate](../guides/hibernate/deploy.md#mysql)
-- [Jakarta EE](../guides/jakarta/deploy.md#mysql)
-- [Spring](../guides/spring/mysql.md)
+- [Hibernate](../guides/hibernate/deploy.md#postgresql)
+- [Jakarta EE](../guides/jakarta/deploy.md#postgresql)
+- [Spring](../guides/spring/postgresql.md)
 
 {{% /frameworks %}}
 
@@ -20,11 +20,34 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 
 {{% major-minor-versions-note %}}
 
-| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|------|-------------------------------|------------------------------ |
-|  {{< image-versions image="postgresql" status="supported" environment="grid" >}} | {{< image-versions image="postgresql" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="postgresql" status="supported" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="postgresql" status="supported" environment="grid" >}}</td>
+            <td>{{< image-versions image="postgresql" status="supported" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="postgresql" status="supported" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
 
 \* No High-Availability on {{% names/dedicated-gen-2 %}}.
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="postgresql" status="supported" environment="grid" >}}
+
+{{% /version/specific %}}
 
 {{< note >}}
 
@@ -35,21 +58,66 @@ For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-
 
 {{% deprecated-versions %}}
 
-| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|------|-------------------------------|------------------------------ |
-|  {{< image-versions image="postgresql" status="deprecated" environment="grid" >}} | {{< image-versions image="postgresql" status="deprecated" environment="dedicated-gen-3" >}} | {{< image-versions image="postgresql" status="deprecated" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="postgresql" status="deprecated" environment="grid" >}}</td>
+            <td>{{< image-versions image="postgresql" status="deprecated" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="postgresql" status="deprecated" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="postgresql" status="deprecated" environment="grid" >}}
+
+{{% /version/specific %}}
 
 {{% relationship-ref-intro %}}
 
 {{% service-values-change %}}
 
-{{< relationship "postgresql" >}}
+```yaml
+{
+    "username": "main",
+    "scheme": "pgsql",
+    "service": "postgresql12",
+    "fragment": null,
+    "ip": "169.254.38.66",
+    "hostname": "zydalrxgkhif2czr3xqth3qkue.postgresql12.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "port": 5432,
+    "cluster": "rjify4yjcwxaa-master-7rqtwti",
+    "host": "postgresql.internal",
+    "rel": "postgresql",
+    "path": "main",
+    "query": {
+        "is_master": true
+    },
+    "password": "ChangeMe",
+    "type": "postgresql:{{% latest "postgresql" %}}",
+    "public": false,
+    "host_mapped": false
+}
+```
 
 ## Usage example
 
 {{% endpoint-description type="postgresql" php=true /%}}
 
-{{< codetabs >}}
+<!-- Version 1: Codetabs using config reader + examples.docs.platform.sh -->
+{{< codetabs v2hide="true" >}}
 
 +++
 title=Go
@@ -91,9 +159,45 @@ highlight=python
 
 {{< /codetabs >}}
 
+<!-- Version 2: .environment shortcode + context -->
+{{% version/only "2" %}}
+
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="myapp" >}}
+# Relationships enable an app container's access to a service.
+relationships:
+    postgresdatabase: "dbpostgres:postgresql"
+{{< /snippet >}}
+{{< snippet name="dbpostgres" config="service" placeholder="true" >}}
+    type: postgresql:{{% latest "postgresql" %}}
+{{< /snippet >}}
+```
+
+{{< v2connect2app serviceName="dbpostgres" relationship="postgresdatabase" var="DATABASE_URL">}}
+
+```bash {location="myapp/.environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for individual credentials.
+export DB_CONNECTION=="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresdatabase[0].scheme')"
+export DB_USERNAME="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresdatabase[0].username')"
+export DB_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresdatabase[0].password')"
+export DB_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresdatabase[0].host')"
+export DB_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresdatabase[0].port')"
+export DB_DATABASE="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresdatabase[0].path')"
+
+# Surface connection string variable for use in app.
+export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"
+```
+
+{{< /v2connect2app >}}
+
+{{% /version/only %}}
+
 ## Access the service directly
 
-Access the service using the Platform CLI by running `platform sql`.
+Access the service using the {{< vendor/name >}} CLI by running `{{< vendor/cli >}} sql`.
 
 You can also access it from your app container via [SSH](../development/ssh/_index.md).
 From your [relationship data](#relationship-reference), you need: `username`, `host`, and `port`.
@@ -113,28 +217,28 @@ psql -U main -h postgresql.internal -p 5432
 
 ## Exporting data
 
-The easiest way to download all data in a PostgreSQL instance is with the Platform CLI. If you have a single SQL database, the following command exports all data using the `pg_dump` command to a local file:
+The easiest way to download all data in a PostgreSQL instance is with the {{< vendor/name >}} CLI. If you have a single SQL database, the following command exports all data using the `pg_dump` command to a local file:
 
 ```bash
-platform db:dump
+{{% vendor/cli %}} db:dump
 ```
 
 If you have multiple SQL databases it prompts you which one to export. You can also specify one by relationship name explicitly:
 
 ```bash
-platform db:dump --relationship database
+{{% vendor/cli %}} db:dump --relationship database
 ```
 
 By default the file is uncompressed. If you want to compress it, use the `--gzip` (`-z`) option:
 
 ```bash
-platform db:dump --gzip
+{{% vendor/cli %}} db:dump --gzip
 ```
 
 You can use the `--stdout` option to pipe the result to another command. For example, if you want to create a bzip2-compressed file, you can run:
 
 ```bash
-platform db:dump --stdout | bzip2 > dump.sql.bz2
+{{% vendor/cli %}} db:dump --stdout | bzip2 > dump.sql.bz2
 ```
 
 ## Importing data
@@ -145,19 +249,19 @@ Make sure that the imported file contains objects with cleared ownership and `IF
 pg_dump --no-owner --clean --if-exists
 ```
 
-The easiest way to load data into a database is to pipe an SQL dump through the `platform sql` command, like so:
+The easiest way to load data into a database is to pipe an SQL dump through the `{{% vendor/cli %}} sql` command, like so:
 
 ```bash
-platform sql < my_database_backup.sql
+{{% vendor/cli %}} sql < my_database_backup.sql
 ```
 
-That runs the database backup against the SQL database on Platform.sh.
+That runs the database backup against the SQL database on {{% vendor/name %}}.
 That works for any SQL file, so the usual caveats about importing an SQL dump apply
 (for example, it's best to run against an empty database).
 As with exporting, you can also specify a specific environment to use and a specific database relationship to use, if there are multiple.
 
 ```bash
-platform sql --relationship database -e {{< variable "BRANCH_NAME" >}} < my_database_backup.sql
+{{% vendor/cli %}} sql --relationship database -e {{< variable "BRANCH_NAME" >}} < my_database_backup.sql
 ```
 
 {{< note >}}
@@ -168,7 +272,7 @@ Taking a backup or a database export before doing so is strongly recommended.
 ## Sanitizing data
 
 To ensure people who review code changes can't access personally identifiable information stored in your database,
-[sanitize your development environments](../development/sanitize-db/postgresql.md).
+[sanitize your preview environments](../development/sanitize-db/postgresql.md).
 
 ## Multiple databases
 
@@ -187,9 +291,12 @@ Under the `configuration` key of your service there are two additional keys:
 
 Consider the following illustrative example:
 
-```yaml
-dbpostgres:
-    type: postgresql:13
+{{< version/specific >}}
+<!-- Version 1 -->
+
+```yaml {configFile="services"}
+{{< snippet name="dbpostgres" config="service" >}}
+    type: "postgresql:{{% latest "postgresql" %}}"
     disk: 2048
     configuration:
         databases:
@@ -208,7 +315,36 @@ dbpostgres:
                 default_database: legacy
                 privileges:
                     legacy: rw
+{{< /snippet >}}
 ```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="services"}
+{{< snippet name="dbpostgres" config="service" >}}
+    type: "postgresql:{{% latest "postgresql" %}}"
+    configuration:
+        databases:
+            - main
+            - legacy
+        endpoints:
+            admin:
+                privileges:
+                    main: admin
+                    legacy: admin
+            reporter:
+                default_database: main
+                privileges:
+                    main: ro
+            importer:
+                default_database: legacy
+                privileges:
+                    legacy: rw
+{{< /snippet >}}
+```
+
+{{< /version/specific >}}
 
 This example creates a single PostgreSQL service named `dbpostgres`. The server has two databases, `main` and `legacy` with three endpoints created.
 
@@ -216,55 +352,193 @@ This example creates a single PostgreSQL service named `dbpostgres`. The server 
 * `reporter`: has `SELECT` query access to the `main` database, but no access to `legacy`.
 * `importer`: has `SELECT`/`INSERT`/`UPDATE`/`DELETE` access (but not DDL access) to the `legacy` database. It doesn't have access to `main`.
 
-If a given endpoint has access to multiple databases you should also specify which is listed by default in the relationships array. If one isn't specified, the `path` property of the relationship is `null`. While that may be acceptable for an application that knows the name of the database it's connecting to, automated tools like the Platform.sh CLI can't access the database on that relationship. For that reason, defining the `default_database` property is always recommended.
+If a given endpoint has access to multiple databases you should also specify which is listed by default in the relationships array. If one isn't specified, the `path` property of the relationship is `null`. While that may be acceptable for an application that knows the name of the database it's connecting to, automated tools like the {{% vendor/name %}} CLI can't access the database on that relationship. For that reason, defining the `default_database` property is always recommended.
 
-Once these endpoints are defined, you need to expose them to your application as a relationship. Continuing with the above example, your `relationships` in `.platform.app.yaml` might look like:
+Once these endpoints are defined, you need to expose them to your application as a relationship. Continuing with the above example, your `relationships` in `{{< vendor/configfile "app" >}}` might look like:
 
-```yaml
+{{< version/specific >}}
+<!-- Version 1 -->
+
+```yaml {configFile="app"}
+{{< snippet name="false" config="app" root="false" >}}
 relationships:
     database: "dbpostgres:admin"
     reports: "dbpostgres:reporter"
     imports: "dbpostgres:importer"
+{{< /snippet >}}
+
+{{< snippet name="dbpostgres" config="service" placeholder="true" >}}
+    type: "postgresql:{{% latest "postgresql" %}}"
+    disk: 2048
+    configuration:
+        databases:
+            - main
+            - legacy
+        endpoints:
+            admin:
+                privileges:
+                    main: admin
+                    legacy: admin
+            reporter:
+                default_database: main
+                privileges:
+                    main: ro
+            importer:
+                default_database: legacy
+                privileges:
+                    legacy: rw
+{{< /snippet >}}
 ```
 
-Each database is accessible to your application through the `database`, `reports`, and `imports` relationships. They'll be available in the `PLATFORM_RELATIONSHIPS` environment variable and all have the same structure documented above, but with different credentials. You can use those to connect to the appropriate database with the specified restrictions using whatever the SQL access tools are for your language and application.
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="app"}
+{{< snippet name="false" config="app" root="false" >}}
+relationships:
+    database: "dbpostgres:admin"
+    reports: "dbpostgres:reporter"
+    imports: "dbpostgres:importer"
+{{< /snippet >}}
+
+{{< snippet name="dbpostgres" config="service" placeholder="true" >}}
+    type: "postgresql:{{% latest "postgresql" %}}"
+    configuration:
+        databases:
+            - main
+            - legacy
+        endpoints:
+            admin:
+                privileges:
+                    main: admin
+                    legacy: admin
+            reporter:
+                default_database: main
+                privileges:
+                    main: ro
+            importer:
+                default_database: legacy
+                privileges:
+                    legacy: rw
+{{< /snippet >}}
+```
+
+{{< /version/specific >}}
+
+Each database is accessible to your application through the `database`, `reports`, and `imports` relationships. They'll be available in the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable and all have the same structure documented above, but with different credentials. You can use those to connect to the appropriate database with the specified restrictions using whatever the SQL access tools are for your language and application.
 
 A service configuration without the `configuration` block defined is equivalent to the following default values:
 
-```yaml
-configuration:
-    databases:
-        - main
-    endpoints:
-        postgresql:
-          default_database: main
-          privileges:
-            main: admin
+{{< version/specific >}}
+<!-- Version 1 -->
+
+```yaml {configFile="services"}
+{{< snippet name="dbpostgres" config="service" >}}
+    type: "postgresql:{{% latest "postgresql" %}}"
+    disk: 2048
+    configuration:
+        databases:
+            - main
+        endpoints:
+            postgresql:
+                default_database: main
+                privileges:
+                    main: admin
+{{< /snippet >}}
 ```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="services"}
+{{< snippet name="dbpostgres" config="service" >}}
+    type: "postgresql:{{% latest "postgresql" %}}"
+    configuration:
+        databases:
+            - main
+        endpoints:
+            postgresql:
+                default_database: main
+                privileges:
+                    main: admin
+{{< /snippet >}}
+```
+
+{{< /version/specific >}}
 
 If you do not define `database` but `endpoints` are defined, then the single database `main` is created with the following assumed configuration:
 
-```yaml
-configuration:
-    databases:
-        - main
-    endpoints: <your configuration>
+{{< version/specific >}}
+<!-- Version 1 -->
+
+```yaml {configFile="services"}
+{{< snippet name="dbpostgres" config="service" >}}
+    type: "postgresql:{{% latest "postgresql" %}}"
+    disk: 2048
+    configuration:
+        databases:
+            - main
+        endpoints: <your configuration>
+{{< /snippet >}}
 ```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="services"}
+{{< snippet name="dbpostgres" config="service" >}}
+    type: "postgresql:{{% latest "postgresql" %}}"
+    configuration:
+        databases:
+            - main
+        endpoints: <your configuration>
+{{< /snippet >}}
+```
+
+{{< /version/specific >}}
 
 Alternatively, if you define multiple databases but no endpoints, a single user `main` is created with `admin` access to each of your databases, equivalent to the configuration below:
 
-```yaml
-configuration:
-    databases:
-        - firstdb
-        - seconddb
-        - thirddb
-    endpoints:
-        main:
-            firstdb: admin
-            seconddb: admin
-            thirddb: admin
+{{< version/specific >}}
+<!-- Version 1 -->
+
+```yaml {configFile="services"}
+{{< snippet name="dbpostgres" config="service" >}}
+    type: "postgresql:{{% latest "postgresql" %}}"
+    disk: 2048
+    configuration:
+        databases:
+            - firstdb
+            - seconddb
+            - thirddb
+        endpoints:
+            main:
+                firstdb: admin
+                seconddb: admin
+                thirddb: admin
+{{< /snippet >}}
 ```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="services"}
+{{< snippet name="dbpostgres" config="service" >}}
+    type: "postgresql:{{% latest "postgresql" %}}"
+    configuration:
+        databases:
+            - firstdb
+            - seconddb
+            - thirddb
+        endpoints:
+            main:
+                firstdb: admin
+                seconddb: admin
+                thirddb: admin
+{{< /snippet >}}
+```
+
+{{< /version/specific >}}
 
 {{% databases-passwords %}}
 
@@ -274,17 +548,36 @@ To change the timezone for the current session, run `SET TIME ZONE {{< variable 
 
 ## Extensions
 
-Platform.sh supports a number of PostgreSQL extensions. To enable them, list them under the `configuration.extensions` key in your `services.yaml` file, like so:
+{{% vendor/name %}} supports a number of PostgreSQL extensions. To enable them, list them under the `configuration.extensions` key in your `{{< vendor/configfile "services" >}}` file, like so:
 
-```yaml
-db:
-    type: postgresql:12
-    disk: 1025
+{{< version/specific >}}
+<!-- Version 1 -->
+
+```yaml {configFile="services"}
+{{< snippet name="dbpostgres" config="service" >}}
+    type: "postgresql:{{% latest "postgresql" %}}"
+    disk: 2048
     configuration:
         extensions:
             - pg_trgm
             - hstore
+{{< /snippet >}}
 ```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="services"}
+{{< snippet name="dbpostgres" config="service" >}}
+    type: "postgresql:{{% latest "postgresql" %}}"
+    configuration:
+        extensions:
+            - pg_trgm
+            - hstore
+{{< /snippet >}}
+```
+
+{{< /version/specific >}}
 
 In this case, you have `pg_trgm` installed, providing functions to determine the similarity of text based on trigram matching, and `hstore` providing a key-value store.
 
@@ -345,6 +638,7 @@ extensions not listed here.
 * `tsm_system_time` - TABLESAMPLE method which accepts time in milliseconds as a limit (requires 9.6 or higher)
 * `unaccent` - text search dictionary that removes accents
 * `uuid-ossp` - generate universally unique identifiers (UUIDs)
+* `vector` - Open-source [vector](https://github.com/pgvector/pgvector) similarity search for PostgreSQL 11+
 * `xml2` - XPath querying and XSLT
 
 {{< note >}}
@@ -358,11 +652,11 @@ For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-
 
 ### Could not find driver
 
-If you see this error: `Fatal error: Uncaught exception 'PDOException' with message 'could not find driver'`, this means you are missing the `pdo_pgsql` PHP extension. You need to enable it in your `.platform.app.yaml` (see above).
+If you see this error: `Fatal error: Uncaught exception 'PDOException' with message 'could not find driver'`, this means you are missing the `pdo_pgsql` PHP extension. You need to enable it in your `{{< vendor/configfile "app" >}}` ([see above](#1-configure-the-service)).
 
 ## Upgrading
 
-PostgreSQL 10 and later include an upgrade utility that can convert databases from previous versions to version 10 or later. If you upgrade your service from a previous version of PostgreSQL to version 10 or above (by modifying the `services.yaml` file), it upgrades automatically.
+PostgreSQL 10 and later include an upgrade utility that can convert databases from previous versions to version 10 or later. If you upgrade your service from a previous version of PostgreSQL to version 10 or above, it upgrades automatically.
 
 The utility can't upgrade PostgreSQL 9 versions, so upgrades from PostgreSQL 9.3 to 9.6 aren't supported. Upgrade straight to version 11 instead.
 

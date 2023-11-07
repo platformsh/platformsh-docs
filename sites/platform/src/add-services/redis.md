@@ -6,14 +6,14 @@ sidebarTitle: "Redis"
 
 [Redis](https://redis.io/documentation) is a multi-model database that allows you to store data in memory
 for high-performance data retrieval and key-value storage.
-Platform.sh supports two different Redis configurations:
+{{% vendor/name %}} supports two different Redis configurations:
 
-- [Ephemeral](#ephemeral-redis): to set up a non-persistent cache for your application
 - [Persistent](#persistent-redis): to set up fast persistent storage for your application
+- [Ephemeral](#ephemeral-redis): to set up a non-persistent cache for your application
 
-{{% frameworks %}}
+{{% frameworks version="1" %}}
 
-- [Drupal](../guides/drupal9/redis.md)
+- [Drupal](../guides/drupal/redis.md)
 - [Ibexa DXP](../guides/ibexa/deploy.md#cache-and-sessions)
 - [Jakarta EE](../guides/jakarta/deploy.md#redis)
 - [Micronaut](../guides/micronaut/redis.md)
@@ -27,15 +27,61 @@ Platform.sh supports two different Redis configurations:
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|------|-------------------------------|------------------------------ |
-| {{< image-versions image="redis" status="supported" environment="grid" >}} | {{< image-versions image="redis" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="redis" status="supported" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="redis" status="supported" environment="grid" >}}</td>
+            <td>{{< image-versions image="redis" status="supported" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="redis" status="supported" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="redis" status="supported" environment="grid" >}}
+
+{{% /version/specific %}}
 
 {{% deprecated-versions %}}
 
-| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
-|------|-------------------------------|------------------------------ |
-| {{< image-versions image="redis" status="deprecated" environment="grid" >}} | {{< image-versions image="redis" status="deprecated" environment="dedicated-gen-3" >}} | {{< image-versions image="redis" status="deprecated" environment="dedicated-gen-2" >}} |
+{{% version/specific %}}
+<!-- API Version 1 -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 3</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="redis" status="deprecated" environment="grid" >}}</td>
+            <td>{{< image-versions image="redis" status="deprecated" environment="dedicated-gen-3" >}}</td>
+            <td>{{< image-versions image="redis" status="deprecated" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+<--->
+<!-- API Version 2 -->
+
+{{< image-versions image="redis" status="deprecated" environment="grid" >}}
+
+{{% /version/specific %}}
 
 Note that versions 3.0 and higher support up to 64 different databases per instance of the service,
 while Redis 2.8 only supports a single database.
@@ -43,26 +89,11 @@ while Redis 2.8 only supports a single database.
 ## Service types
 
 Depending on your needs,
-you can set up Redis as [ephemeral](#ephemeral-redis) or [persistent](#persistent-redis).
+you can set up Redis as [persistent](#persistent-redis) or [ephemeral](#ephemeral-redis).
 
-### Ephemeral Redis
+## Persistent Redis
 
-By default, Redis is an ephemeral service that serves as a non-persistent cache.
-Ephemeral Redis stores data only in memory and requires no disk space.
-When the service reaches its memory limit, it triggers a cache cleanup.
-To customize those cache cleanups, set up an [eviction policy](#eviction-policy).
-
-Make sure your app doesn't rely on ephemeral Redis for persistent storage as it can cause issues.
-For example, if a container is moved during region maintenance,
-the `deploy` and `post_deploy` hooks don't run and an app that treats the cache as permanent shows errors.
-
-To prevent data from getting lost when a container is moved or shut down,
-you can use the [persistent Redis](#persistent-redis) configuration.
-Persistent Redis provides a cache with persistent storage.
-
-### Persistent Redis
-
-By default, Redis is an [ephemeral](#ephemeral-redis) service that stores data in memory.
+By default, Redis is an ephemeral service that stores data in memory.
 This allows for fast data retrieval,
 but also means data can be lost when a container is moved or shut down.
 
@@ -73,11 +104,152 @@ restoring it if the container restarts.
 To switch from persistent to ephemeral Redis,
 set up a new service with a different name.
 
-## Usage example
+### Usage example
 
-{{% endpoint-description type="redis" php=true /%}}
+#### 1. Configure the service
 
-{{< codetabs >}}
+To define the service, use the `redis-persistent` endpoint:
+
+{{% version/specific %}}
+<!-- Version 1 -->
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+<SERVICE_NAME>:
+    type: redis-persistent:<VERSION>
+```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="services"}
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: redis-persistent:<VERSION>
+```
+
+{{% /version/specific %}}
+
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
+Back up your data before changing the service.
+
+#### 2. Add the relationship
+
+To define the relationship, use the `redis` endpoint :
+
+{{% version/specific %}}
+<!-- Version 1 -->
+
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+relationships:
+    <RELATIONSHIP_NAME>: "<SERVICE_NAME>:redis"
+```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="app"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    <APP_NAME>:
+        # Relationships enable access from this app to a given service.
+        relationships:
+            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:redis"
+
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: redis-persistent:<VERSION>
+```
+
+{{% /version/specific %}}
+
+You can define `<SERVICE_NAME>` and `<RELATIONSHIP_NAME>` as you like, but it’s best if they’re distinct.
+With this definition, the application container now has access to the service via the relationship `<RELATIONSHIP_NAME>`.
+For PHP, enable the extension for the service:
+
+{{% version/specific %}}
+<!-- Version 1 -->
+
+```yaml {configFile="app"}
+# PHP extensions.
+runtime:
+    extensions:
+        - redis
+```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="app"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    <APP_NAME>:
+        # PHP extensions.
+        runtime:
+            extensions:
+                - redis
+        # Relationships enable access from this app to a given service.
+        relationships:
+            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:redis"
+
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: redis-persistent:<VERSION>
+```
+
+{{% /version/specific %}}
+
+### Configuration example
+
+{{% version/specific %}}
+<!-- Version 1 -->
+
+#### [Service definition](/add-services/_index.md)
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+data:
+    type: redis-persistent:7.0
+    disk: 256
+```
+
+#### [App configuration](/create-apps/_index.md)
+
+```yaml {configFile="app"}
+relationships:
+    redisdata: "data:redis"
+```
+
+<--->
+<!-- Version 2 -->
+
+#### [Service](/add-services/_index.md) and [app](/create-apps/_index.md) configuration
+
+```yaml {configFile="services"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        # Relationships enable access from this app to a given service.
+        relationships:
+            rediscache: "cacheredis:redis"
+
+services:
+    # The name of the service container. Must be unique within a project.
+    cacheredis:
+        type: redis-persistent:7.0
+```
+
+{{% /version/specific %}}
+
+### Use in app
+
+To use the configured service in your app, add a configuration file similar to the following to your project.
+
+{{< codetabs v2hide="true" >}}
 
 +++
 title=Java
@@ -111,6 +283,274 @@ highlight=python
 
 {{< /codetabs >}}
 
+<!-- Version 2: .environment shortcode + context -->
+{{% version/only "2" %}}
+
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="myapp" >}}
+
+# Other options...
+
+# Relationships enable an app container's access to a service.
+relationships:
+    rediscache: "cacheredis:redis"
+{{< /snippet >}}
+{{< snippet name="cacheredis" config="service" placeholder="true" >}}
+    type: redis-persistent:{{% latest "redis" %}}
+{{< /snippet >}}
+```
+
+{{< v2connect2app serviceName="cacheredis" relationship="rediscache" var="REDIS_URL">}}
+
+```bash {location="myapp/.environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for individual credentials.
+export CACHE_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].host')"
+export CACHE_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].port')"
+export CACHE_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].password')"
+export CACHE_SCHEME="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].scheme')"
+
+# Surface a Redis connection string for use in app.
+export REDIS_URL="${CACHE_SCHEME}://${CACHE_PASSWORD}@${CACHE_HOST}:${CACHE_PORT}"
+```
+
+{{< /v2connect2app >}}
+
+{{% /version/only %}}
+
+## Ephemeral Redis
+
+By default, Redis is an ephemeral service that serves as a non-persistent cache.
+Ephemeral Redis stores data only in memory and requires no disk space.
+When the service reaches its memory limit, it triggers a cache cleanup.
+To customize those cache cleanups, set up an [eviction policy](#eviction-policy).
+
+Make sure your app doesn't rely on ephemeral Redis for persistent storage as it can cause issues.
+For example, if a container is moved during region maintenance,
+the `deploy` and `post_deploy` hooks don't run and an app that treats the cache as permanent shows errors.
+
+To prevent data from getting lost when a container is moved or shut down,
+you can use the [persistent Redis](#persistent-redis) configuration.
+Persistent Redis provides a cache with persistent storage.
+
+### Usage example
+
+#### 1. Configure the service
+
+To define the service, use the `redis` endpoint:
+
+{{% version/specific %}}
+<!-- Version 1 -->
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+<SERVICE_NAME>:
+    type: redis:<VERSION>
+```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="services"}
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: redis:<VERSION>
+```
+
+{{% /version/specific %}}
+
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
+Back up your data before changing the service.
+
+#### 2. Add the relationship
+
+To define the relationship, use the `redis` endpoint :
+
+{{% version/specific %}}
+<!-- Version 1 -->
+
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+relationships:
+    <RELATIONSHIP_NAME>: "<SERVICE_NAME>:redis"
+```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="app"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    <APP_NAME>:
+        # Relationships enable access from this app to a given service.
+        relationships:
+            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:redis"
+
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: redis:<VERSION>
+```
+
+{{% /version/specific %}}
+
+You can define `<SERVICE_NAME>` and `<RELATIONSHIP_NAME>` as you like, but it’s best if they’re distinct.
+With this definition, the application container now has access to the service via the relationship `<RELATIONSHIP_NAME>`.
+For PHP, enable the extension for the service:
+
+{{% version/specific %}}
+<!-- Version 1 -->
+
+```yaml {configFile="app"}
+# PHP extensions.
+runtime:
+    extensions:
+        - redis
+```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="app"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    <APP_NAME>:
+        # PHP extensions.
+        runtime:
+            extensions:
+                - redis
+        # Relationships enable access from this app to a given service.
+        relationships:
+            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:redis"
+
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: redis:<VERSION>
+```
+
+{{% /version/specific %}}
+
+### Configuration example
+
+{{% version/specific %}}
+<!-- Version 1 -->
+
+#### [Service definition](/add-services/_index.md)
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+data:
+    type: redis:7.0
+    disk: 256
+```
+
+#### [App configuration](/create-apps/_index.md)
+
+```yaml {configFile="app"}
+relationships:
+    redisdata: "data:redis"
+```
+
+<--->
+<!-- Version 2 -->
+
+#### [Service](add-services/_index.md) and [app](/create-apps/_index.md) configuration
+
+```yaml {configFile="app"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        # Relationships enable access from this app to a given service.
+        relationships:
+            rediscache: "cacheredis:redis"
+
+services:
+    # The name of the service container. Must be unique within a project.
+    cacheredis:
+        type: redis:7.0
+```
+
+{{% /version/specific %}}
+
+### Use in app
+
+To use the configured service in your app, add a configuration file similar to the following to your project.
+
+{{< codetabs v2hide="true" >}}
+
++++
+title=Java
+file=static/files/fetch/examples/java/redis
+highlight=java
++++
+
+<--->
+
++++
+title=Node.js
+file=static/files/fetch/examples/nodejs/redis
+highlight=js
++++
+
+<--->
+
++++
+title=PHP
+file=static/files/fetch/examples/php/redis
+highlight=php
++++
+
+<--->
+
++++
+title=Python
+file=static/files/fetch/examples/python/redis
+highlight=python
++++
+
+{{< /codetabs >}}
+
+<!-- Version 2: .environment shortcode + context -->
+{{% version/only "2" %}}
+
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="myapp" >}}
+
+# Other options...
+
+# Relationships enable an app container's access to a service.
+relationships:
+    rediscache: "cacheredis:redis"
+{{< /snippet >}}
+{{< snippet name="cacheredis" config="service" placeholder="true" >}}
+    type: redis:{{% latest "redis" %}}
+{{< /snippet >}}
+```
+
+{{< v2connect2app serviceName="cacheredis" relationship="rediscache" var="REDIS_URL">}}
+
+```bash {location="myapp/.environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for individual credentials.
+export CACHE_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].host')"
+export CACHE_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].port')"
+export CACHE_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].password')"
+export CACHE_SCHEME="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].scheme')"
+
+# Surface a Redis connection string for use in app.
+export REDIS_URL="${CACHE_SCHEME}://${CACHE_PASSWORD}@${CACHE_HOST}:${CACHE_PORT}"
+```
+
+{{< /v2connect2app >}}
+
+{{% /version/only %}}
+
 ## Multiple databases
 
 Redis 3.0 and above support up to 64 databases.
@@ -130,11 +570,14 @@ Use the Redis [`select` command](https://redis.io/commands/select):
 
 ```php
 <?php
+$redis = new Redis();
+$redis->connect(getenv('CACHE_HOST'), getenv('CACHE_PORT'));
+
 $redis->select(0);       // switch to DB 0
-$redis->set('x', '42'); // write 42 to x
-$redis->move('x', 1);  // move to DB 1
-$redis->select(1);    // switch to DB 1
-$redis->get('x');    // returns 42
+$redis->set('x', '42');  // write 42 to x
+$redis->move('x', 1);    // move to DB 1
+$redis->select(1);       // switch to DB 1
+$redis->get('x');        // returns 42
 ```
 
 <--->
@@ -147,15 +590,11 @@ To manage [thread safety](https://github.com/redis/redis-py/blob/master/docs/adv
 the Python library suggests using separate client instances for each database:
 
 ```python
+import os
 from redis import Redis
-from platformshconfig import Config
 
-# Get the credentials to connect to the Redis service.
-config = Config()
-credentials = config.credentials('redis')
-
-database0 = Redis(host='xxxxxx.cache.amazonaws.com', port=6379, db=0)
-database1 = Redis(host='xxxxxx.cache.amazonaws.com', port=6379, db=0)
+database0 = Redis(host=os.getenv('CACHE_HOST'), port=os.getenv('CACHE_PORT'), db=0)
+database1 = Redis(host=os.getenv('CACHE_HOST'), port=os.getenv('CACHE_PORT'), db=1)
 ```
 
 <--->
@@ -167,11 +606,15 @@ title=Node.js
 Use the Redis [`select` command](https://redis.io/commands/select):
 
 ```javascript
+const redis = require('redis');
+
+const client = redis.createClient(process.env.CACHE_PORT, process.env.CACHE_HOST);
+
 await client.SELECT(0);                  // switch to DB 0
-await client.set('x', '42');            // write 42 to x
-await client.MOVE('x', 1);             // move to DB 1
-await client.SELECT(1);               // switch to DB 1
-const value = await client.get('x'); // returns 42
+await client.set('x', '42');             // write 42 to x
+await client.MOVE('x', 1);               // move to DB 1
+await client.SELECT(1);                  // switch to DB 1
+const value = await client.get('x');     // returns 42
 ```
 
 {{< /codetabs >}}
@@ -180,7 +623,26 @@ const value = await client.get('x'); // returns 42
 
 {{% service-values-change %}}
 
-{{< relationship "redis" >}}
+```yaml
+{
+    "username": null,
+    "scheme": "redis",
+    "service": "redis6",
+    "fragment": null,
+    "ip": "169.254.22.75",
+    "hostname": "7mnenhdiz7ecraovljrba6pmiy.redis6.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "port": 6379,
+    "cluster": "rjify4yjcwxaa-master-7rqtwti",
+    "host": "redis.internal",
+    "rel": "redis",
+    "path": null,
+    "query": [],
+    "password": null,
+    "type": "redis:{{% latest "redis" %}}",
+    "public": false,
+    "host_mapped": false
+}
+```
 
 The format of the relationship is identical whether your Redis service is [ephemeral](#ephemeral-redis) or [persistent](#persistent-redis).
 
@@ -190,12 +652,12 @@ When [ephemeral Redis](#ephemeral-redis) reaches its memory limit,
 it triggers a cache cleanup.
 To customize those cache cleanups, set up an eviction policy such as the following:
 
-```yaml {location=".platform.app.yaml"}
-web:
-    cache:
-        type: redis:5.0
-        configuration:
-            maxmemory_policy: allkeys-lfu
+```yaml {configFile="services"}
+{{% snippet name="cache" config="service" %}}
+    type: "redis:{{% latest "redis" %}}"
+    configuration:
+        maxmemory_policy: allkeys-lfu
+{{% /snippet %}}
 ```
 
 The following table presents the possible values:
@@ -220,8 +682,8 @@ After you've [configured your Redis service](#usage-example),
 you can access it using the [Redis CLI](https://redis.io/docs/ui/cli/).
 
 Retrieve the hostname and port you can connect to
-through the `PLATFORM_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables).
-To do so, run the `platform relationships` command.
+through the `{{< vendor/prefix >}}_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables).
+To do so, run the `{{< vendor/cli >}} relationships` command.
 
 After you've retrieved the hostname and port, [open an SSH session](../development/ssh/_index.md).
 To access your Redis service, run the following command:
@@ -230,8 +692,12 @@ To access your Redis service, run the following command:
 redis-cli -h {{< variable "HOSTNAME" >}} -p {{< variable "PORT" >}}
 ```
 
+{{% version/specific %}}
 If you have a Grid project, note that the `CONFIG GET` and `CONFIG SET` admin commands are restricted.
 To get the current configuration, run the following command:
+<--->
+Note that the `CONFIG GET` and `CONFIG SET` admin commands might be restricted on your project.
+{{% /version/specific %}}
 
 ```bash
 redis-cli -h {{< variable "HOSTNAME" >}} -p {{< variable "PORT" >}} info
@@ -246,9 +712,20 @@ which means Redis stores and retrieves the data saved into sessions.
 
 To set up Redis as your session handler, add a configuration similar to the following:
 
-{{< readFile file="registry/images/examples/full/redis-persistent.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
+{{% version/specific %}}
+<!-- Version 1 -->
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="services" v2Hide="true"}
+{{< snippet name="data" config="service" >}}
+    type: "redis-persistent:{{% latest "redis" %}}"
+    disk: 256
+{{< /snippet >}}
+```
+
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="false" >}}
+type: "php:{{% latest "php" %}}"
+
 relationships:
     sessionstorage: "data:redis"
 
@@ -256,4 +733,51 @@ variables:
     php:
         session.save_handler: redis
         session.save_path: "tcp://{{< variable "HOSTNAME" >}}:{{< variable "PORT" >}}"
+
+web:
+    locations:
+        '/':
+            root: 'web'
+            passthru: '/index.php'
+{{< /snippet >}}
+
+{{< snippet name="data" config="service" placeholder="true" >}}
+    type: "redis-persistent:{{% latest "redis" %}}"
+    disk: 256
+{{< /snippet >}}
 ```
+
+<--->
+<!-- Version 2 -->
+
+```yaml {configFile="services" v2Hide="true"}
+{{< snippet name="data" config="service" >}}
+    type: "redis-persistent:{{% latest "redis" %}}"
+{{< /snippet >}}
+```
+
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="false" >}}
+type: "php:{{% latest "php" %}}"
+
+relationships:
+    sessionstorage: "data:redis"
+
+variables:
+    php:
+        session.save_handler: redis
+        session.save_path: "tcp://{{< variable "HOSTNAME" >}}:{{< variable "PORT" >}}"
+
+web:
+    locations:
+        '/':
+            root: 'web'
+            passthru: '/index.php'
+{{< /snippet >}}
+
+{{< snippet name="data" config="service" placeholder="true" >}}
+    type: "redis-persistent:{{% latest "redis" %}}"
+{{< /snippet >}}
+```
+
+{{% /version/specific %}}

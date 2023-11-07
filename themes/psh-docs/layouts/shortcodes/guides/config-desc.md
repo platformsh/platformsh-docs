@@ -1,5 +1,5 @@
 {{ $name := .Get "name" }}
-You now have a *project* running on Platform.sh.
+You now have a *project* running on {{ .Site.Params.vendor.name }}.
 In many ways, a project is just a collection of tools around a Git repository.
 Just like a Git repository, a project has branches, called *environments*.
 Each environment can then be activated.
@@ -7,16 +7,16 @@ Each environment can then be activated.
 giving you a fully isolated running site for each active environment.
 
 Once an environment is activated, your app is deployed through a cluster of containers.
-You can configure these containers in three ways, each corresponding to a [YAML file]({{ relref . "/overview/yaml/_index.md" }}):
+You can configure these containers in three ways, each corresponding to a [YAML file](/learn/overview/yaml):
 
-- **Configure apps** in a `.platform.app.yaml` file.
+- **Configure apps** in a `{{ partial "vendor/configfile" (dict "context" . "config" "services") }}` file.
   This controls the configuration of the container where your app lives.
-- **Add services** in a `.platform/services.yaml` file.
+- **Add services** in a `{{ partial "vendor/configfile" (dict "context" . "config" "services") }}` file.
   This controls what additional services are created to support your app,
   such as databases or search servers.
   Each environment has its own independent copy of each service.
   If you're not using any services, you don't need this file.
-- **Define routes** in a `.platform/routes.yaml` file.
+- **Define routes** in a `{{ partial "vendor/configfile" (dict "context" . "config" "routes") }}` file.
   This controls how incoming requests are routed to your app or apps.
   It also controls the built-in HTTP cache.
   If you're only using the single default route, you don't need this file.
@@ -24,8 +24,8 @@ You can configure these containers in three ways, each corresponding to a [YAML 
 Start by creating empty versions of each of these files in your repository:
 
 ```bash
-# Create empty Platform.sh configuration files
-touch .platform.app.yaml && mkdir -p .platform && touch .platform/routes.yaml{{ if not (.Get "noService") }} && touch .platform/services.yaml{{ end }}
+# Create empty {{ .Site.Params.vendor.name }}  configuration files
+mkdir -p .platform && touch {{ partial "vendor/configfile" (dict "context" . "config" "services") }} && touch {{ partial "vendor/configfile" (dict "context" . "config" "routes") }}{{ if not (.Get "noService") }} && touch {{ partial "vendor/configfile" (dict "context" . "config" "services") }}{{ end }}
 ```
 
 {{ if isset .Params "platformify" }}
@@ -47,7 +47,7 @@ dependencies.
 
 ```bash
 symfony project:init
-git add . && git commit -m "Add Platform.sh configuration files"
+git add . && git commit -m "Add {{ .Site.Params.vendor.name }} configuration files"
 ```
 
 {{ end }}

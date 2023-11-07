@@ -20,7 +20,7 @@ The `build` hook is run after any [build flavor](../app-reference.md#build).
 During this hook, no services (such as a database) or any persistent file mounts are available
 as the application hasn't yet been deployed.
 
-The `build` hook can only use [environment variables](../../development/variables/use-variables.md#use-platformsh-provided-variables)
+The `build` hook can only use [environment variables](../../development/variables/use-variables.md#use-provided-variables)
 that are available at build time.
 
 During the `build` hook, there are three writeable directories:
@@ -39,7 +39,13 @@ During the `build` hook, there are three writeable directories:
   and together they offer about 8GB of free space.
 
 The only constraint on what can be downloaded during a `build` hook is the disk space available for builds.
+
+{{% version/specific %}}
 This is _not_ the `disk` specified in your [app configuration](../app-reference.md#top-level-properties).
+<--->
+This is _not_ the disk specified by your [resources configuration](/manage-resources.md).
+{{% /version/specific %}}
+
 If you exceed this limit, you receive a `No space left on device` error.
 See how to [troubleshoot this error](../troubleshoot-disks.md#no-space-left-on-device).
 

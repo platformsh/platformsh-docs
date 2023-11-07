@@ -4,13 +4,13 @@ sidebarTitle: "API tokens"
 weight: 1
 ---
 
-You need to set up an API token to authenticate the Platform.sh CLI for any of the following tasks:
+You need to set up an API token to authenticate the {{% vendor/name %}} CLI for any of the following tasks:
 - Running automated tasks on a CI system
 - Running automated tasks directly on app container, for example in a cron job
 
 ## Before you begin
 
-You might need the [Platform.sh CLI](../cli/_index.md) to perform certain tasks.
+You might need the [{{% vendor/name %}} CLI](../cli/_index.md) to perform certain tasks.
 For example, you need the CLI to do the following:
 - [Check the validity of an API token](#optional-check-the-validity-of-your-api-token). 
 - [Load the CLI SSH certificate for non-CLI commands](#use-the-cli-ssh-certificate-for-non-cli-commands).
@@ -19,7 +19,7 @@ For example, you need the CLI to do the following:
 ## 1. Create a machine user
 
 To safely run automated tasks, first create machine users.
-Each machine user has its own Platform.sh account associated with a unique email address.
+Each machine user has its own {{% vendor/name %}} account associated with a unique email address.
 You can grant them restrictive [access permissions](../users.md) to handle specific automated tasks.
 For security purposes, create a machine user for each type of task you want to automate.
 
@@ -32,14 +32,14 @@ title=Using the CLI
 
 1. Run the following command using your machine user's email address.
    ```bash
-   platform user:add  {{< variable "EMAIL_ADDRESS" >}} --role viewer --role development:contributor
+   {{% vendor/cli %}} user:add  {{< variable "EMAIL_ADDRESS" >}} --role viewer --role development:contributor
    ```
    This sets your machine user as a viewer on your project and a contributor on development environments, 
    with no access to other environment types.
    Note that you can further [adjust user roles](../users.md#environment-type-roles) depending on your needs and each environment type.
 
 2. In the email invitation, click **Create account**.
-3. To create a Platform.sh account for the machine user, click **Sign up** and follow the instructions.
+3. To create a {{% vendor/name %}} account for the machine user, click **Sign up** and follow the instructions.
 
 <--->
 +++
@@ -55,7 +55,7 @@ title=In the Console
 {{< /codetabs >}}
 
 
-## 2. Create a Platform.sh API token
+## 2. Create an API token
 
 1. Log in to the Console as your machine user.
 2. Open the user menu (your name or profile picture).
@@ -63,7 +63,6 @@ title=In the Console
 4. Go to the **API tokens** tab and click **Create API token**.
 5. Enter a name for your API token and click **Create API token**.
 6. To copy the API token to your clipboard, click **{{< icon copy >}} Copy**.
-   ![Copying the API token after it's created](/images/management-console/copy-api-token.png "0.6")
    Note that after you close the **API tokens** tab, you can't display the API token again.
 7. Store the API token somewhere secure on your computer.
 
@@ -72,7 +71,7 @@ title=In the Console
 To check that your API token is valid, run the following command:
 
 ```bash
-platform auth:api-token-login
+{{% vendor/cli %}} auth:api-token-login
 ```
 
 When prompted, enter your API token.
@@ -86,12 +85,12 @@ You are logged in.
 For security reasons, rotate your API tokens regularly.
 When an API token is compromised, revoke it immediately.
 
-## 3. Authenticate the Platform.sh CLI using your API token
+## 3. Authenticate the CLI using your API token
 
 After you create your API token, you can use it to do the following:
 
--  Allow a CI system to run automated tasks using the Platform.sh CLI.
--  Run automated tasks on an app container using the Platform.sh CLI, 
+-  Allow a CI system to run automated tasks using the {{% vendor/name %}} CLI.
+-  Run automated tasks on an app container using the {{% vendor/name %}} CLI, 
    for example in a cron job. 
 
 Note that when running CLI commands in these cases,
@@ -101,16 +100,17 @@ use the `--no-wait` flag.
 
 ### Authenticate in a CI system
 
-You can allow your CI system to run automated tasks using the Platform.sh CLI.
-To do so, create an environment variable named `PLATFORMSH_CLI_TOKEN` with your API token as its value. 
+<!-- @todo: CLI_TOKEN variable for Upsun -->
+You can allow your CI system to run automated tasks using the {{% vendor/name %}} CLI.
+To do so, create an environment variable named `{{% vendor/prefix_cli %}}_CLI_TOKEN` with your API token as its value. 
 For more information, see your CI system's official documentation.
 
-To run SSH-based commands that aren't specific to the Platform.sh CLI,
+To run SSH-based commands that aren't specific to the {{% vendor/name %}} CLI,
 see how to [load the proper SSH certificate](#use-the-cli-ssh-certificate-for-non-cli-commands).
 
-### Authenticate in a Platform.sh environment
+### Authenticate in an environment
 
-You can run automated tasks on an app container using the Platform.sh CLI.
+You can run automated tasks on an app container using the {{% vendor/name %}} CLI.
 To do so, set your API token as a [top-level environment variable](../../development/variables/_index.md#top-level-environment-variables).
 
 {{< note theme="warning" >}}
@@ -127,9 +127,18 @@ title=Using the CLI
 +++
 
 Run the following command:
-
+<!-- @todo: CLI_TOKEN variable for Upsun -->
 ```bash
-platform variable:create -e {{< variable "ENVIRONMENT_NAME" >}} --level environment --prefix 'env' --name PLATFORMSH_CLI_TOKEN --sensitive true --value '{{< variable "API_TOKEN" >}}' --inheritable false --visible-build true --no-interaction
+{{% vendor/cli %}} variable:create \
+   -e {{< variable "ENVIRONMENT_NAME" >}} \
+   --level environment \
+   --prefix 'env' \
+   --name {{% vendor/prefix_cli %}}_CLI_TOKEN \
+   --sensitive true \
+   --value '{{< variable "API_TOKEN" >}}' \
+   --inheritable false \
+   --visible-build true \
+   --no-interaction
 ```
 
 <--->
@@ -141,7 +150,7 @@ title=In the Console
 2. Click {{< icon settings >}} **Settings**.
 3. Click **Variables**.
 4. Click **+ Add variable**.
-5. In the **Variable name** field, enter `env:PLATFORMSH_CLI_TOKEN`.
+5. In the **Variable name** field, enter `env:{{% vendor/prefix_cli %}}_CLI_TOKEN`.
 6. In the **Value** field, enter your API token.
 7. Make sure the **Available at runtime** and **Sensitive variable** options are selected.
 8. Click **Add variable**.
@@ -150,20 +159,21 @@ title=In the Console
 
 Then add a build hook to your app configuration to install the CLI as part of the build process.
 
-```yaml {location=".platform.app.yaml"}
+<!-- @todo: CLI installation path for CI -->
+```yaml {configFile="app"}
 hooks:
     build: |
         set -e
-        echo "Installing Platform.sh CLI"
+        echo "Installing {{% vendor/name %}} CLI"
         curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
 
-        echo "Testing Platform.sh CLI"
-        platform
+        echo "Testing {{% vendor/name %}} CLI"
+        {{% vendor/cli %}}
 ```
 
 You can now call the CLI from within the shell on the app container or in a cron job.
 
-To run SSH-based commands that aren't specific to the Platform.sh CLI,
+To run SSH-based commands that aren't specific to the {{% vendor/name %}} CLI,
 see how to [load the proper SSH certificate](#use-the-cli-ssh-certificate-for-non-cli-commands).
 
 You can set up a cron job on a specific type of environment.
@@ -177,25 +187,23 @@ crons:
         commands:
             start: |
                 if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-                   platform backup:create --yes --no-wait
-                   platform source-operation:run update --no-wait --yes
+                   {{% vendor/cli %}} backup:create --yes --no-wait
+                   {{% vendor/cli %}} source-operation:run update --no-wait --yes
                 fi
 ```
 
 ## Use the CLI SSH certificate for non-CLI commands
 
-When you set a `PLATFORMSH_CLI_TOKEN` environment variable,
+When you set a `{{% vendor/prefix_cli %}}_CLI_TOKEN` environment variable,
 the CLI authentication isn't complete until your run a CLI command 
 or load the CLI SSH certificate.
 
-For example, after setting a `PLATFORMSH_CLI_TOKEN` environment variable,
+For example, after setting a `{{% vendor/prefix_cli %}}_CLI_TOKEN` environment variable,
 you might need to run `ssh`, `git`, `rsync`, or `scp` commands before you run any CLI commands.
 
 In this case, to ensure all your commands work, load the CLI SSH certificate first.
 To do so, run the following command:
 
 ```bash
-platform ssh-cert:load --no-interaction
+{{% vendor/cli %}} ssh-cert:load --no-interaction
 ```
-
-

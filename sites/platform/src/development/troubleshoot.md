@@ -35,7 +35,7 @@ title=Using the CLI
 Run the following command:
 
 ```sh
-platform redeploy
+{{% vendor/cli %}} redeploy
 ```
 
 {{< /codetabs >}}
@@ -56,7 +56,7 @@ To rerun the `build` and `deploy` hooks, [manually trigger a build](#manually-tr
 ### Manually trigger builds
 
 To increase performance and keep applications the same across environments,
-Platform.sh reuses built applications if its code and build time configuration (variables and such) remain the same.
+{{% vendor/name %}} reuses built applications if its code and build time configuration (variables and such) remain the same.
 
 There may be times where you want to force your application to be built again without changing its code,
 for example to test an issue in a build hook or when external dependencies change.
@@ -67,14 +67,14 @@ Assuming you want to do this for your `main` environment,
 first create a `REBUILD_DATE` environment variable:
 
 ```bash
-platform variable:create --environment main --level environment --prefix env --name REBUILD_DATE --value "$(date)" --visible-build true
+{{% vendor/cli %}} variable:create --environment main --level environment --prefix env --name REBUILD_DATE --value "$(date)" --visible-build true
 ```
 
 This triggers a build right away to propagate the variable.
 To force a rebuild at any time, update the variable with a new value:
 
 ```bash
-platform variable:update --environment main --value "$(date)" "env:REBUILD_DATE"
+{{% vendor/cli %}} variable:update --environment main --value "$(date)" "env:REBUILD_DATE"
 ```
 
 This forces your application to be built even if no code has changed.
@@ -89,7 +89,7 @@ while that service is experiencing issues.
 To clear the build cache, run the following command:
 
 ```sh
-platform project:clear-build-cache
+{{% vendor/cli %}} project:clear-build-cache
 ```
 
 The next build for each environment is likely to take longer as the cache rebuilds.
@@ -112,16 +112,22 @@ Typical causes and potential solutions include:
 
 - Your app is listening at the wrong place.
   - Check your app's [upstream properties](../create-apps/app-reference.md#upstream).
-  - If your app listening at a port, make sure it's using the [`PORT` environment variable](./variables/use-variables.md#use-platformsh-provided-variables).
-- Your `.platform.app.yaml` configuration has an error and a process isn't starting
+  - If your app listening at a port, make sure it's using the [`PORT` environment variable](./variables/use-variables.md#use-provided-variables).
+- Your `{{< vendor/configfile "app" >}}` configuration has an error and a process isn't starting
   or requests can't be forwarded to it correctly.
   - Check your `web.commands.start` entry or your `passthru` configuration.
 - The amount of traffic coming to your site exceeds the processing power of your application.
   - You may want to [check if bots are overwhelming your site](https://community.platform.sh/t/diagnosing-and-resolving-issues-with-excessive-bot-access/792).
+  {{% version/only "1" %}}
   - Alternatively, you may need to [increase your plan size](../administration/pricing/_index.md).
+  {{% /version/only %}}
 - Certain code paths in your application are too slow and timing out.
   - Check your code is running smoothly.
+  {{% version/specific %}}
   - Consider adding an [observability solution](../increase-observability/integrate-observability/_index.md) to get a better view of your application.
+  <--->
+  - Consider using the [observability solution](../increase-observability/application-metrics/_index.md) included in your project to get a better view of your application.
+  {{% /version/specific %}}
 - A PHP process is crashing because of a segmentation fault.
   - See [how to deal with crashed processes](../languages/php/troubleshoot.md#troubleshoot-a-crashed-php-process).
 - A PHP process is killed by the kernel out-of-memory killer.
@@ -130,14 +136,14 @@ Typical causes and potential solutions include:
 ## Site outage
 
 If you can't access some part of your project, whether it's the live site, development environment, or Console,
-check the [Platform.sh status page](https://status.platform.sh/).
+check the [{{% vendor/name %}} status page](https://status.platform.sh/).
 There you can see planned maintenance and subscribe to updates for any potential outages.
 
-If the status is operational, [contact support](../overview/get-support.md).
+If the status is operational, [contact support](/learn/overview/get-support.md).
 
 ## Command not found
 
-When you've added a command line tool (such as [Drush](../other/glossary.md#drush)),
+When you've added a command line tool (such as [Drush](/glossary.md#drush)),
 you might encounter an error like the following:
 
 ```bash
@@ -157,7 +163,7 @@ Instead, call the app/shell/runtime directly passing your script file to that ex
 
 ## Missing commits
 
-If you push code to Platform.sh without the full Git history, sometimes commits are missing.
+If you push code to {{% vendor/name %}} without the full Git history, sometimes commits are missing.
 This can happen if you're pushing code from an external CI/CD pipeline, such as a GitHub action.
 Such pipelines often do only shallow clones by default.
 
@@ -174,7 +180,7 @@ or using the [`GIT_DEPTH` variable](https://docs.gitlab.com/ee/ci/large_reposito
 
 When trying to upload a large JSON file to your API, you might see a 400 response code (`Malformed request`).
 
-Platform.sh enforces a 10&nbsp;MB limit on files with the `application/json` `Content-Type` header.
+{{% vendor/name %}} enforces a 10&nbsp;MB limit on files with the `application/json` `Content-Type` header.
 To send large files, use the `multipart/form-data` header instead:
 
 ```bash
@@ -189,7 +195,7 @@ For MySQL specific errors, see how to [troubleshoot MySQL](../add-services/mysql
 
 If you try to use a user to create a database, you get an error saying `permission denied to create database`.
 The database is created for you
-and can be found in the `path` key of the `PLATFORM_RELATIONSHIPS` [environment variable](./variables/use-variables.md#use-platformsh-provided-variables).
+and can be found in the `path` key of the `PLATFORM_RELATIONSHIPS` [environment variable](./variables/use-variables.md#use-provided-variables).
 
 ## Storage
 
@@ -206,9 +212,9 @@ Or [declare mounts](../create-apps/app-reference.md#mounts),
 which are writable even during and after deploy.
 They can be used for your data: file uploads, logs, and temporary files.
 
-### Git push fails due to lack of disk space
+### {{% vendor/name %}} push fails due to lack of disk space
 
-You might see the following message when attempting to run `git push`:
+You might see the following message when attempting to run `{{% vendor/cli %}} push`:
 `There isn't enough free space to complete the push`
 
 This usually indicates that large files are present in the repository (where they shouldn't be).
@@ -233,8 +239,7 @@ To determine if your environment is being stuck in the build or the deployment, 
 If the activity has the result `success`, the build has completed successfully and the system is trying to deploy.
 If the result is still `running`, the build is stuck.
 
-In most regions, stuck builds terminate after one hour.
-To have the build killed in [legacy regions](./regions.md#legacy-regions), create a [support ticket](https://console.platform.sh/-/users/~/tickets/open).
+In most regions, stuck builds terminate after one hour. 
 
 When a deployment is blocked, you should try the following:
 

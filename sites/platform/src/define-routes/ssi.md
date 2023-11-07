@@ -12,13 +12,26 @@ At its most basic, you can include files within other ones so as not to repeat y
 
 Start by enabling SSI:
 
-```yaml {location=".platform/routes.yaml"}
+{{< version/specific >}}
+<!-- Platform.sh configuration-->
+```yaml {configFile="routes"}
 "https://{default}/":
     type: upstream
     upstream: "app:http"
     ssi:
         enabled: true
 ```
+<--->
+<!-- Upsun configuration -->
+```yaml {configFile="routes"}
+routes:
+    "https://{default}/":
+        type: upstream
+        upstream: "app:http"
+        ssi:
+            enabled: true
+```
+{{< /version/specific >}}
 
 Then create a file you want to include elsewhere:
 
@@ -51,7 +64,9 @@ So one file is cached, while another updates dynamically.
 
 For example, you can activate SSI on one route with cache disabled and enable cache on another route:
 
-```yaml {location=".platform/routes.yaml"}
+{{< version/specific >}}
+<!-- Platform.sh configuration-->
+```yaml {configFile="routes"}
 "https://{default}/":
     type: upstream
     upstream: "app:http"
@@ -59,12 +74,32 @@ For example, you can activate SSI on one route with cache disabled and enable ca
         enabled: true
     cache:
         enabled: false
+
 "https://{default}/cache":
     type: upstream
     upstream: "app:http"
     cache:
         enabled: true
 ```
+<--->
+<!-- Upsun configuration -->
+```yaml {configFile="routes"}
+routes:
+    "https://{default}/":
+        type: upstream
+        upstream: "app:http"
+        ssi:
+            enabled: true
+        cache:
+            enabled: false
+            
+    "https://{default}/cache":
+        type: upstream
+        upstream: "app:http"
+        cache:
+            enabled: true
+```
+{{< /version/specific >}}
 
 Then create a page that displays the current date and time and is cached for 60 seconds
 (the example uses PHP, but any server-side language would work):

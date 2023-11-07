@@ -16,6 +16,7 @@
     "versions": {
       "deprecated": [],
       "supported": [
+        "120",
         "113",
         "95",
         "91",
@@ -204,6 +205,7 @@
         "1.9"
       ],
       "supported": [
+        "1.15",
         "1.14",
         "1.13",
         "1.12"
@@ -250,6 +252,7 @@
     "type": "golang",
     "versions": {
       "deprecated": [
+        "1.19",
         "1.18",
         "1.17",
         "1.16",
@@ -263,8 +266,8 @@
         "1.8"
       ],
       "supported": [
-        "1.20",
-        "1.19"
+        "1.21",
+        "1.20"
       ]
     }
   },
@@ -321,13 +324,14 @@
     "type": "java",
     "versions": {
       "deprecated": [
-        "19",
-        "18",
         "14",
         "13",
         "12"
       ],
       "supported": [
+        "21",
+        "19",
+        "18",
         "17",
         "11",
         "8"
@@ -683,6 +687,7 @@
         "0.12"
       ],
       "supported": [
+        "20",
         "18",
         "16"
       ]
@@ -714,11 +719,13 @@
     "runtime": false,
     "type": "opensearch",
     "versions": {
-      "deprecated": [],
-      "supported": [
-        "2",
+      "deprecated": [
         "1.2",
         "1.1"
+      ],
+      "supported": [
+        "2",
+        "1"
       ],
       "legacy": [
         "1.1"
@@ -728,7 +735,6 @@
       "deprecated": [],
       "supported": [
         "2.5",
-        "2.4",
         "1.2"
       ]
     },
@@ -920,6 +926,7 @@
         "2.7*"
       ],
       "supported": [
+        "3.12",
         "3.11",
         "3.10",
         "3.9",
@@ -1006,6 +1013,7 @@
         "2.8"
       ],
       "supported": [
+        "7.2",
         "7.0",
         "6.2"
       ],
@@ -1034,6 +1042,7 @@
         "2.8"
       ],
       "supported": [
+        "7.2",
         "7.0",
         "6.2"
       ]
@@ -1193,7 +1202,7 @@
     },
     "endpoint": "http+stats",
     "min_disk_size": null,
-    "configuration": "vcl: !include\n            type: string\n            path: config.vcl",
+    "configuration": "    configuration:\n        vcl: !include\n            type: string\n            path: config.vcl",
     "service_relationships": "application: 'app:http'",
     "name": "Varnish",
     "runtime": false,
@@ -1206,6 +1215,7 @@
         "6.0"
       ],
       "supported": [
+        "7.3",
         "7.2",
         "6.3"
       ]
@@ -1221,7 +1231,7 @@
     },
     "endpoint": "manage_keys",
     "min_disk_size": 512,
-    "configuration": "endpoints:\n            <ENDPOINT_ID>:\n                - policy: <POLICY>\n                  key: \"<KEY_NAME>\"\n                  type: <ENDPOINT_TYPE>",
+    "configuration": "    configuration:\n        endpoints:\n            <ENDPOINT_ID>:\n                - policy: <POLICY>\n                  key: <KEY_NAME>\n                  type: <ENDPOINT_TYPE>",
     "name": "Vault KMS",
     "repo_name": "vault-kms",
     "runtime": false,

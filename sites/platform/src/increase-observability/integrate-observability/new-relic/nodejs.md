@@ -11,7 +11,7 @@ Subscribe to New Relic to [get your license key](https://docs.newrelic.com/docs/
 Add your New Relic license key as an environment level variable:
 
 ```bash
-platform variable:create --level environment --environment {{< variable "ENVIRONMENT_NAME" >}} --visible-build false --inheritable false env:NEW_RELIC_LICENSE_KEY --value {{< variable "NEW_RELIC_LICENSE_KEY" >}}
+{{% vendor/cli %}} variable:create --level environment --environment {{< variable "ENVIRONMENT_NAME" >}} --visible-build false --inheritable false env:NEW_RELIC_LICENSE_KEY --value {{< variable "NEW_RELIC_LICENSE_KEY" >}}
 ```
 
 ## Give your application a name
@@ -19,7 +19,7 @@ platform variable:create --level environment --environment {{< variable "ENVIRON
 Add a new environment level variable to give your application a recognizable name:
 
 ```bash
-platform variable:create --level environment --environment {{< variable "ENVIRONMENT_NAME" >}} --visible-build false --inheritable false env:NEW_RELIC_APP_NAME --value {{< variable "APP_NAME" >}}
+{{% vendor/cli %}} variable:create --level environment --environment {{< variable "ENVIRONMENT_NAME" >}} --visible-build false --inheritable false env:NEW_RELIC_APP_NAME --value {{< variable "APP_NAME" >}}
 ```
 
 {{< note >}}
@@ -31,7 +31,7 @@ Repeat these two steps for every environment you want to monitor, making sure yo
 The File System being read-only, New Relic isn't able to create its log file.
 To allow New Relic to output logs, add a writable directory to put the log file in.
 
-At the end of the `build` hook in your `.platform.app.yaml`, create a `newrelic` directory in your application root:
+At the end of the `build` hook in your `{{< vendor/configfile "app" >}}`, create a `newrelic` directory in your application root:
 
 ```yaml
 hooks:
@@ -54,7 +54,7 @@ mounts:
 To tell New Relic to use this file, create a new project level variable called `NEW_RELIC_LOG`:
 
 ```bash
-platform variable:create --level project --visible-build false env:NEW_RELIC_LOG --value /app/newrelic/newrelic_agent.log
+{{% vendor/cli %}} variable:create --level project --visible-build false env:NEW_RELIC_LOG --value /app/newrelic/newrelic_agent.log
 ```
 
 ## Set up the New Relic agent
@@ -90,7 +90,7 @@ Once your environment is deployed and you've generated some traffic, you need to
 You can check that your application is properly connected to New Relic by looking at the `/app/newrelic/newrelic_agent.log` file:
 
 ```bash
-platform ssh -- cat /app/newrelic/newrelic_agent.log
+{{% vendor/cli %}} ssh -- cat /app/newrelic/newrelic_agent.log
 ```
 
 Which has an output similar to the following:

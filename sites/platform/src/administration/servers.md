@@ -1,10 +1,10 @@
 ---
 title: Server upgrades
-description: Information about how some Platform.sh servers delivering features are updated.
+description: Information about how some {{% vendor/name %}} servers delivering features are updated.
 weight: 10
 ---
 
-Platform.sh runs a variety of servers to deliver its services.
+{{% vendor/name %}} runs a variety of servers to deliver its services.
 To ensure your projects get the newest features, these servers are occasionally updated.
 
 You don't have to do anything to get the updates.

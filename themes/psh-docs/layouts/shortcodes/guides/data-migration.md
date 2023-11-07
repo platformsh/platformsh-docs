@@ -2,7 +2,7 @@
 {{ $isSymfony := .Get "Symfony" }}
 ## Migrate your data
 
-If you are moving an existing site to Platform.sh, then in addition to code you also need to migrate your data.
+If you are moving an existing site to {{ .Site.Params.vendor.name }}, then in addition to code you also need to migrate your data.
 That means your database and your files.
 
 ### Import the database
@@ -15,7 +15,7 @@ such as using the
 
 {{ .Inner | .Page.RenderString }}
 
-Next, import the database into your Platform.sh site by running the following command:
+Next, import the database into your {{ .Site.Params.vendor.name }} site by running the following command:
 
 {{ if $isSymfony }}
 ```bash
@@ -23,7 +23,7 @@ symfony cloud:sql < dump.sql
 ```
 {{ else }}
 ```bash
-platform sql < dump.sql
+{{ `{{< vendor/cli >}}` | .Page.RenderString }} sql < dump.sql
 ```
 {{ end }}
 
@@ -41,18 +41,18 @@ all of your user files to your local `files/user` directory and your public file
 {{ end }}, but adjust accordingly for their actual locations.
 
 Next, upload your files to your mounts
-using the {{ if $isSymfony }}`symfony cloud:mount:upload`{{ else }}`platform mount:upload`{{ end }} command.
+using the {{ if $isSymfony }}`symfony cloud:mount:upload`{{ else }}`{{ `{{< vendor/cli >}}` | .Page.RenderString }} mount:upload`{{ end }} command.
 Run the following command from your local Git repository root,
 modifying the `--source` path if needed.
 
 {{ if $isWordPress }}
 ```bash
-platform mount:upload --mount wordpress/wp-content/uploads --source ./wordpress/wp-content/uploads
+{{ `{{< vendor/cli >}}` | .Page.RenderString }} mount:upload --mount wordpress/wp-content/uploads --source ./wordpress/wp-content/uploads
 ```
 {{ else }}
 ```bash
-platform mount:upload --mount src/main/resources/files/user --source ./files/user
-platform mount:upload --mount src/main/resources/files/public --source ./files/public
+{{ `{{< vendor/cli >}}` | .Page.RenderString }} mount:upload --mount src/main/resources/files/user --source ./files/user
+{{ `{{< vendor/cli >}}` | .Page.RenderString }} mount:upload --mount src/main/resources/files/public --source ./files/public
 ```
 {{ end }}
 
@@ -60,7 +60,7 @@ platform mount:upload --mount src/main/resources/files/public --source ./files/p
 This uses an SSH tunnel and rsync to upload your files as efficiently as possible.
 Note that rsync is picky about its trailing slashes, so be sure to include those.
 
-You've now added your files and database to your Platform.sh environment.
+You've now added your files and database to your {{ .Site.Params.vendor.name }} environment.
 When you make a new branch environment off of it,
 all of your data is fully cloned to that new environment
 so you can test with your complete dataset without impacting production.

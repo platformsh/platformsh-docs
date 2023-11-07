@@ -2,7 +2,7 @@
 title: Configure apps
 weight: -210
 description: |
-  Control your apps and how they're built and deployed on Platform.sh with YAML configuration.
+  Control your apps and how they're built and deployed on {{% vendor/name %}} with YAML configuration.
 layout: single
 keywords:
   - ".platform.app.yaml"
@@ -10,7 +10,9 @@ keywords:
 
 {{% description %}}
 
+{{% version/only "1" %}}
 ![Applications](/images/config-diagrams/applications.png "0.50")
+{{% /version/only %}}
 
 Within a single project, you can have one or more apps and each app can have multiple instances.
 Instances are where the same code can be run with different configurations,
@@ -22,26 +24,35 @@ You can find a [complete reference](./app-reference.md) of all possible settings
 
 To create a very basic app, you need a few things:
 
+{{% version/specific %}}
 * A unique `name` not shared by any other app in the project.
 * The runtime `type` defining what language it uses.
 * A `disk` size for your deployed files.
 * A definition of how to handle requests from the outside `web`.
+<--->
+* A unique name not shared by any other app in the project.
+* The runtime `type` defining what language it uses.
+* A definition of how to handle requests from the outside `web`.
+{{% /version/specific %}}
 
 The following example shows such a basic setup for Node.js:
 
-```yaml {location=".platform.app.yaml"}
+<!-- @todo: code-links break the rendering. Removed for now, to revisit. -->
+{{< version/specific >}}
+
+```yaml {configFile="app"}
 # The app's name, which must be unique within the project.
-{{< code-link destination="/create-apps/app-reference.html#top-level-properties" text="name" >}}: 'app'
+name: 'app'
 
 # The language and version for your app.
-{{< code-link destination="/create-apps/app-reference.html#types" text="type" >}}: 'nodejs:16'
+type: 'nodejs:{{% latest "nodejs" %}}'
 
 # The size of the app's persistent disk (in MB).
-{{< code-link destination="/create-apps/app-reference.html#top-level-properties" text="disk" >}}: 2048
+disk: 2048
 
 # The app's configuration when it's exposed to the web.
-{{< code-link destination="/create-apps/app-reference.html#web" text="web" >}}:
-    {{< code-link destination="/create-apps/app-reference.html#locations" text="locations" >}}:
+web:
+    locations:
         '/':
             # The public directory relative to the app root.
             root: 'public'
@@ -53,6 +64,32 @@ The following example shows such a basic setup for Node.js:
             allow: true
 ```
 
+<--->
+
+```yaml {configFile="app"}
+# Top-level key, which contains configurations for all app containers.
+applications:
+    # The app's name, which must be unique within the project.
+    myapp:
+        # The language and version for your app.
+        type: 'nodejs:{{% latest "nodejs" %}}'
+
+        # The app's configuration when it's exposed to the web.
+        web:
+            locations:
+                '/':
+                    # The public directory relative to the app root.
+                    root: 'public'
+                    # Forward resources to the app.
+                    passthru: true
+                    # What files to use when serving a directory.
+                    index: ["index.html"]
+                    # Allow files even without specified rules.
+                    allow: true
+```
+
+{{< /version/specific >}}
+
 ## Use multiple apps
 
 You might have multiple apps you want to run from a single Git repository,
@@ -62,7 +99,7 @@ See the various ways to set up a [multi-app project](./multi-app/_index.md).
 
 ## Connect to services
 
-If you want to use one of the [databases or other services Platform.sh provides](../add-services/_index.md),
+If you want to use one of the [databases or other services {{% vendor/name %}} provides](../add-services/_index.md),
 set it up by following these steps:
 
 1. Configure the service based on the documentation for that service.
@@ -95,11 +132,11 @@ doing so when the response includes any user-specific information, including a s
 opens up an attack vector over SSL/TLS connections.
 For that reason, you generally shouldn't compress generated responses.
 
-Requests for static files that are served directly by Platform.sh are compressed automatically
+Requests for static files that are served directly by {{% vendor/name %}} are compressed automatically
 using either gzip or Brotli compression if:
 
 * The request headers for the file support gzip or Brotli compression.
-* The file is served directly from disk by Platform.sh and not passed through your application.
+* The file is served directly from disk by {{% vendor/name %}} and not passed through your application.
 * The file would be served with a cache expiration time in the future.
 * The file type is one of: HTML, JavaScript, JSON, PDF, PostScript, SVG, CSS, CSV, plain text, or XML.
 
@@ -113,26 +150,28 @@ This approach supports any file type and offers some CPU optimization, especiall
 
 The following example shows a setup for a PHP app with comments to explain the settings.
 
-```yaml {location=".platform.app.yaml"}
+{{% version/specific %}}
+
+```yaml {configFile="app"}
 # The app's name, which must be unique within the project.
-{{< code-link destination="/create-apps/app-reference.html#top-level-properties" text="name" >}}: 'app'
+name: 'app'
 
 # The language and version for your app.
-{{< code-link destination="/create-apps/app-reference.html#types" text="type" >}}: 'php:8.1'
+type: 'php:{{% latest "php" %}}'
 
 # Global dependencies to be added and cached and then available as commands.
-{{< code-link destination="/create-apps/app-reference.html#dependencies" text="dependencies" >}}:
+dependencies:
     php:
         composer/composer: '^2'
 
 # The app's relationships (connections) with services or other applications.
 # The key is the relationship name that can be viewed in the app.
 # The value is specific to how the service is configured.
-{{< code-link destination="/create-apps/app-reference.html#relationships" text="relationships" >}}:
+relationships:
     database: 'mysqldb:mysql'
 
 # Scripts that are run as part of the build and deploy process.
-{{< code-link destination="/create-apps/hooks.html" text="hooks" >}}:
+hooks:
     # Build hooks can modify app files on disk but not access any services like databases.
     build: ./build.sh
     # Deploy hooks can access services but the file system is now read-only.
@@ -141,19 +180,19 @@ The following example shows a setup for a PHP app with comments to explain the s
     post_deploy: ./post_deploy.sh
 
 # The size of the app's persistent disk (in MB).
-{{< code-link destination="/create-apps/app-reference.html#top-level-properties" text="disk" >}}: 2048
+disk: 2048
 
 # Define writable, persistent filesystem mounts.
 # The key is the directory path relative to the application root.
 # In this case, `web-files` is just a unique name for the mount.
-{{< code-link destination="/create-apps/app-reference.html#mounts" text="mounts" >}}:
+mounts:
     'web/files':
         source: local
         source_path: 'web-files'
 
 # The app's configuration when it's exposed to the web.
-{{< code-link destination="/create-apps/app-reference.html#web" text="web" >}}:
-    {{< code-link destination="/create-apps/app-reference.html#locations" text="locations" >}}:
+web:
+    locations:
         '/':
             # The app's public directory relative to its root.
             root: 'public'
@@ -167,3 +206,64 @@ The following example shows a setup for a PHP app with comments to explain the s
             allow: true
             passthru: '/app.php'
 ```
+
+<--->
+
+```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    myapp:
+        # The language and version for your app.
+        type: 'php:{{% latest "php" %}}'
+
+        # Global dependencies to be added and cached and then available as commands.
+        dependencies:
+            php:
+                composer/composer: '^2'
+
+        # The app's relationships (connections) with services or other applications.
+        # The key is the relationship name that can be viewed in the app.
+        # The value is specific to how the service is configured.
+        relationships:
+            database: 'mysqldb:mysql'
+
+        # Scripts that are run as part of the build and deploy process.
+        hooks:
+            # Build hooks can modify app files on disk but not access any services like databases.
+            build: ./build.sh
+            # Deploy hooks can access services but the file system is now read-only.
+            deploy: ./deploy.sh
+            # Post deploy hooks run when the app is accepting outside requests.
+            post_deploy: ./post_deploy.sh
+
+        # Define writable, persistent filesystem mounts.
+        # The key is the directory path relative to the application root.
+        # In this case, `web-files` is just a unique name for the mount.
+        mounts:
+            'web/files':
+                source: local
+                source_path: 'web-files'
+
+        # The app's configuration when it's exposed to the web.
+        web:
+            locations:
+                '/':
+                    # The app's public directory relative to its root.
+                    root: 'public'
+                    # A front controller to determine how to handle requests.
+                    passthru: '/app.php'
+                # Allow uploaded files to be served, but don't run scripts.
+                # Missing files get sent to the front controller.
+                '/files':
+                    root: 'web/files'
+                    scripts: false
+                    allow: true
+                    passthru: '/app.php'
+
+services:
+    mysqldb:
+        type: mariadb:{{% latest "mariadb" %}}
+        disk: 256
+```
+
+{{% /version/specific %}}

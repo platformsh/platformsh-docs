@@ -6,7 +6,7 @@ description: |
     Configure Redis for your WordPress site.
 ---
 
-There are a number of Redis plugins for WordPress, only some of which are compatible with Platform.sh.
+There are a number of Redis plugins for WordPress, only some of which are compatible with {{% vendor/name %}}.
 We've tested and recommend [WP Redis](https://wordpress.org/plugins/wp-redis/)
 and [Redis Object Cache](https://wordpress.org/plugins/redis-cache/),
 both of which require a minimal amount of configuration.
@@ -17,7 +17,7 @@ both of which require a minimal amount of configuration.
 
 To create a Redis service, add the following to your [services configuration](../../add-services/_index.md):
 
-```yaml {location=".platform/services.yaml"}
+```yaml {configFile="services"}
 rediscache:
     type: redis:6.0
 ```
@@ -30,12 +30,12 @@ Next open a connection to the new Redis service.
 In the `relationships` section of your [app configuration](../../create-apps/_index.md),
 add the following:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 relationships:
     redis: "rediscache:redis"
 ```
 
-The key (left side) is the name that's exposed to the application in the [`PLATFORM_RELATIONSHIPS` variable](../../development/variables/use-variables.md#use-platformsh-provided-variables).
+The key (left side) is the name that's exposed to the application in the [`PLATFORM_RELATIONSHIPS` variable](../../development/variables/use-variables.md#use-provided-variables).
 The value (right side) is the name of the service you specified in step 1 (`rediscache`) and the endpoint (`redis`).
 If you named the service something different in step 1, change `rediscache` to that.
 
@@ -85,7 +85,7 @@ adjusting the paths based on where your plugins are located:
 title=WP Redis
 +++
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 hooks:
     build: |
         ...
@@ -100,7 +100,7 @@ hooks:
 title=Redis Object Cache
 +++
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 hooks:
     build: |
         ...
@@ -113,7 +113,7 @@ hooks:
 
 It should now look something like:
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 hooks:
     build: |
         set -e

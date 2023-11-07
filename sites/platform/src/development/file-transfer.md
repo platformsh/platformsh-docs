@@ -12,7 +12,7 @@ To do so, you need to configure mounts or use an SSH client.
 
 [Mounts](../create-apps/app-reference.md#mounts) let you set up directories that remain writable after the build is complete.
 You can then transfer files directly to and from mounts inside your app
-with a single command via the [Platform.sh CLI](../administration/cli/_index.md).
+with a single command via the [{{% vendor/name %}} CLI](../administration/cli/_index.md).
 
 Alternatively, you can transfer files to and from your built app using an SSH client 
 such as `scp` or `rsync`.
@@ -26,13 +26,13 @@ you may want to view a list of all the mounts inside your app.
 To do so, run the following command:
 
 ```bash
-platform mounts
+{{% vendor/cli %}} mounts
 ```
 
 The output is similar to the following:
 
 ```bash
-Mounts on abcdefgh1234567-main-abcd123--app@ssh.eu.platform.sh:
+Mounts on abcdefgh1234567-main-abcd123--app@ssh.eu.{{< vendor/urlraw "host" >}}:
 +-------------------------+----------------------+
 | Mount path              | Definition           |
 +-------------------------+----------------------+
@@ -53,7 +53,7 @@ For example, to upload the files contained in the local `private` directory to t
 run the following command: 
 
 ```bash
-platform mount:upload --mount private --source ./private
+{{% vendor/cli %}} mount:upload --mount private --source ./private
 ```
 
 You get the following output:
@@ -78,7 +78,7 @@ For example, to download a file from the `private` mount to your local `private`
 run the following command:
 
 ```bash
-platform mount:download --mount private --target ./private
+{{% vendor/cli %}} mount:download --mount private --target ./private
 ```
 
 You get the following output:
@@ -108,16 +108,16 @@ For example, to download a `diagram.png` file from the `web/uploads` directory
 run the following command:
 
 ```bash
-scp "$(platform ssh --pipe)":web/uploads/diagram.png .
+scp "$({{% vendor/cli %}} ssh --pipe)":web/uploads/diagram.png .
 ```
 
 The `diagram.png` file is copied to the current local directory.
 
-To copy files from your local directory to the Platform.sh environment, 
+To copy files from your local directory to the {{% vendor/name %}} environment, 
 reverse the order of the parameters:
 
 ```bash
-scp diagram.png "$(platform ssh --pipe)":web/uploads
+scp diagram.png "$({{% vendor/cli %}} ssh --pipe)":web/uploads
 ```
 
 For other options, see the [`scp` documentation](https://www.man7.org/linux/man-pages/man1/scp.1.html).
@@ -131,14 +131,14 @@ to the local `uploads` directory,
 run the following command:
 
 ```bash
-rsync -azP "$(platform ssh --pipe)":web/uploads/ ./uploads/
+rsync -azP "$({{% vendor/cli %}} ssh --pipe)":web/uploads/ ./uploads/
 ```
 
-To copy files from your local directory to the Platform.sh environment, 
+To copy files from your local directory to the {{% vendor/name %}} environment, 
 reverse the order of the parameters:
 
 ```bash
-rsync -azP uploads/ "$(platform ssh --pipe)":web/uploads/
+rsync -azP uploads/ "$({{% vendor/cli %}} ssh --pipe)":web/uploads/
 ```
 
 Note that `rsync` is very sensitive about trailing `/` characters.

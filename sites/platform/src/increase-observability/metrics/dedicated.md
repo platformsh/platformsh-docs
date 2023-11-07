@@ -7,7 +7,7 @@ description: "Understand how to read metrics for {{% names/dedicated-gen-2 %}} e
 For {{% names/dedicated-gen-2 %}} environments, infrastructure metrics report CPU, RAM, and disk space per host and mount point.
 The graphs differ when the environment has multiple clusters.
 
-Metrics are available for Production environments and [Grid environments](./grid.md) (such as your development environments).
+Metrics are available for Production environments and [Grid environments](./grid.md) (such as your preview environments).
 They aren't available for other {{% names/dedicated-gen-2 %}} environments (such as a staging environment).
 
 By default, the graphs include all hosts and an average over the hosts.
@@ -35,13 +35,8 @@ ssh 3.ent-abcde3clusterID-production-qwerty8@ssh.us-4.platform.sh
 You get output similar to the following:
 
 ```bash
- ___ _      _    __                    _
-| _ \ |__ _| |_ / _|___ _ _ _ __    __| |_
-|  _/ / _` |  _|  _/ _ \ '_| '  \ _(_-< ' \
-|_| |_\__,_|\__|_| \___/_| |_|_|_(_)__/_||_|
 
-
- Welcome to Platform.sh.
+ Welcome to {{% vendor/name %}}.
 
  This is environment production-qwerty8 of project abcde3clusterID.
 

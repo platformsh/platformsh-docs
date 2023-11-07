@@ -1,7 +1,7 @@
 ---
 title: Tethered local
 weight: -90
-description: Connect a locally running Django server directly to active services on a Platform.sh environment.
+description: Connect a locally running Django server directly to active services on a {{% vendor/name %}} environment.
 sectionBefore: Supported environments
 ---
 
@@ -10,7 +10,7 @@ sectionBefore: Supported environments
 {{< /note >}}
 
 To test changes locally, you can connect your locally running Django server
-to service containers on an active Platform.sh environment.
+to service containers on an active {{% vendor/name %}} environment.
 
 {{% guides/local-requirements framework="Django" %}}
 
@@ -18,16 +18,16 @@ to service containers on an active Platform.sh environment.
 
 If you followed the [Django deployment guide](../deploy/_index.md),
 you should have a Django configuration file with settings for [decoding variables](../deploy/customize.md#decoding-variables)
-and also [overrides for Platform.sh](../deploy/customize.md#decoding-variables).
+and also [overrides for {{% vendor/name %}}](../deploy/customize.md#decoding-variables).
 
-You can use these settings to set up a tethered connection to services running on a Platform.sh environment.
+You can use these settings to set up a tethered connection to services running on a {{% vendor/name %}} environment.
 The settings are used to mock the conditions of the environment locally.
 
 ## Create the tethered connection
 
 {{% tethered-dev/steps-start %}}
 
-1.  To ensure your `settings.py` file acts as if in a Platform.sh environment,
+1.  To ensure your `settings.py` file acts as if in a {{% vendor/name %}} environment,
     mock two variables present in active environments:
 
     ```bash
@@ -122,17 +122,29 @@ poetry run python manage.py runserver
 +++
 title=Pip
 +++
-{{< readFile file="snippets/guides/django/tethered/local-pip.sh" highlight="yaml" location="init-local.sh" >}}
+
+```bash {location="init-local.sh"}
+{{< snippets/guides/django/tethered/local-pip >}}
+```
+
 <--->
 +++
 title=Pipenv
 +++
-{{< readFile file="snippets/guides/django/tethered/local-pipenv.sh" highlight="yaml" location="init-local.sh" >}}
+
+```bash {location="init-local.sh"}
+{{< snippets/guides/django/tethered/local-pipenv >}}
+```
+
 <--->
 +++
 title=Poetry
 +++
-{{< readFile file="snippets/guides/django/tethered/local-poetry.sh" highlight="yaml" location="init-local.sh" >}}
+
+```bash {location="init-local.sh"}
+{{< snippets/guides/django/tethered/local-poetry >}}
+```
+
     {{< /codetabs >}}
 
 {{% local-dev/next-steps-end %}}

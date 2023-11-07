@@ -7,7 +7,7 @@ sidebarTitle: SSH keys
 To connect to your app using SSH keys, you need two keys:
 
 * A **private key** you must keep _secret_
-* A **public key** stored in your Platform.sh account
+* A **public key** stored in your {{% vendor/name %}} account
 
 A given SSH key pair can only be linked to a single user account.
 
@@ -17,8 +17,8 @@ If you have a key pair available, you aren't prompted to login.
 To keep connection secure, you need to regularly update the keys you use.
 A well-encrypted key is no substitute for regular key rotation.
 
-If you used GitHub to sign up for your Platform.sh account
-your public keys from GitHub are automatically synced to your Platform.sh account.
+If you used GitHub to sign up for your {{% vendor/name %}} account
+your public keys from GitHub are automatically synced to your {{% vendor/name %}} account.
 So you can use them already with the CLI or to [connect to your app](./_index.md#2-connect-to-an-app-with-ssh).
 
 ## Add SSH keys
@@ -54,16 +54,16 @@ To find your public key file:
    ```
 
 If you find a file ending in `.pub`,
-copy the location and [add it to your Platform.sh account](#2-add-an-ssh-key-to-your-platform-account).
+copy the location and [add it to your {{% vendor/name %}} account](#2-add-an-ssh-key-to-your-platform-account).
 
 If you don't find an existing key, [generate new keys](#1b-generate-new-keys).
 
 ### 1B. Generate new keys
 
-If you're logged in using the [Platform.sh CLI](./_index.md#1-authenticate-with-the-platformsh-cli),
-generate a key and have it added to your Platform.sh account automatically.
+If you're logged in using the [{{% vendor/name %}} CLI](./_index.md#1-authenticate-with-the-cli),
+generate a key and have it added to your {{% vendor/name %}} account automatically.
 
-1. In a terminal, run `platform ssh-key:add`.
+1. In a terminal, run `{{% vendor/cli %}} ssh-key:add`.
 1. If necessary, log in to a browser.
 1. Press `Y` and `enter` to create a new SSH key.
 1. Copy the location of the generated key.
@@ -76,21 +76,27 @@ generate a key and have it added to your Platform.sh account automatically.
 
 To generate a key otherwise, GitHub has a good [walk-through for creating SSH key pairs](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) on various operating systems.
 
-Then you need to [add it to your Platform.sh account](#2-add-an-ssh-key-to-your-platform-account).
+Then you need to [add it to your {{% vendor/name %}} account](#2-add-an-ssh-key-to-your-platform-account).
 
 ### 2. Add an SSH key to your Platform account
 
-Once you have the location of your public key, add it to your Platform.sh account.
+Once you have the location of your public key, add it to your {{% vendor/name %}} account.
 
-If you're logged in using the [Platform.sh CLI](./_index.md#1-authenticate-with-the-platformsh-cli),
+If you're logged in using the [{{% vendor/name %}} CLI](./_index.md#1-authenticate-with-the-cli),
 in a terminal run the following command (replacing `{{< variable "PATH_TO_YOUR_KEY" >}}` with the location of your public key):
 
 ```bash
-platform ssh-key:add '{{< variable "PATH_TO_YOUR_KEY" >}}'
+{{% vendor/cli %}} ssh-key:add '{{< variable "PATH_TO_YOUR_KEY" >}}'
 ```
 
+{{% version/specific %}}
+<!-- Platform.sh -->
 You can also add it in the Console,
 similar to this [video](https://docs.platform.sh/videos/management-console/add-ssh-mc.mp4).
+<--->
+<!-- Upsun -->
+You can also add it in the Console.
+{{% /version/specific %}}
 
 Now you are ready to use the key to [connect to an environment](./_index.md#2-connect-to-an-app-with-ssh).
 
@@ -98,12 +104,12 @@ Now you are ready to use the key to [connect to an environment](./_index.md#2-co
 
 To connect to a server using SSH keys, find the details in the Console:
 
-1. Open the [Platform.sh Console](https://console.platform.sh/).
+1. Open the [{{% vendor/name %}} Console](https://console.platform.sh/).
 1. Select a project.
 1. In the **Environment** dropdown, select the environment you want to access.
 1. Click the **SSH** dropdown.
 1. Copy the ssh command for where you want access.
-   (Example: `ssh abcdefghi5k-main-7rqtwti--app@ssh.us-2.platform.sh`)
+   (Example: `ssh abcdefghi5k-main-7rqtwti--app@ssh.us-2.{{< vendor/urlraw "host" >}}`)
 1. Enter the command into a terminal.
 
 Note that if you have just added your SSH key,
@@ -111,15 +117,15 @@ you need to [redeploy your environment](./troubleshoot-ssh.md#redeploy-your-envi
 
 ## Forwarding keys by default
 
-It may be helpful to set your SSH client to always forward keys to Platform.sh servers, which can simplify other SSH or rsync commands.
+It may be helpful to set your SSH client to always forward keys to {{% vendor/name %}} servers, which can simplify other SSH or rsync commands.
 To do so, include a block in your local `~/.ssh/config` file like so:
 
 ```text
-Host *.us.platform.sh
+Host *.us.{{< vendor/urlraw "host" >}}
        ForwardAgent yes
-Host *.eu.platform.sh
+Host *.eu.{{< vendor/urlraw "host" >}}
        ForwardAgent yes
 ```
 
-Include one `Host` entry for each Platform.sh region you want to connect to, such as `us-2` or `eu-4`.
+Include one `Host` entry for each {{% vendor/name %}} region you want to connect to, such as `us-2` or `eu-4`.
 (You can include other configuration as desired.)

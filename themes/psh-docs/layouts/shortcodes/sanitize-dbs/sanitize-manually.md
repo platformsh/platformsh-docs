@@ -19,13 +19,13 @@ Assumptions:
 - `users` is the table where all of your PII is stored in the `staging` development database.
 - `staging` is an exact copy of your production database.
 
-1.  Connect to the `staging` database by running `{{ if eq ( .Get "framework") "Symfony" }}symfony{{ else }}platform{{ end }} sql -e staging`.
+1.  Connect to the `staging` database by running `{{ if eq ( .Get "framework") "Symfony" }}symfony{{ else }}{{ `{{< vendor/cli >}}` | .Page.RenderString }}{{ end }} sql -e staging`.
 
 2.  Display all fields from your `users` table, to select which ones need to be redacted.
     Run the following query:
 
     ```sql
-    $ {{ $query }}
+    {{ $query }}
     ```
 
     You see output like the following:
@@ -51,7 +51,9 @@ Assumptions:
     You can create a script to automate the sanitization process to be run automatically on each new deployment.
     Once you have a working script, add your script to sanitize the database to [a `deploy` hook](../../create-apps/hooks/hooks-comparison.md#deploy-hook):
 
-    ```yaml {location=".platform.app.yaml"}
+{{ if eq .Page.Site.Params.vendor.config.version 1 }}
+
+    ```yaml {configFile="app"}
     hooks:
         deploy: |
             cd /app/public
@@ -63,23 +65,21 @@ Assumptions:
             fi
     ```
 
-    To sanitize only on the initial deploy and not all future deploys,
-    on sanitization create a file on a [mount](/create-apps/app-reference.md#mounts).
-    Then add a check for the file as in the following example:
+{{ else }}
 
-    ```yaml {location=".platform.app.yaml"}
-    hooks:
-        deploy: |
-            cd /app/public
-            if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-                # Do whatever you want on the production site.
-            else
-                # Check if the database has been sanitized yet
-                if [ ! -f {{ `{{< variable "MOUNT_PATH" >}}/is_sanitized` | .Page.RenderString }} ]; then
-                    # Sanitize your database here
-                    sanitize_the_database.sh
-                    # Create a record that sanitization has happened
-                    touch {{ `{{< variable "MOUNT_PATH" >}}/is_sanitized` | .Page.RenderString }}
-                fi
-            fi
+    ```yaml {configFile="app"}
+    applications:
+        myapp:
+            ...
+            hooks:
+                deploy: |
+                    cd /app/public
+                    if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
+                        # Do whatever you want on the production site.
+                    else
+                        # The sanitization of the database should happen here (since it's non-production)
+                        sanitize_the_database.sh
+                    fi
     ```
+
+{{ end }}

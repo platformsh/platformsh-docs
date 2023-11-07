@@ -2,8 +2,24 @@
 title: "FAQ"
 weight: 200
 description: |
-    Troubleshoot issue you might encounter using [Symfony](https://www.symfony.com/), a [PHP](/development/templates.md#php) framework on Platform.sh.
+    Troubleshoot issue you might encounter using [Symfony](https://www.symfony.com/), a [PHP](/development/templates.md#php) framework on {{% vendor/name %}}.
 ---
+
+## Why is `DATABASE_URL` not defined during the build hook?
+
+During the build hook, services are not available to avoid breaking the
+application that is still live. That is why the Symfony integration does not
+expose environment variables during the build hook.
+
+The `cache:clear` command does not need to connect to the database by default,
+except if you are using the Doctrine ORM and the database engine version is not
+set in your configuration.
+
+The version information can be set in your `.env` file or in the
+`doctrine.yaml` configuration file. The only important pieces of information there are
+the database engine and the version; everything else will be ignored.
+
+Note that the environment variables are available in the deploy hook.
 
 ## How can I access my application logs?
 
@@ -18,7 +34,7 @@ This includes language errors such as PHP errors, warnings, notices,
 as well as uncaught exceptions.
 The file also contains your application logs if you log on `stderr`.
 
-Note that Platform.sh manages the `app` file for you.
+Note that {{% vendor/name %}} manages the `app` file for you.
 This is to prevent disks from getting filled and using very fast local drives instead of slower network disks.
 Make sure your apps always output their logs to `stderr`.
 
@@ -52,7 +68,7 @@ The *Oops! An Error Occurred* message comes from your app and is automatically g
 
 ![A 500 error page in production mode](/images/symfony/production-error-500.png "0.35")
 
-If your app's working as expected locally but you see the previous error message on Platform.sh,
+If your app's working as expected locally but you see the previous error message on {{% vendor/name %}},
 it usually means you have a configuration error or a missing dependency.
 
 To fix this issue, search your application logs.
@@ -66,7 +82,7 @@ symfony logs all
   [access] 78.247.136.119 - - [14/Aug/2020:10:52:27 +0000] "GET / HTTP/1.1" 500 843 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36"
 ```
 
-If the error occurs on a non-production environment,
+If the error occurs on a preview environment,
 or on the main environment of a non-production project,
 you can also enable Symfony's dev/debug mode to inspect the cause of the error:
 
@@ -84,11 +100,11 @@ As a result, when you run your project locally, the following welcome page is di
 
 ![The default Symfony welcome page in development mode](/images/symfony/new-symfony-welcome-page.png "0.45")
 
-But when you run your project on Platform.sh, the following error is displayed instead:
+But when you run your project on {{% vendor/name %}}, the following error is displayed instead:
 
 ![A 404 error page in production mode](/images/symfony/production-error-404.png "0.35")
 
-This is because Platform.sh runs in production mode, leading Symfony to show a generic 404 error.
+This is because {{% vendor/name %}} runs in production mode, leading Symfony to show a generic 404 error.
 To fix this issue, [create your first Symfony page](https://symfony.com/doc/current/page_creation.html).
 
 If you've already created a custom homepage, make sure you perform the following actions:

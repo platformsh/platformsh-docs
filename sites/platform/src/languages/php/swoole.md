@@ -16,7 +16,11 @@ Swoole requires PHP 7.3+.
 The Swoole installation script is compatible up to PHP 8.0.
 {{< /note >}}
 
-Check the documentation related to [Laravel Octane on Platform.sh](../../guides/laravel/deploy/octane.md).
+{{% version/specific %}}
+Check the documentation related to [Laravel Octane on {{% vendor/name %}}](../../guides/laravel/deploy/octane.md).
+<--->
+<!-- @todo: To be added once Laravel guide for Upsun is live -->
+{{% /version/specific %}}
 
 {{% swoole %}}
 
@@ -25,7 +29,8 @@ Check the documentation related to [Laravel Octane on Platform.sh](../../guides/
 Override the default web server with a [custom start command](./_index.md#alternate-start-commands).
 Octane should listen on a TCP socket.
 
-```yaml {location=".platform.app.yaml"}
+{{% version/specific %}}
+```yaml {configFile="app"}
 web:
     upstream:
         socket_family: tcp
@@ -38,3 +43,21 @@ web:
             scripts: false
             allow: false
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    app:
+        type: 'php:{{% latest "php" %}}'
+        web:
+            upstream:
+                socket_family: tcp
+                protocol: http
+            commands:
+                start: php {{<variable "PATH_TO_SWOOLE_START_COMMAND" >}} --port=$PORT
+            locations:
+                "/":
+                    passthru: true
+                    scripts: false
+                    allow: false
+```
+{{% /version/specific %}}

@@ -18,7 +18,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform activity:cancel
+{{% vendor/cli %}} activity:cancel
 ```
 
 If you have more than one running or pending activity, choose which activity to cancel.
@@ -26,7 +26,7 @@ If you have more than one running or pending activity, choose which activity to 
 You can also cancel a specific activity by specifying its ID:
 
 ```bash
-platform activity:cancel {{< variable "ACTIVITY_ID" >}}
+{{% vendor/cli %}} activity:cancel {{< variable "ACTIVITY_ID" >}}
 ```
 
 Get the ID from the [activity log](../increase-observability/logs/access-logs.md#activity-logs).

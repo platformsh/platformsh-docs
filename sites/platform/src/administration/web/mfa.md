@@ -8,7 +8,7 @@ keywords:
 - two factor
 - mfa
 - multifactor authentication
-description: Enable multi-factor authentication on your Platform.sh account for enhanced security.
+description: Enable multi-factor authentication on your {{% vendor/name %}} account for enhanced security.
 ---
 
 For improved security, you can enable multi-factor authentication (MFA) for the Console and CLI.

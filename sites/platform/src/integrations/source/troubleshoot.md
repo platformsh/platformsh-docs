@@ -3,16 +3,19 @@ title: Resolve access issues with source integrations
 sidebarTitle: Resolve access
 description: Learn how to troubleshoot access rights for integrated repositories.
 toc: false
+keywords:
+- "source integration"
+- "source integrations"
 ---
 
-If you [add a user](/administration/users.md#add-a-user-to-a-project) to a Platform.sh project,
+If you [add a user](/administration/users.md#add-a-user-to-a-project) to a {{% vendor/name %}} project,
 but you haven’t added them to the remote repository on GitHub, GitLab, or Bitbucket,
 they can't clone the project locally.
 
 That user might try to clone the repository using the CLI with the following command:
 
 ```bash
-platform get {{< variable "PROJECT_ID" >}}
+{{% vendor/cli %}} get {{< variable "PROJECT_ID" >}}
 ```
 
 In this case, the user gets an error similar to the following:

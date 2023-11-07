@@ -5,7 +5,7 @@ toc: false
 description: See when backups of {{% names/dedicated-gen-2 %}} environments are taken.
 ---
 
-Platform.sh takes a byte-for-byte snapshot of {{% names/dedicated-gen-2 %}} production environments every 6 hours.
+{{% vendor/name %}} takes a byte-for-byte snapshot of {{% names/dedicated-gen-2 %}} production environments every 6 hours.
 Backups are retained for different durations depending on when they're taken.
 For details, see the [retention policy for backups](../../security/data-retention.md#dedicated-gen-2-backups).
 
@@ -15,7 +15,7 @@ An EBS snapshot is immediate, but the time it takes to write to the storage serv
 * **Recovery Point Objective (RPO)** is 6 hours (maximum time to last backup).
 * **Recovery Time Objective (RTO)** depends on the size of the storage. Large EBS volumes take more time to restore.
 
-These backups are only used in cases of catastrophic failure and can only be restored by Platform.sh. A support ticket must be opened to request a restoration.
+These backups are only used in cases of catastrophic failure and can only be restored by {{% vendor/name %}}. A support ticket must be opened to request a restoration.
 
 The restoration process may take a few hours, depending on the infrastructure provider in use.
 In the ticket, specify if you want backups of files, MySQL, or both.

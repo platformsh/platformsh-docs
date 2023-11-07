@@ -1,7 +1,7 @@
 ---
 title: "Sanitizing databases: PostgreSQL and Symfony"
 sidebarTitle: PostgreSQL and Symfony
-description: Sanitize PostgreSQL data in non-production environments for Symfony apps.
+description: Sanitize PostgreSQL data in preview environments for Symfony apps.
 layout: list
 ---
 
@@ -92,7 +92,7 @@ Set up a script by following these steps:
 
 2.  Update the deploy hook to run your Symfony Command on each deploy.
 
-    ```yaml {location=".platform.app.yaml"}
+    ```yaml {configFile="app"}
     hooks:
         build: ...
         deploy: |
@@ -104,7 +104,7 @@ Set up a script by following these steps:
 
     To sanitize only on the initial deploy and not all future deploys, on sanitization create a file on a mount. Then add a check for the file as in the following example:
 
-    ```yaml {location=".platform.app.yaml"}
+    ```yaml {configFile="app"}
     hooks:
         build: ...
         deploy: |
@@ -118,11 +118,11 @@ Set up a script by following these steps:
 3.  Commit your changes by running the following command:
 
     ```bash
-    git add src/Command/SanitizeDataCommand.php .platform.app.yaml && git commit -m "Add sanitization."
+    git add src/Command/SanitizeDataCommand.php {{< vendor/configfile "app" >}} && git commit -m "Add sanitization."
     ```
 
     Push the changes to `staging` and verify that environment's database was sanitized.
-    Once merged to production, all data from future non-production environments are sanitized on environment creation.
+    Once merged to production, all data from future preview environments are sanitized on environment creation.
 
 <--->
 +++
@@ -146,7 +146,7 @@ Set up a script by following these steps:
 3.  Make the script sanitize environments with an [environment type](../../administration/users.md#environment-type-roles)
     other than `production`.
 
-    The following example runs only in non-production environments
+    The following example runs only in preview environments
     and sanitizes data using the Symfony Command from previous tab, already pushed to all of your environments.
 
     ```bash {location="sanitize_fleet.sh"}
@@ -170,14 +170,14 @@ Set up a script by following these steps:
     # Utility functions.
 
     # list_org_projects: Print list of projects operation will be applied to before starting.
-    #   $1: Organization, as it appears in console.platform.sh.
+    #   $1: Organization, as it appears in console.{{< vendor/urlraw "host" >}}.
     list_org_projects () {
        symfony project:list -o $1 --columns="ID, Title"
     }
 
     # get_org_projects: Retrieve an array of project IDs for a given organization.
     #   Note: Makes array variable PROJECTS available to subsequent scripts.
-    #   $1: Organization, as it appears in console.platform.sh.
+    #   $1: Organization, as it appears in console.{{< vendor/urlraw "host" >}}.
     get_org_projects () {
       PROJECTS_LIST=$(symfony project:list -o $1 --pipe)
       PROJECTS=($PROJECTS_LIST)
@@ -185,14 +185,14 @@ Set up a script by following these steps:
 
     # get_project_envs: Retrieve an array of envs IDs for a project.
     #   Note: Makes array variable ENVS available to subsequent scripts.
-    #   $1: ProjectId, as it appears in console.platform.sh.
+    #   $1: ProjectId, as it appears in console.{{< vendor/urlraw "host" >}}.
     get_project_envs () {
       ENV_LIST=$(symfony environment:list -p $1 --pipe)
       ENVS=($ENV_LIST)
     }
 
     # list_project_envs: Print list of envs operation will be applied to before starting.
-    #   $1: ProjectId, as it appears in console.platform.sh.
+    #   $1: ProjectId, as it appears in console.{{< vendor/urlraw "host" >}}.
     list_project_envs () {
       symfony environment:list -p $1
     }
@@ -275,7 +275,7 @@ Set up a script by following these steps:
     ```
 
 {{< note >}}
-You can find the organization identifier for a specific project, within the Platform.sh console, by clicking on your name, and then on “Settings”, in the top right corner.
+You can find the organization identifier for a specific project, within the {{% vendor/name %}} console, by clicking on your name, and then on “Settings”, in the top right corner.
 {{< /note >}}
 
 
@@ -286,7 +286,7 @@ You can find the organization identifier for a specific project, within the Plat
     ```
 
     Push the changes to `staging` and verify that environment's database was sanitized.
-    Once merged to production, all data from future non-production environments are sanitized on environment creation.
+    Once merged to production, all data from future preview environments are sanitized on environment creation.
 
 {{< /codetabs >}}
 

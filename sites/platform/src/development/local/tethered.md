@@ -1,11 +1,12 @@
 ---
 title: Tethered local development
 sidebarTitle: Tethered
+sectionBefore: Supported environments
 weight: 2
 ---
 
 To test changes locally, you can connect your locally running web server
-to service containers on an active Platform.sh environment.
+to service containers on an active {{% vendor/name %}} environment.
 This method requires less configuration than tools such as [DDEV](./ddev.md),
 but may not perform well enough for everyday use.
 Because it replies on a local web server, it's also less consistent across your team.
@@ -17,13 +18,13 @@ Because it replies on a local web server, it's also less consistent across your 
 {{% tethered-dev/steps-start %}}
 
 1.  Run your application locally.
-    Make sure it's set up to read configuration from Platform.sh environment variables.
+    Make sure it's set up to read configuration from {{% vendor/name %}} environment variables.
 
-    If you app relies on other Platform.sh environment configuration, such as routes or secret variables,
+    If you app relies on other {{% vendor/name %}} environment configuration, such as routes or secret variables,
     make sure to mock those variables as well.
 
     Your options for running the app depend on the language and configuration.
-    You can use the serve for your language, install a copy of Nginx,
+    You can use the server for your language, install a copy of Nginx,
     or use a virtual machine or Docker image.
 
 {{% tethered-dev/steps-end %}}
@@ -34,7 +35,7 @@ With open tunnels to all your services, you can also connect to the running serv
 To get information on all running services, run the following command:
 
 ```bash
-platform tunnels
+{{% vendor/cli %}} tunnels
 ```
 
 You get a response similar to the following:
@@ -52,20 +53,22 @@ You can use the port information to connect directly to a service.
 If you need more detailed information, such as a path or password, run the following command:
 
 ```bash
-platform tunnel:info
+{{% vendor/cli %}} tunnel:info
 ```
 
 You can use the information returned to connect to the remote database as if it were local.
 For example, the following command would connect to a MySQL database running through a tethered connection:
 
 ```bash
-mysql --host=127.0.0.1 --port={{ variable "PORT" }} --user='{{ variable "USERNAME" }}' --password='{{ variable "PASSWORD" }}' --database='{{ variable "PATH" }}'
+mysql --host=127.0.0.1 --port={{< variable "PORT" >}} --user={{< variable "USERNAME" >}} --password={{< variable "PASSWORD" >}} --database={{< variable "PATH" >}}
 ```
 
 {{% local-dev/next-steps-start %}}
 
     Fill it with something similar to the following example, depending on your app and configuration:
 
-    {{< readFile file="snippets/local-dev-onboarding.sh" highlight="bash" location="init-local.sh">}}
+    ```bash {location="init-local.sh"}
+    {{% local-dev/local-dev-onboarding %}}
+    ```
 
 {{% local-dev/next-steps-end %}}

@@ -12,9 +12,9 @@ Available workarounds depend on your DNS provider.
  
 ## `CNAME` records
  
-Each site on Platform.sh is made up of a set of containers.
+Each site on {{% vendor/name %}} is made up of a set of containers.
 To map incoming requests to the appropriate container,
-Platform.sh runs routers in [each region](../../development/regions.md).
+{{% vendor/name %}} runs routers in [each region](../../development/regions.md).
 A router's IP address can change in two cases:
 - During an upgrade or maintenance operation, routers can be taken offline while changes are applied.
 - During a region upscale or downscale, routers can be added or removed.
@@ -28,13 +28,13 @@ or until the router is back from maintenance.
  
 To prevent downtime, create `CNAME` records through your DNS provider.
 `CNAME` records map a domain to another.
-Set up your `CNAME` records to point at your project's [target URL](../../domains/steps/_index.md#2-get-the-target-for-your-project).
+Set up your `CNAME` records to point at your project's [target URL](../../domains/steps/_index.md#1-get-the-target-for-your-project).
 The DNS record for this target URL automatically resolves to the IP addresses of the routers in your project's region.
 When a router's IP address changes,
 the DNS record is automatically and immediately updated.
 This prevents downtime without intervention from you.
  
-Note that `CNAME` records can't point to [apex domains](../../other/glossary.md#apex-domain).
+Note that `CNAME` records can't point to [apex domains](/glossary.md#apex-domain).
 Check with your DNS provider if they offer [workarounds](#workarounds-for-apex-domains).
  
 ## Workarounds for apex domains
@@ -103,7 +103,7 @@ To use `A` records, follow these steps:
 1.  To get the IP addresses of your project's production environment, run the following command:
 
     ```bash
-    dig +short $(platform environment:info edge_hostname)
+    dig +short $({{% vendor/cli %}} environment:info edge_hostname)
     ```
      
 2.  Follow the instructions on [how to set up a custom domain](./_index.md).

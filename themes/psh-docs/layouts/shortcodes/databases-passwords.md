@@ -13,8 +13,7 @@ Note that you can't customize these automatically generated passwords.
 
 After your custom endpoints are exposed as relationships in your [app configuration](../../create-apps/_index.md),
 you can retrieve the password for each endpoint
-through the `PLATFORM_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables).
-You can access the `PLATFORM_RELATIONSHIPS` environment variable directly [in your app or through the configuration reader](../../development/variables/use-variables.md#access-variables-in-your-app).
+through the `{{ .Site.Params.vendor.env_prefix }}_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables) within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app).
 The password value changes automatically over time, to avoid downtime its value has to be read dynamically by your app.
 Globally speaking, having passwords hard-coded into your codebase can cause security issues and should be avoided.
 

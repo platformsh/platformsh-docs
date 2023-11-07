@@ -4,12 +4,12 @@ sidebarTitle: Custom Redis
 weight: 7
 ---
 
-[Redis](../../add-services/redis.md) is a popular structured key-value service, supported by Platform.sh.
+[Redis](../../add-services/redis.md) is a popular structured key-value service, supported by {{% vendor/name %}}.
 It's frequently used for caching.
 
 ## Install PhpRedis
 
-The [PhpRedis](https://github.com/phpredis/phpredis) extension is available on Platform.sh's PHP container images.
+The [PhpRedis](https://github.com/phpredis/phpredis) extension is available on {{% vendor/name %}}'s PHP container images.
 The extension has been known to break its API between versions when removing deprecated functionality.
 The version available on each application image is the latest available at the time that PHP version was built,
 which if your app is sensitive to PhpRedis versions may not be ideal.
@@ -18,20 +18,35 @@ It may happen that the version of the PhpRedis extension available for your PHP 
 isn't compatible with your app and upgrading your app isn't feasible.
 If so, use the following script as an alternative to download and compile a precise version of the extension.
 
+{{< note theme="warning" >}}
 Do *not* use this approach unless you really need to.
 Using the provided PhpRedis extension is preferred in the majority of cases.
+{{< /note >}}
 
 To ease the installation of a customer version of PhpRedis, use a [PhpRedis install script](https://github.com/platformsh/snippets/blob/main/src/install-phpredis.sh).
 Invoke this script from your build hook, specifying a version.
 Any tagged version of the library is acceptable:
 
-```yaml {location=".platform.app.yaml"}
+{{% version/specific %}}
+```yaml {configFile="app"}
 hooks:
     build: |
         set -e
         # Install PhpRedis v5.3.7:
         curl -fsS https://raw.githubusercontent.com/platformsh/snippets/main/src/install-phpredis.sh | { bash /dev/fd/3 5.3.7 ; } 3<&0
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    app:
+        type: 'php:{{% latest "php" %}}'
+        hooks:
+            build: |
+                set -e
+                # Install PhpRedis v5.3.7:
+                curl -fsS https://raw.githubusercontent.com/platformsh/snippets/main/src/install-phpredis.sh | { bash /dev/fd/3 5.3.7 ; } 3<&0
+```
+{{% /version/specific %}}
 
 ## Install Relay
 
@@ -49,17 +64,30 @@ To ease the installation of a customer version of Relay, use the [Relay install 
 Invoke this script from your build hook, specifying a version.
 Any tagged version of the library is acceptable:
 
-```yaml {location=".platform.app.yaml"}
+{{% version/specific %}}
+```yaml {configFile="app"}
 hooks:
     build: |
         set -e
         # Install Relay v0.6.0:
         curl -fsS https://raw.githubusercontent.com/platformsh/snippets/main/src/install-relay.sh | { bash /dev/fd/3 v0.6.0 ; } 3<&0
 ```
+<--->
+```yaml {configFile="app"}
+applications:
+    app:
+        type: 'php:{{% latest "php" %}}'
+        hooks:
+            build: |
+                set -e
+                # Install Relay v0.6.0:
+                curl -fsS https://raw.githubusercontent.com/platformsh/snippets/main/src/install-relay.sh | { bash /dev/fd/3 v0.6.0 ; } 3<&0
+```
+{{% /version/specific %}}
 
 ## Change extension or version
 
-To change the Redis extension or the version you are using, update the build hook and clear the build cache: `platform project:clear-build-cache`.
+To change the Redis extension or the version you are using, update the build hook and clear the build cache: `{{% vendor/cli %}} project:clear-build-cache`.
 
 The new version is *not* be used until you clear the build cache.
 

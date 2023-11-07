@@ -48,7 +48,7 @@ the CDN continues to serve cached pages during the few seconds of deploy,
 so for the vast majority of users there is no downtime or even slow down.
 If a request does pass the CDN during a deploy, it isn't counted as downtime covered by our Service Level Agreement.
 
-By default, Platform.sh serves generic Platform.sh-branded error pages for errors generated before a request reaches the application.
+By default, {{% vendor/name %}} serves generic {{% vendor/name %}}-branded error pages for errors generated before a request reaches the application.
 (500 errors, some 400 errors, etc.)  Alternatively you may provide a static error page for each desired error code via a ticket for us to configure with the CDN.
 This file may be any static HTML file but is limited to 64 KB in size.
 
@@ -69,7 +69,7 @@ There is no cost for this functionality.
 
 ## IP restrictions
 
-Platform.sh supports [project-level IP restrictions (allow/deny) and HTTP Basic authentication](../../environments/http-access-control.md). These may be configured through the Development Environment and are automatically replicated from the production and staging branches to the production and staging environments, respectively.
+{{% vendor/name %}} supports [project-level IP restrictions (allow/deny) and HTTP Basic authentication](../../environments/http-access-control.md). These may be configured through the Development Environment and are automatically replicated from the production and staging branches to the production and staging environments, respectively.
 
 Changing access control triggers a new deploy of the current environment. 
 However, the changes aren’t propagated to child environments until they’re manually redeployed.

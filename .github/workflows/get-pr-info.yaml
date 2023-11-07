@@ -141,13 +141,13 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
 
             # Rewrite all Markdown files in the source to be links in the final environment
-            if [[ $file = "sites/platform/"*".md" ]]; then
+            if [[ $file = "sites/platform/src/"*".md" ]]; then
 
               # Remove file extension
               page=${file/.md/.html}
 
               # Remove initial directory
-              page=${page/"sites/platform/"/}
+              page=${page/"sites/platform/src/"/}
 
               # Shift index pages up a level
               page=${page/"/_index.html"/".html"}

@@ -1,7 +1,7 @@
 {
-  "name": "platformsh-docs",
+  "name": "platformsh-docs-whitelabel",
   "version": "1.0.0",
-  "description": "This repository holds the public user documentation for [Platform.sh](https://platform.sh/).",
+  "description": "This repository holds the public user documentation for white-labeled [Platform.sh](https://platform.sh/).",
   "license": "CC-BY-NC-SA-4.0",
   "repository": {
     "type": "git",
@@ -24,7 +24,7 @@
     "eslint": "^8.34.0",
     "eslint-plugin-mdx": "^2.0.5",
     "p-limit": "^4.0.0",
-    "postcss": "^8.4.21",
+    "postcss": "^8.4.31",
     "postcss-cli": "^10.1.0",
     "pshregistry-parser": "^1.5.7",
     "remark": "^14.0.2",

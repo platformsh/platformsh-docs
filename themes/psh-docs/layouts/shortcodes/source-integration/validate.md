@@ -5,7 +5,7 @@
 Verify that your integration is functioning properly [using the CLI](../overview.md#validate-integrations):
 
 ```bash
-{{ `{{< vendor/cli >}} integration:validate` | .Page.RenderString }}
+{{ `{{% vendor/cli %}} integration:validate` | .Page.RenderString }}
 ```
 
 ###{{ if eq $source "Bitbucket" }}#{{ end }} Add the webhook manually
@@ -25,13 +25,13 @@ If you see a message that the webhook wasn't added, add one manually.
 {{ end }}
 
 To configure a webhook on a {{ $source }} repository,
-you need to have {{ $reqdPerms }} [user permissions]({{ $permsLink }}). 
+you need to have {{ $reqdPerms }} [user permissions]({{ $permsLink }}).
 
-1. Get the webhook URL by running this command: `platform integration:get --property hook_url`.
+1. Get the webhook URL by running this command: `{{ `{{< vendor/cli >}}` | .Page.RenderString }} integration:get --property hook_url`.
 1. Copy the returned URL.
 {{ .Inner }}
 
 You can now start pushing code, creating new branches,
 and opening {{ if eq $source "GitLab" }}merge{{ else }}pull{{ end }} requests
 directly in your {{ $source }} repository.
-Your Platform.sh environments are automatically created and updated.
+Your {{ .Site.Params.vendor.name }} environments are automatically created and updated.

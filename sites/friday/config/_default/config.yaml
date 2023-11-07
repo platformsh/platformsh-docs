@@ -1,8 +1,8 @@
 # Basics
 baseURL: /
-title: Deploy Friday Docs
-author: Deploy Friday
-description: Deploy Friday User Documentation
+title: Upsun documentation
+author: Upsun
+description: Upsun User Documentation
 
 # Themes
 theme: psh-docs
@@ -19,12 +19,12 @@ languages:
 
 disableKinds: ["taxonomy", "taxonomyTerm"]
 
-baseURL: "https://docs.deploy-friday.net"
+baseURL: "https://docs.upsun.com"
 
 summaryLength: 3
 
 outputs:
-    home: 
+    home:
       - HTML
       - JSON
       - RSS
@@ -52,10 +52,35 @@ module:
 
         - source: "../platform/src"
           target: "content"
-          excludeFiles: 
+          excludeFiles:
               - "registry/*"
-              - "_index.md"
               - "get-started/*"
+              - "development/transfer-dedicated.md"
+              - "administration/sso.md"
+              - "administration/pricing/*"
+              - "increase-observability/logs/forward-logs.md"
+              - "increase-observability/logs/forward-fastly-logs.md"
+              - "increase-observability/integrate-observability/*"
+              - "increase-observability/metrics/grid.md"
+              - "increase-observability/metrics/dedicated.md"
+              - "increase-observability/metrics/dedicated-generation-3.md"
+              - "development/templates.md"
+              - "development/local/docksal.md"
+              - "development/local/lando.md"
+              - "development/deploy-button.md"
+              - "domains/cdn/managed-fastly.md"
+              - "domains/security/web-application-firewall/fastly.md"
+              - "domains/steps/custom-domains-preview-environments.md"
+              - "dedicated-gen-2/*"
+              - "dedicated-gen-3/*"
+              - "guides/*"
+              - "languages/java/frameworks.md"
+              - "learn/resources.md"
+              - "learn/tutorials/migrating.md"
+              - "create-apps/upgrading.md"
+              - "create-apps/flexible-resources.md"
+              - "environments/scalability.md"
+              - "security/web-application-firewall/*"
           lang: "en"
 
         - source: "../platform/static/images"
@@ -66,10 +91,12 @@ module:
           target: "static/scripts"
         - source: "static/files"
           target: "static/files"
-          
+
         - source: "src"
           target: "content"
-        
+        - source: "static/images"
+          target: "static/images"
+
 
 
 security:

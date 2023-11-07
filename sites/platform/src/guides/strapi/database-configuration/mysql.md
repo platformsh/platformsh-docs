@@ -1,15 +1,15 @@
 ---
-title: "Configure MySQL for Strapi on Platform.sh"
+title: "Configure MySQL for Strapi on {{% vendor/name %}}"
 sidebarTitle: "MySQL"
 weight: -80
 description: |
-  Configure your Strapi application to use a MySQL database on Platform.sh.
+  Configure your Strapi application to use a MySQL database on {{% vendor/name %}}.
 ---
 
 Strapi can be configured to use MySQL as its default database.
 You can choose MySQL when installing your app by selecting custom and MySQL when asked for the installation type.
 Or you can just configure your existing Strapi application to use MySQL.
-To configure a MySQL database for Strapi on Platform.sh, follow these steps.
+To configure a MySQL database for Strapi on {{% vendor/name %}}, follow these steps.
 
 1. Install the Node.js [MySQL driver](https://yarnpkg.com/package/mysql)
 
@@ -17,7 +17,7 @@ To configure a MySQL database for Strapi on Platform.sh, follow these steps.
    yarn add mysql
    ```
 
-2. Replace the PostgreSQL configuration in your `services.yaml` file with the following:
+2. Replace the PostgreSQL configuration in your `{{< vendor/configfile "services" >}}` file with the following:
 
    ```yaml
    mysql:
@@ -27,7 +27,7 @@ To configure a MySQL database for Strapi on Platform.sh, follow these steps.
 
    **_Note that the minimum disk size for MySQL/Oracle MySQL is 256MB._**
 
-3. In your `.platform.app.yaml` file, replace the relationship name to match the MySQL database you added:
+3. In your `{{< vendor/configfile "app" >}}` file, replace the relationship name to match the MySQL database you added:
 
    ```yaml
    relationships:
@@ -59,11 +59,11 @@ To configure a MySQL database for Strapi on Platform.sh, follow these steps.
    };
 
    if (config.isValidPlatform() && !config.inBuild()) {
-     // Platform.sh database configuration.
+     // {{% vendor/name %}} database configuration.
      try {
        const credentials = config.credentials(dbRelationship);
        console.log(
-         `Using Platform.sh configuration with relationship ${dbRelationship}.`
+         `Using {{% vendor/name %}} configuration with relationship ${dbRelationship}.`
        );
 
        pool = {
@@ -99,13 +99,13 @@ To configure a MySQL database for Strapi on Platform.sh, follow these steps.
      if (config.isValidPlatform()) {
        // Build hook configuration message.
        console.log(
-         "Using default configuration during Platform.sh build hook until relationships are available."
+         "Using default configuration during {{% vendor/name %}} build hook until relationships are available."
        );
      } else {
        // Strapi default local configuration.
 
        console.log(
-         "Not in a Platform.sh Environment. Using default local sqlite configuration."
+         "Not in a {{% vendor/name %}} Environment. Using default local sqlite configuration."
        );
      }
    }
@@ -114,5 +114,5 @@ To configure a MySQL database for Strapi on Platform.sh, follow these steps.
    ```
 
 This setting deploys your Strapi application with a MySQL database.
-If you don't specify a MySQL service in your `services.yaml` file or the Strapi application is run on a local machine
+If you don't specify a MySQL service in your `{{< vendor/configfile "services" >}}` file or the Strapi application is run on a local machine
 the default SQLite database is used.

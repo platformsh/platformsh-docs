@@ -96,3 +96,137 @@ static assets on the site such as CSS and JavaScript files have a long cache per
 If you are making a change to such files, bust the cache so users aren't served out-of-date files.
 
 To clear the cache, update the `version` in [`docs/config/_default/params.yaml`](./docs/config/_default/params.yaml).
+
+## Managing white label documentation
+
+### Adding a white label documentation
+
+To add a white label documentation using its own logo, styles, and wording,
+add a new white label folder in the `sites/` directory.
+
+Add all the files that differ from the main documentation site (`sites/platform/src/` directory) to that white label folder.
+Make sure you keep the same file structure as in the existing `sites/platform/src/` directory.
+
+```bash
+sites
+├── whitelabel_name
+│   ├── config
+│   │   └── _defaults
+│   │       ├── config.yaml <- white label configuration
+│   │       └── params.yaml <- settings for vendorization and other features
+│   ├── layouts     <- Layout of the white label website
+│   ├── src         <- pages
+│   ├── static      <- static files
+│   ├── utils       <- Hugo scripts
+│   └── ...         <- index.js and other Hugo files
+└── platform <- main doc pages
+```
+
+`sites/platform/src/` is the main documentation site and, by default, each white label site inherits data from it.
+To ensure that the changes you make to files in your white label folder are taken into account,
+you need to exclude the original page(s) or section located in `sites/platform/src/` from the build.
+
+For example, if you make changes to the `sites/whitelabeldoc/src/overview.md` file,
+add the following configuration in your `sites/whitelabel_name/config/_default/config.yaml` file:
+
+```yaml
+module:
+    _merge: deep
+    mounts:
+        - source: "../platform/src"
+          target: "content"
+          excludeFiles:
+              - "overview.md"
+```
+
+Similarly, if you makes changes to all the pages in the `create-apps` section,
+add the following configuration in your `sites/whitelabel_name/config/_default/config.yaml` file:
+
+```yaml
+module:
+    _merge: deep
+    mounts:
+        - source: "../platform/src"
+          target: "content"
+          excludeFiles:
+              - "create-apps/*"
+```
+
+You can exclude as many files as you want.
+
+### Configuring settings placeholders
+
+When you add a white label documentation, you want vendor-specific values, such as the vendor and CLI names, to be easily substituted.
+
+For example, if you add a white label documentation for a product called MyGreatProduct,
+you want every instance of `Platform.sh` and `Platform.sh CLI` to be automatically substituted by `MyGreatProduct` and `MyGreatProduct CLI` respectively.
+To achieve that result, use the settings placeholders defined in the `sites/friday/config/_default/params.yaml` file:
+
+```yaml
+# Vendorization
+vendor:
+    name: Deploy Friday
+    cli: friday
+    env_prefix: FRIDAY
+    config_dir: .friday
+```
+
+Each of them can be used in any templates (HTML or MarkDown) using shortcodes:
+
+```bash
+{{% vendor/name %}}
+{{% vendor/cli %}}
+...
+```
+
+### Using a settings placeholder in a heading
+
+If you need to use a [settings placeholder](#settings-placeholders) in a heading, use the `{{% my.settings %}}` syntax.
+
+If you use the `{{< my.settings >}}` syntax, the desired value isn't displayed in the on-page navigation menu.
+Instead, the placeholder is replaced by an unwanted reference to the shortcode, similar to `HAHAHUGOSHORTCODEs3HBHB`.
+
+#### Changing the structure of the navigation sidebar
+
+You might need to change the structure of the main navigation sidebar in your white label documentation.
+
+For example, instead of having one migration tutorial (single `migrating.md` file) under the **Tutorials** section,
+you might want to create a nested migration section containing a few sub-pages,
+one for each hosting source users could migrate from.
+
+In this case, you need to follow these steps:
+
+1. Exclude the migration tutorial (`migrating.md` file) from the content definition
+   in your `sites/whitelabel_name/config/_default/config.yaml` file.
+2. Create the nested section in your `sites/whitelabel/src` directory.
+
+Note: `excludeFiles` paths are defined from the `src` white label root directory.
+
+To do so, you could implement the following file structure:
+
+```bash
+sites
+├── friday
+│   └── src
+│       └── tutorials
+│           └── migrating
+│               ├── _index.md
+│               └── from_platformsh.md
+└── platform
+    └── src
+        └── tutorials
+            └── migrating.md
+```
+
+And the corresponding settings in the `sites/whitelabel_name/config/_default/config.yaml` file:
+
+```yaml
+module:
+    _merge: deep
+    mounts:
+        - source: "../platform/src"
+          target: "content"
+          excludeFiles:
+              - "tutorials/migrating.md"
+              - ...
+```

@@ -28,24 +28,24 @@ The `TXT` record should look like the following:
 _public-suffix-root.{{<variable "YOUR_APEX_DOMAIN" >}} TXT "public-suffix-root={{<variable "YOUR_APEX_DOMAIN" >}}"
 ```
 
-This adds your domain to the [Platform.sh implementation of the Public Suffix List](#why-this-is-necessary).
+This adds your domain to the [{{% vendor/name %}} implementation of the Public Suffix List](#why-this-is-necessary).
 
 After you add your subdomains, remove the `TXT` record to reinstate [subdomain hijacking protection](#subdomain-hijacking-protection).
 This ensures no other users can possibly add a subdomain of your domain to their project.
 
 Even if you don’t remove the record, your DNS records should prevent others from using a subdomain
-as long as you don’t use wildcards records pointing at Platform.sh.
+as long as you don’t use wildcards records pointing at {{% vendor/name %}}.
 
 However, if you don't remove the `TXT` record, restrictions apply on the apex domain.
 For example, you can't add the apex domain to another project until you remove the `TXT` record.
 
 ## Bypass locked domains
 
-In certain cases (such as if your domain was added manually by Platform.sh support),
+In certain cases (such as if your domain was added manually by {{% vendor/name %}} support),
 your domain may be reserved for the project you added it to.
 Then you can't set up a second project with the bare domain (`example.com`) or a subdomain (`foo.example.com`).
 
-If that happens, [contact support](../../overview/get-support.md).
+If that happens, [contact support](/learn/overview/get-support.md).
 Include the project ID of the project that already has the domain.
 
 ## Why this is necessary
@@ -86,22 +86,22 @@ and using that to set cookies on your `example.com` website.
 When you add a domain to a project,
 the first level of the domain not in the [PSL](#the-public-suffix-list) is reserved.
 So if you add `foo.bar.baz.example.com` to a project,
-that project has `example.com` reserved within Platform.sh
+that project has `example.com` reserved within {{% vendor/name %}}
 and no other project can have a domain anywhere in `*.example.com`.
 You can add multiple subdomains within that one project.
 
 Subdomain hijacking protection ensures that no other users can add a subdomain to their project
-as long as you don't use wildcard DNS records pointing at Platform.sh.
+as long as you don't use wildcard DNS records pointing at {{% vendor/name %}}.
 
 In most cases, that's a desirable added layer of security.
 But you may run into a problem when you want multiple subdomains from the same organization as separate projects.
 One option would be to add `example.com` to the PSL, but you might not want or be able to do that.
 
-To limit what domains get protected, Platform.sh supports a small extension to the PSL.
-When you add a `TXT` record for your domain, Platform.sh treats that domain as part of the PSL.
+To limit what domains get protected, {{% vendor/name %}} supports a small extension to the PSL.
+When you add a `TXT` record for your domain, {{% vendor/name %}} treats that domain as part of the PSL.
 
 So when you add a `TXT` record for `example.com`,
-Platform.sh treats `example.com` as a top-level domain.
+{{% vendor/name %}} treats `example.com` as a top-level domain.
 That means it isn't reserved and is open for other projects.
 
 Then when you add a domain, the next level down from `example.com` is reserved.

@@ -9,6 +9,7 @@ async
 Asyncio
 auditable
 autoload(?:er|ing)?
+[Aa]utoscaling
 Blackfire
 blockquote
 Bootsnap
@@ -17,6 +18,7 @@ Brotli
 [Bb]undler
 CacheTool
 charset
+client_id
 Cloudwatt
 CDNs?
 CMS
@@ -62,6 +64,8 @@ IPs?
 JVM
 imagetragick
 jpegoptim
+Kafka
+kafka
 Lando
 Laravel
 Loggly
@@ -75,9 +79,11 @@ Mailchimp
 [Mm]ebibyte
 Meilisearch
 Memcache
+Mercure
 Mezmo
 middleware
 Miniconda
+mongodump
 Monolog
 MSBuild
 Muffet

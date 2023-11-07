@@ -12,9 +12,9 @@ follow the instructions on this page.
 ## Before you begin
 
 You need:
-- A Platform.sh project using [PHP](../php/_index.md) and Composer
+- A {{% vendor/name %}} project using [PHP](../php/_index.md) and Composer
 - Credentials to access a private third-party Composer repository
-- The [Platform.sh CLI](../../administration/cli/_index.md)
+- The [{{% vendor/name %}} CLI](../../administration/cli/_index.md)
 
 ## 1. Declare a private Composer repository
 
@@ -40,7 +40,7 @@ set an [`env:COMPOSER_AUTH` variable](../../development/variables/_index.md) for
 To do so, run the following command:
 
 ```bash
-platform variable:create --level project --name env:COMPOSER_AUTH \
+{{% vendor/cli %}} variable:create --level project --name env:COMPOSER_AUTH \
   --json true --visible-runtime false --sensitive true --visible-build true \
   --value '{"http-basic": {"{{< variable "PRIVATE_REPOSITORY_URL" >}}": {"username": "{{< variable "USERNAME" >}}", "password": "{{< variable "PASSWORD" >}}"}}}'
 ```
@@ -55,7 +55,7 @@ For security reasons, make sure that the authentication credentials aren't cache
 To do so, run the following command:
 
 ```bash
-platform project:clear-build-cache
+{{% vendor/cli %}} project:clear-build-cache
 ```
 
 ## Access dependencies downloaded from a private repository

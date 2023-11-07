@@ -21,7 +21,7 @@ Require Laravel Octane using Composer.
 composer require laravel/octane
 ```
 
-Then make sure to clear the cache on all relevant Platform.sh environments.
+Then make sure to clear the cache on all relevant {{% vendor/name %}} environments.
 
 ``` bash
 php artisan optimize:clear
@@ -30,7 +30,7 @@ php artisan optimize:clear
 Override the default web server with a [custom start command](../../../languages/php/_index.md#alternate-start-commands).
 Octane should listen on a TCP socket.
 
-```yaml {location=".platform.app.yaml"}
+```yaml {configFile="app"}
 web:
     upstream:
         socket_family: tcp
