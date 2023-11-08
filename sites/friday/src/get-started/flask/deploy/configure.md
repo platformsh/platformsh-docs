@@ -102,7 +102,7 @@ To do so, make the following changes to the `{{% vendor/configfile "app" %}}` fi
    {{< /note >}}
 
 2. Configure some writable disk space to hold the static assets that `flask-static-digest` generates and `npm` builds.</br>
-   To do so, define the `./APP_NAME/static` directory as [a mount](/create-apps/app-reference.md#mounts).
+   To do so, define the `./<APP_NAME>/static` directory as [a mount](/create-apps/app-reference.md#mounts).
    Locate the section dedicated to mounts:
 
    ```yaml {configFile="app"}
@@ -110,7 +110,7 @@ To do so, make the following changes to the `{{% vendor/configfile "app" %}}` fi
    # More information: https://docs.upsun.com/create-apps/app-reference.html#mounts
    # mounts:
    #   "/.cache": # Represents the path in the app.
-   #     source: "local" # "local" sources are unique to the app, while "service" sources can be shared among apps.
+   #     source: "storage" # "local" sources are unique to the app, while "service" sources can be shared among apps.
    #     source_path: "cache" # The subdirectory within the mounted disk (the source) where the mount should point.
    ```
 
@@ -118,10 +118,11 @@ To do so, make the following changes to the `{{% vendor/configfile "app" %}}` fi
 
    ```yaml {configFile="app"}
    mounts:
-       "app_name/static":
-           source: "local"
+       "<APP_NAME>/static":
+           source: "storage"
            source_path: "static_assets"
    ```
+  Replacing `<APP_NAME>` above with the `app_name` you [defined previously](#1-optional-generate-a-flask-project-with-cookiecutter).
 
 3. Instruct {{% vendor/name %}} to automatically run `npm install` when building the application container.</br>
    To do so, customize your [build hook](/create-apps/hooks/hooks-comparison.html#build-hook).
