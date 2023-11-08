@@ -12,9 +12,8 @@ changes take place in the third-party repository.
 
 Add an integration to your existing third-party repository:
 
-[//]: # (- [BitBucket]&#40;/integrations/source/bitbucket.md&#41;)
+- [BitBucket](/integrations/source/bitbucket.md)
 - [GitHub](/integrations/source/github.md)
-
-[//]: # (- [GitLab]&#40;/integrations/source/gitlab.md&#41;)
+- [GitLab](/integrations/source/gitlab.md)
 
 {{< guide-buttons next="Local Development" nextLink="/get-started/quick-start/local/_index.md" type="*" >}}
