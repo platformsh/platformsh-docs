@@ -14,7 +14,7 @@ After your app is deployed, you can [adjust those resources](/manage-resources.m
    ```bash {location="Terminal"}
    {{% vendor/cli %}} environment:push
    ```
-   
+
    The following question is displayed:
 
    ```bash
@@ -22,22 +22,21 @@ After your app is deployed, you can [adjust those resources](/manage-resources.m
    ```
 
 2. To activate your initial environment, answer `Y`.</br>
-   {{% vendor/name %}} reads your configuration files and builds your application container. 
-   
+   {{% vendor/name %}} reads your configuration files and builds your application container.
+
    {{< note theme="warning">}}
-   When you first deploy your Upsun project, you get notified that you need to configure the resources on your environment:
+   When you first deploy your Upsun project, you get notified that you need to provide a disk size, and you will receive a notice:
 
    ```bash
-   The push completed but resources must be configured before deployment can succeed.
+   The push completed but there was a deployment error ("Invalid deployment")..
    ```
-
-   This is because {{% vendor/name %}} doesn't know the exact amount of resources your project needs to run smoothly.
-   Therefore, your app can only be successfully deployed after you've configured those resources
-   through the {{% vendor/name %}} CLI or [through the Console](/manage-resources.md#configure-resources).
+  {{% vendor/name %}} doesn't know how much disk your application requires for the PostgreSQL service. Therefore, your app can only
+   be successfully deployed after you've configured the disk amount for the PostgreSQL service through the
+   {{% vendor/name %}} CLI or [through the Console](/manage-resources.md#configure-resources).
 
    {{< /note >}}
 
-3. To set project resources using the CLI, run the following command:
+3. To [set project resources](/manage-resources.md) using the CLI, run the following command:
 
    ```shell
    {{% vendor/cli %}} resources:set
@@ -45,14 +44,14 @@ After your app is deployed, you can [adjust those resources](/manage-resources.m
 
 4. Follow the prompts to set resources for your app:
 
-   - Define which CPU and RAM combination you want to allocate to your application container. 
+   - Define which CPU and RAM combination you want to allocate to your application container.
    - Define how many instances of our application container you want to deploy.
    - Define how much disk space you want to allocate to the mount
      [previously defined](/get-started/flask/deploy/configure.md#configure-your-upsun-project) in `{{< vendor/configfile "app" >}}`.
 
 5. Now follow the prompts to set resources for your services, one by one:
-   
-   - Define which CPU and RAM combination you want to allocate to your service container.  
+
+   - Define which CPU and RAM combination you want to allocate to your service container.
    - If the service is a database, it needs persistent disk storage to save your data.
      Define how much disk space you want to allocate to your database.</br>
      Note that each {{% vendor/name %}} project starts with 5GB of data that is shared across all services.
