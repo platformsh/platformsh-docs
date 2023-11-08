@@ -380,105 +380,20 @@ git push origin
 Your GitHub/GitLab/Bibucket integration process will then automatically create a new environment if you’re pushing a new Git branch, and deploy changes to your corresponding environment.
 {{< /codetabs >}}
 
-{{% vendor/name %}} will now read your configuration files, and begin building your application image. **Your first push
-will fail**; don't worry, this is expected. At this point {{% vendor/name %}} is not aware of the resources
-your application needs. You need to define how much CPU, memory, and disk to assign to the various containers. Back in your terminal, run:
-
-```bash {location="Terminal"}
-{{% vendor/cli %}} resources:set
-```
-
-This will launch an interactive prompt to walk you through setting up your application's resources:
-```bash {location="Terminal"}
-{{% vendor/cli %}} resources:set
-Resource configuration for the project app (123456azerty), environment main (type: production):
-+----------------+---------+---------+-------------+-----------+-----------+
-| App or service | Size    | CPU     | Memory (MB) | Disk (MB) | Instances |
-+----------------+---------+---------+-------------+-----------+-----------+
-| app            | not set | not set | not set     | not set   | 1         |
-| postgresql     | not set | not set | not set     | not set   | 1         |
-+----------------+---------+---------+-------------+-----------+-----------+
-```
-
-We will first configure your ``app`` application and then your `postgresql` service.
-The first question is what profile size you want applied to your application image. For now let's select the minimum `0.25`:
-```bash {location="Terminal"}
-App: app
-Choose a profile size:
-  [0.1 ] CPU 0.1, memory 64 MB
-  [0.25] CPU 0.25, memory 128 MB
-  [0.5 ] CPU 0.5, memory 224 MB
-  [1   ] CPU 1, memory 384 MB
-  [2   ] CPU 2, memory 704 MB
-  [4   ] CPU 4, memory 1216 MB
-  [6   ] CPU 6, memory 1728 MB
-  [8   ] CPU 8, memory 2240 MB
-  [10  ] CPU 10, memory 2688 MB
- > 0.25
-```
-Next, it will ask how many instances of our application container we need deployed. For now let's go with `1`:
-```bash {location="Terminal"}
-Enter the number of instances (default: 1): 1
-```
-
-And finally, it will ask how much disk space of our application container we need deployed. For now let's go with `512`:
-```bash {location="Terminal"}
-Enter a disk size in MB : 512
-```
-
-Let's allocate resources to our ``postgresql`` service.
-The first question is what profile size you want applied to your service image. For now let's select the minimum `0.1`:
-
-```bash {location="Terminal"}
-Service: postgresql
-
-Choose a profile size:
-[0.1 ] CPU 0.1, memory 448 MB
-[0.25] CPU 0.25, memory 832 MB
-[0.5 ] CPU 0.5, memory 1408 MB
-[1   ] CPU 1, memory 2432 MB
-[2   ] CPU 2, memory 4032 MB
-[4   ] CPU 4, memory 6720 MB
-[6   ] CPU 6, memory 9024 MB
-[8   ] CPU 8, memory 11200 MB
-[10  ] CPU 10, memory 13184 MB
-> 1
-```
-
-And finally, it will ask how much disk space of our service container we need deployed. For now let's go with `512`:
-```bash {location="Terminal"}
-Enter a disk size in MB: 512
-```
-
-Last, it will ask us to confirm our choices. Select `Y` and {{% vendor/name %}} will take your selections, grab the
-previous built images from earlier, apply your resource selections to them and deploy your full application!
-```javascript
-Summary of changes:
-  App: app
-    CPU: 0.25
-    Memory: 128 MB
-  Service: postgresql
-    CPU: 0.1
-    Memory: 448 MB
-    Disk: 512 MB
-
-Are you sure you want to continue? [Y/n] y
-```
-
-Then it will automatically redeploy your ``main`` environment with the allocated resources.
-
-Note that each environment has its own domain name.
-To open the URL of your new environment, run the following command:
-
-```bash {location="Terminal"}
-{{% vendor/cli %}} environment:url --primary
-```
-
-{{< note >}}
-If you want to access the **Admin** panel, add `/admin` to your opened frontend URL.
-{{< /note >}}
+{{% vendor/name %}} will now read your configuration files and deploy your project using [default container resources](/manage-resources/_index.md).
+You can [amend those default container resources](/manage-resources/_index.md#configure-resources) after your project is deployed.
 
 Et voilà, your Strapi application is live!
+
+{{< note title="Tip" >}}
+
+Each environment has its own domain name.
+To open the URL of your new environment, run the following command:
+
+   ```bash {location="Terminal"}
+   {{% vendor/cli %}} environment:url --primary
+   ```
+{{< /note >}}
 
 ## Make changes to your project
 

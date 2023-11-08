@@ -23,23 +23,25 @@ This flexibility allows you to optimize performance and costs.
 You can even scale horizontally if your applications are struggling with high load, or if you're expecting a traffic spike,
 by adding more instances for your applications and workers.
 
-{{< note >}}
+{{< note  title="Tip">}}
 
-When you first deploy your {{% vendor/name %}} project, and whenever you add a new application or service,
-you get notified that you need to configure the resources on your environment:
-
-```bash
-The push completed but resources must be configured before deployment can succeed.
-```
-
-This is because {{% vendor/name %}} doesn't know the exact amount of resources your project needs to run smoothly.
-Therefore, your app can only be successfully deployed after you've configured those resources
-through the {{% vendor/name %}} Console or CLI.
-
-For better guidance on how to configure resources,
+To get the best guidance possible on how to configure resources on {{% vendor/name %}},
 use `{{% vendor/cli %}} push` instead of `git push`.
 
 {{< /note >}}
+
+## Default resources
+
+When you first deploy your {{% vendor/name %}} project, and whenever you add a new application or service,
+{{% vendor/name %}} allocates the following default resources to every container:
+
+| Resource type               | Amount |
+| --------------------------- | ----------- |
+| CPU                         | 0.5 |
+| RAM                         | Depends on the [container profile](#advanced-container-profiles). |
+| Disk size                   | 512 MB |
+
+You can [adjust those resources](#configure-resources) after your project or new container is deployed.
 
 ## Configure resources
 
@@ -174,8 +176,10 @@ you need to allocate resources to each of these newly added instances.
 ### Environment sync
 
 When you [sync an environment](/glossary.md#sync),
-the source environment's disk size is automatically allocated to the target environment.
-This is to ensure that there's enough disk space on the target environment for the synchronization to succeed.
+the target environment's disk size may be smaller that the source environment's disk size.
+
+In this case, {{% vendor/name %}} automatically allocates the source environment's disk size to the target environment.
+This ensures that there's enough disk space on the target environment for the synchronization to succeed.
 
 ## Resource billing
 
@@ -235,7 +239,6 @@ The following table shows the default container profiles {{% vendor/name %}} app
 | .NET                    | HIGH_CPU         |  
 | Elasticsearch           | HIGH_MEMORY      |
 | Elasticsearch Premium   | HIGH_MEMORY      |
-| Galera cluster          | HIGH_MEMORY      |
 | Go                      | HIGH_CPU         |  
 | Java                    | HIGH_MEMORY      |
 | MariaDB                 | HIGH_MEMORY      |
