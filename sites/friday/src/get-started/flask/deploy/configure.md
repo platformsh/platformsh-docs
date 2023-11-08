@@ -23,16 +23,16 @@ and [authenticated with your {{% vendor/name %}} account](/administration/cli/_i
    This command is also available as `{{% vendor/cli %}} ify`.
 
 2. Follow the prompts to determine your project requirements:
-   
+
    - Select Python as the language for your project.</br>
      {{% vendor/name %}} then automatically detects your dependency manager.
 
    - Enter the name of your app.
 
-   - Select the services you need.
+   - Select the services you need (for this guide, select `PostgreSQL` as we'll use it later)
 
    - Hit **Enter**.</br>
-   
+
    Your {{% vendor/name %}} configuration files are generated.
 
 3. Add all the generated files to your Git repository.
@@ -56,7 +56,7 @@ you need to create and configure a {{% vendor/name %}} project first.
    ```
 
 2. To configure your {{% vendor/name %}} project, follow the prompts:
-   
+
    - Create or select your organization.
 
    - Name your project.
@@ -122,7 +122,7 @@ To do so, make the following changes to the `{{% vendor/configfile "app" %}}` fi
            source: "local"
            source_path: "static_assets"
    ```
-   
+
 3. Instruct {{% vendor/name %}} to automatically run `npm install` when building the application container.</br>
    To do so, customize your [build hook](/create-apps/hooks/hooks-comparison.html#build-hook).
    Locate the section dedicated to it:
