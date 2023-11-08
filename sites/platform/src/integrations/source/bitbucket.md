@@ -33,7 +33,71 @@ Copy the **Key** and **Secret** for your consumer.
 
 ### 2. Enable the Cloud integration
 
-{{< source-integration/enable-integration source="Bitbucket" >}}
+To enable the integration, use either the [CLI](/administration/cli.html) or the [Console](/administration/web.html).
+
+{{< codetabs >}}
+
++++
+title=Using the CLI
++++
+
+Run the following command:
+
+```bash
+platform integration:add \
+  --project {{% variable "PROJECT_ID" %}} \
+  --type bitbucket \
+  --repository {{% variable "OWNER/REPOSITORY" %}} \
+  --key {{% variable "CONSUMER_KEY" %}} \
+  --secret {{% variable "CONSUMER_SECRET" %}}
+```
+
+- `PROJECT_ID` is the ID of your {{% vendor/name %}} project.
+- `OWNER/REPOSITORY` is the name of your repository in Bitbucket.
+- `CONSUMER_KEY` is is the key of the [OAuth consumer you created](#1-create-an-oauth-consumer).
+- `CONSUMER_SECRET` is the secret of the [OAuth consumer you created](#1-create-an-oauth-consumer).
+
+For example, if your repository is located at `https://bitbucket.org/platformsh/platformsh-docs`,
+the command is similar to the following:
+
+```bash
+platform integration:add \
+  --project abcdefgh1234567 \
+  --type bitbucket \
+  --repository platformsh/platformsh-docs \
+  --key abc123 \
+  --secret abcd1234 \
+```
+
+<--->
+
++++
+title=In the Console
++++
+
+1. Select the project where you want to enable the integration.
+1. Click **{{< icon settings >}} Settings**.
+1. Under **Project settings**, click **Integrations**.
+1. Click **+ Add integration**.
+1. Under **Bitbucket**, click **+ Add**.
+1. Complete the form with:
+   - The repository in the form `owner/repository`
+   - The [key and secret you generated](#1-create-an-oauth-consumer)
+1. Check that the other options match what you want.
+1. Click **Add integration**.
+
+{{< /codetabs >}}
+
+In both the CLI and Console, you can choose from the following options:
+
+| CLI flag         | Default | Description                                                               |
+| ---------------- | ------- | ------------------------------------------------------------------------- |
+| `fetch-branches` | `true`  | Whether to track all branches and create inactive environments from them. |
+| `prune-branches` | `true`  | Whether to delete branches from {{% vendor/name %}} that don’t exist in the Bitbucket repository. Automatically disabled when fetching branches is disabled. |
+| `build-pull-requests` | `true` | Whether to track all pull requests and create active environments from them, which builds the pull request. |
+| `resync-pull-requests` | `false` | Whether to sync data from the parent environment on every push to a pull request. |
+
+To [keep your repository clean](/learn/bestpractices/clean-repository) and avoid performance issues, make sure you enable both the `fetch-branches` and `prune-branches` options.
 
 {{% source-integration/validate source="Bitbucket" %}}
 1. Follow the [Bitbucket instructions to create a webhook](https://support.atlassian.com/bitbucket-cloud/docs/manage-webhooks/#Create-webhooks)

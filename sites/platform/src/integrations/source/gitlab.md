@@ -51,7 +51,7 @@ platform integration:add \
   --type gitlab \
   --server-project {{% variable "PROJECT/SUBPROJECT" %}} \
   --token {{% variable "GITLAB_ACCESS_TOKEN" %}} \
-  --base-url {{% variable "GITLAB_URL" %}} \
+  --base-url {{% variable "GITLAB_URL" %}}
 ```
 
 - `PROJECT_ID` is the ID of your {{% vendor/name %}} project.
@@ -60,7 +60,7 @@ platform integration:add \
 - `GITLAB_URL` is the base URL for your GitLab server if you self-host.
    If you use the public `https://gitlab.com`, omit the `--base-url` flag when running the command.
 
-For example, if your repository is located at `https://example.com/platformsh/platformsh-docs`,
+For example, if your repository is located at `https://gitlab.com/platformsh/platformsh-docs`,
 the command is similar to the following:
 
 ```bash
@@ -96,12 +96,12 @@ In both the CLI and Console, you can choose from the following options:
 | CLI flag         | Default | Description                                                               |
 | ---------------- | ------- | ------------------------------------------------------------------------- |
 | `fetch-branches` | `true`  | Whether to track all branches and create inactive environments from them. |
-| `prune-branches` | `true`  | Whether to delete branches from Platform.sh that don’t exist in the GitLab repository. Automatically disabled when fetching branches is disabled. |
+| `prune-branches` | `true`  | Whether to delete branches from {{% vendor/name %}} that don’t exist in the GitLab repository. Automatically disabled when fetching branches is disabled. |
 | `build-merge-requests` | `true` | Whether to track all merge requests and create active environments from them, which builds the merge request. |
 | `build-wip-merge-requests` | `true` | Whether to also track and build draft merge requests. Automatically disabled when merge requests aren’t built. |
 | `merge-requests-clone-parent-data` | `true` | Whether to clone data from the parent environment when creating a merge request environment. |
 
-To [keep your repository clean](/learn/bestpractices/clean-repository) and avoid performance issues, make sure you enable both the fetch-branches and prune-branches options.
+To [keep your repository clean](/learn/bestpractices/clean-repository) and avoid performance issues, make sure you enable both the `fetch-branches` and `prune-branches` options.
 
 {{% source-integration/validate source="GitLab" %}}
 1. In your GitLab repository, click **Settings** > **Webhooks**.
