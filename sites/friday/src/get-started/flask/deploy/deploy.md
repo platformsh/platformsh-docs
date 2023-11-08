@@ -36,7 +36,7 @@ After your app is deployed, you can [adjust those resources](/manage-resources.m
 
    {{< /note >}}
 
-3. To set project resources using the CLI, run the following command:
+3. To [set project resources](/manage-resources.md) using the CLI, run the following command:
 
    ```shell
    {{% vendor/cli %}} resources:set
