@@ -54,7 +54,7 @@ Run the following command:
 
 - `PROJECT_ID` is the ID of your {{% vendor/name %}} project.
 - `OWNER/REPOSITORY` is the name of your repository in Bitbucket.
-- `CONSUMER_KEY` is is the key of the [OAuth consumer you created](#1-create-an-oauth-consumer).
+- `CONSUMER_KEY` is the key of the [OAuth consumer you created](#1-create-an-oauth-consumer).
 - `CONSUMER_SECRET` is the secret of the [OAuth consumer you created](#1-create-an-oauth-consumer).
 
 For example, if your repository is located at `https://bitbucket.org/platformsh/platformsh-docs`,
