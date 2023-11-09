@@ -102,8 +102,9 @@ and deploy it on {{% vendor/name %}}.
     ```
 1. T: `git add .environment`
 1. T: `git commit -m "Adds needed flask env vars"`
-1. T: `{{% vendor/cli %}} e:push`
+1. T: `{{% vendor/cli %}} environment:push`
 1. Enter `Y`.<br/>
+1. If [error](/manage-resources.md#default-resources), T: `upsun resources:set` and follow the prompts.
 1. T: `python3 -m venv env`
 1. T: `source venv/bin/activate`
 1. T: `pip install --upgrade pip`
