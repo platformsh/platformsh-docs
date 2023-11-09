@@ -295,6 +295,7 @@ which allows you to push changes to your environment and trigger the following a
 | Set the parent environment                 | `git push {{% vendor/cli %}} -o "environment.parent=<PARENT_ENVIRONMENT_NAME>"` |         
 | Clone the data from the parent environment | `git push {{% vendor/cli %}} -o "environment.clone_parent_on_create=True"` |
 | Disable the cloning of the data from the parent environment | `git push {{% vendor/cli %}} -o "environment.clone_parent_on_create=False"` |
+| Set the environment type (`development`, `staging`, or `production`)                  | `git push {{% vendor/cli %}} -o "environment.type=<ENVIRONMENT_TYPE>"` |
 
 If your remote location isn't named `{{% vendor/cli %}}`,
 make sure you adjust the commands accordingly.
