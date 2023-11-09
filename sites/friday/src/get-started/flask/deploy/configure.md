@@ -29,7 +29,7 @@ and [authenticated with your {{% vendor/name %}} account](/administration/cli/_i
 
    - Enter the name of your app.
 
-   - Select the services you need (for this guide, select `PostgreSQL` as we'll use it later)
+   - Select the services you need, including at least `PostgreSQL`, as we'll use it later.
 
    - Hit **Enter**.</br>
 

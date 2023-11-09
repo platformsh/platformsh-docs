@@ -5,8 +5,8 @@ weight: -100
 description: Steps required for deploying a configured Flask application to {{% vendor/name %}}.
 ---
 
-On {{% vendor/name %}}, you need to set project resources when you first deploy your app.
-After your app is deployed, you can [adjust those resources](/manage-resources.md) at any time.
+To push all your changes to {{% vendor/name %}} and deploy your project,
+run the following command:
 
 1. To push all your changes to {{% vendor/name %}},
    run the following command:
@@ -17,22 +17,26 @@ After your app is deployed, you can [adjust those resources](/manage-resources.m
 
    The following question is displayed:
 
-   ```bash
-   Are you sure you want to push to the main (type: production) branch?
-   ```
+```bash
+Are you sure you want to push to the main (type: production) branch?
+```
 
 2. To activate your initial environment, answer `Y`.</br>
    {{% vendor/name %}} reads your configuration files and builds your application container.
 
    {{< note theme="warning">}}
-   When you first deploy your Upsun project, you get notified that you need to provide a disk size, and you will receive a notice:
+   When you first deploy your Upsun project, you get notified that you need to provide a disk size, and you receive a notice:
 
    ```bash
-   The push completed but there was a deployment error ("Invalid deployment")..
+   The push completed but there was a deployment error ("Invalid deployment").
    ```
-  {{% vendor/name %}} doesn't know how much disk your application requires for the PostgreSQL service. Therefore, your app can only
-   be successfully deployed after you've configured the disk amount for the PostgreSQL service through the
-   {{% vendor/name %}} CLI or [through the Console](/manage-resources.md#configure-resources).
+
+   {{% vendor/name %}} doesn't know how much disk your application requires for the PostgreSQL service.
+   Therefore, your app can only be successfully deployed after you've configured the disk amount for the PostgreSQL service
+   through the {{% vendor/name %}} CLI or [through the Console](/manage-resources.md#configure-resources).
+
+   This error can also be triggered for other services requiring a disk.
+   {{% vendor/name %}} is currently working on making sure default resources are successfully applied to every service container as soon as possible.
 
    {{< /note >}}
 
