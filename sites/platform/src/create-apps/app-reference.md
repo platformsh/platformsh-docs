@@ -121,7 +121,7 @@ That is, if a custom value for `source.root` is not provided in your configurati
 
 {{% /version/specific %}}
 
-To specify another directory, for example for a [multi-app project](./multi-app/_index.md)),
+To specify another directory, for example for a [multi-app project](./multi-app/_index.md),
 use the [`source.root` property](#source).
 
 ## Types

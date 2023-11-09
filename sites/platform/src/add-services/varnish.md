@@ -166,8 +166,8 @@ To forward all incoming requests to Varnish rather than your app, you could have
 
 ```yaml {configFile="routes"}
 {{% snippet name="varnish:http" config="route" redirect="false" %}}
-    cache:
-        enabled: false
+cache:
+    enabled: false
 {{% /snippet %}}
 ```
 

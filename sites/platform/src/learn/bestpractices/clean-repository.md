@@ -13,6 +13,8 @@ keywords:
   - latencies
   - prune branches
   - remove branches
+  - Git Large File Storage
+  - Git LFS
 ---
 
 When a Git repository contains a high number of references and files, the performance of Git can decrease.
@@ -86,6 +88,12 @@ Therefore, {{% vendor/name %}} recommends that you only commit your source code 
 
 To upload any other files to your app, [create mounts](https://docs.platform.sh/create-apps/app-reference.html#mounts)
 and [transfer your files directly to them](https://docs.platform.sh/development/file-transfer.html#transfer-a-file-to-a-mount).
+
+{{< note >}}
+
+{{% vendor/name %}} does not currently support [Git Large File Storage](https://git-lfs.com/).
+
+{{< /note >}}
 
 ## Troubleshoot a sizeable Git repository
 
