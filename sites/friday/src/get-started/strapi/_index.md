@@ -264,36 +264,19 @@ git commit -m "{{% vendor/name %}} config files"
 
 ## Customize the generated .environment file
 
-Open your generated ``.environment`` file and replace the entire content by this:
-```
-export RELATIONSHIPS_JSON="$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)"
-
-# Set database environment variables
-export DATABASE_HOSTNAME="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresql[0].hostname')"
-export DATABASE_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresql[0].host')"
-export DATABASE_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresql[0].port')"
-export DATABASE_NAME="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresql[0].path')"
-export DATABASE_USERNAME="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresql[0].username')"
-export DATABASE_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresql[0].password')"
-export DATABASE_SCHEME="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresql[0].scheme')"
-export DATABASE_PATH="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresql[0].path')"
-export DATABASE_URL="${DATABASE_SCHEME}://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@${DATABASE_HOSTNAME}:${DATABASE_PORT}/${DATABASE_PATH}"
-
-# Strapi-specific environment variables
-export JWT_SECRET="$PLATFORM_PROJECT_ENTROPY"
-export ADMIN_JWT_SECRET="$PLATFORM_PROJECT_ENTROPY"
-export API_TOKEN_SALT="$PLATFORM_PROJECT_ENTROPY"
+Open your generated ``.environment`` file and add the missing `APP_KEYS` parameters:
+```bash {location=".environment"}
 export APP_KEYS="toBeModified1,toBeModified2"
 ```
 
-[//]: # ({{< note title="TODO" >}})
+{{< note >}}
+Don't forget to replace ``toBeModified1`` and `toBeModified2` by your personal token. You could also use your own environment variables to do so, using the following:
+```bash {location=".environment"}
+export APP_KEYS=APP_TOKEN_1,APP_TOKEN_2
+```
+{{< /note >}}
 
-[//]: # (this step should not happen as it should be changed in the upsun ify directly and values of "DATABASE_" should be equal to the automatic env var values for PostgreSQL "POSTGRESQL_")
-
-[//]: # ()
-[//]: # (FLO: i will create an issue on CLI repo for that)
-
-[//]: # ({{< /note >}})
+[//]: # ( https://github.com/platformsh/cli/issues/150: if solved, we can removed this section)
 
 ## Set a project remote
 
