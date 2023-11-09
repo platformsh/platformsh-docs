@@ -9,7 +9,7 @@ Anything included in these guides applies not only to [Express](https://expressj
 
 {{% guides/link-philosophy %}}
 
-{{< note title=”Tip” >}}
+{{< note title="Tip">}}
 To get your Express project up and running as quickly as possible, experiment with the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project/demo) before following this guide.
 {{< /note >}}
 
@@ -358,63 +358,39 @@ git push origin
 Your GitHub/GitLab/Bibucket integration process will then automatically create a new environment if you’re pushing a new Git branch, and deploy changes to your corresponding environment.
 {{< /codetabs >}}
 
-{{% vendor/name %}} will now read your configuration files, and begin building your application image. **Your first push
-will fail**; don't worry, this is expected. At this point {{% vendor/cli %}} is not aware of the resources
-your application needs. You need to define how much CPU, memory, and disk to assign to the various containers. Back in your terminal, run:
+{{% vendor/name %}} will now read your configuration files and deploy your project using [default container resources](/manage-resources/_index.md).
+You can [amend those default container resources](/manage-resources/_index.md#configure-resources) after your project is deployed.
 
-```bash {location="Terminal"}
-{{% vendor/cli %}} resources:set
+{{< note theme="warning" title="Warning" >}}
+
+You may get the following error when you first deploy your {{% vendor/name %}} project:
+
+```bash
+The push completed but there was a deployment error ("Invalid deployment").
 ```
 
-This will launch an interactive prompt to walk you through setting up your application's resources:
-```bash {location="Terminal"}
-{{% vendor/cli %}} resources:set
-Resource configuration for the project app (123456azerty), environment main (type: production):
-+-----------------------+---------+---------+-------------+-----------+-----------+
-| App or service        | Size    | CPU     | Memory (MB) | Disk (MB) | Instances |
-+-----------------------+---------+---------+-------------+-----------+-----------+
-| app                   | not set | not set | not set     | N/A       | 1         |
-+-----------------------+---------+---------+-------------+-----------+-----------+
-```
-The first question is what profile size you want applied to your application image. For now let's select the minimum `0.1`:
-```bash {location="Terminal"}
-App: app
-Choose a profile size:
-  [0.1 ] CPU 0.1, memory 64 MB
-  [0.25] CPU 0.25, memory 128 MB
-  [0.5 ] CPU 0.5, memory 224 MB
-  [1   ] CPU 1, memory 384 MB
-  [2   ] CPU 2, memory 704 MB
-  [4   ] CPU 4, memory 1216 MB
-  [6   ] CPU 6, memory 1728 MB
-  [8   ] CPU 8, memory 2240 MB
-  [10  ] CPU 10, memory 2688 MB
- > 0.1
-```
-Next it will ask how many instances of our application container we need deployed. For now let's go with `1`:
-```bash {location="Terminal"}
-Enter the number of instances (default: 1): 1
-```
+This happens when {{% vendor/name %}} doesn't know how much disk your app requires for a specific service.
+Therefore, your app can only be successfully deployed after you've configured the disk amount for that service
+through the {{% vendor/name %}} CLI or [through the Console](/manage-resources.md#configure-resources).
 
-Last it will ask us to confirm our choices. Select `Y` and {{% vendor/name %}} will take your selections, grab the
-previous built images from earlier, apply your resource selections to them and deploy your full application!
+{{% vendor/name %}} is currently working on making sure default resources are successfully applied to every service container
+as soon as possible.
 
-Note that each environment has its own domain name.
+To set your resources through the CLI, run `upsun resources:set` and follow the prompts.
+
+{{< /note >}}
+
+Et voilà, your Express application is live!
+
+{{< note title="Tip" >}}
+
+Each environment has its own domain name.
 To open the URL of your new environment, run the following command:
 
    ```bash {location="Terminal"}
    {{% vendor/cli %}} environment:url --primary
    ```
-
-{{< note >}}
-Resource allocation is only done on the first deploy of a project. </br>
-For next deployments, just use:
-```shell {location="Terminal"}
-{{% vendor/cli %}} push
-```
 {{< /note >}}
-
-Et voilà, your Express application is live!
 
 ## Make changes to your project
 

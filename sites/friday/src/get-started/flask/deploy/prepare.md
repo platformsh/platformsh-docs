@@ -18,7 +18,7 @@ To do so, make the following changes to the `.environment` file automatically ge
 
    And amend it to specify the type of your database.
    For instance, if you have a PostgreSQL database, change the line to:
-   
+
    ```bash {location=".environment"}
    export DATABASE_URL="postgresql://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"
    ```
@@ -46,7 +46,7 @@ To do so, make the following changes to the `.environment` file automatically ge
    ```
 
    This command sets the log level to `info` for your production environment, and to `debug` for your preview environments.
-   
+
 5. To adjust the cache control maximum age depending on the type of environment, add the following line:
 
 	```bash {location=".environment"}
@@ -56,6 +56,10 @@ To do so, make the following changes to the `.environment` file automatically ge
    This command sets the maximum age to `31556926` for your production environment, and to `0` for your preview environments.
 
 6. Point the `SECRET_KEY` environment variable to the {{% vendor/name %}}-provided [ `PLATFORM_PROJECT_ENTROPY` variable](/development/variables/use-variables.md#use-provided-variables).</br>
+   ```bash {location=".environment"}
+   export SECRET_KEY="${PLATFORM_PROJECT_ENTROPY}"
+    ```
+
    The `SECRET_KEY` environment variable ensures the session cookie is signed securely,
    and can be used for any other security-related needs by extensions or your app.
 
@@ -64,7 +68,7 @@ To do so, make the following changes to the `.environment` file automatically ge
 
 	 ```bash {location=".environment"}
      export GUNICORN_WORKERS=1
-     ```   
+     ```
 
 8. To commit and push your changes, run the following command:
 
