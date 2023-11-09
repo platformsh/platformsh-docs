@@ -39,9 +39,28 @@ When you first deploy your {{% vendor/name %}} project, and whenever you add a n
 | --------------------------- | ----------- |
 | CPU                         | 0.5 |
 | RAM                         | Depends on the [container profile](#advanced-container-profiles). |
-| Disk size                   | 512 MB |
+| Disk size (only applicable if the app or service requires a disk)                   | 512 MB |
 
 You can [adjust those resources](#configure-resources) after your project or new container is deployed.
+
+{{< note theme="warning" title="Warning" >}}
+
+You may get the following error when you first deploy your {{% vendor/name %}} project:
+
+```bash
+The push completed but there was a deployment error ("Invalid deployment").
+```
+
+This happens when {{% vendor/name %}} doesn't know how much disk your app requires for a specific service.
+Therefore, your app can only be successfully deployed after you've configured the disk amount for that service
+through the {{% vendor/name %}} CLI or [through the Console](/manage-resources.md#configure-resources).
+
+{{% vendor/name %}} is currently working on making sure default resources are successfully applied to every service container
+as soon as possible.
+
+To set your resources through the CLI, run `upsun resources:set` and follow the prompts.
+
+{{< /note >}}
 
 ## Configure resources
 

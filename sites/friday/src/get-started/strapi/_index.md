@@ -9,7 +9,7 @@ Anything included in these guides applies not only to [Strapi](https://strapi.io
 
 {{% guides/link-philosophy %}}
 
-{{< note title=”Tip” >}}
+{{< note title= "Tip" >}}
 To get your Strapi project up and running as quickly as possible, experiment with the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project/demo) before following this guide.
 {{< /note >}}
 
@@ -365,6 +365,25 @@ Your GitHub/GitLab/Bibucket integration process will then automatically create a
 
 {{% vendor/name %}} will now read your configuration files and deploy your project using [default container resources](/manage-resources/_index.md).
 You can [amend those default container resources](/manage-resources/_index.md#configure-resources) after your project is deployed.
+
+{{< note theme="warning" title="Warning" >}}
+
+You may get the following error when you first deploy your {{% vendor/name %}} project:
+
+```bash
+The push completed but there was a deployment error ("Invalid deployment").
+```
+
+This happens when {{% vendor/name %}} doesn't know how much disk your app requires for a specific service.
+Therefore, your app can only be successfully deployed after you've configured the disk amount for that service
+through the {{% vendor/name %}} CLI or [through the Console](/manage-resources.md#configure-resources).
+
+{{% vendor/name %}} is currently working on making sure default resources are successfully applied to every service container
+ as soon as possible.
+
+To set your resources through the CLI, run `upsun resources:set` and follow the prompts.
+
+{{< /note >}}
 
 Et voilà, your Strapi application is live!
 
