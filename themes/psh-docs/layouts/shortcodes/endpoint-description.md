@@ -42,7 +42,7 @@ If want to use ephemeral Redis instead, use the `redis` type:
   {{ partial "examples/servicedefn" (dict "context" . "data" $redis_data "docVersion" $docVersion ) }}
 
 {{ else if eq $type "network-storage" }}
-`<SERVICE_NAME>` must be [RFC 1123]([url](https://tools.ietf.org/html/rfc1123)) compliant, and as such it must:
+`<SERVICE_NAME>` must be [RFC 1123](https://tools.ietf.org/html/rfc1123) compliant, and as such it must:
 * contain at most 63 characters;
 * contain only lowercase alphanumeric characters or `-` (underscores `_` are not allowed);
 * start with an alphanumeric character;
