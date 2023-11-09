@@ -65,7 +65,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform integration:add \
+{{% vendor/cli %}} integration:add \
   --project {{% variable "PROJECT_ID" %}} \
   --type github \
   --repository {{% variable "OWNER/REPOSITORY" %}} \
@@ -83,7 +83,7 @@ For example, if your repository is located at `https://github.com/platformsh/pla
 the command is similar to the following:
 
 ```bash
-platform integration:add \
+{{% vendor/cli %}} integration:add \
   --project abcdefgh1234567 \
   --type github \
   --repository platformsh/platformsh-docs \

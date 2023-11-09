@@ -44,7 +44,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash
-platform integration:add \
+{{% vendor/cli %}} integration:add \
   --project {{% variable "PROJECT_ID" %}} \
   --type bitbucket \
   --repository {{% variable "OWNER/REPOSITORY" %}} \
@@ -61,7 +61,7 @@ For example, if your repository is located at `https://bitbucket.org/platformsh/
 the command is similar to the following:
 
 ```bash
-platform integration:add \
+{{% vendor/cli %}} integration:add \
   --project abcdefgh1234567 \
   --type bitbucket \
   --repository platformsh/platformsh-docs \
