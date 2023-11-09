@@ -43,10 +43,10 @@ If want to use ephemeral Redis instead, use the `redis` type:
 
 {{ else if eq $type "network-storage" }}
 `<SERVICE_NAME>` must be [RFC 1123](https://tools.ietf.org/html/rfc1123) compliant, and as such it must:
-* contain at most 63 characters;
-* contain only lowercase alphanumeric characters or `-` (underscores `_` are not allowed);
-* start with an alphanumeric character;
-* end with an alphanumeric character.
+- Contain at most 63 characters
+- Contain only lowercase alphanumeric characters or `-` (underscores `_` are not allowed)
+- Start with an alphanumeric character
+- End with an alphanumeric character
 
 This is due to the fact that `<SERVICE_NAME>` is used as hostname for the network storage.
 
