@@ -35,7 +35,73 @@ and grants more permissions.
 
 ## 2. Enable the integration
 
-{{< source-integration/enable-integration source="GitLab" >}}
+To enable the integration, use either the [CLI](/administration/cli.html) or the [Console](/administration/web.html).
+
+{{< codetabs >}}
+
++++
+title=Using the CLI
++++
+
+Run the following command:
+
+```bash
+{{% vendor/cli %}} integration:add \
+  --project {{% variable "PROJECT_ID" %}} \
+  --type gitlab \
+  --server-project {{% variable "PROJECT/SUBPROJECT" %}} \
+  --token {{% variable "GITLAB_ACCESS_TOKEN" %}} \
+  --base-url {{% variable "GITLAB_URL" %}}
+```
+
+- `PROJECT_ID` is the ID of your {{% vendor/name %}} project.
+- `PROJECT/SUBPROJECT` is the name of your repository in GitLab.
+- `GITLAB_ACCESS_TOKEN` is the [token you generated](#1-generate-a-token).
+- `GITLAB_URL` is the base URL for your GitLab server if you self-host.
+   If you use the public `https://gitlab.com`, omit the `--base-url` flag when running the command.
+
+For example, if your repository is located at `https://gitlab.com/platformsh/platformsh-docs`,
+the command is similar to the following:
+
+```bash
+{{% vendor/cli %}} integration:add \
+  --project abcdefgh1234567 \
+  --type gitlab \
+  --server-project platformsh/platformsh-docs \
+  --token abc123
+```
+
+<--->
+
++++
+title=In the Console
++++
+
+1. Select the project where you want to enable the integration.
+1. Click **{{< icon settings >}} Settings**.
+1. Under **Project settings**, click **Integrations**.
+1. Click **+ Add integration**.
+1. Under **GitLab**, click **+ Add**.
+1. Add the [token you generated](#1-generate-a-token).
+1. Optional: If your GitLab project isn’t hosted at `gitlab.com`, enter your GitLab custom domain.
+1. Click **Continue**.
+1. Choose the repository to use for the project.
+1. Check that the other options match what you want.
+1. Click **Add integration**.
+
+{{< /codetabs >}}
+
+In both the CLI and Console, you can choose from the following options:
+
+| CLI flag         | Default | Description                                                               |
+| ---------------- | ------- | ------------------------------------------------------------------------- |
+| `fetch-branches` | `true`  | Whether to track all branches and create inactive environments from them. |
+| `prune-branches` | `true`  | Whether to delete branches from {{% vendor/name %}} that don’t exist in the GitLab repository. Automatically disabled when fetching branches is disabled. |
+| `build-merge-requests` | `true` | Whether to track all merge requests and create active environments from them, which builds the merge request. |
+| `build-wip-merge-requests` | `true` | Whether to also track and build draft merge requests. Automatically disabled when merge requests aren’t built. |
+| `merge-requests-clone-parent-data` | `true` | Whether to clone data from the parent environment when creating a merge request environment. |
+
+To [keep your repository clean](/learn/bestpractices/clean-repository) and avoid performance issues, make sure you enable both the `fetch-branches` and `prune-branches` options.
 
 {{% source-integration/validate source="GitLab" %}}
 1. In your GitLab repository, click **Settings** > **Webhooks**.
