@@ -42,7 +42,14 @@ If want to use ephemeral Redis instead, use the `redis` type:
   {{ partial "examples/servicedefn" (dict "context" . "data" $redis_data "docVersion" $docVersion ) }}
 
 {{ else if eq $type "network-storage" }}
-You can define `<SERVICE_NAME>` as you like, but it shouldn't include underscores (`_`).
+`<SERVICE_NAME>` must be [RFC 1123](https://tools.ietf.org/html/rfc1123) compliant, and as such it must:
+- Contain at most 63 characters
+- Contain only lowercase alphanumeric characters or `-` (underscores `_` are not allowed)
+- Start with an alphanumeric character
+- End with an alphanumeric character
+
+This is due to the fact that `<SERVICE_NAME>` is used as hostname for the network storage.
+
 {{ else if eq $type "elasticsearch" }}
 If you're using a [premium version](add-services/elasticsearch.md#supported-versions),
 use the `elasticsearch-enterprise` type instead.
