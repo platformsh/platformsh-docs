@@ -7,11 +7,6 @@ banner:
     type: tiered-feature
 ---
 
-{{% version/specific %}}
-{{< partial "progressive-rollout/body.md" >}}
-<--->
-{{% /version/specific %}}
-
 [Preview environments](/glossary.md#preview-environment) in your project can't use the custom domain [set up on your production environment](../steps/_index.md).<br/>
 By default and for each preview environment,
 {{% vendor/name %}} automatically replaces the custom production domain
