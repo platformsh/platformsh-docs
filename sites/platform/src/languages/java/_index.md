@@ -133,7 +133,6 @@ It’s worth remembering that the JVM by its specification [doesn't read Java co
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [Kotlin and Spring](https://platform.sh/blog/2019/ready-to-have-fun-try-kotlin-and-spring/) | [Source](https://github.com/platformsh-templates/spring-kotlin) |
 | [Scala and Spring](https://dzone.com/articles/spring-scala-cloud-psh) | [Source](https://github.com/platformsh-examples/scala)       |
-| [Groovy and Spring](https://dzone.com/articles/spring-groovy-cloud-psh) | [Source](https://github.com/platformsh-examples/groovy)      |
 
 {{< note version="2" >}}
 While the table above shows examples for {{% vendor/psh_ref %}} rather than for {{% vendor/name %}}, the same rules apply with only slight changes in configuration.
