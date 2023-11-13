@@ -309,7 +309,7 @@ which allows you to push changes to your environment and trigger the following a
 | Clone the data from the parent environment | `git push {{% vendor/cli %}} -o "environment.clone_parent_on_create=True"` |
 | Disable the cloning of the data from the parent environment | `git push {{% vendor/cli %}} -o "environment.clone_parent_on_create=False"` |
 | Set the environment type (`development`, `staging`, or `production`)                  | `git push {{% vendor/cli %}} -o "environment.type=<ENVIRONMENT_TYPE>"` |
-| Resource initialization strategy (`manual`, `minimum`, `minimum`, or `parent`)  | `git push {{% vendor/cli %}} -o "resources.init=<RESOURCE_INIT_STRATEGY>"` |
+| Define a [resource initialization strategy](/manage-resources/resource-init.md#define-a-resource-initialization-strategy) (`Default`, `Manual`, `Minimum`, or `Parent`)  | `git push {{% vendor/cli %}} -o "resources.init=<RESOURCE_INITIALIZATION_STRATEGY>"` |
 
 {{% /version/specific %}}
 
