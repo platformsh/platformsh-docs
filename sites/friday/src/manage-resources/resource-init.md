@@ -25,7 +25,7 @@ When you first deploy your {{% vendor/name %}} project, and whenever you add a n
 If you don't want to use those default resources, you can define a different [resource initialization strategy](#resource-initialization-strategies).
 You can also [adjust those resources](#configure-resources) after your project or new container has been deployed.
 
-For information on resource-related costs, see the [{{% vendor/name %}} pricing page](https://upsun.com/pricing/).
+For information on costs related to resource usage, see the [{{% vendor/name %}} pricing page](https://upsun.com/pricing/).
 Note that you can [keep an eye on those costs](/manage-resources/resource-billing.md) in the Console.
 
 ## Define a resource initialization strategy
@@ -40,10 +40,10 @@ The following strategies are available:
 
 | Strategy | Description | Command |
 | ---------| ----------- | ---------- |
-| `Default`  | Initializes the new containers using the [{{% vendor/name %}} default resources](/manage-resources/resource-init.md).</br>This strategy automatically applies if you don't explicitly use a Git push option when deploying your project or new container.  | `git push upsun -o resources.init=default` |
+| `Default`  | Initializes the new containers using the [{{% vendor/name %}} default resources](/manage-resources/resource-init.md).</br>If no Git push option is defined when you first deploy your project or new container, this strategy applies.  | `git push upsun -o resources.init=default` |
 | `Manual`   | With this strategy, the first deployment fails and you need to configure resources manually through [the Console](#adjust-your-project-resources), or using `resources:set` in the CLI. | `git push upsun -o resources.init=manual` |
 | `Minimum`  | Initializes the new containers using the [{{% vendor/name %}} minimum resources](#minimum-resources). | `git push upsun -o resources.init=minimum` |
-| `Parent`   | Initializes the new containers using the same resources as the parent environment.</br>If there is no parent, or if the container doesn't already exist on the parent environment, the default strategy applies instead. | `git push upsun -o resources.init=parent` |
+| `Parent`   | Initializes the new containers using the same resources as the parent environment.</br>If there is no parent environment, or if the container doesn't already exist on the parent, the `Default` strategy applies instead. | `git push upsun -o resources.init=parent` |
 
 If you're using a source integration, you can't use Git push options.
 However, you can still define a resource initialization strategy by [adjusting your source integration setup](#with-a-source-integration).
@@ -112,5 +112,4 @@ you need to [allocate resources](/manage-resources/adjust-resources.md) to each 
 When you [sync an environment](/glossary.md#sync),
 the target environment's disk size may be smaller that the source environment's disk size.
 
-In this case, {{% vendor/name %}} automatically allocates the source environment's disk size to the target environment.
-This ensures that there's enough disk space on the target environment for the synchronization to succeed.
+In this case, to ensure that the synchonization succeeds, {{% vendor/name %}} automatically adjusts the target environment's disk size so it matches the source environment's disk size.

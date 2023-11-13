@@ -1,6 +1,6 @@
 ---
 title: Resource configuration
-description: Configure CPU, RAM and disk storage on a per-environment basis so your apps and services can run smoothly.
+description: Configure CPU, RAM, and disk storage on a per-environment basis so your apps and services can run smoothly.
 weight: -100
 keywords:
   - "resources"
@@ -14,14 +14,14 @@ keywords:
 ---
 
 When you first deploy your project or add a new app or service to it,
-{{% vendor/name %}} allocates [default container resources](/manage-resources/resource-init.md#default-resources).
+{{% vendor/name %}} allocates [default resources](/manage-resources/resource-init.md#default-resources) to each of your containers.
 If you don't want to use those default resources, define a different [resource initialization strategy](/manage-resources/resource-init.md#define-a-resource-initialization-strategy).
 
 After the initial deployment, or if you opt for the `Manual` [resource initialization strategy](/manage-resources/resource-init.md#define-a-resource-initialization-strategy),
-you can adjust resources manually.
+you can adjust container resources manually.
 To do, follow the instructions on this page.
 
-{{% vendor/name %}} allows you to configure resources (CPU, RAM, disk) per environment for each of your apps and services.
+{{% vendor/name %}} allows you to configure resources (CPU, RAM, and disk) per environment for each of your apps and services.
 You can also add instances for each of your apps depending on your needs.
 
 For example, you can scale vertically and allocate more resources to your production and staging environments
@@ -31,7 +31,7 @@ This flexibility allows you to optimize performance and costs.
 You can even scale horizontally if your apps are struggling with high load, or if you're expecting a traffic spike,
 by adding more instances for your apps and workers.
 
-For information on resource-related costs, see the [{{% vendor/name %}} pricing page](https://upsun.com/pricing/).
+For information on costs related to resource usage, see the [{{% vendor/name %}} pricing page](https://upsun.com/pricing/).
 To keep an eye on those costs in the Console, see [Resource Billing](/manage-resources/resource-billing.md).
 
 ## Vertical scaling

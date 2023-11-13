@@ -1,6 +1,6 @@
 ---
 title: Resource billing
-description: Keep an eye on your resource-related costs.
+description: Keep an eye on costs related to resource usage.
 weight: -50
 keywords:
   - "resources"
@@ -12,7 +12,7 @@ keywords:
 ---
 
 If you have the [**Manage Billing** permission](/administration/users.md#organization-permissions) on your organization,
-you can keep an eye on your resource-related costs.</br>
+you can keep an eye on your costs related to resource usage.</br>
 To do so, after you've set or updated resources on your project,
 follow these steps in the [{{% vendor/name %}} Console](/administration/web/_index.md):
 
