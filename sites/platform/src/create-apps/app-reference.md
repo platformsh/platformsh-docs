@@ -247,7 +247,7 @@ and use the `http` endpoint.
 For more information, see how to [define relationships between your apps](/create-apps/multi-app/relationships.md).
 {{< /note >}}
 
-You can as many relationships as you want to your app configuration:
+You can add as many relationships as you want to your app configuration:
 
 ```yaml {configFile="app"}
 relationships:
@@ -300,7 +300,7 @@ To connect your app to another app in your project, replace the `SERVICE_NAME` b
 For more information, see how to [define relationships between your apps](/create-apps/multi-app/relationships.md).
 {{< /note >}}
 
-You can as many relationships as you want to your app configuration:
+You can add as many relationships as you want to your app configuration:
 
 ```yaml {configFile="app"}
 relationships:
@@ -341,7 +341,7 @@ To connect your app to another app in your project, replace the `SERVICE_NAME` b
 For more information, see how to [define relationships between your apps](/create-apps/multi-app/relationships.md).
 {{< /note >}}
 
-You can as many relationships as you want to your app configuration:
+You can add as many relationships as you want to your app configuration:
 
 ```yaml {configFile="app"}
 relationships: {database1, database2, cache, search}: 
