@@ -35,7 +35,7 @@
     const currentUrl =
       location.protocol + "//" + location.host + location.pathname;
     {{ with page.File }}
-      const repoURL = {{ printf "https://github.com/platformsh/platformsh-docs/blob/main/sites/%s" (substr (index ( split .Filename "sites") 1) 1 ) }}
+      const repoURL = {{ printf "%sblob/main/sites/%s" site.Params.repo (substr (index ( split .Filename "sites") 1) 1 ) }}
     {{ end }}
     return {
       feedbackSubmitted: false,
