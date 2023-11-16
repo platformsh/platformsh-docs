@@ -4,20 +4,19 @@ sidebarTitle: "Continuous profiling (Go)"
 description: Configure the Go continuous profiler.
 weight: 30
 ---
-Continuous profiling is a performance optimization technique where web applications
-are monitored and profiled in real-time. Lightweight and scalable, it's tailored
-for holistic application oversight.
-
-Continuous profiling collects performance data continuously, enabling developers to
-gain deep insights into their application's behavior, identify bottlenecks, and
-optimize code for better performance and resource utilization. This proactive
-approach allows for quicker identification and resolution of performance issues,
-ensuring the smooth running of software in live environments.
 
 ## Continuous profiling on {{% vendor/name %}}
 
-{{< vendor/name >}} Continuous Profiling is powered by [Blackfire](../../../increase-observability/application-metrics/blackfire.md).
+{{< vendor/name >}} [Continuous Profiler](./cont-prof.md) is powered by [Blackfire](../../../increase-observability/application-metrics/blackfire.md).
 It is available directly from Console under the `Profiling` tab of your environments.
+
+The continuous profiling is currently made accross 6 dimensions:
+- **CPU**: CPU usage per function calls
+- **Goroutine**: active goroutines
+- **inuse_space**: memory allocated and not yet released
+- **inuse_objects**: objects allocated and not yet released
+- **alloc_space**: total allocated memory  (released or not)
+- **alloc_objects**: total allocated objects (released or not)
 
 ## Prerequisites
 

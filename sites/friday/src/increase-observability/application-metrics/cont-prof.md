@@ -4,12 +4,20 @@ description: Understanding the Continuous Profiling dashboard
 weight: 20
 ---
 
+Continuous profiling is a multi-dimensional performance optimization technique
+where web applications are monitored and profiled in real-time. Lightweight and
+scalable, it's tailored for holistic application oversight.
+
+Continuous profiling collects performance data continuously, enabling developers to
+gain deep insights into their application's behavior, identify bottlenecks, and
+optimize code for better performance and resource utilization. This proactive
+approach allows for quicker identification and resolution of performance issues,
+ensuring the smooth running of software in live environments.
+
 ## Continuous profiling on {{% vendor/name %}}
 
 {{< vendor/name >}} Continuous Profiling is powered by [Blackfire](../../../increase-observability/application-metrics/blackfire.md).
 It is available directly from Console under the `Profiling` tab of your environments.
-
-Continuous Profiling provides real-time insights into application performance. It enables developers to quickly spot and fix efficiency issues, better manage resource utilization, and ensure smooth and reliable operations.
 
 The Continuous Profiling dashboard let you visualize profiling data of a specific application.
 It is composed of several views: flame graph, table view, sandwich view and a split view combining the flame graph and table views.
