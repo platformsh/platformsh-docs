@@ -1,6 +1,5 @@
 ---
 title: "Symfony"
-weight: -150
 description: |
     Everything you need to get started with [Symfony](https://www.symfony.com/) on {{% vendor/name %}}.
 ---
