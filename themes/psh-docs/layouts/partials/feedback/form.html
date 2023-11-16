@@ -34,11 +34,12 @@
   function FeedbackForm() {
     const currentUrl =
       location.protocol + "//" + location.host + location.pathname;
+    const repoURL = {{ printf "https://github.com/platformsh/platformsh-docs/blob/main/%s/src" site.Params.folder }}
     return {
       feedbackSubmitted: false,
       feedback: "",
       editPageUrl:
-        "https://github.com/platformsh/platformsh-docs/blob/main/docs/src" +
+        repoURL + 
         location.pathname.replace(".html", ".md"),
       issueUrl:
         "https://github.com/platformsh/platformsh-docs/issues/new?template=improvements.yml&where_on_docs_platform_sh_should_be_changed=" +
