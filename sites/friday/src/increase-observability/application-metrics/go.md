@@ -2,7 +2,7 @@
 title: Continuous profiling for Go
 sidebarTitle: "Continuous profiling (Go)"
 description: Configure the Go continuous profiler.
-weight: 10
+weight: 30
 ---
 Continuous profiling is a performance optimization technique where web applications
 are monitored and profiled in real-time. Lightweight and scalable, it's tailored

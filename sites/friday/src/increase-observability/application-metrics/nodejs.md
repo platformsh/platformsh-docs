@@ -1,8 +1,8 @@
 ---
 title: Continuous profiling for Node.js
-sidebarTitle: "Continuous Profiling (Node.js)"
+sidebarTitle: "Continuous profiling (Node.js)"
 description: Configure the NodeJS continuous profiler.
-weight: 15
+weight: 40
 ---
 Continuous profiling is a performance optimization technique where web applications
 are monitored and profiled in real-time. Lightweight and scalable, it's tailored
