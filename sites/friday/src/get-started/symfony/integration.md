@@ -11,10 +11,10 @@ Symfony has a special integration with {{% vendor/name %}} that makes it easier 
 
 The Symfony integration is automatically enabled when:
 
-- You run the `symfony new` command with the `--upsun` option;
+- You run the `symfony new` command with the `--{{% vendor/cli %}}` option
 
-- You run `symfony project:init --upsun` on an existing project to automatically
-  generate the {{% vendor/name %}} configuration.
+- You run `symfony project:init --{{% vendor/cli %}}` on an existing project to automatically
+  generate the {{% vendor/name %}} configuration
 
 If you already have a {{% vendor/name %}} configuration without the Symfony
 integration, enable it by adding the following configuration:
@@ -32,16 +32,16 @@ integration, enable it by adding the following configuration:
 The **configurator** enables the following integration:
 
 - It installs some helper scripts that you can use as the [default build and deploy hook scripts](#hooks):
-    - [`symfony-build`](#symfony-build);
-    - [`symfony-deploy`](#symfony-deploy);
-    - [`php-ext-install`](#php-ext-install).
+    - [`symfony-build`](#symfony-build)
+    - [`symfony-deploy`](#symfony-deploy)
+    - [`php-ext-install`](#php-ext-install)
 
-- It adds some [extra tools](#tools);
+- It adds some [extra tools](#tools)
 
 - It defines [additional infrastructure environment
 variables](./environment-variables#symfony-environment-variables) and
 [environment variables for all
-services](./environment-variables#service-environment-variables).
+services](./environment-variables#service-environment-variables)
 
 ## Tools
 
@@ -141,9 +141,9 @@ set `NO_NPM` or `NO_YARN` to `1` depending on your package manager.
 To customize Node/npm/Yarn behaviors,
 prefix the `symfony-build` script with the following environment variables:
 
-- ``NODE_VERSION``:  to pinpoint the Node version that nvm is going to install. 
-  The default value is ``--lts``.
-- ``YARN_FLAGS``: flags to pass to ``yarn install``.
+- `NODE_VERSION`:  to pinpoint the Node version that nvm is going to install. 
+  The default value is `--lts`.
+- `YARN_FLAGS`: flags to pass to `yarn install`.
   There is no default value.
 
 ### symfony-deploy
@@ -165,11 +165,11 @@ The script is written specifically for {{% vendor/name %}} to ensure fast and re
 
 **php-ext-install** currently supports three ways of fetching sources:
 
-- From [PECL](https://pecl.php.net/): ``php-ext-install redis 5.3.2``
-- From a URL: ``php-ext-install redis https://github.com/phpredis/phpredis/archive/5.3.2.tar.gz``
-- From a Git repository: ``php-ext-install redis https://github.com/phpredis/phpredis.git 5.3.2``
+- From [PECL](https://pecl.php.net/): `php-ext-install redis 5.3.2`
+- From a URL: `php-ext-install redis https://github.com/phpredis/phpredis/archive/5.3.2.tar.gz`
+- From a Git repository: `php-ext-install redis https://github.com/phpredis/phpredis.git 5.3.2`
 
-To ensure your app can be built properly, run ``php-ext-install`` after the [configurator](#tools)
+To ensure your app can be built properly, run `php-ext-install` after the [configurator](#tools)
 but before [symfony-build](#symfony-build):
 
 ```yaml {configFile="app"}

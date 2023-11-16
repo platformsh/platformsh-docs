@@ -6,16 +6,15 @@ description: |
     See how to get started deploying Symfony on {{% vendor/name %}}.
 ---
 
-{{% vendor/name %}} is the official Symfony [Symfony](https://symfony.com/)
-PaaS. This guide provides instructions for deploying, and working with, Symfony
-on {{% vendor/name %}}.
+{{% vendor/name %}} is the official [Symfony](https://symfony.com/) PaaS.
+This guide provides instructions for deploying, and working with, Symfony on {{% vendor/name %}}.
 
 {{% guides/requirements name="Symfony" %}}
 
 {{< note >}}
 
 The Symfony CLI wraps the [{{% vendor/name %}} CLI](/administration/cli/_index.md) with added features related to Symfony.
-So when using Symfony, you can replace `{{% vendor/cli %}} <command>` by `symfony upsun:<command>` in all of your commands.
+So when using Symfony, you can replace `{{% vendor/cli %}} <command>` by `symfony {{% vendor/cli %}}:<command>` in all of your commands.
 
 {{< /note >}}
 
@@ -25,12 +24,12 @@ To get familiar with {{% vendor/name %}}, create a new Symfony project from scra
 The present tutorial uses the [Symfony Demo](https://symfony.com/doc/current/setup.html#the-symfony-demo-application) app as an example :
 
 ```bash
-symfony new {{< variable "PROJECT_NAME" >}} --demo --upsun
+symfony new {{< variable "PROJECT_NAME" >}} --demo --{{% vendor/cli %}}
 cd {{< variable "PROJECT_NAME" >}}
 ```
 
 The `--demo` flag pulls the [Symfony Demo skeleton](https://github.com/symfony/demo).</br>
-The `--upsun` flag automatically generates the {{% vendor/name %}} configuration file.
+The `--{{% vendor/cli %}}` flag automatically generates the {{% vendor/name %}} configuration file.
 
 {{< note >}}
 
@@ -41,7 +40,7 @@ To do so, follow these steps:
    run the following command from within the project's directory:
 
    ```bash
-   symfony project:init --upsun
+   symfony project:init --{{% vendor/cli %}}
    ```
 
    This generates the following set of configuration files: `{{< vendor/configfile "app" >}}`, and `php.ini`.
@@ -65,7 +64,7 @@ This infrastructure is described through configuration files stored alongside yo
 To create the project on {{% vendor/name %}}, run the following command from within the project's directory:
 
 ```bash
-symfony upsun:create --title PROJECT_TITLE --set-remote
+symfony {{% vendor/cli %}}:create --title PROJECT_TITLE --set-remote
 ```
 
 The `--set-remote` flag sets the new project as the remote for this repository.
@@ -75,7 +74,7 @@ The `--set-remote` flag sets the new project as the remote for this repository.
 You can link any repository to an existing {{% vendor/name %}} project using the following command:
 
 ```bash
-symfony upsun:set-remote {{< variable "PROJECT_ID" >}}
+symfony {{% vendor/cli %}}:set-remote {{< variable "PROJECT_ID" >}}
 ```
 
 {{< /note >}}
@@ -85,7 +84,7 @@ symfony upsun:set-remote {{< variable "PROJECT_ID" >}}
 To deploy your project, run the following command:
 
 ```bash
-symfony upsun:deploy
+symfony {{% vendor/cli %}}:deploy
 ```
 
 {{< note title="Tip" >}}
@@ -93,7 +92,7 @@ symfony upsun:deploy
 During deployment, the logs from the {{% vendor/name %}} API are displayed in your terminal so you can monitor progress.
 To stop the display of the logs **without interrupting the deployment**,
 use `CTRL+C` in your terminal.
-To go back to displaying the logs, run `symfony upsun:activity:log`.
+To go back to displaying the logs, run `symfony {{% vendor/cli %}}:activity:log`.
 
 {{< /note >}}
 
@@ -105,7 +104,7 @@ To do so, see how to [set up a custom domain on {{% vendor/name %}}](/administra
 or run the following command:
 
 ```bash
-symfony upsun:domain:add {{< variable "YOUR_DOMAIN" >}}
+symfony {{% vendor/cli %}}:domain:add {{< variable "YOUR_DOMAIN" >}}
 ```
 
 ## Make changes to your project
@@ -121,7 +120,7 @@ To make changes to your project, follow these steps:
 1. Create a new environment (a Git branch) to make changes without impacting production:
 
    ```bash
-   symfony upsun:branch feat-a
+   symfony {{% vendor/cli %}}:branch feat-a
    ```
 
    This command creates a new local `feat-a` Git branch based on the main Git branch
@@ -153,14 +152,14 @@ To make changes to your project, follow these steps:
 4. Deploy your changes to the `feat-a` environment:
 
    ```bash
-   symfony upsun:deploy
+   symfony {{% vendor/cli %}}:deploy
    ```
    
    Note that each environment has its own domain name.
    To view the domain name of your new environment, run the following command:
 
    ```bash
-   symfony upsun:url --primary
+   symfony {{% vendor/cli %}}:url --primary
    ```
 
 5. Iterate by changing the code, committing, and deploying.
@@ -172,7 +171,7 @@ To make changes to your project, follow these steps:
    git merge feat-a
    symfony environment:delete feat-a
    git branch -d feat-a
-   symfony upsun:deploy
+   symfony {{% vendor/cli %}}:deploy
    ```
 
    {{< note >}}
@@ -182,13 +181,13 @@ To make changes to your project, follow these steps:
    {{< /note >}}
 
    For a long running branch, to keep the code up-to-date with the main branch, use `git merge main` or `git rebase main`.
-   You can also keep the data in sync with the production environment by using `symfony upsun:env:sync`.
+   You can also keep the data in sync with the production environment by using `symfony {{% vendor/cli %}}:env:sync`.
 
 ## Use a third-party Git provider
 
-When you choose to use a third-party Git hosting service, the {{% vendor/name %}} Git
-repository becomes a read-only mirror of the third-party repository. All your
-changes take place in the third-party repository.
+When you choose to use a third-party Git hosting service,
+the {{% vendor/name %}} Git repository becomes a read-only mirror of the third-party repository.
+All your changes take place in the third-party repository.
 
 Add an integration to your existing third-party repository:
 
@@ -220,67 +219,67 @@ You might find the following commands useful when using the Symfony CLI.
 -   Open the web administration console:
 
     ```bash
-    symfony upsun:web
+    symfony {{% vendor/cli %}}:web
     ```
 
 -   Open the URL of the current environment:
 
     ```bash
-    symfony upsun:url
+    symfony {{% vendor/cli %}}:url
     ```
 
 -   Open an SSH connection to your environment:
 
     ```bash
-    symfony upsun:ssh
+    symfony {{% vendor/cli %}}:ssh
     ```
 
--   Configure a project for Upsun:
+-   Configure a project for {{% vendor/name %}}:
 
     ```bash
-    symfony project:init --upsun
+    symfony project:init --{{% vendor/cli %}}
     ```
 
 -   Get a list of all the domains:
 
     ```bash
-    symfony upsun:domains
+    symfony {{% vendor/cli %}}:domains
     ```
 
 -   Create a new environment:
 
     ```bash
-    symfony upsun:branch new-branch
+    symfony {{% vendor/cli %}}:branch new-branch
     ```
 
 -   Get a list of all the environments:
 
     ```bash
-    symfony upsun:environments
+    symfony {{% vendor/cli %}}:environments
     ```
 
 -   Push code to the current environment:
 
     ```bash
-    symfony upsun:push
+    symfony {{% vendor/cli %}}:push
     ```
 
 -   Get a list of all the active projects:
 
     ```bash
-    symfony upsun:projects
+    symfony {{% vendor/cli %}}:projects
     ```
 
 -   Add a user to the project:
 
     ```bash
-    symfony upsun:user:add
+    symfony {{% vendor/cli %}}:user:add
     ```
 
 -   List variables:
 
     ```bash
-    symfony upsun:variables
+    symfony {{% vendor/cli %}}:variables
     ```
 
 You might find the following commands useful when using the Symfony CLI with a database.
@@ -288,17 +287,17 @@ You might find the following commands useful when using the Symfony CLI with a d
 -   Create a local dump of the remote database:
 
     ```bash
-    symfony upsun:db:dump --relationship database
+    symfony {{% vendor/cli %}}:db:dump --relationship database
     ```
 
 -   Run an SQL query on the remote database:
 
     ```bash
-    symfony upsun:sql 'SHOW TABLES'
+    symfony {{% vendor/cli %}}:sql 'SHOW TABLES'
     ```
 
 -   Import a local SQL file into a remote database:
 
     ```bash
-    symfony upsun:sql < my_database_backup.sql
+    symfony {{% vendor/cli %}}:sql < my_database_backup.sql
     ```

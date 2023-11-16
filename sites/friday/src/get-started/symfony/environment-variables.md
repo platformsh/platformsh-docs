@@ -57,7 +57,7 @@ The Symfony integration exposes more environment variables:
 
   {{< /note >}}
 
-  If you need to clear the build cache directory, run the `symfony upsun:project:clear-build-cache` command.
+  If you need to clear the build cache directory, run the `symfony {{% vendor/cli %}}:project:clear-build-cache` command.
 
 - `SYMFONY_PROJECT_DEFAULT_ROUTE_URL` (only defined at **runtime**): The default endpoint serving your project.
   Use this variable to avoid hard-coding domains that can be used to reach preview environments.

@@ -9,7 +9,7 @@ Workers (or consumers) are a great way to off-load processing in the background
 to make an app as fast as possible. 
 You can implement workers in Symfony smoothly thanks to the [Messenger component](https://symfony.com/doc/current/components/messenger.html).
 
-To deploy a worker, add an entry under the ``workers`` section [in your app configuration](../../create-apps/_index.md):
+To deploy a worker, add an entry under the `workers` section [in your app configuration](../../create-apps/_index.md):
 
 ```yaml {configFile="app"}
 workers:
@@ -34,9 +34,9 @@ When the container is running in the context of a worker, the
 
 {{< /note >}}
 
-The ``commands.start`` key is required.
+The `commands.start` key is required.
 It specifies the command you can use to launch the application worker.
-If the command specified by the ``start`` key terminates, it's restarted automatically.
+If the command specified by the `start` key terminates, it's restarted automatically.
 
 For more information, see [Workers](../../create-apps/app-reference#workers).
 

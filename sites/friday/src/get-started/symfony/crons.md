@@ -55,4 +55,4 @@ To use a custom SMTP and/or custom sender address, follow these steps:
 2. Define the mandatory [environment variables to use your own email service](./environment-variables#emails).
    Note that only SMTP connections are supported.
 
-3. To disable the provided SMTP service, run `symfony upsun:env:info enable_smtp false`.
+3. To disable the provided SMTP service, run `symfony {{% vendor/cli %}}:env:info enable_smtp false`.
