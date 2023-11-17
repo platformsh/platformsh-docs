@@ -1,7 +1,7 @@
 ---
 title: Continuous profiling for Node.js
-sidebarTitle: "Continuous profiling (Node.js)"
-description: Configure the NodeJS continuous profiler.
+sidebarTitle: "Node.js continuous profiler"
+description: Configure and use the NodeJS continuous profiler.
 weight: 40
 ---
 
@@ -9,6 +9,10 @@ weight: 40
 
 {{< vendor/name >}} Continuous Profiling is powered by [Blackfire](../../../increase-observability/application-metrics/blackfire.md).
 It is available directly from the Console under the `Profiling` tab of your environments.
+
+The Node.js continuous profiling is currently made accross 2 dimensions:
+- **wall-time**: response-time per function calls
+- **heap**: memory allocation and reserved space over time
 
 ## Prerequisites
 
