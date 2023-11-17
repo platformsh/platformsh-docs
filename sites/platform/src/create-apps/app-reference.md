@@ -197,155 +197,137 @@ To allow containers in your project to communicate with each other,
 you need to define relationships between them.
 You can define a relationship between an app and a service, or [between two apps](/create-apps/multi-app/relationships.md).
 
-You can give each relationship any name you want.
-This name is then used in the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables),
-which provides the details of the relationship including, for example, the credentials to access the service.
+The quickest way to define a relationship between your app and a service
+is to use the service container's default endpoint.</br>
+However, some services allow you to define multiple databases, multiple cores, and/or different permissions.
+In such use cases, where you can't rely on default endpoints,
+{{% vendor/name %}} allows to explicitly define endpoints when setting up your relationships.
 
-{{% version/specific %}}
-<!-- Platform.sh -->
-To define a relationship, use one of the following syntaxes in your `{{% vendor/configfile "app" %}}` file.
+{{< note >}}
+App containers don't have a default endpoint like service containers.
+To connect your app to another app in your project,
+explicitly define the `http` endpoint as the endpoint to connect both apps.</br>
+For more information, see how to [define relationships between your apps](/create-apps/multi-app/relationships.md).
+{{< /note >}}
 
-<--->
-<!-- Upsun -->
-To define a relationship, use one of the following syntaxes in your `{{% vendor/configfile "app" %}}` file,
-under the `applications` top-level key.
-{{% /version/specific %}}
+To define a relationship between your app and a service:
 
 {{< codetabs >}}
 
 +++
-title=Standard syntax
+title=Using default endpoints
 +++
 
+Use the following configuration:
+
 ```yaml {configFile="app"}
+{{< snippet>}}
 relationships:
-  database: # The name of the relationship. 
-    service: {{% variable "SERVICE_NAME" %}} 
-    endpoint: {{% variable "ENDPOINT_NAME" %}}
+    {{% variable "SERVICE_NAME" %}}: 
+{{< /snippet >}}
 ```
 
-- `SERVICE_NAME`: The name of the service as defined in its [configuration](/add-services/_index.md).
-- `ENDPOINT_NAME`: The endpoint to connect to the service.
-  For most services, the endpoint is the same as the service type.
-  For some services (such as [MariaDB](../add-services/mysql/_index.md#multiple-databases) and [Solr](../add-services/solr.md#solr-6-and-later)),
-  you can define additional explicit endpoints for multiple databases and cores in the [service's configuration](../add-services/_index.md).</br>
-  Every service container has a default endpoint that is used if no endpoint is defined.
+The `SERVICE_NAME` is the name of the service as defined in its [configuration](/add-services/_index.md).
+It is used as the relationship name, and associated with a null value.
+This instructs {{% vendor/name %}} to use the service container's default endpoint to connect your app to the service.
 
-For example, to define a relationship named `database` that connects your app to a service called `mariadb` through the `mysql` endpoint,
+For example, if you define the following configuration:
+
+```yaml {configFile="app"}
+{{< snippet>}}
+relationships:
+    mariadb: 
+{{< /snippet>}}
+```
+
+{{% vendor/name %}} looks for a service named `mariadb` in your `{{% vendor/configfile "app" %}}` file,
+and connects your app to it through the service container's default endpoint.
+
+You can add as many relationships as you want to your app configuration:
+
+```yaml {configFile="app"}
+{{< snippet>}}
+relationships:
+    database1: 
+    database2:
+    cache:
+    search: 
+{{< /snippet>}}
+```
+
+{{< note title="Tip">}}
+
+An even quicker way to define many relationships is to use the following single-line configuration:
+
+```yaml {configFile="app"}
+{{< snippet>}}
+relationships: {{{< variable "SERVICE_NAME_A" >}}, {{< variable "SERVICE_NAME_B" >}}}
+{{< /snippet>}}
+```
+{{< /note >}}
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+Use the following configuration:
+
+```yaml {configFile="app"}
+{{< snippet >}}
+relationships:
+    {{% variable "RELATIONSHIP_NAME" %}}:
+        service: {{% variable "SERVICE_NAME" %}} 
+        endpoint: {{% variable "ENDPOINT_NAME" %}}
+{{< /snippet >}}
+```
+ 
+- `RELATIONSHIP_NAME` is the name you want to give to the relationship.
+- `SERVICE_NAME` is the name of the service as defined in its [configuration](/add-services/_index.md).
+- `ENDPOINT_NAME` is the endpoint to connect to the service.
+
+For example, to define a relationship named `database` that connects your app to a service called `mariadb` through the `db1` endpoint,
 use the following configuration:
 
 ```yaml {configFile="app"}
+{{< snippet >}}
 relationships:
-  database: # The name of the relationship. 
-    service: mariadb
-    endpoint: mysql
+    database: # The name of the relationship. 
+        service: mariadb
+        endpoint: db1
+{{< /snippet >}}
 ```
-
-{{< note >}}
-To connect your app to another app in your project, replace the `SERVICE_NAME` by the name of that other app,
-and use the `http` endpoint.
-For more information, see how to [define relationships between your apps](/create-apps/multi-app/relationships.md).
-{{< /note >}}
 
 You can add as many relationships as you want to your app configuration:
 
 ```yaml {configFile="app"}
+{{< snippet >}}
 relationships:
-  database1: 
-    service: mariadb
-    endpoint: mysql
-  database2:
-    service: mariadb
-    endpoint: mysql
-  cache:
-    service: redis
-    endpoint: redis
-  search:
-    service: elasticsearch
-    endpoint: elasticsearch
+    database1: 
+        service: mariadb
+        endpoint: db1
+    database2:
+        service: mariadb
+        endpoint: db2
+    cache:
+        service: redis
+        endpoint: redis
+    search:
+        service: elasticsearch
+        endpoint: elasticsearch
+{{< /snippet >}}
 ```
 
-<--->
+For more information on how to handle multiple databases, multiple cores,
+and/or different access rights with services that support such features,
+see each service's dedicated page:
 
-+++
-title=Simplified syntax
-+++
-
-You can define a relationship between your app and a service by simply providing the name of that service,
-and associating it with a null value:
-
-```yaml {configFile="app"}
-relationships:
-  {{% variable "SERVICE_NAME" %}}: 
-```
-
-`SERVICE_NAME` is the name of the service as defined in its [configuration](/add-services/_index.md).
-With this syntax, it is also used as the relationship name, so you don't need to specify one.
-
-{{% vendor/name %}} identifies the service in your configuration.
-It then uses the service container's default endpoint to connect your app to it.
-For example, if you define the following configuration:
-
-```yaml {configFile="app"}
-relationships:
-  mariadb: 
-```
-
-{{% vendor/name %}} will look for a service named `mariadb` in your `{{% vendor/configfile "app" %}}` file,
-and connect your app to it through the service container's default endpoint.
-
-{{< note >}}
-To connect your app to another app in your project, replace the `SERVICE_NAME` by the name of that other app.
-{{% vendor/name %}} will identify the app in your configuration, and use the default `http` endpoint to connect to it.
-For more information, see how to [define relationships between your apps](/create-apps/multi-app/relationships.md).
-{{< /note >}}
-
-You can add as many relationships as you want to your app configuration:
-
-```yaml {configFile="app"}
-relationships:
-  database1: 
-  database2:
-  cache:
-  search: 
-```
-
-<--->
-
-+++
-title=Single-line syntax
-+++
-
-An even quicker way to define your relationships is to use the single-line syntax.
-This is particularly useful when you need to define many relationships.
-With this syntax, the service name is used as the relationship name, and no endpoint is specified.
-
-```yaml {configFile="app"}
-relationships: {<service_name_1>, <service_name_2>}
-```
-
-{{% vendor/name %}} identifies the services in your configuration,
-and uses each service container's default endpoint to connect to it.
-For example, if you define the following configuration:
-
-```yaml {configFile="app"}
-relationships: {mariadb, cache}: 
-```
-
-{{% vendor/name %}} will look for services named `mariadb` and `cache` in your `{{% vendor/configfile "app" %}}` file,
-and connect your app to them through the default endpoints of their respective containers.
-
-{{< note >}}
-To connect your app to another app in your project, replace the `SERVICE_NAME` by the name of that other app.
-{{% vendor/name %}} will identify the app in your configuration, and use the default `http` endpoint to connect to it.
-For more information, see how to [define relationships between your apps](/create-apps/multi-app/relationships.md).
-{{< /note >}}
-
-You can add as many relationships as you want to your app configuration:
-
-```yaml {configFile="app"}
-relationships: {database1, database2, cache, search}: 
-```
+ - [MariaDB/MySQL](/add-services/mysql/_index.md#multiple-databases) (multiple databases and permissions)
+ - [PostgreSQL](/add-services/postgresql/_index.md#multiple-databases) (multiple databases and permissions)
+ - [Redis](/add-services/redis/_index.md#multiple-databases) (multiple databases)
+ - [Solr](add-services/solr/_index.md#solr-6-and-later) (multiple cores)
+ - [Vault KMS](add-services/vault/_index.md#multiple-endpoints-example) (multiple permissions)
 
 {{< /codetabs >}}
 
