@@ -11,7 +11,7 @@ weight: 40
 It is available directly from the Console under the `Profiling` tab of your environments.
 
 The Node.js continuous profiling is currently made accross 2 dimensions:
-- **wall-time**: response-time per function calls
+- **wall-time**: elapsed time per function calls
 - **heap**: memory allocation and reserved space over time
 
 ## Prerequisites
