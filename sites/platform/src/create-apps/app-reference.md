@@ -243,18 +243,6 @@ relationships:
 {{% vendor/name %}} looks for a service named `mariadb` in your `{{% vendor/configfile "app" %}}` file,
 and connects your app to it through the service container's default endpoint.
 
-You can add as many relationships as you want to your app configuration:
-
-```yaml {configFile="app"}
-{{< snippet>}}
-relationships:
-    database1: 
-    database2:
-    cache:
-    search: 
-{{< /snippet>}}
-```
-
 {{< note title="Tip">}}
 
 An even quicker way to define many relationships is to use the following single-line configuration:
@@ -299,26 +287,6 @@ relationships:
 {{< /snippet >}}
 ```
 
-You can add as many relationships as you want to your app configuration:
-
-```yaml {configFile="app"}
-{{< snippet >}}
-relationships:
-    database1: 
-        service: mariadb
-        endpoint: db1
-    database2:
-        service: mariadb
-        endpoint: db2
-    cache:
-        service: redis
-        endpoint: redis
-    search:
-        service: elasticsearch
-        endpoint: elasticsearch
-{{< /snippet >}}
-```
-
 For more information on how to handle multiple databases, multiple cores,
 and/or different access rights with services that support such features,
 see each service's dedicated page:
@@ -330,6 +298,50 @@ see each service's dedicated page:
  - [Vault KMS](add-services/vault/_index.md#multiple-endpoints-example) (multiple permissions)
 
 {{< /codetabs >}}
+
+You can add as many relationships as you want to your app configuration,
+using both default and explicitly defined endpoints:
+
+{{% version/specific %}}
+<!-- Platform.sh -->
+
+```yaml {configFile="app"}
+relationships:
+    database1: 
+        service: mariadb
+        endpoint: admin
+    database2:
+        service: mariadb
+        endpoint: legacy
+    api:
+        service: backend
+    cache:
+        service: redis
+    search:
+        service: elasticsearch
+```
+
+<--->
+<!-- Upsun -->
+
+```yaml {configFile="app"}
+applications:
+    myapp: # The name of your app, which must be unique within the project.
+        relationships:
+            database1: 
+                service: mariadb
+                endpoint: admin
+            database2:
+                service: mariadb
+                endpoint: legacy
+            api:
+                service: backend
+            cache:
+                service: redis
+            search:
+                service: elasticsearch
+```
+{{% /version/specific %}}
 
 ## Available disk space
 
