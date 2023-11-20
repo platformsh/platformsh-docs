@@ -199,9 +199,9 @@ You can define a relationship between an app and a service, or [between two apps
 
 The quickest way to define a relationship between your app and a service
 is to use the service container's default endpoint.</br>
-However, some services allow you to define multiple databases, multiple cores, and/or different permissions.
-In such use cases, where you can't rely on default endpoints,
-{{% vendor/name %}} allows to explicitly define endpoints when setting up your relationships.
+However, some services allow you to define multiple databases, cores, and/or permissions.
+In these cases, you can't rely on default endpoints.
+Instead, you can explicitly define multiple endpoints when setting up your relationships.
 
 {{< note >}}
 App containers don't have a default endpoint like service containers.
@@ -254,6 +254,17 @@ relationships: {{{< variable "SERVICE_NAME_A" >}}, {{< variable "SERVICE_NAME_B"
 ```
 {{< /note >}}
 
+You can add as many relationships as you want to your app configuration:
+
+```yaml {configFile="app"}
+{{< snippet>}}
+relationships:
+    mariadb:  
+    redis: 
+    elasticsearch: 
+{{< /snippet>}}
+```
+
 <--->
 
 +++
@@ -288,7 +299,7 @@ relationships:
 ```
 
 For more information on how to handle multiple databases, multiple cores,
-and/or different access rights with services that support such features,
+and/or different permissions with services that support such features,
 see each service's dedicated page:
 
  - [MariaDB/MySQL](/add-services/mysql/_index.md#multiple-databases) (multiple databases and permissions)
@@ -297,15 +308,10 @@ see each service's dedicated page:
  - [Solr](add-services/solr/_index.md#solr-6-and-later) (multiple cores)
  - [Vault KMS](add-services/vault/_index.md#multiple-endpoints-example) (multiple permissions)
 
-{{< /codetabs >}}
-
-You can add as many relationships as you want to your app configuration,
-using both default and explicitly defined endpoints:
-
-{{% version/specific %}}
-<!-- Platform.sh -->
+ You can add as many relationships as you want to your app configuration:
 
 ```yaml {configFile="app"}
+{{< snippet>}}
 relationships:
     database1: 
         service: mariadb
@@ -313,35 +319,16 @@ relationships:
     database2:
         service: mariadb
         endpoint: legacy
-    api:
-        service: backend
     cache:
         service: redis
+        endpoint: redis
     search:
         service: elasticsearch
+        endpoint: elasticsearch
+{{< /snippet>}}
 ```
 
-<--->
-<!-- Upsun -->
-
-```yaml {configFile="app"}
-applications:
-    myapp: # The name of your app, which must be unique within the project.
-        relationships:
-            database1: 
-                service: mariadb
-                endpoint: admin
-            database2:
-                service: mariadb
-                endpoint: legacy
-            api:
-                service: backend
-            cache:
-                service: redis
-            search:
-                service: elasticsearch
-```
-{{% /version/specific %}}
+{{< /codetabs >}}
 
 ## Available disk space
 
