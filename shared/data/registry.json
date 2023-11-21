@@ -4,7 +4,7 @@
     "disk": false,
     "docs": {
       "relationship_name": "chromeheadlessbrowser",
-      "service_name": "headlessbrowser",
+      "service_name": "chrome-headless",
       "url": "/add-services/headless-chrome.html"
     },
     "endpoint": "http",
@@ -101,7 +101,7 @@
     "disk": true,
     "docs": {
       "relationship_name": "essearch",
-      "service_name": "searchelastic",
+      "service_name": "elasticsearch",
       "url": "/add-services/elasticsearch.html"
     },
     "endpoint": "elasticsearch",
@@ -276,7 +276,7 @@
     "disk": true,
     "docs": {
       "relationship_name": "influxtimedb",
-      "service_name": "timedb",
+      "service_name": "influxdb",
       "url": "/add-services/influxdb.html"
     },
     "endpoint": "influxdb",
@@ -355,7 +355,7 @@
     "disk": true,
     "docs": {
       "relationship_name": "kafkaqueue",
-      "service_name": "queuekafka",
+      "service_name": "kafka",
       "url": "/add-services/kafka.html"
     },
     "endpoint": "kafka",
@@ -429,7 +429,7 @@
     "disk": true,
     "docs": {
       "relationship_name": "database",
-      "service_name": "db",
+      "service_name": "mariadb",
       "url": "/add-services/mysql.html"
     },
     "endpoint": "mysql",
@@ -488,7 +488,7 @@
     "disk": true,
     "docs": {
       "relationship_name": "database",
-      "service_name": "db",
+      "service_name": "mysql",
       "url": "/add-services/mysql.html"
     },
     "endpoint": "mysql",
@@ -544,7 +544,7 @@
     "disk": false,
     "docs": {
       "relationship_name": "memcachedcache",
-      "service_name": "cachemc",
+      "service_name": "memcached",
       "url": "/add-services/memcached.html"
     },
     "endpoint": "memcached",
@@ -570,7 +570,7 @@
     "disk": true,
     "docs": {
       "relationship_name": "mongodatabase",
-      "service_name": "dbmongo",
+      "service_name": "mongodb",
       "url": "/add-services/mongodb.html"
     },
     "endpoint": "mongodb",
@@ -595,7 +595,7 @@
     "disk": true,
     "docs": {
       "relationship_name": "mongodatabase",
-      "service_name": "dbmongo",
+      "service_name": "mongodb-enterprise",
       "url": "/add-services/mongodb.html"
     },
     "endpoint": "mongodb",
@@ -633,7 +633,7 @@
     "disk": true,
     "docs": {
       "relationship_name": "null",
-      "service_name": "files",
+      "service_name": "network-storage",
       "url": "/add-services/network-storage.html"
     },
     "endpoint": "something",
@@ -709,7 +709,7 @@
     "disk": true,
     "docs": {
       "relationship_name": "ossearch",
-      "service_name": "searchopen",
+      "service_name": "opensearch",
       "url": "/add-services/opensearch.html"
     },
     "endpoint": "opensearch",
@@ -751,7 +751,7 @@
     "disk": true,
     "docs": {
       "relationship_name": "mysqldatabase",
-      "service_name": "dbmysql",
+      "service_name": "oracle-mysql",
       "url": "/add-services/mysql.html"
     },
     "endpoint": "mysql",
@@ -840,7 +840,7 @@
     "disk": true,
     "docs": {
       "relationship_name": "postgresdatabase",
-      "service_name": "dbpostgres",
+      "service_name": "postgresql",
       "url": "/add-services/postgresql.html"
     },
     "endpoint": "postgresql",
@@ -940,7 +940,7 @@
     "disk": true,
     "docs": {
       "relationship_name": "rabbitmqqueue",
-      "service_name": "queuerabbit",
+      "service_name": "rabbitmq",
       "url": "/add-services/rabbitmq.html"
     },
     "endpoint": "rabbitmq",
@@ -995,7 +995,7 @@
     "disk": false,
     "docs": {
       "relationship_name": "rediscache",
-      "service_name": "cacheredis",
+      "service_name": "redis",
       "url": "/add-services/redis.html"
     },
     "endpoint": "redis",
@@ -1142,7 +1142,7 @@
     "disk": true,
     "docs": {
       "relationship_name": "solrsearch",
-      "service_name": "searchsolr",
+      "service_name": "solr",
       "url": "/add-services/solr.html"
     },
     "endpoint": "solr",
