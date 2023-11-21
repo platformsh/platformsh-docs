@@ -30,7 +30,7 @@ From version 7.11 onward:
 The following premium versions are supported:
 
 {{% version/specific %}}
-<!-- API Version 1 -->
+<!-- Platform.sh -->
 
 <table>
     <thead>
@@ -50,7 +50,7 @@ The following premium versions are supported:
 </table>
 
 <--->
-<!-- API Version 2 -->
+<!-- Upsun -->
 
 {{< image-versions image="elasticsearch" status="supported" environment="grid" >}}
 
@@ -64,7 +64,7 @@ The following versions are still available in your projects for free,
 but they're at their end of life and are no longer receiving security updates from upstream.
 
 {{% version/specific %}}
-<!-- API Version 1 -->
+<!-- Platform.sh -->
 
 <table>
     <thead>
@@ -84,7 +84,7 @@ but they're at their end of life and are no longer receiving security updates fr
 </table>
 
 <--->
-<!-- API Version 2 -->
+<!-- Upsun -->
 
 {{< image-versions image="elasticsearch" status="deprecated" environment="grid" >}}
 
@@ -96,18 +96,21 @@ switch to [a premium version](#supported-versions).
 Alternatively, you can switch to one of the latest, free versions of [OpenSearch](./opensearch.md).
 To do so, follow the same procedure as for [upgrading](#upgrading).
 
-{{% relationship-ref-intro %}}
+## Relationship reference
 
-{{% service-values-change %}}
+Example information available through the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
+or by running `{{% vendor/cli %}} relationships`.
+
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the `PLATFORM_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ```yaml
 {
     "username": null,
     "scheme": "http",
-    "service": "elasticsearch77",
+    "service": "elasticsearch",
     "fragment": null,
     "ip": "169.254.169.232",
-    "hostname": "jmgjydr275pkj5v7prdj2asgxm.elasticsearch77.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "hostname": "jmgjydr275pkj5v7prdj2asgxm.elasticsearch.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "port": 9200,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "elasticsearch.internal",
@@ -126,11 +129,142 @@ the service type is `elasticsearch-enterprise`.
 
 ## Usage example
 
-{{% endpoint-description type="elasticsearch" /%}}
+### 1. Configure the service
+
+To define the service, use the `elasticsearch` type:
+
+{{% version/specific %}}
+<!-- Platform.sh -->
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+{{% variable "SERVICE_NAME" %}}:
+    type: elasticsearch:{{% variable "VERSION" %}}
+    disk: 256
+```
+
+<--->
+<!-- Upsun -->
+
+```yaml {configFile="services"}
+services:
+    # The name of the service container. Must be unique within a project.
+    {{% variable "SERVICE_NAME" %}}:
+        type: elasticsearch:{{% variable "VERSION" %}}
+```
+{{% /version/specific %}}
+
+If you’re using a [premium version](/add-services/elasticsearch/_index.md#supported-versions),
+use the `elasticsearch-enterprise` type instead.
+
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
+Back up your data before changing the service.
+
+### 2. Add the relationship
+
+To define the relationship, use the following configuration:
+
+{{% version/specific %}}
+<!-- Platform.sh -->
+
+```yaml {configFile="services"}
+# Relationships enable access from this app to a given service.
+relationships:
+    {{% variable "SERVICE_NAME" %}}: 
+```
+
+With this definition, the application container now has access to the service via the [service container's default endpoint](/create-apps/app-reference.md#relationships).
+If you don't want to use the default endpoint, you can [explicitly define another endpoint](/create-apps/app-reference.md#relationships):
+
+```yaml {configFile="services"}
+# Relationships enable access from this app to a given service.
+relationships:
+    {{% variable "RELATIONSHIP_NAME" %}}: 
+        service: {{% variable "SERVICE_NAME" %}}
+        endpoint: {{% variable "ENDPOINT_NAME" %}}
+```
+
+<--->
+<!-- Upsun -->
+
+```yaml {configFile="services"}
+{{<snippet>}}
+# Other options...
+# Relationships enable access from this app to a given service.
+relationships:
+    {{% variable "SERVICE_NAME" %}}: 
+{{</snippet>}}
+```
+
+With this definition, the application container now has access to the service via the service container's default endpoint.
+If you don't want to use the default endpoint, you can [explicitly define another endpoint](/create-apps/app-reference.md#relationships):
+
+```yaml {configFile="services"}
+{{<snippet>}}
+# Other options...
+# Relationships enable access from this app to a given service.
+relationships:
+    {{% variable "RELATIONSHIP_NAME" %}}: 
+        service: {{% variable "SERVICE_NAME" %}}
+        endpoint: {{% variable "ENDPOINT_NAME" %}}
+{{</snippet>}}
+```
+{{% /version/specific %}}
+
+### Example Configuration
+
+{{% version/specific %}}
+<!-- Platform.sh -->
+
+#### [Service definition](/add-services/_index.md)
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+elasticsearch:
+    type: elasticsearch:8.5
+    disk: 256
+```
+
+#### [App configuration](/create-apps/_index.md)
+
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# The following relationship uses the service container's default endpoint.
+relationships:
+    elasticsearch: 
+```
+
+<--->
+<!-- Upsun -->
+
+#### [Service](/add-services/_index.md) and [app](/create-apps/_index.md) configuration
+
+```yaml {configFile="services"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        # Relationships enable access from this app to a given service.
+        # The following relationship uses the service container's default endpoint.
+        relationships:
+            elasticsearch: 
+
+services:
+    # The name of the service container. Must be unique within a project.
+    elasticsearch:
+        type: elasticsearch: 8.5
+```
+{{% /version/specific %}}
+
+If you're using a [premium version](/add-services/elasticsearch.md#supported-versions),
+use the `elasticsearch-enterprise` type in the service definition.
+
+### Use in app
+
+To use the configured service in your app, add a configuration file similar to the following to your project.
 
 Note that configuration for [premium versions](#supported-versions) may differ slightly.
 
-<!-- Version 1: Codetabs using config reader + examples.docs.platform.sh -->
+<!-- Platform.sh: Codetabs using config reader + examples.docs.platform.sh -->
 {{< codetabs v2hide="true" >}}
 
 +++
@@ -165,41 +299,48 @@ highlight=python
 
 {{< /codetabs >}}
 
-<!-- Version 2: .environment shortcode + context -->
+<!-- Upsun: .environment shortcode + context -->
 {{% version/only "2" %}}
 
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
-
-# Other options...
-
-# Relationships enable an app container's access to a service.
-relationships:
-    essearch: "searchelastic:elasticsearch"
-{{< /snippet >}}
-{{< snippet name="searchelastic" config="service" placeholder="true" >}}
-    type: elasticsearch:{{% latest "elasticsearch" %}}
-{{< /snippet >}}
+applications:
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        # The location of the application's code.
+        source:
+            root: "/"
+        # Other options...
+        # Relationships enable an app container's access to a service.
+        elasticsearch: 
+      
+services:
+    # The name of the service container. Must be unique within a project.
+    elasticsearch:
+        type: elasticsearch:8.5
 ```
 
-{{< v2connect2app serviceName="searchelastic" relationship="essearch" var="ELASTIC_HOSTS">}}
+This configuration defines a single application whose source code exists in the directory {{% variable "PROJECT_ROOT" %}}/{{% variable "APP_NAME" %}},
+and has been provided access to the service (`elasticsearch).
+
+From this, the app can retrieve access credentials to the service through the environment variable [`PLATFORM_RELATIONSHIPS`](/add-services/elasticsearch.md#relationship-reference).
+That variable is a base64-encoded JSON object,
+but can be decoded at runtime (using the built-in tool [jq](https://jqlang.github.io/jq/) to provide more accessible environment variables
+to use within the application itself:
 
 ```bash {location="myapp/.environment"}
 # Decode the built-in credentials object variable.
 export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export ELASTIC_SCHEME=$(echo $RELATIONSHIPS_JSON | jq -r ".essearch[0].scheme")
-export ELASTIC_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".essearch[0].host")
-export ELASTIC_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".essearch[0].port")
+export ELASTIC_SCHEME=$(echo $RELATIONSHIPS_JSON | jq -r ".elasticsearch[0].scheme")
+export ELASTIC_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".elasticsearch[0].host")
+export ELASTIC_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".elasticsearch[0].port")
 
 # Surface more common Elasticsearch connection string variables for use in app.
-export ELASTIC_USERNAME=$(echo $RELATIONSHIPS_JSON | jq -r ".essearch[0].username")
-export ELASTIC_PASSWORD=$(echo $RELATIONSHIPS_JSON  | jq -r ".essearch[0].password")
+export ELASTIC_USERNAME=$(echo $RELATIONSHIPS_JSON | jq -r ".elasticsearch[0].username")
+export ELASTIC_PASSWORD=$(echo $RELATIONSHIPS_JSON  | jq -r ".elasticsearch[0].password")
 export ELASTIC_HOSTS=[\"$ELASTIC_SCHEME://$ELASTIC_HOST:$ELASTIC_PORT\"]
 ```
-
-{{< /v2connect2app >}}
 
 {{% /version/only %}}
 
@@ -220,7 +361,7 @@ Starting with Elasticsearch 7.2 you may optionally enable HTTP Basic authenticat
 To do so, include the following in your `{{< vendor/configfile "services" >}}` configuration:
 
 {{< version/specific >}}
-<!-- Version 1 -->
+<!-- Platform.sh -->
 
 ```yaml {configFile="services"}
 {{< snippet name="search" config="service" >}}
@@ -233,7 +374,7 @@ To do so, include the following in your `{{< vendor/configfile "services" >}}` c
 ```
 
 <--->
-<!-- Version 2 -->
+<!-- Upsun -->
 
 ```yaml {configFile="services"}
 {{< snippet name="search" config="service" >}}
@@ -262,7 +403,7 @@ To do so, add a route to `{{< vendor/configfile "routes" >}}` that has `search:e
 For example:
 
 {{< version/specific >}}
-<!-- Version 1 -->
+<!-- Platform.sh -->
 
 ```yaml {configFile="routes"}
 {{< snippet name="search:elasticsearch" config="route" subDom="es" redirect="false" />}}
@@ -276,7 +417,7 @@ For example:
 ```
 
 <--->
-<!-- Version 2 -->
+<!-- Upsun -->
 
 ```yaml {configFile="routes"}
 {{< snippet name="search:elasticsearch" config="route" subDom="es" redirect="false" />}}
@@ -296,10 +437,10 @@ Elasticsearch offers a number of plugins.
 To enable them, list them under the `configuration.plugins` key in your `{{< vendor/configfile "services" >}}` file, like so:
 
 {{< version/specific >}}
-<!-- Version 1 -->
+<!-- Platform.sh -->
 
 ```yaml {configFile="services"}
-{{< snippet name="search" config="service" >}}
+{{< snippet name="elasticsearch" config="service" >}}
     type: elasticsearch:{{% latest "elasticsearch" %}}
     disk: 1024
     configuration:
@@ -310,10 +451,10 @@ To enable them, list them under the `configuration.plugins` key in your `{{< ven
 ```
 
 <--->
-<!-- Version 2 -->
+<!-- Upsun -->
 
 ```yaml {configFile="services"}
-{{< snippet name="search" config="service" >}}
+{{< snippet name="elasticsearch" config="service" >}}
     type: elasticsearch:{{% latest "elasticsearch" %}}
     configuration:
         plugins:
