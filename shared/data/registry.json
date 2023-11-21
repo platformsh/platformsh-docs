@@ -3,7 +3,7 @@
     "description": "",
     "disk": false,
     "docs": {
-      "relationship_name": "chromeheadlessbrowser",
+      "relationship_name": "chrome-headless",
       "service_name": "chrome-headless",
       "url": "/add-services/headless-chrome.html"
     },
@@ -100,7 +100,7 @@
     "description": "A manufacture service for Elasticsearch",
     "disk": true,
     "docs": {
-      "relationship_name": "essearch",
+      "relationship_name": "elasticsearch",
       "service_name": "elasticsearch",
       "url": "/add-services/elasticsearch.html"
     },
@@ -275,7 +275,7 @@
     "description": "",
     "disk": true,
     "docs": {
-      "relationship_name": "influxtimedb",
+      "relationship_name": "influxdb",
       "service_name": "influxdb",
       "url": "/add-services/influxdb.html"
     },
@@ -354,7 +354,7 @@
     "description": "",
     "disk": true,
     "docs": {
-      "relationship_name": "kafkaqueue",
+      "relationship_name": "kafka",
       "service_name": "kafka",
       "url": "/add-services/kafka.html"
     },
@@ -428,7 +428,7 @@
     "repo_name": "mariadb",
     "disk": true,
     "docs": {
-      "relationship_name": "database",
+      "relationship_name": "mariadb",
       "service_name": "mariadb",
       "url": "/add-services/mysql.html"
     },
@@ -487,7 +487,7 @@
     "repo_name": "mariadb",
     "disk": true,
     "docs": {
-      "relationship_name": "database",
+      "relationship_name": "mysql",
       "service_name": "mysql",
       "url": "/add-services/mysql.html"
     },
@@ -543,7 +543,7 @@
     "repo_name": "memcached",
     "disk": false,
     "docs": {
-      "relationship_name": "memcachedcache",
+      "relationship_name": "memcached",
       "service_name": "memcached",
       "url": "/add-services/memcached.html"
     },
@@ -569,7 +569,7 @@
     "repo_name": "mongodb",
     "disk": true,
     "docs": {
-      "relationship_name": "mongodatabase",
+      "relationship_name": "mongodb",
       "service_name": "mongodb",
       "url": "/add-services/mongodb.html"
     },
@@ -594,7 +594,7 @@
     "repo_name": "mongodb",
     "disk": true,
     "docs": {
-      "relationship_name": "mongodatabase",
+      "relationship_name": "mongodb-enterprise",
       "service_name": "mongodb-enterprise",
       "url": "/add-services/mongodb.html"
     },
@@ -708,7 +708,7 @@
     "description": "A manufacture service for OpenSearch",
     "disk": true,
     "docs": {
-      "relationship_name": "ossearch",
+      "relationship_name": "opensearch",
       "service_name": "opensearch",
       "url": "/add-services/opensearch.html"
     },
@@ -750,7 +750,7 @@
     "repo_name": "oracle-mysql",
     "disk": true,
     "docs": {
-      "relationship_name": "mysqldatabase",
+      "relationship_name": "oracle-mysql",
       "service_name": "oracle-mysql",
       "url": "/add-services/mysql.html"
     },
@@ -839,7 +839,7 @@
     "repo_name": "postgresql",
     "disk": true,
     "docs": {
-      "relationship_name": "postgresdatabase",
+      "relationship_name": "postgresql",
       "service_name": "postgresql",
       "url": "/add-services/postgresql.html"
     },
@@ -939,7 +939,7 @@
     "repo_name": "rabbitmq",
     "disk": true,
     "docs": {
-      "relationship_name": "rabbitmqqueue",
+      "relationship_name": "rabbitmq",
       "service_name": "rabbitmq",
       "url": "/add-services/rabbitmq.html"
     },
@@ -994,7 +994,7 @@
     "repo_name": "redis",
     "disk": false,
     "docs": {
-      "relationship_name": "rediscache",
+      "relationship_name": "redis",
       "service_name": "redis",
       "url": "/add-services/redis.html"
     },
@@ -1141,7 +1141,7 @@
     "repo_name": "solr",
     "disk": true,
     "docs": {
-      "relationship_name": "solrsearch",
+      "relationship_name": "solr",
       "service_name": "solr",
       "url": "/add-services/solr.html"
     },
@@ -1196,7 +1196,7 @@
     "repo_name": "varnish",
     "disk": false,
     "docs": {
-      "relationship_name": "varnishstats",
+      "relationship_name": "varnish",
       "service_name": "varnish",
       "url": "/add-services/varnish.html"
     },
@@ -1225,7 +1225,7 @@
     "description": "",
     "disk": true,
     "docs": {
-      "relationship_name": "vault_service",
+      "relationship_name": "vault-kms",
       "service_name": "vault-kms",
       "url": "/add-services/vault.html"
     },
