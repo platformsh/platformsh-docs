@@ -227,7 +227,8 @@ relationships:
 {{< /snippet >}}
 ```
 
-The `SERVICE_NAME` is used as the relationship name, and associated with a null value.
+The `SERVICE_NAME` is the name of the service as defined in [its configuration](/add-services/_index.md).
+It is used as the relationship name, and associated with a null value.
 This instructs {{% vendor/name %}} to use the service container's default endpoint to connect your app to the service.
 
 For example, if you define the following configuration:
