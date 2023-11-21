@@ -86,12 +86,17 @@ in step 1](#1-configure-the-service){{ else }}`{{ $data.endpoint }}` endpoint{{ 
 ```
 
 <!-- Adds a note about naming conventions between relationship and service names. Keep em unique. -->
-You can define `<SERVICE_NAME>` and `<RELATIONSHIP_NAME>` as you like, but it's best if they're distinct.
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+and matches in both the application and services configuration.
+The example above leverages [default endpoint](/create-apps/app-reference#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference#relationships)
+(the network address a service is accessible from) that is identical to the _name_ of that service. 
+
 With this definition, the application container {{ if eq $docVersion 2 }}(`<APP_NAME>`) {{ end }}
 {{- if ne (.Get "noApp" ) true -}}
-now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>`.
+now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>`.
 {{- else -}}
-now has access to the service via the relationship `<RELATIONSHIP_NAME>`.
+now has access to the service via the relationship `<SERVICE_NAME>`.
 {{- end -}}
 
 <!-- For services with a PHP extension -->
