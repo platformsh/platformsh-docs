@@ -633,7 +633,7 @@
     "disk": true,
     "docs": {
       "relationship_name": "null",
-      "service_name": "network-storage",
+      "service_name": "files",
       "url": "/add-services/network-storage.html"
     },
     "endpoint": "something",
