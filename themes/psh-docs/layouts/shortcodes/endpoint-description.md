@@ -248,7 +248,7 @@ Notice the `relationship` (`{{ $varnishRelName }}`) defined for the service `{{ 
     {{ $appInner = "\n..." }}
 
 {{ else if eq $type "vault-kms" }}
-    {{ $appInner = "\nrelationships:\n    vault_service: \"vault-kms:manage_keys\"" }}
+    {{ $appInner = "\nrelationships:\n    vault-kms: " }}
 {{ else }}
 
     {{ $relationshipName := index $data "docs" "relationship_name" }}
@@ -294,7 +294,7 @@ Notice the `relationship` (`{{ $varnishRelName }}`) defined for the service `{{ 
 {{ $serviceInner = printf "%s\n                  key: signing-key" $serviceInner }}
 {{ $serviceInner = printf "%s\n                  type: sign" $serviceInner }}
 
-{{ $appInner = "\nrelationships:\n    vault_manage: \"vault-kms:management\"\n    vault_sign: \"vault-kms:sign_and_verify\"" }}
+{{ $appInner = "\nrelationships:\n    vault_manage:\n        service: vault-kms\n        endpoint: management\n    vault_sign:\n        service: vault-kms\n        endpoint: sign_and_verify" }}
 
 {{ if eq $docVersion 1 }}
 #### [Service definition](/add-services)
