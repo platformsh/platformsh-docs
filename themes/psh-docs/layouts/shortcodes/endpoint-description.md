@@ -158,8 +158,6 @@ If you split the service into multiple endpoints, define multiple relationships.
 
 <!-- Describe app configuration for network storage services -->
 {{ else }}
-Add the service to your app configuration:
-
 {{$inner := "\nmounts:\n    '<TARGET_PATH>':\n        source: service\n" }}
 {{ $inner = printf "%s        service: <SERVICE_NAME>\n        source_path: <SOURCE_PATH>" $inner }}
 
