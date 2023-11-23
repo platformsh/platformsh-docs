@@ -62,7 +62,7 @@ The **Frameworks** section is a collection of framework-specific how-to guides -
 | Language              | Frameworks |
 | :----------------     | :------  |
 | [Python](/languages/python/_index.md)                |   [Django](/get-started/django/_index.md)<br/>[Flask](/get-started/flask/_index.md)  |
-| [PHP](/languages/php/_index.md)                      |   [Laravel](/get-started/laravel/_index.md)   |
+| [PHP](/languages/php/_index.md)                      |   [Symfony](/get-started/symfony/_index.md)<br/>[Laravel](/get-started/laravel/_index.md)   |
 | [Javascript/Node.js](/languages/nodejs/_index.md)     |  [Express](/get-started/express/_index.md)<br/>[Next.js](/get-started/nextjs/_index.md)<br/>[Strapi](/get-started/strapi/_index.md)  |
 
 {{< /version/specific >}}
