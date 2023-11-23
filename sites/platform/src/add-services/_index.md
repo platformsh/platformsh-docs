@@ -21,10 +21,6 @@ Your project defines the services configuration from a top-level key called `ser
 
 If you don't need any services (such as for a static website), you don't need to include this configuration. Read on to see how to add services.
 
-{{% version/only "1" %}}
-![Services](/images/management-console/relationships.png "0.50")
-{{% /version/only %}}
-
 ## Add a service
 
 Adding a service is a two-step process.
@@ -48,11 +44,11 @@ An example service configuration for two databases might look like this:
 <!-- Version 1 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="database1" config="service" >}}
+{{< snippet name="mariadb" config="service" >}}
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
 {{< /snippet >}}
-{{< snippet name="database2" config="service" globKey="false" >}}
+{{< snippet name="postgresql" config="service" globKey="false" >}}
     type: postgresql:{{% latest "postgresql" %}}
     disk: 1024
 {{< /snippet >}}
@@ -75,12 +71,12 @@ An example service configuration for two databases might look like this:
 {{% version/specific %}}
 <!-- API Version 1 -->
 This YAML file is a dictionary defining all of the services you want to use.
-The top-level key is a custom service name ({{<variable "SERVICE_NAME" >}}; in the example, `database1` and `database2`), which you use to identify the service in step 2.
+The top-level key is a custom service name ({{<variable "SERVICE_NAME" >}}; in the example, `mariadb` and `postgresql`), which you use to identify the service in step 2.
 <--->
 <!-- API Version 2 -->
 This YAML file contains a dictionary defining all of the services you want to use.
 The top-level key `services` defines an object of all of the services to be provisioned for the project. 
-Below that, come custom service names ({{<variable "SERVICE_NAME" >}}; in the example, `database1` and `database2`), which you use to identify services in step 2.
+Below that, come custom service names ({{<variable "SERVICE_NAME" >}}; in the example, `mariadb` and `postgresql`), which you use to identify services in step 2.
 {{% /version/specific %}}
 You can give it any name you want with lowercase alphanumeric characters, hyphens, and underscores.
 
@@ -106,7 +102,7 @@ The following table presents the keys you can define for each service:
 | `disk`          | `integer`  | For some services | The size in [MB](/glossary.md#mb) of the [persistent disk](#disk) allocated to the service. Can't be set for memory-resident-only services such as `memcache` and `redis`. Limited by your plan settings. |
 | `size`          | `string`   |                   | How many CPU and memory [resources to allocate](#size) to the service. Possible values are `AUTO`, `S`, `M`, `L`, `XL`, `2XL`, and `4XL`. Limited by your plan settings.<BR><BR>When `AUTO` applies, available resources are automatically balanced out based on the number of containers on your plan, so that no container is oversized compared to the others. To view the actual sizes of your containers, check the **Environment Configuration** section in your deployment [activity logs](../increase-observability/logs/access-logs.md#activity-logs). |
 | `configuration` | dictionary | For some services | Some services have additional specific configuration options that can be defined here, such as specific endpoints. See the given service page for more details. |
-| `relationships` | dictionary | For some services | Some services require a relationship to your app. The content of the dictionary has the same type as the `relationships` dictionary for [app configuration](../create-apps/app-reference.md#relationships). The `endpoint_name` for apps is always `http`. |
+| `relationships` | dictionary | For some services | Some services require a [relationship](/create-apps/app-reference.md#relationships) to your app. The content of the dictionary has the same type as the `relationships` dictionary for [app configuration](../create-apps/app-reference.md#relationships). The `endpoint_name` for apps is always `http`. |
 
 <--->
 <!-- Version 2 -->
@@ -154,10 +150,7 @@ For more information, see how to [manage resources](/manage-resources.md).
 
 ### 2. Connect the service
 
-Once you have configured a service, you need to create a relationship to connect it to an app.
-This is done in your [app configuration for relationships](../create-apps/app-reference.md#relationships).
-
-The relationship follows this pattern:
+To connect the service, use the following configuration:
 
 ```yaml {configFile="app"}
 {{% snippet name="<APP_NAME>" config="app" root="false"%}}
@@ -165,14 +158,26 @@ The relationship follows this pattern:
 # Other options...
 
 # Relationships enable an app container's access to a service.
+# The example below shows simplified configuration leveraging default endpoints.
+# See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    {{< variable "RELATIONSHIP_NAME" >}}: "{{< variable "SERVICE_NAME" >}}:{{< variable "ENDPOINT" >}}"
+    {{< variable "SERVICE_NAME" >}}: 
 {{% /snippet %}}
 {{% snippet name="SERVICE_NAME" config="service" placeholder="true"%}}
     type: {{<variable "SERVICE_TYPE" >}}:{{<variable "VERSION" >}}
     # Other options...
 {{% /snippet %}}
 ```
+
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+and matches in both the application and services configuration.
+
+The example above leverages [default endpoint](/create-apps/app-reference#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference#relationships)
+(the network address a service is accessible from) that is identical to the _name_ of that service.
+
+Depending on your needs, instead of default endpoint configuration,
+you can use [explicit endpoint configuration](/create-apps/app-reference#relationships).
 
 An example relationship to connect to the databases given in the [example in step 1](#1-configure-the-service):
 
@@ -185,15 +190,17 @@ An example relationship to connect to the databases given in the [example in ste
 # Other options...
 
 # Relationships enable an app container's to a service.
+# The example below shows simplified configuration leveraging default endpoints.
+# See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    mysql_database: "database1:mysql"
-    postgresql_database: "database2:postgresql"
+    mariadb: 
+    postgresql: 
 {{< /snippet >}}
-{{< snippet name="database1" config="service" placeholder="true" >}}
+{{< snippet name="mariadb" config="service" placeholder="true" >}}
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
 {{< /snippet >}}
-{{< snippet name="database2" config="service" globKey="false" placeholder="true" >}}
+{{< snippet name="postgresql" config="service" globKey="false" placeholder="true" >}}
     type: postgresql:{{% latest "postgresql" %}}
     disk: 1024
 {{< /snippet >}}
@@ -208,28 +215,23 @@ relationships:
 # Other options...
 
 # Relationships enable an app container's to a service.
+# The example below shows simplified configuration leveraging default endpoints.
+# See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    mysql_database: "database1:mysql"
-    postgresql_database: "database2:postgresql"
+    mariadb: 
+    postgresql: 
 {{< /snippet >}}
-{{< snippet name="database1" config="service" placeholder="true" >}}
+{{< snippet name="mariadb" config="service" placeholder="true" >}}
     type: mariadb:{{% latest "mariadb" %}}
 {{< /snippet >}}
-{{< snippet name="database2" config="service" globKey="false" placeholder="true" >}}
+{{< snippet name="postgresql" config="service" globKey="false" placeholder="true" >}}
     type: postgresql:{{% latest "postgresql" %}}
 {{< /snippet >}}
 ```
 
 {{% /version/specific %}}
 
-As with the service name, you can give the relationship any name you want
-with lowercase alphanumeric characters, hyphens, and underscores.
-It helps if the service name and relationship name are different, but it isn't required.
-
-Each service offers one or more endpoints for connections, depending on the service.
-An endpoint is a named set of credentials to give access to other apps and services in your project.
-If you don't specify one in the [service configuration](#service-options), a default endpoint is created.
-The default endpoint varies by service, generally being its type (such as `mysql` or `solr`).
+With the above definition, the application container now has access to services `mariadb` and `postgresql` via the relationship `<SERVICE_NAME>`.
 
 ## Available services
 
@@ -291,17 +293,17 @@ To get the credentials for a given service, run the following command:
 You get output like the following:
 
 ```yaml
-database:
+mariadb:
     -
         username: user
         scheme: mysql
-        service: database
+        service: mariadb
         fragment: null
         ip: 198.51.100.37
-        hostname: abcdefghijklm1234567890123.database.service._.eu.{{< vendor/urlraw "hostname" >}}
+        hostname: abcdefghijklm1234567890123.mariadb.service._.eu.{{< vendor/urlraw "hostname" >}}
         public: false
         cluster: abcdefgh1234567-main-abcd123
-        host: database.internal
+        host: mariadb.internal
         rel: mysql
         query:
             is_master: true
@@ -310,10 +312,10 @@ database:
         type: 'mariadb:10.6'
         port: 3306
         host_mapped: false
-        url: 'mysql://user:@database.internal:3306/main'
+        url: 'mysql://user:@mariadb.internal:3306/main'
 ```
 
-With this example, you can connect to the `database` relationship
+With this example, you can connect to the `mariadb` relationship
 with the user `user`, an empty password, and the database name `main` (from the `path`).
 The `url` property shows a full database connection that can be used from your app.
 
