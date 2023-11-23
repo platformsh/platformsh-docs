@@ -94,9 +94,11 @@ Once your repository is organized, you can use a configuration similar to the fo
 ```yaml {configFile="apps"}
 api:
   type: php:8.2
-
+  # Relationships enable an app container's access to a service.
+  # The example below shows simplified configuration leveraging default endpoints.
+  # See the Application reference for all options for defining relationships and endpoints.
   relationships:
-    database: "database:postgresql"
+    postgresql: 
 
   mounts:
     "/var/cache": "shared:files/cache"
