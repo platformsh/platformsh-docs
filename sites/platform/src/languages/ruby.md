@@ -421,6 +421,7 @@ Here is a complete `{{< vendor/configfile "app" >}}` file:
 
 {{% version/specific %}}
 ```yaml {configFile="app"}
+# The name of the app, which must be unique within a project.
 name: 'app'
 
 type: "ruby:3.0"
@@ -428,9 +429,11 @@ type: "ruby:3.0"
 dependencies:
     nodejs:
         yarn: "*"
-
+# Relationships enable an app container's access to a service.
+# The example below shows simplified configuration leveraging default endpoints.
+# See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    database: "database:mysql"
+    mysql: 
 
 disk: 2048
 
@@ -633,7 +636,7 @@ To configure it, [create a service](../add-services/_index.md) such as the follo
 
 {{% version/specific %}}
 ```yaml {configFile="services"}
-database:
+mysql:
     type: mysql:{{% latest "mariadb" %}}
     disk: 2048
 ```
@@ -646,9 +649,8 @@ routes:
     ...
 
 services: 
-    database:
+    mysql:
         type: mysql:{{% latest "mariadb" %}}
-        disk: 2048
 ```
 {{% /version/specific %}}
 
@@ -659,23 +661,29 @@ Once you have a service, link to it in your [app configuration](../create-apps/_
 
 {{% version/specific %}}
 ```yaml {configFile="app"}
+# Relationships enable an app container's access to a service.
+# The example below shows simplified configuration leveraging default endpoints.
+# See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    database: "database:mysql"
+    mysql: 
 ```
 <--->
 ```yaml {configFile="app"}
 applications:
     app:
         type: 'ruby:{{% latest "ruby" %}}'
+        # Relationships enable an app container's access to a service.
+        # The example below shows simplified configuration leveraging default endpoints.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            database: "database:mysql"
+            mysql: 
         ...
 
 routes:
     ...
 
 services: 
-    database:
+    mysql:
         type: mysql:{{% latest "mariadb" %}}
         disk: 2048
 ```
@@ -693,7 +701,7 @@ This should give you something like the following:
 
 ```json
 {
-   "database" : [
+   "mysql" : [
       {
          "path" : "main",
          "query" : {
@@ -702,7 +710,7 @@ This should give you something like the following:
          "port" : 3306,
          "username" : "user",
          "password" : "",
-         "host" : "database.internal",
+         "host" : "mysql.internal",
          "ip" : "246.0.241.50",
          "scheme" : "mysql"
       }

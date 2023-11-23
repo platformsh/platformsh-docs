@@ -233,8 +233,11 @@ Given a relationship defined in `{{< vendor/configfile "app" >}}`:
 {{% version/specific %}}
 
 ```yaml {configFile="app"}
+# Relationships enable an app container's access to a service.
+# The example below shows simplified configuration leveraging default endpoints.
+# See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    pg: postgresql:postgresql
+    postgresql: 
 ```
 
 <--->
@@ -243,8 +246,11 @@ relationships:
 applications:
     app:
         type: 'lisp:{{% latest "lisp" %}}'
+        # Relationships enable an app container's access to a service.
+        # The example below shows simplified configuration leveraging default endpoints.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            pg: postgresql:postgresql
+            postgresql:
 ```
 
 {{% /version/specific %}}
@@ -261,7 +267,7 @@ Then in your program you could access the PostgreSQL instance as follows:
 (defvar *pg-spec* nil)
 
 (defun setup-postgresql ()
-  (let* ((pg-relationship (first (jsown:val (relationships) "pg")))
+  (let* ((pg-relationship (first (jsown:val (relationships) "postgresql")))
          (database (jsown:val pg-relationship "path"))
          (username (jsown:val pg-relationship "username"))
          (password (jsown:val pg-relationship "password"))
