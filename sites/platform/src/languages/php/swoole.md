@@ -11,10 +11,10 @@ Unlike PHP-FPM’s stateless operating, Swoole relies on establishing persistent
 [Swoole](https://github.com/swoole/swoole-src) and [Open Swoole](https://openswoole.com/) are two forked libraries pursuing that goal.
 
 {{< note >}}
-The `swoole` and `openswoole` extensions are [available by default](/languages/php/extensions.md) on PHP 8.2+ {{% vendor/name %}} containers.
+The `swoole` and `openswoole` extensions are [available by default](/languages/php/extensions.md) on PHP 8.2 {{% vendor/name %}} containers.
 {{< /note >}}
 
-For earlier versions of PHP, you can install both extensions manually by following the instructions on this page.</br>
+For other versions of PHP, you can install both extensions manually by following the instructions on this page.</br>
 You need:
 
 - PHP 7.3+ for Swoole
