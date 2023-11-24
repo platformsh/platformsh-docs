@@ -50,7 +50,7 @@ You can turn on the available ones with the `extensions` key
 and turn off those on by default with the `disabled_extensions` key.
 (Extensions marked with `*` are built in and can't be turned off.)
 
-{{< php-extensions/grid >}} 
+{{< php-extensions/grid >}}
 
 Some built-in modules are always on:
 
