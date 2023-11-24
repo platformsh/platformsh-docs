@@ -11,10 +11,15 @@ Unlike PHP-FPM’s stateless operating, Swoole relies on establishing persistent
 [Swoole](https://github.com/swoole/swoole-src) and [Open Swoole](https://openswoole.com/) are two forked libraries pursuing that goal.
 
 {{< note >}}
-Swoole requires PHP 7.3+ and Open Swoole requires PHP 7.4.0+.
-
-The Swoole installation script is compatible up to PHP 8.3.
+The `swoole` and `openswoole` extensions are [available by default](/languages/php/extensions.md) on PHP 8.2+ {{% vendor/name %}} containers.
 {{< /note >}}
+
+For earlier versions of PHP, you can install both extensions manually by following the instructions on this page.</br>
+You need:
+
+- PHP 7.3+ for Swoole
+- PHP 7.4.0+ for Open Swoole
+- The [Swoole installation script](https://raw.githubusercontent.com/platformsh/snippets/main/src/install_swoole.sh), which is compatible up to PHP 8.0
 
 {{% version/specific %}}
 Check the documentation related to [Laravel Octane on {{% vendor/name %}}](../../guides/laravel/deploy/octane.md).
