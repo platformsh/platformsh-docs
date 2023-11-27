@@ -41,8 +41,8 @@ For more information, refer to the [dedicated Redis page](/add-services/redis.md
 
 If want to use ephemeral Redis instead, use the `redis` type:
 
-  {{ $redis_data := index .Site.Data.registry "redis" }}
-  {{ partial "examples/servicedefn" (dict "context" . "data" $redis_data "docVersion" $docVersion ) }}
+  {{ $redis_type := "redis" }}
+  {{ partial "examples/servicedefn" (dict "context" . "data" $data "docVersion" $docVersion "type" $redis_type ) }}
 
 {{ else if eq $type "network-storage" }}
 `<SERVICE_NAME>` must be [RFC 1123](https://tools.ietf.org/html/rfc1123) compliant, and as such it must:
@@ -76,7 +76,7 @@ To define the relationship, use the following configuration:
 {{ if ne $type "network-storage" }}
 
 <!-- Create a dummy example `relationships` block from the registry's example naming in `.docs` -->
-{{ $serviceInner := partial "examples/servicedefn" (dict "context" . "data" $data "docVersion" $docVersion ) }}
+{{ $serviceInner := partial "examples/servicedefn" (dict "context" . "data" $data "docVersion" $docVersion "type" $type) }}
 {{ $relationshipInner := partial "examples/relationship" (dict "context" . "data" $data ) }}
 
 ```yaml {configFile="app"}
@@ -220,7 +220,7 @@ If you split the service into multiple endpoints, define multiple relationships.
   {{ $serviceInner = printf "%s\n                  key: vault-sign" $serviceInner }}
   {{ $serviceInner = printf "%s\n                  type: sign" $serviceInner }}
 {{ else }}
-  {{ $serviceInner = partial "examples/servicedefn" (dict "context" . "data" $data "latest" "true" "docVersion" $docVersion ) }}
+  {{ $serviceInner = partial "examples/servicedefn" (dict "context" . "data" $data "latest" "true" "docVersion" $docVersion "type" $type ) }}
 {{ end }}
 
 {{ if eq $docVersion 1 }}
