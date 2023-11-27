@@ -12,6 +12,9 @@
 <!-- Get registry data for the service type. -->
 
 {{ $data := index .Site.Data.registry ( $type ) }}
+{{ if eq $type "redis-persistent" }}
+    {{ $data = index .Site.Data.registry "redis" }}
+{{ end }}
 
 {{ $headerLevel }} 1. Configure the service
 
@@ -25,7 +28,7 @@ To define the service, use {{ if eq ($type) "mariadb" }}
   the `{{ $type }}` type{{ end }}:
 
 <!-- Create an example services.yaml file from data in the registry. -->
-{{ $serviceInner := partial "examples/servicedefn" (dict "context" . "data" $data "docVersion" $docVersion) }}
+{{ $serviceInner := partial "examples/servicedefn" (dict "context" . "data" $data "docVersion" $docVersion "type" $type) }}
 
 <!-- Create a dummy example `relationships` block from the registry's example naming in `.docs` -->
 ```yaml {configFile="services"}
