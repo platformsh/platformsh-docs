@@ -24,7 +24,11 @@
   {{- $endpoint = "<ENDPOINT_ID>" -}}
 {{- end -}}
 
-{{- $l2 := printf "%s%s: \"%s:%s\"" $apiIndent $relationshipName $serviceName $endpoint -}}
+{{- $l2 := printf "%s%s:\n        service: %s\n        endpoint: %s" $apiIndent $relationshipName $serviceName $endpoint -}}
 {{- $l2_updated := printf "%s%s: " $apiIndent $serviceName -}}
 
+{{- if eq (index .data "type") "vault-kms" -}}
+{{- printf "%s\n%s" $l1 $l2 | safeHTML -}}
+{{- else -}}
 {{- printf "%s\n%s" $l1 $l2_updated | safeHTML -}}
+{{- end -}}
