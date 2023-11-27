@@ -156,24 +156,24 @@ highlight=python
 
 # Relationships enable an app container's access to a service.
 relationships:
-    rediscache: "cacheredis:redis"
+    redis: 
 {{< /snippet >}}
-{{< snippet name="cacheredis" config="service" placeholder="true" >}}
+{{< snippet name="redis" config="service" placeholder="true" >}}
     type: redis-persistent:{{% latest "redis" %}}
 {{< /snippet >}}
 ```
 
-{{< v2connect2app serviceName="cacheredis" relationship="rediscache" var="REDIS_URL">}}
+{{< v2connect2app serviceName="redis" relationship="redis" var="REDIS_URL">}}
 
 ```bash {location="myapp/.environment"}
 # Decode the built-in credentials object variable.
 export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export CACHE_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].host')"
-export CACHE_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].port')"
-export CACHE_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].password')"
-export CACHE_SCHEME="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].scheme')"
+export CACHE_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.redis[0].host')"
+export CACHE_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.redis[0].port')"
+export CACHE_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.redis[0].password')"
+export CACHE_SCHEME="$(echo $RELATIONSHIPS_JSON | jq -r '.redis[0].scheme')"
 
 # Surface a Redis connection string for use in app.
 export REDIS_URL="${CACHE_SCHEME}://${CACHE_PASSWORD}@${CACHE_HOST}:${CACHE_PORT}"
@@ -238,7 +238,7 @@ To define the relationship, use the `redis` endpoint :
 ```yaml {configFile="app"}
 # Relationships enable access from this app to a given service.
 relationships:
-    <RELATIONSHIP_NAME>: "<SERVICE_NAME>:redis"
+    <SERVICE_NAME>:
 ```
 
 <--->
@@ -250,7 +250,7 @@ applications:
     <APP_NAME>:
         # Relationships enable access from this app to a given service.
         relationships:
-            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:redis"
+            <SERVICE_NAME>:
 
 services:
     # The name of the service container. Must be unique within a project.
@@ -260,8 +260,8 @@ services:
 
 {{% /version/specific %}}
 
-You can define `<SERVICE_NAME>` and `<RELATIONSHIP_NAME>` as you like, but it’s best if they’re distinct.
-With this definition, the application container now has access to the service via the relationship `<RELATIONSHIP_NAME>`.
+You can define `<SERVICE_NAME>` as you like, so long as it's unique across all services.
+With this definition, the application container now has access to the service via the relationship `<SERVICE_NAME>`.
 For PHP, enable the extension for the service:
 
 {{% version/specific %}}
@@ -287,7 +287,7 @@ applications:
                 - redis
         # Relationships enable access from this app to a given service.
         relationships:
-            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:redis"
+            <SERVICE_NAME>:
 
 services:
     # The name of the service container. Must be unique within a project.
@@ -329,11 +329,11 @@ applications:
     myapp:
         # Relationships enable access from this app to a given service.
         relationships:
-            rediscache: "cacheredis:redis"
+            redis:
 
 services:
     # The name of the service container. Must be unique within a project.
-    cacheredis:
+    redis:
         type: redis:7.0
 ```
 
@@ -387,24 +387,24 @@ highlight=python
 
 # Relationships enable an app container's access to a service.
 relationships:
-    rediscache: "cacheredis:redis"
+    redis:
 {{< /snippet >}}
-{{< snippet name="cacheredis" config="service" placeholder="true" >}}
+{{< snippet name="redis" config="service" placeholder="true" >}}
     type: redis:{{% latest "redis" %}}
 {{< /snippet >}}
 ```
 
-{{< v2connect2app serviceName="cacheredis" relationship="rediscache" var="REDIS_URL">}}
+{{< v2connect2app serviceName="redis" relationship="redis" var="REDIS_URL">}}
 
 ```bash {location="myapp/.environment"}
 # Decode the built-in credentials object variable.
 export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export CACHE_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].host')"
-export CACHE_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].port')"
-export CACHE_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].password')"
-export CACHE_SCHEME="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].scheme')"
+export CACHE_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.redis[0].host')"
+export CACHE_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.redis[0].port')"
+export CACHE_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.redis[0].password')"
+export CACHE_SCHEME="$(echo $RELATIONSHIPS_JSON | jq -r '.redis[0].scheme')"
 
 # Surface a Redis connection string for use in app.
 export REDIS_URL="${CACHE_SCHEME}://${CACHE_PASSWORD}@${CACHE_HOST}:${CACHE_PORT}"
@@ -590,7 +590,7 @@ To set up Redis as your session handler, add a configuration similar to the foll
 type: "php:{{% latest "php" %}}"
 
 relationships:
-    sessionstorage: "data:redis"
+    sessionstorage:
 
 variables:
     php:
@@ -604,7 +604,7 @@ web:
             passthru: '/index.php'
 {{< /snippet >}}
 
-{{< snippet name="data" config="service" placeholder="true" >}}
+{{< snippet name="sessionstorage" config="service" placeholder="true" >}}
     type: "redis-persistent:{{% latest "redis" %}}"
     disk: 256
 {{< /snippet >}}
@@ -624,7 +624,7 @@ web:
 type: "php:{{% latest "php" %}}"
 
 relationships:
-    sessionstorage: "data:redis"
+    sessionstorage:
 
 variables:
     php:
@@ -638,7 +638,7 @@ web:
             passthru: '/index.php'
 {{< /snippet >}}
 
-{{< snippet name="data" config="service" placeholder="true" >}}
+{{< snippet name="sessionstorage" config="service" placeholder="true" >}}
     type: "redis-persistent:{{% latest "redis" %}}"
 {{< /snippet >}}
 ```
