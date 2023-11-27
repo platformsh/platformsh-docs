@@ -201,7 +201,7 @@ If you split the service into multiple endpoints, define multiple relationships.
 {{ $serviceName := index $data "docs" "service_name" }}
 {{ $serviceInner := "" }}
 {{ if eq $type "varnish" }}
-  {{ $serviceInner = partial "examples/servicedefn" (dict "context" . "data" $data "latest" "true" "relName" "application" "appName" $appName "docVersion" $docVersion ) }}
+  {{ $serviceInner = partial "examples/servicedefn" (dict "context" . "data" $data "latest" "true" "relName" "application" "appName" $appName "docVersion" $docVersion "type" $type ) }}
 {{ else if eq $type "vault-kms" }}
   {{ $latest := partial "examples/latest" (dict "data" $data )}}
   {{ if eq $docVersion 2 }}
