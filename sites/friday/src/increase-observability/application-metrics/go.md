@@ -8,10 +8,10 @@ weight: 30
 ## Continuous profiling on {{% vendor/name %}}
 
 {{< vendor/name >}} [Continuous Profiler](./cont-prof.md) is powered by [Blackfire](../../../increase-observability/application-metrics/blackfire.md).
-It is available directly from Console under the `Profiling` tab of your environments.
+It is available directly from the Console under the `Profiling` tab of your environments.
 
 The GO continuous profiling is currently made accross 6 dimensions:
-- **CPU**: CPU usage per function calls
+- **CPU**: CPU usage per function call
 - **Goroutine**: active goroutines
 - **inuse_space**: memory allocated and not yet released
 - **inuse_objects**: objects allocated and not yet released

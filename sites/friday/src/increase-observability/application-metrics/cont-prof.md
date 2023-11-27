@@ -17,12 +17,12 @@ ensuring the smooth running of software in live environments.
 ## Continuous profiling on {{% vendor/name %}}
 
 {{< vendor/name >}} Continuous Profiling is powered by [Blackfire](../../../increase-observability/application-metrics/blackfire.md).
-It is available directly from Console under the `Profiling` tab of your environments.
+It is available directly from the Console under the `Profiling` tab of your environments.
 
-The Continuous Profiling dashboard let you visualize profiling data of a specific application.
+The Continuous Profiling dashboard lets you visualize the profiling data of a specific application.
 It is composed of several views: flame graph, table view, sandwich view and a split view combining the flame graph and table views.
 
-Each view helps make sense of the profiling data for the selected dimension and time frame. The available dimensions varies with the runtime profiled.
+Each view helps make sense of the profiling data for the selected dimension and time frame. The available dimensions vary with the runtime profiled.
 
 ## Flame graph
 
@@ -32,7 +32,7 @@ Flame graphs are effective in identifying performance issues and understanding t
 
 ![Routes](/images/observability/flame-graph.png "0.5")
 
-Rectangles in a flame graph are called frames. Each frame represents a function, arranged from vertically (y-axis) to show the sequence of method calls.
+Rectangles in a flame graph are called frames. Each frame represents a function, arranged vertically (y-axis) to show the sequence of method calls.
 
 The width of a frame relates to its resource usage. It helps pinpoint the most resource-intensive function calls. Their colors are not performance-related. They are meant to differentiate between functions.
 

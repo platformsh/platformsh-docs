@@ -7,7 +7,7 @@ description: Understanding the differences between deterministic and probabilist
 Multiple application observability features are available for your {{% vendor/name %}} projects.
 
 A full access to [Blackfire](https://www.blackfire.io/) is bundled with all your PHP and Python projects.
-The continuous profiling of your NodeJS and Go applications is available directly from Console under
+The continuous profiling of your NodeJS and Go applications is available directly from the Console under
 the `Profiling` tab of your environments.
 
 ## Blackfire: Deterministic observability for PHP and Python
@@ -18,7 +18,9 @@ The quantity of data and metrics collected differ for every layer of data Blackf
 
 [Profiles](https://blackfire.io/docs/profiling-cookbooks/index) are manually triggered by a Blackfire user, or automatically triggered by [Blackfire builds](https://blackfire.io/docs/builds-cookbooks/index), the synthetic monitoring feature that evaluates the performance of critical user journeys.
 
-Meanwhile, monitoring traces and extended traces are based on the sample rate, which is the percentage of requests that are monitored.  In that matter, [Blackfire monitoring](https://blackfire.io/docs/monitoring-cookbooks/index) offers a mixed approach: a probabilistic one on how requests are selected to be instrumented and a deterministic one on how they are monitored with the instrumentation starting at the very beginning of the request and ending with it.
+Meanwhile, monitoring traces and extended traces are based on the sample rate, which is the percentage of requests that are monitored.  In that matter, [Blackfire monitoring](https://blackfire.io/docs/monitoring-cookbooks/index) offers a mix of two approaches:
+- a probabilistic one on how requests are selected to be instrumented
+- a deterministic one on how they are monitored, with the instrumentation starting at the very beginning of the request and ending with it
 
 A [blog post](https://blog.blackfire.io/understanding-monitoring-traces-extended-traces-and-profiles.html) provides all the details on the differences and complementarity between Blackfire's monitoring traces, extended traces, and profiles.
 
