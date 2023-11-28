@@ -42,6 +42,8 @@ Both Memcached and Redis can be used for application caching. As a general rule,
     </tbody>
 </table>
 
+\* No High-Availability on {{% names/dedicated-gen-2 %}}.
+
 <--->
 <!-- API Version 2 -->
 
