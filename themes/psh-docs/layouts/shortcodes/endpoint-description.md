@@ -317,32 +317,6 @@ If you're using a [premium version](add-services/elasticsearch.md#supported-vers
 use the `elasticsearch-enterprise` type in the service definition.
 {{ end }}
 
-[//]: # (@todo update the example)
-{{ if eq $type "redis" }}
-{{ if eq $docVersion 1 }}
-#### [Service definition](/add-services)
-```yaml {configFile="services"}
-{{ partial "snippet" (dict "context" . "name" $serviceName "config" "service" "Inner" $serviceInner ) }}
-```
-{{ end }}
-
-{{$appInner := "relationships:\n    redisdata: \"data:redis\"" }}
-
-{{ if eq $docVersion 2 }}
-#### [App](/create-apps) and [Service configuration](/add-services)
-{{ else }}
-
-#### [App configuration](/create-apps)
-{{ end }}
-
-```yaml {configFile="app"}
-{{ partial "snippet" (dict "context" . "name" $appName "config" "app" "root" "false" "Inner" $appInner ) }}
-
-{{ partial "snippet" (dict "context" . "name" $serviceName "config" "service" "placeholder" "true" "Inner" $serviceInner ) }}
-```
-
-{{ end }}
-
 {{ if eq $type "mariadb" }}
 ### OracleMySQL example
 
