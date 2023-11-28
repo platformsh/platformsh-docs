@@ -37,7 +37,7 @@
 {{- end -}}
 {{- $l4 := "" -}}
 {{- with (index .data "service_relationships") -}}
-  {{- $l4 = printf "\n%s    relationships:\n%s        %s: '%s:http'" $apiIndent $apiIndent $relName $appName }}
+  {{- $l4 = printf "\n%s    relationships:\n%s        %s:\n%s            service: %s\n%s            endpoint: http" $apiIndent $apiIndent $relName $apiIndent $appName $apiIndent }}
 {{- end -}}
 {{- $l5 := "" }}
 
