@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 {{ $name := "local" }}
 {{ with .Get "name" }}
   {{ $name = . }}
@@ -25,3 +26,4 @@ You can merge this change into production.
     ```
 
     Fill it with the following example:
+<!-- shortcode end {{ .Name }} -->

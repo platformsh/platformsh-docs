@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 {{ $template := .Get "template" }}
 ## Configure apps in `{{ partial "vendor/configfile" (dict "context" . "config" "app") }}`
 
@@ -12,3 +13,4 @@ The following example shows a complete configuration with comments to explain th
 {{ readFile ( printf "static/files/fetch/appyaml/%s" $template ) }}
 ```
 {{ end }}
+<!-- shortcode end {{ .Name }} -->

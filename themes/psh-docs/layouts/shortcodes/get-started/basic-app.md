@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 <div x-show="stack === 'php'">
 
 <ul class="{{ partial "codetabs/tab-control-list-styles" }}">
@@ -33,7 +34,7 @@ type: 'php:8.0'
 # Indicate to use Composer 2 (leave out if you want Composer 1)
 # See how without Composer: https://docs.platform.sh/guides/wordpress/vanilla.html
 dependencies:
-    php: 
+    php:
         composer/composer: '^2'
 
 # The size of the persistent disk of the application (in MB)
@@ -63,7 +64,7 @@ type: 'php:8.0'
 # Indicate to use Composer 2 (leave out if you want Composer 1)
 # See how without Composer: https://docs.platform.sh/guides/wordpress/vanilla.html
 dependencies:
-    php: 
+    php:
         composer/composer: '^2'
 
 # The size of the persistent disk of the application (in MB)
@@ -75,7 +76,7 @@ web:
     upstream:
         socket_family: tcp
         protocol: http
-    
+
     # Set the specific command to start your app
     # using the provided port
     commands:
@@ -417,3 +418,4 @@ web:
 
 You may need to adapt the start command to fit your app.
 </div>
+<!-- shortcode end {{ .Name }} -->

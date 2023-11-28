@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 Your local clone of the template has the following project structure:
 
 ```bash
@@ -20,3 +21,4 @@ the repository needs three configuration files that describe its infrastructure,
 For [multi-app projects](/create-apps/multi-app/_index.md),
 two of those files remain in the project root and are shared between Gatsby and {{ .Get "name" }}.
 Each app keeps its own app configuration file (`{{ partial "vendor/configfile" (dict "context" . "config" "app") }}`) in its subdirectory.
+<!-- shortcode end {{ .Name }} -->
