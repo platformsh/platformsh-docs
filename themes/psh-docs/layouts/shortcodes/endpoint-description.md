@@ -36,13 +36,8 @@ To define the service, use {{ if eq ($type) "mariadb" }}
 ```
 
 {{ if eq $type "redis-persistent" }}
-Note that persistent Redis requires disk space to store data.
-For more information, refer to the [dedicated Redis page](/add-services/redis.md).
-
-If want to use ephemeral Redis instead, use the `redis` type:
-
-  {{ $redis_type := "redis" }}
-  {{ partial "examples/servicedefn" (dict "context" . "data" $data "docVersion" $docVersion "type" $redis_type ) }}
+Persistent Redis requires disk space to store data.
+If you want to use ephemeral Redis instead, [use the `redis` type](/add-services/redis.md#ephemeral-redis).
 
 {{ else if eq $type "network-storage" }}
 `<SERVICE_NAME>` must be [RFC 1123](https://tools.ietf.org/html/rfc1123) compliant, and as such it must:
@@ -102,8 +97,6 @@ now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME
 {{- else -}}
 now has access to the service via the relationship `<SERVICE_NAME>`.
 {{- end -}}
-
-
 
 <!-- For services with a PHP extension -->
 {{ if ( .Get "php" ) }}
@@ -177,17 +170,14 @@ If you split the service into multiple endpoints, define multiple relationships.
 {{ end }}
 {{ end }} <!-- end check for Varnish -->
 
-<!-- Add example heading for all but MariaDB/Oracle MySQL and Redis, which need two -->
-{{ $skip_heading := slice "mariadb" "redis"}}
+<!-- Add example heading for all but MariaDB/Oracle MySQL -->
+{{ $skip_heading := slice "mariadb" }}
 {{ if not (in $skip_heading $type) }}
 {{ $headerLevel }} Example Configuration
 {{ end }}
 
 {{ if eq $type "mariadb" }}
 ### MariaDB example
-<!-- Same for Redis -->
-{{ else if eq $type "redis" }}
-### Ephemeral example
 {{ end }}
 
 {{ $appName := "myapp" }}
@@ -329,11 +319,6 @@ use the `elasticsearch-enterprise` type in the service definition.
 
 [//]: # (@todo update the example)
 {{ if eq $type "redis" }}
-### Persistent example
-
-{{ $serviceName := "data" }}
-{{ $serviceInner := "\n    type: redis-persistent:7.0\n    disk: 256" }}
-
 {{ if eq $docVersion 1 }}
 #### [Service definition](/add-services)
 ```yaml {configFile="services"}
