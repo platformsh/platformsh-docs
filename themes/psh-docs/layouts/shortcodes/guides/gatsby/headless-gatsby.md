@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 The frontend Gatsby app has a slightly different configuration from the basic [Gatsby deployment](/guides/gatsby/deploy.html).
 Below is the `gatsby/.platform.app.yaml` file that configures the app.
 
@@ -41,3 +42,4 @@ When used, Gatsby pulls the information to communicate with the {{ .Get "name" }
 Lastly, the Gatsby app itself needs to include [GraphQL queries](https://www.gatsbyjs.com/docs/reference/graphql-data-layer/)
 to handle the data coming from {{ .Get "name" }} and create content pages.
 The most important files in the template you should consult are:
+<!-- shortcode end {{ .Name }} -->

@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 {{ $name := .Get "name" }}
 ## Add services in `{{ partial "vendor/configfile" (dict "context" . "config" "services") }}`
 
@@ -20,3 +21,4 @@ and a `type` that specifies the service and version to use.
 Services that store persistent data have a `disk` key, to specify the amount of storage.
 
 {{ end }}
+<!-- shortcode end {{ .Name }} -->
