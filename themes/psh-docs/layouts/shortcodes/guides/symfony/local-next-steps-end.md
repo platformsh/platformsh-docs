@@ -1,4 +1,4 @@
-
+<!-- shortcode start {{ .Name }} -->
 3.  Commit and push the revisions by running the following command:
 
     ```bash
@@ -66,3 +66,4 @@ You can customize your deployments to include a script that sanitizes the data w
 
 Once the script is merged into production, every preview environment created on {{ .Site.Params.vendor.name }}
 and all local environments contain sanitized data free of your users' personally identifiable information (PII).
+<!-- shortcode end {{ .Name }} -->

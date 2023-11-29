@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 {{ $db := .Get "database" }}
 {{ $pageLink := printf "%s.md" ( $db | lower ) }}
 {{ if eq $db "MySQL" }}
@@ -17,3 +18,4 @@ This is just a safety precaution.
 Production data isn't altered.
 To get a database dump, run the following command:
 <code>{{ $cliCommand }} db:dump -e {{ `{{< variable "DEVELOPMENT_ENVIRONMENT_NAME" >}}` | .Page.RenderString }}</code>.
+<!-- shortcode end {{ .Name }} -->

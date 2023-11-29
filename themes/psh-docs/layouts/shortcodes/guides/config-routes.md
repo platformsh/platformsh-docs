@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 {{ $name := .Get "name" }}
 ## Define routes
 
@@ -36,3 +37,4 @@ The following example presents a complete definition of a main route for a {{ $n
 ```bash {configFile="routes"}
 {{ readFile ( printf "static/files/fetch/routesyaml/%s" (.Get "template" ) ) }}
 ```
+<!-- shortcode end {{ .Name }} -->

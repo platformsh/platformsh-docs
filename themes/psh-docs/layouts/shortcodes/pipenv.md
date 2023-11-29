@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 For example, to use `pipenv` to manage requirements and a virtual environment, add the following:
 
 ```yaml {configFile="app"}
@@ -10,3 +11,4 @@ hooks:
         set -eu
         pipenv install --system --deploy
 ```
+<!-- shortcode end {{ .Name }} -->

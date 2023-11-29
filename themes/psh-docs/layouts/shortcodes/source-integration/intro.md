@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 {{ $source := .Get "source" }}
 {{ $pull := "pull"}}
 {{ if eq $source "GitLab" }}
@@ -17,3 +18,4 @@ it automates the following processes for you:
 - Creating a new environment when a branch is created or a {{ $pull }} request is opened.
 - Rebuilding the environment when new code is pushed to {{ $source }}.
 - Deleting the environment when a {{ $pull }} request is merged.
+<!-- shortcode end {{ .Name }} -->

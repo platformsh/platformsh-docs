@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 {{ $isSymfony := eq ( .Get "name" ) "Symfony" }}
 ## Before you begin
 
@@ -15,3 +16,5 @@ You need:
   This lets you interact with your project from the command line.
   You can also do most things through the [Web Console](/administration/web/_index.md),
   but this guide focuses on using the CLI.
+
+<!-- shortcode end {{ .Name }} -->

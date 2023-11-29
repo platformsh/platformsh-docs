@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 ## Install
 
 Install the PHP extension for Swoole or Open Swoole during the build.
@@ -32,3 +33,4 @@ applications:
 ```
 
 {{ end }}
+<!-- shortcode end {{ .Name }} -->

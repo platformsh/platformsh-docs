@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 {{ $name := .Get "name" }}
 You now have a *project* running on {{ .Site.Params.vendor.name }}.
 In many ways, a project is just a collection of tools around a Git repository.
@@ -56,3 +57,4 @@ Now that you've added these files to your project,
 configure each one for {{ $name }} in the following sections.
 Each section covers basic configuration options and presents a complete example
 with comments on why {{ $name }} requires those values.
+<!-- shortcode end {{ .Name }} -->
