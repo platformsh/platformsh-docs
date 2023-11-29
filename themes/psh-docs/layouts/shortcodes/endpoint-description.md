@@ -161,12 +161,18 @@ Add the service to your app configuration:
 {{ partial "snippet" (dict "context" . "name" "<SERVICE_NAME>" "config" "service" "placeholder" "true" "Inner" $serviceInner ) }}
 ```
 
-* `<TARGET_PATH>` is where you want your service to be, the path on your app container that has a writable mount.
-* `<SERVICE_NAME>` is the name you [defined in step 1](#1-configure-the-service).
-* `<SOURCE_PATH>` is the path within the service that the mounts point to.
+- `<TARGET_PATH>` is where you want your service to be, the path on your app container that has a writable mount.
+- `<SERVICE_NAME>` is the name you [defined in step 1](#1-configure-the-service).
+- `<SOURCE_PATH>` is the path within the service that the mounts point to.
   Usually the same as the `<SERVICE_NAME>`.
 {{ end }}
 {{ end }} <!-- end check for Varnish -->
+
+{{ if eq $docVersion 2 }}
+- `<SOURCE>` can be set to `service` so your mount is shared between different apps,
+  or to `storage` so it's only shared between different _instances_ of the same app.
+  By default, all {{ `{{< vendor/name >}}` | .Page.RenderString }} mounts are `storage` mounts.
+{{ end }}
 
 <!-- Add example heading for all but MariaDB/Oracle MySQL and Redis, which need two -->
 {{ $skip_heading := slice "mariadb" "redis"}}

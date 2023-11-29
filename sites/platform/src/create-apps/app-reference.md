@@ -273,19 +273,24 @@ Mounts define directories that are writable after the build is complete.
 They aren't available during the build.
 
 {{% version/specific %}}
+<!-- Platform.sh -->
+
 ```yaml {configFile="app"}
 mounts:
     '{{< variable "DIRECTORY" >}}':
         source: {{< variable "SOURCE_LOCATION" >}}
         source_path: {{< variable "SOURCE_PATH_LOCATION" >}}
 ```
+
 <--->
+<!-- Upsun -->
+
 ```yaml {configFile="app"}
 applications:
     myapp:
         source:
             root: "/"
-        type: 'nodejs:{{% latest "nodejs" %}}'
+        type: nodejs:{{% latest "nodejs" %}}
         mounts:
             '{{< variable "DIRECTORY" >}}':
                 source: {{< variable "SOURCE_LOCATION" >}}
@@ -297,34 +302,70 @@ The `{{< variable "DIRECTORY" >}}` is relative to the [app's root](#root-directo
 If you already have a directory with that name, you get a warning that it isn't accessible after the build.
 See how to [troubleshoot the warning](./troubleshoot-mounts.md#overlapping-folders).
 
+{{% version/specific %}}
+<!-- Platform.sh -->
 | Name          | Type                 | Required | Description |
 | ------------- | -------------------- | -------- | ----------- |
-| `source`      | `local` or `service` | Yes      | Specifies where the mount is. `local` sources are unique to the app (requires `disk` to be set for the app), while `service` sources can be shared among apps (requires `service` to be set here). |
+| `source`      | `local`, `service`, or `tmp` | Yes      | Specifies the mount type. Set to: </br> - `local` so your mount is unique to the app (requires `disk` to be set for the app).</br> - `service` so your [Network Storage](/add-services/network-storage.md) mount can be shared between several apps.</br> - `tmp` to mount a directory within the `/tmp` directory of your app. `tmp` mounts are local ephemeral mounts that are removed when the app container is moved to another host. They allow you to store files that you're not afraid to lose, such as your application cache, without having to create a symlink to `/tmp` in your build hook. |
 | `source_path` | `string`             | Yes      | The subdirectory within the mounted disk (the source) where the mount should point. If an empty string is passed, points to the entire directory. |
 | `service`     | `string`             |          | The name of the [network storage service](../add-services/network-storage.md). |
 
-Basic example:
+<--->
+<!-- Upsun -->
+
+| Name          | Type                 | Required | Description |
+| ------------- | -------------------- | -------- | ----------- |
+| `source`      | `storage`, `service`, or `tmp` | Yes      | Specifies the mount type. Set to: </br> - `storage` so your [Network Storage](/add-services/network-storage.md) mount can be shared between instances of the same app.</br> - `service` so your [Network Storage](/add-services/network-storage.md) mount can be shared between several apps.</br> - `tmp` to mount a directory within the `/tmp` directory of your app. `tmp` mounts are local ephemeral mounts that are removed when the app container is moved to another host. They allow you to store files that you're not afraid to lose, such as your application cache, without having to create a symlink to `/tmp` in your build hook.   |
+| `source_path` | `string`             | Yes      | The subdirectory within the mounted disk (the source) where the mount should point. If an empty string is passed, points to the entire directory. |
+| `service`     | `string`             |          | The name of the [network storage service](../add-services/network-storage.md). |
+
+{{% /version/specific %}}
+
+Example:
 
 {{% version/specific %}}
+<!-- Platform.sh -->
 ```yaml {configFile="app"}
-mounts:
-    'web/uploads':
-        source: local
-        source_path: uploads
+    mounts:
+      '/.tmp_platformsh':
+        source: tmp
+        source_path: files/tmp_platformsh
+      '/build':
+        source: storage
+        source_path: files/build
+      '/.cache':
+        source: tmp
+        source_path: files/.cache
+      '/node_modules/.cache':
+        source: tmp
+        source_path: files/node_modules/.cache
 ```
+
 <--->
+<!-- Upsun -->
 ```yaml {configFile="app"}
 applications:
     myapp:
         source:
             root: "/"
-        type: 'nodejs:{{% latest "nodejs" %}}'
+        type: nodejs:20
         mounts:
-            'web/uploads':
-                source: local
-                source_path: uploads
+          '/.tmp_upsun':
+            source: tmp
+            source_path: files/tmp_upsun
+          '/build':
+            source: storage
+            source_path: files/build
+          '/.cache':
+            source: tmp
+            source_path: files/.cache
+          '/node_modules/.cache':
+            source: tmp
+            source_path: files/node_modules/.cache
 ```
 {{% /version/specific %}}
+
+For examples of how to set up a `service` mount, see the dedicated [Network Storage page](/add-services/network-storage.md).
 
 The accessibility to the web of a mounted directory depends on the [`web.locations` configuration](#web).
 Files can be all public, all private, or with different rules for different paths and file types.
@@ -339,19 +380,18 @@ The files still exist on disk until manually removed.
 
 ### Mounts, instances, and Network Storage
 
-Even though the configuration is slightly different for `local` and `service` (Network Storage) mounts,
-in reality **all** {{% vendor/name %}} mounts are [Network Storage](/add-services/network-storage.md) mounts.
+By default, **all** {{% vendor/name %}} mounts are [Network Storage](/add-services/network-storage.md) mounts (`storage` type).
 
 With this in mind, there are some consequences to be aware of:
 
 1. Since mounts defined for a single application are actually Network Storage services, 
 data within those mounts can be shared across _instances_ of that application container.
-Enabling horizontal scaling is the primary reason for making mounts NS services.
-1. Workers share the Network Storage instance of their parent app container.
-1. If your application requires at-runtime writable data to be instance-specific -- that is, _not_ shared between instances as described in the previous two points -- you are better off 
+Enabling horizontal scaling is the primary reason for making mounts Network Storage services.
+2. Workers share the Network Storage instance of their parent app container.
+<!-- Might be useful later: 1. If your application requires at-runtime writable data to be instance-specific -- that is, _not_ shared between instances as described in the previous two points -- you are better off setting up a local mount.
 1. Local mounts in one application can't be shared with another using the `local` mount configuration.
-Even with identical names, they do not point to the same service. 
-1. If you would like data in a mount to be shared between applications, you must explicitly define and use a [Network Storage](/add-services/network-storage) service.
+Even with identical names, they do not point to the same service.  -->
+3. If you would like data in a mount to be shared between applications, you must explicitly define and use a [Network Storage](/add-services/network-storage) service (using the `service` mount type).
 
 {{% note title="Truly local mounts" %}}
 Given the caveats above, `mounts` do not provide a way where data is isolated to a single instance of a single application out-of-the-box. 
@@ -364,7 +404,7 @@ applications:
     myapp:
         source:
             root: "/"
-        type: 'python:{{% latest "python" %}}'
+        type: python:{{% latest "python" %}}
         hooks:
             build: |
                 set -eux
