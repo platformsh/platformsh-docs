@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 [Lando](https://github.com/lando/lando) is a local development tool.
 Lando can read your {{ .Site.Params.vendor.name }} configuration files for WordPress
 and produce an approximately equivalent configuration using Docker
@@ -22,3 +23,4 @@ Once you have completed the configuration, you can start your local environment 
 ```bash
 lando start
 ```
+<!-- shortcode end {{ .Name }} -->

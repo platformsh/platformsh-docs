@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 {{ $redisGuide := .Get "redis-guide-link" }}
 {{ $postgresqlGuide := .Get "postgresql-guide-link" }}
 
@@ -32,3 +33,4 @@ relationships:
 
 Finally, this example mostly assumes that a {{ .Site.Params.vendor.name }} is the primary remote for the project.
 When using source integrations, the steps will be identical in most cases and addressed otherwise.
+<!-- shortcode end {{ .Name }} -->

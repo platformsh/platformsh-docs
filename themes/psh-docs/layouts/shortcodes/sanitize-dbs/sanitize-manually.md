@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 {{ $query := "MariaDB [main]> SELECT * FROM users;" }}
 {{ $result := `+----+------------+---------------+---------------------------+---------------+
     | ID | first_name | last_name     | user_email                | display_name  |
@@ -8,7 +9,7 @@
     +----+------------+---------------+---------------------------+---------------+` }}
 {{ if eq (.Get "database") "PostgreSQL" }}
   {{ $query = "main=> SELECT * FROM users;" }}
-  {{ $result = `id   |                user_email               |     display_name      
+  {{ $result = `id   |                user_email               |     display_name
     -----+-----------------------------------------+-----------------------
     3501 | daniel02@yourcompany.com                | Jason Brown
     3502 | ismith@kim.com                          | Sandra Griffin
@@ -83,3 +84,4 @@ Assumptions:
     ```
 
 {{ end }}
+<!-- shortcode end {{ .Name }} -->

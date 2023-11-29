@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 {{ $isSymfony := eq ( .Get "name" ) "Symfony" }}
 {{ $cliCommand := `{{< vendor/cli >}}` | .Page.RenderString }}
 {{ if $isSymfony }}
@@ -89,3 +90,4 @@ Add additional **Environments**, view a cost estimate, and confirm your changes.
 </ol>
 
 <p>Now you have a local Git repository, a {{ .Site.Params.vendor.name }} project, and a way to push code to that project. Next you can configure your project to work with {{ .Site.Params.vendor.name }}.</p>
+<!-- shortcode end {{ .Name }} -->

@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 {{ $level := .Get "level" }}
 {{ if eq $level 6 }}######{{ else if eq $level 5 }}#####{{ else if eq $level 4 }}####{{ else if eq $level 3 }}###{{ else }}##{{ end }} Supported regions
 
@@ -9,3 +10,4 @@
 These regions will be upgraded in the future.
 If you’re on one of these regions and want {{ .Get "featureShort" }} now,
 [migrate your project](/projects/region-migration.md) to a newer region.
+<!-- shortcode end {{ .Name }} -->

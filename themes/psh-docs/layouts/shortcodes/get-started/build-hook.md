@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 <div x-show="stack === 'python' || stack === 'nodejs' || stack === 'golang' || stack === 'java'">
 
 To build your app, you may also need to add commands to go through the build process.
@@ -182,3 +183,4 @@ hooks:
 </div>
 
 </div>
+<!-- shortcode end {{ .Name }} -->

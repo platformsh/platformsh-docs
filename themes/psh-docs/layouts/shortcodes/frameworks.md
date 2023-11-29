@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 {{ $version := .Get "version" }}
 {{ if $version }}
     {{ if eq ( string .Site.Params.vendor.config.version ) $version }}
@@ -22,3 +23,4 @@ If you use one of the following frameworks, follow its guide:
 For more implementation ideas, consult a [template](/development/templates.md).
 
 {{ end }}
+<!-- shortcode end {{ .Name }} -->
