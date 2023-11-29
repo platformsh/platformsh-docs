@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 {{ $name := .Get "name"}}
 {{ $repo := .Get "templateRepo" }}
 {{ $composerLink := .Get "composerLink" }}
@@ -41,3 +42,4 @@ To get {{ $name }} running on {{ .Site.Params.vendor.name }}, you have two poten
 
         Once the template is deployed, you can follow the rest of this guide
         to better understand the extra files and changes to the repository.
+<!-- shortcode end {{ .Name }} -->

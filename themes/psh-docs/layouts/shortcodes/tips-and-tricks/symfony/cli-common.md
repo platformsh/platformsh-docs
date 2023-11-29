@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 -   Initialize a new project using templates:
 
     ```bash
@@ -45,3 +46,4 @@
     ```bash
     symfony cloud:variables
     ```
+<!-- shortcode end {{ .Name }} -->

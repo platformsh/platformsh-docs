@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 {{ $title := .Get "title" | .Page.RenderString }}
 {{ $theme := .Get "theme"}}
 {{ $version := .Get "version" }}
@@ -9,3 +10,4 @@
 {{ else }}
     {{ partial "note" (dict "context" . "title" $title "theme" $theme "Inner" $inner) }}
 {{ end }}
+<!-- shortcode end {{ .Name }} -->
