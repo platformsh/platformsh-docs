@@ -330,6 +330,16 @@ relationships:
 
 {{< /codetabs >}}
 
+{{< version/only "1" >}}
+
+{{< note >}}
+
+The legacy syntax for specifying relationships in the `<RELATIONSHIP_NAME>: <SERVICE_NAME>:<ENDPOINT_NAME>` form is still supported by {{% vendor/name %}}.
+
+{{< /note >}}
+
+{{< /version/only >}}
+
 ## Available disk space
 
 {{% version/specific %}}
