@@ -1178,6 +1178,7 @@ grid:
       - mysqli
       - mysqlnd
       - opcache
+      - openswoole
       - PDO
       - pdo_mysql
       - pdo_sqlite
@@ -1187,6 +1188,7 @@ grid:
       - soap
       - sockets
       - sqlite3
+      - swoole
       - sysvmsg
       - sysvsem
       - sysvshm
@@ -1215,7 +1217,6 @@ grid:
       - msgpack
       - oauth
       - odbc
-      - openswoole
       - pdo_dblib
       - pdo_odbc
       - pdo_pgsql
@@ -1229,7 +1230,6 @@ grid:
       - sodium
       - sourceguardian
       - ssh2
-      - swoole
       - sybase
       - tidy
       - uuid

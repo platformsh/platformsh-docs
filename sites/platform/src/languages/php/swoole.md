@@ -19,7 +19,7 @@ You need:
 
 - PHP 7.3+ for Swoole
 - PHP 7.4.0+ for Open Swoole
-- The [Swoole installation script](https://raw.githubusercontent.com/platformsh/snippets/main/src/install_swoole.sh), which is compatible up to PHP 8.0
+- The [Swoole installation script](https://raw.githubusercontent.com/platformsh/snippets/main/src/install_swoole.sh), which is compatible up to PHP 8.3.
 
 {{% version/specific %}}
 Check the documentation related to [Laravel Octane on {{% vendor/name %}}](../../guides/laravel/deploy/octane.md).
