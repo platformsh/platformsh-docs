@@ -1178,7 +1178,6 @@ grid:
       - mysqli
       - mysqlnd
       - opcache
-      - openswoole
       - PDO
       - pdo_mysql
       - pdo_sqlite
@@ -1188,7 +1187,6 @@ grid:
       - soap
       - sockets
       - sqlite3
-      - swoole
       - sysvmsg
       - sysvsem
       - sysvshm
