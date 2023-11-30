@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 {{ $db := .Get "database" }}
 {{ $framework := .Get "framework" }}
 {{ $pageLink := printf "%s.md" ( $db | lower ) }}
@@ -30,3 +31,4 @@ This guide doesn't address:
 
 - Sanitizing NoSQL Databases (such as [MongoDB](../../add-services/mongodb.md))
 - Input validation and input sanitization, which both help prevent security vulnerabilities
+<!-- shortcode end {{ .Name }} -->

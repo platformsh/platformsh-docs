@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 {{ if and ( eq ( .Get "version" ) "2" ) ( eq .Site.Params.vendor.config.version 2 ) }}
 
 You can access service credentials to connect to [managed services](/add-services/) from environment variables present in the application container.
@@ -17,3 +18,4 @@ Consult each of the individual service documentation to see how to retrieve and 
 {{ end }}
 
 {{ end }}
+<!-- shortcode end {{ .Name }} -->

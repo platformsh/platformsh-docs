@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 You may find the following commands useful when using DDEV.
 
 -   List all available DDEV commands:
@@ -31,3 +32,4 @@ You may find the following commands useful when using DDEV.
     ```bash
     ddev ssh -s db
     ```
+<!-- shortcode end {{ .Name }} -->

@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 You might find the following commands useful when using the Symfony CLI.
 
 -   Open the web administration console:
@@ -17,3 +18,4 @@ You might find the following commands useful when using the Symfony CLI.
     ```bash
     symfony ssh
     ```
+<!-- shortcode end {{ .Name }} -->

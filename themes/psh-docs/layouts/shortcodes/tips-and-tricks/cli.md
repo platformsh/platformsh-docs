@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 {{ $cliCommand := `{{< vendor/cli >}}` | .Page.RenderString }}
 {{ $cliName := "{{ .Site.Params.vendor.name }} CLI" }}
 {{ if eq ( .Get "framework" ) "Symfony" }}
@@ -24,3 +25,4 @@ You might find the following commands useful when using the {{ $cliName }}.
     ```bash
     {{ $cliCommand }} ssh
     ```
+<!-- shortcode end {{ .Name }} -->

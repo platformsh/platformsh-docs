@@ -1,4 +1,5 @@
-1.  Create a new environment based on production.
+<!-- shortcode start {{ .Name }} -->
+1. Create a new environment based on production.
 
     ```bash
     {{ `{{< vendor/cli >}}` | .Page.RenderString }} branch new-feature {{ `{{< variable "PRODUCTION_ENVIRONMENT_NAME" >}}` | .Page.RenderString }}
@@ -20,3 +21,4 @@
     ```bash
     export PLATFORM_RELATIONSHIPS="$({{ `{{< vendor/cli >}}` | .Page.RenderString }} tunnel:info --encode)"
     ```
+<!-- shortcode end {{ .Name }} -->

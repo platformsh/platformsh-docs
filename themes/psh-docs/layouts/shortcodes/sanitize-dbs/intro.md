@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 {{ $db := .Get "database" }}
 {{ $framework := .Get "framework" }}
 Databases of live websites often contain personally identifiable information (PII)
@@ -8,3 +9,4 @@ sanitize your databases of any PII that they may contain.
 {{ if $db }}
 This example goes through the process for a {{ $db }} database using {{ $framework }}.
 {{ end }}
+<!-- shortcode end {{ .Name }} -->
