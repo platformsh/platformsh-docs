@@ -264,7 +264,7 @@ relationships: {{{< variable "SERVICE_NAME_A" >}}, {{< variable "SERVICE_NAME_B"
 ```
 {{< /note >}}
 
- You can add as many relationships as you want to your app configuration:
+You can add as many relationships as you want to your app configuration:
 
 ```yaml {configFile="app"}
 {{< snippet>}}
