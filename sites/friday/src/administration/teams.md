@@ -2,7 +2,6 @@
 title: Administer teams
 weight: 1
 sidebarTitle: Teams
-sidebarIgnore: true
 description: Manage team access and permissions across all your projects and organizations.
 ---
 
@@ -270,6 +269,13 @@ With all of this info, you can now add a user to the team `Frontend developers`:
 ```
 
 {{< /codetabs >}}
+
+{{< note >}}
+
+If you add a viewer to a team with permissions belonging to a paid user license,
+the user will be charged as a paid user.
+
+{{< /note >}}
 
 #### Remove users from a team
 
