@@ -221,6 +221,13 @@ TBD
 To join a team, a user must already have been added [to the organization](/administration/users.md#manage-organization-access),
 where their [organization permissions](/administration/users.md#organization-permissions) are defined.
 
+{{< note >}}
+
+If you add a viewer to a team with permissions belonging to a paid user license,
+the user will be charged as a paid user.
+
+{{< /note >}}
+
 {{< codetabs >}}
 
 +++
@@ -269,13 +276,6 @@ With all of this info, you can now add a user to the team `Frontend developers`:
 ```
 
 {{< /codetabs >}}
-
-{{< note >}}
-
-If you add a viewer to a team with permissions belonging to a paid user license,
-the user will be charged as a paid user.
-
-{{< /note >}}
 
 #### Remove users from a team
 
