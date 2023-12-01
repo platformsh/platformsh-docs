@@ -2,7 +2,7 @@
 title: Forward {{% vendor/name %}} and Blackfire logs
 description: Send your {{% vendor/name %}} and Blackfire logs to a third-party service for further analysis.
 weight: 10
-banner: 
+banner:
     type: observability-suite
 ---
 
