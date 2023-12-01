@@ -193,20 +193,20 @@ For more information, see how to [manage resources](/manage-resources.md).
 
 ## Relationships
 
-To allow containers in your project to communicate with each other,
+To allow containers in your project to communicate with one another,
 you need to define relationships between them.
 You can define a relationship between an app and a service, or [between two apps](/create-apps/multi-app/relationships.md).
 
 The quickest way to define a relationship between your app and a service
-is to use the service container's default endpoint.</br>
+is to use the service's default endpoint.</br>
 However, some services allow you to define multiple databases, cores, and/or permissions.
 In these cases, you can't rely on default endpoints.
 Instead, you can explicitly define multiple endpoints when setting up your relationships.
 
 {{< note >}}
-App containers don't have a default endpoint like service containers.
+App containers don't have a default endpoint like services.
 To connect your app to another app in your project,
-explicitly define the `http` endpoint as the endpoint to connect both apps.</br>
+you need to explicitly define the `http` endpoint as the endpoint to connect both apps.</br>
 For more information, see how to [define relationships between your apps](/create-apps/multi-app/relationships.md).
 {{< /note >}}
 
@@ -228,8 +228,8 @@ relationships:
 ```
 
 The `SERVICE_NAME` is the name of the service as defined in its [configuration](/add-services/_index.md).
-It is used as the relationship name, and associated with a null value.
-This instructs {{% vendor/name %}} to use the service container's default endpoint to connect your app to the service.
+It is used as the relationship name, and associated with a `null` value.
+This instructs {{% vendor/name %}} to use the service's default endpoint to connect your app to the service.
 
 For example, if you define the following configuration:
 
@@ -241,7 +241,17 @@ relationships:
 ```
 
 {{% vendor/name %}} looks for a service named `mariadb` in your `{{% vendor/configfile "app" %}}` file,
-and connects your app to it through the service container's default endpoint.
+and connects your app to it through the service's default endpoint.
+
+For reference, the equivalent configuration using explicit endpoints would be the following:
+
+```yaml {configFile="app"}
+{{< snippet>}}
+relationships:
+    service: mariadb
+    endpoint: mysql
+{{< /snippet>}}
+```
 
 {{< note title="Tip">}}
 
@@ -254,7 +264,7 @@ relationships: {{{< variable "SERVICE_NAME_A" >}}, {{< variable "SERVICE_NAME_B"
 ```
 {{< /note >}}
 
-You can add as many relationships as you want to your app configuration:
+ You can add as many relationships as you want to your app configuration:
 
 ```yaml {configFile="app"}
 {{< snippet>}}
@@ -308,7 +318,8 @@ see each service's dedicated page:
  - [Solr](add-services/solr/_index.md#solr-6-and-later) (multiple cores)
  - [Vault KMS](add-services/vault/_index.md#multiple-endpoints-example) (multiple permissions)
 
- You can add as many relationships as you want to your app configuration:
+ You can add as many relationships as you want to your app configuration,
+ using both default and explicit endpoints according to your needs:
 
 ```yaml {configFile="app"}
 {{< snippet>}}
@@ -320,11 +331,9 @@ relationships:
         service: mariadb
         endpoint: legacy
     cache:
-        service: redis
-        endpoint: redis
+        redis:
     search:
-        service: elasticsearch
-        endpoint: elasticsearch
+        elasticsearch:
 {{< /snippet>}}
 ```
 
