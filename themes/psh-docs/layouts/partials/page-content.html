@@ -11,7 +11,9 @@
 {{ end }}
 
 <!-- If the feature is part of the Observability Suite -->
+{{ if eq (string .Site.Params.vendor.config.version) "1"}}
 {{ partial "observability-suite/banner.html" .context }}
+{{ end }}
 
 <!-- If the feature is in beta -->
 {{ partial "beta-flag/banner.html" .context }}
