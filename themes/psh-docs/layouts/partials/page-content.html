@@ -1,7 +1,7 @@
 <!-- Page banners -->
-{{ if and ( eq (string .context.Site.Params.vendor.config.version) "1" ) ( eq (string .context.Page.Params.banner.type) "tiered-feature" )}}
+{{ if ( eq (string .context.Site.Params.vendor.config.version) "1" )}}
 {{ partial "banners/banner.html" .context }}
-{{ else if ( ne (string .context.Page.Params.banner.type) "tiered-feature" )}}
+{{ else if and ( ne (string .context.Page.Params.banner.type) "tiered-feature" ) ( ne (string .context.Page.Params.banner.type) "observability-suite" )}}
 {{ partial "banners/banner.html" .context }}
 {{ end }}
 
