@@ -241,7 +241,7 @@ Given a [relationship](/create-apps/app-reference.md#relationships) defined in `
 {{% version/specific %}}
 ```yaml {configFile="app"}
 # Relationships enable an app container's access to a service.
-# The example below shows simplified configuration leveraging default endpoints.
+# The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
     postgresql: 
@@ -252,8 +252,8 @@ applications:
     app:
         type: 'elixir:{{% latest "elixir" %}}'
         ...
-        # Relationships enable an app container's access to a service.
-        # The example below shows simplified configuration leveraging default endpoints.
+        # Relationships enable an app container's access to a service. 
+        # The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
             postgresql: 

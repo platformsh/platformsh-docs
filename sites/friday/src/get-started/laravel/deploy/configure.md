@@ -69,7 +69,7 @@ applications:
 
     # The relationships of the application with services or other applications.
     # The left-hand side is the name of the relationship as it will be exposed
-    # The example below shows simplified configuration leveraging default endpoints.
+    # The example below shows simplified configuration leveraging default services (identified from the relationship names) and default endpoints.
     # See the Application reference for all options for defining relationships and endpoints: https://docs.upsun.com/create-apps/app-reference.html#relationships
     relationships:
       mysql: 

@@ -215,7 +215,7 @@ disk: 1024
 hooks:
     build: ./mvnw package -DskipTests -Dquarkus.package.uber-jar=true
 # Relationships enable an app container's access to a service.
-# The example below shows simplified configuration leveraging default endpoints.
+# The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
     postgresql: 
@@ -231,8 +231,8 @@ applications:
         type: 'java:{{% latest "java" %}}'
         hooks:
             build: ./mvnw package -DskipTests -Dquarkus.package.uber-jar=true
-        # Relationships enable an app container's access to a service.
-        # The example below shows simplified configuration leveraging default endpoints.
+        # Relationships enable an app container's access to a service. 
+        # The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
             postgresql: 

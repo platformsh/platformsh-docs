@@ -158,7 +158,7 @@ To connect the service, use the following configuration:
 # Other options...
 
 # Relationships enable an app container's access to a service.
-# The example below shows simplified configuration leveraging default endpoints.
+# The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
     {{< variable "SERVICE_NAME" >}}: 
@@ -189,8 +189,8 @@ An example relationship to connect to the databases given in the [example in ste
 
 # Other options...
 
-# Relationships enable an app container's to a service.
-# The example below shows simplified configuration leveraging default endpoints.
+# Relationships enable an app container's access to a service.
+# The example below shows simplified configuration leveraging default services (identified from the relationship names) and default endpoints.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
     mariadb: 
@@ -214,9 +214,8 @@ relationships:
 
 # Other options...
 
-# Relationships enable an app container's to a service.
-# The example below shows simplified configuration leveraging default endpoints.
-# See the Application reference for all options for defining relationships and endpoints.
+# Relationships enable an app container's access to a service.
+# The example below shows simplified configuration leveraging default services (identified from the relationship names) and default endpoints.
 relationships:
     mariadb: 
     postgresql: 

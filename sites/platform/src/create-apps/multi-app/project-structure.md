@@ -95,7 +95,7 @@ Once your repository is organized, you can use a configuration similar to the fo
 api:
   type: php:8.2
   # Relationships enable an app container's access to a service.
-  # The example below shows simplified configuration leveraging default endpoints.
+  # The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
   # See the Application reference for all options for defining relationships and endpoints.
   relationships:
     postgresql: 
@@ -225,7 +225,9 @@ mercure:
 applications:
   api:
     type: php:8.2
-
+    # Relationships enable an app container's access to a service.
+    # The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
     relationships:
       database: "database:postgresql"
 

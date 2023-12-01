@@ -165,7 +165,7 @@ dependencies:
         composer/composer: '^2'
 
 # Relationships enable an app container's access to a service or another app.
-# The example below shows simplified configuration leveraging default endpoints.
+# The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
     mysql: 

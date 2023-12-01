@@ -13,7 +13,7 @@
   {{- $serviceName = .servName -}}
 {{- end -}}
 {{ $relationshipComment := "# Relationships enable access from this app to a given service." }}
-{{ $relationshipComment = printf "%s\n# The example below shows simplified configuration leveraging default endpoints." $relationshipComment}}
+{{ $relationshipComment = printf "%s\n# The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint." $relationshipComment}}
 {{ $relationshipComment = printf "%s\n# See the Application reference for all options for defining relationships and endpoints." $relationshipComment}}
 
 {{- $l1 := printf "\n%s\nrelationships:" $relationshipComment}}

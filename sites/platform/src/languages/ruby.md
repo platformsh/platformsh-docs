@@ -430,7 +430,7 @@ dependencies:
     nodejs:
         yarn: "*"
 # Relationships enable an app container's access to a service.
-# The example below shows simplified configuration leveraging default endpoints.
+# The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
     mysql: 
@@ -662,7 +662,7 @@ Once you have a service, link to it in your [app configuration](../create-apps/_
 {{% version/specific %}}
 ```yaml {configFile="app"}
 # Relationships enable an app container's access to a service.
-# The example below shows simplified configuration leveraging default endpoints.
+# The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
     mysql: 
@@ -673,7 +673,7 @@ applications:
     app:
         type: 'ruby:{{% latest "ruby" %}}'
         # Relationships enable an app container's access to a service.
-        # The example below shows simplified configuration leveraging default endpoints.
+        # The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
             mysql: 
