@@ -26,8 +26,7 @@ If your app does this regularly, a local mount is more effective.
 
 The Network Storage service enables a new kind of [mount](../create-apps/app-reference.md#mounts)
 that refers to a shared service rather than to a local directory.
-This service allows you to store data and share it between different instances of the same app (`storage` mount type), 
-or even between different apps (`service` mount type).
+This service allows you to store data and share it between different apps.
 
 {{% /version/specific %}}
 

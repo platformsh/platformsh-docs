@@ -306,7 +306,7 @@ See how to [troubleshoot the warning](./troubleshoot-mounts.md#overlapping-folde
 <!-- Platform.sh -->
 | Name          | Type                 | Required | Description |
 | ------------- | -------------------- | -------- | ----------- |
-| `source`      | `local`, `service`, or `tmp` | Yes      | Specifies the mount type. Set to: </br> - `local` so your mount is unique to the app (requires `disk` to be set for the app).</br> - `service` so your [Network Storage](/add-services/network-storage.md) mount can be shared between several apps.</br> - `tmp` to mount a directory within the `/tmp` directory of your app. `tmp` mounts are local ephemeral mounts that are removed when the app container is moved to another host. They allow you to store files that you're not afraid to lose, such as your application cache, without having to create a symlink to `/tmp` in your build hook.</br>Note that the `/tmp` directory has a [maximum allocation of 4 GB](/create-apps/troubleshoot-disks.md#no-space-left-on-device). If your project requires more disk, [contact Support](/learn/overview/get-support.md). |
+| `source`      | `local`, `service`, or `tmp` | Yes      | Specifies the mount type. Set to: </br> - `local` so your mount is unique to the app (requires `disk` to be set for the app).</br> - `service` so your [Network Storage](/add-services/network-storage.md) mount can be shared between several apps.</br> - `tmp` to mount a directory within the `/tmp` directory of your app. `tmp` mounts are **local ephemeral mounts**; their content may be removed during infrastructure maintenance operations. They allow you to **store files that you're not afraid to lose**, such as your application cache that can be seamlessly rebuilt.</br>Note that the `/tmp` directory has a [maximum allocation of 8 GB](/create-apps/troubleshoot-disks.md#no-space-left-on-device). |
 | `source_path` | `string`             | Yes      | The subdirectory within the mounted disk (the source) where the mount should point. If an empty string is passed, points to the entire directory. |
 | `service`     | `string`             |          | The name of the [network storage service](../add-services/network-storage.md). |
 
@@ -315,7 +315,7 @@ See how to [troubleshoot the warning](./troubleshoot-mounts.md#overlapping-folde
 
 | Name          | Type                 | Required | Description |
 | ------------- | -------------------- | -------- | ----------- |
-| `source`      | `storage`, `service`, or `tmp` | Yes      | Specifies the mount type. Set to: </br> - `storage` so your mount can be shared between instances of the same app.</br> - `service` so your mount can be shared between several apps.</br> - `tmp` to mount a directory within the `/tmp` directory of your app.`tmp` mounts are local ephemeral mounts that are removed when the app container is moved to another host. They allow you to store files that you're not afraid to lose, such as your application cache, without having to create a symlink to `/tmp` in your build hook.</br>Note that the  `/tmp` directory has a [maximum allocation of 4 GB](/create-apps/troubleshoot-disks.md#no-space-left-on-device). If your project requires more disk, [contact Support](/learn/overview/get-support.md).  |
+| `source`      | `storage`, `service`, or `tmp` | Yes      | Specifies the mount type. Set to: </br> - `storage` so your mount can be shared between instances of the same app.</br> - `service` so your mount can be shared between several apps (using the [Network Storage](/add-services/network-storage.md) service).</br> - `tmp` to mount a directory within the `/tmp` directory of your app.`tmp` mounts are **local ephemeral mounts**; their content may be removed during infrastructure maintenance operations. They allow you to **store files that you're not afraid to lose**, such as your application cache that can be seamlessly rebuilt.</br>Note that the  `/tmp` directory has a [maximum allocation of 8 GB](/create-apps/troubleshoot-disks.md#no-space-left-on-device). |
 | `source_path` | `string`             | Yes      | The subdirectory within the mounted disk (the source) where the mount should point. If an empty string is passed, points to the entire directory. |
 | `service`     | `string`             |          | The name of the [network storage service](../add-services/network-storage.md). |
 
@@ -386,29 +386,21 @@ The files still exist on disk until manually removed (or, for `tmp` mounts, unti
 
 ### Mounts, instances, and Network Storage
 
-On {{% vendor/name %}}, `storage` mounts are widely used as they can be shared between different instances of the same app,
+`storage` mounts can be shared **between different instances of the same app**,
 which enables [horizontal scaling](/manage-resources/_index.md).
-Under the hood, `storage` mounts are actually [Network Storage](/add-services/network-storage.md) services.
 
-If you want data in a mount to be shared between applications,
-you must explicitly define and use a Network Storage service, but with a `service` source instead of a `storage` one.
-To do so, see the dedicated [Network Storage](/add-services/network-storage.md) page.
+In a [multi-application context](/create-apps/multi-app/_index.md), if you want data in a mount to be shared **between applications**,
+you must explicitly define and use a [Network Storage](/add-services/network-storage.md) service.
+Note that workers share the Network Storage instance of their parent app container.
 
-{{% note %}}
-
-Workers share the Network Storage instance of their parent app container.
-
-{{% /note %}}
-
-If you need a local mount, {{% vendor/name %}} allows you to mount a directory within the `/tmp` directory of your app.
+If you need a local mount (i.e. unique per container),
+{{% vendor/name %}} allows you to mount a directory within the `/tmp` directory of your app.
 However, keep the following limitations in mind:
 
-- `tmp` mounts are removed when your app container is moved to another host.
-- The `/tmp` directory has a [maximum allocation of 4 GB](/create-apps/troubleshoot-disks.md#no-space-left-on-device).
-  You can [ask Support](/learn/overview/get-support.md) for more disk,
-  but 8 GB is the maximum that can be allocated to `/tmp`.
+- Content from `tmp` mounts is removed when your app container is moved to another host during an infrastructure maintenance operation.
+- The `/tmp` directory has a [maximum allocation of 8 GB](/create-apps/troubleshoot-disks.md#no-space-left-on-device).
 
-Therefore, `tmp` mounts are ideal to store non-critical data, such as your application cache,
+Therefore, `tmp` mounts are ideal to store non-critical data, such as your application cache which can be seamlessly rebuilt,
 but aren't suitable for storing files that are necessary for your app to run smoothly.
 
 Note that {{% vendor/name %}} will provide new local mounts in the near future.

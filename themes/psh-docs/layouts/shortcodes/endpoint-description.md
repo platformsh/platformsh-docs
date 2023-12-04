@@ -169,12 +169,6 @@ Add the service to your app configuration:
 {{ end }}
 {{ end }} <!-- end check for Varnish -->
 
-{{ if eq $docVersion 2 }}
-- `<SOURCE>` can be set to `service` so your mount is shared between different apps,
-  or to `storage` so it's only shared between different _instances_ of the same app.
-  By default, all {{ `{{< vendor/name >}}` | .Page.RenderString }} mounts are `storage` mounts.
-{{ end }}
-
 <!-- Add example heading for all but MariaDB/Oracle MySQL and Redis, which need two -->
 {{ $skip_heading := slice "mariadb" "redis"}}
 {{ if not (in $skip_heading $type) }}
