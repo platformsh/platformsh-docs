@@ -13,7 +13,7 @@ It is available directly from the Console under the `Profiling` tab of your envi
 The GO continuous profiling is currently made accross 6 dimensions:
 - **Allocations**: Number of objects allocated
 - **Allocated Memory**: Number of bytes allocated
-- **CPU**:  TimeTime spent running on the CPU
+- **CPU**:  Time spent running on the CPU
 - **Goroutines**: Number of goroutines (both on-CPU and off-CPU)
 - **Heap Live Objects**: Number of objects allocated that are not yet garbage collected.
 - **Heap Live Size**: Number of bytes allocated that are not yet garbage collected.
