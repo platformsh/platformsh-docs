@@ -327,11 +327,14 @@ Example:
 <!-- Platform.sh -->
 ```yaml {configFile="app"}
     mounts:
+      'web/uploads':
+          source: local
+          source_path: uploads
       '/.tmp_platformsh':
         source: tmp
         source_path: files/tmp_platformsh
       '/build':
-        source: storage
+        source: local
         source_path: files/build
       '/.cache':
         source: tmp
@@ -350,7 +353,10 @@ applications:
             root: "/"
         type: nodejs:20
         mounts:
-          '/.tmp_upsun':
+      'web/uploads':
+          source: storage
+          source_path: uploads
+      '/.tmp_upsun':
             source: tmp
             source_path: files/tmp_upsun
           '/build':
@@ -374,7 +380,7 @@ Note that when you back up an environment,
 the mounts on that environment are backed up too.
 
 Also, mounted directories aren't deleted when they're removed from `{{< vendor/configfile "app" >}}`.
-The files still exist on disk until manually removed (or, for `tmp` mounts, until the app container is moved to another host).
+The files still exist on disk until manually removed (or, for `tmp` mounts, until the app container is moved to another host during a maintenance operation).
 
 {{% version/only "2" %}}
 
