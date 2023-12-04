@@ -397,8 +397,8 @@ If you need a local mount (i.e. unique per container),
 {{% vendor/name %}} allows you to mount a directory within the `/tmp` directory of your app.
 However, keep the following limitations in mind:
 
-- Content from `tmp` mounts is removed when your app container is moved to another host during an infrastructure maintenance operation.
-- The `/tmp` directory has a [maximum allocation of 8 GB](/create-apps/troubleshoot-disks.md#no-space-left-on-device).
+- Content from `tmp` mounts is removed when your app container is moved to another host during an infrastructure maintenance operation
+- The `/tmp` directory has a [maximum allocation of 8 GB](/create-apps/troubleshoot-disks.md#no-space-left-on-device)
 
 Therefore, `tmp` mounts are ideal to store non-critical data, such as your application cache which can be seamlessly rebuilt,
 but aren't suitable for storing files that are necessary for your app to run smoothly.
