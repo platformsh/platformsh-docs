@@ -240,7 +240,7 @@ relationships:
 {{< /snippet>}}
 ```
 
-{{% vendor/name %}} looks for a service named `mariadb` in your `{{% vendor/configfile "app" %}}` file,
+{{% vendor/name %}} looks for a service named `mariadb` in your `{{% vendor/configfile "services" %}}` file,
 and connects your app to it through the service's default endpoint.
 
 For reference, the equivalent configuration using explicit endpoints would be the following:
@@ -294,7 +294,7 @@ relationships:
  
 - `RELATIONSHIP_NAME` is the name you want to give to the relationship.
 - `SERVICE_NAME` is the name of the service as defined in its [configuration](/add-services/_index.md).
-- `ENDPOINT_NAME` is the endpoint to connect to the service.
+- `ENDPOINT_NAME` is the endpoint your app will use to connect to the service (refer to the service reference to know which value to use).
 
 For example, to define a relationship named `database` that connects your app to a service called `mariadb` through the `db1` endpoint,
 use the following configuration:
@@ -343,7 +343,19 @@ relationships:
 
 {{< note >}}
 
-The legacy syntax for specifying relationships in the `<RELATIONSHIP_NAME>: <SERVICE_NAME>:<ENDPOINT_NAME>` form is still supported by {{% vendor/name %}}.
+The following legacy syntax for specifying relationships is still supported by {{% vendor/name %}}:
+
+```yaml
+relationships
+    <RELATIONSHIP_NAME>: "<SERVICE_NAME>:<ENDPOINT_NAME>"
+```
+
+For example:
+
+```yaml
+relationships
+    database: "mariadb:mysql"
+```
 
 {{< /note >}}
 
