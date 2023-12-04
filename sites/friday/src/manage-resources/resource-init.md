@@ -30,31 +30,100 @@ Note that you can [keep an eye on those costs](/manage-resources/resource-billin
 
 ## Define a resource initialization strategy
 
-### Without a source integration
+You can define which strategy {{% vendor/name %}} uses to allocate resources
+when you first deploy your project or add a new container.
+The following strategies are available:
+
+| Strategy | Description |
+| ---------| ----------- |
+| `default`  | Initializes the new containers using the [{{% vendor/name %}} default resources](/manage-resources/resource-init.md).</br>This is the strategy that applies when you first deploy your project or new container, unless you explicitly set another strategy.  |
+| `manual`   | With this strategy, the first deployment fails and you need to configure resources manually through [the Console](#adjust-your-project-resources), or using `resources:set` in the CLI. |
+| `minimum`  | Initializes the new containers using the [{{% vendor/name %}} minimum resources](#minimum-resources). |
+| `parent`   | Initializes the new containers using the same resources as the parent environment.</br>If there is no parent environment, or if the container doesn't already exist on the parent, the `default` strategy applies instead. |
+
+{{< codetabs >}}
+
++++
+title= Without a source integration
++++
 
 If you're not using a [source integration](/integrations/_index.md),
 you can use a [Git push option](/environments/_index.md#push-options) to define which strategy {{% vendor/name %}} uses to allocate resources
 when you first deploy your project or add a new container.
 
-The following strategies are available:
+To do so, run the following command:
 
-| Strategy | Description | Command |
-| ---------| ----------- | ---------- |
-| `Default`  | Initializes the new containers using the [{{% vendor/name %}} default resources](/manage-resources/resource-init.md).</br>If no Git push option is defined when you first deploy your project or new container, this strategy applies.  | `git push upsun -o resources.init=default` |
-| `Manual`   | With this strategy, the first deployment fails and you need to configure resources manually through [the Console](#adjust-your-project-resources), or using `resources:set` in the CLI. | `git push upsun -o resources.init=manual` |
-| `Minimum`  | Initializes the new containers using the [{{% vendor/name %}} minimum resources](#minimum-resources). | `git push upsun -o resources.init=minimum` |
-| `Parent`   | Initializes the new containers using the same resources as the parent environment.</br>If there is no parent environment, or if the container doesn't already exist on the parent, the `Default` strategy applies instead. | `git push upsun -o resources.init=parent` |
+```bash
+upsun push --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
+```
 
-If you're using a source integration, you can't use Git push options.
-However, you can still define a resource initialization strategy by [adjusting your source integration setup](#with-a-source-integration).
+For example, to use the `minimum` strategy for your deployment, run the following command:
 
-### With a source integration 
+```bash
+upsun push --resources-init=minimum
+```
 
-WAITING FOR PROPERTY TO BE TESTABLE
+{{< note >}}
+
+Alternatively, you can use the official Git syntax for [push options](/environments/_index.md#push-options):
+
+```bash
+git push upsun -o resources.init=minimum
+```
+
+{{< /note >}}
+
+Note that you can set a different resource initialization strategy for each of your deployments.
+
+<--->
+
++++
+title= With a source integration
++++
+
+If you're using a [source integration](/integrations/_index.md),
+to define which strategy {{% vendor/name %}} uses to allocate resources when you first deploy your project or add a new container,
+use the `--resources-init` flag.
+
+{{< note >}}
+
+Once a resource initialization strategy is set for your source integration,
+it applies to **all** the deployments you launch through that source integration.
+
+{{< /note >}}
+
+To specify a resource initialization strategy when you [create your source integration](/integrations/source/_index.md),
+include the `--resources-init` flag in your source integration options.
+For example, if you [set up a GitHub integration](), use the following options:
+
+```bash
+platform integration:add \
+  --project {{< variable "PROJECT_ID" >}} \
+  --type github \
+  --repository {{< variable "OWNER/REPOSITORY" >}} \
+  --token {{< variable "GITHUB_ACCESS_TOKEN" >}} \
+  --base-url {{< variable "GITHUB_URL" >}}
+  --resources-init= {{< variable "INITIALIZATION_STRATEGY" >}}
+```
+
+To specify a resource initialization strategy for an existing source integration,
+run the following command:
+
+```bash
+upsun integration:update --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
+```
+
+For example, to use the `minimum` strategy for your deployment, run the the following command:
+
+```bash
+upsun integration:update --resources-init=minimum
+```
+
+{{< /codetabs >}}
 
 ### Minimum resources
 
-The following table shows the resources {{% vendor/name %}} allocates to your containers when you opt for the `Minimum` [resource initialization strategy](#define-a-resource-initialization-strategy).
+The following table shows the resources {{% vendor/name %}} allocates to your containers when you opt for the `minimum` [resource initialization strategy](#define-a-resource-initialization-strategy).
 
 | Container               | CPU  | RAM    | Disk*   |
 |-------------------------|------|--------|---------|
