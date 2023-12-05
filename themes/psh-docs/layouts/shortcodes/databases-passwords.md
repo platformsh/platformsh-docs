@@ -1,5 +1,6 @@
+<!-- shortcode start {{ .Name }} -->
 ## Password generation
- 
+
 When you connect your app to a database,
 an empty password is generated for the database by default.
 This can cause issues with your app.
@@ -21,3 +22,4 @@ When you switch from the default configuration with an empty password to custom 
 make sure your service name remains unchanged.
 Failure to do so results in the creation of a new service,
 which removes any existing data from your database.
+<!-- shortcode end {{ .Name }} -->

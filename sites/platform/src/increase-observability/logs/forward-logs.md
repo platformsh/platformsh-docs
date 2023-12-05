@@ -189,6 +189,12 @@ As an example, to forward logs to Elasticsearch using HTTP log forwarding, run t
 `type` and `url` are the only properties required for all endpoints.
 Optionally, you can use the `headers` property to pass additional headers in the HTTP requests.
 
+Note that if your endpoint URL includes a `PORT`, that can also be included in the `--url` flag:
+
+```
+{{% vendor/cli %}} integration:add --type httplog --url "https://{{< variable "ELASTICSEARCH_URL" >}}:{{< variable "PORT" >}}/{{< variable "INDEX_NAME" >}}/_doc" --header "Authorization: Basic <basic_auth_token>" --header "Content-Type: application/json"
+```
+
 Once you've [added the service](../../add-services/_index.md),
 to start forwarding logs [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
 

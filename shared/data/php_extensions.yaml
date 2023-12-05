@@ -1135,6 +1135,7 @@ grid:
       - newrelic
       - oauth
       - odbc
+      - openswoole
       - pdo_dblib
       - pdo_odbc
       - pdo_pgsql
@@ -1149,8 +1150,85 @@ grid:
       - sodium
       - sourceguardian
       - ssh2
+      - swoole
       - sybase
       - tideways
+      - tidy
+      - uuid
+      - xdebug
+      - xsl
+      - yaml
+    default:
+      - bcmath
+      - bz2
+      - calendar
+      - ctype
+      - curl
+      - dba
+      - dom
+      - enchant
+      - exif
+      - fileinfo
+      - ftp
+      - gd
+      - gettext
+      - iconv
+      - intl
+      - mbstring
+      - mysqli
+      - mysqlnd
+      - opcache
+      - PDO
+      - pdo_mysql
+      - pdo_sqlite
+      - Phar
+      - posix
+      - SimpleXML
+      - soap
+      - sockets
+      - sqlite3
+      - sysvmsg
+      - sysvsem
+      - sysvshm
+      - tokenizer
+      - xml
+      - xmlreader
+      - xmlwriter
+      - zip
+    built-in:
+      - json
+      - zendopcache
+    with-webp:
+      - imagick
+  "8.3":
+    available:
+      - apcu
+      - blackfire
+      - ffi
+      - geoip
+      - gmp
+      - http
+      - igbinary
+      - imap
+      - ldap
+      - mailparse
+      - msgpack
+      - oauth
+      - odbc
+      - pdo_dblib
+      - pdo_odbc
+      - pdo_pgsql
+      - pgsql
+      - pspell
+      - raphf
+      - readline
+      - redis
+      - shmop
+      - snmp
+      - sodium
+      - sourceguardian
+      - ssh2
+      - sybase
       - tidy
       - uuid
       - xdebug

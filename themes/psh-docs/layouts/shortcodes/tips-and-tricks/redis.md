@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 {{ $cliCommand := `{{< vendor/cli >}}` | .Page.RenderString }}
 {{ if eq ( .Get "framework" ) "Symfony" }}
   {{ $cliCommand = "symfony cloud:" }}
@@ -15,3 +16,4 @@ You might find the following commands useful when using Redis with your Symfony 
     ```bash
     redis-cli
     ```
+<!-- shortcode end {{ .Name }} -->

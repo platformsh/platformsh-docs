@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 {{ $image := .Get 0 }}
 
 {{ with (index .Site.Data.registry $image "versions" ) }}
@@ -16,3 +17,4 @@ Consider [region migration](/projects/region-migration.html) if your project is 
 
   {{ end }}
 {{ end }}
+<!-- shortcode end {{ .Name }} -->
