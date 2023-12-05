@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 ## Connect database to app
 
 Now connect the database to your app.
@@ -23,7 +24,7 @@ npm install platformsh-config
 </div>
 
 <div x-show="stack === 'python'">
-  
+
 ```bash
 pip install platformshconfig
 ```
@@ -64,3 +65,4 @@ You can choose where to do this depending on what makes sense in your app.
 {{ highlight ( readFile "static/files/fetch/examples/java/mysql" ) "java" "" }}
 
 </div>
+<!-- shortcode end {{ .Name }} -->

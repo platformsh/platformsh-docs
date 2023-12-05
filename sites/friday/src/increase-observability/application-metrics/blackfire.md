@@ -1,6 +1,6 @@
 ---
 title: Blackfire for PHP and Python
-weight: 5
+weight: 10
 description: A full access to Blackfire is bundled with your PHP and Python {{< vendor/name >}} projects.
 ---
 

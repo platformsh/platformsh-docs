@@ -135,7 +135,7 @@ See an example of [uploading logs to Amazon S3](https://gitlab.com/contextualcod
 | `error`       | Yes            | nginx-level errors that occur once nginx has fully started such as HTTP errors for missing directories and excluded file types. |
 | `nginx/error` | No             | All nginx startup log messages. Only useful when debugging possible nginx configuration errors. Not currently available using the `{{% vendor/cli %}} log` command. |
 | `php.access`  | No             | A record of all requests to the PHP service. See [PHP access record format](#php-access-record-format). |
-| `post_deploy` | No             | The output of the [`post_deploy` hook](../../create-apps/hooks/hooks-comparison.md#post-deploy-hook). Only exists after a `post_deploy` hook has run. |
+| `post-deploy` | No             | The output of the [`post_deploy` hook](../../create-apps/hooks/hooks-comparison.md#post-deploy-hook). Only exists after a `post_deploy` hook has run. |
 
 #### PHP access record format
 
