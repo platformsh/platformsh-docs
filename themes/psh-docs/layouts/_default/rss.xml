@@ -29,7 +29,7 @@
     {{ range $pages }}
     <item>
       <title>{{ .Title | markdownify | html }}</title>
-      <!-- <link>{{ .Site.Params.rooturl }}{{ .RelPermalink }}</link>
+      <link>{{ .Site.Params.rooturl }}{{ .RelPermalink }}</link>
       {{ $pubdate := now }}
       {{ with .Lastmod }}
         {{ $pubdate = . }}
@@ -39,11 +39,11 @@
       <guid>{{ .Site.Params.rooturl }}{{ .RelPermalink }}</guid>
       <description>
       {{- if .Description -}}
-        {{ .Description | html }}
+        {{ .Description | markdownify | html }}
       {{- else -}}
-        {{ .Summary | html }}
+        {{ .Summary | markdownify | html }}
       {{- end -}}
-      </description> -->
+      </description>
     </item>
     {{- end -}}
   </channel>
