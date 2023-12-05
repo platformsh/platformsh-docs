@@ -103,7 +103,7 @@ platform integration:add \
   --repository {{< variable "OWNER/REPOSITORY" >}} \
   --token {{< variable "GITHUB_ACCESS_TOKEN" >}} \
   --base-url {{< variable "GITHUB_URL" >}}
-  --resources-init= {{< variable "INITIALIZATION_STRATEGY" >}}
+  --resources-init {{< variable "INITIALIZATION_STRATEGY" >}}
 ```
 
 To specify a resource initialization strategy for an existing source integration,
