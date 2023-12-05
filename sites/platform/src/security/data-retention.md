@@ -46,6 +46,9 @@ For example, if you currently have 10 manual backups and are on the Advanced sch
 you keep all 10 manual backups until there are 15 automated backups.
 Then the automated backups start replacing the manual ones until you have only your allocated 4 manual backups.
 
+Backups associated with an environment are retained according to the [backup cycles](#backup-cycles) outlined below, so long as the environment still exists in the project.
+That is, backups are deleted when the corresponding environment is deleted.  
+
 ### Backup cycles
 
 Backups are created and retained in a cycle.
