@@ -326,20 +326,20 @@ Example:
 {{% version/specific %}}
 <!-- Platform.sh -->
 ```yaml {configFile="app"}
-    mounts:
-      'web/uploads':
-          source: local
-          source_path: uploads
-      '/.tmp_platformsh':
+mounts:
+    'web/uploads':
+        source: local
+        source_path: uploads
+    '/.tmp_platformsh':
         source: tmp
         source_path: files/tmp_platformsh
-      '/build':
+    '/build':
         source: local
         source_path: files/build
-      '/.cache':
+    '/.cache':
         source: tmp
         source_path: files/.cache
-      '/node_modules/.cache':
+    '/node_modules/.cache':
         source: tmp
         source_path: files/node_modules/.cache
 ```
@@ -353,21 +353,21 @@ applications:
             root: "/"
         type: nodejs:20
         mounts:
-      'web/uploads':
-          source: storage
-          source_path: uploads
-      '/.tmp_upsun':
-            source: tmp
-            source_path: files/tmp_upsun
-          '/build':
-            source: storage
-            source_path: files/build
-          '/.cache':
-            source: tmp
-            source_path: files/.cache
-          '/node_modules/.cache':
-            source: tmp
-            source_path: files/node_modules/.cache
+            'web/uploads':
+                source: local
+                source_path: uploads
+            '/.tmp_platformsh':
+                source: tmp
+                source_path: files/tmp_platformsh
+            '/build':
+                source: local
+                source_path: files/build
+            '/.cache':
+                source: tmp
+                source_path: files/.cache
+            '/node_modules/.cache':
+                source: tmp
+                source_path: files/node_modules/.cache
 ```
 {{% /version/specific %}}
 
