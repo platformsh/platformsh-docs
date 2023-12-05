@@ -56,6 +56,11 @@ at 1.91&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
 
 ![All of the metrics for the app container](/images/metrics/app-container.png)
 
+By default, the graphs include all instances and an average over the instances.
+To select metrics for specific instances, click **Filter**.
+
+![Clicking Filter reveals a list of instances you can filter](/images/metrics/filtering-gen3.png "0.4")
+
 ### Service containers
 
 Unlike [app containers](#app-container), metrics graphs service containers don't show RAM allocation and usage.

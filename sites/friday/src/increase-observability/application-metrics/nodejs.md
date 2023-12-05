@@ -1,23 +1,18 @@
 ---
 title: Continuous profiling for Node.js
-sidebarTitle: "Continuous Profiling (Node.js)"
-description: Configure the NodeJS continuous profiler.
-weight: 15
+sidebarTitle: "Node.js continuous profiler"
+description: Configure and use the NodeJS continuous profiler.
+weight: 40
 ---
-Continuous profiling is a performance optimization technique where web applications
-are monitored and profiled in real-time. Lightweight and scalable, it's tailored
-for holistic application oversight.
-
-Continuous profiling collects performance data continuously, enabling developers to
-gain deep insights into their application's behavior, identify bottlenecks, and
-optimize code for better performance and resource utilization. This proactive
-approach allows for quicker identification and resolution of performance issues,
-ensuring the smooth running of software in live environments.
 
 ## Continuous profiling on {{% vendor/name %}}
 
 {{< vendor/name >}} Continuous Profiling is powered by [Blackfire](../../../increase-observability/application-metrics/blackfire.md).
 It is available directly from the Console under the `Profiling` tab of your environments.
+
+The Node.js continuous profiling is currently made accross 2 dimensions:
+- **wall-time**: elapsed time per function call
+- **heap**: memory allocation and reserved space over time
 
 ## Prerequisites
 
