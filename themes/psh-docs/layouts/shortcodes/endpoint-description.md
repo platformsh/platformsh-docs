@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 <!-- Name the parameters -->
 {{ $type := .Get "type" }}
 {{ $onlyLanguage := .Get "onlyLanguage" }}
@@ -390,3 +391,4 @@ To use the configured service in your app,
 add a configuration file similar to the following to your project.
 {{ end }}
 {{ end }}
+<!-- shortcode end {{ .Name }} -->
