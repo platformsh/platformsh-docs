@@ -47,7 +47,7 @@ but if you don't, the search field doesn't appear in the sidebar.
 1. To run the docs alone, clone this repository and install dependencies:
 
     ```bash
-    cd docs
+    cd sites/platform # or cd sites/friday
     npm install
     ```
 
@@ -61,6 +61,7 @@ If you’re using the GitHub CLI tool, to avoid including your token’s value i
     ```bash
     export GITHUB_API_TOKEN=$(gh auth token)
     ```
+
 3. To have Node update the registry and retrieve all the necessary example files (if applicable), run the following command:
 
     ```bash

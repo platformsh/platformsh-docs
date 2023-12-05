@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 {{ $source := .Get "source" }}
 {{ $pull := "pull"}}
 {{ if eq $source "GitLab" }}
@@ -12,3 +13,4 @@ It starts as an [inactive environment](/glossary.html#inactive-environment) with
 When a **{{ $pull }} request** is opened in {{ $source }},
 an environment is created in {{ .Site.Params.vendor.name }} with the {{ $pull }} request's target branch as its parent.
 It starts as an [active environment](/glossary.html#active-environment) with a copy of its parent's data.
+<!-- shortcode end {{ .Name }} -->

@@ -1,5 +1,5 @@
 {{ $destination := .Get "next" }}
-<div x-data="{ getDestination() { 
+<div x-data="{ getDestination() {
   return($refs.next.getAttribute('destination') + '?stack=' + $data.stack)
  } }">
   <a href="{{ $destination }}" destination="{{ $destination }}" :href="getDestination" x-ref="next" type="button" class="{{ partial "pink-button-styles" }}">

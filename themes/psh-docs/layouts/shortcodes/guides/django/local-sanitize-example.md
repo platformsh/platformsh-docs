@@ -1,10 +1,11 @@
+<!-- shortcode start {{ .Name }} -->
 ### Sanitize data
 
 It's often a compliance requirement to ensure that only a minimal subset of developers within an organization
 have access to production data during their work.
 By default, your production data is automatically cloned into _every_ child environment.
 
-You can customize your deployments to include a script that sanitizes the data within every preview environment. 
+You can customize your deployments to include a script that sanitizes the data within every preview environment.
 
 1.  Create a new environment called `sanitize-non-prod`.
 
@@ -21,3 +22,4 @@ You can customize your deployments to include a script that sanitizes the data w
 
     Once the script is merged into production, every preview environment created on {{ .Site.Params.vendor.name }}
     and all local environments contain sanitized data free of your users' personally identifiable information (PII).
+<!-- shortcode end {{ .Name }} -->
