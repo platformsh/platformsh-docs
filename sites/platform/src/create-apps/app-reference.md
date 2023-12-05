@@ -346,14 +346,14 @@ relationships:
 The following legacy syntax for specifying relationships is still supported by {{% vendor/name %}}:
 
 ```yaml
-relationships
+relationships:
     <RELATIONSHIP_NAME>: "<SERVICE_NAME>:<ENDPOINT_NAME>"
 ```
 
 For example:
 
 ```yaml
-relationships
+relationships:
     database: "mariadb:mysql"
 ```
 
