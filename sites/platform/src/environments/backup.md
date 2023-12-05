@@ -71,9 +71,9 @@ The number of available backups for Production environments depends on your sche
 
 | Schedule | Manual backups | Automated backups                                                      |
 |----------|----------------|------------------------------------------------------------------------|
-| Basic    | 2              | 2 daily backups (total = 2)                                            |
-| Advanced | 4              | 6 daily, 3 weekly, and 12 monthly (total = 21)                         |
-| Premium  | 4              | 3 backups for the last 24 hours, 30 daily, and 11 monthly (total = 44) |
+| Basic    | 2              | 2 daily backups (1 backup for each of the last 2 days) |
+| Advanced | 4              | 21 backups:</br>- 6 daily backups (1 backup for each of the last 6 days) </br>- 3 weekly backups (1 backup for each of the last 3 weeks)</br>- 12 monthly backups (1 backup for each of the last 12 months) |
+| Premium  | 4              | 44 backups:</br>- 3 backups for the last 24 hours</br>- 30 daily backups (1 backup for each of the last 30 days)</br>- 11 monthly backups (1 backup for each of the last 11 months) |
 
 Note that [backup retention](../security/data-retention.md#grid-backups) also depends on your schedule.
 
