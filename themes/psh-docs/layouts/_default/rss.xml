@@ -13,7 +13,7 @@
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>{{ if eq  .Title  .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{. | plainify}} on {{ end }}{{ .Site.Title }}{{ end }}</title>
+    <title>{{ if eq  .Title  .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{. | plainify}} on {{ end }}{{ .Site.Title | .RenderString }}{{ end }}</title>
     <link>{{ .Site.Params.rooturl }}{{ .RelPermalink }}</link>
     <description>Recent content {{ if ne  .Title  .Site.Title }}{{ with .Title }}in {{.}} {{ end }}{{ end }}on {{ .Site.Title }}</description>
     <generator>Hugo -- gohugo.io</generator>{{ with .Site.LanguageCode }}
@@ -28,8 +28,8 @@
     {{- end -}}
     {{ range $pages }}
     <item>
-      <title>{{ .Title | plainify }}</title>
-      <link>{{ .Site.Params.rooturl }}{{ .RelPermalink }}</link>
+      <title>{{ .Title | markdownify | html }}</title>
+      <!-- <link>{{ .Site.Params.rooturl }}{{ .RelPermalink }}</link>
       {{ $pubdate := now }}
       {{ with .Lastmod }}
         {{ $pubdate = . }}
@@ -43,7 +43,7 @@
       {{- else -}}
         {{ .Summary | html }}
       {{- end -}}
-      </description>
+      </description> -->
     </item>
     {{- end -}}
   </channel>
