@@ -39,7 +39,10 @@ This reference project has a single app, two services (MySQL and Redis), and two
 The appropriate resources have been [manually allocated](/manage-resources.md) for each container.
 The graphs show the current average usage in relation to the resources allocated to each container.
 
+By default, the graphs include all instances and an average over the instances.
+To select metrics for specific instances, click **Filter**.
 
+![Clicking Filter reveals a list of instances you can filter](/images/observability/filtering-upsun.png "0.4")
 
 ### App container
 
