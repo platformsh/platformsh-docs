@@ -81,6 +81,7 @@ If your app requires services to run, you have two options for developing locall
 
 Choose the option that works for you and get your services running.
 
+{{% version/specific %}}
 ## 3. Build your site locally
 
 If you want your local development environment to be enclosed 
@@ -103,3 +104,5 @@ To build your site locally:
 
 3.  To check that the build was successful, move to the `_www` directory
     and run a web server.
+<--->
+{{% /version/specific %}}

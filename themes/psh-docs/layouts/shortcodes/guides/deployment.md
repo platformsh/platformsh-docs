@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 {{ $isSymfony := .Get "Symfony" }}
 {{ $cliCommand := `{{< vendor/cli >}}` | .Page.RenderString }}
 {{ if $isSymfony }}
@@ -19,3 +20,4 @@ If your environment wasn't active and so wasn't deployed, activate it by running
 ```bash
 {{ $cliCommand }} environment:activate
 ```
+<!-- shortcode end {{ .Name }} -->

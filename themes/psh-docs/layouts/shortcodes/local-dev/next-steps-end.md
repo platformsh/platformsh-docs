@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 1.  To commit and push the revisions, run the following command:
 
     ```bash
@@ -14,3 +15,4 @@
     {{ `cd {{< variable "PROJECT_NAME" >}}` | .Page.RenderString }}
     {{ `./init-local.sh {{< variable "PROJECT_ID" >}} another-new-feature {{< variable "PRODUCTION_ENVIRONMENT_NAME" >}}` | .Page.RenderString }}
     ```
+<!-- shortcode end {{ .Name }} -->

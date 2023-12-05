@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 {{ $cliCommand := `{{< vendor/cli >}}` | .Page.RenderString }}
 {{ $cliName := ".Site.Params.vendor.name CLI" }}
 {{ if eq ( .Get "framework" ) "Symfony" }}
@@ -24,3 +25,4 @@ You might find the following commands useful when using a database with your Sym
     ```bash
     {{ $cliCommand }} sql < my_database_backup.sql
     ```
+<!-- shortcode end {{ .Name }} -->
