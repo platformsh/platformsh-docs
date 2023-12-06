@@ -3,6 +3,8 @@ title: "Network Storage"
 weight: -30
 ---
 
+{{% version/specific %}}
+<!-- Platform.sh -->
 {{% vendor/name %}} supports internal "storage as a service" to provide a file store that can be shared between different application containers.
 
 The network storage service enables a new kind of [mount](../create-apps/app-reference.md#mounts)
@@ -18,6 +20,15 @@ It's more significant when you employ high-volume sequential file creation
 If your app does this regularly, a local mount is more effective.
 
 {{< /note >}}
+
+<--->
+<!-- Upsun -->
+
+The Network Storage service enables a new kind of [mount](../create-apps/app-reference.md#mounts)
+that refers to a shared service rather than to a local directory.
+This service allows you to store data and share it between different apps.
+
+{{% /version/specific %}}
 
 ## Supported versions
 
@@ -50,7 +61,7 @@ If your app does this regularly, a local mount is more effective.
 
 {{% /version/specific %}}
 
-This service is the {{% vendor/name %}} network storage implementation, not to a version of a third-party application.
+This service is the {{% vendor/name %}} network storage implementation, not the version of a third-party application.
 
 {{< note theme="warning">}}
 

@@ -164,9 +164,9 @@ If you split the service into multiple endpoints, define multiple relationships.
 {{ partial "snippet" (dict "context" . "name" "<SERVICE_NAME>" "config" "service" "placeholder" "true" "Inner" $serviceInner ) }}
 ```
 
-* `<TARGET_PATH>` is where you want your service to be, the path on your app container that has a writable mount.
-* `<SERVICE_NAME>` is the name you [defined in step 1](#1-configure-the-service).
-* `<SOURCE_PATH>` is the path within the service that the mounts point to.
+- `<TARGET_PATH>` is where you want your service to be, the path on your app container that has a writable mount.
+- `<SERVICE_NAME>` is the name you [defined in step 1](#1-configure-the-service).
+- `<SOURCE_PATH>` is the path within the service that the mounts point to.
   Usually the same as the `<SERVICE_NAME>`.
 {{ end }}
 {{ end }} <!-- end check for Varnish -->
