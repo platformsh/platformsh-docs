@@ -37,7 +37,7 @@ The following strategies are available:
 | Strategy | Description |
 | ---------| ----------- |
 | `default`  | Initializes the new containers using the [{{% vendor/name %}} default resources](/manage-resources/resource-init.md).</br>This is the strategy that applies when you first deploy your project or new container, unless you explicitly set another strategy.  |
-| `manual`   | With this strategy, the first deployment fails and you need to configure resources manually through [the Console](#adjust-your-project-resources), or using `resources:set` in the CLI. |
+| `manual`   | With this strategy, the first deployment fails and you need to configure resources manually through [the Console](/manage-resources/adjust-resources.md), or using `resources:set` in the CLI. |
 | `minimum`  | Initializes the new containers using the [{{% vendor/name %}} minimum resources](#minimum-resources). |
 | `parent`   | Initializes the new containers using the same resources as the parent environment.</br>If there is no parent environment, or if the container doesn't already exist on the parent, the `default` strategy applies instead. |
 
