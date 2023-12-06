@@ -19,11 +19,11 @@ When you first deploy your {{% vendor/name %}} project, and whenever you add a n
 | Resource type               | Amount |
 | --------------------------- | ----------- |
 | CPU                         | 0.5 |
-| RAM                         | Depends on the [container profile](#advanced-container-profiles). |
+| RAM                         | Depends on the [container profile](/manage-resources/adjust-resources.md#advanced-container-profiles). |
 | Disk size (only applicable if the app or service requires a disk)                   | 512 MB |
 
-If you don't want to use those default resources, you can define a different [resource initialization strategy](#resource-initialization-strategies).
-You can also [adjust those resources](#configure-resources) after your project or new container has been deployed.
+If you don't want to use those default resources, you can define a different [resource initialization strategy](/manage-resources/resource-init.md#define-a-resource-initialization-strategy).
+You can also [adjust those resources](/manage-resources/adjust-resources.md) after your project or new container has been deployed.
 
 For information on costs related to resource usage, see the [{{% vendor/name %}} pricing page](https://upsun.com/pricing/).
 Note that you can [keep an eye on those costs](/manage-resources/resource-billing.md) in the Console.
