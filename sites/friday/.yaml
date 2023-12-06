@@ -2,8 +2,8 @@ chrome-headless:
   description: ''
   disk: false
   docs:
-    relationship_name: chromeheadlessbrowser
-    service_name: headlessbrowser
+    relationship_name: chrome-headless
+    service_name: chrome-headless
     url: /add-services/headless-chrome.html
   endpoint: http
   min_disk_size: null
@@ -14,6 +14,7 @@ chrome-headless:
   versions:
     deprecated: []
     supported:
+      - '120'
       - '113'
       - '95'
       - '91'
@@ -81,8 +82,8 @@ elasticsearch:
   description: A manufacture service for Elasticsearch
   disk: true
   docs:
-    relationship_name: essearch
-    service_name: searchelastic
+    relationship_name: elasticsearch
+    service_name: elasticsearch
     url: /add-services/elasticsearch.html
   endpoint: elasticsearch
   min_disk_size: 256
@@ -163,14 +164,14 @@ elixir:
   type: elixir
   versions:
     deprecated:
+      - '1.13'
+      - '1.12'
       - '1.11'
       - '1.10'
       - '1.9'
     supported:
       - '1.15'
       - '1.14'
-      - '1.13'
-      - '1.12'
     legacy:
       - '1.10'
       - '1.9'
@@ -221,8 +222,8 @@ influxdb:
   description: ''
   disk: true
   docs:
-    relationship_name: influxtimedb
-    service_name: timedb
+    relationship_name: influxdb
+    service_name: influxdb
     url: /add-services/influxdb.html
   endpoint: influxdb
   min_disk_size: null
@@ -260,12 +261,13 @@ java:
   type: java
   versions:
     deprecated:
-      - '19'
-      - '18'
       - '14'
       - '13'
       - '12'
     supported:
+      - '21'
+      - '19'
+      - '18'
       - '17'
       - '11'
       - '8'
@@ -282,8 +284,8 @@ kafka:
   description: ''
   disk: true
   docs:
-    relationship_name: kafkaqueue
-    service_name: queuekafka
+    relationship_name: kafka
+    service_name: kafka
     url: /add-services/kafka.html
   endpoint: kafka
   min_disk_size: 512
@@ -342,8 +344,8 @@ mariadb:
   repo_name: mariadb
   disk: true
   docs:
-    relationship_name: database
-    service_name: db
+    relationship_name: mariadb
+    service_name: mariadb
     url: /add-services/mysql.html
   endpoint: mysql
   min_disk_size: 256
@@ -390,8 +392,8 @@ mysql:
   repo_name: mariadb
   disk: true
   docs:
-    relationship_name: database
-    service_name: db
+    relationship_name: mysql
+    service_name: mysql
     url: /add-services/mysql.html
   endpoint: mysql
   min_disk_size: 256
@@ -435,8 +437,8 @@ memcached:
   repo_name: memcached
   disk: false
   docs:
-    relationship_name: memcachedcache
-    service_name: cachemc
+    relationship_name: memcached
+    service_name: memcached
     url: /add-services/memcached.html
   endpoint: memcached
   min_disk_size: null
@@ -457,8 +459,8 @@ mongodb:
   repo_name: mongodb
   disk: true
   docs:
-    relationship_name: mongodatabase
-    service_name: dbmongo
+    relationship_name: mongodb
+    service_name: mongodb
     url: /add-services/mongodb.html
   endpoint: mongodb
   min_disk_size: 512
@@ -478,8 +480,8 @@ mongodb-enterprise:
   repo_name: mongodb
   disk: true
   docs:
-    relationship_name: mongodatabase
-    service_name: dbmongo
+    relationship_name: mongodb-enterprise
+    service_name: mongodb-enterprise
     url: /add-services/mongodb.html
   endpoint: mongodb
   min_disk_size: 512
@@ -566,8 +568,8 @@ opensearch:
   description: A manufacture service for OpenSearch
   disk: true
   docs:
-    relationship_name: ossearch
-    service_name: searchopen
+    relationship_name: opensearch
+    service_name: opensearch
     url: /add-services/opensearch.html
   endpoint: opensearch
   min_disk_size: 256
@@ -600,8 +602,8 @@ oracle-mysql:
   repo_name: oracle-mysql
   disk: true
   docs:
-    relationship_name: mysqldatabase
-    service_name: dbmysql
+    relationship_name: oracle-mysql
+    service_name: oracle-mysql
     url: /add-services/mysql.html
   endpoint: mysql
   min_disk_size: 256
@@ -670,8 +672,8 @@ postgresql:
   repo_name: postgresql
   disk: true
   docs:
-    relationship_name: postgresdatabase
-    service_name: dbpostgres
+    relationship_name: postgresql
+    service_name: postgresql
     url: /add-services/postgresql.html
   endpoint: postgresql
   min_disk_size: null
@@ -738,6 +740,7 @@ python:
       - '3.5'
       - 2.7*
     supported:
+      - '3.12'
       - '3.11'
       - '3.10'
       - '3.9'
@@ -747,8 +750,8 @@ rabbitmq:
   repo_name: rabbitmq
   disk: true
   docs:
-    relationship_name: rabbitmqqueue
-    service_name: queuerabbit
+    relationship_name: rabbitmq
+    service_name: rabbitmq
     url: /add-services/rabbitmq.html
   endpoint: rabbitmq
   min_disk_size: 512
@@ -791,8 +794,8 @@ redis:
   repo_name: redis
   disk: false
   docs:
-    relationship_name: rediscache
-    service_name: cacheredis
+    relationship_name: redis
+    service_name: redis
     url: /add-services/redis.html
   endpoint: redis
   min_disk_size: null
@@ -808,6 +811,7 @@ redis:
       - '3.0'
       - '2.8'
     supported:
+      - '7.2'
       - '7.0'
       - '6.2'
     legacy:
@@ -829,6 +833,7 @@ redis:
       - '3.0'
       - '2.8'
     supported:
+      - '7.2'
       - '7.0'
       - '6.2'
 ruby:
@@ -904,8 +909,8 @@ solr:
   repo_name: solr
   disk: true
   docs:
-    relationship_name: solrsearch
-    service_name: searchsolr
+    relationship_name: solr
+    service_name: solr
     url: /add-services/solr.html
   endpoint: solr
   min_disk_size: 256
@@ -948,7 +953,7 @@ varnish:
   repo_name: varnish
   disk: false
   docs:
-    relationship_name: varnishstats
+    relationship_name: varnish
     service_name: varnish
     url: /add-services/varnish.html
   endpoint: http+stats
@@ -969,13 +974,14 @@ varnish:
       - '7.1'
       - '6.0'
     supported:
+      - '7.3'
       - '7.2'
       - '6.3'
 vault-kms:
   description: ''
   disk: true
   docs:
-    relationship_name: vault_service
+    relationship_name: vault-kms
     service_name: vault-kms
     url: /add-services/vault.html
   endpoint: manage_keys
@@ -1030,6 +1036,7 @@ redis-persistent:
       - '3.0'
       - '2.8'
     supported:
+      - '7.2'
       - '7.0'
       - '6.2'
     legacy:
@@ -1051,5 +1058,6 @@ redis-persistent:
       - '3.0'
       - '2.8'
     supported:
+      - '7.2'
       - '7.0'
       - '6.2'

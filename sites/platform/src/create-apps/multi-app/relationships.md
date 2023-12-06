@@ -28,17 +28,25 @@ You have two apps, `app1` and `app2`, and `app1` needs data from `app2`.
 In your app configuration for `app1`, define a relationship to `app2`:
 
 {{% version/specific %}}
-```yaml {configFile="apps"}
-app1:
-  relationships:
-    api: "app2:http"
+<!-- Platform.sh -->
+
+```yaml {configFile="app"}
+relationships: 
+  api: # The name of the relationship. 
+    service: app2
+    endpoint: http
 ```
+
 <--->
-```yaml {configFile="apps"}
+<!-- Upsun -->
+
+```yaml {configFile="app"}
 applications:
-  app1:
-    relationships:
-      api: "app2:http"
+  myapp: # The name of your app, which must be unique within the project.
+    relationships: 
+      api: # The name of the relationship. 
+        service: app2
+        endpoint: http
 ```
 {{% /version/specific %}}
 

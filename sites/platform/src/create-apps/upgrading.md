@@ -141,9 +141,9 @@ build:
 access:
     ssh: contributor
 relationships:
-    database: "mysql:mysql"
-    solr: "solr:solr"
-    redis: "redis:redis"
+    mysql: 
+    solr: 
+    redis: 
 web:
     document_root: "/"
     passthru: "/index.php"
