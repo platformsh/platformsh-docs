@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 {{ $name := .Get "name"}}
 {{ $repo := .Get "templateRepo" }}
 {{ $composerLink := .Get "composerLink" }}
@@ -29,15 +30,17 @@ To get {{ $name }} running on {{ .Site.Params.vendor.name }}, you have two poten
         {{ if .Get "initExample" }}See an example for doing this under initializing a project.{{ end }}
 
     -   Use a ready-made [{{ $name }} template](https://github.com/{{ $org }}/{{ $repo }}).
-        {{ markdownify (readFile "/layouts/shortcodes/template-intro.md") }}
 
-        To use a template, click the button below to create a {{ .Get "name" }} template project.
+{{ markdownify (readFile "/layouts/shortcodes/template-intro.md") }}
 
-        <p class="flex justify-center not-prose">
-          <a href='https://console.platform.sh/org/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/{{ $repo }}/.platform.template.yaml&_utm_campaign=cta_deploy_marketplace_template&utm_source=public_documentation&_utm_medium=organic'>
-            <img src="https://platform.sh/images/deploy/lg-blue.svg" alt="Deploy on {{ .Site.Params.vendor.name }}" width="180px" />
-          </a>
-        </p>
+To use a template, click the button below to create a {{ .Get "name" }} template project.
 
-        Once the template is deployed, you can follow the rest of this guide
-        to better understand the extra files and changes to the repository.
+<p class="flex justify-center not-prose">
+  <a href='https://console.platform.sh/org/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/{{ $repo }}/.platform.template.yaml&_utm_campaign=cta_deploy_marketplace_template&utm_source=public_documentation&_utm_medium=organic'>
+    <img src="https://platform.sh/images/deploy/lg-blue.svg" alt="Deploy on {{ .Site.Params.vendor.name }}" width="180px" />
+  </a>
+</p>
+
+Once the template is deployed, you can follow the rest of this guide
+to better understand the extra files and changes to the repository.
+<!-- shortcode end {{ .Name }} -->

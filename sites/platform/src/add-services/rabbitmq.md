@@ -21,7 +21,7 @@ and your messages a safe place to live until they're received.
 {{% major-minor-versions-note configMinor="true" %}}
 
 {{% version/specific %}}
-<!-- API Version 1 -->
+<!-- Platform.sh -->
 
 <table>
     <thead>
@@ -41,7 +41,7 @@ and your messages a safe place to live until they're received.
 </table>
 
 <--->
-<!-- API Version 2 -->
+<!-- Upsun -->
 
 {{< image-versions image="rabbitmq" status="supported" environment="grid" >}}
 
@@ -50,7 +50,7 @@ and your messages a safe place to live until they're received.
 {{% deprecated-versions %}}
 
 {{% version/specific %}}
-<!-- API Version 1 -->
+<!-- Platform.sh -->
 
 <table>
     <thead>
@@ -70,7 +70,7 @@ and your messages a safe place to live until they're received.
 </table>
 
 <--->
-<!-- API Version 2 -->
+<!-- Upsun -->
 
 {{< image-versions image="rabbitmq" status="deprecated" environment="grid" >}}
 
@@ -80,7 +80,7 @@ and your messages a safe place to live until they're received.
 
 {{% endpoint-description type="rabbitmq" /%}}
 
-<!-- Version 1: Codetabs using config reader + examples.docs.platform.sh -->
+<!-- Platform.sh: Codetabs using config reader + examples.docs.platform.sh -->
 {{< codetabs v2hide="true" >}}
 
 +++
@@ -115,33 +115,33 @@ highlight=python
 
 {{< /codetabs >}}
 
-<!-- Version 2: .environment shortcode + context -->
+<!-- Upsun: .environment shortcode + context -->
 {{% version/only "2" %}}
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="myapp" >}}
 # Relationships enable an app container's access to a service.
 relationships:
-    rabbitmqqueue: "queuerabbit:rabbitmq"
+    rabbitmq: 
 {{< /snippet >}}
-{{< snippet name="queuerabbit" config="service" placeholder="true" >}}
+{{< snippet name="rabbitmq" config="service" placeholder="true" >}}
     type: rabbitmq:{{% latest "rabbitmq" %}}
     disk: 256
 {{< /snippet >}}
 ```
 
-{{< v2connect2app serviceName="queuerabbit" relationship="rabbitmqqueue" var="AMQP_URL">}}
+{{< v2connect2app serviceName="rabbitmq" relationship="rabbitmq" var="AMQP_URL">}}
 
 ```bash {location="myapp/.environment"}
 # Decode the built-in credentials object variable.
 export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export QUEUE_SCHEME=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].scheme")
-export QUEUE_USERNAME=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].username")
-export QUEUE_PASSWORD=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].password")
-export QUEUE_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].host")
-export QUEUE_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].port")
+export QUEUE_SCHEME=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmq[0].scheme")
+export QUEUE_USERNAME=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmq[0].username")
+export QUEUE_PASSWORD=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmq[0].password")
+export QUEUE_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmq[0].host")
+export QUEUE_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmq[0].port")
 
 # Set a single RabbitMQ connection string variable for AMQP.
 export AMQP_URL="${QUEUE_SCHEME}://${QUEUE_USERNAME}:${QUEUE_PASSWORD}@${QUEUE_HOST}:${QUEUE_PORT}/"
@@ -228,7 +228,7 @@ which can be useful for separating resources, such as exchanges, queues, and bin
 To create virtual hosts, add them to your configuration as in the following example:
 
 {{< version/specific >}}
-<!-- Version 1 -->
+<!-- Platform.sh -->
 
 ```yaml {configFile="services"}
 {{< snippet name="rabbitmq" config="service" >}}
@@ -242,7 +242,7 @@ To create virtual hosts, add them to your configuration as in the following exam
 ```
 
 <--->
-<!-- Version 2 -->
+<!-- Upsun -->
 
 ```yaml {configFile="services"}
 {{< snippet name="rabbitmq" config="service" >}}
@@ -264,10 +264,10 @@ To create virtual hosts, add them to your configuration as in the following exam
 {
     "username": "guest",
     "scheme": "amqp",
-    "service": "rabbitmq38",
+    "service": "rabbitmq",
     "fragment": null,
     "ip": "169.254.57.5",
-    "hostname": "iwrccysk3gpam2zdlwdr5fgs2y.rabbitmq38.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "hostname": "iwrccysk3gpam2zdlwdr5fgs2y.rabbitmq.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "port": 5672,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "rabbitmq.internal",
@@ -284,4 +284,4 @@ To create virtual hosts, add them to your configuration as in the following exam
 ## Upgrading
 
 When upgrading RabbitMQ, skipping major versions (e.g. 3.7 -> 3.11) [is not supported](https://www.rabbitmq.com/upgrade.html#rabbitmq-version-upgradability).
-Make sure you upgrade sequentially (3.7 -> 3.8 -> 3.9 -> 3.10 -> 3.11).
+Make sure you upgrade sequentially (3.7 -> 3.8 -> 3.9 -> 3.10 -> 3.11) and that each upgrade commit translates into an actual deployment.

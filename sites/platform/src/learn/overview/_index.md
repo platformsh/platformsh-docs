@@ -34,7 +34,7 @@ and features recommended optimizations for several [featured frameworks](/get-st
 {{% /version/specific %}}
 
 Finally, you can also get tips for setting up your own [development workflow](/development/_index.md)
-and [administering](/administration/_index.md) your {{% vendor/name %}} account.
+and [administrating](/administration/_index.md) your {{% vendor/name %}} account.
 
 ## Git Driven Infrastructure
 

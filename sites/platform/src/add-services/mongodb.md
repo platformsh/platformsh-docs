@@ -26,7 +26,7 @@ premium: true
 {{% premium-features/add-on feature="MongoDB Enterprise" %}}
 
 {{% version/specific %}}
-<!-- API Version 1 -->
+<!-- Platform.sh -->
 
 <table>
     <thead>
@@ -46,7 +46,7 @@ premium: true
 </table>
 
 <--->
-<!-- API Version 2 -->
+<!-- Upsun -->
 
 {{< image-versions image="mongodb-enterprise" status="supported" environment="grid" >}}
 
@@ -55,7 +55,7 @@ premium: true
 {{% deprecated-versions %}}
 
 {{% version/specific %}}
-<!-- API Version 1 -->
+<!-- Platform.sh -->
 
 <table>
     <thead>
@@ -75,7 +75,7 @@ premium: true
 </table>
 
 <--->
-<!-- API Version 2 -->
+<!-- Upsun -->
 
 {{< image-versions image="mongodb-enterprise" status="deprecated" environment="grid" >}}
 
@@ -107,18 +107,18 @@ If you want to experiment with a later version without committing to it use a pr
 {
     "username": "main",
     "scheme": "mongodb",
-    "service": "mongodb36",
+    "service": "mongodb-enterprise",
     "ip": "169.254.150.147",
-    "hostname": "blbczy5frqpkt2sfkj2w3zk72q.mongodb36.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "hostname": "blbczy5frqpkt2sfkj2w3zk72q.mongodb-enterprise.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "mongodb.internal",
-    "rel": "mongodb",
+    "host": "mongodb-enterprise.internal",
+    "rel": "mongodb-enterprise",
     "query": {
         "is_master": true
     },
     "path": "main",
     "password": null,
-    "type": "mongodb:{{% latest "mongodb-enterprise" %}}",
+    "type": "mongodb-enterprise:{{% latest "mongodb-enterprise" %}}",
     "port": 27017
 }
 ```
@@ -175,7 +175,7 @@ highlight=python
 
 {{< /codetabs >}}
 
-<!-- Version 2: .environment shortcode + context -->
+<!-- Upsun: .environment shortcode + context -->
 {{% version/only "2" %}}
 
 ```yaml {configFile="app"}
@@ -185,26 +185,26 @@ highlight=python
 
 # Relationships enable an app container's access to a service.
 relationships:
-    mongodatabase: "dbmongo:mongodb"
+    mongodb-enterprise: 
 {{< /snippet >}}
-{{< snippet name="dbmongo" config="service" placeholder="true" >}}
+{{< snippet name="mongodb-enterprise" config="service" placeholder="true" >}}
     type: mongodb-enterprise:{{% latest "mongodb-enterprise" %}}
 {{< /snippet >}}
 ```
 
-{{< v2connect2app serviceName="dbmongo" relationship="mongodatabase" var="DATABASE_URL">}}
+{{< v2connect2app serviceName="mongodb-enterprise" relationship="mongodb-enterprise" var="DATABASE_URL">}}
 
 ```bash {location="myapp/.environment"}
 # Decode the built-in credentials object variable.
 export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export DB_CONNECTION=="$(echo $RELATIONSHIPS_JSON | jq -r '.mongodatabase[0].scheme')"
-export DB_USERNAME="$(echo $RELATIONSHIPS_JSON | jq -r '.mongodatabase[0].username')"
-export DB_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.mongodatabase[0].password')"
-export DB_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.mongodatabase[0].host')"
-export DB_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.mongodatabase[0].port')"
-export DB_DATABASE="$(echo $RELATIONSHIPS_JSON | jq -r '.mongodatabase[0].path')"
+export DB_CONNECTION=="$(echo $RELATIONSHIPS_JSON | jq -r '.mongodb-enterprise[0].scheme')"
+export DB_USERNAME="$(echo $RELATIONSHIPS_JSON | jq -r '.mongodb-enterprise[0].username')"
+export DB_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.mongodb-enterprise[0].password')"
+export DB_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.mongodb-enterprise[0].host')"
+export DB_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.mongodb-enterprise[0].port')"
+export DB_DATABASE="$(echo $RELATIONSHIPS_JSON | jq -r '.mongodb-enterprise[0].path')"
 
 # Surface connection string variable for use in app.
 export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"
@@ -227,7 +227,7 @@ mongo {{< variable "HOST" >}}
 With the example value, that would be the following:
 
 ```bash
-mongo mongodb.internal
+mongo mongodb-enterprise.internal
 ```
 
 {{% service-values-change %}}

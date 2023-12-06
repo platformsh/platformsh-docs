@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 {{ $source := .Get "source" }}
 <!-- Bitbucket has two methods and so has an additional heading level -->
 ##{{ if eq $source "Bitbucket" }}#{{ end }} 3. Validate the integration
@@ -35,3 +36,4 @@ You can now start pushing code, creating new branches,
 and opening {{ if eq $source "GitLab" }}merge{{ else }}pull{{ end }} requests
 directly in your {{ $source }} repository.
 Your {{ .Site.Params.vendor.name }} environments are automatically created and updated.
+<!-- shortcode end {{ .Name }} -->

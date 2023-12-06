@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 {{ $git := .Get "git" }}
 {{ $stack := .Get "stack" }}
 {{ $option := "" }}
@@ -39,3 +40,4 @@ $ upsun integration:add
   The repository (e.g. 'owner/repository')
 > <owner>/<repository>
 ```
+<!-- shortcode end {{ .Name }} -->

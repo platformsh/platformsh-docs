@@ -193,50 +193,173 @@ For more information, see how to [manage resources](/manage-resources.md).
 
 ## Relationships
 
-To access another container within your project, you need to define a relationship to it.
+To allow containers in your project to communicate with one another,
+you need to define relationships between them.
+You can define a relationship between an app and a service, or [between two apps](/create-apps/multi-app/relationships.md).
 
-{{% version/only "1" %}}
-![Relationships Diagram](/images/management-console/relationships.png "0.5")
-{{% /version/only %}}
+The quickest way to define a relationship between your app and a service
+is to use the service's default endpoint.</br>
+However, some services allow you to define multiple databases, cores, and/or permissions.
+In these cases, you can't rely on default endpoints.
+Instead, you can explicitly define multiple endpoints when setting up your relationships.
 
-You can give each relationship any name you want.
-This name is used in the `PLATFORM_RELATIONSHIPS` environment variable,
-which gives you credentials for accessing the service.
+{{< note >}}
+App containers don't have a default endpoint like services.
+To connect your app to another app in your project,
+you need to explicitly define the `http` endpoint as the endpoint to connect both apps.</br>
+For more information, see how to [define relationships between your apps](/create-apps/multi-app/relationships.md).
+{{< /note >}}
 
-The relationship is specified in the form `service_name:endpoint_name`.
-The `service_name` is the name of the service given in the [services configuration](../add-services/_index.md)
-or the name of another application in the same project specified as the `name` in that app's configration.
+To define a relationship between your app and a service:
 
-The `endpoint_name` is the exposed functionality of the service to use.
-For most services, the endpoint is the same as the service type.
-For some services (such as [MariaDB](../add-services/mysql/_index.md#multiple-databases) and [Solr](../add-services/solr.md#solr-6-and-later)),
-you can define additional explicit endpoints for multiple databases and cores in the [service's configuration](../add-services/_index.md).
+{{< codetabs >}}
 
-The following example shows a single MySQL service named `mysqldb` offering two databases,
-a Redis cache service named `rediscache`, and an Elasticsearch service named `searchserver`.
++++
+title=Using default endpoints
++++
 
-{{% version/specific %}}
+Use the following configuration:
+
 ```yaml {configFile="app"}
+{{< snippet>}}
 relationships:
-    database: 'mysqldb:db1'
-    database2: 'mysqldb:db2'
-    cache: 'rediscache:redis'
-    search: 'searchserver:elasticsearch'
+    {{% variable "SERVICE_NAME" %}}: 
+{{< /snippet >}}
 ```
-<--->
+
+The `SERVICE_NAME` is the name of the service as defined in its [configuration](/add-services/_index.md).
+It is used as the relationship name, and associated with a `null` value.
+This instructs {{% vendor/name %}} to use the service's default endpoint to connect your app to the service.
+
+For example, if you define the following configuration:
+
 ```yaml {configFile="app"}
-applications:
-    myapp:
-        source:
-            root: "/"
-        type: 'nodejs:{{% latest "nodejs" %}}'
-        relationships:
-            database: 'mysqldb:db1'
-            database2: 'mysqldb:db2'
-            cache: 'rediscache:redis'
-            search: 'searchserver:elasticsearch'
+{{< snippet>}}
+relationships:
+    mariadb: 
+{{< /snippet>}}
 ```
-{{% /version/specific %}}
+
+{{% vendor/name %}} looks for a service named `mariadb` in your `{{% vendor/configfile "services" %}}` file,
+and connects your app to it through the service's default endpoint.
+
+For reference, the equivalent configuration using explicit endpoints would be the following:
+
+```yaml {configFile="app"}
+{{< snippet>}}
+relationships:
+    service: mariadb
+    endpoint: mysql
+{{< /snippet>}}
+```
+
+{{< note title="Tip">}}
+
+An even quicker way to define many relationships is to use the following single-line configuration:
+
+```yaml {configFile="app"}
+{{< snippet>}}
+relationships: {{{< variable "SERVICE_NAME_A" >}}, {{< variable "SERVICE_NAME_B" >}}}
+{{< /snippet>}}
+```
+{{< /note >}}
+
+You can add as many relationships as you want to your app configuration:
+
+```yaml {configFile="app"}
+{{< snippet>}}
+relationships:
+    mariadb:  
+    redis: 
+    elasticsearch: 
+{{< /snippet>}}
+```
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+Use the following configuration:
+
+```yaml {configFile="app"}
+{{< snippet >}}
+relationships:
+    {{% variable "RELATIONSHIP_NAME" %}}:
+        service: {{% variable "SERVICE_NAME" %}} 
+        endpoint: {{% variable "ENDPOINT_NAME" %}}
+{{< /snippet >}}
+```
+ 
+- `RELATIONSHIP_NAME` is the name you want to give to the relationship.
+- `SERVICE_NAME` is the name of the service as defined in its [configuration](/add-services/_index.md).
+- `ENDPOINT_NAME` is the endpoint your app will use to connect to the service (refer to the service reference to know which value to use).
+
+For example, to define a relationship named `database` that connects your app to a service called `mariadb` through the `db1` endpoint,
+use the following configuration:
+
+```yaml {configFile="app"}
+{{< snippet >}}
+relationships:
+    database: # The name of the relationship. 
+        service: mariadb
+        endpoint: db1
+{{< /snippet >}}
+```
+
+For more information on how to handle multiple databases, multiple cores,
+and/or different permissions with services that support such features,
+see each service's dedicated page:
+
+ - [MariaDB/MySQL](/add-services/mysql/_index.md#multiple-databases) (multiple databases and permissions)
+ - [PostgreSQL](/add-services/postgresql/_index.md#multiple-databases) (multiple databases and permissions)
+ - [Redis](/add-services/redis/_index.md#multiple-databases) (multiple databases)
+ - [Solr](add-services/solr/_index.md#solr-6-and-later) (multiple cores)
+ - [Vault KMS](add-services/vault/_index.md#multiple-endpoints-example) (multiple permissions)
+
+ You can add as many relationships as you want to your app configuration,
+ using both default and explicit endpoints according to your needs:
+
+```yaml {configFile="app"}
+{{< snippet>}}
+relationships:
+    database1: 
+        service: mariadb
+        endpoint: admin
+    database2:
+        service: mariadb
+        endpoint: legacy
+    cache:
+        redis:
+    search:
+        elasticsearch:
+{{< /snippet>}}
+```
+
+{{< /codetabs >}}
+
+{{< version/only "1" >}}
+
+{{< note >}}
+
+The following legacy syntax for specifying relationships is still supported by {{% vendor/name %}}:
+
+```yaml
+relationships:
+    <RELATIONSHIP_NAME>: "<SERVICE_NAME>:<ENDPOINT_NAME>"
+```
+
+For example:
+
+```yaml
+relationships:
+    database: "mariadb:mysql"
+```
+
+{{< /note >}}
+
+{{< /version/only >}}
 
 ## Available disk space
 
@@ -273,19 +396,24 @@ Mounts define directories that are writable after the build is complete.
 They aren't available during the build.
 
 {{% version/specific %}}
+<!-- Platform.sh -->
+
 ```yaml {configFile="app"}
 mounts:
     '{{< variable "DIRECTORY" >}}':
         source: {{< variable "SOURCE_LOCATION" >}}
         source_path: {{< variable "SOURCE_PATH_LOCATION" >}}
 ```
+
 <--->
+<!-- Upsun -->
+
 ```yaml {configFile="app"}
 applications:
     myapp:
         source:
             root: "/"
-        type: 'nodejs:{{% latest "nodejs" %}}'
+        type: nodejs:{{% latest "nodejs" %}}
         mounts:
             '{{< variable "DIRECTORY" >}}':
                 source: {{< variable "SOURCE_LOCATION" >}}
@@ -297,34 +425,76 @@ The `{{< variable "DIRECTORY" >}}` is relative to the [app's root](#root-directo
 If you already have a directory with that name, you get a warning that it isn't accessible after the build.
 See how to [troubleshoot the warning](./troubleshoot-mounts.md#overlapping-folders).
 
+{{% version/specific %}}
+<!-- Platform.sh -->
 | Name          | Type                 | Required | Description |
 | ------------- | -------------------- | -------- | ----------- |
-| `source`      | `local` or `service` | Yes      | Specifies where the mount is. `local` sources are unique to the app (requires `disk` to be set for the app), while `service` sources can be shared among apps (requires `service` to be set here). |
+| `source`      | `local`, `service`, or `tmp` | Yes      | Specifies the mount type. Set to: </br> - `local` so your mount is unique to the app (requires `disk` to be set for the app).</br> - `service` so your [Network Storage](/add-services/network-storage.md) mount can be shared between several apps.</br> - `tmp` to mount a directory within the `/tmp` directory of your app. `tmp` mounts are **local ephemeral mounts**; their content may be removed during infrastructure maintenance operations. They allow you to **store files that you're not afraid to lose**, such as your application cache that can be seamlessly rebuilt.</br>Note that the `/tmp` directory has a [maximum allocation of 8 GB](/create-apps/troubleshoot-disks.md#no-space-left-on-device). |
 | `source_path` | `string`             | Yes      | The subdirectory within the mounted disk (the source) where the mount should point. If an empty string is passed, points to the entire directory. |
 | `service`     | `string`             |          | The name of the [network storage service](../add-services/network-storage.md). |
 
-Basic example:
+<--->
+<!-- Upsun -->
+
+| Name          | Type                 | Required | Description |
+| ------------- | -------------------- | -------- | ----------- |
+| `source`      | `storage`, `service`, or `tmp` | Yes      | Specifies the mount type. Set to: </br> - `storage` so your mount can be shared between instances of the same app.</br> - `service` so your mount can be shared between several apps (using the [Network Storage](/add-services/network-storage.md) service).</br> - `tmp` to mount a directory within the `/tmp` directory of your app.`tmp` mounts are **local ephemeral mounts**; their content may be removed during infrastructure maintenance operations. They allow you to **store files that you're not afraid to lose**, such as your application cache that can be seamlessly rebuilt.</br>Note that the  `/tmp` directory has a [maximum allocation of 8 GB](/create-apps/troubleshoot-disks.md#no-space-left-on-device). |
+| `source_path` | `string`             | Yes      | The subdirectory within the mounted disk (the source) where the mount should point. If an empty string is passed, points to the entire directory. |
+| `service`     | `string`             |          | The name of the [network storage service](../add-services/network-storage.md). |
+
+{{% /version/specific %}}
+
+Example:
 
 {{% version/specific %}}
+<!-- Platform.sh -->
 ```yaml {configFile="app"}
 mounts:
     'web/uploads':
         source: local
         source_path: uploads
+    '/.tmp_platformsh':
+        source: tmp
+        source_path: files/tmp_platformsh
+    '/build':
+        source: local
+        source_path: files/build
+    '/.cache':
+        source: tmp
+        source_path: files/.cache
+    '/node_modules/.cache':
+        source: tmp
+        source_path: files/node_modules/.cache
 ```
+
 <--->
+<!-- Upsun -->
 ```yaml {configFile="app"}
 applications:
     myapp:
         source:
             root: "/"
-        type: 'nodejs:{{% latest "nodejs" %}}'
+        type: nodejs:20
         mounts:
             'web/uploads':
                 source: local
                 source_path: uploads
+            '/.tmp_platformsh':
+                source: tmp
+                source_path: files/tmp_platformsh
+            '/build':
+                source: local
+                source_path: files/build
+            '/.cache':
+                source: tmp
+                source_path: files/.cache
+            '/node_modules/.cache':
+                source: tmp
+                source_path: files/node_modules/.cache
 ```
 {{% /version/specific %}}
+
+For examples of how to set up a `service` mount, see the dedicated [Network Storage page](/add-services/network-storage.md).
 
 The accessibility to the web of a mounted directory depends on the [`web.locations` configuration](#web).
 Files can be all public, all private, or with different rules for different paths and file types.
@@ -333,53 +503,30 @@ Note that when you back up an environment,
 the mounts on that environment are backed up too.
 
 Also, mounted directories aren't deleted when they're removed from `{{< vendor/configfile "app" >}}`.
-The files still exist on disk until manually removed.
+The files still exist on disk until manually removed (or, for `tmp` mounts, until the app container is moved to another host during a maintenance operation).
 
 {{% version/only "2" %}}
 
 ### Mounts, instances, and Network Storage
 
-Even though the configuration is slightly different for `local` and `service` (Network Storage) mounts,
-in reality **all** {{% vendor/name %}} mounts are [Network Storage](/add-services/network-storage.md) mounts.
+`storage` mounts can be shared **between different instances of the same app**,
+which enables [horizontal scaling](/manage-resources/_index.md).
 
-With this in mind, there are some consequences to be aware of:
+In a [multi-application context](/create-apps/multi-app/_index.md), if you want data in a mount to be shared **between applications**,
+you must explicitly define and use a [Network Storage](/add-services/network-storage.md) service.
+Note that workers share the Network Storage instance of their parent app container.
 
-1. Since mounts defined for a single application are actually Network Storage services, 
-data within those mounts can be shared across _instances_ of that application container.
-Enabling horizontal scaling is the primary reason for making mounts NS services.
-1. Workers share the Network Storage instance of their parent app container.
-1. If your application requires at-runtime writable data to be instance-specific -- that is, _not_ shared between instances as described in the previous two points -- you are better off 
-1. Local mounts in one application can't be shared with another using the `local` mount configuration.
-Even with identical names, they do not point to the same service. 
-1. If you would like data in a mount to be shared between applications, you must explicitly define and use a [Network Storage](/add-services/network-storage) service.
+If you need a local mount (i.e. unique per container),
+{{% vendor/name %}} allows you to mount a directory within the `/tmp` directory of your app.
+However, keep the following limitations in mind:
 
-{{% note title="Truly local mounts" %}}
-Given the caveats above, `mounts` do not provide a way where data is isolated to a single instance of a single application out-of-the-box. 
-If your project _does_ required isolated, instance-specific data, you can leverage the [`/tmp` directory](/create-apps/hooks/hooks-comparison.md#build-hook), the [`pre_start`](#web-commands) web command, and symlinks to acheive it.
+- Content from `tmp` mounts is removed when your app container is moved to another host during an infrastructure maintenance operation
+- The `/tmp` directory has a [maximum allocation of 8 GB](/create-apps/troubleshoot-disks.md#no-space-left-on-device)
 
-For example, data can be written to `my_local_mount` in _each_ instance of a Python container with the following:
+Therefore, `tmp` mounts are ideal to store non-critical data, such as your application cache which can be seamlessly rebuilt,
+but aren't suitable for storing files that are necessary for your app to run smoothly.
 
-```yaml
-applications:
-    myapp:
-        source:
-            root: "/"
-        type: 'python:{{% latest "python" %}}'
-        hooks:
-            build: |
-                set -eux
-                …
-                ln -s /tmp/my_local_mount my_local_mount
-        web:
-            commands:
-                pre_start: |
-                    [ -d /tmp/my_local_mount ] || mkdir /tmp/my_local_mount
-```
-
-Remember that the `/tmp` has a [maximum allocation of 4 GB](/create-apps/troubleshoot-disks.md#no-space-left-on-device). 
-If your project requires more disk, [contact Support](/learn/overview/get-support.md).
-
-{{% /note %}}
+Note that {{% vendor/name %}} will provide new local mounts in the near future.
 
 {{% /version/only %}}
 
