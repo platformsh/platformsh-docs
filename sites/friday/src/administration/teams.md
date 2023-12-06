@@ -2,6 +2,7 @@
 title: Administer teams
 weight: 1
 sidebarTitle: Teams
+sidebarIgnore: true
 description: Manage team access and permissions across all your projects and organizations.
 ---
 
