@@ -682,7 +682,10 @@ Make sure you first test your migration on a separate branch.
 Be sure to take a backup of your production environment **before** you merge this change.
 {{< /note >}}
 
+{{< note theme="warning" title="Warning">}}
+
 Downgrading isn't supported. If you want, for whatever reason, to downgrade you should dump to SQL, remove the service, recreate the service, and import your dump.
+{{< /note >}}
 
 ### Upgrade to PostgreSQL 12 with the `postgis` extension
 
