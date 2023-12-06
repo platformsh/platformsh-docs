@@ -35,7 +35,7 @@ This service allows you to store data and share it between different apps.
 {{% major-minor-versions-note configMinor="true" %}}
 
 {{% version/specific %}}
-<!-- API Version 1 -->
+<!-- Platform.sh -->
 
 <table>
     <thead>
@@ -55,7 +55,7 @@ This service allows you to store data and share it between different apps.
 </table>
 
 <--->
-<!-- API Version 2 -->
+<!-- Upsun -->
 
 {{< image-versions image="network-storage" status="supported" environment="grid" >}}
 
@@ -74,7 +74,7 @@ Any change to the service version results in existing data becoming inaccessible
 {{% deprecated-versions %}}
 
 {{% version/specific %}}
-<!-- API Version 1 -->
+<!-- Platform.sh -->
 
 <table>
     <thead>
@@ -94,7 +94,7 @@ Any change to the service version results in existing data becoming inaccessible
 </table>
 
 <--->
-<!-- API Version 2 -->
+<!-- Upsun -->
 
 {{< image-versions image="network-storage" status="deprecated" environment="grid" >}}
 
@@ -155,7 +155,7 @@ while `service` mounts refer to the same file system.
 For example, you can define a network storage service:
 
 {{< version/specific >}}
-<!-- Version 1 -->
+<!-- Platform.sh -->
 
 ```yaml {configFile="services"}
 {{< snippet name="files" config="service" >}}
@@ -165,7 +165,7 @@ For example, you can define a network storage service:
 ```
 
 <--->
-<!-- Version 2 -->
+<!-- Upsun -->
 
 ```yaml {configFile="services"}
 {{< snippet name="files" config="service" >}}
@@ -179,7 +179,7 @@ You can then use this service to  define a `network_dir` network mount and a `lo
 to be used by a web instance and a `queue` worker instance:
 
 {{< version/specific >}}
-<!-- Version 1 -->
+<!-- Platform.sh -->
 
 ```yaml {configFile="app"}
 {{< snippet name="my-app" config="app" >}}
@@ -224,7 +224,7 @@ workers:
 ```
 
 <--->
-<!-- Version 2 -->
+<!-- Upsun -->
 
 ```yaml {configFile="app"}
 {{< snippet name="my-app" config="app" >}}
@@ -267,7 +267,7 @@ workers:
 {{% /version/specific %}}
 
 {{< version/specific >}}
-<!-- Version 1 -->
+<!-- Platform.sh -->
 Both the web instance and the `queue` worker have two mount points:
 
 - The `local_dir` mount on each is independent and not connected to each other at all
@@ -277,7 +277,7 @@ Both the web instance and the `queue` worker have two mount points:
   The amount of space it has available depends on the `disk` key specified for the service configuration (in this case, 2048 MB).
 
 <--->
-<!-- Version 2 -->
+<!-- Upsun -->
 
 Both the web instance and the `queue` worker have two mount points:
 
@@ -299,7 +299,7 @@ For example, the following `{{< vendor/configfile "app" >}}` file (fragment) kee
 (This assumes a Network Storage service named `files` has also been defined in `{{< vendor/configfile "services" >}}`.)
 
 {{< version/specific >}}
-<!-- Version 1 -->
+<!-- Platform.sh -->
 
 ```yaml {configFile="app"}
 {{< snippet name="my-app" config="app" >}}
@@ -308,7 +308,9 @@ For example, the following `{{< vendor/configfile "app" >}}` file (fragment) kee
 type: "php:{{% latest "php" %}}"
 
 relationships:
-    database: "db:mysql"
+    database:
+        service: database
+        endpoint: mysql
 
 disk: 1024
 
@@ -368,7 +370,7 @@ workers:
 ```
 
 <--->
-<!-- Version 2 -->
+<!-- Upsun -->
 
 ```yaml {configFile="app"}
 {{< snippet name="my-app" config="app" >}}
@@ -457,7 +459,7 @@ The following approximate steps do so with a minimum of service interruption.
    that has at least enough space for your existing files with some buffer.
 
 {{< version/specific >}}
-<!-- Version 1 -->
+<!-- Platform.sh -->
 
 ```yaml {configFile="services"}
 {{< snippet name="files" config="service" >}}
@@ -474,7 +476,7 @@ mounts:
 ```
 
 <--->
-<!-- Version 2 -->
+<!-- Upsun -->
 
 ```yaml {configFile="services"}
 {{< snippet name="files" config="service" >}}
@@ -495,7 +497,7 @@ mounts:
 (Remember the `source_path` can be the same since they're on different storage services.)
 
 {{< version/specific >}}
-<!-- Version 1 -->
+<!-- Platform.sh -->
 
 ```yaml {configFile="app"}
 {{< snippet name="false" config="app" root="false" >}}
@@ -516,7 +518,7 @@ mounts:
 ```
 
 <--->
-<!-- Version 2 -->
+<!-- Upsun -->
 
 ```yaml {configFile="app"}
 {{< snippet name="false" config="app" root="false" >}}
@@ -550,7 +552,7 @@ mounts:
    Commit and push the change, testing to make sure the network files are accessible.
 
 {{< version/specific >}}
-<!-- Version 1 -->
+<!-- Platform.sh -->
 
 ```yaml {configFile="app"}
 {{< snippet name="false" config="app" root="false" >}}
@@ -571,7 +573,7 @@ mounts:
 ```
 
 <--->
-<!-- Version 2 -->
+<!-- Upsun -->
 
 ```yaml {configFile="app"}
 {{< snippet name="false" config="app" root="false" >}}
@@ -604,14 +606,14 @@ mounts:
    If you don't, the files remain on disk but inaccessible, just eating up disk space needlessly.
 
    {{< version/specific >}}
-   <!-- Version 1 -->
+   <!-- Platform.sh -->
 
    Once that's done you can remove the `old-uploads` mount and push again to finish the process
    You are also free to reduce the `disk` size in the `{{< vendor/configfile "app" >}}` file if desired,
    but make sure to leave enough for any remaining local mounts.
 
    <--->
-   <!-- Version 2 -->
+   <!-- Upsun -->
 
    Once that's done you can remove the `old-uploads` mount and push again to finish the process
    You are also free to reduce the amount of disk space allocated to your app if desired,
