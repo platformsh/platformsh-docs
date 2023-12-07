@@ -87,7 +87,7 @@ Previous non-Enterprise versions are available in your projects (and are listed 
 but they're at their [end of life](https://www.mongodb.com/support-policy/legacy)
 and are no longer receiving security updates from upstream.
 
-{{< note >}}
+{{< note title="Warning" theme="Warning">}}
 
 Downgrades of MongoDB aren't supported.
 MongoDB updates its own data files to a new version automatically but can't downgrade them.
