@@ -225,7 +225,7 @@ applications:
         # The key is the relationship name that can be viewed in the app.
         # The value is specific to how the service is configured.
         relationships:
-            database: 'mysqldb:mysql'
+            mysqldb:
 
         # Scripts that are run as part of the build and deploy process.
         hooks:
@@ -263,7 +263,6 @@ applications:
 services:
     mysqldb:
         type: mariadb:{{% latest "mariadb" %}}
-        disk: 256
 ```
 
 {{% /version/specific %}}
