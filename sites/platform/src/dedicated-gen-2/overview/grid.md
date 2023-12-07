@@ -36,22 +36,6 @@ open a support ticket.
 
 {{< php-extensions/dedicated >}}
 
-### Configuration options
-
-You can't use custom `php.ini` files on your Production/Staging environments.
-You can still change all PHP options that can be changed at runtime.
-For example, change the memory limit using `ini_set('memory_limit','1024M');`
-
-For other PHP options, such as the following, open a support ticket:
-
-* `max_execution_time`
-* `max_input_time`
-* `max_input_vars`
-* `memory_limit`
-* `post_max_size`
-* `request_order`
-* `upload_max_filesize`
-
 ### Xdebug
 
 All {{% names/dedicated-gen-2 %}} clusters that have [Xdebug](../../languages/php/xdebug.md) enabled have a second PHP-FPM process.
