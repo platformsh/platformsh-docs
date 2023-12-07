@@ -30,7 +30,7 @@ From version 7.11 onward:
 The following premium versions are supported:
 
 {{% version/specific %}}
-<!-- API Version 1 -->
+<!-- Platform.sh -->
 
 <table>
     <thead>
@@ -50,7 +50,7 @@ The following premium versions are supported:
 </table>
 
 <--->
-<!-- API Version 2 -->
+<!-- Upsun -->
 
 {{< image-versions image="elasticsearch" status="supported" environment="grid" >}}
 
@@ -64,7 +64,7 @@ The following versions are still available in your projects for free,
 but they're at their end of life and are no longer receiving security updates from upstream.
 
 {{% version/specific %}}
-<!-- API Version 1 -->
+<!-- Platform.sh -->
 
 <table>
     <thead>
@@ -84,7 +84,7 @@ but they're at their end of life and are no longer receiving security updates fr
 </table>
 
 <--->
-<!-- API Version 2 -->
+<!-- Upsun -->
 
 {{< image-versions image="elasticsearch" status="deprecated" environment="grid" >}}
 
@@ -104,10 +104,10 @@ To do so, follow the same procedure as for [upgrading](#upgrading).
 {
     "username": null,
     "scheme": "http",
-    "service": "elasticsearch77",
+    "service": "elasticsearch",
     "fragment": null,
     "ip": "169.254.169.232",
-    "hostname": "jmgjydr275pkj5v7prdj2asgxm.elasticsearch77.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "hostname": "jmgjydr275pkj5v7prdj2asgxm.elasticsearch.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "port": 9200,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "elasticsearch.internal",
@@ -130,7 +130,7 @@ the service type is `elasticsearch-enterprise`.
 
 Note that configuration for [premium versions](#supported-versions) may differ slightly.
 
-<!-- Version 1: Codetabs using config reader + examples.docs.platform.sh -->
+<!-- Platform.sh: Codetabs using config reader + examples.docs.platform.sh -->
 {{< codetabs v2hide="true" >}}
 
 +++
@@ -165,7 +165,7 @@ highlight=python
 
 {{< /codetabs >}}
 
-<!-- Version 2: .environment shortcode + context -->
+<!-- Upsun: .environment shortcode + context -->
 {{% version/only "2" %}}
 
 ```yaml {configFile="app"}
@@ -174,28 +174,30 @@ highlight=python
 # Other options...
 
 # Relationships enable an app container's access to a service.
+# The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    essearch: "searchelastic:elasticsearch"
+    elasticsearch: 
 {{< /snippet >}}
-{{< snippet name="searchelastic" config="service" placeholder="true" >}}
+{{< snippet name="elasticsearch" config="service" placeholder="true" >}}
     type: elasticsearch:{{% latest "elasticsearch" %}}
 {{< /snippet >}}
 ```
 
-{{< v2connect2app serviceName="searchelastic" relationship="essearch" var="ELASTIC_HOSTS">}}
+{{< v2connect2app serviceName="elasticsearch" relationship="elasticsearch" var="ELASTIC_HOSTS">}}
 
 ```bash {location="myapp/.environment"}
 # Decode the built-in credentials object variable.
 export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export ELASTIC_SCHEME=$(echo $RELATIONSHIPS_JSON | jq -r ".essearch[0].scheme")
-export ELASTIC_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".essearch[0].host")
-export ELASTIC_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".essearch[0].port")
+export ELASTIC_SCHEME=$(echo $RELATIONSHIPS_JSON | jq -r ".elasticsearch[0].scheme")
+export ELASTIC_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".elasticsearch[0].host")
+export ELASTIC_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".elasticsearch[0].port")
 
 # Surface more common Elasticsearch connection string variables for use in app.
-export ELASTIC_USERNAME=$(echo $RELATIONSHIPS_JSON | jq -r ".essearch[0].username")
-export ELASTIC_PASSWORD=$(echo $RELATIONSHIPS_JSON  | jq -r ".essearch[0].password")
+export ELASTIC_USERNAME=$(echo $RELATIONSHIPS_JSON | jq -r ".elasticsearch[0].username")
+export ELASTIC_PASSWORD=$(echo $RELATIONSHIPS_JSON  | jq -r ".elasticsearch[0].password")
 export ELASTIC_HOSTS=[\"$ELASTIC_SCHEME://$ELASTIC_HOST:$ELASTIC_PORT\"]
 ```
 
@@ -220,7 +222,7 @@ Starting with Elasticsearch 7.2 you may optionally enable HTTP Basic authenticat
 To do so, include the following in your `{{< vendor/configfile "services" >}}` configuration:
 
 {{< version/specific >}}
-<!-- Version 1 -->
+<!-- Platform.sh -->
 
 ```yaml {configFile="services"}
 {{< snippet name="search" config="service" >}}
@@ -233,7 +235,7 @@ To do so, include the following in your `{{< vendor/configfile "services" >}}` c
 ```
 
 <--->
-<!-- Version 2 -->
+<!-- Upsun -->
 
 ```yaml {configFile="services"}
 {{< snippet name="search" config="service" >}}
@@ -262,7 +264,7 @@ To do so, add a route to `{{< vendor/configfile "routes" >}}` that has `search:e
 For example:
 
 {{< version/specific >}}
-<!-- Version 1 -->
+<!-- Platform.sh -->
 
 ```yaml {configFile="routes"}
 {{< snippet name="search:elasticsearch" config="route" subDom="es" redirect="false" />}}
@@ -276,7 +278,7 @@ For example:
 ```
 
 <--->
-<!-- Version 2 -->
+<!-- Upsun -->
 
 ```yaml {configFile="routes"}
 {{< snippet name="search:elasticsearch" config="route" subDom="es" redirect="false" />}}
@@ -296,10 +298,10 @@ Elasticsearch offers a number of plugins.
 To enable them, list them under the `configuration.plugins` key in your `{{< vendor/configfile "services" >}}` file, like so:
 
 {{< version/specific >}}
-<!-- Version 1 -->
+<!-- Platform.sh -->
 
 ```yaml {configFile="services"}
-{{< snippet name="search" config="service" >}}
+{{< snippet name="elasticsearch" config="service" >}}
     type: elasticsearch:{{% latest "elasticsearch" %}}
     disk: 1024
     configuration:
@@ -310,10 +312,10 @@ To enable them, list them under the `configuration.plugins` key in your `{{< ven
 ```
 
 <--->
-<!-- Version 2 -->
+<!-- Upsun -->
 
 ```yaml {configFile="services"}
-{{< snippet name="search" config="service" >}}
+{{< snippet name="elasticsearch" config="service" >}}
     type: elasticsearch:{{% latest "elasticsearch" %}}
     configuration:
         plugins:

@@ -106,144 +106,7 @@ set up a new service with a different name.
 
 ### Usage example
 
-#### 1. Configure the service
-
-To define the service, use the `redis-persistent` endpoint:
-
-{{% version/specific %}}
-<!-- Version 1 -->
-
-```yaml {configFile="services"}
-# The name of the service container. Must be unique within a project.
-<SERVICE_NAME>:
-    type: redis-persistent:<VERSION>
-```
-
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="services"}
-services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: redis-persistent:<VERSION>
-```
-
-{{% /version/specific %}}
-
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
-Back up your data before changing the service.
-
-#### 2. Add the relationship
-
-To define the relationship, use the `redis` endpoint :
-
-{{% version/specific %}}
-<!-- Version 1 -->
-
-```yaml {configFile="app"}
-# Relationships enable access from this app to a given service.
-relationships:
-    <RELATIONSHIP_NAME>: "<SERVICE_NAME>:redis"
-```
-
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="app"}
-applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        # Relationships enable access from this app to a given service.
-        relationships:
-            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:redis"
-
-services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: redis-persistent:<VERSION>
-```
-
-{{% /version/specific %}}
-
-You can define `<SERVICE_NAME>` and `<RELATIONSHIP_NAME>` as you like, but it’s best if they’re distinct.
-With this definition, the application container now has access to the service via the relationship `<RELATIONSHIP_NAME>`.
-For PHP, enable the extension for the service:
-
-{{% version/specific %}}
-<!-- Version 1 -->
-
-```yaml {configFile="app"}
-# PHP extensions.
-runtime:
-    extensions:
-        - redis
-```
-
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="app"}
-applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        # PHP extensions.
-        runtime:
-            extensions:
-                - redis
-        # Relationships enable access from this app to a given service.
-        relationships:
-            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:redis"
-
-services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: redis-persistent:<VERSION>
-```
-
-{{% /version/specific %}}
-
-### Configuration example
-
-{{% version/specific %}}
-<!-- Version 1 -->
-
-#### [Service definition](/add-services/_index.md)
-
-```yaml {configFile="services"}
-# The name of the service container. Must be unique within a project.
-data:
-    type: redis-persistent:7.0
-    disk: 256
-```
-
-#### [App configuration](/create-apps/_index.md)
-
-```yaml {configFile="app"}
-relationships:
-    redisdata: "data:redis"
-```
-
-<--->
-<!-- Version 2 -->
-
-#### [Service](/add-services/_index.md) and [app](/create-apps/_index.md) configuration
-
-```yaml {configFile="services"}
-applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # Relationships enable access from this app to a given service.
-        relationships:
-            rediscache: "cacheredis:redis"
-
-services:
-    # The name of the service container. Must be unique within a project.
-    cacheredis:
-        type: redis-persistent:7.0
-```
-
-{{% /version/specific %}}
+{{% endpoint-description type="redis-persistent" noApp=true /%}}
 
 ### Use in app
 
@@ -293,24 +156,24 @@ highlight=python
 
 # Relationships enable an app container's access to a service.
 relationships:
-    rediscache: "cacheredis:redis"
+    redis: 
 {{< /snippet >}}
-{{< snippet name="cacheredis" config="service" placeholder="true" >}}
+{{< snippet name="redis" config="service" placeholder="true" >}}
     type: redis-persistent:{{% latest "redis" %}}
 {{< /snippet >}}
 ```
 
-{{< v2connect2app serviceName="cacheredis" relationship="rediscache" var="REDIS_URL">}}
+{{< v2connect2app serviceName="redis" relationship="redis" var="REDIS_URL">}}
 
 ```bash {location="myapp/.environment"}
 # Decode the built-in credentials object variable.
 export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export CACHE_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].host')"
-export CACHE_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].port')"
-export CACHE_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].password')"
-export CACHE_SCHEME="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].scheme')"
+export CACHE_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.redis[0].host')"
+export CACHE_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.redis[0].port')"
+export CACHE_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.redis[0].password')"
+export CACHE_SCHEME="$(echo $RELATIONSHIPS_JSON | jq -r '.redis[0].scheme')"
 
 # Surface a Redis connection string for use in app.
 export REDIS_URL="${CACHE_SCHEME}://${CACHE_PASSWORD}@${CACHE_HOST}:${CACHE_PORT}"
@@ -337,144 +200,7 @@ Persistent Redis provides a cache with persistent storage.
 
 ### Usage example
 
-#### 1. Configure the service
-
-To define the service, use the `redis` endpoint:
-
-{{% version/specific %}}
-<!-- Version 1 -->
-
-```yaml {configFile="services"}
-# The name of the service container. Must be unique within a project.
-<SERVICE_NAME>:
-    type: redis:<VERSION>
-```
-
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="services"}
-services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: redis:<VERSION>
-```
-
-{{% /version/specific %}}
-
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
-Back up your data before changing the service.
-
-#### 2. Add the relationship
-
-To define the relationship, use the `redis` endpoint :
-
-{{% version/specific %}}
-<!-- Version 1 -->
-
-```yaml {configFile="app"}
-# Relationships enable access from this app to a given service.
-relationships:
-    <RELATIONSHIP_NAME>: "<SERVICE_NAME>:redis"
-```
-
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="app"}
-applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        # Relationships enable access from this app to a given service.
-        relationships:
-            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:redis"
-
-services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: redis:<VERSION>
-```
-
-{{% /version/specific %}}
-
-You can define `<SERVICE_NAME>` and `<RELATIONSHIP_NAME>` as you like, but it’s best if they’re distinct.
-With this definition, the application container now has access to the service via the relationship `<RELATIONSHIP_NAME>`.
-For PHP, enable the extension for the service:
-
-{{% version/specific %}}
-<!-- Version 1 -->
-
-```yaml {configFile="app"}
-# PHP extensions.
-runtime:
-    extensions:
-        - redis
-```
-
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="app"}
-applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        # PHP extensions.
-        runtime:
-            extensions:
-                - redis
-        # Relationships enable access from this app to a given service.
-        relationships:
-            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:redis"
-
-services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: redis:<VERSION>
-```
-
-{{% /version/specific %}}
-
-### Configuration example
-
-{{% version/specific %}}
-<!-- Version 1 -->
-
-#### [Service definition](/add-services/_index.md)
-
-```yaml {configFile="services"}
-# The name of the service container. Must be unique within a project.
-data:
-    type: redis:7.0
-    disk: 256
-```
-
-#### [App configuration](/create-apps/_index.md)
-
-```yaml {configFile="app"}
-relationships:
-    redisdata: "data:redis"
-```
-
-<--->
-<!-- Version 2 -->
-
-#### [Service](add-services/_index.md) and [app](/create-apps/_index.md) configuration
-
-```yaml {configFile="app"}
-applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # Relationships enable access from this app to a given service.
-        relationships:
-            rediscache: "cacheredis:redis"
-
-services:
-    # The name of the service container. Must be unique within a project.
-    cacheredis:
-        type: redis:7.0
-```
-
-{{% /version/specific %}}
+{{% endpoint-description type="redis" noApp=true /%}}
 
 ### Use in app
 
@@ -524,24 +250,24 @@ highlight=python
 
 # Relationships enable an app container's access to a service.
 relationships:
-    rediscache: "cacheredis:redis"
+    redis:
 {{< /snippet >}}
-{{< snippet name="cacheredis" config="service" placeholder="true" >}}
+{{< snippet name="redis" config="service" placeholder="true" >}}
     type: redis:{{% latest "redis" %}}
 {{< /snippet >}}
 ```
 
-{{< v2connect2app serviceName="cacheredis" relationship="rediscache" var="REDIS_URL">}}
+{{< v2connect2app serviceName="redis" relationship="redis" var="REDIS_URL">}}
 
 ```bash {location="myapp/.environment"}
 # Decode the built-in credentials object variable.
 export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export CACHE_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].host')"
-export CACHE_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].port')"
-export CACHE_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].password')"
-export CACHE_SCHEME="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].scheme')"
+export CACHE_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.redis[0].host')"
+export CACHE_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.redis[0].port')"
+export CACHE_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.redis[0].password')"
+export CACHE_SCHEME="$(echo $RELATIONSHIPS_JSON | jq -r '.redis[0].scheme')"
 
 # Surface a Redis connection string for use in app.
 export REDIS_URL="${CACHE_SCHEME}://${CACHE_PASSWORD}@${CACHE_HOST}:${CACHE_PORT}"
@@ -727,7 +453,7 @@ To set up Redis as your session handler, add a configuration similar to the foll
 type: "php:{{% latest "php" %}}"
 
 relationships:
-    sessionstorage: "data:redis"
+    sessionstorage:
 
 variables:
     php:
@@ -741,7 +467,7 @@ web:
             passthru: '/index.php'
 {{< /snippet >}}
 
-{{< snippet name="data" config="service" placeholder="true" >}}
+{{< snippet name="sessionstorage" config="service" placeholder="true" >}}
     type: "redis-persistent:{{% latest "redis" %}}"
     disk: 256
 {{< /snippet >}}
@@ -761,7 +487,7 @@ web:
 type: "php:{{% latest "php" %}}"
 
 relationships:
-    sessionstorage: "data:redis"
+    sessionstorage:
 
 variables:
     php:
@@ -775,7 +501,7 @@ web:
             passthru: '/index.php'
 {{< /snippet >}}
 
-{{< snippet name="data" config="service" placeholder="true" >}}
+{{< snippet name="sessionstorage" config="service" placeholder="true" >}}
     type: "redis-persistent:{{% latest "redis" %}}"
 {{< /snippet >}}
 ```

@@ -1,6 +1,6 @@
 ---
 title: "From monoliths through headless to microservices"
-sidebarTitle: Monolith, headless or microservices?
+sidebarTitle: Monolith, headless, or microservices?
 weight: 2
 description: Choose the best app topology depending on your needs.
 ---

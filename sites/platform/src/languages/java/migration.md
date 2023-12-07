@@ -208,13 +208,17 @@ This `.environment` can interact to each application file. E.g.:
 
 {{% version/specific %}}
 ```yaml
+# The app's name, which must be unique within the project.
 name: app
 type: "java:11"
 disk: 1024
 hooks:
     build: ./mvnw package -DskipTests -Dquarkus.package.uber-jar=true
+# Relationships enable an app container's access to a service.
+# The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    database: "db:postgresql"
+    postgresql: 
 web:
     commands:
         start: java -jar $JAVA_OPTS $CREDENTIAL -Dquarkus.http.port=$PORT jarfile.jar
@@ -227,8 +231,11 @@ applications:
         type: 'java:{{% latest "java" %}}'
         hooks:
             build: ./mvnw package -DskipTests -Dquarkus.package.uber-jar=true
+        # Relationships enable an app container's access to a service. 
+        # The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            database: "db:postgresql"
+            postgresql: 
         web:
             commands:
                 start: java -jar $JAVA_OPTS $CREDENTIAL -Dquarkus.http.port=$PORT jarfile.jar

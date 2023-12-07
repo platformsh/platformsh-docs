@@ -69,12 +69,11 @@ applications:
 
     # The relationships of the application with services or other applications.
     # The left-hand side is the name of the relationship as it will be exposed
-    # to the application in the UPSUN_RELATIONSHIPS variable. The right-hand
-    # side is in the form `<service name>:<endpoint name>`.
-    # More information: https://docs.upsun.com/create-apps/app-reference.html#relationships
+    # The example below shows simplified configuration leveraging default services (identified from the relationship names) and default endpoints.
+    # See the Application reference for all options for defining relationships and endpoints: https://docs.upsun.com/create-apps/app-reference.html#relationships
     relationships:
-      mysql: "mysql:mysql"
-      redis: "redis:redis"
+      mysql: 
+      redis: 
 
 
     # Mounts define directories that are writable after the build is complete.
