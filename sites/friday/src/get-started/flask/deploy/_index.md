@@ -6,7 +6,7 @@ description: This guide provides instructions for deploying, and working with Fl
 layout: single
 banner:
    title: Recommended
-   body: To get your Flask project up and running as quickly as possible, experiment with the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project/demo) before following this guide.
+   body: To get your Flask project up and running as quickly as possible, experiment with the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project) before following this guide.
 ---
 
 Flask is a lightweight and popular web framework for building web applications using Python.
