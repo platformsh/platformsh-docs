@@ -10,7 +10,7 @@ Anything included in these guides applies not only to [Strapi](https://strapi.io
 {{% guides/link-philosophy %}}
 
 {{< note title= "Tip" >}}
-To get your Strapi project up and running as quickly as possible, experiment with the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project/demo) before following this guide.
+To get your Strapi project up and running as quickly as possible, experiment with the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project) before following this guide.
 {{< /note >}}
 
 {{% guides/requirements name="Strapi" %}}
