@@ -107,37 +107,13 @@ If you want {{% vendor/name %}} to limit checks to one or more of the following 
 
 When you use a CDN, you might want to prevent direct access to your {{% vendor/name %}} server for security purposes.
 
-### HTTP basic authentication
+### IP filtering and HTTP auth
 
-You can restrict access to your site's environments through HTTP basic authentication.
-To access a restricted environment, users need to enter credentials through their browser.
-By default, child environments inherit access settings configured on their parent environment.
+While using password or IP based authentication might be possible, it is insecure, and unreliable. There are many scenarios in which the implementation can fail, and the security features circumvented.
 
-To enable HTTP basic authentication,
-follow these steps:
+Furthermore, IP based filtering will usually be impossible due to the fact that most CDNs use the `x-forwarded` HTTP header, which your project origin will use as the visitor IP address.
 
-1. Generate a strong password.
-2. Set up the authentication using [HTTP access control](../../environments/http-access-control.md#use-a-username-and-password).
-3. Share your credentials with your CDN provider.
-
-### Allow and deny IP addresses
-
-You can secure your site's environments by allowing and denying IP addresses.
-By default, child environments inherit the access settings configured on their parent environment.
-
-Note that allowing and denying IP addresses means you have to update your configuration
-when your CDN provider updates their IP addresses.
-
-To allow and deny IP addresses, follow these steps:
-
-1.  Set up your CDN.
-
-2.  Get your CDN provider's current IP ranges:
-    - [Fastly](https://docs.fastly.com/en/guides/accessing-fastlys-ip-ranges) 
-    - [CloudFlare](https://www.cloudflare.com/ips/)
-
-3.  To allow only these IPs on an environment,
-   set up [HTTP access control](../../environments/http-access-control.md#filter-ip-addresses).
+Both methods are highly insecure, and we highly recommend against them.
 
 ### Client-authenticated TLS
 
