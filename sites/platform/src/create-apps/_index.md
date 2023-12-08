@@ -52,6 +52,8 @@ disk: 2048
 
 # The app's configuration when it's exposed to the web.
 web:
+    commands:
+        start: npm start
     locations:
         '/':
             # The public directory relative to the app root.
@@ -61,7 +63,7 @@ web:
             # What files to use when serving a directory.
             index: ["index.html"]
             # Allow files even without specified rules.
-            allow: true
+            allow: true        
 ```
 
 <--->
@@ -76,6 +78,8 @@ applications:
 
         # The app's configuration when it's exposed to the web.
         web:
+            commands:
+                start: npm start
             locations:
                 '/':
                     # The public directory relative to the app root.
@@ -146,7 +150,9 @@ So a request for `styles.css` that accepts a gzipped file (according to the requ
 automatically returns a `styles.css.gz` file if it exists.
 This approach supports any file type and offers some CPU optimization, especially if the cache lifetime is short.
 
-## Comprehensive example
+## Comprehensive example and PHP specificities
+
+Unlike other runtimes most PHP applications do not have a start command. There is a daemon running configured to work automatically with the web server. More often than not there will be a single entry-point a "front-controller". In the case of PHP the "passthru" property is a string with the location of the front-controller rather than a boolean.
 
 The following example shows a setup for a PHP app with comments to explain the settings.
 
