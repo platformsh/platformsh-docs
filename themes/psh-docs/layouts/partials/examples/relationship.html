@@ -13,6 +13,8 @@
   {{- $serviceName = .servName -}}
 {{- end -}}
 {{ $relationshipComment := "# Relationships enable access from this app to a given service." }}
+{{ $relationshipComment = printf "%s\n# The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint." $relationshipComment}}
+{{ $relationshipComment = printf "%s\n# See the Application reference for all options for defining relationships and endpoints." $relationshipComment}}
 
 {{- $l1 := printf "\n%s\nrelationships:" $relationshipComment}}
 
@@ -22,6 +24,11 @@
   {{- $endpoint = "<ENDPOINT_ID>" -}}
 {{- end -}}
 
-{{- $l2 := printf "%s%s: \"%s:%s\"" $apiIndent $relationshipName $serviceName $endpoint -}}
+{{- $l2 := printf "%s%s:\n        service: %s\n        endpoint: %s" $apiIndent $relationshipName $serviceName $endpoint -}}
+{{- $l2_updated := printf "%s%s: " $apiIndent $serviceName -}}
 
+{{- if eq (index .data "type") "vault-kms" -}}
 {{- printf "%s\n%s" $l1 $l2 | safeHTML -}}
+{{- else -}}
+{{- printf "%s\n%s" $l1 $l2_updated | safeHTML -}}
+{{- end -}}
