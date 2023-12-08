@@ -113,7 +113,7 @@ While using password or IP based authentication might be possible, it is insecur
 
 Furthermore, IP based filtering will usually be impossible due to the fact that most CDNs use the `x-forwarded` HTTP header, which your project origin will use as the visitor IP address.
 
-Both method are highly insecure, and we highly recommend against it.
+Both methods are highly insecure, and we highly recommend against them.
 
 ### Client-authenticated TLS
 
