@@ -1,8 +1,15 @@
 ---
-title: Multiple availability zones
+title: Optional features
 weight: 4
-description: You can add multiple availability zones as an option on your {{% names/dedicated-gen-3 %}} project.
+description: You can add optional features to your {{% names/dedicated-gen-3 %}} project.
 ---
+
+You can enable the following features on your {{% names/dedicated-gen-3 %}} projects.
+
+To enable an optional feature or get more information on potential fees,
+[contact Sales](https://platform.sh/contact/).
+
+## Multiple availability zones
 
 The default configuration for Dedicated clusters is to launch them into a single availability zone (AZ)
 for the following reasons:
@@ -24,3 +31,16 @@ But note that multiple-AZ configurations don't improve the contractual 99.99% up
 so multiple-AZ deployments should only be considered in cases where they're truly appropriate.
 
 Multi-AZ deployments are available only on select AWS regions.
+
+## SFTP
+
+In addition to SSH accounts, you can create SFTP accounts with a custom user/password.
+
+{{< note >}}
+
+On {{% names/dedicated-gen-3 %}} projects, SFTP access cannot be limited to a specific directory.
+Instead, access is given to **the whole application directory** and its mounts.
+
+{{< /note >}}
+
+SSH public key based authentication is also supported on the SFTP account.

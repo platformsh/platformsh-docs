@@ -5,7 +5,7 @@ description: Add optional features to your {{% names/dedicated-gen-2 %}} project
 ---
 
 You can enable the following features on your {{% names/dedicated-gen-2 %}} projects,
-as well as [multiple availability zones](../../dedicated-gen-3/multiple-az.md).
+as well as [multiple availability zones](../../dedicated-gen-3/options.md#multiple-availability-zones).
 
 To enable an optional feature or get more information on potential fees,
 [contact Sales](https://platform.sh/contact/).
@@ -30,7 +30,7 @@ The cluster begins to look more like a standard N-Tier architecture at this poin
 Speak to your sales representative about the costs associated with adding additional application servers. 
 This configuration requires a separate setup from the default so advanced planning is required.
 
-## SFTP accounts
+## SFTP
 
 In addition to SSH accounts, SFTP accounts can be created with a custom user/password that are restricted to certain directories. 
 These directories must be one of the writeable mounts (or rather, there’s no point assigning them to the read-only code directory). 

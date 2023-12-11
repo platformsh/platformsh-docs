@@ -147,3 +147,32 @@ If you're using UTF-8 encoded files on macOS,
 add the `--iconv=utf-8-mac,utf-8` flag to your `rsync` call.
 
 For more options, consult the [rsync documentation](https://man7.org/linux/man-pages/man1/rsync.1.html).
+
+## SFTP
+
+{{% version/specific %}}
+<!-- Platform.sh -->
+
+SFTP is supported on the Grid, but the following limitations apply:
+
+- You can only create SFTP accounts with an existing {{% vendor/name %}} user and a SSH key. 
+  Custom users and passwords aren't supported.
+- SFTP access cannot be limited to a specific directory.
+  Instead, access is given to **the whole application directory** and its mounts.
+
+SFTP is also supported on [{{% names/dedicated-gen-2 %}}](/dedicated-gen-2/architecture/options.md#sftp)
+and [{{% names/dedicated-gen-3 %}}](/dedicated-gen-3/options.md#sftp) projects,
+with different limitations and requirements.
+For more information, see the dedicated sections.
+
+<--->
+<!-- Upsun -->
+
+{{% vendor/name %}} supports SFTP, but the following limitations apply:
+
+- You can only create SFTP accounts with an existing {{% vendor/name %}} user and a SSH key. 
+  Custom users and passwords aren't supported.
+- SFTP access cannot be limited to a specific directory.
+  Instead, access is given to **the whole application directory** and its mounts.
+
+{{% /version/specific %}}
