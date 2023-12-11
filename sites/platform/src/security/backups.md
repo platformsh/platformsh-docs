@@ -63,7 +63,7 @@ plus 2 manual backups of any preview environments).
 
 {{< note >}}
 
-This policy applies during the closed beta phase of {{< vendor/name >}},
+This policy applies during the beta phase of {{< vendor/name >}},
 during which backups are provided free of charge.
 In the future, you'll be able to customize your backup policy depending on your needs and budget.
 
