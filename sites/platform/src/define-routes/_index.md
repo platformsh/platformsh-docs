@@ -591,7 +591,7 @@ which is a requirement for the router caching.
             enabled: false
 
     # Below HTTP config may not be necessary for every Websocket client.
-    # It is required for some, as only defining a HTTPS config may trigger an automatic redirect to HTTP. 
+    # It is required for some, as only defining an HTTPS config may trigger an automatic redirect to HTTP. 
     "http://{default}/ws":
         type: upstream
         upstream: "app:http"
