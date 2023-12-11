@@ -38,11 +38,17 @@ open a support ticket.
 
 ### Configuration options
 
-You can't use custom `php.ini` files on your Production/Staging environments.
-You can still change all PHP options that can be changed at runtime.
-For example, change the memory limit using `ini_set('memory_limit','1024M');`
+{{< note >}}
+Most {{% names/dedicated-gen-2 %}} projects allow you to use custom `php.ini` files on your Production/Staging environments.</br>
+However, **for a small set of projects**, this isn't supported yet.
+{{< /note >}}
 
-For other PHP options, such as the following, open a support ticket:
+
+If your project doesn't support PHP configuration through a `php.ini` file,
+you can still change all PHP options that can be changed at runtime.
+For example, change the memory limit using `ini_set('memory_limit','1024M');`.
+
+For other PHP options, such as the following, [open a Support ticket](/learn/overview/get-support.md):
 
 * `max_execution_time`
 * `max_input_time`
