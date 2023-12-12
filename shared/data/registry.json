@@ -851,6 +851,7 @@
     "type": "postgresql",
     "versions": {
       "deprecated": [
+        "11",
         "10",
         "9.6",
         "9.5",
@@ -858,34 +859,35 @@
         "9.3"
       ],
       "supported": [
+        "16",
         "15",
         "14",
         "13",
-        "12",
-        "11"
+        "12"
       ]
     },
     "versions-dedicated-gen-2": {
       "deprecated": [
+        "11*",
         "9.6*",
         "9.5",
         "9.4",
         "9.3"
       ],
       "supported": [
-        "11*"
       ]
     },
     "versions-dedicated-gen-3": {
       "deprecated": [
+        "11",
         "10"
       ],
       "supported": [
+        "16",
         "15",
         "14",
         "13",
-        "12",
-        "11"
+        "12"
       ]
     }
   },
