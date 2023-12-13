@@ -17,7 +17,7 @@ To store secrets such as API keys, create sensitive [environment variables](../d
 {{% major-minor-versions-note configMinor="true" %}}
 
 {{% version/specific %}}
-<!-- API Version 1 -->
+<!-- Platform.sh -->
 
 <table>
     <thead>
@@ -37,7 +37,7 @@ To store secrets such as API keys, create sensitive [environment variables](../d
 </table>
 
 <--->
-<!-- API Version 2 -->
+<!-- Upsun -->
 
 {{< image-versions image="vault-kms" status="supported" environment="grid" >}}
 

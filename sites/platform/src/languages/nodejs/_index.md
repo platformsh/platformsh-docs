@@ -13,7 +13,7 @@ You can also develop a microservice architecture mixing JavaScript and other app
 {{% major-minor-versions-note %}}
 
 {{% version/specific %}}
-<!-- API Version 1 -->
+<!-- Platform.sh -->
 
 <table>
     <thead>
@@ -31,7 +31,7 @@ You can also develop a microservice architecture mixing JavaScript and other app
 </table>
 
 <--->
-<!-- API Version 2 -->
+<!-- Upsun -->
 
 {{< image-versions image="nodejs" status="supported" environment="grid" >}}
 
@@ -76,7 +76,7 @@ To use a specific version in a container with a different language, [use a versi
 {{% deprecated-versions %}}
 
 {{% version/specific %}}
-<!-- API Version 1 -->
+<!-- Platform.sh -->
 
 <table>
     <thead>
@@ -94,7 +94,7 @@ To use a specific version in a container with a different language, [use a versi
 </table>
 
 <--->
-<!-- API Version 2 -->
+<!-- Upsun -->
 
 {{< image-versions image="nodejs" status="deprecated" environment="grid" >}}
 

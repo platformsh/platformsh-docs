@@ -13,7 +13,7 @@ But you can include Varnish as a service.
 {{% major-minor-versions-note configMinor="true" %}}
 
 {{% version/specific %}}
-<!-- API Version 1 -->
+<!-- Platform.sh -->
 
 <table>
     <thead>
@@ -33,7 +33,7 @@ But you can include Varnish as a service.
 </table>
 
 <--->
-<!-- API Version 2 -->
+<!-- Upsun -->
 
 {{< image-versions image="varnish" status="supported" environment="grid" >}}
 

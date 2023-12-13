@@ -12,7 +12,7 @@ You can deploy Python apps on {{% vendor/name %}} using a server or a project su
 {{% major-minor-versions-note configMinor="true" %}}
 
 {{% version/specific %}}
-<!-- API Version 1 -->
+<!-- Platform.sh -->
 
 <table>
     <thead>
@@ -30,7 +30,7 @@ You can deploy Python apps on {{% vendor/name %}} using a server or a project su
 </table>
 
 <--->
-<!-- API Version 2 -->
+<!-- Upsun -->
 
 {{< image-versions image="python" status="supported" environment="grid" >}}
 

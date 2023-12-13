@@ -25,11 +25,16 @@ You can find a [complete reference](./app-reference.md) of all possible settings
 To create a very basic app, you need a few things:
 
 {{% version/specific %}}
+<!-- Platform.sh -->
+
 * A unique `name` not shared by any other app in the project.
 * The runtime `type` defining what language it uses.
 * A `disk` size for your deployed files.
 * A definition of how to handle requests from the outside `web`.
+
 <--->
+<!-- Upsun -->
+
 * A unique name not shared by any other app in the project.
 * The runtime `type` defining what language it uses.
 * A definition of how to handle requests from the outside `web`.

@@ -28,7 +28,7 @@ for high-performance data retrieval and key-value storage.
 {{% major-minor-versions-note configMinor="true" %}}
 
 {{% version/specific %}}
-<!-- API Version 1 -->
+<!-- Platform.sh -->
 
 <table>
     <thead>
@@ -48,7 +48,7 @@ for high-performance data retrieval and key-value storage.
 </table>
 
 <--->
-<!-- API Version 2 -->
+<!-- Upsun -->
 
 {{< image-versions image="redis" status="supported" environment="grid" >}}
 
@@ -57,7 +57,7 @@ for high-performance data retrieval and key-value storage.
 {{% deprecated-versions %}}
 
 {{% version/specific %}}
-<!-- API Version 1 -->
+<!-- Platform.sh -->
 
 <table>
     <thead>
@@ -77,7 +77,7 @@ for high-performance data retrieval and key-value storage.
 </table>
 
 <--->
-<!-- API Version 2 -->
+<!-- Upsun -->
 
 {{< image-versions image="redis" status="deprecated" environment="grid" >}}
 
@@ -146,7 +146,7 @@ highlight=python
 
 {{< /codetabs >}}
 
-<!-- Version 2: .environment shortcode + context -->
+<!-- Upsun: .environment shortcode + context -->
 {{% version/only "2" %}}
 
 ```yaml {configFile="app"}
@@ -240,7 +240,7 @@ highlight=python
 
 {{< /codetabs >}}
 
-<!-- Version 2: .environment shortcode + context -->
+<!-- Upsun: .environment shortcode + context -->
 {{% version/only "2" %}}
 
 ```yaml {configFile="app"}
@@ -439,7 +439,7 @@ which means Redis stores and retrieves the data saved into sessions.
 To set up Redis as your session handler, add a configuration similar to the following:
 
 {{% version/specific %}}
-<!-- Version 1 -->
+<!-- Platform.sh -->
 
 ```yaml {configFile="services" v2Hide="true"}
 {{< snippet name="data" config="service" >}}
@@ -474,7 +474,7 @@ web:
 ```
 
 <--->
-<!-- Version 2 -->
+<!-- Upsun -->
 
 ```yaml {configFile="services" v2Hide="true"}
 {{< snippet name="data" config="service" >}}

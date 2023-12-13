@@ -20,7 +20,7 @@ Self-service Grid plans don't include a CDN by default, but you can set up one a
 such as [Fastly](./fastly.md) or [Cloudflare](./cloudflare.md).
 
 <--->
-<!-- Version 2 -->
+<!-- Upsun -->
 Fastly is the recommended CDN for {{% vendor/name %}} projects.
 Self-service projects don't include a CDN by default, but you can set up one at any time,
 such as [Fastly](./fastly.md) or [Cloudflare](./cloudflare.md).

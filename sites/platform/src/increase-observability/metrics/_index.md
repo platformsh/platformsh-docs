@@ -7,7 +7,7 @@ description: See all of the live infrastructure metrics available to give you an
 {{% vendor/name %}} projects are accompanied by live infrastructure metrics that provide an overview of resource usage for environments.
 
 {{< version/specific >}}
-<!-- Platform.sh, version 1 -->
+<!-- Platform.sh -->
 Within the Console, metrics can be found for an environment under **Metrics**.
 
 The information under **Metrics** shows usage metrics for:

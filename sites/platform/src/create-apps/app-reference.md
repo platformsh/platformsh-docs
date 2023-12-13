@@ -7,10 +7,15 @@ description: See all of the options for controlling your apps and how they're bu
 {{% description %}}
 
 {{% version/specific %}}
+<!-- Platform.sh -->
+
 For single-app projects, the configuration is all done in a `{{< vendor/configfile "app" >}}` file,
 usually located at the root of your app folder in your Git repository.
 [Multi-app projects](./multi-app/_index.md) can be set up in various ways.
+
 <--->
+<!-- Upsun -->
+
 Configuration is all done in a `{{< vendor/configfile "app" >}}` file,
 located at the root of your Git repository.
 {{% /version/specific %}}
@@ -22,11 +27,14 @@ For reference, see a [log of changes to app configuration](./upgrading.md).
 {{% /version/only %}}
 
 {{% version/specific %}}
+<!-- Platform.sh -->
 ## Top-level properties
 
 The following table presents all properties available at the top level of the YAML for the app.
 
 <--->
+<!-- Upsun -->
+
 ## Primary application properties
 
 All application configuration takes place in a `{{< vendor/configfile "app" >}}` file, with each application configured under a unique key beneath the top-level `applications` key.
@@ -52,6 +60,7 @@ The column _Set in instance?_ defines whether the given property can be overridd
 To override any part of a property, you have to provide the entire property.
 
 {{% version/specific %}}
+<!-- Platform.sh -->
 
 | Name               | Type                                                | Required | Set in instance? | Description |
 | ------------------ | --------------------------------------------------- | -------- | ---------------- | ----------- |
@@ -76,6 +85,7 @@ To override any part of a property, you have to provide the entire property.
 | `additional_hosts` | An [additional hosts dictionary](#additional-hosts) |          | Yes              | Maps of hostnames to IP addresses. |
 
 <--->
+<!-- Upsun -->
 
 | Name               | Type                                                | Required | Set in instance? | Description |
 | ------------------ | --------------------------------------------------- | -------- | ---------------- | ----------- |
@@ -102,9 +112,14 @@ To override any part of a property, you have to provide the entire property.
 ## Root directory
 
 {{% version/specific %}}
+<!-- Platform.sh -->
+
 Some of the properties you can define are relative to your app's root directory.
 The root defaults to the location of your `{{< vendor/configfile "app" >}}` file.
+
 <--->
+<!-- Upsun -->
+
 Some of the properties you can define are relative to your app's root directory.
 The root defaults to the root of the repository.
 
@@ -140,10 +155,14 @@ Available languages and their supported versions:
 These are used in the format `runtime:version`:
 
 {{% version/specific %}}
+<!-- Platform.sh -->
+
 ```yaml {configFile="app"}
 type: 'php:{{% latest "php" %}}'
 ```
 <--->
+<!-- Upsun -->
+
 ```yaml {configFile="app"}
 applications:
     myapp:
@@ -152,6 +171,8 @@ applications:
 {{% /version/specific %}}
 
 {{< version/specific >}}
+<!-- Platform.sh -->
+
 ## Sizes
 
 Resources are distributed across all containers in an environment from the total available from your [plan size](../administration/pricing/_index.md).
@@ -183,6 +204,8 @@ The default is **{{< partial "plans/default-dev-env-size" >}}**, but you can inc
 (Service containers in preview environments are always set to {{< partial "plans/default-dev-env-size" >}} size.)
 
 <--->
+<!-- Upsun -->
+
 ## Resources
 
 Resources for application containers are not committed to YAML files, but instead managed over the API using either the Console or the `{{% vendor/cli %}} resources:set` command. 
@@ -364,6 +387,8 @@ relationships:
 ## Available disk space
 
 {{% version/specific %}}
+<!-- Platform.sh -->
+
 The maximum total space available to all apps and services is set by the storage in your plan settings.
 When deploying your project, the sum of all `disk` keys defined in app and service configurations
 must be *equal or less* than the plan storage size.
@@ -379,6 +404,7 @@ You need to either increase your plan's storage or decrease the `disk` values yo
 
 {{% disk-space-mb %}}
 <--->
+<!-- Upsun -->
 
 Disk for application containers are not committed to YAML files, but instead managed over the API using either the Console or the `{{% vendor/cli %}} resources:set` command. 
 
@@ -427,6 +453,7 @@ See how to [troubleshoot the warning](./troubleshoot-mounts.md#overlapping-folde
 
 {{% version/specific %}}
 <!-- Platform.sh -->
+
 | Name          | Type                 | Required | Description |
 | ------------- | -------------------- | -------- | ----------- |
 | `source`      | `local`, `service`, or `tmp` | Yes      | Specifies the mount type. Set to: </br> - `local` so your mount is unique to the app (requires `disk` to be set for the app).</br> - `service` so your [Network Storage](/add-services/network-storage.md) mount can be shared between several apps.</br> - `tmp` to mount a directory within the `/tmp` directory of your app. `tmp` mounts are **local ephemeral mounts**; their content may be removed during infrastructure maintenance operations. They allow you to **store files that you're not afraid to lose**, such as your application cache that can be seamlessly rebuilt.</br>Note that the `/tmp` directory has a [maximum allocation of 8 GB](/create-apps/troubleshoot-disks.md#no-space-left-on-device). |
@@ -448,6 +475,7 @@ Example:
 
 {{% version/specific %}}
 <!-- Platform.sh -->
+
 ```yaml {configFile="app"}
 mounts:
     'web/uploads':
@@ -469,6 +497,7 @@ mounts:
 
 <--->
 <!-- Upsun -->
+
 ```yaml {configFile="app"}
 applications:
     myapp:
@@ -546,7 +575,7 @@ See some [examples of how to configure what's served](./web/_index.md).
 ### Web commands
 
 {{% version/specific %}}
-<!-- Version 1 -->
+<!-- Platform.sh -->
 
 | Name    | Type     | Required                      | Description |
 | ------- | -------- | ----------------------------- | ----------- |
@@ -554,7 +583,7 @@ See some [examples of how to configure what's served](./web/_index.md).
 | `start` | `string` | See [note](#required-command) | The command to launch your app. If it terminates, it's restarted immediately. |
 
 <--->
-<!-- Version 2 -->
+<!-- Upsun -->
 
 | Name    | Type     | Required                      | Description |
 | ------- | -------- | ----------------------------- | ----------- |
@@ -566,7 +595,7 @@ See some [examples of how to configure what's served](./web/_index.md).
 Example:
 
 {{% version/specific %}}
-<!-- Version 1 -->
+<!-- Platform.sh -->
 
 ```yaml {configFile="app"}
 web:
@@ -575,7 +604,7 @@ web:
 ```
 
 <--->
-<!-- Version 2 -->
+<!-- Upsun -->
 
 ```yaml {configFile="app"}
 applications:
@@ -600,10 +629,9 @@ Just run it as normal and allow the {{% vendor/name %}} supervisor to manage it.
 
 {{< /note >}}
 
-{{% version/specific %}}
-<--->
+{{% version/only "2" %}}
 For an example and common use case of the `pre_start` command, see [Mounts, instances, and Network Storage](#mounts-instances-and-network-storage).
-{{% /version/specific %}}
+{{% /version/only %}}
 
 #### Required command
 
@@ -628,13 +656,18 @@ For all other containers, the default for `protocol` is `http`.
 The following example is the default on non-PHP containers:
 
 {{% version/specific %}}
+<!-- Platform.sh -->
+
 ```yaml {configFile="app"}
 web:
     upstream:
         socket_family: tcp
         protocol: http
 ```
+
 <--->
+<!-- Upsun -->
+
 ```yaml {configFile="app"}
 applications:
     myapp:
@@ -694,6 +727,8 @@ In the following example, the `allow` key disallows requests for static files an
 This is overridden by a rule that explicitly allows common image file formats.
 
 {{% version/specific %}}
+<!-- Platform.sh -->
+
 ```yaml {configFile="app"}
 web:
     locations:
@@ -709,6 +744,8 @@ web:
                     allow: true
 ```
 <--->
+<!-- Upsun -->
+
 ```yaml {configFile="app"}
 applications:
     myapp:
@@ -743,6 +780,8 @@ The following table shows the keys in the `request_buffering` dictionary:
 The default configuration would look like this:
 
 {{% version/specific %}}
+<!-- Platform.sh -->
+
 ```yaml {configFile="app"}
 web:
     locations:
@@ -753,6 +792,8 @@ web:
                 max_request_size: 250m
 ```
 <--->
+<!-- Upsun -->
+
 ```yaml {configFile="app"}
 applications:
     myapp:
@@ -790,6 +831,8 @@ Each worker can differ from the `web` instance in all properties _except_ for:
 A worker named `queue` that was small and had a different start command could look like this:
 
 {{% version/specific %}}
+<!-- Platform.sh -->
+
 ```yaml {configFile="app"}
 workers:
     queue:
@@ -802,6 +845,8 @@ workers:
 For resource allocation, using workers in your project requires a [{{< partial "plans/multiapp-plan-name" >}} plan or larger](https://platform.sh/pricing/).
 
 <--->
+<!-- Upsun -->
+
 ```yaml {configFile="app"}
 applications:
     myapp:
@@ -831,11 +876,15 @@ In the following example, only users with `admin` permissions for the given [env
 can access the deployed environment via SSH:
 
 {{% version/specific %}}
+<!-- Platform.sh -->
+
 ```yaml {configFile="app"}
 access:
     ssh: admin
 ```
 <--->
+<!-- Upsun -->
+
 ```yaml {configFile="app"}
 applications:
     myapp:
@@ -866,6 +915,8 @@ The following example sets two variables:
   that's available in the `PLATFORM_VARIABLES` environment variable
 
 {{% version/specific %}}
+<!-- Platform.sh -->
+
 ```yaml {configFile="app"}
 variables:
     env:
@@ -874,6 +925,8 @@ variables:
         "system.site:name": 'My site rocks'
 ```
 <--->
+<!-- Upsun -->
+
 ```yaml {configFile="app"}
 applications:
     myapp:
@@ -910,12 +963,17 @@ Each rule has the following properties where at least one is required and `ips` 
 The default settings would look like this:
 
 {{% version/specific %}}
+<!-- Platform.sh -->
+
 ```yaml {configFile="app"}
 firewall:
     outbound:
         - ips: ["0.0.0.0/0"]
 ```
+
 <--->
+<!-- Upsun-->
+
 ```yaml {configFile="app"}
 applications:
     myapp:
@@ -931,9 +989,14 @@ applications:
 ### Support for rules
 
 {{% version/specific %}}
+<!-- Platform.sh -->
+
 Where outbound rules for firewalls are supported in all environments.
 For {{% names/dedicated-gen-2 %}} projects, contact support for configuration.
+
 <--->
+<!-- Upsun -->
+
 Where outbound rules for firewalls are supported in all environments.
 {{% /version/specific %}}
 
@@ -946,6 +1009,8 @@ So in the following example requests to any IP on port 80 are allowed
 and requests to 1.2.3.4 on either port 80 or 443 are allowed:
 
 {{% version/specific %}}
+<!-- Platform.sh -->
+
 ```yaml {configFile="app"}
 firewall:
     outbound:
@@ -953,7 +1018,10 @@ firewall:
           ports: [443]
         - ports: [80]
 ```
+
 <--->
+<!-- Upsun -->
+
 ```yaml {configFile="app"}
 applications:
     myapp:
@@ -986,6 +1054,8 @@ This means that you allow potentially hundreds or thousands of other servers als
 An example rule filtering by domain:
 
 {{% version/specific %}}
+<!-- Platform.sh -->
+
 ```yaml {configFile="app"}
 firewall:
     outbound:
@@ -997,6 +1067,8 @@ firewall:
         ports: [22]
 ```
 <--->
+<!-- Upsun -->
+
 ```yaml {configFile="app"}
 applications:
     myapp:
@@ -1052,11 +1124,16 @@ In all languages, you can also specify a flavor of `none` to take no action at a
 (which is the default for any language other than PHP and Node.js).
 
 {{% version/specific %}}
+<!-- Platform.sh -->
+
 ```yaml {configFile="app"}
 build:
     flavor: none
 ```
+
 <--->
+<!-- Upsun -->
+
 ```yaml {configFile="app"}
 applications:
     myapp:
@@ -1089,6 +1166,8 @@ The format for package names and version constraints are defined by the specific
 An example of dependencies in multiple languages:
 
 {{% version/specific %}}
+<!-- Platform.sh -->
+
 ```yaml {configFile="app"}
 dependencies:
     php: # Specify one Composer package per line.
@@ -1104,7 +1183,10 @@ dependencies:
     nodejs: # Specify one NPM package per line.
         pm2: '^4.5.0'
 ```
+
 <--->
+<!-- Upsun -->
+
 ```yaml {configFile="app"}
 applications:
     myapp:
@@ -1208,6 +1290,7 @@ See how to [get cron logs](../increase-observability/logs/access-logs.md#contain
 The following table shows the properties for each job:
 
 {{% version/specific %}}
+<!-- Platform.sh -->
 
 | Name               | Type                                         | Required | Description |
 | ------------------ | -------------------------------------------- | -------- | ----------- |
@@ -1217,6 +1300,7 @@ The following table shows the properties for each job:
 | `timeout`          | `integer`                                    | No       | The maximum amount of time a cron can run before it's terminated. Defaults to the maximum allowed value of `86400` seconds (24 hours).
 
 <--->
+<!-- Upsun -->
 
 | Name               | Type                                         | Required | Description |
 | ------------------ | -------------------------------------------- | -------- | ----------- |
@@ -1237,6 +1321,8 @@ Note that you can [cancel pending or running crons](../environments/cancel-activ
 | `stop`             | `string`  | No       | The command that's issued to give the cron command a chance to shutdown gracefully, such as to finish an active item in a list of tasks. Issued when a cron task is interrupted by a user through the CLI or Console. If not specified, a `SIGTERM` signal is sent to the process. |
 
 {{% version/specific %}}
+<!-- Platform.sh -->
+
 ```yaml {configFile="app"}
 crons:
     mycommand:
@@ -1247,6 +1333,8 @@ crons:
         shutdown_timeout: 18
 ```
 <--->
+<!-- Upsun -->
+
 ```yaml {configFile="app"}
 applications:
     myapp:
@@ -1265,12 +1353,12 @@ applications:
 
 In this example configuration, the [cron specification](#crons) uses the `H` syntax.
 
-{{% version/specific %}}
+{{% version/only "1"%}}
+
 Note that this syntax is only supported on Grid and {{% names/dedicated-gen-3 %}} projects.
 On {{% names/dedicated-gen-2 %}} projects, use the [standard cron syntax](https://en.wikipedia.org/wiki/Cron#Cron_expression).
-<--->
 
-{{% /version/specific %}}
+{{% /version/only %}}
 
 ### Example cron jobs
 
@@ -1365,6 +1453,8 @@ define conditional crons.
 To do so, use a configuration similar to the following:
 
 {{% version/specific %}}
+<!-- Platform.sh -->
+
 ```yaml {configFile="app"}
 crons:
     update:
@@ -1377,6 +1467,8 @@ crons:
                 fi
 ```
 <--->
+<!-- Upsun -->
+
 ```yaml {configFile="app"}
 applications:
     myapp:
@@ -1398,7 +1490,7 @@ applications:
 ### Cron job timing
 
 {{< version/specific >}}
-<!-- Version 1 -->
+<!-- Platform.sh -->
 Minimum time between cron jobs being triggered:
 
 | Plan                | Time      |
@@ -1407,7 +1499,8 @@ Minimum time between cron jobs being triggered:
 | Elite or Enterprise | 1 minute  |
 
 <--->
-<!-- Version 2 -->
+<!-- Upsun -->
+
 The minimum time between cron jobs being triggered is 5 minutes.
 {{< /version/specific >}}
 
@@ -1431,10 +1524,15 @@ To minimize unnecessary resource use,
 crons on environments with no deployments are paused.
 
 {{% version/specific %}}
+<!-- Platform.sh -->
+
 This affects all environments that aren't live environments.
 This means all environments on Development plans
 and all preview environments on higher plans.
+
 <--->
+<!-- Upsun -->
+
 This affects all preview environments, _and_ production environment that do not yet have a domain attached to them.
 {{% /version/specific %}}
 
@@ -1495,13 +1593,18 @@ You can also set your [app's runtime timezone](../create-apps/timezone.md).
 You can enable [PHP extensions](../languages/php/extensions.md) just with a list of extensions:
 
 {{% version/specific %}}
+<!-- Platform.sh -->
+
 ```yaml {configFile="app"}
 runtime:
     extensions:
         - geoip
         - tidy
 ```
+
 <--->
+<!-- Upsun -->
+
 ```yaml {configFile="app"}
 applications:
     myapp:
@@ -1518,6 +1621,8 @@ applications:
 Alternatively, if you need to include configuration options, use a dictionary for that extension:
 
 {{% version/specific %}}
+<!-- Platform.sh -->
+
 ```yaml {configFile="app"}
 runtime:
     extensions:
@@ -1527,7 +1632,10 @@ runtime:
             server_id: foo
             server_token: bar
 ```
+
 <--->
+<!-- Upsun -->
+
 ```yaml {configFile="app"}
 applications:
     myapp:
@@ -1563,6 +1671,7 @@ See more about [PHP-FPM workers and sizing](../languages/php/fpm.md).
 The following table shows the properties that can be set in `source`:
 
 {{% version/specific %}}
+<!-- Platform.sh -->
 
 | Name         | Type                     | Required | Description |
 | ------------ | ------------------------ | -------- | ----------- |
@@ -1570,6 +1679,7 @@ The following table shows the properties that can be set in `source`:
 | `root`       | `string`                 |          |  The path where the app code lives. Defaults to the directory of the `{{< vendor/configfile "app" >}}` file. Useful for [multi-app setups](./multi-app/_index.md). |
 
 <--->
+<!-- Upsun -->
 
 | Name         | Type                     | Required | Description |
 | ------------ | ------------------------ | -------- | ----------- |
@@ -1588,12 +1698,17 @@ Then when your app tries to access the hostname, it's sent to the proper IP addr
 So in the following example, if your app tries to access `api.example.com`, it's sent to `192.0.2.23`.
 
 {{% version/specific %}}
+<!-- Platform.sh -->
+
 ```yaml {configFile="app"}
 additional_hosts:
     api.example.com: "192.0.2.23"
     web.example.com: "203.0.113.42"
 ```
+
 <--->
+<!-- Upsun -->
+
 ```yaml {configFile="app"}
 applications:
     myapp:

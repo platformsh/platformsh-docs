@@ -10,7 +10,7 @@ description: "{{% vendor/name %}} supports building and deploying applications w
 {{% major-minor-versions-note configMinor="true" %}}
 
 {{% version/specific %}}
-<!-- API Version 1 -->
+<!-- Platform.sh -->
 
 <table>
     <thead>
@@ -28,7 +28,7 @@ description: "{{% vendor/name %}} supports building and deploying applications w
 </table>
 
 <--->
-<!-- API Version 2 -->
+<!-- Upsun -->
 
 {{< image-versions image="ruby" status="supported" environment="grid" >}}
 

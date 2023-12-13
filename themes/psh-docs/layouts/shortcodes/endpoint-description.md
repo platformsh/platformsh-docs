@@ -251,7 +251,7 @@ Notice the `relationship` (`{{ $varnishRelName }}`) defined for the service `{{ 
 {{ end }}
 
 {{ if and (eq $type "varnish") (eq $docVersion 1) }}
-  <!-- Varnish + API version 2 -->
+  <!-- Varnish + Upsun -->
 {{ else }}
 ```yaml {configFile="app"}
 {{ partial "snippet" (dict "context" . "name" $appName "config" "app" "root" "false" "Inner" $appInner ) }}

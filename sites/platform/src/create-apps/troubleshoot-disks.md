@@ -62,13 +62,18 @@ If you find that your application or service is running out of disk space,
 you can increase the available storage.
 
 {{% version/specific %}}
+<!-- Platform.sh -->
+
 To increase the space available for applications and services,
 use the `disk` keys in your `{{< vendor/configfile "app" >}}` and `{{< vendor/configfile "services" >}}` files.
 The sum of all `disk` keys can't exceed the available storage in your plan.
 
 If you need more storage to fit the sum of all `disk` keys, increase your plan's storage limits.
 This can only be done by people with the [manage plans permission](../administration/users.md#organization-permissions).
+
 <--->
+<!-- Upsun -->
+
 To increase the space available for applications and services,
 use the `{{% vendor/cli %}} resources:set` command.
 For more information, see how to [manage resources](/manage-resources.md).

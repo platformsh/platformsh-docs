@@ -58,14 +58,14 @@ Get an estimate of current disk usage using the CLI command `{{% vendor/cli %}} 
 Just keep in mind it's an estimate and not exact.
 
 {{< version/specific >}}
-<!-- Version 1 -->
+<!-- Platform.sh -->
 
 Allocate more space to the service in [`{{< vendor/configfile "services" >}}`](../_index.md).
 As table space can grow rapidly,
 it's usually advisable to make your database mount size twice the size reported by the `db:size` command.
 
 <--->
-<!-- Version 2 -->
+<!-- Upsun -->
 
 Allocate more space to the service by running the `upsun resources:set` command.
 For more information, see how to [manage resources](/manage-resources.md).

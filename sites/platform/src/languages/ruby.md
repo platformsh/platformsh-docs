@@ -13,7 +13,7 @@ description: |
 ### Ruby MRI
 
 {{% version/specific %}}
-<!-- API Version 1 -->
+<!-- Platform.sh -->
 
 <table>
     <thead>
@@ -33,7 +33,7 @@ description: |
 </table>
 
 <--->
-<!-- API Version 2 -->
+<!-- Upsun -->
 
 {{< image-versions image="ruby" status="supported" environment="grid" >}}
 

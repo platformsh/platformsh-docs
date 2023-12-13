@@ -14,7 +14,7 @@ banner:
 {{% major-minor-versions-note %}}
 
 {{% version/specific %}}
-<!-- API Version 1 -->
+<!-- Platform.sh -->
 
 <table>
     <thead>
@@ -34,7 +34,7 @@ banner:
 </table>
 
 <--->
-<!-- API Version 2 -->
+<!-- Upsun -->
 
 {{< image-versions image="rust" status="supported" environment="grid" >}}
 

@@ -13,7 +13,7 @@ layout: single
 ### OpenJDK versions:
 
 {{% version/specific %}}
-<!-- API Version 1 -->
+<!-- Platform.sh -->
 
 <table>
     <thead>
@@ -31,7 +31,7 @@ layout: single
 </table>
 
 <--->
-<!-- API Version 2 -->
+<!-- Upsun -->
 
 {{< image-versions image="java" status="supported" environment="grid" >}}
 

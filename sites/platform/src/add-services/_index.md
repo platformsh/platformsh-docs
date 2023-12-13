@@ -12,10 +12,10 @@ Because the services are included in your project, you can manage them through G
 and they're backed up together with the rest of your project.
 
 {{% version/specific %}}
-<!-- API Version 1 -->
+<!-- Platform.sh -->
 Your project defines the services configuration in a file named `{{< vendor/configfile "services" >}}`.
 <--->
-<!-- API Version 2 -->
+<!-- Upsun -->
 Your project defines the services configuration from a top-level key called `services`, which is placed in a unified configuration file like `{{< vendor/configfile "services" >}}`.
 {{% /version/specific %}}
 
@@ -41,7 +41,7 @@ Configure your service in the following pattern:
 An example service configuration for two databases might look like this:
 
 {{< version/specific >}}
-<!-- Version 1 -->
+<!-- Platform.sh -->
 
 ```yaml {configFile="services"}
 {{< snippet name="mariadb" config="service" >}}
@@ -55,7 +55,7 @@ An example service configuration for two databases might look like this:
 ```
 
 <--->
-<!-- Version 2 -->
+<!-- Upsun -->
 
 ```yaml {configFile="services"}
 {{< snippet name="database1" config="service" >}}
@@ -69,11 +69,11 @@ An example service configuration for two databases might look like this:
 {{< /version/specific >}}
 
 {{% version/specific %}}
-<!-- API Version 1 -->
+<!-- Platform.sh -->
 This YAML file is a dictionary defining all of the services you want to use.
 The top-level key is a custom service name ({{<variable "SERVICE_NAME" >}}; in the example, `mariadb` and `postgresql`), which you use to identify the service in step 2.
 <--->
-<!-- API Version 2 -->
+<!-- Upsun -->
 This YAML file contains a dictionary defining all of the services you want to use.
 The top-level key `services` defines an object of all of the services to be provisioned for the project. 
 Below that, come custom service names ({{<variable "SERVICE_NAME" >}}; in the example, `mariadb` and `postgresql`), which you use to identify services in step 2.
@@ -94,7 +94,7 @@ The following table presents the keys you can define for each service:
 
 {{% version/specific %}}
 
-<!-- Version 1 -->
+<!-- Platform.sh -->
 
 | Name            | Type       | Required          | Description |
 | --------------- | ---------- | ----------------- | ----------- |
@@ -105,7 +105,7 @@ The following table presents the keys you can define for each service:
 | `relationships` | dictionary | For some services | Some services require a [relationship](/create-apps/app-reference.md#relationships) to your app. The content of the dictionary has the same type as the `relationships` dictionary for [app configuration](../create-apps/app-reference.md#relationships). The `endpoint_name` for apps is always `http`. |
 
 <--->
-<!-- Version 2 -->
+<!-- Upsun -->
 
 | Name            | Type       | Required          | Description |
 | --------------- | ---------- | ----------------- | ----------- |
@@ -116,7 +116,7 @@ The following table presents the keys you can define for each service:
 {{% /version/specific %}}
 
 {{% version/specific %}}
-<!-- Version 1 -->
+<!-- Platform.sh -->
 
 ##### Disk
 
@@ -135,7 +135,7 @@ If your plan is sufficiently large for bigger containers, you can increase the s
 Note that service containers in preview environments are always set to size `S`.
 
 <--->
-<!-- Version 2 -->
+<!-- Upsun -->
 
 ##### Resources (CPU, RAM, disk)
 
@@ -182,7 +182,7 @@ you can use [explicit endpoint configuration](/create-apps/app-reference#relatio
 An example relationship to connect to the databases given in the [example in step 1](#1-configure-the-service):
 
 {{% version/specific %}}
-<!-- Version 1 -->
+<!-- Platform.sh -->
 
 ```yaml {configFile="app"}
 {{< snippet name="<APP_NAME>" config="app" root="false">}}
@@ -207,7 +207,7 @@ relationships:
 ```
 
 <--->
-<!-- Version 2 -->
+<!-- Upsun -->
 
 ```yaml {configFile="app"}
 {{< snippet name="<APP_NAME>" config="app" root="false">}}
