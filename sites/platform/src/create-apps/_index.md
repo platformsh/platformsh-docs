@@ -5,7 +5,7 @@ description: |
   Control your apps and how they're built and deployed on {{% vendor/name %}} with YAML configuration.
 layout: single
 keywords:
-  - ".platform.app.yaml"
+  - '{{% vendor/configfile "app" %}}'
 ---
 
 {{% description %}}
@@ -168,7 +168,7 @@ dependencies:
 # The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    mysql: 
+    mysql:
 
 # Scripts that are run as part of the build and deploy process.
 hooks:
