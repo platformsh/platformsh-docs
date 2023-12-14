@@ -78,7 +78,7 @@ To generate a key otherwise, GitHub has a good [walk-through for creating SSH ke
 
 Then you need to [add it to your {{% vendor/name %}} account](#2-add-an-ssh-key-to-your-platform-account).
 
-### 2. Add an SSH key to your Platform account
+### 2. Add an SSH key to your {{% vendor/name %}} account
 
 Once you have the location of your public key, add it to your {{% vendor/name %}} account.
 
