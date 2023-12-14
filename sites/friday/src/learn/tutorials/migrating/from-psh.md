@@ -120,7 +120,7 @@ which are starting points for various technology stacks with working configurati
 
 When you've added your configuration, make sure to commit it to Git.
 
-## 4. Define resources
+## 4. Optional: Define a resource initialization strategy
 
 By default, when you first deploy your project,
 {{% vendor/name %}} allocates [default resources](/manage-resources/resource-init.md) to each of your containers.
