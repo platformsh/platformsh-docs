@@ -19,8 +19,8 @@ getDocsData() {
     rm -v data/friday_index.json && echo "data json for upsun deleted" || echo "failed to delete data json for upsun"
 
     # Get the updated index for docs
-    curl -s "${PLATFORM_DOCS_URL}index.json" >> data/platform_index.json
-    curl -s "${FRIDAY_DOCS_URL}index.json" >> data/friday_index.json
+    curl -s "${PLATFORM_DOCS_URL}index.json" >> data/platform_index.json && echo "retrieved psh index" || echo "failed to retrieve psh index"
+    curl -s "${FRIDAY_DOCS_URL}index.json" >> data/friday_index.json && echo "retrieved upsun index" || echo "failed to retrieve upsun index"
 
     # How many times does Platform.sh appear in the platform index? Should be 3815
     pshOccurrenceInPsh=$(cat data/platform_index.json | grep -o -i Platform.sh | wc -l)
