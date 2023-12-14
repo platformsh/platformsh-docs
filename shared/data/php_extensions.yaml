@@ -1202,6 +1202,7 @@ grid:
       - imagick
   "8.3":
     available:
+      - amqp
       - apcu
       - blackfire
       - ffi
