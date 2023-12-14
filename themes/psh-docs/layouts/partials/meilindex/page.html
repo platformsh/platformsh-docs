@@ -11,7 +11,7 @@
 {{- $runningText := chomp ( partial "meilindex/fields/text" . ) -}}
 {{- $currentHeadingTitle := .Title | .RenderString -}}
 {{- $pageTitle := .Title | .RenderString -}}
-{{- $keywords := .Keywords -}}
+{{- $keywords := .Keywords | .RenderString -}}
 {{- $currentHeadingAnchor := "" -}}
 {{- $count := 0 -}}
 <!-- Go line by line  -->
