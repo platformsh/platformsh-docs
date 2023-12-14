@@ -13,11 +13,15 @@ To do so, follow these steps.
 You need:
 
 {{% version/specific %}}
+<!-- Platform.sh -->
 - An app that works and is ready to be built
 - Code in Git
 - A {{< vendor/name >}} account -- if you don't already have one, [start a trial](https://auth.api.platform.sh/register?trial_type=general)
 - The [{{< vendor/name >}} CLI](/administration/cli/_index.md) installed locally
+
 <--->
+<!-- Upsun -->
+
 - An app that works and is ready to be built
 - Code in Git
 - A {{< vendor/name >}} account -- if you don't already have one, [register](https://upsun.com/register/).
@@ -116,7 +120,16 @@ which are starting points for various technology stacks with working configurati
 
 When you've added your configuration, make sure to commit it to Git.
 
-## 4. Push your code
+## 4. Define resources
+
+By default, when you first deploy your project,
+{{% vendor/name %}} allocates [default resources](/manage-resources/resource-init.md) to each of your containers.
+If you don't want to use those default resources,
+define your own [resource initialization strategy](/manage-resources/resource-init.md#define-a-resource-initialization-strategy) before pushing your code.
+
+Alternatively, you can [amend those default container resources](/manage-resources/adjust-resources.md) after your project is deployed.
+
+## 5. Push your code
 
 The way to push your code to {{% vendor/name %}} depends on
 whether you're hosting your code with a third-party service using a [source integration](/integrations/source/_index.md).
@@ -198,26 +211,6 @@ After any errors are fixed, a push creates a new environment.
 
 {{< /codetabs >}}
 
-{{% version/ifelse "" "## 5. Define resources" %}}
-
-{{% version/only "2" %}}
-
-Once you push your code to {{% vendor/name %}}, either directly or through an integration, the deployment itself is not yet complete.
-
-{{% vendor/name %}} has only just now understood the _types_ of containers you want (like a Python app container, and a Redis and MariaDB service containers) by validating that push. 
-How many resources those containers get is still left for you to define.
-
-You can do so quickly with the following CLI command:
-
-```bash
-upsun resources:set
-```
-
-Follow the prompts to set CPU, RAM, disk, and the number of instances for each container,
-and read [the manage resources](/manage-resources.md) documentation for more information.
-
-{{% /version/only %}}
-
 ## {{% version/ifelse "5" "6" %}}. Import data
 
 Once you have an environment, you can import the data you backed up at step 1.
@@ -257,10 +250,10 @@ applications:
     myapp:
         mounts:
             'web/uploads':
-                source: local
+                source: storage
                 source_path: uploads
             'private':
-                source: local
+                source: storage
                 source_path: private
 ```
 {{% /version/specific %}}
