@@ -430,3 +430,53 @@ The mail instance also doesn't need any access to the SQL database so for securi
 The workers have known fixed sizes, while web can scale to as large as the plan allows.
 Each instance can also check the `TYPE` environment variable to detect how it's running
 and, if appropriate, vary its behavior accordingly.
+
+## Mounts
+
+When defining a [worker](../create-apps/app-reference.md#workers) instance,
+keep in mind what mount behavior you want.
+
+`tmp` local mounts are a separate storage area for each instance,
+while `storage` mounts can be shared between instances.
+
+For example, you can define a `storage` mount (called `shared_dir`) to be used by a `web` instance,
+and a `tmp` mount (called `local_dir`) to be used by a `queue` worker instance:
+
+```yaml {configFile="app"}
+# The type of the application to build.
+type: "nodejs:{{% latest "nodejs" %}}"
+
+# Define a web instance
+web:
+    locations:
+        "/":
+            root: "public"
+            passthru: true
+            index: ['index.html']
+
+mounts:
+    # Define a storage mount that's available to both instances together
+    'shared_dir':
+        source: storage
+        service: files
+        source_path: our_stuff
+
+    # Define a local mount that's available to each instance separately
+    'local_dir':
+        source: tmp
+        source_path: my_stuff
+
+# Define a worker instance from the same code but with a different start
+workers:
+    queue:
+        commands:
+            start: ./start.sh
+```
+
+Both the `web` instance and `queue` worker have their own, dedicated `local_dir` mount.
+Note that:
+- Each `local_dir` mount is a [`tmp` mount](/create-apps/app-reference.md#mounts) with a **maximum allocation of 8 GB**.</br>
+- `tmp` mounts **may be removed** during infrastructure maintenance operations.
+
+Both the `web` instance and `queue` worker also have a `shared_dir` mount pointing to the same network storage space.
+They can both read and write to it simultaneously.
