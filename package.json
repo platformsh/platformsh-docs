@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "npm-run-all": "^4.1",
-    "wait-on": "^5.2",
+    "wait-on": "^7.2",
     "cross-env": "^7.0"
   },
   "dependencies": {
