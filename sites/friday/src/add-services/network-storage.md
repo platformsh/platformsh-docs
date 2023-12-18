@@ -140,3 +140,81 @@ workers:
             start: |
                 cd web && drush queue-run myqueue
 ```
+
+## How can I migrate data from a `storage` mount to a `service` mount?
+
+Network Storage `service` mounts can be shared between different apps,
+while `storage` mounts can only be shared between different _instances_ of the same app.
+To move data from a `storage` mount to a `service` one, follow these instructions.
+
+Assuming you have the following `storage` mount:
+
+```yaml {configFile="app"}
+mounts:
+    web/uploads:
+        source: storage
+        source_path: uploads
+```
+
+1. Add a new `network-storage` service to your configuration:
+
+   ```yaml {configFile="services"}
+   # The name of the service container. Must be unique within a project.
+   network-storage:
+       type: network-storage:{{% latest "network-storage" %}}
+   ```
+
+   {{< note >}}
+
+   Make sure you [allocate enough disk space](/manage-resources/adjust-resources.md#vertical-scaling) to your `network-storage` service
+   for your existing files with some buffer.
+
+   {{< /note >}}
+
+2. Add a new `service` mount, named `new-uploads`:
+
+   ```yaml {configFile="app"}
+   mounts:
+       web/uploads:
+           source: storage
+           source_path: uploads
+       new-uploads:
+           source: service
+           service: files
+           source_path: uploads
+   ```
+
+   Note that each mount is on a different storage service, which is why they can have the same `source_path`.
+
+3. Deploy your changes.
+
+4. Copy all your files from the `storage` (`web/uploads`) mount to the `service` (`new-uploads`) mount using `rsync`:
+
+   ```bash
+   rsync -avz web/uploads/* new-uploads/
+   ```
+
+5. Reverse the mounts.
+   To do so, rename the `storage` mount to `old-uploads`, and point the `web/uploads` directory to the `service` mount:
+
+   ```yaml {configFile="app"}
+   mounts:
+       old-uploads:
+           source: storage
+           source_path: uploads
+       web/uploads:
+           source: service
+           service: files
+           source_path: uploads
+   ```
+
+6. Push your changes and check that the files are now accessible from the `service` mount (now named `web/uploads`).
+   To check that no files were lost during the transfer, run the following command:
+
+   ```bash
+   rsync -avz old-uploads/* web/uploads/
+   ```
+
+7. Delete the contents of the `old-uploads` `storage` mount before removing it.
+
+8. Push your changes again.
