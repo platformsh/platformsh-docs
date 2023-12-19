@@ -198,7 +198,7 @@ mounts:
 {{< note >}}
 {{< vendor/name >}} doesn't currently support the same `local` mounts as {{< vendor/psh_ref >}}.
 It only supports `tmp`, `storage`, and `service` [mounts](/create-apps/app-reference.md#mounts).
-To transfer your files, make sure you change the `source` of each of your existing `local` mount to a supported mount type.
+Before transferring your files, change the `source` of your existing `local` mounts to a supported mount type.
 {{< /note >}}
 
 For instance: 
