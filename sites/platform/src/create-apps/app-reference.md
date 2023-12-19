@@ -477,13 +477,13 @@ applications:
         type: nodejs:20
         mounts:
             'web/uploads':
-                source: local
+                source: storage
                 source_path: uploads
             '/.tmp_platformsh':
                 source: tmp
                 source_path: files/tmp_platformsh
             '/build':
-                source: local
+                source: storage
                 source_path: files/build
             '/.cache':
                 source: tmp
