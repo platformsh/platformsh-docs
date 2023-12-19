@@ -202,7 +202,7 @@ For example, the following `{{< vendor/configfile "app" >}}` file (fragment) kee
 
 ```yaml {configFile="app"}
 # The type of the application to build.
-type: "php:8.3"
+"php:{{% latest "php" %}}"
 
 relationships:
     database:

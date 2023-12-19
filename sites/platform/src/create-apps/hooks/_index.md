@@ -262,7 +262,7 @@ So you don't have to rebuild Drupal but you still get fresh content.
                 root: client
 
             relationships:
-                api: http
+                api: 'api:http'
    ```
 
    {{% /version/specific %}}
@@ -527,7 +527,7 @@ applications:
             flavor: none
 
         relationships:
-            api: http
+            api: 'api:http'
 
         # The hooks that are triggered when the package is deployed.
         hooks:
