@@ -31,6 +31,24 @@ To do so, run the following command:
 
 The output is similar to the following:
 
+{{% version/specific %}}
+<!-- Platform.sh -->
+```bash
+Mounts on abcdefgh1234567-main-abcd123--app@ssh.eu.{{< vendor/urlraw "host" >}}:
++-------------------------+----------------------+
+| Mount path              | Definition           |
++-------------------------+----------------------+
+| web/sites/default/files | source: local        |
+|                         | source_path: files   |
+| private                 | source: local        |
+|                         | source_path: local   |
+| tmp                     | source: tmp          |
+|                         | source_path: temp    |
++-------------------------+----------------------+
+```
+<--->
+<!-- Upsun -->
+
 ```bash
 Mounts on abcdefgh1234567-main-abcd123--app@ssh.eu.{{< vendor/urlraw "host" >}}:
 +-------------------------+----------------------+
@@ -44,6 +62,7 @@ Mounts on abcdefgh1234567-main-abcd123--app@ssh.eu.{{< vendor/urlraw "host" >}}:
 |                         | source_path: temp    |
 +-------------------------+----------------------+
 ```
+{{% /version/specific %}}
 
 ### Transfer a file to a mount
 
