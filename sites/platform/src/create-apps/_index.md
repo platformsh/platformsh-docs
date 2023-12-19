@@ -241,7 +241,7 @@ applications:
         # In this case, `web-files` is just a unique name for the mount.
         mounts:
             'web/files':
-                source: tmp
+                source: storage
                 source_path: 'web-files'
 
         # The app's configuration when it's exposed to the web.
