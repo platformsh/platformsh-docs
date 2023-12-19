@@ -36,11 +36,11 @@ Mounts on abcdefgh1234567-main-abcd123--app@ssh.eu.{{< vendor/urlraw "host" >}}:
 +-------------------------+----------------------+
 | Mount path              | Definition           |
 +-------------------------+----------------------+
-| web/sites/default/files | source: local        |
+| web/sites/default/files | source: storage      |
 |                         | source_path: files   |
-| private                 | source: local        |
+| private                 | source: storage      |
 |                         | source_path: private |
-| tmp                     | source: local        |
+| tmp                     | source: tmp          |
 |                         | source_path: temp    |
 +-------------------------+----------------------+
 ```
