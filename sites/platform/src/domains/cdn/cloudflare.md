@@ -53,6 +53,9 @@ To do so, in your Cloudflare account,
 
 ## 5. Optional: Prevent unauthenticated requests to the Origin
 
-Should you want to prevent requests to be sent to the origin server (Platform.sh) without first being sent to Cloudflare, you can [configure mutual TLS](https://community.platform.sh/t/configure-mutual-tls-with-cloudflare-and-platform-sh/761).
+If you want to prevent requests to be sent to the origin server ({{% vendor/name %}}) without first being sent to Cloudflare,
+you can [configure mutual TLS](https://community.platform.sh/t/configure-mutual-tls-with-cloudflare-and-platform-sh/761).
 
-Be aware that you can only configure mTLS on your production environment, unless you setup custom development domains.
+{{< note >}}
+You can only configure mTLS on your production environment, unless you [set up custom domains on your preview environments](/domains/steps/custom-domains-preview-environments.md).
+{{< /note >}}
