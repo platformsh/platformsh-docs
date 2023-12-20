@@ -50,3 +50,9 @@ This confirms the client is truly communicating with your {{% vendor/name %}} se
 For enhanced security, make sure your HTTPS connections can't be downgraded to HTTP.
 To do so, in your Cloudflare account,
 [enable HTTP strict transport security (HSTS)](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/http-strict-transport-security/).
+
+## 5. Optional: Prevent unauthenticated requests to the Origin
+
+Should you want to prevent requests to be sent to the origin server (Platform.sh) without first being sent to Cloudflare, you can [configure mutual TLS](https://community.platform.sh/t/configure-mutual-tls-with-cloudflare-and-platform-sh/761).
+
+Be aware that you can only configure mTLS on your production environment, unless you setup custom development domains.
