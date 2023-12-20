@@ -33,29 +33,28 @@ through your DNS provider.
 But `CNAME` records can't point to apex domains.
 As a workaround, Cloudflare offers [`CNAME` flattening](https://developers.cloudflare.com/dns/additional-options/cname-flattening/).
 
-## 4. Optional: Protect your site from on-path attacks
+## 4. Mitigate CDN security risks
 
-An on-path attack occurs when a hacker intercepts or modifies the communication between a client and a server.
-This can lead to sensitive data leaks.
-To prevent such attacks, make sure all communication with your site is encrypted through HTTPS
-and can't be downgraded to HTTP.
+Like all networks exposed to the internet, your CDN may become the target of security attacks.
+The best way to protect your site from threats like on-path attacks, spoofing attacks, or credential stuffing,
+is to [configure mutual TLS](https://community.platform.sh/t/configure-mutual-tls-with-cloudflare-and-platform-sh/761).
 
-To do so, [enable full strict SSL/TLS encryption](https://developers.cloudflare.com/ssl/origin-configuration/ssl-modes/full-strict/).
-Any communication between a client and Cloudflare
-or between Cloudflare and your {{% vendor/name %}} server is then encrypted through HTTPS.
-In addition, Cloudflare checks that your {{% vendor/name %}} server's [TLS certificate](/glossary.md#transport-layer-security-tls) 
-was issued by a trusted certificate authority.
-This confirms the client is truly communicating with your {{% vendor/name %}} server.
-
-For enhanced security, make sure your HTTPS connections can't be downgraded to HTTP.
-To do so, in your Cloudflare account,
-[enable HTTP strict transport security (HSTS)](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/http-strict-transport-security/).
-
-## 5. Optional: Prevent unauthenticated requests to the Origin
-
-If you want to prevent requests to be sent to the origin server ({{% vendor/name %}}) without first being sent to Cloudflare,
-you can [configure mutual TLS](https://community.platform.sh/t/configure-mutual-tls-with-cloudflare-and-platform-sh/761).
+[Mutual TLS](https://www.cloudflare.com/en-gb/learning/access-management/what-is-mutual-tls/) not only has both parties in a connection authenticate each other
+through the TLS protocol.
+It also ensures that requests can't be sent directly to the origin server ({{% vendor/name %}}).
+Instead, requests must transit through Cloudflare first.
 
 {{< note >}}
 You can only configure mTLS on your production environment, unless you [set up custom domains on your preview environments](/domains/steps/custom-domains-preview-environments.md).
 {{< /note >}}
+
+If you can't enable mutual TLS, you can still take the following measures to protect your site from on-path attacks:
+
+1. [Enable full strict SSL/TLS encryption](https://developers.cloudflare.com/ssl/origin-configuration/ssl-modes/full-strict/).</br>
+   Any communication between a client and Cloudflare or between Cloudflare and your {{% vendor/name %}} server is then encrypted through HTTPS.
+   In addition, Cloudflare checks that your {{% vendor/name %}} server's [TLS certificate](/glossary.md#transport-layer-security-tls) 
+   was issued by a trusted certificate authority.
+   This confirms the client is truly communicating with your {{% vendor/name %}} server.
+
+2. [Enable HTTP strict transport security (HSTS)](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/http-strict-transport-security/).</br>
+   This ensures that your HTTPS connections can't be downgraded to HTTP.
