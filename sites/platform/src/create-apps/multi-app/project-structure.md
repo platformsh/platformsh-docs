@@ -229,7 +229,7 @@ applications:
     # The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
     # See the Application reference for all options for defining relationships and endpoints.
     relationships:
-      database: "database:postgresql"
+      postgresql: 
 
     mounts:
       "/var/cache": "shared:files/cache"
@@ -291,9 +291,9 @@ applications:
     type: 'nodejs:18'
 
     mounts:
-      '/.cache': { source: local, source_path: cache }
-      '/.config': { source: local, source_path: config }
-      '/public': { source: local, source_path: public }
+      '/.cache': { source: tmp, source_path: cache }
+      '/.config': { source: storage, source_path: config }
+      '/public': { source: storage, source_path: public }
 
     web:
       locations:
@@ -316,9 +316,9 @@ applications:
     type: golang:1.18
 
     mounts:
-      'database': { source: local, source_path: 'database' }
-      '/.local': { source: local, source_path: '.local' }
-      '/.config': { source: local, source_path: '.config' }
+      'database': { source: storage, source_path: 'database' }
+      '/.local': { source: storage, source_path: '.local' }
+      '/.config': { source: storage, source_path: '.config' }
 
     web:
       commands:
