@@ -35,7 +35,7 @@ getDocsData() {
     curl --user-agent "request-search-index-for-platform-docs" -s -D - -o data/platform_index.json "${PLATFORM_DOCS_URL}index.json" >> data/platform-headers.txt
     #curl -s "${PLATFORM_DOCS_URL}index.json" >> data/platform_index.json && echo "retrieved psh index" || echo "failed to retrieve psh index"
     curl --user-agent "request-search-index-for-upsun-docs" -s -D - -o data/friday_index.json "${FRIDAY_DOCS_URL}index.json" >> data/upsun-headers.txt
-    curl -s "${FRIDAY_DOCS_URL}index.json" >> data/friday_index.json && echo "retrieved upsun index" || echo "failed to retrieve upsun index"
+    #curl -s "${FRIDAY_DOCS_URL}index.json" >> data/friday_index.json && echo "retrieved upsun index" || echo "failed to retrieve upsun index"
 
     # How many times does Platform.sh appear in the platform index? Should be 3815
     pshOccurrenceInPsh=$(cat data/platform_index.json | grep -o -i Platform.sh | wc -l)

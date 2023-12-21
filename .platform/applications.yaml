@@ -36,7 +36,7 @@
             ./deploy.sh
             bash ./marker.sh "deployed" "${SITE_DIR}"
         post_deploy:
-            bash ./marker.sh "post_deploy" "${SITE_DIR}"
+          cd $SITE_DIR && bash ./marker.sh "post_deploy" "${SITE_DIR}"
 
     # The configuration of the application when it is exposed to the web.
     web:
@@ -102,7 +102,7 @@
             ./deploy.sh
             bash ./marker.sh "deployed" "${SITE_DIR}"
         post_deploy:
-            bash ./marker.sh "post_deploy" "${SITE_DIR}"
+          cd $SITE_DIR && bash ./marker.sh "post_deploy" "${SITE_DIR}"
     # The configuration of the application when it is exposed to the web.
     web:
         commands:
