@@ -33,7 +33,7 @@ through your DNS provider.
 But `CNAME` records can't point to apex domains.
 As a workaround, Cloudflare offers [`CNAME` flattening](https://developers.cloudflare.com/dns/additional-options/cname-flattening/).
 
-## 4. Mitigate CDN security risks
+## 4. Mitigate security risks
 
 Like all networks exposed to the internet, your CDN may become the target of security attacks.
 The best way to protect your site from threats like on-path attacks, spoofing attacks, or credential stuffing,
