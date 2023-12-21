@@ -45,10 +45,12 @@ It also ensures that requests can't be sent directly to the origin server ({{% v
 Instead, requests must transit through Cloudflare first.
 
 {{< note >}}
-You can only configure mTLS on your production environment, unless you [set up custom domains on your preview environments](/domains/steps/custom-domains-preview-environments.md).
+mTLS is only compatible with environments where you have attached domains you own, meaning:
 
-Also, if you’re using a source integration, each environment and its domain are dynamically created from a pull or merge request.
-This is incompatible with the use of mTLS.
+- Your production environment
+- Each preview environment on which you have [attached a custom domain](/domains/steps/custom-domains-preview-environments)
+
+Therefore, mTLS is **not** compatible with preview environments created by a [source code integration](/integrations/source/_index.md).
 {{< /note >}}
 
 If you can't use mTLS, you can still take the following measures to protect your site from on-path attacks:
