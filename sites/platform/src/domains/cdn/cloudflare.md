@@ -35,20 +35,23 @@ As a workaround, Cloudflare offers [`CNAME` flattening](https://developers.cloud
 
 ## 4. Mitigate security risks
 
-Like all networks exposed to the internet, your CDN may become the target of security attacks.
+Like all networks exposed to the internet, your origin server may become the target of security attacks.
 The best way to protect your site from threats like on-path attacks, spoofing attacks, or credential stuffing,
-is to [configure mutual TLS](https://community.platform.sh/t/configure-mutual-tls-with-cloudflare-and-platform-sh/761).
+is to [configure mutual TLS (mTLS)](https://community.platform.sh/t/configure-mutual-tls-with-cloudflare-and-platform-sh/761).
 
-[Mutual TLS](https://www.cloudflare.com/en-gb/learning/access-management/what-is-mutual-tls/) not only has both parties in a connection authenticate each other
+[mTLS](https://www.cloudflare.com/en-gb/learning/access-management/what-is-mutual-tls/) not only has both parties in a connection authenticate each other
 through the TLS protocol.
 It also ensures that requests can't be sent directly to the origin server ({{% vendor/name %}}).
 Instead, requests must transit through Cloudflare first.
 
 {{< note >}}
 You can only configure mTLS on your production environment, unless you [set up custom domains on your preview environments](/domains/steps/custom-domains-preview-environments.md).
+
+Also, if you’re using a source integration, each environment and its domain are dynamically created from a pull or merge request.
+This is incompatible with the use of mTLS.
 {{< /note >}}
 
-If you can't enable mutual TLS, you can still take the following measures to protect your site from on-path attacks:
+If you can't use mTLS, you can still take the following measures to protect your site from on-path attacks:
 
 1. [Enable full strict SSL/TLS encryption](https://developers.cloudflare.com/ssl/origin-configuration/ssl-modes/full-strict/).</br>
    Any communication between a client and Cloudflare or between Cloudflare and your {{% vendor/name %}} server is then encrypted through HTTPS.
