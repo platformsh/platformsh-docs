@@ -210,14 +210,6 @@ To prevent your production environment from being paused automatically,
 
 You can also pause an environment manually at any time.
 
-You can [ask Support](/learn/overview/get-support.md) to disable the automatic pausing of your environments
-if you are in one of the following situations:
-
-- You are using the default environment of your Development plan to build an app/demo
-  and sharing the URL with users for feedback
-- Business staff testing your development branch don't have permission to resume it
-- You are using your staging environment to run integration or penetration tests
-
 <--->
 
 You can also pause an environment manually at any time.
