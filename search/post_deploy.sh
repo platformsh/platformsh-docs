@@ -18,9 +18,24 @@ getDocsData() {
     rm -v data/platform_index.json && echo "data json for platform deleted" || echo "failed to delete data json for platform"
     rm -v data/friday_index.json && echo "data json for upsun deleted" || echo "failed to delete data json for upsun"
 
+    # remove the previous headers log
+    if [ -f "data/platform-headers.txt" ]; then
+      rm data/platform-headers.txt
+    fi
+
+    if [ -f "data/upsun-headers.txt" ]; then
+      rm data/upsun-headers.txt
+    fi
+
     # Get the updated index for docs
-    curl -s "${PLATFORM_DOCS_URL}index.json" >> data/platform_index.json && echo "retrieved psh index" || echo "failed to retrieve psh index"
-    curl -s "${FRIDAY_DOCS_URL}index.json" >> data/friday_index.json && echo "retrieved upsun index" || echo "failed to retrieve upsun index"
+    # * change the user agent so we can more easily locate in the apps' access logs
+    # * save the http response as a json file in ./data
+    # * save the response headers in ./data
+    # curl --user-agent "request-to-upsun-docs" -s -D - -o foobar.json "https://docs.upsun.com/index.json" >> headers.txt
+    curl --user-agent "request-search-index-for-platform-docs" -s -D - -o data/platform_index.json "${PLATFORM_DOCS_URL}index.json" >> data/platform-headers.txt
+    #curl -s "${PLATFORM_DOCS_URL}index.json" >> data/platform_index.json && echo "retrieved psh index" || echo "failed to retrieve psh index"
+    curl --user-agent "request-search-index-for-upsun-docs" -s -D - -o data/friday_index.json "${FRIDAY_DOCS_URL}index.json" >> data/upsun-headers.txt
+    #curl -s "${FRIDAY_DOCS_URL}index.json" >> data/friday_index.json && echo "retrieved upsun index" || echo "failed to retrieve upsun index"
 
     # How many times does Platform.sh appear in the platform index? Should be 3815
     pshOccurrenceInPsh=$(cat data/platform_index.json | grep -o -i Platform.sh | wc -l)
@@ -34,6 +49,16 @@ getDocsData() {
     printf "Upsun appears %d times in the platform index.\nUpsun appears %d times in the Upsun index.\n" "${upsunOccurrenceInPsh}" "${upsunOccurrenceInUpsun}"
     printf "Platform appears %d times in the platform index.\nPlatform appears %d times in the Upsun index.\n" "${pshOccurrenceInPsh}" "${pshOccurrenceInUpsun}"
 
+
+    if (( pshOccurrenceInUpsun > 100 )); then
+      echo "Appears our search indexes have flipped. Platform occurs too many times in the Upsun docs! Saving headers... ";
+      save_headers "platform"
+    fi
+
+    if (( upsunOccurrenceInPsh > 0 )); then
+      echo "Appears our search indexes have flipped. Upsun occurs too many times in the Platform docs! Saving headers... ";
+      save_headers "upsun"
+    fi
 
     # Delete templates index in the mount if it exists
     rm -f data/platform_templates.yaml
@@ -56,6 +81,18 @@ update_index(){
     # Update indexes
     $POETRY_LOCATION run python main.py platform
     $POETRY_LOCATION run python main.py friday
+}
+
+save_headers() {
+  docs="${1}"
+  timestamp=$(date +%Y-%m-%d-%H-%M-%S)
+  if [ -f "./data/${docs}-headers.txt" ]; then
+    #rename the file so we can examine it
+    mv "./data/${docs}-headers.txt" "./data/${docs}-headers-${timestamp}.txt"
+    echo "Header responses for ${docs} saved."
+  else
+    echo "Header response log file for ${docs} is missing! Unable to save."
+  fi
 }
 
 set -e

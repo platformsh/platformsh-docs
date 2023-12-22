@@ -93,8 +93,6 @@ web:
         '/':
             # ...
 
-disk: 1024
-
 mounts:
     # The public and private files directories are
     # network mounts shared by web and workers.
