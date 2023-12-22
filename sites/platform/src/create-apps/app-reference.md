@@ -210,6 +210,15 @@ you need to explicitly define the `http` endpoint as the endpoint to connect bot
 For more information, see how to [define relationships between your apps](/create-apps/multi-app/relationships.md).
 {{< /note >}}
 
+{{< note title="Availability" theme="info">}}
+
+New syntax (default and explicit endpoints) described below is supported by most, but not all, image types 
+(`Relationship 'SERVICE_NAME' of application 'app' ... targets a service without a valid default endpoint configuration.`).
+This syntax is currently being rolled out for all images. 
+If you encounter this error, use the "legacy" Platform.sh configuration noted at the bottom of this section. 
+
+{{< /note >}}
+
 To define a relationship between your app and a service:
 
 {{< codetabs >}}
@@ -341,7 +350,7 @@ relationships:
 
 {{< version/only "1" >}}
 
-{{< note >}}
+{{< note theme="info" title="Legacy" >}}
 
 The following legacy syntax for specifying relationships is still supported by {{% vendor/name %}}:
 
@@ -356,6 +365,36 @@ For example:
 relationships:
     database: "mariadb:mysql"
 ```
+
+Feel free to use this until the default and explicit endpoint syntax is supported on all images.
+
+{{< /note >}}
+
+{{< /version/only >}}
+
+{{< version/only "2" >}}
+
+{{< note title="Legacy" theme="info" >}}
+
+The following Platform.sh legacy syntax for specifying relationships is still supported by {{% vendor/name %}}:
+
+```yaml
+applications:
+    myapp:
+        relationships:
+            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:<ENDPOINT_NAME>"
+```
+
+For example:
+
+```yaml
+applications:
+    myapp:
+        relationships:
+            database: "mariadb:mysql"
+```
+
+Feel free to use this until the default and explicit endpoint syntax is supported on all images.
 
 {{< /note >}}
 
