@@ -107,7 +107,7 @@ mounts:
         source_path: test
 
 relationships:
-    mysql:
+    database: 'mysqldb:mysql'
 
 workers:
     queue:
@@ -136,7 +136,7 @@ workers:
                 source: local
                 source_path: test
         relationships:
-            mysql: 
+            database: 'mysqldb:mysql'
     mail:
         commands:
             start: |
@@ -147,7 +147,7 @@ workers:
                 source: local
                 source_path: test
         relationships:
-            mysql: 
+            database: 'mysqldb:mysql'
 ```
 <--->
 
@@ -163,7 +163,7 @@ applications:
             source_path: test
 
     relationships:
-        mysql: 
+        database: 'mysqldb:mysql'
 
     workers:
         queue:
@@ -197,7 +197,7 @@ applications:
                     source: local
                     source_path: test
             relationships:
-                mysql: 
+                database: 'mysqldb:mysql'
         mail:
             commands:
                 start: |
@@ -207,7 +207,7 @@ applications:
                     source: local
                     source_path: test
             relationships:
-                mysql: 
+                database: 'mysqldb:mysql'
 
 services:
     mysqldb:
@@ -263,8 +263,8 @@ hooks:
        pip install gunicorn
 
 relationships:
-    mysql: 
-    rabbitmq: 
+    database: 'mysqldb:mysql'
+    messages: 'rabbitqueue:rabbitmq'
 
 variables:
     env:
@@ -314,7 +314,7 @@ workers:
         disk: 256
         mounts: {}
         relationships:
-            rabbitmq: 
+            emails: 'rabbitqueue:rabbitmq'
 ```
 
 <--->
@@ -332,8 +332,8 @@ applications:
         pip install gunicorn
 
     relationships:
-        mysql: 
-        rabbitmq: 
+        database: 'mysqldb:mysql'
+        messages: 'rabbitqueue:rabbitmq'
 
     variables:
         env:
@@ -379,7 +379,7 @@ applications:
                     type: 'worker'
             mounts: {}
             relationships:
-                rabbitmq: 
+                emails: 'rabbitqueue:rabbitmq'
 
 services:
     mysqldb:
@@ -430,4 +430,3 @@ The mail instance also doesn't need any access to the SQL database so for securi
 The workers have known fixed sizes, while web can scale to as large as the plan allows.
 Each instance can also check the `TYPE` environment variable to detect how it's running
 and, if appropriate, vary its behavior accordingly.
-
