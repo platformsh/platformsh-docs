@@ -1043,6 +1043,7 @@ grid:
       - http
       - igbinary
       - imap
+      - interbase
       - ldap
       - mailparse
       - memcached
@@ -1121,6 +1122,7 @@ grid:
       - amqp
       - apcu
       - blackfire
+      - event
       - ffi
       - geoip
       - gmp
@@ -1128,6 +1130,7 @@ grid:
       - http
       - igbinary
       - imap
+      - interbase
       - ldap
       - mailparse
       - memcached
