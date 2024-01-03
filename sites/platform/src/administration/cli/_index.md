@@ -243,7 +243,7 @@ To update to the latest version, use the same tool as for [installation](#1-inst
 title=Homebrew
 highlight=bash
 +++
-brew upgrade {{% vendor/cli %}}-cli
+brew upgrade {{% vendor/altname %}}-cli
 <--->
 +++
 title=Scoop
