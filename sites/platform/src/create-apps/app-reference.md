@@ -198,7 +198,7 @@ The size of the container and the container profile determines how much vCPU and
 | 2XL  | 5.00  | 768MB   |
 | 4XL  | 10.00 | 1536MB  |
 
-2. HIGH_MEMORY 
+#### `HIGH_MEMORY` profile
 
 | Size | CPU  | MEMORY   |
 | ---- | ---- | -------- |
