@@ -245,7 +245,7 @@ For example, if you define the following configuration:
 ```yaml {configFile="app"}
 {{< snippet>}}
 relationships:
-    mariadb: 
+    mariadb:
 {{< /snippet>}}
 ```
 
@@ -257,8 +257,9 @@ For reference, the equivalent configuration using explicit endpoints would be th
 ```yaml {configFile="app"}
 {{< snippet>}}
 relationships:
-    service: mariadb
-    endpoint: mysql
+    mariadb:
+        service: mariadb
+        endpoint: mysql
 {{< /snippet>}}
 ```
 
@@ -278,9 +279,9 @@ You can add as many relationships as you want to your app configuration:
 ```yaml {configFile="app"}
 {{< snippet>}}
 relationships:
-    mariadb:  
-    redis: 
-    elasticsearch: 
+    mariadb:
+    redis:
+    elasticsearch:
 {{< /snippet>}}
 ```
 
