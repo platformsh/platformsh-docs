@@ -185,7 +185,6 @@ There are 3 types of container profiles.
 2. HIGH_MEMORY: mariadb, mongodb, mysql-oracle, ...
 3. BALANCED: redis, ...
 
-If you are unsure of which container type 
 The size of the container + the container profile determines how much vCPU and memory it gets.
 
 1. HIGH_CPU 
