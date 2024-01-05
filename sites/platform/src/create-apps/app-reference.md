@@ -189,36 +189,36 @@ The size of the container and the container profile determines how much vCPU and
 
 #### `HIGH_CPU` profile 
 
-| Size |  CPU  | MEMORY  |
-| ---- | ----- | ------- |
-| S    | 0.40  | 128MB   |
-| M    | 0.40  | 128MB   |
-| L    | 1.20  | 256MB   |
-| XL   | 2.50  | 384MB   |
-| 2XL  | 5.00  | 768MB   |
-| 4XL  | 10.00 | 1536MB  |
+| Size |  CPU  | MEMORY   |
+| ---- | ----- | -------- |
+| S    | 0.40  | 128 MB   |
+| M    | 0.40  | 128 MB   |
+| L    | 1.20  | 256 MB   |
+| XL   | 2.50  | 384 MB   |
+| 2XL  | 5.00  | 768 MB   |
+| 4XL  | 10.00 | 1536 MB  |
 
 #### `HIGH_MEMORY` profile
 
-| Size | CPU  | MEMORY   |
-| ---- | ---- | -------- |
-| S    | 0.25 | 128MB    |
-| M    | 0.25 | 288MB    |
-| L    | 0.40 | 1280MB   |
-| XL   | 0.75 | 2624MB   |
-| 2XL  | 1.50 | 5248MB   |
-| 4XL  | 3.00 | 10496MB  |
+| Size | CPU  | MEMORY    |
+| ---- | ---- | --------- |
+| S    | 0.25 | 128 MB    |
+| M    | 0.25 | 288 MB    |
+| L    | 0.40 | 1280 MB   |
+| XL   | 0.75 | 2624 MB   |
+| 2XL  | 1.50 | 5248 MB   |
+| 4XL  | 3.00 | 10496 MB  |
 
 #### `BALANCED` profile
 
-| Size | CPU  | MEMORY  |
-| ---- | ---- | ------- |
-| S    | 0.05 | 32MB    |
-| M    | 0.05 | 63MB    |
-| L    | 0.08 | 256MB   |
-| XL   | 0.10 | 512MB   |
-| 2XL  | 0.20 | 1024MB  |
-| 4XL  | 0.40 | 2048MB  |
+| Size | CPU  | MEMORY   |
+| ---- | ---- | -------- |
+| S    | 0.05 | 32 MB    |
+| M    | 0.05 | 64 MB    |
+| L    | 0.08 | 256 MB   |
+| XL   | 0.10 | 512 MB   |
+| 2XL  | 0.20 | 1024 MB  |
+| 4XL  | 0.40 | 2048 MB  |
 
 ### Sizes in preview environments
 
