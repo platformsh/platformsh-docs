@@ -209,7 +209,7 @@ The size of the container and the container profile determines how much vCPU and
 | 2XL  | 1.50 | 5248MB   |
 | 4XL  | 3.00 | 10496MB  |
 
-3. BALANCED 
+#### `BALANCED` profile
 
 | Size | CPU  | MEMORY  |
 | ---- | ---- | ------- |
