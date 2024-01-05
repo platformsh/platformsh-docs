@@ -27,7 +27,7 @@ But you can include Varnish as a service.
         <tr>
             <td>{{< image-versions image="varnish" status="supported" environment="grid" >}}</td>
             <td>{{< image-versions image="varnish" status="supported" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="varnish" status="supported" environment="dedicated-gen-2" >}}</thd>
+            <td>{{< image-versions image="varnish" status="supported" environment="dedicated-gen-2" >}}</td>
         </tr>
     </tbody>
 </table>
@@ -65,7 +65,21 @@ The `path` defines the file relative to the `{{< vendor/configdir >}}` directory
 
 {{% /endpoint-description %}}
 
-### 2. Create a VCL template
+### 2. Configure your app
+For your app to interact with your ``varnish`` service, you need to add a [relationship](/create-apps/app-reference.html#relationships) to your service:
+
+```yaml {configFile="app"}
+name: 'app'
+relationships:
+  varnish: 'varnish:http'
+```
+
+It will add ``varnish`` service into the list of relationships of your app, and `varnish` information will be available into ``PLATFORM_RELATIONSHIPS`` environment variable.
+```bash {location=".environment"}
+export HTTPCACHE_PURGE_SERVER=http://$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".varnish[0].host"):$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".varnish[0].port")
+```
+
+### 3. Create a VCL template
 
 To tell Varnish how to handle traffic, in the `{{< vendor/configdir >}}` directory
 add a [Varnish Configuration Language (VCL) template](https://www.varnish-software.com/developers/tutorials/example-vcl-template/).
@@ -85,7 +99,7 @@ So you MUST NOT include certain features that you might elsewhere:
 The file MUST include:
 
 - A definition of which backend to use in a  `vcl_recv()` subroutine.
-  
+
 The logic varies based on whether you have one or more apps.
 
 {{< note >}}
@@ -161,7 +175,7 @@ sub vcl_recv {
 }
 ```
 
-### 3. Route incoming requests to Varnish
+### 4. Route incoming requests to Varnish
 
 Edit your [route definitions](../define-routes/_index.md) to point to the Varnish service you just created.
 Also disable the router cache as Varnish now provides caching.
@@ -224,7 +238,7 @@ sub vcl_recv {
     # When this happens, block that IP for the next 120 seconds.
     return (synth(429, "Too Many Requests"));
   }
-  
+
   # Set the standard backend for handling requests that aren't limited
   set req.backend_hint = application.backend();
 }
