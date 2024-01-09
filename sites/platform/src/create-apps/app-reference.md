@@ -216,6 +216,7 @@ The following example shows a single MySQL service named `mysqldb` offering two 
 a Redis cache service named `rediscache`, and an Elasticsearch service named `searchserver`.
 
 {{% version/specific %}}
+
 ```yaml {configFile="app"}
 relationships:
     database: 'mysqldb:db1'
@@ -224,56 +225,8 @@ relationships:
     search: 'searchserver:elasticsearch'
 ```
 
-The `SERVICE_NAME` is the name of the service as defined in its [configuration](/add-services/_index.md).
-It is used as the relationship name, and associated with a `null` value.
-This instructs {{% vendor/name %}} to use the service's default endpoint to connect your app to the service.
-
-For example, if you define the following configuration:
-
-```yaml {configFile="app"}
-{{< snippet>}}
-relationships:
-    mariadb:
-{{< /snippet>}}
-```
-
-{{% vendor/name %}} looks for a service named `mariadb` in your `{{% vendor/configfile "services" %}}` file,
-and connects your app to it through the service's default endpoint.
-
-For reference, the equivalent configuration using explicit endpoints would be the following:
-
-```yaml {configFile="app"}
-{{< snippet>}}
-relationships:
-    mariadb:
-        service: mariadb
-        endpoint: mysql
-{{< /snippet>}}
-```
-
-{{< note title="Tip">}}
-
-An even quicker way to define many relationships is to use the following single-line configuration:
-
-```yaml {configFile="app"}
-{{< snippet>}}
-relationships: {{{< variable "SERVICE_NAME_A" >}}, {{< variable "SERVICE_NAME_B" >}}}
-{{< /snippet>}}
-```
-{{< /note >}}
-
-You can add as many relationships as you want to your app configuration:
-
-```yaml {configFile="app"}
-{{< snippet>}}
-relationships:
-    mariadb:
-    redis:
-    elasticsearch:
-{{< /snippet>}}
-```
-
 <--->
+
 ```yaml {configFile="app"}
 applications:
     myapp:
@@ -286,6 +239,7 @@ applications:
             cache: 'rediscache:redis'
             search: 'searchserver:elasticsearch'
 ```
+
 {{% /version/specific %}}
 
 ## Available disk space
