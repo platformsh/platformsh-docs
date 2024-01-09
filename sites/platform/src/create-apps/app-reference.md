@@ -151,7 +151,7 @@ applications:
 ```
 {{% /version/specific %}}
 
-{{< version/specific >}}
+{{% version/specific %}}
 ## Sizes
 
 Resources are distributed across all containers in an environment from the total available from your [plan size](../administration/pricing/_index.md).
@@ -189,7 +189,7 @@ Resources for application containers are not committed to YAML files, but instea
 
 For more information, see how to [manage resources](/manage-resources.md).
 
-{{< /version/specific>}}
+{{% /version/specific %}}
 
 ## Relationships
 
@@ -223,6 +223,56 @@ relationships:
     cache: 'rediscache:redis'
     search: 'searchserver:elasticsearch'
 ```
+
+The `SERVICE_NAME` is the name of the service as defined in its [configuration](/add-services/_index.md).
+It is used as the relationship name, and associated with a `null` value.
+This instructs {{% vendor/name %}} to use the service's default endpoint to connect your app to the service.
+
+For example, if you define the following configuration:
+
+```yaml {configFile="app"}
+{{< snippet>}}
+relationships:
+    mariadb:
+{{< /snippet>}}
+```
+
+{{% vendor/name %}} looks for a service named `mariadb` in your `{{% vendor/configfile "services" %}}` file,
+and connects your app to it through the service's default endpoint.
+
+For reference, the equivalent configuration using explicit endpoints would be the following:
+
+```yaml {configFile="app"}
+{{< snippet>}}
+relationships:
+    mariadb:
+        service: mariadb
+        endpoint: mysql
+{{< /snippet>}}
+```
+
+{{< note title="Tip">}}
+
+An even quicker way to define many relationships is to use the following single-line configuration:
+
+```yaml {configFile="app"}
+{{< snippet>}}
+relationships: {{{< variable "SERVICE_NAME_A" >}}, {{< variable "SERVICE_NAME_B" >}}}
+{{< /snippet>}}
+```
+{{< /note >}}
+
+You can add as many relationships as you want to your app configuration:
+
+```yaml {configFile="app"}
+{{< snippet>}}
+relationships:
+    mariadb:
+    redis:
+    elasticsearch:
+{{< /snippet>}}
+```
+
 <--->
 ```yaml {configFile="app"}
 applications:
@@ -354,13 +404,13 @@ applications:
         type: nodejs:20
         mounts:
             'web/uploads':
-                source: local
+                source: storage
                 source_path: uploads
             '/.tmp_platformsh':
                 source: tmp
                 source_path: files/tmp_platformsh
             '/build':
-                source: local
+                source: storage
                 source_path: files/build
             '/.cache':
                 source: tmp
@@ -1142,12 +1192,12 @@ applications:
 
 In this example configuration, the [cron specification](#crons) uses the `H` syntax.
 
-{{% version/specific %}}
+{{% version/only "1" %}}
 Note that this syntax is only supported on Grid and {{% names/dedicated-gen-3 %}} projects.
 On {{% names/dedicated-gen-2 %}} projects, use the [standard cron syntax](https://en.wikipedia.org/wiki/Cron#Cron_expression).
 <--->
 
-{{% /version/specific %}}
+{{% /version/only %}}
 
 ### Example cron jobs
 
@@ -1274,7 +1324,7 @@ applications:
 
 ### Cron job timing
 
-{{< version/specific >}}
+{{% version/specific %}}
 <!-- Version 1 -->
 Minimum time between cron jobs being triggered:
 
@@ -1286,7 +1336,7 @@ Minimum time between cron jobs being triggered:
 <--->
 <!-- Version 2 -->
 The minimum time between cron jobs being triggered is 5 minutes.
-{{< /version/specific >}}
+{{% /version/specific %}}
 
 For each app container, only one cron job can run at a time.
 If a new job is triggered while another is running, the new job is paused until the other completes.

@@ -5,7 +5,7 @@ description: |
   Control your apps and how they're built and deployed on {{% vendor/name %}} with YAML configuration.
 layout: single
 keywords:
-  - ".platform.app.yaml"
+  - '{{% vendor/configfile "app" %}}'
 ---
 
 {{% description %}}
@@ -241,7 +241,7 @@ applications:
         # In this case, `web-files` is just a unique name for the mount.
         mounts:
             'web/files':
-                source: local
+                source: storage
                 source_path: 'web-files'
 
         # The app's configuration when it's exposed to the web.
@@ -264,5 +264,4 @@ services:
     mysqldb:
         type: mariadb:{{% latest "mariadb" %}}
 ```
-
 {{% /version/specific %}}

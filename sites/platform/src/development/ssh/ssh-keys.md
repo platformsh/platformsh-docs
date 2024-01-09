@@ -54,7 +54,7 @@ To find your public key file:
    ```
 
 If you find a file ending in `.pub`,
-copy the location and [add it to your {{% vendor/name %}} account](#2-add-an-ssh-key-to-your-platform-account).
+copy the location and [add it to your {{% vendor/name %}} account](#2-add-an-ssh-key-to-your-account).
 
 If you don't find an existing key, [generate new keys](#1b-generate-new-keys).
 
@@ -76,9 +76,9 @@ generate a key and have it added to your {{% vendor/name %}} account automatical
 
 To generate a key otherwise, GitHub has a good [walk-through for creating SSH key pairs](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) on various operating systems.
 
-Then you need to [add it to your {{% vendor/name %}} account](#2-add-an-ssh-key-to-your-platform-account).
+Then you need to [add it to your {{% vendor/name %}} account](#2-add-an-ssh-key-to-your-account).
 
-### 2. Add an SSH key to your Platform account
+### 2. Add an SSH key to your account
 
 Once you have the location of your public key, add it to your {{% vendor/name %}} account.
 
