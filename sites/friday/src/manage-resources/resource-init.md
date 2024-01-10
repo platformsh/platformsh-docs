@@ -1,7 +1,7 @@
 ---
 title: Resource initialization
 description: Learn how resources are allocated by default upon first deployment, and how you can define a resource initialization strategy that better fits your needs.
-weight: -200
+weight: -300
 keywords:
   - "resources"
   - "flexible resources"
@@ -36,10 +36,19 @@ The following strategies are available:
 
 | Strategy | Description |
 | ---------| ----------- |
-| `default`  | Initializes the new containers using the [{{% vendor/name %}} default resources](/manage-resources/resource-init.md).</br>This is the strategy that applies when you first deploy your project or new container, unless you explicitly set another strategy.  |
+| `default`  | Initializes the new containers using the [{{% vendor/name %}} default resources](/manage-resources/resource-init.md). |
 | `manual`   | With this strategy, the first deployment fails and you need to configure resources manually through [the Console](/manage-resources/adjust-resources.md), or using `resources:set` in the CLI. |
 | `minimum`  | Initializes the new containers using the [{{% vendor/name %}} minimum resources](#minimum-resources). |
 | `parent`   | Initializes the new containers using the same resources as the parent environment.</br>If there is no parent environment, or if the container doesn't already exist on the parent, the `default` strategy applies instead. |
+
+{{< note theme="warning" >}}
+
+When no resource initialization strategy is defined, the following applies:
+
+- If you're not using a [source integration](/integrations/_index.md): the `default` strategy is used.
+- If you're using a source integration: the `parent` strategy is used.
+
+{{< /note >}}
 
 {{< codetabs >}}
 

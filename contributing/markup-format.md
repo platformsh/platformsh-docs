@@ -117,7 +117,7 @@ To add extra information or a warning that stands outside the normal text flow, 
 By default, a title of `Note:` is added.
 
 ```markdown
-{{< note >}}
+{{<  >}}
 
 A short note.
 
