@@ -21,7 +21,7 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 {{% major-minor-versions-note %}}
 
 {{% version/specific %}}
-<!-- Platform.sh -->
+<!-- API Version 1 -->
 
 <table>
     <thead>
@@ -43,7 +43,7 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 \* No High-Availability on {{% names/dedicated-gen-2 %}}.
 
 <--->
-<!-- Upsun -->
+<!-- API Version 2 -->
 
 {{< image-versions image="postgresql" status="supported" environment="grid" >}}
 
@@ -59,7 +59,7 @@ For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-
 {{% deprecated-versions %}}
 
 {{% version/specific %}}
-<!-- Platform.sh -->
+<!-- API Version 1 -->
 
 <table>
     <thead>
@@ -79,7 +79,7 @@ For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-
 </table>
 
 <--->
-<!-- Upsun -->
+<!-- API Version 2 -->
 
 {{< image-versions image="postgresql" status="deprecated" environment="grid" >}}
 
@@ -93,10 +93,10 @@ For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-
 {
     "username": "main",
     "scheme": "pgsql",
-    "service": "postgresql",
+    "service": "postgresql12",
     "fragment": null,
     "ip": "169.254.38.66",
-    "hostname": "zydalrxgkhif2czr3xqth3qkue.postgresql.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "hostname": "zydalrxgkhif2czr3xqth3qkue.postgresql12.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "port": 5432,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "postgresql.internal",
@@ -116,7 +116,7 @@ For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-
 
 {{% endpoint-description type="postgresql" php=true /%}}
 
-<!-- Platform.sh: Codetabs using config reader + examples.docs.platform.sh -->
+<!-- Version 1: Codetabs using config reader + examples.docs.platform.sh -->
 {{< codetabs v2hide="true" >}}
 
 +++
@@ -159,33 +159,33 @@ highlight=python
 
 {{< /codetabs >}}
 
-<!-- Upsun: .environment shortcode + context -->
+<!-- Version 2: .environment shortcode + context -->
 {{% version/only "2" %}}
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="myapp" >}}
 # Relationships enable an app container's access to a service.
 relationships:
-    postgresql: 
+    postgresdatabase: "dbpostgres:postgresql"
 {{< /snippet >}}
-{{< snippet name="postgresql" config="service" placeholder="true" >}}
+{{< snippet name="dbpostgres" config="service" placeholder="true" >}}
     type: postgresql:{{% latest "postgresql" %}}
 {{< /snippet >}}
 ```
 
-{{< v2connect2app serviceName="postgresql" relationship="postgresql" var="DATABASE_URL">}}
+{{< v2connect2app serviceName="dbpostgres" relationship="postgresdatabase" var="DATABASE_URL">}}
 
 ```bash {location="myapp/.environment"}
 # Decode the built-in credentials object variable.
 export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export DB_CONNECTION=="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresql[0].scheme')"
-export DB_USERNAME="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresql[0].username')"
-export DB_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresql[0].password')"
-export DB_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresql[0].host')"
-export DB_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresql[0].port')"
-export DB_DATABASE="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresql[0].path')"
+export DB_CONNECTION=="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresdatabase[0].scheme')"
+export DB_USERNAME="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresdatabase[0].username')"
+export DB_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresdatabase[0].password')"
+export DB_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresdatabase[0].host')"
+export DB_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresdatabase[0].port')"
+export DB_DATABASE="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresdatabase[0].path')"
 
 # Surface connection string variable for use in app.
 export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"
@@ -292,10 +292,10 @@ Under the `configuration` key of your service there are two additional keys:
 Consider the following illustrative example:
 
 {{< version/specific >}}
-<!-- Platform.sh -->
+<!-- Version 1 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="postgresql" config="service" >}}
+{{< snippet name="dbpostgres" config="service" >}}
     type: "postgresql:{{% latest "postgresql" %}}"
     disk: 2048
     configuration:
@@ -319,10 +319,10 @@ Consider the following illustrative example:
 ```
 
 <--->
-<!-- Upsun -->
+<!-- Version 2 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="postgresql" config="service" >}}
+{{< snippet name="dbpostgres" config="service" >}}
     type: "postgresql:{{% latest "postgresql" %}}"
     configuration:
         databases:
@@ -346,7 +346,7 @@ Consider the following illustrative example:
 
 {{< /version/specific >}}
 
-This example creates a single PostgreSQL service named `postgresql`. The server has two databases, `main` and `legacy` with three endpoints created.
+This example creates a single PostgreSQL service named `dbpostgres`. The server has two databases, `main` and `legacy` with three endpoints created.
 
 * `admin`: has full access to both databases.
 * `reporter`: has `SELECT` query access to the `main` database, but no access to `legacy`.
@@ -357,23 +357,17 @@ If a given endpoint has access to multiple databases you should also specify whi
 Once these endpoints are defined, you need to expose them to your application as a relationship. Continuing with the above example, your `relationships` in `{{< vendor/configfile "app" >}}` might look like:
 
 {{< version/specific >}}
-<!-- Platform.sh -->
+<!-- Version 1 -->
 
 ```yaml {configFile="app"}
 {{< snippet name="false" config="app" root="false" >}}
 relationships:
-    database:
-        service: postgresql
-        endpoint: admin
-    reports:
-        service: postgresql
-        endpoint: reporter
-    imports:
-        service: postgresql
-        endpoint: importer
+    database: "dbpostgres:admin"
+    reports: "dbpostgres:reporter"
+    imports: "dbpostgres:importer"
 {{< /snippet >}}
 
-{{< snippet name="postgresql" config="service" placeholder="true" >}}
+{{< snippet name="dbpostgres" config="service" placeholder="true" >}}
     type: "postgresql:{{% latest "postgresql" %}}"
     disk: 2048
     configuration:
@@ -397,23 +391,17 @@ relationships:
 ```
 
 <--->
-<!-- Upsun -->
+<!-- Version 2 -->
 
 ```yaml {configFile="app"}
 {{< snippet name="false" config="app" root="false" >}}
 relationships:
-    database:
-        service: postgresql
-        endpoint: admin
-    reports:
-        service: postgresql
-        endpoint: reporter
-    imports:
-        service: postgresql
-        endpoint: importer
+    database: "dbpostgres:admin"
+    reports: "dbpostgres:reporter"
+    imports: "dbpostgres:importer"
 {{< /snippet >}}
 
-{{< snippet name="postgresql" config="service" placeholder="true" >}}
+{{< snippet name="dbpostgres" config="service" placeholder="true" >}}
     type: "postgresql:{{% latest "postgresql" %}}"
     configuration:
         databases:
@@ -442,10 +430,10 @@ Each database is accessible to your application through the `database`, `reports
 A service configuration without the `configuration` block defined is equivalent to the following default values:
 
 {{< version/specific >}}
-<!-- Platform.sh -->
+<!-- Version 1 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="postgresql" config="service" >}}
+{{< snippet name="dbpostgres" config="service" >}}
     type: "postgresql:{{% latest "postgresql" %}}"
     disk: 2048
     configuration:
@@ -460,10 +448,10 @@ A service configuration without the `configuration` block defined is equivalent 
 ```
 
 <--->
-<!-- Upsun -->
+<!-- Version 2 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="postgresql" config="service" >}}
+{{< snippet name="dbpostgres" config="service" >}}
     type: "postgresql:{{% latest "postgresql" %}}"
     configuration:
         databases:
@@ -481,10 +469,10 @@ A service configuration without the `configuration` block defined is equivalent 
 If you do not define `database` but `endpoints` are defined, then the single database `main` is created with the following assumed configuration:
 
 {{< version/specific >}}
-<!-- Platform.sh -->
+<!-- Version 1 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="postgresql" config="service" >}}
+{{< snippet name="dbpostgres" config="service" >}}
     type: "postgresql:{{% latest "postgresql" %}}"
     disk: 2048
     configuration:
@@ -495,10 +483,10 @@ If you do not define `database` but `endpoints` are defined, then the single dat
 ```
 
 <--->
-<!-- Upsun -->
+<!-- Version 2 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="postgresql" config="service" >}}
+{{< snippet name="dbpostgres" config="service" >}}
     type: "postgresql:{{% latest "postgresql" %}}"
     configuration:
         databases:
@@ -512,10 +500,10 @@ If you do not define `database` but `endpoints` are defined, then the single dat
 Alternatively, if you define multiple databases but no endpoints, a single user `main` is created with `admin` access to each of your databases, equivalent to the configuration below:
 
 {{< version/specific >}}
-<!-- Platform.sh -->
+<!-- Version 1 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="postgresql" config="service" >}}
+{{< snippet name="dbpostgres" config="service" >}}
     type: "postgresql:{{% latest "postgresql" %}}"
     disk: 2048
     configuration:
@@ -532,10 +520,10 @@ Alternatively, if you define multiple databases but no endpoints, a single user 
 ```
 
 <--->
-<!-- Upsun -->
+<!-- Version 2 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="postgresql" config="service" >}}
+{{< snippet name="dbpostgres" config="service" >}}
     type: "postgresql:{{% latest "postgresql" %}}"
     configuration:
         databases:
@@ -563,10 +551,10 @@ To change the timezone for the current session, run `SET TIME ZONE {{< variable 
 {{% vendor/name %}} supports a number of PostgreSQL extensions. To enable them, list them under the `configuration.extensions` key in your `{{< vendor/configfile "services" >}}` file, like so:
 
 {{< version/specific >}}
-<!-- Platform.sh -->
+<!-- Version 1 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="postgresql" config="service" >}}
+{{< snippet name="dbpostgres" config="service" >}}
     type: "postgresql:{{% latest "postgresql" %}}"
     disk: 2048
     configuration:
@@ -577,10 +565,10 @@ To change the timezone for the current session, run `SET TIME ZONE {{< variable 
 ```
 
 <--->
-<!-- Upsun -->
+<!-- Version 2 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="postgresql" config="service" >}}
+{{< snippet name="dbpostgres" config="service" >}}
     type: "postgresql:{{% latest "postgresql" %}}"
     configuration:
         extensions:

@@ -21,7 +21,7 @@ and your messages a safe place to live until they're received.
 {{% major-minor-versions-note configMinor="true" %}}
 
 {{% version/specific %}}
-<!-- Platform.sh -->
+<!-- API Version 1 -->
 
 <table>
     <thead>
@@ -41,7 +41,7 @@ and your messages a safe place to live until they're received.
 </table>
 
 <--->
-<!-- Upsun -->
+<!-- API Version 2 -->
 
 {{< image-versions image="rabbitmq" status="supported" environment="grid" >}}
 
@@ -50,7 +50,7 @@ and your messages a safe place to live until they're received.
 {{% deprecated-versions %}}
 
 {{% version/specific %}}
-<!-- Platform.sh -->
+<!-- API Version 1 -->
 
 <table>
     <thead>
@@ -70,7 +70,7 @@ and your messages a safe place to live until they're received.
 </table>
 
 <--->
-<!-- Upsun -->
+<!-- API Version 2 -->
 
 {{< image-versions image="rabbitmq" status="deprecated" environment="grid" >}}
 
@@ -80,7 +80,7 @@ and your messages a safe place to live until they're received.
 
 {{% endpoint-description type="rabbitmq" /%}}
 
-<!-- Platform.sh: Codetabs using config reader + examples.docs.platform.sh -->
+<!-- Version 1: Codetabs using config reader + examples.docs.platform.sh -->
 {{< codetabs v2hide="true" >}}
 
 +++
@@ -115,33 +115,33 @@ highlight=python
 
 {{< /codetabs >}}
 
-<!-- Upsun: .environment shortcode + context -->
+<!-- Version 2: .environment shortcode + context -->
 {{% version/only "2" %}}
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="myapp" >}}
 # Relationships enable an app container's access to a service.
 relationships:
-    rabbitmq: 
+    rabbitmqqueue: "queuerabbit:rabbitmq"
 {{< /snippet >}}
-{{< snippet name="rabbitmq" config="service" placeholder="true" >}}
+{{< snippet name="queuerabbit" config="service" placeholder="true" >}}
     type: rabbitmq:{{% latest "rabbitmq" %}}
     disk: 256
 {{< /snippet >}}
 ```
 
-{{< v2connect2app serviceName="rabbitmq" relationship="rabbitmq" var="AMQP_URL">}}
+{{< v2connect2app serviceName="queuerabbit" relationship="rabbitmqqueue" var="AMQP_URL">}}
 
 ```bash {location="myapp/.environment"}
 # Decode the built-in credentials object variable.
 export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export QUEUE_SCHEME=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmq[0].scheme")
-export QUEUE_USERNAME=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmq[0].username")
-export QUEUE_PASSWORD=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmq[0].password")
-export QUEUE_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmq[0].host")
-export QUEUE_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmq[0].port")
+export QUEUE_SCHEME=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].scheme")
+export QUEUE_USERNAME=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].username")
+export QUEUE_PASSWORD=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].password")
+export QUEUE_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].host")
+export QUEUE_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].port")
 
 # Set a single RabbitMQ connection string variable for AMQP.
 export AMQP_URL="${QUEUE_SCHEME}://${QUEUE_USERNAME}:${QUEUE_PASSWORD}@${QUEUE_HOST}:${QUEUE_PORT}/"
@@ -228,7 +228,7 @@ which can be useful for separating resources, such as exchanges, queues, and bin
 To create virtual hosts, add them to your configuration as in the following example:
 
 {{< version/specific >}}
-<!-- Platform.sh -->
+<!-- Version 1 -->
 
 ```yaml {configFile="services"}
 {{< snippet name="rabbitmq" config="service" >}}
@@ -242,7 +242,7 @@ To create virtual hosts, add them to your configuration as in the following exam
 ```
 
 <--->
-<!-- Upsun -->
+<!-- Version 2 -->
 
 ```yaml {configFile="services"}
 {{< snippet name="rabbitmq" config="service" >}}
@@ -264,10 +264,10 @@ To create virtual hosts, add them to your configuration as in the following exam
 {
     "username": "guest",
     "scheme": "amqp",
-    "service": "rabbitmq",
+    "service": "rabbitmq38",
     "fragment": null,
     "ip": "169.254.57.5",
-    "hostname": "iwrccysk3gpam2zdlwdr5fgs2y.rabbitmq.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "hostname": "iwrccysk3gpam2zdlwdr5fgs2y.rabbitmq38.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "port": 5672,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "rabbitmq.internal",

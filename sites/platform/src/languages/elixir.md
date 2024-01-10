@@ -236,15 +236,12 @@ See [Config Reader Documentation](../development/variables/use-variables.md#acce
 
 The services configuration is available in the environment variable `PLATFORM_RELATIONSHIPS`.
 
-Given a [relationship](/create-apps/app-reference.md#relationships) defined in `{{< vendor/configfile "app" >}}`:
+Given a relationship defined in `{{< vendor/configfile "app" >}}`:
 
 {{% version/specific %}}
 ```yaml {configFile="app"}
-# Relationships enable an app container's access to a service.
-# The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    postgresql: 
+    postgresdatabase: "dbpostgres:postgresql"
 ```
 <--->
 ```yaml {configFile="app"}
@@ -252,11 +249,8 @@ applications:
     app:
         type: 'elixir:{{% latest "elixir" %}}'
         ...
-        # Relationships enable an app container's access to a service. 
-        # The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            postgresql: 
+            postgresdatabase: "dbpostgres:postgresql"
 ```
 {{% /version/specific %}}
 
@@ -274,7 +268,7 @@ And assuming you use `ecto` you could put in `config/config.exs`:
 
 ```elixir
 relationships = Poison.decode!(Base.decode64!(System.get_env("PLATFORM_RELATIONSHIPS")))
-[postgresql_config | _tail] = relationships["postgresql"]
+[postgresql_config | _tail] = relationships["postgresdatabase"]
 
 config :my_app, Repo,
   database: postgresql_config["path"],

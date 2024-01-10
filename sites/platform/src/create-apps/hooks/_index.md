@@ -493,8 +493,8 @@ applications:
 
         # The relationships of the app with services or other apps.
         relationships:
-            mariadb: 
-            redis: 
+            database: 'db:mysql' 
+            redis: 'cache:redis'
 
         # The hooks executed at various points in the lifecycle of the app.
         hooks:

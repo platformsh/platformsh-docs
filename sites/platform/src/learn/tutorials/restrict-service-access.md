@@ -71,12 +71,8 @@ Edit your app configuration and add new relationships to your new endpoints:
 <!-- Platform.sh -->
 ```yaml {configFile="app"}
 relationships:
-    database:
-        service: maindb
-        endpoint: website
-    reports:
-        service: maindb
-        endpoint: reporting
+    database: maindb:website
+    reports: maindb:reporting
 ```
 
 <--->
@@ -85,12 +81,8 @@ relationships:
 applications:
     myapp:
         relationships:
-            database:
-                service: maindb
-                endpoint: website
-            reports:
-                service: maindb
-                endpoint: reporting
+            database: maindb:website
+            reports: maindb:reporting
 ```
 {{% /version/specific %}}
 
@@ -114,9 +106,7 @@ workers:
             start: |
                 sleep infinity
         relationships:
-            reports:
-                service: maindb
-                endpoint: reporting
+            reports: maindb:reporting
         access:
             ssh: viewer
 ```
@@ -133,9 +123,7 @@ applications:
                     start: |
                         sleep infinity
                 relationships:
-                    reports:
-                        service: maindb
-                        endpoint: reporting
+                    reports: maindb:reporting
                 access:
                     ssh: viewer
 ```

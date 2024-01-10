@@ -164,11 +164,11 @@ dependencies:
     php:
         composer/composer: '^2'
 
-# Relationships enable an app container's access to a service or another app.
-# The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
+# The app's relationships (connections) with services or other applications.
+# The key is the relationship name that can be viewed in the app.
+# The value is specific to how the service is configured.
 relationships:
-    mysql:
+    database: 'mysqldb:mysql'
 
 # Scripts that are run as part of the build and deploy process.
 hooks:
@@ -225,7 +225,7 @@ applications:
         # The key is the relationship name that can be viewed in the app.
         # The value is specific to how the service is configured.
         relationships:
-            mysqldb:
+            database: 'mysqldb:mysql'
 
         # Scripts that are run as part of the build and deploy process.
         hooks:
@@ -264,5 +264,4 @@ services:
     mysqldb:
         type: mariadb:{{% latest "mariadb" %}}
 ```
-
 {{% /version/specific %}}
