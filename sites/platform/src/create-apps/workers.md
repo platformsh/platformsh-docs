@@ -85,18 +85,14 @@ That means, for example, that the following two `{{< vendor/configfile "app" >}}
 
 ```yaml {configFile="app"}
 name: app
-
 type: python:{{% latest "python" %}}
-
 disk: 256
 mounts:
     test:
         source: local
         source_path: test
-
 relationships:
     database: 'mysqldb:mysql'
-
 workers:
     queue:
         commands:
@@ -107,12 +103,9 @@ workers:
             start: |
                 python mail-worker.py
 ```
-
 ```yaml {configFile="app"}
 name: app
-
 type: python:{{% latest "python" %}}
-
 workers:
     queue:
         commands:
@@ -155,33 +148,25 @@ For example, consider the following configuration:
 mysqldb:
   type: "mariadb:{{% latest "mariadb" %}}"
   disk: 2048
-
 rabbitqueue:
     type: rabbitmq:{{% latest "rabbitmq" %}}
     disk: 512
 ```
-
 ```yaml {configFile="app"}
 name: app
-
 type: "python:{{% latest "python" %}}"
-
 disk: 2048
-
 hooks:
     build: |
        pip install -r requirements.txt
        pip install -e .
        pip install gunicorn
-
 relationships:
     database: 'mysqldb:mysql'
     messages: 'rabbitqueue:rabbitmq'
-
 variables:
     env:
         type: 'none'
-
 web:
     commands:
         start: "gunicorn -b $PORT project.wsgi:application"
@@ -200,7 +185,6 @@ web:
          "/static":
              root: "static/"
              allow: true
-
 workers:
     queue:
         size: 'M'

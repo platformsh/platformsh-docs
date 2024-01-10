@@ -225,7 +225,7 @@ applications:
     type: php:8.2
 
     relationships:
-      postgresql: 
+      database: "database:postgresql"
 
     mounts:
       "/var/cache": "shared:files/cache"

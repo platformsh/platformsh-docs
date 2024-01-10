@@ -225,7 +225,7 @@ applications:
         # The key is the relationship name that can be viewed in the app.
         # The value is specific to how the service is configured.
         relationships:
-            mysqldb:
+            database: 'mysqldb:mysql'
 
         # Scripts that are run as part of the build and deploy process.
         hooks:
