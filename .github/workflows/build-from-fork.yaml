@@ -19,7 +19,7 @@ jobs:
       outputs:
         project_id: ${{ steps.get-project-id.outputs.project_id }}
       steps:
-        - uses: platformsh/gha-retrieve-projectid
+        - uses: platformsh/gha-retrieve-projectid@main
           id: get-project-id
           with:
             github_token: ${{ secrets.WORKFLOW_TOKEN }}
