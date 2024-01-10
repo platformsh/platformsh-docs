@@ -10,7 +10,7 @@ While organizations by themselves allow you to assign project and environment ty
 having many users and many projects calls for another method to group common access control settings.
 
 **Teams** provide a grouping that connects a subset of an organization's users to a another subset of that organization's projects.
-That relationship enables organization owners to set default Project and environment type access settings for each user and project from one place.
+That relationship enables organization owners to set default project and environment type access settings for each user and project from one place.
 
 There is no limit to the number of teams that can be defined within a single organization.
 
