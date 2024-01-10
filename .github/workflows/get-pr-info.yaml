@@ -17,7 +17,7 @@ jobs:
       - uses: platformsh/gha-retrieve-projectid@main
         id: get-project-id
         with:
-          github_token: ${{ secrets.WORKFLOW_TOKEN }}
+          github_token: ${{ secrets.WORKFLOW__LABEL_TOKEN }}
   get_pr_info:
     needs: get_project_id
     env:
