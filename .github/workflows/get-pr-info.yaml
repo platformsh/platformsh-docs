@@ -6,11 +6,22 @@ on:
 
 env:
   PLATFORMSH_CLI_NO_INTERACTION: 1
-  PLATFORM_PROJECT: 652soceglkw4u
   PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
   BRANCH_TITLE: ${{ vars.BFF_PREFIX }}-${{ github.event.number }}
 jobs:
+  get_project_id:
+    runs-on: ubuntu-latest
+    outputs:
+      project_id: ${{ steps.get-project-id.outputs.project_id }}
+    steps:
+      - uses: platformsh/gha-retrieve-projectid
+        id: get-project-id
+        with:
+          github_token: ${{ secrets.WORKFLOW_TOKEN }}
   get_pr_info:
+    needs: get_project_id
+    env:
+      PLATFORM_PROJECT: ${{ needs.get_project_id.outputs.project_id }}
     runs-on: ubuntu-latest
     name: Get info on build from PR
     # Run only for PRs from default repo and approved PRs from forks
@@ -34,6 +45,14 @@ jobs:
           fi
           echo "::notice::Setting branch name to ${branch_name}."
           echo "branch_name=${branch_name}" >> $GITHUB_OUTPUT
+
+      - uses: platformsh/gha-retrieve-projectid
+        id: get-project-id
+        with:
+          github_token: ${{ secrets.WORKFLOW_TOKEN }}
+      - name: "set up project env"
+        run: |
+          echo "PLATFORM_PROJECT=${{ steps.get-project-id.outputs.project_id }}" >> $GITHUB_ENV
 
       # Set up workflow environment to use the Platform.sh CLI
       - name: Set up Platform.sh CLI
