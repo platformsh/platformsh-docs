@@ -22,3 +22,4 @@ A CPU build minute is the amount of CPU consumed over the duration of the build 
 while a RAM build minute is the amount of RAM consumed over the duration of the build phase.
 
 If you consume more CPU and/or RAM build minutes, you will be charged for them.
+
