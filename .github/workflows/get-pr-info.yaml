@@ -6,7 +6,7 @@ on:
 
 env:
   PLATFORMSH_CLI_NO_INTERACTION: 1
-  PLATFORM_PROJECT: 652soceglkw4u
+  PLATFORM_PROJECT: ${{ vars.PROJECT_ID }}
   PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
   BRANCH_TITLE: ${{ vars.BFF_PREFIX }}-${{ github.event.number }}
 jobs:
