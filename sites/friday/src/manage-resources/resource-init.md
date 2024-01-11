@@ -1,7 +1,7 @@
 ---
 title: Resource initialization
 description: Learn how resources are allocated by default upon first deployment, and how you can define a resource initialization strategy that better fits your needs.
-weight: -300
+weight: -200
 keywords:
   - "resources"
   - "flexible resources"
@@ -41,7 +41,7 @@ The following strategies are available:
 | `minimum`  | Initializes the new containers using the [{{% vendor/name %}} minimum resources](#minimum-resources). |
 | `parent`   | Initializes the new containers using the same resources as the parent environment.</br>If there is no parent environment, or if the container doesn't already exist on the parent, the `default` strategy applies instead. |
 
-{{< note theme="warning" >}}
+{{< note >}}
 
 When no resource initialization strategy is defined, the following applies:
 
@@ -72,17 +72,17 @@ For example, to use the `minimum` strategy for your deployment, run the followin
 upsun push --resources-init=minimum
 ```
 
-{{< note >}}
-
 Alternatively, you can use the official Git syntax for [push options](/environments/_index.md#push-options):
 
 ```bash
 git push upsun -o resources.init=minimum
 ```
 
-{{< /note >}}
+{{< note >}}
 
-Note that you can set a different resource initialization strategy for each of your deployments.
+You can set a different resource initialization strategy for each of your deployments.
+
+{{< /note >}}
 
 <--->
 

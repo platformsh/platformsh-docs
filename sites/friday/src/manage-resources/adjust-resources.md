@@ -1,7 +1,7 @@
 ---
 title: Resource configuration
 description: Configure CPU, RAM, and disk storage on a per-environment basis so your apps and services can run smoothly.
-weight: -200
+weight: -100
 keywords:
   - "resources"
   - "flexible resources"
