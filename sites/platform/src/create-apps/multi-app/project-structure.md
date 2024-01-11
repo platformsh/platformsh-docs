@@ -94,11 +94,9 @@ Once your repository is organized, you can use a configuration similar to the fo
 ```yaml {configFile="apps"}
 api:
   type: php:8.2
-  # Relationships enable an app container's access to a service.
-  # The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
+
   relationships:
-    postgresql: 
+    database: "database:postgresql"
 
   mounts:
     "/var/cache": "shared:files/cache"
@@ -225,11 +223,9 @@ mercure:
 applications:
   api:
     type: php:8.2
-    # Relationships enable an app container's access to a service.
-    # The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
-    # See the Application reference for all options for defining relationships and endpoints.
+
     relationships:
-      postgresql: 
+      database: "database:postgresql"
 
     mounts:
       "/var/cache": "shared:files/cache"

@@ -99,13 +99,11 @@ symfony ssh -- symfony var:export --multiline
 ```
 
 Each exposed environment variable is prefixed by the relationship name.
-For example, if you have the following [relationships](/create-apps/app-reference.md#relationships) in your configuration:
+For example, if you have the following relationships in your configuration:
 
 ```yaml
 relationships:
-    database: 
-        service: securitydb
-        endpoint: postgresql
+    database: "securitydb:postgresql"
 ```
 
 The environment variables for the database service is prefixed by `DATABASE_`

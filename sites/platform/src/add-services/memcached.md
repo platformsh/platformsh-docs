@@ -23,7 +23,7 @@ Both Memcached and Redis can be used for application caching. As a general rule,
 {{% major-minor-versions-note configMinor="true" %}}
 
 {{% version/specific %}}
-<!-- Platform.sh -->
+<!-- API Version 1 -->
 
 <table>
     <thead>
@@ -45,7 +45,7 @@ Both Memcached and Redis can be used for application caching. As a general rule,
 \* No High-Availability on {{% names/dedicated-gen-2 %}}.
 
 <--->
-<!-- Upsun -->
+<!-- API Version 2 -->
 
 {{< image-versions image="memcached" status="supported" environment="grid" >}}
 
@@ -57,9 +57,9 @@ Both Memcached and Redis can be used for application caching. As a general rule,
 
 ```yaml
 {
-    "service": "memcached",
+    "service": "memcached16",
     "ip": "169.254.228.111",
-    "hostname": "3sdm72jgaxge2b6aunxdlzxyea.memcached.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "hostname": "3sdm72jgaxge2b6aunxdlzxyea.memcached16.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "memcached.internal",
     "rel": "memcached",
@@ -125,22 +125,22 @@ highlight=python
 
 # Relationships enable an app container's access to a service.
 relationships:
-    memcached: 
+    memcachedcache: "cachemc:memcached"
 {{< /snippet >}}
-{{< snippet name="memcached" config="service" placeholder="true" >}}
+{{< snippet name="cachemc" config="service" placeholder="true" >}}
     type: memcached:{{% latest "memcached" %}}
 {{< /snippet >}}
 ```
 
-{{< v2connect2app serviceName="memcached" relationship="memcached" var="CACHE_URL">}}
+{{< v2connect2app serviceName="cachemc" relationship="memcachedcache" var="CACHE_URL">}}
 
 ```bash {location="myapp/.environment"}
 # Decode the built-in credentials object variable.
 export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export CACHE_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".memcached[0].host")
-export CACHE_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".memcached[0].port")
+export CACHE_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".memcachedcache[0].host")
+export CACHE_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".memcachedcache[0].port")
 
 # Surface a Memcached connection string for use in app.
 export CACHE_URL="${CACHE_HOST}:${CACHE_PORT}"
@@ -152,10 +152,10 @@ export CACHE_URL="${CACHE_HOST}:${CACHE_PORT}"
 
 ## Accessing Memcached directly
 
-To access the Memcached service directly you can use `netcat` as Memcached doesn't have a dedicated client tool. Assuming your Memcached relationship is named `memcached`, the host name and port number obtained from `{{< vendor/prefix >}}_RELATIONSHIPS` would be `memcached.internal` and `11211`. Open an [SSH session](/development/ssh/_index.md) and access the Memcached server as follows:
+To access the Memcached service directly you can use `netcat` as Memcached doesn't have a dedicated client tool. Assuming your Memcached relationship is named `cache`, the host name and port number obtained from `{{< vendor/prefix >}}_RELATIONSHIPS` would be `cache.internal` and `11211`. Open an [SSH session](/development/ssh/_index.md) and access the Memcached server as follows:
 
 ```bash
-netcat memcached.internal 11211
+netcat cache.internal 11211
 ```
 
 {{% service-values-change %}}

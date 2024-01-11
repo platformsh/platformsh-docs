@@ -16,7 +16,7 @@ Puppeteer can be used to generate PDFs and screenshots of web pages, automate fo
 {{% major-minor-versions-note %}}
 
 {{% version/specific %}}
-<!-- Platform.sh -->
+<!-- API Version 1 -->
 
 <table>
     <thead>
@@ -36,7 +36,7 @@ Puppeteer can be used to generate PDFs and screenshots of web pages, automate fo
 </table>
 
 <--->
-<!-- Upsun -->
+<!-- API Version 2 -->
 
 {{< image-versions image="chrome-headless" status="supported" environment="grid" >}}
 
@@ -48,11 +48,11 @@ Puppeteer can be used to generate PDFs and screenshots of web pages, automate fo
 
 ```yaml
 {
-    "service": "chrome-headless",
+    "service": "headlesschrome",
     "ip": "169.254.91.5",
-    "hostname": "gvbo7vktgmou2mplnzt4b54hgi.chrome-headless.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "hostname": "gvbo7vktgmou2mplnzt4b54hgi.headlesschrome.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "chrome-headless.internal",
+    "host": "headlesschrome.internal",
     "rel": "http",
     "scheme": "http",
     "type": "chrome-headless:{{< latest "chrome-headless" >}}",
@@ -108,7 +108,7 @@ yarn add puppeteer
 {{< /codetabs >}}
 
 {{% version/specific %}}
-<!-- Platform.sh -->
+<!-- API Version 1 -->
 
 Using the [Node.js Config Reader library](../development/variables/use-variables.md#access-variables-in-your-app), you can retrieve formatted credentials for connecting to headless Chrome with Puppeteer:
 
@@ -116,7 +116,7 @@ Using the [Node.js Config Reader library](../development/variables/use-variables
 const platformsh = require('platformsh-config');
 
 const config = platformsh.config();
-const credentials = config.credentials('chrome-headless');
+const credentials = config.credentials('chromeheadlessbrowser');
 ```
 
 and use them to define the `browserURL` parameter of `puppeteer.connect()` within an `async` function:
@@ -125,7 +125,7 @@ and use them to define the `browserURL` parameter of `puppeteer.connect()` withi
 exports.getBrowser = async function (url) {
     try {
         // Connect to chrome-headless using pre-formatted puppeteer credentials
-        const formattedURL = config.formattedCredentials('chrome-headless', 'puppeteer');
+        const formattedURL = config.formattedCredentials('chromeheadlessbrowser', 'puppeteer');
         const browser = await puppeteer.connect({browserURL: formattedURL});
 
         ...
@@ -140,7 +140,7 @@ exports.getBrowser = async function (url) {
 ```
 
 <--->
-<!-- Upsun -->
+<!-- API Version 2 -->
 
 Configuration for a project looks similar to the following:
 
@@ -151,25 +151,23 @@ type: "nodejs:{{% latest "nodejs" %}}"
 # Other options...
 
 # Relationships enable an app container's access to a service.
-# The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    chrome-headless: 
+    chromeheadlessbrowser: "headlessbrowser:http"
 {{< /snippet >}}
-{{< snippet name="chrome-headless" config="service" placeholder="true" >}}
+{{< snippet name="headlessbrowser" config="service" placeholder="true" >}}
     type: chrome-headless:{{% latest "chrome-headless" %}}
 {{< /snippet >}}
 ```
 
-{{< v2connect2app serviceName="chrome-headless" relationship="chrome-headless" var="CHROME_BASEURL">}}
+{{< v2connect2app serviceName="headlessbrowser" relationship="chromeheadlessbrowser" var="CHROME_BASEURL">}}
 
 ```bash {location="myapp/.environment"}
 # Decode the built-in credentials object variable.
 export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export CHROME_IP=$(echo $RELATIONSHIPS_JSON | jq -r ".chrome-headless[0].ip")
-export CHROME_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".chrome-headless[0].port")
+export CHROME_IP=$(echo $RELATIONSHIPS_JSON | jq -r ".chromeheadlessbrowser[0].ip")
+export CHROME_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".chromeheadlessbrowser[0].port")
 
 # Combine into a single base URL to be used within app.
 export CHROME_BASEURL="http://${CHROME_IP}:${CHROME_PORT}"
@@ -182,7 +180,7 @@ export CHROME_BASEURL="http://${CHROME_IP}:${CHROME_PORT}"
 Puppeteer allows your application to [create screenshots](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pagescreenshotoptions), [emulate a mobile device](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pageemulateoptions), [generate PDFs](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pagepdfoptions), and much more.
 
 {{% version/specific %}}
-<!-- Platform.sh -->
+<!-- API Version 1 -->
 
 You can find some useful examples of using headless Chrome and Puppeteer on {{< vendor/name >}} on the Community Portal:
 
@@ -191,6 +189,6 @@ You can find some useful examples of using headless Chrome and Puppeteer on {{< 
 
 
 <--->
-<!-- Upsun -->
+<!-- API Version 2 -->
 
 {{% /version/specific %}}
