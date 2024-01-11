@@ -36,7 +36,7 @@ applications:
   app:
     type: nodejs:18
     {{< code-link destination="/create-apps/app-reference.html#relationships" text="relationships" title="The relationships of the application with services or other applications. The left-hand side is the name of the relationship as it will be exposed to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand side is in the form `<service name>:<endpoint name>`. Click for more information." >}}:
-      mariadb: 
+      mariadb: "mariadb:mysql"
 ```
 
 Add into your ``.environment`` file the following lines:

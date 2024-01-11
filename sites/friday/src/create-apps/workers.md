@@ -89,18 +89,14 @@ That means, for example, that the following two `{{< vendor/configfile "app" >}}
 
 ```yaml {configFile="app"}
 applications:
-    app: #The name of the app, which must be unique within the project.
-
+    name: app
     type: python:{{% latest "python" %}}
-
     mounts:
         test:
-            source: storage
+            source: local
             source_path: test
-
     relationships:
-        mysql: 
-
+        database: 'mysqldb:mysql'
     workers:
         queue:
             commands:
@@ -110,7 +106,6 @@ applications:
             commands:
                 start: |
                     python mail-worker.py
-
 services:
     mysqldb:
         type: mariadb:{{% latest "mariadb" %}}
@@ -118,10 +113,8 @@ services:
 
 ```yaml {configFile="app"}
 applications:
-    app: #The name of the app, which must be unique within the project.
-
+    name: app
     type: python:{{% latest "python" %}}
-
     workers:
         queue:
             commands:
@@ -129,21 +122,20 @@ applications:
                     python queue-worker.py
             mounts:
                 test:
-                    source: storage
+                    source: local
                     source_path: test
             relationships:
-                mysql: 
+                database: 'mysqldb:mysql'
         mail:
             commands:
                 start: |
                     python mail-worker.py
             mounts:
                 test:
-                    source: storage
+                    source: local
                     source_path: test
             relationships:
-                mysql: 
-
+                database: 'mysqldb:mysql'
 services:
     mysqldb:
         type: mariadb:{{% latest "mariadb" %}}
@@ -165,24 +157,19 @@ For example, consider the following configuration:
 
 ```yaml {configFile="app"}
 applications:
-    app: #The name of the app, which must be unique within the project.
-
+    name: app
     type: "python:{{% latest "python" %}}"
-
     hooks:
         build: |
         pip install -r requirements.txt
         pip install -e .
         pip install gunicorn
-
     relationships:
-        mysql: 
-        rabbitmq: 
-
+        database: 'mysqldb:mysql'
+        messages: 'rabbitqueue:rabbitmq'
     variables:
         env:
             type: 'none'
-
     web:
         commands:
             start: "gunicorn -b $PORT project.wsgi:application"
@@ -191,7 +178,7 @@ applications:
                 type: 'web'
         mounts:
             uploads:
-                source: storage
+                source: local
                 source_path: uploads
         locations:
             "/":
@@ -201,7 +188,6 @@ applications:
             "/static":
                 root: "static/"
                 allow: true
-
     workers:
         queue:
             commands:
@@ -212,7 +198,7 @@ applications:
                     type: 'worker'
             mounts:
                 scratch:
-                    source: storage
+                    source: local
                     source_path: scratch
         mail:
             commands:
@@ -223,12 +209,10 @@ applications:
                     type: 'worker'
             mounts: {}
             relationships:
-                rabbitmq: 
-
+                emails: 'rabbitqueue:rabbitmq'
 services:
     mysqldb:
         type: "mariadb:{{% latest "mariadb" %}}"
-
     rabbitqueue:
         type: rabbitmq:{{% latest "rabbitmq" %}}
 ```

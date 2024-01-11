@@ -151,7 +151,7 @@ applications:
 ```
 {{% /version/specific %}}
 
-{{< version/specific >}}
+{{% version/specific %}}
 ## Sizes
 
 Resources are distributed across all containers in an environment from the total available from your [plan size](../administration/pricing/_index.md).
@@ -189,7 +189,7 @@ Resources for application containers are not committed to YAML files, but instea
 
 For more information, see how to [manage resources](/manage-resources.md).
 
-{{< /version/specific>}}
+{{% /version/specific %}}
 
 ## Relationships
 
@@ -1146,12 +1146,12 @@ applications:
 
 In this example configuration, the [cron specification](#crons) uses the `H` syntax.
 
-{{% version/specific %}}
+{{% version/only "1" %}}
 Note that this syntax is only supported on Grid and {{% names/dedicated-gen-3 %}} projects.
 On {{% names/dedicated-gen-2 %}} projects, use the [standard cron syntax](https://en.wikipedia.org/wiki/Cron#Cron_expression).
 <--->
 
-{{% /version/specific %}}
+{{% /version/only %}}
 
 ### Example cron jobs
 
@@ -1278,7 +1278,7 @@ applications:
 
 ### Cron job timing
 
-{{< version/specific >}}
+{{% version/specific %}}
 <!-- Version 1 -->
 Minimum time between cron jobs being triggered:
 
@@ -1290,7 +1290,7 @@ Minimum time between cron jobs being triggered:
 <--->
 <!-- Version 2 -->
 The minimum time between cron jobs being triggered is 5 minutes.
-{{< /version/specific >}}
+{{% /version/specific %}}
 
 For each app container, only one cron job can run at a time.
 If a new job is triggered while another is running, the new job is paused until the other completes.

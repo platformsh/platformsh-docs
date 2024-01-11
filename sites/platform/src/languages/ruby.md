@@ -421,7 +421,6 @@ Here is a complete `{{< vendor/configfile "app" >}}` file:
 
 {{% version/specific %}}
 ```yaml {configFile="app"}
-# The name of the app, which must be unique within a project.
 name: 'app'
 
 type: "ruby:3.0"
@@ -429,11 +428,9 @@ type: "ruby:3.0"
 dependencies:
     nodejs:
         yarn: "*"
-# Relationships enable an app container's access to a service.
-# The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
+
 relationships:
-    mysql: 
+    database: "database:mysql"
 
 disk: 2048
 
@@ -636,7 +633,7 @@ To configure it, [create a service](../add-services/_index.md) such as the follo
 
 {{% version/specific %}}
 ```yaml {configFile="services"}
-mysql:
+database:
     type: mysql:{{% latest "mariadb" %}}
     disk: 2048
 ```
@@ -649,8 +646,9 @@ routes:
     ...
 
 services: 
-    mysql:
+    database:
         type: mysql:{{% latest "mariadb" %}}
+        disk: 2048
 ```
 {{% /version/specific %}}
 
@@ -661,29 +659,23 @@ Once you have a service, link to it in your [app configuration](../create-apps/_
 
 {{% version/specific %}}
 ```yaml {configFile="app"}
-# Relationships enable an app container's access to a service.
-# The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    mysql: 
+    database: "database:mysql"
 ```
 <--->
 ```yaml {configFile="app"}
 applications:
     app:
         type: 'ruby:{{% latest "ruby" %}}'
-        # Relationships enable an app container's access to a service.
-        # The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            mysql: 
+            database: "database:mysql"
         ...
 
 routes:
     ...
 
 services: 
-    mysql:
+    database:
         type: mysql:{{% latest "mariadb" %}}
         disk: 2048
 ```
@@ -701,7 +693,7 @@ This should give you something like the following:
 
 ```json
 {
-   "mysql" : [
+   "database" : [
       {
          "path" : "main",
          "query" : {
@@ -710,7 +702,7 @@ This should give you something like the following:
          "port" : 3306,
          "username" : "user",
          "password" : "",
-         "host" : "mysql.internal",
+         "host" : "database.internal",
          "ip" : "246.0.241.50",
          "scheme" : "mysql"
       }
