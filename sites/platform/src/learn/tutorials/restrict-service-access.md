@@ -48,7 +48,6 @@ maindb:
 services:
     maindb:
         type: mariadb:10.5
-        disk: 2048
         configuration:
             schemas:
                 - main
