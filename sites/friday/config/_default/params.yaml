@@ -22,9 +22,9 @@ vendor:
     recruit:
         active: true
         link: https://upsun.com/register/
-        cta: Sign up for early access
+        cta: Sign up for Beta access
         title: Upsun Beta access
-        description: "Platform.sh will soon open up early access to test and provide feedback for our newest offering - <a href=\"https://upsun.com/blog/upsun-origin-story/\">Upsun</a>.<br/><br/>You can register for the beta by clicking here and completing the form.<br/><br/>"
+        description: "Test and provide feedback for our newest offering - <a href=\"https://upsun.com/blog/upsun-origin-story/\">Upsun</a>!<br/><br/>You can register for the Beta by clicking here and completing the form.<br/><br/>"
     psh_ref: Platform.sh
     config:
         version: 2
@@ -61,7 +61,7 @@ gtm: "GTM-KRPJGT4"
 headerActions:
   headerActionPrimary:
     destination: https://upsun.com/register/
-    linkText: Sign up for early access
+    linkText: Sign up for Upsun Beta
   headerActionSecondary:
     destination: https://console.upsun.com/
     linkText: Log in
