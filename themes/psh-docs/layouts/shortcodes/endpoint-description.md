@@ -164,8 +164,9 @@ Add the service to your app configuration:
 
 - `<TARGET_PATH>` is where you want your service to be, the path on your app container that has a writable mount.
 - `<SERVICE_NAME>` is the name you [defined in step 1](#1-configure-the-service).
-- `<SOURCE_PATH>` is the path within the service that the mounts point to.
-  Usually the same as the `<SERVICE_NAME>`.
+- `<SOURCE_PATH>` is the path within the service that the mount points to.</br>
+  Usually the same as the `<SERVICE_NAME>`.</br>
+  If no `<SOURCE_PATH>` is defined or if an empty string is passed, the mount points to the entire directory as defined in the `<TARGET_PATH>`.
 {{ end }}
 {{ end }} <!-- end check for Varnish -->
 

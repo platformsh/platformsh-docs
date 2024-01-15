@@ -33,7 +33,10 @@ Any change to the service version results in existing data becoming inaccessible
 
 ## Multi-application usage
 
-If your project contains [multiple apps](../create-apps/multi-app/_index.md), they can all use the same network mounts.
+If your project contains [multiple apps](../create-apps/multi-app/_index.md),
+they can all [use the same `storage` mounts](/create-apps/app-reference/_index.md#data-sharing-through-mounts).
+
+Alternatively, they can all use the same `service` mounts.
 If the `source_path` is the same for both apps,
 the files are shared between the two applications even if the mount location is different.
 
