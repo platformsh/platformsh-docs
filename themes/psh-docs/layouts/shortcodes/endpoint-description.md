@@ -153,7 +153,7 @@ If you split the service into multiple endpoints, define multiple relationships.
 {{ else }}
 Add the service to your app configuration:
 
-{{$inner := "\nmounts:\n    '<TARGET_PATH>':\n        source: service\n" }}
+{{$inner := "\nmounts:\n    '<DIRECTORY>':\n        source: service\n" }}
 {{ $inner = printf "%s        service: <SERVICE_NAME>\n        source_path: <SOURCE_PATH>" $inner }}
 
 ```yaml {configFile="app"}
@@ -162,11 +162,11 @@ Add the service to your app configuration:
 {{ partial "snippet" (dict "context" . "name" "<SERVICE_NAME>" "config" "service" "placeholder" "true" "Inner" $serviceInner ) }}
 ```
 
-- `<TARGET_PATH>` is where you want your service to be, the path on your app container that has a writable mount.
+- `<DIRECTORY>` is the directory in the app container where you want your mount to be.
 - `<SERVICE_NAME>` is the name you [defined in step 1](#1-configure-the-service).
 - `<SOURCE_PATH>` is the path within the service that the mount points to.</br>
   Usually the same as the `<SERVICE_NAME>`.</br>
-  If no `<SOURCE_PATH>` is defined or if an empty string is passed, the mount points to the entire directory as defined in the `<TARGET_PATH>`.
+  If no `<SOURCE_PATH>` is defined or if an empty string is passed, the mount points to the entire `<DIRECTORY>`.
 {{ end }}
 {{ end }} <!-- end check for Varnish -->
 

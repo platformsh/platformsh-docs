@@ -302,7 +302,7 @@ applications:
 ```
 {{% /version/specific %}}
 
-The `{{< variable "DIRECTORY" >}}` is relative to the [app's root](#root-directory) and represents the mount path in the app.
+The `{{< variable "DIRECTORY" >}}` is relative to the [app's root](#root-directory) and represents the path in the app.
 If you already have a directory with that name, you get a warning that it isn't accessible after the build.
 See how to [troubleshoot the warning](./troubleshoot-mounts.md#overlapping-folders).
 
@@ -311,7 +311,7 @@ See how to [troubleshoot the warning](./troubleshoot-mounts.md#overlapping-folde
 | Name          | Type                 | Required | Description |
 | ------------- | -------------------- | -------- | ----------- |
 | `source`      | `local`, `service`, or `tmp` | Yes      | Specifies the mount type. Set to: </br> - `local` so your mount is unique to the app (requires `disk` to be set for the app).</br> - `service` so your [Network Storage](/add-services/network-storage.md) mount can be shared between several apps.</br> - `tmp` to mount a directory within the `/tmp` directory of your app. `tmp` mounts are **local ephemeral mounts**; their content may be removed during infrastructure maintenance operations. They allow you to **store files that you're not afraid to lose**, such as your application cache that can be seamlessly rebuilt.</br>Note that the `/tmp` directory has a [maximum allocation of 8 GB](/create-apps/troubleshoot-disks.md#no-space-left-on-device). |
-| `source_path` | `string`             | No      | The subdirectory within the mounted disk (the source) where the mount should point.</br> If you don't define a `source_path`, or if an empty string is passed, the mount will point to the entire directory as defined in the [mount path](#mounts). |
+| `source_path` | `string`             | No      | The subdirectory within the mounted disk (the source) where the mount should point.</br> If you don't define a `source_path`, or if an empty string is passed, the mount will point to [the entire {{< variable "DIRECTORY" >}}](#mounts). |
 | `service`     | `string`             |       | The name of the [Network Storage service](../add-services/network-storage.md). |
 
 <--->
@@ -320,7 +320,7 @@ See how to [troubleshoot the warning](./troubleshoot-mounts.md#overlapping-folde
 | Name          | Type                 | Required | Description |
 | ------------- | -------------------- | -------- | ----------- |
 | `source`      | `storage`, `tmp`, or `service` | Yes | Specifies the mount type: </br></br> - By default, `storage` mounts can be shared between instances of the same app. You can also configure them so they are [shared between different apps](#data-sharing-through-mounts). </br> </br> - `tmp` mounts are **local ephemeral mounts**, where a directory is mounted within the `/tmp` directory of your app. Its content may be removed during infrastructure maintenance operations. </br> `tmp` mounts allow you to **store files that you're not afraid to lose**, such as your application cache that can be seamlessly rebuilt. Note that the  `/tmp` directory has a [maximum allocation of 8 GB](/create-apps/troubleshoot-disks.md#no-space-left-on-device).</br></br> - `service` mounts can be useful if you want to explicitly define and use a [Network Storage](/add-services/network-storage.md) service to share data between different apps (instead of using a `storage` mount). |
-| `source_path` | `string`             | No      | The subdirectory within the mounted disk (the source) where the mount should point.</br> If you don't define a `source_path`, or if an empty string is passed, the mount will point to the entire directory as defined in the [mount path](#mounts). |
+| `source_path` | `string`             | No      | The subdirectory within the mounted disk (the source) where the mount should point.</br> If you don't define a `source_path`, or if an empty string is passed, the mount will point to [the entire {{< variable "DIRECTORY" >}}](#mounts). |
 | `service`     | `string`             |         | The purpose of the `service` key depends on your use case.</br> In a multi-app context where a `storage` mount is shared between apps, `service` is required. Its value is the name of the app whose mount you want to share. For more information, see [Data sharing through mounts](#data-sharing-through-mounts).</br> In a multi-app context where a [Network Storage service](../add-services/network-storage.md) (`service` mount) is shared between apps, `service` is required and specifies the name of that Network Storage. |
 
 {{% /version/specific %}}
