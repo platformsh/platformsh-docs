@@ -56,7 +56,7 @@ and deploy it on {{% vendor/name %}}.
     ```yaml {configFile="app"}
     mounts:
       "app_name/static":
-        source: "local"
+        source: "storage"
         source_path: "static_assets"
     ```
 1. Find the section for `hooks:build`
