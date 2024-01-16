@@ -3,8 +3,8 @@
     "description": "",
     "disk": false,
     "docs": {
-      "relationship_name": "chrome-headless",
-      "service_name": "chrome-headless",
+      "relationship_name": "chromeheadlessbrowser",
+      "service_name": "headlessbrowser",
       "url": "/add-services/headless-chrome.html"
     },
     "endpoint": "http",
@@ -100,8 +100,8 @@
     "description": "A manufacture service for Elasticsearch",
     "disk": true,
     "docs": {
-      "relationship_name": "elasticsearch",
-      "service_name": "elasticsearch",
+      "relationship_name": "essearch",
+      "service_name": "searchelastic",
       "url": "/add-services/elasticsearch.html"
     },
     "endpoint": "elasticsearch",
@@ -275,8 +275,8 @@
     "description": "",
     "disk": true,
     "docs": {
-      "relationship_name": "influxdb",
-      "service_name": "influxdb",
+      "relationship_name": "influxtimedb",
+      "service_name": "timedb",
       "url": "/add-services/influxdb.html"
     },
     "endpoint": "influxdb",
@@ -354,8 +354,8 @@
     "description": "",
     "disk": true,
     "docs": {
-      "relationship_name": "kafka",
-      "service_name": "kafka",
+      "relationship_name": "kafkaqueue",
+      "service_name": "queuekafka",
       "url": "/add-services/kafka.html"
     },
     "endpoint": "kafka",
@@ -428,8 +428,8 @@
     "repo_name": "mariadb",
     "disk": true,
     "docs": {
-      "relationship_name": "mariadb",
-      "service_name": "mariadb",
+      "relationship_name": "database",
+      "service_name": "db",
       "url": "/add-services/mysql.html"
     },
     "endpoint": "mysql",
@@ -488,8 +488,8 @@
     "repo_name": "mariadb",
     "disk": true,
     "docs": {
-      "relationship_name": "mysql",
-      "service_name": "mysql",
+      "relationship_name": "database",
+      "service_name": "db",
       "url": "/add-services/mysql.html"
     },
     "endpoint": "mysql",
@@ -544,8 +544,8 @@
     "repo_name": "memcached",
     "disk": false,
     "docs": {
-      "relationship_name": "memcached",
-      "service_name": "memcached",
+      "relationship_name": "memcachedcache",
+      "service_name": "cachemc",
       "url": "/add-services/memcached.html"
     },
     "endpoint": "memcached",
@@ -570,8 +570,8 @@
     "repo_name": "mongodb",
     "disk": true,
     "docs": {
-      "relationship_name": "mongodb",
-      "service_name": "mongodb",
+      "relationship_name": "mongodatabase",
+      "service_name": "dbmongo",
       "url": "/add-services/mongodb.html"
     },
     "endpoint": "mongodb",
@@ -595,8 +595,8 @@
     "repo_name": "mongodb",
     "disk": true,
     "docs": {
-      "relationship_name": "mongodb-enterprise",
-      "service_name": "mongodb-enterprise",
+      "relationship_name": "mongodatabase",
+      "service_name": "dbmongo",
       "url": "/add-services/mongodb.html"
     },
     "endpoint": "mongodb",
@@ -634,7 +634,7 @@
     "disk": true,
     "docs": {
       "relationship_name": "null",
-      "service_name": "newtork-storage",
+      "service_name": "network-storage",
       "url": "/add-services/network-storage.html"
     },
     "endpoint": "something",
@@ -709,8 +709,8 @@
     "description": "A manufacture service for OpenSearch",
     "disk": true,
     "docs": {
-      "relationship_name": "opensearch",
-      "service_name": "opensearch",
+      "relationship_name": "ossearch",
+      "service_name": "searchopen",
       "url": "/add-services/opensearch.html"
     },
     "endpoint": "opensearch",
@@ -751,8 +751,8 @@
     "repo_name": "oracle-mysql",
     "disk": true,
     "docs": {
-      "relationship_name": "oracle-mysql",
-      "service_name": "oracle-mysql",
+      "relationship_name": "mysqldatabase",
+      "service_name": "dbmysql",
       "url": "/add-services/mysql.html"
     },
     "endpoint": "mysql",
@@ -841,8 +841,8 @@
     "repo_name": "postgresql",
     "disk": true,
     "docs": {
-      "relationship_name": "postgresql",
-      "service_name": "postgresql",
+      "relationship_name": "postgresdatabase",
+      "service_name": "dbpostgres",
       "url": "/add-services/postgresql.html"
     },
     "endpoint": "postgresql",
@@ -943,8 +943,8 @@
     "repo_name": "rabbitmq",
     "disk": true,
     "docs": {
-      "relationship_name": "rabbitmq",
-      "service_name": "rabbitmq",
+      "relationship_name": "rabbitmqqueue",
+      "service_name": "queuerabbit",
       "url": "/add-services/rabbitmq.html"
     },
     "endpoint": "rabbitmq",
@@ -998,8 +998,8 @@
     "repo_name": "redis",
     "disk": false,
     "docs": {
-      "relationship_name": "redis",
-      "service_name": "redis",
+      "relationship_name": "rediscache",
+      "service_name": "cacheredis",
       "url": "/add-services/redis.html"
     },
     "endpoint": "redis",
@@ -1146,8 +1146,8 @@
     "repo_name": "solr",
     "disk": true,
     "docs": {
-      "relationship_name": "solr",
-      "service_name": "solr",
+      "relationship_name": "solrsearch",
+      "service_name": "searchsolr",
       "url": "/add-services/solr.html"
     },
     "endpoint": "solr",
@@ -1201,7 +1201,7 @@
     "repo_name": "varnish",
     "disk": false,
     "docs": {
-      "relationship_name": "varnish",
+      "relationship_name": "varnishstats",
       "service_name": "varnish",
       "url": "/add-services/varnish.html"
     },
@@ -1230,7 +1230,7 @@
     "description": "",
     "disk": true,
     "docs": {
-      "relationship_name": "vault-kms",
+      "relationship_name": "vault_service",
       "service_name": "vault-kms",
       "url": "/add-services/vault.html"
     },

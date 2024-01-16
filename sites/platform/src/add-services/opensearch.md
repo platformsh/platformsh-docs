@@ -15,7 +15,7 @@ To switch from Elasticsearch, follow the same procedure as for [upgrading](#upgr
 ## Supported versions
 
 {{% version/specific %}}
-<!-- Platform.sh -->
+<!-- API Version 1 -->
 <!--
 To update the versions in this table, use docs/data/registry.json
 -->
@@ -41,7 +41,7 @@ On Grid and {{% names/dedicated-gen-3 %}}, from version 2, you only specify the 
 The latest compatible minor version and patches are applied automatically. On Grid, version 1 represents a rolling release - the latest minor version available from the upstream.
 
 <--->
-<!-- Upsun -->
+<!-- API Version 2 -->
 
 In the list below, notice that there you only specify the major version.
 Each version represents a rolling release of the latest minor version available from the upstream.
@@ -60,7 +60,7 @@ but they're at their end of life and are no longer receiving security updates fr
 or are no longer the recommended way to configure the service on {{% vendor/name %}}.
 
 {{% version/specific %}}
-<!-- Platform.sh -->
+<!-- API Version 1 -->
 
 <table>
     <thead>
@@ -80,7 +80,7 @@ or are no longer the recommended way to configure the service on {{% vendor/name
 </table>
 
 <--->
-<!-- Upsun -->
+<!-- API Version 2 -->
 
 {{< image-versions image="opensearch" status="deprecated" environment="grid" >}}
 
@@ -97,10 +97,10 @@ switch to [a supported version](#supported-versions).
 {
     "username": null,
     "scheme": "http",
-    "service": "opensearch",
+    "service": "opensearch12",
     "fragment": null,
     "ip": "169.254.99.100",
-    "hostname": "2e36wpnescmc5ffcddczsnhnai.opensearch.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "hostname": "2e36wpnescmc5ffcddczsnhnai.opensearch12.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "port": 9200,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "opensearch.internal",
@@ -123,50 +123,50 @@ switch to [a supported version](#supported-versions).
 To use the configured service in your app, add a configuration file similar to the following to your project.
 
 {{< version/specific >}}
-<!-- Platform.sh: .environment shortcode + context -->
+<!-- Version 1: .environment shortcode + context -->
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="myapp" >}}
 # Relationships enable an app container's access to a service.
 relationships:
-    opensearch: 
+    searchopen: "searchopen:opensearch"
 {{< /snippet >}}
-{{< snippet name="opensearch" config="service" placeholder="true" >}}
+{{< snippet name="searchopen" config="service" placeholder="true" >}}
     type: opensearch:{{% latest "opensearch" %}}
     disk: 256
 {{< /snippet >}}
 ```
 
 <--->
-<!-- Upsun -->
+<!-- Version 2 -->
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="myapp" >}}
 # Relationships enable an app container's access to a service.
 relationships:
-    opensearch: 
+    searchopen: "searchopen:opensearch"
 {{< /snippet >}}
-{{< snippet name="opensearch" config="service" placeholder="true" >}}
+{{< snippet name="searchopen" config="service" placeholder="true" >}}
     type: opensearch:{{% latest "opensearch" %}}
 {{< /snippet >}}
 ```
 
 {{< /version/specific >}}
 
-{{% v2connect2app serviceName="opensearch" relationship="opensearch" var="OPENSEARCH_HOSTS" %}}
+{{% v2connect2app serviceName="searchopen" relationship="searchopen" var="OPENSEARCH_HOSTS" %}}
 
 ```bash {location="myapp/.environment"}
 # Decode the built-in credentials object variable.
 export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export OS_SCHEME=$(echo $RELATIONSHIPS_JSON | jq -r ".opensearch[0].scheme")
-export OS_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".opensearch[0].host")
-export OS_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".opensearch[0].port")
+export OS_SCHEME=$(echo $RELATIONSHIPS_JSON | jq -r ".searchopen[0].scheme")
+export OS_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".searchopen[0].host")
+export OS_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".searchopen[0].port")
 
 # Surface more common OpenSearch connection string variables for use in app.
-export OPENSEARCH_USERNAME=$(echo $RELATIONSHIPS_JSON | jq -r ".opensearch[0].username")
-export OPENSEARCH_PASSWORD=$(echo $RELATIONSHIPS_JSON  | jq -r ".opensearch[0].password")
+export OPENSEARCH_USERNAME=$(echo $RELATIONSHIPS_JSON | jq -r ".searchopen[0].username")
+export OPENSEARCH_PASSWORD=$(echo $RELATIONSHIPS_JSON  | jq -r ".searchopen[0].password")
 export OPENSEARCH_HOSTS=[\"$OS_SCHEME://$OS_HOST:$OS_PORT\"]
 ```
 
@@ -189,7 +189,7 @@ You may optionally enable HTTP Basic authentication.
 To do so, include the following in your `{{< vendor/configfile "services" >}}` configuration:
 
 {{< version/specific >}}
-<!-- Platform.sh -->
+<!-- Version 1 -->
 
 ```yaml {configFile="services"}
 {{< snippet name="search" config="service" >}}
@@ -202,7 +202,7 @@ To do so, include the following in your `{{< vendor/configfile "services" >}}` c
 ```
 
 <--->
-<!-- Upsun -->
+<!-- Version 2 -->
 
 ```yaml {configFile="services"}
 {{< snippet name="search" config="service" >}}
@@ -227,7 +227,7 @@ To do so, add a route to `{{< vendor/configfile "routes" >}}` that has `search:o
 For example:
 
 {{< version/specific >}}
-<!-- Platform.sh -->
+<!-- Version 1 -->
 
 ```yaml {configFile="routes"}
 {{< snippet name="search:opensearch" config="route" subDom="os" />}}
@@ -241,7 +241,7 @@ For example:
 ```
 
 <--->
-<!-- Upsun -->
+<!-- Version 2 -->
 
 ```yaml {configFile="routes"}
 {{< snippet name="search:opensearch" config="route" subDom="os" />}}
@@ -261,10 +261,10 @@ OpenSearch offers a number of plugins.
 To enable them, list them under the `configuration.plugins` key in your `{{< vendor/configfile "services" >}}` file, like so:
 
 {{< version/specific >}}
-<!-- Platform.sh -->
+<!-- Version 1 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="opensearch" config="service" >}}
+{{< snippet name="search" config="service" >}}
     type: "opensearch:{{% latest "opensearch" %}}"
     disk: 1024
     configuration:
@@ -275,10 +275,10 @@ To enable them, list them under the `configuration.plugins` key in your `{{< ven
 ```
 
 <--->
-<!-- Upsun -->
+<!-- Version 2 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="opensearch" config="service" >}}
+{{< snippet name="search" config="service" >}}
     type: "opensearch:{{% latest "opensearch" %}}"
     configuration:
         plugins:

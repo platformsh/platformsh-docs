@@ -21,7 +21,7 @@ Solr search with generic schemas provided, and a custom schema is also supported
 {{% major-minor-versions-note configMinor="true" %}}
 
 {{% version/specific %}}
-<!-- Platform.sh -->
+<!-- API Version 1 -->
 
 <table>
     <thead>
@@ -41,7 +41,7 @@ Solr search with generic schemas provided, and a custom schema is also supported
 </table>
 
 <--->
-<!-- Upsun -->
+<!-- API Version 2 -->
 
 {{< image-versions image="solr" status="supported" environment="grid" >}}
 
@@ -50,7 +50,7 @@ Solr search with generic schemas provided, and a custom schema is also supported
 {{% deprecated-versions %}}
 
 {{% version/specific %}}
-<!-- Platform.sh -->
+<!-- API Version 1 -->
 
 <table>
     <thead>
@@ -70,7 +70,7 @@ Solr search with generic schemas provided, and a custom schema is also supported
 </table>
 
 <--->
-<!-- Upsun -->
+<!-- API Version 2 -->
 
 {{< image-versions image="solr" status="deprecated" environment="grid" >}}
 
@@ -84,10 +84,10 @@ Solr search with generic schemas provided, and a custom schema is also supported
 {
     "username": null,
     "scheme": "solr",
-    "service": "solr",
+    "service": "solr86",
     "fragment": null,
     "ip": "169.254.68.119",
-    "hostname": "csjsvtdhmjrdre2uaoeim22xjy.solr.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "hostname": "csjsvtdhmjrdre2uaoeim22xjy.solr86.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "port": 8080,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "solr.internal",
@@ -147,30 +147,30 @@ highlight=python
 
 {{< /codetabs >}}
 
-<!-- Upsun: .environment shortcode + context -->
+<!-- Version 2: .environment shortcode + context -->
 {{% version/only "2" %}}
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="myapp" >}}
 # Relationships enable an app container's access to a service.
 relationships:
-    solr: 
+    solrsearch: "searchsolr:solr"
 {{< /snippet >}}
-{{< snippet name="solr" config="service" placeholder="true" >}}
+{{< snippet name="searchsolr" config="service" placeholder="true" >}}
     type: solr:{{% latest "solr" %}}
 {{< /snippet >}}
 ```
 
-{{< v2connect2app serviceName="solr" relationship="solr" var="SOLR_URL">}}
+{{< v2connect2app serviceName="searchelastic" relationship="solrsearch" var="SOLR_URL">}}
 
 ```bash {location="myapp/.environment"}
 # Decode the built-in credentials object variable.
 export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export SOLR_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".solr[0].host")
-export SOLR_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".solr[0].port")
-export SOLR_PATH=$(echo $RELATIONSHIPS_JSON | jq -r ".solr[0].path")
+export SOLR_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".solrsearch[0].host")
+export SOLR_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".solrsearch[0].port")
+export SOLR_PATH=$(echo $RELATIONSHIPS_JSON | jq -r ".solrsearch[0].path")
 
 # Surface more common Solr connection string variables for use in app.
 export SOLR_URL="http://${CACHE_HOST}:${CACHE_PORT}/${CACHE_PATH}"
@@ -187,10 +187,10 @@ For Solr 4, {{% vendor/name %}} supports only a single core per server called `c
 You must provide your own Solr configuration via a `core_config` key in your `{{< vendor/configfile "services" >}}`:
 
 {{< version/specific >}}
-<!-- Platform.sh -->
+<!-- Version 1 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="solr" config="service" >}}
+{{< snippet name="searchsolr" config="service" >}}
     type: "solr:4.10"
     disk: 1024
     configuration:
@@ -199,10 +199,10 @@ You must provide your own Solr configuration via a `core_config` key in your `{{
 ```
 
 <--->
-<!-- Upsun -->
+<!-- Version 2 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="solr" config="service" >}}
+{{< snippet name="searchsolr" config="service" >}}
     type: "solr:4.10"
     configuration:
         core_config: !archive "{{< variable "DIRECTORY" >}}"
@@ -216,10 +216,10 @@ You must provide your own Solr configuration via a `core_config` key in your `{{
 For example, place them in `{{< vendor/configdir >}}/solr/conf/` such that the `schema.xml` file is located at `{{< vendor/configdir >}}/solr/conf/schema.xml`. You can then reference that path like this -
 
 {{< version/specific >}}
-<!-- Platform.sh -->
+<!-- Version 1 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="solr" config="service" >}}
+{{< snippet name="searchsolr" config="service" >}}
     type: "solr:4.10"
     disk: 1024
     configuration:
@@ -228,10 +228,10 @@ For example, place them in `{{< vendor/configdir >}}/solr/conf/` such that the `
 ```
 
 <--->
-<!-- Upsun -->
+<!-- Version 2 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="solr" config="service" >}}
+{{< snippet name="searchsolr" config="service" >}}
     type: "solr:4.10"
     configuration:
         core_config: !archive "solr/conf/"
@@ -245,10 +245,10 @@ For example, place them in `{{< vendor/configdir >}}/solr/conf/` such that the `
 For Solr 6 and later {{% vendor/name %}} supports multiple cores via different endpoints. Cores and endpoints are defined separately, with endpoints referencing cores. Each core may have its own configuration or share a configuration. It is best illustrated with an example.
 
 {{< version/specific >}}
-<!-- Platform.sh -->
+<!-- Version 1 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="solr" config="service" >}}
+{{< snippet name="searchsolr" config="service" >}}
     type: solr:{{% latest "solr" %}}
     disk: 1024
     configuration:
@@ -266,10 +266,10 @@ For Solr 6 and later {{% vendor/name %}} supports multiple cores via different e
 ```
 
 <--->
-<!-- Upsun -->
+<!-- Version 2 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="solr" config="service" >}}
+{{< snippet name="searchsolr" config="service" >}}
     type: solr:{{% latest "solr" %}}
     configuration:
         cores:
@@ -297,22 +297,18 @@ It then defines two endpoints: `main` is connected to the `mainindex` core while
 Each endpoint is then available in the relationships definition in `{{< vendor/configfile "app" >}}`. For example, to allow an application to talk to both of the cores defined above its configuration should contain the following:
 
 {{< version/specific >}}
-<!-- Platform.sh -->
+<!-- Version 1 -->
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="false" >}}
 type: "php:{{% latest "php" %}}"
 
 relationships:
-    solrsearch1:
-        service: solr
-        endpoint: main
-    solrsearch2:
-        service: solr
-        endpoint: extra
+    solrsearch1: 'searchsolr:main'
+    solrsearch2: 'searchsolr:extra'
 {{< /snippet >}}
 
-{{< snippet name="solr" config="service" placeholder="true">}}
+{{< snippet name="searchsolr" config="service" placeholder="true">}}
     type: solr:{{% latest "solr" %}}
     disk: 1024
     configuration:
@@ -330,22 +326,18 @@ relationships:
 ```
 
 <--->
-<!-- Upsun -->
+<!-- Version 2 -->
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="false" >}}
 type: "php:{{% latest "php" %}}"
 
 relationships:
-    solrsearch1:
-        service: solr
-        endpoint: main
-    solrsearch2:
-        service: solr
-        endpoint: extra
+    solrsearch1: 'searchsolr:main'
+    solrsearch2: 'searchsolr:extra'
 {{< /snippet >}}
 
-{{< snippet name="solr" config="service" placeholder="true">}}
+{{< snippet name="searchsolr" config="service" placeholder="true">}}
     type: solr:{{% latest "solr" %}}
     configuration:
         cores:
@@ -393,10 +385,10 @@ The relationships array would then look something like the following:
 For even more customizability, it's also possible to define Solr configsets. For example, the following snippet would define one configset, which would be used by all cores. Specific details can then be overridden by individual cores using `core_properties`, which is equivalent to the Solr `core.properties` file.
 
 {{< version/specific >}}
-<!-- Platform.sh -->
+<!-- Version 1 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="solr" config="service" >}}
+{{< snippet name="searchsolr" config="service" >}}
     type: solr:8.4
     disk: 1024
     configuration:
@@ -420,10 +412,10 @@ For even more customizability, it's also possible to define Solr configsets. For
 ```
 
 <--->
-<!-- Upsun -->
+<!-- Version 2 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="solr" config="service" >}}
+{{< snippet name="searchsolr" config="service" >}}
     type: solr:8.4
     configuration:
         configsets:
@@ -463,7 +455,7 @@ Note that not all core properties features make sense to specify in the `core_pr
 If you don't specify any configuration, the following default is used:
 
 ```yaml {configFile="services"}
-{{% snippet name="solr" config="service" %}}
+{{% snippet name="searchsolr" config="service" %}}
     type: solr:{{% latest "solr" %}}
     configuration:
         cores:
@@ -484,7 +476,7 @@ You are strongly recommended to define your own configuration with a custom core
 If you don't specify any configuration, the following default is used:
 
 ```yaml {configFile="services"}
-{{% snippet name="solr" config="service" %}}
+{{% snippet name="searchsolr" config="service" %}}
     type: solr:8.4
     configuration:
         cores:

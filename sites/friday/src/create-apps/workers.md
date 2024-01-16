@@ -90,17 +90,13 @@ That means, for example, that the following two `{{< vendor/configfile "app" >}}
 ```yaml {configFile="app"}
 applications:
     app: #The name of the app, which must be unique within the project.
-
     type: python:{{% latest "python" %}}
-
     mounts:
         test:
             source: storage
             source_path: test
-
     relationships:
-        mysql: 
-
+        database: 'mysqldb:mysql'
     workers:
         queue:
             commands:
@@ -110,7 +106,6 @@ applications:
             commands:
                 start: |
                     python mail-worker.py
-
 services:
     mysqldb:
         type: mariadb:{{% latest "mariadb" %}}
@@ -119,9 +114,7 @@ services:
 ```yaml {configFile="app"}
 applications:
     app: #The name of the app, which must be unique within the project.
-
     type: python:{{% latest "python" %}}
-
     workers:
         queue:
             commands:
@@ -132,7 +125,7 @@ applications:
                     source: storage
                     source_path: test
             relationships:
-                mysql: 
+                database: 'mysqldb:mysql'
         mail:
             commands:
                 start: |
@@ -142,8 +135,7 @@ applications:
                     source: storage
                     source_path: test
             relationships:
-                mysql: 
-
+                database: 'mysqldb:mysql'
 services:
     mysqldb:
         type: mariadb:{{% latest "mariadb" %}}
@@ -166,23 +158,18 @@ For example, consider the following configuration:
 ```yaml {configFile="app"}
 applications:
     app: #The name of the app, which must be unique within the project.
-
     type: "python:{{% latest "python" %}}"
-
     hooks:
         build: |
         pip install -r requirements.txt
         pip install -e .
         pip install gunicorn
-
     relationships:
-        mysql: 
-        rabbitmq: 
-
+        database: 'mysqldb:mysql'
+        messages: 'rabbitqueue:rabbitmq'
     variables:
         env:
             type: 'none'
-
     web:
         commands:
             start: "gunicorn -b $PORT project.wsgi:application"
@@ -201,7 +188,6 @@ applications:
             "/static":
                 root: "static/"
                 allow: true
-
     workers:
         queue:
             commands:
@@ -223,14 +209,12 @@ applications:
                     type: 'worker'
             mounts: {}
             relationships:
-                rabbitmq: 
-
+                emails: 'rabbitqueue:rabbitmq'
 services:
     mysqldb:
-        type: "mariadb:{{% latest "mariadb" %}}"
-
+        type: 'mariadb:{{% latest "mariadb" %}}'
     rabbitqueue:
-        type: rabbitmq:{{% latest "rabbitmq" %}}
+        type: 'rabbitmq:{{% latest "rabbitmq" %}}'
 ```
 
 There's a lot going on here, but it's all reasonably straightforward.
@@ -291,34 +275,35 @@ For example, you can define a `storage` mount (called `shared_dir`) to be used b
 and a `tmp` mount (called `local_dir`) to be used by a `queue` worker instance:
 
 ```yaml {configFile="app"}
-# The type of the application to build.
-type: "nodejs:{{% latest "nodejs" %}}"
+applications:
+    app: #The name of the app, which must be unique within the project.
+    type: "nodejs:{{% latest "nodejs" %}}"
 
-# Define a web instance
-web:
-    locations:
-        "/":
-            root: "public"
-            passthru: true
-            index: ['index.html']
+    # Define a web instance
+    web:
+        locations:
+            "/":
+                root: "public"
+                passthru: true
+                index: ['index.html']
 
-mounts:
-    # Define a storage mount that's available to both instances together
-    'shared_dir':
-        source: storage
-        service: files
-        source_path: our_stuff
+    mounts:
+        # Define a storage mount that's available to both instances together
+        'shared_dir':
+            source: storage
+            service: files
+            source_path: our_stuff
 
-    # Define a local mount that's available to each instance separately
-    'local_dir':
-        source: tmp
-        source_path: my_stuff
+        # Define a local mount that's available to each instance separately
+        'local_dir':
+            source: tmp
+            source_path: my_stuff
 
-# Define a worker instance from the same code but with a different start
-workers:
-    queue:
-        commands:
-            start: ./start.sh
+    # Define a worker instance from the same code but with a different start
+    workers:
+        queue:
+            commands:
+                start: ./start.sh
 ```
 
 Both the `web` instance and `queue` worker have their own, dedicated `local_dir` mount.

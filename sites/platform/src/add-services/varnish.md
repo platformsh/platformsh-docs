@@ -127,12 +127,8 @@ For example, you might have the following configuration for two apps:
 {{% snippet name="varnish" config="service" %}}
     type: varnish:{{% latest "varnish" %}}
     relationships:
-        blog:
-            service: blog
-            endpoint: http
-        main:
-            service: app
-            endpoint: http
+        blog: 'blog:http'
+        main: 'app:http'
     configuration:
         vcl: !include
             type: string
@@ -297,9 +293,7 @@ type: "python:{{% latest "python" %}}"
 # Unique relationship _to_ Varnish from 'stats-app', where no relationship
 #   is defined _from_ Varnish to the same app, to avoid circular relationships.
 relationships:
-    varnishstats:
-        service: varnish
-        endpoint: http+stats
+    varnishstats: "varnish:http+stats"
 {{% /snippet %}}
 {{% snippet name="main-app" config="apps" globKey="false" root="backends/main" %}}
 # The type of the application to build.
@@ -310,9 +304,7 @@ type: "nodejs:{{% latest "nodejs" %}}"
     # Unique relationship _from_ Varnish _to_ 'main-app', where no relationship
     #   is defined _to_ Varnish to the same app, to avoid circular relationships.
     relationships:
-        main:
-            service: main-app
-            endpoint: http
+        main: 'main-app:http'
     configuration:
         vcl: !include
             type: string
@@ -326,9 +318,7 @@ type: "nodejs:{{% latest "nodejs" %}}"
     # Unique relationship _from_ Varnish _to_ 'main-app', where no relationship
     #   is defined _to_ Varnish to the same app, to avoid circular relationships.
     relationships:
-        main:
-            service: app
-            endpoint: http
+        main: 'app:http'
     configuration:
         vcl: !include
             type: string
