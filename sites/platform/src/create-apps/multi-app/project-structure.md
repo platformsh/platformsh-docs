@@ -53,7 +53,7 @@ you can organize your repository like this:
 <--->
 ```txt
 ├── {{% vendor/configdir %}}
-│   ├── {{% vendor/configfile "apps" "strip" %}}   <- Unified configuration
+│   └── {{% vendor/configfile "apps" "strip" %}}   <- Unified configuration
 ├── admin
 │   └── ...                 <- API Platform Admin app code
 ├── api-app
@@ -375,7 +375,7 @@ In that case, you can nest the Java app within the Python app:
 
 ```txt
 ├── {{% vendor/configdir %}}
-│   ├── {{% vendor/configfile "apps" "strip" %}}
+│   └── {{% vendor/configfile "apps" "strip" %}}
 ├── languagetool
 │   └── main.java           <- Java app code
 └── main.py                 <- Python app code
@@ -460,7 +460,7 @@ So you could organize your [project repository](https://github.com/platformsh-te
 <--->
 ```text
 ├── {{% vendor/configdir %}}
-│   ├── {{% vendor/configfile "apps" "strip" %}}
+│   └── {{% vendor/configfile "apps" "strip" %}}
 ├── @admin      <-- API Platform Admin submodule
 ├── @api        <-- Bigfoot submodule
 ├── @gatsby     <-- Gatsby submodule
