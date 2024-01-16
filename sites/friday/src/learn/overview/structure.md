@@ -17,12 +17,13 @@ For {{% names/dedicated-gen-2 %}} projects, read about how [{{% names/dedicated-
 Each environment you deploy on {{% vendor/name %}} is built as a set of containers.
 Each container is an isolated instance with specific resources.
 
-Each environment has 2 to 4 types of containers:
+Each environment has 2 to 4 types of containers, all usually configured from your `{{< vendor/configfile "app" >}}` file.
 
-- One [*router*](#router) (configured in a `{{< vendor/configfile "routes" >}}` file)
-- One or more [*app* containers](#apps) (configured in `{{< vendor/configfile "app" >}}` files)
-- Zero or more [*service* containers](#services) (configured in a `{{< vendor/configfile "services" >}}` file)
-- Zero or more [*worker* containers](#workers) (configured in the files for apps)
+- One [*router*](#router)
+- One or more [*app* containers](#apps)
+- Zero or more [*service* containers](#services)
+- Zero or more [*worker* containers](#workers)
+
 
 If you have two app containers, two services (a database and a search engine), and a worker,
 requests to your environment might look something like this:
@@ -35,9 +36,7 @@ If you have only one app container, your repository might look like this:
 project
 ├── .git
 ├── {{< vendor/configdir >}}
-│   ├── {{< vendor/configfile "routes" "strip" >}}
-│   └── {{< vendor/configfile "services" "strip" >}}
-├── {{< vendor/configfile "app" >}}
+│   └── {{< vendor/configfile "app" "strip" >}}
 └── <YOUR_APP_FILES>
 ```
 
@@ -61,8 +60,8 @@ App containers run the code you provide via your Git repository.
 They handle requests from the outside world and can communicate with other containers within the environment.
 Each app container is built from a specific language image with a given version for the language.
 
-To configure your apps, you usually create one `{{< vendor/configfile "app" >}}` file for each app container.
-A basic app generally has only one such file placed in the repository root.
+To configure your apps, you usually create a single `{{< vendor/configfile "app" >}}` file
+and place it in the repository root.
 
 Read more about how to [configure apps](/create-apps/_index.md).
 

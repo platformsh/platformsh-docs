@@ -98,7 +98,7 @@ api:
   # The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
   # See the Application reference for all options for defining relationships and endpoints.
   relationships:
-    postgresql: 
+    postgresql:
 
   mounts:
     "/var/cache": "shared:files/cache"
@@ -229,7 +229,7 @@ applications:
     # The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
     # See the Application reference for all options for defining relationships and endpoints.
     relationships:
-      postgresql: 
+      postgresql:
 
     mounts:
       "/var/cache": "shared:files/cache"
@@ -368,7 +368,7 @@ In that case, you can nest the Java app within the Python app:
 
 ```txt
 ├── {{% vendor/configdir %}}
-│   ├── {{% vendor/configfile "apps" %}}
+│   ├── {{% vendor/configfile "apps" "strip" %}}
 │   └── {{% vendor/configfile "routes" %}}
 ├── languagetool
 │   └── main.java           <- Java app code
@@ -379,7 +379,7 @@ In that case, you can nest the Java app within the Python app:
 
 ```txt
 ├── {{% vendor/configdir %}}
-│   ├── {{% vendor/configfile "apps" %}}
+│   ├── {{% vendor/configfile "apps" "strip" %}}
 ├── languagetool
 │   └── main.java           <- Java app code
 └── main.py                 <- Python app code

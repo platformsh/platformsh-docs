@@ -29,6 +29,7 @@ vendor:
     config:
         version: 2
         dir: .upsun
+        filename: config.yaml
         files:
             routes: .upsun/config.yaml
             services: .upsun/config.yaml

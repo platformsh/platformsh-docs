@@ -1,6 +1,6 @@
 ---
 title: "{{% vendor/name %}} YAML tags"
-weight: 0
+weight: 10
 description: "A description of custom YAML tags available for {{% vendor/name %}} files."
 ---
 
@@ -15,41 +15,49 @@ Use the `!include` tag to embed external files within a given YAML file.
 
 The tag requires two properties:
 
-| Property | Type     | Possible values               | Description                                                                                             |
-| -------- | -------- | ----------------------------- |---------------------------------------------------------------------------------------------------------|
+| Property | Type     | Possible values               | Description |
+| -------- | -------- | ----------------------------- | ----------- |
 | `type`   | `string` | `string`, `binary`, or `yaml` | See the descriptions of [strings](#string), [binaries](#binary), and [YAML](#yaml). Defaults to `yaml`. |
-| `path`   | `string` |                               | The path to the file to include, relative to the application directory or `source.root` if defined.     |
+| `path`   | `string` |                               | The path to the file to include, relative to the application directory or `source.root`. |
 
+{{% note theme="info" %}}
 
 By default, `path` is relative to the current application's directory (what you would define with `source.root`).
 
-As an example, you can include another ``.platform/app1.yaml`` file in the main `{{% vendor/configfile "apps" %}}`.
+{{% /note %}}
 
-```yaml {location=".platform/app1.yaml"}
-source:
-root: "/"
-type: "nodejs:20"
-web:
-    commands:
-      start: "node index.js"
-upstream:
-    socket_family: tcp
-locations:
-    "/":
-        passthru: true
+### `string`
+
+Use `string` to include an external file inline in the YAML file as if entered as a multi-line string.
+
+For example, if you have a build hook like the following:
+
+```yaml {configFile="app"}
+hooks:
+    build: |
+        set -e
+        cp a.txt b.txt
 ```
 
-And including it:
+You could create a file for the script:
 
-```yaml {configFile="apps"}
-app: !include
-    type: yaml
-    path: ./app1.yaml
-# or as default type is "yaml", it could be:
-#api: !include ./app1.yaml
+```text {location="build.sh"}
+set -e
+cp a.txt b.txt
 ```
 
-It is also possible to include files from a directory parent to the folder however.
+And replace the hook with an include tag for an identical result:
+
+```yaml {configFile="app"}
+hooks:
+    build: !include
+        type: string
+        path: build.sh
+```
+
+This helps you break longer configuration like build scripts out into a separate file for easier maintenance.
+
+Even if ``path`` is relative to the current application's directory, it is also possible to include a shell script from a directory parent to the folder however.
 
 For example, for the following project structure:
 
@@ -76,14 +84,15 @@ For example, for the following project structure:
 This configuration is valid:
 
 ```yaml {configFile="apps"}
-frontend:
-    source:
-        root: frontend
-    # ...
-    hooks:
-        build: !include
-            type: string
-            path: ../backend/scripts/common_build.sh
+applications:
+    frontend:
+        source:
+            root: frontend
+        # ...
+        hooks:
+            build: !include
+                type: string
+                path: ../backend/scripts/common_build.sh
 ```
 
 {{% note theme="info" %}}
@@ -91,39 +100,6 @@ frontend:
 Please note that {{% vendor/name %}} will execute this ``../backend/scripts/common_build.sh`` script using [Dash](https://wiki.archlinux.org/title/Dash).
 
 {{% /note %}}
-
-### `string`
-
-Use `string` to include an external file inline in the YAML file as if entered as a multi-line string.
-
-For example, if you have a build hook like the following:
-
-```yaml {configFile="apps"}
-frontend:
-    hooks:
-        build: |
-            set -e
-            cp a.txt b.txt
-```
-
-You could create a file for the script:
-
-```text {location="build.sh"}
-set -e
-cp a.txt b.txt
-```
-
-And replace the hook with an include tag for an identical result:
-
-```yaml {configFile="apps"}
-frontend:
-    hooks:
-        build: !include
-            type: string
-            path: build.sh
-```
-
-This helps you break longer configuration like build scripts out into a separate file for easier maintenance.
 
 ### `binary`
 
@@ -133,7 +109,7 @@ The file is base64 encoded.
 For example, you could include a `favicon.ico` file in the same folder as your app configuration.
 Then you can include it as follows:
 
-```yaml {configFile="apps"}
+```yaml {configFile="app"}
 properties:
     favicon: !include
         type: binary
@@ -182,6 +158,31 @@ workers:
 ```
 
 This can help simplify more complex files.
+
+
+For [multiple application](/create-apps/multi-app/_index.md) project, you can also include another ``.upsun/apps/my-app.yaml`` file in the main `{{% vendor/configfile "apps" %}}`.
+
+```yaml {location=".upsun/apps/my-app.yaml"}
+source:
+root: "/"
+type: "nodejs:18"
+web:
+    commands:
+      start: "node index.js"
+upstream:
+    socket_family: tcp
+locations:
+    "/":
+        passthru: true
+```
+
+and including it:
+
+```yaml {configFile="apps"}
+applications:
+  app:
+    !include ./apps/my-app.yaml
+```
 
 ## Archive
 
