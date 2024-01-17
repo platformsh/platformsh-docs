@@ -13,7 +13,7 @@ For example, Dedicated projects include a managed Fastly CDN by default.
 These CDNs are exclusively set up and managed by {{% vendor/name %}}.
 
 To modify any settings for a managed Fastly CDN,
-[open a support ticket](https://console.platform.sh/-/users/~/tickets/open).
+open a [support ticket](/learn/overview/get-support).
 To add a managed Fastly CDN to your project,
 [contact sales](https://platform.sh/contact/).
 
@@ -39,11 +39,11 @@ Use an environment with access limited to {{% vendor/name %}} support and truste
 [Transfer](../../development/file-transfer.md) each certificate, its unencrypted private key, 
 and the intermediate certificate to the mount.
 To notify {{% vendor/name %}} that a certificate is to be added to your CDN configuration,
-[create a support ticket](/learn/overview/get-support.md#create-a-support-ticket).
+open a [support ticket](/learn/overview/get-support).
 
 If you need an Extended Validation TLS certificate,
 you can get it from any TLS provider.
-To add it to your CDN configuration, [create a support ticket](/learn/overview/get-support.md#create-a-support-ticket).
+To add it to your CDN configuration, open a [support ticket](/learn/overview/get-support).
 
 Note that when you add your own third-party TLS certificates,
 you are responsible for renewing them in due time.

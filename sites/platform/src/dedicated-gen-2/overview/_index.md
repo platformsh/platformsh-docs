@@ -24,4 +24,4 @@ allowing a site to remain up even if one of the hosts is lost entirely.
 The build process for your application is identical for both the Development Environment and the {{% names/dedicated-gen-2 %}} cluster.
 However, because the hosts are provisioned by {{% vendor/name %}}, not as a container,
 service configuration must be done by {{% vendor/name %}}'s Customer Success team.
-By and large the same flexibility is available but only via filing a support ticket.
+By and large the same flexibility is available but only via opening a [support ticket](/learn/overview/get-support).
