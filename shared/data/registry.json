@@ -634,7 +634,7 @@
     "disk": true,
     "docs": {
       "relationship_name": "null",
-      "service_name": "newtork-storage",
+      "service_name": "network-storage",
       "url": "/add-services/network-storage.html"
     },
     "endpoint": "something",

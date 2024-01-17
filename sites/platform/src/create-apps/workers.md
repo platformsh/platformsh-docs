@@ -146,8 +146,8 @@ For example, consider the following configuration:
 
 ```yaml {configFile="services"}
 mysqldb:
-  type: "mariadb:{{% latest "mariadb" %}}"
-  disk: 2048
+    type: "mariadb:{{% latest "mariadb" %}}"
+    disk: 2048
 rabbitqueue:
     type: rabbitmq:{{% latest "rabbitmq" %}}
     disk: 512
