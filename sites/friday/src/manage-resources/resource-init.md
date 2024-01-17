@@ -43,10 +43,10 @@ The following strategies are available:
 
 {{< note >}}
 
-When no resource initialization strategy is defined, the following applies:
+Unless you explicitly set another resource initialization strategy, the following strategies are used:
 
-- If you're not using a [source integration](/integrations/_index.md): the `default` strategy is used.
-- If you're using a source integration: the `parent` strategy is used.
+- `default` when you first deploy your project or a new service/application
+- `parent` for a new environment created through a [source integration](/integrations/_index.md)
 
 {{< /note >}}
 
