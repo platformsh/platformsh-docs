@@ -69,26 +69,27 @@ applications:
 
     # The relationships of the application with services or other applications.
     # The left-hand side is the name of the relationship as it will be exposed
-    # The example below shows simplified configuration leveraging default services (identified from the relationship names) and default endpoints.
-    # See the Application reference for all options for defining relationships and endpoints: https://docs.upsun.com/create-apps/app-reference.html#relationships
+    # to the application in the UPSUN_RELATIONSHIPS variable. The right-hand
+    # side is in the form `<service name>:<endpoint name>`.
+    # More information: https://docs.upsun.com/create-apps/app-reference.html#relationships
     relationships:
-      mysql: 
-      redis: 
+      mysql: "mysql:mysql"
+      redis: "redis:redis"
 
 
     # Mounts define directories that are writable after the build is complete.
     # More information: https://docs.upsun.com/create-apps/app-reference.html#mounts
     mounts:
       "/.config":
-        source: "local"
+        source: "storage"
         source_path: "config"
 
       "bootstrap/cache":
-        source: "local"
+        source: "tmp"
         source_path: "cache"
 
       "storage":
-        source: "local"
+        source: "storage"
         source_path: "storage"
 
 
@@ -206,7 +207,7 @@ You need to configure Laravel to use those services once they're enabled.
 
 Each service entry has a name (`db` and `cache` in the example)
 and a `type` that specifies the service and version to use.
-Services that store persistent data have a `disk` key, to specify the amount of storage.
+For services that store persistent data, you can [specify the amount of disk storage](/manage-resources/adjust-resources.md) you need.
 
 ```yaml {configFile="app"}
 # The services of the project.
@@ -291,11 +292,11 @@ mounts:
     ...
 
     "bootstrap/cache":
-      source: "local"
+      source: "tmp"
       source_path: "cache"
 
     "storage":
-      source: "local"
+      source: "storage"
       source_path: "storage"
 ```
 

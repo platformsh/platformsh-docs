@@ -4,7 +4,7 @@
   <!-- Head -->
   {{ partial "head/head" . }}
   {{ $currentPage := printf "%s%s" ( .Site.BaseURL ) ( .Page.RelPermalink ) }}
-  <body class="bg-white" onload="dataLayer.push({'event': 'datalayer_ready', 'page_category1': '{{ .Section }}', 'page_category2': '{{ .Title }}', 'link_url': '{{ $currentPage }}'});">
+  <body class="bg-white" onload="dataLayer.push({'event': 'datalayer_ready', 'page_category1': '{{ .Section }}', 'page_category2': '{{ .Title | .Page.RenderString }}', 'link_url': '{{ $currentPage }}'});">
 
     <!-- Header -->
     {{ partial "header/header" . }}

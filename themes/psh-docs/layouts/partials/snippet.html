@@ -127,6 +127,7 @@
             {{- $servicesKey = printf "%s:\n" .context.Site.Params.vendor.config.prefix.services -}}
         {{- end -}}
 
+
         {{- if and (eq $placeholder "true") (not .Inner) -}}
             {{- $prepend = printf "# %s#    %s" $servicesKey "..." -}}
         {{- else -}}
