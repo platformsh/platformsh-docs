@@ -2,6 +2,9 @@
 title: Optional features
 weight: 4
 description: You can add optional features to your {{% names/dedicated-gen-3 %}} project.
+keywords:
+  - SFTP
+  - sftp
 ---
 
 You can enable the following features on your {{% names/dedicated-gen-3 %}} projects.
@@ -32,15 +35,15 @@ so multiple-AZ deployments should only be considered in cases where they're trul
 
 Multi-AZ deployments are available only on select AWS regions.
 
-## SFTP
+## `sftp`
 
-In addition to SSH accounts, you can create SFTP accounts with a custom user/password.
+In addition to SSH accounts, you can create `sftp` accounts with a custom user/password.
 
 {{< note >}}
 
-On {{% names/dedicated-gen-3 %}} projects, SFTP access cannot be limited to a specific directory.
+On {{% names/dedicated-gen-3 %}} projects, `sftp` access cannot be limited to a specific directory.
 Instead, access is given to **the whole application directory** and its mounts.
 
 {{< /note >}}
 
-SSH public key based authentication is also supported on the SFTP account.
+SSH public key based authentication is also supported on the `sftp` account.

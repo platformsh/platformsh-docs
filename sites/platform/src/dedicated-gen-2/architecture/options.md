@@ -2,6 +2,9 @@
 title: "Optional features"
 weight: 4
 description: Add optional features to your {{% names/dedicated-gen-2 %}} project.
+keywords:
+  - SFTP
+  - sftp
 ---
 
 You can enable the following features on your {{% names/dedicated-gen-2 %}} projects,
@@ -30,12 +33,13 @@ The cluster begins to look more like a standard N-Tier architecture at this poin
 Speak to your sales representative about the costs associated with adding additional application servers. 
 This configuration requires a separate setup from the default so advanced planning is required.
 
-## SFTP
+## `sftp`
 
-In addition to SSH accounts, SFTP accounts can be created with a custom user/password that are restricted to certain directories. 
-These directories must be one of the writeable mounts (or rather, there’s no point assigning them to the read-only code directory). 
-There is no cost for this configuration, and it can be requested at any time via a support ticket. 
-SSH public key based authentication is also supported on the SFTP account.
+In addition to SSH accounts, `sftp` accounts can be created with a custom user/password that are restricted to certain directories. 
+These directories must be one of the writeable mounts (or rather, there’s no point assigning them to the read-only code directory).
+
+There is no cost for this configuration, and you can request it at any time via a [support ticket](/learn/overview/get-support.md). 
+SSH public key based authentication is also supported on the `sftp` account.
 
 ## Error handling
 

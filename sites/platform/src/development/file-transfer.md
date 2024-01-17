@@ -2,6 +2,13 @@
 title: "Transfer files to and from your app"
 weight: 7
 sidebarTitle: Transfer files
+keywords:
+  - SFTP
+  - sftp
+  - rsync
+  - Rsync
+  - scp
+  - Scp
 ---
 
 After your app is built, its file system is read-only.
