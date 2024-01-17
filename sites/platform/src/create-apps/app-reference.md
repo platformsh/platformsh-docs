@@ -385,13 +385,13 @@ the mounts on that environment are backed up too.
 
 Also, mounted directories aren't deleted when they're removed from `{{< vendor/configfile "app" >}}`.
 The files still exist on disk until manually removed.
-Or, for `tmp` mounts, **until the app container is moved to another host during a maintenance operation.**
+Or, for `tmp` mounts, **until the app container is moved to another host during a maintenance operation**.
 
 {{% version/only "2" %}}
 
 ### Data sharing through mounts
 
-By default, [`storage` mounts](#mounts) can be shared **between different instances of the same app**,
+By design, [`storage` mounts](#mounts) are shared **between different instances of the same app**,
 which enables [horizontal scaling](/manage-resources/_index.md).
 
 In a [multi-application context](/create-apps/multi-app/_index.md),
