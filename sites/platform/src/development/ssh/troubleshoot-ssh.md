@@ -156,4 +156,4 @@ You can use this information to make one last check of the private key file.
 
 {{% troubleshoot %}}
 
-If you're still stuck, [submit a support ticket and provide the full SSH debug information](https://console.{{% vendor/urlraw "host" %}}/-/users/:user/tickets).
+If you're still stuck, open a [support ticket](/learn/overview/get-support) and provide the full SSH debug information.
