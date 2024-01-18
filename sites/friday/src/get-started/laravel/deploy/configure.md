@@ -81,15 +81,15 @@ applications:
     # More information: https://docs.upsun.com/create-apps/app-reference.html#mounts
     mounts:
       "/.config":
-        source: "local"
+        source: "storage"
         source_path: "config"
 
       "bootstrap/cache":
-        source: "local"
+        source: "tmp"
         source_path: "cache"
 
       "storage":
-        source: "local"
+        source: "storage"
         source_path: "storage"
 
 
@@ -292,11 +292,11 @@ mounts:
     ...
 
     "bootstrap/cache":
-      source: "local"
+      source: "tmp"
       source_path: "cache"
 
     "storage":
-      source: "local"
+      source: "storage"
       source_path: "storage"
 ```
 
