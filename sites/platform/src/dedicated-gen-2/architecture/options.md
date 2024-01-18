@@ -35,11 +35,13 @@ This configuration requires a separate setup from the default so advanced planni
 
 ## `sftp`
 
-In addition to SSH accounts, `sftp` accounts can be created with a custom user/password that are restricted to certain directories. 
+In addition to SSH accounts, you can create `sftp` accounts with a custom user/password that are restricted to certain directories. 
 These directories must be one of the writeable mounts (or rather, there’s no point assigning them to the read-only code directory).
 
 There is no cost for this configuration, and you can request it at any time via a [support ticket](/learn/overview/get-support.md). 
 SSH public key based authentication is also supported on the `sftp` account.
+
+See how to [transfer files through `sftp`](/development/file-transfer.md).
 
 ## Error handling
 

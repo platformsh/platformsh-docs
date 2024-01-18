@@ -225,7 +225,7 @@ Say you want to download a `diagram.png` file from the `web/uploads` directory
 To do so, run the following command:
 
 ```
-sftp> get /app/web/uploads/diagram.png
+sftp> get web/uploads/diagram.png
 ```
 
 The `diagram.png` file is copied to the current local directory.
@@ -237,7 +237,7 @@ Say you want to upload a `diagram.png` file to the `web/uploads` directory
 To do so, run the following command:
 
 ```bash
-sftp> put diagram.png to /app/web/uploads
+sftp> put diagram.png web/uploads
 ```
 
 For other options, see the [`sftp` documentation](https://man7.org/linux/man-pages/man1/sftp.1.html).

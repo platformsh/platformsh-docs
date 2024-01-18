@@ -37,7 +37,7 @@ Multi-AZ deployments are available only on select AWS regions.
 
 ## `sftp`
 
-In addition to SSH accounts, you can create `sftp` accounts with a custom user/password.
+In addition to SSH accounts, you can create `sftp` accounts with a custom user/password to [transfer files](/development/file-transfer.md). 
 
 {{< note >}}
 
