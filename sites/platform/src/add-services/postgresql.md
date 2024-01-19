@@ -660,17 +660,19 @@ PostgreSQL 10 and later include an upgrade utility that can convert databases fr
 
 The utility can't upgrade PostgreSQL 9 versions, so upgrades from PostgreSQL 9.3 to 9.6 aren't supported. Upgrade straight to version 11 instead.
 
-{{< note theme="warning" >}}
+{{< note >}}
 
 Make sure you first test your migration on a separate branch.
+
+Also, be sure to take a backup of your production environment **before** you merge this change.
+
 {{< /note >}}
 
-{{< note theme="warning" >}}
+{{< note theme="warning" title="Warning">}}
 
-Be sure to take a backup of your production environment **before** you merge this change.
+Downgrading isn't supported. If you need to downgrade, dump to SQL, remove the service, recreate the service, and import your dump.
+
 {{< /note >}}
-
-Downgrading isn't supported. If you want, for whatever reason, to downgrade you should dump to SQL, remove the service, recreate the service, and import your dump.
 
 ### Upgrade to PostgreSQL 12 with the `postgis` extension
 

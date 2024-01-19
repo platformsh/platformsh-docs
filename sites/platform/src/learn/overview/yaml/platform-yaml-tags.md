@@ -18,7 +18,53 @@ The tag requires two properties:
 | Property | Type     | Possible values               | Description |
 | -------- | -------- | ----------------------------- | ----------- |
 | `type`   | `string` | `string`, `binary`, or `yaml` | See the descriptions of [strings](#string), [binaries](#binary), and [YAML](#yaml). Defaults to `yaml`. |
-| `path`   | `string` |                               | The path to the file to include, relative to the directory the YAML file is in. |
+| `path`   | `string` |                               | The path to the file to include, relative to the application directory or `source.root`. |
+
+{{% note theme="info" %}}
+
+By default, `path` is relative to the current application's directory (what you would define with `source.root`).
+It is possible to include files from a directory parent to the folder however.
+
+For example, for the following project structure:
+
+```bash
+.
+├── {{< vendor/configdir >}}
+|   └── {{< vendor/configfile "apps" >}}
+├── backend
+│   ├── main.py
+│   ├── requirements.txt
+│   └── scripts
+│       ├── ...
+│       └── common_build.sh
+└── frontend
+    ├── README.md
+    ├── package-lock.json
+    ├── package.json
+    ├── public
+    ├── scripts
+    │   └── clean.sh
+    └── src
+```
+
+This configuration is valid:
+
+```yaml {configFile="apps"}
+applications:
+    frontend:
+        source:
+            root: frontend
+        
+        # ...
+
+        hooks:
+            build: !include
+                type: string
+                path: ../backend/scripts/common_build.sh
+```
+
+{{% /note %}}
+
 
 ### `string`
 

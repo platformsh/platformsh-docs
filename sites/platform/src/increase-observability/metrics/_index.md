@@ -51,7 +51,6 @@ All of the graphs show labels for the following thresholds:
 <--->
 - Usage that crosses _80%_ results in a **warning** label.
 - Usage that crosses _90%_ results in a **critical** label.
-- Usage that crosses _100%_ results in a **burst** label.
 {{< /version/specific >}}
 
 {{< version/specific >}}
@@ -132,15 +131,13 @@ you might want to consider:
 Review your configuration or plan size if your containers are in a prolonged burst
 state, because burst isn't guaranteed for long periods.
 
-<--->
-[Review your configuration](/manage-resources.md) if your containers are in a prolonged burst
-state, because burst isn't guaranteed for long periods.
-{{% /version/specific %}}
-
-
 If the burst threshold is triggered for short, infrequent activities,
 it might not be an issue as long as the site is functioning properly.
 Burst allows your container to use additional resources when they aren't required on the container's host.
+
+<--->
+
+{{% /version/specific %}}
 
 ## Time intervals
 

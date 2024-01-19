@@ -34,7 +34,7 @@ This configuration requires a separate setup from the default so advanced planni
 
 In addition to SSH accounts, SFTP accounts can be created with a custom user/password that are restricted to certain directories. 
 These directories must be one of the writeable mounts (or rather, there’s no point assigning them to the read-only code directory). 
-There is no cost for this configuration, and it can be requested at any time via a support ticket. 
+There is no cost for this configuration, and it can be requested at any time via a [support ticket](/learn/overview/get-support).
 SSH public key based authentication is also supported on the SFTP account.
 
 ## Error handling
@@ -55,7 +55,7 @@ This file may be any static HTML file but is limited to 64 KB in size.
 ## Remote logging
 
 {{% names/dedicated-gen-2 %}} supports sending logs to a remote logging service such as Loggly, Papertrail, or Logz.io using the `rsyslog` service.
-This is an optional feature and you can request that it be enabled via a support ticket.
+This is an optional feature and you can request that it be enabled via a [support ticket](/learn/overview/get-support).
 Once enabled and configured your application can direct log output to the system `syslog` facility
 and is replicated to the remote service you have configured.
 

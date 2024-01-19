@@ -9,9 +9,9 @@ description: |
 
 [Laravel](https://laravel.com) is an open-source PHP Framework.
 
-{{< note title=”tip” >}}
+{{< note title= "Tip" >}}
 
-To get your Laravel project up and running as quickly as possible, experiment with the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project/demo) before following this guide.
+To get your Laravel project up and running as quickly as possible, experiment with the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project) before following this guide.
 
 {{< /note >}}
 

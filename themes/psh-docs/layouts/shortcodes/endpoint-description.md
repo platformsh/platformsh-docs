@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 <!-- Name the parameters -->
 {{ $type := .Get "type" }}
 {{ $onlyLanguage := .Get "onlyLanguage" }}
@@ -42,7 +43,14 @@ If want to use ephemeral Redis instead, use the `redis` type:
   {{ partial "examples/servicedefn" (dict "context" . "data" $redis_data "docVersion" $docVersion ) }}
 
 {{ else if eq $type "network-storage" }}
-You can define `<SERVICE_NAME>` as you like, but it shouldn't include underscores (`_`).
+`<SERVICE_NAME>` must be [RFC 1123](https://tools.ietf.org/html/rfc1123) compliant, and as such it must:
+- Contain at most 63 characters
+- Contain only lowercase alphanumeric characters or `-` (underscores `_` are not allowed)
+- Start with an alphanumeric character
+- End with an alphanumeric character
+
+This is due to the fact that `<SERVICE_NAME>` is used as hostname for the network storage.
+
 {{ else if eq $type "elasticsearch" }}
 If you're using a [premium version](add-services/elasticsearch.md#supported-versions),
 use the `elasticsearch-enterprise` type instead.
@@ -154,9 +162,9 @@ Add the service to your app configuration:
 {{ partial "snippet" (dict "context" . "name" "<SERVICE_NAME>" "config" "service" "placeholder" "true" "Inner" $serviceInner ) }}
 ```
 
-* `<TARGET_PATH>` is where you want your service to be, the path on your app container that has a writable mount.
-* `<SERVICE_NAME>` is the name you [defined in step 1](#1-configure-the-service).
-* `<SOURCE_PATH>` is the path within the service that the mounts point to.
+- `<TARGET_PATH>` is where you want your service to be, the path on your app container that has a writable mount.
+- `<SERVICE_NAME>` is the name you [defined in step 1](#1-configure-the-service).
+- `<SOURCE_PATH>` is the path within the service that the mounts point to.
   Usually the same as the `<SERVICE_NAME>`.
 {{ end }}
 {{ end }} <!-- end check for Varnish -->
@@ -383,3 +391,4 @@ To use the configured service in your app,
 add a configuration file similar to the following to your project.
 {{ end }}
 {{ end }}
+<!-- shortcode end {{ .Name }} -->

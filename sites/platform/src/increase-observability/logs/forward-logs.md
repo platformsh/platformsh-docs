@@ -2,7 +2,7 @@
 title: Forward {{% vendor/name %}} and Blackfire logs
 description: Send your {{% vendor/name %}} and Blackfire logs to a third-party service for further analysis.
 weight: 10
-banner: 
+banner:
     type: observability-suite
 ---
 
@@ -14,9 +14,12 @@ In such cases, forward your logs from {{% vendor/name %}} and Blackfire to a thi
 You can use a [service with an integration](#use-a-log-forwarding-integration)
 or any service that supports a [syslog endpoint](#forward-to-a-syslog-endpoint) or [HTTP endpoint](#forward-to-an-http-endpoint).
 
+
+{{% version/specific %}}
 Log forwarding is available for Grid and {{% names/dedicated-gen-3 %}} projects.
 For {{% names/dedicated-gen-2 %}} projects, see how to [log remotely with `rsyslog`](../../dedicated-gen-2/architecture/options.md#remote-logging).
-
+<--->
+{{% /version/specific %}}
 Logs to `stdout` and `stderr` are forwarded.
 Logs in files can't be forwarded.
 
@@ -188,6 +191,12 @@ As an example, to forward logs to Elasticsearch using HTTP log forwarding, run t
 
 `type` and `url` are the only properties required for all endpoints.
 Optionally, you can use the `headers` property to pass additional headers in the HTTP requests.
+
+Note that if your endpoint URL includes a `PORT`, that can also be included in the `--url` flag:
+
+```
+{{% vendor/cli %}} integration:add --type httplog --url "https://{{< variable "ELASTICSEARCH_URL" >}}:{{< variable "PORT" >}}/{{< variable "INDEX_NAME" >}}/_doc" --header "Authorization: Basic <basic_auth_token>" --header "Content-Type: application/json"
+```
 
 Once you've [added the service](../../add-services/_index.md),
 to start forwarding logs [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).

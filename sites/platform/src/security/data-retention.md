@@ -10,7 +10,7 @@ description: |
 
 Information relating to customer accounts (login information, billing information, etc.) is retained for as long as the account is active with {{% vendor/name %}}.
 
-Customers may request that their account be deleted and all related data be purged by filing a support ticket.
+Customers may request that their account be deleted and all related data be purged by opening a [support ticket](/learn/overview/get-support).
 
 ## System logs
 
@@ -45,6 +45,9 @@ depending on their type and your [backup schedule](../environments/backup.md#bac
 For example, if you currently have 10 manual backups and are on the Advanced schedule,
 you keep all 10 manual backups until there are 15 automated backups.
 Then the automated backups start replacing the manual ones until you have only your allocated 4 manual backups.
+
+Backups associated with an environment are retained according to the [backup cycles](#backup-cycles) outlined below, so long as the environment still exists in the project.
+That is, backups are deleted when the corresponding environment is deleted.  
 
 ### Backup cycles
 

@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 {{ $isWordPress := .Get "WordPress" }}
 {{ $isSymfony := .Get "Symfony" }}
 ## Migrate your data
@@ -64,3 +65,4 @@ You've now added your files and database to your {{ .Site.Params.vendor.name }} 
 When you make a new branch environment off of it,
 all of your data is fully cloned to that new environment
 so you can test with your complete dataset without impacting production.
+<!-- shortcode end {{ .Name }} -->

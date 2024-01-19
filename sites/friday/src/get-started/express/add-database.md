@@ -61,40 +61,12 @@ git add  .environment .{{% vendor/cli %}}/config.yaml && git commit -m "adding M
 {{% vendor/cli %}} push
 ```
 
-{{< note >}}
-{{% vendor/name %}} will now read your configuration files, and begin building your application image. **Your push
-will fail**; don't worry, this is expected. At this point {{% vendor/cli %}} is not aware of the resources
-our new service needs. You need to define how much CPU, memory, and disk to assign to the service container.
+{{% vendor/name %}} will now read your configuration files and deploy your project using [default container resources](/manage-resources/resource-init.md).</br>
+If you don't want to use those default resources,
+define your own [resource initialization strategy](/manage-resources/resource-init.md#define-a-resource-initialization-strategy),
+or [amend those default container resources](/manage-resources/adjust-resources.md) after your project is deployed.
 
-Please complete [Configure resources for your service](#3-configure-resources-for-your-service) step
-{{< /note >}}
-
-## 3. Configure resources for your service
-
-When you push a new service to your project for the first time, the deployment will fail, and you will need to allocate resources to the service container.
-
-Back in your terminal, run:
-
-```shell
-{{% vendor/cli %}} resource:set --size mariadb:0.5 --disk mariadb:512
-  Resource configuration for the project My Express App 0926 (12345azerty), environment feat-database (type: development):
-  +------------------+------+-----+-------------+-----------+-----------+
-  | App or service   | Size | CPU | Memory (MB) | Disk (MB) | Instances |
-  +------------------+------+-----+-------------+-----------+-----------+
-  | app              | 0.1  | 0.1 | 384         | N/A       | 1         |
-  | mariadb          | 0.5  | 0.5 | 1408        | 512       | 1         |
-  +------------------+------+-----+-------------+-----------+-----------+
-
-Summary of changes:
-  Service: mariadb
-    CPU: 0.5
-    Memory: 1408 MB
-    Disk: 512 MB
-
-Are you sure you want to continue? [Y/n] y
-```
-
-## 4. Configure your Express application to use this new database
+## 3. Configure your Express application to use this new database
 
 First, you need a NodeJs module named ``mysql2``. Install it by running the following command:
 ```bash {location="Terminal"}
@@ -187,7 +159,7 @@ git add package.json package-lock.json index.js && git commit -m "adding MariaDb
 {{% vendor/cli %}} environment:url --primary
 ```
 
-## 5. Merge to production
+## 4. Merge to production
 
 When satisfied with your changes, merge them to the main branch, and remove the feature branch:
 
@@ -197,15 +169,10 @@ When satisfied with your changes, merge them to the main branch, and remove the 
 ```
 
 {{< note >}}
-{{% vendor/name %}} will now read your configuration files, and begin building your application image. **Your push
-will fail**; don't worry, this is expected. At this point {{% vendor/cli %}} is not aware of the resources
-our new service needs. We need to tell it what kind of CPU, Memory, and disk to assign to the service container.
-
-Please complete again [Configure resources for your service](#3-configure-resources-for-your-service) step
+You can [adjust your project resources](/manage-resources/adjust-resources.md) at any time.
 {{< /note >}}
 
-
-## 6. Remove the feature branch
+## 5. Remove the feature branch
 
 Then, you need to remove the feature branch
 ```bash {location="Terminal"}
@@ -216,10 +183,10 @@ git fetch --prune
 ```
 
 {{< note >}}
-During ``environment:delete`` CLI command, it will ask question regarding deactivation and deletion of your `add-mysql-database` environment. Please say `yes` (`y`) to all of them.
+During `environment:delete` CLI command, it will ask question regarding deactivation and deletion of your `add-mysql-database` environment. Please say `yes` (`y`) to all of them.
 {{< /note >}}
 
-## Tip&Tricks
+## Tips & Tricks
 
 You can get your project relationships information using the following command:
 ```bash {location="Terminal"}

@@ -481,7 +481,7 @@ The following example shows the process, though you have to modify it to fit you
     {{< variable "APP_NAME" >}}  
        mounts:
            /config:
-               source: local
+               source: storage
                source_path: config
    ```
    {{% /version/specific %}}

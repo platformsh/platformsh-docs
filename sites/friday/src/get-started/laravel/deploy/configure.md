@@ -81,15 +81,15 @@ applications:
     # More information: https://docs.upsun.com/create-apps/app-reference.html#mounts
     mounts:
       "/.config":
-        source: "local"
+        source: "storage"
         source_path: "config"
 
       "bootstrap/cache":
-        source: "local"
+        source: "tmp"
         source_path: "cache"
 
       "storage":
-        source: "local"
+        source: "storage"
         source_path: "storage"
 
 
@@ -207,7 +207,7 @@ You need to configure Laravel to use those services once they're enabled.
 
 Each service entry has a name (`db` and `cache` in the example)
 and a `type` that specifies the service and version to use.
-Services that store persistent data have a `disk` key, to specify the amount of storage.
+For services that store persistent data, you can [specify the amount of disk storage](/manage-resources/adjust-resources.md) you need.
 
 ```yaml {configFile="app"}
 # The services of the project.
@@ -292,11 +292,11 @@ mounts:
     ...
 
     "bootstrap/cache":
-      source: "local"
+      source: "tmp"
       source_path: "cache"
 
     "storage":
-      source: "local"
+      source: "storage"
       source_path: "storage"
 ```
 

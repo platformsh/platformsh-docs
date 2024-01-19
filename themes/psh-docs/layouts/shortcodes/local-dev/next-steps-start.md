@@ -1,3 +1,4 @@
+<!-- shortcode start {{ .Name }} -->
 {{ $name := "local" }}
 {{ with .Get "name" }}
   {{ $name = . }}
@@ -9,9 +10,9 @@ The following examples show how you can take advantage of that.
 
 ### Onboard collaborators
 
-It's essential for every developer on your team to have a local development environment to work on. 
+It's essential for every developer on your team to have a local development environment to work on.
 Place the {{ $name }} configuration into a script to ensure everyone has this.
-You can merge this change into production. 
+You can merge this change into production.
 
 1.  Create a new environment called `local-config`.
 
@@ -20,3 +21,4 @@ You can merge this change into production.
     ```bash
     touch init-local.sh && chmod +x init-local.sh
     ```
+<!-- shortcode end {{ .Name }} -->
