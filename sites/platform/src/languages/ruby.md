@@ -377,13 +377,13 @@ applications:
         ...
         mounts:
             "/log":
-                source: local
+                source: tmp
                 source_path: log
             "/storage":
-                source: local
+                source: storage
                 source_path: storage
             "/tmp":
-                source: local
+                source: tmp
                 source_path: tmp
 ```
 {{% /version/specific %}}
@@ -593,13 +593,13 @@ applications:
 
         mounts:
             "/log":
-                source: local
+                source: tmp
                 source_path: log
             "/storage":
-                source: local
+                source: storage
                 source_path: storage
             "/tmp":
-                source: local
+                source: tmp
                 source_path: tmp
 
         web:
@@ -648,7 +648,6 @@ routes:
 services: 
     database:
         type: mysql:{{% latest "mariadb" %}}
-        disk: 2048
 ```
 {{% /version/specific %}}
 
@@ -677,7 +676,6 @@ routes:
 services: 
     database:
         type: mysql:{{% latest "mariadb" %}}
-        disk: 2048
 ```
 {{% /version/specific %}}
 
