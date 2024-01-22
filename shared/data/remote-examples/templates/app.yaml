@@ -8,6 +8,7 @@ repos:
     - drupal7
     - drupal8
     - drupal9
+    - drupal10
     - akeneo
     - magento2ce
     - spring-boot-maven-mysql
