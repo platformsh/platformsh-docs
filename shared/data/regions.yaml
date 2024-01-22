@@ -2,7 +2,7 @@ europe:
     ch-1:
         name: Switzerland (ch-1)
         label: ch-1
-        provider: GCP
+        provider: Google Cloud Platform
         available: true
         outbound_ips: 
             - "34.65.236.213"
