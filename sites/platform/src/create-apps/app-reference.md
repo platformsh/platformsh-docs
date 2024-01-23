@@ -398,7 +398,7 @@ applications:
                 source_path: uploads
             '/.tmp_platformsh':
                 source: tmp
-                source_path: files/.tmp_platformsh
+                source_path: files/tmp_platformsh
             '/build':
                 source: storage
                 source_path: files/build
