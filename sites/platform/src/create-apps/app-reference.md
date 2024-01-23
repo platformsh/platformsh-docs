@@ -551,7 +551,7 @@ See some [examples of how to configure what's served](./web/_index.md).
 
 | Name    | Type     | Required                      | Description |
 | ------- | -------- | ----------------------------- | ----------- |
-| `pre_start` | `string` |   | Command run just prior to `start`, which can be useful when you need to run _per-instance_ actions. See [Mounts, instances, and Network Storage](#mounts-instances-and-network-storage) for an example. |
+| `pre_start` | `string` |   | Command run just prior to `start`, which can be useful when you need to run _per-instance_ actions. |
 | `start` | `string` | See [note](#required-command) | The command to launch your app. If it terminates, it's restarted immediately. |
 
 {{% /version/specific %}}
@@ -592,11 +592,6 @@ creating an infinite loop until the container crashes.
 Just run it as normal and allow the {{% vendor/name %}} supervisor to manage it.
 
 {{< /note >}}
-
-{{% version/specific %}}
-<--->
-For an example and common use case of the `pre_start` command, see [Mounts, instances, and Network Storage](#mounts-instances-and-network-storage).
-{{% /version/specific %}}
 
 #### Required command
 
