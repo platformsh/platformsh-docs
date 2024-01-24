@@ -281,6 +281,15 @@ For enhanced flexibility, {{% vendor/name %}} allows you to define and use writa
 When you define a mount, you are mounting an external directory to your app container,
 much like you would plug a hard drive into your computer to [transfer data](/development/file-transfer.md#transfer-files-using-the-cli).
 
+{{% note %}}
+
+- Mounts aren't available during the build
+- When you [back up an environment](/environments/backup.md), the mounts on that environment are backed up too
+
+{{% /note %}}
+
+### Define a mount
+
 To define a mount, use the following configuration:
 
 {{% version/specific %}}
@@ -318,7 +327,7 @@ See how to [troubleshoot the warning](./troubleshoot-mounts.md#overlapping-folde
 | Name          | Type                 | Required | Description |
 | ------------- | -------------------- | -------- | ----------- |
 | `source`      | `local`, `service`, or `tmp` | Yes      | Specifies the type of the mount: <br/><br/>- `local` mounts are unique to your app. They can be useful to store files that remain local to the app instance, such as application logs.</br> `local` mounts require disk space. To successfully set up a local mount, set the `disk` key in your app configuration. <br/><br/>- `service` mounts point to [Network Storage](add-services/network-storage.md) services that can be shared between several apps. <br/><br/>- `tmp` mounts are local ephemeral mounts, where an external directory is mounted to the `/tmp` directory of your app.</br> The content of a `tmp` mount **may be removed during infrastructure maintenance operations**. Therefore, `tmp` mounts allow you to **store files that you’re not afraid to lose**, such as your application cache that can be seamlessly rebuilt.</br> Note that the `/tmp` directory has **a maximum allocation of 8 GB**. |
-| `source_path` | `string`             | No    | Specifies where the mount points **inside the [external directory](#mounts)**.<br/><br/> - If you explicitly set a `source_path`, your mount points to a specific subdirectory in the external directory.  <br/><br/> - If the `source_path` is an empty string (`""`), your mount points to the entire external directory.<br/><br/> - If you don't define a `source_path`, {{% vendor/name %}} uses the {{< variable "MOUNT_PATH" >}} as default value, without leading or trailing slashes.</br>For example, if your mount lives in the `/web/uploads/` directory in your app container, it will point to a directory named `web/uploads` in the external directory.  </br></br> **WARNING:** See below how changing the name of your mount affects the `source_path` when it's undefined. |
+| `source_path` | `string`             | No    | Specifies where the mount points **inside the [external directory](#mounts)**.<br/><br/> - If you explicitly set a `source_path`, your mount points to a specific subdirectory in the external directory.  <br/><br/> - If the `source_path` is an empty string (`""`), your mount points to the entire external directory.<br/><br/> - If you don't define a `source_path`, {{% vendor/name %}} uses the {{< variable "MOUNT_PATH" >}} as default value, without leading or trailing slashes.</br>For example, if your mount lives in the `/web/uploads/` directory in your app container, it will point to a directory named `web/uploads` in the external directory.  </br></br> **WARNING:** Changing the name of your mount affects the `source_path` when it's undefined. See [how to ensure continuity](#ensure-continuity-when-changing-the-name-of-your-mount) and maintain access to your files. |
 | `service`     | `string`             |       | Only for `service` mounts: the name of the [Network Storage service](../add-services/network-storage.md). |
 
 <--->
@@ -327,39 +336,31 @@ See how to [troubleshoot the warning](./troubleshoot-mounts.md#overlapping-folde
 | Name          | Type                 | Required | Description |
 | ------------- | -------------------- | -------- | ----------- |
 | `source`      | `storage`, `tmp`, or `service` | Yes | Specifies the type of the mount:<br/><br/>- By design, `storage` mounts can be shared between instances of the same app. You can also configure them so they are [shared between different apps](#share-a-mount-between-several-apps).<br/><br/>- `tmp` mounts are local ephemeral mounts, where an external directory is mounted to the `/tmp` directory of your app.<br/>The content of a `tmp` mount **may be removed during infrastructure maintenance operations**. Therefore, `tmp` mounts allow you to **store files that you’re not afraid to lose**, such as your application cache that can be seamlessly rebuilt.<br/>Note that the `/tmp` directory has **a maximum allocation of 8 GB**.<br/><br/>- `service` mounts can be useful if you want to explicitly define and use a [Network Storage](/add-services/network-storage.md) service to share data between different apps (instead of using a `storage` mount).|
-| `source_path` | `string`             | No      | Specifies where the mount points **inside the [external directory](#mounts)**.<br/><br/> - If you explicitly set a `source_path`, your mount points to a specific subdirectory in the external directory. <br/><br/> - If the `source_path` is an empty string (`""`), your mount points to the entire external directory.<br/><br/> - If you don't define a `source_path`, {{% vendor/name %}} uses the {{< variable "MOUNT_PATH" >}} as default value, without leading or trailing slashes.</br>For example, if your mount lives in the `/web/uploads/` directory in your app container, it will point to a directory named `web/uploads` in the external directory.  </br></br> **WARNING:** See below how changing the name of your mount affects the `source_path` when it's undefined.  |
+| `source_path` | `string`             | No      | Specifies where the mount points **inside the [external directory](#mounts)**.<br/><br/> - If you explicitly set a `source_path`, your mount points to a specific subdirectory in the external directory. <br/><br/> - If the `source_path` is an empty string (`""`), your mount points to the entire external directory.<br/><br/> - If you don't define a `source_path`, {{% vendor/name %}} uses the {{< variable "MOUNT_PATH" >}} as default value, without leading or trailing slashes.</br>For example, if your mount lives in the `/web/uploads/` directory in your app container, it will point to a directory named `web/uploads` in the external directory.  </br></br> **WARNING:** Changing the name of your mount affects the `source_path` when it's undefined. See [how to ensure continuity](#ensure-continuity-when-changing-the-name-of-your-mount) and maintain access to your files. |
 | `service`     | `string`             |         | The purpose of the `service` key depends on your use case.</br></br> In a multi-app context where a `storage` mount is shared between apps, `service` is required. Its value is the name of the app whose mount you want to share. See how to [share a mount between several apps](#share-a-mount-between-several-apps).</br></br> In a multi-app context where a [Network Storage service](../add-services/network-storage.md) (`service` mount) is shared between apps, `service` is required and specifies the name of that Network Storage. |
 
 {{% /version/specific %}}
 
-{{% note theme="warning" title="Warning" %}}
+The accessibility to the web of a mounted directory depends on the [`web.locations` configuration](#web).
+Files can be all public, all private, or with different rules for different paths and file types.
 
-Changing the name of your mount affects the default `source_path`.
+{{% version/specific %}}
+<!-- Platform.sh -->
+Note that when you remove a `local` mount from your `{{< vendor/configfile "app" >}}` file,
+the mounted directory isn't deleted.
+The files still exist on disk until manually removed
+(or until the app container is moved to another host during a maintenance operation in the case of a `tmp` mount).
 
-Say you have a `/web/uploads/` mount with an undefined `source_path`:
+<--->
+<!-- Upsun -->
+Note that when you remove a `tmp` mount from your `{{< vendor/configfile "app" >}}` file,
+the mounted directory isn't deleted.
+The files still exist on disk until manually removed,
+or until the app container is moved to another host during a maintenance operation.
 
-```yaml {configFile="app"}
-mounts:
-    '/web/uploads/':
-        source: local
-```
+{{% /version/specific %}}
 
- If you rename the mount to `/my/uploads/`, it will point to a new, empty `/my/uploads/` directory.
- 
- To ensure continuity, you need to explicitly define the `source_path` as the previous name of the mount, without leading or trailing slashes:
- 
- ```yaml {configFile="app"}
-mounts:
-    '/my/uploads/':
-        source: local
-        source_path: web/uploads
-```
- 
-The `/my/uploads/` mount will point to the original `/web/uploads/` directory, maintaining access to all your existing files in that directory.
-
-{{% /note %}}
-
-Example configuration featuring multiple mounts:
+### Example configuration
 
 {{% version/specific %}}
 <!-- Platform.sh -->
@@ -398,7 +399,7 @@ applications:
                 source_path: uploads
             '/.tmp_platformsh':
                 source: tmp
-                source_path: files/tmp_platformsh
+                source_path: files/.tmp_platformsh
             '/build':
                 source: storage
                 source_path: files/build
@@ -411,15 +412,30 @@ applications:
 ```
 {{% /version/specific %}}
 
-The accessibility to the web of a mounted directory depends on the [`web.locations` configuration](#web).
-Files can be all public, all private, or with different rules for different paths and file types.
+### Ensure continuity when changing the name of your mount
 
-Note that when you back up an environment,
-the mounts on that environment are backed up too.
+Changing the name of your mount affects the default `source_path`.
 
-Also, mounted directories aren't deleted when they're removed from `{{< vendor/configfile "app" >}}`.
-The files still exist on disk until manually removed.
-Or, for `tmp` mounts, **until the app container is moved to another host during a maintenance operation**.
+Say you have a `/web/uploads/` mount with an undefined `source_path`:
+
+```yaml {configFile="app"}
+mounts:
+    '/web/uploads/':
+        source: local
+```
+
+ If you rename the mount to `/my/uploads/`, it will point to a new, empty `/my/uploads/` directory.
+ 
+ To ensure continuity, you need to explicitly define the `source_path` as the previous name of the mount, without leading or trailing slashes:
+ 
+ ```yaml {configFile="app"}
+mounts:
+    '/my/uploads/':
+        source: local
+        source_path: web/uploads
+```
+ 
+The `/my/uploads/` mount will point to the original `/web/uploads/` directory, maintaining access to all your existing files in that directory.
 
 {{% version/only "2" %}}
 
