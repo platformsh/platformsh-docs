@@ -43,6 +43,25 @@
       ]
     }
   },
+  "clickhouse": {
+    "description": "A manufacture service for Elasticsearch",
+    "disk": true,
+    "docs": {
+      "relationship_name": "clickhouse",
+      "service_name": "clickhouse",
+      "url": "/add-services/clickhouse.html"
+    },
+    "endpoint": "clickhouse",
+    "name": "Clickhouse",
+    "repo_name": "clickhouse",
+    "runtime": false,
+    "type": "clickhouse",
+    "versions": {
+      "supported": [
+        "23"
+      ]
+    }
+  },
   "dotnet": {
     "description": "ASP.NET 5 application container.",
     "repo_name": "dotnet",
