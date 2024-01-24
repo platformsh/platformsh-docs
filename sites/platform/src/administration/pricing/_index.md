@@ -91,10 +91,10 @@ You can add the following extras:
   even if you aren't currently actively using them.
 
   You can make any changes up to 100&nbsp;GB yourself.
-  For storage over 100&nbsp;GB, create a [support ticket](https://console.platform.sh/-/users/~/tickets).
+  For storage over 100&nbsp;GB, open a [support ticket](/learn/overview/get-support).
 
   You currently can't reduce your storage on your own for technical reasons.
-  If you need to reduce storage, create a [support ticket](https://console.platform.sh/-/users/~/tickets).
+  If you need to reduce storage, open a [support ticket](/learn/overview/get-support).
 
 ## Multiple apps in a single project
 

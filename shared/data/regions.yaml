@@ -1,4 +1,18 @@
 europe:
+    ch-1:
+        name: Switzerland (ch-1)
+        label: ch-1
+        provider: Google Cloud Platform
+        available: true
+        outbound_ips: 
+            - "34.65.236.213"
+            - "34.65.152.61"
+            - "34.65.244.185"
+        inbound_location: gw.ch-1
+        inbound_ips:
+            - "34.65.236.213"
+            - "34.65.152.61"
+            - "34.65.244.185"
     eu:
         name: Ireland (eu)
         label: eu

@@ -61,7 +61,7 @@ This file may be any static HTML file but is limited to 64 KB in size.
 ## Remote logging
 
 {{% names/dedicated-gen-2 %}} supports sending logs to a remote logging service such as Loggly, Papertrail, or Logz.io using the `rsyslog` service.
-This is an optional feature and you can request that it be enabled via a support ticket.
+This is an optional feature and you can request that it be enabled via a [support ticket](/learn/overview/get-support).
 Once enabled and configured your application can direct log output to the system `syslog` facility
 and is replicated to the remote service you have configured.
 
