@@ -231,3 +231,4 @@ module:
               - "tutorials/migrating.md"
               - ...
 ```
+<! -- test migration completion -->
