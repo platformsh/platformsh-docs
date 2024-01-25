@@ -130,7 +130,7 @@ class Search:
         create_index_task = client.create_index(uid=self.docs_index, options={'primaryKey': self.primaryKey, 'uid': self.index_name})
 
         timeout = 5000
-        if self.index_name == "friday":
+        if "friday" == docs_index_name:
           timeout = 15000
 
         try:
