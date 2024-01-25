@@ -136,7 +136,7 @@ class Search:
         try:
           client.wait_for_task(create_index_task['taskUid'], timeout)
         except MeilisearchTimeoutError as merror:
-          print('Failed waiting {0} milliseconds for Meilisearch to create the index. Error message: {1}'.format(timeout, merror)
+          print('Failed waiting {0} milliseconds for Meilisearch to create the index. Error message: {1}'.format(timeout, merror))
           return
 
         index = client.get_index(create_index_task['indexUid'])
