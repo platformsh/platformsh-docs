@@ -35,7 +35,7 @@ so multiple-AZ deployments should only be considered in cases where they're trul
 
 Multi-AZ deployments are available only on select AWS regions.
 
-## `sftp`
+## SFTP
 
 In addition to SSH accounts, you can create `sftp` accounts with a custom user/password to [transfer files](/development/file-transfer.md). 
 
