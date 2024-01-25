@@ -48,7 +48,8 @@
     "disk": true,
     "docs": {
       "relationship_name": "clickhouse",
-      "service_name": "clickhouse"
+      "service_name": "clickhouse",
+      "url": "/add-services/clickhouse.html"
     },
     "endpoint": "clickhouse",
     "name": "Clickhouse",
