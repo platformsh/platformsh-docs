@@ -33,7 +33,7 @@ The cluster begins to look more like a standard N-Tier architecture at this poin
 Speak to your sales representative about the costs associated with adding additional application servers. 
 This configuration requires a separate setup from the default so advanced planning is required.
 
-## `sftp`
+## SFTP
 
 In addition to SSH accounts, you can create `sftp` accounts with a custom user/password that are restricted to certain directories. 
 These directories must be one of the writeable mounts (or rather, there’s no point assigning them to the read-only code directory).
