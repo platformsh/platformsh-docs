@@ -51,6 +51,8 @@ module:
           
         - source: "src"
           target: "content"
+          excludeFiles:
+              - "administration/teams.md"
           
           lang: "en"
         - source: "static"

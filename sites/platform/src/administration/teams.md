@@ -1,11 +1,8 @@
 ---
 title: Administer teams
-weight: 1
 sidebarTitle: Teams
+weight: 1
 description: Manage team access and permissions across all your projects and organizations.
-banner:
-   title: Feature availability
-   body: This feature is available as part of the Standard User Management add-on. To add the Standard User Management add-on to your project and take advantage of this feature, [contact Sales](https://platform.sh/contact/). 
 ---
 
 Organizations on {{% vendor/name %}} are made up of both [projects](/projects/) and [users](/administration/users.md).
@@ -53,7 +50,6 @@ title=Using the CLI
 3. Define your team's project role (admin or viewer).
 4. If your team has viewer rights on the project, define its role on each type of environment.
 5. Enter `Y` to confirm.
-
 
 {{< /codetabs >}}
 
@@ -272,25 +268,35 @@ title=Using the Console
 **Option 1: Add projects to team with from Team settings**
 
 1. Navigate to your existing organization.
-1. Open the user menu (your name or profile picture).
-1. Select **Teams** from the dropdown.
-1. Find the team you want to modify under the **Manage teams** list,
+2. Open the user menu (your name or profile picture).
+3. Select **Teams** from the dropdown.
+4. Find the team you want to modify under the **Manage teams** list,
     then click **{{< icon more >}} More**.
-1. Click **Edit team**.
-1. Click **+ Add projects**.
-1. Select **All projects**, or choose individual projects from the dropdown.
-1. Click **Add to team**.
+5. Click **Edit team**.
+6. Click **+ Add projects**.
+7. Select **All projects**, or choose individual projects from the dropdown.
+   {{< note >}}
+   **All projects** refers to all existing projects.
+   Any future project you create will need to be added to the team manually.
+   {{< /note >}}
+8. Click **Add to team**.
+
+
 
 **Option 2: Add teams to project from project's Access settings**
 
 1. Navigate to your existing organization.
-1. Click on the project you want to add to the existing team.
-1. Navigate to the project's settings by clicking the **{{< icon settings >}} Settings** icon.
-1. Click on **Access** settings under **Project settings** in the sidebar.
-1. Click on the **TEAMS** tab in the **Access** list view.
-1. Click **+Add to projects**.
-1. Select **All teams**, or choose individual teams from the dropdown.
-1. Click **Add to team**.
+2. Select the project you want to add to the existing team.
+3. Navigate to the project's settings by clicking the **{{< icon settings >}} Settings** icon.
+4. Click **Access** settings under **Project settings** in the sidebar.
+5. Select the **TEAMS** tab in the **Access** list view.
+6. Click **+Add to projects**.
+7. Select **All teams**, or choose individual teams from the dropdown.
+   {{< note >}}
+   **All teams** refers to all existing teams.
+   Any future team you create will need to be added to the project manually.
+   {{< /note >}}
+8. Click **Add to team**.
 
 <--->
 +++
@@ -324,7 +330,7 @@ title=Using the Console
 1. Find the team you want to modify under the **Manage teams** list,
     then click **{{< icon more >}} More**.
 1. Click **Edit team**.
-1. Find the project you want to remove under the **PROJECTS** tab view,
+1. Find the project you want to modify under the **PROJECTS** tab view,
     then click **{{< icon more >}} More**.
 1. Click **Remove project**.
 1. Select **All projects**, or choose individual projects from the dropdown.
@@ -333,9 +339,9 @@ title=Using the Console
 **Option 2: Remove teams from a project from project's Access settings**
 
 1. Navigate to your existing organization.
-1. Click on the project you want to add to the existing team.
+1. Select the project you want to add to the existing team.
 1. Navigate to the project's settings by clicking the **{{< icon settings >}} Settings** icon.
-1. Click on **Access** settings under **Project settings** in the sidebar.
+1. Click **Access** settings under **Project settings** in the sidebar.
 1. Find the team under the **TEAMS** tab view,
     then click **{{< icon more >}} More**.
 1. Click **Remove team**.
