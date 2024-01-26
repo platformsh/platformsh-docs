@@ -51,7 +51,6 @@ module:
           
         - source: "src"
           target: "content"
-          excludeFiles:
           
           lang: "en"
         - source: "static"
