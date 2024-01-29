@@ -110,7 +110,7 @@ For example, you could include a `favicon.ico` file in the same folder as your a
 Then you can include it as follows:
 
 ```yaml {configFile="app"}
-properties:
+some-property:
     favicon: !include
         type: binary
         path: favicon.ico
