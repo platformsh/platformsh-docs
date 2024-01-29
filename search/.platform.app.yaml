@@ -52,5 +52,3 @@ mounts:
     "dumps":
         source: local
         source_path: "dumps"
-
-size: L
