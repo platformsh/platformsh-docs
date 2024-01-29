@@ -108,7 +108,7 @@ During a redeploy, the `post-deploy` hook is the only hook that is run.
 ## Get support
 
 If you're facing an issue with {{% vendor/name %}},
-submit a [Support ticket](https://console.{{< vendor/urlraw "host" >}}/-/users/~/tickets/open).
+open a [support ticket](/learn/overview/get-support).
 
 ## What's next?
 

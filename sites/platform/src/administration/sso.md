@@ -23,7 +23,7 @@ A deactivated user can no longer use SSH, Git, or other {{% vendor/name %}} APIs
 
 If you have a service user with an email address under your SSO domain, such as `machine-user@example.com`, you can exclude that user from the SSO enforcement rule so they aren't required to authenticate through your identity provider.
 
-Please open a support ticket if you need to exclude a service user.
+Please open a [support ticket](/learn/overview/get-support) if you need to exclude a service user.
 
 ## SSO providers
 
@@ -31,7 +31,7 @@ Please open a support ticket if you need to exclude a service user.
 
 {{< premium-features/tiered "Enterprise" >}}
 
-Enforce your users to authenticate with Google. Please open a support ticket to enable Google SSO.
+Enforce your users to authenticate with Google. Please open a [support ticket](/learn/overview/get-support) to enable Google SSO.
 
 #### Issue with re-authenticating every 15 minutes
 

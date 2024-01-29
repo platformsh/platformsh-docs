@@ -2,6 +2,13 @@
 title: "Transfer files to and from your app"
 weight: 7
 sidebarTitle: Transfer files
+keywords:
+  - SFTP
+  - sftp
+  - rsync
+  - Rsync
+  - scp
+  - Scp
 ---
 
 After your app is built, its file system is read-only.
@@ -116,11 +123,12 @@ Are you sure you want to continue? [Y/n]
 
 ## Transfer files using an SSH client
 
-Another way to transfer files to and from your built app is to use an SSH client such as [`scp`](file-transfer.md#scp) or [`rsync`](file-transfer.md#rsync).
+Another way to transfer files to and from your built app is to use an SSH client such as [`scp`](file-transfer.md#scp),
+[`rsync`](file-transfer.md#rsync), or [`sftp`](file-transfer.md#sftp).
 
 ### scp
 
-As a command-line utility, `scp` lets you copy files to and from a remote environment.
+You can use `scp` to copy files to and from a remote environment.
 
 For example, to download a `diagram.png` file from the `web/uploads` directory 
 (relative to the [app root](../create-apps/app-reference.md#root-directory)),
@@ -166,3 +174,70 @@ If you're using UTF-8 encoded files on macOS,
 add the `--iconv=utf-8-mac,utf-8` flag to your `rsync` call.
 
 For more options, consult the [rsync documentation](https://man7.org/linux/man-pages/man1/rsync.1.html).
+
+### sftp
+
+You can use `sftp` to copy files to and from a remote environment.
+
+{{% version/specific %}}
+{{% note %}}
+<!-- Platform.sh -->
+
+`sftp` is supported on the Grid, but the following limitations apply:
+
+- You can only create `sftp` accounts with an existing {{% vendor/name %}} user and an SSH key. 
+  Custom users and passwords aren't supported.
+- `sftp` access cannot be limited to a specific directory.
+  Instead, access is given to **the whole application directory** and its mounts.
+
+`sftp` is also supported on Dedicated projects with different limitations and requirements.
+For more information, see the [{{% names/dedicated-gen-2 %}}](/dedicated-gen-2/architecture/options.md#sftp)
+and [{{% names/dedicated-gen-3 %}}](/dedicated-gen-3/options.md#sftp) sections.
+{{% /note %}}
+
+<--->
+<!-- Upsun -->
+{{% note %}}
+{{% vendor/name %}} supports `sftp`, but the following limitations apply:
+
+- You can only create `sftp` accounts with an existing {{% vendor/name %}} user and an SSH key. 
+  Custom users and passwords aren't supported.
+- `sftp` access cannot be limited to a specific directory.
+  Instead, access is given to **the whole application directory** and its mounts.
+{{% /note %}}
+{{% /version/specific %}}
+
+#### Open an `sftp` connection
+
+Run the following command:
+
+```bash
+sftp "$(platform ssh --pipe)"
+```
+
+When prompted, select the project and environment you want to connect to.
+The `sftp` connection is open once the `sftp>` prompt is displayed in your terminal.
+
+#### Download a file
+
+Say you want to download a `diagram.png` file from the `web/uploads` directory 
+(relative to the [app root](../create-apps/app-reference.md#root-directory)).
+To do so, run the following command:
+
+```
+sftp> get web/uploads/diagram.png
+```
+
+The `diagram.png` file is copied to the current local directory.
+
+#### Upload a file
+
+Say you want to upload a `diagram.png` file to the `web/uploads` directory 
+(relative to the [app root](../create-apps/app-reference.md#root-directory)).
+To do so, run the following command:
+
+```bash
+sftp> put diagram.png web/uploads
+```
+
+For other options, see the [`sftp` documentation](https://man7.org/linux/man-pages/man1/sftp.1.html).
