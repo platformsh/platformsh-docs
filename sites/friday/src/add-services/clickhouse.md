@@ -90,12 +90,41 @@ services:
     type: clickhouse:{{% latest "clickhouse" %}}
 ```
 
-## Configuration options
+## Multiple databases
 
-You can configure your Clickhouse service in the [services configuration](#1-configure-the-service) with the following options:
+You can configure multiple databases, much like [with PostgreSQL](/add-services/postgresql.md#multiple-databases).
+To do so, you can use a configuration similar to the following:
 
-| Name     | Type                  | Required | Description                                                         |
-|----------|-----------------------|----------|---------------------------------------------------------------------|
-| `schema` | An array of `string`s | No       | All databases to be created. Defaults to a single `main` database. |
+```yaml {configFile="app"}
+# Complete list of all available properties: https://docs.upsun.com/create-apps/app-reference.html
+applications:
+  myapp:
+    relationships:
+      clickhouse-admin: "clickhouse:admin"
+      clickhouse-reporter: "clickhouse:reporter"
+      clickhouse-importer: "clickhouse:importer"
 
-Example configuration?
+services:
+  clickhouse:
+    type: clickhouse:23
+    configuration:
+      databases:
+        - main
+        - legacy
+      endpoints:
+        admin:
+          port: 9000 # binary port
+          privileges:
+            main: admin
+            legacy: admin
+        reporter:
+          default_database: main
+          port: 8123 # http port
+          privileges:
+            main: ro
+        importer:
+          default_database: legacy
+          port: 9000 # binary port
+          privileges:
+            legacy: rw
+```
