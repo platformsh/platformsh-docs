@@ -75,7 +75,8 @@ applications:
     ...
 ```
 
-This will result as:
+Once {{% vendor/name %}} has combined the two configuration files,
+the blended configuration will be the following:
 ```yaml {location="YAML config result"}
 applications:
   app:
