@@ -77,7 +77,7 @@ mariadb:
 In these files, you can use any of the [available YAML tags](./yaml-structure.md) you need.
 
 {{% note %}}
-In a [multiple application](/create-apps/multi-app/_index.md) context, you can also group all of your app config in a global ``.platform/applications.yaml`` file.
+In a [multiple application](/create-apps/multi-app/_index.md) context, you can also group all of your app configurations in a global ``.platform/applications.yaml`` file.
 This file contains a list of app config, such as:
 ```yaml {location="{{< vendor/configfile "apps" >}}"}
 app1:
