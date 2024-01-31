@@ -9,7 +9,7 @@ In addition to the [basic functions you should be familiar with](./what-is-yaml.
 
 ## YAML file location
 
-When using [`platform project:init` command](/get-started/express.html#configure-your-project), 3 default YAML config files are generated in the `{{< vendor/configdir >}}` folder and at the root of your source code, containing the minimum default configuration based on your detected local stack.
+When you run the [`platform project:init` command](/get-started/express.md#configure-your-project), three default YAML configuration files are generated in the `{{< vendor/configdir >}}` folder and at the root of your source code. They contain the minimum default configuration based on your detected local stack.
 These YAML files are a good starting point before customization.
 
 ```bash
