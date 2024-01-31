@@ -54,8 +54,7 @@ The following rules apply to YAML files contained in the ``.upsun`` folder:
 - All the YAML files in subdirectories of the ``.upsun`` folder need to be [manually imported](/learn/overview/yaml/platform-yaml-tags.md#include) and contain a [valid YAML configuration](/create-apps/app-reference.md).
 
 {{% note title="Warning" them="warning"%}}
-Please note that when Upsun glues YAML files (located at the first level of the ``.upsun`` folder), we merge only the top level YAML keys (`applications`, `services`, and `routes`).
-In other words, if you defined twice an ``app`` app in two different YAML files, only the second one would be taken in account:
+When {{% vendor/name %}} combines all the YAML files located at the first level of the ``.upsun`` folder, only the top-level keys (`applications`, `services`, and `routes`) are merged. So if you define an app named ``app`` in two different YAML files, {{% vendor/name %}} only takes the second one into account.
 
 As an example, if we are defining our app in two different files:
 ```yaml {location=".upsun/app.yaml"}
