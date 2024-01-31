@@ -49,9 +49,9 @@ Any YAML files located at the first level of your ``.upsun`` folder, at the root
 ## Rules on YAML files
 The following rules apply to YAML files contained in the ``.upsun`` folder:
 
-- All the existing YAML files located at the first level of the ``.upsun`` folder are glue together.
-- All the existing YAML files located at the first level of the ``.upsun`` folder must respect the 3 top level YAML keys as described above, and must contain a [valid YAML configuration](/create-apps/app-reference.md).
-- All YAML files in subdirectory of ``.upsun`` folder needs to be [manually imported](/learn/overview/yaml/platform-yaml-tags.md#include) and must contain [valid YAML configuration](/create-apps/app-reference.md).
+- All the existing YAML files located at the first level of the ``.upsun`` folder are taken into account.
+- All the existing YAML files located at the first level of the ``.upsun`` folder must feature the [mandatory top-level keys](#mandatory-top-level-keys), and must contain a [valid YAML configuration](/create-apps/app-reference.md).
+- All the YAML files in subdirectories of the ``.upsun`` folder need to be [manually imported](/learn/overview/yaml/platform-yaml-tags.md#include) and contain a [valid YAML configuration](/create-apps/app-reference.md).
 
 {{% note title="Disclaimer" %}}
 Please note that when Upsun glues YAML files (located at the first level of the ``.upsun`` folder), we merge only the top level YAML keys (`applications`, `services`, and `routes`).
