@@ -44,4 +44,4 @@ get in touch with [Sales](https://{{< vendor/urlraw "host" >}}/contact/).
 ## Delete your account
 
 To permanently delete your {{% vendor/name %}} account,
-[contact Support](https://console.{{< vendor/urlraw "host" >}}/-/users/~/tickets/open).
+[contact Support](/learn/overview/get-support.md).
