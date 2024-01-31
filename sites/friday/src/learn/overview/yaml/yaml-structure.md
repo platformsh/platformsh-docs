@@ -86,6 +86,6 @@ applications:
     ...
 ```
 
-Note: ``source.root`` (and any other `.upsun/app.yaml` parameters) will be missing in the final configuration.
+Note that ``source.root`` (and any other `.upsun/app.yaml` parameters) will *not* be included in the final configuration.
 
 {{% /note %}}
