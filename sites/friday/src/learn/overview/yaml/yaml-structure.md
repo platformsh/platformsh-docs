@@ -18,7 +18,7 @@ This YAML file is located in your ``.upsun`` directory, at the root of your proj
 |   └── {{< vendor/configfile "apps" "strip" >}}
 └── <source code>
 ```
-
+## Mandatory top-level keys
 In the ``config.yaml`` file, there are only three mandatory top-level YAML keys:
 - ``applications``: this section of the file contains all of your [app definitions](/create-apps/app-reference.md)
 - ``routes``: this section of the file contains all of your [route definitions](/define-routes.md) (for each of your apps)
