@@ -5,7 +5,7 @@ description: "A description of the YAML file for {{% vendor/name %}}."
 ---
 
 In addition to the [basic functions you should be familiar with](./what-is-yaml.md), YAML structure is important.
-{{% vendor/name %}} accepts a certain structure for YAML configuration files.
+{{% vendor/name %}} accepts a specific structure for YAML configuration files.
 
 ## YAML file location
 
