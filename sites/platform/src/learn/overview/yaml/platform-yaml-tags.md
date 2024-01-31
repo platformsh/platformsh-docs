@@ -88,7 +88,7 @@ frontend:
 
 {{% note theme="info" %}}
 
-Please note that {{% vendor/name %}} will execute this ``../backend/scripts/common_build.sh`` script using [Dash](https://wiki.archlinux.org/title/Dash).
+{{% vendor/name %}} will execute this ``../backend/scripts/common_build.sh`` script using [Dash](https://wiki.archlinux.org/title/Dash).
 
 {{% /note %}}
 
