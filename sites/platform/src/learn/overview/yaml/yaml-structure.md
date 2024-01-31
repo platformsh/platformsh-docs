@@ -20,9 +20,9 @@ These YAML files are a good starting point before customization.
 └── <source code>
 ```
 
-This 3 YAML files are meant to define:
+These three YAML files configure the following:
 - ``{{< vendor/configfile "routes" "strip" >}}``: this file contains all of your [routes definition](/define-routes.md)
-- ``{{< vendor/configfile "services" "strip" >}}``: this contains the list of your [services definition](/add-services.md)
+- ``{{< vendor/configfile "services" "strip" >}}``: this file contains the list of your [services definition](/add-services.md)
 - ``{{< vendor/configfile "app" >}}``: this file contains your [application definition](/create-apps/app-reference.md)
 
 ## Examples

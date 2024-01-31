@@ -23,7 +23,9 @@ The tag requires two properties:
 
 By default, `path` is relative to the current application's directory (what you would define with `source.root`).
 
-As an example, you can include another ``.platform/app1.yaml`` file in the main `{{% vendor/configfile "apps" %}}`.
+For example, to include another ``.platform/app1.yaml`` file in the main `{{% vendor/configfile "apps" %}}`, follow these steps:
+
+1. Write and save your ``.platform/app1.yaml`` file:
 
 ```yaml {location=".platform/app1.yaml"}
 source:
@@ -49,7 +51,7 @@ app: !include
 #api: !include ./app1.yaml
 ```
 
-It is also possible to include files from a directory parent to the folder however.
+You can also include files from a directory that is parent to the folder.
 
 For example, for the following project structure:
 
