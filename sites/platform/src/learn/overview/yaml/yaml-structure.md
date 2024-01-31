@@ -89,5 +89,4 @@ app2:
   source:
     root: app2
 ```
-{{% /note %}}
 
