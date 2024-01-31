@@ -47,7 +47,7 @@ Any YAML files located at the first level of your ``.upsun`` folder, at the root
 {{% /note %}}
 
 ## Rules on YAML files
-These are rules applied to YAML files below ``.upsun`` folder.
+The following rules apply to YAML files contained in the ``.upsun`` folder:
 
 - All the existing YAML files located at the first level of the ``.upsun`` folder are glue together.
 - All the existing YAML files located at the first level of the ``.upsun`` folder must respect the 3 top level YAML keys as described above, and must contain a [valid YAML configuration](/create-apps/app-reference.md).
