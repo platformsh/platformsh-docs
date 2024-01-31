@@ -52,13 +52,6 @@ For example, you might be representing version numbers and want to parse them as
 If you use `version: 1.10`, it's parsed as an integer and so is treated the same as `1.1`.
 If you use `version: "1.10"`, it's parsed as a string and isn't treated as the same as `1.1`.
 
-You can define strings either with or without quotes, which can be single `'` or double `"`.
-Quotes let you escape characters (if double) and make sure the value is parsed as a string when you want it.
-
-For example, you might be representing version numbers and want to parse them as strings.
-If you use `version: 1.10`, it's parsed as an integer and so is treated the same as `1.1`.
-If you use `version: "1.10"`, it's parsed as a string and isn't treated as the same as `1.1`.
-
 ### Mappings (dictionaries/objects)
 
 In addition to basic scalar values, each key can also represent a set of other key–value pairs.
