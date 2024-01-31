@@ -56,7 +56,7 @@ The following rules apply to YAML files contained in the ``.upsun`` folder:
 {{% note title="Warning" them="warning"%}}
 When {{% vendor/name %}} combines all the YAML files located at the first level of the ``.upsun`` folder, only the top-level keys (`applications`, `services`, and `routes`) are merged. So if you define an app named ``app`` in two different YAML files, {{% vendor/name %}} only takes the second one into account.
 
-As an example, if we are defining our app in two different files:
+Example:
 ```yaml {location=".upsun/app.yaml"}
 applications:
   app:
