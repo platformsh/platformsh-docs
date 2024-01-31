@@ -25,7 +25,7 @@ This 3 YAML files are meant to define:
 - ``{{< vendor/configfile "services" "strip" >}}``: this contains the list of your [services definition](/add-services.md)
 - ``{{< vendor/configfile "app" >}}``: this file contains your [application definition](/create-apps/app-reference.md)
 
-This looks like:
+## Examples
 
 ```yaml {location="{{< vendor/configfile "app" >}}"}
 
