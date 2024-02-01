@@ -33,11 +33,10 @@ dedicated:
     - cli
     - curl
     - dba
-    - dbg
+    - dev
     - enchant
     - fpm
     - gd
-    - geoip
     - gmp
     - igbinary
     - imagick
@@ -49,7 +48,6 @@ dedicated:
     - mbstring
     - mcrypt
     - memcached
-    - mongodb
     - msgpack
     - mysql
     - oauth
@@ -103,13 +101,11 @@ dedicated:
     - mbstring
     - mcrypt
     - memcached
-    - mongodb
     - msgpack
     - mysql
     - oauth
     - odbc
     - opcache
-    - pdo-sqlsrv
     - pgsql
     - phpdbg
     - pspell
@@ -119,7 +115,6 @@ dedicated:
     - snmp
     - soap
     - sqlite3
-    - sqlsrv
     - ssh2
     - sybase
     - tideways-xhprof
@@ -279,7 +274,6 @@ dedicated:
     - oauth
     - odbc
     - opcache
-    - pdo-sqlsrv
     - pgsql
     - phpdbg
     - pspell
@@ -324,11 +318,13 @@ dedicated:
     - ldap
     - mailparse
     - mbstring
+    - memcached
+    - mongodb
+    - msgpack
     - mysql
     - oauth
     - odbc
     - opcache
-    - pdo-sqlsrv
     - pgsql
     - phpdbg
     - pspell
@@ -349,6 +345,98 @@ dedicated:
     - xsl
     - zip
     - zts
+  "8.2":
+    - amqp
+    - apcu
+    - bcmath
+    - bz2
+    - cgi  
+    - cli
+    - common
+    - curl
+    - dba
+    - dev
+    - enchant
+    - fpm
+    - gd
+    - gmp
+    - igbinary
+    - imagick
+    - imap
+    - intl
+    - ldap
+    - mailparse
+    - mbstring
+    - memcached
+    - mongodb
+    - msgpack
+    - mysql 
+    - odbc
+    - opcache
+    - openswoole
+    - swoole
+    - pgsql
+    - phpdbg
+    - pspell
+    - readline
+    - redis
+    - snmp
+    - soap 
+    - sodium
+    - sqlite3
+    - sqlsrv
+    - ssh2
+    - sybase
+    - tidy
+    - xdebug
+    - xml
+    - xsl
+    - zip
+  "8.3":
+    - amqp
+    - apcu
+    - bcmath
+    - bz2
+    - cgi  
+    - cli
+    - common
+    - curl
+    - dba
+    - dev
+    - enchant
+    - fpm
+    - gd
+    - gmp
+    - igbinary
+    - imagick
+    - imap
+    - intl
+    - ldap
+    - mailparse
+    - mbstring
+    - memcached
+    - msgpack
+    - mysql 
+    - odbc
+    - opcache
+    - openswoole
+    - swoole
+    - pgsql
+    - phpdbg
+    - pspell
+    - readline
+    - redis
+    - snmp
+    - soap 
+    - sodium
+    - sqlite3
+    - ssh2
+    - sybase
+    - tidy
+    - xdebug
+    - xml
+    - xsl
+    - zip
 grid:
   "5.4":
     available:
@@ -511,7 +599,7 @@ grid:
       - apcu_bc
       - applepay
       - blackfire
-      - geoip
+      - dev
       - gmp
       - igbinary
       - imagick
@@ -607,7 +695,6 @@ grid:
       - mailparse
       - mcrypt
       - memcached
-      - mongodb
       - msgpack
       - newrelic
       - oauth
@@ -616,7 +703,6 @@ grid:
       - pdo_firebird
       - pdo_odbc
       - pdo_pgsql
-      - pdo_sqlsrv
       - pgsql
       - pspell
       - pthreads
@@ -626,7 +712,6 @@ grid:
       - shmop
       - snmp
       - sourceguardian
-      - sqlsrv
       - ssh2
       - sybase
       - tideways
@@ -952,7 +1037,7 @@ grid:
       - blackfire
       - event
       - ffi
-      - geoip
+      - geiop
       - gmp
       - http
       - igbinary
@@ -970,7 +1055,6 @@ grid:
       - pdo_dblib
       - pdo_odbc
       - pdo_pgsql
-      - pdo_sqlsrv
       - pgsql
       - pspell
       - raphf
@@ -1038,7 +1122,6 @@ grid:
       - blackfire
       - event
       - ffi
-      - geoip
       - gmp
       - http
       - igbinary
@@ -1055,7 +1138,6 @@ grid:
       - pdo_dblib
       - pdo_odbc
       - pdo_pgsql
-      - pdo_sqlsrv
       - pgsql
       - pspell
       - raphf
@@ -1124,7 +1206,6 @@ grid:
       - blackfire
       - event
       - ffi
-      - geoip
       - gmp
       - gnupg
       - http
@@ -1209,7 +1290,6 @@ grid:
       - apcu
       - blackfire
       - ffi
-      - geoip
       - gmp
       - http
       - igbinary
