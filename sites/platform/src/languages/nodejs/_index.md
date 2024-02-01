@@ -2,6 +2,9 @@
 title: "JavaScript/Node.js"
 description: Get started creating JavaScript apps with Node.js on {{% vendor/name %}}.
 layout: single
+keywords:
+  - Bun runtime
+  - bun runtime
 ---
 
 Node.js is a popular asynchronous JavaScript runtime.
