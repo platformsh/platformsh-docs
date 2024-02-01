@@ -445,6 +445,93 @@ hooks:
 
 {{< /codetabs >}}
 
+### Use Bun as a package manager
+
+{{< partial "bun/body.md" >}}
+
+To switch to Bun to manage dependencies,
+use the following configuration:
+
+{{< version/specific >}}
+<!-- Platform.sh -->
+
+```yaml {configFile="app"}
+# The name of your app.
+name: myapp 
+    # Choose Node.js version 20 or above.
+    type: 'nodejs:20'
+    # Override the default Node.js build flavor.
+    build:
+    	flavor: none
+    # Use Bun to install the dependencies.
+    hooks:
+    	build: bun install
+```
+
+<--->
+<!-- Upsun -->
+
+```yaml {configFile="app"}
+applications:
+    # The name of your app.
+    myapp:
+    # Choose Node.js version 20 or above.
+        type: 'nodejs:20'
+        # Override the default Node.js build flavor.
+        build:
+    	    flavor: none
+        # Use Bun to install the dependencies.
+        hooks:
+    	    build: bun install
+```
+
+{{< /version/specific >}}
+
+You can even [use Bun as a runtime](https://platform.sh/blog/bun-support-is-here/) by adjusting the `start` command as follows:
+
+{{< version/specific >}}
+<!-- Platform.sh -->
+
+```yaml {configFile="app"}
+# The name of your app.
+name: myapp
+    # Choose Node.js version 20 or above.
+    type: 'nodejs:20'
+    # Override the default Node.js build flavor.
+    build:
+    	flavor: none
+    # Use Bun to install the dependencies.
+    hooks:
+    	build: bun install
+    # In the start command replace node with Bun.
+    web:
+    	commands:
+    		start: 'bun app.js'
+```
+
+<--->
+<!-- Upsun -->
+
+```yaml {configFile="app"}
+applications:
+    # The name of your app.
+    myapp:
+    # Choose Node.js version 20 or above.
+        type: 'nodejs:20'
+        # Override the default Node.js build flavor.
+        build:
+    	    flavor: none
+        # Use Bun to install the dependencies.
+        hooks:
+    	    build: bun install
+        # In the start command replace node with Bun.
+        web:
+    	    commands:
+    		    start: 'bun app.js'
+```
+
+{{< /version/specific >}}
+
 ## Connecting to services
 
 {{% version/only "1" %}}
