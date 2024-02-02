@@ -1,5 +1,5 @@
 ---
-title: Get started
+title: "[TO BE REMOVED] Get started"
 aliases:
 - /get-started/_index.md
 ---

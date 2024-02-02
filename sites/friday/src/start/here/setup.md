@@ -25,11 +25,17 @@ Starter codebases:
 <details>
   <summary>PHP</summary>
   Something small enough to escape casual notice.
+
+- [Laravel installation guide](https://laravel.com/docs/10.x#creating-a-laravel-project)
+
 </details>
 
 <details>
   <summary>Python</summary>
   Something small enough to escape casual notice.
+
+- [Flask installation guide](https://flask.palletsprojects.com/en/2.3.x/installation)
+- [Django installation guide](https://flask.palletsprojects.com/en/2.3.x/installation)
 </details>
 
 {{< /note >}}

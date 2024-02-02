@@ -1,5 +1,5 @@
 ---
-title: Git started
+title: Get started
 # aliases:
 # - /get-started/_index.md
 ---
