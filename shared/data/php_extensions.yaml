@@ -1233,6 +1233,7 @@ grid:
       - pdo_dblib
       - pdo_odbc
       - pdo_pgsql
+      - pdo_sqlsrv
       - pgsql
       - pspell
       - raphf
@@ -1243,6 +1244,7 @@ grid:
       - snmp
       - sodium
       - sourceguardian
+      - sqlsrv
       - ssh2
       - swoole
       - sybase
@@ -1313,6 +1315,7 @@ grid:
       - pdo_dblib
       - pdo_odbc
       - pdo_pgsql
+      - pdo_sqlsrv
       - pgsql
       - pspell
       - raphf
@@ -1322,6 +1325,7 @@ grid:
       - snmp
       - sodium
       - sourceguardian
+      - sqlsrv
       - ssh2
       - sybase
       - tidy
