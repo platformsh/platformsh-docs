@@ -2,7 +2,7 @@
     name: 'docs'
 
     # The type key specifies the language and version for your application.
-    type: 'nodejs:16'
+    type: 'nodejs:20'
 
     # Specify the Hugo version as an env variable.
     variables:
@@ -69,7 +69,7 @@
     name: 'friday'
 
     # The type key specifies the language and version for your application.
-    type: 'nodejs:16'
+    type: 'nodejs:20'
 
     # Specify the Hugo version as an env variable.
     variables:
