@@ -74,48 +74,63 @@ Note that changing the name of the service replaces it with a brand new service 
 
 ### 2. Add the relationship
 
-To define the relationship, use one of the following endpoints:
+To define the relationship, use one of the following endpoints.
 
-- The `clickhouse` endpoint if you want to use the Native Protocol port (also known as ClickHouse TCP protocol).</br>
-  This protocol is used by ClickHouse apps and processes such as `clickhouse-server`, `clickhouse-client`, and native ClickHouse tools. It is also used for inter-server communication for distributed queries.
+#### `clickhouse` endpoint
 
-  ```yaml {configFile="app"}
-  applications:
-      # The name of the app container. Must be unique within a project.
-      <APP_NAME>:
-          # Relationships enable access from this app to a given service.
-          relationships:
-              <RELATIONSHIP_NAME>: "<SERVICE_NAME>:clickhouse"
+The `clickhouse` endpoint allows you to use the Native Protocol port (also known as ClickHouse TCP protocol).
+This protocol is used by ClickHouse apps and processes such as `clickhouse-server`, `clickhouse-client`, and native ClickHouse tools. It is also used for inter-server communication for distributed queries.
 
-  services:
-      # The name of the service container. Must be unique within a project.
-      <SERVICE_NAME>:
-          type: clickhouse:<VERSION>
-  ```
+Use the following configuration:
 
-- The `clickhouse-http` endpoint if you want to use the HTTP API Port for HTTP requests.</br>
-  This protocol is used by [JDBC](https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc/), [ODBC](https://learn.microsoft.com/en-us/sql/odbc/microsoft-open-database-connectivity-odbc?view=sql-server-ver16), and web interfaces.
+```yaml {configFile="app"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    <APP_NAME>:
+        # Relationships enable access from this app to a given service.
+        relationships:
+            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:clickhouse"
 
-  ```yaml {configFile="app"}
-  applications:
-      # The name of the app container. Must be unique within a project.
-      <APP_NAME>:
-          # Relationships enable access from this app to a given service.
-          relationships:
-              <RELATIONSHIP_NAME>: "<SERVICE_NAME>:clickhouse-http"
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: clickhouse:<VERSION>
+```
 
-  services:
-      # The name of the service container. Must be unique within a project.
-      <SERVICE_NAME>:
-          type: clickhouse:<VERSION>
-  ```
+You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, but it’s best if they’re distinct.
+With this definition, the application container (``<APP_NAME>``) now has access to the service via the relationship ``<RELATIONSHIP_NAME>``.
+
+#### `clickhouse-http` endpoint
+
+The `clickhouse-http` endpoint allows you to use the HTTP API Port for HTTP requests.
+This protocol is used by [JDBC](https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc/), [ODBC](https://learn.microsoft.com/en-us/sql/odbc/microsoft-open-database-connectivity-odbc?view=sql-server-ver16), and web interfaces.
+
+Use the following configuration:
+
+```yaml {configFile="app"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    <APP_NAME>:
+        # Relationships enable access from this app to a given service.
+        relationships:
+            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:clickhouse-http"
+
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: clickhouse:<VERSION>
+```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, but it’s best if they’re distinct.
 With this definition, the application container (``<APP_NAME>``) now has access to the service via the relationship ``<RELATIONSHIP_NAME>``.
 
 ### Example configuration
 
-Here is an example configuration using the `clickhouse` endpoint:
+{{< codetabs >}}
+
++++
+title= With ``clickhouse`` endpoint
++++
 
 ```yaml {configFile="app"}
 applications:
@@ -132,7 +147,11 @@ services:
     type: clickhouse:23
 ```
 
-Here is an example configuration using the `clickhouse-http` endpoint:
+<--->
+
++++
+title= With ``clickhouse-http`` endpoint
++++
 
 ```yaml {configFile="app"}
 applications:
@@ -148,6 +167,8 @@ services:
     # The name of the service container. Must be unique within a project.
     type: clickhouse:23
 ```
+
+{{< /codetabs >}}
 
 ## Multiple databases
 
