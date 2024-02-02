@@ -57,6 +57,14 @@ title=Using the CLI
 4. If your team has viewer rights on the project, define its role on each type of environment.
 5. Enter `Y` to confirm.
 
+{{< note >}}
+To view a list of all the existing teams in your organization, run the following command:
+
+```bash
+upsun team:list -organization {{< variable "ORGANIZATION_NAME" >}}
+```
+{{< /note >}}
+
 {{< /codetabs >}}
 
 ## Delete an existing team
@@ -220,6 +228,19 @@ title=Using the CLI
 3. Enter the user's email address.
 4. Enter `Y` to confirm.
 
+{{< note >}}
+To view a list of all the users on a team, follow these steps:
+
+1. Run the following command:
+
+   ```bash
+   upsun team:user:list -organization {{< variable "ORGANIZATION_NAME" >}}
+   ```
+
+2. Select the team whose users you want to display.
+
+{{< /note >}}
+
 {{< /codetabs >}}
 
 #### Remove users from a team
@@ -287,7 +308,7 @@ title=Using the Console
    {{< /note >}}
 8. Click **Add to team**.
 
-
+</br>
 
 **Option 2: Add teams to project from project's Access settings**
 
@@ -318,6 +339,18 @@ title=Using the CLI
 3. Select the project you want the team to access.
 4. Enter `Y` to confirm.
 
+{{< note >}}
+To view a list of all the projects added to a team, follow these steps:
+
+1. Run the following command:
+
+   ```bash
+   upsun team:project:list -organization {{< variable "ORGANIZATION_NAME" >}}
+   ```
+2. Select the team whose projects you want to display.
+
+{{< /note >}}
+
 {{< /codetabs >}}
 
 #### Remove project from team's access
@@ -341,6 +374,8 @@ title=Using the Console
 1. Click **Remove project**.
 1. Select **All projects**, or choose individual projects from the dropdown.
 1. Click **Yes** to confirm.
+
+</br>
 
 **Option 2: Remove teams from a project from project's Access settings**
 
