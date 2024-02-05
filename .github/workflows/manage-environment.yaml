@@ -9,25 +9,13 @@ on:
 
 env:
   PLATFORMSH_CLI_NO_INTERACTION: 1
+  PLATFORM_PROJECT: ${{ vars.PROJECT_ID }}
   PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
   PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
   BRANCH_TITLE: ${{ vars.BFF_PREFIX }}-${{ github.event.number }}
 
 jobs:
-  get_project_id:
-    runs-on: ubuntu-latest
-    outputs:
-      project_id: ${{ steps.get-project-id.outputs.project_id }}
-    steps:
-      - uses: platformsh/gha-retrieve-projectid@main
-        id: get-project-id
-        with:
-          github_token: ${{ secrets.WORKFLOW__LABEL_TOKEN }}
-
   activate_environment:
-    needs: get_project_id
-    env:
-      PLATFORM_PROJECT: ${{ needs.get_project_id.outputs.project_id }}
     runs-on: ubuntu-latest
     # Activate when a PR is opened, but not for forks (handled through `build-from-fork` workflow)
     if: >-
@@ -62,9 +50,6 @@ jobs:
         run: platform environment:activate --no-wait ${{ github.event.pull_request.head.ref }}
 
   deactivate_environment:
-    needs: get_project_id
-    env:
-      PLATFORM_PROJECT: ${{ needs.get_project_id.outputs.project_id }}
     runs-on: ubuntu-latest
     # For non-forked PRs
     # Deactivate when a PR is closed
@@ -85,10 +70,7 @@ jobs:
         run: platform environment:deactivate --no-delete-branch ${{ github.event.pull_request.head.ref }}
 
   deactivate_forked_environment:
-    needs: get_project_id
     runs-on: ubuntu-latest
-    env:
-      PLATFORM_PROJECT: ${{ needs.get_project_id.outputs.project_id }}
     # For forked PRs labelled as build-fork
     # Delete branch when a PR is closed
     if: >-
