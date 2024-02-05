@@ -18,10 +18,10 @@ To set up replication you need to create a replication-enabled user.
 For each database that you'd like to replicate, you need to assign a `replication` permission/role, under a corresponding `endpoint`:
 
 {{< version/specific >}}
-<!-- Platform.sh -->
+<!-- Version 1 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="mariadb" config="service" >}}
+{{< snippet name="db" config="service" >}}
     type: mariadb:{{% latest "mariadb" %}}
     disk: 1024
     configuration:
@@ -40,10 +40,10 @@ For each database that you'd like to replicate, you need to assign a `replicatio
 ```
 
 <--->
-<!-- Upsun -->
+<!-- Version 2 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="mariadb" config="service" >}}
+{{< snippet name="db" config="service" >}}
     type: mariadb:{{% latest "mariadb" %}}
     configuration:
         schemas:
@@ -76,12 +76,8 @@ Add a new relationship to your application container:
 
 # Relationships enable an app container's access to a service.
 relationships:
-    database:
-        service: mariadb
-        endpoint: mysql
-    replication:
-        service: mariadb
-        endpoint: replicator
+    database: db:mysql
+    replication: db:replicator
 {{% /snippet %}}
 ```
 

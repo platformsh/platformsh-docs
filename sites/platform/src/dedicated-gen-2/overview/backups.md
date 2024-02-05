@@ -15,7 +15,8 @@ An EBS snapshot is immediate, but the time it takes to write to the storage serv
 * **Recovery Point Objective (RPO)** is 6 hours (maximum time to last backup).
 * **Recovery Time Objective (RTO)** depends on the size of the storage. Large EBS volumes take more time to restore.
 
-These backups are only used in cases of catastrophic failure and can only be restored by {{% vendor/name %}}. A support ticket must be opened to request a restoration.
+These backups are only used in cases of catastrophic failure and can only be restored by {{% vendor/name %}}.
+To request a restoration, open a [support ticket](/learn/overview/get-support).
 
 The restoration process may take a few hours, depending on the infrastructure provider in use.
 In the ticket, specify if you want backups of files, MySQL, or both.

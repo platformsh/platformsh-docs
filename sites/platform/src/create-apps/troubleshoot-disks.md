@@ -90,4 +90,4 @@ This can cause the build cache to grow over time beyond the maximum.
 Try [clearing the build cache](../development/troubleshoot.md#clear-the-build-cache) and [triggering a redeploy](../development/troubleshoot.md#force-a-redeploy).
 
 If for some reason your application absolutely requires more than 4&nbsp;GB during build,
-you can open a support ticket to have this limit increased.
+you can open a [support ticket](/learn/overview/get-support) to have this limit increased.

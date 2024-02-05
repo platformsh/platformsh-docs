@@ -33,7 +33,7 @@ MySQL and MariaDB have the same behavior and the rest of this page applies to bo
 |  {{< image-versions image="mariadb" status="supported" >}} | {{< image-versions image="mysql" status="supported" >}} | {{< image-versions image="oracle-mysql" status="supported" >}} |
 
 {{% version/specific %}}
-<!-- Platform.sh -->
+<!-- API Version 1 -->
 
 ### Supported versions on Dedicated environments
 
@@ -63,7 +63,7 @@ Tables created on Dedicated environments using the MyISAM storage engine don't r
 See how to [convert tables to the InnoDB engine](#storage-engine).
 
 <--->
-<!-- Upsun -->
+<!-- API Version 2 -->
 
 {{% /version/specific %}}
 
@@ -142,7 +142,7 @@ highlight=python
 
 {{< /codetabs >}}
 
-<!-- Upsun: .environment shortcode + context -->
+<!-- Version 2: .environment shortcode + context -->
 {{% version/only "2" %}}
 
 ```yaml {configFile="app"}
@@ -151,29 +151,27 @@ highlight=python
 # Other options...
 
 # Relationships enable an app container's access to a service.
-# The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    mariadb: 
+    database: "db:mysql"
 {{< /snippet >}}
-{{< snippet name="mariadb" config="service" placeholder="true" >}}
+{{< snippet name="db" config="service" placeholder="true" >}}
     type: mariadb:{{% latest "mariadb" %}}
 {{< /snippet >}}
 ```
 
-{{< v2connect2app serviceName="mariadb" relationship="mariadb" var="DATABASE_URL">}}
+{{< v2connect2app serviceName="db" relationship="database" var="DATABASE_URL">}}
 
 ```bash {location="myapp/.environment"}
 # Decode the built-in credentials object variable.
 export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export DB_CONNECTION=="$(echo $RELATIONSHIPS_JSON | jq -r '.mariadb[0].scheme')"
-export DB_USERNAME="$(echo $RELATIONSHIPS_JSON | jq -r '.mariadb[0].username')"
-export DB_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.mariadb[0].password')"
-export DB_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.mariadb[0].host')"
-export DB_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.mariadb[0].port')"
-export DB_DATABASE="$(echo $RELATIONSHIPS_JSON | jq -r '.mariadb[0].path')"
+export DB_CONNECTION=="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].scheme')"
+export DB_USERNAME="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].username')"
+export DB_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].password')"
+export DB_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].host')"
+export DB_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].port')"
+export DB_DATABASE="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].path')"
 
 # Surface connection string variable for use in app.
 export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"
@@ -213,10 +211,10 @@ You can configure your MySQL service in the [services configuration](../_index.m
 Example configuration:
 
 {{< version/specific >}}
-<!-- Platform.sh -->
+<!-- Version 1 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="mariadb" config="service" >}}
+{{< snippet name="db" config="service" >}}
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
     configuration:
@@ -233,10 +231,10 @@ Example configuration:
 ```
 
 <--->
-<!-- Upsun -->
+<!-- Version 2 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="mariadb" config="service" >}}
+{{< snippet name="db" config="service" >}}
     type: mariadb:{{% latest "mariadb" %}}
     configuration:
         schemas:
@@ -263,10 +261,10 @@ Example configuration:
 {
     "username": "user",
     "scheme": "mysql",
-    "service": "mariadb",
+    "service": "mariadb104",
     "fragment": null,
     "ip": "169.254.255.221",
-    "hostname": "e3wffyxtwnrxujeyg5u3kvqi6y.mariadb.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "hostname": "e3wffyxtwnrxujeyg5u3kvqi6y.mariadb104.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "port": 3306,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "mysql.internal",
@@ -288,13 +286,13 @@ Example configuration:
 {
     "username": "user",
     "scheme": "mysql",
-    "service": "oracle-mysql",
+    "service": "oraclemysql",
     "fragment": null,
     "ip": "169.254.150.190",
-    "hostname": "7q5hllmmhoeuthu6th7qovoone.oracle-mysql.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "hostname": "7q5hllmmhoeuthu6th7qovoone.oraclemysql.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "port": 3306,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "oracle-mysql.internal",
+    "host": "oraclemysql.internal",
     "rel": "mysql",
     "path": "main",
     "query": {
@@ -361,10 +359,10 @@ You can also specify multiple `endpoints` for [permissions](#define-permissions)
 If neither `schemas` nor `endpoints` is included, it's equivalent to the following default:
 
 {{< version/specific >}}
-<!-- Platform.sh -->
+<!-- Version 1 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="mariadb" config="service" >}}
+{{< snippet name="db" config="service" >}}
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
     configuration:
@@ -379,10 +377,10 @@ If neither `schemas` nor `endpoints` is included, it's equivalent to the followi
 ```
 
 <--->
-<!-- Upsun -->
+<!-- Version 2 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="mariadb" config="service" >}}
+{{< snippet name="db" config="service" >}}
     type: mariadb:{{% latest "mariadb" %}}
     configuration:
         schemas:
@@ -408,7 +406,7 @@ Removing a schema from the list of `schemas` on further deployments results in t
 
 ### Multiple databases example
 
-The following configuration example creates a single MariaDB service named `mariadb` with two databases, `main` and `legacy`.
+The following configuration example creates a single MariaDB service named `db` with two databases, `main` and `legacy`.
 Access to the database is defined through three endpoints:
 
 * `admin` has full access to both databases.
@@ -416,10 +414,10 @@ Access to the database is defined through three endpoints:
 * `importer` has SELECT/INSERT/UPDATE/DELETE (but not DDL) access to `legacy` but no access to `main`.
 
 {{< version/specific >}}
-<!-- Platform.sh -->
+<!-- Version 1 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="mariadb" config="service" >}}
+{{< snippet name="db" config="service" >}}
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
     configuration:
@@ -443,10 +441,10 @@ Access to the database is defined through three endpoints:
 ```
 
 <--->
-<!-- Upsun -->
+<!-- Version 2 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="mariadb" config="service" >}}
+{{< snippet name="db" config="service" >}}
     type: mariadb:{{% latest "mariadb" %}}
     configuration:
         schemas:
@@ -479,15 +477,9 @@ Expose these endpoints to your app as relationships in your [app configuration](
 
 # Relationships enable an app container's access to a service.
 relationships:
-    database:
-        service: mariadb
-        endpoint: admin
-    reports:
-        service: mariadb
-        endpoint: reporter
-    imports:
-        service: mariadb
-        endpoint: importer
+    database: "db:admin"
+    reports: "db:reporter"
+    imports: "db:importer"
 {{% /snippet %}}
 ```
 
@@ -518,10 +510,10 @@ It offers the following properties:
 An example of setting these properties:
 
 {{< version/specific >}}
-<!-- Platform.sh -->
+<!-- Version 1 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="mariadb" config="service" >}}
+{{< snippet name="db" config="service" >}}
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
     configuration:
@@ -533,10 +525,10 @@ An example of setting these properties:
 ```
 
 <--->
-<!-- Upsun -->
+<!-- Version 2 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="mariadb" config="service" >}}
+{{< snippet name="db" config="service" >}}
     type: mariadb:{{% latest "mariadb" %}}
     configuration:
         properties:

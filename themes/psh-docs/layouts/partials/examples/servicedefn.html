@@ -19,12 +19,7 @@
   {{- $relName = .relName -}}
 {{- end -}}
 
-{{- $useType := index .data "type" -}}
-{{- if ne .type (index .data "type") -}}
-    {{- $useType = .type -}} 
-{{- end -}}
-
-{{- $l2 := printf "%s    type: %s:%s" $apiIndent $useType $serviceVersion -}}
+{{- $l2 := printf "%s    type: %s:%s" $apiIndent (index .data "type") $serviceVersion -}}
 {{- $l3 := "" -}}
 {{- if (index .data "disk") -}}
   {{- if eq $docVersion 1 -}}
@@ -49,4 +44,4 @@
 
 {{- end -}}
 
-{{ printf "%s%s%s%s%s" $l1 $l2 $l3 $l4 $l5 | safeHTML }}
+{{ printf "%s\n%s%s%s%s" $l1 $l2 $l3 $l4 $l5 | safeHTML }}

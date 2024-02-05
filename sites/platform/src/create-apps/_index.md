@@ -5,7 +5,7 @@ description: |
   Control your apps and how they're built and deployed on {{% vendor/name %}} with YAML configuration.
 layout: single
 keywords:
-  - ".platform.app.yaml"
+  - '{{% vendor/configfile "app" %}}'
 ---
 
 {{% description %}}
@@ -170,11 +170,11 @@ dependencies:
     php:
         composer/composer: '^2'
 
-# Relationships enable an app container's access to a service or another app.
-# The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
+# The app's relationships (connections) with services or other applications.
+# The key is the relationship name that can be viewed in the app.
+# The value is specific to how the service is configured.
 relationships:
-    mysql: 
+    database: 'mysqldb:mysql'
 
 # Scripts that are run as part of the build and deploy process.
 hooks:
@@ -231,7 +231,7 @@ applications:
         # The key is the relationship name that can be viewed in the app.
         # The value is specific to how the service is configured.
         relationships:
-            mysqldb:
+            database: 'mysqldb:mysql'
 
         # Scripts that are run as part of the build and deploy process.
         hooks:
@@ -247,7 +247,7 @@ applications:
         # In this case, `web-files` is just a unique name for the mount.
         mounts:
             'web/files':
-                source: local
+                source: storage
                 source_path: 'web-files'
 
         # The app's configuration when it's exposed to the web.
@@ -270,5 +270,4 @@ services:
     mysqldb:
         type: mariadb:{{% latest "mariadb" %}}
 ```
-
 {{% /version/specific %}}
