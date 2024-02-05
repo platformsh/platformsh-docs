@@ -10,7 +10,7 @@ feedback: false
 ## How the docs are organized
 
 There are different [kinds](https://documentation.divio.com/) of documentation.
-Some docs are useful when you're just starting out, 
+Some docs are useful when you're just starting out,
 while others go into detail that's relevant only after you've deployed many projects on {{% vendor/name %}}.
 
 This site is roughly split into categories based on where you are in your journey working with {{% vendor/name %}}, described below.
@@ -19,7 +19,7 @@ This site is roughly split into categories based on where you are in your journe
 
 If you're still unfamiliar with {{% vendor/name %}} and how it works, _but_ you're also looking to quickly start working with the platform, the **Get started** section is the right place to begin.
 
-Learn the basics of how {{% vendor/name %}} leverages Git to produce reusable build images, identical-to-production environments in staging and development (including production data), as well as the basics of monitoring and troubleshooting your environments. 
+Learn the basics of how {{% vendor/name %}} leverages Git to produce reusable build images, identical-to-production environments in staging and development (including production data), as well as the basics of monitoring and troubleshooting your environments.
 
 Ready to get started? [Let's go!](/get-started/)
 
@@ -34,18 +34,18 @@ After going through the **Get started** section, you may want to know more about
 
 - [**Tutorials**](/learn/tutorials/_index.md)
 
-    Once you're familiar with {{% vendor/name %}}, its basic rules and philosophy, you may be curious about how you can replicate common workflows in other tools on our platform. 
+    Once you're familiar with {{% vendor/name %}}, its basic rules and philosophy, you may be curious about how you can replicate common workflows in other tools on our platform.
     From scheduling dependency updates and backups to exporting data, the [**Tutorials**](/learn/tutorials/_index.md) provide all the information you need.
 
 - [**Best practices**](/learn/bestpractices/_index.md)
 
     {{% vendor/name %}} makes deploying and managing infrastructure no different than working with Git.
-    As your work becomes more experimental, however, you may be interested in optimizing your workflows, and addressing common constraints of the platform. 
+    As your work becomes more experimental, however, you may be interested in optimizing your workflows, and addressing common constraints of the platform.
     The [**Best practices**](/learn/bestpractices/_index.md) documentation contains articles that address advanced use cases for caching, microservices, and more.
 
 ### Frameworks
 
-Now that you understand the basic rules of {{% vendor/name %}}, you're likely ready to deploy your own custom code in a chosen framework. 
+Now that you understand the basic rules of {{% vendor/name %}}, you're likely ready to deploy your own custom code in a chosen framework.
 The **Frameworks** section is a collection of framework-specific how-to guides - from best practices to configuration, local development, and more.
 
 {{< version/specific >}}
@@ -59,17 +59,17 @@ The **Frameworks** section is a collection of framework-specific how-to guides -
 
 <--->
 
-| Language              | Frameworks |
-| :----------------     | :------  |
-| [Python](/languages/python/_index.md)                |   [Django](/get-started/django/_index.md)<br/>[Flask](/get-started/flask/_index.md)  |
-| [PHP](/languages/php/_index.md)                      |   [Symfony](/get-started/symfony/_index.md)<br/>[Laravel](/get-started/laravel/_index.md)   |
-| [Javascript/Node.js](/languages/nodejs/_index.md)     |  [Express](/get-started/express/_index.md)<br/>[Next.js](/get-started/nextjs/_index.md)<br/>[Strapi](/get-started/strapi/_index.md)  |
+| Language              | Frameworks                                                                                                                  |
+| :----------------     |:----------------------------------------------------------------------------------------------------------------------------|
+| [Python](/languages/python/_index.md)                | [Django](/get-started/stacks/django.md)<br/>[Flask](/get-started/stacks/flask.md)                                           |
+| [PHP](/languages/php/_index.md)                      | [Symfony](/get-started/stacks/symfony/_index.md)<br/>[Laravel](/get-started/stacks/laravel.md)                                     |
+| [Javascript/Node.js](/languages/nodejs/_index.md)     | [Express](/get-started/stacks/express.md)<br/>[Next.js](/get-started/stacks/nextjs.md)<br/>[Strapi](/get-started/stacks/strapi.md) |
 
 {{< /version/specific >}}
 
 ### Reference
 
-The **Reference documentation** section is the largest and most comprehensive. 
+The **Reference documentation** section is the largest and most comprehensive.
 It includes details of configuration, environment variables, activities, and much more material you can use in your day-to-day work.
 
 {{< home/table "services" >}}
@@ -86,7 +86,7 @@ Find out more about {{% vendor/name %}}'s GIT implementation and REST API, and h
 <!-- For now, most of these links are only relevant to Platform.sh -->
 ### More docs, found elsewhere
 
-There are many resources available outside of the documentation that will help you work with {{% vendor/name %}}, including demos, talks, and podcasts. 
+There are many resources available outside of the documentation that will help you work with {{% vendor/name %}}, including demos, talks, and podcasts.
 
 [Check them out here](/learn/resources.md).
 

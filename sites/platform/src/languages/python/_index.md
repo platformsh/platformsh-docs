@@ -124,7 +124,7 @@ applications:
         hooks:
             build: |
                 set -eu
-                pipenv install --system --deploy       
+                pipenv install --system --deploy
 ```
     {{% /version/specific %}}
 
@@ -148,7 +148,7 @@ applications:
             # Start your app with the configuration you define
             # You can replace the file location with your location
             commands:
-                start: python server.py      
+                start: python server.py
 ```
     {{% /version/specific %}}
 
@@ -263,7 +263,7 @@ applications:
         hooks:
             build: |
                 set -eu
-                pipenv install --system --deploy       
+                pipenv install --system --deploy
 ```
     {{% /version/specific %}}
 
@@ -330,7 +330,7 @@ applications:
         hooks:
             build: |
                 set -eu
-                pipenv install --system --deploy       
+                pipenv install --system --deploy
 ```
 {{% /version/specific %}}
 
@@ -444,7 +444,7 @@ See dedicated guides for deploying and working with them:
 {{< version/specific >}}
 - [Django](../../guides/django/_index.md)
 <--->
-- [Django](/get-started/django/_index.md)
+- [Django](/get-started/stacks/django.md)
 {{< /version/specific >}}
 
 {{< version/specific >}}

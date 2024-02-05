@@ -79,10 +79,6 @@ _404:
   issues: "https://github.com/platformsh/platformsh-docs/issues/new"
 
 navSections:
-  start:
-    title: Git started
-    section: start
-    weight: -130
   get-started:
     title: Get started
     section: get-started
