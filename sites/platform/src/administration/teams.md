@@ -50,7 +50,7 @@ title=Using the CLI
 1. Run the following command:
    
    ```bash
-   {{% vendor/cli %}} team:create -organization {{< variable "ORGANIZATION_NAME" >}}
+   {{% vendor/cli %}} team:create -o {{< variable "ORGANIZATION_NAME" >}}
    ```
 2. Enter a team name.
 3. Define your team's project role (admin or viewer).
@@ -61,7 +61,7 @@ title=Using the CLI
 To view a list of all the existing teams in your organization, run the following command:
 
 ```bash
-upsun team:list -organization {{< variable "ORGANIZATION_NAME" >}}
+{{% vendor/cli %}} team:list -o {{< variable "ORGANIZATION_NAME" >}}
 ```
 {{< /note >}}
 
@@ -98,7 +98,7 @@ title=Using the CLI
 1. Run the following command:
    
    ```bash
-   {{% vendor/cli %}} team:delete -organization {{< variable "ORGANIZATION_NAME" >}}
+   {{% vendor/cli %}} team:delete -o {{< variable "ORGANIZATION_NAME" >}}
    ```
 2. Select the team you want to delete.
 5. Enter `Y` to confirm.
@@ -141,7 +141,7 @@ title=Using the CLI
 1. Run the following command:
    
    ```bash
-   {{% vendor/cli %}} team:update -organization {{< variable "ORGANIZATION_NAME" >}}
+   {{% vendor/cli %}} team:update -o {{< variable "ORGANIZATION_NAME" >}}
    ```
 2. Select the team you want to rename.
 3. Enter the new name.
@@ -182,7 +182,7 @@ title=Using the CLI
 1. Run the following command:
    
    ```bash
-   {{% vendor/cli %}} team:update -organization {{< variable "ORGANIZATION_NAME" >}}
+   {{% vendor/cli %}} team:update -o {{< variable "ORGANIZATION_NAME" >}}
    ```
 2. Select the team whose permissions you want to update.
 3. Confirm or adjust the team name.
@@ -222,7 +222,7 @@ title=Using the CLI
 1. Run the following command:
    
    ```bash
-   {{% vendor/cli %}} team:user:add -organization {{< variable "ORGANIZATION_NAME" >}}
+   {{% vendor/cli %}} team:user:add -o {{< variable "ORGANIZATION_NAME" >}}
    ```
 2. Select the team you want to add a user to.
 3. Enter the user's email address.
@@ -234,7 +234,7 @@ To view a list of all the users on a team, follow these steps:
 1. Run the following command:
 
    ```bash
-   upsun team:user:list -organization {{< variable "ORGANIZATION_NAME" >}}
+   {{% vendor/cli %}} team:user:list -o {{< variable "ORGANIZATION_NAME" >}}
    ```
 
 2. Select the team whose users you want to display.
@@ -274,7 +274,7 @@ title=Using the CLI
 1. Run the following command:
    
    ```bash
-   {{% vendor/cli %}} team:user:delete -organization {{< variable "ORGANIZATION_NAME" >}}
+   {{% vendor/cli %}} team:user:delete -o {{< variable "ORGANIZATION_NAME" >}}
    ```
 2. Select a team.
 3. Select the user you want to remove from the team.
@@ -333,7 +333,7 @@ title=Using the CLI
 1. Run the following command:
    
    ```bash
-   {{% vendor/cli %}} team:project:add -organization {{< variable "ORGANIZATION_NAME" >}}
+   {{% vendor/cli %}} team:project:add -o {{< variable "ORGANIZATION_NAME" >}}
    ```
 2. Select a team.
 3. Select the project you want the team to access.
@@ -345,7 +345,7 @@ To view a list of all the projects added to a team, follow these steps:
 1. Run the following command:
 
    ```bash
-   upsun team:project:list -organization {{< variable "ORGANIZATION_NAME" >}}
+   {{% vendor/cli %}} team:project:list -o {{< variable "ORGANIZATION_NAME" >}}
    ```
 2. Select the team whose projects you want to display.
 
@@ -396,7 +396,7 @@ title=Using the CLI
 1. Run the following command:
    
    ```bash
-   {{% vendor/cli %}} team:project:delete -organization {{< variable "ORGANIZATION_NAME" >}}
+   {{% vendor/cli %}} team:project:delete -o {{< variable "ORGANIZATION_NAME" >}}
    ```
 2. Select a team.
 3. Select the project whose access you want to revoke for the team.
