@@ -281,7 +281,7 @@ https://docs.upsun.com/:
   redirects:
     paths:
       # Console tooltips
-      "/anchors/resources/configuration.html": { "to": "/adjust-resources.html", "code": 301, "prefix": false }
+      "/anchors/resources/configuration.html": { "to": "/manage-resources/adjust-resources.html", "code": 301, "prefix": false }
       "/anchors/scaling/down.html": { "to": "/administration/pricing.html", "code": 301, "prefix": false }
       "/anchors/organizations/admin.html": { "to": "/administration/organizations.html", "code": 301, "prefix": false }
       "/anchors/resources/green.html": { "to": "/administration/pricing.html", "code": 301, "prefix": false }
