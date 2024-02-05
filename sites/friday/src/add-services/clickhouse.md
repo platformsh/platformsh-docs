@@ -39,7 +39,7 @@ or by running `{{< vendor/cli >}} relationships`.
       "fragment": null,
       "ip": "169.254.143.42",
       "cluster": "s7vj2hgh6nwsk-main-bvxea6i",
-      "host": "ClickHouse.internal",
+      "host": "clickhouse.internal",
       "path": "main",
       "query": {
         "is_master": true
@@ -47,15 +47,15 @@ or by running `{{< vendor/cli >}} relationships`.
       "password": "63f06c05a632f9e66be25b51cde5c573",
       "port": 9000,
       "host_mapped": false,
-      "service": "ClickHouse",
-      "hostname": "oid3uu43xj2iujgwvplpo6ytme.ClickHouse.service._.eu-3.platformsh.site",
+      "service": "clickhouse",
+      "hostname": "oid3uu43xj2iujgwvplpo6ytme.clickhouse.service._.eu-3.platformsh.site",
       "epoch": 0,
       "instance_ips": [
         "247.95.64.160"
       ],
-      "rel": "ClickHouse",
-      "scheme": "ClickHouse",
-      "type": "ClickHouse:23",
+      "rel": "clickhouse",
+      "scheme": "clickhouse",
+      "type": "clickhouse:23",
       "public": false
     }
 ```
@@ -64,13 +64,13 @@ or by running `{{< vendor/cli >}} relationships`.
 
 ### 1. Configure the service
 
-To define the service, use the `ClickHouse` type:
+To define the service, use the `clickhouse` type:
 
 ```yaml {configFile="app"}
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
-        type: ClickHouse:<VERSION>
+        type: clickhouse:<VERSION>
 ```
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost. Back up your data before changing the service.
@@ -79,10 +79,10 @@ Note that changing the name of the service replaces it with a brand new service 
 
 To define the relationship, use one of the following endpoints.
 
-#### `ClickHouse` endpoint
+#### `clickhouse` endpoint
 
-The `ClickHouse` endpoint allows you to use the Native Protocol port (also known as ClickHouse TCP protocol).
-This protocol is used by ClickHouse apps and processes such as `ClickHouse-server`, `ClickHouse-client`, and native ClickHouse tools. It is also used for inter-server communication for distributed queries.
+The `clickhouse` endpoint allows you to use the Native Protocol port (also known as ClickHouse TCP protocol).
+This protocol is used by ClickHouse apps and processes such as `clickhouse-server`, `clickhouse-client`, and native ClickHouse tools. It is also used for inter-server communication for distributed queries.
 
 Use the following configuration:
 
@@ -92,20 +92,20 @@ applications:
     <APP_NAME>:
         # Relationships enable access from this app to a given service.
         relationships:
-            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:ClickHouse"
+            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:clickhouse"
 
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
-        type: ClickHouse:<VERSION>
+        type: clickhouse:<VERSION>
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, but it’s best if they’re distinct.
 With this definition, the application container (``<APP_NAME>``) now has access to the service via the relationship ``<RELATIONSHIP_NAME>``.
 
-#### `ClickHouse-http` endpoint
+#### `clickhouse-http` endpoint
 
-The `ClickHouse-http` endpoint allows you to use the HTTP API Port for HTTP requests.
+The `clickhouse-http` endpoint allows you to use the HTTP API Port for HTTP requests.
 This protocol is used by [JDBC](https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc/), [ODBC](https://learn.microsoft.com/en-us/sql/odbc/microsoft-open-database-connectivity-odbc?view=sql-server-ver16), and web interfaces.
 
 Use the following configuration:
@@ -116,12 +116,12 @@ applications:
     <APP_NAME>:
         # Relationships enable access from this app to a given service.
         relationships:
-            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:ClickHouse-http"
+            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:clickhouse-http"
 
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
-        type: ClickHouse:<VERSION>
+        type: clickhouse:<VERSION>
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, but it’s best if they’re distinct.
@@ -132,7 +132,7 @@ With this definition, the application container (``<APP_NAME>``) now has access 
 {{< codetabs >}}
 
 +++
-title= With ``ClickHouse`` endpoint
+title= With ``clickhouse`` endpoint
 +++
 
 ```yaml {configFile="app"}
@@ -144,16 +144,16 @@ applications:
             root: "myapp"
         # Relationships enable an app container's access to a service.
         relationships:
-            ClickHouse: "ClickHouse:ClickHouse"
+            clickhouse: "clickhouse:clickhouse"
 services:
     # The name of the service container. Must be unique within a project.
-    type: ClickHouse:23
+    type: clickhouse:23
 ```
 
 <--->
 
 +++
-title= With ``ClickHouse-http`` endpoint
+title= With ``clickhouse-http`` endpoint
 +++
 
 ```yaml {configFile="app"}
@@ -165,10 +165,10 @@ applications:
             root: "myapp"
         # Relationships enable an app container's access to a service.
         relationships:
-            ClickHouse: "ClickHouse:ClickHouse-http"
+            clickhouse: "clickhouse:clickhouse-http"
 services:
     # The name of the service container. Must be unique within a project.
-    type: ClickHouse:23
+    type: clickhouse:23
 ```
 
 {{< /codetabs >}}
@@ -183,13 +183,13 @@ To do so, you can use a configuration similar to the following:
 applications:
   myapp:
     relationships:
-      ClickHouse-admin: "ClickHouse:admin"
-      ClickHouse-reporter: "ClickHouse:reporter"
-      ClickHouse-importer: "ClickHouse:importer"
+      clickhouse-admin: "clickhouse:admin"
+      clickhouse-reporter: "clickhouse:reporter"
+      clickhouse-importer: "clickhouse:importer"
 
 services:
-  ClickHouse:
-    type: ClickHouse:23
+  clickhouse:
+    type: clickhouse:23
     configuration:
       databases:
         - main
