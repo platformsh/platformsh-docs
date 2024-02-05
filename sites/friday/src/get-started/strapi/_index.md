@@ -262,22 +262,6 @@ git add .environment .{{% vendor/cli %}}/config.yaml
 git commit -m "{{% vendor/name %}} config files"
 ```
 
-## Customize the generated .environment file
-
-Open your generated ``.environment`` file and add the missing `APP_KEYS` parameters:
-```bash {location=".environment"}
-export APP_KEYS="toBeModified1,toBeModified2"
-```
-
-{{< note >}}
-Don't forget to replace ``toBeModified1`` and `toBeModified2` by your personal token. You could also use your own environment variables to do so, using the following:
-```bash {location=".environment"}
-export APP_KEYS=APP_TOKEN_1,APP_TOKEN_2
-```
-{{< /note >}}
-
-[//]: # ( https://github.com/platformsh/cli/issues/150: if solved, we can removed this section)
-
 ## Set a project remote
 
 {{< note >}}
@@ -363,27 +347,10 @@ git push origin
 Your GitHub/GitLab/Bibucket integration process will then automatically create a new environment if you’re pushing a new Git branch, and deploy changes to your corresponding environment.
 {{< /codetabs >}}
 
-{{% vendor/name %}} will now read your configuration files and deploy your project using [default container resources](/manage-resources/_index.md).
-You can [amend those default container resources](/manage-resources/_index.md#configure-resources) after your project is deployed.
-
-{{< note theme="warning" title="Warning" >}}
-
-You may get the following error when you first deploy your {{% vendor/name %}} project:
-
-```bash
-The push completed but there was a deployment error ("Invalid deployment").
-```
-
-This happens when {{% vendor/name %}} doesn't know how much disk your app requires for a specific service.
-Therefore, your app can only be successfully deployed after you've configured the disk amount for that service
-through the {{% vendor/name %}} CLI or [through the Console](/manage-resources.md#configure-resources).
-
-{{% vendor/name %}} is currently working on making sure default resources are successfully applied to every service container
- as soon as possible.
-
-To set your resources through the CLI, run `upsun resources:set` and follow the prompts.
-
-{{< /note >}}
+{{% vendor/name %}} will now read your configuration files and deploy your project using [default container resources](/manage-resources/resource-init.md).
+If you don't want to use those default resources,
+define your own [resource initialization strategy](/manage-resources/resource-init.md#define-a-resource-initialization-strategy),
+or [amend those default container resources](/manage-resources/adjust-resources.md) after your project is deployed.
 
 Et voilà, your Strapi application is live!
 

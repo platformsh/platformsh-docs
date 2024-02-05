@@ -12,17 +12,10 @@ To do so, follow these steps.
 
 You need:
 
-{{% version/specific %}}
-- An app that works and is ready to be built
-- Code in Git
-- A {{< vendor/name >}} account -- if you don't already have one, [start a trial](https://auth.api.platform.sh/register?trial_type=general)
-- The [{{< vendor/name >}} CLI](/administration/cli/_index.md) installed locally
-<--->
 - An app that works and is ready to be built
 - Code in Git
 - A {{< vendor/name >}} account -- if you don't already have one, [register](https://upsun.com/register/).
 - The [{{< vendor/name >}} CLI](/administration/cli/_index.md) installed locally
-{{% /version/specific %}}
 
 ## 1. Export from previous system
 
@@ -32,37 +25,7 @@ and for some apps, such as Drupal, configuration that you need to export from th
 
 ## 2. Create a project
 
-<!-- Platform.sh -->
-{{< codetabs v2hide="true" >}}
-
-+++
-title=Using the CLI
-+++
-
-Run the following command:
-
-```bash
-{{% vendor/cli %}} project:create
-```
-
-When prompted, fill in details like the project name, [region](/development/regions.md), and [plan](/administration/pricing/_index.md).
-
-<--->
-
-+++
-title=In the Console
-+++
-
-[Create a new project from scratch]({{% create-project-link scratch=true %}}).
-
-In the form, fill in details like the project name and [region](/development/regions.md).
-The project is automatically created with a [Development plan](/administration/pricing/_index.md),
-which you can then upgrade.
-
-{{< /codetabs >}}
-
-<!-- Upsun -->
-{{< codetabs v1hide="true" >}}
+{{< codetabs >}}
 
 +++
 title=Using the CLI
@@ -108,15 +71,18 @@ You likely want to configure three areas:
 - [Services](/add-services/_index.md)
 - [Routes](/define-routes/_index.md)
 
-{{% version/only "1" %}}
-<!-- Platform.sh -->
-You can also take guidance from the [project templates](/development/templates.md),
-which are starting points for various technology stacks with working configuration examples.
-{{% /version/only %}}
-
 When you've added your configuration, make sure to commit it to Git.
 
-## 4. Push your code
+## 4. Optional: Define a resource initialization strategy
+
+By default, when you first deploy your project,
+{{% vendor/name %}} allocates [default resources](/manage-resources/resource-init.md) to each of your containers.
+If you don't want to use those default resources,
+define your own [resource initialization strategy](/manage-resources/resource-init.md#define-a-resource-initialization-strategy) before pushing your code.
+
+Alternatively, you can [amend those default container resources](/manage-resources/adjust-resources.md) after your project is deployed.
+
+## 5. Push your code
 
 The way to push your code to {{% vendor/name %}} depends on
 whether you're hosting your code with a third-party service using a [source integration](/integrations/source/_index.md).
@@ -198,27 +164,7 @@ After any errors are fixed, a push creates a new environment.
 
 {{< /codetabs >}}
 
-{{% version/ifelse "" "## 5. Define resources" %}}
-
-{{% version/only "2" %}}
-
-Once you push your code to {{% vendor/name %}}, either directly or through an integration, the deployment itself is not yet complete.
-
-{{% vendor/name %}} has only just now understood the _types_ of containers you want (like a Python app container, and a Redis and MariaDB service containers) by validating that push. 
-How many resources those containers get is still left for you to define.
-
-You can do so quickly with the following CLI command:
-
-```bash
-upsun resources:set
-```
-
-Follow the prompts to set CPU, RAM, disk, and the number of instances for each container,
-and read [the manage resources](/manage-resources.md) documentation for more information.
-
-{{% /version/only %}}
-
-## {{% version/ifelse "5" "6" %}}. Import data
+## 6. Import data
 
 Once you have an environment, you can import the data you backed up at step 1.
 The exact process may depend on the service you use.
@@ -231,17 +177,15 @@ For SQL databases, for example, you can use a version of this command:
 
 For any potential more details, see the [specific service](/add-services/_index.md).
 
-## {{% version/ifelse "6" "7" %}}. Import files
+## 7. Import files
 
 Your app may include content files, meaning files that aren't intended to be part of your codebase so aren't in Git.
 You can upload such files to [mounts you created](/create-apps/app-reference.md#mounts).
 Upload to each mount separately.
 
-Suppose for instance you have the following file mounts defined:
+Suppose you have the following mounts defined:
 
-{{% version/specific %}}
-<!-- Platform.sh -->
-```yaml {configFile="app"}
+```yaml {location=".platform.app.yaml"}
 mounts:
     'web/uploads':
         source: local
@@ -250,30 +194,35 @@ mounts:
         source: local
         source_path: private
 ```
-<--->
-<!-- Upsun -->
+
+{{< note >}}
+{{< vendor/name >}} doesn't currently support the same `local` mounts as {{< vendor/psh_ref >}}.
+It only supports `tmp`, `storage`, and `service` [mounts](/create-apps/app-reference.md#mounts).
+Before transferring your files, change the `source` of your existing `local` mounts to a supported mount type.
+{{< /note >}}
+
+For instance: 
+
 ```yaml {configFile="app"}
 applications:
     myapp:
         mounts:
             'web/uploads':
-                source: local
+                source: storage
                 source_path: uploads
             'private':
-                source: local
+                source: tmp
                 source_path: private
 ```
-{{% /version/specific %}}
 
-Upload to each of directories above by running the following commands:
+Then, to upload your files, run a command similar to the following:
 
 ```bash
 {{% vendor/cli %}} mount:upload --mount web/uploads --source ./uploads
 {{% vendor/cli %}} mount:upload --mount private --source ./private
 ```
 
-You can adjust these commands for your own case.
-Or upload to your mounts using a different [SSH method](/development/file-transfer.md#transfer-files-using-an-ssh-client).
+Alternatively, you can upload to your mounts using a different [SSH method](/development/file-transfer.md#transfer-files-using-an-ssh-client).
 
 ## Optional: Add variables
 
@@ -282,15 +231,8 @@ If your app requires environment variables to build properly, [add them to your 
 ## What's next
 
 Now that your app is ready to be deployed, you can do more:
-{{% version/only "1"%}}
-<!-- Platform.sh -->
-- Upgrade from a Development plan.
-{{% /version/only %}}
+
 - [Add a domain](/domains/steps/_index.md).
 - Set up for [local development](/development/local/_index.md).
 - Configure [health notifications](/integrations/notifications.md).
-{{% version/specific %}}
-- For monitoring and profiling, [integrate Blackfire](/increase-observability/integrate-observability/blackfire.md).
-<--->
 - For monitoring and profiling, [integrate Blackfire](/increase-observability/application-metrics/blackfire.md).
-{{% /version/specific %}}

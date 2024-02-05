@@ -15,7 +15,7 @@ It exposes an HTTP API for client interaction. See the [InfluxDB documentation](
 {{% major-minor-versions-note configMinor="true" %}}
 
 {{% version/specific %}}
-<!-- Platform.sh -->
+<!-- API Version 1 -->
 
 <table>
     <thead>
@@ -35,7 +35,7 @@ It exposes an HTTP API for client interaction. See the [InfluxDB documentation](
 </table>
 
 <--->
-<!-- Upsun -->
+<!-- API Version 2 -->
 
 {{< image-versions image="influxdb" status="supported" environment="grid" >}}
 
@@ -49,7 +49,7 @@ The following versions are still available in your projects,
 but they're at their end of life and are no longer receiving security updates from upstream.
 
 {{% version/specific %}}
-<!-- Platform.sh -->
+<!-- API Version 1 -->
 
 <table>
     <thead>
@@ -69,7 +69,7 @@ but they're at their end of life and are no longer receiving security updates fr
 </table>
 
 <--->
-<!-- Upsun -->
+<!-- API Version 2 -->
 
 {{< image-versions image="influxdb" status="deprecated" environment="grid" >}}
 
@@ -85,10 +85,10 @@ See more information on [how to upgrade to version 2.3 or later](#upgrade-to-ver
 
 ```yaml
     {
-      "host": "influxdb.internal",
-      "hostname": "3xqrvge7ohuvzhjcityyphqcja.influxdb.service._.ca-1.{{< vendor/urlraw "hostname" >}}",
+      "host": "influxdb27.internal",
+      "hostname": "3xqrvge7ohuvzhjcityyphqcja.influxdb27.service._.ca-1.{{< vendor/urlraw "hostname" >}}",
       "cluster": "jqwcjci6jmwpw-main-bvxea6i",
-      "service": "influxdb",
+      "service": "influxdb27",
       "type": "influxdb:2.7",
       "rel": "influxdb",
       "scheme": "http",
@@ -113,48 +113,48 @@ See more information on [how to upgrade to version 2.3 or later](#upgrade-to-ver
 {{% endpoint-description type="influxdb" /%}}
 
 {{< version/specific >}}
-<!-- Platform.sh -->
+<!-- Version 1 -->
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="myapp" >}}
 # Relationships enable an app container's access to a service.
 relationships:
-    influxdb: 
+    influxtimedb: "timedb:influxdb"
 {{< /snippet >}}
-{{< snippet name="influxdb" config="service" placeholder="true" >}}
+{{< snippet name="timedb" config="service" placeholder="true" >}}
     type: influxdb:{{% latest "influxdb" %}}
     disk: 256
 {{< /snippet >}}
 ```
 
 <--->
-<!-- Upsun -->
+<!-- Version 2 -->
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="myapp" >}}
 # Relationships enable an app container's access to a service.
 relationships:
-    influxdb: 
+    influxtimedb: "timedb:influxdb"
 {{< /snippet >}}
-{{< snippet name="influxdb" config="service" placeholder="true" >}}
+{{< snippet name="timedb" config="service" placeholder="true" >}}
     type: influxdb:{{% latest "influxdb" %}}
 {{< /snippet >}}
 ```
 
 {{< /version/specific >}}
 
-{{% v2connect2app serviceName="influxdb" relationship="influxdb" var="INFLUX_HOST"%}}
+{{% v2connect2app serviceName="timedb" relationship="influxtimedb" var="INFLUX_HOST"%}}
 
 ```bash {location="myapp/.environment"}
 # Decode the built-in credentials object variable.
 export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for common InfluxDB credentials.
-export INFLUX_USER=$(echo $RELATIONSHIPS_JSON | jq -r ".influxdb[0].username")
-export INFLUX_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".influxdb[0].host")
-export INFLUX_ORG=$(echo $RELATIONSHIPS_JSON | jq -r ".influxdb[0].query.org")
-export INFLUX_TOKEN=$(echo $RELATIONSHIPS_JSON | jq -r ".influxdb[0].query.api_token")
-export INFLUX_BUCKET=$(echo $RELATIONSHIPS_JSON | jq -r ".influxdb[0].query.bucket")
+export INFLUX_USER=$(echo $RELATIONSHIPS_JSON | jq -r ".influxtimedb[0].username")
+export INFLUX_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".influxtimedb[0].host")
+export INFLUX_ORG=$(echo $RELATIONSHIPS_JSON | jq -r ".influxtimedb[0].query.org")
+export INFLUX_TOKEN=$(echo $RELATIONSHIPS_JSON | jq -r ".influxtimedb[0].query.api_token")
+export INFLUX_BUCKET=$(echo $RELATIONSHIPS_JSON | jq -r ".influxtimedb[0].query.bucket")
 ```
 
 {{< /v2connect2app >}}
@@ -206,10 +206,10 @@ If you're relying on any other attributes connecting to InfluxDB, they remain ac
 
 ```yaml
     {
-      "host": "influxdb.internal",
-      "hostname": "3xqrvge7ohuvzhjcityyphqcja.influxdb.service._.ca-1.{{< vendor/urlraw "hostname" >}}",
+      "host": "influxdb27.internal",
+      "hostname": "3xqrvge7ohuvzhjcityyphqcja.influxdb27.service._.ca-1.{{< vendor/urlraw "hostname" >}}",
       "cluster": "jqwcjci6jmwpw-main-bvxea6i",
-      "service": "influxdb",
+      "service": "influxdb27",
       "type": "influxdb:{{< latest "influxdb" >}}",
       "rel": "influxdb",
       "scheme": "http",

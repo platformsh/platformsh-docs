@@ -5,7 +5,7 @@ description: |
   Control your apps and how they're built and deployed on {{% vendor/name %}} with YAML configuration.
 layout: single
 keywords:
-  - ".platform.app.yaml"
+  - '{{% vendor/configfile "app" %}}'
 ---
 
 {{% description %}}
@@ -52,6 +52,8 @@ disk: 2048
 
 # The app's configuration when it's exposed to the web.
 web:
+    commands:
+        start: npm start
     locations:
         '/':
             # The public directory relative to the app root.
@@ -61,7 +63,7 @@ web:
             # What files to use when serving a directory.
             index: ["index.html"]
             # Allow files even without specified rules.
-            allow: true
+            allow: true        
 ```
 
 <--->
@@ -76,6 +78,8 @@ applications:
 
         # The app's configuration when it's exposed to the web.
         web:
+            commands:
+                start: npm start
             locations:
                 '/':
                     # The public directory relative to the app root.
@@ -148,6 +152,12 @@ This approach supports any file type and offers some CPU optimization, especiall
 
 ## Comprehensive example
 
+{{< note title="PHP specifics" theme="info" >}}
+
+Unlike other runtimes most PHP applications do not have a start command. There is a daemon running configured to work automatically with the web server. More often than not there will be a single entry-point a "front-controller". In the case of PHP the `passthru` property is a string with the location of the front-controller rather than a boolean.
+
+{{< /note >}}
+
 The following example shows a setup for a PHP app with comments to explain the settings.
 
 {{% version/specific %}}
@@ -164,11 +174,11 @@ dependencies:
     php:
         composer/composer: '^2'
 
-# Relationships enable an app container's access to a service or another app.
-# The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
+# The app's relationships (connections) with services or other applications.
+# The key is the relationship name that can be viewed in the app.
+# The value is specific to how the service is configured.
 relationships:
-    mysql: 
+    database: 'mysqldb:mysql'
 
 # Scripts that are run as part of the build and deploy process.
 hooks:
@@ -225,7 +235,7 @@ applications:
         # The key is the relationship name that can be viewed in the app.
         # The value is specific to how the service is configured.
         relationships:
-            mysqldb:
+            database: 'mysqldb:mysql'
 
         # Scripts that are run as part of the build and deploy process.
         hooks:
@@ -241,7 +251,7 @@ applications:
         # In this case, `web-files` is just a unique name for the mount.
         mounts:
             'web/files':
-                source: local
+                source: storage
                 source_path: 'web-files'
 
         # The app's configuration when it's exposed to the web.
@@ -264,5 +274,4 @@ services:
     mysqldb:
         type: mariadb:{{% latest "mariadb" %}}
 ```
-
 {{% /version/specific %}}

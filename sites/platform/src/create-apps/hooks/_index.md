@@ -173,7 +173,7 @@ All of this configuration and preparation can be handled in a bash script.
    ```yaml {configfile="app" dir="api"}
    mounts:
         /.drush:
-            source: local
+            source: storage
             source_path: 'drush'
    ```
 
@@ -187,7 +187,7 @@ All of this configuration and preparation can be handled in a bash script.
 
             mounts:
                 /.drush:
-                    source: local
+                    source: storage
                     source_path: 'drush'
    ```
 
@@ -214,7 +214,7 @@ All of this configuration and preparation can be handled in a bash script.
 
             mounts:
                 /.drush:
-                    source: local
+                    source: storage
                     source_path: 'drush'
 
             hooks:
@@ -300,16 +300,16 @@ So you don't have to rebuild Drupal but you still get fresh content.
 
             mounts:
                 /.cache:
-                    source: local
+                    source: tmp
                     source_path: 'cache'
                 /.next:
-                    source: local
+                    source: storage
                     source_path: 'next'
                 /.pm2:
-                    source: local
+                    source: storage
                     source_path: 'pm2'
                 deploy:
-                    source: service
+                    source: storage
                     service: files
                     source_path: deploy
    ```
@@ -493,7 +493,7 @@ applications:
 
         # The relationships of the app with services or other apps.
         relationships:
-            database: 'db:mysql'
+            database: 'db:mysql' 
             redis: 'cache:redis'
 
         # The hooks executed at various points in the lifecycle of the app.
@@ -505,10 +505,10 @@ applications:
         # The 'mounts' describe writable, persistent filesystem mounts in the app.
         mounts:
             /.drush:
-                source: local
+                source: storage
                 source_path: 'drush'
             /drush-backups:
-                source: local
+                source: storage
                 source_path: 'drush-backups'
             deploy:
                 source: service
@@ -544,16 +544,16 @@ applications:
 
         mounts:
             /.cache:
-                source: local
+                source: tmp
                 source_path: 'cache'
             /.next:
-                source: local
+                source: storage
                 source_path: 'next'
             /.pm2:
-                source: local
+                source: storage
                 source_path: 'pm2'
             deploy:
-                source: service
+                source: storage
                 service: files
                 source_path: deploy
 ```
