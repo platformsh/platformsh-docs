@@ -53,7 +53,7 @@ New Relic agent can be configured through php variables.
 For instance, if you want to disable the tracing and reduce the amount of data sent, you can define the [distributed_tracing_enabled](https://docs.newrelic.com/docs/apm/agents/php-agent/configuration/php-agent-configuration/#inivar-distributed-enabled) variable to `false` :
 
 ```bash
-{{% vendor/cli %}} variable:create --level environment --environment {{< variable "ENVIRONMENT_NAME" >}} --visible-build false --inheritable false --json false --sensitive false --enabled true --visible-runtime true php:newrelic.distributed_tracing_enabled --value {{< variable "NEW_RELIC_LICENSE_KEY" >}}
+{{% vendor/cli %}} variable:create --level environment --environment {{< variable "ENVIRONMENT_NAME" >}} --visible-build false --inheritable false --json false --sensitive false --enabled true --visible-runtime true php:newrelic.distributed_tracing_enabled --value false
 ```
 
 ## Troubleshoot
