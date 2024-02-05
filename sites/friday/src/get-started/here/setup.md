@@ -24,7 +24,6 @@ Starter codebases:
 
 <details>
   <summary>PHP</summary>
-  Something small enough to escape casual notice.
 
 - [Laravel installation guide](https://laravel.com/docs/10.x#creating-a-laravel-project)
 - [Symfony Getting start guide](/get-started/stacks/symfony/_index.md)
@@ -33,10 +32,9 @@ Starter codebases:
 
 <details>
   <summary>Python</summary>
-  Something small enough to escape casual notice.
 
 - [Flask installation guide](https://flask.palletsprojects.com/en/2.3.x/installation)
-- [Django installation guide](https://flask.palletsprojects.com/en/2.3.x/installation)
+- [Django installation guide](https://docs.djangoproject.com/en/5.0/intro/tutorial01/)
 </details>
 
 {{< /note >}}
