@@ -4,19 +4,37 @@ weight: 10
 # description: All you need to know about creating a new project with {{% vendor/name %}}
 ---
 
-When dealing with Javascript/Node.js stacks, these are all useful information that you need.
+When dealing with Javascript/Node.js stacks, the information below may help customize your configuration.
+These sections provide Javascript/Node.js-specific configuration details, but also be sure to consult the common Upsun documentation as well:
+
+- [Configuring applications](/create-apps)
+- [Setting up managed services](/add-services)
+- [Handling requests](/define-routes)
+
+## Build flavors
+
+By default, Upsun will make assumptions about how you want to build your application. 
+Namely, that you are managing your dependencies with npm, and that the very first thing you'd like to run is a particular and common production flavor of `npm install`.
+
+This is called a build `flavor`, but it's assumption may prove inappropriate for your application and cause your builds to fail (such as if you'd like to use yarn or bun instead of npm).
+[Consult the documentation](/languages/nodejs#dependencies) to learn more about disabling this feature.
 
 ## Available package managers
+
+Certain package managers come pre-installed on all Upsun `nodejs` container types:
 
 * *npm*; example: ``npm install platformsh-config``
 * *npx*; example: ``npx create-strapi-app <APP_NAME>``
 * *bun*; example: ``bun install platformsh-config``
 
-## Use nvm
+Yarn is an exception, as it [requires that you install it explicitly](/languages/nodejs#use-yarn-as-a-package-manager). 
+
+## Using nvm
 If you want to get more info about usage of NVM, please see [dedicated doc page](/languages/nodejs/node-version.md#use-nvm)
 
-## Sample of {{% vendor/configfile "apps" %}}
-This is some sample of most common Node.js framework config files:
+## Sample configuration
+
+Below are some examples from common Node.js framework configuration:
 
 {{< codetabs >}}
 
@@ -116,7 +134,7 @@ applications:
         yarn build
 services:
   postgresql:
-    type: postgresql:15 # All available versions are: 15, 14, 13, 12, 11
+    type: postgresql:15
 
 routes:
   "https://{default}/":
@@ -130,3 +148,22 @@ routes:
 ```
 
 {{< /codetabs >}}
+
+## Frameworks
+
+The Upsun documentation includes a wide array of community resources that will help with framework-specific configuration:
+
+- [Express](/get-started/stacks/express)
+- [Next.js](/get-started/stacks/nextjs)
+- [Strapi](/get-started/stacks/strapi)
+
+## Get support
+
+While there are virtually no restrictions to you deploying any kind of application on Upsun, configuration may still be unclear at this point.
+
+Not to worry! The Upsun community is here to help. 
+Come and say hello, share your work, ask for help, and peak in on what others are working on.
+
+Welcome to the Upsun community!
+
+{{% community-buttons %}}

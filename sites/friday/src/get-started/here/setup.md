@@ -71,4 +71,4 @@ git add .gitignore && git commit -m "Update .gitignore to ignore deps."
 
 {{< /note >}}
 
-{{< guide-buttons previous="Back" type="*" >}}
+{{< guide-buttons previous="Back" type="*" next="Create a project" nextLink="/get-started/here/create-project" type="*" >}}

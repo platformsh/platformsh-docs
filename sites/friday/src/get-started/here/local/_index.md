@@ -1,5 +1,6 @@
 ---
 title: Local development
+layout: single
 weight: 70
 description: |
     All you need to know about working locally with an {{% vendor/name %}} project.
@@ -14,6 +15,10 @@ Each of these examples:
 - Creates a local development environment for your site.
 - Syncs data from the active {{% vendor/name %}} environment where team review takes place.
 - Commits aspects of that local development method to the project so collaborators can replicate configuration to contribute.
+
+1. [Tethered local development](/get-started/here/local/tethered)
+1. DDEV (Coming soon!)
+
 
 [//]: # (If you're already using Docker Compose,)
 [//]: # (consult the Community guide on [using Docker Compose with Django and {{% vendor/name %}}]&#40;https://community.platform.sh/t/using-docker-compose-with-django/1205&#41;.)

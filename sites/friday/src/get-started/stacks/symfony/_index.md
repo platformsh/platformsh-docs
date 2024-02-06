@@ -1,6 +1,7 @@
 ---
 title: Deploying Symfony on Upsun
 sidebarTitle: Symfony
+layout: single
 weight: -65
 description: |
   Welcome to the Upsun documentation specific to the [Symfony](https://www.symfony.com/) framework on Upsun.
@@ -14,6 +15,8 @@ description: |
 Before you proceed, be sure to checkout the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project) and the main [Getting started guide](/get-started/here/_index.md). These two resources provide all of the core concepts and common commands you'll need to know before using the materials below.
 
 {{< /note >}}
+
+{{< get-started/steps >}}
 
 [//]: # (## Getting started)
 

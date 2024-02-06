@@ -179,8 +179,7 @@ For more options, consult the [rsync documentation](https://man7.org/linux/man-p
 
 You can use `sftp` to copy files to and from a remote environment.
 
-{{% version/specific %}}
-{{% note %}}
+{{% note version="1" %}}
 <!-- Platform.sh -->
 
 `sftp` is supported on the Grid, but the following limitations apply:
@@ -195,9 +194,8 @@ For more information, see the [{{% names/dedicated-gen-2 %}}](/dedicated-gen-2/a
 and [{{% names/dedicated-gen-3 %}}](/dedicated-gen-3/options.md#sftp) sections.
 {{% /note %}}
 
-<--->
 <!-- Upsun -->
-{{% note %}}
+{{% note version="2" %}}
 {{% vendor/name %}} supports `sftp`, but the following limitations apply:
 
 - You can only create `sftp` accounts with an existing {{% vendor/name %}} user and an SSH key.
@@ -205,7 +203,6 @@ and [{{% names/dedicated-gen-3 %}}](/dedicated-gen-3/options.md#sftp) sections.
 - `sftp` access cannot be limited to a specific directory.
   Instead, access is given to **the whole application directory** and its mounts.
 {{% /note %}}
-{{% /version/specific %}}
 
 #### Open an `sftp` connection
 

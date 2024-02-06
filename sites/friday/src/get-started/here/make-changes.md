@@ -1,13 +1,13 @@
 ---
 title: Make changes to your project
+sidebarTitle: Revisions
 weight: 50
 description: How to work on a daily basis with an {{% vendor/name %}} project?
 ---
 
-## Make changes to your project
-
 Now that your project is deployed, you can start making changes to it.
 For example, you might want to fix a bug or add a new feature.
+It's this component of Upsun - preview environments - that you'll come to recognize as a key feature.
 
 In your project, the `main` branch (or `master` if you change it during project creation) always represents the production environment.
 Other branches are for developing new features, fixing bugs, or updating the infrastructure.
@@ -105,4 +105,4 @@ title=Using third party provider
    For a long running branch, to keep the code up-to-date with the main branch, use `git merge main` or `git rebase main`.
    You can also keep the data in sync with the parent environment by using `{{% vendor/cli %}} env:sync`.
 
-{{< guide-buttons type="*" >}}
+{{< guide-buttons previous="Back" next="Local development" nextLink="/get-started/here/local" type="*" >}}

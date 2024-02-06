@@ -1,5 +1,6 @@
 ---
-title: Set resources
+title: Managing resources
+sidebarTitle: Resources
 weight: 40
 description: Flexible resources on {{% vendor/name %}} are easy to use. Find all you need to know about resources allocation there.
 ---
@@ -45,23 +46,5 @@ Enter the number of instances (default: 1): 1
 Last it will ask us to confirm our choices. Select `Y` and {{% vendor/name %}} will take your selections, grab the
 previous built images from earlier, apply your resource selections to them and deploy your full application!
 
+{{< guide-buttons previous="Back" next="Revisions" type="*" >}}
 
-{{< note >}}
-Resource allocation is only done on the first deploy of the production environment of a project. </br>
-For next deployments, just use:
-```shell {location="Terminal"}
-{{% vendor/cli %}} push
-```
-
-Each time you create a new branch, your new environment will inherit from the parent resource allocation. If you need to change resource allocation, use ``{{% vendor/cli %}} resources:set`` command again.
-
-{{< /note >}}
-
-Note that each environment has its own domain name.
-To open the URL of your new environment, run the following command:
-
-```bash {location="Terminal"}
-{{% vendor/cli %}} environment:url --primary
-```
-
-{{< guide-buttons type="*" >}}

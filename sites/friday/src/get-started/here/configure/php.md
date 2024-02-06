@@ -4,28 +4,60 @@ weight: 15
 # description: All you need to know about creating a new project with {{% vendor/name %}}
 ---
 
-When dealing with PHP stacks, these are all useful information that you need.
+When dealing with PHP stacks, the information below may help customize your configuration.
+These sections provide PHP-specific configuration details, but also be sure to consult the common Upsun documentation as well:
 
-## Getting started
+- [Configuring applications](/create-apps)
+- [Setting up managed services](/add-services)
+- [Handling requests](/define-routes)
 
-- [Upsun demo application](https://console.upsun.com/projects/create-project)
-- [What is Upsun?](/learn/overview)
+## Build flavors
 
-## Documentation
+By default, Upsun will make assumptions about how you want to build your application. 
+Namely, that you are managing your dependencies with Composer, and that the very first thing you'd like to run is a particular and common production flavor of `composer install`.
 
-- [PHP documentation](/languages/php/)
-- [Extensions](/languages/php/extensions)
-- [Performance tuning](/languages/php/tuning)
-- [PHP-FPM sizing](/languages/php/fpm)
-- [Swoole on Upsun](/languages/php/swoole)
-- [Authenticated Composer](/languages/php/composer-auth)
+This is called a build `flavor`, but it's assumption may prove inappropriate for your application and cause your builds to fail.
+[Consult the documentation](/languages/php#dependencies) to learn more about disabling this feature.
 
-## Community content
+## Authenticated Composer
 
-- [Laravel topics](https://support.platform.sh/hc/en-us/search?utf8=%E2%9C%93&query=laravel)
-- [Symfony getting started guide](/get-started/stacks/symfony)
-- [PHP topics](https://support.platform.sh/hc/en-us/search?utf8=%E2%9C%93&query=php)
+Packagist is the primary Composer repository for public PHP packages. But you can also have Composer download PHP packages from a private, third-party Composer repository. To make sure Composer has the necessary credentials to do so, follow the instructions on the [Authenticated Composer documentation](/languages/php/composer-auth).
 
-## Blogs
+## PHP settings
 
-- [Upsun: the missing PaaS to scale Laravel applications](https://upsun.com/blog/paas-to-scale-laravel-apps/)
+Upsun provides additional configuration possibilities to control:
+
+- [PHP-FPM runtime configuration](/create-apps/app-reference#runtime)
+- [PHP settings](/languages/php#php-settings)
+
+## Enabling/disabling extensions
+
+PHP has a number of extensions developed by members of the community.
+Some of these extensions need to be enabled, while others are enabled by default and must be disabled if desirable. 
+
+Consult the [PHP extensions documentation](/languages/php/extensions) to see what's available for your version of PHP.
+
+## Web servers
+
+While PHP-FPM is the default behavior, Upsun provides some support for different web servers by modifying the `web.commands.start` property:
+
+- [Alternate start commands](/languages/php#alternate-start-commands)
+- [Swoole](/languages/php/swoole)
+
+## Frameworks
+
+The Upsun documentation includes a wide array of community resources that will help with framework-specific configuration:
+
+- [Laravel](/get-started/stacks/laravel)
+- [Symfony](/get-started/stacks/symfony)
+
+## Get support
+
+While there are virtually no restrictions to you deploying any kind of application on Upsun, configuration may still be unclear at this point.
+
+Not to worry! The Upsun community is here to help. 
+Come and say hello, share your work, ask for help, and peak in on what others are working on.
+
+Welcome to the Upsun community!
+
+{{% community-buttons %}}

@@ -1,6 +1,6 @@
 ---
-title: Create a new project
-weight: 12
+title: Create a project
+weight: 10
 description: All you need to know about creating a new project with {{% vendor/name %}}
 ---
 
@@ -125,4 +125,4 @@ E: Error: Invalid configuration files, aborting build
 
 All this means is that you have not yet added Upsun configuration to your project to setup deployments, which is the next step of this guide.
 
-{{< guide-buttons previous="Back" next="Configure your project" nextLink="/get-started/here/configure/_index.md" type="*" >}}
+{{< guide-buttons previous="Back" next="Configure your project" nextLink="/get-started/here/configure" type="*" >}}

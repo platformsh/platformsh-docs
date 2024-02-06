@@ -21,9 +21,6 @@
 
 <!-- If in Get started, add stack choice to nav links -->
 {{ $getStartedAttribute := "" }}
-{{ if and ( hasPrefix .Context.RelPermalink "/get-started" ) ( hasPrefix $currentPage.RelPermalink "/get-started") }}
-  {{ $getStartedAttribute = ":href=\"$el.getAttribute('destination') + '?stack=' + $data.stack\"" }}
-{{ end }}
 
 <!-- Handle pages in `other` directory separately -->
 {{ if eq $currentSection "other" }}
