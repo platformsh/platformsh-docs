@@ -21,12 +21,8 @@ For more information, see the [ClickHouse documentation](https://ClickHouse.com/
 
 - 23
 
-{{% note %}} 
-
 Each version represents a rolling release of the latest yearly version available from the upstream.
 The latest compatible feature and maintenance versions are applied automatically.
-
-{{% /note %}} 
 
 ## Relationship reference
 
