@@ -170,8 +170,8 @@ You can use `sftp` to copy files to and from a remote environment.
   Instead, access is given to **the whole application directory** and its mounts.
 
 `sftp` is also supported on Dedicated projects with different limitations and requirements.
-For more information, see the [Dedicated Gen 2](/dedicated-gen-2/architecture/options.md#sftp)
-and [Dedicated Gen 3](/dedicated-gen-3/options.md#sftp) sections.
+For more information, see the [{{% names/dedicated-gen-2 %}}](https://docs.platform.sh/dedicated-gen-2/architecture/options.html#sftp)
+and [{{% names/dedicated-gen-3 %}}](https://docs.platform.sh/dedicated-gen-3/options.html#sftp) sections.
 {{% /note %}}
 
 #### Open an `sftp` connection
