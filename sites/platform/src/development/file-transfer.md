@@ -179,19 +179,6 @@ For more information, see the [{{% names/dedicated-gen-2 %}}](https://docs.platf
 and [{{% names/dedicated-gen-3 %}}](https://docs.platform.sh/dedicated-gen-3/options.html#sftp) sections.
 {{% /note %}}
 
-<<<<<<< HEAD
-<!-- Upsun -->
-{{% note version="2" %}}
-{{% vendor/name %}} supports `sftp`, but the following limitations apply:
-
-- You can only create `sftp` accounts with an existing {{% vendor/name %}} user and an SSH key.
-  Custom users and passwords aren't supported.
-- `sftp` access cannot be limited to a specific directory.
-  Instead, access is given to **the whole application directory** and its mounts.
-{{% /note %}}
-
-=======
->>>>>>> main
 #### Open an `sftp` connection
 
 Run the following command:
