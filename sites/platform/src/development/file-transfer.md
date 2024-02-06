@@ -160,12 +160,7 @@ For more options, consult the [rsync documentation](https://man7.org/linux/man-p
 
 You can use `sftp` to copy files to and from a remote environment.
 
-<<<<<<< HEAD
-{{% note version="1" %}}
-<!-- Platform.sh -->
-=======
 {{% note %}}
->>>>>>> main
 
 `sftp` is supported on the Grid, but the following limitations apply:
 
