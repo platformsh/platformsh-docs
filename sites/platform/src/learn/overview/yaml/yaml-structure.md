@@ -8,7 +8,7 @@ In addition to the [basic functions you should be familiar with](./what-is-yaml.
 {{% vendor/name %}} accepts a certain structure for YAML configuration files.
 
 
-When you run the [`platform project:init` command](/get-started/express.md#configure-your-project), three default YAML configuration files are generated in the `{{< vendor/configdir >}}` folder and at the root of your source code. They contain the minimum default configuration based on your detected local stack.
+When you run the [`platform project:init` command](/get-started/express/_index.md#configure-your-project), three default YAML configuration files are generated in the `{{< vendor/configdir >}}` folder and at the root of your source code. They contain the minimum default configuration based on your detected local stack.
 These YAML files are a good starting point before customization.
 
 ```bash
