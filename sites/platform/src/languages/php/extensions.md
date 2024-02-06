@@ -7,7 +7,7 @@ description: See what PHP extensions are available with each PHP version on {{% 
 PHP has a number of [extensions](https://pecl.php.net/) developed by members of the community.
 Some of them are available for {{% vendor/name %}} containers.
 
-{{< note version="1" >}}
+{{< note version="1" theme="warning" >}}
 
 The information on this page applies to Grid and {{% names/dedicated-gen-3 %}} plans.
 See also [PHP extensions on {{% names/dedicated-gen-2 %}} plans](../../dedicated-gen-2/overview/grid.md#extensions).
