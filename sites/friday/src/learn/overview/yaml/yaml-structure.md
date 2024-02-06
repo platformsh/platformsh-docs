@@ -9,7 +9,7 @@ In addition to the [basic functions you should be familiar with](./what-is-yaml.
 
 ## YAML file location
 
-When you run the [`upsun project:init` command](/get-started/express.md#configure-your-project), a default ``config.yaml`` file is generated in the `.upsun` folder. It contains the minimum default configuration based on your detected local stack.
+When you run the [`upsun project:init` command](/get-started/express/_index.md#configure-your-project), a default ``config.yaml`` file is generated in the `.upsun` folder. It contains the minimum default configuration based on your detected local stack.
 This YAML file is located in your ``.upsun`` directory, at the root of your project source code, and is a good starting point before customization.
 
 ```bash
