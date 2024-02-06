@@ -46,6 +46,16 @@ git push
 
 That's it! You need to wait a little bit for your New Relic dashboard to be generated.
 
+## Configure New Relic to your needs
+
+New Relic agent can be configured through php variables.
+
+For instance, if you want to disable the tracing and reduce the amount of data sent, you can define the [distributed_tracing_enabled](https://docs.newrelic.com/docs/apm/agents/php-agent/configuration/php-agent-configuration/#inivar-distributed-enabled) variable to `false` :
+
+```bash
+{{% vendor/cli %}} variable:create --level environment --environment {{< variable "ENVIRONMENT_NAME" >}} --visible-build false --inheritable false --json false --sensitive false --enabled true --visible-runtime true php:newrelic.distributed_tracing_enabled --value false
+```
+
 ## Troubleshoot
 
 Additionally, you can check that your application is properly connected to New Relic by looking at the `/var/log/app.log` file:
