@@ -43,10 +43,10 @@ Mounts on abcdefgh1234567-main-abcd123--app@ssh.eu.{{< vendor/urlraw "host" >}}:
 +-------------------------+----------------------+
 | Mount path              | Definition           |
 +-------------------------+----------------------+
-| web/sites/default/files | source: local        |
+| web/sites/default/files | source: storage      |
 |                         | source_path: files   |
-| private                 | source: local        |
-|                         | source_path: local   |
+| private                 | source: storage      |
+|                         | source_path: private |
 | tmp                     | source: tmp          |
 |                         | source_path: temp    |
 +-------------------------+----------------------+
@@ -160,28 +160,7 @@ For more options, consult the [rsync documentation](https://man7.org/linux/man-p
 
 You can use `sftp` to copy files to and from a remote environment.
 
-<<<<<<< HEAD
-{{% note version="1" %}}
-<!-- Platform.sh -->
-=======
 {{% note %}}
->>>>>>> main
-
-`sftp` is supported on the Grid, but the following limitations apply:
-
-- You can only create `sftp` accounts with an existing {{% vendor/name %}} user and an SSH key.
-  Custom users and passwords aren't supported.
-- `sftp` access cannot be limited to a specific directory.
-  Instead, access is given to **the whole application directory** and its mounts.
-
-`sftp` is also supported on Dedicated projects with different limitations and requirements.
-For more information, see the [{{% names/dedicated-gen-2 %}}](https://docs.platform.sh/dedicated-gen-2/architecture/options.html#sftp)
-and [{{% names/dedicated-gen-3 %}}](https://docs.platform.sh/dedicated-gen-3/options.html#sftp) sections.
-{{% /note %}}
-
-<<<<<<< HEAD
-<!-- Upsun -->
-{{% note version="2" %}}
 {{% vendor/name %}} supports `sftp`, but the following limitations apply:
 
 - You can only create `sftp` accounts with an existing {{% vendor/name %}} user and an SSH key.
@@ -190,14 +169,12 @@ and [{{% names/dedicated-gen-3 %}}](https://docs.platform.sh/dedicated-gen-3/opt
   Instead, access is given to **the whole application directory** and its mounts.
 {{% /note %}}
 
-=======
->>>>>>> main
 #### Open an `sftp` connection
 
 Run the following command:
 
 ```bash
-sftp "$(platform ssh --pipe)"
+sftp "$({{% vendor/cli %}} ssh --pipe)"
 ```
 
 When prompted, select the project and environment you want to connect to.

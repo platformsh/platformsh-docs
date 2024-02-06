@@ -64,6 +64,7 @@ module:
               - "increase-observability/metrics/grid.md"
               - "increase-observability/metrics/dedicated.md"
               - "increase-observability/metrics/dedicated-generation-3.md"
+              - "development/file-transfer.md"
               - "development/templates.md"
               - "development/local/docksal.md"
               - "development/local/lando.md"
@@ -83,6 +84,7 @@ module:
               - "environments/scalability.md"
               - "security/web-application-firewall/*"
               - "_index.md"
+              - "security/project-isolation.md"
           lang: "en"
 
         - source: "../platform/static/images"
