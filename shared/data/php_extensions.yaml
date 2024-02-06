@@ -491,6 +491,7 @@ grid:
       - odbc
       - pdo_dblib
       - pdo_firebird
+      - pdo_mysql
       - pdo_odbc
       - pdo_pgsql
       - pgsql
@@ -514,14 +515,14 @@ grid:
       - mysql
       - mysqli
       - mysqlnd
-      - PDO
+      - pdo
       - pdo_mysql
       - pdo_sqlite
       - sqlite3
       - zendopcache
   "5.5":
     available:
-      - apc
+      - apcu
       - blackfire
       - enchant
       - gearman
@@ -553,6 +554,7 @@ grid:
       - ssh2
       - tidy
       - xcache
+      - xdebug
       - xhprof
       - xmlrpc
       - xsl
@@ -594,6 +596,7 @@ grid:
       - pdo_firebird
       - pdo_odbc
       - pdo_pgsql
+      - pecl-http
       - pgsql
       - pinba
       - propro
@@ -605,6 +608,7 @@ grid:
       - snmp
       - ssh2
       - tidy
+      - xdebug
       - xhprof
       - xmlrpc
       - xsl
@@ -617,7 +621,7 @@ grid:
       - mysqli
       - mysqlnd
       - opcache
-      - PDO
+      - pdo
       - pdo_mysql
       - pdo_sqlite
       - sqlite3
