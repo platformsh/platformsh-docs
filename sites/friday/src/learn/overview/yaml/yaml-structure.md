@@ -9,7 +9,7 @@ In addition to the [basic functions you should be familiar with](./what-is-yaml.
 
 ## YAML file location
 
-When you run the [`upsun project:init` command]](/get-started/express/_index.md#configure-your-project), a default ``config.yaml`` file is generated in the `.upsun` folder. It contains the minimum default configuration based on your detected local stack.
+When you run the [`upsun project:init` command](/get-started/express/_index.md#configure-your-project), a default ``config.yaml`` file is generated in the `.upsun` folder. It contains the minimum default configuration based on your detected local stack.
 This YAML file is located in your ``.upsun`` directory, at the root of your project source code, and is a good starting point before customization.
 
 ```bash
@@ -53,7 +53,7 @@ The following rules apply to YAML files contained in the ``.upsun`` folder:
 - All the existing YAML files located at the first level of the ``.upsun`` folder must feature the [mandatory top-level keys](#mandatory-top-level-keys), and must contain a [valid YAML configuration](/create-apps/app-reference.md).
 - All the YAML files in subdirectories of the ``.upsun`` folder need to be [manually imported](/learn/overview/yaml/platform-yaml-tags.md#include) and contain a [valid YAML configuration](/create-apps/app-reference.md).
 
-{{% note title="Warning" them="warning"%}}
+{{% note title="Warning" theme="warning"%}}
 When {{% vendor/name %}} combines all the YAML files located at the first level of the ``.upsun`` folder, only the top-level keys (`applications`, `services`, and `routes`) are merged. So if you define an app named ``app`` in two different YAML files, {{% vendor/name %}} only takes the second one into account.
 
 Example:
