@@ -179,7 +179,7 @@ and [{{% names/dedicated-gen-3 %}}](https://docs.platform.sh/dedicated-gen-3/opt
 Run the following command:
 
 ```bash
-sftp "$(platform ssh --pipe)"
+sftp "$({{% vendor/cli %}} ssh --pipe)"
 ```
 
 When prompted, select the project and environment you want to connect to.
