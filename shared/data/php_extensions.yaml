@@ -1,30 +1,58 @@
 dedicated:
   5.x:
+    - amqp
     - apcu
+    - apcu-bc
+    - bcmath
+    - bz2
+    - cgi
     - cli
+    - common
     - curl
+    - dba
+    - dev
+    - enchant
+    - event
     - fpm
     - gd
     - geoip
+    - gmp
     - igbinary
     - imagick
+    - imap
+    - interbase
     - intl
     - ldap
-    - mcrypt
+    - mailparse
+    - mbstring
     - memcached
-    - mongo
+    - msgpack
     - mysql
-    - mysqlnd
     - oauth
+    - odbc
+    - opcache
+    - pdo-sqlsrv
     - pgsql
+    - phpdbg
+    - pspell
+    - readline
     - redis
     - ssh2
+    - snmp
+    - soap
+    - sodium
+    - sqlite3
+    - sqlsrv
+    - sybase
+    - tideways-xhprof
+    - tidy
     - twig
+    - uuid
     - xcache
     - xdebug
-    - xhprof
-    - xmlrpc
+    - xml
     - xsl
+    - zip
   "7.0":
     - apcu-bc
     - apcu
@@ -463,6 +491,7 @@ grid:
       - odbc
       - pdo_dblib
       - pdo_firebird
+      - pdo_mysql
       - pdo_odbc
       - pdo_pgsql
       - pgsql
@@ -486,14 +515,14 @@ grid:
       - mysql
       - mysqli
       - mysqlnd
-      - PDO
+      - pdo
       - pdo_mysql
       - pdo_sqlite
       - sqlite3
       - zendopcache
   "5.5":
     available:
-      - apc
+      - apcu
       - blackfire
       - enchant
       - gearman
@@ -525,6 +554,7 @@ grid:
       - ssh2
       - tidy
       - xcache
+      - xdebug
       - xhprof
       - xmlrpc
       - xsl
@@ -566,6 +596,7 @@ grid:
       - pdo_firebird
       - pdo_odbc
       - pdo_pgsql
+      - pecl-http
       - pgsql
       - pinba
       - propro
@@ -577,6 +608,7 @@ grid:
       - snmp
       - ssh2
       - tidy
+      - xdebug
       - xhprof
       - xmlrpc
       - xsl
@@ -589,7 +621,7 @@ grid:
       - mysqli
       - mysqlnd
       - opcache
-      - PDO
+      - pdo
       - pdo_mysql
       - pdo_sqlite
       - sqlite3
