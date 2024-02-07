@@ -75,6 +75,7 @@ module:
               - "dedicated-gen-2/*"
               - "dedicated-gen-3/*"
               - "guides/*"
+              - "integrations/activity/reference.md"
               - "languages/java/frameworks.md"
               - "learn/resources.md"
               - "learn/tutorials/migrating.md"
