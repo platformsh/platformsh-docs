@@ -83,6 +83,7 @@ module:
               - "learn/tutorials/migrating.md"
               - "registry/*"
               - "security/web-application-firewall/*"
+              - "security/project-isolation.md"
           lang: "en"
 
         - source: "../platform/static/images"
