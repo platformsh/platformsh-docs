@@ -17,6 +17,7 @@ Bootsnap
 Brotli
 [Bb]undler
 CacheTool
+cgroups
 charset
 client_id
 Cloudfront
@@ -151,8 +152,10 @@ runtimes
 sanitization
 Satis
 scp
+seccomp
 serverless
 Servlet
+sftp
 shard
 shortcode
 Slowloris
