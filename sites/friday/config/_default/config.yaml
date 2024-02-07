@@ -83,8 +83,7 @@ module:
               - "create-apps/workers.md"
               - "create-apps/flexible-resources.md"
               - "environments/scalability.md"
-              - "security/web-application-firewall/*"
-              - "security/project-isolation.md"
+              - "security/*"
           lang: "en"
 
         - source: "../platform/static/images"
