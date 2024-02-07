@@ -29,7 +29,7 @@ These three YAML files configure the following:
 
 ```yaml {location="{{< vendor/configfile "app" >}}"}
 
-# {{< code-link destination="/create-apps/app-reference.md" text="Complete list of all available properties" title="Complete list of all available properties" >}}
+# {{< code-link destination="../../../create-apps/app-reference.md" text="Complete list of all available properties" title="Complete list of all available properties" >}}
 
 # A unique name for the app. Must be lowercase alphanumeric characters.
 # Changing the name destroys data associated with the app.
@@ -37,7 +37,7 @@ name: "app"
 
 # The runtime the application uses.
 
-# {{< code-link destination="/create-apps/app-reference.html#types" text="Complete list of available runtimes" title="Complete list of available runtimes" >}}
+# {{< code-link destination="../../../create-apps/app-reference.html#types" text="Complete list of available runtimes" title="Complete list of available runtimes" >}}
 type: "php:8.2"
 ...
 ```
