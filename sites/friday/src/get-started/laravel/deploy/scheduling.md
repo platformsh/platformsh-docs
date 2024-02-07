@@ -26,7 +26,7 @@ crons:
         cmd: 'php artisan schedule:run'
 ```
 
-The [minimum time between cron jobs](../../../create-apps/app-reference.md#cron-job-timing)
+The [minimum time between cron jobs](/create-apps/app-reference.md#cron-job-timing)
 being triggered is 5 minutes. Task scheduling may then be contradicted
 by the cron minimum frequency. Schedules outside the specified cron frequency are
 ignored and the related tasks aren't triggered.
