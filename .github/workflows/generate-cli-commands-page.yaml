@@ -3,7 +3,7 @@ name: Generate CLI commands doc page
 on:
   pull_request_target:
     branches: [main]
-    types: [labeled,unlabeled,synchronize]
+    types: [labeled,opened,unlabeled,synchronize]
 
 env:
   PLATFORMSH_CLI_NO_INTERACTION: 1
