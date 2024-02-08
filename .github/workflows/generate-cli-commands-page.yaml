@@ -1,6 +1,6 @@
 name: Generate CLI commands doc page
 
-on: 
+on:
   pull_request:
     branches: [main]
     types: [labeled,opened,unlabeled,synchronize]
@@ -28,12 +28,14 @@ jobs:
       - name: Set up Platform.sh CLI
         uses: ./.github/actions/set-up-cli
 
-      # Generate CLI command doc pages
+      # Generate Platform.sh CLI command doc pages
       - env:
           PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
           # @see activate_environment:Set environment title:env in manage-environment.yaml
           PR_TITLE: ${{ github.event.pull_request.title }}
         run: |
+          # Generate Platform.sh CLI command doc pages
+
           # Set current user
           git config --global user.name 'CLI Command doc page auto generator'
           git config --global user.email 'flovntp@gmail.com'
@@ -46,18 +48,10 @@ jobs:
           git switch -C ${{ env.BRANCH_TITLE }}
 
           # Adding CLI Commands specific page
-          currentTitle=$(platform environment:info -e ${{ github.event.pull_request.head.ref }} title)
-          echo "Current Title"
-          echo $currentTitle
-
           echo "Generating Platform.sh CLI doc page"
-          platform list --format=md > platform-commands.html
-
-
-          git add platform-commands.html
+          platform list --format=md > sites/platform/src/administration/cli/reference.html
+          git add sites/platform/src/administration/cli/reference.html
           git commit -m "generating Platform CLI command doc page"
-
-          cat platform-commands.html
 
           echo "Pushing most recent changes"
           git push --force origin ${{ env.BRANCH_TITLE }}
