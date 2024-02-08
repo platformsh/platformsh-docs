@@ -1,9 +1,9 @@
 name: Generate CLI commands doc page
 
-on: [pull_request]
-#  pull_request:
-#    branches: [main]
-#    types: [labeled,opened,unlabeled,synchronize]
+on: 
+  pull_request:
+    branches: [main]
+    types: [labeled,opened,unlabeled,synchronize]
 
 env:
   PLATFORMSH_CLI_NO_INTERACTION: 1
