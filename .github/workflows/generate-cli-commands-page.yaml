@@ -46,7 +46,7 @@ jobs:
 
 
           echo "Generating Platform.sh CLI doc page"
-          platform list --format=md > platform-commands.html
+          platform list --format=md
           git add platform-commands.html
           git commit -m "generating Platform CLI command doc page"
 
