@@ -35,8 +35,18 @@ jobs:
           # @see activate_environment:Set environment title:env in manage-environment.yaml
           PR_TITLE: ${{ github.event.pull_request.title }}
         run: |
-          env | grep PLATFORMSH_CLI_TOKEN
+          # Get most recent changes
+          git checkout ${{ github.event.pull_request.head.sha }}
+
+          # Put most recent changes on the branch
+          echo "Switching to branch ${{ env.BRANCH_TITLE }}"
+          git switch -C ${{ env.BRANCH_TITLE }}
+
+          # Adding CLI Commands specific page
           platform list --format=md > platform-commands.html
           git add platform-commands.html
           git commit -m "generating Platform CLI command doc page"
-          git push --force origin
+
+          echo "Pushing most recent changes"
+          git push --force origin ${{ env.BRANCH_TITLE }}
+
