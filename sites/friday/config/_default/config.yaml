@@ -53,37 +53,73 @@ module:
         - source: "../platform/src"
           target: "content"
           excludeFiles:
-              - "registry/*"
-              - "get-started/*"
-              - "development/transfer-dedicated.md"
+              # - "add-services/*"
               - "add-services/network-storage.md"
+
+              # - "administration/*"
               - "administration/sso.md"
               - "administration/pricing/*"
-              - "increase-observability/logs/forward-fastly-logs.md"
-              - "increase-observability/integrate-observability/*"
-              - "increase-observability/metrics/grid.md"
-              - "increase-observability/metrics/dedicated.md"
-              - "increase-observability/metrics/dedicated-generation-3.md"
+
+              # - "changelog/*"
+
+              # - "create-apps/*"
+              - "create-apps/upgrading.md"
+              - "create-apps/workers.md"
+              - "create-apps/flexible-resources.md"
+
+              - "dedicated-gen-2/*"
+              
+              - "dedicated-gen-3/*"
+
+              # - "define-routes/*"
+
+              # - "development/*"
               - "development/file-transfer.md"
               - "development/templates.md"
               - "development/local/docksal.md"
               - "development/local/lando.md"
               - "development/deploy-button.md"
+              - "development/transfer-dedicated.md"
+
+              # - "domains/*"
               - "domains/cdn/managed-fastly.md"
               - "domains/security/web-application-firewall/fastly.md"
               - "domains/steps/custom-domains-preview-environments.md"
-              - "dedicated-gen-2/*"
-              - "dedicated-gen-3/*"
+
+              # - "environments/*"
+              - "environments/scalability.md"
+
+              # - "feedback/*"
+
+              - "get-started/*"
+
+              # - "glossary/*"
+
               - "guides/*"
+
+              # - "increase-observability/*"
+              - "increase-observability/logs/forward-fastly-logs.md"
+              - "increase-observability/integrate-observability/*"
+              - "increase-observability/metrics/grid.md"
+              - "increase-observability/metrics/dedicated.md"
+              - "increase-observability/metrics/dedicated-generation-3.md"
+
+              # - "integrations/*"
               - "integrations/activity/reference.md"
+
+              # - "languages/*"
               - "languages/java/frameworks.md"
+
+              # - "learn/*"
               - "learn/resources.md"
               - "learn/tutorials/migrating.md"
-              - "create-apps/upgrading.md"
-              - "create-apps/workers.md"
-              - "create-apps/flexible-resources.md"
-              - "environments/scalability.md"
+
+              # - "projects/*"
+
+              - "registry/*"
+
               - "security/*"
+
           lang: "en"
 
         - source: "../platform/static/images"
