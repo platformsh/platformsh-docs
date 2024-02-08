@@ -35,6 +35,7 @@ jobs:
           # @see activate_environment:Set environment title:env in manage-environment.yaml
           PR_TITLE: ${{ github.event.pull_request.title }}
         run: |
+          env | grep PLATFORMSH_CLI_TOKEN
           platform list --format=md > platform-commands.html
           git add platform-commands.html
           git commit -m "generating Platform CLI command doc page"
