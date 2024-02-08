@@ -53,6 +53,7 @@ module:
         - source: "../platform/src"
           target: "content"
           excludeFiles:
+          
               # - "add-services/*"
               - "add-services/network-storage.md"
 
@@ -114,7 +115,7 @@ module:
               - "learn/resources.md"
               - "learn/tutorials/migrating.md"
 
-              # - "projects/*"
+              - "projects/*"
 
               - "registry/*"
 
