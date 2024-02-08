@@ -60,5 +60,5 @@ jobs:
           cat platform-commands.html
 
           echo "Pushing most recent changes"
-          #git push --force origin ${{ env.BRANCH_TITLE }}
+          git push --force origin ${{ env.BRANCH_TITLE }}
 
