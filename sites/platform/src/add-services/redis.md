@@ -106,7 +106,7 @@ set up a new service with a different name.
 
 {{% note theme="warning" title="Warning" %}}
 
-The `maxmemory` Redis configuration setting instructs Redis to use a specified amount of RAM for the data set.
+The `maxmemory` configuration setting instructs Redis to use a specified amount of RAM for the data set.
 
 When defining container resources, keep in mind that,
 based on a [recommendation from Redis](https://docs.redis.com/latest/rs/installing-upgrading/install/plan-deployment/hardware-requirements/#productionenvironment),
