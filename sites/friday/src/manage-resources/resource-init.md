@@ -13,8 +13,17 @@ keywords:
   - "scaling"
 ---
 
-When you first deploy your {{% vendor/name %}} project, and whenever you add a new app or service,
-{{% vendor/name %}} allocates the following default resources to every container:
+When you first deploy your project or add a new container to it,
+{{% vendor/name %}} uses [default resources](#default-resources)
+unless you set another [resource initialization strategy](#set-a-resource-initialization-strategy).
+
+You can also use a specific resource initialization strategy when performing certain actions,
+such as [branching](#environment-branch), [merging](#environment-merge),
+and [activating](#environment-activation) an environment, or [restoring a backup](#backup-restoration).
+
+## Default resources
+
+{{% vendor/name %}} allocates the following default resources to every container when deployed for the first time:
 
 | Resource type               | Amount |
 | --------------------------- | ----------- |
@@ -22,24 +31,84 @@ When you first deploy your {{% vendor/name %}} project, and whenever you add a n
 | RAM                         | Depends on the [container profile](/manage-resources/adjust-resources.md#advanced-container-profiles). |
 | Disk size (only applicable if the app or service requires a disk)                   | 512 MB |
 
-If you don't want to use those default resources, you can define a different [resource initialization strategy](/manage-resources/resource-init.md#define-a-resource-initialization-strategy).
+If you don't want to use those default resources, you can set another [resource initialization strategy](/manage-resources/resource-init.md#set-a-resource-initialization-strategy).
 You can also [adjust those resources](/manage-resources/adjust-resources.md) after your project or new container has been deployed.
+
+{{% note %}}
 
 For information on costs related to resource usage, see the [{{% vendor/name %}} pricing page](https://upsun.com/pricing/).
 Note that you can [keep an eye on those costs](/manage-resources/resource-billing.md) in the Console.
 
-## Define a resource initialization strategy
+{{% /note %}}
 
-You can define which strategy {{% vendor/name %}} uses to allocate resources
-when you first deploy your project or add a new container.
-The following strategies are available:
+
+## Set a resource initialization strategy
+
+{{% vendor/name %}} provides the following resource initialization strategies.
 
 | Strategy | Description |
 | ---------| ----------- |
-| `default`  | Initializes the new containers using the [{{% vendor/name %}} default resources](/manage-resources/resource-init.md).</br>This is the strategy that applies when you first deploy your project or new container, unless you explicitly set another strategy.  |
+| `default`  | Initializes the new containers using the [{{% vendor/name %}} default resources](#default-resources).</br>This strategy applies when you first deploy your project (or new container) unless you explicitly set another strategy, or allocate resources manually via the `resources:set` CLI command.  |
 | `manual`   | With this strategy, the first deployment fails and you need to configure resources manually through [the Console](/manage-resources/adjust-resources.md), or using `resources:set` in the CLI. |
-| `minimum`  | Initializes the new containers using the [{{% vendor/name %}} minimum resources](#minimum-resources). |
+| `minimum`  | Initializes the new containers using the {{% vendor/name %}} minimum resources (see below). |
 | `parent`   | Initializes the new containers using the same resources as the parent environment.</br>If there is no parent environment, or if the container doesn't already exist on the parent, the `default` strategy applies instead. |
+| `child`    | Only available when merging a child environment into its parent environment. Initializes the new containers using the same resources as the child environment. |
+
+{{% note theme="info" title="More information"%}} 
+<details>
+  <summary><b>Upsun minimum resources</b></summary>
+
+The following table shows the resources {{% vendor/name %}} allocates to your containers when you opt for the `minimum` [resource initialization strategy](#set-a-resource-initialization-strategy).
+
+| Container               | CPU  | RAM    | Disk*   |
+|-------------------------|------|--------|---------|
+| .NET                    | 0.1  | 64 MB  | 0 MB    |
+| Chrome Headless         | 0.1  | 64 MB  | None    |
+| Elasticsearch           | 0.1  | 448 MB | 256 MB  |
+| Elasticsearch Premium   | 0.1  | 448 MB | 256 MB  |
+| Elixir                  | 0.1  | 64 MB  | 0 MB    | 
+| Go                      | 0.1  | 64 MB  | 0 MB    |
+| InfluxDB                | 0.1  | 448 MB | 256 MB  |
+| Java                    | 0.1  | 448 MB | 0 MB    |
+| Kafka                   | 0.1  | 448 MB | 512 MB  |
+| Lisp                    | 0.1  | 64 MB  | 0 MB    |
+| MariaDB                 | 0.1  | 448 MB | 256 MB  |
+| Memcached               | 0.1  | 352 MB | None    |
+| MongoDB                 | 0.1  | 448 MB | 256 MB  | 
+| MongoDB Premium         | 0.1  | 448 MB | 256 MB  |
+| Network Storage         | 0.1  | 448 MB | 256 MB  | 
+| NodeJS                  | 0.1  | 64 MB  | 0 MB    |
+| OpenSearch              | 0.1  | 448 MB | 256 MB  | 
+| Oracle Java             | 0.1  | 448 MB | 0 MB    |
+| Oracle MySQL            | 0.1  | 448 MB | 256 MB  | 
+| PHP                     | 0.1  | 64 MB  | 0 MB    |
+| PostgreSQL              | 0.1  | 448 MB | 256 MB  | 
+| Python                  | 0.1  | 64 MB  | 0 MB    |
+| Rabbitmq                | 0.1  | 448 MB | 256 MB  | 
+| Redis ephemeral         | 0.1  | 352 MB | None    |
+| Redis persistent        | 0.1  | 352 MB | 256 MB  | 
+| Ruby                    | 0.1  | 64 MB  | 0 MB    |
+| Rust                    | 0.1  | 64 MB  | 0 MB    |
+| Solr                    | 0.1  | 448 MB | 256 MB  | 
+| Varnish                 | 0.1  | 448 MB | None    |
+| Vault KMS               | 0.1  | 448 MB | 256 MB  |
+
+\* The disk size is set to `None` when the container never uses a disk, and to `0 MB` when the container doesn't require a disk but can use one.
+</details>
+{{% /note %}} 
+
+You can set a resource initialization strategy when:
+
+- [First deploying your project](#first-deployment) or a new container
+- [Branching an environment](#environment-creation) to create a new child environment
+- [Merging a child environment](#environment-merge) into a parent environment
+- [Activating an environment](#activating-an-environment)
+- [Restoring a backup](#backup-restoration)
+
+### First deployment
+
+You can define [which resource initialization strategy](#resource-initialization-strategies) {{% vendor/name %}} uses to allocate resources
+when you first deploy your project or add a new container.
 
 {{< codetabs >}}
 
@@ -73,7 +142,7 @@ git push upsun -o resources.init=minimum
 
 {{< /note >}}
 
-Note that you can set a different resource initialization strategy for each of your deployments.
+Note that you can set another resource initialization strategy for each of your deployments.
 
 <--->
 
@@ -121,64 +190,177 @@ upsun integration:update --resources-init=minimum
 
 {{< /codetabs >}}
 
-### Minimum resources
+### Environment branch
 
-The following table shows the resources {{% vendor/name %}} allocates to your containers when you opt for the `minimum` [resource initialization strategy](#define-a-resource-initialization-strategy).
-
-| Container               | CPU  | RAM    | Disk*   |
-|-------------------------|------|--------|---------|
-| .NET                    | 0.1  | 64 MB  | 0 MB    |
-| Chrome Headless         | 0.1  | 64 MB  | None    |
-| Elasticsearch           | 0.1  | 448 MB | 256 MB  |
-| Elasticsearch Premium   | 0.1  | 448 MB | 256 MB  |
-| Elixir                  | 0.1  | 64 MB  | 0 MB    | 
-| Go                      | 0.1  | 64 MB  | 0 MB    |
-| InfluxDB                | 0.1  | 448 MB | 256 MB  |
-| Java                    | 0.1  | 448 MB | 0 MB    |
-| Kafka                   | 0.1  | 448 MB | 512 MB  |
-| Lisp                    | 0.1  | 64 MB  | 0 MB    |
-| MariaDB                 | 0.1  | 448 MB | 256 MB  |
-| Memcached               | 0.1  | 352 MB | None    |
-| MongoDB                 | 0.1  | 448 MB | 256 MB  | 
-| MongoDB Premium         | 0.1  | 448 MB | 256 MB  |
-| Network Storage         | 0.1  | 448 MB | 256 MB  | 
-| NodeJS                  | 0.1  | 64 MB  | 0 MB    |
-| OpenSearch              | 0.1  | 448 MB | 256 MB  | 
-| Oracle Java             | 0.1  | 448 MB | 0 MB    |
-| Oracle MySQL            | 0.1  | 448 MB | 256 MB  | 
-| PHP                     | 0.1  | 64 MB  | 0 MB    |
-| PostgreSQL              | 0.1  | 448 MB | 256 MB  | 
-| Python                  | 0.1  | 64 MB  | 0 MB    |
-| Rabbitmq                | 0.1  | 448 MB | 256 MB  | 
-| Redis ephemeral         | 0.1  | 352 MB | None    |
-| Redis persistent        | 0.1  | 352 MB | 256 MB  | 
-| Ruby                    | 0.1  | 64 MB  | 0 MB    |
-| Rust                    | 0.1  | 64 MB  | 0 MB    |
-| Solr                    | 0.1  | 448 MB | 256 MB  | 
-| Varnish                 | 0.1  | 448 MB | None    |
-| Vault KMS               | 0.1  | 448 MB | 256 MB  |
-
-\* The disk size is set to `None` when the container never uses a disk, and to `0 MB` when the container doesn't require a disk but can use one.
-
-## Actions on environments
-
-Here is how resource allocation works on {{% vendor/name %}} when you perform the following actions on an environment:
-
-### Environment creation
-
-When you [branch an environment](/glossary.md#branch) to create a new child environment,
+By default, when you [branch an environment](/glossary.md#branch) to create a new child environment,
 the child environment inherits all the resources from its parent.
+However, you can set another [resource initialization strategy](#set-a-resource-initialization-strategy).
+
+{{< codetabs >}}
+
++++
+title=Using the CLI
++++
+
+Run the following command:
+
+```bash
+environment:branch --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
+```
+
+For example, to use the `minimum` resource initialization strategy, run the following command:
+
+```bash
+environment:branch --resources-init=minimum
+```
+
+<--->
+
++++
+title=In the Console
++++
+
+1. Navigate to the environment you want to branch from.
+2. Click {{< icon branch >}} **Branch**.
+3. Enter a name and a type for the new environment.
+4. Select an initialization strategy from the proposed list.
+5. Click **Branch**.
+
+{{< /codetabs >}}
 
 ### Environment merge
 
 When you [merge](/glossary.md#merge) a child environment into a parent environment,
 any app or service on the child environment is merged into the parent.
-For the merge and deployment to be complete,
-you need to [allocate resources](/manage-resources/adjust-resources.md) to each of these newly added instances.
+By default, the resources from the child environment are also merged into the parent.
 
-### Environment sync
+However, you can set another resource initialization strategy.
+
+{{< codetabs >}}
+
++++
+title=Using the CLI
++++
+
+Run the following command:
+
+```bash
+environment:merge --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
+```
+
+For example, to use the `manual` resource initialization strategy, run the following command:
+
+```bash
+environment:merge --resources-init=manual
+```
+
+<--->
+
++++
+title=In the Console
++++
+
+1. Navigate to the environment you want to merge into its parent.
+2. Click {{< icon merge >}} **Merge**.
+3. Select an initialization strategy from the proposed list.
+5. Click **Merge**.
+
+{{< /codetabs >}}
+
+### Environment activation
+
+When you activate an environment, {{% vendor/name %}} uses the same resource allocation as the parent environment by default.
+If there is no parent environment, the [`default` resource initialization strategy](#default-resources) applies.
+
+You can also set another resource initialization strategy using the CLI.
+To do so, run the following command:
+
+```bash
+environment:activate --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
+```
+
+For example, to use the `minimum` resource initialization strategy, run the following command:
+
+```bash
+environment:activate --resources-init=minimum
+```
+
+### Backup restoration
+
+When you [restore a backup](/environments/restore.md),
+{{% vendor/name %}} uses the same resource allocation as the parent environment by default.
+If there is no parent environment, the [`default` resource initialization strategy](#default-resources) applies.
+
+You can also set another resource initialization strategy:
+
+{{< codetabs >}}
+
++++
+title=Using the CLI
++++
+
+Run the following command:
+
+```bash
+backup:restore --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
+```
+
+For example, to use the `manual` resource initialization strategy, run the following command:
+
+```bash
+backup:restore --resources-init=manual
+```
+
+<--->
+
++++
+title=In the Console
++++
+
+1. Navigate to the environment where you want to restore a backup.
+2. Click **Backups**.
+3. Select the backup you want to restore and click **More** {{< icon more >}} next to it.
+4. Click **Restore**.
+5. Read through the consequences.
+6. Select an initialization strategy from the proposed list.
+7. Click **Backup**.
+
+{{< /codetabs >}}
+
+## Environment sync
 
 When you [sync an environment](/glossary.md#sync),
-the target environment's disk size may be smaller that the source environment's disk size.
+changes in Production are copied to your Staging environment.
+You can synchronize only the code, only the data (databases, files), or both.
 
-In this case, to ensure that the synchonization succeeds, {{% vendor/name %}} automatically adjusts the target environment's disk size so it matches the source environment's disk size.
+As your Staging environment's disk size may be smaller than your Production environment's disk size,
+you can also sync resources.
+This ensures that there is enough disk on the Staging environment to successfully complete the sync.
+
+To sync resources, follow these instructions.
+
+{{< codetabs >}}
+
++++
+title=Using the CLI
++++
+
+Run the following command:
+
+```bash
+{{% vendor/name %}}  sync code data resources
+```
+
+<--->
+
++++
+title=In the Console
++++
+
+1. Navigate to your Production environment.
+2. Click {{< icon sync >}} **Sync**.
+3. Select the sync options you want from the proposed list.
+4. Select **Sync resources from Production into Staging**.
+5. Click **Sync**.
+
+{{< /codetabs >}}
