@@ -47,6 +47,8 @@ jobs:
           git add platform-commands.html
           git commit -m "generating Platform CLI command doc page"
 
+          cat platform-commands.html
+
           echo "Pushing most recent changes"
-          git push --force origin ${{ env.BRANCH_TITLE }}
+          #git push --force origin ${{ env.BRANCH_TITLE }}
 
