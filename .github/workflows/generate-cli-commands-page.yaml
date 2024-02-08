@@ -44,6 +44,7 @@ jobs:
 
           # Adding CLI Commands specific page
           currentTitle=$(platform environment:info -e ${{ github.event.pull_request.head.ref }} title)
+          echo "Current Title"
           echo $currentTitle
 
 
