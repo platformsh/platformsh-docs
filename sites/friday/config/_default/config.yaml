@@ -73,7 +73,7 @@ module:
               
               - "dedicated-gen-3/*"
 
-              # - "define-routes/*"
+              - "define-routes/*"
 
               # - "development/*"
               - "development/file-transfer.md"

@@ -11,12 +11,11 @@ You might need to control how people access your web applications,
 for example when you have [multiple apps](../create-apps/multi-app/_index.md) in one project.
 Or you might just want to direct requests to specific places, such as removing the `www` at the start of all requests.
 
-Control where external requests are directed by defining routes in a `{{< vendor/configfile "routes" >}}` file in your Git repository.
+Your project defines the routes configuration from a top-level key called `routes`,
+which is placed in a unified configuration file like `{{< vendor/configfile "routes" >}}`.
 
 If you have a single route served by a single app, you don't even need to configure routes in your `{{< vendor/configfile "routes" >}}`.
 Your project then includes a [default route](#default-route-definition).
-
-![Routes](/images/config-diagrams/routes-basic.png "0.5")
 
 ## Examples
 
@@ -29,9 +28,10 @@ If you have one app to direct traffic to and its name is `app`,
 this is equivalent to the following:
 
 ```yaml {configFile="routes"}
-"https://{default}/":
-    type: upstream
-    upstream: app:http
+routes:
+    "https://{default}/":
+        type: upstream
+        upstream: app:http
 ```
 
 All traffic to your domain (say, `https://example.com`) is sent to your app.
@@ -47,13 +47,14 @@ And say you want to redirect requests from `https://www.example.com` to `https:/
 Define your routes like this:
 
 ```yaml {configFile="routes"}
-"https://{default}/":
-    type: upstream
-    upstream: "app:http"
+routes:
+    "https://{default}/":
+        type: upstream
+        upstream: "app:http"
 
-"https://www.{default}/":
-    type: redirect
-    to: "https://{default}/"
+    "https://www.{default}/":
+        type: redirect
+        to: "https://{default}/"
 ```
 
 This affects your [default domain](#default).
@@ -62,8 +63,6 @@ You have one route that serves content (the one with the `upstream`)
 and one that redirects to the first (the one with the `redirect`).
 
 Redirects from `http` to `https` are generally included by default and don't need to be listed.
-
-![The name of the app in your app configuration determines the value for the redirect.](/images/config-diagrams/routes-configs.png "0.5")
 
 ### Multi-app route definition
 
@@ -75,13 +74,14 @@ All defined routes have at least a slash in the path.
 So you might define routes for 2 apps named `app` and `api` as follows:
 
 ```yaml {configFile="routes"}
-"https://{default}":
-    type: upstream
-    upstream: "app:http"
+routes:
+    "https://{default}":
+        type: upstream
+        upstream: "app:http"
 
-"https://subdomain.example.com":
-    type: upstream
-    upstream: "api:http"
+    "https://subdomain.example.com":
+        type: upstream
+        upstream: "api:http"
 ```
 
 Both of these routes would be resolved with trailing slashes.
@@ -129,18 +129,21 @@ If you have set your default domain to `example.com`,
 
 You can use the `{default}` placeholder:
 
+<!-- Upsun configuration-->
 ```yaml {configFile="routes"}
-"https://{default}/blog":
-    type: upstream
-    upstream: "app:http"
+routes:
+    "https://{default}/blog":
+        type: upstream
+        upstream: "app:http"
 ```
 
 And you can use an absolute URL:
 
 ```yaml {configFile="routes"}
-"https://example.com/blog":
-    type: upstream
-    upstream: "app:http"
+routes:
+    "https://example.com/blog":
+        type: upstream
+        upstream: "app:http"
 ```
 
 In both cases, the URLs for your Production environment are the same.
@@ -160,40 +163,6 @@ https://feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/blog
 
 Note that the `example.com` prefix isn't part of the generated URL.
 
-{{< note title="Previous behavior" >}}
-
-Before April 7, 2022, URLs in preview environments differed depending on whether or not you used the `{default}` placeholder.
-
-If you used the `{default}` placeholder:
-
-```yaml {configFile="routes"}
-"https://{default}/blog":
-    type: upstream
-    upstream: "app:http"
-```
-
-The generated URL for the `feature` environment was:
-
-```txt
-https://feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/blog
-```
-
-If you used an absolute URL:
-
-```yaml {configFile="routes"}
-"https://example.com/blog":
-    type: upstream
-    upstream: "app:http"
-```
-
-The generated URL for the `feature` environment was:
-
-```txt
-https://example.com.feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/blog
-```
-
-{{< /note >}}
-
 ### `{all}`
 
 You can also set up multiple domains for a single project.
@@ -203,13 +172,14 @@ Say you have both `example.com` and `example.net` as domains in a project.
 You can then define the following routes:
 
 ```yaml {configFile="routes"}
-"https://{all}/":
-    type: upstream
-    upstream: "app:http"
+routes:
+    "https://{all}/":
+        type: upstream
+        upstream: "app:http"
 
-"https://www.{all}/":
-    type: redirect
-    to: "https://{all}/"
+    "https://www.{all}/":
+        type: redirect
+        to: "https://{all}/"
 ```
 
 The first route means you're serving the same content at multiple domains:
@@ -226,13 +196,14 @@ the route using `{default}` takes precedence.
 Say you have two apps named `app1` and `app2` and define two routes like this:
 
 ```yaml {configFile="routes"}
-"https://{default}/":
-    type: upstream
-    upstream: "app1:http"
-
-"https://{all}/":
-    type: upstream
-    upstream: "app2:http"
+routes:
+    "https://{default}/":
+        type: upstream
+        upstream: "app1:http"
+        
+    "https://{all}/":
+        type: upstream
+        upstream: "app2:http"
 ```
 
 Requests to your default domain are served by `app1`.
@@ -255,18 +226,6 @@ Let's Encrypt wildcard certificates aren't supported (they would need DNS valida
 So if you want to use a wildcard route and protect it with HTTPS,
 you need to provide a [custom TLS certificate](../domains/steps/tls.md).
 
-{{% version/only "1" %}}
-{{< note >}}
-
-In projects created before November 2017, the `.` in subdomains was replaced with a triple hyphen (`---`).
-It was switched to preserve `.` to simplify SSL handling and improve support for longer domains.
-If your project was created before November 2017, it still uses `---` to the left of the environment name.
-To switch to dotted-domains, [contact support](/learn/overview/get-support.md).
-Doing so may change the domain name that your production domain name should `CNAME` to.
-
-{{< /note >}}
-{{% /version/only %}}
-
 ## Route identifiers
 
 When your project has deployed and routes are generated,
@@ -285,14 +244,15 @@ Say you have two apps, `app1` and `app2`, that you want to serve at two subdomai
 You can define your routes like this:
 
 ```yaml {configFile="routes"}
-"https://site1.{default}/":
-    type: upstream
-    upstream: 'app1:http'
+routes:
+    "https://site1.{default}/":
+        type: upstream
+        upstream: 'app1:http'
 
-"https://site2.{default}/":
-    type: upstream
-    id: 'the-second'
-    upstream: 'app2:http'
+    "https://site2.{default}/":
+        type: upstream
+        id: 'the-second'
+        upstream: 'app2:http'
 ```
 
 To see the generated routes on your `feature` environment, run:
@@ -352,11 +312,12 @@ This metadata has no impact on {{% vendor/name %}}, but is available in the `PLA
 So you can define a route like this:
 
 ```yaml {configFile="routes"}
-"http://{default}/":
-    type: upstream
-    upstream: "app:http"
-    attributes:
-        "foo": "bar"
+routes:
+    "http://{default}/":
+        type: upstream
+        upstream: "app:http"
+        attributes:
+            "foo": "bar"
 ```
 
 The attributes appear in the routes data like so:
@@ -448,19 +409,19 @@ which is a requirement for the router caching.
 1. Define a route that serves WebSocket:
 
 ```yaml {configFile="routes"}
-"https://{default}/ws":
-    type: upstream
-    upstream: "app:http"
-    cache:
-        enabled: false
+routes:
+    "https://{default}/ws":
+        type: upstream
+        upstream: "app:http"
+        cache:
+            enabled: false
 
-# Below HTTP config may not be necessary for every Websocket client.
-# It is required for some, as only defining an HTTPS config may trigger an automatic redirect to HTTP. 
-"http://{default}/ws":
-    type: upstream
-    upstream: "app:http"
-    cache:
-        enabled: false
+    # Below HTTP config may not be necessary for every Websocket client.
+    "https://{default}/ws":
+        type: upstream
+        upstream: "app:http"
+        cache:
+            enabled: false   
 ```
 
 2. [Disable request buffering](../create-apps/app-reference.md#locations) in your app configuration.
