@@ -4,6 +4,9 @@ on:
   pull_request:
     branches: [main]
     types: [labeled,opened,unlabeled,synchronize]
+#  schedule:
+#    # Run at 00:15 every day
+#    - cron: '15 */19 * * *'
 
 env:
   PLATFORMSH_CLI_NO_INTERACTION: 1
@@ -11,7 +14,9 @@ env:
   PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
   SLEEP_TIME: 5
   NUM_TRIES: 30
-  BRANCH_TITLE: ${{ vars.BFF_PREFIX }}-${{ github.event.number }}
+  BRANCH_TITLE: ${{ vars.BFF_PREFIX }}-cli-command-doc-page
+  PLATFORMSH_CLI_DOC_PATH: "sites/platform/src/administration/cli/reference.html"
+  UPSUN_CLI_DOC_PATH: "sites/friday/src/administration/cli/reference.html"
 permissions:
   contents: write
 
@@ -19,29 +24,42 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # Get Default Branch
+      - name: get default branch
+        run: echo DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@') >> $GITHUB_ENV
+
       - uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: $DEFAULT_BRANCH
           token: ${{ secrets.WORKFLOW_TOKEN }}
 
       # Set up workflow environment to use the Platform.sh CLI
       - name: Set up Platform.sh CLI
         uses: ./.github/actions/set-up-cli
 
+      # Set up workflow environment to use the Upsun CLI
+      - name: Set up Upsun CLI
+        uses: ./.github/actions/set-up-upsun-cli
+
+      # Set Platform.sh CLI doc page CHECKSUM
+      - name: Set CHECKSUM for
+        run: echo PSH_CHECKSUM=$(shasum -a 1 ${{ env.PLATFORMSH_CLI_DOC_PATH }} | awk '{ print $1 }') >> $PSH_CHECKSUM
+
       # Generate Platform.sh CLI command doc pages
       - env:
-          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+          #PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+          #UPSUN_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
           # @see activate_environment:Set environment title:env in manage-environment.yaml
           PR_TITLE: ${{ github.event.pull_request.title }}
         run: |
           # Generate Platform.sh CLI command doc pages
 
           # Set current user
-          git config --global user.name 'CLI Command doc page auto generator'
-          git config --global user.email 'flovntp@gmail.com'
+          #git config --global user.name 'CLI Command doc page auto generator'
+          #git config --global user.email 'flovntp@gmail.com'
 
-          # Get most recent changes
-          git checkout ${{ github.event.pull_request.head.sha }}
+          # Get most recent changes from main
+          git checkout $DEFAULT_BRANCH
 
           # Put most recent changes on the branch
           echo "Switching to branch ${{ env.BRANCH_TITLE }}"
@@ -50,9 +68,10 @@ jobs:
           # Adding CLI Commands specific page
           echo "Generating Platform.sh CLI doc page"
           ./shared/scripts/gen-cli-docs.sh
-          git add sites/platform/src/administration/cli/reference.md
+          git add ${{ env.PLATFORMSH_CLI_DOC_PATH }}
           git commit -m "generating Platform CLI command doc page"
 
           echo "Pushing most recent changes"
           git push --force origin ${{ env.BRANCH_TITLE }}
 
+          gh pr view ${{ env.BRANCH_TITLE }}
