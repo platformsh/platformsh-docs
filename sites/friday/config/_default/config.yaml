@@ -60,6 +60,7 @@ module:
               # - "administration/*"
               - "administration/sso.md"
               - "administration/pricing/*"
+              - "administration/cli/reference.md"
 
               # - "changelog/*"
 
