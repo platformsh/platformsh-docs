@@ -106,16 +106,16 @@ set up a new service with a different name.
 
 {{% note theme="warning" title="Warning" %}}
 
-{{% vendor/name %}} sets the maximum amount of memory (`maxmemory`) Redis automatically, and you can't adjust it.
+{{% vendor/name %}} sets the maximum amount of memory (`maxmemory`) Redis can use automatically, and you can't adjust it.
 It is defined by comparing the following values and keeping the lower of the two:
 
-- Disk size/6 [as per a recommendation from Redis](https://docs.redis.com/latest/rs/installing-upgrading/install/plan-deployment/hardware-requirements/#productionenvironment)
-- The maximum amount of memory allocated to the service container
+- Disk size/6 (based on a [recommendation from Redis](https://docs.redis.com/latest/rs/installing-upgrading/install/plan-deployment/hardware-requirements/#productionenvironment))
+- The amount of memory allocated to the service container
 
 For instance, if your Redis container has 3072 MB of disk space and 1024 MB of memory,
 only 512 MB of RAM are actually available to the service (3072/6 = 512).
 
-But if your Redis container has has 3072 MB of disk space and 256 MB of memory,
+But if your Redis container has 3072 MB of disk space and 256 MB of memory,
 only 256 MB of RAM are actually available to the service (as per the container limit).
 
 {{% /note %}}
