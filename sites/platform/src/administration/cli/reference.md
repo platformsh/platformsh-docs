@@ -11,7 +11,7 @@ showTitle: false
     }
 </style>
 
-# Platform.sh CLI 5.0.9
+# Platform.sh CLI 5.0.8
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)

@@ -11,7 +11,7 @@ showTitle: false
     }
 </style>
 
-# Upsun CLI 5.0.9
+# Upsun CLI 5.0.8
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
