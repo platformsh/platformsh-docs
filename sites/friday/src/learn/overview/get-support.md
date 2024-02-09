@@ -38,15 +38,9 @@ The [{{% vendor/name %}} Community site](https://community.platform.sh/) has how
 on how to get the most out of {{% vendor/name %}}.
 
 ## Contact Sales
-{{% version/specific %}}
-<!-- Platform.sh -->
-If you have questions about pricing or need help figuring out if {{% vendor/name %}} is the right solution for your team,
-get in touch with [Sales](https://{{< vendor/urlraw "host" >}}/contact/).
-<--->
-<!-- Version 2 -->
+
 If you have questions about pricing or need help figuring out if {{% vendor/name %}} is the right solution for your team,
 get in touch with [Sales](https://{{< vendor/urlraw "host" >}}/register/).
-{{% /version/specific %}}
 
 ## Delete your account
 
