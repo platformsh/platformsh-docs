@@ -46,9 +46,9 @@ jobs:
 
           # Adding CLI Commands specific page
           echo "Generating Platform.sh CLI doc page"
-          ./shared/scripts/gen-cli-docs.sh ${{ env.PLATFORMSH_CLI_DOC_PATH }}
+          ./shared/scripts/gen-cli-docs.sh ${{ env.PLATFORMSH_CLI_DOC_PATH }} platform
           echo "Generating Upsun CLI doc page"
-          ./shared/scripts/gen-cli-docs-upsun.sh ${{ env.UPSUN_CLI_DOC_PATH }}
+          ./shared/scripts/gen-cli-docs.sh ${{ env.UPSUN_CLI_DOC_PATH }} upsun
 
       - name: Create Pull Request
         id: cpr
