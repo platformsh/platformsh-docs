@@ -50,19 +50,6 @@ So the duration of the redeployment depends on what needs to be upgraded.
 
 To enable HTTPS, add a routing configuration similar to the following:
 
-{{< version/specific >}}
-<!-- Platform.sh configuration-->
-```yaml {configFile="routes"}
-"https://{default}/":
-    type: upstream
-    upstream: "app:http"
-
-"https://www.{default}/":
-    type: redirect
-    to: "https://{default}/"
-```
-<--->
-<!-- Upsun configuration-->
 ```yaml {configFile="routes"}
 routes:
     "https://{default}/":
@@ -73,7 +60,6 @@ routes:
         type: redirect
         to: "https://{default}/"
 ```
-{{< /version/specific >}}
 
 All traffic to your domain is then sent to your app.
 The `www` subdomain redirects to the [default domain](../define-routes/_index.md#default).
@@ -92,14 +78,6 @@ Although you can still use TLS 1.2, TLS 1.3 is faster and more secure.
 To instruct your web server to automatically reject TLS 1.2 connections,
 enforce TLS 1.3 using the `min_version` setting:
 
-{{< version/specific >}}
-<!-- Platform.sh configuration-->
-```yaml {configFile="routes"}
-tls:
-    min_version: TLSv1.3
-```
-<--->
-<!-- Upsun configuration-->
 ```yaml {configFile="routes"}
 routes:
     "https://{default}/":
@@ -107,7 +85,6 @@ routes:
         tls:
             min_version: TLSv1.3
 ```
-{{< /version/specific >}}
 
 Note that TLS versions older than 1.2 are deprecated and are rejected by default.
 
@@ -116,17 +93,6 @@ Note that TLS versions older than 1.2 are deprecated and are rejected by default
 [HSTS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) forces clients to always communicate with your site over HTTPS.
 To enable HSTS, use `strict_transport_security` in a configuration similar to the following:
 
-{{< version/specific >}}
-<!-- Platform.sh configuration-->
-```yaml {configFile="routes"}
-tls:
-    strict_transport_security:
-        enabled: true
-        include_subdomains: true
-        preload: true
-```
-<--->
-<!-- Upsun configuration-->
 ```yaml {configFile="routes"}
 routes:
     "https://{default}/":
@@ -137,7 +103,6 @@ routes:
                 include_subdomains: true
                 preload: true
 ```
-{{< /version/specific >}}
 
 The following table presents the possible properties for `strict_transport_security`:
 
@@ -159,14 +124,6 @@ This allows you to restrict access to trusted users.
 
 To do so, enable client-authenticated TLS by adding the following configuration:
 
-{{< version/specific >}}
-<!-- Platform.sh configuration-->
-```yaml {configFile="routes"}
-tls:
-    client_authentication: "require"
-```
-<--->
-<!-- Upsun configuration-->
 ```yaml {configFile="routes"}
 routes:
     "https://{default}/":
@@ -174,28 +131,12 @@ routes:
         tls:
             client_authentication: "require"
 ```
-{{< /version/specific >}}
 
 By default, all valid TLS certificates issued by a legitimate certificate authority are accepted.
 But you can instruct your web server to only accept TLS certificates issued by specific or even custom certificate authorities.
 
 To do so, add a configuration similar to the following:
 
-{{< version/specific >}}
-<!-- Platform.sh configuration-->
-```yaml {configFile="routes"}
-tls:
-    client_authentication: "require"
-    client_certificate_authorities:
-        - !include
-            type: string
-            path: root-ca1.crt
-        - !include
-            type: string
-            path: root-ca2.crt
-```
-<--->
-<!-- Upsun configuration-->
 ```yaml {configFile="routes"}
 routes:
     "https://{default}/":
@@ -210,28 +151,10 @@ routes:
                     type: string
                     path: root-ca2.crt
 ```
-{{< /version/specific >}}
 
 In this case, the certificate files are resolved relative to the `{{< vendor/configdir >}}` directory.
 Alternatively, you can specify the certificates inline in the file:
 
-{{< version/specific >}}
-<!-- Platform.sh configuration-->
-```yaml {configFile="routes"}
-tls:
-    client_authentication: "require"
-    client_certificate_authorities:
-        - |
-            -----BEGIN CERTIFICATE-----
-            ### Several lines of characters here ###
-            -----END CERTIFICATE-----
-        - |
-            -----BEGIN CERTIFICATE-----
-            ### Several lines of different characters here ###
-            -----END CERTIFICATE-----
-```
-<--->
-<!-- Upsun configuration-->
 ```yaml {configFile="routes"}
 routes:
     "https://{default}/":
@@ -248,4 +171,3 @@ routes:
                     ### Several lines of different characters here ###
                     -----END CERTIFICATE-----
 ```
-{{< /version/specific >}}
