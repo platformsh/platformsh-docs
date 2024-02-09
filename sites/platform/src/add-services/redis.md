@@ -112,8 +112,7 @@ When defining container resources, keep in mind that,
 based on a [recommendation from Redis](https://docs.redis.com/latest/rs/installing-upgrading/install/plan-deployment/hardware-requirements/#productionenvironment),
 {{% vendor/name %}} limits ``maxmemory`` to a sixth of the disk space allocated to the service container.
 
-For instance, if your Redis container has 6 GB of disk space, only 1 GB of RAM is actually available to the service.
-To allocate 6 GB of RAM to your service, set the disk size to `36`.
+For instance, if your Redis container has 3072 MB of disk space, only 512 MB of RAM are actually available to the service (3072/6 = 512).
 
 {{% /note %}}
 
