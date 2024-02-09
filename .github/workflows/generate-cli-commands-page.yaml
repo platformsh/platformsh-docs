@@ -1,9 +1,11 @@
 name: Generate CLI commands doc page
 
 on:
-  pull_request:
-    branches: [main]
-    types: [labeled,opened,unlabeled,synchronize]
+  workflow_dispatch:
+    branches: [ main, test-workflow ]
+#  pull_request:
+#    branches: [main]
+#    types: [labeled,opened,unlabeled,synchronize]
 #  schedule:
 #    # Run at 00:15 every day
 #    - cron: '15 */19 * * *'
@@ -14,9 +16,10 @@ env:
   PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
   SLEEP_TIME: 5
   NUM_TRIES: 30
-  BRANCH_TITLE: ${{ vars.BFF_PREFIX }}-cli-command-doc-page
-  PLATFORMSH_CLI_DOC_PATH: "sites/platform/src/administration/cli/reference.html"
-  UPSUN_CLI_DOC_PATH: "sites/friday/src/administration/cli/reference.html"
+  BRANCH_TITLE: cli-commands-doc-page
+  DEFAULT_BRANCH: "main"
+  PLATFORMSH_CLI_DOC_PATH: "sites/platform/src/administration/cli/reference.md"
+  UPSUN_CLI_DOC_PATH: "sites/friday/src/administration/cli/reference.md"
 permissions:
   contents: write
 
@@ -24,13 +27,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # Get Default Branch
-      - name: get default branch
-        run: echo DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@') >> $GITHUB_ENV
-
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
-          ref: $DEFAULT_BRANCH
+          ref: ${{ env.DEFAULT_BRANCH }}
           token: ${{ secrets.WORKFLOW_TOKEN }}
 
       # Set up workflow environment to use the Platform.sh CLI
@@ -41,37 +40,38 @@ jobs:
       - name: Set up Upsun CLI
         uses: ./.github/actions/set-up-upsun-cli
 
-      # Set Platform.sh CLI doc page CHECKSUM
-      - name: Set CHECKSUM for
-        run: echo PSH_CHECKSUM=$(shasum -a 1 ${{ env.PLATFORMSH_CLI_DOC_PATH }} | awk '{ print $1 }') >> $PSH_CHECKSUM
-
-      # Generate Platform.sh CLI command doc pages
-      - env:
-          #PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
-          #UPSUN_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
-          # @see activate_environment:Set environment title:env in manage-environment.yaml
-          PR_TITLE: ${{ github.event.pull_request.title }}
+      - name: Make changes to pull request
         run: |
           # Generate Platform.sh CLI command doc pages
 
-          # Set current user
-          #git config --global user.name 'CLI Command doc page auto generator'
-          #git config --global user.email 'flovntp@gmail.com'
-
-          # Get most recent changes from main
-          git checkout $DEFAULT_BRANCH
-
-          # Put most recent changes on the branch
-          echo "Switching to branch ${{ env.BRANCH_TITLE }}"
-          git switch -C ${{ env.BRANCH_TITLE }}
-
           # Adding CLI Commands specific page
           echo "Generating Platform.sh CLI doc page"
-          ./shared/scripts/gen-cli-docs.sh
-          git add ${{ env.PLATFORMSH_CLI_DOC_PATH }}
-          git commit -m "generating Platform CLI command doc page"
+          ./shared/scripts/gen-cli-docs.sh ${{ env.PLATFORMSH_CLI_DOC_PATH }}
+          echo "Generating Upsun CLI doc page"
+          ./shared/scripts/gen-cli-docs-upsun.sh ${{ env.UPSUN_CLI_DOC_PATH }}
 
-          echo "Pushing most recent changes"
-          git push --force origin ${{ env.BRANCH_TITLE }}
-
-          gh pr view ${{ env.BRANCH_TITLE }}
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.WORKFLOW_TOKEN }}
+          commit-message: Update on
+          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
+          signoff: false
+          add-paths: |
+            ${{ env.PLATFORMSH_CLI_DOC_PATH }}
+            ${{ env.UPSUN_CLI_DOC_PATH }}
+          branch: ${{ env.BRANCH_TITLE }}
+          delete-branch: false
+          title: '[CLI-BOT] Update on doc pages for CLI commands'
+          body: |
+            Some changes occurs on the CLI Commands doc page, that is automatically generated from:
+             - `platform list --format=md`
+             - `upsun list --format=md`
+          labels: |
+            report
+            automated pr
+          #assignees: flovntp
+          #reviewers: flovntp
+          draft: false
