@@ -12,29 +12,16 @@ You can manage redirection rules on your {{% vendor/name %}} projects in two dif
 
 Using whole-route redirects, you can define very basic routes in your [`{{< vendor/configfile "routes" >}}`](./_index.md) file whose sole purpose is to redirect. A typical use case for this type of route is adding or removing a `www.` prefix to your domain, as the following example shows:
 
-{{< version/specific >}}
-<!-- Platform.sh configuration-->
 ```yaml
 https://{default}/:
     type: redirect
     to: https://www.{default}/
 ```
-<--->
-<!-- Upsun configuration -->
-```yaml
-routes:
-    https://{default}/:
-        type: redirect
-        to: https://www.{default}/
-```
-{{< /version/specific >}}
 
 ## Partial redirects
 
 In the [`{{< vendor/configfile "routes" >}}`](./_index.md) file you can also add partial redirect rules to existing routes:
 
-{{< version/specific >}}
-<!-- Platform.sh configuration-->
 ```yaml
 https://{default}/:
     # ...
@@ -47,22 +34,6 @@ https://{default}/:
                 to: 'https://example.com/$1'
                 regexp: true
 ```
-<--->
-<!-- Upsun configuration -->
-```yaml
-routes:
-    https://{default}/:
-        # ...
-        redirects:
-            expires: 1d
-            paths:
-                '/from':
-                    to: 'https://example.com/'
-                '^/foo/(.*)/bar':
-                    to: 'https://example.com/$1'
-                    regexp: true
-```
-{{< /version/specific >}}
 
 This format is more rich and works with any type of route, including routes served directly by the application.
 
@@ -80,8 +51,6 @@ Each rule under `paths` is defined by its key describing the expression to match
   
    In the following example, a request to `https://example.com/foo/a/b/c/bar` would redirect to `https://example.com/a/b/c`:
 
-{{< version/specific >}}
-<!-- Platform.sh configuration-->
    ```yaml
    https://{default}/:
        type: upstream
@@ -92,20 +61,6 @@ Each rule under `paths` is defined by its key describing the expression to match
                    to: 'https://example.com/$1'
                    regexp: true
    ```
-<--->
-<!-- Upsun configuration -->
-   ```yaml
-   routes:
-       https://{default}/:
-           type: upstream
-           # ...
-           redirects:
-               paths:
-                   '^/foo/(.*)/bar':
-                       to: 'https://example.com/$1'
-                       regexp: true
-   ```
-{{< /version/specific >}}
 
    Note that special arguments in the `to` statement are also valid when `regexp` is set to `true`:
     * `$is_args` evaluates to `?` or empty string
@@ -114,8 +69,6 @@ Each rule under `paths` is defined by its key describing the expression to match
     * `$uri` evaluates to the full URI of the request.
  * `prefix`: optional, specifies whether both the path and all its children or just the path itself should be redirected. Defaults to `true`, but not supported if `regexp` is `true`. For example,
 
-{{< version/specific >}}
-<!-- Platform.sh configuration-->
    ```yaml
    https://{default}/:
        type: upstream
@@ -126,20 +79,6 @@ Each rule under `paths` is defined by its key describing the expression to match
                     to: 'https://{default}/to'
                     prefix: true
    ```
-<--->
-<!-- Upsun configuration -->
-   ```yaml
-   routes:
-       https://{default}/:
-           type: upstream
-           # ...
-           redirects:
-               paths:
-                   '/from':
-                        to: 'https://{default}/to'
-                        prefix: true
-   ```
-{{< /version/specific >}}
 
    with `prefix` set to `true`, `/from` redirects to `/to` and `/from/another/path` redirects to `/to/another/path`.
    If `prefix` is set to `false` then `/from` triggers a redirect, but `/from/another/path` doesn't.
@@ -147,8 +86,6 @@ Each rule under `paths` is defined by its key describing the expression to match
  * `append_suffix`: optional, determines if the suffix is carried over with the redirect. Defaults to `true`, but not supported if `regexp` is `true` or if `prefix` is `false`.
    If we redirect with `append_suffix` set to `false`, for example, then the following
 
-{{< version/specific >}}
-<!-- Platform.sh configuration-->
    ```yaml
    https://{default}/:
        type: upstream
@@ -159,27 +96,11 @@ Each rule under `paths` is defined by its key describing the expression to match
                     to: 'https://{default}/to'
                     append_suffix: false
    ```
-<--->
-<!-- Upsun configuration -->
-   ```yaml
-   routes:
-       https://{default}/:
-           type: upstream
-           # ...
-           redirects:
-               paths:
-                   '/from':
-                        to: 'https://{default}/to'
-                        append_suffix: false
-   ```
-{{< /version/specific >}}
 
    would result in `/from/path/suffix` redirecting to just `/to`. If `append_suffix` was left on its default value of `true`, then `/from/path/suffix` would have redirected to `/to/path/suffix`.
 
  * `code`: optional, HTTP status code. Valid status codes are `301`, `302`, `307`, and `308`. Defaults to `302`.
 
-{{< version/specific >}}
-<!-- Platform.sh configuration-->
 ```yaml
 https://{default}/:
     type: upstream
@@ -192,29 +113,11 @@ https://{default}/:
             '/here':
                 to: 'https://example.com/there'
    ```
-<--->
-<!-- Upsun configuration -->
-```yaml
-routes:
-    https://{default}/:
-        type: upstream
-        # ...
-        redirects:
-            paths:
-                '/from':
-                    to: 'https://example.com/'
-                    code: 308
-                '/here':
-                    to: 'https://example.com/there'
-```
-{{< /version/specific >}}
 
    In this example, redirects from `/from` would use a `308` HTTP status code, but redirects from `/here` would default to `302`.
 
  * `expires`: optional, the duration the redirect is cached for. Defaults to the `expires` value defined directly under the `redirects` key, but at this level the expiration of individual partial redirects can be fine-tuned:
 
-{{< version/specific >}}
-<!-- Platform.sh configuration-->
    ```yaml
    https://{default}/:
        type: upstream
@@ -228,23 +131,7 @@ routes:
                    to: 'https://example.com/there'
                    expires: 2w
    ```
-<--->
-<!-- Upsun configuration -->
-   ```yaml
-   routes:
-       https://{default}/:
-           type: upstream
-           # ...
-           redirects:
-               expires: 1d
-               paths:
-                   '/from':
-                       to: 'https://example.com/'
-                   '/here':
-                       to: 'https://example.com/there'
-                       expires: 2w
-   ```
-{{< /version/specific >}}
+   
    In this example, redirects from `/from` would be set to expire in one day, but redirects from `/here` would expire in two weeks.
 
 
