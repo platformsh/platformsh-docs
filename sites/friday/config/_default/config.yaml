@@ -60,6 +60,7 @@ module:
               - "add-services/network-storage.md"
               - "administration/sso.md"
               - "administration/pricing/*"
+              - "administration/cli/reference.md"
               - "increase-observability/logs/forward-fastly-logs.md"
               - "increase-observability/integrate-observability/*"
               - "increase-observability/metrics/grid.md"
