@@ -55,6 +55,7 @@ module:
           excludeFiles:
               - "registry/*"
               - "get-started/*"
+              - "glossary/*"
               - "development/transfer-dedicated.md"
               - "add-services/network-storage.md"
               - "administration/sso.md"
