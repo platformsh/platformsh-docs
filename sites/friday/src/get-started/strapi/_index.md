@@ -262,22 +262,6 @@ git add .environment .{{% vendor/cli %}}/config.yaml
 git commit -m "{{% vendor/name %}} config files"
 ```
 
-## Customize the generated .environment file
-
-Open your generated ``.environment`` file and add the missing `APP_KEYS` parameters:
-```bash {location=".environment"}
-export APP_KEYS="toBeModified1,toBeModified2"
-```
-
-{{< note >}}
-Don't forget to replace ``toBeModified1`` and `toBeModified2` by your personal token. You could also use your own environment variables to do so, using the following:
-```bash {location=".environment"}
-export APP_KEYS=APP_TOKEN_1,APP_TOKEN_2
-```
-{{< /note >}}
-
-[//]: # ( https://github.com/platformsh/cli/issues/150: if solved, we can removed this section)
-
 ## Set a project remote
 
 {{< note >}}

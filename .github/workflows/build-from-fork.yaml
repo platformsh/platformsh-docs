@@ -7,28 +7,16 @@ on:
 
 env:
   PLATFORMSH_CLI_NO_INTERACTION: 1
+  PLATFORM_PROJECT: ${{ vars.PROJECT_ID }}
   PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
   SLEEP_TIME: 5
   NUM_TRIES: 30
   BRANCH_TITLE: ${{ vars.BFF_PREFIX }}-${{ github.event.number }}
 
 jobs:
-  jobs:
-    get_project_id:
-      runs-on: ubuntu-latest
-      outputs:
-        project_id: ${{ steps.get-project-id.outputs.project_id }}
-      steps:
-        - uses: platformsh/gha-retrieve-projectid@main
-          id: get-project-id
-          with:
-            github_token: ${{ secrets.WORKFLOW__LABEL_TOKEN }}
   build:
     if: github.event.label.name == 'build-fork' || contains(github.event.pull_request.labels.*.name, 'build-fork')
     runs-on: ubuntu-latest
-    needs: get_project_id
-    env:
-      PLATFORM_PROJECT: ${{ needs.get_project_id.outputs.project_id }}
     steps:
       - uses: actions/checkout@v3
         with:
