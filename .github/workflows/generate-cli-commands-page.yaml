@@ -2,13 +2,10 @@ name: Generate CLI commands doc page
 
 on:
   workflow_dispatch:
-    branches: [ main, test-workflow ]
-#  pull_request:
-#    branches: [main]
-#    types: [labeled,opened,unlabeled,synchronize]
-#  schedule:
-#    # Run at 00:15 every day
-#    - cron: '15 */19 * * *'
+    branches: [ main ]
+  schedule:
+    # Run at 00:15 every day
+    - cron: '15 */19 * * *'
 
 env:
   PLATFORMSH_CLI_NO_INTERACTION: 1
