@@ -89,15 +89,8 @@ Then upload them to your new project:
 {{% vendor/cli %}} mount:upload
 ```
 
-{{% version/specific %}}
-<!-- Platform.sh -->
 See more options on [how to export files](/learn/tutorials/exporting.md)
 and [how to import files](/learn/tutorials/migrating.md#5-import-data).
-<--->
-<!-- Version 2 -->
-See more options on [how to export files](/learn/tutorials/exporting.md)
-and [how to import files](/learn/tutorials/migrating/from-psh.md#5-import-data).
-{{% /version/specific %}}
 
 ## 5. Copy data from services
 

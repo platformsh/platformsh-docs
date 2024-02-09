@@ -49,8 +49,8 @@ jobs:
 
           # Adding CLI Commands specific page
           echo "Generating Platform.sh CLI doc page"
-          platform list --format=md > sites/platform/src/administration/cli/reference.html
-          git add sites/platform/src/administration/cli/reference.html
+          ./shared/scripts/gen-cli-docs.sh
+          git add sites/platform/src/administration/cli/reference.md
           git commit -m "generating Platform CLI command doc page"
 
           echo "Pushing most recent changes"
