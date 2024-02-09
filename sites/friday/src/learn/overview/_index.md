@@ -11,14 +11,13 @@ It allows you to host web applications on the cloud while making your developmen
 If you're new to {{% vendor/name %}}, the [Philosophy](/learn/overview/philosophy.md), [Structure](/learn/overview/structure.md),
 and [Build and Deploy](/learn/overview/build-deploy.md) pages cover all the basics to start on the right track.
 
-The main requirement of {{% vendor/name %}} is that you use Git to manage your application code.</br>
-Your project's configuration is driven almost entirely by a small number of YAML files in your Git repository.
-For more information on how to configure your project,
-refer to the [Configure apps](/create-apps.md), [Add services](/add-services.md)
-and [Define routes](define-routes.md) reference documentation.
+The main requirement of {{% vendor/name %}} is that you use Git to manage your application code.
+If you have a single-app project, you can configure it from a single `{{< vendor/configfile "app" >}}` file,
+usually located at the root of your app folder in your Git repository.
+[Multi-app projects](/create-apps/multi-app/_index.md) can be set up in various ways.
 
 {{% vendor/name %}} is built on Debian, supports many different programming [languages](/languages.md) and environments,
-and features recommended optimizations for several [featured frameworks](/guides/_index.md).
+and features recommended optimizations for several [featured frameworks](/get-started/_index.md).
 
 Finally, you can also get tips for setting up your own [development workflow](/development/_index.md)
 and [administrating](/administration/_index.md) your {{% vendor/name %}} account.
@@ -32,7 +31,7 @@ That means you can, and should, view your infrastructure needs as part of your a
 
 {{% vendor/name %}} covers not only all of your hosting needs but also most of your DevOps needs. It is a single tool that covers the application life-cycle from development to production and scaling.
 
-You only need to write your code, including a few YAML files that specify your desired infrastructure, commit it to Git, and push.
+You only need to write your code, including a single or a few YAML files that specify your desired infrastructure, commit it to Git, and push.
 You don't need to set up anything manually. The web server is already set up and configured, as is any database, search engine, or cache that you specify.
 
 Every branch you push can be made a fully independent environment&mdash;complete with your application code, a copy of your database, a copy of your search index, a copy of your user files, everything.

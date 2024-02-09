@@ -112,9 +112,7 @@ module:
               # - "languages/*"
               - "languages/java/frameworks.md"
 
-              # - "learn/*"
-              - "learn/resources.md"
-              - "learn/tutorials/migrating.md"
+              - "learn/*"
 
               - "projects/*"
 

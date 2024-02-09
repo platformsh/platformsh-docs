@@ -200,29 +200,34 @@ Make sure you carefully check your [user access on this project](/administration
 2. Add a build hook to your app configuration to install the CLI as part of the build process:
 
 ```yaml {configFile="app"}
-hooks:
-    build: |
-        set -e
-        echo "Installing {{% vendor/name %}} CLI"
-        curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
+applications:
+    myapp:
+        hooks:
+            build: |
+                set -e
+                echo "Installing {{% vendor/name %}} CLI"
+                curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
 
-        echo "Testing {{% vendor/name %}} CLI"
-        {{% vendor/cli %}}
+                echo "Testing {{% vendor/name %}} CLI"
+                {{% vendor/cli %}}
 ```
 
 3. Then, to configure a cron job to automatically update your dependencies once a day,
    use a configuration similar to the following:
 
 ```yaml {configFile="app"}
-crons:
-    update:
-        # Run the code below every day at midnight.
-        spec: '0 0 * * *'
-        commands:
-            start: |
-                set -e
-                {{% vendor/cli %}} sync -e development code data --no-wait --yes
-                {{% vendor/cli %}} source-operation:run update --no-wait --yes
+applications:
+    myapp:
+        # ...
+        crons:
+            update:
+                # Run the code below every day at midnight.
+                spec: '0 0 * * *'
+                commands:
+                    start: |
+                        set -e
+                        {{% vendor/cli %}} sync -e development code data --no-wait --yes
+                        {{% vendor/cli %}} source-operation:run update --no-wait --yes
 ```
 
 The example above synchronizes the `development` environment with its parent

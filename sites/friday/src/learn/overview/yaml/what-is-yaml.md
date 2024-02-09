@@ -31,19 +31,23 @@ The most straightforward data structure involves defining key–value pairs wher
 
 So you could have a basic configuration for an app:
 
-```yaml {configFile="app"}
-name: app
-type: "golang:1.18"
-disk: 1024
+```yaml
+applications:
+    myapp:
+        type: "golang:1.18"
+        source:
+            root: /app
+        hooks:
+            build: ./build.sh
 ```
 
-This results in three key–value pairs:
+You can spot three key–value pairs:
 
 | Key                 | Value               |
 | ------------------- |-------------------- |
-| name                | app                 |
-| type                | golang:1.18         |
-| disk                | 1024                |
+| `type`              | "golang:1.18"       |
+| `root`              | root: /app          |
+| `build `            | ./build.sh          |
 
 You can define strings either with or without quotes, which can be single `'` or double `"`.
 Quotes let you escape characters (if double) and make sure the value is parsed as a string when you want it.
@@ -66,17 +70,17 @@ In contrast, when you define mappings, the order doesn't matter.
 So you could expand the configuration from before to add another mapping:
 
 ```yaml {configFile="app"}
-name: app
-type: "golang:1.18"
-disk: 1024
+applications:
+    myapp:
+        type: "golang:1.18"
 
-web:
-    commands:
-        start: ./bin/app
-    locations:
-        '/':
-            passthru: true
-            allow: false
+        web:
+            commands:
+                start: ./bin/app
+            locations:
+                '/':
+                    passthru: true
+                    allow: false
 ```
 
 This creates a `web` dictionary that has two dictionaries within it: `commands` and `locations`,
@@ -90,25 +94,29 @@ each with their own mappings:
 In addition to maps defining further key–value pairs, you can also use sequences to include lists of information.
 
 ```yaml {configFile="app"}
-web:
-    locations:
-        '/':
-            index:
-                - index.html
-                - index.htm
-            passthru: true
-            allow: false
+applications:
+    myapp:
+        web:
+            locations:
+                '/':
+                    index:
+                        - index.html
+                        - index.htm
+                    passthru: true
+                    allow: false
 ```
 
 You can also define sequences using a flow syntax:
 
 ```yaml {configFile="app"}
-web:
-    locations:
-        '/':
-            index: [index.html, index.htm]
-            passthru: true
-            allow: false
+applications:
+    myapp:
+        web:
+            locations:
+                '/':
+                    index: [index.html, index.htm]
+                    passthru: true
+                    allow: false
 ```
 
 In either case, you get a list of values within `index`:
@@ -124,10 +132,12 @@ The new lines need to have at least the same indentation as the first
 So you could add a multi-line string to a `build` key in the `hooks` map:
 
 ```yaml {configFile="app"}
-hooks:
-    build: |
-        set -e
-        cp a.txt b.txt
+applications:
+    myapp:
+        hooks:
+            build: |
+                set -e
+                cp a.txt b.txt
 ```
 
 And the resulting value preserves the line break.
@@ -147,23 +157,19 @@ Then refer to the anchor using `*<NAME>`.
 The following example shows 4 different workers:
 
 ```yaml {configFile="app"}
-workers:
-    queue1: &runner
-        size: S
-        commands:
-            start: python queue-worker.py
-    queue2: *runner
-    queue3: 
-        <<: *runner
-        size: M
-    queue4: 
-        <<: *runner
-        disk: 512
+applications:
+    myapp:
+        ...
+        workers:
+            queue1: &runner
+                commands:
+                    start: python queue-worker.py
+            queue2: *runner
+            queue3: 
+                <<: *runner
 ```
 
-- `queue1` and `queue2` are identical with the same `size` and `commands` properties.
-- `queue3` is the same as `queue1` except that it has a different value for `size`.
-- `queue4` is the same as `queue1` except that it has the `disk` property.
+All of the workers above are identical to each other.
 
 Note that you need to place an alias with `<<:` at the same level as the other keys within that value.
 
