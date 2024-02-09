@@ -94,7 +94,7 @@ module:
 
               - "get-started/*"
 
-              # - "glossary/*"
+              - "glossary/*"
 
               - "guides/*"
 
