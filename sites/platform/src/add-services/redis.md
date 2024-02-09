@@ -106,7 +106,8 @@ set up a new service with a different name.
 
 {{% note theme="warning" title="Warning" %}}
 
-{{% vendor/name %}} sets the maximum amount of memory (`maxmemory`) Redis can use automatically, and you can't adjust it.
+{{% vendor/name %}} sets the maximum amount of memory (`maxmemory`) Redis can use for the data set,
+and it cannot be amended.
 It is defined by comparing the following values and keeping the lower of the two:
 
 - Disk size/6 (based on a [recommendation from Redis](https://docs.redis.com/latest/rs/installing-upgrading/install/plan-deployment/hardware-requirements/#productionenvironment))
