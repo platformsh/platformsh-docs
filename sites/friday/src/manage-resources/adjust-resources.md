@@ -108,26 +108,26 @@ or run commands manually.
 
   To scale an app or worker, run the following command:
 
-  ```bash
+  ```bash {location="Terminal"}
   {{% vendor/cli %}} resources:set --count {{< variable "APP_NAME" >}}:{{< variable "NUMBER_OF_INSTANCES" >}}
   ```
   
   For example, to scale your `myapp` app to 3 instances, run the following command:
 
-  ```bash
+  ```bash {location="Terminal"}
   {{% vendor/cli %}} resources:set --count myapp:3
   ```
 
   You can also set the same instance count for all your apps using a wildcard.
   To do so, run the following command:
   
-  ```bash
+  ```bash {location="Terminal"}
   {{% vendor/cli %}} resources:set --count '*:{{< variable "NUMBER_OF_INSTANCES" >}}'
   ```
 
   For example, to scale all your apps to 3 instances, run the following command:
 
-  ```bash
+  ```bash {location="Terminal"}
   {{% vendor/cli %}} resources:set --count '*:3'
   ```
 
