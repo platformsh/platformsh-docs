@@ -68,17 +68,27 @@ This format is more rich and works with any type of route, including routes serv
 
 Two keys are available under `redirects`:
 
- * `expires`: optional, the duration the redirect is cached. Examples of valid values include `3600s`, `1d`, `2w`, `3m`.
- * `paths`: the paths to be redirected.
+| Key                | Required | Description |
+| ------------------ | -------- | ----------- |
+| `expires`          | No       | The duration the redirect is cached. Examples of valid values include `3600s`, `1d`, `2w`, `3m`. |
+| `paths`            | Yes      | The paths to be redirected |
 
 Each rule under `paths` is defined by its key describing the expression to match against the request path and a value object describing both the destination to redirect to with detail on how to handle the redirection. The value object is defined with the following keys:
 
- * `to`: required, a relative URL - `'/destination'`, or absolute URL - `'https://example.com/'`.
- * `regexp`: optional, defaults to `false`.
-   Specifies whether the path key should be interpreted as a PCRE regular expression.
-   If you use a capturing group, the replace field (`$1`) has to come after a slash (`/`).
-  
-   In the following example, a request to `https://example.com/foo/a/b/c/bar` would redirect to `https://example.com/a/b/c`:
+| Key                | Required | Default |Description |
+| ------------------ | -------- | ----------- | ------------- |
+| `to`               | Yes      | n/a     | A relative URL - `'/destination'`, or absolute URL - `'https://example.com/'`. |
+| `regexp`           | No       | `false` | Specifies whether the path key should be interpreted as a PCRE regular expression. If you use a capturing group, the replace field (`$1`) has to come after a slash (`/`). [More information](#redirects-using-regular-expressions).|
+| `prefix`           | No       | `true`, but not supported if `regexp` is `true` | Specifies whether both the path and all its children or just the path itself should be redirected. [More information](#redirects-using-prefix-and-append_suffix).|
+| `append_suffix`    | No       | `true`, but not supported if `regexp` is `true` or if `prefix` is `false`  | Determines if the suffix is carried over with the redirect. [More information](#redirects-using-prefix-and-append_suffix).|
+| `code`             | No       | n/a     | HTTP status code. Valid status codes are `301`, `302`, `307`, and `308`. Defaults to `302`. [More information](#using-codes). |
+| `expires`          | No       | Defaults to the `expires` value defined directly under the `redirects` key, but can be fine-tuned. | The duration the redirect is cached for. [More information](#using-expires).
+
+### Redirects using regular expressions
+
+You can use regular expressions to configure your redirects.
+
+In the following example, a request to `https://example.com/foo/a/b/c/bar` would redirect to `https://example.com/a/b/c`:
 
 {{< version/specific >}}
 <!-- Platform.sh configuration-->
@@ -107,12 +117,26 @@ Each rule under `paths` is defined by its key describing the expression to match
    ```
 {{< /version/specific >}}
 
-   Note that special arguments in the `to` statement are also valid when `regexp` is set to `true`:
-    * `$is_args` evaluates to `?` or empty string
-    * `$args` evaluates to the full query string if any
-    * `$arg_foo` evaluates to the value of the query parameter `foo`
-    * `$uri` evaluates to the full URI of the request.
- * `prefix`: optional, specifies whether both the path and all its children or just the path itself should be redirected. Defaults to `true`, but not supported if `regexp` is `true`. For example,
+Note that special arguments in the `to` statement are also valid when `regexp` is set to `true`:
+
+- `$is_args` evaluates to `?` or empty string
+- `$args` evaluates to the full query string if any
+- `$arg_foo` evaluates to the value of the query parameter `foo`
+- `$uri` evaluates to the full URI of the request.
+
+### Redirects using `prefix` and `append_suffix`
+
+Instead of using regular expressions to configure your redirects,
+you might want to use the `prefix` and `append_suffix` keys to achieve the same results.
+
+{{% note theme="warning" title="Warning" %}}
+
+If you're using `regexp` in a redirect, you can't also use `prefix` and `append_suffix`.
+Likewise, if you're using `prefix` and `append_suffix`, you can't also use `regexp`.
+
+{{% /note %}}
+
+In the following example:
 
 {{< version/specific >}}
 <!-- Platform.sh configuration-->
@@ -141,11 +165,10 @@ Each rule under `paths` is defined by its key describing the expression to match
    ```
 {{< /version/specific >}}
 
-   with `prefix` set to `true`, `/from` redirects to `/to` and `/from/another/path` redirects to `/to/another/path`.
-   If `prefix` is set to `false` then `/from` triggers a redirect, but `/from/another/path` doesn't.
+With `prefix` set to `true`, `/from` redirects to `/to` and `/from/another/path` redirects to `/to/another/path`. </br>
+If `prefix` were set to `false`, then `/from` would a redirect, but `/from/another/path` wouldn't.
 
- * `append_suffix`: optional, determines if the suffix is carried over with the redirect. Defaults to `true`, but not supported if `regexp` is `true` or if `prefix` is `false`.
-   If we redirect with `append_suffix` set to `false`, for example, then the following
+In the following example:
 
 {{< version/specific >}}
 <!-- Platform.sh configuration-->
@@ -174,9 +197,14 @@ Each rule under `paths` is defined by its key describing the expression to match
    ```
 {{< /version/specific >}}
 
-   would result in `/from/path/suffix` redirecting to just `/to`. If `append_suffix` was left on its default value of `true`, then `/from/path/suffix` would have redirected to `/to/path/suffix`.
+With `append_suffix` set to `false`, `/from/path/suffix` redirects to just `/to`. </br>
+If `append_suffix` were set to `true`, then `/from/path/suffix` would redirect to `/to/path/suffix`.
 
- * `code`: optional, HTTP status code. Valid status codes are `301`, `302`, `307`, and `308`. Defaults to `302`.
+### Further examples
+
+#### Using `codes`
+
+In the following example using the `codes` key:
 
 {{< version/specific >}}
 <!-- Platform.sh configuration-->
@@ -209,9 +237,12 @@ routes:
 ```
 {{< /version/specific >}}
 
-   In this example, redirects from `/from` would use a `308` HTTP status code, but redirects from `/here` would default to `302`.
+Redirects from `/from` use a `308` HTTP status code, but redirects from `/here` default to `302`.
 
- * `expires`: optional, the duration the redirect is cached for. Defaults to the `expires` value defined directly under the `redirects` key, but at this level the expiration of individual partial redirects can be fine-tuned:
+#### Using `expires`
+
+The `expires` key defaults to the `expires` value defined directly under the `redirects` key.
+However, at this level the expiration of individual partial redirects can be fine-tuned:
 
 {{< version/specific >}}
 <!-- Platform.sh configuration-->
@@ -245,8 +276,8 @@ routes:
                        expires: 2w
    ```
 {{< /version/specific >}}
-   In this example, redirects from `/from` would be set to expire in one day, but redirects from `/here` would expire in two weeks.
 
+In the above example, redirects from `/from` are set to expire in one day, but redirects from `/here` are set to expire in two weeks.
 
 ## Application-driven redirects
 
