@@ -10,9 +10,7 @@ showTitle: false
       display: none;
     }
 </style>
-<!-- vale Platform.Spelling=NO -->
-<!-- vale Vale.Spelling=NO -->
-<!-- vale Platform.plurals=NO -->
+<!-- vale off -->
 # {{ vendor/name }} CLI 5.0.9
 
 - [Installation](/administration/cli#1-install)
@@ -8423,8 +8421,4 @@ platform workers [--refresh] [--pipe] [-p|--project PROJECT] [-e|--environment E
   Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 
-
-
-<!-- vale Platform.Spelling=YES -->
-<!-- vale Vale.Spelling=YES -->
-<!-- vale Platform.plurals=YES -->
+<!-- vale on -->
