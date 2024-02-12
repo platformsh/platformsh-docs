@@ -66,14 +66,8 @@ You can have services that are only exposed to another service as well as servic
 
 In a clustered application, you can have one of the following configurations:
 
-- Multiple [`{{< vendor/configfile "app" >}}` files](/create-apps/multi-app/_index.md) in different directories, with separate code bases that deploy separately
+- Multiple [applications](/create-apps/multi-app/_index.md), often in different directories or with separate code bases that deploy separately
 - A single app that spawns one or more [worker instances](/create-apps/app-reference.md#workers) that run background processes
-
-{{< note >}}
-
-Note that a clustered application requires at least a [{{< partial "plans/multiapp-plan-name" >}} plan](https://platform.sh/pricing/).
-
-{{< /note >}}
 
 With a clustered application, you often don't need multiple service instances.
 The [MySQL, MariaDB](/add-services/mysql/_index.md),

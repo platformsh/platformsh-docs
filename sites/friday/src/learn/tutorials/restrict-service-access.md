@@ -24,20 +24,20 @@ Edit your `{{< vendor/configfile "services" >}}` file and add the following [end
 - `reporting` with read-only `ro` access to the `main` database
 
 ```yaml {configFile="services"}
-maindb:
-    type: mariadb:10.5
-    disk: 2048
-    configuration:
-        schemas:
-            - main
-        endpoints:
-            website:
-                default_schema: main
-                privileges:
-                    main: admin
-            reporting:
-                privileges:
-                    main: ro
+services:
+    maindb:
+        type: mariadb:10.5
+        configuration:
+            schemas:
+                - main
+            endpoints:
+                website:
+                    default_schema: main
+                    privileges:
+                        main: admin
+                reporting:
+                    privileges:
+                        main: ro
 ```
 
 ## 2. Grant your app access to the new endpoints
@@ -45,9 +45,11 @@ maindb:
 Edit your app configuration and add new relationships to your new endpoints:
 
 ```yaml {configFile="app"}
-relationships:
-    database: maindb:website
-    reports: maindb:reporting
+applications:
+    myapp:
+        relationships:
+            database: maindb:website
+            reports: maindb:reporting
 ```
 
 ## 3. Create a worker with access to the read-only endpoint
@@ -59,18 +61,18 @@ Edit your app configuration to add a new worker which:
 - Allows SSH access to `viewer`
 
 ```yaml {configFile="app"}
-workers:
-    data_access:
-        size: S
-        disk: 128
-        mounts: {}
-        commands:
-            start: |
-                sleep infinity
-        relationships:
-            reports: maindb:reporting
-        access:
-            ssh: viewer
+applications:
+    myapp:
+        workers:
+            data_access:
+                mounts: {}
+                commands:
+                    start: |
+                        sleep infinity
+                relationships:
+                    reports: maindb:reporting
+                access:
+                    ssh: viewer
 ```
 
 You're done!
