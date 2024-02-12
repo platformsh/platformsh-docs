@@ -66,7 +66,7 @@ Then, to create a new project with the {{% vendor/name %}} CLI, use the followin
 {{% vendor/cli %}} project:create
 ```
 
-{{< note theme="info" title="Default default branches" >}}
+{{< note theme="info" title="Default branches" >}}
 When creating a new project using the {{% vendor/name %}} CLI command `project:create`, default production branch is set to `main`, please change it if your default branch is not the same (ex: `master`)
 
 Then, you will be asked if you want to set the local remote to your new project. Enter **Yes (y)**.

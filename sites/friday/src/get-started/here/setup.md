@@ -4,14 +4,13 @@ weight: 5
 ---
 
 {{< note theme="info" title="Got code?" >}}
-First things first, if you don’t have a local project, you need one. So please create your project locally by following the official guide of your choice.
+In order to follow along with this guide, you will need a local project. 
+While the guide has been written to accommodate the following stacks, it is not limited to just those listed and are here only as examples.
 
 <!-- Examples:
 - [Express installation guide](https://expressjs.com/en/starter/installing.html)
 - [Next.js installation guide](https://nextjs.org/docs/getting-started/installation)
 - [Strapi installation guide](https://docs.strapi.io/dev-docs/installation) -->
-
-Starter codebases:
 
 <details>
   <summary>JavaScript/Node.js</summary>
@@ -43,13 +42,17 @@ Starter codebases:
 
 ## Initialize your Git repository
 
-We need to initialize the local Git repository and commit local files, using the following command:
+A Git repository is required for Upsun projects.
+If you haven't already done so, initialize a Git repository for your codebase, and commit your files:
 
 ```bash {location="Terminal"}
 git init
 git add .
 git commit -m "Initial commit."
 ```
+
+This guide assumes that your repository's default branch is `main`.
+Your Git configuration may result in different default branches (like `master`), so please run `git branch -M main` before proceeding.
 
 {{< note theme="info" title="Don't commit dependencies" >}}
 
