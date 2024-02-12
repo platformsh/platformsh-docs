@@ -11,12 +11,14 @@ showTitle: false
     }
 </style>
 
-# Platform.sh CLI 5.0.8
+# Platform.sh CLI 5.0.9
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
 
 ## All commands
+
+<!-- vale off -->
 
 * [`clear-cache`](#clear-cache)
 * [`decode`](#decode)
@@ -8421,3 +8423,5 @@ platform workers [--refresh] [--pipe] [-p|--project PROJECT] [-e|--environment E
   Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 
+
+<!-- vale on -->

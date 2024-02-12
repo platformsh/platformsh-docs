@@ -11,12 +11,14 @@ showTitle: false
     }
 </style>
 
-# Upsun CLI 5.0.8
+# Upsun CLI 5.0.9
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
 
 ## All commands
+
+<!-- vale off -->
 
 * [`clear-cache`](#clear-cache)
 * [`decode`](#decode)
@@ -8469,3 +8471,5 @@ upsun workers [--refresh] [--pipe] [-p|--project PROJECT] [-e|--environment ENVI
   Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 
+
+<!-- vale on -->
