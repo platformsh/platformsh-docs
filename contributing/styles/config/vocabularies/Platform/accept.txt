@@ -69,8 +69,7 @@ IPs?
 JVM
 imagetragick
 jpegoptim
-Kafka
-kafka
+[Kk]afka
 Lando
 Laravel
 Loggly
@@ -155,8 +154,7 @@ scp
 seccomp
 serverless
 Servlet
-sftp
-SFTP
+[Ss][Ff][Tt][Pp]
 shard
 shortcode
 Slowloris
@@ -168,8 +166,7 @@ Strapi
 [Ss]ubprocessor
 subuser
 Swoole
-Symfony
-symfony
+[Ss]ymfony
 [Ss]yslog
 systemd
 Thorntail
