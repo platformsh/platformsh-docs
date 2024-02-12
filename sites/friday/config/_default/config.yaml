@@ -53,7 +53,7 @@ module:
         - source: "../platform/src"
           target: "content"
           excludeFiles:
-          
+
               # - "add-services/*"
               - "add-services/network-storage.md"
 
@@ -70,7 +70,7 @@ module:
               - "create-apps/flexible-resources.md"
 
               - "dedicated-gen-2/*"
-              
+
               - "dedicated-gen-3/*"
 
               # - "define-routes/*"
@@ -88,8 +88,8 @@ module:
               - "domains/security/web-application-firewall/fastly.md"
               - "domains/steps/custom-domains-preview-environments.md"
 
-              # - "environments/*"
-              - "environments/scalability.md"
+              - "environments/*"
+              #- "environments/scalability.md"
 
               # - "feedback/*"
 
