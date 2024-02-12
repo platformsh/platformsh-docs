@@ -1012,7 +1012,7 @@ platform apps [--refresh] [--pipe] [-p|--project PROJECT] [-e|--environment ENVI
 
 ## `auth:api-token-login`
 
-Log in to Platform.sh using an API token
+Log in to {{ vendor/name }} using an API token
 
 ### Usage
 
@@ -1020,7 +1020,7 @@ Log in to Platform.sh using an API token
 platform auth:api-token-login
 ```
 
-Use this command to log in to your Platform.sh account using an API token.
+Use this command to log in to your {{ vendor/name }} account using an API token.
 
 You can create an account at:
     https://auth.api.platform.sh/register
@@ -1047,7 +1047,7 @@ Alternatively, to log in to the CLI with a browser, run:
 
 ## `auth:browser-login`
 
-Log in to Platform.sh via a browser
+Log in to {{ vendor/name }} via a browser
 
 Aliases: `login`
 
@@ -1057,7 +1057,7 @@ Aliases: `login`
 platform login [-f|--force] [--browser BROWSER] [--pipe]
 ```
 
-Use this command to log in to the Platform.sh CLI using a web browser.
+Use this command to log in to the {{ vendor/name }} CLI using a web browser.
 
 It launches a temporary local website which redirects you to log in if
 necessary, and then captures the resulting authorization code.
