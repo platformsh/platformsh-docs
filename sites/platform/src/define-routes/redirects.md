@@ -64,7 +64,7 @@ routes:
 ```
 {{< /version/specific >}}
 
-This format is more rich and works with any type of route, including routes served directly by the application.
+This format is richer and works with any type of route, including routes served directly by the application.
 
 Two keys are available under `redirects`:
 
@@ -73,7 +73,11 @@ Two keys are available under `redirects`:
 | `expires`          | No       | The duration the redirect is cached. Examples of valid values include `3600s`, `1d`, `2w`, `3m`. |
 | `paths`            | Yes      | The paths to be redirected |
 
-Each rule under `paths` is defined by its key describing the expression to match against the request path and a value object describing both the destination to redirect to with detail on how to handle the redirection. The value object is defined with the following keys:
+Each rule under `paths` is defined by a key describing:
+- The expression to match against the request path
+- A value object describing both the destination to redirect to, with detail on how to handle the redirection
+
+The value object is defined with the following keys:
 
 | Key                | Required | Default |Description |
 | ------------------ | -------- | ----------- | ------------- |
@@ -88,7 +92,7 @@ Each rule under `paths` is defined by its key describing the expression to match
 
 You can use regular expressions to configure your redirects.
 
-In the following example, a request to `https://example.com/foo/a/b/c/bar` would redirect to `https://example.com/a/b/c`:
+In the following example, a request to `https://example.com/foo/a/b/c/bar` redirects to `https://example.com/a/b/c`:
 
 {{< version/specific >}}
 <!-- Platform.sh configuration-->
@@ -165,7 +169,10 @@ In the following example:
    ```
 {{< /version/specific >}}
 
-With `prefix` set to `true`, `/from` redirects to `/to` and `/from/another/path` redirects to `/to/another/path`. </br>
+With `prefix` set to `true`:
+- `/from` redirects to `/to`
+- `/from/another/path` redirects to `/to/another/path`
+
 If `prefix` were set to `false`, then `/from` would a redirect, but `/from/another/path` wouldn't.
 
 In the following example:
@@ -197,7 +204,8 @@ In the following example:
    ```
 {{< /version/specific >}}
 
-With `append_suffix` set to `false`, `/from/path/suffix` redirects to just `/to`. </br>
+With `append_suffix` set to `false`, `/from/path/suffix` redirects to just `/to`.
+
 If `append_suffix` were set to `true`, then `/from/path/suffix` would redirect to `/to/path/suffix`.
 
 ### Further examples
@@ -281,7 +289,11 @@ In the above example, redirects from `/from` are set to expire in one day, but r
 
 ## Application-driven redirects
 
-If neither of the above options satisfy your redirection needs, you can still implement redirects directly in your application. If sent with the appropriate caching headers, this is nearly as efficient as implementing the redirect through one of the two configurations described above. Implementing application-driven redirects depends on your own code or framework and is beyond the scope of this documentation.
+If neither whole-route or partial redirects satisfy your redirection needs,
+you can still implement redirects directly in your application.
+If sent with the appropriate caching headers,
+this is nearly as efficient as implementing the redirect through one of the two configurations described above.
+Implementing application-driven redirects depends on your own code or framework and is beyond the scope of this documentation.
 
 ## Query-strings based redirect are unsupported
 
