@@ -10,7 +10,7 @@ showTitle: false
       display: none;
     }
 </style>
-<!-- vale Platform.Spelling = NO -->
+<!-- vale Platform.Spelling=NO Vale.Spelling=NO -->
 # {{ vendor/name }} CLI 5.0.9
 
 - [Installation](/administration/cli#1-install)
@@ -8422,4 +8422,4 @@ platform workers [--refresh] [--pipe] [-p|--project PROJECT] [-e|--environment E
 
 
 
-<!-- vale Platform.Spelling = YES -->
+<!-- vale Platform.Spelling=YES Vale.Spelling=YES -->
