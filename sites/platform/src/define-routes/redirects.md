@@ -173,7 +173,7 @@ With `prefix` set to `true`:
 - `/from` redirects to `/to`
 - `/from/another/path` redirects to `/to/another/path`
 
-If `prefix` were set to `false`, then `/from` would a redirect, but `/from/another/path` wouldn't.
+If `prefix` were set to `false`, then `/from` would redirect, but `/from/another/path` wouldn't.
 
 In the following example:
 
