@@ -11,7 +11,7 @@ showTitle: false
     }
 </style>
 <!-- vale Platform.Spelling = NO -->
-# Platform.sh CLI 5.0.9
+# {{ vendor/name }} CLI 5.0.9
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
