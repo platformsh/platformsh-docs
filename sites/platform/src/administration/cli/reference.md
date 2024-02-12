@@ -1164,7 +1164,7 @@ platform auth:info id --no-auto-login
 
 ## `auth:logout`
 
-Log out of Platform.sh
+Log out of {{ vendor/name }}
 
 Aliases: `logout`
 
