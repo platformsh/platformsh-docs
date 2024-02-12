@@ -10,6 +10,7 @@ showTitle: false
       display: none;
     }
 </style>
+<!-- vale Vale.Spelling = NO -->
 
 # Upsun CLI 5.0.9
 
@@ -18,7 +19,7 @@ showTitle: false
 
 ## All commands
 
-<!-- vale off -->
+
 
 * [`clear-cache`](#clear-cache)
 * [`decode`](#decode)
@@ -8472,4 +8473,4 @@ upsun workers [--refresh] [--pipe] [-p|--project PROJECT] [-e|--environment ENVI
 
 
 
-<!-- vale on -->
+<!-- vale Vale.Spelling = YES -->
