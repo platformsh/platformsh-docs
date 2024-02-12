@@ -47,7 +47,7 @@ jobs:
       - name: Vale
         uses: errata-ai/vale-action@reviewdog
         with:
-          version: 2.30.0
+          version: 3.0.7
           fail_on_error: true
           reporter: github-check
           files: sites/platform/src
