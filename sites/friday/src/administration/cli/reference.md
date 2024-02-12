@@ -10,7 +10,8 @@ showTitle: false
       display: none;
     }
 </style>
-<!-- vale Vale.Spelling = NO -->
+
+<!-- vale off -->
 
 # Upsun CLI 5.0.9
 
@@ -8472,5 +8473,4 @@ upsun workers [--refresh] [--pipe] [-p|--project PROJECT] [-e|--environment ENVI
   Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 
-
-<!-- vale Vale.Spelling = YES -->
+<!-- vale on -->

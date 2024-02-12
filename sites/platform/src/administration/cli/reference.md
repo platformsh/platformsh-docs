@@ -10,8 +10,10 @@ showTitle: false
       display: none;
     }
 </style>
+
 <!-- vale off -->
-# {{ vendor/name }} CLI 5.0.9
+
+# Platform.sh CLI 5.0.9
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
@@ -8419,6 +8421,5 @@ platform workers [--refresh] [--pipe] [-p|--project PROJECT] [-e|--environment E
 
 * `--no-interaction`
   Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 
 <!-- vale on -->

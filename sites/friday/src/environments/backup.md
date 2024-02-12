@@ -61,54 +61,13 @@ For consistent backups, create the backups during non-peak hours for your site.
 
 For information on how long backups are retained, see the [data retention policy](../security/data-retention.md).
 
-## Backup schedule
-
-Backups for Dedicated environments have a [specific frequency](../dedicated-gen-2/overview/backups.md).
-
-On Grid environments, preview environments can have up to 2 [manual backups](#create-a-manual-backup).
-The number of available backups for Production environments depends on your schedule.
-
-| Schedule | Manual backups | Automated backups                                                      |
-|----------|----------------|------------------------------------------------------------------------|
-| Basic    | 2              | 2 daily backups (1 backup for each of the last 2 days) |
-| Advanced | 4              | 21 backups:</br>- 6 daily backups (1 backup for each of the last 6 days) </br>- 3 weekly backups (1 backup for each of the last 3 weeks)</br>- 12 monthly backups (1 backup for each of the last 12 months) |
-| Premium  | 4              | 44 backups:</br>- 3 backups for the last 24 hours</br>- 30 daily backups (1 backup for each of the last 30 days)</br>- 11 monthly backups (1 backup for each of the last 11 months) |
-
-Note that [backup retention](../security/data-retention.md#grid-backups) also depends on your schedule.
-
-The schedules available to you depend on your [tier](https://platform.sh/pricing/).
-
-| Tier             | Default schedule | Possible upgrade |
-| ---------------- | ---------------- | ---------------- |
-| Professional     | Basic            | Advanced         |
-| Enterprise/Elite | Advanced         | Premium          |
-
-An upgrade comes at an additional cost.
-The exact cost depends on the size of your storage.
-
-### Change your backup schedule
-
-To upgrade to the higher schedule, follow these steps:
-
-1. In the [Console](https://console.platform.sh/), navigate to the project where you want to change the schedule.
-2. Click **{{< icon settings >}} Settings**.
-3. Click **Edit plan**.
-4. For **Backups**, click the name of your current schedule.
-   If clicking has no effect, you are already on the highest available schedule.
-5. Select the target schedule.
-6. Click **Save**.
-
-To downgrade to the lower schedule, [contact support](/learn/overview/get-support.md).
-
 ## Use automated backups
 
-For Dedicated environments, see more about [backups of Dedicated environments](../dedicated-gen-2/overview/backups.md).
+{{< vendor/name >}} provides 1 automated backup a day for your production environment,
+with a [2-day retention](/security/data-retention.md) (2 days worth of backups are retained at any given point).
 
-For Grid environments, automated backups are taken for Production environments at least once every day.
-The exact number of backups depends on your [backup schedule](#backup-schedule).
-
-Daily backups are taken at around 4:00 every day based on the [project timezone](../projects/change-project-timezone.md).
-The time for 6-hourly backups is based on the daily backup.
+For more information on the backups {{< vendor/name >}} provides,
+see the [{{< vendor/name >}} backup policy](/security/backups.md).
 
 Automated backups are always [live](#live-backups).
 
@@ -121,9 +80,6 @@ Because the connections may come in during backup creation, live backups may hav
 They may make restorations less reliable.
 To avoid such issues, schedule [manual backups](#create-a-manual-backup) during non-peak hours,
 when the short amount of downtime is least noticed.
-
-Automated backups are always live, including those taken on [{{% names/dedicated-gen-3 %}}](../dedicated-gen-3/_index.md)
-and [{{% names/dedicated-gen-2 %}}](../dedicated-gen-2/overview/_index.md) environments.
 
 You can create a manual live backup on a Grid project:
 
@@ -148,6 +104,10 @@ When [creating the backup](#create-a-manual-backup), select **Run live backup** 
 {{< /codetabs >}}
 
 ## Create a manual backup
+
+{{< vendor/name >}} provides up to 2 manual backups of your production environment,
+plus 2 manual backups you can use for your [preview environments](/glossary/_index.md).
+For more information, see the [{{< vendor/name >}} backup policy](/security/backups.md).
 
 You can create a manual backup using the [CLI](../administration/cli/_index.md) or in the [Console](../administration/web/_index.md).
 

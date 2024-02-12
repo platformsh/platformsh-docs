@@ -179,8 +179,8 @@ The total resources allocated across all apps and services can't exceed what's i
 
 Containers in preview environments don't follow the `size` specification.
 Application containers are set based on the plan's setting for **Environments application size**.
-The default is **{{< partial "plans/default-dev-env-size" >}}**, but you can increase it by editing your plan.
-(Service containers in preview environments are always set to {{< partial "plans/default-dev-env-size" >}} size.)
+The default is size **S**, but you can increase it by editing your plan.
+(Service containers in preview environments are always set to size **S**.)
 
 <--->
 ## Resources
