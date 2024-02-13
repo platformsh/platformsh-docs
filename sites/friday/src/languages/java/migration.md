@@ -113,13 +113,7 @@ You have the option to use several languages in microservices. If you're using J
 | [Multiple Applications](https://community.platform.sh/t/multiple-applications-tomcat/468) | [Source](https://github.com/platformsh-examples/tomcat-multi-app) |
 | [Configure multi-applications with `{{< vendor/configfile "apps" >}}`](https://community.platform.sh/t/how-to-configure-multi-applications-with-applications-yaml/552) | [Source](https://github.com/platformsh-examples/tomcat-multi-app-applications) |
 
-{{< note version="1" >}}
-
-You can load balance to some or [all applications in the project cluster](https://community.platform.sh/t/how-to-configure-load-balancer-in-a-multiple-applications/554).
-
-{{< /note >}}
-
-{{< note version="2" >}}
+{{< note >}}
 You can load balance to some or [all applications in the project cluster](https://community.platform.sh/t/how-to-configure-load-balancer-in-a-multiple-applications/554).
 
 While the table above shows examples for Platform.sh rather than for {{% vendor/name %}}, the same rules apply with only slight changes in configuration.

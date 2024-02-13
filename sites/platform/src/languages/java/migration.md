@@ -94,9 +94,9 @@ You have the option to use several languages in microservices. If you're using J
 | [Microservices in the cloud, part one](https://platform.sh/blog/2019/microservices-in-the-cloud-part-one/) | [Source](https://github.com/EventosJEspanol/latin-america-micro-profile) |
 | [Multiple Applications](https://community.platform.sh/t/multiple-applications-tomcat/468) | [Source](https://github.com/platformsh-examples/tomcat-multi-app) |
 | [Configure multi-applications with `{{< vendor/configfile "apps" >}}`](https://community.platform.sh/t/how-to-configure-multi-applications-with-applications-yaml/552) | [Source](https://github.com/platformsh-examples/tomcat-multi-app-applications) |
-
+{{< note >}}
 You can load balance to some or [all applications in the project cluster](https://community.platform.sh/t/how-to-configure-load-balancer-in-a-multiple-applications/554).
-
+{{< /note >}}
 
 ## Access to managed services
 
