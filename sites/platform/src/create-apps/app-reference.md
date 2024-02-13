@@ -498,10 +498,10 @@ See how to set up [alternate start commands on PHP](../languages/php/_index.md#a
 
 ### Upstream
 
-| Name            | Type                | Required | Description |
-| --------------- | ------------------- | -------- | ----------- |
-| `socket_family` | `tcp` or `unix`     |          | Whether your app listens on a Unix or TCP socket. Defaults to `tcp`. |
-| `protocol`      | `http` or `fastcgi` |          | Whether your app receives incoming requests over HTTP or FastCGI. Default varies based on [image `type`](#types). |
+| Name            | Type                | Required | Description | Default |
+| --------------- | ------------------- | -------- | ----------- | ----------- |
+| `socket_family` | `tcp` or `unix`     |          | Whether your app listens on a Unix or TCP socket. |  Defaults to `tcp` for all [image types](#types) except PHP; for PHP image types the default is `unix`. |
+| `protocol`      | `http` or `fastcgi` |          | Whether your app receives incoming requests over HTTP or FastCGI. | Default varies based on [image `type`](#types). |
 
 For PHP, the defaults are configured for PHP-FPM and shouldn't need adjustment.
 For all other containers, the default for `protocol` is `http`.
