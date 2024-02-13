@@ -69,9 +69,11 @@ Be aware that after the build, it creates a read-only system. You have the [moun
 ```
 1. It defines the application will link in the route, e.g.: `"app:http"`
 
+{{< note >}}
 Application instances have a limited amount of memory at build time, which has a maximum of 8 GB.
 At runtime that limit depends on your plan and configuration.
 A stateless application can be scaled horizontally to multiple application instances using Varnish in a [load balancer](https://community.platform.sh/t/how-to-configure-load-balancer-in-a-single-application/553) configuration.
+{{< /note >}}
 
 ## Microservices
 
