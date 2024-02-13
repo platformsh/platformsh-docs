@@ -102,7 +102,6 @@ Similar to the [`deploy` hook](/create-apps/hooks/hooks-comparison.md#deploy-hoo
 the `post-deploy` hook only runs once your application container accepts requests.
 So you can use it to run updates such as content imports or cache warmups that can be executed simultaneously with normal traffic.
 
-
 During a redeploy, the `post-deploy` hook is the only hook that is run.
 
 ## Get support

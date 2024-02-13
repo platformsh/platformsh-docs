@@ -36,10 +36,19 @@ The following strategies are available:
 
 | Strategy | Description |
 | ---------| ----------- |
-| `default`  | Initializes the new containers using the [{{% vendor/name %}} default resources](/manage-resources/resource-init.md).</br>This is the strategy that applies when you first deploy your project or new container, unless you explicitly set another strategy.  |
+| `default`  | Initializes the new containers using the [{{% vendor/name %}} default resources](/manage-resources/resource-init.md). |
 | `manual`   | With this strategy, the first deployment fails and you need to configure resources manually through [the Console](/manage-resources/adjust-resources.md), or using `resources:set` in the CLI. |
 | `minimum`  | Initializes the new containers using the [{{% vendor/name %}} minimum resources](#minimum-resources). |
 | `parent`   | Initializes the new containers using the same resources as the parent environment.</br>If there is no parent environment, or if the container doesn't already exist on the parent, the `default` strategy applies instead. |
+
+{{< note >}}
+
+Unless you explicitly set another resource initialization strategy, the following strategies are used:
+
+- `default` when you first deploy your project or a new service/application
+- `parent` for a new environment created through a [source integration](/integrations/_index.md)
+
+{{< /note >}}
 
 {{< codetabs >}}
 
@@ -63,17 +72,17 @@ For example, to use the `minimum` strategy for your deployment, run the followin
 upsun push --resources-init=minimum
 ```
 
-{{< note >}}
-
 Alternatively, you can use the official Git syntax for [push options](/environments/_index.md#push-options):
 
 ```bash
 git push upsun -o resources.init=minimum
 ```
 
-{{< /note >}}
+{{< note >}}
 
-Note that you can set a different resource initialization strategy for each of your deployments.
+You can set a different resource initialization strategy for each of your deployments.
+
+{{< /note >}}
 
 <--->
 

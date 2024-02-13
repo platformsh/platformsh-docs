@@ -38,10 +38,11 @@ The [{{% vendor/name %}} Community site](https://community.platform.sh/) has how
 on how to get the most out of {{% vendor/name %}}.
 
 ## Contact Sales
+
 If you have questions about pricing or need help figuring out if {{% vendor/name %}} is the right solution for your team,
 get in touch with [Sales](https://{{< vendor/urlraw "host" >}}/contact/).
 
 ## Delete your account
 
 To permanently delete your {{% vendor/name %}} account,
-[contact Support](/learn/overview/get-support.md).
+[contact Support](https://console.{{< vendor/urlraw "host" >}}/-/users/~/tickets/open).

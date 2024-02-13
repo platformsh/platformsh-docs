@@ -78,8 +78,6 @@ That may include a database container, an Elasticsearch container,
 a container for your application, and more.
 They're always deployed together as a single unit.
 
-{{< version/only "1" >}}
-
 ## {{% names/dedicated-gen-2 %}}
 
 [{{% names/dedicated-gen-2 %}} environments](../dedicated-gen-2/overview/_index.md) are managed host clusters with triple redundancy.
@@ -87,8 +85,6 @@ Their dedicated architecture makes them differ from [Grid environments](#grid).
 See a [list of differences](../dedicated-gen-2/overview/grid.md).
 
 These differences aren't present with [{{% names/dedicated-gen-3 %}} projects](../dedicated-gen-3/_index.md).
-
-{{< /version/only >}}
 
 ## Deprecated versions
 
@@ -134,16 +130,11 @@ as it merely describes a non-production environment.
 
 Find out more about [user roles on each environment type](../administration/users.md#environment-type-roles).
 
-{{% version/specific %}}
 ## Grid
 
 Grid environments are standard for Professional plans.
 They run on shared infrastructure.
 This architecture makes them different from [{{% names/dedicated-gen-2 %}} environments](#dedicated-gen-2).
-
-<--->
-
-{{% /version/specific %}}
 
 ## Inactive environment
 
@@ -193,7 +184,7 @@ The best example is {{% vendor/name %}}(although we're a little biased).
 A preview environment is a non-production environment you can use to develop and/or test changes without affecting production.</br>
 A preview environment can either be a development environment or a staging environment.
 Staging environments have an identical software configuration to your production hardware but reduced hardware specs.
-They are useful to perform user acceptance testing. 
+They are useful to perform user acceptance testing.
 
 ## Production plan
 
@@ -202,9 +193,9 @@ by adding a domain and [a custom SSL certificate](../domains/steps/tls.md).
 
 ## Project
 
-A [project](../projects/_index.md) is the site that you’re working on. 
-Each project corresponds to one Git repository. 
-A project can contain multiple apps that run in their own isolated containers. 
+A [project](../projects/_index.md) is the site that you’re working on.
+Each project corresponds to one Git repository.
+A project can contain multiple apps that run in their own isolated containers.
 Each branch of a project can be deployed in its own environment.
 
 ## Sync

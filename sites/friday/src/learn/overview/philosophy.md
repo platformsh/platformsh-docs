@@ -81,6 +81,7 @@ That filesystem is the final build artifact.
 
 Before starting the [deployment](./build-deploy.md#deploy-steps) of your app,
 {{% vendor/name %}} pauses all incoming requests and holds them to avoid downtime.
+
 Then, the current containers are stopped and the new ones are started.
 {{% vendor/name %}} then opens networking connections between the various containers,
 as specified in `{{< vendor/configfile "app" >}}`.
@@ -99,13 +100,12 @@ Similar to the [`deploy` hook](/create-apps/hooks/hooks-comparison.md#deploy-hoo
 the `post-deploy` hook only runs once your application container accepts requests.
 So you can use it to run updates such as content imports or cache warmups that can be executed simultaneously with normal traffic.
 
-
 During a redeploy, the `post-deploy` hook is the only hook that is run.
 
 ## Get support
 
 If you're facing an issue with {{% vendor/name %}},
-submit a [Support ticket](https://console.{{< vendor/urlraw "host" >}}/-/users/~/tickets/open).
+open a [support ticket](/learn/overview/get-support).
 
 ## What's next?
 

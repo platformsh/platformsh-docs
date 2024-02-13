@@ -23,8 +23,48 @@ The tag requires two properties:
 {{% note theme="info" %}}
 
 By default, `path` is relative to the current application's directory (what you would define with `source.root`).
+It is possible to include files from a directory parent to the folder however.
+
+For example, for the following project structure:
+
+```bash
+.
+├── {{< vendor/configdir >}}
+|   └── {{< vendor/configfile "apps" >}}
+├── backend
+│   ├── main.py
+│   ├── requirements.txt
+│   └── scripts
+│       ├── ...
+│       └── common_build.sh
+└── frontend
+    ├── README.md
+    ├── package-lock.json
+    ├── package.json
+    ├── public
+    ├── scripts
+    │   └── clean.sh
+    └── src
+```
+
+This configuration is valid:
+
+```yaml {configFile="apps"}
+applications:
+    frontend:
+        source:
+            root: frontend
+
+        # ...
+
+        hooks:
+            build: !include
+                type: string
+                path: ../backend/scripts/common_build.sh
+```
 
 {{% /note %}}
+
 
 ### `string`
 

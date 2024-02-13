@@ -19,9 +19,9 @@ vendor:
     recruit:
         active: true
         link: https://upsun.com/register/
-        cta: Sign up for Upsun Beta
-        title: Upsun Beta access
-        description: "Test and provide feedback for our newest offering - <a href=\"https://upsun.com/blog/upsun-origin-story/\">Upsun</a>!<br/><br/>You can register for the Beta by clicking here and completing the form.<br/><br/>"
+        cta: Get your Upsun free trial
+        title: Upsun Beta
+        description: "Access our newest offering - <a href=\"https://upsun.com/blog/upsun-origin-story/\">Upsun</a>!<br/><br/>Get your free trial by clicking the link below.<br/><br/>"
     config:
         version: 1
         dir: .platform
