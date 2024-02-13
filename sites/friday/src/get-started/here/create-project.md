@@ -4,7 +4,9 @@ weight: 10
 description: All you need to know about creating a new project with {{% vendor/name %}}
 ---
 
-To create a new project on {{% vendor/name %}}, you can either use the {{% vendor/name %}} CLI or the {{% vendor/name %}} Console.
+To create a new project on {{% vendor/name %}}, you can use either:
+ - [Console (recommended)](#using-the-console-recommended)
+ - [CLI](#using-the-cli)
 
 ## Using the Console (recommended)
 
