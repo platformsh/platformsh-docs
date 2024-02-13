@@ -32,7 +32,7 @@ For other environments, trigger a [manual backup](../../environments/backup.md).
 
 The following table shows all of the extensions that are enabled by default in each PHP version.
 To add any other extension with a pre-existing package in the Debian Apt repository,
-open a support ticket.
+open a [support ticket](/learn/overview/get-support).
 
 {{< php-extensions/dedicated >}}
 
@@ -48,7 +48,7 @@ If your project doesn't support PHP configuration through a `php.ini` file,
 you can still change all PHP options that can be changed at runtime.
 For example, change the memory limit using `ini_set('memory_limit','1024M');`.
 
-For other PHP options, such as the following, [open a Support ticket](/learn/overview/get-support.md):
+For other PHP options, such as the following, [open a support ticket](/learn/overview/get-support.md):
 
 * `max_execution_time`
 * `max_input_time`
@@ -64,7 +64,7 @@ All {{% names/dedicated-gen-2 %}} clusters that have [Xdebug](../../languages/ph
 This second process is used only when requests include the correct Xdebug key in a header.
 So you can keep Xdebug always on and not worry about performance issues as it's ignored on most requests.
 
-To obtain the key, open a support ticket.
+To obtain the key, open a [support ticket](/learn/overview/get-support).
 Staging and Production environments have separate keys.
 Set that key in the Xdebug helper for your browser.
 Then whenever you have Xdebug enabled, the request uses the alternate development PHP-FPM process with Xdebug.
@@ -92,11 +92,11 @@ So it's best to ensure your cron tasks can receive a `SIGTERM` message and termi
 ## Configuration & change management
 
 You can't manage some configuration settings via YAML configuration files on {{% names/dedicated-gen-2 %}} environments.
-In these cases, you need to open a support ticket.
+In these cases, you need to open a [support ticket](/learn/overview/get-support).
 You can have some settings different between Staging and Production environments.
 It's assumed you want the settings the same, unless you state otherwise in the ticket.
 
-The following settings require a support ticket:
+The following settings require a [support ticket](/learn/overview/get-support):
 
 * [Worker instances](../../create-apps/app-reference.md#workers)
 * [Service configuration](../../add-services/_index.md)

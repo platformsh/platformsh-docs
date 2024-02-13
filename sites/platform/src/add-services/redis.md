@@ -104,6 +104,23 @@ restoring it if the container restarts.
 To switch from persistent to ephemeral Redis,
 set up a new service with a different name.
 
+{{% note theme="warning" title="Warning" %}}
+
+{{% vendor/name %}} sets the maximum amount of memory (`maxmemory`) Redis can use for the data set,
+and it cannot be amended.
+It is defined by comparing the following values and keeping the lower of the two:
+
+- Disk size/6 (based on a [recommendation from Redis](https://docs.redis.com/latest/rs/installing-upgrading/install/plan-deployment/hardware-requirements/#productionenvironment))
+- The amount of memory allocated to the service container
+
+For instance, if your Redis container has 3072 MB of disk space and 1024 MB of memory,
+only 512 MB of RAM are actually available to the service (3072/6 = 512).
+
+But if your Redis container has 3072 MB of disk space and 256 MB of memory,
+only 256 MB of RAM are actually available to the service (as per the container limit).
+
+{{% /note %}}
+
 ### Usage example
 
 #### 1. Configure the service
@@ -648,7 +665,7 @@ The format of the relationship is identical whether your Redis service is [ephem
 
 ## Eviction policy
 
-When [ephemeral Redis](#ephemeral-redis) reaches its memory limit,
+When Redis reaches its memory limit,
 it triggers a cache cleanup.
 To customize those cache cleanups, set up an eviction policy such as the following:
 

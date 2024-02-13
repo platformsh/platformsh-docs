@@ -33,8 +33,6 @@ Every project you deploy on {{% vendor/name %}} is built as a *virtual cluster* 
 The main branch of your Git repository is always deployed as a production cluster.
 Any other branch can be deployed as a staging or development cluster.
 
-{{% version/specific %}}
-<!-- Platform.sh -->
 There are three types of containers within your cluster,
 all configured by files stored alongside your code:
 
@@ -47,20 +45,6 @@ all configured by files stored alongside your code:
 - Some optional [*services*](/add-services/_index.md), configured in `{{< vendor/configfile "services" >}}`,
   like MySQL/MariaDB, Elasticsearch, Redis, or RabbitMQ.
   They come as optimized pre-built images.
-
-<--->
-<!-- Upsun -->
-There are three types of containers within your cluster,
-all usually configured from a single `{{< vendor/configfile "app" >}}` file stored alongside your code:
-
-- The [*router*](/define-routes/_index.md) is a single Nginx process responsible for mapping incoming requests to an app container,
-  and for optionally providing HTTP caching.
-
-- One or more [*apps*](/create-apps/_index.md) holding the code of your project.
-
-- Some optional [*services*](/add-services/_index.md) like MySQL/MariaDB, Elasticsearch, Redis, or RabbitMQ.
-  They come as optimized pre-built images.
-{{% /version/specific %}}
 
 ## The workflow
 
@@ -75,15 +59,8 @@ versions, with no service downtime.
 Depending on your needs, you can also [set up a **post-deploy** hook](#add-a-post-deploy-hook) to run after your app is deployed and your application container starts accepting traffic.
 Adding a [`post-deploy` hook](/create-apps/hooks/hooks-comparison.md#post-deploy-hook) can be useful to run updates that don't require exclusive database access.
 
-{{< version/specific >}}
 Note that if you're using [Gatsby](/guides/gatsby/headless/_index.md) to pull from a backend container on the same environment,
 you need a `post-deploy` hook to successfully build and deploy your app.
-
-<--->
-Note that if you're using Gatsby to pull from a backend container on the same environment,
-you need a `post-deploy` hook to successfully build and deploy your app.
-
-{{< /version/specific >}}
 
 ### How your app is built
 
@@ -107,20 +84,10 @@ That filesystem is the final build artifact.
 Before starting the [deployment](./build-deploy.md#deploy-steps) of your app,
 {{% vendor/name %}} pauses all incoming requests and holds them to avoid downtime.
 
-{{% version/specific %}}
-<!-- Platform.sh -->
 Then, the current containers are stopped and the new ones are started.
 {{% vendor/name %}} then opens networking connections between the various containers,
 as specified in the configuration files.
 The connection information for each service is available from the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md).
-
-<--->
-<!-- Upsun -->
-Then, the current containers are stopped and the new ones are started.
-{{% vendor/name %}} then opens networking connections between the various containers,
-as specified in `{{< vendor/configfile "app" >}}`.
-The connection information for each service is available from the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md).
-{{% /version/specific %}}
 
 Similar to the build step, you can define a [deploy hook](/create-apps/hooks/hooks-comparison.md#deploy-hook) to prepare your app.
 Your app has complete access to all services, but the filesystem where your code lives is now read-only.
@@ -135,13 +102,12 @@ Similar to the [`deploy` hook](/create-apps/hooks/hooks-comparison.md#deploy-hoo
 the `post-deploy` hook only runs once your application container accepts requests.
 So you can use it to run updates such as content imports or cache warmups that can be executed simultaneously with normal traffic.
 
-
 During a redeploy, the `post-deploy` hook is the only hook that is run.
 
 ## Get support
 
 If you're facing an issue with {{% vendor/name %}},
-submit a [Support ticket](https://console.{{< vendor/urlraw "host" >}}/-/users/~/tickets/open).
+open a [support ticket](/learn/overview/get-support).
 
 ## What's next?
 

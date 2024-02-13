@@ -2,10 +2,13 @@
 title: "Optional features"
 weight: 4
 description: Add optional features to your {{% names/dedicated-gen-2 %}} project.
+keywords:
+  - SFTP
+  - sftp
 ---
 
 You can enable the following features on your {{% names/dedicated-gen-2 %}} projects,
-as well as [multiple availability zones](../../dedicated-gen-3/multiple-az.md).
+as well as [multiple availability zones](../../dedicated-gen-3/options.md#multiple-availability-zones).
 
 To enable an optional feature or get more information on potential fees,
 [contact Sales](https://platform.sh/contact/).
@@ -30,12 +33,15 @@ The cluster begins to look more like a standard N-Tier architecture at this poin
 Speak to your sales representative about the costs associated with adding additional application servers. 
 This configuration requires a separate setup from the default so advanced planning is required.
 
-## SFTP accounts
+## SFTP
 
-In addition to SSH accounts, SFTP accounts can be created with a custom user/password that are restricted to certain directories. 
-These directories must be one of the writeable mounts (or rather, there’s no point assigning them to the read-only code directory). 
-There is no cost for this configuration, and it can be requested at any time via a support ticket. 
-SSH public key based authentication is also supported on the SFTP account.
+In addition to SSH accounts, you can create `sftp` accounts with a custom user/password that are restricted to certain directories. 
+These directories must be one of the writeable mounts (or rather, there’s no point assigning them to the read-only code directory).
+
+There is no cost for this configuration, and you can request it at any time via a [support ticket](/learn/overview/get-support.md). 
+SSH public key based authentication is also supported on the `sftp` account.
+
+See how to [transfer files through `sftp`](/development/file-transfer.md).
 
 ## Error handling
 
@@ -55,7 +61,7 @@ This file may be any static HTML file but is limited to 64 KB in size.
 ## Remote logging
 
 {{% names/dedicated-gen-2 %}} supports sending logs to a remote logging service such as Loggly, Papertrail, or Logz.io using the `rsyslog` service.
-This is an optional feature and you can request that it be enabled via a support ticket.
+This is an optional feature and you can request that it be enabled via a [support ticket](/learn/overview/get-support).
 Once enabled and configured your application can direct log output to the system `syslog` facility
 and is replicated to the remote service you have configured.
 

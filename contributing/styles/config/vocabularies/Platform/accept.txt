@@ -17,6 +17,7 @@ Bootsnap
 Brotli
 [Bb]undler
 CacheTool
+cgroups
 charset
 client_id
 Cloudfront
@@ -68,8 +69,7 @@ IPs?
 JVM
 imagetragick
 jpegoptim
-Kafka
-kafka
+[Kk]afka
 Lando
 Laravel
 Loggly
@@ -151,8 +151,10 @@ runtimes
 sanitization
 Satis
 scp
+seccomp
 serverless
 Servlet
+[Ss][Ff][Tt][Pp]
 shard
 shortcode
 Slowloris
@@ -164,8 +166,7 @@ Strapi
 [Ss]ubprocessor
 subuser
 Swoole
-Symfony
-symfony
+[Ss]ymfony
 [Ss]yslog
 systemd
 Thorntail

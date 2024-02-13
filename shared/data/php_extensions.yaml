@@ -1,40 +1,18 @@
 dedicated:
   5.x:
+    - amqp
     - apcu
-    - cli
-    - curl
-    - fpm
-    - gd
-    - geoip
-    - igbinary
-    - imagick
-    - intl
-    - ldap
-    - mcrypt
-    - memcached
-    - mongo
-    - mysql
-    - mysqlnd
-    - oauth
-    - pgsql
-    - redis
-    - ssh2
-    - twig
-    - xcache
-    - xdebug
-    - xhprof
-    - xmlrpc
-    - xsl
-  "7.0":
     - apcu-bc
-    - apcu
     - bcmath
     - bz2
+    - cgi
     - cli
+    - common
     - curl
     - dba
-    - dbg
+    - dev
     - enchant
+    - event
     - fpm
     - gd
     - geoip
@@ -44,12 +22,61 @@ dedicated:
     - imap
     - interbase
     - intl
-    - json
+    - ldap
+    - mailparse
+    - mbstring
+    - memcached
+    - msgpack
+    - mysql
+    - oauth
+    - odbc
+    - opcache
+    - pdo-sqlsrv
+    - pgsql
+    - phpdbg
+    - pspell
+    - readline
+    - redis
+    - ssh2
+    - snmp
+    - soap
+    - sodium
+    - sqlite3
+    - sqlsrv
+    - sybase
+    - tideways-xhprof
+    - tidy
+    - twig
+    - uuid
+    - xcache
+    - xdebug
+    - xml
+    - xsl
+    - zip
+  "7.0":
+    - apcu-bc
+    - apcu
+    - bcmath
+    - bz2
+    - cgi
+    - cli
+    - common
+    - curl
+    - dba
+    - dev
+    - enchant
+    - fpm
+    - gd
+    - gmp
+    - igbinary
+    - imagick
+    - imap
+    - interbase
+    - intl
     - ldap
     - mbstring
     - mcrypt
     - memcached
-    - mongodb
     - msgpack
     - mysql
     - oauth
@@ -103,13 +130,11 @@ dedicated:
     - mbstring
     - mcrypt
     - memcached
-    - mongodb
     - msgpack
     - mysql
     - oauth
     - odbc
     - opcache
-    - pdo-sqlsrv
     - pgsql
     - phpdbg
     - pspell
@@ -119,7 +144,6 @@ dedicated:
     - snmp
     - soap
     - sqlite3
-    - sqlsrv
     - ssh2
     - sybase
     - tideways-xhprof
@@ -279,7 +303,6 @@ dedicated:
     - oauth
     - odbc
     - opcache
-    - pdo-sqlsrv
     - pgsql
     - phpdbg
     - pspell
@@ -324,11 +347,13 @@ dedicated:
     - ldap
     - mailparse
     - mbstring
+    - memcached
+    - mongodb
+    - msgpack
     - mysql
     - oauth
     - odbc
     - opcache
-    - pdo-sqlsrv
     - pgsql
     - phpdbg
     - pspell
@@ -349,10 +374,154 @@ dedicated:
     - xsl
     - zip
     - zts
+  "8.2":
+    - amqp
+    - apcu
+    - bcmath
+    - bz2
+    - cgi
+    - cli
+    - common
+    - curl
+    - dba
+    - dev
+    - enchant
+    - fpm
+    - gd
+    - gmp
+    - igbinary
+    - imagick
+    - imap
+    - intl
+    - json # json is built in from version 8.0
+    - ldap
+    - mailparse
+    - mbstring
+    - memcached
+    - mongodb
+    - msgpack
+    - mysql
+    - odbc
+    - opcache
+    - openswoole
+    - pgsql
+    - phpdbg
+    - pspell
+    - readline
+    - redis
+    - snmp
+    - soap
+    - sodium
+    - sqlite3
+    - sqlsrv
+    - ssh2
+    - sybase
+    - tidy
+    - swoole
+    - xdebug
+    - xml
+    - xsl
+    - zip
+  "8.3":
+    - amqp
+    - apcu
+    - bcmath
+    - bz2
+    - cgi
+    - cli
+    - common
+    - curl
+    - dba
+    - dev
+    - enchant
+    - fpm
+    - gd
+    - gmp
+    - igbinary
+    - imagick
+    - imap
+    - intl
+    - json # json is built in from version 8.0
+    - ldap
+    - mailparse
+    - mbstring
+    - memcached
+    - msgpack
+    - mysql
+    - odbc
+    - opcache
+    - openswoole
+    - pgsql
+    - phpdbg
+    - pspell
+    - readline
+    - redis
+    - snmp
+    - soap
+    - sodium
+    - sqlite3
+    - ssh2
+    - sybase
+    - tidy
+    - swoole
+    - xdebug
+    - xml
+    - xsl
+    - zip
 grid:
   "5.4":
     available:
       - apc
+      - apcu
+      - blackfire
+      - enchant
+      - gearman
+      - geoip
+      - gmp
+      - http
+      - imagick
+      - imap
+      - interbase
+      - ldap
+      - mcrypt
+      - memcache
+      - memcached
+      - mongo
+      - mssql
+      - odbc
+      - pdo_dblib
+      - pdo_firebird
+      - pdo_mysql
+      - pdo_odbc
+      - pdo_pgsql
+      - pgsql
+      - pinba
+      - pspell
+      - readline
+      - recode
+      - redis
+      - snmp
+      - spplus
+      - ssh2
+      - tidy
+      - xcache
+      - xhprof
+      - xmlrpc
+      - xsl
+    default:
+      - curl
+      - gd
+      - intl
+      - mysql
+      - mysqli
+      - mysqlnd
+      - pdo
+      - pdo_mysql
+      - pdo_sqlite
+      - sqlite3
+      - zendopcache
+  "5.5":
+    available:
       - apcu
       - blackfire
       - enchant
@@ -385,55 +554,7 @@ grid:
       - ssh2
       - tidy
       - xcache
-      - xhprof
-      - xmlrpc
-      - xsl
-    default:
-      - curl
-      - gd
-      - intl
-      - mysql
-      - mysqli
-      - mysqlnd
-      - PDO
-      - pdo_mysql
-      - pdo_sqlite
-      - sqlite3
-      - zendopcache
-  "5.5":
-    available:
-      - apc
-      - blackfire
-      - enchant
-      - gearman
-      - geoip
-      - gmp
-      - http
-      - imagick
-      - imap
-      - interbase
-      - ldap
-      - mcrypt
-      - memcache
-      - memcached
-      - mongo
-      - mssql
-      - odbc
-      - pdo_dblib
-      - pdo_firebird
-      - pdo_odbc
-      - pdo_pgsql
-      - pgsql
-      - pinba
-      - pspell
-      - readline
-      - recode
-      - redis
-      - snmp
-      - spplus
-      - ssh2
-      - tidy
-      - xcache
+      - xdebug
       - xhprof
       - xmlrpc
       - xsl
@@ -475,6 +596,7 @@ grid:
       - pdo_firebird
       - pdo_odbc
       - pdo_pgsql
+      - pecl-http
       - pgsql
       - pinba
       - propro
@@ -486,6 +608,7 @@ grid:
       - snmp
       - ssh2
       - tidy
+      - xdebug
       - xhprof
       - xmlrpc
       - xsl
@@ -498,7 +621,7 @@ grid:
       - mysqli
       - mysqlnd
       - opcache
-      - PDO
+      - pdo
       - pdo_mysql
       - pdo_sqlite
       - sqlite3
@@ -1142,6 +1265,7 @@ grid:
       - pdo_dblib
       - pdo_odbc
       - pdo_pgsql
+      - pdo_sqlsrv
       - pgsql
       - pspell
       - raphf
@@ -1152,6 +1276,7 @@ grid:
       - snmp
       - sodium
       - sourceguardian
+      - sqlsrv
       - ssh2
       - swoole
       - sybase
@@ -1222,6 +1347,7 @@ grid:
       - pdo_dblib
       - pdo_odbc
       - pdo_pgsql
+      - pdo_sqlsrv
       - pgsql
       - pspell
       - raphf
@@ -1231,6 +1357,7 @@ grid:
       - snmp
       - sodium
       - sourceguardian
+      - sqlsrv
       - ssh2
       - sybase
       - tidy
