@@ -16,7 +16,7 @@ This number is calculated based on three parameters:
 - The request memory: the amount of memory an average PHP request is expected to require.
 - The reserved memory: the amount of memory you need to reserve for tasks that aren't related to requests.
 
-- The number is calculated as follows: ![The sum of container memory minus reserved memory divided by request memory](/images/php/PHP-FPM-Workers-Calculation.png "0.2")
+The number is calculated as follows: ![The sum of container memory minus reserved memory divided by request memory](/images/php/PHP-FPM-Workers-Calculation.png "0.2")
 
 Note that when the resulting number is a decimal,
 it's rounded up to set the maximum number of workers.
