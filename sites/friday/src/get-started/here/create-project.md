@@ -12,6 +12,7 @@ Open the [Upsun management console](https://console.upsun.com/-/create-project) 
 
 {{% note %}}
 If you haven't done so already, you are prompted to create your first organization where your project will reside.
+{{% /note %}}
 
 ![Create project options](/images/console/create-project.png "0.4")
 
