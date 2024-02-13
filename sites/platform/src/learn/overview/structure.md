@@ -4,7 +4,7 @@ weight: 2
 description: "Learn about how your {{% vendor/name %}} environments are structured and which files control that structure."
 ---
 
-{{< note version="1" >}}
+{{< note >}}
 
 This page describes how things work on Grid projects.
 [{{% names/dedicated-gen-3 %}}](/dedicated-gen-3/_index.md) projects are similar,
@@ -17,25 +17,12 @@ For {{% names/dedicated-gen-2 %}} projects, read about how [{{% names/dedicated-
 Each environment you deploy on {{% vendor/name %}} is built as a set of containers.
 Each container is an isolated instance with specific resources.
 
-{{% version/specific %}}
-<!-- Platform.sh -->
 Each environment has 2 to 4 types of containers:
 
 - One [*router*](#router) (configured in a `{{< vendor/configfile "routes" >}}` file)
 - One or more [*app* containers](#apps) (configured in `{{< vendor/configfile "app" >}}` files)
 - Zero or more [*service* containers](#services) (configured in a `{{< vendor/configfile "services" >}}` file)
 - Zero or more [*worker* containers](#workers) (configured in the files for apps)
-
-<--->
-<!-- Upsun -->
-Each environment has 2 to 4 types of containers, all usually configured from your `{{< vendor/configfile "app" >}}` file.
-
-- One [*router*](#router)
-- One or more [*app* containers](#apps)
-- Zero or more [*service* containers](#services)
-- Zero or more [*worker* containers](#workers)
-
-{{% /version/specific %}}
 
 If you have two app containers, two services (a database and a search engine), and a worker,
 requests to your environment might look something like this:
@@ -44,8 +31,6 @@ requests to your environment might look something like this:
 
 If you have only one app container, your repository might look like this:
 
-{{% version/specific %}}
-<!-- Platform.sh -->
 ```text
 project
 ├── .git
@@ -55,17 +40,6 @@ project
 ├── {{< vendor/configfile "app" >}}
 └── <YOUR_APP_FILES>
 ```
-
-<--->
-<!-- Upsun -->
-```text
-project
-├── .git
-├── {{< vendor/configdir >}}
-│   └── {{< vendor/configfile "app" "strip" >}}
-└── <YOUR_APP_FILES>
-```
-{{% /version/specific %}}
 
 ## Router
 
@@ -87,16 +61,8 @@ App containers run the code you provide via your Git repository.
 They handle requests from the outside world and can communicate with other containers within the environment.
 Each app container is built from a specific language image with a given version for the language.
 
-{{% version/specific %}}
-<!-- Platform.sh -->
 To configure your apps, you usually create one `{{< vendor/configfile "app" >}}` file for each app container.
 A basic app generally has only one such file placed in the repository root.
-
-<--->
-<!-- Upsun -->
-To configure your apps, you usually create a single `{{< vendor/configfile "app" >}}` file
-and place it in the repository root.
-{{% /version/specific %}}
 
 Read more about how to [configure apps](/create-apps/_index.md).
 

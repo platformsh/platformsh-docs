@@ -1,0 +1,9 @@
+name: Set up Upsun CLI
+description: Installs the Upsun CLI.
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install Upsun CLI
+      run: curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | VENDOR=upsun bash
+      shell: bash

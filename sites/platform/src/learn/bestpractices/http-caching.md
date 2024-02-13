@@ -21,12 +21,8 @@ It's enough for most uses.
 
 ## A Content Delivery Network (CDN)
 
-{{% version/specific %}}
 {{% vendor/name %}} is compatible with most commercial CDNs.
 If you have a Dedicated instance, it comes with the [Fastly CDN](/domains/cdn/fastly.md).
-<--->
-{{% vendor/name %}} is compatible with most commercial CDNs.
-{{% /version/specific %}}
 
 CDNs generally offer the best performance as they're the only option that includes multiple geographic locations.
 But they do tend to be the most expensive option.
@@ -65,7 +61,6 @@ HTTP-based caching systems generally default to including cookie values in cache
 to avoid serving authenticated content to the wrong user.
 While this is a safe default, it means that *any* cookie effectively disables the cache,
 including mundane cookies like analytics.
-
 
 The solution is to set which cookies should impact the cache and limit them to session cookies.
 For the router cache, see [cookies in HTTP caching](/define-routes/cache.md#cookies).

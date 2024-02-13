@@ -25,7 +25,7 @@ Logs in files can't be forwarded.
 
 To enable log forwarding in a project, you need to be a [project admin](../../administration/users.md).
 You also need your project to have the capability for log forwarding.
-To get that, contact [support](https://console.platform.sh/-/users/~/tickets/open).
+To get a price quote, [contact Sales](https://platform.sh/contact/).
 
 ## Use a log forwarding integration
 
