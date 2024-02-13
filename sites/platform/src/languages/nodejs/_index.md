@@ -379,8 +379,6 @@ highlight=js
 
 {{< /codetabs >}}
 
-{{% access-services version="2" %}}
-
 {{% config-reader %}}[Node.js configuration reader library](https://github.com/platformsh/config-reader-nodejs){{% /config-reader%}}
 
 ## Project templates
