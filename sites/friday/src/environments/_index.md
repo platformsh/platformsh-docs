@@ -196,16 +196,6 @@ Staging
 To prevent unnecessary consumption of resources,
 {{% vendor/name %}} automatically pauses preview environments ([of both development and staging types](/glossary.md#environment-type)) that haven't been redeployed in 14 days.
 
-{{< note >}}
-
-If you're on a development plan,
-all your environments are preview environments that can be paused automatically.
-This includes your future production environment.
-To prevent your production environment from being paused automatically,
-[upgrade to a non-development plan](https://platform.sh/pricing/).
-
-{{< /note >}}
-
 You can also pause an environment manually at any time.
 
 ### Pause an environment
@@ -280,6 +270,7 @@ which allows you to push changes to your environment and trigger the following a
 | Clone the data from the parent environment | `git push {{% vendor/cli %}} -o "environment.clone_parent_on_create=True"` |
 | Disable the cloning of the data from the parent environment | `git push {{% vendor/cli %}} -o "environment.clone_parent_on_create=False"` |
 | Set the environment type (`development`, `staging`, or `production`)                  | `git push {{% vendor/cli %}} -o "environment.type=<ENVIRONMENT_TYPE>"` |
+| Define a [resource initialization strategy](/manage-resources/_index.md#define-a-resource-initialization-strategy) (`Default`, `Manual`, `Minimum`, or `Parent`)  | `git push {{% vendor/cli %}} -o "resources.init=<RESOURCE_INITIALIZATION_STRATEGY>"` |
 
 If your remote location isn't named `{{% vendor/cli %}}`,
 make sure you adjust the commands accordingly.

@@ -13,7 +13,7 @@ showTitle: false
 
 <!-- vale off -->
 
-# Platform.sh CLI 5.0.9
+# Upsun CLI 5.0.9
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
@@ -120,9 +120,7 @@ showTitle: false
 
 **local**
 
-* [`local:build`](#localbuild)
 * [`local:dir`](#localdir)
-* [`local:drush-aliases`](#localdrush-aliases)
 
 **metrics**
 
@@ -174,6 +172,12 @@ showTitle: false
 * [`repo:cat`](#repocat)
 * [`repo:ls`](#repols)
 * [`repo:read`](#reporead)
+
+**resources**
+
+* [`resources:get`](#resourcesget)
+* [`resources:set`](#resourcesset)
+* [`resources:size:list`](#resourcessizelist)
 
 **route**
 
@@ -259,7 +263,7 @@ Aliases: `cc`
 ### Usage
 
 ```
-platform cc
+upsun cc
 ```
 
 #### Options
@@ -277,7 +281,7 @@ platform cc
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `decode`
 
@@ -286,7 +290,7 @@ Decode an encoded string such as PLATFORM_VARIABLES
 ### Usage
 
 ```
-platform decode [-P|--property PROPERTY] [--] <value>
+upsun decode [-P|--property PROPERTY] [--] <value>
 ```
 
 #### Arguments
@@ -312,13 +316,13 @@ platform decode [-P|--property PROPERTY] [--] <value>
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * View "foo" in PLATFORM_VARIABLES:
 ```
-platform decode "$PLATFORM_VARIABLES" -P foo
+upsun decode "$PLATFORM_VARIABLES" -P foo
 ```
 
 ## `docs`
@@ -328,7 +332,7 @@ Open the online documentation
 ### Usage
 
 ```
-platform docs [--browser BROWSER] [--pipe] [--] [<search>]...
+upsun docs [--browser BROWSER] [--pipe] [--] [<search>]...
 ```
 
 #### Arguments
@@ -357,13 +361,13 @@ platform docs [--browser BROWSER] [--pipe] [--] [<search>]...
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Search for information about the CLI:
 ```
-platform docs CLI
+upsun docs CLI
 ```
 
 ## `help`
@@ -373,16 +377,16 @@ Displays help for a command
 ### Usage
 
 ```
-platform help [--format FORMAT] [--raw] [--] [<command_name>]
+upsun help [--format FORMAT] [--raw] [--] [<command_name>]
 ```
 
 The help command displays help for a given command:
 
-  platform help list
+  upsun help list
 
 You can also output the help in other formats by using the --format option:
 
-  platform help --format=json list
+  upsun help --format=json list
 
 To display the list of available commands, please use the list command.
 
@@ -412,7 +416,7 @@ To display the list of available commands, please use the list command.
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `list`
 
@@ -421,24 +425,24 @@ Lists commands
 ### Usage
 
 ```
-platform list [--raw] [--format FORMAT] [--all] [--] [<namespace>]
+upsun list [--raw] [--format FORMAT] [--all] [--] [<namespace>]
 ```
 
 The list command lists all commands:
 
-  platform list
+  upsun list
 
 You can also display the commands for a specific namespace:
 
-  platform list project
+  upsun list project
 
 You can also output the information in other formats by using the --format option:
 
-  platform list --format=xml
+  upsun list --format=xml
 
 It's also possible to get raw list of commands (useful for embedding command runner):
 
-  platform list --raw
+  upsun list --raw
 
 #### Arguments
 
@@ -472,7 +476,7 @@ It's also possible to get raw list of commands (useful for embedding command run
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `multi`
 
@@ -481,7 +485,7 @@ Execute a command on multiple projects
 ### Usage
 
 ```
-platform multi [-p|--projects PROJECTS] [--continue] [--sort SORT] [--reverse] [--] <cmd> (<cmd>)...
+upsun multi [-p|--projects PROJECTS] [--continue] [--sort SORT] [--reverse] [--] <cmd> (<cmd>)...
 ```
 
 #### Arguments
@@ -516,13 +520,13 @@ platform multi [-p|--projects PROJECTS] [--continue] [--sort SORT] [--reverse] [
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * List variables on the "main" environment for multiple projects:
 ```
-platform multi -p l7ywemwizmmgb,o43m25zns6k2d,3nyujoslhydhx -- var -e main
+upsun multi -p l7ywemwizmmgb,o43m25zns6k2d,3nyujoslhydhx -- var -e main
 ```
 
 ## `web`
@@ -532,7 +536,7 @@ Open the project in the Web Console
 ### Usage
 
 ```
-platform web [--browser BROWSER] [--pipe] [-p|--project PROJECT] [-e|--environment ENVIRONMENT]
+upsun web [--browser BROWSER] [--pipe] [-p|--project PROJECT] [-e|--environment ENVIRONMENT]
 ```
 
 #### Options
@@ -562,7 +566,7 @@ platform web [--browser BROWSER] [--pipe] [-p|--project PROJECT] [-e|--environme
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `activity:cancel`
 
@@ -571,7 +575,7 @@ Cancel an activity
 ### Usage
 
 ```
-platform activity:cancel [-t|--type TYPE] [-x|--exclude-type EXCLUDE-TYPE] [-a|--all] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] [<id>]
+upsun activity:cancel [-t|--type TYPE] [-x|--exclude-type EXCLUDE-TYPE] [-a|--all] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] [<id>]
 ```
 
 #### Arguments
@@ -609,7 +613,7 @@ platform activity:cancel [-t|--type TYPE] [-x|--exclude-type EXCLUDE-TYPE] [-a|-
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `activity:get`
 
@@ -618,7 +622,7 @@ View detailed information on a single activity
 ### Usage
 
 ```
-platform activity:get [-P|--property PROPERTY] [-t|--type TYPE] [-x|--exclude-type EXCLUDE-TYPE] [--state STATE] [--result RESULT] [-i|--incomplete] [-a|--all] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT] [--] [<id>]
+upsun activity:get [-P|--property PROPERTY] [-t|--type TYPE] [-x|--exclude-type EXCLUDE-TYPE] [--state STATE] [--result RESULT] [-i|--incomplete] [-a|--all] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT] [--] [<id>]
 ```
 
 #### Arguments
@@ -680,18 +684,18 @@ platform activity:get [-P|--property PROPERTY] [-t|--type TYPE] [-x|--exclude-ty
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Find the time a project was created:
 ```
-platform activity:get --all --type project.create -P completed_at
+upsun activity:get --all --type project.create -P completed_at
 ```
 
 * Find the duration (in seconds) of the last activity:
 ```
-platform activity:get -P duration
+upsun activity:get -P duration
 ```
 
 ## `activity:list`
@@ -703,13 +707,13 @@ Aliases: `activities`, `act`
 ### Usage
 
 ```
-platform activities [-t|--type TYPE] [-x|--exclude-type EXCLUDE-TYPE] [--limit LIMIT] [--start START] [--state STATE] [--result RESULT] [-i|--incomplete] [-a|--all] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT]
+upsun activities [-t|--type TYPE] [-x|--exclude-type EXCLUDE-TYPE] [--limit LIMIT] [--start START] [--state STATE] [--result RESULT] [-i|--incomplete] [-a|--all] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT]
 ```
 
 #### Options
 
 * `--type` (`-t`) (expects a value)
-  Filter activities by type For a list of types see: https://docs.platform.sh/integrations/activity/reference.html#type Values may be split by commas (e.g. "a,b,c") and/or whitespace. The first part of the activity name can be omitted, e.g. 'cron' can select 'environment.cron' activities. The % or * characters can be used as a wildcard, e.g. '%var%' to select variable-related activities.
+  Filter activities by type For a list of types see: https://docs.upsun.com/integrations/activity/reference.html#type Values may be split by commas (e.g. "a,b,c") and/or whitespace. The first part of the activity name can be omitted, e.g. 'cron' can select 'environment.cron' activities. The % or * characters can be used as a wildcard, e.g. '%var%' to select variable-related activities.
 
 * `--exclude-type` (`-x`) (expects a value)
   Exclude activities by type. Values may be split by commas (e.g. "a,b,c") and/or whitespace. The first part of the activity name can be omitted, e.g. 'cron' can exclude 'environment.cron' activities. The % or * characters can be used as a wildcard to exclude types.
@@ -763,38 +767,38 @@ platform activities [-t|--type TYPE] [-x|--exclude-type EXCLUDE-TYPE] [--limit L
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * List recent activities for the current environment:
 ```
-platform activity:list 
+upsun activity:list 
 ```
 
 * List all recent activities for the current project:
 ```
-platform activity:list --all
+upsun activity:list --all
 ```
 
 * List recent pushes:
 ```
-platform activity:list --type push
+upsun activity:list --type push
 ```
 
 * List all recent activities excluding crons and redeploys:
 ```
-platform activity:list --exclude-type '*.cron,*.backup*'
+upsun activity:list --exclude-type '*.cron,*.backup*'
 ```
 
 * List pushes made before 15 March:
 ```
-platform activity:list --type push --start 2015-03-15
+upsun activity:list --type push --start 2015-03-15
 ```
 
 * List up to 25 incomplete activities:
 ```
-platform activity:list --limit 25 -i
+upsun activity:list --limit 25 -i
 ```
 
 ## `activity:log`
@@ -804,7 +808,7 @@ Display the log for an activity
 ### Usage
 
 ```
-platform activity:log [--refresh REFRESH] [-t|--timestamps] [--type TYPE] [-x|--exclude-type EXCLUDE-TYPE] [--state STATE] [--result RESULT] [-i|--incomplete] [-a|--all] [--date-fmt DATE-FMT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] [<id>]
+upsun activity:log [--refresh REFRESH] [-t|--timestamps] [--type TYPE] [-x|--exclude-type EXCLUDE-TYPE] [--state STATE] [--result RESULT] [-i|--incomplete] [-a|--all] [--date-fmt DATE-FMT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] [<id>]
 ```
 
 #### Arguments
@@ -860,23 +864,23 @@ platform activity:log [--refresh REFRESH] [-t|--timestamps] [--type TYPE] [-x|--
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Display the log for the last push on the current environment:
 ```
-platform activity:log --type environment.push
+upsun activity:log --type environment.push
 ```
 
 * Display the log for the last activity on the current project:
 ```
-platform activity:log --all
+upsun activity:log --all
 ```
 
 * Display the log for the last push, with microsecond timestamps:
 ```
-platform activity:log -a -t --type %push --date-fmt 'Y-m-d\TH:i:s.uP'
+upsun activity:log -a -t --type %push --date-fmt 'Y-m-d\TH:i:s.uP'
 ```
 
 ## `app:config-get`
@@ -886,7 +890,7 @@ View the configuration of an app
 ### Usage
 
 ```
-platform app:config-get [-P|--property PROPERTY] [--refresh] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [-i|--identity-file IDENTITY-FILE]
+upsun app:config-get [-P|--property PROPERTY] [--refresh] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [-i|--identity-file IDENTITY-FILE]
 ```
 
 #### Options
@@ -922,7 +926,7 @@ platform app:config-get [-P|--property PROPERTY] [--refresh] [-p|--project PROJE
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `app:config-validate`
 
@@ -933,7 +937,7 @@ Aliases: `validate`
 ### Usage
 
 ```
-platform app:config-validate
+upsun app:config-validate
 ```
 
 #### Options
@@ -951,13 +955,13 @@ platform app:config-validate
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Validate the project configuration files in your current directory:
 ```
-platform app:config-validate 
+upsun app:config-validate 
 ```
 
 ## `app:list`
@@ -969,7 +973,7 @@ Aliases: `apps`
 ### Usage
 
 ```
-platform apps [--refresh] [--pipe] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
+upsun apps [--refresh] [--pipe] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
 ```
 
 #### Options
@@ -1008,25 +1012,25 @@ platform apps [--refresh] [--pipe] [-p|--project PROJECT] [-e|--environment ENVI
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `auth:api-token-login`
 
-Log in to Platform.sh using an API token
+Log in to Upsun using an API token
 
 ### Usage
 
 ```
-platform auth:api-token-login
+upsun auth:api-token-login
 ```
 
-Use this command to log in to your Platform.sh account using an API token.
+Use this command to log in to your Upsun account using an API token.
 
 You can create an account at:
-    https://auth.api.platform.sh/register
+    https://auth.upsun.com/register
 
 Alternatively, to log in to the CLI with a browser, run:
-    platform auth:browser-login
+    upsun auth:browser-login
 
 #### Options
 
@@ -1043,21 +1047,21 @@ Alternatively, to log in to the CLI with a browser, run:
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `auth:browser-login`
 
-Log in to Platform.sh via a browser
+Log in to Upsun via a browser
 
 Aliases: `login`
 
 ### Usage
 
 ```
-platform login [-f|--force] [--browser BROWSER] [--pipe]
+upsun login [-f|--force] [--browser BROWSER] [--pipe]
 ```
 
-Use this command to log in to the Platform.sh CLI using a web browser.
+Use this command to log in to the Upsun CLI using a web browser.
 
 It launches a temporary local website which redirects you to log in if
 necessary, and then captures the resulting authorization code.
@@ -1066,10 +1070,10 @@ Your system's default browser will be used. You can override this using the
 --browser option.
 
 Alternatively, to log in using an API token (without a browser), run:
-platform auth:api-token-login
+upsun auth:api-token-login
 
 To authenticate non-interactively, configure an API token using the
-PLATFORMSH_CLI_TOKEN environment variable.
+UPSUN_CLI_TOKEN environment variable.
 
 #### Options
 
@@ -1095,7 +1099,7 @@ PLATFORMSH_CLI_TOKEN environment variable.
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `auth:info`
 
@@ -1104,7 +1108,7 @@ Display your account information
 ### Usage
 
 ```
-platform auth:info [--no-auto-login] [-P|--property PROPERTY] [--refresh] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--] [<property>]
+upsun auth:info [--no-auto-login] [-P|--property PROPERTY] [--refresh] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--] [<property>]
 ```
 
 #### Arguments
@@ -1145,35 +1149,35 @@ platform auth:info [--no-auto-login] [-P|--property PROPERTY] [--refresh] [--for
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Print your user ID:
 ```
-platform auth:info id
+upsun auth:info id
 ```
 
 * Print your email address:
 ```
-platform auth:info email
+upsun auth:info email
 ```
 
 * Print your user ID (or nothing if not logged in):
 ```
-platform auth:info id --no-auto-login
+upsun auth:info id --no-auto-login
 ```
 
 ## `auth:logout`
 
-Log out of Platform.sh
+Log out of Upsun
 
 Aliases: `logout`
 
 ### Usage
 
 ```
-platform logout [-a|--all] [--other]
+upsun logout [-a|--all] [--other]
 ```
 
 #### Options
@@ -1197,7 +1201,7 @@ platform logout [-a|--all] [--other]
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `auth:verify-phone-number`
 
@@ -1206,7 +1210,7 @@ Verify your phone number interactively
 ### Usage
 
 ```
-platform auth:verify-phone-number
+upsun auth:verify-phone-number
 ```
 
 #### Options
@@ -1224,7 +1228,7 @@ platform auth:verify-phone-number
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `backup:create`
 
@@ -1235,7 +1239,7 @@ Aliases: `backup`
 ### Usage
 
 ```
-platform backup [--live] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<environment>]
+upsun backup [--live] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<environment>]
 ```
 
 #### Arguments
@@ -1273,23 +1277,23 @@ platform backup [--live] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Make a backup of the current environment:
 ```
-platform backup:create 
+upsun backup:create 
 ```
 
 * Request a backup (and exit quickly):
 ```
-platform backup:create --no-wait
+upsun backup:create --no-wait
 ```
 
 * Make a backup avoiding downtime (but risking inconsistency):
 ```
-platform backup:create --live
+upsun backup:create --live
 ```
 
 ## `backup:delete`
@@ -1299,7 +1303,7 @@ Delete an environment backup
 ### Usage
 
 ```
-platform backup:delete [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<backup>]
+upsun backup:delete [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<backup>]
 ```
 
 #### Arguments
@@ -1334,7 +1338,7 @@ platform backup:delete [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `backup:get`
 
@@ -1343,7 +1347,7 @@ View an environment backup
 ### Usage
 
 ```
-platform backup:get [-P|--property PROPERTY] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--date-fmt DATE-FMT] [--] [<backup>]
+upsun backup:get [-P|--property PROPERTY] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--date-fmt DATE-FMT] [--] [<backup>]
 ```
 
 #### Arguments
@@ -1378,7 +1382,7 @@ platform backup:get [-P|--property PROPERTY] [-p|--project PROJECT] [-e|--enviro
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `backup:list`
 
@@ -1389,7 +1393,7 @@ Aliases: `backups`
 ### Usage
 
 ```
-platform backups [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT]
+upsun backups [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT]
 ```
 
 #### Options
@@ -1425,13 +1429,13 @@ platform backups [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Display backups including the "live" and "commit_id" columns:
 ```
-platform backup:list -c+live,commit_id
+upsun backup:list -c+live,commit_id
 ```
 
 ## `backup:restore`
@@ -1441,7 +1445,7 @@ Restore an environment backup
 ### Usage
 
 ```
-platform backup:restore [--target TARGET] [--branch-from BRANCH-FROM] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<backup>]
+upsun backup:restore [--target TARGET] [--branch-from BRANCH-FROM] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<backup>]
 ```
 
 #### Arguments
@@ -1482,18 +1486,18 @@ platform backup:restore [--target TARGET] [--branch-from BRANCH-FROM] [-p|--proj
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Restore the most recent backup:
 ```
-platform backup:restore 
+upsun backup:restore 
 ```
 
 * Restore a specific backup:
 ```
-platform backup:restore 92c9a4b2aa75422efb3d
+upsun backup:restore 92c9a4b2aa75422efb3d
 ```
 
 ## `certificate:add`
@@ -1503,7 +1507,7 @@ Add an SSL certificate to the project
 ### Usage
 
 ```
-platform certificate:add [--cert CERT] [--key KEY] [--chain CHAIN] [-p|--project PROJECT] [-W|--no-wait] [--wait]
+upsun certificate:add [--cert CERT] [--key KEY] [--chain CHAIN] [-p|--project PROJECT] [-W|--no-wait] [--wait]
 ```
 
 #### Options
@@ -1539,7 +1543,7 @@ platform certificate:add [--cert CERT] [--key KEY] [--chain CHAIN] [-p|--project
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `certificate:delete`
 
@@ -1548,7 +1552,7 @@ Delete a certificate from the project
 ### Usage
 
 ```
-platform certificate:delete [-p|--project PROJECT] [-W|--no-wait] [--wait] [--] <id>
+upsun certificate:delete [-p|--project PROJECT] [-W|--no-wait] [--wait] [--] <id>
 ```
 
 #### Arguments
@@ -1580,7 +1584,7 @@ platform certificate:delete [-p|--project PROJECT] [-W|--no-wait] [--wait] [--] 
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `certificate:get`
 
@@ -1589,7 +1593,7 @@ View a certificate
 ### Usage
 
 ```
-platform certificate:get [-P|--property PROPERTY] [--date-fmt DATE-FMT] [-p|--project PROJECT] [--] <id>
+upsun certificate:get [-P|--property PROPERTY] [--date-fmt DATE-FMT] [-p|--project PROJECT] [--] <id>
 ```
 
 #### Arguments
@@ -1621,7 +1625,7 @@ platform certificate:get [-P|--property PROPERTY] [--date-fmt DATE-FMT] [-p|--pr
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `certificate:list`
 
@@ -1632,7 +1636,7 @@ Aliases: `certificates`, `certs`
 ### Usage
 
 ```
-platform certificates [--domain DOMAIN] [--exclude-domain EXCLUDE-DOMAIN] [--issuer ISSUER] [--only-auto] [--no-auto] [--ignore-expiry] [--only-expired] [--no-expired] [--pipe-domains] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT]
+upsun certificates [--domain DOMAIN] [--exclude-domain EXCLUDE-DOMAIN] [--issuer ISSUER] [--only-auto] [--no-auto] [--ignore-expiry] [--only-expired] [--no-expired] [--pipe-domains] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT]
 ```
 
 #### Options
@@ -1692,13 +1696,13 @@ platform certificates [--domain DOMAIN] [--exclude-domain EXCLUDE-DOMAIN] [--iss
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Output a list of domains covered by valid certificates:
 ```
-platform certificate:list --pipe-domains --no-expired
+upsun certificate:list --pipe-domains --no-expired
 ```
 
 ## `commit:get`
@@ -1708,7 +1712,7 @@ Show commit details
 ### Usage
 
 ```
-platform commit:get [-P|--property PROPERTY] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--date-fmt DATE-FMT] [--] [<commit>]
+upsun commit:get [-P|--property PROPERTY] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--date-fmt DATE-FMT] [--] [<commit>]
 ```
 
 #### Arguments
@@ -1743,28 +1747,28 @@ platform commit:get [-P|--property PROPERTY] [-p|--project PROJECT] [-e|--enviro
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Display the current commit on the environment:
 ```
-platform commit:get 
+upsun commit:get 
 ```
 
 * Display the previous commit:
 ```
-platform commit:get HEAD~
+upsun commit:get HEAD~
 ```
 
 * Display the 3rd commit before the current one:
 ```
-platform commit:get HEAD~3
+upsun commit:get HEAD~3
 ```
 
 * Display the email address of the last commit author:
 ```
-platform commit:get -P author.email
+upsun commit:get -P author.email
 ```
 
 ## `commit:list`
@@ -1776,7 +1780,7 @@ Aliases: `commits`
 ### Usage
 
 ```
-platform commits [--limit LIMIT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT] [--] [<commit>]
+upsun commits [--limit LIMIT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT] [--] [<commit>]
 ```
 
 #### Arguments
@@ -1820,18 +1824,18 @@ platform commits [--limit LIMIT] [-p|--project PROJECT] [-e|--environment ENVIRO
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Display commits on an environment:
 ```
-platform commit:list 
+upsun commit:list 
 ```
 
 * Display commits starting from two before the current one:
 ```
-platform commit:list HEAD~2
+upsun commit:list HEAD~2
 ```
 
 ## `db:dump`
@@ -1841,7 +1845,7 @@ Create a local dump of the remote database
 ### Usage
 
 ```
-platform db:dump [--schema SCHEMA] [-f|--file FILE] [-d|--directory DIRECTORY] [-z|--gzip] [-t|--timestamp] [-o|--stdout] [--table TABLE] [--exclude-table EXCLUDE-TABLE] [--schema-only] [--charset CHARSET] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [-r|--relationship RELATIONSHIP]
+upsun db:dump [--schema SCHEMA] [-f|--file FILE] [-d|--directory DIRECTORY] [-z|--gzip] [-t|--timestamp] [-o|--stdout] [--table TABLE] [--exclude-table EXCLUDE-TABLE] [--schema-only] [--charset CHARSET] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [-r|--relationship RELATIONSHIP]
 ```
 
 #### Options
@@ -1901,18 +1905,18 @@ platform db:dump [--schema SCHEMA] [-f|--file FILE] [-d|--directory DIRECTORY] [
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Create an SQL dump file:
 ```
-platform db:dump 
+upsun db:dump 
 ```
 
 * Create a gzipped SQL dump file named "dump.sql.gz":
 ```
-platform db:dump --gzip -f dump.sql.gz
+upsun db:dump --gzip -f dump.sql.gz
 ```
 
 ## `db:sql`
@@ -1924,7 +1928,7 @@ Aliases: `sql`
 ### Usage
 
 ```
-platform sql [--raw] [--schema SCHEMA] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [-r|--relationship RELATIONSHIP] [--] [<query>]
+upsun sql [--raw] [--schema SCHEMA] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [-r|--relationship RELATIONSHIP] [--] [<query>]
 ```
 
 #### Arguments
@@ -1965,23 +1969,23 @@ platform sql [--raw] [--schema SCHEMA] [-p|--project PROJECT] [-e|--environment 
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Open an SQL console on the remote database:
 ```
-platform db:sql 
+upsun db:sql 
 ```
 
 * View tables on the remote database:
 ```
-platform db:sql 'SHOW TABLES'
+upsun db:sql 'SHOW TABLES'
 ```
 
 * Import a dump file into the remote database:
 ```
-platform db:sql < dump.sql
+upsun db:sql < dump.sql
 ```
 
 ## `domain:add`
@@ -1991,7 +1995,7 @@ Add a new domain to the project
 ### Usage
 
 ```
-platform domain:add [--cert CERT] [--key KEY] [--chain CHAIN] [--attach ATTACH] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] <name>
+upsun domain:add [--cert CERT] [--key KEY] [--chain CHAIN] [--attach ATTACH] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] <name>
 ```
 
 #### Arguments
@@ -2038,18 +2042,18 @@ platform domain:add [--cert CERT] [--key KEY] [--chain CHAIN] [--attach ATTACH] 
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Add the domain example.com:
 ```
-platform domain:add example.com
+upsun domain:add example.com
 ```
 
 * Add the domain example.org with a custom SSL/TLS certificate:
 ```
-platform domain:add example.org --cert example-org.crt --key example-org.key
+upsun domain:add example.org --cert example-org.crt --key example-org.key
 ```
 
 ## `domain:delete`
@@ -2059,7 +2063,7 @@ Delete a domain from the project
 ### Usage
 
 ```
-platform domain:delete [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] <name>
+upsun domain:delete [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] <name>
 ```
 
 #### Arguments
@@ -2094,13 +2098,13 @@ platform domain:delete [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Delete the domain example.com:
 ```
-platform domain:delete example.com
+upsun domain:delete example.com
 ```
 
 ## `domain:get`
@@ -2110,7 +2114,7 @@ Show detailed information for a domain
 ### Usage
 
 ```
-platform domain:get [-P|--property PROPERTY] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] [<name>]
+upsun domain:get [-P|--property PROPERTY] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] [<name>]
 ```
 
 #### Arguments
@@ -2154,7 +2158,7 @@ platform domain:get [-P|--property PROPERTY] [--format FORMAT] [-c|--columns COL
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `domain:list`
 
@@ -2165,7 +2169,7 @@ Aliases: `domains`
 ### Usage
 
 ```
-platform domains [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT] [-e|--environment ENVIRONMENT]
+upsun domains [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT] [-e|--environment ENVIRONMENT]
 ```
 
 #### Options
@@ -2198,7 +2202,7 @@ platform domains [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--pr
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `domain:update`
 
@@ -2207,7 +2211,7 @@ Update a domain
 ### Usage
 
 ```
-platform domain:update [--cert CERT] [--key KEY] [--chain CHAIN] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] <name>
+upsun domain:update [--cert CERT] [--key KEY] [--chain CHAIN] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] <name>
 ```
 
 #### Arguments
@@ -2251,13 +2255,13 @@ platform domain:update [--cert CERT] [--key KEY] [--chain CHAIN] [-p|--project P
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Update the custom certificate for the domain example.org:
 ```
-platform domain:update example.org --cert example-org.crt --key example-org.key
+upsun domain:update example.org --cert example-org.crt --key example-org.key
 ```
 
 ## `environment:activate`
@@ -2267,7 +2271,7 @@ Activate an environment
 ### Usage
 
 ```
-platform environment:activate [--parent PARENT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<environment>]...
+upsun environment:activate [--parent PARENT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<environment>]...
 ```
 
 #### Arguments
@@ -2305,13 +2309,13 @@ platform environment:activate [--parent PARENT] [-p|--project PROJECT] [-e|--env
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Activate the environments "develop" and "stage":
 ```
-platform environment:activate develop stage
+upsun environment:activate develop stage
 ```
 
 ## `environment:branch`
@@ -2323,7 +2327,7 @@ Aliases: `branch`
 ### Usage
 
 ```
-platform branch [--title TITLE] [--type TYPE] [--no-clone-parent] [--no-checkout] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<id>] [<parent>]
+upsun branch [--title TITLE] [--type TYPE] [--no-clone-parent] [--no-checkout] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<id>] [<parent>]
 ```
 
 #### Arguments
@@ -2373,13 +2377,13 @@ platform branch [--title TITLE] [--type TYPE] [--no-clone-parent] [--no-checkout
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Create a new branch "sprint-2", based on "develop":
 ```
-platform environment:branch sprint-2 develop
+upsun environment:branch sprint-2 develop
 ```
 
 ## `environment:checkout`
@@ -2391,7 +2395,7 @@ Aliases: `checkout`
 ### Usage
 
 ```
-platform checkout [<id>]
+upsun checkout [<id>]
 ```
 
 #### Arguments
@@ -2414,13 +2418,13 @@ platform checkout [<id>]
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Check out the environment "develop":
 ```
-platform environment:checkout develop
+upsun environment:checkout develop
 ```
 
 ## `environment:delete`
@@ -2430,10 +2434,10 @@ Delete one or more environments
 ### Usage
 
 ```
-platform environment:delete [--delete-branch] [--no-delete-branch] [--type TYPE] [-t|--only-type ONLY-TYPE] [--exclude EXCLUDE] [--exclude-type EXCLUDE-TYPE] [--inactive] [--merged] [--allow-delete-parent] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<environment>]...
+upsun environment:delete [--delete-branch] [--no-delete-branch] [--type TYPE] [-t|--only-type ONLY-TYPE] [--exclude EXCLUDE] [--exclude-type EXCLUDE-TYPE] [--inactive] [--merged] [--allow-delete-parent] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<environment>]...
 ```
 
-When a Platform.sh environment is deleted, it will become "inactive": it will
+When a Upsun environment is deleted, it will become "inactive": it will
 exist only as a Git branch, containing code but no services, databases nor
 files.
 
@@ -2498,28 +2502,28 @@ This command allows you to delete environments as well as their Git branches.
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Delete the currently checked out environment:
 ```
-platform environment:delete 
+upsun environment:delete 
 ```
 
 * Delete the environments "test" and "example-1":
 ```
-platform environment:delete test example-1
+upsun environment:delete test example-1
 ```
 
 * Delete all inactive environments:
 ```
-platform environment:delete --inactive
+upsun environment:delete --inactive
 ```
 
 * Delete all environments merged with their parent:
 ```
-platform environment:delete --merged
+upsun environment:delete --merged
 ```
 
 ## `environment:drush`
@@ -2531,7 +2535,7 @@ Aliases: `drush`
 ### Usage
 
 ```
-platform drush [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--] [<cmd>]...
+upsun drush [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--] [<cmd>]...
 ```
 
 #### Arguments
@@ -2563,28 +2567,28 @@ platform drush [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app A
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Run "drush status" on the remote environment:
 ```
-platform environment:drush status
+upsun environment:drush status
 ```
 
 * Enable the Overlay module on the remote environment:
 ```
-platform environment:drush en overlay
+upsun environment:drush en overlay
 ```
 
 * Get a one-time login link (using -- before options):
 ```
-platform environment:drush user-login -- --mail=name@example.com
+upsun environment:drush user-login -- --mail=name@example.com
 ```
 
 * Alternative syntax (quoting the whole command):
 ```
-platform environment:drush 'user-login --mail=name@example.com'
+upsun environment:drush 'user-login --mail=name@example.com'
 ```
 
 ## `environment:http-access`
@@ -2596,7 +2600,7 @@ Aliases: `httpaccess`
 ### Usage
 
 ```
-platform httpaccess [--access ACCESS] [--auth AUTH] [--enabled ENABLED] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait]
+upsun httpaccess [--access ACCESS] [--auth AUTH] [--enabled ENABLED] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait]
 ```
 
 #### Options
@@ -2635,28 +2639,28 @@ platform httpaccess [--access ACCESS] [--auth AUTH] [--enabled ENABLED] [-p|--pr
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Require a username and password:
 ```
-platform environment:http-access --auth myname:mypassword
+upsun environment:http-access --auth myname:mypassword
 ```
 
 * Restrict access to only one IP address:
 ```
-platform environment:http-access --access allow:69.208.1.192 --access deny:any
+upsun environment:http-access --access allow:69.208.1.192 --access deny:any
 ```
 
 * Remove the password requirement, keeping IP restrictions:
 ```
-platform environment:http-access --auth 0
+upsun environment:http-access --auth 0
 ```
 
 * Disable all HTTP access control:
 ```
-platform environment:http-access --enabled 0
+upsun environment:http-access --enabled 0
 ```
 
 ## `environment:info`
@@ -2666,7 +2670,7 @@ Read or set properties for an environment
 ### Usage
 
 ```
-platform environment:info [--refresh] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<property>] [<value>]
+upsun environment:info [--refresh] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<property>] [<value>]
 ```
 
 #### Arguments
@@ -2719,43 +2723,43 @@ platform environment:info [--refresh] [--date-fmt DATE-FMT] [--format FORMAT] [-
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Read all environment properties:
 ```
-platform environment:info 
+upsun environment:info 
 ```
 
 * Show the environment's status:
 ```
-platform environment:info status
+upsun environment:info status
 ```
 
 * Show the date the environment was created:
 ```
-platform environment:info created_at
+upsun environment:info created_at
 ```
 
 * Enable email sending:
 ```
-platform environment:info enable_smtp true
+upsun environment:info enable_smtp true
 ```
 
 * Change the environment title:
 ```
-platform environment:info title "New feature"
+upsun environment:info title "New feature"
 ```
 
 * Change the environment's parent branch:
 ```
-platform environment:info parent sprint-2
+upsun environment:info parent sprint-2
 ```
 
 * Unset the environment's parent branch:
 ```
-platform environment:info parent -
+upsun environment:info parent -
 ```
 
 ## `environment:init`
@@ -2765,7 +2769,7 @@ Initialize an environment from a public Git repository
 ### Usage
 
 ```
-platform environment:init [--profile PROFILE] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] <url>
+upsun environment:init [--profile PROFILE] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] <url>
 ```
 
 #### Arguments
@@ -2803,14 +2807,7 @@ platform environment:init [--profile PROFILE] [-p|--project PROJECT] [-e|--envir
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
-### Examples
-
-* Initialize using the Platform.sh Go template:
-```
-platform environment:init https://github.com/platformsh-templates/golang
-```
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `environment:list`
 
@@ -2821,7 +2818,7 @@ Aliases: `environments`, `env`
 ### Usage
 
 ```
-platform environments [-I|--no-inactive] [--pipe] [--refresh REFRESH] [--sort SORT] [--reverse] [--type TYPE] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT]
+upsun environments [-I|--no-inactive] [--pipe] [--refresh REFRESH] [--sort SORT] [--reverse] [--type TYPE] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT]
 ```
 
 #### Options
@@ -2869,7 +2866,7 @@ platform environments [-I|--no-inactive] [--pipe] [--refresh REFRESH] [--sort SO
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `environment:logs`
 
@@ -2880,7 +2877,7 @@ Aliases: `log`
 ### Usage
 
 ```
-platform log [--lines LINES] [--tail] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE] [--] [<type>]
+upsun log [--lines LINES] [--tail] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE] [--] [<type>]
 ```
 
 #### Arguments
@@ -2924,28 +2921,28 @@ platform log [--lines LINES] [--tail] [-p|--project PROJECT] [-e|--environment E
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Display a choice of logs that can be read:
 ```
-platform environment:logs 
+upsun environment:logs 
 ```
 
 * Read the deploy log:
 ```
-platform environment:logs deploy
+upsun environment:logs deploy
 ```
 
 * Read the access log continuously:
 ```
-platform environment:logs access --tail
+upsun environment:logs access --tail
 ```
 
 * Read the last 500 lines of the cron log:
 ```
-platform environment:logs cron --lines 500
+upsun environment:logs cron --lines 500
 ```
 
 ## `environment:merge`
@@ -2957,7 +2954,7 @@ Aliases: `merge`
 ### Usage
 
 ```
-platform merge [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<environment>]
+upsun merge [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<environment>]
 ```
 
 This command will initiate a Git merge of the specified environment into its parent environment.
@@ -2994,13 +2991,13 @@ This command will initiate a Git merge of the specified environment into its par
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Merge the environment "sprint-2" into its parent:
 ```
-platform environment:merge sprint-2
+upsun environment:merge sprint-2
 ```
 
 ## `environment:pause`
@@ -3010,7 +3007,7 @@ Pause an environment
 ### Usage
 
 ```
-platform environment:pause [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait]
+upsun environment:pause [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait]
 ```
 
 Pausing an environment helps to reduce resource consumption and carbon emissions.
@@ -3044,7 +3041,7 @@ The environment will be unavailable until it is resumed. No data will be lost.
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `environment:push`
 
@@ -3055,7 +3052,7 @@ Aliases: `push`
 ### Usage
 
 ```
-platform push [--target TARGET] [-f|--force] [--force-with-lease] [-u|--set-upstream] [--activate] [--parent PARENT] [--type TYPE] [--no-clone-parent] [--resources-init RESOURCES-INIT] [-W|--no-wait] [--wait] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] [<source>]
+upsun push [--target TARGET] [-f|--force] [--force-with-lease] [-u|--set-upstream] [--activate] [--parent PARENT] [--type TYPE] [--no-clone-parent] [--resources-init RESOURCES-INIT] [-W|--no-wait] [--wait] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] [<source>]
 ```
 
 #### Arguments
@@ -3117,23 +3114,23 @@ platform push [--target TARGET] [-f|--force] [--force-with-lease] [-u|--set-upst
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Push code to the current environment:
 ```
-platform environment:push 
+upsun environment:push 
 ```
 
 * Push code, without waiting for deployment:
 ```
-platform environment:push --no-wait
+upsun environment:push --no-wait
 ```
 
 * Push code, first branching or activating the environment as a child of 'develop':
 ```
-platform environment:push --activate --parent develop
+upsun environment:push --activate --parent develop
 ```
 
 ## `environment:redeploy`
@@ -3145,7 +3142,7 @@ Aliases: `redeploy`
 ### Usage
 
 ```
-platform redeploy [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait]
+upsun redeploy [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait]
 ```
 
 #### Options
@@ -3175,7 +3172,7 @@ platform redeploy [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `environment:relationships`
 
@@ -3186,7 +3183,7 @@ Aliases: `relationships`, `rel`
 ### Usage
 
 ```
-platform relationships [-P|--property PROPERTY] [--refresh] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--] [<environment>]
+upsun relationships [-P|--property PROPERTY] [--refresh] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--] [<environment>]
 ```
 
 #### Arguments
@@ -3224,23 +3221,23 @@ platform relationships [-P|--property PROPERTY] [--refresh] [-p|--project PROJEC
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * View all the current environment's relationships:
 ```
-platform environment:relationships 
+upsun environment:relationships 
 ```
 
 * View the 'main' environment's relationships:
 ```
-platform environment:relationships main
+upsun environment:relationships main
 ```
 
 * View the 'main' environment's database port:
 ```
-platform environment:relationships main --property database.0.port
+upsun environment:relationships main --property database.0.port
 ```
 
 ## `environment:resume`
@@ -3250,7 +3247,7 @@ Resume a paused environment
 ### Usage
 
 ```
-platform environment:resume [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait]
+upsun environment:resume [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait]
 ```
 
 #### Options
@@ -3280,7 +3277,7 @@ platform environment:resume [-p|--project PROJECT] [-e|--environment ENVIRONMENT
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `environment:scp`
 
@@ -3291,7 +3288,7 @@ Aliases: `scp`
 ### Usage
 
 ```
-platform scp [-r|--recursive] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE] [--] [<files>]...
+upsun scp [-r|--recursive] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE] [--] [<files>]...
 ```
 
 #### Arguments
@@ -3332,28 +3329,28 @@ platform scp [-r|--recursive] [-p|--project PROJECT] [-e|--environment ENVIRONME
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Copy local files a.txt and b.txt to remote mount var/files:
 ```
-platform environment:scp a.txt b.txt remote:var/files
+upsun environment:scp a.txt b.txt remote:var/files
 ```
 
 * Copy remote files c.txt to current directory:
 ```
-platform environment:scp remote:c.txt .
+upsun environment:scp remote:c.txt .
 ```
 
 * Copy subdirectory dump/ to remote mount var/files:
 ```
-platform environment:scp -r dump remote:var/logs
+upsun environment:scp -r dump remote:var/logs
 ```
 
 * Copy files inside subdirectory dump/ to remote mount var/files:
 ```
-platform environment:scp -r dump/* remote:var/logs
+upsun environment:scp -r dump/* remote:var/logs
 ```
 
 ## `environment:ssh`
@@ -3365,7 +3362,7 @@ Aliases: `ssh`
 ### Usage
 
 ```
-platform ssh [--pipe] [--all] [-o|--option OPTION] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE] [--] [<cmd>]...
+upsun ssh [--pipe] [--all] [-o|--option OPTION] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE] [--] [<cmd>]...
 ```
 
 #### Arguments
@@ -3412,33 +3409,33 @@ platform ssh [--pipe] [--all] [-o|--option OPTION] [-p|--project PROJECT] [-e|--
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Open a shell over SSH:
 ```
-platform environment:ssh 
+upsun environment:ssh 
 ```
 
 * Pass an extra option to SSH:
 ```
-platform environment:ssh -o 'RequestTTY force'
+upsun environment:ssh -o 'RequestTTY force'
 ```
 
 * List files:
 ```
-platform environment:ssh ls
+upsun environment:ssh ls
 ```
 
 * Monitor the app log (use '--' before flags):
 ```
-platform environment:ssh tail /var/log/app.log -- -n50 -f
+upsun environment:ssh tail /var/log/app.log -- -n50 -f
 ```
 
 * Display relationships (use quotes for complex syntax):
 ```
-platform environment:ssh 'echo $PLATFORM_RELATIONSHIPS | base64 --decode'
+upsun environment:ssh 'echo $PLATFORM_RELATIONSHIPS | base64 --decode'
 ```
 
 ## `environment:synchronize`
@@ -3450,7 +3447,7 @@ Aliases: `sync`
 ### Usage
 
 ```
-platform sync [--rebase] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<synchronize>]...
+upsun sync [--rebase] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<synchronize>]...
 ```
 
 This command synchronizes to a child environment from its parent environment.
@@ -3495,18 +3492,18 @@ parent to the child.
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Synchronize data from the parent environment:
 ```
-platform environment:synchronize data
+upsun environment:synchronize data
 ```
 
 * Synchronize code and data from the parent environment:
 ```
-platform environment:synchronize code data
+upsun environment:synchronize code data
 ```
 
 ## `environment:url`
@@ -3518,7 +3515,7 @@ Aliases: `url`
 ### Usage
 
 ```
-platform url [-1|--primary] [--browser BROWSER] [--pipe] [-p|--project PROJECT] [-e|--environment ENVIRONMENT]
+upsun url [-1|--primary] [--browser BROWSER] [--pipe] [-p|--project PROJECT] [-e|--environment ENVIRONMENT]
 ```
 
 #### Options
@@ -3551,28 +3548,28 @@ platform url [-1|--primary] [--browser BROWSER] [--pipe] [-p|--project PROJECT] 
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Give a choice of URLs to open (or print all URLs if there is no browser):
 ```
-platform environment:url 
+upsun environment:url 
 ```
 
 * Print all URLs:
 ```
-platform environment:url --pipe
+upsun environment:url --pipe
 ```
 
 * Print and/or open the primary route URL:
 ```
-platform environment:url --primary
+upsun environment:url --primary
 ```
 
 * Print the primary route URL:
 ```
-platform environment:url --primary --pipe
+upsun environment:url --primary --pipe
 ```
 
 ## `environment:xdebug`
@@ -3584,7 +3581,7 @@ Aliases: `xdebug`
 ### Usage
 
 ```
-platform xdebug [--port PORT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE]
+upsun xdebug [--port PORT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE]
 ```
 
 #### Options
@@ -3620,13 +3617,13 @@ platform xdebug [--port PORT] [-p|--project PROJECT] [-e|--environment ENVIRONME
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Connect to Xdebug on the environment, listening locally on port 9000.:
 ```
-platform environment:xdebug 
+upsun environment:xdebug 
 ```
 
 ## `integration:activity:get`
@@ -3636,7 +3633,7 @@ View detailed information on a single integration activity
 ### Usage
 
 ```
-platform integration:activity:get [-P|--property PROPERTY] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT] [--] [<integration>] [<activity>]
+upsun integration:activity:get [-P|--property PROPERTY] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT] [--] [<integration>] [<activity>]
 ```
 
 #### Arguments
@@ -3683,7 +3680,7 @@ platform integration:activity:get [-P|--property PROPERTY] [-p|--project PROJECT
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `integration:activity:list`
 
@@ -3694,7 +3691,7 @@ Aliases: `int:act`
 ### Usage
 
 ```
-platform int:act [--type TYPE] [-x|--exclude-type EXCLUDE-TYPE] [--limit LIMIT] [--start START] [--state STATE] [--result RESULT] [-i|--incomplete] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] [<id>]
+upsun int:act [--type TYPE] [-x|--exclude-type EXCLUDE-TYPE] [--limit LIMIT] [--start START] [--state STATE] [--result RESULT] [-i|--incomplete] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] [<id>]
 ```
 
 #### Arguments
@@ -3756,7 +3753,7 @@ platform int:act [--type TYPE] [-x|--exclude-type EXCLUDE-TYPE] [--limit LIMIT] 
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `integration:activity:log`
 
@@ -3765,7 +3762,7 @@ Display the log for an integration activity
 ### Usage
 
 ```
-platform integration:activity:log [-t|--timestamps] [--date-fmt DATE-FMT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] [<integration>] [<activity>]
+upsun integration:activity:log [-t|--timestamps] [--date-fmt DATE-FMT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] [<integration>] [<activity>]
 ```
 
 #### Arguments
@@ -3803,7 +3800,7 @@ platform integration:activity:log [-t|--timestamps] [--date-fmt DATE-FMT] [-p|--
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `integration:add`
 
@@ -3812,7 +3809,7 @@ Add an integration to the project
 ### Usage
 
 ```
-platform integration:add [--type TYPE] [--base-url BASE-URL] [--bitbucket-url BITBUCKET-URL] [--username USERNAME] [--token TOKEN] [--key KEY] [--secret SECRET] [--license-key LICENSE-KEY] [--server-project SERVER-PROJECT] [--repository REPOSITORY] [--build-merge-requests BUILD-MERGE-REQUESTS] [--build-pull-requests BUILD-PULL-REQUESTS] [--build-draft-pull-requests BUILD-DRAFT-PULL-REQUESTS] [--build-pull-requests-post-merge BUILD-PULL-REQUESTS-POST-MERGE] [--build-wip-merge-requests BUILD-WIP-MERGE-REQUESTS] [--merge-requests-clone-parent-data MERGE-REQUESTS-CLONE-PARENT-DATA] [--pull-requests-clone-parent-data PULL-REQUESTS-CLONE-PARENT-DATA] [--resync-pull-requests RESYNC-PULL-REQUESTS] [--fetch-branches FETCH-BRANCHES] [--prune-branches PRUNE-BRANCHES] [--resources-init RESOURCES-INIT] [--url URL] [--shared-key SHARED-KEY] [--file FILE] [--events EVENTS] [--states STATES] [--environments ENVIRONMENTS] [--excluded-environments EXCLUDED-ENVIRONMENTS] [--from-address FROM-ADDRESS] [--recipients RECIPIENTS] [--channel CHANNEL] [--routing-key ROUTING-KEY] [--category CATEGORY] [--index INDEX] [--sourcetype SOURCETYPE] [--protocol PROTOCOL] [--syslog-host SYSLOG-HOST] [--syslog-port SYSLOG-PORT] [--facility FACILITY] [--message-format MESSAGE-FORMAT] [--auth-mode AUTH-MODE] [--auth-token AUTH-TOKEN] [--verify-tls VERIFY-TLS] [--header HEADER] [-p|--project PROJECT] [-W|--no-wait] [--wait]
+upsun integration:add [--type TYPE] [--base-url BASE-URL] [--bitbucket-url BITBUCKET-URL] [--username USERNAME] [--token TOKEN] [--key KEY] [--secret SECRET] [--license-key LICENSE-KEY] [--server-project SERVER-PROJECT] [--repository REPOSITORY] [--build-merge-requests BUILD-MERGE-REQUESTS] [--build-pull-requests BUILD-PULL-REQUESTS] [--build-draft-pull-requests BUILD-DRAFT-PULL-REQUESTS] [--build-pull-requests-post-merge BUILD-PULL-REQUESTS-POST-MERGE] [--build-wip-merge-requests BUILD-WIP-MERGE-REQUESTS] [--merge-requests-clone-parent-data MERGE-REQUESTS-CLONE-PARENT-DATA] [--pull-requests-clone-parent-data PULL-REQUESTS-CLONE-PARENT-DATA] [--resync-pull-requests RESYNC-PULL-REQUESTS] [--fetch-branches FETCH-BRANCHES] [--prune-branches PRUNE-BRANCHES] [--resources-init RESOURCES-INIT] [--url URL] [--shared-key SHARED-KEY] [--file FILE] [--events EVENTS] [--states STATES] [--environments ENVIRONMENTS] [--excluded-environments EXCLUDED-ENVIRONMENTS] [--from-address FROM-ADDRESS] [--recipients RECIPIENTS] [--channel CHANNEL] [--routing-key ROUTING-KEY] [--category CATEGORY] [--index INDEX] [--sourcetype SOURCETYPE] [--protocol PROTOCOL] [--syslog-host SYSLOG-HOST] [--syslog-port SYSLOG-PORT] [--facility FACILITY] [--message-format MESSAGE-FORMAT] [--auth-mode AUTH-MODE] [--auth-token AUTH-TOKEN] [--verify-tls VERIFY-TLS] [--header HEADER] [-p|--project PROJECT] [-W|--no-wait] [--wait]
 ```
 
 #### Options
@@ -3971,18 +3968,18 @@ platform integration:add [--type TYPE] [--base-url BASE-URL] [--bitbucket-url BI
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Add an integration with a GitHub repository:
 ```
-platform integration:add --type github --repository myuser/example-repo --token 9218376e14c2797e0d06e8d2f918d45f --fetch-branches 0
+upsun integration:add --type github --repository myuser/example-repo --token 9218376e14c2797e0d06e8d2f918d45f --fetch-branches 0
 ```
 
 * Add an integration with a GitLab repository:
 ```
-platform integration:add --type gitlab --server-project mygroup/example-repo --token 22fe4d70dfbc20e4f668568a0b5422e2 --base-url https://gitlab.example.com
+upsun integration:add --type gitlab --server-project mygroup/example-repo --token 22fe4d70dfbc20e4f668568a0b5422e2 --base-url https://gitlab.example.com
 ```
 
 ## `integration:delete`
@@ -3992,7 +3989,7 @@ Delete an integration from a project
 ### Usage
 
 ```
-platform integration:delete [-p|--project PROJECT] [-W|--no-wait] [--wait] [--] [<id>]
+upsun integration:delete [-p|--project PROJECT] [-W|--no-wait] [--wait] [--] [<id>]
 ```
 
 #### Arguments
@@ -4024,7 +4021,7 @@ platform integration:delete [-p|--project PROJECT] [-W|--no-wait] [--wait] [--] 
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `integration:get`
 
@@ -4033,7 +4030,7 @@ View details of an integration
 ### Usage
 
 ```
-platform integration:get [-P|--property [PROPERTY]] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT] [--] [<id>]
+upsun integration:get [-P|--property [PROPERTY]] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT] [--] [<id>]
 ```
 
 #### Arguments
@@ -4071,7 +4068,7 @@ platform integration:get [-P|--property [PROPERTY]] [--format FORMAT] [-c|--colu
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `integration:list`
 
@@ -4082,7 +4079,7 @@ Aliases: `integrations`
 ### Usage
 
 ```
-platform integrations [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT]
+upsun integrations [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT]
 ```
 
 #### Options
@@ -4112,7 +4109,7 @@ platform integrations [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `integration:update`
 
@@ -4121,7 +4118,7 @@ Update an integration
 ### Usage
 
 ```
-platform integration:update [--type TYPE] [--base-url BASE-URL] [--bitbucket-url BITBUCKET-URL] [--username USERNAME] [--token TOKEN] [--key KEY] [--secret SECRET] [--license-key LICENSE-KEY] [--server-project SERVER-PROJECT] [--repository REPOSITORY] [--build-merge-requests BUILD-MERGE-REQUESTS] [--build-pull-requests BUILD-PULL-REQUESTS] [--build-draft-pull-requests BUILD-DRAFT-PULL-REQUESTS] [--build-pull-requests-post-merge BUILD-PULL-REQUESTS-POST-MERGE] [--build-wip-merge-requests BUILD-WIP-MERGE-REQUESTS] [--merge-requests-clone-parent-data MERGE-REQUESTS-CLONE-PARENT-DATA] [--pull-requests-clone-parent-data PULL-REQUESTS-CLONE-PARENT-DATA] [--resync-pull-requests RESYNC-PULL-REQUESTS] [--fetch-branches FETCH-BRANCHES] [--prune-branches PRUNE-BRANCHES] [--resources-init RESOURCES-INIT] [--url URL] [--shared-key SHARED-KEY] [--file FILE] [--events EVENTS] [--states STATES] [--environments ENVIRONMENTS] [--excluded-environments EXCLUDED-ENVIRONMENTS] [--from-address FROM-ADDRESS] [--recipients RECIPIENTS] [--channel CHANNEL] [--routing-key ROUTING-KEY] [--category CATEGORY] [--index INDEX] [--sourcetype SOURCETYPE] [--protocol PROTOCOL] [--syslog-host SYSLOG-HOST] [--syslog-port SYSLOG-PORT] [--facility FACILITY] [--message-format MESSAGE-FORMAT] [--auth-mode AUTH-MODE] [--auth-token AUTH-TOKEN] [--verify-tls VERIFY-TLS] [--header HEADER] [-p|--project PROJECT] [-W|--no-wait] [--wait] [--] [<id>]
+upsun integration:update [--type TYPE] [--base-url BASE-URL] [--bitbucket-url BITBUCKET-URL] [--username USERNAME] [--token TOKEN] [--key KEY] [--secret SECRET] [--license-key LICENSE-KEY] [--server-project SERVER-PROJECT] [--repository REPOSITORY] [--build-merge-requests BUILD-MERGE-REQUESTS] [--build-pull-requests BUILD-PULL-REQUESTS] [--build-draft-pull-requests BUILD-DRAFT-PULL-REQUESTS] [--build-pull-requests-post-merge BUILD-PULL-REQUESTS-POST-MERGE] [--build-wip-merge-requests BUILD-WIP-MERGE-REQUESTS] [--merge-requests-clone-parent-data MERGE-REQUESTS-CLONE-PARENT-DATA] [--pull-requests-clone-parent-data PULL-REQUESTS-CLONE-PARENT-DATA] [--resync-pull-requests RESYNC-PULL-REQUESTS] [--fetch-branches FETCH-BRANCHES] [--prune-branches PRUNE-BRANCHES] [--resources-init RESOURCES-INIT] [--url URL] [--shared-key SHARED-KEY] [--file FILE] [--events EVENTS] [--states STATES] [--environments ENVIRONMENTS] [--excluded-environments EXCLUDED-ENVIRONMENTS] [--from-address FROM-ADDRESS] [--recipients RECIPIENTS] [--channel CHANNEL] [--routing-key ROUTING-KEY] [--category CATEGORY] [--index INDEX] [--sourcetype SOURCETYPE] [--protocol PROTOCOL] [--syslog-host SYSLOG-HOST] [--syslog-port SYSLOG-PORT] [--facility FACILITY] [--message-format MESSAGE-FORMAT] [--auth-mode AUTH-MODE] [--auth-token AUTH-TOKEN] [--verify-tls VERIFY-TLS] [--header HEADER] [-p|--project PROJECT] [-W|--no-wait] [--wait] [--] [<id>]
 ```
 
 #### Arguments
@@ -4285,13 +4282,13 @@ platform integration:update [--type TYPE] [--base-url BASE-URL] [--bitbucket-url
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Switch on the "fetch branches" option for a specific integration:
 ```
-platform integration:update ZXhhbXBsZSB --fetch-branches 1
+upsun integration:update ZXhhbXBsZSB --fetch-branches 1
 ```
 
 ## `integration:validate`
@@ -4301,7 +4298,7 @@ Validate an existing integration
 ### Usage
 
 ```
-platform integration:validate [-p|--project PROJECT] [--] [<id>]
+upsun integration:validate [-p|--project PROJECT] [--] [<id>]
 ```
 
 This command allows you to check whether an integration is valid.
@@ -4337,103 +4334,7 @@ repository may be deleted.
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
-## `local:build`
-
-Build the current project locally
-
-Aliases: `build`
-
-### Usage
-
-```
-platform build [-a|--abslinks] [-s|--source SOURCE] [-d|--destination DESTINATION] [-c|--copy] [--clone] [--run-deploy-hooks] [--no-clean] [--no-archive] [--no-backup] [--no-cache] [--no-build-hooks] [--no-deps] [--working-copy] [--concurrency CONCURRENCY] [--lock] [--] [<app>]...
-```
-
-#### Arguments
-
-* `app`(optional; multiple values allowed)
-  Specify application(s) to build
-
-#### Options
-
-* `--abslinks` (`-a`)
-  Use absolute links
-
-* `--source` (`-s`) (expects a value)
-  The source directory. Defaults to the current project root.
-
-* `--destination` (`-d`) (expects a value)
-  The destination, to which the web root of each app will be symlinked. Default: _www
-
-* `--copy` (`-c`)
-  Copy to a build directory, instead of symlinking from the source
-
-* `--clone`
-  Use Git to clone the current HEAD to the build directory
-
-* `--run-deploy-hooks`
-  Run deploy and/or post_deploy hooks
-
-* `--no-clean`
-  Do not remove old builds
-
-* `--no-archive`
-  Do not create or use a build archive
-
-* `--no-backup`
-  Do not back up the previous build
-
-* `--no-cache`
-  Disable caching
-
-* `--no-build-hooks`
-  Do not run post-build hooks
-
-* `--no-deps`
-  Do not install build dependencies locally
-
-* `--working-copy`
-  Drush: use git to clone a repository of each Drupal module rather than simply downloading a version
-
-* `--concurrency` (expects a value)
-  Drush: set the number of concurrent projects that will be processed at the same time
-
-* `--lock`
-  Drush: create or update a lock file (only available with Drush version 7+)
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
-### Examples
-
-* Build the current project:
-```
-platform local:build 
-```
-
-* Build the app "example" without symlinking the source files:
-```
-platform local:build example --copy
-```
-
-* Rebuild the current project without using an archive:
-```
-platform local:build --no-archive
-```
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `local:dir`
 
@@ -4444,7 +4345,7 @@ Aliases: `dir`
 ### Usage
 
 ```
-platform dir [<subdir>]
+upsun dir [<subdir>]
 ```
 
 #### Arguments
@@ -4467,52 +4368,7 @@ platform dir [<subdir>]
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
-## `local:drush-aliases`
-
-Find the project's Drush aliases
-
-Aliases: `drush-aliases`
-
-### Usage
-
-```
-platform drush-aliases [-r|--recreate] [-g|--group GROUP] [--pipe]
-```
-
-#### Options
-
-* `--recreate` (`-r`)
-  Recreate the aliases.
-
-* `--group` (`-g`) (expects a value)
-  Recreate the aliases with a new group name.
-
-* `--pipe`
-  Output the current group name (do nothing else).
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
-### Examples
-
-* Change the alias group to @example:
-```
-platform local:drush-aliases -g example
-```
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `metrics:all`
 
@@ -4523,7 +4379,7 @@ Aliases: `metrics`, `met`
 ### Usage
 
 ```
-platform metrics [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO] [-1|--latest] [-s|--service SERVICE] [--type TYPE] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT]
+upsun metrics [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO] [-1|--latest] [-s|--service SERVICE] [--type TYPE] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT]
 ```
 
 #### Options
@@ -4580,23 +4436,23 @@ platform metrics [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to 
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Show metrics for the last 10m:
 ```
-platform metrics:all 
+upsun metrics:all 
 ```
 
 * Show metrics in five-minute intervals over the last hour:
 ```
-platform metrics:all -i 5m -r 1h
+upsun metrics:all -i 5m -r 1h
 ```
 
 * Show metrics for all SQL services:
 ```
-platform metrics:all --type mariadb,%sql
+upsun metrics:all --type mariadb,%sql
 ```
 
 ## `metrics:cpu`
@@ -4608,7 +4464,7 @@ Aliases: `cpu`
 ### Usage
 
 ```
-platform cpu [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO] [-1|--latest] [-s|--service SERVICE] [--type TYPE] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT]
+upsun cpu [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO] [-1|--latest] [-s|--service SERVICE] [--type TYPE] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT]
 ```
 
 #### Options
@@ -4662,7 +4518,7 @@ platform cpu [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO] [-1|--latest]
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `metrics:disk-usage`
 
@@ -4673,7 +4529,7 @@ Aliases: `disk`
 ### Usage
 
 ```
-platform disk [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO] [-1|--latest] [-s|--service SERVICE] [--type TYPE] [--tmp] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT]
+upsun disk [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO] [-1|--latest] [-s|--service SERVICE] [--type TYPE] [--tmp] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT]
 ```
 
 #### Options
@@ -4733,7 +4589,7 @@ platform disk [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO]
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `metrics:memory`
 
@@ -4744,7 +4600,7 @@ Aliases: `mem`, `memory`
 ### Usage
 
 ```
-platform mem [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO] [-1|--latest] [-s|--service SERVICE] [--type TYPE] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT]
+upsun mem [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO] [-1|--latest] [-s|--service SERVICE] [--type TYPE] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT]
 ```
 
 #### Options
@@ -4801,7 +4657,7 @@ platform mem [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO] 
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `mount:download`
 
@@ -4810,7 +4666,7 @@ Download files from a mount, using rsync
 ### Usage
 
 ```
-platform mount:download [-a|--all] [-m|--mount MOUNT] [--target TARGET] [--source-path] [--delete] [--exclude EXCLUDE] [--include INCLUDE] [--refresh] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE]
+upsun mount:download [-a|--all] [-m|--mount MOUNT] [--target TARGET] [--source-path] [--delete] [--exclude EXCLUDE] [--include INCLUDE] [--refresh] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE]
 ```
 
 #### Options
@@ -4867,7 +4723,7 @@ platform mount:download [-a|--all] [-m|--mount MOUNT] [--target TARGET] [--sourc
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `mount:list`
 
@@ -4878,7 +4734,7 @@ Aliases: `mounts`
 ### Usage
 
 ```
-platform mounts [--paths] [--refresh] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE]
+upsun mounts [--paths] [--refresh] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE]
 ```
 
 #### Options
@@ -4926,7 +4782,7 @@ platform mounts [--paths] [--refresh] [--format FORMAT] [-c|--columns COLUMNS] [
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `mount:upload`
 
@@ -4935,7 +4791,7 @@ Upload files to a mount, using rsync
 ### Usage
 
 ```
-platform mount:upload [--source SOURCE] [-m|--mount MOUNT] [--delete] [--exclude EXCLUDE] [--include INCLUDE] [--refresh] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE]
+upsun mount:upload [--source SOURCE] [-m|--mount MOUNT] [--delete] [--exclude EXCLUDE] [--include INCLUDE] [--refresh] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE]
 ```
 
 #### Options
@@ -4986,7 +4842,7 @@ platform mount:upload [--source SOURCE] [-m|--mount MOUNT] [--delete] [--exclude
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `operation:list`
 
@@ -4997,7 +4853,7 @@ Aliases: `ops`
 ### Usage
 
 ```
-platform ops [--full] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
+upsun ops [--full] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
 ```
 
 #### Options
@@ -5039,7 +4895,7 @@ platform ops [--full] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `operation:run`
 
@@ -5048,7 +4904,7 @@ Run an operation on the environment
 ### Usage
 
 ```
-platform operation:run [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-W|--no-wait] [--wait] [--] [<operation>]
+upsun operation:run [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-W|--no-wait] [--wait] [--] [<operation>]
 ```
 
 #### Arguments
@@ -5089,7 +4945,7 @@ platform operation:run [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `organization:billing:address`
 
@@ -5098,7 +4954,7 @@ View or change an organization's billing address
 ### Usage
 
 ```
-platform organization:billing:address [-o|--org ORG] [-p|--project PROJECT] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--] [<property>] [<value>] [<properties>]...
+upsun organization:billing:address [-o|--org ORG] [-p|--project PROJECT] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--] [<property>] [<value>] [<properties>]...
 ```
 
 #### Arguments
@@ -5145,7 +5001,7 @@ platform organization:billing:address [-o|--org ORG] [-p|--project PROJECT] [--d
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `organization:billing:profile`
 
@@ -5154,7 +5010,7 @@ View or change an organization's billing profile
 ### Usage
 
 ```
-platform organization:billing:profile [-o|--org ORG] [-p|--project PROJECT] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--] [<property>] [<value>]
+upsun organization:billing:profile [-o|--org ORG] [-p|--project PROJECT] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--] [<property>] [<value>]
 ```
 
 #### Arguments
@@ -5198,7 +5054,7 @@ platform organization:billing:profile [-o|--org ORG] [-p|--project PROJECT] [--d
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `organization:create`
 
@@ -5207,10 +5063,10 @@ Create a new organization
 ### Usage
 
 ```
-platform organization:create [--label LABEL] [--name NAME] [--country COUNTRY]
+upsun organization:create [--label LABEL] [--name NAME] [--country COUNTRY]
 ```
 
-Organizations allow you to manage your Platform.sh projects, users and billing. Projects are owned by organizations.
+Organizations allow you to manage your Upsun projects, users and billing. Projects are owned by organizations.
 
 You can add other users to your organization, for collaboratively managing the organization as well as its projects and billing information.
 
@@ -5240,7 +5096,7 @@ Access to individual projects (API and SSH) is managed separately, for now.
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `organization:delete`
 
@@ -5249,7 +5105,7 @@ Delete an organization
 ### Usage
 
 ```
-platform organization:delete [-o|--org ORG] [-p|--project PROJECT]
+upsun organization:delete [-o|--org ORG] [-p|--project PROJECT]
 ```
 
 #### Options
@@ -5273,7 +5129,7 @@ platform organization:delete [-o|--org ORG] [-p|--project PROJECT]
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `organization:info`
 
@@ -5282,7 +5138,7 @@ View or change organization details
 ### Usage
 
 ```
-platform organization:info [-o|--org ORG] [-p|--project PROJECT] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--] [<property>] [<value>]
+upsun organization:info [-o|--org ORG] [-p|--project PROJECT] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--] [<property>] [<value>]
 ```
 
 #### Arguments
@@ -5326,23 +5182,23 @@ platform organization:info [-o|--org ORG] [-p|--project PROJECT] [--date-fmt DAT
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * View the organization "acme":
 ```
-platform organization:info --org acme
+upsun organization:info --org acme
 ```
 
 * Show the organization's label:
 ```
-platform organization:info --org acme label
+upsun organization:info --org acme label
 ```
 
 * Change the organization label:
 ```
-platform organization:info --org acme label "ACME Inc."
+upsun organization:info --org acme label "ACME Inc."
 ```
 
 ## `organization:list`
@@ -5354,7 +5210,7 @@ Aliases: `orgs`, `organizations`
 ### Usage
 
 ```
-platform orgs [--my] [--sort SORT] [--reverse] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
+upsun orgs [--my] [--sort SORT] [--reverse] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
 ```
 
 #### Options
@@ -5390,7 +5246,7 @@ platform orgs [--my] [--sort SORT] [--reverse] [--format FORMAT] [-c|--columns C
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `organization:subscription:list`
 
@@ -5401,7 +5257,7 @@ Aliases: `org:subs`
 ### Usage
 
 ```
-platform org:subs [--page PAGE] [-c|--count COUNT] [-o|--org ORG] [-p|--project PROJECT] [--format FORMAT] [--columns COLUMNS] [--no-header]
+upsun org:subs [--page PAGE] [-c|--count COUNT] [-o|--org ORG] [-p|--project PROJECT] [--format FORMAT] [--columns COLUMNS] [--no-header]
 ```
 
 #### Options
@@ -5440,7 +5296,7 @@ platform org:subs [--page PAGE] [-c|--count COUNT] [-o|--org ORG] [-p|--project 
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `organization:user:add`
 
@@ -5449,7 +5305,7 @@ Invite a user to an organization
 ### Usage
 
 ```
-platform organization:user:add [-o|--org ORG] [--permission PERMISSION] [--] [<email>]
+upsun organization:user:add [-o|--org ORG] [--permission PERMISSION] [--] [<email>]
 ```
 
 #### Arguments
@@ -5478,7 +5334,7 @@ platform organization:user:add [-o|--org ORG] [--permission PERMISSION] [--] [<e
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `organization:user:delete`
 
@@ -5487,7 +5343,7 @@ Remove a user from an organization
 ### Usage
 
 ```
-platform organization:user:delete [-o|--org ORG] [--] <email>
+upsun organization:user:delete [-o|--org ORG] [--] <email>
 ```
 
 #### Arguments
@@ -5513,7 +5369,7 @@ platform organization:user:delete [-o|--org ORG] [--] <email>
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `organization:user:get`
 
@@ -5522,7 +5378,7 @@ View an organization user
 ### Usage
 
 ```
-platform organization:user:get [-o|--org ORG] [-P|--property PROPERTY] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--] [<email>]
+upsun organization:user:get [-o|--org ORG] [-P|--property PROPERTY] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--] [<email>]
 ```
 
 #### Arguments
@@ -5563,7 +5419,7 @@ platform organization:user:get [-o|--org ORG] [-P|--property PROPERTY] [--date-f
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `organization:user:list`
 
@@ -5574,7 +5430,7 @@ Aliases: `org:users`
 ### Usage
 
 ```
-platform org:users [-c|--count COUNT] [--sort SORT] [--reverse] [-o|--org ORG] [--date-fmt DATE-FMT] [--format FORMAT] [--columns COLUMNS] [--no-header]
+upsun org:users [-c|--count COUNT] [--sort SORT] [--reverse] [-o|--org ORG] [--date-fmt DATE-FMT] [--format FORMAT] [--columns COLUMNS] [--no-header]
 ```
 
 #### Options
@@ -5616,7 +5472,7 @@ platform org:users [-c|--count COUNT] [--sort SORT] [--reverse] [-o|--org ORG] [
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `organization:user:projects`
 
@@ -5627,7 +5483,7 @@ Aliases: `oups`
 ### Usage
 
 ```
-platform oups [-o|--org ORG] [--list-all] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT] [--] [<email>]
+upsun oups [-o|--org ORG] [--list-all] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT] [--] [<email>]
 ```
 
 #### Arguments
@@ -5668,7 +5524,7 @@ platform oups [-o|--org ORG] [--list-all] [--format FORMAT] [-c|--columns COLUMN
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `organization:user:update`
 
@@ -5677,7 +5533,7 @@ Update an organization user
 ### Usage
 
 ```
-platform organization:user:update [-o|--org ORG] [--permission PERMISSION] [--] [<email>]
+upsun organization:user:update [-o|--org ORG] [--permission PERMISSION] [--] [<email>]
 ```
 
 #### Arguments
@@ -5706,7 +5562,7 @@ platform organization:user:update [-o|--org ORG] [--permission PERMISSION] [--] 
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `project:clear-build-cache`
 
@@ -5715,7 +5571,7 @@ Clear a project's build cache
 ### Usage
 
 ```
-platform project:clear-build-cache [-p|--project PROJECT]
+upsun project:clear-build-cache [-p|--project PROJECT]
 ```
 
 #### Options
@@ -5736,7 +5592,7 @@ platform project:clear-build-cache [-p|--project PROJECT]
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `project:create`
 
@@ -5747,7 +5603,7 @@ Aliases: `create`
 ### Usage
 
 ```
-platform create [-o|--org ORG] [--title TITLE] [--region REGION] [--plan PLAN] [--environments ENVIRONMENTS] [--storage STORAGE] [--default-branch DEFAULT-BRANCH] [--set-remote] [--no-set-remote]
+upsun create [-o|--org ORG] [--title TITLE] [--region REGION] [--plan PLAN] [--environments ENVIRONMENTS] [--storage STORAGE] [--default-branch DEFAULT-BRANCH] [--set-remote] [--no-set-remote]
 ```
 
 Use this command to create a new project.
@@ -5805,7 +5661,7 @@ to STDERR.
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `project:delete`
 
@@ -5814,7 +5670,7 @@ Delete a project
 ### Usage
 
 ```
-platform project:delete [-p|--project PROJECT] [--] [<project>]
+upsun project:delete [-p|--project PROJECT] [--] [<project>]
 ```
 
 #### Arguments
@@ -5840,7 +5696,7 @@ platform project:delete [-p|--project PROJECT] [--] [<project>]
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `project:get`
 
@@ -5851,7 +5707,7 @@ Aliases: `get`
 ### Usage
 
 ```
-platform get [-e|--environment ENVIRONMENT] [--depth DEPTH] [--build] [-p|--project PROJECT] [--] [<project>] [<directory>]
+upsun get [-e|--environment ENVIRONMENT] [--depth DEPTH] [-p|--project PROJECT] [--] [<project>] [<directory>]
 ```
 
 #### Arguments
@@ -5870,9 +5726,6 @@ platform get [-e|--environment ENVIRONMENT] [--depth DEPTH] [--build] [-p|--proj
 * `--depth` (expects a value)
   Create a shallow clone: limit the number of commits in the history
 
-* `--build`
-  Build the project after cloning
-
 * `--project` (`-p`) (expects a value)
   The project ID or URL
 
@@ -5889,13 +5742,13 @@ platform get [-e|--environment ENVIRONMENT] [--depth DEPTH] [--build] [-p|--proj
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Clone the project "abc123" into the directory "my-project":
 ```
-platform project:get abc123 my-project
+upsun project:get abc123 my-project
 ```
 
 ## `project:info`
@@ -5905,7 +5758,7 @@ Read or set properties for a project
 ### Usage
 
 ```
-platform project:info [--refresh] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT] [-W|--no-wait] [--wait] [--] [<property>] [<value>]
+upsun project:info [--refresh] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT] [-W|--no-wait] [--wait] [--] [<property>] [<value>]
 ```
 
 #### Arguments
@@ -5955,23 +5808,23 @@ platform project:info [--refresh] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Read all project properties:
 ```
-platform project:info 
+upsun project:info 
 ```
 
 * Show the project's Git URL:
 ```
-platform project:info git
+upsun project:info git
 ```
 
 * Change the project's title:
 ```
-platform project:info title "My project"
+upsun project:info title "My project"
 ```
 
 ## `project:init`
@@ -5983,7 +5836,7 @@ Aliases: `ify`
 ### Usage
 
 ```
-platform project:init
+upsun project:init
 ```
 
 #### Options
@@ -6001,13 +5854,13 @@ platform project:init
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Create the starter YAML files for your project:
 ```
-platform project:init 
+upsun project:init 
 ```
 
 ## `project:list`
@@ -6019,7 +5872,7 @@ Aliases: `projects`, `pro`
 ### Usage
 
 ```
-platform projects [--pipe] [--region REGION] [--title TITLE] [--my] [--refresh REFRESH] [--sort SORT] [--reverse] [--page PAGE] [-c|--count COUNT] [-o|--org ORG] [--format FORMAT] [--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT]
+upsun projects [--pipe] [--region REGION] [--title TITLE] [--my] [--refresh REFRESH] [--sort SORT] [--reverse] [--page PAGE] [-c|--count COUNT] [-o|--org ORG] [--format FORMAT] [--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT]
 ```
 
 #### Options
@@ -6079,7 +5932,7 @@ platform projects [--pipe] [--region REGION] [--title TITLE] [--my] [--refresh R
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `project:set-remote`
 
@@ -6090,7 +5943,7 @@ Aliases: `set-remote`
 ### Usage
 
 ```
-platform set-remote [<project>]
+upsun set-remote [<project>]
 ```
 
 #### Arguments
@@ -6113,18 +5966,18 @@ platform set-remote [<project>]
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Set the remote project for this repository to "abcdef123456":
 ```
-platform project:set-remote abcdef123456
+upsun project:set-remote abcdef123456
 ```
 
 * Unset the remote project for this repository:
 ```
-platform project:set-remote -
+upsun project:set-remote -
 ```
 
 ## `repo:cat`
@@ -6134,7 +5987,7 @@ Read a file in the project repository
 ### Usage
 
 ```
-platform repo:cat [-c|--commit COMMIT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] <path>
+upsun repo:cat [-c|--commit COMMIT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] <path>
 ```
 
 #### Arguments
@@ -6166,13 +6019,13 @@ platform repo:cat [-c|--commit COMMIT] [-p|--project PROJECT] [-e|--environment 
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Read the services configuration file:
 ```
-platform repo:cat .platform/services.yaml
+upsun repo:cat .upsun/services.yaml
 ```
 
 ## `repo:ls`
@@ -6182,7 +6035,7 @@ List files in the project repository
 ### Usage
 
 ```
-platform repo:ls [-d|--directories] [-f|--files] [--git-style] [-c|--commit COMMIT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] [<path>]
+upsun repo:ls [-d|--directories] [-f|--files] [--git-style] [-c|--commit COMMIT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] [<path>]
 ```
 
 #### Arguments
@@ -6223,7 +6076,7 @@ platform repo:ls [-d|--directories] [-f|--files] [--git-style] [-c|--commit COMM
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `repo:read`
 
@@ -6234,7 +6087,7 @@ Aliases: `read`
 ### Usage
 
 ```
-platform read [-c|--commit COMMIT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] [<path>]
+upsun read [-c|--commit COMMIT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] [<path>]
 ```
 
 #### Arguments
@@ -6266,7 +6119,202 @@ platform read [-c|--commit COMMIT] [-p|--project PROJECT] [-e|--environment ENVI
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
+
+## `resources:get`
+
+View the resources of apps and services on an environment
+
+Aliases: `resources`, `res`
+
+### Usage
+
+```
+upsun resources [-s|--service SERVICE] [--app APP] [--worker WORKER] [--type TYPE] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
+```
+
+#### Options
+
+* `--service` (`-s`) (expects a value)
+  Filter by service name. This can select any service, including apps and workers.
+
+* `--app` (expects a value)
+  Filter by app name
+
+* `--worker` (expects a value)
+  Filter by worker name
+
+* `--type` (expects a value)
+  Filter by service, app or worker type, e.g. "postgresql"
+
+* `--project` (`-p`) (expects a value)
+  The project ID or URL
+
+* `--environment` (`-e`) (expects a value)
+  The environment ID. Use "." to select the project's default environment.
+
+* `--format` (expects a value)
+  The output format: table, csv, tsv, or plain
+
+* `--columns` (`-c`) (expects a value)
+  Columns to display. Available columns: service*, profile_size*, cpu*, memory*, disk*, instance_count*, base_memory, memory_ratio, profile, type (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+
+* `--no-header`
+  Do not output the table header
+
+* `--help` (`-h`)
+  Display this help message
+
+* `--verbose` (`-v|-vv|-vvv`)
+  Increase the verbosity of messages
+
+* `--version` (`-V`)
+  Display this application version
+
+* `--yes` (`-y`)
+  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
+
+* `--no-interaction`
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
+
+## `resources:set`
+
+Set the resources of apps and services on an environment
+
+### Usage
+
+```
+upsun resources:set [-S|--size SIZE] [-C|--count COUNT] [-D|--disk DISK] [-f|--force] [--dry-run] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait]
+```
+
+Configure the resources allocated to apps, workers and services on an environment.
+
+The resources may be the profile size, the instance count, or the disk size (MB).
+
+Profile sizes are predefined CPU & memory values that can be viewed by running: upsun resources:sizes
+
+If the same service and resource is specified on the command line multiple times, only the final value will be used.
+
+#### Options
+
+* `--size` (`-S`) (expects a value)
+  Set the profile size (CPU and memory) of apps, workers, or services. Items are in the format name:value and may be comma-separated. The % or * characters may be used as a wildcard for the name. List available sizes with the resources:sizes command.
+
+* `--count` (`-C`) (expects a value)
+  Set the instance count of apps or workers. Items are in the format name:value as above.
+
+* `--disk` (`-D`) (expects a value)
+  Set the disk size (in MB) of apps or services. Items are in the format name:value as above.
+
+* `--force` (`-f`)
+  Try to run the update, even if it might exceed your limits
+
+* `--dry-run`
+  Show the changes that would be made, without changing anything
+
+* `--project` (`-p`) (expects a value)
+  The project ID or URL
+
+* `--environment` (`-e`) (expects a value)
+  The environment ID. Use "." to select the project's default environment.
+
+* `--no-wait` (`-W`)
+  Do not wait for the operation to complete
+
+* `--wait`
+  Wait for the operation to complete (default)
+
+* `--help` (`-h`)
+  Display this help message
+
+* `--verbose` (`-v|-vv|-vvv`)
+  Increase the verbosity of messages
+
+* `--version` (`-V`)
+  Display this application version
+
+* `--yes` (`-y`)
+  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
+
+* `--no-interaction`
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
+
+### Examples
+
+* Set profile sizes for two apps and a service:
+```
+upsun resources:set --size frontend:0.1,backend:.25,database:1
+```
+
+* Give the "backend" app 3 instances:
+```
+upsun resources:set --count backend:3
+```
+
+* Give 512 MB disk to the "backend" app and 2 GB to the "database" service:
+```
+upsun resources:set --disk backend:512,database:2048
+```
+
+* Set the same profile size for the "backend" and "frontend" apps using a wildcard:
+```
+upsun resources:set --size '*end:0.1'
+```
+
+* Set the same instance count for all apps using a wildcard:
+```
+upsun resources:set --count '*:3'
+```
+
+## `resources:size:list`
+
+List container profile sizes
+
+Aliases: `resources:sizes`
+
+### Usage
+
+```
+upsun resources:sizes [-s|--service SERVICE] [--profile PROFILE] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
+```
+
+#### Options
+
+* `--service` (`-s`) (expects a value)
+  A service name
+
+* `--profile` (expects a value)
+  A profile name
+
+* `--project` (`-p`) (expects a value)
+  The project ID or URL
+
+* `--environment` (`-e`) (expects a value)
+  The environment ID. Use "." to select the project's default environment.
+
+* `--format` (expects a value)
+  The output format: table, csv, tsv, or plain
+
+* `--columns` (`-c`) (expects a value)
+  Columns to display. Available columns: cpu, memory, size. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+
+* `--no-header`
+  Do not output the table header
+
+* `--help` (`-h`)
+  Display this help message
+
+* `--verbose` (`-v|-vv|-vvv`)
+  Increase the verbosity of messages
+
+* `--version` (`-V`)
+  Display this application version
+
+* `--yes` (`-y`)
+  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
+
+* `--no-interaction`
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `route:get`
 
@@ -6275,7 +6323,7 @@ View detailed information about a route
 ### Usage
 
 ```
-platform route:get [--id ID] [-1|--primary] [-P|--property PROPERTY] [--refresh] [--date-fmt DATE-FMT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [-i|--identity-file IDENTITY-FILE] [--] [<route>]
+upsun route:get [--id ID] [-1|--primary] [-P|--property PROPERTY] [--refresh] [--date-fmt DATE-FMT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [-i|--identity-file IDENTITY-FILE] [--] [<route>]
 ```
 
 #### Arguments
@@ -6325,13 +6373,13 @@ platform route:get [--id ID] [-1|--primary] [-P|--property PROPERTY] [--refresh]
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * View the URL to the https://{default}/ route:
 ```
-platform route:get 'https://{default}/' -P url
+upsun route:get 'https://{default}/' -P url
 ```
 
 ## `route:list`
@@ -6343,7 +6391,7 @@ Aliases: `routes`
 ### Usage
 
 ```
-platform routes [--refresh] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] [<environment>]
+upsun routes [--refresh] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] [<environment>]
 ```
 
 #### Arguments
@@ -6384,7 +6432,7 @@ platform routes [--refresh] [--format FORMAT] [-c|--columns COLUMNS] [--no-heade
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `service:list`
 
@@ -6395,7 +6443,7 @@ Aliases: `services`
 ### Usage
 
 ```
-platform services [--refresh] [--pipe] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
+upsun services [--refresh] [--pipe] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
 ```
 
 #### Options
@@ -6434,7 +6482,7 @@ platform services [--refresh] [--pipe] [-p|--project PROJECT] [-e|--environment 
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `service:mongo:dump`
 
@@ -6445,7 +6493,7 @@ Aliases: `mongodump`
 ### Usage
 
 ```
-platform mongodump [-c|--collection COLLECTION] [-z|--gzip] [-o|--stdout] [-r|--relationship RELATIONSHIP] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP]
+upsun mongodump [-c|--collection COLLECTION] [-z|--gzip] [-o|--stdout] [-r|--relationship RELATIONSHIP] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP]
 ```
 
 #### Options
@@ -6484,7 +6532,7 @@ platform mongodump [-c|--collection COLLECTION] [-z|--gzip] [-o|--stdout] [-r|--
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `service:mongo:export`
 
@@ -6495,7 +6543,7 @@ Aliases: `mongoexport`
 ### Usage
 
 ```
-platform mongoexport [-c|--collection COLLECTION] [--jsonArray] [--type TYPE] [-f|--fields FIELDS] [-r|--relationship RELATIONSHIP] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP]
+upsun mongoexport [-c|--collection COLLECTION] [--jsonArray] [--type TYPE] [-f|--fields FIELDS] [-r|--relationship RELATIONSHIP] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP]
 ```
 
 #### Options
@@ -6537,13 +6585,13 @@ platform mongoexport [-c|--collection COLLECTION] [--jsonArray] [--type TYPE] [-
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Export a CSV from the "users" collection:
 ```
-platform service:mongo:export -c users --type csv -f name,email
+upsun service:mongo:export -c users --type csv -f name,email
 ```
 
 ## `service:mongo:restore`
@@ -6555,7 +6603,7 @@ Aliases: `mongorestore`
 ### Usage
 
 ```
-platform mongorestore [-c|--collection COLLECTION] [-r|--relationship RELATIONSHIP] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP]
+upsun mongorestore [-c|--collection COLLECTION] [-r|--relationship RELATIONSHIP] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP]
 ```
 
 #### Options
@@ -6588,7 +6636,7 @@ platform mongorestore [-c|--collection COLLECTION] [-r|--relationship RELATIONSH
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `service:mongo:shell`
 
@@ -6599,7 +6647,7 @@ Aliases: `mongo`
 ### Usage
 
 ```
-platform mongo [--eval EVAL] [-r|--relationship RELATIONSHIP] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP]
+upsun mongo [--eval EVAL] [-r|--relationship RELATIONSHIP] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP]
 ```
 
 #### Options
@@ -6632,13 +6680,13 @@ platform mongo [--eval EVAL] [-r|--relationship RELATIONSHIP] [-p|--project PROJ
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Display collection names:
 ```
-platform service:mongo:shell --eval 'printjson(db.getCollectionNames())'
+upsun service:mongo:shell --eval 'printjson(db.getCollectionNames())'
 ```
 
 ## `service:redis-cli`
@@ -6650,7 +6698,7 @@ Aliases: `redis`
 ### Usage
 
 ```
-platform redis [-r|--relationship RELATIONSHIP] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--] [<args>]
+upsun redis [-r|--relationship RELATIONSHIP] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--] [<args>]
 ```
 
 #### Arguments
@@ -6685,33 +6733,33 @@ platform redis [-r|--relationship RELATIONSHIP] [-p|--project PROJECT] [-e|--env
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Open the redis-cli shell:
 ```
-platform service:redis-cli 
+upsun service:redis-cli 
 ```
 
 * Ping the Redis server:
 ```
-platform service:redis-cli ping
+upsun service:redis-cli ping
 ```
 
 * Show Redis status information:
 ```
-platform service:redis-cli info
+upsun service:redis-cli info
 ```
 
 * Scan keys:
 ```
-platform service:redis-cli -- --scan
+upsun service:redis-cli -- --scan
 ```
 
 * Scan keys matching a pattern:
 ```
-platform service:redis-cli -- "--scan --pattern '*-11*'"
+upsun service:redis-cli -- "--scan --pattern '*-11*'"
 ```
 
 ## `source-operation:list`
@@ -6723,7 +6771,7 @@ Aliases: `source-ops`
 ### Usage
 
 ```
-platform source-ops [--full] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
+upsun source-ops [--full] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
 ```
 
 #### Options
@@ -6759,7 +6807,7 @@ platform source-ops [--full] [-p|--project PROJECT] [-e|--environment ENVIRONMEN
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `source-operation:run`
 
@@ -6768,7 +6816,7 @@ Run a source operation
 ### Usage
 
 ```
-platform source-operation:run [--variable VARIABLE] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<operation>]
+upsun source-operation:run [--variable VARIABLE] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<operation>]
 ```
 
 #### Arguments
@@ -6806,13 +6854,13 @@ platform source-operation:run [--variable VARIABLE] [-p|--project PROJECT] [-e|-
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Run the "update" operation, setting environment variable FOO=bar:
 ```
-platform source-operation:run update --variable env:FOO=bar
+upsun source-operation:run update --variable env:FOO=bar
 ```
 
 ## `ssh-cert:load`
@@ -6822,7 +6870,7 @@ Generate an SSH certificate
 ### Usage
 
 ```
-platform ssh-cert:load [--refresh-only] [--new] [--new-key]
+upsun ssh-cert:load [--refresh-only] [--new] [--new-key]
 ```
 
 This command checks if a valid SSH certificate is present, and generates a
@@ -6839,7 +6887,7 @@ If you want to set up certificates without login and without an SSH-related
 command, for example if you are writing a script that uses an API token via
 an environment variable, then you would probably want to run this command
 explicitly. For unattended scripts, remember to turn off interaction via
---yes or the PLATFORMSH_CLI_NO_INTERACTION environment variable.
+--yes or the UPSUN_CLI_NO_INTERACTION environment variable.
 
 #### Options
 
@@ -6865,7 +6913,7 @@ explicitly. For unattended scripts, remember to turn off interaction via
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `ssh-key:add`
 
@@ -6874,7 +6922,7 @@ Add a new SSH key
 ### Usage
 
 ```
-platform ssh-key:add [--name NAME] [--] [<path>]
+upsun ssh-key:add [--name NAME] [--] [<path>]
 ```
 
 This command lets you add an SSH key to your account. It can generate a key using OpenSSH.
@@ -6883,7 +6931,7 @@ Notice:
 SSH keys are no longer needed by default, as SSH certificates are supported.
 Certificates offer more security than keys.
 
-To load or check your SSH certificate, run: platform ssh-cert:load
+To load or check your SSH certificate, run: upsun ssh-cert:load
 
 #### Arguments
 
@@ -6908,7 +6956,7 @@ To load or check your SSH certificate, run: platform ssh-cert:load
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `ssh-key:delete`
 
@@ -6917,7 +6965,7 @@ Delete an SSH key
 ### Usage
 
 ```
-platform ssh-key:delete [<id>]
+upsun ssh-key:delete [<id>]
 ```
 
 This command lets you delete SSH keys from your account.
@@ -6926,7 +6974,7 @@ Notice:
 SSH keys are no longer needed by default, as SSH certificates are supported.
 Certificates offer more security than keys.
 
-To load or check your SSH certificate, run: platform ssh-cert:load
+To load or check your SSH certificate, run: upsun ssh-cert:load
 
 #### Arguments
 
@@ -6948,13 +6996,13 @@ To load or check your SSH certificate, run: platform ssh-cert:load
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Delete the key 123:
 ```
-platform ssh-key:delete 123
+upsun ssh-key:delete 123
 ```
 
 ## `ssh-key:list`
@@ -6966,7 +7014,7 @@ Aliases: `ssh-keys`
 ### Usage
 
 ```
-platform ssh-keys [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
+upsun ssh-keys [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
 ```
 
 This command lets you list SSH keys in your account.
@@ -6975,7 +7023,7 @@ Notice:
 SSH keys are no longer needed by default, as SSH certificates are supported.
 Certificates offer more security than keys.
 
-To load or check your SSH certificate, run: platform ssh-cert:load
+To load or check your SSH certificate, run: upsun ssh-cert:load
 
 #### Options
 
@@ -7001,7 +7049,7 @@ To load or check your SSH certificate, run: platform ssh-cert:load
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `subscription:info`
 
@@ -7010,7 +7058,7 @@ Read or modify subscription properties
 ### Usage
 
 ```
-platform subscription:info [-s|--id ID] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT] [--] [<property>] [<value>]
+upsun subscription:info [-s|--id ID] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT] [--] [<property>] [<value>]
 ```
 
 #### Arguments
@@ -7054,23 +7102,23 @@ platform subscription:info [-s|--id ID] [--date-fmt DATE-FMT] [--format FORMAT] 
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * View all subscription properties:
 ```
-platform subscription:info 
+upsun subscription:info 
 ```
 
 * View the subscription status:
 ```
-platform subscription:info status
+upsun subscription:info status
 ```
 
 * View the storage limit (in MiB):
 ```
-platform subscription:info storage
+upsun subscription:info storage
 ```
 
 ## `team:create`
@@ -7080,7 +7128,7 @@ Create a new team
 ### Usage
 
 ```
-platform team:create [--label LABEL] [--no-check-unique] [-r|--role ROLE] [--output-id] [-o|--org ORG]
+upsun team:create [--label LABEL] [--no-check-unique] [-r|--role ROLE] [--output-id] [-o|--org ORG]
 ```
 
 #### Options
@@ -7113,7 +7161,7 @@ platform team:create [--label LABEL] [--no-check-unique] [-r|--role ROLE] [--out
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `team:delete`
 
@@ -7122,7 +7170,7 @@ Delete a team
 ### Usage
 
 ```
-platform team:delete [-o|--org ORG] [-t|--team TEAM]
+upsun team:delete [-o|--org ORG] [-t|--team TEAM]
 ```
 
 #### Options
@@ -7146,7 +7194,7 @@ platform team:delete [-o|--org ORG] [-t|--team TEAM]
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `team:get`
 
@@ -7155,7 +7203,7 @@ View a team
 ### Usage
 
 ```
-platform team:get [-o|--org ORG] [-p|--project PROJECT] [-t|--team TEAM] [-P|--property PROPERTY] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
+upsun team:get [-o|--org ORG] [-p|--project PROJECT] [-t|--team TEAM] [-P|--property PROPERTY] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
 ```
 
 #### Options
@@ -7197,7 +7245,7 @@ platform team:get [-o|--org ORG] [-p|--project PROJECT] [-t|--team TEAM] [-P|--p
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `team:list`
 
@@ -7208,7 +7256,7 @@ Aliases: `teams`
 ### Usage
 
 ```
-platform teams [-c|--count COUNT] [--sort SORT] [--reverse] [-o|--org ORG] [-p|--project PROJECT] [--date-fmt DATE-FMT] [--format FORMAT] [--columns COLUMNS] [--no-header]
+upsun teams [-c|--count COUNT] [--sort SORT] [--reverse] [-o|--org ORG] [-p|--project PROJECT] [--date-fmt DATE-FMT] [--format FORMAT] [--columns COLUMNS] [--no-header]
 ```
 
 #### Options
@@ -7253,7 +7301,7 @@ platform teams [-c|--count COUNT] [--sort SORT] [--reverse] [-o|--org ORG] [-p|-
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `team:project:add`
 
@@ -7262,7 +7310,7 @@ Add project(s) to a team
 ### Usage
 
 ```
-platform team:project:add [--all] [-o|--org ORG] [-t|--team TEAM] [--] [<projects>]...
+upsun team:project:add [--all] [-o|--org ORG] [-t|--team TEAM] [--] [<projects>]...
 ```
 
 #### Arguments
@@ -7294,7 +7342,7 @@ platform team:project:add [--all] [-o|--org ORG] [-t|--team TEAM] [--] [<project
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `team:project:delete`
 
@@ -7303,7 +7351,7 @@ Remove a project from a team
 ### Usage
 
 ```
-platform team:project:delete [-o|--org ORG] [-t|--team TEAM] [--] [<project>]
+upsun team:project:delete [-o|--org ORG] [-t|--team TEAM] [--] [<project>]
 ```
 
 #### Arguments
@@ -7332,7 +7380,7 @@ platform team:project:delete [-o|--org ORG] [-t|--team TEAM] [--] [<project>]
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `team:project:list`
 
@@ -7343,7 +7391,7 @@ Aliases: `team:projects`, `team:pro`
 ### Usage
 
 ```
-platform team:projects [-c|--count COUNT] [-o|--org ORG] [-t|--team TEAM] [--date-fmt DATE-FMT] [--format FORMAT] [--columns COLUMNS] [--no-header]
+upsun team:projects [-c|--count COUNT] [-o|--org ORG] [-t|--team TEAM] [--date-fmt DATE-FMT] [--format FORMAT] [--columns COLUMNS] [--no-header]
 ```
 
 #### Options
@@ -7382,7 +7430,7 @@ platform team:projects [-c|--count COUNT] [-o|--org ORG] [-t|--team TEAM] [--dat
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `team:update`
 
@@ -7391,7 +7439,7 @@ Update a team
 ### Usage
 
 ```
-platform team:update [--label LABEL] [--no-check-unique] [-r|--role ROLE] [-t|--team TEAM] [-o|--org ORG] [-W|--no-wait] [--wait]
+upsun team:update [--label LABEL] [--no-check-unique] [-r|--role ROLE] [-t|--team TEAM] [-o|--org ORG] [-W|--no-wait] [--wait]
 ```
 
 #### Options
@@ -7430,7 +7478,7 @@ platform team:update [--label LABEL] [--no-check-unique] [-r|--role ROLE] [-t|--
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `team:user:add`
 
@@ -7439,7 +7487,7 @@ Add a user to a team
 ### Usage
 
 ```
-platform team:user:add [-o|--org ORG] [-t|--team TEAM] [--] [<user>]
+upsun team:user:add [-o|--org ORG] [-t|--team TEAM] [--] [<user>]
 ```
 
 #### Arguments
@@ -7468,7 +7516,7 @@ platform team:user:add [-o|--org ORG] [-t|--team TEAM] [--] [<user>]
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `team:user:delete`
 
@@ -7477,7 +7525,7 @@ Remove a user from a team
 ### Usage
 
 ```
-platform team:user:delete [-o|--org ORG] [-t|--team TEAM] [--] [<user>]
+upsun team:user:delete [-o|--org ORG] [-t|--team TEAM] [--] [<user>]
 ```
 
 #### Arguments
@@ -7506,7 +7554,7 @@ platform team:user:delete [-o|--org ORG] [-t|--team TEAM] [--] [<user>]
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `team:user:list`
 
@@ -7517,7 +7565,7 @@ Aliases: `team:users`
 ### Usage
 
 ```
-platform team:users [-c|--count COUNT] [-o|--org ORG] [-t|--team TEAM] [--date-fmt DATE-FMT] [--format FORMAT] [--columns COLUMNS] [--no-header]
+upsun team:users [-c|--count COUNT] [-o|--org ORG] [-t|--team TEAM] [--date-fmt DATE-FMT] [--format FORMAT] [--columns COLUMNS] [--no-header]
 ```
 
 #### Options
@@ -7556,7 +7604,7 @@ platform team:users [-c|--count COUNT] [-o|--org ORG] [-t|--team TEAM] [--date-f
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `tunnel:close`
 
@@ -7565,7 +7613,7 @@ Close SSH tunnels
 ### Usage
 
 ```
-platform tunnel:close [-a|--all] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP]
+upsun tunnel:close [-a|--all] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP]
 ```
 
 #### Options
@@ -7595,7 +7643,7 @@ platform tunnel:close [-a|--all] [-p|--project PROJECT] [-e|--environment ENVIRO
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `tunnel:info`
 
@@ -7604,7 +7652,7 @@ View relationship info for SSH tunnels
 ### Usage
 
 ```
-platform tunnel:info [-P|--property PROPERTY] [-c|--encode] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP]
+upsun tunnel:info [-P|--property PROPERTY] [-c|--encode] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP]
 ```
 
 #### Options
@@ -7637,7 +7685,7 @@ platform tunnel:info [-P|--property PROPERTY] [-c|--encode] [-p|--project PROJEC
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `tunnel:list`
 
@@ -7648,7 +7696,7 @@ Aliases: `tunnels`
 ### Usage
 
 ```
-platform tunnels [-a|--all] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
+upsun tunnels [-a|--all] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
 ```
 
 #### Options
@@ -7687,7 +7735,7 @@ platform tunnels [-a|--all] [-p|--project PROJECT] [-e|--environment ENVIRONMENT
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `tunnel:open`
 
@@ -7696,7 +7744,7 @@ Open SSH tunnels to an app's relationships
 ### Usage
 
 ```
-platform tunnel:open [-g|--gateway-ports] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP]
+upsun tunnel:open [-g|--gateway-ports] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP]
 ```
 
 This command opens SSH tunnels to all of the relationships of an application.
@@ -7737,7 +7785,7 @@ extensions.
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `tunnel:single`
 
@@ -7746,7 +7794,7 @@ Open a single SSH tunnel to an app relationship
 ### Usage
 
 ```
-platform tunnel:single [--port PORT] [-g|--gateway-ports] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [-r|--relationship RELATIONSHIP]
+upsun tunnel:single [--port PORT] [-g|--gateway-ports] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [-r|--relationship RELATIONSHIP]
 ```
 
 #### Options
@@ -7782,7 +7830,7 @@ platform tunnel:single [--port PORT] [-g|--gateway-ports] [-p|--project PROJECT]
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `user:add`
 
@@ -7791,7 +7839,7 @@ Add a user to the project
 ### Usage
 
 ```
-platform user:add [-r|--role ROLE] [--force-invite] [-p|--project PROJECT] [-W|--no-wait] [--wait] [--] [<email>]
+upsun user:add [-r|--role ROLE] [--force-invite] [-p|--project PROJECT] [-W|--no-wait] [--wait] [--] [<email>]
 ```
 
 #### Arguments
@@ -7829,23 +7877,23 @@ platform user:add [-r|--role ROLE] [--force-invite] [-p|--project PROJECT] [-W|-
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Add Alice as a project admin:
 ```
-platform user:add alice@example.com -r admin
+upsun user:add alice@example.com -r admin
 ```
 
 * Add Bob as a viewer on the "production" environment type, and a contributor on "development" environments:
 ```
-platform user:add bob@example.com -r production:v -r development:c
+upsun user:add bob@example.com -r production:v -r development:c
 ```
 
 * Add Charlie as viewer on "production" and "development":
 ```
-platform user:add charlie@example.com -r prod%:v -r dev%:v
+upsun user:add charlie@example.com -r prod%:v -r dev%:v
 ```
 
 ## `user:delete`
@@ -7855,7 +7903,7 @@ Delete a user from the project
 ### Usage
 
 ```
-platform user:delete [-p|--project PROJECT] [-W|--no-wait] [--wait] [--] <email>
+upsun user:delete [-p|--project PROJECT] [-W|--no-wait] [--wait] [--] <email>
 ```
 
 #### Arguments
@@ -7887,13 +7935,13 @@ platform user:delete [-p|--project PROJECT] [-W|--no-wait] [--wait] [--] <email>
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Delete Alice from the project:
 ```
-platform user:delete alice@example.com
+upsun user:delete alice@example.com
 ```
 
 ## `user:get`
@@ -7903,7 +7951,7 @@ View a user's role(s)
 ### Usage
 
 ```
-platform user:get [-l|--level LEVEL] [--pipe] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [-r|--role ROLE] [--] [<email>]
+upsun user:get [-l|--level LEVEL] [--pipe] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [-r|--role ROLE] [--] [<email>]
 ```
 
 #### Arguments
@@ -7947,18 +7995,18 @@ platform user:get [-l|--level LEVEL] [--pipe] [-p|--project PROJECT] [-e|--envir
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * View Alice's role on the project:
 ```
-platform user:get alice@example.com
+upsun user:get alice@example.com
 ```
 
 * View Alice's role on the current environment:
 ```
-platform user:get alice@example.com --level environment --pipe
+upsun user:get alice@example.com --level environment --pipe
 ```
 
 ## `user:list`
@@ -7970,7 +8018,7 @@ Aliases: `users`
 ### Usage
 
 ```
-platform users [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT]
+upsun users [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT]
 ```
 
 #### Options
@@ -8000,7 +8048,7 @@ platform users [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--proj
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `user:update`
 
@@ -8009,7 +8057,7 @@ Update user role(s) on a project
 ### Usage
 
 ```
-platform user:update [-r|--role ROLE] [-p|--project PROJECT] [-W|--no-wait] [--wait] [--] [<email>]
+upsun user:update [-r|--role ROLE] [-p|--project PROJECT] [-W|--no-wait] [--wait] [--] [<email>]
 ```
 
 #### Arguments
@@ -8044,18 +8092,18 @@ platform user:update [-r|--role ROLE] [-p|--project PROJECT] [-W|--no-wait] [--w
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Make Bob an admin on the "development" and "staging" environment types:
 ```
-platform user:update bob@example.com -r development:a,staging:a
+upsun user:update bob@example.com -r development:a,staging:a
 ```
 
 * Make Charlie a contributor on all environment types:
 ```
-platform user:update charlie@example.com -r %:c
+upsun user:update charlie@example.com -r %:c
 ```
 
 ## `variable:create`
@@ -8065,7 +8113,7 @@ Create a variable
 ### Usage
 
 ```
-platform variable:create [-u|--update] [-l|--level LEVEL] [--name NAME] [--value VALUE] [--json JSON] [--sensitive SENSITIVE] [--prefix PREFIX] [--enabled ENABLED] [--inheritable INHERITABLE] [--visible-build VISIBLE-BUILD] [--visible-runtime VISIBLE-RUNTIME] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<name>]
+upsun variable:create [-u|--update] [-l|--level LEVEL] [--name NAME] [--value VALUE] [--json JSON] [--sensitive SENSITIVE] [--prefix PREFIX] [--enabled ENABLED] [--inheritable INHERITABLE] [--visible-build VISIBLE-BUILD] [--visible-runtime VISIBLE-RUNTIME] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<name>]
 ```
 
 #### Arguments
@@ -8133,7 +8181,7 @@ platform variable:create [-u|--update] [-l|--level LEVEL] [--name NAME] [--value
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `variable:delete`
 
@@ -8142,7 +8190,7 @@ Delete a variable
 ### Usage
 
 ```
-platform variable:delete [-l|--level LEVEL] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] <name>
+upsun variable:delete [-l|--level LEVEL] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] <name>
 ```
 
 #### Arguments
@@ -8180,13 +8228,13 @@ platform variable:delete [-l|--level LEVEL] [-p|--project PROJECT] [-e|--environ
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * Delete the variable "example":
 ```
-platform variable:delete example
+upsun variable:delete example
 ```
 
 ## `variable:get`
@@ -8198,7 +8246,7 @@ Aliases: `vget`
 ### Usage
 
 ```
-platform vget [-P|--property PROPERTY] [-l|--level LEVEL] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--pipe] [--] [<name>]
+upsun vget [-P|--property PROPERTY] [-l|--level LEVEL] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--pipe] [--] [<name>]
 ```
 
 #### Arguments
@@ -8245,13 +8293,13 @@ platform vget [-P|--property PROPERTY] [-l|--level LEVEL] [--format FORMAT] [-c|
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ### Examples
 
 * View the variable "example":
 ```
-platform variable:get example
+upsun variable:get example
 ```
 
 ## `variable:list`
@@ -8263,7 +8311,7 @@ Aliases: `variables`, `var`
 ### Usage
 
 ```
-platform variables [-l|--level LEVEL] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT] [-e|--environment ENVIRONMENT]
+upsun variables [-l|--level LEVEL] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT] [-e|--environment ENVIRONMENT]
 ```
 
 #### Options
@@ -8299,7 +8347,7 @@ platform variables [-l|--level LEVEL] [--format FORMAT] [-c|--columns COLUMNS] [
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `variable:update`
 
@@ -8308,7 +8356,7 @@ Update a variable
 ### Usage
 
 ```
-platform variable:update [--allow-no-change] [-l|--level LEVEL] [--value VALUE] [--json JSON] [--sensitive SENSITIVE] [--enabled ENABLED] [--inheritable INHERITABLE] [--visible-build VISIBLE-BUILD] [--visible-runtime VISIBLE-RUNTIME] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] <name>
+upsun variable:update [--allow-no-change] [-l|--level LEVEL] [--value VALUE] [--json JSON] [--sensitive SENSITIVE] [--enabled ENABLED] [--inheritable INHERITABLE] [--visible-build VISIBLE-BUILD] [--visible-runtime VISIBLE-RUNTIME] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] <name>
 ```
 
 #### Arguments
@@ -8370,7 +8418,7 @@ platform variable:update [--allow-no-change] [-l|--level LEVEL] [--value VALUE] 
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `worker:list`
 
@@ -8381,7 +8429,7 @@ Aliases: `workers`
 ### Usage
 
 ```
-platform workers [--refresh] [--pipe] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
+upsun workers [--refresh] [--pipe] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
 ```
 
 #### Options
@@ -8420,7 +8468,7 @@ platform workers [--refresh] [--pipe] [-p|--project PROJECT] [-e|--environment E
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 
 
