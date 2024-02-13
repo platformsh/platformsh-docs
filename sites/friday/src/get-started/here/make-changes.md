@@ -111,7 +111,8 @@ git fetch --prune
 Deploying to production was fast because the image built for the `feat-a` environment was reused for your `main` environment.
 {{< /note >}}
 
-For a long running branch, to keep the code up-to-date with the main branch, use `git merge main` or `git rebase main`.
+## 6. Keep your branch up to date
+For a long running dev branch, to keep the code up-to-date with the `main` branch, use `git merge main` or `git rebase main`.
 You can also keep the data in sync with the parent environment by using `{{% vendor/cli %}} env:sync`.
 
 {{< guide-buttons previous="Back" next="Local development" nextLink="/get-started/here/local" type="*" >}}
