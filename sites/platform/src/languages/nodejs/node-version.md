@@ -72,24 +72,11 @@ This property accepts either an exact version or a range:
 
 2. Add it as a dependency:
 
-{{% version/specific %}}
 ```yaml {configFile="app"}
 dependencies:
     nodejs:
         n: "*"
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'python:{{% latest "python" %}}'
-        dependencies:
-            nodejs:
-                n: "*"
-```
-{{% /version/specific %}}
-
    Adding it as a dependency ensures it's cached for future builds.
 
 3. Set the location of the `n` files using the `N_PREFIX` environment variable:
