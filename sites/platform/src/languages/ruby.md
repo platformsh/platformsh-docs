@@ -80,8 +80,8 @@ variables:
         RAILS_TMP: '/tmp'
 ```
 
-    The `SECRET_KEY_BASE` variable is generated automatically based on the [`PLATFORM_PROJECT_ENTROPY` variable](../development/variables/use-variables.md#use-provided-variables).
-    You can change it.
+The `SECRET_KEY_BASE` variable is generated automatically based on the [`PLATFORM_PROJECT_ENTROPY` variable](../development/variables/use-variables.md#use-provided-variables).
+You can change it.
 
 3. Build your application with the build hook.
 
