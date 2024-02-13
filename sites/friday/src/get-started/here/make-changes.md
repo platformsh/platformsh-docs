@@ -25,18 +25,6 @@ Run the following command:
    This creates a new local `feat-a` Git branch based on the `main` Git branch
    and activates a related environment on {{< vendor/name >}}.
    The new environment inherits the data (service data and assets) of its parent environment (the production environment here).
-
-   {{< note title="Warnings" theme="warning">}}
-   **First**, you are charged by [activated environments](/environments/deactivate-environment.md#reactivate-an-environment).
-    So, to create an inactive environment waiting for you to be ready to test, run the following command:
-   ```bash {location="Terminal"}
-   git branch checkout -b feat-a && git push -u upsun feat-a
-
-   **Secondly**, if you have set up an integration and have enabled `prune_branches` (`true` by default), the `upsun branch` command fails at the end of the deployment. This is due to the integration syncing with the source and deleting the new branch since it doesn’t exist in the canonical source:
-   ```bash
-   fatal: couldn't find remote ref feat-a
-   ```
-   {{< /note >}}
 <--->
 +++
 title=Using third party provider
@@ -58,6 +46,19 @@ title=Using third party provider
 
 {{< /codetabs >}}
 
+{{< note title="Warnings" theme="warning">}}
+   **First**, you are charged by [activated environments](/environments/deactivate-environment.md#reactivate-an-environment).
+   So, to create an inactive environment waiting for you to be ready to test, run the following command:
+   ```bash {location="Terminal"}
+   git branch checkout -b feat-a && git push -u upsun feat-a
+   ```
+   **Secondly**, if you have set up an integration and have enabled `prune_branches` (`true` by default),
+   the `upsun branch` command fails at the end of the deployment.
+   This is due to the integration syncing with the source and deleting the new branch since it doesn't exist in the canonical source:
+   ```bash {location="Terminal"}
+   fatal: couldn't find remote ref feat-a
+   ```
+{{< /note >}}
 
 2. Make changes to your project.
 
