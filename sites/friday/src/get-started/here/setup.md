@@ -4,7 +4,7 @@ weight: 5
 ---
 
 {{< note theme="info" title="Got code?" >}}
-In order to follow along with this guide, you will need a local project. 
+In order to follow along with this guide, you will need a local project.
 While the guide has been written to accommodate the following stacks, it is not limited to just those listed and are here only as examples.
 
 <!-- Examples:
@@ -38,7 +38,7 @@ While the guide has been written to accommodate the following stacks, it is not 
 
 {{< /note >}}
 
-{{% guides/requirements name="Express" %}}
+{{% guides/requirements %}}
 
 ## Initialize your Git repository
 
