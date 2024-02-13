@@ -54,8 +54,8 @@ module:
           target: "content"
           excludeFiles:
 
-              # - "add-services/*"
-              - "add-services/network-storage.md"
+              - "add-services/*"
+              # - "add-services/network-storage.md"
 
               # - "administration/*"
               - "administration/sso.md"
