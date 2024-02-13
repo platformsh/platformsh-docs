@@ -148,7 +148,7 @@ routes:
 
 ## Frameworks
 
-The Upsun documentation includes a wide array of community resources that will help with framework-specific configuration:
+The Upsun documentation includes a wide array of community resources to help with framework-specific configuration:
 
 - [Express](/get-started/stacks/express)
 - [Next.js](/get-started/stacks/nextjs)
@@ -159,7 +159,7 @@ The Upsun documentation includes a wide array of community resources that will h
 While there are virtually no restrictions to you deploying any kind of application on Upsun, configuration may still be unclear at this point.
 
 Not to worry! The Upsun community is here to help. 
-Come and say hello, share your work, ask for help, and peak in on what others are working on.
+Come and say hello, share your work, ask for help, and peek in on what others are working on.
 
 Welcome to the Upsun community!
 

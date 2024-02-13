@@ -25,7 +25,7 @@ While the guide has been written to accommodate the following stacks, it is not 
   <summary>PHP</summary>
 
 - [Laravel installation guide](https://laravel.com/docs/10.x#creating-a-laravel-project)
-- [Symfony Getting start guide](/get-started/stacks/symfony/_index.md)
+- [Symfony installation guide](/get-started/stacks/symfony/_index.md)
 
 </details>
 
@@ -56,8 +56,8 @@ Your Git configuration may result in different default branches (like `master`),
 
 {{< note theme="info" title="Don't commit dependencies" >}}
 
-Whether you're migrating your own project, or are testing Upsun with a starter project, it's important that you never actually commit dependencies of your applications.
-If you haven't already done so, be sure to ignore directories containing dependencies by updating your `.gitignore` file.
+Whether you're migrating your own project, or testing Upsun with a starter project, **never commit your app's dependencies**.
+Make sure you ignore directories containing dependencies by updating your `.gitignore` file.
 
 ```bash
 # JavaScript/Node.js

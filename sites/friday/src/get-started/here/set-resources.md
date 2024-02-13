@@ -5,14 +5,19 @@ weight: 40
 description: Flexible resources on {{% vendor/name %}} are easy to use. Find all you need to know about resources allocation there.
 ---
 
-To define allocated resources to your services and apps, you need to define how much CPU, memory, and disk to assign to the various containers.
-Back in your terminal, run:
+You can define how much CPU, memory, and disk you want to assign to each of your service and app containers.
+
+If you don't explicitly set resources, {{% vendor/name %}} uses [default resources](/manage-resources/resource-init.md) instead. 
+{{% vendor/name %}} also offers several [resource initialization strategies](/manage-resources/resource-init.md) to help you allocate resources depending on your needs and use cases.
+However, for the sake of this guide, let's set resources manually.
+To do so, follow these steps:
+
+1. Run the following command:
 
 ```bash {location="Terminal"}
 {{% vendor/cli %}} resources:set
-```
 
-This will launch an interactive prompt to walk you through setting up your application's resources:
+This launches an interactive prompt to walk you through setting up your application's resources:
 ```bash {location="Terminal"}
 {{% vendor/cli %}} resources:set
 Resource configuration for the project app (123456azerty), environment main (type: production):
@@ -23,7 +28,9 @@ Resource configuration for the project app (123456azerty), environment main (typ
 | [<additional-service>]| not set | not set | not set     | not set   | 1         |
 +-----------------------+---------+---------+-------------+-----------+-----------+
 ```
-The first question is what profile size you want applied to your application image. For now let's select the minimum `0.1`:
+
+2. Select the profile size you want applied to your application image. For instance, `0.1`:
+
 ```bash {location="Terminal"}
 App: app
 Choose a profile size:
@@ -37,13 +44,12 @@ Choose a profile size:
   [8   ] CPU 8, memory 2240 MB
   [10  ] CPU 10, memory 2688 MB
  > 0.1
-```
-Next it will ask how many instances of our application container we need deployed. For now let's go with `1`:
+3. Define how many instances of your application container you want to deploy. For instance, `1`:
+
 ```bash {location="Terminal"}
 Enter the number of instances (default: 1): 1
-```
-
-Last it will ask us to confirm our choices. Select `Y` and {{% vendor/name %}} will take your selections, grab the
+4. To confirm your choices, select `Y`.
+{{% vendor/name %}} will take your selections, grab the
 previous built images from earlier, apply your resource selections to them and deploy your full application!
 
 {{< guide-buttons previous="Back" next="Revisions" type="*" >}}

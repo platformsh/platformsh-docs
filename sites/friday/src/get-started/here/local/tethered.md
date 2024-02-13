@@ -11,14 +11,14 @@ that the process of local development is as close as possible to a deployed
 environment.
 
 You can achieve this through various approaches. For example, you can use
-Symfony Server with tethered data
+Symfony Server with tethered data.
 
 To do so, when testing changes locally, you can connect your locally running
 Symfony Server to service containers on an active {{% vendor/name %}} environment.
 
 This methodology has several advantages:
 
-- It avoids installing anything on your local machine but your stack runtime;
+- It avoids installing anything on your local machine but your stack runtime.
 - It ensures that you are using the same versions of all services on your local
   machine and in production.
 
@@ -32,7 +32,7 @@ machine will impact production data.
 
 ## 1. Start your local Server
 
-Please use the official path to start your local server locally.
+Use the official path to start your local server locally.
 
 ## 2. Create the tethered connection
 
