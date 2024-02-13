@@ -77,18 +77,18 @@ Et voilà, your application is live!
 
 ## Next steps
 
-The `project:init` CLI command will use your responses and some framework-detection logic to attempt to set some sane configuration for your project. 
+The `project:init` CLI command uses your responses and some framework-detection logic to attempt to set some sane configuration for your project. 
 Your project - like most projects - is unique, and this goal of a seamless first deployment may yet be incomplete at this stage.
 
-Have no fear! {{% vendor/name %}} provides a highly customizable configuration schema that can be adjusted for your particular package manager, environment variables, builds, deploys, workers, crons, and other requirements to get you full deployed.
+Have no fear! {{% vendor/name %}} provides a highly customizable configuration schema that can be adjusted for your particular package manager, environment variables, builds, deploys, workers, crons, and other requirements to get you fully deployed.
 
-The best place to start to start exploring what might still be needed are the language-specific configuration pages:
+To start exploring what might still be needed, see the following language-specific configuration pages:
 
 - [JavaScript/Node.js](/get-started/here/configure/nodejs)
 - [PHP](/get-started/here/configure/php)
 - [Python](/get-started/here/configure/python)
 
-With your deployment finished, you may have noticed that the resources allocated to the application and service containers of your project will have been set automatically, and perhaps rather conservatively:
+With your deployment finished, you may have noticed that the resources allocated to the application and service containers of your project have been set automatically:
 
 ```bash
   Opening environment
@@ -99,10 +99,9 @@ With your deployment finished, you may have noticed that the resources allocated
 ```
 
 {{% note theme="info" %}}
-Each time you create a new branch, your new environment will inherit from the parent resource allocation.
+Each time you create a new branch, your new environment inherits its parent environment's resource allocation.
 {{% /note %}}
 
-You may need a great deal more disk for uploaded files, or less memory for rarely used services. 
-All of these and more can be scaled upwards and downwards with the {{% vendor/name %}} resources API.
+If you need more disk for uploaded files, or less memory for rarely used services, you can [adjust resources](/manage-resources/adjust-resources.md) at any time.
 
 {{< guide-buttons previous="Back" next="Resources" nextLink="/get-started/here/set-resources.md" type="*" >}}

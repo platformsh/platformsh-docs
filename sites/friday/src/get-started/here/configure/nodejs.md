@@ -5,7 +5,7 @@ weight: 10
 ---
 
 When dealing with Javascript/Node.js stacks, the information below may help customize your configuration.
-These sections provide Javascript/Node.js-specific configuration details, but also be sure to consult the common Upsun documentation as well:
+These sections provide Javascript/Node.js-specific configuration details, but you can also refer to the common Upsun documentation:
 
 - [Configuring applications](/create-apps)
 - [Setting up managed services](/add-services)
@@ -13,11 +13,11 @@ These sections provide Javascript/Node.js-specific configuration details, but al
 
 ## Build flavors
 
-By default, Upsun will make assumptions about how you want to build your application. 
+By default, Upsun makes assumptions about how you want to build your application. 
 Namely, that you are managing your dependencies with npm, and that the very first thing you'd like to run is a particular and common production flavor of `npm install`.
 
-This is called a build `flavor`, but it's assumption may prove inappropriate for your application and cause your builds to fail (such as if you'd like to use yarn or bun instead of npm).
-[Consult the documentation](/languages/nodejs#dependencies) to learn more about disabling this feature.
+This is called a build `flavor`, but its assumption may prove inappropriate for your application and cause your builds to fail (such as if you'd like to use yarn or bun instead of npm).
+Therefore, you can [disable this feature(/languages/nodejs#dependencies).
 
 ## Available package managers
 
@@ -27,10 +27,7 @@ Certain package managers come pre-installed on all Upsun `nodejs` container type
 * *npx*; example: ``npx create-strapi-app <APP_NAME>``
 * *bun*; example: ``bun install platformsh-config``
 
-Yarn is an exception, as it [requires that you install it explicitly](/languages/nodejs#use-yarn-as-a-package-manager). 
-
-## Using nvm
-If you want to get more info about usage of NVM, please see [dedicated doc page](/languages/nodejs/node-version.md#use-nvm)
+You can also use Yarn if you [install it explicitly](/languages/nodejs#use-yarn-as-a-package-manager), or [nvm](/languages/nodejs/node-version.md#use-nvm).
 
 ## Sample configuration
 
