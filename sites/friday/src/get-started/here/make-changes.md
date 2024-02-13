@@ -12,7 +12,8 @@ Other branches are for developing new features, fixing bugs, or updating the inf
 
 To make changes to your project, follow these steps:
 
-1. Create a new environment (a Git branch) to make changes without impacting production:
+## 1. Create a new environment
+Create a new environment (a Git branch) to make changes without impacting production:
 {{< codetabs >}}
 +++
 title={{% vendor/name %}} Git repository
@@ -60,48 +61,57 @@ title=Using third party provider
    ```
 {{< /note >}}
 
-2. Make changes to your project.
+## 2. Make changes to your project.
 
-   Depending on the stack you're using, change something within your source code.
+Depending on the stack you're using, change something within your source code.
 
-3. Commit your changes:
+## 3. Commit your changes
 
-   ```bash {location="Terminal"}
-   git add index.js
-   git commit -m "Update source code"
-   ```
+```bash {location="Terminal"}
+git add index.js
+git commit -m "Update source code"
+```
 
-4. Deploy your changes to the `feat-a` environment:
+## 4. Deploy your changes
 
-   ```bash {location="Terminal"}
-   {{% vendor/cli %}} push
-   ```
+Deploy your changes to the `feat-a` environment:
 
-   Note that each environment has its own domain name.
-   To open the URL of your new environment, run the following command:
+```bash {location="Terminal"}
+{{% vendor/cli %}} push
+```
 
-   ```bash {location="Terminal"}
-   {{% vendor/cli %}} environment:url --primary
-   ```
+Note that each environment has its own domain name.
+To open the URL of your new environment, run the following command:
 
-5. Iterate by changing the code, committing, and deploying.
-   When satisfied with your changes, merge them to the main branch,
-   and remove the feature branch:
+```bash {location="Terminal"}
+{{% vendor/cli %}} environment:url --primary
+```
+{{< note title="Warnings" theme="warning">}}
+If your environment is inactive, you need to [activate it](/environments/deactivate-environment.md#reactivate-an-environment) first, using the following:
+```bash {location="Terminal"}
+{{% vendor/cli %}} environment:activate
+```
+{{< /note >}}
 
-   ```bash {location="Terminal"}
-   {{% vendor/cli %}} merge
-     Are you sure you want to merge feat-a into its parent, main? [Y/n] y
-   {{% vendor/cli %}} checkout main
-   git pull {{% vendor/cli %}} main
-   {{% vendor/cli %}} environment:delete feat-a
-   git fetch --prune
-   ```
+## 5. Iterate
+Iterate by changing the code, committing, and deploying.
+When satisfied with your changes, merge them to the main branch,
+and remove the feature branch:
 
-   {{< note >}}
-   Deploying to production was fast because the image built for the `feat-a` environment was reused for your `main` environment.
-   {{< /note >}}
+```bash {location="Terminal"}
+{{% vendor/cli %}} merge
+ Are you sure you want to merge feat-a into its parent, main? [Y/n] y
+{{% vendor/cli %}} checkout main
+git pull {{% vendor/cli %}} main
+{{% vendor/cli %}} environment:delete feat-a
+git fetch --prune
+```
 
-   For a long running branch, to keep the code up-to-date with the main branch, use `git merge main` or `git rebase main`.
-   You can also keep the data in sync with the parent environment by using `{{% vendor/cli %}} env:sync`.
+{{< note >}}
+Deploying to production was fast because the image built for the `feat-a` environment was reused for your `main` environment.
+{{< /note >}}
+
+For a long running branch, to keep the code up-to-date with the main branch, use `git merge main` or `git rebase main`.
+You can also keep the data in sync with the parent environment by using `{{% vendor/cli %}} env:sync`.
 
 {{< guide-buttons previous="Back" next="Local development" nextLink="/get-started/here/local" type="*" >}}
