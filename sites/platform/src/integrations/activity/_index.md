@@ -144,7 +144,6 @@ The following example executes only for backup actions on the `production` envir
 {{% vendor/cli %}} integration:update --events=environment.backup --environments=production {{<variable "SCRIPT_ID" >}}
 ```
 
-There is also an `--exclude-environments` switch to excluded environments by name rather than allow.
 
 As a general rule, it's better to have an activity script only execute on the specific events and branches you're interested in
 rather than firing on all activities and then filtering out undesired use cases in the script itself.
@@ -179,8 +178,7 @@ You get a payload similar to the following:
   },
   "value": "string",
   "is_json": true,
-  "is_sensitive": true,
-  "is_enabled": true
+  "is_sensitive": true
 }
 ```
 

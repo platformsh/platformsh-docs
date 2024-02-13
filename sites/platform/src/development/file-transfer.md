@@ -38,8 +38,6 @@ To do so, run the following command:
 
 The output is similar to the following:
 
-{{% version/specific %}}
-<!-- Platform.sh -->
 ```bash
 Mounts on abcdefgh1234567-main-abcd123--app@ssh.eu.{{< vendor/urlraw "host" >}}:
 +-------------------------+----------------------+
@@ -53,30 +51,13 @@ Mounts on abcdefgh1234567-main-abcd123--app@ssh.eu.{{< vendor/urlraw "host" >}}:
 |                         | source_path: temp    |
 +-------------------------+----------------------+
 ```
-<--->
-<!-- Upsun -->
-
-```bash
-Mounts on abcdefgh1234567-main-abcd123--app@ssh.eu.{{< vendor/urlraw "host" >}}:
-+-------------------------+----------------------+
-| Mount path              | Definition           |
-+-------------------------+----------------------+
-| web/sites/default/files | source: storage      |
-|                         | source_path: files   |
-| private                 | source: storage      |
-|                         | source_path: private |
-| tmp                     | source: tmp          |
-|                         | source_path: temp    |
-+-------------------------+----------------------+
-```
-{{% /version/specific %}}
 
 ### Transfer a file to a mount
 
-To transfer a file to a mount using the CLI, you can use the `mount:upload` command. 
+To transfer a file to a mount using the CLI, you can use the `mount:upload` command.
 
 For example, to upload the files contained in the local `private` directory to the `private` mount,
-run the following command: 
+run the following command:
 
 ```bash
 {{% vendor/cli %}} mount:upload --mount private --source ./private
@@ -98,9 +79,9 @@ Are you sure you want to continue? [Y/n]
 
 ### Transfer a file from a mount
 
-To transfer a file from a mount using the CLI, you can use the `mount:download` command. 
+To transfer a file from a mount using the CLI, you can use the `mount:download` command.
 
-For example, to download a file from the `private` mount to your local `private` directory, 
+For example, to download a file from the `private` mount to your local `private` directory,
 run the following command:
 
 ```bash
@@ -179,33 +160,19 @@ For more options, consult the [rsync documentation](https://man7.org/linux/man-p
 
 You can use `sftp` to copy files to and from a remote environment.
 
-{{% version/specific %}}
 {{% note %}}
-<!-- Platform.sh -->
 
 `sftp` is supported on the Grid, but the following limitations apply:
 
-- You can only create `sftp` accounts with an existing {{% vendor/name %}} user and an SSH key. 
+- You can only create `sftp` accounts with an existing {{% vendor/name %}} user and an SSH key.
   Custom users and passwords aren't supported.
 - `sftp` access cannot be limited to a specific directory.
   Instead, access is given to **the whole application directory** and its mounts.
 
 `sftp` is also supported on Dedicated projects with different limitations and requirements.
-For more information, see the [{{% names/dedicated-gen-2 %}}](/dedicated-gen-2/architecture/options.md#sftp)
-and [{{% names/dedicated-gen-3 %}}](/dedicated-gen-3/options.md#sftp) sections.
+For more information, see the [{{% names/dedicated-gen-2 %}}](https://docs.platform.sh/dedicated-gen-2/architecture/options.html#sftp)
+and [{{% names/dedicated-gen-3 %}}](https://docs.platform.sh/dedicated-gen-3/options.html#sftp) sections.
 {{% /note %}}
-
-<--->
-<!-- Upsun -->
-{{% note %}}
-{{% vendor/name %}} supports `sftp`, but the following limitations apply:
-
-- You can only create `sftp` accounts with an existing {{% vendor/name %}} user and an SSH key. 
-  Custom users and passwords aren't supported.
-- `sftp` access cannot be limited to a specific directory.
-  Instead, access is given to **the whole application directory** and its mounts.
-{{% /note %}}
-{{% /version/specific %}}
 
 #### Open an `sftp` connection
 

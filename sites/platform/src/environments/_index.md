@@ -196,8 +196,6 @@ Staging
 To prevent unnecessary consumption of resources,
 {{% vendor/name %}} automatically pauses preview environments ([of both development and staging types](/glossary.md#environment-type)) that haven't been redeployed in 14 days.
 
-{{% version/specific %}}
-
 {{< note >}}
 
 If you're on a development plan,
@@ -209,12 +207,6 @@ To prevent your production environment from being paused automatically,
 {{< /note >}}
 
 You can also pause an environment manually at any time.
-
-<--->
-
-You can also pause an environment manually at any time.
-
-{{% /version/specific %}}
 
 ### Pause an environment
 
@@ -280,30 +272,14 @@ Git provides push options to pass a string to the server (see [the official Git 
 {{% vendor/name %}} supports some of these push options,
 which allows you to push changes to your environment and trigger the following actions at the same time:
 
-{{% version/specific %}}
-
 | Action                                     | Command                                                                                                                 |
 | ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
 | Activate the environment                   | `git push {{% vendor/cli %}} -o "environment.status=active"`                                    |
 | Set a title for the environment            | `git push {{% vendor/cli %}} -o "environment.title=<ENVIRONMENT_TITLE>"`       |
-| Set the parent environment                 | `git push {{% vendor/cli %}} -o "environment.parent=<PARENT_ENVIRONMENT_NAME>"` |         
+| Set the parent environment                 | `git push {{% vendor/cli %}} -o "environment.parent=<PARENT_ENVIRONMENT_NAME>"` |
 | Clone the data from the parent environment | `git push {{% vendor/cli %}} -o "environment.clone_parent_on_create=True"` |
 | Disable the cloning of the data from the parent environment | `git push {{% vendor/cli %}} -o "environment.clone_parent_on_create=False"` |
 | Set the environment type (`development`, `staging`, or `production`)                  | `git push {{% vendor/cli %}} -o "environment.type=<ENVIRONMENT_TYPE>"` |
-
-<--->
-
-| Action                                     | Command                                                                                                                 |
-| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
-| Activate the environment                   | `git push {{% vendor/cli %}} -o "environment.status=active"`                                    |
-| Set a title for the environment            | `git push {{% vendor/cli %}} -o "environment.title=<ENVIRONMENT_TITLE>"`       |
-| Set the parent environment                 | `git push {{% vendor/cli %}} -o "environment.parent=<PARENT_ENVIRONMENT_NAME>"` |         
-| Clone the data from the parent environment | `git push {{% vendor/cli %}} -o "environment.clone_parent_on_create=True"` |
-| Disable the cloning of the data from the parent environment | `git push {{% vendor/cli %}} -o "environment.clone_parent_on_create=False"` |
-| Set the environment type (`development`, `staging`, or `production`)                  | `git push {{% vendor/cli %}} -o "environment.type=<ENVIRONMENT_TYPE>"` |
-| Define a [resource initialization strategy](/manage-resources/_index.md#define-a-resource-initialization-strategy) (`Default`, `Manual`, `Minimum`, or `Parent`)  | `git push {{% vendor/cli %}} -o "resources.init=<RESOURCE_INITIALIZATION_STRATEGY>"` |
-
-{{% /version/specific %}}
 
 If your remote location isn't named `{{% vendor/cli %}}`,
 make sure you adjust the commands accordingly.
