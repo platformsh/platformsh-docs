@@ -83,10 +83,7 @@ module:
               - "development/deploy-button.md"
               - "development/transfer-dedicated.md"
 
-              # - "domains/*"
-              - "domains/cdn/managed-fastly.md"
-              - "domains/security/web-application-firewall/fastly.md"
-              - "domains/steps/custom-domains-preview-environments.md"
+              - "domains/*"
 
               - "environments/*"
               #- "environments/scalability.md"
