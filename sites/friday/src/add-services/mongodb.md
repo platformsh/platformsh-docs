@@ -25,61 +25,11 @@ premium: true
 
 {{% premium-features/add-on feature="MongoDB Enterprise" %}}
 
-{{% version/specific %}}
-<!-- API Version 1 -->
-
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 3</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="mongodb-enterprise" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="mongodb-enterprise" status="supported" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="mongodb-enterprise" status="supported" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
-
-<--->
-<!-- API Version 2 -->
-
 {{< image-versions image="mongodb-enterprise" status="supported" environment="grid" >}}
-
-{{% /version/specific %}}
 
 {{% deprecated-versions %}}
 
-{{% version/specific %}}
-<!-- API Version 1 -->
-
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 3</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="mongodb-enterprise" status="deprecated" environment="grid" >}}</td>
-            <td>{{< image-versions image="mongodb-enterprise" status="deprecated" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="mongodb-enterprise" status="deprecated" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
-
-<--->
-<!-- API Version 2 -->
-
 {{< image-versions image="mongodb-enterprise" status="deprecated" environment="grid" >}}
-
-{{% /version/specific %}}
 
 ### Legacy edition
 
@@ -175,9 +125,6 @@ highlight=python
 
 {{< /codetabs >}}
 
-<!-- Version 2: .environment shortcode + context -->
-{{% version/only "2" %}}
-
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="myapp" >}}
 
@@ -211,8 +158,6 @@ export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}
 ```
 
 {{< /v2connect2app >}}
-
-{{% /version/only %}}
 
 ## Access the service directly
 

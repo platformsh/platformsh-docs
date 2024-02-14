@@ -14,32 +14,7 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-{{% version/specific %}}
-<!-- API Version 1 -->
-
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 3</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="kafka" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="kafka" status="supported" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="kafka" status="supported" environment="dedicated-gen-2" >}}</td>
-        </tr>
-    </tbody>
-</table>
-
-<--->
-<!-- API Version 2 -->
-
 {{< image-versions image="kafka" status="supported" environment="grid" >}}
-
-{{% /version/specific %}}
 
 {{% relationship-ref-intro %}}
 

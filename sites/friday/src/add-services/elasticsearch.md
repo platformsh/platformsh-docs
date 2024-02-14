@@ -29,32 +29,7 @@ From version 7.11 onward:
 
 The following premium versions are supported:
 
-{{% version/specific %}}
-<!-- API Version 1 -->
-
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 3</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="elasticsearch" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="elasticsearch" status="supported" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="elasticsearch" status="supported" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
-
-<--->
-<!-- API Version 2 -->
-
 {{< image-versions image="elasticsearch" status="supported" environment="grid" >}}
-
-{{% /version/specific %}}
 
 {{% major-minor-versions-note configMinor="true" %}}
 
@@ -63,32 +38,7 @@ The following premium versions are supported:
 The following versions are still available in your projects for free,
 but they're at their end of life and are no longer receiving security updates from upstream.
 
-{{% version/specific %}}
-<!-- API Version 1 -->
-
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 3</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="elasticsearch" status="deprecated" environment="grid" >}}</td>
-            <td>{{< image-versions image="elasticsearch" status="deprecated" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="elasticsearch" status="deprecated" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
-
-<--->
-<!-- API Version 2 -->
-
 {{< image-versions image="elasticsearch" status="deprecated" environment="grid" >}}
-
-{{% /version/specific %}}
 
 To ensure your project remains stable in the future,
 switch to [a premium version](#supported-versions).

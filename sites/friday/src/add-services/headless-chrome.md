@@ -15,32 +15,7 @@ Puppeteer can be used to generate PDFs and screenshots of web pages, automate fo
 
 {{% major-minor-versions-note %}}
 
-{{% version/specific %}}
-<!-- API Version 1 -->
-
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 3</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="chrome-headless" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="chrome-headless" status="supported" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="chrome-headless" status="supported" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
-
-<--->
-<!-- API Version 2 -->
-
 {{< image-versions image="chrome-headless" status="supported" environment="grid" >}}
-
-{{% /version/specific %}}
 
 {{% relationship-ref-intro %}}
 
@@ -107,41 +82,6 @@ yarn add puppeteer
 
 {{< /codetabs >}}
 
-{{% version/specific %}}
-<!-- API Version 1 -->
-
-Using the [Node.js Config Reader library](../development/variables/use-variables.md#access-variables-in-your-app), you can retrieve formatted credentials for connecting to headless Chrome with Puppeteer:
-
-```js
-const platformsh = require('platformsh-config');
-
-const config = platformsh.config();
-const credentials = config.credentials('chromeheadlessbrowser');
-```
-
-and use them to define the `browserURL` parameter of `puppeteer.connect()` within an `async` function:
-
-```js
-exports.getBrowser = async function (url) {
-    try {
-        // Connect to chrome-headless using pre-formatted puppeteer credentials
-        const formattedURL = config.formattedCredentials('chromeheadlessbrowser', 'puppeteer');
-        const browser = await puppeteer.connect({browserURL: formattedURL});
-
-        ...
-
-        return browser
-
-    } catch (error) {
-        console.error({ error }, 'Something happened!');
-        browser.close();
-    }
-};
-```
-
-<--->
-<!-- API Version 2 -->
-
 Configuration for a project looks similar to the following:
 
 ```yaml {configFile="app"}
@@ -175,20 +115,5 @@ export CHROME_BASEURL="http://${CHROME_IP}:${CHROME_PORT}"
 
 {{< /v2connect2app >}}
 
-{{% /version/specific %}}
-
 Puppeteer allows your application to [create screenshots](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pagescreenshotoptions), [emulate a mobile device](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pageemulateoptions), [generate PDFs](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pagepdfoptions), and much more.
 
-{{% version/specific %}}
-<!-- API Version 1 -->
-
-You can find some useful examples of using headless Chrome and Puppeteer on {{< vendor/name >}} on the Community Portal:
-
-* [How to take screenshots using Puppeteer and Headless Chrome](https://community.platform.sh/t/how-to-take-screenshots-using-puppeteer-and-headless-chrome/305)
-* [How to generate PDFs using Puppeteer and Headless Chrome](https://community.platform.sh/t/how-to-generate-pdfs-using-puppeteer-and-headless-chrome/306)
-
-
-<--->
-<!-- API Version 2 -->
-
-{{% /version/specific %}}

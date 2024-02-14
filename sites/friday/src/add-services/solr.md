@@ -20,61 +20,11 @@ Solr search with generic schemas provided, and a custom schema is also supported
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-{{% version/specific %}}
-<!-- API Version 1 -->
-
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 3</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="solr" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="solr" status="supported" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="solr" status="supported" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
-
-<--->
-<!-- API Version 2 -->
-
 {{< image-versions image="solr" status="supported" environment="grid" >}}
-
-{{% /version/specific %}}
 
 {{% deprecated-versions %}}
 
-{{% version/specific %}}
-<!-- API Version 1 -->
-
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 3</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="solr" status="deprecated" environment="grid" >}}</td>
-            <td>{{< image-versions image="solr" status="deprecated" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="solr" status="deprecated" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
-
-<--->
-<!-- API Version 2 -->
-
 {{< image-versions image="solr" status="deprecated" environment="grid" >}}
-
-{{% /version/specific %}}
 
 {{% relationship-ref-intro %}}
 
@@ -147,9 +97,6 @@ highlight=python
 
 {{< /codetabs >}}
 
-<!-- Version 2: .environment shortcode + context -->
-{{% version/only "2" %}}
-
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="myapp" >}}
 # Relationships enable an app container's access to a service.
@@ -178,29 +125,12 @@ export SOLR_URL="http://${CACHE_HOST}:${CACHE_PORT}/${CACHE_PATH}"
 
 {{< /v2connect2app >}}
 
-{{% /version/only %}}
-
 ## Solr 4
 
 For Solr 4, {{% vendor/name %}} supports only a single core per server called `collection1`.
 
 You must provide your own Solr configuration via a `core_config` key in your `{{< vendor/configfile "services" >}}`:
 
-{{< version/specific >}}
-<!-- Version 1 -->
-
-```yaml {configFile="services"}
-{{< snippet name="searchsolr" config="service" >}}
-    type: "solr:4.10"
-    disk: 1024
-    configuration:
-        core_config: !archive "{{< variable "DIRECTORY" >}}"
-{{< /snippet >}}
-```
-
-<--->
-<!-- Version 2 -->
-
 ```yaml {configFile="services"}
 {{< snippet name="searchsolr" config="service" >}}
     type: "solr:4.10"
@@ -209,27 +139,10 @@ You must provide your own Solr configuration via a `core_config` key in your `{{
 {{< /snippet >}}
 ```
 
-{{< /version/specific >}}
-
-{{< variable "DIRECTORY" >}} points to a directory in the Git repository, in or below the `{{< vendor/configdir >}}/` folder. This directory needs to contain everything that Solr needs to start a core. At the minimum, `solrconfig.xml` and `schema.xml`. 
+{{< variable "DIRECTORY" >}} points to a directory in the Git repository, in or below the `{{< vendor/configdir >}}/` folder. This directory needs to contain everything that Solr needs to start a core. At the minimum, `solrconfig.xml` and `schema.xml`.
 
 For example, place them in `{{< vendor/configdir >}}/solr/conf/` such that the `schema.xml` file is located at `{{< vendor/configdir >}}/solr/conf/schema.xml`. You can then reference that path like this -
 
-{{< version/specific >}}
-<!-- Version 1 -->
-
-```yaml {configFile="services"}
-{{< snippet name="searchsolr" config="service" >}}
-    type: "solr:4.10"
-    disk: 1024
-    configuration:
-        core_config: !archive "solr/conf/"
-{{< /snippet >}}
-```
-
-<--->
-<!-- Version 2 -->
-
 ```yaml {configFile="services"}
 {{< snippet name="searchsolr" config="service" >}}
     type: "solr:4.10"
@@ -237,37 +150,11 @@ For example, place them in `{{< vendor/configdir >}}/solr/conf/` such that the `
         core_config: !archive "solr/conf/"
 {{< /snippet >}}
 ```
-
-{{< /version/specific >}}
 
 ## Solr 6 and later
 
 For Solr 6 and later {{% vendor/name %}} supports multiple cores via different endpoints. Cores and endpoints are defined separately, with endpoints referencing cores. Each core may have its own configuration or share a configuration. It is best illustrated with an example.
 
-{{< version/specific >}}
-<!-- Version 1 -->
-
-```yaml {configFile="services"}
-{{< snippet name="searchsolr" config="service" >}}
-    type: solr:{{% latest "solr" %}}
-    disk: 1024
-    configuration:
-        cores:
-            mainindex:
-                conf_dir: !archive "core1-conf"
-            extraindex:
-                conf_dir: !archive "core2-conf"
-        endpoints:
-            main:
-                core: mainindex
-            extra:
-                core: extraindex
-{{< /snippet >}}
-```
-
-<--->
-<!-- Version 2 -->
-
 ```yaml {configFile="services"}
 {{< snippet name="searchsolr" config="service" >}}
     type: solr:{{% latest "solr" %}}
@@ -285,9 +172,7 @@ For Solr 6 and later {{% vendor/name %}} supports multiple cores via different e
 {{< /snippet >}}
 ```
 
-{{< /version/specific >}}
-
-The above definition defines a single Solr {{% latest "solr" %}} server. That server has 2 cores defined: 
+The above definition defines a single Solr {{% latest "solr" %}} server. That server has 2 cores defined:
 
 - `mainindex` &mdash; the configuration for which is in the `{{< vendor/configdir >}}/core1-conf` directory
 - `extraindex` &mdash; the configuration for which is in the `{{< vendor/configdir >}}/core2-conf` directory.
@@ -296,38 +181,6 @@ It then defines two endpoints: `main` is connected to the `mainindex` core while
 
 Each endpoint is then available in the relationships definition in `{{< vendor/configfile "app" >}}`. For example, to allow an application to talk to both of the cores defined above its configuration should contain the following:
 
-{{< version/specific >}}
-<!-- Version 1 -->
-
-```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="false" >}}
-type: "php:{{% latest "php" %}}"
-
-relationships:
-    solrsearch1: 'searchsolr:main'
-    solrsearch2: 'searchsolr:extra'
-{{< /snippet >}}
-
-{{< snippet name="searchsolr" config="service" placeholder="true">}}
-    type: solr:{{% latest "solr" %}}
-    disk: 1024
-    configuration:
-        cores:
-            mainindex:
-                conf_dir: !archive "core1-conf"
-            extraindex:
-                conf_dir: !archive "core2-conf"
-        endpoints:
-            main:
-                core: mainindex
-            extra:
-                core: extraindex
-{{< /snippet >}}
-```
-
-<--->
-<!-- Version 2 -->
-
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="false" >}}
 type: "php:{{% latest "php" %}}"
@@ -352,8 +205,6 @@ relationships:
                 core: extraindex
 {{< /snippet >}}
 ```
-
-{{< /version/specific >}}
 
 That is, the application's environment would include a `solrsearch1` relationship that connects to the `main` endpoint, which is the `mainindex` core, and a `solrsearch2` relationship that connects to the `extra` endpoint, which is the `extraindex` core.
 
@@ -384,36 +235,6 @@ The relationships array would then look something like the following:
 
 For even more customizability, it's also possible to define Solr configsets. For example, the following snippet would define one configset, which would be used by all cores. Specific details can then be overridden by individual cores using `core_properties`, which is equivalent to the Solr `core.properties` file.
 
-{{< version/specific >}}
-<!-- Version 1 -->
-
-```yaml {configFile="services"}
-{{< snippet name="searchsolr" config="service" >}}
-    type: solr:8.4
-    disk: 1024
-    configuration:
-        configsets:
-            mainconfig: !archive "configsets/solr8"
-        cores:
-            english_index:
-                core_properties: |
-                    configSet=mainconfig
-                    schema=english/schema.xml
-            arabic_index:
-                core_properties: |
-                    configSet=mainconfig
-                    schema=arabic/schema.xml
-        endpoints:
-            english:
-                core: english_index
-            arabic:
-                core: arabic_index
-{{< /snippet >}}
-```
-
-<--->
-<!-- Version 2 -->
-
 ```yaml {configFile="services"}
 {{< snippet name="searchsolr" config="service" >}}
     type: solr:8.4
@@ -437,12 +258,10 @@ For even more customizability, it's also possible to define Solr configsets. For
 {{< /snippet >}}
 ```
 
-{{< /version/specific >}}
-
-In this example, `{{< vendor/configdir >}}/configsets/solr8` contains the configuration definition for multiple cores. There are then two cores created: 
+In this example, `{{< vendor/configdir >}}/configsets/solr8` contains the configuration definition for multiple cores. There are then two cores created:
 
 - `english_index` uses the defined configset, but specifically the `{{< vendor/configdir >}}/configsets/solr8/english/schema.xml` file
-- `arabic_index` is identical except for using the `{{< vendor/configdir >}}/configsets/solr8/arabic/schema.xml` file. 
+- `arabic_index` is identical except for using the `{{< vendor/configdir >}}/configsets/solr8/arabic/schema.xml` file.
 
 Each of those cores is then exposed as its own endpoint.
 
@@ -492,7 +311,7 @@ You are strongly recommended to define your own configuration with a custom core
 
 ### Limitations
 
-The recommended maximum size for configuration directories (zipped) is 2MB. These need to be monitored to ensure they don't grow beyond that. If the zipped configuration directories grow beyond this, performance declines and deploys become longer. The directory archives are compressed and string encoded. You could use this bash pipeline 
+The recommended maximum size for configuration directories (zipped) is 2MB. These need to be monitored to ensure they don't grow beyond that. If the zipped configuration directories grow beyond this, performance declines and deploys become longer. The directory archives are compressed and string encoded. You could use this bash pipeline
 
 ```bash
 echo $(($(tar czf - . | base64 | wc -c )/(1024*1024))) Megabytes
@@ -516,11 +335,6 @@ You can now open `http://localhost:30000/solr/` in a browser to access the Solr 
 Note that you can't create indexes or users this way,
 but you can browse the existing indexes and manipulate the stored data.
 
-{{% version/only "1" %}}
-For {{% names/dedicated-gen-2 %}} use `ssh -L 8888:localhost:8983 USER@CLUSTER_NAME.ent.platform.sh` to open a tunnel instead,
-after which the Solr server administrative interface is available at `http://localhost:8888/solr/`.
-{{% /version/only %}}
-
 ## Available plugins
 
 This is the complete list of plugins that are available and loaded by default:
@@ -528,7 +342,7 @@ This is the complete list of plugins that are available and loaded by default:
 | Plugin                                                                             | Description                                            | 8.11 | 9.x |
 |------------------------------------------------------------------------------------|--------------------------------------------------------|------|-----|
 | [JTS](https://solr.apache.org/guide/8_1/spatial-search.html#jts-and-polygons-flat) | Library for creating and manipulating vector geometry. |*     |*    |
-| [ICU4J](https://solr.apache.org/guide/8_3/language-analysis.html)                  | Library providing Unicode and globalization support.                                                                                                                                      |*     |*    |  
+| [ICU4J](https://solr.apache.org/guide/8_3/language-analysis.html)                  | Library providing Unicode and globalization support.                                                                                                                                      |*     |*    |
 
 ## Upgrading
 
@@ -538,7 +352,7 @@ There are two ways of doing that.
 
 ### Destructive
 
-In your `{{< vendor/configfile "services" >}}` file, change the version of your Solr service *and* its name. 
+In your `{{< vendor/configfile "services" >}}` file, change the version of your Solr service *and* its name.
 Be sure to also update the reference to the now changed service name in it's corresponding application's `relationship` block.
 
 When you push that to {{% vendor/name %}}, the old service is deleted and a new one with the name is created, with no data. You can then have your application re-index data as appropriate.
