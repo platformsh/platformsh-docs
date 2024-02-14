@@ -272,7 +272,7 @@ keep in mind what mount behavior you want.
 while `storage` mounts can be shared between instances.
 
 For example, you can define a `storage` mount (called `shared_dir`) to be used by a `web` instance,
-and an `tmp` mount (called `local_dir`) to be used by a `queue` worker instance:
+and a `tmp` mount (called `local_dir`) to be used by a `queue` worker instance:
 
 ```yaml {configFile="app"}
 applications:
