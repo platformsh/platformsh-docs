@@ -159,7 +159,7 @@ relationships:
 
 To use the configured service in your app, add a configuration file similar to the following to your project.
 
-{{< codetabs v2hide="true" >}}
+{{< codetabs >}}
 
 +++
 title=Java
@@ -266,7 +266,7 @@ relationships:
 
 To use the configured service in your app, add a configuration file similar to the following to your project.
 
-{{< codetabs v2hide="true" >}}
+{{< codetabs >}}
 
 +++
 title=Java
@@ -458,14 +458,14 @@ which means Redis stores and retrieves the data saved into sessions.
 To set up Redis as your session handler, add a configuration similar to the following:
 
 ```yaml {configFile="services" v2Hide="true"}
-{{< snippet name="data" config="service" >}}
+{{% snippet name="data" config="service"  %}}
     type: "redis-persistent:{{% latest "redis" %}}"
     disk: 256
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="false" >}}
+{{% snippet name="myapp" config="app" root="false"  %}}
 type: "php:{{% latest "php" %}}"
 
 relationships:
@@ -481,10 +481,10 @@ web:
         '/':
             root: 'web'
             passthru: '/index.php'
-{{< /snippet >}}
+{{% /snippet %}}
 
-{{< snippet name="data" config="service" placeholder="true" >}}
+{{% snippet name="data" config="service" placeholder="true"  %}}
     type: "redis-persistent:{{% latest "redis" %}}"
     disk: 256
-{{< /snippet >}}
+{{% /snippet %}}
 ```

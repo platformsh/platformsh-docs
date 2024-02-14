@@ -93,15 +93,15 @@ See more information on [how to upgrade to version 2.3 or later](#upgrade-to-ver
 {{% endpoint-description type="influxdb" /%}}
 
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
+{{% snippet name="myapp" config="app" root="myapp"  %}}
 # Relationships enable an app container's access to a service.
 relationships:
     influxtimedb: "timedb:influxdb"
-{{< /snippet >}}
-{{< snippet name="timedb" config="service" placeholder="true" >}}
+{{% /snippet %}}
+{{% snippet name="timedb" config="service" placeholder="true"  %}}
     type: influxdb:{{% latest "influxdb" %}}
     disk: 256
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
 {{% v2connect2app serviceName="timedb" relationship="influxtimedb" var="INFLUX_HOST"%}}

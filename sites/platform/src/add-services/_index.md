@@ -37,14 +37,14 @@ Configure your service in the following pattern:
 An example service configuration for two databases might look like this:
 
 ```yaml {configFile="services"}
-{{< snippet name="database1" config="service" >}}
+{{% snippet name="database1" config="service"  %}}
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
-{{< /snippet >}}
-{{< snippet name="database2" config="service" globKey="false" >}}
+{{% /snippet %}}
+{{% snippet name="database2" config="service" globKey="false"  %}}
     type: postgresql:{{% latest "postgresql" %}}
     disk: 1024
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
 This YAML file is a dictionary defining all of the services you want to use.
@@ -121,15 +121,15 @@ An example relationship to connect to the databases given in the [example in ste
 relationships:
     mysql_database: "database1:mysql"
     postgresql_database: "database2:postgresql"
-{{< /snippet >}}
-{{< snippet name="database1" config="service" placeholder="true" >}}
+{{% /snippet %}}
+{{% snippet name="database1" config="service" placeholder="true"  %}}
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
-{{< /snippet >}}
-{{< snippet name="database2" config="service" globKey="false" placeholder="true" >}}
+{{% /snippet %}}
+{{% snippet name="database2" config="service" globKey="false" placeholder="true"  %}}
     type: postgresql:{{% latest "postgresql" %}}
     disk: 1024
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
 As with the service name, you can give the relationship any name you want

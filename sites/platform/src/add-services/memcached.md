@@ -63,7 +63,7 @@ Both Memcached and Redis can be used for application caching. As a general rule,
 
 {{% endpoint-description type="memcached" php=true python=true /%}}
 
-{{< codetabs v2hide="true" >}}
+{{< codetabs >}}
 
 +++
 title=Go

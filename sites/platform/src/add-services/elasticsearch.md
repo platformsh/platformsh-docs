@@ -110,7 +110,7 @@ the service type is `elasticsearch-enterprise`.
 
 Note that configuration for [premium versions](#supported-versions) may differ slightly.
 
-{{< codetabs v2hide="true" >}}
+{{< codetabs >}}
 
 +++
 title=Java
@@ -161,13 +161,13 @@ Starting with Elasticsearch 7.2 you may optionally enable HTTP Basic authenticat
 To do so, include the following in your `{{< vendor/configfile "services" >}}` configuration:
 
 ```yaml {configFile="services"}
-{{< snippet name="search" config="service" >}}
+{{% snippet name="search" config="service" %}}
     type: elasticsearch:{{% latest "elasticsearch" %}}
     disk: 2048
     configuration:
         authentication:
             enabled: true
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
 If you're using a [premium version](#supported-versions),
@@ -186,14 +186,14 @@ To do so, add a route to `{{< vendor/configfile "routes" >}}` that has `search:e
 For example:
 
 ```yaml {configFile="routes"}
-{{< snippet name="search:elasticsearch" config="route" subDom="es" redirect="false" />}}
-{{< snippet name="search" config="service" placeholder="true" >}}
+{{% snippet name="search:elasticsearch" config="route" subDom="es" redirect="false" / %}}
+{{% snippet name="search" config="service" placeholder="true"  %}}
     type: elasticsearch:{{% latest "elasticsearch" %}}
     disk: 2048
     configuration:
         authentication:
             enabled: true
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
 ## Plugins
@@ -202,14 +202,14 @@ Elasticsearch offers a number of plugins.
 To enable them, list them under the `configuration.plugins` key in your `{{< vendor/configfile "services" >}}` file, like so:
 
 ```yaml {configFile="services"}
-{{< snippet name="search" config="service" >}}
+{{% snippet name="search" config="service"  %}}
     type: elasticsearch:{{% latest "elasticsearch" %}}
     disk: 1024
     configuration:
         plugins:
             - analysis-icu
             - lang-python
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
 If you're using a [premium version](#supported-versions),

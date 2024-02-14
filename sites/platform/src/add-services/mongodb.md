@@ -113,7 +113,7 @@ If you want to experiment with a later version without committing to it use a pr
 
 {{% endpoint-description type="mongodb" php=true /%}}
 
-{{< codetabs v2hide="true" >}}
+{{< codetabs >}}
 
 +++
 title=Go

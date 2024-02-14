@@ -53,7 +53,7 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 
 {{% endpoint-description type="kafka" /%}}
 
-{{< codetabs v2hide="true" >}}
+{{< codetabs >}}
 
 +++
 title=Java

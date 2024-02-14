@@ -61,7 +61,7 @@ and your messages a safe place to live until they're received.
 {{% endpoint-description type="rabbitmq" /%}}
 
 <!-- Version 1: Codetabs using config reader + examples.docs.platform.sh -->
-{{< codetabs v2hide="true" >}}
+{{< codetabs >}}
 
 +++
 title=Go
@@ -158,14 +158,14 @@ which can be useful for separating resources, such as exchanges, queues, and bin
 To create virtual hosts, add them to your configuration as in the following example:
 
 ```yaml {configFile="services"}
-{{< snippet name="rabbitmq" config="service" >}}
+{{% snippet name="rabbitmq" config="service"  %}}
     type: "rabbitmq:{{% latest "rabbitmq" %}}"
     disk: 512
     configuration:
         vhosts:
             - host1
             - host2
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
 {{% relationship-ref-intro %}}
