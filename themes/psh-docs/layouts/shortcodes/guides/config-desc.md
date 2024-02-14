@@ -10,7 +10,7 @@ giving you a fully isolated running site for each active environment.
 Once an environment is activated, your app is deployed through a cluster of containers.
 You can configure these containers in three ways, each corresponding to a [YAML file](/learn/overview/yaml):
 
-- **Configure apps** in a `{{ partial "vendor/configfile" (dict "context" . "config" "services") }}` file.
+- **Configure apps** in a `{{ partial "vendor/configfile" (dict "context" . "config" "app") }}` file.
   This controls the configuration of the container where your app lives.
 - **Add services** in a `{{ partial "vendor/configfile" (dict "context" . "config" "services") }}` file.
   This controls what additional services are created to support your app,
