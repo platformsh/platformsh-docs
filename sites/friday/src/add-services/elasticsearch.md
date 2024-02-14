@@ -129,22 +129,6 @@ No username or password is required to connect to it.
 Starting with Elasticsearch 7.2 you may optionally enable HTTP Basic authentication.
 To do so, include the following in your `{{< vendor/configfile "services" >}}` configuration:
 
-{{< version/specific >}}
-<!-- Version 1 -->
-
-```yaml {configFile="services"}
-{{% snippet name="search" config="service"  %}}
-    type: elasticsearch:{{% latest "elasticsearch" %}}
-    disk: 2048
-    configuration:
-        authentication:
-            enabled: true
-{{% /snippet %}}
-```
-
-<--->
-<!-- Version 2 -->
-
 ```yaml {configFile="services"}
 {{% snippet name="search" config="service"  %}}
     type: elasticsearch:{{% latest "elasticsearch" %}}
@@ -153,8 +137,6 @@ To do so, include the following in your `{{< vendor/configfile "services" >}}` c
             enabled: true
 {{% /snippet %}}
 ```
-
-{{< /version/specific >}}
 
 If you're using a [premium version](#supported-versions),
 use the `elasticsearch-enterprise` type.
