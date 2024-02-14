@@ -46,63 +46,21 @@ Both Memcached and Redis can be used for application caching. As a general rule,
 
 {{% endpoint-description type="memcached" php=true python=true /%}}
 
-{{< codetabs v2hide="true" >}}
-
-+++
-title=Go
-file=static/files/fetch/examples/golang/memcached
-highlight=go
-+++
-
-<--->
-
-+++
-title=Java
-file=static/files/fetch/examples/java/memcached
-highlight=java
-+++
-
-<--->
-
-+++
-title=Node.js
-file=static/files/fetch/examples/nodejs/memcached
-highlight=js
-+++
-
-<--->
-
-+++
-title=PHP
-file=static/files/fetch/examples/php/memcached
-highlight=php
-+++
-
-<--->
-
-+++
-title=Python
-file=static/files/fetch/examples/python/memcached
-highlight=python
-+++
-
-{{< /codetabs >}}
-
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
+{{% snippet name="myapp" config="app" root="myapp"  %}}
 
 # Other options...
 
 # Relationships enable an app container's access to a service.
 relationships:
     memcachedcache: "cachemc:memcached"
-{{< /snippet >}}
-{{< snippet name="cachemc" config="service" placeholder="true" >}}
+{{% /snippet %}}
+{{% snippet name="cachemc" config="service" placeholder="true"  %}}
     type: memcached:{{% latest "memcached" %}}
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
-{{< v2connect2app serviceName="cachemc" relationship="memcachedcache" var="CACHE_URL">}}
+{{% v2connect2app serviceName="cachemc" relationship="memcachedcache" var="CACHE_URL"%}}
 
 ```bash {location="myapp/.environment"}
 # Decode the built-in credentials object variable.
@@ -116,7 +74,7 @@ export CACHE_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".memcachedcache[0].port")
 export CACHE_URL="${CACHE_HOST}:${CACHE_PORT}"
 ```
 
-{{< /v2connect2app >}}
+{{% /v2connect2app %}}
 
 ## Accessing Memcached directly
 

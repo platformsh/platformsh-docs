@@ -83,63 +83,21 @@ If you want to experiment with a later version without committing to it use a pr
 
 {{% endpoint-description type="mongodb" php=true /%}}
 
-{{< codetabs v2hide="true" >}}
-
-+++
-title=Go
-file=static/files/fetch/examples/golang/mongodb
-highlight=go
-+++
-
-<--->
-
-+++
-title=Java
-file=static/files/fetch/examples/java/mongodb
-highlight=java
-+++
-
-<--->
-
-+++
-title=Node.js
-file=static/files/fetch/examples/nodejs/mongodb
-highlight=js
-+++
-
-<--->
-
-+++
-title=PHP
-file=static/files/fetch/examples/php/mongodb
-highlight=php
-+++
-
-<--->
-
-+++
-title=Python
-file=static/files/fetch/examples/python/mongodb
-highlight=python
-+++
-
-{{< /codetabs >}}
-
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
+{{% snippet name="myapp" config="app" root="myapp"  %}}
 
 # Other options...
 
 # Relationships enable an app container's access to a service.
 relationships:
     mongodatabase: "dbmongo:mongodb"
-{{< /snippet >}}
-{{< snippet name="dbmongo" config="service" placeholder="true" >}}
+{{% /snippet %}}
+{{% snippet name="dbmongo" config="service" placeholder="true"  %}}
     type: mongodb-enterprise:{{% latest "mongodb-enterprise" %}}
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
-{{< v2connect2app serviceName="dbmongo" relationship="mongodatabase" var="DATABASE_URL">}}
+{{% v2connect2app serviceName="dbmongo" relationship="mongodatabase" var="DATABASE_URL"%}}
 
 ```bash {location="myapp/.environment"}
 # Decode the built-in credentials object variable.
@@ -157,7 +115,7 @@ export DB_DATABASE="$(echo $RELATIONSHIPS_JSON | jq -r '.mongodatabase[0].path')
 export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"
 ```
 
-{{< /v2connect2app >}}
+{{% /v2connect2app %}}
 
 ## Access the service directly
 

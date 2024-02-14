@@ -149,55 +149,21 @@ services:
 
 To use the configured service in your app, add a configuration file similar to the following to your project.
 
-{{< codetabs v2hide="true" >}}
-
-+++
-title=Java
-file=static/files/fetch/examples/java/redis
-highlight=java
-+++
-
-<--->
-
-+++
-title=Node.js
-file=static/files/fetch/examples/nodejs/redis
-highlight=js
-+++
-
-<--->
-
-+++
-title=PHP
-file=static/files/fetch/examples/php/redis
-highlight=php
-+++
-
-<--->
-
-+++
-title=Python
-file=static/files/fetch/examples/python/redis
-highlight=python
-+++
-
-{{< /codetabs >}}
-
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
+{{% snippet name="myapp" config="app" root="myapp"  %}}
 
 # Other options...
 
 # Relationships enable an app container's access to a service.
 relationships:
     rediscache: "cacheredis:redis"
-{{< /snippet >}}
-{{< snippet name="cacheredis" config="service" placeholder="true" >}}
+{{% /snippet %}}
+{{% snippet name="cacheredis" config="service" placeholder="true"  %}}
     type: redis-persistent:{{% latest "redis" %}}
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
-{{< v2connect2app serviceName="cacheredis" relationship="rediscache" var="REDIS_URL">}}
+{{% v2connect2app serviceName="cacheredis" relationship="rediscache" var="REDIS_URL"%}}
 
 ```bash {location="myapp/.environment"}
 # Decode the built-in credentials object variable.
@@ -213,7 +179,7 @@ export CACHE_SCHEME="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].scheme')
 export REDIS_URL="${CACHE_SCHEME}://${CACHE_PASSWORD}@${CACHE_HOST}:${CACHE_PORT}"
 ```
 
-{{< /v2connect2app >}}
+{{% /v2connect2app %}}
 
 ## Ephemeral Redis
 
@@ -308,55 +274,21 @@ services:
 
 To use the configured service in your app, add a configuration file similar to the following to your project.
 
-{{< codetabs v2hide="true" >}}
-
-+++
-title=Java
-file=static/files/fetch/examples/java/redis
-highlight=java
-+++
-
-<--->
-
-+++
-title=Node.js
-file=static/files/fetch/examples/nodejs/redis
-highlight=js
-+++
-
-<--->
-
-+++
-title=PHP
-file=static/files/fetch/examples/php/redis
-highlight=php
-+++
-
-<--->
-
-+++
-title=Python
-file=static/files/fetch/examples/python/redis
-highlight=python
-+++
-
-{{< /codetabs >}}
-
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
+{{% snippet name="myapp" config="app" root="myapp"  %}}
 
 # Other options...
 
 # Relationships enable an app container's access to a service.
 relationships:
     rediscache: "cacheredis:redis"
-{{< /snippet >}}
-{{< snippet name="cacheredis" config="service" placeholder="true" >}}
+{{% /snippet %}}
+{{% snippet name="cacheredis" config="service" placeholder="true"  %}}
     type: redis:{{% latest "redis" %}}
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
-{{< v2connect2app serviceName="cacheredis" relationship="rediscache" var="REDIS_URL">}}
+{{% v2connect2app serviceName="cacheredis" relationship="rediscache" var="REDIS_URL"%}}
 
 ```bash {location="myapp/.environment"}
 # Decode the built-in credentials object variable.
@@ -372,7 +304,7 @@ export CACHE_SCHEME="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].scheme')
 export REDIS_URL="${CACHE_SCHEME}://${CACHE_PASSWORD}@${CACHE_HOST}:${CACHE_PORT}"
 ```
 
-{{< /v2connect2app >}}
+{{% /v2connect2app %}}
 
 ## Multiple databases
 
@@ -536,13 +468,13 @@ which means Redis stores and retrieves the data saved into sessions.
 To set up Redis as your session handler, add a configuration similar to the following:
 
 ```yaml {configFile="services" v2Hide="true"}
-{{< snippet name="data" config="service" >}}
+{{% snippet name="data" config="service"  %}}
     type: "redis-persistent:{{% latest "redis" %}}"
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="false" >}}
+{{% snippet name="myapp" config="app" root="false"  %}}
 type: "php:{{% latest "php" %}}"
 
 relationships:
@@ -558,9 +490,9 @@ web:
         '/':
             root: 'web'
             passthru: '/index.php'
-{{< /snippet >}}
+{{% /snippet %}}
 
-{{< snippet name="data" config="service" placeholder="true" >}}
+{{% snippet name="data" config="service" placeholder="true"  %}}
     type: "redis-persistent:{{% latest "redis" %}}"
-{{< /snippet >}}
+{{% /snippet %}}
 ```

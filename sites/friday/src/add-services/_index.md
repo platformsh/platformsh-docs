@@ -35,12 +35,12 @@ Configure your service in the following pattern:
 An example service configuration for two databases might look like this:
 
 ```yaml {configFile="services"}
-{{< snippet name="database1" config="service" >}}
+{{% snippet name="database1" config="service"  %}}
     type: mariadb:{{% latest "mariadb" %}}
-{{< /snippet >}}
-{{< snippet name="database2" config="service" globKey="false" >}}
+{{% /snippet %}}
+{{% snippet name="database2" config="service" globKey="false"  %}}
     type: postgresql:{{% latest "postgresql" %}}
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
 This YAML file contains a dictionary defining all of the services you want to use.
@@ -101,7 +101,7 @@ relationships:
 An example relationship to connect to the databases given in the [example in step 1](#1-configure-the-service):
 
 ```yaml {configFile="app"}
-{{< snippet name="<APP_NAME>" config="app" root="false">}}
+{{% snippet name="<APP_NAME>" config="app" root="false" %}}
 
 # Other options...
 
@@ -109,13 +109,13 @@ An example relationship to connect to the databases given in the [example in ste
 relationships:
     mysql_database: "database1:mysql"
     postgresql_database: "database2:postgresql"
-{{< /snippet >}}
-{{< snippet name="database1" config="service" placeholder="true" >}}
+{{% /snippet %}}
+{{% snippet name="database1" config="service" placeholder="true"  %}}
     type: mariadb:{{% latest "mariadb" %}}
-{{< /snippet >}}
-{{< snippet name="database2" config="service" globKey="false" placeholder="true" >}}
+{{% /snippet %}}
+{{% snippet name="database2" config="service" globKey="false" placeholder="true"  %}}
     type: postgresql:{{% latest "postgresql" %}}
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
 As with the service name, you can give the relationship any name you want

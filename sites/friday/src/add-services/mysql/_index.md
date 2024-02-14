@@ -65,63 +65,21 @@ Configure your service with at least 256 MB in disk space.
 
 {{% endpoint-description type="mariadb" sectionLink="#multiple-databases" multipleText="databases" /%}}
 
-{{< codetabs v2hide="true" >}}
-
-+++
-title=Go
-file=static/files/fetch/examples/golang/mysql
-highlight=go
-+++
-
-<--->
-
-+++
-title=Java
-file=static/files/fetch/examples/java/mysql
-highlight=java
-+++
-
-<--->
-
-+++
-title=Node.js
-file=static/files/fetch/examples/nodejs/mysql
-highlight=js
-+++
-
-<--->
-
-+++
-title=PHP
-file=static/files/fetch/examples/php/mysql
-highlight=php
-+++
-
-<--->
-
-+++
-title=Python
-file=static/files/fetch/examples/python/mysql
-highlight=python
-+++
-
-{{< /codetabs >}}
-
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
+{{% snippet name="myapp" config="app" root="myapp"  %}}
 
 # Other options...
 
 # Relationships enable an app container's access to a service.
 relationships:
     database: "db:mysql"
-{{< /snippet >}}
-{{< snippet name="db" config="service" placeholder="true" >}}
+{{% /snippet %}}
+{{% snippet name="db" config="service" placeholder="true"  %}}
     type: mariadb:{{% latest "mariadb" %}}
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
-{{< v2connect2app serviceName="db" relationship="database" var="DATABASE_URL">}}
+{{% v2connect2app serviceName="db" relationship="database" var="DATABASE_URL"%}}
 
 ```bash {location="myapp/.environment"}
 # Decode the built-in credentials object variable.
@@ -139,7 +97,7 @@ export DB_DATABASE="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].path')"
 export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"
 ```
 
-{{< /v2connect2app >}}
+{{% /v2connect2app %}}
 
 ### Configure connections
 
@@ -171,7 +129,7 @@ You can configure your MySQL service in the [services configuration](../_index.m
 Example configuration:
 
 ```yaml {configFile="services"}
-{{< snippet name="db" config="service" >}}
+{{% snippet name="db" config="service"  %}}
     type: mariadb:{{% latest "mariadb" %}}
     configuration:
         schemas:
@@ -183,7 +141,7 @@ Example configuration:
                     main: admin
         properties:
             max_allowed_packet: 64
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
 {{% relationship-ref-intro %}}
@@ -294,7 +252,7 @@ You can also specify multiple `endpoints` for [permissions](#define-permissions)
 If neither `schemas` nor `endpoints` is included, it's equivalent to the following default:
 
 ```yaml {configFile="services"}
-{{< snippet name="db" config="service" >}}
+{{% snippet name="db" config="service"  %}}
     type: mariadb:{{% latest "mariadb" %}}
     configuration:
         schemas:
@@ -304,7 +262,7 @@ If neither `schemas` nor `endpoints` is included, it's equivalent to the followi
                 default_schema: main
                 privileges:
                     main: admin
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
 If either `schemas` or `endpoints` are defined, no default is applied and you have to specify the full configuration.
@@ -326,7 +284,7 @@ Access to the database is defined through three endpoints:
 * `importer` has SELECT/INSERT/UPDATE/DELETE (but not DDL) access to `legacy` but no access to `main`.
 
 ```yaml {configFile="services"}
-{{< snippet name="db" config="service" >}}
+{{% snippet name="db" config="service"  %}}
     type: mariadb:{{% latest "mariadb" %}}
     configuration:
         schemas:
@@ -345,7 +303,7 @@ Access to the database is defined through three endpoints:
                 default_schema: legacy
                 privileges:
                     legacy: rw
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
 Expose these endpoints to your app as relationships in your [app configuration](../../create-apps/_index.md):
@@ -390,14 +348,14 @@ It offers the following properties:
 An example of setting these properties:
 
 ```yaml {configFile="services"}
-{{< snippet name="db" config="service" >}}
+{{% snippet name="db" config="service"  %}}
     type: mariadb:{{% latest "mariadb" %}}
     configuration:
         properties:
             max_allowed_packet: 64
             default_charset: utf8mb4
             default_collation: utf8mb4_unicode_ci
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
 You can also change a table's character set and collation through `ALTER TABLE` commands:

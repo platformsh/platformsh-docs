@@ -30,54 +30,19 @@ and your messages a safe place to live until they're received.
 
 {{% endpoint-description type="rabbitmq" /%}}
 
-<!-- Version 1: Codetabs using config reader + examples.docs.platform.sh -->
-{{< codetabs v2hide="true" >}}
-
-+++
-title=Go
-file=static/files/fetch/examples/golang/rabbitmq
-highlight=go
-+++
-
-<--->
-
-+++
-title=Java
-file=static/files/fetch/examples/java/rabbitmq
-highlight=java
-+++
-
-<--->
-
-+++
-title=PHP
-file=static/files/fetch/examples/php/rabbitmq
-highlight=php
-+++
-
-<--->
-
-+++
-title=Python
-file=static/files/fetch/examples/python/rabbitmq
-highlight=python
-+++
-
-{{< /codetabs >}}
-
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
+{{% snippet name="myapp" config="app" root="myapp"  %}}
 # Relationships enable an app container's access to a service.
 relationships:
     rabbitmqqueue: "queuerabbit:rabbitmq"
-{{< /snippet >}}
-{{< snippet name="queuerabbit" config="service" placeholder="true" >}}
+{{% /snippet %}}
+{{% snippet name="queuerabbit" config="service" placeholder="true"  %}}
     type: rabbitmq:{{% latest "rabbitmq" %}}
     disk: 256
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
-{{< v2connect2app serviceName="queuerabbit" relationship="rabbitmqqueue" var="AMQP_URL">}}
+{{% v2connect2app serviceName="queuerabbit" relationship="rabbitmqqueue" var="AMQP_URL"%}}
 
 ```bash {location="myapp/.environment"}
 # Decode the built-in credentials object variable.
@@ -94,7 +59,7 @@ export QUEUE_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].port")
 export AMQP_URL="${QUEUE_SCHEME}://${QUEUE_USERNAME}:${QUEUE_PASSWORD}@${QUEUE_HOST}:${QUEUE_PORT}/"
 ```
 
-{{< /v2connect2app >}}
+{{% /v2connect2app %}}
 
 ## Connect to RabbitMQ
 
@@ -152,13 +117,13 @@ which can be useful for separating resources, such as exchanges, queues, and bin
 To create virtual hosts, add them to your configuration as in the following example:
 
 ```yaml {configFile="services"}
-{{< snippet name="rabbitmq" config="service" >}}
+{{% snippet name="rabbitmq" config="service"  %}}
     type: "rabbitmq:{{% latest "rabbitmq" %}}"
     configuration:
         vhosts:
             - host1
             - host2
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
 {{% relationship-ref-intro %}}

@@ -85,7 +85,7 @@ yarn add puppeteer
 Configuration for a project looks similar to the following:
 
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
+{{% snippet name="myapp" config="app" root="myapp"  %}}
 type: "nodejs:{{% latest "nodejs" %}}"
 
 # Other options...
@@ -93,13 +93,13 @@ type: "nodejs:{{% latest "nodejs" %}}"
 # Relationships enable an app container's access to a service.
 relationships:
     chromeheadlessbrowser: "headlessbrowser:http"
-{{< /snippet >}}
-{{< snippet name="headlessbrowser" config="service" placeholder="true" >}}
+{{% /snippet %}}
+{{% snippet name="headlessbrowser" config="service" placeholder="true"  %}}
     type: chrome-headless:{{% latest "chrome-headless" %}}
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
-{{< v2connect2app serviceName="headlessbrowser" relationship="chromeheadlessbrowser" var="CHROME_BASEURL">}}
+{{% v2connect2app serviceName="headlessbrowser" relationship="chromeheadlessbrowser" var="CHROME_BASEURL"%}}
 
 ```bash {location="myapp/.environment"}
 # Decode the built-in credentials object variable.
@@ -113,7 +113,7 @@ export CHROME_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".chromeheadlessbrowser[0]
 export CHROME_BASEURL="http://${CHROME_IP}:${CHROME_PORT}"
 ```
 
-{{< /v2connect2app >}}
+{{% /v2connect2app %}}
 
 Puppeteer allows your application to [create screenshots](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pagescreenshotoptions), [emulate a mobile device](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pageemulateoptions), [generate PDFs](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pagepdfoptions), and much more.
 

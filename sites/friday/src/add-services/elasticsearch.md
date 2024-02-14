@@ -80,59 +80,21 @@ the service type is `elasticsearch-enterprise`.
 
 Note that configuration for [premium versions](#supported-versions) may differ slightly.
 
-<!-- Version 1: Codetabs using config reader + examples.docs.platform.sh -->
-{{< codetabs v2hide="true" >}}
-
-+++
-title=Java
-file=static/files/fetch/examples/java/elasticsearch
-highlight=java
-+++
-
-<--->
-
-+++
-title=Node.js
-file=static/files/fetch/examples/nodejs/elasticsearch
-highlight=js
-+++
-
-<--->
-
-+++
-title=PHP
-file=static/files/fetch/examples/php/elasticsearch
-highlight=php
-+++
-
-<--->
-
-+++
-title=Python
-file=static/files/fetch/examples/python/elasticsearch
-highlight=python
-+++
-
-{{< /codetabs >}}
-
-<!-- Version 2: .environment shortcode + context -->
-{{% version/only "2" %}}
-
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
+{{% snippet name="myapp" config="app" root="myapp"  %}}
 
 # Other options...
 
 # Relationships enable an app container's access to a service.
 relationships:
     essearch: "searchelastic:elasticsearch"
-{{< /snippet >}}
-{{< snippet name="searchelastic" config="service" placeholder="true" >}}
+{{% /snippet %}}
+{{% snippet name="searchelastic" config="service" placeholder="true"  %}}
     type: elasticsearch:{{% latest "elasticsearch" %}}
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
-{{< v2connect2app serviceName="searchelastic" relationship="essearch" var="ELASTIC_HOSTS">}}
+{{% v2connect2app serviceName="searchelastic" relationship="essearch" var="ELASTIC_HOSTS" %}}
 
 ```bash {location="myapp/.environment"}
 # Decode the built-in credentials object variable.
@@ -149,9 +111,7 @@ export ELASTIC_PASSWORD=$(echo $RELATIONSHIPS_JSON  | jq -r ".essearch[0].passwo
 export ELASTIC_HOSTS=[\"$ELASTIC_SCHEME://$ELASTIC_HOST:$ELASTIC_PORT\"]
 ```
 
-{{< /v2connect2app >}}
-
-{{% /version/only %}}
+{{% /v2connect2app %}}
 
 {{< note >}}
 
@@ -173,25 +133,25 @@ To do so, include the following in your `{{< vendor/configfile "services" >}}` c
 <!-- Version 1 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="search" config="service" >}}
+{{% snippet name="search" config="service"  %}}
     type: elasticsearch:{{% latest "elasticsearch" %}}
     disk: 2048
     configuration:
         authentication:
             enabled: true
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
 <--->
 <!-- Version 2 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="search" config="service" >}}
+{{% snippet name="search" config="service"  %}}
     type: elasticsearch:{{% latest "elasticsearch" %}}
     configuration:
         authentication:
             enabled: true
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
 {{< /version/specific >}}
@@ -215,27 +175,27 @@ For example:
 <!-- Version 1 -->
 
 ```yaml {configFile="routes"}
-{{< snippet name="search:elasticsearch" config="route" subDom="es" redirect="false" />}}
-{{< snippet name="search" config="service" placeholder="true" >}}
+{{% snippet name="search:elasticsearch" config="route" subDom="es" redirect="false" / %}}
+{{% snippet name="search" config="service" placeholder="true"  %}}
     type: elasticsearch:{{% latest "elasticsearch" %}}
     disk: 2048
     configuration:
         authentication:
             enabled: true
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
 <--->
 <!-- Version 2 -->
 
 ```yaml {configFile="routes"}
-{{< snippet name="search:elasticsearch" config="route" subDom="es" redirect="false" />}}
-{{< snippet name="search" config="service" placeholder="true" >}}
+{{% snippet name="search:elasticsearch" config="route" subDom="es" redirect="false" / %}}
+{{% snippet name="search" config="service" placeholder="true"  %}}
     type: elasticsearch:{{% latest "elasticsearch" %}}
     configuration:
         authentication:
             enabled: true
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
 {{< /version/specific >}}
@@ -249,27 +209,27 @@ To enable them, list them under the `configuration.plugins` key in your `{{< ven
 <!-- Version 1 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="search" config="service" >}}
+{{% snippet name="search" config="service"  %}}
     type: elasticsearch:{{% latest "elasticsearch" %}}
     disk: 1024
     configuration:
         plugins:
             - analysis-icu
             - lang-python
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
 <--->
 <!-- Version 2 -->
 
 ```yaml {configFile="services"}
-{{< snippet name="search" config="service" >}}
+{{% snippet name="search" config="service"  %}}
     type: elasticsearch:{{% latest "elasticsearch" %}}
     configuration:
         plugins:
             - analysis-icu
             - lang-python
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
 {{< /version/specific >}}

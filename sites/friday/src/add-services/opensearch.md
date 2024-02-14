@@ -67,14 +67,14 @@ switch to [a supported version](#supported-versions).
 To use the configured service in your app, add a configuration file similar to the following to your project.
 
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
+{{% snippet name="myapp" config="app" root="myapp"  %}}
 # Relationships enable an app container's access to a service.
 relationships:
     searchopen: "searchopen:opensearch"
-{{< /snippet >}}
-{{< snippet name="searchopen" config="service" placeholder="true" >}}
+{{% /snippet %}}
+{{% snippet name="searchopen" config="service" placeholder="true"  %}}
     type: opensearch:{{% latest "opensearch" %}}
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
 {{% v2connect2app serviceName="searchopen" relationship="searchopen" var="OPENSEARCH_HOSTS" %}}
@@ -113,12 +113,12 @@ You may optionally enable HTTP Basic authentication.
 To do so, include the following in your `{{< vendor/configfile "services" >}}` configuration:
 
 ```yaml {configFile="services"}
-{{< snippet name="search" config="service" >}}
+{{% snippet name="search" config="service"  %}}
     type: opensearch:{{% latest "opensearch" %}}
     configuration:
         authentication:
             enabled: true
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
 That enables mandatory HTTP Basic auth on all requests.
@@ -133,13 +133,13 @@ To do so, add a route to `{{< vendor/configfile "routes" >}}` that has `search:o
 For example:
 
 ```yaml {configFile="routes"}
-{{< snippet name="search:opensearch" config="route" subDom="os" />}}
-{{< snippet name="search" config="service" placeholder="true" >}}
+{{% snippet name="search:opensearch" config="route" subDom="os" / %}}
+{{% snippet name="search" config="service" placeholder="true"  %}}
     type: opensearch:{{% latest "opensearch" %}}
     configuration:
         authentication:
             enabled: true
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
 ## Plugins
@@ -148,13 +148,13 @@ OpenSearch offers a number of plugins.
 To enable them, list them under the `configuration.plugins` key in your `{{< vendor/configfile "services" >}}` file, like so:
 
 ```yaml {configFile="services"}
-{{< snippet name="search" config="service" >}}
+{{% snippet name="search" config="service"  %}}
     type: "opensearch:{{% latest "opensearch" %}}"
     configuration:
         plugins:
             - analysis-icu
             - lang-python
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
 In this example you'd have the ICU analysis plugin and the size mapper plugin.

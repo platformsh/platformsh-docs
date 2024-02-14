@@ -38,29 +38,6 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 
 {{% endpoint-description type="kafka" /%}}
 
-{{< codetabs v2hide="true" >}}
-
-+++
-title=Java
-file=static/files/fetch/examples/java/kafka
-highlight=java
-+++
-
-<--->
-
-+++
-title=Python
-file=static/files/fetch/examples/python/kafka
-highlight=python
-+++
-
-<--->
-
-+++
-title=Ruby
-highlight=ruby
-+++
-
 ## With the ruby-kafka gem
 
 # Producer

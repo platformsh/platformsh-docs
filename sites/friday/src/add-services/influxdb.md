@@ -63,14 +63,14 @@ See more information on [how to upgrade to version 2.3 or later](#upgrade-to-ver
 {{% endpoint-description type="influxdb" /%}}
 
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
+{{% snippet name="myapp" config="app" root="myapp"  %}}
 # Relationships enable an app container's access to a service.
 relationships:
     influxtimedb: "timedb:influxdb"
-{{< /snippet >}}
-{{< snippet name="timedb" config="service" placeholder="true" >}}
+{{% /snippet %}}
+{{% snippet name="timedb" config="service" placeholder="true"  %}}
     type: influxdb:{{% latest "influxdb" %}}
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
 {{% v2connect2app serviceName="timedb" relationship="influxtimedb" var="INFLUX_HOST"%}}
@@ -87,7 +87,7 @@ export INFLUX_TOKEN=$(echo $RELATIONSHIPS_JSON | jq -r ".influxtimedb[0].query.a
 export INFLUX_BUCKET=$(echo $RELATIONSHIPS_JSON | jq -r ".influxtimedb[0].query.bucket")
 ```
 
-{{< /v2connect2app >}}
+{{% /v2connect2app %}}
 
 ## Export data
 
