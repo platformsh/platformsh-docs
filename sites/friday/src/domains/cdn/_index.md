@@ -13,8 +13,7 @@ Bringing content closer to users helps enhance your site's perceived performance
 and so can improve user engagement and retention.
 
 Fastly is the recommended CDN for {{% vendor/name %}} projects.
-By default, Dedicated projects include a [Fastly CDN managed by {{% vendor/name %}}](./managed-fastly.md).
-Self-service Grid plans don't include a CDN by default, but you can set up one at any time,
+Self-service projects don't include a CDN by default, but you can set up one at any time,
 such as [Fastly](./fastly.md) or [Cloudflare](./cloudflare.md).
 
 ## DNS records
@@ -54,26 +53,14 @@ When you use a CDN, the {{% vendor/name %}} router [HTTP caching](../../define-r
 To disable it, change your cache configuration for the routes behind a CDN to the following:
 
 ```yaml {configFile="routes"}
-"https://{default}/":
-   type: upstream
-   upstream: "app:http"
-   cache:
-       # Disable the HTTP cache on this route. It's handled by the CDN instead.
-       enabled: false
+routes:
+  "https://{default}/":
+     type: upstream
+     upstream: "app:http"
+     cache:
+         # Disable the HTTP cache on this route. It's handled by the CDN instead.
+         enabled: false
 ```
-
-## Configure your CDN to support high SLA
-
-{{< premium-features/tiered "Enterprise and Elite" >}}
-
-If your plan includes high SLA, configure your CDN so that {{% vendor/name %}} can perform automated monitoring using NodePing.
-To do so, [add all NodePing IP addresses](https://nodeping.com/faq.html#ip-addresses) to your CDN's allowlist.
-
-If you want {{% vendor/name %}} to limit checks to one or more of the following regions, [contact Support](/learn/overview/get-support.md):
-
-- North America
-- Europe
-- East Asia / Oceania
 
 ## Prevent direct access to your server
 
@@ -104,13 +91,14 @@ To enable client-authenticated TLS, follow these steps:
 4.  Change your routing configuration for the routes behind a CDN to the following:
 
 ```yaml {configFile="routes"}
-"https://{default}":
-    tls:
-        client_authentication: "require"
-        client_certificate_authorities:
-            - !include
-                type: string
-                path: cdn.crt
+routes:
+    "https://{default}":
+        tls:
+            client_authentication: "require"
+            client_certificate_authorities:
+                - !include
+                    type: string
+                    path: cdn.crt
 ```
 
 The procedure can vary depending on your CDN.
