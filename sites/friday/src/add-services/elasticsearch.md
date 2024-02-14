@@ -153,23 +153,6 @@ To do so, add a route to `{{< vendor/configfile "routes" >}}` that has `search:e
 
 For example:
 
-{{< version/specific >}}
-<!-- Version 1 -->
-
-```yaml {configFile="routes"}
-{{% snippet name="search:elasticsearch" config="route" subDom="es" redirect="false" / %}}
-{{% snippet name="search" config="service" placeholder="true"  %}}
-    type: elasticsearch:{{% latest "elasticsearch" %}}
-    disk: 2048
-    configuration:
-        authentication:
-            enabled: true
-{{% /snippet %}}
-```
-
-<--->
-<!-- Version 2 -->
-
 ```yaml {configFile="routes"}
 {{% snippet name="search:elasticsearch" config="route" subDom="es" redirect="false" / %}}
 {{% snippet name="search" config="service" placeholder="true"  %}}
@@ -180,30 +163,12 @@ For example:
 {{% /snippet %}}
 ```
 
-{{< /version/specific >}}
 
 ## Plugins
 
 Elasticsearch offers a number of plugins.
 To enable them, list them under the `configuration.plugins` key in your `{{< vendor/configfile "services" >}}` file, like so:
 
-{{< version/specific >}}
-<!-- Version 1 -->
-
-```yaml {configFile="services"}
-{{% snippet name="search" config="service"  %}}
-    type: elasticsearch:{{% latest "elasticsearch" %}}
-    disk: 1024
-    configuration:
-        plugins:
-            - analysis-icu
-            - lang-python
-{{% /snippet %}}
-```
-
-<--->
-<!-- Version 2 -->
-
 ```yaml {configFile="services"}
 {{% snippet name="search" config="service"  %}}
     type: elasticsearch:{{% latest "elasticsearch" %}}
@@ -213,8 +178,6 @@ To enable them, list them under the `configuration.plugins` key in your `{{< ven
             - lang-python
 {{% /snippet %}}
 ```
-
-{{< /version/specific >}}
 
 If you're using a [premium version](#supported-versions),
 use the `elasticsearch-enterprise` type.
