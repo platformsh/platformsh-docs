@@ -38,20 +38,4 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 
 {{% endpoint-description type="kafka" /%}}
 
-## With the ruby-kafka gem
-
-# Producer
-require "kafka"
-kafka = Kafka.new(["kafka.internal:9092"], client_id: "my-application")
-kafka.deliver_message("Hello, World!", topic: "greetings")
-
-# Consumer
-kafka.each_message(topic: "greetings") do |message|
-  puts message.offset, message.key, message.value
-end
-
-{{< /codetabs >}}
-
-
-
 (The specific way to inject configuration into your application varies. Consult your application or framework's documentation.)
