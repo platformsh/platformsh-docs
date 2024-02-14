@@ -42,7 +42,7 @@ guide-buttons previous="Previous name" next="Next name" type="*" = if you want t
   </a>
   {{ else if or (.Page.NextInSection) ($previous) }}
     <!-- Back button -->
-    <a href="{{ if .Page.NextInSection }}{{ .Page.NextInSection.Permalink }}{{ else }}{{ .Page.CurrentSection.Permalink }}{{ end }}" type="button" class="p-2 text-ebony hover:no-underline font-mono">
+    <a href="{{ if .Page.NextInSection }}{{ .Page.NextInSection.RelPermalink }}{{ else }}{{ .Page.CurrentSection.RelPermalink }}{{ end }}" type="button" class="p-2 text-ebony hover:no-underline font-mono">
       <img class="inline rotate-180" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" />
       {{ if $previous }}{{ $previous }}{{ else }}{{ .Page.NextInSection.LinkTitle }}{{ end }}
     </a>
@@ -57,7 +57,7 @@ guide-buttons previous="Previous name" next="Next name" type="*" = if you want t
 
   {{ else if .Page.PrevInSection }}
     <!-- Next button -->
-    <a href="{{ if .Page.PrevInSection }}{{ .Page.PrevInSection.Permalink }}{{ else }}{{ .Page.CurrentSection.Permalink }}{{ end }}" type="button" class="{{ partial "pink-button-styles" }}">
+    <a href="{{ if .Page.PrevInSection }}{{ .Page.PrevInSection.RelPermalink }}{{ else }}{{ .Page.CurrentSection.RelPermalink }}{{ end }}" type="button" class="{{ partial "pink-button-styles" }}">
       {{ if $next }}{{ $next }}{{ else }}{{ .Page.PrevInSection.LinkTitle }}{{ end }}
       <img class="inline" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" />
     </a>
@@ -68,7 +68,7 @@ guide-buttons previous="Previous name" next="Next name" type="*" = if you want t
 
   <!-- Only contains a back button -->
   {{ if eq $navType "last" }}
-  <a href="{{ if .Page.NextInSection }}{{ .Page.NextInSection.Permalink }}{{ else }}{{ .Page.CurrentSection.Permalink }}{{ end }}" type="button" class="p-2 text-ebony hover:no-underline font-mono">
+  <a href="{{ if .Page.NextInSection }}{{ .Page.NextInSection.RelPermalink }}{{ else }}{{ .Page.CurrentSection.RelPermalink }}{{ end }}" type="button" class="p-2 text-ebony hover:no-underline font-mono">
     <img class="inline rotate-180" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" />
     Back
   </a>
@@ -83,7 +83,7 @@ guide-buttons previous="Previous name" next="Next name" type="*" = if you want t
           {{ $loop = 1}}
         {{ end }}
       {{ end }}
-      <a href="{{ $firstPageInSection.Permalink }}" type="button" class="{{ partial "pink-button-styles" }}">
+      <a href="{{ $firstPageInSection.RelPermalink }}" type="button" class="{{ partial "pink-button-styles" }}">
         {{ with .Get "next" }}{{ . | $pageContext.RenderString }}{{ end }}
         <img class="inline" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" />
       </a>

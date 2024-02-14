@@ -19,7 +19,7 @@ languages:
 
 disableKinds: ["taxonomy", "taxonomyTerm"]
 
-baseURL: "https://docs.upsun.com"
+#baseURL: "https://docs.upsun.com"
 
 summaryLength: 3
 
