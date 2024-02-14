@@ -153,7 +153,7 @@ If you split the service into multiple endpoints, define multiple relationships.
 {{ else }}
 Add the service to your app configuration:
 
-{{$inner := "\nmounts:\n    '<TARGET_PATH>':\n        source: service\n" }}
+{{$inner := "\nmounts:\n    '<MOUNT_PATH>':\n        source: service\n" }}
 {{ $inner = printf "%s        service: <SERVICE_NAME>\n        source_path: <SOURCE_PATH>" $inner }}
 
 ```yaml {configFile="app"}
@@ -162,10 +162,13 @@ Add the service to your app configuration:
 {{ partial "snippet" (dict "context" . "name" "<SERVICE_NAME>" "config" "service" "placeholder" "true" "Inner" $serviceInner ) }}
 ```
 
-- `<TARGET_PATH>` is where you want your service to be, the path on your app container that has a writable mount.
+- `<MOUNT_PATH>` is the path to your mount within the app container (relative to the app’s root).
 - `<SERVICE_NAME>` is the name you [defined in step 1](#1-configure-the-service).
-- `<SOURCE_PATH>` is the path within the service that the mounts point to.
-  Usually the same as the `<SERVICE_NAME>`.
+- `<SOURCE_PATH>` specifies where the mount points inside the service.</br>
+  If the `source_path` is an empty string (`""`), your mount points to the entire service.</br>
+  If you don’t define a `source_path`, {{ .Site.Params.vendor.name }} uses the `MOUNT_PATH` as default value, without leading or trailing slashes.
+  For example, if your mount lives in the `/my/files/` directory within your app container, it will point to a `my/files` directory within the service.
+
 {{ end }}
 {{ end }} <!-- end check for Varnish -->
 
@@ -392,3 +395,4 @@ add a configuration file similar to the following to your project.
 {{ end }}
 {{ end }}
 <!-- shortcode end {{ .Name }} -->
+
