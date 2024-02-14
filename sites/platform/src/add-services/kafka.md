@@ -14,9 +14,6 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-{{% version/specific %}}
-<!-- API Version 1 -->
-
 <table>
     <thead>
         <tr>
@@ -33,13 +30,6 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
         </tr>
     </tbody>
 </table>
-
-<--->
-<!-- API Version 2 -->
-
-{{< image-versions image="kafka" status="supported" environment="grid" >}}
-
-{{% /version/specific %}}
 
 {{% relationship-ref-intro %}}
 

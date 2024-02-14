@@ -14,9 +14,6 @@ It exposes an HTTP API for client interaction. See the [InfluxDB documentation](
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-{{% version/specific %}}
-<!-- API Version 1 -->
-
 <table>
     <thead>
         <tr>
@@ -34,22 +31,12 @@ It exposes an HTTP API for client interaction. See the [InfluxDB documentation](
     </tbody>
 </table>
 
-<--->
-<!-- API Version 2 -->
-
-{{< image-versions image="influxdb" status="supported" environment="grid" >}}
-
-{{% /version/specific %}}
-
 {{% image-versions-legacy "influxdb" %}}
 
 ## Deprecated versions
 
 The following versions are still available in your projects,
 but they're at their end of life and are no longer receiving security updates from upstream.
-
-{{% version/specific %}}
-<!-- API Version 1 -->
 
 <table>
     <thead>
@@ -67,13 +54,6 @@ but they're at their end of life and are no longer receiving security updates fr
         </tr>
     </tbody>
 </table>
-
-<--->
-<!-- API Version 2 -->
-
-{{< image-versions image="influxdb" status="deprecated" environment="grid" >}}
-
-{{% /version/specific %}}
 
 To ensure your project remains stable in the future,
 switch to a [supported version](#supported-versions).
@@ -112,9 +92,6 @@ See more information on [how to upgrade to version 2.3 or later](#upgrade-to-ver
 
 {{% endpoint-description type="influxdb" /%}}
 
-{{< version/specific >}}
-<!-- Version 1 -->
-
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="myapp" >}}
 # Relationships enable an app container's access to a service.
@@ -126,22 +103,6 @@ relationships:
     disk: 256
 {{< /snippet >}}
 ```
-
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
-# Relationships enable an app container's access to a service.
-relationships:
-    influxtimedb: "timedb:influxdb"
-{{< /snippet >}}
-{{< snippet name="timedb" config="service" placeholder="true" >}}
-    type: influxdb:{{% latest "influxdb" %}}
-{{< /snippet >}}
-```
-
-{{< /version/specific >}}
 
 {{% v2connect2app serviceName="timedb" relationship="influxtimedb" var="INFLUX_HOST"%}}
 

@@ -29,9 +29,6 @@ From version 7.11 onward:
 
 The following premium versions are supported:
 
-{{% version/specific %}}
-<!-- API Version 1 -->
-
 <table>
     <thead>
         <tr>
@@ -49,22 +46,12 @@ The following premium versions are supported:
     </tbody>
 </table>
 
-<--->
-<!-- API Version 2 -->
-
-{{< image-versions image="elasticsearch" status="supported" environment="grid" >}}
-
-{{% /version/specific %}}
-
 {{% major-minor-versions-note configMinor="true" %}}
 
 ## Deprecated versions
 
 The following versions are still available in your projects for free,
 but they're at their end of life and are no longer receiving security updates from upstream.
-
-{{% version/specific %}}
-<!-- API Version 1 -->
 
 <table>
     <thead>
@@ -82,13 +69,6 @@ but they're at their end of life and are no longer receiving security updates fr
         </tr>
     </tbody>
 </table>
-
-<--->
-<!-- API Version 2 -->
-
-{{< image-versions image="elasticsearch" status="deprecated" environment="grid" >}}
-
-{{% /version/specific %}}
 
 To ensure your project remains stable in the future,
 switch to [a premium version](#supported-versions).
@@ -130,7 +110,6 @@ the service type is `elasticsearch-enterprise`.
 
 Note that configuration for [premium versions](#supported-versions) may differ slightly.
 
-<!-- Version 1: Codetabs using config reader + examples.docs.platform.sh -->
 {{< codetabs v2hide="true" >}}
 
 +++
@@ -165,44 +144,6 @@ highlight=python
 
 {{< /codetabs >}}
 
-<!-- Version 2: .environment shortcode + context -->
-{{% version/only "2" %}}
-
-```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
-
-# Other options...
-
-# Relationships enable an app container's access to a service.
-relationships:
-    essearch: "searchelastic:elasticsearch"
-{{< /snippet >}}
-{{< snippet name="searchelastic" config="service" placeholder="true" >}}
-    type: elasticsearch:{{% latest "elasticsearch" %}}
-{{< /snippet >}}
-```
-
-{{< v2connect2app serviceName="searchelastic" relationship="essearch" var="ELASTIC_HOSTS">}}
-
-```bash {location="myapp/.environment"}
-# Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
-
-# Set environment variables for individual credentials.
-export ELASTIC_SCHEME=$(echo $RELATIONSHIPS_JSON | jq -r ".essearch[0].scheme")
-export ELASTIC_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".essearch[0].host")
-export ELASTIC_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".essearch[0].port")
-
-# Surface more common Elasticsearch connection string variables for use in app.
-export ELASTIC_USERNAME=$(echo $RELATIONSHIPS_JSON | jq -r ".essearch[0].username")
-export ELASTIC_PASSWORD=$(echo $RELATIONSHIPS_JSON  | jq -r ".essearch[0].password")
-export ELASTIC_HOSTS=[\"$ELASTIC_SCHEME://$ELASTIC_HOST:$ELASTIC_PORT\"]
-```
-
-{{< /v2connect2app >}}
-
-{{% /version/only %}}
-
 {{< note >}}
 
 When you create an index on Elasticsearch,
@@ -219,9 +160,6 @@ No username or password is required to connect to it.
 Starting with Elasticsearch 7.2 you may optionally enable HTTP Basic authentication.
 To do so, include the following in your `{{< vendor/configfile "services" >}}` configuration:
 
-{{< version/specific >}}
-<!-- Version 1 -->
-
 ```yaml {configFile="services"}
 {{< snippet name="search" config="service" >}}
     type: elasticsearch:{{% latest "elasticsearch" %}}
@@ -231,20 +169,6 @@ To do so, include the following in your `{{< vendor/configfile "services" >}}` c
             enabled: true
 {{< /snippet >}}
 ```
-
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="services"}
-{{< snippet name="search" config="service" >}}
-    type: elasticsearch:{{% latest "elasticsearch" %}}
-    configuration:
-        authentication:
-            enabled: true
-{{< /snippet >}}
-```
-
-{{< /version/specific >}}
 
 If you're using a [premium version](#supported-versions),
 use the `elasticsearch-enterprise` type.
@@ -261,9 +185,6 @@ To do so, add a route to `{{< vendor/configfile "routes" >}}` that has `search:e
 
 For example:
 
-{{< version/specific >}}
-<!-- Version 1 -->
-
 ```yaml {configFile="routes"}
 {{< snippet name="search:elasticsearch" config="route" subDom="es" redirect="false" />}}
 {{< snippet name="search" config="service" placeholder="true" >}}
@@ -275,28 +196,10 @@ For example:
 {{< /snippet >}}
 ```
 
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="routes"}
-{{< snippet name="search:elasticsearch" config="route" subDom="es" redirect="false" />}}
-{{< snippet name="search" config="service" placeholder="true" >}}
-    type: elasticsearch:{{% latest "elasticsearch" %}}
-    configuration:
-        authentication:
-            enabled: true
-{{< /snippet >}}
-```
-
-{{< /version/specific >}}
-
 ## Plugins
 
 Elasticsearch offers a number of plugins.
 To enable them, list them under the `configuration.plugins` key in your `{{< vendor/configfile "services" >}}` file, like so:
-
-{{< version/specific >}}
-<!-- Version 1 -->
 
 ```yaml {configFile="services"}
 {{< snippet name="search" config="service" >}}
@@ -308,21 +211,6 @@ To enable them, list them under the `configuration.plugins` key in your `{{< ven
             - lang-python
 {{< /snippet >}}
 ```
-
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="services"}
-{{< snippet name="search" config="service" >}}
-    type: elasticsearch:{{% latest "elasticsearch" %}}
-    configuration:
-        plugins:
-            - analysis-icu
-            - lang-python
-{{< /snippet >}}
-```
-
-{{< /version/specific >}}
 
 If you're using a [premium version](#supported-versions),
 use the `elasticsearch-enterprise` type.

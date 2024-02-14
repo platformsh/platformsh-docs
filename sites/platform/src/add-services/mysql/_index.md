@@ -32,9 +32,6 @@ MySQL and MariaDB have the same behavior and the rest of this page applies to bo
 |---------------|-------------|--------------------|
 |  {{< image-versions image="mariadb" status="supported" >}} | {{< image-versions image="mysql" status="supported" >}} | {{< image-versions image="oracle-mysql" status="supported" >}} |
 
-{{% version/specific %}}
-<!-- API Version 1 -->
-
 ### Supported versions on Dedicated environments
 
 `oracle-mysql` is not yet available for {{% names/dedicated-gen-3 %}} environments.
@@ -61,11 +58,6 @@ Supported versions are the following:
 Dedicated environments only support the InnoDB storage engine.
 Tables created on Dedicated environments using the MyISAM storage engine don't replicate between all hosts in the cluster.
 See how to [convert tables to the InnoDB engine](#storage-engine).
-
-<--->
-<!-- API Version 2 -->
-
-{{% /version/specific %}}
 
 {{% deprecated-versions %}}
 
@@ -142,45 +134,6 @@ highlight=python
 
 {{< /codetabs >}}
 
-<!-- Version 2: .environment shortcode + context -->
-{{% version/only "2" %}}
-
-```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
-
-# Other options...
-
-# Relationships enable an app container's access to a service.
-relationships:
-    database: "db:mysql"
-{{< /snippet >}}
-{{< snippet name="db" config="service" placeholder="true" >}}
-    type: mariadb:{{% latest "mariadb" %}}
-{{< /snippet >}}
-```
-
-{{< v2connect2app serviceName="db" relationship="database" var="DATABASE_URL">}}
-
-```bash {location="myapp/.environment"}
-# Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
-
-# Set environment variables for individual credentials.
-export DB_CONNECTION=="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].scheme')"
-export DB_USERNAME="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].username')"
-export DB_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].password')"
-export DB_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].host')"
-export DB_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].port')"
-export DB_DATABASE="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].path')"
-
-# Surface connection string variable for use in app.
-export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"
-```
-
-{{< /v2connect2app >}}
-
-{{% /version/only %}}
-
 ### Configure connections
 
 There may be cases where you want to configure a database connection manually.
@@ -210,9 +163,6 @@ You can configure your MySQL service in the [services configuration](../_index.m
 
 Example configuration:
 
-{{< version/specific >}}
-<!-- Version 1 -->
-
 ```yaml {configFile="services"}
 {{< snippet name="db" config="service" >}}
     type: mariadb:{{% latest "mariadb" %}}
@@ -229,27 +179,6 @@ Example configuration:
             max_allowed_packet: 64
 {{< /snippet >}}
 ```
-
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="services"}
-{{< snippet name="db" config="service" >}}
-    type: mariadb:{{% latest "mariadb" %}}
-    configuration:
-        schemas:
-            - main
-        endpoints:
-            mysql:
-                default_schema: main
-                privileges:
-                    main: admin
-        properties:
-            max_allowed_packet: 64
-{{< /snippet >}}
-```
-
-{{< /version/specific >}}
 
 {{% relationship-ref-intro %}}
 
@@ -358,9 +287,6 @@ To do so, define multiple `schemas` in your [service configuration](#configurati
 You can also specify multiple `endpoints` for [permissions](#define-permissions).
 If neither `schemas` nor `endpoints` is included, it's equivalent to the following default:
 
-{{< version/specific >}}
-<!-- Version 1 -->
-
 ```yaml {configFile="services"}
 {{< snippet name="db" config="service" >}}
     type: mariadb:{{% latest "mariadb" %}}
@@ -375,25 +301,6 @@ If neither `schemas` nor `endpoints` is included, it's equivalent to the followi
                     main: admin
 {{< /snippet >}}
 ```
-
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="services"}
-{{< snippet name="db" config="service" >}}
-    type: mariadb:{{% latest "mariadb" %}}
-    configuration:
-        schemas:
-            - main
-        endpoints:
-            mysql:
-                default_schema: main
-                privileges:
-                    main: admin
-{{< /snippet >}}
-```
-
-{{< /version/specific >}}
 
 If either `schemas` or `endpoints` are defined, no default is applied and you have to specify the full configuration.
 
@@ -413,9 +320,6 @@ Access to the database is defined through three endpoints:
 * `reporter` has SELECT query access to `main` but no access to `legacy`.
 * `importer` has SELECT/INSERT/UPDATE/DELETE (but not DDL) access to `legacy` but no access to `main`.
 
-{{< version/specific >}}
-<!-- Version 1 -->
-
 ```yaml {configFile="services"}
 {{< snippet name="db" config="service" >}}
     type: mariadb:{{% latest "mariadb" %}}
@@ -439,34 +343,6 @@ Access to the database is defined through three endpoints:
                     legacy: rw
 {{< /snippet >}}
 ```
-
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="services"}
-{{< snippet name="db" config="service" >}}
-    type: mariadb:{{% latest "mariadb" %}}
-    configuration:
-        schemas:
-            - main
-            - legacy
-        endpoints:
-            admin:
-                default_schema: main
-                privileges:
-                    main: admin
-                    legacy: admin
-            reporter:
-                privileges:
-                    main: ro
-            importer:
-                default_schema: legacy
-                privileges:
-                    legacy: rw
-{{< /snippet >}}
-```
-
-{{< /version/specific >}}
 
 Expose these endpoints to your app as relationships in your [app configuration](../../create-apps/_index.md):
 
@@ -509,9 +385,6 @@ It offers the following properties:
 
 An example of setting these properties:
 
-{{< version/specific >}}
-<!-- Version 1 -->
-
 ```yaml {configFile="services"}
 {{< snippet name="db" config="service" >}}
     type: mariadb:{{% latest "mariadb" %}}
@@ -523,22 +396,6 @@ An example of setting these properties:
             default_collation: utf8mb4_unicode_ci
 {{< /snippet >}}
 ```
-
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="services"}
-{{< snippet name="db" config="service" >}}
-    type: mariadb:{{% latest "mariadb" %}}
-    configuration:
-        properties:
-            max_allowed_packet: 64
-            default_charset: utf8mb4
-            default_collation: utf8mb4_unicode_ci
-{{< /snippet >}}
-```
-
-{{< /version/specific >}}
 
 You can also change a table's character set and collation through `ALTER TABLE` commands:
 
@@ -559,7 +416,6 @@ For further details, see the [MariaDB documentation](https://mariadb.com/kb/en/c
 
 ## Storage Engine
 
-{{% version/specific %}}
 It's best to use the InnoDB storage engine wherever possible.
 MyISAM is only properly supported in non-Dedicated environments.
 In Dedicated environments, there is no replication of MyISAM tables.
@@ -567,12 +423,6 @@ In Dedicated environments, there is no replication of MyISAM tables.
 If MyISAM tables have been inadvertently created or imported in a Dedicated environment
 (if you see `ENGINE=MyISAM` in the response to `SHOW CREATE TABLE EXISTING_TABLE`),
 convert them to use the InnoDB storage engine as follows:
-<--->
-It's best to use the InnoDB storage engine wherever possible instead of MyISAM.
-If MyISAM tables have been inadvertently created or imported in your environments
-(if you see `ENGINE=MyISAM` in the response to `SHOW CREATE TABLE EXISTING_TABLE`),
-convert them to use the InnoDB storage engine as follows:
-{{% /version/specific %}}
 
 1. Rename the existing table.
 
@@ -660,12 +510,8 @@ To ensure people who review code changes can't access personally identifiable in
 
 ## Replication
 
-{{% version/specific %}}
 In non-Dedicated environments, there is no on-site primary/replica supports.
 In Dedicated environments, it's provided automatically as part of the default configuration.
-<--->
-There is no on-site primary/replica support in your environments.
-{{% /version/specific %}}
 
 In rare cases (such as for certain backup purposes),
 you can also enable [remote replication](./mysql-replication.md) to your own replica data.
