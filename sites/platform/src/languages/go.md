@@ -9,9 +9,6 @@ description: "{{% vendor/name %}} supports building and deploying applications w
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-{{% version/specific %}}
-<!-- API Version 1 -->
-
 <table>
     <thead>
         <tr>
@@ -29,16 +26,7 @@ description: "{{% vendor/name %}} supports building and deploying applications w
     </tbody>
 </table>
 
-<--->
-<!-- API Version 2 -->
-
-{{< image-versions image="golang" status="supported" environment="grid" >}}
-
-{{% /version/specific %}}
-
 {{% language-specification type="golang" display_name="Go" %}}
-
-{{% version/specific %}}
 
 ```yaml {configFile="app"}
 type: 'golang:<VERSION_NUMBER>'
@@ -49,26 +37,6 @@ For example:
 ```yaml {configFile="app"}
 type: 'golang:{{% latest "golang" %}}'
 ```
-
-<--->
-
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    <APP_NAME>:
-        type: 'golang:<VERSION_NUMBER>'
-```
-
-For example:
-
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'golang:{{% latest "golang" %}}'
-```
-
-{{% /version/specific %}}
 
 {{% deprecated-versions %}}
 
@@ -83,8 +51,6 @@ The recommended way to handle Go dependencies on {{% vendor/name %}} is using Go
 Assuming your `go.mod` and `go.sum` files are present in your repository, your application can be built with the command `go build`, to produce a working executable. You can then start it from the `web.commands.start` directive. Note that the start command _must_ run in the foreground. If the program terminates for any reason it is automatically restarted.
 
 The following basic `{{< vendor/configfile "app" >}}` file is sufficient to run most Go applications.
-
-{{% version/specific %}}
 
 ```yaml {configFile="app"}
 name: app
@@ -113,38 +79,6 @@ web:
 
 disk: 1024
 ```
-
-<--->
-
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'golang:{{% latest "golang" %}}'
-
-        hooks:
-            build: |
-                # Modify this line if you want to build differently or 
-                # use an alternate name for your executable.
-                go build -o bin/app
-
-        web:
-            upstream:
-                socket_family: tcp
-                protocol: http
-
-            commands:
-                # If you change the build output in the build hook above, update this line as well.
-                start: ./bin/app
-
-            locations:
-                /:
-                    # Route all requests to the Go app, unconditionally.
-                    allow: false
-                    passthru: true
-```
-
-{{% /version/specific %}}
 
 Note that there is still an Nginx proxy server sitting in front of your application.
 If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily)
@@ -210,10 +144,6 @@ markdownify=false
 
 {{< /codetabs >}}
 
-{{% access-services version="2" %}}
-
-{{% version/only "1" %}}
-
 {{% guides/config-reader-info lang="go" %}}
 
 You can also use the library to read other environment variables.
@@ -246,7 +176,5 @@ func main() {
 {{% config-reader %}} [Go configuration reader library](https://github.com/platformsh/config-reader-go/){{% /config-reader %}}
 
 ## Project templates
-
-{{% /version/only %}}
 
 {{% repolist lang="golang" displayName="Go" %}}

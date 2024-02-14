@@ -15,9 +15,6 @@ You can also develop a microservice architecture mixing JavaScript and other app
 
 {{% major-minor-versions-note %}}
 
-{{% version/specific %}}
-<!-- API Version 1 -->
-
 <table>
     <thead>
         <tr>
@@ -33,16 +30,7 @@ You can also develop a microservice architecture mixing JavaScript and other app
     </tbody>
 </table>
 
-<--->
-<!-- API Version 2 -->
-
-{{< image-versions image="nodejs" status="supported" environment="grid" >}}
-
-{{% /version/specific %}}
-
 {{% language-specification type="nodejs" display_name="Node.js" %}}
-
-{{% version/specific %}}
 
 ```yaml {configFile="app"}
 type: 'nodejs:<VERSION_NUMBER>'
@@ -54,32 +42,9 @@ For example:
 type: 'nodejs:{{% latest "nodejs" %}}'
 ```
 
-<--->
-
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    <APP_NAME>:
-        type: 'nodejs:<VERSION_NUMBER>'
-```
-
-For example:
-
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'nodejs:{{% latest "nodejs" %}}'
-```
-
-{{% /version/specific %}}
-
 To use a specific version in a container with a different language, [use a version manager](node-version.md).
 
 {{% deprecated-versions %}}
-
-{{% version/specific %}}
-<!-- API Version 1 -->
 
 <table>
     <thead>
@@ -96,13 +61,6 @@ To use a specific version in a container with a different language, [use a versi
     </tbody>
 </table>
 
-<--->
-<!-- API Version 2 -->
-
-{{< image-versions image="nodejs" status="deprecated" environment="grid" >}}
-
-{{% /version/specific %}}
-
 ## Usage example
 
 To use JavaScript with Node.js on {{% vendor/name %}}, configure your [app configuration](../../create-apps/_index.md)
@@ -113,29 +71,14 @@ To use JavaScript with Node.js on {{% vendor/name %}}, configure your [app confi
 Choose a version from the [list of supported versions](#supported-versions)
 and add it to your app configuration:
 
-{{% version/specific %}}
-
 ```yaml {configFile="app"}
 type: 'nodejs:{{% latest "nodejs" %}}'
 ```
-
-<--->
-
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'nodejs:{{% latest "nodejs" %}}'
-```
-
-{{% /version/specific %}}
 
 ### 2. Specify any global dependencies
 
 Add the following to your app configuration:
 
-
-{{% version/specific %}}
 
 ```yaml {configFile="app"}
 type: 'nodejs:{{% latest "nodejs" %}}'
@@ -144,27 +87,11 @@ dependencies:
         sharp: "*"
 ```
 
-<--->
-
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'nodejs:{{% latest "nodejs" %}}'
-        dependencies:
-            nodejs:
-                sharp: "*"
-```
-
-{{% /version/specific %}}
-
 These are now available as commands, the same as installing with `npm install -g`.
 
 ### 3. Build your app
 
 Include any commands needed to build and setup your app in the `hooks`, as in the following example:
-
-{{% version/specific %}}
 
 ```yaml {configFile="app"}
 type: 'nodejs:{{% latest "nodejs" %}}'
@@ -177,29 +104,9 @@ hooks:
         npm run build
 ```
 
-<--->
-
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'nodejs:{{% latest "nodejs" %}}'
-        dependencies:
-            nodejs:
-                sharp: "*"
-        hooks:
-            build: |
-                npm run setup-assets
-                npm run build
-```
-
-{{% /version/specific %}}
-
 ### 4. Start your app
 
 Specify a command to start serving your app (it must be a process running in the foreground):
-
-{{% version/specific %}}
 
 ```yaml {configFile="app"}
 type: 'nodejs:{{% latest "nodejs" %}}'
@@ -215,30 +122,8 @@ web:
         start: node index.js
 ```
 
-<--->
-
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'nodejs:{{% latest "nodejs" %}}'
-        dependencies:
-            nodejs:
-                sharp: "*"
-        hooks:
-            build: |
-                npm run setup-assets
-                npm run build
-        web:
-            commands:
-                start: node index.js
-```
-
-{{% /version/specific %}}
-
 ### 5. Listen on the right port
 
-{{% version/specific %}}
 Make sure your Node.js application is configured to listen over the port given by the environment.
 The following example uses the [`platformsh-config` helper](#configuration-reader):
 
@@ -257,31 +142,9 @@ const server = http.createServer(function (request, response) {
 // Listen on the port from the {{% vendor/name %}} configuration
 server.listen(config.port);
 ```
-<--->
-Make sure your Node.js application is configured to listen over the port given by the environment.
-
-```js
-// Load the http module to create an http server.
-const http = require('http');
-const PORT = process.env.PORT || 8888;
-
-const server = http.createServer(function (request, response) {
-    response.writeHead(200, {"Content-Type": "application/json"});
-    response.end("Hello world!");
-});
-
-// Listen on the port from the {{% vendor/name %}} configuration
-server.listen(PORT, () => {
-  console.log(`Server is listening on port: ${PORT}`);
-});
-```
-{{% /version/specific %}}
-
 ### Complete example
 
 A complete basic app configuration looks like the following:
-
-{{% version/specific %}}
 
 ```yaml {configFile="app"}
 name: node-app
@@ -304,27 +167,6 @@ web:
         start: "node index.js"
 ```
 
-<--->
-
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    'node-app':
-        type: 'nodejs:{{% latest "nodejs" %}}'
-        dependencies:
-            nodejs:
-                sharp: "*"
-        hooks:
-            build: |
-                npm run setup-assets
-                npm run build
-        web:
-            commands:
-                start: "node index.js"
-```
-
-{{% /version/specific %}}
-
 ## Dependencies
 
 By default, {{% vendor/name %}} assumes you're using npm as a package manager.
@@ -342,25 +184,10 @@ To switch to Yarn to manage dependencies, follow these steps:
 
 1. Turn off the default use of npm:
 
-{{% version/specific %}}
-
 ```yaml {configFile="app"}
    build:
        flavor: none
 ```
-
-<--->
-
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'nodejs:{{% latest "nodejs" %}}'
-        build:
-            flavor: none
-```
-
-{{% /version/specific %}}
 
 2. Specify the version of Yarn you want:
 
@@ -455,12 +282,9 @@ hooks:
 To switch to Bun to manage dependencies,
 use the following configuration:
 
-{{< version/specific >}}
-<!-- Platform.sh -->
-
 ```yaml {configFile="app"}
 # The name of your app.
-name: myapp 
+name: myapp
     # Choose Node.js version 20 or above.
     type: 'nodejs:20'
     # Override the default Node.js build flavor.
@@ -471,31 +295,9 @@ name: myapp
     	build: bun install
 ```
 
-<--->
-<!-- Upsun -->
-
-```yaml {configFile="app"}
-applications:
-    # The name of your app.
-    myapp:
-    # Choose Node.js version 20 or above.
-        type: 'nodejs:20'
-        # Override the default Node.js build flavor.
-        build:
-    	    flavor: none
-        # Use Bun to install the dependencies.
-        hooks:
-    	    build: bun install
-```
-
-{{< /version/specific >}}
-
 #### Use Bun as a runtime
 
 You can even [use Bun as a runtime](https://platform.sh/blog/bun-support-is-here/) by adjusting the `start` command as follows:
-
-{{< version/specific >}}
-<!-- Platform.sh -->
 
 ```yaml {configFile="app"}
 # The name of your app.
@@ -514,35 +316,10 @@ name: myapp
     		start: 'bun app.js'
 ```
 
-<--->
-<!-- Upsun -->
-
-```yaml {configFile="app"}
-applications:
-    # The name of your app.
-    myapp:
-    # Choose Node.js version 20 or above.
-        type: 'nodejs:20'
-        # Override the default Node.js build flavor.
-        build:
-    	    flavor: none
-        # Use Bun to install the dependencies.
-        hooks:
-    	    build: bun install
-        # In the start command replace node with Bun.
-        web:
-    	    commands:
-    		    start: 'bun app.js'
-```
-
-{{< /version/specific >}}
-
 ## Connecting to services
 
-{{% version/only "1" %}}
 The following examples show how to use Node.js to access various [services](../../add-services/_index.md).
 To configure a given service, see the page dedicated to that service.
-{{% /version/only %}}
 
 {{< codetabs v2hide="true" >}}
 
@@ -602,13 +379,8 @@ highlight=js
 
 {{< /codetabs >}}
 
-{{% access-services version="2" %}}
-
-{{% version/only "1" %}}
 {{% config-reader %}}[Node.js configuration reader library](https://github.com/platformsh/config-reader-nodejs){{% /config-reader%}}
 
 ## Project templates
-
-{{% /version/only %}}
 
 {{< repolist lang="nodejs" displayName="Node.js" >}}

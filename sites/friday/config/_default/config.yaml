@@ -109,8 +109,8 @@ module:
               # - "integrations/*"
               - "integrations/activity/reference.md"
 
-              # - "languages/*"
-              - "languages/java/frameworks.md"
+              - "languages/*"
+              #- "languages/java/frameworks.md"
 
               - "learn/*"
 
