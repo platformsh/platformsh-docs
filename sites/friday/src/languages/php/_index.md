@@ -8,51 +8,31 @@ layout: single
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-<table>
-    <thead>
-        <tr>
-            <th>Grid and {{% names/dedicated-gen-3 %}}</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="php" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="php" status="supported" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
+{{< image-versions image="php" status="supported" environment="grid" >}}
 
 Note that from PHP versions 7.1 to 8.1, the images support the Zend Thread Safe (ZTS) version of PHP.
 
 {{% language-specification type="php" display_name="PHP" %}}
 
 ```yaml {configFile="app"}
-type: 'php:<VERSION_NUMBER>'
+applications:
+    # The app's name, which must be unique within the project.
+    <APP_NAME>:
+        type: 'php:<VERSION_NUMBER>'
 ```
 
 For example:
 
 ```yaml {configFile="app"}
-type: 'php:{{% latest "php" %}}'
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'php:{{% latest "php" %}}'
 ```
 
 {{% deprecated-versions %}}
 
-<table>
-    <thead>
-        <tr>
-            <th>Grid and {{% names/dedicated-gen-3 %}}</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="php" status="deprecated" environment="grid" >}}</td>
-            <td>{{< image-versions image="php" status="deprecated" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
+{{< image-versions image="php" status="deprecated" environment="grid" >}}
 
 ## Usage example
 
@@ -64,7 +44,10 @@ Choose a [supported version](#supported-versions)
 and add it to your [app configuration](../../create-apps/_index.md):
 
 ```yaml {configFile="app"}
-type: 'php:{{% latest "php" %}}'
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'php:{{% latest "php" %}}'
 ```
 ### 2. Serve your app
 
@@ -96,11 +79,15 @@ In the following example, all requests made to your site's root (`/`) are sent t
 and nonexistent files are handled by `app.php`:
 
 ```yaml {configFile="app"}
-web:
-    locations:
-        '/':
-            root: 'public'
-            passthru: '/app.php'
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'php:{{% latest "php" %}}'
+        web:
+            locations:
+                '/':
+                    root: 'public'
+                    passthru: '/app.php'
 ```
 See how to [create a basic PHP app with a front controller](../../create-apps/web/php-basic.md).
 To have more control, you can define rules to specify which files you want to allow [from which location](../../create-apps/web/php-basic.md#set-different-rules-for-specific-locations).
@@ -110,17 +97,15 @@ To have more control, you can define rules to specify which files you want to al
 A complete basic app configuration looks like the following:
 
 ```yaml {configFile="app"}
-name: 'app'
-
-type: 'php:{{% latest "php" %}}'
-
-disk: 2048
-
-web:
-    locations:
-        '/':
-            root: 'public'
-            passthru: '/app.php'
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'php:{{% latest "php" %}}'
+        web:
+            locations:
+                '/':
+                    root: 'public'
+                    passthru: '/app.php'
 ```
 ## Dependencies
 
@@ -134,9 +119,14 @@ composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimi
 To use Composer 2.x on your project, either use PHP 8.2+ or, in your app configuration, add the following [dependency](../../create-apps/app-reference.md#dependencies):
 
 ```yaml {configFile="app"}
-dependencies:
-    php:
-        composer/composer: '^2'
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'php:{{% latest "php" %}}'
+        ...
+        dependencies:
+            php:
+                composer/composer: '^2'
 ```
 Adding a dependency to the [dependencies block](../../create-apps/app-reference.md#dependencies) makes it available globally.
 So you can then use included dependencies as commands within your app container.
@@ -155,13 +145,18 @@ You can remove the default build flavor and run your own commands for complete c
 Set the build flavor to `none` and add the commands you need to your `build` hook, as in the following example:
 
 ```yaml {configFile="app"}
-build:
-    flavor: none
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'php:{{% latest "php" %}}'
+        ...
+        build:
+            flavor: none
 
-hooks:
-    build: |
-        set -e
-        composer install --no-interaction --no-dev
+        hooks:
+            build: |
+                set -e
+                composer install --no-interaction --no-dev
 ```
 That installs production dependencies with Composer but not development dependencies.
 The same can be achieved by using the default build flavor and [adding the `COMPOSER_NO_DEV` variable](../../development/variables/set-variables.md).
@@ -179,19 +174,33 @@ To install from an alternative repository:
 1. Set an explicit `require` block:
 
 ```yaml {configFile="app"}
-dependencies:
-    php:
-        require:
-            "platformsh/client": "2.x-dev"
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'php:{{% latest "php" %}}'
+        ...
+        dependencies:
+            php:
+                require:
+                    "platformsh/client": "2.x-dev"
 ```
    This is equivalent to `composer require platform/client 2.x-dev`.
 
 2. Add the repository to use:
 
 ```yaml {configFile="app"}
-repositories:
-    - type: vcs
-      url: "git@github.com:platformsh/platformsh-client-php.git"
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'php:{{% latest "php" %}}'
+        ...
+        dependencies:
+            php:
+                require:
+                    "platformsh/client": "2.x-dev"
+                repositories:
+                    - type: vcs
+                      url: "git@github.com:platformsh/platformsh-client-php.git"
 ```
 That installs `platformsh/client` from the specified repository URL as a global dependency.
 
@@ -199,19 +208,21 @@ For example, to install Composer 2 and the `platform/client 2.x-dev` library fro
 use the following:
 
 ```yaml {configFile="app"}
-dependencies:
-    php:
-        composer/composer: '^2'
-        require:
-            "platformsh/client": "2.x-dev"
-        repositories:
-            - type: vcs
-              url: "git@github.com:platformsh/platformsh-client-php.git"
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'php:{{% latest "php" %}}'
+        ...
+        dependencies:
+            php:
+                composer/composer: '^2'
+                require:
+                    "platformsh/client": "2.x-dev"
+                repositories:
+                    - type: vcs
+                      url: "git@github.com:platformsh/platformsh-client-php.git"
 ```
 ## Connect to services
-
-The following examples show how to use PHP to access various [services](../../add-services/_index.md).
-The individual service pages have more information on configuring each service.
 
 {{< codetabs v2hide="true" >}}
 
@@ -287,7 +298,8 @@ markdownify=false
 
 {{< /codetabs >}}
 
-{{% config-reader %}}[PHP configuration reader library](https://github.com/platformsh/config-reader-php){{% /config-reader %}}
+
+{{% access-services version="2" %}}
 
 ## PHP settings
 
@@ -350,8 +362,6 @@ To see the settings used on your environment:
 
 ### Customize PHP settings
 
-For {{% names/dedicated-gen-2 %}}, see the [configuration options](../../dedicated-gen-2/overview/grid.md#configuration-options).
-
 You can customize PHP values for your app in two ways.
 The recommended method is to use variables.
 
@@ -412,9 +422,13 @@ If you're sure a function isn't needed in your app, you can disable it.
 For example, to disable `pcntl_exec` and `pcntl_fork`, add the following to your [app configuration](../../create-apps/_index.md):
 
 ```yaml {configFile="app"}
-variables:
-    php:
-        disable_functions: "pcntl_exec,pcntl_fork"
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'php:{{% latest "php" %}}'
+        variables:
+            php:
+                disable_functions: "pcntl_exec,pcntl_fork"
 ```
 Common functions to disable include:
 
@@ -570,9 +584,12 @@ To leverage FFIs, follow these steps:
 2.  Enable the FFI extension:
 
 ```yaml {configFile="app"}
-runtime:
-    extensions:
-        - ffi
+applications:
+    app:
+        type: 'php:{{% latest "php" %}}'
+        runtime:
+            extensions:
+                - ffi
 ```
 
 3.  Make sure that your [preload script](./tuning.md#opcache-preloading) calls the `FFI::load()` function.
@@ -582,9 +599,12 @@ runtime:
     enable the preloader by adding the following configuration:
 
 ```yaml {configFile="app"}
-variables:
-    php:
-        opcache.enable_cli: true
+applications:
+    app:
+        type: 'php:{{% latest "php" %}}'
+        variables:
+            php:
+                opcache.enable_cli: true
 ```
 
 5.  Run your script with the following command:
@@ -592,9 +612,5 @@ variables:
     ```bash
     php {{<variable "CLI_SCRIPT" >}}
     ```
-
-See [complete working examples for C and Rust](https://github.com/platformsh-examples/php-ffi).
-
-## Project templates
 
 {{< repolist lang="php" displayName="PHP" >}}

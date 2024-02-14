@@ -28,11 +28,14 @@ Invoke this script from your build hook, specifying a version.
 Any tagged version of the library is acceptable:
 
 ```yaml {configFile="app"}
-hooks:
-    build: |
-        set -e
-        # Install PhpRedis v5.3.7:
-        curl -fsS https://raw.githubusercontent.com/platformsh/snippets/main/src/install-phpredis.sh | { bash /dev/fd/3 5.3.7 ; } 3<&0
+applications:
+    app:
+        type: 'php:{{% latest "php" %}}'
+        hooks:
+            build: |
+                set -e
+                # Install PhpRedis v5.3.7:
+                curl -fsS https://raw.githubusercontent.com/platformsh/snippets/main/src/install-phpredis.sh | { bash /dev/fd/3 5.3.7 ; } 3<&0
 ```
 ## Install Relay
 
@@ -51,11 +54,14 @@ Invoke this script from your build hook, specifying a version.
 Any tagged version of the library is acceptable:
 
 ```yaml {configFile="app"}
-hooks:
-    build: |
-        set -e
-        # Install Relay v0.6.0:
-        curl -fsS https://raw.githubusercontent.com/platformsh/snippets/main/src/install-relay.sh | { bash /dev/fd/3 v0.6.0 ; } 3<&0
+applications:
+    app:
+        type: 'php:{{% latest "php" %}}'
+        hooks:
+            build: |
+                set -e
+                # Install Relay v0.6.0:
+                curl -fsS https://raw.githubusercontent.com/platformsh/snippets/main/src/install-relay.sh | { bash /dev/fd/3 v0.6.0 ; } 3<&0
 ```
 ## Change extension or version
 

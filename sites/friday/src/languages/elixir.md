@@ -9,31 +9,25 @@ description: "{{% vendor/name %}} supports building and deploying applications w
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-<table>
-    <thead>
-        <tr>
-            <th>Grid and {{% names/dedicated-gen-3 %}}</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="elixir" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="elixir" status="supported" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
+{{< image-versions image="elixir" status="supported" environment="grid" >}}
+
 
 {{% language-specification type="elixir" display_name="Elixir" %}}
 
 ```yaml {configFile="app"}
-type: 'elixir:<VERSION_NUMBER>'
+applications:
+    # The app's name, which must be unique within the project.
+    <APP_NAME>:
+        type: 'elixir:<VERSION_NUMBER>'
 ```
 
 For example:
 
 ```yaml {configFile="app"}
-type: 'elixir:{{% latest "elixir" %}}'
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'elixir:{{% latest "elixir" %}}'
 ```
 
 ## Built-in variables
@@ -59,9 +53,12 @@ Remember `config/prod.exs` is evaluated at **build time** and has no access to r
 If you are using Hex to manage your dependencies, you need to specify the `MIX_ENV` environment variable:
 
 ```yaml {configFile="app"}
-variables:
-    env:
-        MIX_ENV: 'prod'
+applications:
+    app:
+        type: 'elixir:{{% latest "elixir" %}}'
+        variables:
+            env:
+                MIX_ENV: 'prod'
 ```
 The `SECRET_KEY_BASE` variable is generated automatically based on the [`PLATFORM_PROJECT_ENTROPY` variable](../development/variables/use-variables.md#use-provided-variables).
 You can change it.
@@ -69,12 +66,16 @@ You can change it.
 Include in your build hook the steps to retrieve a local Hex and `rebar`, and then run `mix do deps.get, deps.compile, compile` on your application to build a binary.
 
 ```yaml {configFile="app"}
-hooks:
-    build: |
-        mix local.hex --force
-        mix local.rebar --force
-        mix do deps.get --only prod, deps.compile, compile
+applications:
+    app:
+        type: 'elixir:{{% latest "elixir" %}}'
+        hooks:
+            build: |
+                mix local.hex --force
+                mix local.rebar --force
+                mix do deps.get --only prod, deps.compile, compile
 ```
+
 {{< note >}}
 
 That build hook works for most cases and assumes that your `mix.exs` file is located at [your app root](../create-apps/app-reference.md#root-directory).
@@ -86,29 +87,31 @@ you can then start it from the `web.commands.start` directive.
 
 The following basic app configuration is sufficient to run most Elixir applications.
 
+
 ```yaml {configFile="app"}
-name: app
+applications:
+    app:
+        type: 'elixir:{{% latest "elixir" %}}'
 
-type: 'elixir:{{% latest "elixir" %}}'
+        variables:
+            env:
+                MIX_ENV: 'prod'
 
-variables:
-    env:
-        MIX_ENV: 'prod'
+        hooks:
+            build: |
+                mix local.hex --force
+                mix local.rebar --force
+                mix do deps.get --only prod, deps.compile, compile
 
-hooks:
-    build: |
-        mix local.hex --force
-        mix local.rebar --force
-        mix do deps.get --only prod, deps.compile, compile
-
-web:
-    commands:
-        start: mix phx.server
-    locations:
-        /:
-            allow: false
-            passthru: true
+        web:
+            commands:
+                start: mix phx.server
+            locations:
+                /:
+                    allow: false
+                    passthru: true
 ```
+
 Note that there is still an Nginx proxy server sitting in front of your application. If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Elixir application unconditionally, as in the example above.
 
 ## Dependencies
@@ -126,22 +129,7 @@ You can commit a `mix.exs` file in your repository and the system downloads the 
 
 ## Accessing Services
 
-{{% guides/config-reader-info lang="elixir" %}}
-
-If you are building a Phoenix app for example, it would suffice to add a database to `{{< vendor/configfile "services" >}}` and a relationship in `{{< vendor/configfile "app" >}}`. Put the lib in your `deps` and, assuming you renamed the `prod.secret.exs` to `releases.exs` per the [Phoenix guide](https://hexdocs.pm/phoenix/releases.html), change:
-
-```elixir
-System.get_env("DATABASE_URL")
-```
-
-to
-
-```elixir
-Platformsh.Config.ecto_dsn_formatter("database")
-```
-
-See [Config Reader Documentation](../development/variables/use-variables.md#access-variables-in-your-app) for the full API.
-
+{{% access-services version="2" %}}
 
 ### Accessing Services Manually
 
@@ -150,9 +138,14 @@ The services configuration is available in the environment variable `PLATFORM_RE
 Given a relationship defined in `{{< vendor/configfile "app" >}}`:
 
 ```yaml {configFile="app"}
-relationships:
-    postgresdatabase: "dbpostgres:postgresql"
+applications:
+    app:
+        type: 'elixir:{{% latest "elixir" %}}'
+        ...
+        relationships:
+            postgresdatabase: "dbpostgres:postgresql"
 ```
+
 Assuming you have in `mix.exs` the Poison library to parse JSON:
 
 ```elixir
@@ -182,5 +175,3 @@ and setup Ecto during the deploy hook:
 deploy: |
     mix do ecto.setup
 ```
-
-{{% config-reader %}}[ Elixir configuration reader library](https://github.com/platformsh/config-reader-elixir/){{% /config-reader %}}

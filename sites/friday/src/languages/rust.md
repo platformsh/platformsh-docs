@@ -13,22 +13,7 @@ banner:
 
 {{% major-minor-versions-note %}}
 
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 3</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="rust" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="rust" status="supported" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="rust" status="supported" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
+{{< image-versions image="rust" status="supported" environment="grid" >}}
 
 ## Dependencies
 
@@ -49,30 +34,27 @@ The following basic [app configuration](../../create-apps/_index.md) is sufficie
 See the [complete example](#complete-example) below for more details.
 
 ```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
 
-# The app's name, which must be unique within the project.
-name: 'app'
+        # The language and version for your app.
+        type: 'rust:1'
 
-# The language and version for your app.
-type: 'rust:1'
+        hooks:
+            build:
+                cargo build
 
-# The size of the app's persistent disk (in MB).
-disk: 2048
+        web:
+            commands:
+                # Customize the start command with your own target.
+                start: './target/debug/hello'
 
-hooks:
-  build:
-    cargo build
-
-web:
-  commands:
-      # Customize the start command with your own target.
-      start: './target/debug/hello'
-
-  locations:
-        /:
-            # Route all requests to the Rust app, unconditionally.
-            allow: false
-            passthru: true
+        locations:
+            /:
+                # Route all requests to the Rust app, unconditionally.
+                allow: false
+                passthru: true
 ```
 Note that there is still an Nginx proxy server sitting in front of your application. If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Rust app unconditionally, as in the example above.
 
@@ -132,30 +114,27 @@ Follow these steps:
 3. Add the following [app configuration](../../create-apps/_index.md):
 
 ```yaml {configFile="app"}
+applications:
+    # The app's name, which must be unique within the project.
+    app:
 
-# The app's name, which must be unique within the project.
-name: 'app'
+        # The language and version for your app.
+        type: 'rust:1'
 
-# The language and version for your app.
-type: 'rust:1'
+        hooks:
+            build:
+                cargo build
 
-# The size of the app's persistent disk (in MB).
-disk: 2048
+        web:
+            commands:
+                # Customize the start command with your own target.
+                start: './target/debug/hello'
 
-hooks:
-  build:
-    cargo build
-
-web:
-  commands:
-      # Customize the start command with your own target.
-      start: './target/debug/hello'
-
-  locations:
-        /:
-            # Route all requests to the Rust app, unconditionally.
-            allow: false
-            passthru: true
+        locations:
+            /:
+                # Route all requests to the Rust app, unconditionally.
+                allow: false
+                passthru: true
 ```
 4. To generate a `Cargo.lock` file,
    run the following command:

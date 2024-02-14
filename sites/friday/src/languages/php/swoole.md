@@ -26,9 +26,7 @@ You need:
   {{< /note >}}
 
 
-Check the documentation related to [Laravel Octane on {{% vendor/name %}}](../../guides/laravel/deploy/octane.md).
 <!-- @todo: To be added once Laravel guide for Upsun is live -->
-
 {{% swoole %}}
 
 ## Use
@@ -37,15 +35,18 @@ Override the default web server with a [custom start command](./_index.md#altern
 Octane should listen on a TCP socket.
 
 ```yaml {configFile="app"}
-web:
-    upstream:
-        socket_family: tcp
-        protocol: http
-    commands:
-        start: php {{<variable "PATH_TO_SWOOLE_START_COMMAND" >}} --port=$PORT
-    locations:
-        "/":
-            passthru: true
-            scripts: false
-            allow: false
+applications:
+    app:
+        type: 'php:{{% latest "php" %}}'
+        web:
+            upstream:
+                socket_family: tcp
+                protocol: http
+            commands:
+                start: php {{<variable "PATH_TO_SWOOLE_START_COMMAND" >}} --port=$PORT
+            locations:
+                "/":
+                    passthru: true
+                    scripts: false
+                    allow: false
 ```

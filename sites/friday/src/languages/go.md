@@ -9,33 +9,24 @@ description: "{{% vendor/name %}} supports building and deploying applications w
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 3</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="golang" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="golang" status="supported" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="golang" status="supported" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
+{{< image-versions image="golang" status="supported" environment="grid" >}}
 
 {{% language-specification type="golang" display_name="Go" %}}
 
 ```yaml {configFile="app"}
-type: 'golang:<VERSION_NUMBER>'
+applications:
+    # The app's name, which must be unique within the project.
+    <APP_NAME>:
+        type: 'golang:<VERSION_NUMBER>'
 ```
 
 For example:
 
 ```yaml {configFile="app"}
-type: 'golang:{{% latest "golang" %}}'
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'golang:{{% latest "golang" %}}'
 ```
 
 {{% deprecated-versions %}}
@@ -53,31 +44,31 @@ Assuming your `go.mod` and `go.sum` files are present in your repository, your a
 The following basic `{{< vendor/configfile "app" >}}` file is sufficient to run most Go applications.
 
 ```yaml {configFile="app"}
-name: app
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'golang:{{% latest "golang" %}}'
 
-type: golang:1.14
+        hooks:
+            build: |
+                # Modify this line if you want to build differently or
+                # use an alternate name for your executable.
+                go build -o bin/app
 
-hooks:
-    build: |
-        # Modify this line if you want to build differently or use an alternate name for your executable.
-        go build -o bin/app
+        web:
+            upstream:
+                socket_family: tcp
+                protocol: http
 
-web:
-    upstream:
-        socket_family: tcp
-        protocol: http
+            commands:
+                # If you change the build output in the build hook above, update this line as well.
+                start: ./bin/app
 
-    commands:
-        # If you change the build output in the build hook above, update this line as well.
-        start: ./bin/app
-
-    locations:
-        /:
-            # Route all requests to the Go app, unconditionally.
-            allow: false
-            passthru: true
-
-disk: 1024
+            locations:
+                /:
+                    # Route all requests to the Go app, unconditionally.
+                    allow: false
+                    passthru: true
 ```
 
 Note that there is still an Nginx proxy server sitting in front of your application.
@@ -144,37 +135,6 @@ markdownify=false
 
 {{< /codetabs >}}
 
-{{% guides/config-reader-info lang="go" %}}
-
-You can also use the library to read other environment variables.
-
-```go
-package main
-
-import (
-	_ "github.com/go-sql-driver/mysql"
-	psh "github.com/platformsh/gohelper"
-	"net/http"
-)
-
-func main() {
-
-	p, err := psh.NewPlatformInfo()
-
-	if err != nil {
-		panic("Not in a {{% vendor/name %}} Environment.")
-	}
-
-	http.HandleFunc("/bar", func(w http.ResponseWriter, r *http.Request) {
-		// ...
-	})
-
-	http.ListenAndServe(":"+p.Port, nil)
-}
-```
-
-{{% config-reader %}} [Go configuration reader library](https://github.com/platformsh/config-reader-go/){{% /config-reader %}}
-
-## Project templates
+{{% access-services version="2" %}}
 
 {{% repolist lang="golang" displayName="Go" %}}

@@ -10,31 +10,24 @@ description: |
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-<table>
-    <thead>
-        <tr>
-            <th>Grid and {{% names/dedicated-gen-3 %}}</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="dotnet" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="dotnet" status="supported" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
+{{< image-versions image="dotnet" status="supported" environment="grid" >}}
 
 {{% language-specification type="dotnet" display_name=".Net Core" %}}
 
 ```yaml {configFile="app"}
-type: 'dotnet:<VERSION_NUMBER>'
+applications:
+    # The app's name, which must be unique within the project.
+    <APP_NAME>:
+        type: 'dotnet:<VERSION_NUMBER>'
 ```
 
 For example:
 
 ```yaml {configFile="app"}
-type: 'dotnet:{{% latest "dotnet" %}}'
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'dotnet:{{% latest "dotnet" %}}'
 ```
 
 ## Building the application
@@ -43,12 +36,15 @@ To build basic applications in .NET containers, it's enough to use the [`dotnet 
 with the default [framework-dependent deployment](https://docs.microsoft.com/en-us/dotnet/core/deploying/#publish-framework-dependent):
 
 ```yaml {configFile="app"}
-hooks:
-    build: |
-        set -xe
-        dotnet publish --output "$PLATFORM_OUTPUT_DIR" \
-            -p:UseRazorBuildServer=false \
-            -p:UseSharedCompilation=false
+applications:
+    app:
+        type: 'dotnet:{{% latest "dotnet" %}}'
+        hooks:
+            build: |
+                set -xe
+                dotnet publish --output "$PLATFORM_OUTPUT_DIR" \
+                    -p:UseRazorBuildServer=false \
+                    -p:UseSharedCompilation=false
 ```
 
 where `PLATFORM_OUTPUT_DIR` is the output directory for compiled languages available at build time.
@@ -87,33 +83,38 @@ The following example configures an environment to serve the static content fold
 while routing other traffic to the .NET application.
 
 ```yaml {configFile="app"}
-web:
-    locations:
-        "/":
-            root: "wwwroot"
-            allow: true
-            passthru: true
-            rules:
-                # Serve these common asset types with customs cache headers.
-                \.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$:
+applications:
+    app:
+        type: 'dotnet:{{% latest "dotnet" %}}'
+        web:
+            locations:
+                "/":
+                    root: "wwwroot"
                     allow: true
-                    expires: 300s
-    commands:
-        start: "dotnet WebApplication1.dll"
+                    passthru: true
+                    rules:
+                        # Serve these common asset types with customs cache headers.
+                        \.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$:
+                            allow: true
+                            expires: 300s
+            commands:
+                start: "dotnet WebApplication1.dll"
 ```
+
 You can also route all requests to the application unconditionally:
 
 ```yaml {configFile="app"}
-web:
-    locations:
-        "/":
-            allow: false
-            passthru: true
+applications:
+    app:
+        type: 'dotnet:{{% latest "dotnet" %}}'
+        web:
+            locations:
+                "/":
+                    allow: false
+                    passthru: true
 
-    commands:
-        start: "dotnet WebApplication1.dll"
+            commands:
+                start: "dotnet WebApplication1.dll"
 ```
-
-## Project templates
 
 {{< repolist lang="dotnet" displayName=".NET Core" >}}

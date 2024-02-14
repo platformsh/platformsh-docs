@@ -51,9 +51,12 @@ you need to clear the OPcache explicitly on deployment (which can be done by res
 To enable preloading, add a variable that specifies a preload script:
 
 ```yaml {configFile="app"}
-variables:
-    php:
-        opcache.preload: '{{< variable "PRELOAD_SCRIPT" >}}'
+applications:
+    app:
+         type: 'php:{{% latest "php" %}}'
+         variables:
+               php:
+                     opcache.preload: '{{< variable "PRELOAD_SCRIPT" >}}'
 ```
 `{{< variable "PRELOAD_SCRIPT" >}}` is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
 It may be any PHP script that calls `opcache_compile_file()`.
@@ -105,9 +108,12 @@ To determine the maximum number of files to cache, follow these steps:
 An example configuration:
 
 ```yaml {configFile="app"}
-variables:
-    php:
-        'opcache.max_accelerated_files': 22000
+applications:
+   app:
+      type: 'php:{{% latest "php" %}}'
+      variables:
+         php:
+            'opcache.max_accelerated_files': 22000
 ```
 #### Set memory consumption
 
@@ -147,9 +153,12 @@ To determine the total amount of memory to use, follow these steps:
    An example configuration:
 
 ```yaml {configFile="app"}
-variables:
-      php:
-         'opcache.memory_consumption': 96
+applications:
+   app:
+      type: 'php:{{% latest "php" %}}'
+      variables:
+            php:
+               'opcache.memory_consumption': 96
 ```
 8. [Restart PHP-FPM](#restart-php-fpm) and make sure that OPcache works as expected by rerunning CacheTool
    with the following command:
@@ -173,9 +182,12 @@ you can disable that check and get a small performance improvement.
 Timestamp validation can be disabled by adding the following variable to your [app configuration](../../create-apps/_index.md):
 
 ```yaml {configFile="app"}
-variables:
-      php:
-         'opcache.validate_timestamps': 0
+applications:
+   app:
+      type: 'php:{{% latest "php" %}}'
+      variables:
+            php:
+               'opcache.validate_timestamps': 0
 ```
 When you have disabled OPcache timestamp validation,
 you need to explicitly clear OPcache on deployment by [restarting PHP-FPM](#restart-php-fpm).
@@ -192,12 +204,5 @@ To force a restart of PHP-FPM:
 
 ## Optimize your code
 
-To optimize your app, consider using a [profiler](../../increase-observability/integrate-observability/_index.md).
+To optimize your app, consider using a [profiler](../../increase-observability/application-metrics/_index.md).
 A profiler helps determine what slow spots can be found and addressed and helps improve performance.
-
-<!-- @todo: awesome-platformsh -->
-<!-- @todo: what is the Upsun equivalent/application? -->
-The web agency [Pixelant](https://www.pixelant.net/) has released a [log analyzer tool for {{% vendor/name %}}](https://github.com/pixelant/platformsh-analytics)
-that offers visualization of access logs to determine how much memory requests are using on average.
-It also offers additional insights into the operation of your site and can suggest places to further optimize your configuration or when it's time to increase your plan size.
-Note that this tool is maintained by a third party, not by {{% vendor/name %}}.
