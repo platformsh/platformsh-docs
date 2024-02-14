@@ -268,11 +268,11 @@ and, if appropriate, adjust its behavior accordingly.
 When defining a [worker](../create-apps/app-reference.md#workers) instance,
 keep in mind what mount behavior you want.
 
-`tmp` local mounts are a separate storage area for each instance,
+`tmp` and `instance` local mounts are a separate storage area for each instance,
 while `storage` mounts can be shared between instances.
 
 For example, you can define a `storage` mount (called `shared_dir`) to be used by a `web` instance,
-and a `tmp` mount (called `local_dir`) to be used by a `queue` worker instance:
+and an `tmp` mount (called `local_dir`) to be used by a `queue` worker instance:
 
 ```yaml {configFile="app"}
 applications:
