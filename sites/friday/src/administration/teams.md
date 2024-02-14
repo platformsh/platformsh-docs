@@ -5,6 +5,8 @@ weight: 1
 description: Manage team access and permissions across all your projects and organizations.
 ---
 
+{{< partial "user-mgt-sellable/body.md" >}}
+
 Organizations on {{% vendor/name %}} are made up of both [projects](/projects/) and [users](/administration/users.md).
 While organizations by themselves allow you to assign project and environment type permissions to individual users on individual projects,
 having many users and many projects calls for another method to group common access control settings.
