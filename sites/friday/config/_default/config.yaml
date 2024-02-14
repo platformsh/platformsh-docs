@@ -57,10 +57,7 @@ module:
               - "add-services/*"
               # - "add-services/network-storage.md"
 
-              # - "administration/*"
-              - "administration/sso.md"
-              - "administration/pricing/*"
-              - "administration/cli/reference.md"
+              - "administration/*"
 
               # - "changelog/*"
 
