@@ -59,7 +59,7 @@ module:
 
               - "administration/*"
 
-              # - "changelog/*"
+              - "changelog/*"
 
               # - "create-apps/*"
               - "create-apps/upgrading.md"
@@ -74,15 +74,11 @@ module:
 
               - "development/*"
 
-              # - "domains/*"
-              - "domains/cdn/managed-fastly.md"
-              - "domains/security/web-application-firewall/fastly.md"
-              - "domains/steps/custom-domains-preview-environments.md"
+              - "domains/*"
 
               - "environments/*"
-              #- "environments/scalability.md"
 
-              # - "feedback/*"
+              - "feedback/*"
 
               - "get-started/*"
 

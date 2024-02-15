@@ -19,6 +19,7 @@ Opening the [Console](https://console.upsun.com) takes you to the first organiza
 You get an overview of all your projects within that organization.
 You can narrow the list down by searching for specific projects,
 or switch to a different organization from the menu in the top left-hand corner.
+
 Once you select a project, you can [configure the project settings](./configure-project.md).
 You can also choose individual environments within the project and [configure each environment](./configure-environment.md).
 
