@@ -55,6 +55,8 @@ Variables available during builds can be accessed in `build` hooks and those ava
 
 ## Access variables in your app
 
+{{% version/specific %}}
+<!-- Platform.sh -->
 To access environment variables in your app, you can use the {{< vendor/name >}} Config Reader for the given language:
 
 * [PHP](https://github.com/platformsh/config-reader-php)
@@ -66,6 +68,16 @@ To access environment variables in your app, you can use the {{< vendor/name >}}
 * [Elixir](https://github.com/platformsh/config-reader-elixir)
 
 Alternatively, use a built-in method for the given language.
+<--->
+<!-- Upsun -->
+To access environment variables in your app, use a built-in method for the given language.
+
+* PHP: The [`getenv()` function](https://www.php.net/manual/en/function.getenv.php)
+* Python: The [`os.environ` object](https://docs.python.org/3/library/os.html#os.environ)
+* Node.js: The [`process.env` object](https://nodejs.org/api/process.html#process_process_env)
+* Ruby: The [`ENV` accessor](https://ruby-doc.org/current/ENV.html)
+* Java: The [`System.getenv()` method](https://docs.oracle.com/javase/8/docs/api/java/lang/System.html#getenv-java.lang.String-)
+{{% /version/specific %}}
 
 {{< codetabs >}}
 
@@ -173,6 +185,8 @@ public class App {
 Variables can have nested structures.
 The following example shows nested structures in an [app configuration](../../create-apps/app-reference.md#variables):
 
+{{% version/specific %}}
+<!-- Platform.sh -->
 ```yaml {configFile="app"}
 variables:
     env:
@@ -190,6 +204,28 @@ variables:
             green: '#00FF00'
             blue: '#0000FF'
 ```
+<--->
+<!-- Upsun -->
+```yaml {configFile="app"}
+applications:
+    {{< variable "APP_NAME" >}}:
+        variables:
+            env:
+                BASIC: "a string"
+                INGREDIENTS:
+                    - 'peanut butter'
+                    - 'jelly'
+                QUANTITIES:
+                    "milk": "1 liter"
+                    "cookies": "1 kg"
+            stuff:
+                STEPS: ['one', 'two', 'three']
+                COLORS:
+                     red: '#FF0000'
+                     green: '#00FF00'
+                     blue: '#0000FF'
+```
+{{% /version/specific %}}
 
 You can access these nested variables as follows:
 
@@ -351,6 +387,8 @@ and at runtime.
 | `PORT`                      | No    | Yes     | A `string` representing the port to which requests are sent if the [`web.upstream.socket_family` property](../../create-apps/app-reference.md#upstream) is unset or set to `tcp`. |
 | `SOCKET`                    | No    | Yes     | A `string` representing the path to the Unix socket file to use if the [`web.upstream.socket_family` property](../../create-apps/app-reference.md#upstream) is set to `unix`. |
 
+{{< version/specific >}}
+<!-- These two sections are Platform.sh-specific -->
 ### Variables on {{% names/dedicated-gen-2 %}} environments
 
 [{{% names/dedicated-gen-2 %}} instances](../../dedicated-gen-2/overview/_index.md) also have the following variables available:
@@ -360,7 +398,7 @@ and at runtime.
 | `PLATFORM_CLUSTER` | No    | Yes     | The cluster ID. In older {{% names/dedicated-gen-2 %}} instances, this is used to get the project ID. When several projects are linked, this provides the main project/cluster they're linked to, while `PLATFORM_PROJECT` offers the specific project ID. |
 | `PLATFORM_MODE`    | No    | Yes     | `enterprise` in all {{% names/dedicated-gen-2 %}} production and staging environments. Note that an Enterprise support plan doesn't always imply a {{% names/dedicated-gen-2 %}} environment, but a {{% names/dedicated-gen-2 %}} environment always implies an Enterprise support plan. |
 
-{{< note >}}
+{{< note version="1" >}}
 
 The `PLATFORM_CLUSTER` environment variable isn't yet available on [{{% names/dedicated-gen-3 %}}](../../dedicated-gen-3/_index.md).
 If your application depends on whether it's running on a {{% names/dedicated-gen-3 %}} host, use `PLATFORM_MODE`.
@@ -383,6 +421,11 @@ else
     echo "We're on development"
 fi
 ```
+
+<--->
+<!-- Removed from version 2 -->
+
+{{< /version/specific >}}
 
 ### `PLATFORM_APPLICATION`
 
@@ -423,13 +466,25 @@ One workaround is to create a symbolic link to a writable location and then writ
 The following example shows the process, though you have to modify it to fit your needs.
 
 1. Create a mount that isn't accessible to the web in your [app configuration](../../create-apps/_index.md):
-
+   {{% version/specific %}}
+   <!-- Platform.sh -->
    ```yaml {configFile="app"}
    mounts:
        /config:
            source: local
            source_path: config
    ```
+   <--->
+   <!-- Upsun -->
+   ```yaml {configFile="app"}
+   applications:
+    {{< variable "APP_NAME" >}}  
+       mounts:
+           /config:
+               source: storage
+               source_path: config
+   ```
+   {{% /version/specific %}}
 
 2. Create a symbolic link from the config file the application wants to a location in that mount:
 
@@ -458,12 +513,23 @@ The following example shows the process, though you have to modify it to fit you
    ```
 
 5. Call the script from the `deploy` hook your [app configuration](../../create-apps/_index.md):
-   
+   {{% version/specific %}}
+   <!-- Platform.sh -->
    ```yaml {configFile="app"}
    hooks:
        deploy: |
            bash export-config.sh
    ```
+   <--->
+   <!-- Upsun -->
+ ```yaml {configFile="app"}
+   applications:
+    {{< variable "APP_NAME" >}}  
+       hooks:
+           deploy: |
+               bash export-config.sh
+   ```
+  {{% /version/specific %}}
 
 Now, when your app starts and attempts to parse `db.yaml`, the symbolic link redirects it to `config/db.yaml`.
 Your script writes to that file on each deploy with updated information.
