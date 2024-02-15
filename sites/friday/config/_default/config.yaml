@@ -62,7 +62,7 @@ module:
               - "administration/pricing/*"
               - "administration/cli/reference.md"
 
-              # - "changelog/*"
+              - "changelog/*"
 
               # - "create-apps/*"
               - "create-apps/upgrading.md"
