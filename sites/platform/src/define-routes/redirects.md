@@ -121,7 +121,7 @@ In the following example, a request to `https://example.com/foo/a/b/c/bar` redir
    ```
 {{< /version/specific >}}
 
-Note that special arguments in the `to` statement are also valid when `regexp` is set to `true`:
+The following special arguments in the `to` statement are available when `regexp` is set to `true`:
 
 - `$is_args` evaluates to `?` or empty string
 - `$args` evaluates to the full query string if any
@@ -131,7 +131,7 @@ Note that special arguments in the `to` statement are also valid when `regexp` i
 ### Redirects using `prefix` and `append_suffix`
 
 Instead of using regular expressions to configure your redirects,
-you might want to use the `prefix` and `append_suffix` keys to achieve the same results.
+you might want to use the `prefix` and `append_suffix` keys.
 
 {{% note theme="warning" title="Warning" %}}
 
@@ -140,7 +140,65 @@ Likewise, if you're using `prefix` and `append_suffix`, you can't also use `rege
 
 {{% /note %}}
 
-In the following example:
+When set to `true`, which is their default value, `prefix` and `append_suffix` are equivalent.
+For example:
+
+{{< version/specific >}}
+<!-- Platform.sh configuration-->
+```yaml
+https://{default}/:
+    type: upstream
+    # ...
+    redirects:
+        paths:
+            '/from':
+                to: 'https://{default}/to'
+                prefix: true
+```
+```yaml
+https://{default}/:
+    type: upstream
+    # ...
+    redirects:
+        paths:
+            '/from':
+                to: 'https://{default}/to'
+                append_suffix: true
+```
+
+<--->
+<!-- Upsun configuration -->
+```yaml
+routes:
+    https://{default}/:
+        type: upstream
+        # ...
+        redirects:
+            paths:
+                '/from':
+                    to: 'https://{default}/to'
+                    prefix: true
+```
+```yaml
+routes:
+    https://{default}/:
+        type: upstream
+        # ...
+        redirects:
+            paths:
+                '/from':
+                    to: 'https://{default}/to'
+                    append_suffix: true
+```
+{{< /version/specific >}}
+
+With both configurations:
+
+- `/from` redirects to `/to`
+- `/from/some/path` redirects to `/to/some/path`
+
+However, when set to `false`, `prefix` and `append_suffix` behave differently.
+For example, with the following configuration:
 
 {{< version/specific >}}
 <!-- Platform.sh configuration-->
@@ -152,7 +210,7 @@ In the following example:
            paths:
                '/from':
                     to: 'https://{default}/to'
-                    prefix: true
+                    prefix: false
    ```
 <--->
 <!-- Upsun configuration -->
@@ -165,17 +223,13 @@ In the following example:
                paths:
                    '/from':
                         to: 'https://{default}/to'
-                        prefix: true
+                        prefix: false
    ```
 {{< /version/specific >}}
 
-With `prefix` set to `true`:
-- `/from` redirects to `/to`
-- `/from/another/path` redirects to `/to/another/path`
+A request to `/from/` redirects to `/to/some/path`, but a request to `/from/some/path` does not.
 
-If `prefix` were set to `false`, then `/from` would redirect, but `/from/another/path` wouldn't.
-
-In the following example:
+And with the following configuration:
 
 {{< version/specific >}}
 <!-- Platform.sh configuration-->
@@ -204,9 +258,8 @@ In the following example:
    ```
 {{< /version/specific >}}
 
-With `append_suffix` set to `false`, `/from/path/suffix` redirects to just `/to`.
+A request to `/from/some/path` (and any path after `/from`) redirects to just `/to`.
 
-If `append_suffix` were set to `true`, then `/from/path/suffix` would redirect to `/to/path/suffix`.
 
 ### Further examples
 
