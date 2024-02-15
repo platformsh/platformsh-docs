@@ -47,85 +47,24 @@ module:
         - source: "node_modules/alpinejs/dist"
           target: "static/alpinejs"
 
-        - source: "../../shared/data"
-          target: "data"
-
-        - source: "../platform/src"
-          target: "content"
-          excludeFiles:
-
-              - "add-services/*"
-              # - "add-services/network-storage.md"
-
-              - "administration/*"
-
-              - "changelog/*"
-
-              # - "create-apps/*"
-              - "create-apps/upgrading.md"
-              - "create-apps/workers.md"
-              - "create-apps/flexible-resources.md"
-
-              - "dedicated-gen-2/*"
-
-              - "dedicated-gen-3/*"
-
-              # - "define-routes/*"
-
-              # - "development/*"
-              - "development/file-transfer.md"
-              - "development/templates.md"
-              - "development/local/docksal.md"
-              - "development/local/lando.md"
-              - "development/deploy-button.md"
-              - "development/transfer-dedicated.md"
-
-              # - "domains/*"
-              - "domains/cdn/managed-fastly.md"
-              - "domains/security/web-application-firewall/fastly.md"
-              - "domains/steps/custom-domains-preview-environments.md"
-
-              - "environments/*"
-
-              - "feedback/*"
-
-              - "get-started/*"
-
-              - "glossary/*"
-
-              - "guides/*"
-
-              - "increase-observability/*"
-
-              - "integrations/*"
-
-              - "languages/*"
-              #- "languages/java/frameworks.md"
-
-              - "learn/*"
-
-              - "projects/*"
-
-              - "registry/*"
-
-              - "security/*"
-
-          lang: "en"
-
-        - source: "../platform/static/images"
-          target: "static/images"
-        - source: "../platform/static/videos"
-          target: "static/videos"
-        - source: "static/scripts"
-          target: "static/scripts"
-        - source: "static/files"
-          target: "static/files"
-
         - source: "src"
           target: "content"
         - source: "static/images"
           target: "static/images"
 
+        - source: "../../shared/data"
+          target: "data"
+
+        - source: "../platform/static/images"
+          target: "static/images"
+          
+        - source: "static/scripts"
+          target: "static/scripts"
+        
+        - source: "static/files"
+          target: "static/files"
+
+        # themesdir (line 9) is also shared
 
 
 security:
