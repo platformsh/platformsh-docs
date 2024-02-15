@@ -8,8 +8,6 @@ layout: single
 
 {{% description %}}
 
-Check out examples from other users on the {{% vendor/name %}} [Community site](https://community.platform.sh/c/activity-scripts/10).
-
 ## Installing
 
 Activity scripts are configured as integrations.
