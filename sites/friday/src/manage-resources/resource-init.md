@@ -48,7 +48,7 @@ Note that you can [keep an eye on those costs](/manage-resources/resource-billin
 | Strategy | Description |
 | ---------| ----------- |
 | `default`  | Initializes the new containers using the [{{% vendor/name %}} default resources](#default-resources).</br>This strategy applies when you first deploy your project (or new container) unless you explicitly set another strategy, or allocate resources manually via the `resources:set` CLI command.  |
-| `manual`   | With this strategy, the first deployment fails and you need to configure resources manually through [the Console](/manage-resources/adjust-resources.md), or using `resources:set` in the CLI.</br> The benefit of this strategy is that you can set the exact resources you want with a single deployment. Other strategies may require fine-tuning and therefore generate a second deployment. In this case, your environment would run for a short time with unwanted resources, and both deployments would generate downtime.|
+| `manual`   | With this strategy, the first deployment fails and you need to configure resources manually through [the Console](/manage-resources/adjust-resources.md), or using `resources:set` in the CLI.</br></br> This strategy allows you to set the exact resources you want, with a single deployment. Other strategies may require fine-tuning, and therefore generate a second deployment. In this case, your environment would run for a short time with unwanted resources, and both deployments would generate downtime.|
 | `minimum`  | Initializes the new containers using the {{% vendor/name %}} minimum resources (see below). |
 | `parent`   | Initializes the new containers using the same resources as the parent environment.</br>If there is no parent environment, or if the container doesn't already exist on the parent, the `default` strategy applies instead. |
 | `child`    | Only available when merging a child environment into its parent environment. Initializes the new containers using the same resources as the child environment. |
@@ -330,14 +330,17 @@ title=In the Console
 ## Environment sync
 
 [Syncing an environment](/glossary.md#sync) means copying changes from a parent environment to a child environment.
+You can sync:
 
-You can sync only the code, only the data (databases, files), only the resources (CPU and RAM, instances, and disk space),
-or any combination of these three elements.
+- Only the code
+- Only the data (databases, files)
+- Only the resources (CPU and RAM, instances, and disk space)
+- Any combination of the three (code and data, data and resources, etc.)
 
 {{% note %}}
 
-The child environment's disk size may be smaller than the parent's.
-If so, when you only sync the data, {{% vendor/name %}} automatically adjusts the child environment’s disk size so it matches the parent environment’s disk size.
+When you only sync the data, {{% vendor/name %}} checks if the child environment's disk size is at least equivalent to the parent's.</br>
+If not, the parent environment's disk size is automatically applied to the child environment.
 This ensures the sync can succeed.
 
 {{% /note %}}
