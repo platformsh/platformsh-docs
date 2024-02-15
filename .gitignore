@@ -6,3 +6,4 @@ node_modules
 docs/fetchedFilesCache
 vendorize
 vale
+vrt-docs-migration/
