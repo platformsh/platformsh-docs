@@ -54,12 +54,12 @@ module:
           target: "content"
           excludeFiles:
 
-              # - "add-services/*"
-              - "add-services/network-storage.md"
+              - "add-services/*"
+              # - "add-services/network-storage.md"
 
               - "administration/*"
 
-              # - "changelog/*"
+              - "changelog/*"
 
               # - "create-apps/*"
               - "create-apps/upgrading.md"
@@ -80,15 +80,11 @@ module:
               - "development/deploy-button.md"
               - "development/transfer-dedicated.md"
 
-              # - "domains/*"
-              - "domains/cdn/managed-fastly.md"
-              - "domains/security/web-application-firewall/fastly.md"
-              - "domains/steps/custom-domains-preview-environments.md"
+              - "domains/*"
 
               - "environments/*"
-              #- "environments/scalability.md"
 
-              # - "feedback/*"
+              - "feedback/*"
 
               - "get-started/*"
 
@@ -96,15 +92,9 @@ module:
 
               - "guides/*"
 
-              # - "increase-observability/*"
-              - "increase-observability/logs/forward-fastly-logs.md"
-              - "increase-observability/integrate-observability/*"
-              - "increase-observability/metrics/grid.md"
-              - "increase-observability/metrics/dedicated.md"
-              - "increase-observability/metrics/dedicated-generation-3.md"
+              - "increase-observability/*"
 
-              # - "integrations/*"
-              - "integrations/activity/reference.md"
+              - "integrations/*"
 
               - "languages/*"
               #- "languages/java/frameworks.md"

@@ -8,12 +8,8 @@ layout: single
 Once your project is ready for production, replace the automatically generated domain with your own custom domain.
 Note that adding a domain disables the automatically generated URL for your Production environment only.
 
-{{% version/specific %}}
 If you are an Enterprise or Elite customer and have a Grid or {{% names/dedicated-gen-3 %}} project, you can [customize the URLs for your non-production environments](/domains/steps/custom-domains-preview-environments).
 {{% names/dedicated-gen-2 %}} customers can also customize the domain for their Staging environment.
-<--->
-You can also [customize the URLs for your preview environments](/domains/steps/custom-domains-preview-environments).
-{{% /version/specific %}}
 
 ## Before you begin
 
@@ -23,15 +19,11 @@ You need:
 - A domain with access to its settings with the registrar
 - A registrar that allows `CNAME` records or [one of the alternatives](./dns.md) on [apex domains](/glossary.md#apex-domain)
 - Optional: The [CLI](../../administration/cli/_index.md) installed locally
-<!-- There are no development plans on Upsun -->
-{{< version/only "1" >}}
 - If you are on a development plan, you need to [upgrade your tier to a production plan](#optional-change-your-plan-to-a-production-plan).
-{{< /version/only >}}
 
 If you are planning to use several subdomains of the same domain on different projects,
 see how to [manage multiple subdomains](/domains/steps/subdomains.md) *before* you add your domain to {{% vendor/name %}}.
 
-{{< version/only "1" >}}
 ## Optional: Change your plan to a production plan
 
 If you are on a Development plan, you can't add a domain.
@@ -40,8 +32,8 @@ You need to upgrade your subscription to a [production plan](/glossary.md#produc
 To upgrade your plan tier, you must be an organization owner or have the [manage plans permission](../../administration/users.md#organization-permissions).
 
 To upgrade your plan tier:
-{{< /version/only >}}
-{{< codetabs v2hide="true" >}}
+
+{{< codetabs >}}
 
 +++
 title=Using the CLI
@@ -66,20 +58,15 @@ title=In the Console
 5. Click **Save**.
 
 {{< /codetabs >}}
-{{< version/only "1" >}}
+
 You can find [more information on plan tiers](https://platform.sh/pricing).
-{{< /version/only >}}
 
 ## 1. Get the target for your project
 
 You want to point your DNS record to the automatically generated URL.
 Your domain needs to point to that target for your site to go live.
 
-{{< version/only "1" >}}
-
 For Dedicated plans, get the target for your project from your {{% vendor/name %}} contact.
-
-{{< /version/only >}}
 
 {{< codetabs >}}
 
