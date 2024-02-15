@@ -41,7 +41,6 @@ Note that you can [keep an eye on those costs](/manage-resources/resource-billin
 
 {{% /note %}}
 
-
 ## Set a resource initialization strategy
 
 {{% vendor/name %}} provides the following resource initialization strategies:
@@ -49,7 +48,7 @@ Note that you can [keep an eye on those costs](/manage-resources/resource-billin
 | Strategy | Description |
 | ---------| ----------- |
 | `default`  | Initializes the new containers using the [{{% vendor/name %}} default resources](#default-resources).</br>This strategy applies when you first deploy your project (or new container) unless you explicitly set another strategy, or allocate resources manually via the `resources:set` CLI command.  |
-| `manual`   | With this strategy, the first deployment fails and you need to configure resources manually through [the Console](/manage-resources/adjust-resources.md), or using `resources:set` in the CLI. |
+| `manual`   | With this strategy, the first deployment fails and you need to configure resources manually through [the Console](/manage-resources/adjust-resources.md), or using `resources:set` in the CLI.</br> The benefit of this strategy is that you can set the exact resources you want with a single deployment. Other strategies may require fine-tuning and therefore generate a second deployment. In this case, your environment would run for a short time with unwanted resources, and both deployments would generate downtime.|
 | `minimum`  | Initializes the new containers using the {{% vendor/name %}} minimum resources (see below). |
 | `parent`   | Initializes the new containers using the same resources as the parent environment.</br>If there is no parent environment, or if the container doesn't already exist on the parent, the `default` strategy applies instead. |
 | `child`    | Only available when merging a child environment into its parent environment. Initializes the new containers using the same resources as the child environment. |
@@ -193,12 +192,6 @@ By default, when you [branch an environment](/glossary.md#branch) to create a ne
 the child environment inherits all the resources from its parent.
 However, you can set another [resource initialization strategy](#set-a-resource-initialization-strategy).
 
-{{% note theme="info" title="Prerequisite" %}}
-
-Make sure `sizing_api_enabled` is set to `true` in your `{{% vendor/configfile "app" %}}` file.
-
-{{% /note %}}
-
 {{< codetabs >}}
 
 +++
@@ -208,13 +201,13 @@ title=Using the CLI
 Run the following command:
 
 ```bash {location="Terminal"}
-environment:branch --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
+upsun environment:branch --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
 ```
 
 For example, to use the `minimum` resource initialization strategy, run the following command:
 
 ```bash {location="Terminal"}
-environment:branch --resources-init=minimum
+upsun environment:branch --resources-init=minimum
 ```
 
 <--->
@@ -234,16 +227,13 @@ title=In the Console
 ### Environment merge
 
 When you [merge](/glossary.md#merge) a child environment into a parent environment,
-any app or service on the child environment is merged into the parent.
-By default, the resources from the child environment are also merged into the parent.
+all apps and services are copied from the child to the parent.
 
-However, you can set another resource initialization strategy.
+Such merges don't affect resources allocated to apps and services that already existed on the parent environment.
 
-{{% note theme="info" title="Prerequisite" %}}
-
-Make sure `sizing_api_enabled` is set to `true` in your `{{% vendor/configfile "app" %}}` file.
-
-{{% /note %}}
+By default, when a **new** app or service is copied to the parent environment,
+it is given the same resources as on the child environment.
+However, you can set another resource initialization strategy:
 
 {{< codetabs >}}
 
@@ -254,13 +244,13 @@ title=Using the CLI
 Run the following command:
 
 ```bash {location="Terminal"}
-environment:merge --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
+upsun environment:merge --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
 ```
 
 For example, to use the `manual` resource initialization strategy, run the following command:
 
 ```bash {location="Terminal"}
-environment:merge --resources-init=manual
+upsun environment:merge --resources-init=manual
 ```
 
 <--->
@@ -283,22 +273,16 @@ If there is no parent environment, the [`default` resource initialization strate
 
 You can also set another resource initialization strategy using the CLI.
 
-{{% note theme="info" title="Prerequisite" %}}
-
-Make sure `sizing_api_enabled` is set to `true` in your `{{% vendor/configfile "app" %}}` file.
-
-{{% /note %}}
-
 Run the following command:
 
 ```bash {location="Terminal"}
-environment:activate --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
+upsun environment:activate --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
 ```
 
 For example, to use the `minimum` resource initialization strategy, run the following command:
 
 ```bash {location="Terminal"}
-environment:activate --resources-init=minimum
+upsun environment:activate --resources-init=minimum
 ```
 
 ### Backup restoration
@@ -309,12 +293,6 @@ If there is no parent environment, the [`default` resource initialization strate
 
 You can also set another resource initialization strategy.
 
-{{% note theme="info" title="Prerequisite" %}}
-
-Make sure `sizing_api_enabled` is set to `true` in your `{{% vendor/configfile "app" %}}` file.
-
-{{% /note %}}
-
 {{< codetabs >}}
 
 +++
@@ -324,13 +302,13 @@ title=Using the CLI
 Run the following command:
 
 ```bash {location="Terminal"}
-backup:restore --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
+upsun backup:restore --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
 ```
 
 For example, to use the `manual` resource initialization strategy, run the following command:
 
 ```bash {location="Terminal"}
-backup:restore --resources-init=manual
+upsun backup:restore --resources-init=manual
 ```
 
 <--->
@@ -351,19 +329,16 @@ title=In the Console
 
 ## Environment sync
 
-When you [sync an environment](/glossary.md#sync),
-changes in Production are copied to your Staging environment.
-You can synchronize only the code, only the data (databases, files), or both.
+[Syncing an environment](/glossary.md#sync) means copying changes from a parent environment to a child environment.
 
-As your Staging environment's disk size may be smaller than your Production environment's disk size,
-you can also sync resources.
-This ensures that there is enough disk on the Staging environment to successfully complete the sync.
+You can sync only the code, only the data (databases, files), only the resources (CPU and RAM, instances, and disk space),
+or any combination of these three elements.
 
-To sync resources, follow these instructions.
+{{% note %}}
 
-{{% note theme="info" title="Prerequisite" %}}
-
-Make sure `sizing_api_enabled` is set to `true` in your `{{% vendor/configfile "app" %}}` file.
+The child environment's disk size may be smaller than the parent's.
+If so, when you only sync the data, {{% vendor/name %}} automatically adjusts the child environment’s disk size so it matches the parent environment’s disk size.
+This ensures the sync can succeed.
 
 {{% /note %}}
 
@@ -376,7 +351,7 @@ title=Using the CLI
 Run the following command:
 
 ```bash {location="Terminal"}
-{{% vendor/name %}}  sync code data resources
+upsun sync code data resources
 ```
 
 <--->
