@@ -11,11 +11,9 @@ keywords:
 Because the services are included in your project, you can manage them through Git
 and they're backed up together with the rest of your project.
 
-Your project defines the services configuration in a file named `{{< vendor/configfile "services" >}}`.
+Your project defines the services configuration from a top-level key called `services`, which is placed in a unified configuration file like `{{< vendor/configfile "services" >}}`.
 
 If you don't need any services (such as for a static website), you don't need to include this configuration. Read on to see how to add services.
-
-![Services](/images/management-console/relationships.png "0.50")
 
 ## Add a service
 
@@ -39,16 +37,15 @@ An example service configuration for two databases might look like this:
 ```yaml {configFile="services"}
 {{% snippet name="database1" config="service"  %}}
     type: mariadb:{{% latest "mariadb" %}}
-    disk: 2048
 {{% /snippet %}}
 {{% snippet name="database2" config="service" globKey="false"  %}}
     type: postgresql:{{% latest "postgresql" %}}
-    disk: 1024
 {{% /snippet %}}
 ```
 
-This YAML file is a dictionary defining all of the services you want to use.
-The top-level key is a custom service name ({{<variable "SERVICE_NAME" >}}; in the example, `database1` and `database2`), which you use to identify the service in step 2.
+This YAML file contains a dictionary defining all of the services you want to use.
+The top-level key `services` defines an object of all of the services to be provisioned for the project.
+Below that, come custom service names ({{<variable "SERVICE_NAME" >}}; in the example, `database1` and `database2`), which you use to identify services in step 2.
 
 You can give it any name you want with lowercase alphanumeric characters, hyphens, and underscores.
 
@@ -67,26 +64,17 @@ The following table presents the keys you can define for each service:
 | Name            | Type       | Required          | Description |
 | --------------- | ---------- | ----------------- | ----------- |
 | `type`          | `string`   | Yes               | One of the [available services](#available-services) in the format `type:version`. |
-| `disk`          | `integer`  | For some services | The size in [MB](/glossary.md#mb) of the [persistent disk](#disk) allocated to the service. Can't be set for memory-resident-only services such as `memcache` and `redis`. Limited by your plan settings. |
-| `size`          | `string`   |                   | How many CPU and memory [resources to allocate](#size) to the service. Possible values are `AUTO`, `S`, `M`, `L`, `XL`, `2XL`, and `4XL`. Limited by your plan settings.<BR><BR>When `AUTO` applies, available resources are automatically balanced out based on the number of containers on your plan, so that no container is oversized compared to the others. To view the actual sizes of your containers, check the **Environment Configuration** section in your deployment [activity logs](../increase-observability/logs/access-logs.md#activity-logs). |
 | `configuration` | dictionary | For some services | Some services have additional specific configuration options that can be defined here, such as specific endpoints. See the given service page for more details. |
 | `relationships` | dictionary | For some services | Some services require a relationship to your app. The content of the dictionary has the same type as the `relationships` dictionary for [app configuration](../create-apps/app-reference.md#relationships). The `endpoint_name` for apps is always `http`. |
 
-##### Disk
+##### Resources (CPU, RAM, disk)
+
+{{% vendor/name %}} allows you to configure resources (CPU, RAM, and disk) per environment for each of your services.
+For more information, see how to [manage resources](/manage-resources.md).
 
 {{% disk-space-mb %}}
 
 {{% disk-downsize type="service" %}}
-
-##### Size
-
-Resources are distributed across all containers in a project from the total available from your [plan size](../administration/pricing/_index.md).
-
-By default, {{% vendor/name %}} allocates CPU and memory resources to each container automatically.
-Some services are optimized for high CPU load, some for high memory load.
-If your plan is sufficiently large for bigger containers, you can increase the size of your service container.
-
-Note that service containers in preview environments are always set to size `S`.
 
 ### 2. Connect the service
 
@@ -113,7 +101,7 @@ relationships:
 An example relationship to connect to the databases given in the [example in step 1](#1-configure-the-service):
 
 ```yaml {configFile="app"}
-{{< snippet name="<APP_NAME>" config="app" root="false">}}
+{{% snippet name="<APP_NAME>" config="app" root="false" %}}
 
 # Other options...
 
@@ -124,11 +112,9 @@ relationships:
 {{% /snippet %}}
 {{% snippet name="database1" config="service" placeholder="true"  %}}
     type: mariadb:{{% latest "mariadb" %}}
-    disk: 2048
 {{% /snippet %}}
 {{% snippet name="database2" config="service" globKey="false" placeholder="true"  %}}
     type: postgresql:{{% latest "postgresql" %}}
-    disk: 1024
 {{% /snippet %}}
 ```
 

@@ -14,29 +14,11 @@ To switch from Elasticsearch, follow the same procedure as for [upgrading](#upgr
 
 ## Supported versions
 
-<!--
-To update the versions in this table, use docs/data/registry.json
--->
+In the list below, notice that there you only specify the major version.
+Each version represents a rolling release of the latest minor version available from the upstream.
+The latest compatible minor version and patches are applied automatically.
 
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 3</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="opensearch" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="opensearch" status="supported" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="opensearch" status="supported" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
-
-On Grid and {{% names/dedicated-gen-3 %}}, from version 2, you only specify the major version.
-The latest compatible minor version and patches are applied automatically. On Grid, version 1 represents a rolling release - the latest minor version available from the upstream.
+{{< image-versions image="opensearch" status="supported" environment="grid" >}}
 
 You can see the latest minor and patch versions of OpenSearch available from the [`2.x`](https://opensearch.org/lines/2x.html) and [`1.x`](https://opensearch.org/lines/1x.html) release lines.
 
@@ -46,22 +28,7 @@ The following versions are still available in your projects,
 but they're at their end of life and are no longer receiving security updates from upstream,
 or are no longer the recommended way to configure the service on {{% vendor/name %}}.
 
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 3</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="opensearch" status="deprecated" environment="grid" >}}</td>
-            <td>{{< image-versions image="opensearch" status="deprecated" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="opensearch" status="deprecated" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
+{{< image-versions image="opensearch" status="deprecated" environment="grid" >}}
 
 To ensure your project remains stable in the future,
 switch to [a supported version](#supported-versions).
@@ -107,7 +74,6 @@ relationships:
 {{% /snippet %}}
 {{% snippet name="searchopen" config="service" placeholder="true"  %}}
     type: opensearch:{{% latest "opensearch" %}}
-    disk: 256
 {{% /snippet %}}
 ```
 
@@ -149,7 +115,6 @@ To do so, include the following in your `{{< vendor/configfile "services" >}}` c
 ```yaml {configFile="services"}
 {{% snippet name="search" config="service"  %}}
     type: opensearch:{{% latest "opensearch" %}}
-    disk: 2048
     configuration:
         authentication:
             enabled: true
@@ -171,7 +136,6 @@ For example:
 {{% snippet name="search:opensearch" config="route" subDom="os" / %}}
 {{% snippet name="search" config="service" placeholder="true"  %}}
     type: opensearch:{{% latest "opensearch" %}}
-    disk: 2048
     configuration:
         authentication:
             enabled: true
@@ -186,7 +150,6 @@ To enable them, list them under the `configuration.plugins` key in your `{{< ven
 ```yaml {configFile="services"}
 {{% snippet name="search" config="service"  %}}
     type: "opensearch:{{% latest "opensearch" %}}"
-    disk: 1024
     configuration:
         plugins:
             - analysis-icu

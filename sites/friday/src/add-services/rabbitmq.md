@@ -20,80 +20,46 @@ and your messages a safe place to live until they're received.
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 3</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="rabbitmq" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="rabbitmq" status="supported" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="rabbitmq" status="supported" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
+{{< image-versions image="rabbitmq" status="supported" environment="grid" >}}
 
 {{% deprecated-versions %}}
 
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 3</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="rabbitmq" status="deprecated" environment="grid" >}}</td>
-            <td>{{< image-versions image="rabbitmq" status="deprecated" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="rabbitmq" status="deprecated" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
+{{< image-versions image="rabbitmq" status="deprecated" environment="grid" >}}
 
 ## Usage example
 
 {{% endpoint-description type="rabbitmq" /%}}
 
-<!-- Version 1: Codetabs using config reader + examples.docs.platform.sh -->
-{{< codetabs >}}
+```yaml {configFile="app"}
+{{% snippet name="myapp" config="app" root="myapp"  %}}
+# Relationships enable an app container's access to a service.
+relationships:
+    rabbitmqqueue: "queuerabbit:rabbitmq"
+{{% /snippet %}}
+{{% snippet name="queuerabbit" config="service" placeholder="true"  %}}
+    type: rabbitmq:{{% latest "rabbitmq" %}}
+    disk: 256
+{{% /snippet %}}
+```
 
-+++
-title=Go
-file=static/files/fetch/examples/golang/rabbitmq
-highlight=go
-+++
+{{% v2connect2app serviceName="queuerabbit" relationship="rabbitmqqueue" var="AMQP_URL"%}}
 
-<--->
+```bash {location="myapp/.environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
 
-+++
-title=Java
-file=static/files/fetch/examples/java/rabbitmq
-highlight=java
-+++
+# Set environment variables for individual credentials.
+export QUEUE_SCHEME=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].scheme")
+export QUEUE_USERNAME=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].username")
+export QUEUE_PASSWORD=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].password")
+export QUEUE_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].host")
+export QUEUE_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].port")
 
-<--->
+# Set a single RabbitMQ connection string variable for AMQP.
+export AMQP_URL="${QUEUE_SCHEME}://${QUEUE_USERNAME}:${QUEUE_PASSWORD}@${QUEUE_HOST}:${QUEUE_PORT}/"
+```
 
-+++
-title=PHP
-file=static/files/fetch/examples/php/rabbitmq
-highlight=php
-+++
-
-<--->
-
-+++
-title=Python
-file=static/files/fetch/examples/python/rabbitmq
-highlight=python
-+++
-
-{{< /codetabs >}}
+{{% /v2connect2app %}}
 
 ## Connect to RabbitMQ
 
@@ -127,20 +93,13 @@ You can access this UI with an SSH tunnel.
 
 To open a tunnel, follow these steps.
 
-1.
-   a) (On [grid environments](/glossary.md#grid)) SSH into your app container with a flag for local port forwarding:
-
+1.  SSH into your app container with a flag for local port forwarding:
+2.
     ```bash
     ssh $({{% vendor/cli %}} ssh --pipe) -L 15672:{{< variable "RELATIONSHIP_NAME" >}}.internal:15672
     ```
 
     {{< variable "RELATIONSHIP_NAME" >}} is the [name you defined](#2-add-the-relationship).
-
-   b) (On [dedicated environments](/glossary.html#dedicated-gen-2)) SSH into your cluster with a flag for local port forwarding:
-
-    ```bash
-    ssh $({{% vendor/cli %}} ssh --pipe) -L 15672:localhost:15672
-    ```
 
 2.  Open `http://localhost:15672` in your browser.
     Log in using the username and password from the [relationship](#relationship-reference).
@@ -160,7 +119,6 @@ To create virtual hosts, add them to your configuration as in the following exam
 ```yaml {configFile="services"}
 {{% snippet name="rabbitmq" config="service"  %}}
     type: "rabbitmq:{{% latest "rabbitmq" %}}"
-    disk: 512
     configuration:
         vhosts:
             - host1
