@@ -72,8 +72,7 @@ If you already have an SPF record, please add SendGrid into your existing record
 
 {{< premium-features/tiered "Enterprise and Elite" >}}
 
-If you're on an Enterprise or Elite plan,
-you can request for DomainKeys Identified Mail (DKIM) to be enabled on your domain.
+You can request for DomainKeys Identified Mail (DKIM) to be enabled on your domain.
 
 DKIM improves your delivery rate as an email sender.
 Learn more about [how DKIM works](https://docs.sendgrid.com/glossary/dkim).
