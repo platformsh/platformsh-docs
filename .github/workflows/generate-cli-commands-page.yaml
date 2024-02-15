@@ -1,0 +1,74 @@
+name: Generate CLI commands doc page
+
+on:
+  workflow_dispatch:
+    branches: [ main ]
+  schedule:
+    # Run at 00:15 every day
+    - cron: '15 */19 * * *'
+
+env:
+  PLATFORMSH_CLI_NO_INTERACTION: 1
+  PLATFORM_PROJECT: ${{ vars.PROJECT_ID }}
+  PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
+  SLEEP_TIME: 5
+  NUM_TRIES: 30
+  BRANCH_TITLE: cli-commands-doc-page
+  DEFAULT_BRANCH: "main"
+  PLATFORMSH_CLI_DOC_PATH: "sites/platform/src/administration/cli/reference.md"
+  UPSUN_CLI_DOC_PATH: "sites/friday/src/administration/cli/reference.md"
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.DEFAULT_BRANCH }}
+          token: ${{ secrets.WORKFLOW_TOKEN }}
+
+      # Set up workflow environment to use the Platform.sh CLI
+      - name: Set up Platform.sh CLI
+        uses: ./.github/actions/set-up-cli
+
+      # Set up workflow environment to use the Upsun CLI
+      - name: Set up Upsun CLI
+        uses: ./.github/actions/set-up-upsun-cli
+
+      - name: Make changes to pull request
+        run: |
+          # Generate Platform.sh CLI command doc pages
+
+          # Adding CLI Commands specific page
+          echo "Generating Platform.sh CLI doc page"
+          ./shared/scripts/gen-cli-docs.sh ${{ env.PLATFORMSH_CLI_DOC_PATH }} platform
+          echo "Generating Upsun CLI doc page"
+          ./shared/scripts/gen-cli-docs.sh ${{ env.UPSUN_CLI_DOC_PATH }} upsun
+
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.WORKFLOW_TOKEN }}
+          commit-message: Update CLI docs to latest version
+          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
+          signoff: false
+          add-paths: |
+            ${{ env.PLATFORMSH_CLI_DOC_PATH }}
+            ${{ env.UPSUN_CLI_DOC_PATH }}
+          branch: ${{ env.BRANCH_TITLE }}
+          delete-branch: false
+          title: '[CLI-BOT] Update on doc pages for CLI commands'
+          body: |
+            Some changes occurs on the CLI Commands doc page, that is automatically generated from:
+             - `platform list --format=md`
+             - `upsun list --format=md`
+          labels: |
+            report
+            automated pr
+          #assignees: flovntp
+          #reviewers: flovntp
+          draft: false

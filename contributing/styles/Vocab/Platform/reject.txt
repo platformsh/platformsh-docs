@@ -1,9 +1,0 @@
-configuation
-MongDB
-postgreSQL
-strapi
-
-Platform.sh
-.platform/routes.yaml
-.platform/services.yaml
-.platform.app.yaml

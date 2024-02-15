@@ -34,15 +34,8 @@ Once the app has gone through all of the build steps, it can connect to services
 
 ### Build steps
 
-{{% version/specific %}}
-<!-- Platform.sh -->
 1. **Validate configuration**:
    The configuration is checked by validating the `{{< vendor/configdir >}}` directory and scanning the repository for any app configurations to validate individually.
-<--->
-<!-- Upsun -->
-1. **Validate configuration**:
-   The configuration is checked by validating the `{{< vendor/configdir >}}` directory and scanning the repository for any app configuration to validate.
-{{% /version/specific %}}
 2. **Pull container images**:
    Any container images that have been built before and that don't have any changes are pulled to be reused.
 3. **Install dependencies**:
