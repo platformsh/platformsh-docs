@@ -18,30 +18,16 @@ the various dependencies, certificates, and connections your app needs to run.
 The **recommended tool** for local development with {{% vendor/name %}} is **[DDEV](./ddev.md)**.
 The integration with DDEV is maintained by {{% vendor/name %}} to ensure it works smoothly.
 
-{{% version/specific %}}
-<!-- Platform.sh -->
-Other Docker-based tools are also supported, such as [Docksal](./docksal.md) and [Lando](./lando.md).
-If you choose to use a Docker-based tool, follow the steps on its page.
-
-<--->
-<!-- Upsun -->
 If you choose to use DDEV, follow the steps [on its page](./ddev.md).
-{{% /version/specific %}}
+
 Otherwise, follow these steps to run your app on your computer.
 
 ## Before you begin
 
 You need to have:
-{{% version/specific %}}
-<!-- Platform.sh -->
-- A {{< vendor/name >}} account:
-  new users can sign up for a [free trial account](https://auth.api.platform.sh/register)
 
-<--->
-<!-- Upsun -->
 - A {{< vendor/name >}} account:
   new users can [register here](https://upsun.com/register/)
-{{% /version/specific %}}
 - A working project
 - [Git](https://git-scm.com/downloads)
 - The [{{% vendor/name %}} CLI](../../administration/cli/_index.md)
@@ -80,29 +66,3 @@ If your app requires services to run, you have two options for developing locall
   including all services.
 
 Choose the option that works for you and get your services running.
-
-{{% version/specific %}}
-## 3. Build your site locally
-
-If you want your local development environment to be enclosed 
-so your main system remains unaffected by the build and its dependencies, 
-you can use a local virtual machine.
-
-To build your site locally:
-
-1.  Install any dependencies or tools needed for the build process.
-
-2.  Run the following command:
-
-    ```bash
-    {{% vendor/cli %}} build
-    ```
-
-    Your app is built in the `{{< vendor/configfile "apps" >}}/local/builds` directory.
-    Unless you specify otherwise with the `--destination` flag,
-    a symbolic link from your build is created as the `_www` directory at your project root.
-
-3.  To check that the build was successful, move to the `_www` directory
-    and run a web server.
-<--->
-{{% /version/specific %}}
