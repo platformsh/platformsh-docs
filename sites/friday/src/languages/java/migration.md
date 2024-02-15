@@ -37,14 +37,15 @@ and [services](../../add-services/_index.md).
 ### Application
 
 ```yaml {configFile="app"}
-name: app
-type: 'java:<VERSION>' [1]
-disk: 1024
-hooks:
-    build: [2]
-web:
-    commands:
-        start: [3]
+applications:
+    app:
+        type: 'java:<VERSION>'
+
+        hooks:
+            build: [2]
+        web:
+            commands:
+                start: [3]
 ```
 1. [A Java version](/languages/java/_index.md#supported-versions), e,g.: `java:{{% latest "java" %}}`
 2. [Hooks define what happens when building the application](../../create-apps/hooks/_index.md). This build process typically generates an executable file such as a uber-jar e.g.: `mvn clean package`
@@ -59,20 +60,37 @@ Be aware that after the build, it creates a read-only system. You have the [moun
 
 ### Route
 
-```yaml {configFile="routes"}
-"https://{default}/":
-    type: upstream
-    upstream: "app:http" [1]
-"https://www.{default}/":
-    type: redirect
-    to: "https://{default}/"
+```yaml {configFile="app"}
+routes:
+    "https://{default}/":
+        type: upstream
+        upstream: "app:http" [1]
+    "https://www.{default}/":
+        type: redirect
+        to: "https://{default}/"
+
+applications:
+    app:
+        type: 'java:<VERSION>'
+
+        hooks:
+            build: [2]
+        web:
+            commands:
+                start: [3]
 ```
 1. It defines the application will link in the route, e.g.: `"app:http"`
 
-{{< note >}}
+{{< note version="1" >}}
 Application instances have a limited amount of memory at build time, which has a maximum of 8 GB.
 At runtime that limit depends on your plan and configuration.
 A stateless application can be scaled horizontally to multiple application instances using Varnish in a [load balancer](https://community.platform.sh/t/how-to-configure-load-balancer-in-a-single-application/553) configuration.
+{{< /note >}}
+
+{{< note version="2" >}}
+Application instances have a limited amount of memory at build time, which has a maximum of 8 GB.
+At runtime that limit depends on [the resources you have defined for your application container](/manage-resources.md) using `{{% vendor/cli %}} resources:set`.
+A stateless application can be scaled horizontally to multiple application instances with `{{% vendor/cli %}} resources:set` or by using Varnish in a [load balancer](https://community.platform.sh/t/how-to-configure-load-balancer-in-a-single-application/553) configuration.
 {{< /note >}}
 
 ## Microservices
@@ -97,6 +115,9 @@ You have the option to use several languages in microservices. If you're using J
 
 {{< note >}}
 You can load balance to some or [all applications in the project cluster](https://community.platform.sh/t/how-to-configure-load-balancer-in-a-multiple-applications/554).
+
+While the table above shows examples for Platform.sh rather than for {{% vendor/name %}}, the same rules apply with only slight changes in configuration.
+
 {{< /note >}}
 
 ## Access to managed services
@@ -132,6 +153,10 @@ export DB_HOST=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".databas
 | [Spring Data JPA](https://community.platform.sh/t/how-to-overwrite-spring-data-variable-to-access-platform-sh-services/518) | [Source](https://github.com/platformsh-examples/java-overwrite-configuration/tree/master/spring-jpa) |
 | [Payara JPA](https://community.platform.sh/t/how-to-overwrite-variables-to-payara-jpa-access-platform-sh-sql-services/519) | [Source](https://github.com/platformsh-examples/java-overwrite-configuration/blob/master/payara/README.md) |
 
+{{< note version="2" >}}
+While the table above shows examples for Platform.sh rather than for {{% vendor/name %}}, the same rules apply with only slight changes in configuration.
+{{< /note >}}
+
 To reduce the number of lines in the application file and to make it cleaner,
 you have the option to move the variable environment to another file: a [`.environment` file](../../development/variables/set-variables.md#set-variables-via-script).
 
@@ -150,27 +175,15 @@ export JAVA_OPTS="$JAVA_MEMORY -XX:+ExitOnOutOfMemoryError"
 This `.environment` can interact to each application file. E.g.:
 
 ```yaml
-name: app
-type: "java:11"
-disk: 1024
-hooks:
-    build: ./mvnw package -DskipTests -Dquarkus.package.uber-jar=true
-relationships:
-    database: "db:postgresql"
-web:
-    commands:
-        start: java -jar $JAVA_OPTS $CREDENTIAL -Dquarkus.http.port=$PORT jarfile.jar
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'java:{{% latest "java" %}}'
+        hooks:
+            build: ./mvnw package -DskipTests -Dquarkus.package.uber-jar=true
+        relationships:
+            database: "db:postgresql"
+        web:
+            commands:
+                start: java -jar $JAVA_OPTS $CREDENTIAL -Dquarkus.http.port=$PORT jarfile.jar
 ```
-### Using Java Config Reader
-
-If your framework doesn't support configuration via environment variables, use the [Config Reader](../../development/variables/use-variables.md#access-variables-in-your-app).
-This library provides a streamlined way to interact with a {{% vendor/name %}} environment. It offers utility methods to access routes and relationships more cleanly than reading the raw environment variables yourself. [See the maven dependency](https://mvnrepository.com/artifact/sh.platform/config).
-
-```java
-import Config;
-
-Config config = new Config();
-MySQL database = config.getCredential("database", MySQL::new);
-DataSource dataSource = database.get();
-```
-

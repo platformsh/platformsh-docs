@@ -158,13 +158,15 @@ To set up Poetry on {{% vendor/name %}}, follow these steps:
     Set the variables as follows:
 
 ```yaml {configFile="app"}
-variables:
-    env:
-        POETRY_VIRTUALENVS_IN_PROJECT: true
-        POETRY_VIRTUALENVS_CREATE: true
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'python:{{% latest "python" %}}'
+        variables:
+            env:
+                POETRY_VIRTUALENVS_IN_PROJECT: true
+                POETRY_VIRTUALENVS_CREATE: true
 ```
-
-
 2.  Install Poetry.
     You can specify the latest or a specific version of Poetry in your deployments to ensure repeatable builds.
 
@@ -248,11 +250,3 @@ hooks:
         export PATH="/app/.local/bin:$PATH"
     fi
     ```
-
-## Anaconda
-
-Some frameworks and tools recommend using Anaconda or Miniconda to manage packages in Python.
-The following Community resources can help get you started with them:
-
-- [Running and installing Anaconda/Miniconda on {{% vendor/name %}}](https://community.platform.sh/t/how-to-run-an-anaconda-miniconda-python-stack-on-platform-sh/230)
-- [Running R Shiny using Miniconda on {{% vendor/name %}}](https://community.platform.sh/t/how-to-run-r-shiny-on-platform-sh/231)

@@ -9,31 +9,24 @@ description: "{{% vendor/name %}} supports building and deploying applications w
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-<table>
-    <thead>
-        <tr>
-            <th>Grid and {{% names/dedicated-gen-3 %}}</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="lisp" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="lisp" status="supported" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
+{{< image-versions image="ruby" status="supported" environment="grid" >}}
 
 {{% language-specification type="lisp" display_name="Lisp" %}}
 
 ```yaml {configFile="app"}
-type: 'lisp:<VERSION_NUMBER>'
+applications:
+    # The app's name, which must be unique within the project.
+    <APP_NAME>:
+        type: 'lisp:<VERSION_NUMBER>'
 ```
 
 For example:
 
 ```yaml {configFile="app"}
-type: 'lisp:{{% latest "lisp" %}}'
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'lisp:{{% latest "lisp" %}}'
 ```
 
 ## Assumptions
@@ -47,8 +40,11 @@ type: 'lisp:{{% latest "lisp" %}}'
 If you don't want these assumptions, you can disable this behavior by specifying in your `{{< vendor/configfile "app" >}}`:
 
 ```yaml {configFile="app"}
-build:
-    flavor: none
+applications:
+    app:
+        type: 'lisp:{{% latest "lisp" %}}'
+        build:
+            flavor: none
 ```
 
 ## Dependencies
@@ -60,21 +56,29 @@ The recommended way to handle Lisp dependencies on {{% vendor/name %}} is using 
 If you wish to change the distributions that QuickLisp is using, you can specify those as follows, specifying a distribution name, its URL and, an optional version:
 
 ```yaml {configFile="app"}
-runtime:
-    quicklisp:
-        {{< variable "DISTRIBUTION_NAME" >}}:
-            url: "..."
-            version: "..."
+applications:
+    # The app's name, which must be unique within the project.
+    <APP_NAME>:
+        type: 'lisp:<VERSION_NUMBER>'
+        runtime:
+            quicklisp:
+                {{< variable "DISTRIBUTION_NAME" >}}:
+                    url: "..."
+                    version: "..."
 ```
 
 For example:
 
 ```yaml {configFile="app"}
-runtime:
-    quicklisp:
-        quicklisp:
-            url: 'http://beta.quicklisp.org/dist/quicklisp.txt'
-            version: '2019-07-11'
+applications:
+    # The app's name, which must be unique within the project.
+    app:
+        type: 'lisp:{{% latest "lisp" %}}'
+        runtime:
+            quicklisp:
+                quicklisp:
+                    url: 'http://beta.quicklisp.org/dist/quicklisp.txt'
+                    version: '2019-07-11'
 ```
 
 ## Built-in variables
@@ -95,16 +99,16 @@ Note that the start command _must_ run in the foreground. Should the program ter
 The following basic `{{< vendor/configfile "app" >}}` file is sufficient to run most Lisp applications.
 
 ```yaml {configFile="app"}
-name: app
-type: lisp:1.5
-web:
-    commands:
-        start: ./example
-    locations:
-        /:
-            allow: false
-            passthru: true
-disk: 512
+applications:
+    app:
+        type: 'lisp:{{% latest "lisp" %}}'
+        web:
+            commands:
+                start: ./example
+            locations:
+                /:
+                    allow: false
+                    passthru: true
 ```
 
 Note that a proxy server is still in front of your app.
@@ -133,8 +137,11 @@ The following is an example of accessing a PostgreSQL instance:
 Given a relationship defined in `{{< vendor/configfile "app" >}}`:
 
 ```yaml {configFile="app"}
-relationships:
-    pg: postgresql:postgresql
+applications:
+    app:
+        type: 'lisp:{{% latest "lisp" %}}'
+        relationships:
+            pg: postgresql:postgresql
 ```
 
 The following would access that relationship, and provide your Lisp program the credentials to connect to a PostgreSQL instance. Add this to your `.asd` file:
@@ -190,8 +197,6 @@ The following is a basic example of a Hunchentoot-based web app
 Notice how it gets the `PORT` from the environment and how it sleeps at the end,
 as `(start acceptor)` immediately yields and {{% vendor/name %}} requires apps to run in the foreground.
 
-
-## Project templates
 
 {{< repolist lang="lisp" displayName="Lisp" >}}
 

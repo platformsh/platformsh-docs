@@ -12,10 +12,9 @@ By default, {{% vendor/name %}} automatically sets a maximum number of PHP-FPM w
 This number is calculated based on three parameters:
 
 - The container memory: the amount of memory you can allot for PHP processing
-  depending on [app size](../../create-apps/app-reference.md#sizes).
+  depending on [your defined application resources](/manage-resources.md).
 - The request memory: the amount of memory an average PHP request is expected to require.
 - The reserved memory: the amount of memory you need to reserve for tasks that aren't related to requests.
-
 The number is calculated as follows: ![The sum of container memory minus reserved memory divided by request memory](/images/php/PHP-FPM-Workers-Calculation.png "0.2")
 
 Note that when the resulting number is a decimal,
@@ -82,17 +81,6 @@ and [set your request memory](#2-adjust-the-maximum-number-of-php-fpm-workers) t
 Setting a lower request memory presents a risk of allowing more concurrent requests.
 This can result in memory swapping and latencies.
 
-<!-- @todo: upsun equivalent -->
-For further help in estimating the optimal request memory for your app,
-use the [log analyzer tool for {{% vendor/name %}}](https://github.com/pixelant/platformsh-analytics)
-by [Pixelant](https://www.pixelant.net/).
-This tool offers a better visualization of access logs.
-It also provides additional insights into the operation of your app.
-These can help you further optimize your configuration
-and provide guidance on when to increase your plan size.
-Note that this tool is maintained by a third party,
-not by {{% vendor/name %}}.
-
 ## 2. Adjust the maximum number of PHP-FPM workers
 
 By default, the request memory is set to 45 MB
@@ -109,11 +97,15 @@ if you estimate your [optimal request memory](#1-estimate-the-optimal-request-me
 and your reserved memory to be 80 MB,
 you can use:
 
+<--->
 ```yaml {configFile="app"}
-runtime:
-    sizing_hints:
-        request_memory: 110
-        reserved_memory: 80
+applications:
+    app:
+        type: 'php:{{% latest "php" %}}'
+        runtime:
+            sizing_hints:
+                request_memory: 110
+                reserved_memory: 80
 ```
 Note that the minimum value for the `request_memory` key is 10 MB
 and the minimum value for the `reserved_memory` key is 70 MB.

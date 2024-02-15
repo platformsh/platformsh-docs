@@ -17,8 +17,7 @@ Xdebug is automatically disabled.
 
 ## Before you begin
 
-The following table shows the PHP versions where Xdebug is available on Grid environments:
-
+The following table shows the PHP versions where Xdebug is available:
 
 {{< php-extensions/single extension="xdebug" >}}
 
@@ -35,9 +34,12 @@ Xdebug runs as a second PHP-FPM process used only for debugging requests, leavin
 To enable Xdebug, add the following to your [app configuration](../../create-apps/app-reference.md):
 
 ```yaml {configFile="app"}
-runtime:
-    xdebug:
-        idekey: {{< variable "YOUR_KEY" >}}
+applications:
+    app:
+        type: 'php:{{% latest "php" %}}'
+        runtime:
+            xdebug:
+                idekey: {{< variable "YOUR_KEY" >}}
 ```
 {{< variable "YOUR_KEY" >}} can be any arbitrary alphanumeric string.
 
@@ -50,11 +52,19 @@ you need to explicitly add the Xdebug cookie (`XDEBUG_SESSION`) to the cookie al
 Depending on the cookies already listed, the result should look similar to the following:
 
 ```yaml {configFile="routes"}
-"https://{default}/":
-    # ...
-    cache:
-        enabled: true
-        cookies: ['/^SS?ESS/', 'XDEBUG_SESSION']
+applications:
+    app:
+        type: 'php:{{% latest "php" %}}'
+        runtime:
+            xdebug:
+                idekey: {{< variable "YOUR_KEY" >}}
+
+routes:
+    "https://{default}/":
+        # ...
+        cache:
+            enabled: true
+            cookies: ['/^SS?ESS/', 'XDEBUG_SESSION']
 ```
 Xdebug has several configuration options available.
 They can be set the same way as any other [PHP setting](./_index.md#php-settings).
@@ -112,7 +122,3 @@ The common steps for setup usually include:
     Use the Xdebug helper plugin for your browser to enable debugging.
     Set a break point in your app, then load a page in your browser.
     The request should pause at the break point and allow you to examine the running app.
-
-## What's next
-
-Learn more about how to [set up Xdebug on Dedicated server clusters](https://community.platform.sh/t/set-up-xdebug-on-dedicated-pro-server-clusters/403).

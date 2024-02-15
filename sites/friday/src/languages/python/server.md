@@ -152,11 +152,15 @@ For example, to add a Uvicorn worker class to the pip example for Unix,
 adjust the start command to the following:
 
 ```yaml {configFile="app"}
-web:
-    upstream:
-        socket_family: unix
-    commands:
-        start: "gunicorn -w 4 -k uvicorn.workers.UvicornWorker -b unix:$SOCKET myapp.wsgi:application"
+applications:
+    # The app's name, which must be unique within the project.
+    myapp:
+        type: 'python:{{% latest "python" %}}'
+        web:
+            upstream:
+                socket_family: unix
+            commands:
+                start: "gunicorn -w 4 -k uvicorn.workers.UvicornWorker -b unix:$SOCKET myapp.wsgi:application"
 ```
 ## Daphne
 
@@ -563,9 +567,13 @@ For example, to add a Asyncio worker class to the pip example for Unix,
 adjust the start command to the following:
 
 ```yaml {configFile="app"}
-web:
-    upstream:
-        socket_family: unix
-    commands:
-        start: "hypercorn myapp.asgi:application -b unix:$SOCKET -w 4 -k asyncio"
+applications:
+    # The app's name, which must be unique within the project.
+    myapp:
+        type: 'python:{{% latest "python" %}}'
+        web:
+            upstream:
+                socket_family: unix
+            commands:
+                start: "hypercorn myapp.asgi:application -b unix:$SOCKET -w 4 -k asyncio"
 ```
