@@ -57,12 +57,9 @@ module:
               - "add-services/*"
               # - "add-services/network-storage.md"
 
-              # - "administration/*"
-              - "administration/sso.md"
-              - "administration/pricing/*"
-              - "administration/cli/reference.md"
+              - "administration/*"
 
-              # - "changelog/*"
+              - "changelog/*"
 
               - "create-apps/*"
               # - "create-apps/upgrading.md"
@@ -83,15 +80,11 @@ module:
               - "development/deploy-button.md"
               - "development/transfer-dedicated.md"
 
-              # - "domains/*"
-              - "domains/cdn/managed-fastly.md"
-              - "domains/security/web-application-firewall/fastly.md"
-              - "domains/steps/custom-domains-preview-environments.md"
+              - "domains/*"
 
               - "environments/*"
-              #- "environments/scalability.md"
 
-              # - "feedback/*"
+              - "feedback/*"
 
               - "get-started/*"
 
