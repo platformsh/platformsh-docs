@@ -4,28 +4,6 @@ title: "Troubleshoot disks"
 
 {{% troubleshoot %}}
 
-## Exceeding plan storage limit
-
-Professional plans come with a default amount of storage that you can [change with your plan](../administration/pricing/_index.md).
-The storage is allocated among your services and applications using the `disk` parameter in their configuration files.
-
-You might accidentally set the sum of all `disk` parameters in the files to exceed your plans storage limit.
-For example, by setting `disk: 4096` for a MySQL service in `{{< vendor/configfile "services" >}}`
-and `disk: 4096` in `{{< vendor/configfile "app" >}}` for a plan with a 5&nbsp;GB storage limit.
-
-In such cases, you get an error like the following:
-
-```text
-Error: Resources exceeding plan limit; disk: 8192.00MB > 5120.00MB; try removing a service, or add more storage to your plan
-```
-
-To fix the error, do one of the following:
-
-* Lower the `disk` parameters to a value within your plan's storage limits.
-  Note the [limits to downsizing disks](./app-reference.md#downsize-a-disk).
-* Increase your plan's storage limits.
-  This can only be done by people with the [manage plans permission](../administration/users.md#organization-permissions).
-
 ## Low disk space
 
 If you have set up [health notifications](../integrations/notifications.md),
@@ -59,12 +37,8 @@ If you find that your application or service is running out of disk space,
 you can increase the available storage.
 
 To increase the space available for applications and services,
-use the `disk` keys in your `{{< vendor/configfile "app" >}}` and `{{< vendor/configfile "services" >}}` files.
-The sum of all `disk` keys can't exceed the available storage in your plan.
-
-If you need more storage to fit the sum of all `disk` keys, increase your plan's storage limits.
-This can only be done by people with the [manage plans permission](../administration/users.md#organization-permissions).
-
+use the `{{% vendor/cli %}} resources:set` command.
+For more information, see how to [manage resources](/manage-resources.md).
 ## No space left on device
 
 During the `build` hook, you may see the following error:

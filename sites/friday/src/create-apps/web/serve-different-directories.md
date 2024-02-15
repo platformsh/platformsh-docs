@@ -13,8 +13,6 @@ Your entire Git repository might look like the following:
 ```text
 {{% vendor/configdir %}}
     {{< vendor/configfile "routes" "strip" >}}
-    {{< vendor/configfile "services" "strip" >}}
-    {{< vendor/configfile "apps" "strip" >}}
 application/
     [app-code-files]
 docs-src/
@@ -28,17 +26,21 @@ which you serve with your generated docs.
 Use a [`web` configuration](../app-reference.md#web) similar to the following:
 
 ```yaml {configfile="apps"}
-web:
-    locations:
-        '/':
-            passthru: true
-        '/docs':
-            root: 'docs-public'
-            index:
-                - "index.html"
-            expires: 24h
-            scripts: false
-            allow: true
+applications:
+    docs:
+        source:
+            root: "/"
+            web:
+                locations:
+                    '/':
+                        passthru: true
+                    '/docs':
+                        root: 'docs-public'
+                        index:
+                            - "index.html"
+                        expires: 24h
+                        scripts: false
+                        allow: true
 ```
 
 This way, your app can safely coexist with static files as if it were a single site hierarchy.

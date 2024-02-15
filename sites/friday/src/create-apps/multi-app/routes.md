@@ -16,34 +16,28 @@ To define specific routes for one of your apps, use this `name`.
 
 There are various ways you can define routes for multiple app projects.
 
-![Diagram of a project containing multiple apps](/images/config-diagrams/multiple-app.png "0.5")
-
 In this project, you have a CMS app, two frontend apps (one using Symfony and another using Gatsby),
 and a Mercure Rocks server app, defined as follows:
 
 ```yaml {configFile="apps"}
-- name: admin
-  type: nodejs:16
-  source:
-    root: admin
-  ...
-- name: api
-  type: php:8.2
-  source:
-    root: api
-  ...
-- name: gatsby
-  type: nodejs:18
-  source:
-    root: gatsby
-  ...
-- name: mercure
-  type: golang:1.18
-  source:
-    root: mercure/.config
-  ...
+applications:
+    admin:
+        source:
+            root: admin
+        type: nodejs:{{% latest "nodejs" %}}
+    api:
+        source:
+            root: api
+        type: php:{{% latest "php" %}}
+    gatsby:
+        source:
+            root: gatsby
+        type: nodejs:{{% latest "nodejs" %}}
+    mercure:
+        source:
+            root: mercure/.config
+        type: golang:{{% latest "golang" %}}
 ```
-
 {{< note >}}
 
 You don't need to define a route for each app in the repository.
@@ -62,12 +56,13 @@ Depending on your needs, you could configure the router container
 You could define routes for your apps as follows:
 
 ```yaml {configFile="routes"}
-"https://mercure.{default}/":
-    type: upstream
-    upstream: "mercure:http"
-"https://{default}/":
-    type: upstream
-    upstream: "api:http"
+routes:
+    "https://mercure.{default}/":
+        type: upstream
+        upstream: "mercure:http"
+    "https://{default}/":
+        type: upstream
+        upstream: "api:http"
 ```
 
 So if your default domain is `example.com`, that means:
@@ -87,41 +82,51 @@ so consider using a path like `https://{default}/api` instead.
 Alternatively, you could define your routes as follows:
 
 ```yaml {configFile="routes"}
-"https://{default}/":
-    type: upstream
-    upstream: "api:http"
-"https://{default}/admin":
-    type: upstream
-    upstream: "admin:http"
+routes:
+    "https://{default}/":
+        type: upstream
+        upstream: "api:http"
+    "https://{default}/admin":
+        type: upstream
+        upstream: "admin:http"
 ```
 
 Then you would need to configure each app's `web.locations` property to match these paths:
 
 ```yaml {configFile="apps"}
--   name: api
-    type: php:8.2
-    source:
-        root: api
-    ...
-    web:
-        locations:
-            "/":
-                passthru: "/index.php"
-                root: "public"
-                index:
-                    - index.php
-- name: admin
-  type: nodejs:16
-  source:
-    root: admin
-  ...
-  web:
-    locations:
-      '/admin':
-        passthru: '/admin/index.html'
-        root: 'build'
-        index:
-          - 'index.html'
+applications:
+    admin:
+        source:
+            root: admin
+        type: nodejs:{{% latest "nodejs" %}}
+        ...
+        web:
+            locations:
+              '/admin':
+                  passthru: '/admin/index.html'
+                  root: 'build'
+                  index:
+                    - 'index.html'
+    api:
+        source:
+            root: api
+        type: php:{{% latest "php" %}}
+        ...
+        web:
+            locations:
+                "/":
+                    passthru: "/index.php"
+                    root: "public"
+                    index:
+                        - index.php
+
+routes:
+    "https://{default}/":
+        type: upstream
+        upstream: "api:http"
+    "https://{default}/admin":
+        type: upstream
+        upstream: "admin:http"
 ```
 
 So if your default domain is `example.com`, that means:
