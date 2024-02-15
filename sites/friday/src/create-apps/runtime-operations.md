@@ -13,20 +13,21 @@ For example, if you have a static website,
 you may want to set up a runtime operation to occasionally fetch content from a backend system
 without having to rebuild your whole app.
 
-You can use runtime operations if you have Grid or {{% names/dedicated-gen-3 %}} environments.
-
 ## Define a runtime operation
 
 To define a runtime operation, add a configuration similar to the following:
 
 ```yaml {configFile="app"}
-operations:
-  {{< variable "RUNTIME_OPERATION_NAME" >}}:
-    role: {{< variable "USER_ROLE" >}}
-    commands:
-      start: {{< variable "COMMAND" >}}
+applications:
+    myapp:
+        source:
+            root: "/"
+        operations:
+            {{< variable "RUNTIME_OPERATION_NAME" >}}:
+                role: {{< variable "USER_ROLE" >}}
+                commands:
+                    start: {{< variable "COMMAND" >}}
 ```
-
 When you define a runtime operation,
 you can specify which users can trigger it according to their user `role`:
 
@@ -41,11 +42,15 @@ For example, to allow admin users to clear the cache of a Drupal site,
 you could define an operation like the following:
 
 ```yaml {configFile="app"}
-operations:
-    clear-rebuild:
-        role: admin
-        commands:
-            start: drush cache:rebuild
+applications:
+    myapp:
+        source:
+            root: "/"
+        operations:
+            clear-rebuild:
+                role: admin
+                commands:
+                    start: drush cache:rebuild
 ```
 The name of the runtime operation in this case is `clear-rebuild`.
 
@@ -84,20 +89,10 @@ run the following command:
 
 ### Build your app when using a static site generator
 
-{{< version/specific >}}
-During every {{% vendor/name %}} deployment, a standard [`build` step](/learn/overview/build-deploy.md#the-build) is run.
-When you use a static site generator like [Gatsby](../guides/gatsby/_index.md)
-or [Next.js](../guides/nextjs/_index.md) with [a headless backend](../guides/gatsby/headless/_index.md),
-you need to run a second `build` step to get your app ready for production.
-
-<--->
-
 During every {{% vendor/name %}} deployment, a standard [`build` step](/learn/overview/build-deploy.md#the-build) is run.
 When you use a static site generator like Gatsby
 or Next.js with a headless backend
 you need to run a second `build` step to get your app ready for production.
-
-{{< /version/specific >}}
 
 This is because, as its framework is being built,
 your frontend needs to pull content-related data from your backend’s API
@@ -271,15 +266,16 @@ On a Django project, you can [define custom `django-admin` commands](https://doc
 To do so, define a runtime operation similar to the following:
 
 ```yaml {configFile="app"}
-name: app
-
-type: python:{{% latest "python" %}}
-
-operations:
-    manual-migration:
-        role: admin
-        commands:
-            start: python manage.py manual_migration
+applications:
+    myapp:
+        source:
+            root: "/"
+        type: python:{{% latest "python" %}}
+        operations:
+            manual-migration:
+                role: admin
+                commands:
+                    start: python manage.py manual_migration
 ```
 To trigger your runtime operation, run a command similar to the following:
 

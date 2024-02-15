@@ -12,8 +12,6 @@ How you structure a project with multiple apps depends on how your code is organ
 and what you want to accomplish.
 For example, there are various ways you could set up the following multiple apps:
 
-![Diagram of a project containing multiple apps](/images/config-diagrams/multiple-app.png "0.5")
-
 Here are some example use cases and potential ways to organize the project:
 
 | Use case                                                                                | Structure                                                                                            |
@@ -35,9 +33,7 @@ you can organize your repository like this:
 
 ```txt
 ├── {{% vendor/configdir %}}
-│   ├── {{% vendor/configfile "apps" "strip" %}}   <- Unified app configuration
-│   ├── {{% vendor/configfile "routes" "strip" %}}
-│   └── {{% vendor/configfile "services" "strip" %}}
+│   ├── {{% vendor/configfile "apps" "strip" %}}   <- Unified configuration
 ├── admin
 │   └── ...                 <- API Platform Admin app code
 ├── api-app
@@ -47,7 +43,6 @@ you can organize your repository like this:
 └── mercure
     └── ...                 <- Mercure Rocks app code
 ```
-
 The `api` app is built from the `api-app` directory.</br>
 The `admin` app is built from the `admin` directory.</br>
 The `gatsby` app is built from the `gatsby` directory.</br>
@@ -74,129 +69,130 @@ the build image for your other apps can still be reused.
 Once your repository is organized, you can use a configuration similar to the following:
 
 ```yaml {configFile="apps"}
-api:
-  type: php:8.2
+applications:
+  api:
+    type: php:8.2
 
-  relationships:
-    database: "database:postgresql"
+    relationships:
+      database: "database:postgresql"
 
-  mounts:
-    "/var/cache": "shared:files/cache"
-    "/var/log": "shared:files/log"
-    "/var/sessions": "shared:files/sessions"
+    mounts:
+      "/var/cache": "shared:files/cache"
+      "/var/log": "shared:files/log"
+      "/var/sessions": "shared:files/sessions"
 
-  web:
-    locations:
-      "/":
-        root: "public"
-        passthru: '/index.php'
-        index:
-          - index.php
-        headers:
-          Access-Control-Allow-Origin: "*"
+    web:
+      locations:
+        "/":
+          root: "public"
+          passthru: '/index.php'
+          index:
+            - index.php
+          headers:
+            Access-Control-Allow-Origin: "*"
 
-  hooks:
-    build: |
-      set -x -e
-      curl -s https://get.symfony.com/cloud/configurator | bash
-      symfony-build
+    hooks:
+      build: |
+        set -x -e
+        curl -s https://get.symfony.com/cloud/configurator | bash
+        symfony-build
 
-    deploy: |
-      set -x -e
-      symfony-deploy
+      deploy: |
+        set -x -e
+        symfony-deploy
 
-  source:
-    root: api-app
+    source:
+      root: api-app
 
-admin:
-  type: nodejs:16
+  admin:
+    type: nodejs:16
 
-  mounts:
-    '/.tmp_platformsh': 'shared:files/tmp_platformsh'
-    '/build': 'shared:files/build'
-    '/.cache': 'shared:files/.cache'
-    '/node_modules/.cache': 'shared:files/node_modules/.cache'
+    mounts:
+      '/.tmp_platformsh': 'shared:files/tmp_platformsh'
+      '/build': 'shared:files/build'
+      '/.cache': 'shared:files/.cache'
+      '/node_modules/.cache': 'shared:files/node_modules/.cache'
 
-  web:
-    locations:
-      "/admin":
-        root: "build"
-        passthru: "/admin/index.html"
-        index:
-          - "index.html"
-        headers:
-          Access-Control-Allow-Origin: "*"
+    web:
+      locations:
+        "/admin":
+          root: "build"
+          passthru: "/admin/index.html"
+          index:
+            - "index.html"
+          headers:
+            Access-Control-Allow-Origin: "*"
 
-  hooks:
-    build: |
-      set -eu
-      corepack yarn install --immutable --force
-    post_deploy: |
-      corepack yarn run build
-  source:
-    root: admin
+    hooks:
+      build: |
+        set -eu
+        corepack yarn install --immutable --force
+      post_deploy: |
+        corepack yarn run build
+    source:
+      root: admin
 
-gatsby:
-  type: 'nodejs:18'
+  gatsby:
+    type: 'nodejs:18'
 
-  mounts:
-    '/.cache': { source: local, source_path: cache }
-    '/.config': { source: local, source_path: config }
-    '/public': { source: local, source_path: public }
+    mounts:
+      '/.cache': { source: tmp, source_path: cache }
+      '/.config': { source: storage, source_path: config }
+      '/public': { source: storage, source_path: public }
 
-  web:
-    locations:
-      '/site':
-        root: 'public'
-        index: [ 'index.html' ]
-        scripts: false
-        allow: true
+    web:
+      locations:
+        '/site':
+          root: 'public'
+          index: [ 'index.html' ]
+          scripts: false
+          allow: true
 
-  hooks:
-    build: |
-      set -e
-      yarn --frozen-lockfile
-    post_deploy: |
-      yarn build --prefix-paths
-  source:
-    root: gatsby
+    hooks:
+      build: |
+        set -e
+        yarn --frozen-lockfile
+      post_deploy: |
+        yarn build --prefix-paths
+    source:
+      root: gatsby
 
-mercure:
-  type: golang:1.18
+  mercure:
+    type: golang:1.18
 
-  mounts:
-    'database': { source: local, source_path: 'database' }
-    '/.local': { source: local, source_path: '.local' }
-    '/.config': { source: local, source_path: '.config' }
+    mounts:
+      'database': { source: storage, source_path: 'database' }
+      '/.local': { source: storage, source_path: '.local' }
+      '/.config': { source: storage, source_path: '.config' }
 
-  web:
-    commands:
-      start: ./mercure run --config Caddyfile.platform_sh
+    web:
+      commands:
+        start: ./mercure run --config Caddyfile.platform_sh
 
-    locations:
-      /:
-        passthru: true
-        scripts: false
-        request_buffering:
-          enabled: false
-        headers:
-          Access-Control-Allow-Origin: "*"
+      locations:
+        /:
+          passthru: true
+          scripts: false
+          request_buffering:
+            enabled: false
+          headers:
+            Access-Control-Allow-Origin: "*"
 
-  hooks:
-    build: |
-      # Install Mercure using cache
-      FILE="mercure_${MERCUREVERSION}_Linux_x86_64.tar.gz"
-      if [ ! -f "$PLATFORM_CACHE_DIR/$FILE" ]; then
-        URL="https://github.com/dunglas/mercure/releases/download/v${MERCUREVERSION}/$FILE"
-        wget -O "$PLATFORM_CACHE_DIR/$FILE" $URL
-      else
-        echo "Found $FILE in cache, using cache"
-      fi
-      file $PLATFORM_CACHE_DIR/$FILE
-      tar xvzf $PLATFORM_CACHE_DIR/$FILE
+    hooks:
+      build: |
+        # Install Mercure using cache
+        FILE="mercure_${MERCUREVERSION}_Linux_x86_64.tar.gz"
+        if [ ! -f "$PLATFORM_CACHE_DIR/$FILE" ]; then
+          URL="https://github.com/dunglas/mercure/releases/download/v${MERCUREVERSION}/$FILE"
+          wget -O "$PLATFORM_CACHE_DIR/$FILE" $URL
+        else
+          echo "Found $FILE in cache, using cache"
+        fi
+        file $PLATFORM_CACHE_DIR/$FILE
+        tar xvzf $PLATFORM_CACHE_DIR/$FILE
 
-  source:
-    root: mercure/.config
+    source:
+      root: mercure/.config
 ```
 
 ## Nested directories
@@ -214,7 +210,6 @@ In that case, you can nest the Java app within the Python app:
 ```txt
 ├── {{% vendor/configdir %}}
 │   ├── {{% vendor/configfile "apps" %}}
-│   └── {{% vendor/configfile "routes" %}}
 ├── languagetool
 │   └── main.java           <- Java app code
 └── main.py                 <- Python app code
@@ -239,15 +234,18 @@ Once your repository is organized, you can use a configuration similar to the fo
 
 
 ```yaml {configFile="apps"}
-main:
-  type: 'python:3.11'
-  ...
+applications:
+    main:
+      type: 'python:3.11'
+      source:
+          root: '/'
+      ...
 
-languagetool:
-  type: 'java:17'
-  source:
-    root: 'languagetool'
-  ...
+    languagetool:
+        type: 'java:17'
+        source:
+            root: 'languagetool'
+        ...
 ```
 
 ## Split your code source into multiple Git submodule repositories
@@ -264,15 +262,12 @@ So you could organize your [project repository](https://github.com/platformsh-te
 ```text
 ├── {{% vendor/configdir %}}
 │   ├── {{% vendor/configfile "apps" "strip" %}}
-│   ├── {{% vendor/configfile "routes" "strip" %}}
-│   └── {{% vendor/configfile "services" "strip" %}}
 ├── @admin      <-- API Platform Admin submodule
 ├── @api        <-- Bigfoot submodule
 ├── @gatsby     <-- Gatsby submodule
 ├── @mercure    <-- Mercure rocks submodule
 └── .gitmodules
 ```
-
 [Add the submodules using the Git CLI](/development/submodules.html#clone-submodules-during-deployment).
 
 Your `.gitmodules` file would define all the submodules like this:
@@ -318,4 +313,4 @@ source:
 The `source.root` path is relative to the repository root.
 In this example, the `admin` app now treats the `admin` directory as its root when building.
 
-If `source.root` isn't specified, it defaults to the same directory as the `{{< vendor/configfile "apps" >}}` (or `{{< vendor/configfile "app" >}}`) file itself.
+If `source.root` isn't specified, it defaults to the project root directory, that is `"/"`.

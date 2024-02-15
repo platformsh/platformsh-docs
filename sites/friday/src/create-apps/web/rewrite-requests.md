@@ -13,26 +13,34 @@ as if they were requests to `/?category=shoes&product=great-shoe`.
 If so, add a [rule](../app-reference.md#rules) similar to the following:
 
 ```yaml {configFile="app"}
-web:
-    locations:
-        '/':
-            ...
-            rules:
-                '^/(?<category>[^/]+)/(?<product>[^/]+)/$':
-                    passthru: '/?category=$category&product=$product'
+applications:
+    myapp:
+        source:
+            root: "/"
+        web:
+            locations:
+                '/':
+                    ...
+                    rules:
+                        '^/(?<category>[^/]+)/(?<product>[^/]+)/$':
+                            passthru: '/?category=$category&product=$product'
 ```
 
 Or you might organize your images by file type, but don't want to expose the organization externally.
 You could rewrite requests to do that behind the scenes:
 
 ```yaml {configFile="app"}
-web:
-    locations:
-        '/':
-            ...
-            rules:
-              '^/img/(?<name>.*)\.(?<type>.*)$':
-                  passthru: '/$type/$name.$type'
+applications:
+    myapp:
+        source:
+            root: "/"
+        web:
+            locations:
+                '/':
+                    ...
+                    rules:
+                    '^/img/(?<name>.*)\.(?<type>.*)$':
+                        passthru: '/$type/$name.$type'
 ```
 
 Now a request to `/img/image.png` returns the file found at `/png/image.png`.

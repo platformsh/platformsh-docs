@@ -57,24 +57,32 @@ A source operation requires two things:
 The syntax is similar to the following:
 
 ```yaml {configFile="app"}
-source:
-    operations:
-        {{< variable "SOURCE_OPERATION_NAME" >}}:
-            command: {{< variable "COMMAND" >}}
+applications:
+    myapp:
+        source:
+            root: "/"
+            type: nodejs:{{% latest "nodejs" %}}
+            source:
+                operations:
+                    {{< variable "SOURCE_OPERATION_NAME" >}}:
+                        command: {{< variable "COMMAND" >}}
 ```
 For example, to update a file from a remote location, you could define an operation like this:
 
 ```yaml {configFile="app"}
-source:
-    operations:
-        update-file:
-            command: |
-                set -e
-                curl -O https://example.com/myfile.txt
-                git add myfile.txt
-                git commit -m "Update remote file"
+applications:
+    myapp:
+        type: nodejs:{{% latest "nodejs" %}}
+        source:
+            root: "/"
+            operations:
+                update-file:
+                    command: |
+                        set -e
+                        curl -O https://example.com/myfile.txt
+                        git add myfile.txt
+                        git commit -m "Update remote file"
 ```
-
 The name of the source operation in this case is `update-file`.
 
 For more possibilities, see other [source operation examples](#source-operation-examples).
@@ -125,14 +133,18 @@ For example, you might want to have a `FILE` variable available with the value `
 to pass to a source operation similar to the following:
 
 ```yaml {configFile="app"}
-source:
-    operations:
-        update-file:
-            command: |
-                set -e
-                curl -O https://example.com/$FILE
-                git add $FILE
-                git commit -m "Update remote file"
+applications:
+    myapp:
+        type: nodejs:{{% latest "nodejs" %}}
+        source:
+            root: "/"
+            operations:
+                update-file:
+                    command: |
+                        set -e
+                        curl -O https://example.com/$FILE
+                        git add $FILE
+                        git commit -m "Update remote file"
 ```
 
 Follow these steps to run the source operation:
@@ -249,17 +261,28 @@ hooks:
     use a configuration similar to the following:
 
 ```yaml {configFile="app"}
-crons:
-    update:
-        # Run the code below every day at midnight.
-        spec: '0 0 * * *'
-        commands:
-            start: |
-                set -e
-                {{% vendor/cli %}} sync -e development code data --no-wait --yes
-                {{% vendor/cli %}} source-operation:run update-file --no-wait --yes
+applications:
+    myapp:
+        type: nodejs:{{% latest "nodejs" %}}
+        source:
+            root: "/"
+            operations:
+                update-file:
+                    command: |
+                        set -e
+                        curl -O https://example.com/$FILE
+                        git add $FILE
+                        git commit -m "Update remote file"
+            crons:
+                update:
+                    # Run the code below every day at midnight.
+                    spec: '0 0 * * *'
+                    commands:
+                        start: |
+                            set -e
+                            {{% vendor/cli %}} sync -e development code data --no-wait --yes
+                            {{% vendor/cli %}} source-operation:run update-file --no-wait --yes
 ```
-
 The example above synchronizes the `development` environment with its parent
 and then runs the `update-file` source operation defined [previously](#define-a-source-operation).
 
@@ -286,16 +309,19 @@ The following source operation syncronizes your branch with an upstream Git repo
 2. In your app configuration, define a source operation to fetch from that upstream repository:
 
 ```yaml {configFile="app"}
-source:
-    operations:
-        upstream-update:
-            command: |
-                set -e
-                git remote add upstream $UPSTREAM_REMOTE
-                git fetch --all
-                git merge upstream/main
+applications:
+    myapp:
+        type: nodejs:{{% latest "nodejs" %}}
+        source:
+            root: "/"
+            operations:
+                upstream-update:
+                    command: |
+                        set -e
+                        git remote add upstream $UPSTREAM_REMOTE
+                        git fetch --all
+                        git merge upstream/main
 ```
-
 3. Now every time you run the `upstream-update` operation on a given branch,
    the branch fetches all changes from the upstream git repository
    and then merges the latest changes from the default branch in the upstream repository.
@@ -311,11 +337,15 @@ This can be useful if you didn't properly test the changes of another operation
 and you need to quickly revert to the previous state.
 
 ```yaml {configFile="app"}
-source:
-    operations:
-        revert:
-            command: |
-                git reset --hard HEAD~
+applications:
+    myapp:
+        type: nodejs:{{% latest "nodejs" %}}
+        source:
+            root: "/"
+            operations:
+                revert:
+                    command: |
+                        git reset --hard HEAD~
 ```
 
 Now every time you run the `revert` operation on a given branch,
@@ -326,16 +356,19 @@ the operation reverts to the last commit pushed to that branch.
 The following source operation uses Composer to update Drupal Core:
 
 ```yaml {configFile="app"}
-source:
-    operations:
-        update-drupal-core:
-            command: |
-                set -e
-                composer update drupal/core --with-dependencies
-                git add composer.lock
-                git commit -m "Automated Drupal Core update."
+applications:
+    myapp:
+        type: php:{{% latest "php" %}}
+        source:
+            root: "/"
+            operations:
+                update-drupal-core:
+                    command: |
+                        set -e
+                        composer update drupal/core --with-dependencies
+                        git add composer.lock
+                        git commit -m "Automated Drupal Core update."
 ```
-
 `--with-dependencies` is used to also update Drupal Core dependencies.
 Read more on how to [update Drupal Core via Composer on Drupal.org](https://www.drupal.org/docs/updating-drupal/updating-drupal-core-via-composer).
 
@@ -348,16 +381,19 @@ You can define the Drupal extension by setting an `EXTENSION` variable
 or [overriding it](#use-variables-in-your-source-operations) when running the source operation.
 
 ```yaml {configFile="app"}
-source:
-    operations:
-        download-drupal-extension:
-            command: |
-                set -e
-                composer require $EXTENSION
-                git add composer.json
-                git commit -am "Automated install of: $EXTENSION via Composer."
+applications:
+    myapp:
+        type: php:{{% latest "php" %}}
+        source:
+            root: "/"
+            operations:
+                download-drupal-extension:
+                    command: |
+                        set -e
+                        composer require $EXTENSION
+                        git add composer.json
+                        git commit -am "Automated install of: $EXTENSION via Composer."
 ```
-
 Now every time you run the `download-drupal-extension` operation, it downloads the defined extension.
 
 If it's a new extension, after the source operation finishes,
@@ -369,17 +405,20 @@ you need to enable the new extension via the Drupal management interface or usin
 The following source operation updates all Git submodules recursively:
 
 ```yaml {configFile="app"}
-source:
-    operations:
-        rebuild:
-            command: |
-                set -e
-                git submodule update --init --recursive
-                git submodule update --remote --checkout
-                SHA=$(git submodule | awk -F' ' '{print $1}' | sed -s 's/+//g')
-                echo -n "$SHA" > .sha
-                git add uppler .sha
-                git commit -m "Updating submodule to commit '$SHA'"
+applications:
+    myapp:
+        type: php:{{% latest "php" %}}
+        source:
+            root: "/"
+            operations:
+                rebuild:
+                    command: |
+                        set -e
+                        git submodule update --init --recursive
+                        git submodule update --remote --checkout
+                        SHA=$(git submodule | awk -F' ' '{print $1}' | sed -s 's/+//g')
+                        echo -n "$SHA" > .sha
+                        git add uppler .sha
+                        git commit -m "Updating submodule to commit '$SHA'"
 ```
-
 Now every time you run the `rebuild` operation, it updates the Git submodules.

@@ -61,10 +61,10 @@ module:
 
               - "changelog/*"
 
-              # - "create-apps/*"
-              - "create-apps/upgrading.md"
-              - "create-apps/workers.md"
-              - "create-apps/flexible-resources.md"
+              - "create-apps/*"
+              # - "create-apps/upgrading.md"
+              # - "create-apps/workers.md"
+              # - "create-apps/flexible-resources.md"
 
               - "dedicated-gen-2/*"
 
