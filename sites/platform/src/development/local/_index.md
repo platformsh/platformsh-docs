@@ -6,7 +6,7 @@ sidebarTitle: "Local development"
 layout: single
 ---
 
-To make changes to your app's code and test them without affecting your production environment, 
+To make changes to your app's code and test them without affecting your production environment,
 set up a local development environment on your computer.
 
 For the most effective testing, you want your local environment to match your {{% vendor/name %}} environments.
@@ -19,9 +19,8 @@ The **recommended tool** for local development with {{% vendor/name %}} is **[DD
 The integration with DDEV is maintained by {{% vendor/name %}} to ensure it works smoothly.
 
 Other Docker-based tools are also supported, such as [Docksal](./docksal.md) and [Lando](./lando.md).
-If you choose to use a Docker-based tool, follow the steps on its page.
-
-Otherwise, follow these steps to run your app on your computer.
+If you choose to use a Docker-based tool, follow the steps on its page. Otherwise, follow these steps to run
+your app on your computer.
 
 ## Before you begin
 
@@ -48,10 +47,10 @@ If you don't have your app code on your computer, download a copy.
     Or pull from your [integrated Git repository](../../integrations/source/_index.md).
 
 You can now access your code from the project directory on your computer.
-The CLI created a `{{< vendor/configfile "apps" >}}/local` directory that's excluded from Git. 
+The CLI created a `{{< vendor/configfile "apps" >}}/local` directory that's excluded from Git.
 It contains builds and local metadata about your project.
 
-You can now make changes to your project without pushing to {{% vendor/name %}} each time to test them. 
+You can now make changes to your project without pushing to {{% vendor/name %}} each time to test them.
 Instead, you can locally build your application using the {{% vendor/name %}} CLI.
 
 Note that if your app contains services, you need to open an SSH tunnel to connect to them.
@@ -70,8 +69,8 @@ Choose the option that works for you and get your services running.
 
 ## 3. Build your site locally
 
-If you want your local development environment to be enclosed 
-so your main system remains unaffected by the build and its dependencies, 
+If you want your local development environment to be enclosed
+so your main system remains unaffected by the build and its dependencies,
 you can use a local virtual machine.
 
 To build your site locally:
