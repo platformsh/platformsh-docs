@@ -101,8 +101,7 @@ module:
 
               - "increase-observability/*"
 
-              # - "integrations/*"
-              - "integrations/activity/reference.md"
+              - "integrations/*"
 
               - "languages/*"
               #- "languages/java/frameworks.md"
